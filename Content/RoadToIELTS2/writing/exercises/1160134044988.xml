@@ -16,7 +16,7 @@
 
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
@@ -80,58 +80,60 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/SS_GW_005.jpg" mode="1" id="1001"/>
-  <br/>
-<div id="content">
+  <img class="rightFloat" src="../media/gt_set9.1_05.jpg" mode="1" id="1001"/>
+  
+<div id="formal">
   <ol>
     <li id="q1">The first thing I'd do if I were you is go and see his teacher.</li>
-		<a id="a1"><b>Formal</b></a><tab/><a id="a2"><b>Informal</b></a>
+		<a id="a1"><b>Formal</b></a><tab/><tab/><a id="a2"><b>Informal</b></a>
 	<p class="linespace"></p>
 
     <li id="q2">I would like to know whether it would be possible for transportation to be arranged.</li>
-		<a id="a3"><b>Formal</b></a><tab/><a id="a4"><b>Informal</b></a>
+		<a id="a3"><b>Formal</b></a><tab/><tab/><a id="a4"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q3">My family doctor informed the Central Hospital immediately following the diagnosis and explained the seriousness of my condition.</li>
-	<a id="a5"><b>Formal</b></a><tab/><a id="a6"><b>Informal</b></a>
+	<a id="a5"><b>Formal</b></a><tab/><tab/><a id="a6"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q4">I have considerable experience in the field of animal care.</li>
-	<a id="a7"><b>Formal</b></a><tab/><a id="a8"><b>Informal</b></a>
+	<a id="a7"><b>Formal</b></a><tab/><tab/><a id="a8"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q5">It's a really good read.</li>
-	<a id="a9"><b>Formal</b></a><tab/><a id="a10"><b>Informal</b></a>
+	<a id="a9"><b>Formal</b></a><tab/><tab/><a id="a10"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q6">Our children are unable to walk home from school unless they are accompanied by an adult.</li>
-	<a id="a11"><b>Formal</b></a><tab/><a id="a12"><b>Informal</b></a>
+	<a id="a11"><b>Formal</b></a><tab/><tab/><a id="a12"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q7">You really should check out the job ads on the Internet too.</li>
-	<a id="a13"><b>Formal</b></a><tab/><a id="a14"><b>Informal</b></a>
+	<a id="a13"><b>Formal</b></a><tab/><tab/><a id="a14"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q8">We were particularly impressed by the number of ramps for wheelchair users.</li>
-	<a id="a15"><b>Formal</b></a><tab/><a id="a16"><b>Informal</b></a>
+	<a id="a15"><b>Formal</b></a><tab/><tab/><a id="a16"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q9">I have suffered from acute sleep deprivation for a number of years.</li>
-	<a id="a17"><b>Formal</b></a><tab/><a id="a18"><b>Informal</b></a>
+	<a id="a17"><b>Formal</b></a><tab/><tab/><a id="a18"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q10">I strongly feel that there is an unacceptable level of violence in the programme and that, therefore, the series should be broadcast at a more appropriate time.</li>
-	<a id="a19"><b>Formal</b></a><tab/><a id="a20"><b>Informal</b></a>
+	<a id="a19"><b>Formal</b></a><tab/><tab/><a id="a20"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q11">I really can't stand football.</li>
-	<a id="a21"><b>Formal</b></a><tab/><a id="a22"><b>Informal</b></a>
+	<a id="a21"><b>Formal</b></a><tab/><tab/><a id="a22"><b>Informal</b></a>
 	<p class="linespace"></p>
 	
     <li id="q12">The officers on duty responded to our call within a matter of minutes.</li>
-	<a id="a23"><b>Formal</b></a><tab/><a id="a24"><b>Informal</b></a>
+	<a id="a23"><b>Formal</b></a><tab/><tab/><a id="a24"><b>Informal</b></a>
 	
   </ol>
+  <p class="linespace"></p>
+  <p class="linespace"></p>
   </div>
 </section>
 

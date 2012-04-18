@@ -17,10 +17,11 @@
 	
 <script id="model" type="application/xml">
 <popups>
+		<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="visual" source="w5t1" width="712" height="381" />
 	</popups>
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
     <questions>
     <TargetSpottingQuestion block="b1">
@@ -91,22 +92,23 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/AC_Task02.jpg" mode="16" id="1004"  />
-		<div id="instruction">
-		Read this sample answer to the writing task in the last exercise and find the mistakes. There are 12. Click on them.
+	<div id="instruction">
+		Read this sample answer to the Writing Task in the last exercise and find the mistakes. There are 12. Click on them.
 		</div>
 	
 </header>
-	  <img class="rightFloat" src="../media/AC_AW_006s.jpg" mode="1" id="1003"/>
-  <img class="leftFloat" src="../media/AC_AW_006.jpg" mode="16" id="1004"/>
+	  
 <section id="body">
-
+	<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
     <a id="visual"><img class="rightFloat" src="../media/AC_AW_006s.jpg" mode="1" id="1001"/></a>
 	
 	<div id="targetspotting">
-  <p align="left">The chart shows views held by New Zealanders&#xA0; <g id="t1">who attend cultural events</g> &#xA0;regarding&#xA0; <g id="t2"> the quality of these events</g>. It is quite clear from the figures that they tend to&#xA0; <g id="t3">disagree</g> &#xA0;on most cultural issues. There are, however, a few issues on which opinions differ.</p>
-  <p align="left">The strongest agreement noticeable is in connection with the importance of cultural activities in school and the benefits culture brings to our lives. Almost three-quarters of &#xA0;<g id="t4">those who agree</g> &#xA0;say they strongly agree that children should be involved in cultural pursuits at school. <g id="t5">On the other hand</g> &#xA0;the vast majority agree that cultural activities enrich our lives and bring us closer together. Almost two-thirds of those who agree on this do so strongly.&#xA0; <g id="t6">Similarly</g>, the population is not&#xA0; <g id="t7">such</g> &#xA0;unanimous on some issues&#xA0; <g id="t8">than</g> it is on others. For example, about half the population do not agree that sport is more important <g id="t9">as</g> culture, while the other half think it is. Just over half of <g id="t10">New Zealanders</g> hold this view strongly.&#xA0; <g id="t11">In contrast</g>, although most New Zealanders believe that they have a sense of their cultural identity, a significant minority, just under&#xA0; <g id="t12">1 in 10</g>, do not feel this way.</p>
-  <p align="left">Although they do not agree on all issues, it seems overall that most New Zealanders have fairly positive attitudes towards their nation's cultural life.</p>
+  <p>The chart shows views held by New Zealanders&#xA0;<g id="t1">who attend cultural events</g>&#xA0;regarding&#xA0;<g id="t2"> the quality of these events</g>. It is quite clear from the figures that they tend to&#xA0; <g id="t3">disagree</g> &#xA0;on most cultural issues. There are, however, a few issues on which opinions differ.</p>
+  
+  <p>The strongest agreement noticeable is in connection with the importance of cultural activities in school and the benefits culture brings to our lives. Almost three-quarters of&#xA0;<g id="t4">those who agree</g> &#xA0;say they strongly agree that children should be involved in cultural pursuits at school.&#xA0;<g id="t5">On the other hand</g> &#xA0;the vast majority agree that cultural activities enrich our lives and bring us closer together. Almost two-thirds of those who agree on this do so strongly.&#xA0; <g id="t6">Similarly</g>, the population is not&#xA0; <g id="t7">such</g> &#xA0;unanimous on some issues&#xA0; <g id="t8">than</g>&#xA0;it is on others. For example, about half the population do not agree that sport is more important&#xA0;<g id="t9">as</g>&#xA0;culture, while the other half think it is. Just over half of&#xA0;<g id="t10">New Zealanders</g>&#xA0;hold this view strongly.&#xA0; <g id="t11">In contrast</g>, although most New Zealanders believe that they have a sense of their cultural identity, a significant minority, just under&#xA0; <g id="t12">1 in 10</g>, do not feel this way.</p>
+  
+  <p>Although they do not agree on all issues, it seems overall that most New Zealanders have fairly positive attitudes towards their nation's cultural life.</p>
 
   </div>
 </section>
@@ -116,43 +118,43 @@
 </section>
 
 <section id="fb1">
- <p class="feedbacktext">New Zealanders</p>
- <p class="feedbacktext">We don't know if the people surveyed attended cultural events or not.</p>
+ <p class="feedbacktext"><b>New Zealanders</b><br/>
+ We don't know if the people surveyed attended cultural events or not.</p>
 </section>
 
 <section id="fb2">
- <p class="feedbacktext">The quality of the events is not referred to in the chart. A better phrase would be <font color="#0000ff">...regarding cultural matters.</font></p>
+ <p class="feedbacktext">The quality of the events is not referred to in the chart. A better phrase would be ...<br/>
+ <b>regarding cultural matters</b></p>
 </section>
 
 <section id="fb3">
- <p class="feedbacktext">agree</p>
- <p class="feedbacktext">For three of the five statements, the vast majority agree or agree strongly.</p>
+ <p class="feedbacktext"><b>agree</b><br/>
+ For three of the five statements, the vast majority agree or agree strongly.</p>
 </section>
 
 <section id="fb4">
- <p class="feedbacktext">New Zealanders</p>
- <p class="feedbacktext">74 per cent refers to New Zealanders.</p>
+ <p class="feedbacktext"><b>New Zealanders</b><br/>
+ 74 per cent refers to New Zealanders.</p>
 </section>
 
 <section id="fb5">
- <p class="feedbacktext">Similarly...</p>
+ <p class="feedbacktext"><b>Similarly ...</b></p>
 </section>
 
 <section id="fb6">
- <p class="feedbacktext">What follows this linking phrase contrasts or contradicts the point which is made before. So it could be <font color="#0000ff">... However,</font></p>
+ <p class="feedbacktext">What follows this linking phrase contrasts or contradicts the point which is made before. So it could be ...<br/>
+ <b>However,</b></p>
 </section>
 
 <section id="fb7">
- <p class="feedbacktext">We use 'as...as' to compare things. 'Such as' introduces examples. <font color="#0000ff"/></p>
- <p class="feedbacktext">
-    <font color="#0000ff">...is not <b>so</b> unanimous...</font>
+ <p class="feedbacktext">We use 'as ... as' to compare things. 'Such as' introduces examples.<br/>
+ ... is not&#xA0;<b>so</b>&#xA0;unanimous ...
   </p>
 </section>
 
 <section id="fb8">
- <p class="feedbacktext">'Than' follows as comparative adjective, 'bigger than' for example, but not comparatives with 'as'. <font color="#0000ff"/></p>
- <p class="feedbacktext">
-    <font color="#0000ff">...on some issues <b>as</b> it is on others.</font>
+ <p class="feedbacktext">'Than' follows as comparative adjective, 'bigger than' for example, but not comparatives with 'as'.<br/>
+ <b>... on some issues&#xA0;<b>as</b>&#xA0;it is on others.</b>
   </p>
 </section>
 
@@ -161,18 +163,26 @@
 </section>
 
 <section id="fb10">
- <p class="feedbacktext">...those who think sport is more important...</p>
+ <p class="feedbacktext"><b>... those who think sport is more important ...</b></p>
 </section>
 
 <section id="fb11">
- <p class="feedbacktext">The point that follows this linking phrase is another example of what New Zealanders disagree about.</p>
- <p class="feedbacktext">
-    <font color="#0000ff">Likewise, ...</font>
+ <p class="feedbacktext">The point that follows this linking phrase is another example of what New Zealanders disagree about.<br/>
+ <b>Likewise, ...</b>
   </p>
 </section>
 
 <section id="fb12">
- <p class="feedbacktext">2 in 5</p>
+ <p class="feedbacktext"><b>2 in 5</b></p>
+</section>
+
+<section id="writingtask1">
+<p class="popuptext"><b>Writing Task 1</b></p>
+
+<p class="popuptext">You should spend about 20 minutes on this task.</p>
+<p class="popuptext"><b>The chart below shows attitudes towards culture and cultural activities in New Zealand.</b></p>
+<p class="popuptext"><b>Write a report for a university lecturer describing the information shown below.</b></p>
+<p class="popuptext">You should write at least 150 words</p>
 </section>
 
 </body>

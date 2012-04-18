@@ -41,22 +41,22 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+	Read the Writing Task and choose the best introductory paragraph. Click A, B or C.
 </div>
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/SS_AW_013f.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../media/set9.2_08.jpg" mode="1" id="1001"  />
 	
 	<div id="targetspotting">
 	
 	<p><b>Advances in medicine and health care mean that increasing numbers of people are living to a very old age. This creates a number of social problems, but at the same time has some positive effects on society.</b></p>
 	
-	<p><b><g id="t1">A. People around the world are living longer than ever before, but is this necessarily a good thing? No doubt most younger and middle-aged people welcome the idea that they will live longer than previous generations. Yet few of us consider the physical, mental and emotional problems associated with living to a very old age.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t1">a.&#xA0;&#xA0;People around the world are living longer than ever before, but is this necessarily a good thing? No doubt most younger and middle-aged people welcome the idea that they will live longer than previous generations. Yet few of us consider the physical, mental and emotional problems associated with living to a very old age.</a></b></p>
 	
-	<p><b><g id="t2">B. As individuals, we all welcome the greater longevity that improved health care grants us. However, the consequences for society of an ageing population are not so desirable. Who will take care of the increasing numbers of elderly people with poor health and failing mental faculties? How will the state cope with the financial burden of so many people drawing pensions? There are a number of ways in which governments must act in order to deal with these problems effectively.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t2">b.&#xA0;&#xA0;As individuals, we all welcome the greater longevity that improved health care grants us. However, the consequences for society of an ageing population are not so desirable. Who will take care of the increasing numbers of elderly people with poor health and failing mental faculties? How will the state cope with the financial burden of so many people drawing pensions? There are a number of ways in which governments must act in order to deal with these problems effectively.</a></b></p>
 	
-	<p><b><g id="t3">C. Improved health care and a better diet have helped increase life expectancy around the world. Most of us welcome the idea that we will live longer, but what are the consequences of an ageing population for society as a whole? In fact, this development has both advantages and disadvantages for society.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t3">c.&#xA0;&#xA0;Improved health care and a better diet have helped increase life expectancy around the world. Most of us welcome the idea that we will live longer, but what are the consequences of an ageing population for society as a whole? In fact, this development has both advantages and disadvantages for society.</a></b></p>
 	
 </div>
 </section>

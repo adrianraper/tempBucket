@@ -33,10 +33,16 @@
 	
 <section id="body">
 <div id="presentation">
-  <h5><p>The chart below shows attitudes towards culture and cultural activities in New Zealand.</p></h5>
-  <p>Write a report for a university lecturer describing the information shown below.</p>
-  <img class="leftFloat" src="../media/AC_AW_006.jpg" mode="1" id="1003"/>
-</div>
+  <h1><p>IELTS Writing Task 1</p></h1>
+  <p><b>The chart below shows attitudes towards culture and cultural activities in New Zealand.</b></p>
+  <p><b>Write a report for a university lecturer describing the information shown below.</b></p>
+  <p>You should write at least 150 words.</p>
+  </div>
+  
+  <div id="practiceactivity">
+  <img src="../media/AC_AW_006.jpg" mode="1" id="1003"/>
+<p class="linespace"></p></div>
+
  
 </section>
 

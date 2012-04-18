@@ -70,7 +70,7 @@
 	
 <header>
 <div id="instruction">
-	Complete the labels on the diagram below. Choose your answers from the box.There are more words/phrases than labels, so you will not use them all.
+	Complete the labels on the diagram below. Choose your answers from the box and drag them down to the appropriate gaps below. There are more words/phrases than labels, so you will not use them all.
 	  <audio controls="hidden" loop="1" autoPlay="true" src="../media/EN_LN2.mp3" mode="4" id="1002"/>
 	</div>
 </header>
@@ -145,12 +145,12 @@
 </section>
 
 <section id="fb7">
-  <p class="feedbacktext">7. The lecturer says that the outer core is liquid and this is labelled on the diagram. Also she says it is about 2,200 kilometres thick and if you add that to the 2,900 kilometres given on the diagram you get the 5,100 kilometres also given.</p>
+  <p class="feedbacktext">7. The lecturer says that the outer core is about 2,200 kilometres thick and if you add that to the 2,900 kilometres given on the diagram you get the 5,100 kilometres also given.</p>
 </section>
 
-<section id="fb8">
-  <p class="feedbacktext">8. The lecturer says that the inner core is solid and this is given on the diagram.</p>
-</section>
+/*
+  8. The lecturer says that the inner core is solid and this is given on the diagram. 
+*/
 
 </body>
 </bento>

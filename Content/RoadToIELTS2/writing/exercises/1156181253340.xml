@@ -17,10 +17,12 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="visual" source="w3t1bicycle" width="552" height="281" />
 	</popups>
-	
+<settings>
+ 	<param name="delayedMarking" value="false" />
+</settings>
    <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true">
@@ -92,7 +94,7 @@
 <header>
 
 		<div id="instruction">
-		Read this sample answer to the writing task in the previous exercise and find the mistakes. There are 12 and they are all grammatical errors. Click on them.
+		Read this sample answer to the Writing Task in the previous exercise and find the mistakes. There are 12 and they are all grammatical errors. Click on them.
 		</div>
 </header>
 
@@ -102,10 +104,13 @@
   <br/><br/><br/>
   <a id="visual"><img class="rightFloat" src="../media/TT_AW_007s.jpg" mode="1" id="1001"/></a>
   <div id="targetspotting">
-  <p align="left">The table shows trends in bicycle use in Britain over a twenty-five-year period and compares distances travelled by age group and sex. In general, men travelled&#xA0; <g id="t1">greatest</g> &#xA0;distances by bicycle than women, and the trend over the period was for people to cycle&#xA0; <g id="t2">less and less</g> &#xA0;miles per year.</p>
-  <p align="left">There was a noticeable decline in the distances travelled by nearly all groups. In 1975 the figure for all cyclists was 51 miles per annum. By 2000 this figure had dropped by just over a fifth. The&#xA0; <g id="t3">more</g> &#xA0;marked decline was for girls aged 11-17, who cycled less than half as&#xA0; <g id="t4">much</g> &#xA0;miles in 2000 as in 1975. The only group who cycled&#xA0; <g id="t5">farer</g> &#xA0;in 2000 than in 1975 were male 18 to 59-year-olds.  However, one of the&#xA0; <g id="t6">strikingest</g> &#xA0;changes shown in the table concerns 5 to 10-year-old girls, whose mileage began to increase towards the end of the period. In fact, they cycled twice the&#xA0; <g id="t7">amount</g> &#xA0;of miles in 2000 as in 1975.</p>
-  <p align="left">The figures show that women cycled&#xA0; <g id="t8">much less</g> &#xA0;miles than men. For most age groups, distances cycled by women were not nearly as&#xA0; <g id="t9">many</g> &#xA0;as those cycled by men. The&#xA0; <g id="t10">greater</g> &#xA0;difference can be seen in the 11-17 age group. At this age, boys cycled about four times as&#xA0; <g id="t11">further</g> &#xA0;as girls.</p>
-  <p align="left">However, the fact that in 2000 the&#xA0; <g id="t12">most youngest</g> &#xA0;girls cycled as many miles as boys in the same age group suggests that the trends shown here may change considerably in the future.</p>
+  <p>The table shows trends in bicycle use in Britain over a twenty-five-year period and compares distances travelled by age group and sex. In general, men travelled&#xA0; <g id="t1">greatest</g> &#xA0;distances by bicycle than women, and the trend over the period was for people to cycle&#xA0; <g id="t2">less and less</g> &#xA0;miles per year.</p>
+  
+  <p>There was a noticeable decline in the distances travelled by nearly all groups. In 1975 the figure for all cyclists was 51 miles per annum. By 2000 this figure had dropped by just over a fifth. The&#xA0; <g id="t3">more</g> &#xA0;marked decline was for girls aged 11-17, who cycled less than half as&#xA0; <g id="t4">much</g> &#xA0;miles in 2000 as in 1975. The only group who cycled&#xA0; <g id="t5">farer</g> &#xA0;in 2000 than in 1975 were male 18 to 59-year-olds.  However, one of the&#xA0; <g id="t6">strikingest</g> &#xA0;changes shown in the table concerns 5 to 10-year-old girls, whose mileage began to increase towards the end of the period. In fact, they cycled twice the&#xA0; <g id="t7">amount</g> &#xA0;of miles in 2000 as in 1975.</p>
+  
+  <p>The figures show that women cycled&#xA0; <g id="t8">much less</g> &#xA0;miles than men. For most age groups, distances cycled by women were not nearly as&#xA0; <g id="t9">many</g> &#xA0;as those cycled by men. The&#xA0; <g id="t10">greater</g> &#xA0;difference can be seen in the 11-17 age group. At this age, boys cycled about four times as&#xA0; <g id="t11">further</g> &#xA0;as girls.</p>
+  
+  <p>However, the fact that in 2000 the&#xA0; <g id="t12">most youngest</g> &#xA0;girls cycled as many miles as boys in the same age group suggests that the trends shown here may change considerably in the future.</p>
 
   </div>
 </section>
@@ -123,39 +128,39 @@
 
 <section id="fb1">
   <p class="feedbacktext">
-    <font color="#000000"><b>greatest -&gt; greater:</b> This sentence includes the word 'than' and so the comparative form of the adjective is needed here.</font>
+    <b>greatest -&gt; greater:</b>&#xA0;This sentence includes the word 'than' and so the comparative form of the adjective is needed here.
   </p>
 </section>
 
 <section id="fb2">
   <p class="feedbacktext">
-    <font color="#000000"><b>less and less -&gt; fewer and fewer</b>: The noun 'miles' is countable and 'less' can only be used with uncountable nouns.</font>
+    <b>less and less -&gt; fewer and fewer:</b>&#xA0;The noun 'miles' is countable and 'less' can only be used with uncountable nouns.
   </p>
 </section>
 
 <section id="fb3">
   <p class="feedbacktext">
-    <font color="#000000"><b>more -&gt; most</b>: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font>
+    <b>more -&gt; most:</b>&#xA0;Before the gap is the word 'the', and so the superlative form of the adjective is necessary.
   </p>
 </section>
 
 <section id="fb4">
   <p class="feedbacktext">
-    <font color="#000000"><b>much -&gt; many</b>: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</font>
+    <b>much -&gt; many:</b>&#xA0;The noun 'miles' is countable and 'much' can only be used with uncountable nouns.
   </p>
 </section>
 
 <section id="fb5">
   <p class="feedbacktext">
-    <font color="#000000"><b>farer -&gt; further</b>: 'Farer' is not the correct form of the comparative of this adjective.</font>
+    <b>farer -&gt; further:</b>&#xA0;'Farer' is not the correct form of the comparative of this adjective.
   </p>
 </section>
 
 <section id="fb6">
   <p class="feedbacktext">
-    <font color="#000000"><b>strikingest -&gt; most striking</b>: 'Strikingest' is not the correct form of the superlative of this adjective.</font>
+    <b>strikingest -&gt; most striking:</b> &#xA0;'Strikingest' is not the correct form of the superlative of this adjective.
   </p>
-  <p align="left"/>
+  <p/>
 </section>
 
 <section id="fb7">
@@ -166,19 +171,19 @@
 
 <section id="fb8">
   <p class="feedbacktext">
-    <font color="#000000"><b>much less -&gt; far fewer</b>: The noun 'miles' is countable and 'less' can only be used with uncountable nouns.</font>
+    <b>much less -&gt; far fewer:</b>&#xA0;The noun 'miles' is countable and 'less' can only be used with uncountable nouns.
   </p>
 </section>
 
 <section id="fb9">
   <p class="feedbacktext">
-    <font color="#000000"><b>many -&gt; great</b>: 'Distance' is an uncountable noun. 'Many' can only be used with countable nouns.</font>
+    <b>many -&gt; great:</b>&#xA0;'Distance' is an uncountable noun. 'Many' can only be used with countable nouns.
   </p>
 </section>
 
 <section id="fb10">
   <p class="feedbacktext">
-    <font color="#000000"><b>greater -&gt; greatest</b>: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font>
+    <b>greater -&gt; greatest:</b>&#xA0;Before the gap is the word 'the', and so the superlative form of the adjective is necessary.
   </p>
 </section>
 
@@ -202,13 +207,13 @@
 
 <section id="fb15">
   <p class="feedbacktext">
-    <font color="#000000">Many: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.</font>
+    Many: The noun 'miles' is countable and 'much' can only be used with uncountable nouns.
   </p>
 </section>
 
 <section id="fb16">
   <p class="feedbacktext">
-    <font color="#000000">most: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.</font>
+    most: Before the gap is the word 'the', and so the superlative form of the adjective is necessary.
   </p>
 </section>
 

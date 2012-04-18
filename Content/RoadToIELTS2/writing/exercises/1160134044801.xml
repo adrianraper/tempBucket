@@ -16,7 +16,7 @@
 
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -98,31 +98,33 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/SS_GW_007.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/gt_set9.1_07.jpg" mode="1" id="1001"/>
   
 <div id="targetspotting">
-  <p><g id="t1">A.  Brainstorm for ideas first.</g></p>
-  <p><g id="t2">B.  Close the letter appropriately.</g></p>
-  <p><g id="t3">C.  Copy the writing task and use it as your opening sentence.</g></p>
-  <p><g id="t4">D.  Cover all the points in the writing task.</g></p>
-  <p><g id="t5">E.  Decide if you have to write a formal or informal letter.</g></p>
-  <p><g id="t6">F.  Decide what the purpose of the letter is.</g></p>
-  <p><g id="t7">G.  Divide your letter into paragraphs.</g></p>
-  <p><g id="t8">H.  Follow the instructions.</g></p>
-  <p><g id="t9">I.  Include all the ideas you brainstormed.</g></p>
-  <p><g id="t10">J.  Include irrelevant information.</g></p>
-  <p><g id="t11">K.  Leave out any of the points mentioned in the task.</g></p>
-  <p><g id="t12">L.  Leave some time at the end to check your letter for mistakes.</g></p>
-  <p><g id="t13">M.  Make a quick plan for your letter.</g></p>
-  <p><g id="t14">N.  Open the letter appropriately.</g></p>
-  <p><g id="t15">O.  Read the writing task carefully.</g></p>
-  <p><g id="t16">P.  Spend more than 20 minutes on Writing Task 1.</g></p>
-  <p><g id="t17">Q.  Start writing your letter immediately.</g></p>
-  <p><g id="t18">R.  Think about who you have to write to.</g></p>
-  <p><g id="t19">S.  Write a prepared answer.</g></p>
-  <p><g id="t20">T.  Write fewer than 150 words.</g></p>
-  <p><g id="t21">U.  Write one paragraph.</g></p>
-  <p><g id="t22">V.  Write your address.</g></p>
+  <list class="advice">	
+  <li><a id="t1">Brainstorm for ideas first.</a></li>
+  <li><a id="t2">Close the letter appropriately.</a></li>
+  <li><a id="t3">Copy the Writing Task and use it as your opening sentence.</a></li>
+  <li><a id="t4">Cover all the points in the Writing Task.</a></li>
+  <li><a id="t5">Decide if you have to write a formal or informal letter.</a></li>
+  <li><a id="t6">Decide what the purpose of the letter is.</a></li>
+  <li><a id="t7">Divide your letter into paragraphs.</a></li>
+  <li><a id="t8">Follow the instructions.</a></li>
+  <li><a id="t9">Include all the ideas you brainstormed.</a></li>
+  <li><a id="t10">Include irrelevant information.</a></li>
+  <li><a id="t11">Leave out any of the points mentioned in the task.</a></li>
+  <li><a id="t12">Leave some time at the end to check your letter for mistakes.</a></li>
+  <li><a id="t13">Make a quick plan for your letter.</a></li>
+  <li><a id="t14">Open the letter appropriately.</a></li>
+  <li><a id="t15">Read the Writing Task carefully.</a></li>
+  <li><a id="t16">Spend more than 20 minutes on Writing Task 1.</a></li>
+  <li><a id="t17">Start writing your letter immediately.</a></li>
+  <li><a id="t18">Think about who you have to write to.</a></li>
+  <li><a id="t19">Write a prepared answer.</a></li>
+  <li><a id="t20">Write fewer than 150 words.</a></li>
+  <li><a id="t21">Write one paragraph.</a></li>
+  <li><a id="t22">Write your address.</a></li>
+  </list>
 </div>
 </section>
 

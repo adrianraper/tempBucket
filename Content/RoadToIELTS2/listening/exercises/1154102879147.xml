@@ -18,7 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
-	<param name="autoMarkTimeout" value="305" />
+	<param name="autoMarkTimeout" value="190" />
 </settings>
 
   <questions>
@@ -64,10 +64,10 @@
 
 <img class="rightFloat" src="../media/HF_LN_004.jpg" mode="1" id="1004"/>
   <div id="questionList">
-<p>9. &#xA0;<input id="q1"/></p>
-<p>10.&#xA0;<input id="q2"/></p>
-<p>11.&#xA0;<input id="q3"/></p>
-<p>12.&#xA0;<input id="q4"/></p>
+<p>9.<tab/><input id="q1"/></p>
+<p>10.<tab/><input id="q2"/></p>
+<p>11.<tab/><input id="q3"/></p>
+<p>12.<tab/><input id="q4"/></p>
 </div>
 </section>
 

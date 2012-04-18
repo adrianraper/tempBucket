@@ -66,10 +66,10 @@
 <section id="body">
 <div id="outer">
 <div id="video">
-  <video  src="../media/Unit03_e3.flv" mode="1" id="1003" autoPlay="false"/>
+  <video  src="../media/Unit03_e3.flv" mode="1" id="1003" autoPlay="false" width="320" height="240" />
  </div>
  
- <div id="content">
+ <div id="content2">
   <p>If you know or you&#xA0;<input id="q1" type="droptarget"/>&#xA0;two&#xA0;<input id="q2" type="droptarget"/>&#xA0;, then you are not only one person you are two people. If you go&#xA0;<input id="q3" type="droptarget"/>&#xA0;for studying or for travelling or for&#xA0;<input id="q4" type="droptarget"/>&#xA0;. You can&#xA0;<input id="q5" type="droptarget"/>&#xA0;a lot of things, about other&#xA0;<input id="q6" type="droptarget"/>&#xA0;, other languages,&#xA0;<input id="q7" type="droptarget"/>&#xA0;, all over the world.</p>
   </div>
   </div>

@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -64,16 +67,20 @@
 </header>
 	
 <section id="readingText">
-  <p align="left"><b>A. </b>The figures show the average number of trips made per year in urban and rural areas in the UK.</p>
-  <p align="left"><b>B.</b> The table compares British rural and urban areas in terms of average distances travelled over the year.</p>
-  <p align="left"><b>C.</b> The table seems to suggest that, for most forms of transport, it is becoming safer to travel about Britain.</p>
-  <p align="left"><b>D.</b> The table shows how the top ten holiday destinations for 1999 were ranked.</p>
-  <p align="left"><b>E.</b> There are clearly large differences between the relative safety of each mode of transport in the UK.</p>
-  <p align="left"><b>F.</b> Tourist numbers grew at very different rates in the world's top ten tourist destinations between 1998 and 1999.</p>
- 
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+	<br/><br/><br/>
+	<div id="reading">
+  <p class="hangingIndent"><b>A</b>&#xA0;The figures show the average number of trips made per year in urban and rural areas in the UK.</p>
+  <p class="hangingIndent"><b>B</b>&#xA0;The table compares British rural and urban areas in terms of average distances travelled over the year.</p>
+  <p class="hangingIndent"><b>C</b>&#xA0;The table seems to suggest that, for most forms of transport, it is becoming safer to travel about Britain.</p>
+  <p class="hangingIndent"><b>D</b>&#xA0;The table shows how the top ten holiday destinations for 1999 were ranked.</p>
+  <p class="hangingIndent"><b>E</b>&#xA0;There are clearly large differences between the relative safety of each mode of transport in the UK.</p>
+  <p class="hangingIndent"><b>F</b>&#xA0;Tourist numbers grew at very different rates in the world's top ten tourist destinations between 1998 and 1999.</p>
+ </div>
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set3.1_06.jpg" mode="1" id="1004"/>
   <ol id="splitquestionList">
     <li id="1"><input id="q1"/> &#xA0;It is clear from these figures that western European destinations are still very popular with tourists; four out of the top ten are western European countries. France, Spain and the United States are the top three destinations. France had by far the most tourists that year, with 73 million visitors. This was followed by Spain, with almost 52 million, and the USA, with almost 50 million. Other non-European countries in the top ten were China, Canada, Mexico, the Russian Federation and Poland.</li>
     <p class="linespace"></p>
@@ -86,6 +93,8 @@
 	<li id="5"><input id="q5"/> &#xA0;It is clear from the figures that, overall, people who live in the countryside travel more miles than city dwellers. This is particularly true with regard to journeys by car. However, if we consider other means of getting around, such as walking, there is in fact very little difference. The number of miles travelled annually by urban and rural residents by these means is more or less the same.</li>
     <p class="linespace"></p>
 	<li id="6"><input id="q6"/> &#xA0;Overall, the number of journeys made per year is almost the same in rural areas as it is in urban areas. However, there are marked differences in the means of transport used for those trips. Not surprisingly, perhaps, rural dwellers use their cars more often than urban dwellers. Similarly, those who live in the city make more trips using forms of transport other than their cars.</li>
+	<p class="linespace"></p>
+	<p class="linespace"></p>
   </ol>
 </section>
 
@@ -111,6 +120,10 @@
 
 <section id="fb6">
   <p class="feedbacktext">6. This paragraph compares how many trips people made per year using different means of transport in rural and urban areas.</p>
+</section>
+
+<section id="examtips">
+	<p class="popuptext">We saw in Set 1 that you can organise your reports by grouping information into paragraphs. Good writers include a topic sentence at the beginning of each paragraph to act as a 'signpost' for the reader. The topic sentence tells the reader what aspect of the table or chart the coming paragraph will deal with. The paragraphs in your reports should include topic sentences of this kind.</p>
 </section>
 </body>
 </bento>

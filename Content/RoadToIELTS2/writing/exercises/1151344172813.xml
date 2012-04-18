@@ -12,6 +12,13 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#practiceactivity {
+	position:absolute;
+	float: left;
+	padding-top: -30px;
+	padding-right: 20em;
+	padding-left: -30px;
+	}
 	</style>
 	
 	
@@ -36,7 +43,9 @@
   <h5>The flow chart below shows the process by which the Hong Kong Post Office chooses artwork for its stamps.</h5>
   <p>Write a report for a university lecturer describing the information shown below.</p>
   </div>
-  <img class="leftFloat" src="../media/WB_WR8.jpg" mode="1" id="1001"/>
+  <div id="practiceactivity">
+  <img src="../media/WB_WR8.jpg" mode="1" id="1001"/>
+  </div>
 
 </section>
 

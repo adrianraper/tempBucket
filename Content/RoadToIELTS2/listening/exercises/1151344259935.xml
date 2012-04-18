@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="quiz" />
@@ -77,7 +77,7 @@
 	
 <header>
 <div id="instruction">
-		Questions 11-15. Listen to the recording, which will play automatically, and follow the instructions. What advice does the lecturer give about web site design? Click G, if she considers it a feature of good web site design; or B, if she considers it a feature of bad web site design.
+		Questions 11-15. Listen to the recording, which will play automatically, and follow the instructions. What advice does the lecturer give about website design? Click G, if she considers it a feature of good website design; or B, if she considers it a feature of bad website design.
 		  <audio controls="hidden" loop="1" autoPlay="true" src="../media/ST_LN2c.mp3" mode="4" id="1002"/>
 </div>		
 
@@ -92,15 +92,15 @@
 
   <ol id="trueFalse">
   <p class="hanging">11. texts with lots of detailed information<br/>
-  <a id="a1"><b>B</b></a><tab/><a id="a2"><b>G</b></a></p>
+  <a id="a1"><b>Bad</b></a><tab/><a id="a2"><b>Good</b></a></p>
   <p class="hanging">12. simple language<br/>
-  <a id="a3"><b>B</b></a><tab/><a id="a4"><b>G</b></a></p>
+  <a id="a3"><b>Bad</b></a><tab/><a id="a4"><b>Good</b></a></p>
    <p class="hanging">13. texts and graphics together on the same page<br/>
-  <a id="a5"><b>B</b></a><tab/><a id="a6"><b>G</b></a></p>
+  <a id="a5"><b>Bad</b></a><tab/><a id="a6"><b>Good</b></a></p>
   <p class="hanging">14. big pictures<br/>
-  <a id="a7"><b>B</b></a><tab/><a id="a8"><b>G</b></a></p>
-  <p class="hanging">15. company details on the first page of a web site<br/>
-  <a id="a9"><b>B</b></a><tab/><a id="a10"><b>G</b></a></p>
+  <a id="a7"><b>Bad</b></a><tab/><a id="a8"><b>Good</b></a></p>
+  <p class="hanging">15. company details on the first page of a website<br/>
+  <a id="a9"><b>Bad</b></a><tab/><a id="a10"><b>Good</b></a></p>
   </ol>
 </section>
 
@@ -125,10 +125,10 @@
 </section>
 
 <section id="examtips">
-	<p class="popuptext">You should be able to tell that you will hear someone giving their opinions about designing a web site.</p>
+	<p class="popuptext">You should be able to tell that you will hear someone giving their opinions about designing a website.</p>
 	
 	<p class="popuptext1"><b>Questions 11-15</b></p>
-	<p class="popuptext2">Think about each of these statements and from your own knowledge of web sites decide what works and doesn't work. Can you imagine what might be considered 'good'? For example, simple language seems quite obvious. Also think about how these statements might be expressed differently.</p>
+	<p class="popuptext2">Think about each of these statements and from your own knowledge of websites decide what works and doesn't work. Can you imagine what might be considered 'good'? For example, simple language seems quite obvious. Also think about how these statements might be expressed differently.</p>
 </section>
 </body>
 </bento>

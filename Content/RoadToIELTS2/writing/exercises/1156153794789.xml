@@ -39,7 +39,7 @@
     	<popup click="clickme" source="examtips" width="500" />
 </popups>
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
@@ -91,7 +91,7 @@
 </section>
 
 <section id="examtips">
-<p class="popuptext">The information for the writing task in the previous exercise is presented as a standard bar chart. It could have been presented in a number of other ways, for example as pie charts or a proportional bar chart.</p>
+<p class="popuptext">The information for the Writing Task in the previous exercise is presented as a standard bar chart. It could have been presented in a number of other ways, for example as pie charts or a proportional bar chart.</p>
 </section>
 
 </body>

@@ -17,11 +17,11 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 			<popup click="visual1" source="flow1" width="559" height="365" />
 	</popups>
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -83,7 +83,7 @@
 <header>
 
 		<div id="instruction">
-		Read this sample answer to the writing task in the previous exercise and find the mistakes. There are 10. Click on them.
+		Read this sample answer to the Writing Task in the previous exercise and find the mistakes. There are 10. Click on them.
 		</div>
 		
 </header>
@@ -95,10 +95,15 @@
   <br/><br/><br/>
 <a id="visual1"><img class="rightFloat" src="../media/HF_AW_007s.jpg" mode="1" id="1001"/></a>
 	<div id="targetspotting">
-	<p align="left">The table shows how the percentages of male and female smokers changed in Britain over&#xA0; <g id="t1">more than</g> &#xA0;three decades and compares trends for six socio-economic groups.&#xA0; <g id="t2">Worryingly</g>, smoking became less common for all groups between 1972 and 1999. However, it is clear that throughout the period there was a much higher proportion of smokers in certain socio-economic groups than others.</p>
+	<p>The table shows how the percentages of male and female smokers changed in Britain over&#xA0; <g id="t1">more than</g> &#xA0;three decades and compares trends for six socio-economic groups.&#xA0; <g id="t2">Worryingly</g>, smoking became less common for all groups between 1972 and 1999. However, it is clear that throughout the period there was a much higher proportion of smokers in certain socio-economic groups than others.</p>
+	
 	<p><g id="t3">As far as</g> &#xA0;overall trends, the figures show a dramatic fall in the proportion of smokers for both sexes. For men the percentage&#xA0; <g id="t4">more than</g> &#xA0;halved over the period and for women it fell by&#xA0; <g id="t5">almost</g> &#xA0;a third. Furthermore, the gap between the proportion of men who smoked and women who smoked narrowed from 10 per cent in 1972 to&#xA0; <g id="t6">about 2</g> &#xA0;per cent in 1999.</p>
-<p>	<g id="t7">Encouragingly</g>, the table clearly shows that smoking remained more prevalent among certain socio-economic groups than others. In 1972, a third of professional men smoked compared to&#xA0; <g id="t8">well over</g> &#xA0;two-thirds of unskilled manual workers.&#xA0; <g id="t9">As regards</g> &#xA0;the former are concerned, the proportion of smokers approximately halved over the period. In comparison, the proportion of unskilled manual workers who smoked fell by&#xA0; <g id="t10">exactly</g> &#xA0;a third.</p>
+	
+<p><g id="t7">Encouragingly</g>, the table clearly shows that smoking remained more prevalent among certain socio-economic groups than others. In 1972, a third of professional men smoked compared to&#xA0; <g id="t8">well over</g> &#xA0;two-thirds of unskilled manual workers.&#xA0; <g id="t9">As regards</g> &#xA0;the former are concerned, the proportion of smokers approximately halved over the period. In comparison, the proportion of unskilled manual workers who smoked fell by&#xA0; <g id="t10">exactly</g> &#xA0;a third.</p>
+
 	<p>To sum up, we can say that while smoking generally became less popular in Britain over the period, it became increasingly associated with the manual socio-economic groups.</p>
+	
+	<p class="linespace"></p>
 	</div>
 </section>
 
@@ -108,58 +113,52 @@
 
 <section id="writingtask1">
 
-
+<p class="popuptext"><b>Writing Task 1</b></p>
 <p class="popuptext"> You should spend about 20 minutes on this task.</p>
-<p class="popuptext"><b> The table below shows trends in the proportion of smokers among different socio-economic groups in Great Britain between 1972 and 1999.</b></p>
-<p class="popuptext"><b> Write a report for a university lecturer describing the information shown below.</b></p>
+<p class="popuptext"><b>The table below shows trends in the proportion of smokers among different socio-economic groups in Great Britain between 1972 and 1999.</b></p>
+<p class="popuptext"><b>Write a report for a university lecturer describing the information shown below.</b></p>
 <p class="popuptext">You should write at least 150 words</p>
 
-		</section>
+</section>
 		
 <section id="fb1">
-  <p align="left">
-    <font color="#000000"> nearly: 1972-1999 is nearly three decades.</font>
-  </p>
+  <p class="feedbacktext"><b>nearly:</b>&#xA0;1972-1999 is nearly three decades.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <font color="#000000">Encouragingly: The fact that smoking became less common is good news.</font>
-  </p>
+  <p class="feedbacktext"><b>Encouragingly:</b>&#xA0;The fact that smoking became less common is good news.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">Concerning</p>
+  <p class="feedbacktext"><b>Concerning</b></p>
 </section>
 
 <section id="fb4">
-  <p align="left">almost</p>
+  <p class="feedbacktext"><b>almost</b></p>
 </section>
 
 <section id="fb5">
-  <p align="left">just over</p>
+  <p class="feedbacktext"><b>just over</b></p>
 </section>
 
 <section id="fb6">
-  <p align="left">2</p>
+  <p class="feedbacktext"><b>2</b></p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-Less positively: The fact that some groups are more likely to smoke can't be describe as 'encouraging'. 
-  </p>
+  <p class="feedbacktext"><b>Less positively:</b>&#xA0;The fact that some groups are more likely to smoke can't be describe as 'encouraging'.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">just under</p>
+  <p class="feedbacktext"><b>just under</b></p>
 </section>
 
 <section id="fb9">
-  <p align="left">As far as</p>
+  <p class="feedbacktext"><b>As far as</b></p>
 </section>
 
 <section id="fb10">
-  <p align="left">around</p>
+  <p class="feedbacktext"><b>around</b></p>
 </section>
 
 </body>

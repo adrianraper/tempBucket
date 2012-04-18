@@ -12,6 +12,13 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#practiceactivity {
+	position:absolute;
+	float: left;
+	padding-top: -30px;
+	padding-right: 20em;
+	padding-left: -30px;
+	}
 	</style>
 	
 	
@@ -23,19 +30,21 @@
 	
 <header>
 <div id="instruction">
-	IELTS Writing Task 1. You should spend about 20 minutes on this task. You should write at least 150 words.
+	You should spend about 20 minutes on this task. You should write at least 150 words.
 	</div>
 </header>
 	
 <section id="body">
 
   <div id="presentation">
-
+	<h1><p>IELTS Writing Task 1</p></h1>
     <h5>The chart shows trends in the use of the Internet by the female population of the USA.</h5>
-<p>	Write a report for a university lecturer describing the information shown below. </p>
+	<p>Write a report for a university lecturer describing the information shown below.</p>
 		</div>
-	 <p><img class="leftFloat" src="../media/Unit02_Write_e7n8.jpg" mode="1" id="1003"/></p>
-
+	<div id="practiceactivity">
+	 <img src="../media/Unit02_Write_e7n8.jpg" mode="1" id="1003"/>
+	 <p class="linespace"></p></div>
+   
 
 </section>
 

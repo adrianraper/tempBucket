@@ -15,7 +15,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="visual" source="tabcomp" width="730" height="448" />
 	</popups>
 </script>
@@ -25,7 +25,7 @@
 	
 <header>
 	<div id="instruction">
-	Read the writing task and the sample answer. 
+	Read the Writing Task and the sample answer. 
 		</div>
 	
 </header>
@@ -41,9 +41,13 @@
   <div id="presentation">
   <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1003"/></a><br/><br/>
   <p>The flow chart shows the steps in the process of publishing academic books.</p>
+  
   <p>First, the publisher researches the market for popular subjects and reviews titles which already exist in those fields. Based on this research, a publishing project is chosen. The next stage is to find a suitable manuscript. The publisher can either select from manuscripts authors to write them. Manuscripts are then reviewed by readers. They make recommendations to the commissioning editor, who in turn makes a final selection for the project.</p>
+  
   <p>If the publisher believes that the project will be a financial success, then the detailed editing process can begin. Style, spelling and punctuation are checked by copy and line editors. If the manuscript needs further correction, it is sent back to the writer, otherwise the book is ready for design and manufacture.</p>
+  
   <p>While the above creative processes are taking place, a marketing plan is drawn up. Subsequently, advertising and publicity campaigns can generate orders for the book even before it is printed.</p>
+  
   <p>Once the book has been designed and manufactured, a price is set and the book can be distributed to warehouses and finally to bookshops.</p>
   </div>
 </section>

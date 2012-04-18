@@ -52,7 +52,7 @@
 <div id="outer">
 
 <div id="video">
-  <video src="../media/Unit02_e5.flv" mode="1" id="1003" autoPlay="false"/>
+  <video src="../media/Unit02_e5.flv" mode="1" id="1003" autoPlay="false" width="320" height="240" />
   </div>
 
 <div id="content2">

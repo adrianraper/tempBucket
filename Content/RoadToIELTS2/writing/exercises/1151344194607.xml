@@ -4,18 +4,25 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#imgwrapper{
+	width: 300px;
+	float:right;
+	}
 	</style>
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="visual1" source="graph1" width="454" height="465" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -51,7 +58,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Fill the gaps in the sentences with the words and phrases provided so that each one means the same as the sentence before it. There are more words and phrases than gaps, so you will not use them all.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -70,20 +79,42 @@
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/SS_AW_003s.jpg" mode="1" id="1003"/>
-  <img class="leftFloat" src="../media/SS_AW_003.jpg" mode="16" id="1004"/>
-  <br/>
+<div id="imgwrapper">
+<a id="visual1"><img class="rightFloat" src="../media/SS_AW_003s.jpg" mode="1" id="1003"/></a>
+</div>
+
+  <div>
   <ol id="questionList">
-    <li id="1">Between 1971 and 1999 there was a dramatic fall in the number of first marriages.Between 1971 and 1999 the number of first marriages <input id="q1" type="droptarget"/>.</li>
-    <li id="2">From 1971 onwards the number of remarriages declined steadily.From 1971 onwards there was <input id="q2" type="droptarget"/> in the number of remarriages.</li>
-    <li id="3">In 1981 the divorce rate was almost twice as high as in 1971.Between 1971 and 1981 the divorce rate nearly <input id="q3" type="droptarget"/>.</li>
-    <li id="4">The divorce rate stood at its highest level in 1991.The divorce rate <input id="q4" type="droptarget"/> in 1991.</li>
-    <li id="5">Between 1971 and 1972 the number of children whose parents were divorced shot up.Between 1971 and 1972 there was <input id="q5" type="droptarget"/> in the number of children whose parents were divorced.</li>
-    <li id="6">Between 1983 and 1985 the number of children with divorced parents fell slightly and then rose again.Between 1983 and 1985 there was <input id="q6" type="droptarget"/> in the number of children with divorced parents.</li>
-    <li id="7">During the 1980s there was not a great deal of change in the number of children with divorced parents.During the 1980s the number of children with divorced parents <input id="q7" type="droptarget"/>.</li>
-    <li id="8">From 1973 to 1980 the number of children whose parents were divorced rose steadily.From 1973 to 1980 there was <input id="q8" type="droptarget"/> in the number of children whose parents were divorced.</li>
+    <li id="1"><span color="#0000FF">Between 1971 and 1999 there was a dramatic fall in the number of first marriages.</span><br/>Between 1971 and 1999 the number of first marriages&#xA0;<input id="q1" type="droptarget"/>.</li>
+	
+	<p class="linespace"></p>
+    <li id="2"><span color="#0000FF">From 1971 onwards the number of remarriages declined steadily.</span><br/>From 1971 onwards there was&#xA0;<input id="q2" type="droptarget"/>&#xA0;in the number of remarriages.</li>
+	
+	<p class="linespace"></p>
+    <li id="3"><span color="#0000FF">In 1981 the divorce rate was almost twice as high as in 1971.</span><br/>Between 1971 and 1981 the divorce rate nearly&#xA0;<input id="q3" type="droptarget"/>.</li>
+	
+	<p class="linespace"></p>
+    <li id="4"><span color="#0000FF">The divorce rate stood at its highest level in 1991.</span><br/>The divorce rate&#xA0;<input id="q4" type="droptarget"/>&#xA0;in 1991.</li>
+	
+	<p class="linespace"></p>
+    <li id="5"><span color="#0000FF">Between 1971 and 1972 the number of children whose parents were divorced shot up.</span><br/>Between 1971 and 1972 there was&#xA0;<input id="q5" type="droptarget"/>&#xA0;in the number of children whose parents were divorced.</li>
+	
+	<p class="linespace"></p>
+    <li id="6"><span color="#0000FF">Between 1983 and 1985 the number of children with divorced parents fell slightly and then rose again.</span><br/>Between 1983 and 1985 there was&#xA0;<input id="q6" type="droptarget"/>&#xA0;in the number of children with divorced parents.</li>
+	
+	<p class="linespace"></p>
+    <li id="7"><span color="#0000FF">During the 1980s there was not a great deal of change in the number of children with divorced parents.</span><br/>During the 1980s the number of children with divorced parents&#xA0;<input id="q7" type="droptarget"/>.</li>
+	
+	<p class="linespace"></p>
+    <li id="8"><span color="#0000FF">From 1973 to 1980 the number of children whose parents were divorced rose steadily.</span><br/>From 1973 to 1980 there was&#xA0;<input id="q8" type="droptarget"/>&#xA0;in the number of children whose parents were divorced.</li>
+	<p class="linespace"></p>
+	<p class="linespace"></p>
   </ol>
+  </div>
 </section>
 
+<section id="graph1">
+<img class="graphpop" src="../media/SS_AW_003.jpg" mode="16" id="1004" />
+</section>
 </body>
 </bento>

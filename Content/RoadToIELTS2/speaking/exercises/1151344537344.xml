@@ -116,7 +116,7 @@
 <div id="outer">
   <img class="rightFloat" src="../media/set5_03.jpg" mode="1" id="1001"/>
   
-  <div id="content">
+  <div id="content2">
   <ol>
     <li>You should talk about every question until the Examiner stops you.</li>
 		<a id="a1"><b>True</b></a><tab/><tab/><a id="a2"><b>False</b></a>
@@ -169,7 +169,7 @@
 </section>
 
 <section id="fb2">
-  <p class="feedbacktext">1. Think about how you behave in a normal conversation and try to do the same in the exam.</p>
+  <p class="feedbacktext">1. Think about how you behave in a normal conversation and try to do the same in the test.</p>
 </section>
 
 <section id="fb3">

@@ -85,9 +85,9 @@ Watch Alexandra as she answers some questions about her home town. There might b
 <section id="body">
 <div id="outer">
 <div class="rightFloatvideo1">
-  <video src="../media/Unit04_e6a.flv" mode="16" id="1003" autoPlay="false"/>
-  <video src="../media/Unit04_e6b.flv" mode="16" id="1004" autoPlay="false"/>
-  <video src="../media/Unit04_e6c.flv" mode="16" id="1005" autoPlay="false"/>
+  <video src="../media/Unit04_e6a.flv" mode="16" id="1003" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit04_e6b.flv" mode="16" id="1004" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit04_e6c.flv" mode="16" id="1005" autoPlay="false" width="320" height="240" />
 </div>
 
 <div id="content1">

@@ -18,6 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
+	<param name="autoMarkTimeout" value="110" />
 </settings>
 
   <questions>
@@ -161,7 +162,7 @@
 </section>
 
 <section id="fb4">
-  <p class="feedbacktext">1D. James says that volunteers are sent to developing countries in Africa.</p>
+  <p class="feedbacktext">1D. James says that volunteers are sent to developing countries in Asia.</p>
 </section>
 
 <section id="fb5">

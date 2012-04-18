@@ -124,8 +124,8 @@
 <section id="body">
 <div id="outer">
 <div class="rightFloatvideo1">
-  <video src="../media/Unit012_e5a.flv" mode="16" id="1003" autoPlay="false"/><br/><br/><br/><br/><br/><p class="linespace"></p>
-  <video src="../media/Unit012_e5b.flv" mode="16" id="1004" autoPlay="false"/>
+  <video src="../media/Unit012_e5a.flv" mode="16" id="1003" autoPlay="false" width="320" height="240" /><br/><br/><br/><br/><br/><p class="linespace"></p>
+  <video src="../media/Unit012_e5b.flv" mode="16" id="1004" autoPlay="false" width="320" height="240" />
 </div>
 
 <div id="content1">

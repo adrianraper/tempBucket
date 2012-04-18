@@ -32,12 +32,13 @@
 </header>
 	
 <section id="body">
-
+<img class="rightFloat" src="../media/set3.1_07.jpg" mode="1" id="1003"/>
   <div id="presentation"> 
-    <h5>The table shows bicycle use in Britain by age and gender over a twenty-five-year period. </h5>
+	<h1><p>IELTS Writing Task 1</p></h1>
+    <h5>The table shows bicycle use in Britain by age and gender over a twenty-five-year period.</h5>
 	<p>Write a report for a university lecturer describing the information shown below.</p>
  </div>
-  <p><img class="leftFloat" src="../media/TT_AW_007.jpg" mode="1" id="1003"/></p>
+  <img class="leftFloat" src="../media/TT_AW_007.jpg" mode="1" id="1003"/>
 </section>
 
 </body>

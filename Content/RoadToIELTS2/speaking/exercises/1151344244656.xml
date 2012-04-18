@@ -34,7 +34,7 @@ Listen to Zafir's answer to the question "How do you think daily life has change
 <section id="body">
 <div id="outer">
 <div id="video">
-<video src="../media/Unit011_e3n4.flv" mode="1" id="1003" autoPlay="false"/>
+<video src="../media/Unit011_e3n4.flv" mode="1" id="1003" autoPlay="false" width="320" height="240" />
 </div>
   <div id="content1">
 <p>Watch Zafir again, how many points does he make?</p>

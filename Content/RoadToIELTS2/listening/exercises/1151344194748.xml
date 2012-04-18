@@ -96,9 +96,8 @@
   </p>
 </section>
 
-<section id="fb2">
-  <p class="feedbacktext">7.&#xA0;<b>adults</b></p>
-</section>
+/* 7.&#xA0;<b>adults</b> */
+
 
 <section id="fb3">
   <p class="feedbacktext">8.&#xA0;<b>conservative:</b>&#xA0;The lecturer says that those retiring after 2010 will probably have a far less conservative outlook.

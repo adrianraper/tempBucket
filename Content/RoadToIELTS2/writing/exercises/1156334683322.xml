@@ -59,27 +59,27 @@
   <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
 <br/><br/><br/>
   <ol id="questionList">
-  <li><span color="#7935AB">The water-balanced railway's hydraulic brake helps store energy to pump water. Its main function is to slow the train.</span>
-  <br/> The water-balanced railway's hydraulic brake&#xA0;<input id="q1"/>&#xA0;main function is to slow the train, helps store energy to pump water.</li>
+  <li><span color="#0000FF">The water-balanced railway's hydraulic brake helps store energy to pump water. Its main function is to slow the train.</span>
+  <br/> The water-balanced railway's hydraulic brake,&#xA0;<input id="q1"/>&#xA0;main function is to slow the train, helps store energy to pump water.</li>
   <p class="linespace"></p>
   
-  <li><span color="#7935AB">A solar cell is a power source. It converts sunlight into electricity.</span>
+  <li><span color="#0000FF">A solar cell is a power source. It converts sunlight into electricity.</span>
   <br/> A solar cell is a power source&#xA0;<input id="q2"/>&#xA0;converts sunlight into electricity.</li>
   <p class="linespace"></p>
   
-  <li><span color="#7935AB">A hydram is powered by water pressure. It can irrigate fields 60 metres above the water source.</span>
+  <li><span color="#0000FF">A hydram is powered by water pressure. It can irrigate fields 60 metres above the water source.</span>
   <br/> A hydram,&#xA0;<input id="q3"/>&#xA0;can irrigate fields sixty metres above the water source, is powered by water pressure.</li>
   <p class="linespace"></p>
   
-  <li><span color="#7935AB">The water-balanced railway is an example of sustainable technology. It is powered by the force of gravity.</span>
+  <li><span color="#0000FF">The water-balanced railway is an example of sustainable technology. It is powered by the force of gravity.</span>
   <br/> The water-balanced railway,&#xA0;<input id="q4"/>&#xA0;is powered by the force of gravity, is an example of sustainable technology.</li>
   <p class="linespace"></p>
   
-  <li><span color="#7935AB">Ecologists are scientists. They study the relationship between living organisms and their environment.</span>
+  <li><span color="#0000FF">Ecologists are scientists. They study the relationship between living organisms and their environment.</span>
   <br/> Ecologists are scientists&#xA0;<input id="q5"/>&#xA0;study the relationship between living organisms and their environment.</li>
   <p class="linespace"></p>
   
-  <li><span color="#7935AB">Greenpeace is an organisation. Its aim is to protect wildlife and the natural environment.</span>
+  <li><span color="#0000FF">Greenpeace is an organisation. Its aim is to protect wildlife and the natural environment.</span>
   <br/> Greenpeace is an organisation&#xA0;<input id="q6"/>&#xA0;aim is to protect wildlife and the natural environment.</li>
   <p class="linespace"></p>
   
@@ -88,10 +88,10 @@
 
 <section id="examtips">
 <p class="popuptext">When describing an object we often use relative clauses to give information about its function, construction and so on. These may be defining relative clauses, for example:</p>
-<p class="popuptext">A ballast tank is a tank which holds water for weight.</p>
+<p class="popuptext"><span color="#0000FF">A ballast tank is a tank which holds water for weight.</span></p>
 <p class="popuptext">The relative clause gives essential information about the object, so it is a defining relative clause.</p>
 <p class="popuptext">Or they may be non-defining relative clauses, for example:</p>
-<p class="popuptext">The carriages, which can carry up to 20 passengers, go up and down a steep slope.</p>
+<p class="popuptext"><span color="#0000FF">The carriages, which can carry up to 20 passengers, go up and down a steep slope.</span></p>
 <p class="popuptext">The relative clause gives additional information about the object, so it is a non-defining relative clause. Only non-defining relative clauses need to be enclosed in commas.</p>
 </section>
 

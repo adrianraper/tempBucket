@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2012-02-08" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
+	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,6 +16,10 @@
 	
 
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="500" />
+		<popup click="visual" source="set12A" width="696" height="362" />
+</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
   </settings>
@@ -87,28 +91,59 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/ST_WT1.jpg" mode="16" id="1004"  />Look carefully at the diagram and complete the report by typing an appropriate form of one of the verbs provided in each gap. In each case, decide whether you need active or passive voice and remember to use the correct tense.
-		
-		Writing Task 1
+	<div id="instruction">
+	Look carefully at the diagram and complete the report by typing an appropriate form of one of the verbs provided in each gap. In each case, decide whether you need active or passive voice and remember to use the correct tense.
+	</div>
 </header>
 	
 <section id="noscroll">
+	<span id="a1" draggable="false">form</span>
+	<span id="a2" draggable="false">fill</span>
+	<span id="a3" draggable="false">flow</span>
+	<span id="a4" draggable="false">disintegrate</span>
+	<span id="a5" draggable="false">cover</span>
+	<span id="a6" draggable="false">sink</span>
+	<span id="a7" draggable="false">wash</span>
+	<span id="a8" draggable="false">die</span>
+	<span id="a9" draggable="false">encase</span>
+	<span id="a10" draggable="false">transform</span>
+	<span id="a11" draggable="false">fossilise</span>
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/ST_WR1s.jpg" mode="1" id="1004"/>
-  <img class="leftFloat" src="../media/ST_WR1.jpg" mode="16" id="1005"/>
-  <p align="left">The flow chart shows how animal remains can <input id="q1"/> through a process known as replacement.</p>
-  <p align="left">The animal <input id="q2"/> on the banks of a river or lake and the flow of rainwater <input id="q3"/> its body in. It then <input id="q4"/> to the bottom, where its body <input id="q5"/> with sediment which <input id="q6"/> into the lake or river and settles on the bed to form layers. Consequently, the remains <input id="q7"/> in a protective environment where fossilisation can take place.</p>
-  <p align="left">Over time the soft tissues decay and sediment gradually <input id="q8"/> the resultant cavities. The hard mineral parts such as bones and teeth, however, are left behind. Eventually, the river or lake <input id="q9"/> with sediment layers. Due to the enormous pressure and heat caused by the weight of the upper layers, the lower layers <input id="q10"/> into rock.</p>
-  <p align="left">
-    <font color="#000000">Ground water rich in minerals such as calcite and silica slowly seeps through the rock and over the animal&#x2019;s remains. Eventually, these hard mineral parts <input id="q11"/> and dissolve into the ground water. As a result, cavities <input id="q12"/> in the rock. Subsequently, these cavities <input id="q13"/> with minerals.</font>
-  </p>
-  <p align="left">In this way, the original animal parts <input id="q14"/> with mineral deposits and a fossil <input id="q15"/>.</p>
-  <p align="left">
-    <b>Click to enlarge</b>
-  </p>
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1002"/></a><br/><br/>
+  <a id="visual"><img class="rightFloat" src="../media/ST_WR1s.jpg" mode="1" id="1004"/></a>
+  
+  <div id="gapfillText">
+  <p>The flow chart shows how animal remains can&#xA0; <input id="q1"/> &#xA0;through a process known as replacement.</p>
+  
+  <p>The animal&#xA0; <input id="q2"/> &#xA0;on the banks of a river or lake and the flow of rainwater&#xA0; <input id="q3"/> &#xA0;its body in. It then&#xA0; <input id="q4"/> &#xA0;to the bottom, where its body&#xA0; <input id="q5"/> &#xA0;with sediment which&#xA0; <input id="q6"/> &#xA0;into the lake or river and settles on the bed to form layers. Consequently, the remains&#xA0; <input id="q7"/> &#xA0;in a protective environment where fossilisation can take place.</p>
+  
+  <p>Over time the soft tissues decay and sediment gradually&#xA0; <input id="q8"/> &#xA0;the resultant cavities. The hard mineral parts such as bones and teeth, however, are left behind. Eventually, the river or lake&#xA0; <input id="q9"/> &#xA0;with sediment layers. Due to the enormous pressure and heat caused by the weight of the upper layers, the lower layers&#xA0;<input id="q10"/> &#xA0;into rock.</p>
+  
+  <p>Ground water rich in minerals such as calcite and silica slowly seeps through the rock and over the animal's remains. Eventually, these hard mineral parts&#xA0; <input id="q11"/> &#xA0;and dissolve into the ground water. As a result, cavities&#xA0; <input id="q12"/> &#xA0;in the rock. Subsequently, these cavities&#xA0; <input id="q13"/> &#xA0;with minerals.</p>
+  
+  <p>In this way, the original animal parts&#xA0; <input id="q14"/> &#xA0;with mineral deposits and a fossil&#xA0; <input id="q15"/>.</p>
+  
+  <p class="linespace"></p>
+  </div>
 </section>
 
+<section id="set12A">
+<img src="../media/ST_WR1.jpg" mode="16" id="1005"/>
+</section>
+
+<section id="writingtask1">
+
+<p class="popuptext"><b>Writing Task 1</b></p>
+
+<p class="popuptext">You should spend 20 minutes on this task.</p>
+
+<p class="popuptext"><b>The diagram shows one way in which animal fossils are formed.</b></p>
+
+<p class="popuptext"><b>Write a report for a university lecturer describing the information shown below.</b></p>
+
+<p class="popuptext">You should write at least 150 words.</p>
+</section>
 </body>
 </bento>

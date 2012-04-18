@@ -16,7 +16,7 @@
 
 <script id="model" type="application/xml">
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
   
   <questions>
@@ -158,27 +158,26 @@
 </header>
 	
 <section id="body">
-<img class="rightFloat" src="../media/SS_GW_006.jpg" mode="1" id="1001"/>
+<img class="rightFloat" src="../media/gt_set9.1_06.jpg" mode="1" id="1001"/>
 
 <div id="targetspotting">
-<p>I love eating out and trying different types of food. I eat out at least once&#xA0; <g id="t1">the</g> &#xA0;week and I&#xA0; <g id="t2">have often</g> &#xA0;breakfast out on Sunday mornings. I really enjoy&#xA0; <g id="t3">to cook</g> &#xA0;too. I'm taking a Thai cookery course at the moment. Last week we&#xA0; <g id="t4">learn</g> &#xA0;how to cook fish cakes and&#xA0; <g id="t5">the</g> &#xA0;delicious noodle dish.</p>
 
-<h7>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </h7> 
+<p><b>Extract 1</b><br/>
+I love eating out and trying different types of food. I eat out at least once&#xA0; <g id="t1">the</g> &#xA0;week and I&#xA0; <g id="t2">have often</g> &#xA0;breakfast out on Sunday mornings. I really enjoy&#xA0; <g id="t3">to cook</g> &#xA0;too. I'm taking a Thai cookery course at the moment. Last week we&#xA0; <g id="t4">learn</g> &#xA0;how to cook fish cakes and&#xA0; <g id="t5">the</g> &#xA0;delicious noodle dish.</p>
 
-<p>If I were you,&#xA0; <g id="t6">I'll</g> &#xA0;phone the school and arrange to meet Peter's teacher. She might have noticed the change in his behaviour too, or she might have noticed something that could account for&#xA0; <g id="t7">them</g>&#xA0; . If that&#xA0; <g id="t8">don't</g> &#xA0;help, then you ought to talk to Peter &#x2013; but you'd better not&#xA0; <g id="t9">to do</g> &#xA0;it in front of&#xA0; <g id="t10">her</g> &#xA0;sister. Anyway, drop me a line and let me know how&#xA0; <g id="t11">he</g> &#xA0;goes.</p>
+<p><b>Extract 2</b><br/>
+If I were you,&#xA0; <g id="t6">I'll</g> &#xA0;phone the school and arrange to meet Peter's teacher. She might have noticed the change in his behaviour too, or she might have noticed something that could account for&#xA0; <g id="t7">them</g>&#xA0; . If that&#xA0; <g id="t8">don't</g> &#xA0;help, then you ought to talk to Peter &#x2013; but you'd better not&#xA0; <g id="t9">to do</g> &#xA0;it in front of&#xA0; <g id="t10">her</g> &#xA0;sister. Anyway, drop me a line and let me know how&#xA0; <g id="t11">he</g> &#xA0;goes.</p>
 
-<h7>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </h7> 
+<p><b>Extract 3</b><br/>
+We were also extremely impressed by the speed with which the officers&#xA0; <g id="t12">manage</g> &#xA0;to find the burglars and return the items&#xA0; <g id="t13">he</g> &#xA0;had taken. The items&#xA0; <g id="t14">was</g> &#xA0;stolen&#xA0; <g id="t15">at</g> &#xA0;Sunday evening and by Wednesday we&#xA0; <g id="t16">have</g> &#xA0;them all back.</p>
 
-<p>We were also extremely impressed by the speed with which the officers&#xA0; <g id="t12">manage</g> &#xA0;to find the burglars and return the items&#xA0; <g id="t13">he</g> &#xA0;had taken. The items&#xA0; <g id="t14">was</g> &#xA0;stolen&#xA0; <g id="t15">at</g> &#xA0;Sunday evening and by Wednesday we&#xA0; <g id="t16">have</g> &#xA0;them all back.</p>
+<p><b>Extract 4</b><br/>
+I have always loved&#xA0; <g id="t17">animal</g> &#xA0;and, as you can see&#xA0; <g id="t18">at</g> &#xA0;my CV, I am currently&#xA0; <g id="t19">study</g> &#xA0;for a diploma in animal husbandry. I am planning to become a veterinary assistant when I have completed&#xA0; <g id="t20">the</g> &#xA0;studies.</p>
 
-<h7>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </h7> 
+<p><b>Extract 5</b><br/>
+I&#xA0; <g id="t21">am</g> &#xA0;wondering what facilities&#xA0; <g id="t22">do you</g> &#xA0;offer. I would particularly like to know whether there is&#xA0; <g id="t23">the</g> &#xA0;swimming pool. I would be grateful&#xA0; <g id="t24">whether</g> &#xA0;you&#xA0; <g id="t25">can</g> &#xA0;send me a brochure.</p>
 
-<p>I have always loved&#xA0; <g id="t17">animal</g> &#xA0;and, as you can see&#xA0; <g id="t18">at</g> &#xA0;my CV, I am currently&#xA0; <g id="t19">study</g> &#xA0;for a diploma in animal husbandry. I am planning to become a veterinary assistant when I have completed&#xA0; <g id="t20">the</g> &#xA0;studies.</p>
-
-<h7>- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - </h7> 
-
-<p>I&#xA0; <g id="t21">am</g> &#xA0;wondering what facilities&#xA0; <g id="t22">do you</g> &#xA0;offer. I would particularly like to know whether there is&#xA0; <g id="t23">the</g> &#xA0;swimming pool. I would be grateful&#xA0; <g id="t24">whether</g> &#xA0;you&#xA0; <g id="t25">can</g> &#xA0;send me a brochure.</p>
-
+<p class="linespace"></p>
 </div>
 </section>
 

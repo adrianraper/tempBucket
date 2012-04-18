@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -190,7 +190,7 @@ Read these pieces of advice for Writing Task 2 and decide whether they are thing
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/SS_AW_016.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set9.2_12.jpg" mode="1" id="1001"/>
   <div id="targetspotting"> 
   
   <p class="hangingIndent1">1. What should you do before you start writing?</p>
@@ -248,7 +248,7 @@ Read these pieces of advice for Writing Task 2 and decide whether they are thing
     <li><a id="t31">Organise your ideas into paragraphs.</a></li>
     <li><a id="t32">Select the best ideas from your brainstorming session.</a></li>
     <li><a id="t33">Spend more than 40 minutes on Writing Task 2.</a></li>
-    <li><a id="t34">Start writing as soon as you have read the writing task.</a></li>
+    <li><a id="t34">Start writing as soon as you have read the Writing Task.</a></li>
 	<li><a id="t35">Try to cover the whole subject in detail.</a></li>
 	</list>
 	<p></p>
@@ -326,7 +326,7 @@ Read these pieces of advice for Writing Task 2 and decide whether they are thing
 </section>
 
 <section id="fb24">
-  <p class="feedbacktext">Your writing in both Task 1 and Task 2 should be fairly formal.</p>
+  <p class="feedbacktext">Your writing in both task 1 and task 2 should be fairly formal.</p>
 </section>
 
 <section id="fb28">

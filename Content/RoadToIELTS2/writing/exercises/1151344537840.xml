@@ -17,6 +17,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
+		<popup click="clickme" source="examtips" width="500" />
 		<popup click="visual" source="w5t1" width="522" height="381" />
 	</popups>
 <settings>
@@ -77,7 +78,8 @@
 
 <section id="body">
 
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
  <a id="visual"><img class="rightFloat" src="../media/AC_AW_003s.jpg" mode="1" id="1001"/></a>
  
  <div id="gapfillText">
@@ -90,6 +92,9 @@
 	<img src="../media/AC_AW_003.jpg" mode="1" id="1003"/>
 </section>
 
+<section id="examtips">
+	<p class="popuptext">As well as having an overall plan for your report, each paragraph also needs to be logically organised. One way to organise a paragraph is by grouping information to show the similarities and contrasts in the figures. Using linking words and expressions such as 'similarly', 'likewise', 'in contrast' and 'however' can help make this clearer.</p>
+</section>
 
 </body>
 </bento>

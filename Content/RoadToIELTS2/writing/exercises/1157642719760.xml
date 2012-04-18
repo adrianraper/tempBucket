@@ -41,21 +41,21 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+	Read the Writing Task and choose the best introductory paragraph. Click A, B or C.
 </div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/SS_AW_013d.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set9.2_06.jpg" mode="1" id="1001"/>
   
   <div id="targetspotting">
   <p><b>We are all citizens of the world. People should be allowed to move freely, and to live and work in the country of their choice without restrictions.</b></p>
   
-    <p><b><g id="t1">A. Due to phenomena such as globalisation and the general opening up of borders which have taken place in recent decades, an increasing number of people are choosing to work and settle down outside their county of birth. This has certain benefits and drawbacks, both for individuals and for society as a whole.</g></b></p>
+    <p class="hangingIndent1"><b><a id="t1">a.&#xA0;&#xA0;Due to phenomena such as globalisation and the general opening up of borders which have taken place in recent decades, an increasing number of people are choosing to work and settle down outside their county of birth. This has certain benefits and drawbacks, both for individuals and for society as a whole.</a></b></p>
 	
-	<p><b><g id="t2">B. Increasing numbers of asylum seekers and economic and political refugees have led many governments to impose harsh immigration restrictions. However, such restrictions mean that many individuals are condemned to lives of poverty or oppression from which they cannot escape. Governments of wealthier nations ought to take measures to alleviate the problems these people face.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t2">b.&#xA0;&#xA0;Increasing numbers of asylum seekers and economic and political refugees have led many governments to impose harsh immigration restrictions. However, such restrictions mean that many individuals are condemned to lives of poverty or oppression from which they cannot escape. Governments of wealthier nations ought to take measures to alleviate the problems these people face.</a></b></p>
 	
-	<p><b><g id="t3">C. In response to the growing pressure from people living in developing countries to be allowed to migrate and work in developed countries, many governments have now imposed harsh restrictions on immigration. However, more and more people believe that these restrictions should be relaxed.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t3">c.&#xA0;&#xA0;In response to the growing pressure from people living in developing countries to be allowed to migrate and work in developed countries, many governments have now imposed harsh restrictions on immigration. However, more and more people believe that these restrictions should be relaxed.</a></b></p>
   
 </div>
 </section>

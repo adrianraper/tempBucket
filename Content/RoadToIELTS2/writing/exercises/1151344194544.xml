@@ -4,18 +4,25 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#imgwrapper{
+	width: 300px;
+	float:right;
+	}
 	</style>
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="visual1" source="graph1" width="454" height="460" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -69,13 +76,45 @@
 <body>
 	
 <header>
+<div id="instruction">
 	The table shows marriage and divorce statistics in the UK between 1971 and 1999, while the line graph shows how the number of children with divorced parents varied over approximately the same period in England and Wales. 
+	</div>
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/SS_AW_003s.jpg" mode="1" id="1003"  /><img class="leftFloat" src="../media/SS_AW_003.jpg" mode="16" id="1004"  /><p align="left">Look carefully at the table and the graph and read the statements, all of which are true.&nbsp;Which of the following should be included in the report?<g id="t1">A  Between 1980 and 1984 the number of children with divorced parents fell by around 14,500.</g><g id="t2">B  By 1975 the number of children whose parents were divorced had reached 145,096.</g><g id="t3">C  By 1981 the number of first marriages per year had fallen by over 100,000.</g><g id="t4">D  From 1994 to the end of the period the number of children with divorced parents declined steadily.</g><g id="t5">E  In 1971 the number of remarriages was just over 10,000 higher than the number of divorces.</g><g id="t6">F  In 1991 the number of divorces was almost 50,000 higher than the figure for remarriages in the same year.</g><g id="t7">G  The number of children whose parents were divorced nearly doubled between 1970 and 1972.</g><g id="t8">H  The number of children with divorced parents reached a peak in 1993.</g><g id="t9">I  The number of children with divorced parents was approximately the same in 1979 as it was in 1983.</g><g id="t10">J  The number of divorces in 1991 was almost equal to the number of first marriages in 1999.</g><g id="t11">K  The number of divorces in 1999 was double the number in 1971.</g><g id="t12">L  The number of first marriages in 1999 was less than half the number in 1971.</g><g id="t13">M  The number of remarriages declined steadily after 1981.</g><g id="t14">N  There was a 25 per cent increase in the number of children whose parents were divorced between 1972 and 1978.</g></p><p align="left"><font size="2"></font></p>
-		<p align="left">
-		<b>Click to enlarge</b></p>
+<div id="imgwrapper">
+<a id="visual1">
+	<img class="rightFloat" src="../media/SS_AW_003s.jpg" mode="1" id="1003"  /></a>
+</div>
+
+<div id="targetspotting">
+	
+	<p>Look carefully at the table and the graph and read the statements, all of which are true.</p>
+	
+	<p><b>Which of the following should be included in the report?</b></p>
+	
+	<list class="answerList2">
+	<li><a id="t1">Between 1980 and 1984 the number of children with divorced parents fell by around 14,500.</a></li>
+	<li><a id="t2">By 1975 the number of children whose parents were divorced had reached 145,096.</a></li>
+	<li><a id="t3">By 1981 the number of first marriages per year had fallen by over 100,000.</a></li>
+	<li><a id="t4">From 1994 to the end of the period the number of children with divorced parents declined steadily.</a></li>
+	<li><a id="t5">In 1971 the number of remarriages was just over 10,000 higher than the number of divorces.</a></li>
+	<li><a id="t6">In 1991 the number of divorces was almost 50,000 higher than the figure for remarriages in the same year.</a></li>
+	<li><a id="t7">The number of children whose parents were divorced nearly doubled between 1970 and 1972.</a></li>
+	<li><a id="t8">The number of children with divorced parents reached a peak in 1993.</a></li>
+	<li><a id="t9">The number of children with divorced parents was approximately the same in 1979 as it was in 1983.</a></li>
+	<li><a id="t10">The number of divorces in 1991 was almost equal to the number of first marriages in 1999.</a></li>
+	<li><a id="t11">The number of divorces in 1999 was double the number in 1971.</a></li>
+	<li><a id="t12">The number of first marriages in 1999 was less than half the number in 1971.</a></li>
+	<li><a id="t13">The number of remarriages declined steadily after 1981.</a></li>
+	<li><a id="t14">There was a 25 per cent increase in the number of children whose parents were divorced between 1972 and 1978.</a></li>
+	</list>
+	<p class="linespace"></p>
+</div>
+</section>
+
+<section id="graph1">
+<img class="leftFloat" src="../media/SS_AW_003.jpg" mode="16" id="1004"  />
 </section>
 </body>
 </bento>

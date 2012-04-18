@@ -81,13 +81,12 @@
 <br/>&#xA0;</p>
 <p><b>Course</b></p>
 <p><b>Course Code</b></p>
-<p><b>Payment Method</b>
-<br/>&#xA0;
-<br/>&#xA0;
-<br/>&#xA0;
-<br/>&#xA0;</p>
+<p><b>Payment Method</b></p>
+<br/>
+<br/>
+<br/>
 <p><b>Card No.</b></p>
-<p><b>Expiry Date:</b></p>
+<p class="special"><b>Expiry Date:</b></p>
 
 </div>
 

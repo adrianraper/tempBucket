@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="634"  />
+    	<popup click="clickme" source="writingtask1" width="500"  />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -91,7 +91,7 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and look carefully at the bar chart. Complete the report by dragging the correct word, phrase or number into each gap.
+	Read the Writing Task and look carefully at the bar chart. Complete the report by dragging the correct word, phrase or number into each gap.
 		</div>
 		
 </header>
@@ -123,7 +123,7 @@
   <div id="writing">
   
 
-  <p>The bar chart shows the amount of time that &#xA0;<input id="q1" type="droptarget"/>-year-olds in England spend per week on sport and exercise. It is clear from the chart that&#xA0;<input id="q2" type="droptarget"/>&#xA0;are less active in their leisure time than&#xA0;<input id="q3" type="droptarget"/>.</p>
+  <p>The bar chart shows the amount of time that&#xA0;<input id="q1" type="droptarget"/>-year-olds in England spend per week on sport and exercise. It is clear from the chart that&#xA0;<input id="q2" type="droptarget"/>&#xA0;are less active in their leisure time than&#xA0;<input id="q3" type="droptarget"/>.</p>
   <p>There is a striking difference between the percentages of men and women who prefer not to participate in sport in their free time. Almost&#xA0;<input id="q4" type="droptarget"/>&#xA0;of young women devote no time at all to active leisure pursuits while this applies to only about&#xA0;<input id="q5" type="droptarget"/>&#xA0;of young men. There is a similar difference between the percentages of very active young people. Almost&#xA0;<input id="q6" type="droptarget"/>&#xA0;men between the ages of 16 and 24 play sport for&#xA0;<input id="q7" type="droptarget"/>&#xA0;or more hours a week. The figure for young women is only&#xA0;<input id="q8" type="droptarget"/>.</p>
   <p>A closer examination of the figures for young people who actually play sport reveals that the greatest proportion dedicate between&#xA0;<input id="q9" type="droptarget"/>&#xA0;hours per week to these pastimes. This is true for just over&#xA0;<input id="q10" type="droptarget"/>&#xA0;of both men and women.</p>
   <p>The fact that only&#xA0;<input id="q11" type="droptarget"/>&#xA0;of young women spend an hour or more a week on sport, compared to approximately&#xA0;<input id="q12" type="droptarget"/>&#xA0;of young men, raises questions about how fit young women are in comparison to young men.</p>

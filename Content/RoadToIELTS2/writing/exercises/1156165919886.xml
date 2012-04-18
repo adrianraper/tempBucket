@@ -12,13 +12,56 @@
 			width: 270px;
 			padding-right: 20px;
 			float:right;
-		}			
+		}
+
+		#imgwrapper a{
+		padding: 5px 350% 0px -15px;
+		}
+		
+		/* For use in captions of AC FV Writing, Set 2 task 1, Understanding dynamic charts and tables */
+
+		.caption1 {
+			margin: 0 0 0 0;
+			padding: 60px 0px 0px 0px;
+			line-height: 12em;
+			}
+		
+		.caption2 {
+			margin: 0 0 0 0;
+			padding: 9px 0px 0px 0px;
+			line-height: 12em;
+			}
+		
+		.caption3 {
+			margin: 0 0 0 0;
+			padding: 15px 0px 0px 0px;
+			line-height: 12em;
+			}
+		
+		.caption4 {
+			margin: 0 0 0 0;
+			padding: 27px 0px 0px 0px;
+			line-height: 12em;
+			}
+		
+		.caption5 {
+			margin: 0 0 0 0;
+			padding: 20px 0px 0px 0px;
+			line-height: 12em;
+			}
+		
+		.caption6 {
+			margin: 0 0 0 0;
+			padding: -5px 0px 0px 0px;
+			line-height: 12em;
+			}
 	]]>
 	</style>
 	
 	
 <script id="model" type="application/xml">
 <popups>
+	<popup click="clickme" source="examtips" width="500" />
 	<popup click="visual1" source="chart1" width="404" height="309" />
 	<popup click="visual2" source="chart2" width="453" height="289" />
 	<popup click="visual3" source="chart3" width="483" height="303" />
@@ -27,7 +70,7 @@
 	<popup click="visual6" source="chart6" width="565" height="319" />
 </popups>
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
@@ -104,28 +147,36 @@
 <section id="body">
 
 <div id="imgwrapper">
-	<a id="visual1"><img class="leftFloat" src="../media/Unit02_Write_e2ab_s.jpg" mode="1" id="1003"/></a>
-	<br/><br/><br/><br/><br/>
-  	<a id="visual2"><img class="leftFloat" src="../media/Unit02_Write_e2cd_s.jpg" mode="1" id="1005"/></a>
-	<br/><br/><br/><br/>
-  	<a id="visual3"><img class="leftFloat" src="../media/Unit02_Write_e2ef_s.jpg" mode="1" id="1007"/></a>
-	<br/><br/><br/><br/>
-  	<a id="visual4"><img class="leftFloat" src="../media/Unit02_Write_e2gh_s.jpg" mode="1" id="1009"/></a>
-	<br/><br/><br/><br/><br/><br/><br/><br/>
-  	<a id="visual5"><img class="leftFloat" src="../media/Unit02_Write_e2ij_s.jpg" mode="1" id="1011"/></a>
-	<br/><br/><br/>
-  	<a id="visual6"><img class="leftFloat" src="../media/Unit02_Write_e2kl_s.jpg" mode="1" id="1013"/></a>
+	
+	<p class="caption1"><b>Questions 1 and 2</b></p>
+	<a id="visual1"><img class="dynamic" src="../media/Unit02_Write_e2ab_s.jpg" mode="1" id="1003"/></a>
+	
+	<p class="caption2"><b>Questions 3 and 4</b></p>
+  	<a id="visual2"><img class="dynamic" src="../media/Unit02_Write_e2cd_s.jpg" mode="1" id="1005"/></a>
+	
+	<p class="caption3"><b>Questions 5 and 6</b></p>
+  	<a id="visual3"><img class="dynamic" src="../media/Unit02_Write_e2ef_s.jpg" mode="1" id="1007"/></a>
+	
+	<p class="caption6"><b>Questions 7 and 8</b></p>
+  	<a id="visual4"><img class="dynamic" src="../media/Unit02_Write_e2gh_s.jpg" mode="1" id="1009"/></a>
+	
+	<p class="caption4"><b>Questions 9 and 10</b></p>
+  	<a id="visual5"><img class="dynamic" src="../media/Unit02_Write_e2ij_s.jpg" mode="1" id="1011"/></a>
+	
+	<p class="caption5"><b>Questions 11 and 12</b></p>
+  	<a id="visual6"><img class="dynamic" src="../media/Unit02_Write_e2kl_s.jpg" mode="1" id="1013"/></a>
 </div>
   
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/><br/><br/>
   <div id="mchoices2">
-
+	
   <ol id="questionList">
     <li id="q1">How many people spoke three languages in 2001?
 		<list class="answerList"><li><a id="a1">1 million</a></li>
 		<li><a id="a2">1.5 million</a></li>
 		<li><a id="a3">3 million</a></li></list></li>
     <br/>
-    <li id="q2">The number of people who spoke two languages (&#x2026;) between 1960 and 2001.				
+    <li id="q2">The number of people who spoke two languages (...) between 1960 and 2001.				
 		<list class="answerList"><li><a id="a4">decreased by 500,000</a></li>
 		<li><a id="a5">remained the same</a></li>
 		<li><a id="a6">increased by 500,000</a></li></list></li>
@@ -135,7 +186,7 @@
 		<li><a id="a8">the number of people in the population who did not have language disorders</a></li>
 		<li><a id="a9">the proportion of the population who had language disorders</a></li></list></li>
     <br/>
-    <li id="q4">In 1981 (&#x2026;) had language disorders.
+    <li id="q4">In 1981 (...) had language disorders.
 		<list class="answerList"><li><a id="a10">500,000 people</a></li>
 		<li><a id="a11">5 in every 100,000 people</a></li>
 		<li><a id="a12">5 per cent of the population</a></li></list></li>
@@ -145,7 +196,7 @@
 		<li><a id="a14">80</a></li>
 		<li><a id="a15">180</a></li></list></li>
     <br/>
-    <li id="q6">Between 1997 and 2002 the number of students of Italian (&#x2026;).
+    <li id="q6">Between 1997 and 2002 the number of students of Italian (...).
 		<list class="answerList"><li><a id="a16">fell</a></li>
 		<li><a id="a17">remained the same</a></li>
 		<li><a id="a18">rose</a></li></list></li>
@@ -171,20 +222,21 @@
 		<li><a id="a30">80,000 million</a></li></list></li>
     <br/>
     <li id="q11">What does this chart show?
-		<list class="answerList"><li><a id="a31">the percentage of the population with e-mail and personal web sites</a></li>
-		<li><a id="a32">the percentage of workers who know how to use e-mail and web sites</a></li>
-		<li><a id="a33">the percentage of workers whose employers provide them with e-mail facilities or personal web sites</a></li></list></li>
+		<list class="answerList"><li><a id="a31">the percentage of the population with e-mail and personal websites</a></li>
+		<li><a id="a32">the percentage of workers who know how to use e-mail and websites</a></li>
+		<li><a id="a33">the percentage of workers whose employers provide them with e-mail facilities or personal websites</a></li></list></li>
     <br/>
-    <li id="q12">The percentage of UK employees with access to e-mail or web sites (&#x2026;) between 1997 and 1998.
+    <li id="q12">The percentage of UK employees with access to e-mail or websites (...) between 1997 and 1998.
 		<list class="answerList"><li><a id="a34">decreased</a></li>
 		<li><a id="a35">remained the same</a></li>
 		<li><a id="a36">increased</a></li></list></li>
   </ol>
+  <p class="linespace"></p>
   </div>
 </section>
 
-<section id="rt2001">
-  <p align="left">Before you begin writing your report, it is important to make sure that you have understood the chart properly. Check that you have read the axes carefully and that you understand what the figures refer to. Don't forget also to look carefully at the key or legend and the title. They will all help to give you a better understanding of what the chart shows.</p>
+<section id="examtips">
+  <p class="popuptext">Before you begin writing your report, it is important to make sure that you have understood the chart properly. Check that you have read the axes carefully and that you understand what the figures refer to. Don't forget also to look carefully at the key or legend and the title. They will all help to give you a better understanding of what the chart shows.</p>
 </section>
 
 

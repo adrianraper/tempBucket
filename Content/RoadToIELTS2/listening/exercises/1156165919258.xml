@@ -118,18 +118,18 @@
 </ul>
 
 <h1>Dealing with problem areas</h1>
-<h6><p>Grammar</p></h6>
+<p><b>Grammar</b></p>
 <ul class="bulletList">
 	<li>Select a book from the (6)&#xA0;<input id="q6"/>.</li>
 	<li>Do grammar exercises regularly.</li>
 </ul>
-<h6>Vocabulary</h6>
+<p><b>Vocabulary</b></p>
 <ul class="bulletList">
 	<li>Select 5 new words a day.</li>
 	<li>Write them on cards.</li>
 	<li>(7)&#xA0;<input id="q7"/>&#xA0;whenever you have time to kill.</li>
 </ul>
-<h6>Listening</h6>
+<p><b>Listening</b></p>
 <ul class="bulletList">
 	<li>Tape (8)&#xA0;<input id="q8"/>&#xA0;from the radio or TV.</li>
 	<li>Take notes.</li>

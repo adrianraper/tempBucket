@@ -25,14 +25,14 @@
 <body>
 	
 <header>
-<div id="instruction">What will I learn in this unit?</div>
+<div id="instruction">What will I learn in this set?</div>
 </header>
 	
 <section id="body">
 <img class="rightFloat" src="../media/MM_GW_001.jpg" mode="1" id="1001"  />
 <div id="presentation">
 	
-	<h1><p>General Training writing task 1</p></h1>
+	<h1><p>General Training Writing Task 1</p></h1>
 	<p><b>Letter – saying thank you</b></p>
 	<p>You will ...</p>
 	<ol>

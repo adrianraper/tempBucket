@@ -96,7 +96,7 @@
 <body>
 	
 <header>
-<div id="instruction">Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with a suitable word. Where a word is given after a gap, use it to form an adjective. Fill the other gaps with an appropriate article or possessive adjective.
+<div id="instruction">Read this sample answer to the Writing Task in the previous exercise. Complete the letter by filling each gap with a suitable word. Where a word is given after a gap, use it to form an adjective. Fill the other gaps with an appropriate article or possessive adjective.
 </div>
 </header>
 	
@@ -122,7 +122,9 @@
 <section id="writingtask1">
 	<p class="popuptext">You should spend about 20 minutes on this task.</p>
 	
-	<p class="popuptext"><b>A series of radio programmes which you enjoyed finished recently. Write a letter to the radio station. Thank them for the series and tell them why you enjoyed it. Ask if they are going to broadcast similar programmes in the future.</b></p>
+	<p class="popuptext"><b>Your local newspaper published a series of articles recently which you thought were very good.</b></p>
+	
+	<p class="popuptext"><b>Write a letter to the editor of the newspaper. Thank them for the articles and praise the journalist who wrote them. Ask if they will be publishing more of their articles in the future.</b></p>
 	
 	<p class="popuptext">You should write at least 150 words.</p>
 	

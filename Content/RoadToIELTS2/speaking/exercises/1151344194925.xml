@@ -192,12 +192,12 @@
 <section id="body">
 <div id="outer">
 <div class="rightFloatvideo1">
-  <video src="../media/Unit09_e3a.flv" mode="16" id="1005" autoPlay="false"/>
-  <video src="../media/Unit09_e3b.flv" mode="16" id="1006" autoPlay="false"/>
-  <video src="../media/Unit09_e3c.flv" mode="16" id="1007" autoPlay="false"/>
-  <video src="../media/Unit09_e3d.flv" mode="16" id="1008" autoPlay="false"/>
-  <video src="../media/Unit09_e3e.flv" mode="16" id="1009" autoPlay="false"/>
-  <video src="../media/Unit09_e3f.flv" mode="16" id="1010" autoPlay="false"/>
+  <video src="../media/Unit09_e3a.flv" mode="16" id="1005" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit09_e3b.flv" mode="16" id="1006" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit09_e3c.flv" mode="16" id="1007" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit09_e3d.flv" mode="16" id="1008" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit09_e3e.flv" mode="16" id="1009" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit09_e3f.flv" mode="16" id="1010" autoPlay="false" width="320" height="240" />
 </div>
 
 <div id="content1">

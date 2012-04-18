@@ -253,7 +253,7 @@
 </section>
 
 <section id="body">
-<div id="wrapper">
+
 <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
 <br/><br/><br/><br/><br/>
 <div id="g1">
@@ -291,7 +291,7 @@
   </p>
 </div>
 
-  </div>
+  
   <p align="left">
     <font size="2"/>
   </p>
@@ -373,7 +373,7 @@
 </section>
 
 <section id="examtips">
-<p class="popuptext">Although the bar chart in the previous exercise shows percentages, the figures are referred to in a variety of ways in the report, for example, 'almost half' instead of 50 per cent and '1 in 5' instead of 20 per cent. It is good to have this kind of variety in your reports.</p>
+<p class="popuptext">Although the bar chart in the first exercise in this set shows percentages, the figures are referred to in a variety of ways in the report, for example, 'almost half' instead of 50 per cent and '1 in 5' instead of 20 per cent. It is good to have this kind of variety in your reports.</p>
 </section>
 </body>
 </bento>

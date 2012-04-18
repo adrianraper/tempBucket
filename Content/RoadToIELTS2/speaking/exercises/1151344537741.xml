@@ -41,17 +41,18 @@
 
 
 
-<h1><p>How do I deal with questions I don't know how to answer?</p></h1>
+
 
 
 <div class="rightFloatvideo1">
-<tab/><video src="../media/Unit05_e4a.flv" mode="16" id="1003" autoPlay="false"/>
+<h1><p>How do I deal with questions I don't know how to answer?</p></h1>
+<tab/><video src="../media/Unit05_e4a.flv" mode="16" id="1003" autoPlay="false" width="320" height="240" />
 </div>
 <p class="linespace"></p>
 <div class="brieftext">
 <p>1.<tab/>Be honest and tell the examiner.</p>
 
-<ul color="#7935AB">
+<ul color="#0000FF">
 	
 	<li>"I'm sorry, I haven't thought about that"</li>
 	<li>"I don't really know much about it"</li>
@@ -63,7 +64,7 @@
 <p class="linespace"></p>
 <p>2.<tab/>Or, have a go, make an intelligent guess. But let the examiner know that is what you are doing:</p>
 
-<ul color="#7935AB">
+<ul color="#0000FF">
 	<li>"Perhaps it could be ..."</li>
 	<li>"Some people might say it is ..."</li>
 	<li>"I've never really thought about it, but it could be ..."</li>
@@ -75,9 +76,9 @@
 </div>
 
 <div class="rightFloatvideo1">
-<tab/><video src="../media/Unit05_e4b.flv" mode="16" id="1004" autoPlay="false"/><tab/><tab/>
-<video src="../media/Unit05_e4c.flv" mode="16" id="1005" autoPlay="false"/><br/>
-<tab/><video src="../media/Unit05_e4d.flv" mode="16" id="1006" autoPlay="false"/>
+<tab/><video src="../media/Unit05_e4b.flv" mode="16" id="1004" autoPlay="false" width="320" height="240" /><tab/><tab/>
+<video src="../media/Unit05_e4c.flv" mode="16" id="1005" autoPlay="false" width="320" height="240" /><br/>
+<tab/><video src="../media/Unit05_e4d.flv" mode="16" id="1006" autoPlay="false" width="320" height="240" />
 </div>
 
 <div class="brieftext">
@@ -85,9 +86,9 @@
 <p>5.<tab/>Do not pretend to understand if you really don't know!</p>
 </div>
 <div class="rightFloatvideo1">
-<tab/><video src="../media/Unit05_e4e.flv" mode="16" id="1007" autoPlay="false"/><tab/><tab/>
-<video src="../media/Unit05_e4f.flv" mode="16" id="1008" autoPlay="false"/><br/>
-<tab/><video src="../media/Unit05_e4g.flv" mode="16" id="1009" autoPlay="false"/>
+<tab/><video src="../media/Unit05_e4e.flv" mode="16" id="1007" autoPlay="false" width="320" height="240" /><tab/><tab/>
+<video src="../media/Unit05_e4f.flv" mode="16" id="1008" autoPlay="false" width="320" height="240" /><br/>
+<tab/><video src="../media/Unit05_e4g.flv" mode="16" id="1009" autoPlay="false" width="320" height="240" />
 </div>
 
 <p class="linespace"></p>

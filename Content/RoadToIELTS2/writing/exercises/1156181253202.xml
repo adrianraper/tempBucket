@@ -12,74 +12,17 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#taskandtable {
+	padding: 0px 0px 240px 2px;
+	}
 	</style>
 	
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
-    <TargetSpottingQuestion block="b1">
-      <answer source="t1" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b2">
-      <answer source="t2" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b3">
-      <answer source="t3" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b4">
-      <answer source="t4" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b5">
-      <answer source="t5" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b6">
-      <answer source="t6" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b7">
-      <answer source="t7" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b8">
-      <answer source="t8" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b9">
-      <answer source="t9" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b10">
-      <answer source="t10" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b11">
-      <answer source="t11" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b12">
-      <answer source="t12" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b13">
-      <answer source="t13" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b14">
-      <answer source="t14" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b15">
-      <answer source="t15" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b16">
-      <answer source="t16" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b17">
-      <answer source="t17" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b18">
-      <answer source="t18" correct="true"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b19">
-      <answer source="t19" correct="false"/>
-    </TargetSpottingQuestion>
-    <TargetSpottingQuestion block="b20">
-      <answer source="t20" correct="true"/>
-    </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b21">
       <answer source="t21" correct="true"/>
     </TargetSpottingQuestion>
@@ -165,42 +108,47 @@
 
 
 <section id="body">
-<img class="leftFloat" src="../media/TT_AW_004a.jpg" mode="1" id="1003"/>
-<ol id="targetspotting">
+<div id="taskandtable">
+<img class="leftFloat1" src="../media/TT_AW_004a.jpg" mode="1" id="1003"/>
+<img class="rightFloat" src="../media/set3.1_03.jpg" mode="1" id="1004"/>
+</div>
+
+<div id="targetspotting">
+  <ol>
   <li>Every year road transport consumed the greatest (&#x2026;) of petroleum.
-  <list class="answerList4">
+  <list class="set3task1">
   <li><a id="t21">quantity</a></li>
   <li><a id="t22">amount</a></li>
   <li><a id="t23">proportion</a></li>
   <li><a id="t24">number</a></li>
   </list></li>
-  <p class="linespace"></p>
+  
  <li>Petroleum consumption for railways was (&#x2026;) less than for other means of transport.
-   <list class="answerList4">
+   <list class="set3task1">
   <li><a id="t25">a lot</a> </li>
    <li><a id="t26">far</a></li>
    <li><a id="t27">many</a></li>
    <li><a id="t28">much</a></li>
    </list></li>
-   <p class="linespace"></p>
+   
    <li>In 1999 road transport consumed (&#x2026;) petroleum than the previous year.
-   <list class="answerList4">
+   <list class="set3task1">
   <li><a id="t29">less</a></li>
   <li><a id="t30">fewer</a></li>
   <li><a id="t31">fewer tonnes of</a></li>
   <li><a id="t32">a smaller quantity of</a></li>
   </list></li>
-  <p class="linespace"></p>
+  
   <li>Petroleum consumption by air transport was (&#x2026;) in 1999 than ten years earlier.
-     <list class="answerList4">
+     <list class="set3task1">
   <li><a id="t33">many more</a></li>
   <li><a id="t34">much higher</a></li>
   <li><a id="t35">a lot higher</a></li>
   <li><a id="t36">far higher</a></li>
   </list></li>
-  <p class="linespace"></p>
+  
 	<li>Over the years railway and water transport consumed (&#x2026;) petroleum.
-	<list class="answerList4">
+	<list class="set3task1">
   <li><a id="t37">less and less</a></li>
   <li><a id="t38">smaller and smaller amounts of</a></li>
   <li><a id="t39">fewer and fewer</a></li>
@@ -208,26 +156,27 @@
   </list></li>
   <p class="linespace"></p>
   </ol>
+  </div>
 </section>
 
 <section id="fb24">
-  <p align="left">1D. Petroleum is uncountable.</p>
+  <p class="feedbacktext">1D. Petroleum is uncountable.</p>
 </section>
 
 <section id="fb27">
-  <p align="left">2C. 'Many' is used for countable nouns, while 'less' is used for uncountable nouns. You cannot use the two together.</p>
+  <p class="feedbacktext">2C. 'Many' is used for countable nouns, while 'less' is used for uncountable nouns. You cannot use the two together.</p>
 </section>
 
 <section id="fb30">
-  <p align="left">3B. 'Few' and 'fewer' cannot be used with uncountable nouns such as 'petroleum'.</p>
+  <p class="feedbacktext">3B. 'Few' and 'fewer' cannot be used with uncountable nouns such as 'petroleum'.</p>
 </section>
 
 <section id="fb33">
-  <p align="left">4A. The missing word refers to the noun 'consumption', which is uncountable.</p>
+  <p class="feedbacktext">4A. The missing word refers to the noun 'consumption', which is uncountable.</p>
 </section>
 
 <section id="fb39">
-  <p align="left">5C. Petroleum is uncountable. 'Fewer' can be used only with countable nouns.</p>
+  <p class="feedbacktext">5C. Petroleum is uncountable. 'Fewer' can be used only with countable nouns.</p>
 </section>
 
 </body>

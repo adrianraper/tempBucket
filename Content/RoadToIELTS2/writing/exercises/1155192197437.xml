@@ -17,7 +17,8 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="examtips" width="500" />
+		<popup click="clickme" source="writingtask1" width="500" />
+    	<popup click="clickme2" source="examtips" width="500" />
 </popups>
 <settings>
  	<param name="delayedMarking" value="true" />
@@ -58,9 +59,11 @@
 </section>
 
 <section id="body">
-  <br/><a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
-  <img class="rightFloat1" src="../media/WR_ARG_001.jpg" mode="1" id="1003"  />
+  <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
   <br/><br/><br/>
+  <img class="rightFloat1" src="../media/WR_ARG_001.jpg" mode="1" id="1003"  />
+  
 <div id="arguments">
  
 <h9>Paragraph 1</h9>
@@ -90,8 +93,18 @@ Counter-Argument<br/>
 </div> 
 </section>
 
+<section id="writingtask1">
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</b></p>
+<p class="popuptext"><b> Biotechnology companies all over the world are developing different types of genetically modified (GM) crops. However, not enough is known about the effects of these crops on our health and on the environment. Interfering with nature in this way should be prohibited.</b></p>
+<p class="popuptext"><b>To what extent do you agree or disagree?</b></p>
+<p class="popuptext">You should write at least 250 words.</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+		</section>
+
 <section id="examtips">
-<p class="popuptext">In Unit 6 we saw how a balanced 'for and against' composition can be written by matching arguments and counter-arguments to form paragraphs. A similar outline can be used for a 'one-sided' composition. In this case, however, linking phrases are used to 'refute' each argument with a counter-argument.</p>
+<p class="popuptext">In Set 6 we saw how a balanced 'for and against' composition can be written by matching arguments and counter-arguments to form paragraphs. A similar outline can be used for a 'one-sided' composition. In this case, however, linking phrases are used to 'refute' each argument with a counter-argument.</p>
 </section>
 
 </body>

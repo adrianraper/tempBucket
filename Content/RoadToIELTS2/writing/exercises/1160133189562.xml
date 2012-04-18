@@ -53,7 +53,7 @@
 <body>
 	
 <header>
-<div id="instruction">Read this sample answer to the writing task in the previous exercise. Complete the letter by dragging the correct word or phrase into each gap.
+<div id="instruction">Read this sample answer to the Writing Task in the previous exercise. Complete the letter by dragging the correct word or phrase into each gap.
 </div>
 </header>
 	
@@ -82,7 +82,7 @@
   <p>Speaking is probably going to be the most useful skill so, if I were you,&#xA0;<input id="q1" type="droptarget"/>&#xA0;try and speak in English as much as possible. And &#xA0;<input id="q2" type="droptarget"/>&#xA0;you should do a short, intensive oral course before you go too if you have time. I wouldn't&#xA0;<input id="q3" type="droptarget"/>&#xA0;buy one of those language courses on tape though because they're expensive and you don't get the opportunity to interact with other people.
   </p>
   
-  <p>As for your listening skills,&#xA0;<input id="q4" type="droptarget"/>&#xA0;tune into English language programmes on television and the radio whenever you can. Also, don't forget that lots of Australian, British and American web sites have audio that you can listen to so I'd make the most of the Internet if&#xA0;<input id="q5" type="droptarget"/>.</p>
+  <p>As for your listening skills,&#xA0;<input id="q4" type="droptarget"/>&#xA0;tune into English language programmes on television and the radio whenever you can. Also, don't forget that lots of Australian, British and American websites have audio that you can listen to so I'd make the most of the Internet if&#xA0;<input id="q5" type="droptarget"/>.</p>
   
   <p>Browsing the Internet will also help extend your vocabulary, but you&#xA0;<input id="q6" type="droptarget"/>&#xA0;read books, newspapers and magazines as well. You'd &#xA0;<input id="q7" type="droptarget"/>&#xA0;get a good English-English dictionary too.&#xA0;<input id="q8" type="droptarget"/>&#xA0;you should throw away your bilingual one, but only use it when you really have to!</p>
   
@@ -101,9 +101,9 @@
 <section id="writingtask1">
 <p class="popuptext">You should spend about 20 minutes on this task.</p>
 	
-			<p class="popuptext"><b>One of your penfriends wants to improve their English at a language school. They have never studied at a language school before and have asked for your advice on how to choose a good one.</b></p>
+			<p class="popuptext"><b>One of your penfriends is going to emigrate to Australia in a few months. They want to improve their English before they leave and have asked for your advice.</b></p>
 			
-			<p class="popuptext"><b>Write a letter to your penfriend. Advise them about the following: the teaching method, the number of students in a class and the number of hours a week.</b></p>
+			<p class="popuptext"><b>Write a letter to your penfriend and give them advice on how to improve their speaking, listening and vocabulary.</b></p>
 			
 			<p class="popuptext">You should write at least 150 words.</p>
 			

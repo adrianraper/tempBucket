@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 	<feedback>
@@ -70,7 +73,8 @@
 
 
 <section id="readingText">
-
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/>
 	<p>The benefits that genetically modified (GM) crops&#xA0;<b>(1) are likely to</b>&#xA0;bring have been well publicised by the biotechnology industry. However, recently environmentalists have raised important objections to the introduction of GM crops and foods which make it essential to proceed in this area with extreme caution.</p>
 	
 	<p>The first objection to GM crops is that they are unnatural. Biotechnologists argue that farming methods have always been unnatural since they involve selective breeding and methods of cross-pollination. However, this argument is unacceptable because genetic modification involves a totally new approach where genes from different species are introduced into a plant's composition. These permanent genetic alterations&#xA0;<b>(2) could well</b>&#xA0;have disastrous consequences which are impossible to predict.</p>
@@ -116,6 +120,16 @@
   <p class="linespace"></p>
  </section>
 
+ <section id="writingtask1">
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</b></p>
+<p class="popuptext"><b> Biotechnology companies all over the world are developing different types of genetically modified (GM) crops. However, not enough is known about the effects of these crops on our health and on the environment. Interfering with nature in this way should be prohibited.</b></p>
+<p class="popuptext"><b>To what extent do you agree or disagree?</b></p>
+<p class="popuptext">You should write at least 250 words.</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+		</section>
+		
 <section id="fb0">
 <div id="feedback1">
   <p class="feedbacktext">

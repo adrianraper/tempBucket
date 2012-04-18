@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="dropdown" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dropdown.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dropdown-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,131 +16,208 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+		<popup click="visual" source="describingprocess" width="710" height="422" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
   <questions>
     <DropDownQuestion source="q1" block="b1">
-      <answer source="a1" correct="true"/>
-      <answer source="a2" correct="false"/>
-      <answer source="a3" correct="false">
+      <answer source="a1" correct="false">
+      <feedback source="fb1"/>
+      </answer>
+      <answer source="a2" correct="false">
+      <feedback source="fb1"/>
+      </answer>
+      <answer source="a3" correct="true">
         <feedback source="fb1"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q2" block="b2">
-      <answer source="a4" correct="true"/>
-      <answer source="a5" correct="false"/>
-      <answer source="a6" correct="false">
+      <answer source="a4" correct="false">
+      <feedback source="fb2"/>
+      </answer>
+      <answer source="a5" correct="false">
+      <feedback source="fb2"/>
+      </answer>
+      <answer source="a6" correct="true">
         <feedback source="fb2"/>
       </answer>
     </DropDownQuestion>
-    <DropDownQuestion source="q3" block="b3">
-      <answer source="a7" correct="true"/>
-      <answer source="a8" correct="false"/>
+	<DropDownQuestion source="q3" block="b3">
+	<answer source="a7" correct="true">
+      <feedback source="fb3"/>
+      </answer>
+      <answer source="a8" correct="false">
+      <feedback source="fb3"/>
+      </answer>
       <answer source="a9" correct="false">
         <feedback source="fb3"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q4" block="b4">
-      <answer source="a10" correct="true"/>
-      <answer source="a11" correct="false"/>
+      <answer source="a10" correct="false">
+      <feedback source="fb4"/>
+      </answer>
+      <answer source="a11" correct="true">
+      <feedback source="fb4"/>
+      </answer>
       <answer source="a12" correct="false">
         <feedback source="fb4"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q5" block="b5">
-      <answer source="a13" correct="true"/>
-      <answer source="a14" correct="false"/>
+      <answer source="a13" correct="false">
+      <feedback source="fb5"/>
+      </answer>
+      <answer source="a14" correct="true">
+      <feedback source="fb5"/>
+      </answer>
       <answer source="a15" correct="false">
         <feedback source="fb5"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q6" block="b6">
-      <answer source="a16" correct="true"/>
-      <answer source="a17" correct="false"/>
-      <answer source="a18" correct="false">
+      <answer source="a16" correct="false">
+      <feedback source="fb6"/>
+      </answer>
+      <answer source="a17" correct="false">
+      <feedback source="fb6"/>
+      </answer>
+      <answer source="a18" correct="true">
         <feedback source="fb6"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q7" block="b7">
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="false"/>
+      <answer source="a19" correct="false">
+      <feedback source="fb7"/>
+      </answer>
+      <answer source="a20" correct="true">
+      <feedback source="fb7"/>
+      </answer>
       <answer source="a21" correct="false">
         <feedback source="fb7"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q8" block="b8">
-      <answer source="a22" correct="true"/>
-      <answer source="a23" correct="false"/>
-      <answer source="a24" correct="false"/>
+      <answer source="a22" correct="true">
+      <feedback source="fb8"/>
+      </answer>
+      <answer source="a23" correct="false">
+      <feedback source="fb8"/>
+      </answer>
+      <answer source="a24" correct="false">
+      <feedback source="fb8"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q9" block="b9">
-      <answer source="a25" correct="true"/>
-      <answer source="a26" correct="false"/>
-      <answer source="a27" correct="false">
+      <answer source="a25" correct="false">
+      <feedback source="fb9"/>
+      </answer>
+      <answer source="a26" correct="false">
+      <feedback source="fb9"/>
+      </answer>
+      <answer source="a27" correct="true">
         <feedback source="fb9"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q10" block="b10">
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="false"/>
+      <answer source="a28" correct="false">
+      <feedback source="fb10"/>
+      </answer>
+      <answer source="a29" correct="true">
+      <feedback source="fb10"/>
+      </answer>
       <answer source="a30" correct="false">
         <feedback source="fb10"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q11" block="b11">
-      <answer source="a31" correct="true"/>
-      <answer source="a32" correct="false"/>
+      <answer source="a31" correct="true">
+      <feedback source="fb11"/>
+      </answer>
+      <answer source="a32" correct="false">
+      <feedback source="fb11"/>
+      </answer>
       <answer source="a33" correct="false">
         <feedback source="fb11"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q12" block="b12">
-      <answer source="a34" correct="true"/>
-      <answer source="a35" correct="false"/>
+      <answer source="a34" correct="true">
+      <feedback source="fb12"/>
+      </answer>
+      <answer source="a35" correct="false">
+      <feedback source="fb12"/>
+      </answer>
       <answer source="a36" correct="false">
         <feedback source="fb12"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q13" block="b13">
-      <answer source="a37" correct="true"/>
-      <answer source="a38" correct="false"/>
-      <answer source="a39" correct="false">
+      <answer source="a37" correct="false">
+      <feedback source="fb13"/>
+      </answer>
+      <answer source="a38" correct="false">
+      <feedback source="fb13"/>
+      </answer>
+      <answer source="a39" correct="true">
         <feedback source="fb13"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q14" block="b14">
-      <answer source="a40" correct="true"/>
-      <answer source="a41" correct="false"/>
+      <answer source="a40" correct="false">
+      <feedback source="fb14"/>
+      </answer>
+      <answer source="a41" correct="true">
+      <feedback source="fb14"/>
+      </answer>
       <answer source="a42" correct="false">
         <feedback source="fb14"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q15" block="b15">
-      <answer source="a43" correct="true"/>
-      <answer source="a44" correct="false"/>
+      <answer source="a43" correct="true">
+      <feedback source="fb15"/>
+      </answer>
+      <answer source="a44" correct="false">
+      <feedback source="fb15"/>
+      </answer>
       <answer source="a45" correct="false">
         <feedback source="fb15"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q16" block="b16">
-      <answer source="a46" correct="true"/>
-      <answer source="a47" correct="false"/>
+      <answer source="a46" correct="false">
+      <feedback source="fb16"/>
+      </answer>
+      <answer source="a47" correct="true">
+      <feedback source="fb16"/>
+      </answer>
       <answer source="a48" correct="false">
         <feedback source="fb16"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q17" block="b17">
-      <answer source="a49" correct="true"/>
-      <answer source="a50" correct="false"/>
+      <answer source="a49" correct="true">
+      <feedback source="fb17"/>
+      </answer>
+      <answer source="a50" correct="false">
+      <feedback source="fb17"/>
+      </answer>
       <answer source="a51" correct="false">
         <feedback source="fb17"/>
       </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q18" block="b18">
-      <answer source="a52" correct="true"/>
-      <answer source="a53" correct="false"/>
-      <answer source="a54" correct="false">
+      <answer source="a52" correct="false">
+      <feedback source="fb18"/>
+      </answer>
+      <answer source="a53" correct="false">
+      <feedback source="fb18"/>
+      </answer>
+      <answer source="a54" correct="true">
         <feedback source="fb18"/>
       </answer>
     </DropDownQuestion>
@@ -151,195 +228,248 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Look carefully at the flow chart and complete the report by choosing the word or phrase which best fits each gap.
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/SS_AW_007s.jpg" mode="1" id="1003"/>
-  <img class="leftFloat" src="../media/SS_AW_007.jpg" mode="16" id="1004"/>
-  <p align="left">One way in which new laws come into existence in Britain is through the parliamentary process. When a government wishes to bring new legislation into force, there are certain steps which must <select id="q1"><option>be followed</option><option>follow</option><option>are followed</option></select>.</p>
-  <p align="left"><select id="q2"><option>First</option><option>Firstly</option><option>At first</option></select>, the relevant government department consults with experts. Based on their advice, a first draft, known as a Bill, <select id="q3"><option>is written</option><option>had written</option><option>written</option></select> by parliamentary draftspeople. <select id="q4"><option>Provided that</option><option>In case</option><option>Unless</option></select> the government department is satisfied with the wording of the Bill, it can <select id="q5"><option>be introduced</option><option>introduce</option><option>is introduced</option></select> to the House of Commons. <select id="q6"><option>At the same time</option><option>Later</option><option>Prior to this</option></select>, the Bill is made available to the public on the Internet. <select id="q7"><option>During</option><option>Through</option><option>While</option></select> this process, any amendments made to the Bill are also posted here. If the House of Commons votes for the Bill, it is <select id="q8"><option>then</option><option>after</option><option>beforehand</option></select> debated and amended by what is known as a standing committee. Any amendments are <select id="q9"><option>subsequently</option><option>beforehand</option><option>simultaneously</option></select>. reported to the House of Commons, which <select id="q10"><option>in turn</option><option>after</option><option>otherwise</option></select> votes for a second time. If the Bill <select id="q11"><option>passes</option><option>is passed</option><option>be passed</option></select> this stage, it is handed over to the House of Lords.</p>
-  <p align="left">A similar process of amending and voting takes place in the House of Lords. The Lords can <select id="q12"><option>reject</option><option>rejected</option><option>be rejected</option></select> the Bill if they wish to, <select id="q13"><option>unless</option><option>in case</option><option>provided that</option></select> it is the second time it has passed through parliament. In this case, the Bill can <select id="q14"><option>be amended</option><option>is amended</option><option>amend</option></select> but not rejected. <select id="q15"><option>Finally</option><option>In the end</option><option>At the end</option></select>, the Bill must be given the royal assent <select id="q16"><option>by</option><option>to</option><option>from</option></select> the Queen. <select id="q17"><option>Once</option><option>Next</option><option>Subsequently</option></select> this formality <select id="q18"><option>has been dealt with</option><option>has dealt with</option><option>had been dealt with</option></select>, the new law, now called an Act of Parliament, can come into force.</p>
-  <p align="left">
-    <font size="2"/>
-  </p>
-  <p align="left">
-    <b>Click to enlarge</b>
-  </p>
+  <a id="visual"><img class="rightFloat" src="../media/SS_AW_007s.jpg" mode="1" id="1003"/></a>
+  
+  <div id="dropdown">
+  <p>One way in which new laws come into existence in Britain is through the parliamentary process. When a government wishes to bring new legislation into force, there are certain steps which must&#xA0;
+  <select id="q1">
+  <option id="a1">are followed</option>
+  <option id="a2">follow</option>
+  <option id="a3">be followed</option></select>.</p>
+  
+  <p><select id="q2">
+		<option id="a4">at first</option>
+		<option id="a5">Firstly</option>
+		<option id="a6">First</option></select>&#xA0;, the relevant government department consults with experts. Based on their advice, a first draft, known as a Bill,&#xA0;
+		<select id="q3">
+		<option id="a7">is written</option>
+		<option id="a8">had written</option>
+		<option id="a9">written</option></select>
+		&#xA0;by parliamentary draftspeople.&#xA0;
+		<select id="q4">
+		<option id="a10">In case</option>
+		<option id="a11">Provided that</option>
+		<option id="a12">Unless</option></select>
+		&#xA0;the government department is satisfied with the wording of the Bill, it can&#xA0;
+		<select id="q5">
+		<option id="a13">introduce</option>
+		<option id="a14">be introduced</option>
+		<option id="a15">is introduced</option></select>
+		&#xA0;to the House of Commons.&#xA0;
+		<select id="q6">
+		<option id="a16">Prior to this</option>
+		<option id="a17">Later</option>
+		<option id="a18">At the same time</option></select>&#xA0;, the Bill is made available to the public on the Internet.&#xA0;
+		<select id="q7">
+		<option id="a19">Through</option>
+		<option id="a20">During</option>
+		<option id="a21">While</option></select>
+		&#xA0;this process, any amendments made to the Bill are also posted here. If the House of Commons votes for the Bill, it is&#xA0;
+		<select id="q8">
+		<option id="a22">then</option>
+		<option id="a23">after</option>
+		<option id="a24">beforehand</option></select>
+		&#xA0;debated and amended by what is known as a standing committee. Any amendments are&#xA0;
+		<select id="q9">
+		<option id="a25">simultaneously</option>
+		<option id="a26">beforehand</option>
+		<option id="a27">subsequently</option></select>&#xA0;
+		reported to the House of Commons, which&#xA0;
+		<select id="q10">
+		<option id="28">after</option>
+		<option id="a29">in turn</option>
+		<option id="a30">otherwise</option></select>
+		&#xA0;votes for a second time. If the Bill&#xA0;
+		<select id="q11">
+		<option id="a31">passes</option>
+		<option id="a32">is passed</option>
+		<option id="a33">be passed</option></select>
+		&#xA0;this stage, it is handed over to the House of Lords.</p>
+		
+  <p>A similar process of amending and voting takes place in the House of Lords. The Lords can&#xA0;
+  <select id="q12">
+  <option id="a34">reject</option>
+  <option id="a35">rejected</option>
+  <option id="a36">be rejected</option></select>&#xA0;
+  the Bill if they wish to,&#xA0;
+  <select id="q13">
+  <option id="a37">provided that</option>
+  <option id="a38">in case</option>
+  <option id="a39">unless</option></select>&#xA0;
+  it is the second time it has passed through parliament. In this case, the Bill can&#xA0;
+  <select id="q14">
+  <option id="a40">is amended</option>
+  <option id="a41">be amended</option>
+  <option id="a42">amend</option></select>&#xA0;
+  but not rejected.&#xA0;
+  <select id="q15">
+  <option id="a43">Finally</option>
+  <option id="a44">In the end</option>
+  <option id="a45">At the end</option></select>&#xA0;, the Bill must be given the royal assent&#xA0;
+  <select id="q16">
+  <option id="a46">to</option>
+  <option id="a47">by</option>
+  <option id="a48">from</option></select>
+  &#xA0;the Queen.&#xA0;
+  <select id="q17">
+  <option id="a49">Once</option>
+  <option id="a50">Next</option>
+  <option id="a51">Subsequently</option></select>
+  &#xA0;this formality&#xA0;
+  <select id="q18">
+  <option id="a52">had been dealt with</option>
+  <option id="a53">has dealt with</option>
+  <option id="a54">has been dealt with</option></select>&#xA0;, the new law, now called an Act of Parliament, can come into force.</p>
+  
+  <p class="linespace"></p>
+  </div>
+</section>
+
+<section id="describingprocess">
+<img class="leftFloat" src="../media/SS_AW_007.jpg" mode="16" id="1004"/>
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <font color="#0000ff"><b>be followed:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>be followed:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">
-    <font color="#000000"><b>follow:</b> The passive is needed here.</font>
+  <p class="feedbacktext"><b>follow:</b>&#xA0;The passive is needed here.
   </p>
-  <p align="left">
-    <font color="#000000"><b>are follow:</b> After a modal verb such as 'must' we use the infinitive.</font>
+  <p class="feedbacktext"><b>are follow:</b>&#xA0;After a modal verb such as 'must' we use the infinitive.
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <font color="#0000ff"><b>First:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>First:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">
-    <font color="#000000"><b>Firstly:</b> 'Firstly' is used when giving a list of reasons. It is more often used in discursive comparisons.</font>
+  <p class="feedbacktext"><b>Firstly:</b>&#xA0;'Firstly' is used when giving a list of reasons. It is more often used in discursive comparisons.
   </p>
-  <p align="left">
-    <font color="#000000"><b>At first:</b> 'At first' means 'in the beginning' and is usually used in stories and narrative comparisons.</font>
+  <p class="feedbacktext"><b>At first:</b>&#xA0;'At first' means 'in the beginning' and is usually used in stories and narrative comparisons.
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <font color="#0000ff"><b>is written:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>is written:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">
-    <font color="#000000"><b>had written/written:</b> The passive form of the verb in the present tense is needed here.</font>
+  <p class="feedbacktext"><b>had written / written:</b>&#xA0;The passive form of the verb in the present tense is needed here.
   </p>
 </section>
 
 <section id="fb4">
-	<p align="left"><font color="#0000ff"><b>Provided that:</b> This is the correct answer. 'Provided that' means 'as long as' or 'on condition that'.</p><p align="left"><font color="#000000"><b>In case:</b> We use 'in case' to talk about precautions which ought to be taken. For example, 'Perhaps you ought to take an umbrella, in case it rains.' It doesn't have the same meaning as 'if'.</font></p><p align="left"><font color="#000000"><b>Unless:</b> Unless means 'if not'.</font></p>
+	<p class="feedbacktext"><b>Provided that:</b>&#xA0;This is the correct answer. 'Provided that' means 'as long as' or 'on condition that'.</p>
+	<p class="feedbacktext"><b>In case:</b>&#xA0;We use 'in case' to talk about precautions which ought to be taken. For example, 'Perhaps you ought to take an umbrella, in case it rains.' It doesn't have the same meaning as 'if'.</p>
+	<p class="feedbacktext"><b>Unless:</b>&#xA0;Unless means 'if not'.</p>
 </section>
+
 <section id="fb5">
-  <p align="left">
-    <font color="#0000ff"><b>be introduced:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>be introduced:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">The passive form is needed here.</p>
-  <p align="left">After a modal such as 'can' the infinitive is needed.</p>
+  <p class="feedbacktext">The passive form is needed here.</p>
+  <p class="feedbacktext">After a modal such as 'can' the infinitive is needed.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <font color="#0000ff"><b>At the same time:</b> The Bill is made available on the Internet while the House of Commons is discussing it for the first time.</font>
+  <p class="feedbacktext"><b>At the same time:</b>&#xA0;The Bill is made available on the Internet while the House of Commons is discussing it for the first time.
   </p>
-  <p align="left">
-    <font color="#000000"><b>Later:</b> Have another look at the flow chart. The Bill is made available on the Internet while the House of Common is discussing it for the first time.</font>
+  <p class="feedbacktext"><b>Later:</b>&#xA0;Have another look at the flow chart. The Bill is made available on the Internet while the House of Common is discussing it for the first time.
   </p>
-  <p align="left">
-    <font color="#000000"><b>Prior to:</b> 'Prior to' means before. If you have another look at the flow chart, you'll see that this is not the case.</font>
+  <p class="feedbacktext"><b>Prior to:</b>&#xA0;'Prior to' means before. If you have another look at the flow chart, you'll see that this is not the case.
   </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-    <font color="#0000ff"><b>During:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>During:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">
-    <font color="#000000"><b>Through:</b> Perhaps you have confused 'through' with the word 'throughout'.</font>
+  <p class="feedbacktext"><b>Through:</b>&#xA0;Perhaps you have confused 'through' with the word 'throughout'.
   </p>
-  <p align="left">
-    <font color="#000000"><b>While:</b> 'While' needs to be followed with a full verb clause. For example, 'While this process takes place&#x2026;'</font>
+  <p class="feedbacktext"><b>While:</b>&#xA0;'While' needs to be followed with a full verb clause. For example, 'While this process takes place&#x2026;'
   </p>
 </section>
 
 <section id="fb9">
-  <p align="left">
-    <font color="#0000ff"><b>subsequently:</b> This is the correct answer.<font color="#0000ff"/></font>
+  <p class="feedbacktext"><b>subsequently:</b>&#xA0;This is the correct answer.<font color="#0000ff"/>
   </p>
-  <p align="left">
-    <font color="#000000"><b>beforehand:</b> Check the flow chart.</font>
+  <p class="feedbacktext"><b>beforehand:</b>&#xA0;Check the flow chart.
   </p>
-  <p align="left">
-    <font color="#000000"><b>simultaneously:</b> 'Simultaneously' means at the same time. Check the flow chart.</font>
+  <p class="feedbacktext"><b>simultaneously:</b>&#xA0;'Simultaneously' means at the same time. Check the flow chart.
   </p>
 </section>
 
 <section id="fb10">
-  <p align="left">
-    <font color="#0000ff"><b>in turn:</b> This means 'then'.<font color="#0000ff"/></font>
+  <p class="feedbacktext"><b>in turn:</b>&#xA0;This means 'then'.<font color="#0000ff"/>
   </p>
-  <p align="left">
-    <font color="#000000"><b>after:</b> 'After' is a preposition and needs to be followed with a noun or 'ing' form.</font>
+  <p class="feedbacktext"><b>after:</b>&#xA0;'After' is a preposition and needs to be followed with a noun or 'ing' form.
   </p>
-  <p align="left">
-    <font color="#000000"><b>otherwise:</b> We use 'otherwise' to show what happens if a certain condition is not true.</font>
+  <p class="feedbacktext"><b>otherwise:</b>&#xA0;We use 'otherwise' to show what happens if a certain condition is not true.
   </p>
 </section>
 
 <section id="fb11">
-  <p align="left">
-    <font color="#0000ff"><b>passes:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>passes:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">This sentence is in active voice. You don't have to put all the verbs in passive.</p>
+  <p class="feedbacktext">This sentence is in active voice. You don't have to put all the verbs in passive.</p>
 </section>
 
 <section id="fb12">
-  <p align="left">
-    <font color="#0000ff"><b>reject:</b> This sentence is in active voice. You don't have to put all the verbs in passive.</font>
+  <p class="feedbacktext"><b>reject:</b>&#xA0;This sentence is in active voice. You don't have to put all the verbs in passive.
   </p>
-  <p align="left">
-    <font color="#000000"><b>rejected:</b> Present tenses are usually used to describe processes.</font>
+  <p class="feedbacktext"><b>rejected:</b>&#xA0;Present tenses are usually used to describe processes.
   </p>
-  <p align="left">
-    <font color="#000000"><b>be rejected:</b> This sentence is in active voice. You don't have to put all the verbs in passive.</font>
+  <p class="feedbacktext"><b>be rejected:</b>&#xA0;This sentence is in active voice. You don't have to put all the verbs in passive.
   </p>
 </section>
 
 <section id="fb13">
-  <p align="left">
-    <font color="#0000ff"><b>Unless:</b> This is the correct answer. 'Unless' means 'if not'.</font>
+  <p class="feedbacktext"><b>Unless:</b>&#xA0;This is the correct answer. 'Unless' means 'if not'.
   </p>
-  <p align="left">
-    <font color="#000000"><b>In case:</b> We use 'in case' to talk about precautions which ought to be taken. For example, 'Perhaps you ought to take an umbrella, in case it rains.' It doesn't have the same meaning as 'if'.</font>
+  <p class="feedbacktext"><b>In case:</b>&#xA0;We use 'in case' to talk about precautions which ought to be taken. For example, 'Perhaps you ought to take an umbrella, in case it rains.' It doesn't have the same meaning as 'if'.
   </p>
-  <p align="left">
-    <font color="#000000"><b>Provided that:</b> 'Provided that' means 'if'. Here an expression or word is needed which means 'if not'. Check the flow chart again.</font>
+  <p class="feedbacktext"><b>Provided that:</b>&#xA0;'Provided that' means 'if'. Here an expression or word is needed which means 'if not'. Check the flow chart again.
   </p>
 </section>
 
 <section id="fb14">
-  <p align="left">
-    <font color="#0000ff"><b>be amended:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>be amended:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">
-    <font color="#000000"><b>is amended:</b> After a modal such as 'can' the infinitive is needed.</font>
+  <p class="feedbacktext"><b>is amended:</b>&#xA0;After a modal such as 'can' the infinitive is needed.
   </p>
-  <p align="left">
-    <font color="#000000"><b>amend:</b> The passive form is needed here.</font>
+  <p class="feedbacktext"><b>amend:</b>&#xA0;The passive form is needed here.
   </p>
 </section>
 
 <section id="fb15">
-  <p align="left">
-    <font color="#0000ff"><b>Finally:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>Finally:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">
-    <font color="#000000"><b>In the end:</b> We usually use this in narrative comparisons and stories, not reports describing a process.</font>
+  <p class="feedbacktext"><b>In the end:</b>&#xA0;We usually use this in narrative comparisons and stories, not reports describing a process.
   </p>
-  <p align="left">
-    <font color="#000000"><b>At the end:</b> This describes a place, not a point in a process. 'At the end of the road', for example.</font>
+  <p class="feedbacktext"><b>At the end:</b>&#xA0;This describes a place, not a point in a process. 'At the end of the road', for example.
   </p>
 </section>
 
 <section id="fb16">
-  <p align="left">
-    <font color="#0000ff"><b>by:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>by:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">
-    <font color="#000000"><b>to/from:</b> These are not the prepositions usually used to show the 'agent' of the passive verb.</font>
+  <p class="feedbacktext"><b>to/from:</b>&#xA0;These are not the prepositions usually used to show the 'agent' of the passive verb.
   </p>
 </section>
 
 <section id="fb17">
-  <p align="left">
-    <font color="#0000ff"><b>Once:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>Once:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">A word which means 'when' is needed here.</p>
+  <p class="feedbacktext">A word which means 'when' is needed here.</p>
 </section>
 
 <section id="fb18">
-  <p align="left">
-    <font color="#0000ff"><b>has been dealt with:</b> This is the correct answer.</font>
+  <p class="feedbacktext"><b>has been dealt with:</b>&#xA0;This is the correct answer.
   </p>
-  <p align="left">
-    <font color="#000000"><b>has dealt with:</b> This is not the correct form of the passive in present perfect. You have forgotten the auxiliary verb 'be'.</font>
+  <p class="feedbacktext"><b>has dealt with:</b>&#xA0;This is not the correct form of the passive in present perfect. You have forgotten the auxiliary verb 'be'.
   </p>
-  <p align="left">
-    <font color="#000000"><b>had been dealt with:</b> This is past perfect in the passive. Here, the present perfect is needed.</font>
+  <p class="feedbacktext"><b>had been dealt with:</b>&#xA0;This is past perfect in the passive. Here, the present perfect is needed.
   </p>
 </section>
 

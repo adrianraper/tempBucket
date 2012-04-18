@@ -24,12 +24,12 @@
 	
 <header>
 <div id="instruction">
-	What will I learn in this unit?
+	What will I learn in this set?
 	</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/AC_AW_001.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set5.1_01.jpg" mode="1" id="1001"/>
       <div id="presentation">
 	  
 <h1><p>Academic Writing Task 1</p></h1>
@@ -37,11 +37,11 @@
   <p align="left"><b>Static charts 2</b></p>
   <p>You will ...</p>
   <ol>
-    <li>read a report and complete it with the missing information.</li>
-    <li>answer questions based on charts.</li>
-    <li>complete sentences based on a chart with the missing	information. </li>
-    <li>complete sentences based on a chart with appropriate	comparative structures.</li>
-    <li>write a report based on a static chart.</li>
+    <li>read a report and complete it with the missing information;</li>
+    <li>answer questions based on charts;</li>
+    <li>complete sentences based on a chart with the missing	information; </li>
+    <li>complete sentences based on a chart with appropriate	comparative structures;</li>
+    <li>write a report based on a static chart;</li>
     <li>correct mistakes in a sample report.</li>
   </ol>
 </div>

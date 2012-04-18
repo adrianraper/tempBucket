@@ -99,12 +99,12 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and answer the questions. There may be more than one correct answer.
+	Read the Writing Task and answer the questions. There may be more than one correct answer.
 </div>
 </header>
 	
 <section id="readingText">
-	<h1>Writing task 1</h1>
+	<h1>Writing Task 1</h1>
 	<p>You should spend about 20 minutes on this task.</p>
  	<p><b>You have just finished reading a book you think your friend would enjoy.</b></p>
 	<p><b>Write a letter to your friend telling them about the book. Explain why you enjoyed it and recommend that they read it.</b></p>
@@ -153,7 +153,7 @@
 	  </list></li>
 	  <p class="linespace"></p>	
 
-	<li>Which of the following would it beappropriate to write about in this letter?
+	<li>Which of the following would it be appropriate to write about in this letter?
 	  <list class="answerList">
 		  <li><a id="t18">the author's life story</a></li>
 		  <li><a id="t19">the title of the book</a></li>

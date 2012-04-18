@@ -152,7 +152,7 @@
   </section>
 <section id="body">
   <div id="splitquestionList">
-    <p>Questions 1-6. The reading passage on the left has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 below? You need only write ONE letter for each answer.</p>
+    <p class="set10e1">Questions 1-6. The reading passage on the left has twelve paragraphs A-L. Which paragraphs contain the information listed in questions 1-6 below? You need only write ONE letter for each answer.</p>
 	
 <ol class="matchinglist">
 	<li id="1">a technical achievement by Nepalese farmers<br/><input id="q1"/></li>
@@ -167,7 +167,7 @@
 	<p class="linespace"></p>
     <li id="6">the spread of terrace farming<br/><input id="q6"/></li>
 	<p class="linespace"></p>
-	<p>Questions 7-12. Fill in the information below. Write NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer.</p>
+	<p class="set10e1">Questions 7-12. Fill in the information below. Write NO MORE THAN THREE WORDS OR A NUMBER from the passage for each answer.</p>
   	<h4><p>Jhikhu Khola Valley, Nepal - Key Facts</p></h4>
 	<li>Distance from Kathmandu:<br/><input id="q7"/></li>
 	<p class="linespace"></p>
@@ -186,7 +186,7 @@
 </section>
 
 <section id="examtips">
-<p class="popuptext">This task describes some of the difficulties facing farmers who grow their crops in some of the world's most mountainous areas and in particular how the farming method known as terrace farming is exhausting the land. A part of Nepal called Jhokhu Khola is describe as a typical example of a place, which face these problems.</p>
+<p class="popuptext">This task describes some of the difficulties facing farmers who grow their crops in some of the world's most mountainous areas and in particular how the farming method known as terrace farming is exhausting the land. A part of Nepal called Jhokhu Khola is described as a typical example of a place, which face these problems.</p>
 
 <p class="popuptext">Read the instructions carefully. This is not matching headings to paragraphs. You must find which paragraph contains a certain piece of information, although the same paragraph will also contain other information as well as this.</p>
 
@@ -208,10 +208,10 @@
 <p class="popuptext1"><b>Questions 7 to 12</b></p>
 <p class="popuptext2">You will have to scan different parts of the text in order to complete this table. Look for units of measurement, which match the missing information.</p>
 
-<p class="popuptext1">Distance: kilometres (km)</p>
-<p class="popuptext3">Area: square kilometres (km2)</p>
-<p class="popuptext3">Highest elevation (= height above sea level): metres (m)</p>
-<p class="popuptext2">Maximum rainfall: metres (m)</p>
+<p class="popuptext1">Distance: kilometers (km)</p>
+<p class="popuptext3">Area: square kilometers (km2)</p>
+<p class="popuptext3">Highest elevation (= height above sea level): meters (m)</p>
+<p class="popuptext2">Maximum rainfall: meters (m)</p>
 </section>
 </body>
 </bento>

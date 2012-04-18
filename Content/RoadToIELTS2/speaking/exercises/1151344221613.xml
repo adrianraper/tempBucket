@@ -71,7 +71,7 @@ In Phase 1 of the test, you will be giving opinions and information about yourse
 <div id="outer">
 
 <div id="video">
-  <video src="../media/Unit010_e2.flv" mode="16" id="1003" autoPlay="false" />
+  <video src="../media/Unit010_e2.flv" mode="16" id="1003" autoPlay="false" width="320" height="240"  />
   </div>
 
 <div id="content3">

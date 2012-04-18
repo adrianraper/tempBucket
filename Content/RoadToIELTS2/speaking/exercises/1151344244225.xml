@@ -49,7 +49,7 @@
 	
 <section id="body">
 <div id="video">
-  <video src="../media/Unit011_e3n4.flv" mode="1" id="1003" autoPlay="false"/>
+  <video src="../media/Unit011_e3n4.flv" mode="1" id="1003" autoPlay="false" width="320" height="240" />
 </div>
 
 <div id="content">

@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -89,6 +92,7 @@
 
 
 <section id="readingText">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/><br/>
   <p>The graph shows trends in the numbers of students accepted onto language degree courses at British universities between 1994 and 1999. It is clear that&#xA0;<b>(1) there was an overall downward trend</b>&#xA0;in student numbers for such courses during this period.</p>
 
   <p>Courses in French, German and Russian all became less popular during this time. The figures for French show the most dramatic changes of all. Between 1994 and 1996<br/><b>(2) enrolments for French dropped steadily</b>&#xA0;to around 5,700. A year later&#xA0;<b>(3) there was a slight rise</b>&#xA0;of around 100 students, but then&#xA0;<b>(4) there was a sharp fall</b>&#xA0;of about 600 in 1998.&#xA0;<b>(5) Numbers finally plunged</b>&#xA0;to around 4,700 in 1999. The pattern for German was very similar. Starting at around 2,400 students in 1994,&#xA0;<b>(6) numbers had fallen</b>&#xA0;to about 2,300 by 1996. In 1997&#xA0;<b>(7) the figure recovered</b>&#xA0;to its 1994 level, but then&#xA0;<b>(8) numbers declined steadily</b>&#xA0;by around 150 per year for the next two years.&#xA0;<b>(9) The number of students accepted onto Russian courses fluctuated</b>&#xA0;between 400 and 500 for most of the period, but&#xA0;<b>(10) there was a drop</b>&#xA0;to around 300 in 1999.</p>
@@ -100,6 +104,7 @@
 </section>
 
 <section id="body">
+<img class="leftFloat" src="../media/set2.1_05.jpg" mode="1" id="1003"/>
   <ol id="splitquestionList">
     <li id="q1">Which sentence pattern does the phrase "there was an overall downward trend" have?
 	<list class="answerList">
@@ -133,6 +138,12 @@
 	<p class="linespace"></p>
   </ol>
   
+</section>
+
+<section id="examtips">
+	<p class="popuptext">It is not necessary, and you are not expected, to write long, complex sentences in your reports. It is much more important to write clearly and accurately. Look at these two simple sentence patterns, which are very useful for describing trends in charts:<br/>
+	Noun phrase + verb + (adverb)<br/>
+	There was a / an + (adjective) + noun</p>
 </section>
 </body>
 </bento>

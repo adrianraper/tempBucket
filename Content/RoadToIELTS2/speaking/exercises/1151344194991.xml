@@ -84,9 +84,9 @@
 <section id="body">
 <div id="outer">
 <div class="rightFloatvideo1">
-  <video src="../media/Unit09_e5a.flv" mode="16" id="1005" autoPlay="false"/>
+  <video src="../media/Unit09_e5a.flv" mode="16" id="1005" autoPlay="false" width="320" height="240" />
   <br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/><br/>
-  <video src="../media/Unit09_e5b.flv" mode="16" id="1006" autoPlay="false"/>
+  <video src="../media/Unit09_e5b.flv" mode="16" id="1006" autoPlay="false" width="320" height="240" />
 </div>
 
 <div id="content1">

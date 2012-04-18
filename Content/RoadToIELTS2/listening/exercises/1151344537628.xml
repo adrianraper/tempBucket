@@ -35,7 +35,6 @@
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
       <answer value="8" correct="true"/>
-      <answer value="eight" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="circle" correct="true">
@@ -47,13 +46,14 @@
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="A8 A9" correct="true"/>
+	  <answer value="A8, A9" correct="true"/>
+	  <answer value="A8,A9" correct="true"/>
       <answer value="A 8 A 9" correct="true"/>
       <answer value="A9 A8" correct="true"/>
       <answer value="A 9 A 8" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
       <answer value="30" correct="true"/>
-      <answer value="thirty" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q6" block="b6">
       <answer value="Hart" correct="true"/>

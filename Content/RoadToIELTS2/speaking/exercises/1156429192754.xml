@@ -16,9 +16,6 @@
 	
 	
 <script id="model" type="application/xml">
-<popups>
-    	<popup click="clickme" source="examtips" width="500" />
-</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -37,34 +34,33 @@
 <section id="body">
 <div id="outer">
 <div id="video">
-  <video src="../media/Unit06_e6.flv" mode="1" id="1002" autoPlay="false"/>
+  <video src="../media/Unit06_e6.flv" mode="1" id="1002" autoPlay="false" width="320" height="240" />
 </div>
 
-<div id="content1">
-  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
-<br/><br/><br/><br/>
-  <h1><p>The follow-up question</p></h1>
-
+<div id="content2">
+  <p><b>Question Card</b></p>
+  <p>Describe an advertisement you have seen, on TV or elsewhere, that made an impression on you.</p>
+  <p class="linespace"></p>
+  <p>You should say:</p>
+  <ul>
+  	<li>what it showed</li>
+	<li>who it was aimed at</li>
+	<li>what effect it had on you</li>
+  </ul>
+  <p class="linespace"></p>
+  <p>And explain why you find this type of advertising admirable or not.</p>
+  <p class="linespace"></p>
+  <p><b>The follow-up question</b></p>
+  
   <p>At the end of Part 2, the Examiner often asks a question. The next clip shows the end of each candidate's talk about an advertisement. Look at the different ways they answer the question.</p>
-  
+  <p class="linespace"></p>
   <p>Zafir should have expanded in one or two short sentences.</p>
-  
+  <p class="linespace"></p>
   <p>Dmitris performs much better. Always remember to give reasons for your answers, rather then just agreeing or disagreeing with the statement the examiner makes.</p>
 
 </div>
 </div>
 </section>
 
-<section id="examtips">
-<p class="popuptext1"><b>Question Card</b></p>
-  <p class="popuptext2">Describe an advertisement you have seen, on TV or elsewhere, that made an impression on you.</p>
-  <p class="popuptext1">You should say:</p>
-  <ul class="popuptext2">
-  	<li>what it showed</li>
-	<li>who it was aimed at</li>
-	<li>what effect it had on you</li>
-  </ul>
-  <p class="popuptext">And explain why you find this type of advertising admirable or not.</p>
-</section>
 </body>
 </bento>

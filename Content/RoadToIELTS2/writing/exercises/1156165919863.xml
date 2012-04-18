@@ -68,34 +68,34 @@
   <img class="rightFloat" src="../media/set2.2_06.jpg" mode="1" id="1001"/>
 
   <ol id="questionList">
-    <li><span color="#7935AB">Some people think that an international language would reduce nationalistic feelings.</span>
+    <li><span class="highlight1">Some people</span>&#xA0;<span class="highlight2">think</span>&#xA0;<span class="highlight1">that an international language would reduce nationalistic feelings.</span>
 	<br/>It&#xA0;<input id="q1"/>&#xA0;that an international language would reduce nationalistic feelings.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">Experts believe that about 6,000 languages are spoken in the world today.</span>
+	<li><span class="highlight1">Experts</span>&#xA0;<span class="highlight2">believe</span>&#xA0;<span class="highlight1">that about 6,000 languages are spoken in the world today.</span>
 	<br/>About 6,000 languages&#xA0;<input id="q2"/>&#xA0;to be spoken in the world today.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">People often suggest that an international language would lead to the disappearance of minority languages.</span>
+	<li><span class="highlight1">People often</span>&#xA0;<span class="highlight2">suggest</span>&#xA0;<span class="highlight1">that an international language would lead to the disappearance of minority languages.</span>
 	<br/>It&#xA0;<input id="q3"/>&#xA0;that an international language would lead to the disappearance of minority languages.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">People argue that an international language would facilitate international trade.</span>
+	<li><span class="highlight1">People</span>&#xA0;<span class="highlight2">argue</span>&#xA0;<span class="highlight1">that an international language would facilitate international trade.</span>
 	<br/>It&#xA0;<input id="q4"/>&#xA0;that an international language would facilitate international trade.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">Some experts estimate that up to 1.5 billion people speak some English nowadays.</span>
+	<li><span class="highlight1">Some experts</span>&#xA0;<span class="highlight2">estimate</span>&#xA0;<span class="highlight1">that up to 1.5 billion people speak some English nowadays.</span>
 	<br/>There&#xA0;<input id="q5"/>&#xA0;to be up to 1.5 billion people who speak some English nowadays.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">Many people consider the biggest problem to be which language to choose as an international language.</span>
+	<li><span class="highlight1">Many people</span>&#xA0;<span class="highlight2">consider</span>&#xA0;<span class="highlight1">the biggest problem to be which language to choose as an international language.</span>
 	<br/>The biggest problem&#xA0;<input id="q6"/>&#xA0;to be which language to choose as an international language.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">Many people feel that if an international language was imposed on people, there would be a strong reaction against it.</span>
+	<li><span class="highlight1">Many people</span>&#xA0;<span class="highlight2">feel</span>&#xA0;<span class="highlight1">that if an international language was imposed on people, there would be a strong reaction against it.</span>
 	<br/>It&#xA0;<input id="q7"/>&#xA0;that if an international language was imposed on people, there would be a strong reaction against it.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">People say that an international language would increase international co-operation and understanding.</span>
+	<li><span class="highlight1">People</span>&#xA0;<span class="highlight2">say</span>&#xA0;<span class="highlight1">that an international language would increase international co-operation and understanding.</span>
 	<br/>It&#xA0; <input id="q8"/> &#xA0;that an international language would increase international co-operation and understanding.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">People generally agree that artificial languages such as Esperanto are not the solution to the problem.</span>
+	<li><span class="highlight1">People generally</span>&#xA0;<span class="highlight2">agree</span>&#xA0;<span class="highlight1">that artificial languages such as Esperanto are not the solution to the problem.</span>
 	<br/>It&#xA0;<input id="q9"/>&#xA0;that artificial languages such as Esperanto are not the solution to the problem.</li>
     <p class="linespace"></p>
-	<li><span color="#7935AB">Linguists have pointed out that all languages diversify into dialects.</span>
+	<li><span class="highlight1">Linguists</span>&#xA0;<span class="highlight2">have pointed out</span>&#xA0;<span class="highlight1">that all languages diversify into dialects.</span>
 	<br/>It&#xA0;<input id="q10"/>&#xA0;that all languages diversify into dialects.</li>
   </ol>
   <p class="linespace"></p>

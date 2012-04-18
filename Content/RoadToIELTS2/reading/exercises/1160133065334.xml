@@ -34,6 +34,7 @@
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b4">
       <answer value="50" correct="true"/>
+	  <answer value="fifty" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q5" block="b5">
       <answer value="two or more" correct="true"/>
@@ -82,7 +83,7 @@
 	<h7>Games on Playing Cards</h7>
 	<p>Because of the flexibility of a playing card deck during use and the small space in which decks can be stored, it is not surprising that game manufacturers selected a playing card format for some games as early as the 19th century. It seems the possibilities for adaptation to the playing card format are endless. Thus, the Museum Collection houses a number of games in playing card format.</p>
 	<h7>Totem</h7>
-	<p>This game was made by West and Lee, Worcester, Massachusetts (US) in 1873. There are 37 cards with round corners and plain backs. The single card with a picture of a lion is the "totem card". There are four "suits" of 9 cards each – domestic fowls, domestic animals, wild animals, wild birds. Cards are valued from 20 to 100. The 20, 40, 60, 80 cards have a picture and some information about a bird or animal. One card in each suit lists the other cards in the suit and this card is worth 100 points. This is a "trick taking" game for four people. The intent of the game is to acquire the "totem" card and the most points during the game. Typical of games during this period, there is an <i>educational component</i>, in that as one plays the game, one can learn about the animals and birds from the information on the cards!</p>
+	<p>This game was made by West and Lee, Worcester, Massachusetts (US) in 1873. There are 37 cards with round corners and plain backs. The single card with a picture of a lion is the "totem card". There are four "suits" of 9 cards each – domestic fowls, domestic animals, wild animals, wild birds. Cards are valued from 20 to 100. The 20, 40, 60, 80 cards have a picture and some information about a bird or animal. One card in each suit lists the other cards in the suit and this card is worth 100 points. This is a "trick taking" game for four people. The intent of the game is to acquire the "totem" card and the most points during the game. Typical of games during this period, there is an&#xA0;<i>educational component</i>, in that as one plays the game, one can learn about the animals and birds from the information on the cards!</p>
 	<h7>PIT</h7>
 	<p>Parker Brothers (US) first introduced this game in 1903. The museum purchased its copy in 1979. The "pit" in question is of course "the stock exchange". In keeping with the stock exchange theme, there are 63 cards representing seven different commodities available on the exchange. Each commodity is pictured on 9 cards – wheat, barley, corn, rye, oats, hay, flax. The commodity cards show a picture of the "exchange" in action, a point value for the card, and the name of the commodity. Also, like the stock exchange, there are two cards representing buyers. One card is the "bull" – the aggressive buyer. The second card is the "bear" – the conservative buyer. The game is for three to six players.</p>
 	<h7>Game of Rebellion</h7>
@@ -131,6 +132,14 @@
 <p>Total Number of Cards:<tab/>25</p>
 <p>Number of Players:<tab/>(7)&#xA0;<input id="q7"/></p>
 <p>Theme of Game:<tab/><tab/>(8)&#xA0;<input id="q8"/></p>
+<p></p>
+
+<p><b>Name of Game:</b><tab/><tab/><b>Game of Poems</b></p>
+<p>Date of Manufacture:<tab/>(9)&#xA0;<input id="q9"/></p>
+<p>Country of Manufacture:<tab/>US</p>
+<p>Total Number of Cards:<tab/>(10)&#xA0;<input id="q10"/></p>
+<p>Number of Players:<tab/>Nil</p>
+<p>Theme of Game:<tab/><tab/>poets and poetry</p>
 <p></p>
 </div>
 

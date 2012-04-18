@@ -27,14 +27,15 @@
 	
 <header>
 <div id="instruction">
-	IELTS Writing Task 1&#160;You should spend about 20 minutes on this task. You should write at least 150 words.
+	You should spend about 20 minutes on this task. You should write at least 150 words.
 </div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/DD_GW_002.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set11_02.jpg" mode="1" id="1001"/>
   
     <div id="presentation">
+	<h1><p>IELTS Writing Task 1</p></h1>
   <p><b>A friend of yours would like to raise some money to send back to their country as it recently experienced terrible floods. They have asked for your advice.</b></p>
   
   <p><b>Write a letter to your friend advising them on ways of raising money. Warn them of the problems involved and offer to help.</b></p>

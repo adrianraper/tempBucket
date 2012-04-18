@@ -20,7 +20,7 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="500" height="325"/>
+    	<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>
@@ -54,7 +54,7 @@
 <header>
 	
 		<div id="instruction">
-		Here are six possible introductory paragraphs to the writing task you looked at in the previous exercise. Read the introductions and think about how appropriate they would be. Then click the audio icons and listen to a teacher. Drag the comments to the appropriate paragraph.
+		Here are six possible introductory paragraphs to the Writing Task you looked at in the previous exercise. Read the introductions and think about how appropriate they would be. Then click the audio icons and listen to a teacher. Drag the comments to the appropriate paragraph.
 		</div>
 </header>
 	

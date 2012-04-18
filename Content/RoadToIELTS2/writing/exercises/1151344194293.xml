@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="draganddrop" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -67,7 +67,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Look carefully at the pie charts and match the fractions and ratios to the households.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -82,66 +84,82 @@
 </section>
 
 <section id="body">
-  <img class="rightFloat" src="../media/SS_AW_006s.jpg" mode="1" id="1003"/>
-  <img class="leftFloat" src="../media/SS_AW_006.jpg" mode="16" id="1004"/>
-  <br/>
-  <ol id="questionList">
-    <li id="1">Couples with children in 1961<input id="q1" type="droptarget"/></li>
-    <li id="2">Couples with children in 2001<input id="q2" type="droptarget"/></li>
-    <li id="3">Couples with no children in 1961<input id="q3" type="droptarget"/></li>
-    <li id="4">Couples with no children in 2001<input id="q4" type="droptarget"/></li>
-    <li id="5">Lone parent in 2001<input id="q5" type="droptarget"/></li>
-    <li id="6">Other households in 2001<input id="q6" type="droptarget"/></li>
-    <li id="7">People living alone in 1961<input id="q7" type="droptarget"/></li>
-    <li id="8">People living alone in 2001<input id="q8" type="droptarget"/></li>
-  </ol>
+
+<img class="leftFloat2" src="../media/SS_AW_006.jpg" mode="16" id="1004"/>
+  <br/><br/>
+  <div id="set9t1percent1">
+  
+    <p>1.<tab/>Couples with children in 1961<br/><tab/><input id="q1" type="droptarget"/></p>
+	
+	<p></p>
+    <p>2.<tab/>Couples with children in 2001<br/><tab/><input id="q2" type="droptarget"/></p>
+	
+	<p></p>
+    <p>3.<tab/>Couples with no children in 1961<br/><tab/><input id="q3" type="droptarget"/></p>
+	
+	<p></p>
+    
+  
+  </div>
+  
+  <div id="set9t1percent2">
+	<p>4.<tab/>Couples with no children in 2001<br/><tab/><input id="q4" type="droptarget"/></p>
+	
+	<p></p>
+    <p>5.<tab/>Lone parent in 2001<br/><tab/><input id="q5" type="droptarget"/></p>
+	
+	<p></p>
+    <p>6.<tab/>Other households in 2001<br/><tab/><input id="q6" type="droptarget"/></p>
+  </div>
+
+   <div id="set9t1percent3">
+	<p></p>
+    <p>7.<tab/>People living alone in 1961<br/><tab/><input id="q7" type="droptarget"/></p>
+	
+	<p></p>
+    <p>8.<tab/>People living alone in 2001<br/><tab/><input id="q8" type="droptarget"/></p>
+  <p></p>
+  </div>
+ 
 </section>
 
 <section id="fb1">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">1. Two-thirds is about 66%.</font>
+  <p class="feedbacktext">1. Two-thirds is about 66%.
   </p>
 </section>
 
 <section id="fb2">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">2. Just under half means slightly less than 50%.</font>
+  <p class="feedbacktext">2. Just under half means slightly less than 50%.
   </p>
 </section>
 
 <section id="fb3">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">3. Almost a fifth is about 20%.</font>
+  <p class="feedbacktext">3. Almost a fifth is about 20%.
   </p>
 </section>
 
 <section id="fb4">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">4. Nearly a quarter means almost 25%.</font>
+  <p class="feedbacktext">4. Nearly a quarter means almost 25%.
   </p>
 </section>
 
 <section id="fb5">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">5. 1 in 10 is 10%.</font>
+  <p class="feedbacktext">5. 1 in 10 is 10%.
   </p>
 </section>
 
 <section id="fb6">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">6. 1 in 20 is 5%.</font>
+  <p class="feedbacktext">6. 1 in 20 is 5%.
   </p>
 </section>
 
 <section id="fb7">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">7. 1 in 25 is the same as 4%.</font>
+  <p class="feedbacktext">7. 1 in 25 is the same as 4%.
   </p>
 </section>
 
 <section id="fb8">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">8. Just over a tenth is about 10%.</font>
+  <p class="feedbacktext">8. Just over a tenth is about 10%.
   </p>
 </section>
 

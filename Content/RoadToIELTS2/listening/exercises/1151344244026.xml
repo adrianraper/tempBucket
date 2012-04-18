@@ -18,7 +18,7 @@
 <script id="model" type="application/xml">
 <settings>
  	<param name="delayedMarking" value="true" />
-	<param name="autoMarkTimeout" value="140" />
+	<param name="autoMarkTimeout" value="125" />
 </settings>
 
   <questions>

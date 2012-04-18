@@ -122,15 +122,15 @@
   <div id="box1">
   <div id="contenttabcomp1">
   <p><b>Males</b></p>
-  <p><input id="q1"/></p>
+  <p>1.&#xA0;&#xA0;<input id="q1"/></p>
   <p>Snooker/pool/billiards</p>
-  <p><input id="q3"/></p>
-  <p><input id="q4"/></p>
+  <p>3.&#xA0;&#xA0;<input id="q3"/></p>
+  <p>4.&#xA0;&#xA0;<input id="q4"/></p>
   <p>Swimming</p>
   <p>&#xA0;</p>
   <p><b>Females</b></p>
   <p>Walking</p>
-  <p><input id="q6"/>/yoga</p>
+  <p>6.&#xA0;&#xA0;<input id="q6"/>/yoga</p>
   <p>Swimming</p>
   <p>Snooker/pool/billiards</p>
   <p>Cycling</p>
@@ -139,17 +139,17 @@
   <div id="content1tabcomp1">
   <p>&#xA0;</p>
   <p>57%</p>
-  <p><input id="q2"/>%</p>
+  <p>2.&#xA0;&#xA0;<input id="q2"/>%</p>
   <p>28%</p>
   <p>24%</p>
-  <p><input id="q5"/>%</p>
+  <p>5.&#xA0;&#xA0;<input id="q5"/>%</p>
  <p>&#xA0;</p>
  <p>&#xA0;</p>
   <p>43%</p>
   <p>28%</p>
-  <p><input id="q7"/>%</p>
+  <p>7.&#xA0;&#xA0;<input id="q7"/>%</p>
   <p>17%</p>
-  <p><input id="q8"/>%</p>
+  <p>8.&#xA0;&#xA0;<input id="q8"/>%</p>
   </div>
   </div>
 

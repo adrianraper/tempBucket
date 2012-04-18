@@ -118,7 +118,7 @@ Watch Phase 1 of an interview with Zenia. Are the following statements true or f
 <div id="outer">
 
 	<div id="video">
-<video  id="1003" src="../media/Unit01_e3.flv"  autoPlay="false"  />
+<video  id="1003" src="../media/Unit01_e3.flv"  autoPlay="false" width="320" height="240" />
 </div>
 
 
@@ -166,7 +166,7 @@ Watch Phase 1 of an interview with Zenia. Are the following statements true or f
 	<p class="feedbacktext">2. This is important so that the examiner can check the candidate's identity.</p>
 </section>
 <section id="fb3">
-	<p class="feedbacktext">3. Identification is essential, you can't take the exam without it.</p>
+	<p class="feedbacktext">3. Identification is essential, you can't take the test without it.</p>
 </section>
 <section id="fb4">
 	<p class="feedbacktext">4. The examiner asks all the questions.</p>

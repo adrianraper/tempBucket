@@ -12,6 +12,13 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#practiceactivity {
+	position:absolute;
+	float: left;
+	padding-top: -30px;
+	padding-right: 20em;
+	padding-left: -30px;
+	}
 	</style>
 	
 	
@@ -30,16 +37,18 @@ You should spend about 20 minutes on this task. You should write at least 150 wo
 	
 <section id="body">
 <div id="presentation">
+<h1><p>IELTS Writing Task 1</p></h1>
 <h5><p>The table shows trends in the proportion of smokers among different socio-economic groups in Great Britain between 1972 and 1999.</p></h5>
 
-  <p align="left">
-  Write a report for a university lecturer describing the information shown below.
-  </p>
-  <p align="left">
-      <img class="leftFloat" src="../media/HF_AW_007.jpg" mode="1" id="1004"/>
-  </p>
+  <p>Write a report for a university lecturer describing the information shown below.</p>
+</div>
 
-  </div>
+
+	<div id="practiceactivity">
+      <img src="../media/HF_AW_007.jpg" mode="1" id="1004"/><p class="linespace"></p>
+	</div>
+
+  
 </section>
 
 </body>

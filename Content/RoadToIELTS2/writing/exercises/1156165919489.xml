@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="sampleanswer" width="500" height="325" />
 	</popups>
 
 </script>
@@ -27,26 +27,30 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and look at the graph, then read the sample answer. You should spend about 20 minutes on this task. You should write at least 150 words.
+	Read the Writing Task and look at the graph, then click to read the sample answer. You should spend about 20 minutes on this task. You should write at least 150 words.
 </div>
 </header>
 	
 <section id="body">
-<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme"><img class="imagetask" src="../media/btn_sampleanswer.jpg" mode="1" id="1001"/></a>
 <br/><br/><br/>
   <img class="rightFloat" src="../media/Unit02_Write_e1.jpg" mode="1" id="1003"/>
     <div id="targetspotting">
-    <p>The graph shows trends in the numbers of students accepted onto language degree courses at British universities between 1994 and 1999. It is clear that there was an overall downward trend in student numbers for such courses during this period.</p>
-  <p>Courses in French, German and Russian all became less popular during this time.  The figures for French show the most dramatic changes of all. Between 1994 and 1996 enrolments for French dropped steadily to around 5,700. A year later there was a slight rise of around 100 students, but then there was a sharp fall of about 600 in 1998. Numbers finally plunged to around 4,700 in 1999. The pattern for German was very similar.  Starting at around 2,400 students in 1994, numbers had fallen to about 2,300 by 1996. In 1997 the figure recovered to its 1994 level, but then numbers declined steadily by around 150 per year for the next two years. The number of students accepted onto Russian courses fluctuated between 400 and 500 for most of the period, but there was a drop to around 300 in 1999.</p>
-  <p>Enrolments for two of the five languages, however, actually grew in number over the five years. From 1994 onwards, there was a steady increase in enrolments for Spanish of approximately 100 every year. Likewise, the number of students studying Italian rose gradually to around 900 in 1997 and remained stable for the following two years.</p>
-  <p>Nevertheless, the overall figures suggest that modern languages became less popular as a choice for academic study over this period.</p>
+	<p>The chart shows changes in the numbers of students accepted onto modern language degree courses at British universities over a five-year period.</p>
+	
+	<p><b>Write a report for a university lecturer describing the information shown below.</b></p>
+    
   </div>
 </section>
 
-<section id="writingtask1">
-		<p class="popuptext">The chart shows changes in the numbers of students accepted onto modern language degree courses at British universities over a five-year period.</p>
+<section id="sampleanswer">
+  <p class="popuptext">The graph shows trends in the numbers of students accepted onto language degree courses at British universities between 1994 and 1999. It is clear that there was an overall downward trend in student numbers for such courses during this period.</p>
 		
-		<p class="popuptext"><b>Write a report for a university lecturer describing the information shown below.</b></p>
+  <p class="popuptext">Courses in French, German and Russian all became less popular during this time.  The figures for French show the most dramatic changes of all. Between 1994 and 1996 enrolments for French dropped steadily to around 5,700. A year later there was a slight rise of around 100 students, but then there was a sharp fall of about 600 in 1998. Numbers finally plunged to around 4,700 in 1999. The pattern for German was very similar.  Starting at around 2,400 students in 1994, numbers had fallen to about 2,300 by 1996. In 1997 the figure recovered to its 1994 level, but then numbers declined steadily by around 150 per year for the next two years. The number of students accepted onto Russian courses fluctuated between 400 and 500 for most of the period, but there was a drop to around 300 in 1999.</p>
+  
+  <p class="popuptext">Enrolments for two of the five languages, however, actually grew in number over the five years. From 1994 onwards, there was a steady increase in enrolments for Spanish of approximately 100 every year. Likewise, the number of students studying Italian rose gradually to around 900 in 1997 and remained stable for the following two years.</p>
+  
+  <p class="popuptext">Nevertheless, the overall figures suggest that modern languages became less popular as a choice for academic study over this period.</p>
 			
 </section>
 

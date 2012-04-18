@@ -23,7 +23,7 @@
 <settings>
  	<param name="delayedMarking" value="true" />
 	<feedback>
-		<feedback source="fb0" width="650" height="325"/>
+		<feedback source="fb0" width="500" />
 	</feedback>
 </settings>
   <questions>
@@ -68,7 +68,7 @@
 <header>
 	
 		<div id="instruction">
-		Read the writing task and then listen to eight people talking about the effects of tourism. Group their comments according to which aspect of tourism they apply to.
+		Read the Writing Task and then listen to eight people talking about the effects of tourism. Group their comments according to which aspect of tourism they apply to.
 		</div>
 
 
@@ -173,10 +173,10 @@
   </div>
 </section>
 <section id="writingtask1">
-			<p class="popuptext"><b>Writing task 2</b></p>
+			<p class="popuptext"><b>Writing Task 2</b></p>
 <p class="popuptext"> You should spend about 40 minutes on this task.</p>
 <p class="popuptext"> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
-<p class="popuptext"><b> Excessive traffic has made cities unpleasant places to live and work in. For this reason, private cars should be completely banned from city centres.</b></p>
+<p class="popuptext"><b>The tourist industry has grown enormously over the last fifty years, and there are few places which are unaffected by it. However, tourism rarely benefits the countries which tourists visit.</b></p>
 <p class="popuptext"><b> To what extent do you agree or disagree?</b></p>
 <p class="popuptext">You should write at least 250 words.</p>
 <p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
@@ -184,7 +184,7 @@
 		</section>
 
 <section id="examtips">
-<p class="popuptext">This exercise will help you with ideas for the writing task. You'll have to choose which ideas you want to use as some won't support your opinion. When you have finished this exercise, you can decide whether you want to write a balanced 'for and against' composition or a 'one-sided' composition that gives your personal opinion and only discusses the arguments that support it.</p>
+<p class="popuptext">This exercise will help you with ideas for the Writing Task. You'll have to choose which ideas you want to use as some won't support your opinion. When you have finished this exercise, you can decide whether you want to write a balanced 'for and against' composition or a 'one-sided' composition that gives your personal opinion and only discusses the arguments that support it.</p>
 </section>
 </body>
 </bento>

@@ -24,7 +24,7 @@
 #content1{
 	position:relative;
 	padding-top:25px;
-    height: 400px;
+    height: 580px;
     width:500px;
     line-height:22em;
 	padding-left: 0px;
@@ -33,9 +33,6 @@
 	
 	
 <script id="model" type="application/xml">
-<popups>
-    	<popup click="clickme" source="examtips" width="500" />
-</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -84,12 +81,22 @@
 <section id="body">
 <div id="outer">
 <div class="rightFloatvideo1">
-  <video src="../media/Unit06_e7b.flv" mode="1" id="1001" autoPlay="false"/>
+  <video src="../media/Unit06_e7b.flv" mode="1" id="1001" autoPlay="false" width="320" height="240" />
   </div>
   
   <div id="content1">
-  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
-<br/><br/>
+<p><b>Question Card</b></p>
+  <p>Describe an advertisement you have seen, on TV or elsewhere, that made an impression on you.</p>
+  <p class="linespace"></p>
+  <p>You should say:</p>
+  <ul>
+  	<li>what it showed</li>
+	<li>who it was aimed at</li>
+	<li>what effect it had on you</li>
+  </ul>
+  <p class="linespace"></p>
+  <p>And explain why you find this type of advertising admirable or not.</p>
+  <p class="linespace"></p>
 	<p><b>What, according to the candidates, are the main reasons for choosing a particular news medium?</b></p>
 	<p class="linespace"></p>
    <p><b>Zafir</b></p>
@@ -110,16 +117,6 @@
   </div>
   </div>
 </section>
-<section id="examtips">
-  <p class="popuptext1"><b>Question Card</b></p>
-  <p class="popuptext2">Describe an advertisement you have seen, on TV or elsewhere, that made an impression on you.</p>
-  <p class="popuptext1">You should say:</p>
-  <ul class="popuptext2">
-  	<li>what it showed</li>
-	<li>who it was aimed at</li>
-	<li>what effect it had on you</li>
-  </ul>
-  <p class="popuptext">And explain why you find this type of advertising admirable or not.</p>
-</section>
+
 </body>
 </bento>

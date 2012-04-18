@@ -41,21 +41,21 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+	Read the Writing Task and choose the best introductory paragraph. Click A, B or C.
 </div>
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/SS_AW_013b.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../media/set9.2_04.jpg" mode="1" id="1001"  />
 	
 	<div id="targetspotting">
 	<p><b>Prison serves no useful purpose for young first-time offenders. No young person committing a crime for the first time should receive a prison sentence.</b></p>
 	
-	<p><b><g id="t1">A. Most young criminals commit their first crime while they are teenagers and generally do so because they are looking for excitement, or because they are following the example of older friends. I am convinced that sending these young people to prison is a counter-productive way of combating crime, and there are a number of reasons why I believe young first-time offenders should not be imprisoned.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t1">a.&#xA0;&#xA0;Most young criminals commit their first crime while they are teenagers and generally do so because they are looking for excitement, or because they are following the example of older friends. I am convinced that sending these young people to prison is a counter-productive way of combating crime, and there are a number of reasons why I believe young first-time offenders should not be imprisoned.</a></b></p>
 	
-	<p><b><g id="t2">B. No one would dispute the fact that in many societies today juvenile crime has become a very serious issue. While there is much discussion about what form of punishment is the most effective in dealing with young offenders, we seldom consider the causes of the problem. In order to find a solution, we need to look at what motivates these young people to commit crimes.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t2">b.&#xA0;&#xA0;No one would dispute the fact that in many societies today juvenile crime has become a very serious issue. While there is much discussion about what form of punishment is the most effective in dealing with young offenders, we seldom consider the causes of the problem. In order to find a solution, we need to look at what motivates these young people to commit crimes.</a></b></p>
 	
-	<p><b><g id="t3">C. Soaring crime rates have meant that prison populations are growing too quickly for governments to cope with. Spending on overcrowded prisons is a drain on a country's resources and does nothing to reduce crime. There are a number of alternative forms of punishment which ought to be considered.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t3">c.&#xA0;&#xA0;Soaring crime rates have meant that prison populations are growing too quickly for governments to cope with. Spending on overcrowded prisons is a drain on a country's resources and does nothing to reduce crime. There are a number of alternative forms of punishment which ought to be considered.</a></b></p>
 	</div>
 </section>
 

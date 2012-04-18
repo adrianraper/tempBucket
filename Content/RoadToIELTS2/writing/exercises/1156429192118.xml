@@ -18,7 +18,6 @@
 <script id="model" type="application/xml">
 	<popups>
     	<popup click="clickme" source="writingtask1" width="500"  />
-		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>
  	<param name="delayedMarking" value="false" />
@@ -77,7 +76,7 @@
 <header>
 
 		<div id="instruction">
-		First click to read the writing task. Then listen to the recording of a class discussion about whether disturbing images should be included in television news reports. Click on the arguments for and against that are mentioned.
+		First click to read the Writing Task. Then listen to the recording of a class discussion about whether disturbing images should be included in television news reports. Click on the arguments for and against that are mentioned.
 		</div>
 
 </header>
@@ -87,7 +86,6 @@
   
   
     <div><a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
-<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
   <audio controls="compact"  src="../media/MM_WR1aa.mp3" mode="1" id="1002"/></div>
   <img class="rightFloat" src="../media/set6.2_03.jpg" mode="1" id="1001"/> 
   <div id="targetspotting">

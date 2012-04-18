@@ -66,9 +66,9 @@
 
 <div class="rightFloatvideo1">
 
-  <video src="../media/Unit012_e4a.flv" mode="16" id="1003" autoPlay="false"/>
+  <video src="../media/Unit012_e4a.flv" mode="16" id="1003" autoPlay="false" width="320" height="240" />
   <br/>
-  <video src="../media/Unit012_e4b.flv" mode="16" id="1004" autoPlay="false"/>
+  <video src="../media/Unit012_e4b.flv" mode="16" id="1004" autoPlay="false" width="320" height="240" />
   </div>
 
 <div id="content1">

@@ -27,14 +27,15 @@
 	
 <header>
 <div id="instruction">
-	IELTS Writing Task 2&#160;You should spend about 40 minutes on this task. You should write at least 250 words.
+	You should spend about 40 minutes on this task. You should write at least 250 words.
 </div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/ST_AW_002.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/gt_set12_04.jpg" mode="1" id="1001"/>
   
     <div id="presentation">
+	<h1><p>IELTS Writing Task 2</p></h1>
   <p>Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
   
   <p><b>Information technology is making it increasingly easy to collect and access computerised data on individuals, which poses a threat to our privacy. In what ways can the information gathered be misused and what can be done to minimise these misuses and protect the privacy of the individual?</b></p>

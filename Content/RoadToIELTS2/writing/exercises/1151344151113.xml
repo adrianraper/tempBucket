@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="500" />
+	</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -82,43 +85,55 @@
 </header>
 	
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+  <br/><br/><br/>
   <img class="rightFloat" src="../media/HF_AW_013.jpg" mode="1" id="1001"/>
   
   <ol id="questionList">
-    <li><span color="#7935AB">It is unlikely that genetically modified crops will have such a disastrous effect on the environment.</span>
+    <li><span color="#0000FF">It is unlikely that genetically modified crops will have such a disastrous effect on the environment.</span>
 	<br/>Genetically modified crops&#xA0;<input id="q1"/>&#xA0;such a disastrous effect on the environment. (likely)</li>
 	<p class="linespace"></p>
 	
-    <li><span color="#7935AB">Research into gene therapy will probably provide a cure for certain forms of cancer.</span>
+    <li><span color="#0000FF">Research into gene therapy will probably provide a cure for certain forms of cancer.</span>
 	<br/><input id="q2"/>, research into gene therapy will provide a cure for certain forms of cancer. (probability)</li>
 	<p class="linespace"></p>
 	
-    <li><span color="#7935AB">People who eat a fatty diet could very well suffer from heart disease in later life.</span>
+    <li><span color="#0000FF">People who eat a fatty diet could very well suffer from heart disease in later life.</span>
 	<br/>People who eat a fatty diet &#xA0;<input id="q3"/>&#xA0;from heart disease in later life. (likely)</li>
 	<p class="linespace"></p>
 	
-    <li><span color="#7935AB">It is possible that a cure for AIDS will be available within the next decade.</span>
+    <li><span color="#0000FF">It is possible that a cure for AIDS will be available within the next decade.</span>
 	<br/>A cure for AIDS&#xA0;<input id="q4"/>&#xA0;available within the next decade. (just)</li>
 	<p class="linespace"></p>
 	
-    <li><span color="#7935AB">Viruses buried deep in the Arctic could well be released by a change in the Earth's climate.</span> 
+    <li><span color="#0000FF">Viruses buried deep in the Arctic could well be released by a change in the Earth's climate.</span> 
 	<br/><input id="q5"/>&#xA0;viruses buried deep in the Arctic will be released by a change in the Earth's climate. (possible)</li>
 	<p class="linespace"></p>
 	
-    <li><span color="#7935AB">In the future most of the world's population will probably live considerably longer.</span>
+    <li><span color="#0000FF">In the future most of the world's population will probably live considerably longer.</span>
 	<br/><input id="q6"/>, most of the world's population will live considerably longer in the future. (likelihood)</li>
 	<p class="linespace"></p>
 	
-    <li><span color="#7935AB">People are unlikely to stop smoking simply because of the health warnings on cigarette packets.</span>
+    <li><span color="#0000FF">People are unlikely to stop smoking simply because of the health warnings on cigarette packets.</span>
 	<br/><input id="q7"/>&#xA0;people will stop smoking simply because of the health warnings on cigarette packets. (likely)</li>
 	<p class="linespace"></p>
 	
-    <li><span color="#7935AB">There is every likelihood that gene therapy will make some hereditary diseases a thing of the past.</span>
+    <li><span color="#0000FF">There is every likelihood that gene therapy will make some hereditary diseases a thing of the past.</span>
 	<br/>Gene therapy&#xA0;<input id="q8"/>&#xA0;some hereditary diseases a thing of the past. (well)</li>
 	<p class="linespace"></p>
   </ol>
 </section>
 
+ <section id="writingtask1">
+<p class="popuptext"> You should spend about 40 minutes on this task.</p>
+<p class="popuptext"><b> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</b></p>
+<p class="popuptext"><b> Biotechnology companies all over the world are developing different types of genetically modified (GM) crops. However, not enough is known about the effects of these crops on our health and on the environment. Interfering with nature in this way should be prohibited.</b></p>
+<p class="popuptext"><b>To what extent do you agree or disagree?</b></p>
+<p class="popuptext">You should write at least 250 words.</p>
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+
+		</section>
+		
 <section id="fb3">
   <p align="left">[highly/very/extremely/quite/] </p>
 </section>

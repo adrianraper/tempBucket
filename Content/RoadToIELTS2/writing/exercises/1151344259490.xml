@@ -17,7 +17,7 @@
 
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -78,7 +78,7 @@
 <body>
 	
 <header>
-<div id="instruction">Read this sample answer to the writing task in Exercise 1. Complete the composition by putting the correct word or phrase in each gap. There are more words and phrases than gaps, so you will not use them all.
+<div id="instruction">Read this sample answer to the Writing Task in Practice activity B. Complete the composition by putting the correct word or phrase in each gap. There are more words and phrases than gaps, so you will not use them all.
 </div>
 </header>
 	
@@ -108,16 +108,16 @@
 <section id="body">
   <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
 <br/><br/><br/>
-  <img class="rightFloat" src="../media/ST_AW_003.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/gt_set12_05.jpg" mode="1" id="1001"/>
   <div id="gapfillText">
   
-  <p>Information on private citizens has been collected and stored in electronic form by governments and organisations for many years. However, with the advent of the Internet, information about our finances, health, relationships and tastes as consumers can now be easily accessed and disseminated without our knowledge or consent. &#xA0;<input id="q1" type="droptarget"/>&#xA0; this, unscrupulous individuals and organisations can misuse this information and our privacy is threatened.</p>
+  <p>Information on private citizens has been collected and stored in electronic form by governments and organisations for many years. However, with the advent of the Internet, information about our finances, health, relationships and tastes as consumers can now be easily accessed and disseminated without our knowledge or consent.&#xA0;<input id="q1" type="droptarget"/>&#xA0;this, unscrupulous individuals and organisations can misuse this information and our privacy is threatened.</p>
   
-  <p>There are a number of ways in which personal data can be misused. The most common is probably the trading of consumers' personal details between commercial organisations &#xA0;<input id="q2" type="droptarget"/>&#xA0; targeting potential customers. This &#xA0;<input id="q3" type="droptarget"/>&#xA0; people being inundated with unsolicited promotional leaflets, catalogues and e-mails. More seriously, employers can run checks on prospective employees to glean details about their health, criminal record or political allegiances. Similarly, insurance companies, &#xA0;<input id="q4" type="droptarget"/>&#xA0; pay out expensive medical claims, may access the health records of individuals &#xA0;<input id="q5" type="droptarget"/>&#xA0; life insurance policies before deciding whether or not to insure them.</p>
+  <p>There are a number of ways in which personal data can be misused. The most common is probably the trading of consumers' personal details between commercial organisations&#xA0;<input id="q2" type="droptarget"/>&#xA0;targeting potential customers. This&#xA0;<input id="q3" type="droptarget"/>&#xA0;people being inundated with unsolicited promotional leaflets, catalogues and e-mails. More seriously, employers can run checks on prospective employees to glean details about their health, criminal record or political allegiances. Similarly, insurance companies,&#xA0;<input id="q4" type="droptarget"/>&#xA0;pay out expensive medical claims, may access the health records of individuals&#xA0;<input id="q5" type="droptarget"/>&#xA0;life insurance policies before deciding whether or not to insure them.</p>
   
-  <p>How can such abuses be prevented? Regarding the exchange of customer information between companies, the only &#xA0;<input id="q6" type="droptarget"/>&#xA0; solution is to make unsolicited promotional post and e-mail illegal. &#xA0;<input id="q7" type="droptarget"/>, organisations would have no incentive to trade in people's personal details. &#xA0;<input id="q8" type="droptarget"/>&#xA0; protect people &#xA0;<input id="q9" type="droptarget"/>&#xA0; work, only information &#xA0;<input id="q10" type="droptarget"/>&#xA0; by applicants themselves on the application form or during the interview &#xA0;<input id="q11" type="droptarget"/>&#xA0; be legitimate grounds for rejection, and candidates &#xA0;<input id="q12" type="droptarget"/>&#xA0; should have the right to ask for the reasons why. Finally, as a general measure to prevent misuse by insurance companies, it is &#xA0;<input id="q13" type="droptarget"/>&#xA0; that organisations &#xA0;<input id="q14" type="droptarget"/>&#xA0; data should inform individuals of the information that is collected. Individuals must be able to access the data themselves &#xA0;<input id="q15" type="droptarget"/>&#xA0; they can find out exactly what kind of information it is and check for inaccuracies, they must be allowed to choose how and to what extent it is used, and the data must be held securely.</p>
+  <p>How can such abuses be prevented? Regarding the exchange of customer information between companies, the only&#xA0;<input id="q6" type="droptarget"/>&#xA0;solution is to make unsolicited promotional post and e-mail illegal.&#xA0;<input id="q7" type="droptarget"/>, organisations would have no incentive to trade in people's personal details.&#xA0;<input id="q8" type="droptarget"/>&#xA0;protect people&#xA0;<input id="q9" type="droptarget"/>&#xA0;work, only information&#xA0;<input id="q10" type="droptarget"/>&#xA0;by applicants themselves on the application form or during the interview&#xA0;<input id="q11" type="droptarget"/>&#xA0;be legitimate grounds for rejection, and candidates&#xA0;<input id="q12" type="droptarget"/>&#xA0;should have the right to ask for the reasons why. Finally, as a general measure to prevent misuse by insurance companies, it is&#xA0;<input id="q13" type="droptarget"/>&#xA0;that organisations&#xA0;<input id="q14" type="droptarget"/>&#xA0;data should inform individuals of the information that is collected. Individuals must be able to access the data themselves&#xA0;<input id="q15" type="droptarget"/>&#xA0;they can find out exactly what kind of information it is and check for inaccuracies, they must be allowed to choose how and to what extent it is used, and the data must be held securely.</p>
   
-  <p>It is not likely that the above measures will &#xA0;<input id="q16" type="droptarget"/>&#xA0; guaranteed individual privacy. However, I am convinced that they will go some way to help limit the misuse of personal information while at the same time giving individuals more control over the information that is held on them.</p>
+  <p>It is not likely that the above measures will&#xA0;<input id="q16" type="droptarget"/>&#xA0;guaranteed individual privacy. However, I am convinced that they will go some way to help limit the misuse of personal information while at the same time giving individuals more control over the information that is held on them.</p>
 <p class="linespace"></p>
 </div>
 </section>

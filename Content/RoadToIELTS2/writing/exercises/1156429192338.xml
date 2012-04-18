@@ -16,7 +16,12 @@
 	
 	
 <script id="model" type="application/xml">
-
+<popups>
+	<popup click="clickme" source="examtips" width="500" />
+</popups>
+<settings>
+ 	<param name="delayedMarking" value="false" />
+</settings>
   <questions>
     <TargetSpottingQuestion block="b1">
       <answer source="t1" correct="true">
@@ -88,6 +93,8 @@
 </header>
 	
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   <img class="rightFloat" src="../media/MM_AW_003.jpg" mode="1" id="1001"/>
   <div id="u1t1sample">
   <p align="left">
@@ -95,33 +102,33 @@
       <b>Which of the following would you include?</b></p>
 
   <list class="answerlist">
-<p class="linespace"></p>
-    <li><g id="t1">During this decade, there was an overall upward trend in the percentage who were mainly informed by television.</g></li>
-<p class="linespace"></p>
-    <li><g id="t2">In 1989 there was a noticeable drop in the figure for television.</g></li>
- <p class="linespace"></p>
-    <li><g id="t3">In 1992 the percentage for those who were informed by television was seven times higher than for those who relied on radio.</g></li>
- <p class="linespace"></p>
-    <li> <g id="t4">In 1997 the percentage who were informed by newspapers was just over twice the percentage for radio.</g></li>
-<p class="linespace"></p>
-  <li><g id="t5">The figure for those who were informed by radio in 1989 was the same as for newspapers in 1998.</g></li>
-  <p class="linespace"></p>
-  <li><g id="t6">The percentage for those who mainly relied on radio or newspapers for world news declined over the period.</g></li>
-  <p class="linespace"></p>
-  <li>  <g id="t7">The percentage for those who relied on newspapers rose slightly in 1991, 1993, 1995,1996 and 1997.</g></li>
-  <p class="linespace"></p>
-  <li><g id="t8">The smallest proportion of the population were informed by radio.</g>
+
+    <li><a id="t1">During this decade, there was an overall upward trend in the percentage who were mainly informed by television.</a></li>
+
+    <li><a id="t2">In 1989 there was a noticeable drop in the figure for television.</a></li>
+
+    <li><a id="t3">In 1992 the percentage for those who were informed by television was seven times higher than for those who relied on radio.</a></li>
+
+    <li> <a id="t4">In 1997 the percentage who were informed by newspapers was just over twice the percentage for radio.</a></li>
+
+  <li><a id="t5">The figure for those who were informed by radio in 1989 was the same as for newspapers in 1998.</a></li>
+
+  <li><a id="t6">The percentage for those who mainly relied on radio or newspapers for world news declined over the period.</a></li>
+
+  <li>  <a id="t7">The percentage for those who relied on newspapers rose slightly in 1991, 1993, 1995, 1996 and 1997.</a></li>
+
+  <li><a id="t8">The smallest proportion of the population were informed by radio.</a>
   </li>
-<p class="linespace"></p>
-  <li><g id="t9">There was a 1 per cent rise in the percentage who were informed by television in 1992.</g>
+
+  <li><a id="t9">There was a 1 per cent rise in the percentage who were informed by television in 1992.</a>
   </li>
-  <p class="linespace"></p>
-  <li><g id="t10">There was a more marked decline for newspapers than for radio.</g>
+
+  <li><a id="t10">There was a more marked decline for newspapers than for radio.</a>
   </li>
-  <p class="linespace"></p>
-  <li><g id="t11">Throughout this period most people received their news about the world from television.</g>
+
+  <li><a id="t11">Throughout this period most people received their news about the world from television.</a>
   </li>
-  <p class="linespace"></p>
+
   </list>
   </div>
 </section>
@@ -170,7 +177,9 @@
   <p class="feedbacktext">K. This is clearly one of the main findings of the survey and should be mentioned in the report.</p>
 </section>
 
-
+<section id="examtips">
+<p class="popuptext">In your report you are expected to describe all the important information shown in the chart or graph and to comment on the most significant trends. You are not expected, and you will not have time, to describe every detail. This means that before you write, you must decide which information should be included and which information does not need to be mentioned.</p>
+</section>
 
 </body>
 </bento>

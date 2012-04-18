@@ -42,8 +42,8 @@
   </div>
   
   <div class="rightFloatvideo1">
-  <video src="../media/Unit09_e2a.flv" mode="16" id="1003" autoPlay="false"/><tab/>
-  <video src="../media/Unit09_e2b.flv" mode="16" id="1004" autoPlay="false"/>
+  <video src="../media/Unit09_e2a.flv" mode="16" id="1003" autoPlay="false" width="320" height="240" /><tab/>
+  <video src="../media/Unit09_e2b.flv" mode="16" id="1004" autoPlay="false" width="320" height="240" />
   </div>
 </section>
 

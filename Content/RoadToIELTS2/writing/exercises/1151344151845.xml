@@ -17,6 +17,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
+	<popup click="clickme" source="examtips" width="500" />
 	<popup click="visual1" source="flow1" width="529" height="365" />
 </popups>
 <settings>
@@ -28,35 +29,55 @@
         <feedback source="fb1"/>
       </answer>
       <answer source="a2" correct="false">
-        <feedback source="fb2"/>
+        <feedback source="fb1"/>
       </answer>
       <answer source="a3" correct="false">
-        <feedback source="fb3"/>
+        <feedback source="fb1"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
       <answer source="a4" correct="false">
-        <feedback source="fb4"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a5" correct="false">
-        <feedback source="fb5"/>
+        <feedback source="fb2"/>
       </answer>
-      <answer source="a6" correct="true"/>
+      <answer source="a6" correct="true">
+	    <feedback source="fb2"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
-      <answer source="a7" correct="false"/>
-      <answer source="a8" correct="true"/>
-      <answer source="a9" correct="false"/>
+      <answer source="a7" correct="false">
+	    <feedback source="fb3"/>
+      </answer>
+      <answer source="a8" correct="true">
+	    <feedback source="fb3"/>
+      </answer>
+      <answer source="a9" correct="false">
+	    <feedback source="fb3"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
-      <answer source="a10" correct="false"/>
-      <answer source="a11" correct="false"/>
-      <answer source="a12" correct="true"/>
+      <answer source="a10" correct="false">
+	    <feedback source="fb4"/>
+      </answer>
+      <answer source="a11" correct="false">
+	    <feedback source="fb4"/>
+      </answer>
+      <answer source="a12" correct="true">
+	    <feedback source="fb4"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a13" correct="true"/>
-      <answer source="a14" correct="false"/>
-      <answer source="a15" correct="false"/>
+      <answer source="a13" correct="true">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a14" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a15" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>
@@ -75,13 +96,13 @@
 
 
 <section id="readingText">
-  <p align="left">The tables show the most common types of injury in Canada during a single year, where they happened, and the proportion of men and women who sustained these injuries.</p>
-  <p align="left">
-    <font color="#0000ff"><b>(1)</b>, sprains and strains were by far the most common, followed by fractures to bones.&#xA0; <b>(2)</b>, it is clear that, overall, the legs and feet were the most common locations for injuries.&#xA0; <b> (3)</b>, it is perhaps not surprising that the home and sports facilities were the most common settings.</font>
+  <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/><br/>
+  <p>The tables show the most common types of injury in Canada during a single year, where they happened, and the proportion of men and women who sustained these injuries.</p>
+  
+  <p><b>(1)</b>, sprains and strains were by far the most common, followed by fractures to bones.&#xA0; <b>(2)</b>, it is clear that, overall, the legs and feet were the most common locations for injuries.&#xA0; <b>(3)</b>, it is perhaps not surprising that the home and sports facilities were the most common settings.
   </p>
-  <p align="left">
-    <font color="#0000ff"><b>(4)</b>, there seems to be no consistent pattern which associates types of injury with men or women. However,&#xA0; <b> (5)</b>, it is noticeable that for men the most common places were sports facilities while for women it was the home.</font>
-  </p>
+  
+  <p><b>(4)</b>, there seems to be no consistent pattern which associates types of injury with men or women. However,&#xA0;<b>(5)</b>, it is noticeable that for men the most common places were sports facilities while for women it was the home.</p>
 </section>
 
 <section id="body">
@@ -125,6 +146,10 @@
 
 <section id="fb5">
    <p class="feedbacktext">5. This sentence compares men and women in terms of the location they had their injuries.</p>
+</section>
+
+<section id="examtips">
+	<p class="popuptext">In your report you will have to describe a number of different trends or patterns that are shown in the table or chart. It is important that you let the reader know when you have finished dealing with one aspect of the figures and are about to deal with another aspect. There are certain 'signpost' expressions, which good writers use in order to achieve this, for example, 'concerning' or 'regarding'. When you use these expressions, make sure you follow them with appropriate sentence structure.</p>
 </section>
 
 </body>

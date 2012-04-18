@@ -23,7 +23,7 @@
       <answer value="impartial helpline" correct="true" synonymGroup="helpline"/>
       <answer value="free impartial helpline" correct="true" synonymGroup="helpline"/>
       <answer value="the learndirect website" correct="true" synonymGroup="website"/>
-      <answer value="www.learndirect.co.uk" correct="true" synonymGroup="learndirect"/>
+      <answer value="www.learndirect.co.uk" correct="true" synonymGroup="website"/>
       <answer value="learndirect centres" correct="true" synonymGroup="learndirect"/>
     </GapFillQuestion>
     <GapFillQuestion source="q4" block="b2">

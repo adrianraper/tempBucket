@@ -53,6 +53,7 @@
     </GapFillQuestion>
     <GapFillQuestion source="q11" block="b11">
       <answer value="doesn't want" correct="true"/>
+	  <answer value="does not want" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q12" block="b12">
       <answer value="hides" correct="true"/>

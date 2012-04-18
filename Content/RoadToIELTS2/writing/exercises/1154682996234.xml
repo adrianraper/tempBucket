@@ -36,7 +36,7 @@
       <answer value="j" correct="true"/>
     </GapFillQuestion>
 	<GapFillQuestion source="q6" block="b6">
-      <answer value="g" correct="true"/>
+      <answer value="h" correct="true"/>
     </GapFillQuestion>
 	<GapFillQuestion source="q7" block="b7">
       <answer value="c" correct="true"/>
@@ -58,25 +58,25 @@
 	
 <header>
 <div id="instruction"> 
-The sentences 1-10 below suggest ways of dealing with the problem of youth unemployment, which is the topic of the writing task in the next exercise. Complete the sentences by putting the correct phrase or clause into each gap.
+The sentences 1-10 below suggest ways of dealing with the problem of youth unemployment, which is the topic of the Writing Task in the next exercise. Complete the sentences by writing the appropriate letter into each gap.
 </div>	
 </header>
 	
-<section id="noscroll">
-  <span id="a1" draggable="false">a. help young people find the right course of higher education and a job which suits them</span>
-    <span id="a2" draggable="false">b. young people can continue learning instead of being unemployed when they leave school</span>
-  <span id="a3" draggable="false">c. they have more of an incentive to leave home and look for a job</span>
-  <span id="a4" draggable="false">e. encouraging them to take on more young people</span>
-  <span id="a5" draggable="false">d. encourage job mobility among the young</span>
-  <span id="a6" draggable="false">f. make school leavers more attractive to potential employers</span>
-  <span id="a7" draggable="false">g. prepare themselves better for jobs in the new economy</span>
-  <span id="a8" draggable="false">h. help them start up their own businesses</span>
-  <span id="a9" draggable="false">i. they can choose courses and careers that they are suited for</span>
-  <span id="a10" draggable="false">j. providing young people with practical work experience</span>
-</section>
 
 <section id="body">
   <img class="rightFloat" src="../media/set8.2_08.jpg" mode="1" id="1001"/>
+  <list class="answerList2">
+  <li>help young people find the right course of higher education and a job which suits them</li>
+  <li>young people can continue learning instead of being unemployed when they leave school</li>
+  <li>they have more of an incentive to leave home and look for a job</li>
+  <li>encouraging them to take on more young people</li>
+  <li>encourage job mobility among the young</li>
+  <li>make school leavers more attractive to potential employers</li>
+  <li>prepare themselves better for jobs in the new economy</li>
+  <li>help them start up their own businesses</li>
+  <li>they can choose courses and careers that they are suited for</li>
+  <li>providing young people with practical work experience</li>
+  </list>
   
   <ol id="questionList">
   

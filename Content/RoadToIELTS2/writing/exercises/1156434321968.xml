@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -73,6 +76,8 @@
 </section>
 
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   <img class="rightFloat" src="../media/MM_AW_004.jpg" mode="1" id="1001"/>
   
   <div id="gapfillText">
@@ -84,6 +89,12 @@
   </div>
 </section>
 
+<section id="examtips">
+	<p class="popuptext">When describing trends, you need to be careful with prepositions. For example, 'a rise of' and 'a rise to' have very different meanings:</p>
+	
+	<p class="popuptext1">'to rise to' and 'a rise to' refer to the point reached.</p>
+	<p class="popuptext2">'to rise by' and 'a rise of' refer to the size of the change.</p>
+</section>
 
 </body>
 </bento>

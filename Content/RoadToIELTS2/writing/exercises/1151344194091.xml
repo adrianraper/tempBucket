@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="false" />
 </settings>
@@ -41,21 +44,22 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and choose the best introductory paragraph. Click A, B or C.
+	Read the Writing Task and choose the best introductory paragraph. Click A, B or C.
 </div>
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/SS_AW_013a.jpg" mode="1" id="1001"  />
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/><br/><br/><br/>
+	<img class="rightFloat" src="../media/set9.2_03.jpg" mode="1" id="1001"  />
 	
 	<div id="targetspotting">
 	<p><b>Many judges prefer to sentence young offenders to do community service, such as working in an old people's home, collecting litter, or painting a local school, rather than send them to prison. This form of punishment has a number of benefits but also some drawbacks.</b></p>
 	
-	<p><b><g id="t1">A. In many Western societies crime committed by young men and women has reached epidemic proportions. It is clear that traditional forms of punishment such as prison sentences no longer act as a deterrent to these offenders, and that other more effective punishments are required. Probably the most effective of these is community service. There are a number of reasons why this is so.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t1">a.&#xA0;&#xA0;In many Western societies crime committed by young men and women has reached epidemic proportions. It is clear that traditional forms of punishment such as prison sentences no longer act as a deterrent to these offenders, and that other more effective punishments are required. Probably the most effective of these is community service. There are a number of reasons why this is so.</a></b></p>
 	
-	<p><b><g id="t2">B. The traditional method of dealing with young people who break the law has been to send them to prison. However, in many countries the juvenile crime rate has continued to rise and governments have had to look for other ways to tackle the problem, such as sentencing young offenders to community service. In common with all forms of punishment, this has both advantages and disadvantages.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t2">b.&#xA0;&#xA0;The traditional method of dealing with young people who break the law has been to send them to prison. However, in many countries the juvenile crime rate has continued to rise and governments have had to look for other ways to tackle the problem, such as sentencing young offenders to community service. In common with all forms of punishment, this has both advantages and disadvantages.</a></b></p>
 	
-	<p><b><g id="t3">C. Most young people who turn to crime do so on account of the social environment in which they live and their upbringing. These offenders need correction rather than punishment, and there are a number of reasons why prison is not the most effective way of achieving this.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t3">c.&#xA0;&#xA0;Most young people who turn to crime do so on account of the social environment in which they live and their upbringing. These offenders need correction rather than punishment, and there are a number of reasons why prison is not the most effective way of achieving this.</a></b></p>
 	
 </div>
 </section>
@@ -67,8 +71,8 @@
   <p class="feedbacktext">This introduction is suitable for an opinion composition, but the task is clearly 'advantages and disadvantages.'</p>
 </section>
 
-<section id="rt2001">
-  <p class="feedbacktext">It is important to write a good introduction. Your introductory paragraph should give the reader a clear idea of how you are going to approach the writing task. It should also be appropriate for the kind of composition you are going to write; for example, advantages and disadvantages, for and against, problem and solutions or giving an opinion.</p>
+<section id="examtips">
+  <p class="popuptext">It is important to write a good introduction. Your introductory paragraph should give the reader a clear idea of how you are going to approach the Writing Task. It should also be appropriate for the kind of composition you are going to write; for example, advantages and disadvantages, for and against, problem and solutions or giving an opinion.</p>
 </section>
 
 </body>

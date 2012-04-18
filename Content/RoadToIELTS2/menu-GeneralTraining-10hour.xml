@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
   <!--Road to IELTS 2, Last Minute, Academic-->
   <head>
@@ -378,7 +378,7 @@
 				<exercise id="1154106427713" group="6" caption="Introduction" href="writing/exercises/1154106427713.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_introduction.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
-				<exercise id="1151344151941" group="6" caption="Ideas for a Writing Task" href="writing/exercises/1151344151941.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_ideasforwt.jpg">
+				<exercise id="1151344151941" group="6" caption="Ideas for a writing task" href="writing/exercises/1151344151941.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_ideasforwt.jpg">
 				  <!--Targetspotting - TB-->
 				</exercise>
 				<exercise id="1155192197437" group="6" caption="Arguments" href="writing/exercises/1155192197437.xml" enabledFlag="3" difficulty="3" thumbnail="writing/thumbnails/writing3t2_arguments.jpg">

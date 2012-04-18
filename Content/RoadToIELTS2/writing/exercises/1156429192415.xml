@@ -12,10 +12,30 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#imgwrapper{
+			width: 470px;
+			padding-right: 20px;
+			float:right;
+		}
+	
+	#tenses{
+	padding-left:-5px;
+	padding-top: 0px;
+	text-align: left;
+	line-height: 22em;
+	padding-right: 430%;
+	}
+	
+	#tenses p{
+	padding-bottom: 20em;
+	}
 	</style>
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -79,25 +99,48 @@
 	Look carefully at charts 1 and 2 and complete the reports by filling each gap with the correct tense of one of the verbs provided. Write the verb in the appropriate gap.
 	</div>
 </header>
-	
+
+<section id="noscroll">
+	<span id="a1" draggable="false">be</span>
+	<span id="a2" draggable="false">change</span>
+	<span id="a3" draggable="false">double</span>
+	<span id="a4" draggable="false">drop</span>
+	<span id="a5" draggable="false">fall</span>
+	<span id="a6" draggable="false">occur</span>
+	<span id="a7" draggable="false">fluctuate</span>
+	<span id="a8" draggable="false">increase</span>
+	<span id="a9" draggable="false">plunge</span>
+	<span id="a10" draggable="false">reach</span>
+	<span id="a11" draggable="false">rise</span>
+	<span id="a12" draggable="false">remain</span>
+	<span id="a13" draggable="false">shoot up</span>
+	<span id="a14" draggable="false">triple</span>
+</section>
+
 <section id="body">
-<div id="box1">
-  <div class="leftFloat1"><img src="../media/MM_AW_008.jpg" mode="1" id="1003"/></div>
-  <div class="leftFloat1"><img src="../media/MM_AW_009.jpg" mode="1" id="1004"/></div>
-  </div>
-    <div id="gapfillText">
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Chart 1 shows changes in the newspaper industry in Indonesia between 1995 and 1999. During the first four years of this period, the number of newspaper titles published <input id="q1"/> more or less stable. The figure <input id="q2"/> slightly in 1997, but otherwise it <input id="q3"/> between 76 and 77 titles. By 1999, however, the situation <input id="q4"/> dramatically. The number of titles published <input id="q5"/> to over 170. A significant proportion of these new titles <input id="q6"/> tabloids. In fact, by 1999 the number of tabloids <input id="q7"/> from 2 to 30.</font>
+
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
+<div id="imgwrapper">
+  <img class="rightFloat1" src="../media/MM_AW_008.jpg" mode="1" id="1003"/>
+  <img class="rightFloat1" src="../media/MM_AW_009.jpg" mode="1" id="1004"/><p class="linespace"></p>
+  
+</div>
+    <div id="tenses">
+  <p>Chart 1 shows changes in the newspaper industry in Indonesia between 1995 and 1999. During the first four years of this period, the number of newspaper titles published&#xA0;<input id="q1"/>&#xA0;more or less stable. The figure&#xA0;<input id="q2"/>&#xA0;slightly in 1997, but otherwise it&#xA0;<input id="q3"/>&#xA0;between 76 and 77 titles. By 1999, however, the situation&#xA0;<input id="q4"/>&#xA0;dramatically. The number of titles published&#xA0;<input id="q5"/>&#xA0;to over 170. A significant proportion of these new titles&#xA0;<input id="q6"/>&#xA0;tabloids. In fact, by 1999 the number of tabloids&#xA0;<input id="q7"/>&#xA0;from 2 to 30.</p>
+  
+  <p>Over the same period, the overall circulation figures for Indonesian newspapers&#xA0;<input id="q8"/>&#xA0;dramatically. Between 1995 and 1997 the total circulation&#xA0;<input id="q9"/>&#xA0;steadily to a little over 4.7 million copies. By 1998, however, the figure&#xA0;<input id="q10"/>&#xA0;to over 5 million. It then&#xA0;<input id="q11"/>&#xA0;to just under 4.8 million a year later.
   </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Over the same period, the overall circulation figures for Indonesian newspapers <input id="q8"/> dramatically. Between 1995 and 1997 the total circulation <input id="q9"/> steadily to a little over 4.7 million copies. By 1998, however, the figure <input id="q10"/> to over 5 million. It then <input id="q11"/> to just under 4.8 million a year later.</font>
+  <p>Chart 2; The line graph shows the dramatic increase that&#xA0;<input id="q12"/>&#xA0;since the 1960s in the number of commercial satellites launched, many of which are used to broadcast television signals around the globe. In the 1960s there&#xA0;<input id="q13"/>&#xA0;an average of about 15 satellite launches per year. From that time until the 1980s, the average number of satellites launched&#xA0;<input id="q14"/>&#xA0;every decade. By the 1990s the number of launches&#xA0;<input id="q15"/>, reaching an average of approximately 215 per year. It is forecast that by the end of the first decade of this century, the number of new satellites sent into orbit&#xA0;<input id="q16"/> &#xA0;roughly 320 per year. 
   </p>
-  <p align="left">
-    <font face="verdana" size="13" color="#000000">Chart 2; The line graph shows the dramatic increase that <input id="q12"/> since the 1960s in the number of commercial satellites launched, many of which are used to broadcast television signals around the globe. In the 1960s there <input id="q13"/> an average of about 15 satellite launches per year. From that time until the 1980s, the average number of satellites launched <input id="q14"/> every decade. By the 1990s the number of launches <input id="q15"/>, reaching an average of approximately 215 per year. It is forecast that by the end of the first decade of this century, the number of new satellites sent into orbit <input id="q16"/> roughly 320 per year. </font>
-  </p>
+  
+  <p class="linespace"></p>
   </div>
 </section>
 
+<section id="examtips">
+	<p class="popuptext">In Set 1 and Set 5 we looked at static charts - charts that do not show change over time. We saw that simple tenses were most appropriate for describing such charts. In this set and in Set 2 we have been dealing with charts and graphs that show changes over time. These are sometimes referred to as 'dynamic' charts and graphs. To describe this kind of chart you need to use a greater variety of verb tenses including past simple, past perfect and occasionally present perfect or future perfect.</p>
+</section>
 
 
 </body>

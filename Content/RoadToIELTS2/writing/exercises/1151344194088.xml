@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="targetspotting" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
-	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <settings>
- 	<param name="delayedMarking" value="true" />
+ 	<param name="delayedMarking" value="false" />
 </settings>
   <questions>
     <TargetSpottingQuestion block="b1">
@@ -111,60 +111,64 @@
 <body>
 	
 <header>
-	
-		
+<div id="instruction">		
 		Read these pieces of advice for IELTS Writing Task 1 and decide which of them are things you should do.
-		
+</div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/SS_AW_008.jpg" mode="1" id="1001"/>
-  <p align="left">
-    <b>1.	What should you do before you write?</b>
-    <g id="t1">A Decide which figures are not important enough to mention in your report.</g>
-    <g id="t2">B Spend time carefully reading any titles, axes, labels and legends before you start writing.</g>
-    <g id="t3">C Spend time looking for the main trends before you start writing.</g>
-    <g id="t4">D Spend time planning the most appropriate order in which to present the information.</g>
-    <g id="t5">E Plan to leave some time at the end to check your report for mistakes.</g>
-    <g id="t6">F Ask questions about anything you have not understood.</g>
-    <g id="t7">G Try to remember anything you have read about the subject before.</g>
-  </p>
-  <p align="left">
-    <b>2.	What should you do while you are writing?</b>
-    <font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font>
-    <g id="t8">A Copy the question and use it as your opening sentence.</g>
-    <g id="t9">B Divide your report into paragraphs.</g>
-    <g id="t10">C End your report with one or two sentences summarising the most important trends.</g>
-    <g id="t11">D Include a paragraph with your personal opinions about the topic.</g>
-    <g id="t12">E Spend more than 20 minutes on Writing Task 1.</g>
-    <g id="t13">F Start writing immediately.</g>
-    <g id="t14">G Write a minimum of 150 words.</g>
-  </p>
-  <p align="left">
-    <b>3.	What type of language should you use?</b>
-    <font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font>
-    <g id="t15">A Use a linking word or phrase between every sentence.</g>
-    <g id="t16">B Use a range of grammatical structures and vocabulary.</g>
-    <g id="t17">C Use contractions.</g>
-    <g id="t18">D Use formal language.</g>
-    <g id="t19">E Use linking words and phrases between sentences and paragraphs where appropriate.</g>
-    <g id="t20">F Vary the way you describe figures by using percentages, fractions and ratios.</g>
-    <g id="t21">G Refer to the figures.</g>
-  </p>
-  <p align="left">
-    <b>4.	What should you do with the diagrams, charts, graphs and tables?</b>
-    <font face="_sans" size="12">&#xA0;<font face="verdana" size="13"/></font>
-    <g id="t22">A Add extra information you may know about the topic but which is not included in the diagram, chart, graph or table.</g>
-    <g id="t23">B Always describe charts, graphs and tables from left to right or top to bottom.</g>
-    <g id="t24">C Include every figure from the chart, graph or table in your report.</g>
-    <g id="t25">D Round figures up or down where appropriate.</g>
-    <g id="t26">E Summarise overall trends first and then describe any important specific features.</g>
-    <g id="t27">F Write a short introduction briefly explaining what the diagram, chart, graph or table shows.</g>
-    <g id="t28">G Speculate on possible reasons for the trends and patterns shown in the chart, graph or table.</g>
-  </p>
-  <p align="left">
-    <font size="2"/>
-  </p>
+  <img class="rightFloat" src="../media/set9.1_02.jpg" mode="1" id="1001"/>
+  
+  <div id="targetquestion">
+  <p>1.	What should you do before you write?</p>
+  <list class="answerList3">
+    <li><a id="t1">Decide which figures are not important enough to mention in your report.</a></li>
+    <li><a id="t2">Spend time carefully reading any titles, axes, labels and legends before you start writing.</a></li>
+    <li><a id="t3">Spend time looking for the main trends before you start writing.</a></li>
+    <li><a id="t4">Spend time planning the most appropriate order in which to present the information.</a></li>
+    <li><a id="t5">Plan to leave some time at the end to check your report for mistakes.</a></li>
+    <li><a id="t6">Ask questions about anything you have not understood.</a></li>
+    <li><a id="t7">Try to remember anything you have read about the subject before.</a></li>
+	</list>
+  
+  <p class="linespace"></p>
+  <p>2.	What should you do while you are writing?</p>
+  <list class="answerList3">
+    <li><a id="t8">Copy the question and use it as your opening sentence.</a></li>
+    <li><a id="t9">Divide your report into paragraphs.</a></li>
+    <li><a id="t10">End your report with one or two sentences summarising the most important trends.</a></li>
+    <li><a id="t11">Include a paragraph with your personal opinions about the topic.</a></li>
+    <li><a id="t12">Spend more than 20 minutes on Writing Task 1.</a></li>
+    <li><a id="t13">Start writing immediately.</a></li>
+    <li><a id="t14">Write a minimum of 150 words.</a></li>
+  </list>
+  
+  <p class="linespace"></p>
+  <p>3.	What type of language should you use?</p>
+  <list class="answerList3">
+    <li><a id="t15">Use a linking word or phrase between every sentence.</a></li>
+    <li><a id="t16">Use a range of grammatical structures and vocabulary.</a></li>
+    <li><a id="t17">Use contractions.</a></li>
+    <li><a id="t18">Use formal language.</a></li>
+    <li><a id="t19">Use linking words and phrases between sentences and paragraphs where appropriate.</a></li>
+    <li><a id="t20">Vary the way you describe figures by using percentages, fractions and ratios.</a></li>
+    <li><a id="t21">Refer to the figures.</a></li>
+  </list>
+  
+  <p class="linespace"></p>
+  <p>4.	What should you do with the diagrams, charts, graphs and tables?</p>
+	<list class="answerList3">
+    <li><a id="t22">Add extra information you may know about the topic but which is not included in the diagram, chart, graph or table.</a></li>
+    <li><a id="t23">Always describe charts, graphs and tables from left to right or top to bottom.</a></li>
+    <li><a id="t24">Include every figure from the chart, graph or table in your report.</a></li>
+    <li><a id="t25">Round figures up or down where appropriate.</a></li>
+    <li><a id="t26">Summarise overall trends first and then describe any important specific features.</a></li>
+    <li><a id="t27">Write a short introduction briefly explaining what the diagram, chart, graph or table shows.</a></li>
+    <li><a id="t28">Speculate on possible reasons for the trends and patterns shown in the chart, graph or table.</a></li>
+  </list>
+  
+  <p class="linespace"></p>
+  </div>
 </section>
 
 </body>

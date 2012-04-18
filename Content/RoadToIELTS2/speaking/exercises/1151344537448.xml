@@ -34,7 +34,7 @@
 <section id="body">
 <div id="outer">
 <div id="video">
-<video src="../media/Unit05_e6.flv" mode="1" id="1003" autoPlay="false"/>
+<video src="../media/Unit05_e6.flv" mode="1" id="1003" autoPlay="false" width="320" height="240" />
 </div>
 
 <div id="content1">
@@ -47,9 +47,9 @@
 <p class="linespace"></p>
 <p>Remember the following expressions:</p>
 
-<p color="#7935AB">I'm not sure what it's called, but it is / looks like / is used for ..."</p>
-<p color="#7935AB">"I've forgotten what it is in English, but ..."</p>
-<p color="#7935AB">"It's similar to ... , but I don't remember the word."</p>
+<p color="#0000FF">I'm not sure what it's called, but it is / looks like / is used for ..."</p>
+<p color="#0000FF">"I've forgotten what it is in English, but ..."</p>
+<p color="#0000FF">"It's similar to ... , but I don't remember the word."</p>
 
 <p class="linespace"></p>
 <p><b>We all forget words sometimes. It happens in natural conversations. Don't let it bother you!</b></p>

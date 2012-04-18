@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -77,7 +80,9 @@
 <body>
 	
 <header>
+<div id="instruction">
 	Match each verb or phrase to the line graph it describes best.
+</div>
 </header>
 	
 <section id="noscroll">
@@ -93,23 +98,10 @@
   <span id="a16" draggable="true">an overall upward trend</span>
 </section>
 
-
-
-
- 
-
-
-  
-
-  
-  
-
-	
-	
-	
 <section id="body">
 
 <div id="expbox">
+<a id="clickme"><img class="imagetask2" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/><br/>
 <div id="graphbox">
   <img  src="../media/Unit02_Write_e3a.jpg" mode="1" id="1003"/>
     <p class="answer"><input id="q1" type="droptarget"/></p>
@@ -223,6 +215,9 @@
   </p>
 </section>
 
+<section id="examtips">
+	<p class="popuptext">Examiners will be looking for a range of appropriate vocabulary for describing trends. Here are some useful words and expressions.</p>
+</section>
 
 
 </body>

@@ -4,8 +4,8 @@
 	<meta name="conversion-from" content="multiplechoice" />
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
-	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
+	<link rel="stylesheet" href="../../css/mchoices.css" type="text/css" media="screen" />
+<link rel="stylesheet" href="../../css/mchoices-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -16,8 +16,14 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
+	<feedback>
+		<feedback source="fb0" width="500" />
+	</feedback>
 </settings>
   <questions>
     <MultipleChoiceQuestion block="q1">
@@ -104,246 +110,229 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/HF_AW_003.jpg" mode="1" id="1001"/>
+
+  <img class="rightFloat" src="../media/set7.1_02.jpg" mode="1" id="1001"/>
 <div id="audio">
-<p>    <audio controls="compact"  src="../media/HF_AW1ab.mp3" mode="1" id="1"/><br/><br/><br/></p>
-<p>    <audio controls="compact"  src="../media/HF_AW1ad.mp3" mode="1" id="2"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1af.mp3" mode="1" id="3"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1al.mp3" mode="1" id="4"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1ac.mp3" mode="1" id="5"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1aa.mp3" mode="1" id="6"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1ae.mp3" mode="1" id="7"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1an.mp3" mode="1" id="8"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1aj.mp3" mode="1" id="9"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1ah.mp3" mode="1" id="10"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1ai.mp3" mode="1" id="11"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1ak.mp3" mode="1" id="12"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1am.mp3" mode="1" id="13"/><br/><br/><br/></p>
-<p>    <audio controls="compact" src="../media/HF_AW1ag.mp3" mode="1" id="14"/><br/><br/><br/></p>
+<a id="clickme"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1003"/></a>
+<p class="linespace"></p>
+<p>    <audio controls="compact"  src="../media/HF_AW1ab.mp3" mode="1" id="1"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact"  src="../media/HF_AW1ad.mp3" mode="1" id="2"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1af.mp3" mode="1" id="3"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1al.mp3" mode="1" id="4"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ac.mp3" mode="1" id="5"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1aa.mp3" mode="1" id="6"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ae.mp3" mode="1" id="7"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1an.mp3" mode="1" id="8"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1aj.mp3" mode="1" id="9"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ah.mp3" mode="1" id="10"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ai.mp3" mode="1" id="11"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ak.mp3" mode="1" id="12"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1am.mp3" mode="1" id="13"/></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p class="linespace"></p>
+<p>    <audio controls="compact" src="../media/HF_AW1ag.mp3" mode="1" id="14"/></p>
 </div>
   <div id="questiondiv">
     <ol>
-    <li id="q1">
-      <list class="answerList">
-        <li>
-          <a id="a1">Rounding down</a>
-        </li>
-        <li>
-          <a id="a2">Rounding up</a>
-        </li>
-        <li>
-          <a id="a3">General approximation</a>
-        </li>
+    <li id="q1">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a1">Rounding down</a></li>
+        <li><a id="a2">Rounding up</a></li>
+        <li><a id="a3">General approximation</a></li>
       </list>
-
     </li>
 <p class="linespace"></p>
     
-    <li id="q2">
-      <list class="answerList">
-        <li>
-          <a id="a16">Rounding down</a>
-        </li>
-        <li>
-          <a id="a17">Rounding up</a>
-        </li>
-        <li>
-          <a id="a20">General approximation</a>
-        </li>
+    <li id="q2">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a16">Rounding down</a></li>
+        <li><a id="a17">Rounding up</a></li>
+        <li><a id="a20">General approximation</a></li>
       </list>
-
     </li>
 
     <p class="linespace"></p>
-    <li id="q3">
-      <list class="answerList">
-        <li>
-          <a id="a14">Rounding down</a>
-        </li>
-        <li>
-          <a id="a15">Rounding up</a>
-        </li>
-        <li>
-          <a id="a21">General approximation</a>
-        </li>
+    <li id="q3">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a14">Rounding down</a></li>
+        <li><a id="a15">Rounding up</a></li>
+        <li><a id="a21">General approximation</a></li>
       </list>
-
     </li>
 
     <p class="linespace"></p>
-    <li id="q4">
-      <list class="answerList">
-        <li>
-          <a id="a12">Rounding down</a>
-        </li>
-        <li>
-          <a id="a13">Rounding up</a>
-        </li>
-        <li>
-          <a id="a22">General approximation</a>
-        </li>
+    <li id="q4">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a12">Rounding down</a></li>
+        <li><a id="a13">Rounding up</a></li>
+        <li><a id="a22">General approximation</a></li>
       </list>
-
     </li>
 
     <p class="linespace"></p>
-    <li id="q5">
-      <list class="answerList">
-        <li>
-          <a id="a11">Rounding down</a>
-        </li>
-        <li>
-          <a id="a23">Rounding up</a>
-        </li>
-        <li>
-          <a id="a24">General approximation</a>
-        </li>
+    <li id="q5">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a11">Rounding down</a></li>
+        <li><a id="a23">Rounding up</a></li>
+        <li><a id="a24">General approximation</a></li>
       </list>
-
     </li>
 
     <p class="linespace"></p>
-    <li id="q6">
-      <list class="answerList">
-        <li>
-          <a id="a10">Rounding down</a>
-        </li>
-        <li>
-          <a id="a25">Rounding up</a>
-        </li>
-        <li>
-          <a id="a26">General approximation</a>
-        </li>
+    <li id="q6">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a10">Rounding down</a></li>
+        <li><a id="a25">Rounding up</a></li>
+        <li><a id="a26">General approximation</a></li>
       </list>
-
     </li>
 <p class="linespace"></p>
     
-    <li id="q7">
-      <list class="answerList">
-        <li>
-          <a id="a9">Rounding down</a>
-        </li>
-        <li>
-          <a id="a27">Rounding up</a>
-        </li>
-        <li>
-          <a id="a28">General approximation</a>
-        </li>
+    <li id="q7">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a9">Rounding down</a></li>
+        <li><a id="a27">Rounding up</a></li>
+        <li><a id="a28">General approximation</a></li>
       </list>
-
     </li>
 <p class="linespace"></p>
     
-    <li id="q8">
-      <list class="answerList">
-        <li>
-          <a id="a8">Rounding down</a>
-        </li>
-        <li>
-          <a id="a29">Rounding up</a>
-        </li>
-        <li>
-          <a id="a30">General approximation</a>
-        </li>
+    <li id="q8">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a8">Rounding down</a></li>
+        <li><a id="a29">Rounding up</a></li>
+        <li><a id="a30">General approximation</a></li>
       </list>
-
     </li>
 <p class="linespace"></p>
     
-    <li id="q9">
-      <list class="answerList">
-        <li>
-          <a id="a7">Rounding down</a>
-        </li>
-        <li>
-          <a id="a31">Rounding up</a>
-        </li>
-        <li>
-          <a id="a32">General approximation</a>
-        </li>
+    <li id="q9">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a7">Rounding down</a></li>
+        <li><a id="a31">Rounding up</a></li>
+        <li><a id="a32">General approximation</a></li>
       </list>
-
     </li>
 <p class="linespace"></p>
 
-    <li id="q10">
-      <list class="answerList">
-        <li>
-          <a id="a6">Rounding down</a>
-        </li>
-        <li>
-          <a id="a33">Rounding up</a>
-        </li>
-        <li>
-          <a id="a34">General approximation</a>
-        </li>
+    <li id="q10">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a6">Rounding down</a></li>
+        <li><a id="a33">Rounding up</a></li>
+        <li><a id="a34">General approximation</a></li>
       </list>
-
     </li>
 <p class="linespace"></p>
 
-    <li id="q11">
-      <list class="answerList">
-        <li>
-          <a id="a5">Rounding down</a>
-        </li>
-        <li>
-          <a id="a35">Rounding up</a>
-        </li>
-        <li>
-          <a id="a36">General approximation</a>
-        </li>
+    <li id="q11">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a5">Rounding down</a></li>
+        <li><a id="a35">Rounding up</a></li>
+        <li><a id="a36">General approximation</a></li>
       </list>
-      
     </li>
 
    <p class="linespace"></p> 
-    <li id="q12">
-      <list class="answerList">
-        <li>
-          <a id="a4">Rounding down</a>
-        </li>
-        <li>
-          <a id="a37">Rounding up</a>
-        </li>
-        <li>
-          <a id="a38">General approximation</a>
-        </li>
+    <li id="q12">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a4">Rounding down</a></li>
+        <li><a id="a37">Rounding up</a></li>
+        <li><a id="a38">General approximation</a></li>
       </list>
-      
     </li>
 <p class="linespace"></p>
     
-    <li id="q13">
-      <list class="answerList">
-        <li>
-          <a id="a18">Rounding down</a>
-        </li>
-        <li>
-          <a id="a39">Rounding up</a>
-        </li>
-        <li>
-          <a id="a40">General approximation</a>
-        </li>
+    <li id="q13">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a18">Rounding down</a></li>
+        <li><a id="a39">Rounding up</a></li>
+        <li><a id="a40">General approximation</a></li>
       </list>
-      
     </li>
 <p class="linespace"></p>
     
-    <li id="q14">
-      <list class="answerList">
-        <li>
-          <a id="a19">Rounding down</a>
-        </li>
-        <li>
-          <a id="a41">Rounding up</a>
-        </li>
-        <li>
-          <a id="a42">General approximation</a>
-        </li>
+    <li id="q14">What kind of approximation does the speaker make?
+      <list class="answerList3">
+        <li><a id="a19">Rounding down</a></li>
+        <li><a id="a41">Rounding up</a></li>
+        <li><a id="a42">General approximation</a></li>
       </list>
-      
     </li>
 <p class="linespace"></p>
   </ol>
@@ -351,65 +340,29 @@
 </section>
 
 <section id="fb0">
-  <p align="left">
-    <b>Rounding down</b>
-  </p>
-  <p align="left">
-    <font color="#000000">1:  more than</font>
-  </p>
-  <p align="left">
-    <font color="#000000">4:  just over</font>
-  </p>
-  <p align="left">
-    <font color="#000000">8:  well over</font>
-  </p>
-  <p align="left">
-    <b/>
-  </p>
-  <p align="left">
-    <b>Rounding up</b>
-  </p>
-  <p align="left">
-    <font color="#000000">2:  less than</font>
-  </p>
-  <p align="left">
-    <font color="#000000">3:  nearly</font>
-  </p>
-  <p align="left">
-    <font color="#000000">9:  almost</font>
-  </p>
-  <p align="left">
-    <font color="#000000">12:  fewer than</font>
-  </p>
-  <p align="left">
-    <font color="#000000">13:  well under</font>
-  </p>
-  <p align="left">
-    <font color="#000000">14:  just under</font>
-  </p>
-  <p align="left"/>
-  <p align="left">
-    <b>General approximation</b>
-  </p>
-  <p align="left">
-    <font color="#000000">5:  approximately</font>
-  </p>
-  <p align="left">
-    <font color="#000000">6:  roughly</font>
-  </p>
-  <p align="left">
-    <font color="#000000">7:  more or less</font>
-  </p>
-  <p align="left">
-    <font color="#000000">10:  about</font>
-  </p>
-  <p align="left">
-    <font color="#000000">11:  around</font>
-  </p>
+  <p class="popuptext1"><b>Rounding down</b></p>
+  <p class="popuptext3">1. more than</p>
+  <p class="popuptext3">4. just over</p>
+  <p class="popuptext2">8. well over</p>
+  
+  <p class="popuptext1"><b>Rounding up</b></p>
+  <p class="popuptext3">2. less than</p>
+  <p class="popuptext3">3. nearly</p>
+  <p class="popuptext3">9. almost</p>
+  <p class="popuptext3">12. fewer than</p>
+  <p class="popuptext3">13. well under</p>
+  <p class="popuptext2">14. just under</p>
+ 
+  <p class="popuptext1"><b>General approximation</b></p>
+  <p class="popuptext3">5. approximately</p>
+  <p class="popuptext3">6. roughly</p>
+  <p class="popuptext3">7. more or less</p>
+  <p class="popuptext3">10. about</p>
+  <p class="popuptext2">11. around</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">You do not always need to quote exact figures in your report. It is often better to round numbers up or down because this will make it easier for the reader to understand them. There are a number of useful expressions you can use for making such approximations. </p>
+<section id="examtips">
+  <p class="popuptext">You do not always need to quote exact figures in your report. It is often better to round numbers up or down because this will make it easier for the reader to understand them. There are a number of useful expressions you can use for making such approximations. </p>
 </section>
 
 </body>

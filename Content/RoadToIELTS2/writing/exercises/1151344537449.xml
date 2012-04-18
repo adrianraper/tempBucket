@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="examtips" width="500" />
 		<popup click="visual" source="w5t1NZreaders" width="532" height="381" />
 	</popups>
 	
@@ -30,84 +30,132 @@
         <feedback source="fb1"/>
       </answer>
       <answer source="a2" correct="false">
-        <feedback source="fb2"/>
+        <feedback source="fb1"/>
       </answer>
       <answer source="a3" correct="true">
-        <feedback source="fb3"/>
+        <feedback source="fb1"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
       <answer source="a4" correct="true">
-        <feedback source="fb4"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a5" correct="false">
-        <feedback source="fb5"/>
+        <feedback source="fb2"/>
       </answer>
       <answer source="a6" correct="false">
-        <feedback source="fb6"/>
+        <feedback source="fb2"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
       <answer source="a7" correct="false">
-        <feedback source="fb7"/>
+        <feedback source="fb3"/>
       </answer>
       <answer source="a8" correct="true">
-        <feedback source="fb8"/>
+        <feedback source="fb3"/>
       </answer>
       <answer source="a9" correct="false">
-        <feedback source="fb9"/>
+        <feedback source="fb3"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q4">
       <answer source="a10" correct="true">
-        <feedback source="fb10"/>
+        <feedback source="fb4"/>
       </answer>
       <answer source="a11" correct="false">
-        <feedback source="fb11"/>
+        <feedback source="fb4"/>
       </answer>
       <answer source="a12" correct="false">
-        <feedback source="fb12"/>
+        <feedback source="fb4"/>
       </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q5">
-      <answer source="a13" correct="true"/>
-      <answer source="a14" correct="false"/>
-      <answer source="a15" correct="false"/>
+      <answer source="a13" correct="true">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a14" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
+      <answer source="a15" correct="false">
+	    <feedback source="fb5"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q6">
-      <answer source="a16" correct="false"/>
-      <answer source="a17" correct="true"/>
-      <answer source="a18" correct="false"/>
+      <answer source="a16" correct="false">
+	    <feedback source="fb6"/>
+      </answer>
+      <answer source="a17" correct="true">
+	    <feedback source="fb6"/>
+      </answer>
+      <answer source="a18" correct="false">
+	    <feedback source="fb6"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q7">
-      <answer source="a19" correct="true"/>
-      <answer source="a20" correct="false"/>
-      <answer source="a21" correct="false"/>
+      <answer source="a19" correct="true">
+	    <feedback source="fb7"/>
+      </answer>
+      <answer source="a20" correct="false">
+	    <feedback source="fb7"/>
+      </answer>
+      <answer source="a21" correct="false">
+	    <feedback source="fb7"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q8">
-      <answer source="a22" correct="false"/>
-      <answer source="a23" correct="true"/>
-      <answer source="a24" correct="false"/>
+      <answer source="a22" correct="false">
+	    <feedback source="fb8"/>
+      </answer>
+      <answer source="a23" correct="true">
+	    <feedback source="fb8"/>
+      </answer>
+      <answer source="a24" correct="false">
+	    <feedback source="fb8"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q9">
-      <answer source="a25" correct="false"/>
-      <answer source="a26" correct="false"/>
-      <answer source="a27" correct="true"/>
+      <answer source="a25" correct="false">
+	    <feedback source="fb9"/>
+      </answer>
+      <answer source="a26" correct="false">
+	    <feedback source="fb9"/>
+      </answer>
+      <answer source="a27" correct="true">
+	    <feedback source="fb9"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q10">
-      <answer source="a28" correct="true"/>
-      <answer source="a29" correct="false"/>
-      <answer source="a30" correct="false"/>
+      <answer source="a28" correct="true">
+	    <feedback source="fb10"/>
+      </answer>
+      <answer source="a29" correct="false">
+	    <feedback source="fb10"/>
+      </answer>
+      <answer source="a30" correct="false">
+	    <feedback source="fb10"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q11">
-      <answer source="a31" correct="false"/>
-      <answer source="a32" correct="false"/>
-      <answer source="a33" correct="true"/>
+      <answer source="a31" correct="false">
+	    <feedback source="fb11"/>
+      </answer>
+      <answer source="a32" correct="false">
+	    <feedback source="fb11"/>
+      </answer>
+      <answer source="a33" correct="true">
+	    <feedback source="fb11"/>
+      </answer>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q12">
-      <answer source="a34" correct="false"/>
-      <answer source="a35" correct="false"/>
-      <answer source="a36" correct="true"/>
+      <answer source="a34" correct="false">
+	    <feedback source="fb12"/>
+      </answer>
+      <answer source="a35" correct="false">
+	    <feedback source="fb12"/>
+      </answer>
+      <answer source="a36" correct="true">
+	    <feedback source="fb12"/>
+      </answer>
     </MultipleChoiceQuestion>
   </questions>
 </script>
@@ -123,7 +171,8 @@
 
 <section id="body">
 
-
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
+<br/><br/><br/>
   <a id="visual"><img class="rightFloat" src="../media/AC_AW_003s.jpg" mode="1" id="1001"/></a>
   <ol id="mchoices">
 
@@ -161,56 +210,55 @@
 </section>
 
 <section id="fb1">
-  <p align="left">1. The six per cent who read poetry may also be included in the 48 per cent for fiction or the 44 per cent for non-fiction, but we don't know for sure.</p>
+  <p class="feedbacktext">1. The six per cent who read poetry may also be included in the 48 per cent for fiction or the 44 per cent for non-fiction, but we don't know for sure.</p>
 </section>
 
 <section id="fb2">
-  <p align="left">2. Look at the percentage for the 'Poetry' column in the bar chart.</p>
+  <p class="feedbacktext">2. Look at the percentage for the 'Poetry' column in the bar chart.</p>
 </section>
 
 <section id="fb3">
-  <p align="left">3. The pie chart refers to those who read poetry and shows what gender they are.</p>
+  <p class="feedbacktext">3. The pie chart refers to those who read poetry and shows what gender they are.</p>
 </section>
 
 <section id="fb4">
-  <p align="left">4. Of all the adults who read poetry, 26 per cent are men.</p>
+  <p class="feedbacktext">4. Of all the adults who read poetry, 26 per cent are men.</p>
 </section>
 
 <section id="fb5">
-  <p align="left">5. 55 per cent of people who read fiction are women, which is roughly two-thirds.</p>
+  <p class="feedbacktext">5. 55 per cent of people who read fiction are women, which is roughly two-thirds.</p>
 </section>
 
 <section id="fb6">
-  <p align="left">6. Only 48 per cent of adults read fiction.</p>
+  <p class="feedbacktext">6. Only 48 per cent of adults read fiction.</p>
 </section>
 
 <section id="fb7">
-  <p align="left">7. The percentage of the population who read fiction is higher than that for any other kind of literature.</p>
+  <p class="feedbacktext">7. The percentage of the population who read fiction is higher than that for any other kind of literature.</p>
 </section>
 
 <section id="fb8">
-  <p align="left">8. Only 48 per cent of adults read fiction.</p>
+  <p class="feedbacktext">8. Only 48 per cent of adults read fiction.</p>
 </section>
 
 <section id="fb9">
-  <p align="left">9. The chart does not give figures for the whole population, only for adults.</p>
+  <p class="feedbacktext">9. The chart does not give figures for the whole population, only for adults.</p>
 </section>
 
 <section id="fb10">
-  <p align="left">10. The pie chart for non-fiction tells us that over half of all readers of non-fiction are women.</p>
+  <p class="feedbacktext">10. The pie chart for non-fiction tells us that over half of all readers of non-fiction are women.</p>
 </section>
 
 <section id="fb11">
-  <p align="left">11. The 45 per cent in the pie chart for non-fiction refers to readers of non-fiction. It doesn't mean 45 per cent of all New Zealand men.</p>
+  <p class="feedbacktext">11. The 45 per cent in the pie chart for non-fiction refers to readers of non-fiction. It doesn't mean 45 per cent of all New Zealand men.</p>
 </section>
 
 <section id="fb12">
-  <p align="left">12. We don't have enough information to say that this statement is true or false.</p>
+  <p class="feedbacktext">12. We don't have enough information to say that this statement is true or false.</p>
 </section>
 
-<section id="rt2001">
-  <p align="left">
-    <font color="#000000">Before you begin writing your report it is very important that you read the chart title, the labels on the axes, the legend and any other information included with the chart to make sure you understand what the chart shows &#x2026; and what it doesn't!</font>
+<section id="examtips">
+  <p class="popuptext">Before you begin writing your report it is very important that you read the chart title, the labels on the axes, the legend and any other information included with the chart to make sure you understand what the chart shows ... and what it doesn't!
   </p>
 </section>
 

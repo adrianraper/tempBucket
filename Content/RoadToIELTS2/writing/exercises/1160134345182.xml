@@ -27,14 +27,15 @@
 	
 <header>
 <div id="instruction">
-	IELTS Writing Task 1&#160;You should spend about 20 minutes on this task. You should write at least 150 words.
+	You should spend about 20 minutes on this task. You should write at least 150 words.
 </div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/ST_GW_002.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set12_02.jpg" mode="1" id="1001"/>
   
     <div id="presentation">
+	<h1><p>IELTS Writing Task 1</p></h1>
   <p><b>You have had your computer repaired by your local computer supplier. You were extremely impressed with the service.</b></p>
   
   <p><b>Write a letter to the manager of the shop. Describe what happened when you called the shop. Praise the staff who helped you and ask the manager to thank those concerned.</b></p>

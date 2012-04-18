@@ -27,14 +27,15 @@
 	
 <header>
 <div id="instruction">
-	IELTS Writing Task 1&#160;You should spend about 20 minutes on this task. You should write at least 150 words.
+	You should spend about 20 minutes on this task. You should write at least 150 words.
 </div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/ED_GW_002.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/gt_set10_02.jpg" mode="1" id="1001"/>
   
     <div id="presentation">
+	<h1><p>IELTS Writing Task 1</p></h1>
   <p><b>You have seen an advertisement for a course at your local college. You would like further information.</b></p>
   
   <p><b>Write a letter to the college explaining why you are interested in the course. Find out about the content of the course and the entry requirements. Ask them to send you a prospectus and an application form.</b></p>

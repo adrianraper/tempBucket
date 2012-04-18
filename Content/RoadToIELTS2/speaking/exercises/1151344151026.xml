@@ -38,7 +38,7 @@
 	
 <header>
 <div id="instruction">
-	You may be asked about your home town. We did some work on this on Unit 1, where we covered different aspects you could talk about. Now we are going to look at ways of extending these answers. This is an important skill to acquire.
+	You may be asked about your home town. We did some work on this on Set 1, where we covered different aspects you could talk about. Now we are going to look at ways of extending these answers. This is an important skill to acquire.
 </div>
 </header>
 	
@@ -46,7 +46,7 @@
 <div id="outer">
 
 <div id="video">
-  <video src="../media/Unit07_e3.flv" mode="1" id="1003" autoPlay="false"/>
+  <video src="../media/Unit07_e3.flv" mode="1" id="1003" autoPlay="false" width="320" height="240" />
   </div>
 
 <div id="content3">

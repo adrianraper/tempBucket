@@ -16,6 +16,10 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+    	<popup click="clickme" source="writingtask1" width="500" />
+		<popup click="clickme2" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -24,7 +28,9 @@
       <answer source="a1" correct="true">
 	  <feedback source="fb1"/>
       </answer>
-      <answer source="a2" correct="false"/>
+      <answer source="a2" correct="false">
+	  <feedback source="fb1"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q2" block="b2">
       <answer source="a3" correct="true"/>
@@ -42,16 +48,22 @@
       <answer source="a9" correct="true">
 	  <feedback source="fb5"/>
       </answer>
-      <answer source="a10" correct="false"/>
+      <answer source="a10" correct="false">
+	   <feedback source="fb5"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q6" block="b6">
       <answer source="a11" correct="true">
 	  <feedback source="fb6"/>
       </answer>
-      <answer source="a12" correct="false"/>
+      <answer source="a12" correct="false">
+	   <feedback source="fb6"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q7" block="b7">
-      <answer source="a13" correct="false"/>
+      <answer source="a13" correct="false">
+	    <feedback source="fb7"/>
+      </answer>
       <answer source="a14" correct="true">
         <feedback source="fb7"/>
       </answer>
@@ -60,13 +72,17 @@
       <answer source="a15" correct="true">
 	  <feedback source="fb8"/>
       </answer>
-      <answer source="a16" correct="false"/>
+      <answer source="a16" correct="false">
+	  <feedback source="fb8"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q9" block="b9">
       <answer source="a17" correct="true">
 	  <feedback source="fb9"/>
       </answer>
-      <answer source="a18" correct="false"/>
+      <answer source="a18" correct="false">
+	  <feedback source="fb9"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q10" block="b10">
       <answer source="a19" correct="true"/>
@@ -76,10 +92,14 @@
       <answer source="a21" correct="true">
 	  <feedback source="fb11"/>
       </answer>
-      <answer source="a22" correct="false"/>
+      <answer source="a22" correct="false">
+	  <feedback source="fb11"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q12" block="b12">
-      <answer source="a23" correct="false"/>
+      <answer source="a23" correct="false">
+	   <feedback source="fb12"/>
+      </answer>
       <answer source="a24" correct="true">
         <feedback source="fb12"/>
       </answer>
@@ -88,19 +108,25 @@
       <answer source="a25" correct="true">
 	  <feedback source="fb13"/>
       </answer>
-      <answer source="a26" correct="false"/>
+      <answer source="a26" correct="false">
+	  <feedback source="fb13"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q14" block="b14">
       <answer source="a27" correct="true">
 	  <feedback source="fb14"/>
       </answer>
-      <answer source="a28" correct="false"/>
+      <answer source="a28" correct="false">
+	   <feedback source="fb14"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q15" block="b15">
       <answer source="a29" correct="true">
 	  <feedback source="fb15"/>
       </answer>
-      <answer source="a30" correct="false"/>
+      <answer source="a30" correct="false">
+	   <feedback source="fb15"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q16" block="b16">
       <answer source="a31" correct="true"/>
@@ -110,10 +136,14 @@
       <answer source="a33" correct="true">
 	  <feedback source="fb17"/>
       </answer>
-      <answer source="a34" correct="false"/>
+      <answer source="a34" correct="false">
+	  <feedback source="fb17"/>
+      </answer>
      </DropDownQuestion>
     <DropDownQuestion source="q18" block="b18">
-      <answer source="a35" correct="false"/>
+      <answer source="a35" correct="false">
+	    <feedback source="fb18"/>
+      </answer>
       <answer source="a36" correct="true">
         <feedback source="fb18"/>
       </answer>
@@ -122,19 +152,25 @@
       <answer source="a37" correct="true">
 	  <feedback source="fb19"/>
       </answer>
-      <answer source="a38" correct="false"/>
+      <answer source="a38" correct="false">
+	   <feedback source="fb19"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q20" block="b20">
       <answer source="a39" correct="true">
 	  <feedback source="fb20"/>
       </answer>
-      <answer source="a40" correct="false"/>
+      <answer source="a40" correct="false">
+	  <feedback source="fb20"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q21" block="b21">
       <answer source="a41" correct="true">
 	  <feedback source="fb21"/>
       </answer>
-      <answer source="a42" correct="false"/>
+      <answer source="a42" correct="false">
+	  <feedback source="fb21"/>
+      </answer>
     </DropDownQuestion>
     <DropDownQuestion source="q22" block="b22">
       <answer source="a43" correct="true"/>
@@ -148,23 +184,26 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and complete the sample answer by choosing the most formal word, phrase or structure for each gap.
+	Read the Writing Task and complete the sample answer by choosing the most formal word, phrase or structure for each gap.
 </div>
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/SS_AW_014.jpg" mode="1" id="1001"/>
+<a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
+<a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/>
+  <img class="rightFloat" src="../media/set9.2_09.jpg" mode="1" id="1001"/>
   
    <div id="dropdown">
-  <p>Most young criminals commit their first crime while they are teenagers and generally do so because &#xA0;<select id="q1"><option id="a1">they are</option><option id="a2">they're</option></select>&#xA0; seeking excitement, or because they are following the example of older friends. I am convinced that sending these &#xA0;<select id="q2"><option id="a3">young people</option><option id="a4">kids</option></select>&#xA0; to prison is a &#xA0;<select id="q3"><option id="a5">counter-productive</option><option id="a6">useless</option></select>&#xA0; way of combating crime, and there are &#xA0;<select id="q4"><option id="a7">loads</option><option id="a8">a number</option></select>&#xA0; of reasons why I believe &#xA0;<select id="q5"><option id="a9">they should not be imprisoned</option><option id="a10">we should not imprison them</option></select>.</p>
+  <p>Most young criminals commit their first crime while they are teenagers and generally do so because&#xA0;<select id="q1"><option id="a1">they are</option><option id="a2">they're</option></select>&#xA0;seeking excitement, or because they are following the example of older friends. I am convinced that sending these&#xA0;<select id="q2"><option id="a3">young people</option><option id="a4">kids</option></select>&#xA0;to prison is a&#xA0;<select id="q3"><option id="a5">counter-productive</option><option id="a6">useless</option></select>&#xA0;way of combating crime, and there are&#xA0;<select id="q4"><option id="a7">loads</option><option id="a8">a number</option></select>&#xA0;of reasons why I believe&#xA0;<select id="q5"><option id="a9">they should not be imprisoned</option><option id="a10">we should not imprison them</option></select>.</p>
   
-  <p>The main reason is that the majority of young people who break the law do so because of their upbringing or social circumstances. For example, they may come from deprived families, or live in run-down areas that already have a &#xA0;<select id="q6"><option id="a11">high crime rate</option><option id="a12">lot of crime</option></select>. Prison is highly unlikely to &#xA0;<select id="q7"><option id="a13">get to the bottom of</option><option id="a14">solve</option></select>&#xA0; their problems. What these first-time offenders need is to be supervised by qualified and skilled professionals, who can guide them away from a life of crime. This is best &#xA0;<select id="q8"><option id="a15">achieved</option><option id="a16">pulled off</option></select>&#xA0; by such means as youth centres and a system of probation or community service rather than by imprisonment.</p>
+  <p>The main reason is that the majority of young people who break the law do so because of their upbringing or social circumstances. For example, they may come from deprived families, or live in run-down areas that already have a&#xA0;<select id="q6"><option id="a11">high crime rate</option><option id="a12">lot of crime</option></select>. Prison is highly unlikely to&#xA0;<select id="q7"><option id="a13">get to the bottom of</option><option id="a14">solve</option></select>&#xA0;their problems. What these first-time offenders need is to be supervised by qualified and skilled professionals, who can guide them away from a life of crime. This is best&#xA0;<select id="q8"><option id="a15">achieved</option><option id="a16">pulled off</option></select>&#xA0;by such means as youth centres and a system of probation or community service rather than by imprisonment.</p>
   
-  <p>A further reason is that being imprisoned is &#xA0;<select id="q9"><option id="a17">an extremely</option><option id="a18">a really</option></select>&#xA0; unpleasant experience and one which is &#xA0;<select id="q10"><option id="a19">likely</option><option id="a20">sure</option></select>&#xA0; to alienate young people even further, with the result that, when &#xA0;<select id="q11"><option id="a21">they have</option><option id="a22">they've</option></select>&#xA0; served their sentence, they &#xA0;<select id="q12"><option id="a23">go off</option><option id="a24">leave</option></select>&#xA0; with a grudge against society and a desire &#xA0;<select id="q13"><option id="a25">for revenge</option><option id="a26">to get their own back</option></select>. Moreover, prisons &#xA0;<select id="q14"><option id="a27">do not</option><option id="a28">don't</option></select>&#xA0; prepare young offenders to live as law-abiding citizens on their release. On the contrary, they serve as 'universities of crime', where young delinquents &#xA0;<select id="q15"><option id="a29">acquire</option><option id="a30">pick up</option></select>&#xA0; skills from experienced criminals. &#xA0;<select id="q16"><option id="a31">Not surprisingly</option><option id="a32">So of course</option></select>, young criminals who have &#xA0;<select id="q17"><option id="a33">served a prison sentence</option><option id="a34">done time</option></select>&#xA0; are more likely to re-offend than those who &#xA0;<select id="q18"><option id="a35">haven't</option><option id="a36">have not</option></select>.</p>
+  <p>A further reason is that being imprisoned is&#xA0;<select id="q9"><option id="a17">an extremely</option><option id="a18">a really</option></select>&#xA0;unpleasant experience and one which is&#xA0;<select id="q10"><option id="a19">likely</option><option id="a20">sure</option></select>&#xA0;to alienate young people even further, with the result that, when&#xA0;<select id="q11"><option id="a21">they have</option><option id="a22">they've</option></select>&#xA0;served their sentence, they&#xA0;<select id="q12"><option id="a23">go off</option><option id="a24">leave</option></select>&#xA0;with a grudge against society and a desire&#xA0;<select id="q13"><option id="a25">for revenge</option><option id="a26">to get their own back</option></select>. Moreover, prisons&#xA0;<select id="q14"><option id="a27">do not</option><option id="a28">don't</option></select>&#xA0;prepare young offenders to live as law-abiding citizens on their release. On the contrary, they serve as 'universities of crime', where young delinquents&#xA0;<select id="q15"><option id="a29">acquire</option><option id="a30">pick up</option></select>&#xA0;skills from experienced criminals.&#xA0;<select id="q16"><option id="a31">Not surprisingly</option><option id="a32">So of course</option></select>, young criminals who have&#xA0;<select id="q17"><option id="a33">served a prison sentence</option><option id="a34">done time</option></select>&#xA0;are more likely to re-offend than those who&#xA0;<select id="q18"><option id="a35">haven't</option><option id="a36">have not</option></select>.</p>
   
-  <p>A final reason is that &#xA0;<select id="q19"><option id="a37">prison is</option><option id="a38">prison's</option></select>&#xA0; a waste of young people's time, at an age when they should either be &#xA0;<select id="q20"><option id="a39">continuing</option><option id="a40">getting on with</option></select>&#xA0; their education or training for a job, the two activities which are most likely to steer them away from criminality.</p>
+  <p>A final reason is that&#xA0;<select id="q19"><option id="a37">prison is</option><option id="a38">prison's</option></select>&#xA0;a waste of young people's time, at an age when they should either be&#xA0;<select id="q20"><option id="a39">continuing</option><option id="a40">getting on with</option></select>&#xA0;their education or training for a job, the two activities which are most likely to steer them away from criminality.</p>
   
-  <p><select id="q21"><option id="a41">In conclusion</option><option id="a42">At the end of the day</option></select>, except in cases where they constitute a danger to society, I strongly believe that young first-time offenders should not receive prison sentences since imprisonment only increases the likelihood of their embarking on a career in crime. &#xA0;<select id="q22"><option id="a43">In my opinion</option><option id="a44">If you ask me</option></select>, they should be rehabilitated and encouraged to lead constructive lives rather than be punished.</p>
+  <p><select id="q21"><option id="a41">In conclusion</option><option id="a42">At the end of the day</option></select>, except in cases where they constitute a danger to society, I strongly believe that young first-time offenders should not receive prison sentences since imprisonment only increases the likelihood of their embarking on a career in crime.&#xA0;<select id="q22"><option id="a43">In my opinion</option><option id="a44">If you ask me</option></select>, they should be rehabilitated and encouraged to lead constructive lives rather than be punished.</p>
+  <p class="linespace"></p>
 </div>
 </section>
 
@@ -232,7 +271,27 @@
   <p class="feedbacktext"><b>At the end of the day:&#xA0;</b> If you can, avoid colloquial expressions like this in your answers. Marks are given for appropriate style rather than colourful language.</p>
 </section>
 
-<section id="rt2001"><p align="left"><font face="verdana" size="13" color="#000000">In Writing Task 2 you are expected to write in a fairly formal style. In practice this means that you should: </font></p>- avoid the use of phrasal verbs,- avoid the use of idioms and colloquial words and phrases,- avoid the use of informal intensifiers such as 'really',- use more formal equivalents of phrasal verbs, idioms, colloquialisms and intensifiers,- use full forms rather than contractions (e.g. 'it is' not it's'),- use passive voice more extensively (but not continually).
+<section id="writingtask1">
+<p class="popuptext"><b>IELTS Writing Task 2</b></p>
+<p class="popuptext">Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
+  
+<p class="popuptext"><b>Many judges prefer to sentence young offenders to do community service, such as working in an old people's home, collecting litter, or painting a local school, rather than send them to prison. This form of punishment has a number of benefits but also some drawbacks.</b></p>
+  
+<p class="popuptext"><b>To what extent do you agree or disagree?</b></p>
+  
+<p class="popuptext">You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>
+</section>
+
+<section id="examtips">
+<p class="popuptext">In Writing Task 2 you are expected to write in a fairly formal style. In practice this means that you should:</p>
+<ul class="popuptext">
+<li>avoid the use of phrasal verbs,</li>
+<li>avoid the use of idioms and colloquial words and phrases,</li>
+<li>avoid the use of informal intensifiers such as 'really',</li>
+<li>use more formal equivalents of phrasal verbs, idioms, colloquialisms and intensifiers,</li>
+<li>use full forms rather than contractions (e.g. 'it is' not it's'),</li>
+<li>use passive voice more extensively (but not continually).</li>
+</ul>
 </section>
 
 </body>

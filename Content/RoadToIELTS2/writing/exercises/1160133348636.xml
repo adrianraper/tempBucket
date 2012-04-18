@@ -68,42 +68,42 @@
 </header>
 	
 <section id="body">
-  <img class="rightFloat" src="../media/set3.1_05.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/gt_set3.1_07.jpg" mode="1" id="1001"/>
   <ol id="questionList">
-    <li><span color="#7935AB">Do the rooms have a view of the sea?</span><br/>
+    <li><span color="#0000FF">Do the rooms have a view of the sea?</span><br/>
 	Please let me know&#xA0; <input id="q1"/> &#xA0;a view of the sea.</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">I would like to know if I can pay by credit card.</span><br/>
+    <li><span color="#0000FF">I would like to know if I can pay by credit card.</span><br/>
 	<input id="q2"/> &#xA0;by credit card?</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">Which credit cards do you accept?</span><br/>
+    <li><span color="#0000FF">Which credit cards do you accept?</span><br/>
 	Could you let me know&#xA0; <input id="q3"/>?</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">I was wondering if there is a car park.</span><br/>
+    <li><span color="#0000FF">I was wondering if there is a car park.</span><br/>
 	<input id="q4"/> &#xA0;a car park?</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">Does the hotel have 24-hour room service?</span><br/>
+    <li><span color="#0000FF">Does the hotel have 24-hour room service?</span><br/>
 	I would like to know&#xA0; <input id="q5"/> &#xA0;24-hour room service.</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">Please let me know whether I have to pay a deposit.</span><br/>
+    <li><span color="#0000FF">Please let me know whether I have to pay a deposit.</span><br/>
 	<input id="q6"/> &#xA0;a deposit?</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">What time does the hotel restaurant close?</span><br/>
+    <li><span color="#0000FF">What time does the hotel restaurant close?</span><br/>
 	Can you tell me&#xA0; <input id="q7"/> &#xA0;the hotel restaurant closes?</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">Could you let me know if there are any rooms available in August?</span><br/>
+    <li><span color="#0000FF">Could you let me know if there are any rooms available in August?</span><br/>
 	<input id="q8"/> &#xA0;any rooms available in August?</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">Can you send me a brochure?</span><br/>
+    <li><span color="#0000FF">Can you send me a brochure?</span><br/>
 	I would be grateful&#xA0; <input id="q9"/> &#xA0;send me a brochure.</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">I would like to know what time you serve breakfast.</span><br/>
+    <li><span color="#0000FF">I would like to know what time you serve breakfast.</span><br/>
 	What time&#xA0; <input id="q10"/> &#xA0;breakfast?</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">Is there air conditioning in the rooms?</span><br/>
+    <li><span color="#0000FF">Is there air conditioning in the rooms?</span><br/>
 	I was wondering&#xA0; <input id="q11"/> &#xA0;air conditioning in the rooms.</li>
 	  <p class="linespace"></p>
-    <li><span color="#7935AB">Can you tell me how long it takes to get to the hotel from the airport?</span><br/>
+    <li><span color="#0000FF">Can you tell me how long it takes to get to the hotel from the airport?</span><br/>
 	How long&#xA0; <input id="q12"/> &#xA0;to get to the hotel from the airport?</li>
 	  <p class="linespace"></p>
   </ol>

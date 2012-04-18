@@ -16,7 +16,7 @@
 	<br/>
 <script id="model" type="application/xml">
   <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -109,15 +109,35 @@
 
 </head>
 <body>
-	
+
 <header>
 <div id="instruction">
-Read this sample answer to the writing task in the previous exercise. Complete the letter by filling each gap with the correct form of one of the verbs provided. You may need to use some of the verbs more than once.
+Read this sample answer to the Writing Task in the previous exercise. Complete the letter by filling each gap with the correct form of one of the verbs provided. You may need to use some of the verbs more than once.
 </div>
 </header>
 	
 <section id="noscroll">
-
+	<span id="a1" draggable="false">attack</span>
+	<span id="a2" draggable="false">be</span>
+	<span id="a3" draggable="false">complain</span>
+	<span id="a4" draggable="false">cover</span>
+	<span id="a5" draggable="false">drink</span>
+	<span id="a6" draggable="false">feel</span>
+	<span id="a7" draggable="false">give</span>
+	<span id="a8" draggable="false">go out</span>
+	<span id="a9" draggable="false">have</span>
+	<span id="a10" draggable="false">like</span>
+	<span id="a11" draggable="false">move</span>
+	<span id="a12" draggable="false">need</span>
+	<span id="a13" draggable="false">scratch</span>
+	<span id="a14" draggable="false">shout</span>
+	<span id="a15" draggable="false">show</span>
+	<span id="a16" draggable="false">stand</span>
+	<span id="a17" draggable="false">start</span>
+	<span id="a18" draggable="false">throw</span>
+	<span id="a19" draggable="false">trust</span>
+	<span id="a20" draggable="false">walk</span>
+	<span id="a21" draggable="false">write</span>
 </section>
 
 <section id="body">
@@ -125,7 +145,7 @@ Read this sample answer to the writing task in the previous exercise. Complete t
   <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
   <br/><br/>
   
-  <img class="rightFloat" src="../media/SS_GW_009.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/gt_set9.1_09.jpg" mode="1" id="1001"/>
   <div id="gapfillText">
   <p>Dear Sir/Madam,</p>
   <p>I&#xA0; <input id="q1"/>&#xA0;<input id="q2"/> &#xA0;about the increasing violence in my nieghbourhood.</p>

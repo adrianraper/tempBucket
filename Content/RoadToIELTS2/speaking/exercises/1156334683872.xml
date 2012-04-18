@@ -8,24 +8,25 @@
 <link rel="stylesheet" href="../../css/mchoices-print.css" type="text/css" media="print" />
 	<style type="text/css">
 	<![CDATA[
-		#body .rightFloatvideo1 {	
+	
+	]]>
+	#body .rightFloatvideo1 {	
 	width:860px;
-	height: 830px;
+	height: 1130px;
 	padding-top: 10em;
 	padding-right: 10em;
 	padding-left: 480px;
 	margin-top: 0em;
 	}
 	
-#content1{
+	#content1{
 	position:relative;
 	padding-top:25px;
-    height: 790px;
+    height: 1090px;
     width:500px;
     line-height:22em;
 	padding-left: 0px;
 	}			
-	]]>
 	</style>
 	
 	
@@ -42,8 +43,8 @@
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q2">
       <answer source="a5" correct="false"/>
-      <answer source="a6" correct="false"/>
-      <answer source="a7" correct="true"/>
+      <answer source="a6" correct="true"/>
+      <answer source="a7" correct="false"/>
       <answer source="a8" correct="false"/>
     </MultipleChoiceQuestion>
     <MultipleChoiceQuestion block="q3">
@@ -73,10 +74,10 @@
 <section id="body">
 <div id="outer">
 <div class="rightFloatvideo1">
-  <video src="../media/Unit04_e4a.flv" mode="16" id="1003" autoPlay="false"/>
-  <video src="../media/Unit04_e4b.flv" mode="16" id="1004" autoPlay="false"/>
-  <video src="../media/Unit04_e4c.flv" mode="16" id="1005" autoPlay="false"/>
-  <video src="../media/Unit04_e4d.flv" mode="16" id="1006" autoPlay="false"/>
+  <video src="../media/Unit04_e4a.flv" mode="16" id="1003" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit04_e4b.flv" mode="16" id="1004" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit04_e4c.flv" mode="16" id="1005" autoPlay="false" width="320" height="240" />
+  <video src="../media/Unit04_e4d.flv" mode="16" id="1006" autoPlay="false" width="320" height="240" />
   </div>
   
   <div id="content1">
@@ -90,7 +91,7 @@
 		</list>
 	</li>
     
-	<br/><br/><br/><br/><br/><br/>
+	<br/><br/><br/><br/><br/><br/><br/>
     <li id="q2">What does Alexandra say to this question?
 		<list class="answerList">
 		<li><a id="a5">She ignores the question and talks about something else.</a></li>

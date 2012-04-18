@@ -91,10 +91,10 @@
 <section id="body">
   <div id="outer">
   <div id="video">
-  <video src="../media/Unit06_e3.flv" mode="1" id="1003" autoPlay="false"/>
+  <video src="../media/Unit06_e3.flv" mode="1" id="1003" autoPlay="false" width="320" height="240" />
   </div>
   <div id="content">
-  <h7>Question Card</h7>
+  <p><b>Question Card</b></p>
   <p>Describe an advertisement you have seen, on TV or elsewhere, that made an impression on you.</p>
   <p>You should say:</p>
   <ul>
@@ -161,7 +161,7 @@
 </section>
 
 <section id="fb7">
-  <p class="feedbacktext"><b>Question 7</b><br/>This is probably the biggest mistake she makes in this part of the exam.
+  <p class="feedbacktext"><b>Question 7</b><br/>This is probably the biggest mistake she makes in this part of the test.
   </p>
 </section>
 

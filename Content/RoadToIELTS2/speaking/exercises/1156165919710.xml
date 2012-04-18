@@ -34,7 +34,7 @@
 <div class="brieftext">
 <p><b>Look at these expressions:</b></p>
 
-<ol color="#7935AB">
+<ol color="#0000FF">
 	<li>Sorry, could you repeat that?</li>
 	<li>Could you say that again?</li>
 	<li>I didn't catch what you said?</li>
@@ -51,7 +51,7 @@
 </div>
 
 <div class="rightFloatvideo1">
-<video src="../media/Unit02_e3a.flv" mode="16" id="1003" autoPlay="false"/>
+<video src="../media/Unit02_e3a.flv" mode="16" id="1003" autoPlay="false" width="320" height="240" />
 </div>
 <br/><br/>
 <div class="brieftext">
@@ -59,7 +59,7 @@
 </div>
 
 <div class="rightFloatvideo1">
-<video src="../media/Unit02_e3b.flv" mode="16" id="1004" autoPlay="false"/>
+<video src="../media/Unit02_e3b.flv" mode="16" id="1004" autoPlay="false" width="320" height="240" />
 </div>
 <br/><br/>
 <div class="brieftext2">
@@ -67,7 +67,7 @@
 </div>
 
 <div class="rightFloatvideo1">
-<video src="../media/Unit02_e3c.flv" mode="16" id="1005" autoPlay="false"/>
+<video src="../media/Unit02_e3c.flv" mode="16" id="1005" autoPlay="false" width="320" height="240" />
 </div>
 <br/><br/>
 <div class="brieftext">
@@ -75,7 +75,7 @@
 </div>
 
 <div class="rightFloatvideo1">
-<video src="../media/Unit02_e3d.flv" mode="16" id="1006" autoPlay="false"/>
+<video src="../media/Unit02_e3d.flv" mode="16" id="1006" autoPlay="false" width="320" height="240" />
 </div>
 <br/><br/>
 <div class="brieftext2">

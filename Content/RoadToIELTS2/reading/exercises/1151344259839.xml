@@ -120,24 +120,24 @@
   <div id="splitquestionList">
   
   
-  <p class="hangingIndent2">7.<tab/>the position of Jupiter in the Solar System<br/>
-  <input id="q1" type="droptarget"/></p>
+  <p class="hangingIndent2">7.<tab/>Cause: the position of Jupiter in the Solar System<br/>
+  Effect:&#xA0;<input id="q1" type="droptarget"/></p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">8.<tab/>the size of the moon<br/>
-  <input id="q2" type="droptarget"/></p>
+  <p class="hangingIndent2">8.<tab/>Cause: the size of the moon<br/>
+   Effect:&#xA0;<input id="q2" type="droptarget"/></p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">9.<tab/>the formation of limestone<br/>
-  <input id="q3" type="droptarget"/></p>
+  <p class="hangingIndent2">9.<tab/>Cause: the formation of limestone<br/>
+   Effect:&#xA0;<input id="q3" type="droptarget"/></p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">10.<tab/>the distance of the Earth from the Sun<br/>
-  <input id="q4" type="droptarget"/></p>
+  <p class="hangingIndent2">10.<tab/>Cause: the distance of the Earth from the Sun<br/>
+   Effect:&#xA0;<input id="q4" type="droptarget"/></p>
   <p class="linespace"></p>
   
-  <p class="hangingIndent2">11.<tab/>the Earth's position in the Galaxy<br/>
-  <input id="q5" type="droptarget"/></p>
+  <p class="hangingIndent2">11.<tab/>Cause: the Earth's position in the Galaxy<br/>
+   Effect:&#xA0;<input id="q5" type="droptarget"/></p>
   <p class="linespace"></p>
   </div>
 </section>

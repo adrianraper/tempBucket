@@ -12,6 +12,13 @@
 		 * List any exercise specific css here
 		 */			
 	]]>
+	#practiceactivity {
+	position:absolute;
+	float: left;
+	padding-top: -30px;
+	padding-right: 20em;
+	padding-left: -30px;
+	}
 	</style>
 	
 	
@@ -32,16 +39,19 @@
 </header>
 	
 <section id="body">
+<img class="rightFloat" src="../media/EN_AW_007.jpg" mode="1" id="1001"/>  
   
-  
-<div id="s2t1practiceA">
+<div id="presentation">
 
+  <h1><p>IELTS Writing Task 1</p></h1>
   <h5>The diagram shows two ways of using the energy from ocean waves to generate electricity.
   </h5>
   
-  <p>Write a report for a university lecturer describing the information shown below.</p>
+  <p><b>Write a report for a university lecturer describing the information shown below.</b></p>
+  
+  <p>You should write at least 150 words.</p>
     </div>
-  <img class="leftFloat" src="../media/EN_AW_007.jpg" mode="1" id="1001"/>
+
 
 </section>
 

@@ -17,7 +17,7 @@
 
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
   <settings>
     <param name="delayedMarking" value="true"/>
@@ -90,7 +90,7 @@
 <body>
 	
 <header>
-<div id="instruction">Read this sample answer to the writing task in the previous exercise. Complete the letter by putting the correct word in each gap. There are more words than gaps, so you will not use them all.
+<div id="instruction">Read this sample answer to the Writing Task in the previous exercise. Complete the letter by putting the correct word in each gap. There are more words than gaps, so you will not use them all.
 </div>
 </header>
 	
@@ -125,18 +125,18 @@
 <section id="body">
   <a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
 <br/><br/><br/>
-  <img class="rightFloat" src="../media/DD_GW_003.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set11_03.jpg" mode="1" id="1001"/>
   <div id="gapfillText">
   <p>Dear Maria,</p>
-  <p>Thanks for your letter. I &#xA0;<input id="q1" type="droptarget"/>&#xA0; your family is okay and &#xA0;<input id="q2" type="droptarget"/>&#xA0; affected too badly &#xA0;<input id="q3" type="droptarget"/>&#xA0; the awful floods last week.</p>
+  <p>Thanks for your letter. I&#xA0;<input id="q1" type="droptarget"/>&#xA0;your family is okay and&#xA0;<input id="q2" type="droptarget"/>&#xA0;affected too badly&#xA0;<input id="q3" type="droptarget"/>&#xA0;the awful floods last week.</p>
   
-  <p>In your letter you ask for advice about ways of raising money for the disaster and I've &#xA0;<input id="q4" type="droptarget"/>&#xA0; up with a few ideas. I &#xA0;<input id="q5" type="droptarget"/>&#xA0; advise you to ask for donations because people might be suspicious that the money won't get to &#xA0;<input id="q6" type="droptarget"/>&#xA0; victims. It's also not very easy to ask people for money like this.</p>
+  <p>In your letter you ask for advice about ways of raising money for the disaster and I've&#xA0;<input id="q4" type="droptarget"/>&#xA0;up with a few ideas. I&#xA0;<input id="q5" type="droptarget"/>&#xA0;advise you to ask for donations because people might be suspicious that the money won't get to&#xA0;<input id="q6" type="droptarget"/>&#xA0;victims. It's also not very easy to ask people for money like this.</p>
   
-  <p>If I &#xA0;<input id="q7" type="droptarget"/>&#xA0; you, I'd try to organize &#xA0;<input id="q8" type="droptarget"/>&#xA0; sponsored walk or run. I'm sure you could get lots of students from your university involved. You don't &#xA0;<input id="q9" type="droptarget"/>&#xA0; to do too much for this. You &#xA0;<input id="q10" type="droptarget"/>&#xA0; just make sure people have enough time to get as many sponsors as possible before the event. If you want to do something in addition to &#xA0;<input id="q11" type="droptarget"/>, I'd &#xA0;<input id="q12" type="droptarget"/>&#xA0; you to hold a bring-and-buy sale. All you need to do is book a hall and get as many of &#xA0;<input id="q13" type="droptarget"/>&#xA0; friends involved as you can.</p>
+  <p>If I&#xA0;<input id="q7" type="droptarget"/>&#xA0;you, I'd try to organize&#xA0;<input id="q8" type="droptarget"/>&#xA0;sponsored walk or run. I'm sure you could get lots of students from your university involved. You don't&#xA0;<input id="q9" type="droptarget"/>&#xA0;to do too much for this. You&#xA0;<input id="q10" type="droptarget"/>&#xA0;just make sure people have enough time to get as many sponsors as possible before the event. If you want to do something in addition to&#xA0;<input id="q11" type="droptarget"/>, I'd&#xA0;<input id="q12" type="droptarget"/>&#xA0;you to hold a bring-and-buy sale. All you need to do is book a hall and get as many of&#xA0;<input id="q13" type="droptarget"/>&#xA0;friends involved as you can.</p>
   
-  <p>However, I &#xA0;<input id="q14" type="droptarget"/>&#xA0; you should be aware that people can sometimes be unreliable and not turn up to events or not give you &#xA0;<input id="q15" type="droptarget"/>&#xA0; money they promised, so you'd &#xA0;<input id="q16" type="droptarget"/>&#xA0; not start working out how much you've raised until they've actually given &#xA0;<input id="q17" type="droptarget"/>&#xA0; to you.</p>
+  <p>However, I&#xA0;<input id="q14" type="droptarget"/>&#xA0;you should be aware that people can sometimes be unreliable and not turn up to events or not give you&#xA0;<input id="q15" type="droptarget"/>&#xA0;money they promised, so you'd&#xA0;<input id="q16" type="droptarget"/>&#xA0;not start working out how much you've raised until they've actually given&#xA0;<input id="q17" type="droptarget"/>&#xA0;to you.</p>
   
-  <p>Anyway, I &#xA0;<input id="q18" type="droptarget"/>&#xA0; you the very best of luck and don't &#xA0;<input id="q19" type="droptarget"/>&#xA0; to get in touch if you'd &#xA0;<input id="q20" type="droptarget"/>&#xA0; me to help in any way. I love walking!</p>
+  <p>Anyway, I&#xA0;<input id="q18" type="droptarget"/>&#xA0;you the very best of luck and don't&#xA0;<input id="q19" type="droptarget"/>&#xA0;to get in touch if you'd&#xA0;<input id="q20" type="droptarget"/>&#xA0;me to help in any way. I love walking!</p>
   <p>With love, </p>
   <p>Melissa</p>
   <p class="linespace"></p>

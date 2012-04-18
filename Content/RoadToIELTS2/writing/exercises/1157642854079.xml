@@ -46,16 +46,16 @@
 </header>
 	
 <section id="body">
-	<img class="rightFloat" src="../media/SS_AW_013e.jpg" mode="1" id="1001"  />
+	<img class="rightFloat" src="../media/set9.2_07.jpg" mode="1" id="1001"  />
 	
 	<div id="targetspotting">
 	<p><b>More and more people throughout the world are now living to a very old age and it is unreasonable to expect their families to look after them. The state should take responsibility for caring for old people when they are no longer capable of looking after themselves.</b></p>
 	
-	<p><b><g id="t1">A. Over the course of the last hundred years, life expectancy has increased considerably in most countries of the world. However, problems such as failing health and dementia mean that this growing population of senior citizens needs looking after. The pressures of modern life make it difficult for families to take care of older relatives as they used to in the past so the state should now take on this responsibility.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t1">a.&#xA0;&#xA0;Over the course of the last hundred years, life expectancy has increased considerably in most countries of the world. However, problems such as failing health and dementia mean that this growing population of senior citizens needs looking after. The pressures of modern life make it difficult for families to take care of older relatives as they used to in the past so the state should now take on this responsibility.</a></b></p>
 	
-	<p><b><g id="t2">B. Life expectancy throughout the world has increased dramatically even in the last fifty years. In countries as different as Turkey and Korea, for example, life expectancy has increased by 20 years since 1960. There are three basic reasons why this has occurred.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t2">b.&#xA0;&#xA0;Life expectancy throughout the world has increased dramatically even in the last fifty years. In countries as different as Turkey and Korea, for example, life expectancy has increased by 20 years since 1960. There are three basic reasons why this has occurred.</a></b></p>
 	
-	<p><b><g id="t3">C. People around the world are living longer than ever before, but is this necessarily a good thing? No doubt most younger and middle-aged people welcome the idea that they will live longer than previous generations did. Yet few of us consider the problems, both for society and for individuals, associated with living to a very old age.</g></b></p>
+	<p class="hangingIndent1"><b><a id="t3">c.&#xA0;&#xA0;People around the world are living longer than ever before, but is this necessarily a good thing? No doubt most younger and middle-aged people welcome the idea that they will live longer than previous generations did. Yet few of us consider the problems, both for society and for individuals, associated with living to a very old age.</a></b></p>
 	
 </div>
 </section>

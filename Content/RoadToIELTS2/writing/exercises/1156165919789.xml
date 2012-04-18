@@ -16,6 +16,9 @@
 	
 	
 <script id="model" type="application/xml">
+<popups>
+	<popup click="clickme" source="examtips" width="500" />
+</popups>
 <settings>
  	<param name="delayedMarking" value="true" />
 </settings>
@@ -83,6 +86,7 @@ Look at the chart and complete the report with the correct words or figures.
 </section>
 
 <section id="body">
+<a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a><br/><br/><br/>
   <img class="rightFloat" src="../media/LC_AW_007.jpg" mode="1" id="1003"/>
   
   <div id="gapfillText">
@@ -90,7 +94,12 @@ Look at the chart and complete the report with the correct words or figures.
 </div>
 </section>
 
-
+<section id="examtips">
+	<p class="popuptext">Another way to describe rising and falling trends is by using verbs or expressions, which derive from fractions, for example:<br/>
+	<span color="#0000FF">x doubled in 2000,<br/>
+	y halved in 2001,<br/>
+	z rose by a third in 2002.</span></p>
+</section>
 
 </body>
 </bento>

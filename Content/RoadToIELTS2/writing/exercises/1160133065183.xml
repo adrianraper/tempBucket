@@ -23,12 +23,10 @@
   </settings>
   <questions>
     <GapFillQuestion source="q1" block="b1">
-      <answer value="about 20" correct="true"/>
-      <answer value="20" correct="true"/>
+        <answer value="20" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q2" block="b2">
-      <answer value="at least 150 words" correct="true"/>
-      <answer value="at least 150" correct="true"/>
+        <answer value="150" correct="true"/>
     </GapFillQuestion>
     <GapFillQuestion source="q3" block="b3">
       <answer value="your address" correct="true"/>
@@ -42,14 +40,14 @@
 	
 <header>
 <div id="instruction">
-	IELTS writing task 1 consists of two parts: the rubric and the task itself. Read the writing task on the left and then answer the questions about the rubric on the right.
+	IELTS Writing Task 1 consists of two parts: the rubric and the task itself. Read the Writing Task on the left and then answer the questions about the rubric on the right.
 </div>
 </header>
 
 <section id="readingText">
 <a id="clickme"><img class="imagetask" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
   <br/><br/>
-      <h1><p>Writing task 1</p></h1>
+      <h1><p>Writing Task 1</p></h1>
   <p>You should spend about 20 minutes on this task.</p>
   <p><b>Your English teacher has found a new penfriend for you.</b></p>
   <p><b>Write a letter to the penfriend and introduce yourself. Tell them what you like doing in your free time. Ask your penfriend to tell you about their hobbies and interests.</b></p>
@@ -61,16 +59,16 @@
 
 <section id="body">
   <ol id="splitquestionList">
-    <li id="1">How long should you spend on writing task 1?<br/><input id="q1"/>&#xA0;minutes</li>
+    <li id="1">How long should you spend on Writing Task 1?<br/>about&#xA0;<input id="q1"/>&#xA0;minutes</li>
 	<p class="linespace"></p>
-    <li id="2">How many words do you have to write?<br/><input id="q2"/></li>
+    <li id="2">How many words do you have to write?<br/>at least&#xA0;<input id="q2"/>&#xA0;words</li>
 	<p class="linespace"></p>
     <li id="3">What isn't it necessary to include in the letter?<br/><input id="q3"/></li>
   </ol>
 </section>
 
 <section id="examtips">
-<p class="popuptext">It's important to familiarise yourself with what you're expected to do in writing task 1. You need to know how much time you have and how many words you have to write.</p>
+<p class="popuptext">It's important to familiarise yourself with what you're expected to do in Writing Task 1. You need to know how much time you have and how many words you have to write.</p>
 
 </section>
 

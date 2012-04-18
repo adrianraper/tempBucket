@@ -18,11 +18,11 @@
 <script id="model" type="application/xml">
 
   <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 	</popups>
 
   <settings>
-    <param name="delayedMarking" value="true"/>
+    <param name="delayedMarking" value="false"/>
   </settings>
 
   <questions>
@@ -102,53 +102,53 @@
       </answer>
     </TargetSpottingQuestion>
 	<TargetSpottingQuestion block="b16">
-      <answer source="t6" correct="true">
-        <feedback source="fb6"/>
+      <answer source="t16" correct="true">
+        <feedback source="fb16"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b17">
-      <answer source="t7" correct="true">
-        <feedback source="fb7"/>
+      <answer source="t17" correct="true">
+        <feedback source="fb17"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b18">
-      <answer source="t8" correct="true">
-        <feedback source="fb8"/>
+      <answer source="t18" correct="true">
+        <feedback source="fb18"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b19">
-      <answer source="t9" correct="true">
-        <feedback source="fb9"/>
+      <answer source="t19" correct="true">
+        <feedback source="fb19"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b20">
-      <answer source="t10" correct="true">
-        <feedback source="fb10"/>
+      <answer source="t20" correct="true">
+        <feedback source="fb20"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b21">
-      <answer source="t11" correct="true">
-        <feedback source="fb11"/>
+      <answer source="t21" correct="true">
+        <feedback source="fb21"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b22">
-      <answer source="t12" correct="true">
-        <feedback source="fb12"/>
+      <answer source="t22" correct="true">
+        <feedback source="fb22"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b23">
-      <answer source="t13" correct="true">
-        <feedback source="fb13"/>
+      <answer source="t23" correct="true">
+        <feedback source="fb23"/>
       </answer>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b24">
-      <answer source="t14" correct="true">
-        <feedback source="fb14"/>
+      <answer source="t24" correct="true">
+        <feedback source="fb24"/>
       </answer>
     </TargetSpottingQuestion>
 	  <TargetSpottingQuestion block="b25">
-      <answer source="t15" correct="true">
-        <feedback source="fb15"/>
+      <answer source="t25" correct="true">
+        <feedback source="fb25"/>
       </answer>
     </TargetSpottingQuestion>
   </questions>
@@ -160,7 +160,7 @@
 	
 <header>
 <div id="instruction">
-Read this sample answer to the writing task in the previous exercise and find the spelling mistakes. There are 25. Click on them.
+Read this sample answer to the Writing Task in the previous exercise and find the spelling mistakes. There are 25. Click on them.
 </div>
 </header>
 	
@@ -168,19 +168,19 @@ Read this sample answer to the writing task in the previous exercise and find th
 
 	<a id="clickme"><img class="imagetask" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
   <br/><br/><br/>
-  <img class="rightFloat" src="../media/ST_GW_003.jpg" mode="1" id="1001"/>
+  <img class="rightFloat" src="../media/set12_03.jpg" mode="1" id="1001"/>
   <div id="targetspotting">
   <p>Dear Sir/Madam,</p>
   
   <p>I am&#xA0;<g id="t1">writting</g>&#xA0;to express my&#xA0;<g id="t2">gratititude</g>&#xA0;for the way your staff responded to a problem I encountered&#xA0;<g id="t3">wiht</g>&#xA0;my computer last week.</p>
   
-  <p>I work from home and my computer is an&#xA0;<g id="t4">extreemly</g>&#xA0;important&#xA0;<g id="t5">peice</g>&#xA0;of&#xA0;<g id="t6">equipement</g>&#xA0;so when it failed to work properly on Friday morning I was very&#xA0;<g id="t7">conserned</g>&#xA0;that I would not be able to have it repaired&#xA0;<g id="t8">untill</g>&#xA0;after the weekend. However, I telephoned your shop and spoke to a young man called Jonathan, who, with great&#xA0;<g id="t9">patiense</g>&#xA0;, talked me through various solutions on the phone.&#xA0;<g id="t10">Unfortunatly</g>&#xA0;, we were unable to&#xA0;<g id="t11">ressolve</g> &#xA0;the problem. He promised to send a&#xA0;<g id="t12">tecnician</g>&#xA0;and I was absolutely delighted to find a very&#xA0;<g id="t13">helpfull</g>&#xA0;young woman called Patricia on my doorstep less&#xA0;<g id="t14">then</g>&#xA0;thirty minutes later.</p>
+  <p>I work from home and my computer is an&#xA0;<g id="t4">extreemly</g>&#xA0;important&#xA0;<g id="t5">peice</g>&#xA0;of &#xA0;<g id="t6">equipement</g>&#xA0;so when it failed to work properly on Friday morning I was very&#xA0;<g id="t7">conserned</g>&#xA0;that I would not be able to have it repaired&#xA0;<g id="t8">untill</g>&#xA0;after the weekend. However, I telephoned your shop and spoke to a young man called Jonathan, who, with great&#xA0;<g id="t9">patiense</g>, talked me through various solutions on the phone.&#xA0;<g id="t10">Unfortunatly</g>, we were unable to&#xA0;<g id="t11">ressolve</g>&#xA0;the problem. He promised to send a&#xA0;<g id="t12">tecnician</g>&#xA0;and I was absolutely delighted to find a very&#xA0;<g id="t13">helpfull</g>&#xA0;young woman called Patricia on my doorstep less&#xA0;<g id="t14">then</g>&#xA0;thirty minutes later.</p>
   
   <p>Patricia&#xA0;<g id="t15">identifed</g>&#xA0;the problem almost&#xA0;<g id="t16">immedietly</g>&#xA0;and spent the best part of the next two hours working on my computer. She not only&#xA0;<g id="t17">repared</g>&#xA0;it but&#xA0;<g id="t18">aslo</g>&#xA0;talked me&#xA0;<g id="t19">throught</g>&#xA0;what she was doing so that I would be able to deal with the problem myself in future.</p>
   
-  <p>I would be&#xA0;<g id="t20">greatful</g>&#xA0;if you could convey my sincere thanks to both your&#xA0;<g id="t21">employes</g>&#xA0;. I have no hesitation in&#xA0;<g id="t22">recomending</g>&#xA0;your services to my&#xA0;<g id="t23">freinds</g>&#xA0;and&#xA0;<g id="t24">colleauges</g>&#xA0;.</p>
+  <p>I would be&#xA0;<g id="t20">greatful</g>&#xA0;if you could convey my sincere thanks to both your&#xA0;<g id="t21">employes</g>. I have no hesitation in&#xA0;<g id="t22">recomending</g>&#xA0;your services to my&#xA0;<g id="t23">freinds</g>&#xA0;and&#xA0;<g id="t24">colleauges</g>.</p>
   
-  <p>Yours&#xA0;<g id="t25">faithfuly</g>&#xA0;,</p>
+  <p>Yours&#xA0;<g id="t25">faithfuly</g>,</p>
   <p>Claire Moody</p>
 </div>
 </section>
