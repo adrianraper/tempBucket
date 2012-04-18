@@ -24,8 +24,11 @@
 				if (obj1[gc.dataField] == obj2[gc.dataField])
 					return 0;
 				
-				if (obj1[gc.dataField].indexOf('-') > 0) 
+				if (obj1[gc.dataField].indexOf('-') >= 0) 
 					return -1;
+				
+				if (obj2[gc.dataField].indexOf('-') >= 0) 
+					return 1;
 				
 				if (Number(obj1[gc.dataField]) < Number(obj2[gc.dataField]))
 					return -1;
@@ -38,6 +41,19 @@
 				
 				if (Number(obj1[gc.dataField]) < Number(obj2[gc.dataField]))
 					return -1;
+				
+				return 1;
+			}
+			private function sortUnits(obj1:Object, obj2:Object, gc:GridColumn):int  {
+				if (obj1[gc.dataField] == obj2[gc.dataField])
+					return 0;
+				
+				// Try to catch unit names with numbers in them
+				if ((obj1[gc.dataField].substr(0,4).toLowerCase() == 'set ') && 
+					(obj2[gc.dataField].substr(0,4).toLowerCase() == 'set ')) {
+					if (Number(obj1[gc.dataField].substr(4)) < Number(obj2[gc.dataField].substr(4)))
+						return -1;
+				}
 				
 				return 1;
 			}
@@ -102,7 +118,7 @@
 		<s:DataGrid id="scoreDetailsDataGrid" fontSize="12" alternatingRowColors="[#FFFFFF, #DDDDDD]" width="100%" height="93%" borderVisible="false" dataProvider="{hostComponent.tableDataProvider}" >
 			<s:columns>
 				<s:ArrayList>
-					<s:GridColumn headerText="Unit" dataField="@unitCaption"  />
+					<s:GridColumn headerText="Unit" dataField="@unitCaption" sortCompareFunction="sortUnits" />
 					<s:GridColumn headerText="Exercise" dataField="@caption" />
 					<s:GridColumn headerText="Score %" dataField="@displayScore" sortCompareFunction="sortScores" />
 					<s:GridColumn headerText="Time spent" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" />
