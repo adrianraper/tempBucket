@@ -60,9 +60,9 @@ SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		// It would be an error to have more or less than one account
-		if ($rs->RecordCount()>1) {
+		if ($rs->RecordCount() > 1) {
 			throw new Exception("More than one account with rootID $rootID", 100);
-		} elseif ($rs->RecordCount()<1) { 
+		} elseif ($rs->RecordCount() < 1) { 
 			throw new Exception("No account with rootID $rootID", 100);
 		}
 		

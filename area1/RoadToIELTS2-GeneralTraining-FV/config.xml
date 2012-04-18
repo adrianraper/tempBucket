@@ -13,5 +13,5 @@
 	<contentPath>http://dock.projectbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
-	<remoteService>BentoService</remoteService>
+	<remoteService>IELTSService</remoteService>
 </config>

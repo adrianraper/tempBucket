@@ -11,5 +11,5 @@
 	<contentPath>http://localhost/Content/</contentPath>
 	<remoteDomain>http://localhost/</remoteDomain>
 	<remoteGateway>http://localhost/Software/ResultsManager/web/amfphp/</remoteGateway>
-	<remoteService>BentoService</remoteService>
+	<remoteService>IELTSService</remoteService>
 </config>

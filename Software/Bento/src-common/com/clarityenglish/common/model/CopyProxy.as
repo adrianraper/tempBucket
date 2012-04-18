@@ -4,12 +4,16 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	import com.clarityenglish.common.vo.config.BentoError;
+	
+	import mx.rpc.Fault;
 	import mx.utils.ObjectUtil;
+	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
-
+	
 	/**
 	 * A proxy
 	 */
@@ -18,12 +22,14 @@ package com.clarityenglish.common.model {
 		public static const NAME:String = "CopyProxy";
 		
 		public static var languageCode:String = "EN";
-
+		
 		private var copy:XML;
 		
 		public function CopyProxy(data:Object = null) {
 			super(NAME, data);
-			
+		}
+		
+		public function getCopy():void {
 			new RemoteDelegate("getCopy", [], this).execute();
 		}
 		
@@ -32,7 +38,7 @@ package com.clarityenglish.common.model {
 		 * This method takes an optional object which, if given, performs substitutions of attributes to {attributeName} in the copy.  For
 		 * example, if the copy is "My name is {name}" and the replaceObj is { name: "Dave" } this will subsitute {name} for "Dave" before
 		 * returning the result.
-		 * 
+		 *
 		 * @param	id
 		 * @param	replaceObj
 		 * @return
@@ -42,7 +48,7 @@ package com.clarityenglish.common.model {
 			if (result.length() == 0) {
 				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
 				// in which case try in English
-				if (languageCode!="EN") {
+				if (languageCode != "EN") {
 					result = copy..language.(@code == "EN")..lit.(@name == id);
 					if (result.length() == 0) {
 						trace("Not in English either");
@@ -65,9 +71,27 @@ package com.clarityenglish.common.model {
 			return str;
 		}
 		
+		public function getCodeForId(id:String):uint {
+			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id).@code;
+			if (result.length() == 0)
+				return 1;
+			
+			return new Number(result[0]);
+		}
+		
+		public function getBentoErrorForId(id:String, replaceObj:Object = null):BentoError {
+			var copy:String = getCopyForId(id, replaceObj);
+			var code:uint = getCodeForId(id);
+		
+			var bentoError:BentoError = new BentoError();
+			bentoError.errorContext = copy;
+			bentoError.errorNumber = code;
+			return bentoError;
+		}
+		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
-		public function onDelegateResult(operation:String, data:Object):void{
+		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
 				case "getCopy":
 					copy = new XML(data);
@@ -78,9 +102,9 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, data:Object):void{
-			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + data);
+		public function onDelegateFault(operation:String, fault:Fault):void {
+			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + fault.faultString);
 		}
-		
+	
 	}
 }

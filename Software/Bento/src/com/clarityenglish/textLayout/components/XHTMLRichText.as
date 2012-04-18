@@ -153,51 +153,41 @@ package com.clarityenglish.textLayout.components {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			// If something has changed and we are ready then start parsing
-			if ((_xhtmlChanged || _selectorChanged) && _xhtml && _xhtml.isExternalStylesheetsLoaded()) {
-				// If there was a previously existing RenderFlow clean it up
-				if (renderFlow) {
-					if (renderFlow.parent)
-						removeElement(renderFlow);
-					
-					renderFlow.removeEventListener(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, onUpdateComplete);
-					renderFlow.removeEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
-				}
+			if (_xhtmlChanged || _selectorChanged) {
+				cleanUpPreviousXHTML();
 				
-				if (_css) {
-					_css.clear();
-					_css = null;
+				// If the stylesheets are not yet loaded then hold off until they are (this will get scheduled again with invalidateProperties)
+				if (_xhtml && _xhtml.isExternalStylesheetsLoaded()) {
+					// Import the XHTML into the initial RenderFlow
+					var importer:XHTMLImporter = new XHTMLImporter();
+					var node:XML = _xhtml.selectOne(_selector);
+					if (node) {
+						// Parse the XHTML into a RenderFlow
+						renderFlow = importer.importToRenderFlow(_xhtml, node);
+						_css = importer.getCSS();
+						importer.clear();
+						importer = null;
+						
+						// Add any event listeners to the RenderFlow (in general these will bubble up from child RenderFlows too)
+						renderFlow.addEventListener(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, onUpdateComplete);
+						renderFlow.addEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
+						
+						// The main RenderFlow should always fill the viewport horizontally
+						renderFlow.percentWidth = 100;
+						renderFlow.y = 1;
+						
+						// Add the RenderFlow to the display list
+						addElement(renderFlow);
+						
+						// Apply to registered behaviours
+						applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onImportComplete(_xhtml, _xhtml.flowElementXmlBiMap); } );
+						
+						// Dispatch an event to say the CSS has been parsed.  Specifically this is used by ShowFeedbackCommand which need info out of the css to make the popup.
+						dispatchEvent(new XHTMLEvent(XHTMLEvent.CSS_PARSED));
+					}
+					
+					_xhtmlChanged = _selectorChanged = false;
 				}
-				
-				// Import the XHTML into the initial RenderFlow
-				var importer:XHTMLImporter = new XHTMLImporter();
-				var node:XML = _xhtml.selectOne(_selector);
-				if (node) {
-					// Parse the XHTML into a RenderFlow
-					renderFlow = importer.importToRenderFlow(_xhtml, node);
-					_css = importer.getCSS();
-					importer.clear();
-					importer = null;
-					
-					// Add any event listeners to the RenderFlow (in general these will bubble up from child RenderFlows too)
-					renderFlow.addEventListener(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, onUpdateComplete);
-					renderFlow.addEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
-					
-					// The main RenderFlow should always fill the viewport horizontally
-					renderFlow.percentWidth = 100;
-					renderFlow.y = 1;
-					
-					// Add the RenderFlow to the display list
-					addElement(renderFlow);
-					
-					// Apply to registered behaviours
-					applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onImportComplete(_xhtml, _xhtml.flowElementXmlBiMap); } );
-					
-					// Dispatch an event to say the CSS has been parsed.  Specifically this is used by ShowFeedbackCommand which need info out of the css to make the popup.
-					dispatchEvent(new XHTMLEvent(XHTMLEvent.CSS_PARSED));
-				}
-				
-				_xhtmlChanged = _selectorChanged = false;
 			}
 		}
 		
@@ -221,6 +211,24 @@ package com.clarityenglish.textLayout.components {
 		protected function onTextFlowCleared(event:RenderFlowEvent):void {
 			// Apply to registered behaviours
 			applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onTextFlowClear(event.textFlow); } );
+		}
+		
+		private function cleanUpPreviousXHTML() {
+			// If there was a previously existing RenderFlow clean it up
+			if (renderFlow) {
+				if (renderFlow.parent)
+					removeElement(renderFlow);
+				
+				renderFlow.removeEventListener(RenderFlowEvent.RENDER_FLOW_UPDATE_COMPLETE, onUpdateComplete);
+				renderFlow.removeEventListener(RenderFlowEvent.TEXT_FLOW_CLEARED, onTextFlowCleared);
+				
+				renderFlow = null;
+			}
+			
+			if (_css) {
+				_css.clear();
+				_css = null;
+			}
 		}
 		
 	}

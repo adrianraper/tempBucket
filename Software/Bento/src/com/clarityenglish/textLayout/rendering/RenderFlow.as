@@ -322,6 +322,7 @@ package com.clarityenglish.textLayout.rendering {
 				dispatchEvent(new RenderFlowEvent(RenderFlowEvent.TEXT_FLOW_CLEARED, true, false, _textFlow));
 				
 				_textFlow.flowComposer.removeAllControllers();
+				
 				_textFlow.formatResolver = null;
 				_textFlow = null;
 			}

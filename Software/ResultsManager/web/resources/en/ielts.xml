@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<literals progam="IELTS" version="2.0">
+	<language name="English International" code="EN" mediaFolder="EN">
+		<group name="group">	
+			<lit name="applicationName">IELTS</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<lit name="errorUnknown" code="100">Unknown error</lit>
+			
+			<lit name="errorNoSuchUser" code="200">These details are not registered (login option {loginOption})</lit>
+			<lit name="errorNoProductCode" code="201">No productCode.</lit>
+			<lit name="errorNoPrefixOrRoot" code="202">No prefix or rootID</lit>
+			<lit name="errorNoPrefixForRoot" code="203">No prefix for rootID</lit>
+			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account (productCode={productCode})</lit>
+			<lit name="errorNoProductCodeInRoot" code="205">No title with productCode {productCode} in {rootID}</lit>
+			<lit name="errorWrongPassword" code="206">That password doesn't match the other details (login option {loginOption})</lit>
+			<lit name="errorUserExpired" code="207">That user expired on {expiryDate}</lit>
+			<lit name="errorDuplicateUsers" code="208">More than one user matches these details (login option {loginOption})</lit>
+			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered</lit>
+			<lit name="errorNoSuchGroup" code="210">No such group</lit>
+			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}</lit>
+			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}</lit>
+			<lit name="errorFailedInstanceCheck" code="213">Failed instance check - instanceID={instanceID} sessionID={sessionID}</lit>
+			
+			<lit name="errorLicenceHasntStartedYet" code="300">Your licence hasn't started yet</lit>
+			<lit name="errorLicenceExpired" code="301">Your licence expired on {expiryDate}</lit>
+			<lit name="errorCantClearLicences" code="302">Unable to clear old licences</lit>
+			<lit name="errorLicenceFull" code="303">This licence is full, please try again later</lit>
+			<lit name="errorCantAllocateLicenceNumber" code="304">Error, can't allocate a licence number</lit>
+			<lit name="errorReadingLicenceControlTable" code="305">Error reading licence control table</lit>
+			<lit name="errorUnrecognisedLicenceType" code="306">The licence type {licenceType} is not recognised</lit>
+			<lit name="errorCantFindLicence" code="307">Error, can't find this licence {licenceID}</lit>
+			<lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}</lit>
+			<lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}</lit>
+			
+			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}</lit>
+			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id</lit>
+			<lit name="errorParsingExercise" code="402">Unable to parse exercise {filename} ({message})</lit>
+			
+			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database</lit>
+			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database</lit>
+		</group>
+	</language>
+</literals>

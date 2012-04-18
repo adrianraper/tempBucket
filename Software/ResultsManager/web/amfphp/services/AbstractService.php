@@ -16,6 +16,8 @@ class AbstractService {
 	
 	var $db;
 	
+	static $title;
+	
 	static $log;
 	static $debugLog;
 
@@ -23,7 +25,7 @@ class AbstractService {
 		// This deals with a date bug in AdoDB MSSQL driver
 		global $ADODB_mssql_mths;
 		$ADODB_mssql_date_order = 'mdy'; 
-		$ADODB_mssql_mths = array('JAN'=>1,'FEB'=>2,'MAR'=>3,'APR'=>4,'MAY'=>5,'JUN'=>6,'JUL'=>7,'AUG'=>8,'SEP'=>9,'OCT'=>10,'NOV'=>11,'DEC'=>12);
+		$ADODB_mssql_mths = array('JAN'=>1, 'FEB'=>2, 'MAR'=>3, 'APR'=>4, 'MAY'=>5, 'JUN'=>6, 'JUL'=>7, 'AUG'=>8, 'SEP'=>9, 'OCT'=>10, b'NOV'=>11, 'DEC'=>12);
 		
 		// Force all PHP datetime functions to work in UTC
 		// Wouldn't it make more sense to work in Asia/Hong_Kong since that is where the server is?
@@ -55,8 +57,7 @@ class AbstractService {
 		// v3.4 Sometimes I want to use a file log in DMS. If I set it up here, does it mean overhead with every single call?
 		// I don't think so, it only does opening etc when called to write.
 		AbstractService::$debugLog = &Log::factory('file');
-		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');	
-		
+		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');
 	}
 	
 	/**

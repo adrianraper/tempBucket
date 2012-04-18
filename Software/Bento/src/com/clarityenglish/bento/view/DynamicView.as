@@ -39,26 +39,28 @@ package com.clarityenglish.bento.view {
 			while (contentGroup.numChildren > 0)
 				contentGroup.removeElementAt(0);
 			
-			try {
-				var classReference:Class = getDefinitionByName(viewName) as Class;
-			} catch (e:ReferenceError) {
-				log.error("Unable to get a reference to the dynamic view; perhaps the name is wrong? {0}", viewName);
-				return;
-			}
-			
-			var view:Object = new classReference();
-			
-			if (view is BentoView) {
-				// Create the new view and add it.  For the moment just use the default XHTMLExerciseView, but this will be definable in the XML
-				var bentoView:BentoView = view as BentoView;
-				bentoView.percentWidth = bentoView.percentHeight = 100;
-				bentoView.media = media;
-				bentoView.href = href;
-				contentGroup.addElement(bentoView);
-			} else if (!view) {
-				log.error("Instantiating the dynamic view produced null. Perhaps the dynamic view wasn't embedded in the swf? {0}", viewName);
-			} else {
-				log.error("The passed in view was not a BentoView - {0}", viewName);
+			if (viewName) {
+				try {
+					var classReference:Class = getDefinitionByName(viewName) as Class;
+				} catch (e:ReferenceError) {
+					log.error("Unable to get a reference to the dynamic view; perhaps the name is wrong? {0}", viewName);
+					return;
+				}
+				
+				var view:Object = new classReference();
+				
+				if (view is BentoView) {
+					// Create the new view and add it.  For the moment just use the default XHTMLExerciseView, but this will be definable in the XML
+					var bentoView:BentoView = view as BentoView;
+					bentoView.percentWidth = bentoView.percentHeight = 100;
+					bentoView.media = media;
+					bentoView.href = href;
+					contentGroup.addElement(bentoView);
+				} else if (!view) {
+					log.error("Instantiating the dynamic view produced null. Perhaps the dynamic view wasn't embedded in the swf? {0}", viewName);
+				} else {
+					log.error("The passed in view was not a BentoView - {0}", viewName);
+				}
 			}
 		}
 		

@@ -245,7 +245,7 @@ package com.clarityenglish.ielts.view.title {
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
 			if (exerciseView) exerciseView.href = currentExerciseHref;
-			invalidateSkinState();
+			callLater(invalidateSkinState); // callLater is part of #192
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

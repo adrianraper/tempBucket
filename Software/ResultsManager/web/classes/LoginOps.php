@@ -5,29 +5,26 @@ class LoginOps {
 	var $db;
 	
 	function LoginOps($db) {
-		
 		$this->db = $db;
 		
-		$this->copyOps = new CopyOps();
+		$this->copyOps = new CopyOps($db);
 		$this->manageableOps = new ManageableOps($db);
 		$this->accountOps = new AccountOps($db);
-		$this->errorOps = new ErrorOps();
 	}
 	
 	// Bento login has different options than RM
 	// For now write this as a different function so it can exist in the same file yet be completely different
 	function loginBento($loginObj, $loginOption, $userTypes, $rootID, $productCode = null) {
-		
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
 		// TODO. make it use constants.
 		// TODO. The code below ONLY uses username/studentID at the moment
-		if ($loginOption==1) {
+		if ($loginOption == 1) {
 			if (isset($loginObj['username'])) {
 				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
 			}
-		} elseif ($loginOption==2) {
+		} elseif ($loginOption == 2) {
 			if (isset($loginObj['studentID'])) {
 				$key = 'u.F_StudentID';
 				$keyValue = $loginObj['studentID'];
@@ -76,19 +73,15 @@ EOD;
 		switch ($rs->RecordCount()) {
 			case 0:
 				// Invalid login
-				// Bento requires an error object as explanation
-				//throw new Exception("No such user", 100);
-				throw new Exception("Login option $loginOption", $this->errorOps->getErrorNumber('no_such_user'));
+				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption));
 				break;
 			case 1:
 				// Valid login
 				$loginObj = $rs->FetchNextObj();
-
+				
 				// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
 				if ($password != $loginObj->F_Password) {
-					//return false;
-					// If I do this as an Exception - can I catch it in BentoService? Yes
-					throw new Exception("Login option $loginOption", $this->errorOps->getErrorNumber('wrong_password'));
+					throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
 				}
 				
 				// Check if the user has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
@@ -98,11 +91,10 @@ EOD;
 				if ($loginObj->UserExpiryDate && 
 						(strtotime($loginObj->UserExpiryDate) > 0) && 
 						(strtotime($loginObj->UserExpiryDate) < strtotime(date("Y-m-d")))) {
-					//throw new Exception($this->copyOps->getCopyForId("userExpiredError", array("date" => $loginObj->UserExpiryDate), "EN"));
-					//throw new Exception("Your user account expired on ".date("d M Y", strtotime($loginObj->UserExpiryDate)));
-					throw new Exception("Expired on ".date("d M Y", strtotime($loginObj->UserExpiryDate)), $this->errorOps->getErrorNumber('user_expired'));
+					
+					throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($loginObj->UserExpiryDate))));
 				}
-
+				
 				// Authenticate the user with the session
 				Authenticate::login($loginObj->F_UserName, $loginObj->F_UserType);
 				
@@ -112,25 +104,25 @@ EOD;
 				
 			default:
 				// More than one user with this name/password
-				throw new Exception("Login option $loginOption", $this->errorOps->getErrorNumber('duplicate_users'));
+				throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginOption" => $loginOption));
 		}
 		
 	}
+	
 	/**
 	 * Get the anonymous user from the database
 	 */
 	public function anonymousUser($rootID) {
-		
 		$sql =	<<<EOD
 				SELECT * FROM T_User u
 				WHERE F_UserID=-1; 
 EOD;
 		$rs = $this->db->Execute($sql);
 		
-		if ($rs->RecordCount()>0) {
+		if ($rs->RecordCount() > 0) {
 			$loginObj = $rs->FetchNextObj();
 		} else {
-			throw new Exception("", $this->errorOps->getErrorNumber('no_anonymous_user'));
+			throw $this->copyOps->getExceptionForId("errorNoAnonymousUser");
 		}
 		
 		// Then we need the top level group ID for this root.
@@ -143,10 +135,10 @@ EOD;
 		$bindingParams = array($rootID, User::USER_TYPE_ADMINISTRATOR);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
-		if ($rs->RecordCount()>0) {
+		if ($rs->RecordCount() > 0) {
 			$loginObj->groupID = $rs->FetchNextObj()->groupID;
 		} else {
-			throw new Exception("Anonymous", $this->errorOps->getErrorNumber('no_such_group'));
+			throw $this->copyOps->getExceptionForId("errorNoSuchGroup");
 		}
 			
 		return $loginObj;
@@ -309,8 +301,8 @@ EOD;
 	}
 	
 	/**
-	 * 
 	 * This function updates a user record with an instance ID
+	 * 
 	 * @param Number $instanceID
 	 */
 	function setInstanceID($userID, $instanceID) {
@@ -338,16 +330,16 @@ EOD;
 		$resultObj = $this->db->Execute($sql, $bindingParams);
 		if ($resultObj)
 			return true;
-		throw new Exception("user=$userID", $errorOps->getErrorNumber('set_instance_id'));
+		
+		throw $this->copyOps->getExceptionForId("errorSetInstanceId", array("userID" => $userID));
 	}
 	
 	/**
-	 * 
 	 * This function gets the instanceID for a user
+	 * 
 	 * @param Number $userID
 	 */
 	function getInstanceID($userID) {
-		
 		$sql .=	<<<EOD
 				SELECT F_LicenceID 
 				FROM T_User u					
@@ -357,7 +349,8 @@ EOD;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs)
 			return $rs->FetchNextObj()->F_LicenceID;
-		throw new Exception("user=$userID", $errorOps->getErrorNumber('get_instance_id'));
+			
+		throw $this->copyOps->getExceptionForId("errorGetInstanceId", array("userID" => $userID));
 	}
 	
 	// v3.2 A simplified login which is for identification rather than authentication purposes
@@ -457,6 +450,7 @@ EOD;
 					 "selfRegister" => $resultObj['F_SelfRegister'],
 					 "passwordRequired" => $resultObj['F_Verified']);
 	}
+	
 	function setLoginOpts($loginOption, $selfRegister, $passwordRequired) {
 		// AR Change to the account table
 		//$sql = "UPDATE T_GroupStructure SET F_LoginOption=?, F_SelfRegister=?, F_Verified=? WHERE F_GroupID=?";
@@ -496,21 +490,22 @@ EOD;
 		//echo print_r($emailArray);
 		return $emailArray;
 	}
+	
 	function setEmailOpts($emailArray) {
 		$bindingParams = array(Session::get('rootID'));
 		// First clear out existing emails and settings
 		$this->db->Execute("DELETE FROM T_AccountEmails WHERE F_RootID=?", $bindingParams);
 		
 		$rootID = Session::get('rootID');
-		for ($i=0; $i<count($emailArray); $i++) {
+		for ($i = 0; $i < count($emailArray); $i++) {
 			// The first item is the admin user - so this has a special seting. This is why we do it with a for loop counter
 			$emailItem = $emailArray[$i];
 			if ($i == 0) {
 				$email = null;
-				$adminUser=true;
+				$adminUser = true;
 			} else {
 				$email = $emailItem['email'];
-				$adminUser=false;
+				$adminUser = false;
 			}
 			$messageType = $emailItem['messageType'];
 			NetDebug::trace("item ".$i.' has email='.$email.' and message='.$messageType. ' and admin='.$adminUser);
@@ -543,6 +538,7 @@ EOD;
 		}
 		*/
 	}
+	
 	/**
 	 * 
 	 * Before you login a user, you need to find things like loginOptions from the account.
@@ -550,9 +546,7 @@ EOD;
 	 * @param Number prefix
 	 * @param Number rootID
 	 */
-	//function getAccountSettings($rootID=null, $productCode=null) {
 	function getAccountSettings($config) {
-		
 		// Check data
 		if (isset($config['prefix'])) 
 			$prefix = $config['prefix'];
@@ -560,9 +554,9 @@ EOD;
 			$rootID = $config['rootID'];
 		if (isset($config['productCode'])) 
 			$productCode = $config['productCode'];
-			
+		
 		if (!$productCode)
-			throw new Exception('Checking account settings', $errorOps->getErrorNumber('no_productCode'));
+			throw $this->copyOps->getExceptionForId("errorNoProductCode");
 		
 		// RootID is more important than prefix.
 		// TODO. At present getAccounts can only cope with rootID not prefix. 
@@ -572,7 +566,7 @@ EOD;
 		//if (!$rootID)
 		//	throw new Exception("No rootID sent to getAccountSettings", 100);
 		if (!$prefix && !$rootID)
-			throw new Exception('Checking account settings', $errorOps->getErrorNumber('no_prefix_or_root'));
+			throw $this->copyOps->getExceptionForId("errorNoPrefixOrRoot");
 		
 		// Query the database
 		// Kind of silly, but bento is usually keyed on prefix and getAccounts always works on rootID
@@ -580,7 +574,7 @@ EOD;
 		if (is_numeric($rootID)) {
 			$rootID = (int) $this->accountOps->getAccountRootID($prefix);
 			if (!$rootID)
-				throw new Exception("root=$rootID", $errorOps->getErrorNumber('no_prefix_for_root'));
+				throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot");
 		}
 		
 		// First get the record from T_AccountRoot and T_Accounts
@@ -591,10 +585,10 @@ EOD;
 		$account = $this->accountOps->getBentoAccount($rootID, $productCode);
 		
 		// It would be an error to have more or less than one title in that account
-		if (count($account->titles)>1) {
-			throw new Exception($productCode, $errorOps->getErrorNumber('multiple_productCode_in_root'));
-		} else if (count($account->titles)==0) {
-			throw new Exception("No title with productCode $productCode in $rootID", $errorOps->getErrorNumber('no_productCode_in_root'));
+		if (count($account->titles) > 1) {
+			throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
+		} else if (count($account->titles) == 0) {
+			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID));
 		} 
 		
 		// Next get account licence details, which are not pulled in from getAccounts as DMS doesn't usually want them

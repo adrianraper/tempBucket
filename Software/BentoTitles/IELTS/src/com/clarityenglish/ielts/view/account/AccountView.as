@@ -237,6 +237,7 @@ package com.clarityenglish.ielts.view.account {
 				Alert.show("Sorry, these details can't be updated.", "Update problem");				
 			}
 		}
+		
 		public function showUpdateSuccess(msg:String = ""):void {
 			if (msg) {
 				Alert.show(msg, "Update success");

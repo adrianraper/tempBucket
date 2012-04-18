@@ -107,6 +107,13 @@ package com.clarityenglish.bento.vo.content {
 		}
 		
 		/**
+		 * Does this exercise have any questions?  This is mostly used to figure out whether to display the marking button and when to write scores.
+		 */
+		public function hasQuestions():Boolean {
+			return (model.questions.length > 0);
+		}
+		
+		/**
 		 * This is a static function that determines whether an exercise should be navigable to or not. It runs off the exercise xml node in the menu
 		 * xml, not the exercise file itself.
 		 *  

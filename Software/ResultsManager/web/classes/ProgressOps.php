@@ -27,7 +27,6 @@ class ProgressOps {
 	 * This method merges the progress records with XML at the summary level
 	 */
 	function mergeXMLAndDataSummary($rs) {
-	
 		// We will return an XML object, so start building it
 		$build = new SimpleXMLElement('<progress />');
 		
@@ -40,6 +39,7 @@ class ProgressOps {
 			$averageScore = 0;
 			$averageDuration = 0;
 			$totalDuration = 0;
+			
 			foreach ($rs as $record) {
 				if ($record['F_CourseID']==$course['id']) {
 					// my data gives the number of distinct exercises I have done in this course
@@ -68,8 +68,8 @@ class ProgressOps {
 			$newCourse->addAttribute('averageDuration',$averageDuration);
 			$newCourse->addAttribute('duration',$totalDuration);
 		}
+		
 		return $build;
-
 	}
 	/**
 	 * This method merges the progress records with XML at the detail level
@@ -78,7 +78,6 @@ class ProgressOps {
 	 * Build an XML data provider for the charts that contains everything, done or not.
 	 */
 	function mergeXMLAndDataDetail($rs) {
-	
 		$menu = $this->menu->head->script->menu;
 		$menu->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
@@ -88,10 +87,10 @@ class ProgressOps {
 			// There should only be one node in menu.xml for each unique exercise ID
 			$exercise = $menu->xpath('.//xmlns:exercise[@id="'.$record['F_ExerciseID'].'"]');
 			
-			if (count($exercise)>1) {
+			if (count($exercise) > 1) {
 				// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
-				throw new Exception('The menu xml has more than one exercise node with id='.$record['F_ExerciseID'], 301);
-			} else if (count($exercise)<1) {
+				throw $this->copyOps->getExceptionForId("errorMultipleExerciseWithSameId", array("exerciseID" => $record['F_ExerciseID']));
+			} else if (count($exercise) < 1) {
 				// Whilst we are mixing up old and new IDs, this might happen. Just ignore the record.
 				//throw new Exception('The menu xml contains no exercise node with id='.$record['F_ExerciseID']);
 			} else {
@@ -105,7 +104,7 @@ class ProgressOps {
 				
 				// And add a score node as a child IF this is a practice-zone exercise
 				$unit = $exercise[0]->xpath('..');
-				if (isset($unit[0]['class']) && $unit[0]['class']=='practice-zone') {
+				if (isset($unit[0]['class']) && $unit[0]['class'] == 'practice-zone') {
 					$score = $exercise[0]->addChild('score');
 					$score->addAttribute('score',$record['F_Score']);
 					$score->addAttribute('duration',$record['F_Duration']);
@@ -131,7 +130,6 @@ insert into T_Score values
 		// Try to return the whole xml file, with additions, not just the menu bit
 		//return $menu->asXML();
 		return $this->menu->asXML();
-		
 	}
 	/**
 	 * 
@@ -155,7 +153,6 @@ insert into T_Score values
 	 * This method now obsolete.
 	 */
 	function getMySummary($userID, $productCode) {
-		
 		// Only average the score for 'scored' records, but count them all
 		$sql = 	<<<EOD
 			SELECT F_CourseID, 
@@ -173,11 +170,11 @@ EOD;
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}
+	
 	/**
 	 * This method gets all users' progress records at the summary level
 	 */
 	function getEveryoneSummary($productCode) {
-			
 		// For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
 		/*
 		USE global_r2iv2;
@@ -204,11 +201,11 @@ EOD;
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}
+	
 	/**
 	 * This method gets all this users' progress records for this title
 	 */
 	function getMyDetails($userID, $productCode) {
-			
 		$sql = 	<<<SQL
 			SELECT s.*
 			FROM T_Score as s
@@ -219,13 +216,12 @@ SQL;
 		$bindingParams = array($userID, $productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
-		
 	}
+	
 	/**
 	 * This method gets the user's last record
 	 */
 	function getMyLastExercise($userID, $productCode) {
-			
 		$sql = 	<<<SQL
 			SELECT s.*
 			FROM T_Score as s
@@ -237,14 +233,12 @@ SQL;
 		$bindingParams = array($userID, $productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
-		
 	}
 	
 	/**
 	 * This method is called to insert a session record when a user starts a program
 	 */
 	function startSession($userID, $rootID, $productCode, $dateNow) {
-
 		// Check that the date is valid
 		$dateStampNow = strtotime($dateNow);
 		if (!$dateStampNow) {
@@ -271,19 +265,18 @@ SQL;
 				return $sessionID;
 			} else {
 				// The database probably doesn't support the Insert_ID function
-				throw new Exception("Database can't find auto-increment session id", 100);
+				throw $this->copyOps->getExceptionForId("errorCantFindAutoIncrementSessionId");
 			}
 		} else {
 			return $rs;
 		}
-		
 	}
+	
 	/**
 	 * This method is called to update a session record.
 	 * This is used both when a user exits the program, and regularly whilst the connection is still going.
 	 */
 	function updateSession($sessionID, $dateNow) {
-
 		// Check that the date is valid
 		$dateStampNow = strtotime($dateNow);
 		if (!$dateStampNow)
@@ -319,11 +312,11 @@ EOD;
 		return $rs;
 		
 	}
+	
 	/**
 	 * This method is called to insert a score record to the database 
 	 */
 	function insertScore($score) {
-
 		// Write anonymous records to an ancilliary table that will not slow down reporting
 		if ($score->userID < 1) {
 			$tableName = 'T_ScoreAnonymous';
@@ -334,7 +327,6 @@ EOD;
 		$dbObj = $score->toAssocArray();
 		$rc = $this->db->AutoExecute($tableName, $dbObj, "INSERT");
 		if (!$rc)
-			throw new Exception($this->db->ErrorMsg(), $this->db->ErrorNo());
-				
+			throw new Exception($this->db->ErrorMsg(), "MYSQL-".$this->db->ErrorNo());
 	}
 }

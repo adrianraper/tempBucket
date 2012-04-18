@@ -80,7 +80,7 @@
 					
 					// #108, #171
 					view.isMarked = getExerciseProxy(exercise).exerciseMarked;
-					view.hasQuestions = (exercise.model.questions.length > 0);
+					view.hasQuestions = exercise.hasQuestions();
 					
 					// #123
 					view.hasPrintStylesheet = exercise.hasPrintStylesheet();
@@ -102,7 +102,7 @@
 		}
 		
 		private function configureButtonVisibility(exercise:Exercise):void {
-			if (view.markingButton) view.markingButton.visible = !(getExerciseProxy(exercise).exerciseMarked) && (exercise.model.questions.length > 0);
+			if (view.markingButton) view.markingButton.visible = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
 			
 			// If there is exercise feedback then show the exercise feedback button
 			if (view.feedbackButton) view.feedbackButton.visible = getExerciseProxy(exercise).hasExerciseFeedback();
