@@ -328,5 +328,8 @@ EOD;
 		$rc = $this->db->AutoExecute($tableName, $dbObj, "INSERT");
 		if (!$rc)
 			throw new Exception($this->db->ErrorMsg(), "MYSQL-".$this->db->ErrorNo());
+			
+		// #308
+		return $rc;
 	}
 }

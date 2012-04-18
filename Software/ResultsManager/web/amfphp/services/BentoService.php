@@ -123,10 +123,11 @@ class BentoService extends AbstractService {
 	// Assume that dbHost is handled in config.php
 	// Assume, for now, that rootID and productCode were put into session variables by getAccountDetails
 	// otherwise they need to be passed with every call.
+	// #307 Pass rootID and productCode rather than get them from session vars
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
-	public function login($loginObj, $loginOption, $instanceID, $licence) {
-		$rootID = Session::get('rootID');
-		$productCode = Session::get('productCode');
+	public function login($loginObj, $loginOption, $instanceID, $licence, $rootID = null, $productCode = null) {
+		if (!$rootID) $rootID = Session::get('rootID');
+		if (!$productCode) $productCode = Session::get('productCode');
 
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								  User::USER_TYPE_ADMINISTRATOR,
@@ -347,19 +348,22 @@ class BentoService extends AbstractService {
 		$score->userID = $userID;
 		
 		// Write the score record
-		$this->progressOps->insertScore($score);
+		$rc = $this->progressOps->insertScore($score);
 		
 		// and update the session
 		$this->progressOps->updateSession($sessionID, $dateNow);
+		
+		return $rc;
 	}
 
 	/**
 	 * The program wants to update the user's information.
 	 * Expected for things like changing password
 	 * TODO. If you send a password, then confirm that it matches the current one
+	 * #307 pass rootID
 	 */
-	public function updateUser($userObj, $password = NULL) {
-		$rootID = Session::get('rootID');
+	public function updateUser($userObj, $rootID = NULL, $password = NULL) {
+		if (!$rootID) $rootID = Session::get('rootID');
 		return $this->manageableOps->updateUsers(array($userObj), $rootID);
 	}
 	

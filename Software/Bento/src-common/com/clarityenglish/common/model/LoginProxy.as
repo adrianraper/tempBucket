@@ -81,7 +81,8 @@ package com.clarityenglish.common.model {
 			configProxy.getConfig().instanceID = instanceID.toString();
 			
 			// Off to the database
-			var params:Array = [ loginObj, loginOption, instanceID, configProxy.getConfig().licence ];
+			// #307 Add rootID and productCode
+			var params:Array = [ loginObj, loginOption, instanceID, configProxy.getConfig().licence, configProxy.getRootID(), configProxy.getProductCode() ];
 			new RemoteDelegate("login", params, this).execute();
 		}
 		
@@ -122,8 +123,11 @@ package com.clarityenglish.common.model {
 			if (userChanges.email)
 				newUserDetails.email = userChanges.email;
 			
+			// #307 pass rootID too
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
 			// Off to the database
-			var params:Array = [ newUserDetails ];
+			var params:Array = [ newUserDetails, configProxy.getRootID() ];
 			new RemoteDelegate("updateUser", params, this).execute();
 		}
 

@@ -375,6 +375,7 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "writeScore":
+					// #308 
 					if (data) {
 						sendNotification(BBNotifications.SCORE_WRITTEN, data);
 					} else {

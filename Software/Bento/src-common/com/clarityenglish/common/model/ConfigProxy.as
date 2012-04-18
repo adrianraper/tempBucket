@@ -167,6 +167,10 @@ package com.clarityenglish.common.model {
 			return config.licenceType;
 		}
 		
+		public function getRootID():Number {
+			return config.rootID;
+		}
+		
 		// Is it OK to just get the config object?
 		public function getConfig():Config {
 			return config;
