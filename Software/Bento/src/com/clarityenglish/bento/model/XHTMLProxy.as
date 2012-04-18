@@ -2,6 +2,8 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -108,17 +110,25 @@ package com.clarityenglish.bento.model {
 			
 			log.info("Successfully loaded XHTML from href {0}", href);
 			
-			switch (href.type) {
-				case Href.MENU_XHTML:
-				case Href.XHTML:
-					loadedResources[href] = new XHTML(new XML(urlLoader.data), href);
-					break;
-				case Href.EXERCISE:
-					loadedResources[href] = new Exercise(new XML(urlLoader.data), href);
-					break;
-			}
+			try {
+				var xml:XML = new XML(urlLoader.data);
 			
-			notifyXHTMLLoaded(href);
+				switch (href.type) {
+					case Href.MENU_XHTML:
+					case Href.XHTML:
+						loadedResources[href] = new XHTML(xml, href);
+						break;
+					case Href.EXERCISE:
+						loadedResources[href] = new Exercise(xml, href);
+						break;
+				}
+				
+				notifyXHTMLLoaded(href);
+			} catch (e:Error) {
+				var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorParsingExercise", { filename: href.filename, message: e.message } ));
+				return;
+			}
 		}
 		
 		private function onXHTMLLoadError(event:IOErrorEvent):void {

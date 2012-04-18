@@ -24,11 +24,13 @@ package com.clarityenglish.bento.view {
 		protected override function onXHTMLReady(xhtml:XHTML):void {
 			super.onXHTMLReady(xhtml);
 			
-			if (!xhtml is Exercise)
-				throw new Error("Dynamic view was invoked on something that was not an Exercise");
-			
-			// As long as this dynamic view isn't for the purpose of printing send an EXERCISE_START notification
-			if (view.media != "print") sendNotification(BBNotifications.EXERCISE_START, xhtml);
+			if (xhtml) {
+				if (!xhtml is Exercise)
+					throw new Error("Dynamic view was invoked on something that was not an Exercise");
+				
+				// As long as this dynamic view isn't for the purpose of printing send an EXERCISE_START notification
+				if (view.media != "print") sendNotification(BBNotifications.EXERCISE_START, xhtml);
+			}
 		}
 		
 		public override function onRemove():void {

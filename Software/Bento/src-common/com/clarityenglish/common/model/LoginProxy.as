@@ -153,6 +153,9 @@ package com.clarityenglish.common.model {
 					}
 					break;
 				
+				case "updateLicence":
+					break;
+				
 				case "updateUser":
 					sendNotification(BBNotifications.USER_UPDATED, data);	
 					break;
