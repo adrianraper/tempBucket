@@ -29,28 +29,21 @@ package com.clarityenglish.bento.controller {
 			// Stop the current exercise (if there is one) and clean up
 			if (bentoProxy.currentExercise) {
 				
-				// Perhaps here is the best place to write out the score, rather than in MarkingShowCommand
-				// a) non-marked exercises are covered
-				// b) dynamic-view exercises are covered
-				// c) the full time of the exercise, including feedback study, is covered.
-				
 				var exercise:Exercise = bentoProxy.currentExercise;
 				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 				var exerciseHasQuestions:Boolean = exercise.hasQuestions();
 				
-				// Trac 121. But this also triggers when you simply open an exercise and close it immediately.
-				// Rules. If the exercise has been marked, or there are no questions, write the score
-				if (exerciseProxy.exerciseMarked || !exerciseHasQuestions) {
-					var thisExerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
+				// #294 - if the exercise has no questions then the score gets written here (if it does have questions it gets written when then marking window opens)
+				// a) non-marked exercises are covered
+				// b) the full time of the exercise, including feedback study, is covered.
+				if (!exercise.hasQuestions()) {
+					var exerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
 					
-					if (thisExerciseMark) {
-						// Add more data to the exerciseMark ready to send it as a score
-						thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
-						thisExerciseMark.UID = bentoProxy.getCurrentExerciseUID();
-						
-						sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
-					}
+					// Add more data to the exerciseMark ready to send it as a score
+					exerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
+					exerciseMark.UID = bentoProxy.getCurrentExerciseUID();
 					
+					sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 				}
 				
 				bentoProxy.currentExercise = null;

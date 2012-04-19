@@ -15,9 +15,8 @@ package com.clarityenglish.common.controller {
 	public class ScoreWriteCommand extends SimpleCommand {
 		
 		override public function execute(note:INotification):void {
-			
 			var data:ExerciseMark = note.getBody() as ExerciseMark;
-
+			
 			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
 			progressProxy.writeScore(data);
 		}

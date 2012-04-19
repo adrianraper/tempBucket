@@ -37,7 +37,7 @@ package com.clarityenglish.bento.controller {
 			
 			// Get the marks
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			var thisExerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
+			var exerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
@@ -45,7 +45,7 @@ package com.clarityenglish.bento.controller {
 			titleWindow.title = "Marking";
 			
 			var markingView:MarkingView = new MarkingView();
-			markingView.exerciseMark = thisExerciseMark;
+			markingView.exerciseMark = exerciseMark;
 			titleWindow.addElement(markingView);
 			
 			// Create and centre the popup
@@ -58,14 +58,18 @@ package com.clarityenglish.bento.controller {
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 
-			// The score is written in ExerciseStopCommand now
-			// Add more data to the exerciseMark ready to send it as a score
-			//thisExerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
-			//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			//thisExerciseMark.UID = bentoProxy.getCurrentExerciseUID();
-
-			// Trigger a notification to write the score out
-			//sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
+			// #294 - if the exercise has questions then the score gets written here, but only the first time the marking window opens (per exercise)
+			if (exercise.hasQuestions() && !exerciseProxy.exerciseMarkWritten) {
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				
+				// Add more data to the exerciseMark ready to send it as a score
+				exerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
+				exerciseMark.UID = bentoProxy.getExerciseUID(exercise.href); // TODO: This assumes that Adrian's getExerciseUID works as intended; check that with him
+				
+				sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
+				
+				exerciseProxy.exerciseMarkWasWritten();
+			}
 			
 			sendNotification(BBNotifications.MARKING_SHOWN, exercise);
 		}

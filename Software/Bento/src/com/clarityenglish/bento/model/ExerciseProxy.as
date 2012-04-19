@@ -62,6 +62,11 @@ package com.clarityenglish.bento.model {
 		private var _exerciseMarked:Boolean = false;
 		
 		/**
+		 * #294 - a flag that is set when a mark for this particular exercise has been written to the db.  This does not get reset on 'try again'.
+		 */
+		private var _exerciseMarkWritten:Boolean = false;
+		
+		/**
 		 * A flag to track whether or not the exercise has had its feedback seen 
 		 */
 		private var _exerciseFeedbackSeen:Boolean = false;
@@ -126,6 +131,14 @@ package com.clarityenglish.bento.model {
 		
 		public function get exerciseMarked():Boolean {
 			return _exerciseMarked;
+		}
+		
+		public function get exerciseMarkWritten():Boolean {
+			return _exerciseMarkWritten;
+		}
+		
+		public function exerciseMarkWasWritten():void {
+			_exerciseMarkWritten = true;
 		}
 		
 		public function get exerciseFeedbackSeen():Boolean {

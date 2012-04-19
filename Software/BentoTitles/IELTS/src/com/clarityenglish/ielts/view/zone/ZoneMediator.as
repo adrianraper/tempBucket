@@ -155,12 +155,12 @@
 			// #111 Write a record that they have started watching the video
 			// Unless you can simply record that they started and then write the record when they stop?
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var thisExerciseMark:ExerciseMark = new ExerciseMark();
-			thisExerciseMark.duration = 0
-			thisExerciseMark.UID = bentoProxy.getExerciseUID(href);
+			var exerciseMark:ExerciseMark = new ExerciseMark();
+			exerciseMark.duration = 0;
+			exerciseMark.UID = bentoProxy.getExerciseUID(href);
 			
 			// Trigger a notification to write the score out
-			sendNotification(BBNotifications.SCORE_WRITE, thisExerciseMark);
+			sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 			
 			// #269
 			sendNotification(BBNotifications.ACTIVITY_TIMER_RESET);

@@ -176,7 +176,6 @@ package com.clarityenglish.bento.model {
 		 * 
 		 */
 		public function getCurrentExerciseUID():String {
-			
 			if (!currentExercise) {
 				log.error("Attempt to use current exercise UID when there is no current exercise");
 				return "";
@@ -189,13 +188,13 @@ package com.clarityenglish.bento.model {
 			
 			return pid + "." + cid + "." + uid + "." + eid;
 		}
+		
 		/**
 		 * Get the UID of any exercise from its href
 		 * @return 
 		 * 
 		 */
 		public function getExerciseUID(href:Href):String {
-			
 			if (!href) {
 				log.error("Attempt to get exercise UID from an empty href");
 				return "";
