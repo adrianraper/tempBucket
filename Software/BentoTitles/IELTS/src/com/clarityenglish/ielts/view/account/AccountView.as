@@ -159,6 +159,8 @@ package com.clarityenglish.ielts.view.account {
 			}
 		}
 		
+		// TODO. Unload the countdownDisplay.swc when you don't need it anymore.
+		
 		/**
 		 * The user changed the exam date.  
 		 * @param event

@@ -69,7 +69,6 @@
 		
 		<s:Spacer height="5" />
 		
-		
 		<s:VGroup width="120" height="100%" >	
 			<s:Label id="countdownHeading" text="How long until my test?"  />
 			<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.userDetails.examDate}"/>
@@ -99,12 +98,10 @@
 							<s:NumericStepper id="examMinutes" minimum="0" maximum="45" stepSize="15" 
 											  value="{Number(formatExamDetails(hostComponent.userDetails, 'mins'))}" textAlign="center"/>
 						</s:VGroup>
-						
 					</s:HGroup>
 							
-						
-					
-					<s:VGroup paddingTop="13" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}">	
+					<s:VGroup paddingTop="13" visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"
+							  includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}">	
 						<s:HGroup>
 							<s:Label text="Registered name:" />
 							<s:Spacer width="30"/>
@@ -129,19 +126,22 @@
 							<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.userDetails.expiryDate),'d MMMM yyyy')}" fontWeight="bold"/>
 						</s:HGroup>
 						<s:Spacer height="3" />
-							<s:HGroup includeInLayout="{hostComponent.productVersion!='lastMinute'}" >
+							<s:HGroup visible="{hostComponent.productVersion=='homeUser'}" 
+									  includeInLayout="{hostComponent.productVersion=='homeUser'}" >
 								<s:Label text="Current password:" />
 								<s:Spacer width="24"/>
 								<s:TextInput id="currentPassword" width="180" />
 							</s:HGroup>
 							<s:Spacer height="3" />
-							<s:HGroup includeInLayout="{hostComponent.productVersion!='lastMinute'}" >
+							<s:HGroup visible="{hostComponent.productVersion=='homeUser'}"
+									  includeInLayout="{hostComponent.productVersion=='homeUser'}" >
 								<s:Label text="New password:"  />
 								<s:Spacer width="40"/>
 								<s:TextInput id="newPassword" width="180"  />
 							</s:HGroup>
 							<s:Spacer height="3" />
-							<s:HGroup includeInLayout="{hostComponent.productVersion!='lastMinute'}" >
+							<s:HGroup visible="{hostComponent.productVersion=='homeUser'}"
+									  includeInLayout="{hostComponent.productVersion=='homeUser'}" >
 								<s:Label text="Confirm password:"  />
 								<s:Spacer width="22"/>
 								<s:TextInput id="confirmPassword" width="180" />
@@ -154,7 +154,8 @@
 		
 		<s:Spacer height="3" />
 		
-		<s:Button id="saveChangesButton" label="Save changes" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"/>
+		<s:Button id="saveChangesButton" label="Save changes" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"
+				  visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"/>
 		
 	</s:VGroup>
 	

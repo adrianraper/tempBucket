@@ -8,8 +8,8 @@
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN*</language>
-	<contentPath>http://localhost/Content/</contentPath>
-	<remoteDomain>http://localhost/</remoteDomain>
-	<remoteGateway>http://localhost/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://dock.projectbench/Content/</contentPath>
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>IELTSService</remoteService>
 </config>

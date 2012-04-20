@@ -12,6 +12,7 @@
 			super();
 			this.addEventListener(Event.ENTER_FRAME, counterDisplay);
 			this.init();
+			//this.counterDisplay();
 		}
 		public function get targetDate():Date {
 			return this._targetDate;
@@ -20,12 +21,12 @@
 			this._targetDate = value;
 		}
 		protected function init():void {
-			//trace("init");
-			//this.targetDate(new Date(2013, 11, 30));
+			trace("init countDownDisplay");
+			//this.targetDate = new Date(2012, 06, 30);
 		}
-		private function counterDisplay(e:Event):void {
+		private function counterDisplay(e:Event = null):void {
 			if (!this.targetDate) {
-				//trace("no date yet");
+				trace("no date yet");
 				daysTxt.text = "--";
 				hoursTxt.text = "--";
 				minsTxt.text = "--";
@@ -57,7 +58,7 @@
 					minsTxt.text = zeroPad(min.toString(),2);
 					secsTxt.text = zeroPad(sec.toString(),2);
 				}
-				//trace("target = " + targetDate.toString() + " min=" + min + " minsTxt=" + minsTxt.text);
+				trace("target = " + targetDate.toString() + " min=" + min + " minsTxt=" + minsTxt.text);
 			}
 		}
 
