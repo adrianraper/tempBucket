@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -45,13 +46,13 @@ package com.clarityenglish.ielts.view.zone {
 				this.toolTipText = toolTipText;
 			} else {
 				switch (productVersion) {
-					case "fullVersion":
+					case IELTSApplication.FULL_VERSION:
 						this.toolTipText = "Not currently available.";
 						break;
-					case "lastMinute":
+					case IELTSApplication.LAST_MINUTE:
 						this.toolTipText = "Only available in the full version. See My Profile page for more details."
 						break;
-					case "tenHour":
+					case IELTSApplication.TEST_DRIVE:
 						this.toolTipText = "Only available in the candidate version. See My Profile page for more details."
 						break;
 					default:

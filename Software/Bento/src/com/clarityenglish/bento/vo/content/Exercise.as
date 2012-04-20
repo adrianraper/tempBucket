@@ -127,8 +127,8 @@ package com.clarityenglish.bento.vo.content {
 			
 			// enabledFlag is binary based for backwards compatability
 			// You can link to an exercise if - it is not disabled and it has navigate on.
-			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_NAVIGATE_ON)==Exercise.EF_NAVIGATE_ON &&
-																	!((exerciseNode.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED)));
+			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_NAVIGATE_ON) == Exercise.EF_NAVIGATE_ON &&
+																	!((exerciseNode.@enabledFlag & Exercise.EF_DISABLED) == Exercise.EF_DISABLED)));
 		}
 		/**
 		 * This is a static function that determines whether an exercise should be displayed in the menu or not. It runs off the exercise xml node in the menu
@@ -145,8 +145,8 @@ package com.clarityenglish.bento.vo.content {
 			// enabledFlag is binary based for backwards compatability
 			// You can see an exercise on the menu - if it is menuOn and not displayOff.
 			// If it is disabled, you will see it differently and not be able to click it.
-			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON)==Exercise.EF_MENU_ON &&
-																	!((exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF)==Exercise.EF_DISPLAY_OFF)));
+			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON) == Exercise.EF_MENU_ON &&
+																	!((exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF) == Exercise.EF_DISPLAY_OFF)));
 		}
 		/**
 		 * This is a static function that determines whether an exercise is enabled on the menu or not.

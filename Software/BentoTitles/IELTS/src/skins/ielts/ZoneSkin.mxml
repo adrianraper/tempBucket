@@ -40,6 +40,7 @@
 				new DisabledPopupWatcher(adviceZoneVideoList, hostComponent.productVersion);
 				new DisabledPopupWatcher(examPracticeDataGroup, hostComponent.productVersion);
 				new DisabledPopupWatcher(examPracticeAnswerDataGroup, hostComponent.productVersion);
+				new DisabledPopupWatcher(unitList, hostComponent.productVersion);
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {
@@ -298,6 +299,9 @@
 														public override function set data(value:Object):void {
 															super.data = value;
 															captionLabel.text = data.@caption;
+															
+															// #213
+															enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 														}
 													]]>
 												</fx:Script>
@@ -344,7 +348,6 @@
 															examPracticeViewButton.label = data.@caption;
 															
 															// #213
-															//enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
 															enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 														}
 													}
@@ -392,7 +395,6 @@
 															examPracticeAnswerButton.label = data.@answerCaption;
 															
 															// #213
-															//enabled = !(data.hasOwnProperty("@enabled") && data.@enabled.toString() == "false")
 															enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 														}
 													}
