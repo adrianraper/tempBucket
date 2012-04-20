@@ -15,9 +15,9 @@
 	<s:Spacer height="3" />
 
 	<s:HGroup paddingTop="5" paddingLeft="35">
-		<s:Button id="teacherButton" label="teacher" />
+		<s:Button id="teacherButton" label="Teacher" />
 		<s:Spacer width="1" />
-		<s:Button id="candidateButton" label="candidate" />
+		<s:Button id="candidateButton" label="Candidate" />
 	</s:HGroup>
 
 </s:Skin>
