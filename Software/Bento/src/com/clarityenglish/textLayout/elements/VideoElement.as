@@ -37,6 +37,9 @@ package com.clarityenglish.textLayout.elements {
 		
 		private var _videoDimensionsCalculated:Boolean;
 		
+		// #306
+		private var currentlyPlayerVideoHasFinished:Boolean;
+		
 		// This is a weak dictionary with a single key that statically tracks the currently playing video without making a GC root
 		private static var _currentlyPlayingVideoPlayerDictionary:Dictionary;
 		
@@ -181,12 +184,19 @@ package com.clarityenglish.textLayout.elements {
 			} else if (event.state == MediaPlayerState.PAUSED) {
 				// #109
 				currentlyPlayingVideoPlayer = null;
+			} else if (event.state == MediaPlayerState.READY) {
+				// #206
+				if (currentlyPlayerVideoHasFinished) {
+					currentlyPlayerVideoHasFinished = false;
+					currentlyPlayingVideoPlayer.pause();
+					currentlyPlayingVideoPlayer = null;
+				}
 			}
 		}
 		
 		private function onTimeComplete(event:TimeEvent):void {
 			// #206
-			currentlyPlayingVideoPlayer = null;
+			currentlyPlayerVideoHasFinished = true;
 		}
 		
 		/**
