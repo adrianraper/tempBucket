@@ -85,7 +85,6 @@ package com.clarityenglish.textLayout.elements {
 					var videoPlayer:VideoPlayer = new VideoPlayer();
 					videoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange, false, 0, true);
 					videoPlayer.addEventListener(TimeEvent.COMPLETE, onTimeComplete, false, 0, true);
-					videoPlayer.addEventListener(LoadEvent.BYTES_LOADED_CHANGE, onBytesLoadedChange, false, 0, true);
 					
 					// To let practice zone video come from rtmp too, we need some handling here
 					// But this does NOT work, we see nothing in the exercise.
@@ -146,15 +145,6 @@ package com.clarityenglish.textLayout.elements {
 					
 					component = swfLoader;
 					break;
-			}
-		}
-		
-		// An attempt to fix #313
-		private var seekedToFirstFrame:Boolean = false;
-		protected function onBytesLoadedChange(event:LoadEvent):void {
-			if (!seekedToFirstFrame && event.bytes > 0) {
-				event.target.seek(0);
-				seekedToFirstFrame = true;
 			}
 		}
 		
