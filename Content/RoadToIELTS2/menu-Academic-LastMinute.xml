@@ -6,18 +6,17 @@
       <menu id="52">
 		<course id="1287130100000" class="reading" caption="Reading" description="" >
 			<groups>
-				<group id="1" caption="Set 1" task="1" description="" />
-				<group id="2" caption="Set 2" task="1" description="" />
-				<group id="3" caption="Set 3" task="1" description="" />
-				<group id="4" caption="Set 4" task="1" description="" />
-				<group id="5" caption="Set 5" task="1" description="" />
-				<group id="6" caption="Set 6" task="1" description="" />
-				<group id="7" caption="Set 7" task="1" description="" />
-				<group id="8" caption="Set 8" task="1" description="" />
-				<group id="9" caption="Set 9" task="1" description="" />
-				<group id="10" caption="Set 10" task="1" description="" />
-				<group id="11" caption="Set 11" task="1" description="" />
-				<group id="12" caption="Set 12" task="1" description="" />
+				<group id="1" caption="Set 1"  />
+				<group id="2" caption="Set 2" />
+				<group id="3" caption="Set 3" />
+				<group id="4" caption="Set 4" enabledFlag="8"/>
+				<group id="5" caption="Set 5" enabledFlag="8"/>
+				<group id="6" caption="Set 6" enabledFlag="8"/>
+				<group id="7" caption="Set 7" enabledFlag="8"/>
+				<group id="8" caption="Set 8" enabledFlag="8"/>
+				<group id="9" caption="Set 9" enabledFlag="8"/>
+				<group id="10" caption="Set 10" enabledFlag="8"/>
+				<group id="11" caption="Set 11" enabledFlag="8"/>
 			</groups>
 			<unit id="1287130110000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" enabledFlag="3"  />
@@ -170,17 +169,17 @@
 				<group id="2" caption="Set 2" task="1" description="" />
 				<group id="3" caption="Set 3" task="1" description="" />
 			</groups>
-			<unit id="1287130210000" class="question-zone" caption="Starting out">
+			<unit id="1287130210000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" enabledFlag="3" />
 				<exercise id="1287130210002" caption="Download PDF" href="listening/ebook/ebook_listening.pdf" enabledFlag="3" />
 				<exercise id="1287130210003" caption="Advice" href="listening/questionzonevideo1.rss" enabledFlag="3" />
 			</unit>
-			<unit id="1287130220000" class="exam-practice" caption="Test practice">
+			<unit id="1287130220000" class="exam-practice" caption="Test practice" enabledFlag="3">
 				<exercise id="1287130220001" href="listening/pdf/listening_practice1.pdf" caption="Practice test 1" answerCaption="Answer sheet 1" answerHref="listening/pdf/listening_answer1.pdf" audioHref="listening/media/listening_tp_part1.mp3" enabledFlag="3" />
 				<exercise id="1287130220002" href="listening/pdf/listening_practice2.pdf" caption="Practice test 2" answerCaption="Answer sheet 2" answerHref="listening/pdf/listening_answer2.pdf" audioHref="listening/media/listening_tp_part2.mp3" enabledFlag="3" />
 				<exercise id="1287130220003" href="listening/pdf/listening_practice3.pdf" caption="Practice test 3" answerCaption="Answer sheet 3" answerHref="listening/pdf/listening_answer3.pdf" audioHref="listening/media/listening_tp_part3.mp3" enabledFlag="8" />
 			</unit>
-			<unit id="1287130230000" class="advice-zone" caption="Advice and tutorials">
+			<unit id="1287130230000" class="advice-zone" caption="Advice and tutorials" enabledFlag="3">
 				<exercise id="1287130230001" href="listening/advicezonevideo1.rss" caption="IELTS Listening Advice" thumbnail="listening/thumbnails/listening_advice.jpg" enabledFlag="3" />
 			</unit>
 			<unit id="1287130240000" class="practice-zone" caption="Practice zone">
@@ -222,12 +221,12 @@
 				<group id="2" caption="Set 2" task="1" description="" />
 				<group id="3" caption="Set 3" task="1" description="" />
 			</groups>
-			<unit id="1287130310000" class="question-zone" caption="Starting out">
+			<unit id="1287130310000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" enabledFlag="3" />
 				<exercise id="1287130310002" caption="Download PDF" href="speaking/ebook/ebook_speaking.pdf" enabledFlag="3" />	
 				<exercise id="1287130310003" caption="Advice" href="speaking/questionzonevideo1.rss" enabledFlag="3" />
 			</unit>
-			<unit id="1287130330000" class="advice-zone" caption="Advice and tutorials">
+			<unit id="1287130330000" class="advice-zone" caption="Advice and tutorials" enabledFlag="3">
 				<exercise id="1287130330001" href="speaking/advicezonevideo1.rss" caption="IELTS Speaking Advice" thumbnail="speaking/thumbnails/speaking_keyfacts.jpg" enabledFlag="3" />
 				<exercise id="1287130330002" href="speaking/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="speaking/thumbnails/speaking_whattheexaminer.jpg" enabledFlag="8" />
 				<exercise id="1287130330003" href="speaking/advicezonevideo3.rss" caption="Advice: What do I talk about?" thumbnail="speaking/thumbnails/speaking_advice.jpg" enabledFlag="3" />
@@ -235,7 +234,7 @@
 				<exercise id="1287130330005" href="speaking/advicezonevideo5.rss" caption="Tutorial: Interview Phase 2" thumbnail="speaking/thumbnails/speaking_tutorial1.jpg" enabledFlag="8" />
 				<exercise id="1287130330006" href="speaking/advicezonevideo6.rss" caption="Tutorial: Interview Phase 3" thumbnail="speaking/thumbnails/speaking_tutorial2.jpg" enabledFlag="8" />
 			</unit>
-			<unit id="1287130340000" class="practice-zone" caption="Practice zone">
+			<unit id="1287130340000" class="practice-zone" caption="Practice zone" enabledFlag="3">
 				<exercise id="1156153794397" group="1" caption="Introduction" href="speaking/exercises/1156153794397.xml" enabledFlag="3" thumbnail="speaking/thumbnails/a_speak_set1_01.jpg">
 				  <!--Presentation - TB-->
 				</exercise>
@@ -304,18 +303,18 @@
 				<group id="5" caption="Set 3 task 1" task="1" description="" />
 				<group id="6" caption="Set 3 task 2" task="2" description="" />
 			</groups>
-			<unit id="1287130410000" class="question-zone" caption="Starting out">
+			<unit id="1287130410000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" enabledFlag="3" />
 				<exercise id="1287130410002" caption="Download PDF" href="writing/ebook/ebook_writing.pdf" enabledFlag="3" />
 				<exercise id="1287130410003" caption="Advice" href="writing/questionzonevideo1.rss" enabledFlag="3" />
 			</unit>
-			<unit id="1287130420000" class="exam-practice" caption="Test practice">
+			<unit id="1287130420000" class="exam-practice" caption="Test practice" enabledFlag="3">
 				<exercise id="1287130420001" href="writing/pdf/writing_ac_practice1.pdf" caption="Practice test 1" answerCaption="Answer sheet 1" answerHref="writing/pdf/writing_ac_answer1.pdf" enabledFlag="3" />
 				<exercise id="1287130420002" href="writing/pdf/writing_ac_practice2.pdf" caption="Practice test 2" answerCaption="Answer sheet 2" answerHref="writing/pdf/writing_ac_answer2.pdf" enabledFlag="3" />
 				<exercise id="1287130420003" href="writing/pdf/writing_ac_practice3.pdf" caption="Practice test 3" answerCaption="Answer sheet 3" answerHref="writing/pdf/writing_ac_answer3.pdf" enabledFlag="8" />
 			</unit>
 
-			<unit id="1287130430000" class="advice-zone" caption="Advice and tutorials">  
+			<unit id="1287130430000" class="advice-zone" caption="Advice and tutorials" enabledFlag="3">  
 				<exercise id="1287130430001" href="writing/advicezonevideo1.rss" caption="IELTS Writing Advice" thumbnail="writing/thumbnails/writing_keyfacts.jpg" enabledFlag="3" />
 				<exercise id="1287130430002" href="writing/advicezonevideo2.rss" caption="What the examiner is looking for" thumbnail="writing/thumbnails/writing_whattheexaminer.jpg" enabledFlag="8" />
 				<exercise id="1287130430003" href="writing/advicezonevideo3.rss" caption="Advice: Writing task 2" thumbnail="writing/thumbnails/writing_advice.jpg" enabledFlag="3" />
@@ -323,7 +322,7 @@
 				<exercise id="1287130430005" href="writing/advicezonevideo5a.rss" caption="Tutorial: Writing task 2" thumbnail="writing/thumbnails/writing_tutorial1.jpg" enabledFlag="3" />
 
 			</unit>
-			<unit id="1287130440000" class="practice-zone" caption="Practice zone">
+			<unit id="1287130440000" class="practice-zone" caption="Practice zone" enabledFlag="3">
 				<exercise id="1156153794055" group="1" caption="Introduction" href="writing/exercises/1156153794055.xml" enabledFlag="3" difficulty="1" thumbnail="writing/thumbnails/a_writing_set1_01.jpg">
 				  <!--Presentation - TB-->
 				</exercise>

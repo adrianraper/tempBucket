@@ -44,15 +44,29 @@
 				
 				return 1;
 			}
+			
+			// Sort unit names with numbers in them so that Set 2 task 2 is less than Set 12 task 1
 			private function sortUnits(obj1:Object, obj2:Object, gc:GridColumn):int  {
-				if (obj1[gc.dataField] == obj2[gc.dataField])
+				var df1:String = obj1[gc.dataField].toString();
+				var df2:String = obj2[gc.dataField].toString();
+				
+				if (df1 == df2)
 					return 0;
 				
-				// Try to catch unit names with numbers in them
-				if ((obj1[gc.dataField].substr(0,4).toLowerCase() == 'set ') && 
-					(obj2[gc.dataField].substr(0,4).toLowerCase() == 'set ')) {
-					if (Number(obj1[gc.dataField].substr(4)) < Number(obj2[gc.dataField].substr(4)))
+				if ((df1.substr(0,4).toLowerCase() == 'set ') && 
+					(df2.substr(0,4).toLowerCase() == 'set ')) {
+					
+					// Grab the number at the beginning of the string
+					var numberRegexPattern:RegExp = /\d*/;
+					var df1n:Number = new Number(numberRegexPattern.exec(df1.substr(4)));
+					var df2n:Number = new Number(numberRegexPattern.exec(df2.substr(4)));
+					if (df1n < df2n)
 						return -1;
+					if (df1n == df2n) {
+						// Do a normal sort after that (we never get to 10 with tasks!)
+						if (df1.substr(4).toLowerCase() < df2.substr(4).toLowerCase())
+							return -1;
+					}
 				}
 				
 				return 1;
