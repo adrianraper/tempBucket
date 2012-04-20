@@ -11,9 +11,18 @@
 		public function CountdownDisplay() {
 			super();
 			
-			this.addEventListener(Event.ENTER_FRAME, counterDisplay);
+			this.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			this.addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
 			this.init();
-			//this.counterDisplay();
+		}
+		
+		private function onAddedToStage(e:Event):void {
+			this.addEventListener(Event.ENTER_FRAME, counterDisplay);
+		}
+		
+		private function onRemovedFromStage(e:Event):void {
+			this.removeEventListener(Event.ENTER_FRAME, counterDisplay);
 		}
 		
 		public function get targetDate():Date {
