@@ -119,6 +119,8 @@ package com.clarityenglish.common.vo.config {
 		private function buildMenuFilename():void {
 			// For loginService, the config.xml might not know which productCode you are
 			// <courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+			
+			// TODO. This hardcoding is duplicated in ContentOps.php, which is not a good idea
 			if (paths.menuFilename.indexOf("{productCode}")>=0) {
 				switch (productCode) {
 					case 52:

@@ -1011,6 +1011,7 @@ EOD;
 				// v3.5 Or is it a new Bento title?
 				//NetDebug::trace("this folder is code=".$folder);
 				//NetDebug::trace("this product is code=".$titleObj->F_ProductCode);
+				//NetDebug::trace("this lang is code=".$titleObj->F_LanguageCode);
 				if (intval($titleObj->F_ProductCode) > 1000) {
 					// case-sensitive
 					$titleObj->indexFile = "Emu.xml";
@@ -1132,8 +1133,9 @@ EOD;
 		}		
 		return $title;
 	}
-	private function _buildBentoUnits($courseXML, $course, $generateMaps = false, $courseType = 'orchid') {
-		return $this->_buildUnits($courseXML->getElementsByTagName("unit"), $course, $generateMaps, $courseType);
+	private function _buildBentoUnits($courseXML, $course, $generateMaps = false, $courseType = 'bento') {
+		// As well as passing each unit node, need get group node down to the exercise level
+		return $this->_buildUnits($courseXML->getElementsByTagName("unit"), $course, $generateMaps, $courseType, $courseXML->getElementsByTagName("group"));
 	}
 
 	/**
@@ -1306,7 +1308,7 @@ EOD;
 	 * Find all the units in a course.
 	 * @return Array An Array of Unit objects
 	 */
-	private function _buildUnits($unitsXML, $course, $generateMaps = false, $courseType = 'orchid') {
+	private function _buildUnits($unitsXML, $course, $generateMaps = false, $courseType = 'orchid', $groupXML = null) {
 		
 		$units = array();
 		foreach ($unitsXML as $unitXML) {
@@ -1333,11 +1335,12 @@ EOD;
 				$unit->name = urldecode($unitXML->getAttribute("name")=="" ? $unitXML->getAttribute("caption") : $unitXML->getAttribute("name"));
 				//$unit->caption = urldecode($unitXML->getAttribute("caption"));
 				$unit->enabledFlag = $unitXML->getAttribute("enabledFlag");
+				
 				// v3.1 EMU information needed
 				//$unit->licencedProductCode = $unitXML->getAttribute("licencedProductCode");
 				//NetDebug::trace("ContentOps: unitXML, name=".$unit->name);
 
-				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps, $courseType);	
+				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps, $courseType, $groupXML);	
 				
 				if ($unit->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {
@@ -1359,7 +1362,7 @@ EOD;
 	 * @param DOMElement The course node containing the exercises
 	 * @return An array of exercise objects
 	 */
-	private function _buildExercises($unitXML, $unit, $generateMaps = false, $courseType = 'orchid') {
+	private function _buildExercises($unitXML, $unit, $generateMaps = false, $courseType = 'orchid', $groupXML = null) {
 		if ($courseType == 'bento') {
 			$exercisesXML = $unitXML->getElementsByTagName("exercise");
 		} else {
@@ -1386,7 +1389,26 @@ EOD;
 				//$exercise->id = $exerciseXML->getAttribute("exerciseID");
 				$exercise->id = $exerciseXML->getAttribute("id");
 				// v3.1 Make sure we read either the name or the caption from the XML, but always save as name in our class.
+				// For R2I we need to add a group name to the exercise since it is not really in the hierarchy, but essential for organising the report
+				$groupCaption = null;
+				if ($courseType == 'bento') {
+					if ($exerciseXML->getAttribute("group") && $groupXML) {
+						//NetDebug::trace("group id=".$exerciseXML->getAttribute("group"));
+						// TODO. It would make sense to use xpath here, but our XML is built on DOM document rather than simple_xml
+						// For now just do a quick loop.
+						// $results = $groupXML->xpath("/group[@id='".$exerciseXML->getAttribute("group")."']");
+						foreach ($groupXML as $groupNode) {
+							if ($groupNode->getAttribute("id") == $exerciseXML->getAttribute("group")) {
+								$groupCaption = (string) $groupNode->getAttribute("caption");
+								break;
+							}
+						}
+					}
+				}
 				$exercise->name = urldecode($exerciseXML->getAttribute("name")=="" ? $exerciseXML->getAttribute("caption") : $exerciseXML->getAttribute("name"));
+				if ($groupCaption) {
+					$exercise->name = $groupCaption.': '.$exercise->name;
+				}
 				//$exercise->caption = urldecode($exerciseXML->getAttribute("caption"));
 				$exercise->enabledFlag = $exerciseXML->getAttribute("enabledFlag");
 				// v3.1 EMU information needed

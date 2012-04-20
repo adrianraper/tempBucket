@@ -6,10 +6,10 @@
       <menu id="52">
 		<course id="1287130100000" class="reading" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
 			<groups>
-				<group id="1" caption="Set 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Set 2" task="1" alt="" />
-				<group id="3" caption="Set 3" task="1" alt="" />
-				<group id="4" caption="Set 4" task="1" alt="" />
+				<group id="1" caption="Set 1" />
+				<group id="2" caption="Set 2" />
+				<group id="3" caption="Set 3" />
+				<group id="4" caption="Set 4" />
 				<group id="5" caption="Set 5" task="1" alt="" />
 				<group id="6" caption="Set 6" task="1" alt="" />
 				<group id="7" caption="Set 7" task="1" alt="" />
@@ -18,20 +18,20 @@
 				<group id="10" caption="Set 10" task="1" alt="" />
 				<group id="11" caption="Set 11" task="1" alt="" />
 			</groups>
-			<unit id="1287130110000" class="question-zone">
-				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" />
-				<exercise id="1287130110002" caption="Download PDF" href="reading/ebook/ebook_reading.pdf" />
-				<exercise id="1287130110003" caption="IELTS Reading Key Facts" href="reading/questionzonevideo1.rss" />
+			<unit id="1287130110000" class="question-zone" enabledFlag="3" caption="Starting out">
+				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" enabledFlag="3"/>
+				<exercise id="1287130110002" caption="Download PDF" href="reading/ebook/ebook_reading.pdf" enabledFlag="3" />
+				<exercise id="1287130110003" caption="IELTS Reading Key Facts" href="reading/questionzonevideo1.rss" enabledFlag="3" />
 			</unit>
-			<unit id="1287130120000" class="exam-practice">
-				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_ac_practice1.pdf" answerCaption="Answer sheet 1" answerHref="reading/pdf/reading_ac_answer1.pdf" />
-				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_ac_practice2.pdf" answerCaption="Answer sheet 2" answerHref="reading/pdf/reading_ac_answer2.pdf" />
-				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_ac_practice3.pdf" answerCaption="Answer sheet 3" answerHref="reading/pdf/reading_ac_answer3.pdf" />
+			<unit id="1287130120000" class="exam-practice" enabledFlag="3" caption="Test practice">
+				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_ac_practice1.pdf" answerCaption="Answer sheet 1" answerHref="reading/pdf/reading_ac_answer1.pdf" enabledFlag="3" />
+				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_ac_practice2.pdf" answerCaption="Answer sheet 2" answerHref="reading/pdf/reading_ac_answer2.pdf" enabledFlag="3" />
+				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_ac_practice3.pdf" answerCaption="Answer sheet 3" answerHref="reading/pdf/reading_ac_answer3.pdf" enabledFlag="3" />
 			</unit>
-			<unit id="1287130130000" class="advice-zone">
-				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="IELTS Reading Advice" thumbnail="reading/thumbnails/reading_advice.jpg" />
+			<unit id="1287130130000" class="advice-zone" enabledFlag="3" caption="Advice and tutorials">
+				<exercise id="1287130130001" href="reading/advicezonevideo1.rss" caption="IELTS Reading Advice" thumbnail="reading/thumbnails/reading_advice.jpg" enabledFlag="3" />
 			</unit>
-			<unit id="1287130140000" class="practice-zone" >
+			<unit id="1287130140000" class="practice-zone" enabledFlag="3" caption="Practice zone">
 				<exercise id="1156153794672" group="1" caption="Short answer questions" href="reading/exercises/1156153794672.xml" enabledFlag="3" difficulty="1" thumbnail="reading/thumbnails/a_read_set1_01.jpg">
 				  <!--GF - splitscreen QB-->
 				</exercise>

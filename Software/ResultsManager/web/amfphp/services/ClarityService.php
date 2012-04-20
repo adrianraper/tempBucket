@@ -146,7 +146,7 @@ class ClarityService extends AbstractService {
 			// v3.4 I would like to send back (some) account root information as well (remember that accounts in RM means titles)
 			// v3.6 Maybe it is better to do a separate getAccount call as I also want things like adminUser's email
 			$accountRoot = $this->manageableOps->getAccountRoot($loginObj->F_RootID);
-			//NetDebug::trace('accountRoot='.$accountRoot->prefix);
+			NetDebug::trace('accountRoot='.$accountRoot->prefix);
 
 			// v3.4 Get some more information about the user (and their group/parent groups)
 			// Keep this in session so that reports can use it for editedContent
