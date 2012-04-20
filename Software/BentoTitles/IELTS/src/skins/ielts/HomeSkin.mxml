@@ -13,7 +13,7 @@
 		<s:HorizontalLayout paddingTop="0" />
 	</s:layout>	
 
-	<s:VGroup paddingTop="60" width="100%">
+	<s:VGroup paddingTop="75" width="100%">
 		<s:HGroup>
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
 			<s:VGroup alignmentBaseline="ideographicBottom">

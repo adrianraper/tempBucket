@@ -43,29 +43,28 @@ package com.clarityenglish.ielts.view.progress.components {
 			  <charts>
 			<chart_settings>
 				<animation enabled="False" />
+
 			</chart_settings>
-				<chart plot_type="Pie">
-				  <data_plot_settings enable_3d_mode="true" >
-					<pie_series style="Aqua">
+				<chart plot_type="CategorizedVertical">
+				  <data_plot_settings enable_3d_mode="true" z_padding="0.2" z_aspect="1" z_elevation="45" >
+					<bar_series shape_type="Cylinder">
 <animation enabled="False" />
 <tooltip_settings enabled="true" >
 <format><![CDATA[{%Name}]]>
 </format>
 					<font family="Arial" size="12" />
 				</tooltip_settings>
-						<label_settings enabled="true" mode="outside">
-							<background enabled="false" />
-							<position anchor="Center" valign="Center" halign="Center" padding="15%" />
-							<font color="#303030" family="Arial" size="12" bold="True"  />
-							<drop_shadow enabled="true" distance="2" opacity="0.5" blur_x="2" blur_y="2" />
-							</label_settings>
-							<connector enabled="True" color="#303030" opacity="1" thickness="1.4" />
-
-						</pie_series>
+			<bar_style>
+			<effects>
+			<bevel enable="false" />
+			</effects>
+			</bar_style>
+					</bar_series>
 
 				  </data_plot_settings>
 				<styles>
-					<pie_style name="Writing">
+					<bar_style name="Writing">
+						<border thickness="0" color={_writingDull} />
 						<states>
 							<normal>
 								<fill enabled="true" type="solid" color={_writingBright} />
@@ -86,8 +85,9 @@ package com.clarityenglish.ielts.view.progress.components {
 								<fill enabled="true" type="solid" color="#00FFFF" />
 							</missing>
 						</states>
-					</pie_style>
-					<pie_style name="Reading">
+					</bar_style>
+					<bar_style name="Reading">
+						<border thickness="0" color={_readingDull} />
 						<states>
 							<normal>
 								<fill enabled="true" type="solid" color={_readingBright} />
@@ -108,8 +108,10 @@ package com.clarityenglish.ielts.view.progress.components {
 								<fill enabled="true" type="solid" color="#00FFFF" />
 							</missing>
 						</states>
-					</pie_style>
-					<pie_style name="Speaking">
+					</bar_style>
+					<bar_style name="Speaking">
+						<border thickness="0" color={_speakingDull} />
+
 						<states>
 							<normal>
 								<fill enabled="true" type="solid" color={_speakingBright} />
@@ -130,8 +132,10 @@ package com.clarityenglish.ielts.view.progress.components {
 								<fill enabled="true" type="solid" color="#00FFFF" />
 							</missing>
 						</states>
-					</pie_style>
-					<pie_style name="Listening">
+					</bar_style>
+					<bar_style name="Listening">
+						<border thickness="0" color={_listeningDull} />
+
 						<states>
 							<normal>
 								<fill enabled="true" type="solid" color={_listeningBright} />
@@ -152,10 +156,10 @@ package com.clarityenglish.ielts.view.progress.components {
 								<fill enabled="true" type="solid" color="#00FFFF" />
 							</missing>
 						</states>
-					</pie_style>
+					</bar_style>
 				</styles>			
 				  <data>
-					<series name="You" type="Pie" >
+					<series name="You" type="Bar" >
 					<point name="Reading" />
 					<point name="Listening" />
 					<point name="Speaking" />
@@ -165,6 +169,28 @@ package com.clarityenglish.ielts.view.progress.components {
 				  <chart_settings>
 					<chart_background enabled="false" />
 					<title enabled="false" />
+<axes>
+				<y_axis>
+					<title rotation="0">
+							<font family="Arial" bold="true" size="12" />
+								<text>Score %</text>
+								</title>
+<labels allow_overlap="true" show_first_label="true" show_last_label="true">
+									<font family="Arial" size="12" />
+									<format>{"{%Value}{numDecimals:0}"}</format>
+								</labels>
+								<major_tickmark enabled="true" />
+								<scale minimum="0" maximum="100" major_interval="20" mode="Overlay"/>
+							</y_axis>
+						<x_axis>
+
+						<labels>
+							<font size="12" family="Helvetica,Arial" bold="true" />
+
+						</labels>
+						<title enabled="false" />
+					  </x_axis>
+					</axes>
 					<legend enabled="false" />
 				  </chart_settings>
 				</chart>

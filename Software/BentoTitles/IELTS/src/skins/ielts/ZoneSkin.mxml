@@ -95,7 +95,7 @@
 		<ui:PopoutExerciseSelector id="popoutExerciseSelector"
 								   href="{hostComponent.href}"
 								   courseClass="{hostComponent.courseClass}"
-								   width="50%"
+								   width="80%"
 								   x.normalStates="{width / 2}"
 								   x.popoutStates="0"
 								   top="90"

@@ -19,13 +19,23 @@
 		</s:layout>
 		
 	<s:VGroup width="100%" height="100%" top="120" left="120" paddingLeft="25" >
-		<s:HGroup>
+		<s:HGroup id="LastMinute" >
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='IELTSLogoLastMinute_Icon')" left="0" top="0" width="40" height="40" />
 			<s:VGroup>
 				<s:Label text = "Road to IELTS - Last minute" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
 				<s:Label text="Special last minute practice only for British Council IELTS candidates!" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="92%" paddingLeft="7" lineHeight="18" />
 			</s:VGroup>
 		</s:HGroup>
+		
+		<!-- Full version code
+		<s:HGroup id="FullVersion" >
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='IELTSLogoFullVersion_Icon')" left="0" top="0" width="40" height="40" />
+			<s:VGroup>
+				<s:Label text = "Road to IELTS - Full version" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
+				<s:Label text="Full version IELTS practice preparing candidates for IELTS!" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="92%" paddingLeft="7" lineHeight="18" />
+			</s:VGroup>
+		</s:HGroup>
+		-->
 		<s:Spacer height="3" />
 		<s:Rect verticalCenter="0" width="88%" height="1"  >
 			<s:fill>
