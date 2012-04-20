@@ -108,6 +108,8 @@ package com.clarityenglish.textLayout.elements {
 					videoPlayer.height = height;
 					videoPlayer.autoPlay = _autoPlay;
 					
+					videoPlayer.autoDisplayFirstFrame = true;
+					
 					component = videoPlayer;
 					
 					// #113
