@@ -13,9 +13,8 @@
 			import com.clarityenglish.common.vo.content.Title;
 			import com.clarityenglish.common.vo.manageable.User;
 			
-			import mx.events.CalendarLayoutChangeEvent;
-			
 			import org.davekeen.util.DateUtil;
+			
 			private function formatExamDetails(userDetails:User, type:String):String {
 				// If examDate is not set, then default to expiryDate - 1 week
 				if (userDetails.examDate) {
@@ -38,6 +37,7 @@
 				}
 				return null;
 			}
+			
 			private function dateChooserInit(userDetails:User):void {
 				examDateField.selectedDate = userDetails.examDate;
 				// Registration might be a long time ago - not much point being able to select anything in the past
@@ -47,6 +47,7 @@
 				var selectEndDate:Date = DateUtil.dateAdd(selectStartDate, "y", 1);
 				examDateField.selectableRange = {rangeStart: selectStartDate, rangeEnd: selectEndDate};
 			}
+			
 			private function formatScreenDate(date:Date):String {
 				return DateUtil.formatDate(date,'d MMMM yyyy');
 			}
@@ -70,8 +71,8 @@
 		<s:Spacer height="5" />
 		
 		<s:VGroup width="120" height="100%" >	
-			<s:Label id="countdownHeading" text="How long until my test?"  />
-			<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.userDetails.examDate}"/>
+			<s:Label id="countdownHeading" text="How long until my test?" />
+			<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.userDetails.examDate}" />
 			
 			<s:Spacer height="3" />
 			
