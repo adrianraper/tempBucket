@@ -297,9 +297,6 @@ package com.clarityenglish.ielts.view.title {
 					}
 					break;
 				// #299
-				case upgradeButton:
-					upgradeButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { upgrade.dispatch(); } );
-					break;
 				case registerButton:
 					registerButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { register.dispatch(); } );
 					break;
