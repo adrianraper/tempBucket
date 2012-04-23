@@ -6,12 +6,21 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
-	
+	<fx:Script>
+		<![CDATA[ 
+			import flash.net.navigateToURL; 
+			protected function clickHandler(event:MouseEvent):void 
+			{ 
+				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
+				navigateToURL(urlReq, "_blank"); 
+			} 
+		]]> 
+	</fx:Script>
 	<s:Group width="100%" top="3">
 
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BetaIcon')" right="0" top="43" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0" top="44"  visible="true" click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
 	</s:Group>
 	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="100">
 		<s:layout>
