@@ -211,23 +211,23 @@ package com.clarityenglish.ielts.view.title {
 				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "Last minute - Academic module";
+							return "Last Minute - Academic module";
 						case IELTSApplication.TEST_DRIVE:
-							return "Test drive - Academic module";
+							return "Test Drive - Academic module";
 						case IELTSApplication.FULL_VERSION:
 						default:
-							return "Full version - Academic module";
+							return "Full Version - Academic module";
 					}
 					break;
 				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "Last minute - General Training module";
+							return "Last Minute - General Training module";
 						case IELTSApplication.TEST_DRIVE:
-							return "Test drive - General Training module";
+							return "Test Drive - General Training module";
 						case IELTSApplication.FULL_VERSION:
 						default:
-							return "Full version - General Training module";
+							return "Full Version - General Training module";
 					}
 					break;
 				default:

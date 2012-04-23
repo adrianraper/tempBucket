@@ -22,7 +22,7 @@
 		<s:HGroup id="LastMinute" >
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='IELTSLogoLastMinute_Icon')" left="0" top="0" width="40" height="40" />
 			<s:VGroup>
-				<s:Label text = "Road to IELTS - Last minute" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
+				<s:Label text = "Road to IELTS - Last Minute" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
 				<s:Label text="Special last minute practice only for British Council IELTS candidates!" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="92%" paddingLeft="7" lineHeight="18" />
 			</s:VGroup>
 		</s:HGroup>

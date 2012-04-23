@@ -116,21 +116,21 @@ package com.clarityenglish.ielts.view.login {
 				case 52:
 					switch (_productVersion) {
 						case "fullVersion":
-							return "Full version - Academic module";
+							return "Full Version - Academic module";
 						case "lastMinute":
-							return "Last minute - Academic module";
+							return "Last Minute - Academic module";
 						case "tenHour":
-							return "Test drive - Academic module";
+							return "Test Drive - Academic module";
 					}
 					break;
 				case 53:
 					switch (_productVersion) {
 						case "fullVersion":
-							return "Full version - General Training module";
+							return "Full Version - General Training module";
 						case "lastMinute":
-							return "Last minute - General Training module";
+							return "Last Minute - General Training module";
 						case "tenHour":
-							return "Test drive - General Training module";
+							return "Test Drive - General Training module";
 					}
 					break;
 				default:
