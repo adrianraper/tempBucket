@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -124,7 +124,7 @@
 	
 <header>
 <div id="instruction">
-	Look at the following statements about the speaking exam and decide whether they are true or false.
+	Look at the following statements about the speaking test and decide whether they are true or false.
 </div>
 </header>
 	
@@ -198,13 +198,13 @@
 
 <section id="fb5">
   <p class="feedbacktext">
-    5. The exam is between 11 and 14 minutes.
+    5. The test is between 11 and 14 minutes.
   </p>
 </section>
 
 <section id="fb6">
   <p class="feedbacktext">
-    6. You will find out how well you did when you get your exam results, no sooner!
+    6. You will find out how well you did when you get your test results, no sooner!
   </p>
 </section>
 

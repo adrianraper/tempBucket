@@ -34,8 +34,144 @@ package com.clarityenglish.ielts.view.progress.components {
 		private const _speakingBright:String = '#A93087';
 		private const _speakingDull:String = '#D43CA9';
 		private const _opacityDull:String = '0.9';
+
+		private const piechartTemplates:XML = 
+			<anychart>
+			  <settings>
+				<animation enabled="False" />
+			  </settings>
+			  <charts>
+			<chart_settings>
+				<animation enabled="False" />
+			</chart_settings>
+				<chart plot_type="Pie">
+				  <data_plot_settings enable_3d_mode="true" >
+					<pie_series style="Aqua">
+<animation enabled="False" />
+<tooltip_settings enabled="true" >
+<format><![CDATA[{%Name}]]>
+</format>
+					<font family="Arial" size="12" />
+				</tooltip_settings>
+						<label_settings enabled="true" mode="outside">
+							<background enabled="false" />
+							<position anchor="Center" valign="Center" halign="Center" padding="15%" />
+							<font color="#303030" family="Arial" size="12" bold="True"  />
+							<drop_shadow enabled="true" distance="2" opacity="0.5" blur_x="2" blur_y="2" />
+							</label_settings>
+							<connector enabled="True" color="#303030" opacity="1" thickness="1.4" />
+
+						</pie_series>
+
+				  </data_plot_settings>
+				<styles>
+					<pie_style name="Writing">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_writingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_writingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
+						</states>
+					</pie_style>
+					<pie_style name="Reading">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_readingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_readingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
+						</states>
+					</pie_style>
+					<pie_style name="Speaking">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_speakingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_speakingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
+						</states>
+					</pie_style>
+					<pie_style name="Listening">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_listeningDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_listeningDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
+						</states>
+					</pie_style>
+				</styles>			
+				  <data>
+					<series name="You" type="Pie" >
+					<point name="Reading" />
+					<point name="Listening" />
+					<point name="Speaking" />
+					<point name="Writing" />
+					</series>
+				  </data>
+				  <chart_settings>
+					<chart_background enabled="false" />
+					<title enabled="false" />
+					<legend enabled="false" />
+				  </chart_settings>
+				</chart>
+			  </charts>
+			</anychart>;
 		
-		private const chartTemplates:XML = 
+		private const barchartTemplates:XML = 
 			<anychart>
 			  <settings>
 				<animation enabled="False" />
@@ -50,7 +186,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					<bar_series shape_type="Cylinder">
 <animation enabled="False" />
 <tooltip_settings enabled="true" >
-<format><![CDATA[{%Name}]]>
+<format><![CDATA[{%Value}{numDecimals:0}%]]>
 </format>
 					<font family="Arial" size="12" />
 				</tooltip_settings>
@@ -268,11 +404,11 @@ package com.clarityenglish.ielts.view.progress.components {
 		 */
 		public function initCharts():void {
 			trace("ProgressAnalysisView.initCharts");
-			_scoreChartXML = new XML(chartTemplates.toString());
-			_durationChartXML = new XML(chartTemplates.toString());
+			_scoreChartXML = new XML(barchartTemplates.toString());
+			_durationChartXML = new XML(piechartTemplates.toString());
 			
 			// customise the label settings
-			_scoreChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}%"}</format>);
+			//_scoreChartXML.charts.chart.data_plot_settings.bar_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0}%"}</format>);
 			_durationChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0} minute(s)"}</format>);
 			
 		}

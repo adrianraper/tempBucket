@@ -31,6 +31,19 @@ p {
 	padding-left: 15px;
 	margin-left: 0px;
 	}
+
+/* For use in FV GT Writing, Set 8 task 2, Topic sentences */
+.answerList2 {
+	list-style-type: lowerLatin;
+	font-weight: bold;
+	padding-left: 20em;
+	padding-bottom: 22px;
+	padding-top: 0px;
+	margin-left: 0px;
+	line-height: 20em;
+	text-indent: 0px;
+	}
+	
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
@@ -65,7 +78,7 @@ p {
 	padding-right: 20px;
 	padding-left: 20px;
 	}
-	
+
 #body .leftFloat {
 	float: left;
 	padding-top: 0px;
@@ -92,6 +105,14 @@ img.floatleft {
 	width:420px;
 	float: left;
 }
+
+/* For use in exercises such as AC FV, Writing, Set 6 task 1, Correct tenses */
+	.rightFloat1 {
+	float: left;
+	display: block;
+	padding-top: 20px;
+	padding-left: 20px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="false"] {
@@ -285,7 +306,6 @@ h7{
 	}
 /*-----------------------------------------------------------------------------------------------*/	
 .bulletList {
-	list-style-type: circle;
 	list-style-position:outside;
 	padding-left: 5px;
 	padding-right: 225%;
@@ -295,10 +315,6 @@ h7{
 	line-height: 22em;
 	}
 
-.bulletList li{
-	text-indent: 10%;
-	}
-	
 #gapfillTable{
 	padding-top: 0px;
 	text-align: left;
@@ -312,7 +328,7 @@ h7{
 	}
 
 #gapfillText{
-	padding-left:-5px;
+	padding-left:0px;
 	padding-top: 0px;
 	text-align: left;
 	line-height: 22em;
@@ -391,6 +407,11 @@ h7{
 	
 	#leftcolumn1 p {
 	padding-bottom:12px;
+	line-height: 22em;
+	}
+	
+	.special {
+	padding-top: 12px;
 	}
 /*-----------------------------------------------------------------------------------------------*/	
 /* specify for Listening 3 table completion */

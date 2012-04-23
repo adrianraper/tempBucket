@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -33,7 +33,7 @@
 <section id="body">
   <img class="rightFloat" src="../media/set5.1_06.jpg" mode="1" id="1001"/>
     <div id="presentation">
-	<h1><p>IELTS writing task 1</p></h1>
+	<h1><p>IELTS Writing Task 1</p></h1>
 	
   <p><b>You have just seen a film you think your friend would enjoy.</b></p>
   

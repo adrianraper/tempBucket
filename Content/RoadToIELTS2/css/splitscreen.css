@@ -45,6 +45,13 @@ body > header {
 	padding: -30px 0 0 0;
 	line-height: 20em;
 	}
+	
+/* Used for list of statements in FV>GT Reading>Set 10>Matching */
+.ecology {
+	list-style-type: lowerLatin;
+	padding: 0px 0 0 -5px;
+	line-height: 30em;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
@@ -57,7 +64,7 @@ body > header {
 
 /* This hanging indent is used for manually numbered exercises in which the question text flow to second line. */
 .hangingIndent2{
-	padding-left: 25px;
+	padding-left: 23px;
  	text-indent: -30px;
 	}
 /*-----------------------------------------------------------------------------------------------*/
@@ -81,6 +88,11 @@ img.leftFloat {
 	float:left;
 	padding: 10px 280px 0px 25px;
 	}
+
+mg.photo3 {
+	float:left;
+	padding: 10px 0px 0px 5px;
+	}
 	
 /*-----------------------------------------------------------------------------------------------*/
 
@@ -100,7 +112,7 @@ a, span[draggable="true"] {
 	border-width: 1px;
 	border-color: #B5B5B5;
 	border-radius: 12px;
-	background-color: #FFFFFF;
+	background-color: #FFF8C6;
 	}
 
 #noscroll span[draggable=true] {
@@ -130,6 +142,7 @@ a, span[draggable="true"] {
     color: #CCCCCC;
 	}
 /*-----------------------------------------------------------------------------------------------*/
+
 /* Use the custom after-pad property to add a width of 1 _ characters to any input's maximum length */
 input {
 	gap-after-padding: 2;
@@ -230,6 +243,16 @@ h10{
 	padding-top: 20px;
 	padding-left: 25px;
 	}
+
+/* Used for instruction texts that appears in the exercise area */
+
+.set10e1 {
+	font-size:13px;
+	font-weight:bold;
+	padding-left: 0px;
+	padding-bottom: 15px;
+	padding-top: 20px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Exercise ID and class */
 /* this class is for instruction in reading exercise (only reading exercises need this) */
@@ -249,7 +272,6 @@ h10{
 	font-size:9px; 
 	vertical-align:bottom;
 }
-
 /*-----------------------------------------------------------------------------------------------*/
 /* This class is used to add line spacing between question items. */
 .linespace {
@@ -477,15 +499,19 @@ sh1{
 /*-----------------------------------------------------------------------------------------------*/
 /* Specify for Writing Unit 2 Task 1 Express purpose, cause and result */
 #Exp1{
-	width: 170px;
+	position: relative;
 	float:left;
-	padding-left: 30px;
-	line-height: 22em;
+	padding-left:24px;
+	padding-top: 250px;
+	line-height:22em;
 	}
+	
 	#Exp2{
-	width: 170px;
+	position: relative;
 	float:left;
-	line-height: 22em;
+	padding-left:200px;
+	padding-top:250px;
+	line-height:22em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 

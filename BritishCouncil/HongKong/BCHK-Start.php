@@ -17,7 +17,7 @@
 	
 	$swfName = 'IELTSApplication.swf';
 	$webShare = '';
-	$startControl = "$thisDomain$webShare/Software/ResultsManager/web/";
+	$startControl = "$commonDomain$webShare/Software/ResultsManager/web/";
 	
 	$fileContents = file_get_contents($configFile);
 	$configXML = simplexml_load_string($fileContents);
@@ -26,6 +26,7 @@
 	$rootID = (string) $configXML->rootID[0];
 	$groupID = (string) $configXML->groupID[0];
 	$loginOption = (string) $configXML->loginOption[0];
+	$country = (string) $configXML->country[0];
 	$emailTemplate = "BCHK-welcome";
 
 	// Will we write out lots of log messages?
@@ -38,7 +39,7 @@
 	$encrypt = $_GET['d'];
 	
 	if ($debugLog) {
-		error_log("starting BCHK-Start.php with $name", 3, $debugFile);
+		error_log("starting BCHK-Start.php with $name\n", 3, $debugFile);
 	}
 	
 	$pattern = '/\(AT\)/';
@@ -104,6 +105,9 @@
 			$rs = $db->Execute("SELECT * FROM T_User WHERE F_StudentID=?",
 									array($studentID));
 			if ($rs && $rs->recordCount()>0) {
+				if ($debugLog) {
+					error_log("$name already is in old database\n", 3, $debugFile);
+				}
 				$oldURL = $thisDomain."/BritishCouncil/HongKong/v1-BCHK-Start.php?".$_SERVER['QUERY_STRING'];
 				header('Location: ' . $oldURL);
 				exit;
@@ -127,13 +131,13 @@
 			$LoginAPI['groupID'] = $groupID;
 			$LoginAPI['loginOption'] = $loginOption;
 			$LoginAPI['emailTemplateID'] = $emailTemplate;
-			$LoginAPI['country'] = "Hong Kong";
+			$LoginAPI['country'] = $country;
 	
 			// Send this single LoginAPI
 			$serializedObj = json_encode($LoginAPI);
 			$targetURL = $commonDomain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
 			if ($debugLog) {
-				error_log("to LoginGateway with $serializedObj", 3, $debugFile);
+				error_log("to LoginGateway with $serializedObj\n", 3, $debugFile);
 			}
 			
 			// Initialize the cURL session
@@ -165,7 +169,7 @@
 				$returnInfo = json_decode($contents, true);
 
 				if ($debugLog) {
-					error_log("back from LoginGateway with $contents", 3, $debugFile);
+					error_log("back from LoginGateway with $contents\n", 3, $debugFile);
 				}
 
 				// Expecting to get back an error or a user object
@@ -179,10 +183,12 @@
 				
 			}
 			
+			// TODO: What to do with failure? Should have an error page to use.
 			switch($errorCode) {
 				case '206':
 				case '203':
 				case '210':
+					$failReason = "Invalid details sent to loginGateway";
 					break;
 				case '204':
 					$failReason = "Wrong password";
@@ -294,7 +300,7 @@ function decodeCharacters ($rawText) {
 		
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
-		var coordsMinHeight = "700"; var coordsMaxHeight = null;
+		var coordsMinHeight = "760"; var coordsMaxHeight = null;
 		
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
@@ -363,9 +369,9 @@ function decodeCharacters ($rawText) {
 	</script>
 
 </head>
-<body style="background-color:#F2F2F2;">
+<body style="background-color:#F9F9F9;">
 <?php if ($validLink): ?> 
-	<div style="background-color:#F2F2F2;" align="center" id="altContent">
+	<div style="background-color:#F9F9F9;" align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>

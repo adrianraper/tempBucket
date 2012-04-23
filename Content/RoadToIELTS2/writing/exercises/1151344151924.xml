@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -19,7 +19,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="clickme2" source="examtips" width="500" />
 	</popups>
 <settings>
@@ -97,7 +97,7 @@
 	
 <header>
 		<div id="instruction">
-	Read the writing task and then listen to these people talking about gene therapy. Group their comments according to whether they are arguments for or against.
+	Read the Writing Task and then listen to these people talking about gene therapy. Group their comments according to whether they are arguments for or against.
 		</div>
 	
 </header>
@@ -247,7 +247,7 @@
 </section>
 
 <section id="examtips">
-  <p class="popuptext">This exercise will help you with ideas for the writing task.</p>
+  <p class="popuptext">This exercise will help you with ideas for the Writing Task.</p>
 </section>
 
 </body>

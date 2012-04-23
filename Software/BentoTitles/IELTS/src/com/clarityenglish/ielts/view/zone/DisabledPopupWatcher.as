@@ -50,13 +50,13 @@ package com.clarityenglish.ielts.view.zone {
 						this.toolTipText = "Not currently available.";
 						break;
 					case IELTSApplication.LAST_MINUTE:
-						this.toolTipText = "Only available in the full version. See My Profile page for more details."
+						this.toolTipText = "Only available in the Full Version. Click above to upgrade."
 						break;
 					case IELTSApplication.TEST_DRIVE:
-						this.toolTipText = "Only available in the candidate version. See My Profile page for more details."
+						this.toolTipText = "Only available in the candidate version. Click above to upgrade."
 						break;
 					default:
-						this.toolTipText = "Not available in the current version. See My Profile page for more details."
+						this.toolTipText = "Not available in the current version. Click above to upgrade."
 				}
 			}
 			

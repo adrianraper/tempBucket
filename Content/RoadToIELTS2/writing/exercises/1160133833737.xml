@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -48,7 +48,7 @@
 <body>
 	
 <header>
-<div id="instruction">Here is a sample answer to the writing task. Read the letter on the left and find all the verbs in the past simple. Group them according to whether they are in active or passive voice by dragging them across to the appropriate category on the right.
+<div id="instruction">Here is a sample answer to the Writing Task. Read the letter on the left and find all the verbs in the past simple. Group them according to whether they are in active or passive voice by dragging them across to the appropriate category on the right.
 </div>
 </header>
 	

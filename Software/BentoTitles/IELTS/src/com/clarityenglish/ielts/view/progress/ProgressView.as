@@ -43,6 +43,9 @@ package com.clarityenglish.ielts.view.progress {
 		public var currentCourseClass:String;
 		private var _licenceType:uint;
 
+		// #234
+		private var _productVersion:String;
+
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();
@@ -77,14 +80,18 @@ package com.clarityenglish.ielts.view.progress {
 					progressNavBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
 				
-				case progressScoreView:
 				case progressCoverageView:
+					// #234
+					// Just one view uses product version at the moment
+					instance.productVersion = this.productVersion;
+				case progressScoreView:
 					// Just two views use currentCourseClass
 					instance.courseClass = currentCourseClass;
 				case progressCompareView:
 				case progressAnalysisView:
 					// All the sub views run off the same href as the progress view, so directly inject it 
 					instance.href = href;
+					
 					break;
 			}
 		}
@@ -125,6 +132,17 @@ package com.clarityenglish.ielts.view.progress {
 		public function set licenceType(value:uint):void {
 			if (_licenceType != value) {
 				_licenceType = value;
+			}
+		}
+
+		[Bindable]
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
 			}
 		}
 		

@@ -26,7 +26,8 @@ p {
 /* Multiple-choice answers use letters */
 .answerList {
 	list-style-type: lowerLatin;
-	padding-left: 15px;
+	padding-left: 34px;
+	text-indent:0px;
 	margin-left: 0px;
 	}
 	
@@ -42,6 +43,17 @@ p {
 	list-style-type: lowerLatin;
 	padding-left: 49px;
 	margin-left: 0px;
+	}
+
+/* This class is specifically for AC FV Writing, Set 7 task 1, Making approximations (1) */
+.answerList3 {
+	list-style-type: lowerLatin;
+	padding-left: 34px;
+	padding-top: 0em;
+	margin-left: 0px;
+	line-height: 20em;
+	text-indent: 0px;
+	tab-stop: 50px;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
@@ -84,6 +96,14 @@ p {
 	float: left;
 	margin: 5px;
 	padding: 10px 0px 10px  30px;
+	}
+	
+/* Unique settings for the thumbnail images in AC FV Writing, Set 2 task 1, Understanding dynamic charts and tables */
+
+.dynamic {
+	float: left;
+	margin: 5px;
+	padding: 5px 350% 0px -20px;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
@@ -203,7 +223,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 /*-----------------------------------------------------------------------------------------------*/
 #mchoices {
 	list-style-type: decimal;
-	padding: 0 280% 12px 10px;
+	padding: 0 380% 12px 10px;
 	text-align: left;
 	line-height: 20em;
 	}
@@ -219,7 +239,7 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 /* This is for AC FV>Writing>Unit 2 task 1>Understanding dynamic charts and tables.*/
 #mchoices2 {
 	list-style-type: decimal;
-	padding: 0 280% 12px -30px;
+	padding: 0 280% 12px -10px;
 	text-align: left;
 	line-height: 20em;
 	}
@@ -258,9 +278,9 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	position:relative;
 	padding-top:30px;
     height: 300px;
-    width:400px;
+    width:480px;
     line-height:22em;
-	padding-left: -30px;
+	padding-left: -20px;
 	}
 
 #content3{
@@ -269,5 +289,36 @@ a.neutral, input.neutral, g.neutral, select.neutral {
     height: 790px;
     width:400px;
     line-height:22em;
-	padding-left: -30px;
+	padding-left: 0px;
 	}
+
+/*-----------------------------------------------------------------------------------------------*/
+
+#questionList {
+	list-style-type: decimal;
+	padding: 0 50% 12px 35px;
+	text-align: left;
+	line-height: 20em;
+	}
+
+/*-----------------------------------------------------------------------------------------------*/
+/* This div is for exercises which have audio button in front of question List */
+#audio{
+	position:relative;
+	height: 1500px;
+	padding-left:-4px;
+	line-height:30px;
+	padding-top:20px;
+	}
+
+#questiondiv{
+	height: 1500px;
+	position:relative;
+	line-height:30px;
+	padding-left: 12px;
+	padding-top: 85px;
+	}
+
+#questiondiv li{
+	text-indent: 5px;
+}

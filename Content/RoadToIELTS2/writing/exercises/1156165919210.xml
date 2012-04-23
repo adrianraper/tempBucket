@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -53,7 +53,7 @@
 <header>
 	
 		<div id="instruction">
-		Read the complete sample answer to the writing task in the earlier exercise and find all the reporting verbs using passive constructions. Click on them.
+		Read the complete sample answer to the Writing Task in the earlier exercise and find all the reporting verbs using passive constructions. Click on them.
 		</div>
 </header>
 	
@@ -78,9 +78,9 @@
 <p class="popuptext">Writers often introduce ideas and arguments using passive forms of reporting verbs such as 'say', 'argue', 'suggest' and 'believe' and this formal style is more appropriate for Writing Task 2.</p>
 
 <p class="popuptext1">For example, instead of writing:</p>
-<p class="popuptext2"><span color="#7935AB">"Many people believe that ..."</span><br/>
+<p class="popuptext2"><span color="#0000FF">"Many people believe that ..."</span><br/>
 it is better to write:<br/>
-<span color="#7935AB">"It is widely believed that ..."</span></p>
+<span color="#0000FF">"It is widely believed that ..."</span></p>
 
 <p class="popuptext">Remember that when you use this kind of passive construction, it is not necessary to include the agent, as it does not add any useful information to the sentence. For example 'People think ...' just becomes 'It is thought that ...' and not 'It is thought by many people that ...'</p>
 </section>

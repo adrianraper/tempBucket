@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -88,7 +88,7 @@
 	
 <header>
 <div id="instruction">
-Read the writing task from the previous exercises again and answer the questions. There is more than one correct answer in each case.
+Read the Writing Task from the previous exercises again and answer the questions. There is more than one correct answer in each case.
 </div>
 </header>
 	

@@ -66,6 +66,9 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		// TODO. Highlight the last exercise done somehow
 		public var bookmark:XML;
+
+		// #234
+		private var _productVersion:String;
 		
 		//private var _course:XML;
 		private var _courseClass:String;
@@ -102,6 +105,17 @@ package com.clarityenglish.ielts.view.progress.components {
 		}
 		public function get summaryDataProvider():XML {
 			return _summaryData;
+		}
+		
+		[Bindable]
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+			}
 		}
 		
 		/**

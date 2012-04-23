@@ -1,11 +1,11 @@
-﻿<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8" ?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta name="conversion-from" content="gapfill" />
 	<meta name="conversion-date" content="2011-11-10" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen"/>
-	<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	.underline {
 	text-decoration: underline;

@@ -30,6 +30,18 @@ p {
 	padding-left: 15px;
 	margin-left: 0px;
 	}
+
+/* For use in FV GT Writing, Set 8 task 2, Expressing purpose (2) */
+.answerList2 {
+	list-style-type: lowerLatin;
+	font-weight: bold;
+	padding-left: 20em;
+	padding-bottom: 22px;
+	padding-top: 0px;
+	margin-left: 0px;
+	line-height: 20em;
+	text-indent: 0px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* A paragraph class for hanging indents that work with numbers */
 .hangingIndent {
@@ -145,6 +157,10 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 .linespace {
 	line-height: 12px;
 	}
+
+.linespace2 {
+	line-height: 0px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /*Formatting used for writing task text. */
 .popuptext {
@@ -194,14 +210,14 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	}
 
 /* This affects the question spacing for Listening 3 Short-answer question 
-																   Listening 3 Labelling a diagram
-														*/
+Listening 3 Labelling a diagram	*/
+
 #questionList p{
 	padding-bottom: 12px;
 	}
 
 #questionList li{
-	padding-left:15px;
+	padding-left:22px;
 	line-height: 22em;
 	}
 	
@@ -251,3 +267,13 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 	padding-left: -30px;
 	}
 
+.highlight1 {
+	line-height: 22em;
+	color: #0000FF;
+	}
+
+.highlight2 {
+	line-height: 22em;
+	color: #0000FF;
+	font-weight: bold;
+	}

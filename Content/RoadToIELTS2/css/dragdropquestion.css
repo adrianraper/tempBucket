@@ -41,6 +41,14 @@ p {
  	padding-left: 75px;
 	}		
 /*-----------------------------------------------------------------------------------------------*/
+.leftFloat {
+	display: block;
+	float: left;
+	padding-top: 20px;
+	padding-right: 200px;
+	padding-left: 40px;
+	}
+
 /* This is the image or video floating on the right hand side in many exercises */
 #body .rightFloat {
 	float: right;
@@ -55,6 +63,23 @@ p {
 	width:420px;
 	float: left;
 }
+
+/* This is used in Writing exercises where the graphic is placed above the exercise text. E.g. Ac FV, Writing, Set 9 task 1, Percentages, fractions and ratios */
+.leftFloat2 {
+	display: block;
+	float: left;
+	padding-top: 10px;
+	padding-right: 200px;
+	padding-left: -10px;
+	}
+	
+/* To be used for graphic pop-ups */
+.graphpop {
+	float:left;
+	padding-top:0px;
+	padding-right: 300%;
+	}
+	
 /* This is image class to control image to be align with text (when there is a writing task image) when questions are div-ed */
 #body .rightFloat1 {
 	float: right;
@@ -267,6 +292,13 @@ h8{
 		padding-left: -4px;
 		padding-right: 30px;
 		}
+
+/* Made especially for AC FV Writing, Set 2 task 1, Useful expressions. */
+.imagetask2 {
+		display:inline-block;
+		padding-left: 10px;
+		padding-right: 10px;
+		}
 /*-----------------------------------------------------------------------------------------------*/
  #questionList {
 	list-style-type: decimal;
@@ -284,7 +316,7 @@ h8{
 #questionList li{
 	padding-bottom: 12px;
 	padding-left: 15px;
-	line-height: 30em;
+	line-height: 22em;
 	}
 
 #gapfillText{
@@ -355,6 +387,15 @@ h8{
 	padding-left: 0px;
 	}
 
+#content2 {
+	position:relative;
+	padding-top:25px;
+    height: 200px;
+    width:520px;
+    line-height:22em;
+	padding-left: 0px;
+	}
+
 #video {
 	position:relative;
 	padding: 25em 0em 0 520px;
@@ -364,12 +405,33 @@ h8{
 /* colmuns for long feedback i.e. Ideas for the Writing task  */
 #feedback1 {
 	float: left;
-	width: 300px;
+	padding: 0 0 0 -40px;
+	width: 220px;
 	}
+
+#feedback1 p{
+	padding-bottom: 0px;
+    line-height: 22em;
+	}
+	
+#feedback1 ul{
+	padding-bottom: 12px;
+	line-height: 22em;
+	}
+	
 #feedback2 {
 	float: right;
-	padding: 0 30px 0 0;
-	width: 300px;
+	padding: 0 5px 0 -20px;
+	}
+
+#feedback2 p{
+	padding-bottom: 0px;
+    line-height: 22em;
+	}
+	
+#feedback2 ul{
+	padding-bottom: 12px;
+	line-height: 22em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /* specify for Writing 1 task1 Dealing with numbers */
@@ -409,14 +471,6 @@ h8{
 	padding-top: 190px;
 	padding-left: 200px;
 	line-height:30em;
-	}
-
-.leftFloat {
-	display: block;
-	float: left;
-	padding-top: 20px;
-	padding-right: 200px;
-	padding-left: 40px;
 	}
 	/*-----------------------------------------------------------------------------------------------*/
 /* Specify for Writing Unit 1 task 2 Choosing an introduction */
@@ -473,7 +527,7 @@ h8{
 		line-height:22em;
 	}	
 	/*-----------------------------------------------------------------------------------------------*/
-/* Specify for FV Writing 2 task 1 Useful expressions */
+/* Specify for AC FV Writing 2 task 1 Useful expressions */
 	#expbox {
 	width: 200px;
 	}
@@ -489,6 +543,7 @@ h8{
 	
 	padding-left: 27px;
 	padding-top: 10px;
+	line-height:22em;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /*Layout div in use for LM>Writing>Set 1 task 1>Organising your report*/
@@ -562,3 +617,31 @@ h8{
 	padding-left: 15px;
 	line-height: 22em;
 	}
+
+/*-----------------------------------------------------------------------------------------------*/
+/* Specify for FV AC Writing, Set 9 task 1, Percentages, fractions and ratios */
+	
+#set9t1percent1 {
+	position: relative;
+	float:left;
+	padding-left:-3px;
+	padding-top: 310px;
+	line-height:22em;
+
+}
+
+#set9t1percent2 {	
+	position: relative;
+	float:left;
+	padding-left:270px;
+	padding-top:310px;
+	line-height:22em;
+}
+
+#set9t1percent3 {	
+	position: relative;
+	float:left;
+	padding-left:560px;
+	padding-top:290px;
+	line-height:22em;
+}

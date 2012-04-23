@@ -21,6 +21,9 @@ package com.clarityenglish.ielts.view.progress.ui {
 		[Bindable]
 		public var dataProvider:XMLListCollection;
 		
+		[Bindable]
+		public var productVersion:String;
+		
 		public function CoverageExerciseComponent() {
 			super();
 		}

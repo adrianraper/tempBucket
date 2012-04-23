@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -33,7 +33,7 @@
 <section id="body">
   <img class="rightFloat" src="../media/set4.1_05.jpg" mode="1" id="1001"/>
   <div id="presentation">
-  	<h1><p>IELTS writing task 1</p></h1>
+  	<h1><p>IELTS Writing Task 1</p></h1>
 	
     <p><b>You live in a flat above a restaurant. Recently the restaurant has started to put tables and chairs outside and this has resulted in an increase in noise.</b></p>
 	

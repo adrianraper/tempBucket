@@ -27,6 +27,9 @@ class EmailService extends AbstractService {
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("EMAIL");
 		
+		// Set the title name for resources
+		AbstractService::$title = "rm";
+		
 		$this->emailOps = new EmailOps($this->db);
 		
 		// DMS has no restrictions on user/group access so disable manageable authentication

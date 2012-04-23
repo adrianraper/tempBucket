@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/exercises.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/exercises-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -65,7 +65,7 @@
 <body>
 	
 <header>
-	<img class="rightFloat" src="../media/LE_Task02.jpg" mode="16" id="1004"  />Here are the notes a group of students made for the writing task. Put each point under the correct paragraph heading to make a plan. Check your answers by reading the completed composition. Do not worry about the gaps for the moment.
+	<img class="rightFloat" src="../media/LE_Task02.jpg" mode="16" id="1004"  />Here are the notes a group of students made for the Writing Task. Put each point under the correct paragraph heading to make a plan. Check your answers by reading the completed composition. Do not worry about the gaps for the moment.
 		
 		Writing Task 2
 </header>

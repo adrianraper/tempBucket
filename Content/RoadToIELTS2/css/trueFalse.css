@@ -284,10 +284,38 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 #content1 ul{
 	padding-left:38px;
 }
+
+#content2 {
+	position:relative;
+	padding-top:25px;
+    height: 800px;
+    width:500px;
+    line-height:22em;
+	padding-left: -25px;
+	}
+
+#content2 p{
+	padding-left: 45px;
+	line-height:22em;
+}
+
+#content2 ul{
+	padding-left:38px;
+}
+
+#formal {
+	list-style-type: decimal;
+	padding-left: -25px;
+	padding-right: 380%;
+	text-align: left;
+	line-height: 22em;
+	}
+
+
 /*-----------------------------------------------------------------------------------------------*/
 
 /* This is used for heading of the Question Card in Speaking exercises, e.g. Set 6, Watch a candidate */
-h7{
+h7 {
 	font-size: 13px;
 	font-weight: bold;
 	padding-top: 20px;

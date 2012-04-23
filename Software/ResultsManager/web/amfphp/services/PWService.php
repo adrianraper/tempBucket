@@ -46,6 +46,10 @@ class PWService extends AbstractService {
 			AbstractService::$log->setUserID(Session::get('userID'));
 			AbstractService::$log->setIdent(Session::get('userID'));
 		};
+		
+		// Set the title name for resources
+		AbstractService::$title = "rm";
+		
 		// Set the root id (if set)
 		AbstractService::$log->setRootID(Session::get('rootID'));
 		

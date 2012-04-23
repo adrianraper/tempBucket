@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/gapfillText.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/gapfillText-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 	<popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="visual" source="describingobject" width="663" height="436" />
 	</popups>
 <settings>
@@ -79,7 +79,7 @@
 	
 <header>
 <div id="instruction">
-	Read the writing task and look carefully at the diagram. Complete the report by filling each gap with a word, phrase or number taken from the diagram. You will need to use some of the words more than once.
+	Read the Writing Task and look carefully at the diagram. Complete the report by filling each gap with a word, phrase or number taken from the diagram. You will need to use some of the words more than once.
 </div>
 
 </header>

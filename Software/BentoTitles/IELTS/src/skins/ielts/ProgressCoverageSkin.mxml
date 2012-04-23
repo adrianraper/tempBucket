@@ -49,13 +49,16 @@
 	<s:HGroup width="97%" height="100%" top="100" >
 		<ui:CoverageExerciseComponent id="questionZoneCoverage" width="20%"
 									  caption="Starting out"
-									  dataProvider="{hostComponent.questionZoneDataProvider}" />
+									  dataProvider="{hostComponent.questionZoneDataProvider}"
+									  productVersion="{hostComponent.productVersion}"/>
 		<ui:CoverageExerciseComponent id="adviceZoneCoverage" width="20%"
 									  caption="Advice and tutorials"
-									  dataProvider="{hostComponent.adviceZoneDataProvider}" />
+									  dataProvider="{hostComponent.adviceZoneDataProvider}"
+									  productVersion="{hostComponent.productVersion}"/>
 		<ui:CoverageExerciseComponent id="examPracticeCoverage"
 									  caption="Test practice"
-									  dataProvider="{hostComponent.examPracticeDataProvider}" />
+									  dataProvider="{hostComponent.examPracticeDataProvider}"
+									  productVersion="{hostComponent.productVersion}"/>
 		<ui:CoverageUnitComponent id="practiceZoneCoverage"
 								  caption="Practice zone" 
 								  dataProvider="{hostComponent.practiceZoneDataProvider}"  />

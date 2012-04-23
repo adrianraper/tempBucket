@@ -18,7 +18,7 @@
 			import mx.events.FlexEvent;
 			protected function creationComplete(event:FlexEvent):void {
 				// #234
-				new DisabledPopupWatcher(itemList); 
+				new DisabledPopupWatcher(itemList, hostComponent.productVersion); 
 			} 
 		]]> 
 	</fx:Script> 

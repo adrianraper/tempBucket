@@ -33,6 +33,8 @@
 			// Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
+			// #234
+			view.productVersion = configProxy.getProductVersion();
 
 		}
         

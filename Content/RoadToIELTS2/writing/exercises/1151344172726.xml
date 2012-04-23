@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -71,7 +71,7 @@
 <header>
 
 		<div id="instruction">
-		Read the writing task and listen to these people talking about the problem of stress at work. Decide whether each comment refers to the causes of the problem or to possible solutions.
+		Read the Writing Task and listen to these people talking about the problem of stress at work. Decide whether each comment refers to the causes of the problem or to possible solutions.
 		</div>
 </header>
 
@@ -183,7 +183,7 @@
 
 <section id="writingtask1">
 
-<p class="popuptext"><b>Writing task 2</b></p>
+<p class="popuptext"><b>Writing Task 2</b></p>
 <p class="popuptext"> You should spend about 40 minutes on this task.</p>
 <p class="popuptext"> Present a written argument or case to an educated reader with no specialist knowledge of the following topic.</p>
 <p class="popuptext"><b>Increasing numbers of workers are suffering from stress and stress-related illness. Why is the modern workplace so stressful, and what can be done to reduce this problem?</b></p>

@@ -1037,9 +1037,12 @@ EOD;
 EOD;
 		$rs = $this->db->Execute($sql, array($groupID));
 		$group = new Group();
-		if ($rs) {
+		
+		if ($rs->RecordCount() == 1) {
 			$obj = $rs->FetchNextObj();
 			$group->fromDatabaseObj($obj);
+		} else {
+			$group = null;
 		}
 		return $group;
 	}

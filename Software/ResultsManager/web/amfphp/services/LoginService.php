@@ -37,6 +37,9 @@ class LoginService extends AbstractService {
 		
 		// Set the product name and userID for logging
 		AbstractService::$log->setProductName("LOGIN");
+
+		// Set the title name for resources
+		AbstractService::$title = "rm";
 		
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->subscriptionOps = new SubscriptionOps($this->db);
@@ -59,7 +62,7 @@ class LoginService extends AbstractService {
 	}
 	
 	// Add this user
-	public function addUser($loginDetails) {
+	public function addUser($loginDetails, $group) {
 		//echo "LoginService addUser";
 		$stubUser = new User();
 		if ($loginDetails->studentID)
@@ -117,9 +120,13 @@ class LoginService extends AbstractService {
 		$stubUser->registrationDate = date('Y-m-d H:i:s');
 		$stubUser->registerMethod = "loginService";
 		
-		$group = $this->manageableOps->getGroup($loginDetails->groupID);
-		 
 		return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID);
 	}
+	// Get the group
+	public function getGroup($loginDetails) {
+		return $this->manageableOps->getGroup($loginDetails->groupID);
+	}
+		 
+	
 	
 }

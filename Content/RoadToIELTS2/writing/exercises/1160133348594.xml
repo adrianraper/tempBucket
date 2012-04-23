@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -62,7 +62,7 @@
 	
 <header>
 <div id="instruction">
-Here is a list of ideas that a student brainstormed for the writing task in the previous exercise. Put each point under the appropriate heading by dragging it down.
+Here is a list of ideas that a student brainstormed for the Writing Task in the previous exercise. Put each point under the appropriate heading by dragging it down.
 </div>
 </header>
 	

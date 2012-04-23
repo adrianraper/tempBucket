@@ -44,6 +44,14 @@ p {
 	padding-right: 20px;
 	padding-left: 20px;
 	}
+
+/* Unique settings for the thumbnails images in AC FV Writing, Set 6 task 1, Prepositions of time */
+
+.dynamic {
+	float: left;
+	margin: 5px;
+	padding: 20px 350% 0px -20px;
+	}
 /*-----------------------------------------------------------------------------------------------*/
 /* Links and draggable spans should be blue and not underlined */
 a, span[draggable="true"] {
@@ -118,6 +126,10 @@ a.neutral, input.neutral, g.neutral, select.neutral {
 /* This class is used to add line spacing between question items. */
 .linespace {
 	line-height: 12px;
+	}
+
+.linespace2 {
+	line-height: 0px;
 	}
 /*-----------------------------------------------------------------------------------------------*/
 /*Formatting used for feedback text without numbering. */

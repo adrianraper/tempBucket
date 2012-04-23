@@ -300,10 +300,20 @@ class ReportOps {
 				$title = $this->getTitleForCourseID($courseID);
 			}
 		
-			//$row['titleName'] = $title->caption;
-			$row['titleName'] = $title->name;
-			//$row['courseName'] = $title->courses[$courseID]->caption;
-			$row['courseName'] = $title->courses[$courseID]->name;
+			if (isset($title->name)) {
+				$row['titleName'] = $title->name;
+			} else if (isset($title->caption)) {
+				$row['titleName'] = $title->caption;
+			} else {
+				$row['titleName'] = '-no name-';
+			} 
+			if (isset($title->courses[$courseID]->caption)) {
+				$row['courseName'] = $title->courses[$courseID]->caption;
+			} else if (isset($title->courses[$courseID]->name)) {
+				$row['courseName'] = $title->courses[$courseID]->name;
+			} else {
+				$row['courseName'] = '-no name-';
+			} 
 		}
 		
 		// v3.4 You can't do this section unless courseID is set

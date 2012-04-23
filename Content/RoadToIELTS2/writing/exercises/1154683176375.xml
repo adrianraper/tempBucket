@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/presentation-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -34,7 +34,7 @@
 <section id="body">
 	<img class="rightFloat" src="../media/set8.2_09.jpg" mode="1" id="1001"  />
 	<div id="presentation">
-	<h1><p>IELTS writing task 2</p></h1>
+	<h1><p>IELTS Writing Task 2</p></h1>
 	<p>Present a written argument or case to an educated reader with no specialist knowledge of the following topics.</p>
 	<p><b>In most countries, young people form a large proportion of those who are unemployed. Why is this the case, and what can be done to solve the problem?</b></p>
 	<p>You should use your own ideas, knowledge and experience and support your arguments with examples and relevant evidence.</p>

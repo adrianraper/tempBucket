@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -17,7 +17,7 @@
 	
 <script id="model" type="application/xml">
 <popups>
-    	<popup click="clickme" source="writingtask1" width="629" />
+    	<popup click="clickme" source="writingtask1" width="500" />
 		<popup click="visual" source="w2t1sample" width="512" height="281" />
 	</popups>
 	
@@ -84,7 +84,7 @@
 	
 <header>
 		<div id="instruction">
-		Read this sample answer to the writing task in Exercise 7 and find the mistakes. There are 10 and they may be factual, grammatical or lexical errors. Click on them.
+		Read this sample answer to the Writing Task in Exercise 7 and find the mistakes. There are 10 and they may be factual, grammatical or lexical errors. Click on them.
 		</div>
 		
 </header>

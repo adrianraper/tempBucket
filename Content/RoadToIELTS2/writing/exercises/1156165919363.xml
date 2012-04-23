@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -123,11 +123,11 @@ Complete the sentences by filling each gap with an appropriate form of one of th
 <section id="examtips">
 <p class="popuptext">In compositions where we want to discuss the arguments for and against something, it is sometimes necessary to discuss hypothetical situations. To do this, we use a verb form known as the conditional. This is often found in sentences with an 'if' clause, for example:</p>
 
-<p class="popuptext"><span color="#7935AB">If we removed language differences, we would find it easier to understand each other's point of view.</span></p>
+<p class="popuptext"><span color="#0000FF">If we removed language differences, we would find it easier to understand each other's point of view.</span></p>
 
 <p class="popuptext">However, we can also use the conditional without an 'if' clause. For example:</p>
 
-<p class="popuptext"><span color="#7935AB">It is generally agreed that a common language would make international travel much easier for everyone.</span></p>
+<p class="popuptext"><span color="#0000FF">It is generally agreed that a common language would make international travel much easier for everyone.</span></p>
 </section>
 
 </body>

@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-12-09" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -57,7 +57,7 @@
 <body>
 	
 <header>
-<div id="instruction">Here is a sample answer to the writing task you looked at in the previous exercises. Read the letter and click on all nine expressions the writer uses to give advice.
+<div id="instruction">Here is a sample answer to the Writing Task you looked at in the previous exercises. Read the letter and click on all nine expressions the writer uses to give advice.
 </div>
 </header>
 	

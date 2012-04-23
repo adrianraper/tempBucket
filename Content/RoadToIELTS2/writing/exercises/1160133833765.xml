@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/questionBased.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/questionBased-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -117,11 +117,11 @@
 <p class="popuptext">There are several ways of apologising in written English. Here are three of the most common structures:</p>
 
 <p class="popuptext1"><b>Formal</b></p>
-<p class="popuptext3"><span color="#7935AB">I am writing to apologise for not informing you of my new address.</span></p>
-<p class="popuptext2"><span color="#7935AB">Please accept my apologies for not informing you of my new address.</span></p>
+<p class="popuptext3"><span color="#0000FF">I am writing to apologise for not informing you of my new address.</span></p>
+<p class="popuptext2"><span color="#0000FF">Please accept my apologies for not informing you of my new address.</span></p>
 
 <p class="popuptext1"><b>Informal</b></p>
-<p class="popuptext2"><span color="#7935AB">Please forgive me for not telling you my new address.</span></p>
+<p class="popuptext2"><span color="#0000FF">Please forgive me for not telling you my new address.</span></p>
 
 <p class="popuptext">Notice that in all three structures, the introductory phrase is followed by the preposition 'for' and the '-ing' form of the verb.</p>
 

@@ -1,193 +1,103 @@
-﻿{* Name: R2iV2 BC registration welcome *}
+﻿{* Name: R2iV2 BC HK registration welcome *}
 {* Description: Email sent when you have first used R2iV2. *}
 {* Parameters: $user *}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Welcome to Road to IELTS V2</title>
+<title>Welcome to the new Road to IELTS</title>
 	<!-- <from>support@roadtoielts.com</from> -->
 	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
 </head>
 <body>
 	
 <div style="margin: 8px;">
-<table style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;" width="600" border="0" cellpadding="0" cellspacing="0">
-  
-  <!--Header area-->
-  <tr>
-	<td width="600" height="96" background="http://www.claritylifeskills.com/email/header_purple.jpg">
-      <a href="http://www.ClarityLifeSkills.com/">
-      	<img src="http://www.claritylifeskills.com/email/header_purple.jpg" alt="www.ClarityLifeSkills.com" width="600" height="96" border="0"/>
-      </a>
-      </td>
-  </tr>
-    <tr>
-	<td>
-    <!--Start Content-->
-    <table width="600" border="0" cellspacing="0" cellpadding="0">
-  <tr>
-    <td width="24" rowspan="22"></td>
-    <td height="20">    </td>
-    <td width="24" rowspan="22"></td>
-  </tr>
-  <tr>
-    <td background="http://www.claritylifeskills.com/email/title_text.jpg">
-    	<img src="http://www.claritylifeskills.com/email/title_text.jpg" alt=" Welcome to ClarityLifeSkills" width="550" height="27" border="0" style="color:#5F3479; font-weight:bold; font-size:18px; border:0"/>        </td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
+<table width="610" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr>
     <td>
-    <!--Introduction line-->
-    	<table width="100%" border="0" cellspacing="0" cellpadding="0" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;">
-  <tr>
-    <td>Dear {$user->name}</td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td>Thank you for trying out Road to IELTS V2. An account has been created for you. To access the account, please go to this URL:</td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td><a href="http://www.ClarityLifeSkills.com" target="_blank">www.ClarityLifeSkills.com</a></td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td>Enter your login details as follows:</td>
-  </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td height="10"><table border="0" cellspacing="0" cellpadding="0" bgcolor="#EBEBEB" width="100%" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;">
-  <tr>
-    <td width="64%">
-    	<!--Login details-->
-        <table width="100%" height="60" border="0" cellpadding="0" cellspacing="0" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;">
-  <tr>
-    <td colspan="2" height="15"></td>
-  </tr>
-  <tr>
-    <td width="15"></td>
-    <td width="305" height="15">
-       Login name: <strong>{$user->studentID}</strong></td>
-  </tr>
+    
+	<div style="padding:10px; margin:0;">
+	<img src="http://www.clarityenglish.com/images/email/rti2/welcome_banner.jpg" alt="Road to IELTS" width="586" height="117" style="border:0; display:block; text-align:center;"/>
 
-  <tr>
-    <td width="15"></td>
-    <td width="305" height="15">Password: <strong>{$user->password}</strong></td>
-  </tr>
- <tr>
-    <td colspan="2" height="15"></td>
-  </tr>
-</table>
-		<!--End of Login details-->	</td>
-    <td width="36%"><a href="http://www.claritylifeskills.com/members/login.php"><img src="http://www.claritylifeskills.com/email/start_but_purple.jpg" alt="Start learning now!" style="color:#5F3479; font-weight:bold; font-size:12px; border:0"/></a></td>
-  </tr>
-</table></td>
-  </tr>
-  
-    <tr>
-    <td height="5"></td>
-  </tr>
-</table>
- 	<!--End of Introduction line-->	</td>
-  </tr>
-    <tr>
-    <td height="10" background="http://www.claritylifeskills.com/email/box_line.jpg"></td>
-  </tr>
-  <tr>
-    <td height="5"></td>
-  </tr>
-  <tr>
-    <td>You have subscribed to:</td>
-  </tr>
-  
-  <tr>
-    <td height="5"></td>
-  </tr>
-  <tr>
-    <td height="10" background="http://www.claritylifeskills.com/email/box_line.jpg"></td>
-  </tr>
-  <tr>
-    <td height="5"></td>
-    </tr>
-  <tr>
-    <td>
-    <!--End user details-->
-    <table width="100%" border="0" cellpadding="0" cellspacing="0" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;">
-   
-   <tr>
-    <td width="443">Below are the details you have entered while registering for ClarityLifeSkills. Please keep this email for later reference.</td>
-    </tr>
-     <tr>
-       <td height="5"></td>
-     </tr>
-     <tr>
-    <td>
-    <table width="100%" height="60" border="0" cellpadding="0" cellspacing="0" bgcolor="#EBEBEB" style="font-family: Verdana,Arial,Helvetica,sans-serif; font-size: 11px; color:#000000;" >
-  <tr>
-    <td colspan="2" height="15"></td>
-  </tr>
- <tr>
-    <td colspan="2" height="15"></td>
-  </tr>
-</table>    </td>
-    </tr>
-</table>
-	<!--End of End user details-->	</td>
-  </tr>
-  <tr>
-    <td height="5"></td>
-  </tr>
- <tr>
-    <td height="10" background="http://www.claritylifeskills.com/email/box_line.jpg"></td>
-  </tr>
-  <tr>
-    <td height="5"></td>
-  </tr>
-  
-  
-  
-  <tr>
-    <td height="10">
-{include file='file:includes/BCHK_Email_Signature.tpl'}
+<div style="margin:0; padding:0;">
+	<div style="width:290px; float:left;">
+	<img src="http://www.clarityenglish.com/images/email/rti2/welcome_left_top.jpg" alt="Advice and tutorials" width="278" height="200" border="0" style="display:block;"/><br style="display:none;"/>
+    <img src="http://www.clarityenglish.com/images/email/rti2/welcome_left_mid.jpg" alt="Starting out" width="278" height="167" border="0" style="display:block;"/><br style="display:none;"/>
+    <img src="http://www.clarityenglish.com/images/email/rti2/welcome_left_btm.jpg" alt="Practice zone" width="278" height="264" border="0" style="display:block;"/>	</div>    
+    
+    <div style="width:300px; float:right; padding:10px 0 10px 0;">
+   	  <div style="margin:0; padding:0;">
+        <p style="font-family: Verdana,新細明體,  Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">你好,</p>
+             <p style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">歡迎使用革新的 IELTS 網上備試平台，以享更佳的瀏覽經驗，並能體驗有趣兼實用的 IELTS 應試練習。</p>
+             <a href="http://ielts.britishcouncil.org.hk" target="_blank" style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px;"><img src="http://www.clarityenglish.com/images/email/rti2/btn_welcome_chi.jpg" width="200" height="45"  border="0" style="display:block; margin:10px 0;" alt="立即使用 IELTS 網上備試平台"/></a>
+            
+            <p style="font-family:  Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">課程鏈結: <a href="http://ielts.britishcouncil.org.hk" target="_blank">ielts.britishcouncil.org.hk</a></p>
+            
+             <p style="font-family:  Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">如你對此平台服務有任何意見或查詢，歡迎電郵至 <a href="mailto:examinations@britishcouncil.org.hk?subject=IELTS 網上備試平台查詢">examinations@britishcouncil.org.hk</a>。</p>
+            <p style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">祝你於IELTS考取佳績!</p>
+            <p style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">英國文化協會</p>
+            <p style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">考試服務</p>
+          <img src="http://www.clarityenglish.com/images/email/rti2/welcome_icon_bc.jpg" width="78" height="25"  border="0" style="display:block;" />
+            
+            
+        </div>
+        
+        <img src="http://www.clarityenglish.com/images/email/rti2/welcome_line.jpg" width="286" height="8" style="margin:10px 0; border:0; display:block;" />
+        
+   	  <div style="margin:0; padding:0;">
+        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Dear candidate,</p>
+             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Welcome to the new Road to IELTS online preparation platform. This platform has been recently revamped for a more user-friendly navigation.</p>
+             
+             <a href="http://ielts.britishcouncil.org.hk" target="_blank" style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px;"><img src="http://www.clarityenglish.com/images/email/rti2/btn_welcome_eng.jpg" width="225" height="45"  border="0" style="display:block; margin:10px 0;" alt="Start using Road to IELTS now"/></a>
+             <p style="font-family:  Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Course link: <a href="http://ielts.britishcouncil.org.hk" target="_blank">ielts.britishcouncil.org.hk</a></p>
+             
+             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">We hope you will find the training useful and the site easy to use. Please contact us at <a href="mailto:examinations@britishcouncil.org.hk?subject=New Road to IELTS enquiry">examinations@britishcouncil.org.hk</a> if you have any comments or queries regarding the new platform.</p>
+             
+             
+             
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Have fun with the exercises and good luck with your IELTS exam!</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">Examinations Services</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">The British Council</p>
+            <img src="http://www.clarityenglish.com/images/email/rti2/welcome_icon_bc.jpg" width="78" height="25"  border="0" style="display:block;"/>        </div>
+        
+        
+    </div>
+    
+    <div style="clear:both;"></div>
+    
+    
+</div>
 
-	</td>
-    </tr>
+
+
+    
+   <table width="586"  border="0" cellpadding="0" cellspacing="0">
   <tr>
-    <td>        </td>
-    </tr>
-  <tr>
-    <td height="10"></td>
-  </tr>
-  <tr>
-    <td height="10" style="font-size:9px">
-   		Your privacy is important to us. Please review ClarityLifeSkills.com privacy policy by clicking here:<br />
-<a href="http://www.ClarityLifeSkills.com/disclaimer.php" target="_blank">www.ClarityLifeSkills.com/disclaimer.php</a>    </td>
-    </tr>
-  <tr>
-    <td>    </td>
-    </tr>
-  <tr>
-    <td></td>
-    <td></td>
-    <td></td>
+    <td width="425" height="50" valign="top" nowrap="nowrap" background="http://www.clarityenglish.com/images/email/rti2/welcome_foot_bg.jpg" >
+    	
+        <div style="padding:0 0 0 30px; margin:0; line-height:40px; color:#FFFFFF;">
+            
+            <a href="http://www.takeielts.britishcouncil.org" target="_blank" style="color:#FFFFFF; text-decoration:none; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; ">www.takeielts.britishcouncil.org</a>        </div>
+    
+    </td>
+    <td width="79" height="50" valign="top">
+    	<a href="http://www.britishcouncil.org/hongkong" target="_blank" style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px;">
+        <img src="http://www.clarityenglish.com/images/email/rti2/welcome_foot_bc.jpg" alt="British Council" width="79" height="40" border="0" style="display:block;"/>        </a>        </td>
+    <td width="82" height="50" valign="top">
+    	<a href="http://www.clarityenglish.com/" target="_blank" style="font-family: Verdana, 新細明體, Arial, Helvetica, sans-serif; font-size: 12px;">
+    	<img src="http://www.clarityenglish.com/images/email/rti2/welcome_foot_clarity.jpg" alt="Clarity" width="82" height="40" border="0" style="display:block;"/>        </a>        </td>
   </tr>
 </table>
 
     
-    <!--End of Content--></td>
+   
+    </div>
+    
+    
+    </td>
   </tr>
 </table>
+
 </div>
 </body>
 </html>

@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/dragdropquestion.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/dragdropquestion-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -113,7 +113,7 @@
 </section>
 
 <section id="examtips">
-  <p class="popuptext">This exercise practises the use of cohesive devices and, at the same time, it will give you some ideas for the writing task in the next exercise.</p>
+  <p class="popuptext">This exercise practises the use of cohesive devices and, at the same time, it will give you some ideas for the Writing Task in the next exercise.</p>
 </section>
 
 </body>

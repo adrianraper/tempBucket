@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -51,14 +51,14 @@
 	
 <header>
 <div id="instruction">	
-Here is a sample answer to the writing task you looked at in the previous exercises. Read the letter and find the six phrases the writer uses to introduce her questions and make them less direct and more polite and formal. Click on each phrase.</div>
+Here is a sample answer to the Writing Task you looked at in the previous exercises. Read the letter and find the six phrases the writer uses to introduce her questions and make them less direct and more polite and formal. Click on each phrase.</div>
 </header>
 	
 <section id="body">
   <a id="clickme"><img class="imagetask1" src="../media/btn_writingtask.jpg" mode="1" id="1001"/></a>
 <a id="clickme2"><img class="imagetask1" src="../media/btn_examtips.jpg" mode="1" id="1002"/></a>
 <br/><br/>
-    <img class="rightFloat" src="../media/gt_set3.1_04.jpg" mode="1" id="1001"/>
+    <img class="rightFloat" src="../media/gt_set3.1_05.jpg" mode="1" id="1001"/>
   <div id="targetspotting">
   <p>Dear Sir/Madam,</p>
   <p>My family and I are planning a holiday to Scotland in August and I am writing for more information about your hotel.</p>

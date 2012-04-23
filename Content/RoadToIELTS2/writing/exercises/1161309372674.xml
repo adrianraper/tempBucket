@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2012-01-16" />
 	<meta name="customised" content="false" />
 	<link rel="stylesheet" href="../../css/targetspotting.css" type="text/css" media="screen" />
-	<link rel="stylesheet" href="../../css/targetspotting-print.css" type="text/css" media="print" />
+	
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -246,7 +246,7 @@ Read the writing tasks and choose the kind of letter should you write for each. 
 </section>
 
 <section id="examtips">
-  <p class="popuptext">Always read the writing task carefully and decide what kind of letter you have to write. Look for words like 'say why', 'explain', 'complain', 'recommend', 'apologise', 'describe', 'ask', 'find out' and so on. You also need to decide if you should use formal or informal language in your letter.</p>
+  <p class="popuptext">Always read the Writing Task carefully and decide what kind of letter you have to write. Look for words like 'say why', 'explain', 'complain', 'recommend', 'apologise', 'describe', 'ask', 'find out' and so on. You also need to decide if you should use formal or informal language in your letter.</p>
 </section>
 
 </body>

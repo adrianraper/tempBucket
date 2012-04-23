@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-10-31" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/trueFalse.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/trueFalse-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -83,7 +83,7 @@
 	
 <header>
 <div id="instruction">
-	See if you can remember some things about the speaking section of the IELTS exam. Which of the following statements are true and which are false?
+	See if you can remember some things about the speaking section of the IELTS test. Which of the following statements are true and which are false?
 </div>
 </header>
 	
@@ -120,7 +120,7 @@
 </section>
 
 <section id="fb1">
-  <p class="feedbacktext">There are several different exam packs examiners can use and each has a variety of questions to choose from.</p>
+  <p class="feedbacktext">There are several different test packs examiners can use and each has a variety of questions to choose from.</p>
 </section>
 
 <section id="fb2">
@@ -140,7 +140,7 @@
 </section>
 
 <section id="fb6">
-  <p class="feedbacktext">Without identification you will not be allowed to take the exam.</p>
+  <p class="feedbacktext">Without identification you will not be allowed to take the test.</p>
 </section>
 
 <section id="fb7">

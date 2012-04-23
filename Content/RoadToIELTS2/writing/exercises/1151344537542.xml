@@ -5,7 +5,7 @@
 	<meta name="conversion-date" content="2011-11-14" />
 	<meta name="customised" content="true" />
 	<link rel="stylesheet" href="../../css/splitscreen.css" type="text/css" media="screen" />
-<link rel="stylesheet" href="../../css/splitscreen-print.css" type="text/css" media="print" />
+
 	<style type="text/css">
 	<![CDATA[
 		/*
@@ -126,11 +126,11 @@
 <section id="examtips">
 <p class="popuptext">Another way to make your language more complex is to join ideas together using relative clauses. There are two basic types of relative clause, defining and non-defining. For example:</p>
 
-<p class="popuptext"><span color="#7935AB">Museums which do not have an admission fee attract a lot of visitors.</span></p>
+<p class="popuptext"><span color="#0000FF">Museums which do not have an admission fee attract a lot of visitors.</span></p>
 
 <p class="popuptext">The relative clause gives essential information about 'museums', so it is a defining relative clause.</p>
 
-<p class="popuptext"><span color="#7935AB">Free museums, which do not have an admission fee, attract a lot of visitors.</span></p>
+<p class="popuptext"><span color="#0000FF">Free museums, which do not have an admission fee, attract a lot of visitors.</span></p>
 
 <p class="popuptext">The relative clause gives additional information about 'free museums', so it is a non-defining relative clause.</p>
 

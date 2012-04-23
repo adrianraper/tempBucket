@@ -45,6 +45,9 @@ function returnError($errCode, $data = null) {
 		case 1:
 			$apiReturnInfo['message'] = 'Exception, '.$data;
 			break;
+		case 210:
+			$apiReturnInfo['message'] = 'Invalid group ID '.$data;
+			break;
 		default:
 			$apiReturnInfo['message'] = 'Unknown error';
 			break;
@@ -67,7 +70,7 @@ try {
 	// Read and validate the data
 	// This will return an array of login requests
 	$apiInformation = loadAPIInformation();
-	AbstractService::$log->debug("api=".$apiInformation->toString());
+	AbstractService::$debugLog->info("api=".$apiInformation->toString());
 	//echo "loaded API";
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
@@ -100,7 +103,11 @@ try {
 			$user = $loginService->getUser($apiInformation);
 			
 			if ($user==false) {
-				$user = $loginService->addUser($apiInformation);
+				$group = $loginService->getGroup($apiInformation);
+				if ($group==false)
+					returnError(210, 'No such group');
+					
+				$user = $loginService->addUser($apiInformation, $group);
 				AbstractService::$debugLog->info("added new user ".$user->name." expire on ".$user->expiryDate);
 				
 				// If we want to send an email on adding a new user, do it here
