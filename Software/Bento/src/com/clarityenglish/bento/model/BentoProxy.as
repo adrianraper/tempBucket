@@ -1,6 +1,9 @@
 package com.clarityenglish.bento.model {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.logging.ILogger;
@@ -102,12 +105,16 @@ package com.clarityenglish.bento.model {
 				return null;
 			}
 			
+			var copyProxy:CopyProxy;
+			
 			// Locate the exercise node in menuXHTML for currentExercise by matching the hrefs
 			var matchingExerciseNodes:XMLList = menuXHTML..exercise.(@href == currentExercise.href.filename);
 			if (matchingExerciseNodes.length() > 1) {
-				throw new Error("Found multiple Exercise nodes in the menu xml matching " + currentExercise.href);
+				copyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+				throw copyProxy.getBentoErrorForId("errorMultipleExerciseWithSameHref", { href: currentExercise.href });
 			} else if (matchingExerciseNodes.length() == 0) {
-				throw new Error("Unable to find any Exercise nodes in the menu xml matching " + currentExercise.href);
+				copyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+				throw copyProxy.getBentoErrorForId("errorCantFindExerciseWithHref", { href: currentExercise.href });
 			}
 			
 			return matchingExerciseNodes[0];

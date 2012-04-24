@@ -36,6 +36,8 @@
 			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}</lit>
 			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id</lit>
 			<lit name="errorParsingExercise" code="402">Unable to parse exercise {filename} ({message})</lit>
+			<lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple Exercise nodes in the menu xml matching {href}</lit>
+			<lit name="errorCantFindExerciseWithHref" code="404">Unable to find any Exercise nodes in the menu xml matching {href}</lit>
 			
 			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database</lit>
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database</lit>

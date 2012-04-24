@@ -15,7 +15,7 @@
 						preloader="com.clarityenglish.ielts.IELTSPreloader">
 	
 	<fx:Metadata>
-		[SWF(width="1000", height="700")]
+		[SWF(width="1000", height="760")]
 	</fx:Metadata>
 	
 	<bento:states>

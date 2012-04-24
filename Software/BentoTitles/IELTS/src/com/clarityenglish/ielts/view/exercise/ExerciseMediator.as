@@ -6,6 +6,8 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.vo.config.BentoError;
 	
 	import flash.display.DisplayObject;
 	
@@ -67,14 +69,18 @@
 				case BBNotifications.EXERCISE_STARTED:
 					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 					
-					// Determine the exercise title
 					var breadcrumb:Array = [];
-					breadcrumb.push(bentoProxy.currentCourseNode.@caption);
-					if (bentoProxy.currentGroupNode) breadcrumb.push(bentoProxy.currentGroupNode.@caption);
-					breadcrumb.push(bentoProxy.currentExerciseNode.@caption);
-					view.exerciseTitle = breadcrumb.join(" > ");
-					
-					view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
+					try { // #303
+						breadcrumb.push(bentoProxy.currentCourseNode.@caption);
+						if (bentoProxy.currentGroupNode) breadcrumb.push(bentoProxy.currentGroupNode.@caption);
+						breadcrumb.push(bentoProxy.currentExerciseNode.@caption);
+						view.exerciseTitle = breadcrumb.join(" > ");
+						
+						view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
+					} catch (e:BentoError) {
+						sendNotification(CommonNotifications.BENTO_ERROR, e);
+						return;
+					}
 					
 					var exercise:Exercise = note.getBody() as Exercise;
 					
