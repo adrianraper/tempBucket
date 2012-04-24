@@ -19,6 +19,7 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import org.osflash.signals.Signal;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
+	import org.osmf.events.TimeEvent;
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
@@ -126,6 +127,8 @@ package com.clarityenglish.ielts.view.zone {
 		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
 		public var videoSelected:Signal = new Signal(Href, String);
+		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
+		public var videoPlayerComplete:Signal = new Signal(TimeEvent);
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -272,12 +275,14 @@ package com.clarityenglish.ielts.view.zone {
 				case questionZoneVideoPlayer:
 				case adviceZoneVideoPlayer:
 					(instance as VideoPlayer).addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange);
+					(instance as VideoPlayer).addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
 					break;
 			}
 		}
 		
 		protected function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
 			log.debug("VIDEO PLAYER STATE CHANGE: " + event.state);
+			
 			// React to some states
 			switch (event.state) {
 				case "playbackError":
@@ -295,6 +300,14 @@ package com.clarityenglish.ielts.view.zone {
 				default:
 					// Just play
 			}
+			
+			// Trigger the signal in case the mediator wants to take action too
+			videoPlayerStateChange.dispatch(event);
+		}
+		
+		
+		protected function onVideoPlayerComplete(event:TimeEvent):void {
+			videoPlayerComplete.dispatch(event);
 		}
 		
 		/**

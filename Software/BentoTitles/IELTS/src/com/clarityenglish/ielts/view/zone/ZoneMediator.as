@@ -19,6 +19,7 @@
 	import org.osmf.events.BufferEvent;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
+	import org.osmf.media.MediaPlayerState;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
 	import org.puremvc.as3.interfaces.IMediator;
@@ -33,6 +34,11 @@
 
 		private var urlLoader:URLLoader;
 		
+		// #318
+		private var queuedVideoHref:Href;
+		private var currentVideoHref:Href;
+		private var currentVideoStartTime:Date;
+		
 		public function ZoneMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
@@ -44,12 +50,16 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			view.videoPlayerStateChange.add(onVideoPlayerStateChange);
+			view.videoPlayerComplete.add(onVideoPlayerComplete);
+			
 			// Inject required data into the view
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			view.user = loginProxy.user;
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.dateFormatter = configProxy.getDateFormatter();
+			
 			// #234
 			view.productVersion = configProxy.getProductVersion();
 			view.licenceType = configProxy.getLicenceType();
@@ -68,6 +78,9 @@
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.videoPlayerStateChange.remove(onVideoPlayerStateChange);
+			view.videoPlayerComplete.remove(onVideoPlayerComplete);
 			
 			view.courseSelect.remove(onCourseSelected);
 			view.exerciseSelect.remove(onExerciseSelected);
@@ -152,15 +165,9 @@
 				});
 			}
 			
-			// #111 Write a record that they have started watching the video
-			// Unless you can simply record that they started and then write the record when they stop?
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var exerciseMark:ExerciseMark = new ExerciseMark();
-			exerciseMark.duration = 60;
-			exerciseMark.UID = bentoProxy.getExerciseUID(href);
-			
-			// Trigger a notification to write the score out
-			sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
+			// #318 - due to the order things happen we store the new href in 'queuedVideoHref' and the 'playing' state change moves it from queued into current.
+			// If we don't use this slightly roundabout system we can end up writing durations for the wrong video when changing between them.
+			queuedVideoHref = href;
 			
 			// #269
 			sendNotification(BBNotifications.ACTIVITY_TIMER_RESET);
@@ -215,13 +222,36 @@
 			urlLoader = null;
 		}
 		
-		public function videoPlayerStateChangeHandler(event:MediaPlayerStateChangeEvent):void {
+		public function onVideoPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
 			log.info("video state is " + event.state);
+			
+			switch (event.state) {
+				case MediaPlayerState.PLAYING:
+					if (!currentVideoStartTime) {
+						currentVideoHref = queuedVideoHref;
+						currentVideoStartTime = new Date();
+					}
+					break;
+				case MediaPlayerState.READY:
+				case MediaPlayerState.PAUSED:
+					if (currentVideoStartTime) { // #318
+						var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+						var exerciseMark:ExerciseMark = new ExerciseMark();
+						exerciseMark.duration = (new Date().getTime() - currentVideoStartTime.getTime()) / 1000;
+						exerciseMark.UID = bentoProxy.getExerciseUID(currentVideoHref);
+						
+						// Trigger a notification to write the score out
+						sendNotification(BBNotifications.SCORE_WRITE, exerciseMark)
+							
+						currentVideoStartTime = null;
+					}
+					break;
+			}
 		}
 		
-		public function videoPlayerCompleteHandler(event:TimeEvent):void {
+		public function onVideoPlayerComplete(event:TimeEvent):void {
 			log.info("video completed " + event.toString());
 		}
-
+		
 	}
 }
