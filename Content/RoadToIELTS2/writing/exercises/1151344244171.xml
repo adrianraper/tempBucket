@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta name="conversion-from" content="presentation" />
+	<meta name="conversion-date" content="2012-02-08" />
+	<meta name="customised" content="false" />
+	<link rel="stylesheet" href="../../css/presentation.css" type="text/css" media="screen" />
+	
+	<style type="text/css">
+	<![CDATA[
+		/*
+		 * List any exercise specific css here
+		 */			
+	]]>
+	</style>
+	
+
+<script id="model" type="application/xml">
+  <settings>
+    <param name="delayedMarking" value="true"/>
+  </settings>
+  <questions/>
+</script>
+
+</head>
+<body>
+	
+<header>
+	<div id="instruction">What will I learn in this set?</div>
+</header>
+	
+<section id="body">
+	<img class="rightFloat" src="../media/set11_01.jpg" mode="1" id="1001"  />
+	
+	<div id="presentation">
+	<h1><p>Academic Writing Task 1</p></h1>
+	
+	<p><b>Table and dynamic chart</b></p>
+	
+	<p>You will ...</p>
+	<ol>
+	<li>write a report based on a table and a dynamic chart;</li>
+	<li>complete a sample report with appropriate words, phrases and numbers.</li>
+	</ol>
+	
+	<h1><p>Academic Writing Task 2</p></h1>
+	
+	<p><b>Giving an opinion</b></p>
+	
+	<p>You will ...</p>
+	<ol>
+	<li>write a composition giving and justifying your opinion;</li>
+	<li>correct mistakes in a sample composition.</li>
+	</ol>
+	</div>
+</section>
+</body>
+</bento>

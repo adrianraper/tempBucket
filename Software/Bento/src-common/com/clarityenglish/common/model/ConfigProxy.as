@@ -207,9 +207,10 @@ package com.clarityenglish.common.model {
 			}
 			
 			// Anonymous login
+			// Demo login will normally use AA licence type
 			if (config.licenceType == Title.LICENCE_TYPE_AA) 
 				return new LoginEvent(LoginEvent.LOGIN, null, null)
-			
+				
 			return null;
 		}
 		

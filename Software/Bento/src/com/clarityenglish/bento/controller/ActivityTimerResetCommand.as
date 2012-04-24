@@ -22,7 +22,7 @@ package com.clarityenglish.bento.controller {
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		// The number of minutes of inactivity before Bento will automatically logout
-		private const TIMEOUT:Number = 6 * 60;
+		private const TIMEOUT:Number = 6 * 60 * 60; // 6 hours as seconds
 		
 		private static var activityTimer:Timer;
 		
@@ -30,7 +30,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			if (!activityTimer) {
-				activityTimer = new Timer(TIMEOUT * 6000, 1);
+				activityTimer = new Timer(TIMEOUT * 1000, 1);
 				activityTimer.addEventListener(TimerEvent.TIMER_COMPLETE, function(e:TimerEvent):void {
 					sendNotification(CommonNotifications.LOGOUT);
 				});

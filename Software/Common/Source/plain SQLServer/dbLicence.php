@@ -623,17 +623,17 @@ EOD;
 		// v6.6.0 BUT do confirm that teachers don't write session records. If they do, we need to exclude them by joining on T_User.F_UserType=0
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
-				FROM T_Session
-				WHERE F_ProductCode = ?
-				AND F_EndDateStamp >= ?
+				FROM T_Session c
+				WHERE c.F_ProductCode = ?
+				AND c.F_EndDateStamp >= ?
 EOD;
 		}
 		if (stristr($rootID,',')!==FALSE) {
-			$sql.= " AND F_RootID in ($rootID)";
+			$sql.= " AND c.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
 			// check all roots in that case - just for special cases, usually self-hosting
 		} else {
-			$sql.= " AND F_RootID = $rootID";
+			$sql.= " AND c.F_RootID = $rootID";
 		}
 		$bindingParams = array($pid, $datestamp);
 		$rs = $db->Execute($sql, $bindingParams);

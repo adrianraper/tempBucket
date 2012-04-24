@@ -162,8 +162,10 @@ class BentoService extends AbstractService {
 		
 		// That call also gave us the groupID
 		// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
-		$groupObj = $this->loginOps->getGroup($userObj->groupID);
-		// This might return an error object or a group object		 
+		// This call should be in manageableOps
+		//$groupObj = $this->loginOps->getGroup($userObj->groupID);
+		$groupObj = $this->manageableOps->getGroup($userObj->groupID);
+		// This might return null or a group object		 
 		$group = new Group();
 		$group->fromDatabaseObj($groupObj);
 		

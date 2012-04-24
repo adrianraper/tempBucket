@@ -290,7 +290,8 @@ EOD;
 
 	/**
 	 * 
-	 * This function gets a group record
+	 * This function gets a group record.
+	 * Deprecated as should be in ManageableOps
 	 * @param Number $groupID
 	 */
 	function getGroup($groupID) {

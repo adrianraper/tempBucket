@@ -31,8 +31,12 @@ class LicenceOps {
 		if ($licence->licenceStartDate > $dateNow)
 			throw $this->copyOps->getExceptionForId("errorLicenceHasntStartedYet");
 		
-		if ($licence->expiryDate < $dateNow)
+		if ($licence->expiryDate < $dateNow) {
+			// Write a record to the failure table
+			$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceExpired"));
+			
 			throw $this->copyOps->getExceptionForId("errorLicenceExpired", array("expiryDate" => $licence->expiryDate));
+		}
 		
 		// Then licence slot checking is based on licence type
 		switch ($licence->licenceType) {
@@ -52,9 +56,12 @@ EOD;
 				$bindingParams = array($productCode, $singleRootID, $updateTime);
 				$rs = $this->db->Execute($sql, $bindingParams);
 				// the sql call failed
-				if (!$rs)
+				if (!$rs) {
+					// Write a record to the failure table
+					$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorCantClearLicences"));
+					
 					throw $this->copyOps->getExceptionForId("errorCantClearLicences");
-				
+				}
 				// Then count how many are currently in use
 				$bindingParams = array($productCode, $singleRootID);			
 	
@@ -66,9 +73,12 @@ EOD;
 				$rs = $this->db->Execute($sql, $bindingParams);
 				$usedLicences = $rs->FetchNextObj()->i;
 
-				if ($usedLicences >= $licence->maxStudents) 
+				if ($usedLicences >= $licence->maxStudents) {
+					// Write a record to the failure table
+					$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceFull"));
+
 					throw $this->copyOps->getExceptionForId("errorLicenceFull");
-				
+				}
 				// Insert this user in the licence control table
 				$dateNow = date('Y-m-d H:i:s');
 				//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
@@ -90,6 +100,7 @@ EOD;
 				break;
 
 			// TODO. What about single and individual licences?
+			// Currently treated as tracking types.
 			case Title::LICENCE_TYPE_SINGLE:
 			case Title::LICENCE_TYPE_I:
 			
@@ -101,23 +112,33 @@ EOD;
 					$licenceID = 0;
 				} else {
 					// Has this user got an existing licence we can use?
-					$licenceID = $this->checkExistingLicence($user, $productCode, $licence);
-					if ($licenceID) {
-						$licence->id = $licenceID;
-						
+					if ($this->checkExistingLicence($user, $productCode, $licence)) {
+						$licenceID = $user->userID;
+												
 						// If so, update their use of it
-						$rc = $this->updateLicence($licence);
+						// Deprecated as the session record is effectively the last licence use
+						//$rc = $this->updateLicence($licence);
 					} else {
 						// How many licences have been used?
 						if ($this->countUsedLicences($rootID, $productCode, $licence) < $licence->maxStudents) {
 							// Grab one
-							$licenceID = $this->allocateNewLicence($user, $rootID, $productCode);
+							// Deprecated as the session record is effectively the last licence use
+							//$licenceID = $this->allocateNewLicence($user, $rootID, $productCode);
+							$licenceID = $user->userID;
 						} else {
+							// Write a record to the failure table
+							$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceFull"));
+							
 							throw $this->copyOps->getExceptionForId("errorLicenceFull");
 						}
 					}
 				}
 				break;
+			default:
+				// Write a record to the failure table
+				$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorInvalidLicenceType"));
+				
+				throw $this->copyOps->getExceptionForId("errorInvalidLicenceType");
 		}
 		
 		return $licenceID;
@@ -125,20 +146,28 @@ EOD;
 	/**
 	 * 
 	 * Does this user already have a licence for this product?
+	 * Change to use T_Session for tracking licence use
 	 * @param User $user
 	 * @param Number $productCode
 	 * @param Licence $licence
 	 */
 	function checkExistingLicence($user, $productCode, $licence) {
-		// Is there a record in T_LicenceControl for this user/product since the date?
+		// Is there a record in T_Session for this user/product since the date?
 		$sql = <<<EOD
-			SELECT F_LicenceID as i FROM T_LicenceControl 
-			WHERE F_ProductCode=?
-			AND F_UserID=?
-			AND F_LastUpdateTime>=?
+			SELECT * FROM T_Session
+			WHERE F_UserID = ?
+			AND F_ProductCode = ?
+			AND F_EndDateStamp >= ?
 EOD;
-		$bindingParams = array($productCode, $user->userID, $licence->licenceControlStartDate);
+		if ($rs && $rs->RecordCount()>0) {
+			$node .= "<licence id='$licenceID' />";
+			return $licenceID;
+		} else {
+			return false;
+		}
+		$bindingParams = array($user->userID, $productCode, $licence->licenceControlStartDate);
 		$rs = $this->db->Execute($sql, $bindingParams);
+		
 		// SQL error
 		if (!$rs)
 			throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
@@ -148,8 +177,10 @@ EOD;
 				return false;
 				break;
 			default:
-				// Valid login, return the id
-				return $rs->FetchNextObj()->i;
+				// Valid login, return the last session ID
+				// Simply return that they have used a licence already
+				// return $rs->FetchNextObj()->F_SessionID;
+				return true;
 		}
 	}
 	/**
@@ -164,30 +195,31 @@ EOD;
 		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
-				FROM T_LicenceControl c, T_User u
+				FROM T_Session c, T_User u
 				WHERE c.F_ProductCode = ?
 				AND c.F_UserID = u.F_UserID
-				AND c.F_LastUpdateTime >= ?
+				AND c.F_EndDateStamp >= ?
 EOD;
 		} else {
 			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed FROM T_LicenceControl
-				WHERE F_ProductCode = ?
-				AND F_LastUpdateTime >= ?
+				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
+				FROM T_Session c
+				WHERE c.F_ProductCode = ?
+				AND c.F_EndDateStamp >= ?
 EOD;
 		}
 		
 		if (stristr($rootID,',')!==FALSE) {
-			$sql.= " AND F_RootID in ($rootID)";
+			$sql.= " AND c.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
 			// check all roots in that case - just for special cases, usually self-hosting
 		} else {
-			$sql.= " AND F_RootID = $rootID";
+			$sql.= " AND c.F_RootID = $rootID";
 		}
 		$bindingParams = array($productCode, $licence->licenceControlStartDate);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
-		if ($rs && $rs->RecordCount()>0) {
+		if ($rs && $rs->RecordCount() > 0) {
 			$licencesUsed = (int)$rs->FetchNextObj()->licencesUsed;
 		} else {
 			throw $this->copyOps->getExceptionForId("errorReadingLicenceControlTable");
@@ -197,19 +229,20 @@ EOD;
 	}
 	
 	/**
-	 * 
+	 * DEPRECATED
 	 * Add a new record to the licence control table for this user/product
 	 * @param User $user
 	 * @param String $rootID
 	 * @param Number $productCode
 	 */
+	/*
 	function allocateNewLicence($user, $rootID, $productCode) {
 		// Insert this user in the licence control table
 		$dateNow = date('Y-m-d H:i:s');
 		//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
 		$sql = <<<EOD
-		INSERT INTO T_LicenceControl (F_UserID, F_ProductCode, F_RootID, F_LastUpdateTime) VALUES
-		($user->userID, $productCode, $rootID, '$dateNow')
+			INSERT INTO T_LicenceControl (F_UserID, F_ProductCode, F_RootID, F_LastUpdateTime) VALUES
+			($user->userID, $productCode, $rootID, '$dateNow')
 EOD;
 		$rs = $this->db->Execute($sql);
 		$licenceID = $this->db->Insert_ID();
@@ -220,7 +253,7 @@ EOD;
 		
 		return $licenceID;
 	}
-	
+	*/
 	/**
 	 * 
 	 * This function updates a licence record with a timestamp
@@ -322,6 +355,23 @@ EOD;
 				break;
 		}
 
+	}
+	/**
+	 * Record the failure to get a licence or otherwise start the program 
+	 */
+	function failLicenceSlot($user, $rootID, $productCode, $licence, $ip = '', $reasonCode) {
+		
+		if (!$ip) 
+			$ip = $_SERVER['REMOTE_ADDR'];
+			
+		$dateNow = date('Y-m-d H:i:s');
+		$bindingParams = array($ip, $dateNow, $rootID, $user->id, $productCode, $reasonCode);
+		$sql = <<<EOD
+			INSERT INTO T_Failsession (F_UserIP, F_StartTime, F_RootID, F_UserID, F_ProductCode, F_ReasonCode)
+			VALUES (?, ?, ?, ?, ?, ?)
+EOD;
+		$rs = $this->db->Execute($sql, $bindingParams);
+		
 	}
 	
 }
