@@ -52,7 +52,7 @@ function LMSInitialize(returnFunction) {
 	//v6.4.3 Acknowledge that you are controlled by SCO right now
 	_alreadyTerminated = false;
 	rc = doInitialize();
-	//if (_Debug == true) alert("b. LMSInitialize.rc=" + rc);
+	if (_Debug == true) alert("b. LMSInitialize.rc=" + rc);
 	if (rc == "false"){
 		errCode = "noAPI";
 		//mySCOObj.SetVariable("SCORMInitVar", "error:"+errCode);

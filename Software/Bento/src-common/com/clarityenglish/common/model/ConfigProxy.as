@@ -194,9 +194,14 @@ package com.clarityenglish.common.model {
 				return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "passwording")
 			}
 			
-			// take it from config rather than direct from the parameters
-			//if (FlexGlobals.topLevelApplication.parameters.studentID &&
-			//	FlexGlobals.topLevelApplication.parameters.password) {
+			// Take it from from the URL parameters (see config.as.mergeParameters)
+			/*
+			if (FlexGlobals.topLevelApplication.parameters.studentID &&
+				FlexGlobals.topLevelApplication.parameters.password) {
+				return new LoginEvent(LoginEvent.LOGIN, FlexGlobals.topLevelApplication.parameters.studentID, FlexGlobals.topLevelApplication.parameters.password);
+			}
+			*/
+			// Take it from config rather than direct from the parameters
 			if (config.studentID) {
 				return new LoginEvent(LoginEvent.LOGIN, config.studentID, config.password);
 			}

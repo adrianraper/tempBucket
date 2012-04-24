@@ -128,7 +128,8 @@
 							 source="@Embed(source='skins/ielts/assets/technical.png')" />
 				<s:RichText width="65%" paddingLeft="10" >
 					<s:p><s:span fontWeight="bold">Technical problems</s:span></s:p>
-					<s:p><s:span>Clarity will be pleased to help you any technical problems. Email support@clarityenglish.com with a description 
+					<s:p><s:span>Clarity will be pleased to help you any technical problems. Email 					
+					support@roadtoielts.com with a description 
 						 of your problem and the URL of your course (if you are running online).</s:span></s:p>	
 				</s:RichText>
 			</s:HGroup>
@@ -139,7 +140,7 @@
 			<s:RichText width="65%" paddingLeft="10" >
 				<s:p><s:span fontWeight="bold">Clarity Language Consultants Ltd</s:span></s:p>
 				<s:p><s:span>PO Box 163, Sai Kung, Hong Kong</s:span></s:p>
-				<s:p><s:span>Tel: +852 2701 1787</s:span></s:p>	
+				<s:p><s:span>Tel: +852 2791 1787</s:span></s:p>	
 				<s:p><s:span>Fax: +852 2791 6484</s:span></s:p>	
 			</s:RichText>
 		</s:HGroup>

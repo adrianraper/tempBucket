@@ -4299,7 +4299,7 @@ View.prototype.moveExercise = function(component, direction) {
 	// in the displayMsgBox bit IF they are asked and say YES (or are not asked)
 	} else if (isExercise && hasMarking && isDirty) {
 		//myTrace("marking: will they continue?");
-		//mainMarking();F
+		//mainMarking();
 		var marking = true;
 		if (nextItem == undefined) {
 			// v6.3.3 If you are in SCORM (and this is a unit SCO) getting to the end of a unit means exit please
@@ -4339,7 +4339,7 @@ View.prototype.moveExercise = function(component, direction) {
 		// don't go on any further here
 		return;
 	// It can be marked, but the student has done nothing, so ignore it
-	// This is a questionable/optional choice. It is pFFrobably just as valid to
+	// This is a questionable/optional choice. It is probably just as valid to
 	// ALWAYS do null marking, even if the student just looked
 	//} else if (isExercise && hasMarking && !isDirty) {
 	//	myTrace("marking: not dirty, so no marking");

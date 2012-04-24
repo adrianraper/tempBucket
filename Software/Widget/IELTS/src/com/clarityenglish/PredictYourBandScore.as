@@ -122,7 +122,11 @@ package com.clarityenglish
 			//TraceUtils.myTrace("stage.stageWidth=" + this.stage.stageWidth);
 			//TraceUtils.myTrace("screen.width=" + this.stage.fullScreenWidth);
 			//TraceUtils.myTrace("displayObject.width=" + this.width);
-			this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+			if (paramObj['widgetdatawidth']>0 && paramObj['widgetdataheight']>0) {
+				this.widgetLayout(paramObj['widgetdatawidth'], paramObj['widgetdataheight']);
+			} else {
+				this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+			}
 			
 			// And we need to make the origin in the top left corner
 			// If you publish the flash with width 160, changing that with the Flash options means that the
@@ -497,7 +501,7 @@ package com.clarityenglish
 				// Since you are running on many domains, this must be a full URL
 				//var url:String = "http://www.ClarityEnglish/Software/Common/lib/php/writeLog.php";
 				//var url:String = "http://dock.fixbench/Software/Common/lib/php/writeLog.php";
-				var url:String = "http://www.ClarityEnglish.com/Software/Common/lib/php/writeLog.php";
+				var url:String = "http://p1.ClarityEnglish.com/Software/Common/lib/php/writeLog.php";
 				var request:URLRequest = new URLRequest(url);
 				var variables:URLVariables = new URLVariables();
 				variables.referrer = websiteReferrer;

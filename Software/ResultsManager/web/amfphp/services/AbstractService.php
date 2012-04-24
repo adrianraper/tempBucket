@@ -25,7 +25,7 @@ class AbstractService {
 		// This deals with a date bug in AdoDB MSSQL driver
 		global $ADODB_mssql_mths;
 		$ADODB_mssql_date_order = 'mdy'; 
-		$ADODB_mssql_mths = array('JAN'=>1, 'FEB'=>2, 'MAR'=>3, 'APR'=>4, 'MAY'=>5, 'JUN'=>6, 'JUL'=>7, 'AUG'=>8, 'SEP'=>9, 'OCT'=>10, b'NOV'=>11, 'DEC'=>12);
+		$ADODB_mssql_mths = array('JAN'=>1,'FEB'=>2,'MAR'=>3,'APR'=>4,'MAY'=>5,'JUN'=>6,'JUL'=>7,'AUG'=>8,'SEP'=>9,'OCT'=>10,'NOV'=>11,'DEC'=>12);
 		
 		// Force all PHP datetime functions to work in UTC
 		// Wouldn't it make more sense to work in Asia/Hong_Kong since that is where the server is?

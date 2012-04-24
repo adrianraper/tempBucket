@@ -3,6 +3,8 @@
  * This is not really an AMFPHP service but its in this folder to maintain path integrity in all of the require_once calls.
  * Since there are no classes or methods here it does not represent a security risk.
  */
+ini_set('max_execution_time', 300); // 5 minutes
+
 require_once(dirname(__FILE__)."/ClarityService.php");
 //require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");

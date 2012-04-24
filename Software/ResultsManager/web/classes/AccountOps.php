@@ -199,7 +199,11 @@ SQL;
 						break;
 					// v3.6 Early Warning System
 					case 'reseller':
-						$selectBuilder->addWhere("a.F_ResellerCode IN (".join($value, ",").")");
+						if (stristr($value, ",")) {
+							$selectBuilder->addWhere("a.F_ResellerCode IN (".$value.")");
+						} else {
+							$selectBuilder->addWhere("a.F_ResellerCode = '".$value."'");
+						}
 						break;
 					// v3.5 Subscription reminders need start date for first few emails - and they are only based on RM
 					case 'startDate':

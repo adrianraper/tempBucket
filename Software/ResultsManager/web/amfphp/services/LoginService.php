@@ -126,7 +126,4 @@ class LoginService extends AbstractService {
 	public function getGroup($loginDetails) {
 		return $this->manageableOps->getGroup($loginDetails->groupID);
 	}
-		 
-	
-	
 }

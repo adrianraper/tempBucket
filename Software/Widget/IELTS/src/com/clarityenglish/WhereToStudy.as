@@ -128,12 +128,16 @@
 			//TraceUtils.myTrace("stage.stageWidth=" + this.stage.stageWidth);
 			//TraceUtils.myTrace("screen.width=" + this.stage.fullScreenWidth);
 			//TraceUtils.myTrace("displayObject.width=" + this.width);
-			this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+			if (paramObj['widgetdatawidth']>0 && paramObj['widgetdataheight']>0) {
+				this.widgetLayout(paramObj['widgetdatawidth'], paramObj['widgetdataheight']);
+			} else {
+				this.widgetLayout(this.stage.stageWidth, this.stage.stageHeight);
+			}
 			// Load the XML database now so you can search more quickly later, and even do type-ahead if possible
 			
 			// v1.1 Update the source of information
-			//this.institutions = new XMLDatabase('USInstitutions.xml', applicationRoot);
-			this.institutions = new XMLDatabase('ROlocations-USA', applicationRoot);
+			this.institutions = new XMLDatabase('USInstitutions.xml', applicationRoot);
+			//this.institutions = new XMLDatabase('ROlocations-USA.xml', applicationRoot);
 			
 			// And we need to make the origin in the top left corner
 			// If you publish the flash with width 160, changing that with the Flash options means that the
@@ -419,6 +423,7 @@
 			TraceUtils.myTrace("search for " + searchString);
 			
 			var matchingInstitutions:XMLList = this.institutions.getInstitution(searchString);
+			//TraceUtils.myTrace("got back " + matchingInstitutions.toString());
 			var results:String = new String();
 			var link:String;
 			var item:XML;
@@ -431,15 +436,26 @@
 			}else{
 				this.resultFields.descriptor_txt.visible = false;
 				this.resultFields.list_txt.visible = true;
-				// SInce we found at least one item, lets put a note about it in the first space
+				// Since we found at least one item, lets put a note about it in the first space
 				myDataProvider.addItem({id:undefined, name:this.literals.getLiteral('whatToDo')});
-				for each(item in matchingInstitutions){
+				mainloop: for each(item in matchingInstitutions){
+					//TraceUtils.myTrace("item=" + item.name.toString() + " id=" + item.id);
 					//results += item.name.toString() + "<br>";
 					//link = "<a href=\"http://www.google.com/search?q=" + spaceToPlus(item.name.toString()) + " IELTS \">" + item.name.toString() + "</a>";
 					//results += "<p><u>" + link + "</u></p>";
+					
+					// But since the same text can be listed in a couple of sections of an xml item, so make sure no duplicates go in
+					for (var i = 0; i < myDataProvider.length; i++) {
+						//TraceUtils.myTrace("check duplicate for " + myDataProvider.getItemAt(i).name);
+						if (myDataProvider.getItemAt(i).id == item.id) {
+							//TraceUtils.myTrace("skip as done " + item.name.toString());
+							break mainloop;
+						}
+					}
+					
 					// Add to a list item
 					//myDataProvider.addItem({name:item.name.toString(), score:item.score, city:item.city, state:item.state});
-					myDataProvider.addItem({id:item.id, name:item.name.toString(), state:item.state});
+					myDataProvider.addItem({id:item.id, name:item.name.toString(), state:item.state, city:item.city, url:item.url});
 				}
 				//this.resultFields.descriptor_txt.wordWrap = false;
 				this.resultFields.list_txt.dataProvider = myDataProvider;
@@ -465,9 +481,9 @@
 				TraceUtils.myTrace("log to " + websiteReferrer);
 				// Since you are running on many domains, this must be a full URL
 				//var url:String = "http://www.ClarityEnglish/Software/Common/lib/php/writeLog.php";
-				//var url:String = "http://dock.fixbench/Software/Common/lib/php/writeLog.php";
 				// v1.1 Only write to one server
 				var url:String = "http://p1.ClarityEnglish.com/Software/Common/lib/php/writeLog.php";
+				//var url:String = "http://dock.fixbench/Software/Common/lib/php/writeLog.php";
 				var request:URLRequest = new URLRequest(url);
 				var variables:URLVariables = new URLVariables();
 				variables.referrer = websiteReferrer;
@@ -539,7 +555,8 @@
 			// v1.1 Go to page on takeielts.com
 			//var url:String = "http://www.google.com/search?q=" + spaceToPlus(item.name.toString()) + " IELTS";
 			//var url:String = "http://bandscore.ielts.org/course_info.aspx?OrgId=" + spaceToPlus(item.id.toString());
-			var url:String = "http://www.takeielts.com" + spaceToPlus(item.url.toString());
+			var url:String = "http://takeielts.britishcouncil.org" + spaceToPlus(item.url.toString());
+			//var url:String = "http://release.ielts.precedenthost.co.uk:82" + spaceToPlus(item.url.toString());
 			var request:URLRequest = new URLRequest(url);
 			try {
 				navigateToURL(request, '_blank'); // second argument is target

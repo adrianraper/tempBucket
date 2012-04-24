@@ -4,6 +4,7 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
@@ -61,7 +62,6 @@ package com.clarityenglish.ielts.view.login {
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
 		private var lastMinuteGeneralTrainingLogo:Class;
-
 		
 		public function LoginView() {
 			super();
@@ -73,34 +73,47 @@ package com.clarityenglish.ielts.view.login {
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
+		[Bindable]
+		public function get productVersion():String {
+			return _productVersion;
+		}
 		public function set productCode(value:uint):void {
 			if (_productCode != value) {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
+		public function get productCode():uint {
+			return _productCode;
+		}
 		
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
 			switch (_productCode) {
-				case 52:
+				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
-						case "fullVersion":
+						case IELTSApplication.FULL_VERSION:
 							return fullVersionAcademicLogo;
-						case "lastMinute":
+						case IELTSApplication.LAST_MINUTE:
 							return lastMinuteAcademicLogo;
-						case "tenHour":
+						case IELTSApplication.TEST_DRIVE:
 							return tenHourAcademicLogo;
+						default:
+							//return demoAcademicLogo;
+							return fullVersionAcademicLogo;
 					}
 					break;
-				case 53:
+				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
-						case "fullVersion":
+						case IELTSApplication.FULL_VERSION:
 							return fullVersionGeneralTrainingLogo;
-						case "lastMinute":
+						case IELTSApplication.LAST_MINUTE:
 							return lastMinuteAcademicLogo;
-						case "tenHour":
+						case IELTSApplication.TEST_DRIVE:
 							return tenHourGeneralTrainingLogo;
+						default:
+							//return demoGeneralTrainingLogo;
+							return fullVersionGeneralTrainingLogo;
 					}
 					break;
 				default:
@@ -113,24 +126,28 @@ package com.clarityenglish.ielts.view.login {
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionText():String {
 			switch (_productCode) {
-				case 52:
+				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
-						case "fullVersion":
+						case IELTSApplication.FULL_VERSION:
 							return "Full Version - Academic module";
-						case "lastMinute":
+						case IELTSApplication.LAST_MINUTE:
 							return "Last Minute - Academic module";
-						case "tenHour":
+						case IELTSApplication.TEST_DRIVE:
 							return "Test Drive - Academic module";
+						default:
+							return "Demo - Academic module";
 					}
 					break;
-				case 53:
+				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
-						case "fullVersion":
+						case IELTSApplication.FULL_VERSION:
 							return "Full Version - General Training module";
-						case "lastMinute":
+						case IELTSApplication.LAST_MINUTE:
 							return "Last Minute - General Training module";
-						case "tenHour":
+						case IELTSApplication.TEST_DRIVE:
 							return "Test Drive - General Training module";
+						default:
+							return "Demo - General Training module";
 					}
 					break;
 				default:

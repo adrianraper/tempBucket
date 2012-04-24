@@ -9,8 +9,9 @@
 	<fx:Script>
 		<![CDATA[ 
 			import flash.net.navigateToURL; 
-			protected function clickHandler(event:MouseEvent):void 
-			{ 
+			import com.clarityenglish.ielts.IELTSApplication;
+			protected function clickHandler(event:MouseEvent):void {
+				// TODO: Use CopyOps
 				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
 				navigateToURL(urlReq, "_blank"); 
 			} 
@@ -20,7 +21,10 @@
 
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0" top="44"  visible="true" click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
+		<s:SWFLoader id="upgradeButton" source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0" top="44" 
+					 visible="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}"
+					 includeInLayout="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}"
+					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
 	</s:Group>
 	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="100">
 		<s:layout>

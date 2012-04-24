@@ -29,7 +29,7 @@ $parameters = "widgetdatawidth=".$width."&widgetdataheight=".$height."&widgetdat
 <html>
 <head>
 <title>British Council IELTS widgets</title>
-<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
 <style type="text/css">
 <!--
@@ -73,7 +73,7 @@ $parameters = "widgetdatawidth=".$width."&widgetdataheight=".$height."&widgetdat
             		<img src="images/bullet_white.jpg" width="10" height="10">
             		<img src="images/bullet_white.jpg" width="10" height="10">
                     <img src="images/bullet_white.jpg" width="10" height="10">            </td>
-				<td width="745" height="30" align="left" valign="middle"><span class="white">Examples of the widgets-less</span></td>
+				<td width="745" height="30" align="left" valign="middle"><span class="white">Examples of the widgets</span></td>
 				<td width="15" height="30" align="left" valign="middle">&nbsp;</td>
 				<td width="127" height="30" align="left" valign="middle">&nbsp;</td>
 		  </tr>
@@ -89,7 +89,7 @@ $parameters = "widgetdatawidth=".$width."&widgetdataheight=".$height."&widgetdat
                         <tr>
                             <td height="332" align="center" valign="top">
                             <br/>
-<script type='text/javascript' language='JavaScript' src='http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'></script>
+<script type='text/javascript' language='JavaScript' src='/Software/Common/swfobject2.js'></script>
 <script type='text/javascript' language='JavaScript' src='/Software/Widget/IELTS/bin/BandScoreCalculator.php?<?php echo $parameters; ?>'></script>
                           </td>
                         </tr>
@@ -100,8 +100,8 @@ $parameters = "widgetdatawidth=".$width."&widgetdataheight=".$height."&widgetdat
                         <tr>
                             <td height="400" align="center" valign="top" >
                            <br/>
-                            <script type='text/javascript' language='JavaScript' src='http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'></script>
-			                <script type='text/javascript' language='JavaScript' src='/Software/Widget/IELTS/bin/predictYourBandScore.php?<?php echo $parameters; ?>'></script>
+<script type='text/javascript' language='JavaScript' src='/Software/Common/swfobject2.js'></script>
+<script type='text/javascript' language='JavaScript' src='/Software/Widget/IELTS/bin/predictYourBandScore.php?<?php echo $parameters; ?>'></script>
                           </td>
                         </tr>
                     </table>
@@ -111,8 +111,8 @@ $parameters = "widgetdatawidth=".$width."&widgetdataheight=".$height."&widgetdat
                         <tr>
                             <td height="332" align="center" valign="top">
                             <br/>
-                            <script type='text/javascript' language='JavaScript' src='http://ajax.googleapis.com/ajax/libs/swfobject/2.2/swfobject.js'></script>
-			                <script type='text/javascript' language='JavaScript' src='/Software/Widget/IELTS/bin/whereToStudy.php?<?php echo $parameters; ?>'></script>
+<script type='text/javascript' language='JavaScript' src='/Software/Common/swfobject2.js'></script>
+<script type='text/javascript' language='JavaScript' src='/Software/Widget/IELTS/bin/whereToStudy.php?<?php echo $parameters; ?>'></script>
                           </td>
                         </tr>
                     </table>

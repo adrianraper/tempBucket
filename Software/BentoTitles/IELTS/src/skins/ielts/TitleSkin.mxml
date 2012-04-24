@@ -16,17 +16,13 @@
 	<fx:Script>
 		<![CDATA[ 
 			import flash.net.navigateToURL; 
-			protected function clickHandler(event:MouseEvent):void 
-			{ 
+			import com.clarityenglish.ielts.IELTSApplication;
+			protected function clickHandler(event:MouseEvent):void { 
 				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
 				navigateToURL(urlReq, "_blank"); 
 			} 
 		]]> 
 
-		<![CDATA[
-			import com.clarityenglish.ielts.IELTSApplication;
-		]]>
-		
 	</fx:Script>
 	
 	<s:states>
@@ -56,7 +52,7 @@
 		<s:SWFLoader id="registerButton" source="@Embed(source='skins/ielts/assets/register.jpg')" right="0" top="44" 
 					 visible="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}"
 					 includeInLayout="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}"/>
-		<s:SWFLoader id="buyButton" source="@Embed(source='skins/ielts/assets/buy.jpg')" right="0" top="44" visible="false" includeInLayout="false" />
+		<s:SWFLoader id="buyButton" source="@Embed(source='skins/ielts/assets/buy.jpg')" right="0" top="44" visible="false" includeInLayout="true" />
 		
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true"/>
 	</s:Group>

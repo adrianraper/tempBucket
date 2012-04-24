@@ -1,4 +1,15 @@
 <?php
+// debug mode, will write log, please delete it during release version.
+define("DEBUG", "TRUE");
+function writelog($level, $message) {
+	if (defined("DEBUG")) {
+		$logmsg = "[".$level.": ".date("y/m/d H:i:s")."] ".$message."\r\n";
+		$logfile = "c:/var/log/ccb/log".date("ymd").".txt";
+		$fp = fopen($logfile, "a");
+		fwrite($fp, $logmsg);
+		fclose($fp);
+	}
+}
 
 // I need to call session_start here as this is about the first thing in any page.
 session_start();
@@ -72,6 +83,7 @@ $GLOBALS['rmail_libs'] = dirname(__FILE__).$RMFolders."/rmail/";
 /* Configuration for Smarty */
 $smartyRoot = dirname(__FILE__).$RMFolders."/smarty";
 $GLOBALS['smarty_libs'] = $smartyRoot."/libs/";
+// v3.6.2 Can I move this outside the RM folder?
 $GLOBALS['smarty_template_dir'] = $smartyRoot."/templates/";
 $GLOBALS['smarty_compile_dir'] = $smartyRoot."/templates_c/";
 $GLOBALS['smarty_config_dir'] = $smartyRoot."/configs/";

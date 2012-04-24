@@ -189,6 +189,8 @@ package com.clarityenglish.common.model {
 				var duration:uint = 0;
 				var totalScore:uint = 0;
 				var totalDone:uint = 0;
+				var averageScore:uint = 0;
+				var averageDuration:uint = 0;
 				for each (var exercise:XML in course..exercise) {
 					of++;
 					if (Number(exercise.@done) > 0) {
@@ -201,13 +203,17 @@ package com.clarityenglish.common.model {
 							totalScore += Number(score.@score);
 							scoredCount++;
 						}
-						durationCount++;
-						duration += Number(score.@duration);
+						// #318. 0 duration is for offline exercises (downloading a pdf for instance)
+						// so ignore it.
+						if (Number(score.@duration) > 0) {
+							durationCount++;
+							duration += Number(score.@duration);
+						}
 					}
 				}
 				if (scoredCount>0) {
-					var averageScore:uint = Math.floor(totalScore / scoredCount);
-					var averageDuration:uint = Math.floor(duration / durationCount);
+					averageScore = Math.floor(totalScore / scoredCount);
+					averageDuration = Math.floor(duration / durationCount);
 				}
 				var coverage:uint = Math.floor(100 * count / of);
 				

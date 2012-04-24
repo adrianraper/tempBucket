@@ -134,9 +134,11 @@ class ClarityService extends AbstractService {
 			$manageablesCount = $this->manageableOps->countUsersInGroup(Session::get('groupIDs'));
 			
 			// v3.5 Special (temporary) change for Taihung University (18000 accounts) for Kima.
-			// and SciencesPo, and HSBC?
+			// and SciencesPo, and HSBC? (expired)
+			// added BCJPILA
 			if ((int)$loginObj->F_RootID == 13770 || (int)$loginObj->F_RootID == 14252 || 
-				(int)$loginObj->F_RootID==11056) {
+				(int)$loginObj->F_RootID==13982) {
+				//(int)$loginObj->F_RootID==11056) {
 				Session::set('no_students', ($manageablesCount > 8000));
 				//NetDebug::trace("for SciencesPo, users=$manageablesCount");
 			} else {
@@ -146,7 +148,7 @@ class ClarityService extends AbstractService {
 			// v3.4 I would like to send back (some) account root information as well (remember that accounts in RM means titles)
 			// v3.6 Maybe it is better to do a separate getAccount call as I also want things like adminUser's email
 			$accountRoot = $this->manageableOps->getAccountRoot($loginObj->F_RootID);
-			NetDebug::trace('accountRoot='.$accountRoot->prefix);
+			//NetDebug::trace('accountRoot='.$accountRoot->prefix);
 
 			// v3.4 Get some more information about the user (and their group/parent groups)
 			// Keep this in session so that reports can use it for editedContent

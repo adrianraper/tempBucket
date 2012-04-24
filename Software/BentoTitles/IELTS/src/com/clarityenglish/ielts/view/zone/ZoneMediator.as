@@ -156,7 +156,7 @@
 			// Unless you can simply record that they started and then write the record when they stop?
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exerciseMark:ExerciseMark = new ExerciseMark();
-			exerciseMark.duration = 0;
+			exerciseMark.duration = 60;
 			exerciseMark.UID = bentoProxy.getExerciseUID(href);
 			
 			// Trigger a notification to write the score out

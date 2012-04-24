@@ -103,13 +103,14 @@ class ProgressOps {
 				}
 				
 				// And add a score node as a child IF this is a practice-zone exercise
+				// #318 Send back all scores
 				$unit = $exercise[0]->xpath('..');
-				if (isset($unit[0]['class']) && $unit[0]['class'] == 'practice-zone') {
+				//if (isset($unit[0]['class']) && $unit[0]['class'] == 'practice-zone') {
 					$score = $exercise[0]->addChild('score');
 					$score->addAttribute('score',$record['F_Score']);
 					$score->addAttribute('duration',$record['F_Duration']);
 					$score->addAttribute('datetime',$record['F_DateStamp']);
-				}
+				//}
 			}
 		}
 		
