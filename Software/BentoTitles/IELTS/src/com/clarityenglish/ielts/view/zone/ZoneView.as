@@ -11,7 +11,6 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.geom.Point;
 	
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
@@ -128,7 +127,6 @@ package com.clarityenglish.ielts.view.zone {
 		public var courseSelect:Signal = new Signal(XML);
 		public var videoSelected:Signal = new Signal(Href, String);
 		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
-		public var videoPlayerComplete:Signal = new Signal(TimeEvent);
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -280,6 +278,11 @@ package com.clarityenglish.ielts.view.zone {
 			}
 		}
 		
+		protected function onVideoPlayerComplete(event:TimeEvent):void {
+			// When a video in advice zone reaches the end deselect the video in the list so we don't end up with a floating 'loading...'
+			if (event.target == adviceZoneVideoPlayer) adviceZoneVideoList.selectedItem = null;
+		}
+		
 		protected function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
 			log.debug("VIDEO PLAYER STATE CHANGE: " + event.state);
 			
@@ -305,11 +308,6 @@ package com.clarityenglish.ielts.view.zone {
 			videoPlayerStateChange.dispatch(event);
 		}
 		
-		
-		protected function onVideoPlayerComplete(event:TimeEvent):void {
-			videoPlayerComplete.dispatch(event);
-		}
-		
 		/**
 		 * To allow the data in the exercise list to be refreshed based on score written 
 		 * @return 
@@ -333,8 +331,8 @@ package com.clarityenglish.ielts.view.zone {
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);
-			// I want to know when the video player is removed. But this is never triggered.
 			
+			// I want to know when the video player is removed. But this is never triggered.
 		}		
 		
 		/**

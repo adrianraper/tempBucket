@@ -51,7 +51,6 @@
 			super.onRegister();
 			
 			view.videoPlayerStateChange.add(onVideoPlayerStateChange);
-			view.videoPlayerComplete.add(onVideoPlayerComplete);
 			
 			// Inject required data into the view
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
@@ -80,7 +79,6 @@
 			super.onRemove();
 			
 			view.videoPlayerStateChange.remove(onVideoPlayerStateChange);
-			view.videoPlayerComplete.remove(onVideoPlayerComplete);
 			
 			view.courseSelect.remove(onCourseSelected);
 			view.exerciseSelect.remove(onExerciseSelected);
@@ -242,7 +240,7 @@
 						
 						// Trigger a notification to write the score out
 						sendNotification(BBNotifications.SCORE_WRITE, exerciseMark)
-							
+						
 						currentVideoStartTime = null;
 					}
 					break;
