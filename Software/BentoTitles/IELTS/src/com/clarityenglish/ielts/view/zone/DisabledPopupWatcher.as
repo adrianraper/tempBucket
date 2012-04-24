@@ -19,6 +19,8 @@ package com.clarityenglish.ielts.view.zone {
 	import spark.components.IItemRenderer;
 	import spark.components.List;
 	
+	// TODO: There is a chance this might cause a small memory leak, but since it is bound to the skin it shouldn't do so and anyway skins are recycled so it should
+	// have an upper limit.
 	public class DisabledPopupWatcher {
 		
 		private var target:UIComponent;
@@ -60,17 +62,8 @@ package com.clarityenglish.ielts.view.zone {
 				}
 			}
 			
-			target.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-			target.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
-			target.addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-		}
-		
-		protected function onRemovedFromStage(event:Event):void {
-			target.removeEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-			target.removeEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
-			target.removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-			
-			target = lastItemRenderer = dataGroup = null;
+			target.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove, false, 0, true);
+			target.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut, false, 0, true);
 		}
 		
 		private function onMouseMove(event:MouseEvent):void {

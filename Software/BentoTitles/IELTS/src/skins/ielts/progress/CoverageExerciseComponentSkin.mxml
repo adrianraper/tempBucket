@@ -15,11 +15,14 @@
 		<![CDATA[ 
 			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
 			
-			import mx.events.FlexEvent;
-			protected function creationComplete(event:FlexEvent):void {
+			// #302 - ensure the popupwatchers isn't garbage collected
+			private var popupWatcher:DisabledPopupWatcher;
+			
+			protected function creationComplete(event:Event):void {
 				// #234
-				new DisabledPopupWatcher(itemList, hostComponent.productVersion); 
-			} 
+				popupWatcher = new DisabledPopupWatcher(itemList, hostComponent.productVersion); 
+			}
+			
 		]]> 
 	</fx:Script> 
 
