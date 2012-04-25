@@ -6,6 +6,15 @@
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
+        <modifiedEntries>
+          <libraryPathEntry applicationDomain="default" forceLoad="false" index="1" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/framework.swc" useDefaultLinkType="true">
+            <crossDomainRsls>
+              <crossDomainRslEntry autoExtract="true" policyFileUrl="http://fpdownload.adobe.com/pub/swz/crossdomain.xml" rslUrl="http://fpdownload.adobe.com/pub/swz/flex/4.5.1.21328/framework_4.5.1.21328.swz"/>
+              <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="framework_4.5.1.21328.swz"/>
+              <crossDomainRslEntry autoExtract="true" policyFileUrl="" rslUrl="framework_4.5.1.21328.swf"/>
+            </crossDomainRsls>
+          </libraryPathEntry>
+        </modifiedEntries>
         <excludedEntries>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flex.swc" useDefaultLinkType="false"/>
           <libraryPathEntry applicationDomain="default" forceLoad="false" index="2" kind="3" linkType="4" path="${PROJECT_FRAMEWORKS}/libs/textLayout.swc" useDefaultLinkType="true">

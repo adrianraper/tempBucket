@@ -243,7 +243,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function startSession(user:User, account:Account):void {
 			// $userID, $rootID, $productCode, $dateNow
-			var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, new Date().getTime() ];
+			var params:Array = [ user, account.id, (account.titles[0] as Title).id, new Date().getTime() ];
 			new RemoteDelegate("startSession", params, this).execute();			
 		}
 		
@@ -271,8 +271,10 @@ package com.clarityenglish.common.model {
 			var dateFormatter:DateFormatter = new DateFormatter();
 			dateFormatter.formatString = "YYYY-MM-DD JJ:NN:SS";
 			var dateNow:String = dateFormatter.format(new Date());
-			
-			var params:Array = [ (loginProxy.user) ? loginProxy.user.id : null, sessionID, dateNow, mark ];
+
+			// Just send whole user
+			//var params:Array = [ (loginProxy.user) ? loginProxy.user.id : null, sessionID, dateNow, mark ];
+			var params:Array = [ loginProxy.user, sessionID, dateNow, mark ];
 			
 			new RemoteDelegate("writeScore", params, this).execute();
 			

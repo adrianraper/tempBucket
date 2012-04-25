@@ -161,7 +161,13 @@ package com.clarityenglish.ielts.view.progress.components {
 				// If the grid can do some sort of subheading, then I could do something similar with the unit name too
 				for each (var score:XML in buildXML) {
 					score.@caption = score.parent().@caption;
-					score.@unitCaption = detailDataProvider.course.(@["class"]==courseClass).groups.group.(@id==score.parent().@group).@caption;
+					
+					// Caption is different from PracticeZone and others
+					if (score.parent().hasOwnProperty("@group")) {
+						score.@unitCaption = detailDataProvider.course.(@["class"]==courseClass).groups.group.(@id==score.parent().@group).@caption;
+					} else {
+						score.@unitCaption = score.parent().parent().@caption;
+					}
 					
 					// #232. Scores of -1 (nothing to mark) should show in the table as ---
 					// I need to be sure that if I change the score attribute, it doesn't impact the original

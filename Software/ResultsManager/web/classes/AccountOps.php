@@ -60,11 +60,12 @@ SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		// It would be an error to have more or less than one account
+		// It would be an error to have more or less than one title in that account
 		if ($rs->RecordCount() > 1) {
-			throw new Exception("More than one account with rootID $rootID", 100);
-		} elseif ($rs->RecordCount() < 1) { 
-			throw new Exception("No account with rootID $rootID", 100);
-		}
+			throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
+		} else if ($rs->RecordCount() == 0) {
+			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID, "prefix" => $prefix));
+		} 
 		
 		$dbObj = $rs->FetchNextObj();
 		// Create the account object

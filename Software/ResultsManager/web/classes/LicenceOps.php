@@ -43,60 +43,67 @@ class LicenceOps {
 			// Concurrent licences
 			case Title::LICENCE_TYPE_AA:
 			case Title::LICENCE_TYPE_CT:
-				$aWhileAgo = time() - LicenceOps::LICENCE_DELAY * 60;
-				$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
 				
-				// First, always delete old licences for this product/root
-				$sql = <<<EOD
-				DELETE FROM T_Licences 
-				WHERE F_ProductCode=? 
-				AND F_RootID=?
-				AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
-EOD;
-				$bindingParams = array($productCode, $singleRootID, $updateTime);
-				$rs = $this->db->Execute($sql, $bindingParams);
-				// the sql call failed
-				if (!$rs) {
-					// Write a record to the failure table
-					$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorCantClearLicences"));
+				// Only check on learners. AA licence doesn't have teachers, but a CT licence will
+				if ($user->userType != User::USER_TYPE_STUDENT) {
+					$licenceID = 0;
 					
-					throw $this->copyOps->getExceptionForId("errorCantClearLicences");
-				}
-				// Then count how many are currently in use
-				$bindingParams = array($productCode, $singleRootID);			
+				} else {
+					
+					$aWhileAgo = time() - LicenceOps::LICENCE_DELAY * 60;
+					$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
+					
+					// First, always delete old licences for this product/root
+					$sql = <<<EOD
+					DELETE FROM T_Licences 
+					WHERE F_ProductCode=? 
+					AND F_RootID=?
+					AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
+EOD;
+					$bindingParams = array($productCode, $singleRootID, $updateTime);
+					$rs = $this->db->Execute($sql, $bindingParams);
+					// the sql call failed
+					if (!$rs) {
+						// Write a record to the failure table
+						$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorCantClearLicences"));
+						
+						throw $this->copyOps->getExceptionForId("errorCantClearLicences");
+					}
+					// Then count how many are currently in use
+					$bindingParams = array($productCode, $singleRootID);			
+		
+					$sql = <<<EOD
+					SELECT COUNT(F_LicenceID) as i FROM T_Licences 
+					WHERE F_ProductCode=?
+					AND F_RootID=? 
+EOD;
+					$rs = $this->db->Execute($sql, $bindingParams);
+					$usedLicences = $rs->FetchNextObj()->i;
 	
-				$sql = <<<EOD
-				SELECT COUNT(F_LicenceID) as i FROM T_Licences 
-				WHERE F_ProductCode=?
-				AND F_RootID=? 
+					if ($usedLicences >= $licence->maxStudents) {
+						// Write a record to the failure table
+						$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceFull"));
+	
+						throw $this->copyOps->getExceptionForId("errorConcurrentLicenceFull");
+					}
+					// Insert this user in the licence control table
+					$dateNow = date('Y-m-d H:i:s');
+					//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
+					$userID = $user->userID; 
+					$sql = <<<EOD
+					INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
+					('$ip', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
 EOD;
-				$rs = $this->db->Execute($sql, $bindingParams);
-				$usedLicences = $rs->FetchNextObj()->i;
-
-				if ($usedLicences >= $licence->maxStudents) {
-					// Write a record to the failure table
-					$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceFull"));
-
-					throw $this->copyOps->getExceptionForId("errorLicenceFull");
+					$rs = $this->db->Execute($sql);
+					// v6.5.4.8 adodb will get the identity ID (F_LicenceID) for us.
+					// Except that it fails. Seems due to fact that with parameters, the insert is in a different scope to the identity scope call so fails. 
+					// If I don't do it with parameters then it works. Seems safe since nothing is typed by the user.
+					$licenceID = $this->db->Insert_ID();
+	
+					// Final error check
+					if (!$licenceID)
+						throw $this->copyOps->getExceptionForId("errorCantAllocateLicenceNumber");
 				}
-				// Insert this user in the licence control table
-				$dateNow = date('Y-m-d H:i:s');
-				//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
-				$userID = $user->userID; 
-				$sql = <<<EOD
-				INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
-				('$ip', '$dateNow', '$dateNow', $singleRootID, $productCode, $userID)
-EOD;
-				$rs = $this->db->Execute($sql);
-				// v6.5.4.8 adodb will get the identity ID (F_LicenceID) for us.
-				// Except that it fails. Seems due to fact that with parameters, the insert is in a different scope to the identity scope call so fails. 
-				// If I don't do it with parameters then it works. Seems safe since nothing is typed by the user.
-				$licenceID = $this->db->Insert_ID();
-
-				// Final error check
-				if (!$licenceID)
-					throw $this->copyOps->getExceptionForId("errorCantAllocateLicenceNumber");
-
 				break;
 
 			// TODO. What about single and individual licences?
@@ -129,7 +136,7 @@ EOD;
 							// Write a record to the failure table
 							$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceFull"));
 							
-							throw $this->copyOps->getExceptionForId("errorLicenceFull");
+							throw $this->copyOps->getExceptionForId("errorTrackingLicenceFull");
 						}
 					}
 				}
@@ -159,12 +166,6 @@ EOD;
 			AND F_ProductCode = ?
 			AND F_EndDateStamp >= ?
 EOD;
-		if ($rs && $rs->RecordCount()>0) {
-			$node .= "<licence id='$licenceID' />";
-			return $licenceID;
-		} else {
-			return false;
-		}
 		$bindingParams = array($user->userID, $productCode, $licence->licenceControlStartDate);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
@@ -322,6 +323,9 @@ EOD;
 			case Title::LICENCE_TYPE_CT:
 				
 				// First need to confirm that this licence record exists
+				// No point in this. Simply try to delete the licence if you can.
+				// You don't want to throw errors at this point, just keep clearing up.
+				/*
 				$sql = <<<EOD
 					SELECT * FROM T_Licences
 					WHERE F_LicenceID=?
@@ -330,16 +334,17 @@ EOD;
 				$rs = $this->db->Execute($sql, $bindingParams);
 				if (!$rs || $rs->RecordCount() != 1)
 					throw $this->copyOps->getExceptionForId("errorCantFindLicence", array("licenceID" => $licence->id));
-					
+				*/
 				$sql = <<<EOD
 					DELETE FROM T_Licences 
 					WHERE F_LicenceID=?
 EOD;
 				$bindingParams = array($licence->id);
 				$rs = $this->db->Execute($sql, $bindingParams);
+				/*
 				if (!$rs)
 					throw $this->copyOps->getExceptionForId("errorCantDeleteLicence", array("licenceID" => $licence->id));
-					
+				*/
 				break;
 		
 			// TODO. What about single and individual licences?
@@ -350,8 +355,7 @@ EOD;
 			case Title::LICENCE_TYPE_LT:
 			case Title::LICENCE_TYPE_TT:
 
-				// Since you NEVER delete the T_LicenceControl records, just do an update
-				$this->updateLicence($licence);
+				// Nothing to do
 				break;
 		}
 

@@ -72,7 +72,8 @@
 		public var email:String;
 		public var country:String;
 		public var city:String;
-		public var company:String;
+		// #319
+		//public var company:String;
 		
 		// v3.3 Extra data from special imports
 		public var fullName:String;

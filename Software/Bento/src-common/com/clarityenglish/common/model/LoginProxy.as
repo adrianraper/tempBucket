@@ -102,8 +102,9 @@ package com.clarityenglish.common.model {
 		 */
 		public function checkInstance():void {
 			if (user) {
-				var userDetails:Object = { userID: user.userID };
-				var params:Array = [ userDetails ];
+				// #319 Instance ID per productCode
+				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+				var params:Array = [ user.userID, configProxy.getProductCode() ];
 				new RemoteDelegate("getInstanceID", params, this).execute();
 			}
 		}
@@ -195,10 +196,14 @@ package com.clarityenglish.common.model {
 						var sessionData:Object = {user: _user, account: configProxy.getAccount()};
 						sendNotification(BBNotifications.SESSION_START, sessionData);
 						
-						// Create a timer that will be fire off every minute to update the licence
-						licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
-						licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
-						licenceTimer.start();
+						// Create a timer that will be fired off every minute to update the licence
+						// Only needs to be done for concurrent licence control
+						if (configProxy.getLicenceType() == Title.LICENCE_TYPE_AA || 
+							configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) {
+							licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
+							licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
+							licenceTimer.start();
+						}
 					} else {
 						// Invalid login
 						sendNotification(CommonNotifications.INVALID_LOGIN);
@@ -242,6 +247,7 @@ package com.clarityenglish.common.model {
 		 */
 		private function licenceTimerHandler(event:TimerEvent):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
 			log.info("fire the timer to update licence {0}", configProxy.getConfig().licence.id);
 			var params:Array = [ configProxy.getConfig().licence ];
 			new RemoteDelegate("updateLicence", params, this).execute();

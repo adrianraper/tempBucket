@@ -273,7 +273,12 @@ package com.clarityenglish.common.model {
 			}
 		}
 		
-		public function onDelegateFault(operation:String, fault:Fault):void{
+		public function onDelegateFault(operation:String, fault:Fault):void {
+			switch (operation) {
+				case "getAccountSettings":
+					sendNotification(CommonNotifications.CONFIG_ERROR, BentoError.create(fault));
+					break;
+			}
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
 		

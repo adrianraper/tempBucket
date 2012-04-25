@@ -14,7 +14,8 @@ class User extends Manageable {
 	var $birthday;
 	var $country;
 	var $city;
-	var $company;
+	// #319 Change fields in the table 
+	//var $company;
 	var $startDate;
 	var $contactMethod;
 	// v3.3 New data from special imports
@@ -96,7 +97,7 @@ class User extends Manageable {
 		$this->country = $obj->F_Country;
 		// v3.6.2 New field, but always been in the database
 		$this->city = $obj->F_City;
-		$this->company = $obj->F_Company;
+		//$this->company = $obj->F_Company;
 		$this->custom1 = $obj->F_Custom1;
 		$this->custom2 = $obj->F_Custom2;
 		$this->custom3 = $obj->F_Custom3;
@@ -128,7 +129,7 @@ class User extends Manageable {
 		$array['F_Birthday'] = $this->birthday;
 		$array['F_Country'] = ($this->country) ? $this->country : ""; // Not null
 		$array['F_City'] = ($this->city) ? $this->city : ""; // Not null
-		$array['F_Company'] = ($this->company) ? $this->company : ""; // Not null
+		//$array['F_Company'] = ($this->company) ? $this->company : ""; // Not null
 		$array['F_Custom1'] = ($this->custom1) ? $this->custom1 : ""; // Not null
 		$array['F_Custom2'] = ($this->custom2) ? $this->custom2 : ""; // Not null
 		$array['F_Custom3'] = ($this->custom3) ? $this->custom3 : ""; // Not null
@@ -155,7 +156,6 @@ class User extends Manageable {
 						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_Birthday")." F_Birthday",
 						"$prefix.F_Country",
 						"$prefix.F_City",
-						"$prefix.F_Company",
 						"$prefix.F_Custom1",
 						"$prefix.F_Custom2",
 						"$prefix.F_Custom3",
@@ -164,6 +164,7 @@ class User extends Manageable {
 						"$prefix.F_UserProfileOption",
 						"$prefix.F_RegisterMethod",
 						"$prefix.F_ContactMethod");
+						//"$prefix.F_Company",
 		
 		return implode(",", $fields);
 	}
@@ -180,7 +181,6 @@ class User extends Manageable {
 					  "birthday",
 					  "country",
 					  "city",
-					  "company",
 					  "custom1",
 					  "custom2",
 					  "custom3",
@@ -189,6 +189,7 @@ class User extends Manageable {
 					  "userProfileOption",
 					  "registerMethod",
 					  "contactMethod");
+					 // "company",
 	}
 	
 	/**

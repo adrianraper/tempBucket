@@ -81,6 +81,10 @@
 					}
 				}
 				
+				// Regular alphabetic checking
+				if (df1 < df2)
+					return -1;
+								
 				return 1;
 			}
 			/**

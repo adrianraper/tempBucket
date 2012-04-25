@@ -4,10 +4,19 @@ package com.clarityenglish.ielts {
 	
 	import mx.events.FlexEvent;
 	import mx.events.RSLEvent;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	import org.davekeen.util.ClassUtil;
+
 	import mx.preloaders.SparkDownloadProgressBar;
 	
 	public class IELTSPreloader extends SparkDownloadProgressBar {
-		
+
+		/**
+		 * Standard flex logger
+		 */
+		//private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+
 		private var preloaderDisplay:IELTSPreloaderDisplay;
 		private var showingDisplay:Boolean = false;
 		private var swfPercent:Number = 0;
@@ -80,6 +89,8 @@ package com.clarityenglish.ielts {
 				total += i;
 			}
 			trace("total rsl = " + total + " swf total = " + swfTotalBytes);
+			//log.info("total rsl = {0}, swf total = {1}", total, swfTotalBytes);
+
 			dispatchEvent(new Event(Event.COMPLETE));
 		}
 		// AR
@@ -96,8 +107,12 @@ package com.clarityenglish.ielts {
 		// Called when each rsl has been loaded
 		// This throws an error on CE.com - and I'm not really using it so comment out.
 		override protected function rslCompleteHandler(e:RSLEvent):void {
-			//if (rslTotalBytes)
-			//	rslTotalBytes[e.rslIndex] = e.bytesTotal;				
+			//var rsl:RSLEvent = e;
+			
+			if (rslTotalBytes) {
+				if (e.rslIndex >= 0 && e.bytesTotal >=0 )
+					rslTotalBytes[e.rslIndex] = e.bytesTotal;
+			}
 		}
 		
 		/**
@@ -106,16 +121,11 @@ package com.clarityenglish.ielts {
 		 */
 		override protected function progressHandler(e:ProgressEvent):void {
 			if (preloaderDisplay) {
-				//var percent:Number = Math.round((e.bytesLoaded / e.bytesTotal) * 100);
-				swfPercent = Math.round((e.bytesLoaded / e.bytesTotal) * 100);
-				//preloaderDisplay.setMainProgress(swfPercent);
-				//trace("swf " + e.bytesLoaded + " of " + e.bytesTotal);
-				//preloaderDisplay.swfLabel.text = swfPercent + "%";
-				
-				// Add to the total progress bar. 
 				// Strangely, you can't rely on e.bytesTotal not going up as loading takes place... why
 				swfTotalBytes = (e.bytesTotal > swfTotalBytes) ? e.bytesTotal : swfTotalBytes;
-				swfBytesLoaded = e.bytesTotal;
+				
+				// Add to the total progress bar. 
+				swfBytesLoaded = e.bytesLoaded;
 				updateTotalProgressBar();
 				
 			} else {
@@ -130,19 +140,16 @@ package com.clarityenglish.ielts {
 			if (preloaderDisplay) {
 				if (e.rslTotal) {
 					
-					// First time, set up the rsl arrays as you now know how many you need
+					// First time, set up the rsl arrays as you now know how many spaces you need
 					if (!rslTotalBytes) {
 						rslTotalBytes = new Array(e.rslTotal);
 						rslBytesLoaded = new Array(e.rslTotal);
 					}
 					
-					var percent:Number = Math.round((e.bytesLoaded / e.bytesTotal) * 100);
-					//preloaderDisplay.setDownloadRSLProgress(percent);
-					
 					// Add to the total progress bar
 					rslBytesLoaded[e.rslIndex] = e.bytesLoaded;				
-
 					updateTotalProgressBar();
+					
 				}				
 			} else {
 				show();
@@ -151,11 +158,13 @@ package com.clarityenglish.ielts {
 		
 		private function updateTotalProgressBar():void {
 			
-			var bytes:Number = 0;
+			var bytesLoaded:Number = 0;
 			for each (var i:Number in rslBytesLoaded) {
-				bytes += i;
+				bytesLoaded += i;
 			}
-			var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytes) / (swfEstimate + rslEstimate)); 
+			// I would like to do the following, but it seems swfTotalBytes is dynamic!
+			//var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfTotalBytes + rslEstimate)); 
+			var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfEstimate + rslEstimate)); 
 			preloaderDisplay.setMainProgress(totalPercent);
 		}
 		

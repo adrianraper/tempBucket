@@ -306,7 +306,7 @@ EOD;
 	 * 
 	 * @param Number $instanceID
 	 */
-	function setInstanceID($userID, $instanceID) {
+	function setInstanceID($userID, $instanceID, $productCode) {
 		
 		// TODO. This seems messy to do it here rather than in config.php
 		// But it isn't actually very important so leave here for now.
@@ -322,17 +322,24 @@ EOD;
 		} else {
 			$ip = $_SERVER["REMOTE_ADDR"];
 		}
-		$sql .=	<<<EOD
-				UPDATE T_User u					
-				SET u.F_UserIP=?, u.F_LicenceID=? 
-				WHERE u.F_UserID=?
+		
+		// #319 Instance ID per productCode
+		// Get the existing set of instance IDs and add/update for this title
+		$instanceArray = $this->getInstanceArray($userID);
+		$instanceArray[$productCode] = $instanceID;
+		$instanceControl = json_encode($instanceArray);
+		
+		$sql = <<<EOD
+		UPDATE T_User u					
+		SET u.F_UserIP=?, u.F_InstanceID=? 
+		WHERE u.F_UserID=?
 EOD;
-		$bindingParams = array($ip, $instanceID, $userID);
+		$bindingParams = array($ip, $instanceControl, $userID);
 		$resultObj = $this->db->Execute($sql, $bindingParams);
 		if ($resultObj)
 			return true;
 		
-		throw $this->copyOps->getExceptionForId("errorSetInstanceId", array("userID" => $userID));
+		throw $this->copyOps->getExceptionForId("errorSetInstanceId", array("userID" => $userID, "productCode" => $productCode));
 	}
 	
 	/**
@@ -340,17 +347,33 @@ EOD;
 	 * 
 	 * @param Number $userID
 	 */
-	function getInstanceID($userID) {
-		$sql .=	<<<EOD
-				SELECT F_LicenceID 
-				FROM T_User u					
-				WHERE u.F_UserID=?
+	function getInstanceID($userID, $productCode) {
+		
+		// #319 Instance ID per productCode
+		$instanceArray = $this->getInstanceArray($userID);
+		
+		if (isset($instanceArray[$productCode]))
+			return $instanceArray[$productCode];
+				
+		return false;		
+	}
+	/**
+	 * Helper function to turn string to array
+	 */
+	function getInstanceArray($userID) {
+		$sql = <<<EOD
+		SELECT u.F_InstanceID as control
+		FROM T_User u					
+		WHERE u.F_UserID=?
 EOD;
 		$bindingParams = array($userID);
 		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs)
-			return $rs->FetchNextObj()->F_LicenceID;
+		if ($rs && $rs->RecordCount() == 1) {
 			
+			// Use JSON to encode an array into a string for the database
+			return json_decode($rs->FetchNextObj()->control, true);
+		}
+		
 		throw $this->copyOps->getExceptionForId("errorGetInstanceId", array("userID" => $userID));
 	}
 	
@@ -575,7 +598,7 @@ EOD;
 		if (is_numeric($rootID)) {
 			$rootID = (int) $this->accountOps->getAccountRootID($prefix);
 			if (!$rootID)
-				throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot");
+				throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot", array("prefix" => $prefix));
 		}
 		
 		// First get the record from T_AccountRoot and T_Accounts
@@ -584,13 +607,6 @@ EOD;
 		// It probably wouldn't really matter except that we end up with contentLocation goverened by config.php in RM/web which is wrong.
 		// Since I have to change something, I might as well make a new method in AccountOps
 		$account = $this->accountOps->getBentoAccount($rootID, $productCode);
-		
-		// It would be an error to have more or less than one title in that account
-		if (count($account->titles) > 1) {
-			throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
-		} else if (count($account->titles) == 0) {
-			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID));
-		} 
 		
 		// Next get account licence details, which are not pulled in from getAccounts as DMS doesn't usually want them
 		$account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootID, $productCode));

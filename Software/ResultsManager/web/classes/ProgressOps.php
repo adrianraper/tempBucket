@@ -239,7 +239,12 @@ SQL;
 	/**
 	 * This method is called to insert a session record when a user starts a program
 	 */
-	function startSession($userID, $rootID, $productCode, $dateNow) {
+	function startSession($user, $rootID, $productCode, $dateNow) {
+		
+		// For teachers we will set rootID to -1 in the session record, so, are you a teacher?
+		if (!$user->userType==0)
+			$rootID = -1;
+		
 		// Check that the date is valid
 		$dateStampNow = strtotime($dateNow);
 		if (!$dateStampNow) {
@@ -258,7 +263,7 @@ SQL;
 SQL;
 
 		// We want to return the newly created F_SessionID (or the SQL error)
-		$bindingParams = array($userID, $dateNow, $dateSoon, $rootID, $productCode);
+		$bindingParams = array($user->userID, $dateNow, $dateSoon, $rootID, $productCode);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs) {
 			$sessionID = $this->db->Insert_ID();
@@ -269,7 +274,7 @@ SQL;
 				throw $this->copyOps->getExceptionForId("errorCantFindAutoIncrementSessionId");
 			}
 		} else {
-			return $rs;
+			throw $this->copyOps->getExceptionForId("errorDatabaseWriting");
 		}
 	}
 	
@@ -317,7 +322,12 @@ EOD;
 	/**
 	 * This method is called to insert a score record to the database 
 	 */
-	function insertScore($score) {
+	function insertScore($score, $user) {
+		
+		// For teachers we will set score to -1 in the score record, so, are you a teacher?
+		if (!$user->userType==0)
+			$score->score = -1;
+		
 		// Write anonymous records to an ancilliary table that will not slow down reporting
 		if ($score->userID < 1) {
 			$tableName = 'T_ScoreAnonymous';

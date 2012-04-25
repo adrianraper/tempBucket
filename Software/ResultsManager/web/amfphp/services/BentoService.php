@@ -162,18 +162,13 @@ class BentoService extends AbstractService {
 		
 		// That call also gave us the groupID
 		// TODO. Do we want an entire hierarchy of groups here so we can do hiddenContent stuff? 
-		// This call should be in manageableOps
-		//$groupObj = $this->loginOps->getGroup($userObj->groupID);
-		$groupObj = $this->manageableOps->getGroup($userObj->groupID);
-		// This might return null or a group object		 
-		$group = new Group();
-		$group->fromDatabaseObj($groupObj);
+		$group = $this->manageableOps->getGroup($userObj->groupID);
 		
 		// Add the user into the group
 		$group->addManageables(array($user));
 				
 		// Next we need to set the instance ID for the user in the database
-		$rc = $this->loginOps->setInstanceID($user->userID, $instanceID);
+		$rc = $this->loginOps->setInstanceID($user->userID, $instanceID, $productCode);
 		
 		// Content information - though you don't know which course they are going to start yet
 		// you can still send back hiddenContent information and bookmarks
@@ -193,11 +188,11 @@ class BentoService extends AbstractService {
 	}
 	
 	public function logout($licence) {
-		// Logout from loginOps
-		$this->loginOps->logout();
-		
-		// And also clear the licence
+		// Clear the licence
 		$rs = $this->licenceOps->dropLicenceSlot($licence);
+
+		// Clear session and authentication
+		$this->loginOps->logout();
 	}
 	
 	/**
@@ -263,9 +258,10 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	public function startSession($userID, $rootID, $productCode, $dateNow) {
+	public function startSession($user, $rootID, $productCode, $dateNow) {
+		
 		// A successful session start will return a new ID
-		$sessionID = $this->progressOps->startSession($userID, $rootID, $productCode, $dateNow);
+		$sessionID = $this->progressOps->startSession($user, $rootID, $productCode, $dateNow);
 		
 		return array("sessionID" => $sessionID);
 	}
@@ -313,8 +309,9 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param userID - these are all self-explanatory
 	 */
-	public function getInstanceID($userID) {
-		$instanceID = $this->loginOps->getInstanceID($userID);
+	public function getInstanceID($userID, $productCode) {
+		// #319 Instance ID per productCode
+		$instanceID = $this->loginOps->getInstanceID($userID, $productCode);
 		
 		return array("instanceID" => $instanceID);
 	}
@@ -326,7 +323,7 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	public function writeScore($userID, $sessionID, $dateNow, $scoreObj) {
+	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
 		// Manipulate the score object from Bento into PHP format
 		// TODO Surely we should be trying to keep the format the same!
 		$score = new Score();
@@ -347,10 +344,10 @@ class BentoService extends AbstractService {
 		
 		$score->dateStamp = $dateNow;
 		$score->sessionID = $sessionID;
-		$score->userID = $userID;
+		$score->userID = $user->userID;
 		
 		// Write the score record
-		$rc = $this->progressOps->insertScore($score);
+		$rc = $this->progressOps->insertScore($score, $user);
 		
 		// and update the session
 		$this->progressOps->updateSession($sessionID, $dateNow);
