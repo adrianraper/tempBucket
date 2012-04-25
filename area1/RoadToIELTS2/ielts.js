@@ -7,6 +7,11 @@ $(window).load(function() {
 			return "If you close this window now you may lose data you are working on and will need to start again.";
 	}
 	
+	// #295
+	log = function(message) {
+		console.log(message);
+	}
+	
 	// #255
 	// issues: 
 	//	 IE8 on Win XP. 

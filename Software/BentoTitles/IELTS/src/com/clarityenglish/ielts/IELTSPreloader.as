@@ -1,14 +1,16 @@
 package com.clarityenglish.ielts {
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
+	import flash.external.ExternalInterface;
 	
 	import mx.events.FlexEvent;
 	import mx.events.RSLEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
-	import org.davekeen.util.ClassUtil;
-
 	import mx.preloaders.SparkDownloadProgressBar;
+	
+	import org.davekeen.util.ClassUtil;
+	import org.flexunit.internals.dependency.ExternalDependencyResolver;
 	
 	public class IELTSPreloader extends SparkDownloadProgressBar {
 
@@ -166,6 +168,11 @@ package com.clarityenglish.ielts {
 			//var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfTotalBytes + rslEstimate)); 
 			var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfEstimate + rslEstimate)); 
 			preloaderDisplay.setMainProgress(totalPercent);
+		}
+		
+		private function logToConsole(message:String):void {
+			if (ExternalInterface.available)
+				ExternalInterface.call("log", message);
 		}
 		
 	}

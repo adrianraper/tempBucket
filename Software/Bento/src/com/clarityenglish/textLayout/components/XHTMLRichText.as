@@ -213,7 +213,7 @@ package com.clarityenglish.textLayout.components {
 			applyToBehaviours(function(b:IXHTMLBehaviour):void { b.onTextFlowClear(event.textFlow); } );
 		}
 		
-		private function cleanUpPreviousXHTML() {
+		private function cleanUpPreviousXHTML():void {
 			// If there was a previously existing RenderFlow clean it up
 			if (renderFlow) {
 				if (renderFlow.parent)
