@@ -65,13 +65,13 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-	<link rel="stylesheet" type="text/css" href="ielts.css" />
+	<link rel="stylesheet" type="text/css" href="/Software/Common/ielts.css" />
 
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	
-	<script type="text/javascript" language="JavaScript" src="ielts.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
 	
 	<script type="text/javascript">
 		// ****
