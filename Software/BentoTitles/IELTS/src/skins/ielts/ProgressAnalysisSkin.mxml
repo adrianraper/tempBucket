@@ -5,6 +5,12 @@
 		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView")]
 	</fx:Metadata>
 
+	<s:states>
+		<s:State name="demo"  />
+		<s:State name="blocked" />
+		<s:State name="normal" />
+	</s:states>
+
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
@@ -19,21 +25,21 @@
 		</s:Line>
 	</s:Group>
 
-	<s:HGroup width="100%" height="100%" visible="{hostComponent.numberSectionsDone &gt; 0}" includeInLayout="{hostComponent.numberSectionsDone &gt; 0} ">
+	<s:HGroup width="100%" height="100%" includeIn="normal">
 		<s:VGroup width="400" height="100%" horizontalAlign="center">
 			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold" paddingTop="60" />
-			<s:Label text="Score (%)" fontSize="12.6" />
+			<s:Label text="Average score (%)" fontSize="12.6" />
 			<ns1:AnyChartFlex id="analysisScoreChart" width="100%" />
 		</s:VGroup>
 		<s:VGroup width="544" height="100%" horizontalAlign="center">
 			<s:Label text="Time spent on each skill" fontSize="12.6" fontWeight="bold" paddingTop="60" />
-			<s:Label text="Time in minutes" fontSize="12.6" />
 			<ns1:AnyChartFlex id="analysisTimeChart" width="100%" />
 		</s:VGroup>
 	</s:HGroup>
-	<s:VGroup width="100%" height="100%" paddingTop="22" paddingLeft="10" visible="{hostComponent.numberSectionsDone &lt;= 1}" includeInLayout="{hostComponent.numberSectionsDone &lt;= 1}">
+	<s:VGroup width="100%" height="100%" paddingTop="22" paddingLeft="10" includeIn="blocked,demo" >
 		<s:Spacer height="10" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/progressAnalyse_disable.png')" />
+		<s:SWFLoader source.blocked="@Embed(source='skins/ielts/assets/progressAnalyse_disable.png')"
+					 source.demo="@Embed(source='skins/ielts/assets/Listening.png')" />
 	</s:VGroup>
 
 </s:Skin>

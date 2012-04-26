@@ -83,9 +83,6 @@ package com.clarityenglish.ielts.view.progress {
 					break;
 				
 				case progressCoverageView:
-					// #234
-					// Just one view uses product version at the moment
-					instance.productVersion = this.productVersion;
 				case progressScoreView:
 					// Just two views use currentCourseClass
 					instance.courseClass = currentCourseClass;
@@ -93,6 +90,9 @@ package com.clarityenglish.ielts.view.progress {
 				case progressAnalysisView:
 					// All the sub views run off the same href as the progress view, so directly inject it 
 					instance.href = href;
+					
+					// #234
+					instance.productVersion = this.productVersion;
 					
 					break;
 			}

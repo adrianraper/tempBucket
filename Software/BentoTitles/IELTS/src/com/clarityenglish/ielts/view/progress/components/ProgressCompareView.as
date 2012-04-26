@@ -19,6 +19,19 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var compareChart:AnyChartFlex;
 
 		private var _licenceType:uint;
+		
+		// #234
+		private var _productVersion:String;
+		
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+			}
+		}
 
 		//[Bindable]
 		private var _fullChartXML:XML;
@@ -277,145 +290,6 @@ package com.clarityenglish.ielts.view.progress.components {
 			  </charts>
 			</anychart>;
 		
-		
-		
-		<!-- Time spent on each skills pie chart
-			private const chartTemplates:XML = 
-			<anychart>
-			  <settings>
-				<animation enabled="False" />
-			  </settings>
-			  <charts>
-			<chart_settings>
-				<animation enabled="False" />
-			</chart_settings>
-				<chart plot_type="Pie">
-				  <data_plot_settings enable_3d_mode="true" >
-					<pie_series style="Aqua">
-<animation enabled="False" />
-<tooltip_settings enabled="true" >
-<format><![CDATA[{%Name}]]>
-</format>
-					<font family="Arial" size="12" />
-				</tooltip_settings>
-						<label_settings enabled="true" mode="outside">
-							<background enabled="false" />
-							<position anchor="Center" valign="Center" halign="Center" padding="15%" />
-							<font color="#303030" family="Arial" size="12" bold="True"  />
-							<drop_shadow enabled="true" distance="2" opacity="0.5" blur_x="2" blur_y="2" />
-							</label_settings>
-							<connector enabled="True" color="#303030" opacity="1" thickness="1.4" />
-
-						</pie_series>
-
-				  </data_plot_settings>
-				<styles>
-					<pie_style name="Writing">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_writingBright} />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color={_writingDull} />
-							</hover>
-							<selected_normal>
-								<fill enabled="true" type="solid" color={_writingDull} />
-							</selected_normal>
-							<selected_hover>
-								<fill enabled="true" type="solid" color={_writingBright} />
-							</selected_hover>
-							<pushed>
-								<fill enabled="true" type="solid" color={_writingBright} />
-							</pushed>
-							<missing>
-								<fill enabled="true" type="solid" color="#00FFFF" />
-							</missing>
-						</states>
-					</pie_style>
-					<pie_style name="Reading">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_readingBright} />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color={_readingDull} />
-							</hover>
-							<selected_normal>
-								<fill enabled="true" type="solid" color={_readingDull} />
-							</selected_normal>
-							<selected_hover>
-								<fill enabled="true" type="solid" color={_readingBright} />
-							</selected_hover>
-							<pushed>
-								<fill enabled="true" type="solid" color={_readingBright} />
-							</pushed>
-							<missing>
-								<fill enabled="true" type="solid" color="#00FFFF" />
-							</missing>
-						</states>
-					</pie_style>
-					<pie_style name="Speaking">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_speakingBright} />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color={_speakingDull} />
-							</hover>
-							<selected_normal>
-								<fill enabled="true" type="solid" color={_speakingDull} />
-							</selected_normal>
-							<selected_hover>
-								<fill enabled="true" type="solid" color={_speakingBright} />
-							</selected_hover>
-							<pushed>
-								<fill enabled="true" type="solid" color={_speakingBright} />
-							</pushed>
-							<missing>
-								<fill enabled="true" type="solid" color="#00FFFF" />
-							</missing>
-						</states>
-					</pie_style>
-					<pie_style name="Listening">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_listeningBright} />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color={_listeningDull} />
-							</hover>
-							<selected_normal>
-								<fill enabled="true" type="solid" color={_listeningDull} />
-							</selected_normal>
-							<selected_hover>
-								<fill enabled="true" type="solid" color={_listeningBright} />
-							</selected_hover>
-							<pushed>
-								<fill enabled="true" type="solid" color={_listeningBright} />
-							</pushed>
-							<missing>
-								<fill enabled="true" type="solid" color="#00FFFF" />
-							</missing>
-						</states>
-					</pie_style>
-				</styles>			
-				  <data>
-					<series name="You" type="Pie" >
-					<point name="Reading" />
-					<point name="Listening" />
-					<point name="Speaking" />
-					<point name="Writing" />
-					</series>
-				  </data>
-				  <chart_settings>
-					<chart_background enabled="false" />
-					<title enabled="false" />
-					<legend enabled="false" />
-				  </chart_settings>
-				</chart>
-			  </charts>
-			</anychart>;
-			-->
 		public function setMySummaryDataProvider(dataProvider:XML):void {
 			if (_fullChartXML) {
 				// TODO. Make this smoother by adding in the data series and redrawing

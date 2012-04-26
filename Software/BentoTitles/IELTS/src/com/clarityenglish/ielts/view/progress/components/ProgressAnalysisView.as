@@ -3,9 +3,11 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import mx.collections.ArrayCollection;
 	
+	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Label;
@@ -23,7 +25,10 @@ package com.clarityenglish.ielts.view.progress.components {
 
 		[Bindable]
 		public var numberSectionsDone:uint;
-		
+
+		// #234
+		private var _productVersion:String;
+
 		// TODO. These are all set in ielts.css if you can get at that from this view?
 		private const _writingBright:String = '#7DAB36';
 		private const _writingDull:String = '#95CC40';
@@ -333,6 +338,13 @@ package com.clarityenglish.ielts.view.progress.components {
 			  </charts>
 			</anychart>;
 		
+		// Constructor to let us initialise our states
+		public function ProgressAnalysisView() {
+			super();
+			
+			StateUtil.addStates(this, [ "normal", "demo", "blocked" ], true);
+		}
+
 		public function setDataProvider(dataProvider:XML):void {
 			if (_scoreChartXML) {
 				// WARNING. It is possible for the mediator of a different view (coverage say) to still be loading
@@ -372,6 +384,14 @@ package com.clarityenglish.ielts.view.progress.components {
 				if (analysisTimeChart) {
 					analysisTimeChart.anychartXML = _durationChartXML;
 				}
+			}
+			// Skin is dependent on data
+			if (productVersion == IELTSApplication.DEMO) {
+				currentState = "demo";
+			} else if (numberSectionsDone <= 1) {
+				currentState = "blocked";
+			} else {
+				currentState = "normal";
 			}
 		}
 
@@ -413,6 +433,19 @@ package com.clarityenglish.ielts.view.progress.components {
 			
 		}
 
-	}
+		protected override function getCurrentSkinState():String {
+			return currentState;
+		}
 	
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+			}
+		}
+		
+	}
 }

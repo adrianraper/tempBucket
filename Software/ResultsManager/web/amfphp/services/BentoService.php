@@ -258,7 +258,7 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param dateNow - used to get client time
 	 */
-	public function startSession($user, $rootID, $productCode, $dateNow) {
+	public function startSession($user, $rootID, $productCode, $dateNow = null) {
 		
 		// A successful session start will return a new ID
 		$sessionID = $this->progressOps->startSession($user, $rootID, $productCode, $dateNow);
@@ -274,7 +274,7 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	public function updateSession($sessionID, $dateNow) {
+	public function updateSession($sessionID, $dateNow = null) {
 		// A successful session stop will not generate an error
 		$this->progressOps->updateSession($sessionID, $dateNow);
 	}
@@ -325,7 +325,7 @@ class BentoService extends AbstractService {
 	 */
 	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
 		// Manipulate the score object from Bento into PHP format
-		// TODO Surely we should be trying to keep the format the same!
+		// TODO Surely we should be trying to keep the format and names the same!
 		$score = new Score();
 		$score->setUID($scoreObj['UID']);
 		
@@ -350,7 +350,7 @@ class BentoService extends AbstractService {
 		$rc = $this->progressOps->insertScore($score, $user);
 		
 		// and update the session
-		$this->progressOps->updateSession($sessionID, $dateNow);
+		$this->updateSession($sessionID);
 		
 		return $rc;
 	}

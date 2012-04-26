@@ -48,7 +48,20 @@ package com.clarityenglish.ielts.view.progress.components {
 		private var _dataChanged:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
+
+		// #234
+		private var _productVersion:String;
+
+		public function get productVersion():String {
+			return _productVersion;
+		}
 		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+			}
+		}
+
 		/**
 		 * This setter is given a full XML that includes scores and coverage for the student.
 		 * It then breaks this down into dataProviders for the components that will display this

@@ -3,8 +3,13 @@ $(window).load(function() {
 	
 	// #224. Extend so that we check isDirty from bento - only ask if this is true.  jQuery is weird with beforeunload so bind directly.
 	window.onbeforeunload = function() {
-		if (thisMovie("bento").isExerciseDirty())
+		if (thisMovie("bento").isExerciseDirty()) {
+			// TODO. If they say yes, can you catch that and do .browserClosing like below?
 			return "If you close this window now you may lose data you are working on and will need to start again.";
+		} else {
+			// Try to send a logout (for stuff like session updating)
+			thisMovie("bento").browserClosing();
+		}
 	}
 	
 	// #295

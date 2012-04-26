@@ -243,18 +243,19 @@ SQL;
 	/**
 	 * This method is called to insert a session record when a user starts a program
 	 */
-	function startSession($user, $rootID, $productCode, $dateNow) {
+	function startSession($user, $rootID, $productCode, $dateNow = null) {
 		
 		// For teachers we will set rootID to -1 in the session record, so, are you a teacher?
 		if (!$user->userType==0)
 			$rootID = -1;
 		
 		// Check that the date is valid
-		$dateStampNow = strtotime($dateNow);
-		if (!$dateStampNow) {
+		// #321
+		//$dateStampNow = strtotime($dateNow);
+		//if (!$dateStampNow) {
 			$dateStampNow = time();
 			$dateNow = date('Y-m-d H:i:s',$dateStampNow);
-		}
+		//}
 		$dateSoon = date('Y-m-d H:i:s',strtotime("+15 seconds", $dateStampNow));
 		
 		// CourseID is in the db for backwards compatability, but no longer used. All sessions are across one title.
@@ -285,13 +286,16 @@ SQL;
 	/**
 	 * This method is called to update a session record.
 	 * This is used both when a user exits the program, and regularly whilst the connection is still going.
+	 * Remember that scores are written with client time (so you can see what time a student did their homework)
+	 * but sessions are written with server time so that they are accurate.
 	 */
-	function updateSession($sessionID, $dateNow) {
-		// Check that the date is valid
-		$dateStampNow = strtotime($dateNow);
-		if (!$dateStampNow)
-			$dateNow = date('Y-m-d h:m:s', time());
-		
+	function updateSession($sessionID, $dateNow = null) {
+			// Check that the date is valid
+		// #321
+		//$dateStampNow = strtotime($dateNow);
+		//if (!$dateStampNow)
+			$dateNow = date('Y-m-d H:i:s',time());
+			
 		// Calculate F_Duration as well as setting F_EndDateStamp
 		// We can either do it one call, with different SQL for different databases, or
 		// do two calls and make it common.

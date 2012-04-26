@@ -155,7 +155,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					//selectCourseData(course.@["class"]);
 				}
 				
-				// Trac 176. Make sure the buttons in the progressCourseBar component reflect current state
+				// #176. Make sure the buttons in the progressCourseBar component reflect current state
 				switch (courseClass) {
 					case "listening":
 						progressCourseButtonBar.selectedIndex = 1;
@@ -223,6 +223,9 @@ package com.clarityenglish.ielts.view.progress.components {
 
 			if (detailDataProvider) {
 				// #160 - initialise any 'zone' that might not have data in the XML
+				practiceZoneDataProvider = new XML();
+				questionZoneDataProvider = new XMLListCollection();
+				adviceZoneDataProvider = new XMLListCollection();
 				examPracticeDataProvider = new XMLListCollection();
 				for each (var unitNode:XML in detailDataProvider.course.(@["class"]==courseClass).unit) {
 					switch (unitNode.@["class"].toString()) {
