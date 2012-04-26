@@ -20,10 +20,10 @@ package com.clarityenglish.ielts.view.progress {
 	import spark.components.ButtonBar;
 	import spark.components.Label;
 	
-	[SkinState("score")]
+	/*[SkinState("score")]
 	[SkinState("compare")]
 	[SkinState("analysis")]
-	[SkinState("coverage")]
+	[SkinState("coverage")]*/
 	public class ProgressView extends BentoView {
 
 		[SkinPart]
@@ -53,7 +53,7 @@ package com.clarityenglish.ielts.view.progress {
 			
 			// #301 How does this work with the states that are listed in the skin?
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "coverage", "compare", "analysis" , "score" ], true);
+			//StateUtil.addStates(this, [ "coverage", "compare", "analysis" , "score" ], true);
 		}
 		
 		protected override function commitProperties():void {
@@ -62,9 +62,9 @@ package com.clarityenglish.ielts.view.progress {
 			// We can't rely on partAdded due to caching, so do the injection here too
 			if (progressScoreView)
 				progressScoreView.courseClass = currentCourseClass;
+			
 			if (progressCoverageView)
 				progressCoverageView.courseClass = currentCourseClass;
-
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -108,33 +108,30 @@ package com.clarityenglish.ielts.view.progress {
 		}
 		
 		/**
-		 * 
 		 * This shows what state the skin is currently in
 		 * 
 		 * @return string State name 
 		 */
 		protected override function getCurrentSkinState():String {
-			return currentState;
+			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
+			
+			return state + ((productVersion == IELTSApplication.DEMO) ? "_demo" : "");
 		}
+		
 		/**
 		 * When the tab is changed invalidate the skin state to force getCurrentSkinState() to get called again
 		 * 
 		 * @param event
 		 */
 		protected function onNavBarIndexChange(event:Event):void {
-			// We can set the skin state from the tab bar click
-			currentState = event.target.selectedItem.data;
-			// #301
-			//if (productVersion == IELTSApplication.DEMO) {
-			//	currentState += "_demo";
-			//}			
-
+			invalidateSkinState(); // #301
 		}
 		
 		[Bindable]
 		public function get licenceType():uint {
 			return _licenceType;
 		}
+		
 		public function set licenceType(value:uint):void {
 			if (_licenceType != value) {
 				_licenceType = value;
