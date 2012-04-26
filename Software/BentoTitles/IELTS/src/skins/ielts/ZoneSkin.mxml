@@ -150,9 +150,9 @@
 
 				<!-- Static image for demos -->
 				<s:SWFLoader id="demoImage" width="100%" height="100%" 
-							 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" 
-							 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')" 
-							 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')"
+							 source.writingStates="@Embed(source='skins/ielts/assets/writing_demo.jpg')" 
+							 source.listeningStates="@Embed(source='skins/ielts/assets/listening_demo.jpg')" 
+							 source.speakingStates="@Embed(source='skins/ielts/assets/speaking_demo.jpg')"
 							 includeIn="demoStates"
 							 />
 					

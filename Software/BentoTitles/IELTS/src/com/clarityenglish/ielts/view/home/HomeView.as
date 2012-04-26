@@ -104,7 +104,7 @@ package com.clarityenglish.ielts.view.home {
 				case welcomeLabel:
 					if (licenceType == Title.LICENCE_TYPE_AA) {
 						if (productVersion == IELTSApplication.DEMO) {
-							instance.text = "Licenced as a demo account.";
+							instance.text = "Welcome to this demo. Click on Reading on the right.";
 						} else {
 							instance.text = "Licenced to " + accountName + ".";
 						}

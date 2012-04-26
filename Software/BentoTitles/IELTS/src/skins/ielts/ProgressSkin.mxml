@@ -63,8 +63,8 @@
 			</s:Group>
 			
 			<!-- #301 -->
-			<s:SWFLoader id="demoImage" width="100%" height="100%" 
-						 source.coverageStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" 
+			<s:SWFLoader id="demoImage" width="953%" height="427" 
+						 source.coverageStates="@Embed(source='skins/ielts/assets/coverage_demo.png')" 
 						 source.compareStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')" 
 						 source.analysisStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')"
 						 source.scoreStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')"
