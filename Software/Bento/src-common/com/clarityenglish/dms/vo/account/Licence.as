@@ -8,7 +8,7 @@
 	[Bindable]
 	public class Licence {
 		
-		public var id:String;
+		public var id:Number;
 		public var maxStudents:uint;
 		public var licenceClearanceDate:String;
 		public var expiryDate:String;

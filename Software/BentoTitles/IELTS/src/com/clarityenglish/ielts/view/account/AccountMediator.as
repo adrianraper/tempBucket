@@ -40,6 +40,7 @@
 			view.productCode = configProxy.getProductCode() || 52;
 			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
 
+			view.isDirty = false;
 		}
         
 		override public function listNotificationInterests():Array {
@@ -59,6 +60,7 @@
 				
 				case BBNotifications.USER_UPDATED:
 					view.showUpdateSuccess();
+					view.isDirty = false;
 					break;
 			}
 		}

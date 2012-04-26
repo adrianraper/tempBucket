@@ -7,41 +7,42 @@
 			
 			<lit name="errorUnknown" code="100">Unknown error</lit>
 			
-			<lit name="errorNoSuchUser" code="200">These details are not registered (login option {loginOption})</lit>
+			<lit name="errorNoSuchUser" code="200">Your login name or ID is not registered. Please contact your administrator. (option {loginOption})</lit>
 			<lit name="errorNoProductCode" code="201">No productCode sent.</lit>
 			<lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
 			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
 			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account (productCode={productCode})</lit>
 			<lit name="errorNoProductCodeInRoot" code="205">Your account does not have access to this title. (product code={productCode} root={rootID})</lit>
-			<lit name="errorWrongPassword" code="206">That name or id and password do not match (option {loginOption})</lit>
-			<lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}</lit>
-			<lit name="errorDuplicateUsers" code="208">More than one user matches these details (login option {loginOption})</lit>
+			<lit name="errorWrongPassword" code="206">That name or id and/or password are not correct. Please try again. (option {loginOption})</lit>
+			<lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
+			<lit name="errorDuplicateUsers" code="208">More than one user matches these details. Please contact your administrator. (login option {loginOption})</lit>
 			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered</lit>
-			<lit name="errorNoSuchGroup" code="210">No such group</lit>
-			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}</lit>
-			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}</lit>
+			<lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
+			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
+			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
 			
-			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet</lit>
-			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}.</lit>
+			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
+			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
 			<lit name="errorCantClearLicences" code="302">Unable to clear old licences.</lit>
 			<lit name="errorTrackingLicenceFull" code="303">This licence is full, please contact your administrator.</lit>
 			<lit name="errorConcurrentLicenceFull" code="304">This licence is full, please try again later.</lit>
-			<lit name="errorReadingLicenceControlTable" code="305">Error reading licence control table</lit>
-			<lit name="errorUnrecognisedLicenceType" code="306">The licence type {licenceType} is not recognised</lit>
-			<lit name="errorCantFindLicence" code="307">Error, can't find this licence {licenceID}</lit>
-			<lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}</lit>
-			<lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}</lit>
+			<lit name="errorReadingLicenceControlTable" code="305">Error reading licence control table. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorUnrecognisedLicenceType" code="306">The licence type {licenceType} is not recognised. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorCantFindLicence" code="307">Error, can't find this licence {licenceID}. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
 			<lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number</lit>
 			
 			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}</lit>
 			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id</lit>
-			<lit name="errorParsingExercise" code="402">Unable to parse exercise {filename} ({message})</lit>
+			<lit name="errorParsingExercise" code="402">Unable to read exercise {filename} ({message}). Please contact support@clarityenglish.com with the file name.</lit>
 			<lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple Exercise nodes in the menu xml matching {href}</lit>
 			<lit name="errorCantFindExerciseWithHref" code="404">Unable to find any Exercise nodes in the menu xml matching {href}</lit>
 			
-			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database</lit>
-			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database</lit>
+			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
 		</group>
 	</language>
 </literals>

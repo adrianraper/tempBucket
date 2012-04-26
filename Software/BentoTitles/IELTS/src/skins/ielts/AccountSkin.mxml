@@ -155,8 +155,8 @@
 		
 		<s:Spacer height="3" />
 		
-		<s:Button id="saveChangesButton" label="Save changes" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"
-				  visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"/>
+		<s:Button id="saveChangesButton" label="Save changes" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA &amp;&amp; hostComponent.isDirty}"
+				  visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA &amp;&amp; hostComponent.isDirty}"/>
 		
 	</s:VGroup>
 	

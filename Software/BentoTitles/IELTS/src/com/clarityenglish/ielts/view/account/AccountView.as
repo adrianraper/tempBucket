@@ -57,6 +57,9 @@ package com.clarityenglish.ielts.view.account {
 		
 		[Bindable]
 		public var userDetails:User;
+		
+		[Bindable]
+		public var isDirty:Boolean;
 
 		private var _productVersion:String;
 		private var _productCode:uint;
@@ -198,7 +201,9 @@ package com.clarityenglish.ielts.view.account {
 				//userDetails.examDate.setHours(examHours.value as Number, examMinutes.value as Number);
 				var examDateTime:Number = baseDateTime + (examHours.value as Number)*60*60*1000 + (examMinutes.value as Number)*60*1000;
 				userDetails.examDate = new Date(examDateTime);
-				trace("exam date changed to " + DateUtil.formatDate(userDetails.examDate, "yyyy-MM-dd hh:mm")); 
+				trace("exam date changed to " + DateUtil.formatDate(userDetails.examDate, "yyyy-MM-dd hh:mm"));
+				
+				isDirty = true;
 			}
 			
 		}

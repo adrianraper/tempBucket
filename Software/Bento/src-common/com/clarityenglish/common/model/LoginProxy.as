@@ -72,6 +72,12 @@ package com.clarityenglish.common.model {
 				var loginObj:Object = {username:key, password:password};
 			} else if (loginOption & 2) {
 				loginObj = {studentID:key, password:password};
+			} else if (loginOption & 128) {
+				loginObj = {email:key, password:password};
+			} else {
+				// Throw an error as you don't know how to login
+				var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorInvalidLoginOption", { loginOption: loginOption } ));			
 			}
 			if (configProxy.getConfig().ip)
 				loginObj.ip = configProxy.getConfig().ip;
@@ -187,19 +193,25 @@ package com.clarityenglish.common.model {
 						
 						// Add the licence id you just got to the config
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						configProxy.getConfig().licence.id = (data.licence as Licence).id;
+						configProxy.getConfig().licence.id = (data.licence as Licence).id as Number;
 						
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);
 						
 						// Now that you are logged in, trigger the session start command
-						var sessionData:Object = {user: _user, account: configProxy.getAccount()};
+						var sessionData:Object = { user: _user, account: configProxy.getAccount() };
 						sendNotification(BBNotifications.SESSION_START, sessionData);
 						
 						// Create a timer that will be fired off every minute to update the licence
-						// Only needs to be done for concurrent licence control
-						if (configProxy.getLicenceType() == Title.LICENCE_TYPE_AA || 
-							configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) {
+						// Only needs to be done for concurrent licence control learners
+						if (_user.userType==User.USER_TYPE_STUDENT && 
+							(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA || 
+							configProxy.getLicenceType() == Title.LICENCE_TYPE_CT)) {
+							
+							// An error check
+							if (configProxy.getConfig().licence.id <= 0)
+								sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantAllocateLicenceNumber"));
+							
 							licenceTimer = new Timer(LICENCE_UPDATE_DELAY, 0)
 							licenceTimer.addEventListener(TimerEvent.TIMER, licenceTimerHandler);
 							licenceTimer.start();
@@ -227,6 +239,9 @@ package com.clarityenglish.common.model {
 					break;
 				case "updateLicence":
 					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
+					// Stop the licence update timer
+					if (licenceTimer) licenceTimer.stop();
+
 					break;
 				case "updateUser":
 					sendNotification(CommonNotifications.UPDATE_FAILED);

@@ -202,9 +202,14 @@ package com.clarityenglish.common.model {
 			}
 			*/
 			// Take it from config rather than direct from the parameters
-			if (config.studentID) {
+			if (config.studentID)
 				return new LoginEvent(LoginEvent.LOGIN, config.studentID, config.password);
-			}
+			
+			if (config.username)
+				return new LoginEvent(LoginEvent.LOGIN, config.username, config.password);
+			
+			if (config.email)
+				return new LoginEvent(LoginEvent.LOGIN, config.email, config.password);
 			
 			// Anonymous login
 			// Demo login will normally use AA licence type

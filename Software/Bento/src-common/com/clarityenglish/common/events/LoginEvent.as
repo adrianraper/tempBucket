@@ -9,6 +9,7 @@
 		
 		public static const LOGIN:String = "login";
 		
+		// Note that username is really just the key that is being used to identify the user, it might be name or id or email
 		public var username:String;
 		public var password:String;
 		

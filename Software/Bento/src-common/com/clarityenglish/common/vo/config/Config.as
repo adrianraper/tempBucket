@@ -120,7 +120,9 @@ package com.clarityenglish.common.vo.config {
 			// For loginService, the config.xml might not know which productCode you are
 			// <courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 			
-			// TODO. This hardcoding is duplicated in ContentOps.php, which is not a good idea
+			// TODO. This hardcoding is duplicated in ContentOps.php, which is not a good idea.
+			// These are all set as constants in IELTSApplication, but I can't get at that here,
+			// which seems to suggest that I shouldn't be even trying...
 			if (paths.menuFilename.indexOf("{productCode}")>=0) {
 				switch (productCode) {
 					case 52:
@@ -145,6 +147,9 @@ package com.clarityenglish.common.vo.config {
 						break;
 					case 'R2IFV':
 						replace = "FullVersion";
+						break;
+					case 'R2ID':
+						replace = "Demo";
 						break;
 					default:
 						replace = "";

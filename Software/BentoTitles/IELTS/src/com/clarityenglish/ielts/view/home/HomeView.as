@@ -103,7 +103,11 @@ package com.clarityenglish.ielts.view.home {
 				
 				case welcomeLabel:
 					if (licenceType == Title.LICENCE_TYPE_AA) {
-						instance.text = "Licenced to " + accountName + ".";
+						if (productVersion == IELTSApplication.DEMO) {
+							instance.text = "Licenced as a demo account.";
+						} else {
+							instance.text = "Licenced to " + accountName + ".";
+						}
 					} else {
 						instance.text = "Welcome, " + user.fullName + ".";
 					}
@@ -134,15 +138,20 @@ package com.clarityenglish.ielts.view.home {
 		public function set productVersion(value:String):void {
 			_productVersion = value;
 		}
+		public function get productVersion():String {
+			return _productVersion;
+		}
 		
 		public function set productCode(value:uint):void {
 			_productCode = value;
+		}
+		public function get productCode():uint {
+			return _productCode;
 		}
 		
 		public function set licenceType(value:uint):void {
 			_licenceType = value;
 		}
-		
 		public function get licenceType():uint {
 			return _licenceType;
 		}
@@ -157,7 +166,7 @@ package com.clarityenglish.ielts.view.home {
 		
 		// #299
 		public function isFullVersion():Boolean {
-			return (_productVersion == IELTSApplication.FULL_VERSION);
+			return (productVersion == IELTSApplication.FULL_VERSION);
 		}
 		
 		/**

@@ -56,10 +56,8 @@
 			</s:fill>
 		</s:Rect>
 		<s:Spacer height="3" />
-		<s:Label text="Login ID:" fontWeight="bold" />
+		<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" fontWeight="bold" />
 		<s:TextInput id="nameInput" width="180" />
-		<s:Label text="This is the ID given to you to start Road to IELTS." />
-		<s:Label text="It looks like this: 1280-8666-1111." color="#666666"/>
 		<s:Spacer height="5" />
 		<s:Label text="Password:" fontWeight="bold" />
 		<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />

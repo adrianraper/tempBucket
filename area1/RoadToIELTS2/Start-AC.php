@@ -33,12 +33,20 @@
 	}
 	
 	$locationFile = "config.xml";
-	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']); 
+	if (isset($_SESSION['UserID'])) $userID = $_SESSION['UserID']; 
+	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']);  
 	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
+	if (isset($_SESSION['StudentID'])) $studentID = $_SESSION['StudentID'];
+	if (isset($_SESSION['Email'])) $Email = $_SESSION['Email'];
+	if (isset($_SESSION['InstanceID'])) $instanceID = $_SESSION['InstanceID'];
 	
-	$server=$_SERVER['HTTP_HOST'];
-	// For Akamai served files- a special header is attached. Check the Akamai configuration to see which files this works for.
-	if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+	$server = $_SERVER['HTTP_HOST'];
+	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
+	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
+		$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+		$ip = $ipList[0];
+	} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
 		$ip = $_SERVER["HTTP_CLIENT_IP"];
@@ -126,8 +134,8 @@
 		} else {
 			var jsUserID = swfobject.getQueryParamValue("userID");
 		}
-		if ("<?php echo $email ?>".length>0) {
-			var jsEmail = "<?php echo $email ?>";
+		if ("<?php echo $Email ?>".length>0) {
+			var jsEmail = "<?php echo $Email ?>";
 		} else {
 			var jsEmail = swfobject.getQueryParamValue("email");
 		}
@@ -173,7 +181,7 @@
 		<p>It seems your browser doesn't have this.</p>
 		<p>Please download the latest Adobe Flash Player.</p>
 		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
-		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
+		<p>If you still get this message after installation, then your browser is stopping the scripts on this page from running.</p>
 	</div>
 <NOSCRIPT style="font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;"> 
 This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>

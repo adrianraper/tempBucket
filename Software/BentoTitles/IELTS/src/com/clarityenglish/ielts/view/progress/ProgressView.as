@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.progress {
 	import com.anychart.mapPlot.controls.zoomPanel.Slider;
 	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressCompareView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
@@ -50,6 +51,7 @@ package com.clarityenglish.ielts.view.progress {
 		public function ProgressView() {
 			super();
 			
+			// #301 How does this work with the states that are listed in the skin?
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "coverage", "compare", "analysis" , "score" ], true);
 		}
@@ -122,7 +124,11 @@ package com.clarityenglish.ielts.view.progress {
 		protected function onNavBarIndexChange(event:Event):void {
 			// We can set the skin state from the tab bar click
 			currentState = event.target.selectedItem.data;
-			
+			// #301
+			//if (productVersion == IELTSApplication.DEMO) {
+			//	currentState += "_demo";
+			//}			
+
 		}
 		
 		[Bindable]

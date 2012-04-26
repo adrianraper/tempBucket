@@ -50,6 +50,7 @@
 			public static const LAST_MINUTE:String = "R2ILM";
 			public static const TEST_DRIVE:String = "R2ITD";
 			public static const HOME_USER:String = "R2IHU";
+			public static const DEMO:String = "R2ID";
 			
 			public static const ACADEMIC_MODULE:uint = 52;
 			public static const GENERAL_TRAINING_MODULE:uint = 53;

@@ -23,19 +23,19 @@ package com.clarityenglish.ielts {
 		private var showingDisplay:Boolean = false;
 		private var swfPercent:Number = 0;
 		private var rslPercent:Number = 0;
-		private var rslTotalBytes:Array;
+		private var rslBytesTotal:Array;
 		private var rslBytesLoaded:Array;
-		private var swfTotalBytes:Number = 0;
+		private var swfBytesTotal:Number = 0;
 		private var swfBytesLoaded:Number = 0;
-		private var rslEstimate:Number = 2409361;
-		private var swfEstimate:Number = 7180653;
+		private var rslEstimate:Number = 2500000;
+		private var swfEstimate:Number = 4000000; // published size
 		
 		public function IELTSPreloader() {
 			super();
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
-		
+
 		protected function onAddedToStage(event:Event):void {
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			stage.addEventListener(Event.RESIZE, onResize);
@@ -87,11 +87,16 @@ package com.clarityenglish.ielts {
 			stage.removeEventListener(Event.RESIZE, onResize);
 			//trace("INIT complete");
 			var total:Number = 0;
-			for each (var i:Number in rslTotalBytes) {
+			for each (var i:Number in rslBytesTotal) {
 				total += i;
 			}
-			trace("total rsl = " + total + " swf total = " + swfTotalBytes);
-			//log.info("total rsl = {0}, swf total = {1}", total, swfTotalBytes);
+			// To make the bar hit 100% at the end
+			rslEstimate = total;
+			updateTotalProgressBar();
+			
+			var msg:String = "total rsl = " + total + " swf total = " + swfBytesTotal;
+			trace(msg);
+			logToConsole(msg);
 
 			dispatchEvent(new Event(Event.COMPLETE));
 		}
@@ -111,9 +116,13 @@ package com.clarityenglish.ielts {
 		override protected function rslCompleteHandler(e:RSLEvent):void {
 			//var rsl:RSLEvent = e;
 			
-			if (rslTotalBytes) {
-				if (e.rslIndex >= 0 && e.bytesTotal >=0 )
-					rslTotalBytes[e.rslIndex] = e.bytesTotal;
+			if (rslBytesTotal) {
+				if (e.rslIndex >= 0 && e.bytesTotal >=0 ) {
+					//rslBytesTotal[e.rslIndex] = e.bytesTotal;
+				
+					var msg:String = "complete rsl["+e.rslIndex+"] bytesTotal=" + e.bytesTotal;
+					logToConsole(msg);
+				}
 			}
 		}
 		
@@ -124,7 +133,10 @@ package com.clarityenglish.ielts {
 		override protected function progressHandler(e:ProgressEvent):void {
 			if (preloaderDisplay) {
 				// Strangely, you can't rely on e.bytesTotal not going up as loading takes place... why
-				swfTotalBytes = (e.bytesTotal > swfTotalBytes) ? e.bytesTotal : swfTotalBytes;
+				swfBytesTotal = (e.bytesTotal > swfBytesTotal) ? e.bytesTotal : swfBytesTotal;
+				
+				//var msg:String = "swf bytesLoaded=" + e.bytesLoaded + " bytesTotal=" + e.bytesTotal;
+				//logToConsole(msg);
 				
 				// Add to the total progress bar. 
 				swfBytesLoaded = e.bytesLoaded;
@@ -143,13 +155,19 @@ package com.clarityenglish.ielts {
 				if (e.rslTotal) {
 					
 					// First time, set up the rsl arrays as you now know how many spaces you need
-					if (!rslTotalBytes) {
-						rslTotalBytes = new Array(e.rslTotal);
+					if (rslBytesTotal==null) {
+						var msg:String = "first rsl, total number is " + e.rslTotal;
+						logToConsole(msg);
+						rslBytesTotal = new Array(e.rslTotal);
 						rslBytesLoaded = new Array(e.rslTotal);
 					}
-					
+
+					//msg = "rsl["+e.rslIndex+"] bytesLoaded=" + e.bytesLoaded + " bytesTotal=" + e.bytesTotal;
+					//logToConsole(msg);
+
 					// Add to the total progress bar
 					rslBytesLoaded[e.rslIndex] = e.bytesLoaded;				
+					rslBytesTotal[e.rslIndex] = e.bytesTotal;				
 					updateTotalProgressBar();
 					
 				}				
@@ -164,9 +182,16 @@ package com.clarityenglish.ielts {
 			for each (var i:Number in rslBytesLoaded) {
 				bytesLoaded += i;
 			}
-			// I would like to do the following, but it seems swfTotalBytes is dynamic!
-			//var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfTotalBytes + rslEstimate)); 
-			var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfEstimate + rslEstimate)); 
+			var bytesTotal:Number = 0;
+			for each (i in rslBytesTotal) {
+				bytesTotal += i;
+			}
+			if (bytesTotal < rslEstimate)
+				bytesTotal = rslEstimate;
+			
+			// I would like to do the following, but swfTotalBytes never reaches full size until it is fully loaded!
+			//var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfBytesTotal + bytesTotal)); 
+			var totalPercent:Number = Math.round(100 * (swfBytesLoaded + bytesLoaded) / (swfEstimate + bytesTotal)); 
 			preloaderDisplay.setMainProgress(totalPercent);
 		}
 		

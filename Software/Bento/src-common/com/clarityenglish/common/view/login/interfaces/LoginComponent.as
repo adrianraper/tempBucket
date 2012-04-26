@@ -12,6 +12,7 @@
 	public interface LoginComponent extends IEventDispatcher, CopyReceiver {
 		function showInvalidLogin(error:BentoError):void;
 		function setLicencee(name:String):void;
+		function setLoginOption(loginOption:Number):void;
 		function clearData():void;
 	}
 	

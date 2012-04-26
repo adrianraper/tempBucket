@@ -54,7 +54,11 @@ class ProgressOps {
 			// And count the number of exercises that are in the menu for this course
 			$exercises = $course->xpath('.//xmlns:exercise');
 			$total = count($exercises);
-			$coverage = floor($count*100/$total);
+			if ($total == 0) {
+				$coverage = 0;
+			} else {
+				$coverage = floor($count*100 / $total);
+			}
 			
 			// Put it all into a node in the return object
 			$newCourse = $build->addChild('course');

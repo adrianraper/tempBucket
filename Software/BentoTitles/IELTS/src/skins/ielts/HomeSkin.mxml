@@ -3,11 +3,27 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:anychart="com.anychart.*" 
-		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*">
+		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*"
+		creationComplete="creationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[ 
+			import com.clarityenglish.ielts.IELTSApplication;
+			import mx.events.FlexEvent;
+			
+			protected function creationComplete(event:FlexEvent):void {
+
+				if (hostComponent.productVersion == IELTSApplication.DEMO) {
+					noProgressText.text="Welcome to the Road to IELTS demo. Click on Reading to see a sample of the resources to help with each skill.";
+				} else {
+					noProgressText.text="Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.";
+				}
+			}
+		]]> 
+	</fx:Script>
 	
 	<s:layout>
 		<s:HorizontalLayout paddingTop="0" />
@@ -36,7 +52,7 @@
 		<s:VGroup id="welcomeGroup" width="100%" paddingTop="5" visible="{hostComponent.noProgressData}" includeInLayout="{hostComponent.noProgressData}" >
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/home_coursebar.png')"/>
 			<s:Spacer height="10"/>
-			<s:Label text="Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill." width="80%" lineHeight="18" />				
+			<s:Label id="noProgressText" width="80%" lineHeight="18" />				
 		</s:VGroup>		
 	</s:VGroup>
 

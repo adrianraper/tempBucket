@@ -191,6 +191,7 @@ package com.clarityenglish.common.model {
 				var totalDone:uint = 0;
 				var averageScore:uint = 0;
 				var averageDuration:uint = 0;
+				var coverage:uint = 0;
 				for each (var exercise:XML in course..exercise) {
 					of++;
 					if (Number(exercise.@done) > 0) {
@@ -211,11 +212,14 @@ package com.clarityenglish.common.model {
 						}
 					}
 				}
-				if (scoredCount>0) {
+				if (scoredCount>0)
 					averageScore = Math.floor(totalScore / scoredCount);
+				
+				if (durationCount>0)
 					averageDuration = Math.floor(duration / durationCount);
-				}
-				var coverage:uint = Math.floor(100 * count / of);
+				
+				if (of > 0)
+					coverage = Math.floor(100 * count / of);
 				
 				var courseNode:XML = <course id={course.@id} 
 											class={course.@["class"]} 

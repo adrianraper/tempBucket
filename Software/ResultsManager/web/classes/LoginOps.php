@@ -19,15 +19,20 @@ class LoginOps {
 		// loginOption controls what fields you use to login with.
 		// TODO. make it use constants.
 		// TODO. The code below ONLY uses username/studentID at the moment
-		if ($loginOption == 1) {
+		if ($loginOption & 1) {
 			if (isset($loginObj['username'])) {
 				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
 			}
-		} elseif ($loginOption == 2) {
+		} elseif ($loginOption & 2) {
 			if (isset($loginObj['studentID'])) {
 				$key = 'u.F_StudentID';
 				$keyValue = $loginObj['studentID'];
+			}
+		} elseif ($loginOption & 128) {
+			if (isset($loginObj['email'])) {
+				$key = 'u.F_Email';
+				$keyValue = $loginObj['email'];
 			}
 		}
 		if (isset($loginObj['password']))

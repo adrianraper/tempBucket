@@ -407,7 +407,12 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		protected override function getCurrentSkinState():String {
-			return (_course) ? courseClass + "_" + (_exerciseSelectorPoppedOut ? "popped" : "normal") : super.getCurrentSkinState();
+			if (productVersion == IELTSApplication.DEMO) {
+				var thisState:String = "demo";
+			} else {
+				thisState = "normal";
+			}
+			return (_course) ? courseClass + "_" + (_exerciseSelectorPoppedOut ? "popped" : thisState) : super.getCurrentSkinState();
 		}
 		
 		/**

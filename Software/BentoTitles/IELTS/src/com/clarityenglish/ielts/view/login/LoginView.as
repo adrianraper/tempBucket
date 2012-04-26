@@ -39,6 +39,9 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var quickStartButton:Button;
 		
+		[Bindable]
+		public var loginID_lbl:String;
+		
 		private var _productVersion:String;
 		private var _productCode:uint;
 		
@@ -182,6 +185,25 @@ package com.clarityenglish.ielts.view.login {
 			//loginHeading.label = "licenced to: " + name;
 			if (loginHeading)
 				loginHeading.label = name;
+		}
+		/**
+		 * To let you work out what data you need for logging in to this account. 
+		 * @param Number loginOption
+		 * 
+		 */
+		public function setLoginOption(loginOption:Number):void {
+			switch (loginOption) {
+				case 1:
+					loginID_lbl = "Your name";
+					break;
+				case 2:
+					loginID_lbl = "Your ID";
+					break;
+				case 3:
+					loginID_lbl = "Your email";
+					break;
+				default:
+			}
 		}
 		
 		// #254
