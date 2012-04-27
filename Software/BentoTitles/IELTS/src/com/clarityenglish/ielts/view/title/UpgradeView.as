@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.title {
 	import flash.events.MouseEvent;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
+	import flash.external.ExternalInterface;
 	
 	import mx.events.CloseEvent;
 	
@@ -36,10 +37,11 @@ package com.clarityenglish.ielts.view.title {
 		}
 		
 		protected function onTeacherButtonClick(event:MouseEvent):void {
-			navigateToURL(new URLRequest("http://www.clarityenglish.com/loudandclear/index.php"), "_blank");
+			var feats:String = "scrollbars=0,left=0,top=0,width=700,height=550"
+			ExternalInterface.call("window.open", "http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2", "_blank" , feats);  
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
-		
+	
 		protected function onCandidateButtonClick(event:MouseEvent):void {
 			navigateToURL(new URLRequest("http://www.ieltspractice.com"), "_blank");
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));

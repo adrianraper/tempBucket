@@ -12,6 +12,7 @@
 	import flash.net.navigateToURL; 
 	protected function clickHandler(event:MouseEvent):void 
 	{ 
+	
 	var urlReq:URLRequest = new URLRequest("http://www.clarityenglish.com/questionnaire/rtiv2feedback.php"); 
 	navigateToURL(urlReq, "_self"); 
 	} 

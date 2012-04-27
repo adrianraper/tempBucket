@@ -74,7 +74,7 @@ package com.clarityenglish.ielts.view.title {
 		public var noticeLabel:Label;
 		
 		[SkinPart]
-		public var upgradeButton:SWFLoader;
+		public var priceButton:SWFLoader;
 		
 		[SkinPart]
 		public var registerButton:SWFLoader;
@@ -139,6 +139,15 @@ package com.clarityenglish.ielts.view.title {
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
 		private var lastMinuteGeneralTrainingLogo:Class;
 		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoAcademic")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		private var demoAcademicLogo:Class;
+
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoGeneralTraing")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		private var demoGeneralTrainingLogo:Class;
+
+		
 		// Constructor to let us initialise our states
 		public function TitleView() {
 			super();
@@ -182,7 +191,10 @@ package com.clarityenglish.ielts.view.title {
 							return lastMinuteAcademicLogo;
 						case IELTSApplication.TEST_DRIVE:
 							return tenHourAcademicLogo;
+						case IELTSApplication.DEMO:
+							return demoAcademicLogo;
 						case IELTSApplication.FULL_VERSION:
+							
 						default:
 							return fullVersionAcademicLogo;
 					}
@@ -193,6 +205,8 @@ package com.clarityenglish.ielts.view.title {
 							return lastMinuteAcademicLogo;
 						case IELTSApplication.TEST_DRIVE:
 							return tenHourGeneralTrainingLogo;
+						case IELTSApplication.DEMO:
+							return demoGeneralTrainingLogo;
 						case IELTSApplication.FULL_VERSION:
 						default:
 							return fullVersionGeneralTrainingLogo;
@@ -214,6 +228,8 @@ package com.clarityenglish.ielts.view.title {
 							return "Last Minute - Academic module";
 						case IELTSApplication.TEST_DRIVE:
 							return "Test Drive - Academic module";
+						case IELTSApplication.DEMO:
+							return "          Academic module";
 						case IELTSApplication.FULL_VERSION:
 						default:
 							return "Full Version - Academic module";
@@ -225,6 +241,8 @@ package com.clarityenglish.ielts.view.title {
 							return "Last Minute - General Training module";
 						case IELTSApplication.TEST_DRIVE:
 							return "Test Drive - General Training module";
+						case IELTSApplication.DEMO:
+							return "          General Training module";
 						case IELTSApplication.FULL_VERSION:
 						default:
 							return "Full Version - General Training module";
@@ -297,6 +315,9 @@ package com.clarityenglish.ielts.view.title {
 					}
 					break;
 				// #299
+				case priceButton:
+					priceButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { upgrade.dispatch(); } );
+					break;
 				case registerButton:
 					registerButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { register.dispatch(); } );
 					break;

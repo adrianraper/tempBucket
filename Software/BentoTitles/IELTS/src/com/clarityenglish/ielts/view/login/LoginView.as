@@ -66,6 +66,14 @@ package com.clarityenglish.ielts.view.login {
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
 		private var lastMinuteGeneralTrainingLogo:Class;
 		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		private var demoAcademicLogo:Class;
+		
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		private var demoGeneralTrainingLogo:Class;
+		
 		public function LoginView() {
 			super();
 		}

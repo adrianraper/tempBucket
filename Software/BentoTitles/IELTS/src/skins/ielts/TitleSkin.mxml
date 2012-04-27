@@ -20,6 +20,7 @@
 			protected function clickHandler(event:MouseEvent):void { 
 				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
 				navigateToURL(urlReq, "_blank"); 
+				
 			} 
 		]]> 
 
@@ -53,6 +54,9 @@
 					 visible="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}"
 					 includeInLayout="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}"/>
 		<s:SWFLoader id="buyButton" source="@Embed(source='skins/ielts/assets/buy.jpg')" right="0" top="44" visible="false" includeInLayout="true" />
+		<s:SWFLoader id="priceButton" source="@Embed(source='skins/ielts/assets/price.jpg')" right="0" top="44" 
+					 visible="{hostComponent.productVersion == IELTSApplication.DEMO}"
+					 includeInLayout="{hostComponent.productVersion == IELTSApplication.DEMO}"/>
 		
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true"/>
 	</s:Group>
