@@ -184,6 +184,7 @@ EOD;
 		/*
 		USE global_r2iv2;
 		SET @productCode = 52;
+		SET @productCode = 53;
 		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
 		SELECT @productCode, F_CourseID, AVG(F_Score) as AverageScore, AVG(F_Duration) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
 		FROM T_Score

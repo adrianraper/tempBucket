@@ -187,11 +187,15 @@ class BentoService extends AbstractService {
 					 "content" => $contentObj);
 	}
 	
-	public function logout($licence) {
+	public function logout($licence, $sessionID = null) {
 		// Clear the licence
 		$rs = $this->licenceOps->dropLicenceSlot($licence);
 
-		// Clear session and authentication
+		// Update the session record
+		if ($sessionID)
+			$this->updateSession($sessionID);
+		
+		// Clear php session and authentication
 		$this->loginOps->logout();
 	}
 	

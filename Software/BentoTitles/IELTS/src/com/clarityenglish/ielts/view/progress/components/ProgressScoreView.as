@@ -183,8 +183,6 @@ package com.clarityenglish.ielts.view.progress.components {
 					}
 					
 					// #232. Scores of -1 (nothing to mark) should show in the table as ---
-					// I need to be sure that if I change the score attribute, it doesn't impact the original
-					// Also make sure that when sorting, --- is considered less than 0
 					score.@displayScore = (Number(score.@score) >= 0) ? score.@score : '---';
 					
 				}

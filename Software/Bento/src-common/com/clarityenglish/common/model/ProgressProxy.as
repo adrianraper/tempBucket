@@ -61,8 +61,9 @@ package com.clarityenglish.common.model {
 		
 		/**
 		 * sessionID is the key to the session table for this user using this course
+		 * No, sessionID should be in config.
 		 */
-		public var sessionID:String;
+		//public var sessionID:String;
 		
 		/**
 		 * score is an object used to hold score information
@@ -250,6 +251,16 @@ package com.clarityenglish.common.model {
 			var params:Array = [ user, account.id, (account.titles[0] as Title).id, new Date().getTime() ];
 			new RemoteDelegate("startSession", params, this).execute();			
 		}
+		/**
+		 * Update the database session record 
+		 * @return void
+		 * 
+		 */
+		public function updateSession():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var params:Array = [ configProxy.getConfig().sessionID ];
+			new RemoteDelegate("updateSession", params, this).execute();			
+		}
 		
 		/**
 		 * Use the database to record that this user has stopped using this title 
@@ -257,8 +268,8 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		public function stopSession():void {
-			// sessionID is the only key we need, and that is held in this model
-			var params:Array = [ sessionID, new Date().getTime() ];
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var params:Array = [ configProxy.getConfig().sessionID, new Date().getTime() ];
 			new RemoteDelegate("stopSession", params, this).execute();			
 		}
 		/**
@@ -270,6 +281,7 @@ package com.clarityenglish.common.model {
 			log.debug("Writing the score for exercise to the database");
 			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
 			// We have always passed dates between AS and PHP as strings
 			var dateFormatter:DateFormatter = new DateFormatter();
@@ -278,7 +290,7 @@ package com.clarityenglish.common.model {
 
 			// Just send whole user
 			//var params:Array = [ (loginProxy.user) ? loginProxy.user.id : null, sessionID, dateNow, mark ];
-			var params:Array = [ loginProxy.user, sessionID, dateNow, mark ];
+			var params:Array = [ loginProxy.user, configProxy.getConfig().sessionID, dateNow, mark ];
 			
 			new RemoteDelegate("writeScore", params, this).execute();
 			
@@ -335,6 +347,7 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
 			// TODO: Most of these generate errors on the client side; I need to implement this
 			switch (operation) {
@@ -371,7 +384,7 @@ package com.clarityenglish.common.model {
 				
 				case "startSession":
 					if (data) {
-						sessionID = data.sessionID;
+						configProxy.getConfig().sessionID = data.sessionID;
 						sendNotification(BBNotifications.SESSION_STARTED, data);
 					} else {
 						// Can't write to the database

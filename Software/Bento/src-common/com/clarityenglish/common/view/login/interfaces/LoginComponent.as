@@ -14,6 +14,8 @@
 		function setLicencee(name:String):void;
 		function setLoginOption(loginOption:Number):void;
 		function clearData():void;
+		function setProductVersion(productVersion:String):void;
+		function setProductCode(productCode:uint):void;
 	}
 	
 }

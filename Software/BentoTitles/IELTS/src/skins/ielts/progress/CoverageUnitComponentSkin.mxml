@@ -5,7 +5,22 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.progress.ui.CoverageUnitComponent")]
 	</fx:Metadata>
-	
+
+	<fx:Script> 
+		<![CDATA[ 
+			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
+			
+			// #302 - ensure the popupwatchers isn't garbage collected
+			private var popupWatcher:DisabledPopupWatcher;
+			
+			protected function creationComplete(event:Event):void {
+				// #234
+				popupWatcher = new DisabledPopupWatcher(itemList, hostComponent.productVersion); 
+			}
+			
+		]]> 
+	</fx:Script> 
+
 	<s:layout>
 		<s:VerticalLayout horizontalAlign="left" />
 	</s:layout>
@@ -16,7 +31,7 @@
 			<s:SolidColor color="0x999999" />
 		</s:fill>
 	</s:Rect>
-	<s:List alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#8AD9FF" height="100%" borderVisible="false" 
+	<s:List id="itemList" alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#8AD9FF" height="100%" borderVisible="false" 
 			dataProvider="{hostComponent.listDataProvider}" fontWeight="normal"
 			itemRenderer="skins.ielts.progress.CoverageUnitRenderer" />
 	

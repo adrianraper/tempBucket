@@ -77,18 +77,17 @@ package com.clarityenglish.ielts.view.login {
 		public function LoginView() {
 			super();
 		}
-		
-		public function set productVersion(value:String):void {
+
+		public function setProductVersion(value:String):void {
 			if (_productVersion != value) {
 				_productVersion = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
-		[Bindable]
 		public function get productVersion():String {
 			return _productVersion;
 		}
-		public function set productCode(value:uint):void {
+		public function setProductCode(value:uint):void {
 			if (_productCode != value) {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));

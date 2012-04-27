@@ -1,11 +1,11 @@
-{* Name: Announcing Road to IELTS *}
+{* Name: Road to IELTS in 3 days*}
 {* Description: Announcing the imminent release of Road to IELTS 2 *}
 {* Parameters: $account *}
 
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>A new version of Road to IELTS is coming in 7 days</title>
+		<title>Road to IELTS is coming next Monday</title>
 		<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
 <style type="text/css">
 {literal}
@@ -19,18 +19,6 @@ font-size: 11px;}
 </style>
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
-{foreach name=orderDetails from=$account->titles item=title}
-	{if $title->productCode==12}
-		{assign var='hasAC' value='true'}
-	{/if}
-	{if $title->productCode==13}
-		{assign var='hasGT' value='true'}
-	{/if}
-{/foreach}
-{* Also work out some other stuff about the licences to help with wording *}
-{if $hasAC=='true' && $hasGT=='true'}
-	{assign var='multipleTitles' value='true'}
-{/if}
 
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
   <tr>
@@ -40,75 +28,21 @@ font-size: 11px;}
     	<img src="http://www.clarityenglish.com/images/email/rti2/rtiv2_header.jpg" alt="Road to IELTS" width="600" height="86" style="margin:0 0 20px 0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; "/>
             <div style="padding:0 30px;">
                 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Dear Colleague</p>
-		<p style="background-color:#F3C516; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">If you have already contacted us, please ignore this email. Otherwise you will be switched to the new Road to IELTS on 30th April if you take no action.</p>
-                
-                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">You will be pleased to hear that our Road to IELTS package has been given a major upgrade. Highlights include Starting out eBooks, Advice and tutorial videos, 120 hours of interactive exercises and downloadable practice papers.</p>
+		        
+                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">This is a final reminder that Clarity will be upgrading all of our online Road to IELTS subscribers to the new version this upcoming Monday (30 April), which is less than three days from now.</p>
                 
                 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">For full details, please see <a href="http://www.ClarityEnglish.com/RoadtoIELTSv2" target="_blank">www.ClarityEnglish.com/RoadtoIELTSv2</a>.</p>
            </div>
            
            <img src="http://www.clarityenglish.com/images/email/rti2/upgrade_img_main.jpg" width="600" height="205" /> 
            
-           <div style="padding:0 30px;">
-                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">As you currently subscribe to Road to IELTS, you can switch to the new version immediately. But since this might not be a convenient time, we can also offer you a delayed switch on request.</p>
-        
-                
-           <table width="540" border="0" cellspacing="0" cellpadding="0">
-                <tr>
-                    <td width="440" valign="top">
-                    
-                    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;"><strong>What happens if you switch now?</strong></p>
-                    
-                    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">If your students login through <a href="http://www.ClarityEnglish.com" target="_blank">www.ClarityEnglish.com</a> they will see a new icon for Road to IELTS and will simply go into the new version. Their name and password don't change. Progress records from the old version will NOT be shown to students from within the new version. But
-Results Manager will show you both versions and you can see all progress records for both.</p>                     </td>
-                    <td width="100" valign="top"><img src="http://www.clarityenglish.com/images/email/rti2/upgrade_img_logo.jpg" width="83" height="83" style="margin:5px 0 0 0;" /></td>
-             </tr>
-             <tr>
-             		 <td height="10" colspan="2" valign="top"></td>
-             </tr>
-            <tr>
-              <td valign="top">
-                        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">The interface is different and the menus are different, so any guides or lessons you have planned around the old version might need to be adapted.</p>
-		</td>
-            </tr>
-                 <tr>
-             		 <td height="10" colspan="2" valign="top"></td>
-             </tr>
-             
-             <tr>
-              <td valign="top">
-                        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;"><strong>When can I delay switching to?</strong></p>
-                    
-                    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">We will offer both versions until 20th August 2012, at which point we will switch everyone. (If you have a very strong need to go past this date, do let us know.)</p>              </td>
-              <td valign="top"></td>
-            </tr>
-             <tr>
-             		 <td height="10" colspan="2" valign="top"></td>
-             </tr>
-             <tr>
-              <td valign="top">
-                    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;"><strong>What happens to my direct links?</strong></p>
-                        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">If you use a direct URL to link to Road to IELTS, this will change. 
-			We will send another email with full details in a couple of days time.</p>							
-		</td>
-             </tr>
-             <tr>
-               <td valign="top">
-                        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;"><strong>What do I have to do now?</strong></p>
-                    
-                    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">If you would like to keep the old version until 20th August 2012 just send a reply to this email. If we don't hear from you we will assume that you want to switch to the new version and we will do it on 30th April 2012.</p>
-                    
-                    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">If you have any questions about this, either now or after the switch, please do let me know. I hope that you and your students enjoy the brand new Road to IELTS v2.</p>                    </td>
-              <td valign="top">
-                <img src="http://www.clarityenglish.com/images/email/rti2/upgrade_img_menu.jpg" width="97" height="97" />  
-		</td>
-               <td valign="top"></td>
-             </tr>
-             <tr>
-             		 <td height="10" colspan="2" valign="top"></td>
-             </tr>
-             <tr>
-               <td valign="top">
+           <div style="padding:20px 30px;">
+                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">As an institutional subscriber, you have the following options:</p>
+                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">1. Switch to the new Road to IELTS on 30 April.</p>
+                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">2. Keep using the old Road to IELTS until 20 August. You will be switched to the new version on this date.</p>
+                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px 0 0 0; padding:0; color:#000000; line-height:18px;">If you wish to keep using the old Road to IELTS, please reply to this email now. Otherwise, we will assume that you wish to switch to the new version.</p>
+            </div>
+           <div style="padding:0px 30px;">
                  <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">Best wishes</p>
                      <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/rti2/img_ar.jpg" width="112" height="23" alt="Adrian Raper"/></p>
                  <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">Dr Adrian Raper | Technical Director | Hong Kong Office</p>
@@ -117,14 +51,7 @@ Results Manager will show you both versions and you can see all progress records
 					 <p style="font-family: Verdana, Arial, Helvetica, sans-serif;  font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">Clarity Language Consultants Ltd (UK and Hong Kong)</p>
 					 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin: 10px 0 0 0; font-size:10px"><a href="http://www.clarityenglish.com/" target="_blank">www.ClarityEnglish.com</a><br />
 	PO Box 163, Sai Kung, Hong Kong<br />
-	Tel: (+852) 2791 1787, Fax: (+852) 2791 6484    </p>    			</td>
-               <td valign="top"></td>
-             </tr>
-             <tr>
-               <td height="15" valign="top"></td>
-               <td  valign="top"></td>
-             </tr>
-           </table>
+	Tel: (+852) 2791 1787, Fax: (+852) 2791 6484    </p>  
 		</div>
       
         </td>

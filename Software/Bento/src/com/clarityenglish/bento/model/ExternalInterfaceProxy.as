@@ -1,4 +1,7 @@
 package com.clarityenglish.bento.model {
+	import com.clarityenglish.common.model.LoginProxy;
+	import com.clarityenglish.common.model.ProgressProxy;
+	
 	import flash.external.ExternalInterface;
 	
 	import mx.logging.ILogger;
@@ -38,11 +41,25 @@ package com.clarityenglish.bento.model {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
 			// If we are not currently in an exercise then it can't be dirty
-			if (!bentoProxy.currentExercise) return false;
+			if (!bentoProxy.currentExercise) {
+				
+				// But since the user is about to leave the browser, lets update while we can
+				// You could just as easily call browserClosing() from here - but that assumes you will
+				// only ever call isExerciseDirty from a beforewindowunload - and that might not be true. 
+				var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
+				progressProxy.updateSession();			
+				return false;
+			}
 			
 			// Otherwise retrieve the dirty flag from the exercise proxy
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
 			return exerciseProxy.exerciseDirty;
+		}
+		
+		private function browserClosing():Boolean {
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			loginProxy.logout();
+			return true;
 		}
 		
 	}

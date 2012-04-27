@@ -4,31 +4,11 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:anychart="com.anychart.*" 
 		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*"
-		creationComplete="creationComplete(event)">
+		>
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
 	</fx:Metadata>
-	<fx:Script>
-		<![CDATA[ 
-			import com.clarityenglish.ielts.IELTSApplication;
-			import mx.events.FlexEvent;
-			
-			protected function creationComplete(event:FlexEvent):void {
-
-				if (hostComponent.productVersion == IELTSApplication.DEMO) {
-					noProgressText.text="Welcome to the Road to IELTS demo. Click on Reading to see a sample of the resources to help with each skill.";
-				} else {
-					noProgressText.text="Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.";
-				}
-				
-				if (hostComponent.productVersion == IELTSApplication.DEMO) {
-					demoInstruction.source="@Embed(source='skins/ielts/assets/home_coursebar_demo.png')"
-				} 
-
-			}
-		]]> 
-	</fx:Script>
 	
 	<s:layout>
 		<s:HorizontalLayout paddingTop="0" />
@@ -55,10 +35,18 @@
 			<s:Label text="The colour bars show how much you have completed in each skill area. Go to My Progress for more details." width="80%" lineHeight="18" />	
 		</s:VGroup>
 		<s:VGroup id="welcomeGroup" width="100%" paddingTop="5" visible="{hostComponent.noProgressData}" includeInLayout="{hostComponent.noProgressData}" >
-			<s:SWFLoader id="demoInstruction"/>			
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/home_coursebar_demo.png')" 
+						 visible="{(hostComponent.isDemo())}"
+						 includeInLayout="{(hostComponent.isDemo())}"/>			
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/home_coursebar.png')" 
+						 visible="{(!hostComponent.isDemo())}"
+						 includeInLayout="{(!hostComponent.isDemo())}"/>			
 			
 			<s:Spacer height="10"/>
-			<s:Label id="noProgressText" width="80%" lineHeight="18" />				
+			<s:Label id="noProgressText" text="Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill." 
+					 width="80%" lineHeight="18" 
+					 visible="{(!hostComponent.isDemo())}"
+					 includeInLayout="{(!hostComponent.isDemo())}"/>				
 		</s:VGroup>		
 	</s:VGroup>
 

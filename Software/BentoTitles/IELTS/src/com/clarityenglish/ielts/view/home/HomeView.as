@@ -168,6 +168,9 @@ package com.clarityenglish.ielts.view.home {
 		public function isFullVersion():Boolean {
 			return (productVersion == IELTSApplication.FULL_VERSION);
 		}
+		public function isDemo():Boolean {
+			return (productVersion == IELTSApplication.DEMO);
+		}
 		
 		/**
 		 * The user has clicked a course button

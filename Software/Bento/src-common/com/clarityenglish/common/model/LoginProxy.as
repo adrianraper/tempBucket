@@ -94,7 +94,7 @@ package com.clarityenglish.common.model {
 		
 		public function logout():void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var params:Array = [ configProxy.getConfig().licence ];
+			var params:Array = [ configProxy.getConfig().licence, configProxy.getConfig().sessionID ];
 			new RemoteDelegate("logout", params, this).execute();
 			
 			// Stop the licence update timer

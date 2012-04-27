@@ -342,7 +342,7 @@
 					</s:NavigatorContent>
 
 					<!-- Exam practice -->
-					<s:NavigatorContent id="examPracticeNavigatorContent" label="Test practice" width="100%" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}" visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}">
+					<s:NavigatorContent id="examPracticeNavigatorContent" label="Test practice" width="100%">
 						<s:layout>
 							<s:VerticalLayout paddingTop="2" />
 						</s:layout>

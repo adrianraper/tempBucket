@@ -358,13 +358,9 @@ package com.clarityenglish.ielts.view.progress.components {
 					delete _durationChartXML.charts.chart.data.series[0].point[0]; 
 				}
 				
-				// AR Pie charts also don't work well if only one non-zero chunk.
-				numberSectionsDone = 0;
 				for each (var point:XML in dataProvider.course) {
-					// Skip 0 values, they don't work well in a pie-chart
 					if (Number(point.@averageScore)>0) {
 						_scoreChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageScore} style={point.@caption} />);
-						numberSectionsDone++;
 					}
 				}
 				if (analysisScoreChart) {
@@ -373,11 +369,18 @@ package com.clarityenglish.ielts.view.progress.components {
 			}
 			var myDuration:int = 0;
 			if (_durationChartXML) {
+				// AR Pie charts don't work well if only one non-zero chunk.
+				numberSectionsDone = 0;
 				for each (point in dataProvider.course) {
-					// Skip 0 values, they don't work well in a pie-chart
-					if (Number(point.@duration)>30) {
+					if (Number(point.@count)>0) {
+						numberSectionsDone++;
 						// Duration data is in seconds, but we want to display in minutes (rounded)
-						myDuration = Math.round(Number(point.@duration)/60);
+						// Massage 0 values, they don't work well in a pie-chart
+						if (Number(point.@duration)<30) {
+							myDuration = 1;
+						} else {
+							myDuration = Math.round(Number(point.@duration)/60);
+						}
 						_durationChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={myDuration} style={point.@caption} />);
 					}
 				}

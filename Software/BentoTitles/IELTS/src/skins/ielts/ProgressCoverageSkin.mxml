@@ -61,7 +61,8 @@
 									  productVersion="{hostComponent.productVersion}"/>
 		<ui:CoverageUnitComponent id="practiceZoneCoverage"
 								  caption="Practice zone" 
-								  dataProvider="{hostComponent.practiceZoneDataProvider}"  />
+								  dataProvider="{hostComponent.practiceZoneDataProvider}"
+								  productVersion="{hostComponent.productVersion}"/>
 	</s:HGroup>
 	</s:Scroller>
 </s:Skin>

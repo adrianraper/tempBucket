@@ -111,9 +111,14 @@ SQL;
 		//	$selectBuilder->addWhere('F_Prefix LIKE \'%[^0-9]%\'');
 		//}
 		//$accountIDArray = array(13292, 13293, 13294);
-		if ($accountIDArray)
-			//$where[] = "F_RootID IN (".join($accountIDArray, ",").")";
-			$selectBuilder->addWhere("a.F_RootID IN (".join($accountIDArray, ",").")");
+		
+		if ($accountIDArray) {
+			if (isset($conditions['excludeRootIDs']) && $conditions['excludeRootIDs']=='true') {
+				$selectBuilder->addWhere("a.F_RootID NOT IN (".join($accountIDArray, ",").")");
+			} else {
+				$selectBuilder->addWhere("a.F_RootID IN (".join($accountIDArray, ",").")");
+			}
+		}
 		
 		if (sizeof($conditions) > 0) {
 			foreach ($conditions as $condition => $value) {

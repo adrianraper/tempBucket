@@ -82,7 +82,7 @@ EOD;
 	
 					if ($usedLicences >= $licence->maxStudents) {
 						// Write a record to the failure table
-						$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceFull"));
+						$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorConcurrentLicenceFull"));
 	
 						throw $this->copyOps->getExceptionForId("errorConcurrentLicenceFull");
 					}
@@ -134,7 +134,7 @@ EOD;
 							$licenceID = $user->userID;
 						} else {
 							// Write a record to the failure table
-							$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceFull"));
+							$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorTrackingLicenceFull"));
 							
 							throw $this->copyOps->getExceptionForId("errorTrackingLicenceFull");
 						}
@@ -367,6 +367,8 @@ EOD;
 		
 		if (!$ip) 
 			$ip = $_SERVER['REMOTE_ADDR'];
+			
+		if ($reasonCode)
 			
 		$dateNow = date('Y-m-d H:i:s');
 		$bindingParams = array($ip, $dateNow, $rootID, $user->id, $productCode, $reasonCode);

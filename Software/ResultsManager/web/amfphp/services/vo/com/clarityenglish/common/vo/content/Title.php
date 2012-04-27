@@ -54,6 +54,15 @@ class Title extends Content {
 	
 	var $checksum;
 	
+	function __construct($existingTitle = null) {
+		
+		if ($existingTitle) {
+			foreach (get_object_vars($existingTitle) as $prop=>$val) {
+				$this->$prop = $val;
+			}
+		}
+		
+	}
 	/**
 	 * Get the array of objects that make up a report if a report is generated on this Title
 	 */
