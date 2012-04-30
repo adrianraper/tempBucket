@@ -54,7 +54,18 @@ function addTitleToAccount($account) {
 	foreach ($account->titles as $title) {
 		
 		// Find existing Road to IELTS Academic and duplicate it to Road to IELTS 2 Academic
-		if ($title->productCode == 12) {
+		switch ($title->productCode) {
+		case 12:
+			// You can't have a loop to weed out any that already have 52 as getAccounts only sends back titles that match.
+			// Never mind, the T_Accounts table doesn't allow duplicate titles so just catch sql errors.
+			/*
+			foreach ($account->titles as $checkTitle) {
+				if ($checkTitle->productCode == 52) {
+					echo 'Jumped as already got 52 for '.$account->name."\n";
+					continue 2;
+				}
+			}
+			*/
 			$newTitle = new Title($title);
 			$newTitle->productCode = 52;
 			$newTitle->languageCode = 'R2IFV';
@@ -70,9 +81,10 @@ function addTitleToAccount($account) {
 			} catch (Exception $e) {
 				echo 'Error for '.$account->name.' is '.$e->getMessage()."\n";
 			}
-		}
-		// Find existing Road to IELTS GT and duplicate it to Road to IELTS 2 Academic
-		if ($title->productCode == 13) {
+			break;
+			
+		case 13:
+			// Find existing Road to IELTS GT and duplicate it to Road to IELTS 2 Academic
 			$newTitle = new Title($title);
 			$newTitle->productCode = 53;
 			$newTitle->languageCode = 'R2IFV';
@@ -118,7 +130,6 @@ function addAccountFromPaymentGateway($accountInformation) {
 	// What do we need from the database?
 	$account->prefix = $dmsService->accountOps->getNextPrefix();
 	//echo "account new prefix=$account->prefix"."<br />";
-	
 	
 	// Before adding the account, I need to confirm if certain key fields are unique, but not enforced in the database.
 	//if (!$dmsService->manageableOps->checkUniqueEmail($account->email)) {
@@ -472,13 +483,14 @@ try {
 	$conditions['accountType'] = 1; // Standard invoice (ignores trials, distributors etc)
 	$conditions['productCode'] = '12,13'; // existing RTI titles
 	$conditions['selfHost'] = 'false';
-	$conditions['reseller'] = 7;
+	//$conditions['reseller'] = 7;
 	
 	//$conditions['excludeRootIDs'] = 'true';
 	$rootList = null;
-	//$rootList = array(11104);
+	$rootList = array(163,10732,10697);
 	$accounts = $dmsService->accountOps->getAccounts($rootList, $conditions);
 	if ($accounts) {
+		echo "try to update ".count($accounts)." accounts\n";
 		foreach ($accounts as $account) {
 			addTitleToAccount($account);
 		}

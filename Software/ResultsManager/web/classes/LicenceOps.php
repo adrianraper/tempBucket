@@ -368,7 +368,8 @@ EOD;
 		if (!$ip) 
 			$ip = $_SERVER['REMOTE_ADDR'];
 			
-		if ($reasonCode)
+		if ($reasonCode == null || $reasonCode == '')
+			$reasonCode = 0;
 			
 		$dateNow = date('Y-m-d H:i:s');
 		$bindingParams = array($ip, $dateNow, $rootID, $user->id, $productCode, $reasonCode);

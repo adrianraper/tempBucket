@@ -81,8 +81,8 @@ $testingTriggers = "R2I announce email";
 		// These are not sent through triggers but programmatically
 		$conditions['active'] = true;
 		$conditions['accountType'] = 1; // Standard invoice (ignores trials, distributors etc)
-		$conditions['productCode'] = '12,13'; // existing RTI titles
-		// $conditions['reseller'] = '7'; // NAS=7;
+		$conditions['productCode'] = '52,53'; // existing RTI titles
+		$conditions['reseller'] = '7'; // NAS=7;
 		$conditions['selfHost'] = 'false';
 		$addReseller = false;
 		
@@ -92,7 +92,7 @@ $testingTriggers = "R2I announce email";
 		if (isset($_REQUEST['template'])) {
 			$templateID = $_REQUEST['template'];
 		} else {
-			$templateID = 'rti2_announce_2';
+			$templateID = 'rti2_announce_3';
 		}
 		$messageType = Trigger::TRIGGER_TYPE_UPGRADE;
 	}
