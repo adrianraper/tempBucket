@@ -54,7 +54,7 @@
 					 visible="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}"
 					 includeInLayout="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}"/>
 		<s:SWFLoader id="buyButton" source="@Embed(source='skins/ielts/assets/buy.jpg')" right="0" top="44" visible="false" includeInLayout="true" />
-		<s:SWFLoader id="priceButton" source="@Embed(source='skins/ielts/assets/price.jpg')" right="0" top="44" 
+		<s:SWFLoader id="priceButton" source="@Embed(source='skins/ielts/assets/price.jpg')" right="0" top="44"
 					 visible="{hostComponent.productVersion == IELTSApplication.DEMO}"
 					 includeInLayout="{hostComponent.productVersion == IELTSApplication.DEMO}"/>
 		

@@ -57,6 +57,9 @@ package com.clarityenglish.ielts.view.zone {
 					case IELTSApplication.TEST_DRIVE:
 						this.toolTipText = "Only available in the candidate version. Click above to upgrade."
 						break;
+					case IELTSApplication.DEMO:
+						this.toolTipText = "Only available in the candidate version. Click above to upgrade."
+						break;
 					default:
 						this.toolTipText = "Not available in the current version. Click above to upgrade."
 				}
