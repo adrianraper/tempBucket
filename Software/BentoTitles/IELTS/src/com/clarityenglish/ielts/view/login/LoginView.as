@@ -201,13 +201,13 @@ package com.clarityenglish.ielts.view.login {
 		public function setLoginOption(loginOption:Number):void {
 			switch (loginOption) {
 				case 1:
-					loginID_lbl = "Your name";
+					loginID_lbl = "Your name:";
 					break;
 				case 2:
-					loginID_lbl = "Your ID";
+					loginID_lbl = "Login name:";
 					break;
 				case 3:
-					loginID_lbl = "Your email";
+					loginID_lbl = "Your email:";
 					break;
 				default:
 			}

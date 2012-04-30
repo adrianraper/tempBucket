@@ -88,6 +88,10 @@ package com.clarityenglish.ielts.view.zone {
 		
 		private var _courseCaption:String;
 		
+		public function isDemo():Boolean {
+			return (productVersion == IELTSApplication.DEMO);
+		}
+		
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
 			dispatchEvent(new Event("courseCaptionChanged"));

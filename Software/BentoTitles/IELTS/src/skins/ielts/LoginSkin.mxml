@@ -43,9 +43,9 @@
 		
 		<s:HGroup id="fullVersion" visible="{hostComponent.productVersion == IELTSApplication.FULL_VERSION}"
 									includeInLayout="{hostComponent.productVersion == IELTSApplication.FULL_VERSION}">
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='IELTSLogoFullVersion_Icon')" left="0" top="0" width="40" height="40" />
 			<s:VGroup>
-				<s:Label text = "Road to IELTS - Full version" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
+				<s:Label text = "Road to IELTS" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="0"/>	
+				<s:Label text="IELTS preparation and practice" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" paddingLeft="0" lineHeight="18" />
 			</s:VGroup>
 		</s:HGroup>
 		
@@ -55,6 +55,8 @@
 				<s:SolidColor color="0x999999"  />
 			</s:fill>
 		</s:Rect>
+		<s:Spacer height="3" />
+		<s:Label text="Please enter your login name and password to continue." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 		<s:Spacer height="3" />
 		<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" fontWeight="bold" />
 		<s:TextInput id="nameInput" width="180" />
@@ -82,7 +84,7 @@
 	<s:VGroup paddingLeft="55" paddingTop="20" width="100%">
 		<s:Label text="Why Road to IELTS is your best possible online preparation and practice resource for IELTS?" color="#174A7D" fontSize="16" fontWeight="bold" width="90%" lineHeight="22" />
 		<s:Spacer height="1" />
-		<s:Label text="With over 100 hours of interactive activities, advice videos from British Council experts, hints and tips on question types as well as downloadable practice tests, it is comprehensive, up-to-date and aimed precisely at the challenges candidates face." width="90%" lineHeight="18" fontSize="12.6" />
+		<s:Label text="Road to IELTS is your best possible online preparation and practice resource for IELTS. With hours of interactive activities, advice videos from British Council experts, hints and tips on question types as well as downloadable practice tests, it is comprehensive, up-to-date and aimed precisely at the challenges candidates face." width="90%" lineHeight="18" fontSize="12.6" />
 		<s:Spacer height="10" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" top="90" right="30" />
 	</s:VGroup>
