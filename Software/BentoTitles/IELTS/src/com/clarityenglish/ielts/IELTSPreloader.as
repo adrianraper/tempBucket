@@ -14,11 +14,6 @@ package com.clarityenglish.ielts {
 	
 	public class IELTSPreloader extends SparkDownloadProgressBar {
 
-		/**
-		 * Standard flex logger
-		 */
-		//private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
-
 		private var preloaderDisplay:IELTSPreloaderDisplay;
 		private var showingDisplay:Boolean = false;
 		private var swfPercent:Number = 0;
@@ -27,7 +22,12 @@ package com.clarityenglish.ielts {
 		private var rslBytesLoaded:Array;
 		private var swfBytesTotal:Number = 0;
 		private var swfBytesLoaded:Number = 0;
-		private var rslEstimate:Number = 2500000;
+		/**
+		 * Keep the rslEstimate low as it mostly completes before the main application
+		 * and is highly variable based on how many rsls are in your browser already.
+		 * There is a fairly persuasive argument that we only need the application actually...
+		 */
+		private var rslEstimate:Number = 1000000;
 		private var swfEstimate:Number = 4000000; // published size
 		
 		public function IELTSPreloader() {
@@ -132,7 +132,7 @@ package com.clarityenglish.ielts {
 		 */
 		override protected function progressHandler(e:ProgressEvent):void {
 			if (preloaderDisplay) {
-				// Strangely, you can't rely on e.bytesTotal not going up as loading takes place... why
+				// Strangely, e.bytesTotal get bigger as loading takes place... why
 				swfBytesTotal = (e.bytesTotal > swfBytesTotal) ? e.bytesTotal : swfBytesTotal;
 				
 				//var msg:String = "swf bytesLoaded=" + e.bytesLoaded + " bytesTotal=" + e.bytesTotal;
@@ -155,6 +155,8 @@ package com.clarityenglish.ielts {
 				if (e.rslTotal) {
 					
 					// First time, set up the rsl arrays as you now know how many spaces you need
+					// but this is pretty meaningless because the moment an rsl is in the browser, it will
+					// never trigger this handler to fill up it's space. So most spaces will be empty.
 					if (rslBytesTotal==null) {
 						var msg:String = "first rsl, total number is " + e.rslTotal;
 						logToConsole(msg);

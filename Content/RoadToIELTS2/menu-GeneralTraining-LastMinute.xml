@@ -1,14 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
-  <!--Road to IELTS 2, Last Minute, Academic-->
+  <!--Road to IELTS 2, Last Minute, General Training-->
   <head>
     <script id="model" type="application/xml">
-      <menu id="52">
+      <menu id="53">
 		<course id="1287130100000" class="reading" caption="Reading" description="Familiarise yourself with the kinds of reading material and question types you will see in the reading test." >
 			<groups>
-				<group id="1" caption="Set 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Set 2" task="1" alt="" />
-				<group id="3" caption="Set 3" task="1" alt="" />
+				<group id="1" caption="Set 1" />
+				<group id="2" caption="Set 2" />
+				<group id="3" caption="Set 3" />
+				<group id="4" caption="Set 4" enabledFlag="8"/>
+				<group id="5" caption="Set 5" enabledFlag="8"/>
+				<group id="6" caption="Set 6" enabledFlag="8"/>
+				<group id="7" caption="Set 7" enabledFlag="8"/>
+				<group id="8" caption="Set 8" enabledFlag="8"/>
+				<group id="9" caption="Set 9" enabledFlag="8"/>
+				<group id="10" caption="Set 10" enabledFlag="8"/>
+				<group id="11" caption="Set 11" enabledFlag="8"/>
 			</groups>
 			<unit id="1287130110000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130110001" caption="Reading eBook" href="reading/questionzone.xml" enabledFlag="3" />
@@ -57,9 +65,18 @@
 		</course>
 		<course id="1287130200000" class="listening" caption="Listening" description="Practise the listening skills you need to succeed in the listening test.">
 			<groups>
-				<group id="1" caption="Set 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Set 2" task="1" alt="" />
-				<group id="3" caption="Set 3" task="1" alt="" />
+				<group id="1" caption="Set 1" />
+				<group id="2" caption="Set 2" />
+				<group id="3" caption="Set 3" />
+				<group id="4" caption="Set 4" enabledFlag="8"/>
+				<group id="5" caption="Set 5" enabledFlag="8"/>
+				<group id="6" caption="Set 6" enabledFlag="8"/>
+				<group id="7" caption="Set 7" enabledFlag="8"/>
+				<group id="8" caption="Set 8" enabledFlag="8"/>
+				<group id="9" caption="Set 9" enabledFlag="8"/>
+				<group id="10" caption="Set 10" enabledFlag="8"/>
+				<group id="11" caption="Set 11" enabledFlag="8"/>
+				<group id="12" caption="Set 12" enabledFlag="8"/>
 			</groups>
 			<unit id="1287130210000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" enabledFlag="3" />
@@ -109,9 +126,18 @@
 			</course>
 		<course id="1287130300000" class="speaking" caption="Speaking" description="Prepare to speak fluently in the speaking test.">
 			<groups>
-				<group id="1" caption="Set 1" task="1" alt="You will practise Short answer questions and Table completion in social and education listening tests." />
-				<group id="2" caption="Set 2" task="1" alt="" />
-				<group id="3" caption="Set 3" task="1" alt="" />
+				<group id="1" caption="Set 1" />
+				<group id="2" caption="Set 2" />
+				<group id="3" caption="Set 3" />
+				<group id="4" caption="Set 4" enabledFlag="8"/>
+				<group id="5" caption="Set 5" enabledFlag="8"/>
+				<group id="6" caption="Set 6" enabledFlag="8"/>
+				<group id="7" caption="Set 7" enabledFlag="8"/>
+				<group id="8" caption="Set 8" enabledFlag="8"/>
+				<group id="9" caption="Set 9" enabledFlag="8"/>
+				<group id="10" caption="Set 10" enabledFlag="8"/>
+				<group id="11" caption="Set 11" enabledFlag="8"/>
+				<group id="12" caption="Set 12" enabledFlag="8"/>
 			</groups>
 			<unit id="1287130310000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130310001" caption="Speaking eBook" href="speaking/questionzone.xml" enabledFlag="3" />
@@ -188,12 +214,27 @@
 		</course>
 		<course id="1287130400000" class="writing" caption="Writing" description="Practise the writing tasks you will complete in the writing test.">
 			<groups>
-				<group id="1" caption="Set 1 task 1" task="1" alt="" />
-				<group id="2" caption="Set 1 task 2" task="2" alt="" />
-				<group id="3" caption="Set 2 task 1" task="1" alt="" />
-				<group id="4" caption="Set 2 task 2" task="2" alt="" />
-				<group id="5" caption="Set 3 task 1" task="1" alt="" />
-				<group id="6" caption="Set 3 task 2" task="2" alt="" />
+				<group id="1" caption="Set 1 task 1" />
+				<group id="2" caption="Set 1 task 2" />
+				<group id="3" caption="Set 2 task 1" />
+				<group id="4" caption="Set 2 task 2" />
+				<group id="5" caption="Set 3 task 1" />
+				<group id="6" caption="Set 3 task 2" />
+				<group id="7" caption="Set 4 task 1" enabledFlag="8"/>
+				<group id="8" caption="Set 4 task 2" enabledFlag="8"/>
+				<group id="9" caption="Set 5 task 1" enabledFlag="8"/>
+				<group id="10" caption="Set 5 task 2" enabledFlag="8"/>
+				<group id="11" caption="Set 6 task 1" enabledFlag="8"/>
+				<group id="12" caption="Set 6 task 2" enabledFlag="8"/>
+				<group id="13" caption="Set 7 task 1" enabledFlag="8"/>
+				<group id="14" caption="Set 7 task 2" enabledFlag="8"/>
+				<group id="15" caption="Set 8 task 1" enabledFlag="8"/>
+				<group id="16" caption="Set 8 task 2" enabledFlag="8"/>
+				<group id="17" caption="Set 9 task 1" enabledFlag="8"/>
+				<group id="18" caption="Set 9 task 2" enabledFlag="8"/>
+				<group id="19" caption="Set 10" enabledFlag="8"/>
+				<group id="20" caption="Set 11" enabledFlag="8"/>
+				<group id="21" caption="Set 12" enabledFlag="8"/>
 			</groups>
 			<unit id="1287130410000" class="question-zone" caption="Starting out" enabledFlag="3">
 				<exercise id="1287130410001" href="writing/questionzone.xml" caption="Writing eBook" enabledFlag="3"/>

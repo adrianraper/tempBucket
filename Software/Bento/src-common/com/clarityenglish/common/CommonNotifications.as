@@ -15,6 +15,10 @@
 		public static const CONFIG_LOAD:String = "config_load";
 		public static const CONFIG_LOADED:String = "config_loaded";
 		
+		// #322
+		public static const ACCOUNT_LOAD:String = "account_load";
+		public static const ACCOUNT_LOADED:String = "account_loaded";
+		
 		public static const INVALID_LOGIN:String = "invalid_login";
 		public static const INVALID_DATA:String = "invalid_data";
 		
@@ -27,6 +31,7 @@
 		
 		public static const BENTO_ERROR:String = "bento_error"; // we might be able to replace all other errors with this?
 		public static const CONFIG_ERROR:String = "config_error";
+		public static const COPY_ERROR:String = "copy_error";
 		public static const PROGRESS_LOAD_ERROR:String = "progress_load_error";
 		public static const UPDATE_FAILED:String = "update_failed";
 		

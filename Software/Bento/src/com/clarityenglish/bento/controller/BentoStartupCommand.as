@@ -25,7 +25,7 @@ package com.clarityenglish.bento.controller {
 			
 			// #269
 			sendNotification(BBNotifications.ACTIVITY_TIMER_RESET);
-			
+
 			// Register models
 			facade.registerProxy(new BentoProxy());
 			facade.registerProxy(new ConfigProxy());
@@ -34,6 +34,10 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new ProgressProxy());
 			facade.registerProxy(new CopyProxy());
 			facade.registerProxy(new ExternalInterfaceProxy());
+			
+			// Get copy literals first
+			// #322
+			// sendNotification(CommonNotifications.COPY_LOAD);
 			
 			// Start the configuration loading
 			sendNotification(CommonNotifications.CONFIG_LOAD);

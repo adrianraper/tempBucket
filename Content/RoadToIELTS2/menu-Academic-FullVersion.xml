@@ -271,10 +271,10 @@
 				<exercise id="1151344221875" group="10" caption="Diagram completion" href="listening/exercises/1151344221875.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/a_listen_set10_06.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344244009" group="11" caption="Multiple choice (1)" href="listening/exercises/1151344244009.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/a_listen_set11_01.jpg">
+				<exercise id="1151344244009" group="11" caption="Multiple selection" href="listening/exercises/1151344244009.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/a_listen_set11_01.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344244398" group="11" caption="Multiple choice (2)" href="listening/exercises/1151344244398.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/a_listen_set11_02.jpg">
+				<exercise id="1151344244398" group="11" caption="Multiple choice (1)" href="listening/exercises/1151344244398.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/a_listen_set11_02.jpg">
 				  <!--GF - QB-->
 				</exercise>
 				<exercise id="1151344244026" group="11" caption="Sentence completion" href="listening/exercises/1151344244026.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/a_listen_set11_03.jpg">
@@ -286,7 +286,7 @@
 				<exercise id="1151344244199" group="11" caption="Labelling a diagram" href="listening/exercises/1151344244199.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/a_listen_set11_05.jpg">
 				  <!--GF - QB-->
 				</exercise>
-				<exercise id="1151344244577" group="11" caption="Multiple choice (3)" href="listening/exercises/1151344244577.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/a_listen_set11_06.jpg">
+				<exercise id="1151344244577" group="11" caption="Multiple choice (2)" href="listening/exercises/1151344244577.xml" enabledFlag="3" difficulty="2" thumbnail="listening/thumbnails/a_listen_set11_06.jpg">
 				  <!--GF - QB-->
 				</exercise>
 				<exercise id="1151344259533" group="12" caption="Form completion" href="listening/exercises/1151344259533.xml" enabledFlag="3" difficulty="3" thumbnail="listening/thumbnails/a_listen_set12_01.jpg">

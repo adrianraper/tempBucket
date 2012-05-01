@@ -1,5 +1,6 @@
 package com.clarityenglish.common.vo.config {
 	//import com.clarityenglish.common.vo.config.Licence;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
@@ -233,7 +234,12 @@ package com.clarityenglish.common.vo.config {
 			} else {
 				this.configID = '-';
 			}
-			
+			if (xml..ip.toString()) {
+				this.ip = xml..ip.toString();
+			}
+			if (xml..referrer.toString()) {
+				this.referrer = xml..referrer.toString();
+			}
 			trace("config.xml has id=" + this.configID);
 		}
 		
@@ -308,28 +314,13 @@ package com.clarityenglish.common.vo.config {
 
 		/**
 		 * Check for all the errors that you might know about now
+		 * Move this into ConfigProxy so you can do better handling of the error.
 		 */
+		/*
 		public function checkErrors():void {
-			// IP range
-			// Match the user's IP against the range listed in the licence attributes
-			var gotLA:Boolean = false;
-			for each (var lA:Object in account.licenceAttributes) {
-				if (lA.licenceKey.toLowerCase() == 'iprange') {
-					gotLA = true;
-					break;
-				}
-			}
-			if (gotLA) {
-				if (!isIPInRange(ip, lA.licenceValue)) {
-					error.errorNumber = BentoError.ERROR_OUTSIDE_IP_RANGE;
-					//error.errorDescription = 'This program can only be run from limited computers or through one website.';
-					error.errorContext = "Your IP doesn't match and is " + ip;
-				} else {
-					trace("your ip, " + ip + ", is in the listed range.");
-				}
-			}
 			
 		}
+		*/
 		/**
 		 * This sends back the XML that is the chart templates
 		 * 
@@ -461,7 +452,7 @@ package com.clarityenglish.common.vo.config {
 		 * @return Boolean
 		 * 
 		 */
-		private function isIPInRange(thisIP:String, range:String):Boolean {
+		public function isIPInRange(thisIP:String, range:String):Boolean {
 			var ipRangeArray:Array = range.split(",");
 			for (var t:String in ipRangeArray) {
 				// first, is there an exact match?
@@ -473,7 +464,7 @@ package com.clarityenglish.common.vo.config {
 				var targetBlocks:Array = ipRangeArray[t].split(".");
 				var thisBlocks:Array = thisIP.split(".");
 				// how far down do they specify?
-				for (var i:uint=0; i<thisBlocks.length; i++) {
+				for (var i:uint=0; i<targetBlocks.length; i++) {
 					//myTrace("match " + thisBlocks[i] + " against " + targetBlocks[i]);
 					if (targetBlocks[i] == thisBlocks[i]) {
 					} else if (targetBlocks[i].indexOf("-")>0) {
@@ -489,6 +480,26 @@ package com.clarityenglish.common.vo.config {
 						//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
 						break;
 					}
+				}
+			}
+			return false;
+		}
+		/**
+		 * Detail function to see if the referrer you came from matches a range 
+		 * @param referrer
+		 * @param range
+		 * @return Boolean
+		 * 
+		 */
+		public function isRUInRange(thisReferrer:String, range:String):Boolean {
+			var ruRangeArray:Array = range.split(",");
+			for (var t:String in ruRangeArray) {
+				if (thisReferrer.toLowerCase() == ruRangeArray[t].toLowerCase())
+					return true;
+				
+				if (thisReferrer.toLowerCase().indexOf(ruRangeArray[t].toLowerCase()) >= 0) {
+					trace("partial referrer match");
+					return true;
 				}
 			}
 			return false;

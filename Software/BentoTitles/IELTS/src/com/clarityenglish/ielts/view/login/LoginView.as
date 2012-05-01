@@ -84,7 +84,8 @@ package com.clarityenglish.ielts.view.login {
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
-		public function get productVersion():String {
+		[Bindable(event="productVersionChanged")]
+		public function getProductVersion():String {
 			return _productVersion;
 		}
 		public function setProductCode(value:uint):void {
@@ -93,6 +94,7 @@ package com.clarityenglish.ielts.view.login {
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
+		[Bindable(event="productVersionChanged")]
 		public function get productCode():uint {
 			return _productCode;
 		}

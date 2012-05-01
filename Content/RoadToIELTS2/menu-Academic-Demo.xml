@@ -25,7 +25,7 @@
 			</unit>
 			<unit id="1287130120000" class="exam-practice" caption="Test practice" enabledFlag="3">
 				<exercise id="1287130120001" caption="Practice test 1" href="reading/pdf/reading_ac_practice1.pdf" answerCaption="Answer sheet 1" answerHref="reading/pdf/reading_ac_answer1.pdf" enabledFlag="3" />
-				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_ac_practice2.pdf" answerCaption="Answer sheet 2" answerHref="reading/pdf/reading_ac_answer2.pdf" enabledFlag="3" />
+				<exercise id="1287130120002" caption="Practice test 2" href="reading/pdf/reading_ac_practice2.pdf" answerCaption="Answer sheet 2" answerHref="reading/pdf/reading_ac_answer2.pdf" enabledFlag="8" />
 				<exercise id="1287130120003" caption="Practice test 3" href="reading/pdf/reading_ac_practice3.pdf" answerCaption="Answer sheet 3" answerHref="reading/pdf/reading_ac_answer3.pdf" enabledFlag="8" />
 			</unit>
 			<unit id="1287130130000" class="advice-zone" caption="Advice and tutorials" enabledFlag="3">

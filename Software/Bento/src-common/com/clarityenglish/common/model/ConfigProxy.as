@@ -64,7 +64,7 @@ package com.clarityenglish.common.model {
 		 * Method to get details sent on the command line, or from the start page
 		 * 
 		 */
-		private function getApplicationParameters():void {
+		public function getApplicationParameters():void {
 			/**
 			 *  Use what is passed from start page or command line
 			 */
@@ -126,7 +126,9 @@ package com.clarityenglish.common.model {
 			RemoteDelegate.setService(config.remoteService);
 			
 			// Next stage is to get data from the database
-			getApplicationParameters();
+			// #322 Get copy literals first
+			// getApplicationParameters();
+			sendNotification(CommonNotifications.CONFIG_LOADED);
 		}
 		
 		public function errorHandler(e:IOErrorEvent):void {
@@ -263,15 +265,18 @@ package com.clarityenglish.common.model {
 						</db>
 						*/
 						config.mergeAccountData(data);
-						config.checkErrors();
+						var authenticated:Boolean = this.checkAuthentication();
 					}
 					
 					if (!data) {
 						sendNotification(CommonNotifications.CONFIG_ERROR, "Unable to read from database"); // at this point copy can't have loaded so this is in English!
 					} else if (config.anyError()) {
+						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 						sendNotification(CommonNotifications.CONFIG_ERROR, config.error);
 					} else {
-						sendNotification(CommonNotifications.CONFIG_LOADED);
+						// #322
+						//sendNotification(CommonNotifications.CONFIG_LOADED);
+						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 					}
 					break;
 				default:
@@ -288,5 +293,48 @@ package com.clarityenglish.common.model {
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
 		
+		/**
+		 * Moved from config.as. 
+		 * Check that the user's IP or referrer match the licence.
+		 * Only run if the licence attributes say that you should.
+		 */
+		private function checkAuthentication():Boolean {
+			
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			var ipFault:Boolean = false;
+			var ruFault:Boolean = false;
+			
+			for each (var lA:Object in config.account.licenceAttributes) {
+				if (lA.licenceKey.toLowerCase() == 'iprange') {
+					if (!config.isIPInRange(config.ip, lA.licenceValue)) {
+						config.error = copyProxy.getBentoErrorForId("errorIPDoesntMatch", { ip: config.ip }, true );
+						ipFault = true;
+					} else {
+						// If you are successful, then this is all you need
+						trace("your ip, " + config.ip + ", is in the listed range.");
+						config.error = new BentoError();
+						return true;
+					}
+				}
+				
+				if (lA.licenceKey.toLowerCase() == 'rurange') {
+					if (!config.isRUInRange(config.referrer, lA.licenceValue)) {
+						config.error = copyProxy.getBentoErrorForId("errorRUDoesntMatch", { referrer: config.referrer }, true );
+						ruFault = true;
+					} else {
+						trace("your referrer, " + config.referrer + ", is in the listed range.");
+						config.error = new BentoError();
+						return true;
+					}
+				}
+			}
+			
+			if (ipFault && ruFault)
+				config.error = copyProxy.getBentoErrorForId("errorIPandRUDontMatch", { referrer: config.referrer, ip: config.ip }, true );
+			
+			return false;
+			
+		}
+
 	}
 }

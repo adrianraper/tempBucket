@@ -56,8 +56,13 @@
 			
 			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);
-			registerCommand(CommonNotifications.CONFIG_LOADED, BentoStartupStateMachineCommand);
+			// #322
+			//registerCommand(CommonNotifications.CONFIG_LOADED, BentoStartupStateMachineCommand);
+			registerCommand(CommonNotifications.CONFIG_LOADED, CopyLoadCommand);
 			registerCommand(CommonNotifications.CONFIG_ERROR, ShowErrorCommand);
+			registerCommand(CommonNotifications.COPY_LOADED, AccountLoadCommand);
+			registerCommand(CommonNotifications.COPY_ERROR, ShowErrorCommand);
+			registerCommand(CommonNotifications.ACCOUNT_LOADED, BentoStartupStateMachineCommand);
 			
 			// Map built in commands
 			registerCommand(BBNotifications.MENU_XHTML_LOAD, MenuXHTMLLoadCommand);

@@ -34,6 +34,9 @@
 			<lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
 			<lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
 			<lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number</lit>
+			<lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
+			<lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
+			<lit name="errorIPandRUDontMatch" code="312">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
 			
 			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}</lit>
 			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id</lit>

@@ -15,6 +15,7 @@
 		function setLoginOption(loginOption:Number):void;
 		function clearData():void;
 		function setProductVersion(productVersion:String):void;
+		function getProductVersion():String;
 		function setProductCode(productCode:uint):void;
 	}
 	

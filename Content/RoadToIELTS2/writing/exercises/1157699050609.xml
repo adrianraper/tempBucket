@@ -35,10 +35,10 @@
       <answer source="a4" correct="false">
 	    <feedback source="fb2"/>
       </answer>
-      <answer source="a5" correct="true">
+      <answer source="a5" correct="false">
 	    <feedback source="fb2"/>
       </answer>
-      <answer source="a6" correct="false">
+      <answer source="a6" correct="true">
         <feedback source="fb2"/>
       </answer>
     </DropDownQuestion>

@@ -48,7 +48,7 @@
       <answer source="t9" correct="false"/>
     </TargetSpottingQuestion>
     <TargetSpottingQuestion block="b10">
-      <answer source="t10" correct="false"/>
+      <answer source="t10" correct="true"/>
     </TargetSpottingQuestion>
   </questions>
 </script>

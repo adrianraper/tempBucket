@@ -1,9 +1,24 @@
 <?php
-	//require_once('../../englishonline/productClass.php');
+
+// http://dock.projectbench/area1/RoadToIELTS-Academic/Start.php?prefix=Clarity
+
+	// First, a temporary fix to allow some libraries to run R2IV2 without changing their URLs
+	if (isset($_GET['prefix'])) {
+		$prefix = $_GET['prefix'];
+		switch (strtolower($prefix)) {
+			//case 'mcl':
+			case 'ccls':
+			case 'wmrl':
+				header("location: /area1/RoadToIELTS2/Start-AC.php?prefix=$prefix");
+			default:
+		}
+	}
+	
 	session_start();
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
-	$StudentID = $Email = '';
+	$studentID = $Email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
+	$onHoldFlag = false;
 	
 	// For this product
 	$productCode = 12; // RoadToIELTS Academic
@@ -21,44 +36,67 @@
 	} else {
 		// I think we should go to the page not found - otherwise you have no clue what is happening
 		// This is NOT the correct way to generate a page not found error.
-		header("location: /error/404_programs.htm");
+		//404 is not a suitable error message when sessions vars times out
+		//header("location: /error/404_programs.htm");
+		$logStr = "from Start page Time=".date("D M j G:i:s T Y").", HTTP_HOST=".$_SERVER['HTTP_HOST'].", HTTP_X_FORWARDED_FOR=".$_SERVER['HTTP_X_FORWARDED_FOR'].", HTTP_CLIENT_IP=".$_SERVER["HTTP_CLIENT_IP"].", REMOTE_ADDR=".$_SERVER["REMOTE_ADDR"].", pc=".$productCode;
+		//error_log("$logStr\r\n", 3, "/tmp/session_vars.log");
+		//header("location: /error/session_timeout.htm");
 		//header("HTTP/1.0 404 Not Found");
 		//echo "page not found";
 		//header("location: /index.php");
 		exit;
 	}
+
+		header("location: /area1/RoadToIELTS-Academic/redirect.php?prefix=$prefix");
+
+	// Temporary solution for switching R2I. Some account wishes to hold until they decided to switch
+	// Load a list of roots that wishes to keeop old version
+	// File format rooID,Account name,prefix,prefer switch date
+	// one line per account
+	$handle = @fopen("../../englishonline/R2IOnHoldList.txt", "r");
+	if ($handle) {
+		while (($AccountList = fgets($handle, 4096)) !== false) {
+			//echo $AccountList;
+			$Accountinfo = split(",", $AccountList);
+			if ($Accountinfo[2]==$prefix) {
+				$onHoldFlag = true;
+			}
+		}
+		if (!feof($handle)) {
+			echo "Error: unexpected fgets() fail\n";
+		}
+		fclose($handle);
+	}
+	if (!$onHoldFlag) {
+		// For one or two days go through a temporary redirect page to build awareness
+		header("location: /area1/RoadToIELTS-Academic/redirect.php?prefix=$prefix");
+		//header("location: /area1/RoadToIELTS2/Start-AC.php?prefix=$prefix");
+		exit;
+	}
+	
+	
 	// v6.5.5.1 If the licence file exists, send a reference to it. Here we work out what the name would be.
 	$licenceFile = $prefix."_licence.txt";
 	
+	// v6.5.5.6 For default accounts you no longer need to pass version as this is all read from the database
+	// Different language versions share the same location file as &content is now a root and the languageCode from T_Accounts is used as the literals
+	// You can still override this if you want in a specific location file
 	// The language version might come from session variables or from the URL parameters
-	if (isset($_SESSION['RoadToIELTS-Academic'])) {
-		$version = $_SESSION['RoadToIELTS-Academic']->languageCode;
-	} elseif (isset($_GET['version'])){
-		$version = $_GET['version'];
-	} elseif (isset($_GET['Version'])){
-		$version = $_GET['Version'];
-	} else {
-		$version="";
-	}
-	switch ($version) {
-		//case "NAMEN":
-		//	$locationFile = "location-NAmEN.txt";
-		//	break;
-		//case "INDEN":
-		//	$locationFile = "location-IndEN.txt";
-		//	break;
-		default:
-			$locationFile = "location.txt";
-	}
-	//echo "&version=".$version."&location=".$locationFile;
-	if (isset($_SESSION['UserName'])) $userName = $_SESSION['UserName']; 
-	if (isset($_SESSION['Password'])) $password = $_SESSION['Password'];
-	if (isset($_SESSION['StudentID'])) $StudentID = $_SESSION['StudentID'];
+	$locationFile = "location.txt";
+	if (isset($_SESSION['UserID'])) $userID = $_SESSION['UserID']; 
+	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']); 
+	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
+	if (isset($_SESSION['StudentID'])) $studentID = $_SESSION['StudentID'];
 	if (isset($_SESSION['Email'])) $Email = $_SESSION['Email'];
+	if (isset($_SESSION['InstanceID'])) $instanceID = $_SESSION['InstanceID'];
 	
-	$server=$_SERVER['HTTP_HOST'];
-	// For Akamai served files- a special header is attached. Check the Akamai configuration to see which files this works for.
-	if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+	$server = $_SERVER['HTTP_HOST'];
+	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
+	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
+		$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+		$ip = $ipList[0];
+	} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
 		$ip = $_SERVER["HTTP_CLIENT_IP"];
@@ -66,7 +104,6 @@
 		$ip = $_SERVER["REMOTE_ADDR"];
 	}
 	// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
-	$referrer="";
 	if (isset($_SERVER['HTTP_REFERER'])) {
 		if (strpos($_SERVER['HTTP_REFERER'],'?')) {
 			$referrer=substr($_SERVER['HTTP_REFERER'],0,strpos($_SERVER['HTTP_REFERER'],'?'));
@@ -78,13 +115,14 @@
 	//$licenceFile = '&licence='.$prefix.'_licence.txt';
 	//$licenceFile = '&licence=licence.txt';
 	//$locationFile = 'location-SQLServer.txt';
-	
+	// There is a stange behaviour while resize not working if nothing is on the screen. Temp solution: make a empty div.
+	echo "<p> </p>";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 	<title>Road to IELTS Academic from Clarity and the British Council</title>
-	<link rel="shortcut icon" href="/Software/RoadToIELTS.ico" type="image/x-icon">
+	<link rel="shortcut icon" href="/Software/RoadToIELTS.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="description" content="" />
@@ -115,15 +153,22 @@
 		}
 		// *********
 		// *********
-		
+		// Running scale, width and height with swfobject is off
+		// If I set both to 100%, then IE shows a very small image, FF shows nothing (but the app is running)
+		// If I set a specific height, then it doesn't matter what I put for width
 		var startControl = webShare + "/Software/Common/";
-		var coordsWidth = 760; var coordsHeight = 640;
+		// v6.5.5.6 Allow resize screen mode
+		if (swfobject.getQueryParamValue("resize")=="true") {;
+			var coordsWidth = "100%"; var coordsHeight = "100%";
+		} else {
+			var coordsWidth = 760; var coordsHeight = 640;
+		}
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
 		argList+="<?php if (file_exists(dirname(__FILE__).'/'.$licenceFile)) {echo '&licence='.$licenceFile;} ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
-
+		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
 			var jsUserName = "<?php echo $userName ?>";
@@ -135,21 +180,33 @@
 		} else {
 			var jsPassword = swfobject.getQueryParamValue("password");
 		}
-		if ("<?php echo $StudentID ?>".length>0) {
-			var jsStudentID = "<?php echo $StudentID ?>";
+		if ("<?php echo $studentID ?>".length>0) {
+			var jsStudentID = "<?php echo $studentID ?>";
 		} else {
 			var jsStudentID = swfobject.getQueryParamValue("studentID");
+		}
+		if ("<?php echo $userID ?>".length>0) {
+			var jsUserID = "<?php echo $userID ?>";
+		} else {
+			var jsUserID = swfobject.getQueryParamValue("userID");
 		}
 		if ("<?php echo $Email ?>".length>0) {
 			var jsEmail = "<?php echo $Email ?>";
 		} else {
 			var jsEmail = swfobject.getQueryParamValue("email");
 		}
+		if ("<?php echo $instanceID ?>".length>0) {
+			var jsInstanceID = "<?php echo $instanceID ?>";
+		} else {
+			var jsInstanceID = swfobject.getQueryParamValue("instanceID");
+		}
 		var flashvars = {
 			username: jsUserName,
 			password: jsPassword,
 			studentID: jsStudentID,
+			userID: jsUserID,
 			email: jsEmail,
+			instanceID: jsInstanceID,
 			startingPoint: swfobject.getQueryParamValue("startingPoint"),
 			course: swfobject.getQueryParamValue("course"),
 			action: swfobject.getQueryParamValue("action"),
@@ -157,12 +214,17 @@
 			server: "<?php echo $server ?>",
 			ip: "<?php echo $ip ?>"
 		};
-		//var flashvars = {};
 		var params = {
 			id: "orchid",
 			name: "orchid",
-			scale: "noScale"
+			allowfullscreen: "true"
 		};
+		// v6.5.5.6 Allow resize screen mode
+		if (swfobject.getQueryParamValue("resize")=="true") {
+			params.scale="showall";
+		} else {
+			params.scale="noScale";
+		}
 		var attr = {
 			id: "orchid",
 			name: "orchid"
@@ -170,14 +232,8 @@
 		var expressInstall = startControl + "expressInstall.swf";
 		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", coordsWidth, coordsHeight, "9.0.28", expressInstall, flashvars, params, attr);
 	</script>
-	
-<style type="text/css">
-body {
-	margin:0px auto;
-	padding-top:1px;
-	text-align:center;
-}
-</style>
+<!--CSS pop up layout box-->
+<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
 </head>
 <body onload="onLoad()">
 	<div align="center" id="altContent">

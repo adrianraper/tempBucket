@@ -44,6 +44,9 @@ package com.clarityenglish.common.model {
 		 * @return
 		 */
 		public function getCopyForId(id:String, replaceObj:Object = null):String {
+			if (!this.copy)
+				throw new Error("Copy literals have not been loaded yet");
+			
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
 				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
@@ -72,6 +75,9 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function getCodeForId(id:String):uint {
+			if (!this.copy)
+				throw new Error("Copy literals have not been loaded yet");
+			
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id).@code;
 			if (result.length() == 0)
 				return 1;
@@ -80,6 +86,9 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function getBentoErrorForId(id:String, replaceObj:Object = null, isFatal:Boolean = true):BentoError {
+			if (!this.copy)
+				throw new Error("Copy literals have not been loaded yet");
+
 			var copy:String = getCopyForId(id, replaceObj);
 			var code:uint = getCodeForId(id);
 		

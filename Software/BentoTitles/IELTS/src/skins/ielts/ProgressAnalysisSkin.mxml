@@ -38,8 +38,7 @@
 	</s:HGroup>
 	<s:VGroup width="100%" height="100%" paddingTop="22" paddingLeft="10" includeIn="blocked,demo" >
 		<s:Spacer height="10" />
-		<s:SWFLoader source.blocked="@Embed(source='skins/ielts/assets/progressAnalyse_disable.png')"
-					 source.demo="@Embed(source='skins/ielts/assets/Listening.png')" />
+		<s:Image source="/Software/ResultsManager/web/resources/assets/progressAnalyse_disable.png"/>
 	</s:VGroup>
 
 </s:Skin>

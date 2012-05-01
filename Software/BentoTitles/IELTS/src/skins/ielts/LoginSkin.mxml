@@ -22,8 +22,8 @@
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
 		<s:SWFLoader id="upgradeButton" source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0" top="44" 
-					 visible="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}"
-					 includeInLayout="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}"
+					 visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
+					 includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
 	</s:Group>
 	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="100">
@@ -32,8 +32,8 @@
 		</s:layout>
 		
 	<s:VGroup width="100%" height="100%" top="120" left="120" paddingLeft="25" >
-		<s:HGroup id="lastMinute" visible="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}"
-				  includeInLayout="{hostComponent.productVersion == IELTSApplication.LAST_MINUTE}">
+		<s:HGroup id="lastMinute" visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
+				  includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}">
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='IELTSLogoLastMinute_Icon')" left="0" top="0" width="40" height="40" />
 			<s:VGroup>
 				<s:Label text = "Road to IELTS - Last Minute" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
@@ -41,8 +41,8 @@
 			</s:VGroup>
 		</s:HGroup>
 		
-		<s:HGroup id="fullVersion" visible="{hostComponent.productVersion == IELTSApplication.FULL_VERSION}"
-									includeInLayout="{hostComponent.productVersion == IELTSApplication.FULL_VERSION}">
+		<s:HGroup id="fullVersion" visible="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}"
+									includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}">
 			<s:VGroup>
 				<s:Label text = "Road to IELTS" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="0"/>	
 				<s:Label text="IELTS preparation and practice" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" paddingLeft="0" lineHeight="18" />
