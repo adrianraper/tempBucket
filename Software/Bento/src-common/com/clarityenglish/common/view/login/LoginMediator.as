@@ -40,9 +40,9 @@ package com.clarityenglish.common.view.login {
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.setLicencee(configProxy.getAccount().name);
-			view.setLoginOption(configProxy.getAccount().loginOption);
 			view.setProductVersion(configProxy.getProductVersion());
 			view.setProductCode(configProxy.getProductCode());
+			view.setLoginOption(configProxy.getAccount().loginOption);
 		}
         
 		/**

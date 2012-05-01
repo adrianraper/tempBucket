@@ -56,7 +56,7 @@
 			</s:fill>
 		</s:Rect>
 		<s:Spacer height="3" />
-		<s:Label text="Please enter your login name and password to continue." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
+		<s:Label text="Please enter your login details to continue." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 		<s:Spacer height="3" />
 		<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" fontWeight="bold" />
 		<s:TextInput id="nameInput" width="180" />

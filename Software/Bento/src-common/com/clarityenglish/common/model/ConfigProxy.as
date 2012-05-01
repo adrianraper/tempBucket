@@ -194,7 +194,7 @@ package com.clarityenglish.common.model {
 			
 			if (Config.DEVELOPER.name == "AR") {
 				// return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "passwording")
-				return new LoginEvent(LoginEvent.LOGIN, "p574528(8)", "passwording")
+				return new LoginEvent(LoginEvent.LOGIN, "xp574528(8)", "passwording")
 			}
 			
 			// Take it from from the URL parameters (see config.as.mergeParameters)
@@ -319,6 +319,8 @@ package com.clarityenglish.common.model {
 				
 				if (lA.licenceKey.toLowerCase() == 'rurange') {
 					if (!config.isRUInRange(config.referrer, lA.licenceValue)) {
+						if (!config.referrer)
+							config.referrer = 'an unknown site.';
 						config.error = copyProxy.getBentoErrorForId("errorRUDoesntMatch", { referrer: config.referrer }, true );
 						ruFault = true;
 					} else {

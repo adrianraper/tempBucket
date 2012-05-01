@@ -494,6 +494,10 @@ package com.clarityenglish.common.vo.config {
 		public function isRUInRange(thisReferrer:String, range:String):Boolean {
 			var ruRangeArray:Array = range.split(",");
 			for (var t:String in ruRangeArray) {
+				
+				if (!thisReferrer)
+					return false;
+				
 				if (thisReferrer.toLowerCase() == ruRangeArray[t].toLowerCase())
 					return true;
 				
