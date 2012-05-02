@@ -320,7 +320,7 @@ package com.clarityenglish.common.model {
 				if (lA.licenceKey.toLowerCase() == 'rurange') {
 					if (!config.isRUInRange(config.referrer, lA.licenceValue)) {
 						if (!config.referrer)
-							config.referrer = 'an unknown site.';
+							config.referrer = 'an unknown site';
 						config.error = copyProxy.getBentoErrorForId("errorRUDoesntMatch", { referrer: config.referrer }, true );
 						ruFault = true;
 					} else {

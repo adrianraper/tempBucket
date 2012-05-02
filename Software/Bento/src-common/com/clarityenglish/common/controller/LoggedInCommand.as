@@ -21,7 +21,8 @@ package com.clarityenglish.common.controller {
 			//sendNotification(BBNotifications.SESSION_STARTED, data);
 			
 			// Send another COPY_LOADED notification in case the language has changed (this forces everything to update its copy)
-			sendNotification(CommonNotifications.COPY_LOADED);
+			// #322 Can't do this anymore as COPY_LOADED is part of the start up execution chain
+			//sendNotification(CommonNotifications.COPY_LOADED);
 		}
 		
 	}
