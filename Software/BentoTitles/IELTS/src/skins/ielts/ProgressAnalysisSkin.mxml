@@ -14,8 +14,12 @@
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
-
-	<s:SkinnableComponent id="courseKeyPieComponent" skinClass="skins.ielts.progress.CourseKeyPieSkin" width="100%" height="30" />
+	
+	<s:HGroup width="100%" height="100%" includeIn="normal">
+		<s:Image source="/Software/ResultsManager/web/resources/assets/analyse_comingsoon.png"/>
+	</s:HGroup>
+	
+	<s:SkinnableComponent id="courseKeyPieComponent" skinClass="skins.ielts.progress.CourseKeyPieSkin" width="100%" height="30" visible="false" />
 
 	<s:Group top="0">
 		<s:Line width="100%">
@@ -25,7 +29,7 @@
 		</s:Line>
 	</s:Group>
 
-	<s:HGroup width="100%" height="100%" includeIn="normal">
+	<s:HGroup width="100%" height="100%" visible="false" >
 		<s:VGroup width="400" height="100%" horizontalAlign="center">
 			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold" paddingTop="60" />
 			<s:Label text="Average score (%)" fontSize="12.6" />

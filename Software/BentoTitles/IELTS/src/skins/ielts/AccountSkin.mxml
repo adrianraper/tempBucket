@@ -56,7 +56,7 @@
 	</fx:Script>
 	
 	<s:layout>
-		<s:HorizontalLayout paddingTop="50" />
+		<s:HorizontalLayout paddingTop="60" />
 	</s:layout>
 	
 	<s:VGroup width="50%" paddingTop="20" >

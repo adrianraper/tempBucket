@@ -110,7 +110,7 @@
 	</fx:Declarations>
 	
 	<s:layout>
-		<s:VerticalLayout paddingTop="50" />
+		<s:VerticalLayout paddingTop="60" />
 	</s:layout>
 	
 	<s:VGroup width="98%" paddingTop="20" >
@@ -120,13 +120,13 @@
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
-		<s:RichText width="65%" paddingLeft="0" paddingTop="10" >
+		<s:RichText width="75%" paddingLeft="0" paddingTop="10" >
 		<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please contact Clarity.</s:span></s:p>
 		</s:RichText>
 			<s:HGroup paddingTop="10" width="100%">
 				<s:SWFLoader width="39" height="42"
 							 source="@Embed(source='skins/ielts/assets/technical.png')" />
-				<s:RichText width="65%" paddingLeft="10" >
+				<s:RichText width="60%" paddingLeft="10" >
 					<s:p><s:span fontWeight="bold">Technical problems</s:span></s:p>
 					<s:p><s:span>Clarity will be pleased to help you any technical problems. Email 					
 					support@roadtoielts.com with a description 
@@ -148,7 +148,7 @@
 		<s:HGroup paddingTop="10" width="100%">
 			<s:SWFLoader width="39" height="42"
 						 source="@Embed(source='skins/ielts/assets/content.png')" />
-			<s:RichText width="65%" paddingLeft="10" >
+			<s:RichText width="60%" paddingLeft="10" >
 				<s:p><s:span fontWeight="bold">Content problems</s:span></s:p>
 				<s:p><s:span>If you have any enquires about the content, for example, if you have questions about an answer in the exercises, 
 						 please contact British Council.</s:span></s:p>	
