@@ -55,10 +55,10 @@ package com.clarityenglish.ielts.view.zone {
 						this.toolTipText = "Only available in the Full Version. Click above to upgrade."
 						break;
 					case IELTSApplication.TEST_DRIVE:
-						this.toolTipText = "Only available in the candidate version. Click above to upgrade."
+						this.toolTipText = " Only available in the Last Minute version. Click above to upgrade."
 						break;
 					case IELTSApplication.DEMO:
-						this.toolTipText = "Only available in the candidate version. Click above to upgrade."
+						this.toolTipText = "Not available in this demo. Click above to find out prices."
 						break;
 					default:
 						this.toolTipText = "Not available in the current version. Click above to upgrade."

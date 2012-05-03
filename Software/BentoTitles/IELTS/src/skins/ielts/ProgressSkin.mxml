@@ -62,7 +62,7 @@
 				<components:ProgressScoreView id="progressScoreView" width="100%" height="100%" includeIn="score" />
 			</s:Group>
 			
-			<s:Image id="demoImage" width="955" height="500" 
+			<s:Image id="demoImage" width="954" height="516" 
 					 source.coverageStates="/Software/ResultsManager/web/resources/assets/coverage_demo.png" 
 					 source.compareStates="/Software/ResultsManager/web/resources/assets/compare_demo.png" 
 					 source.analysisStates="/Software/ResultsManager/web/resources/assets/analyse_demo.png"
