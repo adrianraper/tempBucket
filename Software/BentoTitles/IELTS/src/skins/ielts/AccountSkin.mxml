@@ -78,7 +78,7 @@
 			
 			<s:HGroup width="100%" height="100%" top="96" >
 				<s:VGroup paddingTop="3">
-					
+
 					<s:Label id="countdownLabel" fontWeight="bold"  />
 					
 					<s:HGroup paddingTop="5">
@@ -100,7 +100,10 @@
 											  value="{Number(formatExamDetails(hostComponent.userDetails, 'mins'))}" textAlign="center"/>
 						</s:VGroup>
 					</s:HGroup>
-							
+					
+					<s:SWFLoader width="100%" height="100%" 
+								 source="/Software/ResultsManager/web/resources/assets/profile_demo.png" visible="{(!hostComponent.isDemo())}" includeInLayout="{(!hostComponent.isDemo())}" />
+					
 					<s:VGroup paddingTop="13" visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"
 							  includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}">	
 						<s:HGroup>
@@ -168,12 +171,16 @@
 				<s:SolidColor color="0x999999" />
 			</s:fill>
 		</s:Rect>
-		<s:Group width="241" height="301">
-			<s:SWFLoader id="IELTSApp1" width="100%" top="8" />
-			<!-- 						 
-			source="@Embed(source='skins/ielts/assets/bcwidget.png')" 
-			source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
-			-->
-		</s:Group>
+		<s:HGroup>
+			<s:Group width="202" height="301">
+				<s:SWFLoader id="IELTSApp1" width="100%" top="8" />
+				<!-- 						 
+				source="@Embed(source='skins/ielts/assets/bcwidget.png')" 
+				source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
+				-->
+			</s:Group>
+			<s:SWFLoader width="100%" height="100%" source="/Software/ResultsManager/web/resources/assets/widget_demo.png" visible="{(!hostComponent.isDemo())}" includeInLayout="{(!hostComponent.isDemo())}" />
+		</s:HGroup>
+	
 	</s:VGroup>
 </s:Skin>

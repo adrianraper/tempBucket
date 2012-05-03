@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.account {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -91,6 +92,11 @@ package com.clarityenglish.ielts.view.account {
 		public function get licenceType():uint {
 			return _licenceType;
 		}
+		
+		public function isDemo():Boolean {
+			return (productVersion == IELTSApplication.DEMO);
+		}
+		
 		public function set licenceType(value:uint):void {
 			if (_licenceType != value) {
 				_licenceType = value;
