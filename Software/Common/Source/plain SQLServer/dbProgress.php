@@ -799,7 +799,7 @@ EOD;
 		//$date = $Db->now();
 		//$thisCourseName = $vars['COURSENAME'];
 		//$node .= "<note>coursename='$thisCourseName' </note>";
-                if (isset($this->dateNow)) {
+        if (isset($this->dateNow)) {
 			$dateNow = $this->dateNow;
 		} else {
 			$dateNow = date('Y-m-d H:i:s', time());
@@ -816,7 +816,10 @@ EOD;
 			$node .= "<err code='205'>Your progress cannot be recorded: " .$db->ErrorMsg() ."</err>";
 			return false;
 		}
-		$numSessions = $this->countSessions($vars);
+		// v6.6.0 Why do we need to count sessions? Nothing happens to this information in Orchid.
+		// $numSessions = $this->countSessions($vars);
+		$numSessions = 1;
+		
 		// this is done by identity column now in adodb
 		//$sessionID = $this->selectInsertedSessionID($vars, $dateNow, $node);
 		//if ($sessionID) {
