@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.account {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	
@@ -93,10 +94,6 @@ package com.clarityenglish.ielts.view.account {
 			return _licenceType;
 		}
 		
-		public function isDemo():Boolean {
-			return (productVersion == IELTSApplication.DEMO);
-		}
-		
 		public function set licenceType(value:uint):void {
 			if (_licenceType != value) {
 				_licenceType = value;
@@ -158,13 +155,38 @@ package com.clarityenglish.ielts.view.account {
 								var myCountry:String = "Hong-Kong";
 								break;
 							default:
-								myCountry = "userDetails.country";
+								myCountry = userDetails.country;
 						}
 					} else {
 						myCountry = "global";
 					}
 					instance.source += "&widgetdatacountry=" + myCountry;
 					break
+			}
+		}
+		
+		protected override function getCurrentSkinState():String {
+			switch (productVersion) {
+				case IELTSApplication.DEMO:
+					return "demo";
+					break;
+				case IELTSApplication.TEST_DRIVE:
+					return "testDrive";
+					break;
+				case IELTSApplication.FULL_VERSION:
+					var currentState:String = "fullVersion";
+					if (licenceType == Title.LICENCE_TYPE_AA)
+						currentState += "_anonymous";
+					return currentState;
+					break;
+				case IELTSApplication.LAST_MINUTE:
+					return "lastMinute";
+					break;
+				case IELTSApplication.HOME_USER:
+					return "homeUser";
+					break;
+				default:
+					return super.getCurrentSkinState();
 			}
 		}
 		
@@ -221,16 +243,16 @@ package com.clarityenglish.ielts.view.account {
 		 */
 		protected function onUpdateButtonClick(event:MouseEvent):void {
 			// Any validation to do here?
-			if (newPassword.text != confirmPassword.text) {
+			if (newPassword && confirmPassword && (newPassword.text != confirmPassword.text)) {
 				showUpdateError("The two new passwords you typed must be the same.");
 			} else {
 				// Trigger the update command. Use an Event or a Signal?
 				// Do I really need to pass anything at all since the mediator can get it all anyway?
 				// Or I could use a form and pass that?
 				var updatedUserDetails:Object = new Object();
-				if (currentPassword.text)
+				if (currentPassword && currentPassword.text)
 					updatedUserDetails.currentPassword = currentPassword.text;
-				if (newPassword.text)
+				if (newPassword && newPassword.text)
 					updatedUserDetails.password = newPassword.text;
 				if (userDetails.examDate) {
 					// setHours is just not working

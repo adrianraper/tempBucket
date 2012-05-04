@@ -8,6 +8,7 @@ class LoginAPI {
 	var $method;
 	var $name;
 	var $studentID;
+	var $password;
 	var $email;
 	var $userID;
 	var $groupID;
@@ -45,7 +46,9 @@ class LoginAPI {
 			$this->studentID = $info['studentID'];
 		if (isset($info['email'])) 
 			$this->email = $info['email'];
-		if (isset($info['userID'])) 
+		if (isset($info['password'])) 
+			$this->password = $info['password'];
+			if (isset($info['userID'])) 
 			$this->userID = $info['userID'];
 		if (isset($info['groupID'])) 
 			$this->groupID = $info['groupID'];

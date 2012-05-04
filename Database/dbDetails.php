@@ -15,7 +15,7 @@ class DBDetails {
 				$this->host = "localhost";
 				$this->user = "root";
 				$this->password = "Sunshine1787";
-				$this->dbname = "GlobalRoadToIELTS";
+				$this->dbname = "global_r2iv2";
 				break;
 			case 100:
 				$this->driver = "mysql";

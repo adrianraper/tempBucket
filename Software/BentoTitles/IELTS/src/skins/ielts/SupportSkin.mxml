@@ -89,26 +89,16 @@
 			Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the British Council will be pleased<br /> to make the necessary arrangements.
 			</p>]]>
 		</fx:String>
-		<fx:String id="helpTextAsHTML"><![CDATA[					
-			<p align='left'>
-			<b>Technical problems</b><br />
-			Clarity will be pleased to help you with any technical problems. Email support@roadtoielts.com<br /> with a description of your problem and the URL of your course (if you are running online).</p>
-			
-			<p align='left'>
-			<u>Clarity Language Consultants Ltd</u><br />
-			PO Box 163, Sai Kung, Hong Kong<br />
-			Tel: +852 2791 1787<br />
-			Fax: +852 2791 6484 <br />
-			</p>
-			
-			<b>Content problems</b><br />
-			If you have any enquiries about the content, for example, if you have questions about an answer<br /> in the exercises, please contact British Council.
-			</p>
-			
-			</p>]]>
-		</fx:String>
 	</fx:Declarations>
 	
+	<s:states>
+		<s:State name="demo" />
+		<s:State name="fullVersion" />
+		<s:State name="lastMinute" stateGroups="bcStates" />
+		<s:State name="homeUser" />
+		<s:State name="testDrive" stateGroups="bcStates" />
+	</s:states>
+
 	<s:layout>
 		<s:VerticalLayout paddingTop="60" />
 	</s:layout>
@@ -128,9 +118,12 @@
 							 source="@Embed(source='skins/ielts/assets/technical.png')" />
 				<s:RichText width="60%" paddingLeft="10" >
 					<s:p><s:span fontWeight="bold">Technical problems</s:span></s:p>
-					<s:p><s:span>Clarity will be pleased to help you any technical problems. Email 					
-					support@roadtoielts.com with a description 
-						 of your problem and the URL of your course (if you are running online).</s:span></s:p>	
+					<s:p>
+						<s:span includeIn="bcStates">Clarity will be pleased to help you any technical problems. Email support@roadtoielts.com 					
+					with a description of your problem and the URL or website you start the program from.</s:span>
+						<s:span excludeFrom="bcStates">Clarity will be pleased to help you any technical problems. Email support@clarityenglish.com 					
+						with a description of your problem and the URL or website you start the program from.</s:span>
+					</s:p>	
 				</s:RichText>
 			</s:HGroup>
 		

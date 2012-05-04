@@ -102,14 +102,19 @@ package com.clarityenglish.common.model {
 		}
 		
 		/**
-		 * Method to get user's instance ID from the database
+		 * Method to get user's instance ID from the database.
+		 * #323 Only applicable to tracking licences
 		 *
 		 * @return void - Asynchronous call. Will return instanceID and error objects later. 
 		 */
 		public function checkInstance():void {
-			if (user) {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
+			// #323
+			if (user && (configProxy.getLicenceType() == Title.LICENCE_TYPE_LT || 
+				configProxy.getLicenceType() == Title.LICENCE_TYPE_TT)) {
+				
 				// #319 Instance ID per productCode
-				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 				var params:Array = [ user.userID, configProxy.getProductCode() ];
 				new RemoteDelegate("getInstanceID", params, this).execute();
 			}

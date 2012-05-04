@@ -85,3 +85,19 @@ back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.
 starting BCHK-Start.php with 3cpw36nqn8
 to LoginGateway with {"method":"getOrAddUser","studentID":"3cpw36nqn8-173","name":"3cpw36nqn8","email":"adrian.raper@clarityenglish.com","dbHost":"101","productCode":53,"expiryDate":"2012-05-08 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"173","loginOption":"2","emailTemplateID":"BCHK-welcome","country":"Hong Kong"}
 back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":"245194","password":null,"userType":0,"studentID":"3cpw36nqn8-173","expiryDate":"2012-05-08 23:59:59","email":"adrian.raper@clarityenglish.com","birthday":null,"country":"Hong Kong","city":null,"company":null,"startDate":null,"contactMethod":null,"fullName":null,"custom1":null,"custom2":null,"custom3":null,"custom4":null,"registrationDate":"2012-04-23 00:41:07","userProfileOption":53,"registerMethod":"loginService","name":"3cpw36nqn8","id":"173.245194"}}
+starting BCHK-Start.php with 
+starting BCHK-Start.php with dandelion
+to LoginGateway with {"method":"getOrAddUser","studentID":"P10102920-173","name":"dandelion","email":"adrian@clarityenglish.com","dbHost":"101","productCode":52,"expiryDate":"2012-02-19 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"173","loginOption":"2","emailTemplateID":"BCHK-welcome","country":"Hong Kong"}
+back from LoginGateway with {"error":210,"message":"Invalid group ID No such group"}
+starting BCHK-Start.php with Wai_Yi__Shum_
+to LoginGateway with {"method":"getOrAddUser","studentID":"44579-173","name":"Wai_Yi__Shum_","email":"10819084A@student.hkcc-polyu.edu.hk","dbHost":"101","productCode":52,"expiryDate":"2012-05-19 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"173","loginOption":"2","emailTemplateID":"BCHK-welcome","country":"Hong Kong"}
+back from LoginGateway with {"error":210,"message":"Invalid group ID No such group"}
+starting BCHK-Start.php with kenix Wong
+to LoginGateway with {"method":"getOrAddUser","studentID":"P23456791-173","name":"kenix Wong","email":"kenix.wong@clarityenglish.com","dbHost":"101","productCode":52,"expiryDate":"2012-03-02 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"173","loginOption":"2","emailTemplateID":"BCHK-welcome","country":"Hong Kong"}
+back from LoginGateway with {"error":210,"message":"Invalid group ID No such group"}
+starting BCHK-Start.php with kenix Wong
+to LoginGateway with {"method":"getOrAddUser","studentID":"P23456791-173","name":"kenix Wong","email":"kenix.wong@clarityenglish.com","dbHost":"101","productCode":52,"expiryDate":"2012-03-02 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"173","loginOption":"2","emailTemplateID":"BCHK-welcome","country":"Hong Kong"}
+back from LoginGateway with {"error":210,"message":"Invalid group ID No such group"}
+starting BCHK-Start.php with Adrian Raper
+to LoginGateway with {"method":"getOrAddUser","studentID":"P5745288-173","name":"Adrian Raper","email":"adrian.raper@clarityenglish.com","dbHost":"101","productCode":52,"expiryDate":"2012-03-12 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"173","loginOption":"2","emailTemplateID":"BCHK-welcome","country":"Hong Kong"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":251570,"password":null,"userType":"0","studentID":"P5745288-173","expiryDate":"2012-03-12 23:59:59","email":"adrian.raper@clarityenglish.com","birthday":null,"country":"Hong Kong","city":"","startDate":null,"contactMethod":"","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2012-04-21 08:03:57","userProfileOption":"52","registerMethod":"loginService","name":"Adrian Raper","id":251570}}

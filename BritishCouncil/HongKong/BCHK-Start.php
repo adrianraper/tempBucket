@@ -12,6 +12,7 @@
 	//$thisDomain = 'http://'.$_SERVER['HTTP_HOST'].'/';
 	$thisDomain = 'http://dock.projectbench/';
 	$commonDomain = 'http://dock.projectbench/';
+	$oldDomain = 'http://dock.fixbench/';
 	//$startFolder = "BritishCouncil/RoadToIELTS/";
 	$configFile = 'config.xml';
 	
@@ -108,7 +109,7 @@
 				if ($debugLog) {
 					error_log("$name already is in old database\n", 3, $debugFile);
 				}
-				$oldURL = $thisDomain."/BritishCouncil/HongKong/v1-BCHK-Start.php?".$_SERVER['QUERY_STRING'];
+				$oldURL = $oldDomain."BritishCouncil/HongKong/v1-BCHK-Start.php?".$_SERVER['QUERY_STRING'];
 				header('Location: ' . $oldURL);
 				exit;
 			}
@@ -268,13 +269,13 @@ function decodeCharacters ($rawText) {
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-	<link rel="stylesheet" type="text/css" href="ielts.css" />
+	<link rel="stylesheet" type="text/css" href="/Software/Common/ielts.css" />
 
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	
-	<script type="text/javascript" language="JavaScript" src="ielts.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
 	
 	<script type="text/javascript">
 		// ****

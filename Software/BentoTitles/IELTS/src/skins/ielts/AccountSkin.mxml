@@ -55,6 +55,15 @@
 		]]>
 	</fx:Script>
 	
+	<s:states>
+		<s:State name="demo" stateGroups="anonymousStates" />
+		<s:State name="fullVersion_anonymous" stateGroups="anonymousStates,fullVersionStates"/>
+		<s:State name="fullVersion" stateGroups="fullVersionStates"/>
+		<s:State name="lastMinute" />
+		<s:State name="homeUser" />
+		<s:State name="testDrive" stateGroups="anonymousStates" />
+	</s:states>
+	
 	<s:layout>
 		<s:HorizontalLayout paddingTop="60" />
 	</s:layout>
@@ -102,10 +111,10 @@
 					</s:HGroup>
 					
 					<s:SWFLoader width="100%" height="100%" 
-								 source="/Software/ResultsManager/web/resources/assets/profile_demo.png" visible="{(!hostComponent.isDemo())}" includeInLayout="{(!hostComponent.isDemo())}" />
+								 source="/Software/ResultsManager/web/resources/assets/profile_demo.png" 
+								 includeIn="demo" />
 					
-					<s:VGroup paddingTop="13" visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}"
-							  includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA}">	
+					<s:VGroup paddingTop="13" excludeFrom="anonymousStates" >	
 						<s:HGroup>
 							<s:Label text="Registered name:" />
 							<s:Spacer width="30"/>
@@ -130,26 +139,25 @@
 							<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.userDetails.expiryDate),'d MMMM yyyy')}" fontWeight="bold"/>
 						</s:HGroup>
 						<s:Spacer height="3" />
-							<s:HGroup visible="{hostComponent.productVersion=='homeUser'}" 
-									  includeInLayout="{hostComponent.productVersion=='homeUser'}" >
+						<s:VGroup includeIn="homeUser" >
+							<s:HGroup>
 								<s:Label text="Current password:" />
 								<s:Spacer width="24"/>
 								<s:TextInput id="currentPassword" width="180" />
 							</s:HGroup>
 							<s:Spacer height="3" />
-							<s:HGroup visible="{hostComponent.productVersion=='homeUser'}"
-									  includeInLayout="{hostComponent.productVersion=='homeUser'}" >
+							<s:HGroup>
 								<s:Label text="New password:"  />
 								<s:Spacer width="40"/>
 								<s:TextInput id="newPassword" width="180"  />
 							</s:HGroup>
 							<s:Spacer height="3" />
-							<s:HGroup visible="{hostComponent.productVersion=='homeUser'}"
-									  includeInLayout="{hostComponent.productVersion=='homeUser'}" >
+							<s:HGroup>
 								<s:Label text="Confirm password:"  />
 								<s:Spacer width="22"/>
 								<s:TextInput id="confirmPassword" width="180" />
 							</s:HGroup>
+						</s:VGroup>
 
 					</s:VGroup>
 				</s:VGroup>
@@ -158,8 +166,10 @@
 		
 		<s:Spacer height="3" />
 		
-		<s:Button id="saveChangesButton" label="Save changes" includeInLayout="{hostComponent.licenceType != Title.LICENCE_TYPE_AA &amp;&amp; hostComponent.isDirty}"
-				  visible="{hostComponent.licenceType != Title.LICENCE_TYPE_AA &amp;&amp; hostComponent.isDirty}"/>
+		<s:Button id="saveChangesButton" label="Save changes" 
+				  excludeFrom="anonymousStates"
+				  includeInLayout="{hostComponent.isDirty}"
+				  visible="{hostComponent.isDirty}"/>
 		
 	</s:VGroup>
 	
@@ -179,7 +189,8 @@
 				source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
 				-->
 			</s:Group>
-			<s:SWFLoader width="100%" height="100%" source="/Software/ResultsManager/web/resources/assets/widget_demo.png" visible="{(!hostComponent.isDemo())}" includeInLayout="{(!hostComponent.isDemo())}" />
+			<s:SWFLoader width="100%" height="100%" source="/Software/ResultsManager/web/resources/assets/widget_demo.png" 
+						 includeIn="demo" />
 		</s:HGroup>
 	
 	</s:VGroup>

@@ -12,6 +12,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Manageable.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Title.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/LoginAPI.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/EmailAPI.php");
@@ -43,6 +45,7 @@ class LoginService extends AbstractService {
 		
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->subscriptionOps = new SubscriptionOps($this->db);
+		$this->accountOps = new AccountOps($this->db);
 		
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
@@ -71,6 +74,8 @@ class LoginService extends AbstractService {
 			$stubUser->name = $loginDetails->name;
 		if ($loginDetails->email)
 			$stubUser->email = $loginDetails->email;
+		if ($loginDetails->password)
+			$stubUser->password = $loginDetails->password;
 		if ($loginDetails->productCode)
 			$stubUser->userProfileOption = $loginDetails->productCode;
 		if ($loginDetails->city)
@@ -96,19 +101,23 @@ class LoginService extends AbstractService {
 				switch ($periodUnit) {
 					case "y":
 					case "year":
+					case "years":
 						// When you have php 5.3 you can use DateAdd properly
 						$subscriptionSeconds = $periodValue * 31556926;
 						break;
 					case "m":
 					case "month":
+					case "months":
 						$subscriptionSeconds = $periodValue * 2629744;
 						break;
 					case "w":
 					case "week":
+					case "weeks":
 						$subscriptionSeconds = $periodValue * 604800;
 						break;
 					case "d":
 					case "day":
+					case "days":
 						$subscriptionSeconds = $periodValue * 86400;
 						break;
 				}
@@ -125,5 +134,13 @@ class LoginService extends AbstractService {
 	// Get the group
 	public function getGroup($loginDetails) {
 		return $this->manageableOps->getGroup($loginDetails->groupID);
+	}
+	
+	public function getAccountFromGroup($group) {
+		return $this->accountOps->getAccountFromGroup($group);
+	}
+	
+	public function getAccountFromPrefix($loginDetails) {
+		return $this->accountOps->getAccountRootID($loginDetails->prefix);
 	}
 }

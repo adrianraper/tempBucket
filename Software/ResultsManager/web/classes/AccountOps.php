@@ -899,6 +899,44 @@ EOD;
 		$accounts = $this->getAccounts(array($rootID));
 		return array_shift($accounts);
 	}
+	// This one is for when you know the group that a user is in
+	public function getAccountFromGroup($group) {
+	
+		$sql = 	<<<EOD
+				SELECT DISTINCT(r.F_RootID) as rootID
+				FROM T_AccountRoot r, T_Membership m
+				WHERE r.F_RootID = m.F_RootID
+				AND m.F_GroupID = ?
+EOD;
+		$rs = $this->db->Execute($sql, array($group->id));
+		
+		switch ($rs->RecordCount()) {
+			case 0:
+				// There is no-one in this group yet, so don't know which account it is, raise an error
+				return false;
+				break;
+			case 1:
+				// One record, good. Send back the root
+				$rootID = $rs->FetchNextObj()->rootID;
+				break;
+			default:
+				// Many records means we can't know which root this group belongs to, raise an error
+				return false;
+		}
+		
+		// now get the account (just one)
+		$accounts = $this->getAccounts(array($rootID));
+		return array_shift($accounts);
+	}
+	public function getAccountFromPrefix($prefix) {
+	
+		$rootID = $this->getAccountRootID($prefix);
+		
+		// now get the account (just one)
+		if ($rootID)
+			return array_shift($this->getAccounts(array($rootID)));
+	}
+	
 	/*
 	 * Utility function to return the next sequential number for prefixes, (and obfuscate it)
 	 */
