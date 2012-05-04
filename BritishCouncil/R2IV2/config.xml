@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/BritishCouncil/R2IV2</id>
+	<developer>BC</developer>
+	<dbHost>101</dbHost>
+	<productCode>52</productCode>
+	<productVersion>lastMinute</productVersion>
+	<courseFile>menu-Academic-LastMinute.xml</courseFile>
+	<streamingMedia />
+	<sharedMedia />
+	<brandingMedia />
+	<language>EN*</language>
+	<contentPath>http://www.roadtoielts.com/Content/</contentPath>
+	<remoteDomain>http://www.roadtoielts.com/</remoteDomain>
+	<remoteGateway>http://www.roadtoielts.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>IELTSService</remoteService>
+</config>
