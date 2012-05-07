@@ -1,0 +1,1 @@
+streamingMedia=rtmp://s20biv6lpnl07y.cloudfront.net:1935/cfx/st/ClearPronunciation2-International/streamingMedia&dbHost=2&content=/Content&mainMovies=/Software/Common&interfaceMovies=/Software/ClearPronunciation2&database=SQLServer&scripting=PHP&help=/Software/ClearPronunciation2/Help/help.htm&end=1&MGSRoot=/ap&useClarityRecorderOnline=true

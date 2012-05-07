@@ -5,13 +5,14 @@ $node = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><db>";
 // v6.5.6.4 Needs to be moved before XMLQuery which uses dates
 // v6.5.5.4 If you use server time, ensure it is UTC
 date_default_timezone_set("UTC");
-	
+//echo "1"; exit();	
 require_once(dirname(__FILE__)."/XMLQuery.php");
 $adodbPath= "../..";
 require_once($adodbPath."/adodb5/adodb-exceptions.inc.php");
 require_once($adodbPath."/adodb5/adodb.inc.php");
 require_once(dirname(__FILE__)."/dbPath.php");
 require_once(dirname(__FILE__)."/dbProgress.php");
+//echo "2";
 
 	// read the passed XML
 	$Query = new XMLQuery();

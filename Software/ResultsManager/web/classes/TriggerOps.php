@@ -85,6 +85,7 @@ class TriggerOps {
 				if (isset($trigger->condition->licenceType)) $accountConditions["licenceType"] = $trigger->condition->licenceType;
 				if (isset($trigger->condition->notLicenceType)) $accountConditions["notLicenceType"] = $trigger->condition->notLicenceType;
 				if (isset($trigger->condition->productCode)) $accountConditions["productCode"] = $trigger->condition->productCode;
+				if (isset($trigger->condition->notProductCode)) $accountConditions["notProductCode"] = $trigger->condition->notProductCode;
 				if (isset($trigger->condition->deliveryFrequency)) $accountConditions["deliveryFrequency"] = $trigger->condition->deliveryFrequency;
 				if (isset($trigger->condition->individuals)) $accountConditions["individuals"] = $trigger->condition->individuals;
 				if (isset($trigger->condition->active)) $accountConditions["active"] = $trigger->condition->active;

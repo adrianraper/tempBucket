@@ -40,8 +40,7 @@ require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 // I already getContent - will that clash or duplicate?
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 
-// v3.4.3 Remove as not used
-//require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
+require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
 require_once(dirname(__FILE__)."/../../classes/ReportOps.php");
 require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");

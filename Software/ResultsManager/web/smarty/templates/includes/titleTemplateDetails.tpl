@@ -20,12 +20,12 @@
 {elseif $title->name|stristr:"Author Plus"}
 	{assign var='titleImage' value='ap'}
 	{assign var='startPageFolder' value='AuthorPlus'}
-{elseif $title->name|stristr:"Road to IELTS Academic"}
-	{assign var='titleImage' value='rti'}
-	{assign var='startPageFolder' value='RoadToIELTS-Academic'}
-{elseif $title->name|stristr:"Road to IELTS General"}
-	{assign var='titleImage' value='rti'}
-	{assign var='startPageFolder' value='RoadToIELTS-General'}
+{elseif $title->productCode==52}
+	{assign var='titleImage' value='rtiv2'}
+	{assign var='startPageFolder' value='RoadToIELTS2'}
+{elseif $title->productCode==53}
+	{assign var='titleImage' value='rtiv2'}
+	{assign var='startPageFolder' value='RoadToIELTS2'}
 {elseif $title->name|stristr:"Business Writing"}
 	{assign var='titleImage' value='bw'}
 	{assign var='startPageFolder' value='BusinessWriting'}
@@ -91,6 +91,10 @@
 {if $method=='startPage'}
 	{if $title->name|stristr:"It's Your Job"}
 		http://www.ClarityEnglish.com/area1/{$startPageFolder}/index.php?prefix={$account->prefix}</br>
+	{elseif $title->productCode==52}
+		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-AC.php?prefix={$account->prefix}</br>
+	{elseif $title->productCode==53}
+		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-GT.php?prefix={$account->prefix}</br>
 	{* Actually no harm in using prefix for RM - it is just ignored
 		{elseif $title->name|stristr:"Results Manager"}
 			http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php</br>

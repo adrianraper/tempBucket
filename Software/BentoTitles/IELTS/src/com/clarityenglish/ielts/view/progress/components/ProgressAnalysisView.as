@@ -5,6 +5,8 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.IELTSApplication;
 	
+	import flash.external.ExternalInterface;
+	
 	import mx.collections.ArrayCollection;
 	
 	import org.davekeen.util.StateUtil;
@@ -23,8 +25,8 @@ package com.clarityenglish.ielts.view.progress.components {
 		private var _scoreChartXML:XML;
 		private var _durationChartXML:XML;
 
-		[Bindable]
-		public var numberSectionsDone:uint;
+		public var numberScoreSectionsDone:uint;
+		public var numberDurationSectionsDone:uint;
 
 		// #234
 		private var _productVersion:String;
@@ -40,142 +42,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		private const _speakingDull:String = '#D43CA9';
 		private const _opacityDull:String = '0.9';
 
-		private const piechartTemplates:XML = 
-			<anychart>
-			  <settings>
-				<animation enabled="False" />
-			  </settings>
-			  <charts>
-			<chart_settings>
-				<animation enabled="False" />
-			</chart_settings>
-				<chart plot_type="Pie">
-				  <data_plot_settings enable_3d_mode="true" >
-					<pie_series style="Aqua">
-<animation enabled="False" />
-<tooltip_settings enabled="true" >
-<format><![CDATA[{%Name}]]>
-</format>
-					<font family="Arial" size="12" />
-				</tooltip_settings>
-						<label_settings enabled="true" mode="outside">
-							<background enabled="false" />
-							<position anchor="Center" valign="Center" halign="Center" padding="15%" />
-							<font color="#303030" family="Arial" size="12" bold="True"  />
-							<drop_shadow enabled="true" distance="2" opacity="0.5" blur_x="2" blur_y="2" />
-							</label_settings>
-							<connector enabled="True" color="#303030" opacity="1" thickness="1.4" />
-
-						</pie_series>
-
-				  </data_plot_settings>
-				<styles>
-					<pie_style name="Writing">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_writingBright} />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color={_writingDull} />
-							</hover>
-							<selected_normal>
-								<fill enabled="true" type="solid" color={_writingDull} />
-							</selected_normal>
-							<selected_hover>
-								<fill enabled="true" type="solid" color={_writingBright} />
-							</selected_hover>
-							<pushed>
-								<fill enabled="true" type="solid" color={_writingBright} />
-							</pushed>
-							<missing>
-								<fill enabled="true" type="solid" color="#00FFFF" />
-							</missing>
-						</states>
-					</pie_style>
-					<pie_style name="Reading">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_readingBright} />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color={_readingDull} />
-							</hover>
-							<selected_normal>
-								<fill enabled="true" type="solid" color={_readingDull} />
-							</selected_normal>
-							<selected_hover>
-								<fill enabled="true" type="solid" color={_readingBright} />
-							</selected_hover>
-							<pushed>
-								<fill enabled="true" type="solid" color={_readingBright} />
-							</pushed>
-							<missing>
-								<fill enabled="true" type="solid" color="#00FFFF" />
-							</missing>
-						</states>
-					</pie_style>
-					<pie_style name="Speaking">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_speakingBright} />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color={_speakingDull} />
-							</hover>
-							<selected_normal>
-								<fill enabled="true" type="solid" color={_speakingDull} />
-							</selected_normal>
-							<selected_hover>
-								<fill enabled="true" type="solid" color={_speakingBright} />
-							</selected_hover>
-							<pushed>
-								<fill enabled="true" type="solid" color={_speakingBright} />
-							</pushed>
-							<missing>
-								<fill enabled="true" type="solid" color="#00FFFF" />
-							</missing>
-						</states>
-					</pie_style>
-					<pie_style name="Listening">
-						<states>
-							<normal>
-								<fill enabled="true" type="solid" color={_listeningBright} />
-							</normal>
-							<hover>
-								<fill enabled="true" type="solid" color={_listeningDull} />
-							</hover>
-							<selected_normal>
-								<fill enabled="true" type="solid" color={_listeningDull} />
-							</selected_normal>
-							<selected_hover>
-								<fill enabled="true" type="solid" color={_listeningBright} />
-							</selected_hover>
-							<pushed>
-								<fill enabled="true" type="solid" color={_listeningBright} />
-							</pushed>
-							<missing>
-								<fill enabled="true" type="solid" color="#00FFFF" />
-							</missing>
-						</states>
-					</pie_style>
-				</styles>			
-				  <data>
-					<series name="You" type="Pie" >
-					<point name="Reading" />
-					<point name="Listening" />
-					<point name="Speaking" />
-					<point name="Writing" />
-					</series>
-				  </data>
-				  <chart_settings>
-					<chart_background enabled="false" />
-					<title enabled="false" />
-					<legend enabled="false" />
-				  </chart_settings>
-				</chart>
-			  </charts>
-			</anychart>;
-		
 		private const barchartTemplates:XML = 
 			<anychart>
 			  <settings>
@@ -189,10 +55,9 @@ package com.clarityenglish.ielts.view.progress.components {
 				<chart plot_type="CategorizedVertical">
 				  <data_plot_settings enable_3d_mode="true" z_padding="0.2" z_aspect="1" z_elevation="45" >
 					<bar_series shape_type="Cylinder">
-<animation enabled="False" />
-<tooltip_settings enabled="true" >
-<format><![CDATA[{%Value}{numDecimals:0}%]]>
-</format>
+					<animation enabled="False" />
+					<tooltip_settings enabled="true" >
+					<format>{"{%Value}{numDecimals:0}%"}</format>
 					<font family="Arial" size="12" />
 				</tooltip_settings>
 			<bar_style>
@@ -337,14 +202,142 @@ package com.clarityenglish.ielts.view.progress.components {
 				</chart>
 			  </charts>
 			</anychart>;
-		
-		// Constructor to let us initialise our states
-		public function ProgressAnalysisView() {
-			super();
-			
-			StateUtil.addStates(this, [ "normal", "demo", "blocked" ], true);
-		}
 
+		private const piechartTemplates:XML = 
+			<anychart>
+			  <settings>
+				<animation enabled="False" />
+			  </settings>
+			  <charts>
+			<chart_settings>
+				<animation enabled="False" />
+			</chart_settings>
+				<chart plot_type="Pie">
+				  <data_plot_settings enable_3d_mode="true" >
+					<pie_series style="Aqua">
+					<animation enabled="False" />
+					<tooltip_settings enabled="true" >
+					<format>{"{%Name}"}</format>
+					<font family="Arial" size="12" />
+				</tooltip_settings>
+						<label_settings enabled="true" mode="outside">
+							<background enabled="false" />
+							<position anchor="Center" valign="Center" halign="Center" padding="15%" />
+							<font color="#303030" family="Arial" size="12" bold="True"  />
+							<drop_shadow enabled="true" distance="2" opacity="0.5" blur_x="2" blur_y="2" />
+							</label_settings>
+							<connector enabled="True" color="#303030" opacity="1" thickness="1.4" />
+
+						</pie_series>
+
+				  </data_plot_settings>
+				<styles>
+					<pie_style name="Writing">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_writingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_writingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_writingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
+						</states>
+					</pie_style>
+					<pie_style name="Reading">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_readingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_readingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_readingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
+						</states>
+					</pie_style>
+					<pie_style name="Speaking">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_speakingDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_speakingDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_speakingBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
+						</states>
+					</pie_style>
+					<pie_style name="Listening">
+						<states>
+							<normal>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</normal>
+							<hover>
+								<fill enabled="true" type="solid" color={_listeningDull} />
+							</hover>
+							<selected_normal>
+								<fill enabled="true" type="solid" color={_listeningDull} />
+							</selected_normal>
+							<selected_hover>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</selected_hover>
+							<pushed>
+								<fill enabled="true" type="solid" color={_listeningBright} />
+							</pushed>
+							<missing>
+								<fill enabled="true" type="solid" color="#00FFFF" />
+							</missing>
+						</states>
+					</pie_style>
+				</styles>			
+				  <data>
+					<series name="You" type="Pie" >
+					<point name="Reading" />
+					<point name="Listening" />
+					<point name="Speaking" />
+					<point name="Writing" />
+					</series>
+				  </data>
+				  <chart_settings>
+					<chart_background enabled="false" />
+					<title enabled="false" />
+					<legend enabled="false" />
+				  </chart_settings>
+				</chart>
+			  </charts>
+			</anychart>;
+		
 		public function setDataProvider(dataProvider:XML):void {
 			if (_scoreChartXML) {
 				// WARNING. It is possible for the mediator of a different view (coverage say) to still be loading
@@ -352,14 +345,12 @@ package com.clarityenglish.ielts.view.progress.components {
 				// So you need to remove data points before you add them again.
 				// The following works if <point> is the only node in series.
 				_scoreChartXML.charts.chart.data.series[0].setChildren(new XMLList());
-				// Or this works to just delete the first node x times.
-				var numberOfPoints:int = _durationChartXML.charts.chart.data.series[0].point.length();
-				for (var i:int=0; i < numberOfPoints; i++) {
-					delete _durationChartXML.charts.chart.data.series[0].point[0]; 
-				}
 				
+				// #320. If no points you get vast amounts of debug information on screen
+				numberScoreSectionsDone = 0;
 				for each (var point:XML in dataProvider.course) {
 					if (Number(point.@averageScore)>0) {
+						numberScoreSectionsDone++;
 						_scoreChartXML.charts.chart.data.series[0].appendChild(<point name={point.@caption} y={point.@averageScore} style={point.@caption} />);
 					}
 				}
@@ -367,13 +358,22 @@ package com.clarityenglish.ielts.view.progress.components {
 					analysisScoreChart.anychartXML = _scoreChartXML;
 				}
 			}
+			
 			var myDuration:int = 0;
 			if (_durationChartXML) {
+				// Or this works to just delete the first node x times.
+				var numberOfPoints:int = _durationChartXML.charts.chart.data.series[0].point.length();
+				for (var i:int=0; i < numberOfPoints; i++) {
+					delete _durationChartXML.charts.chart.data.series[0].point[0]; 
+				}
+				
 				// AR Pie charts don't work well if only one non-zero chunk.
-				numberSectionsDone = 0;
+				numberDurationSectionsDone = 0;
+				//logToConsole("building duration data");
 				for each (point in dataProvider.course) {
+					//logToConsole("this point.count=" + Number(point.@count) as String);
 					if (Number(point.@count)>0) {
-						numberSectionsDone++;
+						numberDurationSectionsDone++;
 						// Duration data is in seconds, but we want to display in minutes (rounded)
 						// Massage 0 values, they don't work well in a pie-chart
 						if (Number(point.@duration)<30) {
@@ -388,16 +388,15 @@ package com.clarityenglish.ielts.view.progress.components {
 					analysisTimeChart.anychartXML = _durationChartXML;
 				}
 			}
-			// Skin is dependent on data
-			if (productVersion == IELTSApplication.DEMO) {
-				currentState = "demo";
-			} else if (numberSectionsDone <= 1) {
-				currentState = "blocked";
-			} else {
-				currentState = "normal";
-			}
-		}
+			
+			// #320 Update skin state
+			invalidateSkinState();
 
+		}
+		private function logToConsole(message:String):void {
+			if (ExternalInterface.available)
+				ExternalInterface.call("log", message);
+		}
 		protected override function commitProperties():void {
 			super.commitProperties();		
 		}
@@ -405,6 +404,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
+				/*
 				case analysisScoreChart:
 					if (_scoreChartXML) { 
 						analysisScoreChart.anychartXML = _scoreChartXML;
@@ -415,6 +415,7 @@ package com.clarityenglish.ielts.view.progress.components {
 						analysisTimeChart.anychartXML = _durationChartXML;
 					}
 					break;
+				*/
 			}
 		}
 		
@@ -435,8 +436,25 @@ package com.clarityenglish.ielts.view.progress.components {
 			_durationChartXML.charts.chart.data_plot_settings.pie_series.label_settings[0].appendChild = new XML(<format>{"{%YValue}{numDecimals:0} minute(s)"}</format>);
 			
 		}
+		// #320
+		public function clearCharts():void {
+			trace("ProgressAnalysisView.clearCharts");
+			_scoreChartXML = null;
+			_durationChartXML = null;
+		}
 
 		protected override function getCurrentSkinState():String {
+			// Skin is dependent on data
+			if (productVersion == IELTSApplication.DEMO) {
+				var currentState:String = "demo";
+			// #320
+			} else if (numberScoreSectionsDone < 1) {
+				currentState = "blocked";
+			} else if (numberDurationSectionsDone < 2) {
+				currentState = "blocked";
+			} else {
+				currentState = "normal";
+			}
 			return currentState;
 		}
 	

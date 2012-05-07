@@ -2004,7 +2004,9 @@ UserObject.prototype.compareInstanceIDWithDB = function() {
 		myTrace("compareInstanceIDWithDB, current=" + this.instanceID);
 		var thisDB;
 		thisDB = new _global.ORCHID.root.mainHolder.dbQuery();
+		// v6.6 Need to send productCode as well now as instance allows multiple products
 		thisDB.queryString ='<query method="getInstanceID" ' +
+						'productCode="' + _global.ORCHID.root.licenceHolder.licenceNS.productCode + '" ' +
 						'userID ="' + this.userID + '"/>';
 					//'instanceID ="' + this.instanceID + '"/>';
 					

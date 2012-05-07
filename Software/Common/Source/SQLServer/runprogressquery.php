@@ -171,9 +171,26 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 				$Content	= new CONTENT();
 				$rC = $Content->decodeUnitIDs($vars, $node);
 			}
+			// v6.5.6.6 Mission College sometimes sends 0 as the datestamp. Catch this if you can and use system date instead.
+			// If the user date is more than 24 hours away from system date, override it
+			$queryTimeStamp = strtotime($vars['DATESTAMP']);
+			$systemDateStamp = time();
+			if (abs($systemDateStamp - $queryTimeStamp)>86400)
+				$vars['DATESTAMP'] = date('Y-m-d 00:00:00', $systemDateStamp);			
+			
 			$rC = $Progress->insertScore( $vars, $node );
 			if ($rC) {
-			    $rC = $Progress->updateSession( $vars, $node );
+				$rC = $Progress->updateSession( $vars, $node );
+				// v6.5.6.7 Add in a check to see that we are writing one record per session to licence control
+				// As we don't know licenceType or rootID at this point, need to read from T_Session and T_Accounts.
+				// Do a simple check to avoid anything unnecessary for anonymous access.
+				// v6.5.6.9 Until we have licenceControl is ready for release, just skip this. Control will still be based on T_Session
+				// v6.6.0 Revert to T_Session use
+				/*
+				if ($vars['USERID']>=1) {
+					$rC = $Progress->checkLicenceControl( $vars, $node );
+				}
+				*/
 			}
 			break;
 			
@@ -233,7 +250,7 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 			break;
 	
 		case 'GETGLOBALUSER':
-			// This is likely to be called by a program that is simply adding someone to the db, not starting them running as well
+			// This is likely to be called by a program that is simply checking whether someone is in the database with correct details
 			$rC = $Progress->getGlobalUser( $vars, $node );
 			break;
 	
@@ -323,6 +340,11 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 		// RL: Temporary function for iLearnIELTS
 		case "UPDATEUSERILEARNIELTS":
 			$rC = $Progress->updateUserILearnIELTS( $vars, $node );
+			break;
+
+		// AR: A smarter forgot password lookup
+		case "FORGOTPASSWORD":
+			$rC = $Progress->forgotPassword( $vars, $node );
 			break;
 			
 		default:

@@ -14,7 +14,8 @@
 	{* Just totally skip IYJ Practice Centre *}
 	{* Also skip any title that expired more than 1 month ago *}
 	{date_diff assign='oneMonthAgo' date='' period='-1month'}
-	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" }
+	{* Ignore Road to IELTS v1 *}
+	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13}
 	{* if !$title->name|stristr:"Practice Centre" *}
 	<div style="background:url(http://www.clarityenglish.com/images/email/dot_line.jpg) no-repeat bottom left; padding:5 0 10px 0; margin:0 0 10px 0">
 	{* The welcome letter has everything on *}

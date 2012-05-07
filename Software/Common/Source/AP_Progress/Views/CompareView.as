@@ -39,15 +39,15 @@ class AP_Progress.Views.CompareView extends ViewBase
 		listener["parentViewObj"]= this;
 		listener.onLoadComplete = function(target_mc:MovieClip):Void {
 			
-		// v6.5.6.4 New SSS realigned a bit
-		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
-			_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
-			var xOffset = 0;
-			var yOffset = 10;
-		} else {
-			var xOffset = 0;
-			var yOffset = 0;
-		}
+			// v6.5.6.4 New SSS realigned a bit
+			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
+				_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+				var xOffset = 0;
+				var yOffset = 10;
+			} else {
+				var xOffset = 0;
+				var yOffset = 0;
+			}
 			target_mc.path 				= _global.ORCHID.paths.movie + "amcolumn/";
 			//target_mc.settings_file 	= _global.ORCHID.paths.movie + "amcolumn/amcolumn_settings_AP.xml";
 			//target_mc.chart_settings	= "<?xml version=\"1.0\" encoding=\"UTF - 8\"?><settings><type>column</type><data_type>xml</data_type><csv_separator></csv_separator><skip_rows></skip_rows><font>verdana</font><text_size>12</text_size><text_color></text_color><decimals_separator></decimals_separator><thousands_separator></thousands_separator><digits_after_decimal></digits_after_decimal><redraw>true</redraw><reload_data_interval></reload_data_interval><preloader_on_reload></preloader_on_reload><add_time_stamp></add_time_stamp><precision></precision><depth>30</depth><angle>30</angle>    <column><type>clustered</type><width>70</width><spacing>0</spacing><grow_time>3</grow_time><grow_effect></grow_effect><alpha>65</alpha><border_color></border_color><border_alpha></border_alpha><data_labels><![CDATA[]]></data_labels><data_labels_text_color></data_labels_text_color><data_labels_text_size></data_labels_text_size><data_labels_position></data_labels_position><balloon_text><![CDATA[]]></balloon_text><link_target></link_target><gradient></gradient></column>  <line><connect></connect><width></width><alpha></alpha><fill_alpha></fill_alpha><bullet></bullet><bullet_size></bullet_size><data_labels><![CDATA[]]></data_labels><data_labels_text_color></data_labels_text_color><data_labels_text_size></data_labels_text_size><balloon_text><![CDATA[]]></balloon_text><link_target></link_target></line>    <background><color>#FFFFFF</color><alpha></alpha><border_color>#000000</border_color><border_alpha>15</border_alpha><file></file></background>     <plot_area><color>#FFFFFF</color><alpha>10</alpha><border_color></border_color><border_alpha></border_alpha><margins><left>100</left><top>100</top><right>80</right><bottom>140</bottom></margins></plot_area>  <grid><category><color>#000000</color><alpha>20</alpha><dashed>false</dashed><dash_length>5</dash_length></category><value><color>#000000</color><alpha>20</alpha><dashed>false</dashed><dash_length>5</dash_length><approx_count>10</approx_count></value></grid>  <values><category><enabled>true</enabled><frequency>1</frequency><rotate>38</rotate><color></color><text_size></text_size></category><value><enabled>true</enabled><reverse></reverse><min>0</min><max></max><strict_min_max></strict_min_max><frequency>1</frequency><rotate></rotate><skip_first></skip_first><skip_last></skip_last><color></color><text_size></text_size><unit></unit><unit_position>right</unit_position><integers_only></integers_only></value></values>  <axes><category><color>#000000</color><alpha>100</alpha><width>1</width><tick_length>7</tick_length></category><value><color>#000000</color><alpha>100</alpha><width>1</width><tick_length>7</tick_length><logarithmic></logarithmic></value></axes><legend><enabled>true</enabled><x>400</x><y>30</y><width></width><max_columns></max_columns><color>#FFFFFF</color><alpha>0</alpha><border_color>#000000</border_color><border_alpha>0</border_alpha><text_color></text_color><text_size></text_size><spacing>5</spacing><margins>0</margins><key><size>12</size><border_color></border_color></key></legend>  <export_as_image><file></file><target></target><x></x><y></y><color></color><alpha></alpha><text_color></text_color><text_size></text_size></export_as_image>  <error_messages><enabled></enabled><x></x><y></y><color></color><alpha></alpha><text_color></text_color><text_size></text_size></error_messages>  <strings><no_data></no_data><export_as_image></export_as_image><collecting_data></collecting_data></strings>  <labels><label><x>500</x><y>10</y><rotate>false</rotate><width></width><align>left</align><text_color>5C5C5C</text_color><text_size>12</text_size><text><![CDATA[<b></b>]]></text></label></labels>  <graphs><graph gid=\"0\"><type>column</type><title>You</title><font>Verdana</font><color>F00000</color><alpha></alpha><data_labels><![CDATA[]]></data_labels><gradient_fill_colors></gradient_fill_colors><balloon_color>0x000000</balloon_color><balloon_alpha></balloon_alpha><balloon_text_color></balloon_text_color><balloon_text><![CDATA[Your average score in<p></p>{series}: {value}%]]></balloon_text><fill_alpha></fill_alpha><width></width><bullet></bullet><bullet_size></bullet_size><bullet_color></bullet_color><visible_in_legend></visible_in_legend></graph><graph gid=\"1\"><type>column</type><title>Other learners</title><font>Verdana</font><color>5C5C5C</color><alpha></alpha><data_labels><![CDATA[]]></data_labels><gradient_fill_colors></gradient_fill_colors><balloon_color>0x000000</balloon_color><balloon_alpha></balloon_alpha><balloon_text_color></balloon_text_color><balloon_text><![CDATA[Other learners' average score in<p></p>{series}: {value}%]]></balloon_text><fill_alpha></fill_alpha><width></width><bullet></bullet><bullet_size></bullet_size><bullet_color></bullet_color><visible_in_legend></visible_in_legend></graph></graphs></settings>";
@@ -57,7 +57,12 @@ class AP_Progress.Views.CompareView extends ViewBase
 			target_mc._y				= GlobalVar.G_DISPLAY_START_Y + this.parentViewObj.HEADER_HINT_HEIGHT + yOffset;
 			// v6.5.5.6 I can change these and the chart changes size
 			target_mc.flash_width 		= GlobalVar.G_DISPLAY_WIDTH;
-			target_mc.flash_height 		= GlobalVar.G_DISPLAY_HEIGHT - GlobalVar.G_DISPLAY_START_Y - this.parentViewObj.HEADER_HINT_HEIGHT;
+			// v6.5.6.5 CP2 has long unit names, so move the chart up a bit (make it less deep that is)
+			if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
+				target_mc.flash_height 		= GlobalVar.G_DISPLAY_HEIGHT - GlobalVar.G_DISPLAY_START_Y - this.parentViewObj.HEADER_HINT_HEIGHT - 40;
+			} else {
+				target_mc.flash_height 		= GlobalVar.G_DISPLAY_HEIGHT - GlobalVar.G_DISPLAY_START_Y - this.parentViewObj.HEADER_HINT_HEIGHT;
+			}
 			
 			this.parentViewObj.m_explainText.removeTextField();
 			this.parentViewObj.m_explainText	= target_mc.createTextField(	"m_explainText", 

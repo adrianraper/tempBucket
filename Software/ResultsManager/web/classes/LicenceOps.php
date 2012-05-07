@@ -117,6 +117,7 @@ EOD;
 				// Only track learners
 				if ($user->userType != User::USER_TYPE_STUDENT) {
 					$licenceID = 0;
+					
 				} else {
 					// Has this user got an existing licence we can use?
 					if ($this->checkExistingLicence($user, $productCode, $licence)) {
@@ -214,6 +215,8 @@ EOD;
 			$sql.= " AND c.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
 			// check all roots in that case - just for special cases, usually self-hosting
+			// Note that leaving the root empty would include teachers
+			$sql.= " AND F_RootID > 0";
 		} else {
 			$sql.= " AND c.F_RootID = $rootID";
 		}
@@ -279,7 +282,10 @@ EOD;
 			// Named licences
 			case Title::LICENCE_TYPE_LT:
 			case Title::LICENCE_TYPE_TT:
-				$licenceControlTable = 'T_LicenceControl';
+				
+				// Not used for Tracking licences anymore
+				// $licenceControlTable = 'T_LicenceControl';
+				return false;
 				break;
 				
 			default:
@@ -379,6 +385,94 @@ EOD;
 EOD;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
+	}
+
+	/**
+	 * Count how many licences have been used in this licence period. 
+	 * Moved from UsageOps when updated to using simple T_Session count. 
+	 */
+	public function countLicencesUsed($title, $rootID, $fromDateStamp) {
+		if (!$fromDateStamp)
+			$fromDateStamp = $this->getLicenceClearanceDate($title);
+			
+		$fromDate = strftime('%Y-%m-%d 00:00:00', $fromDateStamp);
+		
+		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+		if ($title->licenceType == 6) {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(u.F_UserID)) AS licencesUsed 
+				FROM T_Session s, T_User u
+				WHERE s.F_ProductCode = ?
+				AND s.F_UserID = u.F_UserID
+				AND s.F_EndDateStamp >= ?
+EOD;
+		} else {
+			$sql = <<<EOD
+				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
+				FROM T_Session s
+				WHERE s.F_ProductCode = ?
+				AND s.F_EndDateStamp >= ?
+EOD;
+		}
+		if (stristr($rootID,',')!==FALSE) {
+			$sql.= " AND s.F_RootID in ($rootID)";
+		} else if ($rootID=='*') {
+			// check all roots in that case - just for special cases, usually self-hosting
+			// Note that leaving the root empty would include teachers
+			$sql.= " AND s.F_RootID > 0";
+		} else {
+			$sql.= " AND s.F_RootID = $rootID";
+		}
+		//NetDebug::trace("USAGE: sql=".$sql);		
+		//NetDebug::trace("params: pc=".$title->productCode." date=$fromDate");		
+		
+		$rs = $this->db->GetRow($sql, array($title->productCode, $fromDate));
+		if ($rs) {
+			$licencesUsed = (int)$rs['licencesUsed'];
+		} else {
+			$licencesUsed = 0;
+		}
+		return $licencesUsed;
+	}
+
+	// v3.6.5 Figure out the most recent clearance date
+	// Moved from UsageOps
+	public function getLicenceClearanceDate($title) {
+		// The from date for counting licence use is calculated as follows:
+		// If there is no licenceClearanceDate, then use licenceStartDate.
+		// If there is no licenceClearanceFrequency, then use +1y
+		// Take licenceClearanceDate and add the frequency to it until we get a date in the future.
+		// The previous date is our fromDate.
+		if (!$title->licenceClearanceDate) 
+			$title->licenceClearanceDate = $title->licenceStartDate;
+		if (!$title->licenceClearanceFrequency)
+			$title->licenceClearanceFrequency = '1 year';
+			
+		// Just in case dates have been put in wrongly. 
+		// First, if clearance date is in the future, use the start date
+		if (strtotime($title->licenceClearanceDate) > time()) 
+			$title->licenceClearanceDate = $title->licenceStartDate;
+			
+		// If clearance date is before the start date, it doesn't much matter
+		// Turn the string into a timestamp
+		$fromDateStamp = strtotime($title->licenceClearanceDate);
+		
+		// You mustn't have a negative frequency otherwise the loop will be infinite
+		if (stristr($title->licenceClearanceFrequency, '-')!==FALSE) 
+			$title->licenceClearanceFrequency = str_replace('-', '', $title-> licenceClearanceFrequency);
+		// Check that the frequency is valid
+		if (!strtotime($title->licenceClearanceFrequency, $fromDateStamp) > 0)
+			$title->licenceClearanceFrequency = '1 year';
+			
+		// Just in case we still have invalid data
+		//NetDebug::trace("fromDateStamp=".$fromDateStamp.' which is '.strftime('%Y-%m-%d 00:00:00',$fromDateStamp));
+		$safetyCount=0;
+		while ($safetyCount<99 && strtotime($title->licenceClearanceFrequency, $fromDateStamp) < time()) {
+			$fromDateStamp = strtotime($title->licenceClearanceFrequency, $fromDateStamp);
+			$safetyCount++;
+		}
+		// We want the datestamp, not a formatted date
+		return $fromDateStamp;
 	}
 	
 }

@@ -28,18 +28,25 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.onRegister();
 
 			// I want the first thing to be the initChart call
-			trace("progCompareMediator call initCharts");
+			//trace("progCompareMediator call initCharts");
 			view.initCharts();
 
 			// Ask for the progress data you want
-			trace("progCompareMediator, ask for my_summary and everyone_summary");
+			//trace("progCompareMediator, ask for my_summary and everyone_summary");
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
 
 			// Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
+			view.licenceType = configProxy.getLicenceType();
 			
+		}
+		
+		override public function onRemove():void {
+			super.onRemove();
+			
+			// #320
+			view.clearCharts();
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -58,7 +65,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
-					trace("progCompareMediator, got back " + rs.type);
+					//trace("progCompareMediator, got back " + rs.type);
 					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
 						// #250. Save xml rather than a string
 						//view.setMySummaryDataProvider(new XML(rs.dataProvider));

@@ -322,6 +322,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			switch (instance) {
+				/*
 				case compareChart:
 					trace("progressCompareView partAdded compareChart");
 					if (_fullChartXML) { 
@@ -329,6 +330,7 @@ package com.clarityenglish.ielts.view.progress.components {
 						compareChart.anychartXML = _fullChartXML;
 					}
 					break;
+				*/
 			}
 		}
 		
@@ -344,6 +346,12 @@ package com.clarityenglish.ielts.view.progress.components {
 			_fullChartXML = chartTemplates;
 			
 		}
+		// #320
+		public function clearCharts():void {
+			trace("ProgressCompareView.clearCharts");
+			_fullChartXML = null;
+		}
+
 		
 		[Bindable]
 		public function get licenceType():uint {

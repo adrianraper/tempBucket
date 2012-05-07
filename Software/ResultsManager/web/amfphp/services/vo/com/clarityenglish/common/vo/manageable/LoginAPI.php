@@ -48,7 +48,7 @@ class LoginAPI {
 			$this->email = $info['email'];
 		if (isset($info['password'])) 
 			$this->password = $info['password'];
-			if (isset($info['userID'])) 
+		if (isset($info['userID'])) 
 			$this->userID = $info['userID'];
 		if (isset($info['groupID'])) 
 			$this->groupID = $info['groupID'];

@@ -41,12 +41,14 @@ font-size: 11px;}
 		{assign var='individual' value='true'}
 	{/if}
 	{* Also move the otherTitles checking here so that you can correctly say program or programs *}
-	{if $expiryDate != $title->expiryDate|truncate:10:""}
-		{assign var='countOtherTitles' value=$countOtherTitles+1}
-	{else}
-		{assign var='countExpiringTitles' value=$countExpiringTitles+1}
+	{* Just totally skip IYJ Practice Centre, and RTI v1 *}
+	{if !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13}
+		{if $expiryDate != $title->expiryDate|truncate:10:""}
+			{assign var='countOtherTitles' value=$countOtherTitles+1}
+		{else}
+			{assign var='countExpiringTitles' value=$countExpiringTitles+1}
+		{/if}
 	{/if}
-
   {/foreach}
 	{if $individual=='true'} 
 	  <tr align="left" valign="top">
@@ -91,8 +93,8 @@ font-size: 11px;}
     <td height="10" width="200" align="left"></td>
   </tr>
 {foreach name=orderDetails from=$account->titles item=title}
-	{* Just totally skip IYJ Practice Centre *}
- {if !$title->name|stristr:"Practice Centre"}
+	{* Just totally skip IYJ Practice Centre, and RTI v1 *}
+	{if !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13}
 	{if $expiryDate == $title->expiryDate|truncate:10:""}
   <tr align="left" valign="top">
     <td class="style1">
@@ -140,8 +142,8 @@ font-size: 11px;}
     <td height="10"></td>
   </tr>
 {foreach name=orderDetails from=$account->titles item=title}
- {* Just totally skip IYJ Practice Centre *}
- {if !$title->name|stristr:"Practice Centre"}
+	{* Just totally skip IYJ Practice Centre, and RTI v1 *}
+	{if !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13}
 	{if $expiryDate != $title->expiryDate|truncate:10:""}
   <tr align="left" valign="top">
     <td class="style1">

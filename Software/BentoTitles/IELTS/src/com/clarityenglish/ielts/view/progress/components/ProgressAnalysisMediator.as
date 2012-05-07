@@ -35,7 +35,14 @@ package com.clarityenglish.ielts.view.progress.components {
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 
 		}
-		
+
+		override public function onRemove():void {
+			super.onRemove();
+			
+			// #320
+			view.clearCharts();
+		}			
+
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.PROGRESS_DATA_LOADED,

@@ -348,7 +348,7 @@ EOD;
 	}
 	
 	/**
-	 * This function gets the instanceID for a user
+	 * This function gets the instanceID for a user for a particular title
 	 * 
 	 * @param Number $userID
 	 */

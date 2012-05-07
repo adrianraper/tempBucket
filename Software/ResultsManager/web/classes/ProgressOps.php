@@ -247,7 +247,8 @@ SQL;
 	function startSession($user, $rootID, $productCode, $dateNow = null) {
 		
 		// For teachers we will set rootID to -1 in the session record, so, are you a teacher?
-		if (!$user->userType==0)
+		// Or more specifically are you NOT a student
+		if (!$user->userType == 0)
 			$rootID = -1;
 		
 		// Check that the date is valid

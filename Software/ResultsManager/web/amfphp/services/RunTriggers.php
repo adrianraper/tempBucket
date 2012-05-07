@@ -76,8 +76,11 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		} else {
 			//$trigger->rootID=10719;
 			//$trigger->rootID=Array(5,7,28,163,10719,11091);
-			//$trigger->rootID=Array();
 		}
+		
+		// Ignore Road to IELTS v1 until all expired or removed in all triggers
+		$trigger->condition->notProductCode = '12,13';
+		
 		$triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
 		echo 'got '.count($triggerResults) .' accounts for '.$trigger->name.$newLine;
 		//AbstractService::$log->notice('got '.count($triggerResults) .' accounts for '.$trigger->name);

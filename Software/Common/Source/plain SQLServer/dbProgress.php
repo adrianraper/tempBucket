@@ -799,7 +799,7 @@ EOD;
 		//$date = $Db->now();
 		//$thisCourseName = $vars['COURSENAME'];
 		//$node .= "<note>coursename='$thisCourseName' </note>";
-        if (isset($this->dateNow)) {
+		if (isset($this->dateNow)) {
 			$dateNow = $this->dateNow;
 		} else {
 			$dateNow = date('Y-m-d H:i:s', time());
@@ -1511,16 +1511,43 @@ EOD;
 	//function insertLicenceID (&$vars) {
 	function insertInstanceID (&$vars) {
 		global $db;
-		// v6.5.4.5 use Akamai header if applicable
-		// This can trigger a PHP warning if not present, so wrap with array_key_exists
-		if (array_key_exists('HTTP_TRUE_Client_IP', $_SERVER)) {
-			$userIP = $_SERVER['HTTP_TRUE_Client_IP'];
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
+			$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+			$ip = $ipList[0];
+		} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+			$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
+		} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
+			$ip = $_SERVER["HTTP_CLIENT_IP"];
 		} else {
-			$userIP = $_SERVER['REMOTE_ADDR'];
+			$ip = $_SERVER["REMOTE_ADDR"];
 		}
-		$lid = $vars['INSTANCEID'];
+		
+		$instanceID = $vars['INSTANCEID'];
 		$userID = $vars['USERID'];
+		$productCode = $vars['PRODUCTCODE'];
 		// v6.5.5.0 Needs coordinated action to change the database field name
+		// v6.6 Updated field name to instanceID and make is multiple product
+		
+		// Get the existing set of instance IDs and add/update for this title
+		$instanceArray = $this->getInstanceArray($userID);
+		$instanceArray[$productCode] = $instanceID;
+		$instanceControl = json_encode($instanceArray);
+		
+		$sql = <<<EOD
+		UPDATE T_User u					
+		SET u.F_UserIP=?, u.F_InstanceID=? 
+		WHERE u.F_UserID=?
+EOD;
+		$bindingParams = array($ip, $instanceControl, $userID);
+		$resultObj = $db->Execute($sql, $bindingParams);
+		if ($resultObj) {
+			return true;
+		} else {
+			return false;
+		}
+		
+		/*
 		$sql = <<<EOD
 			UPDATE T_User
 			SET F_UserIP=?, F_LicenceID=?
@@ -1534,7 +1561,29 @@ EOD;
 		} else {
 			return true;
 		}
+		*/
 	}
+	/**
+	 * Helper function to turn string from database to array. Duplicated in dbLicence.php
+	 */
+	function getInstanceArray($userID) {
+		global $db;
+		$sql = <<<EOD
+		SELECT u.F_InstanceID as control
+		FROM T_User u					
+		WHERE u.F_UserID=?
+EOD;
+		$bindingParams = array($userID);
+		$rs = $db->Execute($sql, $bindingParams);
+		if ($rs && $rs->RecordCount() == 1) {
+			
+			// Use JSON to encode an array into a string for the database
+			return json_decode($rs->FetchNextObj()->control, true);
+		}
+		
+		return array();
+	}
+	
 	function selectCourseHiddenContent( &$vars ) {
 		global $db;
 		$gid  = $vars['GROUPID'];

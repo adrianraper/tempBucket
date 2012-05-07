@@ -176,6 +176,15 @@ SQL;
 						}
 						$needsAccountsTable = true;
 						break;
+					case 'notProductCode':
+						// This should exclude these products from the account
+						if (stristr($value, ",")) {
+							$selectBuilder->addWhere("t.F_ProductCode not in (".$value.")");
+						} else {
+							$selectBuilder->addWhere("NOT t.F_ProductCode = '".$value."'");
+						}
+						$needsAccountsTable = true;
+						break;
 					// v3.4.3 This is a boolean - should it be string enclosed?
 					// v3.6 AWS switch, data type is now tinyint, we want to treat it as boolean
 					case 'selfHost':

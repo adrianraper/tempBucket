@@ -15,7 +15,7 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:HGroup width="100%" height="100%" includeIn="normal">
+	<s:HGroup width="100%" height="100%" excludeFrom="normal,demo,blocked">
 		<s:Image source="/Software/ResultsManager/web/resources/assets/analyse_comingsoon.png"/>
 	</s:HGroup>
 
@@ -29,7 +29,7 @@
 		</s:Line>
 	</s:Group>
 
-	<s:HGroup width="100%" height="100%" visible="false" >
+	<s:HGroup width="100%" height="100%" visible="true" includeIn="normal">
 		<s:VGroup width="400" height="100%" horizontalAlign="center">
 			<s:Label text="This shows how you perform in each skill, relative to the other skills." fontSize="12.6" paddingTop="60" />
 			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold" paddingTop="10" />

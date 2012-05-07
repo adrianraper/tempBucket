@@ -38,8 +38,10 @@
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.accountName = configProxy.getConfig().accountName;
 			view.dateFormatter = configProxy.getDateFormatter();
-			view.productVersion = configProxy.getProductVersion() || "fullVersion";
-			view.productCode = configProxy.getProductCode() || 52;
+			
+			// Inject data - but not default values
+			view.productVersion = configProxy.getProductVersion();
+			view.productCode = configProxy.getProductCode();
 			view.licenceType = configProxy.getLicenceType();
 			
 			// This view runs of the menu xml so inject it here

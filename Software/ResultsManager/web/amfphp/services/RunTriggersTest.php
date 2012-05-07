@@ -72,12 +72,15 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		// If you want to override the root for testing do it here, or from the URL
 		// Also see EmailToAllActiveAccounts for startRootID and stopRootID
 		if (isset($_REQUEST['rootID']) && $_REQUEST['rootID']>0) {
-			$trigger->rootID=$_REQUEST['rootID'];
+			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
-			//$trigger->rootID=10719;
-			//$trigger->rootID=Array(5,7,28,163,10719,11091);
-			//$trigger->rootID=Array();
+			//$trigger->rootID = 163;
+			//$trigger->rootID = Array(5,7,28,163,10719,11091);
+			$trigger->rootID = Array(163,10719);
 		}
+		// Ignore Road to IELTS v1 until all expired or removed
+		$trigger->condition->notProductCode = '12,13';
+		
 		$triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
 		echo 'got '.count($triggerResults) .' accounts for '.$trigger->name.$newLine;
 		//AbstractService::$log->notice('got '.count($triggerResults) .' accounts for '.$trigger->name);

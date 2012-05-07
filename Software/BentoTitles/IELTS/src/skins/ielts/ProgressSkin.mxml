@@ -33,7 +33,7 @@
 	
 	<s:transitions>
 		<s:Transition fromState="*" toState="*" autoReverse="true">
-			<s:Wipe direction="left" duration="300" targets="{[progressCoverageView, progressCompareView, progressAnalysisView, progressScoreView ]}" />
+			<s:Wipe direction="left" duration="100" targets="{[progressCoverageView, progressCompareView, progressAnalysisView, progressScoreView ]}" />
 		</s:Transition>
 	</s:transitions>
 

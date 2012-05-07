@@ -149,8 +149,8 @@ try {
 
 	// Send back data.
 	// It might be better to only send back limited account data
-	if ($account) {
-		$limitedAccount = new Account();
+	$limitedAccount = new Account();
+	if (isset($account) && $account) {
 		$limitedAccount->prefix = $account->prefix;
 		$limitedAccount->id = $account->id;
 		$limitedAccount->name = $account->name;

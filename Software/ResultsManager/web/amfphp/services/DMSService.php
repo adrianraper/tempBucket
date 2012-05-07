@@ -31,8 +31,7 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
-// v3.4 Removed as not used
-//require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
+require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
 require_once(dirname(__FILE__)."/../../classes/ReportOps.php");
 require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");

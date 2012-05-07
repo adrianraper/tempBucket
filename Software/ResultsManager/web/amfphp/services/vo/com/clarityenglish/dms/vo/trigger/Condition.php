@@ -69,6 +69,8 @@ class Condition {
 			$this->notLicenceType = $conditionArray['notLicenceType'];
 		if (isset($conditionArray['productCode'])) 
 			$this->productCode = $conditionArray['productCode'];
+		if (isset($conditionArray['notProductCode'])) 
+			$this->notProductCode = $conditionArray['notProductCode'];
 		if (isset($conditionArray['contactMethod'])) 
 			$this->contactMethod = $conditionArray['contactMethod'];
 		if (isset($conditionArray['deliveryFrequency'])) 

@@ -59,85 +59,58 @@ class LICENCE {
 	function getConcurrentLicenceSlot( &$vars, &$node ) {
 		global $db;
 	
-		// v6.5.5.0 Tracking licence uses now based on the server (to be more accurate)
-		// Although maybe I should use the client time as that might help work out if odd stuff is happening?
-		//$this->dateNow = date('Y-m-d H:i:s', time());
-		// v6.5.6 But I don't send this variable!
-		//$this->dateNow = $vars['DATESTAMP'];
-		$this->dateNow = date('Y-m-d H:i:s', time());
-
-		$liT = $vars['LICENCES'];
-		if ($liT < 1) {
-			$node .= "<err code='201'>your licence is invalid (0 users)</err>";
-			return false;
+		// Whilst rootID might be a comma delimited list, you can treat
+		// licence control as simply use the first one in the list
+		$rootID = $vars['ROOTID'];
+		if (stristr($rootID, ',')) {
+			$rootArray = explode(',', $rootID);
+			$singleRootID = $rootArray[0];
+		} else {
+			$singleRootID = $rootID;
 		}
-
-		if (isset($vars['LICENCEID'])) {
-			$sT = $this->countLicences($vars, 0, 0);
-			if ($sT > 0) {
-				// this seems to be for matching an existing licenceID - not sure why you don't send back a node
-				// v6.5.5.1 Add one
-				$node .= "<licence ID='".$vars['LICENCEID']."' note='use existing' />";
-				return true;
-			}
-		}
-
-		$liN = $this->countLicences($vars, 1, 0);	
-		//$node .= "<note>compare liN and liT=$liN, $liT</note>";
-		//print 'licences used=' .$liN .'    ';
-		if ($liN < $liT) {
-			// There are available slots, so just take one.
-			return $this->insertLicenceRecord(  $vars, $liN, $liT, $node );
-		}
-
-		// v6.5.5.1 At this point revoke old licences, then repeat the simple count
-		/*
-		//$timeNow = time();
-		//$dateNow = date('Y-m-d H:i:s', $timeNow);
-		$aWhileAgo = time() - $this->delay*60; // seconds
-		$dateconv = date('Y-m-d H:i:s', $aWhileAgo);
-		//$node .= "<note>now is $dateNow, 10 mins ago is $dateconv</note>";
 		
-		//print 'date='.$dateadd;	
-		$ord = $this->countLicences($vars, 2, $dateconv);
-		//$node .= "<note>licences older than $dateconv=$ord</note>";
-		//print 'old licences=' .$ord .'    ';	
-		if ($ord > 0) {
-			$returnCode = $this->deleteLicencesOld(  $vars, $dateconv );
-			$liN -= $ord;
-			$node .= "<warning>$ord licence(s) revoked</warning>";
-			if ($liN < $liT)
-				return $this->insertLicenceRecord(  $vars, $liN, $liT, $node );
-			else {
-				$node .= "<err code='201'>no free licences ($liN)</err>";
-				return false;
-			}
-		} else {
-			$node .= "<err code='201'>no free licences ($liN)</err>";
+		// v6.6.0 To follow Bento we should now do it like this:
+		// First, delete all old licences
+		$aWhileAgo = time() - $this->delay * 60;
+		$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
+		$productCode = $vars['PRODUCTCODE'];
+		$licences = $vars['LICENCES'];
+
+		$sql = <<<EOD
+		DELETE FROM T_Licences 
+		WHERE F_ProductCode=? 
+		AND F_RootID=?
+		AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
+EOD;
+		$bindingParams = array($productCode, $singleRootID, $updateTime);
+		$rs = $db->Execute($sql, $bindingParams);
+		if (!$rs) {
+			// Write a record to the failure table - NO, this is done by Orchid itself
+			//$failLicenceSlot($vars, $node);
+			$node .= "<err code='201'>Can't clear out old licences</err>";
 			return false;
 		}
-		*/
-		$aWhileAgo = time() - $this->delay*60; // seconds
-		$dateconv = date('Y-m-d H:i:s', $aWhileAgo);
-		$node .= "<note>$this->delay mins ago is $dateconv</note>";
-		$returnCode = $this->deleteLicencesOld(  $vars, $dateconv );
-		// repeat the count
-		$liNN = $this->countLicences($vars, 1, 0);
-		if ($liNN<$liN) {
-			$node .= "<warning>".intval($liN-$liNN)." licence(s) revoked</warning>";
-			if ($liNN < $liT) {
-			// Now there are enough free slots
-				return $this->insertLicenceRecord(  $vars, $liNN, $liT, $node );
-			} else {
-				$vars['ERRORREASONCODE'] = 212;
-				$node .= "<err code='212'>still no free licences ($liNN)</err>";
-				return false;
-			}
-		} else {
+		
+		// Then count how many are currently in use
+		$sql = <<<EOD
+		SELECT COUNT(F_LicenceID) as i FROM T_Licences 
+		WHERE F_ProductCode=?
+		AND F_RootID=? 
+EOD;
+		$bindingParams = array($productCode, $singleRootID);			
+		$rs = $db->Execute($sql, $bindingParams);
+		$usedLicences = $rs->FetchNextObj()->i;
+		
+		if ($usedLicences >= $licences) {
 			$vars['ERRORREASONCODE'] = 212;
-			$node .= "<err code='212'>no free licences ($liN)</err>";
+			$node .= "<err code='212'>still no free licences ($usedLicences of $licences)</err>";
 			return false;
 		}
+
+		// Finally insert this user in the licence control table
+		$this->dateNow = date('Y-m-d H:i:s');
+		return $this->insertLicenceRecord(  $vars, 'x', 'y', $node );
+
 	}
 	// v6.5.6.7 This is used for tracking licences
 	// v6.6.0 Simply use T_Session so no need for this
@@ -210,6 +183,7 @@ EOD;
 	}
 	// This call is duplicated in dbProgress so that stopUser can call it directly
 	function dropLicence( &$vars , &$node) {
+		global $db;
 
 		$returnCode = $this->deleteLicencesID($vars);
 	
@@ -224,6 +198,7 @@ EOD;
 		}	
 	}
 	function failLicenceSlot( &$vars, &$node ) {
+		global $db;
 		$returnCode = $this->insertFail( $vars );
 		if ($returnCode) {
 			$node .= "<note>licence failure recorded</note>";
@@ -303,7 +278,7 @@ EOD;
 		}
 		
 		if ( $id > 0 ) {
-			$liN++;
+			//$liN++;
 			//$node .= "<licence host='$userIP' ID='$id' note='$liN of $liT' />";
 			$node .= "<licence host='$userIP' ID='$id' note='$liN of $liT' root='$singleRootID' />";
 			return true;
@@ -486,7 +461,11 @@ EOD;
 		$userID = $vars['USERID'];
 		$productCode = $vars['PRODUCTCODE'];
 		$reasonCode = $vars['ERRORREASONCODE'];
-		
+	
+		// v6.6.0 If you pick up something like account expired, you might not know the rootID at this point
+		if ($rootID=='')
+			return false;
+			
 		//v6.5.4.5 New database has proper datetime fields. Old one did too for this table
 		//if ($vars['DATABASEVERSION']>1) {		
 			// v6.5.5.5 MySQL migration
@@ -515,29 +494,41 @@ EOD;
 	// new functions for simultaneous login
 	// v6.5.5.0 This is not licence, it is instance for stopping double login
 	//function setLicenceID (&$vars, &$node  ) {
+	// Duplicated in dbProgress
 	function setInstanceID (&$vars, &$node  ) {
 		global $db;
 		
-		// v6.5.4.5 use Akamai header if applicable
-		// This can trigger a PHP warning if not present, so wrap with array_key_exists
-		if (array_key_exists('HTTP_TRUE_CLIENT_IP', $_SERVER)) {
-			$userIP = $_SERVER['HTTP_TRUE_CLIENT_IP'];
+		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+			// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
+			$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+			$ip = $ipList[0];
+		} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+			$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
+		} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
+			$ip = $_SERVER["HTTP_CLIENT_IP"];
 		} else {
-			$userIP = $_SERVER['REMOTE_ADDR'];
+			$ip = $_SERVER["REMOTE_ADDR"];
 		}
-		//$licenceID = $vars['LICENCEID'];
+		
 		$instanceID = $vars['INSTANCEID'];
 		$userID = $vars['USERID'];
+		$productCode = $vars['PRODUCTCODE'];
+		// v6.5.5.0 Needs coordinated action to change the database field name
+		// v6.6 Updated field name to instanceID and make is multiple product
+		
+		// Get the existing set of instance IDs and add/update for this title
+		$instanceArray = $this->getInstanceArray($userID);
+		$instanceArray[$productCode] = $instanceID;
+		$instanceControl = json_encode($instanceArray);
 		
 		$sql = <<<EOD
-			UPDATE T_User 
-			SET F_UserIP=?, F_LicenceID=? 
-			WHERE F_UserID=? 
+		UPDATE T_User u					
+		SET u.F_UserIP=?, u.F_InstanceID=? 
+		WHERE u.F_UserID=?
 EOD;
-		//$bindingParams = array($userIP, $licenceID ,$userID);
-		$bindingParams = array($userIP, $instanceID ,$userID);
-		$rs = $db->Execute($sql, $bindingParams);
-		if ($rs) {
+		$bindingParams = array($ip, $instanceControl, $userID);
+		$resultObj = $db->Execute($sql, $bindingParams);
+		if ($resultObj) {
 			$node .= "<instance>$instanceID</instance>";
 			return true;
 		} else {
@@ -546,32 +537,48 @@ EOD;
 		}
 	}
 	// v6.5.5.0 This is not licence, it is instance for stopping double login
+	// v6.6 Updated for multiple titles and different db field. Duplicated in dbProgress.php
 	//function getLicenceID (&$vars, &$node  ) {
 	function getInstanceID (&$vars, &$node  ) {
 		global $db;
 		
-		$userID = $vars['USERID'];	
-		$sql = <<<EOD
-			SELECT F_LicenceID, F_UserIP FROM T_User 
-			WHERE F_UserID=? 
-EOD;
-		$bindingParams = array($userID);
-		$rs = $db->Execute($sql, $bindingParams);
-		if ( $rs->RecordCount()==1 ) {
-			$dbObj = $rs->FetchNextObj();
-			//$licenceID = $dbObj->F_LicenceID;
-			$instanceID = $dbObj->F_LicenceID;
-			$userIP = $dbObj->F_UserIP;
-			//$node .= "<licence id='$licenceID' userIP='$userIP' />";
-			$node .= "<instance id='$instanceID' userIP='$userIP' />";
-		//	error_log($node."\n", 3, "debugs.log");
+		$userID = $vars['USERID'];
+		$productCode = $vars['PRODUCTCODE'];
+		
+		// #319 Instance ID per productCode
+		$instanceArray = $this->getInstanceArray($userID);
+		
+		if (isset($instanceArray[$productCode])) {
+			$instanceID = $instanceArray[$productCode];
+			$node .= "<instance id='$instanceID' />";
 			return true;
 		} else {
 			$node .= "<err>instance not recorded</err>";
-		//	error_log($node."\n", 3, "debugs.log");
 			return false;
 		}
 	}
+
+	/**
+	 * Helper function to turn string to array
+	 */
+	function getInstanceArray($userID) {
+		global $db;
+		$sql = <<<EOD
+		SELECT u.F_InstanceID as control
+		FROM T_User u					
+		WHERE u.F_UserID = ?
+EOD;
+		$bindingParams = array($userID);
+		$rs = $db->Execute($sql, $bindingParams);
+		if ($rs && $rs->RecordCount() == 1) {
+			
+			// Use JSON to encode an array into a string for the database
+			return json_decode($rs->FetchNextObj()->control, true);
+		}
+		
+		return array();
+	}
+		
 	// v6.5.5.0 Moved from dbProgress scripts
 	// Used for licence control (Learner Tracking licence)
 	// v6.5.6.7 Change to T_LicenceControl table
@@ -653,235 +660,6 @@ EOD;
 			$node .= "<licence id='0' users='$licencesUsed' />";
 		}
 	}
-	/*
-	function checkExistingLicence ( &$vars, &$node ) {
-		global $db;
-		$uid  = $vars['USERID'];
-		$pid  = $vars['PRODUCTCODE'];
-		$rootID = $vars['ROOTID'];
-		// v6.5.5.0 This should also include the licenceStartDate as we will ignore records before this date
-		$datestamp = $vars['LICENCESTARTDATE'];
-		// v6.5.5.0 Use lastUpdateTime instead of the initial time the licence was created
-		// AND F_StartTime>=CONVERT(datetime,?,120)
-		// v6.5.5.0 Change SQL call entirely to be based on T_Session instead of T_Licences which will be dropped
-		// what we want to know now is has this user started a session on this product since the licenceStartDate?
-		//	SELECT F_LicenceID FROM T_Licences 
-		//	WHERE F_UserID=? 
-		//	AND F_ProductCode=? 
-		//	AND F_LastUpdateTime>=CONVERT(datetime,?,120)
-		// v6.5.5.5 MySQL migration
-		//	AND s.F_StartDateStamp  >= convert(datetime, ?, 120)
-		// v6.5.6 It is possible that you will send a comma delimited list of roots rather than just one.
-			// and what if you send a wildcard? Meaning that ALL roots should be checked (such as HCT)
-		//	AND s.F_RootID=?
-		// v6.5.6.6 BUT if you are only counting sessions that have scores as part of licence control, you should do the same with existing licences!
-		$sql = <<<EOD
-			SELECT COUNT(s.F_SessionID) as Sessions
-			FROM T_Session s
-			WHERE s.F_UserID=?
-				AND s.F_ProductCode = ?
-				AND s.F_StartDateStamp  >= ?
-				AND EXISTS (SELECT * FROM T_Score c WHERE c.F_SessionID=s.F_SessionID)
-EOD;
-		if ($rootID!='*') {
-			$sql.= " AND s.F_RootID in ($rootID)";
-		}
-		//$bindingParams = array($uid, $pid);
-		$bindingParams = array($uid, $pid, $datestamp);      //by Edward
-		// $bindingParams = array($uid, $pid, $datestamp, $rootID);
-		$rs = $db->Execute($sql, $bindingParams);
-		// Don't use the count, but send back the licenceID if any
-		//return $rs->RecordCount()>0;
-		//if ($rs->RecordCount()>0 ) {
-		$dbObj = $rs->FetchNextObj();
-		if ($dbObj->Sessions>0 ) {
-			//$dbObj = $rs->FetchNextObj();
-			// save the ID so we can use it for updating
-			// never mind, no updating will happen
-			$node .= "<licence id='0'/>";
-			//$vars['LICENCEID'] = $dbObj->F_LicenceID;
-			return true;
-		} else {
-			return false;
-		}
-	}
-	*/
-	/*
-	function checkAvailableLicences( &$vars, &$node) {
-		global $db;
-		if ($vars['DATABASEVERSION']>1 ) {
-			// Count the number of students who have accessed this title since the start of the current licence period
-			// It shouldn't be possible to have a duplicate userID. But just in case add in DISTINCT
-			//	SELECT COUNT(u.F_UserID) AS licencesUsed FROM T_Licences c, T_User u
-			// Oh, and certainly we need to add in the rootID! 
-			// v6.5.5.0 Drop T_Licences in favour of the T_Session table
-			//	SELECT COUNT(DISTINCT u.F_UserID) AS licencesUsed FROM T_Licences c, T_User u
-			//	WHERE u.F_UserType=0
-			//	AND c.F_UserID=u.F_UserID
-			//	AND c.F_ProductCode=? 
-			//	AND c.F_RootID=? 
-			//	AND c.F_StartTime >= CONVERT(datetime, ?, 120)
-			// v6.5.5.5 MySQL migration
-			//	AND s.F_StartDateStamp>CONVERT(datetime,?,120)
-			// v6.5.6 It is possible that you will send a comma delimited list of roots rather than just one.
-			// and what if you send a wildcard? Meaning that ALL roots should be checked (such as HCT)
-			//	WHERE s.F_RootID=?
-			// v6.5.6.4 RM has a much more sophisticated system.
-			//	1) Deleted users are not counted here
-			//	2) Users who start a session but no scores should be counted
-			// AR It might be useful to let this module pick up the licence start date (assuming you send a root) if it is not set.
-			//  This would make it useful to non-Orchid programs as well.
-			// v6.5.6.6 Change the rules for a Transferable Licence (6) - in which case you only care about active students
-			// Drop the check on a EXISTS score as I think this slows things down considerably. Mind you - it is very fast on production
-			
-			// v6.5.6.6 licence clearance date implementation is handled by getRMSettings and then just using licenceStartDate here
-			$rootID = $vars['ROOTID'];
-			// v6.5.6 SciencesPo temporary workround
-			// RL:Same happens on HCT: 14276,14277,14278,14279,14280,14281,14282,14283,14284,14286,14287,14288,14290,14291,14292
-			//if ($rootID==10719) {
-			//	$node .= "<licence id='0' users='99' active='49' deleted='0' />"; 
-			//	return true;
-			//}
-			switch ($rootID) {
-				case 14252: 
-					//$node .= "<licence id='0' users='99' active='49' deleted='0' />"; 
-					//return true;
-					//break;
-				case 14276:
-				case 14277:
-				case 14278:
-				case 14279:
-				case 14280:
-				case 14281:
-				case 14282:
-				case 14283:
-				case 14284:
-				case 14286:
-				case 14287:
-				case 14288:
-				case 14290:
-				case 14291:
-				case 14292:
-					$node .= "<licence id='0' users='99' active='49' deleted='0' />"; 
-					return true;
-			}			
-			//$sql = <<<EOD
-			//	SELECT COUNT(DISTINCT s.F_UserID)  AS licencesUsed
-			//	FROM T_Session s, T_User u
-			//	WHERE s.F_RootID in ($rootID)
-			//	AND s.F_ProductCode=?
-			//	AND u.F_UserID = s.F_UserID
-			//	AND u.F_UserType=0
-			//	AND s.F_StartDateStamp>?
-//EOD;
-			
-			//	AND s.F_StartDateStamp>CONVERT(datetime,?,120) 
-			$sql = <<<EOD
-				SELECT COUNT(DISTINCT s.F_UserID)  AS activeStudentCount
-				FROM T_Session s, T_User u
-				WHERE s.F_ProductCode=?
-				AND u.F_UserID = s.F_UserID
-				AND u.F_UserType=0
-				AND s.F_StartDateStamp>?
-				AND EXISTS (SELECT * FROM T_Score c WHERE c.F_SessionID=s.F_SessionID)
-EOD;
-			if ($rootID!='*') {
-				$sql.= " AND s.F_RootID in ($rootID)";
-			}
-			//$bindingParams = array($vars['ROOTID'], $vars['PRODUCTCODE'], $vars['LICENCESTARTDATE'] );
-			$bindingParams = array($vars['PRODUCTCODE'], $vars['LICENCESTARTDATE'] );
-			$rs = $db->Execute($sql, $bindingParams);
-			if ($rs->RecordCount()==0) {
-				// throw an error should be impossible
-				return false;
-			}
-			$dbObj = $rs->FetchNextObj();
-			//$licencesUsed = (int)$dbObj->licencesUsed;
-			$activeLicencesUsed = (int)$dbObj->activeStudentCount;
-
-			//$node .= "<note licenceType='". $vars['LICENCETYPE'] ."' />";
-			if ($vars['LICENCETYPE']=='6') {
-				$orphanedLicencesUsed=0;
-			} else {
-				// See above why need to also count sessions that have no active users.
-				$sql = <<<EOD
-					SELECT COUNT(DISTINCT s.F_UserID) AS allDeletedCount
-					FROM T_Session s
-					left join T_User u
-					on s.F_UserID = u.F_UserID
-					WHERE s.F_ProductCode=?
-					AND u.F_UserID IS NULL
-					AND s.F_UserID > 0
-					AND s.F_StartDateStamp>?
-EOD;
-				if ($rootID!='*') {
-					$sql.= " AND s.F_RootID in ($rootID)";
-				}
-				$rs = $db->Execute($sql, $bindingParams);
-				if ($rs->RecordCount()==0) {
-					// throw an error should be impossible
-					return false;
-				}
-				$dbObj = $rs->FetchNextObj();
-				$orphanedLicencesUsed = (int)$dbObj->allDeletedCount;
-			}
-			
-			// Add them up
-			$licencesUsed = $activeLicencesUsed + $orphanedLicencesUsed;
-			
-			// Compare against the licence the school purchased
-			if ($licencesUsed>=$vars['LICENCES']) {
-				$vars['ERRORREASONCODE'] = 211;
-				$node .= "<err code='211' userID='".$vars['USERID']."' licencesUsed='$licencesUsed'>No licences available</err>";
-				return false;
-			} else {
-				//$node .= "<note>$licences licences have now been used.</note>";
-				$node .= "<licence id='0' users='$licencesUsed' active='$activeLicencesUsed' deleted='$orphanedLicencesUsed' />"; // Just to let us know that all is well, what is a better return for the id?
-			}
-		}
-		return true;
-	}
-	*/
-	// v6.5.5.0 Drop this in favour of using the T_Session table for tracking licences
-	/*
-	function addNewLicence( &$vars, &$node ) {
-		
-		// v6.5.4.5 Finally update the table with the licenceID
-		if ($vars['DATABASEVERSION']>1) {		
-			return $this->insertLicenceCount( $vars, $node );
-		}
-		return true;
-	}
-	// Used for licence control (Learner Tracking licence)
-	function insertLicenceCount (&$vars, &$node) {
-		global $db;
-		$userID = $vars['USERID'];
-		$pid = $vars['PRODUCTCODE'];
-		$rootID = $vars['ROOTID'];
-		$datestamp = $vars['DATESTAMP'];
-		$sql = <<<EOD
-			INSERT INTO T_Licences ([F_UserID], [F_ProductCode], [F_RootID], [F_StartTime], [F_LastUpdateTime])
-			VALUES($userID,$pid,$rootID,CONVERT(datetime,'$datestamp',120), CONVERT(datetime,'$datestamp',120))
-EOD;
-		// v6.5.4.7 We pass dates to php as strings in canonical ODBC format. So to convert to datetime use CONVERT(datetime, $formattedString, 120)
-		// $bindingParams = array($userID, $pid, $rootID, strtotime($datestamp));
-		$bindingParams = array($userID, $pid, $rootID, $datestamp);
-		// v6.5.4.8 adodb will get the identity ID (F_LicenceID) for us.
-		// Except that it fails. Seems due to fact that with parameters, the insert is in a different scope to the identity scope call so fails. 
-		// If I don't do it with parameters then it works. Seems safe since nothing is typed by the user.
-		//	VALUES(?,?,?,CONVERT(datetime,?,120))
-		//$rs = $db->Execute($sql, $bindingParams);
-		$rs = $db->Execute($sql);
-		$id = $db->Insert_ID();
-		if ( $id > 0 ) {
-			$node .= "<licence id='$id' />";
-			return true;
-		} else {
-			$node .= "<err code='202'>failed to insert licence record</err>";
-			return false;
-		}
-	}
-	*/
 
 }
 ?>

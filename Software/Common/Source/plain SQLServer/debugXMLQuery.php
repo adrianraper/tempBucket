@@ -22,6 +22,7 @@ class XMLQuery {
 	$post = file_get_contents("php://input");
 	//Global $node;
 	//$node .= "<note>" .urlencode($post)  ."</note>";
+	$post = '<query dbHost="2" method="getLicenceSlot" licences="998" licenceType="1" rootID="163" userID="11259" userType="0" productCode="9" licenceStartDate="2013-01-01 00:00:00" databaseVersion="6" cacheVersion="1336101653367" />';
 //	$post = '<query dbHost="2" method="getLicenceSlot" licences="39" licenceType="1" rootID="163" userID="11259" userType="0" productCode="1" licenceStartDate="2011-01-01 00:00:00" databaseVersion="6" cacheVersion="1318838074491" />';
 //	$post = '<query dbHost="200" method="writeScoreDetail" sessionID="2227317" userID="251526" unitID="1" exerciseID="1292227313781" rootID="11091" datestamp="2011-10-17 14:15:52" databaseVersion="6"><item itemID="10" /><item itemID="9" /><item itemID="8" /><item itemID="7" /><item itemID="6" detail="Yes" score="1" /></query>';
 //	$post = '<query dbHost="2" method="writeScoreDetail" sessionID="2469289" userID="27639" unitID="1" exerciseID="1292227313781" rootID="163" datestamp="2011-11-01 15:56:40" databaseVersion="7"><item itemID="10" /><item itemID="9" /><item itemID="8" /><item itemID="7" /><item itemID="6" /><item itemID="5" /></query>';
@@ -35,7 +36,7 @@ class XMLQuery {
 //$post = '<query method="startUser" rootID="13854" instanceID="1311736177281" name="Jost" studentID="" password="$!null_!$" loginOption="1" productCode="46" dateStamp="2011-07-27 11:09:37" dbHost="2" databaseVersion="6"/>';
 //	$post = '<query dbHost="2" method="getGeneralStats" rootID="163" userID="11259" courseID="1250560407550" cacheVersion="1309764184321" databaseVersion="6" />';
 //	$post = '<query dbHost="101" method="getScores" userID="231422" userType="0" rootID="169" courseID="1151344082236" databaseVersion="5" cacheVersion="1309748557978" />';
- 	$post = '<query dbHost="2" method="writeScore" userID="11259" datestamp="2011-12-29 23:30:17" sessionID="2227759" itemID="1251190462821" testUnits="" score="20" correct="2" wrong="3" skipped="5" unitID="2" duration="10" courseID="1250560407550" productCode="9" databaseVersion="6" cacheVersion="13095342123" />';
+// 	$post = '<query dbHost="2" method="writeScore" userID="11259" datestamp="2011-12-29 23:30:17" sessionID="2227759" itemID="1251190462821" testUnits="" score="20" correct="2" wrong="3" skipped="5" unitID="2" duration="10" courseID="1250560407550" productCode="9" databaseVersion="6" cacheVersion="13095342123" />';
 // 	$post = '<query dbHost="200" method="writeScore" userID="11259" itemID="1250823074193" testUnits="" score="-1" correct="-1" wrong="-1" skipped="-1" sessionID="2210672" unitID="2" datestamp="2011-07-01 22:42:07" duration="12" courseID="1250560407550" databaseVersion="5" cacheVersion="1309531327312" />';
 // 	$post = '<query method="writeScore" score="-1" correct="10" wrong="0" skipped="0" complete="100" duration="86" productCode="45" dateStamp="2011-06-15 09:10:48" itemID="1268272283671" unitID="1266911374835" courseID="1266909801303" sessionID="1515740" userID="214434" dbHost="200" databaseVersion="6"/>';
 //	$post = '<query dbHost="2" method="countLicencesUsed" rootID="13562,13581" licences="999" productCode="36" licenceStartDate="2011-01-01 00:00:00" databaseVersion="5" cacheVersion="1287022850375" />';
@@ -62,7 +63,7 @@ class XMLQuery {
 //	$post = '<query dbHost="2" method="addNewUser" rootID="163" name="5Bentley, Jennifer" password="" studentID="p1234567(f)" loginOption="1" licenceType="1" productCode="33" uniqueName="1" email="" instanceID="1287117670234" registerMethod="scorm" databaseVersion="5" groupID="10378" />';
 //	$post = '<query dbHost="2" method="getGlobalUser" studentID="student" password="$!null_!$" loginOption="2" cacheVersion="1287115127406" databaseVersion="5" />';
 //	$post = '<query dbHost="2" method="checkDatabaseVersion" userID="11259" />';
-//	$post = '<query dbHost="2" method="getInstanceID" userID="11259" />';
+//	$post = '<query dbHost="2" method="getInstanceID" userID="11259" productCode="9" />';
 //	$post = '<query method="downloadRecorder" email="adrian@clarity.com.hk" referrer="www.TenseBuster.com" productCode="4" />';
 //	$post = '<query dbHost="11" method="getRMSettings" rootID="" prefix="171744" eKey="" dateStamp="2011-05-16 22:44:50" productCode="12" cacheVersion="1305557090687" />';
 //	$post = '<query method="CLSStartUser" email="kenix20@hotmail.com" password="zaxmfrhs" instanceID="1267096432500" dbHost="2" databaseVersion="5" />';
