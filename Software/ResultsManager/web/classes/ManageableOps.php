@@ -962,7 +962,141 @@ EOD;
 		return $users;
 	}
 	/**
-	 * This returns a specific user object defined by its studentID
+	 * This returns a specific user object defined by a key set from loginOption
+	 * Only look in one or more roots for this user.
+	 */
+	function getRootUserByKey($stubUser, $rootID = null) {
+		
+		if (!$rootID)
+			$rootID = '*';
+			
+		if (isset($stubUser->name)) {
+			$whereClause = 'u.F_UserName=?';
+			$key = $stubUser->studentID;
+		} else if (isset($stubUser->studentID)) {
+			$whereClause = 'u.F_StudentID=?';
+			$key = $stubUser->name;
+		} else if (isset($stubUser->email)) {
+			$whereClause = 'u.F_Email=?';
+			$key = $stubUser->email;
+		} else {
+			throw new Exception("Unspecified loginOption");
+		}
+		$sql  = "SELECT ".User::getSelectFields($this->db);
+		$sql .= <<<EOD
+		FROM T_User u, T_Membership m
+		WHERE $whereClause
+		AND m.F_UserID = u.F_UserID
+EOD;
+		if (stristr($rootID,',')!==FALSE) {
+			$sql.= " AND m.F_RootID in ($rootID)";
+		} else if ($rootID=='*') {
+			// check all roots in that case - just for special cases, usually self-hosting
+		} else {
+			$sql.= " AND m.F_RootID = $rootID";
+		}
+		$usersRS = $this->db->Execute($sql, array($key));
+
+		// If you don't get a unique match, throw an exception
+		if ($usersRS->RecordCount()==1) {
+			$userObj = $usersRS->FetchNextObj();
+			$user = $this->_createUserFromObj($userObj);
+		} else if ($usersRS->RecordCount()==0) {
+			return false;
+		} else {
+			throw new Exception("More than one user with this key $key");
+		}
+		
+		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
+		AuthenticationOps::authenticateUsers(array($user));
+		return $user;
+	}
+	/**
+	 * This returns a specific user object defined by a key set from loginOption
+	 * It assumes that a CLS user has licenceType=5 in an account which our user is the admin for
+	 */
+	function getCLSUserByKey($stubUser) {
+		
+		if (isset($stubUser->name)) {
+			$whereClause = 'u.F_UserName=?';
+			$key = $stubUser->studentID;
+		} else if (isset($stubUser->studentID)) {
+			$whereClause = 'u.F_StudentID=?';
+			$key = $stubUser->name;
+		} else if (isset($stubUser->email)) {
+			$whereClause = 'u.F_Email=?';
+			$key = $stubUser->email;
+		} else {
+			throw new Exception("Unspecified loginOption");
+		}
+		$sql  = "SELECT ".User::getSelectFields($this->db);
+		$sql .= <<<EOD
+		FROM T_User u, T_AccountRoot ar, T_Accounts a
+		WHERE $whereClause
+		AND ar.F_AdminUserID = u.F_UserID
+		AND a.F_RootID = ar.F_RootID
+		AND a.F_LicenceType = 5
+		GROUP BY u.F_UserID;
+EOD;
+		$usersRS = $this->db->Execute($sql, array($key));
+
+		// If you don't get a unique match, throw an exception
+		if ($usersRS->RecordCount()==1) {
+			$userObj = $usersRS->FetchNextObj();
+			$user = $this->_createUserFromObj($userObj);
+		} else if ($usersRS->RecordCount()==0) {
+			return false;
+		} else {
+			throw new Exception("More than one user with this key $key");
+		}
+		
+		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
+		AuthenticationOps::authenticateUsers(array($user));
+		return $user;
+	}
+	
+	/**
+	 * This returns a specific user object defined by a key set from loginOption
+	 */
+	function getUserByKey($stubUser) {
+		
+		if (isset($stubUser->name)) {
+			$whereClause = 'WHERE u.F_UserName=?';
+			$key = $stubUser->studentID;
+		} else if (isset($stubUser->studentID)) {
+			$whereClause = 'WHERE u.F_StudentID=?';
+			$key = $stubUser->name;
+		} else if (isset($stubUser->email)) {
+			$whereClause = 'WHERE u.F_Email=?';
+			$key = $stubUser->email;
+		} else {
+			throw new Exception("Unspecified loginOption");
+		}
+		$sql  = "SELECT ".User::getSelectFields($this->db);
+		$sql .= <<<EOD
+				FROM T_User u
+				$whereClause
+EOD;
+		$usersRS = $this->db->Execute($sql, array($key));
+
+		// If you don't get a unique match, throw an exception
+		if ($usersRS->RecordCount()==1) {
+			$userObj = $usersRS->FetchNextObj();
+			$user = $this->_createUserFromObj($userObj);
+		} else if ($usersRS->RecordCount()==0) {
+			return false;
+		} else {
+			throw new Exception("More than one user with this key $key");
+		}
+		
+		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
+		AuthenticationOps::authenticateUsers(array($user));
+		return $user;
+	}
+	
+	/**
+	 * This returns a specific user object defined by its studentID.
+	 * Should be deprecated by the more general function getUserByKey
 	 */
 	function getUserByLearnerId($stubUser) {
 		$sql  = "SELECT ".User::getSelectFields($this->db);
@@ -986,7 +1120,10 @@ EOD;
 		AuthenticationOps::authenticateUsers(array($user));
 		return $user;
 	}
-	// And an equivalent one by name
+	/**
+	 * This returns a specific user object defined by its name.
+	 * Should be deprecated by the more general function getUserByKey
+	 */
 	function getUserByName($user) {
 		$sql  = "SELECT ".User::getSelectFields($this->db);
 		$sql .= <<<EOD

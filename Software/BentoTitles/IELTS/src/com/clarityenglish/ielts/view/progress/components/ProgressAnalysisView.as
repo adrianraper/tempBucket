@@ -448,10 +448,12 @@ package com.clarityenglish.ielts.view.progress.components {
 			if (productVersion == IELTSApplication.DEMO) {
 				var currentState:String = "demo";
 			// #320
+			} else if (numberScoreSectionsDone < 1 && numberDurationSectionsDone < 2) {
+				currentState = "blocked";
 			} else if (numberScoreSectionsDone < 1) {
-				currentState = "blocked";
+				currentState = "blockedScore";
 			} else if (numberDurationSectionsDone < 2) {
-				currentState = "blocked";
+				currentState = "blockedDuration";
 			} else {
 				currentState = "normal";
 			}

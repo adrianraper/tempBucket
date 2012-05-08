@@ -26,6 +26,7 @@ class LoginAPI {
 	var $custom3;
 	var $custom4;
 	var $subscriptionPeriod;
+	var $licenceType;
 	
 	function LoginAPI() {
 	}
@@ -76,6 +77,8 @@ class LoginAPI {
 			$this->custom4 = $info['custom4'];
 		if (isset($info['subscriptionPeriod'])) 
 			$this->subscriptionPeriod = $info['subscriptionPeriod'];
+		if (isset($info['licenceType'])) 
+			$this->licenceType = $info['licenceType'];
 			
 		// Fields with defaults if not sent
 		// TODO. This should not be sent, it should be read from the account

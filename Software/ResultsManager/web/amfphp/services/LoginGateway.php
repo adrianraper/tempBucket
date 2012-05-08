@@ -29,8 +29,9 @@ function loadAPIInformation() {
 	//$presetString = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"dandelion","email":"adrian@clarityenglish.com","dbHost":101,"productCode":52,"expiryDate":"2012-02-19 23:59:59","prefix":"TEST","rootID":"14028","groupID":"22153","loginOption":"2","emailTemplateID":"BCHK-welcome"}';
 	//$presetString = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"RAPER, Adrian","dbHost":2,"custom1":"Basic","custom2":"IMD","prefix":"CSTDI","loginOption":"8"}';
 	//$presetString = '{"method":"getOrAddUser","studentID":"1217-0552-6019-170","name":"Adrian early bird","password":"G&amp;T;","email":"adrian@clarity.com.hk","groupID":"170","productCode":"52","subscriptionPeriod":"3months","emailTemplate":"Welcome-BCHK-user","dbHost":102,"loginOption":2}';
-	//$presetString = '{"method":"getUser","studentID":"P10102920-170","groupID":"170","dbHost":102,"loginOption":"2"}';
-	//$postInformation = json_decode($presetString, true);
+	//$presetString = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
+	$presetString = '{"method":"getUser","email":"adrian.raper@clarityenglish.com","rootID":"163","dbHost":102,"loginOption":"8"}';
+	$postInformation = json_decode($presetString, true);
 
 	// We are expecting a method and parameters as an object
 	// First check mandatory fields exist
@@ -103,12 +104,27 @@ try {
 			$user = $loginService->getUser($apiInformation);
 			
 			if ($user==false) {
-				returnError(200, $apiInformation->studentID);
+				// Return the key information you used to search
+				switch ($apiInformation->loginOption) {
+					case 2:
+						$key = $apiInformation->studentID;
+						break;
+					case 1:
+						$key = $apiInformation->userName;
+						break;		
+					case 8:
+						$key = $apiInformation->email;
+						break;		
+				}
+				returnError(200, $key);
 			}
 			
-			// If you find a user you might want account information to be returned
-			if (!$apiInformation->prefix && !$apiInformation->rootID)
-				$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
+			// If you find a user you might want account information to be returned if you don't know it
+			// Indeed, it might be more consistent to return it anyway
+			//if (!$apiInformation->prefix && !$apiInformation->rootID) {
+			//}
+			$apiInformation->userID = $user->id;
+			$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
 			
 			break;
 			
@@ -140,6 +156,8 @@ try {
 			} else {
 				AbstractService::$debugLog->info("returned existing user ".$user->name." expires on ".$user->expiryDate);
 			}
+			
+			// TODO: Should also return account information to mirror getUser
 			
 			break;
 			

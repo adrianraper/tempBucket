@@ -1287,6 +1287,8 @@ EOD;
 			
 				// Yes, got a certificate already, so just return the sequence number
 				$sequenceNumber = $rs->FetchNextObj()->F_Detail;
+				if (!$sequenceNumber>0)
+					$sequenceNumber = 0;
 				$node .= "<detail sequenceNumber='$sequenceNumber' />";
 				return true;
 			}
@@ -1303,7 +1305,10 @@ EOD;
 			$bindingParams = array($root, $exerciseID, 0, $pc);
 			$rs = $db->Execute($sql, $bindingParams);
 			if ($rs->RecordCount() == 1)  {
-				$sequenceNumber = $rs->FetchNextObj()->highestSequenceNumber + 1;
+				$sequenceNumber = $rs->FetchNextObj()->highestSequenceNumber;
+				if (!$sequenceNumber>0)
+					$sequenceNumber = 0;
+				$sequenceNumber++;
 			} else {
 				$sequenceNumber = 1;
 			}

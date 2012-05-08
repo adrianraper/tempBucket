@@ -19,8 +19,9 @@ $startDate = date('Y-m-d', mktime(1,1,1,$m-1,1,date('Y')));
 $endDate = date('Y-m-d', mktime(1,1,1,$m,0,date('Y')));
 $rootID = 14449;
 
-$outputDevice = 'file';
 $outputText = '';
+$outputDevice = 'file';
+//$outputDevice = 'screen';
 
 writeOutHeader();
 runQuery($rootID, $startDate, $endDate);
@@ -30,28 +31,31 @@ exit(0);
 function writeOut($text, $mode = '') {
 	global $outputDevice;
 	global $outputText;
+	
+	$outputText.=$text;
 	if ($outputDevice == 'screen') {
-		echo $string;
+		echo $outputText;
 	} else {
-		$outputText.=$text;
-	}
-	if ($mode == 'stop') {
-		// workout the filename and open it
-		$datePart = date('Ym');
-		$baseDir = $GLOBALS['logs_dir'];
-		$baseFolder = realpath($baseDir);
-		if (!$baseFolder)
-			throw new Exception("Can't get file path for $baseDir");
-		$filename = $baseFolder.'/CSTDI/'."163-$datePart.csv";
-		$fh = fopen($filename, 'wb');
-		if (!$fh)
-			throw new Exception("Can't open the file for writing $filename");
-		
-		// write out the text
-		fwrite($fh, $outputText);
-		
-		// close and flush the file
-		fclose($fh);
+		if ($mode == 'stop') {
+			// workout the filename and open it
+			$datePart = date('Ym');
+			$baseDir = $GLOBALS['logs_dir'];
+			$baseFolder = realpath($baseDir);
+			if (!$baseFolder)
+				throw new Exception("Can't get file path for $baseDir");
+			$filename = $baseFolder.'/CSTDI/'."163-$datePart.csv";
+			$fh = fopen($filename, 'wb');
+			if (!$fh)
+				throw new Exception("Can't open the file for writing $filename");
+			
+			// write out the text
+			fwrite($fh, $outputText);
+			
+			// close and flush the file
+			fclose($fh);
+			
+			echo "written file $filename";
+		}
 	}
 }
 function writeOutHeader() {
@@ -119,7 +123,7 @@ EOD;
 					FROM T_ScoreDetail d
 					WHERE d.F_UserID = ?
 					AND ((d.F_ExerciseID = 51 AND d.F_ItemID=0)
-					OR (d.F_ExerciseID = 52 AND d.F_ItemID=5 AND d.F_Score=1))
+					OR (d.F_ExerciseID = 52 AND d.F_ItemID=6 AND d.F_Score=1))
 					GROUP BY d.F_UserID, F_UnitID, F_ExerciseID
 					ORDER BY d.F_UnitID, d.F_ExerciseID
 EOD;
@@ -156,7 +160,29 @@ EOD;
 			// Have they completed the evaluation (and got a score of 1 for question 5)
 			if ($row_2['F_ExerciseID'] == 52) {
 				$eval_complete_date = $row_2['firstDate'];
-				$eval_result = $row_2['F_Detail'];
+				
+				// The detail is saved as the text of the mc answer - CSTDI needs this as a number
+				$eval_long_result = $row_2['F_Detail'];
+				switch (strtolower($eval_long_result)) {
+					case 'outstanding':
+						$eval_result = 0;
+						break;
+					case 'very effective':
+						$eval_result = 1;
+						break;
+					case 'effective':
+						$eval_result = 2;
+						break;
+					case 'moderate':
+						$eval_result = 3;
+						break;
+					case 'poor':
+						$eval_result = 4;
+						break;
+					default:
+						$eval_result = -1;
+						break;
+				}
 			} else {
 				$eval_complete_date = '';
 				$eval_result = '';

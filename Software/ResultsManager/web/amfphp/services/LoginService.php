@@ -54,14 +54,31 @@ class LoginService extends AbstractService {
 	// Can you find this user?
 	public function getUser($loginDetails) {
 		$stubUser = new User();
-		// TODO: Add other login options
-		if ($loginDetails->loginOption==2) {
-			$stubUser->studentID = $loginDetails->studentID;
-			$user = $this->manageableOps->getUserByLearnerId($stubUser);
-		} else {
-			$user = false;
+		
+		switch ($loginDetails->loginOption) {
+			case 2:
+				$stubUser->studentID = $loginDetails->studentID;
+				break;
+			case 1:
+				$stubUser->name = $loginDetails->name;
+				break;		
+			case 8:
+				$stubUser->email = $loginDetails->email;
+				break;
+			default:
+				return false;		
 		}
-		return $user; 
+
+		// Are there any conditions that you should search with?
+		// TODO. Need something like the conditions for getAccounts here so that it can scale
+		if (isset($loginDetails->licenceType)) {
+			return $this->manageableOps->getCLSUserByKey($stubUser);
+		}
+		// TODO: Duplicate this one for prefix too 
+		if (isset($loginDetails->rootID)) {
+			return $this->manageableOps->getRootUserByKey($stubUser, $loginDetails->rootID);
+		}
+		return $this->manageableOps->getUserByKey($stubUser);
 	}
 	
 	// Add this user
@@ -133,7 +150,15 @@ class LoginService extends AbstractService {
 	}
 	// Get the group
 	public function getGroup($loginDetails) {
-		return $this->manageableOps->getGroup($loginDetails->groupID);
+		
+		// First special case is that you know the groupID (based on a serial number for instance)
+		// but you don't have any account information
+		if ($loginDetails->groupID)
+			return $this->manageableOps->getGroup($loginDetails->groupID);
+		
+		// The normal case is that you found the user, so get their group/account info from T_Membership
+		// TODO. Surely the above will work this way as well and is safer.
+		return $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($loginDetails->userID));
 	}
 	
 	public function getAccountFromGroup($group) {

@@ -6,19 +6,17 @@
 	</fx:Metadata>
 
 	<s:states>
-		<s:State name="demo"  />
-		<s:State name="blocked" />
 		<s:State name="normal" />
+		<s:State name="blocked" />
+		<s:State name="blockedScore" />
+		<s:State name="blockedDuration" />
+		<s:State name="demo"  />
 	</s:states>
 
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:HGroup width="100%" height="100%" excludeFrom="normal,demo,blocked">
-		<s:Image source="/Software/ResultsManager/web/resources/assets/analyse_comingsoon.png"/>
-	</s:HGroup>
-
 	<s:SkinnableComponent id="courseKeyPieComponent" skinClass="skins.ielts.progress.CourseKeyPieSkin" width="100%" height="30" visible="false" />
 
 	<s:Group top="0">
@@ -29,30 +27,30 @@
 		</s:Line>
 	</s:Group>
 
-	<s:HGroup width="100%" height="100%" visible="true" includeIn="normal">
-		<s:VGroup width="400" height="100%" horizontalAlign="center">
+	<s:HGroup width="100%" height="100%" paddingTop="22" paddingLeft="10" includeIn="demo" >
+		<s:Spacer height="10" />
+		<s:Image source="/Software/ResultsManager/web/resources/assets/progressAnalyse_disable.png"/>
+	</s:HGroup>
+	<s:HGroup width="100%" height="100%" visible="true" excludeFrom="demo">
+		<s:VGroup width="400" height="100%" horizontalAlign="center" includeIn="normal,blockedDuration" >
 			<s:Label text="This shows how you perform in each skill, relative to the other skills." fontSize="12.6" paddingTop="60" />
 			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold" paddingTop="10" />
 			<s:Label text="Average score (%)" fontSize="12.6" />
 			<ns1:AnyChartFlex id="analysisScoreChart" width="100%" />
 		</s:VGroup>
-		<s:VGroup width="544" height="100%" horizontalAlign="center">
+		<s:VGroup width="400" height="100%" paddingTop="22" paddingLeft="10" includeIn="blocked,blockedScore" >
+			<s:Spacer height="10" />
+			<s:Image source="/Software/ResultsManager/web/resources/assets/progressAnalyse_left_disable.png"/>
+		</s:VGroup>
+		<s:VGroup width="544" height="100%" horizontalAlign="center" includeIn="normal,blockedScore" >
 			<s:Label text="This shows how you have spent your time." fontSize="12.6" paddingTop="60" />
 			<s:Label text="Time spent on each skill" fontSize="12.6" fontWeight="bold" paddingTop="10" />
 			<ns1:AnyChartFlex id="analysisTimeChart" width="100%" />
 		</s:VGroup>
+		<s:VGroup width="544" height="100%" paddingTop="22" horizontalAlign="center" includeIn="blocked,blockedDuration" >
+			<s:Spacer height="10" />
+			<s:Image source="/Software/ResultsManager/web/resources/assets/progressAnalyse_right_disable.png"/>
+		</s:VGroup>
 	</s:HGroup>
-	<s:VGroup width="100%" height="100%" paddingTop="22" paddingLeft="10" includeIn="blocked,demo" >
-		<s:Spacer height="10" />
-		<s:Image source="/Software/ResultsManager/web/resources/assets/progressAnalyse_disable.png"/>
-	</s:VGroup>
-	<s:VGroup width="100%" height="100%" paddingTop="22" paddingLeft="10" includeIn="blocked" >
-		<s:Spacer height="10" />
-		<s:Image source="/Software/ResultsManager/web/resources/assets/progressAnalyse_left_disable.png"/>
-	</s:VGroup>
-	<s:VGroup width="100%" height="100%" paddingTop="22" paddingLeft="500" includeIn="blocked" >
-		<s:Spacer height="10" />
-		<s:Image source="/Software/ResultsManager/web/resources/assets/progressAnalyse_right_disable.png"/>
-	</s:VGroup>
 
 </s:Skin>
