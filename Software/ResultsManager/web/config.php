@@ -12,7 +12,8 @@ function writelog($level, $message) {
 }
 
 // I need to call session_start here as this is about the first thing in any page.
-session_start();
+// Move into abstract service so you can use our Session class to register a handler
+// session_start();
 
 // If the total manageables in the logged in account is more than this students will not be displayed and some function disabled (RM only)
 $GLOBALS['max_manageables_for_student_display'] = 5000;
@@ -41,12 +42,13 @@ $GLOBALS['rmail_from'] = "Clarity English <support@clarityenglish.com>";
 
 $GLOBALS['data_dir'] = "../../../Content";
 $GLOBALS['ap_data_dir'] = "../../../ap";
-$commonFolders = "/../../Common";
+$GLOBALS['common_dir'] = dirname(__FILE__)."/../../../Software/Common";
 $RMFolders = "";
 
 // Can we just read dbDetails and use dbHost to point to different databases?
 // No, not easily
-require_once(dirname(__FILE__).$commonFolders.'/../../Database/dbDetails.php');
+require_once($GLOBALS['common_dir'].'/../../Database/dbDetails.php');
+
 if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 	$dbHost = intval($_SESSION['dbHost']);
 } else {
@@ -64,18 +66,18 @@ if (strpos(strtolower($_SERVER["SERVER_NAME"]), "dock")>=0) {
 
 	//NetDebug::trace('forOnlineSubs='.$_SESSION['forOnlineSubs'].' startPage='.$_SESSION['originalStartpage']);
 	// If we want to see accounts created for online subscriptions, or not
-	if (isset($_SESSION['forOnlineSubs']) && $_SESSION['forOnlineSubs']='1') {
-		$GLOBALS['onlineSubs'] = true;
-	} else {
+	//if (isset($_SESSION['forOnlineSubs']) && $_SESSION['forOnlineSubs']='1') {
+	//	$GLOBALS['onlineSubs'] = true;
+	//} else {
 		$GLOBALS['onlineSubs'] = false;
-	}
+	//}
 
 	// I use the same folders to make svn easier
 	//NetDebug::trace('config db used '.$GLOBALS['db']);
 }			
 /* Directories for Smarty, rmail & adodb libraries.  If you want these in a different location for a particular setup override them in the host
    based settings below */
-$GLOBALS['adodb_libs'] = dirname(__FILE__).$commonFolders."/adodb5/";
+$GLOBALS['adodb_libs'] = $GLOBALS['common_dir']."/adodb5/";
 // I now want smarty and rmail to sit under RM/web folder since they are not likely to be used outside
 // and this makes it easier for development.
 // But adodb is now used throughout CE.com, so it can stay in Software/Common. And it doesn't change much.
@@ -90,4 +92,4 @@ $GLOBALS['smarty_config_dir'] = $smartyRoot."/configs/";
 $GLOBALS['smarty_cache_dir'] = $smartyRoot."/cache/";
 $GLOBALS['smarty_plugins_dir'] = $smartyRoot."/plugins/";
 // Used for logging
-$GLOBALS['logs_dir'] = dirname(__FILE__).$commonFolders.'/logs/';
+$GLOBALS['logs_dir'] = $GLOBALS['common_dir'].'/logs/';

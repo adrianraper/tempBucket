@@ -10,7 +10,6 @@ package com.clarityenglish.ielts {
 	import mx.preloaders.SparkDownloadProgressBar;
 	
 	import org.davekeen.util.ClassUtil;
-	import org.flexunit.internals.dependency.ExternalDependencyResolver;
 	
 	public class IELTSPreloader extends SparkDownloadProgressBar {
 

@@ -196,31 +196,38 @@ EOD;
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
 		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
-				FROM T_Session c, T_User u
-				WHERE c.F_ProductCode = ?
-				AND c.F_UserID = u.F_UserID
-				AND c.F_EndDateStamp >= ?
+				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
+				FROM T_Session s, T_User u
+				WHERE s.F_UserID = u.F_UserID
+				AND s.F_EndDateStamp >= ?
 EOD;
 		} else {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
-				FROM T_Session c
-				WHERE c.F_ProductCode = ?
-				AND c.F_EndDateStamp >= ?
+				FROM T_Session s
+				WHERE s.F_EndDateStamp >= ?
 EOD;
 		}
 		
+		// To allow old Road to IELTS to count with the new
+		if ($productCode == 52) {
+			$sql.= "AND s.F_ProductCode IN (?, 12)";
+		} else if ($productCode == 53) {
+			$sql.= "AND s.F_ProductCode IN (?, 13)";
+		} else {
+			$sql.= "AND s.F_ProductCode = ?";			
+		}
+			
 		if (stristr($rootID,',')!==FALSE) {
-			$sql.= " AND c.F_RootID in ($rootID)";
+			$sql.= " AND s.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
 			// check all roots in that case - just for special cases, usually self-hosting
 			// Note that leaving the root empty would include teachers
-			$sql.= " AND F_RootID > 0";
+			$sql.= " AND s.F_RootID > 0";
 		} else {
-			$sql.= " AND c.F_RootID = $rootID";
+			$sql.= " AND s.F_RootID = $rootID";
 		}
-		$bindingParams = array($productCode, $licence->licenceControlStartDate);
+		$bindingParams = array($licence->licenceControlStartDate, $productCode);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
 		if ($rs && $rs->RecordCount() > 0) {

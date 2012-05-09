@@ -602,13 +602,21 @@ EOD;
 		// This is actually licence clearance date as calculated by getRMSettings
 		$datestamp = $vars['LICENCESTARTDATE'];
 		$sql = <<<EOD
-			SELECT * FROM T_Session
-			WHERE F_UserID = ?
-			AND F_ProductCode = ?
-			AND F_EndDateStamp >= ?
-			AND F_Duration > 15
+			SELECT * FROM T_Session s
+			WHERE s.F_UserID = ?
+			AND s.F_EndDateStamp >= ?
+			AND s.F_Duration > 15
 EOD;
-		$bindingParams = array($uid, $pid, $datestamp);
+		// To allow old Road to IELTS to count with the new
+		if ($pid == 52) {
+			$sql.= "AND s.F_ProductCode IN (?, 12)";
+		} else if ($pid == 53) {
+			$sql.= "AND s.F_ProductCode IN (?, 13)";
+		} else {
+			$sql.= "AND s.F_ProductCode = ?";			
+		}
+		
+		$bindingParams = array($uid, $datestamp, $pid);
 		$rs = $db->Execute($sql, $bindingParams);
 		if ($rs && $rs->RecordCount()>0) {
 			$dbObj = $rs->FetchNextObj();
@@ -631,33 +639,41 @@ EOD;
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
 		if ($vars['LICENCETYPE']=='6') {
 			$sql = <<<EOD
-				SELECT COUNT(DISTINCT(c.F_UserID)) AS licencesUsed 
-				FROM T_Session c, T_User u
-				WHERE c.F_ProductCode = ?
-				AND c.F_UserID = u.F_UserID
-				AND c.F_EndDateStamp >= ?
-				AND c.F_Duration > 15
+				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
+				FROM T_Session s, T_User u
+				WHERE s.F_UserID = u.F_UserID
+				AND s.F_EndDateStamp >= ?
+				AND s.F_Duration > 15
 EOD;
 		} else {
 		// v6.6.0 Teachers write session records, but with a root of -1
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
-				FROM T_Session c
-				WHERE c.F_ProductCode = ?
-				AND c.F_EndDateStamp >= ?
-				AND c.F_Duration > 15
+				FROM T_Session s
+				WHERE s.F_EndDateStamp >= ?
+				AND s.F_Duration > 15
 EOD;
 		}
 		if (stristr($rootID,',')!==FALSE) {
-			$sql.= " AND c.F_RootID in ($rootID)";
+			$sql.= " AND s.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
 			// check all roots in that case - just for special cases, usually self-hosting
 			// Note that leaving the root empty would include teachers
-			$sql.= " AND c.F_RootID > 0";
+			$sql.= " AND s.F_RootID > 0";
 		} else {
-			$sql.= " AND c.F_RootID = $rootID";
+			$sql.= " AND s.F_RootID = $rootID";
 		}
-		$bindingParams = array($pid, $datestamp);
+		
+		// To allow old Road to IELTS to count with the new
+		if ($productCode == 52) {
+			$sql.= "AND s.F_ProductCode IN (?, 12)";
+		} else if ($productCode == 53) {
+			$sql.= "AND s.F_ProductCode IN (?, 13)";
+		} else {
+			$sql.= "AND s.F_ProductCode = ?";			
+		}
+		
+		$bindingParams = array($datestamp, $pid);
 		$rs = $db->Execute($sql, $bindingParams);
 		if ($rs && $rs->RecordCount()>0) {
 			$dbObj = $rs->FetchNextObj();

@@ -1,9 +1,29 @@
 <?php
+/**
+ * Add session handling using AWS dynamoDB for cross-server scaling
+ */
+// Include the SDK
+require_once($GLOBALS['common_dir'].'/awsphpsdk/sdk-1.5.4/sdk.class.php');
 
 class Session {
 	
 	private static $name;
 	
+    public function __construct() {
+    	
+		// Instantiate an AWS DynamoDB client
+		/*
+		$dynamodb = new AmazonDynamoDB();
+	
+		// Instantiate, configure, and register the session handler
+		$session_handler = $dynamodb->register_session_handler(array(
+			'table_name'       => 'php_session_table',
+			'lifetime'         => 3600,
+		));
+		*/
+		session_start();
+    }
+    
 	public static function setSessionName($name) {
 		//NetDebug::trace('session.set.name='.$name);
 		self::$name = $name;
@@ -11,6 +31,7 @@ class Session {
 
 	public static function set($key, $value) {
 		$_SESSION[self::$name."_".$key] = $value;
+		session_commit();
 	}
 	
 	public static function get($key) {
@@ -29,7 +50,8 @@ class Session {
 				unset($_SESSION[$key]);
 			}
 		}
+		session_destroy();
 	}
 
 }
-?>
+
