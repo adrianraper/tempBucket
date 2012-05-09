@@ -1530,7 +1530,15 @@ EOD;
 		
 		$instanceID = $vars['INSTANCEID'];
 		$userID = $vars['USERID'];
-		$productCode = $vars['PRODUCTCODE'];
+		// v6.6.0 CS and IIE don't pass productCode, so just have to lump them together as zero.
+		// Note that you do know productCode at this point, but you DON'T when you try to do getInstanceID later.
+		if (!isset($vars['PRODUCTCODE'])) {
+			$productCode = 0;
+		} else if ($vars['PRODUCTCODE']==45 || $vars['PRODUCTCODE']==46) {
+			$productCode = 0;
+		} else {
+			$productCode = $vars['PRODUCTCODE'];
+		}
 		// v6.5.5.0 Needs coordinated action to change the database field name
 		// v6.6 Updated field name to instanceID and make is multiple product
 		

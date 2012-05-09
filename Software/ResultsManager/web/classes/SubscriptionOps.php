@@ -547,6 +547,20 @@ EOD;
 		}
 	}
 
+	/*
+	 * This is for writing partial records to the subscription table for accounts that are not yet completed
+	 */
+	public function saveAPIInformation($apiInformation) {
+		
+		// If you have been passed subscriptionID, it should be the key to this table, otherwise make a new record
+		if (isset($apiInformation->subscriptionID)) {
+			$this->db->AutoExecute("T_Subscription", $this->subscriptionAPIToAssocArray($apiInformation), "UPDATE", "F_SubscriptionID=".$apiInformation->subscriptionID);
+		} else {
+			$this->db->AutoExecute("T_Subscription", $this->subscriptionAPIToAssocArray($apiInformation), "INSERT");
+			$apiInformation->subscriptionID = $this->db->Insert_ID();
+		}
+		
+	}
 	// Write the subscription record to the database and any logs that you want
 	public function saveSubscription($account, $apiInformation) {
 
@@ -568,7 +582,25 @@ EOD;
 		$this->db->CompleteTrans();
 	
 	}
+	// Update the status of the subscription record
+	public function updateSubscriptionStatus($api) {
 
+		// You must have been passed subscriptionID
+		if (isset($api->subscriptionID)) {
+			$sql = <<<EOD
+				   UPDATE T_Subscription
+				   SET F_Status = ? 
+				   WHERE F_SubscriptionID=?
+EOD;
+			$rs = $this->db->Execute($sql, array($api->subscriptionStatus, $api->subscriptionID));
+			
+			if ($rs) 
+				return true;
+		}
+		
+		return false;				
+	}
+	
 	// =========
 	// Utility functions for this class
 	// =========
@@ -626,5 +658,45 @@ EOD;
 		
 		return $array;
 	}
+	/*
+	 * This is also for writing records to subscription table, but works just from api
+	 * and does as much as it can.
+	 */
+	function subscriptionAPIToAssocArray($api) {
+		$array = array();
+		
+		// What do we have to know?
+		$array['F_FullName'] = $api->name;
+		$array['F_Email'] = $api->email;
+		
+		// Anything else that we know?
+		if (isset($api->offerID)) 
+			$array['F_OfferID'] = implode(',',$api->offerID);
+		if (isset($api->startDate)) 
+			$array['F_StartDate'] = $api->startDate;
+		if (isset($api->expiryDate)) 
+			$array['F_ExpiryDate'] = $api->expiryDate;
+		if (isset($api->password)) 
+			$array['F_Password'] = $api->password;
+		if (isset($api->status)) 
+			$array['F_Status'] = $api->status;
+		if (isset($api->languageCode)) 
+			$array['F_LanguageCode'] = $api->languageCode;
+		if (isset($api->country)) 
+			$array['F_Country'] = $api->country;
+		if (isset($api->resellerID)) 
+			$array['F_ResellerCode'] = $api->resellerID;
+		if (isset($api->contactMethod)) 
+			$array['F_ContactMethod'] = $api->contactMethod;
+		if (isset($api->languageCode)) 
+			$array['F_LanguageCode'] = $api->languageCode;
+			
+		if (isset($api->uniqueDiscountCode)) {
+			$array['F_DiscountCode'] = $api->uniqueDiscountCode;
+		} else if (isset($api->discountCode)) {
+			$array['F_DiscountCode'] = $api->discountCode;
+		}
+		
+		return $array;
+	}
 }
-?>

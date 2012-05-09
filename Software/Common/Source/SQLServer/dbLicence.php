@@ -512,7 +512,12 @@ EOD;
 		
 		$instanceID = $vars['INSTANCEID'];
 		$userID = $vars['USERID'];
-		$productCode = $vars['PRODUCTCODE'];
+		// v6.6.0 CS and IIE don't pass productCode, so just have to lump them together
+		if (!isset($vars['PRODUCTCODE'])) {
+			$productCode = 0;
+		} else {
+			$productCode = $vars['PRODUCTCODE'];
+		}
 		// v6.5.5.0 Needs coordinated action to change the database field name
 		// v6.6 Updated field name to instanceID and make is multiple product
 		
@@ -543,7 +548,12 @@ EOD;
 		global $db;
 		
 		$userID = $vars['USERID'];
-		$productCode = $vars['PRODUCTCODE'];
+		// v6.6.0 CS and IIE don't pass productCode, so just have to lump them together
+		if (!isset($vars['PRODUCTCODE'])) {
+			$productCode = 0;
+		} else {
+			$productCode = $vars['PRODUCTCODE'];
+		}
 		
 		// #319 Instance ID per productCode
 		$instanceArray = $this->getInstanceArray($userID);
@@ -596,6 +606,7 @@ EOD;
 			WHERE F_UserID = ?
 			AND F_ProductCode = ?
 			AND F_EndDateStamp >= ?
+			AND F_Duration > 15
 EOD;
 		$bindingParams = array($uid, $pid, $datestamp);
 		$rs = $db->Execute($sql, $bindingParams);
@@ -625,20 +636,24 @@ EOD;
 				WHERE c.F_ProductCode = ?
 				AND c.F_UserID = u.F_UserID
 				AND c.F_EndDateStamp >= ?
+				AND c.F_Duration > 15
 EOD;
 		} else {
-		// v6.6.0 BUT do confirm that teachers don't write session records. If they do, we need to exclude them by joining on T_User.F_UserType=0
+		// v6.6.0 Teachers write session records, but with a root of -1
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
 				FROM T_Session c
 				WHERE c.F_ProductCode = ?
 				AND c.F_EndDateStamp >= ?
+				AND c.F_Duration > 15
 EOD;
 		}
 		if (stristr($rootID,',')!==FALSE) {
 			$sql.= " AND c.F_RootID in ($rootID)";
 		} else if ($rootID=='*') {
 			// check all roots in that case - just for special cases, usually self-hosting
+			// Note that leaving the root empty would include teachers
+			$sql.= " AND c.F_RootID > 0";
 		} else {
 			$sql.= " AND c.F_RootID = $rootID";
 		}

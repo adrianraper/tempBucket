@@ -5,18 +5,6 @@
 
 require_once(dirname(__FILE__)."/LoginService.php");
 
-// Shouldn't all the following be in LoginService?
-// All done in TemplateOps
-/*
-require_once($GLOBALS['smarty_libs']."/Smarty.class.php");
-$smarty = new Smarty();
-$smarty->template_dir = $GLOBALS['smarty_template_dir'];
-$smarty->compile_dir = $GLOBALS['smarty_compile_dir'];
-$smarty->config_dir = $GLOBALS['smarty_config_dir'];
-$smarty->cache_dir = $GLOBALS['smarty_cache_dir'];
-$smarty->plugins_dir[] = $GLOBALS['smarty_plugins_dir'];
-*/
-
 $loginService = new LoginService();
 
 // API information will come in JSON format

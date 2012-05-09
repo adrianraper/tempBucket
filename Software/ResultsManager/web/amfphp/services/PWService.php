@@ -24,6 +24,7 @@ require_once(dirname(__FILE__)."/../../classes/LoginOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
 require_once(dirname(__FILE__)."/../../classes/UsageOps.php");
+require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 //require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 //require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");

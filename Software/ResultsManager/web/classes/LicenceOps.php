@@ -405,6 +405,7 @@ EOD;
 				WHERE s.F_ProductCode = ?
 				AND s.F_UserID = u.F_UserID
 				AND s.F_EndDateStamp >= ?
+				AND s.F_Duration > 15
 EOD;
 		} else {
 			$sql = <<<EOD
@@ -412,6 +413,7 @@ EOD;
 				FROM T_Session s
 				WHERE s.F_ProductCode = ?
 				AND s.F_EndDateStamp >= ?
+				AND s.F_Duration > 15
 EOD;
 		}
 		if (stristr($rootID,',')!==FALSE) {

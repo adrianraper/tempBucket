@@ -12,6 +12,7 @@ class ApiInformation {
 	var $discountCode;
 	var $uniqueDiscountCode;
 	var $subscriptionID;
+	var $subscriptionStatus;
 	
 	// Not passed but created 
 	var $updateAccount=false;
@@ -81,6 +82,8 @@ class ApiInformation {
 			$this->emailTemplateID = $info['emailTemplateID'];
 		if (isset($info['subscriptionID'])) 
 			$this->subscriptionID = $info['subscriptionID'];
+		if (isset($info['subscriptionStatus'])) 
+			$this->subscriptionStatus = $info['subscriptionStatus'];
 			
 		if (isset($info['studentID']))
 			$this->studentID = $info['studentID'];

@@ -75,7 +75,6 @@ class BentoService extends AbstractService {
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
-		$this->copyOps = new CopyOps($this->db);
 	}
 	
 	/**

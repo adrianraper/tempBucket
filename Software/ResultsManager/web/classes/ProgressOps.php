@@ -6,6 +6,7 @@ class ProgressOps {
 	
 	function ProgressOps($db) {
 		$this->db = $db;
+		$this->copyOps = new CopyOps($db);
 	}
 	
 	/**

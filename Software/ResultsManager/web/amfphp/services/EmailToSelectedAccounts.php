@@ -38,7 +38,7 @@ function specificEmail($account, $messageType, $templateID, $addReseller = false
 	// Actually most emails you send like this probably shouldn't go to the reseller as they are global
 	//if ($messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
 	if ($addReseller) {
-		$resellerEmail = array($dmsService-> accountOps->getResellerEmail($account->resellerCode));
+		$resellerEmail = array($dmsService->accountOps->getResellerEmail($account->resellerCode));
 	} else {
 		$resellerEmail = array();
 	}

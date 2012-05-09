@@ -43,6 +43,7 @@ class UsageOps {
 	function getTitleUserCounts($title, $rootID, $fromDateStamp = null) {
 		return $this->licenceOps->countLicencesUsed($title, $rootID, $fromDateStamp);
 	}
+	
 	// The following is a public function for getting licences used for all titles in an account.
 	// Called from DMS EarlyWarning
 	function getLicencesUsedForAccount($account) {
@@ -479,6 +480,9 @@ EOD;
 		// v3.3 MySQL conversion
 		//		AND F_StartTime >= CONVERT(datetime, '$fromDateStamp', 120)
 		//		AND F_StartTime <= CONVERT(datetime, '$toDateStamp', 120)
+		
+		// v6.6 Very nasty, but only display the 'good' failures!
+		
 		$sql = 	<<<EOD
 				SELECT COUNT(*) failedLogins, F_ReasonCode
 				FROM T_Failsession
@@ -486,6 +490,7 @@ EOD;
 				AND F_RootID = ?
 				AND F_StartTime >= '$fromDateStamp'
 				AND F_StartTime <= '$toDateStamp'
+				AND F_ReasonCode in (203,204,207,208,301,211,303,212,304,209,210,213,311,312,313,220)
 				GROUP BY F_ReasonCode
 EOD;
 		
