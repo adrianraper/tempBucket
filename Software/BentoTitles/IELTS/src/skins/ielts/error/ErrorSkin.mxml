@@ -12,7 +12,7 @@
 	</s:layout>
 	
 	<s:Spacer height="0" />
-	<s:HGroup width="100%" paddingLeft="20" paddingBottom="30" >
+	<s:HGroup width="100%" paddingLeft="20" paddingBottom="30" paddingRight="20" >
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/errormessage.swf')" />
 		<s:Spacer width="10" />
 	<s:VGroup>
