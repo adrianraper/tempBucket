@@ -3,7 +3,7 @@
  * Add session handling using AWS dynamoDB for cross-server scaling
  */
 // Include the SDK
-require_once($GLOBALS['common_dir'].'/awsphpsdk/sdk-1.5.4/sdk.class.php');
+// require_once($GLOBALS['common_dir'].'/awsphpsdk/sdk-1.5.4/sdk.class.php');
 
 class Session {
 	
@@ -20,8 +20,8 @@ class Session {
 			'table_name'       => 'php_session_table',
 			'lifetime'         => 3600,
 		));
-		*/
 		session_start();
+		*/
     }
     
 	public static function setSessionName($name) {
@@ -31,7 +31,7 @@ class Session {
 
 	public static function set($key, $value) {
 		$_SESSION[self::$name."_".$key] = $value;
-		session_commit();
+		//session_commit();
 	}
 	
 	public static function get($key) {
@@ -50,7 +50,7 @@ class Session {
 				unset($_SESSION[$key]);
 			}
 		}
-		session_destroy();
+		//session_destroy();
 	}
 
 }

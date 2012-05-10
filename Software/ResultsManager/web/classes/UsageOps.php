@@ -260,16 +260,30 @@ EOD;
 		//		FROM T_Session ss, T_User u
 		//		AND ss.F_UserID = u.F_UserID
 		//		AND u.F_UserType=0
-		$sql = 	<<<EOD
+		// v3.7 For Bento titles, courseID is NOT part of session, so you have to join session and score, sadly
+		if ($title->id > 50) {
+			$sql = 	<<<EOD
+				SELECT sc.F_CourseID courseID, COUNT(ss.F_SessionID) courseCount, SUM(ss.F_Duration) duration
+				FROM T_Session ss, T_Score sc
+				WHERE ss.F_ProductCode=?
+				AND ss.F_RootID = ?
+				AND ss.F_StartDateStamp >= ?
+				AND ss.F_StartDateStamp <= ?
+				AND ss.F_SessionID = sc.F_SessionID
+				GROUP BY sc.F_CourseID
+EOD;
+		} else {
+			$sql = 	<<<EOD
 				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) courseCount, SUM(ss.F_Duration) duration
 				FROM T_Session ss
 				WHERE ss.F_ProductCode=?
 				AND ss.F_RootID = ?
-				AND ss.F_StartDateStamp >= '$fromDateStamp'
-				AND ss.F_StartDateStamp <= '$toDateStamp'
+				AND ss.F_StartDateStamp >= ?
+				AND ss.F_StartDateStamp <= ?
 				GROUP BY ss.F_CourseID
 EOD;
-		$bindingParams = array($title->id, Session::get('rootID'));
+		}
+		$bindingParams = array($title->id, Session::get('rootID'), $fromDateStamp, $toDateStamp);
 		//NetDebug::trace("USAGE: sql=".$sql);		
 		//NetDebug::trace("bindings=".implode(",",$bindingParams));		
 		// Unfortunately date bindings don't seem to work so they are directly embedded in the SQL string
@@ -482,7 +496,6 @@ EOD;
 		//		AND F_StartTime <= CONVERT(datetime, '$toDateStamp', 120)
 		
 		// v6.6 Very nasty, but only display the 'good' failures!
-		
 		$sql = 	<<<EOD
 				SELECT COUNT(*) failedLogins, F_ReasonCode
 				FROM T_Failsession

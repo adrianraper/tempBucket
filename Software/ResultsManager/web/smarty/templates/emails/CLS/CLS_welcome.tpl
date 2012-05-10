@@ -8,8 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome to ClarityLifeSkills</title>
 	<!-- <from>support@claritylifeskills.com</from> -->
-	<!-- <cc>accounts@clarityenglish.com</cc> -->
-	<!-- <bcc>andrew.stokes@clarityenglish.com</bcc> -->
+	<!-- <cc>adrian.raper@clarityenglish.com</cc> -->
 </head>
 <body>
 	
@@ -113,28 +112,9 @@
     <td>You have subscribed to:</td>
   </tr>
 <!--Subscription details-->
-{* We currently only have two mutually exclusive packages. So if they have ordered TB it means they have package 1, if IYJ then package 2 *}
-{* Not at all sure how we would work this out if more packages become overlapping. Will need a package ID(s) somewhere in T_AccountRoot *}
 {foreach name=orderDetails from=$account->titles item=title}
-    {if ($title->productCode==9)} 
-		{assign var='generalEnglishpackage' value='true'}
-    {elseif ($title->productCode==1001)} 
-		{assign var='careerEnglishpackage' value='true'}
-	{/if}
+    productCode = {$title->productCode}<br/> 
 {/foreach}
-
-{if $generalEnglishpackage=='true'}
-	{assign var='thisImage' value='title_GE_email.jpg'}
-	{assign var='thisName' value='General English'}
-	{assign var='thisPackageList' value='3,9,33,39'}
-	{include file='file:includes/CLS_welcome_package_details.tpl'}	
-{/if}
-{if $careerEnglishpackage=='true'}
-	{assign var='thisImage' value='title_CE_email.jpg'}
-	{assign var='thisName' value='Career English'}
-	{assign var='thisPackageList' value='10,40,43,1001'}
-	{include file='file:includes/CLS_welcome_package_details.tpl'}	
-{/if}
   
   <tr>
     <td height="5"></td>

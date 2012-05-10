@@ -162,12 +162,21 @@ EOD;
 	function checkExistingLicence($user, $productCode, $licence) {
 		// Is there a record in T_Session for this user/product since the date?
 		$sql = <<<EOD
-			SELECT * FROM T_Session
-			WHERE F_UserID = ?
-			AND F_ProductCode = ?
-			AND F_EndDateStamp >= ?
+			SELECT * FROM T_Session s
+			WHERE s.F_UserID = ?
+			AND s.F_EndDateStamp >= ?
 EOD;
-		$bindingParams = array($user->userID, $productCode, $licence->licenceControlStartDate);
+
+		// To allow old Road to IELTS to count with the new
+		if ($productCode == 52) {
+			$sql.= " AND s.F_ProductCode IN (?, 12)";
+		} else if ($productCode == 53) {
+			$sql.= " AND s.F_ProductCode IN (?, 13)";
+		} else {
+			$sql.= " AND s.F_ProductCode = ?";			
+		}
+		
+		$bindingParams = array($user->userID, $licence->licenceControlStartDate, $productCode);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
 		// SQL error
@@ -409,8 +418,7 @@ EOD;
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(u.F_UserID)) AS licencesUsed 
 				FROM T_Session s, T_User u
-				WHERE s.F_ProductCode = ?
-				AND s.F_UserID = u.F_UserID
+				WHERE s.F_UserID = u.F_UserID
 				AND s.F_EndDateStamp >= ?
 				AND s.F_Duration > 15
 EOD;
@@ -418,8 +426,7 @@ EOD;
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
 				FROM T_Session s
-				WHERE s.F_ProductCode = ?
-				AND s.F_EndDateStamp >= ?
+				WHERE s.F_EndDateStamp >= ?
 				AND s.F_Duration > 15
 EOD;
 		}
@@ -432,10 +439,20 @@ EOD;
 		} else {
 			$sql.= " AND s.F_RootID = $rootID";
 		}
+		
+		// To allow old Road to IELTS to count with the new
+		if ($title->productCode == 52) {
+			$sql.= " AND s.F_ProductCode IN (?, 12)";
+		} else if ($title->productCode == 53) {
+			$sql.= " AND s.F_ProductCode IN (?, 13)";
+		} else {
+			$sql.= " AND s.F_ProductCode = ?";			
+		}
+		
 		//NetDebug::trace("USAGE: sql=".$sql);		
 		//NetDebug::trace("params: pc=".$title->productCode." date=$fromDate");		
 		
-		$rs = $this->db->GetRow($sql, array($title->productCode, $fromDate));
+		$rs = $this->db->GetRow($sql, array($fromDate, $title->productCode));
 		if ($rs) {
 			$licencesUsed = (int)$rs['licencesUsed'];
 		} else {

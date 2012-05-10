@@ -20,7 +20,8 @@
 
 require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/ApiInformation.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/SubscriptionApi.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscription.php");
 
 $dmsService = new DMSService();
 $nonApiInformation = array();
@@ -33,17 +34,18 @@ function loadAPIInformation() {
 	global $nonApiInformation;
 	
 	$postInformation= json_decode(file_get_contents("php://input"), true);	
-	//$presetString = '{"method":"addSubscription","email":"adrian.raper@clarityenglish.com"}';
-	$presetString = '{"method":"saveSubscriptionDetails","email":"adrian.raper@clarityenglish.com","name":"Adrian\'s Raper","country":"Hong Kong","offerID":10,"startDate":"2012-05-09":"expiryDate":"2012-08-08","status":"initial"}';
+	//$presetString = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima@clarityenglish.com","offerID":59,"resellerID":21,"password":"sweetcustard","orderRef":"201100000042","emailTemplateID":"CLS_welcome"}';
+	$presetString = '{"method":"saveSubscriptionDetails","email":"adrian.raper@clarityenglish.com","name":"Adrian\'s Raper","country":"Hong Kong","resellerID":24,"orderRef":"12345678","offerID":10,"status":"initial"}';
+	//$presetString = '{"method":"updateSubscriptionStatus","subscriptionID":998,"status":"paid"}';
 	$postInformation = json_decode($presetString, true);
 	
 	// We are expecting a method and parameters as an object
 	// First check mandatory fields exist
-	if (!isset($postInformation['method'])) {
+	if (!isset($postInformation['method']))
 		throw new Exception("No method has been sent");
-	}
+		
 	// If you send a subscriptionID, you can skip everything else
-	if (!isset($postInformation['subscriptionID']) && $postInformation['subscriptionID'] > 0) {
+	if (!isset($postInformation['subscriptionID'])) {
 	
 		if (!isset($postInformation['name']))
 			throw new Exception("No name has been sent");
@@ -62,16 +64,16 @@ function loadAPIInformation() {
 			
 	}
 			
-	$apiInformation = new ApiInformation();
-	$apiInformation->createFromSentFields($postInformation);
-	//echo $apiInformation->toString().'<br/>';
+	$api = new SubscriptionAPI();
+	$api->createFromSentFields($postInformation);
+	
 	// Rather than jam up the database, I will do this with files I think. Then need to clear them out regularly.
-	AbstractService::$debugLog->info("loadAPIInformation=".$apiInformation->toString());
+	//AbstractService::$debugLog->info("loadAPIInformation=".$api->toString());
 	
 	// Can you pick up and save anything you weren't expecting so you can just return it back?
-	$nonApiInformation = $apiInformation->unknownFields($postInformation);
+	$nonApiInformation = $api->unknownFields($postInformation);
 	
-	return $apiInformation;
+	return $api;
 	
 }	
 function returnError($errCode, $data = null) {
@@ -131,7 +133,6 @@ function returnError($errCode, $data = null) {
 try {
 	// Read and validate the data
 	$apiInformation = loadAPIInformation();
-	//AbstractService::$log->notice("calling validate=".$apiInformation->resellerID);
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
 	$dbDetails = new DBDetails($apiInformation->dbHost);
@@ -143,11 +144,12 @@ try {
 		// Called to simply save a set of details in our table. Most likely to be called
 		// before we send details to payment gateway to help us recover later.
 		case "saveSubscriptionDetails":
-			$rc = $dmsService->subscriptionOps->saveAPIInformation($apiInformation);
+			$apiInformation->subscription->id = $dmsService->subscriptionOps->saveSubscription($apiInformation);
 			
-			if (!$rc)
+			if (!$apiInformation->subscription->id)
 				returnError(1, 'Subscription details not saved '.$apiInformation->toString());
-				
+			
+			$apiReturnInfo = array('subscriptionID' => $apiInformation->subscription->id);
 			break;
 			
 		case "updateSubscriptionStatus":
@@ -156,10 +158,27 @@ try {
 			if (!$rc)
 				returnError(1, 'Subscription status not udpated '.$apiInformation->toString());
 				
+			$apiReturnInfo = array('subscriptionID' => $apiInformation->subscription->id);
 			break;
 			
 		case "addSubscription":
-			//echo "loaded API";
+			
+			// If we received a subscription ID, then pick up data from the table using that as a key
+			if ($apiInformation->subscription->id) {
+				
+				$subscriptionData = new Subscription();
+				$sql = <<<EOD
+				SELECT * FROM T_Subscription
+				WHERE F_SubscriptionID = ?
+EOD;
+				$bindingParams = array($apiInformation->subscription->id);
+				$rs = $dmsService->db->Execute($sql, $bindingParams);
+				if ($rs->RecordCount() == 1)
+					$subscriptionData->fromDatabaseObj($dbObj);
+								
+				$apiInformation->subscription = $subscriptionData;
+			} 
+			
 			$rc = $dmsService->subscriptionOps->validateAPIInformation($apiInformation);
 			if (isset($rc['errCode']) && parseInt($rc['errCode']) > 0) {
 				returnError($rc['errCode'], $rc['data']);
@@ -174,23 +193,25 @@ try {
 			// Add the titles to this account
 			$dmsService->subscriptionOps->addTitlesToAccount($account, $apiInformation);
 		
-			// Then add or update the account and subscription records (allow to skip like emails for testing)
+			// Then add or update the account (skip if just testing)
 			if (!$apiInformation->transactionTest) {
-				//AbstractService::$log->notice("call saveAccount for ".$account->adminUser->email);
-				$dmsService->subscriptionOps->saveAccount($account, $apiInformation);
-				//AbstractService::$log->notice("call saveSubscription for ".$apiInformation->orderRef);
-				$dmsService->subscriptionOps->saveSubscription($account, $apiInformation);
+				$dmsService->subscriptionOps->saveAccount($account);
+				
+				// make the root of the changed account explicit in the log
+				AbstractService::$log->setRootID($account->id);
+				AbstractService::$log->notice("Created CLS subscription=".$account->name.", sub id=".$apiInformation->subscription->id.', for reseller='.$apiInformation->subscription->resellerID);
+				
 			} else {
 				AbstractService::$debugLog->warning("skip saving account and subscription for ".$account->name);
 			}
-		
+			$apiInformation->subscription->status = 'Account created';
+			$dmsService->subscriptionOps->updateSubscriptionStatus($apiInformation);
+				
 			// If they want an email sent, do that
-			if (!$apiInformation->transactionTest && (isset($apiInformation->emailTemplateID) && $apiInformation->emailTemplateID!='')) {
+			if (isset($apiInformation->emailTemplateID) && $apiInformation->emailTemplateID!='') {
 				//AbstractService::$log->notice("call sendEmail for ".$apiInformation->sendEmail);
 				$dmsService->subscriptionOps->sendEmail($account, $apiInformation);
 				AbstractService::$debugLog->info("sent email to ".$account->adminUser->email.' using '.$apiInformation->emailTemplateID);
-			} else {
-				AbstractService::$debugLog->warning("skip sending email to ".$account->adminUser->email);
 			}
 		
 			// TODO: Whilst we log the new account, we should also send our accounts team an email
@@ -201,7 +222,7 @@ try {
 			
 			// If there is any other processing for specific resellers/offers etc, do that here
 			if (!$apiInformation->transactionTest) {
-				switch ($apiInformation->resellerID) {
+				switch ($apiInformation->subscription->resellerID) {
 					// First case is iLearnIELTS triggers an email to DHL for package delivery
 					case 27: 
 						$to = 'iLearnIELTS@dhl.com';
@@ -236,20 +257,23 @@ try {
 			}
 			
 			// Send back success variables
-			$apiReturnInfo = array('password' => $account->adminUser->password, 
-								'orderRef' => $apiInformation->orderRef, 
+			// I would rather send back the account object, but the API is expecting individual bits
+			// I could pass account as well and then phase out the others...
+			$apiReturnInfo = array('account' => $account,
+								'subscriptionID' => $apiInformation->subscription->id, 
+								'password' => $account->adminUser->password, 
+								'orderRef' => $apiInformation->subscription->orderRef, 
 								'CLSreference' => $account->invoiceNumber, 
-								'emailSentTo' => $account->adminUser->email.', '.$account->email, 
-								'subscriptionID' => $apiInformation->subscriptionID, 
+								'emailSentTo' => $account->adminUser->email, 
 								'prefix' => $account->prefix);
-			// Also send back any variables that you were sent, but don't understand
-			$returnInfo = array_merge($apiReturnInfo, $nonApiInformation);
 
 			break;
 		default:
 			returnError(1, 'Invalid method '.$apiInformation->method);
 						
 	}
+	// Also send back any variables that you were sent, but don't understand
+	$returnInfo = array_merge($apiReturnInfo, $nonApiInformation);
 	
 	echo json_encode($returnInfo);
 	

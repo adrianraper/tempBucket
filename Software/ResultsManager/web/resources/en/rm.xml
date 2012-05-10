@@ -176,6 +176,9 @@
 			<lit name="failedLoginCounts">How many people failed to log in, and why?</lit>
 			<lit name="failures">Failures</lit>
 			<lit name="failureReasons">Reason for failure</lit>
+			<lit name="databaseError">The database didn't save the licence.</lit>
+			<lit name="authenticationError">An unauthorised access was blocked.</lit>
+			<lit name="invalidLoginError">The login details were invalid.</lit>
 			<lit name="unknownFailedLoginReason">Reason not known.</lit>
 			<lit name="noSuchLearnerID">The learner ID did not exist.</lit>
 			<lit name="passwordWrong">The password was wrong.</lit>

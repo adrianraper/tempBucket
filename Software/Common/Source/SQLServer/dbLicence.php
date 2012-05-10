@@ -606,15 +606,8 @@ EOD;
 			WHERE s.F_UserID = ?
 			AND s.F_EndDateStamp >= ?
 			AND s.F_Duration > 15
+			AND s.F_ProductCode = ?
 EOD;
-		// To allow old Road to IELTS to count with the new
-		if ($pid == 52) {
-			$sql.= "AND s.F_ProductCode IN (?, 12)";
-		} else if ($pid == 53) {
-			$sql.= "AND s.F_ProductCode IN (?, 13)";
-		} else {
-			$sql.= "AND s.F_ProductCode = ?";			
-		}
 		
 		$bindingParams = array($uid, $datestamp, $pid);
 		$rs = $db->Execute($sql, $bindingParams);
@@ -644,6 +637,7 @@ EOD;
 				WHERE s.F_UserID = u.F_UserID
 				AND s.F_EndDateStamp >= ?
 				AND s.F_Duration > 15
+				AND s.F_ProductCode = ?
 EOD;
 		} else {
 		// v6.6.0 Teachers write session records, but with a root of -1
@@ -652,6 +646,7 @@ EOD;
 				FROM T_Session s
 				WHERE s.F_EndDateStamp >= ?
 				AND s.F_Duration > 15
+				AND s.F_ProductCode = ?
 EOD;
 		}
 		if (stristr($rootID,',')!==FALSE) {
@@ -664,14 +659,7 @@ EOD;
 			$sql.= " AND s.F_RootID = $rootID";
 		}
 		
-		// To allow old Road to IELTS to count with the new
-		if ($productCode == 52) {
-			$sql.= "AND s.F_ProductCode IN (?, 12)";
-		} else if ($productCode == 53) {
-			$sql.= "AND s.F_ProductCode IN (?, 13)";
-		} else {
-			$sql.= "AND s.F_ProductCode = ?";			
-		}
+		// To allow old Road to IELTS to count with the new. Rather pointless since ne Road to IELTS doesn't use this script!
 		
 		$bindingParams = array($datestamp, $pid);
 		$rs = $db->Execute($sql, $bindingParams);

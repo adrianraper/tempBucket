@@ -26,32 +26,31 @@ class SubscriptionOps {
 	function validateApiInformation($apiInformation) {
 		//AbstractService::$log->notice("validateAPIInformation: reseller=".$apiInformation->resellerID);
 		// Check the reseller is valid
-		if (!is_numeric($apiInformation->resellerID)) {
-			returnError(1, "resellerID is invalid ".$apiInformation->resellerID);
+		$resellerID = $apiInformation->subscription->resellerID;
+		if (!is_numeric($resellerID)) {
+			returnError(1, "resellerID is invalid ".$resellerID);
 		}
-		$rc = $this->checkResellerID($apiInformation->resellerID);
+		$rc = $this->checkResellerID($resellerID);
 		if ($rc===false) {
-			returnError(204, $apiInformation->resellerID);
+			returnError(204, $resellerID);
 		} else {
 			$apiInformation->resellerEmail = $rc;
 		}
 		
 		// Next we need to check that the offerID is valid
 		// Convert a single offerID into an array, then validate each item in the array
-		if (!is_array($apiInformation->offerID)) {
-			// Its not an array, but is it a comma delimited string?
-			if (count(explode(',', $apiInformation->offerID)) > 1) {
-				$apiInformation->offerID = explode(',', $apiInformation->offerID);
-			} else {
-				$apiInformation->offerID = array($apiInformation->offerID);
+		$offerID = $apiInformation->subscription->offerID;
+		//if (count(explode(',', $offerID)) > 1) {
+			$offerID = explode(',', $offerID);
+		//} else {
+		//	$offerID = array($offerID);
+		//}
+		foreach($offerID as $oID) {
+			if (!is_numeric($oID)) {
+				returnError(1, "offerID is invalid ".$oID);
 			}
-		}
-		foreach($apiInformation->offerID as $offerID) {
-			if (!is_numeric($offerID)) {
-				returnError(1, "offerID is invalid ".$offerID);
-			}
-			if (!$this->checkOfferID($offerID)) {
-				returnError(202, $offerID);
+			if (!$this->checkOfferID($oID)) {
+				returnError(202, $oID);
 			} else {
 				//echo " with a good offer ";
 			}
@@ -60,34 +59,33 @@ class SubscriptionOps {
 		// If they have sent a password it implies that this is adding to an existing account.
 		// TODO: Not a good test as they maybe are sending a desired password for a new account.
 		// Why not have a method name instead? Yes
-		//if (isset($apiInformation->password)) {
 		if (stristr($apiInformation->method, 'update') !== false) {
 			// So check the email/password combination. If success, we can keep going in update mode.
 			// If fail, send back an error.
-			$rc = $this->manageableOps->checkEmailPassword($apiInformation->email, $apiInformation->password, $apiInformation->licenceType);
+			$rc = $this->manageableOps->checkEmailPassword($apiInformation->subscription->email, $apiInformation->subscription->password, $apiInformation->licenceType);
 			if ($rc == 0) {
-				returnError(201);
+				returnError(201, 'Password was wrong');
 			} elseif ($rc==1) {
 				//echo "this is an update for an existing email";
-				$apiInformation->updateAccount=true;
+				// $apiInformation->updateAccount=true;
 			} else {
 				returnError(203);
 			}
 		} else {
-			// If there is no password, then we want to check that this email address is unique for a CLS account
+			// We want to check that this email address is unique for a CLS account
 			// If not unique, we send back an error
-			if (!$this->manageableOps->checkUniqueEmail($apiInformation->email, $apiInformation->licenceType)) {
-				returnError(200, $apiInformation->email);
+			if (!$this->manageableOps->checkUniqueEmail($apiInformation->subscription->email, $apiInformation->licenceType)) {
+				returnError(200, $apiInformation->subscription->email);
 			} else {
 				//echo "this is a new email";
-				$apiInformation->updateAccount=false;
+				// $apiInformation->updateAccount=false;
 			}
 		}
 
 		// Check that a unique discount code has not been used already
-		if (isset($apiInformation->uniqueDiscountCode) && $apiInformation->uniqueDiscountCode != '') {
-			if (!$this->checkUniqueDiscountCode($apiInformation->uniqueDiscountCode)) {
-				returnError(205, $apiInformation->uniqueDiscountCode);
+		if (isset($apiInformation->subscription->discountCode) && $apiInformation->subscription->discountCode != '') {
+			if (!$this->checkUniqueDiscountCode($apiInformation->subscription->discountCode)) {
+				returnError(205, $apiInformation->subscription->discountCode);
 			} else {
 				//echo "this discount code is unique";
 			}
@@ -104,12 +102,12 @@ class SubscriptionOps {
 		}
 		
 		// Check that any subscriptionID passed is valid
-		if (isset($apiInformation->subscriptionID) && $apiInformation->subscriptionID != '') {
+		if (isset($apiInformation->subscription->id) && $apiInformation->subscription->id != '') {
 			//echo 'Check subscription ID '.$apiInformation->subscriptionID;
-			if (!$this->checkSubscriptionID($apiInformation->subscriptionID)) {
+			if (!$this->checkSubscriptionID($apiInformation->subscription->id)) {
 				// Do you want to return an error, or just wipe the subscription ID so that we create a new one?
 				//returnError(207, $apiInformation->subscriptionID);
-				unset($apiInformation->subscriptionID);
+				unset($apiInformation->subscription->id);
 			} else {
 				//echo "this discount code is valid";
 			}
@@ -182,8 +180,28 @@ EOD;
 				return false;
 		}
 	}
-	// Check that any unique discount code has not been used before
+	// Check that this subscription records exists
 	function checkSubscriptionID($id=0) {
+	
+		$sql = 	<<<EOD
+			SELECT * 
+			FROM T_Subscription s
+			WHERE s.F_SubscriptionID = ?
+EOD;
+		$rs = $this->db->Execute($sql, array($id));
+		
+		switch ($rs->RecordCount()) {
+			case 1:
+				// 1 matching record, so all is well
+				return true;
+				break;
+			default:
+				// Nothing matches, so no such ID
+				return false;
+		}
+	}
+	// Check that this subscription records exists
+	function getSubscriptionRecord($id = 0) {
 	
 		$sql = 	<<<EOD
 			SELECT * 
@@ -208,21 +226,25 @@ EOD;
 	public function getAccountDetails($apiInformation) {
 		
 		// Just pick up an existing account, or create a new one?
-		if ($apiInformation->updateAccount) {
+		if (stristr($apiInformation->method, 'update') !== false) {
 			return $this->accountOps->getAccountFromEmail($apiInformation->email);
+			
 		} else {
 			// What information do you need to build a new account?
 			$account = new Account();
-			$account->name = $apiInformation->name;
+			$account->name = $apiInformation->subscription->name;
 			//echo 'building up '.$account->name;
-			if (isset($apiInformation->resellerEmail))
-				$account->email = $apiInformation->resellerEmail; //$apiInformation->email;
-			$account->resellerCode = $apiInformation->resellerID;
-			$account->name = $apiInformation->name;
+			
+			// Email comes from T_User and T_Reseller now
+			//if (isset($apiInformation->resellerEmail))
+			//	$account->email = $apiInformation->resellerEmail; //$apiInformation->email;
+			
+			$account->resellerCode = $apiInformation->subscription->resellerID;
+			
 			// No, the order ref is the reseller reference. We should save it, but generate our own invoice number
 			//$account->note = 'Reseller ref='.$apiInformation->orderRef;
 			//$account->invoiceNumber = $apiInformation->orderRef;			
-			$account->invoiceNumber = time();
+			$account->invoiceNumber = $apiInformation->subscription->id;
 			
 			$account->tacStatus = $apiInformation->tacStatus;
 			$account->accountType = $apiInformation->accountType;
@@ -235,10 +257,10 @@ EOD;
 			// Adding the purchaser as the admin user
 			$thisUser = new User();
 			$thisUser->name = $account->name;
-			$thisUser->email = $apiInformation->email;
+			$thisUser->email = $apiInformation->subscription->email;
 			// If they sent a password, it means this is the one they want to use
-			if (isset($apiInformation->password) && $apiInformation->password != '') {
-				$thisUser->password = $apiInformation->password;
+			if (isset($apiInformation->subscription->password) && $apiInformation->subscription->password != '') {
+				$thisUser->password = $apiInformation->subscription->password;
 			} else {
 				$thisUser->password = $this->generatePassword();
 			}
@@ -246,16 +268,20 @@ EOD;
 			if (isset($apiInformation->studentID)) {
 				$thisUser->studentID = $apiInformation->studentID;
 			}
-			if (isset($apiInformation->country)) {
-				$thisUser->country = $apiInformation->country;
+			if (isset($apiInformation->subscription->country)) {
+				$thisUser->country = $apiInformation->subscription->country;
 			}
 			if (isset($apiInformation->city)) {
 				$thisUser->city = $apiInformation->city;
 			}
-			if (isset($apiInformation->contactMethod)) {
-				$thisUser->contactMethod = $apiInformation->contactMethod;
+			if (isset($apiInformation->subscription->contactMethod)) {
+				$thisUser->contactMethod = $apiInformation->subscription->contactMethod;
 			}
-			$thisUser->startDate = date('Y-m-d').' 00:00:00';
+			if (isset($apiInformation->subscription->startDate)) {
+				$thisUser->startDate = $apiInformation->subscription->startDate;
+			} else {
+				$thisUser->startDate = date('Y-m-d').' 00:00:00';
+			}
 			$thisUser->expiryDate = '';
 			$account->adminUser = $thisUser;
 		
@@ -280,11 +306,11 @@ EOD;
 			//echo "offer title is ".$newTitle->productCode.'<br/>';
 			foreach ($account->titles as $title) {
 				//echo "Existing title is ".$title->productCode.' expiring on '.$title-> expiryDate.'<br/>';
-				if ($title->productCode == $newTitle-> productCode) {
+				if ($title->productCode == $newTitle->productCode) {
 					//echo 'add same one but expiring on '.$newTitle-> expiryDate.'<br/>';
 					// TODO: This is not a sensible renewal set of rules
 					// Take the latest expiry date and the corresponding number of students
-					if (!$newTitle->expiryDate > $title-> expiryDate) {
+					if (!$newTitle->expiryDate > $title->expiryDate) {
 						// The new title doesn't extend the existing one, so just delete it?
 						throw new Exception("Unexpected: the new title doesn't extend the old one.".$title->productCode);
 					} else {
@@ -306,8 +332,8 @@ EOD;
 		// Expect offerID to be an array - and just pick up all packages within all the included offers
 		// We could get distinct productCode?
 		$titles = array();
-		$offerID = implode(',',$apiInformation->offerID);
-		
+		$offerID = $apiInformation->subscription->offerID;
+				
 		//	SELECT pc.F_ProductCode as productCode, o.F_Duration as duration
 		$sql = 	<<<EOD
 			SELECT distinct(pc.F_ProductCode) as productCode, o.F_Duration as duration
@@ -326,17 +352,17 @@ EOD;
 				// Not true, you could choose two offers with different durations. 
 				// The following code will work for creating the titles, buy you end up with apiInformation->expiryDate JUST for the last offer
 				// Expiring today plus duration.
-				$apiInformation->startDate = date('Y-m-d').' 00:00:00';
+				$apiInformation->subscription->startDate = date('Y-m-d').' 00:00:00';
 				//$thisTitle->expiryDate = date_format((new DateTime()->modify('+'.$record->duration.' day'), 'Y-m-d');
 				$expiryDate = strtotime('+'.$record->duration.' days');
-				$apiInformation->expiryDate = date('Y-m-d', $expiryDate).' 23:59:59';
+				$apiInformation->subscription->expiryDate = date('Y-m-d', $expiryDate).' 23:59:59';
 				
 				$thisTitle = new Title();
 				//var_dump($record);
 				//echo 'ccc'.$record->productCode;
 				$thisTitle->productCode = $record->productCode;
 				//echo 'offer title name is '.$thisTitle->name.' from '.$thisTitle->productCode.'<br/>';
-				$thisProduct = $this->accountOps->contentOps->getDetailsFromProductCode($thisTitle->productCode, $apiInformation->languageCode);
+				$thisProduct = $this->accountOps->contentOps->getDetailsFromProductCode($thisTitle->productCode, $apiInformation->subscription->languageCode);
 				$thisTitle->name = $thisProduct['name'];
 				//echo 'offer title name is '.$thisTitle->name.' from '.$thisTitle->productCode.'<br/>';
 				$thisTitle->licenceType = $apiInformation->licenceType;
@@ -346,16 +372,16 @@ EOD;
 				$thisTitle->maxAuthors = $apiInformation->maxAuthors;
 
 				// Starting today
-				$thisTitle->licenceStartDate = $apiInformation->startDate;
-				$thisTitle->expiryDate = $apiInformation->expiryDate;
+				$thisTitle->licenceStartDate = $apiInformation->subscription->startDate;
+				$thisTitle->expiryDate = $apiInformation->subscription->expiryDate;
 				//echo 'offer expiry date='.$thisTitle->expiryDate;
 				
 				// The language code you sent with api MIGHT be wrong for this product (EN for CSCS for instance)
 				// getDetailsFromProductCode will have sent back the default if yours is not good, so use that
 				//$thisTitle->languageCode = $apiInformation->languageCode;
 				$thisTitle->languageCode = $thisProduct['languageCode'];
-				//$thisTitle->deliveryFrequency = $apiInformation->deliveryFrequency;
-				//$thisTitle->contactMethod = $apiInformation->contactMethod;
+				//$thisTitle->deliveryFrequency = $apiInformation->subscription->deliveryFrequency;
+				//$thisTitle->contactMethod = $apiInformation->subscription->contactMethod;
 
 				$titles[] = $thisTitle;
 				
@@ -372,7 +398,7 @@ EOD;
 						$thisTitle = new Title();
 						$thisTitle->productCode = $licencedProductCode;
 						
-						$thisProduct = $this->accountOps->contentOps->getDetailsFromProductCode($thisTitle->productCode, $apiInformation->languageCode);
+						$thisProduct = $this->accountOps->contentOps->getDetailsFromProductCode($thisTitle->productCode, $apiInformation->subscription->languageCode);
 						$thisTitle->name = $thisProduct['name'];
 						//echo 'offer title name is '.$thisTitle->name.' from '.$thisTitle->productCode.'<br/>';
 						$thisTitle->licenceType = $apiInformation->licenceType;
@@ -382,9 +408,9 @@ EOD;
 						$thisTitle->maxAuthors = $apiInformation->maxAuthors;
 
 						// Starting today
-						$thisTitle->licenceStartDate = $apiInformation->startDate;
-						$thisTitle->expiryDate = $apiInformation->expiryDate;
-						$thisTitle->languageCode = $apiInformation->languageCode;
+						$thisTitle->licenceStartDate = $apiInformation->subscription->startDate;
+						$thisTitle->expiryDate = $apiInformation->subscription->expiryDate;
+						$thisTitle->languageCode = $apiInformation->subscription->languageCode;
 						
 						$titles[] = $thisTitle;
 						
@@ -403,15 +429,14 @@ EOD;
 	}
 	// For sending out customer email once the account is created
 	public function sendEmail($account, $apiInformation, $send=true) {
+		
+		// This should use the EmailService
+		
 		// If the admin email is different from the account email, cc
 		$templateID = $apiInformation->emailTemplateID;
-		$accountEmail = $account->email;
 		$adminEmail = $account->adminUser->email;
 		$emailData = array("account" => $account, "api"=>$apiInformation);
 		$emailArray = array("to" => $adminEmail, "data" => $emailData);
-		if ($accountEmail != $adminEmail && $accountEmail && $accountEmail!= '') {
-			$emailArray["cc"] = array($accountEmail);
-		}
 						
 		// Check that the template exists
 		// All templates for CLS exist in the subfolder
@@ -535,64 +560,51 @@ EOD;
 	}
 
 	// Save the account object you have built up
-	public function saveAccount($account, $apiInformation) {
+	public function saveAccount($account) {
 	
-		if ($apiInformation->updateAccount) {
+		// TODO. We don't have update yet
+		/*
+		if (stristr($apiInformation->method, 'update') !== false) {
 			//echo "try to upgrade the account<br/>";
 			$this->accountOps->updateAccounts(array($account));
 		} else {
-			//echo "try to add a new account<br/>";
+		*/
 			// For early testing, you might not want to actually add the account
 			$this->accountOps->addAccount($account);
-		}
+		//}
 	}
 
-	/*
-	 * This is for writing partial records to the subscription table for accounts that are not yet completed
-	 */
-	public function saveAPIInformation($apiInformation) {
-		
-		// If you have been passed subscriptionID, it should be the key to this table, otherwise make a new record
-		if (isset($apiInformation->subscriptionID)) {
-			$this->db->AutoExecute("T_Subscription", $this->subscriptionAPIToAssocArray($apiInformation), "UPDATE", "F_SubscriptionID=".$apiInformation->subscriptionID);
-		} else {
-			$this->db->AutoExecute("T_Subscription", $this->subscriptionAPIToAssocArray($apiInformation), "INSERT");
-			$apiInformation->subscriptionID = $this->db->Insert_ID();
-		}
-		
-	}
 	// Write the subscription record to the database and any logs that you want
-	public function saveSubscription($account, $apiInformation) {
+	public function saveSubscription($apiInformation) {
 
 		$this->db->StartTrans();
 
 		// If you have been passed subscriptionID, it should be the key to this table, otherwise make a new record
+		$assocArray = $apiInformation->subscription->toAssocArray();
 		if (isset($apiInformation->subscriptionID)) {
-			$this->db->AutoExecute("T_Subscription", $this->subscriptionToAssocArray($account, $apiInformation), "UPDATE", "F_SubscriptionID=".$apiInformation->subscriptionID);
+			$this->db->AutoExecute("T_Subscription", $assocArray, "UPDATE", "F_SubscriptionID=".$apiInformation->subscription->id);
 		} else {
-			$this->db->AutoExecute("T_Subscription", $this->subscriptionToAssocArray($account, $apiInformation), "INSERT");
-			$apiInformation->subscriptionID = $this->db->Insert_ID();
+			$this->db->AutoExecute("T_Subscription", $assocArray, "INSERT");
+			$apiInformation->subscription->id = $this->db->Insert_ID();
 		}
 		
-		// make the root of the changed account explicit in the log
-		AbstractService::$log->setRootID($account->id);
-		AbstractService::$log->notice("Created CLS subscription=".$account->name.", sub id=".$apiInformation->subscriptionID.', for reseller='.$apiInformation->resellerID);
-
 		// TODO: Write a file log as well in case database errors
 		$this->db->CompleteTrans();
+		
+		return $apiInformation->subscription->id;
 	
 	}
 	// Update the status of the subscription record
 	public function updateSubscriptionStatus($api) {
 
 		// You must have been passed subscriptionID
-		if (isset($api->subscriptionID)) {
+		if (isset($api->subscription->id)) {
 			$sql = <<<EOD
 				   UPDATE T_Subscription
 				   SET F_Status = ? 
-				   WHERE F_SubscriptionID=?
+				   WHERE F_SubscriptionID = ?
 EOD;
-			$rs = $this->db->Execute($sql, array($api->subscriptionStatus, $api->subscriptionID));
+			$rs = $this->db->Execute($sql, array($api->subscription->status, $api->subscription->id));
 			
 			if ($rs) 
 				return true;
@@ -632,71 +644,5 @@ EOD;
 		//}
 	  }
 	  return $password;
-	}
-	function subscriptionToAssocArray($account, $api) {
-		$array = array();
-		
-		// What do we certainly know?
-		$array['F_FullName'] = $account->name;
-		$array['F_Email'] = $account->adminUser->email;
-		$array['F_RootID'] = $account->id;
-		$array['F_OfferID'] = implode(',',$api->offerID);
-		$array['F_StartDate'] = $api->startDate;
-		$array['F_ExpiryDate'] = $api->expiryDate;
-		$array['F_Password'] = $account->adminUser->password;
-		$array['F_Status'] = 'Account created';
-		$array['F_LanguageCode'] = $api->languageCode;
-		
-		// What might we know?
-		if (isset($api->uniqueDiscountCode)) {
-			$array['F_DiscountCode'] = $api->uniqueDiscountCode;
-		} else if (isset($api->discountCode)) {
-			$array['F_DiscountCode'] = $api->discountCode;
-		}
-		if (isset($api->country)) 
-			$array['F_Country'] = $api->country;
-		
-		return $array;
-	}
-	/*
-	 * This is also for writing records to subscription table, but works just from api
-	 * and does as much as it can.
-	 */
-	function subscriptionAPIToAssocArray($api) {
-		$array = array();
-		
-		// What do we have to know?
-		$array['F_FullName'] = $api->name;
-		$array['F_Email'] = $api->email;
-		
-		// Anything else that we know?
-		if (isset($api->offerID)) 
-			$array['F_OfferID'] = implode(',',$api->offerID);
-		if (isset($api->startDate)) 
-			$array['F_StartDate'] = $api->startDate;
-		if (isset($api->expiryDate)) 
-			$array['F_ExpiryDate'] = $api->expiryDate;
-		if (isset($api->password)) 
-			$array['F_Password'] = $api->password;
-		if (isset($api->status)) 
-			$array['F_Status'] = $api->status;
-		if (isset($api->languageCode)) 
-			$array['F_LanguageCode'] = $api->languageCode;
-		if (isset($api->country)) 
-			$array['F_Country'] = $api->country;
-		if (isset($api->resellerID)) 
-			$array['F_ResellerCode'] = $api->resellerID;
-		if (isset($api->contactMethod)) 
-			$array['F_ContactMethod'] = $api->contactMethod;
-		if (isset($api->languageCode)) 
-			$array['F_LanguageCode'] = $api->languageCode;
-			
-		if (isset($api->uniqueDiscountCode)) {
-			$array['F_DiscountCode'] = $api->uniqueDiscountCode;
-		} else if (isset($api->discountCode)) {
-			$array['F_DiscountCode'] = $api->discountCode;
-		}
-		
-		return $array;
 	}
 }

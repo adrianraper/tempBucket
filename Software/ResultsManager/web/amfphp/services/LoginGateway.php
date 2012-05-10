@@ -18,14 +18,14 @@ function loadAPIInformation() {
 	//$presetString = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"RAPER, Adrian","dbHost":2,"custom1":"Basic","custom2":"IMD","prefix":"CSTDI","loginOption":"8"}';
 	//$presetString = '{"method":"getOrAddUser","studentID":"1217-0552-6019-170","name":"Adrian early bird","password":"G&amp;T;","email":"adrian@clarity.com.hk","groupID":"170","productCode":"52","subscriptionPeriod":"3months","emailTemplate":"Welcome-BCHK-user","dbHost":102,"loginOption":2}';
 	//$presetString = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
-	$presetString = '{"method":"getUser","email":"adrian.raper@clarityenglish.com","rootID":"163","dbHost":102,"loginOption":"8"}';
+	$presetString = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","loginOption":"8"}';
 	$postInformation = json_decode($presetString, true);
 
 	// We are expecting a method and parameters as an object
 	// First check mandatory fields exist
-	if (!isset($postInformation['method'])) {
+	if (!isset($postInformation['method']))
 		throw new Exception("No method has been sent");
-	}
+	
 	$apiInformation = new LoginAPI();
 	$apiInformation->createFromSentFields($postInformation);
 	return $apiInformation;
