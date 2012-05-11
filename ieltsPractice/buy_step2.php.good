@@ -1,0 +1,158 @@
+<?php
+	session_start();
+	//require_once(dirname(__FILE__)."/languageOps.php");
+?>
+		<div id="content_box">
+            	<div id="buy_box">
+                    <div id="buy_step_1_off"><strong>Step 1:</strong> Choose your subscription</div>
+                    <div id="buy_step_2" class="buy_on"><strong>Step 2:</strong> Choose your payment method</div>
+                    <div id="buy_step_3" class="buy_off"><strong>Step 3:</strong> Review and Pay</div>
+                    <div id="buy_step_4" class="buy_off"><strong>Step 4:</strong> Start learning</div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div id="buy_container">
+                	<div id="buy_payment_content">
+                    	 <p id="method_title">Please choose your payment method:</p>
+                         <div class="buy_payment_line_off">
+                         	<p class="name">Credit card</p>
+                            <p class="card"><input name="R2ISelectPayment" id="R2ISelectPaymentVisa" type="radio" value="Visa" class="radio" onclick="changePayment2();"/>Visa</p>
+                            <p class="card"><input name="R2ISelectPayment" id="R2ISelectPaymentMC" type="radio" value="MC" class="radio" onclick="changePayment2();"/>Master card</p>
+                            <p class="card_note">*Credit Card verification with 3D Secure</p>
+                            
+                            <div class="clear"></div>
+                         </div>
+                         <div class="buy_payment_line_off">
+                         	<p class="name">Paypal</p>
+                            <p id="paypal"><input name="R2ISelectPayment" id="R2ISelectPaymentPP" type="radio" value="PP" class="radio" onclick="changePayment2();"/>PayPal Express Checkout</p>
+                            <div class="clear"></div>
+                         </div>
+                         <div class="buy_payment_line_off">
+                         	<p class="name">Cash</p>
+                            <p id="transfer">
+                            	<input name="R2ISelectPayment" id="R2ISelectPaymentMT" type="radio" value="MT" class="radio" onclick="changePayment2();"/>Money Transfer
+                                <span class="money_note">(Via Western Union or Money Gram)</span>
+                            </p>
+                            <p id="deposit"><input name="R2ISelectPayment" id="R2ISelectPaymentDB" type="radio" value="DB" class="radio" onclick="changePayment2();"/>Direct Bank Deposit</p>
+                            <div class="clear"></div>
+                         </div>
+                         
+                         <div id="buy_payment_user" style="display:none">
+							<p id="guide_title">User Guide</p>
+                           		<div id="creditcard_user" style="display:none">
+                                    <p class="guide_txt">When you pay by credit card you can <u>immediately</u> start using our service.</p>
+                                    <p class="guide_txt">
+                                        <strong>Credit Card verification with 3D Secure</strong><br />
+                                        Please verify credit card information and register the personal identifying message of the credit card holder on the authentication page - provided by credit card issuer to use VISA and Master card online.<br />
+                                        *This process may vary between different credit card issuing companies.
+                                   </p>
+                                    
+                                    <p class="guide_txt">
+                                        More information for Visa: <a href="https://usa.visa.com/personal/security/vbv/index.jsp" target="_blank">https://usa.visa.com/personal/security/vbv/index.jsp</a><br />
+                                   More information for Master card: <a href="http://www.mastercard.us/support/securecode.html" target="_blank">http://www.mastercard.us/support/securecode.html</a>
+                                   </p>
+                               </div>
+                               
+                               <div id="paypal_user" style="display:none">
+                                    <p class="guide_txt">When you pay by PayPal you can <u>immediately</u> start using our service.</p>
+                                 <p class="guide_txt"><strong>PayPal Pop-up window will be shown when you click on [Pay] button</strong></p>
+                                    <p class="guide_txt">PayPal is a safe and secure way of paying for goods and services over the internet. The PayPal system allows for a variety of ways of payment, including the transfer of funds directly from your approved bank account.</p>
+                                    <p class="guide_txt">To find out more about PayPal, go to <a href="http://www.paypal.com" target="_blank">www.paypal.com</a>.</p>
+                               </div>
+                               
+                               <div id="moneytransfer_user" style="display:none">
+                                 <p class="guide_txt">As soon as we receive confirmation of your payment we will send you an email and you can start using the service. Your subscription <u>starts from the day we confirm receipt of payment</u>.</p>
+                                 <p class="guide_txt"><strong>Payment details will be sent to you by email when you click on [Pay] button</strong></p>
+                                 
+                                 <p class="guide_txt">Money Transfer is the fastest way to transfer money to us. Payment is usually received within 1 day. Two well known money transfer companies are Western Union and MoneyGram.</p>
+                                 
+                                 <p class="guide_txt">
+                                    Click <a href="http://www.westernunion.com/" target="_blank">here</a> to find a Western Union office near you.<br />
+                                    Click <a href="http://www.moneygram.com/" target="_blank">here</a> to find a MoneyGram office near you.                                 </p>
+                           </div>
+                           
+                           <div id="directbank_user" style="display:none">
+                                 <p class="guide_txt">As soon as we receive confirmation of your payment we will send you an email and you can start using the service. Your subscription <u>starts from the day we confirm receipt of payment</u>.</p>
+                                 <p class="guide_txt"><strong>Payment details will be sent to you by email when you click on [Pay] button</strong></p>
+                                 
+                                    <p class="guide_txt">You may make your payment by requesting your bank to do a direct deposit to our bank..</p>
+                                    
+                           </div>
+                         
+                         </div>
+                         
+                         
+                    
+                    </div>
+                    <div id="buy_payment_note">
+                    	<p id="note_title">Having trouble with payment?</p>
+                        <p class="txt">If you have any problem by card payment, please contact Clarity support by email support@clarityenglishc.com, on +44 (0) 845 130 5627 or +852 2791 1787 (Monday to Friday, GMT xx:30 - xx:30)</p>
+                    
+                    </div>
+                    
+                    
+                    
+                    
+                    <div id="buy_content">
+                    	 
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         
+                         <div class="buy_button_area">
+                            <div class="btn_blue_general" onclick="Backward('1')">Back</div>
+                            <div class="btn_blue_general" onclick="SaveAndGo('3')">Review and Pay</div>
+                        
+                            <div class="buy_comment">
+                                <!--div class="form_waiting" id="form_waiting" style="display:none">Please wait...</div>
+                                <div class="form_ok" id="form_ok" style="display:none">Sent successfully</div-->
+                                <div class="form_oops" name="R2IStep2Msg" id="R2IStep2Msg" style="display:none"></div>
+                             </div>
+                            <div class="clear"></div>
+                    	</div>
+
+                    
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+                        
+                
+               
+               <div class="buy_txt">
+               		
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+                    
+               
+               
+               
+               </div>
+               
+               
+               
+            
+            
+            
+            </div>

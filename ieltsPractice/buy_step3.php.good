@@ -1,0 +1,108 @@
+<?php
+	session_start();
+	//require_once(dirname(__FILE__)."/languageOps.php");
+?>
+<div id="content_box">
+            	<div id="buy_box">
+                    <div id="buy_step_1_off"><strong>Step 1:</strong> Choose your subscription</div>
+                    <div id="buy_step_2" class="buy_off"><strong>Step 2:</strong> Choose your payment method</div>
+                    <div id="buy_step_3" class="buy_on"><strong>Step 3:</strong> Review and Pay</div>
+                    <div id="buy_step_4" class="buy_off"><strong>Step 4:</strong> Start learning</div>
+                    <div class="clear"></div>
+                </div>
+                
+                <div id="buy_container">
+                  	
+                    <div id="buy_content">
+                    <p class="review_des">Please carefully review your details below. Click back to make changes or forward to proceed to payment.</p>
+                        <div id="buy_review_content">
+                        	
+                           
+                            <div class="review_title"><a>Your personal details</a></div>
+                            <div class="review_box">
+                                <p class="review_txt">Module: <strong><label id="R2IReviewModule"></label></strong></p>
+                                <p class="review_txt">Subscription period: <strong><label id="R2IReviewSubscriptionPeriod"></label>  (USD <label id="R2IReviewTotalAmount"></label>)</strong></p>
+                                <p class="review_txt">Your email: <strong><label id="R2IReviewEmail"></label></strong></p>
+                                <p class="review_txt">Your password: <strong><label id="R2IReviewPassword"></label></strong></p>
+                                <p class="review_txt">Your name: <strong><label id="R2IReviewName"></label></strong></p>
+                                <p class="review_txt">Your age group: <strong><label id="R2IReviewAgeGroup"></label></strong></p>
+                                <p class="review_txt">Phone: <strong><label id="R2IReviewPhone"></label></strong></p>
+                                <p class="review_txt">Country: <strong><label id="R2IReviewCountry"></label></strong></p>
+                            </div>
+                            
+                        	<div class="review_title"><a>Your payment method</a></div>
+                            <div class="review_box">
+                                <!--p class="review_txt">Credit card: <strong>Visa</strong> (Credit Card verification with 3D Secure)</p-->
+                                <p class="review_txt"><label id="R2IReviewPaymentMethod"></label></p>
+                            </div>
+                            
+                            <div class="review_title"><a>Payment user guide</a></div>
+                            <div class="review_box">
+                                <div id="creditcard_user3" style="display:none">
+                                    <p class="guide_txt">When you pay by credit card you can <u>immediately</u> start using our service.</p>
+                                    <p class="guide_txt">
+                                        <strong>Credit Card verification with 3D Secure</strong><br />
+                                        Please verify credit card information and register the personal identifying message of the credit card holder on the authentication page - provided by credit card issuer to use VISA and Master card online.<br />
+                                        *This process may vary between different credit card issuing companies.
+                                   </p>
+                                    
+                                    <p class="guide_txt">
+                                        More information for Visa: <a href="https://usa.visa.com/personal/security/vbv/index.jsp" target="_blank">https://usa.visa.com/personal/security/vbv/index.jsp</a><br />
+                                   More information for Master card: <a href="http://www.mastercard.us/support/securecode.html" target="_blank">http://www.mastercard.us/support/securecode.html</a>
+                                   </p>
+                               </div>
+                               
+                               <div id="paypal_user3" style="display:none">
+                                    <p class="guide_txt">When you pay by PayPal you can <u>immediately</u> start using our service.</p>
+                                 <p class="guide_txt"><strong>PayPal Pop-up window will be shown when you click on [Pay] button</strong></p>
+                                    <p class="guide_txt">PayPal is a safe and secure way of paying for goods and services over the internet. The PayPal system allows for a variety of ways of payment, including the transfer of funds directly from your approved bank account.</p>
+                                    <p class="guide_txt">To find out more about PayPal, go to <a href="http://www.paypal.com" target="_blank">www.paypal.com</a>.</p>
+                               </div>
+                               
+                               <div id="moneytransfer_user3" style="display:none">
+                                 <p class="guide_txt">As soon as we receive confirmation of your payment we will send you an email and you can start using the service. Your subscription <u>starts from the day we confirm receipt of payment</u>.</p>
+                                 <p class="guide_txt"><strong>Payment details will be sent to you by email when you click on [Pay] button</strong></p>
+                                 
+                                 <p class="guide_txt">Money Transfer is the fastest way to transfer money to us. Payment is usually received within 1 day. Two well known money transfer companies are Western Union and MoneyGram.</p>
+                                 
+                                 <p class="guide_txt">
+                                    Click <a href="http://www.westernunion.com/" target="_blank">here</a> to find a Western Union office near you.<br />
+                                    Click <a href="http://www.moneygram.com/" target="_blank">here</a> to find a MoneyGram office near you.                                 </p>
+                           </div>
+                           
+                           <div id="directbank_user3" style="display:none">
+                                 <p class="guide_txt">As soon as we receive confirmation of your payment we will send you an email and you can start using the service. Your subscription <u>starts from the day we confirm receipt of payment</u>.</p>
+                                 <p class="guide_txt"><strong>Payment details will be sent to you by email when you click on [Pay] button</strong></p>
+                                 
+                                    <p class="guide_txt">You may make your payment by requesting your bank to do a direct deposit to our bank..</p>
+                                    
+                           </div>
+                               
+                               
+                            </div>
+                        	
+                        
+                        
+                        </div>
+                    	 
+                         <div class="buy_button_area">
+                            <div class="btn_blue_general" onclick="Backward('2')">Back</div>
+                            <div class="btn_blue_general" onclick="processCheckOut()">Pay</div>
+                        
+                            <div class="buy_comment">
+                                <!--div class="form_waiting" id="form_waiting" style="display:none">Please wait...</div>
+                                <div class="form_ok" id="form_ok" style="display:none">Sent successfully</div-->
+                                <div class="form_oops" name="R2IStep3Msg" id="R2IStep3Msg" style="display:none"></div>
+                             </div>
+                            <div class="clear"></div>
+                    	</div>
+
+                    
+                    </div>
+                    
+                    <div class="clear"></div>
+                </div>
+                        
+                
+            
+            </div>

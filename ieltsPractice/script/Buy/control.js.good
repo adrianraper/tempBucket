@@ -1,0 +1,570 @@
+// This script is copied from CLS control.js with many functions deleted. Refer back to that script if necessary.
+
+// make a instance for the form
+RTIBuy = new Object();
+	RTIBuy.offerID=""
+    RTIBuy.name="";
+    RTIBuy.password="";
+    RTIBuy.email="";
+    RTIBuy.ageGroup="";
+    RTIBuy.phone="";
+	RTIBuy.country="";
+	RTIBuy.newsletter="";
+	RTIBuy.paymentMethod="";
+	RTIBuy.TotalAmount=0;
+	RTIBuy.isReturn=false;
+
+var seemsOK = false;
+
+function formatDate(d) {
+var m_names = new Array("January", "February", "March", 
+"April", "May", "June", "July", "August", "September", 
+"October", "November", "December");
+var curr_date = d.getDate();
+var curr_month = d.getMonth();
+var curr_year = d.getFullYear();
+return m_names[curr_month] + " " + curr_date + ", " + curr_year
+//document.write(curr_date + "-" + m_names[curr_month] + "-" + curr_year);
+}
+
+function Package(id, name, period) {
+this.id=id;
+this.name=name;
+this.period=period;
+}
+
+ge = new Package("GE", "General English package", 0)
+ce = new Package("CE", "Career English package", 0)
+
+function addToCart(id, period) {
+	switch(id) {
+		case "GE":
+			ge.period = period;
+			//purchaseList.push("GE");
+			break;
+		case "CE":
+			ce.period = period;
+			//purchaseList.push("CE");
+			break;
+	}
+	//purchasePeriod.push(period);
+	//RTIBuy.TotalAmount += packagePriceArray[period];
+}
+ 
+//Flow control Actions
+
+function SaveAndGo(id){
+	//nextStep(id);
+	seemsOK = true;
+	switch(id) {
+		case '2':
+			checkEmail();
+			checkName();
+			checkProduct();
+			checkCountry();
+			checkPassword();
+			if (seemsOK) {
+				// set the optional value
+				RTIBuy.ageGroup=$("#RTIAgeGroup").val();
+				RTIBuy.phone=$("#RTIPhone").val();
+				$('#RTINewsletter').is(':checked') ? RTIBuy.newsletter="yes" : RTIBuy.newsletter="no";
+				// aSync for email checking
+				setTimeout("nextStep("+id+")",1000);
+			}
+			break;
+		default:
+			break;
+	}
+}
+
+function Backward(id){
+	switch(id) {
+		case "1":
+			nextStep('1');
+			ListData('1');
+			break;
+		case "2":
+			nextStep('2');
+			ListData('2');
+			break;
+		case "3":
+			nextStep('3');
+			ListData('3');
+			break;	
+		default:
+			break;
+	}
+}
+
+function nextStep(id){
+	var xmlhttp=null;
+
+	if (window.XMLHttpRequest){
+		xmlhttp=new XMLHttpRequest();
+	}else if (window.ActiveXObject){
+		xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+	}
+	if(xmlhttp!=null){
+		var page = "buy_step" + id + ".php"
+		xmlhttp.open("GET",page,false);
+		xmlhttp.send(null);
+		var place = document.getElementById('buy_innerHTML');
+		place.innerHTML = xmlhttp.responseText;
+		  var graph;
+		  for(var i=1; i <=parseInt(id); i ++){
+		   graph = document.getElementById('buy_step' + i);
+		  }
+		
+		  for(var i=parseInt(id)+1; i<=4; i++){
+		   graph = document.getElementById('buy_step' + i);
+		  }
+		/*  
+		$("a.beforebuy_iframe").fancybox({ 
+			'centerOnScroll':false,
+			'frameWidth':660,
+			'frameHeight':470
+		});
+		*/
+	}else{
+		alert("Your browser does not support XMLHTTP.");
+	}
+}
+
+function period2Text(period) {
+	switch (period) {
+		case 1:
+			return "1 month";
+			break;
+		case 3:
+			return "3 months";
+			break;
+		case 12:
+			return "1 year";
+			break;
+	}
+}
+
+function ListData(id) {
+	switch(id) {
+		case "1":
+			//DO NOTHING
+			//alert (returnUserObj.isReturn+'! '+returnUserObj.name+','+returnUserObj.expiryDate);
+			break;
+
+		case "2":
+			//alert (returnUserObj.isReturn+'! '+returnUserObj.name+','+returnUserObj.expiryDate+'12312312');
+			
+			if (RTIBuy.isReturn) {
+				if (RTIBuy.email!="")
+					document.getElementById("CLSLogin3").value = RTIBuy.email;			
+			} else {
+				if (RTIBuy.name!="")
+					document.getElementById("userFullName").value = RTIBuy.name;
+				if (RTIBuy.email!="")
+					document.getElementById("userEmail").value = RTIBuy.email;
+				if (RTIBuy.country=="") {
+					document.getElementById("userCountry").value = "none"; 
+				} else {
+					document.getElementById("userCountry").value = RTIBuy.country; 
+				}
+				if (RTIBuy.country=="") {
+					document.getElementById("productLanguage").value = "EN"; 
+				} else {
+					document.getElementById("productLanguage").value = RTIBuy.language;
+				}
+			}
+			
+			$("a.forgot_msg").fancybox({
+				'width'    : 550,
+				'height'   : 390,
+				'autoScale'   : false,
+				'transitionIn'  : 'none',
+				'transitionOut'  : 'none',
+				'scrolling'   : 'no',
+				'type'    : 'iframe'
+			});
+			
+			
+			break;
+		
+		case "3":
+			var labelText="";
+			var labelPeriod="";
+			/*
+			if (RTIBuy.name!="")
+				document.getElementById("userFullName").value = RTIBuy.name;
+			if (RTIBuy.email!="")
+				document.getElementById("userEmail").value = RTIBuy.email;
+			if (RTIBuy.country=="") {
+				document.getElementById("userCountry").value = "none"; 
+			} else {
+				document.getElementById("userCountry").value = RTIBuy.country; 
+			}
+			if (RTIBuy.paymentMethod!="")
+				document.getElementById("paymentMethod").value = RTIBuy.paymentMethod;
+			*/
+			setLabelText("userFullName",RTIBuy.name);
+			setLabelText("userEmail",RTIBuy.email);
+			setLabelText("userCountry",RTIBuy.country);
+			if (RTIBuy.language=="") {
+				document.getElementById("productLanguage").value = "EN"; 
+			} else {
+				document.getElementById("productLanguage").value = RTIBuy.language;
+			}
+			if (ge.period!=0) {
+				setLabelText("gep",period2Text(ge.period));
+				setLabelText("gem",packagePriceArray[ge.period]);
+				setLabelText("cepb",period2Text(ge.period));
+				setLabelText("cemb",packagePriceArray[ge.period]);
+				document.getElementById("gel").style.display = "block";
+				document.getElementById("cel").style.display = "none";
+				document.getElementById("gelb").style.display = "block";
+				document.getElementById("celb").style.display = "none";
+				document.getElementById("Buy_details_choose_CE").style.display = "none";
+				document.getElementById("Buy_details_choose_GE").style.display = "block";
+				document.getElementById("Buy_details_other_CE").style.display = "block";
+				document.getElementById("Buy_details_other_GE").style.display = "none";
+				document.getElementById("Add_CE").style.display = "block";
+				document.getElementById("Add_GE").style.display = "none";	
+				document.getElementById("CSCSOption").style.display = "none";
+			} else if (ce.period!=0) {
+				setLabelText("cep",period2Text(ce.period));
+				setLabelText("cem",packagePriceArray[ce.period]);
+				setLabelText("gepb",period2Text(ce.period));
+				setLabelText("gemb",packagePriceArray[ce.period]);
+				document.getElementById("cel").style.display = "block";
+				document.getElementById("gel").style.display = "none";
+				document.getElementById("celb").style.display = "block";
+				document.getElementById("gelb").style.display = "none";
+				document.getElementById("Buy_details_choose_CE").style.display = "block";
+				document.getElementById("Buy_details_choose_GE").style.display = "none";
+				document.getElementById("Buy_details_other_CE").style.display = "none";
+				document.getElementById("Buy_details_other_GE").style.display = "block";
+				document.getElementById("Add_CE").style.display = "none";
+				document.getElementById("Add_GE").style.display = "block";
+				document.getElementById("CSCSOption").style.display = "block";
+			}
+			var CEradioObj = document.joinUsForm.elements['AddCE'];
+			var GEradioObj = document.joinUsForm.elements['AddGE'];
+			if (ge.period>0)
+				GEradioObj.checked = true;
+			if (ce.period>0)
+				CEradioObj.checked = true;
+			break;
+
+		case "4":
+			productReview = "";
+			expiryDateGE="";
+			expiryDateCE="";
+			setLabelText("userFullNameReview",RTIBuy.name);
+			setLabelText("userEmailReview",RTIBuy.email);
+			setLabelText("userCountryReview",RTIBuy.country);
+			setLabelText("userPaymentReview",displayPayment(RTIBuy.paymentMethod));
+			getStartDate();
+			document.getElementById("GEDetailsREview").style.display = "none";
+			document.getElementById("CEDetailsREview").style.display = "none";
+			if (ge.period>0) {
+				setLabelText("subscriptionPeriodReview",period2Text(ge.period));
+				setLabelText("GESubscriptionPeriodReview",period2Text(ge.period));
+				setLabelText("GESubscriptionFeeReview",packagePriceArray[ge.period]);
+				setLabelText("GEStartDatePreview",formatDate(RTIBuy.startDateGE));
+				expiryDateGE = getExtendDate(RTIBuy.startDateGE, ge.period);
+				setLabelText("GEExpiryDatePreview",formatDate(expiryDateGE));
+				document.getElementById("GEDetailsREview").style.display = "block";
+				RTIBuy.period = ge.period;
+			} 
+			if (ce.period>0) {
+				setLabelText("subscriptionPeriodReview",period2Text(ce.period));
+				setLabelText("CESubscriptionPeriodReview",period2Text(ce.period));
+				setLabelText("CESubscriptionFeeReview",packagePriceArray[ce.period]);
+				setLabelText("CEStartDatePreview",formatDate(RTIBuy.startDateCE));
+				expiryDateCE = getExtendDate(RTIBuy.startDateCE, ce.period);
+				setLabelText("CEExpiryDatePreview",formatDate(expiryDateCE));
+				document.getElementById("CEDetailsREview").style.display = "block";
+				RTIBuy.period = ce.period;
+			}	
+			setLabelText("IYJLang",LanguageFullName(productLanguageArray[1001]));
+			setLabelText("BWLang",LanguageFullName(productLanguageArray[10]));
+			setLabelText("EFHSLang",LanguageFullName(productLanguageArray[40]));
+			setLabelText("CSCSLang",LanguageFullName(productLanguageArray[43]));
+			setLabelText("TBLang",LanguageFullName(productLanguageArray[9]));
+			setLabelText("ARLang",LanguageFullName(productLanguageArray[33]));
+			setLabelText("SSSLang",LanguageFullName(productLanguageArray[3]));
+			setLabelText("CPLang",LanguageFullName(productLanguageArray[39]));
+			RTIBuy.TotalAmount = packagePriceArray[ge.period]+packagePriceArray[ce.period];
+			setLabelText("TotalSubscriptionFeeReview",RTIBuy.TotalAmount);
+			break;
+	}
+}
+
+// Step 1 Actions
+function checkProduct() {
+	if ( (!( ($('#R2ISelectModuleAC').is(':checked')) || ($('#R2ISelectModuleGT').is(':checked')) ) ) || (!( ($('#RTISelectSubscription1m').is(':checked')) || ($('#RTISelectSubscription3m').is(':checked')) ) ) ) {
+		seemsOK = false;
+		$("#RTIProductError").fadeTo(200,0.1,function() { 
+			$(this).show().html('Please choose your Road to IELTS module and subscription period').fadeTo(900,1);
+		});
+	} else { 
+		if($("#R2IBuyForm input[name=R2ISelectModule]:checked").val()=="AC") {
+			if($("#R2IBuyForm input[name=RTISelectSubscription]:checked").val()=="1") RTIBuy.offerID='59';
+			else if ($("#R2IBuyForm input[name=RTISelectSubscription]:checked").val()=="3") RTIBuy.offerID='60';
+		} else if ($("#R2IBuyForm input[name=R2ISelectModule]:checked").val()=="GT") {
+			if($("#R2IBuyForm input[name=RTISelectSubscription]:checked").val()=="1") RTIBuy.offerID='61';
+			else if ($("#R2IBuyForm input[name=RTISelectSubscription]:checked").val()=="3") RTIBuy.offerID='62';		
+		}
+		//alert(RTIBuy.offerID);
+		$("#RTIProductError").hide();
+	}
+}
+
+function checkEmail() {
+	var email = $("input#RTIChooseEmail").val();
+	// use common email Pattern.
+	//var pattern=/^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/;
+	//if (!pattern.test(email)) {
+	if (!emailPattern.test(email)) {
+		seemsOK = false;
+		$("#RTIEmailError").fadeTo(200,0.1,function() { 
+			$(this).html('Please input a valid email').removeClass().addClass('error').fadeTo(900,1);
+		});
+	} else {
+		//remove all the class add the messagebox classes and start fading
+		$("#RTIEmailError").removeClass().addClass('note').text('Checking...').fadeIn("slow");
+		//check the username exists or not from ajax
+		$.post("/user_availability.php",{ userEmail:$("input#RTIChooseEmail").val() } ,function(data) {
+			switch(data) {
+				case '0':
+					$("#RTIEmailError").fadeTo(200,0.1,function() { 
+						$(this).html('Email is valid').removeClass().addClass('note').fadeTo(900,1);
+					});	
+					break;
+				case '1':
+					$("#RTIEmailError").fadeTo(200,0.1,function() { 
+						$(this).html('This email already exists, please log in above.').removeClass().addClass('error').fadeTo(900,1);
+						seemsOK = false;
+					});
+					break;
+				case '2':
+					$("#RTIEmailError").fadeTo(200,0.1,function() { 
+						$(this).html('This email already exists.').removeClass().addClass('error').fadeTo(900,1);
+						seemsOK = false;
+					});
+					break;
+				default:
+					$("#RTIEmailError").fadeTo(200,0.1,function() { 
+						$(this).html('An error is found. Please contact the system administrator.').removeClass().addClass('error').fadeTo(900,1);
+						seemsOK = false;
+						//alert (data);
+					});
+					break;
+				
+			}
+		});
+	}
+	if (seemsOK) RTIBuy.email=email;
+}
+
+function checkPassword() {
+	var password = document.getElementById("RTIChoosePassword").value;
+	var password2 = document.getElementById("RTIRetypePassword").value;
+	var passwordPattern = /^([a-zA-Z0-9_.-@#$%^&+=]){8,15}$/;
+	if (!passwordPattern.test(password)) {
+		seemsOK = false;
+		$("#RTIPasswordError").fadeTo(200,0.1,function() { 
+			$(this).html('Please type your password using 8-15 English alphabet characters').fadeTo(900,1);
+		});
+	} else {
+		$("#RTIPasswordError").html('').removeClass();
+	}
+	if (password!=password2) {
+		seemsOK = false;
+		$("#RTIPassword2Error").fadeTo(200,0.1,function() { 
+			$(this).html('Please re-type the same password').fadeTo(900,1);
+		});
+	} else {
+		RTIBuy.password=password;
+		$("#RTIPassword2Error").html('').removeClass();
+	}
+}
+
+function checkName() {
+	var name = $("input#RTIName").val();
+	if (name == "") {
+		seemsOK = false;
+		$("#RTINameError").fadeTo(200,0.1,function() { 
+			$(this).html('Please input your name').fadeTo(900,1);
+		});
+	} else {
+		RTIBuy.name=name;
+		$("#RTINameError").html('').removeClass();
+	}
+}
+
+function checkCountry() {
+	var country = document.getElementById("RTICountry").value;
+	if ( (country == "none") || (country == "") ){
+		seemsOK = false;
+		$("#RTICountryError").fadeTo(200,0.1,function() { 
+			$(this).html('Please select your country').fadeTo(900,1);
+		});
+	} else {
+		RTIBuy.country=country;
+		$("#RTICountryError").html('').removeClass();
+	}
+}
+
+// Step 2 Actions
+function changePayment(){
+	var p = document.getElementById("paymentMethod").value;
+	switch(p) {
+		case "ap":
+			document.getElementById("Buy_paydollar_notes").style.display = "block";
+			document.getElementById("Buy_paypal_notes").style.display = "none";
+			break;
+		case "pp":
+			document.getElementById("Buy_paydollar_notes").style.display = "none";
+			document.getElementById("Buy_paypal_notes").style.display = "block";
+			break;
+	}
+}
+
+function changeVM(p) {
+	switch (p) {
+		case 'v':
+			document.getElementById("MasterPanel").style.display = "none";
+			document.getElementById("VisaPanel").style.display = "block";
+			break;
+		case 'm':
+			document.getElementById("VisaPanel").style.display = "none";
+			document.getElementById("MasterPanel").style.display = "block";	
+			break;
+	}
+		
+}
+
+// Step 3 Actions
+
+function processCheckOut(){
+	var actionURL = 'processPayment.php';
+	//var productStrGE = PurchaseListToString('ge');
+	//var productStrCE = PurchaseListToString('ce');
+	var productStr = PurchaseListToString();
+	var isReturn;
+	if (RTIBuy.isReturn)
+		isReturn = 1;
+	else
+		isReturn = 0;
+
+	var formParam = {
+		'method': RTIBuy.paymentMethod,
+		'name': RTIBuy.name,
+		'email': RTIBuy.email,
+		'country': RTIBuy.country,
+		//'productCE': productStrCE,
+		//'productGE': productStrGE,
+		'product': productStr,
+		'period': RTIBuy.period,
+		'ceStartDate': Math.round(RTIBuy.startDateCE.getTime()/1000),
+		'geStartDate': Math.round(RTIBuy.startDateGE.getTime()/1000),
+		//'deliveryFrequency': RTIBuy.deliveryFrequency,
+		//'contactMethod': RTIBuy.contactMethod,
+		'amount': RTIBuy.TotalAmount,
+		'isReturn': isReturn
+	};
+	//alert(productStr);
+	post_to_url(actionURL, formParam);
+}
+
+function post_to_url(url, params){
+	var form = document.createElement("form");
+	form.setAttribute("method", 'post');
+	form.setAttribute("action", url);
+
+	for(var key in params) {
+		var hiddenField = document.createElement("input");
+		hiddenField.setAttribute("type", "hidden");
+		hiddenField.setAttribute("name", key);
+		hiddenField.setAttribute("value", params[key]);
+		
+		form.appendChild(hiddenField);
+	}
+
+	document.body.appendChild(form);
+	form.submit();
+}
+
+function PurchaseListToString() {
+	var str="";	// Expecting 9:EN-33:NAMEN-1001:INDEN
+	/*
+	switch (p) {
+		case 'ge':
+			if (ge.period>0) {
+				str += "9:"+productLanguageArray[9]+"-33:"+productLanguageArray[33]+"-39:BREN-3:"+productLanguageArray[3];
+			}
+			break;
+		case 'ce':
+			if (ce.period>0) {
+				str += "1001:"+productLanguageArray[1001]+"-40:EN-10:"+productLanguageArray[10]+"-43:"+productLanguageArray[43];
+			}
+			break;	
+	}*/
+	if (ce.period>0) {
+		str += "1001:"+productLanguageArray[1001]+"-40:EN-10:"+productLanguageArray[10]+"-43:"+productLanguageArray[43];
+	}
+	if ( (ce.period>0) && (ge.period>0) ) str += "-";
+	if (ge.period>0) {
+		str += "9:"+productLanguageArray[9]+"-33:"+productLanguageArray[33]+"-39:BREN-3:"+productLanguageArray[3];
+	}
+	//alert (str);
+	return str;
+}
+
+function setLabelText(id, txt){
+	var elem;
+	if( document.getElementById && (elem=document.getElementById(id)) ){
+		if( !elem.firstChild )
+			elem.appendChild( document.createTextNode( txt ) );
+		else 
+			elem.firstChild.data = txt;
+	}
+	return false; 
+}
+
+function displayPayment(method){ 
+	switch(method) {
+		case "ap":
+			return "Visa / Master";
+			break;
+		case "pp":
+			return "Paypal";
+			break;
+		default:
+	}
+
+}
+
+function LanguageFullName(lang){
+	switch(lang) {
+		case 'NAMEN':
+			return 'North American English';
+			break;
+		case 'INDEN':
+			return 'Indian English';
+			break;
+		case 'ZHO':
+			return 'With Chinese instruction';
+			break;
+		case 'BREN':
+			return 'British English';
+			break;
+		case 'ORIG':
+			return 'Original Calls';
+			break;
+		case 'REREC':
+			return 'Calls rerecorded for easier listening';
+			break;
+		default :
+			return 'International English';
+			break;
+	}
+}

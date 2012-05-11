@@ -1,0 +1,197 @@
+to LoginGateway with {"method":"getUser","email":"abc@ce.com","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"rickson.lo@clarityenglish.com","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"12312312@clarityenglish.com","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"abc@ce.com","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"abc@ce.com","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5"}
+back from LoginGateway with {"error":1,"message":"Exception, Unspecified loginOption"}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5"}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"dfjgdfgjbdfgjdg@dkfgh.casd","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user dfjgdfgjbdfgjdg@dkfgh.casd"}
+to LoginGateway with {"method":"getUser","email":"dfjgdfgjbdfgjdg@dkfgh.casd","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user dfjgdfgjbdfgjdg@dkfgh.casd"}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"adrian@clarityenglish.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user adrian@clarityenglish.com"}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yah123oo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user tandan_shiva@yah123oo.com"}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yah123oo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user tandan_shiva@yah123oo.com"}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yah123oo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user tandan_shiva@yah123oo.com"}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tand7665an_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user tand7665an_shiva@yahoo.com"}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user "}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_sh123iva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"error":200,"message":"No such user tandan_sh123iva@yahoo.com"}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}
+to LoginGateway with {"method":"getUser","email":"tandan_shiva@yahoo.com","loginOption":"8","licenceType":"5"}
+back from LoginGateway with {"user":{"_explicitType":"com.clarityenglish.common.vo.manageable.User","userID":190413,"password":"kmgvmcep","userType":"0","studentID":null,"expiryDate":null,"email":"tandan_shiva@yahoo.com","birthday":null,"country":"Australia","city":null,"startDate":"2010-08-31 00:00:00","contactMethod":"email","fullName":null,"custom1":"","custom2":"","custom3":"","custom4":"","registrationDate":"2010-08-31 11:44:23","userProfileOption":null,"registerMethod":null,"name":"Mr Shiva Bahadur Tandan","id":190413},"account":{"_explicitType":"com.clarityenglish.dms.vo.account.Account","name":"Mr Shiva Bahadur Tandan","prefix":"1184","tacStatus":null,"accountStatus":null,"accountType":null,"invoiceNumber":null,"resellerCode":null,"reference":null,"logo":null,"selfHost":null,"selfHostDomain":null,"optOutEmails":null,"optOutEmailDate":null,"loginOption":null,"verified":null,"selfRegister":null,"adminUser":null,"titles":[],"licenceAttributes":[],"id":"13767"}}

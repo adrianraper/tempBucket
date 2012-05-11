@@ -1,0 +1,667 @@
+/*------ Buy page ------*/
+#buy_box {
+	padding:10px 0;
+	margin:0;
+}
+
+
+
+#buy_step_1 {
+	width: 180px;
+	float:left;
+	line-height: 29px;
+}
+
+#buy_step_2 {
+	width: 240px;
+	float:left;
+	line-height: 29px;
+}
+
+#buy_step_3 {
+	width: 163px;
+	float:left;
+	line-height: 29px;
+}
+
+#buy_step_4 {
+	width: 165px;
+	float:left;
+	line-height: 29px;
+
+}
+
+.buy_on {
+	color:#174B7D;
+	
+}
+
+.buy_off {
+	color:#9A9A9A;
+
+}
+
+.buy_on .arrow {
+	background:url(../images/ico_buy_arrow_on.jpg) no-repeat center left;
+	width:30px;
+	height:29px;
+	float:left;
+	display:block;
+	margin:0 5px;
+		padding:0;
+}
+
+.buy_off .arrow {
+	background:url(../images/ico_buy_arrow_off.jpg) no-repeat center left;
+	width:30px;
+	height:29px;
+	float:left;
+	display:block;
+	margin:0 5px;
+	padding:0;
+}
+
+
+.buy_on span.num {
+	display:block;
+	background:url(../images/buy_num_on.jpg);
+	width:29px;
+	line-height:29px;
+	text-align:center;
+	color:#FFFFFF;
+	font-size:14px;
+	float: left;
+	margin: 0 5px 0 0;
+	font-weight:bold;
+}
+
+.buy_off span.num {
+	display:block;
+	background:url(../images/buy_num_off.jpg);
+	width:29px;
+	line-height:29px;
+	text-align:center;
+	color:#FFFFFF;
+	font-size:14px;
+	float: left;
+	margin: 0 5px 0 0;
+	font-weight:bold;
+}
+
+
+#buy_container {
+	width:900px;
+	margin:0;
+	padding:0;
+}
+
+/*-- Buy step 1 --*/
+#buy_content {
+	width:700px;
+	margin:0;
+	padding:0;
+	float:left;
+}
+
+#buy_banner {
+	background-image:url(../images/banner_moneyback.jpg);
+	width:182px;
+	height:408px;
+	float:left;
+	margin:25px 0 0 0;
+	padding:0;
+}
+
+.buy_notsure {
+	background:url(../images/buy_questionsmark.jpg) no-repeat left;
+	line-height:20px;
+	padding:0 0 0 30px;
+	margin: 0;
+}
+
+.buy_field_box {
+	padding:0 0 10px 0;
+	margin:0;
+}
+
+.buy_field_box .subtitle {
+	color:#174A7C;
+	font-size:12px;
+	font-weight:bold;
+	margin:0;
+	padding:0 0 5px 0;
+}
+
+.buy_inner_box {
+	padding:0 0 0 20px;
+	margin:0;
+}
+
+
+.buy_field_line {
+	margin:0;
+	padding:0 0 5px 0;
+}
+
+.buy_field_news {
+	margin:0;
+	padding:0 0 8px 115px;
+}
+
+
+.choose_box_container {
+	margin:0 0 5px 0;
+	padding:0;
+	
+}
+
+.choose_box {
+	width:230px;
+	float:left;
+}
+
+.choose_radio {
+	float:left;
+	width: 20px;
+	margin: 5px 0 0 0;
+}
+
+.month_box {
+	width:230px;
+}
+
+.choose_month {
+	float:left;
+	width: 150px;
+	padding: 8px 0 0 10px;
+}
+
+#choose_RTIA {
+	width:128px;
+	line-height:32px;
+	padding: 0 0 0 40px;
+	color: #FFFFFF;
+	float: left;
+	margin: 0 0 0 5px;
+}
+
+.on#choose_RTIA  {
+	background-image:url(../images/ico_rtia_on.jpg);
+}
+
+.off#choose_RTIA  {
+	background-image:url(../images/ico_rtia_off.jpg);
+}
+
+#choose_RTIG {
+	width:158px;
+	line-height:32px;
+	padding: 0 0 0 40px;
+	color: #FFFFFF;
+	margin: 0 0 0 5px;
+	float: left;
+}
+
+.on#choose_RTIG  {
+	background-image:url(../images/ico_rtig_on.jpg);
+}
+
+.off#choose_RTIG  {
+	background-image:url(../images/ico_rtig_off.jpg);
+}
+
+.buy_field_line .name {
+	margin:0;
+	padding:0 5px 0 0;
+	width: 110px;
+	float: left;
+	line-height: 20px;
+}
+
+.buy_field_line .note {
+	margin:0;
+	padding:0 0 0 5px;
+	width: 300px;
+	float: left;
+	font-size:11px;
+	color:#999999;
+	line-height: 20px;
+}
+
+.buy_field_line .error {
+	font-size:11px;
+	color:#FF0000;
+	margin: 5px 0 0 0;
+	padding: 0 0 0 115px;
+	display: block;
+}
+
+.buy_field_line .error_line {
+	font-size:11px;
+	color:#FF0000;
+	margin: 5px 0 0 0;
+	padding: 0;
+	display: block;
+}
+
+.buy_field_line .field {
+	margin:0;
+	padding:0px;
+	width:200px;
+	font-family:Arial, Helvetica, sans-serif;
+	font-size:12px;
+	float: left;
+}
+
+.buy_button_area {
+	margin:0;
+	padding:0;
+}
+
+.buy_comment {
+	width:240px;
+	float:left;
+	margin:0;
+	padding:0 0 0 10px;
+}
+
+/*-- Buy step 2 --*/
+#buy_payment_content {
+	width:630px;
+	margin:0 10px 10px 0;
+	padding:0px;
+	float:left;
+	border:1px #CCCCCC dotted;
+}
+
+#buy_payment_content p#method_title {
+	color:#174A7C;
+	font-size:12px;
+	font-weight:bold;
+	margin:0;
+	padding:0 0 0 10px;
+	line-height: 30px;
+}
+
+.buy_payment_line_on {
+	border-top:1px #CCCCCC dotted;
+	line-height: 30px;
+	background-color:#E7F2F4;
+}
+
+.buy_payment_line_off {
+	border-top:1px #CCCCCC dotted;
+	line-height: 30px;
+}
+
+
+#buy_payment_content .radio {
+	margin:0 5px 0 0;
+}
+
+#buy_payment_content p.name {
+	width:80px;
+	border-right:1px #CCCCCC dotted;
+	float:left;
+	margin: 0;
+	padding: 0 0 0 10px;
+}
+
+#buy_payment_content .card {
+	width:100px;
+	border-right:1px #CCCCCC dotted;
+	float:left;
+	margin: 0;
+
+}
+
+#buy_payment_content .card#visa {
+	background:url(../images/ico_visa.gif) no-repeat right center;
+	padding: 0 0 0 10px;
+}
+
+#buy_payment_content .card#master {
+	background:url(../images/ico_mastercard.gif)  no-repeat right center;
+	padding: 0 40px 0 10px;
+}
+
+#buy_payment_content .card_note {
+	margin:0;
+	padding:0 0 0 5px;
+	width: 250px;
+	float: left;
+	font-size:11px;
+	color:#999999;
+}
+
+#buy_payment_content .money_note {
+	margin:0;
+	padding:0 0 0 5px;
+	font-size:11px;
+	color:#999999;
+}
+
+
+#buy_payment_content #paypal {
+	width:200px;
+	float:left;
+	margin: 0;
+	padding: 0 0 0 10px;
+}
+
+#buy_payment_content #transfer {
+	width:350px;
+	float:left;
+	margin: 0;
+	padding: 0 0 0 10px;
+	border-right:1px #CCCCCC dotted;
+}
+
+#buy_payment_content #deposit {
+	width:150px;
+	float:left;
+	margin: 0;
+	padding: 0 0 0 10px;
+
+}
+
+
+.buy_payment_note {
+	width:220px;
+	margin:0 0 10px 0;
+	padding:10px;
+	float:left;
+	background-color: #F0F0F0;
+}
+
+a#img_paypal_seal {
+	background:url(../images/ico_paypal_seal.gif) no-repeat top;
+	width:100px;
+	height:110px;
+	display:block;
+	margin:0 auto;
+}
+
+.buy_payment_note p.note_title {
+	color:#174A7C;
+
+	font-size:12px;
+	font-weight:bold;
+	margin:0 0 10px 0;
+	padding:0;
+	line-height: 20px;
+}
+
+.buy_payment_note p.gate_title {
+	background:url(../images/ico_paydollar.gif) no-repeat right center;
+	line-height: 40px;
+	color:#174A7C;
+	font-size:12px;
+	font-weight:bold;
+	margin:0;
+	padding:0;
+	width: 170px;
+}
+
+#buy_payment_user {
+	padding:0px;
+	background-color:#E7F2F4;
+}
+
+
+
+#buy_payment_user p#guide_title {
+	color:#174A7C;
+	font-size:12px;
+	font-weight:bold;
+	margin:0;
+	padding:10px;
+}
+
+#buy_payment_user .guide_box {
+	margin:0;
+	padding:10px;
+}
+
+
+#buy_payment_user .img_paypal {
+	background:#FFFFFF url(../images/img_paypal_guide.jpg) no-repeat center middle;
+	padding:5px;
+	height:330px;
+	
+}
+
+#buy_payment_user ul.guide_list {
+	margin:0;
+	padding:0 0 0 20px;
+
+}
+
+#buy_payment_user ul.guide_list li {
+	list-style:decimal;
+	margin:0 0 10px 0;
+}
+
+
+
+#buy_payment_user p.guide_txt {
+	line-height: 16px;
+	margin:0;
+	padding:0 0 10px 0;
+}
+
+#buy_payment_user .high {
+	color:#0288C1;
+	font-weight:bold;
+	
+}
+
+#buy_payment_user .import_box {
+	background:#174B7D url(../images/ico_buy_important.jpg) no-repeat top left;
+	margin:0;
+	padding:10px 0 10px 70px;
+}
+
+#buy_payment_user .import_box p.note_title {
+	color:#FFFFFF;
+	font-weight:bold;
+	margin: 0;
+	padding: 0;
+}
+
+#buy_payment_user .import_box p.note_txt {
+	color:#FFFFFF;
+	margin:0 0 5px 0;
+}
+
+#buy_payment_user .import_box p.note_txt a {
+	color:#FFFFFF;
+}
+
+#buy_terms_link {
+	margin:10px 0;
+	padding:0;
+}
+
+
+/*-- Buy step 3 --*/
+#buy_review_content {
+	width:630px;
+	margin:0 0 10px 0;
+	padding:0px;
+	border:1px #CCCCCC solid;
+}
+
+p.review_des {
+	color:#000000;
+	font-size:12px;
+	margin:5px 0;
+	padding:0;
+}
+
+#buy_review_content .review_title {
+	margin:0;
+	padding:10px;
+	color:#174A7C;
+	font-weight: bold;
+	background-color: #E7F2F4;
+	border-bottom:1px #CCCCCC solid;
+}
+
+#buy_review_content .review_box {
+	margin:0;
+	padding:10px;
+}
+
+#buy_review_content .review_total {
+	margin:0;
+	padding:10px;
+	font-weight: bold;
+	background-color: #E7F2F4;
+	font-size: 14px;
+	border-top:1px #CCCCCC solid;
+}
+
+#buy_review_content .review_total .title {
+	float:left;
+	width:200px;
+	color:#174A7C;
+	margin:0;
+	padding:0;
+}
+
+#buy_review_content .review_total .money {
+	float:right;
+	width:200px;
+	color:#000000;
+	margin:0;
+	padding:0;
+	text-align: right;
+}
+
+
+#buy_review_content .review_txt {
+	margin:0;
+	padding:0 0 5px 0;
+	color:#000000;
+}
+
+
+
+
+/*-- Buy step 4 --*/
+#buy_start_email {
+	background:url(../images/img_start_email.jpg) no-repeat left top;
+	padding:10px 100px 50px 400px;
+}
+
+#buy_start_learn {
+	background:url(../images/img_start_man.jpg) no-repeat left top;
+	padding:10px 100px 80px 380px;
+}
+
+#buy_start_error {
+	width:700px;
+	margin:0;
+	padding:0;
+}
+
+.buy_start_error_box {
+	border-bottom:#CCCCCC dotted 1px;
+	padding:0 0 10px 0;
+}
+
+.buy_start_error_box ul {
+	margin:0;
+	padding:0 0 0 20px;
+}
+
+.buy_start_error_box ul li {
+	list-style:decimal;
+	margin:0 0 5px 0;
+}
+
+
+.buy_start_title {
+	font-size:16px;
+	font-weight:bold;
+	margin:0;
+	padding:0;
+	color:#389E48;
+}
+
+.buy_start_error_title {
+	font-size:16px;
+	font-weight:bold;
+	margin:0;
+	padding:0;
+	color:#FF0000;
+}
+
+
+.buy_start_subtitle {
+	font-size:14px;
+	font-weight:bold;
+	margin:0 0 10px 0;
+	padding:0;
+	color:#389E48;
+}
+
+.buy_start_error_subtitle {
+	font-size:14px;
+	font-weight:bold;
+	margin:0 0 10px 0;
+	padding:0;
+	color:#FF0000;
+}
+
+.buy_start_txt {
+	margin:0 0 10px 0;
+	padding:0;
+}
+
+.buy_start_smtitle {
+	font-weight:bold;
+	padding:0;
+	color:#1C477C;
+	margin: 0;
+}
+
+.buy_start_txt {
+	margin:0 0 10px 0;
+	padding:0;
+	line-height: 16px;
+}
+
+.btn_start_learn {
+	background:url(../images/btn_start_learn.jpg);
+	width:192px;
+	line-height:61px;
+	display:block;
+	color:#2F3535;
+	text-align:center;
+	font-weight: bold;
+	font-size: 16px;
+	text-decoration: none;
+	
+}
+
+/*-- Buy Loading Step 3 --*/
+#buy_start_loading {
+	margin:0;
+	padding:50px 0;
+}
+
+#buy_start_loading_inner {
+	width:500px;
+	margin:0 auto;
+	padding:50px 0;
+	text-align: center;
+}
+
+
+
+#buy_start_loading_inner .txt {
+	margin:0;
+	padding:10px 0;
+}
