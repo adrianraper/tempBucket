@@ -18,3 +18,8 @@ var R2IBuyPaymentNotSelected = "Please choose your payment method.";
 var R2IBuyTnCNotChecked = "Please check the box to accept the terms and conditions.";
 var R2ILoginIncorrect = "Sorry, that email and password combination is not correct.";
 var R2ILoginSuccess = "You have been successfully logged in.";
+var R2ICost1Month = 49.99;
+var R2ICost3Months = 99.99;
+// Cheaper testing!
+var R2ICost1Month = 0.99;
+var R2ICost3Months = 1.99;

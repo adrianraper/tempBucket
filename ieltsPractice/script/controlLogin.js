@@ -42,6 +42,7 @@ sendLoginAction = function() {
 
 onAjaxLoginEmailSuccess = function(data, textStatus) {
 	//alert('sucess, data='+data.success);
+	console.log('success=' + data.account.name);
 	
 	// Did the gateway send back an error:
 	if (data.error) {
@@ -56,7 +57,10 @@ onAjaxLoginEmailSuccess = function(data, textStatus) {
 		$("#RTILoginMsg").fadeTo(200,0.1,function() { 
 			$(this).html(R2ILoginSuccess).fadeTo(900,1);
 			
-			// Load the My Account page
+			// To help check this, write to the browser's console
+			console.log('log in ' + data.user.name);
+			
+			// You set the session variables from user/account in action.php
 			window.location='myaccount.php';
 			
 		});
@@ -70,6 +74,7 @@ onAjaxLoginEmailSuccess = function(data, textStatus) {
 };	
 
 onAjaxLoginEmailFail = function(data, textStatus) {
+	console.log('failure=' + textStatus + ', ' + data);
 	$("#RTILoginMsg").fadeTo(200,0.1,function() { 
 		$(this).html(R2IBuyEmailUnknownError).fadeTo(900,1);
 		seemsOK = false;

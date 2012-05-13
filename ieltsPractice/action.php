@@ -2,7 +2,7 @@
 
 /*
 * You can test like this:
-   http://dock.projectbench/ieltsPractice/action.php?method=login&loginID=mimi.rahima.6@clarityenglish.com&userPassword=sweetpotatoes
+   http://dock.projectbench/ieltsPractice/action.php?method=login&loginID=douglas.1@clarityenglish.com&userPassword=jellybean
    http://dock.projectbench/BritishCouncil/R2IV2/action.php?method=addNewUser&loginID=1217-0552-6018&learnerName=Adrian early worm&password=1234&email=adrian@clarity.com.hk
 */
 
@@ -61,7 +61,7 @@ if ($queryMethod=="login") {
 	$LoginAPI = array();
 	$LoginAPI['method'] = 'getUser';
 	$LoginAPI['email'] = $loginID;
-	$LoginAPI['loginOption'] = 8;
+	$LoginAPI['loginOption'] = 128;
 
 	// Send this single LoginAPI
 	$serializedObj = json_encode($LoginAPI);
@@ -101,9 +101,8 @@ if ($queryMethod=="login") {
 		//echo $contents;exit(0);
 		$returnInfo = json_decode($contents, true);
 
-		if ($debugLog) {
+		if ($debugLog)
 			error_log("back from LoginGateway with $contents\n", 3, $debugFile);
-		}
 
 		$errorCode = 0;
 		
@@ -123,11 +122,17 @@ if ($queryMethod=="login") {
 				$errorCode = 204;
 				$failReason = "Wrong password";
 				
-			// Has the account expired
+			// Has the user expired
 			} elseif ($expiryDate <= date('Y-m-d').' 00:00:00') {
 				$errorCode = 205;
 				$failReason = "Your account has expired";
 				
+			}
+			// Any checking to do on the account?
+			if (isset($returnInfo['account'])) {
+				$accountInfo = $returnInfo['account'];
+				
+				// Have all the titles expired?
 			}
 				
 		} else {
@@ -136,18 +141,33 @@ if ($queryMethod=="login") {
 			$failReason = "Unexpected data from gateway";
 		}
 		
-		// If you there are no errors, go to the program
+		// If you there are no errors, set the session variables here then proceed
 		if ($errorCode == 0) {
-			print json_encode($returnInfo);
+			// For now we are sticking to CLS session variables until you actually go to the bento start page
+			$_SESSION['CLS_userID'] = $userInfo['userID'];
+			$_SESSION['CLS_password'] = $userInfo['password'];
+			// TODO: Again, this is dangerous to assume only one title
+			$_SESSION['CLS_expiryDate'] = $accountInfo['titles'][0]['expiryDate'];
+			$_SESSION['CLS_productCode'] = $accountInfo['titles'][0]['productCode'];
+			$_SESSION['CLS_email'] = $userInfo['email'];
+			$_SESSION['CLS_name'] = $userInfo['name'];
+			$_SESSION['CLS_prefix'] = $accountInfo['prefix'];
+			
+			//$_SESSION['CLS_userType'] = $userInfo['userType'];
+			//$_SESSION['CLS_studentID'] = $userInfo['studentID'];
+			//$_SESSION['AccountName'] = $accountInfo['name'];
+			//$_SESSION['RootID'] = $accountInfo['id'];
+
+			if ($debugLog)
+				error_log("heading for myaccount page?\n", 3, $debugFile);
+			
+			//print json_encode($returnInfo);
+			print $contents;
 			exit();
 		}
 			
 		// Errors handled at the end of the script
 	}
-	
-// This is the method called after the candidate has typed in their details on candidateDetails screen
-//} else if ($queryMethod=="addSubscription") {
-
 
 } else if ($queryMethod=="checkUser") {
 	// We know we are sent an email
@@ -165,7 +185,6 @@ if ($queryMethod=="login") {
 	$LoginAPI['email'] = $email;
 	$LoginAPI['loginOption'] = '8';
 	$LoginAPI['licenceType'] = '5';
-	//$LoginAPI['dbHost'] = '11';
 
 	// Send this single LoginAPI
 	$serializedObj = json_encode($LoginAPI);
@@ -216,9 +235,11 @@ if ($queryMethod=="login") {
 			$rc = array();
 			
 			if ($errorCode == 200) {
-				// This email is not used, then continues
+				// This email is not used, so you can continue
 				$rc['success']=false;
 
+			// We found a user, but don't want to do anything with the details for now.
+			// Will be useful to hold this information for renewals
 			} else {
 				$rc['success']=true;
 

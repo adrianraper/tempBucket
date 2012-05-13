@@ -136,6 +136,16 @@ a.popup_link {
 	background:url(../images/rti2_why_img.jpg) no-repeat right top;
 }
 
+#content_box_why a#demo {
+	display:block;
+	top:293px;
+	left:944px;
+	width:147px;
+	height:145px;
+	position: absolute;
+}
+
+
 #content_box_buy {
 	margin:0;
 	padding:40px 0 0 26px;
@@ -666,6 +676,7 @@ span.btn_blue_right {
 
 #logout_panel_area .logout a {
 	color:#FFFFFF;
+	font-weight: bold;
 }
 
 /*-- My account page --*/

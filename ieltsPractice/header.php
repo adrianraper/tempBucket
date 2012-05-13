@@ -1,6 +1,6 @@
 <?php 
-session_start(  );
-date_default_timezone_set('UTC');
+//session_start(  );
+//date_default_timezone_set('UTC');
 
 function showDate($ts) {
 	return date("j M Y",strtotime($ts));
@@ -65,7 +65,7 @@ function showDate($ts) {
 
                 <div id="logout_panel">
                     <div id="logout_panel_area">
-                             <p class="welcome">Welcome <?php echo $_SESSION['CLS_UserName'] ?>, you have 316 hours left to prepare for IELTS!</p>
+                             <p class="welcome">Welcome <?php echo $_SESSION['CLS_name'] ?></p>
                              <p class="logout"><a href="db_logout.php">Log out</a></p>
                              <div class="clear"></div>
                      </div>
@@ -77,7 +77,7 @@ function showDate($ts) {
 
                     <div id="button_area">
                         <div class="btn_yellow" id="choose_buy"><a href="buy.php">Buy now</a></div>
-						<?php if(!isset($_SESSION['UserID'])) { ?>
+						<?php if(!isset($_SESSION['CLS_userID'])) { ?>
                         <a class="btn_grey" id="choose_login" href="#" target="_blank"><span>Log in</span></a>
 						<?php } else { ?>
 						<a class="btn_grey" id="choose_login" href="myaccount.php"><span>My Account</span></a>

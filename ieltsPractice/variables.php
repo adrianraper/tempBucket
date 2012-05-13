@@ -1,7 +1,7 @@
 <?php
 	$thisDomain = 'http://'.$_SERVER['HTTP_HOST'].'/';
 	$commonDomain = 'http://'.$_SERVER['HTTP_HOST'].'/';
-	$startFolder = 'ieltsPractice';
+	$startFolder = 'ieltsPractice/';
 	/*$thisDomain = 'http://www.roadtoielts.com/';
 	$commonDomain = 'http://www.roadtoielts.com/';*/
 	//$dbHost = 102;

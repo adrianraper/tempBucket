@@ -32,8 +32,8 @@ function SaveAndGo(id){
 				// set the value
 				RTIBuy.module=$("#R2IBuyForm input[name=R2ISelectModule]:checked").val();
 				RTIBuy.subscriptionPeriod=$("#R2IBuyForm input[name=R2ISelectSubscription]:checked").val();
-				if(RTIBuy.subscriptionPeriod=="31") RTIBuy.TotalAmount=49.99;
-				else if (RTIBuy.subscriptionPeriod=="92") RTIBuy.TotalAmount=99.99;
+				if(RTIBuy.subscriptionPeriod=="31") RTIBuy.TotalAmount=R2ICost1Month;
+				else if (RTIBuy.subscriptionPeriod=="92") RTIBuy.TotalAmount=R2ICost3Months;
 				if (RTIBuy.module=="52" && RTIBuy.subscriptionPeriod=="31") RTIBuy.offerID='59';
 				else if (RTIBuy.module=="52" && RTIBuy.subscriptionPeriod=="92") RTIBuy.offerID='60';
 				else if (RTIBuy.module=="53" && RTIBuy.subscriptionPeriod=="31") RTIBuy.offerID='61';
@@ -168,7 +168,7 @@ function checkEmail() {
 	if (!emailPattern.test(email)) {
 		seemsOK = false;
 		$("#RTIEmailError").fadeTo(200,0.1,function() { 
-			$(this).html(R2IButEmailPatternIncorrect).fadeTo(900,1);
+			$(this).html(R2IBuyEmailPatternIncorrect).fadeTo(900,1);
 		});
 		$("#RTIEmailValid").html('(This will be your login name)');
 	} else {
@@ -209,7 +209,7 @@ onAjaxCheckEmailSuccess = function(data) {
 
 onAjaxCheckEmailFail = function(data, textStatus) {
 	$("#RTIEmailError").fadeTo(200,0.1,function() { 
-		$(this).html(R2IBuyEmailUnknwonError).fadeTo(900,1);
+		$(this).html(R2IBuyEmailUnknownError).fadeTo(900,1);
 		seemsOK = false;
 	});
 };
@@ -364,6 +364,8 @@ function processCheckOut(){
 		'offerID': RTIBuy.offerID,
 		'amount': RTIBuy.TotalAmount,
 		//'isReturn': isReturn,
+		//below fields are used for displaying in the latter web pages.
+		'subscriptionPeriod': RTIBuy.subscriptionPeriod,
 		//below fields are just for emails and marketing use
 		'ageGroup': RTIBuy.ageGroup,
 		'phone': RTIBuy.phone,

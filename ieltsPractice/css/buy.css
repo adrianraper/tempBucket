@@ -7,19 +7,19 @@
 
 
 #buy_step_1 {
-	width: 180px;
+	width: 208px;
 	float:left;
 	line-height: 29px;
 }
 
 #buy_step_2 {
-	width: 240px;
+	width: 248px;
 	float:left;
 	line-height: 29px;
 }
 
 #buy_step_3 {
-	width: 163px;
+	width: 170px;
 	float:left;
 	line-height: 29px;
 }
@@ -350,7 +350,7 @@
 }
 
 #buy_payment_content #transfer {
-	width:350px;
+	width:220px;
 	float:left;
 	margin: 0;
 	padding: 0 0 0 10px;
@@ -425,7 +425,7 @@ a#img_paypal_seal {
 
 
 #buy_payment_user .img_paypal {
-	background:#FFFFFF url(../images/img_paypal_guide.jpg) no-repeat center middle;
+	background:#FFFFFF url(../images/img_paypal_guide.jpg) no-repeat center;
 	padding:5px;
 	height:330px;
 	
@@ -440,6 +440,16 @@ a#img_paypal_seal {
 #buy_payment_user ul.guide_list li {
 	list-style:decimal;
 	margin:0 0 10px 0;
+}
+
+#buy_payment_user ol.guide_num {
+	margin:0;
+	padding:0 0 0 25px;
+}
+
+#buy_payment_user ol.guide_num li {
+	list-style-type: lower-roman;
+	margin:5px 0 0 0;
 }
 
 

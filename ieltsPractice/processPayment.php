@@ -78,6 +78,13 @@ if (isset($_POST['newsletter'])) {
 } else {
 	$newsletter = "";
 }
+if (isset($_POST['subscriptionPeriod'])) {
+	$subscriptionPeriod = $_POST['subscriptionPeriod'];
+} else if (isset($_GET['subscriptionPeriod'])) {
+	$subscriptionPeriod = $_GET['subscriptionPeriod'];
+} else {
+	$subscriptionPeriod = "";
+}
 // Check mandatory fields
 $seemsOK = true;
 if ( $paymentMethod=='' ) $seemsOK = false;
@@ -93,11 +100,31 @@ if ($seemsOK) {
 	$_SESSION['CLS_password'] = $password;
 	$_SESSION['CLS_country'] = $country;
 	$_SESSION['CLS_offerID'] = $offerID;
+	
+	// Hardcode some stuff
+	// Derive some stuff that should come from database
+	switch ($offerID) {
+		case 59:
+			$_SESSION['CLS_offerName'] = 'Road to IELTS 2 Academic 1-month';
+			break;
+		case 60:
+			$_SESSION['CLS_offerName'] = 'Road to IELTS 2 Academic 3-months';
+			break;
+		case 61:
+			$_SESSION['CLS_offerName'] = 'Road to IELTS 2 General Training 1-month';
+			break;
+		case 62:
+			$_SESSION['CLS_offerName'] = 'Road to IELTS 2 General Training 3-months';
+			break;
+	}
 	$_SESSION['CLS_resellerID'] = 21; //Clarity online subscription
 	$_SESSION['CLS_contactMethod'] = 'email';
 	$_SESSION['CLS_orderRef'] = session_id();
+	$_SESSION['CLS_languageCode'] = 'R2IHU'; // Road to IELTS 2 Home User
+	$_SESSION['CLS_loginOption'] = 128; // Email login
 	//below fields are for displaying in the later pages.
 	$_SESSION['CLS_amount'] = $amount;
+	$_SESSION['CLS_subscriptionPeriod'] = $subscriptionPeriod;
 	//below fields are just for emails and marketing use
 	$_SESSION['CLS_ageGroup'] = $ageGroup;
 	$_SESSION['CLS_phone'] = $phone;
@@ -136,14 +163,15 @@ if ($seemsOK) {
 }
 
 function AsiaPaySendPost() {
-		# Vars are stores in paymentGatewayVariables.php
-		//global $merchantId, $currCode, $successUrl, $failUrl, $errorUrl, $payType, $lang, $targetURL;
+	
 	global $commonDomain;
+	global $startFolder;
+	
 	$merchantId = '88060532';
 	$currCode = '840';
-	$successUrl = $commonDomain.'afterPayment.php';
-	$failUrl = $commonDomain.'buy_step4_failure.php?error=PaymentFailure';
-	$errorUrl = $commonDomain.'buy_step4_failure.php?error=PaymentError';
+	$successUrl = $commonDomain.$startFolder.'afterPayment.php';
+	$failUrl = $commonDomain.$startFolder.'buy_step4_failure.php?error=PaymentFailure';
+	$errorUrl = $commonDomain.$startFolder.'buy_step4_failure.php?error=PaymentError';
 	$payType = 'N';
 	$lang = 'E';
 	$targetURL = "https://www.paydollar.com/b2c2/eng/payment/payForm.jsp";
@@ -151,7 +179,7 @@ function AsiaPaySendPost() {
 
 	echo '<form method="POST" name="toAsiaPay" action="'.$targetURL.'">';
 	echo '<input type="hidden" name="merchantId" value="'.$merchantId.'">';
-	echo '<input type="hidden" name="amount" value='.$_POST['amount'].'>';
+	echo '<input type="hidden" name="amount" value='.$_SESSION['CLS_amount'].'>';
 	// we use subscription ID now
 	//echo '<input type="hidden" name="orderRef" value="'.$_SESSION['CLS_orderRef'].'">';
 	echo '<input type="hidden" name="orderRef" value="'.$_SESSION['CLS_orderRef'].'">';
@@ -169,15 +197,17 @@ function AsiaPaySendPost() {
 }
 
 function PaypalSendPost() {
+	
 	global $commonDomain;
-
+	global $startFolder;
+	
 	$merchantEmail = 'wan.zahrah@clarityenglish.com';
 	//$merchantEmail = 'cetest_1283835607_biz@yahoo.com';
 	$subscribedItem = 'Road to IELTS subscription';
 	$targetURL = "https://www.paypal.com/cgi-bin/webscr";
 	//$targetURL = "https://www.sandbox.paypal.com/us/cgi-bin/webscr";
-	$returnURL = $commonDomain."afterPayment.php?session_id=".session_id();
-	$cancelUrl = $commonDomain."buy_step4_failure.php?session_id=".session_id();
+	$returnURL = $commonDomain.$startFolder."afterPayment.php?session_id=".session_id();
+	$cancelUrl = $commonDomain.$startFolder."buy_step4_failure.php?session_id=".session_id();
 	$notify_url = "";
 
 	echo '<form method="POST" name="toPayPal" action="'.$targetURL.'">';
@@ -185,7 +215,7 @@ function PaypalSendPost() {
 	echo '<input type="hidden" name="upload" value="1">';
 	echo '<input type="hidden" name="business" value="'.$merchantEmail.'">';
 	echo '<input type="hidden" name="item_name_1" value="'.$subscribedItem.'">';
-	echo '<input type="hidden" name="amount_1" value='.$_POST['amount'].'>';
+	echo '<input type="hidden" name="amount_1" value='.$_SESSION['CLS_amount'].'>';
 	echo '<input type="hidden" name="return" value='.$returnURL.'>';
 	echo '<input type="hidden" name="currency_code" value="USD"/>';
 	echo '<input type="hidden" name="cancel_return" value='.$cancelUrl.'/>';	
@@ -202,7 +232,8 @@ function PaypalSendPost() {
 function insertSubscription() {
 
 	global $commonDomain;
-	// as JSON
+	global $startFolder;
+	
 	$CLSapi = array();
 	$CLSapi['method'] = 'saveSubscriptionDetails';
 	$CLSapi['email'] = $_SESSION['CLS_email'];
@@ -211,15 +242,16 @@ function insertSubscription() {
 	$CLSapi['resellerID'] = $_SESSION['CLS_resellerID'];
 	$CLSapi['orderRef'] = $_SESSION['CLS_orderRef'];
 	$CLSapi['offerID'] = $_SESSION['CLS_offerID'];
-	//these are not used by now?
-	//CLSapi['discountCode'] = $SESSION['CLS_discountCode'];
-	//CLSapi['emailID'] = $SESSION['CLS_emailID'];
-	//CLSapi['password'] = $SESSION['CLS_password'];
-	//CLSapi['languageCode'] = $SESSION['CLS_languageCode'];	
+	$CLSapi['password'] = $_SESSION['CLS_password'];
+	$CLSapi['languageCode'] = $_SESSION['CLS_languageCode'];	
+	$CLSapi['contactMethod'] = $_SESSION['CLS_contactMethod'];	
+	// This is not currently used
+	//$CLSapi['discountCode'] = $_SESSION['CLS_discountCode'];
+	
 	$serializedObj = json_encode($CLSapi);
 	$targetURL = $commonDomain."Software/ResultsManager/web/amfphp/services/CLSgateway.php";
 
-	#Initialize the cURL session
+	// Initialize the cURL session
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_FAILONERROR, 1); 
 	curl_setopt($ch, CURLOPT_URL, $targetURL);
