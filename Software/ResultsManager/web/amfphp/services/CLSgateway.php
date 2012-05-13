@@ -2,14 +2,28 @@
 /*
  * This script is a gateway for purchasing subscription functions
  */
-
 /*
  * The purpose of this script is to be the main API for CLS.com
  * Anybody can call this script to 
  *		add a new account and subscription
  *		update an existing account with a new subscription
  *
- * You send it an XML like object in POST data (or would a name / value string make more sense?)
+ * You send it a JSON object in POST data
+ * 
+ * Methods:
+ * saveSubscriptionDetails
+ * This is used when you have collected information about the purchase and purchaser and simply
+ * want to save that data. It puts as much information as it can into the subscription table
+ * and gives you back an id to that table.
+ * mandatory input: name, email, offerID, resellerID
+ * optional input: country, startDate, orderRef, discountCode, password, status (and anything else in subscription)
+ * returns: subscriptionID
+ * 
+ *  udpateSubscriptionStatus
+ *  This is used as you move through the purchase process to keep track of latest successful stage
+ *  mandatory input: subscriptionID, status
+ * returns: subscriptionID
+ * 
  * It will a) check the validity of the name / email / password combination
  * Add a new account if necessary
  * Decode the offer to find out what titles to add and for what periods
@@ -33,11 +47,17 @@ function loadAPIInformation() {
 	global $dmsService;
 	global $nonApiInformation;
 	
-	$postInformation= json_decode(file_get_contents("php://input"), true);	
-	//$presetString = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima@clarityenglish.com","offerID":59,"resellerID":21,"password":"sweetcustard","orderRef":"201100000042","emailTemplateID":"CLS_welcome"}';
-	$presetString = '{"method":"saveSubscriptionDetails","email":"adrian.raper@clarityenglish.com","name":"Adrian\'s Raper","country":"Hong Kong","resellerID":24,"orderRef":"12345678","offerID":10,"status":"initial"}';
-	//$presetString = '{"method":"updateSubscriptionStatus","subscriptionID":998,"status":"paid"}';
-	$postInformation = json_decode($presetString, true);
+	$inputData = file_get_contents("php://input");
+	$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.11@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card"}';
+	//$inputData = '{"method":"addSubscription","subscriptionID":1039,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card"}';
+	//$inputData = '{"method":"saveSubscriptionDetails","email":"adrian.raper@clarityenglish.com","name":"Adrian\'s Raper","country":"Hong Kong","resellerID":21,"orderRef":"201200085","offerID":59,"status":"initial"}';
+	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1034,"status":"paid"}';
+	$postInformation= json_decode($inputData, true);	
+	if (!$postInformation) 
+		// TODO. Ready for PHP 5.3
+		//throw new Exception("Error decoding data: ".json_last_error().': '.$inputData);
+		throw new Exception('Error decoding data: '.$inputData);
+	
 	
 	// We are expecting a method and parameters as an object
 	// First check mandatory fields exist
@@ -55,9 +75,6 @@ function loadAPIInformation() {
 			
 		if (!isset($postInformation['offerID'])) 
 			throw new Exception("No offer has been sent");
-			
-		if (!isset($postInformation['orderRef'])) 
-			throw new Exception("No orderRef has been sent");
 			
 		if (!isset($postInformation['resellerID'])) 
 			throw new Exception("No resellerID has been sent");
@@ -116,8 +133,8 @@ function returnError($errCode, $data = null) {
 	}
 	// Write out the error to the log (we probably don't know the orderRef, but if we do, include it)
 	$logMessage = 'returnError '.$errCode.': '.$apiReturnInfo['message'];
-	if (isset($apiInformation->orderRef)) {
-		$logMessage.= ' orderRef='.$apiInformation->orderRef;
+	if (isset($apiInformation->subscription->orderRef)) {
+		$logMessage.= ' orderRef='.$apiInformation->subscription->orderRef;
 	}
 	AbstractService::$debugLog->err($logMessage);
 
@@ -173,16 +190,24 @@ try {
 EOD;
 				$bindingParams = array($apiInformation->subscription->id);
 				$rs = $dmsService->db->Execute($sql, $bindingParams);
-				if ($rs->RecordCount() == 1)
+				if ($rs->RecordCount() == 1){
+					$dbObj = $rs->FetchNextObj();
 					$subscriptionData->fromDatabaseObj($dbObj);
+				} else {
+					returnError(1, 'No such subscription ID '.$apiInformation->subscription->id);
+				}
 								
 				$apiInformation->subscription = $subscriptionData;
-			} 
-			
-			$rc = $dmsService->subscriptionOps->validateAPIInformation($apiInformation);
-			if (isset($rc['errCode']) && parseInt($rc['errCode']) > 0) {
-				returnError($rc['errCode'], $rc['data']);
+				
+			// If we didn't, then assume that this is the first time CLS has been called for this
+			// transaction, and write a subscription record
+			} else {
+				
+				$apiInformation->subscription->id = $dmsService->subscriptionOps->saveSubscription($apiInformation);
 			}
+
+			// TODO. I think that this is all too much work for the gateway, it should be pushed to a CLSService
+			$rc = $dmsService->subscriptionOps->validateAPIInformation($apiInformation);
 			//AbstractService::$log->notice("validateAPIInformation=".$apiInformation->sendEmail);
 			// Check the account. This will either return an existing account, or will create a new object (without putting it in the database)
 			$account = New Account();
@@ -209,7 +234,6 @@ EOD;
 				
 			// If they want an email sent, do that
 			if (isset($apiInformation->emailTemplateID) && $apiInformation->emailTemplateID!='') {
-				//AbstractService::$log->notice("call sendEmail for ".$apiInformation->sendEmail);
 				$dmsService->subscriptionOps->sendEmail($account, $apiInformation);
 				AbstractService::$debugLog->info("sent email to ".$account->adminUser->email.' using '.$apiInformation->emailTemplateID);
 			}

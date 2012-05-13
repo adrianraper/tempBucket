@@ -20,7 +20,7 @@ class SubscriptionApi {
 	var $mobile = '';
 	var $fullAddress;
 	public $discountCode;
-	//public $startDate;
+	public $paymentMethod;
 	
 	// The following are defaults used when creating an account
 	public $invoiceNumber;
@@ -36,6 +36,7 @@ class SubscriptionApi {
 	var $accountStatus = 2;
 	
 	// These are picked up when you are creating an account
+	public $offerName; 
 	public $resellerEmail = '';
 	
 	function SubscriptionApi() {
@@ -60,7 +61,7 @@ class SubscriptionApi {
 		if (isset($info['discountCode'])) 
 			$this->discountCode = $info['discountCode'];
 		// It probably makes more sense to put start date here than in subscription since it is very specific
-		// to the api call. It will be very rare.
+		// to the api call. It will be very rare as practically always just start the subscription now.
 		//if (isset($info['startDate'])) 
 		//	$this->startDate = $info['startDate'];
 			
@@ -81,6 +82,8 @@ class SubscriptionApi {
 			$this->phone = $info['phone'];
 		if (isset($info['mobile']))
 			$this->mobile = $info['mobile'];
+		if (isset($info['paymentMethod']))
+			$this->paymentMethod = $info['paymentMethod'];
 
 		// To help an API user/reseller with testing
 		if (isset($info['transactionTest']))

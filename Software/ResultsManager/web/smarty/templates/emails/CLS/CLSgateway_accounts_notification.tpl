@@ -1,18 +1,25 @@
 ﻿{* Name: CLS accounts notification *}
 {* Description: Email sent to clarity accounts when CLSgateway is invoked. *}
-{* Parameters: $data *}
+{* Parameters: $api *}
 {* Updated for CLS v2 with packages *}
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Delivery order for iLearnIELTS ref:{$data->orderRef}</title>
+<title>CLS ref:{$api->subscription->orderRef}</title>
 	<!-- <from>support@clarityenglish.com</from> -->
 	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
 </head>
 <body>
 Somebody went through CLSgateway with the following information<br/>
-reseller: {$data->resellerID}<br/>
+our ref: {$api->subscription->id}<br/>
+email: {$api->subscription->email}<br/>
+name: {$api->subscription->name}<br/>
+offerID: {$api->subscription->offerID}<br/>
+start date: {$api->subscription->startDate}<br/>
+reseller: {$api->subscription->resellerID}<br/>
+reseller ref: {$api->subscription->orderRef}<br/>
+status: {$api->subscription->status}<br/>
 <br/>
 </body>
 </html>

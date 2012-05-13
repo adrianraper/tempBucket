@@ -13,10 +13,12 @@ for($i=0;$i<10;++$i) {
 	$neg_mypostfix .= " F_Prefix LIKE '$i%'";
 }
 
-for($i=0;$i<10;++$i) {
-	$mypostfix .= " AND F_Prefix NOT LIKE '_$i%'";
-	$neg_mypostfix .= " OR F_Prefix LIKE '_$i%'";
-}
+// Not sure why we allow one character in front of a number. This picks up R2ILM as a numeric prefix
+
+//for($i=0;$i<10;++$i) {
+//	$mypostfix .= " AND F_Prefix NOT LIKE '_$i%'";
+//	$neg_mypostfix .= " OR F_Prefix LIKE '_$i%'";
+//}
 
 DEFINE('MYPOSTFIX', $mypostfix);
 DEFINE('NEG_MYPOSTFIX', $neg_mypostfix);

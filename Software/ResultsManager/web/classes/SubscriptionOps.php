@@ -336,7 +336,7 @@ EOD;
 				
 		//	SELECT pc.F_ProductCode as productCode, o.F_Duration as duration
 		$sql = 	<<<EOD
-			SELECT distinct(pc.F_ProductCode) as productCode, o.F_Duration as duration
+			SELECT distinct(pc.F_ProductCode) as productCode, o.F_Duration as duration, o.F_OfferName as offerName
 			FROM T_Offer o, T_Package p, T_PackageContents pc
 			WHERE o.F_PackageID=p.F_PackageID
 			AND p.F_PackageID=pc.F_PackageID
@@ -356,6 +356,9 @@ EOD;
 				//$thisTitle->expiryDate = date_format((new DateTime()->modify('+'.$record->duration.' day'), 'Y-m-d');
 				$expiryDate = strtotime('+'.$record->duration.' days');
 				$apiInformation->subscription->expiryDate = date('Y-m-d', $expiryDate).' 23:59:59';
+				
+				// Again, this can only work if you are buying one offer at a time.
+				$apiInformation->offerName = $record->offerName;
 				
 				$thisTitle = new Title();
 				//var_dump($record);
@@ -378,10 +381,11 @@ EOD;
 				
 				// The language code you sent with api MIGHT be wrong for this product (EN for CSCS for instance)
 				// getDetailsFromProductCode will have sent back the default if yours is not good, so use that
-				//$thisTitle->languageCode = $apiInformation->languageCode;
 				$thisTitle->languageCode = $thisProduct['languageCode'];
-				//$thisTitle->deliveryFrequency = $apiInformation->subscription->deliveryFrequency;
-				//$thisTitle->contactMethod = $apiInformation->subscription->contactMethod;
+				
+				// Not used yet, but passed correctly so accept
+				$thisTitle->deliveryFrequency = $apiInformation->subscription->deliveryFrequency;
+				$thisTitle->contactMethod = $apiInformation->subscription->contactMethod;
 
 				$titles[] = $thisTitle;
 				
@@ -430,12 +434,10 @@ EOD;
 	// For sending out customer email once the account is created
 	public function sendEmail($account, $apiInformation, $send=true) {
 		
-		// This should use the EmailService
-		
 		// If the admin email is different from the account email, cc
 		$templateID = $apiInformation->emailTemplateID;
 		$adminEmail = $account->adminUser->email;
-		$emailData = array("account" => $account, "api"=>$apiInformation);
+		$emailData = array("account" => $account, "api" => $apiInformation);
 		$emailArray = array("to" => $adminEmail, "data" => $emailData);
 						
 		// Check that the template exists
@@ -462,7 +464,7 @@ EOD;
 		if ($attachment) 
 			// whilst this is still a tab delimited file, it seems simpler to call it txt rather than csv as Excel doesn't open it correctly
 			// by default.
-			$emailArray['attachments'] = array(new stringAttachment($attachment, 'iLearnIELTS_'.$dataObject->orderRef.'.txt')); 
+			$emailArray['attachments'] = array(new stringAttachment($attachment, 'iLearnIELTS_'.$dataObject->subscription->orderRef.'.txt')); 
 						
 		// Check that the template exists
 		// All templates for CLS exist in the subfolder
@@ -478,11 +480,11 @@ EOD;
 		}	
 	}
 	// For sending out email once the user is created
-	public function sendUserEmail($user, $apiInformation, $send=true) {
+	public function sendUserEmail($account, $apiInformation, $send=true) {
 		// If the admin email is different from the account email, cc
 		$templateID = $apiInformation->emailTemplateID;
 		$userEmail = $user->email;
-		$emailData = array("user" => $user, "api"=>$apiInformation);
+		$emailData = array("account" => $account, "api"=>$apiInformation);
 		$emailArray = array("to" => $userEmail, "data" => $emailData);
 						
 		// Check that the template exists
@@ -520,7 +522,7 @@ EOD;
 		try {
 			if ($saveAsFile) {
 				//$file = dirname(__FILE__)."/../../../Common/logs/".$templateID.$dataObject->orderRef.'.txt';
-				$file = $GLOBALS['logs_dir'].$templateID.$dataObject->orderRef.'.txt';
+				$file = $GLOBALS['logs_dir'].$templateID.$dataObject->subscription->orderRef.'.txt';
 				if (file_exists($file))
 					throw new Exception("File already exists");
 					
@@ -541,9 +543,9 @@ EOD;
 	}
 
 	// Send our accounts team an email notifiying of a new subscription
-	public function sendAccountsEmail($dataObject, $templateID = null, $send = true) {
+	public function sendAccountsEmail($api, $templateID = null, $send = true) {
 		$to = 'accounts@clarityenglish.com';
-		$emailData = array("data" => $dataObject);
+		$emailData = array("api" => $api);
 		$emailArray = array("to" => $to, "data" => $emailData);
 		// Check that the template exists
 		// All templates for CLS exist in the subfolder

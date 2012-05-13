@@ -16,16 +16,16 @@ class Subscription {
 	public $deliveryFrequency;
 	public $contactMethod;
 	public $languageCode;
-	public $productCode;
 	public $startDate;
-	public $expiryDate;
 	public $password;
-	public $checksum;
 	public $status;
 	public $discountCode;
-	public $rootID;
 	public $offerID;
 	public $resellerID;
+	public $orderRef;
+	
+	// Never sent, but stored after account is created
+	public $rootID;
 	
 	public function Subscription($id = null) {
 		
@@ -45,7 +45,6 @@ class Subscription {
 		$this->name = $obj->F_FullName;
 		$this->email = $obj->F_Email;
 		$this->country = $obj->F_Country;
-		$this->productCode = $obj->F_ProductCode;
 		
 		$this->password = $obj->F_Password;
 		$this->status = $obj->F_Status;
@@ -56,9 +55,8 @@ class Subscription {
 		$this->deliveryFrequency = $obj->F_DeliveryFrequency;
 		$this->contactMethod = $obj->F_ContactMethod;
 		$this->startDate = substr($obj->F_StartDate,0,10).' 00:00:00';
-		$this->expiryDate = substr($obj->F_ExpiryDate,0,10).' 23:59:59';
 		$this->languageCode = $obj->F_LanguageCode;
-		$this->checksum = $obj->F_Checksum;
+		$this->orderRef = $obj->F_OrderRef;
 	}		
 	/**
 	 * Convert this object to an associative array ready to pass to AutoExecute.
@@ -69,7 +67,6 @@ class Subscription {
 		$array['F_FullName'] = $this->name;
 		$array['F_Email'] = $this->email;
 		$array['F_Country'] = $this->country;
-		$array['F_ProductCode'] = $this->productCode;
 		$array['F_Password'] = $this->password;
 		$array['F_Status'] = $this->status;
 		$array['F_DiscountCode'] = $this->discountCode;
@@ -79,9 +76,8 @@ class Subscription {
 		$array['F_DeliveryFrequency'] = $this->deliveryFrequency;
 		$array['F_ContactMethod'] = $this->contactMethod;
 		$array['F_StartDate'] = $this->startDate;
-		$array['F_ExpiryDate'] = $this->expiryDate;
 		$array['F_LanguageCode'] = $this->languageCode;
-		$array['F_Checksum'] = $this->checksum;
+		$array['F_OrderRef'] = $this->orderRef;
 
 		return $array;
 	}

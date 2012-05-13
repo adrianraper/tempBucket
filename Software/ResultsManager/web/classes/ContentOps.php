@@ -1030,6 +1030,14 @@ EOD;
 						case 'R2IFV':
 							$langCodeCopy = "FullVersion";
 							break;
+						case 'R2IHU':
+							$langCodeCopy = "HomeUser";
+							break;
+						case 'R2ID':
+							$langCodeCopy = "Demo";
+							break;
+						default:
+							$langCodeCopy = 'x';
 					}
 					if (intval($titleObj->F_ProductCode) == 52) {
 						$version = "Academic";
