@@ -130,13 +130,13 @@
 						<s:HGroup>
 							<s:Label text="Account start date:"/>
 							<s:Spacer width="22"/>
-							<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.userDetails.registrationDate),'d MMMM yyyy')}" fontWeight="bold"/>		
+							<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.startDate),'d MMMM yyyy')}" fontWeight="bold"/>		
 						</s:HGroup>
 						<s:Spacer height="3" />
 						<s:HGroup>
 							<s:Label text="Account expiry date:"/>		
 							<s:Spacer width="13"/>
-							<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.userDetails.expiryDate),'d MMMM yyyy')}" fontWeight="bold"/>
+							<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.expiryDate),'d MMMM yyyy')}" fontWeight="bold"/>
 						</s:HGroup>
 						<s:Spacer height="3" />
 						<s:VGroup includeIn="homeUser" >

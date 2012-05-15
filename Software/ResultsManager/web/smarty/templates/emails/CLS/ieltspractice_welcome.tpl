@@ -40,7 +40,7 @@
             	<strong>Member name: </strong>{$api->subscription->email}</p>
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">
             	<strong>Password: </strong>{$api->subscription->password}</p>
-            <a href="www.IELTSPractice.com/login.php?email={$api->subscription->email}" target="_blank">
+            <a href="www.IELTSPractice.com" target="_blank">
             <img src="http://www.clarityenglish.com/images/email/ieltspractice/btn_learn.jpg" width="190" height="42" border="0" />
             </a>
           </div>
@@ -53,7 +53,7 @@ Please keep this email for later reference.</p>
                 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Name: </strong>{$api->subscription->name}</p>
                 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Email: </strong>{$api->subscription->email}</p>
                 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Subscription: </strong>{$api->offerName}</p>
-                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Expires on: </strong>{format_ansi_date ansiDate=$api->subscription->expiryDate format='%e %B %Y'}</p>
+                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Expires on: </strong>{format_ansi_date ansiDate=$api->subscription->expiryDate format='%d %B %Y'}</p>
                 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Payment method: </strong>{$api->paymentMethod}</p>
 			</div>
            </div>	 </td>

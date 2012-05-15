@@ -61,6 +61,11 @@ package com.clarityenglish.ielts.view.account {
 		public var userDetails:User;
 		
 		[Bindable]
+		public var startDate:String;
+		[Bindable]
+		public var expiryDate:String;
+		
+		[Bindable]
 		public var isDirty:Boolean;
 
 		private var _productVersion:String;
@@ -130,6 +135,10 @@ package com.clarityenglish.ielts.view.account {
 					instance.addEventListener(CalendarLayoutChangeEvent.CHANGE, onExamDateChange);
 					break;
 				
+				case newPassword:
+					instance.addEventListener(Event.CHANGE, onPasswordChange);
+					break;
+				
 				case examHours:
 				case examMinutes:
 					instance.addEventListener(Event.CHANGE, onExamTimeChange);
@@ -192,6 +201,13 @@ package com.clarityenglish.ielts.view.account {
 		
 		// TODO. Unload the countdownDisplay.swc when you don't need it anymore.
 		
+		/** 
+		 * The user simply changed the password field.
+		 * TODO. Check whether it is empty, in which case no longer isDirty 
+		 */
+		protected function onPasswordChange(eventObj:Event):void {
+			isDirty = true;
+		}
 		/**
 		 * The user changed the exam date.  
 		 * @param event

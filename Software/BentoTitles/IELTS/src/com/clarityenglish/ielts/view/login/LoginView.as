@@ -146,6 +146,8 @@ package com.clarityenglish.ielts.view.login {
 							return "Last Minute - Academic module";
 						case IELTSApplication.TEST_DRIVE:
 							return "Test Drive - Academic module";
+						case IELTSApplication.HOME_USER:
+							return "Home user - Academic module";
 						default:
 							return "Demo - Academic module";
 					}
@@ -158,6 +160,8 @@ package com.clarityenglish.ielts.view.login {
 							return "Last Minute - General Training module";
 						case IELTSApplication.TEST_DRIVE:
 							return "Test Drive - General Training module";
+						case IELTSApplication.HOME_USER:
+							return "Home user - General Training module";
 						default:
 							return "Demo - General Training module";
 					}
@@ -214,7 +218,7 @@ package com.clarityenglish.ielts.view.login {
 					case 2:
 						loginID_lbl = "Your id:";
 						break;
-					case 3:
+					case 128:
 						loginID_lbl = "Your email:";
 						break;
 					default:

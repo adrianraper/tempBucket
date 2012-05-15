@@ -597,16 +597,24 @@ EOD;
 	
 	}
 	// Update the status of the subscription record
+	// Maybe I need a more general update, but for now just add rootID
 	public function updateSubscriptionStatus($api) {
 
 		// You must have been passed subscriptionID
 		if (isset($api->subscription->id)) {
+			
+			// Not sure if you need to explicitly set null?
+			if (isset($api->subscription->rootID)) {
+				$rootID = isset($api->subscription->rootID);
+			} else {
+				$rootID = NULL;
+			}
 			$sql = <<<EOD
 				   UPDATE T_Subscription
-				   SET F_Status = ? 
+				   SET F_Status = ?, F_RootID = ? 
 				   WHERE F_SubscriptionID = ?
 EOD;
-			$rs = $this->db->Execute($sql, array($api->subscription->status, $api->subscription->id));
+			$rs = $this->db->Execute($sql, array($api->subscription->status, $rootID, $api->subscription->id));
 			
 			if ($rs) 
 				return true;

@@ -18,7 +18,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","studentID":"P10102928-170","name":"RAPER, Adrian","dbHost":2,"custom1":"Basic","custom2":"IMD","prefix":"CSTDI","loginOption":"8"}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"1217-0552-6019-170","name":"Adrian early bird","password":"G&amp;T;","email":"adrian@clarity.com.hk","groupID":"170","productCode":"52","subscriptionPeriod":"3months","emailTemplate":"Welcome-BCHK-user","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
-	//$inputData = '{"method":"getUser","email":"mimi.rahima.8@clarityenglish.com","licenceType":"5","loginOption":"8"}';
+	//$inputData = '{"method":"getUser","email":"douglas.1@clarityenglish.com","licenceType":5,"loginOption":128}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
@@ -98,15 +98,17 @@ try {
 			if ($user==false) {
 				// Return the key information you used to search
 				switch ($apiInformation->loginOption) {
-					case 2:
-						$key = $apiInformation->studentID;
-						break;
 					case 1:
 						$key = $apiInformation->userName;
 						break;		
-					case 8:
+					case 2:
+						$key = $apiInformation->studentID;
+						break;
+					case 128:
 						$key = $apiInformation->email;
-						break;		
+						break;
+					default:
+						$key = "unknown login option ".$apiInformation->loginOption;
 				}
 				returnError(200, $key);
 			}
@@ -150,6 +152,8 @@ try {
 			}
 			
 			// TODO: Should also return account information to mirror getUser
+			$apiInformation->userID = $user->id;
+			$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
 			
 			break;
 			
@@ -159,13 +163,11 @@ try {
 
 	// Send back data.
 	// It might be better to only send back limited account data
-	$limitedAccount = new Account();
-	if (isset($account) && $account) {
-		$limitedAccount->prefix = $account->prefix;
-		$limitedAccount->id = $account->id;
-		$limitedAccount->name = $account->name;
+	// BUG: No, I need lots of data for working out if titles are not expired etc
+	if (!isset($account) || !$account) {
+		$account = new Account();
 	}
-	$returnInfo = array('user' => $user, 'account' => $limitedAccount); 
+	$returnInfo = array('user' => $user, 'account' => $account); 
 	
 	echo json_encode($returnInfo);
 	

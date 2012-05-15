@@ -78,11 +78,14 @@ package com.clarityenglish.ielts.view.zone {
 		public var popoutExerciseSelector:PopoutExerciseSelector;
 		
 		[SkinPart(required="true")]
+		public var examPracticeAudioPlayer:AudioPlayer;
+		
+		[SkinPart(required="true")]
 		public var adviceZoneVideoPlayer:VideoPlayer;
 		
 		[SkinPart(required="true")]
 		public var adviceZoneVideoList:List;
-		
+
 		[SkinPart(required="true")]
 		public var courseSelectorWidget:CourseSelectorWidget;
 		
@@ -462,7 +465,15 @@ package com.clarityenglish.ielts.view.zone {
 		 * @param event
 		 */
 		protected function onMouseUp(event:MouseEvent):void {
-			if (isMediated) AudioPlayer.stopAllAudio();
+			// #332 Don't react if they are clicking the audio component itself
+			if (!(examPracticeAudioPlayer.getBounds(stage).contains(event.stageX, event.stageY)) &&
+				!(examPracticeAudioPlayer.getBounds(stage).contains(event.stageX, event.stageY))) {
+				
+				if (isMediated) {
+					AudioPlayer.stopAllAudio();
+					log.debug("Stopped practice test audio because click detected outside player");
+				}
+			}
 		}
 		
 		/**

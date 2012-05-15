@@ -147,6 +147,7 @@ package com.clarityenglish.common.vo.config {
 						replace = "TestDrive";
 						break;
 					case 'R2IFV':
+					case 'R2IHU':
 						replace = "FullVersion";
 						break;
 					case 'R2ID':

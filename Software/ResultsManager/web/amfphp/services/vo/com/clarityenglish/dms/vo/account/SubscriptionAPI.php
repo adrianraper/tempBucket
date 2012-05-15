@@ -24,15 +24,15 @@ class SubscriptionApi {
 	
 	// The following are defaults used when creating an account
 	public $invoiceNumber;
-	var $licenceType=5; // Individual account
-	var $maxStudents=1;
-	var $maxTeachers=0;
-	var $maxReporters=0;
+	var $licenceType = 5; // Individual account
+	var $maxStudents = 1;
+	var $maxTeachers = 0;
+	var $maxReporters = 0;
 	var $maxAuthors = 0;
 	var $tacStatus = 2;
 	var $accountType = 1;
 	var $selfHost = false;
-	var $loginOption = 65; // or 8 for email?
+	var $loginOption = 1; // name?
 	var $accountStatus = 2;
 	
 	// These are picked up when you are creating an account
@@ -64,6 +64,9 @@ class SubscriptionApi {
 		// to the api call. It will be very rare as practically always just start the subscription now.
 		//if (isset($info['startDate'])) 
 		//	$this->startDate = $info['startDate'];
+
+		if (isset($info['loginOption'])) 
+			$this->loginOption = $info['loginOption'];
 			
 		// For iLearnIELTS we expect the following so we can build delivery details for DHL
 		if (isset($info['address1']))

@@ -62,7 +62,7 @@ class LoginService extends AbstractService {
 			case 1:
 				$stubUser->name = $loginDetails->name;
 				break;		
-			case 8:
+			case 128:
 				$stubUser->email = $loginDetails->email;
 				break;
 			default:

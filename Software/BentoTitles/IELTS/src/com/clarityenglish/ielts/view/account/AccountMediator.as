@@ -6,6 +6,8 @@
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.dms.vo.account.Account;
+	import com.clarityenglish.dms.vo.account.Licence;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -35,11 +37,25 @@
 
 			// Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			// TODO. Not sure it makes any sense to have default values - unless perhaps they relate to a DEMO mode?
-			view.productVersion = configProxy.getProductVersion() || "fullVersion";
-			view.productCode = configProxy.getProductCode() || 52;
-			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
+			view.productVersion = configProxy.getProductVersion();
+			view.productCode = configProxy.getProductCode();
+			view.licenceType = configProxy.getLicenceType();
 
+			// The start and end date depend on the type of account, and whether you expire or not
+			// Start date is either account start date, or user registration date whichever is later
+			// Expiry date is either account end date, or user expiry date whichever is earlier
+			var licence:Licence = configProxy.getLicence();
+			if (loginProxy.user.registrationDate && loginProxy.user.registrationDate > licence.licenceStartDate) {
+				view.startDate = loginProxy.user.registrationDate;
+			} else {
+				view.startDate = licence.licenceStartDate;
+			}
+			if (loginProxy.user.expiryDate && loginProxy.user.expiryDate < licence.expiryDate) {
+				view.expiryDate = loginProxy.user.expiryDate;
+			} else {
+				view.expiryDate = licence.expiryDate;
+			}
+			
 			view.isDirty = false;
 		}
         

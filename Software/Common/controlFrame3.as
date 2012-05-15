@@ -26,13 +26,13 @@ controlNS.loadMovieToHolder = function(module) {
 		} else {
 			movieLocation = module.folder;
 		}
-		myTrace("load " + movieLocation + module.fileName); // + " at depth=" + this.master[module.holderName].getDepth(),1);
 		// Try to let the module come from cache unless you detect a new version number
 		if(_global.ORCHID.online){
-		   var cacheVersion = "?version=" + _global.ORCHID.versionTable.getVersionString(module);
+			var cacheVersion = "?version=" + _global.ORCHID.versionTable.getVersionString(module);
 		} else {
 			var cacheVersion = ""
 		}
+		myTrace("load " + movieLocation + module.fileName + cacheVersion); 
 		this.master[module.holderName].loadMovie(movieLocation + module.fileName + cacheVersion);
 		// initialise queue item variables
 		module.lastByteCount=0;
@@ -54,34 +54,34 @@ controlNS.loadFromQueue = function() {
 	}
 }
 var moduleQueue = _global.ORCHID.queue.modules;
-moduleQueue.licenceModule = {holderName:"licenceHolder", fileName:"licence.swf", 
+moduleQueue.licenceModule = {holderName:"licenceHolder", fileName:"licence.swf", name:"licence",
 											loaded:false, tryAgain:0, acknowledged:false};
 // v6.5.5.5 Security
-moduleQueue.displayListModule = {holderName:"displayListHolder", fileName:"displayList.swf", 
+moduleQueue.displayListModule = {holderName:"displayListHolder", fileName:"displayList.swf", name:"displayList", 
 											loaded:false, tryAgain:0, acknowledged:false};
-moduleQueue.objectsModule = {holderName:"objectHolder", fileName:"objects.swf", 
+moduleQueue.objectsModule = {holderName:"objectHolder", fileName:"objects.swf", name:"objects",
 											loaded:false, tryAgain:0, acknowledged:false};
-moduleQueue.mainModule = {holderName:"mainHolder", fileName:"main.swf", 
+moduleQueue.mainModule = {holderName:"mainHolder", fileName:"main.swf", name:"main",
 											loaded:false, tryAgain:0, acknowledged:false};
-moduleQueue.jukeboxModule = {holderName:"jukeboxHolder", fileName:"jukeBox.swf", 
+moduleQueue.jukeboxModule = {holderName:"jukeboxHolder", fileName:"jukeBox.swf", name:"jukebox",
 											loaded:false, tryAgain:0, acknowledged:false};
-moduleQueue.videoModule = {holderName:"videoHolder", fileName:"videoPlayer.swf", 
+moduleQueue.videoModule = {holderName:"videoHolder", fileName:"videoPlayer.swf", name:"videoPlayer",
 											loaded:false, tryAgain:0, acknowledged:false};
 // v6.5.5.5 need a new video module to cope with RTMP streaming. Not just yet though!
-moduleQueue.newVideoModule = {holderName:"newVideoHolder", fileName:"newVideoPlayer.swf", 
+moduleQueue.newVideoModule = {holderName:"newVideoHolder", fileName:"newVideoPlayer.swf", name:"newVideoPlayer",
 											loaded:false, tryAgain:0, acknowledged:false};
 // v6.5 Add separate module for displaying progress
-moduleQueue.progressModule = {holderName:"progressHolder", fileName:"progress.swf", 
+moduleQueue.progressModule = {holderName:"progressHolder", fileName:"progress.swf", name:"progress",
 											loaded:false, tryAgain:0, acknowledged:false};
-moduleQueue.printingModule = {holderName:"printingHolder", fileName:"printing.swf", 
+moduleQueue.printingModule = {holderName:"printingHolder", fileName:"printing.swf", name:"printing",
 											loaded:false, tryAgain:0, acknowledged:false};
-moduleQueue.buttonsModule = {holderName:"buttonsHolder", fileName:"buttons.swf", 
+moduleQueue.buttonsModule = {holderName:"buttonsHolder", fileName:"buttons.swf", name:"buttons",
 											folder:_global.ORCHID.paths.interfaceMovies,
 											loaded:false, tryAgain:0, acknowledged:false};
-moduleQueue.creditsModule = {holderName:"creditsHolder", fileName:"credits.swf", 
+moduleQueue.creditsModule = {holderName:"creditsHolder", fileName:"credits.swf", name:"credits",
 											folder:_global.ORCHID.paths.interfaceMovies,
 											loaded:false, tryAgain:0, acknowledged:false};
-moduleQueue.tlcModule = {holderName:"tlcController", fileName:"onEnterFrame.swf", 
+moduleQueue.tlcModule = {holderName:"tlcController", fileName:"onEnterFrame.swf", name:"onEnterFrame",
 											loaded:false, tryAgain:0, acknowledged:false,
 											depth:100};
 if (_global.ORCHID.commandLine.scorm) {

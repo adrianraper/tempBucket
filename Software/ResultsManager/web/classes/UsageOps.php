@@ -284,28 +284,48 @@ EOD;
 EOD;
 		}
 		$bindingParams = array($title->id, Session::get('rootID'), $fromDateStamp, $toDateStamp);
-		//NetDebug::trace("USAGE: sql=".$sql);		
+		NetDebug::trace("USAGE: sql=".$sql);		
 		//NetDebug::trace("bindings=".implode(",",$bindingParams));		
 		// Unfortunately date bindings don't seem to work so they are directly embedded in the SQL string
 		//$rs = $this->db->GetArray($sql, array($_SESSION['rootID'], $this->db->BindDate("$fromDateStamp"), $this->db->BindDate("$toDateStamp")));
 		//$rs = $this->db->GetArray($sql, array(Session::get('rootID')));
 		$rs = $this->db->GetArray($sql, $bindingParams);
-		
-		// If you have a product that has different courseIDs for different language versions, then here you get double.
-		// It would be nice to consolidate them based on name. But of very small interest I suppose. And of course I don't know the names
-		// of courseIDs from the db. But I suppose I could just count those that are NOT in the current courseIDs?
-		$otherCount=0;
-		foreach ($rs as $record) {
-			// Is this SQL record listed in the current title?
-			if (in_array($record['courseID'],$courseIdArray)) {
-				// add this count and duration to the return set
-				$currentRS[] = $record;
-			} else {
-				$otherCount+=$record['courseCount'];
-				$otherDuration+=$record['duration'];
+
+		// v3.7 If you have a title with just one course (SSS) then it would be nice to get units at this point
+		/*
+		if (count($rs) == 1) {
+			$courseID = $rs[0]['courseID'];
+			$sql = 	<<<EOD
+				SELECT sc.F_UnitID courseID, COUNT(ss.F_SessionID) courseCount, SUM(ss.F_Duration) duration
+				FROM T_Session ss, T_Score sc
+				WHERE ss.F_ProductCode=?
+				AND sc.F_CourseID = $courseID
+				AND ss.F_RootID = ?
+				AND ss.F_StartDateStamp >= ?
+				AND ss.F_StartDateStamp <= ?
+				AND ss.F_SessionID = sc.F_SessionID
+				GROUP BY sc.F_UnitID
+EOD;
+			$rs = $this->db->GetArray($sql, $bindingParams);
+			$returnArray = array(courseCounts => $rs);
+		} else {
+		*/
+			// If you have a product that has different courseIDs for different language versions, then here you get double.
+			// It would be nice to consolidate them based on name. But of very small interest I suppose. And of course I don't know the names
+			// of courseIDs from the db. But I suppose I could just count those that are NOT in the current courseIDs?
+			$otherCount=0;
+			foreach ($rs as $record) {
+				// Is this SQL record listed in the current title?
+				if (in_array($record['courseID'],$courseIdArray)) {
+					// add this count and duration to the return set
+					$currentRS[] = $record;
+				} else {
+					$otherCount+=$record['courseCount'];
+					$otherDuration+=$record['duration'];
+				}
 			}
-		}
-		$returnArray = array(courseCounts=>$currentRS);
+			$returnArray = array(courseCounts=>$currentRS);
+		//}
 		if ($otherCount>0)
 			//$currentRS[] = array(courseID=>0,userCount=>$otherCount,duration=>$otherDuration);
 			$returnArray['otherCourseCounts'] = array(courseID=>0,courseCount=>$otherCount,duration=>$otherDuration);

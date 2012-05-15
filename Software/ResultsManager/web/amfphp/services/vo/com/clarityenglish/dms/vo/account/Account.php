@@ -148,7 +148,7 @@ class Account extends Reportable {
 		// v3.0.6 Self-hosting
 		$array['F_SelfHost'] = ($this->selfHost) ? 1 : 0;
 		// v3.0.6 Anonymous Access login through CE.com/shared
-		$array['F_LoginOption'] = $this->loginOption;
+		$array['F_LoginOption'] = (isset($this->loginOption)) ? $this->loginOption : 1;
 		// v3.3 Security of self-hosting
 		$array['F_SelfHostDomain'] = $this->selfHostDomain;
 		// v3.4 Multi-group users
@@ -161,7 +161,6 @@ class Account extends Reportable {
 		if (isset($this->optOutEmails)) $array['F_OptOutEmails'] = ($this->optOutEmails) ? 1 : 0;
 		if (isset($this->optOutEmails)) $array['F_OptOutEmailDate'] = $this->optOutEmailDate;
 		// v4.0 Integration with Bento
-		$array['F_LoginOption'] = (isset($this->loginOption)) ? $this->loginOption : 1;
 		$array['F_Verified'] = (isset($this->verified)) ? $this->verified : 1;
 		$array['F_SelfRegister'] = (isset($this->selfregister)) ? $this->selfregister : 0;
 		
@@ -194,7 +193,6 @@ class Account extends Reportable {
 						"$prefix.F_OptOutEmails",
 						"$prefix.F_OptOutEmailDate",
 		// v4.0 Integration with Bento
-						"$prefix.F_LoginOption",
 						"$prefix.F_Verified",
 						"$prefix.F_SelfRegister",
 						

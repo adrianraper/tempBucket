@@ -714,10 +714,13 @@ EOD;
 		// v3.0.6 If all the titles are AA licences, CE.com/shared will the portal they use for access.
 		// This is signalled by adding 128 to the loginOption.
 		//NetDebug::trace('AccountOps.updateAccounts original F_LoginOption='.$account->loginOption);
+		// BUG: Orchid declarations shows that email login is 128. But old CLS accounts all have 65 or 64 as the loginOption
+		// Since CLS/R2I don't ever login through CE.com, I suppose it won't matter if they use 128 as well. But it should be cleared up
+		// For now I will remove the bit here there subtracts 128 if all titles are NOT AA
 		if ($allLicencesAA) {
 			$account->loginOption = $account->loginOption | 128; // make sure 128 is set
-		} else {
-			$account->loginOption = ($account->loginOption | 128) ^ 128; // make sure 128 is not set
+		//} else {
+		//	$account->loginOption = ($account->loginOption | 128) ^ 128; // make sure 128 is not set
 		}
 		//NetDebug::trace('AccountOps.updateAccounts allAA='.$allLicencesAA.' so set F_LoginOption='.$account->loginOption);
 		$this->db->Execute("UPDATE T_AccountRoot SET F_LoginOption=? WHERE F_RootID=?", array($account->loginOption, $account->id));

@@ -9,6 +9,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.dms.vo.account.Account;
+	import com.clarityenglish.dms.vo.account.Licence;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -147,6 +148,10 @@ package com.clarityenglish.common.model {
 		
 		public function getAccount():Account {
 			return config.account;
+		}
+		
+		public function getLicence():Licence {
+			return config.licence;
 		}
 		
 		public function getUserID():String {

@@ -48,10 +48,11 @@ function loadAPIInformation() {
 	global $nonApiInformation;
 	
 	$inputData = file_get_contents("php://input");
-	$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.11@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card"}';
-	//$inputData = '{"method":"addSubscription","subscriptionID":1039,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card"}';
-	//$inputData = '{"method":"saveSubscriptionDetails","email":"adrian.raper@clarityenglish.com","name":"Adrian\'s Raper","country":"Hong Kong","resellerID":21,"orderRef":"201200085","offerID":59,"status":"initial"}';
+	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.22@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
+	//$inputData = '{"method":"addSubscription","subscriptionID":1020,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
+	//$inputData = '{"method":"saveSubscriptionDetails","email":"douglas.engelbert.2@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
 	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1034,"status":"paid"}';
+	//$inputData = '{"method":"addSubscription","subscriptionID":1015,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card"}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
@@ -81,7 +82,7 @@ function loadAPIInformation() {
 			
 	}
 			
-	$api = new SubscriptionAPI();
+	$api = new SubscriptionApi();
 	$api->createFromSentFields($postInformation);
 	
 	// Rather than jam up the database, I will do this with files I think. Then need to clear them out regularly.
@@ -230,6 +231,7 @@ EOD;
 				AbstractService::$debugLog->warning("skip saving account and subscription for ".$account->name);
 			}
 			$apiInformation->subscription->status = 'Account created';
+			$apiInformation->subscription->rootID = $account->id;
 			$dmsService->subscriptionOps->updateSubscriptionStatus($apiInformation);
 				
 			// If they want an email sent, do that
