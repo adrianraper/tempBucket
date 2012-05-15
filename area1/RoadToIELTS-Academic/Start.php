@@ -1,19 +1,5 @@
 <?php
 
-// http://dock.projectbench/area1/RoadToIELTS-Academic/Start.php?prefix=Clarity
-
-	// First, a temporary fix to allow some libraries to run R2IV2 without changing their URLs
-	if (isset($_GET['prefix'])) {
-		$prefix = $_GET['prefix'];
-		switch (strtolower($prefix)) {
-			//case 'mcl':
-			case 'ccls':
-			case 'wmrl':
-				header("location: /area1/RoadToIELTS2/Start-AC.php?prefix=$prefix");
-			default:
-		}
-	}
-	
 	session_start();
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $userID = $instanceID = '';
@@ -47,34 +33,6 @@
 		exit;
 	}
 
-		header("location: /area1/RoadToIELTS-Academic/redirect.php?prefix=$prefix");
-
-	// Temporary solution for switching R2I. Some account wishes to hold until they decided to switch
-	// Load a list of roots that wishes to keeop old version
-	// File format rooID,Account name,prefix,prefer switch date
-	// one line per account
-	$handle = @fopen("../../englishonline/R2IOnHoldList.txt", "r");
-	if ($handle) {
-		while (($AccountList = fgets($handle, 4096)) !== false) {
-			//echo $AccountList;
-			$Accountinfo = split(",", $AccountList);
-			if ($Accountinfo[2]==$prefix) {
-				$onHoldFlag = true;
-			}
-		}
-		if (!feof($handle)) {
-			echo "Error: unexpected fgets() fail\n";
-		}
-		fclose($handle);
-	}
-	if (!$onHoldFlag) {
-		// For one or two days go through a temporary redirect page to build awareness
-		header("location: /area1/RoadToIELTS-Academic/redirect.php?prefix=$prefix");
-		//header("location: /area1/RoadToIELTS2/Start-AC.php?prefix=$prefix");
-		exit;
-	}
-	
-	
 	// v6.5.5.1 If the licence file exists, send a reference to it. Here we work out what the name would be.
 	$licenceFile = $prefix."_licence.txt";
 	

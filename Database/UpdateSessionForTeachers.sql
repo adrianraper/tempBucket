@@ -1,16 +1,3 @@
-SELECT * FROM `rack80829`.`T_Session`
-where F_RootID<=0
-order by F_StartDateStamp desc;
-
-select * from T_User where F_UserName = 'Mrs White';
-select * from T_Accounts where F_RootID=163;
-select * from T_Product;
-
-delete from T_Session
-where F_StartDateStamp>'2012-04-15';
-
-SELECT * FROM `rack80829`.`T_Score`
-where F_SessionID >2227400;
 
 -- set rootId to -1 for teachers
 -- takes 2.5 seconds for 31 rows
@@ -20,12 +7,29 @@ INNER JOIN T_User u
 ON s.F_UserID=u.F_UserID
 set s.F_RootID=-1
 WHERE u.F_UserType!=0;
--- AND u.F_UserID=19304;
 
-SELECT count(s.F_SessionID) 
+SELECT *
 FROM T_Session s
 INNER JOIN T_User u
 ON s.F_UserID=u.F_UserID
 WHERE u.F_UserType!=0
-AND s.F_StartDateStamp>'2011-01-01';
+AND s.F_RootID>0;
+
+-- This is all the people who have a licence
+SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
+FROM T_Session s
+WHERE s.F_ProductCode = 9
+AND s.F_Duration > 15
+AND s.F_EndDateStamp >= '2011-09-08'
+AND s.F_RootID = 11811;
+
+-- This is the list of students that have a session but no score
+SELECT * FROM T_User
+WHERE F_UserID in 
+(SELECT distinct(s.F_UserID)
+FROM T_Session s, T_User u
+WHERE NOT EXISTS (SELECT * FROM T_Score WHERE F_UserID = s.F_UserID AND F_DateStamp >= '2011-09-08' AND F_ProductCode = 9)
+AND s.F_ProductCode = 9
+AND s.F_EndDateStamp >= '2011-09-08'
+AND s.F_RootID = 11811);
 

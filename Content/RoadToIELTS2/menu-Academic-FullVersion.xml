@@ -104,7 +104,7 @@
 				<exercise id="1151344221730" group="9" caption="True, False, Not given" href="reading/exercises/1151344221730.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/a_read_set9_02.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
-				<exercise id="1151344221063" group="9" caption="Multiple choice" href="reading/exercises/1151344221063.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/a_read_set9_03.jpg">
+				<exercise id="1151344221063" group="9" caption="Multiple selection" href="reading/exercises/1151344221063.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/a_read_set9_03.jpg">
 				  <!--MC - splitscreen QB-->
 				</exercise>
 				<exercise id="1151344221051" group="9" caption="Sentence completion" href="reading/exercises/1151344221051.xml" enabledFlag="3" difficulty="2" thumbnail="reading/thumbnails/a_read_set9_04.jpg">
@@ -166,7 +166,7 @@
 				<group id="11" caption="Set 11" task="1" alt="" />
 				<group id="12" caption="Set 12" task="1" alt="" />
 			</groups>
-			<unit id="1287130210000" class="question-zone" caption="Starting out">
+			<unit id="1287130210000" class="question-zone" enabledFlag="3" caption="Starting out">
 				<exercise id="1287130210001" caption="Listening eBook" href="listening/questionzone.xml" enabledFlag="3" />
 				<exercise id="1287130210002" caption="Download PDF" href="listening/ebook/ebook_listening.pdf" enabledFlag="3" />
 				<exercise id="1287130210003" caption="Advice" href="listening/questionzonevideo1.rss" enabledFlag="3" />

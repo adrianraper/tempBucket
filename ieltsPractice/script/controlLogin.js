@@ -42,7 +42,6 @@ sendLoginAction = function() {
 
 onAjaxLoginEmailSuccess = function(data, textStatus) {
 	//alert('sucess, data='+data.success);
-	console.log('success=' + data.account.name);
 	
 	// Did the gateway send back an error:
 	if (data.error) {

@@ -138,6 +138,9 @@ function addAccount() {
 	
 	$serializedObj = json_encode($CLSapi);
 	$targetURL = $commonDomain."Software/ResultsManager/web/amfphp/services/CLSgateway.php";
+
+	if ($debugLog)
+		error_log("to CLSGateway with $serializedObj\n", 3, $debugFile);
 	
 	//Initialize the cURL session
 	$ch = curl_init();
@@ -164,9 +167,8 @@ function addAccount() {
 		}
 		//echo $contents;exit(0);
 		$returnInfo = json_decode($contents, true);
-		if ($debugLog) {
-			error_log("back from LoginGateway with $contents\n", 3, $debugFile);
-		}
+		if ($debugLog)
+			error_log("back from CLSGateway with $contents\n", 3, $debugFile);
 
 		$errorCode = 0;
 		

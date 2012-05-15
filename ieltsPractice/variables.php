@@ -18,6 +18,6 @@
 	//$searchType = 1; // name 
 	//$searchType = 2; // id
 	//$searchType = 4; // both
-	$searchType = 8; // Email 
 	//$searchType = 64; // UserID 
+	$searchType = 128; // Email 
 ?>

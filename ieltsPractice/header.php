@@ -1,4 +1,6 @@
 <?php 
+
+// BUG: I think this is called in every page that uses header.php
 //session_start(  );
 //date_default_timezone_set('UTC');
 
@@ -8,7 +10,7 @@ function showDate($ts) {
 ?>
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 
-				<?php if(!isset($_SESSION['UserID'])) { ?>
+				<?php if(!isset($_SESSION['CLS_userID'])) { ?>
                 <div id="login_panel">
                 
                 

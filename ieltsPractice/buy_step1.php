@@ -71,7 +71,7 @@
                                          <div class="buy_inner_box">
                                             <div class="buy_field_line">
                                                 <p class="name">Your email:</p>
-                                                <input name="RTIChooseEmail" id="RTIChooseEmail" type="text" class="field" onblur="checkEmail()" value="testing@yahoo.com" />
+                                                <input name="RTIChooseEmail" id="RTIChooseEmail" type="text" class="field" onblur="checkEmail()" value="" />
                                                 <p class="note" id="RTIEmailValid">(This will be your login name)</p>
                                                 <div class="clear"></div>
                                                 <p class="error" name="RTIEmailError" id="RTIEmailError"></p>
@@ -80,7 +80,7 @@
                                             
                                             <div class="buy_field_line">
                                                 <p class="name">Your password:</p>
-                                                <input name="RTIChoosePassword" id="RTIChoosePassword" type="password" class="field"  value="123123123"/>
+                                                <input name="RTIChoosePassword" id="RTIChoosePassword" type="password" class="field"  value=""/>
                                                 <p class="note">(8-15 English alphabet characters)</p>
                                                 <div class="clear"></div>
                                                 <p class="error" name="RTIPasswordError" id="RTIPasswordError"></p>
@@ -89,7 +89,7 @@
                                             
                                             <div class="buy_field_line">
                                                 <p class="name">Retype password:</p>
-                                                <input name="RTIRetypePassword" id="RTIRetypePassword" type="password" class="field"  value="123123123"/>
+                                                <input name="RTIRetypePassword" id="RTIRetypePassword" type="password" class="field"  value=""/>
                                                 
                                                 <div class="clear"></div>
                                                 <p class="error" name="RTIPassword2Error" id="RTIPassword2Error"></p>
@@ -104,7 +104,7 @@
                                          <div class="buy_inner_box">
                                             <div class="buy_field_line">
                                                 <p class="name">Your name:</p>
-                                                <input name="RTIName" id="RTIName" type="text" class="field"  value="James 'Slippy' Floor"/>
+                                                <input name="RTIName" id="RTIName" type="text" class="field"  value=""/>
                                                 <p class="note">(We will use this name in emails)</p>
                                                 <div class="clear"></div>
                                                 <p class="error" name="RTINameError" id="RTINameError" style="display:none"></p>
@@ -114,7 +114,7 @@
                                             
                                             <div class="buy_field_line">
                                                 <p class="name">Phone:</p>
-                                                <input name="RTIPhone" id="RTIPhone" type="text" class="field"  value="999-888-77"/>
+                                                <input name="RTIPhone" id="RTIPhone" type="text" class="field"  value=""/>
                                                 <p class="note">(Optional: In case we need to contact you about your payment)</p>
                                                 <div class="clear"></div>
                                             </div>
@@ -124,8 +124,8 @@
                                                 <select name="RTIAgeGroup" id="RTIAgeGroup" class="field">
                                                   <option value="" selected="selected" disabled>Please select your age group</option>
                                                   <option value="b18">Below 18</option>
-                                                  <option value="18-25">18-25</option>
-                                                  <option value="25-40" selected>25-40</option>
+                                                  <option value="18-25" selected>18-25</option>
+                                                  <option value="25-40">25-40</option>
                                                   <option value="40-55">40-55</option>
                                                   <option value="55a">55 above</option>
                                                 </select>
@@ -236,7 +236,7 @@
                                                         <option value="Haiti">Haiti</option>
                                                         <option value="Heard Island and Mcdonald Islands">Heard Island and Mcdonald Islands</option>
                                                         <option value="Honduras">Honduras</option>
-                                                        <option value="Hong Kong" selected>Hong Kong</option>
+                                                        <option value="Hong Kong">Hong Kong</option>
                                                         <option value="Hungary">Hungary</option>
                                                         <option value="Iceland">Iceland</option>
                                                         <option value="India">India</option>

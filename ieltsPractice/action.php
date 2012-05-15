@@ -183,7 +183,7 @@ if ($queryMethod=="login") {
 	$LoginAPI = array();
 	$LoginAPI['method'] = 'getUser';
 	$LoginAPI['email'] = $email;
-	$LoginAPI['loginOption'] = '8';
+	$LoginAPI['loginOption'] = '128';
 	$LoginAPI['licenceType'] = '5';
 
 	// Send this single LoginAPI

@@ -229,7 +229,7 @@ function checkPassword() {
 	if (password!=password2) {
 		seemsOK = false;
 		$("#RTIPassword2Error").fadeTo(200,0.1,function() { 
-			$(this).html(R2IBuyPwdPatternIncorrect).fadeTo(900,1);
+			$(this).html(R2IBuyRetypePwdIncorrect).fadeTo(900,1);
 		});
 	} else {
 		$("#RTIPassword2Error").hide();

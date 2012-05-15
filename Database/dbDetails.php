@@ -32,20 +32,22 @@ class DBDetails {
 				$this->dbname = "global_r2iv2";
 				break;
 			case 2:
-				/*$this->driver = "mysql";
+			/*
+				$this->driver = "mysql";
 				$this->host = "ClarityDevelop";
 				$this->user = "root";
 				$this->password = "Sunshine1787";
 				$this->dbname = "rack80829";
-				break;*/
-				/*
+				break;
+			*/
+			/*
 				$this->driver = "mysql";
-				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
+				$this->host = "clarityrestore.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
 				$this->user = "clarity";
 				$this->password = "clarity123";
 				$this->dbname = "rack80829";
 				break;
-				*/
+			*/
 			default:
 				$this->driver = "mysql";
 				$this->host = "localhost";
