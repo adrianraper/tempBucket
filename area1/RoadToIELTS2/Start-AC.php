@@ -78,6 +78,7 @@
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/SCORM_API_Wrapper.js"></script>
 	
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
 	

@@ -10,6 +10,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
+	import com.pipwerks.SCORM;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -44,6 +45,9 @@ package com.clarityenglish.common.model {
 		
 		private var _dateFormatter:DateFormatter;
 
+		// #336
+		private var scorm:SCORM;
+		
 		/**
 		 * Configuration information comes from three sources
 		 * 1) config.xml. This holds base paths and other information that is common to all accounts, but differs between products
@@ -71,6 +75,11 @@ package com.clarityenglish.common.model {
 			 */
 			config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
 
+			// #336 SCORM
+			if (config.scorm) {
+				this.getScormParameters();				
+			}
+			
 			// Trigger the database call
 			getAccountSettings();
 		}
@@ -351,5 +360,28 @@ package com.clarityenglish.common.model {
 			
 		}
 
+		/**
+		 * Establish SCORM communication with the API in the browser
+		 * Get initial variables and leave it all ready for writing progress
+		 */
+		private function getScormParameters():void {
+
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			
+			scorm = new SCORM();
+			scorm.debugMode = true;
+			
+			// Initialise
+			if (!scorm.connect()) {
+				config.error = copyProxy.getBentoErrorForId("SCORMcantInitialize", { errorCode: 100, errorMessage: 'SCORMError' }, true );
+			} else {
+				var scormVersion:String = scorm.version;
+			}
+			
+			if (config.error)
+				sendNotification(CommonNotifications.CONFIG_ERROR, config.error);
+
+		}
+		
 	}
 }

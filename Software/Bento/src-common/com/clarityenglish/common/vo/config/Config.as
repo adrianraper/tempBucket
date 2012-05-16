@@ -43,6 +43,9 @@ package com.clarityenglish.common.vo.config {
 		public var streamingMedia:String;
 		public var mediaChannel:String;
 		
+		// #336
+		public var scorm:Boolean;
+		
 		// To help with testing
 		public var configID:String;
 		
@@ -116,6 +119,8 @@ package com.clarityenglish.common.vo.config {
 			if (parameters.ip) this.ip = parameters.ip;
 			if (parameters.referrer) this.referrer = parameters.referrer;
 			
+			// #336 SCORM
+			if (parameters.scorm) this.scorm = parameters.scorm;
 		}
 		/**
 		 * Do any substitutions that you can for the menu filename
