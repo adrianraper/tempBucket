@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 in localhost</id>
-	<developer>none</developer>
+	<developer>AR</developer>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<streamingMedia />
+	<mediaChannel>aws</mediaChannel>
+	<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
+	<mediaChannel-1>network</mediaChannel-1>
+	<streamingMedia-1>{contentPath}/video/</streamingMedia-1>
+	<mediaChannel-2>vimeo</mediaChannel-2>
+	<streamingMedia-2>http://player.vimeo.com/external/</streamingMedia-2>
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN*</language>
@@ -12,4 +17,5 @@
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>IELTSService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 </config>
