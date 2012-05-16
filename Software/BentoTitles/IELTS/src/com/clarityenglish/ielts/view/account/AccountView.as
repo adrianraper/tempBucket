@@ -68,6 +68,8 @@ package com.clarityenglish.ielts.view.account {
 		[Bindable]
 		public var isDirty:Boolean;
 
+		// #333
+		private var _remoteDomain:String;
 		private var _productVersion:String;
 		private var _productCode:uint;
 		private var _licenceType:uint;
@@ -75,7 +77,10 @@ package com.clarityenglish.ielts.view.account {
 		public function AccountView() {
 			super();
 		}
-		
+
+		public function get assetFolder():String {
+			return config.remoteDomain + config.assetFolder;
+		}
 		[Bindable]
 		public function get productVersion():String {
 			return _productVersion;
@@ -98,7 +103,6 @@ package com.clarityenglish.ielts.view.account {
 		public function get licenceType():uint {
 			return _licenceType;
 		}
-		
 		public function set licenceType(value:uint):void {
 			if (_licenceType != value) {
 				_licenceType = value;
@@ -153,8 +157,12 @@ package com.clarityenglish.ielts.view.account {
 					/* Specify a new ApplicationDomain, which loads the sub-app into a peer ApplicationDomain. */
 					context.applicationDomain = new ApplicationDomain();
 					
-					instance.loaderContext = context;                 
-					instance.source = "/Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?literals=/Software/Widget/IELTS/bin&widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatabclogo=true&cache=" + new Date().getTime();
+					// #333 At present the widget doesn't allow communication with the stage. Not sure why
+					// but I had got round it by copying /Widget to each domain. But now that I am 
+					// preferring to use config.xml to have only CE.com/Software I need to force the domain here.
+					// Which is in config.remoteDomain, and now injected into the interface
+					instance.loaderContext = context;
+					instance.source = config.remoteDomain + "Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?literals=/Software/Widget/IELTS/bin&widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatabclogo=true&cache=" + new Date().getTime();
 					if (userDetails.country) {
 						// The final names of countries MUST match the literals.xml list.
 						switch (userDetails.country) {

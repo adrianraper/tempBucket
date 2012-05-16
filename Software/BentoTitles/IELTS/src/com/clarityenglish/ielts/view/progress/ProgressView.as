@@ -47,6 +47,10 @@ package com.clarityenglish.ielts.view.progress {
 		// #234
 		private var _productVersion:String;
 
+		public function get assetFolder():String {
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+		}
+
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();

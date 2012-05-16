@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -41,6 +42,12 @@ package com.clarityenglish.bento.view.base {
 		private var _xhtmlChanged:Boolean;
 		
 		public var media:String = "screen";
+		
+		/**
+		 * Configuration properties commonly used in views
+		 * #333
+		 */
+		public var config:Config;
 		
 		public function BentoView() {
 			super();

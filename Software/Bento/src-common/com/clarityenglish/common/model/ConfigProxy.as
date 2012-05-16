@@ -173,7 +173,11 @@ package com.clarityenglish.common.model {
 		public function getLicenceType():uint {
 			return config.licenceType;
 		}
-		
+
+		public function getRemoteDomain():String {
+			return config.remoteDomain;
+		}
+
 		public function getRootID():Number {
 			return config.rootID;
 		}
@@ -210,14 +214,18 @@ package com.clarityenglish.common.model {
 			}
 			*/
 			// Take it from config rather than direct from the parameters
-			if (config.studentID)
-				return new LoginEvent(LoginEvent.LOGIN, config.studentID, config.password);
-			
-			if (config.username)
-				return new LoginEvent(LoginEvent.LOGIN, config.username, config.password);
-			
-			if (config.email)
-				return new LoginEvent(LoginEvent.LOGIN, config.email, config.password);
+			// #334
+			var loginOption:uint = getAccount().loginOption;
+			if (loginOption & 1) {
+				if (config.username)
+					return new LoginEvent(LoginEvent.LOGIN, config.username, config.password);
+			} else if (loginOption & 2) {
+				if (config.studentID)
+					return new LoginEvent(LoginEvent.LOGIN, config.studentID, config.password);
+			} else if (loginOption & 128) {
+				if (config.email)
+					return new LoginEvent(LoginEvent.LOGIN, config.email, config.password);
+			}
 			
 			// Anonymous login
 			// Demo login will normally use AA licence type

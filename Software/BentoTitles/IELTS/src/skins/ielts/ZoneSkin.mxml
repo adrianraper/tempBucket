@@ -152,9 +152,9 @@
 
 				<!-- Static image for demos -->
 				<s:SWFLoader id="demoImage" width="502" height="516" 
-							 source.writingStates="/Software/ResultsManager/web/resources/assets/writing_demo.png" 
-							 source.listeningStates="/Software/ResultsManager/web/resources/assets/listening_demo.png" 
-							 source.speakingStates="/Software/ResultsManager/web/resources/assets/speaking_demo.png"
+							 source.writingStates="{hostComponent.assetFolder}writing_demo.png" 
+							 source.listeningStates="{hostComponent.assetFolder}listening_demo.png" 
+							 source.speakingStates="{hostComponent.assetFolder}speaking_demo.png"
 							 includeIn="demoStates"
 							 />
 					

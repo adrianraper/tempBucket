@@ -451,9 +451,6 @@ EOD;
 	function logout() {
 		Authenticate::logout();
 		
-		// Just to check on the session handling
-		$userID = Session::get('userID');
-		
 		Session::clear();
 		
 		// TODO. Close the session and drop any licence control

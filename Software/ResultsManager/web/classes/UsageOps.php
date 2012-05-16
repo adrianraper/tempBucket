@@ -284,7 +284,7 @@ EOD;
 EOD;
 		}
 		$bindingParams = array($title->id, Session::get('rootID'), $fromDateStamp, $toDateStamp);
-		NetDebug::trace("USAGE: sql=".$sql);		
+		//NetDebug::trace("USAGE: sql=".$sql);		
 		//NetDebug::trace("bindings=".implode(",",$bindingParams));		
 		// Unfortunately date bindings don't seem to work so they are directly embedded in the SQL string
 		//$rs = $this->db->GetArray($sql, array($_SESSION['rootID'], $this->db->BindDate("$fromDateStamp"), $this->db->BindDate("$toDateStamp")));

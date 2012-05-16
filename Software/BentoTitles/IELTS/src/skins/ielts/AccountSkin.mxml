@@ -111,7 +111,7 @@
 					</s:HGroup>
 					
 					<s:SWFLoader width="100%" height="100%" 
-								 source="/Software/ResultsManager/web/resources/assets/profile_demo.png" 
+								 source="{hostComponent.assetFolder}profile_demo.png" 
 								 includeIn="demo" />
 					
 					<s:VGroup paddingTop="13" excludeFrom="anonymousStates" >	
@@ -189,7 +189,7 @@
 				source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
 				-->
 			</s:Group>
-			<s:SWFLoader width="100%" height="100%" source="/Software/ResultsManager/web/resources/assets/widget_demo.png" 
+			<s:SWFLoader width="100%" height="100%" source="{hostComponent.assetFolder}widget_demo.png" 
 						 includeIn="demo" />
 		</s:HGroup>
 	

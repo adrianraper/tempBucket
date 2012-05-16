@@ -180,18 +180,35 @@
 		private function onRssLoadComplete(e:Event, videoPlayer:VideoPlayer):void {
 			var dynamicList:XML = new XML(e.target.data);
 			
-			var streaming:String = dynamicList.channel.streaming.toString();
-			var server:String = dynamicList.channel.server.toString();
-			var host:String = dynamicList.channel.host.toString();
+			// #335
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var channelName:String = configProxy.getConfig().mediaChannel;
 			
-			if (streaming == "rtmp") {
+			// To cope with original format files
+			if (dynamicList.channel.hasOwnProperty("@name")) {
+				var channel:XML = dynamicList.channel.(@name==channelName)[0];
+				var protocol:String = channel.@protocol.toString();
+			} else {
+				channel = dynamicList.channel[0];
+				protocol = channel.streaming.toString();
+			}
+			var host:String = channel.host.toString();
+			
+			// Replace any virtual paths
+			if (host.indexOf('{streamingMedia}') >= 0) 
+				host = host.replace("{streamingMedia}", configProxy.getConfig().streamingMedia);
+			if (host.indexOf('{contentPath}') >= 0) 
+				host = host.replace("{contentPath}", configProxy.getContentPath());	
+			
+			if (protocol == "rtmp") {
+				var server:String = channel.server.toString();
 				var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
 				
 				if (server == "fms") dynamicSource.urlIncludesFMSApplicationInstance = true;
 				
-				dynamicSource.streamType = dynamicList.channel.type.toString();
+				dynamicSource.streamType = channel.type.toString();
 				var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
-				for each (var stream:XML in dynamicList.channel.item) {
+				for each (var stream:XML in channel.item) {
 					var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(stream.streamName, stream.bitrate);
 					streamItems.push(streamingItem);
 				}
@@ -201,17 +218,19 @@
 				videoPlayer.callLater(videoPlayer.play);
 				
 			// Rackspace's pseudo streaming over http
-			} else if (streaming == "http") {
-				videoPlayer.source = host + dynamicList.channel.item[0].streamName.toString() + ".f4m";
+			} else if (protocol == "http") {
+				videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
 				videoPlayer.callLater(videoPlayer.play);
 				
 			// Vimeo's progressive download
-			} else if (streaming == "progressive-download") {
-				videoPlayer.source = host + dynamicList.channel.item[0].streamName.toString();
+			// Network simple connection
+			} else if (protocol == "progressive-download") {
+				
+				videoPlayer.source = host + channel.item[0].streamName.toString();
 				videoPlayer.callLater(videoPlayer.play);
 				
 			} else {
-				log.error(streaming + " streaming type not supported");
+				log.error(protocol + " streaming type not supported");
 				videoPlayer.stop();
 				videoPlayer.source = null;
 			}

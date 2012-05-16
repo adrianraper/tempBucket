@@ -2,6 +2,7 @@ package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -45,6 +46,11 @@ package com.clarityenglish.bento.view.base {
 			
 			// Add event listeners to the view
 			view.addEventListener(BentoEvent.HREF_CHANGED, onHrefChanged, false, 0, true);
+			
+			// #333 Inject required data into the view
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.config = configProxy.getConfig();
+
 		}
 		
 		protected function onXHTMLReady(xhtml:XHTML):void {

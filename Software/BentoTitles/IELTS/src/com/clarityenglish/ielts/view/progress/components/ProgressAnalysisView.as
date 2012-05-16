@@ -337,7 +337,11 @@ package com.clarityenglish.ielts.view.progress.components {
 				</chart>
 			  </charts>
 			</anychart>;
-		
+
+		public function get assetFolder():String {
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+		}
+
 		public function setDataProvider(dataProvider:XML):void {
 			if (_scoreChartXML) {
 				// WARNING. It is possible for the mediator of a different view (coverage say) to still be loading

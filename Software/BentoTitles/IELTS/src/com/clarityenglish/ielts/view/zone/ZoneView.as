@@ -11,6 +11,8 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
@@ -22,6 +24,7 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import spark.components.Button;
 	import spark.components.DataGroup;
+	import spark.components.Group;
 	import spark.components.List;
 	import spark.components.NavigatorContent;
 	import spark.components.VideoPlayer;
@@ -78,9 +81,6 @@ package com.clarityenglish.ielts.view.zone {
 		public var popoutExerciseSelector:PopoutExerciseSelector;
 		
 		[SkinPart(required="true")]
-		public var examPracticeAudioPlayer:AudioPlayer;
-		
-		[SkinPart(required="true")]
 		public var adviceZoneVideoPlayer:VideoPlayer;
 		
 		[SkinPart(required="true")]
@@ -120,6 +120,10 @@ package com.clarityenglish.ielts.view.zone {
 		
 		private var _licenceType:uint;
 		
+		public function get assetFolder():String {
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+		}
+
 		/**
 		 * ZoneView specifically needs to know if it is mediated or not in order to implement #222.  This is not necessary for most views.
 		 */
@@ -465,11 +469,10 @@ package com.clarityenglish.ielts.view.zone {
 		 * @param event
 		 */
 		protected function onMouseUp(event:MouseEvent):void {
-			// #332 Don't react if they are clicking the audio component itself
-			if (!(examPracticeAudioPlayer.getBounds(stage).contains(event.stageX, event.stageY)) &&
-				!(examPracticeAudioPlayer.getBounds(stage).contains(event.stageX, event.stageY))) {
-				
-				if (isMediated) {
+			// #332 
+			if (isMediated) {
+				if (!(examPracticeDataGroup.getBounds(stage).contains(event.stageX, event.stageY)) &&
+					!(examPracticeDataGroup.getBounds(stage).contains(event.stageX, event.stageY))) {
 					AudioPlayer.stopAllAudio();
 					log.debug("Stopped practice test audio because click detected outside player");
 				}

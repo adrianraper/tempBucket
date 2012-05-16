@@ -30,11 +30,18 @@ package com.clarityenglish.common.vo.config {
 		public var courseFile:String;
 		public var language:String;
 		public var action:String;
+		// #333
+		public var remoteDomain:String;
+		public var assetFolder:String;
 		public var remoteGateway:String;
 		public var remoteService:String;
 		public var instanceID:String;
 		public var ip:String;
 		public var referrer:String;
+		
+		// #335
+		public var streamingMedia:String;
+		public var mediaChannel:String;
 		
 		// To help with testing
 		public var configID:String;
@@ -93,11 +100,7 @@ package com.clarityenglish.common.vo.config {
 				this.rootID = parameters.rootID;
 			}
 			
-			// userID takes precedence over name/studentID/email
-			// Not until you can login with it!
-			if (parameters.userID)
-				this.userID = parameters.userID;
-			
+			if (parameters.userID) this.userID = parameters.userID;
 			if (parameters.username) this.username = parameters.username;
 			if (parameters.studentID) this.studentID = parameters.studentID;
 			if (parameters.email) this.email = parameters.email;
@@ -203,17 +206,20 @@ package com.clarityenglish.common.vo.config {
 				this.paths.menuFilename = "menu.xml";
 			}
 			
-			if (xml..streamingMedia.toString()) this.paths.streamingMedia = xml..streamingMedia.toString();
-			if (xml..sharedMedia.toString()) this.paths.sharedMedia = xml..sharedMedia.toString();
-			
-			if (xml..brandingMedia.toString()) {
-				this.paths.brandingMedia = xml..brandingMedia.toString();
+			// #335
+			if (xml..streamingMedia.toString()) this.streamingMedia = xml..streamingMedia.toString();
+			if (xml..mediaChannel.toString()) {
+				this.mediaChannel = xml..mediaChannel.toString();
 			} else {
-				this.paths.brandingMedia = '';
+				// TODO: It would be better to build a preference system into the .rss files
+				this.mediaChannel = 'vimeo';
 			}
 			
+			if (xml..sharedMedia.toString()) this.paths.sharedMedia = xml..sharedMedia.toString();
+			if (xml..brandingMedia.toString()) this.paths.brandingMedia = xml..brandingMedia.toString();
+			
 			if (xml..courseID.toString()) this.courseID = xml..courseID.toString();
-//			if (xml..courseFile.toString()) this.courseFile = xml..courseFile.toString();
+			//if (xml..courseFile.toString()) this.courseFile = xml..courseFile.toString();
 			if (xml..language.toString()) this.language = xml..language.toString();
 			
 			// To handle the amfphp gateway
@@ -222,12 +228,23 @@ package com.clarityenglish.common.vo.config {
 			} else {
 				this.remoteGateway = "/Software/ResultsManager/web/amfphp/";
 			}
-			
 			if (xml..remoteService.toString()) {
 				this.remoteService = xml..remoteService.toString();
 			} else {
-				this.remoteService = "BentoService";
+				this.remoteService = "IELTSService";
 			}
+			
+			// For remote access and domain independence
+			if (xml..remoteDomain.toString()) {
+				this.remoteDomain = xml..remoteDomain.toString();
+			} else {
+				this.remoteDomain = "http://www.ClarityEnglish.com/";
+			}			
+			if (xml..assetFolder.toString()) {
+				this.assetFolder = xml..assetFolder.toString();
+			} else {
+				this.assetFolder = "Software/ResultsManager/web/resources/assets/";
+			}			
 			
 			// For help with testing
 			if (xml..id.toString()) {
@@ -302,11 +319,10 @@ package com.clarityenglish.common.vo.config {
 			// See if you can now do any substitutions on the menu filename
 			buildMenuFilename();
 
-			// You can now adjust the streamingMedia and sharedMedia as necessary
+			// You can now adjust the sharedMedia path as necessary
 			// Remember that streamingMedia might look like 
-			// streamingMedia=http://streaming.clarityenglish.com:1935/cfx/ty/{version}/streamingMedia
-			this.paths.streamingMedia = this.paths.streamingMedia.toString().split('{productCode}').join(data.contentLocation);
-			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('{productCode}').join(data.contentLocation);
+			// sharedMedia={contentPath}/sharedMedia
+			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('{contentPath}').join(this.paths.content);
 			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('{prefix}').join(data.prefix);
 		
 			// Whilst the title/account holds most licence info, it is nice to keep it in one class
