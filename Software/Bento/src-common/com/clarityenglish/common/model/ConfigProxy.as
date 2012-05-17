@@ -267,6 +267,12 @@ package com.clarityenglish.common.model {
 				//return { exerciseId: "1156153794077" }; // Speaking>The speaking test (2)
 			}
 			
+			// #336 SCORM needs to be checked here
+			if (config.scorm) {
+				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+				return scormProxy.getBookmark();				
+			}
+			
 			return null;
 		}
 		

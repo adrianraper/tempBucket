@@ -39,6 +39,7 @@ package com.pipwerks {
 		private var _entry:String;
 		private var _suspendData:Object;
 		private var _objectives:Object;
+		private var _bookmark:Object;
 		
 		private var __connectionActive:Boolean = false,
 			__debugActive:Boolean = true;
@@ -176,6 +177,14 @@ package com.pipwerks {
 		public function set objectives(value:Object):void {
 			if (_objectives != value)
 				_objectives = value;
+		}
+		// TODO: Not sure if this is the right way to set an object?
+		public function get bookmark():Object {
+			return _bookmark;
+		}
+		public function set bookmark(value:Object):void {
+			if (_bookmark != value)
+				_bookmark = value;
 		}
 		
 		// --- private functions --------------------------------------------- //

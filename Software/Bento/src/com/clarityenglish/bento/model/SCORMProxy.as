@@ -88,7 +88,20 @@ package com.clarityenglish.bento.model {
 			scorm.suspendData = JSON.decode(scorm.getParameter('suspendData'));
 			
 		}
-		
+
+		/**
+		 * This figures out all the direct start for the SCORM SCO
+		 */
+		public function getBookmark():Object {
+			// TODO: Work out the course and exercise ID from the launchData structure
+			if (scorm.launchData.exerciseID)
+				return scorm.launchData.exerciseID;
+			if (scorm.launchData.course)
+				return scorm.launchData.course;
+
+			scorm.bookmark = scorm.getParameter('bookmark');
+			return null;
+		}
 	}
 		
 }
