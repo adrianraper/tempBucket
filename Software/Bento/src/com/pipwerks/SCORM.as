@@ -5,6 +5,8 @@ v1.1.20111123
 Created by Philip Hutchison, January 2008
 https://github.com/pipwerks/scorm-api-wrapper
 
+Adapted by Adrian Raper, Clarity, May 2012
+
 Copyright (c) Philip Hutchison
 MIT-style license: http://pipwerks.mit-license.org/
 
@@ -29,9 +31,17 @@ package com.pipwerks {
 	
 	public class SCORM {
 		
+		private var _version:String;
+		private var _studentName:String;
+		private var _studentID:String;
+		private var _studentLanguage:String;
+		private var _launchData:Object;
+		private var _entry:String;
+		private var _suspendData:Object;
+		private var _objectives:Object;
+		
 		private var __connectionActive:Boolean = false,
 			__debugActive:Boolean = true;
-		
 		
 		public function SCORM() {
 			
@@ -70,7 +80,6 @@ package com.pipwerks {
 		
 		// --- public functions --------------------------------------------- //
 		
-		
 		public function set debugMode(status:Boolean):void {
 			this.__debugActive = status;
 		}
@@ -103,15 +112,184 @@ package com.pipwerks {
 		}
 		
 		// Clarity
+		/**
+		 * This function turns nice names into the version dependent cmi name and passes them onto the LMS
+		 */
+		public function getParameter(parameterName:String, index:uint = 0):String {
+			return get(__cmiName(parameterName, index));
+		}
+		
+		// Getter and setters for all variables
 		public function get version():String {
-			return __version();
+			return _version;	
+		}
+		public function set version(value:String):void {
+			if (_version != value)
+				_version = value;
+		}
+		public function get studentName():String {
+			return _studentName;
+		}
+		public function set studentName(value:String):void {
+			if (_studentName != value)
+				_studentName = value;
+		}
+		public function get studentID():String {
+			return _studentID;
+		}
+		public function set studentID(value:String):void {
+			if (_studentID != value)
+				_studentID = value;
+		}
+		public function get studentLanguage():String {
+			return _studentLanguage;
+		}
+		public function set studentLanguage(value:String):void {
+			if (_studentLanguage != value)
+				_studentLanguage = value;
+		}
+		public function get launchData():Object {
+			return _launchData;
+		}
+		public function set launchData(value:Object):void {
+			if (_launchData != value)
+				_launchData = value;
+		}
+		public function get entry():String {
+			return _entry;
+		}
+		public function set entry(value:String):void {
+			if (_entry != value)
+				_entry = value;
+		}
+		public function get suspendData():Object {
+			return _suspendData;
+		}
+		public function set suspendData(value:Object):void {
+			if (_suspendData != value)
+				_suspendData = value;
+		}
+		// TODO: Not sure if this is the right way to set an object?
+		public function get objectives():Object {
+			return _objectives;
+		}
+		public function set objectives(value:Object):void {
+			if (_objectives != value)
+				_objectives = value;
 		}
 		
 		// --- private functions --------------------------------------------- //
 		
-		// Clarity
-		private function __version():String {
-			return String(ExternalInterface.call("pipwerks.SCORM.version"));
+		private function __cmiName(name:String, index:uint = 0):String {
+			switch (name) {
+				case "studentName":
+					trace("CMI names from version " + version);
+					if (version == "1.3") {
+						return "cmi.learner_name";
+					} else {
+						return "cmi.core.student_name";
+					}
+					break;
+				// v6.5.6 Added to see if useful for HCT
+				case "studentID":
+					if (version == "1.3") {
+						return "cmi.learner_id";
+					} else {
+						return "cmi.core.student_id";
+					}
+					break;
+				case "interfaceLanguage":
+					if (version == "1.3") {
+						return "cmi.learner_preference.language";
+					} else {
+						return "cmi.student_preference.language";
+					}
+					break;
+				case "version":
+					return "cmi._version";
+					break;
+				case "suspendData":
+					return "cmi.suspend_data";
+					break;
+				case "launchData":
+					return "cmi.launch_data";
+					break;
+				case "bookmark":
+					if (version == "1.3") {
+						return "cmi.location";
+					} else {
+						return "cmi.core.lesson_location";
+					}
+					break;
+				case "sessionTime":
+					if (version == "1.3") {
+						return "cmi.session_time";
+					} else {
+						return "cmi.core.session_time";
+					}
+					break;
+				case "lessonStatus":
+					if (version == "1.3") {
+						return "cmi.completion_status";
+					} else {
+						return "cmi.core.lesson_status";
+					}
+					break;
+				case "exit":
+					if (version == "1.3") {
+						return "cmi.exit";
+					} else {
+						return "cmi.core.exit";
+					}
+					break;
+				// v6.5.1 Added to help ensure that suspend data is fresh for a re-run of a SCO
+				case "entry":
+					if (version == "1.3") {
+						return "cmi.entry";
+					} else {
+						return "cmi.core.entry";
+					}
+					break;
+				case "rawScore":
+					if (version == "1.3") {
+						return "cmi.score.raw";
+					} else {
+						return "cmi.core.score.raw";
+					}
+					break;
+				case "maxScore":
+					if (version == "1.3") {
+						return "cmi.score.max";
+					} else {
+						return "cmi.core.score.max";
+					}
+					break;
+				case "minScore":
+					if (version == "1.3") {
+						return "cmi.score.min";
+					} else {
+						return "cmi.core.score.min";
+					}
+					break;
+				case "objective.count":
+					return "cmi.objectives._count";
+					break;
+				case "objective.id":
+					return "cmi.objectives." + index + ".id";
+					break;
+				case "objective.score":
+					return "cmi.objectives." + index + ".score.raw";
+					break;
+				case "objective.status":
+					return "cmi.objectives." + index + ".status";
+					break;
+				case "rubbish":
+					return "cmi.rubbish";
+					break;
+				default:
+					trace("badly called getCMIName with " + name);					
+			}
+			return '';
 		}
 		
 		private function __connect():Boolean {

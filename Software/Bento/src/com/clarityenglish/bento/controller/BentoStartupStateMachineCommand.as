@@ -45,6 +45,7 @@ package com.clarityenglish.bento.controller {
 			// #297 - if we are using direct login then we want to add a transition to go the credits on a failed login
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			// TODO. This is actually triggering a LoginEvent if you are doing direct - which is repeated later.
+			// #336 Does SCORM have any impact here, or can it be subsumed into directLogin?
 			if (configProxy.getDirectLogin()) {
 				var loginXML:XML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
 				loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);

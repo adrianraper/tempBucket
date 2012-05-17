@@ -4,6 +4,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.model.ExternalInterfaceProxy;
+	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -34,6 +35,8 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new ProgressProxy());
 			facade.registerProxy(new CopyProxy());
 			facade.registerProxy(new ExternalInterfaceProxy());
+			// #336
+			facade.registerProxy(new SCORMProxy());
 			
 			// Get copy literals first
 			// #322

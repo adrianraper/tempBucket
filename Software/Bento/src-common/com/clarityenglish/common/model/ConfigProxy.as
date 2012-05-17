@@ -3,6 +3,7 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	
+	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
@@ -45,8 +46,6 @@ package com.clarityenglish.common.model {
 		
 		private var _dateFormatter:DateFormatter;
 
-		// #336
-		private var scorm:SCORM;
 		
 		/**
 		 * Configuration information comes from three sources
@@ -77,7 +76,8 @@ package com.clarityenglish.common.model {
 
 			// #336 SCORM
 			if (config.scorm) {
-				this.getScormParameters();				
+				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+				scormProxy.initialise();
 			}
 			
 			// Trigger the database call
@@ -240,7 +240,13 @@ package com.clarityenglish.common.model {
 			// Demo login will normally use AA licence type
 			if (config.licenceType == Title.LICENCE_TYPE_AA) 
 				return new LoginEvent(LoginEvent.LOGIN, null, null)
-				
+			
+			// #336 SCORM probably needs to be checked here
+			if (config.scorm) {
+				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+				return new LoginEvent(LoginEvent.LOGIN, scormProxy.scorm.studentName, null);
+			}
+			
 			return null;
 		}
 		
@@ -359,29 +365,5 @@ package com.clarityenglish.common.model {
 			return false;
 			
 		}
-
-		/**
-		 * Establish SCORM communication with the API in the browser
-		 * Get initial variables and leave it all ready for writing progress
-		 */
-		private function getScormParameters():void {
-
-			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-			
-			scorm = new SCORM();
-			scorm.debugMode = true;
-			
-			// Initialise
-			if (!scorm.connect()) {
-				config.error = copyProxy.getBentoErrorForId("SCORMcantInitialize", { errorCode: 100, errorMessage: 'SCORMError' }, true );
-			} else {
-				var scormVersion:String = scorm.version;
-			}
-			
-			if (config.error)
-				sendNotification(CommonNotifications.CONFIG_ERROR, config.error);
-
-		}
-		
 	}
 }
