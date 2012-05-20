@@ -1532,7 +1532,10 @@ EOD;
 		$userID = $vars['USERID'];
 		// v6.6.0 CS and IIE don't pass productCode, so just have to lump them together as zero.
 		// Note that you do know productCode at this point, but you DON'T when you try to do getInstanceID later.
-		if (!isset($vars['PRODUCTCODE'])) {
+		// Because SQU can't clear objects.swf they are stuck in a terrible loop. So overwrite their productCode to always use 0
+		if ($vars['ROOTID']==14265) {
+			$productCode = 0;
+		} else if (!isset($vars['PRODUCTCODE'])) {
 			$productCode = 0;
 		} else if ($vars['PRODUCTCODE']==45 || $vars['PRODUCTCODE']==46) {
 			$productCode = 0;

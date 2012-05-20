@@ -22,7 +22,9 @@ class XMLQuery {
 	$post = file_get_contents("php://input");
 	//Global $node;
 	//$node .= "<note>" .urlencode($post)  ."</note>";
-	$post = '<query dbHost="2" method="getLicenceSlot" licences="998" licenceType="1" rootID="163" userID="11259" userType="0" productCode="9" licenceStartDate="2013-01-01 00:00:00" databaseVersion="6" cacheVersion="1336101653367" />';
+	$post = '<query dbHost="2" method="getInstanceID" userID="11259" />';
+//	$post = '<query dbHost="2" method="startUser" rootID="163" userID="" name="adrian raper" studentID="p574528(8)" password="$!null_!$" dateStamp="2012-05-20 13:09:05" loginOption="1" instanceID="1337504945953" productCode="33" databaseVersion="7" />';
+//	$post = '<query dbHost="2" method="getLicenceSlot" licences="998" licenceType="1" rootID="163" userID="11259" userType="0" productCode="9" licenceStartDate="2013-01-01 00:00:00" databaseVersion="6" cacheVersion="1336101653367" />';
 //	$post = '<query dbHost="2" method="getLicenceSlot" licences="39" licenceType="1" rootID="163" userID="11259" userType="0" productCode="1" licenceStartDate="2011-01-01 00:00:00" databaseVersion="6" cacheVersion="1318838074491" />';
 //	$post = '<query dbHost="200" method="writeScoreDetail" sessionID="2227317" userID="251526" unitID="1" exerciseID="1292227313781" rootID="11091" datestamp="2011-10-17 14:15:52" databaseVersion="6"><item itemID="10" /><item itemID="9" /><item itemID="8" /><item itemID="7" /><item itemID="6" detail="Yes" score="1" /></query>';
 //	$post = '<query dbHost="2" method="writeScoreDetail" sessionID="2469289" userID="27639" unitID="1" exerciseID="1292227313781" rootID="163" datestamp="2011-11-01 15:56:40" databaseVersion="7"><item itemID="10" /><item itemID="9" /><item itemID="8" /><item itemID="7" /><item itemID="6" /><item itemID="5" /></query>';

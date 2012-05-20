@@ -549,7 +549,9 @@ EOD;
 		
 		$userID = $vars['USERID'];
 		// v6.6.0 CS and IIE don't pass productCode, so just have to lump them together
-		if (!isset($vars['PRODUCTCODE'])) {
+		if (isset($vars['ROOTID']) && $vars['ROOTID']==14265) {
+			$productCode = 0;
+		} else if (!isset($vars['PRODUCTCODE'])) {
 			$productCode = 0;
 		} else {
 			$productCode = $vars['PRODUCTCODE'];
@@ -562,6 +564,19 @@ EOD;
 			$instanceID = $instanceArray[$productCode];
 			$node .= "<instance id='$instanceID' />";
 			return true;
+		// BUG. If  a cache is saving old objects.swf we don't send productCode to getInstannceId, so just treat as 0
+		// BUT, saveInstanceID gets productCode, so this call has to just get ANY product that you have.
+		} else if ($productCode==0) {
+			// any row can match
+			if (count($instanceArray) > 0) {
+				foreach ($instanceArray as $instanceID) {
+					$node .= "<instance id='$instanceID' />";
+					return true;
+				}
+			}
+			$node .= "<err>instance not recorded</err>";
+			return false;
+			
 		} else {
 			$node .= "<err>instance not recorded</err>";
 			return false;

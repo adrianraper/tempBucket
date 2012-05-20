@@ -24,7 +24,7 @@ require_once(dirname(__FILE__)."/dbLicence.php");
 	$db = &ADONewConnection($dbDetails->dsn);
 	if (!$db) die("Connection failed");
 	// Use this line to see all sql calls
-	$db->debug = true;
+	$db->debug = false;
 	// v3.6 UTF8 character mismatch between PHP and MySQL
 	if ($dbDetails->driver == 'mysql') {
 		$charSetRC = mysql_set_charset('utf8');
