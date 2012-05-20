@@ -12,9 +12,9 @@
  */
 //session_id($_GET['PHPSESSID']);
 
-require_once(dirname(__FILE__)."/DMSService.php");
+require_once(dirname(__FILE__)."/MinimalService.php");
 
-$dmsService = new DMSService();
+$thisService = new MinimalService();
 
 // Done in config.php
 date_default_timezone_set('UTC');
@@ -26,20 +26,16 @@ function loadAPIInformation() {
 	global $dmsService;
 	
 	$postInformation = json_decode(file_get_contents("php://input"), true);	
-	global $returnURL;
 	
 	// First check mandatory fields exist
 	if (!isset($postInformation['method'])) {
 		throw new Exception("No method has been sent");
 	}
-	if (!isset($postInformation['id'])) {
-		throw new Exception("No id has been sent");
-	}
 	
 	return $postInformation;
 }	
 function returnError($errCode, $data = null) {
-	global $dmsService;
+	global $thisService;
 	global $apiInformation;
 	$apiReturnInfo = array('error'=>$errCode);
 	switch ($errCode) {
@@ -97,15 +93,22 @@ try {
 	//AbstractService::$log->notice("calling validate=".$apiInformation->resellerID);
 	//echo "loaded API";
 
-	if ($apiInformation['method']=='getGlobalR2IUser') {
-		$rc = $dmsService->internalQueryOps->getGlobalR2IUser($apiInformation['id']);
+	switch ($apiInformation['method']) {
+		case 'getGlobalR2IUser':
+			$rc = $thisService->internalQueryOps->getGlobalR2IUser($apiInformation['id']);
+			break;
+		case 'updateSessionsForDeletedUsers':
+			$rc = $thisService->internalQueryOps->updateSessionsForDeletedUsers($apiInformation['rootID']);
+			break;
+		case 'findEmail':
+			$rc = $thisService->internalQueryOps->findEmail($apiInformation['email']);
+			break;
+		case 'getSubscriptions':
+			//echo 'startDate='.$apiInformation['startDate'];
+			$rc = $thisService->internalQueryOps->getSubscriptions($apiInformation['startDate']);
+			break;
 	}
-	if ($apiInformation['method']=='updateSessionsForDeletedUsers') {
-		$rc = $dmsService->internalQueryOps->updateSessionsForDeletedUsers($apiInformation['rootID']);
-	}
-	if ($apiInformation['method']=='findEmail') {
-		$rc = $dmsService->internalQueryOps->findEmail($apiInformation['email']);
-	}
+	
 	if (isset($rc['errCode']) && intval($rc['errCode']) > 0) {
 		returnError($rc['errCode'], $rc['data']);
 	}

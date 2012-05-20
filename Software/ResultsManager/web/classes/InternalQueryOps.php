@@ -33,6 +33,34 @@ SQL;
 		return $resultArray;
 	}
 	
+	/**
+	 * First step to see if any subscription failed
+	 * @param string $startDate
+	 */
+	function getSubscriptions($startDate) {
+		// Just list all subscription records since start date
+		$sql = <<<SQL
+			SELECT s.*
+			FROM T_Subscription s
+			WHERE s.F_StartDate >= ?
+            ORDER BY F_SubscriptionID desc;
+SQL;
+		//echo $sql;
+		$bindingParams = array($startDate);
+		$rs = $this->db->Execute($sql, $bindingParams); 
+		//echo $sql.' got'.$rs->RecordCount().' records';
+		$subscriptions = array();
+		if ($rs->RecordCount() > 0) {
+			while ($subscriptionObj = $rs->FetchNextObj()) {
+				$subscription = new Subscription();
+				$subscription->fromDatabaseObj($subscriptionObj);
+				$subscriptions[] = $subscription->toString();
+			}
+		}
+		
+		return $subscriptions;
+	}
+	
 	function getGlobalR2IUser($id) {
 		// Given an ID, send back the user record
 		$sql = "SELECT * FROM T_User WHERE F_StudentID=?";

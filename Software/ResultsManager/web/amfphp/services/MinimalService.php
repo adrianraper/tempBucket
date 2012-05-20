@@ -10,8 +10,12 @@ require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscription.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
+
+// v3.4 This is used for internal queries
+require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
@@ -24,7 +28,9 @@ class MinimalService extends AbstractService {
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
 		Session::setSessionName("Mini");
-		
+				
+		// v3.4 For internal queries - how to use a different dbHost?
+		$this->internalQueryOps = new InternalQueryOps($this->db);
 	}
 	
 	public function checkDirectStartSecurityCode($securityCode) {

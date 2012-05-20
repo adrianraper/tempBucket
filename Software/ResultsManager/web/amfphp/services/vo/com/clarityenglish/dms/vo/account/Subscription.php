@@ -39,7 +39,7 @@ class Subscription {
 	 *
 	 * @param obj The object returned for the record by FetchNextObject()
 	 */
-	function fromDatabaseObj($obj, $db = null) {
+	public function fromDatabaseObj($obj, $db = null) {
 		
 		$this->id = $obj->F_SubscriptionID;
 		$this->name = $obj->F_FullName;
@@ -129,5 +129,11 @@ class Subscription {
 			$this->status = $info['subscriptionStatus'];
 		}
 			
+	}
+	/**
+	 * If you want to print a subscriptin record
+	 */
+	public function toString() {
+		echo $this->id.' '.$this->name.' ',$this->email.', status='.$this->status;
 	}
 }	

@@ -972,10 +972,10 @@ EOD;
 			
 		if (isset($stubUser->name)) {
 			$whereClause = 'u.F_UserName=?';
-			$key = $stubUser->studentID;
+			$key = $stubUser->name;
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'u.F_StudentID=?';
-			$key = $stubUser->name;
+			$key = $stubUser->studentID;
 		} else if (isset($stubUser->email)) {
 			$whereClause = 'u.F_Email=?';
 			$key = $stubUser->email;
@@ -1019,10 +1019,10 @@ EOD;
 		
 		if (isset($stubUser->name)) {
 			$whereClause = 'u.F_UserName=?';
-			$key = $stubUser->studentID;
+			$key = $stubUser->name;
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'u.F_StudentID=?';
-			$key = $stubUser->name;
+			$key = $stubUser->studentID;
 		} else if (isset($stubUser->email)) {
 			$whereClause = 'u.F_Email=?';
 			$key = $stubUser->email;
@@ -1062,10 +1062,10 @@ EOD;
 		
 		if (isset($stubUser->name)) {
 			$whereClause = 'WHERE u.F_UserName=?';
-			$key = $stubUser->studentID;
+			$key = $stubUser->name;
 		} else if (isset($stubUser->studentID)) {
 			$whereClause = 'WHERE u.F_StudentID=?';
-			$key = $stubUser->name;
+			$key = $stubUser->studentID;
 		} else if (isset($stubUser->email)) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;

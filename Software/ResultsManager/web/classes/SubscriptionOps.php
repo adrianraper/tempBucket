@@ -605,7 +605,7 @@ EOD;
 			
 			// Not sure if you need to explicitly set null?
 			if (isset($api->subscription->rootID)) {
-				$rootID = isset($api->subscription->rootID);
+				$rootID = $api->subscription->rootID;
 			} else {
 				$rootID = NULL;
 			}
