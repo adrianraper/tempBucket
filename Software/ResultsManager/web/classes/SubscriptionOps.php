@@ -611,10 +611,10 @@ EOD;
 			}
 			$sql = <<<EOD
 				   UPDATE T_Subscription
-				   SET F_Status = ?, F_RootID = ? 
+				   SET F_Status = ?, F_RootID = ?, F_DateStamp = ? 
 				   WHERE F_SubscriptionID = ?
 EOD;
-			$rs = $this->db->Execute($sql, array($api->subscription->status, $rootID, $api->subscription->id));
+			$rs = $this->db->Execute($sql, array($api->subscription->status, $rootID, $api->subscription->id, date('Y-m-d H:i:s')));
 			
 			if ($rs) 
 				return true;

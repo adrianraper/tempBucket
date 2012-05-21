@@ -112,6 +112,7 @@
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
 		argList+="&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
+		argList+="&cache=<?php echo time() ?>";
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {

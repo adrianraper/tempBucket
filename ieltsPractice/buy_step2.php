@@ -2,7 +2,8 @@
 	session_start();
 	//require_once(dirname(__FILE__)."/languageOps.php");
 ?>
-
+<link rel="stylesheet" type="text/css" href="css/home.css" />
+<link rel="stylesheet" type="text/css" href="css/buy.css" />
 
 		<div id="content_box_buy">
             				<div id="buy_box">
@@ -20,7 +21,7 @@
                          <div class="buy_payment_line_on">
                          	<p class="name">Credit card</p>
                             <p class="card" id="visa"><input name="R2ISelectPayment" id="R2ISelectPaymentVisa" type="radio" value="Visa" class="radio" onclick="changePayment2();"/>Visa</p>
-                            <p class="card" id="master"><input name="R2ISelectPayment" id="R2ISelectPaymentMC" type="radio" value="MC" class="radio" onclick="changePayment2();"/>Master Card</p>
+                            <p class="card" id="master"><input name="R2ISelectPayment" id="R2ISelectPaymentMC" type="radio" value="MC" class="radio" onclick="changePayment2();"/>MasterCard</p>
                             <p class="card_note">*Credit card verification with 3-D Secure</p>
                             
                             <div class="clear"></div>
@@ -30,7 +31,7 @@
                             <p id="paypal"><input name="R2ISelectPayment" id="R2ISelectPaymentPP" type="radio" value="PP" class="radio" onclick="changePayment2();"/>PayPal Express Checkout</p>
                             <div class="clear"></div>
                          </div>
-                         <div class="buy_payment_line_off">
+                         <div class="buy_payment_line_off" style="display:none">
                          	<p class="name">Cash</p>
                             <p id="transfer">
                             	<input name="R2ISelectPayment" id="R2ISelectPaymentMT" type="radio" value="MT" class="radio" onclick="changePayment2();"/>Western Union money transfer
@@ -41,7 +42,7 @@
                             <div class="clear"></div>
                          </div>
                          
-                         <div id="buy_payment_user">
+                         <div id="buy_payment_user" style="display:none">
 							<p id="guide_title">User guide</p>
                            	   <div id="creditcard_user">
                                 	<div class="guide_box">
@@ -53,35 +54,38 @@
                                        </p>
                                         
                                         <p class="guide_txt">
-                                            More information for Visa: <a href="https://usa.visa.com/personal/security/vbv/index.jsp" target="_blank">https://usa.visa.com/personal/security/vbv/index.jsp</a><br />
-                                       More information for MasterCard: <a href="http://www.mastercard.us/support/securecode.html" target="_blank">http://www.mastercard.us/support/securecode.html</a>
+                                            More information for Visa: <a href="https://usa.visa.com/personal/security/vbv/index.jsp" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step2_link_3dvisa']);">https://usa.visa.com/personal/security/vbv/index.jsp</a><br />
+                                       More information for MasterCard: <a href="http://www.mastercard.us/support/securecode.html" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step2_link_3dmaster']);">http://www.mastercard.us/support/securecode.html</a>
                                        </p>
                                    </div>
                                    <div class="import_box">
                                    	<p class="note_title">Important note</p>
                                     <p class="note_txt">Do not click any buttons on the navigation bar of your browser during the payment process.</p>
-                                    <p class="note_txt">Your account will be created as soon as you complete the purchase. If you're not given your account details, please contact us at <a href="mailto: support@clarityenglish.com?subject=IELTSPractice.com Paypal enquiry">support@clarityenglish.com</a>.</p>
+                                    <p class="note_txt">Your account will be created as soon as you complete the purchase. If you're not given your account details, please contact us at <a href="mailto: support@clarityenglish.com?subject=IELTSPractice.com Credit Card enquiry">support@clarityenglish.com</a>.</p>
                                    
                                    
                                    </div>
                                </div>
                                
-                               <div id="paypal_user" style="display:none;">
+                               <div id="paypal_user">
                                		<div class="guide_box">
                                         <p class="guide_txt">When you pay by PayPal you can immediately start using our service.</p>
                                          <strong>PayPal instructions</strong><br />
                                         
-                                        <p class="guide_txt">When you have completed your purchase at PayPal, you will see a page like the one below. You <span class="high">must click
+                                        <p class="guide_txt">PayPal pop-up window will be shown when you click on Pay button. When you have completed your purchase at PayPal, you will see a page like the one below. You <span class="high">must click
 "Return to Clarity Language Consultants Ltd" at the bottom</span> to return to IELTSPractice.com. <span class="high">Otherwise, your
 account won't be created.</span></p>
-                                        <p class="guide_txt">To find out more about PayPal, go to <a href="http://www.paypal.com" target="_blank">www.paypal.com</a>.</p>
+
+
+
+                                        <p class="guide_txt">To find out more about PayPal, go to <a href="http://www.paypal.com" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step2_link_paypal']);">www.paypal.com</a>.</p>
                                     </div>
                                     
                                     <div class="img_paypal"></div>
                                     
                                  <div class="import_box">
                                    	<p class="note_title">Important note</p>
-                                    <p class="note_txt">PayPal pop-up window will be shown when you click on Pay button</p>
+                                  
                                    <p class="note_txt">Your account will be created as soon as you complete the purchase. If you're not given your account details, please contact us at <a href="mailto: support@clarityenglish.com?subject=IELTSPractice.com Paypal enquiry">support@clarityenglish.com</a>.</p>
                                    
                                    
@@ -97,9 +101,9 @@ account won't be created.</span></p>
                                          <p class="guide_txt">Payment is usually received within 1 day. Here is how you can pay by Western Union:</p>
                                          
                                          <ul class="guide_list">
-                                             <li>Locate your nearest Western Union money transfer agent. (Go to <a href="http://www.westernunion.com" target="_blank">www.westernunion.com</a>).</li>
+                                             <li>Locate your nearest Western Union money transfer agent. (Go to <a href="http://www.westernunion.com" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step2_link_westernunion']);">www.westernunion.com</a>).</li>
                                              <li>Go to the agent's office and pay the above amount in <span class="high">US Dollars</span>.</li>
-                                             <li>Advise agent the special instruction: <span style="color:#0A436E; font-weight:bold;">Recipient must receive money in US$ (not Hong Kong Dollars)</li>
+                                             <li>Advise agent the special instruction: <span style="color:#0A436E; font-weight:bold;">Recipient must receive money in US$ (not Hong Kong Dollars)</span></li>
                                              <li>Make your payment to: <br />Ng, Ka Pui Christine</li>
                                            	 <li>Send us an email when you have completed the payment so we know it has been sent. In the email please provide:<br />
                 
@@ -171,7 +175,7 @@ account won't be created.</span></p>
                     </div>
                     <div class="buy_payment_note">
                     	<p class="note_title">Having trouble with payment?</p>
-                        <p class="txt">If you have any problem with payment, please contact Clarity support by email at support@clarityenglishc.com, on +44 (0) 845 130 5627 or +852 2791 1787, Monday to Friday 09:30 - 18:30 (GMT +8.00).</p>
+                        <p class="txt">If you have any problems with payment, please contact Clarity support by email at <a href="mailto:support@clarityenglish.com?Subject=IELTSPractice.com payment trouble">support@clarityenglish.com</a>, on +44 (0) 845 130 5627 or +852 2791 1787, Monday to Friday 09:30 - 18:30 (GMT +8.00).</p>
                     
                     </div>
                     
@@ -184,8 +188,8 @@ account won't be created.</span></p>
                     
                     <div class="buy_payment_note" id="buy_paypal"  style="display:none;">
                     	<p class="note_title">Paypal verified</p>
-                        <a id="img_paypal_seal" href="https://www.paypal.com/uk/verified/pal=adrian.raper@clarityenglish.com" target="_blank"></a>
-                        <p class="txt">Clarity is a legitimate PayPal verified user, we are enrolled in PayPal Expanded Use Programme. Paypal's verification process increases security when you pay parties you do not know. Click on the icon and log in to Paypal to learn more.</p>
+                        <a id="img_paypal_seal" href="https://www.paypal.com/uk/verified/pal=adrian.raper@clarityenglish.com" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/internal-links/buy/step2_link_paypal_verify']);"></a>
+                        <p class="txt">Clarity is a legitimate PayPal verified user, we are enrolled in PayPal Expanded Use Programme. Paypal's verification process increases security when you pay parties you do not know. Click on the icon and log in to PayPal to learn more.</p>
                     
                     </div>
                     
@@ -195,8 +199,7 @@ account won't be created.</span></p>
                     <div id="buy_content">
                     
                     	 <div id="buy_terms_link">
-                         <input name="RTINewsletter" id="RTIAgreeTerms" type="checkbox" value="" />I have carefully reviewed and agree with the terms and conditions.
-                         </div>
+                         <input name="RTINewsletter" id="RTIAgreeTerms" type="checkbox" value="" />I have carefully reviewed and agree with the <a href="terms.php" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step2_link_terms']);">terms and conditions</a>.                         </div>
                     	 
                          
                          
@@ -209,8 +212,8 @@ account won't be created.</span></p>
                          
                          
                          <div class="buy_button_area">
-                            <div class="btn_blue_general" onclick="Backward('1')">Back</div>
-                            <div class="btn_blue_general" onclick="SaveAndGo('3')">Review and Pay</div>
+                            <div class="btn_blue_general" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step2_btn_back']); Backward('1')">Back</div>
+                            <div class="btn_blue_general" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step2_btn_reviewpay']); SaveAndGo('3')">Review and Pay</div>
                         
                             <div class="buy_comment">
                                 <!--div class="form_waiting" id="form_waiting" style="display:none">Please wait...</div>

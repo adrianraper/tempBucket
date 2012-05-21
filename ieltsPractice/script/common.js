@@ -10,6 +10,7 @@ var R2IBuyEmailExists = 'This email already exists, please log in above.';
 var R2IBuyMultipleEmailExists = 'Multiple emails found. Please contact support@clarityenglish.com.';
 var R2IBuyEmailUnknownError = "The system can't log you in. Please contact support@ieltspractice.com";
 var R2IBuyPwdPatternIncorrect = 'Please type your password using 8-15 English alphabet characters.';
+var R2IBuyPwdEmpty = 'Please type your password.';
 var R2IBuyRetypePwdIncorrect = 'Please re-type the same password.';
 var R2IBuyNameMissing = 'Please input your name';
 var R2IBuyCountryNotChose = 'Please select your country';

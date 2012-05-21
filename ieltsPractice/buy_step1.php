@@ -2,6 +2,10 @@
 	session_start();
 	//require_once(dirname(__FILE__)."/languageOps.php");
 ?>
+
+<link rel="stylesheet" type="text/css" href="css/home.css" />
+<link rel="stylesheet" type="text/css" href="css/buy.css" />
+
 			<div id="content_box_buy">
                             <div id="buy_box">
                                 <p class="title">Step 1: Enter your subscription details</p>
@@ -32,7 +36,7 @@
                                                      <div class="clear"></div>
                                                  </div>
                            
-                                                 <p class="buy_notsure">Not sure? Click <a href="http://takeielts.britishcouncil.org/choose-ielts/ielts-academic-or-ielts-general-training" target="_blank">here</a>.</p>
+                                                 <p class="buy_notsure">Not sure? Click <a href="http://takeielts.britishcouncil.org/choose-ielts/ielts-academic-or-ielts-general-training?utm_source=Buy&utm_medium=txt_notsure&utm_campaign=Step%2B1" target="_blank">here</a>.</p>
                                                  <div class="buy_field_line">
                                                      </div>
                                        
@@ -72,7 +76,7 @@
                                             <div class="buy_field_line">
                                                 <p class="name">Your email:</p>
                                                 <input name="RTIChooseEmail" id="RTIChooseEmail" type="text" class="field" onblur="checkEmail()" value="" />
-                                                <p class="note" id="RTIEmailValid">(This will be your login name)</p>
+                                                <p class="note" id="RTIEmailValid">(This will be your login name.)</p>
                                                 <div class="clear"></div>
                                                 <p class="error" name="RTIEmailError" id="RTIEmailError"></p>
                                         
@@ -81,7 +85,8 @@
                                             <div class="buy_field_line">
                                                 <p class="name">Your password:</p>
                                                 <input name="RTIChoosePassword" id="RTIChoosePassword" type="password" class="field"  value=""/>
-                                                <p class="note">(8-15 English alphabet characters)</p>
+                                                <!--p class="note">(8-15 English alphabet characters)</p-->
+                                                <p class="note"></p>
                                                 <div class="clear"></div>
                                                 <p class="error" name="RTIPasswordError" id="RTIPasswordError"></p>
                                         
@@ -105,7 +110,7 @@
                                             <div class="buy_field_line">
                                                 <p class="name">Your name:</p>
                                                 <input name="RTIName" id="RTIName" type="text" class="field"  value=""/>
-                                                <p class="note">(We will use this name in emails)</p>
+                                                <p class="note">(We will use this name in emails.)</p>
                                                 <div class="clear"></div>
                                                 <p class="error" name="RTINameError" id="RTINameError" style="display:none"></p>
                                         
@@ -115,8 +120,8 @@
                                             <div class="buy_field_line">
                                                 <p class="name">Phone:</p>
                                                 <input name="RTIPhone" id="RTIPhone" type="text" class="field"  value=""/>
-                                                <p class="note">(Optional: In case we need to contact you about your payment)</p>
-                                                <div class="clear"></div>
+                                                <p class="note">(Optional: In case we need to contact you.)</p>
+                                              <div class="clear"></div>
                                             </div>
                                             
                                             <div class="buy_field_line">
@@ -124,12 +129,12 @@
                                                 <select name="RTIAgeGroup" id="RTIAgeGroup" class="field">
                                                   <option value="" selected="selected" disabled>Please select your age group</option>
                                                   <option value="b18">Below 18</option>
-                                                  <option value="18-25" selected>18-25</option>
+                                                  <option value="18-25">18-25</option>
                                                   <option value="25-40">25-40</option>
                                                   <option value="40-55">40-55</option>
                                                   <option value="55a">55 above</option>
                                                 </select>
-                                                <p class="note">(Optional: This is for research purposes)</p>
+                                                <p class="note">(Optional: This is for research purposes.)</p>
                                                 <div class="clear"></div>
                                         
                                             </div>
@@ -402,7 +407,7 @@
                                      
                                      
                                      <div class="buy_button_area">
-                                        <div class="btn_blue_general" onclick="SaveAndGo('2')">Continue</div>
+                                        <div class="btn_blue_general" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step1_btn_continue']); SaveAndGo('2')">Continue</div>
                                     
                                         <div class="buy_comment">
                                             <div class="form_waiting" name="RTIMsgWait" id="RTIMsgWait" style="display:none">Please wait...</div>
@@ -412,7 +417,11 @@
                                     </div>
                                 
                                 </div>
-                                <div id="buy_banner"></div>
+                                <div id="buy_content_left">
+                                
+                                    <div id="buy_questions"><a href="mailto:support@clarityenglish.com?subject=IELTSPractice.com enquiry"></a></div>
+                                    <div id="buy_banner"></div>
+                                </div>
                                 <div class="clear"></div>
                             </div>
                         

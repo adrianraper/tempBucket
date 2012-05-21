@@ -11,7 +11,7 @@ try {
 	
 	// Use QueryGateway to run a query on the database
 	$API = array();
-	$API['method'] = 'getSubscriptions';
+	$API['method'] = 'getSubscriptionRecords';
 	
 	// The first few data are fixed for CSTDI on CE.com
 	$API['dbHost'] = $dbHost;
@@ -19,7 +19,7 @@ try {
 			
 	// Send this single API
 	$serializedObj = json_encode($API);
-	$targetURL = $domain.'Software/ResultsManager/web/amfphp/services/internalQueries.php';
+	$targetURL = $domain.'Software/ResultsManager/web/amfphp/services/InternalQueryGateway.php';
 	// echo $serializedObj;
 
 	// Initialize the cURL session

@@ -38,11 +38,11 @@ SQL;
 	 * @param string $startDate
 	 */
 	function getSubscriptions($startDate) {
-		// Just list all subscription records since start date
+		// Just list all subscription records since a certain date
 		$sql = <<<SQL
 			SELECT s.*
 			FROM T_Subscription s
-			WHERE s.F_StartDate >= ?
+			WHERE s.F_DateStamp >= ?
             ORDER BY F_SubscriptionID desc;
 SQL;
 		//echo $sql;

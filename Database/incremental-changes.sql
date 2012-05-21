@@ -508,3 +508,18 @@ DROP COLUMN `F_ProductCode` ,
 ADD COLUMN `F_ResellerCode` SMALLINT(5) NULL DEFAULT NULL  AFTER `F_OfferID`,
 ADD COLUMN `F_OrderRef` VARCHAR(32) NULL DEFAULT NULL  AFTER `F_ResellerCode` ;
 
+-- For later, when there is time to recode SubscriptionOps
+-- Add subscription detail table to cope with multiple status changes
+-- CREATE TABLE `T_SubscriptionDetail` (
+--   `F_SubscriptionID` int(10) NOT NULL,
+  -- `F_DateStamp` datetime DEFAULT NULL,
+  -- `F_Status` varchar(32) DEFAULT NULL,
+  -- PRIMARY KEY (`F_SubscriptionID`)
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Do this later once you know nothing is writing to it
+-- ALTER TABLE `rack80829`.`T_Subscription` DROP COLUMN `F_Status`; 
+
+-- In the meantime
+ALTER TABLE `rack80829`.`T_Subscription` 
+ADD COLUMN `F_DateStamp` datetime DEFAULT NULL AFTER `F_Email`;

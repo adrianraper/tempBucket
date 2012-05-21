@@ -149,29 +149,31 @@ if ($seemsOK) {
 				sendEmail();
 				break;
 			default:
-				//echo 'ERROR**************************************************';
+				$_SESSION['CLS_message'] = "Invalid payment method $paymentMethod";
+				header("location: buy_step4_failure.php" );
 		}
 
+	} else {
+		// Any failure in insertSubscription generates an error from there
 	}
-	//header("location: afterPayment.php");
 		
 } else {
 	//echo ("Unpredictable errors. Please go process the registration again.");
-	$_SESSION['CLS_message'] = 'Not Enough Data.';
-	header("location: buy_step4_failure.php" );
+	//$_SESSION['CLS_message'] = 'Not Enough Data.';
+	header("location: buy_step4_failure.php?error=105" );
 	//echo ("seems not OK!!");
 }
 
 function AsiaPaySendPost() {
 	
-	global $commonDomain;
+	global $thisDomain;
 	global $startFolder;
 	
 	$merchantId = '88060532';
 	$currCode = '840';
-	$successUrl = $commonDomain.$startFolder.'afterPayment.php';
-	$failUrl = $commonDomain.$startFolder.'buy_step4_failure.php?error=PaymentFailure';
-	$errorUrl = $commonDomain.$startFolder.'buy_step4_failure.php?error=PaymentError';
+	$successUrl = $thisDomain.$startFolder.'afterPayment.php';
+	$failUrl = $thisDomain.$startFolder.'buy_step4_failure.php?error=101';
+	$errorUrl = $thisDomain.$startFolder.'buy_step4_failure.php?error=102';
 	$payType = 'N';
 	$lang = 'E';
 	$targetURL = "https://www.paydollar.com/b2c2/eng/payment/payForm.jsp";
@@ -182,7 +184,7 @@ function AsiaPaySendPost() {
 	echo '<input type="hidden" name="amount" value='.$_SESSION['CLS_amount'].'>';
 	// we use subscription ID now
 	//echo '<input type="hidden" name="orderRef" value="'.$_SESSION['CLS_orderRef'].'">';
-	echo '<input type="hidden" name="orderRef" value="'.$_SESSION['CLS_orderRef'].'">';
+	echo '<input type="hidden" name="orderRef" value="'.$_SESSION['CLS_subscriptionID'].'">';
 	echo '<input type="hidden" name="currCode" value="'.$currCode.'">';
 	echo '<input type="hidden" name="successUrl" value="'.$successUrl.'">';
 	echo '<input type="hidden" name="failUrl" value="'.$failUrl.'">';
@@ -198,7 +200,7 @@ function AsiaPaySendPost() {
 
 function PaypalSendPost() {
 	
-	global $commonDomain;
+	global $thisDomain;
 	global $startFolder;
 	
 	$merchantEmail = 'wan.zahrah@clarityenglish.com';
@@ -206,8 +208,8 @@ function PaypalSendPost() {
 	$subscribedItem = 'Road to IELTS subscription';
 	$targetURL = "https://www.paypal.com/cgi-bin/webscr";
 	//$targetURL = "https://www.sandbox.paypal.com/us/cgi-bin/webscr";
-	$returnURL = $commonDomain.$startFolder."afterPayment.php?session_id=".session_id();
-	$cancelUrl = $commonDomain.$startFolder."buy_step4_failure.php?session_id=".session_id();
+	$returnURL = $thisDomain.$startFolder."afterPayment.php?session_id=".session_id();
+	$cancelUrl = $thisDomain.$startFolder."buy_step4_failure.php?error=103&session_id=".session_id();
 	$notify_url = "";
 
 	echo '<form method="POST" name="toPayPal" action="'.$targetURL.'">';
@@ -266,6 +268,8 @@ function insertSubscription() {
 		curl_close($ch);
 		$errorCode = 1;
 		$failReason = curl_error($ch);
+		$_SESSION['CLS_message'] = "Error code: $errorCode, message: $failReason";
+		header("location: buy_step4_failure.php" );
 	} else {
 		curl_close($ch);
 		// $contents is coming back with a utf-8 BOM in front of it, which invalidates it as JSON. Get rid of it.
@@ -279,7 +283,7 @@ function insertSubscription() {
 			//echo "return ID=".$returnInfo['subscriptionID']."<br>";
 			return true;
 		} else {
-			$_SESSION['CLS_message'] = 'Error Code:'.$returnInfo['error'].' message:'.$returnInfo['message'];
+			$_SESSION['CLS_message'] = 'Error code:'.$returnInfo['error'].' message:'.$returnInfo['message'];
 			header("location: buy_step4_failure.php" );
 		}
 	}
@@ -296,47 +300,28 @@ function insertSubscription() {
 </head>
 
 <body id="buy_page">
-            <div id="header_outter">
-        	    <?php include ( 'header.php' ); ?>
-        
-            </div>
-<div id="content_box_buy">
-                            <div id="buy_box">
-                                <p class="title">Step 3: Review and pay</p>
-                                <div id="buy_step_1" class="buy_off"><span class="num">1</span>Enter your subscription details</div>
-                                <div id="buy_step_2" class="buy_off"><span class="arrow"></span><span class="num">2</span>Choose your payment method</div>
-                                <div id="buy_step_3" class="buy_on"><span class="arrow"></span><span class="num">3</span>Review and pay</div>
-                                <div id="buy_step_4" class="buy_off"><span class="arrow"></span><span class="num">4</span>Start studying</div>
-                                <div class="clear"></div>
-                            </div>
-                            
-                            <div id="buy_start_loading">
-                             <p class="title">Redirecting...</p>
-                            	<div id="buy_start_loading_inner">
-                                	<img src="images/ajax-loading.gif">
-                                
-                                
-                            	  <p class="txt">You will be redirected to the payment <?php echo $Gateway?> shortly.<br />
-(Do not click any buttons on the navigation bar of your browser)</p>
-                              
-</div>
-                                
-                              
-                                
-                                
-                                
-                                
-                                
-                                
-                                
-                               
-                             
-                          </div>
-                                    
-                            
-                        
-                        </div>
+	<div id="header_outter">
+		<?php include ( 'header.php' ); ?>
+	</div>
 
+	<div id="content_box_buy">
+		<div id="buy_box">
+			<p class="title">Step 3: Review and pay</p>
+			<div id="buy_step_1" class="buy_off"><span class="num">1</span>Enter your subscription details</div>
+			<div id="buy_step_2" class="buy_off"><span class="arrow"></span><span class="num">2</span>Choose your payment method</div>
+			<div id="buy_step_3" class="buy_on"><span class="arrow"></span><span class="num">3</span>Review and pay</div>
+			<div id="buy_step_4" class="buy_off"><span class="arrow"></span><span class="num">4</span>Start studying</div>
+			<div class="clear"></div>
+		</div>
 
+		<div id="buy_start_loading">
+			<p class="title">Redirecting...</p>
+			<div id="buy_start_loading_inner">
+				<img src="images/ajax-loading.gif">
+                            	  <p class="txt">You will be redirected to the payment <?php echo $Gateway?> shortly.<br />(Please do not click any buttons on the navigation bar of your browser.)</p>
+			</div>
+		</div>
+
+	</div>
 </body>
 </html>

@@ -103,7 +103,7 @@ try {
 		case 'findEmail':
 			$rc = $thisService->internalQueryOps->findEmail($apiInformation['email']);
 			break;
-		case 'getSubscriptions':
+		case 'getSubscriptionRecords':
 			//echo 'startDate='.$apiInformation['startDate'];
 			$rc = $thisService->internalQueryOps->getSubscriptions($apiInformation['startDate']);
 			break;

@@ -105,7 +105,9 @@ try {
 	// Execute the cURL session
 	$contents = curl_exec ($ch);
 	if($contents === false){
-		echo 'Curl error: ' . curl_error($ch);
+		//echo 'Curl error: ' . curl_error($ch);
+		$errorCode = 1;
+		$errorMsg = curl_error($ch);
 		curl_close($ch);
 	} else {
 		curl_close($ch);
@@ -124,7 +126,7 @@ try {
 			$errorCode = 0;
 		}
 	}
-	echo $contents;
+	// echo $contents;
 	if (isset($returnInfo['user'])) {
 		// echo " userID is ".$returnInfo['user']['userID'];
 
@@ -138,6 +140,10 @@ try {
 		redirect($targetURL);
 	}
 
+	if ($errorCode>0) {
+		echo "Error: $errorCode, $errorMsg";
+	}
+	
 } catch (Exception $e) {
 	header("Content-Type: text/xml");
 	echo "<?xml version=\"1.0\" encoding=\"UTF-8\"?><db>";

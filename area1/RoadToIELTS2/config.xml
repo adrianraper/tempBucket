@@ -4,18 +4,19 @@
 	<developer>AR</developer>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<mediaChannel>aws</mediaChannel>
-	<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
+	<mediaChannel-2>aws</mediaChannel-2>
+	<streamingMedia-2>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia-2>
 	<mediaChannel-1>network</mediaChannel-1>
 	<streamingMedia-1>{contentPath}/video/</streamingMedia-1>
-	<mediaChannel-2>vimeo</mediaChannel-2>
-	<streamingMedia-2>http://player.vimeo.com/external/</streamingMedia-2>
+	<mediaChannel>vimeo</mediaChannel>
+	<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
 	<sharedMedia />
 	<brandingMedia />
+	<localDomain>www.ieltspractice.com/buy.php</localDomain>
 	<language>EN*</language>
-	<contentPath>http://localhost/Content/</contentPath>
-	<remoteDomain>http://localhost/</remoteDomain>
-	<remoteGateway>http://localhost/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://dock.projectbench/Content/</contentPath>
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 </config>

@@ -11,6 +11,9 @@
 	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.observer.Notification;
@@ -112,7 +115,8 @@
 		}
 		
 		private function onUpgradeIELTS():void {
-			sendNotification(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW);
+			var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
+			navigateToURL(urlReq, "_blank"); 
 		}
 		
 		private function onRegisterIELTS():void {
@@ -120,7 +124,14 @@
 		}
 		
 		private function onBuyIELTS():void {
-			sendNotification(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW);
+			// #337 Did you come from a candidate specific site?
+			if (view.candidateOnlyInfo) {
+				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+				var buyPage:String = "http://" + (configProxy.getConfig().localDomain) ? configProxy.getConfig().localDomain : "www.ieltspractice.com";
+				navigateToURL(new URLRequest(buyPage), "_blank");
+			} else {
+				sendNotification(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW);
+			}
 		}
 		
 	}

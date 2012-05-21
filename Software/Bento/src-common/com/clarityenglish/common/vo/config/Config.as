@@ -45,6 +45,9 @@ package com.clarityenglish.common.vo.config {
 		
 		// #336
 		public var scorm:Boolean;
+
+		// #337
+		public var localDomain:String;
 		
 		// To help with testing
 		public var configID:String;
@@ -250,7 +253,12 @@ package com.clarityenglish.common.vo.config {
 			} else {
 				this.assetFolder = "Software/ResultsManager/web/resources/assets/";
 			}			
-			
+
+			// #337
+			if (xml..localDomain.toString()) {
+				this.localDomain = xml..localDomain.toString();
+			}			
+
 			// For help with testing
 			if (xml..id.toString()) {
 				this.configID = xml..id.toString();

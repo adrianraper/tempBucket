@@ -23,6 +23,8 @@ class Subscription {
 	public $offerID;
 	public $resellerID;
 	public $orderRef;
+	// To make it easier to pick out recent rows
+	public $dateStamp;
 	
 	// Never sent, but stored after account is created
 	public $rootID;
@@ -57,6 +59,7 @@ class Subscription {
 		$this->startDate = substr($obj->F_StartDate,0,10).' 00:00:00';
 		$this->languageCode = $obj->F_LanguageCode;
 		$this->orderRef = $obj->F_OrderRef;
+		$this->dateStamp = $obj->F_DateStamp;
 	}		
 	/**
 	 * Convert this object to an associative array ready to pass to AutoExecute.
@@ -78,6 +81,7 @@ class Subscription {
 		$array['F_StartDate'] = $this->startDate;
 		$array['F_LanguageCode'] = $this->languageCode;
 		$array['F_OrderRef'] = $this->orderRef;
+		$array['F_DateStamp'] = ($this->dateStamp) ? $this->dateStamp : date('Y-m-d H:i:s');
 
 		return $array;
 	}
@@ -108,7 +112,14 @@ class Subscription {
 			$this->deliveryFrequency = $info['deliveryFrequency'];
 		if (isset($info['password']))
 			$this->password = $info['password'];
-
+			
+		// Default values
+		if (isset($info['dateStamp'])) {
+			$this->dateStamp = $info['dateStamp'];
+		} else {
+			$this->dateStamp = date('Y-m-d H:i:s');
+		}
+			
 		// Check the datatype. we want to end up with a comma delimmited list
 		if (isset($info['offerID'])) {
 			if (is_array($info['offerID'])) {
@@ -131,7 +142,7 @@ class Subscription {
 			
 	}
 	/**
-	 * If you want to print a subscriptin record
+	 * If you want to print a subscription record
 	 */
 	public function toString() {
 		echo $this->id.' '.$this->name.' ',$this->email.', status='.$this->status;

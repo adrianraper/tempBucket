@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	include_once "variables.php";
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -14,7 +18,8 @@
 <script type="text/javascript" src="script/jquery-1.4.3.min.js"></script>
 <script type="text/javascript" src="script/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="script/jquery.fancybox.custom.js"></script>
-<script type="text/javascript" src="script/controllogin.js"></script>
+<script type="text/javascript" src="script/controlLogin.js"></script>
+<script type="text/javascript" src="script/common.js"></script>
 
 <!--Google Tracking-->
 <script type="text/javascript">

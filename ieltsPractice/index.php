@@ -1,3 +1,7 @@
+<?php
+	session_start();
+	include_once "variables.php";
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -14,7 +18,7 @@
 <script type="text/javascript" src="script/jquery-1.4.3.min.js"></script>
 <script type="text/javascript" src="script/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="script/jquery.fancybox.custom.js"></script>
-<script type="text/javascript" src="script/controllogin.js"></script>
+<script type="text/javascript" src="script/controlLogin.js"></script>
 <script type="text/javascript" src="script/common.js"></script>
 
 <!--Google Tracking-->
@@ -45,10 +49,10 @@
             
             
             <div id="content_box_home">
-            	<a href="http://www.clarityenglish.com/program/roadtoielts_demo.htm" id="demo" class="demopop_iframe"></a>
+            	<a href="http://www.clarityenglish.com/program/roadtoielts_demo.htm" id="demo" class="demopop_iframe" onclick="_gaq.push(['_trackPageview', 'internal-links/home/circle_demo']);"></a>
 <div class="content_txt">
                     <p class="title">Preparing for IELTS?</p>
-                    <p class="txt"><strong>Road to IELTS</strong> is your best possible online preparation and practice resource for IELTS. With over 100 hours of interactive activities, advice videos from British Council experts, hints and tips on question types as well as downloadable practice tests, it is comprehensive, up-to-date and aimed precisely at the challenges candidates face.</p>
+                    <p class="txt"><strong>Road to IELTS</strong> is your best possible online preparation and practice resource for IELTS. With over 120 hours of interactive activities, advice videos from British Council experts, hints and tips on question types as well as downloadable practice tests, it is comprehensive, up-to-date and aimed precisely at the challenges candidates face.</p>
                </div>
                <div class="content_txt">
                     <p class="title">How will Road to IELTS help?</p>
@@ -92,12 +96,17 @@
                     
                     <p class="txt">Most candidates need all the help they can get while preparing for this crucial test. Give yourself the unique advantage you deserve - with the British Council's Road to IELTS.</p>
                     
-
-                     
-                     
-                     <a class="btn_buy" href="mailto:sales@clarityenglish.com?subject=Road to IELTS individual licence purchase">
-                        <span class="btn_blue_left">Just US$ 49.99 a month</span>
-                        <span class="btn_blue_right">Buy now</span>                    </a>                </div>
+					<div id="home_btn_box">
+                         <a id="btn_blu_demo" href="http://www.clarityenglish.com/program/roadtoielts_demo.htm" class="demopop_iframe"  onclick="_gaq.push(['_trackPageview', 'internal-links/home/btn_demo']);">Try demo</a>
+                         
+                         <a class="btn_buy" href="buy.php" onclick="_gaq.push(['_trackPageview', 'internal-links/home/btn_yellow_large_buy']);">
+                            <span class="btn_blue_left">Just US$49.99 a month</span>
+                            <span class="btn_blue_right">Buy now</span>
+                         </a>
+                         <div class="clear"></div>
+                         
+                 </div>
+              </div>
                 
         
                    <div class="clear"></div>

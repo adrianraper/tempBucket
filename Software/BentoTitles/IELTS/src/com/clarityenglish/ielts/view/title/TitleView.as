@@ -74,14 +74,8 @@ package com.clarityenglish.ielts.view.title {
 		public var noticeLabel:Label;
 		
 		[SkinPart]
-		public var priceButton:SWFLoader;
+		public var infoButton:SWFLoader;
 		
-		[SkinPart]
-		public var registerButton:SWFLoader;
-		
-		[SkinPart]
-		public var buyButton:SWFLoader;
-				
 		[Bindable]
 		public var user:User;
 		
@@ -96,6 +90,9 @@ package com.clarityenglish.ielts.view.title {
 		private var _productVersion:String;
 		private var _productCode:uint;
 		private var _licenceType:uint;
+
+		// #337
+		public var candidateOnlyInfo:Boolean = false;
 		
 		// #260 
 		private var shortDelayTimer:Timer;
@@ -147,6 +144,17 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
 
+		[Embed(source="skins/ielts/assets/upgrade.jpg")]
+		private var upgradeInfo:Class;
+		
+		[Embed(source="skins/ielts/assets/register.jpg")]
+		private var registerInfo:Class;
+		
+		[Embed(source="skins/ielts/assets/price.jpg")]
+		private var priceInfo:Class;
+		
+		[Embed(source="skins/ielts/assets/buy.jpg")]
+		private var buyInfo:Class;
 		
 		// Constructor to let us initialise our states
 		public function TitleView() {
@@ -254,7 +262,46 @@ package com.clarityenglish.ielts.view.title {
 			}
 			return null;
 		}
-		
+
+		// #337
+		[Bindable(event="productVersionChanged")]
+		public function get productVersionInfo():Class {
+			switch (_productVersion) {
+				case IELTSApplication.LAST_MINUTE:
+					return upgradeInfo;
+					break;
+				
+				case IELTSApplication.TEST_DRIVE:
+					return registerInfo;
+					break;
+				
+				case IELTSApplication.DEMO:
+					if (config.localDomain) {
+						// Get just the domain portion.
+						// TODO. This is really bad name for the config option
+						var justDomain:String = config.localDomain.split('/')[0]; 
+						switch (justDomain.toLowerCase()) {
+							case 'www.ieltspractice.com':
+							case 'www.ilearnielts.com':
+							case 'www.claritylifeskills.com':
+								candidateOnlyInfo = true;
+								return buyInfo;
+								break;
+							case 'www.clarityenglish.com':
+							default:
+						}
+					}
+					
+					return priceInfo;
+					break;
+					
+				case IELTSApplication.FULL_VERSION:
+				default:
+					return null;
+			}
+			return null;
+		}
+
 		[Bindable(event="licenceTypeChanged")]
 		public function get licenceTypeText():String {
 			return Title.getLicenceTypeText(_licenceType);
@@ -314,15 +361,11 @@ package com.clarityenglish.ielts.view.title {
 						instance.text = "Hope your test went well...";
 					}
 					break;
+				
 				// #299
-				case priceButton:
-					priceButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { upgrade.dispatch(); } );
-					break;
-				case registerButton:
-					registerButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { register.dispatch(); } );
-					break;
-				case buyButton:
-					buyButton.addEventListener(MouseEvent.CLICK, function(e:Event):void { buy.dispatch(); } );
+				// #337
+				case infoButton:
+					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 			}
 		}
@@ -397,7 +440,20 @@ package com.clarityenglish.ielts.view.title {
 				shortDelayTimer.stop();
 			}
 		}
-		
+
+		// #337
+		private function onRequestInfoClick(event:MouseEvent):void {
+			switch (_productVersion) {
+				case IELTSApplication.LAST_MINUTE:
+					upgrade.dispatch();
+				case IELTSApplication.TEST_DRIVE:
+					register.dispatch();
+				case IELTSApplication.DEMO:
+					buy.dispatch();
+				case IELTSApplication.FULL_VERSION:
+				default:
+			}
+		}
 	}
 	
 }

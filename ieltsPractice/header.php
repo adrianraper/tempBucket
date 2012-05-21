@@ -8,6 +8,14 @@ function showDate($ts) {
 	return date("j M Y",strtotime($ts));
 }
 ?>
+<script type="text/javascript">
+document.onkeydown = function() {
+	if (event.keyCode == 13) {
+		checkLogin();
+	}
+
+}
+</script>
 <link rel="stylesheet" type="text/css" href="css/home.css" />
 
 				<?php if(!isset($_SESSION['CLS_userID'])) { ?>
@@ -46,12 +54,12 @@ function showDate($ts) {
                                     <input name="" type="button" class="login_btn_inner" value="" onclick="javascript:checkLogin();"/> 
                                 </div>
                                 
-                                <div class="login_msg"><a class="forgot_msg" href="/members/forgotpassword.php">Forgot password?</a></div>
+                                <div class="login_msg"><a class="forgot_msg" href="/members/forgotpassword.php" style="display:none">Forgot password?</a></div>
                             
                             </div>
                             
-                            <div class="error_area">
-                                <h1 name="CLSLoginMsgTitle" id="CLSLoginMsgTitle">Status...</h1>
+                            <div class="error_area" id="CLSLoginMsgArea" style="display:none">
+                                <h1><label id="RTILoginMsgTitle"></label></h1>
                                 <div class="error_msg"><label id="RTILoginMsg"></label></div>
                             </div>
                         </div>
@@ -78,24 +86,24 @@ function showDate($ts) {
                 <div id="header">
 
                     <div id="button_area">
-                        <div class="btn_yellow" id="choose_buy"><a href="buy.php">Buy now</a></div>
 						<?php if(!isset($_SESSION['CLS_userID'])) { ?>
-                        <a class="btn_grey" id="choose_login" href="#" target="_blank"><span>Log in</span></a>
+                        <div class="btn_yellow" id="choose_buy"><a href="buy.php" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/btn_buy']);">Buy now</a></div>
+                        <a class="btn_grey" id="choose_login" href="#" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/btn_login']);"><span>Log in</span></a>
 						<?php } else { ?>
-						<a class="btn_grey" id="choose_login" href="myaccount.php"><span>My Account</span></a>
+						<a class="btn_grey" id="choose_myaccount" href="myaccount.php" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/btn_account']);"><span>My Account</span></a>
 						<?php } ?>
-                        <a class="btn_grey" id="choose_contact" href="contactus.htm" target="_blank"><span>Contact us</span></a>
-                        <a class="btn_grey" id="choose_about" href="aboutus.php"><span>About us</span></a>
-                        <a class="btn_grey" id="choose_why"  href="whychoose.php"><span>Why Road to IELTS?</span></a>
-                        <a class="btn_grey" id="choose_home" href="index.php"><span>Home</span></a>
+                        <a class="btn_grey" id="choose_contact" href="contactus.htm" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/btn_contact']);"><span>Contact us</span></a>
+                        <a class="btn_grey" id="choose_about" href="aboutus.php" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/btn_about']);"><span>About us</span></a>
+                        <a class="btn_grey" id="choose_why"  href="whychoose.php" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/btn_choose']);"><span>Why Road to IELTS?</span></a>
+                        <a class="btn_grey" id="choose_home" href="index.php" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/btn_home']);"><span>Home</span></a>
                         
                         <div class="clear"></div>
                    
                     </div>
                 
                     <div id="logo_area">     
-                        <div class="logo_clarity"><a href="http://www.clarityenglish.com" target="_blank"></a></div>
-                        <div class="logo_bc"><a href="http://www.britishcouncil.org/hongkong.htm" target="_blank"></a></div>
+                        <div class="logo_clarity"><a href="http://www.clarityenglish.com" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/link_home']);"></a></div>
+                        <div class="logo_bc"><a href="http://www.britishcouncil.org" target="_blank" onclick="_gaq.push(['_trackPageview', 'internal-links/menu/link_bc']);"></a></div>
                         <div class="clear"></div>
                     </div>
                 </div>

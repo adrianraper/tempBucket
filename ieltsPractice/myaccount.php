@@ -55,6 +55,7 @@
 <script type="text/javascript" src="script/jquery.fancybox-1.3.4.pack.js"></script>
 <script type="text/javascript" src="script/jquery.fancybox.custom.js"></script>
 <script type="text/javascript" src="script/controlLogin.js"></script>
+<script type="text/javascript" src="script/common.js"></script>
 
 <!--Google Tracking-->
 <script type="text/javascript">
@@ -73,7 +74,7 @@
 
 </head>
 
-<body id="home_page">
+<body id="account_page">
 
       	<div id="header_outter">
         	    <?php include ( 'header.php' ); ?> 
@@ -87,7 +88,7 @@
             	<div id="account_title">Welcome back, <?php echo $_SESSION['CLS_name']; ?>!</div>
             
             	<div id="account_left">
-                	<div id="account_start_course"><a href="<?php echo $commonDomain?>area1/RoadToIELTS2/Start-<?php echo $productLetters?>.php?prefix=<?php echo $prefix?>" target="_blank"></a></div>
+                	<div id="account_start_course"><a href="<?php echo $thisDomain?>area1/RoadToIELTS2/Start-<?php echo $productLetters?>.php?prefix=<?php echo $prefix?>" target="_blank"></a></div>
                 </div>
                 
                 <div id="account_right">
@@ -118,7 +119,7 @@
                         <div class="field_line">
                               <div class="title_box">Module:</div>
                               <div class="fill_box">
-                                <div class="module"><?php echo $productName; ?></div>
+                                <div class="module"><?php echo $productName; ?> </div>
                               
                               </div>
                               <div class="clear"></div>

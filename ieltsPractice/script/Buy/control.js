@@ -51,8 +51,8 @@ function SaveAndGo(id){
 			}
 			break;
 		case '3':
-			checkPayment();
 			checkAgreeTerms();
+			checkPayment();
 			if (seemsOK) {
 				// set the value
 				RTIBuy.paymentMethod = $("#R2IBuyForm input[name=R2ISelectPayment]:checked").val();
@@ -134,13 +134,15 @@ function ListData(id) {
 			$("#R2IReviewAmount").text(RTIBuy.TotalAmount);
 			$("#R2IReviewTotalAmount").text(RTIBuy.TotalAmount);
 			$("#R2IReviewEmail").text(RTIBuy.email);
-			$("#R2IReviewPassword").text(RTIBuy.password);
+			// Don't show pwd in review
+			//$("#R2IReviewPassword").text(RTIBuy.password);
 			$("#R2IReviewName").text(RTIBuy.name);
 			$("#R2IReviewAgeGroup").text(RTIBuy.ageGroup);
 			$("#R2IReviewPhone").text(RTIBuy.phone);
 			$("#R2IReviewCountry").text(RTIBuy.country);
 			$("#R2IReviewPaymentMethod").text(payment2Text(RTIBuy.paymentMethod));
-			$("#R2IReviewExpiryDate").text(getExpiryDate(RTIBuy.subscriptionPeriod));
+			//$("#R2IReviewExpiryDate").text(getExpiryDate(RTIBuy.subscriptionPeriod));
+			$("#R2IReviewStartDate").text(getToday());
 			changePayment3();
 			break;
 
@@ -218,10 +220,12 @@ function checkPassword() {
 	var password = $("input#RTIChoosePassword").val();
 	var password2 = $("input#RTIRetypePassword").val();
 	//var passwordPattern = /^([a-zA-Z0-9_.-@#$%^&+=]){8,15}$/;
-	if (!passwordPattern.test(password)) {
+	//We don't use 8-15 characters, so only check for empty
+	//if (!passwordPattern.test(password)) {
+	if (password=="") {
 		seemsOK = false;
 		$("#RTIPasswordError").fadeTo(200,0.1,function() { 
-			$(this).html(R2IBuyPwdPatternIncorrect).fadeTo(900,1);
+			$(this).html(R2IBuyPwdEmpty).fadeTo(900,1);
 		});
 	} else {
 		$("#RTIPasswordError").hide();
@@ -423,19 +427,19 @@ function productCode2Text(pc) {
 function payment2Text(method){ 
 	switch(method) {
 		case "Visa":
-			return "Credit card: <strong>Visa</strong> (Credit Card verification with 3D Secure)";
+			return "Credit card: Visa (Credit Card verification with 3D Secure)";
 			break;
 		case "MC":
-			return "Credit card: <strong>Master Card</strong> (Credit Card verification with 3D Secure)";
+			return "Credit card: Master Card (Credit Card verification with 3D Secure)";
 			break;
 		case "PP":
-			return "<strong>Paypal</strong>";
+			return "Paypal";
 			break;
 		case "MT":
-			return "<strong>Money Transfer</strong>";
+			return "Money Transfer";
 			break;
 		case "DB":
-			return "<strong>Direct Bank Deposit</strong>";
+			return "Direct Bank Deposit";
 			break;
 		default:
 	}
@@ -457,4 +461,14 @@ function getExpiryDate(d) {
 	var xd = new Date().setDate(startDate.getDate()+d); //d days from now
 	//return formatDate(xd);
 	return xd;
+}
+
+function getToday(){
+var monthNames = [ "January", "February", "March", "April", "May", "June",
+    "July", "August", "September", "October", "November", "December" ];
+//var dayNames= ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
+
+var newDate = new Date();
+newDate.setDate(newDate.getDate());    
+return (newDate.getDate() + ' ' + monthNames[newDate.getMonth()] + ' ' + newDate.getFullYear());
 }

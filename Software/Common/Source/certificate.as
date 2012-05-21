@@ -1,6 +1,6 @@
-//
-// Remember that this file is just a copy, the real one is on claritystorage!
-//
+﻿// Remember that this is just a copy
+// Master version is on \\Claritystorage\Qmultimedia\Programs\Software\ClearPronunciation\Source
+
 //v6.5.6 To allow the certificate.swf to be on a remote domain
 #include "\\Claritystorage\Qmultimedia\Programs\Software\ClearPronunciation\Source\sharedGlobal.as"
 
@@ -47,6 +47,15 @@ var totalToDo;
 //var mustComplete;
 //var mustScore;
 var percentComplete;
+var customised;
+var sequenceNumber;
+
+// The only way I can see to pick up if it is CSTDI
+if (_global.ORCHID.root.licenceHolder.licenceNS.central.root == 10127 ||
+	_global.ORCHID.root.licenceHolder.licenceNS.central.root == 14449) {
+	myTrace("certificate for CSTDI");
+	customised = "CSTDI";
+}
 
 // v6.5.5.8 Can I add a generic footer?
 this.formatCommonFooter = function() {
@@ -55,14 +64,14 @@ this.formatCommonFooter = function() {
 	if (footerText==undefined || footerText=="") {
 		footerText = this.footer_txt.text;
 	}
-	myTrace("cert footer text=" + footerText);
+	//myTrace("cert footer text=" + footerText);
 	// What might you use in a common footer?
 	//var substList = [{tag:"[name]", text:_global.ORCHID.user.name},
 	var substList = [	{tag:"[date]", text:formatDate(new Date())},
 					{tag:"[institution]", text:_global.ORCHID.root.licenceHolder.licenceNS.institution},
 					{tag:"[course]", text:_global.ORCHID.course.scaffold.caption}];
 	this.footer_txt.htmlText = substTags(footerText, substList);
-	myTrace("changes to =" + substTags(footerText, substList));
+	//myTrace("changes to " + substTags(footerText, substList));
 }
 
 // This function checks coverage to see if they have completed enough of the test to see a summary
@@ -74,22 +83,63 @@ this.checkCoverage = function() {
 		this.certificateName = _global.ORCHID.user.name;
 	}
 	
-	myTrace("check coverage for " + _global.ORCHID.root.licenceHolder.licenceNS.branding + " + " + this.certificateName);
+	myTrace("5.check coverage for " + _global.ORCHID.root.licenceHolder.licenceNS.branding + " + " + this.certificateName + " root=" + _global.ORCHID.root.licenceHolder.licenceNS.central.root);
 	// BULATS - there is no specific exercise that I need to check, I just care about the number done
 	// so use getStats to get this information. But first create a callBack which will work on the stats
+	// v6.5.6.4 Note that all exercises with an ID less than 100 are excluded as they are assumed to be certificates etc.
+	// So if you have exercises that are related texts etc, then these will be counted as viewed. 
+	// But what about progress.numExercises - does that include them? No, it correctly doesn't.
+	// But something else that is wrong is that the generalStats includes everything in the database for this course, even exercises that have been removed.
+	// That is correct for the SQL, but we should find a way to weed it out by merging with the scaffold. Although this is a minor issue for Clarity programs since they rarely drop exercises.
+	// It just tends to come up during development when exercises do get in and out, or renamed and rubbish gets left around.
 	this.coverageCallBack = function() {
+		myTrace("coverageCallBack for " + this.customised);
 		myTrace("Your total score=" + this.total + ", average score=" + this.average + "% from " + this.counted + " marked exercises.");
 		myTrace("And you viewed " + this.viewed + " more from a total of " + _global.ORCHID.course.scaffold.progress.numExercises);		
 		var totalDone = Number(this.counted) + Number(this.viewed);
 		//var totalToDo = _global.ORCHID.course.scaffold.progress.numExercises;
-		if (	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/tb") >= 0) ||
-			(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/ro") >= 0) ||
-			(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/ap") >= 0) ||
-			(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/ar") >= 0) ||
-			(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sss") >= 0) ||
-			(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/iyj") >= 0) ||
-			(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/ces") >= 0) ||
-			(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/bw") >= 0)) {
+		
+		// Add CSTDI customisation
+		if (this.customised=='CSTDI') {
+			// 2 less exercises as certificate and survey not to be included
+			totalToDo = _global.ORCHID.course.scaffold.progress.numExercises - 2;
+			percentComplete = Math.round((100 * totalDone) / totalToDo);
+			switch (_global.ORCHID.root.licenceHolder.licenceNS.productCode) {
+				case '10':
+					mustComplete = 50;
+					mustScore = 0;
+					break;
+				case '50':
+				case '39':
+					mustComplete = 70;
+					mustScore = 0;
+					break;
+				default:
+					mustComplete = 90;
+					mustScore = 0;
+					break;
+			}
+			// To ease certificate testing
+			if (this.certificateName.indexof('RAPER, Adrian')>=0)
+				mustComplete = 1;
+			
+			myTrace("this is a CSTDI certificate for " + _global.ORCHID.root.licenceHolder.licenceNS.productCode + ", total ex=" + totalToDo + " your sequence number is " + sequenceNumber);
+			
+			// IF this was the first time for the certificate, we have now written the sequence number, but we didn't 
+			// know the average at that point, so we need to update the record now.
+			// Better just to duplicate the call to generalStats in spsecirfiStats. see dbProgress.php
+			
+		// v6.5.6.5 All Clarity programs are treated the same at the moment
+		} else if ((_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity") >= 0)) {
+		//if (	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/tb") >= 0) ||
+		//	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/ro") >= 0) ||
+		//	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/ap") >= 0) ||
+		//	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/ar") >= 0) ||
+		//	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) ||
+		//	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sss") >= 0) ||
+		//	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/iyj") >= 0) ||
+		//	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/ces") >= 0) ||
+		//	(_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/bw") >= 0)) {
 			// TENSE BUSTER
 			// Ignore the certificate. 
 			// v6.5.4.4 Except that because we give it a unique ID we can ignore it in the SQL call (only get id>100)
@@ -157,14 +207,17 @@ this.checkCoverage = function() {
 	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/placementtest") >= 0) {
 		// remember to call getSpecificStatsFromScaffold at the end of this call.
 		myTrace("go to specifics");
-		this.getSpecifcStats(this.specificStatsCallBack);
+		this.getSpecificStats(this.specificStatsCallBack);
+	// CSTDI just needs to pick up a sequence number, and then use normal certificate processing
+	} else if (this.customised=="CSTDI") {
+		this.getSpecificStats(this.coverageCallBack);
 	} else {
 		this.getGeneralStats(this.coverageCallBack);
 	}
 }
 // Function to get specific stats from the database. This is probably something that you can't get from the scaffold.
 this.getSpecificStats = function(callBack) {
-	myTrace("getSpecificStats");
+	//myTrace("getSpecificStats");
 	if (callBack == undefined) {
 		this.callBack = this.specificStatsCallBack;
 	} else {
@@ -190,6 +243,7 @@ this.getSpecificStats = function(callBack) {
 						'sessionID="' + mySessionID + '" ' +
 						'productCode="' + _global.ORCHID.root.licenceHolder.licenceNS.productCode + '" ' + 
 						// also saved in _global.ORCHID.session.courseID
+						'databaseVersion="' + _global.ORCHID.programSettings.databaseVersion + '" ' +
 						'cacheVersion="' + new Date().getTime() + '"/>';
 		thisDB.xmlReceive = new XML();
 		thisDB.xmlReceive.master = this;
@@ -207,21 +261,22 @@ this.getSpecificStats = function(callBack) {
 					myTrace("specific score: " + tN.toString());
 					// We want to get the number correct from the [three] sections - one exercise each.
 					// It is OK to be very specific here about exerciseIDs
-					if (	(tN.attributes.id == '1193901049551') || // this is the vocab exercise
-						(tN.attributes.id == '1193901049561') || // this is the listening exercise
-						(tN.attributes.id == '1193901049540')) { // this is the grammar exercise
+					if (	(tN.attributes.id == '1193901049551') || // this is the vocab 1 exercise
+						(tN.attributes.id == '1193901049552') || // this is the vocab 2 exercise
+						(tN.attributes.id == '1193901049561') || // this is the listening 1 exercise
+						(tN.attributes.id == '1193901049562') || // this is the listening 2 exercise
+						(tN.attributes.id == '1193901049540') || // this is the grammar 1 exercise
+						(tN.attributes.id == '1193901049541')) { // this is the grammar 2 exercise
 						myTrace("adding " + tN.attributes.score + " for section " + tN.attributes.id);
 						this.master.total+=parseInt(tN.attributes.score);
 					}
 					// Then we want to get the actual answers from the self-assesment and assign specific points to each - q4 gets 4 points, q7 gets 7 etc
 				} else if (tN.nodeName == "detail") {
-					myTrace("specific detail: " + tN.toString());
-					// We want to get the number correct from the [three] sections - one exercise each.
-					// It is OK to be very specific here about exerciseIDs and itemIDs
+					//myTrace("specific detail: " + tN.toString());
 					var thisQuestionNumber = parseInt(tN.attributes.id.split('.')[1]);
 					var thisExerciseID = tN.attributes.id.split('.')[0];
 					if (thisExerciseID == '1292227313781' && tN.attributes.score=='1') {
-						myTrace("adding " + thisQuestionNumber + " for question");
+						myTrace("adding " + thisQuestionNumber + " for self-assessment");
 						this.master.total+=thisQuestionNumber;
 					}
 					
@@ -236,6 +291,47 @@ this.getSpecificStats = function(callBack) {
 			this.master.callBack();
 		}
 		thisDB.runQuery();
+		
+	} else if (this.customised=="CSTDI") {
+		myTrace("getSpecificStats for CSTDI");
+		var thisDB = new _global.ORCHID.root.mainHolder.dbQuery();
+		// put the query into an XML object
+		thisDB.queryString = '<query method="getSpecificStats" ' + 
+						'rootID="' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + '" ' +
+						'userID="' + _global.ORCHID.user.userID + '" ' +
+						'productCode="' + _global.ORCHID.root.licenceHolder.licenceNS.productCode + '" ' + 
+						'courseID="' + _global.ORCHID.session.courseID + '" ' +
+						'itemID="' + _global.ORCHID.session.currentItem.ID + '" ' +
+						'sessionID="' + _global.ORCHID.session.sessionID + '" ' +
+						'databaseVersion="' + _global.ORCHID.programSettings.databaseVersion + '" ' +
+						'cacheVersion="' + new Date().getTime() + '"/>';
+		thisDB.xmlReceive = new XML();
+		thisDB.xmlReceive.master = this;
+		thisDB.xmlReceive.onLoad = function(success) {
+			myTrace("getSpecificStats cstdi success=" + success);
+			for (var node in this.firstChild.childNodes) {
+				var tN = this.firstChild.childNodes[node];
+				//sendStatus("node=" + tN.toString());
+				// is there a an error node?
+				if (tN.nodeName == "err") {
+					myTrace("error: " + tN.firstChild.nodeValue + " (code=" + tN.attributes.code + ")")
+	
+				// we are expecting to get back a node with the sequence number to use
+				// $node .= "<detail sequenceNumber='$sequenceNumber' />";					
+				} else if (tN.nodeName == "detail") {
+					myTrace("specific detail: " + tN.toString());
+					this.master.sequenceNumber = parseInt(tN.attributes.sequenceNumber);
+					
+				// anything unexpected?
+				} else {
+					myTrace(tN.nodeName + ": " + tN.firstChild.nodeValue)
+				}
+			}
+			// Now go to get general stats
+			this.master.getGeneralStats(this.master.callBack);
+		}
+		thisDB.runQuery();
+		
 	}
 }
 // Return from getting specific stats
@@ -293,6 +389,36 @@ this.getSpecificStatsFromScaffold = function() {
 			}
 		} 
 		myTrace("totals grammar=" + grammarScore + " reading=" + readingScore + " vocabulary=" + vocabScore);
+		
+		// Purely for testing certificates - 
+		if (_global.ORCHID.commandLine.sessionID!=undefined && _global.ORCHID.commandLine.sessionID!="") {
+			myTrace("using special sessionID for certificate testing " + _global.ORCHID.commandLine.sessionID);
+			// Since we aren't reading the database, just use this ID to force a certain certificate to be displayed.
+			switch (_global.ORCHID.commandLine.sessionID) {
+				case 'C2':
+					totalScore=41; grammarScore=15; vocabScore=16; readingScore=12;
+					break;
+				case 'C1':
+					totalScore=22; grammarScore=9; vocabScore=9; readingScore=6;
+					break;
+				case 'B2':
+					totalScore=47; grammarScore=18; vocabScore=19; readingScore=12;
+					break;
+				case 'B1':
+					totalScore=24; grammarScore=6; vocabScore=11; readingScore=9;
+					break;
+				case 'A2':
+					totalScore=40; grammarScore=12; vocabScore=21; readingScore=9;
+					break;
+				case 'A1':
+					totalScore=21; grammarScore=6; vocabScore=12; readingScore=5;
+					break;
+				default:
+					totalScore = 0; grammarScore = 0;	vocabScore = 0; readingScore = 0; 
+			}
+		} else {
+			myTrace("not using special sessionID for certificate testing");
+		}
 		// Put it in the right place to be picked up in the passTest routine
 		this.totalScore = totalScore;
 		this.grammarScore = grammarScore;
@@ -316,11 +442,12 @@ this.getGeneralStats = function(callBack) {
 	
 	// put the query into an XML object
 	thisDB.queryString = '<query method="getGeneralStats" ' + 
-					'rootID="' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + '" ' +
-					'userID="' + _global.ORCHID.user.userID + '" ' +
-					'courseID="' + _global.ORCHID.course.id + '" ' +
-					// also saved in _global.ORCHID.session.courseID
-					'cacheVersion="' + new Date().getTime() + '"/>';
+						'rootID="' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + '" ' +
+						'userID="' + _global.ORCHID.user.userID + '" ' +
+						'courseID="' + _global.ORCHID.course.id + '" ' +
+						// also saved in _global.ORCHID.session.courseID
+						'databaseVersion="' + _global.ORCHID.programSettings.databaseVersion + '" ' +
+						'cacheVersion="' + new Date().getTime() + '"/>';
 	thisDB.xmlReceive = new XML();
 	thisDB.xmlReceive.master = this;
 	thisDB.xmlReceive.onLoad = function(success) {
@@ -372,14 +499,18 @@ this.failCoverage = function() {
 		var substList = [{tag:"[totalDone]", text:totalDone},
 						{tag:"[totalToDo]", text:totalToDo},
 						{tag:"[percentComplete]", text:percentComplete},
-						{tag:"[averageScore]", text:this.average}];
+						{tag:"[requiredCoverage]", text:mustComplete},
+						{tag:"[averageScore]", text:this.average},
+						{tag:"[name]", text:this.certificateName},
+						{tag:"[date]", text:formatDate(new Date())},
+						{tag:"[course]", text:_global.ORCHID.course.scaffold.caption}];
 		failCoverageGraphics.coverageStatus_txt.text = substTags(failCoverageText, substList);
 		var headerText = failCoverageGraphics.header_txt.text;
 		//myTrace("original text = " + headerText);
-		var substList = [{tag:"[name]", text:this.certificateName},
+		//var substList = [{tag:"[name]", text:this.certificateName},
 		//var substList = [{tag:"[name]", text:_global.ORCHID.user.name},
-						{tag:"[date]", text:formatDate(new Date())},
-						{tag:"[course]", text:_global.ORCHID.course.scaffold.caption}];
+		//				{tag:"[date]", text:formatDate(new Date())},
+		//				{tag:"[course]", text:_global.ORCHID.course.scaffold.caption}];
 		failCoverageGraphics.header_txt.text = substTags(headerText, substList);
 	//} else {
 	//	failCoverageGraphics.coverageStatus_txt.text = "You have completed " + totalDone + " of the " + totalToDo + " sections."
@@ -416,7 +547,7 @@ this.anonymousCoverage = function() {
 }
 // This is where you show them their result if they passed
 this.passTest = function() {
-	myTrace("pass test");
+	myTrace("pass test seq=" + sequenceNumber);
 	//passTestGraphics.certName_txt.text = _global.ORCHID.user.name;
 	//passTestGraphics.certDate_txt.text = formatDate(new Date());
 	var totalDone = Number(this.counted) + Number(this.viewed);
@@ -457,18 +588,34 @@ this.passTest = function() {
 		
 	// Clarity Placement Test
 	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/placementtest") >= 0) {
-		if (this.total>100) {
-			var descriptor="Advanced";
-		} else if (this.total>80) {
-			var descriptor="Upper Intermediate";
-		} else if (this.total>60) {
-			var descriptor="Intermediate";
-		} else if (this.total>40) {
-			var descriptor="Lower Intermediate";
-		} else {
-			var descriptor="Elementary";
+		// For WACC mexico use a three level test. What would be a good way to do this kind of customisation?
+		var numberOfLevels = 3;
+		var numberOfLevels = 5;
+		if (numberOfLevels==3 ) {
+			myTrace("certificate with 3 levels");
+			if (this.total>90) {
+				var descriptor="Advanced";
+			} else if (this.total>45) {
+				var descriptor="Intermediate";
+			} else {
+				var descriptor="Elementary";
+			}
+		} else {		
+			myTrace("certificate with 5 levels");
+			if (this.total>100) {
+				var descriptor="Advanced";
+			} else if (this.total>80) {
+				var descriptor="Upper Intermediate";
+			} else if (this.total>60) {
+				var descriptor="Intermediate";
+			} else if (this.total>40) {
+				var descriptor="Lower Intermediate";
+			} else {
+				var descriptor="Elementary";
+			}
 		}
-		passTestGraphics.passStatus_txt.text = "Please try " + descriptor + " as you got " + this.total;
+		//passTestGraphics.passStatus_txt.text = "Please try " + descriptor + " (as you got " + this.total + ")";
+		passTestGraphics.passStatus_txt.htmlText = "Please try <b>" + descriptor + " level</b> Clarity programs.";
 		var headerText = passTestGraphics.header_txt.text;
 		//var substList = [{tag:"[name]", text:_global.ORCHID.user.name},
 		var substList = [{tag:"[name]", text:this.certificateName},
@@ -480,8 +627,9 @@ this.passTest = function() {
 		
 	// British Council Placement Test
 	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("bc/ila") >= 0) {
+		
 		// First we need to know which test they took
-		if (this.unitCaption.toLowerCase().indexOf("test a")>=0) {
+		if (this.unitCaption.toLowerCase().indexOf("level test a")>=0) {
 			// Then we work out their CEF for each section
 			if (this.grammarScore<5) var grammarCEF = "A0";
 			if (this.grammarScore>=5 && this.grammarScore<=11) var grammarCEF = "A1";
@@ -500,7 +648,7 @@ this.passTest = function() {
 			if (this.totalScore>=20 && this.totalScore<=39) var overallCEF = "A1";
 			if (this.totalScore>39) var overallCEF = "A2";
 			
-		} else if (this.unitCaption.toLowerCase().indexOf("test b")>=0) {
+		} else if (this.unitCaption.toLowerCase().indexOf("level test b")>=0) {
 			// Then we work out their CEF for each section
 			if (this.grammarScore<8) var grammarCEF = "A2";
 			if (this.grammarScore>=8 && this.grammarScore<=17) var grammarCEF = "B1";
@@ -519,7 +667,7 @@ this.passTest = function() {
 			if (this.totalScore>=23 && this.totalScore<=46) var overallCEF = "B1";
 			if (this.totalScore>46) var overallCEF = "B2";
 			
-		} else if (this.unitCaption.toLowerCase().indexOf("test c")>=0) {
+		} else if (this.unitCaption.toLowerCase().indexOf("level test c")>=0) {
 			// Then we work out their CEF for each section
 			if (this.grammarScore<8) var grammarCEF = "B2";
 			if (this.grammarScore>=8 && this.grammarScore<=14) var grammarCEF = "C1";
@@ -540,45 +688,96 @@ this.passTest = function() {
 			
 		}
 		if (overallCEF=="A0") {
-			var CEFDetail = "<b>CEF A0 (Breakthrough): Basic user</b><br>" +
-	"Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type.<br>Can introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has.<br>Can interact in a simple way provided the other person talks slowly and clearly and is prepared to help.";
+			// Pick all this up from literals
+			//var CEFSummary = "A0 (Breakthrough): Basic user";
+			var CEFLevel = _global.ORCHID.literalModelObj.getLiteral("certificateCEFLevelA0", "messages");
+			//var CEFDetail = "• Understand and use familiar everyday expressions and very basic phrases<br />• Introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has.<br />• Interact in a simple way provided the other person talks slowly and clearly and is prepared to help.";
+			var CEFLevelDetail = _global.ORCHID.literalModelObj.getLiteral("certificateCEFDetailA0", "messages");
+			var BCLevel = "Starter";
 		} else if (overallCEF=="A1") {
-			var CEFDetail = "<b>CEF A1 (Breakthrough): Basic user</b><br>" +
-	"Can understand and use familiar everyday expressions and very basic phrases aimed at the satisfaction of needs of a concrete type. Can introduce him/herself and others and can ask and answer questions about personal details such as where he/she lives, people he/she knows and things he/she has. Can interact in a simple way provided the other person talks slowly and clearly and is prepared to help.";
+			var CEFLevel = _global.ORCHID.literalModelObj.getLiteral("certificateCEFLevelA1", "messages");
+			var CEFLevelDetail = _global.ORCHID.literalModelObj.getLiteral("certificateCEFDetailA1", "messages");
+			var BCLevel = "Elementary";
 		} else if (overallCEF=="A2") {
-			var CEFDetail = "<b>CEF A2 (Waystage): Basic user</b><br>" +
-	"Can understand sentences and frequently used expressions related to areas of most immediate relevance (e.g. very basic personal and family information, shopping, local geography, employment). Can communicate in simple and routine tasks requiring a simple and direct exchange of information on familiar and routine matters. Can describe in simple terms aspects of his/her background, immediate environment and matters in areas of immediate need.";
+			var CEFLevel = _global.ORCHID.literalModelObj.getLiteral("certificateCEFLevelA2", "messages");
+			var CEFLevelDetail = _global.ORCHID.literalModelObj.getLiteral("certificateCEFDetailA2", "messages");
+			var BCLevel = "Pre-Intermediate";
 		} else if (overallCEF=="B1") {
-			var CEFDetail = "<b>CEF B1 (Threshold): Independent User</b><br>" +
-	"Can understand the main points of clear standard input on familiar matters regularly encountered in work, school, leisure, etc. Can deal with most situations likely to arise whilst travelling in an area where the language is spoken. Can produce simple connected text on topics which are familiar or of personal interest. Can describe experiences and events, dreams, hopes & ambitions and briefly give reasons and explanations for opinions and plans.";
+			var CEFLevel = _global.ORCHID.literalModelObj.getLiteral("certificateCEFLevelB1", "messages");
+			var CEFLevelDetail = _global.ORCHID.literalModelObj.getLiteral("certificateCEFDetailB1", "messages");
+			var BCLevel = "Intermediate";
 		} else if (overallCEF=="B2") {
-			var CEFDetail = "<b>CEF B2 (Vantage): Independent User</b><br>" +
-	"Can understand the main ideas of complex text on both concrete and abstract topics, including technical discussions in his/her field of specialisation. Can interact with a degree of fluency and spontaneity that makes regular interaction with native speakers quite possible without strain for either party. Can produce clear, detailed text on a wide range of subjects and explain a viewpoint on a topical issue giving the advantages and disadvantages of various options.";
+			var CEFLevel = _global.ORCHID.literalModelObj.getLiteral("certificateCEFLevelB2", "messages");
+			var CEFLevelDetail = _global.ORCHID.literalModelObj.getLiteral("certificateCEFDetailB2", "messages");
+			var BCLevel = "Upper-Intermediate";
 		} else if (overallCEF=="C1") {
-			var CEFDetail = "<b>CEF C1 (Effective Operational Proficiency): Proficient User</b><br>" +
-	"Can understand a wide range of demanding, longer texts, and recognise implicit meaning. Can express him/herself fluently and spontaneously without much obvious searching for expressions. Can use language flexibly and effectively for social, academic and professional purposes. Can produce clear, well-structured, detailed text on complex subjects, showing controlled use of organisational patterns, connectors and cohesive devices.";
+			var CEFLevel = _global.ORCHID.literalModelObj.getLiteral("certificateCEFLevelC1", "messages");
+			var CEFLevelDetail = _global.ORCHID.literalModelObj.getLiteral("certificateCEFDetailC1", "messages");
+			var BCLevel = "Advanced";
 		} else if (overallCEF=="C2") {
-			var CEFDetail = "<b>CEF C2 (Mastery): Proficient User</b><br>" +
-	"Can understand with ease virtually everything heard or read. Can summarise information from different spoken and written sources, reconstructing arguments and accounts in a coherent presentation. Can express him/herself spontaneously, very fluently and precisely, differentiating finer shades of meaning even in the most complex situations.";
+			var CEFLevel = _global.ORCHID.literalModelObj.getLiteral("certificateCEFLevelC2", "messages");
+			var CEFLevelDetail = _global.ORCHID.literalModelObj.getLiteral("certificateCEFDetailC2", "messages");
+			var BCLevel = "Advanced-Plus";
 		}
+		// Then convert the BC level from literals
+		var BCLevelWord = _global.ORCHID.literalModelObj.getLiteral("certificateBCLevel-" + BCLevel, "messages")
+		//var BCSummary = "";
+		var BCSummary = substTags(_global.ORCHID.literalModelObj.getLiteral("certificateBCSummary", "messages"),[{tag:"[BCLevel]", text:BCLevelWord}]);
+		//myTrace("BCSummary=" + BCSummary);
+		//var BCDetail = ""
+		var BCDetail = substTags(_global.ORCHID.literalModelObj.getLiteral("certificateBCContact", "messages"),[]);
+		//myTrace("BCDetail=" + BCDetail);
+		//var BCDisclaimer = ""		
+		// v6.5.6.5 You need to call substTags with at least an empty array to get [newline] action.
+		var BCDisclaimer = substTags(_global.ORCHID.literalModelObj.getLiteral("certificateBCDisclaimer", "messages"),[]);
+		//myTrace("BCDisclaimer=" + BCDisclaimer);
+		
+		var CEFSummary = substTags(_global.ORCHID.literalModelObj.getLiteral("certificateCEFSummary", "messages"),[{tag:"[CEFLevel]", text:CEFLevel},
+																								{tag:"[grammarCEF]", text:grammarCEF},
+																								{tag:"[readingCEF]", text:readingCEF},
+																								{tag:"[vocabCEF]", text:vocabCEF}]);
+		//myTrace("CEFSummary=" + CEFSummary);
+		var CEFDetail = substTags(_global.ORCHID.literalModelObj.getLiteral("certificateCEFDetail", "messages"),[{tag:"[CEFLevelDetail]", text:CEFLevelDetail}]);
+		//myTrace("CEFLevelDetail=" + CEFLevelDetail);
+		//myTrace("CEFDetail=" + CEFDetail);
+		
 		// Put all this onto the cert
-		var headerText = passTestGraphics.header_txt.text;
+		//var headerText = passTestGraphics.header_txt.text;
+		var headerText = _global.ORCHID.literalModelObj.getLiteral("certificateHeader", "messages");
 		//var substList = [{tag:"[name]", text:_global.ORCHID.user.name},
 		var substList = [{tag:"[name]", text:this.certificateName},
+						{tag:"[email]", text:_global.ORCHID.user.email},
 						{tag:"[date]", text:formatDate(new Date())},
 						{tag:"[institution]", text:_global.ORCHID.root.licenceHolder.licenceNS.institution},
 						{tag:"[unit]", text:this.unitCaption},
 						{tag:"[course]", text:_global.ORCHID.course.scaffold.caption}];
 		passTestGraphics.header_txt.text = substTags(headerText, substList);
 						
-		passTestGraphics.passStatus_txt.htmlText = "This test indicates that your level is";
-		passTestGraphics.passStatus_txt.htmlText += CEFDetail;
-		passTestGraphics.passStatus_txt.htmlText += "<br>Grammar CEF=" + grammarCEF;
-		passTestGraphics.passStatus_txt.htmlText += "Vocabulary CEF=" + vocabCEF;
-		passTestGraphics.passStatus_txt.htmlText += "Reading CEF=" + readingCEF;
+		// v6.5.6.5 It's not a good way to do it because different accounts or the ILA test want different certificate layouts
+		// even if all the above is still common.
+		// So either I can split the different sections up onto the .fla (and have one of those per account)
+		// or I can somehow get the layout (sort of) from literals - where I am bodging the account to be a language (eninjp)
+		var certificateLayout = substTags(_global.ORCHID.literalModelObj.getLiteral("certificateLayout", "messages"),[{tag:"[BCSummary]", text:BCSummary},
+																								{tag:"[BCDetail]", text:BCDetail},
+																								{tag:"[CEFSummary]", text:CEFSummary},
+																								{tag:"[BCDisclaimer]", text:BCDisclaimer},
+																								{tag:"[CEFDetail]", text:CEFDetail}]);
+		// Do an overall text that will usually be enough
+		passTestGraphics.passStatus_txt.htmlText += certificateLayout;
+		
+		// Then special stuff for one of the BC ILA accounts. If a different cert doesn't have these fields, they will just be ignored.
+		passTestGraphics.cef_txt.htmlText = CEFDetail;
+		passTestGraphics.disclaimer_txt.htmlText = BCDisclaimer;
+
+		/*
+		passTestGraphics.passStatus_txt.htmlText += BCSummary + "<br/><br/>";
+		passTestGraphics.passStatus_txt.htmlText += BCDetail  + "<br/><br/>";
+		passTestGraphics.passStatus_txt.htmlText += CEFSummary + "<br/><br/>";
+		passTestGraphics.passStatus_txt.htmlText += CEFDetail  + "<br/><br/>";
+		passTestGraphics.passStatus_txt.htmlText += BCDisclaimer;
+		*/
 		// disclaimer				
-		passTestGraphics.passStatus_txt.htmlText += "<br>After the oral test, a teacher will explain your overall level and advise you of the best course available.  Please be aware that test scores are only to be used for placement into British Council courses and not for any other reason.";
-		passTestGraphics.passStatus_txt.htmlText += "<br>We would be grateful if you can <u><a href='http://www.zoomerang.com/Survey/survey-intro.zgi?p=WEB229HGXGXKHS' target='_blank'>click here and take a survey for us</a></u>. Thanks!";
+		//passTestGraphics.passStatus_txt.htmlText += "<br>We would be grateful if you can <u><a href='http://www.zoomerang.com/Survey/survey-intro.zgi?p=WEB229HGXGXKHS' target='_blank'>click here and take a survey for us</a></u>. Thanks!";
 
 		// v6.5 Can you pick this up from literals file?
 		var footerText = _global.ORCHID.literalModelObj.getLiteral("certificateFooter", "messages");
@@ -587,41 +786,45 @@ this.passTest = function() {
 		}
 		//var substList = [{tag:"[name]", text:_global.ORCHID.user.name},
 		var substList = [{tag:"[name]", text:this.certificateName},
+						{tag:"[email]", text:_global.ORCHID.user.email},
 						{tag:"[date]", text:formatDate(new Date())},
 						{tag:"[institution]", text:_global.ORCHID.root.licenceHolder.licenceNS.institution},
 						{tag:"[course]", text:_global.ORCHID.course.scaffold.caption}];
 		passTestGraphics.footer_txt.text = substTags(footerText, substList);
 		
 	} else {
-		var headerText = passTestGraphics.header_txt.text;
-		//var substList = [{tag:"[name]", text:_global.ORCHID.user.name},
+		// v6.5.6.4 Use just one subst list so that you can put the fields in any of the text boxes
 		var substList = [{tag:"[name]", text:this.certificateName},
+						{tag:"[email]", text:_global.ORCHID.user.email},
 						{tag:"[date]", text:formatDate(new Date())},
 						{tag:"[institution]", text:_global.ORCHID.root.licenceHolder.licenceNS.institution},
 						{tag:"[unit]", text:this.unitCaption},
-						{tag:"[course]", text:_global.ORCHID.course.scaffold.caption}];
+						{tag:"[totalDone]", text:totalDone},
+						{tag:"[totalToDo]", text:totalToDo},
+						{tag:"[percentComplete]", text:percentComplete},
+						{tag:"[totalCorrect]", text:this.total},
+						{tag:"[averageScore]", text:this.average},
+						{tag:"[sequenceNumber]", text:sequenceNumber},
+						{tag:"[course]", text:_global.ORCHID.course.scaffold.caption},
+						{tag:"[courseShortName]", text:courseShortName}];
+		
+		var headerText = passTestGraphics.header_txt.text;
+		//var substList = [{tag:"[name]", text:_global.ORCHID.user.name},
 		passTestGraphics.header_txt.text = substTags(headerText, substList);
 						
 		var passCourseText = passTestGraphics.passStatus_txt.text;
 		//myTrace("original text = " + passCourseText);
-		var substList = [{tag:"[totalDone]", text:totalDone},
-						{tag:"[totalToDo]", text:totalToDo},
-						{tag:"[percentComplete]", text:percentComplete},
-						{tag:"[totalCorrect]", text:this.total},
-						{tag:"[averageScore]", text:this.average}];
 		passTestGraphics.passStatus_txt.text = substTags(passCourseText, substList);
+		myTrace("pass passStatus=" + passTestGraphics.passStatus_txt.text);
 
-		// v6.5 Can you pick this up from literals file?
-		var footerText = _global.ORCHID.literalModelObj.getLiteral("certificateFooter", "messages");
+		// v6.5 Can you pick this up from literals file if not set in the fla?
+		var footerText = passTestGraphics.footer_txt.text;
 		if (footerText==undefined || footerText=="") {
-			footerText = passTestGraphics.footer_txt.text;
+			footerText = _global.ORCHID.literalModelObj.getLiteral("certificateFooter", "messages");
 		}
 		//var substList = [{tag:"[name]", text:_global.ORCHID.user.name},
-		var substList = [{tag:"[name]", text:this.certificateName},
-						{tag:"[date]", text:formatDate(new Date())},
-						{tag:"[institution]", text:_global.ORCHID.root.licenceHolder.licenceNS.institution},
-						{tag:"[course]", text:_global.ORCHID.course.scaffold.caption}];
 		passTestGraphics.footer_txt.text = substTags(footerText, substList);
+		myTrace("pass footer=" + passTestGraphics.footer_txt.text);
 						
 	}
 	passTestGraphics._visible = true;
@@ -944,4 +1147,5 @@ passTestGraphics._visible = false;
 // trigger the specific information collection as soon as the movie runs
 //myTrace("457:cert.as");
 this.formatCommonFooter();
+//myTrace("call check coverage from end of certificate.as");
 this.checkCoverage();

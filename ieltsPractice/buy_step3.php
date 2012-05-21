@@ -2,6 +2,10 @@
 	session_start();
 	//require_once(dirname(__FILE__)."/languageOps.php");
 ?>
+
+<link rel="stylesheet" type="text/css" href="css/home.css" />
+<link rel="stylesheet" type="text/css" href="css/buy.css" />
+
 <div id="content_box_buy">
                             <div id="buy_box">
                                 <p class="title">Step 3: Review and pay</p>
@@ -24,7 +28,7 @@
                                             
                                            
                                             <p class="review_txt"><strong>Your email:</strong> <label id="R2IReviewEmail"></label></p>
-                                            <p class="review_txt"><strong>Your password:</strong> <label id="R2IReviewPassword"></label></p>
+                                            <!--p class="review_txt"><strong>Your password:</strong> <label id="R2IReviewPassword"></label></p-->
                                             <p class="review_txt"><strong>Your name:</strong> <label id="R2IReviewName"></label></p>
                                             <p class="review_txt"><strong>Phone:</strong> <label id="R2IReviewPhone"></label></p>
                                             <p class="review_txt"><strong>Country:</strong> <label id="R2IReviewCountry"></label></p>
@@ -36,13 +40,14 @@
                                             <!--p class="review_txt">Credit card: <strong>Visa</strong> (Credit Card verification with 3D Secure)</p-->
                                             <p class="review_txt"><strong>Module:</strong> <label id="R2IReviewModule"></label></p>
                                             <p class="review_txt"><strong>Subscription period:</strong> <label id="R2IReviewSubscriptionPeriod"></label>  (US$ <label id="R2IReviewAmount"></label>)</p>
-                                            <p class="review_txt"><strong>Expires on:</strong> <label id="R2IReviewExpiryDate"></label></p>
+                                            <!--p class="review_txt"><strong>Expires on:</strong> <label id="R2IReviewExpiryDate"></label></p-->
+                                            <p class="review_txt"><strong>Start date:</strong> <label id="R2IReviewStartDate"></label></p>
                                             
                                         </div>
                                         
                                         <div class="review_total">
                                             <p class="title">Total amount</p>
-                                            <p class="money">US$ <label id="R2IReviewTotalAmount"></label></p>
+                                            <p class="money">US$<label id="R2IReviewTotalAmount"></label></p>
                                             <div class="clear"></div>
                                         </div>
                                         
@@ -54,8 +59,8 @@
                                     </div>
                                      
                                      <div class="buy_button_area">
-                                        <div class="btn_blue_general" onclick="Backward('2')">Back</div>
-                                        <div class="btn_blue_general" onclick="processCheckOut()">Pay</div>
+                                        <div class="btn_blue_general" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step3_btn_back']); Backward('2')">Back</div>
+                                        <div class="btn_blue_general" onclick="_gaq.push(['_trackPageview', 'internal-links/buy/step3_btn_pay']); processCheckOut()">Pay</div>
                                     
                                         <div class="buy_comment">
                                             <!--div class="form_waiting" id="form_waiting" style="display:none">Please wait...</div>
