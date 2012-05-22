@@ -113,7 +113,8 @@ package com.clarityenglish.common.vo.config {
 			
 			if (parameters.productCode) this.productCode = parameters.productCode;
 			if (parameters.password) this.password = parameters.password;
-			if (parameters.courseID) this.courseID = parameters.courseID;
+			// #338 Legacy has parameter called course not courseID
+			if (parameters.course) this.courseID = parameters.course;
 			if (parameters.courseFile) this.paths.menuFilename = parameters.courseFile;
 			if (parameters.startingPoint) this.startingPoint = parameters.startingPoint;
 			if (parameters.sessionID) this.sessionID = parameters.sessionID;

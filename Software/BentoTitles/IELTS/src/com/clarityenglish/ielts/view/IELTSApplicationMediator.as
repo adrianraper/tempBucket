@@ -119,17 +119,29 @@ package com.clarityenglish.ielts.view {
 			
 			if (!directStart) return false;
 			
-			// If courseClass is defined go straight into a course
-			if (directStart.courseClass) {
-				var course:XML = bentoProxy.menuXHTML.selectOne("course[class=" + directStart.courseClass + "]");
+			// #338
+			// If courseID is defined go straight into that course, having disabled the other courses.
+			// TODO. Need to update the circular animation to also respect enabledFlag.
+			if (directStart.courseID) {
 				
+				// QUESTION. Can I update the menu.xml like this?
+				for each (var co:XML in bentoProxy.menuXHTML.course) {
+					if (co.@id == directStart.courseID) {
+						co.@enabledFlag = 3;
+						var course:XML = co;
+					} else {
+						co.@enabledFlag = 8;
+					}
+				}
+
+				trace(bentoProxy.menuXHTML.toString());
 				if (course) {
 					sendNotification(IELTSNotifications.COURSE_SHOW, course);
 					return true;
 				}
 			}
 			
-			// If exerciseId is defined go straight into an exercise
+			// If exerciseId is defined go straight into an exercise.
 			if (directStart.exerciseId) {
 				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseId);
 				
@@ -139,6 +151,18 @@ package com.clarityenglish.ielts.view {
 				}
 			}
 			
+			// #338
+			// Does it mean hide all other units? Or just go direct to this unit and leave others accessible?
+			// In general, I think that if you go to directStart you want to skip as much menu as possible
+			// leaving the student with no choices.
+			if (directStart.unitId) {
+				bentoProxy.menuXHTML.selectOne("course[class=" + directStart.courseClass + "]");
+				
+				if (course) {
+					sendNotification(IELTSNotifications.COURSE_SHOW, course);
+					return true;
+				}
+			}
 			return false;
 		}
 	

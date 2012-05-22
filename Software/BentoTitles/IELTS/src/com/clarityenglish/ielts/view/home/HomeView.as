@@ -79,10 +79,27 @@ package com.clarityenglish.ielts.view.home {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			// TODO: GO STRAIGHT TO THE READING COURSE SINCE I AM WORKING ON THE ZONE PAGE
-			//if (Config.DEVELOPER.name == "AR") {
-			//	readingCourse.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-			//}
+			// #338 You might need to hide some courses. The courses could be a list in the skin
+			// with an item renderer to do each one - but so much of the skins is tied up with these 4 courses
+			// that you might as well just hardcode it here too.
+			// BUG. Neither of the following contains the changes I made to bentoProxy.menuXHTML earlier
+			// for each (var course:XML in _xhtml.head.script.(@id == "model" && @type == "application/xml").menu[0].course) {
+			for each (var course:XML in menu.course) {
+				switch (course.@["class"].toString()) {
+					case "reading":
+						readingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						break;
+					case "listening":
+						listeningCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						break;
+					case "speaking":
+						speakingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						break;
+					case "writing":
+						writingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						break;
+				}
+			}
 		}
 		
 		protected override function commitProperties():void {

@@ -67,6 +67,8 @@ global {
 	
 	listeningColor: #FF6600;
 	listeningColorDark: #7A3100;
+	
+	disabledColor: #EEEEEE;
 }
 
 /* Credit view styles */

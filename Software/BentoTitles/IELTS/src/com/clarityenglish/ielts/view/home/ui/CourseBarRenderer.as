@@ -52,16 +52,24 @@ package com.clarityenglish.ielts.view.home.ui {
 			super.commitProperties();
 			if (_dataChanged && _detailData) {
 				var course:XML = _detailData.course.(@["class"]==courseClass)[0];
-				//var courseSummaryInfo:XML = value.course.(@["class"]==courseClass).summaryInfo[0];
-				solidColour.color = getStyle(courseClass + "Color");
-				backColour.color = getStyle(courseClass + "ColorDark");
-				commentLabel.text = _courseCaption + " - overall coverage " + new Number(course.@coverage) + "%";
-				var percentValue:Number = new Number(course.@coverage);
-				//var percentValue:Number = new Number(courseSummaryInfo.@coverage);
-							
-				// Tween it
-				Tweener.removeTweens(overallProgressRect, percentWidth);
-				Tweener.addTween(overallProgressRect, {percentWidth:percentValue, time:2, delay:0, transition:"easeOutSine"});
+				
+				// #338 Just in case you have hidden some of the courses
+				if (course) {
+					//var courseSummaryInfo:XML = value.course.(@["class"]==courseClass).summaryInfo[0];
+					solidColour.color = getStyle(courseClass + "Color");
+					backColour.color = getStyle(courseClass + "ColorDark");
+					commentLabel.text = _courseCaption + " - overall coverage " + new Number(course.@coverage) + "%";
+					var percentValue:Number = new Number(course.@coverage);
+					//var percentValue:Number = new Number(courseSummaryInfo.@coverage);
+								
+					// Tween it
+					Tweener.removeTweens(overallProgressRect, percentWidth);
+					Tweener.addTween(overallProgressRect, {percentWidth:percentValue, time:2, delay:0, transition:"easeOutSine"});
+					
+				} else {
+					backColour.color = getStyle("disabledColor");
+					commentLabel.text = _courseCaption + " is hidden";
+				}
 			}
 		}
 		

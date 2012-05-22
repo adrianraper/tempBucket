@@ -207,12 +207,12 @@ package com.clarityenglish.common.model {
 		 */
 		public function getDirectLogin():LoginEvent {
 			if (Config.DEVELOPER.name == "DK") {
-				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password")
+				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password");
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
-				//return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "passwording")
-				return new LoginEvent(LoginEvent.LOGIN, "p574528(8)", "passwording")
+				return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "passwording");
+				//return new LoginEvent(LoginEvent.LOGIN, "p574528(8)", "passwording");
 			}
 			
 			// Take it from from the URL parameters (see config.as.mergeParameters)
@@ -271,6 +271,25 @@ package com.clarityenglish.common.model {
 			if (config.scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 				return scormProxy.getBookmark();				
+			}
+			
+			// #338
+			if (config.courseID)
+				return { courseID: config.courseID };
+			
+			// #338
+			if (config.startingPoint) {
+				var startingPointArray:Array = config.startingPoint.split(":");
+				var type:String = startingPointArray[0];
+				var value:String = startingPointArray[1];
+				switch (type) {
+					case 'ex':
+						return { exerciseId: value };
+						break;
+					case 'unit':
+						return { unitId: value };
+						break;
+				}
 			}
 			
 			return null;
