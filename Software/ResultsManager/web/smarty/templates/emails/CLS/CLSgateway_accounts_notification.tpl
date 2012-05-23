@@ -8,6 +8,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>CLS ref:{$api->subscription->orderRef}</title>
 	<!-- <from>support@clarityenglish.com</from> -->
+	<!-- <cc>support@ieltspractice.com</bcc> -->
 	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
 </head>
 <body>

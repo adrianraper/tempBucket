@@ -25,8 +25,13 @@ header('Content-Type: text/plain; charset=utf-8');
 function loadAPIInformation() {
 	global $dmsService;
 	
-	$postInformation = json_decode(file_get_contents("php://input"), true);	
+	$inputData = file_get_contents("php://input");
+	//$inputData = '{"method":"getSubscriptionRecords","startDate":"2012-05-01","dbHost":2}';
 	
+	$postInformation= json_decode($inputData, true);	
+	if (!$postInformation) 
+		throw new Exception('Error decoding data: '.': '.$inputData);
+		
 	// First check mandatory fields exist
 	if (!isset($postInformation['method'])) {
 		throw new Exception("No method has been sent");
@@ -105,7 +110,7 @@ try {
 			break;
 		case 'getSubscriptionRecords':
 			//echo 'startDate='.$apiInformation['startDate'];
-			$rc = $thisService->internalQueryOps->getSubscriptions($apiInformation['startDate']);
+			$rc['subscriptions'] = $thisService->internalQueryOps->getSubscriptions($apiInformation['startDate']);
 			break;
 	}
 	

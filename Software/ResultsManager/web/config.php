@@ -54,6 +54,7 @@ if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 } else {
 	$dbHost = 101; // Default for R2IV2 local
 	$dbHost = 2; // Default for rack80829
+	//$dbHost = 20; // rack80829 on RDS
 }
 $dbDetails = new DBDetails($dbHost);
 //$dbDetails = new DBDetails(100);

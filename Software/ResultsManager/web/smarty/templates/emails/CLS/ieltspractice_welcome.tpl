@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome to IELTSpractice.com</title>
-	<!-- <from>support@clarityenglish.com</from> -->
-	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
+	<!-- <from>support@ieltspractice.com</from> -->
+	<!-- <bcc>accounts@clarityenglish.com,support@ieltspractice.com,adrian.raper@clarityenglish.com</bcc> -->
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; background-color:#E5E5E5;">
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/ieltspractice/bg.jpg" bgcolor="#FFFFFF">

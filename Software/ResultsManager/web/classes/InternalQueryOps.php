@@ -54,7 +54,7 @@ SQL;
 			while ($subscriptionObj = $rs->FetchNextObj()) {
 				$subscription = new Subscription();
 				$subscription->fromDatabaseObj($subscriptionObj);
-				$subscriptions[] = $subscription->toString();
+				$subscriptions[] = $subscription;
 			}
 		}
 		

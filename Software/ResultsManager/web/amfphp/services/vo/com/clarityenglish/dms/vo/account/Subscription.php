@@ -145,6 +145,6 @@ class Subscription {
 	 * If you want to print a subscription record
 	 */
 	public function toString() {
-		echo $this->id.' '.$this->name.' ',$this->email.', status='.$this->status;
+		return $this->id.' name='.$this->name.' email='.$this->email.', status='.$this->status;
 	}
 }	
