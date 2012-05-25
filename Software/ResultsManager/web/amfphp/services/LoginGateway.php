@@ -124,6 +124,7 @@ try {
 			break;
 			
 		case 'getOrAddUser':
+		case 'getOrAddUserAutoGroup':
 			$user = $loginService->getUser($apiInformation);
 			
 			// If you are using just a group to add user, need to get rootID now
@@ -137,12 +138,41 @@ try {
 			
 			if ($user==false) {
 				$group = $loginService->getGroup($apiInformation);
-				if ($group==false)
-					returnError(210, $apiInformation->groupID);
+				if ($group==false) {
+					// Winhoe. We need to add new groups
+					if ($apiInformation->method == "getOrAddUserAutoGroup") {
+						$group = $loginService->addGroup($apiInformation);
+					} else {
+						returnError(210, $apiInformation->groupID);
+					}
+				}
 					
 				$user = $loginService->addUser($apiInformation, $group);
 				AbstractService::$debugLog->info("added new user ".$user->name." expire on ".$user->expiryDate);
 				
+				// Winhoe. Check that the teacher exists, and that they are linked to this group 
+				if ($apiInformation->method == "getOrAddUserAutoGroup") {
+					// Clone some details from the original API and see if the teacher exists
+					$teacherAPI = new LoginAPI();
+					switch ($apiInformation->loginOption) {
+						case 1:
+							$teacherAPI->userName = $apiInformation->teacherName;
+							break;		
+						case 2:
+							$teacherAPI->studentID = $apiInformation->teacherID;
+							break;
+						case 128:
+							$teacherAPI->email = $apiInformation->teacherEmail;
+							break;
+					}
+					$teacherAPI->userType=1;
+					$teacher = $loginService->getUser($teacherAPI);
+					if ($teacher==false) {
+						$teacher = $loginService->addUser($teacherAPI, $group);
+					}
+					// The teacher must be linked to the group
+					// ...
+				}
 				// If we want to send an email on adding a new user, do it here
 				if ($apiInformation->emailTemplateID) {
 					$loginService->subscriptionOps->sendUserEmail($user, $apiInformation);

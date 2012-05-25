@@ -27,6 +27,10 @@ class LoginAPI {
 	var $custom4;
 	var $subscriptionPeriod;
 	var $licenceType;
+	// Winhoe.
+	var $groupName;
+	var $teacherName;
+	var $teacherID;
 	
 	function LoginAPI() {
 	}
