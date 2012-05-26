@@ -20,6 +20,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
+	$inputData = '{"method":"getOrAddUserAutoGroup","prefix":"Clarity","groupName":"Winhoe autogroup","city":"Taichung","country":"Taiwan,"loginOption":1,"studentID":"winhoe 123","name":"Kima 123","dbHost":2,"teacherName":"Nora"}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
@@ -114,10 +115,7 @@ try {
 				returnError(200, $key);
 			}
 			
-			// If you find a user you might want account information to be returned if you don't know it
-			// Indeed, it might be more consistent to return it anyway
-			//if (!$apiInformation->prefix && !$apiInformation->rootID) {
-			//}
+			// Also return account information for that user
 			$apiInformation->userID = $user->id;
 			$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
 			
@@ -128,12 +126,15 @@ try {
 			$user = $loginService->getUser($apiInformation);
 			
 			// If you are using just a group to add user, need to get rootID now
+			// Get the whole account info as well
 			if (!$apiInformation->prefix && !$apiInformation->rootID) {
 				$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
 				$apiInformation->rootID = $account->id;
 			} else if (!$apiInformation->rootID) {
 				$account = $loginService->getAccountFromPrefix($apiInformation->prefix);
 				$apiInformation->rootID = $account->id;
+			} else {
+				$account = $loginService->getAccountFromRootID($apiInformation->rootID);
 			}
 			
 			if ($user==false) {
@@ -141,6 +142,10 @@ try {
 				if ($group==false) {
 					// Winhoe. We need to add new groups
 					if ($apiInformation->method == "getOrAddUserAutoGroup") {
+						// If you don't know a rootID, you can't add the group
+						if (!$apiInformation->rootID) 
+							returnError(210, $apiInformation->groupID);
+							
 						$group = $loginService->addGroup($apiInformation);
 					} else {
 						returnError(210, $apiInformation->groupID);
@@ -165,13 +170,17 @@ try {
 							$teacherAPI->email = $apiInformation->teacherEmail;
 							break;
 					}
+					
 					$teacherAPI->userType=1;
 					$teacher = $loginService->getUser($teacherAPI);
+					
 					if ($teacher==false) {
 						$teacher = $loginService->addUser($teacherAPI, $group);
 					}
+					
 					// The teacher must be linked to the group
-					// ...
+					$rc = $loginService->linkUserToGroup($teacher, $group);
+					
 				}
 				// If we want to send an email on adding a new user, do it here
 				if ($apiInformation->emailTemplateID) {
@@ -181,10 +190,6 @@ try {
 			} else {
 				AbstractService::$debugLog->info("returned existing user ".$user->name." expires on ".$user->expiryDate);
 			}
-			
-			// TODO: Should also return account information to mirror getUser
-			$apiInformation->userID = $user->id;
-			$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
 			
 			break;
 			

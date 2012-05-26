@@ -148,7 +148,9 @@ class LoginService extends AbstractService {
 		
 		return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID);
 	}
-	// Get the group
+	/**
+	 * Return the group object given groupID or a user in that group
+	 */
 	public function getGroup($loginDetails) {
 		
 		// First special case is that you know the groupID (based on a serial number for instance)
@@ -156,9 +158,49 @@ class LoginService extends AbstractService {
 		if ($loginDetails->groupID)
 			return $this->manageableOps->getGroup($loginDetails->groupID);
 		
+		// AutoGroup. You might now know a userID at this point, just a group name.
+		if (!$loginDetails->userID && $loginDetails->groupName)
+			return $this->manageableOps->getGroupByName($loginDetails->groupName);
+			
 		// The normal case is that you found the user, so get their group/account info from T_Membership
 		// TODO. Surely the above will work this way as well and is safer.
 		return $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($loginDetails->userID));
+	}
+	
+	/**
+	 * Add a group to a known root
+	 */
+	public function addGroup($loginDetails) {
+		
+		// Get the top level group for the account as this is where we will create our new group
+		// You identify a top level group when groupID = parentGroup
+		// So you have to find a case where this exists and there is a member in that group for this root.
+		// Or, since you have the account it means you have adminUserID, and can get their groupID...
+		
+		// Build a group object
+		$group = new Group();
+		$group->name = $loginDetails->groupName;
+		$group = $this->manageableOps->addGroup($group, $parentGroup);
+				
+	}
+	/**
+	 * Link a user to a group. As of now, we don't have a user in multiple groups.
+	 * So this only works for teachers and we use the T_ExtraTeacherGroups table.
+	 */
+	public function linkUserToGroup($user, $group) {
+		
+		// First check to see if this user is already in this group
+		foreach ($this->manageableOps->getUsersGroups($user); as $foundGroup) {
+			if ($group->id == $foundGroup->id)
+				return true;
+		}
+		
+		// Not, so confirm that they are a teacher and use the ExtraTeacherGroups table
+		if ($user->userTupe == User::USER_TYPE_TEACHER) {
+			return $this->manageableOps->addTeacherToExtraGroup($user, $group);
+		}
+		
+		return false;
 	}
 	
 	public function getAccountFromGroup($group) {
@@ -166,6 +208,10 @@ class LoginService extends AbstractService {
 	}
 	
 	public function getAccountFromPrefix($loginDetails) {
-		return $this->accountOps->getAccountRootID($loginDetails->prefix);
+		return $this->accountOps->getAccountFromPrefix($loginDetails->prefix);
+	}
+	
+	public function getAccountFromRootID($loginDetails) {
+		return $this->accountOps->getAccounts(array($loginDetails->rootID));
 	}
 }

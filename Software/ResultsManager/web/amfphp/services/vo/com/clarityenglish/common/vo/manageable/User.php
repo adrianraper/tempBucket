@@ -80,10 +80,8 @@ class User extends Manageable {
 	 * @param obj The object returned for the record by FetchNextObject()
 	 */
 	function fromDatabaseObj($obj, $db = null) {
-		// see Group.php for note about MySQL data types
-		//$this->id = $obj->F_UserID;
-		//$this->userID = $obj->F_UserID;
 		// We hold userID for multi-user purpose, but simple id as part of reportables
+		// userID will get the groupID appended at some point, id won't.
 		$this->id = intval($obj->F_UserID);
 		$this->userID = intval($obj->F_UserID);
 		//$this->name = $this->apos_decode($obj->F_UserName);

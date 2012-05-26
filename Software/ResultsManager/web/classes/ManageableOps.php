@@ -302,47 +302,6 @@ EOD;
 		}
 		*/
 	}
-	/*
-	 * Return the user's details if the email address matches.
-	 * When there was just one product, IYJ, that was sold individually you could check unique email
-	 * based on that. But now we could check based on licence type?
-	 */
-	//function getUserFromEmail($email, $pc) {
-	function getUserFromEmail($email, $licenceType) {
-		
-		// Ensure the username is unique within this context
-		//		AND t.F_ProductCode=?
-		// I will get one row for each account that this user has, so make sure we measure distinct ones
-		//$sql  = "SELECT ".User::getSelectFields($this->db);
-		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
-		$sql .= <<<EOD
-				FROM T_User u 
-				JOIN T_Membership m ON u.F_UserID = m.F_UserID 
-				JOIN T_Accounts t ON m.F_RootID = t.F_RootID 
-				WHERE u.F_Email = ?
-				AND t.F_LicenceType = ?
-EOD;
-		$rs = $this->db->Execute($sql, array($email, $licenceType));
-		//echo $sql;
-		switch ($rs->RecordCount()) {
-			case 0:
-				// There are no records
-				return false;
-			case 1:
-				// Found just one record, so return it as a user object
-				$userObj = $rs->FetchNextObj();
-				$user = $this->_createUserFromObj($userObj);
-				return Array($user);
-			default:
-				// There is more than one user with this email address in this context
-				// What can we tell the learner?
-				$users = Array();
-				while ($userObj = $rs->FetchNextObj())
-					$users[] = $this->_createUserFromObj($userObj);
-				return $users;
-		}
-	}
-	
 	/**
 	 * Update the given array of groups in the database
 	 * 
@@ -471,6 +430,7 @@ EOD;
 				$this->moveGroups($manageables, $parentGroup);
 				break;
 			default:
+
 				throw new Exception("moveManageables: Unknown class '" + get_class($manageables[0]) + "'");
 				break;
 		}
@@ -929,6 +889,30 @@ EOD;
 	}
 	 
 	/**
+	 * Given a user id, what group(s) are they in?
+	 */
+	function getUsersGroups($user) {
+		$sql .= <<<EOD
+			SELECT *
+			FROM T_Membership m
+			WHERE m.F_UserID = ?
+EOD;
+		$rs = $this->db->Execute($sql, array($user->id));
+		switch ($rs->RecordCount()) {
+			case 0:
+				// There are no records
+				return false;
+			default:
+				// At some point users will be able to be in multiple groups
+				// in which case we need to know them all.
+				$groups = array();
+				while ($groupObj = $rs->FetchNextObj())
+					$groups[] = $this->_createGroupFromObj($groupObj);
+		}
+
+		return $groups;
+	}
+	/**
 	 * This returns a specific user object defined by its ID
 	 */
 	function getUserById($userID) {
@@ -1144,7 +1128,47 @@ EOD;
 		AuthenticationOps::authenticateUsers(array($user));
 		return $user;
 	}
-	
+	/**
+	 * Return the user's details if the email address matches.
+	 * When there was just one product, IYJ, that was sold individually you could check unique email
+	 * based on that. But now we could check based on licence type?
+	 * Should be deprecated by the more general function getUserByKey
+	 */
+	function getUserFromEmail($email, $licenceType) {
+		
+		// Ensure the username is unique within this context
+		//		AND t.F_ProductCode=?
+		// I will get one row for each account that this user has, so make sure we measure distinct ones
+		//$sql  = "SELECT ".User::getSelectFields($this->db);
+		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
+		$sql .= <<<EOD
+				FROM T_User u 
+				JOIN T_Membership m ON u.F_UserID = m.F_UserID 
+				JOIN T_Accounts t ON m.F_RootID = t.F_RootID 
+				WHERE u.F_Email = ?
+				AND t.F_LicenceType = ?
+EOD;
+		$rs = $this->db->Execute($sql, array($email, $licenceType));
+		//echo $sql;
+		switch ($rs->RecordCount()) {
+			case 0:
+				// There are no records
+				return false;
+			case 1:
+				// Found just one record, so return it as a user object
+				$userObj = $rs->FetchNextObj();
+				$user = $this->_createUserFromObj($userObj);
+				return Array($user);
+			default:
+				// There is more than one user with this email address in this context
+				// What can we tell the learner?
+				$users = Array();
+				while ($userObj = $rs->FetchNextObj())
+					$users[] = $this->_createUserFromObj($userObj);
+				return $users;
+		}
+	}
+		
 	/**
 	 * This returns the group ID that a given user belongs to.  At present this is only used by DMS, but it might come in useful for something
 	 * later on so I've left it in here.
@@ -1183,6 +1207,26 @@ EOD;
 		}
 		return $group;
 	}
+	/**
+	 * Similar function to get by name
+	 */
+	function getGroupByName($groupName) {
+		$sql = <<<EOD
+			   SELECT *
+			   FROM T_Groupstructure g 
+			   WHERE F_GroupName=?
+EOD;
+		$rs = $this->db->Execute($sql, array($groupID));
+		$group = new Group();
+		
+		if ($rs->RecordCount() == 1) {
+			$obj = $rs->FetchNextObj();
+			$group->fromDatabaseObj($obj);
+		} else {
+			$group = null;
+		}
+		return $group;
+	}	
 	
 	function getExtraGroups($userID) {
 		// Only authenticate if this is not the logged in user attempting to get their groups (during login).
@@ -1233,6 +1277,12 @@ EOD;
 		$this->db->CompleteTrans();
 		
 		return true;
+	}
+	
+	function addTeacherToExtraGroup($teacher, $group) {
+		$existingGroupIDs = $this->getExtraGroups($teacher->userID);
+		$existingGroupIDs[] = $group->id;
+		return $this->setExtraGroups($teacher, $existingGroupIDs);
 	}
 	
 	function getAllManageables() {
