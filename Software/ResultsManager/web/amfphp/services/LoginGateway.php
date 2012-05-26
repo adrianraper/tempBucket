@@ -20,7 +20,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
-	$inputData = '{"method":"getOrAddUserAutoGroup","prefix":"Clarity","groupName":"Winhoe autogroup","city":"Taichung","country":"Taiwan,"loginOption":1,"studentID":"winhoe 123","name":"Kima 123","dbHost":2,"teacherName":"Nora"}';
+	$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup", "name":"Kima 128", "teacherName":"Nora", "dbHost":2, "city":"Taichung",	"country":"Taiwan",	"loginOption":1,"studentID":"winhoe 123"}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
@@ -131,10 +131,10 @@ try {
 				$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
 				$apiInformation->rootID = $account->id;
 			} else if (!$apiInformation->rootID) {
-				$account = $loginService->getAccountFromPrefix($apiInformation->prefix);
+				$account = $loginService->getAccountFromPrefix($apiInformation);
 				$apiInformation->rootID = $account->id;
 			} else {
-				$account = $loginService->getAccountFromRootID($apiInformation->rootID);
+				$account = $loginService->getAccountFromRootID($apiInformation);
 			}
 			
 			if ($user==false) {
@@ -146,7 +146,7 @@ try {
 						if (!$apiInformation->rootID) 
 							returnError(210, $apiInformation->groupID);
 							
-						$group = $loginService->addGroup($apiInformation);
+						$group = $loginService->addGroup($apiInformation, $account);
 					} else {
 						returnError(210, $apiInformation->groupID);
 					}
@@ -161,7 +161,7 @@ try {
 					$teacherAPI = new LoginAPI();
 					switch ($apiInformation->loginOption) {
 						case 1:
-							$teacherAPI->userName = $apiInformation->teacherName;
+							$teacherAPI->name = $apiInformation->teacherName;
 							break;		
 						case 2:
 							$teacherAPI->studentID = $apiInformation->teacherID;
@@ -171,7 +171,9 @@ try {
 							break;
 					}
 					
-					$teacherAPI->userType=1;
+					$teacherAPI->userType = User::USER_TYPE_TEACHER;
+					$teacherAPI->loginOption = $apiInformation->loginOption;
+					$teacherAPI->rootID = $apiInformation->rootID;
 					$teacher = $loginService->getUser($teacherAPI);
 					
 					if ($teacher==false) {

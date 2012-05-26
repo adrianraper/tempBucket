@@ -84,6 +84,14 @@ class LoginAPI {
 		if (isset($info['licenceType'])) 
 			$this->licenceType = $info['licenceType'];
 			
+		// AutoGroup.
+		if (isset($info['groupName'])) 
+			$this->groupName = $info['groupName'];
+		if (isset($info['teacherName'])) 
+			$this->teacherName = $info['teacherName'];
+		if (isset($info['teacherID'])) 
+			$this->teacherID = $info['teacherID'];
+			
 		// Fields with defaults if not sent
 		// TODO. This should not be sent, it should be read from the account
 		// but perhaps account value can be overwritten if sent

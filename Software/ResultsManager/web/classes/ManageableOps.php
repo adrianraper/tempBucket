@@ -892,7 +892,7 @@ EOD;
 	 * Given a user id, what group(s) are they in?
 	 */
 	function getUsersGroups($user) {
-		$sql .= <<<EOD
+		$sql = <<<EOD
 			SELECT *
 			FROM T_Membership m
 			WHERE m.F_UserID = ?
@@ -1183,7 +1183,10 @@ EOD;
 EOD;
 		
 		$row = $this->db->getRow($sql, array($userID));
-		return $row['F_GroupID'];
+		if ($row)
+			return $row['F_GroupID'];
+			
+		return null;
 	}
 	/**
 	 * This returns a group. 
@@ -1208,18 +1211,22 @@ EOD;
 		return $group;
 	}
 	/**
-	 * Similar function to get by name
+	 * Similar function to get by name. You have to know a rootID, and there has to be at least one user in the group.
 	 */
-	function getGroupByName($groupName) {
+	function getGroupByName($groupName, $rootID) {
 		$sql = <<<EOD
 			   SELECT *
-			   FROM T_Groupstructure g 
-			   WHERE F_GroupName=?
+			   FROM T_Groupstructure g, T_Membership m
+			   WHERE g.F_GroupName = ?
+			   AND g.F_GroupID = m.F_GroupID
+			   AND m.F_RootID = ?
 EOD;
-		$rs = $this->db->Execute($sql, array($groupID));
+		$rs = $this->db->Execute($sql, array($groupName, $rootID));
 		$group = new Group();
 		
-		if ($rs->RecordCount() == 1) {
+		// Not sure if this is right, but if you find more than one group with a matching name
+		// just return the first.
+		if ($rs->RecordCount() >= 1) {
 			$obj = $rs->FetchNextObj();
 			$group->fromDatabaseObj($obj);
 		} else {

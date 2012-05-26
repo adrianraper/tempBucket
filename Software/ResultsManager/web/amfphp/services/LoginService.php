@@ -159,8 +159,8 @@ class LoginService extends AbstractService {
 			return $this->manageableOps->getGroup($loginDetails->groupID);
 		
 		// AutoGroup. You might now know a userID at this point, just a group name.
-		if (!$loginDetails->userID && $loginDetails->groupName)
-			return $this->manageableOps->getGroupByName($loginDetails->groupName);
+		if (!$loginDetails->userID && $loginDetails->groupName && $loginDetails->rootID)
+			return $this->manageableOps->getGroupByName($loginDetails->groupName, $loginDetails->rootID);
 			
 		// The normal case is that you found the user, so get their group/account info from T_Membership
 		// TODO. Surely the above will work this way as well and is safer.
@@ -168,19 +168,19 @@ class LoginService extends AbstractService {
 	}
 	
 	/**
-	 * Add a group to a known root
+	 * Add a group to a known account
 	 */
-	public function addGroup($loginDetails) {
+	public function addGroup($loginDetails, $account) {
 		
 		// Get the top level group for the account as this is where we will create our new group
-		// You identify a top level group when groupID = parentGroup
-		// So you have to find a case where this exists and there is a member in that group for this root.
-		// Or, since you have the account it means you have adminUserID, and can get their groupID...
+		$parentGroup = $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($account->adminUser->userID));
 		
-		// Build a group object
+		// Build and add the group object
 		$group = new Group();
 		$group->name = $loginDetails->groupName;
 		$group = $this->manageableOps->addGroup($group, $parentGroup);
+		
+		return $group;
 				
 	}
 	/**
@@ -190,13 +190,13 @@ class LoginService extends AbstractService {
 	public function linkUserToGroup($user, $group) {
 		
 		// First check to see if this user is already in this group
-		foreach ($this->manageableOps->getUsersGroups($user); as $foundGroup) {
+		foreach ($this->manageableOps->getUsersGroups($user) as $foundGroup) {
 			if ($group->id == $foundGroup->id)
 				return true;
 		}
 		
 		// Not, so confirm that they are a teacher and use the ExtraTeacherGroups table
-		if ($user->userTupe == User::USER_TYPE_TEACHER) {
+		if ($user->userType == User::USER_TYPE_TEACHER) {
 			return $this->manageableOps->addTeacherToExtraGroup($user, $group);
 		}
 		
