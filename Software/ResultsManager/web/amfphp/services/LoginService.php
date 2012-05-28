@@ -71,13 +71,12 @@ class LoginService extends AbstractService {
 
 		// Are there any conditions that you should search with?
 		// TODO. Need something like the conditions for getAccounts here so that it can scale
-		if (isset($loginDetails->licenceType)) {
+		if (isset($loginDetails->licenceType))
 			return $this->manageableOps->getCLSUserByKey($stubUser);
-		}
-		// TODO: Duplicate this one for prefix too 
-		if (isset($loginDetails->rootID)) {
+			
+		if (isset($loginDetails->rootID))
 			return $this->manageableOps->getRootUserByKey($stubUser, $loginDetails->rootID);
-		}
+			
 		return $this->manageableOps->getUserByKey($stubUser);
 	}
 	
@@ -151,16 +150,25 @@ class LoginService extends AbstractService {
 	/**
 	 * Return the group object given groupID or a user in that group
 	 */
-	public function getGroup($loginDetails) {
+	public function getGroup($loginDetails, $account = null) {
 		
 		// First special case is that you know the groupID (based on a serial number for instance)
 		// but you don't have any account information
 		if ($loginDetails->groupID)
 			return $this->manageableOps->getGroup($loginDetails->groupID);
 		
-		// AutoGroup. You might now know a userID at this point, just a group name.
+		// AutoGroup. You might not know a userID at this point, just a group name.
 		if (!$loginDetails->userID && $loginDetails->groupName && $loginDetails->rootID)
 			return $this->manageableOps->getGroupByName($loginDetails->groupName, $loginDetails->rootID);
+
+		// AutoGroup. If you failed to send group details, send back the top level group for the account
+		if (!$loginDetails->userID) {
+			if ($account) {
+				return $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($account->adminUser->userID));
+			} else {
+				throw new Exception("Can't find a group without a groupID, userID or an account.");
+			}
+		}
 			
 		// The normal case is that you found the user, so get their group/account info from T_Membership
 		// TODO. Surely the above will work this way as well and is safer.

@@ -893,9 +893,10 @@ EOD;
 	 */
 	function getUsersGroups($user) {
 		$sql = <<<EOD
-			SELECT *
-			FROM T_Membership m
+			SELECT g.*
+			FROM T_Membership m, T_Groupstructure g
 			WHERE m.F_UserID = ?
+			AND m.F_GroupID = g.F_GroupID
 EOD;
 		$rs = $this->db->Execute($sql, array($user->id));
 		switch ($rs->RecordCount()) {
@@ -1206,7 +1207,7 @@ EOD;
 			$obj = $rs->FetchNextObj();
 			$group->fromDatabaseObj($obj);
 		} else {
-			$group = null;
+			$group = false;
 		}
 		return $group;
 	}
@@ -1230,11 +1231,12 @@ EOD;
 			$obj = $rs->FetchNextObj();
 			$group->fromDatabaseObj($obj);
 		} else {
-			$group = null;
+			$group = false;
 		}
 		return $group;
 	}	
 	
+	// TODO. Badly named as it actually sends back groupIDs - and ClarityService expects it to.
 	function getExtraGroups($userID) {
 		// Only authenticate if this is not the logged in user attempting to get their groups (during login).
 		if ($userID != Session::get('userID'))
@@ -1243,7 +1245,7 @@ EOD;
 		// Get the extra groups for the given user id
 		// v3.3.1 Add an extra check that their main group isn't in this list.
 		$sql = 	<<<EOD
-				SELECT x.F_GroupID
+				SELECT x.F_GroupID as groupID
 				FROM T_ExtraTeacherGroups x, T_Membership m
 				WHERE x.F_UserID = ?
 				AND x.F_UserID = m.F_UserID
@@ -1255,11 +1257,12 @@ EOD;
 		$extraGroupIDs = array();
 		
 		foreach ($extraGroupsRS->GetArray() as $element)
-			$extraGroupIDs[] = $element['F_GroupID'];
+			$extraGroupIDs[] = $element['groupID'];
 			
 		return $extraGroupIDs;
 	}
 	
+	// TODO. But this one expects full groups.
 	function setExtraGroups($user, $groupsArray) {
 		AuthenticationOps::authenticateUsers(array($user));
 		AuthenticationOps::authenticateGroups($groupsArray);
@@ -1286,10 +1289,21 @@ EOD;
 		return true;
 	}
 	
+	/**
+	 * This is link a teacher to a group through the extra groups table
+	 */
 	function addTeacherToExtraGroup($teacher, $group) {
 		$existingGroupIDs = $this->getExtraGroups($teacher->userID);
 		$existingGroupIDs[] = $group->id;
-		return $this->setExtraGroups($teacher, $existingGroupIDs);
+		
+		// Loop through a distinct list of these groupIDs
+		// TODO. You have to do an extra bit to get an array of groups as getExtraGroups only returns IDs
+		$existingGroups = array();
+		foreach (array_unique($existingGroupIDs) as $groupID) {
+			$existingGroups[] = $this->getGroup($groupID);
+		}
+		
+		return $this->setExtraGroups($teacher, $existingGroups);
 	}
 	
 	function getAllManageables() {

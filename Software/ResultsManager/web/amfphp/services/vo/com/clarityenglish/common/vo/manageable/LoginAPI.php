@@ -27,10 +27,14 @@ class LoginAPI {
 	var $custom4;
 	var $subscriptionPeriod;
 	var $licenceType;
-	// Winhoe.
+	
+	// Autogroup
 	var $groupName;
 	var $teacherName;
 	var $teacherID;
+	
+	// Authentication
+	var $adminPassword;
 	
 	function LoginAPI() {
 	}
@@ -91,7 +95,11 @@ class LoginAPI {
 			$this->teacherName = $info['teacherName'];
 		if (isset($info['teacherID'])) 
 			$this->teacherID = $info['teacherID'];
-			
+
+		// Authentication
+		if (isset($info['adminPassword'])) 
+			$this->adminPassword = $info['adminPassword'];
+		
 		// Fields with defaults if not sent
 		// TODO. This should not be sent, it should be read from the account
 		// but perhaps account value can be overwritten if sent

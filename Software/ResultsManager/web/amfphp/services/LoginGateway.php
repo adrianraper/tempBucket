@@ -1,6 +1,9 @@
 <?php
-/*
+/**
  * This script is a gateway for login functions
+ * 
+ * TODO: Need to consider authentication as you use this to add to any old account.
+ * At least you should pass the admin user password for the account.
  */
 
 require_once(dirname(__FILE__)."/LoginService.php");
@@ -20,7 +23,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
-	$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup", "name":"Kima 128", "teacherName":"Nora", "dbHost":2, "city":"Taichung",	"country":"Taiwan",	"loginOption":1,"studentID":"winhoe 123"}';
+	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup 2", "name":"Kima 130","studentID":"winhoe 130", "teacherName":"jessie_teacher", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
@@ -50,6 +53,12 @@ function returnError($errCode, $data = null) {
 			break;
 		case 200:
 			$apiReturnInfo['message'] = 'No such user '.$data;
+			break;
+		case 250:
+			$apiReturnInfo['message'] = 'You must send a password for the account '.$data;
+			break;
+		case 251:
+			$apiReturnInfo['message'] = 'This is the wrong password for account '.$data;
 			break;
 		default:
 			$apiReturnInfo['message'] = 'Unknown error';
@@ -123,7 +132,6 @@ try {
 			
 		case 'getOrAddUser':
 		case 'getOrAddUserAutoGroup':
-			$user = $loginService->getUser($apiInformation);
 			
 			// If you are using just a group to add user, need to get rootID now
 			// Get the whole account info as well
@@ -137,10 +145,22 @@ try {
 				$account = $loginService->getAccountFromRootID($apiInformation);
 			}
 			
+			// Authentication
+			if (!isset($apiInformation->adminPassword)) {
+				returnError(250, $account->name);
+			} else {
+				if ($apiInformation->adminPassword != $account->adminUser->password) 
+					returnError(251, $account->name);
+			}
+			
+			// Find the user if you can
+			$user = $loginService->getUser($apiInformation);
+			
 			if ($user==false) {
-				$group = $loginService->getGroup($apiInformation);
+				$group = $loginService->getGroup($apiInformation, $account);
+				
 				if ($group==false) {
-					// Winhoe. We need to add new groups
+					// Autogroup. We need to add new groups
 					if ($apiInformation->method == "getOrAddUserAutoGroup") {
 						// If you don't know a rootID, you can't add the group
 						if (!$apiInformation->rootID) 
@@ -155,7 +175,7 @@ try {
 				$user = $loginService->addUser($apiInformation, $group);
 				AbstractService::$debugLog->info("added new user ".$user->name." expire on ".$user->expiryDate);
 				
-				// Winhoe. Check that the teacher exists, and that they are linked to this group 
+				// Autogroup. Check that the teacher exists, and that they are linked to this group 
 				if ($apiInformation->method == "getOrAddUserAutoGroup") {
 					// Clone some details from the original API and see if the teacher exists
 					$teacherAPI = new LoginAPI();
@@ -176,12 +196,10 @@ try {
 					$teacherAPI->rootID = $apiInformation->rootID;
 					$teacher = $loginService->getUser($teacherAPI);
 					
-					if ($teacher==false) {
-						$teacher = $loginService->addUser($teacherAPI, $group);
-					}
-					
 					// The teacher must be linked to the group
-					$rc = $loginService->linkUserToGroup($teacher, $group);
+					// TODO. For now, if the named teacher doesn't exist, just ignore it.
+					if ($teacher) 
+						$rc = $loginService->linkUserToGroup($teacher, $group);
 					
 				}
 				// If we want to send an email on adding a new user, do it here
@@ -192,6 +210,10 @@ try {
 			} else {
 				AbstractService::$debugLog->info("returned existing user ".$user->name." expires on ".$user->expiryDate);
 			}
+			
+			// TODO: Should also return account information to mirror getUser
+			//$apiInformation->userID = $user->id;
+			//$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
 			
 			break;
 			
