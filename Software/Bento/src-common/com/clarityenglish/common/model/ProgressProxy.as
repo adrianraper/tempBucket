@@ -149,8 +149,27 @@ package com.clarityenglish.common.model {
 				if (!bentoProxy.menuXHTML) {
 					// #250. Save xml rather than a string
 					// bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[progressType]), this.href);
+					var menu:XHTML = new XHTML(loadedResources[progressType], this.href);
 					
-					bentoProxy.menuXHTML = new XHTML(loadedResources[progressType], this.href);
+					// #338
+					// If courseID is defined, disable the other courses.
+					// TODO. Need to update the circular animation to also respect enabledFlag.
+					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					var directStart:Object = configProxy.getDirectStart();
+					if (directStart.courseID) {
+						
+						for each (var course:XML in menu.course) {
+							if (course.@id == directStart.courseID) {
+								course.@enabledFlag = 3;
+							} else {
+								course.@enabledFlag = 8;
+							}
+						}
+						
+					}
+					
+					bentoProxy.menuXHTML = menu;
+					//trace(bentoProxy.menuXHTML.toString());
 					sendNotification(BBNotifications.MENU_XHTML_LOADED);
 				}
 			}

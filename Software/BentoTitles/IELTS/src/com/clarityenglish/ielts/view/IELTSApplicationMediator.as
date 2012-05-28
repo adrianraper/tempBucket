@@ -125,6 +125,8 @@ package com.clarityenglish.ielts.view {
 			if (directStart.courseID) {
 				
 				// QUESTION. Can I update the menu.xml like this?
+				// no.
+				/*
 				for each (var co:XML in bentoProxy.menuXHTML.course) {
 					if (co.@id == directStart.courseID) {
 						co.@enabledFlag = 3;
@@ -133,8 +135,9 @@ package com.clarityenglish.ielts.view {
 						co.@enabledFlag = 8;
 					}
 				}
-
 				trace(bentoProxy.menuXHTML.toString());
+				*/
+				var course:XML = bentoProxy.menuXHTML.course.(@id == directStart.courseID)[0];
 				if (course) {
 					sendNotification(IELTSNotifications.COURSE_SHOW, course);
 					return true;
