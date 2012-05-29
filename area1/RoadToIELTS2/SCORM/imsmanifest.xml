@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<manifest xmlns="http://www.imsglobal.org/xsd/imscp_v1p1" 
+		xmlns:imsmd="http://www.imsglobal.org/xsd/imsmd_v1p2" 
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		xmlns:adlcp="http://www.adlnet.org/xsd/adlcp_rootv1p2" 
+		identifier="MANIFEST-A0F25145-E2A8-E0A4-7C9C-E4B0E7B2CB39" 
+		version="v6.5.0.1"
+		xsi:schemaLocation="http://www.imsglobal.org/xsd/imscp_v1p1 imscp_v1p1.xsd http://www.imsglobal.org/xsd/imsmd_v1p2 imsmd_v1p2p2.xsd http://www.adlnet.org/xsd/adlcp_rootv1p2 adlcp_rootv1p2.xsd">
+	<organizations default="ORG-1">
+		<organization identifier="ORG-1" structure="hierarchical">
+			<title>Road to IELTS 2: Writing</title>
+			<item xmlns="" identifier="1287130400000" isvisible="true" identifierref="RESOURCE-1"><title>Advice Zone</title><adlcp:datafromlms>course=1287130400000,unit=1287130430000</adlcp:datafromlms></item></organization>
+	</organizations>
+	<resources>
+		<resource type="webcontent" adlcp:scormtype="sco" identifier="RESOURCE-1" href="SCORMStart.html">
+			<file href="SCORMStart.html"/>
+		</resource>
+	</resources>
+</manifest>

@@ -156,6 +156,7 @@
 			startingPoint: swfobject.getQueryParamValue("startingPoint"),
 			course: swfobject.getQueryParamValue("course"),
 			action: swfobject.getQueryParamValue("action"),
+			scorm: swfobject.getQueryParamValue("scorm"),
 			referrer: "<?php echo $referrer ?>",
 			server: "<?php echo $server ?>",
 			ip: "<?php echo $ip ?>"
