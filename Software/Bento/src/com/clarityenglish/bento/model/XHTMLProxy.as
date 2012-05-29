@@ -87,7 +87,6 @@ package com.clarityenglish.bento.model {
 			urlLoaders[urlLoader] = href;
 		}
 
-
 		private function notifyXHTMLLoaded(href:Href):void {
 			// Stop this here and do it from ProgressProxy instead
 			/*

@@ -5,6 +5,7 @@ package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
@@ -101,7 +102,6 @@ package com.clarityenglish.common.model {
 		 * @param number userID 
 		 */
 		public function getProgressData(user:User, account:Account, href:Href, progressType:String):void {
-
 			// If the data has already been loaded then just return it
 			if (loadedResources[progressType]) {
 				notifyDataLoaded(progressType);
@@ -129,7 +129,7 @@ package com.clarityenglish.common.model {
 					dataLoading[progressType] = true;
 					
 			}
-				
+			
 			// And save the href
 			this.href = href;
 		}
@@ -148,7 +148,10 @@ package com.clarityenglish.common.model {
 				if (!bentoProxy.menuXHTML) {
 					// #250. Save xml rather than a string
 					// bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[progressType]), this.href);
-					var menu:XHTML = new XHTML(loadedResources[progressType], this.href);
+					//var menu:XHTML = new XHTML(loadedResources[progressType], this.href);
+					var menu:XHTML = loadedResources[this.href]; // #338
+					
+					var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 					
 					// #338
 					// If courseID is defined, disable the other courses.
@@ -157,7 +160,7 @@ package com.clarityenglish.common.model {
 					var directStart:Object = configProxy.getDirectStart();
 					
 					if (directStart.courseID) {
-						for each (var course:XML in menu.course) {
+						for each (var course:XML in menu.head.script.menu.course) {
 							if (course.@id == directStart.courseID) {
 								course.@enabledFlag = 3;
 							} else {
@@ -167,6 +170,7 @@ package com.clarityenglish.common.model {
 					}
 					
 					bentoProxy.menuXHTML = menu;
+					
 					//trace(bentoProxy.menuXHTML.toString());
 					sendNotification(BBNotifications.MENU_XHTML_LOADED);
 				}
