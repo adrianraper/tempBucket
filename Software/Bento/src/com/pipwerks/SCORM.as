@@ -331,7 +331,6 @@ package com.pipwerks {
 			return result;
 		}
 		
-		
 		private function __disconnect():Boolean {
 			
 			var result:Boolean = false;

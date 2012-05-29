@@ -49,6 +49,7 @@ package com.clarityenglish.bento.model {
 			// Initialise
 			if (!scorm.connect()) {
 				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("SCORMcantInitialize", { errorCode: 100, errorMessage: 'SCORMError' }, true ));
+				return;
 			} else {
 				var scormVersion:String = scorm.version;
 			}
