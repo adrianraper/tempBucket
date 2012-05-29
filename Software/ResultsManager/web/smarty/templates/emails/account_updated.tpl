@@ -1,6 +1,7 @@
 {* Name: Update letter *}
 {* Description: Contains licence details, the admin account, direct links to the programs and support information. *}
-{* Parameters: $account *}
+{* Parameters: $account, $user 
+	where $user is the first student in the root, used for AA passwords *}
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
@@ -56,11 +57,6 @@
 {if $hasAARM==true}
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Note that you should restrict access to the Administrator account to a single person. 
 		It should not be given out to learners, as this account gives access to usage statistics for all your programs.</p> 
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">The password for learners is:</p>
-	<div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
-		{* TODO: How to pick up the first student in this account and get that password? *}
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Learner password: {$account->adminUser->password}</p>
-	</div>
 {else}
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Note that you should restrict access to the Administrator account to a single person. 
 		This account gives access to all teacher and learner records and to all add and delete functions. It is the master account. The Administrator can set up Teacher, Author, Reporter and Learner accounts which you can allocate to others
@@ -71,7 +67,11 @@
 -->
 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">3. Setting up a direct link to your Clarity English programs</p>
 {if $hasAARM==true}
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Learners can access your Clarity English programs from <a href="http://www.clarityenglish.com/shared/{$account->prefix}" target="_blank">www.clarityenglish.com/shared/{$account->prefix}</a>. 
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Learners can access your Clarity English programs from <a href="http://www.clarityenglish.com/shared/{$account->prefix}" target="_blank">www.clarityenglish.com/shared/{$account->prefix}</a>.</p>
+	<div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Shared password: {$user->password}</p>
+	</div>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">
 			But many institutions find it more convenient to simply paste a link on their own website or within their own LMS, to give learners one-click access. 
 			Please note that a direct link should only be pasted in a password-protected area of your website. This is to prevent access from unlicensed learners.</p>
 {else}

@@ -52,6 +52,10 @@ foreach ($emailArray as $email) {
 	$accountEmail = array();
 	// Pick up the full account info from the database
 	$accountEmail['data']['account'] = array_shift($dmsService->getAccounts(array($email['data']['account_id'])));
+	
+	// If this is an AA account, you want to talk about the generic student password, but that is NOT in T_AccountRoot
+	$accountEmail['data']['user'] = $dmsService->getFirstStudentInAccount($accountEmail['data']['account']->id);
+	
 	// v3.6 Actually you should be picking up the to and cc from the account, not what you sent
 	//$accountEmail['to'] = $email['to'];
 	//$accountEmail['to'] = $accountEmail['data']['account']->adminUser->email;

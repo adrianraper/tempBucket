@@ -37,7 +37,7 @@ class AbstractService {
 		
 		// Persistant connections are faster, but on my setup (XP Pro SP2, SQL Server 2008 Express) this causes sporadic crashes.
 		// Check on the production server to see if it works with that configuration.
-		$this->db = &ADONewConnection($GLOBALS['db']."?persist");
+		$this->db = ADONewConnection($GLOBALS['db']."?persist");
 		//$this->db = &ADONewConnection($GLOBALS['db']);
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL

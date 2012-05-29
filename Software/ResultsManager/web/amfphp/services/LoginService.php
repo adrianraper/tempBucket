@@ -220,6 +220,7 @@ class LoginService extends AbstractService {
 	}
 	
 	public function getAccountFromRootID($loginDetails) {
-		return $this->accountOps->getAccounts(array($loginDetails->rootID));
+		// Should only be one account returned
+		return array_shift($this->accountOps->getAccounts(array($loginDetails->rootID)));
 	}
 }

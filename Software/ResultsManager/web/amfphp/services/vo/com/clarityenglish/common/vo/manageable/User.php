@@ -96,10 +96,11 @@ class User extends Manageable {
 		// v3.6.2 New field, but always been in the database
 		$this->city = $obj->F_City;
 		//$this->company = $obj->F_Company;
-		$this->custom1 = $obj->F_Custom1;
-		$this->custom2 = $obj->F_Custom2;
-		$this->custom3 = $obj->F_Custom3;
-		$this->custom4 = $obj->F_Custom4;
+		// BUG. The database has small c for these fields!
+		$this->custom1 = $obj->F_custom1;
+		$this->custom2 = $obj->F_custom2;
+		$this->custom3 = $obj->F_custom3;
+		$this->custom4 = $obj->F_custom4;
 		// v3.3 Extra data for special imports
 		$this->fullName = $obj->F_FullName;
 		$this->contactMethod = $obj->F_ContactMethod;
@@ -128,10 +129,10 @@ class User extends Manageable {
 		$array['F_Country'] = ($this->country) ? $this->country : ""; // Not null
 		$array['F_City'] = ($this->city) ? $this->city : ""; // Not null
 		//$array['F_Company'] = ($this->company) ? $this->company : ""; // Not null
-		$array['F_Custom1'] = ($this->custom1) ? $this->custom1 : ""; // Not null
-		$array['F_Custom2'] = ($this->custom2) ? $this->custom2 : ""; // Not null
-		$array['F_Custom3'] = ($this->custom3) ? $this->custom3 : ""; // Not null
-		$array['F_Custom4'] = ($this->custom4) ? $this->custom4 : ""; // Not null
+		$array['F_custom1'] = ($this->custom1) ? $this->custom1 : ""; // Not null
+		$array['F_custom2'] = ($this->custom2) ? $this->custom2 : ""; // Not null
+		$array['F_custom3'] = ($this->custom3) ? $this->custom3 : ""; // Not null
+		$array['F_custom4'] = ($this->custom4) ? $this->custom4 : ""; // Not null
 		// v3.3 Extra data for special imports
 		$array['F_FullName'] = ($this->fullName);
 		$array['F_ContactMethod'] = ($this->contactMethod) ? $this->contactMethod : ""; // Not null
@@ -154,10 +155,10 @@ class User extends Manageable {
 						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_Birthday")." F_Birthday",
 						"$prefix.F_Country",
 						"$prefix.F_City",
-						"$prefix.F_Custom1",
-						"$prefix.F_Custom2",
-						"$prefix.F_Custom3",
-						"$prefix.F_Custom4",
+						"$prefix.F_custom1",
+						"$prefix.F_custom2",
+						"$prefix.F_custom3",
+						"$prefix.F_custom4",
 						"$prefix.F_FullName",
 						"$prefix.F_UserProfileOption",
 						"$prefix.F_RegisterMethod",

@@ -1171,12 +1171,39 @@ EOD;
 	}
 		
 	/**
+	 * Get all learners in a root
+	 */
+	function getAllLearners($rootID) {
+		$sql = <<<EOD
+			SELECT u.*
+			FROM T_User u
+			INNER JOIN T_Membership m ON u.F_UserID = m.F_UserID
+			WHERE u.F_UserType = 0
+			AND m.F_RootID = ?
+			ORDER BY u.F_UserID ASC
+EOD;
+		$rs = $this->db->Execute($sql, array($rootID));
+		switch ($rs->RecordCount()) {
+			case 0:
+				$users = false;
+				break;
+				
+			default:
+				$users = Array();
+				while ($userObj = $rs->FetchNextObj()) {
+					$users[] = $this->_createUserFromObj($userObj);
+				}
+		}
+		
+		return $users;
+	}
+	/**
 	 * This returns the group ID that a given user belongs to.  At present this is only used by DMS, but it might come in useful for something
 	 * later on so I've left it in here.
 	 */
 	function getGroupIdForUserId($userID) {
 		$sql = <<<EOD
-			   SELECT g.F_GroupID
+			   SELECT g.F_GroupID as groupID
 			   FROM T_User u LEFT JOIN 
 			   T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
 			   T_Groupstructure g ON m.F_GroupID=g.F_GroupID
@@ -1185,7 +1212,7 @@ EOD;
 		
 		$row = $this->db->getRow($sql, array($userID));
 		if ($row)
-			return $row['F_GroupID'];
+			return $row['groupID'];
 			
 		return null;
 	}
@@ -1197,8 +1224,8 @@ EOD;
 	function getGroup($groupID) {
 		$sql = <<<EOD
 			   SELECT *
-			   FROM T_Groupstructure g 
-			   WHERE F_GroupID=?
+			   FROM T_Groupstructure g
+			   WHERE g.F_GroupID=?
 EOD;
 		$rs = $this->db->Execute($sql, array($groupID));
 		$group = new Group();

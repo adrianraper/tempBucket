@@ -270,5 +270,11 @@ class DMSService extends AbstractService {
 	protected function getDictionary($dictionaryName) {
 		return $this->accountOps->getDictionary($dictionaryName);
 	}
-	
+
+	/**
+	 * Very specific function to return the first student in an account. Used for AA student passwords.
+	 */
+	public function getFirstStudentInAccount($rootID) {
+		return array_shift($this->manageableOps->getAllLearners($rootID));
+	}
 }

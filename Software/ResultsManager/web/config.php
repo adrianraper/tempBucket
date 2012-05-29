@@ -54,12 +54,15 @@ if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 } else {
 	$dbHost = 101; // Default for R2IV2 local
 	$dbHost = 2; // Default for rack80829
-	//$dbHost = 20; // rack80829 on RDS
+	$dbHost = 100; // Default for network version
 }
 $dbDetails = new DBDetails($dbHost);
-//$dbDetails = new DBDetails(100);
 $GLOBALS['dbms'] = $dbDetails->driver;
-$GLOBALS['db'] = $dbDetails->driver.'://'.$dbDetails->user.':'.$dbDetails->password.'@'.$dbDetails->host.'/'.$dbDetails->dbname;
+if (strpos(strtolower($dbDetails->driver), "sqlite")>=0) {
+	$GLOBALS['db'] = $dbDetails->dsn;
+} else {
+	$GLOBALS['db'] = $dbDetails->driver.'://'.$dbDetails->user.':'.$dbDetails->password.'@'.$dbDetails->host.'/'.$dbDetails->dbname;
+}
 // v3.4 Change for different structure on my server
 // Need to overwrite for remote access
 if (strpos(strtolower($_SERVER["SERVER_NAME"]), "dock")>=0) {
