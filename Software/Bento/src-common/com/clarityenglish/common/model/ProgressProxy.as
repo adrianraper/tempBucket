@@ -132,7 +132,6 @@ package com.clarityenglish.common.model {
 				
 			// And save the href
 			this.href = href;
-			
 		}
 		
 		/**
@@ -156,8 +155,8 @@ package com.clarityenglish.common.model {
 					// TODO. Need to update the circular animation to also respect enabledFlag.
 					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 					var directStart:Object = configProxy.getDirectStart();
+					
 					if (directStart.courseID) {
-						
 						for each (var course:XML in menu.course) {
 							if (course.@id == directStart.courseID) {
 								course.@enabledFlag = 3;
@@ -165,7 +164,6 @@ package com.clarityenglish.common.model {
 								course.@enabledFlag = 8;
 							}
 						}
-						
 					}
 					
 					bentoProxy.menuXHTML = menu;
@@ -174,7 +172,7 @@ package com.clarityenglish.common.model {
 				}
 			}
 
-			var data:Object = {type:progressType, dataProvider:loadedResources[progressType]};
+			var data:Object = { type: progressType, dataProvider: loadedResources[progressType] };
 			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 		}
 		
