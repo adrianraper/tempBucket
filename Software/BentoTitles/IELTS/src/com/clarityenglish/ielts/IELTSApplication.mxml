@@ -14,18 +14,12 @@
 						addedToStage="onAddedToStage(event)"
 						preloader="com.clarityenglish.ielts.IELTSPreloader">
 	
-	<fx:Metadata>
-		[SWF(width="1000", height="760")]
-	</fx:Metadata>
-	
 	<bento:states>
 		<s:State name="loading" />
 		<s:State name="login" />
 		<s:State name="title" />
 		<s:State name="credits" />
 	</bento:states>
-	
-	<fx:Style source="ielts.css" />
 	
 	<fx:Script>
 		<![CDATA[
@@ -64,6 +58,9 @@
 			
 			protected function creationComplete(event:FlexEvent):void {
 				DisplayShortcuts.init();
+				
+				// Allows BandScoreCalculator-200.swf to load (in the browser)
+				Security.allowDomain("*");
 				
 				// Initialise the browser manager to help with capturing events that might take us away from the application
 				// and also let us parse the URL

@@ -19,7 +19,6 @@ SOFTWARE.
 */
 package ws.tink.spark.containers.supportClasses
 {
-	import mx.containers.ViewStack;
 
 	/**
 	 *  The DeferredCreationPolicy class defines the constant values

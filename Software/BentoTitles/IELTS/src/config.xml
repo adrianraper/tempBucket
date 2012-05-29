@@ -11,7 +11,8 @@
 	<sharedMedia/>
 	<brandingMedia/>
 	<language>EN*</language>
-	<contentPath>http://dock.projectbench/Content/</contentPath>
+	<!-- <contentPath>http://dock.projectbench/Content/</contentPath> -->
+	<contentPath>http://dock.contentbench/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>IELTSService</remoteService>

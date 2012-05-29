@@ -1,15 +1,15 @@
-<?php	
+<?php
 	session_start();
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
-	
+
 	// For this product
 	$productCode = 53; // RoadToIELTS 2
-	$swfName = 'IELTSApplication.swf';
+	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
 	$startControl = "$webShare/Software/ResultsManager/web/";
-	
+
 	// If we do not know the prefix, the page shouldn't run.
 	// The prefix might come from session variables or from the URL parameters
 	// Read URL first in case session variables are lingering
@@ -31,15 +31,15 @@
 		//header("location: /index.php");
 		exit;
 	}
-	
+
 	$locationFile = "config.xml";
-	if (isset($_SESSION['UserID'])) $userID = $_SESSION['UserID']; 
-	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']);  
+	if (isset($_SESSION['UserID'])) $userID = $_SESSION['UserID'];
+	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']);
 	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
 	if (isset($_SESSION['StudentID'])) $studentID = $_SESSION['StudentID'];
 	if (isset($_SESSION['Email'])) $Email = $_SESSION['Email'];
 	if (isset($_SESSION['InstanceID'])) $instanceID = $_SESSION['InstanceID'];
-	
+
 	$server = $_SERVER['HTTP_HOST'];
 	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
@@ -61,7 +61,7 @@
 			$referrer = $_SERVER['HTTP_REFERER'];
 		}
 	}
-	
+
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -78,12 +78,12 @@
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
-	
+
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
-	
+
 	<script type="text/javascript">
 		// ****
-		// 
+		//
 		// ****
 		function thisMovie(movieName) {
 			if (window.document[movieName]) {
@@ -102,18 +102,18 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		
+
 		// v6.5.5.6 Allow resize screen mode
-		var coordsMinWidth = "990"; var coordsMaxWidth = "1200"; 
+		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
 		var coordsMinHeight = "760"; var coordsMaxHeight = null;
-		
+
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
 		argList+="&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
 		argList+="&cache=<?php echo time() ?>";
-		
+
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
 			var jsUserName = "<?php echo $userName ?>";
@@ -184,7 +184,7 @@
 		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
 		<p>If you still get this message after installation, then your browser is stopping the scripts on this page from running.</p>
 	</div>
-<NOSCRIPT style="font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;"> 
+<NOSCRIPT style="font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;">
 This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
 Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
 to switch this on and then refresh this page.</NOSCRIPT>
