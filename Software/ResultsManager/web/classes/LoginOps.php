@@ -334,7 +334,7 @@ EOD;
 		$instanceArray[$productCode] = $instanceID;
 		$instanceControl = json_encode($instanceArray);
 
-		// BUG. SQLite doesn't like symbolic names for the table in an update
+		// #340. SQLite doesn't like symbolic names for the table in an update
 		$sql = <<<EOD
 			UPDATE T_User
 			SET F_UserIP=?, F_InstanceID=? 

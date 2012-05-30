@@ -184,10 +184,6 @@
 		<s:HGroup>
 			<s:Group width="202" height="301">
 				<s:SWFLoader id="IELTSApp1" width="100%" top="8" />
-				<!-- 						 
-				source="@Embed(source='skins/ielts/assets/bcwidget.png')" 
-				source="@Embed(source='skins/ielts/assets/countdown.swf?widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatacountry=none&widgetdatabclogo=true')"
-				-->
 			</s:Group>
 			<s:SWFLoader width="100%" height="100%" source="{hostComponent.assetFolder}widget_demo.png" 
 						 includeIn="demo" />

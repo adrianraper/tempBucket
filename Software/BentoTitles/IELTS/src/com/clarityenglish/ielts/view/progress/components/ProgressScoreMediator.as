@@ -66,6 +66,7 @@ package com.clarityenglish.ielts.view.progress.components {
 						case Progress.PROGRESS_MY_DETAILS:
 							// #250. Save xml rather than a string
 							//view.detailDataProvider = new XML(rs.dataProvider);
+							// #338 This must be specifically xml datatype
 							view.detailDataProvider = rs.dataProvider;
 							break;
 						case Progress.PROGRESS_MY_SUMMARY:

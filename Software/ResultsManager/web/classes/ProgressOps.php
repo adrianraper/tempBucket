@@ -346,10 +346,26 @@ EOD;
 			$tableName = 'T_Score';
 		}
 
-		$dbObj = $score->toAssocArray();
-		$rc = $this->db->AutoExecute($tableName, $dbObj, "INSERT");
+		// #340. This fails to insert or raise an error for SQLite
+		//$dbObj = $score->toAssocArray();
+		//$rc = $this->db->AutoExecute($tableName, $dbObj, "INSERT");
+		//if (!$rc)
+		//	throw $this->copyOps->getExceptionForId("errorDatabaseWriting", $this->db->ErrorMsg());
+
+		$sql = <<<EOD
+			INSERT INTO T_Score (F_UserID,F_ProductCode,F_CourseID,F_UnitID,F_ExerciseID,
+					F_Duration,F_Score,F_ScoreCorrect,F_ScoreWrong,F_ScoreMissed,
+					F_DateStamp,F_SessionID)
+			VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+EOD;
+
+		$bindingParams = array($score->userID, $score->productCode, $score->courseID, $score->unitID, $score->exerciseID, 
+								$score->duration, $score->score, $score->scoreCorrect, $score->scoreWrong, $score->scoreMissed, 
+								$score->dateStamp, $score->sessionID);
+								
+		$rc = $this->db->Execute($sql, $bindingParams);
 		if (!$rc)
-			throw new Exception($this->db->ErrorMsg(), "MYSQL-".$this->db->ErrorNo());
+			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
 			
 		// #308
 		return $rc;

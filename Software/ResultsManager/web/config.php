@@ -44,41 +44,20 @@ $GLOBALS['data_dir'] = "../../../Content";
 $GLOBALS['ap_data_dir'] = "../../../ap";
 $GLOBALS['common_dir'] = dirname(__FILE__)."/../../../Software/Common";
 $RMFolders = "";
-
 // Can we just read dbDetails and use dbHost to point to different databases?
-// No, not easily
+// If dbHost comes from session set in Start.php, then what about generateReport?
 require_once($GLOBALS['common_dir'].'/../../Database/dbDetails.php');
-
 if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 	$dbHost = intval($_SESSION['dbHost']);
 } else {
 	$dbHost = 101; // Default for R2IV2 local
 	$dbHost = 2; // Default for rack80829
-	$dbHost = 100; // Default for network version
+	$dbHost = 30; // Default for network version
 }
 $dbDetails = new DBDetails($dbHost);
 $GLOBALS['dbms'] = $dbDetails->driver;
-if (strpos(strtolower($dbDetails->driver), "sqlite")>=0) {
-	$GLOBALS['db'] = $dbDetails->dsn;
-} else {
-	$GLOBALS['db'] = $dbDetails->driver.'://'.$dbDetails->user.':'.$dbDetails->password.'@'.$dbDetails->host.'/'.$dbDetails->dbname;
-}
-// v3.4 Change for different structure on my server
-// Need to overwrite for remote access
-if (strpos(strtolower($_SERVER["SERVER_NAME"]), "dock")>=0) {
-	// Adrian's testing machine
-
-	//NetDebug::trace('forOnlineSubs='.$_SESSION['forOnlineSubs'].' startPage='.$_SESSION['originalStartpage']);
-	// If we want to see accounts created for online subscriptions, or not
-	//if (isset($_SESSION['forOnlineSubs']) && $_SESSION['forOnlineSubs']='1') {
-	//	$GLOBALS['onlineSubs'] = true;
-	//} else {
-		$GLOBALS['onlineSubs'] = false;
-	//}
-
-	// I use the same folders to make svn easier
-	//NetDebug::trace('config db used '.$GLOBALS['db']);
-}			
+$GLOBALS['db'] = $dbDetails->dsn;
+			
 /* Directories for Smarty, rmail & adodb libraries.  If you want these in a different location for a particular setup override them in the host
    based settings below */
 $GLOBALS['adodb_libs'] = $GLOBALS['common_dir']."/adodb5/";
@@ -89,7 +68,6 @@ $GLOBALS['rmail_libs'] = dirname(__FILE__).$RMFolders."/rmail/";
 /* Configuration for Smarty */
 $smartyRoot = dirname(__FILE__).$RMFolders."/smarty";
 $GLOBALS['smarty_libs'] = $smartyRoot."/libs/";
-// v3.6.2 Can I move this outside the RM folder?
 $GLOBALS['smarty_template_dir'] = $smartyRoot."/templates/";
 $GLOBALS['smarty_compile_dir'] = $smartyRoot."/templates_c/";
 $GLOBALS['smarty_config_dir'] = $smartyRoot."/configs/";

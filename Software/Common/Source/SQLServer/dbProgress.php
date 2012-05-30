@@ -28,11 +28,13 @@ class PROGRESS {
 		41	=>	array('name' => "Sun On Japanese", 'place' => "SunOnJapanese"),
 		42	=>	array('name' => "Language Key Hotel Test", 'place' => "LanguageKey"),
 		43	=>	array('name' => "Customer Service Communication Skills", 'place' => "CSCS"),
-		44	=>	array('name' => "'placement test", 'place' => "ClarityTest"),
+		44	=>	array('name' => "Practical Placement Test", 'place' => "ClarityTest"),
 		47	=>	array('name' => "HCT's i-Read", 'place' => "i-Read"),
 		48	=>	array('name' => "Access UK", 'place' => "AccessUK"),
 		49	=>	array('name' => "Study Skills Success V9", 'place' => "StudySkillsSuccessV9"),
 		50	=>	array('name' => "Clear Pronunciation 2", 'place' => "ClearPronunciation2"),
+		52	=>	array('name' => "Road to IELTS 2 Academic", 'place' => "RoadToIELTS2"),
+		53	=>	array('name' => "Road to IELTS 2 General Training", 'place' => "RoadToIELTS2"),
 		1001=>	array('name' => "It's Your Job", 'place' => "ItsYourJob")
 	);
 	 

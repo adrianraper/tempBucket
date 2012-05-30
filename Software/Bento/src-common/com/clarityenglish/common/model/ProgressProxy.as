@@ -135,48 +135,66 @@ package com.clarityenglish.common.model {
 		}
 		
 		/**
+		 * This function takes menu data back from the server and saves
+		 * it in the correct proxy and format.
+		 * #338
+		 */
+		private function saveMenuData(dataProvider:Object):Boolean {
+			
+			// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			if (!bentoProxy.menuXHTML) {
+				
+				// Whilst I get back a full <head><script> xml structure, I never want more than the <menu> node.
+				// Use the XHTML class to strip the namespace from the XML
+				//var data:XHTML = new XHTML(new XML(dataProvider));
+				//var menuXHTML:XHTML = new XHTML(data.head.script.menu[0], this.href);
+				//var menuXHTML:XHTML = new XHTML(data.head.script.(@id == "model" && @type == "application/xml").menu[0], this.href);
+				var menuXHTML:XHTML = new XHTML(new XML(dataProvider), this.href);
+				
+				// #338
+				// If courseID is defined, disable the other courses.
+				// TODO. Need to update the circular animation to also respect enabledFlag.
+				// TODO. Also need to do similar thing for hiddenContent, so perhaps take it out somewhere
+				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+				var directStart:Object = configProxy.getDirectStart();
+				
+				if (directStart.courseID) {
+					for each (var course:XML in menuXHTML..course) {
+						if (course.@id == directStart.courseID) {
+							course.@enabledFlag = 3;
+						} else {
+							course.@enabledFlag = 8;
+						}
+					}
+				}
+				
+				bentoProxy.menuXHTML = menuXHTML;
+				
+				//trace(bentoProxy.menuXHTML.toString());
+				sendNotification(BBNotifications.MENU_XHTML_LOADED);
+			}
+			
+			return true;
+		}
+
+		/**
 		 * This sends out the notification with the requested data 
 		 * @param progressType
 		 * 
 		 */
 		private function notifyDataLoaded(progressType:String):void {
 			
+			// #338. Note that loadedResources[progress_my_details] is just a boolean to show that we have the data
+			// already, the actual data is held in bentoProxy
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {
-				
-				// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				if (!bentoProxy.menuXHTML) {
-					// #250. Save xml rather than a string
-					// bentoProxy.menuXHTML = new XHTML(new XML(loadedResources[progressType]), this.href);
-					//var menu:XHTML = new XHTML(loadedResources[progressType], this.href);
-					var menu:XHTML = loadedResources[this.href]; // #338
-					
-					var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
-					
-					// #338
-					// If courseID is defined, disable the other courses.
-					// TODO. Need to update the circular animation to also respect enabledFlag.
-					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					var directStart:Object = configProxy.getDirectStart();
-					
-					if (directStart.courseID) {
-						for each (var course:XML in menu.head.script.menu.course) {
-							if (course.@id == directStart.courseID) {
-								course.@enabledFlag = 3;
-							} else {
-								course.@enabledFlag = 8;
-							}
-						}
-					}
-					
-					bentoProxy.menuXHTML = menu;
-					
-					//trace(bentoProxy.menuXHTML.toString());
-					sendNotification(BBNotifications.MENU_XHTML_LOADED);
-				}
+				//var dp:Object = bentoProxy.menuXHTML;
+				var dp:Object = bentoProxy.menu;
+			} else {
+				dp = loadedResources[progressType];
 			}
-
-			var data:Object = { type: progressType, dataProvider: loadedResources[progressType] };
+			var data:Object = { type: progressType, dataProvider: dp };
 			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
 		}
 		
@@ -188,7 +206,11 @@ package com.clarityenglish.common.model {
 		private function updateSummaryData():void {
 			// #250. Save xml rather than a string
 			//var detailXML:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
-			var detailXML:XML = loadedResources[Progress.PROGRESS_MY_DETAILS];
+			// #338 loadedResources holds the full XHTML for menu
+			//var detailXML:XML = loadedResources[Progress.PROGRESS_MY_DETAILS];
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			//var detailXML:XHTML = bentoProxy.menuXHTML;
+			var detailXML:XML = bentoProxy.menu;
 			
 			var summaryXML:XML = <progress />;
 			
@@ -323,9 +345,11 @@ package com.clarityenglish.common.model {
 				// #250. Save xml rather than a string
 				// NOTE: get it from bentoProxy instead of here?
 				// var currentRecords:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
-				//var currentRecords:XML = loadedResources[Progress.PROGRESS_MY_DETAILS];
+				// #338
+				//var currentRecords:XML = loadedResources[Progress.PROGRESS_MY_DETAILS].head.script.menu[0];
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				var currentRecords:XML = bentoProxy.menuXHTML.xml;
+				//var currentRecords:XML = bentoProxy.menuXHTML.xml;
+				var currentRecords:XML = bentoProxy.menu;
 				
 				// what is the UID of this record?
 				var uid:Object = UIDUtil.UID(mark.UID);
@@ -350,7 +374,8 @@ package com.clarityenglish.common.model {
 						
 					// #250. Don't go via a string. Just use the xml in bentoProxy.
 					//loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords.toString();
-					loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords;
+					// #338
+					//loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords;
 					
 					// #164. A copy of this was saved in BentoProxy.menuXHTML too (above on line 134)
 					// But because of new XML() cloning (?) - you need to update that too. Seems wrong.
@@ -358,6 +383,8 @@ package com.clarityenglish.common.model {
 					// #250. If you work on the right object, you don't need to do this
 					//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 					//bentoProxy.menuXHTML.xml.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
+					
+					// #338. Need to check that bentoProxy.menuXHTML has been updated by this function
 					
 					// #164. After changing the detail records, recalculate the summary
 					updateSummaryData();
@@ -385,12 +412,15 @@ package com.clarityenglish.common.model {
 						// Menu.xml is a different type, we get back a full xhtml object, not just the menu level xml
 						//if (href.type == Href.MENU_XHTML) {
 						if (loadingData == Progress.PROGRESS_MY_DETAILS) {
-							loadedResources[href] = new XHTML(new XML(data.progress.dataProvider), href);
+							// #338 All I want is the menu bit, not the full xhtml
+							//loadedResources[href] = new XHTML(new XML(data.progress.dataProvider), href);
 							// For consistency with other progress data, just grab the menu bit
-							var myMenu:XML = new XHTML(new XML(data.progress.dataProvider)).xml;
+							//var myMenu:XML = new XHTML(new XML(data.progress.dataProvider)).xml;
+							//var myMenu:XML = new XML(data.progress.dataProvider);
 							// #250. Save xml rather than a string
 							//loadedResources[loadingData] = myMenu.head.script.menu.toXMLString();
-							loadedResources[loadingData] = myMenu.head.script.menu[0];
+							//loadedResources[loadingData] = myMenu.head.script.menu[0];
+							loadedResources[loadingData] = this.saveMenuData(data.progress.dataProvider);
 						} else {
 							// #250. Save xml rather than a string
 							//loadedResources[loadingData] = data.progress.dataProvider;
@@ -466,10 +496,13 @@ package com.clarityenglish.common.model {
 				return;
 			}
 			
-			// If the resource has already been loaded then just return it
-			if (loadedResources[href]) {
+			// If the resource has already been loaded then just return it.
+			// #338 But this is not keyed on href, but on progress_type
+			//if (loadedResources[href]) {
+			if (loadedResources[Progress.PROGRESS_MY_DETAILS]) {
 				log.debug("Href already loaded so returning cached copy {0}", href);
-				sendNotification(BBNotifications.XHTML_LOADED, { xhtml: loadedResources[href], href: href } );
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				sendNotification(BBNotifications.XHTML_LOADED, { xhtml: bentoProxy.menuXHTML, href: href } );
 				return;
 			} else {
 				log.error("progressProxy loadXHTML doesn't have the menu yet");

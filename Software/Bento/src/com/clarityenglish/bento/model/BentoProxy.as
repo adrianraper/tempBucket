@@ -57,6 +57,14 @@ package com.clarityenglish.bento.model {
 		}
 		
 		/**
+		 * Shorthand to get the xml for the menu node of the full xhtml
+		 * #338
+		 */
+		public function get menu():XML {
+			return (_menuXHTML) ? _menuXHTML.head.script.(@id == "model" && @type == "application/xml").menu[0] : null;
+		}
+		
+		/**
 		 * This gets the exercise the user is currently in.  If there is no exercise (i.e. the user is not currently in an exercise) this will
 		 * return null.
 		 * 

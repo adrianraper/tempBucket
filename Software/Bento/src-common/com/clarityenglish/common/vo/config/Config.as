@@ -193,6 +193,7 @@ package com.clarityenglish.common.vo.config {
 			//var myS:String = xml..dbHost.toString();
 			//if (xml..dbHost.length() > 0) this.dbHost = xml..dbHost.toString();
 			if (xml..dbHost.toString())	this.dbHost = xml..dbHost.toString();
+			if (xml..prefix.toString()) this.prefix = xml..prefix.toString();
 			if (xml..productCode.toString()) this.productCode = xml..productCode.toString();
 			if (xml..productVersion.toString()) this.productVersion = xml..productVersion.toString();
 			if (xml..action.toString()) this.action = xml..action.toString();

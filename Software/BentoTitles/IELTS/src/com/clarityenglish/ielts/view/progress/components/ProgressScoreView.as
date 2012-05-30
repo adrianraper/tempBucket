@@ -42,7 +42,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var _summaryData:XML;
 		public var _detailData:XML;
 		
-		//private var _course:XML;
 		private var _courseClass:String;
 		private var _courseChanged:Boolean;
 		private var _dataChanged:Boolean;

@@ -214,6 +214,11 @@ package com.clarityenglish.common.model {
 				//return new LoginEvent(LoginEvent.LOGIN, "p574528(8)", "passwording");
 			}
 			
+			if (Config.DEVELOPER.name == "network") {
+				return new LoginEvent(LoginEvent.LOGIN, "Student", "password");
+				//return new LoginEvent(LoginEvent.LOGIN, "p574528(8)", "passwording");
+			}
+			
 			// Take it from from the URL parameters (see config.as.mergeParameters)
 			/*
 			if (FlexGlobals.topLevelApplication.parameters.studentID &&

@@ -30,7 +30,6 @@ package com.clarityenglish.ielts.view.progress.components {
 	public class ProgressCoverageView extends BentoView {
 		
 		[SkinPart(required="true")]
-		//public var progressCourseBar:ProgressCourseBarComponent;
 		public var progressCourseButtonBar:ButtonBar;
 
 		[SkinPart(required="true")]
@@ -60,29 +59,38 @@ package com.clarityenglish.ielts.view.progress.components {
 		[Bindable]
 		public var examPracticeDataProvider:XMLListCollection;
 		
-		// Internal store for the full dataProvider
-		public var _summaryData:XML;
-		public var _detailData:XML;
-		
 		// TODO. Highlight the last exercise done somehow
 		public var bookmark:XML;
 
-		// #234
-		private var _productVersion:String;
-		
-		//private var _course:XML;
-		private var _courseClass:String;
-		private var _courseClassChanged:Boolean;
-		private var _dataChanged:Boolean;
-		
-		public var courseSelect:Signal = new Signal(String);
-		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
 		// The horribleness comes from referring to this view from a renderer in the skin, so although we already have
 		// a decent courseClass in this view, we keep this name. I think.
 		[Bindable]
 		public static var horribleHackCourseClass:String;
+		
+		public var _summaryData:XML;
+		public var _detailData:XML;
+		
+		private var _courseClass:String;
+		private var _courseChanged:Boolean;
+		private var _dataChanged:Boolean;
+		
+		public var courseSelect:Signal = new Signal(String);
+		
+		// #234
+		private var _productVersion:String;
+		
+		[Bindable]
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+			}
+		}
 		
 		/**
 		 * This setter is given a full XML that includes scores and coverage for the student.
@@ -91,7 +99,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * @param XML value
 		 * 
 		 */
-		[Bindable]
 		public function set detailDataProvider(value:XML):void {
 			_detailData = value;
 			_dataChanged = true;
@@ -107,17 +114,6 @@ package com.clarityenglish.ielts.view.progress.components {
 			return _summaryData;
 		}
 		
-		[Bindable]
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-			}
-		}
-		
 		/**
 		 * This can be called from outside the view to make the view display a different course
 		 * 
@@ -126,7 +122,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		 */
 		public function set courseClass(value:String):void {
 			_courseClass = value;
-			_courseClassChanged = true;
+			_courseChanged = true;
 			
 			// This is a horrible hack
 			horribleHackCourseClass = courseClass;
@@ -140,7 +136,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			if (_courseClassChanged || _dataChanged) {
+			if (_courseChanged || _dataChanged) {
 				
 				// Update the components of the view that change their data
 				if (progressBar && courseClass && summaryDataProvider) {
@@ -172,7 +168,7 @@ package com.clarityenglish.ielts.view.progress.components {
 						break;
 				}
 				
-				_courseClassChanged = _dataChanged = false;
+				_courseChanged = _dataChanged = false;
 			}
 		}
 		

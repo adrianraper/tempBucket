@@ -161,8 +161,9 @@ package com.clarityenglish.ielts.view.account {
 					// but I had got round it by copying /Widget to each domain. But now that I am 
 					// preferring to use config.xml to have only CE.com/Software I need to force the domain here.
 					// Which is in config.remoteDomain, and now injected into the interface
+					// TODO. Need an image or something to display if the app fails to load (you might not be online for instance)
 					instance.loaderContext = context;
-					instance.source = config.remoteDomain + "Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?literals=/Software/Widget/IELTS/bin&widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatabclogo=true&cache=" + new Date().getTime();
+					instance.source = config.remoteDomain + "Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?literals="+config.remoteDomain+"Software/Widget/IELTS/bin&widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatabclogo=true&cache=" + new Date().getTime();
 					if (userDetails.country) {
 						// The final names of countries MUST match the literals.xml list.
 						switch (userDetails.country) {
