@@ -1,0 +1,115 @@
+<html>
+<head>
+<script>
+function loadXMLDoc(fname)
+{
+var xmlDoc;
+try //Internet Explorer
+  {
+  xmlDoc=new ActiveXObject("Microsoft.XMLDOM");
+  }
+catch(e)
+  {
+  try //Firefox, Mozilla, Opera, etc.
+    {
+    xmlDoc=document.implementation.createDocument("","",null);
+    }
+  catch(e)
+    {
+    alert(e.message);
+    return;
+    }
+  }
+xmlDoc.async=false;
+xmlDoc.load(fname);
+return(xmlDoc);
+}
+
+function applyTransform(xml, xsl) {
+	// code for IE
+	/*
+	if (window.ActiveXObject){
+		var ex=xml.transformNode(xsl);
+		//document.getElementById("example").innerHTML=ex;
+	}
+	// code for Mozilla, Firefox, Opera, etc.
+	else if (document.implementation && document.implementation.createDocument)
+	{
+		xsltProcessor=new XSLTProcessor();
+		xsltProcessor.importStylesheet(xsl);
+		var ex = xsltProcessor.transformToFragment(xml,document);
+		// document.getElementById("example").appendChild(resultDocument);
+		//document.getElementById("example").appendChild(resultDocument);
+	}
+	*/
+	var ex=xml.transformNode(xsl);  
+	return(ex);
+}
+function displayResult() {
+	
+	//xml=loadXMLDoc("ActiveReading-International/course.xml");
+	xml=loadXMLDoc("ActiveReading-NAmerican/course.xml");
+	//xml=loadXMLDoc("TenseBuster-International/course.xml");
+	//xml=loadXMLDoc("BusinessWriting/course.xml");
+	xsl=loadXMLDoc("course.xsl");
+	// code for IE
+	var courseList = applyTransform(xml,xsl);
+	//document.write("id list=" + courseList);
+	//courseList=xml.transformNode(xsl);
+	//  courseArray = courseList.split(",").reverse();
+	courseArray = courseList.split(","); //.reverse();
+ 
+	
+	for (courseIDX in courseArray) {
+		var courseID = String(courseArray[courseIDX]);
+		//var courseID = courseArray[courseIDX];
+		//document.write("id=" + courseID);
+		if (courseID.length>1 && courseID!=undefined) {
+			//displayCourse(courseID);
+			document.write(courseID + ",");
+		}
+	}
+	document.write("<br>");
+	// Business Writing
+	//displayCourse("IndianEng");
+	//displayCourse("InternationalEng");
+	//displayCourse("NAmericanEng");
+	
+	// TenseBuster International
+	//displayCourse("TB ELE");
+	//displayCourse("TB LI");
+	//displayCourse("TB INT");
+	//displayCourse("TB UI");
+	//displayCourse("TB ADV");
+	
+	
+	// Active Reading International
+	
+	displayCourse("1213672591135");
+	displayCourse("1217807117776");
+	displayCourse("1218433706785");
+	displayCourse("1219043007595");
+	displayCourse("1219045749181");
+	displayCourse("1219136121424");
+	
+	
+}
+function displayCourse(courseID){
+	//document.write("loading file=" + courseID);
+	var coursexml=loadXMLDoc("ActiveReading-International/Courses/" + courseID + "/menu.xml");
+	//var coursexml=loadXMLDoc("TenseBuster-International/Courses/" + courseID + "/menu.xml");
+	//var coursexml=loadXMLDoc("BusinessWriting/Courses/" + courseID + "/menu.xml");
+	//  document.write(coursexml);
+	var coursexsl=loadXMLDoc("menu unit names.xsl");
+	// code for IE
+	// ex=coursexml.transformNode(coursexsl);
+	var ex=applyTransform(coursexml,coursexsl);
+	//  document.getElementById("example").innerHTML=ex;
+	document.write(ex);
+	//document.write("loaded file=" + courseID + "<br>");
+}
+</script>
+</head>
+<body id="example" onLoad="displayResult()">
+</body>
+</html>
