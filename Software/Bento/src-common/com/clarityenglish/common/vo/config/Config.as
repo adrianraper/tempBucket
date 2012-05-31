@@ -14,6 +14,12 @@ package com.clarityenglish.common.vo.config {
 		public static const LOGIN_BY_NAME:uint = 1;
 		public static const LOGIN_BY_ID:uint = 2;
 		public static const LOGIN_BY_EMAIL:uint = 128;
+		
+		// #341 These values are from compatability with Orchid and RM
+		public static const SELF_REGISTER_NAME:uint = 1;
+		public static const SELF_REGISTER_ID:uint = 2;
+		public static const SELF_REGISTER_EMAIL:uint = 4;
+		public static const SELF_REGISTER_PASSWORD:uint = 16;
 
 		/**
 		 * Information is held in simple variables for the most part

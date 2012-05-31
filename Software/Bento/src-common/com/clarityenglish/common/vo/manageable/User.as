@@ -97,7 +97,7 @@
 			if (data.studentID)
 				this.email = data.studentID;
 			if (data.password)
-				this.email = data.password;
+				this.password = data.password;
 		}
 		/**
 		 * A single user always has a userCount of 1

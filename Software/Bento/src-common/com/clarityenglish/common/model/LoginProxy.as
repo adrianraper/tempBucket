@@ -62,7 +62,7 @@ package com.clarityenglish.common.model {
 		
 		// #341
 		//public function login(key:String, password:String):void {
-		public function login(user:User, loginOption:uint):void {
+		public function login(user:User, loginOption:Number):void {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -122,6 +122,9 @@ package com.clarityenglish.common.model {
 			}
 		}
 
+		/**
+		 * Function to send a user's changed details to the database
+		 */
 		public function updateUser(userChanges:Object):void {
 			// Current user details are already here
 			// So the user details you are passed just overwrite the relevant ones
@@ -143,6 +146,18 @@ package com.clarityenglish.common.model {
 			// Off to the database
 			var params:Array = [ newUserDetails, configProxy.getRootID() ];
 			new RemoteDelegate("updateUser", params, this).execute();
+		}
+		
+		/**
+		 * Function to add a new user to the database
+		 * #341
+		 */
+		public function addUser(user:User, loginOption:Number):void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
+			// Off to the database
+			var params:Array = [ user, configProxy.getRootID() ];
+			new RemoteDelegate("addUser", params, this).execute();
 		}
 
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
@@ -176,6 +191,10 @@ package com.clarityenglish.common.model {
 				
 				case "updateUser":
 					sendNotification(BBNotifications.USER_UPDATED, data);	
+					break;
+				
+				case "addUser":
+					sendNotification(BBNotifications.USER_ADDED, data);	
 					break;
 				
 				case "login":

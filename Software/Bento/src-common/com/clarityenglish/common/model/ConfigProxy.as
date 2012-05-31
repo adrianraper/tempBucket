@@ -214,7 +214,7 @@ package com.clarityenglish.common.model {
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
-				configUser = new User({name:"adrian raper", studentID:"p574528(8)", password:"passwording"});
+				configUser = new User({name:"Adrian Raper", studentID:"p574528(8)", password:"passwording"});
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
 			}
 			

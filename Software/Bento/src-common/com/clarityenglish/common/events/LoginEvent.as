@@ -18,7 +18,7 @@
 		//public var email:String;
 		//public var password:String;
 		public var user:User;
-		public var loginOption:uint;
+		public var loginOption:Number;
 		
 		//public function LoginEvent(type:String, username:String, password:String, bubbles:Boolean=false, cancelable:Boolean=false) { 
 		public function LoginEvent(type:String, userObject:Object, loginOption:uint, bubbles:Boolean=false, cancelable:Boolean=false) { 

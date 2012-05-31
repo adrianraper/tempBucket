@@ -79,8 +79,7 @@
 			
 			// Common ones are done in BentoFacade
 			// AR And I would have thought that LoggedIn should be common too, but RM and DMS both have their own...
-			registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
-			registerCommand(BBNotifications.USER_UPDATE, UpdateUserCommand);
+			//registerCommand(CommonNotifications.LOGGED_IN, LoggedInCommand);
 		}
 		
 	}

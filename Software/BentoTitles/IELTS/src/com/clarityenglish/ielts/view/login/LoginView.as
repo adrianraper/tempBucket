@@ -116,6 +116,35 @@ package com.clarityenglish.ielts.view.login {
 				_selfRegister = value;
 			}
 		}
+		[Bindable]
+		public function get selfRegisterName():Boolean {
+			return ((selfRegister & Config.SELF_REGISTER_NAME) == Config.SELF_REGISTER_NAME); 
+		}
+		public function set selfRegisterName(value:Boolean):void {
+			selfRegister = selfRegister | Config.SELF_REGISTER_NAME;
+		}
+		[Bindable]
+		public function get selfRegisterID():Boolean {
+			return ((selfRegister & Config.SELF_REGISTER_ID) == Config.SELF_REGISTER_ID); 
+		}
+		public function set selfRegisterID(value:Boolean):void {
+			selfRegister = selfRegister | Config.SELF_REGISTER_ID;
+		}
+		[Bindable]
+		public function get selfRegisterEmail():Boolean {
+			return ((selfRegister & Config.SELF_REGISTER_EMAIL) == Config.SELF_REGISTER_EMAIL); 
+		}
+		public function set selfRegisterEmail(value:Boolean):void {
+			selfRegister = selfRegister | Config.SELF_REGISTER_EMAIL;
+		}
+		[Bindable]
+		public function get selfRegisterPassword():Boolean {
+			return ((selfRegister & Config.SELF_REGISTER_PASSWORD) == Config.SELF_REGISTER_PASSWORD); 
+		}
+		public function set selfRegisterPassword(value:Boolean):void {
+			selfRegister = selfRegister | Config.SELF_REGISTER_PASSWORD;
+		}
+		
 		public function get loginOption():Number {
 			return _loginOption; 
 		}
@@ -332,6 +361,8 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case newUserButton:
 					setState("register");
+					//loginNameInput.text = loginKeyInput.text;
+					//newPasswordInput.text = passwordInput.text;
 					break;
 				case addUserButton:
 					//user = new User({name:newNameInput.text, password:newPasswordInput.text});

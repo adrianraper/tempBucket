@@ -89,6 +89,8 @@
 			registerCommand(CommonNotifications.COPY_LOAD, CopyLoadCommand);
 			
 			// AR add in login and logout
+			registerCommand(BBNotifications.USER_ADD, AddUserCommand);
+			registerCommand(BBNotifications.USER_UPDATE, UpdateUserCommand);
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
 			

@@ -24,6 +24,8 @@
 		
 		public static const USER_UPDATE:String = "user_update";
 		public static const USER_UPDATED:String = "user_updated";
+		public static const USER_ADD:String = "user_add";
+		public static const USER_ADDED:String = "user_added";
 		
 		public static const COURSE_SELECT:String = "course_select";
 		public static const COURSE_SELECTED:String = "course_selected";
