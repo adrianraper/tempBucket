@@ -88,12 +88,8 @@ login|LoginView s|TextInput {
 	contentBackgroundColor: #FFFFFF;
 }
 
-login|LoginView #loginButton {
+login|LoginView s|Button {
 	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
-}
-
-login|LoginView #quickStartButton {
-	skinClass: ClassReference("skins.ielts.login.QuickStartButtonSkin");
 }
 
 /* Title view styles */

@@ -12,6 +12,7 @@ package com.clarityenglish.common.view.login {
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.manageable.User;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -43,6 +44,8 @@ package com.clarityenglish.common.view.login {
 			view.setProductVersion(configProxy.getProductVersion());
 			view.setProductCode(configProxy.getProductCode());
 			view.setLoginOption(configProxy.getAccount().loginOption);
+			view.setSelfRegister(configProxy.getAccount().selfRegister);
+
 		}
         
 		/**
@@ -57,6 +60,7 @@ package com.clarityenglish.common.view.login {
 			return super.listNotificationInterests().concat([
 				CommonNotifications.INVALID_LOGIN,
 				CommonNotifications.COPY_LOADED,
+				CommonNotifications.ADDED_NEW_USER,
 			]);
 		}
 
@@ -90,6 +94,18 @@ package com.clarityenglish.common.view.login {
 					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
 					view.clearData();
 					break;
+				
+				case CommonNotifications.ADDED_NEW_USER:
+					// #341
+					// Just if successful. If yes, then just login
+					var user:User = note.getBody() as User;
+					if (user) {
+						onLogin(new LoginEvent(LoginEvent.LOGIN, user.name, user.password, true));
+					} else {
+						trace ("error from add new user");
+						view.setState("registerError");
+					}
+					break;
 				default:
 					break;
 			}
@@ -97,6 +113,10 @@ package com.clarityenglish.common.view.login {
 		
 		private function onLogin(e:LoginEvent):void {
 			sendNotification(CommonNotifications.LOGIN, e);
+		}
+
+		private function onAddUser(e:LoginEvent):void {
+			sendNotification(CommonNotifications.ADD_NEW_USER, e);
 		}
 
 	}

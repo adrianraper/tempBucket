@@ -17,6 +17,12 @@
 			} 
 		]]> 
 	</fx:Script>
+	<s:states>
+		<s:State name="login" stateGroups="loginStates" />
+		<s:State name="register" stateGroups="registerStates" />
+		<s:State name="registerError" stateGroups="registerStates" />
+	</s:states>
+
 	<s:Group width="100%" top="3">
 
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
@@ -56,21 +62,42 @@
 			</s:fill>
 		</s:Rect>
 		<s:Spacer height="3" />
-		<s:Label text="Please enter your login details to continue." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
-		<s:Spacer height="3" />
-		<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" fontWeight="bold" />
-		<s:TextInput id="nameInput" width="180" />
-		<s:Spacer height="5" />
-		<s:Label text="Password:" fontWeight="bold" />
-		<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
-		<s:Spacer height="3" />
-		<s:HGroup>
-		<!--
-		<s:Button id="quickStartButton" label="Quick start" />
+		<s:VGroup id="loginBlock" width="100%" includeIn="login">
+			<s:Label text="Please type your login details to continue." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
+			<s:Spacer height="3" />
+			<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" fontWeight="bold" />
+			<s:TextInput id="nameInput" width="180" />
+			<s:Spacer height="5" />
+			<s:Label text="Password:" fontWeight="bold" />
+			<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
+			<s:Spacer height="3" />
+			<s:HGroup>
+				<s:Button id="loginButton" label="Log in" />
+				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" />
+			</s:HGroup>
+		</s:VGroup>
+		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
+			<s:Label text="Please type your details to register." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
+			<s:Spacer height="3" />
+			<s:Label id="newData1_lbl" text="{hostComponent.newData1_lbl}" fontWeight="bold" />
+			<s:TextInput id="newInput1" width="180" />
+			<s:Spacer height="3" />
+			<!--
+			<s:Label text="newData2_lbl:" fontWeight="bold" />
+			<s:TextInput id="newInput2" width="180" />
+			<s:Spacer height="3" />
+			<s:Label text="newData3_lbl:" fontWeight="bold" />
+			<s:TextInput id="newInput3" width="180" />
+			<s:Spacer height="3" />
 			-->
-		<s:Button id="loginButton" label="Log in" />
-			
-		</s:HGroup>
+			<s:Label text="Password:" fontWeight="bold" />
+			<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" />
+			<s:Spacer height="3" />
+			<s:HGroup>
+				<s:Button id="addUserButton" label="Register" />
+				<s:Button id="cancelButton" label="Cancel" />
+			</s:HGroup>
+		</s:VGroup>
 		<s:Spacer height="3" />
 		<s:Rect verticalCenter="0" width="88%" height="1"  >
 			<s:fill>

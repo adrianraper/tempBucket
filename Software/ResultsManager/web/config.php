@@ -52,7 +52,7 @@ if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 } else {
 	$dbHost = 101; // Default for R2IV2 local
 	$dbHost = 2; // Default for rack80829
-	$dbHost = 30; // Default for network version
+	//$dbHost = 30; // Default for network version
 }
 $dbDetails = new DBDetails($dbHost);
 $GLOBALS['dbms'] = $dbDetails->driver;

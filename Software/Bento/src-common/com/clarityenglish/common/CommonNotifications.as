@@ -14,6 +14,10 @@
 		
 		public static const CONFIG_LOAD:String = "config_load";
 		public static const CONFIG_LOADED:String = "config_loaded";
+
+		// 341
+		public static const ADD_NEW_USER:String = "add_new_user";
+		public static const ADDED_NEW_USER:String = "added_new_user";
 		
 		// #322
 		public static const ACCOUNT_LOAD:String = "account_load";

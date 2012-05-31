@@ -16,11 +16,12 @@ package com.clarityenglish.ielts.view.login {
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
+	import org.osflash.signals.Signal;
+	
 	import spark.components.Button;
 	import spark.components.FormHeading;
 	import spark.components.Label;
 	import spark.components.TextInput;
-	
 	
 	public class LoginView extends BentoView implements LoginComponent {
 		
@@ -35,16 +36,38 @@ package com.clarityenglish.ielts.view.login {
 		
 		[SkinPart(required="true")]
 		public var nameInput:TextInput;
-		
+
+		// #341
+		[SkinPart]
+		public var addUserButton:Button;
+		[SkinPart]
+		public var newUserButton:Button;
+		[SkinPart]
+		public var cancelButton:Button;
+		[SkinPart]
+		public var newInput1:TextInput;
+		[SkinPart]
+		public var newInput2:TextInput;
+		[SkinPart]
+		public var newInput3:TextInput;
+		[SkinPart]
+		public var newPassword:TextInput;
+
 		[SkinPart]
 		public var quickStartButton:Button;
 		
 		[Bindable]
 		public var loginID_lbl:String;
+		[Bindable]
+		public var newData1_lbl:String;
 		
 		private var _productVersion:String;
 		private var _productCode:uint;
 		
+		// #341
+		private var _loginOption:Number;
+		private var _selfRegister:Number;
+
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionAcademicLogo:Class;
@@ -78,6 +101,28 @@ package com.clarityenglish.ielts.view.login {
 			super();
 		}
 
+		// #341
+		[Bindable]
+		public function get selfRegister():Number {
+			return _selfRegister; 
+		}
+		public function set selfRegister(value:Number):void {
+			if (_selfRegister != value) {
+				_selfRegister = value;
+			}
+		}
+		public function get loginOption():Number {
+			return _loginOption; 
+		}
+		public function set loginOption(value:Number):void {
+			if (_loginOption != value) {
+				_loginOption = value;
+				// BUG. Why doesn't this work?
+				dispatchEvent(new Event("loginOptionChanged"));
+				changeLoginLabels();
+			}
+		}
+		
 		public function setProductVersion(value:String):void {
 			if (_productVersion != value) {
 				_productVersion = value;
@@ -173,7 +218,6 @@ package com.clarityenglish.ielts.view.login {
 			return null;
 		}
 
-		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -182,11 +226,19 @@ package com.clarityenglish.ielts.view.login {
 				case passwordInput:
 					instance.addEventListener(FlexEvent.ENTER, onEnter, false, 0, true);
 					break;
+				
 				case loginButton:
-				case quickStartButton:
+				case addUserButton:
+				case newUserButton:
+				case cancelButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;				
 			}
+		}
+
+		// #341
+		protected override function getCurrentSkinState():String {
+			return super.getCurrentSkinState();
 		}
 		
 		/**
@@ -200,11 +252,24 @@ package com.clarityenglish.ielts.view.login {
 				loginHeading.label = name;
 		}
 		/**
+		 * Push the login option into the view 
+		 * @param uint value
+		 * 
+		 */
+		public function setLoginOption(value:Number):void {
+			loginOption = value;
+		}
+		public function setSelfRegister(value:Number):void {
+			selfRegister = value;
+		}
+
+		/**
 		 * To let you work out what data you need for logging in to this account. 
 		 * @param Number loginOption
 		 * 
 		 */
-		public function setLoginOption(loginOption:Number):void {
+		[Bindable(event="loginOptionChanged")]
+		public function changeLoginLabels():void {
 			
 			// Override normal text with Last Minute
 			if (_productVersion == IELTSApplication.LAST_MINUTE) { 
@@ -214,12 +279,15 @@ package com.clarityenglish.ielts.view.login {
 				switch (loginOption) {
 					case 1:
 						loginID_lbl = "Your name:";
+						newData1_lbl = "Your name:";
 						break;
 					case 2:
 						loginID_lbl = "Your id:";
+						newData1_lbl = "Your id:";
 						break;
 					case 128:
 						loginID_lbl = "Your email:";
+						newData1_lbl = "Your email:";
 						break;
 					default:
 				}
@@ -238,45 +306,42 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		/**
-		 * The user has clicked the login button
+		 * The user has clicked one of the login buttons
 		 *
 		 * @param event
 		 */
 		protected function onLoginButtonClick(event:MouseEvent):void {
-			// Trigger the login command
-			if ((event.target) == quickStartButton) {
-				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "Adrian Raper", "passwording", true));				
-			} else {
-				// RM process does it like this - and all the code is copied from RM to Bento.com.clarityenglish.common
-				// Dispatch a LoginEvent here
-				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
+			// Trigger login, registration, add new user or cancel
+			switch (event.target) {
+				case quickStartButton:
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "Adrian Raper", "passwording", true));
+					break;
+				case loginButton:
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
+					break;
+				case newUserButton:
+					setState("register");
+					break;
+				case addUserButton:
+					//addUser.dispatch();
+					break;
+				default:
+					setState("login");
 			}
-			// The loginMediator has told the loginView to listen for this event - (loginView.addEventListener(LoginEvent.LOGIN, onLogin);
-			// which the mediator handles by sending a Notification.LOGIN
 		
-			// The applicationFacade has registered Notification.LOGIN to the LoginCommand
-			// This is picked up by LoginCommand, which tells LoginProxy to call the backside through RemoteDelegate
+		}
 		
-			// LoginProxy picks up the result with onDelegateResult
-			// This sends a notification for success or failure
-		
-			// The loginMediator is registered to get failure and passes the error to the loginView for display
-		
-			// The applicationMediator is registered to get success notification and changes the application state
-			// The applicationFacade also links LoggedInCommand to the success notification
-			// Should the LoggedInCommand be in common? I would think so.
-		
-			// The loggedInCommand gets all the data from the notification (it can trigger other notifications if necessary)
-			// It also loads registers all the proxies with the facade. This triggers all sorts of action...
-		
+		// #341
+		public function setState(state:String):void {
+			currentState = state;
+			invalidateSkinState();
 		}
 		
 		public function setCopyProvider(copyProvider:CopyProvider):void {
-		
 		}
 		
 		public function showInvalidLogin(error:BentoError):void {
-			// #280 - this is no longer used=
+			// #280 - this is no longer used
 		}
 		
 		public function clearData():void {
