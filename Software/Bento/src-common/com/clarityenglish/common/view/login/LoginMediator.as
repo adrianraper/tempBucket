@@ -37,6 +37,7 @@ package com.clarityenglish.common.view.login {
 			super.onRegister();
 			
 			view.addEventListener(LoginEvent.LOGIN, onLogin);
+			view.addEventListener(LoginEvent.ADD_USER, onAddUser);
 			
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -97,15 +98,19 @@ package com.clarityenglish.common.view.login {
 				
 				case CommonNotifications.ADDED_NEW_USER:
 					// #341
-					// Just if successful. If yes, then just login
+					// Check if successful. If yes, then just login that user
 					var user:User = note.getBody() as User;
 					if (user) {
-						onLogin(new LoginEvent(LoginEvent.LOGIN, user.name, user.password, true));
+						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						onLogin(new LoginEvent(LoginEvent.LOGIN, user, configProxy.getAccount().loginOption));
+						
 					} else {
 						trace ("error from add new user");
+						// Need to pass the error in. Perhaps the error is flagged as a popup just like wrong password in login.
 						view.setState("registerError");
 					}
 					break;
+				
 				default:
 					break;
 			}

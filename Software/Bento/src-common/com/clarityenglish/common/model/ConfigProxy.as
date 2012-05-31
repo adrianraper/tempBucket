@@ -9,6 +9,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	import com.pipwerks.SCORM;
@@ -205,18 +206,21 @@ package com.clarityenglish.common.model {
 		 * @return 
 		 */
 		public function getDirectLogin():LoginEvent {
+			var loginOption:uint = getAccount().loginOption;
+			
 			if (Config.DEVELOPER.name == "DK") {
-				return new LoginEvent(LoginEvent.LOGIN, "dandelion", "password");
+				var configUser:User = new User({name:"dandelion", password:"password"});
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
-				return new LoginEvent(LoginEvent.LOGIN, "adrian raper", "passwording");
-				//return new LoginEvent(LoginEvent.LOGIN, "p574528(8)", "passwording");
+				configUser = new User({name:"adrian raper", studentID:"p574528(8)", password:"passwording"});
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
 			}
 			
 			if (Config.DEVELOPER.name == "network") {
-				return new LoginEvent(LoginEvent.LOGIN, "Student", "password");
-				//return new LoginEvent(LoginEvent.LOGIN, "p574528(8)", "passwording");
+				configUser = new User({name:"Student", studentID:"123", password:"password"});
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
 			}
 			
 			// Take it from from the URL parameters (see config.as.mergeParameters)
@@ -228,27 +232,23 @@ package com.clarityenglish.common.model {
 			*/
 			// Take it from config rather than direct from the parameters
 			// #334
-			var loginOption:uint = getAccount().loginOption;
-			if (loginOption & 1) {
-				if (config.username)
-					return new LoginEvent(LoginEvent.LOGIN, config.username, config.password);
-			} else if (loginOption & 2) {
-				if (config.studentID)
-					return new LoginEvent(LoginEvent.LOGIN, config.studentID, config.password);
-			} else if (loginOption & 128) {
-				if (config.email)
-					return new LoginEvent(LoginEvent.LOGIN, config.email, config.password);
+			if ((config.username && loginOption == Config.LOGIN_BY_NAME) || 
+				(config.studentID && loginOption == Config.LOGIN_BY_ID) || 
+				(config.email && loginOption == Config.LOGIN_BY_EMAIL)) {
+				configUser = new User({name:config.username, studentID:config.studentID, email:config.email, password:config.password});
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
 			}
-			
+
 			// Anonymous login
 			// Demo login will normally use AA licence type
 			if (config.licenceType == Title.LICENCE_TYPE_AA) 
-				return new LoginEvent(LoginEvent.LOGIN, null, null)
+				return new LoginEvent(LoginEvent.LOGIN, null, loginOption)
 			
 			// #336 SCORM probably needs to be checked here
 			if (config.scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				return new LoginEvent(LoginEvent.LOGIN, scormProxy.scorm.studentName, null);
+				configUser = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
 			}
 			
 			return null;
@@ -296,7 +296,7 @@ package com.clarityenglish.common.model {
 				}
 			}
 			
-			return { };
+			return { courseID: "1287130100000" };
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

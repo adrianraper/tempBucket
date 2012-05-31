@@ -65,8 +65,8 @@
 		<s:VGroup id="loginBlock" width="100%" includeIn="login">
 			<s:Label text="Please type your login details to continue." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
-			<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" fontWeight="bold" />
-			<s:TextInput id="nameInput" width="180" />
+			<s:Label id="loginKey_lbl" text="{hostComponent.loginKey_lbl}" fontWeight="bold" />
+			<s:TextInput id="loginKeyInput" width="180" />
 			<s:Spacer height="5" />
 			<s:Label text="Password:" fontWeight="bold" />
 			<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
@@ -79,15 +79,15 @@
 		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
 			<s:Label text="Please type your details to register." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
-			<s:Label id="newData1_lbl" text="{hostComponent.newData1_lbl}" fontWeight="bold" />
-			<s:TextInput id="newInput1" width="180" />
+			<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" fontWeight="bold" />
+			<s:TextInput id="loginNameInput" width="180" />
 			<s:Spacer height="3" />
 			<!--
-			<s:Label text="newData2_lbl:" fontWeight="bold" />
-			<s:TextInput id="newInput2" width="180" />
+			<s:Label text="Your ID:" fontWeight="bold" />
+			<s:TextInput id="loginIDInput" width="180" />
 			<s:Spacer height="3" />
-			<s:Label text="newData3_lbl:" fontWeight="bold" />
-			<s:TextInput id="newInput3" width="180" />
+			<s:Label text="Your email:" fontWeight="bold" />
+			<s:TextInput id="loginEmailInput" width="180" />
 			<s:Spacer height="3" />
 			-->
 			<s:Label text="Password:" fontWeight="bold" />

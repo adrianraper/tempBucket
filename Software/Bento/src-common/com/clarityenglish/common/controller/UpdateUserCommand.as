@@ -2,7 +2,6 @@
 Simple Command - PureMVC
  */
 package com.clarityenglish.common.controller {
-	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.manageable.User;
 	

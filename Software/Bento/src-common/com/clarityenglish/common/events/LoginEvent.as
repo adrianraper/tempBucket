@@ -1,4 +1,6 @@
 ﻿package com.clarityenglish.common.events {
+	import com.clarityenglish.common.vo.manageable.User;
+	
 	import flash.events.Event;
 	
 	/**
@@ -8,24 +10,33 @@
 	public class LoginEvent extends Event {
 		
 		public static const LOGIN:String = "login";
-		
+		public static const ADD_USER:String = "add_user";
+
 		// Note that username is really just the key that is being used to identify the user, it might be name or id or email
-		public var username:String;
-		public var password:String;
+		//public var username:String;
+		//public var studentID:String;
+		//public var email:String;
+		//public var password:String;
+		public var user:User;
+		public var loginOption:uint;
 		
-		public function LoginEvent(type:String, username:String, password:String, bubbles:Boolean=false, cancelable:Boolean=false) { 
+		//public function LoginEvent(type:String, username:String, password:String, bubbles:Boolean=false, cancelable:Boolean=false) { 
+		public function LoginEvent(type:String, userObject:Object, loginOption:uint, bubbles:Boolean=false, cancelable:Boolean=false) { 
 			super(type, bubbles, cancelable);
 			
-			this.username = username;
-			this.password = password;
+			//this.name = username;
+			//this.password = password;
+			this.user = new User(userObject);
+			this.loginOption = loginOption;
 		} 
 		
 		public override function clone():Event { 
-			return new LoginEvent(type, username, password, bubbles, cancelable);
+			//return new LoginEvent(type, username, password, bubbles, cancelable);
+			return new LoginEvent(type, user, loginOption, bubbles, cancelable);
 		} 
 		
 		public override function toString():String { 
-			return formatToString("LoginEvent", "type", "username", "password", "bubbles", "cancelable", "eventPhase"); 
+			return formatToString("LoginEvent", "type", "user.name", "loginOption", "bubbles", "cancelable", "eventPhase"); 
 		}
 		
 	}

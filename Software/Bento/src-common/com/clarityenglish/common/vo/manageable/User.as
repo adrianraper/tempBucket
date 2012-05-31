@@ -81,14 +81,23 @@
 		// v3.4 Multi-group users
 		public var userID:String;
 		
-		public function User() {
-			
+		public function User(data:Object = null) {
+			if (data)
+				buildUser(data);
 		}
 		
-		// AR A temporary constructor
+		// AR A temporary constructor. Used to populate data into a new user
 		public function buildUser(data:Object):void {
-			this.id = data.userID;
-			this.name = data.name;
+			if (data.userID)
+				this.id = data.userID;
+			if (data.name)
+				this.name = data.name;
+			if (data.email)
+				this.email = data.email;
+			if (data.studentID)
+				this.email = data.studentID;
+			if (data.password)
+				this.email = data.password;
 		}
 		/**
 		 * A single user always has a userCount of 1

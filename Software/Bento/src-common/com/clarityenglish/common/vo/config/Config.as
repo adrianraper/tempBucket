@@ -10,6 +10,11 @@ package com.clarityenglish.common.vo.config {
 	 * It includes licence control, user and account information.
 	 */
 	public class Config {
+		
+		public static const LOGIN_BY_NAME:uint = 1;
+		public static const LOGIN_BY_ID:uint = 2;
+		public static const LOGIN_BY_EMAIL:uint = 128;
+
 		/**
 		 * Information is held in simple variables for the most part
 		 */

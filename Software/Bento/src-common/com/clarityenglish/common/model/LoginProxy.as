@@ -60,20 +60,22 @@ package com.clarityenglish.common.model {
 			return _group;
 		}
 		
-		public function login(key:String, password:String):void {
+		// #341
+		//public function login(key:String, password:String):void {
+		public function login(user:User, loginOption:uint):void {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
 			// For AA licences you still do the call as this does getLicenceSlot
 			
-			var loginOption:uint = configProxy.getAccount().loginOption;
-			if (loginOption & 1) {
-				var loginObj:Object = {username:key, password:password};
-			} else if (loginOption & 2) {
-				loginObj = {studentID:key, password:password};
-			} else if (loginOption & 128) {
-				loginObj = {email:key, password:password};
+			//var loginOption:uint = configProxy.getAccount().loginOption;
+			if (loginOption & Config.LOGIN_BY_NAME) {
+				var loginObj:Object = {username:user.name, password:user.password};
+			} else if (loginOption & Config.LOGIN_BY_ID) {
+				loginObj = {studentID:user.studentID, password:user.password};
+			} else if (loginOption & Config.LOGIN_BY_EMAIL) {
+				loginObj = {email:user.email, password:user.password};
 			} else {
 				// Throw an error as you don't know how to login
 				var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;

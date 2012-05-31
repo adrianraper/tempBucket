@@ -4,6 +4,8 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.events.Event;
@@ -16,13 +18,11 @@ package com.clarityenglish.ielts.view.login {
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
-	import org.osflash.signals.Signal;
-	
 	import spark.components.Button;
 	import spark.components.FormHeading;
 	import spark.components.Label;
 	import spark.components.TextInput;
-	
+
 	public class LoginView extends BentoView implements LoginComponent {
 		
 		[SkinPart(required="true")]
@@ -35,7 +35,7 @@ package com.clarityenglish.ielts.view.login {
 		public var passwordInput:TextInput;
 		
 		[SkinPart(required="true")]
-		public var nameInput:TextInput;
+		public var loginKeyInput:TextInput;
 
 		// #341
 		[SkinPart]
@@ -45,29 +45,34 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var cancelButton:Button;
 		[SkinPart]
-		public var newInput1:TextInput;
+		public var loginNameInput:TextInput;
 		[SkinPart]
-		public var newInput2:TextInput;
+		public var loginEmailInput:TextInput;
 		[SkinPart]
-		public var newInput3:TextInput;
+		public var loginIDInput:TextInput;
 		[SkinPart]
-		public var newPassword:TextInput;
+		public var newPasswordInput:TextInput;
 
 		[SkinPart]
 		public var quickStartButton:Button;
 		
 		[Bindable]
+		public var loginKey_lbl:String;
+		[Bindable]
+		public var loginName_lbl:String;
+		[Bindable]
 		public var loginID_lbl:String;
 		[Bindable]
-		public var newData1_lbl:String;
-		
-		private var _productVersion:String;
-		private var _productCode:uint;
+		public var loginEmail_lbl:String;
 		
 		// #341
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
+		private var _currentState:String;
 
+		private var _productVersion:String;
+		private var _productCode:uint;
+		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionAcademicLogo:Class;
@@ -222,7 +227,7 @@ package com.clarityenglish.ielts.view.login {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case nameInput:
+				case loginKeyInput:
 				case passwordInput:
 					instance.addEventListener(FlexEvent.ENTER, onEnter, false, 0, true);
 					break;
@@ -238,7 +243,7 @@ package com.clarityenglish.ielts.view.login {
 
 		// #341
 		protected override function getCurrentSkinState():String {
-			return super.getCurrentSkinState();
+			return _currentState;
 		}
 		
 		/**
@@ -273,35 +278,39 @@ package com.clarityenglish.ielts.view.login {
 			
 			// Override normal text with Last Minute
 			if (_productVersion == IELTSApplication.LAST_MINUTE) { 
-				loginID_lbl = "Login id:";
+				loginKey_lbl = "Login id:";
 				
 			} else {
 				switch (loginOption) {
-					case 1:
-						loginID_lbl = "Your name:";
-						newData1_lbl = "Your name:";
+					case Config.LOGIN_BY_NAME:
+						loginKey_lbl = "Your name:";
 						break;
-					case 2:
-						loginID_lbl = "Your id:";
-						newData1_lbl = "Your id:";
+					case Config.LOGIN_BY_ID:
+						loginKey_lbl = "Your id:";
 						break;
-					case 128:
-						loginID_lbl = "Your email:";
-						newData1_lbl = "Your email:";
+					case Config.LOGIN_BY_EMAIL:
+						loginKey_lbl = "Your email:";
 						break;
 					default:
 				}
 			}
+			
+			// #341 for self-registration
+			loginName_lbl = "Your name:";
+			loginID_lbl = "Your id:";
+			loginEmail_lbl = "Your email:";
 		}
 		
 		// #254
 		public function onEnter(event:FlexEvent):void {
-			if (StringUtil.trim(nameInput.text) && StringUtil.trim(passwordInput.text))
-				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
+			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
+				var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
+				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption));
+			}
 			
 			// Go to the password field if press Enter but it is empty
 			// TODO. Ideally we would check loginOptions to see if password required
-			if (StringUtil.trim(nameInput.text) && StringUtil.trim(passwordInput.text)=='')
+			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)=='')
 				passwordInput.setFocus();
 		}
 		
@@ -314,16 +323,20 @@ package com.clarityenglish.ielts.view.login {
 			// Trigger login, registration, add new user or cancel
 			switch (event.target) {
 				case quickStartButton:
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, "Adrian Raper", "passwording", true));
+					var user:User = new User({name:"Adrian Raper", password:"password"});
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption));
 					break;
 				case loginButton:
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, nameInput.text, passwordInput.text, true));
+					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption));
 					break;
 				case newUserButton:
 					setState("register");
 					break;
 				case addUserButton:
-					//addUser.dispatch();
+					//user = new User({name:newNameInput.text, password:newPasswordInput.text});
+					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
+					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption));
 					break;
 				default:
 					setState("login");
@@ -331,9 +344,10 @@ package com.clarityenglish.ielts.view.login {
 		
 		}
 		
-		// #341
 		public function setState(state:String):void {
-			currentState = state;
+			
+			// Can't use currentState as that belongs to the view and is not automatically linked to the skin
+			_currentState = state;
 			invalidateSkinState();
 		}
 		
