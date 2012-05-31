@@ -99,8 +99,7 @@
 			<!-- this is for the rotating course selector -->
 			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" />
 		</s:Group>
-
-
+		
 		<!-- The popout exercise selector -->
 		<ui:PopoutExerciseSelector id="popoutExerciseSelector"
 								   href="{hostComponent.href}"

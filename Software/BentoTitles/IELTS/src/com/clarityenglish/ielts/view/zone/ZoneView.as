@@ -86,7 +86,7 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var adviceZoneVideoList:List;
 
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var courseSelectorWidget:CourseSelectorWidget;
 		
 		private var _courseCaption:String;
@@ -240,7 +240,7 @@ package com.clarityenglish.ielts.view.zone {
 				examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise.(hasOwnProperty("@answerHref")));
 				
 				// Change the course selector
-				courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
+				if (courseSelectorWidget) courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
 				
 				// #215
 				showEBook();

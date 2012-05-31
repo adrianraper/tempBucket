@@ -72,7 +72,7 @@ package com.clarityenglish.bento.model {
 			
 			// launch_data is key, and you need to carefully check this as not all LMS support it
 			// TODO: Encode as JSON?
-			scorm.launchData = JSON.decode(scorm.getParameter('launchData'));
+			scorm.launchData = com.adobe.serialization.json.JSON.decode(scorm.getParameter('launchData'));
 			/*
 			_global.ORCHID.commandLine.course = launchData.course;
 			if (launchData.unit != undefined) {
@@ -86,7 +86,7 @@ package com.clarityenglish.bento.model {
 			
 			// entry data says whether we should also get
 			// suspend data
-			scorm.suspendData = JSON.decode(scorm.getParameter('suspendData'));
+			scorm.suspendData = com.adobe.serialization.json.JSON.decode(scorm.getParameter('suspendData'));
 			
 		}
 

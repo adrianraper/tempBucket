@@ -107,6 +107,8 @@ package com.clarityenglish.ielts.view.exercise {
 		}
 		
 		protected override function getCurrentSkinState():String {
+			if (!dynamicView) return null;
+			
 			return (dynamicView.viewName == DynamicView.DEFAULT_VIEW) ? "exercise" : "other";
 		}
 		

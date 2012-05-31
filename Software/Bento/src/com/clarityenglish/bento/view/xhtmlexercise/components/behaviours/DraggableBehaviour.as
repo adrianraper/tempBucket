@@ -174,7 +174,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				Mouse.registerCursor("handCursor", cursorData);
 			}
 			
-			Mouse.cursor = "handCursor";
+			try {
+				Mouse.cursor = "handCursor";
+			} catch (e:Error) {}
 		}
 		
 		protected function onRollOut(e:FlowElementMouseEvent, draggableNode:XML):void {

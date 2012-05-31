@@ -296,7 +296,7 @@ package com.clarityenglish.common.model {
 				}
 			}
 			
-			return { courseID: "1287130100000" };
+			return { };
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
