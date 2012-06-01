@@ -61,7 +61,7 @@ package com.clarityenglish.common.view.login {
 			return super.listNotificationInterests().concat([
 				CommonNotifications.INVALID_LOGIN,
 				CommonNotifications.COPY_LOADED,
-				CommonNotifications.ADDED_NEW_USER,
+				CommonNotifications.ADDED_USER,
 			]);
 		}
 
@@ -96,7 +96,7 @@ package com.clarityenglish.common.view.login {
 					view.clearData();
 					break;
 				
-				case CommonNotifications.ADDED_NEW_USER:
+				case CommonNotifications.ADDED_USER:
 					// #341
 					// Check if successful. If yes, then just login that user
 					var user:User = note.getBody() as User;
@@ -121,7 +121,7 @@ package com.clarityenglish.common.view.login {
 		}
 
 		private function onAddUser(e:LoginEvent):void {
-			sendNotification(CommonNotifications.ADD_NEW_USER, e);
+			sendNotification(CommonNotifications.ADD_USER, e);
 		}
 
 	}

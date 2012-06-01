@@ -88,7 +88,14 @@ package com.clarityenglish.common.model {
 			var instanceID:Number = new Date().getTime();
 			configProxy.getConfig().instanceID = instanceID.toString();
 			
-			// Off to the database
+			// #340
+			// Network allows anonymous entry if all fields are blank
+			if ((configProxy.getConfig().licenceType == Title.LICENCE_TYPE_NETWORK) &&
+				(!user.name || user.name=='') &&
+				(!user.studentID || user.studentID=='') &&
+				(!user.email || user.email==''))
+				loginObj = null;
+			
 			// #307 Add rootID and productCode
 			var params:Array = [ loginObj, loginOption, instanceID, configProxy.getConfig().licence, configProxy.getRootID(), configProxy.getProductCode() ];
 			new RemoteDelegate("login", params, this).execute();
@@ -143,7 +150,6 @@ package com.clarityenglish.common.model {
 			// #307 pass rootID too
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			// Off to the database
 			var params:Array = [ newUserDetails, configProxy.getRootID() ];
 			new RemoteDelegate("updateUser", params, this).execute();
 		}
@@ -155,8 +161,7 @@ package com.clarityenglish.common.model {
 		public function addUser(user:User, loginOption:Number):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			// Off to the database
-			var params:Array = [ user, configProxy.getRootID() ];
+			var params:Array = [ user, loginOption, configProxy.getRootID(), configProxy.getConfig().group ];
 			new RemoteDelegate("addUser", params, this).execute();
 		}
 
@@ -194,7 +199,14 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "addUser":
-					sendNotification(BBNotifications.USER_ADDED, data);	
+					if (data) {
+						// Just go back into login for this user now
+						configProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						login(data as User, configProxy.getAccount().loginOption);
+						
+					} else {
+						sendNotification(CommonNotifications.ADD_USER_FAILED);						
+					}
 					break;
 				
 				case "login":
@@ -262,6 +274,9 @@ package com.clarityenglish.common.model {
 			switch (operation) {
 				case "login":
 					sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
+					break;
+				case "addUser":
+					sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault));
 					break;
 				case "updateLicence":
 					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));

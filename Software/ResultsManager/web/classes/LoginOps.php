@@ -23,16 +23,22 @@ class LoginOps {
 			if (isset($loginObj['username'])) {
 				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
+			} else {
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
 			}
 		} elseif ($loginOption & 2) {
 			if (isset($loginObj['studentID'])) {
 				$key = 'u.F_StudentID';
 				$keyValue = $loginObj['studentID'];
+			} else {
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
 			}
 		} elseif ($loginOption & 128) {
 			if (isset($loginObj['email'])) {
 				$key = 'u.F_Email';
 				$keyValue = $loginObj['email'];
+			} else {
+				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
 			}
 		}
 		if (isset($loginObj['password']))

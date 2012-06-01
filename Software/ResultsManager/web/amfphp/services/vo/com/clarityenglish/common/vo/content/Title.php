@@ -11,6 +11,7 @@ class Title extends Content {
 	const LICENCE_TYPE_LT = 1;
 	const LICENCE_TYPE_AA = 2;
 	const LICENCE_TYPE_CT = 3;
+	const LICENCE_TYPE_NETWORK = 3;
 	const LICENCE_TYPE_SINGLE = 4;
 	const LICENCE_TYPE_I = 5;
 	const LICENCE_TYPE_TT = 6;

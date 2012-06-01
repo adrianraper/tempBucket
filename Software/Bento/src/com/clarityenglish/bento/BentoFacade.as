@@ -89,7 +89,7 @@
 			registerCommand(CommonNotifications.COPY_LOAD, CopyLoadCommand);
 			
 			// AR add in login and logout
-			registerCommand(BBNotifications.USER_ADD, AddUserCommand);
+			registerCommand(CommonNotifications.ADD_USER, AddUserCommand);
 			registerCommand(BBNotifications.USER_UPDATE, UpdateUserCommand);
 			registerCommand(CommonNotifications.LOGIN, LoginCommand);
 			registerCommand(CommonNotifications.LOGOUT, LogoutCommand);
@@ -98,6 +98,7 @@
 			registerCommand(CommonNotifications.BENTO_ERROR, ShowErrorCommand); // we might be able to replace everything with this
 			registerCommand(CommonNotifications.INVALID_DATA, ShowErrorCommand);
 			registerCommand(CommonNotifications.INVALID_LOGIN, ShowErrorCommand);
+			registerCommand(CommonNotifications.ADD_USER_FAILED, ShowErrorCommand);
 			registerCommand(CommonNotifications.EXIT, LogoutCommand);
 
 			// For use with sessions and scores for progress

@@ -148,12 +148,17 @@ class ManageableOps {
 		
 		// First create the user
 		//NetDebug::trace('addUser name='.$user->name.' expire='.$user->expiryDate.' type='.$user->userType);
-		$dbObj = $user->toAssocArray();
+		//$dbObj = $user->toAssocArray();
 		//NetDebug::trace('sql expire='.$dbObj['F_ExpiryDate']);
 		
 		$this->db->StartTrans();
 		
-		$this->db->AutoExecute("T_User", $dbObj, "INSERT");
+		// #340 SQLite doesn't like autoexecute
+		//$this->db->AutoExecute("T_User", $dbObj, "INSERT");
+		
+		$rc = $this->db->Execute($user->toSQLInsert(), $user->toBindingParams());
+		if (!$rc)
+			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
 		
 		// Add the auto-generated id to the original group object
 		// v3.4 Multi-group users
@@ -162,13 +167,23 @@ class ManageableOps {
 		$user->id = (string)$parentGroup->id.'.'.$user->userID;
 		
 		// Now insert a record in the group membership table to say which parent group the user belongs to
-		$dbObj = array();
+		// #340 SQLite doesn't like autoexecute
+		$sql = <<<EOD
+			INSERT INTO T_Membership (F_UserID,F_GroupID,F_RootID)
+			VALUES (?,?,?) 
+EOD;
+		$bindingParams = array($user->userID, $parentGroup->id, ($rootID) ? $rootID : Session::get('rootID'));
+		$rc = $this->db->Execute($sql, $bindingParams);
+		if (!$rc)
+			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+			
+		//$dbObj = array();
 		// v3.4 Multi-group users
 		//$dbObj['F_UserID'] = $user->id;
-		$dbObj['F_UserID'] = $user->userID;
-		$dbObj['F_GroupID'] = $parentGroup->id;
-		$dbObj['F_RootID'] = ($rootID) ? $rootID : Session::get('rootID'); // If root id is given then use that (for DMS), otherwise use the session root
-		$this->db->AutoExecute("T_Membership", $dbObj, "INSERT");
+		//$dbObj['F_UserID'] = $user->userID;
+		//$dbObj['F_GroupID'] = $parentGroup->id;
+		//$dbObj['F_RootID'] = ($rootID) ? $rootID : Session::get('rootID'); // If root id is given then use that (for DMS), otherwise use the session root
+		//$this->db->AutoExecute("T_Membership", $dbObj, "INSERT");
 		
 		$this->db->CompleteTrans();
 		
@@ -222,6 +237,13 @@ class ManageableOps {
 			NetDebug::trace('ManageableOps.updateUser update him first='.$user->name);
 			// Update the user record
 			$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
+			/*
+			 * assuming that SQLite doesn't like autoexec
+			$rc = $this->db->Execute($user->toSQLUpdate($user->userID), $user->toBindingParams());
+			if (!$rc)
+				throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+			 */
+			
 		}
 		
 		// Then remove the current membership record(s)
@@ -230,13 +252,15 @@ class ManageableOps {
 		$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID =".$user->userID);
 		
 		// Then insert a record in the group membership table to say which parent group the user now belongs to
-		$dbObj = array();
-		$dbObj['F_UserID'] = $user->userID;
-		$dbObj['F_GroupID'] = $parentGroup->id;
-		$dbObj['F_RootID'] = ($rootID) ? $rootID : Session::get('rootID'); // If root id is given then use that (for DMS), otherwise use the session root
-		$this->db->AutoExecute("T_Membership", $dbObj, "INSERT");
-		//NetDebug::trace('ManageableOps.add new membership to group='.$parentGroup->id);
-		
+		$sql = <<<EOD
+			INSERT INTO T_Membership (F_UserID,F_GroupID,F_RootID)
+			VALUES (?,?,?) 
+EOD;
+		$bindingParams = array($user->userID, $parentGroup->id, ($rootID) ? $rootID : Session::get('rootID'));
+		$rc = $this->db->Execute($sql, $bindingParams);
+		if (!$rc)
+			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+				
 		$this->db->CompleteTrans();
 		
 		// Return the moved user object
@@ -1072,6 +1096,7 @@ EOD;
 			return false;
 		} else {
 			throw new Exception("More than one user with this key $key");
+			//throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("key" => $key));
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?

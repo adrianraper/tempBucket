@@ -2,6 +2,7 @@ package com.clarityenglish.common.vo.config {
 	//import com.clarityenglish.common.vo.config.Licence;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
@@ -75,6 +76,9 @@ package com.clarityenglish.common.vo.config {
 		public var licence:Licence;
 		// Actually, we might just use the Account class rather than a special licence class
 		public var account:Account;
+		
+		// #341 Hold the top level group for this account
+		public var group:Group;
 		
 		// For holding chart templates
 		private var _chartTemplates:XML;
@@ -318,6 +322,10 @@ package com.clarityenglish.common.vo.config {
 			
 			// Grab the account and title into our classes
 			this.account = data.account as Account;
+			
+			// #341
+			if (data.group)
+				this.group = data.group as Group;
 			
 			// #306 Specifically set rootID in config
 			this.rootID = Number(this.account.id);

@@ -970,9 +970,9 @@ EOD;
 		$sql = 	<<<EOD
 				SELECT F_RootID AS rootID 
 				FROM T_AccountRoot
-				WHERE F_Prefix=?   
+				WHERE LOWER(F_Prefix)=?
 EOD;
-		$bindingParams = array($prefix);
+		$bindingParams = array(strtolower($prefix));
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs)
 			return $rs->FetchNextObj()->rootID;

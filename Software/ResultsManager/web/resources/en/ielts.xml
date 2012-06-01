@@ -22,6 +22,7 @@
 			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
 			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
+			<lit name="errorLoginKeyEmpty" code="215">The key field can't be empty ({loginOption})</lit>
 			
 			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
 			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>

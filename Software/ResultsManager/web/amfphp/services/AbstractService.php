@@ -94,6 +94,7 @@ class AbstractService {
 			$function_called == "updateLicence" ||
 			$function_called == "getInstanceID" ||
 			$function_called == "writeScore" ||
+			$function_called == "addUser" ||
 			$function_called == "getCCBContent"
 			) return true;
 		

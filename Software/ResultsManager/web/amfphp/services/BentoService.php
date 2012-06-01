@@ -98,7 +98,11 @@ class BentoService extends AbstractService {
 		}*/
 		
 		$account = $this->loginOps->getAccountSettings($config);
+		
 		// TODO. We will also need the top group ID for this account to help with hiddenContent
+		// Actually hidden content might want the group that comes back from login rather than this one?
+		// and for addUser
+		$group = $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($account->getAdminUserID()));
 		
 		// We also need some misc stuff.
 		$configObj = array("databaseVersion" => $this->getDatabaseVersion());
@@ -115,6 +119,7 @@ class BentoService extends AbstractService {
 		
 		return array("config" => $configObj,
 					 "licence" => $licence,
+					 "group" => $group,
 					 "account" => $account);
 	}
 	
@@ -135,7 +140,9 @@ class BentoService extends AbstractService {
 								  User::USER_TYPE_REPORTER);
 								 
 		// No need to check names for anonymous licence
-		if ($licence->licenceType == Title::LICENCE_TYPE_AA) {
+		// #341 or for network licence working in anonymous mode
+		if ($licence->licenceType == Title::LICENCE_TYPE_AA || 
+			($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL)) {
 			$userObj = $this->loginOps->anonymousUser($rootID);
 		} else {
 			// First, confirm that the user details are correct
@@ -165,16 +172,19 @@ class BentoService extends AbstractService {
 		
 		// Add the user into the group
 		$group->addManageables(array($user));
-				
-		// Next we need to set the instance ID for the user in the database
-		$rc = $this->loginOps->setInstanceID($user->userID, $instanceID, $productCode);
-		
-		// Content information - though you don't know which course they are going to start yet
-		// you can still send back hiddenContent information and bookmarks
-		// TODO. RM currently keyed this on a session variable, so for now just use that with the groupID
-		// although maybe we need the full is of parent groups in here too.
-		Session::set('valid_groupIDs', array($group->id));
-		$contentObj = $this->contentOps->getHiddenContent($productCode);
+
+		// #341 If this is a named user then
+		if ($user->userID > 0) {
+			// Next we need to set the instance ID for the user in the database
+			$rc = $this->loginOps->setInstanceID($user->userID, $instanceID, $productCode);
+			
+			// Content information - though you don't know which course they are going to start yet
+			// you can still send back hiddenContent information and bookmarks
+			// TODO. RM currently keyed this on a session variable, so for now just use that with the groupID
+			// although maybe we need the full is of parent groups in here too.
+			Session::set('valid_groupIDs', array($group->id));
+			$contentObj = $this->contentOps->getHiddenContent($productCode);
+		}
 		
 		// TODO. What is a good format for sending back bookmark information?
 		// For now I will just expect an array of courseIDs that this user has started so that
@@ -367,6 +377,57 @@ class BentoService extends AbstractService {
 	public function updateUser($userObj, $rootID = NULL, $password = NULL) {
 		if (!$rootID) $rootID = Session::get('rootID');
 		return $this->manageableOps->updateUsers(array($userObj), $rootID);
+	}
+	
+	/**
+	 * The program wants to register a new user. Expect a little information.
+	 * Check for duplicates in this root and that the minimum login information is set.
+	 */
+	public function addUser($user, $loginOption, $rootID = NULL, $group) {
+		if (!$rootID) $rootID = Session::get('rootID');
+		
+		// If you don't know a rootID, you can't get or add the user
+		if (!$rootID) 
+			throw $this->copyOps->getExceptionForId("errorNoSuchRootID", array("rootID" => NULL));
+			
+		// Does this user already exist? Check by the key information ($loginOption)
+		// TODO. This switch should really go in getUserByKey
+		$stubUser = new User();
+		switch ($loginOption) {
+			case 1:
+				$stubUser->name = $user->name;
+				break;
+			case 2:
+				$stubUser->studentID = $user->studentID;
+				break;
+			case 128:
+				$stubUser->email = $user->email;
+				break;
+		}
+		$stubUser = $this->manageableOps->getUserByKey($stubUser);
+		
+		// Go ahead and add the user to the top level group
+		if ($stubUser==false) {
+			if (!$group) 
+				throw $this->copyOps->getExceptionForId("errorNoSuchGroup", array("rootID" => $rootID));
+
+			// Bento. Override authentication to let a user add themselves to the group
+			AuthenticationOps::clearValidUsersAndGroups();
+			AuthenticationOps::addValidGroupIDs(array($group->id));
+			
+			// Add any preset details to the user object
+			$user->registerMethod = "selfRegister";
+			$user->userType = User::USER_TYPE_STUDENT;
+			$user->userProfileOption = 0;
+			return $this->manageableOps->addUser($user, $group, $rootID);
+		
+		} else {
+			
+			// A user already exists with these details, so throw an error as we can't add the new one
+			throw $this->copyOps->getExceptionForId("errorDuplicateUser", array("name" => $stubUser->name, "loginOption" => $loginOption));
+		}
+
+		return false;
 	}
 	
 	/**

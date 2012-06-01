@@ -111,6 +111,52 @@ class User extends Manageable {
 	}
 	
 	/**
+	 * Convert this object into an SQL UPDATE statement
+	 */
+	function toSQLUpdate($userID) {
+		$this->setDefaultValues();
+		
+		$sql = <<<EOD
+			UPDATE T_User 
+			SET F_UserName=?,F_Email=?,F_Password=?,F_StudentID=?,F_UserType=?,
+					F_ExpiryDate=?,F_StartDate=?,F_RegistrationDate=?,F_Birthday=?,
+					F_Countryv,F_City=?,
+					F_custom1=?,F_custom2=?,F_custom3=?,F_custom4=?,
+					F_FullName=?,F_ContactMethod=?,F_UserProfileOption=?,F_RegisterMethod=?
+			WHERE F_UserID=$userID
+EOD;
+		return $sql;
+	}
+	/**
+	 * Convert this object into an SQL INSERT statement
+	 */
+	function toSQLInsert() {
+		$this->setDefaultValues();
+		
+		$sql = <<<EOD
+			INSERT INTO T_User (F_UserName,F_Email,F_Password,F_StudentID,F_UserType,
+					F_ExpiryDate,F_StartDate,F_RegistrationDate,F_Birthday,
+					F_Country,F_City,
+					F_custom1,F_custom2,F_custom3,F_custom4,
+					F_FullName,F_ContactMethod,F_UserProfileOption,F_RegisterMethod)
+			VALUES (?,?,?,?,?, 
+					?,?,?,?,
+					?,?,
+					?,?,?,?,
+					?,?,?,?)
+EOD;
+		return $sql;
+	}
+	function toBindingParams() {
+		return array($this->name, $this->email, $this->password, $this->studentID, $this->userType, 
+					$this->expiryDate, $this->startDate, $this->registrationDate, $this->birthday,
+					$this->country, $this->city,
+					$this->custom1, $this->custom2, $this->custom3, $this->custom4, 
+					$this->fullName, $this->contactMethod, $this->userProfileOption,
+					$this->registerMethod);
+	}
+	
+	/**
 	 * Convert this object to an associative array ready to pass to AutoExecute.
 	 */
 	function toAssocArray() {
@@ -166,6 +212,21 @@ class User extends Manageable {
 						//"$prefix.F_Company",
 		
 		return implode(",", $fields);
+	}
+	
+	function setDefaultValues() {
+		$this->userType = ($this->userType) ? $this->userType : User::USER_TYPE_STUDENT;
+		$this->country = ($this->country) ? $this->country : "";
+		$this->city = ($this->city) ? $this->city : "";
+		$this->custom1 = ($this->custom1) ? $this->custom1 : "";
+		$this->custom1 = ($this->custom2) ? $this->custom2 : "";
+		$this->custom1 = ($this->custom3) ? $this->custom3 : "";
+		$this->custom1 = ($this->custom4) ? $this->custom4 : "";
+		$this->contactMethod = ($this->contactMethod) ? $this->contactMethod : "";
+		if (!$this->expiryDate || $this->expiryDate=='')
+			$this->expiryDate = NULL;
+		$this->startDate = ($this->startDate) ? $this->startDate : NULL;
+		$this->registrationDate = ($this->registrationDate) ? $this->registrationDate : NULL;
 	}
 	
 	private static function getXMLSerializableFields() {
