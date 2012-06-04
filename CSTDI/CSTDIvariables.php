@@ -14,6 +14,7 @@
 	$country = "Hong Kong";
 	$loginOption = 2;
 	$subscriptionPeriod = "1y";
+	$adminPassword = "57845612";
 	
 	function redirect ($url) {
 		header('Location: ' . $url);

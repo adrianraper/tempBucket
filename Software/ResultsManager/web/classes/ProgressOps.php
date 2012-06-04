@@ -137,6 +137,60 @@ insert into T_Score values
 		//return $menu->asXML();
 		return $this->menu->asXML();
 	}
+	
+	/**
+	 * This method merges the hidden content with XML at the detail level
+	 * The rs contains a record(s) for each bit of hidden content.
+	 */
+	function mergeXMLAndHiddenContent($rs) {
+		$menu = $this->menu->head->script->menu;
+		$menu->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+		
+		// $rs is likely to contain less records than the XML, so loop through rs adding the records
+		// into the XML.
+		foreach ($rs as $record) {
+			// Each record has a UID and an enabledFlag. Match the UID to the menu and merge the eF.
+			$UID = $record['UID'];
+			$eF = $record['eF'];
+			
+			// There is a special case where the whole title has been hidden. 
+			// Schools do this to protect limited licences. If this is the case, get out now and stop the login
+			// TODO. Content::Disabled = 8
+			if ($UID == $productCode && $eF == 8) 
+				throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
+			
+			$exercise = $menu->xpath('.//xmlns:exercise[@id="'..'"]');
+			
+			if (count($exercise) > 1) {
+				// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
+				throw $this->copyOps->getExceptionForId("errorMultipleExerciseWithSameId", array("exerciseID" => $record['F_ExerciseID']));
+			} else if (count($exercise) < 1) {
+				// Whilst we are mixing up old and new IDs, this might happen. Just ignore the record.
+				//throw new Exception('The menu xml contains no exercise node with id='.$record['F_ExerciseID']);
+			} else {
+				// Set the attribute to done for exercises in all units
+				// TODO. It would be almost cost free to count them and could be used in Flex charts?
+				if ($exercise[0]['done']) {
+					$exercise[0]['done'] += 1; 
+				} else {
+					$exercise[0]->addAttribute('done', 1);
+				}
+				
+				// And add a score node as a child IF this is a practice-zone exercise
+				// #318 Send back all scores
+				$unit = $exercise[0]->xpath('..');
+				//if (isset($unit[0]['class']) && $unit[0]['class'] == 'practice-zone') {
+					$score = $exercise[0]->addChild('score');
+					$score->addAttribute('score',$record['F_Score']);
+					$score->addAttribute('duration',$record['F_Duration']);
+					$score->addAttribute('datetime',$record['F_DateStamp']);
+				//}
+			}
+		}
+		
+		return $this->menu->asXML();
+	}
+	
 	/**
 	 * 
 	 * Take an exercise record and return is a bookmark XML
@@ -369,5 +423,24 @@ EOD;
 			
 		// #308
 		return $rc;
+	}
+	
+	/**
+	 * Get hidden content records from the database that describe which bits of content users in this group should see.
+	 *
+	 */
+	public function getHiddenContent($groupID, $productCode) {
+		$sql = <<<EOD
+			SELECT F_HiddenContentUID UID, F_EnabledFlag eF 
+			FROM T_HiddenContent
+			WHERE F_GroupID=?
+			AND F_ProductCode=?
+EOD;
+		$bindingParams = array($groupID, $productCode);
+		$rs = $this->db->GetArray($sql, $bindingParams);
+		if (!$rs)
+			throw $this->copyOps->getExceptionForId("errorDatabaseReading", array("msg" => $this->db->ErrorMsg()));
+			
+		return $rs
 	}
 }

@@ -2,9 +2,5 @@
 <!DOCTYPE cross-domain-policy SYSTEM "http://www.adobe.com/xml/dtds/cross-domain-policy.dtd">
 <cross-domain-policy>
    <site-control permitted-cross-domain-policies="master-only"/>
-   <allow-access-from domain="dock.projectbench" />
-   <allow-access-from domain="*.clarityenglish.com" />
-   <allow-access-from domain="*.claritylifeskills.com" />
-   <allow-access-from domain="*.vimeo.com" />
-   <allow-access-from domain="claritydevelop" />
+   <allow-access-from domain="*" />
 </cross-domain-policy>

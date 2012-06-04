@@ -5,19 +5,7 @@
 
 require_once(dirname(__FILE__)."/EmailService.php");
 
-// Shouldn't all the following be in EmailService?
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/EmailAPI.php");
-require_once($GLOBALS['smarty_libs']."/Smarty.class.php");
-$smarty = new Smarty();
-$smarty->template_dir = $GLOBALS['smarty_template_dir'];
-$smarty->compile_dir = $GLOBALS['smarty_compile_dir'];
-$smarty->config_dir = $GLOBALS['smarty_config_dir'];
-$smarty->cache_dir = $GLOBALS['smarty_cache_dir'];
-$smarty->plugins_dir[] = $GLOBALS['smarty_plugins_dir'];
-
 $emailService = new EmailService();
-session_start();
-date_default_timezone_set('UTC');
 
 // Try overriding the defaults to see if I can send email from Rackspace
 // Yes this does work. If I change the password I get AUTH command failed: 5.7.8 Error: authentication failed: UGFzc3dvcmQ6
@@ -27,11 +15,18 @@ date_default_timezone_set('UTC');
 // What happens if I want to send an array of emails? And what if I use EmailAPI to prepare them?
 function loadAPIInformation() {
 	global $emailService;
-	//global $nonApiInformation;
-	//What's this?
-	//global $returnURL;
 	
-	$postInformation = json_decode(file_get_contents("php://input"), true);	
+	$inputData = file_get_contents("php://input");
+	$inputData = '[{"method":"sendEmail", "from":"adrian.raper@clarityenglish.com", "to":"adrian@noodles.hk", "templateID":"GlobalR2I-registration", "data":{"name":"Adrian&apos;s Raper bean", "password":"1234"}, "transactionTest":false}]';
+
+	$postInformation= json_decode($inputData, true);
+	//echo $postInformation; exit();
+	
+	if (!$postInformation) 
+		// TODO. Ready for PHP 5.3
+		//throw new Exception("Error decoding data: ".json_last_error().': '.$inputData);
+		throw new Exception('Error decoding data: '.': '.$inputData);	
+	
 	// We are expecting an array of emails
 	$emailArray = array();
 	foreach ($postInformation as $emailItem) {
@@ -53,6 +48,7 @@ function loadAPIInformation() {
 	}	
 	//return $apiInformation;
 	return $emailArray;
+	
 }	
 function returnError($errCode, $data = null) {
 	global $emailService;
@@ -86,8 +82,17 @@ try {
 	$apiInformation = loadAPIInformation();
 	//AbstractService::$log->notice("calling validate=".$apiInformation->resellerID);
 	//echo "loaded API";
-	$rc = $emailService->emailOps->sendDirectEmails($apiInformation);
-
+	foreach ($apiInformation as $emailItem) {
+		switch ($emailItem->method) {
+			case "sendEmail":
+				$rc = $emailService->emailOps->sendDirectEmail($emailItem);
+				break;
+				
+			default:
+				returnError(1, 'Invalid method '.$apiInformation->method);
+		}
+	}
+	
 	// Send back success variables.
 	$returnInfo = array('success' => true, 'count' => count($apiInformation)); 
 	echo json_encode($returnInfo);
@@ -98,4 +103,3 @@ try {
 }
 flush();
 exit(0);
-?>

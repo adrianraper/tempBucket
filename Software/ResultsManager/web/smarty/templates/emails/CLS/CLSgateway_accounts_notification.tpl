@@ -8,8 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>CLS ref:{$api->subscription->orderRef}</title>
 	<!-- <from>support@clarityenglish.com</from> -->
-	<!-- <cc>support@ieltspractice.com</bcc> -->
-	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
+	<!-- <cc>support@ieltspractice.com</cc> -->
+	<!-- <bcc>adrian.raper@clarityenglish.com,alfred.ng@clarityenglish.com</bcc> -->
 </head>
 <body>
 Somebody went through CLSgateway with the following information<br/>

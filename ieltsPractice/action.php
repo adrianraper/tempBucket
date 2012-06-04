@@ -62,6 +62,8 @@ if ($queryMethod=="login") {
 	$LoginAPI['method'] = 'getUser';
 	$LoginAPI['email'] = $loginID;
 	$LoginAPI['loginOption'] = 128;
+	// BUG. If you don't set licenceType you will get email clashes
+	$LoginAPI['licenceType'] = 5;
 
 	// Send this single LoginAPI
 	$serializedObj = json_encode($LoginAPI);

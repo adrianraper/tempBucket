@@ -79,8 +79,9 @@ the following URL{if $multipleTitles=='true'}s{/if}:<br />
                   <td colspan="2" valign="top"><table width="600" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                       <td width="385">
+                           <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">If you are a library or school with a customised login screen, these links have probably already been updated.</p>
                       	        
-			<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">You can also find the support materials <a href="http://www.clarityenglish.com/support/materials/roadtoielts.php" target="_blank">here</a> for the new version of Road to IELTS.</p>
+			<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:8px 0 15px 0; padding:0; color:#000000; line-height:18px;">You can also find the support materials <a href="http://www.clarityenglish.com/support/materials/roadtoielts.php" target="_blank">here</a> for the new version of Road to IELTS.</p>
             
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">If you have any questions about this, please do let me know. I hope that you and your
 students enjoy the brand new Road to IELTS v2!</p>

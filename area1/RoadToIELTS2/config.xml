@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 in localhost</id>
-	<developer>network</developer>
-	<dbHost>30</dbHost>
+	<developer>none</developer>
+	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<mediaChannel-2>aws</mediaChannel-2>
 	<streamingMedia-2>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia-2>

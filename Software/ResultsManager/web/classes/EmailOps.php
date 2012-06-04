@@ -218,8 +218,8 @@ class EmailOps {
 	// Used by EmailGateway to send a direct email, no account information used
 	// Remember that in the template you have to use {$body.name} format rather than the php $body['name']
 	function sendDirectEmail($emailAPI) {
-		$emailArray = array("to" => $emailAPI->to
-								,"data" => array("body" => $emailAPI->data)
+		$emailArray = array("to" => $emailAPI->to,
+							"data" => array("body" => $emailAPI->data)
 							);
 		if ($emailAPI->cc) {
 			array_splice($emailArray, 2 , 0, array("cc" => $emailAPI->cc));
@@ -232,7 +232,7 @@ class EmailOps {
 		}
 		
 		// You can avoid sending the email if you are testing
-		if (isset($emailAPI->transactionTest) && $emailAPI->transactionTest) {
+		if (isset($emailAPI->transactionTest) && ($emailAPI->transactionTest=='true')) {
 			echo "<b>send {$emailAPI->templateID}, to: ".$emailAPI->to."</b><br/><br/>";
 		} else {
 			$errors = $this->sendEmails("", $emailAPI->templateID, array($emailArray));

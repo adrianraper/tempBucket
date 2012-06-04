@@ -38,8 +38,8 @@
     	<div id="header_CP1"></div>
         <div id="select_title">Please select an option.</div>
         <div id="content">
-            <a href="<?php echo $programLink; ?>" target="_self" id="btn_cp1_start"></a>
-            <a href="<?php echo $evaluationLink; ?>" target="_self" id="btn_cp1_eva"></a>
+            <a href="<?php echo $programLink; ?>" target="_new" id="btn_cp1_start"></a>
+            <a href="<?php echo $evaluationLink; ?>" target="_new" id="btn_cp1_eva"></a>
         </div>
         <div id="footer_CP1"></div>
     </div>

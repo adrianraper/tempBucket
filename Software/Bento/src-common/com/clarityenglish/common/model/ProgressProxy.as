@@ -122,7 +122,9 @@ package com.clarityenglish.common.model {
 					
 				default:
 					// Send user details and the URL of the menu to the backend
-					var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, href.url ];
+					// #338 Add group so you can get hidden content
+					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					var params:Array = [ user.userID, configProxy.getConfig().group.id, account.id, (account.titles[0] as Title).id, progressType, href.url ];
 					new RemoteDelegate("getProgressData", params, this).execute();
 					
 					// Maintain a note that we are currently loading this data
@@ -138,6 +140,8 @@ package com.clarityenglish.common.model {
 		 * This function takes menu data back from the server and saves
 		 * it in the correct proxy and format.
 		 * #338
+		 * TODO. DK recommends that at some point we move the saving back to XHTMLProxy as that is
+		 * where it really should be. Even if we actually get the data from ProgressProxy.
 		 */
 		private function saveMenuData(dataProvider:Object):Boolean {
 			
@@ -159,7 +163,7 @@ package com.clarityenglish.common.model {
 				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 				var directStart:Object = configProxy.getDirectStart();
 				
-				if (directStart.courseID) {
+				if (directStart && directStart.courseID) {
 					for each (var course:XML in menuXHTML..course) {
 						if (course.@id == directStart.courseID) {
 							course.@enabledFlag = 3;

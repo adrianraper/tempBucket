@@ -3,42 +3,50 @@
 	header('Content-Type: text/html; charset=utf-8');
 	// For testing Login API
 	
-	$commonDomain  = 'http://dock.fixbench/'; 
+	$clarityDomain  = 'http://p4.clarityenglish.com/';
+	//$clarityDomain  = 'http://claritydevelop/';
+	//$clarityDomain  = 'http://dock.projectbench/';
 
-	$studentID = "cstdi-101";
-	$name = "RAPER, Adrian 101";
-	$email = "support@ieltspractice.com";
-	$dbHost = 2;
-	$prefix = "CSTDI";
-	$rootID = 14449;
-	$groupID = 26271;
-	$custom1 = 'Basic';
-	$custom2 = "IMD";
-	$city = "Hong Kong";
-	$country = "Hong Kong";
-	$loginOption = 2;
+	// Mandatory fields to pass
+	$name = "Kima 133";
+	$prefix = "WHC";
+	$loginOption = 1; // This is for name based login. 2=studentID login.
+	$adminPassword = "xetfisthis";
+
+	// Optional field if you want to put the user into a particular group.
+	// If the group doesn't exist it will be created at the top level in the account.
+	$groupName = "Winhoe autogroup 3";
+	
+	// Optional fields if you want to link a teacher to this group
+	// If this teacher doesn't exist, there will be no error
+	// If the student already exists, no attempt will be made to link this teacher to the student's group
+	$teacherName = "Wendy";
+	
+	// Optional information about the student
+	$email = "xxx";
+	$studentID = "xxx";
+	$country = "xxx";
+	$city = "xxx";
 	
 	// Query the database to see if this user already exists
 	// Use LoginGateway
 	$LoginAPI = array();
-	$LoginAPI['method'] = 'getOrAddUser';
-	$LoginAPI['studentID'] = $studentID;
+	$LoginAPI['method'] = 'getOrAddUserAutoGroup';
 	$LoginAPI['name'] = $name;
-	$LoginAPI['email'] = $email;
-	$LoginAPI['dbHost'] = $dbHost;
 	$LoginAPI['prefix'] = $prefix;
-	$LoginAPI['rootID'] = $rootID;
-	$LoginAPI['groupID'] = $groupID;
+	$LoginAPI['loginOption'] = $loginOption;
+	$LoginAPI['adminPassword'] = $adminPassword;
+	$LoginAPI['groupName'] = $groupName;
+	$LoginAPI['teacherName'] = $teacherName;
+	$LoginAPI['email'] = $email;
+	$LoginAPI['studentID'] = $studentID;
 	$LoginAPI['city'] = $city;
 	$LoginAPI['country'] = $country;
-	$LoginAPI['loginOption'] = $loginOption;
-	$LoginAPI['custom1'] = $custom1;
-	$LoginAPI['custom2'] = $custom2;
 			
 	// Send this single LoginAPI
 	$serializedObj = json_encode($LoginAPI);
-	$targetURL = $commonDomain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
-	echo $serializedObj;
+	$targetURL = $clarityDomain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
+	//echo $serializedObj;
 
 	// Initialize the cURL session
 	$ch = curl_init();

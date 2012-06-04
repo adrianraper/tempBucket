@@ -374,8 +374,8 @@ WHERE F_TriggerID in (34,35);
 INSERT INTO `rack80829`.`T_Triggers`
 (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
 VALUES
-(34,'Support start+1.5m',null,null,34,'method=getAccounts&startDate={now}-1.5m&accountType=1&notLicenceType=5',null,null,'email','daily',4),
-(35,'Support start+6.5m',null,null,35,'method=getAccounts&startDate={now}-6.5m&accountType=1&notLicenceType=5','2011-12-31',null,'email','daily',4);
+(34,'Support start+1.5m',null,null,34,'method=getAccounts&startDate={now}-1.5m&accountType=1&notLicenceType=5&active=true',null,null,'email','daily',4),
+(35,'Support start+6.5m',null,null,35,'method=getAccounts&startDate={now}-6.5m&accountType=1&notLicenceType=5&active=true','2011-12-31',null,'email','daily',4);
 
 -- Remove duplicates
 DELETE FROM `rack80829`.`T_AccountStatus`;
@@ -523,3 +523,10 @@ ADD COLUMN `F_OrderRef` VARCHAR(32) NULL DEFAULT NULL  AFTER `F_ResellerCode` ;
 -- In the meantime
 ALTER TABLE `rack80829`.`T_Subscription` 
 ADD COLUMN `F_DateStamp` datetime DEFAULT NULL AFTER `F_Email`;
+
+-- Start introducing the svn of this file into the F_Version of T_DatabaseVersion
+-- so that you can accurately cope with network installations
+INSERT INTO `rack80829`.`T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (840, NOW(), 'subscription changes');
+

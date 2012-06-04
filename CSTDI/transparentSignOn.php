@@ -76,6 +76,7 @@ try {
 	$LoginAPI['country'] = $country;
 	$LoginAPI['loginOption'] = $loginOption;
 	$LoginAPI['subscriptionPeriod'] = $subscriptionPeriod;
+	$LoginAPI['adminPassword'] = $adminPassword;
 	
 	// The following come from CLC Plus
 	$LoginAPI['studentID'] = $studentID;
@@ -86,7 +87,7 @@ try {
 	// Send this single LoginAPI
 	$serializedObj = json_encode($LoginAPI);
 	$targetURL = $domain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
-	// echo $serializedObj;
+	//echo $serializedObj;
 
 	// Initialize the cURL session
 	$ch = curl_init();
