@@ -146,49 +146,66 @@ insert into T_Score values
 		$menu = $this->menu->head->script->menu;
 		$menu->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
-		// $rs is likely to contain less records than the XML, so loop through rs adding the records
-		// into the XML.
+		// There is a special case where the whole title has been hidden and nothing else set.
+		// Schools do this to protect limited licences. If this is the case, get out now and stop the login
+		// TODO. Content::Disabled = 8
+		if (count($rs) == 1 && $rs['UID'] == $productCode && $rs['eF'] == Content::CONTENT_DISABLED) 
+			throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
+		
+		// $rs is likely to contain less records than the XML, so loop through rs setting the specific enabledFlags in the xml.
 		foreach ($rs as $record) {
 			// Each record has a UID and an enabledFlag. Match the UID to the menu and merge the eF.
-			$UID = $record['UID'];
+			$fullUID = $record['UID'];
 			$eF = $record['eF'];
 			
-			// There is a special case where the whole title has been hidden. 
-			// Schools do this to protect limited licences. If this is the case, get out now and stop the login
-			// TODO. Content::Disabled = 8
-			if ($UID == $productCode && $eF == 8) 
-				throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
-			
-			$exercise = $menu->xpath('.//xmlns:exercise[@id="'..'"]');
-			
-			if (count($exercise) > 1) {
-				// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
-				throw $this->copyOps->getExceptionForId("errorMultipleExerciseWithSameId", array("exerciseID" => $record['F_ExerciseID']));
-			} else if (count($exercise) < 1) {
-				// Whilst we are mixing up old and new IDs, this might happen. Just ignore the record.
-				//throw new Exception('The menu xml contains no exercise node with id='.$record['F_ExerciseID']);
-			} else {
-				// Set the attribute to done for exercises in all units
-				// TODO. It would be almost cost free to count them and could be used in Flex charts?
-				if ($exercise[0]['done']) {
-					$exercise[0]['done'] += 1; 
-				} else {
-					$exercise[0]->addAttribute('done', 1);
-				}
-				
-				// And add a score node as a child IF this is a practice-zone exercise
-				// #318 Send back all scores
-				$unit = $exercise[0]->xpath('..');
-				//if (isset($unit[0]['class']) && $unit[0]['class'] == 'practice-zone') {
-					$score = $exercise[0]->addChild('score');
-					$score->addAttribute('score',$record['F_Score']);
-					$score->addAttribute('duration',$record['F_Duration']);
-					$score->addAttribute('datetime',$record['F_DateStamp']);
-				//}
+			$uidArray = explode('.', $fullUID);
+			// Since every id in the menu.xml should be unique you ought to be able to find each node like this.
+			// $node = $menu->xpath('.//[@id="'.$uid.'"]');
+			// Otherwise you need a switch that looks at the level of the UID and searches for menu/course/unit/exercise as relevant.
+			$uid = end($uidArray);
+			switch (count($uidArray)) {
+				case 1:
+					$node = $menu;
+					break;
+				case 2:
+					$node = $menu->xpath('.//xmlns:course[@id="'.$uid.'"]');
+					break;
+				case 3:
+					$node = $menu->xpath('.//xmlns:unit[@id="'.$uid.'"]');
+					break;
+				case 4:
+					$node = $menu->xpath('.//xmlns:exercise[@id="'.$uid.'"]');
+					break;
 			}
+			$node['enabledFlag'] |= $eF;
+			
 		}
 		
+		// Then go through the structure of the xml to see if all children in a node are hidden, in which case the node is too
+		$menu['enabledFlag'] |= getCompositeEnabledFlag($node);
+		
 		return $this->menu->asXML();
+	}
+	/**
+	 * recursive function to see if all a nodes children have the same enabledFlag
+	 * @param XML $node
+	 */
+	function getCompositeEnabledFlag($node) {
+		if (!$node->hasChildren)
+			return $node['enabledFlag'];
+			
+		$allNodesHidden = true;
+		foreach ($node as $item) {
+			$item['enabledFlag'] |= getCompositeEnabledFlag($item);
+			if (!$item['enabledFlag'] & Content::CONTENT_DISABLED)
+				$allNodesHidden = false;
+				
+		}
+		if ($allNodesHidden) {
+			return Content::CONTENT_DISABLED;
+		} else {
+			return 0;
+		}
 	}
 	
 	/**
@@ -437,10 +454,6 @@ EOD;
 			AND F_ProductCode=?
 EOD;
 		$bindingParams = array($groupID, $productCode);
-		$rs = $this->db->GetArray($sql, $bindingParams);
-		if (!$rs)
-			throw $this->copyOps->getExceptionForId("errorDatabaseReading", array("msg" => $this->db->ErrorMsg()));
-			
-		return $rs
+		return $this->db->GetArray($sql, $bindingParams);
 	}
 }

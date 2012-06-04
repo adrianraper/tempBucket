@@ -217,7 +217,7 @@ class BentoService extends AbstractService {
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param progressType. This object tells us what type of progress data to return
 	 */
-	public function getProgressData($userID, $groupID, $rootID, $productCode, $progressType, $menuXMLFile) {
+	public function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile) {
 		// Before you get progress records, read the menu.xml
 		// TODO. Possibly move this bit into contentOps?
 		// This path is relative to the Bento application, not this script
@@ -251,6 +251,7 @@ class BentoService extends AbstractService {
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
 				
 				// #339 Hidden content
+				$groupID = $this->manageableOps->getGroupIdForUserId($userID);
 				$rs = $this->progressOps->getHiddenContent($groupID, $productCode);
 				$progress->dataProvider = $this->progressOps->mergeXMLAndHiddenContent($rs);
 				break;

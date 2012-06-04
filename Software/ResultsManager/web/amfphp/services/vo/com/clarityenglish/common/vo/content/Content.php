@@ -8,6 +8,17 @@ class Content extends Reportable {
 	 */
 	var $_explicitType = 'com.clarityenglish.common.vo.content.Content';
 	
+	// #338
+	const CONTENT_MENU_ON = 1;
+	const CONTENT_NAVIGATION_ON = 2;
+	const CONTENT_RANDOM_ON = 4;
+	const CONTENT_DISABLED = 8;
+	const CONTENT_EDITED_CONTENT = 16;
+	const CONTENT_NONEDITABLE = 32;
+	const CONTENT_AUTOPLAY = 64;
+	const CONTENT_NON_DISPLAY = 128;
+	const CONTENT_EXIT_AFTER = 256;
+	
 	var $name;
 	// I am sure that caption should be the same as name, just like this because course.xml has name and menu.xml has caption.
 	// Should standardise on 'name'.
