@@ -174,21 +174,22 @@ insert into T_Score values
 					break;
 			}
 			// If the UID doesn't match our menu.xml, just ignore it
+			// Otherwise set it and all its children to this eF
 			if ($node)
-				$this->setAttribute($node[0], 'enabledFlag', $eF);
+				$this->propagateEnabledFlag($node[0], $eF);
 		}
 		
 		// Then go through the structure of the xml to see if all children in a node are hidden, in which case the node is too
-		$fullEF = $this->getCompositeEnabledFlag($menu);
-		$this->setAttribute($menu, 'enabledFlag', $fullEF);
+		$this->setAttribute($menu, 'enabledFlag', $this->getCompositeEnabledFlag($menu));
 		
 		// There is a special case where the whole title has been hidden and nothing else set.
 		// Schools do this to protect limited licences. If this is the case, get out now and stop the login
-		if (((string)$menu->attributes()->enabledFlag & Content::CONTENT_DISABLED) == 0) 
+		if (((string)$menu->attributes()->enabledFlag & Content::CONTENT_DISABLED) == Content::CONTENT_DISABLED) 
 			throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
 		
 		return $this->menu->asXML();
 	}
+	
 	/**
 	 * Helper function to make sure that you can set an attribute value
 	 */
@@ -200,6 +201,32 @@ insert into T_Score values
 			}
 	}
 	
+	/**
+	 * recursive function to set all child and parent nodes to this enabledFlag
+	 */
+	function propagateEnabledFlag($node, $eF) {
+		
+		$this->setAttribute($node, 'enabledFlag', $eF);
+		
+		// Go down from this node
+		foreach ($node->children() as $item) {
+			// Only interested in course, unit and exercise nodes
+			switch ($item->getName()) {
+				case 'course':
+				case 'unit': 
+					$this->setAttribute($item, 'enabledFlag', $eF);
+					$this->propagateEnabledFlag($item, $eF);
+					break;
+					
+				// Exercises are the end of the recursion
+				case 'exercise': 
+					$this->setAttribute($item, 'enabledFlag', $eF);
+					break;
+				default:
+			}	
+		}
+		
+	}
 	/**
 	 * recursive function to see if all a nodes children have the same enabledFlag
 	 * @param XML $node
@@ -487,6 +514,7 @@ EOD;
 			FROM T_HiddenContent
 			WHERE F_GroupID=?
 			AND F_ProductCode=?
+			ORDER BY UID ASC;
 EOD;
 		$bindingParams = array($groupID, $productCode);
 		return $this->db->GetArray($sql, $bindingParams);

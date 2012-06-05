@@ -253,7 +253,9 @@ class BentoService extends AbstractService {
 				// #339 Hidden content
 				$groupID = $this->manageableOps->getGroupIdForUserId($userID);
 				$rs = $this->progressOps->getHiddenContent($groupID, $productCode);
-				$progress->dataProvider = $this->progressOps->mergeXMLAndHiddenContent($rs);
+				// If you found some hidden content records for this group, merge the enabledFlag into the menu.xml
+				if (count($rs) > 0)
+					$progress->dataProvider = $this->progressOps->mergeXMLAndHiddenContent($rs);
 				break;
 				
 			case Progress::PROGRESS_MY_BOOKMARK:

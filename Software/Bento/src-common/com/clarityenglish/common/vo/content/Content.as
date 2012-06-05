@@ -10,8 +10,16 @@
 	public class Content extends Reportable {
 
 		// v3.4 Editing Clarity Content
-		public static const CONTENT_NONEDITABLE:int = 32;
+		// #338
+		public static const CONTENT_MENU_ON:int = 1;
+		public static const CONTENT_NAVIGATION_ON:int = 2;
+		public static const CONTENT_RANDOM_ON:int = 4;
+		public static const CONTENT_DISABLED:int = 8;
 		public static const CONTENT_EDITED_CONTENT:int = 16;
+		public static const CONTENT_NONEDITABLE:int = 32;
+		public static const CONTENT_AUTOPLAY:int = 64;
+		public static const CONTENT_NON_DISPLAY:int = 128;
+		public static const CONTENT_EXIT_AFTER:int = 256;
 		
 		/**
 		 * The name of the content.  I'm not totally sure what this is used for (looks like the caption is used instead).

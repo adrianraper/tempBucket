@@ -4,6 +4,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.vo.content.Content;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
@@ -159,7 +160,6 @@ package com.clarityenglish.ielts.view.zone {
 			
 			dispatchEvent(new Event("courseChanged"));
 			
-			// This is a horrible hack
 			horribleHackCourseClass = courseClass;
 		}
 		
@@ -241,6 +241,28 @@ package com.clarityenglish.ielts.view.zone {
 				
 				// Change the course selector
 				if (courseSelectorWidget) courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
+				
+				// #339 disable units based on menu.xml and hidden content
+				if (_course.unit.(@["class"] == "advice-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "advice-zone").@enabledFlag == Content.CONTENT_DISABLED)) {
+					adviceZoneNavigatorContent.enabled = false;
+				} else {
+					adviceZoneNavigatorContent.enabled = true;
+				}
+				if (_course.unit.(@["class"] == "question-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "question-zone").@enabledFlag == Content.CONTENT_DISABLED)) {
+					questionZoneNavigatorContent.enabled = false;
+				} else {
+					questionZoneNavigatorContent.enabled = true;
+				}
+				if (_course.unit.(@["class"] == "practice-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "practice-zone").@enabledFlag == Content.CONTENT_DISABLED)) {
+					practiceZoneNavigatorContent.enabled = false;
+				} else {
+					practiceZoneNavigatorContent.enabled = true;
+				}
+				if (_course.unit.(@["class"] == "exam-practice").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "exam-practice").@enabledFlag == Content.CONTENT_DISABLED)) {
+					examPracticeNavigatorContent.enabled = false;
+				} else {
+					examPracticeNavigatorContent.enabled = true;
+				}
 				
 				// #215
 				showEBook();
