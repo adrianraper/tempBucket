@@ -184,18 +184,17 @@ insert into T_Score values
 		
 		// There is a special case where the whole title has been hidden and nothing else set.
 		// Schools do this to protect limited licences. If this is the case, get out now and stop the login
-		if (($menu['enabledFlag'] & Content::CONTENT_DISABLED) == Content::CONTENT_DISABLED) 
+		if (((string)$menu->attributes()->enabledFlag & Content::CONTENT_DISABLED) == 0) 
 			throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
 		
 		return $this->menu->asXML();
 	}
 	/**
 	 * Helper function to make sure that you can set an attribute value
-	 * Assumes a bitwise flag
 	 */
 	function setAttribute($node, $attributeName, $attributeValue) {
 		if (isset($node[$attributeName])) {
-				$node[$attributeName] |= $attributeValue;
+				$node[$attributeName] = intval($attributeValue);
 			} else {
 				$node->addAttribute($attributeName, $attributeValue);
 			}
@@ -206,33 +205,42 @@ insert into T_Score values
 	 * @param XML $node
 	 */
 	function getCompositeEnabledFlag($node) {
-		// Ready for php 5.3
-		//if ($node->count() == 0)
-		// An exercise node might not be the end as it could have score children nodes, so need to match against it being an exercise
-		//if (count($node->children()) == 0)
-		if ($node->getName() == 'exercise') {
-			if (isset($node['enabledFlag'])) {
-				return $node['enabledFlag'];	
-			} else {
-				return 0;
-			}
-		}
 			
+		$allItemsHidden = true;
 		foreach ($node->children() as $item) {
 			// Only interested in course, unit and exercise nodes
 			switch ($item->getName()) {
-				case 'course': 
-				case 'unit': 
-				case 'exercise': 
+				// For a course, you need to go into every unit
+				case 'course':
 					$this->setAttribute($item, 'enabledFlag', $this->getCompositeEnabledFlag($item));
-					if (($item['enabledFlag'] & Content::CONTENT_DISABLED) == 0)
+					if (((string)$item->attributes()->enabledFlag & Content::CONTENT_DISABLED) == 0)
+						$allItemsHidden = false;
+					break;
+					
+				// For units you only need to find one non-disabled exercise to have all you need
+				case 'unit': 
+					$this->setAttribute($item, 'enabledFlag', $this->getCompositeEnabledFlag($item));
+					if (((string)$item['enabledFlag'] & Content::CONTENT_DISABLED) == 0)
 						return 0;
+					break;
+					
+				// Exercises are the end of the recursion
+				case 'exercise': 
+					if (isset($item['enabledFlag'])) {
+						return (string)$item['enabledFlag'];	
+					} else {
+						return 0;
+					}
 					break;
 				default:
 			}	
 		}
 		
-		return Content::CONTENT_DISABLED;
+		if ($allItemsHidden) {
+			return Content::CONTENT_DISABLED;
+		} else {
+			return 0;
+		}
 	}
 	
 	/**
