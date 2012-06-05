@@ -31,9 +31,14 @@ package com.clarityenglish.bento.controller {
 					</state>
 					
 					<state name={BBStates.STATE_LOAD_MENU} changed={BBNotifications.MENU_XHTML_LOAD}>
-						<transition action={BBNotifications.MENU_XHTML_LOADED} target={BBStates.STATE_TITLE} />
+						<transition action={BBNotifications.MENU_XHTML_LOADED} target={BBStates.STATE_START_SESSION} />
+						<transition action={BBNotifications.MENU_XHTML_NOT_LOADED} target={BBStates.STATE_CREDITS} />
 					</state>
-					
+				
+					<state name={BBStates.STATE_START_SESSION} changed={BBNotifications.SESSION_START}>
+						<transition action={BBNotifications.SESSION_STARTED} target={BBStates.STATE_TITLE} />
+					</state>
+			
 					<state name={BBStates.STATE_TITLE}>
 						<transition action={CommonNotifications.LOGGED_OUT} target={BBStates.STATE_CREDITS} />
 					</state>

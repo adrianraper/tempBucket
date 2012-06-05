@@ -236,9 +236,12 @@ package com.clarityenglish.common.model {
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);
 						
+						// #339 take this away, use the state machine, but session start command has to get data from proxy
+						/*
 						// Now that you are logged in, trigger the session start command
 						var sessionData:Object = { user: _user, account: configProxy.getAccount() };
 						sendNotification(BBNotifications.SESSION_START, sessionData);
+						*/
 						
 						// Create a timer that will be fired off every minute to update the licence
 						// Only needs to be done for concurrent licence control learners

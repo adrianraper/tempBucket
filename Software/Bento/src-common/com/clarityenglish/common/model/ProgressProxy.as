@@ -122,9 +122,10 @@ package com.clarityenglish.common.model {
 					
 				default:
 					// Send user details and the URL of the menu to the backend
-					// #338 Add group so you can get hidden content
-					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					var params:Array = [ user.userID, configProxy.getConfig().group.id, account.id, (account.titles[0] as Title).id, progressType, href.url ];
+					// #338 Add group so you can get hidden content. No, this group is top level
+					// and hidden content needs my group. So just grab it from userID in the backside.
+					//var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, href.url ];
 					new RemoteDelegate("getProgressData", params, this).execute();
 					
 					// Maintain a note that we are currently loading this data
@@ -472,10 +473,26 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			switch (operation) {
 				case "getProgressData":
+					
+					// Special case of progress error when the whole title is blocked by hidden content
+					// in which case you don't want this user to login and take up a licence record
 					var progressError:BentoError = BentoError.create(fault);
-					sendNotification(CommonNotifications.INVALID_DATA, progressError);
+					if (progressError.errorNumber == copyProxy.getCodeForId("errorTitleBlockedByHiddenContent")) {
+						// First show an error
+						//sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorTitleBlockedByHiddenContent", null, true ));
+						sendNotification(CommonNotifications.BENTO_ERROR, progressError);
+						
+						// Then notify the state machine
+						sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
+						
+					} else {
+					
+						sendNotification(CommonNotifications.INVALID_DATA, progressError);
+						
+					}
 					
 					// TODO: Current ProgressOps doesn't throw specific errors so this is commented for now and everything is assumed to be INVALID_DATA
 					// If the error has stopped the loading of menu.xml, then can't get past login

@@ -146,12 +146,6 @@ insert into T_Score values
 		$menu = $this->menu->head->script->menu;
 		$menu->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
-		// There is a special case where the whole title has been hidden and nothing else set.
-		// Schools do this to protect limited licences. If this is the case, get out now and stop the login
-		// TODO. Content::Disabled = 8
-		if (count($rs) == 1 && $rs['UID'] == $productCode && $rs['eF'] == Content::CONTENT_DISABLED) 
-			throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
-		
 		// $rs is likely to contain less records than the XML, so loop through rs setting the specific enabledFlags in the xml.
 		foreach ($rs as $record) {
 			// Each record has a UID and an enabledFlag. Match the UID to the menu and merge the eF.
@@ -165,7 +159,9 @@ insert into T_Score values
 			$uid = end($uidArray);
 			switch (count($uidArray)) {
 				case 1:
-					$node = $menu;
+					// Since xpath returns an array, need to keep all our nodes the same type
+					$node = array($menu);
+					//$node = $menu->xpath('.//xmlns:*[@id="'.$uid.'"]');;
 					break;
 				case 2:
 					$node = $menu->xpath('.//xmlns:course[@id="'.$uid.'"]');
@@ -177,35 +173,66 @@ insert into T_Score values
 					$node = $menu->xpath('.//xmlns:exercise[@id="'.$uid.'"]');
 					break;
 			}
-			$node['enabledFlag'] |= $eF;
-			
+			// If the UID doesn't match our menu.xml, just ignore it
+			if ($node)
+				$this->setAttribute($node[0], 'enabledFlag', $eF);
 		}
 		
 		// Then go through the structure of the xml to see if all children in a node are hidden, in which case the node is too
-		$menu['enabledFlag'] |= getCompositeEnabledFlag($node);
+		$fullEF = $this->getCompositeEnabledFlag($menu);
+		$this->setAttribute($menu, 'enabledFlag', $fullEF);
+		
+		// There is a special case where the whole title has been hidden and nothing else set.
+		// Schools do this to protect limited licences. If this is the case, get out now and stop the login
+		if (($menu['enabledFlag'] & Content::CONTENT_DISABLED) == Content::CONTENT_DISABLED) 
+			throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
 		
 		return $this->menu->asXML();
 	}
+	/**
+	 * Helper function to make sure that you can set an attribute value
+	 * Assumes a bitwise flag
+	 */
+	function setAttribute($node, $attributeName, $attributeValue) {
+		if (isset($node[$attributeName])) {
+				$node[$attributeName] |= $attributeValue;
+			} else {
+				$node->addAttribute($attributeName, $attributeValue);
+			}
+	}
+	
 	/**
 	 * recursive function to see if all a nodes children have the same enabledFlag
 	 * @param XML $node
 	 */
 	function getCompositeEnabledFlag($node) {
-		if (!$node->hasChildren)
-			return $node['enabledFlag'];
+		// Ready for php 5.3
+		//if ($node->count() == 0)
+		// An exercise node might not be the end as it could have score children nodes, so need to match against it being an exercise
+		//if (count($node->children()) == 0)
+		if ($node->getName() == 'exercise') {
+			if (isset($node['enabledFlag'])) {
+				return $node['enabledFlag'];	
+			} else {
+				return 0;
+			}
+		}
 			
-		$allNodesHidden = true;
-		foreach ($node as $item) {
-			$item['enabledFlag'] |= getCompositeEnabledFlag($item);
-			if (!$item['enabledFlag'] & Content::CONTENT_DISABLED)
-				$allNodesHidden = false;
-				
+		foreach ($node->children() as $item) {
+			// Only interested in course, unit and exercise nodes
+			switch ($item->getName()) {
+				case 'course': 
+				case 'unit': 
+				case 'exercise': 
+					$this->setAttribute($item, 'enabledFlag', $this->getCompositeEnabledFlag($item));
+					if (($item['enabledFlag'] & Content::CONTENT_DISABLED) == 0)
+						return 0;
+					break;
+				default:
+			}	
 		}
-		if ($allNodesHidden) {
-			return Content::CONTENT_DISABLED;
-		} else {
-			return 0;
-		}
+		
+		return Content::CONTENT_DISABLED;
 	}
 	
 	/**

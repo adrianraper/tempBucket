@@ -3,6 +3,8 @@ Simple Command - PureMVC
  */
 package com.clarityenglish.common.controller {
 	
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
@@ -17,9 +19,12 @@ package com.clarityenglish.common.controller {
 		
 		override public function execute(note:INotification):void {
 			
-			var data:Object = note.getBody();
+			// #339 Now this comes from FSM so needs to get its own data
+			//var data:Object = note.getBody();
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
-			progressProxy.startSession(data.user as User, data.account as Account);
+			progressProxy.startSession(loginProxy.user, configProxy.getAccount());
 		}
 		
 	}

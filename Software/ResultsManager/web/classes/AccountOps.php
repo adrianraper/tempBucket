@@ -200,13 +200,17 @@ SQL;
 						$selectBuilder->addWhere("t.F_DeliveryFrequency = '".$value."'");
 						$needsAccountsTable = true;
 						break;
+						
 					case 'active':
 						if ($value == 'true') {
 							$now = date('Y-m-d');
 							$selectBuilder->addWhere("t.F_ExpiryDate >= '$now 00:00:00'");
+							// Also add start date condition for 'active' accounts
+							$selectBuilder->addWhere("t.F_LicenceStartDate <= '$now 23:59:59'");
 							$needsAccountsTable = true;
 						}
 						break;
+						
 					// v3.5 Flexibility of email triggers. Ignore accounts that have opted out, for a while.
 					case 'optOutEmails':
 						$now = date('Y-m-d');
