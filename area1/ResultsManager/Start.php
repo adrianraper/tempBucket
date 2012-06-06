@@ -4,12 +4,8 @@
 	if (isset($_REQUEST['dbHost'])) $_SESSION['dbHost']=$_REQUEST['dbHost'];
 	
 	$userName = $password = $extraParam = $licenceFile = '';
-	$userName = $password = $extraParam = $licenceFile = '';
-	//$dbHost='2';
-	if (isset($_SESSION['UserName'])) $userName = $_SESSION['UserName']; 
-	if (isset($_SESSION['Password'])) $password = $_SESSION['Password'];
-	// Pass this through Flash instead of setting it here
-	//$_SESSION['dbHost'] = $dbHost;
+	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']);  
+	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -53,7 +49,6 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		//var startControl = webShare + "/Software/ResultsManagerEncoded/web/";
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {

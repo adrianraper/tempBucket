@@ -7,7 +7,7 @@
 	$programFolder = 'ClearPronunciation2';
 	$courseID = '1304072688140';
 	$evaluationExerciseID = '52';
-	$programLink = $domain.'area1/'.$programFolder.'/Start.php?prefix=CSTDI';
+	$programLink = $domain.'area1/'.$programFolder.'/Start-CSTDI.php?prefix=CSTDI';
 	$evaluationLink = $programLink.'&startingPoint=ex:'.$evaluationExerciseID.'&course='.$courseID;
 	
 	// Need to pass the referrer URL through
@@ -18,6 +18,8 @@
 		} else {
 			$referrer = $_SERVER['HTTP_REFERER'];
 		}
+	} else {
+		$referrer = "no referrer set";
 	}
 	$_SESSION['referrer'] = $referrer;
 	
