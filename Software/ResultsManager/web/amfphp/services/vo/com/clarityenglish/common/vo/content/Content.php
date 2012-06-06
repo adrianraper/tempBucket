@@ -18,6 +18,7 @@ class Content extends Reportable {
 	const CONTENT_AUTOPLAY = 64;
 	const CONTENT_NON_DISPLAY = 128;
 	const CONTENT_EXIT_AFTER = 256;
+	const CONTENT_ENABLED = -8;
 	
 	var $name;
 	// I am sure that caption should be the same as name, just like this because course.xml has name and menu.xml has caption.

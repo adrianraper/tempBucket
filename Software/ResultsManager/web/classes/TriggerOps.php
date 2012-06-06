@@ -69,6 +69,7 @@ class TriggerOps {
 	
 		switch ($trigger->condition->method) {
 			case "getAccounts":
+			case "getUsers":
 				$accountConditions = array();
 				if (isset($trigger->condition->expiryDate)) {
 					$accountConditions["expiryDate"] = $trigger->condition->expiryDate;
@@ -121,12 +122,7 @@ class TriggerOps {
 				//echo "got ".count($triggerResults)." accounts that expire on ".$trigger->condition->expiryDate ."<br />";
 				//$executor = $trigger->executor;
 				break;
-			// Not built yet...
-			case "getUsers":
-				$registrationDate = $trigger->condition->registrationDate;
-				$triggerResults = array();
-				//$executor = $trigger->executor;
-				break;
+
 			case "dbChange":
 				//echo "run sql=".$trigger->condition->select."<br/>";
 				$triggerResults = $this->_runSQL($trigger->condition->select);
@@ -162,6 +158,12 @@ class TriggerOps {
 			//echo "account $account->id look for userStartDate={$trigger->condition->userStartDate}</br>";
 			//echo "after evaluation userStartDate={$trigger->condition->userStartDate}</br>";
 		}
+		if ($trigger->condition->userExpiryDate && stristr($trigger->condition->userExpiryDate, '{')) {
+			$trigger->condition->userExpiryDate = $trigger->condition->evaluateDateVariables($trigger->condition->userExpiryDate);
+			//echo "account $account->id look for userStartDate={$trigger->condition->userStartDate}</br>";
+			//echo "after evaluation userStartDate={$trigger->condition->userStartDate}</br>";
+		}
+		
 		$sql  = "SELECT ".User::getSelectFields($this->db)." ";
 		$sql .= "FROM T_User u, T_Membership m ";
 
@@ -178,6 +180,11 @@ class TriggerOps {
 			$where[] = "(u.F_StartDate>=? AND u.F_StartDate<=?)";
 			$bindingParams[] = $trigger->condition->userStartDate." 00:00:00";
 			$bindingParams[] = $trigger->condition->userStartDate." 23:59:59";
+		}
+		if ($trigger->condition->userExpiryDate) {
+			$where[] = "(u.F_ExpiryDate>=? AND u.F_ExpiryDate<=?)";
+			$bindingParams[] = $trigger->condition->userExpiryDate." 00:00:00";
+			$bindingParams[] = $trigger->condition->userExpiryDate." 23:59:59";
 		}
 		if ($trigger->condition->contactMethod) {
 			$where[] = "(u.F_ContactMethod=? OR u.F_ContactMethod is null)";

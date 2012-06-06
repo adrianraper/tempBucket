@@ -243,22 +243,22 @@ package com.clarityenglish.ielts.view.zone {
 				if (courseSelectorWidget) courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
 				
 				// #339 disable units based on menu.xml and hidden content
-				if (_course.unit.(@["class"] == "advice-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "advice-zone").@enabledFlag == Content.CONTENT_DISABLED)) {
+				if (_course.unit.(@["class"] == "advice-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "advice-zone").@enabledFlag & Content.CONTENT_DISABLED)) {
 					adviceZoneNavigatorContent.enabled = false;
 				} else {
 					adviceZoneNavigatorContent.enabled = true;
 				}
-				if (_course.unit.(@["class"] == "question-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "question-zone").@enabledFlag == Content.CONTENT_DISABLED)) {
+				if (_course.unit.(@["class"] == "question-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "question-zone").@enabledFlag & Content.CONTENT_DISABLED)) {
 					questionZoneNavigatorContent.enabled = false;
 				} else {
 					questionZoneNavigatorContent.enabled = true;
 				}
-				if (_course.unit.(@["class"] == "practice-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "practice-zone").@enabledFlag == Content.CONTENT_DISABLED)) {
+				if (_course.unit.(@["class"] == "practice-zone").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "practice-zone").@enabledFlag & Content.CONTENT_DISABLED)) {
 					practiceZoneNavigatorContent.enabled = false;
 				} else {
 					practiceZoneNavigatorContent.enabled = true;
 				}
-				if (_course.unit.(@["class"] == "exam-practice").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "exam-practice").@enabledFlag == Content.CONTENT_DISABLED)) {
+				if (_course.unit.(@["class"] == "exam-practice").(hasOwnProperty("@enabledFlag")) && (_course.unit.(@["class"] == "exam-practice").@enabledFlag & Content.CONTENT_DISABLED)) {
 					examPracticeNavigatorContent.enabled = false;
 				} else {
 					examPracticeNavigatorContent.enabled = true;

@@ -20,6 +20,7 @@
 		public static const CONTENT_AUTOPLAY:int = 64;
 		public static const CONTENT_NON_DISPLAY:int = 128;
 		public static const CONTENT_EXIT_AFTER:int = 256;
+		public static const CONTENT_ENABLED:int = -8;
 		
 		/**
 		 * The name of the content.  I'm not totally sure what this is used for (looks like the caption is used instead).

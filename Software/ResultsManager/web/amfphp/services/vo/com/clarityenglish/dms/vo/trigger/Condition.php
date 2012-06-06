@@ -29,6 +29,8 @@ class Condition {
 	// v3.5 For subscription reminders
 	var $startDate;
 	var $startDay;
+	// v3.6 For EmailMe
+	var $userExpiryDate;
 	
 	function Condition($conditionString, $timeStamp = null ) {
 		$this->timeStamp = $timeStamp;
@@ -89,6 +91,9 @@ class Condition {
 		// v3.4.3
 		if (isset($conditionArray['selfHost'])) 
 			$this->selfHost = $conditionArray['selfHost'];
+		// v3.6
+		if (isset($conditionArray['userExpiryDate'])) 
+			$this->userExpiryDate = $this->evaluateDateVariables($conditionArray['userExpiryDate']);
 	}
 	/*
 	 * Build a query string from the condition - is this just for debugging?

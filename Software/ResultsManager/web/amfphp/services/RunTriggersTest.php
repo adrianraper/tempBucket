@@ -76,7 +76,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		} else {
 			//$trigger->rootID = 163;
 			//$trigger->rootID = Array(5,7,28,163,10719,11091);
-			$trigger->rootID = Array(163);
+			//$trigger->rootID = Array(10179);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
 		$trigger->condition->notProductCode = '12,13';
@@ -84,6 +84,16 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		$triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
 		echo 'got '.count($triggerResults) .' accounts for '.$trigger->name.$newLine;
 		//AbstractService::$log->notice('got '.count($triggerResults) .' accounts for '.$trigger->name);
+		
+		// EmailMe
+		if ($trigger->condition->method == 'getUsers') {
+			$userResults = array();
+			
+			// Find all users in each account that match the trigger conditions
+			foreach ($triggerResults as $account) {
+				$userResults = array_merge($userResults, $dmsService->triggerOps->usersInAccount($account, $trigger));
+			}
+		}
 		
 		// Now send all the matched objects to the executor with the templateID
 		switch ($trigger->executor) {
@@ -111,39 +121,51 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					//$dmsService-> emailOps->sendOrEchoEmail($account, $emailData, $trigger->templateID);
 				//}
 				$emailArray = array();
-				foreach ($triggerResults as $result) {
-					// v3.6 You now get email addresses from T_AccountEmails.
-					// So look up T_AccountEmails with the account root and the message type that we are trying to send
-					// Then all matching emails will get this. 
-					//echo 'getMessages for id='.$result->id.' and type='.$trigger->messageType.$newLine;
-					$accountEmails = $dmsService->accountOps->getEmailsForMessageType($result->id, $trigger->messageType);
-					//echo 'accountEmails='.count($accountEmails).'-'.implode(',',$accountEmails).$newLine;
-					// If there is a reseller they are also 'ccd.
-					// Unless it is a service email, because that would deluge them. 
-					// Mind you, service emails are unlikely to get sent like this, they are more likely to be sent manually
-					if ($trigger->messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
-						$resellerEmail = array($dmsService->accountOps->getResellerEmail($result->resellerCode));
-					} else {
-						$resellerEmail = array();
+				
+				if ($trigger->condition->method == 'getUsers') {
+					foreach ($userResults as $user) {
+						$toEmail = $user->email;
+						$emailData = array("user" => $user, "template_dir" => $GLOBALS['smarty_template_dir']);
+						$thisEmail = array("to" => $toEmail, "data" => $emailData);
+						$emailArray[] = $thisEmail;
 					}
-					//echo 'resellerEmail='.$resellerEmail.$newLine;
 					
-					// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
-					$adminEmail = array_shift($accountEmails);
-					//echo "admin=$adminEmail";
-					$ccEmails = array_merge($accountEmails, $resellerEmail);
-					
-					// To add usage stats link to subscription reminders, we need the security string for this account
-					$securityString = $dmsService->usageOps->getDirectStartRecord($result);
-					if (!$securityString)
-						$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
-					
-					echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
-					
-					$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
-					$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
-					$emailArray[] = $thisEmail;
+				} else {
+					foreach ($triggerResults as $result) {
+						// v3.6 You now get email addresses from T_AccountEmails.
+						// So look up T_AccountEmails with the account root and the message type that we are trying to send
+						// Then all matching emails will get this. 
+						//echo 'getMessages for id='.$result->id.' and type='.$trigger->messageType.$newLine;
+						$accountEmails = $dmsService->accountOps->getEmailsForMessageType($result->id, $trigger->messageType);
+						//echo 'accountEmails='.count($accountEmails).'-'.implode(',',$accountEmails).$newLine;
+						// If there is a reseller they are also 'ccd.
+						// Unless it is a service email, because that would deluge them. 
+						// Mind you, service emails are unlikely to get sent like this, they are more likely to be sent manually
+						if ($trigger->messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
+							$resellerEmail = array($dmsService->accountOps->getResellerEmail($result->resellerCode));
+						} else {
+							$resellerEmail = array();
+						}
+						//echo 'resellerEmail='.$resellerEmail.$newLine;
+						
+						// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
+						$adminEmail = array_shift($accountEmails);
+						//echo "admin=$adminEmail";
+						$ccEmails = array_merge($accountEmails, $resellerEmail);
+						
+						// To add usage stats link to subscription reminders, we need the security string for this account
+						$securityString = $dmsService->usageOps->getDirectStartRecord($result);
+						if (!$securityString)
+							$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
+						
+						echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
+						
+						$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
+						$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
+						$emailArray[] = $thisEmail;
+					}
 				}
+				
 				// If the request variable 'send' is not defined then just print the emails to the screen, don't actually send anything.  
 				// This is to prevent accidental sends when testing!
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
@@ -152,7 +174,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				} else {
 					// Or print on screen
 					foreach($emailArray as $email) {
-						if ($email["cc"]) {
+						if (isset($email["cc"])) {
 							echo "<b>Email: ".$email["to"].", cc: ".implode(',',$email["cc"])."</b>".$newLine.$dmsService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
 						} else {
 							echo "<b>Email: ".$email["to"]."</b>".$newLine.$dmsService->emailOps->fetchEmail($trigger->templateID, $email["data"])."<hr/>";
@@ -272,11 +294,12 @@ echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
 //$testingTriggers .= "subscription reminders";
-$testingTriggers .= "usage stats";
+//$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";
 //$testingTriggers .= "terms and conditions";
+$testingTriggers .= "EmailMe";
 //$testingTriggers = "justThese";
 
 // The use of F_Frequency doesn't make any sense at the moment. Everything is simply running on a daily basis.
@@ -346,6 +369,15 @@ if (stripos($testingTriggers, "quotations")!==false) {
 		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
 		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), 0)); // today
+	}
+}
+if (stripos($testingTriggers, "EmailMe")!==false) {
+	$subscriptionTriggers = null;
+	$msgType = 7; // all
+	if (isset($_REQUEST['date'])) {
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
+	} else {
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
 	}
 }
 if (stripos($testingTriggers, "justThese")!==false) {

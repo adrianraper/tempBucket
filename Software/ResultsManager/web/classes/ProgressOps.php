@@ -152,6 +152,11 @@ insert into T_Score values
 			$fullUID = $record['UID'];
 			$eF = $record['eF'];
 			
+			// The hidden content records use eF=0 to show that something is displayed
+			// But we need this to be -8 so that we can specifically switch disabled off, without impacting other bitwise flags
+			if ($eF == 0)
+				$eF = Content::CONTENT_ENABLED;
+			
 			$uidArray = explode('.', $fullUID);
 			// Since every id in the menu.xml should be unique you ought to be able to find each node like this.
 			// $node = $menu->xpath('.//[@id="'.$uid.'"]');
@@ -191,18 +196,24 @@ insert into T_Score values
 	}
 	
 	/**
-	 * Helper function to make sure that you can set an attribute value
+	 * Helper function to make sure that you can set a bitwise attribute value.
+	 * Use a negative value to switch off that bit.
 	 */
 	function setAttribute($node, $attributeName, $attributeValue) {
 		if (isset($node[$attributeName])) {
-				$node[$attributeName] = intval($attributeValue);
+				// If the attribute value is negative it means we want a bitwise switch OFF of that number
+				if ($attributeValue < 0) {
+					$node[$attributeName] &= ~intval(abs($attributeValue));
+				} else {
+					$node[$attributeName] |= intval($attributeValue);
+				}
 			} else {
 				$node->addAttribute($attributeName, $attributeValue);
 			}
 	}
 	
 	/**
-	 * recursive function to set all child and parent nodes to this enabledFlag
+	 * recursive function to set all child nodes to this enabledFlag
 	 */
 	function propagateEnabledFlag($node, $eF) {
 		
@@ -247,16 +258,18 @@ insert into T_Score values
 				// For units you only need to find one non-disabled exercise to have all you need
 				case 'unit': 
 					$this->setAttribute($item, 'enabledFlag', $this->getCompositeEnabledFlag($item));
-					if (((string)$item['enabledFlag'] & Content::CONTENT_DISABLED) == 0)
-						return 0;
+					if (((string)$item['enabledFlag'] & Content::CONTENT_DISABLED) == 0) {
+						return Content::CONTENT_ENABLED;
+					}
 					break;
 					
-				// Exercises are the end of the recursion
+				// Exercises are the end of the recursion, are any of them NOT disabled?
 				case 'exercise': 
 					if (isset($item['enabledFlag'])) {
-						return (string)$item['enabledFlag'];	
+						if (((string)$item['enabledFlag'] & Content::CONTENT_DISABLED) == 0)
+							return Content::CONTENT_ENABLED;	
 					} else {
-						return 0;
+						return Content::CONTENT_ENABLED;
 					}
 					break;
 				default:
@@ -266,7 +279,7 @@ insert into T_Score values
 		if ($allItemsHidden) {
 			return Content::CONTENT_DISABLED;
 		} else {
-			return 0;
+			return Content::CONTENT_ENABLED;
 		}
 	}
 	
