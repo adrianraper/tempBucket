@@ -1,14 +1,18 @@
 <?php
 
 	require_once("../../CSTDI/CSTDIvariables.php");
-	
+
+	if (isset($_GET['session'])) {
+		session_id($_GET['session']);
+	}
 	session_start();
+	$currentSessionID = session_id();
 	
 	$programFolder = 'ClearPronunciation2';
 	$courseID = '1304072688140';
 	$evaluationExerciseID = '52';
-	$programLink = $domain.'area1/'.$programFolder.'/Start-CSTDI.php?prefix=CSTDI';
-	$evaluationLink = $programLink.'&startingPoint=ex:'.$evaluationExerciseID.'&course='.$courseID;
+	$programLink = $domain.'area1/'.$programFolder.'/Start-CSTDI.php?prefix=CSTDI&session='.$currentSessionID;
+	$evaluationLink = $programLink.'&startingPoint=ex:'.$evaluationExerciseID.'&course='.$courseID.'&session='.$currentSessionID;
 	
 	// Need to pass the referrer URL through
 	// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
@@ -45,5 +49,6 @@
         </div>
         <div id="footer_CP2"></div>
     </div>
+    <?php echo $_SESSION['referrer']; ?>
 </body>
 </html>

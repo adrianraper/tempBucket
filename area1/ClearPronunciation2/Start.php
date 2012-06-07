@@ -65,7 +65,7 @@
 		$courseFile = 'course-CSTDI.xml';
 		if (isset($_SESSION['referrer'])) {
 			$referrer = $_SESSION['referrer'];
-			echo "referrer is session set as $referrer";
+			//echo "referrer is session set as $referrer";
 		}
 	} else {
 		$courseFile = 'course.xml';
