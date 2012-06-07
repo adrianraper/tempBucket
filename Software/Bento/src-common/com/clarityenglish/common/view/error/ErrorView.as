@@ -5,10 +5,10 @@ package com.clarityenglish.common.view.error {
 	
 	import flash.events.MouseEvent;
 	
-	import mx.controls.Label;
 	import mx.events.CloseEvent;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	
 	public class ErrorView extends BentoView {
 		
