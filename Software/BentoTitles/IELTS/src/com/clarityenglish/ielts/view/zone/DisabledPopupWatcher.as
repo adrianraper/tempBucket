@@ -58,7 +58,7 @@ package com.clarityenglish.ielts.view.zone {
 						this.toolTipText = " Only available in the Last Minute version. Click above to upgrade."
 						break;
 					case IELTSApplication.DEMO:
-						this.toolTipText = "Not available in this demo. Click above to find out prices."
+						this.toolTipText = "Not available in this demo. For demo exercises, please go to Practice zone - Set 2. For demo practice test, please click on Practice test 1."
 						break;
 					default:
 						this.toolTipText = "Not available in the current version. Click above to upgrade."
