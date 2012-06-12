@@ -118,7 +118,7 @@ class AuthenticationOps {
 	}
 	
 	/**
-	 * An alias for authenticateUserIDs which accepts an array of Groups instead of group ids
+	 * An alias for authenticateUserIDs which accepts an array of Users instead of user ids
 	 */
 	public static function authenticateUsers($users) {
 		if (!AuthenticationOps::$useAuthentication) return;

@@ -1,6 +1,11 @@
 <?php
 	
+	if (isset($_GET['session'])) {
+		session_id($_GET['session']);
+	}
 	session_start();
+	$currentSessionID = session_id();
+	
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';

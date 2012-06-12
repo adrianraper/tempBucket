@@ -11,7 +11,7 @@
 	$programFolder = 'ClearPronunciation2';
 	$courseID = '1304072688140';
 	$evaluationExerciseID = '52';
-	$programLink = $domain.'area1/'.$programFolder.'/Start-CSTDI.php?prefix=CSTDI&session='.$currentSessionID;
+	$programLink = $domain.'area1/'.$programFolder.'/Start.php?prefix=CSTDI&session='.$currentSessionID;
 	$evaluationLink = $programLink.'&startingPoint=ex:'.$evaluationExerciseID.'&course='.$courseID.'&session='.$currentSessionID;
 	
 	// Need to pass the referrer URL through
@@ -49,6 +49,5 @@
         </div>
         <div id="footer_CP2"></div>
     </div>
-    <?php echo $_SESSION['referrer']; ?>
 </body>
 </html>

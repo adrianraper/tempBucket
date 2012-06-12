@@ -1,5 +1,8 @@
 ﻿<?php
-session_start();
+
+	session_start();
+	$currentSessionID = session_id();
+	
 require_once("CSTDIvariables.php");
 
 // Use exceptions to handle unexpected errors (like parameters not being passed)
@@ -135,7 +138,7 @@ try {
 		// So use CSTDI UserID, which we know is now a registered user
 		$_SESSION['StudentID'] = $studentID;
 		//$targetURL = $domain.'area1/'.$programFolder.'/Start.php?prefix=CSTDI&units=bwnj';
-		$targetURL = $domain.'area1/'.$programFolder.'/CSTDI-landing.php';
+		$targetURL = $domain.'area1/'.$programFolder.'/CSTDI-landing.php?session='.$currentSessionID;
 
 		// Display a landing page which has two links - one for the program and one for the evaluation
 		redirect($targetURL);
@@ -153,4 +156,3 @@ try {
 }
 
 exit(0);
-?>

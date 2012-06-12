@@ -530,3 +530,17 @@ INSERT INTO `rack80829`.`T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (840, NOW(), 'subscription changes');
 
+-- Practical Placement test, language versions
+UPDATE `T_ProductLanguage` SET F_ContentLocation='PracticalPlacementTest-International' WHERE F_ProductCode=44 AND F_LanguageCode='EN';
+INSERT INTO `T_ProductLanguage` VALUES (44,'TW-ZH','PracticalPlacementTest-Taiwan');
+INSERT INTO `T_ProductLanguage` VALUES (44,'SL','PracticalPlacementTest-Slovene');
+INSERT INTO `T_Language` VALUES ('TW-ZH','Taiwan Chinese'),('SL','Slovene');
+
+-- EmailMe. RM trial emails
+UPDATE `rack80829`.`T_Triggers` 
+SET F_ValidToDate=NULL, 
+F_Condition = 'method=getUsers&userExpiryDate={now}+2d&accountType=1', F_MessageType=7, 
+F_Name='EmailMe trial reminder',
+F_RootID=10719
+WHERE F_TriggerID=2;
+INSERT INTO T_MessageType VALUES (7,'EmailMe Trial reminders');

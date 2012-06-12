@@ -95,7 +95,7 @@
 			if (data.email)
 				this.email = data.email;
 			if (data.studentID)
-				this.email = data.studentID;
+				this.studentID = data.studentID;
 			if (data.password)
 				this.password = data.password;
 		}

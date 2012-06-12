@@ -1,6 +1,11 @@
 <?php
 	
+	if (isset($_GET['session'])) {
+		session_id($_GET['session']);
+	}
 	session_start();
+	$currentSessionID = session_id();
+	
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
@@ -61,7 +66,7 @@
 	}
 	//echo "&version=".$version."&location=".$locationFile;
 	*/
-	// If you want to allow special cases for one account
+	// If you want to allow special behaviour for one account
 	if ($prefix == 'CSTDI') {
 		$courseFile = 'course-CSTDI.xml';
 		if (isset($_SESSION['referrer'])) {
