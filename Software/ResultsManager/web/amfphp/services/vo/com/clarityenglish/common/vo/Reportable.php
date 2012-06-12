@@ -49,14 +49,20 @@ class Reportable {
 	 * html_entities/special_chars don't recognise &apos; as a valid entity so we need to explicitly encode it
 	 */
 	static function apos_encode($string) {
-		return ereg_replace("'", "&apos;", $string);
+		// PHP 5.3
+		$pattern = "/'/";
+		$replacement = '&apos;';
+		return preg_replace($pattern, $replacement, $string);
 	}
 	
 	/**
 	 * html_entities/special_chars don't recognise &apos; as a valid entity so we need to explicitly decode it
 	 */
 	static function apos_decode($string) {
-		return ereg_replace("&apos;", "'", $string);
+		// PHP 5.3
+		$pattern = '&apos;';
+		$replacement = "/'/";
+		return preg_replace($pattern, $replacement, $string);
 	}
 	
 }

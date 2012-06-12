@@ -123,7 +123,7 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="19" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" left="124" top="13" />
 		<s:Label text="Data, Video © The British Council 2006-2012. Software, Design, Navigation © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" paddingTop="26" right="20" fontSize="12" />
-		<s:Label text="V2.0.0.883" color="#FFFFFF" paddingTop="10" right="23" fontSize="12" />
+		<s:Label text="V2.0.0.890" color="#FFFFFF" paddingTop="10" right="23" fontSize="12" />
 	</s:Group>
 	
 	<s:TextArea id="logTextArea" visible="false" width="100%" height="100%" color="red" mouseChildren="false" mouseEnabled="false" contentBackgroundAlpha="0" />

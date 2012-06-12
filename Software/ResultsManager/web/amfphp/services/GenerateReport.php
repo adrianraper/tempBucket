@@ -106,7 +106,10 @@ $opts = json_decode(stripslashes($_REQUEST['opts']), true);
 $template = $_REQUEST['template'] == "" ? "standard" : $_REQUEST['template'];
 
 // Protect against directory traversal
-$template = ereg_replace("../", "", $template);
+// PHP 5.3
+$pattern = '/..\//';
+$replacement = '';
+$template = preg_replace($pattern, $replacement, $template);
 
 $clarityService = new ClarityService();
 

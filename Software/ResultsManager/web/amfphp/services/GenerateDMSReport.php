@@ -26,7 +26,10 @@ $template = $_REQUEST['template'];
 $accountIDArray = $_REQUEST['accountIDArray'] == "" ? array() : json_decode(stripslashes($_REQUEST['accountIDArray']), true);
 
 // Protect against directory traversal
-$template = ereg_replace("../", "", $template);
+// PHP 5.3
+$pattern = '/..\//';
+$replacement = '';
+$template = preg_replace($pattern, $replacement, $template);
 
 $dmsService = new DMSService();
 

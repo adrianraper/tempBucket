@@ -1083,7 +1083,8 @@ EOD;
 	 */
 	private function _buildBentoTitle($title, $folder, $generateMaps = false, $forDMS = false, $courseType = 'orchid') {
 		// Replace backslashes with forward slashes for Windows/Unix independence
-		$folder = ereg_replace("\\\\", "/", $folder);
+		// PHP 5.3
+		$folder = preg_replace("/\\\\/", "/", $folder);
 		
 		// v3.5 We have worked out which folder to use, and now need to save that in the title object
 		// It isn't done in createTitleFromObj because this is NOT a direct database field
@@ -1155,7 +1156,8 @@ EOD;
 	 */
 	private function _buildTitle($title, $folder, $generateMaps = false, $forDMS = false, $courseType = 'orchid') {
 		// Replace backslashes with forward slashes for Windows/Unix independence
-		$folder = ereg_replace("\\\\", "/", $folder);
+		// PHP 5.3
+		$folder = preg_replace("/\\\\/", "/", $folder);
 		
 		// v3.5 We have worked out which folder to use, and now need to save that in the title object
 		// It isn't done in createTitleFromObj because this is NOT a direct database field
@@ -1291,7 +1293,8 @@ EOD;
 	 */
 	private function _buildUnitsFromFile($folder, $filename, $course, $generateMaps = false, $courseType = 'orchid') {
 		// Replace backslashes with forward slashes for Windows/Unix independence
-		$folder = ereg_replace("\\\\", "/", $folder);
+		// PHP 5.3
+		$folder = preg_replace("/\\\\/", "/", $folder);
 		
 		$doc = new DOMDocument();
 		// v3.3 Whilst it should be impossible for this file to not exist, it can happen somehow for an empty course in AP.
@@ -1450,7 +1453,8 @@ EOD;
 		
 		// The current Clarity XML is not well-formed in that it contains & characters, so go through and replace this with the correct
 		// html entity before passing to the libxml parser.
-		$xmlString = ereg_replace("&", "&amp;", $xmlString);
+		// PHP 5.3
+		$xmlString = preg_replace('/&/', "&amp;", $xmlString);
 		
 		// Create the XML document from the string
 		$doc->loadXML($xmlString, LIBXML_COMPACT);

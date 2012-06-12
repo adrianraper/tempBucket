@@ -1060,7 +1060,8 @@ EOD;
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
-		AuthenticationOps::authenticateUsers(array($user));
+		// #341 There might not be a teacher
+		//AuthenticationOps::authenticateUsers(array($user));
 		return $user;
 	}
 	
@@ -1100,7 +1101,8 @@ EOD;
 		}
 		
 		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
-		AuthenticationOps::authenticateUsers(array($user));
+		// #341 There might not be a teacher
+		//AuthenticationOps::authenticateUsers(array($user));
 		return $user;
 	}
 	

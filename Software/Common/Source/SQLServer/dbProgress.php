@@ -1552,10 +1552,11 @@ EOD;
 		$instanceArray[$productCode] = $instanceID;
 		$instanceControl = json_encode($instanceArray);
 		
+		// #340. SQLite doesn't like symbolic names for the table in an update
 		$sql = <<<EOD
-		UPDATE T_User u					
-		SET u.F_UserIP=?, u.F_InstanceID=? 
-		WHERE u.F_UserID=?
+			UPDATE T_User
+			SET F_UserIP=?, F_InstanceID=? 
+			WHERE F_UserID=?
 EOD;
 		$bindingParams = array($ip, $instanceControl, $userID);
 		$resultObj = $db->Execute($sql, $bindingParams);

@@ -40,8 +40,10 @@ $smarty->clear_compiled_tpl();
 $smarty->force_compile = true;
 */
 
-// Protect against directory traversal
-$template = ereg_replace("../", "", $template);
+// PHP 5.3
+$pattern = '/..\//';
+$replacement = '';
+$template = preg_replace($pattern, $replacement, $template);
 
 $dmsService = new DMSService();
 
