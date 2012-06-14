@@ -14,6 +14,7 @@
 		function setLicencee(name:String):void;
 		function setLoginOption(loginOption:Number):void;
 		function setSelfRegister(selfRegister:Number):void;
+		function setVerified(verified:Number):void;
 		function clearData():void;
 		function setProductVersion(productVersion:String):void;
 		function getProductVersion():String;

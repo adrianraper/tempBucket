@@ -60,8 +60,8 @@ class Reportable {
 	 */
 	static function apos_decode($string) {
 		// PHP 5.3
-		$pattern = '&apos;';
-		$replacement = "/'/";
+		$pattern = "/&apos;/";
+		$replacement = "'";
 		return preg_replace($pattern, $replacement, $string);
 	}
 	

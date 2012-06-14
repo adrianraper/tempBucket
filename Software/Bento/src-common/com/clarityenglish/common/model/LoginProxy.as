@@ -62,7 +62,7 @@ package com.clarityenglish.common.model {
 		
 		// #341
 		//public function login(key:String, password:String):void {
-		public function login(user:User, loginOption:Number):void {
+		public function login(user:User, loginOption:Number, verified:Boolean = true):void {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -98,7 +98,8 @@ package com.clarityenglish.common.model {
 				loginObj = null;
 			
 			// #307 Add rootID and productCode
-			var params:Array = [ loginObj, loginOption, instanceID, configProxy.getConfig().licence, configProxy.getRootID(), configProxy.getProductCode() ];
+			// #341 Add verified to allow no password
+			var params:Array = [ loginObj, loginOption, verified, instanceID, configProxy.getConfig().licence, configProxy.getRootID(), configProxy.getProductCode() ];
 			new RemoteDelegate("login", params, this).execute();
 		}
 		

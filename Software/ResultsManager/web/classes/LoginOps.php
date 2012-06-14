@@ -14,7 +14,7 @@ class LoginOps {
 	
 	// Bento login has different options than RM
 	// For now write this as a different function so it can exist in the same file yet be completely different
-	function loginBento($loginObj, $loginOption, $userTypes, $rootID, $productCode = null) {
+	function loginBento($loginObj, $loginOption, $verified, $userTypes, $rootID, $productCode = null) {
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
 		// TODO. make it use constants.
@@ -91,8 +91,11 @@ EOD;
 				$loginObj = $rs->FetchNextObj();
 				
 				// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
-				if ($password != $loginObj->F_Password) {
-					throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
+				// #341 Only check password if you have set this to be the case 
+				if ($verified) {
+					if ($password != $loginObj->F_Password) {
+						throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
+					}
 				}
 				
 				// Check if the user has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.

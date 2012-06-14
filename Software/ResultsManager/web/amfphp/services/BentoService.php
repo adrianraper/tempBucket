@@ -129,7 +129,7 @@ class BentoService extends AbstractService {
 	// otherwise they need to be passed with every call.
 	// #307 Pass rootID and productCode rather than get them from session vars
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
-	public function login($loginObj, $loginOption, $instanceID, $licence, $rootID = null, $productCode = null) {
+	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null) {
 		if (!$rootID) $rootID = Session::get('rootID');
 		if (!$productCode) $productCode = Session::get('productCode');
 
@@ -141,12 +141,14 @@ class BentoService extends AbstractService {
 								 
 		// No need to check names for anonymous licence
 		// #341 or for network licence working in anonymous mode
+		// #341 LOGIN_BY_ANONYMOUS:uint = 8;
 		if ($licence->licenceType == Title::LICENCE_TYPE_AA || 
-			($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL)) {
+			($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
+			($loginOption & 8)) {
 			$userObj = $this->loginOps->anonymousUser($rootID);
 		} else {
 			// First, confirm that the user details are correct
-			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $allowedUserTypes, $rootID, $productCode);
+			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
 		}
 		
 		$user = new User();

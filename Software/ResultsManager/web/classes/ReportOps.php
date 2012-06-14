@@ -141,18 +141,186 @@ class ReportOps {
 		// Once all the data you need is in the dom, you can let the xsl pick it up.
 		// Or it might be a better idea to do the necessary processing (summing, weighting etc) in here as PHP will be easier thatn XSL (for most stuff).
 		//if ($template == "ClarityTestSummary") {
+		// Clarity's Practical Placement Test (ClarityTestSummary and 3levelTestSummary)
 		if (strpos($template,'TestSummary')!==false) {
+			$this->PPTSelfAssessmentExerciseID = '1292227313781';
+			
 			// A great deal of the data will be the same (groupname etc) so use a similar setup
 			// But I want extra filtering on a particular exercise (in this case)
 			$newOpts = $reportBuilder->getOpt(ReportBuilder::FOR_IDOBJECTS);
-			$newOpts[0]['Exercise'] = '1292227313781';
+			$newOpts[0]['Exercise'] = $this->PPTSelfAssessmentExerciseID;
 			$reportBuilder->setOpt(ReportBuilder::FOR_IDOBJECTS, $newOpts);
 			
 			$detailSQL = $reportBuilder->buildDetailReportSQL();
 			//echo $detailSQL.'<br/>'; exit();
 			$details = $this->db->GetArray($detailSQL);
-		}
+			
+			// #1 You have all the rows now and the details, so need to summarise here
+			$summarisedRows = array();
+			$buildRow = array();
+			$rowName = '';
+			$rowSID = '';
+			
+			// Summary is always for one title (true?) Is there much performance hit from doing it many times?			
+			foreach ($rows as $row) {
+				// Is this a row that is part of a different test?
+				//echo var_dump($row);
+				if ($row['userName'] != $rowName || $row['sessionID'] != $rowSID) {
+				
+					// Do we have an already built row to write out from the previous test?
+					if (isset($buildRow['userName'])) {
+						$summarisedRows[] = $this->addDetailSummary($buildRow, $details);
+					}
+					
+					// Make a new build row ready for the next test record
+					$buildRow = array('userName' => $row['userName'],'sessionID' => $row['sessionID']);
+					if (isset($row['productCode']))
+						$buildRow['productCode'] = $row['productCode'];
+					if (isset($row['groupName']))
+						$buildRow['groupName'] = $row['groupName'];
+					if (isset($row['email']))
+						$buildRow['email'] = $row['email'];
+					if (isset($row['start_date']))
+						$buildRow['myStartDate'] = $row['start_date'];
+					if (isset($row['courseID']))
+						$buildRow['courseID'] = $row['courseID'];
+					if (isset($row['unitID']))
+						$buildRow['unitID'] = $row['unitID'];
+					$buildRow['grammarCorrect'] = $buildRow['vocabularyCorrect'] = $buildRow['listeningCorrect'] = 0;
+					$buildRow['grammarWrong'] = $buildRow['vocabularyWrong'] = $buildRow['listeningWrong'] = 0;
+					$buildRow['grammarMissed'] = $buildRow['vocabularyMissed'] = $buildRow['listeningMissed'] = 0;
+					$buildRow['grammarDuration'] = $buildRow['vocabularyDuration'] = $buildRow['listeningDuration'] = 0;
+						
+					$rowName = $row['userName'];
+					$rowSID = $row['sessionID'];
+				}
+				
+				// If this row doesn't have an exerciseName attribute, I don't want it
+				if (!isset($row['exerciseID']))
+					continue 1;
+					
+				// Need to get the exercise name from the id to allow grouping based on the name
+				$title = $this->getTitle($row['productCode']);
+				$exerciseName = $title->courses[$row['courseID']]->units[$row['unitID']]->exercises[$row['exerciseID']]->name;
+				$buildRow['exerciseName'] = $exerciseName;
+				
+				if (!stristr($exerciseName, 'grammar') === FALSE) {
+					$buildRow['grammarCorrect'] += intval($row['correct']);
+					$buildRow['grammarWrong'] += intval($row['wrong']);
+					$buildRow['grammarMissed'] += intval($row['missed']);
+					$buildRow['grammarDuration'] += intval($row['duration']);
+				}
+				if (!stristr($exerciseName, 'vocabulary') === FALSE) {
+					$buildRow['vocabularyCorrect'] += intval($row['correct']);
+					$buildRow['vocabularyWrong'] += intval($row['wrong']);
+					$buildRow['vocabularyMissed'] += intval($row['missed']);
+					$buildRow['vocabularyDuration'] += intval($row['duration']);
+				}
+				if (!stristr($exerciseName, 'listening') === FALSE) {
+					$buildRow['listeningCorrect'] += intval($row['correct']);
+					$buildRow['listeningWrong'] += intval($row['wrong']);
+					$buildRow['listeningMissed'] += intval($row['missed']);
+					$buildRow['listeningDuration'] += intval($row['duration']);
+				}
+			}
+			// Write out the final row you built
+			if (isset($buildRow['userName'])) {
+				$summarisedRows[] = $this->addDetailSummary($buildRow, $details);
+			}
+			
+			// Reset our rows to the summarised one for the rest of the reporting code
+			$rows = $summarisedRows;			
 		
+		// British Council LearnEnglish Level Test (CEFSummary)
+		} else if (strpos($template, 'CEFSummary') !== false) {
+
+			// #1 You have all the rows, so need to summarise here
+			$summarisedRows = array();
+			$buildRow = array();
+			$rowName = '';
+			$rowSID = '';
+			
+			foreach ($rows as $row) {
+				// Is this a row that is part of a different test?
+				if ($row['userName'] != $rowName || $row['sessionID'] != $rowSID) {
+				
+					// Do we have an already built row to write out from the previous test?
+					if (isset($buildRow['unitName'])) {
+						$summarisedRows[] = $buildRow;
+					}
+					
+					// Make a new build row ready for the next test record
+					$buildRow = array('userName' => $row['userName'],'sessionID' => $row['sessionID']);
+					if (isset($row['productCode']))
+						$buildRow['productCode'] = $row['productCode'];
+					if (isset($row['groupName']))
+						$buildRow['groupName'] = $row['groupName'];
+					if (isset($row['email']))
+						$buildRow['email'] = $row['email'];
+					if (isset($row['start_date']))
+						$buildRow['start_date'] = $row['start_date'];
+					if (isset($row['courseID']))
+						$buildRow['courseID'] = $row['courseID'];
+
+					$buildRow['grammarCorrect'] = $buildRow['vocabularyCorrect'] = $buildRow['readingCorrect'] = 0;
+					$buildRow['grammarWrong'] = $buildRow['vocabularyWrong'] = $buildRow['readingWrong'] = 0;
+					$buildRow['grammarMissed'] = $buildRow['vocabularyMissed'] = $buildRow['readingMissed'] = 0;
+					$buildRow['duration'] = 0;
+						
+					$rowName = $row['userName'];
+					$rowSID = $row['sessionID'];
+				}
+				
+				// If this row doesn't have an exerciseName attribute, I don't want it
+				if (!isset($row['exerciseID']))
+					continue 1;
+					
+				// Need to get the exercise name from the id to allow grouping based on the name
+				//echo var_dump($row);
+				$title = $this->getTitle($row['productCode']);
+				$course = $title->courses[$row['courseID']];
+				$unit = $course->units[$row['unitID']];
+				if (isset($unit->exercises[$row['exerciseID']])){
+					$exerciseName = $unit->exercises[$row['exerciseID']]->name;
+				} else {
+					$exerciseName = 'unknown';
+				}
+				$buildRow['exerciseName'] = $exerciseName;
+				
+				// There are two units that will have been used in each test, we only care about the one that
+				// contains these exercises
+				if (!stristr($exerciseName, 'grammar') === FALSE) {
+					$buildRow['unitName'] = $unit->name;
+					$buildRow['grammarCorrect'] += intval($row['correct']);
+					$buildRow['grammarWrong'] += intval($row['wrong']);
+					$buildRow['grammarMissed'] += intval($row['missed']);
+					$buildRow['duration'] += intval($row['duration']);
+				} else if (!stristr($exerciseName, 'vocabulary') === FALSE) {
+					$buildRow['unitName'] = $unit->name;
+					$buildRow['vocabularyCorrect'] += intval($row['correct']);
+					$buildRow['vocabularyWrong'] += intval($row['wrong']);
+					$buildRow['vocabularyMissed'] += intval($row['missed']);
+					$buildRow['duration'] += intval($row['duration']);
+				} else if (!stristr($exerciseName, 'reading') === FALSE) {
+					$buildRow['unitName'] = $unit->name;
+					$buildRow['readingCorrect'] += intval($row['correct']);
+					$buildRow['readingWrong'] += intval($row['wrong']);
+					$buildRow['readingMissed'] += intval($row['missed']);
+					$buildRow['duration'] += intval($row['duration']);
+				} else {
+					$buildRow['duration'] += intval($row['duration']);
+				}
+			}
+			// Write out the final row you built
+			if (isset($buildRow['unitName'])) {
+				$summarisedRows[] = $buildRow;
+			}
+			
+			// Reset our rows to the summarised one for the rest of the reporting code
+			$rows = $summarisedRows;			
+
+		}
+
 		$dom = new DOMDocument("1.0", "UTF-8");
 		$reportXML = $dom->createElement("report");
 		
@@ -217,6 +385,30 @@ class ReportOps {
 		} else {
 			return $dom;
 		}
+	}
+	
+	// #1 This function takes a summary row and adds in the relevant stuff from the detail records
+	function addDetailSummary($buildRow, $details) {
+		// Get the keys from the summary
+		$userName = $buildRow['userName'];
+		$sID = $buildRow['sessionID'];
+		$selfAssessmentList = array();
+		$selfAssessmentScore = 0;
+		foreach ($details as $detail) {
+			if ($detail['userName'] == $userName && $detail['sessionID'] == $sID && $detail['exerciseID'] == $this->PPTSelfAssessmentExerciseID) {
+				$itemScore = intval($detail['score']);
+				if ($itemScore > 0) {
+					$selfAssessmentList[] = $detail['itemID'];
+					// The self-assessment score is the question number (ie: you get more points for the latter questions)
+					$selfAssessmentScore += intval($detail['itemID']);
+				}
+			}
+		}
+		sort($selfAssessmentList, SORT_NUMERIC);
+		$buildRow['selfAssessmentList'] = implode(',', $selfAssessmentList);
+		$buildRow['selfAssessment'] = $selfAssessmentScore;
+		
+		return $buildRow;
 	}
 	
 	function getReportFilters($class, $idObjects) {

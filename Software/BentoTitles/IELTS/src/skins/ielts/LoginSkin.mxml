@@ -68,8 +68,10 @@
 			<s:Label id="loginKey_lbl" text="{hostComponent.loginKey_lbl}" fontWeight="bold" />
 			<s:TextInput id="loginKeyInput" width="180" />
 			<s:Spacer height="5" />
-			<s:Label text="Password:" fontWeight="bold" />
-			<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
+			<s:VGroup id="passwordBlock" includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}">
+				<s:Label text="Password:" fontWeight="bold" />
+				<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
+			</s:VGroup>
 			<s:Spacer height="3" />
 			<s:HGroup>
 				<s:Button id="loginButton" label="Log in" />
@@ -94,7 +96,7 @@
 				<s:TextInput id="loginEmailInput" width="180" />
 			</s:HGroup>
 			<s:Spacer height="3" />
-			<s:HGroup id="passwordGroup" visible="{hostComponent.selfRegisterPassword}" includeInLayout="{hostComponent.selfRegisterPassword}">
+			<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
 				<s:Label text="Password:" fontWeight="bold" />
 				<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" />
 			</s:HGroup>

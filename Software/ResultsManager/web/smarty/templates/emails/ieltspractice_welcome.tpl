@@ -30,7 +30,7 @@
            		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Dear {$api->subscription->name}</p>
            
         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">An account has been created for you. To access the account, please go to this URL:
-        <a href="http://www.IELTSpractice.com" target="_blank">www.IELTSpractice.com</a>.</p>
+        <a href="http://www.ieltspractice.com" target="_blank">www.IELTSpractice.com</a>.</p>
         
         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Your login details as below:</p>
         
@@ -40,7 +40,7 @@
             	<strong>Member name: </strong>{$api->subscription->email}</p>
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">
             	<strong>Password: </strong>{$api->subscription->password}</p>
-            <a href="www.IELTSPractice.com" target="_blank">
+            <a href="http://www.ieltspractice.com" target="_blank">
             <img src="http://www.clarityenglish.com/images/email/ieltspractice/btn_learn.jpg" width="190" height="42" border="0" />
             </a>
           </div>
@@ -69,7 +69,7 @@ Please keep this email for later reference.</p>
                    	    <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Please feel free to contact us at <a href='mailto:support@ieltspractice.com'>support@ieltspractice.com</a> if you have any questions.</p>
 
 						<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">Best wishes</p>
-                        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:15px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_nicolelung.jpg" width="103" height="25" alt="Nicole Lung"/></p>
+                        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_nicolelung.jpg" width="103" height="25" alt="Nicole Lung"/></p>
                         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
                  	Nicole Lung<br />
                     Marketing Executive, Clarity</p>                    </td>
@@ -88,14 +88,13 @@ Please keep this email for later reference.</p>
             
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px; font-weight:bold;">Clarity Language Consultants Ltd<br />(UK and Hong Kong since 1992)</p>
 			  
-			 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px;">
+		 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px;">
                 T: (+852) 2791 1787 | F: (+852) 2791 6484<br />
-                E: info@clarityenglish.com | W: www.ieltspractice.com
-              </p> 
+            E: <a href="mailto:info@clarityenglish.com" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:#FFFFFF;">info@clarityenglish.com </a>| W: <a href="http://www.clarityenglish.com" target="_blank" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:#FFFFFF;">www.ClarityEnglish.com</a></p> 
               
                <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; 0; padding:0; color:#FFFFFF; line-height:18px;">
-               Your privacy is important to us. Please review IELTSpractice.com privacy
-policy by clicking here: <a href="http://www.ieltspractice.com/disclaimer.php" target="_blank" style="color:#FFFFFF;">http://www.ieltspractice.com/disclaimer.php</a></p>
+               Your privacy is important to us. Please review the Clarity English privacy
+policy by clicking here: <a href="http://www.clarityenglish.com/disclaimer.php" target="_blank" style="color:#FFFFFF;">http://www.clarityenglish.com/disclaimer.php</a></p>
     </div>
         
         

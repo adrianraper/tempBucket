@@ -207,20 +207,21 @@ package com.clarityenglish.common.model {
 		 */
 		public function getDirectLogin():LoginEvent {
 			var loginOption:uint = getAccount().loginOption;
+			var verified:Boolean = (getAccount().verified == 1) ? true : false;
 			
 			if (Config.DEVELOPER.name == "DK") {
 				var configUser:User = new User({name:"dandelion", password:"password"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
 				configUser = new User({name:"Adrian Raper", studentID:"p574528(8)", password:"passwording"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
 			if (Config.DEVELOPER.name == "network") {
 				configUser = new User({name:"Student", studentID:"123", password:"password"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
 			// Take it from from the URL parameters (see config.as.mergeParameters)
@@ -236,19 +237,19 @@ package com.clarityenglish.common.model {
 				(config.studentID && (loginOption & Config.LOGIN_BY_ID)) || 
 				(config.email && (loginOption & Config.LOGIN_BY_EMAIL))) {
 				configUser = new User({name:config.username, studentID:config.studentID, email:config.email, password:config.password});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 
 			// Anonymous login
 			// Demo login will normally use AA licence type
 			if (config.licenceType == Title.LICENCE_TYPE_AA) 
-				return new LoginEvent(LoginEvent.LOGIN, null, loginOption);
+				return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
 			
 			// #336 SCORM probably needs to be checked here
 			if (config.scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 				configUser = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption);
+				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
 			return null;

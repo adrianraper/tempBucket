@@ -68,6 +68,8 @@ package com.clarityenglish.ielts.view.login {
 		// #341
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
+		private var _verified:Boolean;
+		
 		private var _currentState:String;
 
 		private var _productVersion:String;
@@ -116,6 +118,16 @@ package com.clarityenglish.ielts.view.login {
 				_selfRegister = value;
 			}
 		}
+		[Bindable]
+		public function get verified():Boolean {
+			return _verified; 
+		}
+		public function set verified(value:Boolean):void {
+			if (_verified != value) {
+				_verified = value;
+			}
+		}
+
 		[Bindable]
 		public function get selfRegisterName():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_NAME) == Config.SELF_REGISTER_NAME); 
@@ -296,6 +308,9 @@ package com.clarityenglish.ielts.view.login {
 		public function setSelfRegister(value:Number):void {
 			selfRegister = value;
 		}
+		public function setVerified(value:Number):void {
+			verified = (value == 1) ? true : false;
+		}
 
 		/**
 		 * To let you work out what data you need for logging in to this account. 
@@ -310,17 +325,13 @@ package com.clarityenglish.ielts.view.login {
 				loginKey_lbl = "Login id:";
 				
 			} else {
-				switch (loginOption) {
-					case Config.LOGIN_BY_NAME:
-						loginKey_lbl = "Your name:";
-						break;
-					case Config.LOGIN_BY_ID:
-						loginKey_lbl = "Your id:";
-						break;
-					case Config.LOGIN_BY_EMAIL:
-						loginKey_lbl = "Your email:";
-						break;
-					default:
+				// #341 This has to be bitwise comparison, not equality
+				if (loginOption & Config.LOGIN_BY_NAME) {
+					loginKey_lbl = "Your name:";
+				} else if (loginOption & Config.LOGIN_BY_ID) {
+					loginKey_lbl = "Your id:";
+				} else if (loginOption & Config.LOGIN_BY_EMAIL) {
+					loginKey_lbl = "Your email:";
 				}
 			}
 			
@@ -334,13 +345,21 @@ package com.clarityenglish.ielts.view.login {
 		public function onEnter(event:FlexEvent):void {
 			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
 				var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
-				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption));
+				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 			}
 			
 			// Go to the password field if press Enter but it is empty
 			// TODO. Ideally we would check loginOptions to see if password required
-			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)=='')
-				passwordInput.setFocus();
+			// #341 Password is hidden if verified = false
+			if (verified) {
+				if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)=='')
+					passwordInput.setFocus();
+			} else {
+				if (StringUtil.trim(loginKeyInput.text)) {
+					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:null});
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
+				}				
+			}
 		}
 		
 		/**
@@ -353,11 +372,11 @@ package com.clarityenglish.ielts.view.login {
 			switch (event.target) {
 				case quickStartButton:
 					var user:User = new User({name:"Adrian Raper", password:"password"});
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption));
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case loginButton:
 					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption));
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case newUserButton:
 					setState("register");
@@ -367,7 +386,7 @@ package com.clarityenglish.ielts.view.login {
 				case addUserButton:
 					//user = new User({name:newNameInput.text, password:newPasswordInput.text});
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
-					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption));
+					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 					break;
 				default:
 					setState("login");

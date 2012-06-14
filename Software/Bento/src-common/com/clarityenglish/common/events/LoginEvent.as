@@ -19,24 +19,26 @@
 		//public var password:String;
 		public var user:User;
 		public var loginOption:Number;
+		public var verified:Boolean;
 		
 		//public function LoginEvent(type:String, username:String, password:String, bubbles:Boolean=false, cancelable:Boolean=false) { 
-		public function LoginEvent(type:String, userObject:Object, loginOption:uint, bubbles:Boolean=false, cancelable:Boolean=false) { 
+		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean=true, bubbles:Boolean=false, cancelable:Boolean=false) { 
 			super(type, bubbles, cancelable);
 			
 			//this.name = username;
 			//this.password = password;
 			this.user = new User(userObject);
 			this.loginOption = loginOption;
+			this.verified = verified;
 		} 
 		
 		public override function clone():Event { 
 			//return new LoginEvent(type, username, password, bubbles, cancelable);
-			return new LoginEvent(type, user, loginOption, bubbles, cancelable);
+			return new LoginEvent(type, user, loginOption, verified, bubbles, cancelable);
 		} 
 		
 		public override function toString():String { 
-			return formatToString("LoginEvent", "type", "user.name", "loginOption", "bubbles", "cancelable", "eventPhase"); 
+			return formatToString("LoginEvent", "type", "user.name", "loginOption", "verified", "bubbles", "cancelable", "eventPhase"); 
 		}
 		
 	}

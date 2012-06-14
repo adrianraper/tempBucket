@@ -23,6 +23,9 @@ package com.clarityenglish.common.vo.config {
 		public static const SELF_REGISTER_ID:uint = 2;
 		public static const SELF_REGISTER_EMAIL:uint = 4;
 		public static const SELF_REGISTER_PASSWORD:uint = 16;
+		
+		// #341
+		public static const LOGIN_REQUIRE_PASSWORD:uint = 1;
 
 		/**
 		 * Information is held in simple variables for the most part
