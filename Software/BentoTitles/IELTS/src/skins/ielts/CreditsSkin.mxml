@@ -7,6 +7,85 @@
 		[HostComponent("com.clarityenglish.ielts.view.credits.CreditsView")]
 	</fx:Metadata>
 	
+	<fx:Declarations> 
+		<fx:String id="creditsTextAsHTML"><![CDATA[					
+			<p align='left'>
+			<b>Project Manager</b><br />
+			Greg Selby</p>
+			
+			<p align='left'>
+			<b>Lead Programmer</b><br />
+			Dave Keen</p>
+			
+			<p align='left'>
+			<b>Video recordings</b><br />
+			Andy Lewis</p>
+			
+			<p align='left'>
+			<b>Sources of original articles and images</b></p>
+			<p align='left'>
+			Photo images are taken from Shutterstock with permission.</p>
+			<p align='left'>
+			Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group. <br />
+			Tapescript: Alex Mackarow.
+			</p>
+			
+			<p align='left'>
+			Authentic articles are taken from the following publications or organisations:<br />
+			Abolishing Management, One Slice at a Time<br />
+			ACTA<br />
+			American Artist Magazine<br />
+			Amnesty International USA<br />
+			Books, etc., Christmas Catalogue<br />
+			BritainUSA.com<br />
+			British Medical Journal<br />
+			Canada's International Development Research Centre<br />
+			Country Living Magazine<br />
+			Directory of International Voluntary Work<br />
+			ERIC Digest<br />
+			Games on Playing Cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems)<br />
+			Guns, Germs and Steel<br />
+			Heathrow Express<br />
+			Her Majesty's Stationery Office<br />
+			History Today<br />
+			Learndirect <br />
+			Management Today<br />
+			National Geographic<br />
+			New Internationalist<br />
+			New Statesman<br />
+			Play: An Endangered Species<br />
+			Prospect Magazine<br />
+			RECOUP<br />
+			Royal Mail<br />
+			Success in Four Minutes or Less<br />
+			The Articulate Mammal<br />
+			The Australian Film Television & Radio School<br />
+			The Economist<br />
+			The Futurist<br />
+			The Guardian<br />
+			The Independent<br />
+			The Language Instinct<br />
+			The Observer<br />
+			The Pocket Guide to the Birds of Britain and North-West Europe<br />
+			The Sunday Times<br />
+			The Times<br />
+			The US Geological Survey (USGS)<br />
+			Time Europe<br />
+			To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries<br />
+			Twenty Species We May Lose in the Next 20 Years<br />
+			UNESCO<br />
+			Valleyfair, Cedar Fair, L.P.<br />
+			Vanishing Languages<br />
+			Why Newspapers Will Flourish in the Years Ahead<br />
+			Why Study Ancient World Cultures?
+			</p>
+			
+			<p align='left'>
+			Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the British Council will be pleased    <br /> to make the necessary arrangements.
+			</p>]]>
+		</fx:String>
+	</fx:Declarations>
+	
 	<fx:Script> 
 	<![CDATA[ 
 	import flash.net.navigateToURL; 
@@ -17,33 +96,49 @@
 	navigateToURL(urlReq, "_self"); 
 	} 
 	]]> 
+		<![CDATA[
+			import flashx.textLayout.conversion.TextConverter;
+		]]>
 </fx:Script> 
 
-	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0">
+	<s:BorderContainer horizontalCenter="0" borderAlpha="0" backgroundAlpha="0" width="90%">
 	<s:layout>
-		<s:VerticalLayout paddingTop="80" horizontalAlign="center" />
+		<s:VerticalLayout paddingTop="30" horizontalAlign="center" />
 	</s:layout>
 	
 	<s:Group width="100%">
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CreditGraphic')" horizontalAlign="center" horizontalCenter="0" />
-		<s:VGroup width="100%" paddingLeft="423" paddingTop="70">
-		<s:SWFLoader id="endLogo" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')" autoLoad="true" height="32" width="310" />
+		<s:SWFLoader id="endLogo" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CreditGraphic')" autoLoad="true" horizontalAlign="center" horizontalCenter="0" />
 		<s:Spacer height="0" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" width="236" />
-		<s:Spacer height="22" />
-		<s:Label text="Thank you for using Road to IELTS." fontSize="16" color="0X39944A" fontWeight="bold" paddingLeft="65" />
+		<s:VGroup width="100%" horizontalAlign="center" paddingTop="80">
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/credits.png')" horizontalAlign="center" horizontalCenter="0" />
+		<s:Spacer height="10" />
+		<s:Label text="Thank you for using Road to IELTS." fontSize="21" color="0X174A7D" fontWeight="bold" horizontalCenter="0"/>
 		<s:Spacer height="0" />
-		<s:Label text="You have successfully logged out." fontSize="16" color="0X39944A" fontWeight="bold" paddingLeft="65" />
+		<s:Label text="We would love to know what you think." fontSize="21" color="0X174A7D"  fontWeight="bold"  click="clickHandler(event)" horizontalCenter="0" /> 
 		<s:Spacer height="0" />
-		<s:Label text="Good luck in your IELTS test." fontSize="16" color="0X39944A" fontWeight="bold" paddingLeft="65" />
-		<s:Spacer height="25" />
-		<s:Label text="We would love to know what you think!" fontSize="16" color="0X174A7D"  fontWeight="bold"  click="clickHandler(event)" paddingLeft="65" /> 
-		<s:Spacer height="0" />
-		<s:Label text="Click here to give us your feedback." textDecoration="underline" fontSize="16" color="0X0096D6" fontWeight="bold" click="clickHandler(event)" buttonMode="true" useHandCursor="true" paddingLeft="65"/> 
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='QuestionnairekButton')" click="clickHandler(event)" buttonMode="true" useHandCursor="true" width="313" horizontalCenter="0" />
+		<s:Spacer height="10" />
+		<s:RichText text="Credits and acknowledgements" fontSize="21" horizontalCenter="0"/>
 		</s:VGroup>
 	</s:Group>
+		
 	<s:VGroup>
-		<s:Rect width="80%" height="1" horizontalCenter="0" >
+		<s:VGroup width="100%" height="100%" >
+			<s:Rect left="100" right="0" top="100" bottom="0" width="100%" height="1" >
+				<s:fill>
+					<s:SolidColor color="0x999999" />
+				</s:fill>
+			</s:Rect>
+			<s:Scroller width="800" height="20%">
+				<s:Group> 
+					<s:RichText id="creditsText" 
+								textFlow="{TextConverter.importToFlow(creditsTextAsHTML, TextConverter.TEXT_FIELD_HTML_FORMAT)}"  /> 
+				</s:Group>        
+			</s:Scroller>
+			
+		</s:VGroup>
+
+		<s:Rect width="100%" height="1" horizontalCenter="0" >
 			<s:fill>
 				<s:SolidColor color="0x0C436B" />
 			</s:fill>

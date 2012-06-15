@@ -41,6 +41,10 @@ package com.clarityenglish.ielts.view.support {
 			}
 		}
 		
+		public function get assetFolder():String {
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+		}
+		
 		protected override function getCurrentSkinState():String {
 			switch (productVersion) {
 				case IELTSApplication.DEMO:
