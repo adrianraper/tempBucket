@@ -17,6 +17,7 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
+	import mx.events.VideoEvent;
 	import mx.formatters.DateFormatter;
 	
 	import org.osflash.signals.Signal;
@@ -311,7 +312,8 @@ package com.clarityenglish.ielts.view.zone {
 			}
 		}
 		
-		protected function onVideoPlayerComplete(event:TimeEvent):void {
+		
+	    protected function onVideoPlayerComplete(event:TimeEvent):void {
 			// When a video in advice zone reaches the end deselect the video in the list so we don't end up with a floating 'loading...'
 			if (event.target == adviceZoneVideoPlayer) adviceZoneVideoList.selectedItem = null;
 		}
