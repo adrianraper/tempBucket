@@ -43,6 +43,7 @@
 			view.configID = configProxy.getConfig().configID;
 			view.productVersion = configProxy.getProductVersion() || "fullVersion";
 			view.productCode = configProxy.getProductCode() || 52;
+			view.licenceType = configProxy.getLicenceType(); 
 			
 			// listen for these signals
 			view.logout.add(onLogout);

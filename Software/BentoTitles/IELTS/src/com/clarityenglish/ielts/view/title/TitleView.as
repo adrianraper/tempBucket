@@ -189,6 +189,10 @@ package com.clarityenglish.ielts.view.title {
 				dispatchEvent(new Event("licenceTypeChanged"));
 			}
 		}
+		[Bindable]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
 		
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
@@ -318,12 +322,22 @@ package com.clarityenglish.ielts.view.title {
 			
 			switch (instance) {
 				case navBar:
-					navBar.dataProvider = new ArrayCollection( [
-						{ icon: homeIcon, label: "Home", data: "home" },
-						{ icon: progressIcon, label: "My Progress", data: "progress" },
-						{ icon: accountIcon, label: "My Profile", data: "account" },
-						{ icon: helpIcon, label: "Help", data: "support" },
-					] );
+					// Network licence doesn't want a My Profile tab
+					// TODO. But CT licence will still want it - and they are a shared value!
+					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
+						navBar.dataProvider = new ArrayCollection( [
+							{ icon: homeIcon, label: "Home", data: "home" },
+							{ icon: progressIcon, label: "My Progress", data: "progress" },
+							{ icon: helpIcon, label: "Help", data: "support" },
+						] );
+					} else {
+						navBar.dataProvider = new ArrayCollection( [
+							{ icon: homeIcon, label: "Home", data: "home" },
+							{ icon: progressIcon, label: "My Progress", data: "progress" },
+							{ icon: accountIcon, label: "My Profile", data: "account" },
+							{ icon: helpIcon, label: "Help", data: "support" },
+						] );
+					}
 					
 					navBar.selectedIndex = 0;
 					navBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
