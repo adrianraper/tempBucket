@@ -22,6 +22,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
+	import flash.utils.Dictionary;
 	
 	import flashx.textLayout.elements.FlowElement;
 	
@@ -105,9 +106,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			for each (var sectionName:String in SUPPORTED_SECTIONS) {
 				var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
 				
-				//if (xhtmlRichText && xhtmlRichText.flowElementXmlBiMap) {
 				if (xhtmlRichText && _xhtml.flowElementXmlBiMap) {
-					//var flowElement:FlowElement = xhtmlRichText.flowElementXmlBiMap.getFlowElement(node);
 					var flowElement:FlowElement = _xhtml.flowElementXmlBiMap.getFlowElement(node);
 					if (flowElement)
 						return flowElement;
@@ -179,11 +178,14 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			if (!question.isSelectable())
 				return;
 			
+			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
+			
 			// Always deselect all nodes so we are selecting from a blank state (ExerciseProxy will take care of mutual exclusiveness, etc)
 			for each (var allAnswers:NodeAnswer in question.answers) {
 				for each (var otherSource:XML in allAnswers.getSourceNodes(exercise)) {
 					XHTML.removeClass(otherSource, Answer.SELECTED);
-					TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource), true); // TODO: Again, this is crazy inefficient
+					TLFUtil.markFlowElementFormatChanged(getFlowElement(otherSource));
+					textFlowDamageAccumulator.damageTextFlow(getFlowElement(otherSource).getTextFlow());
 				}
 			}
 			
@@ -198,12 +200,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				// Refresh the element and update the screen
 				// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.
 				TLFUtil.markFlowElementFormatChanged(answerElement);
-				answerElement.getTextFlow().flowComposer.updateAllControllers();
+				textFlowDamageAccumulator.damageTextFlow(answerElement.getTextFlow());
 				break;
 			}
+			
+			textFlowDamageAccumulator.updateDamagedTextFlows();
 		}
 		
 		public function markAnswerMap(question:Question, answerMap:AnswerMap, isShowAnswers:Boolean = false):void {
+			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
+			
 			for each (var key:Object in answerMap.keys) {
 				var answer:Answer = answerMap.get(key);
 				var answerNode:XML = key as XML;
@@ -225,6 +231,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 							
 							XHTML.removeClasses(otherSource, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
 							TLFUtil.markFlowElementFormatChanged(otherSourceElement);
+							textFlowDamageAccumulator.damageTextFlow(otherSourceElement.getTextFlow());
 						}
 					}
 				}
@@ -276,11 +283,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				// #102
 				if (isShowAnswers && answer.feedback) atLeastOneSelectedAnswerHasFeedback = true;
 				
-				// Refresh the element and update the screen
-				// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.
 				TLFUtil.markFlowElementFormatChanged(answerElement);
-				answerElement.getTextFlow().flowComposer.updateAllControllers();
+				textFlowDamageAccumulator.damageTextFlow(answerElement.getTextFlow());
 			}
+			
+			textFlowDamageAccumulator.updateDamagedTextFlows();
 		}
 		
 		/**
@@ -298,6 +305,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				sourceNodes = sourceNodes.concat(Vector.<XML>(draggableNodes));
 			}
 			
+			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
+			
 			// Now go through either adding or removing the disabled class as required.  There may be duplication in the sourceNodes vector,
 			// but that doesn't matter as addClass and removeClass will do nothing unless it needs to.
 			for each (var node:XML in sourceNodes) {
@@ -307,12 +316,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					if (marked) {
 						XHTML.addClass(node, "disabled");
 					} else {
-						trace(node.toXMLString());
 						XHTML.removeClasses(node, [ "disabled", Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ]);
 						
 						// When clicking try again we want to re-disable dragdrops that were already in use
 						if (XHTML.hasClass(node, "used")) {
-							trace("USED!!!!"); // (this never gets called)
 							XHTML.addClass(node, "disabled");
 						}
 						
@@ -322,15 +329,41 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					if (flowElement is TextComponentElement)
 						(flowElement as TextComponentElement).enabled = !marked;
 					
-					// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.
 					TLFUtil.markFlowElementFormatChanged(flowElement);
-					flowElement.getTextFlow().flowComposer.updateAllControllers();
+					textFlowDamageAccumulator.damageTextFlow(flowElement.getTextFlow());
 				} else {
 					log.error("Cannot find flow element for {0}", node);
 				}
 			}
+			
+			textFlowDamageAccumulator.updateDamagedTextFlows();
 		}
 		
 	}
 
+}
+import flash.utils.Dictionary;
+
+import flashx.textLayout.elements.TextFlow;
+
+/**
+ * Utility class to allow us to build up a series of changes to text flow, then update then all at the end
+ */
+class TextFlowDamageAccumulator {
+	
+	private var damagedTextFlows:Dictionary;
+	
+	public function TextFlowDamageAccumulator() {
+		damagedTextFlows = new Dictionary();
+	}
+	
+	public function damageTextFlow(textFlow:TextFlow):void {
+		damagedTextFlows[textFlow] = true;
+	}
+	
+	public function updateDamagedTextFlows():void {
+		for (var textFlow:* in damagedTextFlows)
+			(textFlow as TextFlow).flowComposer.updateAllControllers();
+	}
+	
 }
