@@ -11,26 +11,35 @@
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 0 0; padding:0; color:#000000;">
 <div style="width:600px; margin:0 auto; padding:0;">
-	<img src="http://www.claritylifeskills.com/email/header_purple.jpg" alt="ClarityLifeSkills - Your subscription will expire in a week." style="border:0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; text-align:center"/>
+	<img src="http://www.clarityenglish.com/images/email/email_banner.jpg" alt="Clarity English - Subscription reminder" style="border:0; margin:0; text-align:center"/>
     <div style="width:500px; margin:a auto; padding:10px 50px 20px 50px;">
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin:0; padding:0 0 2px 0; color:#12384d; font-weight:bold; font-size:18px; background:url(http://www.ClarityLifeSkills.com/email/title_line.jpg) no-repeat bottom left;">Don't miss out!</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; margin:0 0 10px 0; padding:0; font-weight:bold; font-size:14px; color:#12384d;">Your subscription will expire in a week.</p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Dear {$user->name}</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Your trial account is about to run out.</p>
+        
+
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">There's just two days left on your trial account! You can have a look at the Clarity programs now by clicking <a href="http://www.ClarityEnglish.com">here</a> to login in as follows:</p>
+	    <div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Login name: {$user->name}</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Password: {$user->password}</p>
+	</div>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">The trial gives you full access to the {if multipleTitles}programs{else}program{/if} listed below.</p>
+<!-- 
+-- Resellers' contact details - if any
+-->
+	{include file='file:includes/Reseller_Details.tpl' resellerCode=$account->resellerCode}
 <!-- 
 -- Email signature 
 -->
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Please feel free to contact us if you have any quesitons.</p>
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">With best wishes</p>
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Nicole Lung</p>
-	{include file='file:includes/CLS_Email_Signature.tpl'}
-<!--
--- Privacy and terms and conditions
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 10px 0; padding:0; color:#000000;">I'm looking forward to hearing from you.</p>
+{include file='file:includes/SalesManager_Email_Signature.tpl'}
+<!-- 
+-- Section containing details of titles, highlighting those that are expiring related to this email
 -->
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 10px 0; padding:0; color:#000000;">
-	{include file='file:includes/CLS_Privacy.tpl'}
-	</p>
-    </div>
+	{include file="file:includes/Title_Details_Section.tpl'}
+<!-- 
+-- Email footer
+-->
+{include file='file:includes/Monthly_Email_Footer.tpl'}
+</div>
 </div>
 </body>
 </html>

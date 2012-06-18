@@ -18,8 +18,8 @@ class LoginOps {
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
 		// TODO. make it use constants.
-		// TODO. The code below ONLY uses username/studentID at the moment
-		if ($loginOption & 1) {
+		// TODO. The code below doesn't properly do username+studentID at the moment
+		if ($loginOption & 1 || $loginOption & 4) {
 			if (isset($loginObj['username'])) {
 				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
@@ -40,6 +40,8 @@ class LoginOps {
 			} else {
 				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
 			}
+		} else {
+			throw $this->copyOps->getExceptionForId("errorInvalidLoginOption", array("loginOption" => $loginOption));
 		}
 		if (isset($loginObj['password']))
 			$password = $loginObj['password'];

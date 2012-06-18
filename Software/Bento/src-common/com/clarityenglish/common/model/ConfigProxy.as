@@ -234,6 +234,7 @@ package com.clarityenglish.common.model {
 			// Take it from config rather than direct from the parameters
 			// #334
 			if ((config.username && (loginOption & Config.LOGIN_BY_NAME)) || 
+				(config.username && (loginOption & Config.LOGIN_BY_NAME_AND_ID)) ||
 				(config.studentID && (loginOption & Config.LOGIN_BY_ID)) || 
 				(config.email && (loginOption & Config.LOGIN_BY_EMAIL))) {
 				configUser = new User({name:config.username, studentID:config.studentID, email:config.email, password:config.password});

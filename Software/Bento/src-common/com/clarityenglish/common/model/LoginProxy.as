@@ -70,7 +70,7 @@ package com.clarityenglish.common.model {
 			// For AA licences you still do the call as this does getLicenceSlot
 			
 			//var loginOption:uint = configProxy.getAccount().loginOption;
-			if (loginOption & Config.LOGIN_BY_NAME) {
+			if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
 				var loginObj:Object = {username:user.name, password:user.password};
 			} else if (loginOption & Config.LOGIN_BY_ID) {
 				loginObj = {studentID:user.studentID, password:user.password};

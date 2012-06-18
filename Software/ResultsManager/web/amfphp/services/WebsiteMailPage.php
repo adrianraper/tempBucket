@@ -77,6 +77,11 @@ EOD;
 					if ( ($toClarity) AND ($toCustomer) )
 						$returnPage = "http://www.ClarityLifeSkills.com";
 					$returnTopPage = true;
+				} else if ($data['sector'] == "IELTS candidate") {
+					$toCustomer = sendEmail(4);
+					if ( ($toClarity) AND ($toCustomer) )
+						$returnPage = "http://www.ieltspractice.com";
+					$returnTopPage = true;
 				} else {
 					$toCustomer = sendEmail(4);			
 					if ( ($toClarity) AND ($toCustomer) )
@@ -298,6 +303,7 @@ function sendEmail($templateID) {
 	$claritySupport = "Clarity Support <support@clarityenglish.com>";
 	$clarityAccount = "Clarity Accounts <accounts@clarityenglish.com>";
 	$clarityCLSSupport = "ClarityLifeSkills <support@claritylifeskills.com>";
+	$clarityIELTSSupport = "IELTS practice <support@ieltspractice.com>";
 	#not used
 	//$clarityCLSAdmin = "ClarityLifeSkills Admin <support@claritylifeskills.com>";
 	
@@ -345,6 +351,9 @@ function sendEmail($templateID) {
 				//$body .= file_get_contents("$templateFolder/email_enquiry_toHomeUser_contents.htm");
 				$body = file_get_contents("$templateFolder/email_enquiry_toHomeUser_master.htm");
 				$from = $clarityCLSSupport;
+			} else if($data['sector']=="IELTS candidate") { //for IELTS Candidates
+				$body = file_get_contents("$templateFolder/email_enquiry_toIELTScandidates_byEmail.htm");
+				$from = $clarityIELTSSupport;
 			} else { //not student
 				$body = file_get_contents("$templateFolder/email_enquiry_toCustomer_header.htm");
 				if ( ($data['deliveryMethod']=="email, post") OR ($data['deliveryMethod']=="post") ) {

@@ -326,7 +326,7 @@ package com.clarityenglish.ielts.view.login {
 				
 			} else {
 				// #341 This has to be bitwise comparison, not equality
-				if (loginOption & Config.LOGIN_BY_NAME) {
+				if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
 					loginKey_lbl = "Your name:";
 				} else if (loginOption & Config.LOGIN_BY_ID) {
 					loginKey_lbl = "Your id:";

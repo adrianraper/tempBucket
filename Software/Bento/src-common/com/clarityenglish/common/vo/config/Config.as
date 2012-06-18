@@ -508,33 +508,39 @@ package com.clarityenglish.common.vo.config {
 		 * @return Boolean
 		 * 
 		 */
-		public function isIPInRange(thisIP:String, range:String):Boolean {
-			var ipRangeArray:Array = range.split(",");
-			for (var t:String in ipRangeArray) {
-				// first, is there an exact match?
-				if (thisIP == ipRangeArray[t])
-					return true;
+		public function isIPInRange(thisIPList:String, range:String):Boolean {
+			
+			// #346 thisIP might be a comma delimitted string too
+			var thisIPArray:Array = thisIPList.split(",");
+			for each (var thisIP:String in thisIPArray) {
+				var ipRangeArray:Array = range.split(",");
 				
-				// or does it fall in the range? 
-				// assume nnn.nnn.nnn.x-y or nnn.nnn.x-y
-				var targetBlocks:Array = ipRangeArray[t].split(".");
-				var thisBlocks:Array = thisIP.split(".");
-				// how far down do they specify?
-				for (var i:uint=0; i<targetBlocks.length; i++) {
-					//myTrace("match " + thisBlocks[i] + " against " + targetBlocks[i]);
-					if (targetBlocks[i] == thisBlocks[i]) {
-					} else if (targetBlocks[i].indexOf("-")>0) {
-						var target:Array = targetBlocks[i].split("-");
-						var targetStart:uint = Number(target[0]);
-						var targetEnd:uint = Number(target[1]);
-						var thisDetail:uint = Number(thisBlocks[i]);
-						if (targetStart <= thisDetail && thisDetail <= targetEnd) {
-							//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
-							return true;
+				for (var t:String in ipRangeArray) {
+					// first, is there an exact match?
+					if (thisIP == ipRangeArray[t])
+						return true;
+					
+					// or does it fall in the range? 
+					// assume nnn.nnn.nnn.x-y or nnn.nnn.x-y
+					var targetBlocks:Array = ipRangeArray[t].split(".");
+					var thisBlocks:Array = thisIP.split(".");
+					// how far down do they specify?
+					for (var i:uint=0; i<targetBlocks.length; i++) {
+						//myTrace("match " + thisBlocks[i] + " against " + targetBlocks[i]);
+						if (targetBlocks[i] == thisBlocks[i]) {
+						} else if (targetBlocks[i].indexOf("-")>0) {
+							var target:Array = targetBlocks[i].split("-");
+							var targetStart:uint = Number(target[0]);
+							var targetEnd:uint = Number(target[1]);
+							var thisDetail:uint = Number(thisBlocks[i]);
+							if (targetStart <= thisDetail && thisDetail <= targetEnd) {
+								//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
+								return true;
+							}
+						} else {
+							//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
+							break;
 						}
-					} else {
-						//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
-						break;
 					}
 				}
 			}

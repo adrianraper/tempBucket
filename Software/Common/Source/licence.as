@@ -620,44 +620,52 @@ licenceNS.setProductBranding = function(productCode) {
 licenceNS.parseIP = function(addrRange) {
 	return addrRange.split(",");
 }
-licenceNS.inIPRange = function(thisIP, targetRange) {
-	// change targetRange to be an array of addresses
-	for (var t in targetRange) {
-		//myTrace("check " + thisIP + " against " + targetRange[t]);
-		// first, is there an exact match?
-		if (thisIP == targetRange[t]) {
-			//myTrace("direct match");
-			return true;
-		}
-		// or is it a simple comma delimitted list with an exact match
-		// v6.4.2 This seems pretty silly since we have already split the string on commas!
-		var targetList = targetRange[t].split(",");
-		for (var i in targetList) {
-			if (targetList[i] == thisIP) {
-				//myTrace("list match against " + i);
+licenceNS.inIPRange = function(thisIPList, targetRange) {
+	
+	//myTrace("check " + thisIPList);
+	// #346 thisIP might be a comma delimitted string too
+	var thisIPArray = thisIPList.split(",");
+	for (var idx in thisIPArray) {
+		var thisIP = thisIPArray[idx];
+	
+		// change targetRange to be an array of addresses
+		for (var t in targetRange) {
+			//myTrace("check " + thisIP + " against " + targetRange[t]);
+			// first, is there an exact match?
+			if (thisIP == targetRange[t]) {
+				//myTrace("direct match");
 				return true;
 			}
-		}
-		// or does it fall in the range? 
-		// assume nnn.nnn.nnn.x-y
-		var targetBlocks = targetRange[t].split(".");
-		var thisBlocks = thisIP.split(".");
-		// how far down do they specify?
-		for (var i=0; i<thisBlocks.length; i++) {
-			//myTrace("match " + thisBlocks[i] + " against " + targetBlocks[i]);
-			if (targetBlocks[i] == thisBlocks[i]) {
-			} else if (targetBlocks[i].indexOf("-")>0) {
-				var target = targetBlocks[i].split("-");
-				var targetStart = Number(target[0]);
-				var targetEnd = Number(target[1]);
-				var thisDetail = Number(thisBlocks[i]);
-				if (targetStart <= thisDetail && thisDetail <= targetEnd) {
-					//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
+			// or is it a simple comma delimitted list with an exact match
+			// v6.4.2 This seems pretty silly since we have already split the string on commas!
+			var targetList = targetRange[t].split(",");
+			for (var i in targetList) {
+				if (targetList[i] == thisIP) {
+					//myTrace("list match against " + i);
 					return true;
 				}
-			} else {
-				//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
-				break;
+			}
+			// or does it fall in the range? 
+			// assume nnn.nnn.nnn.x-y
+			var targetBlocks = targetRange[t].split(".");
+			var thisBlocks = thisIP.split(".");
+			// how far down do they specify?
+			for (var i=0; i<thisBlocks.length; i++) {
+				//myTrace("match " + thisBlocks[i] + " against " + targetBlocks[i]);
+				if (targetBlocks[i] == thisBlocks[i]) {
+				} else if (targetBlocks[i].indexOf("-")>0) {
+					var target = targetBlocks[i].split("-");
+					var targetStart = Number(target[0]);
+					var targetEnd = Number(target[1]);
+					var thisDetail = Number(thisBlocks[i]);
+					if (targetStart <= thisDetail && thisDetail <= targetEnd) {
+						//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
+						return true;
+					}
+				} else {
+					//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
+					break;
+				}
 			}
 		}
 	}

@@ -390,5 +390,4 @@ if (stripos($testingTriggers, "justThese")!==false) {
 	}
 }
 
-exit(0)
-?>
+exit(0);
