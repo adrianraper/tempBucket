@@ -357,7 +357,7 @@ package com.clarityenglish.ielts.view.zone {
 			popoutExerciseSelector.group = groupXML;
 			
 			var exercises:XMLList = new XMLList();
-			for each (var exerciseNode:XML in _course..exercise.(hasOwnProperty("@group") && @group == groupXML.@id))
+			for each (var exerciseNode:XML in _course..exercise.(attribute("group") == groupXML.@id))
 				if (Exercise.showExerciseInMenu(exerciseNode))
 					exercises += exerciseNode;
 			

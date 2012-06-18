@@ -31,6 +31,7 @@
 	fontAntiAliasType: advanced;
 	fontSharpness: 400;
 	fontThickness: -200;
+	embedAsCFF: true;
 }
 
 @font-face {
@@ -40,6 +41,7 @@
 	fontAntiAliasType: advanced;
 	fontSharpness: 400;
 	fontThickness: -200;
+	embedAsCFF: true;
 }
 
 global {

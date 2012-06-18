@@ -74,7 +74,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		 * @return 
 		 */
 		private function getDraggableNodes(xhtml:XHTML):XMLList {
-			return xhtml.xml..*.((hasOwnProperty("@draggable") && @draggable == "true") || (name() == "input" && hasOwnProperty("@type") && @type == "droptarget"));
+			return xhtml.xml..*.(attribute("draggable") == "true" || (name() == "input" && attribute("type") == "droptarget"));
 		}
 		
 		private function canDrag(draggableNode:XML, draggableFlowElement:FlowElement):Boolean {

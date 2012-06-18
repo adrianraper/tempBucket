@@ -131,7 +131,7 @@ package com.clarityenglish.bento.vo.content.model {
 				return Vector.<XML>(exercise.select(matches[1]));
 			} else {
 				// Otherwise it is a straight id
-				var matchingNode:XMLList = exercise.body..*.(hasOwnProperty("@id") && @id == source);
+				var matchingNode:XMLList = exercise.body..*.(attribute("id") == source);
 				return matchingNode.length() == 1 ? Vector.<XML>( [ matchingNode[0] ] ) : null;
 			}
 			

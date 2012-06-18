@@ -49,8 +49,7 @@ package com.clarityenglish.bento.view.base {
 			
 			// #333 Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.config = configProxy.getConfig();
-
+			if (configProxy) view.config = configProxy.getConfig();
 		}
 		
 		protected function onXHTMLReady(xhtml:XHTML):void {

@@ -147,7 +147,7 @@ package com.clarityenglish.textLayout.vo {
 		}
 		
 		public function hasPrintStylesheet():Boolean {
-			return (_xml.head.link.(@rel == "stylesheet" && hasOwnProperty("@media") && @media == "print")).length() > 0;
+			return (_xml.head.link.(@rel == "stylesheet" && attribute("media") == "print")).length() > 0;
 		}
 		
 		/**
@@ -161,7 +161,7 @@ package com.clarityenglish.textLayout.vo {
 			isLoadingStyleLinks = true;
 			
 			// Get all the link elements referencing external stylesheets
-			var linkNodes:XMLList = _xml.head.link.(@rel == "stylesheet" && (!hasOwnProperty("@media") || @media != "print"));
+			var linkNodes:XMLList = _xml.head.link.(@rel == "stylesheet" && attribute("media") != "print");
 			
 			if (linkNodes.length() == 0) {
 				externalStyleSheetsLoaded = true;

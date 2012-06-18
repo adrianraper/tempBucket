@@ -59,14 +59,12 @@ s|TitleWindow {
 	skinClass: ClassReference("skins.bento.BentoTitleWindowSkin");
 }
 
-/* This applied to all TextInputs for now, but really it should be only for those in exercises */
-s|TextInput {
+components|XHTMLExerciseView s|TextInput {
 	focusAlpha: 0;
 	skinClass: ClassReference("skins.bento.exercise.ExerciseTextInputSkin");
 }
 
-/* This applied to all DropDownLists for now, but really it should be only for those in exercises */
-s|DropDownList {
+components|XHTMLExerciseView s|DropDownList {
 	skinClass: ClassReference("skins.bento.exercise.ExerciseDropDownListSkin");
 }
 

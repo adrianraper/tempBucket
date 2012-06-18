@@ -175,11 +175,15 @@ package com.clarityenglish.bento.controller {
 		 * @param event
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
-			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
-			titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
-			(FlexGlobals.topLevelApplication as DisplayObject).stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
+			if (titleWindow) {
+				titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
+				titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
+			}
 			
 			PopUpManager.removePopUp(titleWindow);
+			
+			(FlexGlobals.topLevelApplication as DisplayObject).stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
+			
 			titleWindowAdded = false;
 			titleWindow = null;
 			feedback = null;
