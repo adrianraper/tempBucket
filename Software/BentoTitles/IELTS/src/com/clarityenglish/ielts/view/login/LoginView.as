@@ -300,7 +300,7 @@ package com.clarityenglish.ielts.view.login {
 
 		// #341
 		protected override function getCurrentSkinState():String {
-			return _currentState;
+			return _currentState + (licenceType == Title.LICENCE_TYPE_NETWORK) ? "Network" : "";
 		}
 		
 		/**

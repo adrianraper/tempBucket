@@ -19,7 +19,9 @@
 	</fx:Script>
 	<s:states>
 		<s:State name="login" stateGroups="loginStates" />
+		<s:State name="loginNetwork" stateGroups="loginStates" />
 		<s:State name="register" stateGroups="registerStates" />
+		<s:State name="registerNetwork" stateGroups="registerStates" />
 		<s:State name="registerError" stateGroups="registerStates" />
 	</s:states>
 
@@ -42,7 +44,7 @@
 				  includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}">
 			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='IELTSLogoLastMinute_Icon')" left="0" top="0" width="40" height="40" />
 			<s:VGroup>
-				<s:Label text = "Road to IELTS - Last Minute" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
+				<s:Label text="Road to IELTS - Last Minute" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
 				<s:Label text="Special last minute practice only for British Council IELTS candidates!" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="92%" paddingLeft="7" lineHeight="18" />
 			</s:VGroup>
 		</s:HGroup>
@@ -50,7 +52,7 @@
 		<s:HGroup id="fullVersion" visible="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}"
 									includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}">
 			<s:VGroup>
-				<s:Label text = "Road to IELTS" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="0"/>	
+				<s:Label text="Road to IELTS" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="0"/>	
 				<s:Label text="IELTS preparation and practice" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" paddingLeft="0" lineHeight="18" />
 			</s:VGroup>
 		</s:HGroup>
@@ -62,8 +64,10 @@
 			</s:fill>
 		</s:Rect>
 		<s:Spacer height="3" />
-		<s:VGroup id="loginBlock" width="100%" includeIn="login">
-			<s:Label text="Please type your login details to continue." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
+		<s:VGroup id="loginBlock" width="100%" includeIn="loginStates" >
+			<s:Label text="Please type your login details to continue." 
+					 text.loginNetwork="Please type your login details if you want to save your progress records."
+					 fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
 			<s:HGroup>
 				<s:Label id="loginKey_lbl" text="{hostComponent.loginKey_lbl}" fontWeight="bold" paddingTop="6" />
@@ -77,11 +81,13 @@
 			<s:Spacer height="3" />
 			<s:HGroup>
 				<s:Button id="loginButton" label="Log in" />
-				<s:Button id="newUserButton" label="New user" visible="{!hostComponent.isNetwork &amp;&amp; hostComponent.selfRegister > 0}" includeInLayout="{!hostComponent.isNetwork &amp;&amp; hostComponent.selfRegister > 0}" />
+				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="login" />
 			</s:HGroup>
 		</s:VGroup>
 		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
-			<s:Label text="Please type your details to register." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
+			<s:Label text="Please type your details to register." 
+					text.registerNetwork="This is the first time these details have been used, click New user to confirm." 
+					fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
 			<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
 				<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" fontWeight="bold" paddingTop="6" />
