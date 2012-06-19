@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	
@@ -69,6 +70,7 @@ package com.clarityenglish.ielts.view.login {
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
 		private var _verified:Boolean;
+		private var _licenceType:uint;
 		
 		private var _currentState:String;
 
@@ -167,6 +169,20 @@ package com.clarityenglish.ielts.view.login {
 				dispatchEvent(new Event("loginOptionChanged"));
 				changeLoginLabels();
 			}
+		}
+
+		// #341 Need to know if it is a network version.
+		public function set licenceType(value:uint):void {
+			if (_licenceType != value) {
+				_licenceType = value;
+			}
+		}
+		[Bindable]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
+		public function get isNetwork():Boolean {
+			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
 		}
 		
 		public function setProductVersion(value:String):void {
@@ -310,6 +326,9 @@ package com.clarityenglish.ielts.view.login {
 		}
 		public function setVerified(value:Number):void {
 			verified = (value == 1) ? true : false;
+		}
+		public function setLicenceType(value:uint):void {
+			licenceType = value;
 		}
 
 		/**

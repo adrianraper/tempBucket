@@ -539,8 +539,21 @@ INSERT INTO `T_Language` VALUES ('TW-ZH','Taiwan Chinese'),('SL','Slovene');
 -- EmailMe. RM trial emails
 UPDATE `rack80829`.`T_Triggers` 
 SET F_ValidToDate=NULL, 
-F_Condition = 'method=getUsers&userExpiryDate={now}+2d&accountType=1', F_MessageType=7, 
+F_Condition = 'method=getUsers&userExpiryDate={now}+2d', F_MessageType=7, 
 F_Name='EmailMe trial reminder',
-F_RootID=10719
+F_RootID=14202,
+F_GroupID=NULL
 WHERE F_TriggerID=2;
 INSERT INTO T_MessageType VALUES (7,'EmailMe Trial reminders');
+
+-- Remove Edutech
+UPDATE T_Reseller
+SET F_Email = 'sales@clarityenglish.com', F_DisplayOrder = 106
+WHERE F_ResellerID = 3;
+
+-- Separate CT and Network licence as they are not the same
+UPDATE T_LicenceType
+SET F_Description = 'Network'
+WHERE F_Status = 3;
+INSERT T_LicenceType
+VALUES (7, 'Concurrent Tracking');

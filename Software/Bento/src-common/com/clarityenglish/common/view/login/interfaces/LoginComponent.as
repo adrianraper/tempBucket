@@ -19,6 +19,7 @@
 		function setProductVersion(productVersion:String):void;
 		function getProductVersion():String;
 		function setProductCode(productCode:uint):void;
+		function setLicenceType(licenceType:uint):void;
 		function setState(state:String):void;
 	}
 	

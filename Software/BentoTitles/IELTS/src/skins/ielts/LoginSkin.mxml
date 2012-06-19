@@ -77,7 +77,7 @@
 			<s:Spacer height="3" />
 			<s:HGroup>
 				<s:Button id="loginButton" label="Log in" />
-				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" />
+				<s:Button id="newUserButton" label="New user" visible="{!hostComponent.isNetwork &amp;&amp; hostComponent.selfRegister > 0}" includeInLayout="{!hostComponent.isNetwork &amp;&amp; hostComponent.selfRegister > 0}" />
 			</s:HGroup>
 		</s:VGroup>
 		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
@@ -104,7 +104,7 @@
 			</s:HGroup>
 			<s:Spacer height="3" />
 			<s:HGroup>
-				<s:Button id="addUserButton" label="Register" />
+				<s:Button id="addUserButton" label="New user" />
 				<s:Button id="cancelButton" label="Cancel" />
 			</s:HGroup>
 		</s:VGroup>

@@ -44,8 +44,10 @@
 	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 		// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
-		$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
-		$ip = $ipList[0];
+		// Not always it doesn't. So need to send the whole list to the licence checking algorithm. Better send as a list than an array.
+		//$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+		//$ip = $ipList[0];
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
@@ -103,6 +105,8 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
+		var versionControl = "&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
+		var versionControl = "&version=900";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
@@ -112,8 +116,8 @@
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
-		argList+="&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
-		argList+="&cache=<?php echo time() ?>";
+		argList+=versionControl;
+		//argList+="&cache=<?php echo time() ?>";
 
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
