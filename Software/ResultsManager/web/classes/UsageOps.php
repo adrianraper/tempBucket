@@ -54,23 +54,23 @@ class UsageOps {
 				
 			// As well as licences used, I want to know if this account is purely one licence type.
 			// If an AA licence has had RM added, it too should be AA
-			// This should also pick up Transferable Tracking
 			switch ($title->licenceType) {
-				case 1:
-				case 6:
+				case Title::LICENCE_TYPE_LT:
+				case Title::LICENCE_TYPE_TT:
 					$title->licencesUsed = $this->getTitleUserCounts($title, $account->id, $fromDateStamp);
 					$accountLicenceTypes = $accountLicenceTypes | 1;
 					break;
-				case 2:
+				case Title::LICENCE_TYPE_AA:
 					$accountLicenceTypes = $accountLicenceTypes | 2;
 					break;
-				case 3:
+				case Title::LICENCE_TYPE_CT:
+				case Title::LICENCE_TYPE_NETWORK:
 					$accountLicenceTypes = $accountLicenceTypes | 4;
 					break;
-				case 4:
+				case Title::LICENCE_TYPE_SINGLE:
 					$accountLicenceTypes = $accountLicenceTypes | 8;
 					break;
-				case 5:
+				case Title::LICENCE_TYPE_I:
 					$accountLicenceTypes = $accountLicenceTypes | 16;
 					break;
 				default:
@@ -978,19 +978,36 @@ EOD;
 		// And if you fail?
 		return $directStartInfo['F_SecureString'];
 	}
+	
 	// Called to allow a subscription reminder email to include a link to usage stats.
 	public function getDirectStartRecord($account) {
 		$sql = 	<<<EOD
-				SELECT F_SecureString AS secureString FROM T_DirectStart
+				SELECT F_SecureString AS secureString, F_Password as password FROM T_DirectStart
 				WHERE F_RootID=?
 EOD;
 		$bindingParams = array($account->id);
 		//echo "sql=$sql with id=".$account->id;
 		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs && $rs->RecordCount()>0)
-			return ((string)($rs->FetchNextObj()->secureString));
-		
+		if ($rs && $rs->RecordCount() > 0) {
+			// Check that the password hasn't changed
+			$directStartRecord = $rs->FetchNextObj();
+			//$one = $directStartRecord->password;
+			//$two = $account->adminUser->password;
+			if ($directStartRecord->password == $account->adminUser->password) {
+				return ((string)($directStartRecord->secureString));
+				
+			// If it has, delete the old record(s)
+			} else {
+				$sql = 	<<<EOD
+						DELETE FROM T_DirectStart
+						WHERE F_RootID=?
+EOD;
+				$bindingParams = array($account->id);
+				$rs = $this->db->Execute($sql, $bindingParams);
+			}
+		}
 	}
+	
 	// Called to remove old records
 	public function clearDirectStartRecords() {
 		$this->db->Execute("DELETE FROM T_DirectStart WHERE F_ValidUntilDate<?", array(date('Y-m-d H:i:s', time())));		

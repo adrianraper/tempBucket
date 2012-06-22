@@ -299,7 +299,7 @@ package com.clarityenglish.resultsmanager.model {
 							// Now I need to find the object reference by that UID. I can't find anything built in to do this, but I would have thought I should be able to.
 							mappedIds = UID.split(".");
 							thisTitle = ArrayUtils.searchArrayForObject(_titles, mappedIds[0], "id") as Title;
-							TraceUtils.myTrace("edit, title " + thisTitle.name);
+							//TraceUtils.myTrace("edit, title " + thisTitle.name); // disabled by WZ, since thisTitle.name is not exist.
 							//MonsterDebugger.trace(this, "got it for " + UID);
 							//MonsterDebugger.trace(this, thisTitle);
 							if (thisTitle && mappedIds[1]) {

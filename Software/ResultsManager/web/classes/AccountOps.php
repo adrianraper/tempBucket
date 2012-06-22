@@ -691,7 +691,7 @@ EOD;
 			}
 			// v3.0.6 For any AA licences, add action=anonymous to the licence attributes, with a specific product code
 			// Actually, no need as Orchid will automatically set AA licence to action=anonymous if nothing else is set.
-			if ($title->licenceType == 2) {
+			if ($title->licenceType == Title::LICENCE_TYPE_AA) {
 				/*
 				// We need to make sure we don't have this combination already to avoid duplicates, or indeed overwrite any 'action'
 				$noDuplicates = true;

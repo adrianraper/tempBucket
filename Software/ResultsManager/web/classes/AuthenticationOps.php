@@ -28,7 +28,10 @@ class AuthenticationOps {
 	 */
 	public static function addValidGroupIDs($groupIdArray) {
 		if (!AuthenticationOps::$useAuthentication) return;
-	
+		//AbstractService::$debugLog->err("valid_groupIDs'".json_encode(array_merge(Session::get('valid_groupIDs'), $groupIdArray)));
+		//NetDebug::trace('session.size='.strlen(json_encode($_SESSION)));
+		//NetDebug::trace('session.add='.strlen(json_encode(array_merge(Session::get('valid_groupIDs'), $groupIdArray))));
+		
 		Session::set('valid_groupIDs', array_merge(Session::get('valid_groupIDs'), $groupIdArray));
 	}
 	

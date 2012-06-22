@@ -139,13 +139,14 @@ package com.clarityenglish.resultsmanager.view.management {
 					var numUsers:Number = data.manageablesCount as Number;
 					TraceUtils.myTrace("contentMediator knows you have " + numUsers);
 					// Is it worth doing a delay?
-					if (numUsers < 500 || (data.noStudents as Boolean)) {
+					// Could this be causing a session problem?
+					//if (numUsers < 500 || (data.noStudents as Boolean)) {
 						notificationDelayContent(null);
-					} else {
-						var littleDelay:Timer = new Timer(numUsers, 1);
-						littleDelay.addEventListener(TimerEvent.TIMER_COMPLETE, notificationDelayContent);
-						littleDelay.start();
-					}
+					//} else {
+					//	var littleDelay:Timer = new Timer(numUsers, 1);
+					//	littleDelay.addEventListener(TimerEvent.TIMER_COMPLETE, notificationDelayContent);
+					//	littleDelay.start();
+					//}
 					break;
 				case CommonNotifications.LOGGED_OUT:
 					contentView.tree.selectedItem = null;

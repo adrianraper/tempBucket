@@ -44,7 +44,21 @@ EOD;
 EOD;
 */
 }	
-		
+
+// For testing session handling
+if (Session::is_set("valid_groupIDs")) {
+	$bigArray = Session::get("valid_groupIDs");
+	echo var_dump($bigArray);
+	Session::clear();
+} else {
+	$bigArray = array();
+	for ($i=0; $i<4999; $i++) {
+		$bigArray[] = 'aaaaaaaaaaaaaaaaaaaaaxa';	
+	}
+	Session::set("valid_groupIDs", $bigArray);
+	echo "set the session";
+}
+
 flush();
 exit(0)
 ?>

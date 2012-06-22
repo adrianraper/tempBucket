@@ -20,7 +20,7 @@
 				implements="com.clarityenglish.common.view.interfaces.CopyReceiver"
 				>
 	<!-- move this up to see if lets DMS compile without complaining about CSS in RM -->
-	<mx:Style source="/../css/clarity.css" />
+	<mx:Style source="../../../../css/clarity.css" />
 	
 	<!--
 		// For testing Sam's initializing problem - which turned out to be using Flash 9.0.16.0
@@ -92,7 +92,7 @@
 			 * visible to show/hide a tab so we can't use an MXML property bound to Constants.userType, but this method works fine.
 			 */
 			public function configureTabsForLoggedInUser():void {
-				//TraceUtils.myTrace("logged in user is a " + Constants.userType);
+				TraceUtils.myTrace("logged in user is a " + Constants.userType);
 				// This might run after directStart tabbing, so only remove tabs here.
 				// If you use logout, hopefully you will reset it all somewhere? No it doesn't.
 				if (Constants.userType == User.USER_TYPE_ADMINISTRATOR) {
@@ -145,8 +145,10 @@
 				// Except that you haven't got title for RM!
 				// DONE. Sort this out later.
 				// Now picked up and saved from login
+				// v3.6.6 Concurrent Tracking licence should have User view as well
 				var allAAlicences:Boolean = true;
 				if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
+					Constants.licenceType == Title.LICENCE_TYPE_CT ||
 					Constants.licenceType == Title.LICENCE_TYPE_TT)
 					allAAlicences = false;
 				/*
@@ -190,7 +192,7 @@
 			 */
 			public function configureTabsForDirectStart(directStart:String):void {
 				// Which tab do they want? If it is blocked by user type or title types, go to it
-				if (directStart=="UsageStats") {
+				if (directStart.toLowerCase()=="usagestats") {
 					TraceUtils.myTrace("Direct start to usage ");
 					if (!(mainStack.contains(usageView))) {
 						TraceUtils.myTrace("so add usage view");
@@ -204,7 +206,7 @@
 						TraceUtils.myTrace("and loginopts");
 						mainStack.removeChild(loginOptsView);
 					}
-				} else if (directStart=="ControlCentre") {
+				} else if (directStart.toLowerCase()=="controlcentre") {
 					TraceUtils.myTrace("Direct start to control centre");
 					if (!(mainStack.contains(loginOptsView))) {
 						TraceUtils.myTrace("so add loginOptsView");
@@ -257,6 +259,7 @@
 				<usage:UsageView id="usageView" width="100%" height="100%" />
 				<loginopts:LoginOptsView id="loginOptsView" width="100%" height="100%" />
 			</mx:ViewStack>
+			tabStyleName="notSelectedTabStyle" selectedTabTextStyleName="selectedTabStyle"
 			-->
 			<mx:HBox width="100%">
 				<mx:Label id="brandingLabel" styleName="headingLabelWhite" />
@@ -265,8 +268,7 @@
 				<mx:Button id="logoutButton" click="onLogout()" color="0xFFFFFF" />
 			</mx:HBox>
 			<mx:Spacer height="4" />
-			<mx:TabNavigator id="mainStack" borderStyle="solid" width="100%" height="100%" 
-					tabStyleName="notSelectedTabStyle" selectedTabTextStyleName="selectedTabStyle" >
+			<mx:TabNavigator id="mainStack" borderStyle="solid" width="100%" height="100%" >
 				<management:ManagementView id="managementView" width="100%" height="100%" />
 				<!-- <licence:LicenceView id="licenceView" width="100%" height="100%" /> -->
 				<usage:UsageView id="usageView" width="100%" height="100%" />

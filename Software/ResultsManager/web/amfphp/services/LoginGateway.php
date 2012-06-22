@@ -22,7 +22,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","dbHost":2,"prefix":"CSTDI","rootID":14449,"groupID":26271,"city":"Hong Kong","country":"Hong Kong","loginOption":2,"subscriptionPeriod":"1y","adminPassword":"57845612","studentID":"cstdi-1234","name":"RAPER, Adrian","custom1":"100","custom2":"21"}';
 	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
-	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
+	$inputData = '{"method":"getUser","name":"adrian raper","loginOption":1,"rootID":163,"dbHost":2}';
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup 2", "name":"Kima 130","studentID":"winhoe 130", "teacherName":"jessie_teacher", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
@@ -126,7 +126,17 @@ try {
 			
 			// Also return account information for that user
 			$apiInformation->userID = $user->id;
-			$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
+			
+			// If you know the root, then get account from that, or from a groupID
+			if (isset($apiInformation->rootID)) {
+				$account = $loginService->getAccountFromRootID($apiInformation);
+			} else if (isset($apiInformation->groupID)) {
+				$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
+			}
+			
+			// If you don't know the group, send that back too
+			if (!isset($apiInformation->groupID))
+				$group = $loginService->getGroup($apiInformation, $account);
 			
 			break;
 			
@@ -224,10 +234,12 @@ try {
 	// Send back data.
 	// It might be better to only send back limited account data
 	// BUG: No, I need lots of data for working out if titles are not expired etc
-	if (!isset($account) || !$account) {
+	if (!isset($account) || !$account)
 		$account = new Account();
-	}
-	$returnInfo = array('user' => $user, 'account' => $account); 
+	if (!isset($group) || !$group)
+		$group = new Group();
+		
+	$returnInfo = array('user' => $user, 'account' => $account, 'group' => $group); 
 	
 	echo json_encode($returnInfo);
 	

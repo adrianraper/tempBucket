@@ -118,8 +118,9 @@ www.brightpointinc.com
 	 	
 	 	//Privates
 	 	[Bindable] private var _maxValue:Number=10;
-	 	[Bindable] private var _minValue:Number=0;
-	 	[Bindable] private var _value:Number=5;
+	 	[Bindable] private var _minValue:Number = 0;
+		// Clarity - set the default that is shown before you put real data in
+	 	[Bindable] private var _value:Number=0;
 	 	
 	  	private var _dropShadowFilter:DropShadowFilter;
 	  	private var _diameter:Number;

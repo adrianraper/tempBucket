@@ -6,6 +6,7 @@ package com.clarityenglish.assets
 	 */
 	//import flash.display.Sprite;
 	import flash.events.TimerEvent;
+	import flash.text.TextFormat;
 	import flash.utils.Timer;
 	import mx.controls.Label;
 	import mx.core.Container;
@@ -96,6 +97,7 @@ package com.clarityenglish.assets
 			var animatedAdder:Timer = new Timer(timerSpeed, value);
 			animatedAdder.addEventListener(TimerEvent.TIMER, addImage);
 			animatedAdder.start();
+
 		}
 
 	}

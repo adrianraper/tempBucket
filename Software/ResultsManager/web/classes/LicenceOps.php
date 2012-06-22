@@ -43,6 +43,7 @@ class LicenceOps {
 			// Concurrent licences
 			case Title::LICENCE_TYPE_AA:
 			case Title::LICENCE_TYPE_CT:
+			case Title::LICENCE_TYPE_NETWORK:
 				
 				// Only check on learners. AA licence doesn't have teachers, but a CT licence will
 				if ($user->userType != User::USER_TYPE_STUDENT) {
@@ -288,6 +289,7 @@ EOD;
 			// Concurrent licences
 			case Title::LICENCE_TYPE_AA:
 			case Title::LICENCE_TYPE_CT:
+			case Title::LICENCE_TYPE_NETWORK:
 				$licenceControlTable = 'T_Licences';
 				break;
 				
@@ -343,6 +345,7 @@ EOD;
 			// Concurrent licences
 			case Title::LICENCE_TYPE_AA:
 			case Title::LICENCE_TYPE_CT:
+			case Title::LICENCE_TYPE_NETWORK:
 				
 				// First need to confirm that this licence record exists
 				// No point in this. Simply try to delete the licence if you can.
@@ -414,7 +417,7 @@ EOD;
 		$fromDate = strftime('%Y-%m-%d 00:00:00', $fromDateStamp);
 		
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
-		if ($title->licenceType == 6) {
+		if ($title->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(u.F_UserID)) AS licencesUsed 
 				FROM T_Session s, T_User u

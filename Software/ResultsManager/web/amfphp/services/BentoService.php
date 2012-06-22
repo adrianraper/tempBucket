@@ -249,15 +249,23 @@ class BentoService extends AbstractService {
 				break;
 				
 			case Progress::PROGRESS_MY_DETAILS:
-				$rs = $this->progressOps->getMyDetails($userID, $productCode);
+				// #341 No need for much of this if anonymous access
+				if ($userID >= 1) {
+					$rs = $this->progressOps->getMyDetails($userID, $productCode);
+				} else {
+					$rs = array();
+				}
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
 				
 				// #339 Hidden content
-				$groupID = $this->manageableOps->getGroupIdForUserId($userID);
-				$rs = $this->progressOps->getHiddenContent($groupID, $productCode);
-				// If you found some hidden content records for this group, merge the enabledFlag into the menu.xml
-				if (count($rs) > 0)
-					$progress->dataProvider = $this->progressOps->mergeXMLAndHiddenContent($rs);
+				if ($userID >= 1) {
+					$groupID = $this->manageableOps->getGroupIdForUserId($userID);
+					$rs = $this->progressOps->getHiddenContent($groupID, $productCode);
+					// If you found some hidden content records for this group, merge the enabledFlag into the menu.xml
+					if (count($rs) > 0)
+						$progress->dataProvider = $this->progressOps->mergeXMLAndHiddenContent($rs);
+						
+				}
 				break;
 				
 			case Progress::PROGRESS_MY_BOOKMARK:
@@ -413,7 +421,8 @@ class BentoService extends AbstractService {
 				$stubUser->email = $user->email;
 				break;
 		}
-		$stubUser = $this->manageableOps->getUserByKey($stubUser);
+		// #341 Only need to check user details within this root
+		$stubUser = $this->manageableOps->getUserByKey($stubUser, $rootID);
 		
 		// Go ahead and add the user to the top level group
 		if ($stubUser==false) {

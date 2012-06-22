@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>ClarityEnglish.com - Your trial expires shortly</title>
+	<title>Your Clarity trial is about to expire</title>
 	<!-- <from>%22Clarity English%22 %3Cnicole.lung@clarityenglish.com%3E</from> -->
 	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
 </head>
@@ -16,16 +16,13 @@
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Dear {$user->name}</p>
         
 
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">There's just two days left on your trial account! You can have a look at the Clarity programs now by clicking <a href="http://www.ClarityEnglish.com">here</a> to login in as follows:</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">There are just two days left on your trial account! You can have a look at the Clarity programs now by clicking <a href="http://www.ClarityEnglish.com">here</a> to login in as follows:</p>
 	    <div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Login name: {$user->name}</p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Password: {$user->password}</p>
 	</div>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">The trial gives you full access to the {if multipleTitles}programs{else}program{/if} listed below.</p>
-<!-- 
--- Resellers' contact details - if any
--->
-	{include file='file:includes/Reseller_Details.tpl' resellerCode=$account->resellerCode}
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">If you have any queries about the trial, the programs, the licensing or the pricing, please don't hesitate to get in touch.</p>
+
 <!-- 
 -- Email signature 
 -->

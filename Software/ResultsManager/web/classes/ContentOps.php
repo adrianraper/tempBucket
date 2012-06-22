@@ -815,6 +815,8 @@ EOD;
 	 * Returns the content tree for the logged in user
 	 */
 	function getContent() {
+		//Session::is_set('valid_groupIDs');
+		//Session::is_set('valid_userIDs');
 		return $this->parseContent(false);
 	}
 	
@@ -1215,6 +1217,7 @@ EOD;
 				} else if ($privacyFlag == 2 || $privacyFlag == 8) {
 					// You can only see this if you are in the same group - or if you are the administrator
 					$allowedGroup = $courseXML->getAttribute("groupID");
+					// TODO. Are you sure this shouldn't be valid_groupIDs??
 					$groupIDArray = Session::get('groupIDs');
 					$groupIdInString = join(",", $groupIDArray);
 					//NetDebug::trace("privacy flag for ".$courseXML->getAttribute("name")." is ".$privacyFlag." and group=".$allowedGroup." you are ".$groupIdInString);

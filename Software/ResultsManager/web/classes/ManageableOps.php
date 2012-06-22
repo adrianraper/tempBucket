@@ -272,7 +272,7 @@ EOD;
 	 * based on that. But now we could check based on licence type?
 	 */
 	//function checkUniqueEmail($email) {
-	function checkUniqueEmail($email, $licenceType=5) {
+	function checkUniqueEmail($email, $licenceType=Title::LICENCE_TYPE_I) {
 		
 		// Ensure the username is unique within this context
 		//		WHERE t.F_ProductCode=1001
@@ -1068,7 +1068,7 @@ EOD;
 	/**
 	 * This returns a specific user object defined by a key set from loginOption
 	 */
-	function getUserByKey($stubUser) {
+	function getUserByKey($stubUser, $rootID = NULL) {
 		
 		if (isset($stubUser->name)) {
 			$whereClause = 'WHERE u.F_UserName=?';
@@ -1084,11 +1084,20 @@ EOD;
 		}
 		$sql  = "SELECT ".User::getSelectFields($this->db);
 		$sql .= <<<EOD
-				FROM T_User u
+				FROM T_User u LEFT JOIN 
+				T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
+				T_Groupstructure g ON m.F_GroupID = g.F_GroupID 
 				$whereClause
 EOD;
-		$usersRS = $this->db->Execute($sql, array($key));
-
+		$bindingParams = array($key);
+		
+		if ($rootID != null) {
+			$sql.= "AND m.F_RootID=?";
+			$bindingParams[] = $rootID;
+		}
+		
+		$usersRS = $this->db->Execute($sql, $bindingParams);
+		
 		// If you don't get a unique match, throw an exception
 		if ($usersRS->RecordCount()==1) {
 			$userObj = $usersRS->FetchNextObj();
