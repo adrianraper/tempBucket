@@ -10,8 +10,9 @@
 	<fx:Declarations> 
 		<fx:String id="creditsTextAsHTML"><![CDATA[					
 			<p align='left'>
-			<b>Project Manager</b><br />
-			Greg Selby</p>
+			<b>Project Managers</b><br />
+			Clarity: Joe Law<br /> 
+			British Council: Greg Selby</p>
 			
 			<p align='left'>
 			<b>Lead Programmer</b><br />
