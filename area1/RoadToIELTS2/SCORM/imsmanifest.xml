@@ -14,6 +14,7 @@
 	<resources>
 		<resource type="webcontent" adlcp:scormtype="sco" identifier="RESOURCE-1" href="SCORMStart.html">
 			<file href="SCORMStart.html"/>
+			<file href="config.xml"/>
 		</resource>
 	</resources>
 </manifest>

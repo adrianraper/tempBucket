@@ -290,6 +290,7 @@ package com.clarityenglish.common.model {
 				var value:String = startingPointArray[1];
 				switch (type) {
 					case 'ex':
+					case 'exercise':
 						return { exerciseId: value };
 						break;
 					case 'unit':
