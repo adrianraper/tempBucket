@@ -117,9 +117,11 @@ package com.clarityenglish.ielts.view.title {
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
+		
 		private var fullVersionAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourAcademic")]
@@ -127,6 +129,7 @@ package com.clarityenglish.ielts.view.title {
 		private var tenHourAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourGeneralTraining")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
 		private var tenHourGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteAcademic")]
@@ -134,6 +137,7 @@ package com.clarityenglish.ielts.view.title {
 		private var lastMinuteAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
 		private var lastMinuteGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoAcademic")]

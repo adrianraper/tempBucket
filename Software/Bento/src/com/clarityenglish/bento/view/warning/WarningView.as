@@ -47,7 +47,8 @@ package com.clarityenglish.bento.view.warning {
 				case warningMessage:
 					switch (type) {
 						case "lose_answers":
-							instance.text = "Are you sure you want to leave this exercise? (You will lose your work in this exercise.)";
+							instance.text = "Are you sure you want to leave this exercise? " +
+								"(You will lose your work in this exercise.)";
 							break;
 						case "feedback_not_seen":
 							instance.text = "This exercise has feedback you haven't read. Do you want to read it?";

@@ -7,6 +7,18 @@
 		[HostComponent("com.clarityenglish.ielts.view.support.SupportView")]
 	</fx:Metadata>
 	<fx:Script>
+		<![CDATA[ 
+			import flash.net.navigateToURL; 
+			protected function clickHandler(event:MouseEvent):void 
+			{ 
+				
+				var urlReq:URLRequest = new URLRequest 
+					("http://www.clarityenglish.com/support/user/pdf/rti2/rtiv2_network_guide.pdf"); 
+				navigateToURL(urlReq, "_blank"); 
+			} 
+		]]> 
+
+		
 		<![CDATA[
 			import flashx.textLayout.conversion.TextConverter;
 		]]>
@@ -38,14 +50,20 @@
 		
 		<s:Scroller width="100%" height="100%">
 			<s:HGroup>
-				
+
 			<s:VGroup id="userGuide" width="70%" paddingBottom="30">
 				<s:RichText width="650" paddingLeft="0" paddingTop="10">
 					<s:p><s:span fontWeight="bold">How to use Road to IELTS</s:span></s:p>
 					<s:p><s:span>Road to IELTS is organised into four skill areas, one for each paper in IELTS. In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from IELTS experts on video, and practising specific question types using the interactive practice exercises and the mock papers.</s:span></s:p>
-
 				</s:RichText>
-				<s:VGroup id="homeScreen" paddingTop="20">
+					<s:Label text="Click here for a detailed user manual." textDecoration="underline" color="0X2B3990" click="clickHandler(event)" buttonMode="true" useHandCursor="true"/>
+
+				
+				<s:RichText width="650" paddingLeft="0" paddingTop="10">
+					<s:p><s:span fontWeight="bold">Key screens</s:span></s:p>
+				</s:RichText>
+
+				<s:VGroup id="homeScreen" paddingTop="10">
 					<s:SWFLoader width="680" height="325" source="{hostComponent.assetFolder}help_home.png" />
 				</s:VGroup>
 				<s:RichText>
@@ -70,10 +88,12 @@
 
 			
 				<s:VGroup id="contacts" width="30%">
-					<s:RichText width="96%" paddingTop="10">
-						<s:p><s:span fontWeight="bold">Upgrade?</s:span></s:p>
-						<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please contact Clarity.</s:span></s:p>
-					</s:RichText>
+
+						<s:RichText width="96%" paddingTop="10"  visible="true" excludeFrom="fullVersion,homeUser">
+							<s:p><s:span fontWeight="bold">Upgrade?</s:span></s:p>
+							<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please contact Clarity.</s:span></s:p>
+						</s:RichText>
+					
 					<s:VGroup width="100%" paddingTop="20">
 						<s:SWFLoader width="39" height="42" source="@Embed(source='skins/ielts/assets/technical.png')" />
 						<s:RichText width="90%" paddingBottom="5" >

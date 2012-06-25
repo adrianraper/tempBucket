@@ -79,9 +79,11 @@ package com.clarityenglish.ielts.view.login {
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
+		
 		private var fullVersionAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourAcademic")]
@@ -89,6 +91,7 @@ package com.clarityenglish.ielts.view.login {
 		private var tenHourAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourGeneralTraining")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
 		private var tenHourGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteAcademic")]
@@ -96,13 +99,14 @@ package com.clarityenglish.ielts.view.login {
 		private var lastMinuteAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
+		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
 		private var lastMinuteGeneralTrainingLogo:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoAcademicLogo:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoGeneralTraing")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
 		
@@ -247,30 +251,28 @@ package com.clarityenglish.ielts.view.login {
 			switch (_productCode) {
 				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
-						case IELTSApplication.FULL_VERSION:
-							return "Full Version - Academic module";
 						case IELTSApplication.LAST_MINUTE:
-							return "Last Minute - Academic module";
+							return "       Last Minute - Academic module";
 						case IELTSApplication.TEST_DRIVE:
-							return "Test Drive - Academic module";
-						case IELTSApplication.HOME_USER:
-							return "Home user - Academic module";
+							return "       Test Drive - Academic module";
+						case IELTSApplication.DEMO:
+							return "                 Academic module";
+						case IELTSApplication.FULL_VERSION:
 						default:
-							return "Demo - Academic module";
+							return "Academic module";
 					}
 					break;
 				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
-						case IELTSApplication.FULL_VERSION:
-							return "Full Version - General Training module";
 						case IELTSApplication.LAST_MINUTE:
-							return "Last Minute - General Training module";
+							return "       Last Minute - General Training module";
 						case IELTSApplication.TEST_DRIVE:
-							return "Test Drive - General Training module";
-						case IELTSApplication.HOME_USER:
-							return "Home user - General Training module";
+							return "       Test Drive - General Training module";
+						case IELTSApplication.DEMO:
+							return "                 General Training module";
+						case IELTSApplication.FULL_VERSION:
 						default:
-							return "Demo - General Training module";
+							return "General Training module";
 					}
 					break;
 				default:
@@ -279,6 +281,7 @@ package com.clarityenglish.ielts.view.login {
 			}
 			return null;
 		}
+
 
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);

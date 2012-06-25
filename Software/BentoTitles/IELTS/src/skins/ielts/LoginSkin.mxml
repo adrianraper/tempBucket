@@ -26,7 +26,8 @@
 	</s:states>
 
 	<s:Group width="100%" top="3">
-
+		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" />
+		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" />
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
 		<s:SWFLoader id="upgradeButton" source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0" top="44" 
@@ -34,7 +35,7 @@
 					 includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
 	</s:Group>
-	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="100">
+	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="123">
 		<s:layout>
 			<s:VerticalLayout paddingTop="25" horizontalAlign="center" />
 		</s:layout>
@@ -126,9 +127,8 @@
 
 	<s:VGroup paddingLeft="55" paddingTop="20" width="100%">
 		<s:Label text="What is Road to IELTS?" color="#174A7D" fontSize="16" fontWeight="bold" width="90%" lineHeight="22" />
-		<s:Spacer height="1" />
 		<s:Label text="Road to IELTS is organised into four skill areas, one for each paper in IELTS. In each skill area you can prepare effectively for test by reading information about each paper, getting advice from IELTS experts on video, and practising your different question types using the interactive practice exercises and the mock papers." width="90%" lineHeight="18" fontSize="12.6" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" top="40" right="80" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" top="35" right="80" />
 	</s:VGroup>
 	</s:BorderContainer>
 </s:Skin>

@@ -2,37 +2,29 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		minWidth="320" minHeight="80" width="50%" height="45%">
+		minWidth="340" minHeight="80" width="50%" height="45%">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.warning.WarningView")]
 	</fx:Metadata>
 
 	<s:layout>
-		<s:VerticalLayout horizontalAlign="center" />
+		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />
 	</s:layout>
+
+		
+
+	<s:VGroup width="100%" paddingTop="30" paddingLeft="37" horizontalAlign="center" verticalAlign="middle" >	
+			<s:Label id="warningMessage" fontSize="14" width="310" lineHeight="20" textAlign="center" />
+	</s:VGroup>
 	
-	<s:Group id="container" width="320" height="65">
-		
-		<s:Rect width="100%" height="100%"  >
-			<s:fill>
-				<s:SolidColor color="#FFFFFF" />
-			</s:fill>
-		</s:Rect>
-		
-		<s:VGroup paddingTop="20" width="60%">
-			<s:Label id="warningMessage" fontSize="12.6" paddingLeft="14" paddingRight="14" paddingBottom="10" width="300" lineHeight="20" />
-		</s:VGroup>
-	
-	</s:Group>
-		
-	<s:HGroup width="100%" paddingBottom="30">
+	<s:HGroup width="100%" paddingTop="8" paddingBottom="30" paddingLeft="33" horizontalAlign="center" verticalAlign="middle">
 		<s:Spacer width="50%" />
 		<s:Spacer height="10" />
-		<s:Button id="yesButton" label="Yes" fontSize="12.6" width="111" height="36" />
-		<s:Spacer width="50%" />
-		<s:Button id="noButton" label="No" fontSize="12.6" width="111" height="36" />
+		<s:Button id="yesButton" label="Yes" fontSize="14" width="111" height="40" />
+		<s:Spacer width="10" />
+		<s:Button id="noButton" label="No" fontSize="14" width="111" height="40" />
 		<s:Spacer width="50%" />
 	</s:HGroup>
-	
+
 </s:Skin>
