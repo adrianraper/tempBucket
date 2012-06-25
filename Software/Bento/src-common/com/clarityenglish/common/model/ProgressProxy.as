@@ -161,15 +161,46 @@ package com.clarityenglish.common.model {
 				// If courseID is defined, disable the other courses.
 				// TODO. Need to update the circular animation to also respect enabledFlag.
 				// TODO. Also need to do similar thing for hiddenContent, so perhaps take it out somewhere
+				// This is also handled in state machine. Either I can do the menu enabling bits here
+				// and the direct start there, or...
 				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 				var directStart:Object = configProxy.getDirectStart();
 				
-				if (directStart && directStart.courseID) {
-					for each (var course:XML in menuXHTML..course) {
-						if (course.@id == directStart.courseID) {
-							course.@enabledFlag = 3;
-						} else {
-							course.@enabledFlag = 8;
+				// #338 If you get back a course, hide the others.
+				// If you get back a unit, get its course too for inverted-hiding as well as the other units.
+				
+				if (directStart) {
+					if (directStart.exerciseID)
+						directStart.unitID = menuXHTML..unit.(descendants("exercise").@id.contains(directStart.exerciseID))[0].@id.toString();
+					
+					if (directStart.unitID)
+						directStart.courseID = menuXHTML..course.(descendants("unit").@id.contains(directStart.unitID))[0].@id.toString();
+					
+					if (directStart.courseID) {
+						for each (var course:XML in menuXHTML..course) {
+							if (course.@id == directStart.courseID) {
+								course.@enabledFlag = 3;
+								if (directStart.unitID) {
+									for each (var unit:XML in course.unit) {
+										if (unit.@id == directStart.unitID) {
+											unit.@enabledFlag = 3;
+											if (directStart.exerciseID) {
+												for each (var exercise:XML in unit.exercise) {
+													if (exercise.@id == directStart.exerciseID) {
+														exercise.@enabledFlag = 3;
+													} else {
+														exercise.@enabledFlag = 8;
+													}
+												}
+											}
+										} else {
+											unit.@enabledFlag = 8;
+										}
+									}
+								}
+							} else {
+								course.@enabledFlag = 8;
+							}
 						}
 					}
 				}

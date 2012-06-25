@@ -120,47 +120,36 @@ package com.clarityenglish.ielts.view {
 			if (!directStart) return false;
 			
 			// #338
-			// If courseID is defined go straight into that course, having disabled the other courses.
-			// TODO. Need to update the circular animation to also respect enabledFlag.
-			if (directStart.courseID) {
+			// If exerciseId is defined go straight into an exercise.
+			if (directStart.exerciseID) {
+				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
 				
-				// QUESTION. Can I update the menu.xml like this?
-				// no.
-				/*
-				for each (var co:XML in bentoProxy.menuXHTML.course) {
-					if (co.@id == directStart.courseID) {
-						co.@enabledFlag = 3;
-						var course:XML = co;
-					} else {
-						co.@enabledFlag = 8;
-					}
+				if (exercise) {
+					var href:Href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
+					sendNotification(IELTSNotifications.HREF_SELECTED, href);
+					return true;
 				}
-				trace(bentoProxy.menuXHTML.toString());
-				*/
-				var course:XML = bentoProxy.menuXHTML.course.(@id == directStart.courseID)[0];
+				
+			}
+			// #338
+			// Does it mean hide all other units? Or just go direct to this unit and leave others accessible?
+			// In general, I think that if you go to directStart you want to skip as much menu as possible
+			// leaving the student with no choices.
+			/*
+			if (directStart.unitID) {
+				bentoProxy.menuXHTML.selectOne("course[class=" + directStart.courseClass + "]");
+				
 				if (course) {
 					sendNotification(IELTSNotifications.COURSE_SHOW, course);
 					return true;
 				}
 			}
-			
-			// If exerciseId is defined go straight into an exercise.
-			if (directStart.exerciseId) {
-				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseId);
+			*/
+			// If courseID is defined go straight into that course, having disabled the other courses.
+			// TODO. Need to update the circular animation to also respect enabledFlag.
+			if (directStart.courseID) {
 				
-				if (exercise) {
-					var href:Href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
-					sendNotification(IELTSNotifications.HREF_SELECTED, href);
-				}
-			}
-			
-			// #338
-			// Does it mean hide all other units? Or just go direct to this unit and leave others accessible?
-			// In general, I think that if you go to directStart you want to skip as much menu as possible
-			// leaving the student with no choices.
-			if (directStart.unitId) {
-				bentoProxy.menuXHTML.selectOne("course[class=" + directStart.courseClass + "]");
-				
+				var course:XML = bentoProxy.menuXHTML..course.(@id == directStart.courseID)[0];
 				if (course) {
 					sendNotification(IELTSNotifications.COURSE_SHOW, course);
 					return true;

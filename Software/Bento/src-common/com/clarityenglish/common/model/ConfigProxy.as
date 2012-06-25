@@ -279,9 +279,11 @@ package com.clarityenglish.common.model {
 				return scormProxy.getBookmark();				
 			}
 			
-			// #338
+			// #338. This is called from ProgressProxy to find out which menu bits to hide
+			// and from the ApplicationMediator state machine to see what notifications to send for screens to display
+			var directStartObject:Object = null;
 			if (config.courseID)
-				return { courseID: config.courseID };
+				directStartObject = { courseID: config.courseID };
 			
 			// #338
 			if (config.startingPoint) {
@@ -291,15 +293,14 @@ package com.clarityenglish.common.model {
 				switch (type) {
 					case 'ex':
 					case 'exercise':
-						return { exerciseId: value };
+						directStartObject.exerciseID = value;
 						break;
 					case 'unit':
-						return { unitId: value };
+						directStartObject.unitID = value;
 						break;
 				}
 			}
-			
-			return null;
+			return directStartObject;
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
