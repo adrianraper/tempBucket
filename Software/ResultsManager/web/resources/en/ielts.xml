@@ -49,6 +49,8 @@
 			
 			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
+			
+			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 		</group>
 	</language>
 </literals>

@@ -39,7 +39,7 @@ package com.clarityenglish.bento.model {
 		 * Establish SCORM communication with the API in the browser
 		 * Get initial variables and leave it all ready for communication once the SCO is started
 		 */
-		public function initialise():void {
+		public function initialise():Boolean {
 			
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			
@@ -49,8 +49,9 @@ package com.clarityenglish.bento.model {
 			// Initialise
 			if (!scorm.connect()) {
 				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("SCORMcantInitialize", { errorCode: 100, errorMessage: 'SCORMError' }, true ));
-				return;
+				return false;
 			} else {
+				// TODO. Why doesn't this give me a good value?
 				var scormVersion:String = scorm.version;
 			}
 			
@@ -72,7 +73,7 @@ package com.clarityenglish.bento.model {
 			
 			// launch_data is key, and you need to carefully check this as not all LMS support it
 			// TODO: Encode as JSON?
-			scorm.launchData = com.adobe.serialization.json.JSON.decode(scorm.getParameter('launchData'));
+			scorm.launchData = scorm.getParameter('launchData');
 			/*
 			_global.ORCHID.commandLine.course = launchData.course;
 			if (launchData.unit != undefined) {
@@ -88,6 +89,7 @@ package com.clarityenglish.bento.model {
 			// suspend data
 			scorm.suspendData = com.adobe.serialization.json.JSON.decode(scorm.getParameter('suspendData'));
 			
+			return true;
 		}
 
 		/**

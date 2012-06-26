@@ -76,13 +76,16 @@ package com.clarityenglish.common.model {
 			config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
 
 			// #336 SCORM
+			// The SCORM initialisation might fail and raise an exception. Don't bother going on...
+			var rc:Boolean = true;
 			if (config.scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				scormProxy.initialise();
+				rc = scormProxy.initialise();
 			}
 			
 			// Trigger the database call
-			getAccountSettings();
+			if (rc)
+				getAccountSettings();
 		}
 		
 		/**
