@@ -77,7 +77,7 @@ package com.clarityenglish.ielts.view.zone {
 				var itemRenderer:UIComponent = dataGroup.getElementAt(n) as UIComponent;
 				
 				// Figure out if the mouse is over this item renderer
-				if (itemRenderer.getBounds(event.currentTarget as DisplayObject).containsPoint(point)) {
+				if (itemRenderer && itemRenderer.getBounds(event.currentTarget as DisplayObject).containsPoint(point)) {
 					if (itemRenderer !== lastItemRenderer) destroyToolTip();
 					
 					if (itemRenderer.enabled) {

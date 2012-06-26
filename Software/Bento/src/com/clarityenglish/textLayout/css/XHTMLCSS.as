@@ -16,27 +16,5 @@ package com.clarityenglish.textLayout.css {
 			super(source, context ? context : defaultContext);
 		}
 		
-		public function getFloats():Array {
-			var matchingNodes:Array = [];
-			
-			// This is a good start :)  not quite right however; John French is investigating
-			var document:ICSSDocument;
-			var cascade:Array = styleSelector.documents;
-			
-			for each (document in cascade) {
-				var cssRules:ICSSRuleList = document.styleSheet.cssRules;
-				for (var n:uint = 0; n < cssRules.length; n++) {
-					var cssRule:StyleRule = cssRules.item(n) as StyleRule;
-					if (cssRule) {
-						var float:ICSSValue = cssRule.style.getPropertyCSSValue("float");
-						//if (float)
-						//	matchingNodes.push();
-					}
-				}
-			}
-			
-			return null;
-		}
-		
 	}
 }

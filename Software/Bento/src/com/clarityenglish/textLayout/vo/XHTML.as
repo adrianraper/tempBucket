@@ -222,8 +222,9 @@ package com.clarityenglish.textLayout.vo {
 		[Bindable(event="xmlChange")]
 		public function get styleStrings():Array {
 			var styleStrings:Array = [ ];
-			for each (var styleNode:XML in _xml.head.style)
+			for each (var styleNode:XML in _xml.head.style) {
 				styleStrings.push(styleNode.text().toString());
+			}
 			
 			return styleStrings;
 		}

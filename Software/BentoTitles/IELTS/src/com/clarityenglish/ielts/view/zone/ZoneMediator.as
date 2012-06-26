@@ -10,33 +10,23 @@
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.events.NetStatusEvent;
-	import flash.events.SecurityErrorEvent;
-	import flash.net.NetConnection;
-	import flash.net.NetStream;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
 	import mx.core.mx_internal;
-	import mx.events.VideoEvent;
 	
 	import org.davekeen.util.Closure;
 	import org.osmf.events.BufferEvent;
-	import org.osmf.events.LoadEvent;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
 	import org.osmf.media.MediaPlayerState;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
-	import org.osmf.traits.LoadState;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
 	import spark.components.VideoPlayer;
-	import flash.external.ExternalInterface;
-	//import mx.logging.Log;
-	//import mx.logging.ILogger;
+	
 	/**
 	 * A Mediator
 	 */
@@ -48,8 +38,6 @@
 		private var queuedVideoHref:Href;
 		private var currentVideoHref:Href;
 		private var currentVideoStartTime:Date;
-		private var connection:NetConnection;
-		private var stream:NetStream; 
 		
 		public function ZoneMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
@@ -116,9 +104,6 @@
 			}
 		}
 		
-
-		
-		
 		/**
 		 * An exercise was selected. Based on the extension of the Href we either want to open an exercise or open a pdf.
 		 * 
@@ -146,15 +131,8 @@
 		 * @return 
 		 */
 		private function onVideoSelected(href:Href, zoneName:String):void {
-			
 			// #81 If the href is not a simple video file, it might be a dynamic streaming list
 			var videoSource:String = href.url;
-			
-			//Alice: netconnection initialization
-			connection = new NetConnection();
-			connection.addEventListener(NetStatusEvent.NET_STATUS, netStatusHandler);
-			connection.addEventListener(SecurityErrorEvent.SECURITY_ERROR, securityErrorHandler);
-			connection.connect(null);
 			
 			// Get the target video player
 			var videoPlayer:VideoPlayer;
@@ -170,19 +148,14 @@
 					return;
 			}
 			
-			//Alice: loadevent change
-			videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(LoadEvent.LOAD_STATE_CHANGE, onLoadChange);
 			// #208
 			videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
 			
 			if (videoSource.match(/\.(rss|xml)$/)) {
 				urlLoader = new URLLoader();
-				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, ioErrorHandler);
-				urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR,securityErrorHandler);
 				urlLoader.addEventListener(Event.COMPLETE, Closure.create(this, onRssLoadComplete, videoPlayer));
-				
 				urlLoader.load(new URLRequest(videoSource));
-			} else {				
+			} else {
 				videoPlayer.source = videoSource;
 				// #63
 				view.callLater(function():void {
@@ -196,85 +169,7 @@
 			
 			// #269
 			sendNotification(BBNotifications.ACTIVITY_TIMER_RESET);
-
-	
 		}
-		
-		//Alice: handle netconnection
-		private function netStatusHandler(event:NetStatusEvent):void {
-			switch (event.info.code) {
-				case "NetConnection.Connect.Success":
-					var msg:String = "SUCCESSFUL CONNECT";
-					trace(msg);
-					logToConsole(msg);
-					//connectStream();
-					break;
-				case "NetConnection.Connect.AppShutdown":
-					msg ="server-side application is shutting down";
-					trace(msg);
-					logToConsole(msg);
-					break;
-				case "NetConnection.Connect.Failed":
-				    msg="The connection attempt failed";
-					trace(msg);
-					logToConsole(msg);
-					break;
-				case "NetConnection.Connect.IdleTimeout":
-				    msg ="disconnected the client for the idle of client longer than the configured value for <MaxIdleTime>";
-					trace(msg);
-				    logToConsole(msg);
-					break;
-				case "NetConnection.Connect.NetworkChange":
-				    msg ="a network change";
-					trace(msg);
-					logToConsole(msg);
-					break;
-				case "NetConnection.Connect.Rejected":
-				    msg="no permission to access the application";
-					trace(msg);
-					logToConsole(msg);
-					break;
-				case "NetStream.Play.StreamNotFound":
-				    msg ="Unable to locate video: ";
-					trace(msg);
-					logToConsole(msg);
-					break;
-			}
-		}
-		
-		//Alice: handle securityErrorHandler
-		private function securityErrorHandler(event:SecurityErrorEvent):void {
-			trace("securityErrorHandler: " + event);
-		}
-		
-		//Alice: handle load
-		protected function onLoadChange(event:LoadEvent):void{
-			switch(event.loadState){
-				case LoadState.LOAD_ERROR:
-					var msg:String ="Load error";
-					trace(msg);
-					logToConsole(msg);
-					break;
-				case LoadState.UNINITIALIZED:
-					msg="LoadTrait has been constructed, but either has not yet started loading or has been unloaded";
-					trace(msg);
-					logToConsole(msg);
-					break;
-				case LoadState.UNLOADING:
-					msg="The LoadTrait has begun unloading";
-					trace(msg);
-					logToConsole(msg);
-					break;
-			}
-		}
-		
-		//Alice: handle ioError
-		private function ioErrorHandler(event:IOErrorEvent):void{
-			var msg:String="ioErrorHandler: " + event;
-			trace(msg);
-			logToConsole(msg);
-		}
-        
 		
 		protected function onBufferingChange(event:Event):void {
 			//trace("buffering change, bufferTime is " + event.target.bufferTime);
@@ -288,7 +183,7 @@
 			// #335
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var channelName:String = configProxy.getConfig().mediaChannel;
-		
+			
 			// To cope with original format files
 			if (dynamicList.channel.hasOwnProperty("@name")) {
 				var channel:XML = dynamicList.channel.(@name==channelName)[0];
@@ -320,7 +215,6 @@
 				dynamicSource.streamItems = streamItems; 
 				
 				videoPlayer.source = dynamicSource;
-			    
 				videoPlayer.callLater(videoPlayer.play);
 				
 			// Rackspace's pseudo streaming over http
@@ -344,7 +238,6 @@
 			// Allow the listener to be garbage collected
 			urlLoader = null;
 		}
-		
 		
 		public function onVideoPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
 			log.info("video state is " + event.state);
@@ -375,11 +268,6 @@
 		
 		public function onVideoPlayerComplete(event:TimeEvent):void {
 			log.info("video completed " + event.toString());
-		}
-		
-		private function logToConsole(message:String):void {
-			if (ExternalInterface.available)
-				ExternalInterface.call("log", message);
 		}
 		
 	}
