@@ -19,6 +19,7 @@
 		public static const ADD_USER:String = "add_user";
 		public static const ADDED_USER:String = "added_user";
 		public static const ADD_USER_FAILED:String = "added_user_failed";
+		public static const CONFIRM_NEW_USER:String = "confirm_new_user";
 		
 		// #322
 		public static const ACCOUNT_LOAD:String = "account_load";

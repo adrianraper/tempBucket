@@ -193,7 +193,8 @@ package com.clarityenglish.ielts.view.account {
 					break;
 				case IELTSApplication.FULL_VERSION:
 					var currentState:String = "fullVersion";
-					if (licenceType == Title.LICENCE_TYPE_AA)
+					if (licenceType == Title.LICENCE_TYPE_AA ||
+						Number(config.userID) < 1)
 						currentState += "_anonymous";
 					return currentState;
 					break;

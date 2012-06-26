@@ -4,6 +4,7 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.content.Title;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -35,7 +36,7 @@
 			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
 			// #234
 			view.productVersion = configProxy.getProductVersion();
-
+			
 		}
         
 		override public function listNotificationInterests():Array {

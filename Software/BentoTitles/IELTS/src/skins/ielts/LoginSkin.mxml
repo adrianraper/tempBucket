@@ -87,12 +87,12 @@
 		</s:VGroup>
 		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
 			<s:Label text="Please type your details to register." 
-					text.registerNetwork="This is the first time these details have been used, click New user to confirm." 
+					text.registerNetwork="This is the first time you have used the program, click New user to confirm." 
 					fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
 			<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
 				<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" fontWeight="bold" paddingTop="6" />
-				<s:TextInput id="loginNameInput" width="180" />
+				<s:TextInput id="loginNameInput" width="180" text="{hostComponent.savedName}"/>
 			</s:HGroup>
 			<s:Spacer height="3" />
 			<s:HGroup id="idGroup" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}">

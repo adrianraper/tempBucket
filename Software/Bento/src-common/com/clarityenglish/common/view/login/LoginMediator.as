@@ -12,6 +12,7 @@ package com.clarityenglish.common.view.login {
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -64,6 +65,7 @@ package com.clarityenglish.common.view.login {
 			return super.listNotificationInterests().concat([
 				CommonNotifications.INVALID_LOGIN,
 				CommonNotifications.COPY_LOADED,
+				CommonNotifications.CONFIRM_NEW_USER,
 				CommonNotifications.ADDED_USER,
 			]);
 		}
@@ -89,6 +91,10 @@ package com.clarityenglish.common.view.login {
 					view.clearData();
 					break;
 				
+				case CommonNotifications.CONFIRM_NEW_USER:
+					view.setState("register");
+					break;
+				
 				case CommonNotifications.INVALID_LOGIN:
 					// If we catch this notification here, I want to handle it on the loginView
 					// So I need to reimplement view.showInvalidLogin, and also stop the notification
@@ -97,6 +103,7 @@ package com.clarityenglish.common.view.login {
 					
 					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
 					view.clearData();
+						
 					break;
 				
 				case CommonNotifications.ADDED_USER:

@@ -497,6 +497,7 @@ EOD;
 	// Duplicated in dbProgress
 	function setInstanceID (&$vars, &$node  ) {
 		global $db;
+		$node .= "<note>in dbLicence.setInstanceID - unexpected</note>";
 		
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 			// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
@@ -550,9 +551,10 @@ EOD;
 		$userID = $vars['USERID'];
 		// v6.6.0 CS and IIE don't pass productCode, so just have to lump them together
 		// Because SQU can't clear objects.swf they are stuck in a terrible loop. So overwrite their productCode to always use 0
-		if (isset($vars['ROOTID']) && $vars['ROOTID']==14265) {
-			$productCode = 0;
-		} else if (!isset($vars['PRODUCTCODE'])) {
+		// BUT, you never pass rootID to here, so this doesn't work
+		//if (isset($vars['ROOTID']) && $vars['ROOTID']==14265) {
+		//	$productCode = 0;
+		if (!isset($vars['PRODUCTCODE'])) {
 			$productCode = 0;
 		} else {
 			$productCode = $vars['PRODUCTCODE'];

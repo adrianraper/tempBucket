@@ -119,8 +119,8 @@ package com.clarityenglish.ielts.view.home {
 					break;
 				
 				case welcomeLabel:
-					if (licenceType == Title.LICENCE_TYPE_AA || 
-						(licenceType == Title.LICENCE_TYPE_NETWORK && user.fullName == "Anonymous")) {
+					if ((licenceType == Title.LICENCE_TYPE_AA) || 
+						((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1))) {
 						if (productVersion == IELTSApplication.DEMO) {
 							instance.text = "Welcome to the Road to IELTS demo.";
 						} else {
@@ -133,7 +133,8 @@ package com.clarityenglish.ielts.view.home {
 				
 				case noticeLabel:
 					// TODO. Network licence doesn't want the note about test date, but CT licence does
-					if (licenceType == Title.LICENCE_TYPE_AA || licenceType == Title.LICENCE_TYPE_NETWORK) {
+					if (licenceType == Title.LICENCE_TYPE_AA || 
+						licenceType == Title.LICENCE_TYPE_NETWORK) {
 						instance.text = "Licenced to " + accountName + ".";
 						
 					} else {

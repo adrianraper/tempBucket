@@ -249,6 +249,7 @@ package com.clarityenglish.common.model {
 						// Only needs to be done for concurrent licence control learners
 						if (_user.userType==User.USER_TYPE_STUDENT && 
 							(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA || 
+							configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK || 
 							configProxy.getLicenceType() == Title.LICENCE_TYPE_CT)) {
 							
 							// An error check
@@ -260,7 +261,7 @@ package com.clarityenglish.common.model {
 							licenceTimer.start();
 						}
 					} else {
-						// Invalid login
+						// Invalid login. But a no such user error will go to onDelegateFail not here.
 						sendNotification(CommonNotifications.INVALID_LOGIN);
 					}
 					break;
@@ -278,8 +279,16 @@ package com.clarityenglish.common.model {
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			switch (operation) {
 				case "login":
-					sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
+					// #341 For network, if you don't find the user, offer to add them
+					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					if (configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) {
+						sendNotification(CommonNotifications.CONFIRM_NEW_USER);
+					} else {
+						sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
+					}
+
 					break;
+				
 				case "addUser":
 					sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault));
 					break;

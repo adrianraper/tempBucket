@@ -77,6 +77,10 @@ package com.clarityenglish.ielts.view.login {
 		private var _productVersion:String;
 		private var _productCode:uint;
 		
+		// #341
+		[Bindable]
+		public var savedName:String;
+		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		
@@ -303,7 +307,13 @@ package com.clarityenglish.ielts.view.login {
 
 		// #341
 		protected override function getCurrentSkinState():String {
-			return _currentState + (licenceType == Title.LICENCE_TYPE_NETWORK) ? "Network" : "";
+			if (licenceType == Title.LICENCE_TYPE_NETWORK) {
+				var networkState:String = "Network";
+			} else {
+				networkState = "";
+			}
+				
+			return _currentState + networkState;
 		}
 		
 		/**
@@ -332,6 +342,9 @@ package com.clarityenglish.ielts.view.login {
 		}
 		public function setLicenceType(value:uint):void {
 			licenceType = value;
+			
+			// #341 for network version
+			setState("login");
 		}
 
 		/**
@@ -361,6 +374,7 @@ package com.clarityenglish.ielts.view.login {
 			loginName_lbl = "Your name:";
 			loginID_lbl = "Your id:";
 			loginEmail_lbl = "Your email:";
+			
 		}
 		
 		// #254
@@ -417,7 +431,13 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		public function setState(state:String):void {
-			
+		
+			// Copy fields if appropriate
+			switch (state) {
+				case 'register':
+					savedName = loginKeyInput.text
+					break;
+			}
 			// Can't use currentState as that belongs to the view and is not automatically linked to the skin
 			_currentState = state;
 			invalidateSkinState();

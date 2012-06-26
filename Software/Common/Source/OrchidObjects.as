@@ -2005,8 +2005,10 @@ UserObject.prototype.compareInstanceIDWithDB = function() {
 		var thisDB;
 		thisDB = new _global.ORCHID.root.mainHolder.dbQuery();
 		// v6.6 Need to send productCode as well now as instance allows multiple products
+		// v6.6 Also send rootID in case you have any special account processing to take care of
 		thisDB.queryString ='<query method="getInstanceID" ' +
 						'productCode="' + _global.ORCHID.root.licenceHolder.licenceNS.productCode + '" ' +
+						'rootID="' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + '" ' + 
 						'userID ="' + this.userID + '"/>';
 					//'instanceID ="' + this.instanceID + '"/>';
 					

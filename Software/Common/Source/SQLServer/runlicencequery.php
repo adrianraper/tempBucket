@@ -90,6 +90,7 @@ require_once(dirname(__FILE__)."/dbLicence.php");
 			break;
 			
 		// v6.5.4.5 This isn't usually called on its own, part of progress.startUser. But keep here in case
+		// This seems very dangerous - if I can't see where it is being called, I should kill it. Unless of course it comes from IYJ or something.
 		//case "SETLICENCEID":
 		case "SETINSTANCEID":
 			// This will be blocked in Orchid now

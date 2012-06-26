@@ -1519,9 +1519,7 @@ EOD;
 	function insertInstanceID (&$vars) {
 		global $db;
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
-			$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
-			$ip = $ipList[0];
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 		} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 			$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 		} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
@@ -1529,15 +1527,18 @@ EOD;
 		} else {
 			$ip = $_SERVER["REMOTE_ADDR"];
 		}
+		// To make sure it fits in the field
+		$ip = substr($ip,0,50);
 		
 		$instanceID = $vars['INSTANCEID'];
 		$userID = $vars['USERID'];
 		// v6.6.0 CS and IIE don't pass productCode, so just have to lump them together as zero.
 		// Note that you do know productCode at this point, but you DON'T when you try to do getInstanceID later.
 		// Because SQU can't clear objects.swf they are stuck in a terrible loop. So overwrite their productCode to always use 0
-		if ($vars['ROOTID']==14265) {
-			$productCode = 0;
-		} else if (!isset($vars['PRODUCTCODE'])) {
+		// BUT dbLicence.php doesn't know rootID, so once their cache cleared, the hack stops working
+		//if ($vars['ROOTID']==14265) {
+		//	$productCode = 0;
+		if (!isset($vars['PRODUCTCODE'])) {
 			$productCode = 0;
 		} else if ($vars['PRODUCTCODE']==45 || $vars['PRODUCTCODE']==46) {
 			$productCode = 0;
@@ -1550,6 +1551,11 @@ EOD;
 		// Get the existing set of instance IDs and add/update for this title
 		$instanceArray = $this->getInstanceArray($userID);
 		$instanceArray[$productCode] = $instanceID;
+		
+		// #338 SQU hack, additionally add 0 as a productCode with this instance ID
+		if (isset($vars['ROOTID']) && $vars['ROOTID']==14265)
+			$instanceArray[0] = $instanceID;
+
 		$instanceControl = json_encode($instanceArray);
 		
 		// #340. SQLite doesn't like symbolic names for the table in an update

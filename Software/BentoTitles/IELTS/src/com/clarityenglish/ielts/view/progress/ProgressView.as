@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.progress {
 	import com.anychart.mapPlot.controls.zoomPanel.Slider;
 	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressCompareView;
@@ -18,6 +19,7 @@ package com.clarityenglish.ielts.view.progress {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.ButtonBar;
+	import spark.components.Group;
 	import spark.components.Label;
 	
 	/*[SkinState("score")]
@@ -40,6 +42,9 @@ package com.clarityenglish.ielts.view.progress {
 		
 		[SkinPart]
 		public var progressCoverageView:ProgressCoverageView;
+		
+		[SkinPart]
+		public var anonWarning:Group;
 
 		public var currentCourseClass:String;
 		private var _licenceType:uint;
@@ -47,6 +52,9 @@ package com.clarityenglish.ielts.view.progress {
 		// #234
 		private var _productVersion:String;
 
+		// #341
+		public var _user:User;
+		
 		public function get assetFolder():String {
 			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
 		}
@@ -152,6 +160,21 @@ package com.clarityenglish.ielts.view.progress {
 				_productVersion = value;
 			}
 		}
+
+		[Bindable]
+		public function get user():User {
+			return _user;
+		}
 		
+		public function set user(value:User):void {
+			if (_user != value) {
+				_user = value;
+			}
+			if (Number(_user.id) < 1) {
+				anonWarning.visible = true;
+				anonWarning.includeInLayout = true;
+			}
+		}
+
 	}
 }
