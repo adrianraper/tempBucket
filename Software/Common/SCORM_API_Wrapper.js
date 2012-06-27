@@ -78,7 +78,7 @@ pipwerks.SCORM.API.find = function(win){
         trace = pipwerks.UTILS.trace,
         scorm = pipwerks.SCORM;
 
-    trace("win.name: "+win.name);
+    //trace("win.name: "+win.name);
     while ((!win.API && !win.API_1484_11) &&
            (win.parent) &&
            (win.parent != win) &&
@@ -86,10 +86,10 @@ pipwerks.SCORM.API.find = function(win){
 
                 findAttempts++;
                 win = win.parent;
-                trace("win: "+win);
+               // trace("win: "+win);
 
     }
-    trace("win.API: "+win.API);
+    //trace("win.API: "+win.API);
 
     /*
      * Clarity. This stops the findAPI working. 
@@ -430,20 +430,20 @@ pipwerks.SCORM.connection.terminate = function(){
 
 // Clarity
 /* -------------------------------------------------------------------------
-   pipwerks.SCORM.version()
+   pipwerks.SCORM.lmsVersion()
    Requests information from the LMS.
 
    Parameter: 
    Returns:   string (the value of the SCORM version found from the API)
 ---------------------------------------------------------------------------- */
 
-pipwerks.SCORM.version = function(){
+pipwerks.SCORM.lmsVersion = function(){
 
     var value = null,
         scorm = pipwerks.SCORM,
         trace = pipwerks.UTILS.trace,
         debug = scorm.debug,
-        traceMsgPrefix = "SCORM.data.get(" +parameter +") ";
+        traceMsgPrefix = "SCORM.version ";
 
     if(scorm.connection.isActive){
 
@@ -465,7 +465,7 @@ pipwerks.SCORM.version = function(){
 
     }
 
-    trace(traceMsgPrefix +" value: " +value);
+    trace(traceMsgPrefix +"=" +value);
 
     return String(value);
 

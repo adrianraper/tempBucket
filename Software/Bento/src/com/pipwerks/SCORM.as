@@ -192,8 +192,8 @@ package com.pipwerks {
 		private function __cmiName(name:String, index:uint = 0):String {
 			switch (name) {
 				case "studentName":
-					trace("CMI names from version " + version);
-					if (version == "1.3") {
+					trace("CMI names from version " + this.version);
+					if (this.version == "2004") {
 						return "cmi.learner_name";
 					} else {
 						return "cmi.core.student_name";
@@ -201,14 +201,14 @@ package com.pipwerks {
 					break;
 				// v6.5.6 Added to see if useful for HCT
 				case "studentID":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.learner_id";
 					} else {
 						return "cmi.core.student_id";
 					}
 					break;
 				case "interfaceLanguage":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.learner_preference.language";
 					} else {
 						return "cmi.student_preference.language";
@@ -224,28 +224,28 @@ package com.pipwerks {
 					return "cmi.launch_data";
 					break;
 				case "bookmark":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.location";
 					} else {
 						return "cmi.core.lesson_location";
 					}
 					break;
 				case "sessionTime":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.session_time";
 					} else {
 						return "cmi.core.session_time";
 					}
 					break;
 				case "lessonStatus":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.completion_status";
 					} else {
 						return "cmi.core.lesson_status";
 					}
 					break;
 				case "exit":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.exit";
 					} else {
 						return "cmi.core.exit";
@@ -253,28 +253,28 @@ package com.pipwerks {
 					break;
 				// v6.5.1 Added to help ensure that suspend data is fresh for a re-run of a SCO
 				case "entry":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.entry";
 					} else {
 						return "cmi.core.entry";
 					}
 					break;
 				case "rawScore":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.score.raw";
 					} else {
 						return "cmi.core.score.raw";
 					}
 					break;
 				case "maxScore":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.score.max";
 					} else {
 						return "cmi.core.score.max";
 					}
 					break;
 				case "minScore":
-					if (version == "1.3") {
+					if (this.version == "2004") {
 						return "cmi.score.min";
 					} else {
 						return "cmi.core.score.min";
@@ -311,6 +311,12 @@ package com.pipwerks {
 				
 				if (result){
 					__connectionActive = true;
+					
+					// Clarity, get the scorm version here too
+					eiCall = String(ExternalInterface.call("pipwerks.SCORM.lmsVersion"));
+					if (eiCall)
+						this.version = eiCall;
+					
 				} else {
 					var errorCode:int = __getDebugCode();
 					if(errorCode){

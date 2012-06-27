@@ -52,11 +52,11 @@ package com.clarityenglish.bento.model {
 				return false;
 			} else {
 				// TODO. Why doesn't this give me a good value?
-				var scormVersion:String = scorm.version;
+				//var scormVersion:String = scorm.version;
 			}
 			
 			// After initalisation you need to get the following information from the LMS for this SCO
-			scorm.version = scorm.getParameter('version');
+			//scorm.version = scorm.getParameter('version');
 			scorm.studentName = scorm.getParameter('studentName');
 			scorm.studentID = scorm.getParameter('studentID');
 			scorm.studentLanguage = scorm.getParameter('interfaceLanguage');
@@ -87,7 +87,7 @@ package com.clarityenglish.bento.model {
 			
 			// entry data says whether we should also get
 			// suspend data
-			scorm.suspendData = com.adobe.serialization.json.JSON.decode(scorm.getParameter('suspendData'));
+			scorm.suspendData = scorm.getParameter('suspendData');
 			
 			return true;
 		}
@@ -97,10 +97,10 @@ package com.clarityenglish.bento.model {
 		 */
 		public function getBookmark():Object {
 			// TODO: Work out the course and exercise ID from the launchData structure
-			if (scorm.launchData.exerciseID)
-				return scorm.launchData.exerciseID;
-			if (scorm.launchData.course)
-				return scorm.launchData.course;
+			//if (scorm.launchData.exerciseID)
+			//	return scorm.launchData.exerciseID;
+			//if (scorm.launchData.course)
+			//	return scorm.launchData.course;
 
 			scorm.bookmark = scorm.getParameter('bookmark');
 			return null;
