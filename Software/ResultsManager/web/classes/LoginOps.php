@@ -170,7 +170,7 @@ EOD;
 				SELECT g.F_GroupID, m.F_RootID,
 						u.F_UserType, u.F_UserID, u.F_Password, u.F_StartDate UserStartDate, u.F_ExpiryDate UserExpiryDate,
 						u.F_UserName,
-						a.F_ExpiryDate ProductExpiryDate,a.F_LanguageCode,a.F_MaxTeachers,a.F_MaxAuthors,a.F_MaxReporters				
+						a.F_ExpiryDate ProductExpiryDate,a.F_LanguageCode,a.F_MaxTeachers,a.F_MaxAuthors,a.F_MaxReporters,a.F_LicenceType				
 				FROM T_User u 
 					LEFT JOIN 
 						T_Membership m ON m.F_UserID = u.F_UserID

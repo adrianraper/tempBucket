@@ -172,7 +172,6 @@ package com.clarityenglish.ielts.view.progress {
 			}
 			if (Number(_user.id) < 1) {
 				anonWarning.visible = true;
-				anonWarning.includeInLayout = true;
 			}
 		}
 

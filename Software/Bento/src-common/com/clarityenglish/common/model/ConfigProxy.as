@@ -284,7 +284,7 @@ package com.clarityenglish.common.model {
 			
 			// #338. This is called from ProgressProxy to find out which menu bits to hide
 			// and from the ApplicationMediator state machine to see what notifications to send for screens to display
-			var directStartObject:Object = null;
+			var directStartObject:Object = new Object();
 			if (config.courseID)
 				directStartObject = { courseID: config.courseID };
 			

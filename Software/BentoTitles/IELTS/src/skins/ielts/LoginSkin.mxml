@@ -126,8 +126,6 @@
 	<s:BorderContainer right="0" width="60%" height="9%" cornerRadius="12" backgroundAlpha="0" borderAlpha="0" top="100">
 
 	<s:VGroup paddingLeft="55" paddingTop="20" width="100%">
-		<s:Label text="What is Road to IELTS?" color="#174A7D" fontSize="16" fontWeight="bold" width="90%" lineHeight="22" />
-		<s:Label text="Road to IELTS is organised into four skill areas, one for each paper in IELTS. In each skill area you can prepare effectively for test by reading information about each paper, getting advice from IELTS experts on video, and practising your different question types using the interactive practice exercises and the mock papers." width="90%" lineHeight="18" fontSize="12.6" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" top="35" right="80" />
 	</s:VGroup>
 	</s:BorderContainer>

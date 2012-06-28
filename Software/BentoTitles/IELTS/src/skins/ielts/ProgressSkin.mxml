@@ -37,7 +37,7 @@
 		</s:Transition>
 	</s:transitions>
 
-	<s:Group id="anonWarning" width="100%" visible="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}" includeInLayout="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}">
+	<s:Group id="anonWarning" width="100%" visible="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}" includeInLayout="true">
 		<s:Label left="0" height="14" top="80" text="You have logged in anonymously, so your progress will not be saved after you close the program." />
 	</s:Group>
 	

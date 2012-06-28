@@ -11,22 +11,20 @@
 	<s:layout>
 		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />
 	</s:layout>
-
 		
-<s:VGroup paddingLeft="50" paddingRight="50">
-	
-
-	<s:VGroup width="100%" paddingTop="30" horizontalAlign="center" verticalAlign="middle" >	
-			<s:Label id="warningMessage" fontSize="14" width="310" lineHeight="20" textAlign="center" />
+	<s:VGroup paddingLeft="50" paddingRight="50">
+		
+		<s:VGroup width="100%" paddingTop="30" horizontalAlign="center" verticalAlign="middle" >	
+				<s:Label id="warningMessage" fontSize="14" width="310" lineHeight="20" textAlign="center" />
+		</s:VGroup>
+		
+		<s:HGroup width="100%" paddingTop="8" paddingBottom="30" horizontalAlign="center" verticalAlign="middle">
+			<s:Spacer width="50%" />
+			<s:Spacer height="10" />
+			<s:Button id="yesButton" label="Yes" fontSize="24" width="111" height="40" />
+			<s:Spacer width="10" />
+			<s:Button id="noButton" label="No" fontSize="14" width="111" height="40" />
+			<s:Spacer width="50%" />
+		</s:HGroup>
 	</s:VGroup>
-	
-	<s:HGroup width="100%" paddingTop="8" paddingBottom="30" horizontalAlign="center" verticalAlign="middle">
-		<s:Spacer width="50%" />
-		<s:Spacer height="10" />
-		<s:Button id="yesButton" label="Yes" fontSize="14" width="111" height="40" />
-		<s:Spacer width="10" />
-		<s:Button id="noButton" label="No" fontSize="14" width="111" height="40" />
-		<s:Spacer width="50%" />
-	</s:HGroup>
-</s:VGroup>
 </s:Skin>

@@ -12,7 +12,7 @@ package com.clarityenglish.bento.model {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	/**
-	 * This is used for interacing with the container.
+	 * This is used for interacting with the container.
 	 * 
 	 * @author Dave
 	 */

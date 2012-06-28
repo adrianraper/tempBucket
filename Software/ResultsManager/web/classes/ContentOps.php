@@ -815,8 +815,6 @@ EOD;
 	 * Returns the content tree for the logged in user
 	 */
 	function getContent() {
-		//Session::is_set('valid_groupIDs');
-		//Session::is_set('valid_userIDs');
 		return $this->parseContent(false);
 	}
 	

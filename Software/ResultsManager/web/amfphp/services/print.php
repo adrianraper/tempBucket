@@ -9,6 +9,7 @@ $basePath = base64_decode($_GET["b"]);
 
 // Do some basic sanitization to protect against directory traversal
 // TODO: This could also match against a regular expression for URLs with an .xml suffix
+// #325
 $url = preg_replace("..", "", $url);
 $basePath = preg_replace("..", "", $basePath);
 

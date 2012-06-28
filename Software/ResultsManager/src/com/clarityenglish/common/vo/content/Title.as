@@ -40,6 +40,9 @@
 		 */
 		public var expiryDate:String;
 		public var licenceStartDate:String;
+		// Add licence clearance
+		public var licenceClearanceDate:String;
+		public var licenceClearanceFrequency:String;
 		
 		public var languageCode:String;
 		public var startPage:String;
@@ -81,6 +84,21 @@
 				
 			return null;
 		}
+		/**
+		 * Search the courses within this title for a unit with the given id.  If it does not exist return null.
+		 * 
+		 * @param	unitId The unit ID to search for
+		 * @return
+		 */
+		public function getUnitById(unitId:String):Unit {
+			for each (var course:Course in courses) {
+				for each (var unit:Unit in course) 
+					// TODO: Or is it unit.unitID
+					if (unit.id == unitId) return unit;
+			}
+				
+			return null;
+		}
 		
 		/**
 		 * This creates a new title with default parameters.  Note that this does not add the caption or contentLocation and so this must be
@@ -113,6 +131,7 @@
 			
 			title.licenceStartDate = DateUtils.dateToAnsiString(new Date());
 			title.licenceType = 1;
+			// Add licence clearance - but just keep as NULL
 			
 			// Ideally we would look up the T_ProductLanguage table to find the default language code
 			title.languageCode = "EN";

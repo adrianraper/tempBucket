@@ -355,6 +355,10 @@ s|TitleWindow.errorTitleWindow {
 	skinClass: ClassReference("skins.ielts.titlewindows.ErrorTitleWindowSkin");
 }
 
+s|TitleWindow.warningTitleWindow {
+	skinClass: ClassReference("skins.ielts.titlewindows.ErrorTitleWindowSkin");
+}
+
 s|TitleWindow.noTitleWindow {
 	skinClass: ClassReference("skins.ielts.titlewindows.NoTitleWindowSkin");
 }
