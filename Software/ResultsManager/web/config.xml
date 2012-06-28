@@ -1,19 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<id>/area1/RoadToIELTS2-Academic in dock.projectbench</id>
+	<id>/area1/RoadToIELTS2 in localhost</id>
 	<developer>DK</developer>
 	<dbHost>2</dbHost>
 	<productCode>52</productCode>
-	<productVersion>fullVersion</productVersion>
-	<courseFile>menu-Academic-LastMinute.xml</courseFile>
-	<!-- <courseFile>menu-Academic-LastMinute.xml</courseFile> -->
-	<streamingMedia/>
-	<sharedMedia/>
-	<brandingMedia/>
+	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+	<mediaChannel>vimeo</mediaChannel>
+	<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	<sharedMedia />
+	<brandingMedia />
+	<xlocalDomain>www.ieltspractice.com/buy.php</xlocalDomain>
 	<language>EN*</language>
-	<!-- <contentPath>http://dock.projectbench/Content/</contentPath> -->
 	<contentPath>http://dock.contentbench/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/
+	</remoteGateway>
 	<remoteService>IELTSService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/
+	</assetFolder>
 </config>

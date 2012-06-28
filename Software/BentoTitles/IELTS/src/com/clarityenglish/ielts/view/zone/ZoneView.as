@@ -218,7 +218,7 @@ package com.clarityenglish.ielts.view.zone {
 			super.onRemovedFromStage(event);
 			
 			stage.removeEventListener(MouseEvent.CLICK, onMouseClick);
-			stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+			stage.removeEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 		}
 		
 		protected override function commitProperties():void {

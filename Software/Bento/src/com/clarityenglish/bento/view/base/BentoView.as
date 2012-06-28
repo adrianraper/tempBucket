@@ -74,12 +74,10 @@ package com.clarityenglish.bento.view.base {
 		}
 		
 		protected function onAddedToStage(event:Event):void {
-			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {
-			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-			
 			_href = null;
 			_xhtml = null;
 		}
