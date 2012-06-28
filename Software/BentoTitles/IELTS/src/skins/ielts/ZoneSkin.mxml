@@ -44,6 +44,16 @@
 				popupWatchers.push(new DisabledPopupWatcher(examPracticeDataGroup, hostComponent.productVersion));
 				popupWatchers.push(new DisabledPopupWatcher(examPracticeAnswerDataGroup, hostComponent.productVersion));
 				popupWatchers.push(new DisabledPopupWatcher(unitList, hostComponent.productVersion));
+				
+				// Check that the fisrt open accordian section is enabled
+				if (questionZoneNavigatorContent.enabled)
+					accordian.selectedIndex = 0;
+				if (adviceZoneNavigatorContent.enabled)
+					accordian.selectedIndex = 0;
+				if (practiceZoneNavigatorContent.enabled)
+					accordian.selectedIndex = 0;
+				if (examPracticeNavigatorContent.enabled)
+					accordian.selectedIndex = 0;
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {

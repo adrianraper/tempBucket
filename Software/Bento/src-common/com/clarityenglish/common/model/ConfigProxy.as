@@ -266,27 +266,28 @@ package com.clarityenglish.common.model {
 		 * @return 
 		 */
 		public function getDirectStart():Object {
+			var directStartObject:Object = new Object();
+			
 			if (Config.DEVELOPER.name == "DK") {
 				//return { courseClass: "reading" };
-				//return { exerciseId: "1156153794672" };
+				//return { exerciseID: "1156153794672" };
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
-				//return { exerciseId: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)
-				//return { exerciseId: "1156153794077" }; // Speaking>The speaking test (2)
+				//return { exerciseID: "1156181253997" }; // Writing>Set 1 task 2>Linking words and phrases (1)
+				//return { exerciseID: "1156153794077" }; // Speaking>The speaking test (2)
 			}
 			
 			// #336 SCORM needs to be checked here
 			if (config.scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				return scormProxy.getBookmark();				
+				directStartObject = scormProxy.getBookmark();				
 			}
 			
 			// #338. This is called from ProgressProxy to find out which menu bits to hide
 			// and from the ApplicationMediator state machine to see what notifications to send for screens to display
-			var directStartObject:Object = new Object();
 			if (config.courseID)
-				directStartObject = { courseID: config.courseID };
+				directStartObject.courseID = config.courseID;
 			
 			// #338
 			if (config.startingPoint) {

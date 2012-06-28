@@ -137,19 +137,20 @@ package com.clarityenglish.ielts.view {
 			// leaving the student with no choices.
 			/*
 			if (directStart.unitID) {
-				bentoProxy.menuXHTML.selectOne("course[class=" + directStart.courseClass + "]");
+				var unit:XML = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 				
 				if (course) {
-					sendNotification(IELTSNotifications.COURSE_SHOW, course);
+					sendNotification(IELTSNotifications.UNIT_SHOW, unit);
 					return true;
 				}
 			}
 			*/
+			
 			// If courseID is defined go straight into that course, having disabled the other courses.
 			// TODO. Need to update the circular animation to also respect enabledFlag.
 			if (directStart.courseID) {
-				
 				var course:XML = bentoProxy.menuXHTML..course.(@id == directStart.courseID)[0];
+				
 				if (course) {
 					sendNotification(IELTSNotifications.COURSE_SHOW, course);
 					return true;

@@ -132,6 +132,7 @@ package com.clarityenglish.ielts.view.zone {
 		public var isMediated:Boolean;
 		
 		private var _course:XML;
+		private var _unit:XML;
 		private var _courseChanged:Boolean;
 		
 		private var _exerciseSelectorPoppedOut:Boolean;
@@ -174,6 +175,19 @@ package com.clarityenglish.ielts.view.zone {
 			return (_course) ? _course.unit.(@["class"] == unitClass).length() > 0 : false;
 		}
 
+		/**
+		 * Function to let you open the zoneview to a particular unit
+		 */
+		/*
+		public function set unit(value:XML):void {
+			// First tell the accordian which section to open on 
+			accordian.selectedIndex=0;
+			
+			// Then tell the course to display
+			this.course = unit.parent();
+		}
+		*/
+		
 		[Bindable]
 		public function get licenceType():uint {
 			return _licenceType;

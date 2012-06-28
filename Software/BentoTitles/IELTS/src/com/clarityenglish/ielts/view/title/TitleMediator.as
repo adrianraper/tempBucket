@@ -112,6 +112,16 @@
 						view.zoneView.course = course;
 					});
 					break;
+				/*
+				case IELTSNotifications.UNIT_SHOW:
+					var unit:XML = note.getBody() as XML;
+					view.currentState = "zone";
+					if (view.navBar) view.navBar.selectedIndex = -1;
+					view.callLater(function():void {
+						view.zoneView.unit = unit;
+					});
+					break;
+				*/
 			}
 		}
 		

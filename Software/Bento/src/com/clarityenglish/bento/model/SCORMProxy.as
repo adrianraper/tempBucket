@@ -72,39 +72,70 @@ package com.clarityenglish.bento.model {
 			};
 			
 			// launch_data is key, and you need to carefully check this as not all LMS support it
-			// TODO: Encode as JSON?
-			scorm.launchData = scorm.getParameter('launchData');
-			/*
-			_global.ORCHID.commandLine.course = launchData.course;
-			if (launchData.unit != undefined) {
-				_global.ORCHID.commandLine.startingPoint = "unit:" + launchData.unit;
-			} else if (launchData.exercise != undefined) {
-				_global.ORCHID.commandLine.startingPoint = "ex:" + launchData.exercise;
-			} else {
-				_global.ORCHID.commandLine.startingPoint = "menu";
-			}
-			*/
+			scorm.launchData = this.parseSCORMdata('launchData');
 			
 			// entry data says whether we should also get
 			// suspend data
-			scorm.suspendData = scorm.getParameter('suspendData');
+			scorm.suspendData = this.parseSCORMdata('suspendData');
 			
 			return true;
 		}
 
 		/**
+		 * Terminate SCORM communication and let the LMS know we are going
+		 */
+		public function terminate():Boolean {
+			return scorm.disconnect();
+		}
+		
+		/**
 		 * This figures out all the direct start for the SCORM SCO
 		 */
 		public function getBookmark():Object {
-			// TODO: Work out the course and exercise ID from the launchData structure
-			//if (scorm.launchData.exerciseID)
-			//	return scorm.launchData.exerciseID;
-			//if (scorm.launchData.course)
-			//	return scorm.launchData.course;
-
-			scorm.bookmark = scorm.getParameter('bookmark');
-			return null;
+			// The bookmark is most specific, but if there isn't one go with the launchData
+			scorm.bookmark = this.parseSCORMdata('bookmark');
+			if (scorm.bookmark) 
+				return scorm.bookmark;
+			
+			return scorm.launchData;
 		}
+			
+		/**
+		 * Utility function to parse string of name value pairs from SCORM
+		 */
+		private function parseSCORMdata(data:String):Object {
+			var dataString:String = scorm.getParameter(data);
+			if (!dataString)
+				return null;
+			
+			var dataObject:Object = new Object();
+			
+			// expecting course=12345,unit=67890 from old style or just ex=1234567 from new
+			for each (var dataItem:String in dataString.split(",")) {
+				
+				var name:String = dataItem.split("=")[0];
+				var value:String = dataItem.split("=")[1];
+				switch (name) {
+					case 'course':
+					case 'courseID':
+						dataObject.courseID = value;
+						break;
+					case 'ex':
+					case 'exercise':
+						dataObject.exerciseID = value;
+						break;
+					case 'unit':
+						dataObject.unitID = value;
+						break;
+					case 'group':
+						dataObject.groupID = value;
+						break;
+				}
+			}
+			
+			return dataObject;
+		}
+			
 	}
 		
 }

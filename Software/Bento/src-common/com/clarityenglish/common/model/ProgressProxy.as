@@ -167,7 +167,8 @@ package com.clarityenglish.common.model {
 				var directStart:Object = configProxy.getDirectStart();
 				
 				// #338 If you get back a course, hide the others.
-				// If you get back a unit, get its course too for inverted-hiding as well as the other units.
+				// If you get back a unit, get it's course too for inverted-hiding as well as the other units.
+				// Road to IELTS has a group ID within a unit for an extra level of interface grouping. Pick that up too.
 				
 				if (directStart) {
 					if (directStart.exerciseID)
@@ -187,6 +188,14 @@ package com.clarityenglish.common.model {
 											if (directStart.exerciseID) {
 												for each (var exercise:XML in unit.exercise) {
 													if (exercise.@id == directStart.exerciseID) {
+														exercise.@enabledFlag = 3;
+													} else {
+														exercise.@enabledFlag = 8;
+													}
+												}
+											} else if (directStart.groupID) {
+												for each (exercise in unit.exercise) {
+													if (exercise.@group == directStart.groupID) {
 														exercise.@enabledFlag = 3;
 													} else {
 														exercise.@enabledFlag = 8;

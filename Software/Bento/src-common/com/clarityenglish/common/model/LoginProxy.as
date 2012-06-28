@@ -3,6 +3,7 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
@@ -110,6 +111,13 @@ package com.clarityenglish.common.model {
 			
 			// Stop the licence update timer
 			if (licenceTimer) licenceTimer.stop();
+			
+			// Tell the LMS through SCORM that you are stopping
+			if (configProxy.getConfig().scorm) {
+				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+				scormProxy.terminate();				
+			}
+
 		}
 		
 		/**
