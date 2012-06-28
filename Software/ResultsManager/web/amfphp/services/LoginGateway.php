@@ -22,7 +22,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","dbHost":2,"prefix":"CSTDI","rootID":14449,"groupID":26271,"city":"Hong Kong","country":"Hong Kong","loginOption":2,"subscriptionPeriod":"1y","adminPassword":"57845612","studentID":"cstdi-1234","name":"RAPER, Adrian","custom1":"100","custom2":"21"}';
 	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
-	$inputData = '{"method":"getUser","name":"adrian raper","loginOption":1,"rootID":163,"dbHost":2}';
+	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup 2", "name":"Kima 130","studentID":"winhoe 130", "teacherName":"jessie_teacher", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
