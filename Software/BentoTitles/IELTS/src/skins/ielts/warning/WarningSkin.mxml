@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		minWidth="340" minHeight="80" width="50%" height="45%">
+		minWidth="280" minHeight="80" width="50%" height="45%">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.warning.WarningView")]
@@ -12,9 +12,9 @@
 		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />
 	</s:layout>
 		
-	<s:VGroup paddingLeft="50" paddingRight="50">
-		
-		<s:VGroup width="100%" paddingTop="30" horizontalAlign="center" verticalAlign="middle" >	
+	<s:VGroup paddingLeft="67">
+
+		<s:VGroup width="100%" paddingTop="20" horizontalAlign="center" verticalAlign="middle" >	
 				<s:Label id="warningMessage" fontSize="14" width="310" lineHeight="20" textAlign="center" />
 		</s:VGroup>
 		
