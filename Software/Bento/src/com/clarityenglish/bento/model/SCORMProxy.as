@@ -72,11 +72,11 @@ package com.clarityenglish.bento.model {
 			};
 			
 			// launch_data is key, and you need to carefully check this as not all LMS support it
-			scorm.launchData = this.parseSCORMdata('launchData');
+			scorm.launchData = this.parseSCORMdata(scorm.getParameter('launchData'));
 			
 			// entry data says whether we should also get
 			// suspend data
-			scorm.suspendData = this.parseSCORMdata('suspendData');
+			scorm.suspendData = this.parseSCORMdata(scorm.getParameter('suspendData'));
 			
 			return true;
 		}
@@ -93,7 +93,7 @@ package com.clarityenglish.bento.model {
 		 */
 		public function getBookmark():Object {
 			// The bookmark is most specific, but if there isn't one go with the launchData
-			scorm.bookmark = this.parseSCORMdata('bookmark');
+			scorm.bookmark = this.parseSCORMdata(scorm.getParameter('bookmark'));
 			if (scorm.bookmark) 
 				return scorm.bookmark;
 			
@@ -103,18 +103,17 @@ package com.clarityenglish.bento.model {
 		/**
 		 * Utility function to parse string of name value pairs from SCORM
 		 */
-		private function parseSCORMdata(data:String):Object {
-			var dataString:String = scorm.getParameter(data);
-			if (!dataString)
+		public function parseSCORMdata(data:String, voDivider:String = "="):Object {
+			if (!data)
 				return null;
 			
 			var dataObject:Object = new Object();
 			
 			// expecting course=12345,unit=67890 from old style or just ex=1234567 from new
-			for each (var dataItem:String in dataString.split(",")) {
+			for each (var dataItem:String in data.split(",")) {
 				
-				var name:String = dataItem.split("=")[0];
-				var value:String = dataItem.split("=")[1];
+				var name:String = dataItem.split(voDivider)[0];
+				var value:String = dataItem.split(voDivider)[1];
 				switch (name) {
 					case 'course':
 					case 'courseID':

@@ -54,20 +54,14 @@ class LoginService extends AbstractService {
 	// Can you find this user?
 	public function getUser($loginDetails) {
 		$stubUser = new User();
-		
-		switch ($loginDetails->loginOption) {
-			case 2:
-				$stubUser->studentID = $loginDetails->studentID;
-				break;
-			case 1:
-				$stubUser->name = $loginDetails->name;
-				break;		
-			case 128:
-				$stubUser->email = $loginDetails->email;
-				break;
-			default:
-				return false;		
-		}
+
+		if ($loginDetails->loginOption & 1) {
+			$stubUser->name = $loginDetails->name;
+		} else if ($loginDetails->loginOption & 2) {
+			$stubUser->studentID = $loginDetails->studentID;
+		} else if ($loginDetails->loginOption & 128) {
+			$stubUser->email = $loginDetails->email;
+		}		
 
 		// Are there any conditions that you should search with?
 		// TODO. Need something like the conditions for getAccounts here so that it can scale

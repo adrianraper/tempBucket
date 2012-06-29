@@ -144,7 +144,7 @@ class BentoService extends AbstractService {
 		// #341 LOGIN_BY_ANONYMOUS:uint = 8;
 		if ($licence->licenceType == Title::LICENCE_TYPE_AA || 
 			($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
-			($loginOption & 8)) {
+			($loginOption & 8 && $loginObj == NULL)) {
 			$userObj = $this->loginOps->anonymousUser($rootID);
 		} else {
 			// First, confirm that the user details are correct
@@ -410,16 +410,12 @@ class BentoService extends AbstractService {
 		// Does this user already exist? Check by the key information ($loginOption)
 		// TODO. This switch should really go in getUserByKey
 		$stubUser = new User();
-		switch ($loginOption) {
-			case 1:
-				$stubUser->name = $user->name;
-				break;
-			case 2:
-				$stubUser->studentID = $user->studentID;
-				break;
-			case 128:
-				$stubUser->email = $user->email;
-				break;
+		if ($loginOption & 1) {
+			$stubUser->name = $user->name;
+		} else if ($loginOption & 2) {
+			$stubUser->studentID = $user->studentID;
+		} else if ($loginOption & 128) {
+			$stubUser->email = $user->email;
 		}
 		// #341 Only need to check user details within this root
 		$stubUser = $this->manageableOps->getUserByKey($stubUser, $rootID);

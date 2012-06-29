@@ -120,7 +120,7 @@ package com.clarityenglish.ielts.view {
 			if (!directStart) return false;
 			
 			// #338
-			// If exerciseId is defined go straight into an exercise.
+			// If exerciseID is defined go straight into an exercise.
 			if (directStart.exerciseID) {
 				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
 				
@@ -131,20 +131,33 @@ package com.clarityenglish.ielts.view {
 				}
 				
 			}
+			// If groupID is defined, go straight to the first exercise in the group
+			if (directStart.groupID) {
+				// If you don't have a unitID as well, the group is meaningless
+				if (directStart.unitID) {
+					unit = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
+					
+					if (unit) {
+						exercise = unit.exercise[0];
+						href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
+						sendNotification(IELTSNotifications.HREF_SELECTED, href);
+						return true;
+					}
+				}				
+			}
+
 			// #338
 			// Does it mean hide all other units? Or just go direct to this unit and leave others accessible?
 			// In general, I think that if you go to directStart you want to skip as much menu as possible
 			// leaving the student with no choices.
-			/*
 			if (directStart.unitID) {
 				var unit:XML = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 				
-				if (course) {
-					sendNotification(IELTSNotifications.UNIT_SHOW, unit);
+				if (unit) {
+					sendNotification(IELTSNotifications.COURSE_SHOW, unit.parent());
 					return true;
 				}
 			}
-			*/
 			
 			// If courseID is defined go straight into that course, having disabled the other courses.
 			// TODO. Need to update the circular animation to also respect enabledFlag.

@@ -211,7 +211,7 @@ EOD;
 		if (Session::is_set('loginOption')) {
 			$loginOption = Session::get('loginOption');
 		}
-		if ($loginOption==2) {
+		if ($loginOption & 2) {
 			$user = $this->getUserByLearnerId($userDetails);
 		} else {
 			$user = $this->getUserByName($userDetails);

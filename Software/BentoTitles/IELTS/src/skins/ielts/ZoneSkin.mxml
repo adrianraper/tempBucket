@@ -45,15 +45,16 @@
 				popupWatchers.push(new DisabledPopupWatcher(examPracticeAnswerDataGroup, hostComponent.productVersion));
 				popupWatchers.push(new DisabledPopupWatcher(unitList, hostComponent.productVersion));
 				
-				// Check that the fisrt open accordian section is enabled
-				if (questionZoneNavigatorContent.enabled)
+				// Check that the fisrt enabled accordian section is open
+				if (questionZoneNavigatorContent.enabled) {
 					accordian.selectedIndex = 0;
-				if (adviceZoneNavigatorContent.enabled)
-					accordian.selectedIndex = 0;
-				if (practiceZoneNavigatorContent.enabled)
-					accordian.selectedIndex = 0;
-				if (examPracticeNavigatorContent.enabled)
-					accordian.selectedIndex = 0;
+				} else if (adviceZoneNavigatorContent.enabled) {
+					accordian.selectedIndex = 1;
+				} else if (practiceZoneNavigatorContent.enabled) {
+					accordian.selectedIndex = 2;
+				} else if (examPracticeNavigatorContent.enabled) {
+					accordian.selectedIndex = 3;
+				}
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {

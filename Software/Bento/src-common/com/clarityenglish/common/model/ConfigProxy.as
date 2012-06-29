@@ -279,31 +279,19 @@ package com.clarityenglish.common.model {
 			}
 			
 			// #336 SCORM needs to be checked here
+			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
-				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 				directStartObject = scormProxy.getBookmark();				
 			}
+			
+			// #338. This is using a scorm parsing function, it is for data from queryString
+			directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
 			
 			// #338. This is called from ProgressProxy to find out which menu bits to hide
 			// and from the ApplicationMediator state machine to see what notifications to send for screens to display
 			if (config.courseID)
 				directStartObject.courseID = config.courseID;
 			
-			// #338
-			if (config.startingPoint) {
-				var startingPointArray:Array = config.startingPoint.split(":");
-				var type:String = startingPointArray[0];
-				var value:String = startingPointArray[1];
-				switch (type) {
-					case 'ex':
-					case 'exercise':
-						directStartObject.exerciseID = value;
-						break;
-					case 'unit':
-						directStartObject.unitID = value;
-						break;
-				}
-			}
 			return directStartObject;
 		}
 		
