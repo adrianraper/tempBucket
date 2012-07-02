@@ -6,7 +6,7 @@
 		<title>IELTSpractice password reminder</title>
 		<!-- <from>support@ieltspractice.com</from> -->
 	</head>
-<body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; background-color:#E5E5E5;">
+<body style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; background-color:#E5E5E5;">
 <!-- 
 -- Email header
 -->
@@ -16,7 +16,7 @@
   <tr>
     <td colspan="3">
 		<a href="http://www.ieltspractice.com" target="_blank">
-        	<img src="http://www.clarityenglish.com/images/email/ieltspractice/header.jpg" alt="Road to IELTS: IELTS preparation and practice" width="600" height="173" border="0" style="margin:0; font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; "/>
+        	<img src="http://www.clarityenglish.com/images/email/ieltspractice/header.jpg" alt="Road to IELTS: IELTS preparation and practice" width="600" height="173" border="0" style="margin:0; font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; "/>
         
         </a>        </td>
   </tr>
@@ -29,20 +29,20 @@
         
 	  <div style="padding:0 48px;">
            
-           		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Dear {$user->name}</p>
-        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">We have received your password reminder request. Here are your login details. Please note down your details for reference.</p>
+           		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 10px 0; padding:0; color:#000000;">Dear {$user->name}</p>
+        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 10px 0; padding:0; color:#000000;">We have received your password reminder request. Here are your login details. Please note down your details for reference.</p>
         
         
         
       
         <div style="border:#CCCCCC 1px solid; padding:10px; margin:0 0 15px 0;">
-       	  <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Program options</p>
+       	  <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Program options</p>
             
             
             
-             <a href="http://www.ieltspractice.com" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:#003366; font-weight:bold;" target="_blank">www.IELTSpractice.com</a>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 5px 0; padding:2px 0 0 0; color:#000000;">Login name: <strong>{$user->email}</strong></p>
-                     <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:2px 0 0 0 color:#000000;;">Password: <strong>{$user->password}</strong></p>
+             <a href="http://www.ieltspractice.com" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; color:#003366; font-weight:bold;" target="_blank">www.IELTSpractice.com</a>
+            <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:10px 0 5px 0; padding:2px 0 0 0; color:#000000;">Login name: <strong>{$user->email}</strong></p>
+                     <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 5px 0; padding:2px 0 0 0 color:#000000;;">Password: <strong>{$user->password}</strong></p>
             
             
             
@@ -50,10 +50,10 @@
             
                         
             </div>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">If you wish to change the password, you can do so at any time by logging into IELTSpractice.com, start the Road to IELTS course and go to the My Profile page.</p>
+            <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 10px 0; padding:0; color:#000000;">If you wish to change the password, you can do so at any time by logging into IELTSpractice.com, start the Road to IELTS course and go to the My Profile page.</p>
             
             
-        	   <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Please feel free to contact us if you have any questions.</p>
+        	   <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 10px 0; padding:0; color:#000000;">Please feel free to contact us if you have any questions.</p>
 
            
 
@@ -67,9 +67,9 @@
                 
                		
 
-						<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">Best wishes</p>
-                        <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_support.jpg" width="159" height="32" alt="Clarity Support team"/></p>
-<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
+						<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#000000; line-height:18px;">Best wishes</p>
+                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:10px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_support.jpg" width="159" height="32" alt="Clarity Support team"/></p>
+<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#000000; line-height:18px;">
                  	Clarity Support Team</p>
              
              
@@ -90,13 +90,13 @@
          
             
             
-             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px; font-weight:bold;">Clarity Language Consultants Ltd<br />(UK and Hong Kong since 1992)</p>
+             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px; font-weight:bold;">Clarity Language Consultants Ltd<br />(UK and Hong Kong since 1992)</p>
 			  
-		 <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px;">
+		 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px;">
                 T: (+852) 2791 1787 | F: (+852) 2791 6484<br />
-            E: <a href="mailto:info@clarityenglish.com" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:#FFFFFF;">info@clarityenglish.com </a>| W: <a href="http://www.clarityenglish.com" target="_blank" style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; color:#FFFFFF;">www.ClarityEnglish.com</a></p> 
+            E: <a href="mailto:info@clarityenglish.com" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; color:#FFFFFF;">info@clarityenglish.com </a>| W: <a href="http://www.clarityenglish.com" target="_blank" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; color:#FFFFFF;">www.ClarityEnglish.com</a></p> 
               
-               <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; 0; padding:0; color:#FFFFFF; line-height:18px;">
+               <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#FFFFFF; line-height:18px;">
                Your privacy is important to us. Please review the Clarity English privacy
 policy by clicking here: <a href="http://www.clarityenglish.com/disclaimer.php" target="_blank" style="color:#FFFFFF;">http://www.clarityenglish.com/disclaimer.php</a></p>
     </div>

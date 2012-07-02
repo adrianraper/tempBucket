@@ -74,7 +74,6 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		if (isset($_REQUEST['rootID']) && $_REQUEST['rootID']>0) {
 			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
-			//$trigger->rootID = 163;
 			//$trigger->rootID = Array(5,7,28,163,10719,11091);
 			$trigger->rootID = Array(13959);
 		}
@@ -93,6 +92,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			foreach ($triggerResults as $account) {
 				$userResults = array_merge($userResults, $dmsService->triggerOps->usersInAccount($account, $trigger));
 			}
+			echo 'got '.count($userResults) .' users in those accounts '.$newLine;
 		}
 		
 		// Now send all the matched objects to the executor with the templateID

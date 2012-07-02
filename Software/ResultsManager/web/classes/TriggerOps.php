@@ -139,7 +139,7 @@ class TriggerOps {
 		// Look for all users in this account who match the trigger conditions (probably just userStartDate)
 		// If we are working with delivery frequency, this is not know until now, so we need to do some
 		// extra processing on the start date. {now}-1f
-		//echo "account $account->id look for userStartDate={$trigger->condition->userStartDate} contact={$trigger->condition->contactMethod}</br>";
+		//echo "account $account->id look for userExpiryDate={$trigger->condition->userExpiryDate}</br>";
 		//echo "account $account->id look for trigger={$trigger->condition->toString()} and deliveryFrequency={$myTitle->deliveryFrequency}</br>";
 		if ($trigger->condition->userStartDate && stristr($trigger->condition->userStartDate, '{')) {
 			// We have to assume that the first title controls delivery frequency for all, or that we know a default value
@@ -160,8 +160,6 @@ class TriggerOps {
 		}
 		if ($trigger->condition->userExpiryDate && stristr($trigger->condition->userExpiryDate, '{')) {
 			$trigger->condition->userExpiryDate = $trigger->condition->evaluateDateVariables($trigger->condition->userExpiryDate);
-			//echo "account $account->id look for userStartDate={$trigger->condition->userStartDate}</br>";
-			//echo "after evaluation userStartDate={$trigger->condition->userStartDate}</br>";
 		}
 		
 		$sql  = "SELECT ".User::getSelectFields($this->db)." ";
