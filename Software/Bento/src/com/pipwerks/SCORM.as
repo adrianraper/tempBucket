@@ -37,9 +37,10 @@ package com.pipwerks {
 		private var _studentLanguage:String;
 		private var _launchData:Object;
 		private var _entry:String;
-		private var _suspendData:Object;
-		private var _objectives:Object;
+		private var _suspendData:String;
+		private var _objectiveCount:uint;
 		private var _bookmark:Object;
+		private var _complete:Boolean;
 		
 		private var __connectionActive:Boolean = false,
 			__debugActive:Boolean = true;
@@ -98,8 +99,8 @@ package com.pipwerks {
 			return __disconnect();
 		}
 		
-		public function get(param:String):String {
-			var str:String = __get(param);
+		public function get(parameter:String):String {
+			var str:String = __get(parameter);
 			__displayDebugInfo("public function get returned: " +str);
 			return str;
 		}
@@ -118,6 +119,9 @@ package com.pipwerks {
 		 */
 		public function getParameter(parameterName:String, index:uint = 0):String {
 			return get(__cmiName(parameterName, index));
+		}
+		public function setParameter(parameterName:String, value:String, index:uint = 0):Boolean {
+			return set(__cmiName(parameterName, index), value);
 		}
 		
 		// Getter and setters for all variables
@@ -163,20 +167,19 @@ package com.pipwerks {
 			if (_entry != value)
 				_entry = value;
 		}
-		public function get suspendData():Object {
+		public function get suspendData():String {
 			return _suspendData;
 		}
-		public function set suspendData(value:Object):void {
+		public function set suspendData(value:String):void {
 			if (_suspendData != value)
 				_suspendData = value;
 		}
-		// TODO: Not sure if this is the right way to set an object?
-		public function get objectives():Object {
-			return _objectives;
+		public function get objectiveCount():uint {
+			return _objectiveCount;
 		}
-		public function set objectives(value:Object):void {
-			if (_objectives != value)
-				_objectives = value;
+		public function set objectiveCount(value:uint):void {
+			if (_objectiveCount != value)
+				_objectiveCount = value;
 		}
 		// TODO: Not sure if this is the right way to set an object?
 		public function get bookmark():Object {
@@ -185,6 +188,12 @@ package com.pipwerks {
 		public function set bookmark(value:Object):void {
 			if (_bookmark != value)
 				_bookmark = value;
+		}
+		public function get complete():Boolean {
+			return _complete;
+		}
+		public function set complete(value:Boolean):void {
+			_complete = value;
 		}
 		
 		// --- private functions --------------------------------------------- //
@@ -296,7 +305,9 @@ package com.pipwerks {
 					return "cmi.rubbish";
 					break;
 				default:
-					trace("badly called getCMIName with " + name);					
+					trace("badly called getCMIName with " + name);
+					// This allows you to call this function even if you already made the full name
+					return name;
 			}
 			return '';
 		}

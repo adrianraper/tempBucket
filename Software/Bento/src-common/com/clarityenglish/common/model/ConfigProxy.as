@@ -260,8 +260,8 @@ package com.clarityenglish.common.model {
 		}
 		
 		/**
-		 * Direct start is implemented here.  This will be implemented by the titles, so there are no rules about what kind of object should be returned
-		 * from this method.  This is to allow any kind of direct starting (which may depend on the structure of the title).
+		 * Direct start is picked up here. This will be implemented by the titles, so there are no rules about what kind of object should be returned
+		 * from this method. This is to allow any kind of direct starting (which may depend on the structure of the title).
 		 * 
 		 * @return 
 		 */
@@ -284,7 +284,7 @@ package com.clarityenglish.common.model {
 				directStartObject = scormProxy.getBookmark();				
 			}
 			
-			// #338. This is using a scorm parsing function, it is for data from queryString
+			// #338. This is using a utility parsing function, it is for data from queryString
 			directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
 			
 			// #338. This is called from ProgressProxy to find out which menu bits to hide

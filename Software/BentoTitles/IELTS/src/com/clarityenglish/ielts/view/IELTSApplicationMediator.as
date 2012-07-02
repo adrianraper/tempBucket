@@ -105,10 +105,10 @@ package com.clarityenglish.ielts.view {
 		}
 		
 		/**
-		 * Handle the various options for direct start.  IELTS supports:
+		 * Handle the various options for direct start. IELTS supports:
 		 * 
-		 * courseClass
-		 * exerciseID
+		 * courseClass, courseID
+		 * unitID, exerciseID
 		 * 
 		 * @return 
 		 */

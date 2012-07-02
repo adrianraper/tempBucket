@@ -64,19 +64,13 @@ package com.clarityenglish.bento.model {
 			
 			// Did any of these calls raise an error?
 			
-			var objectivesCount:uint = Number(scorm.getParameter('objective.count'));
-			// Check to see if the LMS raised an error at that request? Equally, 0 or NaN means no objectives??
-			if (objectivesCount>0) {
-				scorm.objectives = new Object();
-				scorm.objectives.count = objectivesCount
-			};
+			scorm.objectiveCount = Number(scorm.getParameter('objective.count'));
 			
 			// launch_data is key, and you need to carefully check this as not all LMS support it
 			scorm.launchData = this.parseSCORMdata(scorm.getParameter('launchData'));
 			
-			// entry data says whether we should also get
-			// suspend data
-			scorm.suspendData = this.parseSCORMdata(scorm.getParameter('suspendData'));
+			if (scorm.entry == 'resume')
+				scorm.suspendData = scorm.getParameter('suspendData');
 			
 			return true;
 		}
@@ -85,7 +79,42 @@ package com.clarityenglish.bento.model {
 		 * Terminate SCORM communication and let the LMS know we are going
 		 */
 		public function terminate():Boolean {
-			return scorm.disconnect();
+			scorm.disconnect();
+		}
+		
+		/**
+		 * Called when you have completed an exercise to tell SCORM about it.
+		 * If this is the last exercise in a unit:
+		 *   1) set completionStatus to 'completed' (maybe passed or failed if you know a mastery score from SCORM)
+		 *   2) write the averageScore
+		 * If not the last exercise:
+		 *   1) add this score to the suspendData
+		 *   2) set the bookmark
+		 *   3) write the objective
+		 */
+		public function writeScore(exID:String, score:uint, lastExercise:Boolean = false):Boolean {
+			
+			if (lastExercise) {
+				scorm.complete = true;
+				scorm.setParameter('lessonStatus', 'complete');
+				scorm.setParameter('rawScore', this.calculateAverageScore());
+				
+			} else {
+				// TODO. Get the exercise caption from the id
+				var exCaption:String = exID;
+				
+				scorm.complete = false;
+				scorm.setParameter('bookmark', this.formatBookmark(exID));
+				
+				scorm.setParameter('objective.count', String(scorm.objectiveCount++));
+				scorm.setParameter('objective.id', exCaption, scorm.objectiveCount);
+				scorm.setParameter('objective.status', 'completed', scorm.objectiveCount);
+				scorm.setParameter('objective.score', String(score), scorm.objectiveCount);
+				
+				scorm.setParameter('suspendData', this.formatSuspendData(exID, score));
+			}
+			
+			return true;
 		}
 		
 		/**
@@ -93,15 +122,47 @@ package com.clarityenglish.bento.model {
 		 */
 		public function getBookmark():Object {
 			// The bookmark is most specific, but if there isn't one go with the launchData
+			// expecting ex=1234
 			scorm.bookmark = this.parseSCORMdata(scorm.getParameter('bookmark'));
-			if (scorm.bookmark) 
+			if (scorm.bookmark) {
+				// The bookmark will be an exercise which completely replaces the starting point
+				// But we need to tell the navigation that we will go on after this exercise
+				scorm.bookmark.next = 0;
+				
 				return scorm.bookmark;
-			
-			return scorm.launchData;
+				
+			} else {
+				return scorm.launchData;
+				
+			}
 		}
+		
+		/**
+		 * Calculate the average score from suspend data
+		 */
+		private function calculateAverageScore(data:String):Number {
+			return 35;
+		}
+		/**
+		 * Format the bookmark
+		 */
+		private function formatBookmark(data:String):String {
+			return 'ex=' + data;
+		}
+		/**
+		 * Format the suspend data
+		 */
+		private function formatSuspendData(exID:String, score:uint):String {
+			if (!scorm.suspendData)
+				scorm.suspendData = 'score-so-far';
 			
+			return scorm.suspendData + ',' + 'ex:' + exID + '|' + score;
+		}
+
+		
 		/**
 		 * Utility function to parse string of name value pairs from SCORM
+		 *  expecting course=12345,unit=67890 or ex:12345
 		 */
 		public function parseSCORMdata(data:String, voDivider:String = "="):Object {
 			if (!data)
@@ -109,11 +170,16 @@ package com.clarityenglish.bento.model {
 			
 			var dataObject:Object = new Object();
 			
-			// expecting course=12345,unit=67890 from old style or just ex=1234567 from new
 			for each (var dataItem:String in data.split(",")) {
 				
-				var name:String = dataItem.split(voDivider)[0];
-				var value:String = dataItem.split(voDivider)[1];
+				var pair:Array = dataItem.split(voDivider);
+				var name:String = pair[0];
+				if (pair.length > 0) {
+					var value:String = pair[1];
+				} else {
+					value = null;
+				}
+				
 				switch (name) {
 					case 'course':
 					case 'courseID':
@@ -128,6 +194,11 @@ package com.clarityenglish.bento.model {
 						break;
 					case 'group':
 						dataObject.groupID = value;
+						break;
+					case 'next':
+						if (!value)
+							value = 0;
+						dataObject.next = value;
 						break;
 				}
 			}
