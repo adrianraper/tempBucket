@@ -24,6 +24,8 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup 2", "name":"Kima 130","studentID":"winhoe 130", "teacherName":"jessie_teacher", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
+	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8123-4567","name":"heston bloom","password":"1234","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-10-04 03:14:24","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
+	//$inputData = '{"method":"getUser","studentID":"5216-8123-4567","groupID":"168","dbHost":102,"loginOption":2}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
@@ -86,9 +88,9 @@ try {
 	//echo "loaded API";
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
-	$dbDetails = new DBDetails($apiInformation->dbHost);
-	$GLOBALS['dbms'] = $dbDetails->driver;
-	$GLOBALS['db'] = $dbDetails->driver.'://'.$dbDetails->user.':'.$dbDetails->password.'@'.$dbDetails->host.'/'.$dbDetails->dbname;
+	if ($GLOBALS['dbHost'] != $apiInformation->dbHost) {
+		$loginService->changeDb($apiInformation->dbHost);
+	}
 	
 	switch ($apiInformation->method) {
 		case 'getUser':
@@ -132,6 +134,8 @@ try {
 				$account = $loginService->getAccountFromRootID($apiInformation);
 			} else if (isset($apiInformation->groupID)) {
 				$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
+			} else {
+				$account = $loginService->getAccountFromUser($user);
 			}
 			
 			// If you don't know the group, send that back too
@@ -146,13 +150,20 @@ try {
 			// If you are using just a group to add user, need to get rootID now
 			// Get the whole account info as well
 			if (!$apiInformation->prefix && !$apiInformation->rootID) {
-				$account = $loginService->getAccountFromGroup($loginService->getGroup($apiInformation));
+				$group = $loginService->getGroup($apiInformation);
+				if (!$group)
+					returnError(252, $apiInformation->groupID);
+					
+				$account = $loginService->getAccountFromGroup($group);
 				$apiInformation->rootID = $account->id;
+				
 			} else if (!$apiInformation->rootID) {
 				$account = $loginService->getAccountFromPrefix($apiInformation);
 				$apiInformation->rootID = $account->id;
+				
 			} else {
 				$account = $loginService->getAccountFromRootID($apiInformation);
+				
 			}
 			
 			// Authentication

@@ -29,7 +29,7 @@ function redirect ($url) {
 <script type="text/javascript" src="<?php echo $commonDomain; ?>Software/Common/jQuery/ui/ui.core.js"></script>
 <script type="text/javascript" src="<?php echo $commonDomain; ?>Software/Common/jQuery/js/jquery-ui-datePicker-2.1.2.js"></script>
 <script type="text/javascript" src="<?php echo $commonDomain; ?>Software/Common/jQuery/js/blockUI-2.js"></script>
-<script type="text/javascript" src="validation.js"></script>
+<script type="text/javascript" src="addUserControl.js"></script>
 <script type="text/javascript" >
 $(document).ready(function(){
 	$('input#loginID').val("<?php echo $loginID?>");

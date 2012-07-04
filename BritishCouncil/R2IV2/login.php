@@ -35,7 +35,7 @@
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/ui/ui.core.js"></script>
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/jquery-ui-datePicker-2.1.2.js"></script>
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/blockUI-2.js"></script>
-<script type="text/javascript" src="control.js"></script>
+<script type="text/javascript" src="loginControl.js"></script>
 </head>
 
 <body>
@@ -95,7 +95,7 @@
 <!-- These blocks are used for error messages in jQuery blockUI -->
 <div id="mailSendSuccess" style="display:none; cursor:default">
 	<h1>Note</h1>
-	<p>Your password has been sent to your registered email. Please check it.</p>
+	<p>Your password has been sent to your registered email.</p>
 	<input type="button" id="mOK" value="OK" />
 </div>
 <div id="unexpected" style="display:none; cursor:default">
@@ -111,9 +111,10 @@
 	<p>You may also have changed your password from the original one.</p>
 	<input type="button" id="mOK" value="OK" />
 </div>
-<div id="accountExpired" style="display:none; cursor:default">
+<div id="expiredAccount" style="display:none; cursor:default">
 	<h1>Error</h1>
 	<p>Sorry, your account has expired.</p>
+	<p>If you would like to subscribe to a full version of Road to IELTS, please visit <a href="http://www.ieltspractice.com" target="_blank">www.ieltspractice.com</a> or send an email to support@roadtoielts.com.</p>
 	<input type="button" id="mOK" value="OK" />
 </div>
 </div>

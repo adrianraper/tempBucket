@@ -9,6 +9,14 @@ class EmailOps {
 		
 		$this->templateOps = new TemplateOps($db);
 	}
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+		$this->templateOps->changeDB($db);
+	}
 	
 	function fetchEmail($templateName, $dataArray, $useCache = false) {
 		return $this->templateOps->fetchTemplate("emails/".$templateName, $dataArray, $useCache);

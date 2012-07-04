@@ -46,6 +46,16 @@ class AccountOps {
 	}
 
 	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+		$this->contentOps->changeDB($db);
+		$this->manageableOps->changeDB($db);
+	}
+	 
+	/**
 	 * Bento specific function to getAccount details as need far less than RM and some RM bits are wrong
 	 */
 	function getBentoAccount($rootID, $productCode) {
@@ -220,6 +230,7 @@ SQL;
 						break;
 					// v3.6 Early Warning System
 					case 'reseller':
+					case 'resellerID':
 						if (stristr($value, ",")) {
 							$selectBuilder->addWhere("a.F_ResellerCode IN (".$value.")");
 						} else {
@@ -917,6 +928,7 @@ EOD;
 		$accounts = $this->getAccounts(array($rootID));
 		return array_shift($accounts);
 	}
+	
 	// This one is for when you know the group that a user is in
 	public function getAccountFromGroup($group) {
 	
@@ -953,6 +965,35 @@ EOD;
 		// now get the account (just one)
 		if ($rootID)
 			return array_shift($this->getAccounts(array($rootID)));
+	}
+	/**
+	 * Get an account when you know the user
+	 */
+	public function getAccountFromUser($user) {
+		$sql = 	<<<EOD
+				SELECT m.F_RootID as rootID
+				FROM T_Membership m
+				WHERE m.F_UserID = ?
+EOD;
+		$rs = $this->db->Execute($sql, array($user->id));
+		
+		switch ($rs->RecordCount()) {
+			case 0:
+				// No membership record, should be impossible
+				return false;
+				break;
+			case 1:
+				// One record, good. Send back the root
+				$rootID = $rs->FetchNextObj()->rootID;
+				break;
+			default:
+				// Many records means we can't know which root this user belongs to, raise an error
+				return false;
+		}
+		
+		// now get the account (just one)
+		$accounts = $this->getAccounts(array($rootID));
+		return array_shift($accounts);
 	}
 	
 	/*

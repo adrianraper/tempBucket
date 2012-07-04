@@ -57,6 +57,7 @@ if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 $dbDetails = new DBDetails($dbHost);
 $GLOBALS['dbms'] = $dbDetails->driver;
 $GLOBALS['db'] = $dbDetails->dsn;
+$GLOBALS['dbHost'] = $dbHost;
 			
 /* Directories for Smarty, rmail & adodb libraries.  If you want these in a different location for a particular setup override them in the host
    based settings below */

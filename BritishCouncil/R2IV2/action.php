@@ -89,9 +89,7 @@ if ($queryMethod=="login") {
 		exit();
 	}
 	
-	// V2 We will be logging in using studentID as unique, but we don't really know that all BC centres will use unique
-	// ids in the protal - so best to add the groupID to all studentIDs coming through this portal.
-	$uniqueStudentID = $loginID.'-'.$groupID;
+	$uniqueStudentID = $loginID;
 	
 	// Use LoginGateway to get back this user.
 	$LoginAPI = array();
@@ -139,12 +137,12 @@ if ($queryMethod=="login") {
 		//echo $contents;exit(0);
 		$returnInfo = json_decode($contents, true);
 
-		if ($debugLog) {
+		if ($debugLog)
 			error_log("back from LoginGateway with $contents\n", 3, $debugFile);
-		}
 
 		// Expecting to get back an error or a user object
 		if (isset($returnInfo['error'])){
+				
 			$errorCode = $returnInfo['error'];
 			$failReason = $returnInfo['message'];
 			
@@ -153,7 +151,7 @@ if ($queryMethod=="login") {
 				if ($hashPassword == strtoupper($typedPassword)) {
 					// The following is all decoded from the serial number, so save it
 					$_SESSION['loginID'] = $loginID;
-					$rc['redirect'] = $thisDomain.$startFolder."candidateDetails.php";
+					$rc['redirect'] = $thisDomain.$startFolder."addUser.php";
 					print json_encode($rc);
 					exit();
 				} else {
@@ -166,10 +164,10 @@ if ($queryMethod=="login") {
 			}
 
 		} elseif (isset($returnInfo['user'])){
-			
+							
 			$userInfo = $returnInfo['user'];
 			if (isset($userInfo['expiryDate']))
-				$expiryDate = $userInfo['expiryDate'];
+				$expiryDate = $userInfo['expiryDate'];				
 		
 			// We didn't have a prefix before getting this user details, so check that we have one now
 			if (isset($returnInfo['account'])){
@@ -182,12 +180,15 @@ if ($queryMethod=="login") {
 				// Check that the password matches and the user's account has not expired
 				if ($password != htmlspecialchars($typedPassword, ENT_QUOTES, 'UTF-8')) {
 					$errorCode = 204; // Wrong password
-					if ($debugLog) {
+					if ($debugLog)
 						error_log(" Wrong password typed, should be $password but is $typedPassword\n", 3, $debugFile);
-					}
+						
 				} else if (isset($expiryDate) && strtotime($expiryDate) < time()) {
 					$errorCode = 206; 
 					$failReason = 'Your account expired on ' + $expiryDate;
+					if ($debugLog)
+						error_log("User expired on $expiryDate\n", 3, $debugFile);
+						
 				} else {
 					$errorCode = 0;
 				}
@@ -195,6 +196,9 @@ if ($queryMethod=="login") {
 				$errorCode = 300; // No known account
 			}
 		} else {
+			if ($debugLog)
+				error_log("Got nothing\n", 3, $debugFile);
+				
 			$errorCode = 1;
 		}
 		
@@ -203,13 +207,12 @@ if ($queryMethod=="login") {
 			$rc['redirect']="$thisDomain/area1/RoadToIELTS2/Start-$programVersion.php?prefix=$prefix";
 			print json_encode($rc);
 			exit();
-			//redirect("$domain/area1/RoadToIELTS2/Start-$programVersion.php?prefix=$prefix");
 		}
 			
 		// Errors handled at the end of the script
 	}
 	
-// This is the method called after the candidate has typed in their details on candidateDetails screen
+// This is the method called after the candidate has typed in their details on addUser screen
 } else if ($queryMethod=="addNewUser") {
 
 	// We know we are sent a loginID and a password
@@ -245,35 +248,21 @@ if ($queryMethod=="login") {
 		$email = "";
 	}
 
+	if (isset($_POST['expiryDate'])) {
+		$expiryDate = $_POST['expiryDate'];
+	} else if (isset($_GET['expiryDate'])) {
+		$expiryDate = $_GET['expiryDate'];
+	} else {
+		$expiryDate = "";
+	}
+
 	// Process the loginID to get the productCode, groupID and studentID
 	$pattern = '/-/';
 	$replacement = '';
 	$parseID = preg_replace($pattern, $replacement, $loginID);
 	$productCode = substr($parseID, 0, 2);
-	if ($productCode == '52' || $productCode == '12'){
-		$programVersion = 'AC';
-	} else if ($productCode == '53' || $productCode == '13'){
-		$programVersion = 'GT';
-	} else {
-		// Assume that you have always been called from ajax, so return errors don't do redirect from here
-		// redirect($thisDomain.$startFolder."login.php?login=failed&error=201&message=product code&loginID=$loginID");
-		$rc['error']=201;
-		$rc['message']='invalid product code';
-		print json_encode($rc);
-		exit();
-	}
-	$groupID = substr($parseID, 2, 3);
-	if(!is_numeric($groupID)){
-		//redirect($thisDomain.$startFolder."login.php?login=failed&code=202&message=group id&loginID=$loginID");
-		$rc['error']=202;
-		$rc['message']='invalid group id';
-		print json_encode($rc);
-		exit();
-	}
-	
-	// V2 We will be logging in using studentID as unique, but we don't really know that all BC centres will use unique
-	// ids in the protal - so best to add the groupID to all studentIDs coming through this portal.
-	$uniqueStudentID = $loginID.'-'.$groupID;
+	$groupID = substr($parseID, 2, 3);	
+	$uniqueStudentID = $loginID;
 	
 	// Use LoginGateway to add this user.
 	$LoginAPI = array();
@@ -284,9 +273,21 @@ if ($queryMethod=="login") {
 	$LoginAPI['email'] = $email;
 	$LoginAPI['groupID'] = $groupID;
 	$LoginAPI['productCode'] = $productCode;
-	$LoginAPI['subscriptionPeriod'] = '3months';
-	$LoginAPI['emailTemplate'] = 'Welcome-BCHK-user';
-
+	if (!$expiryDate || $expiryDate=='') {
+		$LoginAPI['subscriptionPeriod'] = '3m';
+	} else {
+		$LoginAPI['expiryDate'] = $expiryDate;
+	}
+	switch ($groupID) {
+		case '168':
+			$template = 'Welcome-BCHK-user';
+			break;
+		default:
+			$template = 'Welcome-BC-user';
+			break;
+	}
+	$LoginAPI['emailTemplateID'] = $template;
+	$LoginAPI['adminPassword'] = 'clarity88';
 	$LoginAPI['dbHost'] = $dbHost;
 	$LoginAPI['loginOption'] = 2;
 

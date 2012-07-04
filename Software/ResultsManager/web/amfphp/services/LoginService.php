@@ -51,6 +51,13 @@ class LoginService extends AbstractService {
 		AuthenticationOps::$useAuthentication = false;
 	}
 	
+	public function changeDB($dbHost) {
+		$this->changeDbHost($dbHost);
+		$this->manageableOps->changeDB($this->db);
+		$this->subscriptionOps->changeDB($this->db);
+		$this->accountOps->changeDB($this->db);
+	}
+	
 	// Can you find this user?
 	public function getUser($loginDetails) {
 		$stubUser = new User();
@@ -61,6 +68,8 @@ class LoginService extends AbstractService {
 			$stubUser->studentID = $loginDetails->studentID;
 		} else if ($loginDetails->loginOption & 128) {
 			$stubUser->email = $loginDetails->email;
+		} else {
+			return false;		
 		}		
 
 		// Are there any conditions that you should search with?
@@ -216,5 +225,9 @@ class LoginService extends AbstractService {
 	public function getAccountFromRootID($loginDetails) {
 		// Should only be one account returned
 		return array_shift($this->accountOps->getAccounts(array($loginDetails->rootID)));
+	}
+	
+	public function getAccountFromUser($user) {
+		return $this->accountOps->getAccountFromUser($user);
 	}
 }

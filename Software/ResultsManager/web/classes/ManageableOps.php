@@ -9,6 +9,14 @@ class ManageableOps {
 		$this->copyOps = new CopyOps();
 	}
 	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+	} 
+	
 	/*
 	 * Add $group to $parentGroup where both are instances of Group
 	 */

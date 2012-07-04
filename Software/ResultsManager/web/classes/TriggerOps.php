@@ -95,6 +95,8 @@ class TriggerOps {
 				// v3.5 Subscription reminders also based on start date now. This should mean the RM start date.
 				if (isset($trigger->condition->startDate)) $accountConditions["startDate"] = $trigger->condition->startDate;
 				if (isset($trigger->condition->startDay)) $accountConditions["startDay"] = $trigger->condition->startDay;
+				// v3.6
+				if (isset($trigger->condition->resellerID)) $accountConditions["resellerID"] = $trigger->condition->resellerID;
 				
 				// These next conditions are not account conditions, but are for searching users within the found accounts
 				//if (isset($trigger->condition->contactMethod)) $accountConditions["contactMethod"] = $trigger->condition->contactMethod;

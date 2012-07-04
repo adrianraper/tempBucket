@@ -31,6 +31,8 @@ class Condition {
 	var $startDay;
 	// v3.6 For EmailMe
 	var $userExpiryDate;
+	// v3.6 For IELTSPractice.com
+	var $resellerID;
 	
 	function Condition($conditionString, $timeStamp = null ) {
 		$this->timeStamp = $timeStamp;
@@ -94,6 +96,9 @@ class Condition {
 		// v3.6
 		if (isset($conditionArray['userExpiryDate'])) 
 			$this->userExpiryDate = $this->evaluateDateVariables($conditionArray['userExpiryDate']);
+		// v3.6
+		if (isset($conditionArray['resellerID'])) 
+			$this->resellerID = $conditionArray['resellerID'];
 	}
 	/*
 	 * Build a query string from the condition - is this just for debugging?

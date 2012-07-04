@@ -23,6 +23,18 @@ class SubscriptionOps {
 		$this->templateOps = new TemplateOps($db);
 	}
 	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+		$this->manageableOps->changeDB($db);
+		$this->accountOps->changeDB($db);
+		$this->emailOps->changeDB($db);
+		$this->templateOps->changeDB($db);
+	}
+	
 	function validateApiInformation($apiInformation) {
 		//AbstractService::$log->notice("validateAPIInformation: reseller=".$apiInformation->resellerID);
 		// Check the reseller is valid

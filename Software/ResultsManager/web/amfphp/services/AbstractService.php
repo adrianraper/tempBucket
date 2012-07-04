@@ -59,6 +59,28 @@ class AbstractService {
 		AbstractService::$debugLog = &Log::factory('file');
 		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');
 	}
+
+	/**
+	 * Sometimes you are told a dbHost after you have loaded config.php
+	 * So let the database change
+	 */
+	public function changeDbHost($dbHost) {
+		
+		$dbDetails = new DBDetails($dbHost);
+		$GLOBALS['dbms'] = $dbDetails->driver;
+		$GLOBALS['db'] = $dbDetails->dsn;
+		$GLOBALS['dbHost'] = $dbHost;
+		
+		$this->db = ADONewConnection($GLOBALS['db']."?persist");
+		
+		// v3.6 UTF8 character mismatch between PHP and MySQL
+		if ($GLOBALS['dbms'] == 'mysql')
+			$charSetRC = mysql_set_charset('utf8');
+		
+		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
+		AbstractService::$log->setDB($this->db);
+		
+	}
 	
 	/**
 	 * Gets the list of dictionaries asked for.  A dictionary is a map of data->label and is used (for example) for informing the client

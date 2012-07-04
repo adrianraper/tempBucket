@@ -158,7 +158,10 @@
 			// Execute the cURL session
 			$contents = curl_exec ($ch);
 			if($contents === false){
-				echo 'Curl error: ' . curl_error($ch);
+				//echo 'Curl error: ' . curl_error($ch);
+				if ($debugLog) {
+					error_log("back from $targetURL with curl_error($ch)\n", 3, $debugFile);
+				}
 				curl_close($ch);
 				$errorCode = 1;
 			} else {

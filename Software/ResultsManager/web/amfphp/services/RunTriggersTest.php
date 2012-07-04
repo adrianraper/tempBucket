@@ -75,7 +75,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
 			//$trigger->rootID = Array(5,7,28,163,10719,11091);
-			$trigger->rootID = Array(13959);
+			//$trigger->rootID = Array(13959);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
 		$trigger->condition->notProductCode = '12,13';
@@ -293,8 +293,8 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
-//$testingTriggers .= "subscription reminders";
-$testingTriggers .= "usage stats";
+$testingTriggers .= "subscription reminders";
+//$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";

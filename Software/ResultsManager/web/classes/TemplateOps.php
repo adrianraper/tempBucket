@@ -11,6 +11,13 @@ class TemplateOps {
 		
 		$this->copyOps = new CopyOps();
 	}
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+	}
 	
 	private function getSmarty() {
 		$smarty = new Smarty();

@@ -129,10 +129,10 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (0,'Not set',NULL,NULL,300),
 (1,'Abacus Communications Ltd',NULL,'info@abacus-communications.com',12),
 (2,'Bookery',NULL,'markus@bookery.com.au,info@bookery.com.au',6),
-(3,'Edutech Middle East L.L.C. (Dubai, UAE)',NULL,'info@edutech.com,shameema@edutech.com,maher@edutech.com,aravinds@edutech.com',5),
+(3,'Edutech Middle East',NULL,'sales@clarityenglish.com',106),
 (4,'Falcon Press Sdn Bhd',NULL,NULL,101),
 (5,'Hans Richter Laromedel',NULL,'post@richbook.se',13),
-(6,'Mr Kevin Coffey',NULL,'insight@paradise.net.nz',10),
+(6,'Mr Kevin Coffey',NULL,'insight@paradise.net.nz',102),
 (7,'NAS Software Inc',NULL,'sam@nas.ca',4),
 (8,'Study Plan S.L.',NULL,'stephenbe@studyplan.es',102),
 (9,'Voice Works International Pte Ltd',NULL,NULL,103),
@@ -147,7 +147,7 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (18,'Source Learning System (Thailand)',NULL,'udomchai@source.co.th',11),
 (19,'Lingualearn Ltd',NULL,'mike@lingualearn.com',105),
 (20,'Lara Kytapcilik','old name for Turkey','administrator@eltturkey.com',200),
-(21,'Clarity online subscription',NULL,'kenix.wong@clarityenglish.com',22),
+(21,'Clarity online subscription',NULL,'kenix.wong@clarityenglish.com',20),
 (22,'Celestron Ltda',NULL,'valdenegro@celestron.cl',16),
 (23,'Sinirsiz Egitim Hizmetleri','new name for Turkey','administrator@eltturkey.com',17),
 (24,'Edict Electronics Sdn Bhd',NULL,'mary@edict.com.my',18),
@@ -160,7 +160,8 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (32,'HKA',NULL,'philip.lam@clarityenglish.com,cynthia.lau@clarityenglish.com,kenix.wong@clarityenglish.com',1),
 (33,'HKB',NULL,'philip.lam@clarityenglish.com,cynthia.lau@clarityenglish.com,kenix.wong@clarityenglish.com',1),
 (34,'Complejo de Consultoria de Idiomas',NULL,'elizabeth.pena@etciberoamerica.com',99),
-(35,'Micromail',NULL,'diarmuid@micromail.ie',105);
+(35,'Micromail',NULL,'diarmuid@micromail.ie',105),
+(36,'IELTSPractice.com',NULL,'alfred.ng@clarityenglish.com',20);
 
 -- No more monthly usage stats
 UPDATE `rack80829`.`T_Triggers` SET `F_ValidToDate`='2011-08-29' WHERE F_TriggerID in (31);
@@ -359,10 +360,13 @@ ORDER BY F_CourseID;
 -- Whilst TINYINT should be enough since the values are -1 to 100, might be safer to go for SMALLINT just in case.
 
 -- For running daily SQL stored procedures
+-- NOT implemented yet
+DELETE FROM `rack80829`.`T_Triggers`
+WHERE F_TriggerID = 44;
 INSERT INTO `rack80829`.`T_Triggers`
 (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
 VALUES
-(44,'Daily GlobalRoadToIELTS archive expired users',null,null,null,'method=dbChange&select=SELECT * FROM T_AccountRoot where F_RootID=163&update=CALL archiveExpiredUsers()',null,null,'SQL','daily',0);
+(44,'Daily GlobalRoadToIELTS archive expired users',null,null,0,'method=dbChange&select=SELECT * FROM T_AccountRoot where F_RootID=163&update=CALL archiveExpiredUsers()',null,'2012-01-01','SQL','daily',0);
 
 -- Learn English Test Japanese
 INSERT INTO `T_Language` VALUES ('JP','Japanese');
@@ -537,11 +541,11 @@ INSERT INTO `T_ProductLanguage` VALUES (44,'SL','PracticalPlacementTest-Slovene'
 INSERT INTO `T_Language` VALUES ('TW-ZH','Taiwan Chinese'),('SL','Slovene');
 
 -- EmailMe. RM trial emails
-UPDATE `rack80829`.`T_Triggers` 
+UPDATE T_Triggers
 SET F_ValidToDate=NULL, 
 F_Condition = 'method=getUsers&userExpiryDate={now}+2d', F_MessageType=7, 
 F_Name='EmailMe trial reminder',
-F_RootID=14202,
+F_RootID=14582,
 F_GroupID=NULL
 WHERE F_TriggerID=2;
 INSERT INTO T_MessageType VALUES (7,'EmailMe Trial reminders');
@@ -557,3 +561,14 @@ SET F_Description = 'Network'
 WHERE F_Status = 3;
 INSERT T_LicenceType
 VALUES (7, 'Concurrent Tracking');
+
+-- For IELTSpractice.com reminder system
+DELETE FROM `rack80829`.`T_Triggers`
+WHERE F_TriggerID in (16,18,45,46);
+INSERT INTO `rack80829`.`T_Triggers`
+(`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
+VALUES
+(16,'CLS. Subscription ends in 7 days',null,null,2129,'method=getAccounts&expiryDate={now}+7d&licenceType=5&resellerID=21',null,null,'email','daily',1),
+(18,'CLS. Subscription ends today',null,null,2130,'method=getAccounts&expiryDate={now}&licenceType=5&resellerID=21',null,null,'email','daily',1),
+(45,'IELTSpractice.com 7d',null,null,2200,'method=getAccounts&expiryDate={now}+7d&licenceType=5&resellerID=36',null,null,'email','daily',1),
+(46,'IELTSpractice.com 1d',null,null,2201,'method=getAccounts&expiryDate={now}-1d&licenceType=5&resellerID=36',null,null,'email','daily',1);

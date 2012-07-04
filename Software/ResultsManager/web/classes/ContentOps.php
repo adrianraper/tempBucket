@@ -11,6 +11,15 @@ class ContentOps {
 		$this->manageableOps = new ManageableOps($this->db);
 	}
 	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+		$this->manageableOps->changeDB($db);
+	}
+	
 	// Add optional productCode to allow this to work more efficently with Bento
 	function getHiddenContent($productCode=null) {
 		if (!Session::is_set('valid_groupIDs'))
