@@ -100,6 +100,9 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart]
 		public var courseSelectorWidget:CourseSelectorWidget;
 		
+		[SkinPart(required="true")]
+		public var questionZoneVideo:Group;
+		
 		private var _courseCaption:String;
 		
 		public function isDemo():Boolean {
@@ -530,12 +533,12 @@ package com.clarityenglish.ielts.view.zone {
 		 * Reset the question zone graphics such that the ebook is shown and the video player is hidden.
 		 */
 		public function resetQuestionZoneGraphics():void {
-			Tweener.removeTweens(questionZoneVideoPlayer);
+			Tweener.removeTweens(questionZoneVideo);
 			Tweener.removeTweens(questionZoneEBookGraphic);
 			
-			questionZoneVideoPlayer.x = 500;
-			questionZoneVideoPlayer.alpha = 0;
-			questionZoneVideoPlayer.visible = false;
+			questionZoneVideo.x = 500;
+			questionZoneVideo.alpha = 0;
+			questionZoneVideo.visible = false;
 			
 			questionZoneEBookGraphic.x = 0;
 			questionZoneEBookGraphic.alpha = 1;
@@ -546,10 +549,10 @@ package com.clarityenglish.ielts.view.zone {
 		 * Animate the ebook into view
 		 */
 		public function showEBook():void {
-			Tweener.removeTweens(questionZoneVideoPlayer);
+			Tweener.removeTweens(questionZoneVideo);
 			Tweener.removeTweens(questionZoneEBookGraphic);
 			
-			Tweener.addTween(questionZoneVideoPlayer, { x: 500, _autoAlpha: 0, time: 1.2 });
+			Tweener.addTween(questionZoneVideo, { x: 500, _autoAlpha: 0, time: 1.2 });
 			Tweener.addTween(questionZoneEBookGraphic, { x: 0, _autoAlpha: 1, time: 1.2 });
 		}
 		
@@ -557,10 +560,10 @@ package com.clarityenglish.ielts.view.zone {
 		 * Animate the video into view
 		 */
 		public function showVideo():void {
-			Tweener.removeTweens(questionZoneVideoPlayer);
+			Tweener.removeTweens(questionZoneVideo);
 			Tweener.removeTweens(questionZoneEBookGraphic);
 			
-			Tweener.addTween(questionZoneVideoPlayer, { x: 0, _autoAlpha: 1, time: 1.2, transition:"easeOutSine" });
+			Tweener.addTween(questionZoneVideo, { x: 0, _autoAlpha: 1, time: 1.2, transition:"easeOutSine" });
 			Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2, transition:"easeOutSine" });
 		}
 		

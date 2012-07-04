@@ -199,6 +199,18 @@ zone|ZoneView #questionZoneVideoButton {
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
 }
 
+zone|ZoneView #questionZoneChannelButton1 {
+	skinClass: ClassReference("skins.ielts.zone.AdviceZoneChannelButtonSkin");
+}
+
+zone|ZoneView #questionZoneChannelButton2 {
+	skinClass: ClassReference("skins.ielts.zone.AdviceZoneChannelButtonSkin");
+}
+
+zone|ZoneView #questionZoneChannelButton3 {
+	skinClass: ClassReference("skins.ielts.zone.AdviceZoneChannelButtonSkin");
+}
+
 zone|ZoneView #examPracticeAudioPlayer {
 	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
 	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");

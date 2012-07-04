@@ -190,19 +190,37 @@
 								<s:SWFLoader id="questionZoneEBookGraphic"
 											 width="100%"
 											 height="100%"
-											 verticalAlign="middle"
+											 verticalAlign="middle" horizontalAlign="center"
 											 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
 											 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
 											 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
 											 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
-								<s:VideoPlayer id="questionZoneVideoPlayer"
-											   autoDisplayFirstFrame="true"
-											   width="411"
-											   height="231"
-											   autoPlay="true"
-											   scaleMode="letterbox"
-											   top="10"
-											   horizontalCenter="0" />
+								
+								<s:HGroup id="questionZoneVideo" horizontalCenter="0">
+									
+									<s:VideoPlayer id="questionZoneVideoPlayer"
+												   autoDisplayFirstFrame="true"
+												   width="411"
+												   height="231"
+												   autoPlay="true"
+												   scaleMode="letterbox"
+												   top="10"
+												   />
+																	
+									<s:Group left="0">									
+										<s:Rect height="231" width="87">
+											<s:fill>
+												<s:SolidColor color="0x141414"/>
+											</s:fill>
+										</s:Rect>
+										<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switich channel." color="0xFFFFFF" width="70" lineHeight="18" />
+										<s:VGroup paddingTop="160" paddingLeft="8">
+											<s:Button id="questionZoneChannelButton1" label="Channel 1" fontSize="12.6" width="70" height="16" />
+											<s:Button id="questionZoneChannelButton2" label="Channel 2" fontSize="12.6" width="70" height="16" />
+											<s:Button id="questionZoneChannelButton3" label="Channel 3" fontSize="12.6" width="70" height="16" />
+										</s:VGroup>
+									</s:Group>
+									</s:HGroup>
 							</s:Group>
 							
 							<s:HGroup horizontalCenter="0" paddingTop="0" verticalCenter="4">
@@ -235,18 +253,19 @@
 									<s:Image source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 									<s:Image source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 								</s:Group>
-								<s:Group left="0">									<s:Rect height="231" width="87">
-																				<s:fill>
-																					<s:SolidColor color="0x141414"/>
-																				</s:fill>
-																			</s:Rect>
+								<s:Group left="0">									
+									<s:Rect height="231" width="87">
+										<s:fill>
+											<s:SolidColor color="0x141414"/>
+										</s:fill>
+									</s:Rect>
 									<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switich channel." color="0xFFFFFF" width="70" lineHeight="18" />
- 									<s:VGroup paddingTop="160" paddingLeft="8">
+									<s:VGroup paddingTop="160" paddingLeft="8">
 										<s:Button id="adviceZoneChannelButton1" label="Channel 1" fontSize="12.6" width="70" height="16" />
 										<s:Button id="adviceZoneChannelButton2" label="Channel 2" fontSize="12.6" width="70" height="16" />
 										<s:Button id="adviceZoneChannelButton3" label="Channel 3" fontSize="12.6" width="70" height="16" />
 									</s:VGroup>
-									</s:Group>
+								</s:Group>
 							</s:HGroup>	
 							
 							<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" borderVisible="false">
@@ -476,3 +495,4 @@
 	</s:Group>
 	
 </s:Skin>
+
