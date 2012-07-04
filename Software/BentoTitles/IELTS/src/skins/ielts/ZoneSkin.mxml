@@ -204,7 +204,6 @@
 												   height="231"
 												   autoPlay="true"
 												   scaleMode="letterbox"
-												   top="10"
 												   />
 																	
 									<s:Group left="0">									
@@ -245,8 +244,7 @@
 												   autoPlay="true"
 												   scaleMode="letterbox"
 												   visible="{adviceZoneVideoList.selectedItem != null}"
-												   includeInLayout="{adviceZoneVideoList.selectedItem != null}"
-												   top="10" right="0" />
+												   includeInLayout="{adviceZoneVideoList.selectedItem != null}" right="0" />
 									
 									<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 									<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
