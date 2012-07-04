@@ -95,9 +95,11 @@ package com.clarityenglish.ielts.view {
 		private function handleDirectLogin():Boolean {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var directLogin:LoginEvent = configProxy.getDirectLogin();
+			
 			if (directLogin) {
 				// If direct start login is on then log straight in without changing to the login state
 				sendNotification(CommonNotifications.LOGIN, directLogin);
+				
 				return true;
 			}
 			
@@ -138,7 +140,7 @@ package com.clarityenglish.ielts.view {
 					unit = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 					
 					if (unit) {
-						exercise = unit.exercise[0];
+						exercise = unit.exercise.(@group == directStart.groupID)[0];
 						href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
 						sendNotification(IELTSNotifications.HREF_SELECTED, href);
 						return true;

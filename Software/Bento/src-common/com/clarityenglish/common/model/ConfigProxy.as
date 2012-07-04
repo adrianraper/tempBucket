@@ -281,7 +281,7 @@ package com.clarityenglish.common.model {
 			// #336 SCORM needs to be checked here as it takes precedence over a connfig startingPoint
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
-				directStartObject = scormProxy.getBookmark();	
+				directStartObject = scormProxy.getBookmark();
 				
 			} else {
 				// #338. This is using a utility parsing function, it is for data from queryString

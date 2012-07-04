@@ -5,6 +5,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
@@ -291,6 +292,17 @@ package com.clarityenglish.common.model {
 					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 					if (configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) {
 						sendNotification(CommonNotifications.CONFIRM_NEW_USER);
+						
+					// For SCORM, if the user doesn't exist, automatically add them
+					} else if (configProxy.getConfig().scorm) {
+						var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+						var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
+						var loginOption:uint = configProxy.getAccount().loginOption;
+						var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
+
+						var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
+						sendNotification(CommonNotifications.ADD_USER, loginEvent);
+						
 					} else {
 						sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
 					}
