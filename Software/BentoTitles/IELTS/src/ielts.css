@@ -206,6 +206,22 @@ zone|ZoneView #examPracticeAudioPlayer {
 	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioStop");
 }
 
+zone|ZoneView #examPracticeAnswerButton {
+	skinClass: ClassReference("skins.ielts.zone.ExamPracticeAnswerButtonSkin");
+}
+
+zone|ZoneView #adviceZoneChannelButton1 {
+	skinClass: ClassReference("skins.ielts.zone.AdviceZoneChannelButtonSkin");
+}
+
+zone|ZoneView #adviceZoneChannelButton2 {
+	skinClass: ClassReference("skins.ielts.zone.AdviceZoneChannelButtonSkin");
+}
+
+zone|ZoneView #adviceZoneChannelButton3 {
+	skinClass: ClassReference("skins.ielts.zone.AdviceZoneChannelButtonSkin");
+}
+
 zoneui|PopoutExerciseSelector {
 	skinClass: ClassReference("skins.ielts.zone.PopoutExerciseSelectorSkin");
 }

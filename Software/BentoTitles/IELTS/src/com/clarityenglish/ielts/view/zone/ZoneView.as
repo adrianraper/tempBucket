@@ -50,6 +50,15 @@ package com.clarityenglish.ielts.view.zone {
 		public var adviceZoneNavigatorContent:NavigatorContent;
 		
 		[SkinPart(required="true")]
+		public var adviceZoneChannelButton1:Button;
+		
+		[SkinPart(required="true")]
+		public var adviceZoneChannelButton2:Button;
+		
+		[SkinPart(required="true")]
+		public var adviceZoneChannelButton3:Button;
+		
+		[SkinPart(required="true")]
 		public var examPracticeNavigatorContent:NavigatorContent;
 		
 		[SkinPart(required="true")]
