@@ -491,12 +491,13 @@ EOD;
 			echo $emailText = $this->emailOps->fetchEmail($templateID, $emailData);
 		}	
 	}
+	
+	// Changed from $account to $user, since that is what we are sending from LoginGateway
 	// For sending out email once the user is created
-	public function sendUserEmail($account, $apiInformation, $send=true) {
-		// If the admin email is different from the account email, cc
+	public function sendUserEmail($user, $apiInformation, $send=true) {
 		$templateID = $apiInformation->emailTemplateID;
 		$userEmail = $user->email;
-		$emailData = array("account" => $account, "api"=>$apiInformation);
+		$emailData = array("user" => $user, "api"=>$apiInformation);
 		$emailArray = array("to" => $userEmail, "data" => $emailData);
 						
 		// Check that the template exists

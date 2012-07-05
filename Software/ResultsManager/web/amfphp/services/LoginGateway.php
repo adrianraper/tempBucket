@@ -93,6 +93,24 @@ try {
 	}
 	
 	switch ($apiInformation->method) {
+		case 'forgotPassword':
+			$user = $loginService->getUser($apiInformation);
+			
+			if ($user) {
+				if ($user->email) {
+					if ($apiInformation->emailTemplateID) {
+						$loginService->subscriptionOps->sendUserEmail($user, $apiInformation);
+						AbstractService::$debugLog->info("sent email to ".$user->email.' using '.$apiInformation->emailTemplateID);
+					}
+					
+				} else {
+					returnError(202, $user->name);
+				}
+			} else {
+				returnError(200, $apiInformation->studentID);
+			}
+			break;
+			
 		case 'getUser':
 			
 			// TODO: First validate the account that you are going to get from

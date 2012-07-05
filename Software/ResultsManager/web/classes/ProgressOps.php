@@ -208,7 +208,9 @@ insert into T_Score values
 				$node[$attributeName] |= intval($attributeValue);
 			}
 		} else {
-			$node->addAttribute($attributeName, abs(intval($attributeValue)));
+			// If there was no attribute already, ignore negative values
+			if ($attributeValue >= 0)
+				$node->addAttribute($attributeName, intval($attributeValue));
 		}
 	}
 	
