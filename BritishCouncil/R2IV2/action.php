@@ -328,9 +328,8 @@ if ($queryMethod=="login") {
 		//echo $contents;exit(0);
 		$returnInfo = json_decode($contents, true);
 
-		if ($debugLog) {
+		if ($debugLog)
 			error_log("back from LoginGateway with $contents\n", 3, $debugFile);
-		}
 
 		// Expecting to get back an error or a user object
 		if (isset($returnInfo['error'])){
@@ -357,14 +356,99 @@ if ($queryMethod=="login") {
 		}
 		
 		// If you there are no errors, go to the program
-		if ($errorCode == 0)
+		if ($errorCode == 0) {
 			$rc['redirect']="$thisDomain/area1/RoadToIELTS2/Start-$programVersion.php?prefix=$prefix";
 			print json_encode($rc);
 			exit();
-			
+		}
+		
 		// Errors handled at the end of the script
 	}
+	
+} else if ($queryMethod=="forgotPassword") {
+	
+	// We know we are sent a loginID and a password
+	if (isset($_POST['loginID'])) {
+		$loginID= $_POST['loginID'];
+	} else if (isset($_GET['loginID'])) {
+		$loginID= $_GET['loginID'];
+	} else {
+		$loginID = "";
+	}
+	
+	// Process the loginID to get the productCode, groupID and studentID
+	$pattern = '/-/';
+	$replacement = '';
+	$parseID = preg_replace($pattern, $replacement, $loginID);
+	$groupID = substr($parseID, 2, 3);	
+	$uniqueStudentID = $loginID;
+	
+	// Use LoginGateway to send an email to this user.
+	$LoginAPI = array();
+	$LoginAPI['method'] = 'forgotPassword';
+	$LoginAPI['studentID'] = $uniqueStudentID;
+	$LoginAPI['groupID'] = $groupID;
+	$LoginAPI['dbHost'] = $dbHost;
+	$LoginAPI['loginOption'] = 2;
+	$LoginAPI['emailTemplateID'] = 'R2IV2-forgot-password';
 
+	// Send this single LoginAPI
+	$serializedObj = json_encode($LoginAPI);
+	$targetURL = $commonDomain.'Software/ResultsManager/web/amfphp/services/LoginGateway.php';
+	if ($debugLog)
+		error_log("to LoginGateway with $serializedObj\n", 3, $debugFile);
+	
+	// Initialize the cURL session
+	$ch = curl_init();
+	
+	// Setup the post variables
+	$curlOptions = array(CURLOPT_HEADER => false,
+						CURLOPT_FAILONERROR=>true,
+						CURLOPT_FOLLOWLOCATION=>true,
+						CURLOPT_RETURNTRANSFER => true,
+						CURLOPT_POST => true,
+						CURLOPT_POSTFIELDS => $serializedObj,
+						CURLOPT_URL => $targetURL
+	);
+	curl_setopt_array($ch, $curlOptions);
+	
+	// Execute the cURL session
+	$contents = curl_exec ($ch);
+	if($contents === false){
+		curl_close($ch);
+		$errorCode = 1;
+		$failReason = curl_error($ch);
+	} else {
+		curl_close($ch);
+		// $contents is coming back with a utf-8 BOM in front of it, which invalidates it as JSON. Get rid of it.
+		if (substr($contents,0,3)==b"\xEF\xBB\xBF") {
+			$contents = substr($contents,3);
+		}
+		//echo $contents;exit(0);
+		$returnInfo = json_decode($contents, true);
+
+		if ($debugLog)
+			error_log("back from LoginGateway with $contents\n", 3, $debugFile);
+
+		// Expecting to get back an error or a success (empty user) object
+		if (isset($returnInfo['error'])){
+			$errorCode = $returnInfo['error'];
+			$failReason = $returnInfo['message'];
+			
+		} elseif (isset($returnInfo['user'])){
+			if ($debugLog)
+				error_log("got empty user\n", 3, $debugFile);
+				
+			$errorCode = 0;
+			$failReason = 'Email sent';
+			
+		} else {
+			$errorCode = 1;
+		}
+		
+	}
+	
+	
 }
 
 $rc = array();

@@ -31,7 +31,6 @@ $(function() {
 		
 		// call the database processing script
 		new jQuery.ajax({ type: 'POST', 
-						dataType: "xml",
 						url: "action.php",
 						success:  onAjaxSuccess,
 						data: formData,

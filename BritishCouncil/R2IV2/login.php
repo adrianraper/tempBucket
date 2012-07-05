@@ -36,6 +36,7 @@
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/jquery-ui-datePicker-2.1.2.js"></script>
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/blockUI-2.js"></script>
 <script type="text/javascript" src="loginControl.js"></script>
+<script type="text/javascript" src="forgotPassword.js"></script>
 </head>
 
 <body>
@@ -75,7 +76,7 @@
 				<input name="userPassword" type="password" id="userPassword" value="" size="32" class="field"/>
 			</p>
         <p class="forgot_line">
-		<a href="#" onclick="JavaScript:getEmailFromServer();">Forgot your password?</a>
+		<a href="#" onclick="JavaScript:forgotPassword();">Forgot your password?</a>
 	</p>
 		</li>
 		<div class="complete_login">
@@ -105,13 +106,19 @@
 	<h1>Error</h1>
 	<p>We can't find this login ID.</p>
 	<p>Please contact your local British Council office.</p>
-	<input type="button" id="mDEFOK" value="OK" />
+	<input type="button" id="mOK" value="OK" />
+</div>
+<div id="passwordForgetProblemLoginID" style="display:none; cursor:default">
+	<h1>Error</h1>
+	<p>Sorry, there is a problem with this ID.</p>
+	<p>Please contact support@roadtoielts.com.</p>
+	<input type="button" id="mOK" value="OK" />
 </div>
 <div id="passwordForgetNoEmail" style="display:none; cursor:default">
 	<h1>Error</h1>
 	<p>We can't find any email address linked to this login ID.</p>
-	<p>Please contact your local British Council office.</p>
-	<input type="button" id="mDEFOK" value="OK" />
+	<p>Please contact support@roadtoielts.com and tell us your login ID and we will email your password to you.</p>
+	<input type="button" id="mOK" value="OK" />
 </div>
 <div id="unexpected" style="display:none; cursor:default">
 	<h1>Error</h1>
