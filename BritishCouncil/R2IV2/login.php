@@ -74,11 +74,9 @@
 			<p class="login_field">
 				<input name="userPassword" type="password" id="userPassword" value="" size="32" class="field"/>
 			</p>
-	<!-- 
-            <p class="forgot_line">
-				<a href="#" onclick="JavaScript:getEmailFromServer();">Forgot your password?</a>
-			</p>
-	-->
+        <p class="forgot_line">
+		<a href="#" onclick="JavaScript:getEmailFromServer();">Forgot your password?</a>
+	</p>
 		</li>
 		<div class="complete_login">
 		<input name="LoginSubmit" type="submit" id="LoginSubmit" value="" class="button_login"/>
@@ -93,10 +91,27 @@
 </div>
 
 <!-- These blocks are used for error messages in jQuery blockUI -->
-<div id="mailSendSuccess" style="display:none; cursor:default">
+<div id="passwordForgetMailSent" style="display:none; cursor:default">
 	<h1>Note</h1>
 	<p>Your password has been sent to your registered email.</p>
 	<input type="button" id="mOK" value="OK" />
+</div>
+<div id="passwordForgetNoLoginID" style="display:none; cursor:default">
+	<h1>Note</h1>
+	<p>Please type your login ID, and we will send your password to the email address you gave us.</p>
+	<input type="button" id="mOK" value="OK" />
+</div>
+<div id="passwordForgetNoSuchLoginID" style="display:none; cursor:default">
+	<h1>Error</h1>
+	<p>We can't find this login ID.</p>
+	<p>Please contact your local British Council office.</p>
+	<input type="button" id="mDEFOK" value="OK" />
+</div>
+<div id="passwordForgetNoEmail" style="display:none; cursor:default">
+	<h1>Error</h1>
+	<p>We can't find any email address linked to this login ID.</p>
+	<p>Please contact your local British Council office.</p>
+	<input type="button" id="mDEFOK" value="OK" />
 </div>
 <div id="unexpected" style="display:none; cursor:default">
 	<h1>Error</h1>
