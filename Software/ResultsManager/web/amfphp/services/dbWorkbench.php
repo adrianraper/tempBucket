@@ -6,7 +6,7 @@ require_once(dirname(__FILE__)."/MinimalService.php");
 $thisService = new MinimalService();
 
 // Done in config.php
-date_default_timezone_set('UTC');
+//date_default_timezone_set('UTC');
 
 header('Content-Type: text/plain; charset=utf-8');
 
@@ -31,6 +31,7 @@ try {
 		from T_AccountRoot r, T_Accounts a
 		where a.F_ProductCode = 2
 		and a.F_LicenceType = 2
+		and a.F_RootID = r.F_RootID
 EOD;
 	$rs = $thisService->db->Execute($sql);
 	if ($rs) {
@@ -51,41 +52,33 @@ EOD;
 			if ($rs1) {
 				while ($userObj = $rs1->FetchNextObj()) {
 					// If this is the admin user, pick up their group
-					if ($userObj->F_UserType = 2) {
+					if ($userObj->F_UserType == 2) {
 						$groupID = $userObj->F_GroupID;
 						echo "$prefix: root $rootID has groupID=$groupID".$newLine;
 					// If a generic user, just skip out of this account
 					} else {						
 						echo "$prefix: root $rootID already has generic learner".$newLine;
-						break 2;
+						continue 2;
 					}
 				}
 			}
-						
-			/*
-			// Add a user to this account
-			$sql = 	<<<EOD
-				INSERT INTO T_User 
-				(F_UserName,F_Password,F_UserType,F_UserProfileOption,F_UniqueName,F_RegistrationDate)
-				VALUES (?,?,0,0,1,'2012-04-01 00:00:00');
-EOD;
-			$rs1 = $thisService->db->Execute($sql, array($dbObj->prefix.'_learner', $dbObj->prefix));
-			if ($rs1) {
-				$newUserID = $thisService->db->Insert_ID();
-			} else {
-				throw new Exception($thisService->db->ErrorMsg());
-			}
-			$sql = 	<<<EOD
-				INSERT INTO T_Membership
-				(F_UserID, F_RootID, F_GroupID)
-				VALUES (?, ?, ?);
-EOD;
-			$rs1 = $thisService->db->Execute($sql, array($newUserID, $rootID, $groupID));
+
+			$group = $thisService->manageableOps->getGroup($groupID);
+			$stubUser = new User();
+			$stubUser->name = $prefix.'_learner';
+			$stubUser->password = $prefix;
+			
+			$stubUser->userType = User::USER_TYPE_STUDENT;
+			$stubUser->registrationDate = date('Y-m-d H:i:s');
+			$stubUser->registerMethod = "dbWorkbench";
+			
+			$thisService->manageableOps->addUser($stubUser, $group, $dbObj->rootID);
 			echo "$prefix: root $rootID now added generic learner ".$dbObj->prefix.'_learner'.$newLine;
-			*/
-		}	
+		}
+			
 	} else {
 		echo "Select failed";
+		
 	}
 } catch (Exception $e) {
 	echo $e->getMessage();

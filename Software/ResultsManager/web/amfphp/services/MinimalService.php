@@ -9,13 +9,16 @@ require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscription.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
+require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 
 // v3.4 This is used for internal queries
 require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");
+require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
@@ -27,10 +30,21 @@ class MinimalService extends AbstractService {
 		parent::__construct();
 		
 		// A unique ID to distinguish sessions between multiple Clarity applications
-		Session::setSessionName("Mini");
+		Session::setSessionName("Minimal");
 				
+		// Set the product name and userID for logging
+		AbstractService::$log->setProductName("MINIMAL");
+
+		// Set the title name for resources
+		AbstractService::$title = "rm";
+		
 		// v3.4 For internal queries - how to use a different dbHost?
 		$this->internalQueryOps = new InternalQueryOps($this->db);
+		$this->manageableOps = new ManageableOps($this->db);
+		
+		// DMS has no restrictions on user/group access so disable manageable authentication
+		AuthenticationOps::$useAuthentication = false;
+		
 	}
 	
 	public function checkDirectStartSecurityCode($securityCode) {

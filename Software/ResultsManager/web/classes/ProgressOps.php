@@ -201,15 +201,15 @@ insert into T_Score values
 	 */
 	function setAttribute($node, $attributeName, $attributeValue) {
 		if (isset($node[$attributeName])) {
-				// If the attribute value is negative it means we want a bitwise switch OFF of that number
-				if ($attributeValue < 0) {
-					$node[$attributeName] &= ~intval(abs($attributeValue));
-				} else {
-					$node[$attributeName] |= intval($attributeValue);
-				}
+			// If the attribute value is negative it means we want a bitwise switch OFF of that number
+			if ($attributeValue < 0) {
+				$node[$attributeName] &= ~abs(intval($attributeValue));
 			} else {
-				$node->addAttribute($attributeName, $attributeValue);
+				$node[$attributeName] |= intval($attributeValue);
 			}
+		} else {
+			$node->addAttribute($attributeName, abs(intval($attributeValue)));
+		}
 	}
 	
 	/**
