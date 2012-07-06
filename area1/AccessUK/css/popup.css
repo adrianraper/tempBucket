@@ -1,0 +1,331 @@
+@charset "utf-8";
+/* CSS Document */
+
+#popup_video {
+	background-color: #505638;
+	padding:10px;
+	color:#000000;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	margin: 0;
+	overflow: hidden;
+}
+
+#video_container {
+	padding:10px 10px 0 10px;
+	margin:0 auto;
+	width: 720px;
+	height: 436px;
+	overflow: hidden;
+}
+
+#video_container #container1 {
+	text-align:center;
+	color:#FFFFFF;
+	padding: 10px 0 0 0;
+}
+#video_container #container1  p {
+	margin:0 0 10px 0;
+	padding:0;
+	line-height: 16px;
+}
+
+#video_container #link_box {
+	width: 720px;
+	margin:0;
+	height:20px;
+	color: #FFFFFF;
+	text-align: center;
+	padding: 5px 0;
+}
+
+#link_box a {
+	color:#FFFFFF;
+}
+
+
+
+/*--popup backgroung setting (for fancy box)--*/
+#popup_body {
+	margin: 0;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	background-color: #797061;
+	font-size:62.5%;
+}
+
+#popup_title {
+	height:35px;
+	background:url(../images/topbar.jpg) repeat-x;
+	position: relative;
+}
+
+#popup_title p {
+	color:#FFFFFF;
+	padding:11px 0 0 20px;
+	margin:0;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+#popup_title p.forgot {
+	color:#FFFFFF;
+	padding:11px 0 0 75px;
+	margin:0;
+	font-size: 11px;
+	font-weight: bold;
+}
+
+
+/*-- Content popup tasting Screen--*/
+#popup_welcome_body {
+	margin: 0;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:62.5%;
+	background-color: #505638;
+}
+
+
+#welcome_box_container {
+	width:529px;
+	margin: 0 auto;
+	padding: 10px;
+	font-size:1.1em;
+	background-color: #505638;
+}
+
+#welcome_box_container #banner {
+	background:url(../images/welcome_bannar_bg.jpg);
+	width:509px;
+	height:60px;
+	padding: 30px 0 0 20px;
+}
+
+#welcome_box_container #banner .title {
+	margin:0;
+	padding:0;
+	color:#30441D;
+	font-size:18px;
+}
+
+#welcome_box_container_inner {
+	padding:10px 20px;
+	position: relative;
+	margin: 0;
+	background-color: #FFFFFF;
+}
+
+#welcome_box_container_inner p {
+	line-height:16px;
+	margin:5px 0;
+	padding:0;
+	font-size:11px;
+	clear: both;
+}
+
+
+#popup_contatiner {
+	width:549px;
+	margin:0 auto;
+	padding:0;
+}
+
+
+
+
+
+#popup_bannar {
+	height:87px;
+	background-image:url(../images/popup_bannar_bg.jpg);
+	margin:0;
+	padding:0;
+}
+
+
+#popup_contact_msg_outter {
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	margin: 0;
+	padding: 5px 0 10px 0;
+	position: relative;
+
+}
+
+
+#popup_contact_msg h1 {
+	font-size:14px;
+	font-weight:bold;
+	margin:0;
+	padding:5px;
+}
+
+ul.popup_contact_left {
+	margin:0 auto;
+	padding:0;
+	width:500px;
+	list-style:none;
+	line-height:20px;
+	font-size: 11px;
+}
+
+
+ul.popup_contact_left li {
+	padding: 0 5px;
+}
+
+ul.popup_contact_HK_office {
+	margin:0;
+	padding:0;
+	position:absolute;
+	top: 32px;
+	width: 244px;
+	list-style:none;
+	line-height:20px;
+	right: 26px;
+	font-size: 11px;
+	
+}
+
+ul.popup_contact_left li.grey {
+	background-color:#CCCCCC;
+	margin: 5px 0 0 0;
+	padding: 0 5px;
+	font-weight: bold;
+}
+
+/* -- Terms and conditions -- */
+#support_answers_box {
+	padding:10px;
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	position: relative;
+	margin: 0;
+}
+
+#support_answers_box_inner {
+	height:340px;
+	padding:0 10px 10px 10px
+}
+
+#support_answers_box h2 {
+	border-bottom:1px solid #951418;
+	font-size:12px;
+	font-weight:bold;
+	padding:10px 0 5px 0;
+	margin:0;
+}
+
+#support_answers_box p {
+	line-height:16px;
+	margin:5px 0;
+	padding:0;
+	font-size:11px;
+	clear: both;
+}
+
+/* -- Forgot message -- */
+#popup_forgotmsg {
+	background:url(../images/popup_content_bg.jpg) repeat-y;
+	padding:20px 74px 20px 74px;
+	height: 200px;
+}
+
+
+
+
+#popup_forgotmsg p {
+	margin:0;
+	padding:0 0 5px 0;
+	width:400px;
+	text-align:left;
+	font-size: 11px;
+}
+
+#popup_forgotmsg_fieldbox {
+	margin:0;
+	width: 400px;
+	padding: 10px 0 25px 0;
+}
+
+#popup_forgotmsg_fieldbox .left {
+	float:left;
+	width:190px;
+	font-weight: bold;
+	margin: 0;
+	padding: 0;
+}
+
+#popup_forgotmsg_fieldbox .right {
+	float:right;
+	width:210px;
+	margin: 0;
+	padding: 0;
+}
+
+#popup_forgotmsg_fieldbox .clear {
+	clear:both;
+	margin:0;
+	padding:0;
+
+}
+
+
+#popup_forgotmsg_fieldbox .save_but {
+	padding:10px 0 0 190px;
+	margin: 0;
+	clear: both;
+	width: 210px;
+
+}
+
+.btn_submit {
+	background-image:url(../images/btn_starthere.jpg);
+	width:114px;
+	height:28px;
+	border: 0;
+	color: #FFFFFF;
+	font-weight: bold;
+	cursor: pointer;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+
+.error_msg {
+	padding:5px 0 0 190px;
+	color:#FF0000;
+	font-size: 10px;
+	
+}
+
+
+
+.emailfield {
+	width:200px;
+	margin: 0;
+	padding: 1px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 11px;
+	
+}
+
+#popup_forgotmsg .popup_forgotmsg_footer {
+	border-top:1px #999999 solid;
+	padding: 5px 0 0 0;
+	margin: 0;
+
+}
+
+
+
+/* -- Foooter -- */
+#popup_footer {
+	height:39px;
+	background:url(../images/popup_footer_bg.jpg) repeat-x;
+	clear: both;
+	
+}
+
+#popup_footer p {
+	padding:5px 0 0 0;
+	text-align:center;
+	color:#FFFFFF;
+	margin:0;
+	font-size:10px;
+}
