@@ -263,6 +263,11 @@ if ($queryMethod=="login") {
 	$productCode = substr($parseID, 0, 2);
 	$groupID = substr($parseID, 2, 3);	
 	$uniqueStudentID = $loginID;
+	if ($productCode == '52' || $productCode == '12'){
+		$programVersion = 'AC';
+	} else if ($productCode == '53' || $productCode == '13'){
+		$programVersion = 'GT';
+	}
 	
 	// Use LoginGateway to add this user.
 	$LoginAPI = array();
@@ -279,8 +284,9 @@ if ($queryMethod=="login") {
 		$LoginAPI['expiryDate'] = $expiryDate;
 	}
 	switch ($groupID) {
+		// Hong Kong
 		case '168':
-			$template = 'Welcome-BCHK-user';
+			$template = 'BCHK-welcome';
 			break;
 		default:
 			$template = 'Welcome-BC-user';
@@ -355,9 +361,12 @@ if ($queryMethod=="login") {
 			$errorCode = 1;
 		}
 		
-		// If you there are no errors, go to the program
+		// If there are no errors, go to the program
 		if ($errorCode == 0) {
-			$rc['redirect']="$thisDomain/area1/RoadToIELTS2/Start-$programVersion.php?prefix=$prefix";
+			if ($debugLog)
+				error_log("going to the program $programVersion for $prefix\n", 3, $debugFile);
+				
+			$rc['redirect']=$thisDomain."area1/RoadToIELTS2/Start-$programVersion.php?prefix=$prefix";
 			print json_encode($rc);
 			exit();
 		}

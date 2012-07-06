@@ -6,6 +6,8 @@
 	$commonDomain = 'http://www.roadtoielts.com/';*/
 	$dbHost = 102;
 
+	date_default_timezone_set("UTC");
+	
 	// you can set the expiry date to a fixed one, or a period from now
 	//$expiryDate = '2012-05-30';
 	$expiryDate = strftime('%Y-%m-%d %H:%M:%S', strtotime("+3 months"));

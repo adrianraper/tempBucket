@@ -40,73 +40,55 @@
 </head>
 
 <body>
+<div id="header">
+	<div id="userAdminBar"><a href="mailto:support@roadtoielts.com">Contact us</a></div>
+</div>
 
-<div class="container">
-	<div id="header">
-		<div id="header_banner"></div>	
-	</div>
-	<div id="container_login">	
-		<div id="container_login_left">
-			<!-- the action on the form is run by control.js -->
-			<form id="LoginForm" method="post" action="">          
-       	  <div id="table_mini_top"></div>
-            <div id="table_mini_title"></div>
-            <div id="table_mini_mid">
-           	  <p class="field_txt_login">Special last minute practice only for British Council <br />
-IELTS candidates!</p>
-                <div class="line_small"></div>
-            
-            	<p class="field_title">Login ID:</p>
-            	<div class="field_line">
-                	<input name="loginID" type="text" id="loginID" value="<?php echo $loginID ?>" class="field_reg"/>
-                    <div class="clear"></div>
-                </div>
-              <p class="field_txt_login">This is the ID given to you to start Road to IELTS.</p>
-                
-                <p class="field_txt_login_grey">It looks like this: 1280-8666-1111.</p>
-                
-          		<p class="field_title">Password:</p>
-            	<input name="userPassword" type="password" id="userPassword" value="" class="field_reg"/>
-        <p class="field_txt_login">&nbsp;&nbsp;
+<div id="container_login">
+<div id="container_left">
+	<div id="beforelogin_left">
+    </div>
+	<div id="beforelogin_mid">
+	<div id="login_details">
+    <div id="version_icon"></div>
+	<p class="login_title">Road to IELTS - Last Minute</p>
+	<p class="version_caption">Special last minute practice only for British Council IELTS candidates!</p>
+	<div class="horizontal_dotted_line"></div>
+
+	<!-- the action on the form is run by control.js -->
+	<form id="LoginForm" method="post" action="" style="margin:0; padding:0;">
+	
+	<!-- Login table Start -->
+	<ul>
+		<li>
+            <p class="login_label">Login ID :</p>
+            <p class="login_field"><input name="loginID" type="text" id="loginID" value="<?php echo $loginID ?>" size="32" class="field"/></p>
+            <p class="login_note">
+                <label for="loginID" id="loginIDNote" class="note">
+                      This is the ID given to you to start Road to IELTS.
+                      <br/><span class="grey">It looks like this: 1280-8666-1111.</span>
+				</label>
+			</p>
+		</li>
+        <li>
+            <p class="login_label">Password :</p>
+			<p class="login_field">
+				<input name="userPassword" type="password" id="userPassword" value="" size="32" class="field"/>
+			</p>
+        <p class="forgot_line">
 		<a href="#" onclick="JavaScript:forgotPassword();">Forgot your password?</a>
 	</p>
-                
-              <div class="clear"></div>
-	        <div class="btn_area">
-                    <input name="LoginSubmit" type="button" id="LoginSubmit" value="" class="btn_login"/>
-                    
-                  <div class="btn_comment">
-			<div id="responseMessage" class="form_ok"></div>
-
-                    
-                    <div class="clear"></div>
-                    
-                    
-                    
-                </div>
-            
-          </div>
-            <div id="table_mini_upgrade"></div>
-        
-				</form>
-			</div>
-	
+		</li>
+		<div class="complete_login">
+		<input name="LoginSubmit" type="submit" id="LoginSubmit" value="" class="button_login"/>
 		</div>
-		<div id="container_login_right">
-			<a id="btn_fb" href="http://www.facebook.com/PractiseforIELTS" target="_blank"></a>
-			<a id="btn_contact_login" href="#"></a>
-		</div>
-		<div class="clear"></div>
+		<div class="complete_login"></div>
+		<div id="responseMessage" class="note"></div>
+	</ul>
+	</form>
+	<!-- Login table End -->
 	</div>
-	<div id="footer">
-		<div class="container">
-			<div class="icon_bc"></div>
-			<div class="icon_clarity"></div>
-			<div class="txt_area">
-	Data &copy; The British Council 2006 - 2012. Software &copy; Clarity Language Consultants Ltd, 2012. All rights reserved.</div>
-			<div class="clear"></div>
-		</div>
-	</div>
+</div>
 </div>
 
 <!-- These blocks are used for error messages in jQuery blockUI -->
@@ -157,6 +139,8 @@ IELTS candidates!</p>
 	<p>If you would like to subscribe to a full version of Road to IELTS, please visit <a href="http://www.ieltspractice.com" target="_blank">www.ieltspractice.com</a> or send an email to support@roadtoielts.com.</p>
 	<input type="button" id="mOK" value="OK" />
 </div>
-
+</div>
+<div id="container_right"></div>
+</div>
 </body>
 </html>

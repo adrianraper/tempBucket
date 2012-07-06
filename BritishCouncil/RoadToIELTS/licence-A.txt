@@ -1,0 +1,18 @@
+[Clarity Language Consultants Ltd licence]
+Product=Road to IELTS
+Branding=BC/IELTS/Academic
+Product type=Full
+Licence file version=4.0
+Serial number=6677-4301-7712
+Institution name=The British Council
+Installation date=2009-03-20
+Registration date=2009-03-20
+Student expiry=2012-12-31
+Maximum student=999999
+Maximum teacher=1
+Licencing=Tracked
+Allowed actions=autoRegister,validatedLogin
+Central root=101
+Registration server=www.AuthorPlus.com/register/register.asp
+Verification server=www.clarity.com.hk/verify/verify.asp
+CheckSum=8a9f49068957d61500aea4711d8294ef

@@ -8,7 +8,6 @@ $(function() {
 		var studentID = $("input#loginID").val();
 		if (studentID == "") {
 			seemsOK = false;
-			$("label#loginIDNote").show();
 			$("input#loginID").focus();
 		}
 		
@@ -32,15 +31,16 @@ $(function() {
 		// call the database processing script
 		new jQuery.ajax({ type: 'POST', 
 						url: "action.php",
-						success:  onAjaxSuccess,
 						data: formData,
 						dataType: "json",
+						success:  onAjaxSuccess,
 						error: onAjaxError});
 
 		return false;
 	};
 
 	onAjaxSuccess = function(data, textStatus) {
+
 		$("input#LoginSubmit").show();
 		$("div#responseMessage").text("");
 		$.unblockUI();

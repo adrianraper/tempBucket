@@ -2,6 +2,7 @@ $(function() {
 
 	// Form validation 
 	$("input#RegisterSubmit").click(function() {
+		$('.note').hide();
 		seemsOK = true;
 		// Check if the password and confirmed password are the same
 		var password = $("input#password").val();
@@ -9,7 +10,7 @@ $(function() {
 		if (password != password1) {
 			seemsOK = false;
 			$("label#passwordNote").show();
-			$("input#password").focus();
+			$("input#password1").focus();
 		}
 		var name = $("input#learnerName").val();
 		if (name == "") {
@@ -27,7 +28,7 @@ $(function() {
 		if (email == "") {
 			seemsOK = false;
 			$("label#emailNote").show();
-			$("input#emailValue").focus();
+			$("input#email").focus();
 		}
 		// If the expiry date is empty, we will just give a 3month subscription
 		
@@ -38,14 +39,15 @@ $(function() {
 			return false;
 		}
 	});
-	$("input#clearFields").click(function() {
+	$("input#ClearFields").click(function() {
 		clearAllFields();
 	});
 
 	clearAllFields = function() {
-		$('.note').show();
+		$('.note').hide();
 		$("input#learnerName").val("");
-		$("input#loginID").val("");
+		$("input#password").val("");
+		$("input#password1").val("");
 		$("input#email").val("");
 		// $('#examDate').dpDisplay();
 	};
@@ -55,24 +57,25 @@ $(function() {
 		// block the button to avoid double clicking
 		$("input#RegisterSubmit").hide();
 		
-		var formData = "method=addNewUser&" + $("form#RegisterForm").serialize();
-		$("div#responseMessage").show();
-		$("div#responseMessage").text("Please wait while your details are registered...");
-		
+		var formData = "method=addNewUser&" + $("form#RegisterForm").serialize() + "&expiryDate=" + $("input#expiryDate").val();
+		//$("div#responseMessage").show();
+		//$("div#responseMessage").text("Please wait while your details are registered...");
+		$.blockUI({ message:'Please wait while your details are registered...' });
+
 		// call the database processing script
 		new jQuery.ajax({ type: 'POST', 
 						url: "action.php",
-						success:  onAjaxSuccess,
 						data: formData,
 						dataType: "json",
+						success:  onAjaxSuccess,
 						error: onAjaxError});
-
+						
 		return false;
 	};
 
 	onAjaxSuccess = function(data, textStatus) {
 		$("input#RegisterSubmit").show();
-		$("div#responseMessage").text("");
+		//$("div#responseMessage").text("");
 		$.unblockUI();
 		
 		// We might have an error
