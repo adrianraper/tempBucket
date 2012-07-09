@@ -13,6 +13,7 @@
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import mx.collections.ArrayCollection;
 	import mx.core.mx_internal;
 	
 	import org.davekeen.util.Closure;
@@ -73,6 +74,9 @@
 			view.href = bentoProxy.menuXHTML.href;
 			
 			view.isMediated = true; // #222
+					
+			//Alice: automatic multiple channel
+			view.channelcollection.source=configProxy.getConfig().channelArray;
 		}
 		
 		override public function onRemove():void {
@@ -181,8 +185,27 @@
 			var dynamicList:XML = new XML(e.target.data);
 			
 			// #335
+			/*var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var channelName:String = configProxy.getConfig().mediaChannel;*/
+
+			
+			//Alice: multiple channel
+			var channelName:String;
+			var streamName:String;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var channelName:String = configProxy.getConfig().mediaChannel;
+			
+			if(view.questionZoneChannelButtonBar.selectedItem==null){
+				channelName=view.adviceZoneChannelButtonBar.selectedItem.name;
+				streamName=view.adviceZoneChannelButtonBar.selectedItem.streamName;
+			    //configProxy.getConfig().channelchoice=channelName;
+				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
+			}else{
+				channelName=view.questionZoneChannelButtonBar.selectedItem.name;
+				streamName=view.questionZoneChannelButtonBar.selectedItem.streamName;
+				//configProxy.getConfig().channelchoice=channelName;
+				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
+			}
+
 			
 			// To cope with original format files
 			if (dynamicList.channel.hasOwnProperty("@name")) {
@@ -195,10 +218,15 @@
 			var host:String = channel.host.toString();
 			
 			// Replace any virtual paths
-			if (host.indexOf('{streamingMedia}') >= 0) 
+			/*if (host.indexOf('{streamingMedia}') >= 0) 
 				host = host.replace("{streamingMedia}", configProxy.getConfig().streamingMedia);
 			if (host.indexOf('{contentPath}') >= 0) 
-				host = host.replace("{contentPath}", configProxy.getContentPath());	
+				host = host.replace("{contentPath}", configProxy.getContentPath());*/
+			
+			if (host.indexOf('{streamingMedia}') >= 0) 
+				host = host.replace("{streamingMedia}", streamName);
+			if (host.indexOf('{contentPath}') >= 0) 
+				host = host.replace("{contentPath}", configProxy.getContentPath());
 			
 			if (protocol == "rtmp") {
 				var server:String = channel.server.toString();
@@ -219,7 +247,8 @@
 				
 			// Rackspace's pseudo streaming over http
 			} else if (protocol == "http") {
-				videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
+				//videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
+				videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
 				videoPlayer.callLater(videoPlayer.play);
 				
 			// Vimeo's progressive download

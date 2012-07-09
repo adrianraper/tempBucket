@@ -59,6 +59,8 @@ package com.clarityenglish.common.vo.config {
 		// #335
 		public var streamingMedia:String;
 		public var mediaChannel:String;
+;
+		public var channelArray:Array=[];
 		
 		// #336
 		public var scorm:Boolean;
@@ -236,11 +238,22 @@ package com.clarityenglish.common.vo.config {
 				this.paths.menuFilename = "menu.xml";
 			}
 			
+			//Alice:automatic multiple channel
+			for each (var channel:XML in xml..channel){			
+				var choiceChannel:ChannelObject=new ChannelObject;
+				choiceChannel.name=channel.@name.toString();
+				choiceChannel.caption=channel.@caption.toString();
+				choiceChannel.streamName=channel.streamingMedia.toString();
+				channelArray.push(choiceChannel);
+			}
+			this.channelArray=channelArray;
+			
 			// #335
 			if (xml..streamingMedia.toString()) this.streamingMedia = xml..streamingMedia.toString();
+
 			if (xml..mediaChannel.toString()) {
 				this.mediaChannel = xml..mediaChannel.toString();
-			} else {
+			}else {
 				// TODO: It would be better to build a preference system into the .rss files
 				this.mediaChannel = 'vimeo';
 			}

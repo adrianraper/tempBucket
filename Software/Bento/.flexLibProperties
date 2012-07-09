@@ -126,6 +126,7 @@
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.IExerciseView"/>
     <classEntry path="com.clarityenglish.alivepdf.pdf.PDF"/>
     <classEntry path="com.pipwerks.SCORM"/>
+    <classEntry path="com.clarityenglish.common.vo.config.ChannelObject"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
