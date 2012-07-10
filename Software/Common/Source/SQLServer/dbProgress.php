@@ -21,7 +21,7 @@ class PROGRESS {
 		33	=>	array('name' => "Active Reading", 'place' => "ActiveReading"),
 		34	=>	array('name' => "Peacekeeper", 'place' => "Peacekeeper"),
 		35	=>	array('name' => "Call Center Communication Skills", 'place' => "CCCS"),
-		37	=>	array('name' => "Clarity English Success", 'place' => "CSCS"),
+		37	=>	array('name' => "Clarity English Success", 'place' => "ClarityEnglishSuccess"),
 		38	=>	array('name' => "It's Your Job, Practice Centre", 'place' => "ItsYourJob"),
 		39	=>	array('name' => "Clear Pronunciation", 'place' => "ClearPronunciation"),
 		40	=>	array('name' => "English for Hotel Staff", 'place' => "EnglishForHotelStaff"),
@@ -3725,6 +3725,7 @@ EOD;
 			$rs = $db->Execute($sql, $bindingParams);
 		}
 
+		// v6.6 Don't update anything - the database is more likely to be right than this class
 		// Now for T_ProductLanguage
 		$chkParams = array($productCode, $languageCode);
 		$chhSQL = <<<EOD
@@ -3734,37 +3735,41 @@ EOD;
 		$rs = $db->Execute($chhSQL, $chkParams);
 		$bindingParams = array($contentFolder, $productCode, $languageCode);
 		if($rs->RecordCount() >= 1)  { // account exists already
+		/*
 			$sql = <<<EOD
 				UPDATE T_ProductLanguage
 				SET F_ContentLocation=?
 				WHERE F_ProductCode=? AND F_LanguageCode=?
 EOD;
+		*/
 		} else { // insert new record
 			$sql = <<<EOD
 				INSERT INTO T_ProductLanguage (F_ContentLocation, F_ProductCode, F_LanguageCode)
 				VALUES (?, ?, ?)
 EOD;
+			$rs = $db->Execute($sql, $bindingParams);
 		}
-		$rs = $db->Execute($sql, $bindingParams);
 		if ($productCode==38) {
 			$productCode2 = 1001;
 			$chkParams = array($productCode2);
 			$rs = $db->Execute($chhSQL, $chkParams);
 			if($rs->RecordCount() >= 1)  { // accounts exist already
+			/*
 				$bindingParams = array($contentFolder, $productCode2,$languageCode);
 				$sql = <<<EOD
 					UPDATE T_ProductLanguage
 					SET F_ContentLocation=?
 					WHERE F_ProductCode=? AND F_LanguageCode=?
 EOD;
+			*/
 			}else{
 				$bindingParams = array($productCode2, $languageCode, $contentFolder);
 				$sql = <<<EOD
 					INSERT INTO T_ProductLanguage(F_ProductCode, F_LanguageCode, F_ContentLocation)
 					VALUES (?, ?, ?)
 EOD;
+				$rs = $db->Execute($sql, $bindingParams);
 			}
-			$rs = $db->Execute($sql, $bindingParams);
 		}
 		if (!$rs) {
 			return false;

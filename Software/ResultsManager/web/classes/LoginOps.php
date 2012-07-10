@@ -7,9 +7,19 @@ class LoginOps {
 	function LoginOps($db) {
 		$this->db = $db;
 		
-		$this->copyOps = new CopyOps($db);
+		$this->copyOps = new CopyOps();
 		$this->manageableOps = new ManageableOps($db);
 		$this->accountOps = new AccountOps($db);
+	}
+	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+		$this->accountOps->changeDB($db);
+		$this->manageableOps->changeDB($db);
 	}
 	
 	// Bento login has different options than RM
@@ -103,12 +113,12 @@ EOD;
 				// Check if the user has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
 				// AR Some users have NULL expiry date, so this will throw an exception, so add an extra condition to test for this
 				// Also, you can't use strtotime on this date format if year > 2038
-				if ($loginObj->UserExpiryDate && ($loginObj->UserExpiryDate > '2038')) $loginObj->UserExpiryDate = '2038-01-01';
-				if ($loginObj->UserExpiryDate && 
-						(strtotime($loginObj->UserExpiryDate) > 0) && 
-						(strtotime($loginObj->UserExpiryDate) < strtotime(date("Y-m-d")))) {
+				if ($loginObj->F_ExpiryDate && ($loginObj->F_ExpiryDate > '2038')) $loginObj->F_ExpiryDate = '2038-01-01';
+				if ($loginObj->F_ExpiryDate && 
+						(strtotime($loginObj->F_ExpiryDate) > 0) && 
+						(strtotime($loginObj->F_ExpiryDate) < strtotime(date("Y-m-d")))) {
 					
-					throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($loginObj->UserExpiryDate))));
+					throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($loginObj->F_ExpiryDate))));
 				}
 				
 				// Authenticate the user with the session

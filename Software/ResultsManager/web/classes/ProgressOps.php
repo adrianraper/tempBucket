@@ -6,7 +6,15 @@ class ProgressOps {
 	
 	function ProgressOps($db) {
 		$this->db = $db;
-		$this->copyOps = new CopyOps($db);
+		$this->copyOps = new CopyOps();
+	}
+	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
 	}
 	
 	/**
@@ -208,7 +216,7 @@ insert into T_Score values
 				$node[$attributeName] |= intval($attributeValue);
 			}
 		} else {
-			// If there was no attribute already, ignore negative values
+			// #351 If there was no attribute already, ignore negative values
 			if ($attributeValue >= 0)
 				$node->addAttribute($attributeName, intval($attributeValue));
 		}

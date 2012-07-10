@@ -3,11 +3,20 @@ require_once(dirname(__FILE__)."/ReportBuilder.php");
 require_once(dirname(__FILE__)."/ContentOps.php");
 
 class ReportOps {
+	
 	var $db;
 	
 	var $contentMap;
 	
 	function ReportOps($db) {
+		$this->db = $db;
+	}
+
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
 		$this->db = $db;
 	}
 	

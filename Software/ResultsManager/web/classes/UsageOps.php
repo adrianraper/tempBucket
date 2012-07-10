@@ -6,7 +6,16 @@ class UsageOps {
 
 	function UsageOps($db) {
 		$this->db = $db;
-		$this->licenceOps = new LicenceOps($this->db);
+		$this->licenceOps = new LicenceOps($db);
+	}
+	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+		$this->licenceOps->changeDB($db);
 	}
 	
 	function getUsageForTitle($title, $fromDate, $toDate) {

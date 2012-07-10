@@ -8,6 +8,14 @@ class InternalQueryOps {
 		$this->db = $db;
 	}
 	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+	}
+	
 	function findEmail($email) {
 		// Given an email, find it for a user and the linked root
 		$sql = <<<SQL

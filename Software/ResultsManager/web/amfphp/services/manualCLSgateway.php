@@ -34,7 +34,7 @@ function loadAPIInformation() {
 	 * If you are creating an account from scratch, use the the following input. 
 	 * EmailTemplateID, paymentMethod andloginOption all need to be sent, you are unlikely to need to change them.
 	 */
-	$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.23@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
+	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.23@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 

@@ -41,10 +41,8 @@ class AbstractService {
 		//$this->db = &ADONewConnection($GLOBALS['db']);
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
-		if ($GLOBALS['dbms'] == 'mysql') {
+		if ($GLOBALS['dbms'] == 'mysql') 
 			$charSetRC = mysql_set_charset('utf8');
-			//echo 'charSet='.$charSetRC;
-		}
 		
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
 		

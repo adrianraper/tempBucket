@@ -70,7 +70,7 @@ class BentoService extends AbstractService {
 		// Create the operation classes
 		$this->accountOps = new AccountOps($this->db);
 		$this->loginOps = new LoginOps($this->db);
-		$this->copyOps = new CopyOps($this->db);
+		$this->copyOps = new CopyOps();
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
@@ -92,10 +92,16 @@ class BentoService extends AbstractService {
 	 * @return error - Error object if required 
 	 */
 	public function getAccountSettings($config) {
-		/*if (isset($config->dbHost)) {
-			$_SESSION['dbHost'] = $config->dbHost;
-			configureGlobalDatabaseVars($config->dbHost);
-		}*/
+		
+		// #353 This first call might change the dbHost that the session uses
+		if (isset($config->dbHost)) {
+			if ($GLOBALS['dbHost'] != $config->dbHost) {
+				$_SESSION['dbHost'] = $config->dbHost;
+				$this->changeDbHost($config->dbHost);
+				$this->loginOps->changeDB($this->db);
+				$this->manageableOps->changeDB($this->db);
+			}
+		}
 		
 		$account = $this->loginOps->getAccountSettings($config);
 		

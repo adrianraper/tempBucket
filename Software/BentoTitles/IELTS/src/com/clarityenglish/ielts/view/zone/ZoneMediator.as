@@ -187,33 +187,35 @@
 			// #335
 			/*var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var channelName:String = configProxy.getConfig().mediaChannel;*/
-
 			
 			//Alice: multiple channel
 			var channelName:String;
 			var streamName:String;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			if(view.questionZoneChannelButtonBar.selectedItem==null){
-				channelName=view.adviceZoneChannelButtonBar.selectedItem.name;
-				streamName=view.adviceZoneChannelButtonBar.selectedItem.streamName;
+			if (view.questionZoneChannelButtonBar.selectedItem == null) {
+				channelName = view.adviceZoneChannelButtonBar.selectedItem.name;
+				streamName = view.adviceZoneChannelButtonBar.selectedItem.streamName;
 			    //configProxy.getConfig().channelchoice=channelName;
 				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
-			}else{
-				channelName=view.questionZoneChannelButtonBar.selectedItem.name;
-				streamName=view.questionZoneChannelButtonBar.selectedItem.streamName;
+				
+			} else {
+				channelName = view.questionZoneChannelButtonBar.selectedItem.name;
+				streamName = view.questionZoneChannelButtonBar.selectedItem.streamName;
 				//configProxy.getConfig().channelchoice=channelName;
-				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
+				view.choice = view.adviceZoneChannelButtonBar.selectedIndex;
+				
 			}
-
 			
 			// To cope with original format files
 			if (dynamicList.channel.hasOwnProperty("@name")) {
-				var channel:XML = dynamicList.channel.(@name==channelName)[0];
+				var channel:XML = dynamicList.channel.(@name == channelName)[0];
 				var protocol:String = channel.@protocol.toString();
+				
 			} else {
 				channel = dynamicList.channel[0];
 				protocol = channel.streaming.toString();
+				
 			}
 			var host:String = channel.host.toString();
 			

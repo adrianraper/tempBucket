@@ -5,11 +5,18 @@ class TriggerOps {
 
 	function TriggerOps($db) {
 		$this->db = $db;
-		//$this->copyOps = new CopyOps();
-		// Is it acceptable to do this here? Any kind of duplication?"
 		$this->accountOps = new AccountOps($this->db);
 	}
 	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+		$this->accountOps->changeDB($db);
+	}
+		
 	/**
 	 * Get the triggers.  
 	 * If $triggerIDArray is specified then only get those triggers, otherwise get them all.

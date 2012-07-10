@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Your Clarity trial is about to expire</title>
 	<!-- <from>%22Clarity English%22 %3Cnicole.lung@clarityenglish.com%3E</from> -->
-	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
+	<!-- <bcc>admin@clarityenglish.com</bcc> -->
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:10px 0 0 0; padding:0; color:#000000;">
 <div style="width:600px; margin:0 auto; padding:0;">

@@ -78,7 +78,6 @@ pipwerks.SCORM.API.find = function(win){
         trace = pipwerks.UTILS.trace,
         scorm = pipwerks.SCORM;
 
-    //trace("win.name: "+win.name);
     while ((!win.API && !win.API_1484_11) &&
            (win.parent) &&
            (win.parent != win) &&
@@ -86,10 +85,8 @@ pipwerks.SCORM.API.find = function(win){
 
                 findAttempts++;
                 win = win.parent;
-               // trace("win: "+win);
 
     }
-    //trace("win.API: "+win.API);
 
     /*
      * Clarity. This stops the findAPI working. 
@@ -98,7 +95,6 @@ pipwerks.SCORM.API.find = function(win){
     
     //If SCORM version is specified by user, look for specific API
     if(scorm.version){
-        trace("looking for specific version " + scorm.version);
 
         switch(scorm.version){
 
@@ -135,13 +131,11 @@ pipwerks.SCORM.API.find = function(win){
     } else {                             //If SCORM version not specified by user, look for APIs
 	*/
     if(win.API_1484_11) {            //SCORM 2004-specific API.
-    	//trace("really got win.API_1484");
 
         scorm.version = "2004";      //Set version
         API = win.API_1484_11;
 
     } else if(win.API){              //SCORM 1.2-specific API
-    	//trace("really got win.API");
         scorm.version = "1.2";       //Set version
         API = win.API;
 

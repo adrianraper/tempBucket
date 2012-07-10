@@ -497,7 +497,7 @@ EOD;
 	public function sendUserEmail($user, $apiInformation, $send=true) {
 		$templateID = $apiInformation->emailTemplateID;
 		$userEmail = $user->email;
-		$emailData = array("user" => $user, "api"=>$apiInformation);
+		$emailData = array("user" => $user, "api" => $apiInformation);
 		$emailArray = array("to" => $userEmail, "data" => $emailData);
 						
 		// Check that the template exists

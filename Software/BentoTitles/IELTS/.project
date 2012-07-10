@@ -57,5 +57,10 @@
 			<type>2</type>
 			<location>D:/Projectbench/Release</location>
 		</link>
+		<link>
+			<name>bin-release2</name>
+			<type>2</type>
+			<location>D:/ProjectBench/release</location>
+		</link>
 	</linkedResources>
 </projectDescription>
