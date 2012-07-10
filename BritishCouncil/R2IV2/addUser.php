@@ -23,20 +23,22 @@ function redirect ($url) {
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/jquery-1.3.2.min.js"></script>
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/jquery-ui-1.7.custom.min.js"></script>
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/ui/ui.core.js"></script>
-<script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/jquery-ui-datePicker-2.1.2.js"></script>
+<script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/jquery.ui.datepicker.js"></script>
 <script type="text/javascript" src="<?php echo $commonDomain ?>Software/Common/jQuery/js/blockUI-2.js"></script>
 <script type="text/javascript" src="addUserControl.js"></script>
 <script type="text/javascript" >
 $(document).ready(function(){
 	$('.note').hide();
-	$( "#expiryDate" ).datepicker({
+	$( "#datepicker_start" ).datepicker({
+	altField: '#datepicker_send',
 		dateFormat: "yy-mm-dd",
-		showOn: "button",
-		buttonImage: "images/calendar.gif",
-		buttonImageOnly: true,
+
 		maxDate: "+3M",
 		minDate: -0	
 	});
+	
+
+	
 });
 </script>
 </head>
@@ -60,13 +62,13 @@ $(document).ready(function(){
   
             
              <div class="line_big">
-             	<a id="btn_contact_details" href="#"></a>             </div>
+             	<a id="btn_contact_details" href="mailto:support@roadtoielts.com?subject=Road to IELTS enquiry"></a>             </div>
              
              <div id="container_details_left">
              
                <div class="field_line">
                  <p class="field_title">Login ID:</p>
-			<input type="text" name="loginID" id="loginID" size="25" value="<?php echo $loginID; ?>" class="field_txt_login_id" readonly="readonly" />
+			<input type="text" name="loginID" id="loginID" size="25" value="<?php echo $loginID; ?>" class="field_reg" readonly="readonly" />
                      <p class="field_txt_tips">(Always use this ID to login.)</p>
                      <div class="clear"></div>
                  </div>
@@ -113,8 +115,16 @@ $(document).ready(function(){
              </div>
              
 		<div id="container_details_right">
-			<p class="field_txt_login">Please select your test date:</p>
-			<input type="text" name="expiryDate" id="expiryDate" readonly="readonly" />
+			<p class="field_title">Please select your test date:</p>
+			<!--<input type="text" name="expiryDate" id="datepicker" readonly="readonly" />-->
+            
+             <input type="text" id="datepicker_send" name="expiryDate" readonly="readonly" />
+            <div id="datepicker_start"></div>
+           
+
+       <div id="datepicker"></div>
+       
+       
 		</div>
 		<div class="clear"></div>
       </div>

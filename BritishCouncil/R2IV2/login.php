@@ -52,7 +52,7 @@
        	  <div id="table_mini_top"></div>
             <div id="table_mini_title"></div>
             <div id="table_mini_mid">
-           	  <p class="field_txt_login">Special last minute practice only for British Council <br />
+               		<p class="field_txt_login">Special last minute practice only for British Council <br /> IELTS candidates!</p>
 IELTS candidates!</p>
                 <div class="line_small"></div>
             
@@ -86,15 +86,15 @@ IELTS candidates!</p>
                 </div>
             
           </div>
-            <div id="table_mini_upgrade"></div>
-        
-				</form>
+            <div id="table_mini_upgrade">
+            	<a href="http://www.ieltspractice.com?utm_source=RTIcom&utm_medium=Btn_upgrade" target="_blank"></a>
 			</div>
+				</form>
 	
 		</div>
 		<div id="container_login_right">
 			<a id="btn_fb" href="http://www.facebook.com/PractiseforIELTS" target="_blank"></a>
-			<a id="btn_contact_login" href="#"></a>
+			<a id="btn_contact_login" href="mailto:support@roadtoielts.com?subject=Road to IELTS enquiry"></a>
 		</div>
 		<div class="clear"></div>
 	</div>

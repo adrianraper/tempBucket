@@ -50,7 +50,7 @@ function Datepicker() {
 		monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'], // For formatting
 		dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'], // For formatting
 		dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // For formatting
-		dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'], // Column headings for days starting at Sunday
+		dayNamesMin: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'], // Column headings for days starting at Sunday
 		weekHeader: 'Wk', // Column header for week of the year
 		dateFormat: 'dd-M-yy', // See format options on parseDate
 		firstDay: 0, // The first day of the week, Sun = 0, Mon = 1, ...
@@ -66,10 +66,10 @@ function Datepicker() {
 		defaultDate: null, // Used when field is blank: actual date,
 			// +/-number for offset from today, null for today
 		appendText: '', // Display text following the input box, e.g. showing the format
-		buttonText: '...', // Text for trigger button
+		buttonText: 'Click and select', // Text for trigger button
 		buttonImage: '', // URL for trigger button image
 		buttonImageOnly: false, // True if the image appears alone, false if it appears on a button
-		hideIfNoPrevNext: false, // True to hide next/previous month links
+		hideIfNoPrevNext: true, // True to hide next/previous month links
 			// if not applicable, false to just disable them
 		navigationAsDateFormat: false, // True if date formatting applied to prev/today/next links
 		gotoCurrent: false, // True if today link goes back to current selection instead

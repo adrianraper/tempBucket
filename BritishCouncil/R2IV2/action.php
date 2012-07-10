@@ -286,7 +286,7 @@ if ($queryMethod=="login") {
 	switch ($groupID) {
 		// Hong Kong
 		case '168':
-			$template = 'BCHK-welcome';
+			$template = 'Welcome-BCHK-user';
 			break;
 		default:
 			$template = 'Welcome-BC-user';
