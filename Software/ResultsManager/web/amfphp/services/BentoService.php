@@ -94,14 +94,8 @@ class BentoService extends AbstractService {
 	public function getAccountSettings($config) {
 		
 		// #353 This first call might change the dbHost that the session uses
-		if (isset($config->dbHost)) {
-			if ($GLOBALS['dbHost'] != $config->dbHost) {
-				$_SESSION['dbHost'] = $config->dbHost;
-				$this->changeDbHost($config->dbHost);
-				$this->loginOps->changeDB($this->db);
-				$this->manageableOps->changeDB($this->db);
-			}
-		}
+		if (isset($config['dbHost']))
+			$this->initDbHost($config['dbHost']);
 		
 		$account = $this->loginOps->getAccountSettings($config);
 		
@@ -127,6 +121,28 @@ class BentoService extends AbstractService {
 					 "licence" => $licence,
 					 "group" => $group,
 					 "account" => $account);
+	}
+	
+	/**
+	 * This function should be called by the first call you make to this service to set the dbHost
+	 * 
+	 */
+	private function initDbHost($dbHost) {
+		if ($GLOBALS['dbHost'] != $dbHost) {
+				
+			// Set session variable so that next time config.php is called it will use this dbHost
+			// Which should mean that you only need to pick up dbHost for the first call to a service
+			// But it would be much better if I could pass dbHost direct to the service so it simply
+			// did this check in the constructor.
+			$_SESSION['dbHost'] = $dbHost;
+			
+			// Use AbstractService
+			$this->changeDbHost($dbHost);
+			
+			// Just need to change the db for Ops that you use in the first call
+			$this->loginOps->changeDB($this->db);
+			$this->manageableOps->changeDB($this->db);
+		}
 	}
 	
 	// Rewritten from RM version

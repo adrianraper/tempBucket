@@ -26,7 +26,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup 2", "name":"Kima 130","studentID":"winhoe 130", "teacherName":"jessie_teacher", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8123-4567","name":"heston bloom","password":"1234","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-10-04 03:14:24","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
-	//$inputData = '{"method":"getUser","studentID":"5216-8123-4567","groupID":"168","dbHost":102,"loginOption":2}';
+	$inputData = '{"method":"getUser","studentID":"5216-8123-4567","groupID":"168","dbHost":1,"loginOption":2}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
@@ -64,7 +64,7 @@ function returnError($errCode, $data = null) {
 			$apiReturnInfo['message'] = 'This is the wrong password for account '.$data;
 			break;
 		case 252:
-			$apiReturnInfo['message'] = 'Group not found '.$data .' api.dbHost='.$apiInformation->dbHost.' db='.$GLOBALS['db'];
+			$apiReturnInfo['message'] = 'Group not found '.$data;
 			break;
 		default:
 			$apiReturnInfo['message'] = 'Unknown error';
@@ -76,6 +76,9 @@ function returnError($errCode, $data = null) {
 	//	$logMessage.= ' orderRef='.$apiInformation->orderRef;
 	//}
 	AbstractService::$debugLog->err($logMessage);
+	
+	$apiReturnInfo['dsn'] = $GLOBALS['db'];
+	$apiReturnInfo['dbHost'] = $GLOBALS['dbHost'];
 
 	echo json_encode($apiReturnInfo);
 	exit(0);
@@ -92,9 +95,8 @@ try {
 	//echo "loaded API";
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
-	if ($GLOBALS['dbHost'] != $apiInformation->dbHost) {
+	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
 		$loginService->changeDb($apiInformation->dbHost);
-	}
 	
 	switch ($apiInformation->method) {
 		case 'forgotPassword':

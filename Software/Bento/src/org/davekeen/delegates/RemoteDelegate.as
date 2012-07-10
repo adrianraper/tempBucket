@@ -60,7 +60,6 @@ package org.davekeen.delegates {
 		public static function setService(s:String):void {
 			service = s;
 		}
-		
 		public function setOperationName(operationName:String):void {
 			this.operationName = operationName;
 		}

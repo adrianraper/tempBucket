@@ -53,6 +53,7 @@ class LoginService extends AbstractService {
 	
 	public function changeDB($dbHost) {
 		$this->changeDbHost($dbHost);
+		
 		$this->manageableOps->changeDB($this->db);
 		$this->subscriptionOps->changeDB($this->db);
 		$this->accountOps->changeDB($this->db);
