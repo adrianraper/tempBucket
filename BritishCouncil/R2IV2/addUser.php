@@ -30,14 +30,12 @@ function redirect ($url) {
 $(document).ready(function(){
 	$('.note').hide();
 	$( "#datepicker_start" ).datepicker({
-	altField: '#datepicker_send',
+	altField: '#expiryDate',
 		dateFormat: "yy-mm-dd",
-
+		defaultDate: "+1M",
 		maxDate: "+3M",
 		minDate: -0	
 	});
-	
-
 	
 });
 </script>
@@ -118,7 +116,7 @@ $(document).ready(function(){
 			<p class="field_title">Please select your test date:</p>
 			<!--<input type="text" name="expiryDate" id="datepicker" readonly="readonly" />-->
             
-             <input type="text" id="datepicker_send" name="expiryDate" readonly="readonly" />
+             <input type="text" id="expiryDate" name="expiryDate" readonly="readonly" />
             <div id="datepicker_start"></div>
            
 
@@ -136,18 +134,23 @@ $(document).ready(function(){
     
 </div>
 
-<div id="footer">
-	<div class="container">
-    	<div class="icon_bc"></div>
-            <div class="icon_clarity"></div>
-            <div class="txt_area">
-Data &copy; The British Council 2006 - 2012. Software &copy; Clarity Language Consultants Ltd, 2012. All rights reserved.</div>
-            <div class="clear"></div>
-    
-    </div>
+	<div id="footer">
+		<div class="container">
+			<div class="icon_bc"></div>
+			<div class="icon_clarity"></div>
+			<div class="txt_area">
+			Data &copy; The British Council 2006 - 2012. Software &copy; Clarity Language Consultants Ltd, 2012. All rights reserved.</div>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+<div id="unexpected" style="display:none; cursor:default">
+	<h1>Error</h1>
+	<p>Sorry, a problem has happened whilst trying to register you.</p>
+	<p>Please email us at support@roadtoielts.com with your login ID and let us know the error message below this.</p>
+	<p id="errorMessage"></p>
+	<input type="button" id="mOK" value="OK" />
 </div>
 
-
-</div>
 </body>
 </html>

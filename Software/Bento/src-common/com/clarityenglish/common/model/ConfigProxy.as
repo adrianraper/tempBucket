@@ -240,10 +240,12 @@ package com.clarityenglish.common.model {
 				(config.username && (loginOption & Config.LOGIN_BY_NAME_AND_ID)) ||
 				(config.studentID && (loginOption & Config.LOGIN_BY_ID)) || 
 				(config.email && (loginOption & Config.LOGIN_BY_EMAIL))) {
+				trace("direct start from config, studentID=" + config.studentID + " loginOption=" + loginOption);
+				
 				configUser = new User({name:config.username, studentID:config.studentID, email:config.email, password:config.password});
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
-
+			
 			// Anonymous login
 			// Demo login will normally use AA licence type
 			if (config.licenceType == Title.LICENCE_TYPE_AA) 

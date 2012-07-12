@@ -58,10 +58,10 @@ $(function() {
 		$("input#RegisterSubmit").hide();
 		
 		var formData = "method=addNewUser&" + $("form#RegisterForm").serialize() + "&expiryDate=" + $("input#expiryDate").val();
-		//$("div#responseMessage").show();
-		//$("div#responseMessage").text("Please wait while your details are registered...");
+		$("div#responseMessage").show();
+		$("div#responseMessage").text("");
 		$.blockUI({ message:'Please wait while your details are registered...' });
-
+		
 		// call the database processing script
 		new jQuery.ajax({ type: 'POST', 
 						url: "action.php",
@@ -82,13 +82,10 @@ $(function() {
 		if (data.error) {
 			$(".button").show();
 			
-			$("div#responseMessage").show();
-			$("div#responseMessage").text(data.message + ", error=" + data.error);
+			$("p#errorMessage").text(data.message + ", error=" + data.error);
 			switch (data.error) {
 				case 201:
 				case 202:
-					var errorID = 'invalidIDorPassword';
-					break;
 				default:
 					errorID = 'unexpected';
 					break;
@@ -107,6 +104,7 @@ $(function() {
 			
 		// Anything else is unexpected
 		} else {
+			$("p#errorMessage").text(data.message + ", error=" + data.error);
 			errorID = 'unexpected';
 			$.blockUI({ message: $('div#' + errorID).html() });
 			$('input#mOK').click(function() { 

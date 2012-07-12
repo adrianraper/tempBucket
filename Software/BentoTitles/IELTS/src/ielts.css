@@ -107,6 +107,7 @@ title|TitleView #navBar s|ButtonBarButton {
 	
 }
 
+/* #337
 title|UpgradeView {
 	skinClass: ClassReference("skins.ielts.title.UpgradeSkin");
 }
@@ -118,6 +119,7 @@ title|UpgradeView #teacherButton{
 title|UpgradeView #candidateButton{
 	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
 }
+*/
 
 /* Home view styles */
 home|HomeView {

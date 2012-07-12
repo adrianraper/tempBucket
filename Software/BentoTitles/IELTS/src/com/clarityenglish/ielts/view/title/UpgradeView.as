@@ -1,9 +1,11 @@
 package com.clarityenglish.ielts.view.title {
+	import com.clarityenglish.common.model.ConfigProxy;
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.external.ExternalInterface;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
-	import flash.external.ExternalInterface;
 	
 	import mx.events.CloseEvent;
 	
@@ -11,6 +13,10 @@ package com.clarityenglish.ielts.view.title {
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	public class UpgradeView extends SkinnableComponent {
+
+		/**
+		 * DEPRECATED July 2012
+		 */
 		
 		[SkinPart]
 		public var teacherButton:Button;

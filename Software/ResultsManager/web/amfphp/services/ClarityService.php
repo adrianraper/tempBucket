@@ -147,8 +147,8 @@ class ClarityService extends AbstractService {
 			
 			// v3.5 Add dbHost if we want anything other than default.
 			// Duh, can't do it here as you have already read dbDetails!
-			//if ($dbHost)
-			//	Session::set('dbHost', $dbHost);
+			if ($dbHost)
+				Session::set('dbHost', $dbHost);
 
 			// On login RM needs to count the total number of manageables in this account to determine whether or not we display students or not.
 			// This is ridiculous. At least we should be doing a quick SQL call to get the numbers. This check is doing everything.

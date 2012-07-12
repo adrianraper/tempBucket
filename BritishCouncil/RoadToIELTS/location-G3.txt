@@ -1,1 +1,1 @@
-database=SQLServer&scripting=PHP&dbHost=100&mainMovies=../Software/Common&interfaceMovies=../Software/RoadToIELTS3&content=../Content/RoadToIELTS-General&help=../Software/RoadToIELTS3/Help/help.htm#openWindow&sharedMedia=../Software/RoadToIELTS3/SharedMedia&end=1
+database=SQLServer&scripting=PHP&dbHost=100&mainMovies=../Software/Common&interfaceMovies=../Software/RoadToIELTS&content=../Content/RoadToIELTS-General&help=../Software/RoadToIELTS/Help/help.htm#openWindow&sharedMedia=../Software/RoadToIELTS/SharedMedia&end=1

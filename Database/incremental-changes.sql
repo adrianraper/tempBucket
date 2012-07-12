@@ -161,7 +161,8 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (33,'HKB',NULL,'philip.lam@clarityenglish.com,cynthia.lau@clarityenglish.com,kenix.wong@clarityenglish.com',1),
 (34,'Complejo de Consultoria de Idiomas',NULL,'elizabeth.pena@etciberoamerica.com',99),
 (35,'Micromail',NULL,'diarmuid@micromail.ie',105),
-(36,'IELTSPractice.com',NULL,'alfred.ng@clarityenglish.com',20);
+(36,'IELTSPractice.com',NULL,'alfred.ng@clarityenglish.com',20),
+(37,'Vietnam Book Promotion Service',NULL,'thao@vietnambookpromotion.com',19);
 
 -- No more monthly usage stats
 UPDATE `rack80829`.`T_Triggers` SET `F_ValidToDate`='2011-08-29' WHERE F_TriggerID in (31);
@@ -480,7 +481,7 @@ INSERT INTO `T_User`
 VALUES (-1,'you',0,0,1,'2012-04-01 00:00:00');
 
 -- Alter T_User to add in a big field for instance control, take out F_Company and F_ScratchPadFile to avoid wasting space
-ALTER TABLE `rack80829`.`T_User` 
+ALTER TABLE `T_User` 
 DROP COLUMN `F_Company` , 
 DROP COLUMN `F_ScratchPadFile` , 
 ADD COLUMN `F_InstanceID` TEXT NULL DEFAULT NULL  AFTER `F_ContactMethod` , 
@@ -505,7 +506,7 @@ INSERT INTO `T_Offer`
 ('62','Road to IELTS 2 General Training 3-months','20','92','USD','99.99','2012-04-23',NULL);
 
 -- Tidy up subscription table
-ALTER TABLE `rack80829`.`T_Subscription` 
+ALTER TABLE `T_Subscription` 
 DROP COLUMN `F_Checksum` , 
 DROP COLUMN `F_ExpiryDate` , 
 DROP COLUMN `F_ProductCode` , 
@@ -522,15 +523,15 @@ ADD COLUMN `F_OrderRef` VARCHAR(32) NULL DEFAULT NULL  AFTER `F_ResellerCode` ;
 -- ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- Do this later once you know nothing is writing to it
--- ALTER TABLE `rack80829`.`T_Subscription` DROP COLUMN `F_Status`; 
+-- ALTER TABLE `T_Subscription` DROP COLUMN `F_Status`; 
 
 -- In the meantime
-ALTER TABLE `rack80829`.`T_Subscription` 
+ALTER TABLE `T_Subscription` 
 ADD COLUMN `F_DateStamp` datetime DEFAULT NULL AFTER `F_Email`;
 
 -- Start introducing the svn of this file into the F_Version of T_DatabaseVersion
 -- so that you can accurately cope with network installations
-INSERT INTO `rack80829`.`T_DatabaseVersion`
+INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (840, NOW(), 'subscription changes');
 
@@ -563,9 +564,9 @@ INSERT T_LicenceType
 VALUES (7, 'Concurrent Tracking');
 
 -- For IELTSpractice.com reminder system
-DELETE FROM `rack80829`.`T_Triggers`
+DELETE FROM `T_Triggers`
 WHERE F_TriggerID in (16,18,45,46);
-INSERT INTO `rack80829`.`T_Triggers`
+INSERT INTO `T_Triggers`
 (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
 VALUES
 (16,'CLS. Subscription ends in 7 days',null,null,2129,'method=getAccounts&expiryDate={now}+7d&licenceType=5&resellerID=21',null,null,'email','daily',1),

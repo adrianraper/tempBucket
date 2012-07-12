@@ -48,26 +48,28 @@
 	<div id="container_login">	
 		<div id="container_login_left">
 			<!-- the action on the form is run by control.js -->
-			<form id="LoginForm" method="post" action="">          
+	       
        	  <div id="table_mini_top"></div>
             <div id="table_mini_title"></div>
-            <div id="table_mini_mid">
-               		<p class="field_txt_login">Special last minute practice only for British Council <br /> IELTS candidates!</p>
-IELTS candidates!</p>
-                <div class="line_small"></div>
+         
+           	  
             
-            	<p class="field_title">Login ID:</p>
-            	<div class="field_line">
-                	<input name="loginID" type="text" id="loginID" value="<?php echo $loginID ?>" class="field_reg"/>
-                    <div class="clear"></div>
-                </div>
-              <p class="field_txt_login">This is the ID given to you to start Road to IELTS.</p>
-                
-                <p class="field_txt_login_grey">It looks like this: 1280-8666-1111.</p>
-                
-          		<p class="field_title">Password:</p>
-            	<input name="userPassword" type="password" id="userPassword" value="" class="field_reg"/>
-        <p class="field_txt_login">&nbsp;&nbsp;
+               <div id="table_mini_mid">
+               
+               		<p class="field_txt_login">Special last minute practice only for British Council <br /> IELTS candidates!</p>
+               		<div class="line_small"></div>
+               
+               		<form id="LoginForm" method="post" action="">   
+            		<p class="field_title">Login ID:</p>
+                    <div class="field_line">
+                        <input name="loginID" type="text" id="loginID" value="<?php echo $loginID ?>" class="field_reg"/>
+                        <div class="clear"></div>
+                    </div>
+              		<p class="field_txt_login">This is the ID given to you to start Road to IELTS.</p>
+                    <p class="field_txt_login_grey">It looks like this: 1111-1111-1111.</p>
+                    <p class="field_title">Password:</p>
+                    <input name="userPassword" type="password" id="userPassword" value="" class="field_reg"/>
+                    <p class="field_txt_login">&nbsp;&nbsp;
 		<a href="#" onclick="JavaScript:forgotPassword();">Forgot your password?</a>
 	</p>
                 
@@ -76,20 +78,21 @@ IELTS candidates!</p>
                     <input name="LoginSubmit" type="button" id="LoginSubmit" value="" class="btn_login"/>
                     
                   <div class="btn_comment">
-			<div id="responseMessage" class="form_ok"></div>
-
-                    
-                    <div class="clear"></div>
-                    
-                    
-                    
-                </div>
-            
+                        <div id="responseMessage" class="form_ok"></div>
+					
+					</div>
+            	<div class="clear"></div>
           </div>
+          
+          </form>
+          	</div>
+          
             <div id="table_mini_upgrade">
             	<a href="http://www.ieltspractice.com?utm_source=RTIcom&utm_medium=Btn_upgrade" target="_blank"></a>
-			</div>
-				</form>
+            </div>
+        
+				
+		
 	
 		</div>
 		<div id="container_login_right">
@@ -98,7 +101,10 @@ IELTS candidates!</p>
 		</div>
 		<div class="clear"></div>
 	</div>
-	<div id="footer">
+	
+</div>
+
+<div id="footer">
 		<div class="container">
 			<div class="icon_bc"></div>
 			<div class="icon_clarity"></div>
@@ -107,7 +113,6 @@ IELTS candidates!</p>
 			<div class="clear"></div>
 		</div>
 	</div>
-</div>
 
 <!-- These blocks are used for error messages in jQuery blockUI -->
 <div id="passwordForgetMailSent" style="display:none; cursor:default">

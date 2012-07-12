@@ -204,7 +204,7 @@ if ($queryMethod=="login") {
 		
 		// If you there are no errors, go to the program
 		if ($errorCode == 0) {
-			$rc['redirect']="$thisDomain/area1/RoadToIELTS2/Start-$programVersion.php?prefix=$prefix";
+			$rc['redirect'] = $thisDomain."area1/RoadToIELTS2/Start-$programVersion.php?prefix=$prefix";
 			print json_encode($rc);
 			exit();
 		}
@@ -456,7 +456,6 @@ if ($queryMethod=="login") {
 		}
 		
 	}
-	
 	
 }
 

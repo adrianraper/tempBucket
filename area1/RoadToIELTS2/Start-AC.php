@@ -105,19 +105,21 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		var versionControl = "&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
-		var versionControl = "&version=900";
+		//var versionControl = "&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
+		var versionControl = "&version=943";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
 		var coordsMinHeight = "760"; var coordsMaxHeight = null;
 
-		var sections = location.pathname.split("/");
-		var userdatapath = sections.slice(0,sections.length-1).join("/");
-		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
+		//var sections = location.pathname.split("/");
+		//var userdatapath = sections.slice(0,sections.length-1).join("/");
+		//var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
+		//argList+="&cache=<?php echo time() ?>";
+		
+		var argList="?location=<?php echo $locationFile ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
 		argList+=versionControl;
-		//argList+="&cache=<?php echo time() ?>";
 
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {

@@ -69,6 +69,9 @@ function returnError($errCode, $data = null) {
 	//}
 	AbstractService::$debugLog->err($logMessage);
 
+	$apiReturnInfo['dsn'] = $GLOBALS['db'];
+	$apiReturnInfo['dbHost'] = $GLOBALS['dbHost'];
+
 	echo json_encode($apiReturnInfo);
 	exit(0);
 }
@@ -82,6 +85,11 @@ try {
 	$apiInformation = loadAPIInformation();
 	//AbstractService::$log->notice("calling validate=".$apiInformation->resellerID);
 	//echo "loaded API";
+	
+	// You might want a different dbHost which you have now got - so override the settings from config.php
+	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
+		$loginService->changeDb($apiInformation->dbHost);
+	
 	foreach ($apiInformation as $emailItem) {
 		switch ($emailItem->method) {
 			case "sendEmail":

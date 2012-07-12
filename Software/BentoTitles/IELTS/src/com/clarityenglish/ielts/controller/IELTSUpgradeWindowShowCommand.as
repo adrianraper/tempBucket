@@ -19,6 +19,10 @@ package com.clarityenglish.ielts.controller {
 	public class IELTSUpgradeWindowShowCommand extends SimpleCommand {
 		
 		/**
+		 * DEPRECATED July 2012
+		 */
+		
+		/**
 		 * Standard flex logger
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));

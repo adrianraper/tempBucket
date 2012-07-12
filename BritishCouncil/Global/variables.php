@@ -7,7 +7,7 @@
 	//$oldDomain = 'http://www.ieltspractice.com/';
 	$startFolder = "BritishCouncil/Global/";
 
-	$dbHost = 101;
+	$dbHost = 102;
 	$oldDbHost = 100;
 	
 	// For loginGateway

@@ -72,7 +72,7 @@
 			registerCommand(IELTSNotifications.PDF_SHOW, PdfShowCommand);
 			
 			// Upgrade, register and buy
-			registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);
+			// registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);
 			registerCommand(IELTSNotifications.IELTS_REGISTER, IELTSRegisterCommand);
 			
 			registerCommand(BBNotifications.STARTUP, IELTSStartupCommand);

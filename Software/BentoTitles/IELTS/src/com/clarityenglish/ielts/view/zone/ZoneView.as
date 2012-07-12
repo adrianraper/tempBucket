@@ -161,6 +161,7 @@ package com.clarityenglish.ielts.view.zone {
 		public var VideoHref:Href;
 		public var ZoneSelected:String;
 		public var choice:Number=0;
+		[Bindable]
 		public var channelcollection:ArrayCollection=new ArrayCollection;
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.

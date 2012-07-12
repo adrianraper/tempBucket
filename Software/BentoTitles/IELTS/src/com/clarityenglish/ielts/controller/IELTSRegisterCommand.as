@@ -20,7 +20,8 @@ package com.clarityenglish.ielts.controller {
 			super.execute(note);
 			
 			// #299
-			navigateToURL(new URLRequest("http://www.ieltspractice.com"), "_blank");
+			var url:String = note.getBody() as String;
+			navigateToURL(new URLRequest(url), "_blank");
 		}
 		
 	}

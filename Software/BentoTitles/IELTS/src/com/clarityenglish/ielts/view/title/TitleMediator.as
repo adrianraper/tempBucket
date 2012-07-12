@@ -11,6 +11,7 @@
 	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.external.ExternalInterface;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
@@ -127,23 +128,25 @@
 		}
 		
 		private function onUpgradeIELTS():void {
-			var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
-			navigateToURL(urlReq, "_blank"); 
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var buyPage:String = (configProxy.getConfig().upgradeURL) ? configProxy.getConfig().upgradeURL : "www.ieltspractice.com";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, buyPage);
 		}
 		
 		private function onRegisterIELTS():void {
-			sendNotification(IELTSNotifications.IELTS_REGISTER);
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var registerPage:String = (configProxy.getConfig().registerURL) ? configProxy.getConfig().registerURL : "www.takeielts.org";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, registerPage);
 		}
 		
 		private function onBuyIELTS():void {
 			// #337 Did you come from a candidate specific site?
-			if (view.candidateOnlyInfo) {
-				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-				var buyPage:String = "http://" + (configProxy.getConfig().localDomain) ? configProxy.getConfig().localDomain : "www.ieltspractice.com";
-				navigateToURL(new URLRequest(buyPage), "_blank");
-			} else {
-				sendNotification(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW);
-			}
+			// Remove the pop-up window, always go to one page as indicated by config
+			//if (view.candidateOnlyInfo) {
+			//}
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var buyPage:String = (configProxy.getConfig().pricesURL) ? configProxy.getConfig().pricesURL : "www.clarityenglish.com";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, buyPage);
 		}
 		
 	}

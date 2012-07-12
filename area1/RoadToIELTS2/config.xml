@@ -2,17 +2,22 @@
 <config>
 	<id>/area1/RoadToIELTS2 in localhost</id>
 	<developer>none</developer>
-	<dbHost>2</dbHost>
+	<dbHost>0</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<mediaChannel-2>aws</mediaChannel-2>
-	<streamingMedia-2>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia-2>
-	<mediaChannel>network</mediaChannel>
-	<streamingMedia>{contentPath}/video/</streamingMedia>
-	<mediaChannel-1>vimeo</mediaChannel-1>
-	<streamingMedia-1>http://player.vimeo.com/external/</streamingMedia-1>
+	<channel name='aws' caption='aws'>
+		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
+	</channel>
+	<xchannel name='network' caption='network'>
+		<streamingMedia>{contentPath}/video/</streamingMedia>
+	</xchannel>
+	<channel name='vimeo' caption='vimeo'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	</channel>	
 	<sharedMedia />
 	<brandingMedia />
-	<xlocalDomain>www.ieltspractice.com/buy.php</xlocalDomain>
+	<upgradeURL>http://www.ieltspractice.com</upgradeURL>
+	<pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2</pricesURL>
+	<registerURL>http://www.takeielts.org</registerURL>
 	<language>EN*</language>
 	<contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>

@@ -20,6 +20,17 @@ function loadAPIInformation() {
 	global $dmsService;
 	global $nonApiInformation;
 	
+	// To make it easy to do this for records from the subscription table
+	if (isset($_GET['subscriptionID'])) {
+		$subscriptionID = $_GET['subscriptionID'];
+	} else {
+		$subscriptionID = 1758;
+	} 
+	if (isset($_GET['method'])) {
+		$method = $_GET['method'];
+	} else {
+		$method = "addSubscription";
+	} 
 	//$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.22@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	//$inputData = '{"method":"saveSubscriptionDetails","email":"douglas.engelbert.2@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
@@ -28,7 +39,7 @@ function loadAPIInformation() {
 	 * If you have the subscription ID from the table, you can use the following input. 
 	 * EmailTemplateID, paymentMethod andloginOption all need to be sent, you are unlikely to need to change them.
 	 */
-	$inputData = '{"method":"addSubscription","subscriptionID":1758,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
+	$inputData = '{"method":"'.$method.'","subscriptionID":'.$subscriptionID.',"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	
 	/**
 	 * If you are creating an account from scratch, use the the following input. 
@@ -122,6 +133,9 @@ function returnError($errCode, $data = null) {
 	}
 	AbstractService::$debugLog->err($logMessage);
 
+	$apiReturnInfo['dsn'] = $GLOBALS['db'];
+	$apiReturnInfo['dbHost'] = $GLOBALS['dbHost'];
+
 	$returnInfo = array_merge($apiReturnInfo, $nonApiInformation);
 	echo json_encode($returnInfo);
 	exit(0);
@@ -139,10 +153,9 @@ try {
 	$apiInformation = loadAPIInformation();
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
-	$dbDetails = new DBDetails($apiInformation->dbHost);
-	$GLOBALS['dbms'] = $dbDetails->driver;
-	$GLOBALS['db'] = $dbDetails->driver.'://'.$dbDetails->user.':'.$dbDetails->password.'@'.$dbDetails->host.'/'.$dbDetails->dbname;
-	
+	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
+		$dmsService->changeDb($apiInformation->dbHost);
+		
 	switch ($apiInformation->method) {
 		
 		// Called to simply save a set of details in our table. Most likely to be called

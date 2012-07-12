@@ -3,9 +3,9 @@
 	<id>/BritishCouncil/HongKong</id>
 	<developer>BC</developer>
 	<dbHost>102</dbHost>
-	<prefix>Clarity</prefix>
-	<rootID>1</rootID>
-	<groupID>22150</groupID>
+	<prefix>GLOBAL</prefix>
+	<rootID>14030</rootID>
+	<groupID>22155</groupID>
 	<loginOption>2</loginOption>
 	<productVersion>lastMinute</productVersion>
 	<courseFile>menu-{productCode}-LastMinute.xml</courseFile>

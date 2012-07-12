@@ -284,25 +284,13 @@ package com.clarityenglish.ielts.view.title {
 					break;
 				
 				case IELTSApplication.DEMO:
-					if (config.localDomain) {
-						// Get just the domain portion.
-						// TODO. This is really bad name for the config option
-						var justDomain:String = config.localDomain.split('/')[0]; 
-						switch (justDomain.toLowerCase()) {
-							case 'www.ieltspractice.com':
-							case 'www.ilearnielts.com':
-							case 'www.claritylifeskills.com':
-								candidateOnlyInfo = true;
-								return buyInfo;
-								break;
-							case 'www.clarityenglish.com':
-							default:
-						}
-					}
+					// #337 
+					if (config.pricesURL)
+						return priceInfo;
 					
-					return priceInfo;
+					return buyInfo;
 					break;
-					
+							
 				case IELTSApplication.FULL_VERSION:
 				default:
 					return null;
@@ -450,6 +438,7 @@ package com.clarityenglish.ielts.view.title {
 			trace("enable logout button");
 			logoutButton.enabled = true;
 		}
+		
 		// #260 
 		// If the ZoneView is mediated, then enable the logoutButton and stop the Timer
 		private function timerHandler(event:TimerEvent):void {
@@ -464,10 +453,13 @@ package com.clarityenglish.ielts.view.title {
 			switch (_productVersion) {
 				case IELTSApplication.LAST_MINUTE:
 					upgrade.dispatch();
+					break;
 				case IELTSApplication.TEST_DRIVE:
 					register.dispatch();
+					break;
 				case IELTSApplication.DEMO:
 					buy.dispatch();
+					break;
 				case IELTSApplication.FULL_VERSION:
 				default:
 			}

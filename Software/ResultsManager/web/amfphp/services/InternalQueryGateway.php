@@ -83,6 +83,9 @@ function returnError($errCode, $data = null) {
 	$logMessage = 'returnError '.$errCode.': '.$apiReturnInfo['message'];
 	AbstractService::$debugLog->err($logMessage);
 
+	$apiReturnInfo['dsn'] = $GLOBALS['db'];
+	$apiReturnInfo['dbHost'] = $GLOBALS['dbHost'];
+
 	$returnInfo = array_merge($apiReturnInfo);
 	echo json_encode($returnInfo);
 	exit(0);
@@ -97,7 +100,11 @@ try {
 	$apiInformation = loadAPIInformation();
 	//AbstractService::$log->notice("calling validate=".$apiInformation->resellerID);
 	//echo "loaded API";
-
+	
+	// You might want a different dbHost which you have now got - so override the settings from config.php
+	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
+		$loginService->changeDb($apiInformation->dbHost);
+	
 	switch ($apiInformation['method']) {
 		case 'getGlobalR2IUser':
 			$rc = $thisService->internalQueryOps->getGlobalR2IUser($apiInformation['id']);

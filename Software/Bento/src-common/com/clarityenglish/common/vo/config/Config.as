@@ -66,7 +66,9 @@ package com.clarityenglish.common.vo.config {
 		public var scorm:Boolean;
 
 		// #337
-		public var localDomain:String;
+		public var upgradeURL:String;
+		public var pricesURL:String;
+		public var registerURL:String;
 		
 		// To help with testing
 		public var configID:String;
@@ -290,9 +292,12 @@ package com.clarityenglish.common.vo.config {
 			}			
 
 			// #337
-			if (xml..localDomain.toString()) {
-				this.localDomain = xml..localDomain.toString();
-			}			
+			if (xml..upgradeURL.toString())
+				this.upgradeURL = xml..upgradeURL.toString();
+			if (xml..pricesURL.toString())
+				this.pricesURL = xml..pricesURL.toString();
+			if (xml..registerURL.toString())
+				this.registerURL = xml..registerURL.toString();
 
 			// For help with testing
 			if (xml..id.toString()) {

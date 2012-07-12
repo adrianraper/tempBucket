@@ -138,6 +138,9 @@ function returnError($errCode, $data = null) {
 		$logMessage.= ' orderRef='.$apiInformation->subscription->orderRef;
 	}
 	AbstractService::$debugLog->err($logMessage);
+	
+	$apiReturnInfo['dsn'] = $GLOBALS['db'];
+	$apiReturnInfo['dbHost'] = $GLOBALS['dbHost'];
 
 	$returnInfo = array_merge($apiReturnInfo, $nonApiInformation);
 	echo json_encode($returnInfo);
@@ -153,10 +156,9 @@ try {
 	$apiInformation = loadAPIInformation();
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
-	$dbDetails = new DBDetails($apiInformation->dbHost);
-	$GLOBALS['dbms'] = $dbDetails->driver;
-	$GLOBALS['db'] = $dbDetails->driver.'://'.$dbDetails->user.':'.$dbDetails->password.'@'.$dbDetails->host.'/'.$dbDetails->dbname;
-	
+	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
+		$loginService->changeDb($apiInformation->dbHost);
+		
 	switch ($apiInformation->method) {
 		
 		// Called to simply save a set of details in our table. Most likely to be called
