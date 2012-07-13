@@ -102,20 +102,9 @@
 					var href:Href = note.getBody() as Href;
 					view.showExercise(href);
 					break;
-				
 				case BBNotifications.EXERCISE_SECTION_FINISHED:
-					// If you are running in SCORM (or some direct start scenarios) you want to exit
-					// when all exercises complete rather than display the menu
-					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					if (configProxy.getConfig().scorm) {
-						this.onLogout();
-						
-					} else {
-						view.showExercise(null);
-						
-					}
+					view.showExercise(null);
 					break;
-				
 				case IELTSNotifications.COURSE_SHOW:
 					var course:XML = note.getBody() as XML;
 					view.currentState = "zone";

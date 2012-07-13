@@ -10,17 +10,21 @@
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
 	import mx.collections.ArrayCollection;
+	import mx.controls.ButtonBar;
 	import mx.core.mx_internal;
 	
 	import org.davekeen.util.Closure;
 	import org.osmf.events.BufferEvent;
+	import org.osmf.events.MediaFactoryEvent;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
 	import org.osmf.media.MediaPlayerState;
+	import org.osmf.media.URLResource;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
 	import org.puremvc.as3.interfaces.IMediator;
@@ -39,6 +43,8 @@
 		private var queuedVideoHref:Href;
 		private var currentVideoHref:Href;
 		private var currentVideoStartTime:Date;
+		private var pluginFlag:Boolean;
+		public static const PLUGIN:String="http://players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.8/osmf2.0/AkamaiAdvancedStreamingPlugin.swf";
 		
 		public function ZoneMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
@@ -151,9 +157,10 @@
 					log.error("Unknown zone name " + zoneName);
 					return;
 			}
+					
 			
 			// #208
-			videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
+			videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);			
 			
 			if (videoSource.match(/\.(rss|xml)$/)) {
 				urlLoader = new URLLoader();
@@ -184,47 +191,42 @@
 		private function onRssLoadComplete(e:Event, videoPlayer:VideoPlayer):void {
 			var dynamicList:XML = new XML(e.target.data);
 			
-			// #335
-			/*var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var channelName:String = configProxy.getConfig().mediaChannel;*/
-			
 			//Alice: multiple channel
 			var channelName:String;
 			var streamName:String;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			if (view.questionZoneChannelButtonBar.selectedItem == null) {
-				channelName = view.adviceZoneChannelButtonBar.selectedItem.name;
-				streamName = view.adviceZoneChannelButtonBar.selectedItem.streamName;
-			    //configProxy.getConfig().channelchoice=channelName;
-				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
-				
-			} else {
-				channelName = view.questionZoneChannelButtonBar.selectedItem.name;
-				streamName = view.questionZoneChannelButtonBar.selectedItem.streamName;
-				//configProxy.getConfig().channelchoice=channelName;
-				view.choice = view.adviceZoneChannelButtonBar.selectedIndex;
-				
+			if(view.questionZoneChannelButtonBar.selectedItem==null){
+				channelName=view.channelcollection[view.selectedIndex].name;
+				streamName=view.channelcollection[view.selectedIndex].streamName;
+				trace("channelName is "+channelName);
+				view.adviceZoneVideoPlayer.resetTimer();
+				view.adviceZoneVideoPlayer.timerFlag=true;
+				view.adviceZoneVideoPlayer.startTimer();
+				view.adviceZoneChannelButtonBar.selectedItem=null;
+				view.adviceZoneChannelButtonBar.enabled=false;
+
+			}else{
+				channelName=view.channelcollection[view.selectedIndex].name;
+				streamName=view.channelcollection[view.selectedIndex].streamName;
+				trace("channelName is "+channelName);
+				view.questionZoneVideoPlayer.resetTimer();
+				view.questionZoneVideoPlayer.timerFlag=true;
+				view.questionZoneVideoPlayer.startTimer();
+				view.questionZoneChannelButtonBar.selectedItem=null;
+				view.questionZoneChannelButtonBar.enabled=false;
 			}
 			
 			// To cope with original format files
 			if (dynamicList.channel.hasOwnProperty("@name")) {
-				var channel:XML = dynamicList.channel.(@name == channelName)[0];
+				var channel:XML = dynamicList.channel.(@name==channelName)[0];
 				var protocol:String = channel.@protocol.toString();
-				
 			} else {
 				channel = dynamicList.channel[0];
 				protocol = channel.streaming.toString();
-				
 			}
 			var host:String = channel.host.toString();
-			
-			// Replace any virtual paths
-			/*if (host.indexOf('{streamingMedia}') >= 0) 
-				host = host.replace("{streamingMedia}", configProxy.getConfig().streamingMedia);
-			if (host.indexOf('{contentPath}') >= 0) 
-				host = host.replace("{contentPath}", configProxy.getContentPath());*/
-			
+
 			if (host.indexOf('{streamingMedia}') >= 0) 
 				host = host.replace("{streamingMedia}", streamName);
 			if (host.indexOf('{contentPath}') >= 0) 
@@ -249,9 +251,17 @@
 				
 			// Rackspace's pseudo streaming over http
 			} else if (protocol == "http") {
+				
 				//videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
-				videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
-				videoPlayer.callLater(videoPlayer.play);
+	
+				//
+				trace("PLUGINFLAG IS "+view.pluginFlag);
+				if(view.pluginFlag){    
+					videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
+					videoPlayer.callLater(videoPlayer.play);
+				}else{
+					trace("warning: Plugin fail to load!");
+				}
 				
 			// Vimeo's progressive download
 			// Network simple connection
@@ -300,6 +310,7 @@
 		public function onVideoPlayerComplete(event:TimeEvent):void {
 			log.info("video completed " + event.toString());
 		}
+
 		
 	}
 }

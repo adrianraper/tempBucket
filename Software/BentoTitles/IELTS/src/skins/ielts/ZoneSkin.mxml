@@ -9,7 +9,7 @@
 		maxHeight="500"
 		xmlns:components="com.clarityenglish.textLayout.components.*"
 		creationComplete="creationComplete(event)"
-		xmlns:zone="skins.ielts.zone.*">
+		xmlns:zone="skins.ielts.zone.*" xmlns:controls="com.clarityenglish.controls.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
@@ -26,10 +26,12 @@
 			import com.clarityenglish.ielts.view.zone.ExerciseEvent;
 			
 			import mx.core.UIComponent;
+			import mx.core.mx_internal;
 			import mx.events.FlexEvent;
 			
 			import org.davekeen.util.PointUtil;
-			
+			import org.osmf.events.MediaFactoryEvent;
+			import org.osmf.media.URLResource;
 			import skins.ielts.videoplayer.VideoPlayerSkin;
 			
 			import spark.events.IndexChangeEvent;
@@ -37,6 +39,8 @@
 			
 			// #302 - ensure the popupwatchers aren't garbage collected
 			private var popupWatchers:Array = [];
+			
+			public static const PLUGIN:String="http://players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.8/osmf2.0/AkamaiAdvancedStreamingPlugin.swf";
 			
 			protected function creationComplete(event:FlexEvent):void {
 				hostComponent.resetQuestionZoneGraphics();
@@ -57,6 +61,26 @@
 				} else if (examPracticeNavigatorContent.enabled) {
 					accordian.selectedIndex = 3;
 				}
+				
+				var resource2:URLResource=new URLResource(PLUGIN);
+				adviceZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoad);
+				adviceZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR,onPluginLoadError);
+				adviceZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.loadPlugin(resource2);
+				
+				questionZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoad);
+				questionZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR,onPluginLoadError);
+				questionZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.loadPlugin(resource2);
+			}
+			
+			protected function onPluginLoad(event:MediaFactoryEvent):void
+			{
+				trace("the plug-in loaded successfully.");
+				hostComponent.pluginFlag=true;
+			}
+			
+			private function onPluginLoadError(event:MediaFactoryEvent):void{
+				trace("the plug-in failed to load.");
+				hostComponent.pluginFlag=false;
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {
@@ -75,20 +99,19 @@
 			public function onAdviceZoneVideoSelect(event:Event):void {
 				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);			
 				//adviceZoneChannelButtonBar.requireSelection=true;
-				adviceZoneChannelButtonBar.enabled=true;
+				//adviceZoneChannelButtonBar.enabled=true;
 				
 			}
-			
-			
+						
 		]]>
 	</fx:Script>
-	
+
 	<s:states>
 		<s:State name="reading_normal" stateGroups="normalStates,readingStates" />
 		<s:State name="writing_normal" stateGroups="normalStates,writingStates" />
 		<s:State name="listening_normal" stateGroups="normalStates,listeningStates" />
 		<s:State name="speaking_normal" stateGroups="normalStates,speakingStates" />
-		
+
 		<s:State name="reading_demo" stateGroups="normalStates,readingStates" />
 		<s:State name="writing_demo" stateGroups="demoStates,writingStates" />
 		<s:State name="listening_demo" stateGroups="demoStates,listeningStates" />
@@ -99,20 +122,20 @@
 		<s:State name="listening_popped" stateGroups="popoutStates,listeningStates" />
 		<s:State name="speaking_popped" stateGroups="popoutStates,speakingStates" />
 	</s:states>
-	
+
 	<s:transitions>
 		<s:Transition fromState="*" toState="*" interruptionBehavior="stop" autoReverse="true">
 			<s:Move target="{popoutExerciseSelector}" />
 		</s:Transition>
 	</s:transitions>
-	
+
 	<s:Group width="100%" height="100%" top="{(hostComponent.isFullVersion()) ? 0 : 25}">
 		<!-- The left hand side -->
 		<s:Group width="40%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="90" left="0">
 			<s:layout>
 				<s:HorizontalLayout />
 			</s:layout>
-			
+
 			<!-- this is for the rotating course selector -->
 			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" />
 		</s:Group>
@@ -128,7 +151,7 @@
 								   top="90"
 								   height="360"
 								   exerciseSelected="onPopoutExerciseSelected(event)" />
-		
+
 		<!-- The right hand side -->
 		<s:VGroup right="0" paddingRight="0" width="57%">
 			<s:Spacer height="14" visible="{(!hostComponent.isDemo())}"
@@ -145,13 +168,13 @@
 				<s:layout>
 					<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="13" paddingBottom="6" />
 				</s:layout>
-				
+
 				<s:borderStroke>
 					<s:SolidColorStroke color="#E4E4E4" weight="1" />
 				</s:borderStroke>
-				
+
 				<s:HGroup width="100%">
-					
+
 					<s:SWFLoader id="courseIcon" width="25" height="25" 
 								 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')" 
 								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" 
@@ -161,11 +184,11 @@
 							<s:GlowFilter strength="3" blurX="0" blurY="0" color="#AAAAAA" alpha="0.8" />
 						</s:filters>
 					</s:SWFLoader>
-					
+
 					<s:RichText id="courseTitleLabel" fontSize="18" paddingTop="6" paddingBottom="0" />
 					
 				</s:HGroup>
-				
+
 				<!-- Static image for demos -->
 				<s:SWFLoader id="demoImage" width="502" height="516" 
 							 source.writingStates="{hostComponent.assetFolder}writing_demo.png" 
@@ -173,7 +196,7 @@
 							 source.speakingStates="{hostComponent.assetFolder}speaking_demo.png"
 							 includeIn="demoStates"
 							 />
-				
+					
 				<!-- The accordian -->
 				<tink:Accordion id="accordian"
 								width="100%"
@@ -185,13 +208,13 @@
 								duration="500"
 								excludeFrom="demoStates"
 								change="onAccordianChange(event)">
-					
+
 					<!-- Question zone -->
 					<s:NavigatorContent id="questionZoneNavigatorContent" label="Starting out" width="100%">
 						<s:Label text="First click to read the eBook or to download the PDF version. Then click to watch a video setting out the key facts in this section of the IELTS test." width="95%" lineHeight="18" />
-						
+
 						<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="50" width="100%">
-							
+
 							<s:Group width="100%" height="100%">
 								<s:SWFLoader id="questionZoneEBookGraphic"
 											 width="100%"
@@ -204,7 +227,7 @@
 								
 								<s:HGroup id="questionZoneVideo" horizontalCenter="0">
 									
-									<s:VideoPlayer id="questionZoneVideoPlayer"
+									<controls:BentoVideoPlayer id="questionZoneVideoPlayer"
 												   autoDisplayFirstFrame="true"
 												   width="411"
 												   height="231"
@@ -229,7 +252,7 @@
 									</s:Group>
 									</s:HGroup>
 							</s:Group>
-							
+
 							<s:HGroup horizontalCenter="0" paddingTop="0" verticalCenter="4">
 								<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12.6" width="160" height="30" left="70" click="hostComponent.showEBook()" />
 								<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12.6" width="160" height="30" click="hostComponent.showEBook()" />
@@ -237,7 +260,7 @@
 							</s:HGroup>
 						</s:VGroup>
 					</s:NavigatorContent>
-					
+
 					<!-- Advice zone -->
 					<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice and tutorials">
 						<s:VGroup left="0" right="0" top="2" bottom="30" horizontalAlign="left">
@@ -245,14 +268,14 @@
 							<s:Label text="Click on the thumbnail to play the video." visible="{hostComponent.courseClass=='listening' || hostComponent.courseClass=='reading'}" includeInLayout="{hostComponent.courseClass=='listening' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
 							<s:HGroup>
 								<s:Group>
-									<s:VideoPlayer id="adviceZoneVideoPlayer"
+									<controls:BentoVideoPlayer id="adviceZoneVideoPlayer"
 												   autoDisplayFirstFrame="true"
 												   width="411"
 												   height="231"
 												   autoPlay="true"
 												   scaleMode="letterbox"
 												   visible="{adviceZoneVideoList.selectedItem != null}"
-												   includeInLayout="{adviceZoneVideoList.selectedItem != null}" right="0" />
+												   includeInLayout="{adviceZoneVideoList.selectedItem != null}" right="0"/>
 									
 									<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 									<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
@@ -265,9 +288,9 @@
 											<s:SolidColor color="0x141414"/>
 										</s:fill>
 									</s:Rect>
-									<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switch channel." color="0xFFFFFF" width="70" lineHeight="18" />
+									<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Do you want to change a channel?" color="0xFFFFFF" width="70" lineHeight="18" />
 									<s:VGroup paddingTop="160" paddingLeft="9">
-										<s:ButtonBar id="adviceZoneChannelButtonBar" verticalCenter="0" horizontalCenter="0" enabled="false">
+										<s:ButtonBar id="adviceZoneChannelButtonBar" verticalCenter="0" horizontalCenter="0" enabled="false" selectedItem="null" requireSelection="false">
 											<s:layout>
 												<s:VerticalLayout gap="3" />
 											</s:layout>
@@ -280,7 +303,7 @@
 								<s:layout>
 									<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="10" horizontalGap="5" />
 								</s:layout>
-								
+
 								<s:itemRenderer>
 									<fx:Component>
 										<s:ItemRenderer>
@@ -338,7 +361,7 @@
 													</s:Group>
 													<s:Image id="image" width="68" />
 												</s:HGroup>
-												
+
 												<s:Label id="videoLabel" width="135" paddingTop="7" fontWeight="bold" />
 											</s:HGroup>
 											<!--<s:Button id="tooltipHolder" width="100%" height="100%" toolTip="Only available in the Last Minute version" />-->
@@ -352,7 +375,7 @@
 							</s:VGroup>
 						</s:VGroup>
 					</s:NavigatorContent>
-					
+
 					<!-- Practice zone -->
 					<s:NavigatorContent id="practiceZoneNavigatorContent" label="Practice zone" width="100%">
 						<s:VGroup left="0" right="0" top="2" bottom="0" gap="10">
@@ -364,7 +387,7 @@
 									<s:layout>
 										<s:TileLayout requestedColumnCount="4" requestedRowCount="6" orientation="columns" columnWidth="120" verticalGap="8" />
 									</s:layout>
-									
+
 									<!-- Custom item renderer to render the label -->
 									<s:itemRenderer>
 										<fx:Component>
@@ -391,24 +414,24 @@
 											</s:ItemRenderer>
 										</fx:Component>
 									</s:itemRenderer>
-									
+
 								</s:List>
 							</s:Group>
 						</s:VGroup>
 					</s:NavigatorContent>
-					
+
 					<!-- Exam practice -->
 					<s:NavigatorContent id="examPracticeNavigatorContent" label="Test practice" width="100%">
 						<s:layout>
 							<s:VerticalLayout paddingTop="2" />
 						</s:layout>
-						
+
 						<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." includeInLayout="{hostComponent.courseClass=='listening'}" visible="{hostComponent.courseClass=='listening'}" width="95%" lineHeight="18" />
 						<s:Label text="There is no downloadable test practice materials in this section. Watch the tutorial videos in the Advice and tutorials section to see what happens in the speaking test interview." includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
 						<s:Label text="Download complete test papers with answers." includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
 						<s:VGroup paddingTop="10" horizontalAlign="center" horizontalCenter="0" width="100%">
 							<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/testpractice_reading.png')" source.writingStates="@Embed(source='skins/ielts/assets/testpractice_writing.png')" source.speakingStates="@Embed(source='skins/ielts/assets/testpractice_speaking.png')" source.listeningStates="@Embed(source='skins/ielts/assets/testpractice_listening.png')" />
-							
+
 							<s:DataGroup id="examPracticeDataGroup" width="100%">
 								<s:layout>
 									<s:HorizontalLayout paddingLeft="0" paddingTop="10" gap="0" horizontalAlign="center" />
@@ -439,11 +462,11 @@
 											<s:layout>
 												<s:HorizontalLayout />
 											</s:layout>
-											
+
 											<s:Button id="examPracticeViewButton" click="onViewButtonClick(event)" width="132" height="30" textAlignLast="left" fontSize="12.6" />
-											
+
 											<!--<ui:DifficultyRenderer id="difficultyRenderer" data="{data}" courseClass="{outerDocument.hostComponent.courseClass}" />-->
-											
+
 											<!-- #144 -->
 											<s:Group height="33">
 												<s:HGroup paddingLeft="0" paddingTop="3" verticalAlign="middle" visible="{data.hasOwnProperty('@audioHref')}">
@@ -455,7 +478,7 @@
 									</fx:Component>
 								</s:itemRenderer>
 							</s:DataGroup>
-							
+
 							<s:DataGroup id="examPracticeAnswerDataGroup" width="100%">
 								<s:layout>
 									<s:HorizontalLayout paddingLeft="0" gap="0" horizontalAlign="center" />
@@ -486,21 +509,20 @@
 											<s:layout>
 												<s:HorizontalLayout />
 											</s:layout>
-											
+
 											<s:Button id="examPracticeAnswerButton" click="onViewButtonClick(event)" left="0" width="132" height="30" textAlignLast="left" fontSize="12.6" />
 											<s:Spacer width="28" />
-											
+
 										</s:DataRenderer>
 									</fx:Component>
 								</s:itemRenderer>
 							</s:DataGroup>
 						</s:VGroup>
 					</s:NavigatorContent>
-					
+
 				</tink:Accordion>
 			</s:BorderContainer>
 		</s:VGroup>
 	</s:Group>
-	
-</s:Skin>
 
+</s:Skin>

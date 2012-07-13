@@ -8,6 +8,8 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.common.vo.config.ChannelObject;
 	import com.clarityenglish.common.vo.content.Content;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.controls.BentoVideoPlayer;
+	import com.clarityenglish.controls.BentoVideoPlayerEvent;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
@@ -16,14 +18,18 @@ package com.clarityenglish.ielts.view.zone {
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	import flash.utils.getTimer;
 	
 	import mx.collections.ArrayCollection;
+	import mx.collections.ArrayList;
+	import mx.collections.IList;
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
 	import mx.events.VideoEvent;
 	import mx.formatters.DateFormatter;
 	import mx.utils.object_proxy;
 	
+	import org.alivepdf.links.ILink;
 	import org.osflash.signals.Signal;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
@@ -77,7 +83,7 @@ package com.clarityenglish.ielts.view.zone {
 		public var questionZoneVideoButton:Button;
 		
 		[SkinPart(required="true")]
-		public var questionZoneVideoPlayer:VideoPlayer;
+		public var questionZoneVideoPlayer:BentoVideoPlayer;
 		
 		[SkinPart(required="true")]
 		public var questionZoneEBookGraphic:SWFLoader;
@@ -89,7 +95,7 @@ package com.clarityenglish.ielts.view.zone {
 		public var popoutExerciseSelector:PopoutExerciseSelector;
 		
 		[SkinPart(required="true")]
-		public var adviceZoneVideoPlayer:VideoPlayer;
+		public var adviceZoneVideoPlayer:BentoVideoPlayer;
 		
 		[SkinPart(required="true")]
 		public var adviceZoneVideoList:List;
@@ -151,6 +157,7 @@ package com.clarityenglish.ielts.view.zone {
 		private var _courseChanged:Boolean;
 		
 		private var _exerciseSelectorPoppedOut:Boolean;
+		private var _pluginFlag:Boolean;
 		
 		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
@@ -163,6 +170,8 @@ package com.clarityenglish.ielts.view.zone {
 		public var choice:Number=0;
 		[Bindable]
 		public var channelcollection:ArrayCollection=new ArrayCollection;
+		public var selection:ArrayList=new ArrayList(["Yes", "No"]);
+		public var selectedIndex:Number=0;
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -232,6 +241,17 @@ package com.clarityenglish.ielts.view.zone {
 			}
 		}
 		
+		[Bindable]
+		public function get pluginFlag():Boolean {
+			return _pluginFlag;
+		}
+		
+		public function set pluginFlag(value:Boolean):void {
+			if (_pluginFlag != value) {
+				_pluginFlag = value;
+			}
+		}
+		
 		// #299
 		public function isFullVersion():Boolean {
 			return (_productVersion == IELTSApplication.FULL_VERSION);
@@ -278,10 +298,13 @@ package com.clarityenglish.ielts.view.zone {
 				
 				//Alice:automatic multiple channel
 				//Give the advice/questionZoneChannelButtonBar as a dataprovider to the channel list
-				adviceZoneChannelButtonBar.dataProvider=channelcollection;
-				adviceZoneChannelButtonBar.labelField="caption";
-				questionZoneChannelButtonBar.dataProvider=channelcollection;
-				questionZoneChannelButtonBar.labelField="caption";
+				//adviceZoneChannelButtonBar.dataProvider=channelcollection;
+				//adviceZoneChannelButtonBar.labelField="caption";
+			
+				adviceZoneChannelButtonBar.dataProvider=selection;
+				questionZoneChannelButtonBar.dataProvider=selection;
+				//questionZoneChannelButtonBar.dataProvider=channelcollection;
+				//questionZoneChannelButtonBar.labelField="caption";
 				
 				// Change the course selector
 				if (courseSelectorWidget) courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
@@ -349,15 +372,17 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 				case questionZoneVideoPlayer:
 				case adviceZoneVideoPlayer:
-					(instance as VideoPlayer).addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange);
-					(instance as VideoPlayer).addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
+				    //(instance as VideoPlayer).addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange);
+					//(instance as VideoPlayer).addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
+					(instance as BentoVideoPlayer).addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange);
+					(instance as BentoVideoPlayer).addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
+					(instance as BentoVideoPlayer).addEventListener(BentoVideoPlayerEvent.VIDEO_TIMEOUT, onVideoTimeout);
 					break;
 				case questionZoneChannelButtonBar:
-					questionZoneChannelButtonBar.addEventListener(MouseEvent.CLICK,onClikCChannle);
+					questionZoneChannelButtonBar.addEventListener(IndexChangeEvent.CHANGE, onChannelClick);
 					break;
 				case adviceZoneChannelButtonBar:
-					adviceZoneChannelButtonBar.addEventListener(MouseEvent.CLICK,onClikCChannle);
-					trace("we find it !");
+					adviceZoneChannelButtonBar.addEventListener(IndexChangeEvent.CHANGE, onChannelClick);		
 					break;
 			}
 		}
@@ -369,8 +394,6 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		protected function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
-			log.debug("VIDEO PLAYER STATE CHANGE: " + event.state);
-			
 			// React to some states
 			switch (event.state) {
 				case "playbackError":
@@ -379,12 +402,12 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 				case "buffering":
 				case "loading":
+					break;
 				case "uninitialized":
 					// Run the loading animation
 					break;
 				case "playing":
-					// Ensure smoothing is on
-					(event.target as VideoPlayer).videoObject.smoothing = true;
+					break;
 				default:
 					// Just play
 			}
@@ -473,8 +496,8 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		protected function onQuestionZoneVideoButtonClick(event:MouseEvent):void {
-			trace("The question video player's choice is "+choice);
-			questionZoneChannelButtonBar.selectedIndex=choice;
+			//trace("The question video player's choice is "+choice);
+			//questionZoneChannelButtonBar.selectedIndex=choice;
 			
 			for each (var questionZoneEBookNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
 				if (questionZoneEBookNode.@href.indexOf(".rss") > 0) 
@@ -509,12 +532,12 @@ package com.clarityenglish.ielts.view.zone {
 		 * 
 		 */
 		public function adviceZoneVideoSelected(filename:String):void {
-			trace("The advice video player's choice is "+choice);
-			adviceZoneChannelButtonBar.selectedIndex=choice;
+			//trace("The advice video player's choice is "+choice);
+			//adviceZoneChannelButtonBar.selectedIndex=choice;
 			VideoHref=href.createRelativeHref(null, filename);
 			ZoneSelected="advice-zone";
 			videoSelected.dispatch(VideoHref, ZoneSelected);
-			trace("file href="+VideoHref);
+			trace("file href="+VideoHref);		
 		}
 		
 		/**
@@ -524,7 +547,8 @@ package com.clarityenglish.ielts.view.zone {
 		 */
 		protected function onMouseClick(event:MouseEvent):void {
 			if (!(adviceZoneVideoPlayer.getBounds(stage).contains(event.stageX, event.stageY)) &&
-				!(adviceZoneVideoList.getBounds(stage).contains(event.stageX, event.stageY))) {
+				!(adviceZoneVideoList.getBounds(stage).contains(event.stageX, event.stageY)) &&
+			    !(adviceZoneChannelButtonBar.getBounds(stage).contains(event.stageX, event.stageY))) {
 				
 				if (adviceZoneVideoPlayer.playing) {
 					log.debug("Stopped advice zone video player because click detected outside player or list");
@@ -537,7 +561,8 @@ package com.clarityenglish.ielts.view.zone {
 			}
 			
 			if (!(questionZoneVideoPlayer.getBounds(stage).contains(event.stageX, event.stageY)) &&
-				!(questionZoneVideoButton.getBounds(stage).contains(event.stageX, event.stageY))) {
+				!(questionZoneVideoButton.getBounds(stage).contains(event.stageX, event.stageY)) && 
+			    !(questionZoneChannelButtonBar.getBounds(stage).contains(event.stageX, event.stageY))) {
 				
 				if (questionZoneVideoPlayer.playing) {
 					log.debug("Stopped question zone video player because click detected outside player or button");
@@ -605,10 +630,38 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		
-		public function onClikCChannle(event:MouseEvent):void{
-
-			videoSelected.dispatch(VideoHref, ZoneSelected);
+		public function onChannelClick(event: IndexChangeEvent):void{
+			//var selectedButtonBar:ButtonBar;
+			//var stringButtonBar:String;
+			/*if(adviceZoneChannelButtonBar.selectedItem!=null){
+				selectedButtonBar=adviceZoneChannelButtonBar;
+				stringButtonBar="adviceZoneChannelButtonBar";
+			}else{
+				selectedButtonBar=questionZoneChannelButtonBar;
+				stringButtonBar="questionZoneChannelButtonBar";
+			}*/
+			switch (event.target.selectedItem){
+				case "Yes":					
+					selectedIndex= (selectedIndex+1==channelcollection.length)? 0:selectedIndex+1;
+					videoSelected.dispatch(VideoHref, ZoneSelected);
+					break;
+				case "No":
+					trace(event.target);
+					event.target.selectedItem=null;
+					event.target.enabled=false;
+					break;
+			}
 			
+		}
+		
+		
+		public function onVideoTimeout(event:BentoVideoPlayerEvent):void{
+			if(event.target == adviceZoneVideoPlayer){
+				trace("take action to the slow!")
+				adviceZoneChannelButtonBar.enabled=true;
+			}else{
+				questionZoneChannelButtonBar.enabled=true;
+			}
 		}
 		
 	}
