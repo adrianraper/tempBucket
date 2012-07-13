@@ -116,7 +116,7 @@ package com.clarityenglish.common.model {
 			// Tell the LMS through SCORM that you are stopping
 			if (configProxy.getConfig().scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				scormProxy.terminate();				
+				//scormProxy.terminate();				
 			}
 
 		}

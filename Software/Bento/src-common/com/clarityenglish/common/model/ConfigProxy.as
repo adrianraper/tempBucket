@@ -280,7 +280,7 @@ package com.clarityenglish.common.model {
 				//return { exerciseID: "1156153794077" }; // Speaking>The speaking test (2)
 			}
 			
-			// #336 SCORM needs to be checked here as it takes precedence over a connfig startingPoint
+			// #336 SCORM needs to be checked here
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
 				directStartObject = scormProxy.getBookmark();
@@ -290,6 +290,9 @@ package com.clarityenglish.common.model {
 				directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
 				
 			}
+			
+			// #338. This is using a utility parsing function, it is for data from queryString
+			directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
 			
 			// #338. This is called from ProgressProxy to find out which menu bits to hide
 			// and from the ApplicationMediator state machine to see what notifications to send for screens to display

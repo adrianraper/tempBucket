@@ -78,9 +78,9 @@ package com.clarityenglish.bento.model {
 		/**
 		 * Terminate SCORM communication and let the LMS know we are going
 		 */
-		public function terminate():void {
+		/*public function terminate():Boolean {
 			scorm.disconnect();
-		}
+		}*/
 		
 		/**
 		 * Called when you have completed an exercise to tell SCORM about it.
@@ -96,10 +96,8 @@ package com.clarityenglish.bento.model {
 			
 			if (lastExercise) {
 				scorm.complete = true;
-				scorm.setParameter('bookmark', '');
-				scorm.setParameter('lessonStatus', 'completed');
-				scorm.setParameter('rawScore', String(this.calculateAverageScore(scorm.suspendData)));
-				scorm.setParameter('suspendData', '');
+				scorm.setParameter('lessonStatus', 'complete');
+				//scorm.setParameter('rawScore', this.calculateAverageScore());
 				
 			} else {
 				// TODO. Get the exercise caption from the id
@@ -108,12 +106,10 @@ package com.clarityenglish.bento.model {
 				scorm.complete = false;
 				scorm.setParameter('bookmark', this.formatBookmark(exID));
 				
-				// You don't set the objective count in the LMS, it just tells you
-				//scorm.setParameter('objective.count', String(scorm.objectiveCount++));
+				scorm.setParameter('objective.count', String(scorm.objectiveCount++));
 				scorm.setParameter('objective.id', exCaption, scorm.objectiveCount);
 				scorm.setParameter('objective.status', 'completed', scorm.objectiveCount);
 				scorm.setParameter('objective.score', String(score), scorm.objectiveCount);
-				scorm.objectiveCount++;
 				
 				scorm.setParameter('suspendData', this.formatSuspendData(exID, score));
 			}
@@ -145,27 +141,8 @@ package com.clarityenglish.bento.model {
 		 * Calculate the average score from suspend data
 		 */
 		private function calculateAverageScore(data:String):Number {
-			// "score-so-far,ex:1156153794430|0,ex:1156153794430|20"
-			var totalScore:Number = 0;
-			var totalCount:uint = 0;
-			
-			for each(var item:String in data.split(',')) {
-				if (item == 'score-so-far')
-					continue;
-				
-				var detail:Array = item.split('|');
-				if (detail.length > 1) {
-					totalScore += Number(detail[1]);
-					totalCount++;
-				}
-			}
-			
-			if (totalCount > 0)
-				return Math.round(totalScore / totalCount);
-			
-			return 0;
+			return 35;
 		}
-		
 		/**
 		 * Format the bookmark
 		 */
@@ -173,15 +150,13 @@ package com.clarityenglish.bento.model {
 			return 'ex=' + data;
 		}
 		/**
-		 * Save the new suspend data to the LMS 
+		 * Format the suspend data
 		 */
 		private function formatSuspendData(exID:String, score:uint):String {
 			if (!scorm.suspendData)
 				scorm.suspendData = 'score-so-far';
 			
-			scorm.suspendData = scorm.suspendData + ',' + 'ex:' + exID + '|' + score;
-			
-			return scorm.suspendData;
+			return scorm.suspendData + ',' + 'ex:' + exID + '|' + score;
 		}
 
 		
@@ -222,7 +197,7 @@ package com.clarityenglish.bento.model {
 						break;
 					case 'next':
 						if (!value)
-							value = '0';
+							//value = 0;
 						dataObject.next = value;
 						break;
 				}

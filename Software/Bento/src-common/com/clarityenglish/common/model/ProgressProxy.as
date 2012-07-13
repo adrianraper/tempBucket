@@ -5,7 +5,6 @@ package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
@@ -435,19 +434,6 @@ package com.clarityenglish.common.model {
 					// #164. After changing the detail records, recalculate the summary
 					updateSummaryData();
 				}
-			}
-			
-			// SCORM score writing. 
-			if (configProxy.getConfig().scorm) {
-				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				
-				// It needs to know if this exercise is the last enabled one (in this unit/group)
-				var lastExercise:Boolean = true;
-				var nextExerciseNode:XML = bentoProxy.getExerciseNodeWithOffset(1);
-				if (nextExerciseNode)
-					lastExercise = false;
-					
-				scormProxy.writeScore(uid.exerciseID, mark.correctPercent, lastExercise);
 			}
 		}
 		
