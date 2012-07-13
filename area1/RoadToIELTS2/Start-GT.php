@@ -1,5 +1,10 @@
 <?php
+	if (isset($_GET['session']))
+		session_id($_GET['session']);
+		
 	session_start();
+	$currentSessionID = session_id();
+	
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
@@ -44,8 +49,10 @@
 	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
 	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
 		// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
-		$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
-		$ip = $ipList[0];
+		// Not always it doesn't. So need to send the whole list to the licence checking algorithm. Better send as a list than an array.
+		//$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+		//$ip = $ipList[0];
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 	} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
@@ -67,19 +74,20 @@
 <html>
 <head>
 	<title>Road to IELTS from Clarity and the British Council</title>
-	<link rel="shortcut icon" href="/Software/R2IV2.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="<?php echo $webShare ?>/Software/R2IV2.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-	<link rel="stylesheet" type="text/css" href="/Software/Common/ielts.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $webShare ?>/Software/Common/ielts.css" />
 
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/openwin.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/swfobject2.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/SCORM_API_Wrapper.js"></script>
 
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/ielts.js"></script>
 
 	<script type="text/javascript">
 		// ****
@@ -102,7 +110,6 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		//var versionControl = "&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
 		var versionControl = "&version=943";
 
 		// v6.5.5.6 Allow resize screen mode
@@ -129,10 +136,10 @@
 		} else {
 			var jsPassword = swfobject.getQueryParamValue("password");
 		}
-		if ("<?php echo $studentID ?>".length>0) {
+		// If you pass studentID in command line, that seems more important than a session variable
+		var jsStudentID = swfobject.getQueryParamValue("studentID");
+		if (jsStudentID.length<=0) {
 			var jsStudentID = "<?php echo $studentID ?>";
-		} else {
-			var jsStudentID = swfobject.getQueryParamValue("studentID");
 		}
 		if ("<?php echo $userID ?>".length>0) {
 			var jsUserID = "<?php echo $userID ?>";
@@ -159,6 +166,7 @@
 			startingPoint: swfobject.getQueryParamValue("startingPoint"),
 			course: swfobject.getQueryParamValue("course"),
 			action: swfobject.getQueryParamValue("action"),
+			scorm: swfobject.getQueryParamValue("scorm"),
 			referrer: "<?php echo $referrer ?>",
 			server: "<?php echo $server ?>",
 			ip: "<?php echo $ip ?>"

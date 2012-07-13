@@ -1,5 +1,11 @@
 <?php
+
+	if (isset($_GET['session']))
+		session_id($_GET['session']);
+		
 	session_start();
+	$currentSessionID = session_id();
+	
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
@@ -69,20 +75,20 @@
 <html>
 <head>
 	<title>Road to IELTS from Clarity and the British Council</title>
-	<link rel="shortcut icon" href="/Software/R2IV2.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="<?php echo $webShare ?>/Software/R2IV2.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-	<link rel="stylesheet" type="text/css" href="/Software/Common/ielts.css" />
+	<link rel="stylesheet" type="text/css" href="<?php echo $webShare ?>/Software/Common/ielts.css" />
 
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/jquery-1.7.1.min.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/SCORM_API_Wrapper.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/openwin.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/swfobject2.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/SCORM_API_Wrapper.js"></script>
 
-	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
+	<script type="text/javascript" language="JavaScript" src="<?php echo $webShare ?>/Software/Common/ielts.js"></script>
 
 	<script type="text/javascript">
 		// ****
@@ -105,7 +111,6 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		//var versionControl = "&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
 		var versionControl = "&version=943";
 
 		// v6.5.5.6 Allow resize screen mode
@@ -132,10 +137,10 @@
 		} else {
 			var jsPassword = swfobject.getQueryParamValue("password");
 		}
-		if ("<?php echo $studentID ?>".length>0) {
+		// If you pass studentID in command line, that seems more important than a session variable
+		var jsStudentID = swfobject.getQueryParamValue("studentID");
+		if (jsStudentID.length<=0) {
 			var jsStudentID = "<?php echo $studentID ?>";
-		} else {
-			var jsStudentID = swfobject.getQueryParamValue("studentID");
 		}
 		if ("<?php echo $userID ?>".length>0) {
 			var jsUserID = "<?php echo $userID ?>";

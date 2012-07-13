@@ -523,7 +523,7 @@ package com.clarityenglish.ielts.view.zone {
 		 * @param event
 		 */
 		protected function onMouseClick(event:MouseEvent):void {
-			if (!(adviceZoneVideoPlayer.getBounds(stage).contains(event.stageX-80, event.stageY)) &&
+			if (!(adviceZoneVideoPlayer.getBounds(stage).contains(event.stageX, event.stageY)) &&
 				!(adviceZoneVideoList.getBounds(stage).contains(event.stageX, event.stageY))) {
 				
 				if (adviceZoneVideoPlayer.playing) {
@@ -536,7 +536,7 @@ package com.clarityenglish.ielts.view.zone {
 				}
 			}
 			
-			if (!(questionZoneVideoPlayer.getBounds(stage).contains(event.stageX-80, event.stageY)) &&
+			if (!(questionZoneVideoPlayer.getBounds(stage).contains(event.stageX, event.stageY)) &&
 				!(questionZoneVideoButton.getBounds(stage).contains(event.stageX, event.stageY))) {
 				
 				if (questionZoneVideoPlayer.playing) {
