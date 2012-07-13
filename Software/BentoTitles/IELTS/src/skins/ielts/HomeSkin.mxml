@@ -10,6 +10,27 @@
 		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
 	</fx:Metadata>
 	
+	<fx:Script>
+		<![CDATA[
+	import flash.net.navigateToURL; 
+	protected function clickHandler(event:MouseEvent):void 
+	{ 
+	
+	var urlReq:URLRequest = new URLRequest 
+	("http://takeielts.britishcouncil.org/"); 
+	navigateToURL(urlReq, "_blank"); 
+	} 
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="demo" />
+		<s:State name="fullVersion" />
+		<s:State name="lastMinute" stateGroups="bcStates" />
+		<s:State name="homeUser" />
+		<s:State name="testDrive" stateGroups="bcStates" />
+	</s:states>
+	
 	<s:layout>
 		<s:HorizontalLayout paddingTop="0" />
 	</s:layout>	
@@ -49,8 +70,8 @@
 					 includeInLayout="{(!hostComponent.isDemo())}"/>				
 		</s:VGroup>		
 	</s:VGroup>
-
-	<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 55}">
+<s:VGroup width="100%">
+	<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 45}">
 		<s:Button id="readingCourseButton" width="100%" />
 		<s:Spacer height="1" />
 		<s:Button id="listeningCourseButton" width="100%" />
@@ -58,5 +79,12 @@
 		<s:Button id="speakingCourseButton" width="100%" />
 		<s:Spacer height="1" />
 		<s:Button id="writingCourseButton" width="100%" />
-	</s:VGroup>		
+	</s:VGroup>
+	<s:VGroup width="100%" includeIn="testDrive" paddingTop="6">
+	<s:Button id="registerSmallButton" width="100%" click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
+	</s:VGroup>
+
+</s:VGroup>
+
+
 </s:Skin>

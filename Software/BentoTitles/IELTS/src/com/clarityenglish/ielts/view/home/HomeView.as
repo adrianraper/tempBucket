@@ -36,6 +36,9 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart(required="true")]
 		public var listeningCourseButton:Button;
 		
+		[SkinPart(required="true")]
+		public var registerSmallButton:Button;
+		
 		[SkinPart]
 		public var examTipsCourseButton:Button;
 
@@ -155,6 +158,9 @@ package com.clarityenglish.ielts.view.home {
 					break;
 			}
 		}
+		public function get assetFolder():String {
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+		}
 		
 		public function set productVersion(value:String):void {
 			_productVersion = value;
@@ -191,6 +197,29 @@ package com.clarityenglish.ielts.view.home {
 		}
 		public function isDemo():Boolean {
 			return (productVersion == IELTSApplication.DEMO);
+		}
+		
+		protected override function getCurrentSkinState():String {
+			switch (productVersion) {
+				case IELTSApplication.DEMO:
+					return "demo";
+					break;
+				case IELTSApplication.TEST_DRIVE:
+					return "testDrive";
+					break;
+				case IELTSApplication.FULL_VERSION:
+					var currentState:String = "fullVersion";
+					return currentState;
+					break;
+				case IELTSApplication.LAST_MINUTE:
+					return "lastMinute";
+					break;
+				case IELTSApplication.HOME_USER:
+					return "homeUser";
+					break;
+				default:
+					return super.getCurrentSkinState();
+			}
 		}
 		
 		/**
