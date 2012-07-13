@@ -7,23 +7,6 @@
 		[HostComponent("com.clarityenglish.ielts.view.support.SupportView")]
 	</fx:Metadata>
 	<fx:Script>
-		<![CDATA[ 
-			import flash.net.navigateToURL; 
-			protected function clickHandler(event:MouseEvent):void 
-			{ 
-				
-				var urlReq:URLRequest = new URLRequest 
-					("http://takeielts.britishcouncil.org/"); 
-				navigateToURL(urlReq, "_blank"); 
-			} 
-			protected function clickHandler2(event:MouseEvent):void 
-			{ 
-				
-				var urlReq:URLRequest = new URLRequest 
-					("http://www.ieltspractice.com/buy.php"); 
-				navigateToURL(urlReq, "_blank"); 
-			} 
-		]]> 
 
 		
 		<![CDATA[
@@ -66,9 +49,9 @@
 					<s:p><s:span fontWeight="bold">How to use Road to IELTS</s:span></s:p>
 					<s:p><s:span>Road to IELTS is organised into four skill areas, one for each paper in IELTS. In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from IELTS experts on video, and practising specific question types using the interactive practice exercises and the mock papers.</s:span></s:p>
 				</s:RichText>
-				<s:Button id="registerMediumButton" width="95%" includeIn="testDrive" click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
-				<s:Button id="subscribeMediumButton" width="95%" includeIn="testDrive" click="clickHandler2(event)" buttonMode="true" useHandCursor="true" />
- 				<s:Label text="Click here for a detailed user manual." textDecoration="underline" color="0X2B3990" click="clickHandler(event)" buttonMode="true" useHandCursor="true" excludeFrom="testDrive"/>
+				<s:Button id="registerMediumButton" width="95%" includeIn="testDrive" />
+				<s:Button id="subscribeMediumButton" width="95%" includeIn="testDrive" />
+ 				<s:Label text="Click here for a detailed user manual." textDecoration="underline" color="0X2B3990" excludeFrom="testDrive"/>
 
 				
 				<s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">
@@ -103,12 +86,12 @@
 
 						<s:RichText width="96%" paddingTop="10"  visible="true" excludeFrom="fullVersion,homeUser,testDrive">
 							<s:p><s:span fontWeight="bold">Upgrade?</s:span></s:p>
-							<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please contact Clarity.</s:span></s:p>
+							<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</s:span></s:p>
 						</s:RichText>
 					
 					<s:RichText width="96%" paddingTop="10"  visible="true" includeIn="testDrive">
 						<s:p><s:span fontWeight="bold">Upgrade?</s:span></s:p>
-						<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please click here.</s:span></s:p>
+						<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please</s:span> <s:span textDecoration="underline" color="0X2B3990">click here</s:span>.</s:p>
 					</s:RichText>
 					
 					<s:VGroup width="100%" paddingTop="20">

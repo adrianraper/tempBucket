@@ -14,16 +14,6 @@
 			import com.clarityenglish.common.vo.manageable.User;
 			
 			import org.davekeen.util.DateUtil;
-
-			import flash.net.navigateToURL; 
-				protected function clickHandler(event:MouseEvent):void 
-				{ 
-					
-					var urlReq:URLRequest = new URLRequest 
-						("http://takeielts.britishcouncil.org/"); 
-					navigateToURL(urlReq, "_blank"); 
-			} 
-
 			
 			private function formatExamDetails(userDetails:User, type:String):String {
 				// If examDate is not set, then default to expiryDate - 1 week
@@ -202,7 +192,7 @@
 	</s:VGroup>
 	</s:HGroup>
 	<s:VGroup width="100%" includeIn="testDrive">
-		<s:Button id="registerBigButton" width="100%" click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
+		<s:Button id="registerBigButton" width="100%"/>
 	</s:VGroup>
 
 </s:Skin>

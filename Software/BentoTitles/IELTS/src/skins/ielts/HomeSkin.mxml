@@ -10,19 +10,6 @@
 		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
 	</fx:Metadata>
 	
-	<fx:Script>
-		<![CDATA[
-	import flash.net.navigateToURL; 
-	protected function clickHandler(event:MouseEvent):void 
-	{ 
-	
-	var urlReq:URLRequest = new URLRequest 
-	("http://takeielts.britishcouncil.org/"); 
-	navigateToURL(urlReq, "_blank"); 
-	} 
-		]]>
-	</fx:Script>
-	
 	<s:states>
 		<s:State name="demo" />
 		<s:State name="fullVersion" />
@@ -81,7 +68,7 @@
 		<s:Button id="writingCourseButton" width="100%" />
 	</s:VGroup>
 	<s:VGroup width="100%" includeIn="testDrive" paddingTop="6">
-	<s:Button id="registerSmallButton" width="100%" click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
+	<s:Button id="registerSmallButton" width="100%" />
 	</s:VGroup>
 
 </s:VGroup>
