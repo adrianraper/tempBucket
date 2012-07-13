@@ -37,6 +37,8 @@
 			import mx.managers.BrowserManager;
 			import mx.managers.IBrowserManager;
 			
+			import org.osmf.containers.MediaContainer;
+			
 			public var browserManager:IBrowserManager;
 			
 			public static const FULL_VERSION:String = "R2IFV";

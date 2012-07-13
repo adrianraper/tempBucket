@@ -10,9 +10,7 @@ package com.clarityenglish.textLayout.elements {
 	import mx.controls.SWFLoader;
 	import mx.events.FlexEvent;
 	
-	import org.osmf.events.LoadEvent;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
-	import org.osmf.events.SeekEvent;
 	import org.osmf.events.TimeEvent;
 	import org.osmf.media.MediaPlayerState;
 	import org.osmf.net.DynamicStreamingItem;
