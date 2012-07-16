@@ -5,11 +5,21 @@
 	<dbHost>2</dbHost>
 	<productCode>52</productCode>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<mediaChannel>vimeo</mediaChannel>
-	<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	<channel name='aws' caption='aws'>
+		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
+	</channel>
+	<!-- <channel name='network' caption='network'>
+		<streamingMedia>{contentPath}/video/</streamingMedia>
+	</channel> -->
+	<channel name='vimeo' caption='vimeo'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	</channel>
 	<sharedMedia />
 	<brandingMedia />
-	<xlocalDomain>www.ieltspractice.com/buy.php</xlocalDomain>
+	<upgradeURL>http://www.ieltspractice.com</upgradeURL>
+	<pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2
+	</pricesURL>
+	<registerURL>http://www.takeielts.org</registerURL>
 	<language>EN*</language>
 	<contentPath>http://dock.contentbench/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
@@ -19,3 +29,4 @@
 	<assetFolder>Software/ResultsManager/web/resources/assets/
 	</assetFolder>
 </config>
+
