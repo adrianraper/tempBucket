@@ -36,8 +36,8 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart(required="true")]
 		public var listeningCourseButton:Button;
 		
-		[SkinPart(required="true")]
-		public var registerSmallButton:Button;
+		[SkinPart]
+		public var registerInfoButton:Button;
 		
 		[SkinPart]
 		public var examTipsCourseButton:Button;
@@ -78,6 +78,7 @@ package com.clarityenglish.ielts.view.home {
 		public var noProgressData:Boolean;
 		
 		public var courseSelect:Signal = new Signal(XML);
+		public var info:Signal = new Signal();
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -156,6 +157,11 @@ package com.clarityenglish.ielts.view.home {
 						}
 					}
 					break;
+				
+				case registerInfoButton:
+					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
+					break;
+
 			}
 		}
 		public function get assetFolder():String {
@@ -236,5 +242,10 @@ package com.clarityenglish.ielts.view.home {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
 		}
+		
+		private function onRequestInfoClick(event:MouseEvent):void {
+			info.dispatch();
+		}
+
 	}
 }

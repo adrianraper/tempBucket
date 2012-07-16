@@ -192,7 +192,7 @@
 	</s:VGroup>
 	</s:HGroup>
 	<s:VGroup width="100%" includeIn="testDrive">
-		<s:Button id="registerBigButton" width="100%"/>
+		<s:Button id="registerInfoButton" width="100%" useHandCursor="true" />
 	</s:VGroup>
 
 </s:Skin>

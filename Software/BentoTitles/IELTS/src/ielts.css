@@ -154,8 +154,8 @@ home|HomeView s|Button#listeningCourseButton {
 	title: "Listening";
 }
 
-home|HomeView s|Button#registerSmallButton {
-	skinClass: ClassReference("skins.ielts.home.RegisterSmallButton");
+home|HomeView s|Button#registerInfoButton {
+	skinClass: ClassReference("skins.ielts.home.RegisterInfoButton");
 }
 
 homeui|CourseBarRenderer {
@@ -316,7 +316,7 @@ account|AccountView #saveChangesButton {
 	skinClass: ClassReference("skins.ielts.title.SaveChangesButtonSkin");
 }
 
-account|AccountView #registerBigButton {
+account|AccountView #registerInfoButton {
 	skinClass: ClassReference("skins.ielts.title.RegisterBigButton");
 }
 
@@ -325,11 +325,11 @@ support|SupportView {
 	skinClass: ClassReference("skins.ielts.SupportSkin");
 }
 
-support|SupportView #registerMediumButton {
+support|SupportView #registerInfoButton {
 	skinClass: ClassReference("skins.ielts.title.RegisterMediumButton");
 }
 
-support|SupportView #subscribeMediumButton {
+support|SupportView #buyInfoButton {
 	skinClass: ClassReference("skins.ielts.title.SubscribeMediumButton");
 }
 

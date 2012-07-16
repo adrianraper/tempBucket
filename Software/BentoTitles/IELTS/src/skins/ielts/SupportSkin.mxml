@@ -49,8 +49,8 @@
 					<s:p><s:span fontWeight="bold">How to use Road to IELTS</s:span></s:p>
 					<s:p><s:span>Road to IELTS is organised into four skill areas, one for each paper in IELTS. In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from IELTS experts on video, and practising specific question types using the interactive practice exercises and the mock papers.</s:span></s:p>
 				</s:RichText>
-				<s:Button id="registerMediumButton" width="95%" includeIn="testDrive" />
-				<s:Button id="subscribeMediumButton" width="95%" includeIn="testDrive" />
+				<s:Button id="registerInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
+				<s:Button id="buyInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
  				<s:Label text="Click here for a detailed user manual." textDecoration="underline" color="0X2B3990" excludeFrom="testDrive"/>
 
 				
@@ -83,15 +83,14 @@
 
 			
 				<s:VGroup id="contacts" width="30%">
-
-						<s:RichText width="96%" paddingTop="10"  visible="true" excludeFrom="fullVersion,homeUser,testDrive">
-							<s:p><s:span fontWeight="bold">Upgrade?</s:span></s:p>
-							<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</s:span></s:p>
-						</s:RichText>
-					
-					<s:RichText width="96%" paddingTop="10"  visible="true" includeIn="testDrive">
+					<s:RichText width="96%" paddingTop="10" visible="true" excludeFrom="fullVersion,homeUser,testDrive">
 						<s:p><s:span fontWeight="bold">Upgrade?</s:span></s:p>
-						<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please</s:span> <s:span textDecoration="underline" color="0X2B3990">click here</s:span>.</s:p>
+						<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</s:span></s:p>
+					</s:RichText>
+					
+					<s:RichText width="96%" paddingTop="10" visible="true" includeIn="testDrive">
+						<s:p><s:span fontWeight="bold">Upgrade?</s:span></s:p>
+						<s:p><s:span>If you would like to enquire about purchasing the full version of Road to IELTS for an institution, please contact Clarity.</s:span></s:p>
 					</s:RichText>
 					
 					<s:VGroup width="100%" paddingTop="20">

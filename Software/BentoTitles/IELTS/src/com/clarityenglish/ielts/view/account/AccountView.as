@@ -50,12 +50,16 @@ package com.clarityenglish.ielts.view.account {
 		public var saveChangesButton:Button;
 
 		[SkinPart]
+		public var registerInfoButton:Button;
+		
+		[SkinPart]
 		public var IELTSApp1:SWFLoader;
 		
 		[SkinPart]
 		public var countdownDisplay:CountdownDisplay;
 
 		public var updateUser:Signal = new Signal(Object);
+		public var register:Signal = new Signal();
 		
 		[Bindable]
 		public var userDetails:User;
@@ -179,7 +183,12 @@ package com.clarityenglish.ielts.view.account {
 						myCountry = "global";
 					}
 					instance.source += "&widgetdatacountry=" + myCountry;
-					break
+					break;
+				
+				case registerInfoButton:
+					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
+					break;
+				
 			}
 		}
 		
@@ -305,6 +314,10 @@ package com.clarityenglish.ielts.view.account {
 			} else {
 				Alert.show("Your details have been saved.", "Your profile");				
 			}
+		}
+		
+		private function onRequestInfoClick(event:MouseEvent):void {
+			register.dispatch();
 		}
 		
 	}

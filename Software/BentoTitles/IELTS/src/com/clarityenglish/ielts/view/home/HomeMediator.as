@@ -29,6 +29,7 @@
 			
 			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
+			view.info.add(onInfoRequested);
 			
 			// Inject required data into the view
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
@@ -121,6 +122,12 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			bentoProxy.currentCourseClass = course.@["class"];
 		}
-		
+
+		private function onInfoRequested():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var registerPage:String = (configProxy.getConfig().registerURL) ? configProxy.getConfig().registerURL : "www.takeielts.org";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, registerPage);
+		}
+
 	}
 }

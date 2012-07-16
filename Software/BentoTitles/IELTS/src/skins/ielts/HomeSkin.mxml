@@ -57,21 +57,19 @@
 					 includeInLayout="{(!hostComponent.isDemo())}"/>				
 		</s:VGroup>		
 	</s:VGroup>
-<s:VGroup width="100%">
-	<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 45}">
-		<s:Button id="readingCourseButton" width="100%" />
-		<s:Spacer height="1" />
-		<s:Button id="listeningCourseButton" width="100%" />
-		<s:Spacer height="1" />
-		<s:Button id="speakingCourseButton" width="100%" />
-		<s:Spacer height="1" />
-		<s:Button id="writingCourseButton" width="100%" />
+	<s:VGroup width="100%">
+		<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 45}">
+			<s:Button id="readingCourseButton" width="100%" />
+			<s:Spacer height="1" />
+			<s:Button id="listeningCourseButton" width="100%" />
+			<s:Spacer height="1" />
+			<s:Button id="speakingCourseButton" width="100%" />
+			<s:Spacer height="1" />
+			<s:Button id="writingCourseButton" width="100%" />
+		</s:VGroup>
+		<s:VGroup width="100%" includeIn="testDrive" paddingTop="6">
+			<s:Button id="registerInfoButton" width="100%" useHandCursor="true"  />
+		</s:VGroup>
 	</s:VGroup>
-	<s:VGroup width="100%" includeIn="testDrive" paddingTop="6">
-	<s:Button id="registerSmallButton" width="100%" />
-	</s:VGroup>
-
-</s:VGroup>
-
 
 </s:Skin>

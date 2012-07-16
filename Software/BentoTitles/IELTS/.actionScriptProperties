@@ -30,11 +30,9 @@
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
       <libraryPathEntry kind="3" linkType="1" path="assets/CountdownDisplay.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/Bento/bin/Bento.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="D:/alice folder/useful code/OSMF-src/OSMF/framework/OSMF/bin/OSMF.swc" sourcepath="D:/alice folder/useful code/OSMF-src/OSMF/framework/OSMF/org" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="assets/OSMF.swc" useDefaultLinkType="false"/>
     </libraryPath>
-    <sourceAttachmentPath>
-      <sourceAttachmentPathEntry kind="3" linkType="1" path="D:/alice folder/useful code/OSMF-src/OSMF/framework/OSMF/bin/OSMF.swc" sourcepath="D:/alice folder/useful code/OSMF-src/OSMF/framework/OSMF/org" useDefaultLinkType="false"/>
-    </sourceAttachmentPath>
+    <sourceAttachmentPath/>
   </compiler>
   <applications>
     <application path="RoadToIELTS.mxml"/>
@@ -46,9 +44,3 @@
   </buildCSSFiles>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
 </actionScriptProperties>
-
-
-
-
-
-

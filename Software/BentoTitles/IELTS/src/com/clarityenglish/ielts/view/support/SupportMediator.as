@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -28,6 +29,11 @@
 			view.productVersion = configProxy.getProductVersion();
 			view.productCode = configProxy.getProductCode();
 			view.licenceType = configProxy.getLicenceType();
+			
+			// listen for these signals
+			view.register.add(onRegisterIELTS);
+			view.buy.add(onUpgradeIELTS);
+
 		}
         
 		override public function listNotificationInterests():Array {
@@ -44,5 +50,16 @@
 			}
 		}
 		
+		private function onUpgradeIELTS():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var buyPage:String = (configProxy.getConfig().upgradeURL) ? configProxy.getConfig().upgradeURL : "www.ieltspractice.com";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, buyPage);
+		}
+		
+		private function onRegisterIELTS():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var registerPage:String = (configProxy.getConfig().registerURL) ? configProxy.getConfig().registerURL : "www.takeielts.org";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, registerPage);
+		}
 	}
 }

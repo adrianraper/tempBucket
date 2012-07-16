@@ -8,6 +8,7 @@
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -30,6 +31,7 @@
 			
 			// listen for this signal
 			view.updateUser.add(onUpdateUser);
+			view.register.add(onInfoRequested);
 			
 			// Inject some data to the screen.
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
@@ -108,6 +110,11 @@
 			
 		}
 		
+		private function onInfoRequested():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var registerPage:String = (configProxy.getConfig().registerURL) ? configProxy.getConfig().registerURL : "www.takeielts.org";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, registerPage);
+		}
 		
 	}
 }
