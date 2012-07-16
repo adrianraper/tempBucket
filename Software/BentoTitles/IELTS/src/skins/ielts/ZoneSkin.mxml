@@ -9,7 +9,7 @@
 		maxHeight="500"
 		xmlns:components="com.clarityenglish.textLayout.components.*"
 		creationComplete="creationComplete(event)"
-		xmlns:zone="skins.ielts.zone.*" xmlns:controls="com.clarityenglish.controls.*">
+		xmlns:zone="skins.ielts.zone.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
@@ -30,8 +30,7 @@
 			import mx.events.FlexEvent;
 			
 			import org.davekeen.util.PointUtil;
-			import org.osmf.events.MediaFactoryEvent;
-			import org.osmf.media.URLResource;
+			
 			import skins.ielts.videoplayer.VideoPlayerSkin;
 			
 			import spark.events.IndexChangeEvent;
@@ -39,8 +38,6 @@
 			
 			// #302 - ensure the popupwatchers aren't garbage collected
 			private var popupWatchers:Array = [];
-			
-			public static const PLUGIN:String="http://players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.8/osmf2.0/AkamaiAdvancedStreamingPlugin.swf";
 			
 			protected function creationComplete(event:FlexEvent):void {
 				hostComponent.resetQuestionZoneGraphics();
@@ -61,26 +58,6 @@
 				} else if (examPracticeNavigatorContent.enabled) {
 					accordian.selectedIndex = 3;
 				}
-				
-				var resource2:URLResource=new URLResource(PLUGIN);
-				adviceZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoad);
-				adviceZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR,onPluginLoadError);
-				adviceZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.loadPlugin(resource2);
-				
-				questionZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD,onPluginLoad);
-				questionZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR,onPluginLoadError);
-				questionZoneVideoPlayer.videoDisplay.mx_internal::mediaFactory.loadPlugin(resource2);
-			}
-			
-			protected function onPluginLoad(event:MediaFactoryEvent):void
-			{
-				trace("the plug-in loaded successfully.");
-				hostComponent.pluginFlag=true;
-			}
-			
-			private function onPluginLoadError(event:MediaFactoryEvent):void{
-				trace("the plug-in failed to load.");
-				hostComponent.pluginFlag=false;
 			}
 			
 			protected function onUnitClick(event:MouseEvent):void {
@@ -98,8 +75,8 @@
 			
 			public function onAdviceZoneVideoSelect(event:Event):void {
 				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);			
-				//adviceZoneChannelButtonBar.requireSelection=true;
-				//adviceZoneChannelButtonBar.enabled=true;
+				adviceZoneChannelButtonBar.requireSelection=true;
+				adviceZoneChannelButtonBar.enabled=true;
 				
 			}
 						
@@ -129,7 +106,7 @@
 		</s:Transition>
 	</s:transitions>
 
-	<s:Group width="100%" height="100%" top="{(hostComponent.isFullVersion()) ? 0 : 25}">
+	<s:Group width="100%" height="100%" top="{(hostComponent.isFullVersion()) ? 0 : 55}">
 		<!-- The left hand side -->
 		<s:Group width="40%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="90" left="0">
 			<s:layout>
@@ -227,7 +204,7 @@
 								
 								<s:HGroup id="questionZoneVideo" horizontalCenter="0">
 									
-									<controls:BentoVideoPlayer id="questionZoneVideoPlayer"
+									<s:VideoPlayer id="questionZoneVideoPlayer"
 												   autoDisplayFirstFrame="true"
 												   width="411"
 												   height="231"
@@ -268,7 +245,7 @@
 							<s:Label text="Click on the thumbnail to play the video." visible="{hostComponent.courseClass=='listening' || hostComponent.courseClass=='reading'}" includeInLayout="{hostComponent.courseClass=='listening' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
 							<s:HGroup>
 								<s:Group>
-									<controls:BentoVideoPlayer id="adviceZoneVideoPlayer"
+									<s:VideoPlayer id="adviceZoneVideoPlayer"
 												   autoDisplayFirstFrame="true"
 												   width="411"
 												   height="231"
@@ -288,9 +265,9 @@
 											<s:SolidColor color="0x141414"/>
 										</s:fill>
 									</s:Rect>
-									<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Do you want to change a channel?" color="0xFFFFFF" width="70" lineHeight="18" />
+									<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switch channel." color="0xFFFFFF" width="70" lineHeight="18" />
 									<s:VGroup paddingTop="160" paddingLeft="9">
-										<s:ButtonBar id="adviceZoneChannelButtonBar" verticalCenter="0" horizontalCenter="0" enabled="false" selectedItem="null" requireSelection="false">
+										<s:ButtonBar id="adviceZoneChannelButtonBar" verticalCenter="0" horizontalCenter="0" enabled="false">
 											<s:layout>
 												<s:VerticalLayout gap="3" />
 											</s:layout>

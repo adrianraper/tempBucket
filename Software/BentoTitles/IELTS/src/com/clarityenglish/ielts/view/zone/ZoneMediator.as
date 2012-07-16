@@ -20,11 +20,9 @@
 	
 	import org.davekeen.util.Closure;
 	import org.osmf.events.BufferEvent;
-	import org.osmf.events.MediaFactoryEvent;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
 	import org.osmf.media.MediaPlayerState;
-	import org.osmf.media.URLResource;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
 	import org.puremvc.as3.interfaces.IMediator;
@@ -43,8 +41,6 @@
 		private var queuedVideoHref:Href;
 		private var currentVideoHref:Href;
 		private var currentVideoStartTime:Date;
-		private var pluginFlag:Boolean;
-		public static const PLUGIN:String="http://players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.8/osmf2.0/AkamaiAdvancedStreamingPlugin.swf";
 		
 		public function ZoneMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
@@ -157,10 +153,9 @@
 					log.error("Unknown zone name " + zoneName);
 					return;
 			}
-					
 			
 			// #208
-			videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);			
+			videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
 			
 			if (videoSource.match(/\.(rss|xml)$/)) {
 				urlLoader = new URLLoader();
@@ -197,24 +192,17 @@
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
 			if(view.questionZoneChannelButtonBar.selectedItem==null){
-				channelName=view.channelcollection[view.selectedIndex].name;
-				streamName=view.channelcollection[view.selectedIndex].streamName;
-				trace("channelName is "+channelName);
-				view.adviceZoneVideoPlayer.resetTimer();
-				view.adviceZoneVideoPlayer.timerFlag=true;
-				view.adviceZoneVideoPlayer.startTimer();
-				view.adviceZoneChannelButtonBar.selectedItem=null;
-				view.adviceZoneChannelButtonBar.enabled=false;
-
+				channelName=view.adviceZoneChannelButtonBar.selectedItem.name;
+				streamName=view.adviceZoneChannelButtonBar.selectedItem.streamName;
+				trace("the channelname is "+ channelName);
+			    //configProxy.getConfig().channelchoice=channelName;
+				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
 			}else{
-				channelName=view.channelcollection[view.selectedIndex].name;
-				streamName=view.channelcollection[view.selectedIndex].streamName;
-				trace("channelName is "+channelName);
-				view.questionZoneVideoPlayer.resetTimer();
-				view.questionZoneVideoPlayer.timerFlag=true;
-				view.questionZoneVideoPlayer.startTimer();
-				view.questionZoneChannelButtonBar.selectedItem=null;
-				view.questionZoneChannelButtonBar.enabled=false;
+				channelName=view.questionZoneChannelButtonBar.selectedItem.name;
+				streamName=view.questionZoneChannelButtonBar.selectedItem.streamName;
+				trace("the channelname is "+ channelName);
+				//configProxy.getConfig().channelchoice=channelName;
+				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
 			}
 			
 			// To cope with original format files
@@ -251,17 +239,9 @@
 				
 			// Rackspace's pseudo streaming over http
 			} else if (protocol == "http") {
-				
 				//videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
-	
-				//
-				trace("PLUGINFLAG IS "+view.pluginFlag);
-				if(view.pluginFlag){    
-					videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
-					videoPlayer.callLater(videoPlayer.play);
-				}else{
-					trace("warning: Plugin fail to load!");
-				}
+				videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
+				videoPlayer.callLater(videoPlayer.play);
 				
 			// Vimeo's progressive download
 			// Network simple connection
@@ -310,7 +290,6 @@
 		public function onVideoPlayerComplete(event:TimeEvent):void {
 			log.info("video completed " + event.toString());
 		}
-
 		
 	}
 }
