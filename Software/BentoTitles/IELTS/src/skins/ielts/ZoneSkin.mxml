@@ -48,7 +48,7 @@
 				popupWatchers.push(new DisabledPopupWatcher(examPracticeAnswerDataGroup, hostComponent.productVersion));
 				popupWatchers.push(new DisabledPopupWatcher(unitList, hostComponent.productVersion));
 				
-				// Check that the fisrt enabled accordian section is open
+				// Check that the first enabled accordian section is open
 				if (questionZoneNavigatorContent.enabled) {
 					accordian.selectedIndex = 0;
 				} else if (adviceZoneNavigatorContent.enabled) {
@@ -75,9 +75,8 @@
 			
 			public function onAdviceZoneVideoSelect(event:Event):void {
 				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);			
-				adviceZoneChannelButtonBar.requireSelection=true;
-				adviceZoneChannelButtonBar.enabled=true;
-				
+				adviceZoneChannelButtonBar.requireSelection = true;
+				adviceZoneChannelButtonBar.enabled = true;
 			}
 						
 		]]>
@@ -203,7 +202,6 @@
 											 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
 								
 								<s:HGroup id="questionZoneVideo" horizontalCenter="0">
-									
 									<s:VideoPlayer id="questionZoneVideoPlayer"
 												   autoDisplayFirstFrame="true"
 												   width="411"
@@ -212,13 +210,13 @@
 												   scaleMode="letterbox"
 												   />
 																	
-									<s:Group left="0" includeInLayout="{hostComponent.channelcollection.length>1}" visible="{hostComponent.channelcollection.length>1}">									
+									<s:Group left="0" includeInLayout="{hostComponent.channelCollection.length > 1}" visible="{hostComponent.channelCollection.length > 1}">									
 										<s:Rect height="231" width="87">
 											<s:fill>
 												<s:SolidColor color="0x141414"/>
 											</s:fill>
 										</s:Rect>
-										<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switch channel." color="0xFFFFFF" width="70" lineHeight="18" />
+										<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switch channel." color="#FFFFFF" width="70" lineHeight="18" />
 										<s:VGroup paddingTop="160" paddingLeft="9">
 											<s:ButtonBar id="questionZoneChannelButtonBar" verticalCenter="0" horizontalCenter="0">
 												<s:layout>
@@ -227,7 +225,7 @@
 											</s:ButtonBar>											
 										</s:VGroup>
 									</s:Group>
-									</s:HGroup>
+								</s:HGroup>
 							</s:Group>
 
 							<s:HGroup horizontalCenter="0" paddingTop="0" verticalCenter="4">
@@ -259,7 +257,7 @@
 									<s:Image source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 									<s:Image source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
 								</s:Group>
-								<s:Group left="0" visible="{hostComponent.channelcollection.length>1}">									
+								<s:Group left="0" visible="{hostComponent.channelCollection.length > 1}">									
 									<s:Rect height="231" width="87">
 										<s:fill>
 											<s:SolidColor color="0x141414"/>

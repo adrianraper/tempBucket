@@ -10,12 +10,9 @@
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
-	import mx.collections.ArrayCollection;
-	import mx.controls.ButtonBar;
 	import mx.core.mx_internal;
 	
 	import org.davekeen.util.Closure;
@@ -77,8 +74,8 @@
 			
 			view.isMediated = true; // #222
 					
-			//Alice: automatic multiple channel
-			view.channelcollection.source=configProxy.getConfig().channelArray;
+			// Alice: automatic multiple channel
+			view.channelCollection.source = configProxy.getConfig().channelArray;
 		}
 		
 		override public function onRemove():void {
@@ -186,23 +183,23 @@
 		private function onRssLoadComplete(e:Event, videoPlayer:VideoPlayer):void {
 			var dynamicList:XML = new XML(e.target.data);
 			
-			//Alice: multiple channel
+			// Alice: multiple channel
 			var channelName:String;
 			var streamName:String;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			if(view.questionZoneChannelButtonBar.selectedItem==null){
-				channelName=view.adviceZoneChannelButtonBar.selectedItem.name;
-				streamName=view.adviceZoneChannelButtonBar.selectedItem.streamName;
+			if (view.questionZoneChannelButtonBar.selectedItem == null) {
+				channelName = view.adviceZoneChannelButtonBar.selectedItem.name;
+				streamName = view.adviceZoneChannelButtonBar.selectedItem.streamName;
 				trace("the channelname is "+ channelName);
 			    //configProxy.getConfig().channelchoice=channelName;
-				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
-			}else{
-				channelName=view.questionZoneChannelButtonBar.selectedItem.name;
-				streamName=view.questionZoneChannelButtonBar.selectedItem.streamName;
+				view.selectedChannelIndex = view.adviceZoneChannelButtonBar.selectedIndex;
+			} else {
+				channelName = view.questionZoneChannelButtonBar.selectedItem.name;
+				streamName = view.questionZoneChannelButtonBar.selectedItem.streamName;
 				trace("the channelname is "+ channelName);
 				//configProxy.getConfig().channelchoice=channelName;
-				view.choice=view.adviceZoneChannelButtonBar.selectedIndex;
+				view.selectedChannelIndex = view.adviceZoneChannelButtonBar.selectedIndex;
 			}
 			
 			// To cope with original format files
@@ -220,40 +217,38 @@
 			if (host.indexOf('{contentPath}') >= 0) 
 				host = host.replace("{contentPath}", configProxy.getContentPath());
 			
-			if (protocol == "rtmp") {
-				var server:String = channel.server.toString();
-				var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
-				
-				if (server == "fms") dynamicSource.urlIncludesFMSApplicationInstance = true;
-				
-				dynamicSource.streamType = channel.type.toString();
-				var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
-				for each (var stream:XML in channel.item) {
-					var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(stream.streamName, stream.bitrate);
-					streamItems.push(streamingItem);
-				}
-				dynamicSource.streamItems = streamItems; 
-				
-				videoPlayer.source = dynamicSource;
-				videoPlayer.callLater(videoPlayer.play);
-				
-			// Rackspace's pseudo streaming over http
-			} else if (protocol == "http") {
-				//videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
-				videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
-				videoPlayer.callLater(videoPlayer.play);
-				
-			// Vimeo's progressive download
-			// Network simple connection
-			} else if (protocol == "progressive-download") {
-				
-				videoPlayer.source = host + channel.item[0].streamName.toString();
-				videoPlayer.callLater(videoPlayer.play);
-				
-			} else {
-				log.error(protocol + " streaming type not supported");
-				videoPlayer.stop();
-				videoPlayer.source = null;
+			switch (protocol) {
+				case "rtmp":
+					var server:String = channel.server.toString();
+					var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
+					
+					if (server == "fms") dynamicSource.urlIncludesFMSApplicationInstance = true;
+					
+					dynamicSource.streamType = channel.type.toString();
+					var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
+					for each (var stream:XML in channel.item) {
+						var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(stream.streamName, stream.bitrate);
+						streamItems.push(streamingItem);
+					}
+					dynamicSource.streamItems = streamItems; 
+					
+					videoPlayer.source = dynamicSource;
+					videoPlayer.callLater(videoPlayer.play);
+					break;
+				// Rackspace's pseudo streaming over http
+				case "http":
+					//videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
+					videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
+					videoPlayer.callLater(videoPlayer.play);
+					break;
+				case "progressive-download":
+					videoPlayer.source = host + channel.item[0].streamName.toString();
+					videoPlayer.callLater(videoPlayer.play);
+					break;
+				default:
+					log.error(protocol + " streaming type not supported");
+					videoPlayer.stop();
+					videoPlayer.source = null;
 			}
 			
 			// Allow the listener to be garbage collected

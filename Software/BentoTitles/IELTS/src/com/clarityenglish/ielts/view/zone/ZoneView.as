@@ -4,8 +4,6 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.vo.config.ChannelObject;
 	import com.clarityenglish.common.vo.content.Content;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
@@ -14,19 +12,12 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 	
 	import mx.collections.ArrayCollection;
-	import mx.collections.ArrayList;
-	import mx.collections.IList;
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
-	import mx.events.VideoEvent;
 	import mx.formatters.DateFormatter;
-	import mx.utils.object_proxy;
 	
-	import org.alivepdf.links.ILink;
 	import org.osflash.signals.Signal;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
@@ -37,7 +28,6 @@ package com.clarityenglish.ielts.view.zone {
 	import spark.components.Group;
 	import spark.components.List;
 	import spark.components.NavigatorContent;
-	import spark.components.ToggleButton;
 	import spark.components.VideoPlayer;
 	import spark.core.IDisplayText;
 	import spark.events.IndexChangeEvent;
@@ -97,10 +87,10 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var adviceZoneVideoList:List;
 		
-		[SkinPart(requied="true")]
+		[SkinPart(required="true")]
 		public var adviceZoneChannelButtonBar:ButtonBar;
 		
-		[SkinPart(requied="true")]
+		[SkinPart(required="true")]
 		public var questionZoneChannelButtonBar:ButtonBar;
 
 		[SkinPart]
@@ -140,6 +130,16 @@ package com.clarityenglish.ielts.view.zone {
 		
 		private var _licenceType:uint;
 		
+		// Alice: multiple channel
+		private var videoHref:Href;
+		
+		private var zoneSelected:String;
+		
+		public var selectedChannelIndex:int = 0;
+		
+		[Bindable]
+		public var channelCollection:ArrayCollection = new ArrayCollection();
+		
 		public function get assetFolder():String {
 			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
 		}
@@ -159,13 +159,6 @@ package com.clarityenglish.ielts.view.zone {
 		public var courseSelect:Signal = new Signal(XML);
 		public var videoSelected:Signal = new Signal(Href, String);
 		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
-		
-		//Alice multiple channel
-		public var VideoHref:Href;
-		public var ZoneSelected:String;
-		public var choice:Number=0;
-		[Bindable]
-		public var channelcollection:ArrayCollection=new ArrayCollection;
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -279,12 +272,12 @@ package com.clarityenglish.ielts.view.zone {
 				//examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-answers").exercise);
 				examPracticeAnswerDataGroup.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise.(hasOwnProperty("@answerHref")));				
 				
-				//Alice:automatic multiple channel
-				//Give the advice/questionZoneChannelButtonBar as a dataprovider to the channel list
-				adviceZoneChannelButtonBar.dataProvider=channelcollection;
-				adviceZoneChannelButtonBar.labelField="caption";
-				questionZoneChannelButtonBar.dataProvider=channelcollection;
-				questionZoneChannelButtonBar.labelField="caption";
+				// Alice:automatic multiple channel
+				// Give the advice/questionZoneChannelButtonBar as a dataProvider to the channel list
+				adviceZoneChannelButtonBar.dataProvider = channelCollection;
+				adviceZoneChannelButtonBar.labelField = "caption";
+				questionZoneChannelButtonBar.dataProvider = channelCollection;
+				questionZoneChannelButtonBar.labelField = "caption";
 				
 				// Change the course selector
 				if (courseSelectorWidget) courseSelectorWidget.setCourse(_course.@caption.toLowerCase());
@@ -476,17 +469,17 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		protected function onQuestionZoneVideoButtonClick(event:MouseEvent):void {
-			questionZoneChannelButtonBar.requireSelection=true;
-			trace("The question video player's choice is "+choice);
-			questionZoneChannelButtonBar.selectedIndex=choice;
+			questionZoneChannelButtonBar.requireSelection = true;
+			trace("The question video player's choice is " + selectedChannelIndex);
+			questionZoneChannelButtonBar.selectedIndex = selectedChannelIndex;
 			
 			for each (var questionZoneEBookNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
 				if (questionZoneEBookNode.@href.indexOf(".rss") > 0) 
 					break;
 			}
-			VideoHref=href.createRelativeHref(null, questionZoneEBookNode.@href);
-			ZoneSelected="question-zone";
-			videoSelected.dispatch(VideoHref, ZoneSelected);
+			videoHref = href.createRelativeHref(null, questionZoneEBookNode.@href);
+			zoneSelected = "question-zone";
+			videoSelected.dispatch(videoHref, zoneSelected);
 		}
 		
 		protected function onQuestionZoneDownloadButtonClick(event:MouseEvent):void {
@@ -513,12 +506,12 @@ package com.clarityenglish.ielts.view.zone {
 		 * 
 		 */
 		public function adviceZoneVideoSelected(filename:String):void {
-			trace("The advice video player's choice is "+choice);
-			adviceZoneChannelButtonBar.selectedIndex=choice;
-			VideoHref=href.createRelativeHref(null, filename);
-			ZoneSelected="advice-zone";
-			videoSelected.dispatch(VideoHref, ZoneSelected);
-			trace("file href="+VideoHref);
+			trace("The advice video player's choice is " + selectedChannelIndex);
+			adviceZoneChannelButtonBar.selectedIndex = selectedChannelIndex;
+			videoHref = href.createRelativeHref(null, filename);
+			zoneSelected = "advice-zone";
+			videoSelected.dispatch(videoHref, zoneSelected);
+			trace("file href=" + videoHref);
 		}
 		
 		/**
@@ -536,7 +529,7 @@ package com.clarityenglish.ielts.view.zone {
 					adviceZoneVideoPlayer.stop();
 					adviceZoneVideoList.selectedItem = null;
 					//adviceZoneChannelButtonBar.selectedItem=null;
-					adviceZoneChannelButtonBar.enabled=false;
+					adviceZoneChannelButtonBar.enabled = false;
 					
 				}
 			}
@@ -610,11 +603,8 @@ package com.clarityenglish.ielts.view.zone {
 			Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2, transition:"easeOutSine" });
 		}
 		
-		
-		public function  onChannelClicked(event: IndexChangeEvent):void{
-
-			videoSelected.dispatch(VideoHref, ZoneSelected);
-			
+		public function onChannelClicked(event:IndexChangeEvent):void{
+			videoSelected.dispatch(videoHref, zoneSelected);
 		}
 		
 	}
