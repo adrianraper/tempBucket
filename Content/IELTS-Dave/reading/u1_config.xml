@@ -1,8 +1,0 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<FlippingBook>
-  <width>778</width>
-  <height>550</height>
-  <scaleContent>true</scaleContent>
-  <firstPage>0</firstPage>
-10
-<alwaysOpened> false </alwaysOpened><autoFlip> 50 </autoFlip><flipOnClick> true </flipOnClick><staticShadowsDepth> 1 </staticShadowsDepth><dynamicShadowsDepth> 1 </dynamicShadowsDepth><moveSpeed> 2 </moveSpeed><closeSpeed> 3 </closeSpeed><gotoSpeed> 3 </gotoSpeed><flipSound></flipSound><pageBack> 0x000033 </pageBack><loadOnDemand> true </loadOnDemand><cachePages> true </cachePages><cacheSize> 4 </cacheSize><preloaderType> Progress Bar </preloaderType><userPreloaderId></userPreloaderId><pages><page>Page_000</page><page>Page_001</page><page>Page_002</page><page>Page_003</page><page>Page_004</page><page>Page_005</page><page>Page_006</page><page>Page_007</page><page>Page_008</page><page>Page_009</page><page>Page_010</page><page>Page_011</page><page>Page_012</page><page>Page_013</page><page>Page_014</page><page>Page_015</page><page>Page_016</page><page>Page_017</page></pages></FlippingBook>
