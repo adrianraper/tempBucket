@@ -58,7 +58,7 @@
 		</s:VGroup>		
 	</s:VGroup>
 	<s:VGroup width="100%">
-		<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 45}">
+		<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 50}">
 			<s:Button id="readingCourseButton" width="100%" />
 			<s:Spacer height="1" />
 			<s:Button id="listeningCourseButton" width="100%" />

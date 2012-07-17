@@ -191,7 +191,7 @@
 	
 	</s:VGroup>
 	</s:HGroup>
-	<s:VGroup width="100%" includeIn="testDrive">
+	<s:VGroup width="100%" includeIn="testDrive" paddingTop="20">
 		<s:Button id="registerInfoButton" width="100%" useHandCursor="true" />
 	</s:VGroup>
 
