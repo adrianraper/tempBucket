@@ -179,7 +179,7 @@
 								height="100%"
 								creationPolicy="all"
 								borderVisible="false"
-								contentBackgroundAlpha="0"
+								
 								easer="{sineEasing}"
 								duration="500"
 								excludeFrom="demoStates"

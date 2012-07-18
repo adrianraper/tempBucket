@@ -41,16 +41,22 @@ package com.clarityenglish.ielts.view.login {
 		// #341
 		[SkinPart]
 		public var addUserButton:Button;
+		
 		[SkinPart]
 		public var newUserButton:Button;
+		
 		[SkinPart]
 		public var cancelButton:Button;
+		
 		[SkinPart]
 		public var loginNameInput:TextInput;
+		
 		[SkinPart]
 		public var loginEmailInput:TextInput;
+		
 		[SkinPart]
 		public var loginIDInput:TextInput;
+		
 		[SkinPart]
 		public var newPasswordInput:TextInput;
 
@@ -59,10 +65,13 @@ package com.clarityenglish.ielts.view.login {
 		
 		[Bindable]
 		public var loginKey_lbl:String;
+		
 		[Bindable]
 		public var loginName_lbl:String;
+		
 		[Bindable]
 		public var loginID_lbl:String;
+		
 		[Bindable]
 		public var loginEmail_lbl:String;
 		
@@ -83,7 +92,6 @@ package com.clarityenglish.ielts.view.login {
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
-		
 		private var fullVersionAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
@@ -128,6 +136,7 @@ package com.clarityenglish.ielts.view.login {
 				_selfRegister = value;
 			}
 		}
+		
 		[Bindable]
 		public function get verified():Boolean {
 			return _verified; 
@@ -145,6 +154,7 @@ package com.clarityenglish.ielts.view.login {
 		public function set selfRegisterName(value:Boolean):void {
 			selfRegister = selfRegister | Config.SELF_REGISTER_NAME;
 		}
+		
 		[Bindable]
 		public function get selfRegisterID():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_ID) == Config.SELF_REGISTER_ID); 
@@ -152,6 +162,7 @@ package com.clarityenglish.ielts.view.login {
 		public function set selfRegisterID(value:Boolean):void {
 			selfRegister = selfRegister | Config.SELF_REGISTER_ID;
 		}
+		
 		[Bindable]
 		public function get selfRegisterEmail():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_EMAIL) == Config.SELF_REGISTER_EMAIL); 
@@ -159,6 +170,7 @@ package com.clarityenglish.ielts.view.login {
 		public function set selfRegisterEmail(value:Boolean):void {
 			selfRegister = selfRegister | Config.SELF_REGISTER_EMAIL;
 		}
+		
 		[Bindable]
 		public function get selfRegisterPassword():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_PASSWORD) == Config.SELF_REGISTER_PASSWORD); 
@@ -179,30 +191,32 @@ package com.clarityenglish.ielts.view.login {
 			}
 		}
 
-		// #341 Need to know if it is a network version.
+		[Bindable]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
 		public function set licenceType(value:uint):void {
 			if (_licenceType != value) {
 				_licenceType = value;
 			}
 		}
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
-		}
+		
+		// #341 Need to know if it is a network version.
 		public function get isNetwork():Boolean {
 			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
 		}
 		
+		[Bindable(event="productVersionChanged")]
+		public function getProductVersion():String {
+			return _productVersion;
+		}
 		public function setProductVersion(value:String):void {
 			if (_productVersion != value) {
 				_productVersion = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
-		[Bindable(event="productVersionChanged")]
-		public function getProductVersion():String {
-			return _productVersion;
-		}
+		
 		public function setProductCode(value:uint):void {
 			if (_productCode != value) {
 				_productCode = value;
@@ -312,7 +326,7 @@ package com.clarityenglish.ielts.view.login {
 			} else {
 				networkState = "";
 			}
-				
+			
 			return _currentState + networkState;
 		}
 		

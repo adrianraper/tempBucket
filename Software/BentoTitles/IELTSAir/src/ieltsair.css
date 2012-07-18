@@ -1,3 +1,48 @@
 /* CSS file */
 @namespace s "library://ns.adobe.com/flex/spark";
+@namespace home "com.clarityenglish.ielts.view.home.*";
 
+home|HomeView {
+	skinClass: ClassReference("skins.ieltsair.HomeSkin");
+}
+
+/*
+home|HomeView {
+	skinClass: ClassReference("skins.ielts.HomeSkin");
+}
+
+home|HomeView s|Button {
+	skinClass: ClassReference("skins.ielts.home.CourseButtonSkin");
+}
+
+home|HomeView s|Button#writingCourseButton {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Writing.png");
+	title: "Writing";
+}
+
+home|HomeView s|Button#speakingCourseButton {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Speaking.png");
+	title: "Speaking";
+}
+
+home|HomeView s|Button#readingCourseButton {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon");
+	courseImage: Embed(source="skins/ielts/assets/Reading.png");
+	title: "Reading";
+}
+
+home|HomeView s|Button#listeningCourseButton {
+	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
+	courseImage: Embed(source="skins/ielts/assets/Listening.png");
+	title: "Listening";
+}
+
+home|HomeView s|Button#registerInfoButton {
+	skinClass: ClassReference("skins.ielts.home.RegisterInfoButton");
+}
+
+homeui|CourseBarRenderer {
+	skinClass: ClassReference("skins.ielts.home.CourseBarRendererSkin");
+}*/

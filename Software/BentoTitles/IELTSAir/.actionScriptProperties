@@ -39,7 +39,6 @@
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
-  <theme themeIsDefault="false" themeIsSDK="false" themeLocation="${EXTERNAL_THEME_DIR}/Spark"/>
   <applications>
     <application path="RoadToIELTSAir.mxml">
       <airExcludes/>

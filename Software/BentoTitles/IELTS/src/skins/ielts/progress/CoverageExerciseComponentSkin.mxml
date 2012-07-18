@@ -36,7 +36,7 @@
 		</s:fill>
 	</s:Rect>
 
-	<s:List id="itemList" alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#8AD9FF" height="100%" width="100%" borderVisible="false"
+	<s:List id="itemList" alternatingItemColors="[#FFFFFF, #DDDDDD]" height="100%" width="100%" borderVisible="false"
 			dataProvider="{hostComponent.dataProvider}" fontWeight="normal"
 			itemRenderer="skins.ielts.progress.CoverageExerciseRenderer"/>
 	

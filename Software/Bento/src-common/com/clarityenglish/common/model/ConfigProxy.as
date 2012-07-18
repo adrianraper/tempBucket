@@ -46,7 +46,6 @@ package com.clarityenglish.common.model {
 		private var config:Config;
 		
 		private var _dateFormatter:DateFormatter;
-
 		
 		/**
 		 * Configuration information comes from three sources
@@ -212,19 +211,18 @@ package com.clarityenglish.common.model {
 			var loginOption:uint = getAccount().loginOption;
 			var verified:Boolean = (getAccount().verified == 1) ? true : false;
 			
-			if (Config.DEVELOPER.name == "DK") {
-				var configUser:User = new User({name:"dandelion", password:"password"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
-			}
+			var configUser:User;
 			
-			if (Config.DEVELOPER.name == "AR") {
-				configUser = new User({name:"Adrian Raper", studentID:"p574528(8)", password:"passwording"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
-			}
-			
-			if (Config.DEVELOPER.name == "network") {
-				configUser = new User({name:"Student", studentID:"123", password:"password"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+			switch (Config.DEVELOPER.name) {
+				case "DK":
+					configUser = new User({ name:"dandelion", password:"password" });
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+				case "AR":
+					configUser = new User({ name:"Adrian Raper", studentID:"p574528(8)", password:"passwording" });
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+				case "network":
+					configUser = new User({ name:"Student", studentID:"123", password:"password" });
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
 			// Take it from from the URL parameters (see config.as.mergeParameters)
@@ -242,7 +240,7 @@ package com.clarityenglish.common.model {
 				(config.email && (loginOption & Config.LOGIN_BY_EMAIL))) {
 				trace("direct start from config, studentID=" + config.studentID + " loginOption=" + loginOption);
 				
-				configUser = new User({name:config.username, studentID:config.studentID, email:config.email, password:config.password});
+				configUser = new User({ name:config.username, studentID:config.studentID, email:config.email, password:config.password });
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
@@ -254,7 +252,7 @@ package com.clarityenglish.common.model {
 			// #336 SCORM probably needs to be checked here
 			if (config.scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				configUser = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
+				configUser = new User({ name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID });
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			

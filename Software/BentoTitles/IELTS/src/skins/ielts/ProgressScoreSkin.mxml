@@ -149,7 +149,7 @@
 	<ui:ProgressBarRenderer id="progressBar" width="100%" height="60" />
 	
 	<s:HGroup width="100%" height="100%">
-		<s:DataGrid id="scoreDetailsDataGrid" fontSize="12" alternatingRowColors="[#FFFFFF, #DDDDDD]" width="100%" height="93%" borderVisible="false" dataProvider="{hostComponent.tableDataProvider}" >
+		<s:DataGrid id="scoreDetailsDataGrid" fontSize="12" width="100%" height="93%" dataProvider="{hostComponent.tableDataProvider}" >
 			<s:columns>
 				<s:ArrayList>
 					<s:GridColumn headerText="Unit" dataField="@unitCaption" sortCompareFunction="sortUnits" />
@@ -162,6 +162,4 @@
 		</s:DataGrid>
 	</s:HGroup>
 	
-
-		
 </s:Skin>

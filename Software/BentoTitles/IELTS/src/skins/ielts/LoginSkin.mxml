@@ -14,7 +14,7 @@
 				// TODO: Use CopyOps
 				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
 				navigateToURL(urlReq, "_blank"); 
-			} 
+			}
 		]]> 
 	</fx:Script>
 	<s:states>
