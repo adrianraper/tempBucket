@@ -23,6 +23,7 @@
 @namespace error "com.clarityenglish.common.view.error.*";
 @namespace components "com.clarityenglish.textLayout.components.*";
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
+@namespace ielts "com.clarityenglish.ielts.*";
 
 @font-face {
 	src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
@@ -73,6 +74,10 @@ global {
 	disabledColor: #EEEEEE;
 }
 
+ielts|IELTSApplication {
+	skinClass: ClassReference("skins.ielts.IELTSApplicationSkin");
+}
+
 /* Credit view styles */
 credits|CreditsView {
 	skinClass: ClassReference("skins.ielts.CreditsSkin");
@@ -105,6 +110,10 @@ title|TitleView #navBar {
 
 title|TitleView #navBar s|ButtonBarButton {
 	
+}
+
+title|TitleView #logoutButton {
+	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
 }
 
 /* #337
@@ -160,11 +169,6 @@ home|HomeView s|Button#registerInfoButton {
 
 homeui|CourseBarRenderer {
 	skinClass: ClassReference("skins.ielts.home.CourseBarRendererSkin");
-}
-/* Title view styles */
-
-title|TitleView #logoutButton {
-	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
 }
 
 /* Zone view styles */

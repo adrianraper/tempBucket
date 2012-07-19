@@ -127,7 +127,6 @@ package com.clarityenglish.bento.view.base {
 		protected function get menu():XML {
 			// #338 The model no longer holds head and script for the menu
 			return (_xhtml) ? _xhtml.head.script.(@id == "model" && @type == "application/xml").menu[0] : null;
-			//return (_xhtml) ? _xhtml.xml : null;
 		}
 		
 	}

@@ -1,8 +1,6 @@
 package com.clarityenglish.ielts.view.title {
-	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
@@ -20,8 +18,6 @@ package com.clarityenglish.ielts.view.title {
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.SWFLoader;
-	import mx.core.FlexGlobals;
-	import mx.events.ItemClickEvent;
 	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.DateUtil;
@@ -32,7 +28,6 @@ package com.clarityenglish.ielts.view.title {
 	import spark.components.ButtonBar;
 	import spark.components.Label;
 	import spark.events.IndexChangeEvent;
-	import spark.events.ListEvent;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
@@ -46,7 +41,7 @@ package com.clarityenglish.ielts.view.title {
 		[SkinPart]
 		public var navBar:ButtonBar;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var logoutButton:Button;
 		
 		[SkinPart]
@@ -436,7 +431,7 @@ package com.clarityenglish.ielts.view.title {
 		// This function enables logoutButton no matter what
 		private function resetLogoutButton(event:TimerEvent):void {
 			trace("enable logout button");
-			logoutButton.enabled = true;
+			if (logoutButton) logoutButton.enabled = true;
 		}
 		
 		// #260 

@@ -16,7 +16,7 @@
 	
 	<s:states>
 		<s:State name="home" />
-		<s:State name="zone" />
+		<s:State name="zone"  />
 		<s:State name="progress" />
 		<s:State name="account" />
 		<s:State name="support" />

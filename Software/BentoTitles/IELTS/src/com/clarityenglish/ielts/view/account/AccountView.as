@@ -8,7 +8,6 @@ package com.clarityenglish.ielts.view.account {
 	import flash.events.MouseEvent;
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
-	import flash.system.SecurityDomain;
 	
 	import mx.controls.Alert;
 	import mx.controls.DateField;
@@ -22,7 +21,6 @@ package com.clarityenglish.ielts.view.account {
 	import spark.components.Label;
 	import spark.components.NumericStepper;
 	import spark.components.TextInput;
-	import spark.formatters.DateTimeFormatter;
 	
 	public class AccountView extends BentoView {
 				
