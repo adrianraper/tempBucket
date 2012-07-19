@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:home="com.clarityenglish.ielts.view.home.*"
+		creationComplete="creationComplete(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			import skins.ieltsair.assets.title.*;
+			
+			protected function creationComplete(event:FlexEvent):void {
+				homeViewNavigator.icon = new HomeIcon();
+				myProgressViewNavigator.icon = new MyProgressIcon();
+				myProfileViewNavigator.icon = new MyProfileIcon();
+				helpViewNavigator.icon = new HelpIcon();
+				creditsViewNavigator.icon = new CreditsIcon();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="home" />
+		<s:State name="zone" />
+		<s:State name="progress" />
+		<s:State name="account" />
+		<s:State name="support" />
+		<s:State name="exercise" />
+	</s:states>
+	
+	<s:TabbedViewNavigator left="0" right="0" bottom="0">
+		<s:ViewNavigator id="homeViewNavigator" label="Home" />
+		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" />
+		<s:ViewNavigator id="myProfileViewNavigator" label="My Profile" />
+		<s:ViewNavigator id="helpViewNavigator" label="Help" />
+		<s:ViewNavigator id="creditsViewNavigator" label="Credits" />
+	</s:TabbedViewNavigator>
+	
+</s:Skin>

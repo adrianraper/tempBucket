@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group d:type="layer" d:userLabel="Layer 1">
+    <Group>
+      <Path x="-318.9" y="-724.15" data="M343.05 737.2Q343.05 732.6 339.8 729.35 336.5 726.2 331.95 726.2 327.45 726.2 324.15 729.35 320.95 732.6 320.95 737.2 320.95 741.8 324.15 745 327.4 748.25 331.95 748.25 336.55 748.25 339.8 745 343.05 741.8 343.05 737.2M318.9 737.2Q318.9 731.8
+ 322.7 727.95 326.5 724.15 331.95 724.15 337.45 724.15 341.25 727.95 345.1 731.8 345.1 737.2 345.1 742.65 341.25 746.45 337.5 750.3 331.95 750.3 326.5 750.3 322.7 746.45 318.9 742.65 318.9 737.2">
+        <fill>
+          <SolidColor color="#5D5C5D"/>
+        </fill>
+      </Path>
+      <Path x="-318.9" y="-724.15" data="M326.3 737.2 329.05 737.2 329.05 743.05 326.3 743.05 326.3 737.2">
+        <fill>
+          <SolidColor color="#5D5C5D"/>
+        </fill>
+      </Path>
+      <Path x="-318.9" y="-724.15" data="M330.15 734.3 332.95 734.3 332.95 743.05 330.15 743.05 330.15 734.3">
+        <fill>
+          <SolidColor color="#5D5C5D"/>
+        </fill>
+      </Path>
+      <Path x="-318.9" y="-724.15" data="M334.05 731.15 336.8 731.15 336.8 743.05 334.05 743.05 334.05 731.15">
+        <fill>
+          <SolidColor color="#5D5C5D"/>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

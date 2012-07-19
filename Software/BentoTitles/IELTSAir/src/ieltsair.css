@@ -1,12 +1,42 @@
 /* CSS file */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace home "com.clarityenglish.ielts.view.home.*";
+@namespace title "com.clarityenglish.ielts.view.title.*";
+@namespace ielts "com.clarityenglish.ielts.*";
 
-home|HomeView {
+global {
+	interactionMode: touch;
+}
+
+ielts|IELTSApplication {
+	skinClass: ClassReference("skins.ieltsair.IELTSApplicationSkin");
+}
+
+ielts|IELTSApplication s|ActionBar {
+	chromeColor: #067EBC;
+	defaultButtonAppearance: beveled;
+}
+
+title|TitleView {
+	skinClass: ClassReference("skins.ieltsair.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator #tabBar {
+	chromeColor: #262526;
+	color: #DDDDDD;
+	fontSize: 10;
+	fontWeight: normal;
+	iconPlacement: top;
+}
+
+/*home|HomeView {
 	skinClass: ClassReference("skins.ieltsair.HomeSkin");
 }
 
-/*
+home|HomeView s|Button {
+	skinClass: ClassReference("skins.ielts.home.CourseButtonSkin");
+}
+
 home|HomeView {
 	skinClass: ClassReference("skins.ielts.HomeSkin");
 }

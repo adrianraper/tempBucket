@@ -25,26 +25,6 @@
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
 @namespace ielts "com.clarityenglish.ielts.*";
 
-@font-face {
-	src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
-	fontFamily: "HelveticaNeueLtStd";
-	fontWeight: normal;
-	fontAntiAliasType: advanced;
-	fontSharpness: 400;
-	fontThickness: -200;
-	embedAsCFF: true;
-}
-
-@font-face {
-	src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
-	fontFamily: "HelveticaNeueLtStd";
-	fontWeight: bold;
-	fontAntiAliasType: advanced;
-	fontSharpness: 400;
-	fontThickness: -200;
-	embedAsCFF: true;
-}
-
 global {
 	/* This changes the modal popup mask properties */
 	modal-transparency: 0.1;

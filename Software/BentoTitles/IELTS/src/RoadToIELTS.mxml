@@ -9,6 +9,31 @@
 		[SWF(width="990", height="760")]
 	</fx:Metadata>
 	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace ielts "com.clarityenglish.ielts.*";
+		
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
+			fontFamily: "HelveticaNeueLtStd";
+			fontWeight: normal;
+			fontAntiAliasType: advanced;
+			fontSharpness: 400;
+			fontThickness: -200;
+			embedAsCFF: true;
+		}
+		
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
+			fontFamily: "HelveticaNeueLtStd";
+			fontWeight: bold;
+			fontAntiAliasType: advanced;
+			fontSharpness: 400;
+			fontThickness: -200;
+			embedAsCFF: true;
+		}
+	</fx:Style>
+	
 	<fx:Style source="ielts.css" />
 	
 </ielts:IELTSApplication>
