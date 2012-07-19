@@ -15,6 +15,9 @@
 	</fx:Metadata>
 	
 	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
 		<s:State name="home" />
 		<s:State name="zone"  />
 		<s:State name="progress" />
@@ -38,7 +41,7 @@
 					 buttonMode="true" useHandCursor="true" />
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true"/>
 	</s:Group>
-		
+	
 	<s:Group width="100%" includeIn="exercise">
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')"/>
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" left="210" top="7" />

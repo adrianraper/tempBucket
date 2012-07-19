@@ -27,12 +27,19 @@
 		]]>
 	</fx:Script>
 	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
+	
 	<s:Group>
-	<s:SkinnableComponent id="courseKeyComponent" skinClass="skins.ielts.progress.CourseKeyGroupSkin" width="100%" height="30" top="0" />
+		<s:SkinnableComponent id="courseKeyComponent" skinClass="skins.ielts.progress.CourseKeyGroupSkin" width="100%" height="30" top="0" />
 	</s:Group>
+	
 	<s:Group>
 		<s:Label id="label1" fontSize="12.6" paddingLeft="10" paddingTop="29"/>
 		<s:Label id="label2" fontSize="12.6" paddingLeft="10" paddingTop="47"/>

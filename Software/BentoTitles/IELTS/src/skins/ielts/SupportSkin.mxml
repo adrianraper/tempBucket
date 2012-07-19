@@ -19,6 +19,9 @@
 	</fx:Declarations>
 	
 	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
 		<s:State name="demo" />
 		<s:State name="fullVersion" />
 		<s:State name="lastMinute" stateGroups="bcStates" />

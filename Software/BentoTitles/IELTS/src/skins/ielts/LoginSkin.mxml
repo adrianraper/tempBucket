@@ -18,6 +18,9 @@
 		]]> 
 	</fx:Script>
 	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+
 		<s:State name="login" stateGroups="loginStates" />
 		<s:State name="loginNetwork" stateGroups="loginStates" />
 		<s:State name="register" stateGroups="registerStates" />

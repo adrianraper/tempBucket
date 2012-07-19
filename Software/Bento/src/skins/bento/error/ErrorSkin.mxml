@@ -7,6 +7,11 @@
 		[HostComponent("com.clarityenglish.common.view.error.ErrorView")]
 	</fx:Metadata>
 	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>

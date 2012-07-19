@@ -13,6 +13,7 @@ package com.clarityenglish.bento.view.base {
 	
 	import org.davekeen.util.ClassUtil;
 	
+	import spark.components.View;
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	/**
@@ -22,7 +23,7 @@ package com.clarityenglish.bento.view.base {
 	 */
 	[Event(name="hrefChanged", type="com.clarityenglish.bento.view.base.events.BentoEvent")]
 	[Event(name="xhtmlReady", type="com.clarityenglish.bento.view.base.events.BentoEvent")]
-	public class BentoView extends SkinnableComponent {
+	public class BentoView extends View {
 		
 		/**
 		 * Standard flex logger

@@ -21,8 +21,8 @@ package com.clarityenglish.bento.view {
 		
 		public static const DEFAULT_VIEW:String = "com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView";
 		
-		[SkinPart(required="true")]
-		public var contentGroup:Group;
+		/*[SkinPart(required="true")]
+		public var contentGroup:Group;*/
 		
 		protected override function onPreinitialize(event:FlexEvent):void {
 			super.onPreinitialize(event);

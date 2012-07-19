@@ -71,8 +71,8 @@
 			fontFamily: "HelveticaNeueLtStd";
 			fontWeight: normal;
 			fontAntiAliasType: advanced;
-			/*fontSharpness: 400;
-			fontThickness: -200;*/
+			fontSharpness: 400;
+			fontThickness: -200;
 			embedAsCFF: false;
 		}
 		
@@ -81,8 +81,8 @@
 			fontFamily: "HelveticaNeueLtStd";
 			fontWeight: bold;
 			fontAntiAliasType: advanced;
-			/*fontSharpness: 400;
-			fontThickness: -200;*/
+			fontSharpness: 400;
+			fontThickness: -200;
 			embedAsCFF: false;
 		}
 	</fx:Style>

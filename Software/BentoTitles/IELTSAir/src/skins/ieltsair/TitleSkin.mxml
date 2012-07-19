@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:home="com.clarityenglish.ielts.view.home.*"
-		creationComplete="creationComplete(event)">
+		creationComplete="creationComplete(event)" xmlns:title="skins.ieltsair.assets.title.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
@@ -26,6 +26,9 @@
 	
 	<!-- states -->
 	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
 		<s:State name="home" />
 		<s:State name="zone" />
 		<s:State name="progress" />
@@ -34,12 +37,53 @@
 		<s:State name="exercise" />
 	</s:states>
 	
-	<s:TabbedViewNavigator left="0" right="0" bottom="0">
-		<s:ViewNavigator id="homeViewNavigator" label="Home" />
-		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" />
-		<s:ViewNavigator id="myProfileViewNavigator" label="My Profile" />
-		<s:ViewNavigator id="helpViewNavigator" label="Help" />
-		<s:ViewNavigator id="creditsViewNavigator" label="Credits" />
+	<title:IELTSLogo x="39" y="74" />
+	<s:SWFLoader source="{hostComponent.productVersionLogo}" x="39" y="140" />
+	<s:Label text="{hostComponent.productVersionText}" x="51" y="150" color="#FFFFFF" />
+	
+	<s:TabbedViewNavigator width="100%" height="100%" creationPolicy="all">
+		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" width="100%" height="100%" >
+			<s:actionContent>
+				<s:Button label="Log out" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" width="100%" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="myProfileViewNavigator" label="My Profile" firstView="com.clarityenglish.ielts.view.account.AccountView" title="Road to IELTS" width="100%" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="helpViewNavigator" label="Help" width="100%" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="creditsViewNavigator" label="Credits" firstView="com.clarityenglish.ielts.view.credits.CreditsView" title="Road to IELTS" width="100%" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
 	</s:TabbedViewNavigator>
 	
 </s:Skin>

@@ -15,7 +15,7 @@
 		
 		@font-face {
 			src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
-			fontFamily: "HelveticaNeueLtStd";
+			fontFamily: "HelveticaNeueLtStdCFF";
 			fontWeight: normal;
 			fontAntiAliasType: advanced;
 			fontSharpness: 400;
@@ -25,13 +25,14 @@
 		
 		@font-face {
 			src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
-			fontFamily: "HelveticaNeueLtStd";
+			fontFamily: "HelveticaNeueLtStdCFF";
 			fontWeight: bold;
 			fontAntiAliasType: advanced;
 			fontSharpness: 400;
 			fontThickness: -200;
 			embedAsCFF: true;
 		}
+		
 	</fx:Style>
 	
 	<fx:Style source="ielts.css" />

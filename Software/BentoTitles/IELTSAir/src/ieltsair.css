@@ -6,6 +6,12 @@
 
 global {
 	interactionMode: touch;
+	
+	fontFamily: "HelveticaNeueLtStd";
+}
+
+s|Label, s|RichText {
+	fontFamily: "HelveticaNeueLtStdCFF";
 }
 
 ielts|IELTSApplication {
@@ -29,9 +35,11 @@ title|TitleView s|TabbedViewNavigator #tabBar {
 	iconPlacement: top;
 }
 
-/*home|HomeView {
+home|HomeView {
 	skinClass: ClassReference("skins.ieltsair.HomeSkin");
 }
+
+/*
 
 home|HomeView s|Button {
 	skinClass: ClassReference("skins.ielts.home.CourseButtonSkin");

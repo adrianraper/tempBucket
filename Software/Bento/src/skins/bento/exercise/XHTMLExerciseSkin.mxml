@@ -31,7 +31,10 @@
 		]]>
 	</fx:Script>
 	
-	<s:states />
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
 	
 	<s:layout>
 		<s:VerticalLayout gap="0" />
