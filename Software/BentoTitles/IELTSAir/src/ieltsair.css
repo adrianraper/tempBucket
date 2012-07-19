@@ -7,11 +7,11 @@
 global {
 	interactionMode: touch;
 	
-	fontFamily: "HelveticaNeueLtStd";
+	fontFamily: HelveticaNeueLtStd;
 }
 
 s|Label, s|RichText {
-	fontFamily: "HelveticaNeueLtStdCFF";
+	fontFamily: HelveticaNeueLtStdCFF;
 }
 
 ielts|IELTSApplication {

@@ -183,6 +183,14 @@ package com.clarityenglish.ielts.view.zone {
 			horribleHackCourseClass = courseClass;
 		}
 		
+		/**
+		 * This is another way 
+		 */
+		public override function set data(value:Object):void {
+			super.data = value;	
+			course = data as XML;
+		}
+		
 		[Bindable(event="courseChanged")]
 		public function get courseClass():String {
 			return (_course) ? _course.@["class"].toString() : null;
@@ -255,6 +263,8 @@ package com.clarityenglish.ielts.view.zone {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
+			
+			if (!initialized) return;
 			
 			if (_courseChanged) {
 				courseTitleLabel.text = _course.@caption;

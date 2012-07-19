@@ -43,6 +43,9 @@
 	
 	<s:TabbedViewNavigator width="100%" height="100%" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" width="100%" height="100%" >
+			<s:navigationContent>
+				<s:Button label="Back" click="homeViewNavigator.popView()" />
+			</s:navigationContent>
 			<s:actionContent>
 				<s:Button label="Log out" />
 			</s:actionContent>
@@ -66,7 +69,7 @@
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="helpViewNavigator" label="Help" width="100%" height="100%">
+		<s:ViewNavigator id="helpViewNavigator" label="Help" firstView="com.clarityenglish.ielts.view.support.SupportView" title="Road to IELTS" width="100%" height="100%">
 			<s:navigationContent>
 				<s:Button label="Home" />
 			</s:navigationContent>

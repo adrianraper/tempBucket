@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:anychart="com.anychart.*" 
+		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="demo" />
+		<s:State name="fullVersion" />
+		<s:State name="lastMinute" stateGroups="bcStates" />
+		<s:State name="homeUser" />
+		<s:State name="testDrive" stateGroups="bcStates" />
+	</s:states>
+	
+	<s:Label id="welcomeLabel" left="39" top="202" />
+	<s:Label id="noticeLabel" left="39" top="221" />
+	
+	<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Reading" courseClass="reading" id="readingCoverageBar" left="39" top="252" width="375" />
+	<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Listening" courseClass="listening" id="listeningCoverageBar" left="39" top="326" width="375" />
+	<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Speaking" courseClass="speaking" id="speakingCoverageBar" left="39" top="400" width="375" />
+	<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Writing" courseClass="writing" id="writingCoverageBar" left="39" top="474" width="375" />
+	
+	<s:Button id="readingCourseButton" right="20" top="152" />
+	<s:Button id="listeningCourseButton" right="20" top="258" />
+	<s:Button id="speakingCourseButton" right="20" top="366" />
+	<s:Button id="writingCourseButton" right="20" top="473" />
+	
+	<!--<s:layout>
+		<s:HorizontalLayout paddingTop="0" />
+	</s:layout>	
+	
+	<s:VGroup paddingTop="75" width="100%">
+		<s:HGroup>
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
+			<s:VGroup alignmentBaseline="ideographicBottom">
+				<s:Label id="welcomeLabel" top="0" right="0" />
+				<s:Label id="noticeLabel" top="0" right="0" />
+			</s:VGroup>
+		</s:HGroup>
+		
+		<s:VGroup id="completionGroup" width="100%" paddingTop="5" visible="{!hostComponent.noProgressData}" includeInLayout="{!hostComponent.noProgressData}" >
+			<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Reading" courseClass="reading" id="readingCoverageBar" width="100%" />
+			<s:Spacer height="1"/>
+			<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Listening" courseClass="listening" id="listeningCoverageBar" width="100%" />
+			<s:Spacer height="1"/>
+			<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Speaking" courseClass="speaking" id="speakingCoverageBar" width="100%" />
+			<s:Spacer height="1"/>
+			<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Writing" courseClass="writing" id="writingCoverageBar" width="100%" />
+			<s:Spacer height="5"/>
+			<s:Label text="The colour bars show how much you have completed in each skill area. Go to My Progress for more details." width="80%" lineHeight="18" />	
+		</s:VGroup>
+		
+		<s:VGroup id="welcomeGroup" width="100%" paddingTop="5" visible="{hostComponent.noProgressData}" includeInLayout="{hostComponent.noProgressData}" >
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/home_coursebar_demo.png')" 
+						 visible="{(hostComponent.isDemo())}"
+						 includeInLayout="{(hostComponent.isDemo())}"/>			
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/home_coursebar.png')" 
+						 visible="{(!hostComponent.isDemo())}"
+						 includeInLayout="{(!hostComponent.isDemo())}"/>			
+			
+			<s:Spacer height="10"/>
+			<s:Label id="noProgressText" text="Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill." 
+					 width="80%" lineHeight="18" 
+					 visible="{(!hostComponent.isDemo())}"
+					 includeInLayout="{(!hostComponent.isDemo())}"/>				
+		</s:VGroup>
+	</s:VGroup>
+	
+	<s:VGroup width="100%">
+		<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 50}">
+			<s:Button id="readingCourseButton" width="100%" />
+			<s:Spacer height="1" />
+			<s:Button id="listeningCourseButton" width="100%" />
+			<s:Spacer height="1" />
+			<s:Button id="speakingCourseButton" width="100%" />
+			<s:Spacer height="1" />
+			<s:Button id="writingCourseButton" width="100%" />
+		</s:VGroup>
+		<s:VGroup width="100%" includeIn="testDrive" paddingTop="6">
+			<s:Button id="registerInfoButton" width="100%" useHandCursor="true"  />
+		</s:VGroup>
+	</s:VGroup>-->
+	
+</s:Skin>

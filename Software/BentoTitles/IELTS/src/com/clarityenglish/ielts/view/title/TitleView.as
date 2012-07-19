@@ -27,6 +27,7 @@ package com.clarityenglish.ielts.view.title {
 	import spark.components.Button;
 	import spark.components.ButtonBar;
 	import spark.components.Label;
+	import spark.components.ViewNavigator;
 	import spark.events.IndexChangeEvent;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
@@ -37,6 +38,9 @@ package com.clarityenglish.ielts.view.title {
 	[SkinState("support")]
 	[SkinState("exercise")]
 	public class TitleView extends BentoView {
+		
+		[SkinPart]
+		public var homeViewNavigator:ViewNavigator;
 		
 		[SkinPart]
 		public var navBar:ButtonBar;
@@ -154,6 +158,23 @@ package com.clarityenglish.ielts.view.title {
 		
 		[Embed(source="skins/ielts/assets/buy.jpg")]
 		private var buyInfo:Class;
+		
+		public var _selectedCourseXML:XML;
+		[Bindable(event="courseSelected")]
+		public function get selectedCourseXML():XML { return _selectedCourseXML; }
+		public function set selectedCourseXML(value:XML):void {
+			_selectedCourseXML = value;
+			
+			if (_selectedCourseXML) {
+				currentState = "zone";
+				if (navBar) navBar.selectedIndex = -1;
+				if (homeViewNavigator) {
+					homeViewNavigator.pushView(ZoneView, _selectedCourseXML);
+				}
+			}
+			
+			dispatchEvent(new Event("courseSelected"));
+		}
 		
 		// Constructor to let us initialise our states
 		public function TitleView() {
