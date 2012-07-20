@@ -10,10 +10,14 @@
 		{/if}
 	{/foreach}
 *}
+{if $dateDiff == ''}
+	{assign var='dateDiff' value='-1month'}
+{/if}
 {foreach name=orderDetails from=$account->titles item=title}
 	{* Just totally skip IYJ Practice Centre *}
 	{* Also skip any title that expired more than 1 month ago *}
-	{date_diff assign='oneMonthAgo' date='' period='-1month'}
+	{* Why write about a title that has expired at all? *}
+	{date_diff assign='oneMonthAgo' date='' period=$dateDiff}
 	{* Ignore Road to IELTS v1 *}
 	{if $title->expiryDate|truncate:10:"" >= $oneMonthAgo && !$title->name|stristr:"Practice Centre" && $title->productCode!=12 && $title->productCode!=13}
 	{* if !$title->name|stristr:"Practice Centre" *}

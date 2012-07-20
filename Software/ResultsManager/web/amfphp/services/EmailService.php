@@ -38,6 +38,12 @@ class EmailService extends AbstractService {
 		AuthenticationOps::$useAuthentication = false;
 	}
 	
+	public function changeDB($dbHost) {
+		$this->changeDbHost($dbHost);
+		
+		$this->emailOps->changeDB($this->db);
+	}
+
 	public function sendEmails($template, $emailArray, $sender, $data=null) {
 		// All about the person sending out the emails
 		$emailFrom = $sender['email'];

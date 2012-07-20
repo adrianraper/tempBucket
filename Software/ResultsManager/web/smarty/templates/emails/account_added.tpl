@@ -45,7 +45,7 @@
 -- 1. Licence Details
 -->
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">1. Licence details</p>
-	{include file='file:includes/Title_Details_Section.tpl' enabled='on'}
+	{include file='file:includes/Title_Details_Section.tpl' enabled='on' dateDiff='0day'}
 <!-- 
 -- 2. Administrator account details
 -- 	Different sections for AA and LT

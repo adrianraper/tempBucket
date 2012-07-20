@@ -13,11 +13,14 @@ $emailService = new EmailService();
 
 // API information will come in JSON format
 // What happens if I want to send an array of emails? And what if I use EmailAPI to prepare them?
+// It complicates things a lot - better just call this many times.
 function loadAPIInformation() {
 	global $emailService;
 	
 	$inputData = file_get_contents("php://input");
 	//$inputData = '[{"method":"sendEmail", "from":"adrian.raper@clarityenglish.com", "to":"adrian@noodles.hk", "templateID":"GlobalR2I-registration", "data":{"name":"Adrian&apos;s Raper bean", "password":"1234"}, "transactionTest":false}]';
+	//$inputData = '[{"method":"sendEmail", "from":"support@claritylifeskills.com", "to":"adrian@noodles.hk", "templateID":"CLSNewsletterRegister", "data":{"name":"Adrian&apos;s Raper bean", "password":"1234"}, "transactionTest":false}]';
+	//$inputData = '{"method":"sendEmail", "from":"support@claritylifeskills.com", "to":"adrian@noodles.hk", "templateID":"CLS/CLSregisterNewsletter", "data":"", "transactionTest":false}';
 
 	$postInformation= json_decode($inputData, true);
 	//echo $postInformation; exit();
@@ -27,28 +30,26 @@ function loadAPIInformation() {
 		//throw new Exception("Error decoding data: ".json_last_error().': '.$inputData);
 		throw new Exception('Error decoding data: '.': '.$inputData);	
 	
-	// We are expecting an array of emails
-	$emailArray = array();
-	foreach ($postInformation as $emailItem) {
-	
-		// First check mandatory fields exist
-		// TODO: Rather than throw an exception, it might be nicer to have an error item for each email in the array
-		if (!isset($emailItem['method'])) {
-			throw new Exception("No method has been sent");
-		}
-		if (!isset($emailItem['to'])) {
-			throw new Exception("No to has been sent");
-		}
-		if (!isset($emailItem['templateID'])) {
-			throw new Exception("No templateID has been sent");
-		}
-		$apiInformation = new EmailAPI();
-		$apiInformation->createFromSentFields($emailItem);
-		$emailArray[] = $apiInformation;
-	}	
-	//return $apiInformation;
-	return $emailArray;
-	
+	// We are expecting an array of emails. No, not any more - but old calls (from BC/RoadToIELTS) still send an array of one
+	if (isset($postInformation[0])) 
+		$postInformation = $postInformation[0];
+		
+	// First check mandatory fields exist
+	// TODO: Rather than throw an exception, it might be nicer to have an error item for each email in the array
+	if (!isset($postInformation['method'])) {
+		throw new Exception("No method has been sent");
+	}
+	if (!isset($postInformation['to'])) {
+		throw new Exception("No to has been sent");
+	}
+	if (!isset($postInformation['templateID'])) {
+		throw new Exception("No templateID has been sent");
+	}
+	$apiInformation = new EmailAPI();
+	$apiInformation->createFromSentFields($postInformation);
+	$emailArray[] = $apiInformation;
+	return $apiInformation;
+
 }	
 function returnError($errCode, $data = null) {
 	global $emailService;
@@ -88,21 +89,19 @@ try {
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
 	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
-		$loginService->changeDb($apiInformation->dbHost);
+		$emailService->changeDb($apiInformation->dbHost);
 	
-	foreach ($apiInformation as $emailItem) {
-		switch ($emailItem->method) {
-			case "sendEmail":
-				$rc = $emailService->emailOps->sendDirectEmail($emailItem);
-				break;
-				
-			default:
-				returnError(1, 'Invalid method '.$apiInformation->method);
-		}
+	switch ($apiInformation->method) {
+		case "sendEmail":
+			$rc = $emailService->emailOps->sendDirectEmail($apiInformation);
+			break;
+			
+		default:
+			returnError(1, 'Invalid method '.$apiInformation->method);
 	}
 	
 	// Send back success variables.
-	$returnInfo = array('success' => true, 'count' => count($apiInformation)); 
+	$returnInfo = array('success' => true, 'to' => $apiInformation->to); 
 	echo json_encode($returnInfo);
 	
 } catch (Exception $e) {

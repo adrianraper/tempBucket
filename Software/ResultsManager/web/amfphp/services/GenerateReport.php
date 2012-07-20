@@ -154,6 +154,7 @@ $proc = new XSLTProcessor();
 $proc->registerPHPFunctions(array("XSLTFunctions::secondsToMinutes","XSLTFunctions::secondsToHours"));
 $proc->importStylesheet($xslDom);
 if ($template == "export") {
+	header("Content-Type: text/csv; charset=\"utf-8\"");
 	header("Content-Disposition: attachment; filename=\"export.csv\"");
 }
 echo $proc->transformToXML($reportDom);

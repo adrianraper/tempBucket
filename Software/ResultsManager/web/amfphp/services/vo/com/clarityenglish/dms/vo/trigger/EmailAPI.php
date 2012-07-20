@@ -3,7 +3,7 @@
 class EmailAPI {
 
 	// I think this is only for AMFPHP - not needed here
-	var $_explicitType = 'com.clarityenglish.dms.vo.trigger.Trigger';
+	var $_explicitType = 'com.clarityenglish.dms.vo.trigger.EmailAPI';
 	
 	var $method;
 	var $to;
@@ -13,6 +13,8 @@ class EmailAPI {
 	var $data; // an array of variables to put into the template
 	var $templateID;
 	var $transactionTest;
+	
+	var $dbHost;
 
 	function EmailAPI() {
 	}
@@ -41,6 +43,12 @@ class EmailAPI {
 			$this->subject = $info['subject'];
 		if (isset($info['transactionTest'])) 
 			$this->transactionTest = $info['transactionTest'];
+			
+		if (isset($info['dbHost'])) {
+			$this->dbHost = $info['dbHost'];
+		} else {
+			$this->dbHost = 0;
+		}
 	}
 	
 	public function toString() {
