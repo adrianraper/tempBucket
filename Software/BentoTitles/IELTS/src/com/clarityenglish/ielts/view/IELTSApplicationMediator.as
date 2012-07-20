@@ -84,7 +84,7 @@ package com.clarityenglish.ielts.view {
 					break;
 				case BBStates.STATE_TITLE:
 					view.currentState = "title";
-					handleDirectStart();
+					view.callLater(handleDirectStart); // need to use callLater as otherwise the title state hasn't validated yet
 					break;
 				case BBStates.STATE_CREDITS:
 					view.currentState = "credits";

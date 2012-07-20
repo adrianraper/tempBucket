@@ -83,8 +83,8 @@
 	</fx:Script>
 
 	<s:states>
-		<s:State name="disabled" />
-		<s:State name="normal" />
+		<s:State name="disabled" stateGroups="normalStates" />
+		<s:State name="normal" stateGroups="normalStates" />
 		
 		<s:State name="reading_normal" stateGroups="normalStates,readingStates" />
 		<s:State name="writing_normal" stateGroups="normalStates,writingStates" />

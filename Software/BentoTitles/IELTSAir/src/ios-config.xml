@@ -5,8 +5,15 @@
 	<productCode>52</productCode>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<mediaChannel>vimeo</mediaChannel>
-	<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	<channel name='aws' caption='aws'>
+		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
+	</channel>
+	<!-- <channel name='network' caption='network'>
+		<streamingMedia>{contentPath}/video/</streamingMedia>
+	</channel> -->
+	<channel name='vimeo' caption='vimeo'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	</channel>
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN*</language>

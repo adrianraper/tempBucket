@@ -6,7 +6,6 @@
 
 global {
 	interactionMode: touch;
-	
 	fontFamily: HelveticaNeueLtStd;
 }
 
@@ -39,48 +38,72 @@ home|HomeView {
 	skinClass: ClassReference("skins.ieltsair.HomeSkin");
 }
 
+/*zone|ZoneView {
+	skinClass: ClassReference("skins.ieltsair.ZoneSkin");
+}*/
+
+/* Zone view styles */
 /*
-
-home|HomeView s|Button {
-	skinClass: ClassReference("skins.ielts.home.CourseButtonSkin");
+zone|ZoneView tink|Accordion {
+	skinClass: ClassReference("ws.tink.spark.skins.containers.AccordionSkin");
 }
 
-home|HomeView {
-	skinClass: ClassReference("skins.ielts.HomeSkin");
+zone|ZoneView tink|Accordion #buttonBar {
+	skinClass: ClassReference("skins.ielts.zone.ZoneAccordianButtonBarSkin");
+	cornerRadius: 0;
 }
 
-home|HomeView s|Button {
-	skinClass: ClassReference("skins.ielts.home.CourseButtonSkin");
+zone|ZoneView #examPracticeViewButton {
+	skinClass: ClassReference("skins.ielts.zone.ExamPracticeViewButtonSkin");
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
 
-home|HomeView s|Button#writingCourseButton {
-	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon");
-	courseImage: Embed(source="skins/ielts/assets/Writing.png");
-	title: "Writing";
+zone|ZoneView #examPracticeAnswerButton {
+	skinClass: ClassReference("skins.ielts.zone.ExamPracticeAnswerButtonSkin");
 }
 
-home|HomeView s|Button#speakingCourseButton {
-	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon");
-	courseImage: Embed(source="skins/ielts/assets/Speaking.png");
-	title: "Speaking";
+zone|ZoneView #questionZoneViewButton {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
 
-home|HomeView s|Button#readingCourseButton {
-	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon");
-	courseImage: Embed(source="skins/ielts/assets/Reading.png");
-	title: "Reading";
+zone|ZoneView #questionZoneDownloadButton {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="DownloadIcon");
 }
 
-home|HomeView s|Button#listeningCourseButton {
-	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
-	courseImage: Embed(source="skins/ielts/assets/Listening.png");
-	title: "Listening";
+zone|ZoneView #questionZoneVideoButton {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
 }
 
-home|HomeView s|Button#registerInfoButton {
-	skinClass: ClassReference("skins.ielts.home.RegisterInfoButton");
+zone|ZoneView #questionZoneChannelButtonBar{
+	skinClass: ClassReference("skins.ielts.zone.ChannelButtonBarSkin");
 }
 
-homeui|CourseBarRenderer {
-	skinClass: ClassReference("skins.ielts.home.CourseBarRendererSkin");
+zone|ZoneView #examPracticeAudioPlayer {
+	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPausedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioStop");
+}
+
+zone|ZoneView #examPracticeAnswerButton {
+	skinClass: ClassReference("skins.ielts.zone.ExamPracticeAnswerButtonSkin");
+}
+
+zone|ZoneView #adviceZoneChannelButtonBar{
+	skinClass: ClassReference("skins.ielts.zone.ChannelButtonBarSkin");
+}
+
+zoneui|PopoutExerciseSelector {
+	skinClass: ClassReference("skins.ielts.zone.PopoutExerciseSelectorSkin");
+}
+
+zoneui|ImageItemRenderer {
+	skinClass: ClassReference("skins.ielts.zone.ImageItemRendererSkin");
+}
+
+zoneui|DifficultyRenderer {
+	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
 }*/

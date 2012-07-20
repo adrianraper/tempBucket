@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<!-- SkinParts
+	name=questionZoneVideo, type=spark.components.Group, required=true
+	name=questionZoneDownloadButton, type=spark.components.Button, required=true
+	name=questionZoneViewButton, type=spark.components.Button, required=true
+	name=questionZoneEBookGraphic, type=mx.controls.SWFLoader, required=true
+	name=examPracticeDataGroup, type=spark.components.DataGroup, required=true
+	name=adviceZoneVideoPlayer, type=spark.components.VideoPlayer, required=true
+	name=adviceZoneVideoList, type=spark.components.List, required=true
+	name=examPracticeNavigatorContent, type=spark.components.NavigatorContent, required=true
+	name=courseSelectorWidget, type=CourseSelectorWidget, required=false
+	name=questionZoneVideoPlayer, type=spark.components.VideoPlayer, required=true
+	name=courseTitleLabel, type=spark.core.IDisplayText, required=true
+	name=questionZoneNavigatorContent, type=spark.components.NavigatorContent, required=true
+	name=examPracticeAnswerDataGroup, type=spark.components.DataGroup, required=true
+	name=contentGroup, type=spark.components.Group, required=false
+	name=adviceZoneNavigatorContent, type=spark.components.NavigatorContent, required=true
+	name=adviceZoneChannelButtonBar, type=spark.components.ButtonBar, required=true
+	name=unitList, type=spark.components.List, required=true
+	name=popoutExerciseSelector, type=com.clarityenglish.ielts.view.zone.ui.PopoutExerciseSelector, required=true
+	name=questionZoneChannelButtonBar, type=spark.components.ButtonBar, required=true
+	name=questionZoneVideoButton, type=spark.components.Button, required=true
+	name=accordian, type=ws.tink.spark.containers.Accordion, required=false
+	name=practiceZoneNavigatorContent, type=spark.components.NavigatorContent, required=true
+	-->
+</s:Skin>

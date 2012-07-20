@@ -323,6 +323,10 @@ package com.clarityenglish.ielts.view.title {
 			currentExerciseHref = exerciseHref;
 			if (exerciseView) exerciseView.href = currentExerciseHref;
 			callLater(invalidateSkinState); // callLater is part of #192
+			
+			if (homeViewNavigator) {
+				homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

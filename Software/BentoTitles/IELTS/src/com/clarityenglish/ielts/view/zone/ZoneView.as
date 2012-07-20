@@ -499,7 +499,6 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 			}
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZonePDFNode.@href));
-			//trace("DOWNLOAD eBook pdf");
 		}
 		
 		protected override function getCurrentSkinState():String {
@@ -516,12 +515,9 @@ package com.clarityenglish.ielts.view.zone {
 		 * 
 		 */
 		public function adviceZoneVideoSelected(filename:String):void {
-			trace("The advice video player's choice is " + selectedChannelIndex);
 			adviceZoneChannelButtonBar.selectedIndex = selectedChannelIndex;
 			videoHref = href.createRelativeHref(null, filename);
-			zoneSelected = "advice-zone";
 			videoSelected.dispatch(videoHref, zoneSelected);
-			trace("file href=" + videoHref);
 		}
 		
 		/**
@@ -538,7 +534,6 @@ package com.clarityenglish.ielts.view.zone {
 					log.debug("Stopped advice zone video player because click detected outside player or list");
 					adviceZoneVideoPlayer.stop();
 					adviceZoneVideoList.selectedItem = null;
-					//adviceZoneChannelButtonBar.selectedItem=null;
 					adviceZoneChannelButtonBar.enabled = false;
 					
 				}
@@ -552,7 +547,6 @@ package com.clarityenglish.ielts.view.zone {
 					log.debug("Stopped question zone video player because click detected outside player or button");
 					questionZoneVideoPlayer.stop();
 					resetQuestionZoneGraphics();
-					//questionZoneChannelButtonBar.selectedItem=null;
 				}
 			}
 		}
@@ -609,8 +603,8 @@ package com.clarityenglish.ielts.view.zone {
 			Tweener.removeTweens(questionZoneVideo);
 			Tweener.removeTweens(questionZoneEBookGraphic);
 			
-			Tweener.addTween(questionZoneVideo, { x: 0, _autoAlpha: 1, time: 1.2, transition:"easeOutSine" });
-			Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2, transition:"easeOutSine" });
+			Tweener.addTween(questionZoneVideo, { x: 0, _autoAlpha: 1, time: 1.2, transition: "easeOutSine" });
+			Tweener.addTween(questionZoneEBookGraphic, { x: -500, _autoAlpha: 0, time: 1.2, transition: "easeOutSine" });
 		}
 		
 		public function onChannelClicked(event:IndexChangeEvent):void{

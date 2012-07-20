@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:home="com.clarityenglish.ielts.view.home.*"
-		creationComplete="creationComplete(event)" xmlns:title="skins.ieltsair.assets.title.*">
+		creationComplete="creationComplete(event)" xmlns:title="skins.ieltsair.assets.title.*" xmlns:assets="skins.ieltsair.assets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
@@ -10,6 +10,8 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
+			
+			import org.davekeen.util.ClassUtil;
 			
 			import skins.ieltsair.assets.title.*;
 			
@@ -41,10 +43,12 @@
 	<s:SWFLoader source="{hostComponent.productVersionLogo}" x="39" y="140" />
 	<s:Label text="{hostComponent.productVersionText}" x="51" y="150" color="#FFFFFF" />
 	
-	<s:TabbedViewNavigator width="100%" height="100%" creationPolicy="all">
+	<assets:BritishCouncilClarityLogo x="0" y="617" />
+	
+	<s:TabbedViewNavigator left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" width="100%" height="100%" >
 			<s:navigationContent>
-				<s:Button label="Back" click="homeViewNavigator.popView()" />
+				<s:Button label="Back" click="homeViewNavigator.popView()" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
 			</s:navigationContent>
 			<s:actionContent>
 				<s:Button label="Log out" />

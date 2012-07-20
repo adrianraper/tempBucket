@@ -2,6 +2,7 @@ package com.clarityenglish.ielts.view.exercise {
 	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -71,6 +72,11 @@ package com.clarityenglish.ielts.view.exercise {
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
 		public var printExercise:Signal = new Signal(DynamicView);
+		
+		override public function set data(value:Object):void {
+			super.data = data;
+			href = value as Href;
+		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);

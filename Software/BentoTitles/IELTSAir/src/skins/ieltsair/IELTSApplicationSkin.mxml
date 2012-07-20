@@ -27,15 +27,6 @@
 	<!-- Gradient -->
 	<application:BackgroundGradient />
 	
-	<!--<s:ActionBar title="Road to IELTS" left="0" right="0">
-		<s:navigationContent>
-			<s:Button label="Home" />
-		</s:navigationContent>
-		<s:actionContent>
-			<s:Button label="Log out" />
-		</s:actionContent>
-	</s:ActionBar>-->
-	
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
 		<s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" />
@@ -45,8 +36,6 @@
 	</s:Group>
 	
 	<!-- Footer -->
-	<s:Group left="0" right="0" height="48" bottom="0" visible="{titleView.skin.currentState != 'exercise'}">
-		
-	</s:Group>
+	<!--<s:Group left="0" right="0" height="48" bottom="0" visible="{titleView.skin.currentState != 'exercise'}">-->
 		
 </s:Skin>
