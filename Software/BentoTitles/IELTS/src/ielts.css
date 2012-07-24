@@ -152,7 +152,7 @@ homeui|CourseBarRenderer {
 }
 
 /* Zone view styles */
-zone|ZoneView {
+/*zone|ZoneView {
 	skinClass: ClassReference("skins.ielts.ZoneSkin");
 }
 
@@ -218,7 +218,7 @@ zoneui|ImageItemRenderer {
 
 zoneui|DifficultyRenderer {
 	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
-}
+}*/
 
 /* Exercise view styles */
 exercise|ExerciseView {

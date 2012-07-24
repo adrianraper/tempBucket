@@ -50,7 +50,7 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			view.videoPlayerStateChange.add(onVideoPlayerStateChange);
+			/*view.videoPlayerStateChange.add(onVideoPlayerStateChange);*/
 			
 			// Inject required data into the view
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
@@ -66,7 +66,7 @@
 			// listen for these signals
 			view.courseSelect.add(onCourseSelected);
 			view.exerciseSelect.add(onExerciseSelected);
-			view.videoSelected.add(onVideoSelected);
+			/*view.videoSelected.add(onVideoSelected);*/
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -75,17 +75,17 @@
 			view.isMediated = true; // #222
 					
 			// Alice: automatic multiple channel
-			view.channelCollection.source = configProxy.getConfig().channelArray;
+			/*view.channelCollection.source = configProxy.getConfig().channelArray;*/
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.videoPlayerStateChange.remove(onVideoPlayerStateChange);
+			/*view.videoPlayerStateChange.remove(onVideoPlayerStateChange);*/
 			
 			view.courseSelect.remove(onCourseSelected);
 			view.exerciseSelect.remove(onExerciseSelected);
-			view.exerciseSelect.remove(onVideoSelected);
+			/*view.exerciseSelect.remove(onVideoSelected);*/
 			
 			view.isMediated = false; // #222
 		}
@@ -102,7 +102,7 @@
 			switch (note.getName()) {
 				// #164 For updating of coverage blobs when you do another exercise
 				case BBNotifications.SCORE_WRITTEN:
-					view.popoutExerciseSelector.exercises = view.refreshedExercises();
+					//view.popoutExerciseSelector.exercises = view.refreshedExercises();
 					break;
 			}
 		}
@@ -133,9 +133,9 @@
 		 * @param videoSource
 		 * @return 
 		 */
-		private function onVideoSelected(href:Href, zoneName:String):void {
+		/*private function onVideoSelected(href:Href, zoneName:String):void {
 			// #81 If the href is not a simple video file, it might be a dynamic streaming list
-			var videoSource:String = href.url;
+			/*var videoSource:String = href.url;
 			
 			// Get the target video player
 			var videoPlayer:VideoPlayer;
@@ -284,7 +284,7 @@
 		
 		public function onVideoPlayerComplete(event:TimeEvent):void {
 			log.info("video completed " + event.toString());
-		}
+		}*/
 		
 	}
 }

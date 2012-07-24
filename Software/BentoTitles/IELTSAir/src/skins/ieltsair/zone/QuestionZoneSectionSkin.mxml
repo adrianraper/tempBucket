@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ieltsair.zone.QuestionZoneSectionView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="reading" />
+		<s:State name="writing" />
+		<s:State name="listening" />
+		<s:State name="speaking" />
+	</s:states>
+	
+	<!-- SkinParts
+	name=contentGroup, type=spark.components.Group, required=false
+	-->
+	
+	<s:Label text="Starting out" />
+	<s:Label text="First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test" />
+	
+	<s:SWFLoader id="questionZoneEBookGraphic"
+				 width="100%"
+				 height="100%"
+				 verticalAlign="middle" horizontalAlign="center"
+				 source.reading="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
+				 source.writing="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
+				 source.listening="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
+				 source.speaking="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
+	
+</s:Skin>

@@ -51,9 +51,10 @@ package com.clarityenglish.ielts.view.zone.ui {
 		public override function set data(value:Object):void {
 			super.data = value;
 			
+			var thumbnailSource:Object;
 			switch (courseClass) {
 				case "reading":
-					var thumbnailSource:Object = readingThumbnail;
+					thumbnailSource = readingThumbnail;
 					break;
 				case "writing":
 					thumbnailSource = writingThumbnail;

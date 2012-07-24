@@ -1,17 +1,11 @@
 ﻿package com.clarityenglish.ielts {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.controller.LoggedInCommand;
-	import com.clarityenglish.common.controller.LogoutCommand;
-	import com.clarityenglish.common.controller.ShowErrorCommand;
-	import com.clarityenglish.common.controller.UpdateUserCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.IELTSRegisterCommand;
-	import com.clarityenglish.ielts.controller.IELTSUpgradeWindowShowCommand;
-	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.controller.IELTSStartupCommand;
+	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.credits.CreditsMediator;

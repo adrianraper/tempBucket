@@ -2,7 +2,12 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace home "com.clarityenglish.ielts.view.home.*";
 @namespace title "com.clarityenglish.ielts.view.title.*";
+@namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace ielts "com.clarityenglish.ielts.*";
+@namespace zone1 "view.zone.*";
+@namespace zone2 "com.clarityenglish.ieltsair.zone.*";
+@namespace ui "com.clarityenglish.ielts.view.zone.ui.*";
+@namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 
 global {
 	interactionMode: touch;
@@ -22,6 +27,11 @@ ielts|IELTSApplication s|ActionBar {
 	defaultButtonAppearance: beveled;
 }
 
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
+	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
+}
+
 title|TitleView {
 	skinClass: ClassReference("skins.ieltsair.TitleSkin");
 }
@@ -38,9 +48,29 @@ home|HomeView {
 	skinClass: ClassReference("skins.ieltsair.HomeSkin");
 }
 
-/*zone|ZoneView {
+zone|ZoneView {
 	skinClass: ClassReference("skins.ieltsair.ZoneSkin");
-}*/
+}
+
+zone|ZoneView #sectionNavigator {
+	skinClass: ClassReference("skins.ieltsair.zone.SectionNavigatorSkin");
+}
+
+zone2|QuestionZoneSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneSectionSkin");
+}
+
+zone2|PracticeZoneSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.PracticeZoneSectionSkin");
+}
+
+zone2|PracticeZonePopoutView {
+	skinClass: ClassReference("skins.ieltsair.zone.PracticeZonePopoutSkin");
+}
+
+ui|DifficultyRenderer {
+	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
+}
 
 /* Zone view styles */
 /*
@@ -107,3 +137,11 @@ zoneui|ImageItemRenderer {
 zoneui|DifficultyRenderer {
 	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
 }*/
+
+/* Exercise view styles */
+exercise|ExerciseView {
+	skinClass: ClassReference("skins.ieltsair.ExerciseSkin");
+	top: 5;
+	left: 20;
+	right: 35;
+}

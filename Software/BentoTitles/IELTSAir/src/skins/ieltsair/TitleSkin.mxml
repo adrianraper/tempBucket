@@ -2,7 +2,12 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:home="com.clarityenglish.ielts.view.home.*"
-		creationComplete="creationComplete(event)" xmlns:title="skins.ieltsair.assets.title.*" xmlns:assets="skins.ieltsair.assets.*">
+		xmlns:title="skins.ieltsair.assets.title.*"
+		xmlns:assets="skins.ieltsair.assets.*"
+		xmlns:zone="skins.ieltsair.assets.zone.*"
+		xmlns:zone1="com.clarityenglish.ieltsair.zone.*"
+		creationComplete="creationComplete(event)"
+		stateChangeComplete="onStateChangeComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
@@ -23,6 +28,22 @@
 				creditsViewNavigator.icon = new CreditsIcon();
 			}
 			
+			protected function onStateChangeComplete(event:FlexEvent):void {
+				/*switch (currentState) {
+					case "exercise":
+						//callLater(function():void { sectionNavigator.hideTabBar(false); } );
+						homeViewBackButton.label = "Back to menu";
+						previousExerciseButton.visible = nextExerciseButton.visible = markingButton.visible = true;
+						
+						break;
+					default:
+						//sectionNavigator.showTabBar(false);
+						homeViewBackButton.label = "Back";
+						previousExerciseButton.visible = nextExerciseButton.visible = markingButton.visible = false;
+						break;
+				}*/
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -39,14 +60,16 @@
 		<s:State name="exercise" />
 	</s:states>
 	
-	<title:IELTSLogo x="39" y="74" />
-	<s:SWFLoader source="{hostComponent.productVersionLogo}" x="39" y="140" />
-	<s:Label text="{hostComponent.productVersionText}" x="51" y="150" color="#FFFFFF" />
+	<title:IELTSLogo x="39" y="74" excludeFrom="exercise" />
+	<s:SWFLoader source="{hostComponent.productVersionLogo}" x="39" y="140" excludeFrom="exercise" />
+	<s:Label text="{hostComponent.productVersionText}" x="51" y="150" color="#FFFFFF" excludeFrom="exercise" />
 	
-	<assets:BritishCouncilClarityLogo x="0" y="617" />
+	<assets:BritishCouncilClarityLogo x="0" y="617" excludeFrom="exercise" />
 	
-	<s:TabbedViewNavigator left="0" right="0" top="0" bottom="0" creationPolicy="all">
-		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" width="100%" height="100%" >
+	<zone1:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
+	
+	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
+		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" width="100%" height="100%" >
 			<s:navigationContent>
 				<s:Button label="Back" click="homeViewNavigator.popView()" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
 			</s:navigationContent>
@@ -57,7 +80,7 @@
 		
 		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" width="100%" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" />
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
 				<s:Button label="Log out" />
@@ -66,7 +89,7 @@
 		
 		<s:ViewNavigator id="myProfileViewNavigator" label="My Profile" firstView="com.clarityenglish.ielts.view.account.AccountView" title="Road to IELTS" width="100%" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" />
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0"  />
 			</s:navigationContent>
 			<s:actionContent>
 				<s:Button label="Log out" />
@@ -75,7 +98,7 @@
 		
 		<s:ViewNavigator id="helpViewNavigator" label="Help" firstView="com.clarityenglish.ielts.view.support.SupportView" title="Road to IELTS" width="100%" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" />
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
 				<s:Button label="Log out" />
@@ -84,7 +107,7 @@
 		
 		<s:ViewNavigator id="creditsViewNavigator" label="Credits" firstView="com.clarityenglish.ielts.view.credits.CreditsView" title="Road to IELTS" width="100%" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" />
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
 				<s:Button label="Log out" />

@@ -73,6 +73,10 @@ package com.clarityenglish.ielts.view.exercise {
 		public var previousExercise:Signal = new Signal();
 		public var printExercise:Signal = new Signal(DynamicView);
 		
+		public function ExerciseView() {
+			super();
+		}
+		
 		override public function set data(value:Object):void {
 			super.data = data;
 			href = value as Href;

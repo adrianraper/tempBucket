@@ -22,6 +22,8 @@ package com.clarityenglish.bento {
 		
 		public var isCtrlDown:Boolean;
 		
+		protected var facade:BentoFacade;
+		
 		public function BentoApplication() {
 			// Configure logging
 			var logTarget:TraceTarget = new TraceTarget();
@@ -37,10 +39,6 @@ package com.clarityenglish.bento {
 			
 			// Create deferred content with maximum priority so that this happens before any other ADDED_TO_STAGE listeners fire
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, int.MAX_VALUE);
-		}
-		
-		protected function get facade():BentoFacade {
-			throw new Error("This must be overriden by the child BentoApplication");
 		}
 		
 		private function onAddedToStage(event:Event):void {

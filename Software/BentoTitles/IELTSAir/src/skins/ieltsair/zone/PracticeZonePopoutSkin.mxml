@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:ui="skins.ieltsair.zone.ui.*" xmlns:zone="skins.ieltsair.assets.zone.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ieltsair.zone.PracticeZonePopoutView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<zone:PopoutChrome />
+	
+	<s:Label id="captionLabel" left="40" top="20" />
+	<s:List id="exerciseList" left="40" top="50" right="40" bottom="20" contentBackgroundColor="#FFFFFF">
+		<s:itemRenderer>
+			<fx:Component>
+				<s:IconItemRenderer labelField="@caption" iconFunction="getIconURL" iconWidth="44" iconHeight="44">
+					<fx:Script>
+						<![CDATA[
+							/**
+							 * Get an absolute path to the thumbnail to use in the IconItemRenderer
+							 */
+							private function getIconURL(exercise:XML):String {
+								return (exercise.@thumbnail.toString() != "") ? outerDocument.hostComponent.href.createRelativeHref(null, exercise.@thumbnail.toString()).url : null;
+							}
+						]]>
+					</fx:Script>
+				</s:IconItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+	
+</s:Skin>

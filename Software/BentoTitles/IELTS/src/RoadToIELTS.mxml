@@ -3,7 +3,8 @@
 						xmlns:s="library://ns.adobe.com/flex/spark"
 						xmlns:ielts="com.clarityenglish.ielts.*"
 						minWidth="990" minHeight="760"
-						preloader="com.clarityenglish.ielts.IELTSPreloader">
+						preloader="com.clarityenglish.ielts.IELTSPreloader"
+						initialize="onInitialize(event)">
 	
 	<fx:Metadata>
 		[SWF(width="990", height="760")]
@@ -36,5 +37,18 @@
 	</fx:Style>
 	
 	<fx:Style source="ielts.css" />
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.ielts.IELTSApplicationFacade;
+			
+			import mx.events.FlexEvent;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				facade = IELTSApplicationFacade.getInstance();
+			}
+			
+		]]>
+	</fx:Script>
 	
 </ielts:IELTSApplication>

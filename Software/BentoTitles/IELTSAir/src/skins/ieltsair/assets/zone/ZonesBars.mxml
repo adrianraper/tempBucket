@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<s:Graphic xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.ielts.view.zone.ZoneView;
+		]]>
+	</fx:Script>
+  <s:Group>
+	<!-- TODO: This should use constraint layout to place at the top and bottom so we can resize the area -->
+    <s:Path x="-485.25" y="-84.35" data="M989.3 91.35Q994.75 91.35 998.6 95.2 1002.5 99.1 1002.5 104.55L1002.5 178 485.25 178 485.25 104.55Q485.25 99.1 489.1 95.2 493 91.35 498.45 91.35L989.3 91.35">
+      <s:fill>
+        <s:LinearGradient x="743.85" y="178.025" scaleX="-86.65" rotation="90">
+          <s:GradientEntry ratio="0" color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"/>
+          <s:GradientEntry ratio="0.44705882" color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
+        </s:LinearGradient>
+      </s:fill>
+    </s:Path>
+    <s:Path x="-485.25" y="-84.35" data="M1002.5 679.9 485.25 679.9 485.25 670.6 1002.5 670.6 1002.5 679.9">
+      <s:fill>
+        <s:LinearGradient x="743.85" y="679.8875" scaleX="-9.275" rotation="90">
+          <s:GradientEntry ratio="0" color="{getStyle(ZoneView.horribleHackCourseClass + 'Color')}"/>
+          <s:GradientEntry ratio="0.19607843" color="{getStyle(ZoneView.horribleHackCourseClass + 'ColorDark')}"/>
+        </s:LinearGradient>
+      </s:fill>
+    </s:Path>
+  </s:Group>
+</s:Graphic>

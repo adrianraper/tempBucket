@@ -24,7 +24,8 @@ package com.clarityenglish.ielts.view.zone.ui {
 		[SkinPart(required="true")]
 		public var chilli3:Chilli;
 		
-		//private var _selectedColour:Number;
+		[Bindable]
+		public var showLabel:Boolean;
 		
 		public var courseClass:String;
 		

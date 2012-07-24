@@ -8,6 +8,9 @@ package com.clarityenglish.ielts {
 		public static const COURSE_SHOW:String = "ielts/course_show";
 		public static const UNIT_SHOW:String = "ielts/unit_show";
 		
+		public static const PRACTICE_ZONE_POPUP_SHOW:String = "ielts/practice_zone_popup_show";
+		public static const PRACTICE_ZONE_POPUP_HIDE:String = "ielts/practice_zone_popup_hide";
+		
 		public static const LOGIN_SUCCESS:String = "ielts/login_success";
 		public static const LOGIN_FAILURE:String = "ielts/login_failure";
 		

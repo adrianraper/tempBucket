@@ -42,10 +42,6 @@ package com.clarityenglish.ielts {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
-		override protected function get facade():BentoFacade {
-			return IELTSApplicationFacade.getInstance();
-		}
-		
 		protected function creationComplete(event:FlexEvent):void {
 			DisplayShortcuts.init();
 			

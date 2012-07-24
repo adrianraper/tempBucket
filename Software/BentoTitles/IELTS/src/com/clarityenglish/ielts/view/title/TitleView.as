@@ -20,6 +20,7 @@ package com.clarityenglish.ielts.view.title {
 	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
 	
+	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
@@ -324,8 +325,13 @@ package com.clarityenglish.ielts.view.title {
 			if (exerciseView) exerciseView.href = currentExerciseHref;
 			callLater(invalidateSkinState); // callLater is part of #192
 			
+			// This is for mobile skins; if the ExerciseView is already top of the stack then set the href, otherwise push a new ExerciseView
 			if (homeViewNavigator) {
-				homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
+				if (ClassUtil.getClass(homeViewNavigator.activeView) == ExerciseView) {
+					(homeViewNavigator.activeView as ExerciseView).href = currentExerciseHref;
+				} else {
+					homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
+				}
 			}
 		}
 		

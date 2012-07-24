@@ -74,6 +74,19 @@ package com.clarityenglish.bento.view.base {
 			
 		}
 		
+		protected override function createChildren():void {
+			super.createChildren();
+			
+			// A rather neat way to allow action and navigation content to be defined in skins
+			if (skin) {
+				if (skin.hasOwnProperty("actionContent"))
+					actionContent = skin["actionContent"];
+				
+				if (skin.hasOwnProperty("navigationContent"))
+					navigationContent = skin["navigationContent"];
+			}
+		}
+		
 		protected function onAddedToStage(event:Event):void {
 			
 		}

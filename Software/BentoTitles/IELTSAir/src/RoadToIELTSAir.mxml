@@ -6,23 +6,20 @@
 						height="100%"
 						initialize="onInitialize(event)"
 						applicationComplete="onApplicationComplete(event)"
-						addedToStage="onAddedToStage(event)">
+						addedToStage="onAddedToStage(event)"
+						applicationDPI="160"
+						runtimeDPIProvider="RetinaRuntimeDPIProvider">
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.common.CommonNotifications;
+			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
 			import com.clarityenglish.common.vo.config.BentoError;
-			
-			import flash.utils.setTimeout;
 			
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
-			import mx.logging.Log;
-			import mx.logging.LogEventLevel;
-			
-			import spark.components.TextArea;
 			
 			protected function onInitialize(event:FlexEvent):void {
 				FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
+				facade = IELTSAirApplicationFacade.getInstance();
 			}
 			
 			protected function onApplicationComplete(event:FlexEvent):void {
