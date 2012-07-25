@@ -30,31 +30,31 @@ package com.clarityenglish.controls {
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.events.IndexChangeEvent;
 	
-	[Event(name="videoSelected", type="com.clarityenglish.controls.BentoVideoSelectorEvent")]
+	[Event(name = "videoSelected", type = "com.clarityenglish.controls.BentoVideoSelectorEvent")]
 	public class BentoVideoSelector extends SkinnableComponent {
 		
-		[SkinPart(required="true")]
+		[SkinPart(required = "true")]
 		public var videoPlayer:VideoPlayer;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required = "true")]
 		public var channelButtonBar:ButtonBar;
 		
 		//[SkinPart(required="true")]
 		//public var qualityButtonBar:ButtonBar;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required = "true")]
 		public var videoImage1:Image;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required = "true")]
 		public var videoImage2:Image;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required = "true")]
 		public var videoImage3:Image;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required = "true")]
 		public var videoImage4:Image;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required = "true")]
 		public var videoList:List;
 		
 		protected var _courseSelected:String;
@@ -150,6 +150,8 @@ package com.clarityenglish.controls {
 			
 			switch (instance) {
 				case videoPlayer:
+					videoPlayer.videoDisplay.mx_internal::mediaFactory = new SmoothingMediaFactory();
+					
 					videoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange);
 					videoPlayer.addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
 					break;
@@ -157,7 +159,7 @@ package com.clarityenglish.controls {
 					channelButtonBar.addEventListener(IndexChangeEvent.CHANGE, onChannelClicked);
 					break;
 				//case qualityButtonBar:
-					//qualityButtonBar.addEventListener(IndexChangeEvent.CHANGE, onQualityClicked);
+				//qualityButtonBar.addEventListener(IndexChangeEvent.CHANGE, onQualityClicked);
 				case videoList:
 					videoSelected.add(onVideoSelected);
 					break;
@@ -293,8 +295,7 @@ package com.clarityenglish.controls {
 					// Run the loading animation
 					break;
 				case "playing":
-				// Ensure smoothing is on
-				//(event.target as VideoPlayer).videoObject.smoothing = true;
+					break;
 				default:
 					// Just play
 			}
@@ -331,6 +332,36 @@ package com.clarityenglish.controls {
 			event.target.removeEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
 			event.target.bufferTime = 4;
 		}
-		
+	
 	}
+}
+import org.osmf.elements.VideoElement;
+import org.osmf.media.DefaultMediaFactory;
+import org.osmf.media.MediaElement;
+import org.osmf.media.MediaFactoryItem;
+import org.osmf.media.MediaResourceBase;
+
+class SmoothingMediaFactory extends DefaultMediaFactory {
+	
+	private var _highjackedMediaCreationFunction:Function;
+	
+	protected override function resolveItems(resource:MediaResourceBase, items:Vector.<MediaFactoryItem>):MediaFactoryItem {
+		var mfi:MediaFactoryItem = super.resolveItems(resource, items);
+		/*If a custom MFI is being used, hijack it and intercept the media element it returns to set smoothing on it*/
+		if (mfi.id.indexOf('org.osmf') < 0) {
+			_highjackedMediaCreationFunction = mfi.mediaElementCreationFunction;
+			var hijacker:MediaFactoryItem = new MediaFactoryItem(mfi.id, mfi.canHandleResourceFunction, interceptMediaElement);
+			return hijacker;
+		}
+		return mfi;
+	}
+	
+	protected function interceptMediaElement():MediaElement {
+		var element:MediaElement = _highjackedMediaCreationFunction();
+		if (element is VideoElement) {
+			VideoElement(element).smoothing = true;
+		}
+		return element;
+	}
+
 }
