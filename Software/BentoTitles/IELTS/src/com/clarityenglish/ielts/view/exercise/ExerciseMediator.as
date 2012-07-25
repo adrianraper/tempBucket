@@ -40,6 +40,7 @@
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
 			view.printExercise.add(onPrintExercise);
+			view.backToMenu.add(onBackToMenu);
 		}
 		
 		public override function onRemove():void {
@@ -51,6 +52,7 @@
 			view.nextExercise.remove(onNextExercise);
 			view.previousExercise.remove(onPreviousExercise);
 			view.printExercise.remove(onPrintExercise);
+			view.backToMenu.remove(onBackToMenu);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -120,7 +122,6 @@
 		
 		private function onStartAgain():void {
 			log.debug("The user clicked on start again");
-			
 			facade.sendNotification(BBNotifications.EXERCISE_RESTART);
 		}
 		
@@ -149,6 +150,10 @@
 		private function onPreviousExercise():void {
 			log.debug("The user clicked on previous exercise");
 			sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
+		}
+		
+		private function onBackToMenu():void {
+			sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
 		}
 		
 	}

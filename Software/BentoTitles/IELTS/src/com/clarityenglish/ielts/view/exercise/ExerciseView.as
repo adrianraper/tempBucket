@@ -17,6 +17,9 @@ package com.clarityenglish.ielts.view.exercise {
 	public class ExerciseView extends BentoView {
 		
 		[SkinPart]
+		public var backToMenuButton:Button;
+		
+		[SkinPart]
 		public var startAgainButton:Button;
 		
 		[SkinPart]
@@ -72,6 +75,7 @@ package com.clarityenglish.ielts.view.exercise {
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
 		public var printExercise:Signal = new Signal(DynamicView);
+		public var backToMenu:Signal = new Signal();
 		
 		public function ExerciseView() {
 			super();
@@ -112,6 +116,9 @@ package com.clarityenglish.ielts.view.exercise {
 					break;
 				case printButton:
 					printButton.addEventListener(MouseEvent.CLICK, function():void { printExercise.dispatch(dynamicView); } );
+					break;
+				case backToMenuButton:
+					backToMenuButton.addEventListener(MouseEvent.CLICK, function():void { backToMenu.dispatch(); } );
 					break;
 			}
 		}

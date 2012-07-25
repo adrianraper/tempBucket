@@ -128,6 +128,7 @@
     <classEntry path="com.pipwerks.SCORM"/>
     <classEntry path="com.clarityenglish.controls.BentoVideoPlayer"/>
     <classEntry path="com.clarityenglish.controls.BentoVideoPlayerEvent"/>
+    <classEntry path="org.davekeen.transitions.PatchedSlideViewTransition"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

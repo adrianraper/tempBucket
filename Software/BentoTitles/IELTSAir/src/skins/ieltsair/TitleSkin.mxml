@@ -6,8 +6,7 @@
 		xmlns:assets="skins.ieltsair.assets.*"
 		xmlns:zone="skins.ieltsair.assets.zone.*"
 		xmlns:zone1="com.clarityenglish.ieltsair.zone.*"
-		creationComplete="creationComplete(event)"
-		stateChangeComplete="onStateChangeComplete(event)">
+		creationComplete="creationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
@@ -16,9 +15,12 @@
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
+			import org.davekeen.transitions.PatchedSlideViewTransition;
 			import org.davekeen.util.ClassUtil;
 			
 			import skins.ieltsair.assets.title.*;
+			
+			import spark.transitions.ViewTransitionBase;
 			
 			protected function creationComplete(event:FlexEvent):void {
 				homeViewNavigator.icon = new HomeIcon();
@@ -26,22 +28,23 @@
 				myProfileViewNavigator.icon = new MyProfileIcon();
 				helpViewNavigator.icon = new HelpIcon();
 				creditsViewNavigator.icon = new CreditsIcon();
+				
+				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there
+				var pushTransition:ViewTransitionBase = new PatchedSlideViewTransition();
+				pushTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
+				homeViewNavigator.defaultPushTransition = pushTransition;
+				
+				var popTransition:ViewTransitionBase = new PatchedSlideViewTransition();
+				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
+				homeViewNavigator.defaultPopTransition = pushTransition;
 			}
 			
-			protected function onStateChangeComplete(event:FlexEvent):void {
-				/*switch (currentState) {
-					case "exercise":
-						//callLater(function():void { sectionNavigator.hideTabBar(false); } );
-						homeViewBackButton.label = "Back to menu";
-						previousExerciseButton.visible = nextExerciseButton.visible = markingButton.visible = true;
-						
-						break;
-					default:
-						//sectionNavigator.showTabBar(false);
-						homeViewBackButton.label = "Back";
-						previousExerciseButton.visible = nextExerciseButton.visible = markingButton.visible = false;
-						break;
-				}*/
+			/**
+			 * Hide the tab bar if the state is 'exercise' at the end of a transition, otherwise show the tab bar
+			 */
+			protected function onTransitionFinished(event:FlexEvent):void {
+				callLater((currentState == "exercise") ? sectionNavigator.hideTabBar : sectionNavigator.showTabBar);
+				hostComponent.updateStateFromSectionNavigator();
 			}
 			
 		]]>
@@ -69,9 +72,9 @@
 	<zone1:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
-		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" width="100%" height="100%" >
+		<s:ViewNavigator  id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" width="100%" height="100%" >
 			<s:navigationContent>
-				<s:Button label="Back" click="homeViewNavigator.popView()" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
+				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
 			</s:navigationContent>
 			<s:actionContent>
 				<s:Button label="Log out" />

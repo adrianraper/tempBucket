@@ -5,6 +5,7 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.account.AccountView;
+	import com.clarityenglish.ielts.view.credits.CreditsView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
@@ -28,6 +29,7 @@ package com.clarityenglish.ielts.view.title {
 	import spark.components.Button;
 	import spark.components.ButtonBar;
 	import spark.components.Label;
+	import spark.components.TabbedViewNavigator;
 	import spark.components.ViewNavigator;
 	import spark.events.IndexChangeEvent;
 	
@@ -84,6 +86,10 @@ package com.clarityenglish.ielts.view.title {
 		
 		[Bindable]
 		public var dateFormatter:DateFormatter;
+		
+		// These SkinParts are only in the ipad app
+		[SkinPart]
+		public var sectionNavigator:TabbedViewNavigator;
 		
 		private var currentExerciseHref:Href;
 		
@@ -328,10 +334,16 @@ package com.clarityenglish.ielts.view.title {
 			// This is for mobile skins; if the ExerciseView is already top of the stack then set the href, otherwise push a new ExerciseView
 			if (homeViewNavigator) {
 				if (ClassUtil.getClass(homeViewNavigator.activeView) == ExerciseView) {
-					(homeViewNavigator.activeView as ExerciseView).href = currentExerciseHref;
+					if (currentExerciseHref) {
+						(homeViewNavigator.activeView as ExerciseView).href = currentExerciseHref;
+					} else {
+						homeViewNavigator.popView();
+					}
 				} else {
 					homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
 				}
+				
+				//callLater(updateStateFromSectionNavigator);
 			}
 		}
 		
@@ -367,6 +379,10 @@ package com.clarityenglish.ielts.view.title {
 							navBar.callLater(function():void { navBar.selectedIndex = e.oldIndex; });
 						}
 					} );
+					break;
+				
+				case sectionNavigator:
+					sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, updateStateFromSectionNavigator);
 					break;
 				
 				case logoutButton:
@@ -441,9 +457,40 @@ package com.clarityenglish.ielts.view.title {
 			if (event.target.selectedItem) currentState = event.target.selectedItem.data;
 		}
 		
+		/**
+		 * Keep the state in sync with changes to the mobile tabbed navigator
+		 * TODO: It would be much neater if this could be combined with the navBar somehow
+		 */
+		public function updateStateFromSectionNavigator(event:IndexChangeEvent = null):void {
+			trace(ClassUtil.getClass(sectionNavigator.selectedNavigator.activeView));
+			switch (ClassUtil.getClass(sectionNavigator.selectedNavigator.activeView)) {
+				case HomeView:
+					currentState = "home";
+					break;
+				case ZoneView:
+					currentState = "zone";
+					break;
+				case ProgressView:
+					currentState = "progress";
+					break;
+				case AccountView:
+					currentState = "account";
+					break;
+				case SupportView:
+					currentState = "support";
+					break;
+				case CreditsView:
+					// This has no state at present
+					break;
+				// TODO: zone
+				// TODO: exercise
+			}
+		}
+		
 		protected function onLogoutButtonClick(event:MouseEvent):void {
 			logout.dispatch();
 		}
+		
 		/**
 		 * The user has clicked the back button to get out of an exercise, so clear the current exercise
 		 * 
@@ -451,6 +498,7 @@ package com.clarityenglish.ielts.view.title {
 		 */
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
 			backToMenu.dispatch();
+			
 			// #260 
 			if (logoutButton) logoutButton.enabled = false;
 			shortDelayTimer = new Timer(1000, 60);
@@ -473,7 +521,7 @@ package com.clarityenglish.ielts.view.title {
 				shortDelayTimer.stop();
 			}
 		}
-
+		
 		// #337
 		private function onRequestInfoClick(event:MouseEvent):void {
 			switch (_productVersion) {
