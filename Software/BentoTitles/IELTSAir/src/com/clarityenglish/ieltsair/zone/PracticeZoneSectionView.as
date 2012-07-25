@@ -22,6 +22,7 @@ package com.clarityenglish.ieltsair.zone {
 		public function PracticeZoneSectionView() {
 			super();
 			actionBarVisible = false;
+			
 		}
 		
 		private function get _course():XML {

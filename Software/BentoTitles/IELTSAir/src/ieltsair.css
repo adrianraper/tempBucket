@@ -56,6 +56,10 @@ zone|ZoneView #sectionNavigator {
 	skinClass: ClassReference("skins.ieltsair.zone.SectionNavigatorSkin");
 }
 
+zone|ZoneView #sectionNavigator #tabBar {
+	skinClass: ClassReference("skins.ieltsair.zone.ui.SectionNavigatorTabBarSkin");
+}
+
 zone2|QuestionZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneSectionSkin");
 }
