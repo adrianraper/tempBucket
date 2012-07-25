@@ -19,8 +19,18 @@ package com.clarityenglish.ieltsair.zone {
 		
 		public var exercisesShow:Signal = new Signal(XMLList, Object);
 		
+		public function PracticeZoneSectionView() {
+			super();
+			actionBarVisible = false;
+		}
+		
 		private function get _course():XML {
 			return data as XML;
+		}
+		
+		[Bindable(event="dataChange")]
+		public function get courseClass():String {
+			return (_course) ? _course.@["class"].toString() : null;
 		}
 		
 		protected override function commitProperties():void {

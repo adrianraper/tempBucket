@@ -3,5 +3,10 @@ package com.clarityenglish.ieltsair.zone {
 	
 	public class QuestionZoneSectionView extends BentoView {
 		
+		public function QuestionZoneSectionView() {
+			super();
+			actionBarVisible = false;
+		}
+		
 	}
 }

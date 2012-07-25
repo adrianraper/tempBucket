@@ -342,8 +342,6 @@ package com.clarityenglish.ielts.view.title {
 				} else {
 					homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
 				}
-				
-				//callLater(updateStateFromSectionNavigator);
 			}
 		}
 		

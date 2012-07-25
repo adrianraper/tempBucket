@@ -12,7 +12,10 @@ package skins.ieltsair.zone.ui {
 
 		private var _difficultyExerciseFunction:Function;
 		private var _difficultyExerciseFunctionChanged:Boolean;
-		private var difficultyChanged:Boolean;
+		private var _difficultyChanged:Boolean;
+		
+		private var _courseClass:String;
+		private var _courseClassChanged:Boolean;
 		
 		public function UnitListItemRenderer() {
 			super();
@@ -24,7 +27,14 @@ package skins.ieltsair.zone.ui {
 			
 			_difficultyExerciseFunction = value;
 			_difficultyExerciseFunctionChanged = true;
-			difficultyChanged = true;
+			_difficultyChanged = true;
+			
+			invalidateProperties();
+		}
+		
+		public function set courseClass(value:String):void {
+			_courseClass = value;
+			_courseClassChanged = true;
 			
 			invalidateProperties();
 		}
@@ -32,11 +42,10 @@ package skins.ieltsair.zone.ui {
 		public override function set data(value:Object):void {
 			super.data = value;
 			
-			difficultyChanged = true;
+			_difficultyChanged = true;
 			
 			invalidateProperties();
 		}
-
 		
 		protected override function createChildren():void {
 			super.createChildren();
@@ -44,7 +53,7 @@ package skins.ieltsair.zone.ui {
 			if (!difficultyRenderer) {
 				difficultyRenderer = new DifficultyRenderer();
 				difficultyRenderer.showLabel = false;
-				difficultyRenderer.courseClass = "reading";
+				difficultyRenderer.courseClass = _courseClass;
 				addChild(difficultyRenderer);
 			}
 		}
@@ -56,11 +65,17 @@ package skins.ieltsair.zone.ui {
 				_difficultyExerciseFunctionChanged = false;	
 			}
 			
-			if (difficultyChanged) {
-				difficultyChanged = false;
+			if (_difficultyChanged) {
+				_difficultyChanged = false;
 				
 				if (_difficultyExerciseFunction != null)
 					difficultyRenderer.data = _difficultyExerciseFunction(data);
+			}
+			
+			if (_courseClassChanged) {
+				_courseClassChanged = false;
+				
+				difficultyRenderer.courseClass = _courseClass;
 			}
 		}
 

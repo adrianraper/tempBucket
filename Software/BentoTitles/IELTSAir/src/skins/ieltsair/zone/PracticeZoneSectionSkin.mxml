@@ -19,6 +19,7 @@
 										 iconFunction="getArrowIcon"
 										 messageFunction="getMessageText"
 										 difficultyExerciseFunction="getDifficultyExercise"
+										 courseClass="{outerDocument.hostComponent.courseClass}"
 										 iconWidth="12"
 										 iconHeight="22"
 										 height="71"

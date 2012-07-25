@@ -269,7 +269,7 @@ package com.clarityenglish.common.model {
 			var directStartObject:Object = new Object();
 			
 			if (Config.DEVELOPER.name == "DK") {
-				return { courseID: "1287130100000" };
+				//return { courseID: "1287130100000" };
 				//return { exerciseID: "1156153794672" };
 			}
 			

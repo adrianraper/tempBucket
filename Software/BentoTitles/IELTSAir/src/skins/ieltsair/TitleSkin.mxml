@@ -21,6 +21,7 @@
 			import skins.ieltsair.assets.title.*;
 			
 			import spark.transitions.ViewTransitionBase;
+			import spark.transitions.ViewTransitionDirection;
 			
 			protected function creationComplete(event:FlexEvent):void {
 				homeViewNavigator.icon = new HomeIcon();
@@ -29,14 +30,17 @@
 				helpViewNavigator.icon = new HelpIcon();
 				creditsViewNavigator.icon = new CreditsIcon();
 				
-				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there
-				var pushTransition:ViewTransitionBase = new PatchedSlideViewTransition();
+				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there.  We also need to use a custom
+				// PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
+				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				pushTransition.direction = ViewTransitionDirection.LEFT;
 				pushTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
 				homeViewNavigator.defaultPushTransition = pushTransition;
 				
-				var popTransition:ViewTransitionBase = new PatchedSlideViewTransition();
+				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				popTransition.direction = ViewTransitionDirection.RIGHT;
 				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
-				homeViewNavigator.defaultPopTransition = pushTransition;
+				homeViewNavigator.defaultPopTransition = popTransition;
 			}
 			
 			/**
