@@ -30,8 +30,7 @@ package com.clarityenglish.ieltsair.zone {
 			super.commitProperties();
 			
 			videoSelector.viewHref = href;
-			videoSelector.channelButtonBar.dataProvider = channelCollection;
-			videoSelector.channelButtonBar.labelField = "caption";
+			videoSelector.channelCollection = channelCollection;
 			videoSelector.videoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
 		}
 		

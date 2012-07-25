@@ -59,7 +59,7 @@ package com.clarityenglish.common.vo.config {
 		public var streamingMedia:String;
 		public var mediaChannel:String;
 		
-		public var channelArray:Array;
+		public var channels:Array;
 		
 		// #336
 		public var scorm:Boolean;
@@ -100,7 +100,7 @@ package com.clarityenglish.common.vo.config {
 			this.paths = {content: '', streamingMedia: '', sharedMedia: '', brandingMedia: '', accountRepository: ''};
 			//this.licence = new Licence();
 			this.error = new BentoError();
-			this.channelArray = [];
+			this.channels = [];
 		}
 		
 		/**
@@ -246,7 +246,7 @@ package com.clarityenglish.common.vo.config {
 				choiceChannel.name = channel.@name.toString();
 				choiceChannel.caption = channel.@caption.toString();
 				choiceChannel.streamName = channel.streamingMedia.toString();
-				channelArray.push(choiceChannel);
+				channels.push(choiceChannel);
 			}
 			
 			// #335

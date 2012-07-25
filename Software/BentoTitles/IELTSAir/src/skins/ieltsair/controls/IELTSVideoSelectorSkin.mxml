@@ -41,7 +41,7 @@
 				<s:Image id="videoImage3" source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.zone == 'advice-zone' &amp;&amp; hostComponent.courseSelected == 'listening' &amp;&amp; videoList.selectedItem == null}" includeInLayout="{hostComponent.courseSelected == 'listening' &amp;&amp; videoList.selectedItem == null}" />
 				<s:Image id="videoImage4" source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.zone == 'advice-zone' &amp;&amp; hostComponent.courseSelected == 'writing' &amp;&amp; videoList.selectedItem == null}" includeInLayout="{hostComponent.courseSelected == 'writing' &amp;&amp; videoList.selectedItem == null}" />
 			</s:Group>
-			<s:Group left="0" visible="{hostComponent.channelLength > 1}">
+			<s:Group left="0" visible="{hostComponent.channelCollection.length > 1}">
 				<s:Rect height="231" width="87">
 					<s:fill>
 						<s:SolidColor color="0x141414" />
@@ -50,7 +50,7 @@
 				<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switch channel." color="0xFFFFFF" width="70" lineHeight="18" />
 				<s:HGroup>
 					<s:VGroup paddingTop="160" paddingLeft="9">
-						<s:ButtonBar id="channelButtonBar" verticalCenter="0" horizontalCenter="0" enabled="{hostComponent.zone == 'question-zone'}" requireSelection="true">
+						<s:ButtonBar id="channelButtonBar" labelField="caption" verticalCenter="0" horizontalCenter="0" enabled="{hostComponent.zone == 'question-zone'}" requireSelection="true">
 							<s:layout>
 								<s:VerticalLayout gap="3" />
 							</s:layout>

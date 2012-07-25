@@ -6,6 +6,7 @@ package com.clarityenglish.controls {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
+	import mx.collections.ArrayCollection;
 	import mx.core.mx_internal;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -57,8 +58,12 @@ package com.clarityenglish.controls {
 		public var videoList:List;
 		
 		protected var _courseSelected:String;
-		protected var _channelLength:Number;
+		
 		protected var _viewHref:Href;
+		
+		protected var _channelCollection:ArrayCollection;
+		protected var _channelCollectionChanged:Boolean;
+		
 		protected var _zone:String;
 		
 		private var videoHref:Href;
@@ -78,6 +83,7 @@ package com.clarityenglish.controls {
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		
 		[Bindable]
 		public function get courseSelected():String {
 			return _courseSelected;
@@ -91,24 +97,27 @@ package com.clarityenglish.controls {
 		}
 		
 		[Bindable]
-		public function get channelLength():Number {
-			return _channelLength;
-		}
-		
-		public function set channelLength(value:Number):void {
-			if (_channelLength != value) {
-				_channelLength = value;
-			}
-		}
-		
-		[Bindable]
 		public function get viewHref():Href {
 			return _viewHref;
 		}
 		
 		public function set viewHref(value:Href):void {
-			if (_viewHref != value) {
+			if (_viewHref !== value) {
 				_viewHref = value;
+			}
+		}
+		
+		[Bindable]
+		public function get channelCollection():ArrayCollection {
+			return _channelCollection;
+		}
+		
+		public function set channelCollection(value:ArrayCollection):void {
+			if (_channelCollection !== value) {
+				_channelCollection = value;
+				_channelCollectionChanged = true;
+				
+				invalidateProperties();
 			}
 		}
 		
@@ -118,13 +127,22 @@ package com.clarityenglish.controls {
 		}
 		
 		public function set zone(value:String):void {
-			if (_zone != value) {
+			if (_zone !== value) {
 				_zone = value;
 			}
 		}
 		
 		public function BentoVideoSelector() {
 			super();
+		}
+		
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			if (_channelCollectionChanged) {
+				_channelCollectionChanged = false;
+				channelButtonBar.dataProvider = _channelCollection;
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -139,7 +157,7 @@ package com.clarityenglish.controls {
 					channelButtonBar.addEventListener(IndexChangeEvent.CHANGE, onChannelClicked);
 					break;
 				//case qualityButtonBar:
-				//qualityButtonBar.addEventListener(IndexChangeEvent.CHANGE, onQualityClicked);
+					//qualityButtonBar.addEventListener(IndexChangeEvent.CHANGE, onQualityClicked);
 				case videoList:
 					videoSelected.add(onVideoSelected);
 					break;
@@ -300,11 +318,6 @@ package com.clarityenglish.controls {
 			videoSelected.dispatch(videoHref, zoneSelected);
 		}
 		
-		/*protected function onQualityClicked(event:IndexChangeEvent):void{
-			trace("the quality Button Bar is " + qualityButtonBar.selectedIndex);
-			videoSelected.dispatch(videoHref, zoneSelected);
-		}*/
-		
 		private function onVideoSelected(href:Href, zoneName:String):void {
 			channelName = channelButtonBar.selectedItem.name;
 			streamName = channelButtonBar.selectedItem.streamName;
@@ -318,16 +331,6 @@ package com.clarityenglish.controls {
 			event.target.removeEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
 			event.target.bufferTime = 4;
 		}
-	
-		/*protected static function qualityProvider(item:XMLList):void{
-			var qualityCollection:ArrayCollection = new ArrayCollection();
-			var qualityArray:Array = [];
-			for each (var quality:XML in item){
-				qualityArray.push(quality.title.toString());
-				trace("the quality choice is " + qualityArray);
-			}
-			qualityCollection.source=qualityArray;
-		}*/
-	
+		
 	}
 }

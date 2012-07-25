@@ -28,7 +28,7 @@ package com.clarityenglish.ieltsair.zone {
 			
 			// Inject the available video channels
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.channelCollection = new ArrayCollection(configProxy.getConfig().channelArray);
+			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
 		}
 		
 		override public function onRemove():void {
