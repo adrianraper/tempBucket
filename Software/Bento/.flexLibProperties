@@ -126,7 +126,6 @@
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.IExerciseView"/>
     <classEntry path="com.clarityenglish.alivepdf.pdf.PDF"/>
     <classEntry path="com.pipwerks.SCORM"/>
-    <classEntry path="com.clarityenglish.controls.BentoVideoPlayer"/>
     <classEntry path="com.clarityenglish.controls.BentoVideoPlayerEvent"/>
     <classEntry path="org.davekeen.transitions.PatchedSlideViewTransition"/>
   </includeClasses>

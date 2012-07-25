@@ -1,8 +1,8 @@
 package com.clarityenglish.ieltsair {
 	import com.clarityenglish.bento.BentoFacade;
-	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.ielts.IELTSApplicationFacade;
-	
+	import com.clarityenglish.ieltsair.zone.AdviceZoneSectionMediator;
+	import com.clarityenglish.ieltsair.zone.AdviceZoneSectionView;
 	import com.clarityenglish.ieltsair.zone.PracticeZonePopoutMediator;
 	import com.clarityenglish.ieltsair.zone.PracticeZonePopoutView;
 	import com.clarityenglish.ieltsair.zone.PracticeZoneSectionMediator;
@@ -20,6 +20,7 @@ package com.clarityenglish.ieltsair {
 		override protected function initializeController():void {
 			super.initializeController();
 			
+			mapView(AdviceZoneSectionView, AdviceZoneSectionMediator);
 			mapView(QuestionZoneSectionView, QuestionZoneSectionMediator);
 			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
 			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);

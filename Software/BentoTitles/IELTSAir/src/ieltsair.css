@@ -8,6 +8,7 @@
 @namespace zone2 "com.clarityenglish.ieltsair.zone.*";
 @namespace ui "com.clarityenglish.ielts.view.zone.ui.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
+@namespace controls "com.clarityenglish.controls.*";
 
 global {
 	interactionMode: touch;
@@ -16,6 +17,10 @@ global {
 
 s|Label, s|RichText {
 	fontFamily: HelveticaNeueLtStdCFF;
+}
+
+controls|BentoVideoSelector {
+	skinClass: ClassReference("skins.ieltsair.controls.IELTSVideoSelectorSkin");
 }
 
 ielts|IELTSApplication {
@@ -58,6 +63,10 @@ zone|ZoneView #sectionNavigator {
 
 zone|ZoneView #sectionNavigator #tabBar {
 	skinClass: ClassReference("skins.ieltsair.zone.ui.SectionNavigatorTabBarSkin");
+}
+
+zone2|AdviceZoneSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.AdviceZoneSectionSkin");
 }
 
 zone2|QuestionZoneSectionView {

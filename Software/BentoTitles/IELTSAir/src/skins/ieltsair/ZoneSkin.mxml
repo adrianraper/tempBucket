@@ -11,33 +11,20 @@
 	<s:states>	
 		<s:State name="disabled" stateGroups="normalStates" />
 		<s:State name="normal" stateGroups="normalStates" />
-		
-		<s:State name="reading_normal" stateGroups="normalStates,readingStates" />
-		<s:State name="writing_normal" stateGroups="normalStates,writingStates" />
-		<s:State name="listening_normal" stateGroups="normalStates,listeningStates" />
-		<s:State name="speaking_normal" stateGroups="normalStates,speakingStates" />
-		
-		<s:State name="reading_demo" stateGroups="normalStates,readingStates" />
-		<s:State name="writing_demo" stateGroups="demoStates,writingStates" />
-		<s:State name="listening_demo" stateGroups="demoStates,listeningStates" />
-		<s:State name="speaking_demo" stateGroups="demoStates,speakingStates" />
-		
-		<s:State name="reading_popped" stateGroups="popoutStates,readingStates" />
-		<s:State name="writing_popped" stateGroups="popoutStates,writingStates" />
-		<s:State name="listening_popped" stateGroups="popoutStates,listeningStates" />
-		<s:State name="speaking_popped" stateGroups="popoutStates,speakingStates" />
 	</s:states>
 	
 	<zone:ZonesChrome top="30" right="20" />
 	<zone:ZonesBars top="30" right="20" />
 	<zone:ZonesBinder top="30" right="20" />
 	
+	<s:Label text="{hostComponent.data.@caption}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="84" left="543" />
+	
 	<s:TabbedViewNavigator id="sectionNavigator" width="518" height="492" top="124" right="20">
-		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" label="Practice zone" firstView="com.clarityenglish.ieltsair.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" firstView="com.clarityenglish.ieltsair.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
 		
-		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ieltsair.zone.QuestionZoneSectionView" />
-		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" />
-		
+		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ieltsair.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
+
+		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" label="Practice zone" firstView="com.clarityenglish.ieltsair.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />	
 		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" label="Test practice" />
 	</s:TabbedViewNavigator>
 	
