@@ -63,6 +63,9 @@ zone|ZoneView #sectionNavigator {
 
 zone|ZoneView #sectionNavigator #tabBar {
 	skinClass: ClassReference("skins.ieltsair.zone.ui.SectionNavigatorTabBarSkin");
+	/*chromeColor: #FFFFFF;
+	color: #000000;*/
+	fontSize: 13;
 }
 
 zone2|AdviceZoneSectionView {
@@ -71,6 +74,16 @@ zone2|AdviceZoneSectionView {
 
 zone2|QuestionZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneSectionSkin");
+}
+
+zone2|QuestionZoneSectionView #readButton {
+	/*skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");*/
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
+}
+
+zone2|QuestionZoneSectionView #videoButton {
+	/*skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");*/
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
 }
 
 zone2|PracticeZoneSectionView {

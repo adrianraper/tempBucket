@@ -5,7 +5,7 @@ package com.clarityenglish.ieltsair.zone {
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
 	
-	public class AdviceZoneSectionView extends BentoView {
+	public class AdviceZoneSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart(required="true")]
 		public var videoSelector:BentoVideoSelector;
@@ -15,15 +15,6 @@ package com.clarityenglish.ieltsair.zone {
 		public function AdviceZoneSectionView() {
 			super();
 			actionBarVisible = false;
-		}
-		
-		private function get _course():XML {
-			return data as XML;
-		}
-		
-		[Bindable(event="dataChange")]
-		public function get courseClass():String {
-			return (_course) ? _course.@["class"].toString() : null;
 		}
 		
 		protected override function commitProperties():void {

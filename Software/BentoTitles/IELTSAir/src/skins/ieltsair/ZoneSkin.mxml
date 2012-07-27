@@ -1,11 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:zone="skins.ieltsair.assets.zone.*">
+		xmlns:zone="skins.ieltsair.assets.zone.*"
+		initialize="onInitialize(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				sectionNavigator.tabBar.height = 43;
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>	
@@ -20,10 +31,8 @@
 	<s:Label text="{hostComponent.data.@caption}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="84" left="543" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" width="518" height="492" top="124" right="20">
-		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" firstView="com.clarityenglish.ieltsair.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
-		
 		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ieltsair.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
-
+		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" firstView="com.clarityenglish.ieltsair.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
 		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" label="Practice zone" firstView="com.clarityenglish.ieltsair.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />	
 		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" label="Test practice" />
 	</s:TabbedViewNavigator>

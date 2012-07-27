@@ -31,7 +31,7 @@
 			}
 		]]>
 	</fx:Script>
-	<s:VGroup>
+	<s:VGroup gap="11">
 		<s:HGroup>
 			<s:Group>
 				<s:VideoPlayer id="videoPlayer" autoDisplayFirstFrame="true" width="411" height="231" autoPlay="true" scaleMode="letterbox" />
@@ -42,37 +42,19 @@
 				<s:Image id="videoImage4" source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.zone == 'advice-zone' &amp;&amp; hostComponent.courseSelected == 'writing' &amp;&amp; videoList.selectedItem == null}" includeInLayout="{hostComponent.courseSelected == 'writing' &amp;&amp; videoList.selectedItem == null}" />
 			</s:Group>
 			<s:Group left="0" visible="{hostComponent.channelCollection.length > 1}">
-				<s:Rect height="231" width="87">
-					<s:fill>
-						<s:SolidColor color="0x141414" />
-					</s:fill>
-				</s:Rect>
-				<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switch channel." color="0xFFFFFF" width="70" lineHeight="18" />
-				<s:HGroup>
-					<s:VGroup paddingTop="160" paddingLeft="9">
-						<s:ButtonBar id="channelButtonBar" labelField="caption" verticalCenter="0" horizontalCenter="0" enabled="{hostComponent.zone == 'question-zone'}" requireSelection="true">
-							<s:layout>
-								<s:VerticalLayout gap="3" />
-							</s:layout>
-						</s:ButtonBar>
-					</s:VGroup>
-					<!--s:VGroup paddingTop="160" paddingLeft="9">
-					  <s:ButtonBar id="qualityButtonBar"  includeInLayout="{channelButtonBar.selectedItem.name == 'vimeo'}" visible="{channelButtonBar.selectedItem.name == 'vimeo'}" requireSelection="true">
-						  <s:layout>
-							  <s:VerticalLayout gap="3" />
-						  </s:layout>
-					  </s:ButtonBar>
-					</s:VGroup-->
-				</s:HGroup>
-
+				<s:ButtonBar id="channelButtonBar" labelField="caption" verticalCenter="0" horizontalCenter="0" enabled="{hostComponent.zone == 'question-zone'}" requireSelection="true">
+					<s:layout>
+						<s:VerticalLayout gap="3" />
+					</s:layout>
+				</s:ButtonBar>
 			</s:Group>
 		</s:HGroup>
 
-		<s:List id="videoList" width="460" horizontalScrollPolicy="off" borderVisible="false">
+		<s:List id="videoList" width="460" horizontalScrollPolicy="off" borderVisible="false" contentBackgroundColor="#FFFFFF">
 			<s:layout>
-				<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="10" horizontalGap="5" />
+				<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="11" horizontalGap="5" />
 			</s:layout>
-
+			
 			<s:itemRenderer>
 				<fx:Component>
 					<s:ItemRenderer>

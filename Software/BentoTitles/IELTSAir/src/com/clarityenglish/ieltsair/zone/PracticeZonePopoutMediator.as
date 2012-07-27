@@ -29,7 +29,6 @@ package com.clarityenglish.ieltsair.zone {
 			
 			// The popup always starts out invisible
 			view.visible = false;
-			
 		}
 		
 		override public function onRemove():void {

@@ -10,6 +10,11 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		
+		<s:State name="reading" />
+		<s:State name="writing" />
+		<s:State name="listening" />
+		<s:State name="speaking" />
 	</s:states>
 	
 	<zone:PopoutChrome />

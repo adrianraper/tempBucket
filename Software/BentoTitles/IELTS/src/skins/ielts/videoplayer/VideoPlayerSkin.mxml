@@ -43,7 +43,8 @@
 		<![CDATA[
 			import caurina.transitions.Tweener;
 			/* Define the skin elements that should not be colorized. */
-			static private const exclusions:Array = ["videoDisplay", "playPauseButton", "scrubBar", "currentTimeDisplay", "timeDivider", "durationDisplay", "volumeBar", "fullScreenButton"];
+			//static private const exclusions:Array = ["videoDisplay", "playPauseButton", "scrubBar", "currentTimeDisplay", "timeDivider", "durationDisplay", "volumeBar", "fullScreenButton"];
+			static private const exclusions:Array = ["videoDisplay", "playPauseButton", "scrubBar", "volumeBar", "fullScreenButton"];
 			
 			private var hideControlsTimer:Timer;
 			

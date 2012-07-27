@@ -12,7 +12,7 @@ package com.clarityenglish.ieltsair.zone {
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
 	
-	public class PracticeZoneSectionView extends BentoView {
+	public class PracticeZoneSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart(required="true")]
 		public var unitList:List;
@@ -22,15 +22,6 @@ package com.clarityenglish.ieltsair.zone {
 		public function PracticeZoneSectionView() {
 			super();
 			actionBarVisible = false;
-		}
-		
-		private function get _course():XML {
-			return data as XML;
-		}
-		
-		[Bindable(event="dataChange")]
-		public function get courseClass():String {
-			return (_course) ? _course.@["class"].toString() : null;
 		}
 		
 		protected override function commitProperties():void {
