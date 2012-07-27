@@ -9,14 +9,14 @@ package com.clarityenglish.ieltsair.zone {
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class AdviceZoneVideoSectionMediator extends BentoMediator implements IMediator {
+	public class QuestionZoneVideoSectionMediator extends BentoMediator implements IMediator {
 		
-		public function AdviceZoneVideoSectionMediator(mediatorName:String, viewComponent:BentoView) {
+		public function QuestionZoneVideoSectionMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():AdviceZoneVideoSectionView {
-			return viewComponent as AdviceZoneVideoSectionView;
+		private function get view():QuestionZoneVideoSectionView {
+			return viewComponent as QuestionZoneVideoSectionView;
 		}
 		
 		override public function onRegister():void {

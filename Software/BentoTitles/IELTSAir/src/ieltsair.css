@@ -72,8 +72,8 @@ zone2|AdviceZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.AdviceZoneSectionSkin");
 }
 
-zone2|AdviceZoneVideoSectionView {
-	skinClass: ClassReference("skins.ieltsair.zone.AdviceZoneVideoSectionSkin");
+zone2|QuestionZoneVideoSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneVideoSectionSkin");
 }
 
 zone2|QuestionZoneSectionView {

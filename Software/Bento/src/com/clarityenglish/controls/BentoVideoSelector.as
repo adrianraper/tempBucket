@@ -228,9 +228,9 @@ package com.clarityenglish.controls {
 				var protocol:String = channel.@protocol.toString();
 			} else {
 				channel = dynamicList.channel[0];
-				protocol = channel.streaming.toString();
+				protocol = (channel) ? channel.streaming.toString() : "";
 			}
-			var host:String = channel.host.toString();
+			var host:String = (host) ? channel.host.toString() : "";
 			
 			if (host.indexOf('{streamingMedia}') >= 0)
 				host = host.replace("{streamingMedia}", streamName);
@@ -341,6 +341,9 @@ import org.osmf.media.MediaElement;
 import org.osmf.media.MediaFactoryItem;
 import org.osmf.media.MediaResourceBase;
 
+/**
+ * An attempt to enable smoothing with OSMF2 - not convinced it is working though
+ */
 class SmoothingMediaFactory extends DefaultMediaFactory {
 	
 	private var _highjackedMediaCreationFunction:Function;
@@ -348,7 +351,7 @@ class SmoothingMediaFactory extends DefaultMediaFactory {
 	protected override function resolveItems(resource:MediaResourceBase, items:Vector.<MediaFactoryItem>):MediaFactoryItem {
 		var mfi:MediaFactoryItem = super.resolveItems(resource, items);
 		/*If a custom MFI is being used, hijack it and intercept the media element it returns to set smoothing on it*/
-		if (mfi.id.indexOf('org.osmf') < 0) {
+		if (mfi && mfi.id.indexOf('org.osmf') < 0) {
 			_highjackedMediaCreationFunction = mfi.mediaElementCreationFunction;
 			var hijacker:MediaFactoryItem = new MediaFactoryItem(mfi.id, mfi.canHandleResourceFunction, interceptMediaElement);
 			return hijacker;

@@ -5,14 +5,14 @@ package com.clarityenglish.ieltsair.zone {
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
 	
-	public class AdviceZoneVideoSectionView extends AbstractZoneSectionView {
+	public class QuestionZoneVideoSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart(required="true")]
 		public var videoSelector:BentoVideoSelector;
 		
 		public var channelCollection:ArrayCollection;
 		
-		public function AdviceZoneVideoSectionView() {
+		public function QuestionZoneVideoSectionView() {
 			super();
 			actionBarVisible = false;
 		}
@@ -22,7 +22,7 @@ package com.clarityenglish.ieltsair.zone {
 			
 			videoSelector.viewHref = href;
 			videoSelector.channelCollection = channelCollection;
-			videoSelector.videoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
+			videoSelector.videoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "question-zone").exercise);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

@@ -51,7 +51,7 @@ package com.clarityenglish.ieltsair.zone {
 		 * When the 'Watch video' button is clicked push AdviceZoneVideoSectionView onto the navigator
 		 */
 		protected function onVideoButtonClick(event:MouseEvent):void {
-			navigator.pushView(AdviceZoneVideoSectionView, _course, null, new PatchedSlideViewTransition());
+			navigator.pushView(QuestionZoneVideoSectionView, _course, null, new PatchedSlideViewTransition());
 		}
 		
 	}

@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:controls="com.clarityenglish.controls.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ieltsair.zone.AdviceZoneVideoSectionView")]
+		[HostComponent("com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionView")]
 	</fx:Metadata>
 	
 	<!-- states -->
