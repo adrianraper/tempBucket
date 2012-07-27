@@ -72,17 +72,19 @@ zone2|AdviceZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.AdviceZoneSectionSkin");
 }
 
+zone2|AdviceZoneVideoSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.AdviceZoneVideoSectionSkin");
+}
+
 zone2|QuestionZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneSectionSkin");
 }
 
 zone2|QuestionZoneSectionView #readButton {
-	/*skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");*/
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
 
 zone2|QuestionZoneSectionView #videoButton {
-	/*skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");*/
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
 }
 

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:controls="com.clarityenglish.controls.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ieltsair.zone.AdviceZoneVideoSectionView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="reading" />
+		<s:State name="writing" />
+		<s:State name="listening" />
+		<s:State name="speaking" />
+	</s:states>
+	
+	<controls:BentoVideoSelector id="videoSelector" left="20" top="57" />
+	
+</s:Skin>

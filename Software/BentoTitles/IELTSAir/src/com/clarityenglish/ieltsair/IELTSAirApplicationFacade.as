@@ -3,6 +3,8 @@ package com.clarityenglish.ieltsair {
 	import com.clarityenglish.ielts.IELTSApplicationFacade;
 	import com.clarityenglish.ieltsair.zone.AdviceZoneSectionMediator;
 	import com.clarityenglish.ieltsair.zone.AdviceZoneSectionView;
+	import com.clarityenglish.ieltsair.zone.AdviceZoneVideoSectionMediator;
+	import com.clarityenglish.ieltsair.zone.AdviceZoneVideoSectionView;
 	import com.clarityenglish.ieltsair.zone.PracticeZonePopoutMediator;
 	import com.clarityenglish.ieltsair.zone.PracticeZonePopoutView;
 	import com.clarityenglish.ieltsair.zone.PracticeZoneSectionMediator;
@@ -21,6 +23,7 @@ package com.clarityenglish.ieltsair {
 			super.initializeController();
 			
 			mapView(AdviceZoneSectionView, AdviceZoneSectionMediator);
+			mapView(AdviceZoneVideoSectionView, AdviceZoneVideoSectionMediator);
 			mapView(QuestionZoneSectionView, QuestionZoneSectionMediator);
 			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
 			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);

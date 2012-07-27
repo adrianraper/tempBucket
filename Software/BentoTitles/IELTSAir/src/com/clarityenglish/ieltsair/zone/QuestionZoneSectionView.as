@@ -3,6 +3,7 @@ package com.clarityenglish.ieltsair.zone {
 	
 	import flash.events.MouseEvent;
 	
+	import org.davekeen.transitions.PatchedSlideViewTransition;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
@@ -46,8 +47,11 @@ package com.clarityenglish.ieltsair.zone {
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneEBookNode.@href));
 		}
 		
+		/**
+		 * When the 'Watch video' button is clicked push AdviceZoneVideoSectionView onto the navigator
+		 */
 		protected function onVideoButtonClick(event:MouseEvent):void {
-			
+			navigator.pushView(AdviceZoneVideoSectionView, _course, null, new PatchedSlideViewTransition());
 		}
 		
 	}
