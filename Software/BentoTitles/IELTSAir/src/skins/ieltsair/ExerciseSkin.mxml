@@ -67,11 +67,6 @@
 		</s:fill>
 	</s:Rect>
 	
-	<!-- Top buttons -->
-	<!--<s:VGroup right="-15" top="40" includeIn="exercise">
-		<s:Button id="printButton" skinClass="skins.ielts.title.PrintButtonSkin" label="Print" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" />
-	</s:VGroup>-->
-	
 	<!-- Ring binder shadow -->
 	<s:Group left="0" top="34" bottom="20" clipAndEnableScrolling="true" includeIn="exercise">
 		<s:Rect width="50" height="100%">
@@ -82,22 +77,10 @@
 	</s:Group>
 	
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="25" right="25" top="34" bottom="20" />
+	<view:DynamicView id="dynamicView" left="25" right="25" top="34" bottom="20" /> <!-- scaleX="{4/3}" scaleY="{4/3}" -->
 	
 	<!-- Title -->
 	<s:Label text="{hostComponent.exerciseTitle}" left="25" top="14" fontSize="13" fontWeight="bold" color="#FFFFFF" includeIn="exercise" />
-	
-	<!-- Right buttons -->
-	<!--<s:HGroup right="32" top="0" includeIn="exercise">
-		<s:Group>
-			<s:Button id="feedbackButton" skinClass="skins.ielts.title.FeedbackButtonSkin" label="Feedback" visible="false" />
-			<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
-		</s:Group>
-		
-		<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" label="Start again" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
-		<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" label="Back" />
-		<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" label="Forward" />
-	</s:HGroup>-->
 	
 	<!-- Ring binder -->
 	<s:Group left="-7" top="34" bottom="20" clipAndEnableScrolling="true" includeIn="exercise">
