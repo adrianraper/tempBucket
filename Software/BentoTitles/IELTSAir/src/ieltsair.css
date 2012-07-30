@@ -9,6 +9,7 @@
 @namespace ui "com.clarityenglish.ielts.view.zone.ui.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace controls "com.clarityenglish.controls.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 
 global {
 	interactionMode: touch;
@@ -17,6 +18,14 @@ global {
 
 s|Label, s|RichText {
 	fontFamily: HelveticaNeueLtStdCFF;
+}
+
+components|XHTMLExerciseView s|TextInput {
+	skinClass: ClassReference("skins.ieltsair.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 0;
+	paddingRight: 0;
 }
 
 controls|BentoVideoSelector {
