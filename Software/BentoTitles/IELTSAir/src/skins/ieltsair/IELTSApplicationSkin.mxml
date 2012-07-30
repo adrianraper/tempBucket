@@ -25,7 +25,7 @@
 	</s:states>
 	
 	<!-- Gradient -->
-	<application:BackgroundGradient />
+	<application:BackgroundGradient left="0" right="0" top="0" bottom="0" />
 	
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">

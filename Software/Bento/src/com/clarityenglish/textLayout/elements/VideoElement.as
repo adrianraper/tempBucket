@@ -1,6 +1,7 @@
 package com.clarityenglish.textLayout.elements {
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
+	import flash.system.Capabilities;
 	import flash.system.Security;
 	import flash.utils.Dictionary;
 	
@@ -47,8 +48,11 @@ package com.clarityenglish.textLayout.elements {
 			
 			// Allow www.youtube.com (only do this once)
 			if (!inititalized) {
-				Security.allowDomain("www.youtube.com");
-				Security.allowDomain("www.vimeo.com");
+				// Don't do this if we are running an AIR app
+				if (Capabilities.playerType != "Desktop") {
+					Security.allowDomain("www.youtube.com");
+					Security.allowDomain("www.vimeo.com");
+				}
 				inititalized = true;
 			}
 		}

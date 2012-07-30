@@ -3,14 +3,16 @@ package com.clarityenglish.ieltsair {
 	import com.clarityenglish.ielts.IELTSApplicationFacade;
 	import com.clarityenglish.ieltsair.zone.AdviceZoneSectionMediator;
 	import com.clarityenglish.ieltsair.zone.AdviceZoneSectionView;
-	import com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionMediator;
-	import com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionView;
+	import com.clarityenglish.ieltsair.zone.ExamPracticeZoneSectionMediator;
+	import com.clarityenglish.ieltsair.zone.ExamPracticeZoneSectionView;
 	import com.clarityenglish.ieltsair.zone.PracticeZonePopoutMediator;
 	import com.clarityenglish.ieltsair.zone.PracticeZonePopoutView;
 	import com.clarityenglish.ieltsair.zone.PracticeZoneSectionMediator;
 	import com.clarityenglish.ieltsair.zone.PracticeZoneSectionView;
 	import com.clarityenglish.ieltsair.zone.QuestionZoneSectionMediator;
 	import com.clarityenglish.ieltsair.zone.QuestionZoneSectionView;
+	import com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionMediator;
+	import com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionView;
 	
 	public class IELTSAirApplicationFacade extends IELTSApplicationFacade {
 		
@@ -27,6 +29,7 @@ package com.clarityenglish.ieltsair {
 			mapView(QuestionZoneSectionView, QuestionZoneSectionMediator);
 			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
 			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);
+			mapView(ExamPracticeZoneSectionView, ExamPracticeZoneSectionMediator);
 		}
 		
 	}

@@ -9,7 +9,7 @@
 		xmlns:account="com.clarityenglish.ielts.view.account.*"
 		xmlns:support="com.clarityenglish.ielts.view.support.*"
 		xmlns:exercise="com.clarityenglish.ielts.view.exercise.*">
-	<!-- host component -->
+
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
 	</fx:Metadata>

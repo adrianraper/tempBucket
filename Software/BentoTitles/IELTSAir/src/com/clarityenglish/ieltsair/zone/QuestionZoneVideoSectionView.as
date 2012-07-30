@@ -4,6 +4,7 @@ package com.clarityenglish.ieltsair.zone {
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
+	import flash.events.Event;
 	
 	public class QuestionZoneVideoSectionView extends AbstractZoneSectionView {
 		
@@ -31,6 +32,15 @@ package com.clarityenglish.ieltsair.zone {
 			switch (instance) {
 				
 			}
+		}
+		
+		/**
+		 * Whenever this view is removed from the stage (which happens when you move to a different section of the app) pop the navigator back to the first view, which
+		 * is the original question zone page.
+		 */
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			navigator.popToFirstView();
 		}
 		
 	}

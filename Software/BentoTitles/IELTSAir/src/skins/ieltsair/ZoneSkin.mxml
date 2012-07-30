@@ -34,7 +34,7 @@
 		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ieltsair.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
 		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" firstView="com.clarityenglish.ieltsair.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
 		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" label="Practice zone" firstView="com.clarityenglish.ieltsair.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />	
-		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" label="Test practice" />
+		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" label="Test practice" firstView="com.clarityenglish.ieltsair.zone.ExamPracticeZoneSectionView" firstViewData="{hostComponent.course}" />
 	</s:TabbedViewNavigator>
 	
 </s:Skin>

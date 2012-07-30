@@ -71,7 +71,7 @@
 	<s:SWFLoader source="{hostComponent.productVersionLogo}" x="39" y="140" excludeFrom="exercise" />
 	<s:Label text="{hostComponent.productVersionText}" x="51" y="150" color="#FFFFFF" excludeFrom="exercise" />
 	
-	<assets:BritishCouncilClarityLogo x="0" y="617" excludeFrom="exercise" />
+	<assets:BritishCouncilClarityLogo bottom="51" excludeFrom="exercise" />
 	
 	<zone1:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
 	

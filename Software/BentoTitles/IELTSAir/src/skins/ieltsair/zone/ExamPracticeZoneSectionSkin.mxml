@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:controls="com.clarityenglish.controls.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionView")]
+		[HostComponent("com.clarityenglish.ieltsair.zone.ExamPracticeZoneSectionView")]
 	</fx:Metadata>
 	
 	<!-- states -->
@@ -17,6 +17,7 @@
 		<s:State name="speaking" />
 	</s:states>
 	
-	<controls:BentoVideoSelector id="videoSelector" left="20" top="37" />
+	<s:Label text="Test practice" fontSize="18" fontWeight="bold" left="20" top="12" />
+	<s:Label text="Download complete test papers.  Click the audio button to start the mock listening test.  As in the test, you cannot pause the audio once you have started." fontSize="14" left="20" top="35" right="25" />
 	
 </s:Skin>

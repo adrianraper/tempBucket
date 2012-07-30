@@ -51,10 +51,12 @@ title|TitleView s|TabbedViewNavigator #tabBar {
 
 home|HomeView {
 	skinClass: ClassReference("skins.ieltsair.HomeSkin");
+	backgroundAlpha: 0;
 }
 
 zone|ZoneView {
 	skinClass: ClassReference("skins.ieltsair.ZoneSkin");
+	backgroundAlpha: 0;
 }
 
 zone|ZoneView #sectionNavigator {
@@ -98,6 +100,10 @@ zone2|PracticeZonePopoutView {
 
 ui|DifficultyRenderer {
 	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
+}
+
+zone2|ExamPracticeZoneSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.ExamPracticeZoneSectionSkin");
 }
 
 /* Zone view styles */

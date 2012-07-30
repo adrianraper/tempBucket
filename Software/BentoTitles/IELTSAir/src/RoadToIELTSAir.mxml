@@ -11,14 +11,21 @@
 						runtimeDPIProvider="RetinaRuntimeDPIProvider">
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
 			import com.clarityenglish.common.vo.config.BentoError;
+			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
+			import com.flashiphonedevelopment.settings.IPhoneAppSettings;
 			
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
 			protected function onInitialize(event:FlexEvent):void {
+				// Set the iOS config xml file as well as getting the prefix from the iOS settings
 				FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
+				
+				try {
+					FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix");
+				} catch (e:TypeError) { }
+				
 				facade = IELTSAirApplicationFacade.getInstance();
 			}
 			
