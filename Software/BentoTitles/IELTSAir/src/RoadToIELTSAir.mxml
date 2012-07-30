@@ -13,6 +13,7 @@
 		<![CDATA[
 			import com.clarityenglish.common.vo.config.BentoError;
 			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
+			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
 			import com.flashiphonedevelopment.settings.IPhoneAppSettings;
 			
 			import mx.core.FlexGlobals;
@@ -21,10 +22,12 @@
 			protected function onInitialize(event:FlexEvent):void {
 				// Set the iOS config xml file as well as getting the prefix from the iOS settings
 				FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
-				
 				try {
 					FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix");
 				} catch (e:TypeError) { }
+				
+				// The AIR application applies an offset to font sizes in the xhtml files  
+				CSSApplicator.fontSizeOffset = 4;
 				
 				facade = IELTSAirApplicationFacade.getInstance();
 			}

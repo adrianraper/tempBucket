@@ -20,6 +20,9 @@ package com.clarityenglish.textLayout.stylesheets.applicators {
 		
 		private var element:Object;
 		
+		// #366
+		public static var fontSizeOffset:int = 0;
+		
 		public function CSSApplicator(element:Object) {
 			this.element = element;
 		}
@@ -60,6 +63,12 @@ package com.clarityenglish.textLayout.stylesheets.applicators {
 				return style[property].toString().replace(/,/g, " ");
 			
 			var propertyCSSValue:ICSSValue = style.getPropertyCSSValue(property);
+			
+			// #366
+			if (property == "fontSize") {
+				return style[property] + fontSizeOffset;
+			}
+			
 			switch (ClassUtil.getClass(propertyCSSValue)) {
 				case RGBColorValue:
 				case HSLColorValue:
