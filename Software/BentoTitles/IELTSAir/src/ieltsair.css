@@ -115,6 +115,13 @@ zone2|ExamPracticeZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.ExamPracticeZoneSectionSkin");
 }
 
+zone2|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
+	compactStoppedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPausedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayingIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioStop");
+}
+
 /* Zone view styles */
 /*
 zone|ZoneView tink|Accordion {

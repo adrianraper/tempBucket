@@ -1,23 +1,47 @@
 package com.clarityenglish.ieltsair.zone {
-	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.controls.BentoVideoSelector;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
-	import mx.collections.ArrayCollection;
+	import flash.events.Event;
+	
 	import mx.collections.XMLListCollection;
 	
+	import org.osflash.signals.Signal;
+	
+	import spark.components.List;
+	
 	public class ExamPracticeZoneSectionView extends AbstractZoneSectionView {
+		
+		[SkinPart(required="true")]
+		public var list:List;
 		
 		public function ExamPracticeZoneSectionView() {
 			super();
 			actionBarVisible = false;
 		}
 		
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			list.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				
+				case list:
+					break;
 			}
+		}
+		
+		public function stopAllAudio():void {
+			AudioPlayer.stopAllAudio();
+		}
+		
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			stopAllAudio();
 		}
 		
 	}
