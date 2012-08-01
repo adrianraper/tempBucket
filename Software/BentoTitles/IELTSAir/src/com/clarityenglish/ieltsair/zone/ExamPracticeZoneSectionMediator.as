@@ -2,9 +2,8 @@ package com.clarityenglish.ieltsair.zone {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.model.ConfigProxy;
-	
-	import mx.collections.ArrayCollection;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -25,10 +24,14 @@ package com.clarityenglish.ieltsair.zone {
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
+			
+			view.exerciseSelect.add(onExerciseSelect);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.exerciseSelect.remove(onExerciseSelect);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -43,6 +46,10 @@ package com.clarityenglish.ieltsair.zone {
 			switch (note.getName()) {
 				
 			}
+		}
+		
+		protected function onExerciseSelect(href:Href):void {
+			sendNotification(IELTSNotifications.HREF_SELECTED, href);
 		}
 		
 	}

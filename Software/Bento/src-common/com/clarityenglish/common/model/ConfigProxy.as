@@ -96,7 +96,7 @@ package com.clarityenglish.common.model {
 			// TODO. Do you need to check that the remote gateway is up and running since we only just set it?
 			
 			if (Config.DEVELOPER.name == "DK") {
-				config.prefix = "Clarity";
+				if (!config.prefix) config.prefix = "Clarity";
 			}
 			
 			// Create a subset of the config object to pass to the remote call
@@ -269,7 +269,7 @@ package com.clarityenglish.common.model {
 			var directStartObject:Object = new Object();
 			
 			if (Config.DEVELOPER.name == "DK") {
-				return { courseID: "1287130400000" };
+				//return { courseID: "1287130400000" };
 				//return { exerciseID: "1156153794672" };
 			}
 			
@@ -279,14 +279,13 @@ package com.clarityenglish.common.model {
 			}
 			
 			// #336 SCORM needs to be checked here
+			// TODO: This is overriden by the next line so could be removed?
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
 				directStartObject = scormProxy.getBookmark();
-				
 			} else {
 				// #338. This is using a utility parsing function, it is for data from queryString
 				directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
-				
 			}
 			
 			// #338. This is using a utility parsing function, it is for data from queryString

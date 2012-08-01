@@ -1,5 +1,6 @@
 package com.clarityenglish.ieltsair.zone {
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.ielts.view.zone.ExerciseEvent;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
 	import flash.events.Event;
@@ -14,6 +15,8 @@ package com.clarityenglish.ieltsair.zone {
 		
 		[SkinPart(required="true")]
 		public var list:List;
+		
+		public var exerciseSelect:Signal = new Signal(Href);
 		
 		public function ExamPracticeZoneSectionView() {
 			super();
@@ -31,8 +34,13 @@ package com.clarityenglish.ieltsair.zone {
 			
 			switch (instance) {
 				case list:
+					list.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					break;
 			}
+		}
+		
+		protected function onExerciseSelected(event:ExerciseEvent):void {
+			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, event.hrefFilename));
 		}
 		
 		public function stopAllAudio():void {
