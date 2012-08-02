@@ -6,7 +6,7 @@
 		xmlns:assets="skins.ieltsair.assets.*"
 		xmlns:zone="skins.ieltsair.assets.zone.*"
 		xmlns:zone1="com.clarityenglish.ieltsair.zone.*"
-		creationComplete="creationComplete(event)">
+		creationComplete="creationComplete(event)" xmlns:local="*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]

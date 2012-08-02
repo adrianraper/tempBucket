@@ -11,7 +11,7 @@
 		<![CDATA[
 			import caurina.transitions.Tweener;
 			
-			private var idx:int = 0;
+			public var idx:int = 0;
 			
 			private function moveList(delta:int):void {
 				if (idx + delta >= 0 && idx + delta < list.dataProvider.length) {
@@ -58,8 +58,12 @@
 							override protected function commitProperties():void {
 								super.commitProperties();
 								
-								practiceTestButton.setStyle('chromeColor', getStyle(outerDocument.hostComponent.courseClass + 'Color'));
-								answerKeyButton.setStyle('chromeColor', getStyle(outerDocument.hostComponent.courseClass + 'Color'));
+								var courseClass:String = outerDocument.hostComponent.courseClass;
+								
+								practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
+								answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
+								
+								swfLoader.source = "/skins/ieltsair/assets/zone/testpractice_" + courseClass + (outerDocument.idx + 1) + ".png";
 							}
 							
 							private function onButtonClick(url:String):void {
@@ -67,7 +71,7 @@
 							}
 						]]>
 					</fx:Script>
-					<s:SWFLoader source="@Embed(source='skins/ielts/assets/testpractice_reading.png')" />
+					<s:SWFLoader id="swfLoader" />
 					<s:Label text="{data.@caption}" top="268" horizontalCenter="0" fontSize="16" />
 					
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
