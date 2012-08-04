@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="96" viewWidth="260" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library>
+    <Definition name="rtiv2_ipad_ai_Starting_Out_Path__1" flm:originalName="rtiv2_ipad.ai/Starting Out/&lt;Path&gt;_1">
+      <Group>
+        <Group d:type="layer" d:userLabel="Layer 1">
+          <Path data="M147.5 33.1 0 33.1Q26.25 5.5 61.5 0.85 97.45 -3.9 128.9 17.35 138.85 24.05 147.5 33.1">
+            <fill>
+              <SolidColor color="#C4C4C4"/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Definition>
+    <Definition name="rtiv2_ipad_ai_Starting_Out_Path_" flm:originalName="rtiv2_ipad.ai/Starting Out/&lt;Path&gt;">
+      <Group>
+        <Group d:type="layer" d:userLabel="Layer 1">
+          <Path data="M209.65 96 0 96Q5.5 74.75 17.85 56.5 30 38.6 47.3 25.6 64.8 12.55 85.5 5.95 106.95 -0.8 129.65 0.15 152.4 1.1 173.2 9.7 193.35 18 209.65 32.55L209.65 96">
+            <fill>
+              <SolidColor color="#C4C4C4"/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Definition>
+  </Library>
+  <Group blendMode="normal" d:type="layer" d:userLabel="Layer 1">
+    <Group blendMode="normal">
+      <rtiv2_ipad_ai_Starting_Out_Path__1 y="62.85" blendMode="multiply"/>
+      <rtiv2_ipad_ai_Starting_Out_Path_ x="50" y="-0.05" blendMode="multiply"/>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

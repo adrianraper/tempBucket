@@ -10,6 +10,7 @@
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace controls "com.clarityenglish.controls.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+@namespace login "com.clarityenglish.ielts.view.login.*";
 
 global {
 	interactionMode: touch;
@@ -46,6 +47,20 @@ ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forw
 	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
 }
 
+/* Login view styles */
+login|LoginView {
+	skinClass: ClassReference("skins.ieltsair.LoginSkin");
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
+}
+
+login|LoginView s|Button {
+	chromeColor: #2793CE;
+}
+
+/* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ieltsair.TitleSkin");
 }
@@ -58,11 +73,13 @@ title|TitleView s|TabbedViewNavigator #tabBar {
 	iconPlacement: top;
 }
 
+/* Home view styles */
 home|HomeView {
 	skinClass: ClassReference("skins.ieltsair.HomeSkin");
 	backgroundAlpha: 0;
 }
 
+/* Zone view styles */
 zone|ZoneView {
 	skinClass: ClassReference("skins.ieltsair.ZoneSkin");
 	backgroundAlpha: 0;

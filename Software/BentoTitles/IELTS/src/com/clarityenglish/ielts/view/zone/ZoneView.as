@@ -11,9 +11,10 @@ package com.clarityenglish.ielts.view.zone {
 	import org.osflash.signals.Signal;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	
-	import spark.components.Button;
-	
 	public class ZoneView extends BentoView {
+		
+		[SkinPart(required="true")]
+		public var courseSelector:CourseSelector;
 		
 		[Bindable]
 		public var user:User;
@@ -90,6 +91,10 @@ package com.clarityenglish.ielts.view.zone {
 		[Bindable(event="courseChanged")]
 		public function get courseClass():String {
 			return (_course) ? _course.@["class"].toString() : null;
+		}
+		
+		public function setCourseSelectorVisible(value:Boolean):void {
+			courseSelector.visible = value;
 		}
 		
 	}

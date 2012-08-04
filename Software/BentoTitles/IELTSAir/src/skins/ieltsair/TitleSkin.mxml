@@ -72,6 +72,7 @@
 	<s:Label text="{hostComponent.productVersionText}" x="51" y="150" color="#FFFFFF" excludeFrom="exercise" />
 	
 	<assets:BritishCouncilClarityLogo bottom="51" excludeFrom="exercise" />
+	<assets:GreyCircles bottom="51" right="0" excludeFrom="exercise" />
 	
 	<zone1:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
 	

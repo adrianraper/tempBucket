@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:login="skins.ieltsair.assets.login.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+
+		<s:State name="login" stateGroups="loginStates" />
+		<s:State name="loginNetwork" stateGroups="loginStates" />
+		<s:State name="register" stateGroups="registerStates" />
+		<s:State name="registerNetwork" stateGroups="registerStates" />
+		<s:State name="registerError" stateGroups="registerStates" />
+	</s:states>
+	
+	<login:IELTSLoginLogo left="48" top="60" />
+	
+	<login:InputAreaChrome left="19" top="183" />
+	
+	<s:Label id="loginKey_lbl" left="73" top="217" text="{hostComponent.loginKey_lbl}" fontSize="16" />
+	<s:TextInput id="loginKeyInput" left="73" top="240" width="263" />
+	
+	<s:Label text="This is the ID given to you to start Road to IELTS. It looks like this: 1280-8666-1111." color="#333333" left="73" top="280" width="340" fontSize="14" />
+	
+	<s:Label text="Password:" left="73" top="345" fontSize="16" />
+	<s:TextInput id="passwordInput" left="73" top="365" width="263" displayAsPassword="true" />
+	
+	<s:Button id="loginButton" left="73" top="416" width="120" height="44" label="Log in" fontSize="18" />
+	
+	<login:BritishCouncilLoginLogo bottom="0" />
+	<login:GreyCirclesLogin bottom="0" right="0" />
+	
+	<login:LoginImage top="158" right="48" />
+	
+</s:Skin>

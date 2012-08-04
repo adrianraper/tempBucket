@@ -39,10 +39,11 @@
 	</s:states>
 	
 	<s:Label text="Test practice" fontSize="18" fontWeight="bold" left="20" top="12" />
-	<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." fontSize="14" left="20" top="35" right="25" />
+	<s:Label visible="{list.dataProvider.length > 0}" text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." fontSize="14" left="20" top="35" right="25" />
+	<s:Label visible="{list.dataProvider.length == 0}" text="There is no downloadable test practice materials in this section.  Watch the tutorials in the Advice and tutorials section to see what happens in the {hostComponent.courseClass} test interview." fontSize="14" left="20" top="35" right="25" />
 	
-	<zone:LeftArrow left="18" top="200" click="moveList(-1)" />
-	<zone:RightArrow right="18" top="200" click="moveList(1)" />
+	<zone:LeftArrow left="18" top="200" click="moveList(-1)" visible="{list.dataProvider.length > 0}" />
+	<zone:RightArrow right="18" top="200" click="moveList(1)" visible="{list.dataProvider.length > 0}" />
 	
 	<s:List id="list" width="386" top="90" horizontalCenter="0" contentBackgroundColor="#FFFFFF" horizontalScrollPolicy="off" verticalScrollPolicy="off">
 		<s:layout>
@@ -59,10 +60,8 @@
 								super.commitProperties();
 								
 								var courseClass:String = outerDocument.hostComponent.courseClass;
-								
 								practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
 								answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
-								
 								swfLoader.source = "/skins/ieltsair/assets/zone/testpractice_" + courseClass + (outerDocument.idx + 1) + ".png";
 							}
 							
@@ -83,5 +82,7 @@
 			</fx:Component>
 		</s:itemRenderer>
 	</s:List>
+	
+	<s:SWFLoader visible="{list.dataProvider.length == 0}" source="/skins/ieltsair/assets/zone/testpractice_empty.png" width="386" top="90" horizontalCenter="0" />
 	
 </s:Skin>

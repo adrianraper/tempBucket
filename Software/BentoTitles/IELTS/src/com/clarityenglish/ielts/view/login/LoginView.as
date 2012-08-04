@@ -23,7 +23,7 @@ package com.clarityenglish.ielts.view.login {
 	import spark.components.FormHeading;
 	import spark.components.Label;
 	import spark.components.TextInput;
-
+	
 	public class LoginView extends BentoView implements LoginComponent {
 		
 		[SkinPart(required="true")]
@@ -445,7 +445,6 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		public function setState(state:String):void {
-		
 			// Copy fields if appropriate
 			switch (state) {
 				case 'register':
