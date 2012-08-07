@@ -21,6 +21,8 @@
 	
 	<login:IELTSLoginLogo left="48" top="60" />
 	
+	<login:LoginImage top="158" right="48" />
+	
 	<login:InputAreaChrome left="19" top="183" />
 	
 	<s:Label id="loginKey_lbl" left="73" top="217" text="{hostComponent.loginKey_lbl}" fontSize="16" />
@@ -36,6 +38,6 @@
 	<login:BritishCouncilLoginLogo bottom="0" />
 	<login:GreyCirclesLogin bottom="0" right="0" />
 	
-	<login:LoginImage top="158" right="48" />
+	
 	
 </s:Skin>

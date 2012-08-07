@@ -1,10 +1,10 @@
 package com.clarityenglish.ieltsair.zone {
-	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.controls.BentoVideoSelector;
+	
+	import flash.events.Event;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
-	import flash.events.Event;
 	
 	public class QuestionZoneVideoSectionView extends AbstractZoneSectionView {
 		
@@ -23,7 +23,7 @@ package com.clarityenglish.ieltsair.zone {
 			
 			videoSelector.viewHref = href;
 			videoSelector.channelCollection = channelCollection;
-			videoSelector.videoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "question-zone").exercise);
+			videoSelector.videoCollection = new XMLListCollection(_course.unit.(@["class"] == "question-zone").exercise);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

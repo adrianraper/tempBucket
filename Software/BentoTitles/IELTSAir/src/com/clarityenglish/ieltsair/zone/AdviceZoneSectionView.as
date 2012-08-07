@@ -1,5 +1,4 @@
 package com.clarityenglish.ieltsair.zone {
-	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.controls.BentoVideoSelector;
 	
 	import mx.collections.ArrayCollection;
@@ -22,7 +21,7 @@ package com.clarityenglish.ieltsair.zone {
 			
 			videoSelector.viewHref = href;
 			videoSelector.channelCollection = channelCollection;
-			videoSelector.videoList.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
+			videoSelector.videoCollection = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

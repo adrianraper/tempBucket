@@ -16,6 +16,7 @@ package com.clarityenglish.textLayout.elements {
 	import org.osmf.media.MediaPlayerState;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
+	import org.osmf.net.StreamType;
 	
 	import spark.components.VideoPlayer;
 
@@ -98,7 +99,7 @@ package com.clarityenglish.textLayout.elements {
 						var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
 						dynamicSource.urlIncludesFMSApplicationInstance = true;
 						
-						dynamicSource.streamType = 'recorded';
+						dynamicSource.streamType = StreamType.RECORDED;
 						var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
 						var streamingItem:DynamicStreamingItem = new DynamicStreamingItem(streamName, bitrate);
 						streamItems.push(streamingItem);

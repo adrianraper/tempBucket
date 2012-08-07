@@ -5,8 +5,9 @@ package com.clarityenglish.controls {
 	import flash.events.Event;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.system.System;
 	
-	import mx.collections.ArrayCollection;
+	import mx.collections.IList;
 	import mx.core.mx_internal;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -24,65 +25,57 @@ package com.clarityenglish.controls {
 	import org.osmf.net.DynamicStreamingResource;
 	
 	import spark.components.ButtonBar;
-	import spark.components.Image;
 	import spark.components.List;
 	import spark.components.VideoPlayer;
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.events.IndexChangeEvent;
 	
-	[Event(name = "videoSelected", type = "com.clarityenglish.controls.BentoVideoSelectorEvent")]
+	[Event(name="videoSelected", type="com.clarityenglish.controls.BentoVideoSelectorEvent")]
 	public class BentoVideoSelector extends SkinnableComponent {
 		
-		[SkinPart(required = "true")]
+		// This is the OSMF video player TODO: These should be combined with a neat interface
+		[SkinPart]
 		public var videoPlayer:VideoPlayer;
 		
-		[SkinPart(required = "true")]
+		// This is the iOS video player TODO: These should be combined with a neat interface
+		[SkinPart]
+		public var webViewVideoPlayer:WebViewVideoPlayer;
+		
+		[SkinPart(required="true")]
 		public var channelButtonBar:ButtonBar;
 		
-		//[SkinPart(required="true")]
-		//public var qualityButtonBar:ButtonBar;
-		
-		[SkinPart(required = "true")]
-		public var videoImage1:Image;
-		
-		[SkinPart(required = "true")]
-		public var videoImage2:Image;
-		
-		[SkinPart(required = "true")]
-		public var videoImage3:Image;
-		
-		[SkinPart(required = "true")]
-		public var videoImage4:Image;
-		
-		[SkinPart(required = "true")]
+		[SkinPart(required="true")]
 		public var videoList:List;
 		
 		protected var _courseSelected:String;
 		
 		protected var _viewHref:Href;
 		
-		protected var _channelCollection:ArrayCollection;
+		protected var _channelCollection:IList;
 		protected var _channelCollectionChanged:Boolean;
+		
+		protected var _videoCollection:IList;
+		protected var _videoCollectionChanged:Boolean;
 		
 		protected var _zone:String;
 		
 		private var videoHref:Href;
 		private var zoneSelected:String;
 		private var urlLoader:URLLoader;
+		
 		public var pluginFlag:Boolean;
 		public var streamName:String;
 		public var channelName:String;
 		public var configProxy:ConfigProxy;
+		
 		public static var selectedChannelIndex:int = 0;
 		
 		private static const PLUGIN:String = "http://players.edgesuite.net/flash/plugins/osmf/advanced-streaming-plugin/v2.8/osmf2.0/AkamaiAdvancedStreamingPlugin.swf";
 		
 		public var videoSelected:Signal = new Signal(Href, String);
 		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
-		//public var exerciseSelect:Signal = new Signal(Href);
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
-		
 		
 		[Bindable]
 		public function get courseSelected():String {
@@ -108,14 +101,28 @@ package com.clarityenglish.controls {
 		}
 		
 		[Bindable]
-		public function get channelCollection():ArrayCollection {
+		public function get channelCollection():IList {
 			return _channelCollection;
 		}
 		
-		public function set channelCollection(value:ArrayCollection):void {
+		public function set channelCollection(value:IList):void {
 			if (_channelCollection !== value) {
 				_channelCollection = value;
 				_channelCollectionChanged = true;
+				
+				invalidateProperties();
+			}
+		}
+		
+		[Bindable]
+		public function get videoCollection():IList {
+			return _videoCollection;
+		}
+		
+		public function set videoCollection(value:IList):void {
+			if (_videoCollection !== value) {
+				_videoCollection = value;
+				_videoCollectionChanged = true;
 				
 				invalidateProperties();
 			}
@@ -143,6 +150,11 @@ package com.clarityenglish.controls {
 				_channelCollectionChanged = false;
 				channelButtonBar.dataProvider = _channelCollection;
 			}
+			
+			if (_videoCollectionChanged) {
+				_videoCollectionChanged = false;
+				videoList.dataProvider = _videoCollection;
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -151,15 +163,14 @@ package com.clarityenglish.controls {
 			switch (instance) {
 				case videoPlayer:
 					videoPlayer.videoDisplay.mx_internal::mediaFactory = new SmoothingMediaFactory();
-					
 					videoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange);
 					videoPlayer.addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
+					break;
+				case webViewVideoPlayer:
 					break;
 				case channelButtonBar:
 					channelButtonBar.addEventListener(IndexChangeEvent.CHANGE, onChannelClicked);
 					break;
-				//case qualityButtonBar:
-				//qualityButtonBar.addEventListener(IndexChangeEvent.CHANGE, onQualityClicked);
 				case videoList:
 					videoSelected.add(onVideoSelected);
 					break;
@@ -177,11 +188,13 @@ package com.clarityenglish.controls {
 		}
 		
 		public function loadPlugin():void {
-			//var resource:URLResource=new URLResource(PLUGIN);
-			var pluginResource:MediaResourceBase = new URLResource(PLUGIN);
-			videoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD, onPluginLoad);
-			videoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadError);
-			videoPlayer.videoDisplay.mx_internal::mediaFactory.loadPlugin(pluginResource);
+			if (videoPlayer) {
+				//var resource:URLResource=new URLResource(PLUGIN);
+				var pluginResource:MediaResourceBase = new URLResource(PLUGIN);
+				videoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD, onPluginLoad);
+				videoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadError);
+				videoPlayer.videoDisplay.mx_internal::mediaFactory.loadPlugin(pluginResource);
+			}
 		}
 		
 		public function rssLoad(href:Href):void {
@@ -192,10 +205,10 @@ package com.clarityenglish.controls {
 				urlLoader.addEventListener(Event.COMPLETE, Closure.create(this, onRssLoadComplete, configProxy));
 				urlLoader.load(new URLRequest(videoSource));
 			} else {
-				videoPlayer.source = videoSource;
+				setVideoSource(videoSource);
 				// #63
 				callLater(function():void {
-					videoPlayer.play();
+					play()
 				});
 			}
 		}
@@ -223,27 +236,22 @@ package com.clarityenglish.controls {
 		private function onRssLoadComplete(e:Event, configProxy:ConfigProxy):void {
 			var dynamicList:XML = new XML(e.target.data);
 			if (dynamicList.channel.hasOwnProperty("@name")) {
-				var channel:XML = dynamicList.channel.(@name == channelName)[0];
-				//var item:XMLList = dynamicList.channel.(@name==channelName).item;				
+				var channel:XML = dynamicList.channel.(@name == channelName)[0];		
 				var protocol:String = channel.@protocol.toString();
 			} else {
 				channel = dynamicList.channel[0];
 				protocol = (channel) ? channel.streaming.toString() : "";
 			}
-			var host:String = (host) ? channel.host.toString() : "";
+			var host:String = (channel) ? channel.host.toString() : "";
 			
-			if (host.indexOf('{streamingMedia}') >= 0)
-				host = host.replace("{streamingMedia}", streamName);
-			if (host.indexOf('{contentPath}') >= 0)
-				host = host.replace("{contentPath}", configProxy.getContentPath());
+			if (host.indexOf('{streamingMedia}') >= 0) host = host.replace("{streamingMedia}", streamName);
+			if (host.indexOf('{contentPath}') >= 0) host = host.replace("{contentPath}", configProxy.getContentPath());
 			
 			switch (protocol) {
 				case "rtmp":
 					var server:String = channel.server.toString();
 					var dynamicSource:DynamicStreamingResource = new DynamicStreamingResource(host);
-					
-					if (server == "fms")
-						dynamicSource.urlIncludesFMSApplicationInstance = true;
+					dynamicSource.urlIncludesFMSApplicationInstance = (server == "fms");
 					
 					dynamicSource.streamType = channel.type.toString();
 					var streamItems:Vector.<DynamicStreamingItem> = new Vector.<DynamicStreamingItem>();
@@ -253,27 +261,27 @@ package com.clarityenglish.controls {
 					}
 					dynamicSource.streamItems = streamItems;
 					
-					videoPlayer.source = dynamicSource;
-					callLater(videoPlayer.play);
+					setVideoSource(dynamicSource);
+					play();
 					break;
 				// Rackspace's pseudo streaming over http
 				case "http":
-					//videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
 					if (pluginFlag) {
-						videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
+						setVideoSource(host + channel.item[0].streamName.toString() + ".flv");
 					} else {
 						trace("warning: Plugin fail to load!");
 					}
-					callLater(videoPlayer.play);
+					play()
 					break;
 				case "progressive-download":
-					videoPlayer.source = host + channel.item[0].streamName.toString();
-					callLater(videoPlayer.play);
+				case "http-streaming":
+					setVideoSource(host + channel.item[0].streamName.toString());
+					play();
 					break;
 				default:
 					//log.error(protocol + " streaming type not supported");
-					videoPlayer.stop();
-					videoPlayer.source = null;
+					stop();
+					setVideoSource(null);
 			}
 			
 			// Allow the listener to be garbage collected
@@ -311,10 +319,6 @@ package com.clarityenglish.controls {
 		}
 		
 		protected function onChannelClicked(event:IndexChangeEvent):void {
-			// the quality stuff is used to retrieve quality information of each channe which need to clear before new data transfered
-			//qualityArray = [];
-			//qualityCollection.removeAll();
-			//qualityButtonBar.dataProvider = null;
 			selectedChannelIndex = event.target.selectedIndex;
 			videoSelected.dispatch(videoHref, zoneSelected);
 		}
@@ -322,15 +326,33 @@ package com.clarityenglish.controls {
 		private function onVideoSelected(href:Href, zoneName:String):void {
 			channelName = channelButtonBar.selectedItem.name;
 			streamName = channelButtonBar.selectedItem.streamName;
-			videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
+			if (videoPlayer) videoPlayer.videoDisplay.mx_internal::videoPlayer.addEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange, false, 0, true);
 			dispatchEvent(new BentoVideoSelectorEvent(BentoVideoSelectorEvent.VIDEO_SELECTED));
 			rssLoad(href);
 		}
 		
 		protected function onBufferingChange(event:Event):void {
-			//trace("buffering change, bufferTime is " + event.target.bufferTime);
 			event.target.removeEventListener(BufferEvent.BUFFERING_CHANGE, onBufferingChange);
 			event.target.bufferTime = 4;
+		}
+		
+		private function setVideoSource(source:Object):void {
+			if (videoPlayer) {
+				// Setting source to null and forcing gc fixes a memory leak inherent in OSMF (not on iPad unfortunately)
+				videoPlayer.source = null;
+				System.gc();
+				videoPlayer.source = source;
+			}
+		}
+		
+		private function play():void {
+			if (videoPlayer) callLater(videoPlayer.play);
+			if (webViewVideoPlayer) callLater(webViewVideoPlayer.play);
+		}
+		
+		private function stop():void {
+			if (videoPlayer) videoPlayer.stop();
+			if (webViewVideoPlayer) webViewVideoPlayer.stop();
 		}
 	
 	}
@@ -350,7 +372,7 @@ class SmoothingMediaFactory extends DefaultMediaFactory {
 	
 	protected override function resolveItems(resource:MediaResourceBase, items:Vector.<MediaFactoryItem>):MediaFactoryItem {
 		var mfi:MediaFactoryItem = super.resolveItems(resource, items);
-		/*If a custom MFI is being used, hijack it and intercept the media element it returns to set smoothing on it*/
+		/* If a custom MFI is being used, hijack it and intercept the media element it returns to set smoothing on it */
 		if (mfi && mfi.id.indexOf('org.osmf') < 0) {
 			_highjackedMediaCreationFunction = mfi.mediaElementCreationFunction;
 			var hijacker:MediaFactoryItem = new MediaFactoryItem(mfi.id, mfi.canHandleResourceFunction, interceptMediaElement);
