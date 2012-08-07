@@ -1,10 +1,15 @@
 package com.clarityenglish.controls {
+	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
 	
+	import mx.events.EffectEvent;
+	import mx.events.MoveEvent;
+	
 	import spark.components.Group;
+	import spark.components.View;
 	
 	public class WebViewVideoPlayer extends Group {
 		
@@ -15,6 +20,7 @@ package com.clarityenglish.controls {
 		
 		public function WebViewVideoPlayer() {
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			
 			
 			if (!StageWebView)
 				throw new Error("This component can only be used in an AIR application");
