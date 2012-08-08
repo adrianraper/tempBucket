@@ -20,6 +20,13 @@
 	<s:Label text="Advice and tutorials" fontSize="18" fontWeight="bold" left="20" top="12" />
 	<s:Label text="Click on a thumbnail to play the video" fontSize="14" left="20" top="35" />
 	
-	<controls:BentoVideoSelector id="videoSelector" left="20" top="57" />
+	<controls:BentoVideoSelector id="videoSelector"
+								 left="20"
+								 top="57"
+								 placeholderSource.reading="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')"
+								 placeholderSource.writing="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')"
+								 placeholderSource.listening="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')"
+								 placeholderSource.speaking="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')"
+								 />
 	
 </s:Skin>

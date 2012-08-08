@@ -39,13 +39,11 @@
 		<s:HGroup>
 			<s:Group>
 				<!--<s:VideoPlayer id="videoPlayer" autoDisplayFirstFrame="true" width="411" height="231" pauseWhenHidden="true" autoPlay="true" scaleMode="letterbox" />-->
-				<controls:WebViewVideoPlayer id="webViewVideoPlayer" width="411" height="231" />
+				<controls:WebViewVideoPlayer id="webViewVideoPlayer" width="411" height="231" visible="{videoList.selectedItem != null}" />
 				
-				<!--<s:Image id="videoImage1" source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.zone == 'advice-zone' &amp;&amp; hostComponent.courseSelected == 'reading' &amp;&amp; videoList.selectedItem == null}" includeInLayout="{hostComponent.courseSelected == 'reading' &amp;&amp; videoList.selectedItem == null}" />
-				<s:Image id="videoImage2" source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.zone == 'advice-zone' &amp;&amp; hostComponent.courseSelected == 'speaking' &amp;&amp; videoList.selectedItem == null}" includeInLayout="{hostComponent.courseSelected == 'speaking' &amp;&amp; videoList.selectedItem == null}" />
-				<s:Image id="videoImage3" source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.zone == 'advice-zone' &amp;&amp; hostComponent.courseSelected == 'listening' &amp;&amp; videoList.selectedItem == null}" includeInLayout="{hostComponent.courseSelected == 'listening' &amp;&amp; videoList.selectedItem == null}" />
-				<s:Image id="videoImage4" source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.zone == 'advice-zone' &amp;&amp; hostComponent.courseSelected == 'writing' &amp;&amp; videoList.selectedItem == null}" includeInLayout="{hostComponent.courseSelected == 'writing' &amp;&amp; videoList.selectedItem == null}" />-->
-				
+				<!-- Placeholder image -->
+				<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />
+								
 			</s:Group>
 			<s:Group left="0" visible="{hostComponent.channelCollection.length > 1}">
 				<s:ButtonBar id="channelButtonBar" labelField="caption" verticalCenter="0" horizontalCenter="0" enabled="{hostComponent.zone == 'question-zone'}" requireSelection="true">

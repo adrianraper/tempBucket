@@ -1,8 +1,11 @@
 package com.clarityenglish.ieltsair.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	
+	import flash.events.Event;
+	
 	/**
-	 * All classes that live within the zone TabbedViewNavigator should extend this class. 
+	 * The parent of all view for sections in the zone navigator.  It provides a courseClass, maps data to course and keeps the skin
+	 * in sync with the selected course.
 	 */
 	public class AbstractZoneSectionView extends BentoView {
 		
@@ -16,7 +19,10 @@ package com.clarityenglish.ieltsair.zone {
 		
 		public override function set data(value:Object):void {
 			super.data = value;
+			
 			invalidateSkinState();
+			
+			dispatchEvent(new Event("dataChange"));
 		}
 		
 		[Bindable(event="dataChange")]

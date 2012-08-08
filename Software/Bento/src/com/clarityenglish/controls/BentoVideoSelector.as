@@ -25,6 +25,7 @@ package com.clarityenglish.controls {
 	import org.osmf.net.DynamicStreamingResource;
 	
 	import spark.components.ButtonBar;
+	import spark.components.Image;
 	import spark.components.List;
 	import spark.components.VideoPlayer;
 	import spark.components.supportClasses.SkinnableComponent;
@@ -41,6 +42,9 @@ package com.clarityenglish.controls {
 		[SkinPart]
 		public var webViewVideoPlayer:WebViewVideoPlayer;
 		
+		[SkinPart]
+		public var placeholderImage:Image;
+		
 		[SkinPart(required="true")]
 		public var channelButtonBar:ButtonBar;
 		
@@ -56,6 +60,9 @@ package com.clarityenglish.controls {
 		
 		protected var _videoCollection:IList;
 		protected var _videoCollectionChanged:Boolean;
+		
+		protected var _placeholderSource:Object;
+		protected var _placeholderSourceChanged:Boolean;
 		
 		protected var _zone:String;
 		
@@ -76,7 +83,7 @@ package com.clarityenglish.controls {
 		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
-		
+
 		[Bindable]
 		public function get courseSelected():String {
 			return _courseSelected;
@@ -129,6 +136,20 @@ package com.clarityenglish.controls {
 		}
 		
 		[Bindable]
+		public function get placeholderSource():Object {
+			return _placeholderSource;
+		}
+		
+		public function set placeholderSource(value:Object):void {
+			if (_placeholderSource !== value) {
+				_placeholderSource = value;
+				_placeholderSourceChanged = true;
+				
+				invalidateProperties();
+			}
+		}
+		
+		[Bindable]
 		public function get zone():String {
 			return _zone;
 		}
@@ -154,6 +175,10 @@ package com.clarityenglish.controls {
 			if (_videoCollectionChanged) {
 				_videoCollectionChanged = false;
 				videoList.dataProvider = _videoCollection;
+			}
+			
+			if (_placeholderSourceChanged) {
+				_placeholderSourceChanged = false;
 			}
 		}
 		
@@ -235,9 +260,10 @@ package com.clarityenglish.controls {
 		
 		private function onRssLoadComplete(e:Event, configProxy:ConfigProxy):void {
 			var dynamicList:XML = new XML(e.target.data);
+			
 			if (dynamicList.channel.hasOwnProperty("@name")) {
-				var channel:XML = dynamicList.channel.(@name == channelName)[0];		
-				var protocol:String = channel.@protocol.toString();
+				var channel:XML = dynamicList.channel.(@name == channelName)[0];
+				var protocol:String = (channel) ? channel.@protocol.toString() : "";
 			} else {
 				channel = dynamicList.channel[0];
 				protocol = (channel) ? channel.streaming.toString() : "";
@@ -342,6 +368,10 @@ package com.clarityenglish.controls {
 				videoPlayer.source = null;
 				System.gc();
 				videoPlayer.source = source;
+			}
+			
+			if (webViewVideoPlayer) {
+				webViewVideoPlayer.source = source;
 			}
 		}
 		

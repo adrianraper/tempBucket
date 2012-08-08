@@ -8,7 +8,7 @@ package com.clarityenglish.ieltsair.zone {
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class ExamPracticeZoneSectionMediator extends BentoMediator implements IMediator {
+	public class ExamPracticeZoneSectionMediator extends AbstractZoneSectionMediator implements IMediator {
 		
 		public function ExamPracticeZoneSectionMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);

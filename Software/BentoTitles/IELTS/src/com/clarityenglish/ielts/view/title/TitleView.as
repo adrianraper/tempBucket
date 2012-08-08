@@ -175,8 +175,14 @@ package com.clarityenglish.ielts.view.title {
 			if (_selectedCourseXML) {
 				currentState = "zone";
 				if (navBar) navBar.selectedIndex = -1;
+				
+				// This is for mobile skins; if the ZoneView is top of the stack then push the data, otherwise push ZoneView and data
 				if (homeViewNavigator) {
-					homeViewNavigator.pushView(ZoneView, _selectedCourseXML);
+					if (ClassUtil.getClass(homeViewNavigator.activeView) == ZoneView) {
+						homeViewNavigator.activeView.data = _selectedCourseXML;
+					} else {
+						homeViewNavigator.pushView(ZoneView, _selectedCourseXML);
+					}
 				}
 			}
 			

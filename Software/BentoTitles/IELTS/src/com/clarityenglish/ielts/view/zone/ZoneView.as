@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
+	import com.clarityenglish.ielts.view.home.HomeView;
 	
 	import flash.events.Event;
 	
@@ -69,7 +70,7 @@ package com.clarityenglish.ielts.view.zone {
 			invalidateProperties();
 			invalidateSkinState();
 			
-			dispatchEvent(new Event("courseChanged"));
+			dispatchEvent(new Event("courseChanged", true));
 			
 			horribleHackCourseClass = courseClass;
 		}
@@ -95,6 +96,45 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public function setCourseSelectorVisible(value:Boolean):void {
 			courseSelector.visible = value;
+		}
+		
+		protected override function partAdded(partName:String, instance:Object):void {
+			super.partAdded(partName, instance);
+			
+			switch (instance) {
+				case courseSelector:
+					courseSelector.addEventListener("writingSelected", onCourseSelectorClick, false, 0, true);
+					courseSelector.addEventListener("readingSelected", onCourseSelectorClick, false, 0, true);
+					courseSelector.addEventListener("listeningSelected", onCourseSelectorClick, false, 0, true);
+					courseSelector.addEventListener("speakingSelected", onCourseSelectorClick, false, 0, true);
+					break;
+			}
+		}
+		
+		protected function onCourseSelectorClick(event:Event):void {
+			log.debug("Course selector event received - {0}", event.type);
+			var matchingCourses:XMLList = menu.course.(@caption.toLowerCase() == event.type.toLowerCase());
+			
+			switch (event.type) {
+				case "readingSelected":
+					matchingCourses = menu.course.(@["class"] == "reading");
+					break;
+				case "writingSelected":
+					matchingCourses = menu.course.(@["class"] == "writing");
+					break;
+				case "listeningSelected":
+					matchingCourses = menu.course.(@["class"] == "listening");
+					break;
+				case "speakingSelected":
+					matchingCourses = menu.course.(@["class"] == "speaking");
+					break;
+			}
+			
+			if (matchingCourses.length() == 0) {
+				log.error("Unable to find a matching course");
+			} else {
+				courseSelect.dispatch(matchingCourses[0] as XML);
+			}
 		}
 		
 	}

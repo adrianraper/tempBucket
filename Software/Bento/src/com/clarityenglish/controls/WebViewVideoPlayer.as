@@ -39,12 +39,13 @@ package com.clarityenglish.controls {
 			
 			if (!stageWebView) {
 				stageWebView = new StageWebView();
-				stageWebView.stage = stage;
 			}
 		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
+			
+			stageWebView.stage = (visible) ? stage : null;
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
