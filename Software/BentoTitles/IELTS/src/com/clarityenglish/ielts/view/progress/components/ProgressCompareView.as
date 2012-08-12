@@ -17,22 +17,7 @@ package com.clarityenglish.ielts.view.progress.components {
 
 		[SkinPart(required="true")]
 		public var compareChart:AnyChartFlex;
-
-		private var _licenceType:uint;
 		
-		// #234
-		private var _productVersion:String;
-		
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-			}
-		}
-
 		//[Bindable]
 		private var _fullChartXML:XML;
 
@@ -350,17 +335,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		public function clearCharts():void {
 			trace("ProgressCompareView.clearCharts");
 			_fullChartXML = null;
-		}
-
-		
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
-		}
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-			}
 		}
 
 	}

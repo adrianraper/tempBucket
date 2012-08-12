@@ -17,55 +17,23 @@ package com.clarityenglish.ielts.view.support {
 		[SkinPart]
 		public var buyInfoButton:Button;
 		
-		private var _productVersion:String;
-		private var _productCode:uint;
-		private var _licenceType:uint;
-		
 		public var register:Signal = new Signal();
 		public var buy:Signal = new Signal();
 
 		public function SupportView() {
 			super();
 		}
-		
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-			}
-		}
-		public function get productCode():uint {
-			return _productCode;
-		}
-		public function set productCode(value:uint):void {
-			if (_productCode != value) {
-				_productCode = value;
-			}
-		}
-		public function get licenceType():uint {
-			return _licenceType;
-		}
-		
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-			}
-		}
 
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
-			//trace("partAdded in HomeView for " + partName);
+			
 			switch (instance) {
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRegisterInfoClick);
 					break;
-				
 				case buyInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onBuyInfoClick);
 					break;
-				
 			}
 		}
 
@@ -77,20 +45,14 @@ package com.clarityenglish.ielts.view.support {
 			switch (productVersion) {
 				case IELTSApplication.DEMO:
 					return "demo";
-					break;
 				case IELTSApplication.TEST_DRIVE:
 					return "testDrive";
-					break;
 				case IELTSApplication.FULL_VERSION:
-					var currentState:String = "fullVersion";
-					return currentState;
-					break;
+					return "fullVersion";
 				case IELTSApplication.LAST_MINUTE:
 					return "lastMinute";
-					break;
 				case IELTSApplication.HOME_USER:
 					return "homeUser";
-					break;
 				default:
 					return super.getCurrentSkinState();
 			}
@@ -99,6 +61,7 @@ package com.clarityenglish.ielts.view.support {
 		private function onRegisterInfoClick(event:MouseEvent):void {
 			register.dispatch();
 		}
+		
 		private function onBuyInfoClick(event:MouseEvent):void {
 			buy.dispatch();
 		}

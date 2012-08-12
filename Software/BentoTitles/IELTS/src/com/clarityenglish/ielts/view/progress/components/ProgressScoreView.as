@@ -48,19 +48,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		public var courseSelect:Signal = new Signal(String);
 
-		// #234
-		private var _productVersion:String;
-
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-			}
-		}
-
 		/**
 		 * This setter is given a full XML that includes scores and coverage for the student.
 		 * It then breaks this down into dataProviders for the components that will display this
@@ -101,8 +88,8 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
+			
 			if (_courseChanged || _dataChanged) {
-				
 				// Update the components of the view that change their data
 				if (progressBar && courseClass && summaryDataProvider) {
 					//progressBar.courseClass = course.@["class"];
@@ -143,18 +130,13 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
+			
 			switch (instance) {
-				
 				// Use one of the 'charts' to initialise for all
 				case scoreDetailsDataGrid:
 					initCharts();
 					break;
 			}
-		}
-		
-		protected override function partRemoved(partName:String, instance:Object):void {
-			super.partRemoved(partName, instance);
-			
 		}
 		
 		/**
@@ -195,9 +177,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * @param String course class name
 		 */
 		public function onCourseSelect(newCourseClass:String):void {
-			
 			courseSelect.dispatch(newCourseClass);
-			
 		}
 	}
 	

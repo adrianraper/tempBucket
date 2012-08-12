@@ -27,10 +27,7 @@ package com.clarityenglish.ielts.view.progress.components {
 
 		public var numberScoreSectionsDone:uint;
 		public var numberDurationSectionsDone:uint;
-
-		// #234
-		private var _productVersion:String;
-
+		
 		// TODO. These are all set in ielts.css if you can get at that from this view?
 		private const _writingBright:String = '#7DAB36';
 		private const _writingDull:String = '#95CC40';
@@ -401,6 +398,7 @@ package com.clarityenglish.ielts.view.progress.components {
 			if (ExternalInterface.available)
 				ExternalInterface.call("log", message);
 		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();		
 		}
@@ -462,16 +460,6 @@ package com.clarityenglish.ielts.view.progress.components {
 				currentState = "normal";
 			}
 			return currentState;
-		}
-	
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-			}
 		}
 		
 	}

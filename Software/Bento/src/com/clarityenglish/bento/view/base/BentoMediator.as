@@ -3,6 +3,7 @@ package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -49,7 +50,12 @@ package com.clarityenglish.bento.view.base {
 			
 			// #333 Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy) view.config = configProxy.getConfig();
+			if (configProxy) {
+				view.config = configProxy.getConfig();
+				view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
+				view.productCode = configProxy.getProductCode();
+				view.productVersion = configProxy.getProductVersion(); // #234
+			}
 		}
 		
 		protected function onXHTMLReady(xhtml:XHTML):void {

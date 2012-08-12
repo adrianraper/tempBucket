@@ -63,9 +63,6 @@ package com.clarityenglish.ielts.view.home {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
-		private var _productVersion:String;
-		private var _productCode:uint;
-		private var _licenceType:uint;
 		private var _accountName:String;
 		
 		[Bindable]
@@ -160,27 +157,6 @@ package com.clarityenglish.ielts.view.home {
 		}
 		public function get assetFolder():String {
 			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
-		}
-		
-		public function set productVersion(value:String):void {
-			_productVersion = value;
-		}
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productCode(value:uint):void {
-			_productCode = value;
-		}
-		public function get productCode():uint {
-			return _productCode;
-		}
-		
-		public function set licenceType(value:uint):void {
-			_licenceType = value;
-		}
-		public function get licenceType():uint {
-			return _licenceType;
 		}
 		
 		public function get accountName():String {

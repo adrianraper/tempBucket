@@ -93,10 +93,6 @@ package com.clarityenglish.ielts.view.title {
 		
 		private var currentExerciseHref:Href;
 		
-		private var _productVersion:String;
-		private var _productCode:uint;
-		private var _licenceType:uint;
-
 		// #337
 		public var candidateOnlyInfo:Boolean = false;
 		
@@ -195,36 +191,6 @@ package com.clarityenglish.ielts.view.title {
 			
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "support" ], true);
-		}
-		
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-				dispatchEvent(new Event("productVersionChanged"));
-			}
-		}
-		
-		[Bindable(event="productVersionChanged")]
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productCode(value:uint):void {
-			if (_productCode != value) {
-				_productCode = value;
-				dispatchEvent(new Event("productVersionChanged"));
-			}
-		}
-		
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-				dispatchEvent(new Event("licenceTypeChanged"));
-			}
-		}
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
 		}
 		
 		[Bindable(event="productVersionChanged")]
@@ -466,7 +432,6 @@ package com.clarityenglish.ielts.view.title {
 		 * TODO: It would be much neater if this could be combined with the navBar somehow
 		 */
 		public function updateStateFromSectionNavigator(event:IndexChangeEvent = null):void {
-			trace(ClassUtil.getClass(sectionNavigator.selectedNavigator.activeView));
 			switch (ClassUtil.getClass(sectionNavigator.selectedNavigator.activeView)) {
 				case HomeView:
 					currentState = "home";
@@ -486,8 +451,6 @@ package com.clarityenglish.ielts.view.title {
 				case CreditsView:
 					// This has no state at present
 					break;
-				// TODO: zone
-				// TODO: exercise
 			}
 		}
 		

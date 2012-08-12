@@ -47,11 +47,7 @@ package com.clarityenglish.ielts.view.progress {
 		public var anonWarning:Group;
 
 		public var currentCourseClass:String;
-		private var _licenceType:uint;
-
-		// #234
-		private var _productVersion:String;
-
+		
 		// #341
 		public var _user:User;
 		
@@ -96,16 +92,10 @@ package com.clarityenglish.ielts.view.progress {
 				
 				case progressCoverageView:
 				case progressScoreView:
-					// Just two views use currentCourseClass
-					instance.courseClass = currentCourseClass;
 				case progressCompareView:
 				case progressAnalysisView:
-					// All the sub views run off the same href as the progress view, so directly inject it 
-					instance.href = href;
-					
 					// #234
-					instance.productVersion = this.productVersion;
-					
+					instance.productVersion = productVersion;
 					break;
 			}
 		}
@@ -139,28 +129,6 @@ package com.clarityenglish.ielts.view.progress {
 			invalidateSkinState(); // #301
 		}
 		
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
-		}
-		
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-			}
-		}
-
-		[Bindable]
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-			}
-		}
-
 		[Bindable]
 		public function get user():User {
 			return _user;

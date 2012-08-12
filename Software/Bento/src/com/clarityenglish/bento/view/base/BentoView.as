@@ -42,6 +42,11 @@ package com.clarityenglish.bento.view.base {
 		protected var _xhtml:XHTML;
 		private var _xhtmlChanged:Boolean;
 		
+		// #234
+		protected var _productVersion:String;
+		protected var _productCode:uint;
+		protected var _licenceType:uint;
+		
 		public var media:String = "screen";
 		
 		/**
@@ -113,6 +118,42 @@ package com.clarityenglish.bento.view.base {
 			_xhtmlChanged = true;
 			
 			invalidateProperties();
+		}
+		
+		[Bindable(event="productVersionChanged")]
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+				dispatchEvent(new Event("productVersionChanged"));
+			}
+		}
+		
+		[Bindable(event="productCodeChanged")]
+		public function get productCode():uint {
+			return _productCode;
+		}
+		
+		public function set productCode(value:uint):void {
+			if (_productCode != value) {
+				_productCode = value;
+				dispatchEvent(new Event("productCodeChanged"));
+			}
+		}
+		
+		[Bindable(event="licenceTypeChanged")]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
+		
+		public function set licenceType(value:uint):void {
+			if (_licenceType != value) {
+				_licenceType = value;
+				dispatchEvent(new Event("licenceTypeChanged"));
+			}
 		}
 		
 		protected override function commitProperties():void {

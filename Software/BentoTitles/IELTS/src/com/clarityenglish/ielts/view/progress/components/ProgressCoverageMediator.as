@@ -29,6 +29,11 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function onRegister():void {
 			super.onRegister();
 
+			// This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
+			view.courseClass = bentoProxy.currentCourseClass;
+			
 			// Ask for the progress data you want		
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);

@@ -72,9 +72,6 @@ package com.clarityenglish.ielts.view.account {
 
 		// #333
 		private var _remoteDomain:String;
-		private var _productVersion:String;
-		private var _productCode:uint;
-		private var _licenceType:uint;
 		
 		public function AccountView() {
 			super();
@@ -82,33 +79,6 @@ package com.clarityenglish.ielts.view.account {
 
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder;
-		}
-		[Bindable]
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-			}
-		}
-		[Bindable]
-		public function get productCode():uint {
-			return _productCode;
-		}
-		public function set productCode(value:uint):void {
-			if (_productCode != value) {
-				_productCode = value;
-			}
-		}
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
-		}
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

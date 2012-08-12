@@ -113,9 +113,8 @@ package com.clarityenglish.common.view.login {
 					if (user) {
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						onLogin(new LoginEvent(LoginEvent.LOGIN, user, configProxy.getAccount().loginOption));
-						
 					} else {
-						trace ("error from add new user");
+						trace("error from add new user");
 						// Need to pass the error in. Perhaps the error is flagged as a popup just like wrong password in login.
 						view.setState("registerError");
 					}

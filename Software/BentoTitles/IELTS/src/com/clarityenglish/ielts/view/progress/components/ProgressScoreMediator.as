@@ -3,13 +3,8 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.progress.Progress;
 	
-	import mx.collections.ArrayCollection;
-	
-	import org.osflash.signals.Signal;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -29,7 +24,10 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function onRegister():void {
 			super.onRegister();
 
-			log.info("onRegister for ProgressScoreMediator");
+			// This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
+			view.courseClass = bentoProxy.currentCourseClass;
 			
 			// Ask for the progress data you want		
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);

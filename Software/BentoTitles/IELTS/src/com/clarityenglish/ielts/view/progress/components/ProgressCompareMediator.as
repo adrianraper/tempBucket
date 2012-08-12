@@ -1,12 +1,10 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.progress.Progress;
-	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,7 +24,11 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		override public function onRegister():void {
 			super.onRegister();
-
+			
+			// This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
+			
 			// I want the first thing to be the initChart call
 			//trace("progCompareMediator call initCharts");
 			view.initCharts();
@@ -39,7 +41,6 @@ package com.clarityenglish.ielts.view.progress.components {
 			// Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.licenceType = configProxy.getLicenceType();
-			
 		}
 		
 		override public function onRemove():void {

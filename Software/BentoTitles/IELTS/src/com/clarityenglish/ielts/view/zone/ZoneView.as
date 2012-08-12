@@ -36,13 +36,6 @@ package com.clarityenglish.ielts.view.zone {
 		[Bindable]
 		public static var horribleHackCourseClass:String;
 		
-		// #234
-		[Bindable]
-		public var productVersion:String;
-		
-		[Bindable]
-		public var licenceType:uint;
-		
 		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
 		public var videoSelected:Signal = new Signal(Href, String);

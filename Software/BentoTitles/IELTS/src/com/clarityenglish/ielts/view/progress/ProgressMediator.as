@@ -30,13 +30,12 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			view.currentCourseClass = bentoProxy.currentCourseClass;
-
+			
 			// Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
 			// #234
 			view.productVersion = configProxy.getProductVersion();
-			
 		}
         
 		override public function listNotificationInterests():Array {
@@ -53,7 +52,6 @@
 					break;
 				
 			}
-			
 		}
 		
 	}

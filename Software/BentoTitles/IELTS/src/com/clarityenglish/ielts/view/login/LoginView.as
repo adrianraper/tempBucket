@@ -79,12 +79,8 @@ package com.clarityenglish.ielts.view.login {
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
 		private var _verified:Boolean;
-		private var _licenceType:uint;
 		
 		private var _currentState:String;
-
-		private var _productVersion:String;
-		private var _productCode:uint;
 		
 		// #341
 		[Bindable]
@@ -125,7 +121,7 @@ package com.clarityenglish.ielts.view.login {
 		public function LoginView() {
 			super();
 		}
-
+		
 		// #341
 		[Bindable]
 		public function get selfRegister():Number {
@@ -146,7 +142,7 @@ package com.clarityenglish.ielts.view.login {
 				_verified = value;
 			}
 		}
-
+		
 		[Bindable]
 		public function get selfRegisterName():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_NAME) == Config.SELF_REGISTER_NAME); 
@@ -190,16 +186,6 @@ package com.clarityenglish.ielts.view.login {
 				changeLoginLabels();
 			}
 		}
-
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
-		}
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-			}
-		}
 		
 		// #341 Need to know if it is a network version.
 		public function get isNetwork():Boolean {
@@ -222,10 +208,6 @@ package com.clarityenglish.ielts.view.login {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
-		}
-		[Bindable(event="productVersionChanged")]
-		public function get productCode():uint {
-			return _productCode;
 		}
 		
 		[Bindable(event="productVersionChanged")]
@@ -299,8 +281,7 @@ package com.clarityenglish.ielts.view.login {
 			}
 			return null;
 		}
-
-
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
