@@ -1,7 +1,10 @@
 package com.clarityenglish.ieltsair.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
 	import flash.events.Event;
+	
+	import spark.components.supportClasses.Skin;
 	
 	/**
 	 * The parent of all view for sections in the zone navigator.  It provides a courseClass, maps data to course and keeps the skin
@@ -24,6 +27,18 @@ package com.clarityenglish.ieltsair.zone {
 			
 			dispatchEvent(new Event("dataChange"));
 		}
+		
+		
+		protected override function onAddedToStage(event:Event):void {
+			super.onAddedToStage(event);
+			
+			// The first time a ZoneSectionView is added to the stage we need to pick up its course from the parent ZoneView.  After that the course
+			// is updated from the mediator and COURSE_SHOW notifications.
+			var zoneView:ZoneView = navigator.parentDocument.parent as ZoneView;
+			if (!zoneView) throw new Error("An AbstractZoneSectionView can only live in a ZoneView navigator");
+			data = zoneView.course;
+		}
+
 		
 		[Bindable(event="dataChange")]
 		public function get courseClass():String {
