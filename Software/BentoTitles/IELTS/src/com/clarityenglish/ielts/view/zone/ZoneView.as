@@ -4,6 +4,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.home.HomeView;
+	import com.clarityenglish.ielts.view.zone.courseselector.CourseSelector;
 	
 	import flash.events.Event;
 	

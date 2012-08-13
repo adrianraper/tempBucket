@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:zone="skins.ieltsair.assets.zone.*"
-		initialize="onInitialize(event)" xmlns:local="*">
+		initialize="onInitialize(event)" xmlns:courseselector="com.clarityenglish.ielts.view.zone.courseselector.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
@@ -24,7 +24,7 @@
 		<s:State name="normal" stateGroups="normalStates" />
 	</s:states>
 	
-	<local:CourseSelector id="courseSelector" course="{hostComponent.course}" left="0" top="100" tabletMode="true" />
+	<courseselector:CourseSelector id="courseSelector" course="{hostComponent.course}" left="0" top="100" tabletMode="true" />
 	
 	<zone:ZonesChrome top="30" right="20" />
 	<zone:ZonesBars top="30" right="20" />

@@ -26,6 +26,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
+	import spark.events.IndexChangeEvent;
 	
 	public class ProgressCoverageView extends BentoView {
 		
@@ -158,26 +159,13 @@ package com.clarityenglish.ielts.view.progress.components {
 			}
 		}
 		
-		/**
-		 * If there are any settings that the 'charts' need
-		 * 
-		 */
-		public function initCharts():void {
-			
-		}
-		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				// Not needed with buttonBar
-				//case progressCourseBar:
-					//instance.courseSelect.add(onCourseSelect);
-					//break;
-					
-				// Use one of the 'charts' to initialise for all
-				case practiceZoneCoverage:
-					initCharts();
+				case progressCourseButtonBar:
+					progressCourseButtonBar.requireSelection = true;
+					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);
 					break;
 			}
 		}
@@ -224,9 +212,14 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * 
 		 * @param String course class name
 		 */
-		public function onCourseSelect(newCourseClass:String):void {
+		/*public function onCourseSelect(newCourseClass:String):void {
 			courseSelect.dispatch(newCourseClass);
+		}*/
+		
+		public function onCourseSelect(event:IndexChangeEvent):void {
+			courseSelect.dispatch(event.target.selectedItem.label.toLowerCase());
 		}
+		
 	}
 	
 }

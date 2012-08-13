@@ -9,7 +9,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	public class CoverageExerciseComponent extends SkinnableComponent {
-
+		
 		/**
 		 * Standard flex logger
 		 */
@@ -24,22 +24,5 @@ package com.clarityenglish.ielts.view.progress.ui {
 		[Bindable]
 		public var productVersion:String;
 		
-		public function CoverageExerciseComponent() {
-			super();
-		}
-		
-		override protected function getCurrentSkinState():String {
-			return super.getCurrentSkinState();
-		} 
-		
-		override protected function partAdded(partName:String, instance:Object) : void {
-			super.partAdded(partName, instance);
-			
-		}
-		
-		override protected function partRemoved(partName:String, instance:Object) : void {
-			super.partRemoved(partName, instance);
-		}
-
 	}
 }

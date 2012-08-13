@@ -156,6 +156,10 @@ progress|ProgressView {
 	skinClass: ClassReference("skins.ieltsair.ProgressSkin");
 }
 
+progresscomponents|ProgressCoverageView {
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressCoverageSkin");
+}
+
 /*progress|ProgressView #progressNavBar {
 	skinClass: ClassReference("skins.ielts.progress.ProgressNavBarSkin");
 }

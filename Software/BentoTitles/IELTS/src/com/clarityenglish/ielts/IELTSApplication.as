@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts {
+	import caurina.transitions.properties.CurveModifiers;
 	import caurina.transitions.properties.DisplayShortcuts;
 	
 	import com.clarityenglish.bento.BBNotifications;
@@ -43,7 +44,9 @@ package com.clarityenglish.ielts {
 		}
 		
 		protected function creationComplete(event:FlexEvent):void {
+			// Initialize some Tweener libraries
 			DisplayShortcuts.init();
+			CurveModifiers.init();
 			
 			// Allows BandScoreCalculator-200.swf to load (in the browser)
 			//Security.allowDomain("*");

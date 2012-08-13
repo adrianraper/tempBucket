@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark"
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 minWidth="955"
+		 minHeight="600"
+		 initialize="onInitialize()"
+		 xmlns:component="com.clarityenglish.ielts.view.zone.courseselector.*">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<fx:Metadata>
+		[Event(name="writingSelected", type="flash.events.Event")]
+		[Event(name="listeningSelected", type="flash.events.Event")]
+		[Event(name="speakingSelected", type="flash.events.Event")]
+		[Event(name="readingSelected", type="flash.events.Event")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import caurina.transitions.Tweener;
+			
+			import mx.effects.Rotate;
+			
+			private static const ActivePos_x:Number = 353;
+			private static const ActivePos_y:Number = 70;
+			private static const FirstPos_x:Number = 80;
+			private static const FirstPos_y:Number = 118;
+			private static const SecondPos_x:Number = 56;
+			private static const SecondPos_y:Number = 196;
+			private static const ThirdPos_x:Number = 68;
+			private static const ThirdPos_y:Number = 275;
+			
+			private var array1:Array;
+			private var array2:Array;
+			private var array3:Array;
+			private var array:Array = [];
+			
+			private var longTweenTime:Number = 2;
+			private var shortTweenTime:Number = 0.5;
+			
+			private var r:Rotate;
+			private var rotateFunction:Function;
+			
+			private var _tabletMode:Boolean;
+			
+			private var _course:XML;
+			
+			[Bindable]
+			public function get tabletMode():Boolean {
+				return _tabletMode as Boolean;
+			}
+			
+			public function set tabletMode(value:Boolean):void {
+				if (_tabletMode != value) {
+					_tabletMode = value;
+				}
+			}
+			
+			protected function onInitialize():void {
+				var o_X:Number = imageGroup.x;
+				var o_Y:Number = imageGroup.y;
+				
+				array1 = new Array([{x: o_X + 111, y: o_Y + 31}, {x: o_X + 265, y: o_Y + 1}], [{x: o_X + 60, y: o_Y + 145}], [{x: o_X + 53, y: o_Y + 238}], [{x: o_X + 457, y: o_Y + 243}, {x: o_X + 211, y: o_Y + 411}]);
+				array2 = new Array([{x: o_X + 114, y: o_Y + 34}, {x: o_X + 270, y: o_Y + 3}], [{x: o_X + 37, y: o_Y + 188}], [{x: o_X + 444, y: o_Y + 187}, {x: o_X + 312, y: o_Y + 374}, {x: o_X + 88, y: o_Y + 324}], [{x: o_X + 194, y: o_Y - 31}, {x: o_X + 445, y: o_Y + 120}, {x: o_X + 350, y: o_Y + 378}, {x: o_X + 152, y: o_Y + 378}]);
+				array3 = new Array([{x: o_X + 25, y: o_Y + 114}, {x: o_X + 233, y: o_Y - 35}], [{x: o_X + 442, y: o_Y + 183}, {x: o_X + 328, y: o_Y + 373}, {x: o_X + 107, y: o_Y + 348}, {x: o_X + 38, y: o_Y + 208}], [{x: o_X + 232, y: o_Y - 35}, {x: o_X + 455, y: o_Y + 145}, {x: o_X + 378, y: o_Y + 353}, {x: o_X + 200, y: o_Y + 393}, {x: o_X + 56, y: o_Y + 300}], [{x: o_X + 53, y: o_Y + 77}, {x: o_X + 207, y: o_Y + 2}, {x: o_X + 369, y: o_Y + 52}, {x: o_X + 416, y: o_Y + 299}, {x: o_X + 226, y: o_Y + 407}, {x: o_X + 88, y: o_Y + 344}]);
+				
+				array.push(array1);
+				array.push(array2);
+				array.push(array3);
+				
+				if (!this.tabletMode) {
+					r = new Rotate();
+					r.target = imageGroup;
+					r.originX = imageGroup.x + 250;
+					r.originY = imageGroup.y + 250;
+					r.angleFrom = 180;
+					r.angleTo = 360;
+					
+					rotateFunction = function():void {
+						r.end();
+						r.play();
+					};
+				} else {
+					r = null;
+					rotateFunction = null;
+				}
+				
+				if (!this.tabletMode) {
+					switcher.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
+					switcher.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+				}
+			}
+			
+			public function set course(value:XML):void {
+				_course = value;
+				invalidateProperties();
+			}
+			
+			protected override function commitProperties():void {
+				super.commitProperties();
+				
+				switch (_course.@["class"].toString()) {
+					case "reading":
+						showReading();
+						break;
+					case "speaking":
+						showSpeaking();
+						break;
+					case "listening":
+						showListening();
+						break;
+					case "writing":
+						showWriting();
+						break;
+				}
+			}
+			
+			private function onReadingClick():void {
+				dispatchEvent(new Event("readingSelected", true));
+			}
+			
+			private function onSpeakingClick():void {
+				dispatchEvent(new Event("speakingSelected", true));
+			}
+
+			private function onListeningClick():void {
+				dispatchEvent(new Event("listeningSelected", true));
+			}
+			
+			private function onWritingClick():void {
+				dispatchEvent(new Event("writingSelected", true));
+			}
+			
+			private function showReading():void {
+				var set:Number = buttonPosition(reading);
+				if (set != -1) {
+					Tweener.addTween(readingImage, {alpha: 1, time: longTweenTime, onStart: rotateFunction});
+					Tweener.addTween(listeningImage, {alpha: 0, time: shortTweenTime});
+					Tweener.addTween(speakingImage, {alpha: 0, time: shortTweenTime});
+					Tweener.addTween(writingImage, {alpha: 0, time: shortTweenTime});
+					Tweener.addTween(reading, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear", onComplete: function():void {
+						reading.enabled = false;
+					}});
+					Tweener.addTween(listening, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						listening.enabled = true;
+					}});
+					Tweener.addTween(speaking, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						speaking.enabled = true;
+					}});
+					Tweener.addTween(writing, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						writing.enabled = true;
+					}});
+				}
+			}
+			
+			private function showListening():void {
+				var set:Number = buttonPosition(listening);
+				if (set != -1) {
+					Tweener.addTween(listeningImage, {alpha: 1, time: longTweenTime, onStart: rotateFunction});
+					Tweener.addTween(speakingImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(writingImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(readingImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(listening, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear", onComplete: function():void {
+						listening.enabled = false;
+					}});
+					Tweener.addTween(speaking, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						speaking.enabled = true;
+					}});
+					Tweener.addTween(writing, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						writing.enabled = true;
+					}});
+					Tweener.addTween(reading, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						reading.enabled = true;
+					}});
+				}
+			}
+			
+			private function showSpeaking():void {
+				var set:Number = buttonPosition(speaking);
+				if (set != -1) {
+					Tweener.addTween(speakingImage, {alpha: 1, time: longTweenTime, onStart: rotateFunction});
+					Tweener.addTween(writingImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(readingImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(listeningImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(speaking, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear", onComplete: function():void {
+						speaking.enabled = false;
+					}});
+					Tweener.addTween(writing, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						writing.enabled = true;
+					}});
+					Tweener.addTween(reading, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						reading.enabled = true;
+					}});
+					Tweener.addTween(listening, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						listening.enabled = true;
+					}});
+				}
+			}
+			
+			private function showWriting():void {
+				var set:Number = buttonPosition(writing);
+				if (set != -1) {
+					Tweener.addTween(writingImage, {alpha: 1, time: longTweenTime, onStart: rotateFunction});
+					Tweener.addTween(readingImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(listeningImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(speakingImage, {alpha: 0, time: 0.5});
+					Tweener.addTween(writing, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear", onComplete: function():void {
+						writing.enabled = false;
+					}});
+					Tweener.addTween(reading, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						reading.enabled = true;
+					}});
+					Tweener.addTween(listening, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						listening.enabled = true;
+					}});
+					Tweener.addTween(speaking, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
+						speaking.enabled = true;
+					}});
+				}
+			}
+			
+			private function buttonPosition(course:RotationButton):Number {
+				var bezierSet:Number;
+				switch (course.x) {
+					case FirstPos_x:
+						bezierSet = 0;
+						break;
+					case SecondPos_x:
+						bezierSet = 1;
+						break;
+					case ThirdPos_x:
+						bezierSet = 2;
+						break;
+					default:
+						bezierSet = -1;
+						break;
+				}
+				return bezierSet;
+			}
+			
+			private function onMouseOver(event:MouseEvent):void {
+				switcher.scaleX = 1.01;
+				switcher.scaleY = 1.01;
+				imageGroup.alpha = 1;
+			}
+			
+			private function onMouseOut(event:MouseEvent):void {
+				switcher.scaleX = 1;
+				switcher.scaleY = 1;
+				imageGroup.alpha = 1;
+			
+			}
+			
+		]]>
+	</fx:Script>
+
+	<s:Group id="switcher">
+		<s:SWFLoader id="imageCircle" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseCircle')" x="62" y="35" />
+		<s:Group id="imageGroup" useHandCursor="true">
+			<s:SWFLoader id="readingImage" x="62" y="35" alpha="1" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseReading')" />
+			<s:SWFLoader id="listeningImage" x="62" y="35" alpha="0" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseListening')" />
+			<s:SWFLoader id="speakingImage" x="62" y="35" alpha="0" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseSpeaking')" />
+			<s:SWFLoader id="writingImage" x="62" y="35" alpha="0" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseWriting')" />
+		</s:Group>
+		<s:Group>
+			<component:RotationButton id="writing"
+									  loaderSource="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')"
+									  labelText="  Writing"
+									  x="{ThirdPos_x}"
+									  y="{ThirdPos_y}"
+									  click="onWritingClick()"
+									  useHandCursor="true"
+									  buttonMode="true"
+									  tabletButtonMode="{this.tabletMode}" />
+			<component:RotationButton id="speaking"
+									  loaderSource="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')"
+									  labelText="Speaking"
+									  x="{SecondPos_x}"
+									  y="{SecondPos_y}"
+									  click="onSpeakingClick()"
+									  useHandCursor="true"
+									  buttonMode="true"
+									  tabletButtonMode="{this.tabletMode}" />
+			<component:RotationButton id="listening"
+									  loaderSource="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')"
+									  labelText="Listening"
+									  x="{FirstPos_x}"
+									  y="{FirstPos_y}"
+									  click="onListeningClick()"
+									  useHandCursor="true"
+									  buttonMode="true"
+									  tabletButtonMode="{this.tabletMode}" />
+			<component:RotationButton id="reading"
+									  loaderSource="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')"
+									  labelText=" Reading"
+									  x="{ActivePos_x}"
+									  y="{ActivePos_y}"
+									  click="onReadingClick()"
+									  useHandCursor="true"
+									  buttonMode="true"
+									  tabletButtonMode="{this.tabletMode}" />
+		</s:Group>
+	</s:Group>
+
+</s:Group>
