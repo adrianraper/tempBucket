@@ -27,7 +27,7 @@
 		<s:HGroup width="100%" height="100%" minWidth="0" minHeight="0">
 			<ui:CoverageExerciseComponent id="questionZoneCoverage" width="20%" caption="Starting out" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
 			<ui:CoverageExerciseComponent id="adviceZoneCoverage" width="20%" caption="Advice and tutorials" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
-			<ui:CoverageExerciseComponent id="examPracticeCoverage" width="100%" caption="Test practice" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" />
+			<ui:CoverageExerciseComponent id="examPracticeCoverage" width="20%" caption="Test practice" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" />
 			<ui:CoverageUnitComponent id="practiceZoneCoverage" width="100%" caption="Practice zone" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
 		</s:HGroup>
 	</s:Scroller>

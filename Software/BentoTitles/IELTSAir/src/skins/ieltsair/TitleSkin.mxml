@@ -77,16 +77,6 @@
 	<zone1:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
-		
-		<s:ViewNavigator  id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" width="100%" height="100%" >
-			<s:navigationContent>
-				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
-			</s:navigationContent>
-			<s:actionContent>
-				<s:Button label="Log out" />
-			</s:actionContent>
-		</s:ViewNavigator>
-		
 		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" width="100%" height="100%">
 			<s:navigationContent>
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
@@ -98,8 +88,14 @@
 		
 		
 		
-		
-		
+		<s:ViewNavigator  id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" width="100%" height="100%" >
+			<s:navigationContent>
+				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" />
+			</s:actionContent>
+		</s:ViewNavigator>
 		
 		
 		

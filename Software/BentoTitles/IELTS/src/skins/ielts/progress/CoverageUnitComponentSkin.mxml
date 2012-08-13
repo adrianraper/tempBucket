@@ -31,8 +31,12 @@
 			<s:SolidColor color="0x999999" />
 		</s:fill>
 	</s:Rect>
-	<s:List id="itemList" alternatingItemColors="[#FFFFFF, #DDDDDD]" height="100%" borderVisible="false" 
+	<s:DataGroup id="itemList" alternatingItemColors="[#FFFFFF, #DDDDDD]" width="100%" contentBackgroundAlpha="0" 
 			dataProvider="{hostComponent.listDataProvider}" fontWeight="normal"
-			itemRenderer="skins.ielts.progress.CoverageUnitRenderer" />
+			itemRenderer="skins.ielts.progress.CoverageUnitRenderer">
+		<s:layout>
+			<s:VerticalLayout gap="0" />
+		</s:layout>
+	</s:DataGroup>
 	
 </s:Skin>
