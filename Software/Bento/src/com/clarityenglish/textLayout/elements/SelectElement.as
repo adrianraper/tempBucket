@@ -6,6 +6,7 @@ package com.clarityenglish.textLayout.elements {
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.collections.XMLListCollection;
+	import mx.events.FlexEvent;
 	
 	import skins.bento.components.SpinnerDropDownListSkin;
 	
@@ -14,6 +15,11 @@ package com.clarityenglish.textLayout.elements {
 	use namespace tlf_internal;
 	
 	public class SelectElement extends TextComponentElement implements IComponentElement {
+		
+		/**
+		 * An optional function that creates the element 
+		 */
+		public static var elementFactoryFunction:Function;
 		
 		/**
 		 * For simplicity this component receives any child option tags as an XMLList so we keep any attributes
@@ -48,10 +54,8 @@ package com.clarityenglish.textLayout.elements {
 		public function createComponent():void {
 			text = getLongestOption() + "____.";
 			
-			var dropDownList:DropDownList = new DropDownList();
-			//var dropDownList:DropDownList = new SpinnerDropDownList();
-			//dropDownList.setStyle("skinClass", SpinnerDropDownListSkin);
-			
+			// Default to a normal DropDownList, but also allow a custom elementFactoryFunction to be defined (used to create the Spinner for AIR apps)
+			var dropDownList:DropDownList = (elementFactoryFunction == null) ? new DropDownList() : elementFactoryFunction();
 			dropDownList.dataProvider = new XMLListCollection(_options);
 			
 			component = dropDownList;

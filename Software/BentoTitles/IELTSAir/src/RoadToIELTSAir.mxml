@@ -12,12 +12,18 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.vo.config.BentoError;
+			import com.clarityenglish.components.SpinnerDropDownList;
 			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
+			import com.clarityenglish.textLayout.elements.SelectElement;
 			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
 			import com.flashiphonedevelopment.settings.IPhoneAppSettings;
 			
 			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
+			
+			import skins.bento.components.SpinnerDropDownListSkin;
+			
+			import spark.components.DropDownList;
 			
 			protected function onInitialize(event:FlexEvent):void {
 				// Set the iOS config xml file as well as getting the prefix from the iOS settings
@@ -28,6 +34,13 @@
 				
 				// The AIR application applies an offset to font sizes in the xhtml files  
 				CSSApplicator.fontSizeOffset = 4;
+				
+				// The AIR application uses a custom Spinner instead of the normal dropdown
+				SelectElement.elementFactoryFunction = function():DropDownList {
+					var dropDownList:DropDownList = new SpinnerDropDownList();
+					dropDownList.setStyle("skinClass", SpinnerDropDownListSkin);
+					return dropDownList;
+				}
 				
 				facade = IELTSAirApplicationFacade.getInstance();
 			}
