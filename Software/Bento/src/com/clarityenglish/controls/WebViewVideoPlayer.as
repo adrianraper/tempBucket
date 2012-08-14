@@ -21,7 +21,6 @@ package com.clarityenglish.controls {
 		public function WebViewVideoPlayer() {
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			
-			
 			if (!StageWebView)
 				throw new Error("This component can only be used in an AIR application");
 		}
@@ -32,6 +31,12 @@ package com.clarityenglish.controls {
 
 		public function set source(value:Object):void {
 			_source = value;
+		}
+		
+		public override function set visible(value:Boolean):void {
+			super.visible = value;
+			
+			invalidateProperties();
 		}
 
 		protected override function createChildren():void {
@@ -49,7 +54,7 @@ package com.clarityenglish.controls {
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			super.updateDisplayList(unscaledWidth,unscaledHeight);
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			var globalPos:Point = contentToGlobal(new Point(x, y));
 			stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, unscaledWidth, unscaledHeight);
