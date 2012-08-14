@@ -31,6 +31,10 @@ components|XHTMLExerciseView s|TextInput {
 	paddingRight: 0;
 }
 
+/*components|XHTMLExerciseView s|DropDownList {
+	skinClass: ClassReference("skins.bento.exercise.ExerciseDropDownListSkin");
+}*/
+
 controls|BentoVideoSelector {
 	skinClass: ClassReference("skins.ieltsair.controls.IELTSVideoSelectorSkin");
 }

@@ -1,9 +1,13 @@
 package com.clarityenglish.textLayout.elements {
+	import com.clarityenglish.components.SpinnerDropDownList;
+	
 	import flash.events.Event;
 	
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.collections.XMLListCollection;
+	
+	import skins.bento.components.SpinnerDropDownListSkin;
 	
 	import spark.components.DropDownList;
 
@@ -45,6 +49,9 @@ package com.clarityenglish.textLayout.elements {
 			text = getLongestOption() + "____.";
 			
 			var dropDownList:DropDownList = new DropDownList();
+			//var dropDownList:DropDownList = new SpinnerDropDownList();
+			//dropDownList.setStyle("skinClass", SpinnerDropDownListSkin);
+			
 			dropDownList.dataProvider = new XMLListCollection(_options);
 			
 			component = dropDownList;
