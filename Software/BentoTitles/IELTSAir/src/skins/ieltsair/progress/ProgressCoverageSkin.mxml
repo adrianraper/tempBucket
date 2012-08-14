@@ -10,7 +10,10 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:ButtonBar id="progressCourseButtonBar" right="0" height="50">
+	<s:ButtonBar id="progressCourseButtonBar" right="20" height="50">
+		<s:layout>
+			<s:HorizontalLayout gap="25" />
+		</s:layout>
 		<s:dataProvider>
 			<s:ArrayList>
 				<fx:Object label="Reading" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')" />
