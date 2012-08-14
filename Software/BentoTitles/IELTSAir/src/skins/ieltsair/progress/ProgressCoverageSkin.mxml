@@ -12,7 +12,7 @@
 	
 	<s:ButtonBar id="progressCourseButtonBar" right="20" height="50">
 		<s:layout>
-			<s:HorizontalLayout gap="25" />
+			<s:ButtonBarHorizontalLayout gap="25" />
 		</s:layout>
 		<s:dataProvider>
 			<s:ArrayList>
