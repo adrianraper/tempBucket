@@ -6,6 +6,8 @@ package com.clarityenglish.ieltsair.zone {
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
 	
+	import org.davekeen.util.StringUtils;
+	
 	public class QuestionZoneVideoSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart(required="true")]
@@ -21,9 +23,10 @@ package com.clarityenglish.ieltsair.zone {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
+			// Only provide rss files to the video selector
 			videoSelector.viewHref = href;
 			videoSelector.channelCollection = channelCollection;
-			videoSelector.videoCollection = new XMLListCollection(_course.unit.(@["class"] == "question-zone").exercise);
+			videoSelector.videoCollection = new XMLListCollection(_course.unit.(@["class"] == "question-zone").exercise.(StringUtils.endsWith(@href, ".rss")));
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
