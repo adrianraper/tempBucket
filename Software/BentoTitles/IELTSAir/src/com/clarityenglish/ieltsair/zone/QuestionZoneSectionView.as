@@ -10,8 +10,11 @@ package com.clarityenglish.ieltsair.zone {
 	
 	public class QuestionZoneSectionView extends AbstractZoneSectionView {
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var readButton:Button;
+		
+		[SkinPart]
+		public var downloadButton:Button;
 		
 		[SkinPart(required="true")]
 		public var videoButton:Button;
@@ -30,6 +33,9 @@ package com.clarityenglish.ieltsair.zone {
 				case readButton:
 					readButton.addEventListener(MouseEvent.CLICK, onReadButtonClick);
 					break;
+				case downloadButton:
+					downloadButton.addEventListener(MouseEvent.CLICK, onDownloadButtonClick);
+					break;
 				case videoButton:
 					videoButton.addEventListener(MouseEvent.CLICK, onVideoButtonClick);
 					break;
@@ -45,6 +51,15 @@ package com.clarityenglish.ieltsair.zone {
 					break;
 			}
 			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneEBookNode.@href));
+		}
+		
+		protected function onDownloadButtonClick(event:MouseEvent):void {
+			// as above for file type
+			for each (var questionZonePDFNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
+				if (questionZonePDFNode.@href.indexOf(".pdf") > 0) 
+					break;
+			}
+			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZonePDFNode.@href));
 		}
 		
 		/**

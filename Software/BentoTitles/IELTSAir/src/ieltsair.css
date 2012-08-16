@@ -110,7 +110,7 @@ zone2|QuestionZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneSectionSkin");
 }
 
-zone2|QuestionZoneSectionView #readButton {
+zone2|QuestionZoneSectionView #downloadButton {
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
 
@@ -168,32 +168,12 @@ progresscomponents|ProgressScoreView {
 	skinClass: ClassReference("skins.ieltsair.progress.ProgressScoreSkin");
 }
 
-/*progress|ProgressView #progressNavBar {
-	skinClass: ClassReference("skins.ielts.progress.ProgressNavBarSkin");
-}
-
-progresscomponents|ProgressScoreView {
-	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
-}
+/*
 progresscomponents|ProgressCompareView {
 	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
 }
-progresscomponents|ProgressCoverageView {
-	skinClass: ClassReference("skins.ielts.ProgressCoverageSkin");
-}
 progresscomponents|ProgressAnalysisView {
 	skinClass: ClassReference("skins.ielts.ProgressAnalysisSkin");
-}
-
-ProgressBarRenderer {
-	skinClass: ClassReference("skins.ielts.progress.ProgressBarRendererSkin");
-}
-
-progresscomponents|ProgressCoverageView #progressCourseButtonBar {
-	skinClass: ClassReference("skins.ielts.progress.ProgressCourseButtonBarSkin");
-}
-progresscomponents|ProgressScoreView #progressCourseButtonBar {
-	skinClass: ClassReference("skins.ielts.progress.ProgressCourseButtonBarSkin");
 }
 progressui|CoverageExerciseComponent {
 	skinClass: ClassReference("skins.ielts.progress.CoverageExerciseComponentSkin");

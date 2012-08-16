@@ -11,7 +11,8 @@
 			import mx.events.FlexEvent;
 			
 			protected function colourizeButtons(event:FlexEvent = null):void {
-				readButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
+				//readButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
+				downloadButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
 				videoButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
 			}
 			
@@ -44,7 +45,10 @@
 				 source.speaking="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
 	
 	<s:HGroup top="330" horizontalCenter="0" gap="15">
-		<s:Button id="readButton" label="Read eBook" color="#FFFFFF" width="150" />
+		<!---->
+		
+		<!-- Even though this button says 'Read ebook' really it is download on iPad since we are using Safari to display the PDF -->
+		<s:Button id="downloadButton" label="Read eBook" color="#FFFFFF" width="150" />
 		<s:Button id="videoButton" label="Watch video" color="#FFFFFF" width="150" />
 	</s:HGroup>
 	
