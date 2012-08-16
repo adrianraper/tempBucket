@@ -273,7 +273,10 @@ package com.clarityenglish.textLayout.elements {
 				getTextFlow().flowComposer.updateAllControllers();
 				
 				// Dispatch a value commit, so if we are using instant marking the question will get marked at this point
-				getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+				//getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+				
+				// #400 Dispatch a focus out event, so if we are using instant marking the question will get marked at this point
+				getEventMirror().dispatchEvent(new FocusEvent(FocusEvent.FOCUS_OUT));
 			}
 		}
 		
