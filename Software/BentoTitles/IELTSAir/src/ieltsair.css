@@ -93,8 +93,6 @@ zone|ZoneView #sectionNavigator {
 
 zone|ZoneView #sectionNavigator #tabBar {
 	skinClass: ClassReference("skins.ieltsair.zone.ui.SectionNavigatorTabBarSkin");
-	/*chromeColor: #FFFFFF;
-	color: #000000;*/
 	fontSize: 13;
 }
 
