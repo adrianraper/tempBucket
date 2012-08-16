@@ -19,11 +19,13 @@
 			import com.flashiphonedevelopment.settings.IPhoneAppSettings;
 			
 			import mx.core.FlexGlobals;
+			import mx.core.mx_internal;
 			import mx.events.FlexEvent;
 			
 			import skins.bento.components.SpinnerDropDownListSkin;
 			
 			import spark.components.DropDownList;
+			import spark.components.supportClasses.StyleableTextField;
 			
 			protected function onInitialize(event:FlexEvent):void {
 				// Set the iOS config xml file as well as getting the prefix from the iOS settings

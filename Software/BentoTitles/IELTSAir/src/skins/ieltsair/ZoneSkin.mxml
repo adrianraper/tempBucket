@@ -2,7 +2,9 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:zone="skins.ieltsair.assets.zone.*"
-		initialize="onInitialize(event)" xmlns:courseselector="com.clarityenglish.ielts.view.zone.courseselector.*">
+		initialize="onInitialize(event)"
+		creationComplete="onCreationComplete(event)"
+		xmlns:courseselector="com.clarityenglish.ielts.view.zone.courseselector.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
@@ -11,8 +13,26 @@
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
+			import org.davekeen.transitions.PatchedSlideViewTransition;
+			
+			import spark.transitions.ViewTransitionDirection;
+			
 			protected function onInitialize(event:FlexEvent):void {
 				sectionNavigator.tabBar.height = 43;
+			}
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				// #413
+				
+				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there.  We also need to use a custom
+				// PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
+				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				pushTransition.direction = ViewTransitionDirection.LEFT;
+				questionZoneViewNavigator.defaultPushTransition = pushTransition;
+				
+				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				popTransition.direction = ViewTransitionDirection.RIGHT;
+				questionZoneViewNavigator.defaultPopTransition = popTransition;
 			}
 			
 		]]>
