@@ -206,6 +206,9 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 		
 		// Get the Answer that matches the selected <option> node
 		var optionNode:XML = selectElement.selectedItem;
+		
+		if (!optionNode) return;
+		
 		for each (var answer:NodeAnswer in question.answers) {
 			for each (var source:XML in answer.getSourceNodes(exercise)) {
 				if (source === optionNode) {

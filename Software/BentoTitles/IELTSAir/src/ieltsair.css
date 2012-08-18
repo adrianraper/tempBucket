@@ -170,13 +170,15 @@ progresscomponents|ProgressScoreView {
 	skinClass: ClassReference("skins.ieltsair.progress.ProgressScoreSkin");
 }
 
-/*
 progresscomponents|ProgressCompareView {
-	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressCompareSkin");
 }
+
 progresscomponents|ProgressAnalysisView {
-	skinClass: ClassReference("skins.ielts.ProgressAnalysisSkin");
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressAnalysisSkin");
 }
+
+/*
 progressui|CoverageExerciseComponent {
 	skinClass: ClassReference("skins.ielts.progress.CoverageExerciseComponentSkin");
 }

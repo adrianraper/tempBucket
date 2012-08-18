@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:ns1="com.anychart.*" xmlns:ui="com.clarityenglish.ielts.view.progress.ui.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView")]
+	</fx:Metadata>
+
+	<s:states>
+		<s:State name="disabled" />
+		
+		<s:State name="normal" />
+		<s:State name="blocked" />
+		<s:State name="blockedScore" />
+		<s:State name="blockedDuration" />
+		<s:State name="demo"  />
+	</s:states>
+	
+	<s:Label text="This shows how you have spent your time" left="20" top="60" />
+	<s:Label text="Time spent on each skill" left="20" top="90" />
+	<s:Label text="You have spent XXX minute(s) in total" left="20" top="120" />
+	
+	<ui:StackedBarChart id="stackedBarChart" dataProvider="{hostComponent.progressXml}" top="150" height="35" left="20" right="0" />
+	
+	<!--<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<s:Group>
+		<s:SkinnableComponent id="courseKeyComponent" skinClass="skins.ielts.progress.CourseKeyGroupSkin" width="100%" height="30" top="0" />
+	</s:Group>
+
+	<s:Group top="0">
+		<s:Line width="100%">
+			<s:stroke>
+				<s:SolidColorStroke color="0x878787" weight="1" />
+			</s:stroke>
+		</s:Line>
+	</s:Group>
+
+	<s:HGroup width="100%" height="100%" paddingTop="22" paddingLeft="10" includeIn="demo" >
+		<s:Spacer height="10" />
+		<s:Image source="{hostComponent.assetFolder}progressAnalyse_disable.png"/>
+	</s:HGroup>
+	<s:HGroup width="100%" height="100%" visible="true" excludeFrom="demo">
+		<s:VGroup width="400" height="100%" horizontalAlign="center" includeIn="normal,blockedDuration" >
+			<s:Label text="This shows how you perform in each skill, relative to the other skills." fontSize="12.6" paddingTop="60" />
+			<s:Label text="Which skill area are you better at?" fontSize="12.6" fontWeight="bold" paddingTop="10" />
+			<s:Label text="Average score (%)" fontSize="12.6" />
+			<ns1:AnyChartFlex id="analysisScoreChart" width="100%" />
+		</s:VGroup>
+		<s:VGroup width="400" height="100%" paddingTop="22" paddingLeft="10" includeIn="blocked,blockedScore" >
+			<s:Spacer height="10" />
+			<s:Image source="{hostComponent.assetFolder}progressAnalyse_left_disable.png"/>
+		</s:VGroup>
+		<s:VGroup width="544" height="100%" horizontalAlign="center" includeIn="normal,blockedScore" >
+			<s:Label text="This shows how you have spent your time." fontSize="12.6" paddingTop="60" />
+			<s:Label text="Time spent on each skill" fontSize="12.6" fontWeight="bold" paddingTop="10" />
+			<ns1:AnyChartFlex id="analysisTimeChart" width="100%" />
+		</s:VGroup>
+		<s:VGroup width="544" height="100%" paddingTop="22" horizontalAlign="center" includeIn="blocked,blockedDuration" >
+			<s:Spacer height="10" />
+			<s:Image source="{hostComponent.assetFolder}progressAnalyse_right_disable.png"/>
+		</s:VGroup>
+	</s:HGroup>-->
+
+</s:Skin>
