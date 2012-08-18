@@ -53,6 +53,9 @@
 			view.previousExercise.remove(onPreviousExercise);
 			view.printExercise.remove(onPrintExercise);
 			view.backToMenu.remove(onBackToMenu);
+			
+			// #414
+			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view);
 		}
 		
 		override public function listNotificationInterests():Array {
