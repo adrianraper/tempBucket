@@ -18,9 +18,13 @@
 			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
 			import com.flashiphonedevelopment.settings.IPhoneAppSettings;
 			
+			import flash.utils.setTimeout;
+			
 			import mx.core.FlexGlobals;
 			import mx.core.mx_internal;
 			import mx.events.FlexEvent;
+			
+			import org.davekeen.delegates.RemoteDelegate;
 			
 			import skins.bento.components.SpinnerDropDownListSkin;
 			
@@ -35,7 +39,7 @@
 				} catch (e:TypeError) { }
 				
 				// The AIR application applies an offset to font sizes in the xhtml files  
-				CSSApplicator.fontSizeOffset = 0;
+				CSSApplicator.fontSizeOffset = 2;
 				
 				// The AIR application uses a custom Spinner instead of the normal dropdown
 				SelectElement.elementFactoryFunction = function():DropDownList {
@@ -43,6 +47,9 @@
 					dropDownList.setStyle("skinClass", SpinnerDropDownListSkin);
 					return dropDownList;
 				}
+				
+				// #383 No busy cursor on AIR
+				RemoteDelegate.setShowBusyCursor(false);
 				
 				facade = IELTSAirApplicationFacade.getInstance();
 			}
