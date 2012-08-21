@@ -35,7 +35,7 @@
 				} catch (e:TypeError) { }
 				
 				// The AIR application applies an offset to font sizes in the xhtml files  
-				CSSApplicator.fontSizeOffset = 4;
+				CSSApplicator.fontSizeOffset = 0;
 				
 				// The AIR application uses a custom Spinner instead of the normal dropdown
 				SelectElement.elementFactoryFunction = function():DropDownList {

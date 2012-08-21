@@ -74,8 +74,6 @@ package com.clarityenglish.common.vo.config {
 		
 		// TODO: Or should this be a BentoError object?
 		public var error:BentoError;
-		//public var errorNumber:uint;
-		//public var errorDescription:String;
 		
 		// Is it worth paths being a separate class?
 		public var paths:Object;
@@ -88,8 +86,9 @@ package com.clarityenglish.common.vo.config {
 		// #341 Hold the top level group for this account
 		public var group:Group;
 		
-		// For holding chart templates
-		private var _chartTemplates:XML;
+		// #385
+		public var rememberLogin:Boolean;
+		public var disableAutoTimeout:Boolean;
 		
 		/**
 		 * Developer option
@@ -211,7 +210,6 @@ package com.clarityenglish.common.vo.config {
 		 * 	  remoteService
 		 */
 		public function mergeFileData(xml:XML):void {
-			
 			//ODD. For some reason, xml.config.dbHost.length() fails but xml..dbHost.length(); succeeds.
 			//var myL:int = xml.config.dbHost.length();
 			//var myS:String = xml..dbHost.toString();
@@ -297,6 +295,12 @@ package com.clarityenglish.common.vo.config {
 				this.pricesURL = xml..pricesURL.toString();
 			if (xml..registerURL.toString())
 				this.registerURL = xml..registerURL.toString();
+			
+			// #385
+			if (xml..rememberLogin.toString() == "true")
+				this.rememberLogin = true;
+			if (xml..disableAutoTimeout.toString() == "true")
+				this.disableAutoTimeout = true;
 
 			// For help with testing
 			if (xml..id.toString()) {
@@ -394,18 +398,6 @@ package com.clarityenglish.common.vo.config {
 			
 		}
 		*/
-		/**
-		 * This sends back the XML that is the chart templates
-		 * 
-		 * @return
-		 */
-		public function get chartTemplates():XML {
-			return _chartTemplates;
-		}
-		
-		public function set chartTemplates(value:XML):void {
-			_chartTemplates = value;
-		}
 		
 		/**
 		 * This getter lets you find the licence type directly from the config object

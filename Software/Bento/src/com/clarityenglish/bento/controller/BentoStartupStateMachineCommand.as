@@ -1,17 +1,8 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
-	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.model.ExerciseProxy;
-	import com.clarityenglish.bento.model.ExternalInterfaceProxy;
-	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.common.model.ProgressProxy;
-	
-	import flash.debugger.enterDebugger;
-	import flash.utils.setTimeout;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -60,6 +51,13 @@ package com.clarityenglish.bento.controller {
 			if (configProxy.getConfig().anyError()) {
 				loginXML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
 				loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_CREDITS} />);
+			}
+			
+			// #377 - when disableAutoTimeout is on we want to go back to the login screen instead of the credits screen
+			if (configProxy.getConfig().disableAutoTimeout) {
+				for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_CREDITS)) {
+					creditTransition.@target = BBStates.STATE_LOGIN;
+				}
 			}
 			
 			var fsmInjector:FSMInjector = new FSMInjector(fsm);

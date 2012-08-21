@@ -14,6 +14,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.dms.vo.account.Licence;
 	
 	import flash.events.TimerEvent;
+	import flash.net.SharedObject;
 	import flash.utils.Timer;
 	
 	import mx.logging.ILogger;
@@ -23,7 +24,6 @@ package com.clarityenglish.common.model {
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.util.ClassUtil;
-	import org.davekeen.util.DateUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
@@ -118,7 +118,10 @@ package com.clarityenglish.common.model {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 				//scormProxy.terminate();				
 			}
-
+			
+			// Clear the remote shared object, if there is one
+			var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+			loginSharedObject.clear();
 		}
 		
 		/**
@@ -243,6 +246,13 @@ package com.clarityenglish.common.model {
 						// Add the licence id you just got to the config
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						configProxy.getConfig().licence.id = (data.licence as Licence).id as Number;
+						
+						// Store a user config object in a shared object if rememberLogin is turned on #385
+						if (configProxy.getConfig().rememberLogin) {
+							var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+							loginSharedObject.data["user"] = new User({ name: _user.name, studentID: _user.studentID, password: _user.password });
+							loginSharedObject.flush();
+						}
 						
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);

@@ -3,6 +3,7 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
@@ -12,10 +13,10 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
-	import com.pipwerks.SCORM;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
+	import flash.net.SharedObject;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
@@ -138,6 +139,9 @@ package com.clarityenglish.common.model {
 			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php");
 			RemoteDelegate.setService(config.remoteService);
 			
+			// A special case; if disableAutoTimeout is true then turn off the activity timer #385
+			facade.removeCommand(BBNotifications.ACTIVITY_TIMER_RESET);
+			
 			// Next stage is to get data from the database
 			// #322 Get copy literals first
 			// getApplicationParameters();
@@ -213,17 +217,26 @@ package com.clarityenglish.common.model {
 			
 			var configUser:User;
 			
+			// Debug auto-logins
 			switch (Config.DEVELOPER.name) {
-				case "DK":
+				/*case "DK":
 					configUser = new User({ name:"dandelion", password:"password" });
-					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
-					//return null;
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);*/
 				case "AR":
 					configUser = new User({ name:"Adrian Raper", studentID:"p574528(8)", password:"passwording" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 				case "network":
 					configUser = new User({ name:"Student", studentID:"123", password:"password" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+			}
+			
+			// #385 Login from shared object
+			if (config.rememberLogin) {
+				var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+				if (loginSharedObject.data["user"]) {
+					configUser = loginSharedObject.data["user"];
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+				}
 			}
 			
 			// Take it from from the URL parameters (see config.as.mergeParameters)

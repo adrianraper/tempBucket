@@ -82,7 +82,7 @@
 				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" />
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
@@ -91,7 +91,7 @@
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" />
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
@@ -100,7 +100,7 @@
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0"  />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" />
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
@@ -109,7 +109,7 @@
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" />
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
@@ -118,7 +118,7 @@
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" />
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
