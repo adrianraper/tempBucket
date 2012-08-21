@@ -4,7 +4,7 @@
 		creationComplete="colourizeButtons(event)">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ieltsair.zone.QuestionZoneSectionView")]
+		[HostComponent("com.clarityenglish.ieltsair.view.zone.QuestionZoneSectionView")]
 	</fx:Metadata>
 	<fx:Script>
 		<![CDATA[

@@ -3,14 +3,53 @@
 		xmlns:s="library://ns.adobe.com/flex/spark">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ieltsair.more.MoreView")]
+		[HostComponent("com.clarityenglish.ieltsair.view.more.MoreView")]
 	</fx:Metadata>
 	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		<s:State name="about" />
 	</s:states>
 	
-	<s:Label text="More more more more" />
+	<s:ButtonBar id="moreNavBar" width="418" height="43" top="50" right="40" />
+	
+	<s:Group left="40" right="40" top="144">
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='AboutGraphic')"  />
+		
+		<s:RichText left="0" right="0" top="116" height="306" columnCount="2" columnGap="55">
+			<s:textFlow>
+				<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
+					<p>The British Council is an international charity that is committed to developing a wider knowledge of the English
+						language and promoting the advancement of education to encourage cultural, scientific, technological and other
+						educational exchange. The British Council was founded in 1934, incorporated by Royal Charter in 1940 and registered
+						as a charity under registration numbers 209131 (England and Wales) and SC037733 (Scotland). Our Patron is HM Queen
+					Elizabeth II and HRH The Prince of Wales is our vice-patron.</p>
+					
+					<p>IELTS is jointly owned by the British Council, IDP: IELTS Australia and the University of Cambridge ESOL Examinations
+					(Cambridge ESOL). The British Council has developed the content for Road to IELTS.</p>
+					
+					<p>To find out more about booking your IELTS test with the British Council, click here:
+						<a href="http://takeielts.britishcouncil.org" target="_blank">http://takeielts.britishcouncil.org</a></p>
+					
+					<p>Clarity is an international publisher of online resources for teaching and learning English. Clarity programs have been
+					chosen by thousands of schools and universities, and used by millions of students in over 110 countries around the world.</p>
+					
+					<p>Clarity has additionally customised electronic materials for leading providers of English language teaching, including
+						Cambridge University Press, Oxford University Press, Macmillan Education and the British Council, and has worked on
+					large-scale projects for the Beijing Olympics and HSBC. Clarity has developed the design and software for Road to IELTS.</p>
+					
+					<p paddingTop="40">
+						<img source="@Embed(source='skins/ielts/assets/assets.swf', symbol='AboutLogos')" />
+					</p>
+				</s:TextFlow>
+			</s:textFlow>
+		</s:RichText>
+	</s:Group>
+	
+	<s:Group left="40" right="40" top="144">
+		
+	</s:Group>
+	
 </s:Skin>

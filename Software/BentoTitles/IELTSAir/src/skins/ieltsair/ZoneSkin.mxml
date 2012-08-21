@@ -53,10 +53,10 @@
 	<s:Label text="{hostComponent.data.@caption}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="84" left="543" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" width="518" height="492" top="124" right="20">		
-		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ieltsair.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
-		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" firstView="com.clarityenglish.ieltsair.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
-		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" label="Practice zone" firstView="com.clarityenglish.ieltsair.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />
-		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" label="Test practice" firstView="com.clarityenglish.ieltsair.zone.ExamPracticeZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ieltsair.view.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" firstView="com.clarityenglish.ieltsair.view.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" label="Practice zone" firstView="com.clarityenglish.ieltsair.view.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" label="Test practice" firstView="com.clarityenglish.ieltsair.view.zone.ExamPracticeZoneSectionView" firstViewData="{hostComponent.course}" />
 	</s:TabbedViewNavigator>
 	
 </s:Skin>

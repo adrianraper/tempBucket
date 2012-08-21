@@ -77,6 +77,7 @@ package com.clarityenglish.ielts.view.progress {
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
+			
 			switch (instance) {
 				case progressNavBar:
 					progressNavBar.dataProvider = new ArrayCollection( [

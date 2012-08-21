@@ -25,4 +25,7 @@
 	
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+	<rememberLogin>true</rememberLogin>
+	<disableAutoTimeout>true</disableAutoTimeout>
 </config>

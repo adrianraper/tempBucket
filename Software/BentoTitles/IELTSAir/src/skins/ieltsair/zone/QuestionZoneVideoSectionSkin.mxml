@@ -4,7 +4,7 @@
 		xmlns:controls="com.clarityenglish.controls.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionView")]
+		[HostComponent("com.clarityenglish.ieltsair.view.zone.QuestionZoneVideoSectionView")]
 	</fx:Metadata>
 	
 	<!-- states -->

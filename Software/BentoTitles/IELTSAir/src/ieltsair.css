@@ -4,8 +4,6 @@
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace ielts "com.clarityenglish.ielts.*";
-@namespace zone1 "view.zone.*";
-@namespace zone2 "com.clarityenglish.ieltsair.zone.*";
 @namespace ui "com.clarityenglish.ielts.view.zone.ui.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
 @namespace controls "com.clarityenglish.controls.*";
@@ -13,7 +11,8 @@
 @namespace login "com.clarityenglish.ielts.view.login.*";
 @namespace progress "com.clarityenglish.ielts.view.progress.*";
 @namespace progresscomponents "com.clarityenglish.ielts.view.progress.components.*";
-@namespace more "com.clarityenglish.ieltsair.more.*";
+@namespace airmore "com.clarityenglish.ieltsair.view.more.*";
+@namespace airzone "com.clarityenglish.ieltsair.view.zone.*";
 
 global {
 	interactionMode: touch;
@@ -101,31 +100,31 @@ zone|ZoneView #sectionNavigator #tabBar {
 	fontSize: 13;
 }
 
-zone2|AdviceZoneSectionView {
+airzone|AdviceZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.AdviceZoneSectionSkin");
 }
 
-zone2|QuestionZoneVideoSectionView {
+airzone|QuestionZoneVideoSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneVideoSectionSkin");
 }
 
-zone2|QuestionZoneSectionView {
+airzone|QuestionZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneSectionSkin");
 }
 
-zone2|QuestionZoneSectionView #downloadButton {
+airzone|QuestionZoneSectionView #downloadButton {
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
 }
 
-zone2|QuestionZoneSectionView #videoButton {
+airzone|QuestionZoneSectionView #videoButton {
 	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
 }
 
-zone2|PracticeZoneSectionView {
+airzone|PracticeZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.PracticeZoneSectionSkin");
 }
 
-zone2|PracticeZonePopoutView {
+airzone|PracticeZonePopoutView {
 	skinClass: ClassReference("skins.ieltsair.zone.PracticeZonePopoutSkin");
 }
 
@@ -133,11 +132,11 @@ ui|DifficultyRenderer {
 	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
 }
 
-zone2|ExamPracticeZoneSectionView {
+airzone|ExamPracticeZoneSectionView {
 	skinClass: ClassReference("skins.ieltsair.zone.ExamPracticeZoneSectionSkin");
 }
 
-zone2|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
+airzone|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
 	compactStoppedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
 	compactPlayedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
 	compactPausedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
@@ -180,8 +179,12 @@ progresscomponents|ProgressAnalysisView {
 }
 
 /* More view styles */
-more|MoreView {
+airmore|MoreView {
 	skinClass: ClassReference("skins.ieltsair.more.MoreSkin");
+}
+
+airmore|MoreView #moreNavBar {
+	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
 }
 
 /* Popups */

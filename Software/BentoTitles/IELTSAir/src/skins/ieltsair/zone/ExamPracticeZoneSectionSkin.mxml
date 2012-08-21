@@ -4,7 +4,7 @@
 		xmlns:controls="com.clarityenglish.controls.*" xmlns:zone="skins.ieltsair.assets.zone.*" xmlns:components="com.clarityenglish.textLayout.components.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ieltsair.zone.ExamPracticeZoneSectionView")]
+		[HostComponent("com.clarityenglish.ieltsair.view.zone.ExamPracticeZoneSectionView")]
 	</fx:Metadata>
 	
 	<fx:Script>

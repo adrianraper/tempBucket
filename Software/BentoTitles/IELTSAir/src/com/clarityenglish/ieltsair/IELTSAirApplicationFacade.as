@@ -1,18 +1,18 @@
 package com.clarityenglish.ieltsair {
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.ielts.IELTSApplicationFacade;
-	import com.clarityenglish.ieltsair.zone.AdviceZoneSectionMediator;
-	import com.clarityenglish.ieltsair.zone.AdviceZoneSectionView;
-	import com.clarityenglish.ieltsair.zone.ExamPracticeZoneSectionMediator;
-	import com.clarityenglish.ieltsair.zone.ExamPracticeZoneSectionView;
-	import com.clarityenglish.ieltsair.zone.PracticeZonePopoutMediator;
-	import com.clarityenglish.ieltsair.zone.PracticeZonePopoutView;
-	import com.clarityenglish.ieltsair.zone.PracticeZoneSectionMediator;
-	import com.clarityenglish.ieltsair.zone.PracticeZoneSectionView;
-	import com.clarityenglish.ieltsair.zone.QuestionZoneSectionMediator;
-	import com.clarityenglish.ieltsair.zone.QuestionZoneSectionView;
-	import com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionMediator;
-	import com.clarityenglish.ieltsair.zone.QuestionZoneVideoSectionView;
+	import com.clarityenglish.ieltsair.view.zone.AdviceZoneSectionMediator;
+	import com.clarityenglish.ieltsair.view.zone.AdviceZoneSectionView;
+	import com.clarityenglish.ieltsair.view.zone.ExamPracticeZoneSectionMediator;
+	import com.clarityenglish.ieltsair.view.zone.ExamPracticeZoneSectionView;
+	import com.clarityenglish.ieltsair.view.zone.PracticeZonePopoutMediator;
+	import com.clarityenglish.ieltsair.view.zone.PracticeZonePopoutView;
+	import com.clarityenglish.ieltsair.view.zone.PracticeZoneSectionMediator;
+	import com.clarityenglish.ieltsair.view.zone.PracticeZoneSectionView;
+	import com.clarityenglish.ieltsair.view.zone.QuestionZoneSectionMediator;
+	import com.clarityenglish.ieltsair.view.zone.QuestionZoneSectionView;
+	import com.clarityenglish.ieltsair.view.zone.QuestionZoneVideoSectionMediator;
+	import com.clarityenglish.ieltsair.view.zone.QuestionZoneVideoSectionView;
 	
 	public class IELTSAirApplicationFacade extends IELTSApplicationFacade {
 		
