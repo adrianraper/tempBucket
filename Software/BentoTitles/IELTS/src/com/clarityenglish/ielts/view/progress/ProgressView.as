@@ -58,10 +58,6 @@ package com.clarityenglish.ielts.view.progress {
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();
-			
-			// #301 How does this work with the states that are listed in the skin?
-			// The first one listed will be the default
-			//StateUtil.addStates(this, [ "coverage", "compare", "analysis" , "score" ], true);
 		}
 		
 		protected override function commitProperties():void {
