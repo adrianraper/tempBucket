@@ -29,6 +29,7 @@
 				myProfileViewNavigator.icon = new MyProfileIcon();
 				helpViewNavigator.icon = new HelpIcon();
 				creditsViewNavigator.icon = new CreditsIcon();
+				moreViewNavigator.icon = new MoreIcon();
 				
 				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there.  We also need to use a custom
 				// PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
@@ -77,6 +78,18 @@
 	<zone1:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
+		
+		<s:ViewNavigator id="moreViewNavigator" label="More" firstView="com.clarityenglish.ieltsair.more.MoreView" title="Road to IELTS" width="100%" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		
+		
 		<s:ViewNavigator  id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" width="100%" height="100%" >
 			<s:navigationContent>
 				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
@@ -122,6 +135,7 @@
 			</s:actionContent>
 		</s:ViewNavigator>
 		
+
 	</s:TabbedViewNavigator>
 	
 </s:Skin>

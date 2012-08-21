@@ -13,6 +13,7 @@
 @namespace login "com.clarityenglish.ielts.view.login.*";
 @namespace progress "com.clarityenglish.ielts.view.progress.*";
 @namespace progresscomponents "com.clarityenglish.ielts.view.progress.components.*";
+@namespace more "com.clarityenglish.ieltsair.more.*";
 
 global {
 	interactionMode: touch;
@@ -176,6 +177,11 @@ progresscomponents|ProgressCompareView {
 
 progresscomponents|ProgressAnalysisView {
 	skinClass: ClassReference("skins.ieltsair.progress.ProgressAnalysisSkin");
+}
+
+/* More view styles */
+more|MoreView {
+	skinClass: ClassReference("skins.ieltsair.more.MoreSkin");
 }
 
 /* Popups */
