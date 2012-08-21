@@ -8,6 +8,7 @@ package com.clarityenglish.controls {
 	import mx.events.EffectEvent;
 	import mx.events.MoveEvent;
 	
+	import spark.components.Application;
 	import spark.components.Group;
 	import spark.components.View;
 	
@@ -17,6 +18,8 @@ package com.clarityenglish.controls {
 		
 		private var _source:Object;
 		private var _sourceChanged:Boolean;
+		
+		private var dpiScaleFactor:Number = 1;
 		
 		public function WebViewVideoPlayer() {
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
@@ -43,6 +46,9 @@ package com.clarityenglish.controls {
 			super.createChildren();
 			
 			if (!stageWebView) {
+				// #443 - since StageWebView is native we need to apply the Retina dpi change manually
+				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
+				
 				stageWebView = new StageWebView();
 			}
 		}
@@ -57,7 +63,7 @@ package com.clarityenglish.controls {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			var globalPos:Point = contentToGlobal(new Point(x, y));
-			stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, unscaledWidth, unscaledHeight);
+			stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, unscaledWidth * dpiScaleFactor, unscaledHeight * dpiScaleFactor);
 		}
 		
 		public function play():void {
