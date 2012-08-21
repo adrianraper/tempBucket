@@ -178,10 +178,8 @@ progresscomponents|ProgressAnalysisView {
 	skinClass: ClassReference("skins.ieltsair.progress.ProgressAnalysisSkin");
 }
 
-/*
-progressui|CoverageExerciseComponent {
-	skinClass: ClassReference("skins.ielts.progress.CoverageExerciseComponentSkin");
+/* Popups */
+s|TitleWindow.feedbackTitleWindow {
+	/* #419 - CSS selectors for sizing don't seem to work so I have to create a whole new skin just to make the X button bigger :( */
+	skinClass: ClassReference("skins.ieltsair.titlewindows.FeedbackTitleWindowSkin");
 }
-progressui|CoverageUnitComponent {
-	skinClass: ClassReference("skins.ielts.progress.CoverageUnitComponentSkin");
-}*/
