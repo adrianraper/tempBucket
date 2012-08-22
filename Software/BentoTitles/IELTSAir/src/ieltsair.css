@@ -13,6 +13,7 @@
 @namespace progresscomponents "com.clarityenglish.ielts.view.progress.components.*";
 @namespace airmore "com.clarityenglish.ieltsair.view.more.*";
 @namespace airzone "com.clarityenglish.ieltsair.view.zone.*";
+@namespace support "com.clarityenglish.ielts.view.support.*";
 
 global {
 	interactionMode: touch;
@@ -185,6 +186,11 @@ airmore|MoreView {
 
 airmore|MoreView #moreNavBar {
 	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
+}
+
+/* Support view styles */
+support|SupportView {
+	skinClass: ClassReference("skins.ieltsair.SupportSkin");
 }
 
 /* Popups */

@@ -8,12 +8,14 @@
 						applicationComplete="onApplicationComplete(event)"
 						addedToStage="onAddedToStage(event)"
 						applicationDPI="160"
-						runtimeDPIProvider="RetinaRuntimeDPIProvider">
+						runtimeDPIProvider="RetinaRuntimeDPIProvider"
+						gestureSwipe="onGestureSwipe(event)">
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.vo.config.BentoError;
 			import com.clarityenglish.components.SpinnerDropDownList;
 			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
+			import com.clarityenglish.ieltsair.IELTSAirNotifications;
 			import com.clarityenglish.textLayout.elements.SelectElement;
 			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
 			import com.flashiphonedevelopment.settings.IPhoneAppSettings;
@@ -51,6 +53,10 @@
 				// #383 No busy cursor on AIR
 				RemoteDelegate.setShowBusyCursor(false);
 				
+				// #444 Use gestures for swiping (used in the help screen)
+				Multitouch.inputMode = MultitouchInputMode.GESTURE;
+				
+				// Start IELTS!
 				facade = IELTSAirApplicationFacade.getInstance();
 			}
 			
@@ -86,6 +92,11 @@
 				} else {
 					log.error("Unknown: " + event.error);
 				}
+			}
+			
+			protected function onGestureSwipe(event:TransformGestureEvent):void {
+				if (facade)
+					facade.sendNotification((event.offsetX < 1 ? IELTSAirNotifications.GESTURE_SWIPE_LEFT : IELTSAirNotifications.GESTURE_SWIPE_RIGHT), event.offsetX);
 			}
 			
 		]]>

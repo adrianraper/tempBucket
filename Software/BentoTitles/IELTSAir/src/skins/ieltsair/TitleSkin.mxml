@@ -77,20 +77,9 @@
 	
 	<zone1:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
 	
-	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
+	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">	
 		
-		<s:ViewNavigator id="moreViewNavigator" label="More" firstView="com.clarityenglish.ieltsair.view.more.MoreView" title="Road to IELTS" width="100%" height="100%">
-			<s:navigationContent>
-				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
-			</s:navigationContent>
-			<s:actionContent>
-				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
-			</s:actionContent>
-		</s:ViewNavigator>
-		
-		
-		
-		<s:ViewNavigator  id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" width="100%" height="100%" >
+		<s:ViewNavigator  id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" left="0" right="0" height="100%" >
 			<s:navigationContent>
 				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
 			</s:navigationContent>
@@ -99,7 +88,7 @@
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" width="100%" height="100%">
+		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
@@ -108,7 +97,7 @@
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="myProfileViewNavigator" label="My Profile" firstView="com.clarityenglish.ielts.view.account.AccountView" title="Road to IELTS" width="100%" height="100%">
+		<s:ViewNavigator id="myProfileViewNavigator" label="My Profile" firstView="com.clarityenglish.ielts.view.account.AccountView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0"  />
 			</s:navigationContent>
@@ -117,7 +106,7 @@
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="helpViewNavigator" label="Help" firstView="com.clarityenglish.ielts.view.support.SupportView" title="Road to IELTS" width="100%" height="100%">
+		<s:ViewNavigator id="helpViewNavigator" label="Help" firstView="com.clarityenglish.ielts.view.support.SupportView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
@@ -126,7 +115,7 @@
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="creditsViewNavigator" label="Credits" firstView="com.clarityenglish.ielts.view.credits.CreditsView" title="Road to IELTS" width="100%" height="100%">
+		<s:ViewNavigator id="creditsViewNavigator" label="Credits" firstView="com.clarityenglish.ielts.view.credits.CreditsView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
 				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
@@ -135,6 +124,14 @@
 			</s:actionContent>
 		</s:ViewNavigator>
 		
+		<s:ViewNavigator id="moreViewNavigator" label="More" firstView="com.clarityenglish.ieltsair.view.more.MoreView" title="Road to IELTS" left="0" right="0" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+			</s:actionContent>
+		</s:ViewNavigator>
 
 	</s:TabbedViewNavigator>
 	

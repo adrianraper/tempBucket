@@ -312,7 +312,7 @@ account|AccountView #registerInfoButton {
 	skinClass: ClassReference("skins.ielts.title.RegisterBigButton");
 }
 
-/* Suuport view styles */
+/* Support view styles */
 support|SupportView {
 	skinClass: ClassReference("skins.ielts.SupportSkin");
 }

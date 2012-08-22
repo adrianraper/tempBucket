@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.support.SupportView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="demo" />
+		<s:State name="fullVersion" />
+		<s:State name="lastMinute" stateGroups="bcStates" />
+		<s:State name="homeUser" />
+		<s:State name="testDrive" stateGroups="bcStates" />
+	</s:states>
+	
+	<s:Scroller left="0" right="0" top="90" bottom="100" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge">
+		<s:HGroup left="0" right="0" top="0" bottom="0">
+			<s:Group width="{width}" top="0" bottom="0">
+				<s:Group width="100%">
+					<s:SWFLoader source="{hostComponent.assetFolder}help_home.png" horizontalCenter="0"/>
+				</s:Group>
+				
+				<s:RichText top="370" left="40" right="40" height="82" columnCount="2" columnGap="55">
+					<s:textFlow>
+						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
+							<p><span fontWeight="bold">How to use Road to IELTS</span><br/>Road to IELTS is organised into four skill areas, one for each paper in IELTS.
+							In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts on
+							video, and practising specific question types using the interactive practice exercises and the mock papers.</p>
+						</s:TextFlow>
+					</s:textFlow>
+				</s:RichText>
+			</s:Group>
+			
+			<s:Group width="{width}" horizontalCenter="0">
+				<s:Group width="100%">
+					<s:SWFLoader source="{hostComponent.assetFolder}help_skill.png" horizontalCenter="0"/>
+				</s:Group>
+				
+				<s:RichText top="370" left="40" right="40" height="82" columnCount="2" columnGap="55">
+					<s:textFlow>
+						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
+							<p><span fontWeight="bold">How to use Road to IELTS</span><br/>Road to IELTS is organised into four skill areas, one for each paper in IELTS.
+								In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts on
+							video, and practising specific question types using the interactive practice exercises and the mock papers.</p>
+						</s:TextFlow>
+					</s:textFlow>
+				</s:RichText>
+			</s:Group>
+			
+			<s:Group width="{width}" horizontalCenter="0">
+				<s:Group width="100%">
+					<s:SWFLoader source="{hostComponent.assetFolder}help_exercise.png" horizontalCenter="0"/>
+				</s:Group>
+				
+				<s:RichText top="370" left="40" right="40" height="82" columnCount="2" columnGap="55">
+					<s:textFlow>
+						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
+							<p><span fontWeight="bold">How to use Road to IELTS</span><br/>Road to IELTS is organised into four skill areas, one for each paper in IELTS.
+								In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts on
+							video, and practising specific question types using the interactive practice exercises and the mock papers.</p>
+						</s:TextFlow>
+					</s:textFlow>
+				</s:RichText>
+			</s:Group>
+		</s:HGroup>
+	</s:Scroller>
+</s:Skin>

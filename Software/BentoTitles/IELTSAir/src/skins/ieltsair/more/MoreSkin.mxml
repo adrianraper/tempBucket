@@ -50,18 +50,23 @@
 	</s:Group>
 	
 	<s:Group left="40" right="40" top="170" includeIn="contact">
-		<s:RichText left="0" right="0" height="306" columnCount="2">
+		<s:RichText left="0" right="0" height="350" columnCount="2">
 			<s:textFlow>
 				<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
-					<p><span fontWeight="bold">Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email <a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a>
-					with a description of your problem and the URL of your course (if you are running online).
-					Clarity Language Consultants Ltd
-					PO Box 163, Sai Kung, Hong Kong
-					Tel: +852 2701 1787
-					Fax: +852 2791 6484
+					<p>
+					<img source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ContactTechnicalImage')" /><br/>
+					<span fontWeight="bold">Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email
+					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem and the URL of
+					your course (if you are running online).<br/>
+					Clarity Language Consultants Ltd<br/>
+					PO Box 163, Sai Kung, Hong Kong<br/>
+					Tel: +852 2701 1787<br/>
+					Fax: +852 2791 6484<br/>
 					</p>
 					
-					<p><span fontWeight="bold">Content problems</span><br/>If you have any enquires about the content, for example, if you have questions about 
+					<p>
+					<img source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ContactContentImage')" /><br/>
+					<span fontWeight="bold">Content problems</span><br/>If you have any enquires about the content, for example, if you have questions about 
 					an answer in the exercises, please contact British Council.
 					</p>
 				</s:TextFlow>
