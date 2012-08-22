@@ -12,6 +12,7 @@
 						gestureSwipe="onGestureSwipe(event)">
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 			import com.clarityenglish.common.vo.config.BentoError;
 			import com.clarityenglish.components.SpinnerDropDownList;
 			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
@@ -55,6 +56,9 @@
 				
 				// #444 Use gestures for swiping (used in the help screen)
 				Multitouch.inputMode = MultitouchInputMode.GESTURE;
+				
+				// #376 (not sure if it helps though)
+				XHTMLExerciseView.useCacheAsBitmap = true;
 				
 				// Start IELTS!
 				facade = IELTSAirApplicationFacade.getInstance();

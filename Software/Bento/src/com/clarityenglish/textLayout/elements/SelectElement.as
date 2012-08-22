@@ -57,7 +57,6 @@ package com.clarityenglish.textLayout.elements {
 			// Default to a normal DropDownList, but also allow a custom elementFactoryFunction to be defined (used to create the Spinner for AIR apps)
 			var dropDownList:DropDownList = (elementFactoryFunction == null) ? new DropDownList() : elementFactoryFunction();
 			dropDownList.dataProvider = new XMLListCollection(_options);
-			
 			component = dropDownList;
 			
 			// Duplicate some events on the event mirror so other things can listen to the FlowElement

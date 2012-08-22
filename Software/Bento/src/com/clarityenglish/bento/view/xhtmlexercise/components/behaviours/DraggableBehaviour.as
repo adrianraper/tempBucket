@@ -59,6 +59,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				var wrapper:UIComponent = new UIComponent();
 				wrapper.addChild(dragImage);
 				
+				// #376 (helps a bit)
+				dragImage.cacheAsBitmap = wrapper.cacheAsBitmap = true;
+				
 				container.addElement(wrapper);
 			}
 		}
