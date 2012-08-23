@@ -1,31 +1,14 @@
 package com.clarityenglish.ielts.view.progress.components {
-	import com.anychart.AnyChartFlex;
-	import com.anychart.mapPlot.controls.zoomPanel.Slider;
-	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.ielts.view.progress.ui.CoverageExerciseComponent;
 	import com.clarityenglish.ielts.view.progress.ui.CoverageUnitComponent;
 	import com.clarityenglish.ielts.view.progress.ui.ProgressBarRenderer;
-	import com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
 	
-	import flash.events.MouseEvent;
-	
-	import mx.collections.ArrayCollection;
-	import mx.collections.HierarchicalData;
 	import mx.collections.XMLListCollection;
-	import mx.controls.AdvancedDataGrid;
 	
 	import org.osflash.signals.Signal;
 	
-	import skins.ielts.progress.ProgressCourseBarSkin;
-	
-	import spark.components.Button;
 	import spark.components.ButtonBar;
-	import spark.components.DataGrid;
-	import spark.components.Group;
-	import spark.components.Label;
-	import spark.components.List;
 	import spark.events.IndexChangeEvent;
 	
 	public class ProgressCoverageView extends BentoView {

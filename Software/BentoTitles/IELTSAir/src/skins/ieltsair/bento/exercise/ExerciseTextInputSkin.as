@@ -28,7 +28,8 @@ package skins.ieltsair.bento.exercise {
 			super.layoutContents(unscaledWidth, unscaledHeight);
 			
 			// Very hacky fix for #403 - I'm sure this could be done better somehow
-			//setElementSize(textDisplay, textDisplay + 20, textDisplay.height);
+			// Anyway, this doesn't work; it breaks other stuff
+			//setElementSize(textDisplay, 100, 22);
 		}
 		
 	}

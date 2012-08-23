@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
+	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
@@ -10,6 +11,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.DisplayObjectContainer;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -44,7 +46,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		private static var cursorData:MouseCursorData;
 		
 		private var dragImage:Image;
-
+		
+		private var xhtml:XHTML;
+		
 		public function DraggableBehaviour(container:Group) {
 			super(container);
 		}
@@ -80,6 +84,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			return xhtml.xml..*.(attribute("draggable") == "true" || (name() == "input" && attribute("type") == "droptarget"));
 		}
 		
+		private function getDroppableNodes(xhtml:XHTML):XMLList {
+			return xhtml.xml..*.(name() == "input" && attribute("type") == "droptarget");
+		}
+		
 		private function canDrag(draggableNode:XML, draggableFlowElement:FlowElement):Boolean {
 			if (!draggableNode || !draggableFlowElement) return false;
 			
@@ -96,6 +104,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		}
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+			this.xhtml = xhtml;
+			
 			for each (var draggableNode:XML in getDraggableNodes(xhtml)) {
 				var draggableFlowElement:FlowElement = flowElementXmlBiMap.getFlowElement(draggableNode);
 				
@@ -115,10 +125,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		private function onFlowElementMouseMove(e:FlowElementMouseEvent, draggableNode:XML, draggableFlowElement:FlowElement):void {
 			if (!DragManager.isDragging) {
-				// The drag initiator is either a TextInput if we are dragging from one to another, or the container otherwise
-				var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
-				var ds:DragSource = new DragSource();
-				
 				if (!canDrag(draggableNode, draggableFlowElement)) return;
 				
 				if (draggableFlowElement is InputElement) {
@@ -127,9 +133,25 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					draggableNode = inputElement.droppedNode;
 				}
 				
+				// The drag initiator is either a TextInput if we are dragging from one to another, or the container otherwise
+				var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
+				var ds:DragSource = new DragSource();
+				
 				ds.addData((e.flowElement as FlowLeafElement).text, "text");
 				ds.addData(draggableNode, "node");
 				ds.addData(draggableFlowElement, "flowElement");
+				
+				// #376
+				ds.addData(container.parentDocument, "hitTestRoot");
+				
+				// a better attempt?
+				var hitTestObjects:Array = [];
+				for each (var droppableNode:XML in getDroppableNodes(xhtml)) {
+					var droppableInputElement:InputElement = xhtml.flowElementXmlBiMap.getFlowElement(droppableNode) as InputElement;
+					hitTestObjects.push(droppableInputElement.getComponent());
+				}
+				
+				ds.addData(hitTestObjects, "hitTestObjects");
 				
 				DragManager.doDrag(dragInitiator, ds, e.originalEvent, dragImage, 0, 0, 0.8);
 				
