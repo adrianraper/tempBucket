@@ -1,14 +1,3 @@
-////////////////////////////////////////////////////////////////////////////////
-//
-//  ADOBE SYSTEMS INCORPORATED
-//  Copyright 2006-2007 Adobe Systems Incorporated
-//  All Rights Reserved.
-//
-//  NOTICE: Adobe permits you to use, modify, and distribute this file
-//  in accordance with the terms of the license agreement accompanying it.
-//
-////////////////////////////////////////////////////////////////////////////////
-
 package mx.managers.dragClasses {
 	
 	import flash.display.DisplayObject;
@@ -51,8 +40,8 @@ package mx.managers.dragClasses {
 	[ExcludeClass]
 	
 	/**
-	 *  @private
-	 *  A helper class for DragManager that displays the drag image
+	 * #376 - This is a monkey patched version of the Flex DragProxy that allows a root object, or a list of valid drop targets to be specified in the DragSource.
+	 * This improves performance drastically.
 	 */
 	public class DragProxy extends UIComponent {
 		
