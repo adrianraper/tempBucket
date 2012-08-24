@@ -14,7 +14,7 @@ package com.clarityenglish.common.controller {
 		
 		override public function execute(note:INotification):void {
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			loginProxy.logout();
+			if (loginProxy) loginProxy.logout();
 		}
 		
 	}

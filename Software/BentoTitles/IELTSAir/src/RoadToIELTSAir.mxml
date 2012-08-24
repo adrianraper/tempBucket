@@ -9,7 +9,8 @@
 						addedToStage="onAddedToStage(event)"
 						applicationDPI="160"
 						runtimeDPIProvider="RetinaRuntimeDPIProvider"
-						gestureSwipe="onGestureSwipe(event)">
+						gestureSwipe="onGestureSwipe(event)"
+						checkNetworkAvailabilityUrl="http://www.google.com">
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
@@ -54,7 +55,7 @@
 				// #383 No busy cursor on AIR
 				RemoteDelegate.setShowBusyCursor(false);
 				
-				// #444 Use gestures for swiping (used in the help screen)
+				// #444 Use gestures for swiping (may eventually be used in the help screen)
 				Multitouch.inputMode = MultitouchInputMode.GESTURE;
 				
 				// #376 (not sure if it helps though)

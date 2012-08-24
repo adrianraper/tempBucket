@@ -1,6 +1,8 @@
 package com.clarityenglish.ieltsair {
 	import com.clarityenglish.bento.BentoFacade;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.ielts.IELTSApplicationFacade;
+	import com.clarityenglish.ieltsair.controller.NativeExitCommand;
 	import com.clarityenglish.ieltsair.view.zone.AdviceZoneSectionMediator;
 	import com.clarityenglish.ieltsair.view.zone.AdviceZoneSectionView;
 	import com.clarityenglish.ieltsair.view.zone.ExamPracticeZoneSectionMediator;
@@ -30,6 +32,10 @@ package com.clarityenglish.ieltsair {
 			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
 			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);
 			mapView(ExamPracticeZoneSectionView, ExamPracticeZoneSectionMediator);
+			
+			// If a fatal error occurs we want to actually exit the app, not just go to the exited state like on the web
+			removeCommand(CommonNotifications.EXIT);
+			registerCommand(CommonNotifications.EXIT, NativeExitCommand);
 		}
 		
 	}

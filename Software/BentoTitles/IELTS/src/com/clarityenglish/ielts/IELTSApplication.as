@@ -4,12 +4,16 @@ package com.clarityenglish.ielts {
 	
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoApplication;
-	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.bento.view.interfaces.IBentoApplication;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	
 	import flash.display.StageQuality;
 	import flash.events.Event;
+	import flash.events.HTTPStatusEvent;
+	import flash.events.IOErrorEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	
 	import mx.events.FlexEvent;
 	import mx.managers.BrowserManager;
@@ -24,6 +28,8 @@ package com.clarityenglish.ielts {
 	public class IELTSApplication extends BentoApplication implements IBentoApplication {
 		
 		public var browserManager:IBrowserManager;
+		
+		public var checkNetworkAvailabilityUrl:String;
 		
 		public static const FULL_VERSION:String = "R2IFV";
 		public static const LAST_MINUTE:String = "R2ILM";
@@ -63,7 +69,29 @@ package com.clarityenglish.ielts {
 			//FlexGlobals.topLevelApplication.parameters.rootID=163;
 			//FlexGlobals.topLevelApplication.parameters.prefix = "BCHK";
 			
-			// Kick off the PureMVC framework with a STARTUP notification
+			// #474 - network availability test
+			if (checkNetworkAvailabilityUrl) {
+				var urlLoader:URLLoader = new URLLoader();
+				urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, function(e:HTTPStatusEvent):void {
+					if (e.status == 200) startBento();
+				});
+				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onNetworkError);
+				urlLoader.addEventListener(IOErrorEvent.NETWORK_ERROR, onNetworkError);
+				urlLoader.load(new URLRequest(checkNetworkAvailabilityUrl));
+			} else {
+				// Kick off the PureMVC framework with a STARTUP notification
+				startBento();
+			}
+		}
+		
+		private function onNetworkError(event:IOErrorEvent):void {
+			var bentoError:BentoError = new BentoError();
+			bentoError.errorContext = "Road to IELTS is unable to connect to the network.  Please check your connection and try again.";
+			bentoError.isFatal = true;
+			facade.sendNotification(CommonNotifications.BENTO_ERROR, bentoError);
+		}
+		
+		private function startBento():void {
 			facade.sendNotification(BBNotifications.STARTUP, this);
 		}
 		

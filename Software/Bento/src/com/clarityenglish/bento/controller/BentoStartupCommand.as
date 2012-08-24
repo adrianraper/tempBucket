@@ -38,10 +38,6 @@ package com.clarityenglish.bento.controller {
 			// #336
 			facade.registerProxy(new SCORMProxy());
 			
-			// Get copy literals first
-			// #322
-			// sendNotification(CommonNotifications.COPY_LOAD);
-			
 			// Start the configuration loading
 			sendNotification(CommonNotifications.CONFIG_LOAD);
 		}
