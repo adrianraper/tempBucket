@@ -42,8 +42,7 @@
 				<controls:WebViewVideoPlayer id="webViewVideoPlayer" width="411" height="231" visible="{videoList.selectedItem != null}" />
 				
 				<!-- Placeholder image -->
-				<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />
-								
+				<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />	
 			</s:Group>
 			<s:Group left="0" visible="{hostComponent.channelCollection.length > 1}">
 				<s:ButtonBar id="channelButtonBar" labelField="caption" verticalCenter="0" horizontalCenter="0" enabled="{hostComponent.zone == 'question-zone'}" requireSelection="true">
@@ -54,7 +53,7 @@
 			</s:Group>
 		</s:HGroup>
 
-		<s:List id="videoList" width="460" horizontalScrollPolicy="off" borderVisible="false" contentBackgroundColor="#FFFFFF">
+		<s:List id="videoList" width="460" horizontalScrollPolicy="off" borderVisible="false" contentBackgroundColor="#FFFFFF" visible="{hostComponent.showSelector}">
 			<s:layout>
 				<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="11" horizontalGap="5" />
 			</s:layout>

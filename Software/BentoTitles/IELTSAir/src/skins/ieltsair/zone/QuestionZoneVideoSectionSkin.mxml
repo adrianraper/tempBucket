@@ -21,10 +21,8 @@
 	<controls:BentoVideoSelector id="videoSelector"
 								 left="20"
 								 top="37"
-								 placeholderSource.reading="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')"
-								 placeholderSource.writing="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')"
-								 placeholderSource.listening="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')"
-								 placeholderSource.speaking="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')"
+								 showSelector="false"
+								 autoPlay="true"
 								 />
 	
 </s:Skin>

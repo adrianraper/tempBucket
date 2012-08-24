@@ -35,7 +35,7 @@
 			
 			// Inject some data to the screen.
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			view.userDetails = loginProxy.user;
+			view.user = loginProxy.user;
 
 			// Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;

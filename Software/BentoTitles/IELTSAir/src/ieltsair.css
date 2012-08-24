@@ -15,6 +15,7 @@
 @namespace airzone "com.clarityenglish.ieltsair.view.zone.*";
 @namespace support "com.clarityenglish.ielts.view.support.*";
 @namespace credits "com.clarityenglish.ielts.view.credits.*";
+@namespace account "com.clarityenglish.ielts.view.account.*";
 
 global {
 	interactionMode: touch;
@@ -178,6 +179,11 @@ progresscomponents|ProgressCompareView {
 
 progresscomponents|ProgressAnalysisView {
 	skinClass: ClassReference("skins.ieltsair.progress.ProgressAnalysisSkin");
+}
+
+/* Account view styles */
+account|AccountView {
+	skinClass: ClassReference("skins.ieltsair.AccountSkin");
 }
 
 /* Support view styles */

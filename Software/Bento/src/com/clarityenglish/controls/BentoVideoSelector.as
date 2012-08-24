@@ -9,6 +9,7 @@ package com.clarityenglish.controls {
 	
 	import mx.collections.IList;
 	import mx.core.mx_internal;
+	import mx.events.IndexChangedEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -31,8 +32,13 @@ package com.clarityenglish.controls {
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.events.IndexChangeEvent;
 	
+	/**
+	 * This is generally rather messy and needs to be rewritten.
+	 */
 	[Event(name="videoSelected", type="com.clarityenglish.controls.BentoVideoSelectorEvent")]
 	public class BentoVideoSelector extends SkinnableComponent {
+		
+		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		// This is the OSMF video player TODO: These should be combined with a neat interface
 		[SkinPart]
@@ -64,16 +70,30 @@ package com.clarityenglish.controls {
 		protected var _placeholderSource:Object;
 		protected var _placeholderSourceChanged:Boolean;
 		
-		protected var _zone:String;
+		protected var _autoPlay:Boolean;
+		protected var _autoPlayChanged:Boolean;
 		
 		private var videoHref:Href;
 		private var zoneSelected:String;
 		private var urlLoader:URLLoader;
+		private var pluginFlag:Boolean;
+		private var streamName:String;
+		private var channelName:String;
 		
-		public var pluginFlag:Boolean;
-		public var streamName:String;
-		public var channelName:String;
+		// TODO: This absolutely shouldn't know anything about ConfigProxy
 		public var configProxy:ConfigProxy;
+		
+		[Bindable]
+		public var viewHref:Href;
+		
+		[Bindable]
+		public var courseSelected:String;
+		
+		[Bindable]
+		public var zone:String;
+		
+		[Bindable]
+		public var showSelector:Boolean = true;
 		
 		public static var selectedChannelIndex:int = 0;
 		
@@ -81,31 +101,6 @@ package com.clarityenglish.controls {
 		
 		public var videoSelected:Signal = new Signal(Href, String);
 		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
-		
-		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
-
-		[Bindable]
-		public function get courseSelected():String {
-			return _courseSelected;
-		}
-		
-		public function set courseSelected(value:String):void {
-			if (_courseSelected != value) {
-				_courseSelected = value;
-				trace("courseSelected = " + _courseSelected);
-			}
-		}
-		
-		[Bindable]
-		public function get viewHref():Href {
-			return _viewHref;
-		}
-		
-		public function set viewHref(value:Href):void {
-			if (_viewHref !== value) {
-				_viewHref = value;
-			}
-		}
 		
 		[Bindable]
 		public function get channelCollection():IList {
@@ -150,14 +145,14 @@ package com.clarityenglish.controls {
 		}
 		
 		[Bindable]
-		public function get zone():String {
-			return _zone;
+		public function get autoPlay():Boolean {
+			return _autoPlay;
 		}
 		
-		public function set zone(value:String):void {
-			if (_zone !== value) {
-				_zone = value;
-			}
+		public function set autoPlay(value:Boolean):void {
+			_autoPlay = value;
+			_autoPlayChanged = true;
+			invalidateProperties();
 		}
 		
 		public function BentoVideoSelector() {
@@ -179,6 +174,15 @@ package com.clarityenglish.controls {
 			
 			if (_placeholderSourceChanged) {
 				_placeholderSourceChanged = false;
+			}
+			
+			if (_autoPlayChanged) {
+				_autoPlayChanged = false;
+				
+				if (videoList.dataProvider.length > 0) {
+					videoList.selectedIndex = 0;
+					videoList.dispatchEvent(new IndexChangedEvent(IndexChangedEvent.CHANGE));
+				}
 			}
 		}
 		
@@ -214,7 +218,6 @@ package com.clarityenglish.controls {
 		
 		public function loadPlugin():void {
 			if (videoPlayer) {
-				//var resource:URLResource=new URLResource(PLUGIN);
 				var pluginResource:MediaResourceBase = new URLResource(PLUGIN);
 				videoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD, onPluginLoad);
 				videoPlayer.videoDisplay.mx_internal::mediaFactory.addEventListener(MediaFactoryEvent.PLUGIN_LOAD_ERROR, onPluginLoadError);
@@ -242,7 +245,7 @@ package com.clarityenglish.controls {
 			//trace("The advice video player's choice is " + selectedChannelIndex);
 			channelButtonBar.selectedIndex = selectedChannelIndex;
 			videoHref = _viewHref.createRelativeHref(null, filename);
-			zoneSelected = _zone;
+			zoneSelected = zone;
 			videoSelected.dispatch(videoHref, zoneSelected);
 			trace("file href=" + videoHref);
 			trace("selected channel = " + channelButtonBar.selectedItem.name);
@@ -340,7 +343,7 @@ package com.clarityenglish.controls {
 		
 		protected function onVideoPlayerComplete(event:TimeEvent):void {
 			// When a video in advice zone reaches the end deselect the video in the list so we don't end up with a floating 'loading...'
-			if (_zone == "advice-zone")
+			if (zone == "advice-zone")
 				videoList.selectedItem = null;
 		}
 		

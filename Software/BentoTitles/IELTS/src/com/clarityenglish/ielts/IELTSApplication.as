@@ -47,6 +47,7 @@ package com.clarityenglish.ielts {
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, creationComplete);
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+			addEventListener(Event.ACTIVATE, onActivate);
 		}
 		
 		protected function creationComplete(event:FlexEvent):void {
@@ -70,17 +71,24 @@ package com.clarityenglish.ielts {
 			//FlexGlobals.topLevelApplication.parameters.prefix = "BCHK";
 			
 			// #474 - network availability test
+			checkNetworkAvailability(startBento, onNetworkError);
+		}
+		
+		// #474 - network availability test when returning to the app after suspending it
+		protected function onActivate(event:Event):void {
+			checkNetworkAvailability(null, onNetworkError);
+		}
+		
+		private function checkNetworkAvailability(onSuccess:Function, onFailure:Function):void {
 			if (checkNetworkAvailabilityUrl) {
 				var urlLoader:URLLoader = new URLLoader();
 				urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, function(e:HTTPStatusEvent):void {
-					if (e.status == 200) startBento();
+					if (e.status == 200)
+						if (onSuccess) onSuccess();
 				});
-				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onNetworkError);
-				urlLoader.addEventListener(IOErrorEvent.NETWORK_ERROR, onNetworkError);
+				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onFailure, false, 0, true);
+				urlLoader.addEventListener(IOErrorEvent.NETWORK_ERROR, onFailure, false, 0, true);
 				urlLoader.load(new URLRequest(checkNetworkAvailabilityUrl));
-			} else {
-				// Kick off the PureMVC framework with a STARTUP notification
-				startBento();
 			}
 		}
 		

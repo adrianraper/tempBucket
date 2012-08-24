@@ -36,14 +36,13 @@
 			import spark.components.supportClasses.StyleableTextField;
 			
 			protected function onInitialize(event:FlexEvent):void {
-				// Set the iOS config xml file as well as getting the prefix from the iOS settings
+				// Set the iOS config xml file as well as getting the prefix and product code from the iOS settings
 				FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
-				try {
-					FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix");
-				} catch (e:TypeError) { }
+				try { FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix"); } catch (e:TypeError) { }
+				try { FlexGlobals.topLevelApplication.parameters.productCode = IPhoneAppSettings.getInstance().stringForKey("productVersion"); } catch (e:TypeError) { }
 				
 				// The AIR application applies an offset to font sizes in the xhtml files  
-				CSSApplicator.fontSizeOffset = 2;
+				try { CSSApplicator.fontSizeOffset = new Number(IPhoneAppSettings.getInstance().stringForKey("fontOffset")); } catch (e:TypeError) { }
 				
 				// The AIR application uses a custom Spinner instead of the normal dropdown
 				SelectElement.elementFactoryFunction = function():DropDownList {
@@ -130,6 +129,7 @@
 			fontThickness: -200;
 			embedAsCFF: false;
 		}
+		
 	</fx:Style>
 	
 	<fx:Style source="ielts.css" />
