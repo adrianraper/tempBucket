@@ -20,16 +20,12 @@ package skins.ieltsair.bento.exercise {
 			borderClass = TextInput_border;
 		}
 		
-		protected override function measure():void {
-			super.measure();
-		}
-		
 		protected override function layoutContents(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.layoutContents(unscaledWidth, unscaledHeight);
 			
-			// Very hacky fix for #403 - I'm sure this could be done better somehow
-			// Anyway, this doesn't work; it breaks other stuff
-			//setElementSize(textDisplay, 100, 22);
+			// Very hacky fix for #403, but it seems to work
+			setElementSize(textDisplay, unscaledWidth + 4, textDisplay.height);
+			setElementPosition(textDisplay, -2, textDisplay.y);
 		}
 		
 	}
