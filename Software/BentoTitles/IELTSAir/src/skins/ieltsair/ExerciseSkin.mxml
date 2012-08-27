@@ -16,6 +16,7 @@
 		</fx:Array>
 		
 		<fx:Array id="actionContent">
+			<s:Button id="feedbackButton" label="Feedback" visible="false" />
 			<s:Button id="markingButton" label="Marking" />
 			<s:Button label="Log out" />
 		</fx:Array>

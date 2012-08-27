@@ -113,10 +113,10 @@
 		}
 		
 		private function configureButtonVisibility(exercise:Exercise):void {
-			if (view.markingButton) view.markingButton.visible = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
+			if (view.markingButton) view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
 			
 			// If there is exercise feedback then show the exercise feedback button
-			if (view.feedbackButton) view.feedbackButton.visible = getExerciseProxy(exercise).hasExerciseFeedback();
+			if (view.feedbackButton) view.feedbackButton.visible = view.feedbackButton.includeInLayout = getExerciseProxy(exercise).hasExerciseFeedback();
 		}
 		
 		private function onPrintExercise(dynamicView:DynamicView):void {
