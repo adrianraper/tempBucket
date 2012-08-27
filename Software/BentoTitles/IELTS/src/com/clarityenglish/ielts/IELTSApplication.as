@@ -27,6 +27,9 @@ package com.clarityenglish.ielts {
 	[SkinState("credits")]
 	public class IELTSApplication extends BentoApplication implements IBentoApplication {
 		
+		[Bindable]
+		public var versionNumber:String = "(unknown)";
+		
 		public var browserManager:IBrowserManager;
 		
 		public var checkNetworkAvailabilityUrl:String;

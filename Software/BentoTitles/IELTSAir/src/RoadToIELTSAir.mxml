@@ -60,6 +60,11 @@
 				// #376 (not sure if it helps though)
 				XHTMLExerciseView.useCacheAsBitmap = true;
 				
+				// #479 For the AIR version we get the version number out of the xml descripter
+				var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
+				var ns:Namespace = descriptor.namespace();
+				versionNumber = descriptor.ns::versionNumber.toString();
+				
 				// Start IELTS!
 				facade = IELTSAirApplicationFacade.getInstance();
 			}

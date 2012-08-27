@@ -36,4 +36,6 @@
 		<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
 	</s:Group>
 	
+	<!-- #479 -->
+	<s:Label text="v{hostComponent.versionNumber}" color="#AAAAAA" right="3" bottom="52" />
 </s:Skin>
