@@ -130,6 +130,7 @@
     <classEntry path="org.davekeen.transitions.PatchedSlideViewTransition"/>
     <classEntry path="org.davekeen.components.PatchedVideoDisplay"/>
     <classEntry path="com.clarityenglish.controls.WebViewVideoPlayer"/>
+    <classEntry path="com.clarityenglish.components.PatchedSpinnerList"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>

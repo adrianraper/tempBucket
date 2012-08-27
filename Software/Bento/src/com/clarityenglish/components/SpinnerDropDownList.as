@@ -13,7 +13,7 @@ package com.clarityenglish.components {
 			
 			addEventListener(DropDownEvent.CLOSE, onClose, false, 0, true);
 		}
-
+		
 		/**
 		 * We need to throw a CHANGE event when the drop down is closed, otherwise Bento doesn't know a question has been answered.
 		 */
