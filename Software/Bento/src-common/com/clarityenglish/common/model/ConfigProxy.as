@@ -119,7 +119,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function loadConfig(filename:String = null):void {
 			var urlLoader:URLLoader = new URLLoader();
-			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onConfigLoadError);
 			urlLoader.addEventListener(Event.COMPLETE, onConfigLoadComplete);
 			
 			try {
@@ -142,16 +142,19 @@ package com.clarityenglish.common.model {
 			// A special case; if disableAutoTimeout is true then turn off the activity timer #385
 			facade.removeCommand(BBNotifications.ACTIVITY_TIMER_RESET);
 			
+			// #410 (too early though)
+			sendNotification(BBNotifications.NETWORK_CHECK_AVAILABILITY);
+			
 			// Next stage is to get data from the database
 			// #322 Get copy literals first
 			// getApplicationParameters();
 			sendNotification(CommonNotifications.CONFIG_LOADED);
 		}
 		
-		public function errorHandler(e:IOErrorEvent):void {
+		private function onConfigLoadError(e:IOErrorEvent):void {
 			log.error("Problem loading the config file: {0}", e.text);
 		}
-
+		
 		// Then methods to get parts of the configuration data
 		public function getMenuFilename():String {
 			//return "menu-Academic-LastMinute.xml";
@@ -212,8 +215,8 @@ package com.clarityenglish.common.model {
 		 * @return 
 		 */
 		public function getDirectLogin():LoginEvent {
-			var loginOption:uint = getAccount().loginOption;
-			var verified:Boolean = (getAccount().verified == 1) ? true : false;
+			var loginOption:uint = getAccount() ? getAccount().loginOption : null;
+			var verified:Boolean = getAccount() ? ((getAccount().verified == 1) ? true : false) : false;
 			
 			var configUser:User;
 			

@@ -56,13 +56,10 @@
 			
 			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);
-			// #322
-			//registerCommand(CommonNotifications.CONFIG_LOADED, BentoStartupStateMachineCommand);
-			registerCommand(CommonNotifications.CONFIG_LOADED, CopyLoadCommand);
-			registerCommand(CommonNotifications.CONFIG_ERROR, ShowErrorCommand);
-			registerCommand(CommonNotifications.COPY_LOADED, AccountLoadCommand);
-			registerCommand(CommonNotifications.COPY_ERROR, ShowErrorCommand);
-			registerCommand(CommonNotifications.ACCOUNT_LOADED, BentoStartupStateMachineCommand);
+			registerCommand(CommonNotifications.CONFIG_LOADED, BentoStartupStateMachineCommand);
+			
+			registerCommand(CommonNotifications.COPY_LOAD, CopyLoadCommand);
+			registerCommand(CommonNotifications.ACCOUNT_LOAD, AccountLoadCommand);
 			
 			// Map built in commands
 			registerCommand(BBNotifications.MENU_XHTML_LOAD, MenuXHTMLLoadCommand);
@@ -84,9 +81,6 @@
 			registerCommand(BBNotifications.EXERCISE_RESTART, ExerciseRestartCommand);
 			registerCommand(BBNotifications.COURSE_SELECT, CourseSelectCommand);
 			registerCommand(BBNotifications.WORD_CLICK, WordClickCommand);
-			
-			// Copy
-			registerCommand(CommonNotifications.COPY_LOAD, CopyLoadCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.ADD_USER, AddUserCommand);
@@ -113,6 +107,9 @@
 			// #265
 			registerCommand(BBNotifications.CLOSE_ALL_POPUPS, CloseAllPopUpsCommand);
 			
+			// #472
+			registerCommand(BBNotifications.NETWORK_CHECK_AVAILABILITY, NetworkCheckAvailability);
+			registerCommand(BBNotifications.NETWORK_UNAVAILABLE, BentoResetCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

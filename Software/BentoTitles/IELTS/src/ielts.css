@@ -24,6 +24,7 @@
 @namespace components "com.clarityenglish.textLayout.components.*";
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
 @namespace ielts "com.clarityenglish.ielts.*";
+@namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -64,6 +65,11 @@ global {
 
 ielts|IELTSApplication {
 	skinClass: ClassReference("skins.ielts.IELTSApplicationSkin");
+}
+
+/* No network styles (#472) */
+nonetwork|NoNetworkView {
+	skinClass: ClassReference("skins.ielts.NoNetworkSkin");
 }
 
 /* Credit view styles */

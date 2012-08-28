@@ -1,8 +1,6 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
-	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.model.ExternalInterfaceProxy;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
@@ -12,12 +10,8 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
 	
-	import flash.debugger.enterDebugger;
-	import flash.utils.setTimeout;
-	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
-	import org.puremvc.as3.utilities.statemachine.FSMInjector;
 	
 	public class BentoStartupCommand extends SimpleCommand {
 		
@@ -35,10 +29,11 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new ProgressProxy());
 			facade.registerProxy(new CopyProxy());
 			facade.registerProxy(new ExternalInterfaceProxy());
+			
 			// #336
 			facade.registerProxy(new SCORMProxy());
 			
-			// Start the configuration loading
+			// Start the configuration loading which kicks off the whole app
 			sendNotification(CommonNotifications.CONFIG_LOAD);
 		}
 		

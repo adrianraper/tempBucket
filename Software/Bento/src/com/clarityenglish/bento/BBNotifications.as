@@ -6,6 +6,10 @@
 		
 		public static const ACTIVITY_TIMER_RESET:String = "activity_timer_reset";
 		
+		public static const NETWORK_CHECK_AVAILABILITY:String = "network_check_availability";
+		public static const NETWORK_UNAVAILABLE:String = "network_unavailable";
+		public static const NETWORK_AVAILABLE:String = "network_available";
+		
 		public static const MENU_XHTML_LOAD:String = "menu_xhtml_load";
 		public static const MENU_XHTML_LOADED:String = "menu_xhtml_loaded";
 		public static const MENU_XHTML_NOT_LOADED:String = "menu_xhtml_not_loaded";

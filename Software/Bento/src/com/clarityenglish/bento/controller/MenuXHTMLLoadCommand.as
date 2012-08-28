@@ -34,7 +34,6 @@ package com.clarityenglish.bento.controller {
 			//xhtmlProxy.loadXHTML(href);
 			log.debug("Loading progress version of {0}", href);
 			progressProxy.getProgressData(loginProxy.user, configProxy.getAccount(), href, Progress.PROGRESS_MY_DETAILS);
-
 		}
 		
 	}

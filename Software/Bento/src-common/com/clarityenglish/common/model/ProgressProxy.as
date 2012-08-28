@@ -22,6 +22,7 @@ package com.clarityenglish.common.model {
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.system.System;
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
@@ -88,6 +89,17 @@ package com.clarityenglish.common.model {
 			dataLoading = new Dictionary();
 		}
 		
+		public function reset():void {
+			// #472
+			for each (var resource:* in loadedResources)
+				if (resource is XML)
+					System.disposeXML(resource);
+			
+			loadedResources = new Dictionary();
+			dataLoading = new Dictionary();
+			href = null;
+		}
+		
 		/**
 		 * Not sure if we should be sending an object full of data (userID, groupID, rootID, productCode, country)
 		 * or just the userID as that will let the backend get it all anyway, albeit with another db call.
@@ -103,6 +115,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function getProgressData(user:User, account:Account, href:Href, progressType:String):void {
 			// If the data has already been loaded then just return it
+			// Temporarily disable caching
 			if (loadedResources[progressType]) {
 				notifyDataLoaded(progressType);
 				return;
@@ -130,7 +143,6 @@ package com.clarityenglish.common.model {
 					
 					// Maintain a note that we are currently loading this data
 					dataLoading[progressType] = true;
-					
 			}
 			
 			// And save the href
@@ -224,12 +236,11 @@ package com.clarityenglish.common.model {
 		}
 
 		/**
-		 * This sends out the notification with the requested data 
-		 * @param progressType
+		 * This sends out the notification with the requested data
 		 * 
+		 * @param progressType
 		 */
 		private function notifyDataLoaded(progressType:String):void {
-			
 			// #338. Note that loadedResources[progress_my_details] is just a boolean to show that we have the data
 			// already, the actual data is held in bentoProxy
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {

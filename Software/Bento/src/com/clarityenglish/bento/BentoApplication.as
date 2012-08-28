@@ -1,5 +1,4 @@
 package com.clarityenglish.bento {
-	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.textLayout.util.TLF2Application;
 	
 	import flash.events.Event;
@@ -39,6 +38,14 @@ package com.clarityenglish.bento {
 			
 			// Create deferred content with maximum priority so that this happens before any other ADDED_TO_STAGE listeners fire
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, int.MAX_VALUE);
+			
+			// Listen for activation
+			addEventListener(Event.ACTIVATE, onActivate);
+		}
+		
+		// #472 - check instantly on activation
+		protected function onActivate(event:Event):void {
+			facade.sendNotification(BBNotifications.NETWORK_CHECK_AVAILABILITY);
 		}
 		
 		private function onAddedToStage(event:Event):void {

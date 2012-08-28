@@ -6,6 +6,8 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.system.System;
+	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -36,6 +38,14 @@ package com.clarityenglish.bento.model {
 		
 		public function BentoProxy() {
 			super(NAME);
+		}
+		
+		public function reset():void {
+			// #472
+			if (_menuXHTML) System.disposeXML(_menuXHTML.xml);
+			_menuXHTML = null;
+			_currentExercise = null;
+			_currentCourseClass = null;
 		}
 		
 		/**

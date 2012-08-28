@@ -4,7 +4,6 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.CopyProxy;
-	import com.clarityenglish.common.model.ProgressProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -12,6 +11,7 @@ package com.clarityenglish.bento.model {
 	import flash.events.SecurityErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.system.System;
 	import flash.utils.Dictionary;
 	
 	import mx.logging.ILogger;
@@ -48,6 +48,16 @@ package com.clarityenglish.bento.model {
 		
 		public function XHTMLProxy() {
 			super(NAME);
+			
+			loadedResources = new Dictionary();
+			urlLoaders = new Dictionary();
+		}
+		
+		public function reset():void {
+			// #472
+			for each (var resource:* in loadedResources)
+				if (resource is XML)
+					System.disposeXML(resource);
 			
 			loadedResources = new Dictionary();
 			urlLoaders = new Dictionary();

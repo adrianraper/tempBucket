@@ -9,8 +9,7 @@
 						addedToStage="onAddedToStage(event)"
 						applicationDPI="160"
 						runtimeDPIProvider="RetinaRuntimeDPIProvider"
-						gestureSwipe="onGestureSwipe(event)"
-						checkNetworkAvailabilityUrl="http://www.google.com">
+						gestureSwipe="onGestureSwipe(event)">
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
@@ -65,7 +64,7 @@
 				var ns:Namespace = descriptor.namespace();
 				versionNumber = descriptor.ns::versionNumber.toString();
 				
-				// Start IELTS!
+				// Set the facade
 				facade = IELTSAirApplicationFacade.getInstance();
 			}
 			

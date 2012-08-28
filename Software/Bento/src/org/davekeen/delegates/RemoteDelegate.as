@@ -106,8 +106,6 @@ package org.davekeen.delegates {
 			
 			if (disableAppOnCall) FlexGlobals.topLevelApplication.enabled = false;
 			
-			//trace("CALLING: " + operationName + "(" + args + ")");
-			
 			operation.send();
 		}
 		

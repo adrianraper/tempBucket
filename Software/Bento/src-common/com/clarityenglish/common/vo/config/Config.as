@@ -90,6 +90,11 @@ package com.clarityenglish.common.vo.config {
 		public var rememberLogin:Boolean;
 		public var disableAutoTimeout:Boolean;
 		
+		// #410
+		public var checkNetworkAvailabilityUrl:String;
+		public var checkNetworkAvailabilityInterval:uint;
+		public var checkNetworkAvailabilityReconnectInterval:uint;
+		
 		/**
 		 * Developer option
 		 */
@@ -301,6 +306,14 @@ package com.clarityenglish.common.vo.config {
 				this.rememberLogin = true;
 			if (xml..disableAutoTimeout.toString() == "true")
 				this.disableAutoTimeout = true;
+			
+			// #410
+			if (xml..checkNetworkAvailabilityUrl.toString())
+				this.checkNetworkAvailabilityUrl = xml..checkNetworkAvailabilityUrl.toString();
+			if (xml..checkNetworkAvailabilityInterval.toString())
+				this.checkNetworkAvailabilityInterval = new Number(xml..checkNetworkAvailabilityInterval.toString());
+			if (xml..checkNetworkAvailabilityReconnectInterval.toString())
+				this.checkNetworkAvailabilityReconnectInterval = new Number(xml..checkNetworkAvailabilityReconnectInterval.toString());
 
 			// For help with testing
 			if (xml..id.toString()) {
