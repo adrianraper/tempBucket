@@ -11,6 +11,7 @@
 	<fx:Declarations>
 		<fx:Array id="navigationContent">
 			<s:Button id="backToMenuButton" label="Back to menu" />
+			<s:Button id="startAgainButton" label="Start again" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
 			<s:Button id="backButton" label="Back" visible="false" />
 			<s:Button id="forwardButton" label="Forward" visible="false" />
 		</fx:Array>

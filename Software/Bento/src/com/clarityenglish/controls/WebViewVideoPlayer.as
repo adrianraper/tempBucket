@@ -1,18 +1,20 @@
 package com.clarityenglish.controls {
-	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
 	
-	import mx.events.EffectEvent;
-	import mx.events.MoveEvent;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
 	
 	import spark.components.Application;
 	import spark.components.Group;
-	import spark.components.View;
 	
 	public class WebViewVideoPlayer extends Group {
+		
+		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		private var stageWebView:StageWebView;
 		
@@ -34,6 +36,7 @@ package com.clarityenglish.controls {
 
 		public function set source(value:Object):void {
 			_source = value;
+			log.info("Setting video source to {0}", value);
 		}
 		
 		public override function set visible(value:Boolean):void {

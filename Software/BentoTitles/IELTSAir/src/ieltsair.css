@@ -52,6 +52,7 @@ ielts|IELTSApplication s|ActionBar {
 	defaultButtonAppearance: beveled;
 }
 
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#startAgainButton,
 ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
 ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
 	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");

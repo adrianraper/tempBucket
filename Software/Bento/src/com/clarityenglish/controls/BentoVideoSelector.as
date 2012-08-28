@@ -6,10 +6,10 @@ package com.clarityenglish.controls {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.system.System;
+	import flash.utils.setTimeout;
 	
 	import mx.collections.IList;
 	import mx.core.mx_internal;
-	import mx.events.IndexChangedEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -56,10 +56,6 @@ package com.clarityenglish.controls {
 		
 		[SkinPart(required="true")]
 		public var videoList:List;
-		
-		protected var _courseSelected:String;
-		
-		protected var _viewHref:Href;
 		
 		protected var _channelCollection:IList;
 		protected var _channelCollectionChanged:Boolean;
@@ -178,10 +174,15 @@ package com.clarityenglish.controls {
 			
 			if (_autoPlayChanged) {
 				_autoPlayChanged = false;
-				
-				if (videoList.dataProvider.length > 0) {
-					videoList.selectedIndex = 0;
-					videoList.dispatchEvent(new IndexChangedEvent(IndexChangedEvent.CHANGE));
+				if (_autoPlay) {
+					// Horribly hacky, but this whole component needs to be rewritten anyway
+					setTimeout(function():void {
+						if (videoList.dataProvider.length > 0) {
+							videoList.selectedItem = videoList.dataProvider[0];
+							videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE, true, false, -1, 0));
+							zoneVideoSelected(videoList.selectedItem.@href);
+						}
+					}, 2000);
 				}
 			}
 		}
@@ -244,7 +245,7 @@ package com.clarityenglish.controls {
 		public function zoneVideoSelected(filename:String):void {
 			//trace("The advice video player's choice is " + selectedChannelIndex);
 			channelButtonBar.selectedIndex = selectedChannelIndex;
-			videoHref = _viewHref.createRelativeHref(null, filename);
+			videoHref = viewHref.createRelativeHref(null, filename);
 			zoneSelected = zone;
 			videoSelected.dispatch(videoHref, zoneSelected);
 			trace("file href=" + videoHref);
