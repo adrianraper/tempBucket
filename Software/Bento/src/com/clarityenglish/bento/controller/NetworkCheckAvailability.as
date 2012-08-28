@@ -33,7 +33,7 @@ package com.clarityenglish.bento.controller {
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var url:String = configProxy.getConfig().checkNetworkAvailabilityUrl;
-			log.debug("Checking " + url);
+			
 			if (url) {
 				urlLoader = new URLLoader();
 				urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, function(e:HTTPStatusEvent):void {
@@ -46,13 +46,11 @@ package com.clarityenglish.bento.controller {
 		}
 		
 		private function onSuccess(e:Event = null):void {
-			log.debug("Network available");
 			sendNotification(BBNotifications.NETWORK_AVAILABLE);
 			urlLoader = null;
 		}
 		
 		private function onFailure(e:Event = null):void {
-			log.debug("Network unavailable");
 			sendNotification(BBNotifications.NETWORK_UNAVAILABLE);
 			urlLoader = null;
 		}

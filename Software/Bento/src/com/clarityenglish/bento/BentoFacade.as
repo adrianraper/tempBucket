@@ -62,6 +62,7 @@
 			registerCommand(CommonNotifications.ACCOUNT_LOAD, AccountLoadCommand);
 			
 			// Map built in commands
+			registerCommand(BBNotifications.BENTO_RESET, BentoResetCommand);
 			registerCommand(BBNotifications.MENU_XHTML_LOAD, MenuXHTMLLoadCommand);
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);

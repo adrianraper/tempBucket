@@ -5,6 +5,7 @@
 		public static const STARTUP:String = "startup";
 		
 		public static const ACTIVITY_TIMER_RESET:String = "activity_timer_reset";
+		public static const BENTO_RESET:String = "bento_reset";
 		
 		public static const NETWORK_CHECK_AVAILABILITY:String = "network_check_availability";
 		public static const NETWORK_UNAVAILABLE:String = "network_unavailable";
