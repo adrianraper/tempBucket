@@ -8,6 +8,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.common.vo.config.PerformanceLog;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
@@ -330,9 +331,11 @@ package com.clarityenglish.common.model {
 					
 					if (!data) {
 						sendNotification(CommonNotifications.CONFIG_ERROR, "Unable to read from database"); // at this point copy can't have loaded so this is in English!
+						
 					} else if (config.anyError()) {
 						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 						sendNotification(CommonNotifications.CONFIG_ERROR, config.error);
+						
 					} else {
 						// #322
 						//sendNotification(CommonNotifications.CONFIG_LOADED);
@@ -342,6 +345,11 @@ package com.clarityenglish.common.model {
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
 			}
+			
+			// Performance logging
+			var log:PerformanceLog = new PerformanceLog(PerformanceLog.APP_LOADED, config.appLaunchTime);
+			log.IP = config.ip;
+			sendNotification(CommonNotifications.PERFORMANCE_LOG, log);
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
@@ -351,6 +359,10 @@ package com.clarityenglish.common.model {
 					break;
 			}
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+			
+			// Performance logging
+			var log:PerformanceLog = new PerformanceLog(PerformanceLog.APP_LOADED, config.appLaunchTime);
+			sendNotification(CommonNotifications.PERFORMANCE_LOG, log);
 		}
 		
 		/**

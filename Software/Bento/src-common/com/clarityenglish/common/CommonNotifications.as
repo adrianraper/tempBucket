@@ -47,6 +47,8 @@
 		
 		public static const EXIT:String = "exit";
 		
+		public static const PERFORMANCE_LOG:String = "performance_log";
+		
 	}
 	
 }

@@ -113,6 +113,9 @@
 			// #265
 			registerCommand(BBNotifications.CLOSE_ALL_POPUPS, CloseAllPopUpsCommand);
 			
+			// Performance logging
+			registerCommand(CommonNotifications.PERFORMANCE_LOG, PerformanceLogCommand);
+			
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

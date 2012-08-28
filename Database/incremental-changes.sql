@@ -42,7 +42,7 @@ INSERT INTO `rack80829`.`T_Triggers`
 (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
 VALUES
 (32,'Subscription reminder start+7d',null,null,32,'method=getAccounts&startDate={now}-7d&accountType=1&notLicenceType=5',null,null,'email','daily',1),
-(33,'Subscription reminder usage stats',null,null,20,'method=getAccounts&startDay={day}&accountType=1&notLicenceType=5&selfHost=false&active=true',null,null,'usageStats','daily',2),
+(33,'Subscription reminder usage stats',null,null,20,'method=getAccounts&startDay={day}&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',null,null,'usageStats','daily',2),
 (34,'Support start+1.5m',null,null,34,'method=getAccounts&startDate={now}-1.5m&accountType=1&notLicenceType=5',null,null,'email','daily',4),
 (35,'Support start+6.5m',null,null,35,'method=getAccounts&startDate={now}-6.5m&accountType=1&notLicenceType=5','2011-12-31',null,'email','daily',4),
 (36,'Subscription reminder end-2.5m',null,null,36,'method=getAccounts&expiryDate={now}+10w&accountType=1&notLicenceType=5',null,null,'email','daily',1),
@@ -162,7 +162,8 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (34,'Complejo de Consultoria de Idiomas',NULL,'elizabeth.pena@etciberoamerica.com',99),
 (35,'Micromail',NULL,'diarmuid@micromail.ie',105),
 (36,'IELTSPractice.com',NULL,'alfred.ng@clarityenglish.com',20),
-(37,'Vietnam Book Promotion Service',NULL,'thao@vietnambookpromotion.com',19);
+(37,'Vietnam Book Promotion Service',NULL,'thao@vietnambookpromotion.com',19),
+(38,'Subramoni Iyer (Qatar)',NULL,'subramoni.iyer@windowslive.com',7);
 
 -- No more monthly usage stats
 UPDATE `rack80829`.`T_Triggers` SET `F_ValidToDate`='2011-08-29' WHERE F_TriggerID in (31);
@@ -326,11 +327,7 @@ INSERT INTO T_Offer VALUES
 (58, 'Road to IELTS Academic 12-months', 10, 365, 'MYR', 75, '2011-10-14 00:00:00.000', NULL);
 
 -- BUG: Usage stats had been set to trigger on startDate instead of startDay, and for old accounts too
-DELETE FROM T_Triggers WHERE F_TriggerID = 33;
-INSERT INTO `rack80829`.`T_Triggers`
-(`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
-VALUES
-(33,'Subscription reminder usage stats',null,null,20,'method=getAccounts&startDay={day}&accountType=1&notLicenceType=5&selfHost=false&active=true',null,null,'usageStats','daily',2);
+-- see later
 
 -- For storing everyone summary values
 DROP TABLE IF EXISTS `rack80829`.`T_ScoreCache`;
@@ -371,6 +368,7 @@ VALUES
 
 -- Learn English Test Japanese
 INSERT INTO `T_Language` VALUES ('JP','Japanese');
+INSERT INTO T_ProductLanguage VAUES (36, 'JP', 'ILATest-Japanese');
 
 -- 3 Jan 2012
 -- Tidy up triggers
@@ -573,3 +571,35 @@ VALUES
 (18,'CLS. Subscription ends today',null,null,2130,'method=getAccounts&expiryDate={now}&licenceType=5&resellerID=21',null,null,'email','daily',1),
 (45,'IELTSpractice.com 7d',null,null,2200,'method=getAccounts&expiryDate={now}+7d&licenceType=5&resellerID=36',null,null,'email','daily',1),
 (46,'IELTSpractice.com 1d',null,null,2201,'method=getAccounts&expiryDate={now}-1d&licenceType=5&resellerID=36',null,null,'email','daily',1);
+
+-- For CLS.com rewriting
+INSERT INTO `T_Offer`
+(`F_OfferID`,`F_OfferName`,`F_PackageID`,`F_Duration`,`F_Currency`,`F_Price`,`F_OfferStartDate`,`F_OfferEndDate`) VALUES
+('63','Clarity English 1-month','21','31','USD','39.99','2012-07-20',NULL),
+('64','Clarity English 3-months','21','92','USD','59.99','2012-07-20',NULL),
+('65','Clarity English 1-year','21','365','USD','199.99','2012-07-20',NULL);
+
+INSERT INTO T_Package VALUES 
+(21, 'Clarity English');
+
+INSERT INTO `T_PackageContents`
+(`F_PackageID`,`F_ProductCode`,`F_CourseID`) VALUES
+('21','9','0'),
+('21','33','0'),
+('21','39','0'),
+('21','49','0'),
+('21','10','0'),
+('21','38','0'),
+('21','40','0'),
+('21','43','0'),
+('21','1001','0');
+
+-- Learn English Test Spanish
+INSERT INTO T_ProductLanguage VALUES (36, 'ES', 'LearnEnglishTest-Spanish');
+
+-- BUG: Usage stats should ignore opt out emails switch
+DELETE FROM T_Triggers WHERE F_TriggerID = 33;
+INSERT INTO `rack80829`.`T_Triggers`
+(`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
+VALUES
+(33,'Subscription reminder usage stats',null,null,20,'method=getAccounts&startDay={day}&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',null,null,'usageStats','daily',2);

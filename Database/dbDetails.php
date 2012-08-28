@@ -46,6 +46,14 @@ class DBDetails {
 				$this->dbname = "rack80829";
 				break;
 			*/
+			case 400:
+				$this->driver = "mysql";
+				$this->host = "46.38.190.53";
+				$this->user = "clarity";
+				$this->password = "cl4r479@";
+				$this->dbname = "clarity";
+				break;
+				
 			case 30:
 				$this->driver = "pdo_sqlite"; 
 				$this->dbname  = urlencode("../../../../../Database/clarity.db");

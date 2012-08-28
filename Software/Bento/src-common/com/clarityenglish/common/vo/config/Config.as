@@ -91,6 +91,9 @@ package com.clarityenglish.common.vo.config {
 		// For holding chart templates
 		private var _chartTemplates:XML;
 		
+		// For performance logging
+		public var appLaunchTime:Number;
+		
 		/**
 		 * Developer option
 		 */
@@ -119,6 +122,7 @@ package com.clarityenglish.common.vo.config {
 		 * 	  language
 		 *    ip
 		 *    referrer
+		 * 	  startTime
 		 */
 		public function mergeParameters(parameters:Object):void {
 			if (parameters.dbHost)
@@ -157,6 +161,12 @@ package com.clarityenglish.common.vo.config {
 			
 			// #336 SCORM
 			if (parameters.scorm) this.scorm = parameters.scorm;
+			
+			// Assuming this comes from PHP it will be in seconds, as time is in milliseconds
+			// But cleaner to convert it in the start page
+			if (parameters.startTime)
+				this.appLaunchTime = parameters.startTime;
+
 		}
 		/**
 		 * Do any substitutions that you can for the menu filename
