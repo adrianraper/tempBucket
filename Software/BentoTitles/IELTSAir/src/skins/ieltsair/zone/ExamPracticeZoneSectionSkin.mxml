@@ -51,10 +51,30 @@
 		</s:layout>
 		<s:itemRenderer>
 			<fx:Component>
-				<s:DataRenderer width="386">
+				<s:DataRenderer width="386" addedToStage="onAddedToStage(event)" removedFromStage="onRemovedFromStage(event)">
 					<fx:Script>
 						<![CDATA[
 							import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+							import com.clarityenglish.ielts.view.zone.ZoneView;
+							
+							import mx.binding.utils.ChangeWatcher;
+							import mx.events.FlexEvent;
+							
+							private var changeWatcher:ChangeWatcher;
+							
+							protected function onAddedToStage(event:Event):void {
+								var zoneView:ZoneView = outerDocument.parentDocument["hostComponent"];
+								changeWatcher = ChangeWatcher.watch(zoneView, "courseClass", onCourseClassChanged, false, true);
+							}
+							
+							protected function onRemovedFromStage(event:Event):void {
+								changeWatcher.unwatch();
+								changeWatcher = null;
+							}
+							
+							private function onCourseClassChanged(e:Event):void {
+								invalidateProperties();
+							}
 							
 							override protected function commitProperties():void {
 								super.commitProperties();
