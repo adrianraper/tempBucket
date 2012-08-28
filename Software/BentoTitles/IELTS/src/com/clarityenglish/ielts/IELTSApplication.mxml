@@ -50,9 +50,6 @@
 			public static const ACADEMIC_MODULE:uint = 52;
 			public static const GENERAL_TRAINING_MODULE:uint = 53;
 			
-			// How did this variable get generated?
-			//private var com_clarityenglish_ielts_view_progress_ui_ProgressCourseBarComponent_obj:com.clarityenglish.ielts.view.progress.ui.ProgressCourseBarComponent;
-			
 			override protected function get facade():BentoFacade {
 				return IELTSApplicationFacade.getInstance();
 			}
@@ -124,7 +121,7 @@
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="19" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ClarityIcon')" left="124" top="13" />
 		<s:Label text="Data, Video © The British Council 2006-2012. Software, Design, Navigation © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" paddingTop="26" right="20" fontSize="12" />
-		<s:Label text="V2.0.0.952" color="#FFFFFF" paddingTop="10" right="23" fontSize="12" />
+		<s:Label text="V2.0.0.953" color="#FFFFFF" paddingTop="10" right="23" fontSize="12" />
 	</s:Group>
 	
 	<s:TextArea id="logTextArea" visible="false" width="100%" height="100%" color="red" mouseChildren="false" mouseEnabled="false" contentBackgroundAlpha="0" />

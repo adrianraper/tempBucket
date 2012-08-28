@@ -26,7 +26,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup 2", "name":"Kima 130","studentID":"winhoe 130", "teacherName":"jessie_teacher", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8123-4567","name":"heston bloom","password":"1234","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-10-04 03:14:24","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
-	//$inputData = '{"method":"getUser","studentID":"5216-8123-4567","groupID":"168","dbHost":1,"loginOption":2}';
+	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8987-3456","name":"Gustomer","password":"uiop","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-08-29","country":"Hong Kong","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3

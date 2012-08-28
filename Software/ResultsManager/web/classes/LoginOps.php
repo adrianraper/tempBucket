@@ -338,9 +338,7 @@ EOD;
 		// But it isn't actually very important so leave here for now.
 		// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
-			$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
-			$ip = $ipList[0];
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 		} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 			$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 		} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
@@ -352,6 +350,12 @@ EOD;
 		// #319 Instance ID per productCode
 		// Get the existing set of instance IDs and add/update for this title
 		$instanceArray = $this->getInstanceArray($userID);
+		
+		// If the database value is null, the above returns null
+		// but php then makes the array assignment work fine!
+		// However, safer to do it explicitly 
+		if (!$instanceArray)
+			$instanceArray = array();
 		$instanceArray[$productCode] = $instanceID;
 		$instanceControl = json_encode($instanceArray);
 

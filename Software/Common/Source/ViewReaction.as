@@ -71,8 +71,9 @@ _global.ORCHID.viewObj.userEvent = function(event) {
 			//v6.4.2 Shouldn't this use be protected in some way? Add it to allowedActions in the licence?
 			// but there are a lot of location files that already use it I think. Maybe base protection on licence version.
 			} else if (_global.ORCHID.commandLine.action == "anonymous") {
-				myTrace("use anonymous user");
-				_global.ORCHID.user.startUser("", "");
+				myTrace("use anonymous user, set userID=-1");
+				// v6.6.0.2 Send anonymous users with userID = -1
+				_global.ORCHID.user.startUser("", "", null, -1);
 			// let a user be passed and register them
 			} else if (_global.ORCHID.commandLine.userName != undefined && _global.ORCHID.commandLine.action == "newUser") {
 				myTrace("add passed user " + _global.ORCHID.commandLine.userName);
@@ -129,17 +130,24 @@ _global.ORCHID.viewObj.userEvent = function(event) {
 		case "onNoSuchID":
 			// v6.3.3 If this is a SCORM user, then automatically add this new user (password="")
 			if (_global.ORCHID.commandLine.scorm) {
-				myTrace("add new scorm user " + _global.ORCHID.commandLine.userName);
 				//var registerUser = {name:_global.ORCHID.commandLine.userName, password:"", eMail:"scorm"};
-				var registerUser = {name:_global.ORCHID.commandLine.userName, password:"", registerMethod:"scorm"};
-				// v6.5.6 We might know studentID too as this comes back from SCORM now
-				if (_global.ORCHID.commandLine.studentID!=undefined && _global.ORCHID.commandLine.studentID!="") {
-					myTrace("and user SCORM studentID " + _global.ORCHID.commandLine.studentID);
-					registerUser.studentID = _global.ORCHID.commandLine.studentID;
+				// v6.6.0.2 Only add them if the name is not empty
+				if ( _global.ORCHID.commandLine.userName!='' && _global.ORCHID.commandLine.userName!=undefined) {
+					myTrace("add new scorm user " + _global.ORCHID.commandLine.userName);
+					var registerUser = {name:_global.ORCHID.commandLine.userName, password:"", registerMethod:"scorm"};
+					// v6.5.6 We might know studentID too as this comes back from SCORM now
+					if (_global.ORCHID.commandLine.studentID!=undefined && _global.ORCHID.commandLine.studentID!="") {
+						myTrace("and user SCORM studentID " + _global.ORCHID.commandLine.studentID);
+						registerUser.studentID = _global.ORCHID.commandLine.studentID;
+					}
+					// v6.5.3 We need to count licences before doing this
+					//_global.ORCHID.user.addNewUser(registerUser);
+					_global.ORCHID.user.addNewUserCheck(registerUser);
+				} else {
+					myTrace("new scorm user, but name is empty");
+					_global.ORCHID.root.buttonsHolder.LoginScreen.message_txt.text = _global.ORCHID.literalModelObj.getLiteral("noSuchUser", "messages");
+					this.displayScreen("LoginScreen");
 				}
-				// v6.5.3 We need to count licences before doing this
-				//_global.ORCHID.user.addNewUser(registerUser);
-				_global.ORCHID.user.addNewUserCheck(registerUser);
 			// v6.4.3 Or - if you are coming from a non SCORM LMS / direct linking you might want to accept
 			// any user, be they existing or new
 			// v6.4.2.7 Check that you have a name before doing this

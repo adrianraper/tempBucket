@@ -146,6 +146,14 @@ package com.clarityenglish.common.vo.config {
 			
 			if (parameters.ip) this.ip = parameters.ip;
 			if (parameters.referrer) this.referrer = parameters.referrer;
+
+			// #361
+			if (parameters.instanceID) {
+				this.instanceID = parameters.instanceID;
+			} else {
+				var timeStamp:Date = new Date();
+				this.instanceID = timeStamp.getTime().toString();
+			}
 			
 			// #336 SCORM
 			if (parameters.scorm) this.scorm = parameters.scorm;

@@ -33,6 +33,8 @@ class Condition {
 	var $userExpiryDate;
 	// v3.6 For IELTSPractice.com
 	var $resellerID;
+	// v3.6 For overriding opt out of emails
+	var $optOutEmails;
 	
 	function Condition($conditionString, $timeStamp = null ) {
 		$this->timeStamp = $timeStamp;
@@ -99,6 +101,9 @@ class Condition {
 		// v3.6
 		if (isset($conditionArray['resellerID'])) 
 			$this->resellerID = $conditionArray['resellerID'];
+		// v3.6
+		if (isset($conditionArray['optOutEmails'])) 
+			$this->optOutEmails = $conditionArray['optOutEmails'];
 	}
 	/*
 	 * Build a query string from the condition - is this just for debugging?
@@ -203,4 +208,3 @@ class Condition {
 	}
 }
 
-?>

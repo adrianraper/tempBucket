@@ -86,10 +86,6 @@ package com.clarityenglish.common.model {
 			if (configProxy.getConfig().ip)
 				loginObj.ip = configProxy.getConfig().ip;
 			
-			// Create a unique number to use as an instance ID, and save it in the config object
-			var instanceID:Number = new Date().getTime();
-			configProxy.getConfig().instanceID = instanceID.toString();
-			
 			// #340
 			// Network allows anonymous entry if all fields are blank
 			if (((configProxy.getConfig().licenceType == Title.LICENCE_TYPE_NETWORK) || 
@@ -101,7 +97,8 @@ package com.clarityenglish.common.model {
 			
 			// #307 Add rootID and productCode
 			// #341 Add verified to allow no password
-			var params:Array = [ loginObj, loginOption, verified, instanceID, configProxy.getConfig().licence, configProxy.getRootID(), configProxy.getProductCode() ];
+			// #361 instanceID
+			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, configProxy.getRootID(), configProxy.getProductCode() ];
 			new RemoteDelegate("login", params, this).execute();
 		}
 		
@@ -132,7 +129,8 @@ package com.clarityenglish.common.model {
 			
 			// #323
 			if (user && (configProxy.getLicenceType() == Title.LICENCE_TYPE_LT || 
-				configProxy.getLicenceType() == Title.LICENCE_TYPE_TT)) {
+						configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
+						configProxy.getLicenceType() == Title.LICENCE_TYPE_TT)) {
 				
 				// #319 Instance ID per productCode
 				var params:Array = [ user.userID, configProxy.getProductCode() ];
@@ -286,23 +284,32 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			
 			switch (operation) {
 				case "login":
-					// #341 For network, if you don't find the user, offer to add them
-					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					if (configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) {
-						sendNotification(CommonNotifications.CONFIRM_NEW_USER);
+					// #445 Any error other than user not found is simply reported
+					var thisError:BentoError = BentoError.create(fault);
+					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
 						
-					// For SCORM, if the user doesn't exist, automatically add them
-					} else if (configProxy.getConfig().scorm) {
-						var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-						var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
-						var loginOption:uint = configProxy.getAccount().loginOption;
-						var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
-
-						var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
-						sendNotification(CommonNotifications.ADD_USER, loginEvent);
-						
+						// #341 For network, if you don't find the user, offer to add them
+						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+						if (configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) {
+							sendNotification(CommonNotifications.CONFIRM_NEW_USER);
+							
+						// For SCORM, if the user doesn't exist, automatically add them
+						} else if (configProxy.getConfig().scorm) {
+							var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+							var configUser:User = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
+							var loginOption:uint = configProxy.getAccount().loginOption;
+							var verified:Boolean = (configProxy.getAccount().verified == 1) ? true : false;
+	
+							var loginEvent:LoginEvent = new LoginEvent(LoginEvent.ADD_USER, configUser, loginOption, verified);
+							sendNotification(CommonNotifications.ADD_USER, loginEvent);
+							
+						} else {
+							sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
+						}
 					} else {
 						sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
 					}
