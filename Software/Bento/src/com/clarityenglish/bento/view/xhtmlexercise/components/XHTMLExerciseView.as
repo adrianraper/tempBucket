@@ -46,8 +46,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		 */
 		private static const SUPPORTED_SECTIONS:Array = [ "header", "noscroll", "body", "readingText" ];
 		
-		public static var useCacheAsBitmap:Boolean = false;
-		
 		/**
 		 * These sections are required in all skins
 		 */		
@@ -94,7 +92,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		public function XHTMLExerciseView() {
 			super();
 			
-			cacheAsBitmap = useCacheAsBitmap; // #376
 			opaqueBackground = 0xFFFFFF; // #376
 		}
 		
@@ -153,8 +150,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					group.removeEventListener(MouseEvent.CLICK, onSectionClick);
 					if (exercise.model.hasSettingParam("incorrectClickSection") && exercise.model.getSettingParam("incorrectClickSection") == sectionName)
 						group.addEventListener(MouseEvent.CLICK, onSectionClick);
-					
-					group.cacheAsBitmap = xhtmlRichText.cacheAsBitmap = useCacheAsBitmap; // #376
 				}
 			}
 		}
