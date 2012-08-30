@@ -23,10 +23,7 @@
 								 top="37"
 								 showSelector="false"
 								 autoPlay="true"
-								 placeholderSource.reading="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')"
-								 placeholderSource.writing="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')"
-								 placeholderSource.listening="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')"
-								 placeholderSource.speaking="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')"
+								 placeholderSource="@Embed(source='/skins/ielts/assets/initializing_video.png')"
 								 />
 	
 </s:Skin>
