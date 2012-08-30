@@ -21,7 +21,7 @@
 	
 	<login:IELTSLoginLogo left="48" top="60" />
 	
-	<login:LoginImage top="158" right="48" />
+	<s:SWFLoader source="@Embed(source='/skins/ieltsair/assets/login/rtiv2_login.png')" top="158" right="48"  />
 	
 	<login:InputAreaChrome left="19" top="183" />
 	
