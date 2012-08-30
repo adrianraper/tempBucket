@@ -7,26 +7,6 @@
 		[HostComponent("com.clarityenglish.ieltsair.view.zone.ExamPracticeZoneSectionView")]
 	</fx:Metadata>
 	
-	<fx:Script>
-		<![CDATA[
-			import caurina.transitions.Tweener;
-			
-			public var idx:int = 0;
-			
-			private function moveList(delta:int):void {
-				if (idx + delta >= 0 && idx + delta < list.dataProvider.length) {
-					idx += delta;
-					
-					var newHorizontalScrollPosition:int = 386 * idx;
-					Tweener.removeTweens(list.scroller.viewport);
-					Tweener.addTween(list.scroller.viewport, { horizontalScrollPosition: newHorizontalScrollPosition, time: 0.6 });
-					
-					hostComponent.stopAllAudio();
-				}
-			}
-		]]>
-	</fx:Script>
-	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
@@ -42,10 +22,7 @@
 	<s:Label visible="{list.dataProvider.length > 0}" text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." fontSize="14" left="20" top="35" right="25" />
 	<s:Label visible="{list.dataProvider.length == 0}" text="There is no downloadable test practice materials in this section.  Watch the tutorials in the Advice and tutorials section to see what happens in the {hostComponent.courseClass} test interview." fontSize="14" left="20" top="35" right="25" />
 	
-	<zone:LeftArrow left="18" top="200" click="moveList(-1)" visible="{list.dataProvider.length > 0}" />
-	<zone:RightArrow right="18" top="200" click="moveList(1)" visible="{list.dataProvider.length > 0}" />
-	
-	<s:List id="list" width="386" top="90" horizontalCenter="0" contentBackgroundColor="#FFFFFF" horizontalScrollPolicy="off" verticalScrollPolicy="off">
+	<s:List id="list" width="386" top="90" bottom="0" horizontalCenter="0" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="off" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge">
 		<s:layout>
 			<s:HorizontalLayout gap="0" useVirtualLayout="true" />
 		</s:layout>
@@ -58,7 +35,9 @@
 							import com.clarityenglish.ielts.view.zone.ZoneView;
 							
 							import mx.binding.utils.ChangeWatcher;
-							import mx.events.FlexEvent;
+							import mx.collections.ListCollectionView;
+							
+							import spark.components.List;
 							
 							private var changeWatcher:ChangeWatcher;
 							
@@ -73,16 +52,19 @@
 							}
 							
 							private function onCourseClassChanged(e:Event):void {
-								invalidateProperties();
+								callLater(invalidateProperties);
 							}
 							
 							override protected function commitProperties():void {
 								super.commitProperties();
 								
-								var courseClass:String = outerDocument.hostComponent.courseClass;
-								practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
-								answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
-								swfLoader.source = "/skins/ieltsair/assets/zone/testpractice_" + courseClass + (outerDocument.idx + 1) + ".png";
+								if (data) {
+									var idx:int = ((owner as List).dataProvider as ListCollectionView).getItemIndex(data);
+									var courseClass:String = outerDocument.hostComponent.courseClass;
+									practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
+									answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
+									swfLoader.source = "/skins/ieltsair/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
+								}
 							}
 							
 							private function onButtonClick(url:String):void {
