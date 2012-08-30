@@ -1,10 +1,39 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark">
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:aircomponents="com.clarityenglish.ieltsair.components.*"
+		creationComplete="onCreationComplete(event)"
+		removedFromStage="onRemoveFromStage(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.support.SupportView")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.binding.utils.ChangeWatcher;
+			import mx.collections.ArrayCollection;
+			import mx.collections.ArrayList;
+			import mx.events.FlexEvent;
+			
+			private var changeWatcher:ChangeWatcher;
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				changeWatcher = BindingUtils.bindSetter(onScroll, scroller.viewport, "horizontalScrollPosition");
+			}
+			
+			protected function onScroll(x:* = null):void {
+				if (scroller.horizontalScrollBar)
+					pageNumberDisplay.selectedIndex = Math.floor(scroller.horizontalScrollBar.value / scroller.viewport.width);
+			}
+			
+			protected function onRemoveFromStage(event:Event):void {
+				changeWatcher.unwatch();
+				changeWatcher = null;
+			}
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -18,7 +47,7 @@
 		<s:State name="testDrive" stateGroups="bcStates" />
 	</s:states>
 	
-	<s:Scroller left="0" right="0" top="90" bottom="100" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge">
+	<s:Scroller id="scroller" left="0" right="0" top="90" bottom="100" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge">
 		<s:HGroup left="0" right="0" top="0" bottom="0">
 			<s:Group width="{width}" top="0" bottom="0">
 				<s:Group width="100%">
@@ -69,4 +98,7 @@
 			</s:Group>
 		</s:HGroup>
 	</s:Scroller>
+	
+	<!-- Since we don't have a real dataprovider fake it with a manually created ArrayCollection -->
+	<aircomponents:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="60" dataProvider="{new ArrayCollection([1, 2, 3])}" />
 </s:Skin>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:DataGroup xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			 xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			private var _selectedIndex:int;
+			
+			public function set selectedIndex(value:int):void {
+				if (_selectedIndex != value) {
+					_selectedIndex = value;
+					
+					// Force the item renderers to redraw themselves
+					// TODO: The performance on this isn't great - there would ideally be a timer that makes sure this only happens once
+					var _itemRenderer:IFactory = itemRenderer;
+					itemRenderer = null;
+					itemRenderer = _itemRenderer;
+				}
+			}
+			
+			public function get selectedIndex():int {
+				return _selectedIndex;
+			}
+		]]>
+	</fx:Script>
+	<s:layout>
+		<s:HorizontalLayout gap="18" />
+	</s:layout>
+	<s:itemRenderer>
+		<fx:Component>
+			<s:DataRenderer>
+				<fx:Script>
+					<![CDATA[
+						import mx.collections.ListCollectionView;
+						
+						import spark.components.DataGroup;
+						
+						override public function set data(value:Object):void {
+							super.data = value;
+							
+							if (data) {
+								var idx:int = (owner["dataProvider"] as ListCollectionView).getItemIndex(data);
+								solidColor.color = (outerDocument.selectedIndex == idx) ? 0x4E4E4E : 0xAAAAAA;
+							}
+						}
+					]]>
+				</fx:Script>
+				<s:Ellipse width="8" height="8">
+					<s:fill>
+						<s:SolidColor id="solidColor" />
+					</s:fill>
+				</s:Ellipse>
+			</s:DataRenderer>
+		</fx:Component>
+	</s:itemRenderer>
+</s:DataGroup>
