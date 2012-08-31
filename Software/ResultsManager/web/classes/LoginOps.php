@@ -24,6 +24,7 @@ class LoginOps {
 	
 	// Bento login has different options than RM
 	// For now write this as a different function so it can exist in the same file yet be completely different
+	// #503 rootID is now an array or rootIDs, although there will only be more than one if subRoots is set in the licence
 	function loginBento($loginObj, $loginOption, $verified, $userTypes, $rootID, $productCode = null) {
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
@@ -56,8 +57,9 @@ class LoginOps {
 		if (isset($loginObj['password']))
 			$password = $loginObj['password'];
 			
+		// #503
 		$selectFields = array("g.F_GroupID as groupID",
-							  "m.F_RootID",
+							  "m.F_RootID as rootID",
 							  "u.*");
 		$sql  = "SELECT ".join(",", $selectFields);
 		$sql .=	<<<EOD
@@ -84,8 +86,12 @@ EOD;
 		$bindingParams = array($keyValue);
 		
 		if ($rootID != null) {
-			$sql.= "AND m.F_RootID=?";
-			$bindingParams[] = $rootID;
+			// #503 rootID is an array
+			if (count($rootID) > 1) {
+				$sql.= "AND m.F_RootID IN (".implode(",",$rootID).")";
+			} else {
+				$sql.= "AND m.F_RootID=".implode(",",$rootID);
+			}
 		}
 		
 		//NetDebug::trace("sql=".$sql);

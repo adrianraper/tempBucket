@@ -98,7 +98,14 @@ package com.clarityenglish.common.model {
 			// #307 Add rootID and productCode
 			// #341 Add verified to allow no password
 			// #361 instanceID
-			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, configProxy.getRootID(), configProxy.getProductCode() ];
+			// #503 If subRoots is set in licenceAttributes, send that instead of the main rootID
+			if (configProxy.getConfig().subRoots) {
+				var rootID:Array = configProxy.getConfig().subRoots.split(',');
+			} else {
+				rootID = new Array(1);
+				rootID[0] = configProxy.getRootID();
+			}
+			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode() ];
 			new RemoteDelegate("login", params, this).execute();
 		}
 		
@@ -241,6 +248,15 @@ package com.clarityenglish.common.model {
 						// Add the licence id you just got to the config
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						configProxy.getConfig().licence.id = (data.licence as Licence).id as Number;
+						
+						// #503
+						// If login wants to change the rootID it will have sent back a new rootID in data
+						log.info("rootID was: {0}", configProxy.getConfig().rootID);
+						
+						if (data.rootID)
+							configProxy.getConfig().rootID = new Number(data.rootID);
+						
+						log.info("rootID now: {0}, data.rootID={1}", configProxy.getConfig().rootID, new Number(data.rootID));
 						
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);

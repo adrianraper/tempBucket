@@ -22,6 +22,7 @@
 		// v3.0.5 Change status handling
 		//public var approvalStatus:Number;
 		public var accountType:Number;
+		public var customerType:Number;
 		public var invoiceNumber:String;
 		public var resellerCode:Number;
 				
@@ -53,6 +54,7 @@
 			account.adminUser = User.createDefault();
 			account.adminUser.userType = User.USER_TYPE_ADMINISTRATOR;
 			// v3.0.6 Is there anything else you want to default in a new account?
+			account.customerType = 0; // Standard customer
 			account.accountType = 1; // Standard invoice
 			account.accountStatus = 0; // Account created
 			account.tacStatus = 0; // Display

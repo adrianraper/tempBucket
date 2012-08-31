@@ -7,6 +7,7 @@
 		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
+			import com.clarityenglish.dms.Constants;
 			import com.clarityenglish.common.events.SearchEvent;
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
@@ -62,6 +63,8 @@
 		
 		[Bindable]
 		private var showIndividualAccounts:Boolean;
+		[Bindable]
+		private var showFilterString:String;
 		
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
@@ -121,6 +124,7 @@
 			// Add a listener to the datagrid which will make sure sorting is kept when the dataProvider changes
 			dataGrid.addEventListener(CollectionEvent.COLLECTION_CHANGE, onDataGridDataChange, false, 0, true);
 			
+			TraceUtils.myTrace("account view creation complete");
 		}
 		
 		/*
@@ -159,6 +163,10 @@
 			if (currentSearchEvent) onSearchSubmit(currentSearchEvent);
 			
 			editMode = false;
+			
+			// To show the filter string you are currently using
+			showFilterString = Constants.filterString;
+
 		}
 		
 		private function onGenerateReportSelect(e:AccountEvent):void {
@@ -324,6 +332,11 @@
 			return (obj) ? obj.label : "";
 		}
 		
+		private function getCustomerTypeLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().customerType, item.customerType, "data");
+			return (obj) ? obj.label : "";
+		}
+
 		private function getTacStatusLabel(item:Object, column:DataGridColumn):String {
 			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().termsConditions, item.tacStatus, "data");
 			return (obj) ? obj.label : "";
@@ -395,6 +408,12 @@
 			a.individualAccounts = e.target.selected;
 			dispatchEvent(a);
 		}
+		// v3.6 For changing the filter string
+		private function onFilterStringChange(e:Event):void {
+			Constants.filterString = e.target.text;
+			var a:AccountEvent = new AccountEvent(AccountEvent.GET_ACCOUNTS, null, null, true);
+			dispatchEvent(a);
+		}
 		
 		]]>
 	</mx:Script>
@@ -405,6 +424,7 @@
 					<mx:HDividedBox width="100%">
 						<mx:HBox id="accountTypeBox" verticalGap="0" paddingLeft="5" paddingRight="5" width="10%">
 							<mx:CheckBox id="individualAccounts" label="CLS.com" selected="{showIndividualAccounts}" />
+							<mx:TextInput id="filterString" text="{showFilterString}" enabled="false" />
 						</mx:HBox>
 						<mx:HBox id="hideShowColumnVBox" verticalGap="0" paddingLeft="5" paddingRight="5" />
 					</mx:HDividedBox>
@@ -445,7 +465,7 @@
 							<mx:DataGridColumn id="tacStatusColumn" dataField="tacStatus" width="70" labelFunction="getTacStatusLabel" visible="false" />
 							<mx:DataGridColumn id="invoiceNumberColumn" dataField="invoiceNumber" width="70" visible="false" sortCompareFunction="invoiceNumericSort" />
 							<mx:DataGridColumn id="referenceColumn" dataField="reference" labelFunction="getReferenceLabel" />
-							<mx:DataGridColumn id="logoColumn" dataField="logo" visible="false" />
+							<mx:DataGridColumn id="customerTypeColumn" dataField="customerType" labelFunction="getCustomerTypeLabel" visible="false" />
 							<mx:DataGridColumn id="selfhostColumn" dataField="selfHost" visible="false" />
 						</controls:columns>
 					</controls:DKDataGrid>

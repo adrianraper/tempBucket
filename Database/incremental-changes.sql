@@ -419,8 +419,8 @@ UPDATE `T_Product` SET F_ProductName='Clear Pronunciation 1' WHERE F_ProductCode
 -- For R2IV2
 DELETE FROM T_Product WHERE F_ProductCode IN (52,53);
 INSERT INTO `T_Product` VALUES
-(52,'Road to IELTS 2 Academic',NULL,3),
-(53,'Road to IELTS 2 General Training',NULL,4);
+(52,'Road to IELTS Academic',NULL,3),
+(53,'Road to IELTS General Training',NULL,4);
 
 DELETE FROM rack80829.T_ProductLanguage WHERE F_ProductCode IN (52,53);
 INSERT INTO rack80829.T_ProductLanguage VALUES 
@@ -603,3 +603,28 @@ INSERT INTO `rack80829`.`T_Triggers`
 (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
 VALUES
 (33,'Subscription reminder usage stats',null,null,20,'method=getAccounts&startDay={day}&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',null,null,'usageStats','daily',2);
+
+-- Just to update the BC LearnEnglish test old database
+ALTER TABLE `T_Score` ADD COLUMN `F_ProductCode` SMALLINT(5) DEFAULT NULL AFTER `F_CourseID`;
+UPDATE T_Score SET F_ProductCode=36 WHERE F_ProductCode is NULL;
+
+-- Add customerType to T_AccountRoot
+ALTER TABLE `T_AccountRoot` ADD COLUMN `F_CustomerType` SMALLINT(5) DEFAULT '0' AFTER `F_OptOutEmailDate` ;
+DROP TABLE IF EXISTS `T_CustomerType`;
+CREATE TABLE `T_CustomerType` (
+  `F_Type` smallint(5) NOT NULL,
+  `F_Description` varchar(32) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+INSERT INTO T_CustomerType VALUES 
+(0, '-'),
+(1, 'Library'),
+(2, 'Partner');
+update T_AccountRoot
+set F_CustomerType = 1
+where F_Name like ('%Library%');
+update T_AccountRoot
+set F_CustomerType = 0
+where not F_Name like ('%Library%');
+
+
+

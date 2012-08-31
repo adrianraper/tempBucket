@@ -150,9 +150,10 @@ class BentoService extends AbstractService {
 	// Assume, for now, that rootID and productCode were put into session variables by getAccountDetails
 	// otherwise they need to be passed with every call.
 	// #307 Pass rootID and productCode rather than get them from session vars
+	// #503 rootID is now an array or rootIDs, although there will only be more than one if subRoots is set in the licence
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null) {
-		if (!$rootID) $rootID = Session::get('rootID');
+		if (!$rootID) $rootID = array(Session::get('rootID'));
 		if (!$productCode) $productCode = Session::get('productCode');
 
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
@@ -183,6 +184,10 @@ class BentoService extends AbstractService {
 		Session::set('valid_userIDs', array($userObj->F_UserID));
 		Session::set('userID', $userObj->F_UserID);
 		Session::set('userType', $userObj->F_UserType);
+		
+		// #503 From login you now only have one rootID even if you started with an array
+		$rootID = $userObj->rootID;
+		Session::set('rootID', $rootID);
 		
 		// Check that you can give this user a licence
 		// Use exception handling if there is NO available licence
@@ -215,8 +220,10 @@ class BentoService extends AbstractService {
 		// you can use them in licence control.
 		
 		// Send this information back
+		// #503 including the root that you really found the user in
 		return array("group" => $group,
 					 "licence" => $licence,
+					 "rootID" => $rootID,
 					 "content" => $contentObj);
 	}
 	

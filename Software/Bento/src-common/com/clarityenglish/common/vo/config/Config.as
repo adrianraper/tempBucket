@@ -426,6 +426,20 @@ package com.clarityenglish.common.vo.config {
 		}
 		
 		/**
+		 * #530
+		 * This looks up a specific entry in the licence attribues
+		 */
+		public function get subRoots():String {
+			if (this.account.licenceAttributes) {
+				for each (var lA:Object in this.account.licenceAttributes) {
+					if (lA.licenceKey.toLowerCase() == 'subroots')
+						return lA.licenceValue;
+				}
+			}
+			return null;
+		}
+		
+		/**
 		 * This getter lets you find the licence type directly from the config object
 		 * 
 		 * @return the licence type - can match against Title.LEARNER_TRACKING etc

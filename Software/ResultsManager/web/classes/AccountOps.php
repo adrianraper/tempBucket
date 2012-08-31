@@ -170,6 +170,9 @@ SQL;
 					case 'accountType':
 						$selectBuilder->addWhere("a.F_AccountType = '".$value."'");
 						break;
+					case 'customerType':
+						$selectBuilder->addWhere("a.F_CustomerType = '".$value."'");
+						break;
 					case 'accountStatus':
 						$selectBuilder->addWhere("a.F_AccountStatus = '".$value."'");
 						break;
@@ -429,6 +432,9 @@ SQL;
 			//	return $this->db->GetArray("SELECT F_Status data, F_Description label FROM T_ApprovalStatus");
 			case "accountType":
 				$result = $this->db->GetArray("SELECT F_Type data, F_Description label FROM T_AccountType");
+				break;
+			case "customerType":
+				$result = $this->db->GetArray("SELECT F_Type data, F_Description label FROM T_CustomerType");
 				break;
 			case "resellers":
 				$result = $this->db->GetArray("SELECT F_ResellerID data, F_ResellerName label FROM T_Reseller order by F_DisplayOrder");

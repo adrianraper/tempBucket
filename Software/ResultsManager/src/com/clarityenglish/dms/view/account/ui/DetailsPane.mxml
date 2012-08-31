@@ -37,6 +37,7 @@
 			// v3.0.5 Change status handling
 			//approvalStatusFormItem.label = copyProvider.getCopyForId("approvalStatusFormItem");
 			accountTypeFormItem.label = copyProvider.getCopyForId("accountTypeFormItem");
+			customerTypeFormItem.label = copyProvider.getCopyForId("customerTypeFormItem");
 			
 			tacStatusFormItem.label = copyProvider.getCopyForId("tacStatusFormItem");
 			adminUserFormItem.label = copyProvider.getCopyForId("adminUserFormItem");
@@ -80,6 +81,7 @@
 			// v3.0.5 Change status handling
 			//account.approvalStatus = approvalStatusComboBox.value as Number;
 			account.accountType = accountTypeComboBox.value as Number;
+			account.customerType = customerTypeComboBox.value as Number;
 			account.tacStatus = tacStatusComboBox.value as Number;
 			account.reference = referenceTextInput.text;
 			account.invoiceNumber = invoiceNumberTextInput.text;
@@ -140,8 +142,8 @@
 		<mx:FormItem id="accountStatusFormItem">
 			<fxc:VAComboBox id="accountStatusComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().accountStatus}" value="{account.accountStatus}" />
 		</mx:FormItem>
-		<mx:FormItem id="selfHostFormItem" >
-			<mx:CheckBox id="selfHostCheckBox" enabled="{editMode}" selected="{account.selfHost}" />
+		<mx:FormItem id="customerTypeFormItem">
+			<fxc:VAComboBox id="customerTypeComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().customerType}" value="{account.customerType}" />
 		</mx:FormItem>
 		<mx:HBox>
 			<mx:FormItem id="optOutEmailsFormItem" paddingLeft="15" >
@@ -151,6 +153,9 @@
 				<mx:TextInput width="150" id="optOutEmailDateTextInput" enabled="{editMode}" text="{account.optOutEmailDate}" />
 			</mx:FormItem>
 		</mx:HBox>
+		<mx:FormItem id="selfHostFormItem" >
+			<mx:CheckBox id="selfHostCheckBox" enabled="{editMode}" selected="{account.selfHost}" />
+		</mx:FormItem>
 		<mx:FormItem id="loginOptionFormItem">
 			<mx:TextInput width="50" id="loginOptionInput" enabled="false" text="{account.loginOption}" />
 		</mx:FormItem>

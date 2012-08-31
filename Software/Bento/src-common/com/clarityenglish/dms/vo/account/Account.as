@@ -20,6 +20,7 @@
 		// v3.0.5 Change status handling
 		//public var approvalStatus:Number;
 		public var accountType:Number;
+		public var customerType:Number;
 		public var invoiceNumber:String;
 		public var resellerCode:Number;
 				

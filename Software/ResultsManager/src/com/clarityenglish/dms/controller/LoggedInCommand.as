@@ -27,6 +27,7 @@ package com.clarityenglish.dms.controller {
 			// v3.0.5 Change status handling
 			facade.registerProxy(new DictionaryProxy( [ "accountStatus",
 														"accountType",
+														"customerType",
 														"resellers",
 														"termsConditions",
 														"products",
