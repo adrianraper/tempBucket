@@ -23,10 +23,10 @@
 	<s:Label id="welcomeLabel" left="39" top="202" />
 	<s:Label id="noticeLabel" left="39" top="221" />
 	
-	<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Reading" courseClass="reading" id="readingCoverageBar" left="39" top="252" width="375" />
-	<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Listening" courseClass="listening" id="listeningCoverageBar" left="39" top="326" width="375" />
-	<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Speaking" courseClass="speaking" id="speakingCoverageBar" left="39" top="400" width="375" />
-	<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Writing" courseClass="writing" id="writingCoverageBar" left="39" top="474" width="375" />
+	<ui:CourseBarRenderer id="readingCoverageBar" data="{hostComponent.dataProvider}" courseCaption="Reading" courseClass="reading" left="39" top="252" width="375" />
+	<ui:CourseBarRenderer id="listeningCoverageBar" data="{hostComponent.dataProvider}" courseCaption="Listening" courseClass="listening" left="39" top="326" width="375" />
+	<ui:CourseBarRenderer id="speakingCoverageBar" data="{hostComponent.dataProvider}" courseCaption="Speaking" courseClass="speaking" left="39" top="400" width="375" />
+	<ui:CourseBarRenderer id="writingCoverageBar" data="{hostComponent.dataProvider}" courseCaption="Writing" courseClass="writing" left="39" top="474" width="375" />
 	
 	<s:Button id="readingCourseButton" right="20" top="152" />
 	<s:Button id="listeningCourseButton" right="20" top="258" />

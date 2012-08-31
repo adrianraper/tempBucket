@@ -5,14 +5,16 @@
 		xmlns:title="skins.ieltsair.assets.title.*"
 		xmlns:assets="skins.ieltsair.assets.*"
 		xmlns:zone="skins.ieltsair.assets.zone.*"
-		xmlns:zone1="com.clarityenglish.ieltsair.view.zone.*"
-		creationComplete="creationComplete(event)" xmlns:local="*">
+		xmlns:airzone="com.clarityenglish.ieltsair.view.zone.*"
+		creationComplete="creationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
 	</fx:Metadata>
 	<fx:Script>
 		<![CDATA[
+			import caurina.transitions.Tweener;
+			
 			import mx.events.FlexEvent;
 			
 			import org.davekeen.transitions.PatchedSlideViewTransition;
@@ -35,19 +37,29 @@
 				// PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
 				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
 				pushTransition.direction = ViewTransitionDirection.LEFT;
+				pushTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
 				pushTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
 				homeViewNavigator.defaultPushTransition = pushTransition;
 				
 				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
 				popTransition.direction = ViewTransitionDirection.RIGHT;
+				popTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
 				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
 				homeViewNavigator.defaultPopTransition = popTransition;
+			}
+			
+			protected function onTransitionStarted(event:FlexEvent):void {
+				// #390
+				Tweener.pauseAllTweens();
 			}
 			
 			/**
 			 * Hide the tab bar if the state is 'exercise' at the end of a transition, otherwise show the tab bar
 			 */
 			protected function onTransitionFinished(event:FlexEvent):void {
+				// #390
+				callLater(Tweener.resumeAllTweens);
+				
 				callLater((currentState == "exercise") ? sectionNavigator.hideTabBar : sectionNavigator.showTabBar);
 				hostComponent.updateStateFromSectionNavigator();
 			}
@@ -75,14 +87,14 @@
 	<assets:BritishCouncilClarityLogo bottom="51" excludeFrom="exercise" />
 	<assets:GreyCircles bottom="51" right="0" excludeFrom="exercise" />
 	
-	<zone1:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
+	<airzone:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
 	
 	<!-- #479 -->
 	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#AAAAAA" right="3" bottom="52" excludeFrom="exercise" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">	
 		
-		<s:ViewNavigator  id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" left="0" right="0" height="100%" >
+		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" left="0" right="0" height="100%" >
 			<s:navigationContent>
 				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
 			</s:navigationContent>

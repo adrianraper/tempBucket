@@ -143,8 +143,8 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		protected function onSectionNavigatorChange(event:Event):void {
+			// #486
 			lastSelectedSectionIdx = event.target.selectedIndex;
-			trace("GOT: " + lastSelectedSectionIdx);
 		}
 		
 	}
