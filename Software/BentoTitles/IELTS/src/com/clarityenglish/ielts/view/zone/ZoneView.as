@@ -3,11 +3,11 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
-	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.zone.courseselector.CourseSelector;
 	
 	import flash.events.Event;
 	
+	import mx.core.ISelectableList;
 	import mx.formatters.DateFormatter;
 	
 	import org.osflash.signals.Signal;
@@ -18,11 +18,17 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var courseSelector:CourseSelector;
 		
+		[SkinPart(required="true")]
+		public var sectionNavigator:ISelectableList;
+		
 		[Bindable]
 		public var user:User;
 		
 		[Bindable]
 		public var dateFormatter:DateFormatter;
+		
+		// #486
+		private static var lastSelectedSectionIdx:int = -1
 		
 		/**
 		 * ZoneView specifically needs to know if it is mediated or not in order to implement #222.  This is not necessary for most views.
@@ -102,6 +108,11 @@ package com.clarityenglish.ielts.view.zone {
 					courseSelector.addEventListener("listeningSelected", onCourseSelectorClick, false, 0, true);
 					courseSelector.addEventListener("speakingSelected", onCourseSelectorClick, false, 0, true);
 					break;
+				case sectionNavigator:
+					// #486
+					sectionNavigator.addEventListener(Event.CHANGE, onSectionNavigatorChange, false, 0, true);
+					if (lastSelectedSectionIdx >= 0) sectionNavigator.selectedIndex = lastSelectedSectionIdx;
+					break;
 			}
 		}
 		
@@ -129,6 +140,11 @@ package com.clarityenglish.ielts.view.zone {
 			} else {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
+		}
+		
+		protected function onSectionNavigatorChange(event:Event):void {
+			lastSelectedSectionIdx = event.target.selectedIndex;
+			trace("GOT: " + lastSelectedSectionIdx);
 		}
 		
 	}
