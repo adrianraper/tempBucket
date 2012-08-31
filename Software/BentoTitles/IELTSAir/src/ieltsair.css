@@ -52,6 +52,12 @@ ielts|IELTSApplication s|ActionBar {
 	defaultButtonAppearance: beveled;
 }
 
+ielts|IELTSApplication s|ActionBar {
+	/* #484 */
+	skinClass: ClassReference("skins.ieltsair.title.PaddableActionBarSkin");
+	buttonSpacing: 5;
+}
+
 ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#startAgainButton,
 ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
 ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
