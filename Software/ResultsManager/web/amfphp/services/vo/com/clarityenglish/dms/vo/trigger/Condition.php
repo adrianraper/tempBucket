@@ -14,6 +14,7 @@ class Condition {
 	var $select;
 	var $update;
 	var $accountType;
+	var $customerType;
 	var $accountStatus;
 	var $notAccountStatus;
 	var $licenceType;
@@ -33,6 +34,8 @@ class Condition {
 	var $userExpiryDate;
 	// v3.6 For IELTSPractice.com
 	var $resellerID;
+	// v3.6 For overriding opt out of emails
+	var $optOutEmails;
 	
 	function Condition($conditionString, $timeStamp = null ) {
 		$this->timeStamp = $timeStamp;
@@ -63,6 +66,8 @@ class Condition {
 		// Must be a clever PHP way to do this...
 		if (isset($conditionArray['accountType'])) 
 			$this->accountType = $conditionArray['accountType'];
+		if (isset($conditionArray['customerType'])) 
+			$this->accountType = $conditionArray['customerType'];
 		if (isset($conditionArray['accountStatus'])) 
 			$this->accountStatus = $conditionArray['accountStatus'];
 		if (isset($conditionArray['notAccountStatus'])) 
@@ -99,6 +104,9 @@ class Condition {
 		// v3.6
 		if (isset($conditionArray['resellerID'])) 
 			$this->resellerID = $conditionArray['resellerID'];
+		// v3.6
+		if (isset($conditionArray['optOutEmails'])) 
+			$this->optOutEmails = $conditionArray['optOutEmails'];
 	}
 	/*
 	 * Build a query string from the condition - is this just for debugging?
@@ -203,4 +211,3 @@ class Condition {
 	}
 }
 
-?>

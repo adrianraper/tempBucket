@@ -14,6 +14,7 @@ class Account extends Reportable {
 	// v3.0.5 Change status handling
 	// var $approvalStatus;
 	var $accountType;
+	var $customerType;
 	var $invoiceNumber;
 	var $resellerCode;
 	var $reference;
@@ -106,6 +107,7 @@ class Account extends Reportable {
 		$this->reference = $obj->F_Reference;
 		$this->logo = $obj->F_Logo;
 		$this->accountType = $obj->F_AccountType;
+		$this->customerType = $obj->F_CustomerType;
 		// v3.0.6 Self-hosting
 		// v3.6 AWS switch, data type is now tinyint, we want to treat it as boolean
 		//$this->selfHost = $obj->F_SelfHost;
@@ -145,6 +147,7 @@ class Account extends Reportable {
 		$array['F_Reference'] = $this->reference;
 		$array['F_Logo'] = $this->logo;
 		$array['F_AccountType'] = $this->accountType;
+		$array['F_CustomerType'] = $this->customerType;
 		// v3.0.6 Self-hosting
 		$array['F_SelfHost'] = ($this->selfHost) ? 1 : 0;
 		// v3.0.6 Anonymous Access login through CE.com/shared
@@ -184,6 +187,7 @@ class Account extends Reportable {
 						"$prefix.F_Reference",
 		// v3.0.6 Self-hosting
 						"$prefix.F_AccountType",
+						"$prefix.F_CustomerType",
 						"$prefix.F_SelfHost",
 		// v3.0.6 Anonymous Access login through CE.com/shared
 						"$prefix.F_LoginOption",

@@ -654,7 +654,9 @@ UserObject.prototype.startUser = function(myName, myPassword, myStudentID, myUse
 	myStudentID = _global.ORCHID.root.objectHolder.safeQuotes(myStudentID);
 	
 	// v6.5.5.5 Allow userID login
-	if (myUserID!=undefined && myUserID>0) {
+	// v6.6.0.2 including anonymous -1 user
+	//if (myUserID!=undefined && myUserID>0) {
+	if (myUserID!=undefined && myUserID!='') {
 		var myLoginOption = _global.ORCHID.accessControl.ACCELogin;
 	} else {
 		var myLoginOption = _global.ORCHID.programSettings.loginOption;

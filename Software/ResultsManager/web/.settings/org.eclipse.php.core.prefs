@@ -1,5 +1,5 @@
-#Mon Jan 16 09:39:38 CST 2012
+#Wed Aug 22 17:44:57 CST 2012
 eclipse.preferences.version=1
-include_path=0;/BentoPHP/amfphp/services/vo/com\u00050;/BentoPHP/amfphp\u00050;/BentoPHP/classes\u00050;/BentoPHP/amfphp/services/vo/com/clarityenglish\u00050;/BentoPHP/amfphp/services/vo\u00050;/BentoPHP/amfphp/services/vo/com/clarityenglish/common\u00050;/BentoPHP/amfphp/services/vo/com/clarityenglish/dms\u00050;/BentoPHP/amfphp/services
+include_path=0;/BentoPHP
 phpVersion=php5
 use_asp_tags_as_php=false

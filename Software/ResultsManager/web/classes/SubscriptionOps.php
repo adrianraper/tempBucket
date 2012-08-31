@@ -627,7 +627,7 @@ EOD;
 				   SET F_Status = ?, F_RootID = ?, F_DateStamp = ? 
 				   WHERE F_SubscriptionID = ?
 EOD;
-			$rs = $this->db->Execute($sql, array($api->subscription->status, $rootID, $api->subscription->id, date('Y-m-d H:i:s')));
+			$rs = $this->db->Execute($sql, array($api->subscription->status, $rootID, date('Y-m-d H:i:s'), $api->subscription->id));
 			
 			if ($rs) 
 				return true;

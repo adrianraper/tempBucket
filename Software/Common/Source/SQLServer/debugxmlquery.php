@@ -22,7 +22,8 @@ class XMLQuery {
 	$post = file_get_contents("php://input");
 	//Global $node;
 	//$node .= "<note>" .urlencode($post)  ."</note>";
-	$post = '<query dbHost="2" method="getInstanceID" userID="11259" />';
+	//$post = '<query dbHost="2" method="writeSpecificStats" rootID="14449" userID="251563" productCode="10" courseID="51" itemID="51" sessionID="2228973" databaseVersion="840" cacheVersion="1343358520347.25" />';
+	//$post = '<query dbHost="2" method="getSpecificStats" rootID="14449" userID="251563" productCode="10" courseID="51" itemID="51" sessionID="2228973" databaseVersion="840" cacheVersion="1343358520347.25" />';
 //	$post = '<query dbHost="2" method="startUser" rootID="163" userID="" name="adrian raper" studentID="p574528(8)" password="$!null_!$" dateStamp="2012-05-20 13:09:05" loginOption="1" instanceID="1337504945953" productCode="33" databaseVersion="7" />';
 //	$post = '<query dbHost="2" method="getLicenceSlot" licences="998" licenceType="1" rootID="163" userID="11259" userType="0" productCode="9" licenceStartDate="2013-01-01 00:00:00" databaseVersion="6" cacheVersion="1336101653367" />';
 //	$post = '<query dbHost="2" method="getLicenceSlot" licences="39" licenceType="1" rootID="163" userID="11259" userType="0" productCode="1" licenceStartDate="2011-01-01 00:00:00" databaseVersion="6" cacheVersion="1318838074491" />';

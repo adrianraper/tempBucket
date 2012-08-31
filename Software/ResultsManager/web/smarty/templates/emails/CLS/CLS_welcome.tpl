@@ -125,7 +125,7 @@
 {if $generalEnglishpackage=='true'}
 	{assign var='thisImage' value='title_GE_email.jpg'}
 	{assign var='thisName' value='General English'}
-	{assign var='thisPackageList' value='3,9,33,39'}
+	{assign var='thisPackageList' value='49,9,33,39'}
 	{include file='file:includes/CLS_welcome_package_details.tpl'}	
 {/if}
 {if $careerEnglishpackage=='true'}

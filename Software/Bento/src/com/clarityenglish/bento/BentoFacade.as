@@ -111,6 +111,9 @@
 			// #472
 			registerCommand(BBNotifications.NETWORK_CHECK_AVAILABILITY, NetworkCheckAvailability);
 			registerCommand(BBNotifications.NETWORK_UNAVAILABLE, BentoResetCommand);
+
+			// Performance logging
+			registerCommand(CommonNotifications.PERFORMANCE_LOG, PerformanceLogCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

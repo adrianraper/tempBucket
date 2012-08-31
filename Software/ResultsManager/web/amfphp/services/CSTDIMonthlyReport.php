@@ -14,7 +14,11 @@ $minimalService = new MinimalService();
 
  // The script will be run on the first of the month, reporting on the last month
  // It needs to be added to AWS cron to get the monthly triggering.
-$m = date('n'); 
+ if (isset($_GET['month'])) {
+ 	$m = $_GET['month']+1;
+ } else {
+	$m = date('n'); 
+ }
 $startDate = date('Y-m-d', mktime(1,1,1,$m-1,1,date('Y'))); 
 $endDate = date('Y-m-d', mktime(1,1,1,$m,0,date('Y')));
 $rootID = 14449;
@@ -31,6 +35,7 @@ exit(0);
 function writeOut($text, $mode = '') {
 	global $outputDevice;
 	global $outputText;
+	global $m;
 	
 	$outputText.=$text;
 	if ($outputDevice == 'screen') {
@@ -38,7 +43,7 @@ function writeOut($text, $mode = '') {
 	} else {
 		if ($mode == 'stop') {
 			// workout the filename and open it
-			$datePart = date('Ym');
+			$datePart = date('Y').$m;
 			$baseDir = $GLOBALS['logs_dir'];
 			$baseFolder = realpath($baseDir);
 			if (!$baseFolder)
@@ -67,7 +72,17 @@ function writeOutFooter() {
 	writeOut($string, 'stop');
 }
 function writeOutRecord($row) {
-	$string = '"'.$row[0].'","'.$row[1].'","'.$row[2].'","'.$row[3].'","'.$row[4].'","'.$row[5].'"'."\n";
+	if ($row[2]=='') {
+		$evalFormattedDate = '';
+	} else {
+		$evalFormattedDate = strftime("%m/%d/%Y", strtotime($row[2]));
+	}
+	if ($row[4]=='') {
+		$quizFormattedDate = '';
+	} else {
+		$quizFormattedDate = strftime("%m/%d/%Y", strtotime($row[4]));
+	}
+	$string = '"'.substr($row[0],0,30).'","'.substr($row[1],0,12).'","'.$evalFormattedDate.'","'.$row[3].'","'.$quizFormattedDate.'","'.$row[5].'"'."\n";
 	writeOut($string);
 }
 
@@ -157,7 +172,7 @@ EOD;
 				$quiz_complete_date = '';
 				$score = '';
 			}
-			// Have they completed the evaluation (and got a score of 1 for question 5)
+			// Have they completed the evaluation (and got a score of 1 for question 6)
 			if ($row_2['F_ExerciseID'] == 52) {
 				$eval_complete_date = $row_2['firstDate'];
 				

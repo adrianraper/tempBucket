@@ -285,12 +285,22 @@ EOD;
 		// if this is an anonymous login, allow it as the program will have already
 		// validated that this was allowed
 		// v6.5.4.7 Allow userID to be passed as the sole necessary login information. The default is -1 from XMLQuery.php
+		// v6.6.0.4 But don't allow userID to be empty in this condition - that's no good as that is exactly what OrchidObjects sends
+		// Although control.swf and objects.swf have been updated, can I fix the problem here as easier to migrate?
+		// It happens when SCORMStart.html is simply run. prefix=Clarity and scorm, but scorm succeeds so you end up here
+		// Is it safe to say that for root 163 this should never be triggered? We never have anonymous, and real SCORM should always have a username
 		//if ($vars['NAME'] == "" && $vars['STUDENTID'] == "") {
 		if ($vars['NAME'] == "" && $vars['STUDENTID'] == "" && $vars['USERID'] <= 0) {
 			// v6.5.6 Pass back root even for anonymous
 			//$node .= "<user name=\"\" userID=\"-1\"/>";
-			$node .= "<user name='' userID='-1' rootID='".$vars['ROOTID']."' />";
-			return 0;
+			// v6.6.0.4 see above
+			if ($vars['ROOTID']==163) {
+				$node .= "<err code=\"220\">multiple users</err>";
+				return false;
+			} else {
+				$node .= "<user name='' userID='-1' rootID='".$vars['ROOTID']."' />";
+				return 0;
+			}
 		}
 
 		// v6.3.4 StudentID can be used as well as/or name
@@ -1297,7 +1307,107 @@ EOD;
 			
 			// No, so get the next number and store it for them
                         $sql = <<<EOD
-				SELECT MAX(F_Detail) as highestSequenceNumber
+				SELECT MAX(CAST(F_Detail as UNSIGNED INTEGER)) as highestSequenceNumber
+				FROM T_ScoreDetail
+				WHERE F_RootID=?
+				AND F_ExerciseID=?
+				AND F_ItemID=?
+				AND F_UnitID=?
+EOD;
+			$bindingParams = array($root, $exerciseID, 0, $pc);
+			$rs = $db->Execute($sql, $bindingParams);
+			if ($rs->RecordCount() == 1)  {
+				$sequenceNumber = $rs->FetchNextObj()->highestSequenceNumber;
+				if (!$sequenceNumber>0)
+					$sequenceNumber = 0;
+				$sequenceNumber++;
+			} else {
+				$sequenceNumber = 1;
+			}
+			$node .= "<detail sequenceNumber='$sequenceNumber' />";
+			
+			// v6.6.0.5 BUG. What this does is write a scoreDetail no matter whether your score/coverage is fail or pass!
+			// What you should be doing here is simply getting a sequence number for use IF pass. 
+			// Then a different call from the cert will write the record if pass.
+			/*
+			// As well as writing the certificate sequence number, we need to know the average score for reporting purposes
+			// But we haven't called generalStats yet, so need to do that now as an extra call - shouldn't be too expensive
+			$newNode = '';
+			$rc = $this->getGeneralStats($vars, $newNode);
+			// Now average score will be in $node
+			// <stats total="1" average="10" counted="1" viewed="0" duplicatesCounted="0" duplicatesViewed="0" />
+			$avgStr = 'average=';
+			$strPos = stripos($newNode, $avgStr);
+			if ($strPos>0) {
+				$nearlyNumber = substr($newNode, $strPos + strlen($avgStr) + 1, 3);
+				$avgScore = intval($nearlyNumber);
+				if (!$nearlyNumber)
+					$avgScore = 0;
+			} else {
+				$avgScore = 0;
+			}
+			//$node .= "<note>found average=$avgScore at $strPos is $nearlyNumber</note>";
+			// So the item is 0, the score is the average score, the detail is the sequence number
+			$bindingParams = array($sid, $uid, $exerciseID, $pc, $dateNow, 0, $avgScore, $sequenceNumber, $root);
+			$sql = <<<EOD
+				INSERT INTO T_ScoreDetail (F_SessionID, F_UserID, F_ExerciseID, F_UnitID, F_DateStamp, F_ItemID, F_Score, F_Detail, F_RootID)
+					VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
+EOD;
+			$rs = $db->Execute($sql, $bindingParams);
+			if ($rs) {
+				return true;
+			} else {
+				$node .= "<err code='100'>Can't insert detail record for certificate sequence number.</err>";
+				return false;
+			}
+			*/
+			
+		} else {
+			$node .= "<note>root is $root.</note>";
+			return false;
+		}
+		return true;
+	}
+
+	// v6.6.0.5 Just to write a specific detail record
+	function writeSpecificStats( &$vars, &$node ) {
+		global $db;
+
+		$pc = $vars['PRODUCTCODE'];
+		if (isset($vars['ROOTID'])) $root = $vars['ROOTID'];
+		if (isset($vars['ITEMID'])) $exerciseID = $vars['ITEMID'];
+		if (isset($vars['SESSIONID'])) $sid = $vars['SESSIONID'];
+		$uid = $vars['USERID'];
+		
+		// For CSTDI certificate we need a sequence number
+		if ($root==10127 || $root==14449) {
+		
+			$dateNow = date('Y-m-d H:m:s', time());
+			
+			// Has this user already generated their certificate?
+                        $sql = <<<EOD
+				SELECT *
+				FROM T_ScoreDetail
+				WHERE F_UserID=?
+				AND F_ExerciseID=?
+				AND F_ItemID=?
+				AND F_UnitID=?
+EOD;
+			$bindingParams = array($uid, $exerciseID, 0, $pc);
+			$rs = $db->Execute($sql, $bindingParams);
+			if ($rs->RecordCount() > 0)  {
+			
+				// Yes, got a certificate already, so just return the sequence number
+				$sequenceNumber = $rs->FetchNextObj()->F_Detail;
+				if (!$sequenceNumber>0)
+					$sequenceNumber = 0;
+				$node .= "<detail sequenceNumber='$sequenceNumber' />";
+				return true;
+			}
+			
+			// No, so get the next number and store it for them
+                        $sql = <<<EOD
+				SELECT MAX(CAST(F_Detail as UNSIGNED INTEGER)) as highestSequenceNumber
 				FROM T_ScoreDetail
 				WHERE F_RootID=?
 				AND F_ExerciseID=?

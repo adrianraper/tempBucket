@@ -449,7 +449,8 @@
 			<lit name="referenceColumn">Notes</lit>
 			<lit name="resellerCodeColumn">Reseller</lit>
 			<lit name="accountStatusColumn">Status</lit>
-			<lit name="accountTypeColumn">Type</lit>
+			<lit name="accountTypeColumn">Account</lit>
+			<lit name="customerTypeColumn">Type</lit>
 			<lit name="tacStatusColumn">T&amp;Cs</lit>
 			<lit name="logoColumn">Logo</lit>
 			<lit name="prefixColumn">Prefix</lit>
@@ -482,6 +483,7 @@
 			<lit name="resellerFormItem">Reseller:</lit>
 			<lit name="accountStatusFormItem">Account status:</lit>
 			<lit name="accountTypeFormItem">Account type:</lit>
+			<lit name="customerTypeFormItem">Customer type:</lit>
 			<lit name="tacStatusFormItem">Terms and Conditions:</lit>
 			<lit name="adminUserFormItem">Admin user:</lit>
 			<lit name="editAdminUser">Setup admin user...</lit>

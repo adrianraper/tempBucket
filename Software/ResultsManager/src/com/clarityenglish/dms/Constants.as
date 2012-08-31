@@ -11,7 +11,7 @@
 		 * The version of the software, used to tie bugs and version control together.
 		 * Keep this in sync with RM since there is so much common code.
 		 */
-		public static var version:String = "3.6.2";
+		public static var version:String = "3.6.3";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {
@@ -71,6 +71,11 @@
 		 * The database connection string
 		 */
 		public static var dbDetails:String;
+		
+		/**
+		 * This is used to set a filtering string when you login so you only ever see a few accounts.
+		 */
+		public static var filterString:String;
 		
 		/**
 		 * Use this section to define colours and other style settings that are not in css

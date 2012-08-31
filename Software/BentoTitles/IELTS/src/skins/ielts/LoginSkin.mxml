@@ -1,25 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
 	<fx:Script>
-		<![CDATA[
-			import flash.net.navigateToURL;
+		<![CDATA[ 
+			import flash.net.navigateToURL; 
 			import com.clarityenglish.ielts.IELTSApplication;
-			
 			protected function clickHandler(event:MouseEvent):void {
 				// TODO: Use CopyOps
-				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com");
-				navigateToURL(urlReq, "_blank");
-			}
-		]]>
+				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
+				navigateToURL(urlReq, "_blank"); 
+			} 
+		]]> 
 	</fx:Script>
 	<s:states>
-		<s:State name="disabled" />
-		<s:State name="normal" />
-
 		<s:State name="login" stateGroups="loginStates" />
 		<s:State name="loginNetwork" stateGroups="loginStates" />
 		<s:State name="register" stateGroups="registerStates" />
@@ -32,116 +30,103 @@
 		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" />
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
-		<s:SWFLoader id="upgradeButton"
-					 source="@Embed(source='skins/ielts/assets/upgrade.jpg')"
-					 right="0"
-					 top="44"
+		<s:SWFLoader id="upgradeButton" source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0" top="44" 
 					 visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 					 includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
-					 click="clickHandler(event)"
-					 buttonMode="true"
-					 useHandCursor="true" />
+					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
 	</s:Group>
 	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="123">
 		<s:layout>
 			<s:VerticalLayout paddingTop="25" horizontalAlign="center" />
 		</s:layout>
-
-		<s:VGroup width="100%" height="100%" top="120" left="120" paddingLeft="25">
-			<s:HGroup id="lastMinute" visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}" includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}">
-				<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='IELTSLogoLastMinute_Icon')" left="0" top="0" width="40" height="40" />
-				<s:VGroup>
-					<s:Label text="Road to IELTS - Last Minute"
-							 top="0"
-							 left="30"
-							 color="#174A7D"
-							 fontSize="16"
-							 fontWeight="bold"
-							 paddingTop="0"
-							 paddingLeft="7" />
-					<s:Label text="Special last minute practice only for British Council IELTS candidates!" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="92%" paddingLeft="7" lineHeight="18" />
-				</s:VGroup>
-			</s:HGroup>
-
-			<s:HGroup id="fullVersion" visible="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}" includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}">
-				<s:VGroup>
-					<s:Label text="Road to IELTS"
-							 top="0"
-							 left="30"
-							 color="#174A7D"
-							 fontSize="16"
-							 fontWeight="bold"
-							 paddingTop="0"
-							 paddingLeft="0" />
-					<s:Label text="IELTS preparation and practice" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" paddingLeft="0" lineHeight="18" />
-				</s:VGroup>
-			</s:HGroup>
-
-			<s:Spacer height="3" />
-			<s:Rect verticalCenter="0" width="88%" height="1">
-				<s:fill>
-					<s:SolidColor color="0x999999" />
-				</s:fill>
-			</s:Rect>
-			<s:Spacer height="3" />
-			<s:VGroup id="loginBlock" width="100%" includeIn="loginStates">
-				<s:Label text="Please type your login details to continue." text.loginNetwork="Please type your login details if you want to save your progress records." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
-				<s:Spacer height="3" />
-				<s:HGroup>
-					<s:Label id="loginKey_lbl" text="{hostComponent.loginKey_lbl}" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="loginKeyInput" width="180" />
-				</s:HGroup>
-				<s:Spacer height="5" />
-				<s:HGroup id="passwordBlock" includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}">
-					<s:Label text="Password:" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
-				</s:HGroup>
-				<s:Spacer height="3" />
-				<s:HGroup>
-					<s:Button id="loginButton" label="Log in" />
-					<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="login" />
-				</s:HGroup>
+		
+	<s:VGroup width="100%" height="100%" top="120" left="120" paddingLeft="25" >
+		<s:HGroup id="lastMinute" visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
+				  includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}">
+			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='IELTSLogoLastMinute_Icon')" left="0" top="0" width="40" height="40" />
+			<s:VGroup>
+				<s:Label text="Road to IELTS - Last Minute" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
+				<s:Label text="Special last minute practice only for British Council IELTS candidates!" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="92%" paddingLeft="7" lineHeight="18" />
 			</s:VGroup>
-			<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
-				<s:Label text="Please type your details to register." text.registerNetwork="This is the first time you have used the program, click New user to confirm." fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
-				<s:Spacer height="3" />
-				<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
-					<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="loginNameInput" width="180" text="{hostComponent.savedName}" />
-				</s:HGroup>
-				<s:Spacer height="3" />
-				<s:HGroup id="idGroup" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}">
-					<s:Label text="Your ID:" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="loginIDInput" width="180" />
-				</s:HGroup>
-				<s:Spacer height="3" />
-				<s:HGroup id="emailGroup" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}">
-					<s:Label text="Your email:" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="loginEmailInput" width="180" left="500" />
-				</s:HGroup>
-				<s:Spacer height="3" />
-				<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
-					<s:Label text="Password:" fontWeight="bold" paddingTop="6" />
-					<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" />
-				</s:HGroup>
-				<s:Spacer height="3" />
-				<s:HGroup>
-					<s:Button id="addUserButton" label="New user" />
-					<s:Button id="cancelButton" label="Cancel" />
-				</s:HGroup>
+		</s:HGroup>
+		
+		<s:HGroup id="fullVersion" visible="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}"
+									includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}">
+			<s:VGroup>
+				<s:Label text="Road to IELTS" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="0"/>	
+				<s:Label text="IELTS preparation and practice" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" paddingLeft="0" lineHeight="18" />
 			</s:VGroup>
+		</s:HGroup>
+		
+		<s:Spacer height="3" />
+		<s:Rect verticalCenter="0" width="88%" height="1"  >
+			<s:fill>
+				<s:SolidColor color="0x999999"  />
+			</s:fill>
+		</s:Rect>
+		<s:Spacer height="3" />
+		<s:VGroup id="loginBlock" width="100%" includeIn="loginStates" >
+			<s:Label text="Please type your login details to continue." 
+					 text.loginNetwork="Please type your login details if you want to save your progress records."
+					 fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
-			<s:Rect verticalCenter="0" width="88%" height="1">
-				<s:fill>
-					<s:SolidColor color="0x999999" />
-				</s:fill>
-			</s:Rect>
+			<s:HGroup>
+				<s:Label id="loginKey_lbl" text="{hostComponent.loginKey_lbl}" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="loginKeyInput" width="180" />
+			</s:HGroup>
+			<s:Spacer height="5" />
+			<s:HGroup id="passwordBlock" includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}">
+				<s:Label text="Password:" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
+			</s:HGroup>
+			<s:Spacer height="3" />
+			<s:HGroup>
+				<s:Button id="loginButton" label="Log in" />
+				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="login" />
+			</s:HGroup>
 		</s:VGroup>
+		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
+			<s:Label text="Please type your details to register." 
+					text.registerNetwork="This is the first time you have used the program, click New user to confirm." 
+					fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
+			<s:Spacer height="3" />
+			<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
+				<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="loginNameInput" width="180" text="{hostComponent.savedName}"/>
+			</s:HGroup>
+			<s:Spacer height="3" />
+			<s:HGroup id="idGroup" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}">
+				<s:Label text="Your ID:" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="loginIDInput" width="180" />
+			</s:HGroup>
+			<s:Spacer height="3" />
+			<s:HGroup id="emailGroup" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}">
+				<s:Label text="Your email:" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="loginEmailInput" width="180" left="500" />
+			</s:HGroup>
+			<s:Spacer height="3" />
+			<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
+				<s:Label text="Password:" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" />
+			</s:HGroup>
+			<s:Spacer height="3" />
+			<s:HGroup>
+				<s:Button id="addUserButton" label="New user" />
+				<s:Button id="cancelButton" label="Cancel" />
+			</s:HGroup>
+		</s:VGroup>
+		<s:Spacer height="3" />
+		<s:Rect verticalCenter="0" width="88%" height="1"  >
+			<s:fill>
+				<s:SolidColor color="0x999999"  />
+			</s:fill>
+		</s:Rect>
+	</s:VGroup>
 	</s:BorderContainer>
 	<s:BorderContainer right="0" width="60%" height="9%" cornerRadius="12" backgroundAlpha="0" borderAlpha="0" top="100">
 
-		<s:VGroup paddingLeft="55" paddingTop="20" width="100%">
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LoginGraphic')" top="35" right="80" />
-		</s:VGroup>
+	<s:VGroup paddingLeft="55" paddingTop="20" width="100%">
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/login_graphic.png')" top="35" right="80" />
+	</s:VGroup>
 	</s:BorderContainer>
 </s:Skin>

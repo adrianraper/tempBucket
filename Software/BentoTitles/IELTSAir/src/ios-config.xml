@@ -16,8 +16,8 @@
 	<language>EN*</language>
 	
 	<contentPath>http://www.roadtoielts.com/Content/</contentPath>
-	<remoteDomain>http://p4.clarityenglish.com/</remoteDomain>
-	<remoteGateway>http://p4.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
+	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<!-- <contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>

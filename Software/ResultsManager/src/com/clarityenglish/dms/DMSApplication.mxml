@@ -25,6 +25,7 @@
 			import com.clarityenglish.common.vo.manageable.User;
 			import com.clarityenglish.dms.DMSNotifications;
 			//import nl.demonsters.debugger.MonsterDebugger;
+			import com.clarityenglish.utils.TraceUtils;
 			import flash.display.MovieClip;
 			import flash.ui.ContextMenu;
 			
@@ -50,6 +51,9 @@
 			}
 			
 			public function setCopyProvider(copyProvider:CopyProvider):void {
+				
+				TraceUtils.myTrace("DMSApplication logged in user is a " + Constants.userType);
+				
 				if (mainStack.contains(accountView)) accountView.label = copyProvider.getCopyForId("accountTab");
 				if (mainStack.contains(emailView)) emailView.label = copyProvider.getCopyForId("emailTab");
 				

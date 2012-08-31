@@ -51,8 +51,8 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.22@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	//$inputData = '{"method":"addSubscription","subscriptionID":1020,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	//$inputData = '{"method":"saveSubscriptionDetails","email":"douglas.engelbert.2@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
-	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1034,"status":"paid"}';
-	//$inputData = '{"method":"addSubscription","subscriptionID":1015,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card"}';
+	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1040,"status":"paid"}';
+	//$inputData = '{"method":"addSubscription","subscriptionID":"1048","emailTemplateID":"CLS_welcome","paymentMethod":"paypal","loginOption":128}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
@@ -157,7 +157,7 @@ try {
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
 	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
-		$loginService->changeDb($apiInformation->dbHost);
+		$dmsService->changeDb($apiInformation->dbHost);
 		
 	switch ($apiInformation->method) {
 		
@@ -178,7 +178,7 @@ try {
 			if (!$rc)
 				returnError(1, 'Subscription status not udpated '.$apiInformation->toString());
 				
-			$apiReturnInfo = array('subscriptionID' => $apiInformation->subscription->id);
+			$apiReturnInfo = array('subscriptionID' => $apiInformation->subscription->id, 'status' => $apiInformation->subscription->status);
 			break;
 			
 		case "addSubscription":

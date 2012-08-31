@@ -50,7 +50,7 @@
 		<link>
 			<name>bin-debug</name>
 			<type>2</type>
-			<location>D:/Projectbench/Software/ResultsManager/web</location>
+			<location>D:/ProjectBench/Software/ResultsManager/web</location>
 		</link>
 		<link>
 			<name>bin-release</name>
@@ -60,7 +60,7 @@
 		<link>
 			<name>bin-release1</name>
 			<type>2</type>
-			<location>D:/Projectbench/Release</location>
+			<location>D:/ProjectBench/Release</location>
 		</link>
 		<link>
 			<name>bin-release2</name>

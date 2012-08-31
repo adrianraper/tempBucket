@@ -167,6 +167,7 @@
 			course: swfobject.getQueryParamValue("course"),
 			action: swfobject.getQueryParamValue("action"),
 			scorm: swfobject.getQueryParamValue("scorm"),
+			startTime: "<?php $msec = microtime(true); echo round(($msec * 1000)); ?>",
 			referrer: "<?php echo $referrer ?>",
 			server: "<?php echo $server ?>",
 			ip: "<?php echo $ip ?>"

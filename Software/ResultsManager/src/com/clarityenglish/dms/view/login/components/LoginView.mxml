@@ -8,6 +8,7 @@
 		import com.clarityenglish.common.model.interfaces.CopyProvider;;
 		import com.clarityenglish.common.events.LoginEvent;
 		import mx.controls.Alert;
+		import mx.core.Application;
 		
 		private var copyProvider:CopyProvider;
 		
@@ -17,8 +18,16 @@
 			loginWindow.title = copyProvider.getCopyForId("dmsLoginWindow");
 			usernameFormItem.label = copyProvider.getCopyForId("loginUsername");
 			passwordFormItem.label = copyProvider.getCopyForId("loginPassword");
+			filterStringFormItem.label = copyProvider.getCopyForId("loginFilter");
 			loginButton.label = copyProvider.getCopyForId("loginButton");
-			
+			//Alert.show('Your IP is ' + Application.application.parameters.ip + ' and server ' + Application.application.parameters.server);
+			if (Application.application.parameters.server.indexOf("dock") == 0) {
+				if (usernameTextInput.text == '')
+					usernameTextInput.text = 'dmsadrian';
+				//passwordTextInput.text = 'dock';
+				if (filterStringInput.text == '')
+					filterStringInput.text = 'Clarity';
+			}
 			setInputFocus();
 		}
 		
@@ -33,6 +42,12 @@
 		}
 		
 		private function login():void {
+			// v3.6.3 See if there is a filter defined to limit the number of accounts displayed
+			if (filterStringInput.text) {
+				Constants.filterString = filterStringInput.text;
+			} else {
+				Constants.filterString = undefined;
+			}
 			dispatchEvent(new LoginEvent(LoginEvent.LOGIN, usernameTextInput.text, passwordTextInput.text, true));
 		}
 		
@@ -42,8 +57,10 @@
 
 		// AR added to clear out data from the fields once you have logged in.
 		public function clearData():void {
-			usernameTextInput.text = "";
-			passwordTextInput.text = "";
+			//usernameTextInput.text = "";
+			// If this is being used in the office, keep the password
+			if (Application.application.parameters.ip!='220.246.69.26')
+				passwordTextInput.text = "";
 		}
 		
 		]]>
@@ -59,7 +76,7 @@
 					borderAlpha="0.9" borderColor="{Constants.popupBackgroundColour}" >
 		<mx:Form paddingTop="10" width="100%" height="100%" defaultButton="{loginButton}">
 			<mx:HBox width="100%" includeInLayout="{Constants.DEBUG_MODE}" visible="{Constants.DEBUG_MODE}">
-				<mx:Button label="Adrian Raper" click="dispatchEvent(new LoginEvent(LoginEvent.LOGIN, 'dmsAdrian', 'dms', true))" />
+				<mx:Button label="Adrian Raper" click="dispatchEvent(new LoginEvent(LoginEvent.LOGIN, 'dmsAdrian', 'dock', true))" />
 			</mx:HBox>
 			
 			<mx:FormItem id="usernameFormItem">
@@ -67,6 +84,9 @@
 			</mx:FormItem>
 			<mx:FormItem id="passwordFormItem">
 				<mx:TextInput id="passwordTextInput" width="100%" change="dispatchEvent(new Event('loginChange'))" displayAsPassword="true" text="" />
+			</mx:FormItem>
+			<mx:FormItem id="filterStringFormItem">
+				<mx:TextInput id="filterStringInput" width="100%" text="" />
 			</mx:FormItem>
 			<!-- 
 			<mx:FormItem id="accountTypeFormItem">

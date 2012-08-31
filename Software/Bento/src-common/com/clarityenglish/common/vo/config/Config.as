@@ -95,6 +95,10 @@ package com.clarityenglish.common.vo.config {
 		public var checkNetworkAvailabilityInterval:uint;
 		public var checkNetworkAvailabilityReconnectInterval:uint;
 		
+
+		// For performance logging
+		public var appLaunchTime:Number;
+
 		/**
 		 * Developer option
 		 */
@@ -123,6 +127,7 @@ package com.clarityenglish.common.vo.config {
 		 * 	  language
 		 *    ip
 		 *    referrer
+		 * 	  startTime
 		 */
 		public function mergeParameters(parameters:Object):void {
 			if (parameters.dbHost)
@@ -150,9 +155,23 @@ package com.clarityenglish.common.vo.config {
 			
 			if (parameters.ip) this.ip = parameters.ip;
 			if (parameters.referrer) this.referrer = parameters.referrer;
+
+			// #361
+			if (parameters.instanceID) {
+				this.instanceID = parameters.instanceID;
+			} else {
+				var timeStamp:Date = new Date();
+				this.instanceID = timeStamp.getTime().toString();
+			}
 			
 			// #336 SCORM
 			if (parameters.scorm) this.scorm = parameters.scorm;
+			
+			// Assuming this comes from PHP it will be in seconds, as time is in milliseconds
+			// But cleaner to convert it in the start page
+			if (parameters.startTime)
+				this.appLaunchTime = parameters.startTime;
+
 		}
 		/**
 		 * Do any substitutions that you can for the menu filename
@@ -411,6 +430,20 @@ package com.clarityenglish.common.vo.config {
 			
 		}
 		*/
+		
+		/**
+		 * #530
+		 * This looks up a specific entry in the licence attribues
+		 */
+		public function get subRoots():String {
+			if (this.account.licenceAttributes) {
+				for each (var lA:Object in this.account.licenceAttributes) {
+					if (lA.licenceKey.toLowerCase() == 'subroots')
+						return lA.licenceValue;
+				}
+			}
+			return null;
+		}
 		
 		/**
 		 * This getter lets you find the licence type directly from the config object

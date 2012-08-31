@@ -38,14 +38,15 @@
 			<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">2. The functions of your Administrator account</p>
         	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">3. Accessing your Clarity English programs the first time</p>
         	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">4. Setting up a direct link to your Clarity English programs</p>
-        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">5. Support</p>
+        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">5. Using your Clarity English programs through an LMS/VLE</p>
+        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">6. Support</p>
         </div>
 	
 <!-- 
 -- 1. Licence Details
 -->
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">1. Licence details</p>
-	{include file='file:includes/Title_Details_Section.tpl' enabled='on'}
+	{include file='file:includes/Title_Details_Section.tpl' enabled='on' dateDiff='0day'}
 <!-- 
 -- 2. Administrator account details
 -- 	Different sections for AA and LT
@@ -84,12 +85,10 @@
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">Shared password: {$user->password}</p>
 	</div>
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">
-			But many institutions find it more convenient to simply paste a link on their own website or within their own LMS, to give learners one-click access. 
-			Please note that a direct link should only be pasted in a password-protected area of your website. This is to prevent access from unlicensed learners.</p>
+			But many institutions find it more convenient to simply paste a link on their own website or within their own LMS, to give learners one-click access with no password. 
 {else}
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Learners can access your Clarity English programs from <a href="http://www.clarityenglish.com" target="_blank">www.clarityenglish.com</a>. 
 			But many institutions find it more convenient to simply paste a link on their own website or within their own LMS, to give learners one-click access. 
-			Please note that a direct link should only be pasted in a password-protected area of your website. This is to prevent access from unlicensed learners.</p>
 {/if}
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Copy and paste the following direct {if $multipleTitles=='true'}links{else}link{/if} into your website:</p>
 {foreach name=orderDetails from=$account->titles item=title}
@@ -103,12 +102,24 @@
 	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 10px 0; padding:0; color:#000000;">{include file='file:includes/titleTemplateDetails.tpl' method='startPage'}</p>
 {/if}
 {/foreach}
+{if $hasAARM==true}
+	<div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0; border:2px solid">
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">IMPORTANT NOTE:
+A direct link must only be pasted in a password-protected area of your website. This is to protect your licence and to prevent access from unlicensed learners. If you have any queries about this, please contact me.</p>
+	</div>
+{/if}
+
 <!-- 
--- 5. Support
+-- 5. SCORM
 -->
-<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">5. Support</p>
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">If at any time you have queries, requests or suggestions, please do not hesitate to contact the Clarity Support team:</p>
-	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">5. SCORM</p>
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">You can run the Clarity English programs through a SCORM compliant LMS/VLE, such as Moodle or Blackboard. Please contact the Clarity Support team. Contact details below.</p>
+<!-- 
+-- 6. Support
+-->
+<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">6. Support</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">If at any time you have queries, requests or suggestions, the Clarity Support team is here to help:</p>
+	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 20px; padding:0; color:#000000;">
 	Email: <a href="mailto:support@clarityenglish.com">support@clarityenglish.com</a> <br />
 	United Kingdom : 0845 130 5627<br />
 	Hong Kong : (+852) 2791 1787

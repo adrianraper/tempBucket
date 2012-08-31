@@ -63,7 +63,7 @@ try {
 			$errorCode = 0;
 			//echo var_dump($returnInfo);
 			foreach ($returnInfo['subscriptions'] as $record) {
-				echo $record['id'].' name='.$record['name'].' email='.$record['email'].', status='.$record['status']."<br/>";
+				echo $record['id'].' name='.$record['name'].' email='.$record['email'].', status='.$record['status'].', reseller='.$record['resellerID']."<br/>";
 			}
 		}
 	}

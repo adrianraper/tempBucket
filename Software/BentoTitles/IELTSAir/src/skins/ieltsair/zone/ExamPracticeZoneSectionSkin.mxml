@@ -108,7 +108,7 @@
 					
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
 						<components:AudioPlayer visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
-						<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="Practice test 1" click="onButtonClick(data.@href)" />
+						<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data.@href)" />
 						<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data.@answerHref)" />
 					</s:HGroup>
 				</s:DataRenderer>

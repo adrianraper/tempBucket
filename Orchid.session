@@ -1,0 +1,16 @@
+<NotepadPlus>
+    <Session activeView="0">
+        <mainView activeIndex="8">
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1104" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\Source\OrchidObjects.as" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\controlFrame2.as" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="784" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\controlFrame3.as" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\Source\FieldReaction.as" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\Source\OrchidMain.as" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\Source\Screen.as" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\Source\View.as" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="1" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\Source\ViewReaction.as" />
+            <File firstVisibleLine="0" xOffset="0" scrollWidth="880" startPos="0" endPos="0" selMode="0" lang="Haskell" encoding="-1" filename="D:\ProjectBench\Software\Common\Source\XMLtoObject.as" />
+        </mainView>
+        <subView activeIndex="0" />
+    </Session>
+</NotepadPlus>

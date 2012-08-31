@@ -1,6 +1,5 @@
 package com.clarityenglish.bento.model {
 	
-	import com.adobe.serialization.json.JSON;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.pipwerks.SCORM;
@@ -149,14 +148,38 @@ package com.clarityenglish.bento.model {
 		private function formatBookmark(data:String):String {
 			return 'ex=' + data;
 		}
+		
 		/**
 		 * Format the suspend data
+		 * #493 Convert to JSON
+		 * '{"scoreSoFar":"ex:1234|15,ex:5678|32","percentComplete":50}'
 		 */
 		private function formatSuspendData(exID:String, score:uint):String {
-			if (!scorm.suspendData)
-				scorm.suspendData = 'score-so-far';
+			if (scorm.suspendData) {
+				var suspendDataArray:Object = JSON.parse(scorm.suspendData);
+			} else {
+				suspendDataArray = {};
+			}
 			
-			return scorm.suspendData + ',' + 'ex:' + exID + '|' + score;
+			// Add this new score to the list of ones done so far
+			if (suspendDataArray.scoreSoFar) {
+				var scores:Array = suspendDataArray.scoreSoFar.split(",");
+			} else {
+				scores = new Array();
+			}
+			scores.push('ex:' + exID + '|' + score);
+			suspendDataArray.scoreSoFar = scores.join(",");
+			
+			// Update the percent complete. 
+			// I need to get the bit of menu.xml relevant to this SCORM object and count the number of exercises in it.
+			// Then I can work out the % using scoreSoFar.
+			if (suspendDataArray.percentComplete) {
+				suspendDataArray.percentComplete = 51;
+			} else {
+				suspendDataArray.percentComplete = 10;
+			}
+			
+			return JSON.stringify(suspendDataArray);
 		}
 
 		

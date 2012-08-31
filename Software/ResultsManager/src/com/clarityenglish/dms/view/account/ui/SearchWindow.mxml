@@ -32,6 +32,8 @@
 			titlesFormItem.label = copyProvider.getCopyForId("titlesFormItem");
 			filterTitlesCheckBox.label = copyProvider.getCopyForId("filterTitlesCheckBox");
 			invoiceEmptyCheckBox.label = referenceEmptyCheckBox.label = copyProvider.getCopyForId("empty");
+			emailFormItem.label = copyProvider.getCopyForId("emailFormItem");
+			accountTypeFormItem.label = copyProvider.getCopyForId("accountTypeFormItem");
 			
 			searchButton.label = copyProvider.getCopyForId("search");
 			cancelButton.label = copyProvider.getCopyForId("cancel");
@@ -52,10 +54,13 @@
 			
 			// Add the relevant conditions to the search event (all case insensitive)
 			searchEvent.addRegExpCondition("name", new RegExp(nameTextInput.text, "i"));
+			// v3.6 Difficult to add email as this is NOT an account attribute anymore, but comes from adminUser.
+			//searchEvent.addRegExpCondition("email", new RegExp(emailTextInput.text, "i"));
 			
 			// These conditions should only be added if anything is entered in the boxes
 			if (resellerComboBox.selectedItem) searchEvent.addEqualsCondition("resellerCode", resellerComboBox.value);
 			if (accountStatusComboBox.selectedItem) searchEvent.addEqualsCondition("accountStatus", accountStatusComboBox.value);
+			if (accountTypeComboBox.selectedItem) searchEvent.addEqualsCondition("accountType", accountTypeComboBox.value);
 						
 			if (invoiceEmptyCheckBox.selected) {
 				searchEvent.addEqualsCondition("invoiceNumber", "");
@@ -111,11 +116,17 @@
 		<mx:FormItem id="nameFormItem" labelWidth="120">
 			<mx:TextInput id="nameTextInput" />
 		</mx:FormItem>
+		<mx:FormItem id="emailFormItem" labelWidth="120">
+			<mx:TextInput id="emailTextInput" />
+		</mx:FormItem>
 		<mx:FormItem id="resellerFormItem" labelWidth="120">
 			<fxc:VAComboBox id="resellerComboBox" dataField="data" dataProvider="{DictionarySingleton.getInstance().resellers}" />
 		</mx:FormItem>
 		<mx:FormItem id="accountStatusFormItem" labelWidth="120">
 			<fxc:VAComboBox id="accountStatusComboBox" dataField="data" dataProvider="{DictionarySingleton.getInstance().accountStatus}" />
+		</mx:FormItem>
+		<mx:FormItem id="accountTypeFormItem" labelWidth="120">
+			<fxc:VAComboBox id="accountTypeComboBox" dataField="data" dataProvider="{DictionarySingleton.getInstance().accountType}" />
 		</mx:FormItem>
 		<mx:FormItem id="invoiceNumberFormItem" labelWidth="120" width="100%">
 			<mx:HBox>

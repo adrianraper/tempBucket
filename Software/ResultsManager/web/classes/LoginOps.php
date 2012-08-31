@@ -24,6 +24,7 @@ class LoginOps {
 	
 	// Bento login has different options than RM
 	// For now write this as a different function so it can exist in the same file yet be completely different
+	// #503 rootID is now an array or rootIDs, although there will only be more than one if subRoots is set in the licence
 	function loginBento($loginObj, $loginOption, $verified, $userTypes, $rootID, $productCode = null) {
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
@@ -56,8 +57,9 @@ class LoginOps {
 		if (isset($loginObj['password']))
 			$password = $loginObj['password'];
 			
+		// #503
 		$selectFields = array("g.F_GroupID as groupID",
-							  "m.F_RootID",
+							  "m.F_RootID as rootID",
 							  "u.*");
 		$sql  = "SELECT ".join(",", $selectFields);
 		$sql .=	<<<EOD
@@ -84,8 +86,12 @@ EOD;
 		$bindingParams = array($keyValue);
 		
 		if ($rootID != null) {
-			$sql.= "AND m.F_RootID=?";
-			$bindingParams[] = $rootID;
+			// #503 rootID is an array
+			if (count($rootID) > 1) {
+				$sql.= "AND m.F_RootID IN (".implode(",",$rootID).")";
+			} else {
+				$sql.= "AND m.F_RootID=".implode(",",$rootID);
+			}
 		}
 		
 		//NetDebug::trace("sql=".$sql);
@@ -338,9 +344,7 @@ EOD;
 		// But it isn't actually very important so leave here for now.
 		// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
 		if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-			// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
-			$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
-			$ip = $ipList[0];
+			$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
 		} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 			$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 		} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
@@ -352,6 +356,12 @@ EOD;
 		// #319 Instance ID per productCode
 		// Get the existing set of instance IDs and add/update for this title
 		$instanceArray = $this->getInstanceArray($userID);
+		
+		// If the database value is null, the above returns null
+		// but php then makes the array assignment work fine!
+		// However, safer to do it explicitly 
+		if (!$instanceArray)
+			$instanceArray = array();
 		$instanceArray[$productCode] = $instanceID;
 		$instanceControl = json_encode($instanceArray);
 

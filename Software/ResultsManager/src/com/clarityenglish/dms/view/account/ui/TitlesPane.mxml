@@ -54,6 +54,7 @@
 			titleFormItem.label = copyProvider.getCopyForId("titleFormItem");
 			expiryDateFormItem.label = copyProvider.getCopyForId("expiryDateFormItem");
 			licenceStartDateFormItem.label = copyProvider.getCopyForId("licenceStartDateFormItem");
+			licenceClearanceDateFormItem.label = copyProvider.getCopyForId("licenceClearanceDateFormItem");
 			maxStudentsFormItem.label = copyProvider.getCopyForId("maxStudentsFormItem");
 			maxTeachersFormItem.label = copyProvider.getCopyForId("maxTeachersFormItem");
 			maxAuthorsFormItem.label = copyProvider.getCopyForId("maxAuthorsFormItem");
@@ -80,7 +81,6 @@
 			selectedTitle = dataGrid.selectedItem as Title;
 			
 			// v3.3 Each title has different acceptable language codes, so set this up first
-			
 			var availableLanguages:Array = new Array();
 			for each (var item:Object in DictionarySingleton.getInstance().languageCode) {
 				//MonsterDebugger.trace(this, "language item=" + i.productCode + "," + i.languageCode);
@@ -91,10 +91,14 @@
 			}
 			availableLanguagesCollection = new ArrayCollection(availableLanguages);
 			
-			
 			// Fill in the fields from the selected title
 			expiryDateDateField.selectedDate = DateUtils.ansiStringToDate(selectedTitle.expiryDate);
 			licenceStartDateDateField.selectedDate = DateUtils.ansiStringToDate(selectedTitle.licenceStartDate);
+			if (selectedTitle.licenceClearanceDate) {
+				licenceClearanceDateDateField.selectedDate = DateUtils.ansiStringToDate(selectedTitle.licenceClearanceDate);
+			} else {
+				licenceClearanceDateDateField.selectedDate = undefined;
+			}
 			//titleTextInput.text = selectedTitle.caption;
 			titleTextInput.text = selectedTitle.name;
 			maxStudentsStepper.value = selectedTitle.maxStudents;
@@ -153,6 +157,8 @@
 				} else {
 					selectedTitle.expiryDate = DateUtils.dateToAnsiString(expiryDateDateField.selectedDate);
 					selectedTitle.licenceStartDate = DateUtils.dateToAnsiString(licenceStartDateDateField.selectedDate);
+					if (licenceClearanceDateDateField.selectedDate)
+						selectedTitle.licenceClearanceDate = DateUtils.dateToAnsiString(licenceClearanceDateDateField.selectedDate);
 					selectedTitle.maxStudents = maxStudentsStepper.value;
 					selectedTitle.maxTeachers = maxTeachersStepper.value;
 					selectedTitle.maxAuthors = maxAuthorsStepper.value;
@@ -332,9 +338,16 @@
 			<mx:FormItem id="titleFormItem" >
 				<mx:TextInput id="titleTextInput" editable="false" enabled="false" />
 			</mx:FormItem>
-			<mx:FormItem id="licenceStartDateFormItem">
-				<mx:DateField id="licenceStartDateDateField" formatString="DD/MM/YYYY" editable="true" enabled="{editMode}" yearNavigationEnabled="true" />
-			</mx:FormItem>
+			<mx:HBox width="100%">
+				<mx:Spacer width="10"/>
+				<mx:FormItem id="licenceStartDateFormItem">
+					<mx:DateField id="licenceStartDateDateField" formatString="DD/MM/YYYY" editable="true" enabled="{editMode}" yearNavigationEnabled="true" />
+				</mx:FormItem>
+				<mx:Spacer width="20"/>
+				<mx:FormItem id="licenceClearanceDateFormItem">
+					<mx:DateField id="licenceClearanceDateDateField" formatString="DD/MM/YYYY" editable="true" enabled="{editMode}" yearNavigationEnabled="true" />
+				</mx:FormItem>
+			</mx:HBox>
 			<mx:FormItem id="expiryDateFormItem">
 				<mx:DateField id="expiryDateDateField" formatString="DD/MM/YYYY" editable="true" enabled="{editMode}" yearNavigationEnabled="true" />
 			</mx:FormItem>

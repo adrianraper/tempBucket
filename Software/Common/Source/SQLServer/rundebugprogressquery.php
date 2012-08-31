@@ -271,6 +271,11 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 			$rC = $Progress->getSpecificStats( $vars, $node );
 			break;
 		
+		// v6.6.0.5 For CSTDI
+		case 'WRITESPECIFICSTATS':
+			$rC = $Progress->writeSpecificStats( $vars, $node );
+			break;
+		
 		case "GETHIDDENCONTENT":
 			$rC = $Progress->getHiddenContent( $vars, $node );
 			break;

@@ -21,7 +21,7 @@
 -- Section containing details of titles, highlighting those that are expiring related to this email
 -->
 	{include file='file:includes/Spacer_Before_Title_Details.tpl'}
-	{include file="file:includes/Title_Details_Section.tpl'}
+	{include file='file:includes/Title_Details_Section.tpl'}
 <!-- 
 -- Email signature 
 -->

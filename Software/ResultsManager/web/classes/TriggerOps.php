@@ -111,10 +111,9 @@ class TriggerOps {
 
 				// v3.5 The trigger system should ignore accounts that have opted out of subscription reminders 
 				$accountConditions["optOutEmails"] = true;
-				// (unless we override this for internal reports)
-				if (isset($trigger->condition->optOutEmails) && ($trigger->condition->optOutEmails == false)) {
+				// (unless we override this for internal reports - and for usage stats)
+				if (isset($trigger->condition->optOutEmails) && ($trigger->condition->optOutEmails == 'false'))
 					unset ($accountConditions["optOutEmails"]);
-				}
 				
 				//$expiryDate = $trigger->condition->expiryDate;
 				//$triggerResults = $this->accountOps->getAccounts(null, $expiryDate);
