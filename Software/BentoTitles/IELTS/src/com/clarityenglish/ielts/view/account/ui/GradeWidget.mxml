@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+		<!--s:NumberValidator id="listeingValidator" property="text" source="{numberListening}"/>
+		<s:NumberValidator id="readingValidator" property="text" source="{numberReading}"/-->
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import mx.events.ValidationResultEvent;
+			
+			import spark.validators.NumberValidator;
+			
+			[Bindable]
+			private var resultListening:String;
+			
+			[Bindable]
+			private var resultReading:String;
+			
+			private var listeningValidator:NumberValidator = new NumberValidator();
+			private var readingValidator:NumberValidator = new NumberValidator();
+			private var listeningValidatorEvent:ValidationResultEvent;
+			private var readingValidatorEvent:ValidationResultEvent;
+			
+			private function calculateGrade(listeningText:String, readingText:String):void {
+				var listeningNumber:Number = parseInt(listeningText);
+				var readingNumber:Number = parseInt(readingText);
+				
+				listeningValidatorEvent = listeningValidator.validate(numberListening.text);
+				readingValidatorEvent = readingValidator.validate(numberReading.text);
+				
+				if (listeningNumber != 0) {
+					if (listeningNumber < 0 || listeningNumber > 40) {
+						listeningError.includeInLayout = true;
+						listeningError.visible = true;
+						errorItem1.includeInLayout = true;
+						currentState = "question";
+					} else {
+						listeningError.includeInLayout = false;
+						listeningError.visible = false;
+						errorItem1.includeInLayout = false;
+					}
+				}
+				
+				if (readingNumber != 0) {
+					if (readingNumber < 0 || readingNumber > 40) {
+						readingError.includeInLayout = true;
+						readingError.visible = true;
+						errorItem2.includeInLayout = true;
+						currentState = "question";
+					} else {
+						readingError.includeInLayout = false;
+						readingError.visible = false;
+						errorItem2.includeInLayout = false;
+					}
+				}
+				
+				
+				if (listeningNumber > 0 && listeningNumber <= 40 && readingNumber > 0 && readingNumber <= 40) {
+					var examType:Boolean = AC.selected;
+					
+					switch (true) {
+						case listeningNumber >= 39:
+							var listeningBand:Number = 9.0;
+							break;
+						case listeningNumber >= 37:
+							listeningBand = 8.5;
+							break;
+						case listeningNumber >= 35:
+							listeningBand = 8.0;
+							break;
+						case listeningNumber >= 33:
+							listeningBand = 7.5;
+							break;
+						case listeningNumber >= 30:
+							listeningBand = 7.0;
+							break;
+						case listeningNumber >= 27:
+							listeningBand = 6.5;
+							break;
+						case listeningNumber >= 23:
+							listeningBand = 6.0;
+							break;
+						case listeningNumber >= 20:
+							listeningBand = 5.5;
+							break;
+						case listeningNumber >= 16:
+							listeningBand = 5.0;
+							break;
+						case listeningNumber >= 13:
+							listeningBand = 4.5;
+							break;
+						case listeningNumber >= 9:
+							listeningBand = 4.0;
+							break;
+						case listeningNumber >= 5:
+							listeningBand = 3.0;
+							break;
+						case listeningNumber >= 3:
+							listeningBand = 2.0;
+							break;
+						case listeningNumber >= 1:
+							listeningBand = 1.0;
+							break;
+						default:
+							listeningBand = 0.0;
+					}
+					if (examType) {
+						switch (true) {
+							case readingNumber >= 39:
+								var readingBand:Number = 9.0;
+								break;
+							case readingNumber >= 37:
+								readingBand = 8.5;
+								break;
+							case readingNumber >= 35:
+								readingBand = 8.0;
+								break;
+							case readingNumber >= 33:
+								readingBand = 7.5;
+								break;
+							case readingNumber >= 30:
+								readingBand = 7.0;
+								break;
+							case readingNumber >= 27:
+								readingBand = 6.5;
+								break;
+							case readingNumber >= 23:
+								readingBand = 6.0;
+								break;
+							case readingNumber >= 19:
+								readingBand = 5.5;
+								break;
+							case readingNumber >= 15:
+								readingBand = 5.0;
+								break;
+							case readingNumber >= 12:
+								readingBand = 4.5;
+								break;
+							case readingNumber >= 9:
+								readingBand = 4.0;
+								break;
+							case readingNumber >= 5:
+								readingBand = 3.0;
+								break;
+							case readingNumber >= 3:
+								readingBand = 2.0;
+								break;
+							case readingNumber >= 1:
+								readingBand = 1.0;
+								break;
+							default:
+								readingBand = 0.0;
+						}
+					} else {
+						switch (true) {
+							case readingNumber >= 39:
+								readingBand = 9.0;
+								break;
+							case readingNumber >= 38:
+								readingBand = 8.5;
+								break;
+							case readingNumber >= 37:
+								readingBand = 8.0;
+								break;
+							case readingNumber >= 36:
+								readingBand = 7.5;
+								break;
+							case readingNumber >= 34:
+								readingBand = 7.0;
+								break;
+							case readingNumber >= 32:
+								readingBand = 6.5;
+								break;
+							case readingNumber >= 30:
+								readingBand = 6.0;
+								break;
+							case readingNumber >= 27:
+								readingBand = 5.5;
+								break;
+							case readingNumber >= 23:
+								readingBand = 5.0;
+								break;
+							case readingNumber >= 19:
+								readingBand = 4.5;
+								break;
+							case readingNumber >= 15:
+								readingBand = 4.0;
+								break;
+							case readingNumber >= 12:
+								readingBand = 3.0;
+								break;
+							case readingNumber >= 8:
+								readingBand = 2.0;
+								break;
+							case readingNumber >= 4:
+								readingBand = 1.0;
+								break;
+							default:
+								readingBand = 0.0;
+						}
+					}
+					resultListening = listeningBand.toString();
+					resultReading = readingBand.toString();
+					currentState = "answer";
+				}
+			}
+			
+			private function backToCaculator():void {
+				numberListening.text = "";
+				numberReading.text = "";
+				currentState = "question";
+				
+				listeningError.visible = false;
+				listeningError.includeInLayout = false;
+				readingError.visible = false;
+				readingError.includeInLayout = false;
+				errorItem1.includeInLayout = false;
+				errorItem2.includeInLayout = false;
+			}
+		]]>
+	</fx:Script>
+	<s:states>
+		<s:State name="question" />
+		<s:State name="answer" />
+	</s:states>
+
+	<s:Group>
+		<s:Image id="caculatorBackground" source="@Embed(source='/skins/ielts/assets/rtiv2_widget.png')" />
+		<s:Form id="GradeCaculate" includeIn="question" x="30" y="91" width="344" height="300">
+			<s:layout>
+				<s:FormLayout gap="0" />
+			</s:layout>
+			<s:Label color="#D52039" fontSize="12.5" fontWeight="bold" paddingLeft="12" text="How many questions do you think you will get right?" />
+			<s:FormItem width="293" label="Listening:" fontWeight="normal">
+				<s:HGroup width="186">
+					<s:TextInput id="numberListening" width="40" maxChars="2" restrict="0123456789" />
+					<s:Label width="43" paddingTop="14" fontSize="12" text="of 40" />
+				</s:HGroup>
+			</s:FormItem>
+			<s:FormItem id="errorItem1" includeInLayout="false">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="-60" paddingTop="-30" />
+				</s:layout>
+				<s:Label id="listeningError"
+						 width="252"
+						 backgroundColor="#D52039"
+						 color="#FFFCFC"
+						 includeInLayout="false"
+						 paddingBottom="5"
+						 paddingTop="5"
+						 text="please input a number between 0 and 40"
+						 textAlign="center"
+						 verticalAlign="middle" />
+			</s:FormItem>
+			<s:FormItem label="Reading: " verticalCenter="0">
+				<s:HGroup width="186" verticalCenter="0">
+					<s:TextInput id="numberReading" width="40" maxChars="2" restrict="0123456789" />
+					<s:Label width="43" paddingTop="14" fontSize="12" text="of 40" />
+				</s:HGroup>
+			</s:FormItem>
+			<s:FormItem id="errorItem2" includeInLayout="false">
+				<s:layout>
+					<s:VerticalLayout paddingLeft="-60" paddingTop="-30" />
+				</s:layout>
+				<s:Label id="readingError"
+						 width="252"
+						 backgroundColor="#D52039"
+						 color="#FFFCFC"
+						 includeInLayout="false"
+						 paddingBottom="5"
+						 paddingTop="5"
+						 text="please input a number between 0 and 40"
+						 textAlign="center"
+						 verticalAlign="middle" />
+			</s:FormItem>
+			<s:Label color="#D52039" fontSize="12.5" fontWeight="bold" paddingLeft="12" paddingTop="10" text="For which exam?" />
+			<s:FormItem textAlign="left">
+				<s:layout>
+					<s:VerticalLayout horizontalAlign="left" paddingLeft="-60" />
+				</s:layout>
+				<s:RadioButton label="Academic" id="AC" selected="true" />
+				<s:RadioButton label="General Training" id="GT" />
+			</s:FormItem>
+			<s:FormItem>
+				<s:layout>
+					<s:VerticalLayout paddingLeft="-60" />
+				</s:layout>
+				<s:Button id="calculateButton" label="Calculate" click="calculateGrade(numberListening.text, numberReading.text)" fontSize="16" fontWeight="bold" skinClass="skins.ielts.account.GradeWidgetButtonSkin" />
+			</s:FormItem>
+		</s:Form>
+
+		<s:Form id="GradResult" includeIn="answer" x="30" y="109" width="344" height="300" backgroundAlpha="0">
+			<s:Label color="#D52039" fontSize="12.5" fontWeight="bold" paddingLeft="12" text="Your scores" />
+			<s:FormItem label="Listening:">
+				<s:Label id="resulListeningText" text="{resultListening}" />
+			</s:FormItem>
+			<s:FormItem label="Reading:">
+				<s:Label id="resulReadingText" text="{resultReading}" />
+			</s:FormItem>
+			<s:Label paddingLeft="12" paddingTop="10" text="These scores are estimates only." />
+			<s:FormItem>
+				<s:layout>
+					<s:VerticalLayout paddingLeft="-70" />
+				</s:layout>
+				<s:Button id="again" label="Do it again" click="backToCaculator()" fontSize="16" fontWeight="bold" skinClass="skins.ielts.account.GradeWidgetButtonSkin" />
+			</s:FormItem>
+		</s:Form>
+	</s:Group>
+
+</s:Group>

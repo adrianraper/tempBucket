@@ -313,6 +313,10 @@ package com.clarityenglish.common.model {
 			
 			switch (operation) {
 				case "login":
+					// Clear the remote shared object, if there is one so it doesn't keep trying to log back in
+					var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+					loginSharedObject.clear();
+					
 					// #445 Any error other than user not found is simply reported
 					var thisError:BentoError = BentoError.create(fault);
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {

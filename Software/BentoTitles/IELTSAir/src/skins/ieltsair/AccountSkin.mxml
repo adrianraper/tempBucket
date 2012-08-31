@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:local="*"
 		xmlns:account="skins.ieltsair.account.*"
-		xmlns:components="com.clarityenglish.components.*">
+		xmlns:components="com.clarityenglish.components.*" xmlns:ui="com.clarityenglish.ielts.view.account.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.account.AccountView")]
@@ -91,6 +91,6 @@
 
 	<s:Button id="saveChangesButton" label="Save changes" visible="{hostComponent.isDirty}" includeInLayout="{hostComponent.isDirty}" left="20" top="480" />
 	
-	<local:GradeWidget right="72" top="168" />
+	<ui:GradeWidget right="72" top="168" />
 
 </s:Skin>

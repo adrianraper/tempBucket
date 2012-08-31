@@ -35,7 +35,6 @@
       <libraryPathEntry kind="3" linkType="1" path="/IELTS/src/skins/ielts/assets/Preloader.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/IELTS/assets/CountdownDisplay.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/mx/mx.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/GradeWidget/bin/GradeWidget.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
