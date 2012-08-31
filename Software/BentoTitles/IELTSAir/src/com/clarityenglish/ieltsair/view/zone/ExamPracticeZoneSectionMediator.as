@@ -36,7 +36,7 @@ package com.clarityenglish.ieltsair.view.zone {
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				IELTSNotifications.COURSE_SHOW,
 			]);
 		}
 		
@@ -44,7 +44,9 @@ package com.clarityenglish.ieltsair.view.zone {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				case IELTSNotifications.COURSE_SHOW:
+					view.stopAllAudio(); // #508
+					break;
 			}
 		}
 		
