@@ -34,7 +34,6 @@ global {
 	modal-transparency-duration: 200;
 	
 	/* This sets the default font properties */
-	/*fontFamily: HelveticaNeueLtStdCFF;*/
 	fontSize: 12.6;
 	fontWeight: normal;
 	color: #303030;

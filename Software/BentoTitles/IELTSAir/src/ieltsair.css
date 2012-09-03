@@ -19,16 +19,11 @@
 
 global {
 	interactionMode: touch;
-	/*fontFamily: HelveticaNeueLtStd;*/
 }
 
 s|TitleWindow {
 	dropShadowVisible: true; /* #389 even though FB thinks this isn't supported it is in our skins */
 }
-
-/*s|Label, s|RichText {
-	fontFamily: HelveticaNeueLtStdCFF;
-}*/
 
 components|XHTMLExerciseView s|TextInput {
 	skinClass: ClassReference("skins.ieltsair.bento.exercise.ExerciseTextInputSkin");
