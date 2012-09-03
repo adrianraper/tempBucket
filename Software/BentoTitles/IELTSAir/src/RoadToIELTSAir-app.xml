@@ -249,6 +249,8 @@
 			<array>
 				<string>2</string>
 			</array>
+			<key>UIRequiresPersistentWiFi</key> 
+        	<string>YES</string>
 		]]></InfoAdditions>
         <requestedDisplayResolution>high</requestedDisplayResolution>
     </iPhone>

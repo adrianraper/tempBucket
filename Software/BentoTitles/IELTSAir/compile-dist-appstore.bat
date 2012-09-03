@@ -1,0 +1,2 @@
+"C:\Program Files (x86)\Adobe\Adobe Flash Builder 4.5\sdks\4.6_AIR3.4\bin\adt.bat" -package -target ipa-app-store -storetype pkcs12 -keystore "C:\Users\Dave\.ssh\ios-clarity\distribution\ios_distribution.p12" -storepass password -provisioning-profile "C:\Users\Dave\.ssh\ios-clarity\distribution\RoadToIELTS2AppStore.mobileprovision" RoadToIELTSAir.ipa RoadToIELTSAir-app.xml RoadToIELTSAir.swf ios-config.xml Settings.bundle icons skins/ieltsair/assets/zone/testpractice_*.png
+..\beep.bat

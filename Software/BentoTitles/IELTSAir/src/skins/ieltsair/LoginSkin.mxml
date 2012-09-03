@@ -25,6 +25,8 @@
 	
 	<login:InputAreaChrome left="19" top="183" />
 	
+	<!--<s:Label text="Login with the details you have been given by your school. You can't purchase Road to IELTS through the App Store yet." top="217" left="73" width="340" />-->
+	
 	<s:Label id="loginKey_lbl" left="73" top="217" text="{hostComponent.loginKey_lbl}" fontSize="16" />
 	<s:TextInput id="loginKeyInput" left="73" top="240" width="263" />
 	
