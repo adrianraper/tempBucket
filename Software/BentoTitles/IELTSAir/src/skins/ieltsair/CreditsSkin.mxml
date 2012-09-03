@@ -15,25 +15,25 @@
 			<s:RichText left="0" right="0" top="0">
 				<s:textFlow>
 					<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
-						<p>Project Managers<br/>
+						<p><span fontWeight="bold">Project Managers</span><br/>
 							Clarity: Joe Law <br/>
 							British Council: Greg Selby</p>
 						
-						<p>Lead Programmer<br/>
+						<p><span fontWeight="bold">Lead Programmer</span><br/>
 							Dave Keen</p>
 						
-						<p>Video recordings<br/>
+						<p><span fontWeight="bold">Video recordings</span><br/>
 							Andy Lewis</p>
 						
-						<p>Sources of original articles and images<br/>
+						<p><span fontWeight="bold">Sources of original articles and images</span><br/>
 							Photo images are taken from Shutterstock with permission.</p>
 						
 						<p>Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group.</p>
 						
-						<p>Tapescript<br/>
+						<p><span fontWeight="bold">Tapescript</span><br/>
 							Alex Mackarow.</p>
 						
-						<p>Authentic articles are taken from the following publications or organisations:<br/>
+						<p><span fontWeight="bold">Authentic articles are taken from the following publications or organisations:</span><br/>
 							Abolishing Management, One Slice at a Time<br/>
 							ACTA<br/>
 							American Artist Magazine<br/>

@@ -64,11 +64,19 @@ package com.clarityenglish.bento {
 		}
 		
 		private function onViewAddedToStage(event:Event):void {
-			facade.onViewAdded(event.target);
+			if (facade) {
+				facade.onViewAdded(event.target);
+			} else {
+				log.error("facade is not defined");
+			}
 		}
 		
 		private function onViewRemovedFromStage(event:Event):void {
-			facade.onViewRemoved(event.target);
+			if (facade) {
+				facade.onViewRemoved(event.target);
+			} else {
+				log.error("facade is not defined");
+			}
 		}
 		
 		protected function onKeyDown(event:KeyboardEvent):void {

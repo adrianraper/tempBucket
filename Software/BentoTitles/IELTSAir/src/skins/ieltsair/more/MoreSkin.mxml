@@ -50,7 +50,7 @@
 	</s:Group>
 	
 	<s:Group left="40" right="40" top="170" includeIn="contact">
-		<s:RichText left="0" right="0" height="350" columnCount="2">
+		<s:RichText left="0" right="0" height="375" columnCount="2">
 			<s:textFlow>
 				<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
 					<p>
