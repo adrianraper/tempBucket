@@ -16,24 +16,27 @@
 		
 		@font-face {
 			src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
-			fontFamily: HelveticaNeueLtStdCFF;
+			fontFamily: HelveticaNeueLtStd;
 			fontWeight: normal;
 			fontAntiAliasType: advanced;
 			fontSharpness: 400;
 			fontThickness: -200;
-			embedAsCFF: true;
+			embedAsCFF: false;
 		}
 		
 		@font-face {
 			src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
-			fontFamily: HelveticaNeueLtStdCFF;
+			fontFamily: HelveticaNeueLtStd;
 			fontWeight: bold;
 			fontAntiAliasType: advanced;
 			fontSharpness: 400;
 			fontThickness: -200;
-			embedAsCFF: true;
+			embedAsCFF: false;
 		}
 		
+		global {
+			fontFamily: HelveticaNeueLtStd;
+		}
 	</fx:Style>
 	
 	<fx:Style source="ielts.css" />

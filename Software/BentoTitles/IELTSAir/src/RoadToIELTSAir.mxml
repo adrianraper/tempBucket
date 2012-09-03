@@ -110,6 +110,28 @@
 	<fx:Style>
 		@namespace s "library://ns.adobe.com/flex/spark";
 		@namespace ielts "com.clarityenglish.ielts.*";
+		@namespace supportClasses "spark.components.supportClasses.*";
+		@namespace airzone "com.clarityenglish.ieltsair.view.zone.*";
+		
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
+			fontFamily: HelveticaNeueLtStdCFF;
+			fontWeight: normal;
+			fontAntiAliasType: advanced;
+			fontSharpness: 400;
+			fontThickness: -200;
+			embedAsCFF: true;
+		}
+		
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
+			fontFamily: HelveticaNeueLtStdCFF;
+			fontWeight: bold;
+			fontAntiAliasType: advanced;
+			fontSharpness: 400;
+			fontThickness: -200;
+			embedAsCFF: true;
+		}
 		
 		@font-face {
 			src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
@@ -131,6 +153,18 @@
 			embedAsCFF: false;
 		}
 		
+		global {
+			fontFamily: Helvetica;
+			fontSize: 13;
+		}
+		
+		/*global {
+			fontFamily: HelveticaNeueLtStdCFF;
+		}
+		
+		s|Label, s|Button, s|ActionBar, s|TabbedViewNavigator #tabBar, airzone|PracticeZonePopoutView, airzone|PracticeZoneSectionView {
+			fontFamily: HelveticaNeueLtStd;
+		}*/
 	</fx:Style>
 	
 	<fx:Style source="ielts.css" />
