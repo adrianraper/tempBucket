@@ -17,7 +17,6 @@ package com.clarityenglish.common.controller {
 	public class ProgressDataLoadCommand extends SimpleCommand {
 		
 		override public function execute(note:INotification):void {
-			
 			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;

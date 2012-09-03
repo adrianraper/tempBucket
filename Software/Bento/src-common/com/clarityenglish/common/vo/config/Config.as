@@ -5,6 +5,8 @@ package com.clarityenglish.common.vo.config {
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
+	import org.davekeen.util.StringUtils;
+	
 	/**
 	 * This holds configuration information that comes from any source.
 	 * It includes licence control, user and account information.
@@ -405,7 +407,10 @@ package com.clarityenglish.common.vo.config {
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
 			// Its purpose is to allow an account to swap language versions easily for a title.
 			if (thisTitle.contentLocation) {
-				this.paths.content += thisTitle.contentLocation;
+				// #472 - only concatenate if the path doesn't already end with this.  A little hacky but the chances of the normal content URL ending with the
+				// content location path already are slim to none.
+				if (!StringUtils.endsWith(this.paths.content, thisTitle.contentLocation))
+					this.paths.content += thisTitle.contentLocation;
 			}
 			
 			// See if you can now do any substitutions on the menu filename
