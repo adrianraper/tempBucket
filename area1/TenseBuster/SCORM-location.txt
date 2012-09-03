@@ -1,0 +1,1 @@
+language=EN*&sharedMedia=http://41.73.201.54:10082/Software/TenseBuster/sharedMedia&content=http://41.73.201.54:10082/Content&dbHost=2&mainMovies=http://41.73.201.54:10082/Software/Common&interfaceMovies=http://41.73.201.54:10082/Software/TenseBuster&help=http://41.73.201.54:10082/Software/TenseBuster/Help/help.htm#openWindow&scripting=PHP&database=SQLServer&end=1

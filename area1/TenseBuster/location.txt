@@ -1,0 +1,1 @@
+dbHost=2&mainMovies=/Software/Common&interfaceMovies=/Software/TenseBuster&dbPath=/Database&help=/Software/TenseBuster/Help/help.htm&content=../../Content&scripting=PHP&database=SQLServer&MGSRoot=/ap
