@@ -21,7 +21,7 @@ package com.clarityenglish.resultsmanager.view {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
 	import com.clarityenglish.resultsmanager.RMApplication;
-	import com.clarityenglish.utils.TraceUtils;	
+	import com.clarityenglish.utils.TraceUtils;
 	
 	/**
 	 * A Mediator
@@ -32,7 +32,7 @@ package com.clarityenglish.resultsmanager.view {
 		public static const NAME:String = "ApplicationMediator";
 		
 		public function ApplicationMediator(viewComponent:Object) {
-			// pass the viewComponent to the superclass where 
+			// pass the viewComponent to the superclass where
 			// it will be stored in the inherited viewComponent property
 			super(NAME, viewComponent);
 		}
@@ -62,19 +62,19 @@ package com.clarityenglish.resultsmanager.view {
 		 * define it in a constant and return it here. If
 		 * there are multiple instances, this method must
 		 * return the unique name of this instance.</P>
-		 * 
+		 *
 		 * @return String the Mediator name
 		 */
 		override public function getMediatorName():String {
 			return ApplicationMediator.NAME;
 		}
-        
+
 		/**
 		 * List all notifications this Mediator is interested in.
 		 * <P>
 		 * Automatically called by the framework when the mediator
 		 * is registered with the view.</P>
-		 * 
+		 *
 		 * @return Array the list of Nofitication names
 		 */
 		override public function listNotificationInterests():Array {
@@ -91,8 +91,8 @@ package com.clarityenglish.resultsmanager.view {
 		 * Called by the framework when a notification is sent that
 		 * this mediator expressed an interest in when registered
 		 * (see <code>listNotificationInterests</code>.</P>
-		 * 
-		 * @param INotification a notification 
+		 *
+		 * @param INotification a notification
 		 */
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
@@ -130,9 +130,8 @@ package com.clarityenglish.resultsmanager.view {
 					TraceUtils.myTrace("appMediator.directStart=" + (note.getBody() as String));
 					application.configureTabsForDirectStart(note.getBody() as String);
 					break;
-				
 				default:
-					break;		
+					break;
 			}
 		}
 

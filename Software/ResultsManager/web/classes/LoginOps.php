@@ -87,10 +87,15 @@ EOD;
 		
 		if ($rootID != null) {
 			// #503 rootID is an array
-			if (count($rootID) > 1) {
-				$sql.= "AND m.F_RootID IN (".implode(",",$rootID).")";
+			if (is_array($rootID)) {
+				if (count($rootID) > 1) {
+					$sql.= "AND m.F_RootID IN (".implode(",",$rootID).")";
+				} else {
+					$sql.= "AND m.F_RootID=".implode(",",$rootID);
+				}
 			} else {
-				$sql.= "AND m.F_RootID=".implode(",",$rootID);
+				$sql.= "AND m.F_RootID=?";
+				$bindingParams[] = $rootID;
 			}
 		}
 		
@@ -157,18 +162,34 @@ EOD;
 			throw $this->copyOps->getExceptionForId("errorNoAnonymousUser");
 		}
 		
+		// #503 rootID could be an array. 
+		if (is_array($rootID)) {
+			if (count($rootID) > 1) {
+				$rootClause = "m.F_RootID IN (".implode(",",$rootID).")";
+			} else {
+				$rootClause = "m.F_RootID=".$rootID[0];
+			}
+		} else {
+			$rootClause = "m.F_RootID=".$rootID;
+		}
+				
 		// Then we need the top level group ID for this root.
+		// #503 Since we might be searching in a root list, save the one that you actually find
 		$sql =	<<<EOD
-				SELECT m.F_GroupID as groupID FROM T_Membership m, T_User u
-				WHERE F_RootID=?
+				SELECT m.F_GroupID as groupID, m.F_RootID as rootID 
+				FROM T_Membership m, T_User u
+				WHERE $rootClause
 				AND m.F_UserID = u.F_UserID
 				AND u.F_UserType=?; 
 EOD;
-		$bindingParams = array($rootID, User::USER_TYPE_ADMINISTRATOR);
+		$bindingParams = array(User::USER_TYPE_ADMINISTRATOR);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
 		if ($rs->RecordCount() > 0) {
-			$loginObj->groupID = $rs->FetchNextObj()->groupID;
+			$dbObj = $rs->FetchNextObj();
+			$loginObj->groupID = $dbObj->groupID;
+			// #503 Since we might be searching in a root list, save the one that you actually find
+			$loginObj->rootID = $dbObj->rootID;
 		} else {
 			throw $this->copyOps->getExceptionForId("errorNoSuchGroup");
 		}

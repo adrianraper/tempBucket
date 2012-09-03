@@ -145,10 +145,12 @@
 				// Except that you haven't got title for RM!
 				// DONE. Sort this out later.
 				// Now picked up and saved from login
-				// v3.6.6 Concurrent Tracking licence should have User view as well
+				// v3.6.6 Concurrent Tracking licence should have User view as well, and network
+				TraceUtils.myTrace('your licence is ' + Constants.licenceType);
 				var allAAlicences:Boolean = true;
 				if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
 					Constants.licenceType == Title.LICENCE_TYPE_CT ||
+					Constants.licenceType == Title.LICENCE_TYPE_NETWORK ||
 					Constants.licenceType == Title.LICENCE_TYPE_TT)
 					allAAlicences = false;
 				/*

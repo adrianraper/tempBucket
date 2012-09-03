@@ -83,11 +83,16 @@ www.brightpointinc.com
 			this.copyProvider = copyProvider;
 			title = copyProvider.getCopyForId("licenceStatistics");
 			otherUserCountsLabel.text = copyProvider.getCopyForId("otherUserCounts");
-			expiryDateLabel.text = copyProvider.getCopyForId("licenceExpiryDate");
+			//expiryDateLabel.text = copyProvider.getCopyForId("licenceExpiryDate");
+			//startDateLabel.text = copyProvider.getCopyForId("licenceStartDate");
+			//clearanceDateLabel.text = copyProvider.getCopyForId("licenceClearanceDate");
 			//licencesUsedLabel.text = copyProvider.getCopyForId("licenceTitleUsers");
 		}
 		//public function setStudentValues(singleValue:Number, maxValue:Number):void {
-		public function setStudentValues(singleValue:Number, thisTitle:Title):void {
+		// Add licence clearance date. Whilst you can read this from title and calculate it using frequency
+		//  it seems more sensible to let usageOps send back the date that it actually used
+		//public function setStudentValues(singleValue:Number, thisTitle:Title):void {
+		public function setStudentValues(singleValue:Number, thisTitle:Title, licenceClearanceDate:String):void {
 			var maxValue:Number = thisTitle.maxStudents;
 			TraceUtils.myTrace(singleValue + " licences of  " + maxValue);
 			// rescale the single value so that it is a %. This avoids resetting the ratios
@@ -111,10 +116,11 @@ www.brightpointinc.com
 			// Commented as our T_Licences table simply doesn't have full data in it
 			// Now reset UsageOps.php to pull out statistics from the T_Session table
 			// I now want to put the licence start date in here
+			// Add licence clearance date, and move formatting around a bit
 			var licenceDateFormatter:DateFormatter = new DateFormatter();
 			licenceDateFormatter.formatString = "D MMMM, YYYY";
 			var replaceObj:Object = new Object();
-			replaceObj.startDate = licenceDateFormatter.format(thisTitle.licenceStartDate);
+			replaceObj.clearanceDate = licenceDateFormatter.format(licenceClearanceDate);
 			replaceObj.x = singleValue;
 			replaceObj.y = maxValue;
 			licenceTitleUsersTxt.text = copyProvider.getCopyForId("licenceTitleUsers", replaceObj);
@@ -122,6 +128,7 @@ www.brightpointinc.com
 			// Also for the pdf header
 			//licencesUsedLbl.text = copyProvider.getCopyForId("licencesUsed", replaceObj);
 			licencesUsedLbl.text = singleValue.toString();
+			licenceClearanceDateLbl.text = replaceObj.clearanceDate;
 		}
 		public function setAALicence(licenceNumber:uint):void {
 			AAlicencesUsedLabel.text = "Concurrent licences: " + licenceNumber;
@@ -130,16 +137,35 @@ www.brightpointinc.com
 			//(userDisplay as UserDisplay).init();
 			//loadedSM.application["concurrentUsers"] = licenceNumber;
 			//loadedSM.application["init"]();
-			TraceUtils.myTrace("try to call init");
+			//TraceUtils.myTrace("try to call init");
 			(AAUserDisplay as ConcurrentUserDisplay).value = licenceNumber;
 		}
 		// AR We know the date - can I display it as a static calendar page?
 		//public function setExpiryDate(thisDate:String):void {
-		public function setExpiryDate(thisTitle:Title):void {
-			var myDate:Date = DateUtils.ansiStringToDate(thisTitle.expiryDate);
+		// Add licence clearance date
+		public function setExpiryDate(thisTitle:Title, licenceClearanceDate:String):void {
 			//TraceUtils.myTrace(thisDate + " goes to " + myDate.toString());
-			expiryDateCalendar.selectedDate = myDate;
-			expiryDateCalendar.selectableRange = myDate;
+			//expiryDateCalendar.selectedDate = myDate;
+			//expiryDateCalendar.selectableRange = myDate;
+			var licenceDateFormatter:DateFormatter = new DateFormatter();
+			licenceDateFormatter.formatString = "D MMMM, YYYY";
+			var replaceObj:Object = new Object();
+			replaceObj.startDate = licenceDateFormatter.format(thisTitle.licenceStartDate);
+			replaceObj.expiryDate = licenceDateFormatter.format(thisTitle.expiryDate);
+			//replaceObj.clearanceDate = licenceDateFormatter.format(thisTitle.licenceClearanceDate);
+			// Whilst you could calculate from the title, better to get from whatever usageOps used
+			replaceObj.clearanceDate = licenceDateFormatter.format(licenceClearanceDate);
+			
+			expiryDateLabel.text = copyProvider.getCopyForId("licenceExpiryDate", replaceObj);
+			startDateLabel.text = copyProvider.getCopyForId("licenceStartDate", replaceObj);
+			if (licenceClearanceDate == thisTitle.licenceStartDate) {
+				clearanceDateLabel.text = '';
+			} else {
+				//clearanceDateLabel.text = copyProvider.getCopyForId("licenceClearanceDate", replaceObj);
+			}
+			// For PDF header
+			licenceClearanceDateLbl.text = replaceObj.clearanceDate;
+
 		}
 		// AR 
 		public function setDataMaximum(otherUsersMax:Number):void {
@@ -197,6 +223,7 @@ www.brightpointinc.com
 		<mx:Label id="titleNameLbl" />
 		<mx:Label id="licenceStartDateLbl" />
 		<mx:Label id="licenceEndDateLbl" />
+		<mx:Label id="licenceClearanceDateLbl" />
 		<mx:Label id="licencesUsedLbl" />
 		<mx:Label id="licencesLbl" />
 		<mx:Label id="licenceTypeLbl" />
@@ -204,8 +231,14 @@ www.brightpointinc.com
 	</mx:VBox>
 	<mx:HBox width="100%" height="100%">
 		<mx:VBox id="expiryDate" height="100%" width="200" paddingTop="10" horizontalAlign="center">
+			<!-- Rather than an in active dateChooser, write out the dates with a background image
+				Add licence clearance date
 			<mx:DateChooser id="expiryDateCalendar" yearNavigationEnabled="false" />
 			<mx:Label id="expiryDateLabel" fontWeight="bold"/>
+			 -->
+			<mx:Label id="startDateLabel" fontWeight="bold"/>
+			<mx:Label id="expiryDateLabel" fontWeight="bold"/>
+			<mx:Label id="clearanceDateLabel" fontWeight="bold"/>
 		</mx:VBox>
 		<mx:VBox id="AAlicencesUsed" height="100%" width="230" paddingTop="10" horizontalAlign="center" visible="{AAlicence}" includeInLayout="{AAlicence}">
 			<!-- 
