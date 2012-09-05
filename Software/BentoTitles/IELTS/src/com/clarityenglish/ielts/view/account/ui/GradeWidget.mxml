@@ -228,7 +228,7 @@
 
 	<s:Group>
 		<s:Image id="caculatorBackground" source="@Embed(source='/skins/ielts/assets/rtiv2_widget.png')" />
-		<s:Form id="GradeCaculate" includeIn="question" x="30" y="91" width="344" height="300">
+		<s:Form id="GradeCaculate" includeIn="question" x="30" y="70" width="344" height="300">
 			<s:layout>
 				<s:FormLayout gap="0" />
 			</s:layout>

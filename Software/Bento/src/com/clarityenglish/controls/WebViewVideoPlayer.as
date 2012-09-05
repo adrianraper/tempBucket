@@ -49,7 +49,7 @@ package com.clarityenglish.controls {
 			super.createChildren();
 			
 			if (!stageWebView) {
-				// #443 - since StageWebView is native we need to apply the Retina dpi change manually
+				// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually
 				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
 				
 				stageWebView = new StageWebView();
@@ -59,7 +59,8 @@ package com.clarityenglish.controls {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			stageWebView.stage = (visible) ? stage : null;
+			if (stageWebView)
+				stageWebView.stage = (visible) ? stage : null;
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
@@ -71,23 +72,29 @@ package com.clarityenglish.controls {
 		
 		public function play():void {
 			if (source) {
-				stageWebView.loadURL(source.toString());
+				if (stageWebView)
+					stageWebView.loadURL(source.toString());
 			} else {
 				stop();
 			}
 		}
 		
 		public function stop():void {
-			stageWebView.reload();
-			stageWebView.viewPort = null;
+			if (stageWebView) {
+				stageWebView.reload();
+				stageWebView.viewPort = null;
+			}
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			
 			stop();
-			stageWebView.dispose();
-			stageWebView = null;
+			
+			if (stageWebView) {
+				stageWebView.dispose();
+				stageWebView = null;
+			}
 		}
 		
 	}

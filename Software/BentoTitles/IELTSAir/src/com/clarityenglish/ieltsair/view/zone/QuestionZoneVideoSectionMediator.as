@@ -3,6 +3,7 @@ package com.clarityenglish.ieltsair.view.zone {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -37,7 +38,7 @@ package com.clarityenglish.ieltsair.view.zone {
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				IELTSNotifications.COURSE_SHOW,
 			]);
 		}
 		
@@ -45,7 +46,10 @@ package com.clarityenglish.ieltsair.view.zone {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				case IELTSNotifications.COURSE_SHOW:
+					// #510 - when the course is changed go back to the main starting out view
+					view.navigator.popToFirstView(null);
+					break;
 			}
 		}
 		
