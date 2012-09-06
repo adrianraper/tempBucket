@@ -10,19 +10,19 @@
 				<key>Title</key>
 				<string>Prefix</string>
 				<key>DefaultValue</key>
-				<string>Clarity</string>
+				<string>HCT</string>
 				<key>Key</key>
 				<string>prefix</string>
 				<key>Values</key>
 				<array>
-					<string>Clarity</string>
-					<string>DEV</string>
+					<!-- <string>Clarity</string>
+					<string>DEV</string> -->
 					<string>HCT</string>
 				</array>
 				<key>Titles</key>
 				<array>
-					<string>Clarity</string>
-					<string>DEV</string>
+					<!-- <string>Clarity</string>
+					<string>DEV</string> -->
 					<string>HCT</string>
 				</array>
 			</dict>
@@ -54,7 +54,7 @@
 				<key>Title</key>
 				<string>Font offset</string>
 				<key>DefaultValue</key>
-				<string>2</string>
+				<string>0</string>
 				<key>Key</key>
 				<string>fontOffset</string>
 				<key>Values</key>
