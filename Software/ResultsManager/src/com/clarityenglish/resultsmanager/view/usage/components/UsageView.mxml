@@ -73,7 +73,12 @@
 		private static const MANY_COURSES:uint = 3;
 		[Bindable]
 		public var show_session_count:Boolean = false;
-		
+
+		[Bindable]
+		private var totalCourseCount:int = 0;
+		[Bindable]
+		private var totalCourseDuration:int = 0;
+
 		private static const LEFT_PRINT_MARGIN:int = 20;
 		private static const RIGHT_PRINT_MARGIN:int = 20;
 		private static const TOP_PRINT_MARGIN:int = 20;
@@ -175,6 +180,16 @@
 		// Note that this dataProvider carries two sets of information
 		//public function setCourseCounts(dataProviderUsers:Object, dataProviderTimes:Object, maxDuration:Number):void {
 		public function setCourseCounts(dataProvider:Object, maxDuration:Number, maxCount:Number):void {
+			totalCourseCount = 0;
+			totalCourseDuration = 0;
+			
+			// Cope with no data
+			if (dataProvider == null) {
+				TraceUtils.myTrace("null data provider, so set coursesInTitle to zero");
+				coursesInTitle = NO_COURSES;
+				return;
+			}
+			
 			if (dataProvider.length>1) {
 				someCourseCounts.setDataMaximum(maxDuration);
 				// AR There might be empty items in the dataProvider which don't play well with the charts
@@ -194,12 +209,20 @@
 					if (item.duration == undefined) {
 						item.duration = 0;
 					}
+					// v4.4 Add up all the courses here so you can report a total
+					totalCourseCount += Number(item.courseCount);
+					totalCourseDuration += Number(item.duration);
+					TraceUtils.myTrace("1.adding count =" + item.courseCount + " duration=" + item.duration);
+					
 				}
 				//for each (item in dataProviderTimes) {
 				//	if (item.duration == undefined) {
 				//		item.duration = 0;
 				//	}
 				//}
+				// v4.4 Send the total to the view
+				//someCourseCounts.setTotalCourseCount(totalCourseCount);
+				//manyCourseCounts.setTotalCourseCount(totalCourseCount);
 				
 				// AR this is silly as the someCourseCounts share all the data, just different views
 				// UsageOps could easily send these two back as one.
@@ -388,7 +411,7 @@
 				pdf.addImage(this.failedLoginCounts.failedLoginContainer, null, 8, (270-pdfChart3Height), pdfChart3Width, pdfChart3Height);
 
 				// Put the header text on last in case it overlaps an image
-								var xLabel:uint = 15;
+				var xLabel:uint = 15;
 				var xData:uint = 50;
 				var yFirstLine:uint = 22;
 				var yDiff:uint = 5;
@@ -406,8 +429,10 @@
 				pdf.addText(this.copyProvider.getCopyForId("usageStatsLicenceDetails", replaceObj), xData, yNextLine);
 				yNextLine = yNextLine + yDiff;
 				pdf.addText( this.copyProvider.getCopyForId("usageStatsLicenceDatesLabel"), xLabel, yNextLine );
+				// Add licence clearance date
 				replaceObj.startDate = this.userTypeCounts.licenceStartDateLbl.text;
 				replaceObj.endDate = this.userTypeCounts.licenceEndDateLbl.text;
+				replaceObj.clearanceDate = this.userTypeCounts.licenceClearanceDateLbl.text;
 				pdf.addText(this.copyProvider.getCopyForId("usageStatsLicenceDates", replaceObj), xData, yNextLine);
 				yNextLine = yNextLine + yDiff;
 				if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT ||
@@ -616,7 +641,7 @@
 				<mx:Button label="Print/PDF" enabled="{titleList.selectedItem != null}" click="buildPDF()" />
 			</mx:HBox>
 			<mx:VBox width="100%" height="100%" id="displays" minWidth="0" minHeight="0"
-					horizontalAlign="left" 
+					verticalAlign="center" horizontalAlign="left" 
 					verticalScrollPolicy="on"
 					visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" >
 					<!-- paddingLeft="20" paddingTop="20": this works nicely for getting a printed margin, but looks bad on screen, how to do it dynamically? -->
@@ -628,7 +653,8 @@
 				<ui:CourseTimeCounts width="100%" id="courseTimeCounts" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" />
 				 -->
 				<ui:SessionsStarted width="99%" id="sessionsStarted" visible="{titleList.selectedItem != null &amp;&amp; show_session_count}" includeInLayout="{titleList.selectedItem != null &amp;&amp; show_session_count}" />
-				<ui:SomeCourseCounts width="99%" id="someCourseCounts" visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SOME_COURSES}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SOME_COURSES}" />
+				<ui:SomeCourseCounts width="99%" id="someCourseCounts" totalCourseCount="{totalCourseCount}" totalCourseDuration="{totalCourseDuration}" 
+												visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SOME_COURSES}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SOME_COURSES}" />
 				<ui:SingleCourseCount width="99%" id="singleCourseCount" visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SINGLE_COURSE}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SINGLE_COURSE}" />
 				<ui:ManyCourseCounts width="99%" id="manyCourseCounts" visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==MANY_COURSES}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==MANY_COURSES}" />
 				<ui:FailedLoginCounts width="99%" id="failedLoginCounts" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" />

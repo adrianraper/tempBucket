@@ -259,10 +259,15 @@
 				generateSpecialReportButton.includeInLayout = true;
 				generateSpecialReportButton.label = copyProvider.getCopyForId("SummaryReport");
 				// v3.4 For WACC/Mexico/3level test, you want a different template
-				if (Constants.prefix == "WACC") {
+				// This really ought to be picked up from licenceAttributes as you have to recompile each time like this.
+				// But RM doesn't read licenceAttributes or any account info.
+				if (Constants.prefix == "WACC" || 
+					Constants.prefix == "SEDM") {
 					specialReportTemplate = "3levelTestSummary";
+					TraceUtils.myTrace("add Test summary report button, 3 levels");
 				} else {
 					specialReportTemplate = "ClarityTestSummary";
+					TraceUtils.myTrace("add Test summary report button, 5 levels");
 				}
 			} else {
 				// In case you run a special report then want to do other things, remove the button

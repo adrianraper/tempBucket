@@ -15,10 +15,11 @@
 		// Of course these are really database values (T_LicenceType) but sometimes it is quick to refer to these constants!
 		public static const LICENCE_TYPE_LT:int = 1;
 		public static const LICENCE_TYPE_AA:int = 2;
-		public static const LICENCE_TYPE_CT:int = 3;
+		public static const LICENCE_TYPE_NETWORK:int = 3;
 		public static const LICENCE_TYPE_SINGLE:int = 4;
 		public static const LICENCE_TYPE_I:int = 5;
 		public static const LICENCE_TYPE_TT:int = 6;
+		public static const LICENCE_TYPE_CT:int = 7;
 		
 		/**
 		 * The collection of courses belonging to this title

@@ -20,7 +20,7 @@ function loadAPIInformation() {
 	$inputData = file_get_contents("php://input");
 	//$inputData = '[{"method":"sendEmail", "from":"adrian.raper@clarityenglish.com", "to":"adrian@noodles.hk", "templateID":"GlobalR2I-registration", "data":{"name":"Adrian&apos;s Raper bean", "password":"1234"}, "transactionTest":false}]';
 	//$inputData = '[{"method":"sendEmail", "from":"support@claritylifeskills.com", "to":"adrian@noodles.hk", "templateID":"CLSNewsletterRegister", "data":{"name":"Adrian&apos;s Raper bean", "password":"1234"}, "transactionTest":false}]';
-	//$inputData = '{"method":"sendEmail", "from":"support@claritylifeskills.com", "to":"adrian@noodles.hk", "templateID":"CLS/CLSregisterNewsletter", "data":"", "transactionTest":false}';
+	//$inputData = '{"method":"sendEmail", "from":"support@roadtoielts.com", "to":"adrian@noodles.hk", "templateID":"user/Welcome-BCHK-user", "data":{"name":"Adrian&apos;s Raper bean", "password":"1234"}, "transactionTest":false}';
 
 	$postInformation= json_decode($inputData, true);
 	//echo $postInformation; exit();

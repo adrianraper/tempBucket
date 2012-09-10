@@ -27,6 +27,7 @@ class LicenceOps {
 	function getLicenceSlot($user, $rootID, $productCode, $licence, $ip = '') {
 		// Whilst rootID might be a comma delimited list, you can treat
 		// licence control as simply use the first one in the list
+		// TODO. This will stop groupedRoots from working!
 		if (stristr($rootID, ',')) {
 			$rootArray = explode(',', $rootID);
 			$singleRootID = $rootArray[0];
@@ -41,7 +42,7 @@ class LicenceOps {
 		
 		if ($licence->expiryDate < $dateNow) {
 			// Write a record to the failure table
-			$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceExpired"));
+			$this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorLicenceExpired"));
 			
 			throw $this->copyOps->getExceptionForId("errorLicenceExpired", array("expiryDate" => $licence->expiryDate));
 		}
@@ -74,7 +75,7 @@ EOD;
 					// the sql call failed
 					if (!$rs) {
 						// Write a record to the failure table
-						$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorCantClearLicences"));
+						$this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorCantClearLicences"));
 						
 						throw $this->copyOps->getExceptionForId("errorCantClearLicences");
 					}
@@ -91,7 +92,7 @@ EOD;
 	
 					if ($usedLicences >= $licence->maxStudents) {
 						// Write a record to the failure table
-						$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorConcurrentLicenceFull"));
+						$this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorConcurrentLicenceFull"));
 	
 						throw $this->copyOps->getExceptionForId("errorConcurrentLicenceFull");
 					}
@@ -137,14 +138,14 @@ EOD;
 						//$rc = $this->updateLicence($licence);
 					} else {
 						// How many licences have been used?
-						if ($this->countUsedLicences($rootID, $productCode, $licence) < $licence->maxStudents) {
+						if ($this->countUsedLicences($singleRootID, $productCode, $licence) < $licence->maxStudents) {
 							// Grab one
 							// Deprecated as the session record is effectively the last licence use
 							//$licenceID = $this->allocateNewLicence($user, $rootID, $productCode);
 							$licenceID = $user->userID;
 						} else {
 							// Write a record to the failure table
-							$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorTrackingLicenceFull"));
+							$this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorTrackingLicenceFull"));
 							
 							throw $this->copyOps->getExceptionForId("errorTrackingLicenceFull");
 						}
@@ -153,7 +154,7 @@ EOD;
 				break;
 			default:
 				// Write a record to the failure table
-				$this->failLicenceSlot($user, $rootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorInvalidLicenceType"));
+				$this->failLicenceSlot($user, $singleRootID, $productCode, $licence, $ip, $this->copyOps->getCodeForId("errorInvalidLicenceType"));
 				
 				throw $this->copyOps->getExceptionForId("errorInvalidLicenceType");
 		}

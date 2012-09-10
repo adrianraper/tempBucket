@@ -39,7 +39,7 @@
 				FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
 				try { FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix"); } catch (e:TypeError) { }
 				try { FlexGlobals.topLevelApplication.parameters.productCode = IPhoneAppSettings.getInstance().stringForKey("productVersion"); } catch (e:TypeError) { }
-				FlexGlobals.topLevelApplication.parameters.prefix = "HCT";
+				
 				// The AIR application applies an offset to font sizes in the xhtml files  
 				try { CSSApplicator.fontSizeOffset = new Number(IPhoneAppSettings.getInstance().stringForKey("fontOffset")); } catch (e:TypeError) { }
 				

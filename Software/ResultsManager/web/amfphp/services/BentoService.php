@@ -186,7 +186,22 @@ class BentoService extends AbstractService {
 		Session::set('userType', $userObj->F_UserType);
 		
 		// #503 From login you now only have one rootID even if you started with an array
-		$rootID = $userObj->rootID;
+		// If that root has changed, you have to get a new licence object for this new root
+		// To be clear: subRoots means that I use one prefix to get lots of subRoots.
+		// my login looks for my ID in all those roots and finds it in one.
+		// The licence checking is all now based on that one root.
+		// groupedRoots means that I use my specific root to login. I pick up groupedRoots
+		// and all those roots are counted when I check used licences. All roots in the group
+		// have the same licence details, and I need to pass those roots to getLicenceSlot.
+		// But getLicenceSlot doesn't cope with that. For now this is OK as no-one uses it.
+		$newRootID = $userObj->rootID;
+		if ($rootID != array($newRootID)) {
+			$newAccount = $this->loginOps->getAccountSettings(array('rootID' => $newRootID, 'productCode' => $productCode));
+			$licence = new Licence();
+			$licence->fromDatabaseObj($newAccount->titles[0]);
+		} 
+		
+		$rootID = $newRootID;
 		Session::set('rootID', $rootID);
 		
 		// Check that you can give this user a licence

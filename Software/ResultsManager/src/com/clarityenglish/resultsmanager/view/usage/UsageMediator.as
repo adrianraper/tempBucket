@@ -156,7 +156,13 @@ package com.clarityenglish.resultsmanager.view.usage {
 						//for each (var item:Object in data.courseUserCounts) {
 						for each (var item:Object in data.courseCounts) {
 							//item.courseName = selectedTitle.getCourseById(item.courseID).caption;
-							item.courseName = selectedTitle.getCourseById(item.courseID).name;
+							// v3.7 If you want to show units for a single course title, get their names here
+							if (item.unitID) {
+								item.courseName = selectedTitle.getUnitById(item.courseID).name;
+								// TODO. YOu also have to adapt sortOnCourseID...
+							} else {
+								item.courseName = selectedTitle.getCourseById(item.courseID).name;
+							}
 							//TraceUtils.myTrace("usageMediator:item.courseID=" + item.courseID + " caption=" + item.courseName + " users=" + item.courseCount);
 							if (item.courseCount > maxCount) {
 								maxCount = item.courseCount;
@@ -206,6 +212,10 @@ package com.clarityenglish.resultsmanager.view.usage {
 						//usageView.setCourseTimeCounts(data.courseTimeCounts, maxDuration);
 						//usageView.setCourseCounts(data.courseUserCounts, data.courseTimeCounts, maxDuration);
 						usageView.setCourseCounts(data.courseCounts, maxDuration, maxCount);
+					} else {
+						// Need to cope with no data and remove stuff from the screen
+						TraceUtils.myTrace("mediator, setting dp to null");
+						usageView.setCourseCounts(null, 0, 0);
 					}
 					/*
 					if (data.courseTimeCounts.length>0) {
@@ -243,16 +253,22 @@ package com.clarityenglish.resultsmanager.view.usage {
 					// AR We have a new statistics display showing number of users who have started this title
 					// against the number of licences
 					// We need completely different view for AA licences
-					usageView.userTypeCounts.AAlicence = (selectedTitle.licenceType==Title.LICENCE_TYPE_AA);
+					//usageView.userTypeCounts.AAlicence = (selectedTitle.licenceType==Title.LICENCE_TYPE_AA);
+					usageView.userTypeCounts.AAlicence = (selectedTitle.licenceType == Title.LICENCE_TYPE_AA || 
+															selectedTitle.licenceType==Title.LICENCE_TYPE_NETWORK ||
+															selectedTitle.licenceType==Title.LICENCE_TYPE_CT);
+					TraceUtils.myTrace("AAlicence=" + usageView.userTypeCounts.AAlicence + " as licenceType=" + selectedTitle.licenceType);
 					//usageView.userTypeCounts.setExpiryDate(selectedTitle.expiryDate);
-					usageView.userTypeCounts.setExpiryDate(selectedTitle);
+					usageView.userTypeCounts.setExpiryDate(selectedTitle, data.licenceClearanceDate);
 					// v3.6 Or rather, we need a different view for LT
 					//if (selectedTitle.licenceType == Title.LICENCE_TYPE_AA) {
-					if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT ||
-						selectedTitle.licenceType == Title.LICENCE_TYPE_TT) {
-						TraceUtils.myTrace("usageMediator: titleUserCounts=" + data.titleUserCounts + " of max=" + selectedTitle.maxStudents);
+					//if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT ||
+					//	selectedTitle.licenceType == Title.LICENCE_TYPE_TT) {
+					if (!usageView.userTypeCounts.AAlicence) {
+						TraceUtils.myTrace("usageMediator: titleUserCounts=" + data.titleUserCounts + " of max=" + selectedTitle.maxStudents + " date=" + data.licenceClearanceDate);
 						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle.maxStudents);
-						usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle);
+						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle);
+						usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle, data.licenceClearanceDate);
 						// and a nice maximum on the other users chart
 						//usageView.userTypeCounts.setOtherUsersMax()						
 					} else {

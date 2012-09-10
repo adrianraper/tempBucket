@@ -116,7 +116,7 @@
 			</s:layout>
 
 			<!-- this is for the rotating course selector -->
-			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" />
+			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" visible="{hostComponent.useCourseSelector}" includeInLayout="{hostComponent.useCourseSelector}"/>
 		</s:Group>
 		
 		<!-- The popout exercise selector -->

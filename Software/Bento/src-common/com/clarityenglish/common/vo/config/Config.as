@@ -32,11 +32,16 @@ package com.clarityenglish.common.vo.config {
 		 * Information is held in simple variables for the most part
 		 */
 		// TODO. Many of these are NOT in the config class. They are in user, for instance
+		// #515 Just found that I have config.rootID and config.account.id.
+		// So I should avoid simple variables that are also held in objects
 		public var dbHost:Number;
 		public var productCode:uint;
 		public var productVersion:String;
 		public var prefix:String;
-		public var rootID:Number;
+		// #515
+		//public var rootID:Number;
+		private var _rootID:Number;
+		
 		public var username:String;
 		public var studentID:String;
 		public var email:String;
@@ -111,6 +116,26 @@ package com.clarityenglish.common.vo.config {
 			//this.licence = new Licence();
 			this.error = new BentoError();
 			this.channels = [];
+			this.scorm = false;
+		}
+		
+		/**
+		 * Some getters and setters to tidy up variable use
+		 * #515
+		 */
+		// RootID is part of the account object, assuming you have that. If not, use a temp variable
+		public function get rootID():Number {
+			if (this.account)
+				return Number(this.account.id);
+			
+			return _rootID;
+		}
+		public function set rootID(value:Number):void {
+			if (this.account) {
+				this.account.id = value.toString();
+			} else {
+				_rootID = value;
+			}
 		}
 		
 		/**

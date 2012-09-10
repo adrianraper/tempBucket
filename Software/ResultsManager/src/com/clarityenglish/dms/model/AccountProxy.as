@@ -53,7 +53,13 @@ package com.clarityenglish.dms.model {
 			//if (showClosedAccounts) {
 			//	new RemoteDelegate("getAccounts", [ [ ], { individuals:showIndividualAccounts }, { accountStatus:11 } ], this).execute();
 			//} else {
+			// Hack to use Constants.filterString to send conditions to AccountOps.getAccounts. It would make more sense to parse
+			// the string here and send a full conditions array.
+			if (Constants.filterString) {
+				new RemoteDelegate("getAccounts", [ [ ], { individuals:showIndividualAccounts, accountName:Constants.filterString } ], this).execute();
+			} else {
 				new RemoteDelegate("getAccounts", [ [ ], { individuals:showIndividualAccounts } ], this).execute();
+			}
 			//}
 		}
 		// v3.0.6 Always pick up the accounts type from our own variable now

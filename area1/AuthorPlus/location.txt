@@ -1,0 +1,1 @@
+content=/ap&dbHost=2&mainMovies=../../Software/Common&interfaceMovies=../../Software/AuthorPlus&sharedMedia=../../Software/AuthorPlus/SharedMedia&help=../../Software/AuthorPlus/Help/help.htm#openWindow&scripting=PHP&database=SQLServer&MGSRoot=/ap

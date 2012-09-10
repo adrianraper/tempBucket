@@ -121,6 +121,8 @@ package com.clarityenglish.resultsmanager.view.loginopts {
 					*/
 					// v3.6 Here we can hide the access control completely if we need to
 					if (Constants.licenceType == Title.LICENCE_TYPE_LT ||
+						Constants.licenceType == Title.LICENCE_TYPE_CT ||
+						Constants.licenceType == Title.LICENCE_TYPE_NETWORK ||
 						Constants.licenceType == Title.LICENCE_TYPE_TT) {
 						loginOptsView.accessControlPanel.visible = true;
 						loginOptsView.accessControlPanel.includeInLayout = true;

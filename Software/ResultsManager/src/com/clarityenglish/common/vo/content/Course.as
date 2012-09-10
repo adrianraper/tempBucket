@@ -51,7 +51,11 @@
 		/* INTERFACE mx.core.IUID */
 		
 		override public function get uid():String {
-			return parent.uid + "." + id;
+			if (parent != null) {
+				return parent.uid + "." + id;
+			} else {
+				return id;
+			}
 		}
 		
 		override public function set uid(value:String):void { }

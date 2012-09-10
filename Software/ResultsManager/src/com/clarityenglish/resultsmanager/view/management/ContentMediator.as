@@ -139,8 +139,9 @@ package com.clarityenglish.resultsmanager.view.management {
 					var numUsers:Number = data.manageablesCount as Number;
 					TraceUtils.myTrace("contentMediator knows you have " + numUsers);
 					// Is it worth doing a delay?
-					// Could this be causing a session problem?
+					// Could this be causing a session problem? yes, though no idea why
 					//if (numUsers < 500 || (data.noStudents as Boolean)) {
+						TraceUtils.myTrace("contentMediator no delay");
 						notificationDelayContent(null);
 					//} else {
 					//	var littleDelay:Timer = new Timer(numUsers, 1);

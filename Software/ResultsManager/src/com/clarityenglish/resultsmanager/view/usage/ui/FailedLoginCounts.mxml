@@ -39,36 +39,51 @@
 			//TraceUtils.myTrace("errorCode:" + item.F_ReasonCode);
 			//return Constants.errorCodeOrchid[item.F_ReasonCode];
 			// v3.6 MySQL returns string rather than number, so force it here
+			// v6.6 Bento sends back different codes for errors
 			switch (Number(item.F_ReasonCode)) {
-				case 0:
-				case 201:
-				case 202:
-				case 207:
-					return copyProvider.getCopyForId("unknownFailedLoginReason");
-					break;
 				case 203:
 					return copyProvider.getCopyForId("noSuchLearnerID");
 					break;
 				case 204:
 					return copyProvider.getCopyForId("passwordWrong");
 					break;
+				case 207:
 				case 208:
+				case 301:
 					return copyProvider.getCopyForId("accountExpired");
 					break;
 				case 211:
+				case 303:
 					return copyProvider.getCopyForId("licenceFull");
 					break;
 				case 212:
+				case 304:
 					return copyProvider.getCopyForId("concurrentLicenceFull");
 					break;
 				case 209:
 					return copyProvider.getCopyForId("licenceNotAllocated");
 					break;
 				case 210:
+				case 213:
 					return copyProvider.getCopyForId("blockedByDoubleLogin");
 					break;
+				case 311:
+				case 312:
+				case 313:
+					return copyProvider.getCopyForId("authenticationError");
+					break;
+				case 220:
+					return copyProvider.getCopyForId("invalidLoginError");
+					break;
+				case 0:
+				case 100:
+				case 201:
+				case 202:
+				case 203:
+				case 207:
 				default:
-					return copyProvider.getCopyForId("unknownFailedLoginReason");
+					return copyProvider.getCopyForId("databaseError");
+					break;
 			}
 		}
 		]]>

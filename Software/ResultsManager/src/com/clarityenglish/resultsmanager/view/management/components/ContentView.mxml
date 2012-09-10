@@ -2,6 +2,7 @@
 <mx:VBox xmlns:mx="http://www.adobe.com/2006/mxml"
 		 xmlns:slt="com.flexiblexperiments.*"
 		 xmlns:controls="org.davekeen.controls.*"
+		 xmlns:content="com.clarityenglish.resultsmanager.view.management.components.*"
 		 creationComplete="creationComplete()"
 		 implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>

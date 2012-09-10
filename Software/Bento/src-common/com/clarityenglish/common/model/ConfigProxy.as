@@ -306,9 +306,6 @@ package com.clarityenglish.common.model {
 				directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
 			}
 			
-			// #338. This is using a utility parsing function, it is for data from queryString
-			directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
-			
 			// #338. This is called from ProgressProxy to find out which menu bits to hide
 			// and from the ApplicationMediator state machine to see what notifications to send for screens to display
 			if (config.courseID)

@@ -67,5 +67,10 @@
 			<type>2</type>
 			<location>D:/ProjectBench/release</location>
 		</link>
+		<link>
+			<name>bin-release3</name>
+			<type>2</type>
+			<location>D:/ProjectBench/IELTS</location>
+		</link>
 	</linkedResources>
 </projectDescription>

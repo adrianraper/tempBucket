@@ -22,6 +22,11 @@
 		//public var dataProviderTimes:Object;
 		public var dataProvider:Object;
 		
+		[Bindable]
+		public var totalCourseCount:int;
+		[Bindable]
+		public var totalCourseDuration:int;
+		
 		// AR To let us work out what units to use on the x axis
 		public var maxDuration:Number;
 		// AR and the axis labelling. If I make this a string I get lots of compile errors or run time for null object
@@ -189,6 +194,10 @@
 			<mx:Label width="50%" id="courseUserCountsLabel" fontWeight="bold" />
 			<mx:Label id="courseTimeCountsLabel" fontWeight="bold" />
 			<mx:Label id="courseTimeCountsUnits" text="({tickLabel})" fontWeight="bold" />
+		</mx:HBox>
+		<mx:HBox width="100%">
+			<mx:Label width="50%" text="Total {totalCourseCount} times" fontWeight="bold" />
+			<mx:Label text="Total {getFormattedSeconds(totalCourseDuration, 7200)} hours" fontWeight="bold" />
 		</mx:HBox>
 		<mx:HBox width="100%">
 		<mx:PieChart id="pieChart"

@@ -212,7 +212,7 @@
 			// Can you switch it round so that the older data is at the back?
 			//for (var i:uint = 0; i <= endYear - startYear; i++) {
 			for (var i:int = endYear - startYear; i >=0; i--) {
-				TraceUtils.myTrace("this series is " + String(i + startYear) + " and " + seriesColourName[i]);
+				//TraceUtils.myTrace("series i=" + i + ", label is " + String(i + startYear) + " and " + seriesColourName[i]);
 				//TraceUtils.myTrace("this series is " + String(i + startYear));
 				_data.appendChild(new XML(<series name={String(i + startYear)} color={seriesColourName[i]}></series>));
 				var iconName:String = "{%Icon} " + String(i + startYear);
@@ -221,9 +221,10 @@
 												<icon type="SeriesIcon" series_type="Bar" color={seriesColourName[i]} />
 												<text>{iconName}</text>
 											</item>));
+				// This just builds an empty array, nothing in it or linked to it yet
 				var emptyYear:Array = new Array();
-				for (var month:Object in monthNames) {
-					emptyYear[monthNames[month].number] = {month:monthNames[month].name, value:0};
+				for each (var month:Object in monthNames) {
+					emptyYear[month.number] = {month:month.name, value:0};
 				}
 				emptyData[i] = emptyYear;
 			}
@@ -232,22 +233,38 @@
 			// Here we will pad with zeros
 			//TraceUtils.myTrace("sql data=" + data[2009][i].sessionCount + " for month=" + data[2009][i].month);
 			//var thisYear:uint = 0;
-			var thisYear:int = endYear - startYear;
-			for each (var dataYear:Array in data) {
-				for (var dataMonth:Object in dataYear) {
-					//TraceUtils.myTrace("sql data=" + dataYear[dataMonth].sessionCount + " for month=" + dataYear[dataMonth].month);
+			//TraceUtils.myTrace("sql data 2011 Jan=" + data[2011][0].sessionCount);
+			//TraceUtils.myTrace("sql data 2012 Jan=" + data[2012][0].sessionCount);
+			i = endYear - startYear;
+			//i = 0;
+			// This is giving really strange ordering of data. Charles shows 2010, 2011, 2012.
+			// But here I get it as 2012, 2010, 2011!
+			// It seems clumsy, but I need to build the year names and access them directly
+			var j:uint = endYear - startYear;
+			for (i = 0; i <= endYear - startYear; i++) {
+				var thisYear:String = String(i + startYear);
+				//TraceUtils.myTrace("myYear=" + thisYear + " Jan=" + data[thisYear][0].sessionCount);
+				for each (var dataMonth:Object in data[thisYear]) {
+				//for (var dataMonth:Object in data[thisYear]) {
+					//TraceUtils.myTrace("i=" + i + " sql data=" + dataYear[dataMonth].sessionCount + " for month=" + dataYear[dataMonth].month);
+					TraceUtils.myTrace("1.j=" + j + " sql data=" + dataMonth.sessionCount + " for month=" + dataMonth.month);
 					// v3.6 The SQL might return month as '01' rather than 1 - ie a string not a number. Which crashes this.
-					var thisMonth:uint = parseInt(dataYear[dataMonth].month);
-					emptyData[thisYear][thisMonth].value = dataYear[dataMonth].sessionCount;
+					//var thisMonth:uint = parseInt(dataYear[dataMonth].month);
+					//emptyData[i][thisMonth].value = dataYear[dataMonth].sessionCount;
+					var thisMonth:uint = parseInt(dataMonth.month);
+					emptyData[j][thisMonth].value = dataMonth.sessionCount;
 				}
-				//thisYear++;
-				thisYear--;
+				j--;
+				//thisYear--;
 			}
+			//for each (var dataYear:Array in data) {
+			//for (var thisYear:int = 0; thisYear < endYear - startYear; thisYear++) {
+
 			// Check it all up
 			var maxValue:uint = 0;
-			//for (i = 0; i <= endYear - startYear; i++) {
-			for (i = endYear - startYear; i >=0 ; i--) {
-				for (var j:uint = 1; j <= 12; j++) {
+			for (i = 0; i <= endYear - startYear; i++) {
+			//for (i = endYear - startYear; i >=0 ; i--) {
+				for (j = 1; j <= 12; j++) {
 					//TraceUtils.myTrace("data for " + i + ", " + j +  "=" + emptyData[i][j].value);
 					// Just for axis testing
 					//if (emptyData[i][j].value == 119) emptyData[i][j].value = 99					
@@ -264,14 +281,15 @@
 			// Might as well just sort all as the data sets will never be more than 30.
 			var top10:Array = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 			var thisValue:uint;
-			for (i = endYear - startYear; i >= 0 ; i--) {
+			//for (i = endYear - startYear; i >= 0 ; i--) {
+			for (i = 0; i <= endYear - startYear; i++) {
 				//TraceUtils.myTrace("i=" + i);
 				for (j = 1; j <= 12; j++) {
 					//TraceUtils.myTrace("j=" + j);
 					thisValue = emptyData[i][j].value;
 					//TraceUtils.myTrace("data for " + i + ", " + j +  "=" + thisValue);
 					// going through the array adding it if you exceed any value
-					for (var k:uint = 0; k< 10; k++) {
+					for (var k:uint = 0; k < 10; k++) {
 						//TraceUtils.myTrace("k=" + k);
 						if (thisValue > top10[k]) {
 							top10.splice(k,0,thisValue);
@@ -315,6 +333,8 @@
 			//yAxisSlider.snapInterval = yAxisSlider.tickInterval = NumberUtils.roundUpToList(thisMax / 10, [1, 2, 5, 10, 20, 50, 100]);
 			//yAxisSlider.snapInterval = yAxisSlider.tickInterval = Math.floor(thisMax / 10);
 			//yAxisSlider.value = thisMax;
+			//TraceUtils.myTrace("now chart is " + _fullChartXML.toXMLString());
+
 		}
 
 		public function changeYScaleLinear(maxValue:uint):uint {
@@ -350,10 +370,17 @@
 			} else if (maxValue <= 500) {
 				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 50);
 				majorTicks = NumberUtils.roundUpToList(maxYScale / 10, [50]);
-			} else {
+			} else if (maxValue <= 1000) {
 				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 100);
 				majorTicks = NumberUtils.roundUpToList(maxYScale / 10, [50,100,200]);
+			} else if (maxValue <= 10000) {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 1000);
+				majorTicks = NumberUtils.roundUpToList(maxYScale / 10, [1000]);
+			} else {
+				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 5000);
+				majorTicks = NumberUtils.roundUpToList(maxYScale / 10, [1000,5000]);
 			}
+			//TraceUtils.myTrace("change yscale linear, max=" + maxYScale + " ticks=" + majorTicks);
 			//maxYScale = 125;
 			// Put these values into the xml
 			_yaxisScale.@mode = "Overlay";
@@ -383,6 +410,7 @@
 				maxYScale = NumberUtils.roundUpToMultiple(maxValue, 1000);
 				majorTicks = 1000;
 			}
+			//TraceUtils.myTrace("change yscale log, max=" + maxYScale + " ticks=" + majorTicks);
 			
 			// For a log scale with max != power of 10, setting show_last_label fails, so enable the custom label
 			if (maxYScale==10 || maxYScale==100 || maxYScale==1000 || maxYScale==10000) {
@@ -406,7 +434,7 @@
 		}
 		
 		public function updateChart(dataProvider:Object, startDate:Date, endDate:Date):void {
-			TraceUtils.myTrace("sessions updateChart");
+			TraceUtils.myTrace("sessions updateChart for " + startDate + " to " + endDate);
 			setData(dataProvider, startDate, endDate);
 			
 			//TraceUtils.myTrace("updateChart with " + _fullChartXML.toString());
