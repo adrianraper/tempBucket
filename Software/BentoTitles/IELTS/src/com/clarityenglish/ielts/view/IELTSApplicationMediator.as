@@ -118,12 +118,6 @@ package com.clarityenglish.ielts.view {
 				case BBStates.STATE_LOAD_MENU:
 					view.currentState = "loading";
 					break;
-				case BBStates.STATE_LOGIN:
-					// TODO: This should be moved into Bento instead of IELTS
-					// #280
-					// If there is no direct (or anonymous) login display the login state
-					if (!handleDirectLogin()) view.currentState = "login";
-					break;
 				case BBStates.STATE_TITLE:
 					view.currentState = "title";
 					view.callLater(handleDirectStart); // need to use callLater as otherwise the title state hasn't validated yet
@@ -132,20 +126,6 @@ package com.clarityenglish.ielts.view {
 					view.currentState = "credits";
 					break;
 			}
-		}
-		
-		private function handleDirectLogin():Boolean {
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var directLogin:LoginEvent = configProxy.getDirectLogin();
-			
-			if (directLogin) {
-				// If direct start login is on then log straight in without changing to the login state
-				sendNotification(CommonNotifications.LOGIN, directLogin);
-				
-				return true;
-			}
-			
-			return false;
 		}
 		
 		/**
