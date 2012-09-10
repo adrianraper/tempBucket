@@ -10,18 +10,13 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.events.Event;
-	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
-	import flash.events.TextEvent;
 	
-	import mx.controls.Alert;
-	import mx.core.ITextInput;
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
 	import spark.components.Button;
 	import spark.components.FormHeading;
-	import spark.components.Label;
 	import spark.components.TextInput;
 	
 	public class LoginView extends BentoView implements LoginComponent {
@@ -353,7 +348,6 @@ package com.clarityenglish.ielts.view.login {
 			// Override normal text with Last Minute
 			if (_productVersion == IELTSApplication.LAST_MINUTE) { 
 				loginKey_lbl = "Login id:";
-				
 			} else {
 				// #341 This has to be bitwise comparison, not equality
 				if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
@@ -369,7 +363,6 @@ package com.clarityenglish.ielts.view.login {
 			loginName_lbl = "Your name:";
 			loginID_lbl = "Your id:";
 			loginEmail_lbl = "Your email:";
-			
 		}
 		
 		// #254
