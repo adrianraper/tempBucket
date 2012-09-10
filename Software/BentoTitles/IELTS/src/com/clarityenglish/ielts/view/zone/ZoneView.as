@@ -137,6 +137,10 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public var selectedChannelIndex:int = 0;
 		
+		// #514
+		[Bindable]
+		public var useCourseSelector:Boolean = true;
+		
 		[Bindable]
 		public var channelCollection:ArrayCollection = new ArrayCollection();
 		

@@ -1,6 +1,6 @@
 <?php
 // debug mode, will write log, please delete it during release version.
-define("DEBUG", "TRUE");
+define("DEBUG", "FALSE");
 function writelog($level, $message) {
 	if (defined("DEBUG")) {
 		$logmsg = "[".$level.": ".date("y/m/d H:i:s")."] ".$message."\r\n";

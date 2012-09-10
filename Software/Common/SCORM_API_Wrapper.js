@@ -20,12 +20,16 @@ on ADL code, modified by Mike Rustici
 (http://www.scorm.com/resources/apifinder/SCORMAPIFinder.htm),
 further modified by Philip Hutchison
 
+Sept 2012. Clarity tried to adapt this so that it can run without
+an LMS. This is purely to make it easier to run the debugger in
+FlashBuilder.
 =============================================================== */
 
 
 var pipwerks = {};                                  //pipwerks 'namespace' helps ensure no conflicts with possible other "SCORM" variables
 pipwerks.UTILS = {};                                //For holding UTILS functions
 pipwerks.debug = { isActive: true };                //Enable (true) or disable (false) for debug mode
+pipwerks.fakeLMS = { isActive: true };				//Enable this to run outside an LMS for debugging
 
 pipwerks.SCORM = {                                  //Define the SCORM object
     version:    null,                               //Store SCORM version.
@@ -175,6 +179,13 @@ pipwerks.SCORM.API.get = function(){
         find = scorm.API.find,
         trace = pipwerks.UTILS.trace;
 
+    if (pipwerks.fakeLMS.isActive) {
+    	trace("fakeLMS API created");
+    	return { version: 'fakeLMS', handle:'1234' };
+    } else {
+    	//trace('in get, but no fakes');
+    }
+    
     if(win.parent && win.parent != win){
         API = find(win.parent);
     }
@@ -247,7 +258,11 @@ pipwerks.SCORM.connection.initialize = function(){
         debug = scorm.debug,
         traceMsgPrefix = "SCORM.connection.initialize ";
 
-    trace("connection.initialize called.");
+    if (pipwerks.fakeLMS.isActive) {
+    	return true;
+    }
+    
+    trace("connection.initialize called when fakeLMS=" + pipwerks.fakeLMS.isActive);
 
     if(!scorm.connection.isActive){
 
@@ -356,7 +371,10 @@ pipwerks.SCORM.connection.terminate = function(){
         debug = scorm.debug,
         traceMsgPrefix = "SCORM.connection.terminate ";
 
-
+    if(pipwerks.fakeLMS.isActive) {
+    	return true;
+    }
+    
     if(scorm.connection.isActive){
 
         var API = scorm.API.getHandle(),
@@ -438,7 +456,10 @@ pipwerks.SCORM.lmsVersion = function(){
         trace = pipwerks.UTILS.trace,
         debug = scorm.debug,
         traceMsgPrefix = "SCORM.version ";
-
+    
+    if(pipwerks.fakeLMS.isActive)
+    	return "1.2";
+    
     if(scorm.connection.isActive){
 
         var API = scorm.API.getHandle(),
@@ -481,6 +502,35 @@ pipwerks.SCORM.data.get = function(parameter){
         trace = pipwerks.UTILS.trace,
         debug = scorm.debug,
         traceMsgPrefix = "SCORM.data.get(" +parameter +") ";
+
+    if(pipwerks.fakeLMS.isActive) {
+
+    	switch (parameter) {
+    	case "cmi.core.student_name":
+    		return "Admin, Clarity";
+    		break;
+    	case "cmi.core.student_id":
+    		return "admin";
+    		break;
+    	case "cmi.launch_data":
+    		return "unit=1287130230000";
+    		break;
+    	case "cmi.core.lesson_location":
+    		return "";
+    		break;
+    	case "cmi.core.lesson_status":
+    		return "not attempted";
+    		break;
+    	case "cmi.core.entry":
+    		return "ab-initio";
+    		break;
+    	case "cmi.objectives._count":
+    		return "0";
+    		break;
+    	default:
+    		return "";
+    	}
+    }
 
     if(scorm.connection.isActive){
 
@@ -559,7 +609,9 @@ pipwerks.SCORM.data.set = function(parameter, value){
         debug = scorm.debug,
         traceMsgPrefix = "SCORM.data.set(" +parameter +") ";
 
-
+    if(pipwerks.fakeLMS.isActive)
+    	return true;
+    
     if(scorm.connection.isActive){
 
         var API = scorm.API.getHandle(),

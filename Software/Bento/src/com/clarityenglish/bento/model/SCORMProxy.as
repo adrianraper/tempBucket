@@ -14,7 +14,7 @@ package com.clarityenglish.bento.model {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	/**
-	 * This is used for interacing with the LMS through SCORM.
+	 * This is used for interacting with the LMS through SCORM.
 	 * 
 	 * @author Clarity
 	 */

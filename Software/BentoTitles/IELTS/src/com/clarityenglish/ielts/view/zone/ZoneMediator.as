@@ -76,6 +76,10 @@
 					
 			// Alice: automatic multiple channel
 			view.channelCollection.source = configProxy.getConfig().channelArray;
+			
+			// #514 If you are SCORM you don't want the course selector
+			// #378 Actually, you will still use it, just disable the courses that are hidden.
+			//view.useCourseSelector = !configProxy.getConfig().scorm;
 		}
 		
 		override public function onRemove():void {
