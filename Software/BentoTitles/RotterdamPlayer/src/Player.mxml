@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<player:PlayerApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+						  xmlns:s="library://ns.adobe.com/flex/spark"
+						  xmlns:player="com.clarityenglish.rotterdam.player.*"
+						  minWidth="990" minHeight="760"
+						  initialize="onInitialize(event)">
+	
+	<fx:Metadata>
+		[SWF(width="990", height="760")]
+	</fx:Metadata>
+	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		
+		/*@font-face {
+		src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
+		fontFamily: HelveticaNeueLtStd;
+		fontWeight: normal;
+		fontAntiAliasType: advanced;
+		fontSharpness: 400;
+		fontThickness: -200;
+		embedAsCFF: false;
+		}
+		
+		@font-face {
+		src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
+		fontFamily: HelveticaNeueLtStd;
+		fontWeight: bold;
+		fontAntiAliasType: advanced;
+		fontSharpness: 400;
+		fontThickness: -200;
+		embedAsCFF: false;
+		}
+		
+		global {
+		fontFamily: HelveticaNeueLtStd;
+		}*/
+	</fx:Style>
+	
+	<!--<fx:Style source="builder.css" />-->
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.player.PlayerApplicationFacade;
+			
+			import mx.events.FlexEvent;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				versionNumber = "0.0.0.1";
+				
+				facade = PlayerApplicationFacade.getInstance();
+			}
+			
+		]]>
+	</fx:Script>
+	
+</player:PlayerApplication>

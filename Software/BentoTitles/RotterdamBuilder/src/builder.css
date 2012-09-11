@@ -1,0 +1,23 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace builder "com.clarityenglish.rotterdam.builder.*";
+@namespace login "com.clarityenglish.rotterdam.builder.view.login.*";
+@namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
+@namespace courseeditor "com.clarityenglish.rotterdam.builder.view.courseeditor.*";
+
+builder|BuilderApplication {
+	skinClass: ClassReference("skins.rotterdam.builder.BuilderApplicationSkin");
+}
+
+login|LoginView {
+	skinClass: ClassReference("skins.rotterdam.builder.login.LoginSkin");
+}
+
+courseselector|CourseSelectorView {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
+}
+
+courseeditor|CourseEditorView {
+	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.CourseEditorSkin");
+}
