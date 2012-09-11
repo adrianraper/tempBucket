@@ -21,8 +21,7 @@
 		public var loginOption:Number;
 		public var verified:Boolean;
 		
-		//public function LoginEvent(type:String, username:String, password:String, bubbles:Boolean=false, cancelable:Boolean=false) { 
-		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean=true, bubbles:Boolean=false, cancelable:Boolean=false) { 
+		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, bubbles:Boolean = false, cancelable:Boolean = false) { 
 			super(type, bubbles, cancelable);
 			
 			//this.name = username;

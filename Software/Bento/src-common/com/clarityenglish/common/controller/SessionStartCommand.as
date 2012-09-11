@@ -18,7 +18,6 @@ package com.clarityenglish.common.controller {
 	public class SessionStartCommand extends SimpleCommand {
 		
 		override public function execute(note:INotification):void {
-			
 			// #339 Now this comes from FSM so needs to get its own data
 			//var data:Object = note.getBody();
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;

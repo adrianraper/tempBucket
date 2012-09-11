@@ -2,10 +2,12 @@
  Mediator - PureMVC
  */
 package com.clarityenglish.common.view {
+	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.interfaces.IBentoApplication;
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.events.LoginEvent;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -14,6 +16,8 @@ package com.clarityenglish.common.view {
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
+	import org.puremvc.as3.utilities.statemachine.State;
+	import org.puremvc.as3.utilities.statemachine.StateMachine;
 	
 	/**
 	 * A Mediator
@@ -65,6 +69,7 @@ package com.clarityenglish.common.view {
 					CommonNotifications.TRACE_WARNING,
 					CommonNotifications.TRACE_ERROR,
 					CommonNotifications.COPY_LOADED,
+					StateMachine.CHANGED,
 			];
 		}
 
@@ -95,9 +100,34 @@ package com.clarityenglish.common.view {
 					//Alert.yesLabel = copyProvider.getCopyForId("yes");
 					//Alert.noLabel = copyProvider.getCopyForId("no");
 					break;
+				case StateMachine.CHANGED:
+					handleStateChange(note.getBody() as State);
+					break;
 				default:
 					break;		
 			}
+		}
+		
+		private function handleStateChange(state:State):void {
+			switch (state.name) {
+				case BBStates.STATE_LOGIN:
+					if (!handleDirectLogin()) viewComponent.currentState = "login";
+					break;
+			}
+		}
+		
+		private function handleDirectLogin():Boolean {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var directLogin:LoginEvent = configProxy.getDirectLogin();
+			
+			if (directLogin) {
+				// If direct start login is on then log straight in without changing to the login state
+				sendNotification(CommonNotifications.LOGIN, directLogin);
+				
+				return true;
+			}
+			
+			return false;
 		}
 		
 	}

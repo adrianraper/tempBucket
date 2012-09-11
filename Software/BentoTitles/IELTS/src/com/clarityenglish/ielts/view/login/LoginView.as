@@ -336,7 +336,7 @@ package com.clarityenglish.ielts.view.login {
 			// #341 for network version
 			setState("login");
 		}
-
+		
 		/**
 		 * To let you work out what data you need for logging in to this account. 
 		 * @param Number loginOption
