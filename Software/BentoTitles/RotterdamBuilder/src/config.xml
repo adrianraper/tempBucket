@@ -19,8 +19,8 @@
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
-	<remoteService>IELTSService</remoteService>
-	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	<remoteService>RotterdamService</remoteService>
+	<!--<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>-->
 	
 	<!-- <rememberLogin>true</rememberLogin> -->
 	
