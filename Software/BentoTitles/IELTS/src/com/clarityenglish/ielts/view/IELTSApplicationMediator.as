@@ -62,7 +62,6 @@ package com.clarityenglish.ielts.view {
 		override public function listNotificationInterests():Array {
 			// Concatenate any extra notifications to the array returned by this function in the superclass
 			return super.listNotificationInterests().concat([
-				StateMachine.CHANGED,
 				BBNotifications.NETWORK_AVAILABLE,
 				BBNotifications.NETWORK_UNAVAILABLE,
 				CommonNotifications.CONFIG_LOADED,
