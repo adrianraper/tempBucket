@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.model {
 	
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.pipwerks.SCORM;
 	
@@ -75,45 +76,59 @@ package com.clarityenglish.bento.model {
 		}
 
 		/**
-		 * Terminate SCORM communication and let the LMS know we are going
+		 * Terminate SCORM communication with the LMS
 		 */
-		/*public function terminate():Boolean {
+		public function terminate():void {
 			scorm.disconnect();
-		}*/
+		}
 		
 		/**
 		 * Called when you have completed an exercise to tell SCORM about it.
-		 * If this is the last exercise in a unit:
-		 *   1) set completionStatus to 'completed' (maybe passed or failed if you know a mastery score from SCORM)
-		 *   2) write the averageScore
-		 * If not the last exercise:
+		 * 
 		 *   1) add this score to the suspendData
 		 *   2) set the bookmark
 		 *   3) write the objective
 		 */
-		public function writeScore(exID:String, score:uint, lastExercise:Boolean = false):Boolean {
+		public function writeScore(exID:String, score:uint):Boolean {
 			
-			if (lastExercise) {
-				scorm.complete = true;
-				scorm.setParameter('lessonStatus', 'complete');
-				//scorm.setParameter('rawScore', this.calculateAverageScore());
-				
-			} else {
-				// TODO. Get the exercise caption from the id
-				var exCaption:String = exID;
-				
-				scorm.complete = false;
-				scorm.setParameter('bookmark', this.formatBookmark(exID));
-				
-				scorm.setParameter('objective.count', String(scorm.objectiveCount++));
-				scorm.setParameter('objective.id', exCaption, scorm.objectiveCount);
-				scorm.setParameter('objective.status', 'completed', scorm.objectiveCount);
-				scorm.setParameter('objective.score', String(score), scorm.objectiveCount);
-				
-				scorm.setParameter('suspendData', this.formatSuspendData(exID, score));
-			}
+			// TODO. Get the exercise caption from the id
+			// Notes from Orchid
+			// SCORM says that this string should have no spaces in it! Why - I have no idea.
+			// Also can't have question marks! What about other punctuation?
+			// Moodle implementation has regex '^\\w{1,255}$' - so allowing letters, digits and underscores only.
+			var exCaption:String = exID;
+			
+			scorm.setParameter('objective.count', String(scorm.objectiveCount++));
+			scorm.setParameter('objective.id', exCaption, scorm.objectiveCount);
+			scorm.setParameter('objective.status', 'completed', scorm.objectiveCount);
+			scorm.setParameter('objective.score', String(score), scorm.objectiveCount);
+
+			scorm.setParameter('suspendData', this.formatSuspendData(exID, score));
+			
+			scorm.setParameter('bookmark', this.formatBookmark(exID));
 			
 			return true;
+		}
+		
+		/**
+		 * Handle exit of a completed SCO
+		 * If this is the last exercise in a unit:
+		 *   1) set completionStatus to 'completed' (maybe passed or failed if you know a mastery score from SCORM)
+		 *   2) write the averageScore
+		 */
+		public function completeSCO():void {
+			
+			scorm.complete = true;
+			scorm.setParameter('lessonStatus', 'complete');
+			scorm.setParameter('rawScore', this.calculateAverageScore());
+			scorm.setParameter('sessionTime', this.getSessionTime());
+				
+		}
+		public function unfinishedSCO():void {
+			
+			scorm.complete = false;
+			scorm.setParameter('lessonStatus', 'incomplete');
+			
 		}
 		
 		/**
@@ -137,10 +152,44 @@ package com.clarityenglish.bento.model {
 		}
 		
 		/**
+		 * How long has this session lasted?
+		 * written as "hh:mm:ss.zz"
+		 */
+		private function getSessionTime():String {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
+			var sessionDuration:Number = configProxy.getConfig().sessionStartTime - new Date().time;
+			var sHours:Number = sessionDuration % 3600;
+			var sMinutes:Number = (sessionDuration - (sHours * 3600)) % 60;
+			var sSeconds:Number = (sessionDuration - (sHours * 3600) - (sMinutes * 60));
+			
+			return sHours.toString() + ":" + sMinutes.toString() + ":" + sSeconds + ".00";
+		}
+		
+		/**
 		 * Calculate the average score from suspend data
 		 */
-		private function calculateAverageScore(data:String):Number {
-			return 35;
+		private function calculateAverageScore():String {
+			
+			// Pick up the suspend data (you must make sure that the last exercise has been added already)
+			var suspendDataArray:Object = JSON.parse(scorm.suspendData);
+			if (suspendDataArray.scoreSoFar) {
+				var scores:Array = suspendDataArray.scoreSoFar.split(",");
+				
+				// Read each score and add them up.
+				// If one exercise has been done twice, you include both scores
+				var totalScore:Number = 0;
+				var numberOfScores:Number = 0;
+				for (var score:String in scores) {
+					numberOfScores++;
+					totalScore += score.split('|')[1];
+				}
+			}
+			
+			if (numberOfScores <= 0)
+				return '0';
+			
+			return String(Math.round(totalScore / numberOfScores));
 		}
 		/**
 		 * Format the bookmark

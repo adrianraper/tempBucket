@@ -336,7 +336,11 @@ package com.clarityenglish.common.model {
 		 */
 		public function startSession(user:User, account:Account):void {
 			// $userID, $rootID, $productCode, $dateNow
-			var params:Array = [ user, account.id, (account.titles[0] as Title).id, new Date().getTime() ];
+			// #336 SCORM needs an internal record of how long the session has been going for
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			configProxy.getConfig().sessionStartTime = new Date().time;
+
+			var params:Array = [ user, account.id, (account.titles[0] as Title).id, configProxy.getConfig().sessionStartTime ];
 			new RemoteDelegate("startSession", params, this).execute();			
 		}
 		/**

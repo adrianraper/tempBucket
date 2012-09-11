@@ -98,6 +98,9 @@ package com.clarityenglish.common.vo.config {
 		
 		// For performance logging
 		public var appLaunchTime:Number;
+
+		// #336
+		public var sessionStartTime:Number;
 		
 		/**
 		 * Developer option
