@@ -8,3 +8,6 @@ bin-release-temp
 *.OLD
 *.IGNORE
 /desktop.ini
+
+/Software/BentoTitles/IELTS/src/skins/ielts/assets/assets.swc
+/Software/BentoTitles/IELTS/src/skins/ielts/assets/textLayout_2.0.0.232.swz
