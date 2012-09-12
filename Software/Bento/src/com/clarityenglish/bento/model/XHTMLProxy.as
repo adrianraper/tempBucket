@@ -143,9 +143,11 @@ package com.clarityenglish.bento.model {
 		private function onXHTMLLoadError(event:IOErrorEvent):void {
 			var urlLoader:URLLoader = event.target as URLLoader;
 			var href:Href = urlLoaders[urlLoader];
-			delete urlLoaders[urlLoader];
 			
 			log.info("IO error loading from href {0} - {1}", href, event.text);
+			sendNotification(BBNotifications.XHTML_LOAD_IOERROR, { href: href } );
+			
+			delete urlLoaders[urlLoader];
 		}
 		
 		private function onXHTMLSecurityError(event:SecurityErrorEvent):void {

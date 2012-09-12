@@ -17,6 +17,7 @@
 		
 		public static const XHTML_LOAD:String = "xhtml_load";
 		public static const XHTML_LOADED:String = "xhtml_loaded";
+		public static const XHTML_LOAD_IOERROR:String = "xhtml_load_ioerror";
 		
 		public static const PROGRESS_DATA_LOADED:String = "progress_data_loaded";
 		public static const PROGRESS_DATA_LOAD:String = "progress_data_load";
