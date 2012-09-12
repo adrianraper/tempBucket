@@ -13,6 +13,8 @@
 	import com.clarityenglish.rotterdam.builder.view.login.LoginView;
 	import com.clarityenglish.rotterdam.builder.view.title.TitleMediator;
 	import com.clarityenglish.rotterdam.builder.view.title.TitleView;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -27,6 +29,7 @@
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(CourseEditorView, CourseEditorMediator);
+			mapView(UnitEditorView, UnitEditorMediator);
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			

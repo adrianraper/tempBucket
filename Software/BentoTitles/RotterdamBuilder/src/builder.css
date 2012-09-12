@@ -6,6 +6,7 @@
 @namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
 @namespace courseeditor "com.clarityenglish.rotterdam.builder.view.courseeditor.*";
 @namespace title "com.clarityenglish.rotterdam.builder.view.title.*";
+@namespace uniteditor "com.clarityenglish.rotterdam.builder.view.uniteditor.*";
 
 builder|BuilderApplication {
 	skinClass: ClassReference("skins.rotterdam.builder.BuilderApplicationSkin");
@@ -35,3 +36,6 @@ courseeditor|CourseEditorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.CourseEditorSkin");
 }
 
+uniteditor|UnitEditorView {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.UnitEditorSkin");
+}

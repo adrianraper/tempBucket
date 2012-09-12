@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView")]
@@ -13,7 +13,15 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:List id="unitList" labelField="@caption" left="0" width="200" top="0" bottom="50" />
-	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="20" />
+	<s:List id="unitList" labelField="@caption" left="0" width="200" top="0" bottom="100" />
+	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="70" />
+	
+	<uniteditor:UnitEditorView id="unitEditorView" left="200" right="0" top="0" bottom="100" />
+	
+	<s:HGroup bottom="0" right="10">
+		<s:Button id="backButton" label="Back" />
+		<s:Button id="saveButton" label="Save" />
+		<s:Button id="previewButton" label="Preview" />
+	</s:HGroup>
 	
 </s:Skin>
