@@ -19,6 +19,14 @@ title|TitleView {
 	skinClass: ClassReference("skins.rotterdam.builder.title.TitleSkin");
 }
 
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.rotterdam.builder.title.TitleTabbedViewNavigatorSkin");
+}
+
+title|TitleView s|ViewNavigator {
+	skinClass: ClassReference("skins.rotterdam.builder.title.TitleViewNavigatorSkin");
+}
+
 courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
 }
@@ -26,3 +34,4 @@ courseselector|CourseSelectorView {
 courseeditor|CourseEditorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.CourseEditorSkin");
 }
+

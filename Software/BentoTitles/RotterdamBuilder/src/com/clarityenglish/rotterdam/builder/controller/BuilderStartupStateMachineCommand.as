@@ -25,15 +25,10 @@ package com.clarityenglish.rotterdam.builder.controller {
 					</state>
 					
 					<state name={BBStates.STATE_LOGIN}>
-						<transition action={CommonNotifications.LOGGED_IN} target={BuilderStates.STATE_COURSE_SELECTOR} />
+						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_TITLE} />
 					</state>
 					
-					<state name={BuilderStates.STATE_COURSE_SELECTOR}>
-						
-					</state>
-					
-					<state name={BuilderStates.STATE_COURSE_EDITOR}>
-						
+					<state name={BBStates.STATE_TITLE}>
 					</state>
 					
 					<state name={BBStates.STATE_CREDITS}>

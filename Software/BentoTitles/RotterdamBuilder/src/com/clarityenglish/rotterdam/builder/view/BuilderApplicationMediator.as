@@ -74,15 +74,9 @@ package com.clarityenglish.rotterdam.builder.view {
 				case BBStates.STATE_LOAD_MENU:
 					view.currentState = "loading";
 					break;
-				/*case BBStates.STATE_TITLE:
+				case BBStates.STATE_TITLE:
 					view.currentState = "title";
 					view.callLater(handleDirectStart); // need to use callLater as otherwise the title state hasn't validated yet
-					break;*/
-				case BuilderStates.STATE_COURSE_SELECTOR:
-					view.currentState = "courseselector";
-					break;
-				case BuilderStates.STATE_COURSE_EDITOR:
-					view.currentState = "courseeditor";
 					break;
 				case BBStates.STATE_CREDITS:
 					view.currentState = "credits";
@@ -91,10 +85,7 @@ package com.clarityenglish.rotterdam.builder.view {
 		}
 		
 		/**
-		 * Handle the various options for direct start. IELTS supports:
-		 * 
-		 * courseClass, courseID
-		 * unitID, exerciseID
+		 * Handle the various options for direct start.
 		 * 
 		 * @return 
 		 */

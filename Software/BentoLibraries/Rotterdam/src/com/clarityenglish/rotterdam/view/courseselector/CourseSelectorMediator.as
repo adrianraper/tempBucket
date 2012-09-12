@@ -69,7 +69,7 @@
 		}
 		
 		private function onEditCourse(course:XML):void {
-			trace("editing course " + course.toXMLString());
+			facade.sendNotification(RotterdamNotifications.COURSE_EDITOR_SHOW, course);
 		}
 		
 	}
