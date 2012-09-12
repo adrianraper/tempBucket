@@ -10,11 +10,19 @@ class CourseOps {
 	}
 	
 	public function courseCreate($course) {
-		$this->rewriteCourseXml(function($xml) use($course) {
+		$accountFolder = $this->accountFolder;
+		$this->rewriteCourseXml(function($xml) use($course, $accountFolder) {
+			$id = uniqid();
+						
+			// Create a new course passing in the properties as XML attributes
 			$courseNode = $xml->courses->addChild("course");
-			
+			$courseNode->addAttribute("id", $id);
+			$courseNode->addAttribute("href", $id."/menu.xml");
 			foreach ($course as $key => $value)
-				$courseNode->addAttribute($key, $value);
+				if (strtolower($key) != "id") $courseNode->addAttribute($key, $value);
+			
+			// Make a folder for the course
+			mkdir($accountFolder."/".$id);
 		});
 	}
 	
@@ -30,7 +38,7 @@ class CourseOps {
 	 * Functionally read, process (using $func) and write the course XML file.  This uses locking to ensure that people can't modify the file
 	 * concurrently.
 	 * 
-	 * TODO: formatOutput doesn't seem to be doing anything
+	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
 	private function rewriteCourseXml($func) {
 		$fp = fopen($this->courseFilename, "r+t");
