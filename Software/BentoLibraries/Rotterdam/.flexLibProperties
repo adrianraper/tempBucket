@@ -6,6 +6,7 @@
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView"/>
     <classEntry path="com.clarityenglish.rotterdam.RotterdamNotifications"/>
+    <classEntry path="com.clarityenglish.rotterdam.vo.Course"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests/>

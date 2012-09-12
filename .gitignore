@@ -1,0 +1,10 @@
+
+/Software/BentoLibraries/Rotterdam/bin
+/Software/BentoTitles/IELTSIPadTester
+bin-debug
+bin-debug-temp
+bin-release
+bin-release-temp
+*.OLD
+*.IGNORE
+/desktop.ini

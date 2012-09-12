@@ -2,7 +2,8 @@
 	
 	public class RotterdamNotifications {
 		
-		public static const COURSES_LOADED:String = "courses_loaded";
+		public static const COURSE_CREATE:String = "course_create";
+		public static const COURSE_CREATED:String = "course_created";
 		
 	}
 	

@@ -4,8 +4,10 @@
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupCommand;
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupStateMachineCommand;
+	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView;
 	import com.clarityenglish.rotterdam.builder.view.login.LoginView;
@@ -22,6 +24,8 @@
 			
 			mapView(LoginView, LoginMediator);
 			mapView(CourseEditorView, CourseEditorMediator);
+			
+			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			
 			// Remove the default Bento state machine (which isn't quite applicable to the builder) and replace it with a new one
 			removeCommand(CommonNotifications.CONFIG_LOADED);

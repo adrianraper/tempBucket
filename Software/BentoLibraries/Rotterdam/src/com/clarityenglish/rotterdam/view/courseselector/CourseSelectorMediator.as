@@ -5,6 +5,7 @@
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.vo.Course;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,6 +27,7 @@
 			super.onRegister();
 			
 			view.createCourse.add(onCreateCourse);
+			view.editCourse.add(onEditCourse);
 			
 			// TODO: This should go elsewhere since lots of things will use it
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -42,11 +44,12 @@
 			super.onRemove();
 			
 			view.createCourse.remove(onCreateCourse);
+			view.editCourse.remove(onEditCourse);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				RotterdamNotifications.COURSE_CREATED,
 			]);
 		}
 		
@@ -54,12 +57,19 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				// Force a reload of course.xml
+				case RotterdamNotifications.COURSE_CREATED:
+					view.href = view.href.clone();
+					break;
 			}
 		}
 		
-		private function onCreateCourse(name:String):void {
-			trace("Created " + name);
+		private function onCreateCourse(course:Course):void {
+			facade.sendNotification(RotterdamNotifications.COURSE_CREATE, course);
+		}
+		
+		private function onEditCourse(course:XML):void {
+			trace("editing course " + course.toXMLString());
 		}
 		
 	}
