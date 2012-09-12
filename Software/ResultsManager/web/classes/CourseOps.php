@@ -4,6 +4,18 @@ class CourseOps {
 	
 	var $accountFolder;
 	
+	var $defaultXML = <<<XML
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<script id="model" type="application/xml">
+			<menu>
+				<course />
+			</menu>
+		</script>
+	</head>
+</bento>
+XML;
+	
 	function CourseOps($accountFolder = null) {
 		$this->accountFolder = $accountFolder;
 		$this->courseFilename = $this->accountFolder."/courses.xml";
@@ -11,7 +23,8 @@ class CourseOps {
 	
 	public function courseCreate($course) {
 		$accountFolder = $this->accountFolder;
-		$this->rewriteCourseXml(function($xml) use($course, $accountFolder) {
+		$defaultXML = $this->defaultXML;
+		$this->rewriteCourseXml(function($xml) use($course, $accountFolder, $defaultXML) {
 			$id = uniqid();
 						
 			// Create a new course passing in the properties as XML attributes
@@ -23,6 +36,9 @@ class CourseOps {
 			
 			// Make a folder for the course
 			mkdir($accountFolder."/".$id);
+			
+			// Make a default menu.xml file
+			file_put_contents($accountFolder."/".$id."/menu.xml", $defaultXML);
 		});
 	}
 	

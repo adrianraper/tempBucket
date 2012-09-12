@@ -13,7 +13,7 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:List id="unitList" left="0" width="200" top="0" bottom="50" />
+	<s:List id="unitList" labelField="@caption" left="0" width="200" top="0" bottom="50" />
 	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="20" />
 	
 </s:Skin>
