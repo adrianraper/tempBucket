@@ -3,13 +3,11 @@ Proxy - PureMVC
 */
 package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.vo.Course;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.rpc.Fault;
-	import mx.utils.ObjectUtil;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
@@ -31,12 +29,19 @@ package com.clarityenglish.rotterdam.model {
 			new RemoteDelegate("courseCreate", [ course ], this).execute();
 		}
 		
+		public function courseSave(xhtml:XHTML):void {
+			new RemoteDelegate("courseSave", [ xhtml.href.filename, xhtml.xml ], this).execute();
+		}
+		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
 		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
 				case "courseCreate":
 					sendNotification(RotterdamNotifications.COURSE_CREATED);
+					break;
+				case "courseSave":
+					sendNotification(RotterdamNotifications.COURSE_SAVED);
 					break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);

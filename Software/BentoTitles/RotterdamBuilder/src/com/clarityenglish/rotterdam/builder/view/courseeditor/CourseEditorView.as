@@ -7,6 +7,8 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	
+	import org.osflash.signals.Signal;
+	
 	import spark.components.Button;
 	import spark.components.List;
 	import spark.components.ToggleButton;
@@ -27,11 +29,19 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var addUnitButton:Button;
 		
 		[SkinPart]
+		public var backButton:Button;
+		
+		[SkinPart]
+		public var saveButton:Button;
+		
+		[SkinPart]
 		public var previewButton:ToggleButton;
 		
 		private var unitListCollection:ListCollectionView;
 		
 		private var _selectedUnitXML:XML;
+		
+		public var saveCourse:Signal = new Signal(XHTML);
 				
 		private function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
@@ -59,6 +69,12 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 				case addUnitButton:
 					addUnitButton.addEventListener(MouseEvent.CLICK, onAddUnit);
 					break;
+				case backButton:
+					backButton.addEventListener(MouseEvent.CLICK, onBack);
+					break;
+				case saveButton:
+					saveButton.addEventListener(MouseEvent.CLICK, onSave);
+					break;
 				case previewButton:
 					previewButton.addEventListener(MouseEvent.CLICK, onPreview);
 					break;
@@ -72,6 +88,14 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		private function onAddUnit(event:MouseEvent):void {
 			// TODO: need to have the designs to know exactly how this will work but for now just use a random name
 			unitListCollection.addItem(<unit caption='New unit' />);
+		}
+		
+		protected function onBack(event:MouseEvent):void {
+			navigator.popToFirstView();
+		}
+		
+		protected function onSave(event:MouseEvent):void {
+			saveCourse.dispatch(_xhtml);
 		}
 		
 		private function onPreview(event:MouseEvent):void {

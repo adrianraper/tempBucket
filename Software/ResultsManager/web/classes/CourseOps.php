@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__)."/xml/XmlUtils.php");
+require_once(dirname(__FILE__)."/CopyOps.php");
 
 class CourseOps {
 	
@@ -17,9 +18,11 @@ class CourseOps {
 </bento>
 XML;
 	
-	function CourseOps($accountFolder = null) {
+	function __construct($accountFolder = null) {
 		$this->accountFolder = $accountFolder;
 		$this->courseFilename = $this->accountFolder."/courses.xml";
+		
+		$this->copyOps = new CopyOps();
 	}
 	
 	public function courseCreate($course) {
@@ -49,6 +52,13 @@ XML;
 	
 	public function courseDelete() {
 		
+	}
+	
+	public function courseSave($filename, $xml) {
+		// Protect again directory traversal attacks; the filename *must* be in the form <some hex value>/menu.xml otherwise we are being fiddled with
+		if (preg_match("/^[0-9a-f]+\/menu\.xml$/", $filename, $matches) != 1) {
+			throw $this->copyOps->getExceptionForId("errorSavingCourse");
+		}
 	}
 	
 }

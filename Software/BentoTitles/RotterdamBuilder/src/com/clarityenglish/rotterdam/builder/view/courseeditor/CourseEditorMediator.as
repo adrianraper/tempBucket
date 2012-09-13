@@ -4,10 +4,11 @@
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	/**
 	 * A Mediator
@@ -25,6 +26,8 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			view.saveCourse.add(onSave);
+			
 			// GO TO A FAKE URL FOR THE MOMENT SO WE CAN TEST WHAT HAPPENS WHEN THERE IS NO menu.xml (i.e. creating a brand new course)
 			
 			// TODO: This should go elsewhere since lots of things will use it
@@ -40,6 +43,8 @@
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.saveCourse.remove(onSave);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
@@ -58,6 +63,10 @@
 			switch (note.getName()) {
 				
 			}
+		}
+		
+		private function onSave(xhtml:XHTML):void {
+			facade.sendNotification(RotterdamNotifications.COURSE_SAVE, xhtml);
 		}
 		
 	}

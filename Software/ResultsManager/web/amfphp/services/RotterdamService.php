@@ -30,6 +30,10 @@ class RotterdamService extends BentoService {
 		$this->courseOps->courseCreate($course);
 	}
 	
+	public function courseSave($filename, $xml) {
+		$this->courseOps->courseSave($filename, $xml);
+	}
+	
 	/**
 	 * Create a blank account folder with all required directories and an empty course.xml (for now we're not sure there are any required directories)
 	 */
