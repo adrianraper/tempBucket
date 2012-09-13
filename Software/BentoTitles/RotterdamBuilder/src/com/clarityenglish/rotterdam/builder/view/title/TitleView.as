@@ -13,7 +13,7 @@ package com.clarityenglish.rotterdam.builder.view.title {
 		[SkinPart(required="true")]
 		public var myCoursesViewNavigator:ViewNavigator;
 		
-		public var _selectedCourseXML:XML;
+		private var _selectedCourseXML:XML;
 		
 		[Bindable(event="courseSelected")]
 		public function get selectedCourseXML():XML { return _selectedCourseXML; }

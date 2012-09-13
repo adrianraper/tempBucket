@@ -7,7 +7,10 @@
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView"/>
     <classEntry path="com.clarityenglish.rotterdam.RotterdamNotifications"/>
     <classEntry path="com.clarityenglish.rotterdam.vo.Course"/>
+    <classEntry path="skins.rotterdam.unit.UnitSkin"/>
   </includeClasses>
-  <includeResources/>
+  <includeResources>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+  </includeResources>
   <namespaceManifests/>
 </flexLibProperties>

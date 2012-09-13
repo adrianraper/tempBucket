@@ -26,7 +26,7 @@ XML;
 		$defaultXML = $this->defaultXML;
 		$this->rewriteCourseXml(function($xml) use($course, $accountFolder, $defaultXML) {
 			$id = uniqid();
-						
+			
 			// Create a new course passing in the properties as XML attributes
 			$courseNode = $xml->courses->addChild("course");
 			$courseNode->addAttribute("id", $id);

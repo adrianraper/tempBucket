@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView")]
+		[HostComponent("com.clarityenglish.rotterdam.view.unit.UnitView")]
 	</fx:Metadata>
 	
 	<!-- states -->
@@ -13,10 +13,6 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:layout>
-		<s:VerticalLayout />
-	</s:layout>
-	
-	<s:Label text="{hostComponent.data.toXMLString()}" />
+	<s:Label text="Unit viewer" />
 	
 </s:Skin>
