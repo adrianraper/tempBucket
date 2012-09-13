@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.builder.view {
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.rotterdam.BuilderStates;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.BuilderApplication;
 	
 	import mx.logging.ILogger;
@@ -32,6 +33,9 @@ package com.clarityenglish.rotterdam.builder.view {
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			// TEST UPLOAD
+			facade.sendNotification(RotterdamNotifications.MEDIA_UPLOAD, null, "sakfdjhakjsdhajkfd");
 		}
 		
 		public override function onRemove():void {

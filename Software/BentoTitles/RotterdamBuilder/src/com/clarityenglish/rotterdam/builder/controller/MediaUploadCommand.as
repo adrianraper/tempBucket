@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
 	import flash.events.DataEvent;
 	import flash.events.Event;
@@ -25,12 +26,17 @@ package com.clarityenglish.rotterdam.builder.controller {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		private var uploadId:String;
+		
 		private var fileReference:FileReference;
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			// TODO: note.getBody() will tell us what we are allowed to upload
+			uploadId = note.getType();
+			log.info("Opening upload dialog with uploadId=" + uploadId);
+			
+			// TODO: note.getBody() will eventually tell us what we are allowed to upload
 			var imageTypes:FileFilter = new FileFilter("Images (*.jpg, *.jpeg, *.gif, *.png)", "*.jpg; *.jpeg; *.gif; *.png");
 			var videoTypes:FileFilter = new FileFilter("Videos (*.flv)", "*.flv");
 			var audioTypes:FileFilter = new FileFilter("Audio (*.mp3)", "*.mp3");
@@ -40,83 +46,53 @@ package com.clarityenglish.rotterdam.builder.controller {
 			fileReference = new FileReference();
 			fileReference.browse(allTypes);
 			
+			fileReference.addEventListener(Event.CANCEL, onUploadCancel);
 			fileReference.addEventListener(Event.SELECT, onUploadSelect);
 			fileReference.addEventListener(ProgressEvent.PROGRESS, onUploadProgress);
-			fileReference.addEventListener(Event.COMPLETE, onUploadComplete);
 			fileReference.addEventListener(DataEvent.UPLOAD_COMPLETE_DATA, onUploadCompleteData);
 			fileReference.addEventListener(IOErrorEvent.IO_ERROR, onUploadIOError);
 			fileReference.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onUploadSecurityError);
 		}
 		
 		private function destroy():void {
+			fileReference.removeEventListener(Event.CANCEL, onUploadCancel);
 			fileReference.removeEventListener(Event.SELECT, onUploadSelect);
 			fileReference.removeEventListener(ProgressEvent.PROGRESS, onUploadProgress);
-			fileReference.removeEventListener(Event.COMPLETE, onUploadComplete);
 			fileReference.removeEventListener(DataEvent.UPLOAD_COMPLETE_DATA, onUploadCompleteData);
 			fileReference.removeEventListener(IOErrorEvent.IO_ERROR, onUploadIOError);
 			fileReference.removeEventListener(SecurityErrorEvent.SECURITY_ERROR, onUploadSecurityError);
 			fileReference = null;
 		}
 		
+		private function onUploadCancel(e:Event):void {
+			destroy();
+		}
+		
 		private function onUploadSelect(e:Event):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamUpload.php";
 			
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_START, null, uploadId);
 			fileReference.upload(new URLRequest(uploadScript));
-			//coreSignalBus.progressBarStart.dispatch("Progress", "Uploading file to server...", true);
 		}
 		
 		private function onUploadProgress(e:ProgressEvent):void {
-			//coreSignalBus.progressBarProgress.dispatch(e);
-		}
-		
-		private function onUploadComplete(e:Event):void {
-			//coreSignalBus.progressBarComplete.dispatch();
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_PROGRESS, e, uploadId);
 		}
 		
 		private function onUploadCompleteData(e:DataEvent):void {
-			/*coreSignalBus.progressBarChangeMessage.dispatch("Opening...");
-			// Decode the JSON response
-			var response:Object = JSON.decode(e.data);
-			
-			if (response.success) {
-				// If the response was successful then load the just created MediaItem (the id will be in response.result)
-				entityService.getRepository(MediaItem).load(new Number(response.result)).addResponder(
-					new AsyncResponder(
-						function (e:ResultEvent, token:Object):void {
-							coreSignalBus.progressBarComplete.dispatch();
-							
-							var mediaItem:MediaItem = e.result as MediaItem;
-							mediaItem.title = response.filename;
-							entitySignalBus.entityPersisted.dispatch(mediaItem);
-							mediaSignalBus.mediaViewWindowOpen.dispatch(mediaItem, new PopUpResponder(null, "newMediaItem"));
-						},
-						function (e:FaultEvent, token:Object):void {
-							coreSignalBus.progressBarComplete.dispatch();
-							
-							Alert.show(resourceManager.getString("media", "uploadFailure") + " [" + e.fault.faultString + "]", resourceManager.getString("multimecore", "errorTitle")); 
-						}
-					)
-				);
-			} else {
-				// If the response was unsuccessful display the error message in an alert
-				Alert.show(resourceManager.getString("media", "uploadFailure") + " [" + response.fault + "]", resourceManager.getString("multimecore", "errorTitle")); 
-			}*/
-			
 			var response:Object = JSON.parse(e.data);
-			trace(ObjectUtil.toString(response));
+			sendNotification(RotterdamNotifications.MEDIA_UPLOADED, null, uploadId);
 			destroy();
 		}
 		
 		private function onUploadIOError(e:IOErrorEvent):void {
-			//coreSignalBus.progressBarComplete.dispatch();
-			//Alert.show(resourceManager.getString("media", "uploadIoError") + " [" + e.text + "]", resourceManager.getString("multimecore", "errorTitle"));
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, uploadId);
 			destroy();
 		}
 		
 		private function onUploadSecurityError(e:SecurityErrorEvent):void {
-			//coreSignalBus.progressBarComplete.dispatch();
-			//Alert.show(resourceManager.getString("media", "uploadSecurityError") + " [" + e.text + "]", resourceManager.getString("multimecore", "errorTitle"));
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, uploadId);
 			destroy();
 		}
 		
