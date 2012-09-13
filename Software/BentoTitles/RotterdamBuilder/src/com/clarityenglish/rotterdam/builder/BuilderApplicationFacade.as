@@ -11,6 +11,8 @@
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView;
+	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
+	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
 	import com.clarityenglish.rotterdam.builder.view.login.LoginView;
 	import com.clarityenglish.rotterdam.builder.view.title.TitleMediator;
 	import com.clarityenglish.rotterdam.builder.view.title.TitleView;
@@ -31,6 +33,7 @@
 			mapView(TitleView, TitleMediator);
 			mapView(CourseEditorView, CourseEditorMediator);
 			mapView(UnitEditorView, UnitEditorMediator);
+			mapView(FileManagerView, FileManagerMediator);
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD, MediaUploadCommand);

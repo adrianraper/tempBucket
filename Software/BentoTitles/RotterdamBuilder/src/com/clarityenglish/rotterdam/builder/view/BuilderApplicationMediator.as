@@ -33,9 +33,6 @@ package com.clarityenglish.rotterdam.builder.view {
 		
 		override public function onRegister():void {
 			super.onRegister();
-			
-			// TEST UPLOAD
-			facade.sendNotification(RotterdamNotifications.MEDIA_UPLOAD, null, "sakfdjhakjsdhajkfd");
 		}
 		
 		public override function onRemove():void {

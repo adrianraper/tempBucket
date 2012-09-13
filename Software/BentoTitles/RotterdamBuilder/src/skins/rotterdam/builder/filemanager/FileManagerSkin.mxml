@@ -13,6 +13,12 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:Label text="File manager" />
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<!--<s:TextInput id="searchTextInput" />-->
+	
+	<s:List id="fileList" labelField="@filename" width="100%" />
 	
 </s:Skin>
