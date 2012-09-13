@@ -59,6 +59,17 @@ XML;
 		if (preg_match("/^[0-9a-f]+\/menu\.xml$/", $filename, $matches) != 1) {
 			throw $this->copyOps->getExceptionForId("errorSavingCourse");
 		}
+		
+		// Check the file exists
+		$menuXMLFilename = "$this->accountFolder/$filename";
+		if (!file_exists($menuXMLFilename)) {
+			throw $this->copyOps->getExceptionForId("errorSavingCourse");
+		}
+		
+		// TODO: it would be rather nice to validate $xml against an xsd
+		
+		// Save the xml file
+		file_put_contents($menuXMLFilename, $xml, LOCK_EX);
 	}
 	
 }
