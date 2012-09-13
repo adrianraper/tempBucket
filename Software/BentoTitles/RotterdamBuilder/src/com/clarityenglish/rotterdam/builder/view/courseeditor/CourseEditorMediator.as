@@ -35,7 +35,7 @@
 			var contentPath:String = "http://dock.contentbench/Content/Rotterdam";
 			contentPath += "/" + loginProxy.user.id;
 			
-			view.href = new Href(Href.XHTML, "50509006245ea/menu.xml", contentPath);
+			view.href = new Href(Href.XHTML, "5051b20469cad/menu.xml", contentPath);
 		}
 		
 		override public function onRemove():void {

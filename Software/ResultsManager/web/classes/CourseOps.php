@@ -1,4 +1,5 @@
 <?php
+require_once(dirname(__FILE__)."/xml/XmlUtils.php");
 
 class CourseOps {
 	
@@ -24,7 +25,7 @@ XML;
 	public function courseCreate($course) {
 		$accountFolder = $this->accountFolder;
 		$defaultXML = $this->defaultXML;
-		$this->rewriteCourseXml(function($xml) use($course, $accountFolder, $defaultXML) {
+		XmlUtils::rewriteCourseXml($this->courseFilename, function($xml) use($course, $accountFolder, $defaultXML) {
 			$id = uniqid();
 			
 			// Create a new course passing in the properties as XML attributes
@@ -48,40 +49,6 @@ XML;
 	
 	public function courseDelete() {
 		
-	}
-	
-	/**
-	 * Functionally read, process (using $func) and write the course XML file.  This uses locking to ensure that people can't modify the file
-	 * concurrently.
-	 * 
-	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
-	 */
-	private function rewriteCourseXml($func) {
-		$fp = fopen($this->courseFilename, "r+t");
-		if (flock($fp, LOCK_EX)) {
-			// Read the file
-			$contents = fread($fp, filesize($this->courseFilename));
-			$xml = simplexml_load_string($contents);
-			
-			$func($xml);
-			
-			$dom = new DOMDocument();
-			$dom->formatOutput = true;
-			/*$domnode = dom_import_simplexml($xml);
-			$domnode = $dom->importNode($domnode, true);
-			$dom->appendChild($domnode);*/
-			$dom->loadXML($xml->asXML());
-			
-			ftruncate($fp, 0);
-			fseek($fp, 0);
-			fwrite($fp, $dom->saveXML());
-			fflush($fp);
-			flock($fp, LOCK_UN);
-		} else {
-			throw new Exception("Problem whilst locking course.xml");
-		}
-		
-		fclose($fp);
 	}
 	
 }

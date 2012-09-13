@@ -78,6 +78,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 			invalidateSkinState();
 		}
 		
+		/**
+		 * Switch between editing and viewing
+		 */
 		protected override function getCurrentSkinState():String {
 			if (!previewButton)
 				return super.getCurrentSkinState();

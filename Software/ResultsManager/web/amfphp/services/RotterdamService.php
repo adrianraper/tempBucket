@@ -4,6 +4,7 @@
  */
 require_once(dirname(__FILE__)."/BentoService.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
+require_once(dirname(__FILE__)."/../../classes/MediaOps.php");
 
 class RotterdamService extends BentoService {
 	
@@ -18,6 +19,7 @@ class RotterdamService extends BentoService {
 			// Hard code the path for the moment
 			$this->accountFolder = "D:/Projects/Clarity/ContentBench/Content/Rotterdam/".Session::get('userID');
 			$this->courseOps = new CourseOps($this->accountFolder);
+			$this->mediaOps = new MediaOps($this->accountFolder);
 			
 			// If there is no content folder for this user then create one
 			if (!is_dir($this->accountFolder)) $this->createAccountFolder();
@@ -32,6 +34,7 @@ class RotterdamService extends BentoService {
 	 * Create a blank account folder with all required directories and an empty course.xml (for now we're not sure there are any required directories)
 	 */
 	private function createAccountFolder() {
+		// Create the account folder containing a default courses.xml
 		mkdir($this->accountFolder);
 		$courseXML = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
@@ -40,6 +43,16 @@ class RotterdamService extends BentoService {
 </bento>
 XML;
 		file_put_contents($this->accountFolder."/courses.xml", $courseXML, LOCK_EX);
+		
+		// Create a media folder containing a default meta.xml
+		mkdir($this->accountFolder."/media");
+		$mediaXML = <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<files />
+</bento>	
+XML;
+		file_put_contents($this->accountFolder."/media/media.xml", $mediaXML, LOCK_EX);
 	}
 	
 }
