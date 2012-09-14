@@ -34,6 +34,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			super.updateViewFromXHTML(xhtml);
 			
 			courseList.dataProvider = new XMLListCollection(xhtml.courses.course);
+			
+			// Go straight into the editor for testing
+			editCourse.dispatch(courseList.dataProvider.getItemAt(0));
 		}
 
 		protected override function partAdded(partName:String, instance:Object):void {

@@ -14,7 +14,7 @@
 	</s:states>
 	
 	<s:layout>
-		<layouts:UnitLayout columns="3" />
+		<layouts:UnitLayout columns="3" horizontalGap="20" />
 	</s:layout>
 	
 	<!--<s:Label text="{hostComponent.data.toXMLString()}" />-->
@@ -23,7 +23,8 @@
 	<widgets:TextWidget height="130" column="1" span="2" />
 	<widgets:TextWidget height="100" column="0" span="2" />
 	<widgets:TextWidget height="100" column="0" span="3" />
-	<widgets:TextWidget height="130" column="0" span="1" />
-	<widgets:TextWidget height="90" column="0" span="1" />
+	<widgets:TextWidget height="130" column="0" />
+	<widgets:TextWidget height="90" column="0" />
+	<widgets:TextWidget height="90" column="2" />
 	
 </s:Skin>

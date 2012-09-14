@@ -24,6 +24,8 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		
 		public var columns:int = 3;
 		
+		public var horizontalGap:uint = 2;
+		
 		private var elementMap:BitmapData;
 		
 		public function UnitLayout() {
@@ -41,7 +43,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			elementMap.fillRect(new Rectangle(0, 0, elementMap.width, elementMap.height), 0x00000000);
 			
 			// Get the width of a column
-			var columnWidth:Number = width / columns;
+			var columnWidth:Number = (width - horizontalGap * (columns - 1)) / columns;
 			
 			for (var i:int = 0; i < target.numElements; i++) {
 				// Get as an IUnitLayoutElement (this gives us column and span attributes)
@@ -49,13 +51,14 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 				
 				if (currentElement) {
 					// Set the width based on the span and column width, and allow the widget to set its own height
-					currentElement.setLayoutBoundsSize(currentElement.span * columnWidth, NaN);
+					var widthGapOffset:uint = horizontalGap * (currentElement.span - 1);
+					currentElement.setLayoutBoundsSize(currentElement.span * columnWidth + widthGapOffset, NaN);
 					
 					// Calculate the x position based on the requested column
-					var elementX:uint = currentElement.column * columnWidth;
+					var xGapOffset:uint = horizontalGap * currentElement.column;
+					var elementX:uint = currentElement.column * columnWidth + xGapOffset;
 					
-					// Calculate the y position based on what is already in the columns
-					//var elementY:uint = getFirstAvailableY(currentElement, columnRects);
+					// Calculate the y position based on what is already there
 					var elementY:uint = getFirstAvailableY(currentElement, yDelimiters, elementMap);
 					
 					// Set the position
