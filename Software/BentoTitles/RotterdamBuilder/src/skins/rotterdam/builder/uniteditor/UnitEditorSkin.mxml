@@ -13,18 +13,23 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:layout>
-		<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" />
-	</s:layout>
-	
 	<!--<s:Label text="{hostComponent.data.toXMLString()}" />-->
 	
-	<widgets:TextWidget height="100" column="0" />
-	<widgets:TextWidget height="130" column="1" span="2" />
-	<widgets:TextWidget height="100" column="0" span="2" />
-	<widgets:TextWidget height="100" column="0" span="3" />
-	<widgets:TextWidget height="130" column="0" />
-	<widgets:TextWidget height="90" column="0" />
-	<widgets:TextWidget height="90" column="2" />
+	<s:Scroller left="0" right="0" top="0" bottom="0">
+		<s:Group width="100%">
+			<s:layout>
+				<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" />
+			</s:layout>
+			
+			<widgets:TextWidget height="100" column="0" />
+			<widgets:TextWidget height="130" column="1" span="2" />
+			<widgets:TextWidget height="100" column="0" span="2" />
+			<widgets:TextWidget height="100" column="0" span="3" />
+			<widgets:TextWidget height="130" column="0" />
+			<widgets:TextWidget height="90" column="0" />
+			<widgets:TextWidget height="90" column="2" />
+			<widgets:TextWidget height="300" column="0" span="3" />
+		</s:Group>
+	</s:Scroller>
 	
 </s:Skin>

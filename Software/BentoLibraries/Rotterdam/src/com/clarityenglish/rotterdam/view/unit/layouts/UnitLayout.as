@@ -30,8 +30,21 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		
 		private var elementMap:BitmapData;
 		
+		private var measuredWidth:uint = 0;
+		private var measuredHeight:uint = 0;
+		
 		public function UnitLayout() {
 			elementMap = new BitmapData(columns, 8191, true);
+		}
+		
+		override public function measure():void {
+			super.measure();
+			
+			target.measuredWidth = measuredWidth;
+			target.measuredHeight = measuredHeight;
+			target.measuredMinWidth = measuredWidth;
+			target.measuredMinHeight = measuredHeight;
+			target.setContentSize(measuredWidth, measuredHeight);
 		}
 		
 		public override function updateDisplayList(width:Number, height:Number):void {
@@ -39,6 +52,8 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			
 			if (!target)
 				return;
+			
+			measuredWidth = width;
 			
 			// Create a new delimiters array (this is what we will check for gaps) and clear the elementMap
 			var yDelimiters:Array = [ 0 ];
@@ -64,6 +79,8 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 					var elementY:uint = getFirstAvailableY(currentElement, yDelimiters, elementMap);
 					if (elementY > 0) elementY += verticalGap; // TODO: not 100% convinced that this works properly yet...
 					
+					measuredHeight = Math.max(measuredWidth, elementY + currentElement.getLayoutBoundsHeight());
+					
 					// Set the position
 					currentElement.setLayoutBoundsPosition(elementX, elementY);
 					
@@ -73,6 +90,8 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 					log.error("Only IUnitLayoutElements can be in a UnitLayout (" + target.getElementAt(i) + ")");
 				}
 			}
+			
+			target.invalidateSize(); // TODO: needed to make the scroller work, but performance issues?
 		}
 		
 		private function getFirstAvailableY(element:IUnitLayoutElement, yDelimiters:Array, elementMap:BitmapData):Number {
