@@ -8,6 +8,9 @@
     <classEntry path="com.clarityenglish.rotterdam.RotterdamNotifications"/>
     <classEntry path="com.clarityenglish.rotterdam.vo.Course"/>
     <classEntry path="skins.rotterdam.unit.UnitSkin"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.TextWidget"/>
+    <classEntry path="skins.rotterdam.unit.widgets.TextWidgetSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

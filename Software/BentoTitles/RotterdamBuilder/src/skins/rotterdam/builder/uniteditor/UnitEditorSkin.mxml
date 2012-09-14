@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="com.clarityenglish.rotterdam.view.unit.widgets.*" xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView")]
@@ -14,9 +14,16 @@
 	</s:states>
 	
 	<s:layout>
-		<s:VerticalLayout />
+		<layouts:UnitLayout columns="3" />
 	</s:layout>
 	
-	<s:Label text="{hostComponent.data.toXMLString()}" />
+	<!--<s:Label text="{hostComponent.data.toXMLString()}" />-->
+	
+	<widgets:TextWidget height="100" column="0" />
+	<widgets:TextWidget height="130" column="1" span="2" />
+	<widgets:TextWidget height="100" column="0" span="2" />
+	<widgets:TextWidget height="100" column="0" span="3" />
+	<widgets:TextWidget height="130" column="0" span="1" />
+	<widgets:TextWidget height="90" column="0" span="1" />
 	
 </s:Skin>
