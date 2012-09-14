@@ -14,7 +14,7 @@
 	</s:states>
 	
 	<s:layout>
-		<layouts:UnitLayout columns="3" horizontalGap="20" />
+		<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" />
 	</s:layout>
 	
 	<!--<s:Label text="{hostComponent.data.toXMLString()}" />-->

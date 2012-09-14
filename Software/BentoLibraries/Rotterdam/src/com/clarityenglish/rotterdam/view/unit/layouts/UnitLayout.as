@@ -26,6 +26,8 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		
 		public var horizontalGap:uint = 2;
 		
+		public var verticalGap:uint = 2;
+		
 		private var elementMap:BitmapData;
 		
 		public function UnitLayout() {
@@ -60,6 +62,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 					
 					// Calculate the y position based on what is already there
 					var elementY:uint = getFirstAvailableY(currentElement, yDelimiters, elementMap);
+					if (elementY > 0) elementY += verticalGap; // TODO: not 100% convinced that this works properly yet...
 					
 					// Set the position
 					currentElement.setLayoutBoundsPosition(elementX, elementY);
