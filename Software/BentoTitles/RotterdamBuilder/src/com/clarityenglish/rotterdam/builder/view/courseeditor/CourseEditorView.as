@@ -106,7 +106,7 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		}
 		
 		protected function onAddText(event:MouseEvent):void {
-			addWidget.dispatch(<text span="1" />);
+			addWidget.dispatch(<text col="0" span="1" title="New text widget" />);
 		}
 		
 		private function onPreview(event:MouseEvent):void {
