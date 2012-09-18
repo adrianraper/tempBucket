@@ -2,7 +2,7 @@
 <config>
 	<id>/area1/RoadToIELTS2 ce.com</id>
 	<developer>DK</developer>
-	<productCode>52</productCode>
+	<productCode>54</productCode>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<channel name="ios-vimeo" caption="vimeo">
@@ -15,7 +15,7 @@
 	<brandingMedia />
 	<language>EN*</language>
 	
-	<contentPath>http://dock.contentbench/Content/</contentPath>
+	<contentPath>http://dock.contentbench/CCB/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	

@@ -17,7 +17,7 @@ class RotterdamService extends BentoService {
 		// If a user is logged in then get the content folder
 		if (Session::is_set('userID')) {
 			// Hard code the path for the moment
-			$this->accountFolder = "D:/Projects/Clarity/ContentBench/Content/Rotterdam/".Session::get('userID');
+			$this->accountFolder = "D:/Projects/Clarity/ContentBench/CCB/".Session::get('dbContentLocation');
 			$this->courseOps = new CourseOps($this->accountFolder);
 			$this->mediaOps = new MediaOps($this->accountFolder);
 			
