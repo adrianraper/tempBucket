@@ -27,6 +27,7 @@
 			super.onRegister();
 			
 			view.saveCourse.add(onSave);
+			view.addWidget.add(onAddWidget);
 			
 			// For the moment hardcode the course path
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -37,6 +38,7 @@
 			super.onRemove();
 			
 			view.saveCourse.remove(onSave);
+			view.addWidget.remove(onAddWidget);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
@@ -59,6 +61,10 @@
 		
 		private function onSave(xhtml:XHTML):void {
 			facade.sendNotification(RotterdamNotifications.COURSE_SAVE, xhtml);
+		}
+		
+		private function onAddWidget(xml:XML):void {
+			trace(xml.toXMLString());
 		}
 		
 	}

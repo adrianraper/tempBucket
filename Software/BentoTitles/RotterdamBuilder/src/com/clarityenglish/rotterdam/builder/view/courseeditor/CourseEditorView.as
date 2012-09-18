@@ -32,6 +32,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var backButton:Button;
 		
 		[SkinPart]
+		public var addTextButton:Button;
+		
+		[SkinPart]
 		public var saveButton:Button;
 		
 		[SkinPart]
@@ -42,7 +45,8 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		private var _selectedUnitXML:XML;
 		
 		public var saveCourse:Signal = new Signal(XHTML);
-				
+		public var addWidget:Signal = new Signal(XML);
+		
 		private function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
 		}
@@ -72,6 +76,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBack);
 					break;
+				case addTextButton:
+					addTextButton.addEventListener(MouseEvent.CLICK, onAddText);
+					break;
 				case saveButton:
 					saveButton.addEventListener(MouseEvent.CLICK, onSave);
 					break;
@@ -96,6 +103,10 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		
 		protected function onSave(event:MouseEvent):void {
 			saveCourse.dispatch(_xhtml);
+		}
+		
+		protected function onAddText(event:MouseEvent):void {
+			addWidget.dispatch(<text span="1" />);
 		}
 		
 		private function onPreview(event:MouseEvent):void {

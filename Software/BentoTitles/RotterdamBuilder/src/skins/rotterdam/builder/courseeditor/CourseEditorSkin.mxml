@@ -57,8 +57,9 @@
 	<s:ViewNavigator id="unitViewNavigator" left="200" right="0" top="0" bottom="100" />
 	
 	<s:HGroup bottom="0" right="10">
-		<s:Button id="backButton" label="Back" />
+		<!--<s:Button id="backButton" label="Back" />-->
 		<s:Button id="saveButton" label="Save" />
+		<s:Button id="addTextButton" label="Add text" />
 		<s:ToggleButton id="previewButton" label="Preview" />
 	</s:HGroup>
 	
