@@ -64,7 +64,7 @@
 		}
 		
 		private function onAddWidget(xml:XML):void {
-			trace(xml.toXMLString());
+			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, xml);
 		}
 		
 	}

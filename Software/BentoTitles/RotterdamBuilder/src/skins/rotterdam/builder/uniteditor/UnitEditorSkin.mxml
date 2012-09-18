@@ -13,12 +13,16 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<ui:UnitList id="unitList" left="0" right="0" top="0" bottom="0" dragEnabled="true" dropEnabled="true" dragMoveEnabled="true">
+	<s:layout>
+		<s:VerticalLayout />
+	</s:layout>
+	
+	<ui:UnitList id="unitList" dataProvider="{hostComponent.unitCollection}" width="100%" height="50%" dragEnabled="true" dropEnabled="true" dragMoveEnabled="true">
 		<ui:layout>
 			<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" useVirtualLayout="false" />
 		</ui:layout>
 		
-		<ui:itemRenderer>
+		<!--<ui:itemRenderer>
 			<fx:Component>
 				<widgets:TextWidget>
 					<fx:Script>
@@ -37,7 +41,10 @@
 					</fx:Script>
 				</widgets:TextWidget>
 			</fx:Component>
-		</ui:itemRenderer>
+		</ui:itemRenderer>-->
+		
 	</ui:UnitList>
+	
+	<s:TextArea width="100%" height="50%" text="{hostComponent.data.toXMLString()}" />
 	
 </s:Skin>

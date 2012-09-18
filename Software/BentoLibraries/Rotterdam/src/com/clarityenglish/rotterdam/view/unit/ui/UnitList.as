@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.layouts.UnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -7,6 +8,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import flash.geom.Point;
 	
 	import mx.collections.ListCollectionView;
+	import mx.core.ClassFactory;
 	import mx.core.DragSource;
 	import mx.core.mx_internal;
 	import mx.events.DragEvent;
@@ -23,6 +25,17 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		
 		public function UnitList() {
 			super();
+			
+			itemRendererFunction = widgetItemRendererFunction;
+		}
+		
+		private function widgetItemRendererFunction(item:Object):ClassFactory {
+			// TODO: Add in more widgets; these should probably be specified elsewhere
+			var widgetClass:Class = TextWidget;
+			
+			var classFactory:ClassFactory = new ClassFactory(widgetClass);
+			classFactory.properties = { xml: item };
+			return classFactory;
 		}
 		
 		override protected function dragStartHandler(event:DragEvent):void {
@@ -80,8 +93,12 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			(dataProvider as ListCollectionView).enableAutoUpdate();
 		}
 		
+		override protected function dragCompleteHandler(event:DragEvent):void {
+			// Override with an empty method so that the superclass doesn't do anything
+		}
+		
 		override protected function dragDropHandler(event:DragEvent):void {
-			// Override with an empty method so that the superclass doesn't copy anything
+			// Override with an empty method so that the superclass doesn't do anything
 		}
 		
 	}

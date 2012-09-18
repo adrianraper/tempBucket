@@ -20,6 +20,6 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:Label left="10" right="10" top="30" text="{hostComponent.label}" />
+	<s:Label left="10" right="10" top="30" text="{hostComponent.title}" />
 	
 </s:Skin>

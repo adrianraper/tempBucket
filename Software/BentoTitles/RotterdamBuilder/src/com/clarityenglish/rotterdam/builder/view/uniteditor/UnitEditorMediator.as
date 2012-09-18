@@ -1,6 +1,7 @@
 ﻿package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -28,7 +29,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				RotterdamNotifications.WIDGET_ADD,
 			]);
 		}
 		
@@ -36,7 +37,9 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				case RotterdamNotifications.WIDGET_ADD:
+					
+					break;
 			}
 		}
 		
