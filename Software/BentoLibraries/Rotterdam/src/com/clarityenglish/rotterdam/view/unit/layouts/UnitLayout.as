@@ -3,6 +3,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
+	import mx.core.ILayoutElement;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -37,16 +38,6 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			elementMap = new BitmapData(columns, 8191, true);
 		}
 		
-		override public function measure():void {
-			super.measure();
-			
-			target.measuredWidth = measuredWidth;
-			target.measuredHeight = measuredHeight;
-			target.measuredMinWidth = measuredWidth;
-			target.measuredMinHeight = measuredHeight;
-			target.setContentSize(measuredWidth, measuredHeight);
-		}
-		
 		public override function updateDisplayList(width:Number, height:Number):void {
 			super.updateDisplayList(width, height);
 			
@@ -63,10 +54,12 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			var columnWidth:Number = (width - horizontalGap * (columns - 1)) / columns;
 			
 			for (var i:int = 0; i < target.numElements; i++) {
-				// Get as an IUnitLayoutElement (this gives us column and span attributes)
-				var currentElement:IUnitLayoutElement = target.getElementAt(i) as IUnitLayoutElement;
+				var element:ILayoutElement = (useVirtualLayout ? target.getVirtualElementAt(i) : target.getElementAt(i));
 				
-				if (currentElement) {
+				if (element is IUnitLayoutElement) {
+					// Get as an IUnitLayoutElement (this gives us column and span attributes)
+					var currentElement:IUnitLayoutElement = target.getElementAt(i) as IUnitLayoutElement;
+					
 					// Set the width based on the span and column width, and allow the widget to set its own height
 					var widthGapOffset:uint = horizontalGap * (currentElement.span - 1);
 					currentElement.setLayoutBoundsSize(currentElement.span * columnWidth + widthGapOffset, NaN);
@@ -91,7 +84,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 				}
 			}
 			
-			target.invalidateSize(); // TODO: needed to make the scroller work, but performance issues?
+			target.setContentSize(measuredWidth, measuredHeight);
 		}
 		
 		private function getFirstAvailableY(element:IUnitLayoutElement, yDelimiters:Array, elementMap:BitmapData):Number {
