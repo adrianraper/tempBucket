@@ -40,22 +40,22 @@ class RotterdamService extends BentoService {
 	private function createAccountFolder() {
 		// Create the account folder containing a default courses.xml
 		mkdir($this->accountFolder);
-		$courseXML = <<<XML
+		$courseXML = '
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 	<courses />
 </bento>
-XML;
+';
 		file_put_contents($this->accountFolder."/courses.xml", $courseXML, LOCK_EX);
 		
 		// Create a media folder containing a default meta.xml
 		mkdir($this->accountFolder."/media");
-		$mediaXML = <<<XML
+		$mediaXML = '
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
 	<files />
 </bento>	
-XML;
+';
 		file_put_contents($this->accountFolder."/media/media.xml", $mediaXML, LOCK_EX);
 	}
 	

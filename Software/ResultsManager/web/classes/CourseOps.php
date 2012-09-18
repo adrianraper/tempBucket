@@ -6,7 +6,7 @@ class CourseOps {
 	
 	var $accountFolder;
 	
-	var $defaultXML = <<<XML
+	var $defaultXML = '
 <bento xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<script id="model" type="application/xml">
@@ -16,7 +16,7 @@ class CourseOps {
 		</script>
 	</head>
 </bento>
-XML;
+';
 	
 	function __construct($accountFolder = null) {
 		$this->accountFolder = $accountFolder;
