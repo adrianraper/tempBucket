@@ -7,9 +7,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
 	 * For example, [Bindable("titleAttrChanged")].
 	 */
+	[SkinState("normal")]
+	[SkinState("editing")]
 	public class AbstractWidget extends SkinnableItemRenderer implements IUnitLayoutElement {
 		
-		private var _xml:XML;
+		protected var _xml:XML;
 		
 		[Bindable]
 		public function get xml():XML {
@@ -34,6 +36,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		public function AbstractWidget() {
 			super();
+		}
+		
+		protected override function getCurrentSkinState():String {
+			// TODO: Needs to support normal and editing
+			return "editing";
 		}
 		
 	}
