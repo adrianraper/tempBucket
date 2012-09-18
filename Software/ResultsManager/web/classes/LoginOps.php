@@ -1,5 +1,7 @@
 <?php
 
+// Pretend change for t-hctlicence
+
 class LoginOps {
 	
 	var $db;
