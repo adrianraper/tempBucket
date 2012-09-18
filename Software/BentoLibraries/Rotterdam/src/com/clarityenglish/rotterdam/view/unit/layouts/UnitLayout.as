@@ -4,6 +4,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 	import flash.geom.Rectangle;
 	
 	import mx.core.ILayoutElement;
+	import mx.core.mx_internal;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -11,10 +12,12 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 	
 	import spark.layouts.supportClasses.LayoutBase;
 	
+	use namespace mx_internal;
+	
 	/**
 	 * This layout implements the unit editor and viewer layout.  Since this is really the core of the application usability it is implemented to be as fast
 	 * as it possibly can be, and uses a BitmapData canvas to draw where things are going and to figure out where the next available slots are that elements
-	 * can be positioned into. 
+	 * can be positioned into.
 	 */
 	public class UnitLayout extends LayoutBase {
 		
@@ -31,9 +34,6 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		
 		private var elementMap:BitmapData;
 		
-		private var measuredWidth:uint = 0;
-		private var measuredHeight:uint = 0;
-		
 		public function UnitLayout() {
 			elementMap = new BitmapData(columns, 8191, true);
 		}
@@ -44,7 +44,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			if (!target)
 				return;
 			
-			measuredWidth = width;
+			var measuredHeight:Number = 0;
 			
 			// Create a new delimiters array (this is what we will check for gaps) and clear the elementMap
 			var yDelimiters:Array = [ 0 ];
@@ -70,9 +70,10 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 					
 					// Calculate the y position based on what is already there
 					var elementY:uint = getFirstAvailableY(currentElement, yDelimiters, elementMap);
-					if (elementY > 0) elementY += verticalGap; // TODO: not 100% convinced that this works properly yet...
+					if (elementY > 0)
+						elementY += verticalGap; // TODO: not 100% convinced that this works properly yet...
 					
-					measuredHeight = Math.max(measuredWidth, elementY + currentElement.getLayoutBoundsHeight());
+					measuredHeight = Math.max(measuredHeight, elementY + currentElement.getLayoutBoundsHeight());
 					
 					// Set the position
 					currentElement.setLayoutBoundsPosition(elementX, elementY);
@@ -84,27 +85,65 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 				}
 			}
 			
-			target.setContentSize(measuredWidth, measuredHeight);
+			target.setContentSize(width, measuredHeight);
 		}
 		
 		private function getFirstAvailableY(element:IUnitLayoutElement, yDelimiters:Array, elementMap:BitmapData):Number {
 			// Here we go through the gaps seeing if element will fit; if not it goes at the end
 			for each (var y:uint in yDelimiters) {
 				var available:Boolean = !elementMap.hitTest(new Point(0, 0), 1, new Rectangle(element.column, y, element.span, element.getPreferredBoundsHeight()));
-				if (available)
+				if (available) {
 					return y;
+				}
 			}
 			
-			// Not as performant as it might be since we already have delimiters?
-			return Math.max.apply(null, yDelimiters);
+			// We should never get here
+			throw new Error("Didn't find an available y for the dropped element (this shouldn't be possible!");
+			return null;
 		}
 		
 		private function updateColumnMap(element:IUnitLayoutElement, yDelimiters:Array, elementMap:BitmapData):void {
 			var yDelimiter:uint = element.getLayoutBoundsY() + element.getPreferredBoundsHeight();
-			if (yDelimiters.indexOf(yDelimiter) < 0) yDelimiters.push(element.getLayoutBoundsY() + element.getPreferredBoundsHeight());
+			if (yDelimiters.indexOf(yDelimiter) < 0)
+				yDelimiters.push(element.getLayoutBoundsY() + element.getPreferredBoundsHeight());
 			
 			elementMap.fillRect(new Rectangle(element.column, element.getLayoutBoundsY(), element.span, element.getLayoutBoundsHeight()), 0xFF000000);
 		}
-	
+		
+		/**
+		 * Determine the column that the given x value falls into based on the width of the container and the number of columns
+		 * 
+		 * @param x
+		 * @return 
+		 */
+		public function getColumnFromX(x:Number):int {
+			return Math.floor(x / target.width * columns);
+		}
+		
+		/**
+		 * A public method allowing us to call the protected framework method calculateDropIndex method from outside the class
+		 */
+		public function getDropIndex(x:Number, y:Number):int {
+			return calculateDropIndex(x, y);
+		}
+		
+		/**
+		 * This needs to figure out the drop index for a certain point.  This seems to mostly work, although its not perfect.
+		 */
+		override protected function calculateDropIndex(x:Number, y:Number):int {
+			// First determine the column
+			var column:int = getColumnFromX(x);
+			
+			// If we are hovering over an existing element then move to that position
+			for (var i:int = 0; i < target.numElements; i++) {
+				var bounds:Rectangle = getElementBounds(i);
+				if (bounds && bounds.contains(x, y))
+					return i;
+			}
+			
+			// Otherwise don't move
+			return -1;
+		}
+		
 	}
 }

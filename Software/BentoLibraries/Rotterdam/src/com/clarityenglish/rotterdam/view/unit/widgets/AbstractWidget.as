@@ -3,11 +3,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	
-	import flash.events.Event;
-	
-	import mx.core.IDataRenderer;
-	
-	public class AbstractWidget extends SkinnableItemRenderer implements IUnitLayoutElement /*, IDataRenderer*/ {
+	public class AbstractWidget extends SkinnableItemRenderer implements IUnitLayoutElement {
 		
 		protected var _xml:XML;
 		
@@ -30,16 +26,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function get span():uint {
 			return _span;
 		}
-		
-		/*public function set data(value:Object):void {
-			_data = value;
-			dispatchEvent(new Event("dataChange"));
-		}
-		
-		[Bindable(event="dataChange")]
-		public function get data():Object {
-			return _data;
-		}*/
 		
 		public function AbstractWidget() {
 			super();

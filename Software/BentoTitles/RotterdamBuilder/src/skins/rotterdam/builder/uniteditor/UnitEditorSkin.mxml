@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="com.clarityenglish.rotterdam.view.unit.widgets.*" xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="com.clarityenglish.rotterdam.view.unit.widgets.*" xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*" xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView")]
@@ -13,48 +13,31 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<!--<s:Label text="{hostComponent.data.toXMLString()}" />-->
-	
-	<!--<s:Scroller left="0" right="0" top="0" bottom="0">
-		<s:Group width="100%">
-			<s:layout>
-				<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" />
-			</s:layout>
-			
-			<widgets:TextWidget height="100" column="0" />
-			<widgets:TextWidget height="130" column="1" span="2" />
-			<widgets:TextWidget height="100" column="0" span="2" />
-			<widgets:TextWidget height="100" column="0" span="3" />
-			<widgets:TextWidget height="130" column="0" />
-			<widgets:TextWidget height="90" column="0" />
-			<widgets:TextWidget height="90" column="2" />
-			<widgets:TextWidget height="300" column="0" span="3" />
-		</s:Group>
-	</s:Scroller>-->
-	
-	<s:List left="0" right="0" top="0" bottom="0" dragEnabled="true" dropEnabled="true" dragMoveEnabled="true">
-		<!--<s:layout>
+	<ui:UnitList id="unitList" left="0" right="0" top="0" bottom="0" dragEnabled="true" dropEnabled="true" dragMoveEnabled="true">
+		<ui:layout>
 			<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" useVirtualLayout="false" />
-		</s:layout>-->
+		</ui:layout>
 		
-		<s:itemRenderer>
+		<ui:itemRenderer>
 			<fx:Component>
-				<widgets:TextWidget height="{data.height}" column="{data.column}" span="{data.span}" label="{data.label}" />
+				<widgets:TextWidget>
+					<fx:Script>
+						<![CDATA[
+							override public function set data(value:Object):void {
+								super.data = value;
+								
+								if (value) {
+									height = value.@height;
+									column = value.@column;
+									span = value.@span;
+									label = value.@label;
+								}
+							}
+						]]>
+					</fx:Script>
+				</widgets:TextWidget>
 			</fx:Component>
-		</s:itemRenderer>
-		
-		<s:dataProvider>
-			<s:ArrayCollection>
-				<fx:Object height="100" column="0" span="1" label="1" />
-				<fx:Object height="130" column="1" span="2" label="2" />
-				<fx:Object height="100" column="0" span="2" label="3" />
-				<fx:Object height="100" column="0" span="3" label="4" />
-				<fx:Object height="130" column="0" span="1" label="5" />
-				<fx:Object height="90" column="0" span="1" label="6" />
-				<fx:Object height="90" column="2" span="1" label="7" />
-				<fx:Object height="300" column="0" span="3" label="8" />
-			</s:ArrayCollection>
-		</s:dataProvider>
-	</s:List>
+		</ui:itemRenderer>
+	</ui:UnitList>
 	
 </s:Skin>
