@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:widgets="skins.rotterdam.unit.widgets.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import skins.assets.widgets.*;
+			
+			import spark.events.IndexChangeEvent;
+			
+			private var _xml:XML;
+			
+			public function get xml():XML {
+				return _xml;
+			}
+
+			public function set xml(value:XML):void {
+				_xml = value;
+				
+				spanButtonBar.selectedIndex = _xml.@span - 1;
+			}
+
+			protected function onSpanChange(event:IndexChangeEvent):void {
+				_xml.@span = event.target.selectedIndex + 1;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- The menu -->
+	<s:Group id="menu" top="25" right="0" width="162">
+		<s:Rect left="0" right="0" top="0" bottom="0">
+			<s:stroke>
+				<s:SolidColorStroke color="#D8D8D8" />
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="#FFFFFF" />
+			</s:fill>
+		</s:Rect>
+		
+		<s:VGroup left="0" right="0" gap="1" horizontalAlign="center">
+			<s:Button label="Delete item" icon="{DeleteIcon}" width="100%" height="50" />
+			
+			<s:Line width="135">
+				<s:stroke>
+					<s:SolidColorStroke color="#D8D8D8" />
+				</s:stroke>
+			</s:Line>
+			
+			<s:Button label="Copy item" icon="{CopyIcon}" width="100%" height="50" />
+			
+			<s:ButtonBar id="spanButtonBar" width="100%" height="50" change="onSpanChange(event)">
+				<s:dataProvider>
+					<s:ArrayList>
+						<fx:Object icon="{Span1Icon}" label="" />
+						<fx:Object icon="{Span2Icon}" label="" />
+						<fx:Object icon="{Span3Icon}" label="" />
+					</s:ArrayList>
+				</s:dataProvider>
+			</s:ButtonBar>
+		</s:VGroup>
+	</s:Group>
+	
+</s:Group>

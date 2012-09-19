@@ -32,27 +32,6 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			itemRendererFunction = widgetItemRendererFunction;
 		}
 		
-		/**
-		 *  @private
-		 */
-		/*override public function set dragEnabled(value:Boolean):void {
-			if (value == dragEnabled)
-				return;
-			
-			super.dragEnabled = value;
-			
-			if (_dragEnabled) {
-				addEventListener(DragEvent.DRAG_START, dragStartHandler, false, EventPriority.DEFAULT_HANDLER);
-				addEventListener(DragEvent.DRAG_COMPLETE, dragCompleteHandler, false, EventPriority.DEFAULT_HANDLER);
-			} else {
-				removeEventListener(DragEvent.DRAG_START, dragStartHandler, false);
-				removeEventListener(DragEvent.DRAG_COMPLETE, dragCompleteHandler, false);
-			}
-			
-			removeEventListener(DragEvent.DRAG_START, dragStartHandler, false);
-			removeEventListener(DragEvent.DRAG_COMPLETE, dragCompleteHandler, false);
-		}*/
-		
 		private function widgetItemRendererFunction(item:Object):ClassFactory {
 			// TODO: Add in more widgets; these should probably be specified elsewhere
 			var widgetClass:Class = TextWidget;

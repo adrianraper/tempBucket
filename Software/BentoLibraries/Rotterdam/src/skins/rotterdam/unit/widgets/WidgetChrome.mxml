@@ -1,19 +1,44 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx">
-	<fx:Declarations>
-		<fx:Object id="icon" />
-		<fx:String id="title" />
-	</fx:Declarations>
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="skins.assets.widgets.*">
 	
-	<!-- Chrome -->
-	<s:Rect left="0" right="0" top="0" bottom="0">
-		<s:stroke>
-			<s:SolidColorStroke color="#D4D4D4" />
-		</s:stroke>
-	</s:Rect>
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
+			
+			[Bindable]
+			public var icon:Object;
+			
+			[Bindable]
+			public var title:String;
+			
+			protected function onMenuButtonClick(event:MouseEvent):void {
+				switch (currentState) {
+					case "closed":
+						currentState = "open";
+						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_SHOW));
+						break;
+					case "open":
+						currentState = "closed";
+						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE));
+						break;
+				}
+			}
+		]]>
+	</fx:Script>
 	
+	<fx:Metadata>
+		[Event(name="menuShow", type="com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent")]
+		[Event(name="menuHide", type="com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="closed" />
+		<s:State name="open" />
+	</s:states>
+	
+	<!-- Title bar -->
 	<s:Group id="dragArea" left="0" right="0" top="0" height="25">
 		<s:Rect left="0" right="0" top="0" bottom="0">
 			<s:fill>
@@ -30,4 +55,25 @@
 	
 	<!-- The widget title -->
 	<s:Label text="{title}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
+	
+	<!-- The menu button -->
+	<s:Group id="menuButton" right="0" width="41" height="24" buttonMode="true" mouseEnabled="true" click="onMenuButtonClick(event)">
+		<s:Rect right="0" width="41" height="24" alpha.open="1" alpha.closed="0">
+			<s:stroke>
+				<s:SolidColorStroke color="#D8D8D8" />
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="#F2F2F2" />
+			</s:fill>
+		</s:Rect>
+		<widgets:CogIcon top="5" right="9" />
+	</s:Group>
+	
+	<!-- The stroke -->
+	<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:stroke>
+			<s:SolidColorStroke color="#D4D4D4" />
+		</s:stroke>
+	</s:Rect>
+	
 </s:Group>

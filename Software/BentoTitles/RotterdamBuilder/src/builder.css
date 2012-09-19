@@ -8,6 +8,7 @@
 @namespace title "com.clarityenglish.rotterdam.builder.view.title.*";
 @namespace uniteditor "com.clarityenglish.rotterdam.builder.view.uniteditor.*";
 @namespace filemanager "com.clarityenglish.rotterdam.builder.view.filemanager.*";
+@namespace widgets "skins.rotterdam.unit.widgets.*";
 
 builder|BuilderApplication {
 	skinClass: ClassReference("skins.rotterdam.builder.BuilderApplicationSkin");
@@ -39,6 +40,14 @@ courseeditor|CourseEditorView {
 
 uniteditor|UnitEditorView {
 	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.UnitEditorSkin");
+}
+
+/* TODO: Need to do this for the button bar as well */
+uniteditor|UnitEditorView widgets|WidgetMenu s|Button {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.MenuButtonSkin");
+	fontWeight: bold;
+	fontSize: 15;
+	color: #7F7F7F;
 }
 
 filemanager|FileManagerView {

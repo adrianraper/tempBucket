@@ -12,6 +12,7 @@
     <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.TextWidget"/>
     <classEntry path="skins.rotterdam.unit.widgets.TextWidgetSkin"/>
     <classEntry path="skins.rotterdam.unit.widgets.WidgetChrome"/>
+    <classEntry path="skins.rotterdam.unit.widgets.MenuButtonSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

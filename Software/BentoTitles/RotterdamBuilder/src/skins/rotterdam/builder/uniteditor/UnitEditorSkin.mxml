@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="com.clarityenglish.rotterdam.view.unit.widgets.*" xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*" xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*"
+		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*" xmlns:widgets="skins.rotterdam.unit.widgets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView")]
@@ -13,38 +15,14 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:layout>
-		<s:VerticalLayout />
-	</s:layout>
-	
-	<ui:UnitList id="unitList" dataProvider="{hostComponent.unitCollection}" width="100%" height="50%" dragEnabled="true" dropEnabled="true" dragMoveEnabled="true">
+	<ui:UnitList id="unitList" dataProvider="{hostComponent.unitCollection}" left="0" right="0" height="50%">
 		<ui:layout>
 			<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" useVirtualLayout="false" />
 		</ui:layout>
-		
-		<!--<ui:itemRenderer>
-			<fx:Component>
-				<widgets:TextWidget>
-					<fx:Script>
-						<![CDATA[
-							override public function set data(value:Object):void {
-								super.data = value;
-								
-								if (value) {
-									height = value.@height;
-									column = value.@column;
-									span = value.@span;
-									label = value.@label;
-								}
-							}
-						]]>
-					</fx:Script>
-				</widgets:TextWidget>
-			</fx:Component>
-		</ui:itemRenderer>-->
-		
 	</ui:UnitList>
 	
-	<s:TextArea width="100%" height="50%" text="{hostComponent.data.toXMLString()}" />
+	<widgets:WidgetMenu id="widgetMenu" />
+	
+	<s:TextArea width="100%" left="0" right="0" bottom="0" height="50%" text="{hostComponent.data.toXMLString()}" />
 	
 </s:Skin>
