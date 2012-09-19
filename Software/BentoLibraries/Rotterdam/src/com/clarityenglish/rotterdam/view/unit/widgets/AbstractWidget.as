@@ -34,6 +34,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@title;
 		}
 		
+		public function set text(value:String):void {
+			if (_xml.text.length() == 0) _xml.text = <text />;
+			_xml.text.setChildren(new XML("<![CDATA[" + value + "]]>"));
+		}
+		
+		public function get text():String {
+			return _xml.text[0].toString();
+		}
+		
 		public function AbstractWidget() {
 			super();
 		}

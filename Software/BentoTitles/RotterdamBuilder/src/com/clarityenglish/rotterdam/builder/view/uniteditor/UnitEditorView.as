@@ -17,7 +17,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			super.data = value;
 			
 			if (data) {
-				unitCollection = new XMLListCollection(data..text);
+				unitCollection = new XMLListCollection(data.*);
 			}
 		}
 		

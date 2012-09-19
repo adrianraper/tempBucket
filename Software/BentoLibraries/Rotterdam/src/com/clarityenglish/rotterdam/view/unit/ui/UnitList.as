@@ -10,10 +10,13 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import mx.collections.ListCollectionView;
 	import mx.core.ClassFactory;
 	import mx.core.DragSource;
+	import mx.core.EventPriority;
 	import mx.core.mx_internal;
 	import mx.events.DragEvent;
 	import mx.events.SandboxMouseEvent;
 	import mx.managers.DragManager;
+	
+	import skins.rotterdam.unit.widgets.WidgetChrome;
 	
 	import spark.components.List;
 	
@@ -29,17 +32,42 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			itemRendererFunction = widgetItemRendererFunction;
 		}
 		
+		/**
+		 *  @private
+		 */
+		/*override public function set dragEnabled(value:Boolean):void {
+			if (value == dragEnabled)
+				return;
+			
+			super.dragEnabled = value;
+			
+			if (_dragEnabled) {
+				addEventListener(DragEvent.DRAG_START, dragStartHandler, false, EventPriority.DEFAULT_HANDLER);
+				addEventListener(DragEvent.DRAG_COMPLETE, dragCompleteHandler, false, EventPriority.DEFAULT_HANDLER);
+			} else {
+				removeEventListener(DragEvent.DRAG_START, dragStartHandler, false);
+				removeEventListener(DragEvent.DRAG_COMPLETE, dragCompleteHandler, false);
+			}
+			
+			removeEventListener(DragEvent.DRAG_START, dragStartHandler, false);
+			removeEventListener(DragEvent.DRAG_COMPLETE, dragCompleteHandler, false);
+		}*/
+		
 		private function widgetItemRendererFunction(item:Object):ClassFactory {
 			// TODO: Add in more widgets; these should probably be specified elsewhere
 			var widgetClass:Class = TextWidget;
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
-			classFactory.properties = { xml: item };
+			classFactory.properties = {xml: item};
 			return classFactory;
 		}
 		
 		override protected function dragStartHandler(event:DragEvent):void {
 			if (event.isDefaultPrevented())
+				return;
+			
+			// This is a little hack, but it means that we will only allow a drag if it started in a component with id="dragArea"
+			if (!mouseDownObject.hasOwnProperty("id") || mouseDownObject["id"] != "dragArea")
 				return;
 			
 			dragSource = new DragSource();
@@ -100,6 +128,6 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		override protected function dragDropHandler(event:DragEvent):void {
 			// Override with an empty method so that the superclass doesn't do anything
 		}
-		
+	
 	}
 }

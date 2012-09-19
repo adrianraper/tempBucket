@@ -39,6 +39,7 @@
 			switch (note.getName()) {
 				case RotterdamNotifications.WIDGET_ADD:
 					view.unitCollection.addItem(note.getBody());
+					trace(view.data.toXMLString());
 					break;
 			}
 		}
