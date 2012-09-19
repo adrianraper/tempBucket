@@ -1,7 +1,13 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
+	
+	import flash.events.Event;
+	
+	import mx.core.UIComponent;
+	import mx.utils.XMLNotifier;
 	
 	/**
 	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
@@ -13,23 +19,34 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected var _xml:XML;
 		
+		private var xmlWatcher:XMLWatcher;
+		
 		[Bindable]
 		public function get xml():XML {
 			return _xml;
 		}
 
 		public function set xml(value:XML):void {
-			_xml = value;
+			if (_xml !== value) {
+				if (_xml)
+					XMLNotifier.getInstance().unwatchXML(_xml, xmlWatcher);
+				
+				_xml = value;
+				XMLNotifier.getInstance().watchXML(_xml, xmlWatcher);
+			}
 		}
 		
+		[Bindable(event="columnAttrChanged")]
 		public function get column():uint {
 			return _xml.@column;
 		}
 		
+		[Bindable(event="spanAttrChanged")]
 		public function get span():uint {
 			return _xml.@span;
 		}
 		
+		[Bindable(event="titleAttrChanged")]
 		public function get title():String {
 			return _xml.@title;
 		}
@@ -45,6 +62,33 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		public function AbstractWidget() {
 			super();
+			
+			xmlWatcher = new XMLWatcher(this);
+			
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			// Changes in span and column force the layout to redraw
+			addEventListener("spanAttrChanged", validateUnitListLayout, false, 0, true);
+			addEventListener("columnAttrChanged", validateUnitListLayout, false, 0, true);
+		}
+		
+		protected function validateUnitListLayout(e:Event = null):void {
+			invalidateParentSizeAndDisplayList();
+			validateNow();
+			
+			dispatchEvent(new WidgetLayoutEvent(WidgetLayoutEvent.LAYOUT_CHANGED, true));
+		}
+		
+		protected function onRemovedFromStage(event:Event):void {
+			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			if (_xml) {
+				XMLNotifier.getInstance().unwatchXML(_xml, xmlWatcher);
+				_xml = null;
+			}
+			
+			xmlWatcher.destroy();
+			xmlWatcher = null;;
 		}
 		
 		protected override function getCurrentSkinState():String {
@@ -53,4 +97,30 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 	}
+}
+import flash.events.Event;
+import flash.events.EventDispatcher;
+
+import mx.utils.IXMLNotifiable;
+
+class XMLWatcher implements IXMLNotifiable {
+	
+	private var eventDispatcher:EventDispatcher;
+	
+	public function XMLWatcher(eventDispatcher:EventDispatcher) {
+		this.eventDispatcher = eventDispatcher;
+	}
+	
+	public function xmlNotification(currentTarget:Object, type:String, target:Object, value:Object, detail:Object):void {
+		switch (type) {
+			case "attributeChanged":
+				eventDispatcher.dispatchEvent(new Event(value + "AttrChanged", true));
+				break;
+		}
+	}
+	
+	public function destroy():void {
+		eventDispatcher = null;
+	}
+	
 }

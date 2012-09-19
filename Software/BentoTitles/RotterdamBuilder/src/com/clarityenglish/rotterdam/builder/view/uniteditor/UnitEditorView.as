@@ -1,14 +1,14 @@
 package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	
-	import flash.display.DisplayObject;
 	import flash.events.Event;
-	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
 	import mx.collections.XMLListCollection;
+	import mx.core.UIComponent;
 	
 	import skins.rotterdam.unit.widgets.WidgetMenu;
 	
@@ -24,6 +24,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		[Bindable]
 		public var unitCollection:XMLListCollection;
+		
+		/**
+		 * The widget that the WidgetMenu is currently on
+		 */
+		private var currentMenuWidget:AbstractWidget;
 		
 		protected override function onAddedToStage(event:Event):void {
 			// TODO: Hide the WidgetMenu if we click elsewhere
@@ -52,6 +57,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu, false, 0, true);
 					unitList.addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
+					unitList.addEventListener(WidgetLayoutEvent.LAYOUT_CHANGED, onLayoutChanged, false, 0, true);
 					break;
 				case widgetMenu:
 					widgetMenu.visible = false;
@@ -60,17 +66,20 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onShowWidgetMenu(event:Event):void {
-			var widget:AbstractWidget = event.target.parentDocument.hostComponent as AbstractWidget;
-			
-			var pt:Point = new Point(widget.width - widgetMenu.width, widget.y);
-			pt = DisplayObject(widget).localToGlobal(pt);
-			pt = this.globalToLocal(pt);
-			
-			// Configure, position and show the menu
-			widgetMenu.xml = widget.xml;
-			widgetMenu.x = pt.x;
-			widgetMenu.y = pt.y;
+			currentMenuWidget = event.target.parentDocument.hostComponent as AbstractWidget;
+			onLayoutChanged();
 			widgetMenu.visible = true;
+		}
+		
+		protected function onLayoutChanged(event:Event = null):void {
+			callLater(function():void {
+				var pt:Point = new Point(currentMenuWidget.width - widgetMenu.width, currentMenuWidget.y);
+				pt = UIComponent(currentMenuWidget).localToContent(pt);
+				
+				widgetMenu.xml = currentMenuWidget.xml;
+				widgetMenu.x = pt.x;
+				widgetMenu.y = pt.y;
+			});
 		}
 		
 		protected function onHideWidgetMenu(event:Event):void {

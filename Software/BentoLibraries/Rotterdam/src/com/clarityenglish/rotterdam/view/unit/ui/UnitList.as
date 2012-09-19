@@ -37,7 +37,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			var widgetClass:Class = TextWidget;
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
-			classFactory.properties = {xml: item};
+			classFactory.properties = { xml: item };
 			return classFactory;
 		}
 		
