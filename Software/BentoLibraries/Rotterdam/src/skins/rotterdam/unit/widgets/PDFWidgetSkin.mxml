@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:widgets="skins.rotterdam.unit.widgets.*"
+		minHeight="150">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.conversion.ConversionType;
+			import flashx.textLayout.conversion.TextConverter;
+			
+			import mx.events.FlexEvent;
+			
+			protected function onValueCommit(event:FlexEvent):void {
+				hostComponent.text = TextConverter.export(event.target.textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.STRING_TYPE).toString();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing" />
+	</s:states>
+	
+	<!-- Chrome -->
+	<widgets:WidgetChrome id="widgetChrome" title="{hostComponent.title}" icon="@Embed(source='/skins/assets/pdf-icon.png', mimeType='image/png')" left="0" right="0" top="0" bottom="0" />
+	
+	<s:RichEditableText left="5" top="30" right="5"
+						editable.normal="false" editable.editing="true"
+						selectable.normal="false" selectable.editing="true"
+						fontFamily="Helvetica" fontSize="14"
+						textFlow="{TextConverter.importToFlow(new XML(hostComponent.text), TextConverter.TEXT_LAYOUT_FORMAT)}"
+						valueCommit="onValueCommit(event)"/>
+	
+</s:Skin>

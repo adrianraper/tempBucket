@@ -11,3 +11,7 @@ unit|UnitView {
 widgets|TextWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.TextWidgetSkin");
 }
+
+widgets|PDFWidget {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.PDFWidgetSkin");
+}

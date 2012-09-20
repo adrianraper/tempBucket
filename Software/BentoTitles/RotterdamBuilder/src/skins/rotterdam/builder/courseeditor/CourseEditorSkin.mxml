@@ -60,6 +60,7 @@
 		<!--<s:Button id="backButton" label="Back" />-->
 		<s:Button id="saveButton" label="Save" />
 		<s:Button id="addTextButton" label="Add text" />
+		<s:Button id="addPDFButton" label="Add PDF" />
 		<s:ToggleButton id="previewButton" label="Preview" />
 	</s:HGroup>
 	

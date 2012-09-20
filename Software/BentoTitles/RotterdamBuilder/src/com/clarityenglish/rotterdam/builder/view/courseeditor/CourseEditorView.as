@@ -35,6 +35,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var addTextButton:Button;
 		
 		[SkinPart]
+		public var addPDFButton:Button;
+		
+		[SkinPart]
 		public var saveButton:Button;
 		
 		[SkinPart]
@@ -79,6 +82,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 				case addTextButton:
 					addTextButton.addEventListener(MouseEvent.CLICK, onAddText);
 					break;
+				case addPDFButton:
+					addPDFButton.addEventListener(MouseEvent.CLICK, onAddPDF);
+					break;
 				case saveButton:
 					saveButton.addEventListener(MouseEvent.CLICK, onSave);
 					break;
@@ -107,6 +113,10 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		
 		protected function onAddText(event:MouseEvent):void {
 			addWidget.dispatch(<text col="0" span="1" title="New text widget" />);
+		}
+		
+		protected function onAddPDF(event:MouseEvent):void {
+			trace("ADDING PDF");
 		}
 		
 		private function onPreview(event:MouseEvent):void {
