@@ -35,6 +35,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			/*stage.addEventListener(MouseEvent.CLICK, function(e:Event):void {
 				trace("STAGE CLICK!!!!");
 			});*/
+			
+			addEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu, false, 0, true);
+			addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
 		}
 		
 		public override function set data(value:Object):void {
@@ -55,8 +58,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			switch (instance) {
 				case unitList:
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
-					unitList.addEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu, false, 0, true);
-					unitList.addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
 					unitList.addEventListener(WidgetLayoutEvent.LAYOUT_CHANGED, onLayoutChanged, false, 0, true);
 					break;
 				case widgetMenu:
@@ -66,11 +67,25 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onShowWidgetMenu(event:Event):void {
-			currentMenuWidget = event.target.parentDocument.hostComponent as AbstractWidget;
+			var newMenuWidget:AbstractWidget = event.target.parentDocument.hostComponent as AbstractWidget;
+			
+			// If a different menu is already selected then deselect it
+			if (currentMenuWidget && currentMenuWidget !== newMenuWidget)
+				currentMenuWidget.widgetChrome.currentState = "closed";
+			
+			// Set the current menu widget, position it and make it visible
+			currentMenuWidget = newMenuWidget;
 			onLayoutChanged();
 			widgetMenu.visible = true;
 		}
 		
+		/**
+		 * This positions the floating WidgetMenu to be aligned with whichever Widget currently has the menu.  In the event of
+		 * the layout changing (e.g. if span or column changes) this is retriggered so the menu is always over the correct
+		 * widget.
+		 * 
+		 * @param event
+		 */
 		protected function onLayoutChanged(event:Event = null):void {
 			callLater(function():void {
 				var pt:Point = new Point(currentMenuWidget.width - widgetMenu.width, currentMenuWidget.y);
@@ -78,7 +93,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				
 				widgetMenu.xml = currentMenuWidget.xml;
 				widgetMenu.x = pt.x;
-				widgetMenu.y = pt.y;
+				widgetMenu.y = pt.y; // TODO: This doesn't give the correct position when the list is scrolled vertically
 			});
 		}
 		

@@ -6,6 +6,8 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
+			
 			import skins.assets.widgets.*;
 			
 			import spark.events.IndexChangeEvent;
@@ -15,14 +17,28 @@
 			public function get xml():XML {
 				return _xml;
 			}
-
+			
 			public function set xml(value:XML):void {
 				_xml = value;
 				
+				// Set the span indicator from the @span attribute
 				spanButtonBar.selectedIndex = _xml.@span - 1;
 			}
-
+			
+			protected function onRenameClick(event:MouseEvent):void {
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE));
+			}
+			
+			protected function onDeleteClick(event:MouseEvent):void {
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE));
+			}
+			
+			protected function onCopyClick(event:MouseEvent):void {
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE));
+			}
+			
 			protected function onSpanChange(event:IndexChangeEvent):void {
+				// Change the @span attribute in the XML based on the selection
 				_xml.@span = event.target.selectedIndex + 1;
 			}
 			
@@ -40,8 +56,8 @@
 			</s:fill>
 		</s:Rect>
 		
-		<s:VGroup left="0" right="0" gap="1" horizontalAlign="center">
-			<s:Button label="Delete item" icon="{DeleteIcon}" width="100%" height="50" />
+		<s:VGroup left="0" right="0" gap="0" horizontalAlign="center">
+			<s:Button label="Rename item" icon="{CopyIcon}" width="100%" height="50" click="onRenameClick(event)" enabled="false" />
 			
 			<s:Line width="135">
 				<s:stroke>
@@ -49,7 +65,15 @@
 				</s:stroke>
 			</s:Line>
 			
-			<s:Button label="Copy item" icon="{CopyIcon}" width="100%" height="50" />
+			<s:Button label="Delete item" icon="{DeleteIcon}" width="100%" height="50" click="onDeleteClick(event)" />
+			
+			<s:Line width="135">
+				<s:stroke>
+					<s:SolidColorStroke color="#D8D8D8" />
+				</s:stroke>
+			</s:Line>
+			
+			<s:Button label="Copy item" icon="{CopyIcon}" width="100%" height="50" click="onCopyClick(event)" enabled="false" />
 			
 			<s:ButtonBar id="spanButtonBar" width="100%" height="50" change="onSpanChange(event)">
 				<s:dataProvider>

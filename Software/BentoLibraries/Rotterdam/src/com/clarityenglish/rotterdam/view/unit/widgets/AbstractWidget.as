@@ -9,6 +9,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import mx.core.UIComponent;
 	import mx.utils.XMLNotifier;
 	
+	import skins.rotterdam.unit.widgets.WidgetChrome;
+	
 	/**
 	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
 	 * For example, [Bindable("titleAttrChanged")].
@@ -16,6 +18,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	[SkinState("normal")]
 	[SkinState("editing")]
 	public class AbstractWidget extends SkinnableItemRenderer implements IUnitLayoutElement {
+		
+		[SkinPart]
+		public var widgetChrome:WidgetChrome;
 		
 		protected var _xml:XML;
 		

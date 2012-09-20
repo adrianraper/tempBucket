@@ -28,7 +28,7 @@
 	</s:states>
 	
 	<!-- Chrome -->
-	<widgets:WidgetChrome title="{hostComponent.title}" icon="@Embed(source='/skins/assets/text-icon.png', mimeType='image/png')" left="0" right="0" top="0" bottom="0" />
+	<widgets:WidgetChrome id="widgetChrome" title="{hostComponent.title}" icon="@Embed(source='/skins/assets/text-icon.png', mimeType='image/png')" left="0" right="0" top="0" bottom="0" />
 	
 	<s:RichEditableText left="5" top="30" right="5"
 						editable.normal="false" editable.editing="true"
