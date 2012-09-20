@@ -1,10 +1,11 @@
 package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
 	import mx.collections.XMLListCollection;
@@ -31,13 +32,19 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		private var currentMenuWidget:AbstractWidget;
 		
 		protected override function onAddedToStage(event:Event):void {
-			// TODO: Hide the WidgetMenu if we click elsewhere
-			/*stage.addEventListener(MouseEvent.CLICK, function(e:Event):void {
-				trace("STAGE CLICK!!!!");
-			});*/
+			super.onAddedToStage(event);
 			
+			stage.addEventListener(MouseEvent.CLICK, onStageClick, false, 0, true);
 			addEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
+		}
+		
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			
+			stage.removeEventListener(MouseEvent.CLICK, onStageClick);
+			removeEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu);
+			removeEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu);
 		}
 		
 		public override function set data(value:Object):void {
@@ -87,18 +94,34 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 * @param event
 		 */
 		protected function onLayoutChanged(event:Event = null):void {
-			callLater(function():void {
-				var pt:Point = new Point(currentMenuWidget.width - widgetMenu.width, currentMenuWidget.y);
-				pt = UIComponent(currentMenuWidget).localToContent(pt);
-				
-				widgetMenu.xml = currentMenuWidget.xml;
-				widgetMenu.x = pt.x;
-				widgetMenu.y = pt.y; // TODO: This doesn't give the correct position when the list is scrolled vertically
-			});
+			if (currentMenuWidget) {
+				callLater(function():void {
+					var pt:Point = new Point(currentMenuWidget.width - widgetMenu.width, currentMenuWidget.y);
+					pt = UIComponent(currentMenuWidget).localToContent(pt);
+					
+					widgetMenu.xml = currentMenuWidget.xml;
+					widgetMenu.x = pt.x + currentMenuWidget.x;
+					widgetMenu.y = pt.y; // TODO: This doesn't give the correct position when the list is scrolled vertically
+				});
+			}
 		}
 		
-		protected function onHideWidgetMenu(event:Event):void {
+		protected function onHideWidgetMenu(event:Event = null):void {
+			if (currentMenuWidget)
+				currentMenuWidget.widgetChrome.currentState = "closed";
+			
 			widgetMenu.visible = false;
+		}
+		
+		/**
+		 * Any click that is not on the cog button or on the open widget menu will close the menu
+		 */
+		protected function onStageClick(event:MouseEvent):void {
+			if (widgetMenu.visible &&
+				!currentMenuWidget.widgetChrome.menuButton.hitTestPoint(event.stageX, event.stageY) &&
+				!widgetMenu.hitTestPoint(event.stageX, event.stageY)) {
+				onHideWidgetMenu();
+			}
 		}
 		
 	}
