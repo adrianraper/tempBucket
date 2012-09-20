@@ -6,16 +6,26 @@ package com.clarityenglish.rotterdam.view.unit.events {
 		public static const MENU_SHOW:String = "menuShow";
 		public static const MENU_HIDE:String = "menuHide";
 		
-		public function WidgetMenuEvent(type:String) {
-			super(type, true, false);
+		public static const WIDGET_DELETE:String = "widgetDelete";
+		
+		private var _xml:XML;
+		
+		public function WidgetMenuEvent(type:String, bubbles:Boolean, xml:XML = null) {
+			super(type, bubbles, false);
+			
+			this._xml = xml;
+		}
+		
+		public function get xml():XML {
+			return _xml;
 		}
 		
 		public override function clone():Event {
-			return new WidgetMenuEvent(type);
+			return new WidgetMenuEvent(type, bubbles);
 		}
 		
 		public override function toString():String {
-			return formatToString("WidgetMenuEvent");
+			return formatToString("WidgetMenuEvent", "bubbles");
 		}
 		
 	}

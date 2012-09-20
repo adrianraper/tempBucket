@@ -37,6 +37,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			stage.addEventListener(MouseEvent.CLICK, onStageClick, false, 0, true);
 			addEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
+			addEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete, false, 0, true);
 		}
 		
 		protected override function onRemovedFromStage(event:Event):void {
@@ -45,6 +46,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			stage.removeEventListener(MouseEvent.CLICK, onStageClick);
 			removeEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu);
 			removeEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu);
+			removeEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete)
 		}
 		
 		public override function set data(value:Object):void {
@@ -71,6 +73,13 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					widgetMenu.visible = false;
 					break;
 			}
+		}
+		
+		/**
+		 * Delete the widget specified in event.xml
+		 */
+		protected function onWidgetDelete(event:WidgetMenuEvent):void {
+			unitCollection.removeItemAt(unitCollection.getItemIndex(event.xml));
 		}
 		
 		protected function onShowWidgetMenu(event:Event):void {

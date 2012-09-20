@@ -21,20 +21,25 @@
 			public function set xml(value:XML):void {
 				_xml = value;
 				
-				// Set the span indicator from the @span attribute
-				spanButtonBar.selectedIndex = _xml.@span - 1;
+				if (_xml) {
+					// Set the span indicator from the @span attribute
+					spanButtonBar.selectedIndex = _xml.@span - 1;
+				}
 			}
 			
 			protected function onRenameClick(event:MouseEvent):void {
-				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE));
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
+				// Not yet implemented
 			}
 			
 			protected function onDeleteClick(event:MouseEvent):void {
-				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE));
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.WIDGET_DELETE, true, xml));
 			}
 			
 			protected function onCopyClick(event:MouseEvent):void {
-				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE));
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
+				// Not yet implemented
 			}
 			
 			protected function onSpanChange(event:IndexChangeEvent):void {

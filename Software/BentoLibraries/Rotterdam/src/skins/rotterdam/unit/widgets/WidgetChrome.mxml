@@ -17,11 +17,11 @@
 				switch (currentState) {
 					case "closed":
 						currentState = "open";
-						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_SHOW));
+						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_SHOW, true));
 						break;
 					case "open":
 						currentState = "closed";
-						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE));
+						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
 						break;
 				}
 			}
