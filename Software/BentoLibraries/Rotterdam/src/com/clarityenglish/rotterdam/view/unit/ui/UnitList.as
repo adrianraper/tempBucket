@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.layouts.UnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	
 	import flash.display.DisplayObject;
@@ -10,19 +11,25 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import mx.collections.ListCollectionView;
 	import mx.core.ClassFactory;
 	import mx.core.DragSource;
-	import mx.core.EventPriority;
 	import mx.core.mx_internal;
 	import mx.events.DragEvent;
 	import mx.events.SandboxMouseEvent;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
 	import mx.managers.DragManager;
 	
-	import skins.rotterdam.unit.widgets.WidgetChrome;
+	import org.davekeen.util.ClassUtil;
 	
 	import spark.components.List;
 	
 	use namespace mx_internal;
 	
 	public class UnitList extends List {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		private var dragSource:DragSource;
 		
@@ -32,9 +39,21 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			itemRendererFunction = widgetItemRendererFunction;
 		}
 		
+		private function nodeNameToWidgetClass(name:String):Class {
+			// TODO: Add in more widgets; also these should probably be specified elsewhere
+			switch (name) {
+				case "text":
+					return TextWidget;
+				case "pdf":
+					return PDFWidget;
+				default:
+					log.error("Unsupported widget node " + name);
+					return null;
+			}
+		}
+		
 		private function widgetItemRendererFunction(item:Object):ClassFactory {
-			// TODO: Add in more widgets; these should probably be specified elsewhere
-			var widgetClass:Class = TextWidget;
+			var widgetClass:Class = nodeNameToWidgetClass(item.name());
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
 			classFactory.properties = { xml: item };

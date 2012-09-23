@@ -1,0 +1,65 @@
+﻿package com.clarityenglish.rotterdam.builder.view.courseeditor {
+	import com.clarityenglish.bento.view.base.BentoMediator;
+	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	
+	import org.puremvc.as3.interfaces.IMediator;
+	import org.puremvc.as3.interfaces.INotification;
+	
+	/**
+	 * A Mediator
+	 */
+	public class ToolBarMediator extends BentoMediator implements IMediator {
+		
+		public function ToolBarMediator(mediatorName:String, viewComponent:BentoView) {
+			super(mediatorName, viewComponent);
+		}
+		
+		private function get view():ToolBarView {
+			return viewComponent as ToolBarView;
+		}
+		
+		override public function onRegister():void {
+			super.onRegister();
+			
+			view.saveCourse.add(onSaveCourse);
+			view.addText.add(onAddText);
+			view.addPDF.add(onAddPDF);
+		}
+		
+		override public function onRemove():void {
+			super.onRemove();
+			
+			view.saveCourse.remove(onSaveCourse);
+			view.addText.remove(onAddText);
+			view.addPDF.remove(onAddPDF);
+		}
+		
+		override public function listNotificationInterests():Array {
+			return super.listNotificationInterests().concat([
+				
+			]);
+		}
+		
+		override public function handleNotification(note:INotification):void {
+			super.handleNotification(note);
+			
+			switch (note.getName()) {
+				
+			}
+		}
+		
+		protected function onSaveCourse():void {
+			facade.sendNotification(RotterdamNotifications.COURSE_SAVE);
+		}
+		
+		private function onAddText():void {
+			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <text col="0" span="1" title="New text widget" />);
+		}
+		
+		private function onAddPDF():void {
+			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <pdf col="0" span="1" title="New PDF widget" />);
+		}
+		
+	}
+}

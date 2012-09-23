@@ -38,6 +38,29 @@ courseeditor|CourseEditorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.CourseEditorSkin");
 }
 
+courseeditor|ToolBarView {
+	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.ToolBarSkin");
+}
+
+courseeditor|ToolBarView s|Button {
+	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.ToolBarButtonSkin");
+	fontSize: 13;
+}
+
+courseeditor|ToolBarView s|Button#normalSaveButton {
+	chromeColor: #2899CD;
+}
+
+courseeditor|ToolBarView s|Button#normalAddTextButton,
+courseeditor|ToolBarView s|Button#normalAddPDFButton {
+	chromeColor: #86BD3E;
+}
+
+courseeditor|ToolBarView s|Button#normalPreviewButton {
+	chromeColor: #FFC602;
+	topRightRadiusX: 5;
+}
+
 uniteditor|UnitEditorView {
 	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.UnitEditorSkin");
 }
