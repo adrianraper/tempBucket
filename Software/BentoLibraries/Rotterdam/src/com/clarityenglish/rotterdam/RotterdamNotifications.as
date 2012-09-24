@@ -18,6 +18,7 @@
 		public static const UNIT_START:String = "unit_start";
 		public static const UNIT_STARTED:String = "unit_started";
 		
+		public static const WIDGET_SELECT:String = "widget_select";
 		public static const WIDGET_ADD:String = "widget_add";
 		public static const WIDGET_DELETE:String = "widget_delete";
 		

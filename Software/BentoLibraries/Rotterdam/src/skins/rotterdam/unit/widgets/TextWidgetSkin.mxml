@@ -24,11 +24,12 @@
 	
 	<s:states>
 		<s:State name="normal" />
-		<s:State name="editing" />
+		<s:State name="editing_normal" stateGroups="editing" />
+		<s:State name="editing_selected" stateGroups="editing,selected" />
 	</s:states>
 	
 	<!-- Chrome -->
-	<widgets:WidgetChrome id="widgetChrome" title="{hostComponent.title}" icon="@Embed(source='/skins/assets/text-icon.png', mimeType='image/png')" left="0" right="0" top="0" bottom="0" />
+	<widgets:WidgetChrome id="widgetChrome" title="{hostComponent.title}" icon="@Embed(source='/skins/assets/text-icon.png', mimeType='image/png')" selected.selected="true" left="0" right="0" top="0" bottom="0" />
 	
 	<s:RichEditableText left="5" top="30" right="5"
 						editable.normal="false" editable.editing="true"

@@ -16,6 +16,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import skins.rotterdam.unit.widgets.WidgetMenu;
 	
 	import spark.components.List;
+	import spark.events.IndexChangeEvent;
 	
 	public class UnitEditorView extends BentoView {
 		
@@ -33,6 +34,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 */
 		private var currentMenuWidget:AbstractWidget;
 		
+		public var widgetSelect:Signal = new Signal(XML);
 		public var widgetDelete:Signal = new Signal(XML);
 		
 		protected override function onAddedToStage(event:Event):void {
@@ -63,6 +65,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			switch (instance) {
 				case widgetList:
 					widgetList.dragEnabled = widgetList.dropEnabled = widgetList.dragMoveEnabled = true;
+					widgetList.addEventListener(Event.CHANGE, onWidgetSelected, false, 0, true);
 					widgetList.addEventListener(WidgetLayoutEvent.LAYOUT_CHANGED, onLayoutChanged, false, 0, true);
 					break;
 				case widgetMenu:
@@ -72,12 +75,22 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		/**
+		 * The user has selected a widget
+		 */
+		protected function onWidgetSelected(event:IndexChangeEvent):void {
+			widgetSelect.dispatch(event.target.selectedItem);
+		}
+		
+		/**
 		 * Delete the widget specified in event.xml
 		 */
 		protected function onWidgetDelete(event:WidgetMenuEvent):void {
 			widgetDelete.dispatch(event.xml);
 		}
 		
+		/**
+		 * The user has clicked the cog button to show the menu so display and position it
+		 */
 		protected function onShowWidgetMenu(event:Event):void {
 			var newMenuWidget:AbstractWidget = event.target.parentDocument.hostComponent as AbstractWidget;
 			
@@ -95,8 +108,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 * This positions the floating WidgetMenu to be aligned with whichever Widget currently has the menu.  In the event of
 		 * the layout changing (e.g. if span or column changes) this is retriggered so the menu is always over the correct
 		 * widget.
-		 * 
-		 * @param event
 		 */
 		protected function onLayoutChanged(event:Event = null):void {
 			if (currentMenuWidget) {

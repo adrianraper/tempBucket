@@ -13,6 +13,9 @@
 			[Bindable]
 			public var title:String;
 			
+			[Bindable]
+			public var selected:Boolean;
+			
 			protected function onMenuButtonClick(event:MouseEvent):void {
 				switch (currentState) {
 					case "closed":
@@ -37,6 +40,13 @@
 		<s:State name="closed" />
 		<s:State name="open" />
 	</s:states>
+	
+	<!-- Hit area -->
+	<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
 	
 	<!-- Title bar -->
 	<s:Group id="dragArea" left="0" right="0" top="0" height="25">
@@ -69,10 +79,10 @@
 		<widgets:CogIcon top="5" right="9" />
 	</s:Group>
 	
-	<!-- The stroke -->
+	<!-- The stroke, including the selection stroke -->
 	<s:Rect left="0" right="0" top="0" bottom="0">
 		<s:stroke>
-			<s:SolidColorStroke color="#D4D4D4" />
+			<s:SolidColorStroke color="{selected ? 0x1CBBB4 : 0xD4D4D4}" />
 		</s:stroke>
 	</s:Rect>
 	

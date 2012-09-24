@@ -7,7 +7,10 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flash.events.Event;
 	
 	import mx.core.UIComponent;
+	import mx.events.StateChangeEvent;
 	import mx.utils.XMLNotifier;
+	
+	import org.davekeen.util.StateUtil;
 	
 	import skins.rotterdam.unit.widgets.WidgetChrome;
 	
@@ -16,7 +19,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	 * For example, [Bindable("titleAttrChanged")].
 	 */
 	[SkinState("normal")]
-	[SkinState("editing")]
+	[SkinState("editing_normal")]
+	[SkinState("editing_selected")]
 	public class AbstractWidget extends SkinnableItemRenderer implements IUnitLayoutElement {
 		
 		[SkinPart]
@@ -25,6 +29,21 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected var _xml:XML;
 		
 		private var xmlWatcher:XMLWatcher;
+		
+		public function AbstractWidget() {
+			super();
+			
+			StateUtil.addStates(this, [ "normal", "selected" ], true);
+			
+			xmlWatcher = new XMLWatcher(this);
+			
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			// Changes in span and column force the layout to redraw
+			addEventListener("spanAttrChanged", validateUnitListLayout, false, 0, true);
+			addEventListener("columnAttrChanged", validateUnitListLayout, false, 0, true);
+			addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange, false, 0, true);
+		}
 		
 		[Bindable]
 		public function get xml():XML {
@@ -65,18 +84,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.text[0].toString();
 		}
 		
-		public function AbstractWidget() {
-			super();
-			
-			xmlWatcher = new XMLWatcher(this);
-			
-			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-			
-			// Changes in span and column force the layout to redraw
-			addEventListener("spanAttrChanged", validateUnitListLayout, false, 0, true);
-			addEventListener("columnAttrChanged", validateUnitListLayout, false, 0, true);
-		}
-		
 		protected function validateUnitListLayout(e:Event = null):void {
 			invalidateParentSizeAndDisplayList();
 			validateNow();
@@ -87,18 +94,26 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			
+			removeEventListener("spanAttrChanged", validateUnitListLayout);
+			removeEventListener("columnAttrChanged", validateUnitListLayout);
+			removeEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange);
+			
 			if (_xml) {
 				XMLNotifier.getInstance().unwatchXML(_xml, xmlWatcher);
 				_xml = null;
 			}
 			
 			xmlWatcher.destroy();
-			xmlWatcher = null;;
+			xmlWatcher = null;
+		}
+	
+		protected function onStateChange(event:StateChangeEvent):void {
+			invalidateSkinState();
 		}
 		
 		protected override function getCurrentSkinState():String {
 			// TODO: Needs to support normal and editing
-			return "editing";
+			return "editing_" + currentState;
 		}
 		
 	}

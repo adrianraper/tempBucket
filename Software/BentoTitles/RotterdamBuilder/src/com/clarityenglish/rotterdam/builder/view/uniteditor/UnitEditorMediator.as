@@ -23,12 +23,14 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			view.widgetSelect.add(onWidgetSelect);
 			view.widgetDelete.add(onWidgetDelete);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
+			view.widgetSelect.remove(onWidgetSelect);
 			view.widgetDelete.remove(onWidgetDelete);
 		}
 		
@@ -47,6 +49,10 @@
 					view.widgetCollection = courseProxy.widgetCollection;
 					break;
 			}
+		}
+		
+		private function onWidgetSelect(widget:XML):void {
+			facade.sendNotification(RotterdamNotifications.WIDGET_SELECT, widget);
 		}
 		
 		private function onWidgetDelete(widget:XML):void {
