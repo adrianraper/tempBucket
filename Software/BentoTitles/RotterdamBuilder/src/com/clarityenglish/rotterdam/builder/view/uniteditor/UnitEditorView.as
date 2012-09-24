@@ -8,8 +8,10 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
-	import mx.collections.XMLListCollection;
+	import mx.collections.ListCollectionView;
 	import mx.core.UIComponent;
+	
+	import org.osflash.signals.Signal;
 	
 	import skins.rotterdam.unit.widgets.WidgetMenu;
 	
@@ -24,12 +26,14 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var widgetMenu:WidgetMenu;
 		
 		[Bindable]
-		public var unitCollection:XMLListCollection;
+		public var widgetCollection:ListCollectionView;
 		
 		/**
 		 * The widget that the WidgetMenu is currently on
 		 */
 		private var currentMenuWidget:AbstractWidget;
+		
+		public var widgetDelete:Signal = new Signal(XML);
 		
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
@@ -47,14 +51,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			removeEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu);
 			removeEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu);
 			removeEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete)
-		}
-		
-		public override function set data(value:Object):void {
-			super.data = value;
-			
-			if (data) {
-				unitCollection = new XMLListCollection(data.*);
-			}
 		}
 		
 		protected override function commitProperties():void {
@@ -79,7 +75,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 * Delete the widget specified in event.xml
 		 */
 		protected function onWidgetDelete(event:WidgetMenuEvent):void {
-			unitCollection.removeItemAt(unitCollection.getItemIndex(event.xml));
+			widgetDelete.dispatch(event.xml);
 		}
 		
 		protected function onShowWidgetMenu(event:Event):void {

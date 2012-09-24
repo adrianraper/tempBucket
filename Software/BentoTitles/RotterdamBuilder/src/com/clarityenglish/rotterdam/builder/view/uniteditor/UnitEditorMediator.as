@@ -2,6 +2,7 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -21,15 +22,19 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			view.widgetDelete.add(onWidgetDelete);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.widgetDelete.remove(onWidgetDelete);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				//RotterdamNotifications.WIDGET_ADD,
+				RotterdamNotifications.UNIT_STARTED,
 			]);
 		}
 		
@@ -37,11 +42,15 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				/*case RotterdamNotifications.WIDGET_ADD:
-					view.unitCollection.addItem(note.getBody());
-					trace(view.data.toXMLString());
-					break;*/
+				case RotterdamNotifications.UNIT_STARTED:
+					var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+					view.widgetCollection = courseProxy.widgetCollection;
+					break;
 			}
+		}
+		
+		private function onWidgetDelete(widget:XML):void {
+			facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, widget);
 		}
 		
 	}

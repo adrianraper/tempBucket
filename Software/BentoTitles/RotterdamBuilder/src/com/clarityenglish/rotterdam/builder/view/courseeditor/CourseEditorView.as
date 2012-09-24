@@ -74,7 +74,7 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		}
 		
 		protected function onUnitSelected(event:IndexChangeEvent):void {
-			unitViewNavigator.activeView.data = unitList.selectedItem;
+			//unitViewNavigator.activeView.data = unitList.selectedItem;
 			unitSelect.dispatch(event.target.selectedItem);
 		}
 		

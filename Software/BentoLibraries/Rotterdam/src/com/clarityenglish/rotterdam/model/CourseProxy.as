@@ -70,11 +70,20 @@ package com.clarityenglish.rotterdam.model {
 			_widgetCollection = new XMLListCollection(value.*);
 		}
 		
-		public function widgetAdd(widget:XML):void {
-			trace("Adding " + widget.toXMLString());
-			_unitCollection.addItem(widget);
+		public function get widgetCollection():ListCollectionView {
+			return _widgetCollection;
 		}
-
+		
+		public function widgetAdd(widget:XML):void {
+			log.info("Adding wiget " + widget.toXMLString());
+			_widgetCollection.addItem(widget);
+		}
+		
+		public function widgetDelete(widget:XML):void {
+			log.info("Deleting wiget " + widget.toXMLString());
+			_widgetCollection.removeItemAt(widgetCollection.getItemIndex(widget));
+		}
+		
 		public function courseCreate(course:Course):void {
 			new RemoteDelegate("courseCreate", [ course ], this).execute();
 		}

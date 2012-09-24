@@ -1,4 +1,5 @@
 package com.clarityenglish.rotterdam.controller {
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -23,6 +24,8 @@ package com.clarityenglish.rotterdam.controller {
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			courseProxy.currentCourse = note.getBody() as XHTML;
+			
+			facade.sendNotification(RotterdamNotifications.COURSE_STARTED, courseProxy.currentCourse);
 		}
 		
 	}
