@@ -85,9 +85,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		public function set text(value:String):void {
-			if (_xml.text.length() == 0) _xml.text = <text />;
-			_xml.text.setChildren(new XML("<![CDATA[" + value + "]]>"));
-			dispatchEvent(new Event("textChanged"));
+			if (_xml) {
+				if (_xml.text.length() == 0) _xml.text = <text />;
+				_xml.text.setChildren(new XML("<![CDATA[" + value + "]]>"));
+				dispatchEvent(new Event("textChanged"));
+			}
 		}
 		
 		protected function validateUnitListLayout(e:Event = null):void {

@@ -16,9 +16,16 @@
 	</s:states>
 	
 	<!-- Chrome -->
-	<widgets:WidgetChrome id="widgetChrome" title="{hostComponent.title}" icon="@Embed(source='/skins/assets/pdf-icon.png', mimeType='image/png')" selected.selected="true" left="0" right="0" top="0" bottom="0" />
+	<widgets:WidgetChrome id="widgetChrome"
+						  title="{hostComponent.title}"
+						  icon="@Embed(source='/skins/assets/pdf-icon.png', mimeType='image/png')"
+						  selected.selected="true"
+						  left="0" right="0" top="0" bottom="0" />
+	
+	<!-- PDF icon -->
+	<s:Image source="@Embed(source='/skins/assets/pdf-large-icon.png', mimeType='image/png')" top="35" left="6" />
 	
 	<!-- Text -->
-	<widgets:WidgetText id="widgetText" widget="{hostComponent}" left="5" top="30" right="5" />
+	<widgets:WidgetText id="widgetText" widget="{hostComponent}" left="0" right="0" top="75" minHeight="75" />
 	
 </s:Skin>
