@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" currentState="editing">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
+			
+			import flashx.textLayout.conversion.ConversionType;
+			import flashx.textLayout.conversion.TextConverter;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			public var widget:AbstractWidget;
+			
+			protected function onValueCommit(event:FlexEvent):void {
+				widget.text = TextConverter.export(event.target.textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.STRING_TYPE).toString();
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing" />
+	</s:states>
+	
+	<s:RichEditableText left="0" right="0"
+						editable.normal="false" editable.editing="true"
+						selectable.normal="false" selectable.editing="true"
+						fontFamily="Helvetica" fontSize="14"
+						textFlow="{TextConverter.importToFlow(new XML(widget.text), TextConverter.TEXT_LAYOUT_FORMAT)}"
+						valueCommit="onValueCommit(event)"/>
+	
+</s:Group>

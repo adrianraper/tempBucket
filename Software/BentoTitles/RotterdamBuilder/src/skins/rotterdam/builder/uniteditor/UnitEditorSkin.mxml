@@ -15,14 +15,12 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<ui:WidgetList id="widgetList" dataProvider="{hostComponent.widgetCollection}" left="0" right="0" height="75%">
+	<ui:WidgetList id="widgetList" dataProvider="{hostComponent.widgetCollection}" left="0" right="0" top="0" bottom="0">
 		<ui:layout>
 			<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" useVirtualLayout="false" />
 		</ui:layout>
 	</ui:WidgetList>
 	
 	<widgets:WidgetMenu id="widgetMenu" />
-	
-	<s:TextArea width="100%" left="0" right="0" bottom="0" height="25%" text="{hostComponent.data.toXMLString()}" />
 	
 </s:Skin>

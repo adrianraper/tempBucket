@@ -13,6 +13,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import org.davekeen.util.StateUtil;
 	
 	import skins.rotterdam.unit.widgets.WidgetChrome;
+	import skins.rotterdam.unit.widgets.WidgetText;
 	
 	/**
 	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
@@ -23,12 +24,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	[SkinState("editing_selected")]
 	public class AbstractWidget extends SkinnableItemRenderer implements IUnitLayoutElement {
 		
-		[SkinPart]
+		[SkinPart(required="true")]
 		public var widgetChrome:WidgetChrome;
+		
+		[SkinPart(required="true")]
+		public var widgetText:WidgetText;
 		
 		protected var _xml:XML;
 		
-		private var xmlWatcher:XMLWatcher;
+		protected var xmlWatcher:XMLWatcher;
 		
 		public function AbstractWidget() {
 			super();
@@ -75,13 +79,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@title;
 		}
 		
+		[Bindable(event="textChanged")]
+		public function get text():String {
+			return _xml.text[0].toString();
+		}
+		
 		public function set text(value:String):void {
 			if (_xml.text.length() == 0) _xml.text = <text />;
 			_xml.text.setChildren(new XML("<![CDATA[" + value + "]]>"));
-		}
-		
-		public function get text():String {
-			return _xml.text[0].toString();
+			dispatchEvent(new Event("textChanged"));
 		}
 		
 		protected function validateUnitListLayout(e:Event = null):void {
