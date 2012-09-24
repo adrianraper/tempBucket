@@ -3,10 +3,13 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 	
 	import flash.events.MouseEvent;
 	
+	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	
+	[SkinState("normal")]
+	[SkinState("pdf")]
 	public class ToolBarView extends BentoView {
 		
 		[SkinPart]
@@ -21,9 +24,19 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		[SkinPart]
 		public var normalPreviewButton:Button;
 		
+		[SkinPart]
+		public var normalCancelButton:Button;
+		
+		[SkinPart]
+		public var pdfUploadButton:Button;
+		
 		public var saveCourse:Signal = new Signal();
-		public var addText:Signal = new Signal();
-		public var addPDF:Signal = new Signal();
+		public var addText:Signal = new Signal(Object);
+		public var addPDF:Signal = new Signal(Object);
+		
+		public function ToolBarView() {
+			StateUtil.addStates(this, [ "normal", "pdf" ], true);
+		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
@@ -45,6 +58,12 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 					break;
 				case normalPreviewButton:
 					break;
+				case normalCancelButton:
+					normalCancelButton.addEventListener(MouseEvent.CLICK, onNormalCancel);
+					break;
+				case pdfUploadButton:
+					pdfUploadButton.addEventListener(MouseEvent.CLICK, onPdfUpload);
+					break;
 			}
 		}
 		
@@ -53,15 +72,24 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		}
 		
 		protected function onNormalAddText(event:MouseEvent):void {
-			addText.dispatch();
+			addText.dispatch({});
 		}
 		
 		protected function onNormalAddPDF(event:MouseEvent):void {
-			addPDF.dispatch();
+			setCurrentState("pdf");
+		}
+		
+		protected function onNormalCancel(event:MouseEvent):void {
+			setCurrentState("normal");
+		}
+		
+		protected function onPdfUpload(event:MouseEvent):void {
+			addPDF.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
+			setCurrentState("normal");
 		}
 		
 		protected override function getCurrentSkinState():String {
-			return super.getCurrentSkinState();
+			return currentState;
 		}
 
 	}

@@ -22,6 +22,9 @@
 		public static const WIDGET_ADD:String = "widget_add";
 		public static const WIDGET_DELETE:String = "widget_delete";
 		
+		public static const TEXT_WIDGET_ADD:String = "text_widget_add";
+		public static const PDF_WIDGET_ADD:String = "pdf_widget_add";
+		
 		// Upload notifications
 		public static const MEDIA_UPLOAD:String = "media_upload";
 		public static const MEDIA_UPLOAD_START:String = "media_upload_start";

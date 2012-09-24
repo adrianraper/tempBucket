@@ -51,5 +51,5 @@ XmlUtils::rewriteCourseXml($service->mediaOps->mediaFilename, function($xml) use
 	$fileNode->addAttribute("size", $size);
 	$fileNode->addAttribute("createdOn", $createdTimestamp);
 	
-	echo json_encode(array("success" => true));
+	echo json_encode(array("success" => true, "filename" => $filename));
 });

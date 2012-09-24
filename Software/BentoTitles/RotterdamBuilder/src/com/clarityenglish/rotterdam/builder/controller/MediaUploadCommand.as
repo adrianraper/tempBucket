@@ -28,21 +28,18 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private var uploadId:String;
 		
+		private var node:XML;
+		
 		private var fileReference:FileReference;
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			node = note.getBody().node;
 			uploadId = note.getType();
 			log.info("Opening upload dialog with uploadId=" + uploadId);
 			
-			// TODO: note.getBody() will eventually tell us what we are allowed to upload
-			var imageTypes:FileFilter = new FileFilter("Images (*.jpg, *.jpeg, *.gif, *.png)", "*.jpg; *.jpeg; *.gif; *.png");
-			var videoTypes:FileFilter = new FileFilter("Videos (*.flv)", "*.flv");
-			var audioTypes:FileFilter = new FileFilter("Audio (*.mp3)", "*.mp3");
-			var filesTypes:FileFilter = new FileFilter("Files (*.pdf, *.doc, *.ppt, *.xls)", "*.pdf; *.doc; *.ppt; *.xls");
-			
-			var allTypes:Array = [ imageTypes, videoTypes, audioTypes, filesTypes ];
+			var allTypes:Array = [ note.getBody().fileFilter ];
 			fileReference = new FileReference();
 			fileReference.browse(allTypes);
 			
@@ -55,6 +52,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 		}
 		
 		private function destroy():void {
+			// TODO: Be sure that its actually a good idea to remove the id attribute
+			delete node.@id;
+			
 			fileReference.removeEventListener(Event.CANCEL, onUploadCancel);
 			fileReference.removeEventListener(Event.SELECT, onUploadSelect);
 			fileReference.removeEventListener(ProgressEvent.PROGRESS, onUploadProgress);
@@ -82,7 +82,11 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private function onUploadCompleteData(e:DataEvent):void {
 			var response:Object = JSON.parse(e.data);
+			
+			// Set the src attribute of the target node to the filename
+			node.@src = response.filename;
 			sendNotification(RotterdamNotifications.MEDIA_UPLOADED, null, uploadId);
+			
 			destroy();
 		}
 		

@@ -53,12 +53,12 @@
 			facade.sendNotification(RotterdamNotifications.COURSE_SAVE);
 		}
 		
-		private function onAddText():void {
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <text col="0" span="1" title="New text widget" />);
+		private function onAddText(options:Object):void {
+			facade.sendNotification(RotterdamNotifications.TEXT_WIDGET_ADD, options);
 		}
 		
-		private function onAddPDF():void {
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <pdf col="0" span="1" title="New PDF widget" />);
+		private function onAddPDF(options:Object):void {
+			facade.sendNotification(RotterdamNotifications.PDF_WIDGET_ADD, options);
 		}
 		
 	}

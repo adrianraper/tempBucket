@@ -5,6 +5,10 @@
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorMediator;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
+	import com.clarityenglish.rotterdam.view.unit.WidgetMediator;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	
 	public class CommonAbstractApplicationFacade extends BentoFacade {
 		
@@ -15,6 +19,9 @@
 			
 			registerCommand(RotterdamNotifications.COURSE_START, CourseStartCommand);
 			registerCommand(RotterdamNotifications.UNIT_START, UnitStartCommand);
+			
+			mapView(TextWidget, WidgetMediator);
+			mapView(PDFWidget, WidgetMediator);
 			
 			mapView(CourseSelectorView, CourseSelectorMediator);
 		}

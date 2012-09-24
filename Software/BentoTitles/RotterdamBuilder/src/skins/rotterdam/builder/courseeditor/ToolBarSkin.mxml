@@ -24,19 +24,21 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:HGroup bottom="0" right="0" gap="3" includeIn="normal">
-		<s:Button id="normalSaveButton" label="Save" />
-		<s:Button id="normalAddTextButton" label="Add text" />
-		<s:Button id="normalAddPDFButton" label="Add PDF" />
-		<s:Button id="normalPreviewButton" label="Preview" />
-		<!--<s:ToggleButton id="previewButton" label="Preview" />-->
+	<!-- Left buttons -->
+	<s:HGroup bottom="0" left="8" gap="7" verticalAlign="middle">
+		<s:Label includeIn="pdf" text="Upload PDF from" color="#FFFFFF" />
+		<s:Button includeIn="pdf" label="Resource Cloud" enabled="false" />
+		<s:Label includeIn="pdf" text="or" color="#FFFFFF" />
+		<s:Button includeIn="pdf" id="pdfUploadButton" label="My Computer" />
 	</s:HGroup>
 	
-	<s:HGroup bottom="0" left="8" gap="7" includeIn="normal" verticalAlign="middle">
-		<s:Label text="Upload PDF from" color="#FFFFFF" />
-		<s:Button label="Resource Cloud" enabled="false" />
-		<s:Label text="or" color="#FFFFFF" />
-		<s:Button label="My Computer" />
+	<!-- Right buttons -->
+	<s:HGroup bottom="0" right="0" gap="3" verticalAlign="middle">
+		<s:Button includeIn="normal" id="normalSaveButton" label="Save" />
+		<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" />
+		<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" />
+		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" />
+		<s:Button includeIn="pdf" id="normalCancelButton" label="Cancel" />
 	</s:HGroup>
 	
 </s:Skin>

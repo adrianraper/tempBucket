@@ -12,6 +12,8 @@
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetDeleteCommand;
+	import com.clarityenglish.rotterdam.builder.controller.widgets.PDFWidgetAddCommand;
+	import com.clarityenglish.rotterdam.builder.controller.widgets.TextWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.ToolBarMediator;
@@ -23,7 +25,6 @@
 	import com.clarityenglish.rotterdam.builder.view.title.TitleView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
-	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -44,8 +45,13 @@
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
+			
 			registerCommand(RotterdamNotifications.WIDGET_ADD, WidgetAddCommand);
 			registerCommand(RotterdamNotifications.WIDGET_DELETE, WidgetDeleteCommand);
+			
+			registerCommand(RotterdamNotifications.TEXT_WIDGET_ADD, TextWidgetAddCommand);
+			registerCommand(RotterdamNotifications.PDF_WIDGET_ADD, PDFWidgetAddCommand);
+			
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD, MediaUploadCommand);
 			
 			// Remove the default Bento state machine (which isn't quite applicable to the builder) and replace it with a new one

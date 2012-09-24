@@ -61,6 +61,11 @@ courseeditor|ToolBarView s|Button#normalPreviewButton {
 	topRightRadiusX: 5;
 }
 
+courseeditor|ToolBarView s|Button#normalCancelButton {
+	chromeColor: #FF0000;
+	topRightRadiusX: 5;
+}
+
 uniteditor|UnitEditorView {
 	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.UnitEditorSkin");
 }
