@@ -75,13 +75,21 @@ package com.clarityenglish.rotterdam.model {
 		}
 		
 		public function widgetAdd(widget:XML):void {
-			log.info("Adding wiget " + widget.toXMLString());
-			_widgetCollection.addItem(widget);
+			if (_widgetCollection) {
+				log.info("Adding wiget " + widget.toXMLString());
+				_widgetCollection.addItem(widget);
+			} else {
+				log.error("Attempted to add a widget with no widget collection");
+			}
 		}
 		
 		public function widgetDelete(widget:XML):void {
-			log.info("Deleting wiget " + widget.toXMLString());
-			_widgetCollection.removeItemAt(widgetCollection.getItemIndex(widget));
+			if (_widgetCollection) {
+				log.info("Deleting wiget " + widget.toXMLString());
+				_widgetCollection.removeItemAt(widgetCollection.getItemIndex(widget));
+			} else {
+				log.error("Attempted to delete a widget with no widget collection");
+			}
 		}
 		
 		public function courseCreate(course:Course):void {
