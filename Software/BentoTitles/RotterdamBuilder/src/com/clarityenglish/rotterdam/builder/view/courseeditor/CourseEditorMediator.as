@@ -5,6 +5,7 @@
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -48,7 +49,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				RotterdamNotifications.COURSE_STARTED,
 			]);
 		}
 		
@@ -56,7 +57,10 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				case RotterdamNotifications.COURSE_STARTED:
+					var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+					view.unitListCollection = courseProxy.unitCollection;
+					break;
 			}
 		}
 		

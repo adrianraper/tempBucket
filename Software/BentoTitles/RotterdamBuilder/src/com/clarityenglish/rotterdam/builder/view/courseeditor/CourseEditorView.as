@@ -34,7 +34,8 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		[SkinPart]
 		public var previewButton:ToggleButton;
 		
-		private var unitListCollection:ListCollectionView;
+		[Bindable]
+		public var unitListCollection:ListCollectionView;
 		
 		public var unitSelect:Signal = new Signal(XML);
 		
@@ -44,13 +45,6 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-		}
-
-		protected override function updateViewFromXHTML(xhtml:XHTML):void {
-			super.updateViewFromXHTML(xhtml);
-			
-			unitListCollection = new XMLListCollection(course.unit);
-			unitList.dataProvider = unitListCollection;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -74,7 +68,6 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		}
 		
 		protected function onUnitSelected(event:IndexChangeEvent):void {
-			//unitViewNavigator.activeView.data = unitList.selectedItem;
 			unitSelect.dispatch(event.target.selectedItem);
 		}
 		
@@ -83,6 +76,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 			unitListCollection.addItem(<unit caption='New unit' />);
 		}
 		
+		/**
+		 * No longer used
+		 */
 		protected function onBack(event:MouseEvent):void {
 			navigator.popToFirstView();
 		}

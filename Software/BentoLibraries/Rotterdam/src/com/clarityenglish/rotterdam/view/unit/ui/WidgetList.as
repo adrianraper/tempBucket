@@ -24,7 +24,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	
 	use namespace mx_internal;
 	
-	public class UnitList extends List {
+	public class WidgetList extends List {
 		
 		/**
 		 * Standard flex logger
@@ -33,7 +33,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		
 		private var dragSource:DragSource;
 		
-		public function UnitList() {
+		public function WidgetList() {
 			super();
 			
 			itemRendererFunction = widgetItemRendererFunction;
