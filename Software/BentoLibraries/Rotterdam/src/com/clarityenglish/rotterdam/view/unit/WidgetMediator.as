@@ -4,6 +4,8 @@
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.ProgressEvent;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -46,13 +48,13 @@
 			if (note.getType() == view.xml.@id) {
 				switch (note.getName()) {
 					case RotterdamNotifications.MEDIA_UPLOAD_START:
-						trace("upload start");
+						view.setUploading(true);
 						break;
 					case RotterdamNotifications.MEDIA_UPLOAD_PROGRESS:
-						trace("upload progress");
+						view.setProgress(note.getBody() as ProgressEvent);
 						break;
 					case RotterdamNotifications.MEDIA_UPLOADED:
-						trace("upload uploaded");
+						view.setUploading(false);
 						break;
 					case RotterdamNotifications.MEDIA_UPLOAD_ERROR:
 						trace("upload error");

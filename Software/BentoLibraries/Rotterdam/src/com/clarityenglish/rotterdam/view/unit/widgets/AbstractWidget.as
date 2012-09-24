@@ -5,6 +5,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	
 	import flash.events.Event;
+	import flash.events.ProgressEvent;
 	
 	import mx.core.UIComponent;
 	import mx.events.StateChangeEvent;
@@ -14,6 +15,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	
 	import skins.rotterdam.unit.widgets.WidgetChrome;
 	import skins.rotterdam.unit.widgets.WidgetText;
+	
+	import spark.components.supportClasses.Range;
 	
 	/**
 	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
@@ -29,6 +32,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		[SkinPart(required="true")]
 		public var widgetText:WidgetText;
+		
+		[SkinPart]
+		public var progressRange:Range;
 		
 		protected var _xml:XML;
 		
@@ -92,11 +98,31 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			}
 		}
 		
+		public function setUploading(uploading:Boolean):void {
+			if (progressRange)
+				progressRange.visible = uploading;
+		}
+		
+		public function setProgress(event:ProgressEvent):void {
+			if (progressRange)
+				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
+		}
+		
 		protected function validateUnitListLayout(e:Event = null):void {
 			invalidateParentSizeAndDisplayList();
 			validateNow();
 			
 			dispatchEvent(new WidgetLayoutEvent(WidgetLayoutEvent.LAYOUT_CHANGED, true));
+		}
+		
+		protected override function partAdded(partName:String, instance:Object):void {
+			super.partAdded(partName, instance);
+			
+			switch (instance) {
+				case progressRange:
+					progressRange.visible = false;
+					break;
+			}
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {
@@ -141,7 +167,9 @@ class XMLWatcher implements IXMLNotifiable {
 	
 	public function xmlNotification(currentTarget:Object, type:String, target:Object, value:Object, detail:Object):void {
 		switch (type) {
+			case "attributeAdded":
 			case "attributeChanged":
+			case "attributeRemoved":
 				eventDispatcher.dispatchEvent(new Event(value + "AttrChanged", true));
 				break;
 		}

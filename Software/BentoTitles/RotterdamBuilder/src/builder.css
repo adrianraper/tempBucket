@@ -10,6 +10,10 @@
 @namespace filemanager "com.clarityenglish.rotterdam.builder.view.filemanager.*";
 @namespace widgets "skins.rotterdam.unit.widgets.*";
 
+s|Range {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
+}
+
 builder|BuilderApplication {
 	skinClass: ClassReference("skins.rotterdam.builder.BuilderApplicationSkin");
 }
