@@ -26,8 +26,7 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			view.saveCourse.add(onSave);
-			view.addWidget.add(onAddWidget);
+			view.unitSelect.add(onUnitSelect);
 			
 			// For the moment hardcode the course path
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -37,12 +36,14 @@
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.saveCourse.remove(onSave);
-			view.addWidget.remove(onAddWidget);
+			view.unitSelect.remove(onUnitSelect);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
 			super.onXHTMLReady(xhtml);
+			
+			// When the XHTML has loaded into the course editor then the course has started
+			facade.sendNotification(RotterdamNotifications.COURSE_START, xhtml);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -59,12 +60,8 @@
 			}
 		}
 		
-		private function onSave(xhtml:XHTML):void {
-			facade.sendNotification(RotterdamNotifications.COURSE_SAVE, xhtml);
-		}
-		
-		private function onAddWidget(xml:XML):void {
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, xml);
+		protected function onUnitSelect(unit:XML):void {
+			facade.sendNotification(RotterdamNotifications.UNIT_START, unit);
 		}
 		
 	}

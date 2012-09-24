@@ -29,7 +29,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				RotterdamNotifications.WIDGET_ADD,
+				//RotterdamNotifications.WIDGET_ADD,
 			]);
 		}
 		
@@ -37,10 +37,10 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case RotterdamNotifications.WIDGET_ADD:
+				/*case RotterdamNotifications.WIDGET_ADD:
 					view.unitCollection.addItem(note.getBody());
 					trace(view.data.toXMLString());
-					break;
+					break;*/
 			}
 		}
 		

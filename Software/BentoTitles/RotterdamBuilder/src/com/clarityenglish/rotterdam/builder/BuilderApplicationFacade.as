@@ -10,8 +10,11 @@
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
+	import com.clarityenglish.rotterdam.builder.controller.WidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView;
+	import com.clarityenglish.rotterdam.builder.view.courseeditor.ToolBarMediator;
+	import com.clarityenglish.rotterdam.builder.view.courseeditor.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
 	import com.clarityenglish.rotterdam.builder.view.login.LoginView;
@@ -19,6 +22,7 @@
 	import com.clarityenglish.rotterdam.builder.view.title.TitleView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
+	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -33,9 +37,11 @@
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(CourseEditorView, CourseEditorMediator);
+			mapView(ToolBarView, ToolBarMediator);
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);
 			
+			registerCommand(RotterdamNotifications.WIDGET_ADD, WidgetAddCommand);
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD, MediaUploadCommand);

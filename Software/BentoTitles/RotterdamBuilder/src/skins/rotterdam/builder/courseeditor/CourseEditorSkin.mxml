@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
-		initialize="onInitialize(event)">
+		initialize="onInitialize(event)" xmlns:courseeditor="com.clarityenglish.rotterdam.builder.view.courseeditor.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView")]
@@ -56,11 +56,10 @@
 	
 	<s:ViewNavigator id="unitViewNavigator" left="200" right="0" top="0" bottom="100" />
 	
+	<courseeditor:ToolBarView bottom="50" left="0" right="0" />
+	
 	<s:HGroup bottom="0" right="10">
 		<!--<s:Button id="backButton" label="Back" />-->
-		<s:Button id="saveButton" label="Save" />
-		<s:Button id="addTextButton" label="Add text" />
-		<s:Button id="addPDFButton" label="Add PDF" />
 		<s:ToggleButton id="previewButton" label="Preview" />
 	</s:HGroup>
 	

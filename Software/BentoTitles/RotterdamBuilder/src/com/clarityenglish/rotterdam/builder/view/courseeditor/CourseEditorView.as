@@ -32,23 +32,11 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var backButton:Button;
 		
 		[SkinPart]
-		public var addTextButton:Button;
-		
-		[SkinPart]
-		public var addPDFButton:Button;
-		
-		[SkinPart]
-		public var saveButton:Button;
-		
-		[SkinPart]
 		public var previewButton:ToggleButton;
 		
 		private var unitListCollection:ListCollectionView;
 		
-		private var _selectedUnitXML:XML;
-		
-		public var saveCourse:Signal = new Signal(XHTML);
-		public var addWidget:Signal = new Signal(XML);
+		public var unitSelect:Signal = new Signal(XML);
 		
 		private function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
@@ -61,7 +49,7 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			unitListCollection =  new XMLListCollection(course.unit);
+			unitListCollection = new XMLListCollection(course.unit);
 			unitList.dataProvider = unitListCollection;
 		}
 		
@@ -79,15 +67,6 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBack);
 					break;
-				case addTextButton:
-					addTextButton.addEventListener(MouseEvent.CLICK, onAddText);
-					break;
-				case addPDFButton:
-					addPDFButton.addEventListener(MouseEvent.CLICK, onAddPDF);
-					break;
-				case saveButton:
-					saveButton.addEventListener(MouseEvent.CLICK, onSave);
-					break;
 				case previewButton:
 					previewButton.addEventListener(MouseEvent.CLICK, onPreview);
 					break;
@@ -96,6 +75,7 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		
 		protected function onUnitSelected(event:IndexChangeEvent):void {
 			unitViewNavigator.activeView.data = unitList.selectedItem;
+			unitSelect.dispatch(event.target.selectedItem);
 		}
 		
 		private function onAddUnit(event:MouseEvent):void {
@@ -105,18 +85,6 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		
 		protected function onBack(event:MouseEvent):void {
 			navigator.popToFirstView();
-		}
-		
-		protected function onSave(event:MouseEvent):void {
-			saveCourse.dispatch(_xhtml);
-		}
-		
-		protected function onAddText(event:MouseEvent):void {
-			addWidget.dispatch(<text col="0" span="1" title="New text widget" />);
-		}
-		
-		protected function onAddPDF(event:MouseEvent):void {
-			trace("ADDING PDF");
 		}
 		
 		private function onPreview(event:MouseEvent):void {

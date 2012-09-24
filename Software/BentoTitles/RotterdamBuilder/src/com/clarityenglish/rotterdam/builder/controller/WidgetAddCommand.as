@@ -1,6 +1,5 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -9,7 +8,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class CourseSaveCommand extends SimpleCommand {
+	public class WidgetAddCommand extends SimpleCommand {
 		
 		/**
 		 * Standard flex logger
@@ -20,9 +19,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			super.execute(note);
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			courseProxy.courseSave();
-			
-			log.debug("Saving course");
+			courseProxy.widgetAdd(note.getBody() as XML);
 		}
 		
 	}

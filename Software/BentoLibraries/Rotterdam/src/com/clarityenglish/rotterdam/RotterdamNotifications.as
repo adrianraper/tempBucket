@@ -2,6 +2,8 @@
 	
 	public class RotterdamNotifications {
 		
+		public static const COURSE_START:String = "course_start";
+		
 		public static const COURSE_EDITOR_SHOW:String = "course_editor_show";
 		
 		public static const COURSE_CREATE:String = "course_create";
@@ -9,6 +11,8 @@
 		
 		public static const COURSE_SAVE:String = "course_save";
 		public static const COURSE_SAVED:String = "course_saved";
+		
+		public static const UNIT_START:String = "unit_start";
 		
 		public static const WIDGET_ADD:String = "widget_add";
 		
