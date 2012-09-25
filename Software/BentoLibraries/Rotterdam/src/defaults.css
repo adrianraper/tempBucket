@@ -15,3 +15,7 @@ widgets|TextWidget {
 widgets|PDFWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.PDFWidgetSkin");
 }
+
+widgets|VideoWidget {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.VideoWidgetSkin");
+}

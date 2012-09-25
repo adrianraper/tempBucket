@@ -24,6 +24,7 @@
 		
 		public static const TEXT_WIDGET_ADD:String = "text_widget_add";
 		public static const PDF_WIDGET_ADD:String = "pdf_widget_add";
+		public static const VIDEO_WIDGET_ADD:String = "video_widget_add";
 		
 		// Upload notifications
 		public static const MEDIA_UPLOAD:String = "media_upload";

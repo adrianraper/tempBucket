@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.layouts.UnitLayout;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
@@ -46,6 +47,8 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 					return TextWidget;
 				case "pdf":
 					return PDFWidget;
+				case "video":
+					return VideoWidget;
 				default:
 					log.error("Unsupported widget node " + name);
 					return null;

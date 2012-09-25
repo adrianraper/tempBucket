@@ -134,6 +134,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 */
 		protected function onStageClick(event:MouseEvent):void {
 			if (widgetMenu.visible &&
+				currentMenuWidget &&
 				!currentMenuWidget.widgetChrome.menuButton.hitTestPoint(event.stageX, event.stageY) &&
 				!widgetMenu.hitTestPoint(event.stageX, event.stageY)) {
 				onHideWidgetMenu();

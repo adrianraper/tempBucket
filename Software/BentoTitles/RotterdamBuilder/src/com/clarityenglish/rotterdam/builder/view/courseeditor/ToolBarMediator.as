@@ -25,6 +25,7 @@
 			view.saveCourse.add(onSaveCourse);
 			view.addText.add(onAddText);
 			view.addPDF.add(onAddPDF);
+			view.addVideo.add(onAddVideo);
 		}
 		
 		override public function onRemove():void {
@@ -33,6 +34,7 @@
 			view.saveCourse.remove(onSaveCourse);
 			view.addText.remove(onAddText);
 			view.addPDF.remove(onAddPDF);
+			view.addVideo.remove(onAddVideo);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -59,6 +61,10 @@
 		
 		private function onAddPDF(options:Object):void {
 			facade.sendNotification(RotterdamNotifications.PDF_WIDGET_ADD, options);
+		}
+		
+		private function onAddVideo(options:Object):void {
+			facade.sendNotification(RotterdamNotifications.VIDEO_WIDGET_ADD, options);
 		}
 		
 	}

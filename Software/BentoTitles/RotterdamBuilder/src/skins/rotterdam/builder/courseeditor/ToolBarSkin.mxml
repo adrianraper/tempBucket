@@ -16,6 +16,7 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 		<s:State name="pdf" />
+		<s:State name="video" />
 	</s:states>
 	
 	<s:Rect left="0" right="0" height="48" topLeftRadiusX="5" topRightRadiusX="5" filters="{dropShadowFilter}">
@@ -25,20 +26,26 @@
 	</s:Rect>
 	
 	<!-- Left buttons -->
-	<s:HGroup bottom="0" left="8" gap="7" verticalAlign="middle">
+	<s:HGroup bottom="0" left="8" gap="7" height="48" verticalAlign="middle">
 		<s:Label includeIn="pdf" text="Upload PDF from" color="#FFFFFF" />
 		<s:Button includeIn="pdf" label="Resource Cloud" enabled="false" />
 		<s:Label includeIn="pdf" text="or" color="#FFFFFF" />
 		<s:Button includeIn="pdf" id="pdfUploadButton" label="My Computer" />
+		
+		<s:Label includeIn="video" text="Place your video URL here:" color="#FFFFFF" />
+		<s:TextInput includeIn="video" id="videoUrlTextInput" width="400" text="http://www.youtube.com/v/hecfFD_D_pU?version=3" />
+		
 	</s:HGroup>
 	
 	<!-- Right buttons -->
-	<s:HGroup bottom="0" right="0" gap="3" verticalAlign="middle">
+	<s:HGroup bottom="0" right="0" gap="3" height="48" verticalAlign="middle">
 		<s:Button includeIn="normal" id="normalSaveButton" label="Save" />
 		<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" />
 		<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" />
+		<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" />
 		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" />
-		<s:Button includeIn="pdf" id="normalCancelButton" label="Cancel" />
+		<s:Button includeIn="video" id="videoSelectButton" label="Select" />
+		<s:Button includeIn="pdf,video" id="normalCancelButton" label="Cancel" />
 	</s:HGroup>
 	
 </s:Skin>

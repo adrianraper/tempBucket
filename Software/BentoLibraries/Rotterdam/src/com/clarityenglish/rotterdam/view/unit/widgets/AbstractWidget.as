@@ -53,7 +53,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function AbstractWidget() {
 			super();
 			
-			StateUtil.addStates(this, [ "normal", "selected" ], true);
+			StateUtil.addStates(this, [ "normal", "selected", "dragging" ], true);
 			
 			xmlWatcher = new XMLWatcher(this);
 			
@@ -156,6 +156,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected override function getCurrentSkinState():String {
+			if (currentState == "dragging")
+				return "dragging";
+			
 			// TODO: Needs to support normal and editing
 			return "editing_" + currentState;
 		}

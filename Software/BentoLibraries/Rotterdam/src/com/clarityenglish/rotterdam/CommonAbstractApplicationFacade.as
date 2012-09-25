@@ -9,6 +9,7 @@
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
 	
 	public class CommonAbstractApplicationFacade extends BentoFacade {
 		
@@ -22,6 +23,7 @@
 			
 			mapView(TextWidget, WidgetMediator);
 			mapView(PDFWidget, WidgetMediator);
+			mapView(VideoWidget, WidgetMediator);
 			
 			mapView(CourseSelectorView, CourseSelectorMediator);
 		}

@@ -7,9 +7,11 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.TextInput;
 	
 	[SkinState("normal")]
 	[SkinState("pdf")]
+	[SkinState("video")]
 	public class ToolBarView extends BentoView {
 		
 		[SkinPart]
@@ -22,6 +24,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var normalAddPDFButton:Button;
 		
 		[SkinPart]
+		public var normalAddVideoButton:Button;
+		
+		[SkinPart]
 		public var normalPreviewButton:Button;
 		
 		[SkinPart]
@@ -30,12 +35,19 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		[SkinPart]
 		public var pdfUploadButton:Button;
 		
+		[SkinPart]
+		public var videoUrlTextInput:TextInput;
+		
+		[SkinPart]
+		public var videoSelectButton:Button;
+		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object);
 		public var addPDF:Signal = new Signal(Object);
+		public var addVideo:Signal = new Signal(Object);
 		
 		public function ToolBarView() {
-			StateUtil.addStates(this, [ "normal", "pdf" ], true);
+			StateUtil.addStates(this, [ "normal", "pdf", "video" ], true);
 		}
 		
 		protected override function commitProperties():void {
@@ -56,6 +68,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 				case normalAddPDFButton:
 					normalAddPDFButton.addEventListener(MouseEvent.CLICK, onNormalAddPDF);
 					break;
+				case normalAddVideoButton:
+					normalAddVideoButton.addEventListener(MouseEvent.CLICK, onNormalAddVideo);
+					break;
 				case normalPreviewButton:
 					break;
 				case normalCancelButton:
@@ -63,6 +78,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 					break;
 				case pdfUploadButton:
 					pdfUploadButton.addEventListener(MouseEvent.CLICK, onPdfUpload);
+					break;
+				case videoSelectButton:
+					videoSelectButton.addEventListener(MouseEvent.CLICK, onVideoSelect);
 					break;
 			}
 		}
@@ -79,6 +97,10 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 			setCurrentState("pdf");
 		}
 		
+		protected function onNormalAddVideo(event:MouseEvent):void {
+			setCurrentState("video");
+		}
+		
 		protected function onNormalCancel(event:MouseEvent):void {
 			setCurrentState("normal");
 		}
@@ -86,6 +108,14 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		protected function onPdfUpload(event:MouseEvent):void {
 			addPDF.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
+		}
+		
+		protected function onVideoSelect(event:MouseEvent):void {
+			var url:String = videoUrlTextInput.text;
+			if (url) {
+				addVideo.dispatch({ type: "youtube", url: url }); // TODO: use a constant from somewhere?
+				setCurrentState("normal");
+			}
 		}
 		
 		protected override function getCurrentSkinState():String {
