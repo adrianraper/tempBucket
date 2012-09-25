@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -49,13 +50,13 @@
 					view.widgetCollection = courseProxy.widgetCollection;
 					break;
 			}
-		}
+		}		
 		
-		private function onWidgetSelect(widget:XML):void {
+		protected function onWidgetSelect(widget:XML):void {
 			facade.sendNotification(RotterdamNotifications.WIDGET_SELECT, widget);
 		}
 		
-		private function onWidgetDelete(widget:XML):void {
+		protected function onWidgetDelete(widget:XML):void {
 			facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, widget);
 		}
 		

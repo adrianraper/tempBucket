@@ -51,6 +51,11 @@ courseeditor|ToolBarView s|Button {
 	fontSize: 13;
 }
 
+courseeditor|ToolBarView s|ToggleButton {
+	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.ToolBarToggleButtonSkin");
+	fontSize: 13;
+}
+
 courseeditor|ToolBarView s|Button#normalSaveButton {
 	chromeColor: #2899CD;
 }

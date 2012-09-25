@@ -8,6 +8,8 @@
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
 	
+	import flashx.textLayout.formats.TextLayoutFormat;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -30,12 +32,14 @@
 			super.onRegister();
 			
 			view.openMedia.add(onOpenMedia);
+			view.textSelected.add(onTextSelected);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
 			view.openMedia.remove(onOpenMedia);
+			view.textSelected.remove(onTextSelected);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -44,13 +48,14 @@
 				RotterdamNotifications.MEDIA_UPLOAD_PROGRESS,
 				RotterdamNotifications.MEDIA_UPLOADED,
 				RotterdamNotifications.MEDIA_UPLOAD_ERROR,
+				RotterdamNotifications.TEXT_FORMAT,
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
 			
-			// Only take these actions if the notification is meant for us (i.e. the notification type is the node's id attribute)
+			// Upload actions - only take these actions if the notification is meant for us (i.e. the notification type is the node's id attribute)
 			if (note.getType() == view.xml.@id) {
 				switch (note.getName()) {
 					case RotterdamNotifications.MEDIA_UPLOAD_START:
@@ -67,12 +72,30 @@
 						break;
 				}
 			}
+			
+			// Other actions only count if the widget is selected
+			if (view.selected) {
+				switch (note.getName()) {
+					case RotterdamNotifications.TEXT_FORMAT:
+						handleTextFormat(note.getBody());
+						break;
+				}
+			}
+		}
+		
+		protected function handleTextFormat(options:Object):void {
+			view.widgetText.applyTextLayoutFormat(options.format);
 		}
 		
 		protected function onOpenMedia(widget:XML, src:String):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			// TODO: media/ should not be hardcoded
 			var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 			navigateToURL(new URLRequest(srcHref.url), "_blank");
+		}
+		
+		protected function onTextSelected(format:TextLayoutFormat):void {
+			facade.sendNotification(RotterdamNotifications.TEXT_SELECTED, format);
 		}
 		
 	}

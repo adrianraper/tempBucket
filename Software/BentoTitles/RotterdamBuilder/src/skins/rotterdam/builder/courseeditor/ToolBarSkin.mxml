@@ -17,6 +17,7 @@
 		<s:State name="normal" />
 		<s:State name="pdf" />
 		<s:State name="video" />
+		<s:State name="text" />
 	</s:states>
 	
 	<s:Rect left="0" right="0" height="48" topLeftRadiusX="5" topRightRadiusX="5" filters="{dropShadowFilter}">
@@ -35,6 +36,13 @@
 		<s:Label includeIn="video" text="Place your video URL here:" color="#FFFFFF" />
 		<s:TextInput includeIn="video" id="videoUrlTextInput" width="400" text="http://www.youtube.com/v/hecfFD_D_pU?version=3" />
 		
+		<s:Label includeIn="normal" text="Formatting options:" color="#FFFFFF" />
+		<s:ToggleButton includeIn="normal" id="boldButton" label="B" />
+		<s:HGroup includeIn="normal" height="100%" paddingLeft="22" gap="2">
+			<s:ToggleButton id="fontSize1Button" label="a" fontSize="11" />
+			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" />
+			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" />
+		</s:HGroup>
 	</s:HGroup>
 	
 	<!-- Right buttons -->

@@ -2,10 +2,13 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
+	
+	import flashx.textLayout.formats.TextLayoutFormat;
 	
 	import mx.events.StateChangeEvent;
 	import mx.logging.ILogger;
@@ -49,6 +52,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected var xmlWatcher:XMLWatcher;
 		
 		public var openMedia:Signal = new Signal(XML);
+		public var textSelected:Signal = new Signal(TextLayoutFormat);
 		
 		public function AbstractWidget() {
 			super();
@@ -132,7 +136,14 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				case progressRange:
 					progressRange.visible = false;
 					break;
+				case widgetText:
+					widgetText.addEventListener(WidgetTextFormatMenuEvent.TEXT_SELECTED, onTextSelected);
+					break;
 			}
+		}
+		
+		protected function onTextSelected(event:WidgetTextFormatMenuEvent):void {
+			textSelected.dispatch(event.format);
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {

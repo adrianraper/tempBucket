@@ -3,6 +3,8 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
+	import flashx.textLayout.formats.TextLayoutFormat;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -26,6 +28,7 @@
 			view.addText.add(onAddText);
 			view.addPDF.add(onAddPDF);
 			view.addVideo.add(onAddVideo);
+			view.formatText.add(onFormatText);
 		}
 		
 		override public function onRemove():void {
@@ -35,11 +38,12 @@
 			view.addText.remove(onAddText);
 			view.addPDF.remove(onAddPDF);
 			view.addVideo.remove(onAddVideo);
+			view.formatText.remove(onFormatText);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				RotterdamNotifications.TEXT_SELECTED,
 			]);
 		}
 		
@@ -47,7 +51,9 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				case RotterdamNotifications.TEXT_SELECTED:
+					view.setCurrentTextFormat(note.getBody() as TextLayoutFormat);
+					break;
 			}
 		}
 		
@@ -55,17 +61,22 @@
 			facade.sendNotification(RotterdamNotifications.COURSE_SAVE);
 		}
 		
-		private function onAddText(options:Object):void {
+		protected function onAddText(options:Object):void {
 			facade.sendNotification(RotterdamNotifications.TEXT_WIDGET_ADD, options);
 		}
 		
-		private function onAddPDF(options:Object):void {
+		protected function onAddPDF(options:Object):void {
 			facade.sendNotification(RotterdamNotifications.PDF_WIDGET_ADD, options);
 		}
 		
-		private function onAddVideo(options:Object):void {
+		protected function onAddVideo(options:Object):void {
 			facade.sendNotification(RotterdamNotifications.VIDEO_WIDGET_ADD, options);
 		}
+		
+		protected function onFormatText(options:Object):void {
+			facade.sendNotification(RotterdamNotifications.TEXT_FORMAT, options);
+		}
+		
 		
 	}
 }
