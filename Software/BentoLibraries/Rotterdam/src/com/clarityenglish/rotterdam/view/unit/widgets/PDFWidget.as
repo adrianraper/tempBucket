@@ -35,7 +35,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected function onPdfImageClick(event:MouseEvent):void {
-			trace("CLICK!");
+			if (hasSrc) {
+				openMedia.dispatch(xml, src);
+			} else {
+				log.error("The user managed to click on a PDF image when no src attribute was set");
+			}
 		}
 		
 	}

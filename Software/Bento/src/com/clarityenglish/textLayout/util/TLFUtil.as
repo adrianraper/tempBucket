@@ -4,6 +4,8 @@ package com.clarityenglish.textLayout.util {
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.compose.TextFlowLine;
+	import flashx.textLayout.conversion.ConversionType;
+	import flashx.textLayout.conversion.TextConverter;
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.FlowGroupElement;
 	import flashx.textLayout.elements.FlowLeafElement;
@@ -79,6 +81,11 @@ package com.clarityenglish.textLayout.util {
 		
 		public static function dumpTextFlow(textFlow:TextFlow):String {
 			return (textFlow) ? flowElementToXML(textFlow).toXMLString() : "";
+		}
+		
+		public static function textToTextFlowString(text:String):String {
+			var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.PLAIN_TEXT_FORMAT);
+			return TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.STRING_TYPE).toString();
 		}
 		
 		private static function flowElementToXML(flowElement:FlowElement):XML {

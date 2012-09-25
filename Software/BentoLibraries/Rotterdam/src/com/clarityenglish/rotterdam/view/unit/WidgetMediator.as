@@ -1,10 +1,12 @@
 ﻿package com.clarityenglish.rotterdam.view.unit {
-	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.ProgressEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,10 +28,14 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			view.openMedia.add(onOpenMedia);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.openMedia.remove(onOpenMedia);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -61,6 +67,12 @@
 						break;
 				}
 			}
+		}
+		
+		protected function onOpenMedia(widget:XML, src:String):void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
+			navigateToURL(new URLRequest(srcHref.url), "_blank");
 		}
 		
 	}

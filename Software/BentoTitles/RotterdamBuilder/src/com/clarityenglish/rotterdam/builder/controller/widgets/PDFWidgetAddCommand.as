@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.builder.controller.widgets {
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.textLayout.util.TLFUtil;
 	
 	import flash.net.FileFilter;
 	
@@ -22,7 +23,8 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			super.execute(note);
 			
 			var uid:String = UIDUtil.createUID();
-			var node:XML = <pdf id={uid} col="0" span="1" title="New PDF widget" />
+			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new pdf widget");
+			var node:XML = <pdf id={uid} col="0" span="1" title="New PDF widget"><text>{textFlowString}</text></pdf>;
 			
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			

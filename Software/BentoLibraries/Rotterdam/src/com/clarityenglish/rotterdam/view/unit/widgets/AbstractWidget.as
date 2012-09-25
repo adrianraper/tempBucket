@@ -7,11 +7,14 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	
-	import mx.core.UIComponent;
 	import mx.events.StateChangeEvent;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
 	import mx.utils.XMLNotifier;
 	
+	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StateUtil;
+	import org.osflash.signals.Signal;
 	
 	import skins.rotterdam.unit.widgets.WidgetChrome;
 	import skins.rotterdam.unit.widgets.WidgetText;
@@ -27,6 +30,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	[SkinState("editing_selected")]
 	public class AbstractWidget extends SkinnableItemRenderer implements IUnitLayoutElement {
 		
+		/**
+		 * Standard flex logger
+		 */
+		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
 		[SkinPart(required="true")]
 		public var widgetChrome:WidgetChrome;
 		
@@ -39,6 +47,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected var _xml:XML;
 		
 		protected var xmlWatcher:XMLWatcher;
+		
+		public var openMedia:Signal = new Signal(XML);
 		
 		public function AbstractWidget() {
 			super();
