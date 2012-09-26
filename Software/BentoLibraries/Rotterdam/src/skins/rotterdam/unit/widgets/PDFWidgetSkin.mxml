@@ -13,6 +13,7 @@
 		<s:State name="normal" />
 		<s:State name="editing_normal" stateGroups="editing" />
 		<s:State name="editing_selected" stateGroups="editing,selected" />
+		<s:State name="dragging" />
 	</s:states>
 	
 	<!-- Chrome -->

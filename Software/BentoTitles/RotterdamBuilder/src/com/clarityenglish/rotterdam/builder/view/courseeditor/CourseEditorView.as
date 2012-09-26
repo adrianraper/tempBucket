@@ -31,9 +31,6 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		[SkinPart]
 		public var backButton:Button;
 		
-		[SkinPart]
-		public var previewButton:ToggleButton;
-		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
@@ -56,7 +53,6 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 			// Tell the mediator to set the href of this view to the menu.xml file specified in the course node
 			if (data)
 				courseLoad.dispatch(data);
-			
 		}
 		
 		protected override function commitProperties():void {
@@ -77,9 +73,6 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBack);
 					break;
-				case previewButton:
-					previewButton.addEventListener(MouseEvent.CLICK, onPreview);
-					break;
 			}
 		}
 		
@@ -88,7 +81,8 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		}
 		
 		private function onAddUnit(event:MouseEvent):void {
-			// TODO: need to have the designs to know exactly how this will work but for now just use a random name
+			// TODO: need to have the designs to know exactly how this will work but for now just use a random name.
+			// Also this should use a notification and command instead of adding it directly to the collection.
 			unitListCollection.addItem(<unit caption='New unit' />);
 		}
 		
@@ -104,13 +98,10 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		}
 		
 		/**
-		 * Switch between editing and viewing
+		 * TODO: Switch between editing and viewing
 		 */
 		protected override function getCurrentSkinState():String {
-			if (!previewButton)
-				return super.getCurrentSkinState();
-			
-			return (previewButton.selected) ? "unitplayer" : "uniteditor";
+			return "uniteditor";
 		}
 
 	}

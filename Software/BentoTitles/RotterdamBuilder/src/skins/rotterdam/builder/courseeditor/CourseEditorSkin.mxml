@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
-		initialize="onInitialize(event)" xmlns:courseeditor="com.clarityenglish.rotterdam.builder.view.courseeditor.*">
+		xmlns:courseeditor="com.clarityenglish.rotterdam.builder.view.courseeditor.*"
+		initialize="onInitialize(event)" >
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView")]
@@ -33,11 +34,14 @@
 			}
 			
 			private function unitViewNavigatorShow(viewClass:Class, transition:ViewTransitionBase = null):void {
-				if (!unitViewNavigator.activeView) {
-					unitViewNavigator.pushView(viewClass);
-				} else if (!(unitViewNavigator.activeView is viewClass)) {
-					unitViewNavigator.replaceView(viewClass, unitViewNavigator.activeView.data, null, transition);
-				}
+				// This needs a callLater otherwise the first time we open the editor mouse events are not picked up
+				callLater(function():void {
+					if (!unitViewNavigator.activeView) {
+						unitViewNavigator.pushView(viewClass);
+					} else if (!(unitViewNavigator.activeView is viewClass)) {
+						unitViewNavigator.replaceView(viewClass, unitViewNavigator.activeView.data, null, transition);
+					}
+				});
 			}
 			
 		]]>
@@ -54,13 +58,8 @@
 	<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="200" top="0" bottom="100" />
 	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="70" />
 	
-	<s:ViewNavigator id="unitViewNavigator" left="200" right="0" top="0" bottom="100" />
+	<s:ViewNavigator id="unitViewNavigator" left="200" right="0" top="0" bottom="50" />
 	
-	<courseeditor:ToolBarView bottom="50" left="0" right="0" />
-	
-	<s:HGroup bottom="0" right="10">
-		<!--<s:Button id="backButton" label="Back" />-->
-		<s:ToggleButton id="previewButton" label="Preview" />
-	</s:HGroup>
+	<courseeditor:ToolBarView bottom="0" left="0" right="0" />
 	
 </s:Skin>
