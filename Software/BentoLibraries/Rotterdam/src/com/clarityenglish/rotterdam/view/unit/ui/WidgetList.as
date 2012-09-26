@@ -18,6 +18,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.managers.DragManager;
+	import mx.utils.UIDUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	
@@ -95,6 +96,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			var pt:Point = new Point(event.localX, event.localY);
 			pt = DisplayObject(event.target).localToGlobal(pt);
 			
+			var newObject:Object;
 			var draggedItem:Object = dragSource.dataForFormat("draggedItem") as Object;
 			var draggedIndex:int = dragSource.dataForFormat("draggedIndex") as int;
 			
@@ -106,15 +108,20 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			
 			// If the column has changed then rewrite the XML accordingly
 			if (newColumn != draggedItem.@column) {
-				draggedItem.@column = newColumn;
-				dataProvider.setItemAt(draggedItem, draggedIndex);
+				newObject = draggedItem.copy();
+				
+				newObject.@column = newColumn;
+				dataProvider.setItemAt(newObject, draggedIndex);
 			}
 			
 			// Figure out the new index and rearrange the dataprovider if it has changed
 			var dropIndex:int = (layout as UnitLayout).getDropIndex(event.stageX, event.stageY);
 			if (dropIndex >= 0 && dropIndex != draggedIndex) {
+				newObject = draggedItem.copy();
+				
 				dataProvider.removeItemAt(draggedIndex);
-				dataProvider.addItemAt(draggedItem, dropIndex);
+				dataProvider.addItemAt(newObject, dropIndex);
+				dragSource.addData(newObject, "draggedItem");
 				dragSource.addData(dropIndex, "draggedIndex");
 			}
 			
