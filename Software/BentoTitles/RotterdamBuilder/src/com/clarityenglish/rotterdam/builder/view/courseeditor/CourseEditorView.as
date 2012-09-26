@@ -37,10 +37,26 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
+		public var courseLoad:Signal = new Signal(XML);
 		public var unitSelect:Signal = new Signal(XML);
 		
 		private function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
+		}
+		
+		/**
+		 * For the CourseEditorView the data property is the XML node from courses.xml that has been selected (this will trigger a load of the matching menu.xml in
+		 * the correct folder).
+		 * 
+		 * @param value
+		 */
+		public override function set data(value:Object):void {
+			super.data = value;
+			
+			// Tell the mediator to set the href of this view to the menu.xml file specified in the course node
+			if (data)
+				courseLoad.dispatch(data);
+			
 		}
 		
 		protected override function commitProperties():void {

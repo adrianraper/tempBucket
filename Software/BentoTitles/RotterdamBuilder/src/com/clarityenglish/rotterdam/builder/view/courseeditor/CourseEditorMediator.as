@@ -27,16 +27,18 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			view.courseLoad.add(onCourseLoad);
 			view.unitSelect.add(onUnitSelect);
 			
-			// For the moment hardcode the course path
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.href = new Href(Href.XHTML, "5058678f9a2b1/menu.xml", configProxy.getConfig().paths.content);
+			// If the view already has data set then load a course straight away
+			if (view.data)
+				onCourseLoad(view.data as XML);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
+			view.courseLoad.remove(onCourseLoad);
 			view.unitSelect.remove(onUnitSelect);
 		}
 		
@@ -62,6 +64,11 @@
 					view.unitListCollection = courseProxy.unitCollection;
 					break;
 			}
+		}
+		
+		protected function onCourseLoad(course:XML):void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.href = new Href(Href.XHTML, course.@href, configProxy.getConfig().paths.content);
 		}
 		
 		protected function onUnitSelect(unit:XML):void {
