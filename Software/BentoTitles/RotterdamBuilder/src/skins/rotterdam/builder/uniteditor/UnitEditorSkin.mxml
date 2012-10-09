@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*"
-		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*" xmlns:widgets="skins.rotterdam.unit.widgets.*">
+		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*"
+		xmlns:widgets="skins.rotterdam.unit.widgets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView")]

@@ -75,7 +75,8 @@ courseeditor|ToolBarView s|Button#normalPreviewButton {
 	topRightRadiusX: 5;
 }
 
-courseeditor|ToolBarView s|Button#normalCancelButton {
+courseeditor|ToolBarView s|Button#normalCancelButton,
+courseeditor|ToolBarView s|Button#previewBackToEditorButton {
 	chromeColor: #FF0000;
 	topRightRadiusX: 5;
 }

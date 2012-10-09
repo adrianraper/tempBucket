@@ -52,6 +52,8 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.COURSE_STARTED,
+				RotterdamNotifications.PREVIEW_SHOW,
+				RotterdamNotifications.PREVIEW_HIDE,
 			]);
 		}
 		
@@ -62,6 +64,12 @@
 				case RotterdamNotifications.COURSE_STARTED:
 					var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 					view.unitListCollection = courseProxy.unitCollection;
+					break;
+				case RotterdamNotifications.PREVIEW_SHOW:
+					view.previewVisible = true;
+					break;
+				case RotterdamNotifications.PREVIEW_HIDE:
+					view.previewVisible = false;
 					break;
 			}
 		}

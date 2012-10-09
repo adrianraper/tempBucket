@@ -29,6 +29,9 @@
 		public static const TEXT_FORMAT:String = "text_format";
 		public static const TEXT_SELECTED:String = "text_selected";
 		
+		public static const PREVIEW_SHOW:String = "preview_show";
+		public static const PREVIEW_HIDE:String = "preview_hide";
+		
 		// Upload notifications
 		public static const MEDIA_UPLOAD:String = "media_upload";
 		public static const MEDIA_UPLOAD_START:String = "media_upload_start";

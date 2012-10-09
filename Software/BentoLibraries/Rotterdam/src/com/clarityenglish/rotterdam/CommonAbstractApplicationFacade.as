@@ -5,6 +5,8 @@
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorMediator;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
+	import com.clarityenglish.rotterdam.view.unit.UnitMediator;
+	import com.clarityenglish.rotterdam.view.unit.UnitView;
 	import com.clarityenglish.rotterdam.view.unit.WidgetMediator;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
@@ -26,6 +28,7 @@
 			mapView(VideoWidget, WidgetMediator);
 			
 			mapView(CourseSelectorView, CourseSelectorMediator);
+			mapView(UnitView, UnitMediator);
 		}
 		
 	}

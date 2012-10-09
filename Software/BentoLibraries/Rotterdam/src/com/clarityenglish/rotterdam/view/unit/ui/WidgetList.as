@@ -35,6 +35,8 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		
 		private var dragSource:DragSource;
 		
+		public var editable:Boolean;
+		
 		public function WidgetList() {
 			super();
 			
@@ -60,7 +62,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			var widgetClass:Class = nodeNameToWidgetClass(item.name());
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
-			classFactory.properties = { xml: item };
+			classFactory.properties = { xml: item, editable: editable };
 			return classFactory;
 		}
 		

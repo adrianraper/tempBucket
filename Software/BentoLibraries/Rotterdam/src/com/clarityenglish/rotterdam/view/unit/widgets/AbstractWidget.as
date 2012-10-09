@@ -49,6 +49,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected var _xml:XML;
 		
+		protected var _editable:Boolean;
+		
 		protected var xmlWatcher:XMLWatcher;
 		
 		public var openMedia:Signal = new Signal(XML);
@@ -67,6 +69,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			addEventListener("spanAttrChanged", validateUnitListLayout, false, 0, true);
 			addEventListener("columnAttrChanged", validateUnitListLayout, false, 0, true);
 			addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange, false, 0, true);
+		}
+		
+		public function set editable(value:Boolean):void {
+			if (_editable !== value) {
+				_editable = value;
+				invalidateSkinState();
+			}
+		}
+		
+		public function get editable():Boolean {
+			return _editable;
 		}
 		
 		[Bindable]
@@ -171,7 +184,13 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				return "dragging";
 			
 			// TODO: Needs to support normal and editing
-			return "editing_" + currentState;
+			if (_editable) {
+				return "editing_" + currentState;
+			} else {
+				return "normal";
+			}
+			
+			return null;
 		}
 		
 	}

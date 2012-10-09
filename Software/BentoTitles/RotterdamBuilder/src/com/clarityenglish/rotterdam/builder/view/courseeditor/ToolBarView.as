@@ -51,6 +51,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var videoSelectButton:Button;
 		
 		[SkinPart]
+		public var previewBackToEditorButton:Button;
+		
+		[SkinPart]
 		public var boldButton:ToggleButton;
 		
 		[SkinPart]
@@ -67,9 +70,11 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var addPDF:Signal = new Signal(Object);
 		public var addVideo:Signal = new Signal(Object);
 		public var formatText:Signal = new Signal(Object);
+		public var preview:Signal = new Signal();
+		public var backToEditor:Signal = new Signal();
 		
 		public function ToolBarView() {
-			StateUtil.addStates(this, [ "normal", "pdf", "video" ], true);
+			StateUtil.addStates(this, [ "normal", "pdf", "video", "preview" ], true);
 		}
 		
 		public function setCurrentTextFormat(format:TextLayoutFormat):void {
@@ -112,6 +117,7 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 					normalAddVideoButton.addEventListener(MouseEvent.CLICK, onNormalAddVideo);
 					break;
 				case normalPreviewButton:
+					normalPreviewButton.addEventListener(MouseEvent.CLICK, onNormalPreview);
 					break;
 				case normalCancelButton:
 					normalCancelButton.addEventListener(MouseEvent.CLICK, onNormalCancel);
@@ -121,6 +127,9 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 					break;
 				case videoSelectButton:
 					videoSelectButton.addEventListener(MouseEvent.CLICK, onVideoSelect);
+					break;
+				case previewBackToEditorButton:
+					previewBackToEditorButton.addEventListener(MouseEvent.CLICK, onPreviewBackToEditor);
 					break;
 				case boldButton:
 					boldButton.addEventListener(MouseEvent.CLICK, onBoldChange);
@@ -164,6 +173,16 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 				addVideo.dispatch({ type: "youtube", url: url }); // TODO: use a constant from somewhere (in fact this isn't used yet)?
 				setCurrentState("normal");
 			}
+		}
+		
+		protected function onNormalPreview(event:MouseEvent):void {
+			preview.dispatch();
+			setCurrentState("preview");
+		}
+		
+		protected function onPreviewBackToEditor(event:MouseEvent):void {
+			backToEditor.dispatch();
+			setCurrentState("normal");
 		}
 		
 		protected function onBoldChange(event:MouseEvent):void {

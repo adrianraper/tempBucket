@@ -29,6 +29,8 @@
 			view.addPDF.add(onAddPDF);
 			view.addVideo.add(onAddVideo);
 			view.formatText.add(onFormatText);
+			view.preview.add(onPreview);
+			view.backToEditor.add(onBackToEditor);
 		}
 		
 		override public function onRemove():void {
@@ -39,6 +41,8 @@
 			view.addPDF.remove(onAddPDF);
 			view.addVideo.remove(onAddVideo);
 			view.formatText.remove(onFormatText);
+			view.preview.remove(onPreview);
+			view.backToEditor.remove(onBackToEditor);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -77,6 +81,13 @@
 			facade.sendNotification(RotterdamNotifications.TEXT_FORMAT, options);
 		}
 		
+		protected function onPreview():void {
+			facade.sendNotification(RotterdamNotifications.PREVIEW_SHOW);
+		}
+		
+		protected function onBackToEditor():void {
+			facade.sendNotification(RotterdamNotifications.PREVIEW_HIDE);
+		}
 		
 	}
 }

@@ -18,6 +18,7 @@
 		<s:State name="pdf" />
 		<s:State name="video" />
 		<s:State name="text" />
+		<s:State name="preview" />
 	</s:states>
 	
 	<s:Rect left="0" right="0" height="48" topLeftRadiusX="5" topRightRadiusX="5" filters="{dropShadowFilter}">
@@ -54,6 +55,7 @@
 		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" />
 		<s:Button includeIn="video" id="videoSelectButton" label="Select" />
 		<s:Button includeIn="pdf,video" id="normalCancelButton" label="Cancel" />
+		<s:Button includeIn="preview" id="previewBackToEditorButton" label="Back to editor" />
 	</s:HGroup>
 	
 </s:Skin>

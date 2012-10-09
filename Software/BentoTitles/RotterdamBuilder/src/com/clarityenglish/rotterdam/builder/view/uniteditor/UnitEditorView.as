@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
+	import com.clarityenglish.rotterdam.view.unit.ui.WidgetList;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	
 	import flash.events.Event;
@@ -21,7 +22,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	public class UnitEditorView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var widgetList:List;
+		public var widgetList:WidgetList;
 		
 		[SkinPart(required="true")]
 		public var widgetMenu:WidgetMenu;
@@ -64,6 +65,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			
 			switch (instance) {
 				case widgetList:
+					widgetList.editable = true;
 					widgetList.dragEnabled = widgetList.dropEnabled = widgetList.dragMoveEnabled = true;
 					widgetList.addEventListener(Event.CHANGE, onWidgetSelected, false, 0, true);
 					widgetList.addEventListener(WidgetLayoutEvent.LAYOUT_CHANGED, onLayoutChanged, false, 0, true);

@@ -34,11 +34,20 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
+		private var _isPreviewVisible:Boolean;
+		
 		public var courseLoad:Signal = new Signal(XML);
 		public var unitSelect:Signal = new Signal(XML);
 		
 		private function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
+		}
+		
+		public function set previewVisible(value:Boolean):void {
+			if (_isPreviewVisible !== value) {
+				_isPreviewVisible = value;
+				invalidateSkinState();
+			}
 		}
 		
 		/**
@@ -101,7 +110,7 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		 * TODO: Switch between editing and viewing
 		 */
 		protected override function getCurrentSkinState():String {
-			return "uniteditor";
+			return (_isPreviewVisible) ? "unitplayer" : "uniteditor";
 		}
 
 	}

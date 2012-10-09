@@ -16,6 +16,9 @@
 			[Bindable]
 			public var selected:Boolean;
 			
+			[Bindable]
+			public var editing:Boolean;
+			
 			protected function onMenuButtonClick(event:MouseEvent):void {
 				switch (currentState) {
 					case "closed":
@@ -67,7 +70,7 @@
 	<s:Label text="{title}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
 	
 	<!-- The menu button -->
-	<s:Group id="menuButton" right="0" width="41" height="24" buttonMode="true" mouseEnabled="true" click="onMenuButtonClick(event)">
+	<s:Group id="menuButton" right="0" width="41" height="24" buttonMode="true" mouseEnabled="true" click="onMenuButtonClick(event)" visible="{editing}">
 		<s:Rect right="0" width="41" height="24" alpha.open="1" alpha.closed="0">
 			<s:stroke>
 				<s:SolidColorStroke color="#D8D8D8" />

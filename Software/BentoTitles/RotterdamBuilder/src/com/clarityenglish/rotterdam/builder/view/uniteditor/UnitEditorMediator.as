@@ -3,7 +3,8 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
+	
+	import flash.utils.setTimeout;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,6 +27,12 @@
 			
 			view.widgetSelect.add(onWidgetSelect);
 			view.widgetDelete.add(onWidgetDelete);
+			
+			// TODO: Hacky!  Do this properly for the non-prototype version.
+			setTimeout(function():void {
+				var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+				view.widgetCollection = courseProxy.widgetCollection;
+			}, 1000);
 		}
 		
 		override public function onRemove():void {
