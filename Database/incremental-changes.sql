@@ -626,5 +626,10 @@ update T_AccountRoot
 set F_CustomerType = 0
 where not F_Name like ('%Library%');
 
+-- For Rotterdam, CCB
+INSERT INTO `T_Product` VALUES
+(54,'Clarity Course Builder',NULL,10);
+INSERT INTO `T_ProductLanguage` VALUES (54,'EN','');
+DROP TABLE IF EXISTS `T_CcbSchedule`;
 
 
