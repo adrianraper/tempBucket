@@ -62,7 +62,9 @@ courseeditor|ToolBarView s|Button#normalSaveButton {
 
 courseeditor|ToolBarView s|Button#normalAddTextButton,
 courseeditor|ToolBarView s|Button#normalAddVideoButton,
-courseeditor|ToolBarView s|Button#normalAddPDFButton {
+courseeditor|ToolBarView s|Button#normalAddPDFButton,
+courseeditor|ToolBarView s|Button#normalAddImageButton,
+courseeditor|ToolBarView s|Button#normalAddAudioButton {
 	chromeColor: #86BD3E;
 }
 

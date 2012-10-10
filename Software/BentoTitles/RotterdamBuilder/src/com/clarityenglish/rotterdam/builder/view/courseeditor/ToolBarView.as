@@ -13,9 +13,6 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
 	
-	[SkinState("normal")]
-	[SkinState("pdf")]
-	[SkinState("video")]
 	public class ToolBarView extends BentoView {
 		
 		/**
@@ -36,6 +33,12 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var normalAddVideoButton:Button;
 		
 		[SkinPart]
+		public var normalAddImageButton:Button;
+		
+		[SkinPart]
+		public var normalAddAudioButton:Button;
+		
+		[SkinPart]
 		public var normalPreviewButton:Button;
 		
 		[SkinPart]
@@ -43,6 +46,12 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		
 		[SkinPart]
 		public var pdfUploadButton:Button;
+		
+		[SkinPart]
+		public var imageUploadButton:Button;
+		
+		[SkinPart]
+		public var audioUploadButton:Button;
 		
 		[SkinPart]
 		public var videoUrlTextInput:TextInput;
@@ -68,13 +77,15 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object);
 		public var addPDF:Signal = new Signal(Object);
+		public var addImage:Signal = new Signal(Object);
+		public var addAudio:Signal = new Signal(Object);
 		public var addVideo:Signal = new Signal(Object);
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
 		
 		public function ToolBarView() {
-			StateUtil.addStates(this, [ "normal", "pdf", "video", "preview" ], true);
+			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "preview" ], true);
 		}
 		
 		public function setCurrentTextFormat(format:TextLayoutFormat):void {
@@ -116,6 +127,12 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 				case normalAddVideoButton:
 					normalAddVideoButton.addEventListener(MouseEvent.CLICK, onNormalAddVideo);
 					break;
+				case normalAddImageButton:
+					normalAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
+					break;
+				case normalAddAudioButton:
+					normalAddAudioButton.addEventListener(MouseEvent.CLICK, onNormalAddAudio);
+					break;
 				case normalPreviewButton:
 					normalPreviewButton.addEventListener(MouseEvent.CLICK, onNormalPreview);
 					break;
@@ -124,6 +141,12 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 					break;
 				case pdfUploadButton:
 					pdfUploadButton.addEventListener(MouseEvent.CLICK, onPdfUpload);
+					break;
+				case imageUploadButton:
+					imageUploadButton.addEventListener(MouseEvent.CLICK, onImageUpload);
+					break;
+				case audioUploadButton:
+					audioUploadButton.addEventListener(MouseEvent.CLICK, onAudioUpload);
 					break;
 				case videoSelectButton:
 					videoSelectButton.addEventListener(MouseEvent.CLICK, onVideoSelect);
@@ -140,6 +163,14 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 					instance.addEventListener(MouseEvent.CLICK, onFontSizeChange);
 					break;
 			}
+		}
+		
+		protected function onNormalAddImage(event:MouseEvent):void {
+			setCurrentState("image");
+		}
+		
+		protected function onNormalAddAudio(event:MouseEvent):void {
+			setCurrentState("audio");
 		}
 		
 		protected function onNormalSave(event:MouseEvent):void {
@@ -164,6 +195,16 @@ package com.clarityenglish.rotterdam.builder.view.courseeditor {
 		
 		protected function onPdfUpload(event:MouseEvent):void {
 			addPDF.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
+			setCurrentState("normal");
+		}
+		
+		protected function onImageUpload(event:MouseEvent):void {
+			addImage.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
+			setCurrentState("normal");
+		}
+		
+		protected function onAudioUpload(event:MouseEvent):void {
+			addAudio.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		

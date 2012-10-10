@@ -47,6 +47,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		[SkinPart]
 		public var progressRange:Range;
 		
+		[Bindable]
+		public var mediaFolder:String;
+		
 		protected var _xml:XML;
 		
 		protected var _editable:Boolean;

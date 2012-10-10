@@ -19,3 +19,11 @@ widgets|PDFWidget {
 widgets|VideoWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.VideoWidgetSkin");
 }
+
+widgets|ImageWidget {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.ImageWidgetSkin");
+}
+
+widgets|AudioWidget {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.AudioWidgetSkin");
+}

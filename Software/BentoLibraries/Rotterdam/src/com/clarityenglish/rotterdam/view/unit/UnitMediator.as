@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
+	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.utils.setTimeout;
@@ -35,6 +36,8 @@
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			AudioPlayer.stopAllAudio();
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {

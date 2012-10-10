@@ -27,6 +27,8 @@
 			view.saveCourse.add(onSaveCourse);
 			view.addText.add(onAddText);
 			view.addPDF.add(onAddPDF);
+			view.addImage.add(onAddImage);
+			view.addAudio.add(onAddAudio);
 			view.addVideo.add(onAddVideo);
 			view.formatText.add(onFormatText);
 			view.preview.add(onPreview);
@@ -39,6 +41,8 @@
 			view.saveCourse.remove(onSaveCourse);
 			view.addText.remove(onAddText);
 			view.addPDF.remove(onAddPDF);
+			view.addImage.remove(onAddImage);
+			view.addAudio.remove(onAddAudio);
 			view.addVideo.remove(onAddVideo);
 			view.formatText.remove(onFormatText);
 			view.preview.remove(onPreview);
@@ -71,6 +75,14 @@
 		
 		protected function onAddPDF(options:Object):void {
 			facade.sendNotification(RotterdamNotifications.PDF_WIDGET_ADD, options);
+		}
+		
+		protected function onAddImage(options:Object):void {
+			facade.sendNotification(RotterdamNotifications.IMAGE_WIDGET_ADD, options);
+		}
+		
+		protected function onAddAudio(options:Object):void {
+			facade.sendNotification(RotterdamNotifications.AUDIO_WIDGET_ADD, options);
 		}
 		
 		protected function onAddVideo(options:Object):void {

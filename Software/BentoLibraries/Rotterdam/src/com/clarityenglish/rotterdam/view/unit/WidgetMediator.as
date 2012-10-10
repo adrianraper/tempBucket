@@ -31,6 +31,11 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
+			// TODO: media/ should not be hardcoded
+			view.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
+			
 			view.openMedia.add(onOpenMedia);
 			view.textSelected.add(onTextSelected);
 		}
@@ -89,6 +94,7 @@
 		
 		protected function onOpenMedia(widget:XML, src:String):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			
 			// TODO: media/ should not be hardcoded
 			var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 			navigateToURL(new URLRequest(srcHref.url), "_blank");

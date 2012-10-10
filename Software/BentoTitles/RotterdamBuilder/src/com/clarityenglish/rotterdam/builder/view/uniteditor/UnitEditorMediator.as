@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
+	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
 	import flash.utils.setTimeout;
 	
@@ -40,6 +41,8 @@
 			
 			view.widgetSelect.remove(onWidgetSelect);
 			view.widgetDelete.remove(onWidgetDelete);
+			
+			AudioPlayer.stopAllAudio();
 		}
 		
 		override public function listNotificationInterests():Array {

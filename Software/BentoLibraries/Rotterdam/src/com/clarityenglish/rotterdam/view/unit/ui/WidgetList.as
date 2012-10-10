@@ -1,5 +1,7 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.layouts.UnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
@@ -44,7 +46,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		}
 		
 		private function nodeNameToWidgetClass(name:String):Class {
-			// TODO: Add in more widgets; also these should probably be specified elsewhere
+			// TODO: These should probably be specified elsewhere
 			switch (name) {
 				case "text":
 					return TextWidget;
@@ -52,6 +54,10 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 					return PDFWidget;
 				case "video":
 					return VideoWidget;
+				case "image":
+					return ImageWidget;
+				case "audio":
+					return AudioWidget;
 				default:
 					log.error("Unsupported widget node " + name);
 					return null;

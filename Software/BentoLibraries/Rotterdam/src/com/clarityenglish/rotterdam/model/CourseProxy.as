@@ -76,7 +76,7 @@ package com.clarityenglish.rotterdam.model {
 		
 		public function widgetAdd(widget:XML):void {
 			if (_widgetCollection) {
-				log.info("Adding wiget " + widget.toXMLString());
+				log.info("Adding widget " + widget.toXMLString());
 				_widgetCollection.addItem(widget);
 			} else {
 				log.error("Attempted to add a widget with no widget collection");
@@ -85,7 +85,7 @@ package com.clarityenglish.rotterdam.model {
 		
 		public function widgetDelete(widget:XML):void {
 			if (_widgetCollection) {
-				log.info("Deleting wiget " + widget.toXMLString());
+				log.info("Deleting widget " + widget.toXMLString());
 				_widgetCollection.removeItemAt(widgetCollection.getItemIndex(widget));
 			} else {
 				log.error("Attempted to delete a widget with no widget collection");

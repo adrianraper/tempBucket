@@ -25,6 +25,8 @@
 		public static const TEXT_WIDGET_ADD:String = "text_widget_add";
 		public static const PDF_WIDGET_ADD:String = "pdf_widget_add";
 		public static const VIDEO_WIDGET_ADD:String = "video_widget_add";
+		public static const IMAGE_WIDGET_ADD:String = "image_widget_add";
+		public static const AUDIO_WIDGET_ADD:String = "audio_widget_add";
 		
 		public static const TEXT_FORMAT:String = "text_format";
 		public static const TEXT_SELECTED:String = "text_selected";
