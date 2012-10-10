@@ -28,6 +28,7 @@
 			
 			view.createCourse.add(onCreateCourse);
 			view.editCourse.add(onEditCourse);
+			view.selectCourse.add(onSelectCourse);
 			
 			// Load courses.xml
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -39,6 +40,7 @@
 			
 			view.createCourse.remove(onCreateCourse);
 			view.editCourse.remove(onEditCourse);
+			view.selectCourse.remove(onSelectCourse);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -64,6 +66,10 @@
 		
 		private function onEditCourse(course:XML):void {
 			facade.sendNotification(RotterdamNotifications.COURSE_EDITOR_SHOW, course);
+		}
+		
+		private function onSelectCourse(course:XML):void {
+			trace("select course");
 		}
 		
 	}

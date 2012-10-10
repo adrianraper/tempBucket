@@ -2,7 +2,25 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace player "com.clarityenglish.rotterdam.player.*";
+@namespace title "com.clarityenglish.rotterdam.player.view.title.*";
+@namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
 
 player|PlayerApplication {
 	skinClass: ClassReference("skins.rotterdam.player.PlayerApplicationSkin");
+}
+
+title|TitleView {
+	skinClass: ClassReference("skins.rotterdam.player.title.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.viewnavigator.WebTabbedViewNavigatorSkin");
+}
+
+title|TitleView s|ViewNavigator {
+	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
+}
+
+courseselector|CourseSelectorView {
+	skinClass: ClassReference("skins.rotterdam.player.courseselector.CourseSelectorSkin");
 }

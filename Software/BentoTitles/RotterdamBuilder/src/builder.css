@@ -2,14 +2,13 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace builder "com.clarityenglish.rotterdam.builder.*";
-@namespace login "com.clarityenglish.rotterdam.builder.view.login.*";
 @namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
 @namespace courseeditor "com.clarityenglish.rotterdam.builder.view.courseeditor.*";
 @namespace title "com.clarityenglish.rotterdam.builder.view.title.*";
 @namespace uniteditor "com.clarityenglish.rotterdam.builder.view.uniteditor.*";
 @namespace filemanager "com.clarityenglish.rotterdam.builder.view.filemanager.*";
 @namespace widgets "skins.rotterdam.unit.widgets.*";
-@namespace login1 "com.clarityenglish.rotterdam.view.login.*";
+@namespace login "com.clarityenglish.rotterdam.view.login.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -19,7 +18,7 @@ builder|BuilderApplication {
 	skinClass: ClassReference("skins.rotterdam.builder.BuilderApplicationSkin");
 }
 
-login1|LoginView {
+login|LoginView {
 	skinClass: ClassReference("skins.rotterdam.builder.login.LoginSkin");
 }
 
@@ -28,11 +27,11 @@ title|TitleView {
 }
 
 title|TitleView s|TabbedViewNavigator {
-	skinClass: ClassReference("skins.rotterdam.builder.title.TitleTabbedViewNavigatorSkin");
+	skinClass: ClassReference("skins.viewnavigator.WebTabbedViewNavigatorSkin");
 }
 
 title|TitleView s|ViewNavigator {
-	skinClass: ClassReference("skins.rotterdam.builder.title.TitleViewNavigatorSkin");
+	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
 }
 
 courseselector|CourseSelectorView {

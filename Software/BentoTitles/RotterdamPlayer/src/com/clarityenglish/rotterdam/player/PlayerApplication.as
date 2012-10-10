@@ -29,7 +29,7 @@ package com.clarityenglish.rotterdam.player {
 		public function PlayerApplication() {
 			super();
 			
-			StateUtil.addStates(this, [ "loading", "login", "courseselector" ], true);
+			StateUtil.addStates(this, [ "loading", "login", "title" ], true);
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, creationComplete);
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);

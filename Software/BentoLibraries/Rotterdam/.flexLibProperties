@@ -16,6 +16,8 @@
     <classEntry path="com.clarityenglish.rotterdam.controller.CourseStartCommand"/>
     <classEntry path="com.clarityenglish.rotterdam.view.login.LoginView"/>
     <classEntry path="com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand"/>
+    <classEntry path="skins.viewnavigator.WebViewNavigatorSkin"/>
+    <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

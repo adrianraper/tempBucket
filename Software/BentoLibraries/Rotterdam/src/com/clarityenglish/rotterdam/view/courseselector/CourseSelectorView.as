@@ -23,8 +23,12 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		[SkinPart]
 		public var editCourseButton:Button;
 		
+		[SkinPart]
+		public var selectCourseButton:Button;
+		
 		public var createCourse:Signal = new Signal(Course);
-		public var editCourse:Signal = new Signal(XML);
+		public var editCourse:Signal = new Signal(XML); // TODO: this should not be necessary!  selectCourse should do different things depending on builder/player mode
+		public var selectCourse:Signal = new Signal(XML);
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
@@ -49,6 +53,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				case editCourseButton:
 					editCourseButton.addEventListener(MouseEvent.CLICK, onEditCourse);
 					break;
+				case selectCourseButton:
+					selectCourseButton.addEventListener(MouseEvent.CLICK, onSelectCourse);
+					break;
 			}
 		}
 		
@@ -63,6 +70,11 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		protected function onEditCourse(event:MouseEvent):void {
 			if (courseList.selectedItem)
 				editCourse.dispatch(courseList.selectedItem);
+		}
+		
+		protected function onSelectCourse(event:MouseEvent):void {
+			if (courseList.selectedItem)
+				selectCourse.dispatch(courseList.selectedItem);
 		}
 		
 	}
