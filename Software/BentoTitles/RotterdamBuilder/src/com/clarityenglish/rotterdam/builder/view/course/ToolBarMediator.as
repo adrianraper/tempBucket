@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.rotterdam.builder.view.courseeditor {
+﻿package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;

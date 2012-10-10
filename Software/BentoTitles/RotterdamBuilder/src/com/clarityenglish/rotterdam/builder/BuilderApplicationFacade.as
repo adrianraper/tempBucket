@@ -16,10 +16,10 @@
 	import com.clarityenglish.rotterdam.builder.controller.widgets.PDFWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.TextWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.VideoWidgetAddCommand;
-	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorMediator;
-	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView;
-	import com.clarityenglish.rotterdam.builder.view.courseeditor.ToolBarMediator;
-	import com.clarityenglish.rotterdam.builder.view.courseeditor.ToolBarView;
+	import com.clarityenglish.rotterdam.builder.view.course.CourseMediator;
+	import com.clarityenglish.rotterdam.builder.view.course.CourseView;
+	import com.clarityenglish.rotterdam.builder.view.course.ToolBarMediator;
+	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
 	import com.clarityenglish.rotterdam.builder.view.title.TitleMediator;
@@ -38,7 +38,7 @@
 			super.initializeController();
 			
 			mapView(TitleView, TitleMediator);
-			mapView(CourseEditorView, CourseEditorMediator);
+			mapView(CourseView, CourseMediator);
 			mapView(ToolBarView, ToolBarMediator);
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);

@@ -9,6 +9,7 @@
 @namespace filemanager "com.clarityenglish.rotterdam.builder.view.filemanager.*";
 @namespace widgets "skins.rotterdam.unit.widgets.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace course "com.clarityenglish.rotterdam.builder.view.course.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -38,47 +39,47 @@ courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
 }
 
-courseeditor|CourseEditorView {
-	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.CourseEditorSkin");
+course|CourseView {
+	skinClass: ClassReference("skins.rotterdam.builder.course.CourseSkin");
 }
 
-courseeditor|ToolBarView {
-	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.ToolBarSkin");
+course|ToolBarView {
+	skinClass: ClassReference("skins.rotterdam.builder.course.ToolBarSkin");
 }
 
-courseeditor|ToolBarView s|Button {
-	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.ToolBarButtonSkin");
+course|ToolBarView s|Button {
+	skinClass: ClassReference("skins.rotterdam.builder.course.ToolBarButtonSkin");
 	fontSize: 13;
 }
 
-courseeditor|ToolBarView s|ToggleButton {
-	skinClass: ClassReference("skins.rotterdam.builder.courseeditor.ToolBarToggleButtonSkin");
+course|ToolBarView s|ToggleButton {
+	skinClass: ClassReference("skins.rotterdam.builder.course.ToolBarToggleButtonSkin");
 	fontSize: 13;
 }
 
-courseeditor|ToolBarView s|Button#normalSaveButton {
+course|ToolBarView s|Button#normalSaveButton {
 	chromeColor: #2899CD;
 }
 
-courseeditor|ToolBarView s|Button#normalAddTextButton,
-courseeditor|ToolBarView s|Button#normalAddVideoButton,
-courseeditor|ToolBarView s|Button#normalAddPDFButton,
-courseeditor|ToolBarView s|Button#normalAddImageButton,
-courseeditor|ToolBarView s|Button#normalAddAudioButton {
+course|ToolBarView s|Button#normalAddTextButton,
+course|ToolBarView s|Button#normalAddVideoButton,
+course|ToolBarView s|Button#normalAddPDFButton,
+course|ToolBarView s|Button#normalAddImageButton,
+course|ToolBarView s|Button#normalAddAudioButton {
 	chromeColor: #86BD3E;
 }
 
-courseeditor|ToolBarView s|Button#videoSelectButton {
+course|ToolBarView s|Button#videoSelectButton {
 	chromeColor: #FFC602;
 }
 
-courseeditor|ToolBarView s|Button#normalPreviewButton {
+course|ToolBarView s|Button#normalPreviewButton {
 	chromeColor: #FFC602;
 	topRightRadiusX: 5;
 }
 
-courseeditor|ToolBarView s|Button#normalCancelButton,
-courseeditor|ToolBarView s|Button#previewBackToEditorButton {
+course|ToolBarView s|Button#normalCancelButton,
+course|ToolBarView s|Button#previewBackToEditorButton {
 	chromeColor: #FF0000;
 	topRightRadiusX: 5;
 }

@@ -1,4 +1,4 @@
-package com.clarityenglish.rotterdam.builder.view.courseeditor {
+package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
 	
 	import flash.events.MouseEvent;

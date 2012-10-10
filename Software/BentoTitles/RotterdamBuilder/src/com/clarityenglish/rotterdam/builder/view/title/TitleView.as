@@ -1,6 +1,6 @@
 package com.clarityenglish.rotterdam.builder.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.rotterdam.builder.view.courseeditor.CourseEditorView;
+	import com.clarityenglish.rotterdam.builder.view.course.CourseView;
 	
 	import flash.events.Event;
 	
@@ -21,10 +21,10 @@ package com.clarityenglish.rotterdam.builder.view.title {
 			_selectedCourseXML = value;
 			
 			if (_selectedCourseXML) {
-				if (ClassUtil.getClass(myCoursesViewNavigator.activeView) == CourseEditorView) {
+				if (ClassUtil.getClass(myCoursesViewNavigator.activeView) == CourseView) {
 					myCoursesViewNavigator.activeView.data = _selectedCourseXML;
 				} else {
-					myCoursesViewNavigator.pushView(CourseEditorView, _selectedCourseXML);
+					myCoursesViewNavigator.pushView(CourseView, _selectedCourseXML);
 				}
 			}
 			
