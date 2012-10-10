@@ -1,0 +1,8 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace player "com.clarityenglish.rotterdam.player.*";
+
+player|PlayerApplication {
+	skinClass: ClassReference("skins.rotterdam.player.PlayerApplicationSkin");
+}

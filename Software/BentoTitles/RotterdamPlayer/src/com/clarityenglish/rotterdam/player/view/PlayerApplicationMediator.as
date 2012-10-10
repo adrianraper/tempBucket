@@ -68,18 +68,17 @@ package com.clarityenglish.rotterdam.player.view {
 		private function handleStateChange(state:State):void {
 			log.debug("State machine moved into state {0}", state.name);
 			
+			log.debug("State machine moved into state {0}", state.name);
+			
 			switch (state.name) {
 				case BBStates.STATE_LOAD_COPY:
 				case BBStates.STATE_LOAD_ACCOUNT:
 				case BBStates.STATE_LOAD_MENU:
 					view.currentState = "loading";
 					break;
-				/*case BBStates.STATE_TITLE:
+				case BBStates.STATE_TITLE:
 					view.currentState = "title";
 					view.callLater(handleDirectStart); // need to use callLater as otherwise the title state hasn't validated yet
-					break;*/
-				case BuilderStates.STATE_COURSE_SELECTOR:
-					view.currentState = "courseselector";
 					break;
 				case BBStates.STATE_CREDITS:
 					view.currentState = "credits";

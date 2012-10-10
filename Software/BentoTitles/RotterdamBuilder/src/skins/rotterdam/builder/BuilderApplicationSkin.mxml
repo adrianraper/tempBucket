@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
         xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
 		xmlns:login="com.clarityenglish.rotterdam.builder.view.login.*"
-		xmlns:title="com.clarityenglish.rotterdam.builder.view.title.*">
+		xmlns:title="com.clarityenglish.rotterdam.builder.view.title.*" xmlns:login1="com.clarityenglish.rotterdam.view.login.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.BuilderApplication")]
@@ -21,11 +21,10 @@
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
 		<s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" /> <!-- TODO: just used the mobile one for speediness for the moment -->
-		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
+		<login1:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
 		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
 		
-		<!--<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
-		<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
+		<!--<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
 		<nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />-->
 	</s:Group>
 	

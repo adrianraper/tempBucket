@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.builder.view.login.LoginView")]
+		[HostComponent("com.clarityenglish.rotterdam.view.login.LoginView")]
 	</fx:Metadata>
 	
 	<!-- states -->

@@ -37,7 +37,7 @@
 		}*/
 	</fx:Style>
 	
-	<!--<fx:Style source="builder.css" />-->
+	<fx:Style source="player.css" />
 	
 	<fx:Script>
 		<![CDATA[

@@ -18,7 +18,7 @@ package com.clarityenglish.rotterdam.player {
 	
 	[SkinState("loading")]
 	[SkinState("login")]
-	[SkinState("courseselector")]
+	[SkinState("title")]
 	public class PlayerApplication extends BentoApplication implements IBentoApplication {
 		
 		[Bindable]

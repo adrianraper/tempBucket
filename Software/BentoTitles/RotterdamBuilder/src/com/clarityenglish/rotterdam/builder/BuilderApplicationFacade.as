@@ -2,11 +2,10 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupCommand;
-	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupStateMachineCommand;
+	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
@@ -23,7 +22,6 @@
 	import com.clarityenglish.rotterdam.builder.view.courseeditor.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
-	import com.clarityenglish.rotterdam.builder.view.login.LoginView;
 	import com.clarityenglish.rotterdam.builder.view.title.TitleMediator;
 	import com.clarityenglish.rotterdam.builder.view.title.TitleView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
@@ -39,7 +37,6 @@
 		override protected function initializeController():void {
 			super.initializeController();
 			
-			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(CourseEditorView, CourseEditorMediator);
 			mapView(ToolBarView, ToolBarMediator);
@@ -62,7 +59,7 @@
 			
 			// Remove the default Bento state machine (which isn't quite applicable to the builder) and replace it with a new one
 			removeCommand(CommonNotifications.CONFIG_LOADED);
-			registerCommand(CommonNotifications.CONFIG_LOADED, BuilderStartupStateMachineCommand);
+			registerCommand(CommonNotifications.CONFIG_LOADED, RotterdamStartupStateMachineCommand);
 			
 			registerCommand(BBNotifications.STARTUP, BuilderStartupCommand);
 		}

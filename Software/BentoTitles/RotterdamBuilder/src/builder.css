@@ -9,6 +9,7 @@
 @namespace uniteditor "com.clarityenglish.rotterdam.builder.view.uniteditor.*";
 @namespace filemanager "com.clarityenglish.rotterdam.builder.view.filemanager.*";
 @namespace widgets "skins.rotterdam.unit.widgets.*";
+@namespace login1 "com.clarityenglish.rotterdam.view.login.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -18,7 +19,7 @@ builder|BuilderApplication {
 	skinClass: ClassReference("skins.rotterdam.builder.BuilderApplicationSkin");
 }
 
-login|LoginView {
+login1|LoginView {
 	skinClass: ClassReference("skins.rotterdam.builder.login.LoginSkin");
 }
 

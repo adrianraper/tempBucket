@@ -14,6 +14,8 @@
     <classEntry path="skins.rotterdam.unit.widgets.WidgetChrome"/>
     <classEntry path="skins.rotterdam.unit.widgets.MenuButtonSkin"/>
     <classEntry path="com.clarityenglish.rotterdam.controller.CourseStartCommand"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.login.LoginView"/>
+    <classEntry path="com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
