@@ -1,3 +1,5 @@
+
+/area1
 /Content
 /ap
 /BritishCouncil
@@ -10,7 +12,7 @@
 /SCORM
 /shared
 /shares
-/SErverStuff
+/ServerStuff
 /Software/BentoLibraries/Rotterdam/bin
 /Software/BentoTitles/IELTSIPadTester
 bin-debug
@@ -25,4 +27,9 @@ bin-release-temp
 /Software/BentoTitles/IELTS/src/skins/ielts/assets/textLayout_2.0.0.232.swz
 /Software/Bento/bin/Bento.swc
 /Software/Common/as3csslib/bin/csslib.swc
-AccessUK
+logs
+/Software/ResultsManager/web/*.swf
+/Software/ResultsManager/web/*.swz
+/Software/ResultsManager/web/smarty/cache/
+/Software/ResultsManager/web/smarty/templates_c/
+/Software/ResultsManager/html-template
