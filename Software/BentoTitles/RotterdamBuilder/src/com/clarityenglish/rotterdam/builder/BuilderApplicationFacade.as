@@ -16,8 +16,8 @@
 	import com.clarityenglish.rotterdam.builder.controller.widgets.PDFWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.TextWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.VideoWidgetAddCommand;
-	import com.clarityenglish.rotterdam.builder.view.course.CourseMediator;
-	import com.clarityenglish.rotterdam.builder.view.course.CourseView;
+	import com.clarityenglish.rotterdam.view.course.CourseMediator;
+	import com.clarityenglish.rotterdam.view.course.CourseView;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarMediator;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;

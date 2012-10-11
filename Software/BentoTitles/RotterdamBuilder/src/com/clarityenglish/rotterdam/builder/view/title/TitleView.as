@@ -1,6 +1,6 @@
 package com.clarityenglish.rotterdam.builder.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.rotterdam.builder.view.course.CourseView;
+	import com.clarityenglish.rotterdam.view.course.CourseView;
 	
 	import flash.events.Event;
 	

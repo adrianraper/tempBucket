@@ -10,6 +10,7 @@
 @namespace widgets "skins.rotterdam.unit.widgets.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace course "com.clarityenglish.rotterdam.builder.view.course.*";
+@namespace course1 "com.clarityenglish.rotterdam.view.course.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -39,7 +40,7 @@ courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
 }
 
-course|CourseView {
+course1|CourseView {
 	skinClass: ClassReference("skins.rotterdam.builder.course.CourseSkin");
 }
 

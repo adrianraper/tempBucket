@@ -1,4 +1,4 @@
-package com.clarityenglish.rotterdam.builder.view.course {
+package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -27,9 +27,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		[SkinPart]
 		public var addUnitButton:Button;
-		
-		[SkinPart]
-		public var backButton:Button;
 		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
@@ -79,9 +76,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case addUnitButton:
 					addUnitButton.addEventListener(MouseEvent.CLICK, onAddUnit);
 					break;
-				case backButton:
-					backButton.addEventListener(MouseEvent.CLICK, onBack);
-					break;
 			}
 		}
 		
@@ -93,17 +87,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			// TODO: need to have the designs to know exactly how this will work but for now just use a random name.
 			// Also this should use a notification and command instead of adding it directly to the collection.
 			unitListCollection.addItem(<unit caption='New unit' />);
-		}
-		
-		/**
-		 * No longer used
-		 */
-		protected function onBack(event:MouseEvent):void {
-			navigator.popToFirstView();
-		}
-		
-		private function onPreview(event:MouseEvent):void {
-			invalidateSkinState();
 		}
 		
 		/**

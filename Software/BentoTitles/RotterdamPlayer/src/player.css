@@ -4,6 +4,7 @@
 @namespace player "com.clarityenglish.rotterdam.player.*";
 @namespace title "com.clarityenglish.rotterdam.player.view.title.*";
 @namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
+@namespace course "com.clarityenglish.rotterdam.view.course.*";
 
 player|PlayerApplication {
 	skinClass: ClassReference("skins.rotterdam.player.PlayerApplicationSkin");
@@ -23,4 +24,8 @@ title|TitleView s|ViewNavigator {
 
 courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.player.courseselector.CourseSelectorSkin");
+}
+
+course|CourseView {
+	skinClass: ClassReference("skins.rotterdam.player.course.CourseSkin");
 }

@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.rotterdam.builder.view.course {
+﻿package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
