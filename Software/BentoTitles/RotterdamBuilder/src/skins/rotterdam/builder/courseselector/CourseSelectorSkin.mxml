@@ -22,6 +22,6 @@
 	<s:List id="courseList" labelField="@caption" width="100%" />
 	
 	<s:Button id="createCourseButton" label="Create a New Course" />
-	<s:Button id="editCourseButton" label="Edit Course" enabled="{courseList.selectedItem != null}" />
+	<s:Button id="selectCourseButton" label="Edit course" enabled="{courseList.selectedItem != null}" />
 	
 </s:Skin>

@@ -27,7 +27,6 @@
 			super.onRegister();
 			
 			view.createCourse.add(onCreateCourse);
-			view.editCourse.add(onEditCourse);
 			view.selectCourse.add(onSelectCourse);
 			
 			// Load courses.xml
@@ -39,7 +38,6 @@
 			super.onRemove();
 			
 			view.createCourse.remove(onCreateCourse);
-			view.editCourse.remove(onEditCourse);
 			view.selectCourse.remove(onSelectCourse);
 		}
 		
@@ -64,12 +62,15 @@
 			facade.sendNotification(RotterdamNotifications.COURSE_CREATE, course);
 		}
 		
-		private function onEditCourse(course:XML):void {
+		/*private function onEditCourse(course:XML):void {
 			facade.sendNotification(RotterdamNotifications.COURSE_EDITOR_SHOW, course);
-		}
+		}*/
 		
 		private function onSelectCourse(course:XML):void {
-			trace("select course");
+			trace(course.toXMLString());
+			//facade.sendNotification(RotterdamNotifications.COURSE_EDITOR_SHOW, course);
+			
+			// Maybe have a COURSE_LOAD ?
 		}
 		
 	}

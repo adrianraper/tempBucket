@@ -8,6 +8,7 @@
 	
 	/**
 	 * A Mediator
+	 * TODO: builder and player TitleMediator could be combined, I think?
 	 */
 	public class TitleMediator extends BentoMediator implements IMediator {
 		
