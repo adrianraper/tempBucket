@@ -3,43 +3,43 @@
 	public class RotterdamNotifications {
 		
 		// Course notifications
-		public static const COURSE_START:String = "course_start";
-		public static const COURSE_STARTED:String = "course_started";
+		public static const COURSE_START:String = "rotterdam/course_start";
+		public static const COURSE_STARTED:String = "rotterdam/course_started";
 		
-		public static const COURSE_EDITOR_SHOW:String = "course_editor_show";
+		public static const COURSE_EDITOR_SHOW:String = "rotterdam/course_editor_show";
 		
-		public static const COURSE_CREATE:String = "course_create";
-		public static const COURSE_CREATED:String = "course_created";
+		public static const COURSE_CREATE:String = "rotterdam/course_create";
+		public static const COURSE_CREATED:String = "rotterdam/course_created";
 		
-		public static const COURSE_SAVE:String = "course_save";
-		public static const COURSE_SAVED:String = "course_saved";
+		public static const COURSE_SAVE:String = "rotterdam/course_save";
+		public static const COURSE_SAVED:String = "rotterdam/course_saved";
 		
 		// Unit notifications
-		public static const UNIT_START:String = "unit_start";
-		public static const UNIT_STARTED:String = "unit_started";
+		public static const UNIT_START:String = "rotterdam/unit_start";
+		public static const UNIT_STARTED:String = "rotterdam/unit_started";
 		
-		public static const WIDGET_SELECT:String = "widget_select";
-		public static const WIDGET_ADD:String = "widget_add";
-		public static const WIDGET_DELETE:String = "widget_delete";
+		public static const WIDGET_SELECT:String = "rotterdam/widget_select";
+		public static const WIDGET_ADD:String = "rotterdam/widget_add";
+		public static const WIDGET_DELETE:String = "rotterdam/widget_delete";
 		
-		public static const TEXT_WIDGET_ADD:String = "text_widget_add";
-		public static const PDF_WIDGET_ADD:String = "pdf_widget_add";
-		public static const VIDEO_WIDGET_ADD:String = "video_widget_add";
-		public static const IMAGE_WIDGET_ADD:String = "image_widget_add";
-		public static const AUDIO_WIDGET_ADD:String = "audio_widget_add";
+		public static const TEXT_WIDGET_ADD:String = "rotterdam/text_widget_add";
+		public static const PDF_WIDGET_ADD:String = "rotterdam/pdf_widget_add";
+		public static const VIDEO_WIDGET_ADD:String = "rotterdam/video_widget_add";
+		public static const IMAGE_WIDGET_ADD:String = "rotterdam/image_widget_add";
+		public static const AUDIO_WIDGET_ADD:String = "rotterdam/audio_widget_add";
 		
-		public static const TEXT_FORMAT:String = "text_format";
-		public static const TEXT_SELECTED:String = "text_selected";
+		public static const TEXT_FORMAT:String = "rotterdam/text_format";
+		public static const TEXT_SELECTED:String = "rotterdam/text_selected";
 		
-		public static const PREVIEW_SHOW:String = "preview_show";
-		public static const PREVIEW_HIDE:String = "preview_hide";
+		public static const PREVIEW_SHOW:String = "rotterdam/preview_show";
+		public static const PREVIEW_HIDE:String = "rotterdam/preview_hide";
 		
 		// Upload notifications
-		public static const MEDIA_UPLOAD:String = "media_upload";
-		public static const MEDIA_UPLOAD_START:String = "media_upload_start";
-		public static const MEDIA_UPLOAD_PROGRESS:String = "media_upload_progress";
-		public static const MEDIA_UPLOAD_ERROR:String = "media_upload_error";
-		public static const MEDIA_UPLOADED:String = "media_uploaded";
+		public static const MEDIA_UPLOAD:String = "rotterdam/media_upload";
+		public static const MEDIA_UPLOAD_START:String = "rotterdam/media_upload_start";
+		public static const MEDIA_UPLOAD_PROGRESS:String = "rotterdam/media_upload_progress";
+		public static const MEDIA_UPLOAD_ERROR:String = "rotterdam/media_upload_error";
+		public static const MEDIA_UPLOADED:String = "rotterdam/media_uploaded";
 		
 	}
 	
