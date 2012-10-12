@@ -31,6 +31,12 @@ package com.clarityenglish.rotterdam.builder.view.title {
 			dispatchEvent(new Event("courseSelected"));
 		}
 		
+		public function showCourseView():void {
+			if (ClassUtil.getClass(myCoursesViewNavigator.activeView) != CourseView) {
+				myCoursesViewNavigator.pushView(CourseView);
+			}
+		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 		}		
