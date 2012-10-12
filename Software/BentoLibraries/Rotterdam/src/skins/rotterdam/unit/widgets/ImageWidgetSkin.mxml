@@ -25,7 +25,7 @@
 						  left="0" right="0" top="0" bottom="0" />
 	
 	<!-- Progress bar -->
-	<s:Range id="progressRange" left="6" right="6" top="45" height="10" />
+	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
 	
 	<s:VGroup left="0" right="0" top="25" paddingBottom="10">
 		<!-- Text -->

@@ -38,7 +38,6 @@
 		override public function onRemove():void {
 			super.onRemove();
 			
-			//view.courseLoad.remove(onCourseLoad);
 			view.unitSelect.remove(onUnitSelect);
 		}
 		

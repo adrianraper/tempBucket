@@ -29,7 +29,7 @@
 	<components:AudioPlayer src="{hostComponent.mediaFolder + '/' + hostComponent.src}" top="35" left="6" controls="full" />
 	
 	<!-- Progress bar -->
-	<s:Range id="progressRange" left="6" right="6" top="45" height="10" />
+	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
 	
 	<!-- Text -->
 	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" top="75" minHeight="75"  />
