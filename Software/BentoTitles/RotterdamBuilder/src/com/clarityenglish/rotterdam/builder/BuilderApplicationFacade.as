@@ -5,7 +5,6 @@
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupCommand;
-	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
@@ -16,16 +15,15 @@
 	import com.clarityenglish.rotterdam.builder.controller.widgets.PDFWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.TextWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.VideoWidgetAddCommand;
-	import com.clarityenglish.rotterdam.view.course.CourseMediator;
-	import com.clarityenglish.rotterdam.view.course.CourseView;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarMediator;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
-	import com.clarityenglish.rotterdam.builder.view.title.TitleMediator;
-	import com.clarityenglish.rotterdam.builder.view.title.TitleView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
+	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
+	import com.clarityenglish.rotterdam.view.course.CourseMediator;
+	import com.clarityenglish.rotterdam.view.course.CourseView;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -37,8 +35,6 @@
 		override protected function initializeController():void {
 			super.initializeController();
 			
-			mapView(TitleView, TitleMediator);
-			mapView(CourseView, CourseMediator);
 			mapView(ToolBarView, ToolBarMediator);
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);

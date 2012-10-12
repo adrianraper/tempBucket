@@ -2,7 +2,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace player "com.clarityenglish.rotterdam.player.*";
-@namespace title "com.clarityenglish.rotterdam.player.view.title.*";
+@namespace title "com.clarityenglish.rotterdam.view.title.*";
 @namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
 @namespace course "com.clarityenglish.rotterdam.view.course.*";
 

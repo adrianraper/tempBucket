@@ -5,8 +5,6 @@
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
 	import com.clarityenglish.rotterdam.player.controller.PlayerStartupCommand;
-	import com.clarityenglish.rotterdam.player.view.title.TitleMediator;
-	import com.clarityenglish.rotterdam.player.view.title.TitleView;
 	
 	public class PlayerApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -17,8 +15,6 @@
 		
 		override protected function initializeController():void {
 			super.initializeController();
-			
-			mapView(TitleView, TitleMediator);
 			
 			// Remove the default Bento state machine (which isn't quite applicable to the builder) and replace it with a new one
 			removeCommand(CommonNotifications.CONFIG_LOADED);

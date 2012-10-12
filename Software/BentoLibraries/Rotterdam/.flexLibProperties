@@ -20,6 +20,8 @@
     <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
     <classEntry path="com.clarityenglish.rotterdam.view.course.CourseMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.course.CourseView"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.title.TitleView"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

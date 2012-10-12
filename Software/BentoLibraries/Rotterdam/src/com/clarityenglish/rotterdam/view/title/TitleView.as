@@ -1,4 +1,4 @@
-package com.clarityenglish.rotterdam.builder.view.title {
+package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.course.CourseView;
 	
@@ -12,24 +12,6 @@ package com.clarityenglish.rotterdam.builder.view.title {
 		
 		[SkinPart(required="true")]
 		public var myCoursesViewNavigator:ViewNavigator;
-		
-		private var _selectedCourseXML:XML;
-		
-		[Bindable(event="courseSelected")]
-		public function get selectedCourseXML():XML { return _selectedCourseXML; }
-		public function set selectedCourseXML(value:XML):void {
-			_selectedCourseXML = value;
-			
-			if (_selectedCourseXML) {
-				if (ClassUtil.getClass(myCoursesViewNavigator.activeView) == CourseView) {
-					myCoursesViewNavigator.activeView.data = _selectedCourseXML;
-				} else {
-					myCoursesViewNavigator.pushView(CourseView, _selectedCourseXML);
-				}
-			}
-			
-			dispatchEvent(new Event("courseSelected"));
-		}
 		
 		public function showCourseView():void {
 			if (ClassUtil.getClass(myCoursesViewNavigator.activeView) != CourseView) {

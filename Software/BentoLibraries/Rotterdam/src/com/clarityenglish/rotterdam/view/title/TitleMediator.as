@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.rotterdam.builder.view.title {
+﻿package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
@@ -9,7 +9,6 @@
 	
 	/**
 	 * A Mediator
-	 * TODO: builder and player TitleMediator could be combined, I think?
 	 */
 	public class TitleMediator extends BentoMediator implements IMediator {
 		

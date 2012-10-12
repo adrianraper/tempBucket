@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
         xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
 		xmlns:login="com.clarityenglish.rotterdam.builder.view.login.*"
-		xmlns:title="com.clarityenglish.rotterdam.builder.view.title.*" xmlns:login1="com.clarityenglish.rotterdam.view.login.*">
+		xmlns:title="com.clarityenglish.rotterdam.view.title.*" xmlns:login1="com.clarityenglish.rotterdam.view.login.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.BuilderApplication")]

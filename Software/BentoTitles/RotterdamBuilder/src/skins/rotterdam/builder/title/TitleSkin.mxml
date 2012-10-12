@@ -5,7 +5,7 @@
 		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.builder.view.title.TitleView")]
+		[HostComponent("com.clarityenglish.rotterdam.view.title.TitleView")]
 	</fx:Metadata>
 	
 	<fx:Script>

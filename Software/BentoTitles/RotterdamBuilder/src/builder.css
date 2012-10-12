@@ -11,6 +11,7 @@
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace course "com.clarityenglish.rotterdam.builder.view.course.*";
 @namespace course1 "com.clarityenglish.rotterdam.view.course.*";
+@namespace title1 "com.clarityenglish.rotterdam.view.title.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -24,15 +25,15 @@ login|LoginView {
 	skinClass: ClassReference("skins.rotterdam.builder.login.LoginSkin");
 }
 
-title|TitleView {
+title1|TitleView {
 	skinClass: ClassReference("skins.rotterdam.builder.title.TitleSkin");
 }
 
-title|TitleView s|TabbedViewNavigator {
+title1|TitleView s|TabbedViewNavigator {
 	skinClass: ClassReference("skins.viewnavigator.WebTabbedViewNavigatorSkin");
 }
 
-title|TitleView s|ViewNavigator {
+title1|TitleView s|ViewNavigator {
 	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
 }
 
