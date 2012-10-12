@@ -30,7 +30,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				RotterdamNotifications.COURSE_LOAD,
+				//RotterdamNotifications.COURSE_LOAD,
 			]);
 		}
 		
@@ -38,9 +38,9 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case RotterdamNotifications.COURSE_LOAD:
+				/*case RotterdamNotifications.COURSE_LOAD:
 					view.selectedCourseXML = note.getBody() as XML;
-					break;
+					break;*/
 			}
 		}
 		

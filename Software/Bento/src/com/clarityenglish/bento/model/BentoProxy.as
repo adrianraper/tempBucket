@@ -55,6 +55,8 @@ package com.clarityenglish.bento.model {
 		}
 		
 		public function set menuXHTML(value:XHTML):void {
+			if (_menuXHTML === value) return;
+			
 			if (_menuXHTML != null && value != null)
 				throw new Error("Bento does not support multiple menu.xml files in a single execution");
 			

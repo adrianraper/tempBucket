@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.rotterdam.view.course {
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
@@ -27,18 +28,22 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			view.courseLoad.add(onCourseLoad);
+			// This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
+			
+			//view.courseLoad.add(onCourseLoad);
 			view.unitSelect.add(onUnitSelect);
 			
 			// If the view already has data set then load a course straight away
-			if (view.data)
-				onCourseLoad(view.data as XML);
+			/*if (view.data)
+				onCourseLoad(view.data as XML);*/
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.courseLoad.remove(onCourseLoad);
+			//view.courseLoad.remove(onCourseLoad);
 			view.unitSelect.remove(onUnitSelect);
 		}
 		
@@ -46,6 +51,7 @@
 			super.onXHTMLReady(xhtml);
 			
 			// When the XHTML has loaded into the course editor then the course has started
+			trace("ASDFEAKSDLFKASLDFKASLKAFSDKL");
 			facade.sendNotification(RotterdamNotifications.COURSE_START, xhtml);
 		}
 		
@@ -74,10 +80,10 @@
 			}
 		}
 		
-		protected function onCourseLoad(course:XML):void {
+		/*protected function onCourseLoad(course:XML):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.href = new Href(Href.XHTML, course.@href, configProxy.getConfig().paths.content);
-		}
+		}*/
 		
 		protected function onUnitSelect(unit:XML):void {
 			facade.sendNotification(RotterdamNotifications.UNIT_START, unit);

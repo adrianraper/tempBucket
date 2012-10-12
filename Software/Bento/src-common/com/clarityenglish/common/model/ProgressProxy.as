@@ -41,7 +41,7 @@ package com.clarityenglish.common.model {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	/**
-	 * A proxy
+	 * This is all rather confused - the roles of XHTMLProxy and ProgressProxy are rather mixed up.  These should be looked at carefully at some point.
 	 */
 	public class ProgressProxy extends Proxy implements IProxy, IDelegateResponder {
 		
@@ -98,6 +98,10 @@ package com.clarityenglish.common.model {
 			loadedResources = new Dictionary();
 			dataLoading = new Dictionary();
 			href = null;
+		}
+		
+		public function hasLoadedResource(href:*):Boolean {
+			return loadedResources[href];
 		}
 		
 		/**

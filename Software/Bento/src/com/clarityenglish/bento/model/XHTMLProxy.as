@@ -63,6 +63,10 @@ package com.clarityenglish.bento.model {
 			urlLoaders = new Dictionary();
 		}
 		
+		public function hasLoadedResource(href:*):Boolean {
+			return loadedResources[href];
+		}
+		
 		public function loadXHTML(href:Href):void {
 			if (!href) {
 				log.error("loadXHTML received a null Href");
@@ -103,13 +107,14 @@ package com.clarityenglish.bento.model {
 				// Note that IELTS overrides this behaviour since it uses ProgressProxy to get menu xml instead.  However, Rotterdam editor still uses this.
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				
-				sendNotification(BBNotifications.BENTO_RESET); // TODO: not sure if this has undesired consequences...
+				//sendNotification(BBNotifications.BENTO_RESET); // TODO: not sure if this has undesired consequences...
 				
 				bentoProxy.menuXHTML = loadedResources[href];
 				sendNotification(BBNotifications.MENU_XHTML_LOADED, loadedResources[href]);
-			} else {
-				sendNotification(BBNotifications.XHTML_LOADED, { xhtml: loadedResources[href], href: href } );
 			}
+			
+			// Whether or not this is menu XHTML, we always want to send the XHTML_LOADED notification as it drives BentoMediators
+			sendNotification(BBNotifications.XHTML_LOADED, { xhtml: loadedResources[href], href: href } );
 		}
 		
 		private function onXHTMLLoadComplete(event:Event):void {

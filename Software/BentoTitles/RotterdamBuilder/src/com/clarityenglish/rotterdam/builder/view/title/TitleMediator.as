@@ -40,10 +40,6 @@
 			
 			switch (note.getName()) {
 				case BBNotifications.MENU_XHTML_LOADED:
-					trace("menu xhtml loaded!");
-					//trace("XML: " + (note.getBody()));
-					//view.selectedCourseXML = note.getBody() as XML;
-					//view.selectedCourseXML = note.getBody() as XHTML;
 					view.showCourseView();
 					break;
 			}
