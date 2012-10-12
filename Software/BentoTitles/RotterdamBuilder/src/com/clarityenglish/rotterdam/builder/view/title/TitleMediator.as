@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.rotterdam.builder.view.title {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
@@ -31,6 +32,7 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.COURSE_LOAD,
+				BBNotifications.MENU_XHTML_LOADED,
 			]);
 		}
 		
@@ -39,6 +41,8 @@
 			
 			switch (note.getName()) {
 				case RotterdamNotifications.COURSE_LOAD:
+				case BBNotifications.MENU_XHTML_LOADED:
+					trace("OOOOOOOOOOOOOOOOOOOO");
 					view.selectedCourseXML = note.getBody() as XML;
 					break;
 			}

@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.rotterdam.view.courseselector {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
@@ -63,7 +64,7 @@
 		}
 		
 		private function onSelectCourse(course:XML):void {
-			facade.sendNotification(RotterdamNotifications.COURSE_LOAD, course);
+			facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: course.@href, noProgress: true } );
 		}
 		
 	}
