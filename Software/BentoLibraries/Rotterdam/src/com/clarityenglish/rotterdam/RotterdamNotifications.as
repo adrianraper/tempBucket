@@ -3,10 +3,12 @@
 	public class RotterdamNotifications {
 		
 		// Course notifications
+		
+		// Courses in Rotterdam are slightly different to courses in IELTS
+		public static const COURSE_LOAD:String = "rotterdam/course_show";
+		
 		public static const COURSE_START:String = "rotterdam/course_start";
 		public static const COURSE_STARTED:String = "rotterdam/course_started";
-		
-		public static const COURSE_EDITOR_SHOW:String = "rotterdam/course_editor_show";
 		
 		public static const COURSE_CREATE:String = "rotterdam/course_create";
 		public static const COURSE_CREATED:String = "rotterdam/course_created";

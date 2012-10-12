@@ -34,8 +34,6 @@ package com.clarityenglish.bento.model {
 		
 		private var _currentExercise:Exercise;
 		
-		private var _currentCourseClass:String;
-		
 		public function BentoProxy() {
 			super(NAME);
 		}
@@ -45,7 +43,6 @@ package com.clarityenglish.bento.model {
 			if (_menuXHTML) System.disposeXML(_menuXHTML.xml);
 			_menuXHTML = null;
 			_currentExercise = null;
-			_currentCourseClass = null;
 		}
 		
 		/**
@@ -89,21 +86,6 @@ package com.clarityenglish.bento.model {
 				throw new Error("Bento does not currently support running multiple exercises at the same time");
 			
 			_currentExercise = value;
-		}
-
-		/**
-		 * This gets the course class that any view is currently working with. If there is no class, this will return the first one in the menu.
-		 * 
-		 * @return 
-		 */
-		public function get currentCourseClass():String {
-			if (!_currentCourseClass)
-				_currentCourseClass = menuXHTML..course[0].@["class"];
-			return _currentCourseClass;
-		}
-		
-		public function set currentCourseClass(value:String):void {
-			_currentCourseClass = value;
 		}
 		
 		/**

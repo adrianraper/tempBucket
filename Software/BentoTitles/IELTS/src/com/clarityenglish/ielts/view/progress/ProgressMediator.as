@@ -1,11 +1,9 @@
 ﻿package com.clarityenglish.ielts.view.progress {
-	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.clarityenglish.ielts.model.IELTSProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -28,20 +26,21 @@
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
 			view.href = bentoProxy.menuXHTML.href;
-			view.currentCourseClass = bentoProxy.currentCourseClass;
+			view.currentCourseClass = ieltsProxy.currentCourseClass;
 		}
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				BBNotifications.COURSE_SELECTED,
+				IELTSNotifications.COURSE_CLASS_SELECTED,
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
 			switch (note.getName()) {
-				case BBNotifications.COURSE_SELECTED:
+				case IELTSNotifications.COURSE_CLASS_SELECTED:
 					view.currentCourseClass = note.getBody() as String;
 					break;
 				

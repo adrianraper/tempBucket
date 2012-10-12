@@ -32,9 +32,6 @@
 		public static const USER_UPDATE:String = "bb/user_update";
 		public static const USER_UPDATED:String = "bb/user_updated";
 		
-		public static const COURSE_SELECT:String = "bb/course_select";
-		public static const COURSE_SELECTED:String = "bb/course_selected";
-		
 		// The notifications are sent when the user answers a question
 		public static const QUESTION_NODE_ANSWER:String = "bb/question_node_answer";
 		public static const QUESTION_STRING_ANSWER:String = "bb/question_string_answer";

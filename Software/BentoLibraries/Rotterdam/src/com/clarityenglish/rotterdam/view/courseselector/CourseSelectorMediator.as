@@ -62,15 +62,8 @@
 			facade.sendNotification(RotterdamNotifications.COURSE_CREATE, course);
 		}
 		
-		/*private function onEditCourse(course:XML):void {
-			facade.sendNotification(RotterdamNotifications.COURSE_EDITOR_SHOW, course);
-		}*/
-		
 		private function onSelectCourse(course:XML):void {
-			trace(course.toXMLString());
-			//facade.sendNotification(RotterdamNotifications.COURSE_EDITOR_SHOW, course);
-			
-			// Maybe have a COURSE_LOAD ?
+			facade.sendNotification(RotterdamNotifications.COURSE_LOAD, course);
 		}
 		
 	}
