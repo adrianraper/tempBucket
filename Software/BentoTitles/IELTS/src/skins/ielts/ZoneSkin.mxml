@@ -83,6 +83,9 @@
 	</fx:Script>
 
 	<s:states>
+		<s:State name="disabled" stateGroups="normalStates" />
+		<s:State name="normal" stateGroups="normalStates" />
+		
 		<s:State name="reading_normal" stateGroups="normalStates,readingStates" />
 		<s:State name="writing_normal" stateGroups="normalStates,writingStates" />
 		<s:State name="listening_normal" stateGroups="normalStates,listeningStates" />
@@ -150,7 +153,6 @@
 				</s:borderStroke>
 
 				<s:HGroup width="100%">
-
 					<s:SWFLoader id="courseIcon" width="25" height="25" 
 								 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')" 
 								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" 
@@ -179,7 +181,7 @@
 								height="100%"
 								creationPolicy="all"
 								borderVisible="false"
-								contentBackgroundAlpha="0"
+								
 								easer="{sineEasing}"
 								duration="500"
 								excludeFrom="demoStates"

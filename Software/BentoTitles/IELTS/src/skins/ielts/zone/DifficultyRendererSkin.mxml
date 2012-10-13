@@ -12,7 +12,7 @@
 		<s:HorizontalLayout paddingTop="10" paddingBottom="20" />
 	</s:layout>
 	
-	<s:Label text="Difficulty: " />
+	<s:Label text="Difficulty: " visible="{hostComponent.showLabel}" includeInLayout="{hostComponent.showLabel}" />
 	<zone:Chilli id="chilli1" />
 	<zone:Chilli id="chilli2" />
 	<zone:Chilli id="chilli3" />

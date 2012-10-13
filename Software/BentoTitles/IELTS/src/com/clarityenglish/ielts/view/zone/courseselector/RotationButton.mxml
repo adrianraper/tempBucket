@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+
+	<fx:Script>
+		<![CDATA[
+			import caurina.transitions.Tweener;
+			
+			[Bindable]
+			public var loaderSource:Object;
+			
+			[Bindable]
+			public var labelText:String;
+			
+			public var tabletButtonMode:Boolean;
+			
+			protected function onMouseOver(event:MouseEvent):void {
+				if (!this.tabletButtonMode) {
+					imageLoader.width = 76;
+					imageLoader.height = 76;
+					
+					Tweener.addTween(imageTag, {alpha: 0.9, left: 60, time: 0.2, transition: "linear"});
+					Tweener.addTween(imageLabel, {alpha: 1, top: 32, time: 0.2, transition: "easeInSine"});
+				}
+			}
+			
+			protected function onMouseOut(event:MouseEvent):void {
+				if (!this.tabletButtonMode) {
+					imageLoader.width = 60;
+					imageLoader.height = 60;
+					
+					Tweener.removeTweens(imageTag, "alpha", "left");
+					Tweener.removeTweens(imageLabel, "alpha", "top");
+					
+					imageTag.alpha = 0;
+					imageTag.left = 0;
+					imageLabel.alpha = 0;
+					imageLabel.top = -10;
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<s:Rect id="imageTag"
+			width="120"
+			height="40"
+			left="0"
+			top="20"
+			alpha="0"
+			radiusX="10"
+			radiusY="10">
+		<s:fill>
+			<s:SolidColor color="0x000000" alpha="0.8" />
+		</s:fill>
+	</s:Rect>
+	<s:Label id="imageLabel"
+			 text="{labelText}"
+			 left="85"
+			 top="-10"
+			 width="80"
+			 height="22"
+			 alpha="0"
+			 color="0xFFFFFF"
+			 fontSize="18" />
+	<s:SWFLoader id="imageLoader" source="{loaderSource}" width="60" height="60" mouseOver="onMouseOver(event)" mouseOut="onMouseOut(event)" mouseUp="onMouseOut(event)" />
+</s:Group>

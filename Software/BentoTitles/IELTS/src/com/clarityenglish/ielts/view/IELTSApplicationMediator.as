@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.Href;
@@ -6,11 +7,11 @@ package com.clarityenglish.ielts.view {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
-	import com.clarityenglish.common.vo.config.BentoError;
-	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.dms.vo.account.Licence;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.IELTSNotifications;
+	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -30,16 +31,27 @@ package com.clarityenglish.ielts.view {
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		private var networkCheckAvailabilityTimer:Timer;
+		
+		private var checkNetworkAvailabilityInterval:Number;
+		private var checkNetworkAvailabilityReconnectInterval:Number;
+		
 		public function IELTSApplicationMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
 		}
-		
+
 		private function get view():IELTSApplication {
 			return viewComponent as IELTSApplication;
 		}
 		
 		override public function onRegister():void {
 			super.onRegister();
+		}
+		
+		public override function onRemove():void {
+			super.onRemove();
+			networkCheckAvailabilityTimer.reset();
+			networkCheckAvailabilityTimer = null;
 		}
 		
 		/**
@@ -50,7 +62,9 @@ package com.clarityenglish.ielts.view {
 		override public function listNotificationInterests():Array {
 			// Concatenate any extra notifications to the array returned by this function in the superclass
 			return super.listNotificationInterests().concat([
-				StateMachine.CHANGED,
+				BBNotifications.NETWORK_AVAILABLE,
+				BBNotifications.NETWORK_UNAVAILABLE,
+				CommonNotifications.CONFIG_LOADED,
 			]);
 		}
 		
@@ -66,6 +80,28 @@ package com.clarityenglish.ielts.view {
 				case StateMachine.CHANGED:
 					handleStateChange(note.getBody() as State);
 					break;
+				case CommonNotifications.CONFIG_LOADED:
+					// #472 - once config has loaded start the network availability time if there is one
+					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					checkNetworkAvailabilityInterval = configProxy.getConfig().checkNetworkAvailabilityInterval;
+					checkNetworkAvailabilityReconnectInterval = configProxy.getConfig().checkNetworkAvailabilityReconnectInterval;
+					
+					if (configProxy.getConfig().checkNetworkAvailabilityUrl && checkNetworkAvailabilityInterval > 0 && checkNetworkAvailabilityReconnectInterval > 0) {
+						networkCheckAvailabilityTimer = new Timer(checkNetworkAvailabilityInterval * 1000);
+						networkCheckAvailabilityTimer.addEventListener(TimerEvent.TIMER, function(e:TimerEvent):void {
+							sendNotification(BBNotifications.NETWORK_CHECK_AVAILABILITY);
+						});
+						networkCheckAvailabilityTimer.start();
+					}
+					break;
+				case BBNotifications.NETWORK_AVAILABLE:
+					if (networkCheckAvailabilityTimer)
+						networkCheckAvailabilityTimer.delay = checkNetworkAvailabilityInterval * 1000;
+					break;
+				case BBNotifications.NETWORK_UNAVAILABLE:
+					if (networkCheckAvailabilityTimer)
+						networkCheckAvailabilityTimer.delay = checkNetworkAvailabilityReconnectInterval * 1000;
+					break;
 			}
 		}
 		
@@ -73,37 +109,22 @@ package com.clarityenglish.ielts.view {
 			log.debug("State machine moved into state {0}", state.name);
 			
 			switch (state.name) {
+				case BBStates.STATE_NO_NETWORK:
+					view.currentState = "nonetwork";
+					break;
+				case BBStates.STATE_LOAD_COPY:
+				case BBStates.STATE_LOAD_ACCOUNT:
 				case BBStates.STATE_LOAD_MENU:
 					view.currentState = "loading";
 					break;
-				case BBStates.STATE_LOGIN:
-					// TODO: This should be moved into Bento instead of IELTS
-					// #280
-					// If there is no direct (or anonymous) login display the login state
-					if (!handleDirectLogin()) view.currentState = "login";
-					break;
 				case BBStates.STATE_TITLE:
 					view.currentState = "title";
-					handleDirectStart();
+					view.callLater(handleDirectStart); // need to use callLater as otherwise the title state hasn't validated yet
 					break;
 				case BBStates.STATE_CREDITS:
 					view.currentState = "credits";
 					break;
 			}
-		}
-		
-		private function handleDirectLogin():Boolean {
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var directLogin:LoginEvent = configProxy.getDirectLogin();
-			
-			if (directLogin) {
-				// If direct start login is on then log straight in without changing to the login state
-				sendNotification(CommonNotifications.LOGIN, directLogin);
-				
-				return true;
-			}
-			
-			return false;
 		}
 		
 		/**

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:controls="com.clarityenglish.controls.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ieltsair.view.zone.AdviceZoneSectionView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="reading" />
+		<s:State name="writing" />
+		<s:State name="listening" />
+		<s:State name="speaking" />
+	</s:states>
+	
+	<s:Label text="Advice and tutorials" fontSize="18" fontWeight="bold" left="20" top="12" />
+	<s:Label text="Click on a thumbnail to play the video" fontSize="14" left="20" top="35" />
+	
+	<controls:BentoVideoSelector id="videoSelector"
+								 left="20"
+								 top="57"
+								 placeholderSource.reading="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')"
+								 placeholderSource.writing="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')"
+								 placeholderSource.listening="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')"
+								 placeholderSource.speaking="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')"
+								 />
+	
+</s:Skin>

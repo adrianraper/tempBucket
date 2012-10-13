@@ -127,6 +127,11 @@
 		]]> 
 	</fx:Script> 
 	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
 	<s:layout >
 		<s:VerticalLayout paddingLeft="0" paddingTop="2" />
 	</s:layout>
@@ -137,10 +142,10 @@
 					 change="courseChangeHandler(event);">
 			<s:dataProvider>
 				<s:ArrayList>
-					<fx:Object label="Reading" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')" /> 
-					<fx:Object label="Listening" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" /> 
-					<fx:Object label="Speaking" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" /> 
-					<fx:Object label="Writing" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />
+					<fx:Object label="Reading" icon="{getStyle('readingIconSmall')}" /> 
+					<fx:Object label="Listening" icon="{getStyle('listeningIconSmall')}" /> 
+					<fx:Object label="Speaking" icon="{getStyle('speakingIconSmall')}" /> 
+					<fx:Object label="Writing" icon="{getStyle('writingIconSmall')}" />
 				</s:ArrayList>
 			</s:dataProvider>
 		</s:ButtonBar>
@@ -149,7 +154,7 @@
 	<ui:ProgressBarRenderer id="progressBar" width="100%" height="60" />
 	
 	<s:HGroup width="100%" height="100%">
-		<s:DataGrid id="scoreDetailsDataGrid" fontSize="12" alternatingRowColors="[#FFFFFF, #DDDDDD]" width="100%" height="93%" borderVisible="false" dataProvider="{hostComponent.tableDataProvider}" >
+		<s:DataGrid id="scoreDetailsDataGrid" fontSize="12" width="100%" height="93%" dataProvider="{hostComponent.tableDataProvider}" >
 			<s:columns>
 				<s:ArrayList>
 					<s:GridColumn headerText="Unit" dataField="@unitCaption" sortCompareFunction="sortUnits" />
@@ -162,6 +167,4 @@
 		</s:DataGrid>
 	</s:HGroup>
 	
-
-		
 </s:Skin>

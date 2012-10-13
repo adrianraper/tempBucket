@@ -3,6 +3,7 @@ package com.clarityenglish.textLayout.css.views {
 	import com.newgonzo.web.css.views.XMLCSSView;
 	
 	public class StyledXMLView extends XMLCSSView {
+		
 		public var css:CSS;
 		
 		public function StyledXMLView(css:CSS) {

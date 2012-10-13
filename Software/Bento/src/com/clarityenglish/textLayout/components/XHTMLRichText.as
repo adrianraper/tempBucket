@@ -137,7 +137,7 @@ package com.clarityenglish.textLayout.components {
 		 * @param event
 		 */
 		protected function onExternalStylesLoaded(event:Event):void {
-			_xhtml.removeEventListener(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
+			if (_xhtml) _xhtml.removeEventListener(XHTMLEvent.EXTERNAL_STYLESHEETS_LOADED, onExternalStylesLoaded);
 			
 			_xhtmlChanged = true;
 			invalidateProperties();

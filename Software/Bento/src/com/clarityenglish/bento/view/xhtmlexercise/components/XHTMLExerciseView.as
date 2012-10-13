@@ -75,17 +75,25 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var readingTextRichText:XHTMLRichText;
-			
+		
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var backColour:SolidColor;
 	
+		// TODO: These should be in IELTS, not Bento?
 		public var courseClass:String;
 		
+		// TODO: These should be in IELTS, not Bento?
 		[Bindable]
 		public var courseCaption:String;
 		
 		[Bindable]
 		public var atLeastOneSelectedAnswerHasFeedback:Boolean;
+		
+		public function XHTMLExerciseView() {
+			super();
+			
+			opaqueBackground = 0xFFFFFF; // #376
+		}
 		
 		/**
 		 * Since this view can only be driven by an Exercise provide a helper to typecast it
@@ -118,11 +126,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		public function set dataProvider(value:XML):void {
 			if (value) {
-				var course:XML = value.course.(@["class"]==courseClass)[0];
+				// TODO: This should be in IELTS, not Bento?
+				var course:XML = value.course.(@["class"] == courseClass)[0];
 				backColour.color = getStyle(courseClass + "ColorDark");		
 			}
 		}
-
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);

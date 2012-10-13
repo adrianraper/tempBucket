@@ -1,18 +1,13 @@
 package com.clarityenglish.ielts.view.home {
-	import com.anychart.AnyChartFlex;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.home.ui.CourseBarRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import mx.collections.XMLListCollection;
 	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.DateUtil;
@@ -20,7 +15,6 @@ package com.clarityenglish.ielts.view.home {
 	
 	import spark.components.Button;
 	import spark.components.Label;
-	import spark.components.TabBar;
 	
 	public class HomeView extends BentoView {
 		
@@ -69,9 +63,6 @@ package com.clarityenglish.ielts.view.home {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
-		private var _productVersion:String;
-		private var _productCode:uint;
-		private var _licenceType:uint;
 		private var _accountName:String;
 		
 		[Bindable]
@@ -91,16 +82,16 @@ package com.clarityenglish.ielts.view.home {
 			for each (var course:XML in menu.course) {
 				switch (course.@["class"].toString()) {
 					case "reading":
-						readingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (readingCourseButton) readingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "listening":
-						listeningCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (listeningCourseButton) listeningCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "speaking":
-						speakingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (speakingCourseButton) speakingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 					case "writing":
-						writingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
+						if (writingCourseButton) writingCourseButton.enabled = !(course.hasOwnProperty("@enabledFlag") && (Number(course.@enabledFlag.toString()) & 8));
 						break;
 				}
 			}
@@ -168,27 +159,6 @@ package com.clarityenglish.ielts.view.home {
 			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
 		}
 		
-		public function set productVersion(value:String):void {
-			_productVersion = value;
-		}
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productCode(value:uint):void {
-			_productCode = value;
-		}
-		public function get productCode():uint {
-			return _productCode;
-		}
-		
-		public function set licenceType(value:uint):void {
-			_licenceType = value;
-		}
-		public function get licenceType():uint {
-			return _licenceType;
-		}
-		
 		public function get accountName():String {
 			return _accountName;
 		}
@@ -209,20 +179,14 @@ package com.clarityenglish.ielts.view.home {
 			switch (productVersion) {
 				case IELTSApplication.DEMO:
 					return "demo";
-					break;
 				case IELTSApplication.TEST_DRIVE:
 					return "testDrive";
-					break;
 				case IELTSApplication.FULL_VERSION:
-					var currentState:String = "fullVersion";
-					return currentState;
-					break;
+					return "fullVersion";
 				case IELTSApplication.LAST_MINUTE:
 					return "lastMinute";
-					break;
 				case IELTSApplication.HOME_USER:
 					return "homeUser";
-					break;
 				default:
 					return super.getCurrentSkinState();
 			}

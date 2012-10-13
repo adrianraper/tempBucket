@@ -23,10 +23,6 @@ package com.clarityenglish.ielts.view.progress.ui {
 
 		[Bindable]
 		public var productVersion:String;
-
-		public function CoverageUnitComponent() {
-			super();
-		}
 		
 		/**
 		 * This function will take a course node and create a list of exercises in the practice-zone
@@ -34,7 +30,6 @@ package com.clarityenglish.ielts.view.progress.ui {
 		 * 
 		 */
 		public function set dataProvider(value:XML):void {
-
 			if (value) {
 				var listDP:XMLList= new XMLList();
 				var newNode:XML = new XML();
@@ -43,7 +38,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 				builder = <list />;
 				for each (var group:XML in value.groups.group) {
 					newNode = <group caption={group.@caption} enabledFlag={group.@enabledFlag} />;
-					for each (var exercise:XML in value.unit.(@["class"]=='practice-zone').exercise.(@["group"]==group.@id)) {
+					for each (var exercise:XML in value.unit.(@["class"] == 'practice-zone').exercise.(@["group"] == group.@id)) {
 						newItem = <exercise caption={exercise.@caption} done={exercise.@done} />;
 						newNode.appendChild(newItem);
 					}
@@ -51,7 +46,6 @@ package com.clarityenglish.ielts.view.progress.ui {
 				}
 				listDataProvider = new XMLListCollection(builder.group);
 			}
-			
 		}
 
 	}

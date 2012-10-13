@@ -3,12 +3,57 @@
 						xmlns:s="library://ns.adobe.com/flex/spark"
 						xmlns:ielts="com.clarityenglish.ielts.*"
 						minWidth="990" minHeight="760"
-						preloader="com.clarityenglish.ielts.IELTSPreloader">
+						preloader="com.clarityenglish.ielts.IELTSPreloader"
+						initialize="onInitialize(event)">
 	
 	<fx:Metadata>
 		[SWF(width="990", height="760")]
 	</fx:Metadata>
 	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace ielts "com.clarityenglish.ielts.*";
+		
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
+			fontFamily: HelveticaNeueLtStd;
+			fontWeight: normal;
+			fontAntiAliasType: advanced;
+			fontSharpness: 400;
+			fontThickness: -200;
+			embedAsCFF: false;
+		}
+		
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
+			fontFamily: HelveticaNeueLtStd;
+			fontWeight: bold;
+			fontAntiAliasType: advanced;
+			fontSharpness: 400;
+			fontThickness: -200;
+			embedAsCFF: false;
+		}
+		
+		global {
+			fontFamily: HelveticaNeueLtStd;
+		}
+	</fx:Style>
+	
 	<fx:Style source="ielts.css" />
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.ielts.IELTSApplicationFacade;
+			
+			import mx.events.FlexEvent;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				versionNumber = "2.0.0.952";
+				
+				facade = IELTSApplicationFacade.getInstance();
+			}
+			
+		]]>
+	</fx:Script>
 	
 </ielts:IELTSApplication>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="FlexUnitApplication"/>
     <classEntry path="com.clarityenglish.bento.BBNotifications"/>
     <classEntry path="com.clarityenglish.bento.BentoApplication"/>
     <classEntry path="com.clarityenglish.bento.BentoFacade"/>
@@ -126,8 +125,11 @@
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.IExerciseView"/>
     <classEntry path="com.clarityenglish.alivepdf.pdf.PDF"/>
     <classEntry path="com.pipwerks.SCORM"/>
-    <classEntry path="com.clarityenglish.controls.BentoVideoPlayer"/>
-    <classEntry path="com.clarityenglish.controls.BentoVideoPlayerEvent"/>
+    <classEntry path="org.davekeen.transitions.PatchedSlideViewTransition"/>
+    <classEntry path="org.davekeen.components.PatchedVideoDisplay"/>
+    <classEntry path="com.clarityenglish.controls.WebViewVideoPlayer"/>
+    <classEntry path="com.clarityenglish.components.PatchedSpinnerList"/>
+    <classEntry path="com.clarityenglish.bento.controller.NetworkCheckAvailability"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

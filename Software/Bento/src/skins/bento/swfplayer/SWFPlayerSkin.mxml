@@ -7,6 +7,11 @@
 		[HostComponent("com.clarityenglish.bento.view.swfplayer.SWFPlayerView")]
 	</fx:Metadata>
 	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
 	<s:SWFLoader id="loadingGraphic" horizontalCenter="0" verticalCenter="0" />
 	
 	<mx:SWFLoader id="swfLoader" horizontalCenter="0" top="20" />

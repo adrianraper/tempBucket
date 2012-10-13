@@ -3,14 +3,16 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:anychart="com.anychart.*" 
-		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*"
-		>
+		xmlns:ui="com.clarityenglish.ielts.view.home.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.home.HomeView")]
 	</fx:Metadata>
 	
 	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+
 		<s:State name="demo" />
 		<s:State name="fullVersion" />
 		<s:State name="lastMinute" stateGroups="bcStates" />

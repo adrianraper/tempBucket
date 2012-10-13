@@ -1,12 +1,10 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.progress.Progress;
-	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,27 +24,14 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		override public function onRegister():void {
 			super.onRegister();
-
-			// I want the first thing to be the initChart call
-			//trace("progCompareMediator call initCharts");
-			view.initCharts();
-
+			
+			// This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
+			
 			// Ask for the progress data you want
-			//trace("progCompareMediator, ask for my_summary and everyone_summary");
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_EVERYONE_SUMMARY);
-
-			// Inject required data into the view
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.licenceType = configProxy.getLicenceType();
-			
-		}
-		
-		override public function onRemove():void {
-			super.onRemove();
-			
-			// #320
-			view.clearCharts();
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -62,19 +47,15 @@ package com.clarityenglish.ielts.view.progress.components {
 				// Here we should listen for notification of data_loaded
 				// then it does view.setMySummary
 				case BBNotifications.PROGRESS_DATA_LOADED:
-				
 					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
-					//trace("progCompareMediator, got back " + rs.type);
-					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
-						// #250. Save xml rather than a string
-						//view.setMySummaryDataProvider(new XML(rs.dataProvider));
-						view.setMySummaryDataProvider(rs.dataProvider);
-					}
-					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY) {
-						//view.setEveryoneSummaryDataProvider(new XML(rs.dataProvider));
-						view.setEveryoneSummaryDataProvider(rs.dataProvider);
-					}
+					
+					if (rs.type == Progress.PROGRESS_MY_SUMMARY)
+						view.mySummaryXml = rs.dataProvider;
+
+					if (rs.type == Progress.PROGRESS_EVERYONE_SUMMARY)
+						view.everyoneSummaryXml = rs.dataProvider;
+					
 					break;
 				
 			}

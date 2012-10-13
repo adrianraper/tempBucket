@@ -7,6 +7,7 @@ package com.clarityenglish.textLayout.elements {
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;
 	import flash.events.Event;
+	import flash.events.FocusEvent;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
@@ -185,6 +186,12 @@ package com.clarityenglish.textLayout.elements {
 						if (!disableValueCommitEvent)
 							getEventMirror().dispatchEvent(e.clone());
 					});
+					
+					// Duplicate some events on the event mirror so other things can listen to the FlowElement
+					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:Event):void {
+						if (!disableValueCommitEvent)
+							getEventMirror().dispatchEvent(e.clone());
+					});
 					break;
 				case TYPE_DROPTARGET:
 					component = new TextInput();
@@ -266,7 +273,10 @@ package com.clarityenglish.textLayout.elements {
 				getTextFlow().flowComposer.updateAllControllers();
 				
 				// Dispatch a value commit, so if we are using instant marking the question will get marked at this point
-				getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+				//getEventMirror().dispatchEvent(new FlexEvent(FlexEvent.VALUE_COMMIT));
+				
+				// #400 Dispatch a focus out event, so if we are using instant marking the question will get marked at this point
+				getEventMirror().dispatchEvent(new FocusEvent(FocusEvent.FOCUS_OUT));
 			}
 		}
 		

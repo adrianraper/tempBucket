@@ -16,6 +16,9 @@
 	</fx:Script>
 	
 	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
 		<s:State name="coverage" stateGroups="normalStates,coverageStates"/>
 		<s:State name="compare" stateGroups="normalStates,compareStates"/>
 		<s:State name="analysis" stateGroups="normalStates,analysisStates"/>

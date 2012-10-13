@@ -20,6 +20,7 @@ package com.clarityenglish.bento.controller {
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
 	import spark.components.TitleWindow;
+	import spark.events.TitleWindowBoundsEvent;
 	
 	public class MarkingShowCommand extends SimpleCommand {
 		
@@ -43,6 +44,7 @@ package com.clarityenglish.bento.controller {
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "markingTitleWindow";
 			titleWindow.title = "Marking";
+			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var markingView:MarkingView = new MarkingView();
 			markingView.exerciseMark = exerciseMark;
@@ -81,9 +83,24 @@ package com.clarityenglish.bento.controller {
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
+			titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
 			
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
+		}
+		
+		protected function onWindowMoving(evt:TitleWindowBoundsEvent):void {
+			if (evt.afterBounds.left < 0) {
+				evt.afterBounds.left = 0;
+			} else if (evt.afterBounds.right > evt.target.systemManager.stage.stageWidth) {
+				evt.afterBounds.left = evt.target.systemManager.stage.stageWidth - evt.afterBounds.width;
+			}
+			
+			if (evt.afterBounds.top < 0) {
+				evt.afterBounds.top = 0;
+			} else if (evt.afterBounds.bottom > evt.target.systemManager.stage.stageHeight) {
+				evt.afterBounds.top = evt.target.systemManager.stage.stageHeight - evt.afterBounds.height;
+			}
 		}
 		
 	}

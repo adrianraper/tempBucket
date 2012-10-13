@@ -1,17 +1,12 @@
 ﻿package com.clarityenglish.ielts {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.controller.LoggedInCommand;
-	import com.clarityenglish.common.controller.LogoutCommand;
-	import com.clarityenglish.common.controller.ShowErrorCommand;
-	import com.clarityenglish.common.controller.UpdateUserCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.ielts.controller.CourseSelectCommand;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.IELTSRegisterCommand;
-	import com.clarityenglish.ielts.controller.IELTSUpgradeWindowShowCommand;
-	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.controller.IELTSStartupCommand;
+	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.credits.CreditsMediator;
@@ -21,6 +16,8 @@
 	import com.clarityenglish.ielts.view.home.HomeMediator;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.login.LoginView;
+	import com.clarityenglish.ielts.view.nonetwork.NoNetworkMediator;
+	import com.clarityenglish.ielts.view.nonetwork.NoNetworkView;
 	import com.clarityenglish.ielts.view.progress.ProgressMediator;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
 	import com.clarityenglish.ielts.view.progress.components.ProgressAnalysisMediator;
@@ -53,6 +50,7 @@
 			super.initializeController();
 			
 			// Map IELTS specific views to their mediators
+			mapView(NoNetworkView, NoNetworkMediator);
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
@@ -68,6 +66,7 @@
 			mapView(ProgressCoverageView, ProgressCoverageMediator);
 			
 			// Register IELTS specific commands
+			registerCommand(IELTSNotifications.COURSE_CLASS_SELECT, CourseSelectCommand);
 			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);
 			registerCommand(IELTSNotifications.PDF_SHOW, PdfShowCommand);
 			

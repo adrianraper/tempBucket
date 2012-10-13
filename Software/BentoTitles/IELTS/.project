@@ -20,11 +20,6 @@
 			</arguments>
 		</buildCommand>
 		<buildCommand>
-			<name>com.adobe.flexbuilder.project.flexbuilder</name>
-			<arguments>
-			</arguments>
-		</buildCommand>
-		<buildCommand>
 			<name>com.elementriver.sourcemate.sourceMateBuilder</name>
 			<arguments>
 			</arguments>

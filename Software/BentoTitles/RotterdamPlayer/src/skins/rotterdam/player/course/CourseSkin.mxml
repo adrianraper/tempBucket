@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
+		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
+		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*" >
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		<s:State name="uniteditor" />
+		<s:State name="unitplayer" />
+	</s:states>
+	
+	<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="200" top="0" bottom="100" />
+	
+	<unit:UnitView left="200" right="0" top="0" bottom="0" />
+	
+</s:Skin>

@@ -56,6 +56,9 @@
 	</fx:Script>
 	
 	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+
 		<s:State name="demo" stateGroups="anonymousStates" />
 		<s:State name="fullVersion_anonymous" stateGroups="anonymousStates,fullVersionStates"/>
 		<s:State name="fullVersion" stateGroups="fullVersionStates"/>

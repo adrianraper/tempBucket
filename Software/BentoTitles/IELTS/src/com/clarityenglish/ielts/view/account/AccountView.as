@@ -8,7 +8,6 @@ package com.clarityenglish.ielts.view.account {
 	import flash.events.MouseEvent;
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
-	import flash.system.SecurityDomain;
 	
 	import mx.controls.Alert;
 	import mx.controls.DateField;
@@ -22,17 +21,16 @@ package com.clarityenglish.ielts.view.account {
 	import spark.components.Label;
 	import spark.components.NumericStepper;
 	import spark.components.TextInput;
-	import spark.formatters.DateTimeFormatter;
 	
 	public class AccountView extends BentoView {
 				
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var currentPassword:TextInput;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var newPassword:TextInput;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var confirmPassword:TextInput;
 		
 		[SkinPart]
@@ -43,6 +41,7 @@ package com.clarityenglish.ielts.view.account {
 		
 		[SkinPart(required="true")]
 		public var examHours:NumericStepper;
+		
 		[SkinPart(required="true")]
 		public var examMinutes:NumericStepper;
 		
@@ -62,10 +61,11 @@ package com.clarityenglish.ielts.view.account {
 		public var register:Signal = new Signal();
 		
 		[Bindable]
-		public var userDetails:User;
+		public var user:User;
 		
 		[Bindable]
 		public var startDate:String;
+		
 		[Bindable]
 		public var expiryDate:String;
 		
@@ -74,9 +74,6 @@ package com.clarityenglish.ielts.view.account {
 
 		// #333
 		private var _remoteDomain:String;
-		private var _productVersion:String;
-		private var _productCode:uint;
-		private var _licenceType:uint;
 		
 		public function AccountView() {
 			super();
@@ -84,33 +81,6 @@ package com.clarityenglish.ielts.view.account {
 
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder;
-		}
-		[Bindable]
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-			}
-		}
-		[Bindable]
-		public function get productCode():uint {
-			return _productCode;
-		}
-		public function set productCode(value:uint):void {
-			if (_productCode != value) {
-				_productCode = value;
-			}
-		}
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
-		}
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -123,8 +93,8 @@ package com.clarityenglish.ielts.view.account {
 				
 				case countdownLabel:
 					// We will only tell the user about the countdown if they have confirmed their exam date
-					if (userDetails.examDate) {
-						var daysLeft:Number = DateUtil.dateDiff(new Date(), userDetails.examDate, "d");
+					if (user.examDate) {
+						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
 						if (daysLeft > 0) {
 							instance.text = "This is the remaining time until your test."
 						} else if (daysLeft == 0) {
@@ -153,12 +123,12 @@ package com.clarityenglish.ielts.view.account {
 					break;
 				
 				case IELTSApp1:
-					var context:LoaderContext = new LoaderContext();
+					/*var context:LoaderContext = new LoaderContext();
 					
-					/* Specify the current application's security domain. */
+					// Specify the current application's security domain.
 					//context.securityDomain = SecurityDomain.currentDomain;
 					
-					/* Specify a new ApplicationDomain, which loads the sub-app into a peer ApplicationDomain. */
+					// Specify a new ApplicationDomain, which loads the sub-app into a peer ApplicationDomain.
 					context.applicationDomain = new ApplicationDomain();
 					
 					// #333 At present the widget doesn't allow communication with the stage. Not sure why
@@ -182,7 +152,7 @@ package com.clarityenglish.ielts.view.account {
 					} else {
 						myCountry = "global";
 					}
-					instance.source += "&widgetdatacountry=" + myCountry;
+					instance.source += "&widgetdatacountry=" + myCountry;*/
 					break;
 				
 				case registerInfoButton:
@@ -243,6 +213,7 @@ package com.clarityenglish.ielts.view.account {
 		protected function onExamTimeChange(eventObj:Event):void {
 			updateExamDate();
 		}
+		
 		protected function updateExamDate():void {
 			// Make sure selectedDate is not null.
 			// Quite often it is, though you can clearly see a date on the screen...
@@ -250,8 +221,8 @@ package com.clarityenglish.ielts.view.account {
 			if (examDateField.selectedDate) {
 				var baseDateTime:Number = examDateField.selectedDate.getTime();
 				//trace("selectedDate =" + DateUtil.formatDate(examDateField.selectedDate, "yyyy-MM-dd hh:mm:ss"));
-			} else if (userDetails.examDate) {
-				var baseDate:Date = new Date(userDetails.examDate.getTime());
+			} else if (user.examDate) {
+				var baseDate:Date = new Date(user.examDate.getTime());
 				baseDate.hours = 0;
 				baseDate.minutes = 0;
 				baseDate.seconds = 0;
@@ -263,8 +234,8 @@ package com.clarityenglish.ielts.view.account {
 				// So convert to milliseconds, adding some hours/minutes then converting back.
 				//userDetails.examDate.setHours(examHours.value as Number, examMinutes.value as Number);
 				var examDateTime:Number = baseDateTime + (examHours.value as Number)*60*60*1000 + (examMinutes.value as Number)*60*1000;
-				userDetails.examDate = new Date(examDateTime);
-				trace("exam date changed to " + DateUtil.formatDate(userDetails.examDate, "yyyy-MM-dd hh:mm"));
+				user.examDate = new Date(examDateTime);
+				trace("exam date changed to " + DateUtil.formatDate(user.examDate, "yyyy-MM-dd hh:mm"));
 				
 				isDirty = true;
 			}
@@ -289,12 +260,12 @@ package com.clarityenglish.ielts.view.account {
 					updatedUserDetails.currentPassword = currentPassword.text;
 				if (newPassword && newPassword.text)
 					updatedUserDetails.password = newPassword.text;
-				if (userDetails.examDate) {
+				if (user.examDate) {
 					// setHours is just not working
 					//userDetails.examDate.setHours(examHours.value);
 					//userDetails.examDate.setMinutes(examMinutes.value);
 					//updatedUserDetails.examDate = DateUtil.dateToAnsiString(userDetails.examDate);
-					updatedUserDetails.examDate = DateUtil.formatDate(userDetails.examDate, "yyyy-MM-dd") + " " + examHours.value.toString() + ":" + examMinutes.value.toString();
+					updatedUserDetails.examDate = DateUtil.formatDate(user.examDate, "yyyy-MM-dd") + " " + examHours.value.toString() + ":" + examMinutes.value.toString();
 				}
 				updateUser.dispatch(updatedUserDetails);
 			}

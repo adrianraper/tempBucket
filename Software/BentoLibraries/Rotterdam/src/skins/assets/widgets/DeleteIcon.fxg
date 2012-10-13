@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group d:type="layer" d:userLabel="Layer 1">
+    <Group>
+      <Path x="-973.9" y="-203.75" data="M989.45 214.75 984.85 219.35 973.9 208.4 978.5 203.75 989.45 214.75">
+        <fill>
+          <SolidColor color="#7F7F7F"/>
+        </fill>
+      </Path>
+      <Path x="-973.9" y="-203.75" data="M978.5 219.35 973.9 214.75 984.85 203.75 989.45 208.4 978.5 219.35">
+        <fill>
+          <SolidColor color="#7F7F7F"/>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

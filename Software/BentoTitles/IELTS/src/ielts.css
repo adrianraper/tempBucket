@@ -23,26 +23,8 @@
 @namespace error "com.clarityenglish.common.view.error.*";
 @namespace components "com.clarityenglish.textLayout.components.*";
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
-
-@font-face {
-	src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
-	fontFamily: "HelveticaNeueLtStd";
-	fontWeight: normal;
-	fontAntiAliasType: advanced;
-	fontSharpness: 400;
-	fontThickness: -200;
-	embedAsCFF: true;
-}
-
-@font-face {
-	src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
-	fontFamily: "HelveticaNeueLtStd";
-	fontWeight: bold;
-	fontAntiAliasType: advanced;
-	fontSharpness: 400;
-	fontThickness: -200;
-	embedAsCFF: true;
-}
+@namespace ielts "com.clarityenglish.ielts.*";
+@namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -52,25 +34,41 @@ global {
 	modal-transparency-duration: 200;
 	
 	/* This sets the default font properties */
-	fontFamily: "HelveticaNeueLtStd";
 	fontSize: 12.6;
 	fontWeight: normal;
 	color: #303030;
 	
-	/* Course colours are used all over the place, so set them globally */
+	/* Course colours and icons are used all over the place, so set them globally */
 	writingColor: #7DAB36;
 	writingColorDark: #364A17;
+	writingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall');
+	writingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconBare');
 	
 	readingColor: #00A2C8;
 	readingColorDark: #005063;
+	readingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
+	readingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');
 	
 	speakingColor: #A93087;
 	speakingColorDark: #4F173F;
+	speakingIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall');
+	speakingIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconBare');
 	
 	listeningColor: #FF6600;
 	listeningColorDark: #7A3100;
+	listeningIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall');
+	listeningIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconBare');
 	
 	disabledColor: #EEEEEE;
+}
+
+ielts|IELTSApplication {
+	skinClass: ClassReference("skins.ielts.IELTSApplicationSkin");
+}
+
+/* No network styles (#472) */
+nonetwork|NoNetworkView {
+	skinClass: ClassReference("skins.ielts.NoNetworkSkin");
 }
 
 /* Credit view styles */
@@ -105,6 +103,10 @@ title|TitleView #navBar {
 
 title|TitleView #navBar s|ButtonBarButton {
 	
+}
+
+title|TitleView #logoutButton {
+	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
 }
 
 /* #337
@@ -161,14 +163,9 @@ home|HomeView s|Button#registerInfoButton {
 homeui|CourseBarRenderer {
 	skinClass: ClassReference("skins.ielts.home.CourseBarRendererSkin");
 }
-/* Title view styles */
-
-title|TitleView #logoutButton {
-	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
-}
 
 /* Zone view styles */
-zone|ZoneView {
+/*zone|ZoneView {
 	skinClass: ClassReference("skins.ielts.ZoneSkin");
 }
 
@@ -234,7 +231,7 @@ zoneui|ImageItemRenderer {
 
 zoneui|DifficultyRenderer {
 	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
-}
+}*/
 
 /* Exercise view styles */
 exercise|ExerciseView {
@@ -320,7 +317,7 @@ account|AccountView #registerInfoButton {
 	skinClass: ClassReference("skins.ielts.title.RegisterBigButton");
 }
 
-/* Suuport view styles */
+/* Support view styles */
 support|SupportView {
 	skinClass: ClassReference("skins.ielts.SupportSkin");
 }

@@ -1,5 +1,4 @@
 package com.clarityenglish.bento {
-	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
 	import com.clarityenglish.textLayout.util.TLF2Application;
 	
 	import flash.events.Event;
@@ -22,6 +21,8 @@ package com.clarityenglish.bento {
 		
 		public var isCtrlDown:Boolean;
 		
+		protected var facade:BentoFacade;
+		
 		public function BentoApplication() {
 			// Configure logging
 			var logTarget:TraceTarget = new TraceTarget();
@@ -37,10 +38,14 @@ package com.clarityenglish.bento {
 			
 			// Create deferred content with maximum priority so that this happens before any other ADDED_TO_STAGE listeners fire
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, int.MAX_VALUE);
+			
+			// Listen for activation
+			addEventListener(Event.ACTIVATE, onActivate);
 		}
 		
-		protected function get facade():BentoFacade {
-			throw new Error("This must be overriden by the child BentoApplication");
+		// #472 - check instantly on activation
+		protected function onActivate(event:Event):void {
+			facade.sendNotification(BBNotifications.NETWORK_CHECK_AVAILABILITY);
 		}
 		
 		private function onAddedToStage(event:Event):void {
@@ -59,11 +64,19 @@ package com.clarityenglish.bento {
 		}
 		
 		private function onViewAddedToStage(event:Event):void {
-			facade.onViewAdded(event.target);
+			if (facade) {
+				facade.onViewAdded(event.target);
+			} else {
+				log.error("facade is not defined");
+			}
 		}
 		
 		private function onViewRemovedFromStage(event:Event):void {
-			facade.onViewRemoved(event.target);
+			if (facade) {
+				facade.onViewRemoved(event.target);
+			} else {
+				log.error("facade is not defined");
+			}
 		}
 		
 		protected function onKeyDown(event:KeyboardEvent):void {

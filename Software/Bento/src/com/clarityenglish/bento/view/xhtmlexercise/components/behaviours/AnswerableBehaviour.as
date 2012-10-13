@@ -89,6 +89,7 @@ import com.clarityenglish.textLayout.util.TLFUtil;
 import com.clarityenglish.textLayout.vo.XHTML;
 
 import flash.events.Event;
+import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 import flash.events.MouseEvent;
 import flash.utils.setTimeout;
@@ -205,6 +206,9 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 		
 		// Get the Answer that matches the selected <option> node
 		var optionNode:XML = selectElement.selectedItem;
+		
+		if (!optionNode) return;
+		
 		for each (var answer:NodeAnswer in question.answers) {
 			for each (var source:XML in answer.getSourceNodes(exercise)) {
 				if (source === optionNode) {
@@ -261,7 +265,9 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
-					eventMirror.addEventListener(FlexEvent.VALUE_COMMIT, Closure.create(this, onAnswerSubmitted, exercise, question, source));
+					//eventMirror.addEventListener(FlexEvent.VALUE_COMMIT, Closure.create(this, onAnswerSubmitted, exercise, question, source));
+					// TODO: AIR doesn't send a VALUE_COMMIT for mobile skins, so changed to FOCUS_OUT.  This needs to be tested for web IELTS.
+					eventMirror.addEventListener(FocusEvent.FOCUS_OUT, Closure.create(this, onAnswerSubmitted, exercise, question, source));
 					eventMirror.addEventListener(MouseEvent.CLICK, Closure.create(this, onAnswerClicked, exercise, question, source));
 				}
 			}

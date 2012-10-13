@@ -1,12 +1,11 @@
 package com.clarityenglish.ielts.view.title {
-	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.account.AccountView;
+	import com.clarityenglish.ielts.view.credits.CreditsView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.progress.ProgressView;
@@ -20,10 +19,9 @@ package com.clarityenglish.ielts.view.title {
 	
 	import mx.collections.ArrayCollection;
 	import mx.controls.SWFLoader;
-	import mx.core.FlexGlobals;
-	import mx.events.ItemClickEvent;
 	import mx.formatters.DateFormatter;
 	
+	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
@@ -31,8 +29,9 @@ package com.clarityenglish.ielts.view.title {
 	import spark.components.Button;
 	import spark.components.ButtonBar;
 	import spark.components.Label;
+	import spark.components.TabbedViewNavigator;
+	import spark.components.ViewNavigator;
 	import spark.events.IndexChangeEvent;
-	import spark.events.ListEvent;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
@@ -44,9 +43,12 @@ package com.clarityenglish.ielts.view.title {
 	public class TitleView extends BentoView {
 		
 		[SkinPart]
+		public var homeViewNavigator:ViewNavigator;
+		
+		[SkinPart]
 		public var navBar:ButtonBar;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var logoutButton:Button;
 		
 		[SkinPart]
@@ -85,12 +87,12 @@ package com.clarityenglish.ielts.view.title {
 		[Bindable]
 		public var dateFormatter:DateFormatter;
 		
+		// These SkinParts are only in the ipad app
+		[SkinPart]
+		public var sectionNavigator:TabbedViewNavigator;
+		
 		private var currentExerciseHref:Href;
 		
-		private var _productVersion:String;
-		private var _productCode:uint;
-		private var _licenceType:uint;
-
 		// #337
 		public var candidateOnlyInfo:Boolean = false;
 		
@@ -160,42 +162,35 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="skins/ielts/assets/buy.jpg")]
 		private var buyInfo:Class;
 		
+		public var _selectedCourseXML:XML;
+		[Bindable(event="courseSelected")]
+		public function get selectedCourseXML():XML { return _selectedCourseXML; }
+		public function set selectedCourseXML(value:XML):void {
+			_selectedCourseXML = value;
+			
+			if (_selectedCourseXML) {
+				currentState = "zone";
+				if (navBar) navBar.selectedIndex = -1;
+				
+				// This is for mobile skins; if the ZoneView is top of the stack then push the data, otherwise push ZoneView and data
+				if (homeViewNavigator) {
+					if (ClassUtil.getClass(homeViewNavigator.activeView) == ZoneView) {
+						homeViewNavigator.activeView.data = _selectedCourseXML;
+					} else {
+						homeViewNavigator.pushView(ZoneView, _selectedCourseXML);
+					}
+				}
+			}
+			
+			dispatchEvent(new Event("courseSelected"));
+		}
+		
 		// Constructor to let us initialise our states
 		public function TitleView() {
 			super();
 			
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "support" ], true);
-		}
-		
-		public function set productVersion(value:String):void {
-			if (_productVersion != value) {
-				_productVersion = value;
-				dispatchEvent(new Event("productVersionChanged"));
-			}
-		}
-		
-		[Bindable(event="productVersionChanged")]
-		public function get productVersion():String {
-			return _productVersion;
-		}
-		
-		public function set productCode(value:uint):void {
-			if (_productCode != value) {
-				_productCode = value;
-				dispatchEvent(new Event("productVersionChanged"));
-			}
-		}
-		
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-				dispatchEvent(new Event("licenceTypeChanged"));
-			}
-		}
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
 		}
 		
 		[Bindable(event="productVersionChanged")]
@@ -307,6 +302,19 @@ package com.clarityenglish.ielts.view.title {
 			currentExerciseHref = exerciseHref;
 			if (exerciseView) exerciseView.href = currentExerciseHref;
 			callLater(invalidateSkinState); // callLater is part of #192
+			
+			// This is for mobile skins; if the ExerciseView is already top of the stack then set the href, otherwise push a new ExerciseView
+			if (homeViewNavigator) {
+				if (ClassUtil.getClass(homeViewNavigator.activeView) == ExerciseView) {
+					if (currentExerciseHref) {
+						(homeViewNavigator.activeView as ExerciseView).href = currentExerciseHref;
+					} else {
+						homeViewNavigator.popView();
+					}
+				} else {
+					homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
+				}
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -341,6 +349,10 @@ package com.clarityenglish.ielts.view.title {
 							navBar.callLater(function():void { navBar.selectedIndex = e.oldIndex; });
 						}
 					} );
+					break;
+				
+				case sectionNavigator:
+					sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, updateStateFromSectionNavigator);
 					break;
 				
 				case logoutButton:
@@ -415,9 +427,37 @@ package com.clarityenglish.ielts.view.title {
 			if (event.target.selectedItem) currentState = event.target.selectedItem.data;
 		}
 		
+		/**
+		 * Keep the state in sync with changes to the mobile tabbed navigator
+		 * TODO: It would be much neater if this could be combined with the navBar somehow
+		 */
+		public function updateStateFromSectionNavigator(event:IndexChangeEvent = null):void {
+			switch (ClassUtil.getClass(sectionNavigator.selectedNavigator.activeView)) {
+				case HomeView:
+					currentState = "home";
+					break;
+				case ZoneView:
+					currentState = "zone";
+					break;
+				case ProgressView:
+					currentState = "progress";
+					break;
+				case AccountView:
+					currentState = "account";
+					break;
+				case SupportView:
+					currentState = "support";
+					break;
+				case CreditsView:
+					// This has no state at present
+					break;
+			}
+		}
+		
 		protected function onLogoutButtonClick(event:MouseEvent):void {
 			logout.dispatch();
 		}
+		
 		/**
 		 * The user has clicked the back button to get out of an exercise, so clear the current exercise
 		 * 
@@ -425,6 +465,7 @@ package com.clarityenglish.ielts.view.title {
 		 */
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
 			backToMenu.dispatch();
+			
 			// #260 
 			if (logoutButton) logoutButton.enabled = false;
 			shortDelayTimer = new Timer(1000, 60);
@@ -436,7 +477,7 @@ package com.clarityenglish.ielts.view.title {
 		// This function enables logoutButton no matter what
 		private function resetLogoutButton(event:TimerEvent):void {
 			trace("enable logout button");
-			logoutButton.enabled = true;
+			if (logoutButton) logoutButton.enabled = true;
 		}
 		
 		// #260 
@@ -447,7 +488,7 @@ package com.clarityenglish.ielts.view.title {
 				shortDelayTimer.stop();
 			}
 		}
-
+		
 		// #337
 		private function onRequestInfoClick(event:MouseEvent):void {
 			switch (_productVersion) {

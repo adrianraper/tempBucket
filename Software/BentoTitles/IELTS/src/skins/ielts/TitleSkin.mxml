@@ -9,14 +9,17 @@
 		xmlns:account="com.clarityenglish.ielts.view.account.*"
 		xmlns:support="com.clarityenglish.ielts.view.support.*"
 		xmlns:exercise="com.clarityenglish.ielts.view.exercise.*">
-	<!-- host component -->
+
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
 	</fx:Metadata>
 	
 	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
 		<s:State name="home" />
-		<s:State name="zone" />
+		<s:State name="zone"  />
 		<s:State name="progress" />
 		<s:State name="account" />
 		<s:State name="support" />
@@ -38,7 +41,7 @@
 					 buttonMode="true" useHandCursor="true" />
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true"/>
 	</s:Group>
-		
+	
 	<s:Group width="100%" includeIn="exercise">
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')"/>
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" left="210" top="7" />
@@ -50,7 +53,7 @@
 	<s:HGroup width="100%" height="100%">
 		<s:Group width="100%" height="100%">
 			<home:HomeView id="homeView" width="100%" height="100%" includeIn="home" />
-			<zone:ZoneView id="zoneView" width="100%" height="100%" includeIn="zone" />
+			<zone:ZoneView id="zoneView" width="100%" height="100%" includeIn="zone" course="{hostComponent.selectedCourseXML}" />
 			<progress:ProgressView id="progressView" width="100%" height="100%" includeIn="progress" />
 			<account:AccountView id="accountView" width="100%" height="100%" includeIn="account" />
 			<support:SupportView id="supportView" width="100%" height="100%" includeIn="support" />

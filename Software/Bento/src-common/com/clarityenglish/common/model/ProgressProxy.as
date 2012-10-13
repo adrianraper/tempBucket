@@ -22,6 +22,7 @@ package com.clarityenglish.common.model {
 	import flash.events.IOErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.system.System;
 	import flash.utils.Dictionary;
 	
 	import mx.collections.ArrayCollection;
@@ -40,7 +41,7 @@ package com.clarityenglish.common.model {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	/**
-	 * A proxy
+	 * This is all rather confused - the roles of XHTMLProxy and ProgressProxy are rather mixed up.  These should be looked at carefully at some point.
 	 */
 	public class ProgressProxy extends Proxy implements IProxy, IDelegateResponder {
 		
@@ -88,6 +89,21 @@ package com.clarityenglish.common.model {
 			dataLoading = new Dictionary();
 		}
 		
+		public function reset():void {
+			// #472
+			for each (var resource:* in loadedResources)
+				if (resource is XML)
+					System.disposeXML(resource);
+			
+			loadedResources = new Dictionary();
+			dataLoading = new Dictionary();
+			href = null;
+		}
+		
+		public function hasLoadedResource(href:*):Boolean {
+			return loadedResources[href];
+		}
+		
 		/**
 		 * Not sure if we should be sending an object full of data (userID, groupID, rootID, productCode, country)
 		 * or just the userID as that will let the backend get it all anyway, albeit with another db call.
@@ -103,6 +119,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function getProgressData(user:User, account:Account, href:Href, progressType:String):void {
 			// If the data has already been loaded then just return it
+			// Temporarily disable caching
 			if (loadedResources[progressType]) {
 				notifyDataLoaded(progressType);
 				return;
@@ -130,7 +147,6 @@ package com.clarityenglish.common.model {
 					
 					// Maintain a note that we are currently loading this data
 					dataLoading[progressType] = true;
-					
 			}
 			
 			// And save the href
@@ -224,23 +240,21 @@ package com.clarityenglish.common.model {
 		}
 
 		/**
-		 * This sends out the notification with the requested data 
-		 * @param progressType
+		 * This sends out the notification with the requested data
 		 * 
+		 * @param progressType
 		 */
 		private function notifyDataLoaded(progressType:String):void {
-			
 			// #338. Note that loadedResources[progress_my_details] is just a boolean to show that we have the data
 			// already, the actual data is held in bentoProxy
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				//var dp:Object = bentoProxy.menuXHTML;
-				var dp:Object = bentoProxy.menu;
+				var dataProvider:Object = bentoProxy.menu;
 			} else {
-				dp = loadedResources[progressType];
+				dataProvider = loadedResources[progressType];
 			}
-			var data:Object = { type: progressType, dataProvider: dp };
-			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
+			
+			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, { type: progressType, dataProvider: dataProvider } );
 		}
 		
 		/**

@@ -17,6 +17,7 @@ package com.clarityenglish.textLayout.vo {
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.hamcrest.object.nullValue;
 
 	use namespace flash_proxy;
 	
@@ -140,6 +141,10 @@ package com.clarityenglish.textLayout.vo {
 		 */
 		flash_proxy override function getDescendants(name:*):* {
 			return _xml.descendants(String(name));
+		}
+		
+		public function toXMLString():String {
+			return (_xml) ? _xml.toXMLString() : null;
 		}
 		
 		public function isExternalStylesheetsLoaded():Boolean {

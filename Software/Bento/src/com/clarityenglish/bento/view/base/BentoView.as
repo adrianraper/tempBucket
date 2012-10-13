@@ -13,6 +13,7 @@ package com.clarityenglish.bento.view.base {
 	
 	import org.davekeen.util.ClassUtil;
 	
+	import spark.components.View;
 	import spark.components.supportClasses.SkinnableComponent;
 	
 	/**
@@ -22,7 +23,7 @@ package com.clarityenglish.bento.view.base {
 	 */
 	[Event(name="hrefChanged", type="com.clarityenglish.bento.view.base.events.BentoEvent")]
 	[Event(name="xhtmlReady", type="com.clarityenglish.bento.view.base.events.BentoEvent")]
-	public class BentoView extends SkinnableComponent {
+	public class BentoView extends View {
 		
 		/**
 		 * Standard flex logger
@@ -40,6 +41,11 @@ package com.clarityenglish.bento.view.base {
 		 */
 		protected var _xhtml:XHTML;
 		private var _xhtmlChanged:Boolean;
+		
+		// #234
+		protected var _productVersion:String;
+		protected var _productCode:uint;
+		protected var _licenceType:uint;
 		
 		public var media:String = "screen";
 		
@@ -73,6 +79,19 @@ package com.clarityenglish.bento.view.base {
 			
 		}
 		
+		protected override function createChildren():void {
+			super.createChildren();
+			
+			// A rather neat way to allow action and navigation content to be defined in skins
+			if (skin) {
+				if (skin.hasOwnProperty("actionContent"))
+					actionContent = skin["actionContent"];
+				
+				if (skin.hasOwnProperty("navigationContent"))
+					navigationContent = skin["navigationContent"];
+			}
+		}
+		
 		protected function onAddedToStage(event:Event):void {
 			
 		}
@@ -101,6 +120,42 @@ package com.clarityenglish.bento.view.base {
 			invalidateProperties();
 		}
 		
+		[Bindable(event="productVersionChanged")]
+		public function get productVersion():String {
+			return _productVersion;
+		}
+		
+		public function set productVersion(value:String):void {
+			if (_productVersion != value) {
+				_productVersion = value;
+				dispatchEvent(new Event("productVersionChanged"));
+			}
+		}
+		
+		[Bindable(event="productCodeChanged")]
+		public function get productCode():uint {
+			return _productCode;
+		}
+		
+		public function set productCode(value:uint):void {
+			if (_productCode != value) {
+				_productCode = value;
+				dispatchEvent(new Event("productCodeChanged"));
+			}
+		}
+		
+		[Bindable(event="licenceTypeChanged")]
+		public function get licenceType():uint {
+			return _licenceType;
+		}
+		
+		public function set licenceType(value:uint):void {
+			if (_licenceType != value) {
+				_licenceType = value;
+				dispatchEvent(new Event("licenceTypeChanged"));
+			}
+		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
@@ -127,7 +182,6 @@ package com.clarityenglish.bento.view.base {
 		protected function get menu():XML {
 			// #338 The model no longer holds head and script for the menu
 			return (_xhtml) ? _xhtml.head.script.(@id == "model" && @type == "application/xml").menu[0] : null;
-			//return (_xhtml) ? _xhtml.xml : null;
 		}
 		
 	}

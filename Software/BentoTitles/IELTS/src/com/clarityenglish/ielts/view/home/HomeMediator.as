@@ -3,10 +3,11 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.vo.progress.Progress;
-	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
+	import com.clarityenglish.common.vo.progress.Progress;
+	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.clarityenglish.ielts.model.IELTSProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -119,8 +120,8 @@
 			// dispatch a notification, which titleMediator is listening for
 			sendNotification(IELTSNotifications.COURSE_SHOW, course);
 			
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.currentCourseClass = course.@["class"];
+			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
+			ieltsProxy.currentCourseClass = course.@["class"];
 		}
 
 		private function onInfoRequested():void {

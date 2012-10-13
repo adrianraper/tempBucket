@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
+		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
+		initialize="onInitialize(event)" >
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
+			import com.clarityenglish.rotterdam.view.unit.UnitView;
+			
+			import mx.events.FlexEvent;
+			
+			import org.davekeen.transitions.PatchedSlideViewTransition;
+			
+			import spark.transitions.ViewTransitionBase;
+			import spark.transitions.ViewTransitionDirection;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				// Use a custom PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
+				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				pushTransition.direction = ViewTransitionDirection.UP;
+				unitViewNavigator.defaultPushTransition = pushTransition;
+				
+				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				popTransition.direction = ViewTransitionDirection.DOWN;
+				unitViewNavigator.defaultPopTransition = popTransition;
+			}
+			
+			private function unitViewNavigatorShow(viewClass:Class, transition:ViewTransitionBase = null):void {
+				// This needs a callLater otherwise the first time we open the editor mouse events are not picked up
+				callLater(function():void {
+					if (!unitViewNavigator.activeView) {
+						unitViewNavigator.pushView(viewClass);
+					} else if (!(unitViewNavigator.activeView is viewClass)) {
+						unitViewNavigator.replaceView(viewClass, unitViewNavigator.activeView.data, null, transition);
+					}
+				});
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		<s:State name="uniteditor" enterState="unitViewNavigatorShow(UnitEditorView, unitViewNavigator.defaultPopTransition)" />
+		<s:State name="unitplayer" enterState="unitViewNavigatorShow(UnitView, unitViewNavigator.defaultPushTransition)" />
+	</s:states>
+	
+	<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="200" top="0" bottom="100" />
+	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="70" />
+	
+	<s:ViewNavigator id="unitViewNavigator" left="200" right="0" top="0" bottom="50" />
+	
+	<course:ToolBarView bottom="0" left="0" right="0" />
+	
+</s:Skin>

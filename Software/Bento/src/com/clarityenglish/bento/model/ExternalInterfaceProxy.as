@@ -33,7 +33,7 @@ package com.clarityenglish.bento.model {
 				
 				ExternalInterface.addCallback("isExerciseDirty", isExerciseDirty);
 			} else {
-				log.error("External interface is not available in this container");
+				log.debug("External interface is not available in this container");
 			}
 		}
 		

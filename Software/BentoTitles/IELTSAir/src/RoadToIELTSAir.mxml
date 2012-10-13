@@ -6,23 +6,66 @@
 						height="100%"
 						initialize="onInitialize(event)"
 						applicationComplete="onApplicationComplete(event)"
-						addedToStage="onAddedToStage(event)">
+						addedToStage="onAddedToStage(event)"
+						applicationDPI="160"
+						runtimeDPIProvider="RetinaRuntimeDPIProvider"
+						gestureSwipe="onGestureSwipe(event)">
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.common.CommonNotifications;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 			import com.clarityenglish.common.vo.config.BentoError;
+			import com.clarityenglish.components.SpinnerDropDownList;
+			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
+			import com.clarityenglish.ieltsair.IELTSAirNotifications;
+			import com.clarityenglish.textLayout.elements.SelectElement;
+			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
+			import com.flashiphonedevelopment.settings.IPhoneAppSettings;
 			
 			import flash.utils.setTimeout;
 			
 			import mx.core.FlexGlobals;
+			import mx.core.mx_internal;
 			import mx.events.FlexEvent;
-			import mx.logging.Log;
-			import mx.logging.LogEventLevel;
 			
-			import spark.components.TextArea;
+			import org.davekeen.delegates.RemoteDelegate;
+			
+			import skins.bento.components.SpinnerDropDownListSkin;
+			
+			import spark.components.DropDownList;
+			import spark.components.supportClasses.StyleableTextField;
 			
 			protected function onInitialize(event:FlexEvent):void {
+				// Set the iOS config xml file as well as getting the prefix and product code from the iOS settings
 				FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
+				try { FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix"); } catch (e:TypeError) { }
+				try { FlexGlobals.topLevelApplication.parameters.productCode = IPhoneAppSettings.getInstance().stringForKey("productVersion"); } catch (e:TypeError) { }
+				
+				// EMERGENCY HOTFIX - HARDCODE TO HCT FOR NOW
+				FlexGlobals.topLevelApplication.parameters.prefix = "HCT";
+				
+				// The AIR application applies an offset to font sizes in the xhtml files  
+				try { CSSApplicator.fontSizeOffset = new Number(IPhoneAppSettings.getInstance().stringForKey("fontOffset")); } catch (e:TypeError) { }
+				
+				// The AIR application uses a custom Spinner instead of the normal dropdown
+				SelectElement.elementFactoryFunction = function():DropDownList {
+					var dropDownList:DropDownList = new SpinnerDropDownList();
+					dropDownList.setStyle("skinClass", SpinnerDropDownListSkin);
+					return dropDownList;
+				}
+				
+				// #383 No busy cursor on AIR
+				RemoteDelegate.setShowBusyCursor(false);
+				
+				// #444 Use gestures for swiping (may eventually be used in the help screen)
+				Multitouch.inputMode = MultitouchInputMode.GESTURE;
+				
+				// #479 For the AIR version we get the version number out of the xml descripter
+				var descriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
+				var ns:Namespace = descriptor.namespace();
+				versionNumber = descriptor.ns::versionNumber.toString();
+				
+				// Set the facade
+				facade = IELTSAirApplicationFacade.getInstance();
 			}
 			
 			protected function onApplicationComplete(event:FlexEvent):void {
@@ -59,8 +102,20 @@
 				}
 			}
 			
+			protected function onGestureSwipe(event:TransformGestureEvent):void {
+				if (facade)
+					facade.sendNotification((event.offsetX < 1 ? IELTSAirNotifications.GESTURE_SWIPE_LEFT : IELTSAirNotifications.GESTURE_SWIPE_RIGHT), event.offsetX);
+			}
+			
 		]]>
 	</fx:Script>
+	
+	<fx:Style>
+		global {
+			fontFamily: Helvetica;
+			fontSize: 13;
+		}
+	</fx:Style>
 	
 	<fx:Style source="ielts.css" />
 	<fx:Style source="ieltsair.css" />

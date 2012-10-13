@@ -3,11 +3,14 @@ package com.clarityenglish.ielts.view.progress.ui {
 	
 	import caurina.transitions.Tweener;
 	
+	import com.adobe.utils.StringUtil;
+	
 	import mx.graphics.SolidColor;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.StringUtils;
 	
 	import spark.components.Label;
 	import spark.primitives.Rect;
@@ -33,7 +36,6 @@ package com.clarityenglish.ielts.view.progress.ui {
 		
 		public var courseClass:String;
 		
-	
 		public var type:String;
 		
 		public override function set data(value:Object):void {
@@ -46,17 +48,16 @@ package com.clarityenglish.ielts.view.progress.ui {
 				
 				// Is this for coverge or score?
 				if (type == 'coverage') {
-					commentLabel.text = courseClass + " - overall coverage " + new Number(course.@coverage) + "%";
+					commentLabel.text = StringUtils.capitalize(courseClass) + " - overall coverage " + new Number(course.@coverage) + "%";
 					var percentValue:Number = new Number(course.@coverage);
 				} else {
-					commentLabel.text = courseClass + " - average score " + new Number(course.@averageScore) + "%";
+					commentLabel.text = StringUtils.capitalize(courseClass) + " - average score " + new Number(course.@averageScore) + "%";
 					percentValue = new Number(course.@averageScore);
 				}
 				
 				// Tween it
 				Tweener.removeTweens(overallProgressRect, percentWidth);
-				Tweener.addTween(overallProgressRect, {percentWidth:percentValue, time:2, delay:0, transition:"easeOutSine"});
-				
+				Tweener.addTween(overallProgressRect, {percentWidth: percentValue, time: 2, delay: 0, transition: "easeOutSine"});
 			}
 		}
 		

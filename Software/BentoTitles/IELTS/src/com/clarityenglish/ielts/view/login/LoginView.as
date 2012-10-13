@@ -10,20 +10,15 @@ package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.events.Event;
-	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
-	import flash.events.TextEvent;
 	
-	import mx.controls.Alert;
-	import mx.core.ITextInput;
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
 	import spark.components.Button;
 	import spark.components.FormHeading;
-	import spark.components.Label;
 	import spark.components.TextInput;
-
+	
 	public class LoginView extends BentoView implements LoginComponent {
 		
 		[SkinPart(required="true")]
@@ -41,16 +36,22 @@ package com.clarityenglish.ielts.view.login {
 		// #341
 		[SkinPart]
 		public var addUserButton:Button;
+		
 		[SkinPart]
 		public var newUserButton:Button;
+		
 		[SkinPart]
 		public var cancelButton:Button;
+		
 		[SkinPart]
 		public var loginNameInput:TextInput;
+		
 		[SkinPart]
 		public var loginEmailInput:TextInput;
+		
 		[SkinPart]
 		public var loginIDInput:TextInput;
+		
 		[SkinPart]
 		public var newPasswordInput:TextInput;
 
@@ -59,10 +60,13 @@ package com.clarityenglish.ielts.view.login {
 		
 		[Bindable]
 		public var loginKey_lbl:String;
+		
 		[Bindable]
 		public var loginName_lbl:String;
+		
 		[Bindable]
 		public var loginID_lbl:String;
+		
 		[Bindable]
 		public var loginEmail_lbl:String;
 		
@@ -70,12 +74,8 @@ package com.clarityenglish.ielts.view.login {
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
 		private var _verified:Boolean;
-		private var _licenceType:uint;
 		
 		private var _currentState:String;
-
-		private var _productVersion:String;
-		private var _productCode:uint;
 		
 		// #341
 		[Bindable]
@@ -83,7 +83,6 @@ package com.clarityenglish.ielts.view.login {
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
-		
 		private var fullVersionAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
@@ -117,7 +116,7 @@ package com.clarityenglish.ielts.view.login {
 		public function LoginView() {
 			super();
 		}
-
+		
 		// #341
 		[Bindable]
 		public function get selfRegister():Number {
@@ -128,6 +127,7 @@ package com.clarityenglish.ielts.view.login {
 				_selfRegister = value;
 			}
 		}
+		
 		[Bindable]
 		public function get verified():Boolean {
 			return _verified; 
@@ -137,7 +137,7 @@ package com.clarityenglish.ielts.view.login {
 				_verified = value;
 			}
 		}
-
+		
 		[Bindable]
 		public function get selfRegisterName():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_NAME) == Config.SELF_REGISTER_NAME); 
@@ -145,6 +145,7 @@ package com.clarityenglish.ielts.view.login {
 		public function set selfRegisterName(value:Boolean):void {
 			selfRegister = selfRegister | Config.SELF_REGISTER_NAME;
 		}
+		
 		[Bindable]
 		public function get selfRegisterID():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_ID) == Config.SELF_REGISTER_ID); 
@@ -152,6 +153,7 @@ package com.clarityenglish.ielts.view.login {
 		public function set selfRegisterID(value:Boolean):void {
 			selfRegister = selfRegister | Config.SELF_REGISTER_ID;
 		}
+		
 		[Bindable]
 		public function get selfRegisterEmail():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_EMAIL) == Config.SELF_REGISTER_EMAIL); 
@@ -159,6 +161,7 @@ package com.clarityenglish.ielts.view.login {
 		public function set selfRegisterEmail(value:Boolean):void {
 			selfRegister = selfRegister | Config.SELF_REGISTER_EMAIL;
 		}
+		
 		[Bindable]
 		public function get selfRegisterPassword():Boolean {
 			return ((selfRegister & Config.SELF_REGISTER_PASSWORD) == Config.SELF_REGISTER_PASSWORD); 
@@ -178,40 +181,28 @@ package com.clarityenglish.ielts.view.login {
 				changeLoginLabels();
 			}
 		}
-
+		
 		// #341 Need to know if it is a network version.
-		public function set licenceType(value:uint):void {
-			if (_licenceType != value) {
-				_licenceType = value;
-			}
-		}
-		[Bindable]
-		public function get licenceType():uint {
-			return _licenceType;
-		}
 		public function get isNetwork():Boolean {
 			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
 		}
 		
+		[Bindable(event="productVersionChanged")]
+		public function getProductVersion():String {
+			return _productVersion;
+		}
 		public function setProductVersion(value:String):void {
 			if (_productVersion != value) {
 				_productVersion = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
-		[Bindable(event="productVersionChanged")]
-		public function getProductVersion():String {
-			return _productVersion;
-		}
+		
 		public function setProductCode(value:uint):void {
 			if (_productCode != value) {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
-		}
-		[Bindable(event="productVersionChanged")]
-		public function get productCode():uint {
-			return _productCode;
 		}
 		
 		[Bindable(event="productVersionChanged")]
@@ -285,8 +276,7 @@ package com.clarityenglish.ielts.view.login {
 			}
 			return null;
 		}
-
-
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -312,7 +302,7 @@ package com.clarityenglish.ielts.view.login {
 			} else {
 				networkState = "";
 			}
-				
+			
 			return _currentState + networkState;
 		}
 		
@@ -346,7 +336,7 @@ package com.clarityenglish.ielts.view.login {
 			// #341 for network version
 			setState("login");
 		}
-
+		
 		/**
 		 * To let you work out what data you need for logging in to this account. 
 		 * @param Number loginOption
@@ -358,7 +348,6 @@ package com.clarityenglish.ielts.view.login {
 			// Override normal text with Last Minute
 			if (_productVersion == IELTSApplication.LAST_MINUTE) { 
 				loginKey_lbl = "Login id:";
-				
 			} else {
 				// #341 This has to be bitwise comparison, not equality
 				if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
@@ -374,7 +363,6 @@ package com.clarityenglish.ielts.view.login {
 			loginName_lbl = "Your name:";
 			loginID_lbl = "Your id:";
 			loginEmail_lbl = "Your email:";
-			
 		}
 		
 		// #254
@@ -431,7 +419,6 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		public function setState(state:String):void {
-		
 			// Copy fields if appropriate
 			switch (state) {
 				case 'register':

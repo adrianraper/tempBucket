@@ -11,10 +11,6 @@
 	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.external.ExternalInterface;
-	import flash.net.URLRequest;
-	import flash.net.navigateToURL;
-	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.observer.Notification;
@@ -56,7 +52,6 @@
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
 			super.onXHTMLReady(xhtml);
-			
 		}
 		
 		/**
@@ -106,12 +101,7 @@
 					view.showExercise(null);
 					break;
 				case IELTSNotifications.COURSE_SHOW:
-					var course:XML = note.getBody() as XML;
-					view.currentState = "zone";
-					if (view.navBar) view.navBar.selectedIndex = -1;
-					view.callLater(function():void {
-						view.zoneView.course = course;
-					});
+					view.selectedCourseXML = note.getBody() as XML;
 					break;
 			}
 		}

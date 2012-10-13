@@ -5,6 +5,8 @@ package com.clarityenglish.common.vo.config {
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
+	import org.davekeen.util.StringUtils;
+	
 	/**
 	 * This holds configuration information that comes from any source.
 	 * It includes licence control, user and account information.
@@ -64,7 +66,7 @@ package com.clarityenglish.common.vo.config {
 		public var streamingMedia:String;
 		public var mediaChannel:String;
 		
-		public var channelArray:Array;
+		public var channels:Array;
 		
 		// #336
 		public var scorm:Boolean;
@@ -79,8 +81,6 @@ package com.clarityenglish.common.vo.config {
 		
 		// TODO: Or should this be a BentoError object?
 		public var error:BentoError;
-		//public var errorNumber:uint;
-		//public var errorDescription:String;
 		
 		// Is it worth paths being a separate class?
 		public var paths:Object;
@@ -93,9 +93,16 @@ package com.clarityenglish.common.vo.config {
 		// #341 Hold the top level group for this account
 		public var group:Group;
 		
-		// For holding chart templates
-		private var _chartTemplates:XML;
+		// #385
+		public var rememberLogin:Boolean;
+		public var disableAutoTimeout:Boolean;
 		
+		// #410
+		public var checkNetworkAvailabilityUrl:String;
+		public var checkNetworkAvailabilityInterval:uint;
+		public var checkNetworkAvailabilityReconnectInterval:uint;
+		
+
 		// For performance logging
 		public var appLaunchTime:Number;
 
@@ -111,7 +118,7 @@ package com.clarityenglish.common.vo.config {
 			this.paths = {content: '', streamingMedia: '', sharedMedia: '', brandingMedia: '', accountRepository: ''};
 			//this.licence = new Licence();
 			this.error = new BentoError();
-			this.channelArray = [];
+			this.channels = [];
 			this.scorm = false;
 		}
 		
@@ -257,7 +264,6 @@ package com.clarityenglish.common.vo.config {
 		 * 	  remoteService
 		 */
 		public function mergeFileData(xml:XML):void {
-			
 			//ODD. For some reason, xml.config.dbHost.length() fails but xml..dbHost.length(); succeeds.
 			//var myL:int = xml.config.dbHost.length();
 			//var myS:String = xml..dbHost.toString();
@@ -292,7 +298,7 @@ package com.clarityenglish.common.vo.config {
 				choiceChannel.name = channel.@name.toString();
 				choiceChannel.caption = channel.@caption.toString();
 				choiceChannel.streamName = channel.streamingMedia.toString();
-				channelArray.push(choiceChannel);
+				channels.push(choiceChannel);
 			}
 			
 			// #335
@@ -343,6 +349,20 @@ package com.clarityenglish.common.vo.config {
 				this.pricesURL = xml..pricesURL.toString();
 			if (xml..registerURL.toString())
 				this.registerURL = xml..registerURL.toString();
+			
+			// #385
+			if (xml..rememberLogin.toString() == "true")
+				this.rememberLogin = true;
+			if (xml..disableAutoTimeout.toString() == "true")
+				this.disableAutoTimeout = true;
+			
+			// #410
+			if (xml..checkNetworkAvailabilityUrl.toString())
+				this.checkNetworkAvailabilityUrl = xml..checkNetworkAvailabilityUrl.toString();
+			if (xml..checkNetworkAvailabilityInterval.toString())
+				this.checkNetworkAvailabilityInterval = new Number(xml..checkNetworkAvailabilityInterval.toString());
+			if (xml..checkNetworkAvailabilityReconnectInterval.toString())
+				this.checkNetworkAvailabilityReconnectInterval = new Number(xml..checkNetworkAvailabilityReconnectInterval.toString());
 
 			// For help with testing
 			if (xml..id.toString()) {
@@ -414,8 +434,13 @@ package com.clarityenglish.common.vo.config {
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
 			// Its purpose is to allow an account to swap language versions easily for a title.
-			if (thisTitle.contentLocation) {
-				this.paths.content += thisTitle.contentLocation;
+			if (thisTitle.dbContentLocation) {
+				this.paths.content += thisTitle.dbContentLocation;
+			} else if (thisTitle.contentLocation) {
+				// #472 - only concatenate if the path doesn't already end with this.  A little hacky but the chances of the normal content URL ending with the
+				// content location path already are slim to none.
+				if (!StringUtils.endsWith(this.paths.content, thisTitle.contentLocation))
+					this.paths.content += thisTitle.contentLocation;
 			}
 			
 			// See if you can now do any substitutions on the menu filename
@@ -440,18 +465,6 @@ package com.clarityenglish.common.vo.config {
 			
 		}
 		*/
-		/**
-		 * This sends back the XML that is the chart templates
-		 * 
-		 * @return
-		 */
-		public function get chartTemplates():XML {
-			return _chartTemplates;
-		}
-		
-		public function set chartTemplates(value:XML):void {
-			_chartTemplates = value;
-		}
 		
 		/**
 		 * #530

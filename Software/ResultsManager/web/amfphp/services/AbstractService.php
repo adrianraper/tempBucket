@@ -30,7 +30,8 @@ class AbstractService {
 		// Force all PHP datetime functions to work in UTC
 		// Wouldn't it make more sense to work in Asia/Hong_Kong since that is where the server is?
 		//date_default_timezone_set("Asia/Hong_Kong");
-		date_default_timezone_set("UTC");
+		// #518 Now set in amfphp/globals.php
+		//date_default_timezone_set("UTC");
 		
 		// Small optimization
 		$ADODB_COUNTRECS = false;

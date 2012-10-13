@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="416" viewWidth="477" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library>
+    <Definition name="rtiv2_ipad_ai_Login_Path__14" flm:originalName="rtiv2_ipad.ai/Login/&lt;Path&gt;_14">
+      <Group>
+        <Group d:type="layer" d:userLabel="Layer 1">
+          <Path data="M423.55 6.35Q426.4 6.35 428.45 8.4 430.5 10.4 430.5 13.3L430.5 397.4Q430.5 399.9 428.45 401.85 426.35 403.85 423.55 403.85L13.45 403.85 13.25 403.8Q10.5 403.75 8.5 401.8 6.55 399.85 6.55 397.4L6.55 13.3Q6.55 10.4 8.6 8.4 10.6 6.35 13.45 6.35
+L423.55 6.35">
+            <fill>
+              <SolidColor color="#2E318B"/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Definition>
+    <Definition name="rtiv2_ipad_ai_Login_Path_" flm:originalName="rtiv2_ipad.ai/Login/&lt;Path&gt;">
+      <Group>
+        <Group d:type="layer" d:userLabel="Layer 1">
+          <Path data="M424.45 67.9 424.45 0.5 0.5 0.5 0.5 67.9Q0.5 70.4 2.55 72.35 4.6 74.35 7.4 74.35L417.5 74.35Q420.3 74.35 422.4 72.35 424.45 70.4 424.45 67.9">
+            <stroke>
+              <SolidColorStroke caps="none" joints="miter" miterLimit="4" color="#B0B0B0" alpha="0.69803923"/>
+            </stroke>
+          </Path>
+        </Group>
+      </Group>
+    </Definition>
+  </Library>
+  <Group blendMode="normal" d:type="layer" d:userLabel="Layer 1">
+    <Group blendMode="normal">
+      <rtiv2_ipad_ai_Login_Path__14 x="21.25" y="-6.35">
+        <filters>
+          <DropShadowFilter blurX="6" blurY="6" alpha="0.74901961" angle="0" distance="0"/>
+        </filters>
+      </rtiv2_ipad_ai_Login_Path__14>
+      <Group>
+        <Path x="-20.75" y="-203.35" data="M472.5 210.8 472.5 594.4Q472.5 596.9 470.45 598.85 468.35 600.85 465.55 600.85L55.45 600.85Q52.65 600.85 50.6 598.85 48.55 596.9 48.55 594.4L48.55 210.8Q48.55 207.6 50.6 205.45 52.55 203.35 55.45 203.35L465.55 203.35Q468.45 203.35 470.45 205.45
+ 472.5 207.6 472.5 210.8">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Path>
+        <Path x="-20.75" y="-203.35" data="M472.5 210.8 472.5 594.4Q472.5 596.9 470.45 598.85 468.35 600.85 465.55 600.85L55.45 600.85Q52.65 600.85 50.6 598.85 48.55 596.9 48.55 594.4L48.55 210.8Q48.55 207.6 50.6 205.45 52.55 203.35 55.45 203.35L465.55 203.35Q468.45 203.35 470.45 205.45
+ 472.5 207.6 472.5 210.8">
+          <stroke>
+            <SolidColorStroke weight="0.2" caps="none" joints="miter" miterLimit="4" color="#949494"/>
+          </stroke>
+        </Path>
+      </Group>
+      <Path x="-20.75" y="-203.35" data="M120.85 609.45Q147.3 604.15 162.55 594.55L175.1 594.65Q192.1 593.95 214.55 589.8 200.55 594.9 178.9 600.35 135.6 611.25 97.4 612.85L104.15 612.15Q112.55 611.1 120.85 609.45">
+        <fill>
+          <LinearGradient>
+            <GradientEntry ratio="0.45490196" color="#6B9913"/>
+            <GradientEntry ratio="0.50980392" color="#6B9913"/>
+            <GradientEntry ratio="0.54509804" color="#76A125"/>
+            <GradientEntry ratio="0.76862745" color="#BFD399"/>
+            <GradientEntry ratio="0.9254902" color="#EDF3E2"/>
+            <GradientEntry ratio="0.99607843" color="#FFFFFF"/>
+            <matrix>
+              <Matrix a="114.85" b="2.075" c="11.8" d="-128.7" tx="98.525" ty="600.2625"/>
+            </matrix>
+          </LinearGradient>
+        </fill>
+      </Path>
+      <Path x="-20.75" y="-203.35" data="M251.8 528.25Q202.4 527.45 171.55 537.65 164.55 535.4 149.15 532.95 118.4 527.95 76.7 526.75 103.65 523.4 144.45 522.3 225.95 520.05 295 531.1 276.5 528.65 251.8 528.25">
+        <fill>
+          <LinearGradient x="288.0875" y="556.6" scaleX="-211.84708" rotation="15.159643">
+            <GradientEntry ratio="0" color="#FFFFFF"/>
+            <GradientEntry ratio="0.10196078" color="#F3F8FB"/>
+            <GradientEntry ratio="0.28627451" color="#D3E6F1"/>
+            <GradientEntry ratio="0.53333333" color="#9FC8E0"/>
+            <GradientEntry ratio="0.82745098" color="#589FCA"/>
+            <GradientEntry ratio="1" color="#2B85BB"/>
+          </LinearGradient>
+        </fill>
+      </Path>
+      <Path x="-20.75" y="-203.35" data="M306.9 532.5Q322.05 527.6 338.6 523.3 391.7 509.4 439.25 506.1 426.6 507.3 410.3 510.8 377.7 517.8 359.55 529.15 354.5 528.75 343.9 529.5 322.7 530.95 295.05 536.5L306.9 532.5">
+        <fill>
+          <LinearGradient x="439.2125" y="521.5125" scaleX="-144.12563" rotation="0.16895497">
+            <GradientEntry ratio="0" color="#FFFFFF"/>
+            <GradientEntry ratio="0.08627451" color="#F3FAFA"/>
+            <GradientEntry ratio="0.24705882" color="#D3EDEB"/>
+            <GradientEntry ratio="0.45882353" color="#9FD8D4"/>
+            <GradientEntry ratio="0.71764706" color="#57BBB5"/>
+            <GradientEntry ratio="1" color="#00978E"/>
+          </LinearGradient>
+        </fill>
+      </Path>
+      <Path x="-20.75" y="-203.35" data="M315.2 528.5Q336.9 524.95 360.25 522.5 434.75 514.6 497 520.75 480.25 519.6 457.75 520.9 412.75 523.5 383.95 535.8 377.7 534.1 363.85 532.7 336.1 529.95 298.15 531.6L315.2 528.5">
+        <fill>
+          <LinearGradient>
+            <GradientEntry ratio="0" color="#911083"/>
+            <GradientEntry ratio="0.50980392" color="#911083"/>
+            <GradientEntry ratio="0.54901961" color="#9B258E"/>
+            <GradientEntry ratio="0.77254902" color="#D099CA"/>
+            <GradientEntry ratio="0.9254902" color="#F2E2F0"/>
+            <GradientEntry ratio="0.99607843" color="#FFFFFF"/>
+            <matrix>
+              <Matrix a="-184.9" b="-36.5" c="-61.55" d="209.35" tx="490" ty="544.45"/>
+            </matrix>
+          </LinearGradient>
+        </fill>
+      </Path>
+      <Path x="-20.75" y="-203.35" data="M238.1 578Q251.1 582 264.65 585 308 594.6 340.6 590.8L344.65 593.05Q350.3 595.95 358 599.1 382.65 609.1 419 617.7 393.4 615.9 356.65 609.65 283.25 597.1 227.8 574.65L238.1 578">
+        <fill>
+          <LinearGradient>
+            <GradientEntry ratio="0" color="#2B85BB"/>
+            <GradientEntry ratio="0.50980392" color="#2B85BB"/>
+            <GradientEntry ratio="0.74509804" color="#99C4DE"/>
+            <GradientEntry ratio="0.91764706" color="#E2EFF6"/>
+            <GradientEntry ratio="0.99607843" color="#FFFFFF"/>
+            <matrix>
+              <Matrix a="152.55" b="94.35" c="124.875" d="-165.975" tx="247.125" ty="549.025"/>
+            </matrix>
+          </LinearGradient>
+        </fill>
+      </Path>
+      <Path x="-20.75" y="-203.35" data="M151.55 592.65Q179.35 592.4 216.9 586.55 192.85 594.45 156.35 602.45 83.25 618.45 20.75 619.1 37.5 618.4 59.7 614.65 104.05 607.15 131.2 591.75L136.15 592.25Q142.85 592.75 151.55 592.65">
+        <fill>
+          <LinearGradient>
+            <GradientEntry ratio="0" color="#F54C00"/>
+            <GradientEntry ratio="0.50980392" color="#F54C00"/>
+            <GradientEntry ratio="0.57254902" color="#F66625"/>
+            <GradientEntry ratio="0.78431373" color="#FBB799"/>
+            <GradientEntry ratio="0.92941176" color="#FEEBE2"/>
+            <GradientEntry ratio="0.99607843" color="#FFFFFF"/>
+            <matrix>
+              <Matrix a="187.875" b="15.175" c="37.275" d="-215.05" tx="24.8625" ty="595.2625"/>
+            </matrix>
+          </LinearGradient>
+        </fill>
+      </Path>
+      <Group blendMode="normal">
+        <Path x="-20.75" y="-203.35" data="M50.6 598.85Q48.55 596.9 48.55 594.4L48.55 527 472.5 527 472.5 594.4Q472.5 596.9 470.45 598.85 468.35 600.85 465.55 600.85L55.45 600.85Q52.65 600.85 50.6 598.85">
+          <fill>
+            <LinearGradient x="260.5" y="600.85" scaleX="-73.8" rotation="90">
+              <GradientEntry ratio="0" color="#E05422"/>
+              <GradientEntry ratio="0.64313725" color="#F7931E"/>
+            </LinearGradient>
+          </fill>
+        </Path>
+        <rtiv2_ipad_ai_Login_Path_ x="27.3" y="323.15" blendMode="multiply"/>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

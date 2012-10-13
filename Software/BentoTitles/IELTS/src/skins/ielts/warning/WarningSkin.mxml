@@ -7,6 +7,11 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.warning.WarningView")]
 	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
 
 	<s:layout>
 		<s:VerticalLayout horizontalAlign="center" verticalAlign="middle" />

@@ -3,13 +3,10 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.progress.Progress;
+	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.clarityenglish.ielts.model.IELTSProxy;
 	
-	import mx.collections.ArrayCollection;
-	
-	import org.osflash.signals.Signal;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -29,7 +26,11 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function onRegister():void {
 			super.onRegister();
 
-			log.info("onRegister for ProgressScoreMediator");
+			// This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
+			view.href = bentoProxy.menuXHTML.href;
+			view.courseClass = ieltsProxy.currentCourseClass;
 			
 			// Ask for the progress data you want		
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
@@ -50,7 +51,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.PROGRESS_DATA_LOADED,
-				BBNotifications.COURSE_SELECTED,
+				IELTSNotifications.COURSE_CLASS_SELECTED,
 			]);
 		}
 		
@@ -78,7 +79,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					}
 					break;
 				
-				case BBNotifications.COURSE_SELECTED:
+				case IELTSNotifications.COURSE_CLASS_SELECTED:
 					view.courseClass = note.getBody() as String;
 					break;
 				
@@ -86,7 +87,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		}
 		
 		private function onCourseSelect(courseClass:String):void {
-			sendNotification(BBNotifications.COURSE_SELECT, courseClass);
+			sendNotification(IELTSNotifications.COURSE_CLASS_SELECT, courseClass);
 		}
 	}
 }

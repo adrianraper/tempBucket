@@ -2,6 +2,8 @@ package com.clarityenglish.ielts.view.exercise {
 	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -14,6 +16,9 @@ package com.clarityenglish.ielts.view.exercise {
 	[SkinState("exercise")]
 	[SkinState("other")]
 	public class ExerciseView extends BentoView {
+		
+		[SkinPart]
+		public var backToMenuButton:Button;
 		
 		[SkinPart]
 		public var startAgainButton:Button;
@@ -71,11 +76,28 @@ package com.clarityenglish.ielts.view.exercise {
 		public var nextExercise:Signal = new Signal();
 		public var previousExercise:Signal = new Signal();
 		public var printExercise:Signal = new Signal(DynamicView);
+		public var backToMenu:Signal = new Signal();
+		
+		public function ExerciseView() {
+			super();
+		}
+		
+		override public function set data(value:Object):void {
+			super.data = data;
+			href = value as Href;
+		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
 			dynamicView.href = href;
+			
+			// Only show the back and forward buttons if this is an action exercise (i.e. not for the pdf ebook accessed directly from the zone view)
+			// TODO: When we have real custom views this might not work anymore as it assumes anything not DynamicView.DEFAULT_VIEW isn't a real exercise
+			var exercise:Exercise = _xhtml as Exercise;
+			if (exercise)
+				forwardButton.visible = forwardButton.includeInLayout = backButton.visible = backButton.includeInLayout = (!exercise.model.view || exercise.model.view == DynamicView.DEFAULT_VIEW);
+				
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -102,6 +124,9 @@ package com.clarityenglish.ielts.view.exercise {
 					break;
 				case printButton:
 					printButton.addEventListener(MouseEvent.CLICK, function():void { printExercise.dispatch(dynamicView); } );
+					break;
+				case backToMenuButton:
+					backToMenuButton.addEventListener(MouseEvent.CLICK, function():void { backToMenu.dispatch(); } );
 					break;
 			}
 		}

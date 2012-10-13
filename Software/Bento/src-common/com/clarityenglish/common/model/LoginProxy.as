@@ -14,6 +14,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.dms.vo.account.Licence;
 	
 	import flash.events.TimerEvent;
+	import flash.net.SharedObject;
 	import flash.utils.Timer;
 	
 	import mx.logging.ILogger;
@@ -23,7 +24,6 @@ package com.clarityenglish.common.model {
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.util.ClassUtil;
-	import org.davekeen.util.DateUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 
@@ -122,7 +122,10 @@ package com.clarityenglish.common.model {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 				//scormProxy.terminate();				
 			}
-
+			
+			// Clear the remote shared object, if there is one
+			var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+			loginSharedObject.clear();
 		}
 		
 		/**
@@ -249,6 +252,13 @@ package com.clarityenglish.common.model {
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						configProxy.getConfig().licence.id = (data.licence as Licence).id as Number;
 						
+						// Store a user config object in a shared object if rememberLogin is turned on #385
+						if (configProxy.getConfig().rememberLogin) {
+							var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+							loginSharedObject.data["user"] = new User({ name: _user.name, studentID: _user.studentID, password: _user.password });
+							loginSharedObject.flush();
+						}
+						
 						// #503
 						// If login wants to change the rootID it will have sent back a new rootID in data
 						log.info("rootID was: {0}", configProxy.getConfig().rootID);
@@ -257,7 +267,6 @@ package com.clarityenglish.common.model {
 							configProxy.getConfig().rootID = new Number(data.rootID);
 						
 						log.info("rootID now: {0}, data.rootID={1}", configProxy.getConfig().rootID, new Number(data.rootID));
-						
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);
 						
@@ -304,6 +313,10 @@ package com.clarityenglish.common.model {
 			
 			switch (operation) {
 				case "login":
+					// Clear the remote shared object, if there is one so it doesn't keep trying to log back in
+					var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+					loginSharedObject.clear();
+					
 					// #445 Any error other than user not found is simply reported
 					var thisError:BentoError = BentoError.create(fault);
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {

@@ -40,6 +40,7 @@
 			view.nextExercise.add(onNextExercise);
 			view.previousExercise.add(onPreviousExercise);
 			view.printExercise.add(onPrintExercise);
+			view.backToMenu.add(onBackToMenu);
 		}
 		
 		public override function onRemove():void {
@@ -51,6 +52,10 @@
 			view.nextExercise.remove(onNextExercise);
 			view.previousExercise.remove(onPreviousExercise);
 			view.printExercise.remove(onPrintExercise);
+			view.backToMenu.remove(onBackToMenu);
+			
+			// #414
+			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -108,10 +113,10 @@
 		}
 		
 		private function configureButtonVisibility(exercise:Exercise):void {
-			if (view.markingButton) view.markingButton.visible = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
+			if (view.markingButton) view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
 			
 			// If there is exercise feedback then show the exercise feedback button
-			if (view.feedbackButton) view.feedbackButton.visible = getExerciseProxy(exercise).hasExerciseFeedback();
+			if (view.feedbackButton) view.feedbackButton.visible = view.feedbackButton.includeInLayout = getExerciseProxy(exercise).hasExerciseFeedback();
 		}
 		
 		private function onPrintExercise(dynamicView:DynamicView):void {
@@ -120,7 +125,6 @@
 		
 		private function onStartAgain():void {
 			log.debug("The user clicked on start again");
-			
 			facade.sendNotification(BBNotifications.EXERCISE_RESTART);
 		}
 		
@@ -149,6 +153,10 @@
 		private function onPreviousExercise():void {
 			log.debug("The user clicked on previous exercise");
 			sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
+		}
+		
+		private function onBackToMenu():void {
+			sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
 		}
 		
 	}

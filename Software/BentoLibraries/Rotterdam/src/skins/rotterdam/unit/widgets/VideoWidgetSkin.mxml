@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:widgets="skins.rotterdam.unit.widgets.*"
+		minHeight="150">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing_normal" stateGroups="editing" />
+		<s:State name="editing_selected" stateGroups="editing,selected" />
+		<s:State name="dragging" />
+	</s:states>
+	
+	<!-- Chrome -->
+	<widgets:WidgetChrome id="widgetChrome"
+						  title="{hostComponent.title}"
+						  icon="@Embed(source='/skins/assets/video-icon.png', mimeType='image/png')"
+						  editing.editing="true"
+						  selected.selected="true"
+						  left="0" right="0" top="0" bottom="0" />
+	
+	<s:VGroup left="0" right="0" top="25">
+		<!-- Text -->
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" minHeight="80" />
+		
+		<!-- Video -->
+		<s:Group id="videoHolder" left="0" right="0">
+			<s:SWFLoader id="swfLoader" visible.dragging="false" />
+		</s:Group>
+	</s:VGroup>
+	
+</s:Skin>

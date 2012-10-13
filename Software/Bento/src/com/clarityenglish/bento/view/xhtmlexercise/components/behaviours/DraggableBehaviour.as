@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
+	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
@@ -10,6 +11,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.events.MouseEvent;
 	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
@@ -25,6 +29,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	
 	import mx.core.DragSource;
 	import mx.core.IUIComponent;
+	import mx.core.ScrollPolicy;
 	import mx.core.UIComponent;
 	import mx.graphics.BitmapFillMode;
 	import mx.managers.DragManager;
@@ -34,6 +39,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	
 	import spark.components.Group;
 	import spark.components.Image;
+	import spark.components.Scroller;
 	
 	public class DraggableBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
@@ -44,12 +50,28 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		private static var cursorData:MouseCursorData;
 		
 		private var dragImage:Image;
-
+		
+		private var xhtml:XHTML;
+		
+		private var containerScroller:Scroller;
+		private var containerScrollerMemento:Object;
+		
 		public function DraggableBehaviour(container:Group) {
 			super(container);
 		}
 		
 		public function onCreateChildren():void {
+			// #480 - figure out the containing Scroller (if there is one)
+			if (!containerScroller) {
+				var displayObject:DisplayObject = container;
+				while (displayObject) {
+					displayObject = displayObject.parent;
+					if (displayObject is Scroller)
+						break;
+				}
+				containerScroller = displayObject as Scroller;
+			}
+			
 			if (!dragImage) {
 				dragImage = new Image();
 				dragImage.fillMode = BitmapFillMode.CLIP; // This ensures that the Image component doesn't try to scale
@@ -58,6 +80,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				// We need to wrap it in an MX component otherwise the DragManager complains
 				var wrapper:UIComponent = new UIComponent();
 				wrapper.addChild(dragImage);
+				
+				// #376 (helps a bit)
+				dragImage.cacheAsBitmap = wrapper.cacheAsBitmap = true;
 				
 				container.addElement(wrapper);
 			}
@@ -77,6 +102,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			return xhtml.xml..*.(attribute("draggable") == "true" || (name() == "input" && attribute("type") == "droptarget"));
 		}
 		
+		private function getDroppableNodes(xhtml:XHTML):XMLList {
+			return xhtml.xml..*.(name() == "input" && attribute("type") == "droptarget");
+		}
+		
 		private function canDrag(draggableNode:XML, draggableFlowElement:FlowElement):Boolean {
 			if (!draggableNode || !draggableFlowElement) return false;
 			
@@ -93,6 +122,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		}
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+			this.xhtml = xhtml;
+			
 			for each (var draggableNode:XML in getDraggableNodes(xhtml)) {
 				var draggableFlowElement:FlowElement = flowElementXmlBiMap.getFlowElement(draggableNode);
 				
@@ -112,10 +143,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		private function onFlowElementMouseMove(e:FlowElementMouseEvent, draggableNode:XML, draggableFlowElement:FlowElement):void {
 			if (!DragManager.isDragging) {
-				// The drag initiator is either a TextInput if we are dragging from one to another, or the container otherwise
-				var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
-				var ds:DragSource = new DragSource();
-				
 				if (!canDrag(draggableNode, draggableFlowElement)) return;
 				
 				if (draggableFlowElement is InputElement) {
@@ -124,9 +151,21 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					draggableNode = inputElement.droppedNode;
 				}
 				
+				// The drag initiator is either a TextInput if we are dragging from one to another, or the container otherwise
+				var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
+				var ds:DragSource = new DragSource();
+				
 				ds.addData((e.flowElement as FlowLeafElement).text, "text");
 				ds.addData(draggableNode, "node");
 				ds.addData(draggableFlowElement, "flowElement");
+				
+				// #376 - put valid droppable targets into hitTestObjects
+				var hitTestObjects:Array = [];
+				for each (var droppableNode:XML in getDroppableNodes(xhtml)) {
+					var droppableInputElement:InputElement = xhtml.flowElementXmlBiMap.getFlowElement(droppableNode) as InputElement;
+					hitTestObjects.push(droppableInputElement.getComponent());
+				}
+				ds.addData(hitTestObjects, "hitTestObjects");
 				
 				DragManager.doDrag(dragInitiator, ds, e.originalEvent, dragImage, 0, 0, 0.8);
 				
@@ -156,7 +195,29 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					dragImage.width = elementBounds.width;
 					dragImage.height = elementBounds.height;
 					dragImage.visible = true;
+					
+					// #480 - get the parent Scroller (if there is one) and disable scrolling on it whilst storing the original scroll properties
+					if (containerScroller) {
+						containerScrollerMemento = { verticalScrollPolicy: containerScroller.getStyle("verticalScrollPolicy"), horizontalScrollPolicy: containerScroller.getStyle("horizontalScrollPolicy") };
+						containerScroller.setStyle("horizontalScrollPolicy", ScrollPolicy.OFF);
+						containerScroller.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
+						
+						container.stage.addEventListener(MouseEvent.MOUSE_UP, onDragFinished, false, 0, true);
+						container.stage.addEventListener(MouseEvent.RELEASE_OUTSIDE, onDragFinished, false, 0, true);
+					}
 				}
+			}
+		}
+		
+		protected function onDragFinished(event:MouseEvent):void {
+			// #480 - when the mouse is released re-enabled the original scroll properties
+			container.stage.removeEventListener(MouseEvent.MOUSE_UP, onDragFinished);
+			container.stage.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onDragFinished);
+			
+			if (containerScroller && containerScrollerMemento) {
+				containerScroller.setStyle("horizontalScrollPolicy", containerScrollerMemento.horizontalScrollPolicy);
+				containerScroller.setStyle("verticalScrollPolicy", containerScrollerMemento.verticalScrollPolicy);
+				containerScrollerMemento = null;
 			}
 		}
 		

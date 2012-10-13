@@ -29,6 +29,8 @@ package org.davekeen.delegates {
 		private var remoteObject:RemoteObject;
 		private var dispatchEvents:Boolean;
 		
+		private static var showBusyCursor:Boolean = true;
+		
 		private static var channelSet:ChannelSet;
 		private static var service:String;
 		
@@ -39,6 +41,10 @@ package org.davekeen.delegates {
 			this.operationName = operationName;
 			this.args = args;
 			this.dispatchEvents = dispatchEvents;
+		}
+		
+		public static function setShowBusyCursor(value:Boolean):void {
+			showBusyCursor = value;
 		}
 		
 		/**
@@ -60,6 +66,7 @@ package org.davekeen.delegates {
 		public static function setService(s:String):void {
 			service = s;
 		}
+		
 		public function setOperationName(operationName:String):void {
 			this.operationName = operationName;
 		}
@@ -86,7 +93,7 @@ package org.davekeen.delegates {
 			remoteObject.channelSet = channelSet;
 			remoteObject.destination = "amfphp";
 			remoteObject.source = service;
-			remoteObject.showBusyCursor = true;
+			remoteObject.showBusyCursor = showBusyCursor;
 			
 			// Add listeners for results and faults
 			remoteObject.addEventListener(ResultEvent.RESULT, onResult);
@@ -98,8 +105,6 @@ package org.davekeen.delegates {
 			if (args) operation.arguments = args;
 			
 			if (disableAppOnCall) FlexGlobals.topLevelApplication.enabled = false;
-			
-			//trace("CALLING: " + operationName + "(" + args + ")");
 			
 			operation.send();
 		}

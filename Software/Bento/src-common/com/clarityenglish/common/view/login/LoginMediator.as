@@ -43,14 +43,15 @@ package com.clarityenglish.common.view.login {
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.setLicencee(configProxy.getAccount().name);
+			
 			view.setProductVersion(configProxy.getProductVersion());
 			view.setProductCode(configProxy.getProductCode());
+			
 			// #341
 			view.setLoginOption(configProxy.getAccount().loginOption);
 			view.setSelfRegister(configProxy.getAccount().selfRegister);
 			view.setVerified(configProxy.getAccount().verified);
 			view.setLicenceType(configProxy.getLicenceType());
-
 		}
         
 		/**
@@ -113,9 +114,8 @@ package com.clarityenglish.common.view.login {
 					if (user) {
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						onLogin(new LoginEvent(LoginEvent.LOGIN, user, configProxy.getAccount().loginOption));
-						
 					} else {
-						trace ("error from add new user");
+						trace("error from add new user");
 						// Need to pass the error in. Perhaps the error is flagged as a popup just like wrong password in login.
 						view.setState("registerError");
 					}

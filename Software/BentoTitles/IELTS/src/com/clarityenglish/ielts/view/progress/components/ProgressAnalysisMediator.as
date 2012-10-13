@@ -1,11 +1,9 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.progress.Progress;
-	import com.clarityenglish.ielts.view.progress.ProgressView;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,23 +24,14 @@ package com.clarityenglish.ielts.view.progress.components {
 		override public function onRegister():void {
 			super.onRegister();
 
-			// I want the first thing to be the initChart call
-			//trace("progAnalysisMediator call initCharts");
-			view.initCharts();
-
-			// Ask for the progress data you want
-			//trace("progAnalysisMediator, ask for my_summary");
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
-
-		}
-
-		override public function onRemove():void {
-			super.onRemove();
+			// This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
 			
-			// #320
-			view.clearCharts();
-		}			
-
+			// Ask for the progress data you want
+			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
+		}
+		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.PROGRESS_DATA_LOADED,
@@ -53,18 +42,11 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				// Here we should listen for notification of data_loaded
-				// then it does view.setMySummary
 				case BBNotifications.PROGRESS_DATA_LOADED:
-				
-					// Split the data that comes back for the various charts
 					var rs:Object = note.getBody() as Object;
-					//trace("progAnalysisMediator, got back " + rs.type);
-					if (rs.type == Progress.PROGRESS_MY_SUMMARY) {
-						// #250. Save xml rather than a string
-						//view.setDataProvider(new XML(rs.dataProvider));
-						view.setDataProvider(rs.dataProvider);
-					}
+					if (rs.type == Progress.PROGRESS_MY_SUMMARY)
+						view.progressXml = rs.dataProvider;
+					
 					break;
 				
 			}

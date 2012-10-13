@@ -1,3 +1,214 @@
 /* CSS file */
 @namespace s "library://ns.adobe.com/flex/spark";
+@namespace home "com.clarityenglish.ielts.view.home.*";
+@namespace title "com.clarityenglish.ielts.view.title.*";
+@namespace zone "com.clarityenglish.ielts.view.zone.*";
+@namespace ielts "com.clarityenglish.ielts.*";
+@namespace ui "com.clarityenglish.ielts.view.zone.ui.*";
+@namespace exercise "com.clarityenglish.ielts.view.exercise.*";
+@namespace controls "com.clarityenglish.controls.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+@namespace login "com.clarityenglish.ielts.view.login.*";
+@namespace progress "com.clarityenglish.ielts.view.progress.*";
+@namespace progresscomponents "com.clarityenglish.ielts.view.progress.components.*";
+@namespace airmore "com.clarityenglish.ieltsair.view.more.*";
+@namespace airzone "com.clarityenglish.ieltsair.view.zone.*";
+@namespace support "com.clarityenglish.ielts.view.support.*";
+@namespace credits "com.clarityenglish.ielts.view.credits.*";
+@namespace account "com.clarityenglish.ielts.view.account.*";
 
+global {
+	interactionMode: touch;
+}
+
+s|TitleWindow {
+	dropShadowVisible: true; /* #389 even though FB thinks this isn't supported it is in our skins */
+}
+
+components|XHTMLExerciseView s|TextInput {
+	skinClass: ClassReference("skins.ieltsair.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
+controls|BentoVideoSelector {
+	skinClass: ClassReference("skins.ieltsair.controls.IELTSVideoSelectorSkin");
+}
+
+ielts|IELTSApplication {
+	skinClass: ClassReference("skins.ieltsair.IELTSApplicationSkin");
+}
+
+ielts|IELTSApplication s|ActionBar {
+	chromeColor: #067EBC;
+	defaultButtonAppearance: beveled;
+}
+
+ielts|IELTSApplication s|ActionBar {
+	/* #484 */
+	skinClass: ClassReference("skins.ieltsair.title.PaddableActionBarSkin");
+	buttonSpacing: 5;
+}
+
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#startAgainButton,
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
+	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
+}
+
+/* Login view styles */
+login|LoginView {
+	skinClass: ClassReference("skins.ieltsair.LoginSkin");
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
+}
+
+login|LoginView s|Button {
+	chromeColor: #2793CE;
+}
+
+/* Title view styles */
+title|TitleView {
+	skinClass: ClassReference("skins.ieltsair.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator #tabBar {
+	chromeColor: #262526;
+	color: #DDDDDD;
+	fontSize: 10;
+	fontWeight: normal;
+	iconPlacement: top;
+}
+
+/* Home view styles */
+home|HomeView {
+	skinClass: ClassReference("skins.ieltsair.HomeSkin");
+	backgroundAlpha: 0;
+}
+
+/* Zone view styles */
+zone|ZoneView {
+	skinClass: ClassReference("skins.ieltsair.ZoneSkin");
+	backgroundAlpha: 0;
+}
+
+zone|ZoneView #sectionNavigator {
+	skinClass: ClassReference("skins.ieltsair.zone.SectionNavigatorSkin");
+}
+
+zone|ZoneView #sectionNavigator #tabBar {
+	skinClass: ClassReference("skins.ieltsair.zone.ui.SectionNavigatorTabBarSkin");
+	fontSize: 13;
+}
+
+airzone|AdviceZoneSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.AdviceZoneSectionSkin");
+}
+
+airzone|QuestionZoneVideoSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneVideoSectionSkin");
+}
+
+airzone|QuestionZoneSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneSectionSkin");
+}
+
+airzone|QuestionZoneSectionView #downloadButton {
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
+}
+
+airzone|QuestionZoneSectionView #videoButton {
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
+}
+
+airzone|PracticeZoneSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.PracticeZoneSectionSkin");
+}
+
+airzone|PracticeZonePopoutView {
+	skinClass: ClassReference("skins.ieltsair.zone.PracticeZonePopoutSkin");
+}
+
+ui|DifficultyRenderer {
+	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
+}
+
+airzone|ExamPracticeZoneSectionView {
+	skinClass: ClassReference("skins.ieltsair.zone.ExamPracticeZoneSectionSkin");
+}
+
+airzone|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
+	compactStoppedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPausedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayingIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioStop");
+}
+
+/* Exercise view styles */
+exercise|ExerciseView {
+	skinClass: ClassReference("skins.ieltsair.ExerciseSkin");
+	top: 5;
+	left: 20;
+	right: 35;
+}
+
+/* Progress view styles */
+progress|ProgressView {
+	left: 20;
+	right: 20;
+	skinClass: ClassReference("skins.ieltsair.ProgressSkin");
+}
+
+progress|ProgressView #progressNavBar {
+	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
+}
+
+progresscomponents|ProgressCoverageView {
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressCoverageSkin");
+}
+
+progresscomponents|ProgressScoreView {
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressScoreSkin");
+}
+
+progresscomponents|ProgressCompareView {
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressCompareSkin");
+}
+
+progresscomponents|ProgressAnalysisView {
+	skinClass: ClassReference("skins.ieltsair.progress.ProgressAnalysisSkin");
+}
+
+/* Account view styles */
+account|AccountView {
+	skinClass: ClassReference("skins.ieltsair.AccountSkin");
+}
+
+/* Support view styles */
+support|SupportView {
+	skinClass: ClassReference("skins.ieltsair.SupportSkin");
+}
+
+/* Credits view styles */
+credits|CreditsView {
+	skinClass: ClassReference("skins.ieltsair.CreditsSkin");
+}
+
+/* More view styles */
+airmore|MoreView {
+	skinClass: ClassReference("skins.ieltsair.more.MoreSkin");
+}
+
+airmore|MoreView #moreNavBar {
+	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
+}
+
+/* Popups */
+s|TitleWindow.feedbackTitleWindow {
+	/* #419 - CSS selectors for sizing don't seem to work so I have to create a whole new skin just to make the X button bigger :( */
+	skinClass: ClassReference("skins.ieltsair.titlewindows.FeedbackTitleWindowSkin");
+}

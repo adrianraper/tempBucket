@@ -3,9 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		minWidth="215" minHeight="24"
-		creationComplete="creationComplete(event)"
-		>
-		
+		creationComplete="creationComplete(event)">
 
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.progress.ui.CoverageExerciseComponent")]
@@ -36,8 +34,12 @@
 		</s:fill>
 	</s:Rect>
 
-	<s:List id="itemList" alternatingItemColors="[#FFFFFF, #DDDDDD]" rollOverColor="#8AD9FF" height="100%" width="100%" borderVisible="false"
+	<s:DataGroup id="itemList" alternatingItemColors="[#FFFFFF, #DDDDDD]" width="100%" contentBackgroundAlpha="0"
 			dataProvider="{hostComponent.dataProvider}" fontWeight="normal"
-			itemRenderer="skins.ielts.progress.CoverageExerciseRenderer"/>
+			itemRenderer="skins.ielts.progress.CoverageExerciseRenderer">
+		<s:layout>
+			<s:VerticalLayout gap="0" />
+		</s:layout>
+	</s:DataGroup>
 	
 </s:Skin>

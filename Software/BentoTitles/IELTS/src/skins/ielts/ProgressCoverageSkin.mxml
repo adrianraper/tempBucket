@@ -21,7 +21,12 @@
 		]]> 
 	</fx:Script> 
 	
-	<s:layout >
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:layout>
 		<s:VerticalLayout paddingLeft="0" paddingTop="2" />
 	</s:layout>
 	

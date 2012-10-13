@@ -29,7 +29,6 @@ package com.clarityenglish.textLayout.css {
 			// Misc
 			addPropertyManager(new TabManager("tab-stops"));
 			addPropertyManager(new PropertyManager("position", new StringValue(CSSPrimitiveValueTypes.CSS_STRING, FloatableTextFlow.POSITION_STATIC), true));
-			
 		}
 		
 	}

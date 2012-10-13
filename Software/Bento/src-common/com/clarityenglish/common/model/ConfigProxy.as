@@ -3,6 +3,7 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
@@ -13,10 +14,10 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
-	import com.pipwerks.SCORM;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
+	import flash.net.SharedObject;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	
@@ -47,7 +48,6 @@ package com.clarityenglish.common.model {
 		private var config:Config;
 		
 		private var _dateFormatter:DateFormatter;
-
 		
 		/**
 		 * Configuration information comes from three sources
@@ -98,7 +98,7 @@ package com.clarityenglish.common.model {
 			// TODO. Do you need to check that the remote gateway is up and running since we only just set it?
 			
 			if (Config.DEVELOPER.name == "DK") {
-				config.prefix = "Clarity";
+				if (!config.prefix) config.prefix = "Clarity";
 			}
 			
 			// Create a subset of the config object to pass to the remote call
@@ -120,7 +120,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function loadConfig(filename:String = null):void {
 			var urlLoader:URLLoader = new URLLoader();
-			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, errorHandler);
+			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onConfigLoadError);
 			urlLoader.addEventListener(Event.COMPLETE, onConfigLoadComplete);
 			
 			try {
@@ -140,16 +140,22 @@ package com.clarityenglish.common.model {
 			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php");
 			RemoteDelegate.setService(config.remoteService);
 			
+			// A special case; if disableAutoTimeout is true then turn off the activity timer #385
+			facade.removeCommand(BBNotifications.ACTIVITY_TIMER_RESET);
+			
+			// #410 (too early though)
+			sendNotification(BBNotifications.NETWORK_CHECK_AVAILABILITY);
+			
 			// Next stage is to get data from the database
 			// #322 Get copy literals first
 			// getApplicationParameters();
 			sendNotification(CommonNotifications.CONFIG_LOADED);
 		}
 		
-		public function errorHandler(e:IOErrorEvent):void {
+		private function onConfigLoadError(e:IOErrorEvent):void {
 			log.error("Problem loading the config file: {0}", e.text);
 		}
-
+		
 		// Then methods to get parts of the configuration data
 		public function getMenuFilename():String {
 			//return "menu-Academic-LastMinute.xml";
@@ -210,22 +216,32 @@ package com.clarityenglish.common.model {
 		 * @return 
 		 */
 		public function getDirectLogin():LoginEvent {
-			var loginOption:uint = getAccount().loginOption;
-			var verified:Boolean = (getAccount().verified == 1) ? true : false;
+			var loginOption:uint = getAccount() ? getAccount().loginOption : null;
+			var verified:Boolean = getAccount() ? ((getAccount().verified == 1) ? true : false) : false;
 			
-			if (Config.DEVELOPER.name == "DK") {
-				var configUser:User = new User({name:"dandelion", password:"password"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+			var configUser:User;
+			
+			// Debug auto-logins
+			switch (Config.DEVELOPER.name) {
+				case "DK":
+					//configUser = new User({ name:"dandelion", password:"password" });
+					//return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+					break;
+				case "AR":
+					configUser = new User({ name:"Adrian Raper", studentID:"p574528(8)", password:"passwording" });
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+				case "network":
+					configUser = new User({ name:"Student", studentID:"123", password:"password" });
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
-			if (Config.DEVELOPER.name == "AR") {
-				configUser = new User({name:"Adrian Raper", studentID:"p574528(8)", password:"passwording"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
-			}
-			
-			if (Config.DEVELOPER.name == "network") {
-				configUser = new User({name:"Student", studentID:"123", password:"password"});
-				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+			// #385 Login from shared object
+			if (config.rememberLogin) {
+				var loginSharedObject:SharedObject = SharedObject.getLocal("login");
+				if (loginSharedObject.data["user"]) {
+					configUser = loginSharedObject.data["user"];
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+				}
 			}
 			
 			// Take it from from the URL parameters (see config.as.mergeParameters)
@@ -243,7 +259,7 @@ package com.clarityenglish.common.model {
 				(config.email && (loginOption & Config.LOGIN_BY_EMAIL))) {
 				trace("direct start from config, studentID=" + config.studentID + " loginOption=" + loginOption);
 				
-				configUser = new User({name:config.username, studentID:config.studentID, email:config.email, password:config.password});
+				configUser = new User({ name:config.username, studentID:config.studentID, email:config.email, password:config.password });
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
@@ -255,7 +271,7 @@ package com.clarityenglish.common.model {
 			// #336 SCORM probably needs to be checked here
 			if (config.scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				configUser = new User({name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID});
+				configUser = new User({ name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID });
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
@@ -272,8 +288,8 @@ package com.clarityenglish.common.model {
 			var directStartObject:Object = new Object();
 			
 			if (Config.DEVELOPER.name == "DK") {
-				//return { courseClass: "reading" };
-				//return { exerciseID: "1156153794672" };
+				//return { courseID: "1287130400000" };
+				//return { exerciseID: "1156181253852" };
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
@@ -282,14 +298,13 @@ package com.clarityenglish.common.model {
 			}
 			
 			// #336 SCORM needs to be checked here
+			// TODO: This is overriden by the next line so could be removed?
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
 				directStartObject = scormProxy.getBookmark();
-				
 			} else {
 				// #338. This is using a utility parsing function, it is for data from queryString
 				directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
-				
 			}
 			
 			// #338. This is called from ProgressProxy to find out which menu bits to hide
@@ -344,9 +359,9 @@ package com.clarityenglish.common.model {
 			}
 			
 			// Performance logging
-			var log:PerformanceLog = new PerformanceLog(PerformanceLog.APP_LOADED, config.appLaunchTime);
-			log.IP = config.ip;
-			sendNotification(CommonNotifications.PERFORMANCE_LOG, log);
+			//var log:PerformanceLog = new PerformanceLog(PerformanceLog.APP_LOADED, config.appLaunchTime);
+			//log.IP = config.ip;
+			//sendNotification(CommonNotifications.PERFORMANCE_LOG, log);
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
@@ -358,8 +373,8 @@ package com.clarityenglish.common.model {
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 			
 			// Performance logging
-			var log:PerformanceLog = new PerformanceLog(PerformanceLog.APP_LOADED, config.appLaunchTime);
-			sendNotification(CommonNotifications.PERFORMANCE_LOG, log);
+			//var log:PerformanceLog = new PerformanceLog(PerformanceLog.APP_LOADED, config.appLaunchTime);
+			//sendNotification(CommonNotifications.PERFORMANCE_LOG, log);
 		}
 		
 		/**

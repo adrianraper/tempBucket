@@ -3,6 +3,7 @@ package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -49,10 +50,19 @@ package com.clarityenglish.bento.view.base {
 			
 			// #333 Inject required data into the view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy) view.config = configProxy.getConfig();
+			if (configProxy) {
+				view.config = configProxy.getConfig();
+				view.licenceType = configProxy.getLicenceType() || Title.LICENCE_TYPE_LT;
+				view.productCode = configProxy.getProductCode();
+				view.productVersion = configProxy.getProductVersion(); // #234
+			}
 		}
 		
 		protected function onXHTMLReady(xhtml:XHTML):void {
+			
+		}
+		
+		protected function onXHTMLLoadIOError(href:Href):void {
 			
 		}
 		
@@ -68,6 +78,7 @@ package com.clarityenglish.bento.view.base {
 		public override function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.XHTML_LOADED,
+				BBNotifications.XHTML_LOAD_IOERROR
 			]);
 		}
 		
@@ -82,7 +93,12 @@ package com.clarityenglish.bento.view.base {
 						currentlyLoadedHref = note.getBody().href;
 						onXHTMLReady(note.getBody().xhtml);
 					}
-					
+					break;
+				case BBNotifications.XHTML_LOAD_IOERROR:
+					// If the XHTML Href is the one in the view, and its not already loaded then set the xhtml in the view
+					if (note.getBody().href === view.href && note.getBody().href !== currentlyLoadedHref) {
+						onXHTMLLoadIOError(note.getBody().href);
+					}
 					break;
 			}
 		}

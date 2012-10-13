@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:local="*"
+		xmlns:account="skins.ieltsair.account.*"
+		xmlns:components="com.clarityenglish.components.*" xmlns:ui="com.clarityenglish.ielts.view.account.ui.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.account.AccountView")]
+	</fx:Metadata>
+
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.vo.manageable.User;
+			
+			import org.davekeen.util.DateUtil;
+			
+			private function formatExamDetails(user:User, type:String):String {
+				// If examDate is not set, then default to expiryDate - 1 week
+				if (user.examDate) {
+					var myDate:Date = user.examDate;
+				} else if (user.expiryDate) {
+					myDate = DateUtil.dateAdd(DateUtil.ansiStringToDate(user.expiryDate), "d", -7);
+				} else {
+					myDate = new Date();
+				}
+				switch (type) {
+					case 'date':
+						return DateUtil.formatDate(myDate, 'yyyy-MM-dd');
+						break;
+					case 'hours':
+						return DateUtil.formatDate(myDate, 'HH');
+						break;
+					case 'mins':
+						return DateUtil.formatDate(myDate, 'mm');
+						break;
+				}
+				return null;
+			}
+			
+			private function dateChooserInit(user:User):void {
+				examDateField.selectedDate = user.examDate;
+				// Registration might be a long time ago - not much point being able to select anything in the past
+				var selectStartDate:Date = new Date();
+				var selectEndDate:Date = DateUtil.dateAdd(selectStartDate, "y", 1);
+				examDateField.selectableRange = {rangeStart: selectStartDate, rangeEnd: selectEndDate};
+			}
+			
+			private function formatScreenDate(date:Date):String {
+				return DateUtil.formatDate(date, 'd MMMM yyyy');
+			}
+		]]>
+	</fx:Script>
+
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+
+		<s:State name="demo" stateGroups="anonymousStates" />
+		<s:State name="fullVersion_anonymous" stateGroups="anonymousStates,fullVersionStates" />
+		<s:State name="fullVersion" stateGroups="fullVersionStates" />
+		<s:State name="lastMinute" />
+		<s:State name="homeUser" />
+		<s:State name="testDrive" stateGroups="anonymousStates" />
+	</s:states>
+
+	<account:HowLongGraphic left="30" top="150" />
+	<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.user.examDate}" left="164" top="165" />
+	
+	<s:Label text="Please set your test date below:" fontSize="17" color="#082F67" left="20" top="285" />
+	
+	<s:HGroup left="20" top="315">
+		<s:Label text="Date:" verticalAlign="bottom" fontSize="15" paddingTop="5" paddingRight="4" />
+		<mx:DateField id="examDateField" width="150" creationComplete="dateChooserInit(hostComponent.user)" labelFunction="formatScreenDate" />
+		<s:NumericStepper id="examHours" minimum="0" maximum="23" stepSize="1" value="{Number(formatExamDetails(hostComponent.user, 'hours'))}" textAlign="center" />
+		<s:NumericStepper id="examMinutes" minimum="0" maximum="45" stepSize="15" value="{Number(formatExamDetails(hostComponent.user, 'mins'))}" textAlign="center" />
+	</s:HGroup>
+	
+	<s:Label text="Registered name:" fontSize="15" fontWeight="bold" left="20" top="350" />
+	<s:Label text="{hostComponent.user.name}" fontSize="15" left="180" top="350" />
+	
+	<s:Label text="Email:" fontSize="15" fontWeight="bold" left="20" top="380" />
+	<s:Label text="{hostComponent.user.email}" fontSize="15" left="180" top="380" />
+
+	<s:Label text="Account start date:" fontSize="15" fontWeight="bold" left="20" top="410" />
+	<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.startDate), 'd MMMM yyyy')}" fontSize="15" left="180" top="410" />
+
+	<s:Label text="Account expiry date:" fontSize="15" fontWeight="bold" left="20" top="440" />
+	<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.expiryDate), 'd MMMM yyyy')}" fontSize="15" left="180" top="440" />
+
+	<s:Button id="saveChangesButton" label="Save changes" visible="{hostComponent.isDirty}" includeInLayout="{hostComponent.isDirty}" left="20" top="480" />
+	
+	<ui:GradeWidget right="72" top="168" />
+
+</s:Skin>

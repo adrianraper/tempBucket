@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:home="com.clarityenglish.ielts.view.home.*"
+		xmlns:title="skins.ieltsair.assets.title.*"
+		xmlns:assets="skins.ieltsair.assets.*"
+		xmlns:zone="skins.ieltsair.assets.zone.*"
+		xmlns:airzone="com.clarityenglish.ieltsair.view.zone.*"
+		creationComplete="creationComplete(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import caurina.transitions.Tweener;
+			
+			import mx.events.FlexEvent;
+			
+			import org.davekeen.transitions.PatchedSlideViewTransition;
+			import org.davekeen.util.ClassUtil;
+			
+			import skins.ieltsair.assets.title.*;
+			
+			import spark.transitions.ViewTransitionBase;
+			import spark.transitions.ViewTransitionDirection;
+			
+			protected function creationComplete(event:FlexEvent):void {
+				homeViewNavigator.icon = new HomeIcon();
+				myProgressViewNavigator.icon = new MyProgressIcon();
+				myProfileViewNavigator.icon = new MyProfileIcon();
+				helpViewNavigator.icon = new HelpIcon();
+				creditsViewNavigator.icon = new CreditsIcon();
+				moreViewNavigator.icon = new MoreIcon();
+				
+				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there.  We also need to use a custom
+				// PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
+				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				pushTransition.direction = ViewTransitionDirection.LEFT;
+				pushTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
+				pushTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
+				homeViewNavigator.defaultPushTransition = pushTransition;
+				
+				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				popTransition.direction = ViewTransitionDirection.RIGHT;
+				popTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
+				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
+				homeViewNavigator.defaultPopTransition = popTransition;
+			}
+			
+			protected function onTransitionStarted(event:FlexEvent):void {
+				// #390
+				Tweener.pauseAllTweens();
+			}
+			
+			/**
+			 * Hide the tab bar if the state is 'exercise' at the end of a transition, otherwise show the tab bar
+			 */
+			protected function onTransitionFinished(event:FlexEvent):void {
+				// #390
+				callLater(Tweener.resumeAllTweens);
+				
+				callLater((currentState == "exercise") ? sectionNavigator.hideTabBar : sectionNavigator.showTabBar);
+				hostComponent.updateStateFromSectionNavigator();
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="home" />
+		<s:State name="zone" />
+		<s:State name="progress" />
+		<s:State name="account" />
+		<s:State name="support" />
+		<s:State name="exercise" />
+	</s:states>
+	
+	<title:IELTSLogo x="39" y="74" excludeFrom="exercise" />
+	<s:SWFLoader source="{hostComponent.productVersionLogo}" x="39" y="140" excludeFrom="exercise" />
+	<s:Label text="{hostComponent.productVersionText}" x="51" y="150" color="#FFFFFF" excludeFrom="exercise" />
+	
+	<assets:BritishCouncilClarityLogo bottom="51" excludeFrom="exercise" />
+	<assets:GreyCircles bottom="51" right="0" excludeFrom="exercise" />
+	
+	<airzone:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
+	
+	<!-- #479 -->
+	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#AAAAAA" right="3" bottom="52" excludeFrom="exercise" />
+	
+	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">	
+		
+		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" left="0" right="0" height="100%" >
+			<s:navigationContent>
+				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" left="0" right="0" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="myProfileViewNavigator" label="My Profile" firstView="com.clarityenglish.ielts.view.account.AccountView" title="Road to IELTS" left="0" right="0" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0"  />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="helpViewNavigator" label="Help" firstView="com.clarityenglish.ielts.view.support.SupportView" title="Road to IELTS" left="0" right="0" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="creditsViewNavigator" label="Credits" firstView="com.clarityenglish.ielts.view.credits.CreditsView" title="Road to IELTS" left="0" right="0" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+			</s:actionContent>
+		</s:ViewNavigator>
+		
+		<s:ViewNavigator id="moreViewNavigator" label="More" firstView="com.clarityenglish.ieltsair.view.more.MoreView" title="Road to IELTS" left="0" right="0" height="100%">
+			<s:navigationContent>
+				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+			</s:navigationContent>
+			<s:actionContent>
+				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+			</s:actionContent>
+		</s:ViewNavigator>
+
+	</s:TabbedViewNavigator>
+	
+</s:Skin>
