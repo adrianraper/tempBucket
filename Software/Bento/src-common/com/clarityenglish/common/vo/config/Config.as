@@ -431,7 +431,9 @@ package com.clarityenglish.common.vo.config {
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
 			// Its purpose is to allow an account to swap language versions easily for a title.
-			if (thisTitle.contentLocation) {
+			if (thisTitle.dbContentLocation) {
+				this.paths.content += thisTitle.dbContentLocation;
+			} else if (thisTitle.contentLocation) {
 				// #472 - only concatenate if the path doesn't already end with this.  A little hacky but the chances of the normal content URL ending with the
 				// content location path already are slim to none.
 				if (!StringUtils.endsWith(this.paths.content, thisTitle.contentLocation))

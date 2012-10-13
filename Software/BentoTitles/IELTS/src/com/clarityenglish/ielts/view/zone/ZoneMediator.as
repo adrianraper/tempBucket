@@ -7,6 +7,7 @@
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.clarityenglish.ielts.model.IELTSProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -103,8 +104,8 @@
 		private function onCourseSelected(course:XML):void {
 			sendNotification(IELTSNotifications.COURSE_SHOW, course);
 			
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.currentCourseClass = course.@["class"];
+			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
+			ieltsProxy.currentCourseClass = course.@["class"];
 		}
 		
 	}

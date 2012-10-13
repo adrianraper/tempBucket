@@ -5,6 +5,9 @@
 	//practice, but it may be the only reasonable choice if you want to integrate with
 	//frameworks that expect to be included as globals, for example TextPattern or WordPress
 
+	// #518 PHP 5.3 raises a fatal error if this is not set
+	date_default_timezone_set("UTC");
+	
 	//Set start time before loading framework
 	list($usec, $sec) = explode(" ", microtime());
 	$amfphp['startTime'] = ((float)$usec + (float)$sec);

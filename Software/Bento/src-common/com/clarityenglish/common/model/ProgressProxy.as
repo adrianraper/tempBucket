@@ -41,7 +41,7 @@ package com.clarityenglish.common.model {
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	/**
-	 * A proxy
+	 * This is all rather confused - the roles of XHTMLProxy and ProgressProxy are rather mixed up.  These should be looked at carefully at some point.
 	 */
 	public class ProgressProxy extends Proxy implements IProxy, IDelegateResponder {
 		
@@ -98,6 +98,10 @@ package com.clarityenglish.common.model {
 			loadedResources = new Dictionary();
 			dataLoading = new Dictionary();
 			href = null;
+		}
+		
+		public function hasLoadedResource(href:*):Boolean {
+			return loadedResources[href];
 		}
 		
 		/**
@@ -245,13 +249,12 @@ package com.clarityenglish.common.model {
 			// already, the actual data is held in bentoProxy
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				//var dp:Object = bentoProxy.menuXHTML;
-				var dp:Object = bentoProxy.menu;
+				var dataProvider:Object = bentoProxy.menu;
 			} else {
-				dp = loadedResources[progressType];
+				dataProvider = loadedResources[progressType];
 			}
-			var data:Object = { type: progressType, dataProvider: dp };
-			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, data);
+			
+			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, { type: progressType, dataProvider: dataProvider } );
 		}
 		
 		/**

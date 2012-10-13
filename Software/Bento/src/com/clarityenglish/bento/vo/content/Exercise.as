@@ -130,6 +130,7 @@ package com.clarityenglish.bento.vo.content {
 			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_NAVIGATE_ON) == Exercise.EF_NAVIGATE_ON &&
 																	!((exerciseNode.@enabledFlag & Exercise.EF_DISABLED) == Exercise.EF_DISABLED)));
 		}
+		
 		/**
 		 * This is a static function that determines whether an exercise should be displayed in the menu or not. It runs off the exercise xml node in the menu
 		 * xml, not the exercise file itself.
@@ -148,6 +149,7 @@ package com.clarityenglish.bento.vo.content {
 			return (!exerciseNode.hasOwnProperty("@enabledFlag") || ((exerciseNode.@enabledFlag & Exercise.EF_MENU_ON) == Exercise.EF_MENU_ON &&
 																	!((exerciseNode.@enabledFlag & Exercise.EF_DISPLAY_OFF) == Exercise.EF_DISPLAY_OFF)));
 		}
+		
 		/**
 		 * This is a static function that determines whether an exercise is enabled on the menu or not.
 		 *  

@@ -2,6 +2,7 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.ielts.controller.CourseSelectCommand;
 	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.IELTSRegisterCommand;
 	import com.clarityenglish.ielts.controller.IELTSStartupCommand;
@@ -65,6 +66,7 @@
 			mapView(ProgressCoverageView, ProgressCoverageMediator);
 			
 			// Register IELTS specific commands
+			registerCommand(IELTSNotifications.COURSE_CLASS_SELECT, CourseSelectCommand);
 			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);
 			registerCommand(IELTSNotifications.PDF_SHOW, PdfShowCommand);
 			

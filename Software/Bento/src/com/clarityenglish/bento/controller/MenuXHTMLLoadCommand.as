@@ -28,12 +28,20 @@ package com.clarityenglish.bento.controller {
 			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
 			var href:Href = new Href(Href.MENU_XHTML, configProxy.getMenuFilename(), configProxy.getContentPath());
 			
-			// AR Rather than just load the menu.xml from as3, try to use the
-			// progress version, which is the same base xml, but also merges in score data.
-			//var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
-			//xhtmlProxy.loadXHTML(href);
-			log.debug("Loading progress version of {0}", href);
-			progressProxy.getProgressData(loginProxy.user, configProxy.getAccount(), href, Progress.PROGRESS_MY_DETAILS);
+			// Allow the menu xml filename to be overridden by an optional parameter (this is used in Rotterdam where the app can load different menu.xml files)
+			if (note.getBody() && note.getBody().filename) {
+				href.filename = note.getBody().filename;
+			}
+			
+			// Allow the selection of normal or progress versions of the XML (also for Rotterdam where we can be in editing mode and don't want any progress)
+			if (note.getBody() && note.getBody().noProgress) {
+				log.debug("Loading non-progress version of {0}", href);
+				var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
+				xhtmlProxy.loadXHTML(href);
+			} else {
+				log.debug("Loading progress version of {0}", href);
+				progressProxy.getProgressData(loginProxy.user, configProxy.getAccount(), href, Progress.PROGRESS_MY_DETAILS);
+			}
 		}
 		
 	}

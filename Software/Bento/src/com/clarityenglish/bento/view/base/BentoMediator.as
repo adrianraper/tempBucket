@@ -62,6 +62,10 @@ package com.clarityenglish.bento.view.base {
 			
 		}
 		
+		protected function onXHTMLLoadIOError(href:Href):void {
+			
+		}
+		
 		public override function onRemove():void {
 			super.onRemove();
 			
@@ -74,6 +78,7 @@ package com.clarityenglish.bento.view.base {
 		public override function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.XHTML_LOADED,
+				BBNotifications.XHTML_LOAD_IOERROR
 			]);
 		}
 		
@@ -88,7 +93,12 @@ package com.clarityenglish.bento.view.base {
 						currentlyLoadedHref = note.getBody().href;
 						onXHTMLReady(note.getBody().xhtml);
 					}
-					
+					break;
+				case BBNotifications.XHTML_LOAD_IOERROR:
+					// If the XHTML Href is the one in the view, and its not already loaded then set the xhtml in the view
+					if (note.getBody().href === view.href && note.getBody().href !== currentlyLoadedHref) {
+						onXHTMLLoadIOError(note.getBody().href);
+					}
 					break;
 			}
 		}

@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
+			import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
+			
+			import flashx.textLayout.conversion.ConversionType;
+			import flashx.textLayout.conversion.TextConverter;
+			import flashx.textLayout.formats.TextLayoutFormat;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			public var widget:AbstractWidget;
+			
+			private var _editing:Boolean;
+			
+			public function set editing(value:Boolean):void {
+				if (_editing !== value) {
+					_editing = value;
+					setCurrentState((value) ? "editing" : "normal");
+				}
+			}
+			
+			public function get editing():Boolean {
+				return _editing;
+			}
+			
+			protected function onValueCommit(event:FlexEvent):void {
+				widget.text = TextConverter.export(event.target.textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.STRING_TYPE).toString();
+			}
+			
+			public function applyTextLayoutFormat(format:TextLayoutFormat):void {
+				var selectionAnchorPosition:int = richEditableText.selectionAnchorPosition;
+				var selectionActivePosition:int = richEditableText.selectionActivePosition;
+				
+				richEditableText.setFormatOfRange(format, selectionAnchorPosition, selectionActivePosition);
+				
+				// Set the focus and selection back to the text component
+				richEditableText.setFocus();
+				richEditableText.selectRange(selectionAnchorPosition, selectionActivePosition);
+			}
+			
+			protected function onSelectionChange(event:FlexEvent):void {
+				var format:TextLayoutFormat = richEditableText.getFormatOfRange(null, richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
+				dispatchEvent(new WidgetTextFormatMenuEvent(WidgetTextFormatMenuEvent.TEXT_SELECTED, false, format));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing" />
+	</s:states>
+	
+	<s:Rect id="focusHighlight" left="0" right="0" top="0" bottom="0" visible="false">
+		<s:stroke>
+			<s:SolidColorStroke color="#DAC350" />
+		</s:stroke>
+		<s:fill>
+			<s:SolidColor color="#FFF8D3" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:RichEditableText id="richEditableText"
+						left="8" right="8" top="8" minHeight="{minHeight}"
+						fontFamily="Helvetica" fontSize="14"
+						backgroundAlpha="0" focusSkin="{null}" 
+						editable.normal="false" editable.editing="true"
+						selectable.normal="false" selectable.editing="true"
+						textFlow="{TextConverter.importToFlow(new XML(widget.text), TextConverter.TEXT_LAYOUT_FORMAT)}"
+						valueCommit="onValueCommit(event)"
+						selectionChange="onSelectionChange(event)"
+						focusIn.editing="focusHighlight.visible = true"
+						focusOut.editing="focusHighlight.visible = false" />
+	
+</s:Group>

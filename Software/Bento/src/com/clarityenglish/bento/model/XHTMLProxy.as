@@ -63,6 +63,10 @@ package com.clarityenglish.bento.model {
 			urlLoaders = new Dictionary();
 		}
 		
+		public function hasLoadedResource(href:*):Boolean {
+			return loadedResources[href];
+		}
+		
 		public function loadXHTML(href:Href):void {
 			if (!href) {
 				log.error("loadXHTML received a null Href");
@@ -98,17 +102,18 @@ package com.clarityenglish.bento.model {
 		}
 
 		private function notifyXHTMLLoaded(href:Href):void {
-			// Stop this here and do it from ProgressProxy instead
-			/*
 			if (href.type == Href.MENU_XHTML) {
-				// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
+				// If this is the menu xhtml store it in BentoProxy and send a special notification
+				// Note that IELTS overrides this behaviour since it uses ProgressProxy to get menu xml instead.  However, Rotterdam editor still uses this.
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				if (!bentoProxy.menuXHTML) {
-					bentoProxy.menuXHTML = loadedResources[href];
-					sendNotification(BBNotifications.MENU_XHTML_LOADED);
-				}
+				
+				//sendNotification(BBNotifications.BENTO_RESET); // TODO: not sure if this has undesired consequences...
+				
+				bentoProxy.menuXHTML = loadedResources[href];
+				sendNotification(BBNotifications.MENU_XHTML_LOADED, loadedResources[href]);
 			}
-			*/
+			
+			// Whether or not this is menu XHTML, we always want to send the XHTML_LOADED notification as it drives BentoMediators
 			sendNotification(BBNotifications.XHTML_LOADED, { xhtml: loadedResources[href], href: href } );
 		}
 		
@@ -143,9 +148,11 @@ package com.clarityenglish.bento.model {
 		private function onXHTMLLoadError(event:IOErrorEvent):void {
 			var urlLoader:URLLoader = event.target as URLLoader;
 			var href:Href = urlLoaders[urlLoader];
-			delete urlLoaders[urlLoader];
 			
 			log.info("IO error loading from href {0} - {1}", href, event.text);
+			sendNotification(BBNotifications.XHTML_LOAD_IOERROR, { href: href } );
+			
+			delete urlLoaders[urlLoader];
 		}
 		
 		private function onXHTMLSecurityError(event:SecurityErrorEvent):void {

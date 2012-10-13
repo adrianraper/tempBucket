@@ -2,6 +2,9 @@ package com.clarityenglish.ielts {
 	
 	public class IELTSNotifications {
 		
+		public static const COURSE_CLASS_SELECT:String = "ielts/course_class_select";
+		public static const COURSE_CLASS_SELECTED:String = "ielts/course_class_selected";
+		
 		public static const HREF_SELECTED:String = "ielts/href_select";
 		
 		public static const PDF_SHOW:String = "ielts/pdf_show";

@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="skins.assets.widgets.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
+			
+			[Bindable]
+			public var icon:Object;
+			
+			[Bindable]
+			public var title:String;
+			
+			[Bindable]
+			public var selected:Boolean;
+			
+			[Bindable]
+			public var editing:Boolean;
+			
+			protected function onMenuButtonClick(event:MouseEvent):void {
+				switch (currentState) {
+					case "closed":
+						currentState = "open";
+						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_SHOW, true));
+						break;
+					case "open":
+						currentState = "closed";
+						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
+						break;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Metadata>
+		[Event(name="menuShow", type="com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent")]
+		[Event(name="menuHide", type="com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="closed" />
+		<s:State name="open" />
+	</s:states>
+	
+	<!-- Hit area -->
+	<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
+	
+	<!-- Title bar -->
+	<s:Group id="dragArea" left="0" right="0" top="0" height="25">
+		<s:Rect left="0" right="0" top="0" bottom="0">
+			<s:fill>
+				<s:LinearGradient scaleX="-25" rotation="90">
+					<s:GradientEntry ratio="0" color="#CBCBCB"/>
+					<s:GradientEntry ratio="1" color="#FFFFFF"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+	<!-- The icon -->
+	<s:Image source="{icon}" mouseChildren="false" mouseEnabled="false" />
+	
+	<!-- The widget title -->
+	<s:Label text="{title}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
+	
+	<!-- The menu button -->
+	<s:Group id="menuButton" right="0" width="41" height="24" buttonMode="true" mouseEnabled="true" click="onMenuButtonClick(event)" visible="{editing}">
+		<s:Rect right="0" width="41" height="24" alpha.open="1" alpha.closed="0">
+			<s:stroke>
+				<s:SolidColorStroke color="#D8D8D8" />
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="#F2F2F2" />
+			</s:fill>
+		</s:Rect>
+		<widgets:CogIcon top="5" right="9" />
+	</s:Group>
+	
+	<!-- The stroke, including the selection stroke -->
+	<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:stroke>
+			<s:SolidColorStroke color="{selected ? 0x1CBBB4 : 0xD4D4D4}" />
+		</s:stroke>
+	</s:Rect>
+	
+</s:Group>
