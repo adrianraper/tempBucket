@@ -224,8 +224,9 @@ package com.clarityenglish.common.model {
 			// Debug auto-logins
 			switch (Config.DEVELOPER.name) {
 				case "DK":
-					configUser = new User({ name:"dandelion", password:"password" });
-					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+					//configUser = new User({ name:"dandelion", password:"password" });
+					//return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+					break;
 				case "AR":
 					configUser = new User({ name:"Adrian Raper", studentID:"p574528(8)", password:"passwording" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
