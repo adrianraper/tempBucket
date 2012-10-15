@@ -16,6 +16,7 @@
 @namespace support "com.clarityenglish.ielts.view.support.*";
 @namespace credits "com.clarityenglish.ielts.view.credits.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
+@namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 
 global {
 	interactionMode: touch;
@@ -56,6 +57,11 @@ ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#star
 ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
 ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
 	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
+}
+
+/* No network styles (#472) */
+nonetwork|NoNetworkView {
+	skinClass: ClassReference("skins.ieltsair.NoNetworkSkin");
 }
 
 /* Login view styles */

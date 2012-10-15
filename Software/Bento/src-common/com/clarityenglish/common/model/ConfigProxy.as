@@ -97,7 +97,7 @@ package com.clarityenglish.common.model {
 		private function getAccountSettings():void {
 			// TODO. Do you need to check that the remote gateway is up and running since we only just set it?
 			
-			if (Config.DEVELOPER.name == "DK") {
+			if (Config.DEVELOPER.name.indexOf("DK") >= 0) {
 				if (!config.prefix) config.prefix = "Clarity";
 			}
 			
@@ -223,15 +223,14 @@ package com.clarityenglish.common.model {
 			
 			// Debug auto-logins
 			switch (Config.DEVELOPER.name) {
-				case "DK":
-					//configUser = new User({ name:"dandelion", password:"password" });
-					//return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
-					break;
+				case "DKweb":
+					configUser = new User({ name: "dandelion", password: "password" });
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 				case "AR":
-					configUser = new User({ name:"Adrian Raper", studentID:"p574528(8)", password:"passwording" });
+					configUser = new User({ name: "Adrian Raper", studentID: "p574528(8)", password: "passwording" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 				case "network":
-					configUser = new User({ name:"Student", studentID:"123", password:"password" });
+					configUser = new User({ name: "Student", studentID: "123", password: "password" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 			}
 			
@@ -316,7 +315,7 @@ package com.clarityenglish.common.model {
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
-		public function onDelegateResult(operation:String, data:Object):void{
+		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
 				case "getAccountSettings":
 					if (data) {

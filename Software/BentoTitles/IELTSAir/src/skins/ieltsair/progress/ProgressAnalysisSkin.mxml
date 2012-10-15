@@ -7,6 +7,7 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView")]
 	</fx:Metadata>
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.XMLListCollection;

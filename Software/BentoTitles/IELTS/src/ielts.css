@@ -66,11 +66,6 @@ ielts|IELTSApplication {
 	skinClass: ClassReference("skins.ielts.IELTSApplicationSkin");
 }
 
-/* No network styles (#472) */
-nonetwork|NoNetworkView {
-	skinClass: ClassReference("skins.ielts.NoNetworkSkin");
-}
-
 /* Credit view styles */
 credits|CreditsView {
 	skinClass: ClassReference("skins.ielts.CreditsSkin");

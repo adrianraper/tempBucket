@@ -15,43 +15,40 @@
 			
 			import org.davekeen.util.DateUtil;
 			
-			private function formatExamDetails(userDetails:User, type:String):String {
+			private function formatExamDetails(user:User, type:String):String {
 				// If examDate is not set, then default to expiryDate - 1 week
-				if (userDetails.examDate) {
-					var myDate:Date = userDetails.examDate;
-				} else if (userDetails.expiryDate) {
-					myDate = DateUtil.dateAdd(DateUtil.ansiStringToDate(userDetails.expiryDate), "d", -7);	
+				if (user.examDate) {
+					var myDate:Date = user.examDate;
+				} else if (user.expiryDate) {
+					myDate = DateUtil.dateAdd(DateUtil.ansiStringToDate(user.expiryDate), "d", -7);
 				} else {
 					myDate = new Date();
 				}
 				switch (type) {
 					case 'date':
-						return DateUtil.formatDate(myDate,'yyyy-MM-dd');
+						return DateUtil.formatDate(myDate, 'yyyy-MM-dd');
 						break;
 					case 'hours':
-						return DateUtil.formatDate(myDate,'HH');
+						return DateUtil.formatDate(myDate, 'HH');
 						break;
 					case 'mins':
-						return DateUtil.formatDate(myDate,'mm');
+						return DateUtil.formatDate(myDate, 'mm');
 						break;
 				}
 				return null;
 			}
 			
-			private function dateChooserInit(userDetails:User):void {
-				examDateField.selectedDate = userDetails.examDate;
+			private function dateChooserInit(user:User):void {
+				examDateField.selectedDate = user.examDate;
 				// Registration might be a long time ago - not much point being able to select anything in the past
-				//var selectStartDate:Date = (userDetails.registrationDate) ? DateUtil.ansiStringToDate(userDetails.registrationDate) : new Date();
 				var selectStartDate:Date = new Date();
-				//var selectEndDate:Date = new Date((new Date().getTime() + (365*24*60*60*1000)));
 				var selectEndDate:Date = DateUtil.dateAdd(selectStartDate, "y", 1);
 				examDateField.selectableRange = {rangeStart: selectStartDate, rangeEnd: selectEndDate};
 			}
 			
 			private function formatScreenDate(date:Date):String {
-				return DateUtil.formatDate(date,'d MMMM yyyy');
+				return DateUtil.formatDate(date, 'd MMMM yyyy');
 			}
-			
 		]]>
 	</fx:Script>
 	
@@ -84,7 +81,7 @@
 		
 		<s:VGroup width="120" height="100%" >	
 			<s:Label id="countdownHeading" text="How long until my test?" />
-			<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.userDetails.examDate}" />
+			<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.user.examDate}" />
 			
 			<s:Spacer height="3" />
 			
@@ -96,20 +93,20 @@
 					<s:HGroup paddingTop="5">
 						<s:VGroup width="100%" height="100%" top="150"  >
 							<s:Label text="Date:" verticalAlign="bottom"  />
-							<mx:DateField id="examDateField" creationComplete="dateChooserInit(hostComponent.userDetails);" 
+							<mx:DateField id="examDateField" creationComplete="dateChooserInit(hostComponent.user);" 
 										  labelFunction="formatScreenDate" />
 						</s:VGroup>
 						
 						<s:VGroup>
 							<s:Label text="Hour:" verticalAlign="bottom"  />
 							<s:NumericStepper id="examHours" minimum="0" maximum="23" stepSize="1" 
-											  value="{Number(formatExamDetails(hostComponent.userDetails, 'hours'))}" textAlign="center"/>
+											  value="{Number(formatExamDetails(hostComponent.user, 'hours'))}" textAlign="center"/>
 						</s:VGroup>
 						
 						<s:VGroup>
 							<s:Label text="Minute:" verticalAlign="bottom"  />
 							<s:NumericStepper id="examMinutes" minimum="0" maximum="45" stepSize="15" 
-											  value="{Number(formatExamDetails(hostComponent.userDetails, 'mins'))}" textAlign="center"/>
+											  value="{Number(formatExamDetails(hostComponent.user, 'mins'))}" textAlign="center"/>
 						</s:VGroup>
 					</s:HGroup>
 					
@@ -121,13 +118,13 @@
 						<s:HGroup>
 							<s:Label text="Registered name:" />
 							<s:Spacer width="30"/>
-							<s:Label text="{hostComponent.userDetails.fullName}" fontWeight="bold" />
+							<s:Label text="{hostComponent.user.fullName}" fontWeight="bold" />
 						</s:HGroup>
 						<s:Spacer height="3" />
 						<s:HGroup>
 							<s:Label text="Email:"/>
 							<s:Spacer width="94"/>
-							<s:Label text="{hostComponent.userDetails.email}" fontWeight="bold" />
+							<s:Label text="{hostComponent.user.email}" fontWeight="bold" />
 						</s:HGroup>
 						<s:Spacer height="3" />
 						<s:HGroup>
