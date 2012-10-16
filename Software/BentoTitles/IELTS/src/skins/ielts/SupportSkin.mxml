@@ -7,8 +7,6 @@
 		[HostComponent("com.clarityenglish.ielts.view.support.SupportView")]
 	</fx:Metadata>
 	<fx:Script>
-
-		
 		<![CDATA[
 			import flashx.textLayout.conversion.TextConverter;
 		]]>
@@ -43,47 +41,43 @@
 		
 		<s:Scroller width="100%" height="100%">
 			<s:HGroup>
-
-			<s:VGroup id="userGuide" width="70%" paddingBottom="30">
-				<s:RichText width="650" paddingLeft="0" paddingTop="10" includeIn="testDrive">
-				<s:p><s:span>This Test Drive version of Road to IELTS gives you all the IELTS basics.</s:span></s:p>
-				</s:RichText>
-				<s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">
-					<s:p><s:span fontWeight="bold">How to use Road to IELTS</s:span></s:p>
-					<s:p><s:span>Road to IELTS is organised into four skill areas, one for each paper in IELTS. In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from IELTS experts on video, and practising specific question types using the interactive practice exercises and the mock papers.</s:span></s:p>
-				</s:RichText>
-				<s:Button id="registerInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
-				<s:Button id="buyInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
- 				<s:Label text="Click here for a detailed user manual." textDecoration="underline" color="0X2B3990" excludeFrom="testDrive"/>
-
-				
-				<s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">
-					<s:p><s:span fontWeight="bold">Key screens</s:span></s:p>
-				</s:RichText>
-
-				<s:VGroup id="homeScreen" paddingTop="10" excludeFrom="testDrive">
-					<s:SWFLoader width="680" height="325" source="{hostComponent.assetFolder}help_home.png" />
+				<s:VGroup id="userGuide" width="70%" paddingBottom="30">
+					<s:RichText width="650" paddingLeft="0" paddingTop="10" includeIn="testDrive">
+					<s:p><s:span>This Test Drive version of Road to IELTS gives you all the IELTS basics.</s:span></s:p>
+					</s:RichText>
+					<s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">
+						<s:p><s:span fontWeight="bold">How to use Road to IELTS</s:span></s:p>
+						<s:p><s:span>Road to IELTS is organised into four skill areas, one for each paper in IELTS. In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from IELTS experts on video, and practising specific question types using the interactive practice exercises and the mock papers.</s:span></s:p>
+					</s:RichText>
+					<s:Button id="registerInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
+					<s:Button id="buyInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
+	 				<s:Label text="Click here for a detailed user manual." textDecoration="underline" color="0X2B3990" excludeFrom="testDrive"/>
+					
+					<s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">
+						<s:p><s:span fontWeight="bold">Key screens</s:span></s:p>
+					</s:RichText>
+	
+					<s:VGroup id="homeScreen" paddingTop="10" excludeFrom="testDrive">
+						<s:SWFLoader width="680" height="325" source="{hostComponent.assetFolder}help_home.png" />
+					</s:VGroup>
+					<s:RichText excludeFrom="testDrive">
+						<s:p><s:span>The Home screen is where you choose the skill you would like to work on.</s:span></s:p>
+					</s:RichText>
+					
+					<s:VGroup id="skillScreen" paddingTop="20" excludeFrom="testDrive" >
+						<s:SWFLoader width="680" height="341" source="{hostComponent.assetFolder}help_skill.png" />
+					</s:VGroup>
+					<s:RichText excludeFrom="testDrive">
+						<s:p><s:span>The Skill screen is where you access the eBook, advice videos, and the interactive practice activities.</s:span></s:p>
+					</s:RichText>
+					
+					<s:VGroup id="exerciseScreen" paddingTop="20" excludeFrom="testDrive">
+						<s:SWFLoader width="680" height="374" source="{hostComponent.assetFolder}help_exercise.png" />
+					</s:VGroup>
+					<s:RichText excludeFrom="testDrive">
+						<s:p><s:span>When you choose to work on an activity in the Practice zone, you will see this Exercise screen.</s:span></s:p>
+					</s:RichText>
 				</s:VGroup>
-				<s:RichText excludeFrom="testDrive">
-					<s:p><s:span>The Home screen is where you choose the skill you would like to work on.</s:span></s:p>
-				</s:RichText>
-				
-				<s:VGroup id="skillScreen" paddingTop="20" excludeFrom="testDrive" >
-					<s:SWFLoader width="680" height="341" source="{hostComponent.assetFolder}help_skill.png" />
-				</s:VGroup>
-				<s:RichText excludeFrom="testDrive">
-					<s:p><s:span>The Skill screen is where you access the eBook, advice videos, and the interactive practice activities.</s:span></s:p>
-				</s:RichText>
-				
-				<s:VGroup id="exerciseScreen" paddingTop="20" excludeFrom="testDrive">
-					<s:SWFLoader width="680" height="374" source="{hostComponent.assetFolder}help_exercise.png" />
-				</s:VGroup>
-				<s:RichText excludeFrom="testDrive">
-					<s:p><s:span>When you choose to work on an activity in the Practice zone, you will see this Exercise screen.</s:span></s:p>
-				</s:RichText>
-				
-			</s:VGroup>
-
 			
 				<s:VGroup id="contacts" width="30%">
 					<s:RichText width="96%" paddingTop="10" visible="true" excludeFrom="fullVersion,homeUser,testDrive">
@@ -107,31 +101,29 @@
 								with a description of your problem and the URL or website you start the program from.</s:span>
 							</s:p>	
 						</s:RichText>
-					<s:SWFLoader width="70" height="23"
-								 source="@Embed(source='skins/ielts/assets/support/claritylogo.png')"/>
-					<s:RichText width="90%" >
-						<s:p><s:span fontWeight="bold">Clarity Language Consultants Ltd</s:span></s:p>
-						<s:p><s:span>PO Box 163, Sai Kung, Hong Kong</s:span></s:p>
-						<s:p><s:span>Tel: +852 2791 1787</s:span></s:p>	
-						<s:p><s:span>Fax: +852 2791 6484</s:span></s:p>	
-					</s:RichText>
+						<s:SWFLoader width="70" height="23"
+									 source="@Embed(source='skins/ielts/assets/support/claritylogo.png')"/>
+						<s:RichText width="90%" >
+							<s:p><s:span fontWeight="bold">Clarity Language Consultants Ltd</s:span></s:p>
+							<s:p><s:span>PO Box 163, Sai Kung, Hong Kong</s:span></s:p>
+							<s:p><s:span>Tel: +852 2791 1787</s:span></s:p>	
+							<s:p><s:span>Fax: +852 2791 6484</s:span></s:p>	
+						</s:RichText>
 					</s:VGroup>
 					<s:VGroup width="100%" paddingTop="20">
-					<s:SWFLoader width="39" height="42"
-								 source="@Embed(source='skins/ielts/assets/support/content.png')" />
-					<s:RichText width="90%" >
-						<s:p><s:span fontWeight="bold">Content problems</s:span></s:p>
-						<s:p><s:span>If you have any enquires about the content, for example, if you have questions about an answer in the exercises, 
-							 please contact British Council.</s:span></s:p>						
-					</s:RichText>
-						<s:SWFLoader width="87" height="33"
-									 source="@Embed(source='skins/ielts/assets/support/bc_logo.png')"/>
+						<s:SWFLoader width="39" height="42"
+									 source="@Embed(source='skins/ielts/assets/support/content.png')" />
+						<s:RichText width="90%" >
+							<s:p><s:span fontWeight="bold">Content problems</s:span></s:p>
+							<s:p><s:span>If you have any enquires about the content, for example, if you have questions about an answer in the exercises, 
+								 please contact British Council.</s:span></s:p>						
+						</s:RichText>
+							<s:SWFLoader width="87" height="33"
+										 source="@Embed(source='skins/ielts/assets/support/bc_logo.png')"/>
 					</s:VGroup>
 				</s:VGroup>
-				
 			</s:HGroup>
-			</s:Scroller>
-
+		</s:Scroller>
 	</s:VGroup>	
 	
 
