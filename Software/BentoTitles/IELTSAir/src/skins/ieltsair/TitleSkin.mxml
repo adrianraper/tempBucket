@@ -4,9 +4,8 @@
 		xmlns:home="com.clarityenglish.ielts.view.home.*"
 		xmlns:title="skins.ieltsair.assets.title.*"
 		xmlns:assets="skins.ieltsair.assets.*"
-		xmlns:zone="skins.ieltsair.assets.zone.*"
-		xmlns:airzone="com.clarityenglish.ieltsair.view.zone.*"
-		creationComplete="creationComplete(event)">
+		xmlns:zone="com.clarityenglish.ielts.view.zone.*"
+		creationComplete="creationComplete(event)" >
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
@@ -87,7 +86,7 @@
 	<assets:BritishCouncilClarityLogo bottom="51" excludeFrom="exercise" />
 	<assets:GreyCircles bottom="51" right="0" excludeFrom="exercise" />
 	
-	<airzone:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
+	<zone:PracticeZonePopoutView id="practiceZonePopoutView" x="50" y="104" />
 	
 	<!-- #479 -->
 	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#AAAAAA" right="3" bottom="52" excludeFrom="exercise" />

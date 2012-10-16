@@ -26,6 +26,7 @@
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 
+
 global {
 	/* This changes the modal popup mask properties */
 	modal-transparency: 0.1;
@@ -60,6 +61,10 @@ global {
 	listeningIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconBare');
 	
 	disabledColor: #EEEEEE;
+}
+
+s|Button {
+	skinClass: ClassReference("spark.skins.mobile.ButtonSkin");
 }
 
 ielts|IELTSApplication {
@@ -160,6 +165,76 @@ homeui|CourseBarRenderer {
 }
 
 /* Zone view styles */
+zone|ZoneView {
+	skinClass: ClassReference("skins.ielts.ZoneSkin");
+	backgroundAlpha: 0;
+}
+
+/*title1|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.viewnavigator.WebTabbedViewNavigatorSkin");
+}
+
+title1|TitleView s|ViewNavigator {
+	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
+}*/
+
+zone|ZoneView #sectionNavigator {
+	skinClass: ClassReference("skins.ielts.zone.SectionNavigatorSkin");
+}
+
+zone|ZoneView s|ViewNavigator {
+	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
+}
+
+zone|ZoneView #sectionNavigator #tabBar {
+	skinClass: ClassReference("skins.ielts.zone.ui.SectionNavigatorTabBarSkin");
+	fontSize: 13;
+}
+
+zone|AdviceZoneSectionView {
+	skinClass: ClassReference("skins.ielts.zone.AdviceZoneSectionSkin");
+}
+
+zone|QuestionZoneVideoSectionView {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneVideoSectionSkin");
+}
+
+zone|QuestionZoneSectionView {
+	skinClass: ClassReference("skins.ielts.zone.QuestionZoneSectionSkin");
+}
+
+zone|QuestionZoneSectionView #downloadButton {
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
+}
+
+zone|QuestionZoneSectionView #videoButton {
+	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
+}
+
+zone|PracticeZoneSectionView {
+	skinClass: ClassReference("skins.ielts.zone.PracticeZoneSectionSkin");
+}
+
+zone|PracticeZonePopoutView {
+	skinClass: ClassReference("skins.ielts.zone.PracticeZonePopoutSkin");
+}
+
+zoneui|DifficultyRenderer {
+	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
+}
+
+zone|ExamPracticeZoneSectionView {
+	skinClass: ClassReference("skins.ielts.zone.ExamPracticeZoneSectionSkin");
+}
+
+zone|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
+	/*compactStoppedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPausedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
+	compactPlayingIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioStop");*/
+}
+
+/* Zone view styles */
 /*zone|ZoneView {
 	skinClass: ClassReference("skins.ielts.ZoneSkin");
 }
@@ -254,16 +329,19 @@ progress|ProgressView #progressNavBar {
 }
 
 progresscomponents|ProgressScoreView {
-	skinClass: ClassReference("skins.ielts.ProgressScoreSkin");
+	skinClass: ClassReference("skins.ielts.progress.ProgressScoreSkin");
 }
+
 progresscomponents|ProgressCompareView {
-	skinClass: ClassReference("skins.ielts.ProgressCompareSkin");
+	skinClass: ClassReference("skins.ielts.progress.ProgressCompareSkin");
 }
+
 progresscomponents|ProgressCoverageView {
-	skinClass: ClassReference("skins.ielts.ProgressCoverageSkin");
+	skinClass: ClassReference("skins.ielts.progress.ProgressCoverageSkin");
 }
+
 progresscomponents|ProgressAnalysisView {
-	skinClass: ClassReference("skins.ielts.ProgressAnalysisSkin");
+	skinClass: ClassReference("skins.ielts.progress.ProgressAnalysisSkin");
 }
 
 progressui|ProgressBarRenderer {
@@ -286,6 +364,7 @@ progressui|ProgressCourseBarComponent #listeningCourseButton {
 	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
 }
 */
+
 progresscomponents|ProgressCoverageView #progressCourseButtonBar {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCourseButtonBarSkin");
 }

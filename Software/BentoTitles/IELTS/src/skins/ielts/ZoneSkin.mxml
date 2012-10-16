@@ -1,505 +1,62 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.ielts.view.zone.ui.*"
-		xmlns:tink="ws.tink.spark.containers.*"
-		xmlns:flashcomponents="*"
-		minWidth="540"
-		maxHeight="500"
-		xmlns:components="com.clarityenglish.textLayout.components.*"
-		creationComplete="creationComplete(event)"
-		xmlns:zone="skins.ielts.zone.*">
+		xmlns:zone="skins.ielts.assets.zone.*"
+		initialize="onInitialize(event)"
+		creationComplete="onCreationComplete(event)"
+		xmlns:courseselector="com.clarityenglish.ielts.view.zone.courseselector.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.ZoneView")]
 	</fx:Metadata>
-	<fx:Declarations>
-		<s:Sine id="sineEasing" easeInFraction="0.3" />
-	</fx:Declarations>
 	<fx:Script>
 		<![CDATA[
-			import caurina.transitions.Tweener;
-			
-			import com.clarityenglish.common.vo.content.Title;
-			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
-			import com.clarityenglish.ielts.view.zone.ExerciseEvent;
-			
-			import mx.core.UIComponent;
-			import mx.core.mx_internal;
 			import mx.events.FlexEvent;
 			
-			import org.davekeen.util.PointUtil;
+			import org.davekeen.transitions.PatchedSlideViewTransition;
 			
-			import skins.ielts.videoplayer.VideoPlayerSkin;
+			import spark.transitions.ViewTransitionDirection;
 			
-			import spark.events.IndexChangeEvent;
-			import spark.events.ListEvent;
+			protected function onInitialize(event:FlexEvent):void {
+				sectionNavigator.tabBar.height = 43;
+			}
 			
-			// #302 - ensure the popupwatchers aren't garbage collected
-			private var popupWatchers:Array = [];
-			
-			protected function creationComplete(event:FlexEvent):void {
-				hostComponent.resetQuestionZoneGraphics();
+			protected function onCreationComplete(event:FlexEvent):void {
+				// #413
 				
-				// #234
-				popupWatchers.push(new DisabledPopupWatcher(adviceZoneVideoList, hostComponent.productVersion));
-				popupWatchers.push(new DisabledPopupWatcher(examPracticeDataGroup, hostComponent.productVersion));
-				popupWatchers.push(new DisabledPopupWatcher(examPracticeAnswerDataGroup, hostComponent.productVersion));
-				popupWatchers.push(new DisabledPopupWatcher(unitList, hostComponent.productVersion));
+				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there.  We also need to use a custom
+				// PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
+				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				pushTransition.direction = ViewTransitionDirection.LEFT;
+				questionZoneViewNavigator.defaultPushTransition = pushTransition;
 				
-				// Check that the first enabled accordian section is open
-				if (questionZoneNavigatorContent.enabled) {
-					accordian.selectedIndex = 0;
-				} else if (adviceZoneNavigatorContent.enabled) {
-					accordian.selectedIndex = 1;
-				} else if (practiceZoneNavigatorContent.enabled) {
-					accordian.selectedIndex = 2;
-				} else if (examPracticeNavigatorContent.enabled) {
-					accordian.selectedIndex = 3;
-				}
+				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
+				popTransition.direction = ViewTransitionDirection.RIGHT;
+				questionZoneViewNavigator.defaultPopTransition = popTransition;
 			}
 			
-			protected function onUnitClick(event:MouseEvent):void {
-				if (unitList.selectedItem)
-					hostComponent.exerciseSelectorPoppedOut = true;
-			}
-			
-			protected function onAccordianChange(event:IndexChangeEvent):void {
-				hostComponent.exerciseSelectorPoppedOut = false;
-			}
-			
-			protected function onPopoutExerciseSelected(event:ExerciseEvent):void {
-				hostComponent.exerciseSelectorPoppedOut = false;
-			}
-			
-			public function onAdviceZoneVideoSelect(event:Event):void {
-				hostComponent.adviceZoneVideoSelected(adviceZoneVideoList.selectedItem.@href);			
-				adviceZoneChannelButtonBar.requireSelection = true;
-				adviceZoneChannelButtonBar.enabled = true;
-			}
-						
 		]]>
 	</fx:Script>
-
-	<s:states>
+	
+	<!-- states -->
+	<s:states>	
 		<s:State name="disabled" stateGroups="normalStates" />
 		<s:State name="normal" stateGroups="normalStates" />
-		
-		<s:State name="reading_normal" stateGroups="normalStates,readingStates" />
-		<s:State name="writing_normal" stateGroups="normalStates,writingStates" />
-		<s:State name="listening_normal" stateGroups="normalStates,listeningStates" />
-		<s:State name="speaking_normal" stateGroups="normalStates,speakingStates" />
-
-		<s:State name="reading_demo" stateGroups="normalStates,readingStates" />
-		<s:State name="writing_demo" stateGroups="demoStates,writingStates" />
-		<s:State name="listening_demo" stateGroups="demoStates,listeningStates" />
-		<s:State name="speaking_demo" stateGroups="demoStates,speakingStates" />
-		
-		<s:State name="reading_popped" stateGroups="popoutStates,readingStates" />
-		<s:State name="writing_popped" stateGroups="popoutStates,writingStates" />
-		<s:State name="listening_popped" stateGroups="popoutStates,listeningStates" />
-		<s:State name="speaking_popped" stateGroups="popoutStates,speakingStates" />
 	</s:states>
-
-	<s:transitions>
-		<s:Transition fromState="*" toState="*" interruptionBehavior="stop" autoReverse="true">
-			<s:Move target="{popoutExerciseSelector}" />
-		</s:Transition>
-	</s:transitions>
-
-	<s:Group width="100%" height="100%" top="{(hostComponent.isFullVersion()) ? 0 : 35}">
-		<!-- The left hand side -->
-		<s:Group width="40%" rollOver="hostComponent.exerciseSelectorPoppedOut = false" top="90" left="0">
-			<s:layout>
-				<s:HorizontalLayout />
-			</s:layout>
-
-			<!-- this is for the rotating course selector -->
-			<flashcomponents:CourseSelectorWidget id="courseSelectorWidget" visible="{hostComponent.useCourseSelector}" includeInLayout="{hostComponent.useCourseSelector}"/>
-		</s:Group>
-		
-		<!-- The popout exercise selector -->
-		<ui:PopoutExerciseSelector id="popoutExerciseSelector"
-								   href="{hostComponent.href}"
-								   courseClass="{hostComponent.courseClass}"
-								   width="80%"
-								   x.normalStates="{width / 2}"
-								   x.demoStates="{width / 2}"
-								   x.popoutStates="0"
-								   top="90"
-								   height="360"
-								   exerciseSelected="onPopoutExerciseSelected(event)" />
-
-		<!-- The right hand side -->
-		<s:VGroup right="0" paddingRight="0" width="57%">
-			<s:Spacer height="14" visible="{(!hostComponent.isDemo())}"
-					  includeInLayout="{(!hostComponent.isDemo())}"/>				
-			<s:BorderContainer right="0"
-							   width="100%"
-							   height="80%"
-							   backgroundColor="#F2F2F2"
-							   cornerRadius="12"
-							   top="0"
-							   bottom="40"
-							   minWidth="540"
-							   minHeight="570">
-				<s:layout>
-					<s:VerticalLayout paddingLeft="20" paddingRight="20" paddingTop="13" paddingBottom="6" />
-				</s:layout>
-
-				<s:borderStroke>
-					<s:SolidColorStroke color="#E4E4E4" weight="1" />
-				</s:borderStroke>
-
-				<s:HGroup width="100%">
-					<s:SWFLoader id="courseIcon" width="25" height="25" 
-								 source.readingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')" 
-								 source.writingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')" 
-								 source.listeningStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')" 
-								 source.speakingStates="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')">
-						<s:filters>
-							<s:GlowFilter strength="3" blurX="0" blurY="0" color="#AAAAAA" alpha="0.8" />
-						</s:filters>
-					</s:SWFLoader>
-
-					<s:RichText id="courseTitleLabel" fontSize="18" paddingTop="6" paddingBottom="0" />
-					
-				</s:HGroup>
-
-				<!-- Static image for demos -->
-				<s:SWFLoader id="demoImage" width="502" height="516" 
-							 source.writingStates="{hostComponent.assetFolder}writing_demo.png" 
-							 source.listeningStates="{hostComponent.assetFolder}listening_demo.png" 
-							 source.speakingStates="{hostComponent.assetFolder}speaking_demo.png"
-							 includeIn="demoStates"
-							 />
-					
-				<!-- The accordian -->
-				<tink:Accordion id="accordian"
-								width="100%"
-								height="100%"
-								creationPolicy="all"
-								borderVisible="false"
-								
-								easer="{sineEasing}"
-								duration="500"
-								excludeFrom="demoStates"
-								change="onAccordianChange(event)">
-
-					<!-- Question zone -->
-					<s:NavigatorContent id="questionZoneNavigatorContent" label="Starting out" width="100%">
-						<s:Label text="First click to read the eBook or to download the PDF version. Then click to watch a video setting out the key facts in this section of the IELTS test." width="95%" lineHeight="18" />
-
-						<s:VGroup horizontalAlign="center" horizontalCenter="0" paddingTop="50" width="100%">
-
-							<s:Group width="100%" height="100%">
-								<s:SWFLoader id="questionZoneEBookGraphic"
-											 width="100%"
-											 height="100%"
-											 verticalAlign="middle" horizontalAlign="center"
-											 source.readingStates="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
-											 source.writingStates="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
-											 source.listeningStates="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
-											 source.speakingStates="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
-								
-								<s:HGroup id="questionZoneVideo" horizontalCenter="0">
-									<s:VideoPlayer id="questionZoneVideoPlayer"
-												   autoDisplayFirstFrame="true"
-												   width="411"
-												   height="231"
-												   autoPlay="true"
-												   scaleMode="letterbox"
-												   />
-																	
-									<s:Group left="0" includeInLayout="{hostComponent.channelCollection.length > 1}" visible="{hostComponent.channelCollection.length > 1}">									
-										<s:Rect height="231" width="87">
-											<s:fill>
-												<s:SolidColor color="0x141414"/>
-											</s:fill>
-										</s:Rect>
-										<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switch channel." color="#FFFFFF" width="70" lineHeight="18" />
-										<s:VGroup paddingTop="160" paddingLeft="9">
-											<s:ButtonBar id="questionZoneChannelButtonBar" verticalCenter="0" horizontalCenter="0">
-												<s:layout>
-													<s:VerticalLayout gap="3" />
-												</s:layout>
-											</s:ButtonBar>											
-										</s:VGroup>
-									</s:Group>
-								</s:HGroup>
-							</s:Group>
-
-							<s:HGroup horizontalCenter="0" paddingTop="0" verticalCenter="4">
-								<s:Button id="questionZoneViewButton" label="Read eBook" fontSize="12.6" width="160" height="30" left="70" click="hostComponent.showEBook()" />
-								<s:Button id="questionZoneDownloadButton" label="Download eBook" fontSize="12.6" width="160" height="30" click="hostComponent.showEBook()" />
-								<s:Button id="questionZoneVideoButton" label="Watch video" fontSize="12.6" width="160" height="30" click="hostComponent.showVideo()" />
-							</s:HGroup>
-						</s:VGroup>
-					</s:NavigatorContent>
-
-					<!-- Advice zone -->
-					<s:NavigatorContent id="adviceZoneNavigatorContent" label="Advice and tutorials">
-						<s:VGroup left="0" right="0" top="2" bottom="30" horizontalAlign="left">
-							<s:Label text="Click on a thumbnail to play the video." visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='speaking'}" includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
-							<s:Label text="Click on the thumbnail to play the video." visible="{hostComponent.courseClass=='listening' || hostComponent.courseClass=='reading'}" includeInLayout="{hostComponent.courseClass=='listening' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
-							<s:HGroup>
-								<s:Group>
-									<s:VideoPlayer id="adviceZoneVideoPlayer"
-												   autoDisplayFirstFrame="true"
-												   width="411"
-												   height="231"
-												   autoPlay="true"
-												   scaleMode="letterbox"
-												   visible="{adviceZoneVideoList.selectedItem != null}"
-												   includeInLayout="{adviceZoneVideoList.selectedItem != null}" right="0"/>
-									
-									<s:Image source="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')" visible="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'reading' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-									<s:Image source="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')" visible="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'speaking' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-									<s:Image source="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')" visible="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'listening' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-									<s:Image source="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')" visible="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" includeInLayout="{hostComponent.courseClass == 'writing' &amp;&amp; adviceZoneVideoList.selectedItem == null}" />
-								</s:Group>
-								<s:Group left="0" visible="{hostComponent.channelCollection.length > 1}">									
-									<s:Rect height="231" width="87">
-										<s:fill>
-											<s:SolidColor color="0x141414"/>
-										</s:fill>
-									</s:Rect>
-									<s:Label paddingTop="13" paddingLeft="8" text="Having trouble watching the video? Click below to switch channel." color="0xFFFFFF" width="70" lineHeight="18" />
-									<s:VGroup paddingTop="160" paddingLeft="9">
-										<s:ButtonBar id="adviceZoneChannelButtonBar" verticalCenter="0" horizontalCenter="0" enabled="false">
-											<s:layout>
-												<s:VerticalLayout gap="3" />
-											</s:layout>
-										</s:ButtonBar>
-									</s:VGroup>
-								</s:Group>
-							</s:HGroup>	
-							
-							<s:List id="adviceZoneVideoList" width="460" horizontalScrollPolicy="off" borderVisible="false">
-								<s:layout>
-									<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="10" horizontalGap="5" />
-								</s:layout>
-
-								<s:itemRenderer>
-									<fx:Component>
-										<s:ItemRenderer>
-											<fx:Script>
-												<![CDATA[
-													import com.clarityenglish.ielts.view.zone.ExerciseEvent;
-													import spark.components.List;
-													
-													override protected function createChildren():void {
-														super.createChildren();
-														
-														scriptButton.addEventListener(MouseEvent.CLICK, onScriptButtonClick);
-														image.addEventListener(MouseEvent.CLICK, onVideoPlayClick);
-														videoLabel.addEventListener(MouseEvent.CLICK, onVideoPlayClick);
-													}
-													
-													override public function set data(value:Object):void {
-														super.data = value;
-														
-														image.source = outerDocument.hostComponent.href.createRelativeHref(null, data.@thumbnail).url;
-														imageBorder.visible = this.selected;
-														videoLabel.text = data.@caption;
-														
-														scriptButton.visible = data.hasOwnProperty("@scriptHref");
-														blankButton.visible = !scriptButton.visible;
-														
-														// #213
-														enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
-													}
-													
-													private function onScriptButtonClick(event:MouseEvent):void {
-														dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@scriptHref));
-														(owner as List).selectedItem = null;
-													}
-													
-													private function onVideoPlayClick(event:MouseEvent):void {
-														outerDocument.onAdviceZoneVideoSelect(event);
-													}
-												]]>
-											</fx:Script>
-											<s:Rect id="imageBorder" width="75" height="35" top="-2" left="-2">
-												<s:fill>
-													<s:SolidColor color="#000000" />
-												</s:fill>
-											</s:Rect>
-											<s:HGroup top="0" left="0" height="38">
-												<s:HGroup gap="0">
-													<s:Group>
-														<s:Rect id="blankButton" width="14" height="38" visible="false">
-															<s:fill>
-																<s:SolidColor color="#1a1a1a" />
-															</s:fill>
-														</s:Rect>
-														<zone:ScriptIcon id="scriptButton" width="14" height="38" useHandCursor="true" buttonMode="true" visible="false" />
-													</s:Group>
-													<s:Image id="image" width="68" />
-												</s:HGroup>
-
-												<s:Label id="videoLabel" width="135" paddingTop="7" fontWeight="bold" />
-											</s:HGroup>
-											<!--<s:Button id="tooltipHolder" width="100%" height="100%" toolTip="Only available in the Last Minute version" />-->
-										</s:ItemRenderer>
-									</fx:Component>
-								</s:itemRenderer>
-							</s:List>
-							<s:VGroup width="100%" paddingLeft="25" paddingRight="10" paddingTop="25" paddingBottom="10">
-								<s:Label id="unitCaption" fontSize="14" fontWeight="bold" />
-								<s:RichText id="unitDescription" width="80%" fontSize="12.6" />
-							</s:VGroup>
-						</s:VGroup>
-					</s:NavigatorContent>
-
-					<!-- Practice zone -->
-					<s:NavigatorContent id="practiceZoneNavigatorContent" label="Practice zone" width="100%">
-						<s:VGroup left="0" right="0" top="2" bottom="0" gap="10">
-							<s:Label text="Choose a set below and start your IELTS language practice." width="95%" lineHeight="18" />
-							<s:SWFLoader width="473" height="113" source="@Embed(source='skins/ielts/assets/practicezone_image.png')" />
-							<!-- The unit list -->
-							<s:Group left="0" right="0" top="5" bottom="5">
-								<s:List id="unitList" top="0" bottom="0" borderVisible="false" fontSize="12.6" click="onUnitClick(event)">
-									<s:layout>
-										<s:TileLayout requestedColumnCount="4" requestedRowCount="6" orientation="columns" columnWidth="120" verticalGap="8" />
-									</s:layout>
-
-									<!-- Custom item renderer to render the label -->
-									<s:itemRenderer>
-										<fx:Component>
-											<s:ItemRenderer>
-												<fx:Script>
-													<![CDATA[
-														[Bindable]
-														[Embed(source = "skins/ielts/assets/uniticon.png")]
-														public var unitIcon:Class;
-														
-														public override function set data(value:Object):void {
-															super.data = value;
-															captionLabel.text = data.@caption;
-															
-															// #213
-															enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
-														}
-													]]>
-												</fx:Script>
-												<s:HGroup width="100%" verticalAlign="middle" paddingLeft="5" paddingTop="5" paddingBottom="5">
-													<s:Image id="captionIcon" source="{unitIcon}" />
-													<s:Label id="captionLabel" fontSize="12.6" paddingTop="3" />
-												</s:HGroup>
-											</s:ItemRenderer>
-										</fx:Component>
-									</s:itemRenderer>
-
-								</s:List>
-							</s:Group>
-						</s:VGroup>
-					</s:NavigatorContent>
-
-					<!-- Exam practice -->
-					<s:NavigatorContent id="examPracticeNavigatorContent" label="Test practice" width="100%">
-						<s:layout>
-							<s:VerticalLayout paddingTop="2" />
-						</s:layout>
-
-						<s:Label text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." includeInLayout="{hostComponent.courseClass=='listening'}" visible="{hostComponent.courseClass=='listening'}" width="95%" lineHeight="18" />
-						<s:Label text="There is no downloadable test practice materials in this section. Watch the tutorial videos in the Advice and tutorials section to see what happens in the speaking test interview." includeInLayout="{hostComponent.courseClass=='speaking'}" visible="{hostComponent.courseClass=='speaking'}" width="95%" lineHeight="18" />
-						<s:Label text="Download complete test papers with answers." includeInLayout="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" visible="{hostComponent.courseClass=='writing' || hostComponent.courseClass=='reading'}" width="95%" lineHeight="18" />
-						<s:VGroup paddingTop="10" horizontalAlign="center" horizontalCenter="0" width="100%">
-							<s:SWFLoader source.readingStates="@Embed(source='skins/ielts/assets/testpractice_reading.png')" source.writingStates="@Embed(source='skins/ielts/assets/testpractice_writing.png')" source.speakingStates="@Embed(source='skins/ielts/assets/testpractice_speaking.png')" source.listeningStates="@Embed(source='skins/ielts/assets/testpractice_listening.png')" />
-
-							<s:DataGroup id="examPracticeDataGroup" width="100%">
-								<s:layout>
-									<s:HorizontalLayout paddingLeft="0" paddingTop="10" gap="0" horizontalAlign="center" />
-								</s:layout>
-								<s:itemRenderer>
-									<fx:Component>
-										<s:DataRenderer>
-											<fx:Script>
-												<![CDATA[
-													import com.clarityenglish.ielts.view.zone.ExerciseEvent;
-													
-													public override function set data(value:Object):void {
-														super.data = value;
-														
-														if (data) {
-															examPracticeViewButton.label = data.@caption;
-															
-															// #213
-															enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
-														}
-													}
-													
-													protected function onViewButtonClick(event:MouseEvent):void {
-														dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@href));
-													}
-												]]>
-											</fx:Script>
-											<s:layout>
-												<s:HorizontalLayout />
-											</s:layout>
-
-											<s:Button id="examPracticeViewButton" click="onViewButtonClick(event)" width="132" height="30" textAlignLast="left" fontSize="12.6" />
-
-											<!--<ui:DifficultyRenderer id="difficultyRenderer" data="{data}" courseClass="{outerDocument.hostComponent.courseClass}" />-->
-
-											<!-- #144 -->
-											<s:Group height="33">
-												<s:HGroup paddingLeft="0" paddingTop="3" verticalAlign="middle" visible="{data.hasOwnProperty('@audioHref')}">
-													<components:AudioPlayer id="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
-													<s:Label text="{data.@audioCaption}" fontSize="12.6" paddingTop="2" />
-												</s:HGroup>
-											</s:Group>
-										</s:DataRenderer>
-									</fx:Component>
-								</s:itemRenderer>
-							</s:DataGroup>
-
-							<s:DataGroup id="examPracticeAnswerDataGroup" width="100%">
-								<s:layout>
-									<s:HorizontalLayout paddingLeft="0" gap="0" horizontalAlign="center" />
-								</s:layout>
-								<s:itemRenderer>
-									<fx:Component>
-										<s:DataRenderer>
-											<fx:Script>
-												<![CDATA[
-													import com.clarityenglish.ielts.view.zone.ExerciseEvent;
-													
-													public override function set data(value:Object):void {
-														super.data = value;
-														
-														if (data) {
-															examPracticeAnswerButton.label = data.@answerCaption;
-															
-															// #213
-															enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
-														}
-													}
-													
-													protected function onViewButtonClick(event:MouseEvent):void {
-														dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, data.@answerHref));
-													}
-												]]>
-											</fx:Script>
-											<s:layout>
-												<s:HorizontalLayout />
-											</s:layout>
-
-											<s:Button id="examPracticeAnswerButton" click="onViewButtonClick(event)" left="0" width="132" height="30" textAlignLast="left" fontSize="12.6" />
-											<s:Spacer width="28" />
-
-										</s:DataRenderer>
-									</fx:Component>
-								</s:itemRenderer>
-							</s:DataGroup>
-						</s:VGroup>
-					</s:NavigatorContent>
-
-				</tink:Accordion>
-			</s:BorderContainer>
-		</s:VGroup>
-	</s:Group>
-
+	
+	<courseselector:CourseSelector id="courseSelector" course="{hostComponent.course}" left="0" top="100" tabletMode="true" />
+	
+	<zone:ZonesChrome top="30" right="20" />
+	<zone:ZonesBars top="30" right="20" />
+	<zone:ZonesBinder top="30" right="20" />
+	
+	<s:Label text="{hostComponent.data.@caption}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="84" left="543" />
+	
+	<s:TabbedViewNavigator id="sectionNavigator" width="518" height="492" top="124" right="20">		
+		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ielts.view.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="adviceZoneViewNavigator" width="100%" height="100%" label="Advice and tutorials" firstView="com.clarityenglish.ielts.view.zone.AdviceZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="practiceZoneViewNavigator" width="100%" height="100%" label="Practice zone" firstView="com.clarityenglish.ielts.view.zone.PracticeZoneSectionView" firstViewData="{hostComponent.course}" />
+		<s:ViewNavigator id="testZoneViewNavigator" width="100%" height="100%" label="Test practice" firstView="com.clarityenglish.ielts.view.zone.ExamPracticeZoneSectionView" firstViewData="{hostComponent.course}" />
+	</s:TabbedViewNavigator>
+	
 </s:Skin>

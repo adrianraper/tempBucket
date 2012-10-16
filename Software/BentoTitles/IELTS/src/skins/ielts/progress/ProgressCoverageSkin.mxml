@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:ui="com.clarityenglish.ielts.view.progress.ui.*"
+		xmlns:skins="skins.ielts.progress.*"
+		xmlns:ns1="com.anychart.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressCoverageView")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:ButtonBar id="progressCourseButtonBar" right="20" height="50">
+		<s:layout>
+			<s:ButtonBarHorizontalLayout gap="25" />
+		</s:layout>
+		<s:dataProvider>
+			<s:ArrayList>
+				<fx:Object label="Reading" icon="{getStyle('readingIconSmall')}" /> 
+				<fx:Object label="Listening" icon="{getStyle('listeningIconSmall')}" /> 
+				<fx:Object label="Speaking" icon="{getStyle('speakingIconSmall')}" /> 
+				<fx:Object label="Writing" icon="{getStyle('writingIconSmall')}" />
+			</s:ArrayList>
+		</s:dataProvider>
+	</s:ButtonBar>
+	
+	<ui:ProgressBarRenderer id="progressBar" top="73" left="0" right="0" />
+	
+	<s:Scroller left="0" right="0" top="137" bottom="0">
+		<s:HGroup width="100%" height="100%" minWidth="0" minHeight="0">
+			<ui:CoverageExerciseComponent id="questionZoneCoverage" width="20%" caption="Starting out" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
+			<ui:CoverageExerciseComponent id="adviceZoneCoverage" width="20%" caption="Advice and tutorials" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
+			<ui:CoverageExerciseComponent id="examPracticeCoverage" width="20%" caption="Test practice" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" />
+			<ui:CoverageUnitComponent id="practiceZoneCoverage" width="100%" caption="Practice zone" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
+		</s:HGroup>
+	</s:Scroller>
+</s:Skin>

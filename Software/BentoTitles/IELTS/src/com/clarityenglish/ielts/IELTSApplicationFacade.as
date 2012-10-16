@@ -32,6 +32,18 @@
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.title.TitleMediator;
 	import com.clarityenglish.ielts.view.title.TitleView;
+	import com.clarityenglish.ielts.view.zone.AdviceZoneSectionMediator;
+	import com.clarityenglish.ielts.view.zone.AdviceZoneSectionView;
+	import com.clarityenglish.ielts.view.zone.ExamPracticeZoneSectionMediator;
+	import com.clarityenglish.ielts.view.zone.ExamPracticeZoneSectionView;
+	import com.clarityenglish.ielts.view.zone.PracticeZonePopoutMediator;
+	import com.clarityenglish.ielts.view.zone.PracticeZonePopoutView;
+	import com.clarityenglish.ielts.view.zone.PracticeZoneSectionMediator;
+	import com.clarityenglish.ielts.view.zone.PracticeZoneSectionView;
+	import com.clarityenglish.ielts.view.zone.QuestionZoneSectionMediator;
+	import com.clarityenglish.ielts.view.zone.QuestionZoneSectionView;
+	import com.clarityenglish.ielts.view.zone.QuestionZoneVideoSectionMediator;
+	import com.clarityenglish.ielts.view.zone.QuestionZoneVideoSectionView;
 	import com.clarityenglish.ielts.view.zone.ZoneMediator;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
@@ -54,7 +66,6 @@
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
-			mapView(ZoneView, ZoneMediator);
 			mapView(ProgressView, ProgressMediator);
 			mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
@@ -64,6 +75,14 @@
 			mapView(ProgressCompareView, ProgressCompareMediator);
 			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
 			mapView(ProgressCoverageView, ProgressCoverageMediator);
+			
+			mapView(ZoneView, ZoneMediator);
+			mapView(AdviceZoneSectionView, AdviceZoneSectionMediator);
+			mapView(QuestionZoneVideoSectionView, QuestionZoneVideoSectionMediator);
+			mapView(QuestionZoneSectionView, QuestionZoneSectionMediator);
+			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
+			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);
+			mapView(ExamPracticeZoneSectionView, ExamPracticeZoneSectionMediator);
 			
 			// Register IELTS specific commands
 			registerCommand(IELTSNotifications.COURSE_CLASS_SELECT, CourseSelectCommand);

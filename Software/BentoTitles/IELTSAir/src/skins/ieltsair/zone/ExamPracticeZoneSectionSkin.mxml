@@ -73,12 +73,13 @@
 							private var changeWatcher:ChangeWatcher;
 							
 							protected function onAddedToStage(event:Event):void {
-								var zoneView:ZoneView = outerDocument.parentDocument["hostComponent"];
-								changeWatcher = ChangeWatcher.watch(zoneView, "courseClass", onCourseClassChanged, false, true);
+								//var zoneView:ZoneView = outerDocument.parentDocument["hostComponent"];
+								//var zoneView:ZoneView = outerDocument.hostComponent.owner as ZoneView;
+								//changeWatcher = ChangeWatcher.watch(zoneView, "courseClass", onCourseClassChanged, false, true);
 							}
 							
 							protected function onRemovedFromStage(event:Event):void {
-								changeWatcher.unwatch();
+								if (changeWatcher) changeWatcher.unwatch();
 								changeWatcher = null;
 							}
 							

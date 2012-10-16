@@ -97,7 +97,7 @@ home|HomeView {
 }
 
 /* Zone view styles */
-zone|ZoneView {
+/*zone|ZoneView {
 	skinClass: ClassReference("skins.ieltsair.ZoneSkin");
 	backgroundAlpha: 0;
 }
@@ -152,7 +152,7 @@ airzone|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
 	compactPlayedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
 	compactPausedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
 	compactPlayingIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioStop");
-}
+}*/
 
 /* Exercise view styles */
 exercise|ExerciseView {
@@ -166,27 +166,16 @@ exercise|ExerciseView {
 progress|ProgressView {
 	left: 20;
 	right: 20;
+}
+
+progress|ProgressView {
+	left: 20;
+	right: 20;
 	skinClass: ClassReference("skins.ieltsair.ProgressSkin");
 }
 
 progress|ProgressView #progressNavBar {
 	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
-}
-
-progresscomponents|ProgressCoverageView {
-	skinClass: ClassReference("skins.ieltsair.progress.ProgressCoverageSkin");
-}
-
-progresscomponents|ProgressScoreView {
-	skinClass: ClassReference("skins.ieltsair.progress.ProgressScoreSkin");
-}
-
-progresscomponents|ProgressCompareView {
-	skinClass: ClassReference("skins.ieltsair.progress.ProgressCompareSkin");
-}
-
-progresscomponents|ProgressAnalysisView {
-	skinClass: ClassReference("skins.ieltsair.progress.ProgressAnalysisSkin");
 }
 
 /* Account view styles */

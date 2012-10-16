@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:ui="skins.ielts.zone.ui.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.zone.PracticeZoneSectionView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="reading" />
+		<s:State name="writing" />
+		<s:State name="listening" />
+		<s:State name="speaking" />
+	</s:states>
+	
+	<s:List id="unitList" width="100%" height="100%" fontSize="12.6">
+		<s:itemRenderer>
+			<fx:Component>
+				<ui:UnitListItemRenderer labelField="@caption"
+										 iconFunction="getArrowIcon"
+										 messageFunction="getMessageText"
+										 difficultyExerciseFunction="getDifficultyExercise"
+										 courseClass="{outerDocument.hostComponent.courseClass}"
+										 iconWidth="12"
+										 iconHeight="22"
+										 height="71"
+										 horizontalGap="23">
+					<fx:Script>
+						<![CDATA[
+							[Embed(source="skins/ielts/assets/zone/unitlistarrow.png")]
+							private var arrowIcon:Class;
+							
+							private function getArrowIcon(item:Object):Object {
+								return arrowIcon;
+							}
+							
+							private function getMessageText(item:Object):String {
+								return "Difficulty:";
+							}
+							
+							private function getDifficultyExercise(item:Object):XML {
+								return outerDocument.hostComponent.getFirstExerciseInGroup(item as XML);
+							}
+						]]>
+					</fx:Script>
+				</ui:UnitListItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+	
+</s:Skin>

@@ -16,8 +16,6 @@
     <classEntry path="com.clarityenglish.rotterdam.controller.CourseStartCommand"/>
     <classEntry path="com.clarityenglish.rotterdam.view.login.LoginView"/>
     <classEntry path="com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand"/>
-    <classEntry path="skins.viewnavigator.WebViewNavigatorSkin"/>
-    <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
     <classEntry path="com.clarityenglish.rotterdam.view.course.CourseMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.course.CourseView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
