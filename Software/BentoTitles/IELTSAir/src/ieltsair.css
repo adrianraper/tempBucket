@@ -82,14 +82,6 @@ title|TitleView {
 	skinClass: ClassReference("skins.ieltsair.TitleSkin");
 }
 
-title|TitleView s|TabbedViewNavigator #tabBar {
-	chromeColor: #262526;
-	color: #DDDDDD;
-	fontSize: 10;
-	fontWeight: normal;
-	iconPlacement: top;
-}
-
 /* Home view styles */
 home|HomeView {
 	skinClass: ClassReference("skins.ieltsair.HomeSkin");

@@ -26,7 +26,6 @@
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 
-
 global {
 	/* This changes the modal popup mask properties */
 	modal-transparency: 0.1;
@@ -101,8 +100,12 @@ title|TitleView #navBar {
 	skinClass: ClassReference("skins.ielts.title.NavBarSkin");
 }
 
-title|TitleView #navBar s|ButtonBarButton {
-	
+title|TitleView s|TabbedViewNavigator #tabBar {
+	chromeColor: #262526;
+	color: #DDDDDD;
+	fontSize: 10;
+	fontWeight: normal;
+	iconPlacement: top;
 }
 
 title|TitleView #logoutButton {
@@ -220,10 +223,10 @@ zone|ExamPracticeZoneSectionView {
 }
 
 zone|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
-	/*compactStoppedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPlayedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPausedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPlayingIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioStop");*/
+	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUpBlack");
+	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUpBlack");
+	compactPausedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUpBlack");
+	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioStopBlack");
 }
 
 /* Exercise view styles */
