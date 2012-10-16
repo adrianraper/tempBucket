@@ -41,39 +41,20 @@
     
     <fx:Declarations>
         <!--- 
-            @copy spark.components.ButtonBar#firstButton
-            @default spark.skins.spark.ButtonBarFirstButtonSkin
-            @see spark.skins.spark.ButtonBarFirstButtonSkin
-        -->
-        <fx:Component id="firstButton">
-            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.NavBarFirstButtonSkin" />
-        </fx:Component>
-
-        <!--- 
             @copy spark.components.ButtonBar#middleButton
             @default spark.skins.spark.ButtonBarMiddleButtonSkin
             @see spark.skins.spark.ButtonBarMiddleButtonSkin
         -->
         <fx:Component id="middleButton" >
-            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.NavBarMiddleButtonSkin" />
-        </fx:Component>
-
-        <!--- 
-            @copy spark.components.ButtonBar#lastButton
-            @default spark.skins.spark.ButtonBarLastButtonSkin
-            @see spark.skins.spark.ButtonBarLastButtonSkin
-        -->
-        <fx:Component id="lastButton" >
-            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.NavBarLastButtonSkin" />
+            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressCourseButtonBarButtonSkin" />
         </fx:Component>
 
     </fx:Declarations>
 
     <!--- @copy spark.components.SkinnableDataContainer#dataGroup -->
-    <s:DataGroup id="dataGroup" width="100%" height="100%">
-        <s:layout>
-            <s:ButtonBarHorizontalLayout gap="-1"/>
-        </s:layout>
-    </s:DataGroup>
-
+	<s:DataGroup id="dataGroup" width="100%" height="100%">
+		<s:layout>
+			<s:ButtonBarHorizontalLayout gap="10" />
+		</s:layout>
+	</s:DataGroup>
 </s:Skin>

@@ -170,14 +170,6 @@ zone|ZoneView {
 	backgroundAlpha: 0;
 }
 
-/*title1|TitleView s|TabbedViewNavigator {
-	skinClass: ClassReference("skins.viewnavigator.WebTabbedViewNavigatorSkin");
-}
-
-title1|TitleView s|ViewNavigator {
-	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
-}*/
-
 zone|ZoneView #sectionNavigator {
 	skinClass: ClassReference("skins.ielts.zone.SectionNavigatorSkin");
 }
@@ -234,75 +226,6 @@ zone|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
 	compactPlayingIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioStop");*/
 }
 
-/* Zone view styles */
-/*zone|ZoneView {
-	skinClass: ClassReference("skins.ielts.ZoneSkin");
-}
-
-zone|ZoneView tink|Accordion {
-	skinClass: ClassReference("ws.tink.spark.skins.containers.AccordionSkin");
-}
-
-zone|ZoneView tink|Accordion #buttonBar {
-	skinClass: ClassReference("skins.ielts.zone.ZoneAccordianButtonBarSkin");
-	cornerRadius: 0;
-}
-
-zone|ZoneView #examPracticeViewButton {
-	skinClass: ClassReference("skins.ielts.zone.ExamPracticeViewButtonSkin");
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
-}
-
-zone|ZoneView #examPracticeAnswerButton {
-	skinClass: ClassReference("skins.ielts.zone.ExamPracticeAnswerButtonSkin");
-}
-
-zone|ZoneView #questionZoneViewButton {
-	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
-}
-
-zone|ZoneView #questionZoneDownloadButton {
-	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="DownloadIcon");
-}
-
-zone|ZoneView #questionZoneVideoButton {
-	skinClass: ClassReference("skins.ielts.zone.QuestionZoneViewButtonSkin");
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
-}
-
-zone|ZoneView #questionZoneChannelButtonBar{
-	skinClass: ClassReference("skins.ielts.zone.ChannelButtonBarSkin");
-}
-
-zone|ZoneView #examPracticeAudioPlayer {
-	compactStoppedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPlayedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPausedIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioStop");
-}
-
-zone|ZoneView #examPracticeAnswerButton {
-	skinClass: ClassReference("skins.ielts.zone.ExamPracticeAnswerButtonSkin");
-}
-
-zone|ZoneView #adviceZoneChannelButtonBar{
-	skinClass: ClassReference("skins.ielts.zone.ChannelButtonBarSkin");
-}
-
-zoneui|PopoutExerciseSelector {
-	skinClass: ClassReference("skins.ielts.zone.PopoutExerciseSelectorSkin");
-}
-
-zoneui|ImageItemRenderer {
-	skinClass: ClassReference("skins.ielts.zone.ImageItemRendererSkin");
-}
-
-zoneui|DifficultyRenderer {
-	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
-}*/
-
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");
@@ -325,7 +248,7 @@ progress|ProgressView {
 }
 
 progress|ProgressView #progressNavBar {
-	skinClass: ClassReference("skins.ielts.progress.ProgressNavBarSkin");
+	skinClass: ClassReference("skins.ielts.progress.ui.ProgressNavBarSkin");
 }
 
 progresscomponents|ProgressScoreView {
@@ -345,35 +268,21 @@ progresscomponents|ProgressAnalysisView {
 }
 
 progressui|ProgressBarRenderer {
-	skinClass: ClassReference("skins.ielts.progress.ProgressBarRendererSkin");
+	skinClass: ClassReference("skins.ielts.progress.ui.ProgressBarRendererSkin");
 }
-/*
-progressui|ProgressCourseBarComponent {
-	skinClass: ClassReference("skins.ielts.progress.ProgressCourseBarSkin");
-}
-progressui|ProgressCourseBarComponent #writingCourseButton {
-	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
-}
-progressui|ProgressCourseBarComponent #speakingCourseButton {
-	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
-}
-progressui|ProgressCourseBarComponent #readingCourseButton {
-	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
-}
-progressui|ProgressCourseBarComponent #listeningCourseButton {
-	skinClass: ClassReference("skins.ielts.progress.ProgressBarButtonSkin");
-}
-*/
 
 progresscomponents|ProgressCoverageView #progressCourseButtonBar {
-	skinClass: ClassReference("skins.ielts.progress.ProgressCourseButtonBarSkin");
+	skinClass: ClassReference("skins.ielts.progress.ui.ProgressCourseButtonBarSkin");
 }
+
 progresscomponents|ProgressScoreView #progressCourseButtonBar {
-	skinClass: ClassReference("skins.ielts.progress.ProgressCourseButtonBarSkin");
+	skinClass: ClassReference("skins.ielts.progress.ui.ProgressCourseButtonBarSkin");
 }
+
 progressui|CoverageExerciseComponent {
 	skinClass: ClassReference("skins.ielts.progress.ui.CoverageExerciseComponentSkin");
 }
+
 progressui|CoverageUnitComponent {
 	skinClass: ClassReference("skins.ielts.progress.ui.CoverageUnitComponentSkin");
 }

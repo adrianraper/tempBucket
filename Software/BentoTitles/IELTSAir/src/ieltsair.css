@@ -97,62 +97,6 @@ home|HomeView {
 }
 
 /* Zone view styles */
-/*zone|ZoneView {
-	skinClass: ClassReference("skins.ieltsair.ZoneSkin");
-	backgroundAlpha: 0;
-}
-
-zone|ZoneView #sectionNavigator {
-	skinClass: ClassReference("skins.ieltsair.zone.SectionNavigatorSkin");
-}
-
-zone|ZoneView #sectionNavigator #tabBar {
-	skinClass: ClassReference("skins.ieltsair.zone.ui.SectionNavigatorTabBarSkin");
-	fontSize: 13;
-}
-
-airzone|AdviceZoneSectionView {
-	skinClass: ClassReference("skins.ieltsair.zone.AdviceZoneSectionSkin");
-}
-
-airzone|QuestionZoneVideoSectionView {
-	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneVideoSectionSkin");
-}
-
-airzone|QuestionZoneSectionView {
-	skinClass: ClassReference("skins.ieltsair.zone.QuestionZoneSectionSkin");
-}
-
-airzone|QuestionZoneSectionView #downloadButton {
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="SearchIcon");
-}
-
-airzone|QuestionZoneSectionView #videoButton {
-	icon: Embed(source="skins/ielts/assets/assets.swf", symbol="WatchIcon");
-}
-
-airzone|PracticeZoneSectionView {
-	skinClass: ClassReference("skins.ieltsair.zone.PracticeZoneSectionSkin");
-}
-
-airzone|PracticeZonePopoutView {
-	skinClass: ClassReference("skins.ieltsair.zone.PracticeZonePopoutSkin");
-}
-
-ui|DifficultyRenderer {
-	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
-}
-
-airzone|ExamPracticeZoneSectionView {
-	skinClass: ClassReference("skins.ieltsair.zone.ExamPracticeZoneSectionSkin");
-}
-
-airzone|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
-	compactStoppedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPlayedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPausedIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioUp");
-	compactPlayingIcon: Embed(source="skins/ieltsair/assets/assets.swf", symbol="ListeningAudioStop");
-}*/
 
 /* Exercise view styles */
 exercise|ExerciseView {
@@ -170,7 +114,7 @@ progress|ProgressView {
 }
 
 progress|ProgressView #progressNavBar {
-	skinClass: ClassReference("skins.ielts.progress.ui.NavBarSkin");
+	skinClass: ClassReference("skins.ieltsair.progress.ui.NavBarSkin");
 }
 
 /* Account view styles */
@@ -194,7 +138,7 @@ airmore|MoreView {
 }
 
 airmore|MoreView #moreNavBar {
-	skinClass: ClassReference("skins.ielts.progress.ui.NavBarSkin");
+	skinClass: ClassReference("skins.ieltsair.progress.ui.NavBarSkin");
 }
 
 /* Popups */
