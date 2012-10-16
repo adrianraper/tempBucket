@@ -43,6 +43,11 @@
 	</natures>
 	<linkedResources>
 		<link>
+			<name>[source path] src</name>
+			<type>2</type>
+			<location>C:/Program Files (x86)/Adobe/Adobe Flash Builder 4.5/sdks/4.6_AIR3.4/frameworks/projects/mobiletheme/src</location>
+		</link>
+		<link>
 			<name>bin-debug</name>
 			<type>2</type>
 			<location>D:/ProjectBench/Software/ResultsManager/web</location>

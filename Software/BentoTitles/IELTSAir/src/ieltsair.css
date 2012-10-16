@@ -166,11 +166,6 @@ exercise|ExerciseView {
 progress|ProgressView {
 	left: 20;
 	right: 20;
-}
-
-progress|ProgressView {
-	left: 20;
-	right: 20;
 	skinClass: ClassReference("skins.ieltsair.ProgressSkin");
 }
 
