@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%"
+				autoDrawBackground="true">
+
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
+			
+			public override function set data(value:Object):void {
+				super.data = value;
+				
+				if (data) {
+					// Note that we are setting the values here rather than using data binding in the spark component
+					// as we get warnings otherwise: warning: unable to bind to property 'done' on class 'XML' (class is not an IEventDispatcher)
+					captionLabel.text = data.@caption;
+					
+					// #247. Show disabled menu items as such
+					if (data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8) {
+						// Probably don't need to change the colour as simply setting enabled to false dulls it
+						//captionLabel.setStyle("color", 0xE6E6E6);
+						fillColor.color = 0xE6E6E6;
+						this.enabled = false;
+					} else {
+						//captionLabel.setStyle("color", getStyle('color'));
+						var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
+						fillColor.color = (Number(data.@done.toString()) > 0) ? courseColor : 0xB3B3B3;
+						this.enabled = true;
+					}
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<s:Group left="4" width="100%">
+		<s:Rect left="0" top="8" width="8" height="8" radiusX="2" radiusY="2">
+			<s:fill>
+				<s:SolidColor id="fillColor" />
+			</s:fill>
+		</s:Rect>
+		<s:Label id="captionLabel" left="15" height="24" paddingTop="8" right="2" fontWeight="normal" fontSize="12.6" />
+	</s:Group>
+</s:ItemRenderer>

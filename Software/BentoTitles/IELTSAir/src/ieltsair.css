@@ -170,7 +170,7 @@ progress|ProgressView {
 }
 
 progress|ProgressView #progressNavBar {
-	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
+	skinClass: ClassReference("skins.ielts.progress.ui.NavBarSkin");
 }
 
 /* Account view styles */
@@ -194,7 +194,7 @@ airmore|MoreView {
 }
 
 airmore|MoreView #moreNavBar {
-	skinClass: ClassReference("skins.ielts.progress.NavBarSkin");
+	skinClass: ClassReference("skins.ielts.progress.ui.NavBarSkin");
 }
 
 /* Popups */

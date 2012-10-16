@@ -372,10 +372,10 @@ progresscomponents|ProgressScoreView #progressCourseButtonBar {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCourseButtonBarSkin");
 }
 progressui|CoverageExerciseComponent {
-	skinClass: ClassReference("skins.ielts.progress.CoverageExerciseComponentSkin");
+	skinClass: ClassReference("skins.ielts.progress.ui.CoverageExerciseComponentSkin");
 }
 progressui|CoverageUnitComponent {
-	skinClass: ClassReference("skins.ielts.progress.CoverageUnitComponentSkin");
+	skinClass: ClassReference("skins.ielts.progress.ui.CoverageUnitComponentSkin");
 }
 
 /* Account view styles */
