@@ -212,7 +212,7 @@ zone|PracticeZonePopoutView {
 }
 
 zoneui|DifficultyRenderer {
-	skinClass: ClassReference("skins.ielts.zone.DifficultyRendererSkin");
+	skinClass: ClassReference("skins.ielts.zone.ui.DifficultyRendererSkin");
 }
 
 zone|ExamPracticeZoneSectionView {

@@ -6,7 +6,7 @@ package com.clarityenglish.ielts.view.zone.ui {
 	
 	import org.davekeen.util.ClassUtil;
 	
-	import skins.ielts.zone.Chilli;
+	import skins.ielts.zone.ui.Chilli;
 	
 	public class DifficultyRenderer extends SkinnableDataRenderer {
 		

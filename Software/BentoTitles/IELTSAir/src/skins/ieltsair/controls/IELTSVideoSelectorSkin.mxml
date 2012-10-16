@@ -12,7 +12,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.bento.vo.Href;
-			import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+			import com.clarityenglish.ielts.view.zone.events.ExerciseEvent;
 			
 			import org.osflash.signals.Signal;
 			
@@ -63,7 +63,7 @@
 					<s:ItemRenderer>
 						<fx:Script>
 							<![CDATA[
-								import com.clarityenglish.ielts.view.zone.ExerciseEvent;
+								import com.clarityenglish.ielts.view.zone.events.ExerciseEvent;
 								
 								import spark.components.List;
 								
