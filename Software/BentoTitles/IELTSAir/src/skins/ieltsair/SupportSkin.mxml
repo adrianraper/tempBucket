@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:aircomponents="com.clarityenglish.ieltsair.components.*"
 		creationComplete="onCreationComplete(event)"
-		removedFromStage="onRemoveFromStage(event)">
+		removedFromStage="onRemoveFromStage(event)" xmlns:components="com.clarityenglish.components.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.support.SupportView")]
@@ -100,5 +100,5 @@
 	</s:Scroller>
 	
 	<!-- Since we don't have a real dataprovider fake it with a manually created ArrayCollection -->
-	<aircomponents:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="60" dataProvider="{new ArrayCollection([1, 2, 3])}" />
+	<components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="60" dataProvider="{new ArrayCollection([1, 2, 3])}" />
 </s:Skin>

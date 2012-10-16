@@ -43,10 +43,10 @@
 		</s:Group>
 		
 		<s:Image id="demoImage" width="954" height="516" 
-				 source.coverageStates="{hostComponent.assetFolder}coverage_demo.png" 
-				 source.compareStates="{hostComponent.assetFolder}compare_demo.png" 
-				 source.analysisStates="{hostComponent.assetFolder}analyse_demo.png"
-				 source.scoreStates="{hostComponent.assetFolder}score_demo.png"
+				 source.coverageStates="{hostComponent.assetFolder}progress/coverage_demo.png" 
+				 source.compareStates="{hostComponent.assetFolder}progress/compare_demo.png" 
+				 source.analysisStates="{hostComponent.assetFolder}progress/analyse_demo.png"
+				 source.scoreStates="{hostComponent.assetFolder}progress/score_demo.png"
 				 includeIn="demoStates" />
 	</s:Group>
 	

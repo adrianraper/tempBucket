@@ -3,8 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:controls="com.clarityenglish.controls.*"
 		xmlns:zone="skins.ieltsair.assets.zone.*"
-		xmlns:components="com.clarityenglish.textLayout.components.*"
-		xmlns:aircomponents="com.clarityenglish.ieltsair.components.*"
+		xmlns:tlfcomponents="com.clarityenglish.textLayout.components.*"
+		xmlns:components="com.clarityenglish.components.*"
 		creationComplete="onCreationComplete(event)"
 		removedFromStage="onRemoveFromStage(event)">
 	<!-- host component -->
@@ -25,8 +25,8 @@
 			}
 			
 			protected function onScroll(x:* = null):void {
-				//if (list.scroller.horizontalScrollBar)
-				//	pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
+				if (list.scroller.horizontalScrollBar)
+					pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
 			}
 			
 			protected function onRemoveFromStage(event:Event):void {
@@ -94,7 +94,7 @@
 									var courseClass:String = outerDocument.hostComponent.courseClass;
 									practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
 									answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
-									swfLoader.source = "/skins/ieltsair/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
+									swfLoader.source = "/skins/ielts/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
 								}
 							}
 							
@@ -107,7 +107,7 @@
 					<s:Label text="{data.@caption}" top="268" horizontalCenter="0" fontSize="16" />
 					
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
-						<components:AudioPlayer visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
+						<tlfcomponents:AudioPlayer visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
 						<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data.@href)" />
 						<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data.@answerHref)" />
 					</s:HGroup>
@@ -116,8 +116,8 @@
 		</s:itemRenderer>
 	</s:List>
 	
-	<!--<aircomponents:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" />-->
+	<components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" />
 	
-	<s:SWFLoader visible="{list.dataProvider.length == 0}" source="/skins/ieltsair/assets/zone/testpractice_empty.png" width="386" top="90" horizontalCenter="0" />
+	<s:SWFLoader visible="{list.dataProvider.length == 0}" source="/skins/ielts/assets/zone/testpractice_empty.png" width="386" top="90" horizontalCenter="0" />
 	
 </s:Skin>

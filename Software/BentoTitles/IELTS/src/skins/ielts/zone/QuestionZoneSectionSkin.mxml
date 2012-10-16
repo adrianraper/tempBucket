@@ -39,10 +39,10 @@
 	
 	<s:SWFLoader id="questionZoneEBookGraphic"
 				 left="20" right="25" top="85"
-				 source.reading="@Embed(source='skins/ielts/assets/questionzone_reading.png')"
-				 source.writing="@Embed(source='skins/ielts/assets/questionzone_writing.png')"
-				 source.listening="@Embed(source='skins/ielts/assets/questionzone_listening.png')"
-				 source.speaking="@Embed(source='skins/ielts/assets/questionzone_speaking.png')" />
+				 source.reading="@Embed(source='skins/ielts/assets/zone/questionzone_reading.png')"
+				 source.writing="@Embed(source='skins/ielts/assets/zone/questionzone_writing.png')"
+				 source.listening="@Embed(source='skins/ielts/assets/zone/questionzone_listening.png')"
+				 source.speaking="@Embed(source='skins/ielts/assets/zone/questionzone_speaking.png')" />
 	
 	<s:HGroup top="330" horizontalCenter="0" gap="15">
 		<!-- Even though this button says 'Read ebook' really it is download on iPad since we are using Safari to display the PDF -->

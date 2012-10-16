@@ -132,6 +132,7 @@
     <classEntry path="com.clarityenglish.bento.controller.NetworkCheckAvailability"/>
     <classEntry path="skins.viewnavigator.WebViewNavigatorSkin"/>
     <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
+    <classEntry path="com.clarityenglish.components.PageNumberDisplay"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

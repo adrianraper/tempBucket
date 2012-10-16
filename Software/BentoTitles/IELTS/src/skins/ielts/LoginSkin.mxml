@@ -33,7 +33,7 @@
 		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" />
 		<s:Image source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
-		<s:SWFLoader id="upgradeButton" source="@Embed(source='skins/ielts/assets/upgrade.jpg')" right="0" top="44" 
+		<s:SWFLoader id="upgradeButton" source="@Embed(source='skins/ielts/assets/title/upgrade.jpg')" right="0" top="44" 
 					 visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 					 includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
@@ -129,7 +129,7 @@
 	<s:BorderContainer right="0" width="60%" height="9%" cornerRadius="12" backgroundAlpha="0" borderAlpha="0" top="100">
 
 	<s:VGroup paddingLeft="55" paddingTop="20" width="100%">
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/login_graphic.png')" top="35" right="80" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/login/login_graphic.png')" top="35" right="80" />
 	</s:VGroup>
 	</s:BorderContainer>
 </s:Skin>

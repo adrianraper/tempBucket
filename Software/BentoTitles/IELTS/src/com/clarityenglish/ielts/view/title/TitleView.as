@@ -150,16 +150,16 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
 
-		[Embed(source="skins/ielts/assets/upgrade.jpg")]
+		[Embed(source="skins/ielts/assets/title/upgrade.jpg")]
 		private var upgradeInfo:Class;
 		
-		[Embed(source="skins/ielts/assets/register.jpg")]
+		[Embed(source="skins/ielts/assets/title/register.jpg")]
 		private var registerInfo:Class;
 		
-		[Embed(source="skins/ielts/assets/price.jpg")]
+		[Embed(source="skins/ielts/assets/title/price.jpg")]
 		private var priceInfo:Class;
 		
-		[Embed(source="skins/ielts/assets/buy.jpg")]
+		[Embed(source="skins/ielts/assets/title/buy.jpg")]
 		private var buyInfo:Class;
 		
 		public var _selectedCourseXML:XML;

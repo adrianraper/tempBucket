@@ -23,10 +23,10 @@
 	<controls:BentoVideoSelector id="videoSelector"
 								 left="20"
 								 top="57"
-								 placeholderSource.reading="@Embed(source='skins/ielts/assets/reading_advicezone_video.png')"
-								 placeholderSource.writing="@Embed(source='skins/ielts/assets/writing_advicezone_video.png')"
-								 placeholderSource.listening="@Embed(source='skins/ielts/assets/listening_advicezone_video.png')"
-								 placeholderSource.speaking="@Embed(source='skins/ielts/assets/speaking_advicezone_video.png')"
+								 placeholderSource.reading="@Embed(source='skins/ielts/assets/zone/advicezone_reading_video.png')"
+								 placeholderSource.writing="@Embed(source='skins/ielts/assets/zone/advicezone_writing_video.png')"
+								 placeholderSource.listening="@Embed(source='skins/ielts/assets/zone/advicezone_listening_video.png')"
+								 placeholderSource.speaking="@Embed(source='skins/ielts/assets/zone/advicezone_speaking_video.png')"
 								 />
 	
 </s:Skin>

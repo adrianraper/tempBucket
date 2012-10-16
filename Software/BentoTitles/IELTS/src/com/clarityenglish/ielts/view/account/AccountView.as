@@ -122,39 +122,6 @@ package com.clarityenglish.ielts.view.account {
 					instance.addEventListener(Event.CHANGE, onExamTimeChange);
 					break;
 				
-				case IELTSApp1:
-					/*var context:LoaderContext = new LoaderContext();
-					
-					// Specify the current application's security domain.
-					//context.securityDomain = SecurityDomain.currentDomain;
-					
-					// Specify a new ApplicationDomain, which loads the sub-app into a peer ApplicationDomain.
-					context.applicationDomain = new ApplicationDomain();
-					
-					// #333 At present the widget doesn't allow communication with the stage. Not sure why
-					// but I had got round it by copying /Widget to each domain. But now that I am 
-					// preferring to use config.xml to have only CE.com/Software I need to force the domain here.
-					// Which is in config.remoteDomain, and now injected into the interface
-					// TODO. Need an image or something to display if the app fails to load (you might not be online for instance)
-					instance.loaderContext = context;
-					instance.source = config.remoteDomain + "Software/Widget/IELTS/bin/BandScoreCalculator-200.swf?literals="+config.remoteDomain+"Software/Widget/IELTS/bin&widgetdatawidth=200&widgetdataheight=300&widgetdatalanguage=EN&widgetdatabclogo=true&cache=" + new Date().getTime();
-					if (userDetails.country) {
-						// The final names of countries MUST match the literals.xml list.
-						switch (userDetails.country) {
-							case "Hong Kong":
-							case "Hong-Kong":
-							case "HK":
-								var myCountry:String = "Hong-Kong";
-								break;
-							default:
-								myCountry = userDetails.country;
-						}
-					} else {
-						myCountry = "global";
-					}
-					instance.source += "&widgetdatacountry=" + myCountry;*/
-					break;
-				
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
@@ -220,7 +187,6 @@ package com.clarityenglish.ielts.view.account {
 			// So instead build the date from userDetails...
 			if (examDateField.selectedDate) {
 				var baseDateTime:Number = examDateField.selectedDate.getTime();
-				//trace("selectedDate =" + DateUtil.formatDate(examDateField.selectedDate, "yyyy-MM-dd hh:mm:ss"));
 			} else if (user.examDate) {
 				var baseDate:Date = new Date(user.examDate.getTime());
 				baseDate.hours = 0;
@@ -256,17 +222,15 @@ package com.clarityenglish.ielts.view.account {
 				// Do I really need to pass anything at all since the mediator can get it all anyway?
 				// Or I could use a form and pass that?
 				var updatedUserDetails:Object = new Object();
+				
 				if (currentPassword && currentPassword.text)
 					updatedUserDetails.currentPassword = currentPassword.text;
 				if (newPassword && newPassword.text)
 					updatedUserDetails.password = newPassword.text;
 				if (user.examDate) {
-					// setHours is just not working
-					//userDetails.examDate.setHours(examHours.value);
-					//userDetails.examDate.setMinutes(examMinutes.value);
-					//updatedUserDetails.examDate = DateUtil.dateToAnsiString(userDetails.examDate);
 					updatedUserDetails.examDate = DateUtil.formatDate(user.examDate, "yyyy-MM-dd") + " " + examHours.value.toString() + ":" + examMinutes.value.toString();
 				}
+				
 				updateUser.dispatch(updatedUserDetails);
 			}
 		}
