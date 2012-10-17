@@ -22,10 +22,14 @@
 	<zone:PopoutChrome />
 	
 	<s:Label id="captionLabel" left="40" top="20" />
-	<s:List id="exerciseList" left="40" top="50" right="40" height="{height - 70}" contentBackgroundColor="#FFFFFF">
+	<s:List id="exerciseList" left="40" top="50" right="40" height="{height - 70}" contentBackgroundColor="#FFFFFF" borderVisible="false">
 		<s:itemRenderer>
 			<fx:Component>
-				<s:IconItemRenderer labelField="@caption" iconFunction="getIconURL" iconWidth="44" iconHeight="44">
+				<s:IconItemRenderer labelField="@caption"
+									iconFunction="getIconURL"
+									iconWidth="44"
+									iconHeight="44"
+									verticalAlign="middle">
 					<fx:Script>
 						<![CDATA[
 							/**

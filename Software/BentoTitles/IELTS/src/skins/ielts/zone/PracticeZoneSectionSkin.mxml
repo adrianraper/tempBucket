@@ -18,7 +18,7 @@
 		<s:State name="speaking" />
 	</s:states>
 	
-	<s:List id="unitList" width="100%" height="100%" fontSize="12.6">
+	<s:List id="unitList" width="100%" height="100%" fontSize="12.6" borderVisible="false">
 		<s:itemRenderer>
 			<fx:Component>
 				<ui:UnitListItemRenderer labelField="@caption"
