@@ -297,6 +297,11 @@ package org.davekeen.transitions {
 			}
 		}
 		
+		override public function captureEndValues():void {
+			if (actionBar)
+				super.captureEndValues();
+		}
+		
 		/**
 		 *  @private
 		 *

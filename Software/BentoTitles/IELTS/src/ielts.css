@@ -337,6 +337,7 @@ marking|MarkingView #moveForwardButton {
 warning|WarningView {
 	skinClass: ClassReference("skins.ielts.warning.WarningSkin");
 }
+
 /* currently use the same buttons as marking */
 warning|WarningView #noButton {
 	skinClass: ClassReference("skins.ielts.warning.WarningNoButtonSkin");

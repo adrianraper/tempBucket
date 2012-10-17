@@ -105,10 +105,6 @@ progress|ProgressView {
 	skinClass: ClassReference("skins.ieltsair.ProgressSkin");
 }
 
-progress|ProgressView #progressNavBar {
-	skinClass: ClassReference("skins.ieltsair.progress.ui.NavBarSkin");
-}
-
 /* Account view styles */
 account|AccountView {
 	skinClass: ClassReference("skins.ieltsair.AccountSkin");
