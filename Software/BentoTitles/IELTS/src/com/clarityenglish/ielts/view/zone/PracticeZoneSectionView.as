@@ -1,11 +1,10 @@
 package com.clarityenglish.ielts.view.zone {
-	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.events.Event;
 	
 	import mx.collections.XMLListCollection;
-	import mx.events.FlexEvent;
 	
 	import org.osflash.signals.Signal;
 	

@@ -1,18 +1,17 @@
 package skins.ielts.zone.ui {
+	import com.clarityenglish.components.DisablableIconItemRenderer;
 	import com.clarityenglish.ielts.view.zone.ui.DifficultyRenderer;
-	
-	import spark.components.IconItemRenderer;
 	
 	/**
 	 * An extension of IconItemRenderer that also displays the difficulty chillies after the message
 	 */
-	public class UnitListItemRenderer extends IconItemRenderer {
+	public class UnitListItemRenderer extends DisablableIconItemRenderer {
 		
 		private var difficultyRenderer:DifficultyRenderer;
 
 		private var _difficultyExerciseFunction:Function;
 		private var _difficultyExerciseFunctionChanged:Boolean;
-		private var _difficultyChanged:Boolean;
+		private var _dataChanged:Boolean;
 		
 		private var _courseClass:String;
 		private var _courseClassChanged:Boolean;
@@ -27,7 +26,7 @@ package skins.ielts.zone.ui {
 			
 			_difficultyExerciseFunction = value;
 			_difficultyExerciseFunctionChanged = true;
-			_difficultyChanged = true;
+			_dataChanged = true;
 			
 			invalidateProperties();
 		}
@@ -42,7 +41,7 @@ package skins.ielts.zone.ui {
 		public override function set data(value:Object):void {
 			super.data = value;
 			
-			_difficultyChanged = true;
+			_dataChanged = true;
 			
 			invalidateProperties();
 		}
@@ -65,11 +64,14 @@ package skins.ielts.zone.ui {
 				_difficultyExerciseFunctionChanged = false;	
 			}
 			
-			if (_difficultyChanged) {
-				_difficultyChanged = false;
+			if (_dataChanged) {
+				_dataChanged = false;
 				
 				if (_difficultyExerciseFunction != null)
 					difficultyRenderer.data = _difficultyExerciseFunction(data);
+				
+				// TODO: Make sure that this doesn't crash iOS
+				enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 			}
 			
 			if (_courseClassChanged) {

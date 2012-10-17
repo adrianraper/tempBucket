@@ -133,6 +133,7 @@
     <classEntry path="skins.viewnavigator.WebViewNavigatorSkin"/>
     <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
     <classEntry path="com.clarityenglish.components.PageNumberDisplay"/>
+    <classEntry path="com.clarityenglish.components.DisablableIconItemRenderer"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
