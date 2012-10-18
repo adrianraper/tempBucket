@@ -229,6 +229,13 @@ zone|ExamPracticeZoneSectionView .examPracticeAudioPlayer {
 	compactPlayingIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningAudioStopBlack");
 }
 
+zone|ExamPracticeZoneSectionView {
+	showArrows: true;
+}
+zone|ExamPracticeZoneSectionView #list {
+	horizontalScrollPolicy: off;
+}
+
 /* Exercise view styles */
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.ielts.ExerciseSkin");

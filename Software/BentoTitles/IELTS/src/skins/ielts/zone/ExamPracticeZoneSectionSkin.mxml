@@ -29,6 +29,10 @@
 					pageNumberDisplay.selectedIndex = Math.floor(list.scroller.horizontalScrollBar.value / list.scroller.viewport.width);
 			}
 			
+			protected function scrollBy(pages:int):void {
+				list.scroller.horizontalScrollBar.value += (list.scroller.viewport.width * pages);
+			}
+			
 			protected function onRemoveFromStage(event:Event):void {
 				if (changeWatcher) changeWatcher.unwatch();
 				changeWatcher = null;
@@ -51,7 +55,16 @@
 	<s:Label visible="{list.dataProvider.length > 0}" text="Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started." fontSize="14" left="20" top="35" right="25" />
 	<s:Label visible="{list.dataProvider.length == 0}" text="There is no downloadable test practice materials in this section.  Watch the tutorials in the Advice and tutorials section to see what happens in the {hostComponent.courseClass} test interview." fontSize="14" left="20" top="35" right="25" />
 	
-	<s:List id="list" width="386" top="80" bottom="0" horizontalCenter="0" contentBackgroundColor="#FFFFFF" verticalScrollPolicy="off" pageScrollingEnabled="true" scrollSnappingMode="leadingEdge">
+	<s:List id="list"
+			width="386"
+			top="80"
+			bottom="0"
+			horizontalCenter="0"
+			contentBackgroundColor="#FFFFFF"
+			verticalScrollPolicy="off"
+			pageScrollingEnabled="true"
+			scrollSnappingMode="leadingEdge"
+			borderVisible="false">
 		<s:layout>
 			<s:HorizontalLayout gap="0" useVirtualLayout="true" />
 		</s:layout>
@@ -94,7 +107,7 @@
 									var courseClass:String = outerDocument.hostComponent.courseClass;
 									practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
 									answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
-									swfLoader.source = "/skins/ielts/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
+									swfLoader.source = "skins/ielts/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
 								}
 							}
 							
@@ -119,5 +132,9 @@
 	<components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" />
 	
 	<s:SWFLoader visible="{list.dataProvider.length == 0}" source="/skins/ielts/assets/zone/testpractice_empty.png" width="386" top="90" horizontalCenter="0" />
+	
+	<!-- These buttons are only enabled (by CSS) in the web version -->
+	<s:SWFLoader click="scrollBy(-1)" visible="{getStyle('showArrows')}" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" left="22" top="233" scaleX="-1" mouseEnabled="true" buttonMode="true" />
+	<s:SWFLoader click="scrollBy(1)" visible="{getStyle('showArrows')}" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" right="22" top="233" mouseEnabled="true" buttonMode="true" />
 	
 </s:Skin>

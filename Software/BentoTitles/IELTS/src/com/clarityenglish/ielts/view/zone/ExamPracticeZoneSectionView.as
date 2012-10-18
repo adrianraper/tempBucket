@@ -6,16 +6,22 @@ package com.clarityenglish.ielts.view.zone {
 	import flash.events.Event;
 	
 	import mx.collections.XMLListCollection;
+	import mx.controls.SWFLoader;
 	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.List;
-	import com.clarityenglish.ielts.view.zone.events.ExerciseEvent;
 	
 	public class ExamPracticeZoneSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart(required="true")]
 		public var list:List;
+		
+		[SkinPart]
+		public var leftArrow:SWFLoader;
+		
+		[SkinPart]
+		public var rightArrow:SWFLoader;
 		
 		public var exerciseSelect:Signal = new Signal(Href);
 		

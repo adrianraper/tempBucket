@@ -89,6 +89,12 @@ home|HomeView {
 }
 
 /* Zone view styles */
+zone|ExamPracticeZoneSectionView {
+	showArrows: false;
+}
+zone|ExamPracticeZoneSectionView #list {
+	horizontalScrollPolicy: auto;
+}
 
 /* Exercise view styles */
 exercise|ExerciseView {
