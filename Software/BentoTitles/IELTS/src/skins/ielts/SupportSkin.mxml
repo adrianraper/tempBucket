@@ -11,6 +11,14 @@
 		
 		<![CDATA[
 			import flashx.textLayout.conversion.TextConverter;
+			
+			protected function clickLinkHandler(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var urlReq:URLRequest = new URLRequest("http://www.clarityenglish.com/support/user/pdf/rti2/RoadToIELTS2_Network_Guide.pdf"); 
+				navigateToURL(urlReq, "_blank");
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -51,7 +59,7 @@
 				</s:RichText>
 				<s:Button id="registerInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
 				<s:Button id="buyInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
- 				<s:Label text="Click here for a detailed user manual." textDecoration="underline" color="0X2B3990" excludeFrom="testDrive"/>
+ 				<s:Label text="Click here for a detailed user manual." textDecoration="underline" color="0X2B3990" excludeFrom="testDrive" click="clickLinkHandler(event)" buttonMode="true"/>
 
 				
 				<s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">
