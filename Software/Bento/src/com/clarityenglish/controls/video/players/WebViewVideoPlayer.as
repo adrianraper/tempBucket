@@ -48,9 +48,11 @@ package com.clarityenglish.controls.video.players {
 		public override function set visible(value:Boolean):void {
 			super.visible = value;
 			
+			trace("SET VISIBLE !!! " + value);
+			
 			invalidateProperties();
 		}
-
+		
 		protected override function createChildren():void {
 			super.createChildren();
 			
@@ -83,8 +85,24 @@ package com.clarityenglish.controls.video.players {
 			callLater(function():void {
 				if (source) {
 					if (stageWebView) {
-						log.debug("loading url {0}", source.toString());
-						stageWebView.loadURL(source.toString());
+						if (getStyle("htmlEmbed")) {
+							var html:String = "<!DOCTYPE html>";
+							html += "<html>";
+							html += "	<head>";
+							html += "		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
+							html += "	</head>";
+							html += "	<body style='margin:0;padding:0;border:0;'>";
+							html += "		<video width='"+ stageWebView.viewPort.width + "' height='" + stageWebView.viewPort.height + "' controls='controls' autoplay src='" + source.toString() + "'></video>";
+							html += "	</body>";
+							html += "</html>";
+							
+							log.debug(html);
+							
+							stageWebView.loadString(html);
+						} else {
+							log.debug("loading url {0}", source.toString());
+							stageWebView.loadURL(source.toString());
+						}
 					}
 				} else {
 					stop();

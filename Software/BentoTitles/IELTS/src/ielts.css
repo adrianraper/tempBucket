@@ -69,7 +69,7 @@ s|Button {
 
 /* The video selector */
 video|VideoSelector {
-	skinClass: ClassReference("skins.ielts.controls.video.VideoSelectorSkin");
+	skinClass: ClassReference("skins.ielts.controls.video.OSMFVideoSelectorSkin");
 }
 
 video|VideoSelector s|List {

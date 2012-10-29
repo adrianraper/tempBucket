@@ -18,6 +18,7 @@
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 @namespace video "com.clarityenglish.controls.video.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
 
 global {
 	interactionMode: touch;
@@ -35,8 +36,20 @@ components|XHTMLExerciseView s|TextInput {
 	paddingRight: 0;
 }
 
-video|VideoSelector {
-	skinClass: ClassReference("skins.ieltsair.controls.video.VideoSelectorSkin");
+@media (os-platform: "Android") {
+	video|VideoSelector {
+		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
+	}
+	
+	players|WebViewVideoPlayer {
+		htmlEmbed: true;
+	}
+}
+
+@media (os-platform: "IOS") {
+	video|VideoSelector {
+		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
+	}
 }
 
 ielts|IELTSApplication {
