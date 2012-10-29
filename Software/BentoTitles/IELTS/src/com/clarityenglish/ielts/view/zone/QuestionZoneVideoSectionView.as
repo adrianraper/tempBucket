@@ -1,5 +1,5 @@
 package com.clarityenglish.ielts.view.zone {
-	import com.clarityenglish.controls.BentoVideoSelector;
+	import com.clarityenglish.controls.video.VideoSelector;
 	
 	import flash.events.Event;
 	
@@ -10,8 +10,10 @@ package com.clarityenglish.ielts.view.zone {
 	
 	public class QuestionZoneVideoSectionView extends AbstractZoneSectionView {
 		
+		private static var dummy:StringUtils; // For some reason Flash Builder gets confused about importing StringUtils, so just have this here to fix it
+		
 		[SkinPart(required="true")]
-		public var videoSelector:BentoVideoSelector;
+		public var videoSelector:VideoSelector;
 		
 		public var channelCollection:ArrayCollection;
 		
@@ -24,7 +26,7 @@ package com.clarityenglish.ielts.view.zone {
 			super.commitProperties();
 			
 			// Only provide rss files to the video selector
-			videoSelector.viewHref = href;
+			videoSelector.href = href;
 			videoSelector.channelCollection = channelCollection;
 			videoSelector.videoCollection = new XMLListCollection(_course.unit.(@["class"] == "question-zone").exercise.(StringUtils.endsWith(@href, ".rss")));
 		}

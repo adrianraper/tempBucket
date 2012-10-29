@@ -1,6 +1,6 @@
 package com.clarityenglish.ielts.view.zone.ui {
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.ielts.view.zone.events.ExerciseEvent;
+	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.ielts.view.zone.ui.DifficultyRenderer;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 
@@ -17,7 +17,7 @@ package com.clarityenglish.ielts.view.zone.ui {
 	import spark.components.List;
 	import spark.components.supportClasses.SkinnableComponent;
 	
-	[Event(name="exerciseSelected", type="com.clarityenglish.ielts.view.zone.events.ExerciseEvent")]
+	[Event(name="exerciseSelected", type="com.clarityenglish.bento.events.ExerciseEvent")]
 	public class PopoutExerciseSelector extends SkinnableComponent {
 		
 		/**

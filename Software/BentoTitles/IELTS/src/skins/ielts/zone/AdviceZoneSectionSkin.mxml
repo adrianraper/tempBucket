@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:controls="com.clarityenglish.controls.*">
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:video="com.clarityenglish.controls.video.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.AdviceZoneSectionView")]
@@ -20,13 +21,13 @@
 	<s:Label text="Advice and tutorials" fontSize="18" fontWeight="bold" left="20" top="12" />
 	<s:Label text="Click on a thumbnail to play the video" fontSize="14" left="20" top="35" />
 	
-	<controls:BentoVideoSelector id="videoSelector"
-								 left="20"
-								 top="57"
-								 placeholderSource.reading="@Embed(source='skins/ielts/assets/zone/advicezone_reading_video.png')"
-								 placeholderSource.writing="@Embed(source='skins/ielts/assets/zone/advicezone_writing_video.png')"
-								 placeholderSource.listening="@Embed(source='skins/ielts/assets/zone/advicezone_listening_video.png')"
-								 placeholderSource.speaking="@Embed(source='skins/ielts/assets/zone/advicezone_speaking_video.png')"
-								 />
+	<video:VideoSelector id="videoSelector"
+						 left="20"
+						 top="57"
+						 placeholderSource.reading="@Embed(source='skins/ielts/assets/zone/advicezone_reading_video.png')"
+						 placeholderSource.writing="@Embed(source='skins/ielts/assets/zone/advicezone_writing_video.png')"
+						 placeholderSource.listening="@Embed(source='skins/ielts/assets/zone/advicezone_listening_video.png')"
+						 placeholderSource.speaking="@Embed(source='skins/ielts/assets/zone/advicezone_speaking_video.png')"
+						 />
 	
 </s:Skin>

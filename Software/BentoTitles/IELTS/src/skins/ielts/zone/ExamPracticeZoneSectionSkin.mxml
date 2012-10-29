@@ -73,7 +73,7 @@
 				<s:DataRenderer width="386" addedToStage="onAddedToStage(event)" removedFromStage="onRemovedFromStage(event)">
 					<fx:Script>
 						<![CDATA[
-							import com.clarityenglish.ielts.view.zone.events.ExerciseEvent;
+							import com.clarityenglish.bento.events.ExerciseEvent;
 							import com.clarityenglish.ielts.view.zone.ZoneView;
 							
 							import flash.utils.setTimeout;

@@ -127,24 +127,24 @@
     <classEntry path="com.pipwerks.SCORM"/>
     <classEntry path="org.davekeen.transitions.PatchedSlideViewTransition"/>
     <classEntry path="org.davekeen.components.PatchedVideoDisplay"/>
-    <classEntry path="com.clarityenglish.controls.WebViewVideoPlayer"/>
     <classEntry path="com.clarityenglish.components.PatchedSpinnerList"/>
     <classEntry path="com.clarityenglish.bento.controller.NetworkCheckAvailability"/>
     <classEntry path="skins.viewnavigator.WebViewNavigatorSkin"/>
     <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
     <classEntry path="com.clarityenglish.components.PageNumberDisplay"/>
     <classEntry path="com.clarityenglish.components.DisablableIconItemRenderer"/>
+    <classEntry path="com.clarityenglish.bento.events.ExerciseEvent"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
+    <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
     <resourceEntry destPath="skins/assets/correctIcon.png" sourcePath="skins/assets/correctIcon.png"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.png" sourcePath="skins/assets/incorrectIcon.png"/>
-    <resourceEntry destPath="skins/assets/correctIcon.swf" sourcePath="skins/assets/correctIcon.swf"/>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="skins/assets/correctIcon.swf" sourcePath="skins/assets/correctIcon.swf"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.swf" sourcePath="skins/assets/incorrectIcon.swf"/>
-    <resourceEntry destPath="skins/assets/pause.png" sourcePath="skins/assets/pause.png"/>
     <resourceEntry destPath="skins/assets/missedIcon.png" sourcePath="skins/assets/missedIcon.png"/>
+    <resourceEntry destPath="skins/assets/pause.png" sourcePath="skins/assets/pause.png"/>
     <resourceEntry destPath="skins/assets/stop.png" sourcePath="skins/assets/stop.png"/>
   </includeResources>
   <namespaceManifests/>

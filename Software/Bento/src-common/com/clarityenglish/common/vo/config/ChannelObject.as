@@ -4,7 +4,7 @@ package com.clarityenglish.common.vo.config {
 		
 		public var name:String;
 		public var caption:String;
-		public var streamName:String
+		public var streamingMedia:String
 		
 		public function ChannelObject() {
 			super();
