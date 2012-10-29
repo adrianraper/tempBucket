@@ -3,7 +3,7 @@
 	<id>/area1/RoadToIELTS2 in localhost</id>
 	<developer>none</developer>
 	<dbHost>0</dbHost>
-	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
 	<channel name='aws' caption='aws'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
 	</channel>
@@ -19,7 +19,7 @@
 	<pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2</pricesURL>
 	<registerURL>http://www.takeielts.org</registerURL>
 	<language>EN*</language>
-	<contentPath>http://dock.contentbench/Content/</contentPath>
+	<contentPath>http://dock.contentbench/Content/RoadToIELTS2</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>IELTSService</remoteService>
