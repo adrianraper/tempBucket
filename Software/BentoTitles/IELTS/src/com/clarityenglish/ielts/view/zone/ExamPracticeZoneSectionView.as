@@ -1,6 +1,6 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.ielts.view.zone.events.ExerciseEvent;
+	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
 	import flash.events.Event;

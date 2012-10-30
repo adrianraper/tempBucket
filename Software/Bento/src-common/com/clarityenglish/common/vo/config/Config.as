@@ -294,11 +294,11 @@ package com.clarityenglish.common.vo.config {
 			
 			// Alice: automatic multiple channel
 			for each (var channel:XML in xml..channel){			
-				var choiceChannel:ChannelObject = new ChannelObject();
-				choiceChannel.name = channel.@name.toString();
-				choiceChannel.caption = channel.@caption.toString();
-				choiceChannel.streamName = channel.streamingMedia.toString();
-				channels.push(choiceChannel);
+				var channelObject:ChannelObject = new ChannelObject();
+				channelObject.name = channel.@name.toString();
+				channelObject.caption = channel.@caption.toString();
+				channelObject.streamingMedia = channel.streamingMedia.toString();
+				channels.push(channelObject);
 			}
 			
 			// #335

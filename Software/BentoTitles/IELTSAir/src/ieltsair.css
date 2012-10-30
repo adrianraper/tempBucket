@@ -17,6 +17,7 @@
 @namespace credits "com.clarityenglish.ielts.view.credits.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
+@namespace video "com.clarityenglish.controls.video.*";
 
 global {
 	interactionMode: touch;
@@ -34,8 +35,8 @@ components|XHTMLExerciseView s|TextInput {
 	paddingRight: 0;
 }
 
-controls|BentoVideoSelector {
-	skinClass: ClassReference("skins.ieltsair.controls.IELTSVideoSelectorSkin");
+video|VideoSelector {
+	skinClass: ClassReference("skins.ieltsair.controls.video.VideoSelectorSkin");
 }
 
 ielts|IELTSApplication {

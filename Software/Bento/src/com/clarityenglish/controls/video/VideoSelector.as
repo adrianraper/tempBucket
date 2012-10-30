@@ -1,0 +1,240 @@
+package com.clarityenglish.controls.video {
+	import com.clarityenglish.bento.events.ExerciseEvent;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.controls.video.loaders.RssVideoLoader;
+	import com.clarityenglish.controls.video.players.OSMFVideoPlayer;
+	
+	import flash.display.DisplayObject;
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	
+	import mx.collections.IList;
+	import mx.events.FlexEvent;
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
+	import org.osmf.events.TimeEvent;
+	
+	import spark.components.Button;
+	import spark.components.Image;
+	import spark.components.List;
+	import spark.components.supportClasses.SkinnableComponent;
+	import spark.events.IndexChangeEvent;
+	
+	[Event(name="exerciseSelected", type="com.clarityenglish.bento.events.ExerciseEvent")]
+	public class VideoSelector extends SkinnableComponent {
+		
+		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
+		[SkinPart]
+		public var videoPlayer:IVideoPlayer;
+		
+		[SkinPart]
+		public var channelList:List;
+		
+		[SkinPart]
+		public var videoList:List;
+		
+		[SkinPart]
+		public var placeholderImage:Image;
+		
+		[SkinPart]
+		public var scriptButton:Button;
+		
+		public var href:Href;
+		
+		protected var _channelCollection:IList;
+		protected var _channelCollectionChanged:Boolean;
+		
+		protected var _videoCollection:IList;
+		protected var _videoCollectionChanged:Boolean;
+		
+		protected var _placeholderSource:Object;
+		protected var _placeholderSourceChanged:Boolean;
+		
+		protected var _showSelector:Boolean = true;
+		protected var _showSelectorChanged:Boolean;
+		
+		protected var _autoPlay:Boolean;
+		protected var _autoPlayChanged:Boolean;
+		
+		protected var _channelChanged:Boolean;
+		protected var _videoChanged:Boolean;		
+		
+		public function VideoSelector() {
+			super();
+		}
+		
+		[Bindable]
+		public function get channelCollection():IList {
+			return _channelCollection;
+		}
+		
+		public function set channelCollection(value:IList):void {
+			if (_channelCollection !== value) {
+				_channelCollection = value;
+				_channelCollectionChanged = true;
+				invalidateProperties();
+			}
+		}
+		
+		[Bindable]
+		public function get videoCollection():IList {
+			return _videoCollection;
+		}
+		
+		public function set videoCollection(value:IList):void {
+			if (_videoCollection !== value) {
+				_videoCollection = value;
+				_videoCollectionChanged = true;
+				invalidateProperties();
+			}
+		}
+		
+		[Bindable]
+		public function get placeholderSource():Object {
+			return _placeholderSource;
+		}
+		
+		public function set placeholderSource(value:Object):void {
+			if (_placeholderSource !== value) {
+				_placeholderSource = value;
+				_placeholderSourceChanged = true;
+				invalidateProperties();
+			}
+		}
+		
+		public function get showSelector():Boolean {
+			return _showSelector;
+		}
+		
+		public function set showSelector(value:Boolean):void {
+			if (_showSelector !== value) {
+				_showSelector = value;
+				_showSelectorChanged = true;
+				invalidateProperties();
+			}
+		}
+		
+		public function get autoPlay():Boolean {
+			return _autoPlay;
+		}
+		
+		public function set autoPlay(value:Boolean):void {
+			if (_autoPlay !== value) {
+				_autoPlay = value;
+				_autoPlayChanged = true;
+				invalidateProperties();
+			}
+		}
+		
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			if (_channelCollectionChanged) {
+				_channelCollectionChanged = false;
+				if (channelList) channelList.dataProvider = _channelCollection;
+			}
+			
+			if (_videoCollectionChanged) {
+				_videoCollectionChanged = false;
+				if (videoList) videoList.dataProvider = _videoCollection;
+			}
+			
+			if (_placeholderSourceChanged) {
+				_placeholderSourceChanged = false;
+				// TODO: something?
+			}
+			
+			if (_showSelectorChanged) {
+				_showSelectorChanged = false;
+				if (videoList) videoList.visible = videoList.includeInLayout = _showSelector;
+			}
+			
+			if (_autoPlayChanged) {
+				_autoPlayChanged = false;
+				videoList.requireSelection = _autoPlay;
+				if (_autoPlay) callLater(loadSelectedVideo);
+			}
+			
+			if (_videoChanged || _channelChanged) {
+				_videoChanged = _channelChanged = false;
+				loadSelectedVideo();
+			}
+		}
+		
+		protected override function partAdded(partName:String, instance:Object):void {
+			super.partAdded(partName, instance);
+			
+			switch (instance) {
+				case videoPlayer:
+					videoPlayer.addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
+					break;
+				case channelList:
+					channelList.requireSelection = true;
+					channelList.addEventListener(IndexChangeEvent.CHANGE, onChannelSelected);
+					
+					// For the moment just hide the channel selector.  Its all working if we want to turn it back on in the future though.
+					channelList.visible = false;
+					break;
+				case videoList:
+					videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoSelected);
+					videoList.visible = videoList.includeInLayout = _showSelector;
+					break;
+				case scriptButton:
+					scriptButton.addEventListener(MouseEvent.CLICK, onScriptButtonClicked);
+					scriptButton.visible = false;
+					break;
+			}
+		}
+		
+		protected function onChannelSelected(event:IndexChangeEvent):void {
+			_channelChanged = true;
+			invalidateProperties();
+		}
+		
+		protected function onVideoSelected(event:Event):void {
+			_videoChanged = true;
+			
+			// Show the script button if there is a @scriptHref attribute
+			scriptButton.visible = (videoList.selectedItem && videoList.selectedItem.hasOwnProperty("@scriptHref"));
+			
+			invalidateProperties();
+		}
+		
+		/**
+		 * Load the video using the appropriate loader.  For now there is only RssVideoLoader.
+		 */
+		private function loadSelectedVideo():void {
+			if (!videoList.selectedItem || !channelList.selectedItem)
+				return;
+			
+			videoPlayer.stop();
+			
+			var url:String = href.createRelativeHref(null, videoList.selectedItem.@href).url;
+			if (url.match(/\.(rss|xml)$/)) {
+				new RssVideoLoader(videoPlayer).load(url, channelList.selectedItem);
+			} else {
+				throw new Error("VideoSelector only supports rss files");
+			}
+		}
+		
+		/**
+		 * The video has completed.  This event only gets thrown by the OSMFVideoPlayer.
+		 * 
+		 * @param event
+		 */
+		protected function onVideoPlayerComplete(event:TimeEvent):void {
+			// When a video reaches the end deselect the video in the list so we don't end up with a floating 'loading...' (this is only relevant for OSMFVideoPlayer)
+			videoList.selectedItem = null;
+		}
+		
+		protected function onScriptButtonClicked(event:MouseEvent):void {
+			if (videoList.selectedItem && videoList.selectedItem.hasOwnProperty("@scriptHref"))
+				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, videoList.selectedItem.@scriptHref.toString()));
+		}
+		
+	}
+}

@@ -1,8 +1,9 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -29,10 +30,14 @@ package com.clarityenglish.ielts.view.zone {
 			// Inject the available video channels
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
+			
+			view.exerciseSelect.add(onExerciseSelect);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.exerciseSelect.remove(onExerciseSelect);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -47,6 +52,10 @@ package com.clarityenglish.ielts.view.zone {
 			switch (note.getName()) {
 				
 			}
+		}
+		
+		protected function onExerciseSelect(href:Href):void {
+			sendNotification(IELTSNotifications.HREF_SELECTED, href);
 		}
 		
 	}

@@ -25,6 +25,7 @@
 @namespace swfplayer "com.clarityenglish.bento.view.swfplayer.*";
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
+@namespace video "com.clarityenglish.controls.video.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -66,13 +67,22 @@ s|Button {
 	skinClass: ClassReference("spark.skins.mobile.ButtonSkin");
 }
 
-ielts|IELTSApplication {
-	skinClass: ClassReference("skins.ielts.IELTSApplicationSkin");
+/* The video selector */
+video|VideoSelector {
+	skinClass: ClassReference("skins.ielts.controls.video.VideoSelectorSkin");
 }
 
-/* Credit view styles */
-credits|CreditsView {
-	skinClass: ClassReference("skins.ielts.CreditsSkin");
+video|VideoSelector s|List {
+	borderVisible: false;
+	contentBackgroundAlpha: 0;
+}
+
+video|VideoSelector #scriptButton {
+	skinClass: ClassReference("skins.ielts.controls.video.ScriptButtonSkin");
+}
+
+ielts|IELTSApplication {
+	skinClass: ClassReference("skins.ielts.IELTSApplicationSkin");
 }
 
 /* Login view styles */
@@ -321,6 +331,11 @@ support|SupportView #registerInfoButton {
 
 support|SupportView #buyInfoButton {
 	skinClass: ClassReference("skins.ielts.title.SubscribeMediumButton");
+}
+
+/* Credit view styles */
+credits|CreditsView {
+	skinClass: ClassReference("skins.ielts.CreditsSkin");
 }
 
 /* Marking view styles (this overwrites the default skin) */

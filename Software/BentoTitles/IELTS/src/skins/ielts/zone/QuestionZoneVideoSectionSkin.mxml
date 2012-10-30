@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:controls="com.clarityenglish.controls.*">
+		xmlns:video="com.clarityenglish.controls.video.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.QuestionZoneVideoSectionView")]
@@ -18,12 +18,12 @@
 		<s:State name="speaking" />
 	</s:states>
 	
-	<controls:BentoVideoSelector id="videoSelector"
-								 left="55"
-								 top="37"
-								 showSelector="false"
-								 autoPlay="true"
-								 placeholderSource="@Embed(source='/skins/ielts/assets/initializing_video.png')"
-								 />
+	<video:VideoSelector id="videoSelector"
+						 left="55"
+						 top="37"
+						 showSelector="false"
+						 autoPlay="true"
+						 placeholderSource="@Embed(source='/skins/ielts/assets/initializing_video.png')"
+						 />
 	
 </s:Skin>

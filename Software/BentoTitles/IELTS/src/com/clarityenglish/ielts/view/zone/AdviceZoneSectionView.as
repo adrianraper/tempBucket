@@ -1,15 +1,21 @@
 package com.clarityenglish.ielts.view.zone {
-	import com.clarityenglish.controls.BentoVideoSelector;
+	import com.clarityenglish.bento.events.ExerciseEvent;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.controls.video.VideoSelector;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
 	
+	import org.osflash.signals.Signal;
+	
 	public class AdviceZoneSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart(required="true")]
-		public var videoSelector:BentoVideoSelector;
+		public var videoSelector:VideoSelector;
 		
 		public var channelCollection:ArrayCollection;
+		
+		public var exerciseSelect:Signal = new Signal(Href);
 		
 		public function AdviceZoneSectionView() {
 			super();
@@ -19,7 +25,7 @@ package com.clarityenglish.ielts.view.zone {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			videoSelector.viewHref = href;
+			videoSelector.href = href;
 			videoSelector.channelCollection = channelCollection;
 			videoSelector.videoCollection = new XMLListCollection(_course.unit.(@["class"] == "advice-zone").exercise);
 		}
@@ -28,8 +34,20 @@ package com.clarityenglish.ielts.view.zone {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				
+				case videoSelector:
+					videoSelector.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
+					break;
 			}
+		}
+
+		/**
+		 * In the context of this view, "exercise selected" actually means clicking on the script button for videos that have an associated script.
+		 * This will end up launching a PDF.
+		 * 
+		 * @param event
+		 */
+		protected function onExerciseSelected(event:ExerciseEvent):void {
+			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, event.hrefFilename));
 		}
 		
 	}
