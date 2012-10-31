@@ -48,8 +48,6 @@ package com.clarityenglish.controls.video.players {
 		public override function set visible(value:Boolean):void {
 			super.visible = value;
 			
-			trace("SET VISIBLE !!! " + value);
-			
 			invalidateProperties();
 		}
 		

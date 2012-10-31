@@ -5,11 +5,8 @@
 	<productCode>52</productCode>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<channel name='aws' caption='aws'>
-		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
-	</channel>
-	<channel name='vimeo' caption='vimeo'>
-		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	<channel name='android-rackspace' caption='android-rackspace'>
+		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
 	</channel>
 	<sharedMedia />
 	<brandingMedia />
