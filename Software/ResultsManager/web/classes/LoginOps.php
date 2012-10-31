@@ -1,7 +1,5 @@
 <?php
 
-// Pretend change for t-hctlicence
-
 class LoginOps {
 	
 	var $db;
@@ -633,7 +631,8 @@ EOD;
 	function getAccountSettings($config) {
 		// Check data
 		if (isset($config['prefix'])) 
-			$prefix = $config['prefix'];
+			// #519
+			$prefix = (string) $config['prefix'];
 		if (isset($config['rootID'])) 
 			$rootID = $config['rootID'];
 		if (isset($config['productCode'])) 
@@ -656,9 +655,14 @@ EOD;
 		// Kind of silly, but bento is usually keyed on prefix and getAccounts always works on rootID
 		// so add an extra call if you don't currently know the rootID
 		if (!$rootID || is_nan($rootID)) {
-			$rootID = (int) $this->accountOps->getAccountRootID($prefix);
-			if (!$rootID)
+			$rawRootID = $this->accountOps->getAccountRootID($prefix);
+			$rootID = (int) $rawRootID;
+			// #519
+			if (!$rootID) {
+				$logMessage = 'prefix error, prefix='.$prefix.' rootID='.$rawRootID.' dbHost='.$config['dbHost'].' db='.$GLOBALS['db'];
+				AbstractService::$debugLog->err($logMessage);
 				throw $this->copyOps->getExceptionForId("errorNoPrefixForRoot", array("prefix" => $prefix));
+			}		
 		}
 		
 		// First get the record from T_AccountRoot and T_Accounts

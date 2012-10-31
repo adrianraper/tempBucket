@@ -29,7 +29,7 @@
    	  <div style="margin:0; padding:0;">
         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px 0 5px 0; padding:0; color:#000000; line-height:18px;">Dear {$user->name},</p>
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">You asked us to remind you of your password, so here it is.</p>
-             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><a href="http://www.roadtoielts.com/BritishCouncil/R2IV2/login.php?loginID={$user->studentID}" target="_blank">www.roadtoielts.com/BritishCouncil/R2IV2/</a></p>
+             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><a href="http://www.roadtoielts.com/BritishCouncil/login.php?loginID={$user->studentID}" target="_blank">www.roadtoielts.com/BritishCouncil/R2IV2/</a></p>
 			<div style="margin:10px 50px 30px 10px; padding:0; background-color:#999999; ">
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:10px 0 0 0; margin:10px 20px 5px 20px; color:#000000; line-height:18px; ">Login ID: {$user->studentID}</p>
              <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0 0 0 0; margin:0 20px 5px 20px; line-height:18px; ">Password: {$user->password}</p>

@@ -353,6 +353,10 @@ class ClarityService extends AbstractService {
 		return $this->usageOps->getUsageForTitle($title, $fromDate, $toDate);
 	}
 	
+	public function getFixedUsageForTitle($title, $fromDate, $toDate) {
+	    return $this->usageOps->getFixedUsageForTitle($title, $fromDate, $toDate);
+	}
+	
 	// v3.0.4 Include the template as well
 	public function getReport($onReportableIDObjects, $onClass, $forReportableIDObjects, $forClass, $reportOpts, $template='standard') {
 		// Since we are potentially passing a lot of reportables to this from the client pass IDs instead of VOs to save on transfer overhead

@@ -66,7 +66,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 
 	// Run the condition of each trigger against the database and pull back all objects that meet the condition
 	foreach ($triggers as $trigger) {
-		echo 'trigger '.$trigger->name.$newLine;
+		//echo 'trigger '.$trigger->name.$newLine;
 		//continue;
 		// This should go into triggerOps I think.
 		// If you want to override the root for testing do it here, or from the URL
@@ -118,7 +118,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					// Should use emailAPI and make sure that that can cope with an array of emails before working out whether
 					// to send or echo. And perhaps it could cope with start and stop rootIDs too.
 					//$emailData = array("account" => $account, "expiryDate" => $trigger->condition->expiryDate);
-					//$dmsService-> emailOps->sendOrEchoEmail($account, $emailData, $trigger->templateID);
+					//$dmsService->emailOps->sendOrEchoEmail($account, $emailData, $trigger->templateID);
 				//}
 				$emailArray = array();
 				
@@ -158,7 +158,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 						if (!$securityString)
 							$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
 						
-						echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
+					//	echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
 						
 						$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
 						$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
@@ -247,7 +247,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					if (!$securityString)
 						$securityString = $dmsService->usageOps->insertDirectStartRecord($account);
 						
-					echo $account->name.' uses security string '.$securityString.$trigger->name.$newLine;
+					//echo $account->name.' uses security string '.$securityString.$trigger->name.$newLine;
 						
 					$accountEmails = $dmsService->accountOps->getEmailsForMessageType($account->id, $trigger->messageType);
 					if ($trigger->messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
@@ -262,6 +262,10 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					$bccEmails = $resellerEmail;
 					
 					$emailData = array("account" => $account, "session" => $securityString);
+					// Just for testing
+					//$adminEmail = 'adrian.raper@clarityenglish.com';
+					//$ccEmails = array();
+					//$bccEmails = array();
 					$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "bcc" => $bccEmails, "data" => $emailData);
 					$emailArray[] = $thisEmail;
 					echo $account->name.', '.$adminEmail.$newLine;
@@ -270,6 +274,15 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 					// Send the emails
 					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+					foreach($emailArray as $email) {
+						if ($email["cc"]) {
+							echo "Email: ".$email["to"].", cc: ".implode(',',$email["cc"]).$newLine;
+						} else if ($email["bcc"]) {
+							echo "Email: ".$email["to"].", bcc: ".implode(',',$email["bcc"]).$newLine;
+						} else {
+							echo "Email: ".$email["to"].$newLine;
+						}
+					}
 				} else {
 					// Or print on screen
 					foreach($emailArray as $email) {
@@ -301,6 +314,8 @@ $testingTriggers .= "subscription reminders";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "EmailMe";
 //$testingTriggers = "justThese";
+
+$fixedDateShift = 0;
 
 // The use of F_Frequency doesn't make any sense at the moment. Everything is simply running on a daily basis.
 // This is where I can elect to run weekly or monthly triggers
@@ -339,7 +354,7 @@ if (stripos($testingTriggers, "subscription reminders") !== false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 if (stripos($testingTriggers, "usage stats") !== false) {
@@ -348,7 +363,7 @@ if (stripos($testingTriggers, "usage stats") !== false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 if (stripos($testingTriggers, "support") !== false) {
@@ -357,7 +372,7 @@ if (stripos($testingTriggers, "support") !== false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 // This sends emails about an account to Clarity or the reseller
@@ -368,7 +383,7 @@ if (stripos($testingTriggers, "quotations")!==false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 if (stripos($testingTriggers, "EmailMe")!==false) {
@@ -377,7 +392,7 @@ if (stripos($testingTriggers, "EmailMe")!==false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 if (stripos($testingTriggers, "justThese")!==false) {
@@ -386,7 +401,7 @@ if (stripos($testingTriggers, "justThese")!==false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 

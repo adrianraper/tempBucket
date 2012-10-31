@@ -105,6 +105,107 @@ EOD;
 		$rc = $this->db->Execute($sql, $bindingParams);
 		return $this->db->Affected_Rows();
 	}
-}
+	
+	// For archiving expired users.
+	// Expected to be run by a daily CRON job
+	function archiveExpiredUsers($expiryDate, $database) {
+		
+		// copy the expired records to the expiry tables
+		// first records from T_User
+		$sql = <<<SQL
+			INSERT INTO $database.T_User_Expiry
+			SELECT * FROM $database.T_User where F_ExpiryDate <= ?;
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
 
-?>
+		// TODO. You could save a lot of time by getting the list of userIDs from one SQL call
+		// and then passing it to the rest of the calls. At the moment you make the same
+		// SQL call 7 times - and it is a big table too.
+		
+		// and the membership records
+		$sql = <<<SQL
+			INSERT INTO $database.T_Membership_Expiry
+			SELECT * FROM $database.T_Membership where F_UserID in 
+			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		// and the score records
+		$sql = <<<SQL
+			INSERT INTO $database.T_Score_Expiry
+			SELECT * FROM $database.T_Score where F_UserID in 
+			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		// and the session records
+		$sql = <<<SQL
+			INSERT INTO $database.T_Session_Expiry
+			SELECT * FROM $database.T_Session where F_UserID in 
+			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		// Then delete these records
+		$sql = <<<SQL
+			DELETE FROM $database.T_Score where F_UserID in 
+			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);	
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		$sql = <<<SQL
+			DELETE FROM $database.T_Session where F_UserID in 
+			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);	
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		$sql = <<<SQL
+			DELETE FROM $database.T_Membership where F_UserID in 
+			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);	
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		// Finally the T_User records as nothing else depends on them now
+		$sql = <<<SQL
+			DELETE FROM $database.T_User where F_ExpiryDate <= ?;	
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		// send back the number of deleted users
+		return $this->db->Affected_Rows();
+		
+	}
+	
+	// To delete records from T_Accounts when the licence has expired and move them to archive table
+	function archiveExpiredAccounts($expiryDate, $database) {
+		
+		// copy the expired records to the expiry tables
+		// first records from T_Accounts
+		$sql = <<<SQL
+			INSERT INTO $database.T_Accounts_Expiry
+			SELECT * FROM $database.T_Accounts where F_ExpiryDate <= ?;
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		// Then delete these records
+		$sql = <<<SQL
+			DELETE FROM $database.T_Accounts 
+			where F_ExpiryDate <= ?;	
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		// send back the number of deleted users
+		return $this->db->Affected_Rows();
+		
+	}
+}

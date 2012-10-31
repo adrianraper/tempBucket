@@ -53,6 +53,9 @@ class EmailOps {
 			
 			$to = $email['to'];
 			$data = $email['data'];
+			// #516 Try to stop odd characters corrupting the template.
+			// No, you can't use the cache otherwise all emails in this batch get the same data
+			$useCache = false;
 			
 			$emailHTML = $this->templateOps->fetchTemplate("emails/".$templateName, $data, $useCache);
 			

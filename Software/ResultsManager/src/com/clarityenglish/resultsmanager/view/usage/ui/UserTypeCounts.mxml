@@ -156,8 +156,16 @@ www.brightpointinc.com
 			// Whilst you could calculate from the title, better to get from whatever usageOps used
 			replaceObj.clearanceDate = licenceDateFormatter.format(licenceClearanceDate);
 			
-			expiryDateLabel.text = copyProvider.getCopyForId("licenceExpiryDate", replaceObj);
-			startDateLabel.text = copyProvider.getCopyForId("licenceStartDate", replaceObj);
+			// BUG. If the title has already expired, change the wording
+			var expiryDateFormatter:DateFormatter = new DateFormatter();
+			expiryDateFormatter.formatString = "YYYY-MM-DD";
+			if (thisTitle.expiryDate < expiryDateFormatter.format(new Date())) {
+				expiryDateLabel.text = copyProvider.getCopyForId("licenceExpiredDate", replaceObj);
+				startDateLabel.text = "";
+			} else {
+				expiryDateLabel.text = copyProvider.getCopyForId("licenceExpiryDate", replaceObj);
+				startDateLabel.text = copyProvider.getCopyForId("licenceStartDate", replaceObj);
+			}
 			if (licenceClearanceDate == thisTitle.licenceStartDate) {
 				clearanceDateLabel.text = '';
 			} else {

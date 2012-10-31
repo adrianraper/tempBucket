@@ -23,7 +23,7 @@ header('Content-Type: text/plain; charset=utf-8');
 
 // Account information will come in JSON format
 function loadAPIInformation() {
-	global $dmsService;
+	global $thisService;
 	
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getSubscriptionRecords","startDate":"2012-05-01","dbHost":2}';
@@ -103,7 +103,7 @@ try {
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
 	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
-		$loginService->changeDb($apiInformation->dbHost);
+		$thisService->changeDB($apiInformation->dbHost);
 	
 	switch ($apiInformation['method']) {
 		case 'getGlobalR2IUser':

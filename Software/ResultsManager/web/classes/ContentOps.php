@@ -1029,7 +1029,7 @@ EOD;
 				} else if ((intval($titleObj->F_ProductCode) == 52) || 
 							(intval($titleObj->F_ProductCode) == 53)) {
 					$courseType = 'bento';	
-					switch ($titleObj->F_LanguageCode) {
+					switch ($titleObj->F_ProductVersion) {
 						case 'R2ILM':
 							$langCodeCopy = "LastMinute";
 							break;

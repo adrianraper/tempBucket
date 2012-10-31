@@ -29,7 +29,8 @@
 <!--
 -- If we have created a quote, then attach it - or link to it
 -->
-	{include file="file:includes/quotationDetails.tpl"}<!-- 
+	{include file="file:includes/quotationDetails.tpl"}
+<!-- 
 -- Resellers' contact details - if any
 -->
 	{include file='file:includes/Reseller_Details.tpl' resellerCode=$account->resellerCode}
@@ -42,7 +43,7 @@
 -- Section containing details of titles, highlighting those that are expiring related to this email
 -->
 	{include file='file:includes/Spacer_Before_Title_Details.tpl'}
-	{include file='file:includes/Title_Details_Section.tpl'}
+	{include file='file:includes/Title_Details_Section.tpl' enabled='any'}
 <!-- 
 -- Email footer
 -->

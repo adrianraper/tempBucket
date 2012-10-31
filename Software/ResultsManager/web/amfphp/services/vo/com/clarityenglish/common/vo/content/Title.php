@@ -29,6 +29,7 @@ class Title extends Content {
 	var $licenceStartDate;
 	
 	var $languageCode;
+	var $productVersion;
 	var $startPage;
 	var $licenceFile;
 	var $contentLocation;
@@ -202,6 +203,7 @@ class Title extends Content {
 		// Ditto, start date is from the beginning of the day
 		$this->licenceStartDate = substr($obj->F_LicenceStartDate,0,10).' 00:00:00';
 		$this->languageCode = $obj->F_LanguageCode;
+		$this->productVersion = $obj->F_ProductVersion;
 		$this->startPage = $obj->F_StartPage;
 		$this->licenceFile = $obj->F_LicenceFile;
 		//$this->contentLocation = $obj->F_ContentLocation;
@@ -235,6 +237,7 @@ class Title extends Content {
 		$array['F_ExpiryDate'] = substr($this->expiryDate,0,10).' 23:59:59';
 		$array['F_LicenceStartDate'] = substr($this->licenceStartDate,0,10).' 00:00:00';
 		$array['F_LanguageCode'] = $this->languageCode;
+		$array['F_ProductVersion'] = $this->ProductVersion;
 		$array['F_StartPage'] = $this->startPage;
 		$array['F_LicenceFile'] = $this->licenceFile;
 		// v3.3 We want empty content locations to be saved as null
@@ -272,6 +275,7 @@ class Title extends Content {
 						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_ExpiryDate")." F_ExpiryDate",
 						$db->SQLDate("Y-m-d H:i:s", "$prefix.F_LicenceStartDate")." F_LicenceStartDate",
 						"$prefix.F_LanguageCode",
+						"$prefix.F_ProductVersion",
 						"$prefix.F_StartPage",
 						"$prefix.F_LicenceFile",
 						"$prefix.F_LicenceType",

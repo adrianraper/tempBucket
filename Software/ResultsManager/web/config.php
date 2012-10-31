@@ -40,8 +40,8 @@ $GLOBALS['rmail_smtp_password'] = "Sunshine";
 /* The 'from' field of auto-sent emails */
 $GLOBALS['rmail_from'] = "Clarity English <support@clarityenglish.com>";
 
-$GLOBALS['data_dir'] = "../../../../Content";
-$GLOBALS['ap_data_dir'] = "../../../ap";
+$GLOBALS['data_dir'] = "../../../../ContentBench/Content";
+$GLOBALS['ap_data_dir'] = "../../../../ContentBench/ap";
 $GLOBALS['ccb_data_dir'] = "D:/ContentBench/CCB";
 $GLOBALS['common_dir'] = dirname(__FILE__)."/../../../Software/Common";
 $RMFolders = "";

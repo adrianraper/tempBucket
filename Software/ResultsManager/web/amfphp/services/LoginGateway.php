@@ -101,6 +101,10 @@ try {
 		$loginService->changeDb($apiInformation->dbHost);
 	
 	switch ($apiInformation->method) {
+
+		case 'resetdbHost':  //added by Vivying 
+			 $_SESSION['dbHost'] ='';
+			break;	
 		case 'forgotPassword':
 			$user = $loginService->getUser($apiInformation);
 			

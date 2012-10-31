@@ -1017,15 +1017,24 @@ EOD;
 	 * Utility function to get the rootID for a particular prefix
 	 */
 	public function getAccountRootID($prefix) {
+		$lowerCasePrefix = strtolower($prefix);
 		$sql = 	<<<EOD
 				SELECT F_RootID AS rootID 
 				FROM T_AccountRoot
-				WHERE LOWER(F_Prefix)=?
+				WHERE LOWER(F_Prefix)='$lowerCasePrefix'
 EOD;
-		$bindingParams = array(strtolower($prefix));
-		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs)
-			return $rs->FetchNextObj()->rootID;
+		$rs = $this->db->Execute($sql);
+		if ($rs) {
+			if ($rs->RecordCount() <= 0) {
+				$logMessage = 'prefix error 0 record';
+				AbstractService::$debugLog->err($logMessage);
+			} else {
+				return $rs->FetchNextObj()->rootID;
+			}
+		} else {
+			$logMessage = 'prefix error sql, err='.$this->db->ErrorMsg();
+			AbstractService::$debugLog->err($logMessage);
+		}
 	}
 }
 ?>

@@ -456,7 +456,7 @@ EOD;
 		// All templates for CLS exist in the subfolder
 		$templateID='CLS/'.$templateID;
 		if (!$this->templateOps->checkTemplate('emails', $templateID)) {
-			throw new Exception ("This template doesn't exist. /emails/$templateID");
+			throw new Exception ("This template doesn't exist. /CLS/$templateID");
 		}
 		// For testing or real
 		if ($send) {

@@ -237,6 +237,7 @@ EOD;
 		// They were first of all root 12923, and now moved to 13770, and in 2011 to 14252 
 		// And now moved to something else!
 		$rootID = Session::get('rootID');
+		$this->selectBuilder->addWhere("m.F_RootID = '$rootID'");
 		if ($rootID == '14252') {
 			$this->addColumn("u.F_StudentID", "studentID");
 			$this->addColumn("u.F_Email", "email");

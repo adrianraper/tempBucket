@@ -26,8 +26,40 @@ class UsageOps {
 		// v3.5 This is picking up all usage stats that we want, it differs for AA and LT licences
 		$rootID = Session::get('rootID');
 		// What stats do we want for AA licences? Well, everything except for licence counts
-		$fromDateStamp = $this->licenceOps->getLicenceClearanceDate($title);
+		//$fromDateStamp = $this->licenceOps->getLicenceClearanceDate($title);
 
+		//v3.7 move this part to getFixedUsageForTitle
+		/*if ($title->licenceType == 2) {
+			//NetDebug::trace("AA usage stats please");		
+			//$usage['sessionDuration'] = $this->getAASessionDuration($title, $fromDate, $toDate);
+		} else {
+			// AR also read the number of title/user licences that have been used. This is based on licence
+			// period, not the dates the reporter selected
+			$usage['titleUserCounts'] = $this->getTitleUserCounts($title, $rootID, $fromDateStamp);
+			NetDebug::trace("getUsageForTitle: from ".strftime('%Y-%m-%d 00:00:00',$fromDateStamp)." is ".$usage['titleUserCounts']);
+		}
+		$usage['sessionCounts'] = $this->getAASessionCounts($title, $fromDate, $toDate);*/
+		$courseCountArray = $this->getCourseCounts($title, $fromDate, $toDate);
+		$usage['courseCounts'] = $courseCountArray['courseCounts'];
+		if (isset($courseCountArray['otherCourseCounts']))
+			$usage['otherCourseCounts'] = $courseCountArray['otherCourseCounts'];
+		$usage['failedLoginCounts'] = $this->getFailedLoginCounts($title, $rootID, $fromDate, $toDate);
+		//v3.7 move this part to getFixedUsageForTitle
+		/*// Tell RM what date we used for licence clearance date, so it doesn't calculate it wrongly
+		$usage['licenceClearanceDate'] = strftime('%Y-%m-%d 00:00:00',$fromDateStamp);
+		//get the total usage times over the last year.
+		  $usage['overLastYear'] = $this->getOverLastYear($title, $fromDate, $toDate);*/
+		return $usage;
+	}
+	
+	/*
+	V3.7 We seperate the fixed statistic from the getUsageForTitle, which include session, overLastYear and licence.
+	*/
+	function getFixedUsageForTitle ($title, $fromDate, $toDate) {
+	    $usage = array();
+		$rootID = Session::get('rootID');
+		
+		$fromDateStamp = $this->licenceOps->getLicenceClearanceDate($title);
 		if ($title->licenceType == 2) {
 			//NetDebug::trace("AA usage stats please");		
 			//$usage['sessionDuration'] = $this->getAASessionDuration($title, $fromDate, $toDate);
@@ -37,15 +69,10 @@ class UsageOps {
 			$usage['titleUserCounts'] = $this->getTitleUserCounts($title, $rootID, $fromDateStamp);
 			NetDebug::trace("getUsageForTitle: from ".strftime('%Y-%m-%d 00:00:00',$fromDateStamp)." is ".$usage['titleUserCounts']);
 		}
-		$usage['sessionCounts'] = $this->getAASessionCounts($title, $fromDate, $toDate);
-		$courseCountArray = $this->getCourseCounts($title, $fromDate, $toDate);
-		$usage['courseCounts'] = $courseCountArray['courseCounts'];
-		if (isset($courseCountArray['otherCourseCounts']))
-			$usage['otherCourseCounts'] = $courseCountArray['otherCourseCounts'];
-		$usage['failedLoginCounts'] = $this->getFailedLoginCounts($title, $rootID, $fromDate, $toDate);
-		// Tell RM what date we used for licence clearance date, so it doesn't calculate it wrongly
-		$usage['licenceClearanceDate'] = strftime('%Y-%m-%d 00:00:00',$fromDateStamp);
 		
+		$usage['sessionCounts'] = $this->getAASessionCounts($title, $fromDate, $toDate);
+		$usage['licenceClearanceDate'] = strftime('%Y-%m-%d 00:00:00',$fromDateStamp);
+		$usage['overLastYear'] = $this->getOverLastYear($title, $fromDate, $toDate);
 		return $usage;
 	}
 	
@@ -270,16 +297,17 @@ EOD;
 		//		AND ss.F_UserID = u.F_UserID
 		//		AND u.F_UserType=0
 		// v3.7 For Bento titles, courseID is NOT part of session, so you have to join session and score, sadly
+		// v3.7 we changed ss.F_Duration to sc.F_Duration for it lead the numbers of one exercises mutiply ss.F_Duration
 		if ($title->id > 50) {
 			$sql = 	<<<EOD
-				SELECT sc.F_CourseID courseID, COUNT(ss.F_SessionID) courseCount, SUM(ss.F_Duration) duration
+				SELECT sc.F_CourseID courseID, COUNT(sc.F_SessionID) courseCount, SUM(sc.F_Duration) duration
 				FROM T_Session ss, T_Score sc
-				WHERE ss.F_ProductCode=?
+				WHERE ss.F_ProductCode= ?
 				AND ss.F_RootID = ?
 				AND ss.F_StartDateStamp >= ?
 				AND ss.F_StartDateStamp <= ?
 				AND ss.F_SessionID = sc.F_SessionID
-				GROUP BY sc.F_CourseID
+				GROUP BY sc.F_CourseID;
 EOD;
 		} else {
 			$sql = 	<<<EOD
@@ -543,6 +571,40 @@ EOD;
 		//echo $sql;
 		//NetDebug::trace("UsageOps.failLogins.sql.rs=".$rs['failedLogins']);
 		//return $rs['failedLogins'];
+		return $rs;
+	}
+	
+	private function getOverLastYear($title, $fromDate, $toDate) {
+        
+		$fromDateStamp = $fromDate;
+		$toDateStamp = $toDate;
+		
+		$sql = 	<<<EOD
+				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) totalCourse, SUM(ss.F_Duration) totalDuration
+				FROM T_Session ss
+				WHERE ss.F_ProductCode=?
+				AND ss.F_RootID = ?
+				AND ss.F_StartDateStamp >= ?
+				AND ss.F_StartDateStamp <= ?
+				AND ss.F_Duration <= ?
+EOD;
+		
+		$rs = $this->db->GetArray($sql, array($title->id, Session::get('rootID'), $fromDateStamp, $toDateStamp, 43200));
+		
+		$sql2 = 	<<<EOD
+				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) totalCourse
+				FROM T_Session ss
+				WHERE ss.F_ProductCode=?
+				AND ss.F_RootID = ?
+				AND ss.F_StartDateStamp >= ?
+				AND ss.F_StartDateStamp <= ?
+				AND ss.F_Duration > ?
+EOD;
+        
+		$rs2 = $this->db->GetArray($sql2, array($title->id, Session::get('rootID'), $fromDateStamp, $toDateStamp, 43200));
+		$rs[0][totalDuration] = $rs[0][totalDuration]+$rs2[0][totalCourse]*21600; 
+		$rs[0][totalCourse] = $rs[0][totalCourse]+$rs2[0][totalCourse];
+		//return $rs['overLastYear'];
 		return $rs;
 	}
 	

@@ -118,7 +118,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					// Should use emailAPI and make sure that that can cope with an array of emails before working out whether
 					// to send or echo. And perhaps it could cope with start and stop rootIDs too.
 					//$emailData = array("account" => $account, "expiryDate" => $trigger->condition->expiryDate);
-					//$dmsService-> emailOps->sendOrEchoEmail($account, $emailData, $trigger->templateID);
+					//$dmsService->emailOps->sendOrEchoEmail($account, $emailData, $trigger->templateID);
 				//}
 				$emailArray = array();
 				
@@ -158,7 +158,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 						if (!$securityString)
 							$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
 						
-						echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
+						//echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
 						
 						$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
 						$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);

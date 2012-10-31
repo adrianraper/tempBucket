@@ -1154,12 +1154,17 @@ EOD;
 	 * Should be deprecated by the more general function getUserByKey
 	 */
 	function getUserByName($user) {
+	/* Get rootID in order to get rid of duplicate record with same user name but different prefix
+	*/
+	    $rootID = Session::get('rootID');	    
 		$sql  = "SELECT ".User::getSelectFields($this->db);
 		$sql .= <<<EOD
-				FROM T_User u
-				WHERE u.F_UserName=?
+				FROM T_User u, T_Membership m
+                WHERE u.F_UserName = ?
+                AND m.F_RootID = ?
+                AND u.F_UserID = m.F_UserID;
 EOD;
-		$usersRS = $this->db->Execute($sql, array($user->name));
+		$usersRS = $this->db->Execute($sql, array($user->name, $rootID));
 
 		// If you don't get a unique match, throw an exception
 		if ($usersRS->RecordCount()==1) {

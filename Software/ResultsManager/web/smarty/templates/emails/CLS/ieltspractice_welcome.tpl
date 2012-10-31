@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome to IELTSpractice.com</title>
 	<!-- <from>support@ieltspractice.com</from> -->
-	<!-- <bcc>accounts@clarityenglish.com,support@ieltspractice.com,adrian.raper@clarityenglish.com</bcc> -->
+	<!-- <bcc>accounts@clarityenglish.com,support@ieltspractice.com</bcc> -->
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; background-color:#E5E5E5;">
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/ieltspractice/bg.jpg" bgcolor="#FFFFFF">
@@ -40,7 +40,7 @@
             	<strong>Member name: </strong>{$api->subscription->email}</p>
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">
             	<strong>Password: </strong>{$api->subscription->password}</p>
-            <a href="www.IELTSPractice.com" target="_blank">
+            <a href="http://www.IELTSPractice.com" target="_blank">
             <img src="http://www.clarityenglish.com/images/email/ieltspractice/btn_learn.jpg" width="190" height="42" border="0" />
             </a>
           </div>
