@@ -5,60 +5,54 @@
 		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.common.model.interfaces.CopyProvider;
-		import com.clarityenglish.resultsmanager.view.shared.events.TitleEvent;
-		import com.clarityenglish.resultsmanager.Constants;
-		import com.clarityenglish.common.vo.content.Title;
-		import flash.display.DisplayObject;
-		import flash.display.Sprite;
-		import flash.events.Event;
-		import flash.events.SecurityErrorEvent;
-		import flash.events.TimerEvent;
-		import flash.geom.Rectangle;
-		import flash.net.URLLoader;
-		import flash.utils.Timer;
-		import mx.containers.utilityClasses.Layout;
-		import mx.controls.Alert;
-		import mx.core.Application;
-		import mx.core.BitmapAsset;
-		import mx.core.UIComponent;
-		import mx.effects.Resize;
-		import mx.events.FlexEvent;
-		import mx.formatters.DateFormatter;
-		import flash.printing.PrintJob;
-		import mx.printing.FlexPrintJob;
-		import mx.printing.FlexPrintJobScaleType;
-		import flash.utils.setTimeout;
-		import flash.utils.ByteArray;
-		import com.clarityenglish.utils.TraceUtils;
-		import org.alivepdf.images.ColorSpace;
-/*		
-		import org.alivepdf.pdf.PDF;
-		import org.alivepdf.display.Display;
-		import org.alivepdf.fonts.*;
-		import org.alivepdf.layout.*;
-		import org.alivepdf.saving.Method;
-		import org.alivepdf.saving.Download;
-		import org.alivepdf.images.ResizeMode;
-*/
-		import org.alivepdf.pages.Page;
-		import org.alivepdf.pdf.PDF;
-		import org.alivepdf.display.Display;
-		import org.alivepdf.display.PageMode;
-		import org.alivepdf.layout.Resize;
-		import org.alivepdf.layout.Align;
-		import org.alivepdf.layout.Layout;
-		import org.alivepdf.layout.Orientation;
-		import org.alivepdf.layout.Unit;
-		import org.alivepdf.layout.Size;
-		import org.alivepdf.layout.Mode;
-		import org.alivepdf.layout.Format;
-		import org.alivepdf.layout.Position;
-		import org.alivepdf.fonts.*;
-		import org.alivepdf.saving.Method;
-		import org.alivepdf.saving.Download;
-		
-		import mx.utils.Base64Decoder;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.content.Title;
+			import com.clarityenglish.resultsmanager.Constants;
+			import com.clarityenglish.resultsmanager.view.licence.events.LicenceTypeEvent;
+			import com.clarityenglish.resultsmanager.view.shared.events.TitleEvent;
+			import com.clarityenglish.utils.TraceUtils;
+			
+			import flash.display.DisplayObject;
+			import flash.display.Sprite;
+			import flash.events.Event;
+			import flash.events.SecurityErrorEvent;
+			import flash.events.TimerEvent;
+			import flash.geom.Rectangle;
+			import flash.net.URLLoader;
+			import flash.printing.PrintJob;
+			import flash.utils.ByteArray;
+			import flash.utils.Timer;
+			import flash.utils.setTimeout;
+			
+			import mx.containers.utilityClasses.Layout;
+			import mx.controls.Alert;
+			import mx.core.Application;
+			import mx.core.BitmapAsset;
+			import mx.core.UIComponent;
+			import mx.effects.Resize;
+			import mx.events.FlexEvent;
+			import mx.formatters.DateFormatter;
+			import mx.printing.FlexPrintJob;
+			import mx.printing.FlexPrintJobScaleType;
+			import mx.utils.Base64Decoder;
+			
+			import org.alivepdf.display.Display;
+			import org.alivepdf.display.PageMode;
+			import org.alivepdf.fonts.*;
+			import org.alivepdf.images.ColorSpace;
+			import org.alivepdf.layout.Align;
+			import org.alivepdf.layout.Format;
+			import org.alivepdf.layout.Layout;
+			import org.alivepdf.layout.Mode;
+			import org.alivepdf.layout.Orientation;
+			import org.alivepdf.layout.Position;
+			import org.alivepdf.layout.Resize;
+			import org.alivepdf.layout.Size;
+			import org.alivepdf.layout.Unit;
+			import org.alivepdf.pages.Page;
+			import org.alivepdf.pdf.PDF;
+			import org.alivepdf.saving.Download;
+			import org.alivepdf.saving.Method;
 		
 		private var printJob:PrintJob;
 		private var printScaleRatio:Number;
@@ -86,6 +80,7 @@
 		
 		// For use in asynch building of the pdf for printing
 		private var pdf:PDF;
+		private var failedLoginCounts:FailedLoginCounts; 
 		
 		// Just for testing PNG stuff
 		/*
@@ -103,6 +98,10 @@
 
 		private var copyProvider:CopyProvider;
 		
+		// v3.7.2.1 Remove usage date selector and replace with fixed dates for 'over the last year'
+		private var measureStartDate:Date;
+		private var measureEndDate:Date;
+			
 		/**
 		 * Set any copy in this component and call setCopyProvider on any child components
 		 * 
@@ -112,8 +111,8 @@
 			this.copyProvider = copyProvider;
 			titlesLabel.text = copyProvider.getCopyForId("titles");
 			//usageLabel.text = copyProvider.getCopyForId("usage");
-			periodFrom.text = copyProvider.getCopyForId("periodFrom");
-			periodTo.text = copyProvider.getCopyForId("periodTo");
+			//periodFrom.text = copyProvider.getCopyForId("periodFrom");
+			//periodTo.text = copyProvider.getCopyForId("periodTo");
 			helpTextArea.htmlText = copyProvider.getCopyForId("usageStatisticsHelp");
 			helpTextLabel.text = copyProvider.getCopyForId("helpArea");
 			
@@ -125,31 +124,54 @@
 			someCourseCounts.setCopyProvider(copyProvider);
 			sessionsStarted.setCopyProvider(copyProvider);
 			manyCourseCounts.setCopyProvider(copyProvider);
-			singleCourseCount.setCopyProvider(copyProvider);
+			//singleCourseCount.setCopyProvider(copyProvider);
 			userTypeCounts.setCopyProvider(copyProvider);
-			failedLoginCounts.setCopyProvider(copyProvider);
+			failedLoginCounts1.setCopyProvider(copyProvider);
+			failedLoginCounts2.setCopyProvider(copyProvider);
 		}
 		
 		private function creationComplete():void {
 			// from 1 year ago
-			var yearAgoDate:Date = new Date();
-			yearAgoDate.fullYear--;
-			fromDateField.selectedDate = yearAgoDate;
+			//var yearAgoDate:Date = new Date();
+			//yearAgoDate.fullYear--;
+			//fromDateField.selectedDate = yearAgoDate;
+			measureStartDate = new Date();
+			measureStartDate.fullYear--;
+			measureStartDate.setHours(0, 0, 0, 0);
 			
 			// to today
-			toDateField.selectedDate = new Date();
+			//toDateField.selectedDate = new Date();
+			measureEndDate = new Date();
+			measureEndDate.setHours(23, 59, 59, 999);
+			
 		}
 		
 		private function onTitleChange(e:Event):void {
 			var selectedTitle:Title = titleList.selectedItem as Title;
+			trace("The selected index is "+ titleList.selectedIndex);
 			// AR The to date is currently picked up as 00:00:00 on that day - so never picks up anything on that day
 			// We can either add 1 day to it, or manually set time to 23:59:59
 			// Be safe and set the from date to 00:00:00 even though that is the default
-			var endDate:Date = new Date(toDateField.selectedDate.setHours(23, 59, 59, 999));
-			var fromDate:Date = new Date(fromDateField.selectedDate.setHours(0, 0, 0, 0));
-			TraceUtils.myTrace("usageStats for " + selectedTitle.name + " from " + fromDate + " to " + endDate);
+			//var endDate:Date = new Date(toDateField.selectedDate.setHours(23, 59, 59, 999));
+			//var fromDate:Date = new Date(fromDateField.selectedDate.setHours(0, 0, 0, 0));
+			TraceUtils.myTrace("usageStats for " + selectedTitle.name + " from " + measureStartDate + " to " + measureEndDate);
 			//dispatchEvent(new TitleEvent(TitleEvent.TITLE_CHANGE, selectedTitle, fromDateField.selectedDate, endDate, true));
-			dispatchEvent(new TitleEvent(TitleEvent.TITLE_CHANGE, selectedTitle, fromDate, endDate, true));
+			dispatchEvent(new TitleEvent(TitleEvent.TITLE_CHANGE, selectedTitle, measureStartDate, measureEndDate, true));
+			
+			//the detail chart title change according to the selected program
+			if (selectedTitle.productCode == 52|| selectedTitle.productCode ==53){
+				trace("The present product code is "+selectedTitle.productCode);
+				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("activityUserCountsA");
+			} else if (selectedTitle.productCode == 1001){
+				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("activityUserCountsB");
+			}else if (selectedTitle.productCode == 9 || selectedTitle.productCode == 46 || selectedTitle.productCode == 33 || selectedTitle.productCode == 45){
+				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsB");
+			}
+			else if (selectedTitle.productCode == 37) {
+				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsC");
+			}else{
+				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsA");
+			}
 		}
 		
 		public function setUserTypeCounts(dataProvider:Object):void {
@@ -258,6 +280,10 @@
 				}
 			// You do need to check if the dataProvider has any information in it or is empty
 			} else {
+				coursesInTitle = NO_COURSES;
+			}
+				/*else {
+				}
 				//singleCourseCount.dataProviderUsers = dataProviderUsers;
 				//singleCourseCount.dataProviderTimes = dataProviderTimes;
 				coursesInTitle = SINGLE_COURSE;
@@ -272,18 +298,83 @@
 					//singleCourseCount.setDataValues(0, 0);
 					coursesInTitle = NO_COURSES;
 				}
-			}
-		}
-		// v3.5 Usage stats
-		public function setSessionCounts(dataProvider:Object, startDate:Date, endDate:Date):void {
-			//sessionsStarted.dataProvider = dataProvider;
-			sessionsStarted.updateChart(dataProvider, startDate, endDate);
+			}*/			
+			
 		}
 		
-		public function setFailedLoginCounts(dataProvider:Object):void {
+		/*//v3.7.2.1 move overLastYear to session block
+		//v3.7 set over the last year
+		public function setOverLastYear(dataProvider:Object):void {
+			// for version v3.7 add singleCourseCounts for every program   
+			if (dataProvider.length>0) {
+				singleCourseCount.setDataValues(dataProvider[0].totalCourse, dataProvider[0].totalDuration);
+				TraceUtils.myTrace("the totalcourse is "+ dataProvider.length);
+				TraceUtils.myTrace("the totalcourse is "+ dataProvider[0].totalCourse);
+				TraceUtils.myTrace("the totalDuration is "+ dataProvider[0].totalDuration);
+			} else {
+				TraceUtils.myTrace("no data for courses at all, so set to 0");
+				coursesInTitle = NO_COURSES;
+			}
+		}*/
+		
+	     //v3.7.2.1 move overLastYear to session block
+		// v3.5 Usage stats
+		public function setSessionCounts(dataProvider1:Object, startDate:Date, endDate:Date, dataProvider2:Object):void {
+			//v3.7.2.1 merge overLastYear dataProvider to the sessionStarted data set
+			//sessionsStarted.dataProvider = dataProvider;
+			sessionsStarted.updateChart(dataProvider1, startDate, endDate, dataProvider2[0].totalCourse, dataProvider2[0].totalDuration);
+		}
+		
+		//v3.7 in this version we got two failedLoginCounts block to achieve the alert.
+	    //the visiblity will be set once the licenceType was assigned to UserTypeCounts. 
+		public function setFailedLoginCounts(dataProvider:Object):void {			
+			failedLoginCounts1.visible = false;
+			failedLoginCounts1.includeInLayout = false;
+			failedLoginCounts1.dataProvider = dataProvider;
+			failedLoginCounts2.visible = false;
+			failedLoginCounts2.includeInLayout = false;
+			failedLoginCounts2.dataProvider = dataProvider;				
 			// This was a single value. Now it is a small array of reasons and counts.
-			failedLoginCounts.dataProvider = dataProvider;
+			
 			//failedLoginCounts.formatData();
+		}
+			
+		//v3.7 add licenceType event, because get licence type direcly from UsrTypeCounts component will cause delay
+		// Once the licence type was assigned from UsageMediator to UserTypeCounts, a event will be dispatched and to call setLicenceType	
+		public function setLicenceType(isAAlicence:Boolean):void {
+			var dataProvider:Object = failedLoginCounts2.dataProvider;
+			var selectedTitle:Title = titleList.selectedItem as Title;
+			if (selectedTitle != null) {								
+				failedLoginCounts2.visible = true;
+				failedLoginCounts2.includeInLayout = true;
+				failedLoginCounts = failedLoginCounts2;
+				if (dataProvider.length != 0) {	
+					if (!userTypeCounts.AAlicence) {
+						for each (var totalFailure1:Object in dataProvider) {
+						if (totalFailure1.failedLogins > 20) {
+						failedLoginCounts1.visible = true;
+						failedLoginCounts2.visible = false;
+						failedLoginCounts1.includeInLayout= true;
+						failedLoginCounts2.includeInLayout= false;
+						failedLoginCounts = failedLoginCounts1;
+						break;
+						}
+						}
+					} else if (userTypeCounts.AAlicence) {
+						for each (var totalFailure2:Object in dataProvider) {
+						if (totalFailure2.failedLogins > 2 * Number(selectedTitle.maxStudents)) {
+						//TraceUtils.myTrace("the totalfailure number for AA is "+totalFailure2.failedLogins);
+						failedLoginCounts1.visible = true;
+						failedLoginCounts2.visible = false;
+						failedLoginCounts1.includeInLayout = true;
+						failedLoginCounts2.includeInLayout= false;
+						failedLoginCounts = failedLoginCounts1;
+						break;
+						} 
+						}
+					}
+				} 											
+			} 
 		}
 		
 		// v3.6 How about creating a PDF at this point? I'm sure I shouldn't be doing it in the view.
@@ -338,15 +429,16 @@
 				//pdf.addImageStream(chartByteArray, 20, 20, 200, 100, 1, ResizeMode.NONE);
 				// Get the image size that you want, base it on width.
 				// Note that this currently gives different sizes dependent on the browser width!
-				var chartWidth:Number = this.sessionsStarted.comparisonChart.width;
-				var chartHeight:Number = this.sessionsStarted.comparisonChart.height;
+				
+				var chartWidth:Number = this.sessionsStarted.lastOverYear.width;
+				var chartHeight:Number = this.sessionsStarted.lastOverYear.height;
 				var chartAspectRatio:Number = chartHeight / chartWidth;
 				// The PDF is measured in mm, the chart in pixels. But this number is not just mm. Why not?
 				var pdfChartScaling:Number = 1;
 				var maxWidth:uint = 180; var maxHeight:uint = 100;
 				var maxTableWidth:uint = 160; var maxTableHeight:uint = 25;
-				var pdfChartWidth:Number; var pdfChart2Width:Number; var pdfChart3Width:Number;
-				var pdfChartHeight:Number; var pdfChart2Height:Number; var pdfChart3Height:Number;
+				var pdfChartWidth:Number; var pdfChart2Width:Number; var pdfChart3Width:Number; var pdfChart4Width:Number;
+				var pdfChartHeight:Number; var pdfChart2Height:Number; var pdfChart3Height:Number; var pdfChart4Height:Number;
 				//var pdfChartWidth:Number = 180 / pdfChartScaling;
 				//var pdfChartHeight:Number = pdfChartWidth * chartAspectRatio;
 				// Since the chart height is fixed, this might give me too much height.
@@ -365,7 +457,7 @@
 				//pdf.addImage(this.sessionsStarted.comparisonChart, 10, 40, pdfChartWidth, pdfChartHeight, 'PNG', 100, 1, ResizeMode.FIT_TO_PAGE);
 				//pdf.addImage(this.sessionsStarted.comparisonChart, new org.alivepdf.layout.Resize(Mode.NONE, Position.LEFT), 10, 40, pdfChartWidth, pdfChartHeight);
 				// I really want this to start at x=15, y=45, but the chart is within a border, so move it out and up.
-				pdf.addImage(this.sessionsStarted.comparisonChart, null, 0, 30, pdfChartWidth, pdfChartHeight);
+				pdf.addImage(this.sessionsStarted.lastOverYear, null, 0, 40, pdfChartWidth, pdfChartHeight);
 				//pdf.addImage(this.sessionsStarted.comparisonChart, null, 10, 40, pdfChartWidth, pdfChartHeight);
 				
 				// And the same for the course usage - whichever type is displayed
@@ -374,25 +466,41 @@
 				} else if (coursesInTitle == MANY_COURSES) {
 					courseCountsContainer = this.manyCourseCounts.courseCountsContainer;
 				} else {
+					courseCountsContainer = null;
+				}/*else {
+					}
 					courseCountsContainer = this.singleCourseCount.courseCountsContainer;
-				}
-				var chart2Width:Number = courseCountsContainer.width;
-				var chart2Height:Number = courseCountsContainer.height;
-				var chart2AspectRatio:Number = chart2Height / chart2Width;
+				}*/
+				
+				/*//v3.7 add overyear block in the print page
+				var chart4Width:Number = this.singleCourseCount.courseCountsContainer.width;
+				var chart4Height:Number = this.singleCourseCount.courseCountsContainer.height;
+				var chart4AspectRatio:Number = chart4Height / chart4Width;
 				// The PDF is measured in mm, the chart in pixels. 
-				if (chart2Width / maxWidth > chart2Height / maxHeight) {
-					// Use width as the limiting dimension
-					pdfChart2Width = maxWidth;
-					pdfChart2Height = maxWidth * chart2AspectRatio;
-				} else {
-					// Use height as the limiting dimension
-					pdfChart2Height = maxHeight;
-					pdfChart2Width = maxHeight / chart2AspectRatio;
+				pdfChart4Width = maxTableWidth;
+				pdfChart4Height = maxTableWidth * chart4AspectRatio;
+	
+				pdf.addImage(this.singleCourseCount.courseCountsContainer, null, 10,  30+pdfChartHeight, pdfChart4Width, pdfChart4Height);*/
+				
+				if (courseCountsContainer) {
+					var chart2Width:Number = courseCountsContainer.width;
+					var chart2Height:Number = courseCountsContainer.height;
+					var chart2AspectRatio:Number = chart2Height / chart2Width;
+					// The PDF is measured in mm, the chart in pixels. 
+					if (chart2Width / maxWidth > chart2Height / maxHeight) {
+						// Use width as the limiting dimension
+						pdfChart2Width = maxWidth;
+						pdfChart2Height = maxWidth * chart2AspectRatio;
+					} else {
+						// Use height as the limiting dimension
+						pdfChart2Height = maxHeight;
+						pdfChart2Width = maxHeight / chart2AspectRatio;
+					}
+					//pdf.addImage(this.someCourseCounts.courseCountsContainer, 10, 50 + (pdfChartHeight * pdfChartScaling), pdfChartWidth, pdfChart2Height, 'PNG', 100, 1, ResizeMode.FIT_TO_PAGE);
+					TraceUtils.myTrace("chart 2 width=" + chart2Width + ", height=" + chart2Height + " pdfheight=" + pdfChart2Height);
+					pdf.addImage(courseCountsContainer, null, 10, 40+pdfChartHeight, pdfChart2Width, pdfChart2Height);
 				}
-				//pdf.addImage(this.someCourseCounts.courseCountsContainer, 10, 50 + (pdfChartHeight * pdfChartScaling), pdfChartWidth, pdfChart2Height, 'PNG', 100, 1, ResizeMode.FIT_TO_PAGE);
-				TraceUtils.myTrace("chart 2 width=" + chart2Width + ", height=" + chart2Height + " pdfheight=" + pdfChart2Height);
-				pdf.addImage(courseCountsContainer, null, 10, 130, pdfChart2Width, pdfChart2Height);
-								
+											
 				// And the table for any failures. Always use maxWidth and then set it up from the bottom based on how deep it is.
 				var chart3Width:Number = this.failedLoginCounts.failedLoginContainer.width;
 				var chart3Height:Number = this.failedLoginCounts.failedLoginContainer.height;
@@ -408,8 +516,13 @@
 				//	pdfChart3Width = maxTableHeight / chart3AspectRatio;
 				//}
 				//pdf.addImage(this.failedLoginCounts.failedLoginContainer, 10, 60 + ((pdfChartHeight  + pdfChart2Height) * pdfChartScaling), pdfChartWidth, pdfChart3Height, 'PNG', 100, 1, ResizeMode.FIT_TO_PAGE);
-				pdf.addImage(this.failedLoginCounts.failedLoginContainer, null, 8, (270-pdfChart3Height), pdfChart3Width, pdfChart3Height);
-
+				//pdf.addImage(this.failedLoginCounts.failedLoginContainer, null, 8, (270-pdfChart3Height), pdfChart3Width, pdfChart3Height);
+				if (courseCountsContainer) {
+					pdf.addImage(this.failedLoginCounts.failedLoginContainer, null, 8, 50+pdfChartHeight+pdfChart2Height, pdfChart3Width, pdfChart3Height);
+				}else{
+					pdf.addImage(this.failedLoginCounts.failedLoginContainer, null, 8, 40+pdfChartHeight, pdfChart3Width, pdfChart3Height);
+				}
+					
 				// Put the header text on last in case it overlaps an image
 				var xLabel:uint = 15;
 				var xData:uint = 50;
@@ -630,12 +743,12 @@
 			</mx:VBox>
 		</mx:VDividedBox>
 		<mx:VBox width="65%" height="100%" id="parentVBox" horizontalAlign="left">
-			<mx:HBox id="dates" width="100%" paddingRight="10" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}">
-				<mx:Label id="periodFrom" styleName="subHeadingLabelBlack" />
+			<mx:HBox id="print" width="100%" paddingRight="10" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}">
+				<!--mx:Label id="periodFrom" styleName="subHeadingLabelBlack" />
 				<mx:DateField id="fromDateField" formatString="YYYY/MM/DD" yearNavigationEnabled="true" />
 				<mx:Label id="periodTo" styleName="subHeadingLabelBlack" />
 				<mx:DateField id="toDateField" formatString="YYYY/MM/DD" yearNavigationEnabled="true" />
-				<mx:Button label="Refresh Statistics" click="onTitleChange(event)" enabled="{titleList.selectedItem != null}" />
+				<mx:Button label="Refresh Statistics" click="onTitleChange(event)" enabled="{titleList.selectedItem != null}" /-->
 				<mx:Spacer width="100%" />
 				<!-- <mx:Button label="Print..." enabled="{titleList.selectedItem != null}" click="printStatistics()" /> -->
 				<mx:Button label="Print/PDF" enabled="{titleList.selectedItem != null}" click="buildPDF()" />
@@ -652,13 +765,24 @@
 				<ui:CourseUserGauge width="100%" id="courseUserGauge" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" />
 				<ui:CourseTimeCounts width="100%" id="courseTimeCounts" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" />
 				 -->
+				<ui:FailedLoginCounts width="99%" id="failedLoginCounts1"/>
 				<ui:SessionsStarted width="99%" id="sessionsStarted" visible="{titleList.selectedItem != null &amp;&amp; show_session_count}" includeInLayout="{titleList.selectedItem != null &amp;&amp; show_session_count}" />
-				<ui:SomeCourseCounts width="99%" id="someCourseCounts" totalCourseCount="{totalCourseCount}" totalCourseDuration="{totalCourseDuration}" 
-												visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SOME_COURSES}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SOME_COURSES}" />
-				<ui:SingleCourseCount width="99%" id="singleCourseCount" visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SINGLE_COURSE}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SINGLE_COURSE}" />
+				<!--ui:SingleCourseCount width="99%" id="singleCourseCount" visible="{titleList.selectedItem != null }" includeInLayout="{titleList.selectedItem != null }" /-->
+				<!--
+				<mx:HBox id="dates" width="100%" paddingRight="10" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" paddingTop="10">
+					<mx:Label id="periodFrom" styleName="subHeadingLabelBlack" />
+					<mx:DateField id="fromDateField" formatString="YYYY/MM/DD" yearNavigationEnabled="true" />
+					<mx:Label id="periodTo" styleName="subHeadingLabelBlack" />
+					<mx:DateField id="toDateField" formatString="YYYY/MM/DD" yearNavigationEnabled="true" />
+					<mx:Button label="Refresh Statistics" click="onTitleChange(event)" enabled="{titleList.selectedItem != null}" />
+				</mx:HBox>
+				-->
+				<!--ui:FailedLoginCounts width="99%" id="failedLoginCounts2" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" /-->				
+				<ui:SomeCourseCounts width="99%" id="someCourseCounts" totalCourseCount="{totalCourseCount}" totalCourseDuration="{totalCourseDuration}" visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SOME_COURSES}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SOME_COURSES}" />
+				<!-- v3.7.1 move the signleCourseCounts data to sessionStarted
+				<ui:SingleCourseCount width="99%" id="singleCourseCount" visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SINGLE_COURSE}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==SINGLE_COURSE}" /-->
 				<ui:ManyCourseCounts width="99%" id="manyCourseCounts" visible="{titleList.selectedItem != null &amp;&amp; coursesInTitle==MANY_COURSES}" includeInLayout="{titleList.selectedItem != null &amp;&amp; coursesInTitle==MANY_COURSES}" />
-				<ui:FailedLoginCounts width="99%" id="failedLoginCounts" visible="{titleList.selectedItem != null}" includeInLayout="{titleList.selectedItem != null}" />
-							
+				<ui:FailedLoginCounts width="99%" id="failedLoginCounts2" />						
 			</mx:VBox>
 			<mx:TitleWindow title="First step" paddingTop="20" width="50%" height="100" verticalAlign="top" visible="{titleList.selectedItem == null}" includeInLayout="{titleList.selectedItem == null}">
 				<mx:Label id="selectTitleLabel" fontWeight="bold" />

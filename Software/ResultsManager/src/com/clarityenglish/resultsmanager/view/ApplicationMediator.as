@@ -20,7 +20,7 @@ package com.clarityenglish.resultsmanager.view {
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
-	import com.clarityenglish.resultsmanager.RMApplication;
+	import com.clarityenglish.resultsmanager.ResultsManager;
 	import com.clarityenglish.utils.TraceUtils;
 	
 	/**
@@ -37,8 +37,8 @@ package com.clarityenglish.resultsmanager.view {
 			super(NAME, viewComponent);
 		}
 		
-		private function get application():RMApplication {
-			return viewComponent as RMApplication;
+		private function get application():ResultsManager {
+			return viewComponent as ResultsManager;
 		}
 		
 		/**

@@ -3,29 +3,32 @@ Proxy - PureMVC
 */
 package com.clarityenglish.resultsmanager.model {
 	import com.adobe.serialization.json.JSON;
+	import com.adobe.serialization.json.JSONEncoder;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	import com.clarityenglish.common.vo.Reportable;
+	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.common.vo.manageable.Manageable;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.Constants;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.common.vo.content.Title;
-	import com.clarityenglish.common.vo.Reportable;
-	import com.clarityenglish.common.vo.manageable.Manageable; // added so I can refer to the type
 	import com.clarityenglish.resultsmanager.RMNotifications;
+	import com.clarityenglish.utils.TraceUtils;
+	
 	import flash.net.URLRequest;
 	import flash.net.URLRequestHeader;
 	import flash.net.URLRequestMethod;
 	import flash.net.URLVariables;
+	import flash.net.navigateToURL;
+	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
+	import org.davekeen.utils.ArrayUtils;
 	import org.davekeen.utils.ClassUtils;
 	import org.davekeen.utils.DateUtils;
-	import org.davekeen.utils.ArrayUtils;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
-	import flash.net.navigateToURL;
-	import com.clarityenglish.utils.TraceUtils;
 	
 	/**
 	 * A proxy

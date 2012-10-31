@@ -7,7 +7,7 @@ package com.clarityenglish.resultsmanager.controller {
 	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.model.LicenceProxy;
 	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.resultsmanager.RMApplication;
+	import com.clarityenglish.resultsmanager.ResultsManager;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.common.model.CopyProxy;
@@ -46,7 +46,7 @@ package com.clarityenglish.resultsmanager.controller {
 			facade.registerProxy(new LoginProxy());
 			
 			// Register the main mediator
-			facade.registerMediator(new ApplicationMediator(note.getBody() as RMApplication));
+			facade.registerMediator(new ApplicationMediator(note.getBody() as ResultsManager));
 			//TraceUtils.myTrace("RM.StartUpCommand.4");
 			
 			// If the username/password are defined as FlashVars then automate the login

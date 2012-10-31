@@ -54,6 +54,7 @@ package com.clarityenglish.assets
 			// We want a square up until 5x5, then 5 rows up until 75
 			var value:uint = _concurrentUsers;
 			var theSquare:uint = Math.ceil(Math.sqrt(value));
+			
 			if (theSquare <= 5) {
 				var colLimit:uint = theSquare;
 				var imageSize:uint = Math.floor(25 * (5 / theSquare));

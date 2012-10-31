@@ -10,39 +10,24 @@
 		  implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-/*
-Copyright (c) 2008, Thomas W. Gonzalez
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
-THE SOFTWARE.
-www.brightpointinc.com
-*/
-		import com.clarityenglish.assets.ConcurrentUserDisplay;
-		import com.clarityenglish.common.model.interfaces.CopyProvider;
-		import com.clarityenglish.common.vo.content.Title;
-		import com.clarityenglish.utils.TraceUtils;
-		import flash.display.Loader;
-		import flash.display.Sprite;
-		import flash.events.Event;
-		import flash.display.*;
-		import flash.system.LoaderContext;
-		import flash.system.ApplicationDomain;
-		import mx.managers.SystemManager;
-		import org.davekeen.utils.DateUtils;
-		import com.clarityenglish.resultsmanager.Constants;
-		import mx.formatters.DateFormatter;
+			import com.clarityenglish.assets.ConcurrentUserDisplay;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.content.Title;
+			import com.clarityenglish.resultsmanager.Constants;
+			import com.clarityenglish.resultsmanager.view.licence.events.LicenceTypeEvent;
+			import com.clarityenglish.utils.TraceUtils;
+			
+			import flash.display.*;
+			import flash.display.Loader;
+			import flash.display.Sprite;
+			import flash.events.Event;
+			import flash.system.ApplicationDomain;
+			import flash.system.LoaderContext;
+			
+			import mx.formatters.DateFormatter;
+			import mx.managers.SystemManager;
+			
+			import org.davekeen.utils.DateUtils;
 		
 		private var copyProvider:CopyProvider;
 		[Bindable]
@@ -97,7 +82,7 @@ www.brightpointinc.com
 			TraceUtils.myTrace(singleValue + " licences of  " + maxValue);
 			// rescale the single value so that it is a %. This avoids resetting the ratios
 			// But what if you don't do this, keep single and max and just ignore the ratios? Yes, thsi works.
-			if (maxValue<=0) maxValue = 100;
+			if (maxValue<0) maxValue = 100;
 			//var percentValue:Number = singleValue * (100 / maxValue);
 			//singleValue = thisValue;
 			//maxValue = thisMax;
@@ -150,13 +135,16 @@ www.brightpointinc.com
 			var licenceDateFormatter:DateFormatter = new DateFormatter();
 			licenceDateFormatter.formatString = "D MMMM, YYYY";
 			var replaceObj:Object = new Object();
-			replaceObj.startDate = licenceDateFormatter.format(thisTitle.licenceStartDate);
+			// v3.7.2.1 Clearer to state the start date of this licence period
+			replaceObj.purchaseDate = licenceDateFormatter.format(thisTitle.licenceStartDate);
+			replaceObj.startDate = licenceDateFormatter.format(licenceClearanceDate);
 			replaceObj.expiryDate = licenceDateFormatter.format(thisTitle.expiryDate);
 			//replaceObj.clearanceDate = licenceDateFormatter.format(thisTitle.licenceClearanceDate);
 			// Whilst you could calculate from the title, better to get from whatever usageOps used
 			replaceObj.clearanceDate = licenceDateFormatter.format(licenceClearanceDate);
 			
-			// BUG. If the title has already expired, change the wording
+			purchaseDateLabel.text = copyProvider.getCopyForId("licencePurchaseDate", replaceObj);
+			// v3.7.3.1 note if a title is already expired
 			var expiryDateFormatter:DateFormatter = new DateFormatter();
 			expiryDateFormatter.formatString = "YYYY-MM-DD";
 			if (thisTitle.expiryDate < expiryDateFormatter.format(new Date())) {
@@ -166,11 +154,14 @@ www.brightpointinc.com
 				expiryDateLabel.text = copyProvider.getCopyForId("licenceExpiryDate", replaceObj);
 				startDateLabel.text = copyProvider.getCopyForId("licenceStartDate", replaceObj);
 			}
+			currentLicenceLabel.text = copyProvider.getCopyForId("currentLicence", replaceObj);
+			/*
 			if (licenceClearanceDate == thisTitle.licenceStartDate) {
 				clearanceDateLabel.text = '';
 			} else {
 				//clearanceDateLabel.text = copyProvider.getCopyForId("licenceClearanceDate", replaceObj);
 			}
+			*/
 			// For PDF header
 			licenceClearanceDateLbl.text = replaceObj.clearanceDate;
 
@@ -212,6 +203,12 @@ www.brightpointinc.com
 			printingDateLbl.text = licenceDateFormatter.format(new Date());
 			// You don't know licences used at this point...
 		}
+			
+	    public function setAAlicence(isAAlicence:Boolean):void {
+			AAlicence = isAAlicence;
+			var licenceTypeEvent:LicenceTypeEvent = new LicenceTypeEvent(LicenceTypeEvent.LICENCE, AAlicence);
+			dispatchEvent(licenceTypeEvent);
+		}
 		
 		]]>
 	</mx:Script>
@@ -238,15 +235,14 @@ www.brightpointinc.com
 		<mx:Label id="printingDateLbl" />
 	</mx:VBox>
 	<mx:HBox width="100%" height="100%">
-		<mx:VBox id="expiryDate" height="100%" width="200" paddingTop="10" horizontalAlign="center">
-			<!-- Rather than an in active dateChooser, write out the dates with a background image
-				Add licence clearance date
-			<mx:DateChooser id="expiryDateCalendar" yearNavigationEnabled="false" />
-			<mx:Label id="expiryDateLabel" fontWeight="bold"/>
-			 -->
-			<mx:Label id="startDateLabel" fontWeight="bold"/>
-			<mx:Label id="expiryDateLabel" fontWeight="bold"/>
+		<mx:VBox id="expiryDate" height="100%" width="250" paddingTop="10" horizontalAlign="left">
+			<mx:Label id="purchaseDateLabel" fontWeight="bold"/>
+			<mx:Label id="currentLicenceLabel" fontWeight="bold" paddingTop="10"/>
+			<mx:Label id="startDateLabel" fontWeight="bold" paddingLeft="15"/>
+			<mx:Label id="expiryDateLabel" fontWeight="bold" paddingLeft="15"/>
+			<!--
 			<mx:Label id="clearanceDateLabel" fontWeight="bold"/>
+			-->
 		</mx:VBox>
 		<mx:VBox id="AAlicencesUsed" height="100%" width="230" paddingTop="10" horizontalAlign="center" visible="{AAlicence}" includeInLayout="{AAlicence}">
 			<!-- 

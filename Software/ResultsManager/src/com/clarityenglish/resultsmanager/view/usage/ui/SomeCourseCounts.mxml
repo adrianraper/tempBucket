@@ -45,9 +45,9 @@
 		private var copyProvider:CopyProvider;
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			//title = copyProvider.getCopyForId("courseUserCounts");
-			title = copyProvider.getCopyForId("courseCounts");
-			courseTimeCountsLabel.text = copyProvider.getCopyForId("courseTimeCounts");
-			courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCounts");
+			title = copyProvider.getCopyForId("detailTitle");
+			//courseTimeCountsLabel.text = copyProvider.getCopyForId("courseTimeCounts");
+			//courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCounts");
 			this.copyProvider = copyProvider;
 		}
 		
@@ -192,16 +192,20 @@
 	<mx:VBox id="courseCountsContainer" width="100%">
 		<mx:HBox width="100%">
 			<mx:Label width="50%" id="courseUserCountsLabel" fontWeight="bold" />
+			<!--
 			<mx:Label id="courseTimeCountsLabel" fontWeight="bold" />
 			<mx:Label id="courseTimeCountsUnits" text="({tickLabel})" fontWeight="bold" />
+			-->
 		</mx:HBox>
 		<mx:HBox width="100%">
-			<mx:Label width="50%" text="Total {totalCourseCount} times" fontWeight="bold" />
+			<mx:Label width="50%" text="Total: {totalCourseCount}" fontWeight="bold" />
+			<!--
 			<mx:Label text="Total {getFormattedSeconds(totalCourseDuration, 7200)} hours" fontWeight="bold" />
+			-->
 		</mx:HBox>
 		<mx:HBox width="100%">
 		<mx:PieChart id="pieChart"
-					 width="45%"
+					 width="100%"
 					 dataProvider="{dataProvider}" 
 					 showDataTips="true">
 			<mx:series>
@@ -220,6 +224,7 @@
 			</mx:annotationElements>-->
 			
 		</mx:PieChart>
+		<!--
 		<mx:ColumnChart id="columnChart"
 					 width="55%"
 					 paddingTop="10"
@@ -255,7 +260,8 @@
 				</mx:ColumnSeries>
 			</mx:series>
 		</mx:ColumnChart>
+		-->
 		</mx:HBox>
-		<mx:Legend dataProvider="{pieChart}" width="100%" direction="horizontal" />
+		<mx:Legend dataProvider="{pieChart}" width="100%" direction="horizontal" textAlign="center" />
 	</mx:VBox>
 </mx:TitleWindow>

@@ -3,16 +3,16 @@ Proxy - PureMVC
 */
 package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.RMNotifications;
+	import com.clarityenglish.utils.TraceUtils;
+	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.utils.DateUtils;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
-	import com.clarityenglish.utils.TraceUtils;
-
 
 	/**
 	 * A proxy
@@ -33,6 +33,10 @@ package com.clarityenglish.resultsmanager.model {
 			new RemoteDelegate("getUsageForTitle", [ title, DateUtils.dateToAnsiString(fromDate), DateUtils.dateToAnsiString(toDate) ], this).execute();
 		}
 		
+		public function getFixedUsage(title:Title, fromFixDate:Date, toFixDate:Date):void {						
+			new RemoteDelegate("getFixedUsageForTitle", [ title, DateUtils.dateToAnsiString(fromFixDate), DateUtils.dateToAnsiString(toFixDate) ], this).execute();
+		}
+		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
 		public function onDelegateResult(operation:String, data:Object):void{
@@ -40,6 +44,9 @@ package com.clarityenglish.resultsmanager.model {
 				case "getUsageForTitle":
 					sendNotification(RMNotifications.USAGE_LOADED, data);
 					break;
+				case "getFixedUsageForTitle":
+					sendNotification(RMNotifications.FIXEDUSAGE_LOADED, data);
+				    break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
 			}
@@ -50,6 +57,8 @@ package com.clarityenglish.resultsmanager.model {
 			
 			switch (operation) {
 				case "getUsageForTitle":
+					break;
+				case "getFixedUsageForTitle":
 					break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Fault from unknown operation: " + operation);

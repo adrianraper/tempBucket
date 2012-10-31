@@ -97,13 +97,13 @@ www.brightpointinc.com
 			 * 
 			 * For Flex 3 (e.g. Results Manager, DMS):
 			 * 
-			 * -define=CONFIG::flex3,false
-			 * -define=CONFIG::flex4,true
+			 * -define=CONFIG::flex3,true
+			 * -define=CONFIG::flex4,false
  			 * 
 			 * For Flex 4 (e.g. Baker, Bento):
 			 * 
-			 * -define=CONFIG::flex3,true
-			 * -define=CONFIG::flex4,false
+			 * -define=CONFIG::flex3,false
+			 * -define=CONFIG::flex4,true
 			 */
 			
 			CONFIG::flex3 {

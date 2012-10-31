@@ -28,7 +28,7 @@
 		
 		private var copyProvider:CopyProvider;
 		public function setCopyProvider(copyProvider:CopyProvider):void {
-			title = copyProvider.getCopyForId("courseCounts");
+			title = copyProvider.getCopyForId("detailTitle");
 			//courseInfoLabel.text = copyProvider.getCopyForId("courseInfoTable");
 			gridCourseName.headerText = copyProvider.getCopyForId("courseName");
 			gridCourseCounts.headerText = copyProvider.getCopyForId("courseCountColumn");

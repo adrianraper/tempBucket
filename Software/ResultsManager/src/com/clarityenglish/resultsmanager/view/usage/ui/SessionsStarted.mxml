@@ -11,20 +11,26 @@
 		import com.anychart.mapPlot.controls.zoomPanel.Slider;
 		import com.anychart.viewController.ChartView;
 		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.utils.NumberUtils;
 		import com.clarityenglish.utils.TraceUtils;
+		import com.gskinner.StringUtils;
+		
 		import flash.display.Sprite;
 		import flash.net.URLLoader;
 		import flash.utils.ByteArray;
+		
 		import mx.controls.HSlider;
 		import mx.events.SliderEvent;
 		import mx.utils.Base64Decoder;
-		import flash.utils.ByteArray;
-		// AR added for padding numbers
-		import com.gskinner.StringUtils;
-		import com.clarityenglish.utils.NumberUtils;
 		
 		[Bindable]
 		public var dataProvider:Object;
+		
+	    [Bindable]
+		private var totalSessionCount:Number = 0;
+			
+	    [Bindable]
+		private var totalSessionArray:Array = [];
 		
 		// Hold the data for the chart
 		//private var _title:XML;
@@ -43,7 +49,8 @@
 		private var copyProvider:CopyProvider;
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			//title = copyProvider.getCopyForId("courseUserCounts");
-			title = copyProvider.getCopyForId("courseCounts");
+			title = copyProvider.getCopyForId("barChartTitle");
+			//counterText.text = copyProvider.getCopyForId("timeConnection").toLocaleLowerCase();
 			this.copyProvider = copyProvider;
 		}
 		
@@ -119,8 +126,7 @@
 							</labels>
 						</x_axis>
 					</axes>;
-			var _title:XML = <title enabled="true">
-						<text>Showing the number of times the program has been used each month</text>
+			var _title:XML = <title enabled="false">
 					</title>;
 			var _chartSettings:XML = <chart_settings>
 						<chart_background>
@@ -189,9 +195,10 @@
 			//this.imgImagePreview.load(chartByteArray);
 			return chartByteArray;
 		}
-
+        
+			//v3.7.2.1 we add courseCount and timeCount from singleCourseCounts to here
 		//public function setChartDataProvider(data:XML):void {
-		public function setData(data:Object, startDate:Date, endDate:Date):void {
+		public function setData(data:Object, startDate:Date, endDate:Date, courseCount:Number, timeCount:Number):void {
 			//TraceUtils.myTrace("sessions setData");
 
 			//TraceUtils.myTrace("chart is " + _fullChartXML.charts.chart.data.toXMLString());
@@ -215,12 +222,7 @@
 				//TraceUtils.myTrace("series i=" + i + ", label is " + String(i + startYear) + " and " + seriesColourName[i]);
 				//TraceUtils.myTrace("this series is " + String(i + startYear));
 				_data.appendChild(new XML(<series name={String(i + startYear)} color={seriesColourName[i]}></series>));
-				var iconName:String = "{%Icon} " + String(i + startYear);
 				//<text>{"{%Icon} 2010"}</text>
-				_legendItems.appendChild(new XML(<item>
-												<icon type="SeriesIcon" series_type="Bar" color={seriesColourName[i]} />
-												<text>{iconName}</text>
-											</item>));
 				// This just builds an empty array, nothing in it or linked to it yet
 				var emptyYear:Array = new Array();
 				for each (var month:Object in monthNames) {
@@ -253,10 +255,26 @@
 					//emptyData[i][thisMonth].value = dataYear[dataMonth].sessionCount;
 					var thisMonth:uint = parseInt(dataMonth.month);
 					emptyData[j][thisMonth].value = dataMonth.sessionCount;
+					// accumulate the whole year usage times
+					totalSessionCount += Number(dataMonth.sessionCount);
+					TraceUtils.myTrace("totalSessionCount="+totalSessionCount);
 				}
+				totalSessionArray[j] = totalSessionCount;
+				totalSessionCount=0;
+				TraceUtils.myTrace("totalSessionArray="+totalSessionArray[j]);				
 				j--;
-				//thisYear--;
+				//thisYear--;				
 			}
+			
+			// the chart label is put here for getting the totalSession amount 
+			for(i = 0; i <= endYear - startYear; i++){
+				var iconName:String = "{%Icon} " + String(endYear-i);
+				TraceUtils.myTrace("iconName is "+iconName);
+				_legendItems.appendChild(new XML(<item>
+												   <icon type="SeriesIcon" series_type="Bar" color={seriesColourName[endYear - startYear-i]} />                                              
+												   <text>{iconName}, total: {totalSessionArray[i]}</text>
+												 </item>));
+			}			
 			//for each (var dataYear:Array in data) {
 			//for (var thisYear:int = 0; thisYear < endYear - startYear; thisYear++) {
 
@@ -334,8 +352,68 @@
 			//yAxisSlider.snapInterval = yAxisSlider.tickInterval = Math.floor(thisMax / 10);
 			//yAxisSlider.value = thisMax;
 			//TraceUtils.myTrace("now chart is " + _fullChartXML.toXMLString());
+			
+			//v3.7.2.1 add overLastYear data to the session block			
+			//counter.text = courseCount.toString();
+			var seconds:Number = new Number(timeCount);
+			var unitLabel:String;
+			var replaceObj:Object = new Object();
+			
+			/* v3.7.2.2 modify the plural problem
+			if (seconds > 3600) {
+				//unitLabel = "hours and minutes";
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes").toLowerCase();
+			} else {
+				//unitLabel = "minutes and seconds";
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelMinutesSeconds").toLowerCase();
+			}*/
+			// Split up the numbers and units
+			//singleTimeCountLabel.text = getFormattedSeconds(seconds, seconds) + " " + unitLabel;
+			//v3.7.2.1 compose one sentence
+			//singleTimeCountLabel.text = getFormattedSeconds(seconds, seconds);
+			//singleTimeUnitLabel.text = unitLabel;
+			
+			replaceObj.x = numberFormatter.format(courseCount.toString());
+			var tempY:String = getFormattedSeconds(seconds, seconds);
+			replaceObj.y = numberFormatter.format( tempY );
+			trace("replace.y = "+ replaceObj.y );
+			if( Number(tempY) > 1 || Number(tempY) == 0) {
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes").toLowerCase();
+			} else {
+				unitLabel = copyProvider.getCopyForId("courseTimeLabelHoursMinutes2").toLowerCase();
+			}
+			
+			if (courseCount>1 ||courseCount == 0){
+				replaceObj.timeLabel = "times";
+			} else {
+				replaceObj.timeLabel = "time";
+			}
+			replaceObj.unitLabel = unitLabel;
 
+			startText1.text = copyProvider.getCopyForId("singleCourseUserCount", replaceObj);
+			startText2.text = copyProvider.getCopyForId("sessionChartTitle");
 		}
+			
+		//v3.7.2.1
+		private function getFormattedSeconds(seconds:Number = 0, thisMax:Number = 3600):String {
+				// AR This breaks seconds down into xx:yy where xx is either hours or minutes depending
+				// on how big the value of seconds is.
+				var lblhours:Number;
+				var lblminutes:Number;
+				var lblseconds:Number;
+				if (thisMax > 3600) {
+					// Round the seconds if you are showing hours
+					lblhours = Math.round(seconds / 3600);
+					//lblminutes = Math.round((seconds - (lblhours * 3600)) / 60);
+					//return String(lblhours) + ":" + StringUtils.padLeft(String(lblminutes),"0",2);
+					return String(lblhours) ;
+				} else {
+					// Drop hours label if less than 1
+					lblminutes = Math.round(seconds / 60);
+					//lblseconds = seconds - (lblminutes * 60);
+					return String(lblminutes) ;
+				}
+			}
 
 		public function changeYScaleLinear(maxValue:uint):uint {
 			// Start with fresh XML
@@ -433,13 +511,14 @@
 			return maxYScale;
 		}
 		
-		public function updateChart(dataProvider:Object, startDate:Date, endDate:Date):void {
+		public function updateChart(dataProvider:Object, startDate:Date, endDate:Date,courseCount:Number, timeCount:Number):void {
 			TraceUtils.myTrace("sessions updateChart for " + startDate + " to " + endDate);
-			setData(dataProvider, startDate, endDate);
+			setData(dataProvider, startDate, endDate, courseCount, timeCount);
 			
 			//TraceUtils.myTrace("updateChart with " + _fullChartXML.toString());
 			comparisonChart.anychartXML=_fullChartXML;
 		}
+			
 		
 		// For the user to change the yaxis scale
 		// Remove
@@ -455,7 +534,25 @@
 		//}		
 		]]>
 	</mx:Script>
-	<mx:VBox width="100%" height="100%">
+	
+	<mx:Style>
+		@font-face {
+			src:url("/../assets/counterFont.swf");
+			fontFamily: "Impact";
+		}
+		.myCounterStyle {
+			/*the impact font couse display error, so I delete it  and chang fontWeight from "normal" to "bold"*/
+			/*fontFamily: "Impact";*/
+			fontWeight: "bold";
+			fontStyle: "regular";
+			fontSize: 11;
+			textAlign: "center";
+		}
+	</mx:Style>
+	<mx:NumberFormatter id="numberFormatter"/>
+	<mx:VBox id="lastOverYear" width="100%" height="100%" paddingTop="10" >
+		<mx:Text width="100%" id="startText1" styleName="myCounterStyle"/>
+		<mx:Text width="100%" id="startText2" styleName="myCounterStyle"/>
 		<ns1:AnyChartFlex id="comparisonChart" width="100%" height="400" />
 		<!-- 
 			<mx:HSlider id="yAxisSlider" height="50" change="changeTheYAxis(event)" liveDragging="true" /> 

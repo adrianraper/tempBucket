@@ -6,6 +6,7 @@
 		   horizontalScrollPolicy="off">
 	<mx:Script>
 		<![CDATA[
+		import mx.formatters.DateFormatter;
 		import com.clarityenglish.common.vo.content.Title;
 		import com.clarityenglish.common.vo.dictionary.DictionarySingleton;
 		import com.clarityenglish.dms.view.account.AccountMediator;

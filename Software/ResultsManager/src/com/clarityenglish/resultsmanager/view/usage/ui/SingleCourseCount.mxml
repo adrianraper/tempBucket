@@ -34,9 +34,10 @@
 		private var copyProvider:CopyProvider;
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			//title = copyProvider.getCopyForId("courseUserCounts");
-			title = copyProvider.getCopyForId("singleCourseCount");
-			courseTimeCountsLabel.text = copyProvider.getCopyForId("singleCourseTimeCount");
+			//title = copyProvider.getCopyForId("detailTitle");
+			//courseTimeCountsLabel.text = copyProvider.getCopyForId("singleCourseTimeCount");
 			courseUserCountsLabel.text = copyProvider.getCopyForId("singleCourseUserCount");
+			counterText.text = copyProvider.getCopyForId("timeConnection").toLocaleLowerCase();
 			this.copyProvider = copyProvider;
 		}
 		
@@ -72,7 +73,8 @@
 			//singleTimeCountLabel.text = getFormattedSeconds(seconds, seconds) + " " + unitLabel;
 			singleTimeCountLabel.text = getFormattedSeconds(seconds, seconds);
 			singleTimeUnitLabel.text = unitLabel;
-		}	
+		}
+			
 		private function getFormattedSeconds(seconds:Number = 0, thisMax:Number = 3600):String {
 			// AR This breaks seconds down into xx:yy where xx is either hours or minutes depending
 			// on how big the value of seconds is.
@@ -106,24 +108,25 @@
 			fontFamily: "Impact";
 		}
 		.myCounterStyle {
-			fontFamily: "Impact";
-			fontWeight: "normal";
+			/*the impact font couse display error, so I delete it  and chang fontWeight from "normal" to "bold"*/
+			/*fontFamily: "Impact";*/
+			fontWeight: "bold";
 			fontStyle: "regular";
-			fontSize: 44;
+			fontSize: 20;
 		}
 	</mx:Style>
 
 	<mx:VBox id="courseCountsContainer" width="100%">
 		<mx:HBox width="100%">
 			<mx:Label width="50%" id="courseUserCountsLabel" fontWeight="bold" />
-			<mx:Label id="courseTimeCountsLabel" fontWeight="bold" />
+			<!--mx:Label id="courseTimeCountsLabel" fontWeight="bold" /-->
 		</mx:HBox>
-		<mx:HBox width="100%" verticalAlign="bottom" >
-			<mx:Spacer width="10%" />
-			<mx:Label id="counter" styleName="myCounterStyle" width="40%" textAlign="left" />
-			<mx:Spacer width="10%" />
-			<mx:Label id="singleTimeCountLabel" styleName="myCounterStyle" fontSize="24" textAlign="left" />
-			<mx:Label id="singleTimeUnitLabel" styleName="myCounterStyle" fontSize="24" textAlign="left" />
+		<mx:HBox width="100%" verticalAlign="bottom">
+			<!--mx:Spacer width="5%" /-->
+			<mx:Label id="counter" styleName="myCounterStyle" textAlign="left"/>
+			<mx:Label id="counterText" styleName="myCounterStyle" textAlign="left"/>
+			<mx:Label id="singleTimeCountLabel" styleName="myCounterStyle" textAlign="left"/>
+			<mx:Label id="singleTimeUnitLabel" styleName="myCounterStyle" textAlign="left" />
 				<!-- 
 			<mx:VBox id="scu" width="50%" height="100%" paddingLeft="20" paddingBottom="10" minHeight="100" verticalAlign="middle" > 
 			fontFamily: "Souvenir Lt BT";

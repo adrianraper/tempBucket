@@ -3,23 +3,26 @@
  */
 package com.clarityenglish.resultsmanager.view.usage {
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.resultsmanager.model.ManageableProxy;
-	import com.clarityenglish.resultsmanager.model.UsageProxy;
-	import com.clarityenglish.resultsmanager.RMNotifications;
-	import com.clarityenglish.resultsmanager.view.shared.events.TitleEvent;
 	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.ApplicationFacade;
+	import com.clarityenglish.resultsmanager.RMNotifications;
+	import com.clarityenglish.resultsmanager.model.ManageableProxy;
+	import com.clarityenglish.resultsmanager.model.UsageProxy;
+	import com.clarityenglish.resultsmanager.view.licence.events.LicenceTypeEvent;
+	import com.clarityenglish.resultsmanager.view.shared.events.TitleEvent;
+	import com.clarityenglish.resultsmanager.view.usage.*;
+	import com.clarityenglish.resultsmanager.view.usage.components.*;
+	import com.clarityenglish.utils.TraceUtils;
+	
 	import org.davekeen.utils.ArrayUtils;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
-	import com.clarityenglish.resultsmanager.view.usage.components.*;
-	import com.clarityenglish.resultsmanager.view.usage.*;
-	import com.clarityenglish.utils.TraceUtils;
+	
 	
 	/**
 	 * A Mediator
@@ -42,6 +45,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 			super.onRegister();
 			
 			usageView.addEventListener(TitleEvent.TITLE_CHANGE, onTitleChange);
+			usageView.addEventListener(LicenceTypeEvent.LICENCE, onLicenceType);
 		}
 		
 		private function get usageView():UsageView {
@@ -74,6 +78,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 		override public function listNotificationInterests():Array {
 			return [
 					RMNotifications.USAGE_LOADED,
+					RMNotifications.FIXEDUSAGE_LOADED,
 					CommonNotifications.COPY_LOADED,
 					RMNotifications.CONTENT_LOADED,
 					RMNotifications.MANAGEABLES_LOADED,
@@ -122,7 +127,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 					
 					// v3.6 based on the data that comes back, we can work out which component views we want to display
 					// How to safely work out if the parts of the object that I am expecting exist?
-					if (data.sessionCounts) {
+					/*v3.7if (data.sessionCounts) {
 						var toDate:Date = new Date(usageView.toDateField.selectedDate.setHours(23, 59, 59, 999));
 						var fromDate:Date = new Date(usageView.fromDateField.selectedDate.setHours(0, 0, 0, 0));
 						//if (data.sessionCounts['2010']) {
@@ -138,7 +143,7 @@ package com.clarityenglish.resultsmanager.view.usage {
 						TraceUtils.myTrace("not got sessionsStarted");
 						usageView.show_session_count = false;
 					}
-					TraceUtils.myTrace("for title=" + selectedTitle.name);
+					TraceUtils.myTrace("for title=" + selectedTitle.name);*/////////v3.7
 						
 					// AR Another problem is that if one course has had nothing happen, it will not exist 
 					// in data. But we certainly want to see it listed with 0s.
@@ -254,9 +259,14 @@ package com.clarityenglish.resultsmanager.view.usage {
 					// against the number of licences
 					// We need completely different view for AA licences
 					//usageView.userTypeCounts.AAlicence = (selectedTitle.licenceType==Title.LICENCE_TYPE_AA);
-					usageView.userTypeCounts.AAlicence = (selectedTitle.licenceType == Title.LICENCE_TYPE_AA || 
+					/*v3.7usageView.userTypeCounts.AAlicence = (selectedTitle.licenceType == Title.LICENCE_TYPE_AA || 
 															selectedTitle.licenceType==Title.LICENCE_TYPE_NETWORK ||
 															selectedTitle.licenceType==Title.LICENCE_TYPE_CT);
+					
+					//v3.7 once the licenceType was assigned to "AAlicence", we inform the usageView to perform the visiblity function
+					var licenceTypeEvent:LicenceTypeEvent = new LicenceTypeEvent(LicenceTypeEvent.LICENCE, usageView.userTypeCounts.AAlicence);
+					usageView.dispatchEvent(licenceTypeEvent);
+					
 					TraceUtils.myTrace("AAlicence=" + usageView.userTypeCounts.AAlicence + " as licenceType=" + selectedTitle.licenceType);
 					//usageView.userTypeCounts.setExpiryDate(selectedTitle.expiryDate);
 					usageView.userTypeCounts.setExpiryDate(selectedTitle, data.licenceClearanceDate);
@@ -276,9 +286,78 @@ package com.clarityenglish.resultsmanager.view.usage {
 					}
 					// Send more information about the account
 					TraceUtils.myTrace("set other info for " + selectedTitle.name);
-					usageView.userTypeCounts.setTitleInformation(selectedTitle);
-
+					usageView.userTypeCounts.setTitleInformation(selectedTitle);*////////
+                    
+					/*if (data.overLastYear == new Object()) {
+						data.overLastYear = new Array();
+					}
+					usageView.setOverLastYear(data.overLastYear); */
 					
+					break;
+				case RMNotifications.FIXEDUSAGE_LOADED:
+					var fixData:Object = note.getBody();
+					selectedTitle = usageView.titleList.selectedItem as Title;
+					
+					if (fixData.sessionCounts) {
+						var fromToday:Date = new Date();
+						fromToday.fullYear--;
+						var toLastToday:Date = new Date();
+						var toFixDate:Date = new Date(toLastToday.setHours(23, 59, 59, 999));
+						var fromFixDate:Date = new Date(fromToday.setHours(0, 0, 0, 0));
+						//if (data.sessionCounts['2010']) {
+						TraceUtils.myTrace("got sessionsStarted");
+						usageView.show_session_count = true;
+						
+						//v3.7.2.1  move overLastYear to session block
+						if (fixData.overLastYear == new Object()) {
+							fixData.overLastYear = new Array();						
+						}
+					    usageView.setSessionCounts(fixData.sessionCounts, fromFixDate, toFixDate, fixData.overLastYear);
+						
+					    //v3.7.2.1 move overLastYear to session block
+						//} else {
+						//	TraceUtils.myTrace("not got sessionsStarted");
+						//	usageView.show_session_count = false;
+						//}
+					} else {
+						TraceUtils.myTrace("not got sessionsStarted");
+						usageView.show_session_count = false;
+					}
+					TraceUtils.myTrace("for title=" + selectedTitle.name);
+					
+					usageView.userTypeCounts.AAlicence = (selectedTitle.licenceType == Title.LICENCE_TYPE_AA || 
+						selectedTitle.licenceType==Title.LICENCE_TYPE_NETWORK ||
+						selectedTitle.licenceType==Title.LICENCE_TYPE_CT);
+					
+					//v3.7 once the licenceType was assigned to "AAlicence", we inform the usageView to perform the visiblity function
+					var licenceTypeEvent:LicenceTypeEvent = new LicenceTypeEvent(LicenceTypeEvent.LICENCE, usageView.userTypeCounts.AAlicence);
+					usageView.dispatchEvent(licenceTypeEvent);
+					
+					TraceUtils.myTrace("AAlicence=" + usageView.userTypeCounts.AAlicence + " as licenceType=" + selectedTitle.licenceType);
+					//usageView.userTypeCounts.setExpiryDate(selectedTitle.expiryDate);
+					usageView.userTypeCounts.setExpiryDate(selectedTitle, fixData.licenceClearanceDate);
+					// v3.6 Or rather, we need a different view for LT
+					//if (selectedTitle.licenceType == Title.LICENCE_TYPE_AA) {
+					//if (selectedTitle.licenceType == Title.LICENCE_TYPE_LT ||
+					//	selectedTitle.licenceType == Title.LICENCE_TYPE_TT) {
+					if (!usageView.userTypeCounts.AAlicence) {
+						TraceUtils.myTrace("usageMediator: titleUserCounts=" + fixData.titleUserCounts + " of max=" + selectedTitle.maxStudents + " date=" + fixData.licenceClearanceDate);
+						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle.maxStudents);
+						//usageView.userTypeCounts.setStudentValues(data.titleUserCounts, selectedTitle);
+						usageView.userTypeCounts.setStudentValues(fixData.titleUserCounts, selectedTitle, fixData.licenceClearanceDate);
+						// and a nice maximum on the other users chart
+						//usageView.userTypeCounts.setOtherUsersMax()						
+					} else {
+						usageView.userTypeCounts.setAALicence(selectedTitle.maxStudents);
+					}
+					// Send more information about the account
+					TraceUtils.myTrace("set other info for " + selectedTitle.name);
+					usageView.userTypeCounts.setTitleInformation(selectedTitle);
+					
+					/*if (fixData.overLastYear == new Object()) {
+						fixData.overLastYear = new Array();						
+					}
+					usageView.setOverLastYear(fixData.overLastYear);*/
 					break;
 				case RMNotifications.CONTENT_LOADED:
 					usageView.titleList.dataProvider = note.getBody();
@@ -293,8 +372,23 @@ package com.clarityenglish.resultsmanager.view.usage {
 		}
 		
 		private function onTitleChange(e:TitleEvent):void {
+			TraceUtils.myTrace("toFixDate is "+ e.toDate);
+			TraceUtils.myTrace("fromFixDate is "+ e.fromDate);
 			var usageProxy:UsageProxy = facade.retrieveProxy(UsageProxy.NAME) as UsageProxy;
 			usageProxy.getUsage(e.title, e.fromDate, e.toDate);
+			
+			var fromToday:Date = new Date();
+			fromToday.fullYear--;
+			var toLastToday:Date = new Date();
+			var toFixDate:Date = new Date(toLastToday.setHours(23, 59, 59, 999));
+			var fromFixDate:Date = new Date(fromToday.setHours(0, 0, 0, 0));
+			TraceUtils.myTrace("toFixDate is "+ toFixDate);
+			TraceUtils.myTrace("fromFixDate is "+ fromFixDate);
+			usageProxy.getFixedUsage(e.title, fromFixDate, toFixDate);
+		}
+		
+		private function onLicenceType(e:LicenceTypeEvent):void {
+			usageView.setLicenceType(e.isAAlicence);
 		}
 		
 		/**

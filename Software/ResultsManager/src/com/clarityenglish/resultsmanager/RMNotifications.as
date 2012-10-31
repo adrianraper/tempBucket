@@ -16,6 +16,7 @@
 		public static const MANAGEABLE_SELECTED:String = "manageable_selected";
 		public static const SHOW_REPORT_WINDOW:String = "show_report_window";
 		public static const USAGE_LOADED:String = "usage_loaded";
+		public  static const FIXEDUSAGE_LOADED:String = "fixed_usage_loaded";
 		public static const SET_EXTRA_GROUPS:String = "set_extra_groups";
 		public static const EXTRA_GROUPS_LOADED:String = "extra_groups_loaded";
 		public static const ARCHIVE_MANAGEABLES:String = "archive_manageables";
