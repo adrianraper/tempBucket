@@ -257,16 +257,16 @@
 	</fx:Script>
 
 	<s:Group id="switcher">
-		<s:SWFLoader id="imageCircle" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseCircle')" x="62" y="35" />
+		<s:SWFLoader id="imageCircle" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CourseCircle')" x="62" y="35" />
 		<s:Group id="imageGroup" useHandCursor="true">
-			<s:SWFLoader id="readingImage" x="62" y="35" alpha="1" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseReading')" />
-			<s:SWFLoader id="listeningImage" x="62" y="35" alpha="0" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseListening')" />
-			<s:SWFLoader id="speakingImage" x="62" y="35" alpha="0" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseSpeaking')" />
-			<s:SWFLoader id="writingImage" x="62" y="35" alpha="0" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='CourseWriting')" />
+			<s:SWFLoader id="readingImage" x="62" y="35" alpha="1" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CourseReading')" />
+			<s:SWFLoader id="listeningImage" x="62" y="35" alpha="0" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CourseListening')" />
+			<s:SWFLoader id="speakingImage" x="62" y="35" alpha="0" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CourseSpeaking')" />
+			<s:SWFLoader id="writingImage" x="62" y="35" alpha="0" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='CourseWriting')" />
 		</s:Group>
 		<s:Group>
 			<component:RotationButton id="writing"
-									  loaderSource="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIcon')"
+									  loaderSource="@Embed(source='/skins/ielts/assets/assets.swf', symbol='WritingIcon')"
 									  labelText="  Writing"
 									  x="{ThirdPos_x}"
 									  y="{ThirdPos_y}"
@@ -275,7 +275,7 @@
 									  buttonMode="true"
 									  tabletButtonMode="{this.tabletMode}" />
 			<component:RotationButton id="speaking"
-									  loaderSource="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIcon')"
+									  loaderSource="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SpeakingIcon')"
 									  labelText="Speaking"
 									  x="{SecondPos_x}"
 									  y="{SecondPos_y}"
@@ -284,7 +284,7 @@
 									  buttonMode="true"
 									  tabletButtonMode="{this.tabletMode}" />
 			<component:RotationButton id="listening"
-									  loaderSource="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIcon')"
+									  loaderSource="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ListeningIcon')"
 									  labelText="Listening"
 									  x="{FirstPos_x}"
 									  y="{FirstPos_y}"
@@ -293,7 +293,7 @@
 									  buttonMode="true"
 									  tabletButtonMode="{this.tabletMode}" />
 			<component:RotationButton id="reading"
-									  loaderSource="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIcon')"
+									  loaderSource="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ReadingIcon')"
 									  labelText=" Reading"
 									  x="{ActivePos_x}"
 									  y="{ActivePos_y}"

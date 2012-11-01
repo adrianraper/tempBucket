@@ -33,19 +33,19 @@ package com.clarityenglish.ielts.view.zone.ui {
 		
 		public var courseClass:String;
 		
-		[Embed(source="skins/ielts/assets/defaultExerciseThumbnail.png")]
+		[Embed(source="/skins/ielts/assets/defaultExerciseThumbnail.png")]
 		private static var defaultExerciseThumbnail:Class;
 		
-		[Embed(source="skins/ielts/assets/ioErrorThumbnail.png")]
+		[Embed(source="/skins/ielts/assets/ioErrorThumbnail.png")]
 		private static var ioErrorThumbnail:Class;
 		
-		[Embed(source="skins/ielts/assets/Reading_thumbnail.png")] 
+		[Embed(source="/skins/ielts/assets/Reading_thumbnail.png")] 
 		private static var readingThumbnail:Class;
-		[Embed(source="skins/ielts/assets/Writing_thumbnail.png")]
+		[Embed(source="/skins/ielts/assets/Writing_thumbnail.png")]
 		private static var writingThumbnail:Class;
-		[Embed(source='skins/ielts/assets/Listening_thumbnail.png')] 
+		[Embed(source='/skins/ielts/assets/Listening_thumbnail.png')] 
 		private static var listeningThumbnail:Class;
-		[Embed(source='skins/ielts/assets/Speaking_thumbnail.png')]
+		[Embed(source='/skins/ielts/assets/Speaking_thumbnail.png')]
 		private static var speakingThumbnail:Class;
 
 		public override function set data(value:Object):void {

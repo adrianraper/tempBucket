@@ -26,7 +26,7 @@
 
 	<s:VGroup paddingTop="75" width="100%">
 		<s:HGroup>
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
+			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ProfileIcon')"/>
 			<s:VGroup alignmentBaseline="ideographicBottom">
 				<s:Label id="welcomeLabel" top="0" right="0" />
 				<s:Label id="noticeLabel" top="0" right="0" />
@@ -45,10 +45,10 @@
 			<s:Label text="The colour bars show how much you have completed in each skill area. Go to My Progress for more details." width="80%" lineHeight="18" />	
 		</s:VGroup>
 		<s:VGroup id="welcomeGroup" width="100%" paddingTop="5" visible="{hostComponent.noProgressData}" includeInLayout="{hostComponent.noProgressData}" >
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/home_coursebar_demo.png')" 
+			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/home_coursebar_demo.png')" 
 						 visible="{(hostComponent.isDemo())}"
 						 includeInLayout="{(hostComponent.isDemo())}"/>			
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/home_coursebar.png')" 
+			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/home_coursebar.png')" 
 						 visible="{(!hostComponent.isDemo())}"
 						 includeInLayout="{(!hostComponent.isDemo())}"/>			
 			

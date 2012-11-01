@@ -82,35 +82,35 @@ package com.clarityenglish.ielts.view.login {
 		public var savedName:String;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourAcademic")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
 		private var tenHourAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourGeneralTraining")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
 		private var tenHourGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteAcademic")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
 		private var lastMinuteAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
 		private var lastMinuteGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoAcademic")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoGeneralTraing")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
 		
 		public function LoginView() {
@@ -430,8 +430,9 @@ package com.clarityenglish.ielts.view.login {
 			invalidateSkinState();
 		}
 		
-		public function setCopyProvider(copyProvider:CopyProvider):void {
-		}
+		//issue:#11
+		/*public function setCopyProvider(copyProvider:CopyProvider):void {
+		}*/
 		
 		public function showInvalidLogin(error:BentoError):void {
 			// #280 - this is no longer used

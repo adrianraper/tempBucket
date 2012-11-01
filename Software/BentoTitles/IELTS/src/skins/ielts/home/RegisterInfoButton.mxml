@@ -164,8 +164,8 @@
 	</s:Label>
 	
 	<!-- layer 9: IELTS course button specific stuff -->
-	<s:SWFLoader source="@Embed(source='skins/ielts/assets/register_small.png')" right="-1" />
+	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/register_small.png')" right="-1" />
 	<s:RichText text="Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!" color="0xFFFFFF" fontWeight="bold" left="20" top="25" fontSize="15" width="47%" />
-	<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="20" top="120" />
+	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="20" top="120" />
 
 </s:SparkButtonSkin>

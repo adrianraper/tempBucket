@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.ielts.view.progress.ui.ProgressBarRenderer;
 	
 	import flash.events.Event;
@@ -10,6 +11,7 @@ package com.clarityenglish.ielts.view.progress.components {
 	
 	import spark.components.ButtonBar;
 	import spark.components.DataGrid;
+	import spark.components.gridClasses.GridColumn;
 	import spark.events.IndexChangeEvent;
 	
 	public class ProgressScoreView extends BentoView {
@@ -26,6 +28,33 @@ package com.clarityenglish.ielts.view.progress.components {
 		[Bindable]
 		public var tableDataProvider:XMLListCollection;
 		
+		[SkinPart]
+		public var scoreReading:Object;
+		
+		[SkinPart]
+		public var scoreListening:Object;
+		
+		[SkinPart]
+		public var scoreSpeaking:Object;
+		
+		[SkinPart]
+		public var scoreWriting:Object;
+		
+		[SkinPart]
+		public var scoreGridC1:GridColumn;
+		
+		[SkinPart]
+		public var scoreGridC2:GridColumn;
+		
+		[SkinPart]
+		public var scoreGridC3:GridColumn;
+		
+		[SkinPart]
+		public var scoreGridC4:GridColumn;
+		
+		[SkinPart]
+		public var scoreGridC5:GridColumn;
+		
 		public var chartDataProvider:XML;
 		
 		public var _summaryData:XML;
@@ -37,6 +66,13 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		public var courseSelect:Signal = new Signal(String);
 		
+	    private var _viewCopyProvider:CopyProvider;
+		
+		//issue:#11 Language Code
+		public function set viewCopyProvider(viewCopyProvider:CopyProvider):void {
+			_viewCopyProvider = viewCopyProvider;
+		}
+				
 		/**
 		 * This setter is given a full XML that includes scores and coverage for the student.
 		 * It then breaks this down into dataProviders for the components that will display this
@@ -123,7 +159,37 @@ package com.clarityenglish.ielts.view.progress.components {
 			switch (instance) {
 				case progressCourseButtonBar:
 					progressCourseButtonBar.requireSelection = true;
-					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);
+					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);					
+					break;
+				case scoreReading:
+					instance.label = _viewCopyProvider.getCopyForId("Reading");
+					break;
+				case scoreListening:
+					instance.label = _viewCopyProvider.getCopyForId("Listening");
+					break;
+				case scoreSpeaking:
+					instance.label = _viewCopyProvider.getCopyForId("Speaking");
+					break;
+				case scoreWriting:
+					instance.label = _viewCopyProvider.getCopyForId("Writing");
+					break;
+				case progressBar:
+					instance.copyProvider = _viewCopyProvider;
+					break;
+				case scoreGridC1:
+					scoreGridC1.headerText = _viewCopyProvider.getCopyForId("scoreGridC1");
+					break;
+				case scoreGridC2:
+					scoreGridC2.headerText = _viewCopyProvider.getCopyForId("scoreGridC2");
+					break;
+				case scoreGridC3:
+					scoreGridC3.headerText = _viewCopyProvider.getCopyForId("scoreGridC3");
+					break;
+				case scoreGridC4:
+					scoreGridC4.headerText = _viewCopyProvider.getCopyForId("scoreGridC4");
+					break;
+				case scoreGridC5:
+					scoreGridC5.headerText = _viewCopyProvider.getCopyForId("scoreGridC5");
 					break;
 			}
 		}

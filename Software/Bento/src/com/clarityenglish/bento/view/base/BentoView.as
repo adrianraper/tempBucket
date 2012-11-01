@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -55,12 +56,19 @@ package com.clarityenglish.bento.view.base {
 		 */
 		public var config:Config;
 		
+		protected var copyProvider:CopyProvider;
+		
 		public function BentoView() {
 			super();
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			addEventListener(FlexEvent.PREINITIALIZE, onPreinitialize, false, 0, true);
+		}
+		
+		//issue:#11 Language Code, need to be overriveden 
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
 		}
 		
 		/**

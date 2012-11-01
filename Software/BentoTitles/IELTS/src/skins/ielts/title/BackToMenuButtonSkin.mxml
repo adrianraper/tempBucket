@@ -70,7 +70,7 @@
 	<s:Group left="20">
 		
 		<s:Group x="7" y="8" top="0" left="0" >
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='BackToMenuButton')" alpha.over="0.6" />
+			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='BackToMenuButton')" alpha.over="0.6" />
 		</s:Group>
 		
 		<s:Label id="labelDisplay" 

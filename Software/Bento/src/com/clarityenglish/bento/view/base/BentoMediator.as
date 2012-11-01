@@ -1,4 +1,7 @@
 package com.clarityenglish.bento.view.base {
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
@@ -42,6 +45,12 @@ package com.clarityenglish.bento.view.base {
 			return viewComponent as BentoView;
 		}
 		
+		protected function injectCopy():void {
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+			view.setCopyProvider(copyProvider);
+			trace("injectCopy setCopyProvider");
+		}
+		
 		public override function onRegister():void {
 			super.onRegister();
 			
@@ -56,6 +65,10 @@ package com.clarityenglish.bento.view.base {
 				view.productCode = configProxy.getProductCode();
 				view.productVersion = configProxy.getProductVersion(); // #234
 			}
+			
+			injectCopy();
+			
+			
 		}
 		
 		protected function onXHTMLReady(xhtml:XHTML):void {
@@ -99,6 +112,9 @@ package com.clarityenglish.bento.view.base {
 					if (note.getBody().href === view.href && note.getBody().href !== currentlyLoadedHref) {
 						onXHTMLLoadIOError(note.getBody().href);
 					}
+					break;
+				case CommonNotifications.COPY_LOADED:
+					injectCopy();
 					break;
 			}
 		}

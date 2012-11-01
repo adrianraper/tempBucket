@@ -113,6 +113,6 @@
         </s:fill>
     </s:Rect>
     
-	<s:SWFLoader id="playSymbol" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='VideoVolumeButton')" />
+	<s:SWFLoader id="playSymbol" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='VideoVolumeButton')" />
 	
 </s:SparkSkin>

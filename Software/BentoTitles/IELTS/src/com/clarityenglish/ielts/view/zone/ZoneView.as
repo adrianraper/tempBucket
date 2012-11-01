@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.zone.courseselector.CourseSelector;
@@ -13,6 +14,10 @@ package com.clarityenglish.ielts.view.zone {
 	import org.osflash.signals.Signal;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	
+	import spark.components.Label;
+	import spark.components.NavigatorContent;
+	import spark.components.ViewNavigator;
+	
 	public class ZoneView extends BentoView {
 		
 		[SkinPart(required="true")]
@@ -20,6 +25,18 @@ package com.clarityenglish.ielts.view.zone {
 		
 		[SkinPart(required="true")]
 		public var sectionNavigator:ISelectableList;
+		
+		[SkinPart(required="true")]
+		public var questionZoneViewNavigator:ViewNavigator;
+		
+		[SkinPart(required="true")]
+		public var adviceZoneViewNavigator:ViewNavigator;
+		
+		[SkinPart(required="true")]
+		public var practiceZoneViewNavigator:ViewNavigator;
+		
+		[SkinPart(required="true")]
+		public var testZoneViewNavigator:ViewNavigator;
 		
 		[Bindable]
 		public var user:User;
@@ -112,6 +129,19 @@ package com.clarityenglish.ielts.view.zone {
 					// #486
 					sectionNavigator.addEventListener(Event.CHANGE, onSectionNavigatorChange, false, 0, true);
 					if (lastSelectedSectionIdx >= 0) sectionNavigator.selectedIndex = lastSelectedSectionIdx;
+					break;
+				//issue:#11 Language Code
+				case questionZoneViewNavigator:
+					instance.label = copyProvider.getCopyForId("questionZoneViewNavigator");
+					break;
+				case adviceZoneViewNavigator:
+					instance.label = copyProvider.getCopyForId("adviceZoneViewNavigator");
+					break;
+				case practiceZoneViewNavigator:
+					instance.label = copyProvider.getCopyForId("practiceZoneViewNavigator");
+					break;
+				case testZoneViewNavigator:
+					instance.label = copyProvider.getCopyForId("testZoneViewNavigator");
 					break;
 			}
 		}

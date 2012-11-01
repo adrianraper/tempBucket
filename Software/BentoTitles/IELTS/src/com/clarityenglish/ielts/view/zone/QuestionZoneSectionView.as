@@ -7,6 +7,7 @@ package com.clarityenglish.ielts.view.zone {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	
 	public class QuestionZoneSectionView extends AbstractZoneSectionView {
 		
@@ -18,6 +19,12 @@ package com.clarityenglish.ielts.view.zone {
 		
 		[SkinPart(required="true")]
 		public var videoButton:Button;
+		
+		[SkinPart(required="true")]
+		public var questionVideoLabel:Label;
+		
+		[SkinPart(required="true")]
+		public var questionVideoInstructionLabel:Label;
 		
 		public var exerciseSelect:Signal = new Signal(Href);
 		
@@ -35,9 +42,17 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 				case downloadButton:
 					downloadButton.addEventListener(MouseEvent.CLICK, onDownloadButtonClick);
+					instance.label = copyProvider.getCopyForId("downloadButton");
 					break;
 				case videoButton:
 					videoButton.addEventListener(MouseEvent.CLICK, onVideoButtonClick);
+					instance.label = copyProvider.getCopyForId("videoButton");
+					break;
+				case questionVideoLabel:
+					instance.text = copyProvider.getCopyForId("questionVideoCaption");
+					break;
+				case questionVideoInstructionLabel:
+					instance.text = copyProvider.getCopyForId("questionVideoInstruction");
 					break;
 			}
 		}

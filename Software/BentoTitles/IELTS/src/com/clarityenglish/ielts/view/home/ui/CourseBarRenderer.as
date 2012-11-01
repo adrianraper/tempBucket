@@ -12,6 +12,8 @@ package com.clarityenglish.ielts.view.home.ui {
 	import spark.components.Label;
 	import spark.primitives.Rect;
 	
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	
 	public class CourseBarRenderer extends SkinnableDataRenderer {
 		
 		/**
@@ -37,6 +39,11 @@ package com.clarityenglish.ielts.view.home.ui {
 		
 		private var _dataChanged:Boolean;
 		private var _detailData:XML;
+		private var _copyProvider:CopyProvider;
+		
+		public function set copyProvider(copyProvider:CopyProvider):void {
+			_copyProvider = copyProvider;
+		}
 		
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
@@ -60,7 +67,7 @@ package com.clarityenglish.ielts.view.home.ui {
 					//var courseSummaryInfo:XML = value.course.(@["class"]==courseClass).summaryInfo[0];
 					solidColour.color = getStyle(courseClass + "Color");
 					backColour.color = getStyle(courseClass + "ColorDark");
-					commentLabel.text = _courseCaption + " - overall coverage " + new Number(course.@coverage) + "%";
+					commentLabel.text = _courseCaption + " " + _copyProvider.getCopyForId("overallCoverage") + " " + new Number(course.@coverage) + "%";
 					var percentValue:Number = new Number(course.@coverage);
 					//var percentValue:Number = new Number(courseSummaryInfo.@coverage);
 					

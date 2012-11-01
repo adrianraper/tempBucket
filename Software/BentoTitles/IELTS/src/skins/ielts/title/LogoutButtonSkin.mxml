@@ -215,7 +215,7 @@ in accordance with the terms of the license agreement accompanying it.
 			 left="10" right="10" top="2" bottom="2">
 	</s:Label>
 	
-	<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='LogoutIcon')" top="7" left="16" />
+	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='LogoutIcon')" top="7" left="16" />
 	<s:RichText text="Logout" left="45" top="12" fontSize="12.6" />
 
 </s:SparkButtonSkin>

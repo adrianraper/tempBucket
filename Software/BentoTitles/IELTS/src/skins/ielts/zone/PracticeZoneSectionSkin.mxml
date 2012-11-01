@@ -32,7 +32,7 @@
 										 horizontalGap="23">
 					<fx:Script>
 						<![CDATA[
-							[Embed(source="skins/ielts/assets/zone/unitlistarrow.png")]
+							[Embed(source="/skins/ielts/assets/zone/unitlistarrow.png")]
 							private var arrowIcon:Class;
 							
 							private function getArrowIcon(item:Object):Object {
@@ -40,7 +40,7 @@
 							}
 							
 							private function getMessageText(item:Object):String {
-								return "Difficulty:";
+								return outerDocument.hostComponent.viewCopyProvider.getCopyForId("difficulty");
 							}
 							
 							private function getDifficultyExercise(item:Object):XML {

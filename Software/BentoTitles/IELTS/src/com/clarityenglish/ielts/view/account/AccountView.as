@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.account {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
@@ -56,6 +57,24 @@ package com.clarityenglish.ielts.view.account {
 		
 		[SkinPart]
 		public var countdownDisplay:CountdownDisplay;
+		
+		[SkinPart]
+		public var setTestDate:Label;
+		
+		[SkinPart]
+		public var testDateLabel:Label;
+		
+		[SkinPart]
+		public var registeredName:Label;
+		
+		[SkinPart]
+		public var email:Label;
+		
+		[SkinPart]
+		public var accountStartDate:Label;
+		
+		[SkinPart]
+		public var accountExpiryDate:Label;
 
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
@@ -89,6 +108,7 @@ package com.clarityenglish.ielts.view.account {
 			switch (instance) {
 				case saveChangesButton:
 					instance.addEventListener(MouseEvent.CLICK, onUpdateButtonClick);
+					instance.label = copyProvider.getCopyForId("saveChangesButton");
 					break;
 				
 				case countdownLabel:
@@ -96,12 +116,12 @@ package com.clarityenglish.ielts.view.account {
 					if (user.examDate) {
 						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
 						if (daysLeft > 0) {
-							instance.text = "This is the remaining time until your test."
+							instance.text = copyProvider.getCopyForId("countDownLabel1");
 						} else if (daysLeft == 0) {
-							instance.text = "Your test is today, good luck!";
+							instance.text = copyProvider.getCopyForId("countDownLabel2");
 						} else {
 							//countdownDisplay.enabled = false;
-							instance.text = "Hope your test went well...";
+							instance.text = copyProvider.getCopyForId("countDownLabel3");
 						}
 						
 					} else {
@@ -125,7 +145,25 @@ package com.clarityenglish.ielts.view.account {
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
-				
+				//issue:#11 Language Code
+				case setTestDate:
+					instance.text = copyProvider.getCopyForId("setTestDate");
+					break;
+				case registeredName:
+					instance.text = copyProvider.getCopyForId("registeredName");
+					break;
+				case email:
+					instance.text = copyProvider.getCopyForId("email");
+					break;
+				case accountStartDate:
+					instance.text = copyProvider.getCopyForId("accountStartDate");
+					break;
+				case accountExpiryDate:
+					instance.text = copyProvider.getCopyForId("accountExpiryDate");
+					break;
+				case testDateLabel:
+					instance.text = copyProvider.getCopyForId("testDateLabel");
+					break;
 			}
 		}
 		

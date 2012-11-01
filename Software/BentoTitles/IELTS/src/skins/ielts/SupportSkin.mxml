@@ -91,7 +91,7 @@
 					</s:RichText>
 					
 					<s:VGroup width="100%" paddingTop="20">
-						<s:SWFLoader width="39" height="42" source="@Embed(source='skins/ielts/assets/support/technical.png')" />
+						<s:SWFLoader width="39" height="42" source="@Embed(source='/skins/ielts/assets/support/technical.png')" />
 						<s:RichText width="90%" paddingBottom="5" >
 							<s:p><s:span fontWeight="bold">Technical problems</s:span></s:p>
 							<s:p>
@@ -102,7 +102,7 @@
 							</s:p>	
 						</s:RichText>
 						<s:SWFLoader width="70" height="23"
-									 source="@Embed(source='skins/ielts/assets/support/claritylogo.png')"/>
+									 source="@Embed(source='/skins/ielts/assets/support/claritylogo.png')"/>
 						<s:RichText width="90%" >
 							<s:p><s:span fontWeight="bold">Clarity Language Consultants Ltd</s:span></s:p>
 							<s:p><s:span>PO Box 163, Sai Kung, Hong Kong</s:span></s:p>
@@ -112,14 +112,14 @@
 					</s:VGroup>
 					<s:VGroup width="100%" paddingTop="20">
 						<s:SWFLoader width="39" height="42"
-									 source="@Embed(source='skins/ielts/assets/support/content.png')" />
+									 source="@Embed(source='/skins/ielts/assets/support/content.png')" />
 						<s:RichText width="90%" >
 							<s:p><s:span fontWeight="bold">Content problems</s:span></s:p>
 							<s:p><s:span>If you have any enquires about the content, for example, if you have questions about an answer in the exercises, 
 								 please contact British Council.</s:span></s:p>						
 						</s:RichText>
 							<s:SWFLoader width="87" height="33"
-										 source="@Embed(source='skins/ielts/assets/support/bc_logo.png')"/>
+										 source="@Embed(source='/skins/ielts/assets/support/bc_logo.png')"/>
 					</s:VGroup>
 				</s:VGroup>
 			</s:HGroup>

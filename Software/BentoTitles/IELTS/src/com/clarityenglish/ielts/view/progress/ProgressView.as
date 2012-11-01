@@ -21,6 +21,7 @@ package com.clarityenglish.ielts.view.progress {
 	import spark.components.ButtonBar;
 	import spark.components.Group;
 	import spark.components.Label;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	/*[SkinState("score")]
 	[SkinState("compare")]
@@ -76,21 +77,24 @@ package com.clarityenglish.ielts.view.progress {
 			
 			switch (instance) {
 				case progressNavBar:
+					//issue:#11 Language Code
 					progressNavBar.dataProvider = new ArrayCollection( [
-						{ label: "My coverage", data: "coverage" },
-						{ label: "Compare", data: "compare" },
-						{ label: "Analyse", data: "analysis" },
-						{ label: "My scores", data: "score" },
+						{ label: this.copyProvider.getCopyForId("progressNavBarCoverage"), data: "coverage" },
+						{ label: this.copyProvider.getCopyForId("progressNavBarCompare"), data: "compare" },
+						{ label: this.copyProvider.getCopyForId("progressNavBarAnalyse"), data: "analysis" },
+						{ label: this.copyProvider.getCopyForId("progressNavBarScores"), data: "score" },
 					] );
 					
 					progressNavBar.requireSelection = true;
 					progressNavBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
 				
-				case progressCoverageView:
 				case progressScoreView:
 				case progressCompareView:
 				case progressAnalysisView:
+					instance.viewCopyProvider = this.copyProvider;
+				case progressCoverageView:
+				
 					// #234
 					instance.productVersion = productVersion;
 					break;

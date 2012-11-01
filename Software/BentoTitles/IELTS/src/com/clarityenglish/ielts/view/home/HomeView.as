@@ -1,5 +1,7 @@
 package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
@@ -117,12 +119,14 @@ package com.clarityenglish.ielts.view.home {
 					if ((licenceType == Title.LICENCE_TYPE_AA) || 
 						((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1))) {
 						if (productVersion == IELTSApplication.DEMO) {
-							instance.text = "Welcome to the Road to IELTS demo.";
+							//issue:#11 Language Code
+							instance.text = copyProvider.getCopyForId("demoWelcomeLabel");
 						} else {
 							instance.text = "";
 						}
 					} else {
-						instance.text = "Welcome, " + user.fullName + ".";
+						//issue:#11 Language Code
+						instance.text = copyProvider.getCopyForId("welcomeLabel") + " " + user.fullName + ".";
 					}
 					break;
 				
@@ -135,16 +139,20 @@ package com.clarityenglish.ielts.view.home {
 					} else {
 						if (user.examDate) {
 							var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-							var daysUnit:String = (daysLeft == 1) ? "day" : "days";
+							//issue:#11 Language Code ?
+							var daysUnit:String = (daysLeft == 1) ? copyProvider.getCopyForId("day") : copyProvider.getCopyForId("days");
 							if (daysLeft > 0) {
-								instance.text = "You have fewer than " + daysLeft.toString() + " " + daysUnit + " until your test.";
+								//isssue:#11 Language Code
+								instance.text = copyProvider.getCopyForId("leftTestDate1") + " " + daysLeft.toString() + " " + daysUnit + " " + copyProvider.getCopyForId("leftTestDate2");
 							} else if (daysLeft == 0) {
-								instance.text = "Good luck with your test!";
+								//issue:#11 Language Code
+								instance.text = copyProvider.getCopyForId("goodLuck");
 							} else {
-								instance.text = "Hope your test went well...";
+								instance.text = copyProvider.getCopyForId("hopeTestWell");;
 							}
 						} else {
-							instance.text = "Please confirm your test date on the My Profile page."
+							//issue:#11 Language Code
+							instance.text = copyProvider.getCopyForId("confirmTestDate");
 						}
 					}
 					break;
@@ -152,7 +160,23 @@ package com.clarityenglish.ielts.view.home {
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
-
+				//issue:#11 Language Code
+				case readingCoverageBar:
+					instance.courseCaption = copyProvider.getCopyForId("Reading");
+					instance.copyProvider = copyProvider;
+					break;
+				case listeningCoverageBar:
+					instance.courseCaption = copyProvider.getCopyForId("Listening");
+					instance.copyProvider = copyProvider;
+					break;
+				case speakingCoverageBar:
+					instance.courseCaption = copyProvider.getCopyForId("Speaking");
+					instance.copyProvider = copyProvider;
+					break;
+				case writingCoverageBar:
+					instance.courseCaption = copyProvider.getCopyForId("Writing");
+					instance.copyProvider = copyProvider;
+					break;
 			}
 		}
 		public function get assetFolder():String {

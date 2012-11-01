@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.ielts.view.progress.ui.CoverageExerciseComponent;
 	import com.clarityenglish.ielts.view.progress.ui.CoverageUnitComponent;
 	import com.clarityenglish.ielts.view.progress.ui.ProgressBarRenderer;
@@ -31,6 +32,18 @@ package com.clarityenglish.ielts.view.progress.components {
 		[SkinPart(required="true")]
 		public var examPracticeCoverage:CoverageExerciseComponent;
 		
+		[SkinPart]
+		public var CoverageReading:Object;
+		
+		[SkinPart]
+		public var CoverageListening:Object;
+		
+		[SkinPart]
+		public var CoverageSpeaking:Object;
+		
+		[SkinPart]
+		public var CoverageWriting:Object;
+		
 		[Bindable]
 		public var practiceZoneDataProvider:XML;
 		
@@ -61,6 +74,11 @@ package com.clarityenglish.ielts.view.progress.components {
 		private var _dataChanged:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
+		
+		//issue:#11 language Code
+		public override function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+		}
 		
 		/**
 		 * This setter is given a full XML that includes scores and coverage for the student.
@@ -153,6 +171,33 @@ package com.clarityenglish.ielts.view.progress.components {
 				case progressCourseButtonBar:
 					progressCourseButtonBar.requireSelection = true;
 					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);
+					break;
+				case CoverageReading:
+					instance.label = copyProvider.getCopyForId("Reading");
+					break;
+				case CoverageListening:
+					instance.label = copyProvider.getCopyForId("Listening");
+					break;
+				case CoverageSpeaking:
+					instance.label = copyProvider.getCopyForId("Speaking");
+					break;
+				case CoverageWriting:
+					instance.label = copyProvider.getCopyForId("Writing");
+					break;
+				case questionZoneCoverage:
+					instance.caption = copyProvider.getCopyForId("questionZoneCoverage");
+					break;
+				case adviceZoneCoverage:
+					instance.caption = copyProvider.getCopyForId("adviceZoneCoverage");
+					break;
+				case examPracticeCoverage:
+					instance.caption = copyProvider.getCopyForId("examPracticeCoverage");
+					break;
+				case practiceZoneCoverage:
+					instance.caption = copyProvider.getCopyForId("practiceZoneCoverage");
+					break;
+				case progressBar:
+					instance.copyProvider = copyProvider;
 					break;
 			}
 		}

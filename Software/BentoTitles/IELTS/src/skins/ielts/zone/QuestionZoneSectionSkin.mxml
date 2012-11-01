@@ -34,20 +34,20 @@
 	name=contentGroup, type=spark.components.Group, required=false
 	-->
 	
-	<s:Label text="Starting out" fontSize="18" fontWeight="bold" left="20" top="12" />
-	<s:Label text="First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test" fontSize="14" left="20" top="35" right="25" />
+	<s:Label id="questionVideoLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
+	<s:Label id="questionVideoInstructionLabel" fontSize="14" left="20" top="35" right="25" />
 	
 	<s:SWFLoader id="questionZoneEBookGraphic"
 				 left="20" right="25" top="85"
-				 source.reading="@Embed(source='skins/ielts/assets/zone/questionzone_reading.png')"
-				 source.writing="@Embed(source='skins/ielts/assets/zone/questionzone_writing.png')"
-				 source.listening="@Embed(source='skins/ielts/assets/zone/questionzone_listening.png')"
-				 source.speaking="@Embed(source='skins/ielts/assets/zone/questionzone_speaking.png')" />
+				 source.reading="@Embed(source='/skins/ielts/assets/zone/questionzone_reading.png')"
+				 source.writing="@Embed(source='/skins/ielts/assets/zone/questionzone_writing.png')"
+				 source.listening="@Embed(source='/skins/ielts/assets/zone/questionzone_listening.png')"
+				 source.speaking="@Embed(source='/skins/ielts/assets/zone/questionzone_speaking.png')" />
 	
 	<s:HGroup top="330" horizontalCenter="0" gap="15">
 		<!-- Even though this button says 'Read ebook' really it is download on iPad since we are using Safari to display the PDF -->
-		<s:Button id="downloadButton" label="Read eBook" color="#FFFFFF" width="150" />
-		<s:Button id="videoButton" label="Watch video" color="#FFFFFF" width="150" />
+		<s:Button id="downloadButton" color="#FFFFFF" width="150" />
+		<s:Button id="videoButton" color="#FFFFFF" width="150" />
 	</s:HGroup>
 	
 </s:Skin>

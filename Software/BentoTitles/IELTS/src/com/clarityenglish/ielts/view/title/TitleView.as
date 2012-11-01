@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
@@ -44,6 +45,57 @@ package com.clarityenglish.ielts.view.title {
 		
 		[SkinPart]
 		public var homeViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var homeViewNavigatorButton1:Button;
+		
+		[SkinPart]
+		public var homeViewNavigatorButton2:Button;
+		
+		[SkinPart]
+		public var myProgressViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var myProgressViewNavigatorButton1:Button;
+		
+		[SkinPart]
+		public var myProgressViewNavigatorButton2:Button;
+		
+		[SkinPart]
+		public var myProfileViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var myProfileViewNavigatorButton1:Button;
+		
+		[SkinPart]
+		public var myProfileViewNavigatorButton2:Button;
+		
+		[SkinPart]
+		public var helpViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var helpViewNavigatorButton1:Button;
+		
+		[SkinPart]
+		public var helpViewNavigatorButton2:Button;
+		
+		[SkinPart]
+		public var creditsViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var creditsViewNavigatorButton1:Button;
+		
+		[SkinPart]
+		public var creditsViewNavigatorButton2:Button;
+		
+		[SkinPart]
+		public var moreViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var moreViewNavigatorButton1:Button;
+		
+		[SkinPart]
+		public var moreViewNavigatorButton2:Button;
 		
 		[SkinPart]
 		public var navBar:ButtonBar;
@@ -105,61 +157,61 @@ package com.clarityenglish.ielts.view.title {
 		public var upgrade:Signal = new Signal();
 		public var buy:Signal = new Signal();
 		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="HomeIcon")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="HomeIcon")]
 		private var homeIcon:Class;
 		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
 		private var progressIcon:Class;
 		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="AccountIcon")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="AccountIcon")]
 		private var accountIcon:Class;
 		
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="HelpIcon")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="HelpIcon")]
 		private var helpIcon:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		
 		private var fullVersionAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourAcademic")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
 		private var tenHourAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourGeneralTraining")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
 		private var tenHourGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteAcademic")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
 		private var lastMinuteAcademicLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
 		private var lastMinuteGeneralTrainingLogo:Class;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoAcademic")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoAcademicLogo:Class;
 
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoGeneralTraing")]
-		[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
+		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
 
-		[Embed(source="skins/ielts/assets/title/upgrade.jpg")]
+		[Embed(source="/skins/ielts/assets/title/upgrade.jpg")]
 		private var upgradeInfo:Class;
 		
-		[Embed(source="skins/ielts/assets/title/register.jpg")]
+		[Embed(source="/skins/ielts/assets/title/register.jpg")]
 		private var registerInfo:Class;
 		
-		[Embed(source="skins/ielts/assets/title/price.jpg")]
+		[Embed(source="/skins/ielts/assets/title/price.jpg")]
 		private var priceInfo:Class;
 		
-		[Embed(source="skins/ielts/assets/title/buy.jpg")]
+		[Embed(source="/skins/ielts/assets/title/buy.jpg")]
 		private var buyInfo:Class;
 		
 		public var _selectedCourseXML:XML;
@@ -236,27 +288,27 @@ package com.clarityenglish.ielts.view.title {
 				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "       Last Minute - Academic module";
+							return "       " + copyProvider.getCopyForId("lastTimeAC");
 						case IELTSApplication.TEST_DRIVE:
-							return "       Test Drive - Academic module";
+							return "       " + copyProvider.getCopyForId("testDriveAC");
 						case IELTSApplication.DEMO:
-							return "                 Academic module";
+							return "                 " + copyProvider.getCopyForId("AC");
 						case IELTSApplication.FULL_VERSION:
 						default:
-							return "Academic module";
+							return copyProvider.getCopyForId("AC");
 					}
 					break;
 				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "       Last Minute - General Training module";
+							return "       " + copyProvider.getCopyForId("lastTimeGT");
 						case IELTSApplication.TEST_DRIVE:
-							return "       Test Drive - General Training module";
+							return "       " + copyProvider.getCopyForId("lastTimeGT");
 						case IELTSApplication.DEMO:
-							return "                 General Training module";
+							return "                 " + copyProvider.getCopyForId("GT");
 						case IELTSApplication.FULL_VERSION:
 						default:
-							return "General Training module";
+							return copyProvider.getCopyForId("GT");
 					}
 					break;
 				default:
@@ -326,16 +378,16 @@ package com.clarityenglish.ielts.view.title {
 					// TODO. But CT licence will still want it - and they are a shared value!
 					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
 						navBar.dataProvider = new ArrayCollection( [
-							{ icon: homeIcon, label: "Home", data: "home" },
-							{ icon: progressIcon, label: "My Progress", data: "progress" },
-							{ icon: helpIcon, label: "Help", data: "support" },
+							{ icon: homeIcon, label: copyProvider.getCopyForId("Home"), data: "home" },
+							{ icon: progressIcon, label: copyProvider.getCopyForId("myProgress"), data: "progress" },
+							{ icon: helpIcon, label: copyProvider.getCopyForId("help"), data: "support" },
 						] );
 					} else {
 						navBar.dataProvider = new ArrayCollection( [
-							{ icon: homeIcon, label: "Home", data: "home" },
-							{ icon: progressIcon, label: "My Progress", data: "progress" },
-							{ icon: accountIcon, label: "My Profile", data: "account" },
-							{ icon: helpIcon, label: "Help", data: "support" },
+							{ icon: homeIcon, label: copyProvider.getCopyForId("Home"), data: "home" },
+							{ icon: progressIcon, label: copyProvider.getCopyForId("myProgress"), data: "progress" },
+							{ icon: accountIcon, label: copyProvider.getCopyForId("myProfile"), data: "account" },
+							{ icon: helpIcon, label: copyProvider.getCopyForId("help"), data: "support" },
 						] );
 					}
 					
@@ -370,13 +422,13 @@ package com.clarityenglish.ielts.view.title {
 				case noticeLabel:
 					// TODO: Check whether we know the exam date, if not say go to my account page to set it
 					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-					var daysUnit:String = (daysLeft==1) ? "day" : "days";
+					var daysUnit:String = (daysLeft==1) ? copyProvider.getCopyForId("day") : copyProvider.getCopyForId("days");
 					if (daysLeft > 0) {
-						instance.text = "Less than " + daysLeft.toString() + " " + daysUnit + " left until your test.";
+						instance.text = copyProvider.getCopyForId("lessThan") + " " + daysLeft.toString() + " " + daysUnit + " " + copyProvider.getCopyForId("leftUntil");
 					} else if (daysLeft == 0) {
-						instance.text = "Your test is today, good luck!";
+						instance.text = copyProvider.getCopyForId("countDownLabel2");
 					} else {
-						instance.text = "Hope your test went well...";
+						instance.text = copyProvider.getCopyForId("countDownLabel3");
 					}
 					break;
 				
@@ -385,6 +437,62 @@ package com.clarityenglish.ielts.view.title {
 				case infoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
+				//issue:#11 Language Code
+				case homeViewNavigator:
+					instance.label = copyProvider.getCopyForId("Home");
+					break;
+				case homeViewNavigatorButton1:
+					instance.label = copyProvider.getCopyForId("Back");
+					break;
+				case homeViewNavigatorButton2:
+					instance.label = copyProvider.getCopyForId("LogOut");
+					break;
+			    case myProgressViewNavigator:
+					instance.label = copyProvider.getCopyForId("myProgress");
+					break;
+				case myProgressViewNavigatorButton1:
+					instance.label = copyProvider.getCopyForId("Home");
+					break;
+				case myProgressViewNavigatorButton2:
+					instance.label = copyProvider.getCopyForId("LogOut");
+					break;
+				case myProfileViewNavigator:
+					instance.label = copyProvider.getCopyForId("myProfile");
+					break;
+				case myProfileViewNavigatorButton1:
+					instance.label = copyProvider.getCopyForId("Home");
+					break;
+				case myProfileViewNavigatorButton2:
+					instance.label = copyProvider.getCopyForId("LogOut");
+					break;
+				case helpViewNavigator:
+					instance.label = copyProvider.getCopyForId("help");
+					break;
+				case helpViewNavigatorButton1:
+					instance.label = copyProvider.getCopyForId("Home");
+					break;
+				case helpViewNavigatorButton2:
+					instance.label = copyProvider.getCopyForId("LogOut");
+					break;
+				case creditsViewNavigator:
+					instance.label = copyProvider.getCopyForId("credits");
+					break;
+				case creditsViewNavigatorButton1:
+					instance.label = copyProvider.getCopyForId("Home");
+					break;
+				case creditsViewNavigatorButton2:
+					instance.label = copyProvider.getCopyForId("LogOut");
+					break;
+				case moreViewNavigator:
+					instance.label = copyProvider.getCopyForId("more");
+					break;
+				case moreViewNavigatorButton1:
+					instance.label = copyProvider.getCopyForId("Home");
+					break;
+				case moreViewNavigatorButton2:
+					instance.label = copyProvider.getCopyForId("LogOut");
+					break;
+				
 			}
 		}
 		

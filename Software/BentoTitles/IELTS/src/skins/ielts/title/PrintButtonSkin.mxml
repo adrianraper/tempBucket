@@ -71,7 +71,7 @@
 	<!---  @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
 	<s:Group left="8">
 		<s:Group top="8" left="0" >
-			<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='PrintButton')" left="3" />
+			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='PrintButton')" left="3" />
 		</s:Group>
 	</s:Group>
 	

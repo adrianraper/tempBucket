@@ -14,6 +14,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 	
 	import spark.components.Label;
 	import spark.primitives.Rect;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 		
 	public class ProgressBarRenderer extends SkinnableDataRenderer {
 		
@@ -38,6 +39,14 @@ package com.clarityenglish.ielts.view.progress.ui {
 		
 		public var type:String;
 		
+		private var _copyProvider:CopyProvider;
+		
+		//issue:#11 Language Code
+		public function set copyProvider(copyProvider:CopyProvider):void {
+			_copyProvider = copyProvider;
+			trace("ProgressBarCoverage is "+ _copyProvider.getCopyForId("ProgressBarCoverage"));
+		}
+
 		public override function set data(value:Object):void {
 			super.data = value;
 			
@@ -46,12 +55,14 @@ package com.clarityenglish.ielts.view.progress.ui {
 				solidColour.color = getStyle(courseClass + "Color");;
 				backColour.color = getStyle(courseClass + "ColorDark");;
 				
+				//issue:#11 language Code
 				// Is this for coverge or score?
 				if (type == 'coverage') {
-					commentLabel.text = StringUtils.capitalize(courseClass) + " - overall coverage " + new Number(course.@coverage) + "%";
+					trace("ProgressBarCoverage is "+ _copyProvider.getCopyForId("ProgressBarCoverage"));
+					commentLabel.text = StringUtils.capitalize(courseClass) + _copyProvider.getCopyForId("ProgressBarCoverage") + " " + new Number(course.@coverage) + "%";
 					var percentValue:Number = new Number(course.@coverage);
 				} else {
-					commentLabel.text = StringUtils.capitalize(courseClass) + " - average score " + new Number(course.@averageScore) + "%";
+					commentLabel.text = StringUtils.capitalize(courseClass) + _copyProvider.getCopyForId("ProgressBarScore") + " " + new Number(course.@averageScore) + "%";
 					percentValue = new Number(course.@averageScore);
 				}
 				

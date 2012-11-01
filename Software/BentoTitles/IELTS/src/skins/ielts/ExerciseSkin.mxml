@@ -92,7 +92,7 @@
 	
 	<!-- Ring binder -->
 	<s:Group left="-7" top="34" bottom="20" clipAndEnableScrolling="true" includeIn="exercise">
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='RingBinder')" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RingBinder')" />
 	</s:Group>
 	
 	<!-- Footer text -->

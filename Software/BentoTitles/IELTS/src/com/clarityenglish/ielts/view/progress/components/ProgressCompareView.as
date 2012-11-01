@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	import flash.events.Event;
 	
@@ -8,6 +9,8 @@ package com.clarityenglish.ielts.view.progress.components {
 	import mx.charts.chartClasses.IAxis;
 	import mx.collections.XMLListCollection;
 	
+	import spark.components.Label;
+	
 	public class ProgressCompareView extends BentoView {
 		
 		[SkinPart(required="true")]
@@ -15,12 +18,29 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		[SkinPart(required="true")]
 		public var verticalAxis:CategoryAxis;
+
+		[SkinPart]
+		public var compareInstruction:Label;
+		
+		[SkinPart]
+		public var chartCaption:Label;
 		
 		private var _mySummaryXml:XML;
 		
 		private var _everyoneSummaryXml:XML;
 		
 		private var _xmlChanged:Boolean;
+		
+		private var _viewCopyProvider:CopyProvider;
+		
+		public function set viewCopyProvider(viewCopyProvider:CopyProvider):void {
+			_viewCopyProvider = viewCopyProvider;
+		}
+		
+		/*//issue:#11 language Code
+		public override function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;	
+		}*/
 		
 		public function set mySummaryXml(value:XML):void {
 			_mySummaryXml = value;
@@ -64,7 +84,12 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				
+				case compareInstruction:
+					instance.text = _viewCopyProvider.getCopyForId("compareInstruction");
+					break;
+				case chartCaption:
+					instance.text = _viewCopyProvider.getCopyForId("chartCaption");
+					break;				
 			}
 		}
 		

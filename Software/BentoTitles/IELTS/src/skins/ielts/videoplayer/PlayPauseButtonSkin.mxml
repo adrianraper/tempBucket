@@ -45,7 +45,7 @@
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
     
-	<s:SWFLoader id="playSymbol" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='VideoPlayButton')" excludeFrom="selectedStates"  />
-	<s:SWFLoader id="pauseSymbol" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='VideoPauseButton')" includeIn="selectedStates" />
+	<s:SWFLoader id="playSymbol" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='VideoPlayButton')" excludeFrom="selectedStates"  />
+	<s:SWFLoader id="pauseSymbol" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='VideoPauseButton')" includeIn="selectedStates" />
 
 </s:SparkSkin>

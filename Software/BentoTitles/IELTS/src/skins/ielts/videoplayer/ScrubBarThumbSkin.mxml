@@ -39,6 +39,6 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:SWFLoader id="playSymbol" source="@Embed(source='skins/ielts/assets/assets.swf', symbol='VideoScrubThumbButton')" />
+	<s:SWFLoader id="playSymbol" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='VideoScrubThumbButton')" />
     
 </s:SparkSkin>

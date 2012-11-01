@@ -130,6 +130,6 @@ in accordance with the terms of the license agreement accompanying it.
 			 >
 	</s:Label>
 	<s:Group>
-	<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='WarningTick')" top="10" left="26" alpha.over="0.8" />
+	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='WarningTick')" top="10" left="26" alpha.over="0.8" />
 		</s:Group>
 </s:SparkButtonSkin>

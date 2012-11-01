@@ -138,10 +138,10 @@
 		</s:layout>
 		<s:dataProvider>
 			<s:ArrayList>
-				<fx:Object label="Reading" icon="{getStyle('readingIconSmall')}" /> 
-				<fx:Object label="Listening" icon="{getStyle('listeningIconSmall')}" /> 
-				<fx:Object label="Speaking" icon="{getStyle('speakingIconSmall')}" /> 
-				<fx:Object label="Writing" icon="{getStyle('writingIconSmall')}" />
+				<fx:Object id="scoreReading" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')" />
+				<fx:Object id="scoreListening" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" />
+				<fx:Object id="scoreSpeaking" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" />
+				<fx:Object id="scoreWriting" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />
 			</s:ArrayList>
 		</s:dataProvider>
 	</s:ButtonBar>
@@ -151,11 +151,11 @@
 	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" top="137" bottom="0">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn headerText="Unit" dataField="@unitCaption" sortCompareFunction="sortUnits" />
-				<s:GridColumn headerText="Exercise" dataField="@caption" />
-				<s:GridColumn headerText="Score %" dataField="@displayScore" sortCompareFunction="sortScores" />
-				<s:GridColumn headerText="Time spent" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" />
-				<s:GridColumn headerText="Date" dataField="@datetime" />
+				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" />
+				<s:GridColumn id="scoreGridC2" dataField="@caption" />
+				<s:GridColumn id="scoreGridC3" dataField="@displayScore" sortCompareFunction="sortScores" />
+				<s:GridColumn id="scoreGridC4" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" />
+				<s:GridColumn id="scoreGridC5" dataField="@datetime" />
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>

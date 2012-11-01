@@ -51,6 +51,6 @@
         </s:fill>
     </s:Rect>
 	
-    <s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='NotepadButton')" />
+    <s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='NotepadButton')" />
     
 </s:SparkButtonSkin>

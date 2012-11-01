@@ -41,9 +41,9 @@
 		<s:State name="normal" />
 	</s:states>
 		
-	<s:Label text="This chart compares your scores with other Road to IELTS users worldwide" left="20" top="60" />
+	<s:Label id="compareInstruction" left="20" top="60" />
 	
-	<s:Label text="Average score %" textAlign="center" fontSize="13" left="0" right="0" top="105" />
+	<s:Label id="chartCaption" textAlign="center" fontSize="13" left="0" right="0" top="105" />
 	<mx:BarChart id="compareChart" left="20" right="60" top="130" bottom="140">
 		<mx:horizontalAxis>
 			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />

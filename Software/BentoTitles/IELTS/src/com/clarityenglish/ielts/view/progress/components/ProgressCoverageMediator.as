@@ -3,6 +3,8 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.ielts.model.IELTSProxy;

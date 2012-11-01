@@ -1,6 +1,6 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.ielts.IELTSApplication;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	import flash.events.Event;
 	
@@ -17,6 +17,10 @@ package com.clarityenglish.ielts.view.zone {
 		public var unitList:List;
 		
 		public var exercisesShow:Signal = new Signal(XMLList, Object);
+		
+		public function get viewCopyProvider():CopyProvider {
+			return this.copyProvider;
+		}
 		
 		public function PracticeZoneSectionView() {
 			super();

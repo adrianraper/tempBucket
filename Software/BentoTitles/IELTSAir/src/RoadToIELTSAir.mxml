@@ -55,8 +55,9 @@
 						throw new Error("Unsupported platform - " + Capabilities.version);
 				}
 				
+				//issue:#11 Prefix changed to "Clarity"
 				// EMERGENCY HOTFIX - HARDCODE TO HCT FOR NOW
-				FlexGlobals.topLevelApplication.parameters.prefix = "HCT";
+				FlexGlobals.topLevelApplication.parameters.prefix = "Clarity";
 				
 				// The AIR application uses a custom Spinner instead of the normal dropdown
 				SelectElement.elementFactoryFunction = function():DropDownList {
