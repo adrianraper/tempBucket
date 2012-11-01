@@ -6,6 +6,7 @@
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
+	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetAddCommand;
@@ -22,8 +23,6 @@
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
-	import com.clarityenglish.rotterdam.view.course.CourseMediator;
-	import com.clarityenglish.rotterdam.view.course.CourseView;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -41,6 +40,7 @@
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
+			registerCommand(RotterdamNotifications.COURSE_DELETE, CourseDeleteCommand);
 			
 			registerCommand(RotterdamNotifications.WIDGET_ADD, WidgetAddCommand);
 			registerCommand(RotterdamNotifications.WIDGET_DELETE, WidgetDeleteCommand);

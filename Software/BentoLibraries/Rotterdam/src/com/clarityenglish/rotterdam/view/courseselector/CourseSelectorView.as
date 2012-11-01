@@ -23,8 +23,12 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		[SkinPart]
 		public var selectCourseButton:Button;
 		
+		[SkinPart]
+		public var deleteCourseButton:Button;
+		
 		public var createCourse:Signal = new Signal(Course);
 		public var selectCourse:Signal = new Signal(XML);
+		public var deleteCourse:Signal = new Signal(XML);
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
@@ -49,6 +53,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				case selectCourseButton:
 					selectCourseButton.addEventListener(MouseEvent.CLICK, onSelectCourse);
 					break;
+				case deleteCourseButton:
+					deleteCourseButton.addEventListener(MouseEvent.CLICK, onDeleteCourse);
+					break;
 			}
 		}
 		
@@ -63,6 +70,11 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		protected function onSelectCourse(event:MouseEvent):void {
 			if (courseList.selectedItem)
 				selectCourse.dispatch(courseList.selectedItem);
+		}
+		
+		protected function onDeleteCourse(event:MouseEvent):void {
+			if (courseList.selectedItem)
+				deleteCourse.dispatch(courseList.selectedItem);
 		}
 		
 	}

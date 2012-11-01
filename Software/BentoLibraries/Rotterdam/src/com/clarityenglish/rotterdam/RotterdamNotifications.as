@@ -9,6 +9,9 @@
 		public static const COURSE_CREATE:String = "rotterdam/course_create";
 		public static const COURSE_CREATED:String = "rotterdam/course_created";
 		
+		public static const COURSE_DELETE:String = "rotterdam/course_delete";
+		public static const COURSE_DELETED:String = "rotterdam/course_deleted";
+		
 		public static const COURSE_SAVE:String = "rotterdam/course_save";
 		public static const COURSE_SAVED:String = "rotterdam/course_saved";
 		

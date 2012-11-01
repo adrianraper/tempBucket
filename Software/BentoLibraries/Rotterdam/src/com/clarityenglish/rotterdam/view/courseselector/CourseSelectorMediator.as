@@ -29,6 +29,7 @@
 			
 			view.createCourse.add(onCreateCourse);
 			view.selectCourse.add(onSelectCourse);
+			view.deleteCourse.add(onDeleteCourse);
 			
 			// Load courses.xml
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -40,11 +41,13 @@
 			
 			view.createCourse.remove(onCreateCourse);
 			view.selectCourse.remove(onSelectCourse);
+			view.deleteCourse.remove(onDeleteCourse);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.COURSE_CREATED,
+				RotterdamNotifications.COURSE_DELETED,
 			]);
 		}
 		
@@ -54,6 +57,7 @@
 			switch (note.getName()) {
 				// Force a reload of course.xml
 				case RotterdamNotifications.COURSE_CREATED:
+				case RotterdamNotifications.COURSE_DELETED:
 					view.href = view.href.clone();
 					break;
 			}
@@ -65,6 +69,10 @@
 		
 		private function onSelectCourse(course:XML):void {
 			facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: course.@href, noProgress: true } );
+		}
+		
+		private function onDeleteCourse(course:XML):void {
+			facade.sendNotification(RotterdamNotifications.COURSE_DELETE, course);
 		}
 		
 	}
