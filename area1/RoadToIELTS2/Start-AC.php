@@ -15,7 +15,7 @@
 	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
 	$startControl = "$webShare/Software/ResultsManager/web/";
-
+	
 	// If we do not know the prefix, the page shouldn't run.
 	// The prefix might come from session variables or from the URL parameters
 	// Read URL first in case session variables are lingering
@@ -185,7 +185,7 @@
 			id: "bento",
 			name: "bento"
 		};
-		var expressInstall = startControl + "expressInstall.swf";
+		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
 

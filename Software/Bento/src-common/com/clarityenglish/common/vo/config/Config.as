@@ -37,6 +37,8 @@ package com.clarityenglish.common.vo.config {
 		public var dbHost:Number;
 		public var productCode:uint;
 		public var productVersion:String;
+		// #524
+		public var languageCode:String;
 		public var prefix:String;
 		// #515
 		//public var rootID:Number;
@@ -428,8 +430,11 @@ package com.clarityenglish.common.vo.config {
 			var thisTitle:Title = this.account.getTitle();
 			
 			// The account holds the languageCode - which in Bento terms is productVersion
+			// #524
 			if (thisTitle.languageCode) 
-				this.productVersion = thisTitle.languageCode;
+				this.languageCode = thisTitle.languageCode;
+			if (thisTitle.productVersion) 
+				this.productVersion = thisTitle.productVersion;
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 

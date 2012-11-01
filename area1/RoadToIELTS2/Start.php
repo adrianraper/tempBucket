@@ -8,7 +8,7 @@
 	$productCode = 52; // RoadToIELTS 2
 	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
-	$startControl = "$webShare/Software/ResultsManager/web/";
+	$startControl = "$webShare/Software/RoadToIELTS2/bin/";
 
 	// If we do not know the prefix, the page shouldn't run.
 	// The prefix might come from session variables or from the URL parameters
@@ -162,7 +162,7 @@
 			id: "bento",
 			name: "bento"
 		};
-		var expressInstall = startControl + "expressInstall.swf";
+		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
 

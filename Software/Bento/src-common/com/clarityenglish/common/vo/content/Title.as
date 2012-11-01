@@ -69,6 +69,9 @@
 		public var licenceStartDate:String;
 		
 		public var languageCode:String;
+		// #524
+		public var productVersion:String;
+		
 		public var startPage:String;
 		public var licenceFile:String;
 		public var contentLocation:String;

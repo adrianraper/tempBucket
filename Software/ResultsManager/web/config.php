@@ -42,7 +42,7 @@ $GLOBALS['rmail_from'] = "Clarity English <support@clarityenglish.com>";
 
 $GLOBALS['data_dir'] = "../../../../ContentBench/Content";
 $GLOBALS['ap_data_dir'] = "../../../../ContentBench/ap";
-$GLOBALS['ccb_data_dir'] = "D:/ContentBench/CCB";
+$GLOBALS['ccb_data_dir'] = "../../../../ContentBench/CCB";
 $GLOBALS['common_dir'] = dirname(__FILE__)."/../../../Software/Common";
 $RMFolders = "";
 // Can we just read dbDetails and use dbHost to point to different databases?

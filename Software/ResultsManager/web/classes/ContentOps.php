@@ -906,13 +906,19 @@ EOD;
 	 * Currently only applies to Author Plus.
 	 */
 	function getContentFolder($contentLocation, $productCode=null) {
-		//NetDebug::trace("getContentFolder="."../../".$GLOBALS['data_dir']."/".$contentLocation);
 		//NetDebug::trace("myBase=".__FILE__);
-		if ($productCode == 1) {
-			return "../../".$GLOBALS['ap_data_dir']."/".$contentLocation;
-		} else {
-			return "../../".$GLOBALS['data_dir']."/".$contentLocation;
+		switch ($productCode) {
+			case 1:
+				$folder = "../../".$GLOBALS['ap_data_dir']."/".$contentLocation;
+				break;
+			case 54:
+				$folder =  "../../".$GLOBALS['ccb_data_dir']."/".$contentLocation;
+				break;
+			default:
+				$folder =  "../../".$GLOBALS['data_dir']."/".$contentLocation;
 		}
+		NetDebug::trace("getContentFolder=$folder");
+		return $folder;
 	}
 	
 	/**
@@ -1018,7 +1024,7 @@ EOD;
 				
 				// v3.1 Is this title is an emu or a regular Clarity course?
 				// v3.5 Or is it a new Bento title?
-				//NetDebug::trace("this folder is code=".$folder);
+				//NetDebug::trace("this folder is ".$folder);
 				//NetDebug::trace("this product is code=".$titleObj->F_ProductCode);
 				//NetDebug::trace("this lang is code=".$titleObj->F_LanguageCode);
 				if (intval($titleObj->F_ProductCode) > 1000) {
@@ -1031,36 +1037,41 @@ EOD;
 					$courseType = 'bento';	
 					switch ($titleObj->F_ProductVersion) {
 						case 'R2ILM':
-							$langCodeCopy = "LastMinute";
+							$productVersionName = "LastMinute";
 							break;
 						case 'R2ITD':
-							$langCodeCopy = "TestDrive";
+							$productVersionName = "TestDrive";
 							break;
 						case 'R2IFV':
-							$langCodeCopy = "FullVersion";
+							$productVersionName = "FullVersion";
 							break;
 						case 'R2IHU':
-							$langCodeCopy = "HomeUser";
+							$productVersionName = "HomeUser";
 							break;
 						case 'R2ID':
-							$langCodeCopy = "Demo";
+							$productVersionName = "Demo";
 							break;
 						default:
-							$langCodeCopy = 'x';
+							$productVersionName = 'x';
 					}
 					if (intval($titleObj->F_ProductCode) == 52) {
 						$version = "Academic";
 					} else {
 						$version = "GeneralTraining";
 					}					
-					$titleObj->indexFile = "menu-$version-$langCodeCopy.xml";
+					$titleObj->indexFile = "menu-$version-$productVersionName.xml";
+					
+				} else if (intval($titleObj->F_ProductCode) == 54) {
+					$courseType = 'rotterdam';	
+					$titleObj->indexFile = "courses.xml";
+				 
 				} else {
 					$courseType = 'orchid';	
 					$titleObj->indexFile = "course.xml";
 				}
 				// Build the title object (if the course.xml file doesn't exist then just skip it. However, if we are in $forDMS
 				// mode then this is DMS and we want to display everything, even if course.xml doesn't exist.
-				//NetDebug::trace("get content from =".$folder."/".$titleObj->indexFile);
+				NetDebug::trace("get content from =".$folder."/".$titleObj->indexFile);
 				//AbstractService::$log->notice("get content from =".$folder."/".$titleObj->indexFile);
 
 				if ($forDMS || file_exists($folder."/".$titleObj->indexFile)) {
