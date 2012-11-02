@@ -49,6 +49,7 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
+		var argList = "?version=3.7.2.3"
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
@@ -79,7 +80,7 @@
 		};
 		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
 		flashvars.sessionid = "<?php echo session_id(); ?>";
-		swfobject.embedSWF(startControl + "ResultsManager.swf", "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + "ResultsManager.swf" + argList, "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
 	</script>
 	<style type="text/css">
 		html, body { height:100%; }

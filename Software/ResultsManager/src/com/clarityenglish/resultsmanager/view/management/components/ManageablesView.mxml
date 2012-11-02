@@ -6,13 +6,15 @@
 		 implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.common.events.SearchEvent;
 		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.common.vo.manageable.*;
+		import com.clarityenglish.resultsmanager.Constants;
 		import com.clarityenglish.resultsmanager.view.management.events.*;
 		import com.clarityenglish.resultsmanager.view.management.ui.*;
 		import com.clarityenglish.resultsmanager.view.shared.events.SelectEvent;
-		import com.clarityenglish.common.events.SearchEvent;
-		import com.clarityenglish.common.vo.manageable.*;
+		import com.clarityenglish.utils.TraceUtils;
+		
 		import flash.events.ContextMenuEvent;
 		import flash.events.Event;
 		import flash.events.MouseEvent;
@@ -20,19 +22,20 @@
 		import flash.net.FileReference;
 		import flash.ui.ContextMenu;
 		import flash.ui.ContextMenuItem;
+		
 		import mx.collections.ICollectionView;
 		import mx.containers.VBox;
 		import mx.controls.Alert;
 		import mx.controls.treeClasses.DefaultDataDescriptor;
 		import mx.core.IFlexDisplayObject;
 		import mx.core.UIComponent;
+		import mx.core.mx_internal;
 		import mx.events.CloseEvent;
 		import mx.events.DragEvent;
 		import mx.events.ListEvent;
 		import mx.managers.PopUpManager;
-		import mx.core.mx_internal;
-		import org.davekeen.utils.ClassUtils;
-		import com.clarityenglish.utils.TraceUtils;		
+		
+		import org.davekeen.utils.ClassUtils;		
 		
 		private static const TREE_FILTERED_BG_COLOUR:int = 0xf2ffb4;
 		
@@ -459,13 +462,34 @@
 				}
 			}
 			
+
 			// Get the parent group with some Flex trickery
 			// or let slt do this for us!
 			//var dropGroup:Group = tree.mx_internal::_dropData.parent as Group;
 			var dropGroup:Group = tree.dropData.parent as Group;
-			
+            
+			// fixed the move around mutiple groups problem
+			trace("the dragItems[0]="+dragItems[0]);
+			var selfLoopFlag:Boolean = false;
+			if(dragItems[0] is Group){
+				trace("Enter the group judgment");
+				for each (var dragItemsGroup:Manageable in dragItems) {
+					var dragItemSubGroups:Array = (dragItemsGroup as Group).getSubGroups();
+					for each (var subGroup:Manageable in dragItemSubGroups) {
+						if (dropGroup == subGroup) {
+							selfLoopFlag = true;
+							trace("the satisfied subgroup name is " + dropGroup);
+						}
+					}
+					trace("the selected group is "+dragItemsGroup);
+					if(dropGroup ==  dragItemsGroup){
+						selfLoopFlag = true;
+						trace("the satisfied group name is " + dropGroup);
+					}
+				}
+			}
 			// If there is no parent (i.e. if the user is trying to drop into the top level) then prevent the drop
-			if (!dropGroup) {
+			if (!dropGroup || selfLoopFlag) {
 				e.preventDefault();
 				tree.hideDropFeedback(e);
 				return;
