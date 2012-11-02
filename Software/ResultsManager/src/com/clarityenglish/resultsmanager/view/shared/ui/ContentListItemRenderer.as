@@ -42,6 +42,7 @@
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			image.x = xOffset;
+
 			label.x = (data is Title) ? 55 + xOffset : icon.x + 4 + xOffset;
 			label.y = (data is Title) ? 16 : 0;
 		}

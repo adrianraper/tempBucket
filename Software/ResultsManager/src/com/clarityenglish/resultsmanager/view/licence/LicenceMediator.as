@@ -106,6 +106,7 @@ package com.clarityenglish.resultsmanager.view.licence {
 		 * @param INotification a notification 
 		 */
 		override public function handleNotification(note:INotification):void {
+			trace("note.getBody()"+note.getBody());
 			switch (note.getName()) {
 				case CommonNotifications.LOGGED_IN:
 					licenceView.licencesTree.resetTree();

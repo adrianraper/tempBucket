@@ -46,6 +46,7 @@ package com.clarityenglish.resultsmanager.controller {
 			// v3.6 For RM licence type
 			Constants.licenceType = data.licenceType as Number;
 			
+			TraceUtils.myTrace("prefix is "+Constants.prefix);
 			TraceUtils.myTrace("loggedInCommand for " + Constants.userID + " as " + Constants.userType + " called " + Constants.userName); // + " data.userID=" + data.userID);
 			TraceUtils.myTrace("member of group(s) " + Constants.groupID.toString() + "=" + Constants.parentGroupIDs.toString());
 			

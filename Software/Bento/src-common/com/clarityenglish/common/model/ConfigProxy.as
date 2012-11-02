@@ -336,11 +336,11 @@ package com.clarityenglish.common.model {
 							<account expiryDate="2012-12-31 23:59:59" maxStudents="998" groupID="163" rootID="163" licenceType="1" institution="Clarity Language Consultants Ltd" contentLocation="TenseBuster-International" MGSRoot="" licenceStartDate="2009-01-01 00:00:00" checksum="351669aed74a984aa13f8501ecdcadcd7c8f61b3cad49eaf4611a4510abfe85e" languageCode="EN" />
 						</db>
 						*/
-						trace("the getAccountSetting data is "+ data);
+						
 						config.mergeAccountData(data);
 						var authenticated:Boolean = this.checkAuthentication();
 					}
-					
+	
 					if (!data) {
 						sendNotification(CommonNotifications.CONFIG_ERROR, "Unable to read from database"); // at this point copy can't have loaded so this is in English!
 						

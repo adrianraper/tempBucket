@@ -36,7 +36,9 @@ package com.clarityenglish.common.model {
 			} else {
 				// Just push a null if it hasn't been passed
 				params.push(null);
+				
 			}
+
 			// v3.4 If you pass dbHost, the backend wants to know it. But by the time you can read from here, it is too late.
 			// So we will have to stick to session variables.
 			/*
