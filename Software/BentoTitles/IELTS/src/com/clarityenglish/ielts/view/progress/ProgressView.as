@@ -3,6 +3,7 @@ package com.clarityenglish.ielts.view.progress {
 	import com.anychart.mapPlot.controls.zoomPanel.Slider;
 	import com.anychart.viewController.ChartView;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView;
@@ -21,7 +22,6 @@ package com.clarityenglish.ielts.view.progress {
 	import spark.components.ButtonBar;
 	import spark.components.Group;
 	import spark.components.Label;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	/*[SkinState("score")]
 	[SkinState("compare")]
@@ -46,6 +46,9 @@ package com.clarityenglish.ielts.view.progress {
 		
 		[SkinPart]
 		public var anonWarning:Group;
+		
+		[SkinPart]
+		public var progressAnonymousLabel:Label;
 
 		public var currentCourseClass:String;
 		
@@ -79,10 +82,10 @@ package com.clarityenglish.ielts.view.progress {
 				case progressNavBar:
 					//issue:#11 Language Code
 					progressNavBar.dataProvider = new ArrayCollection( [
-						{ label: this.copyProvider.getCopyForId("progressNavBarCoverage"), data: "coverage" },
-						{ label: this.copyProvider.getCopyForId("progressNavBarCompare"), data: "compare" },
-						{ label: this.copyProvider.getCopyForId("progressNavBarAnalyse"), data: "analysis" },
-						{ label: this.copyProvider.getCopyForId("progressNavBarScores"), data: "score" },
+						{ label: copyProvider.getCopyForId("progressNavBarCoverage"), data: "coverage" },
+						{ label: copyProvider.getCopyForId("progressNavBarCompare"), data: "compare" },
+						{ label: copyProvider.getCopyForId("progressNavBarAnalyse"), data: "analysis" },
+						{ label: copyProvider.getCopyForId("progressNavBarScores"), data: "score" },
 					] );
 					
 					progressNavBar.requireSelection = true;
@@ -92,12 +95,16 @@ package com.clarityenglish.ielts.view.progress {
 				case progressScoreView:
 				case progressCompareView:
 				case progressAnalysisView:
-					instance.viewCopyProvider = this.copyProvider;
+					 instance.viewCopyProvider = this.copyProvider;
 				case progressCoverageView:
 				
 					// #234
 					instance.productVersion = productVersion;
 					break;
+				case progressAnonymousLabel:
+					instance.text = copyProvider.getCopyForId("progressAnonymousLabel");
+					break;
+					
 			}
 		}
 		

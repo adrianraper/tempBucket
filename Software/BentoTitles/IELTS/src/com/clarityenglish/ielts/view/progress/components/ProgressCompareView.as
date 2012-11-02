@@ -20,10 +20,10 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var verticalAxis:CategoryAxis;
 
 		[SkinPart]
-		public var compareInstruction:Label;
+		public var compareInstructionLabel:Label;
 		
 		[SkinPart]
-		public var chartCaption:Label;
+		public var chartCaptionLabel:Label;
 		
 		private var _mySummaryXml:XML;
 		
@@ -84,11 +84,11 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case compareInstruction:
-					instance.text = _viewCopyProvider.getCopyForId("compareInstruction");
+				case compareInstructionLabel:
+					instance.text = _viewCopyProvider.getCopyForId("compareInstructionLabel");
 					break;
-				case chartCaption:
-					instance.text = _viewCopyProvider.getCopyForId("chartCaption");
+				case chartCaptionLabel:
+					instance.text = _viewCopyProvider.getCopyForId("chartCaptionLabel");
 					break;				
 			}
 		}

@@ -29,16 +29,16 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var tableDataProvider:XMLListCollection;
 		
 		[SkinPart]
-		public var scoreReading:Object;
+		public var scoreReadingObj:Object;
 		
 		[SkinPart]
-		public var scoreListening:Object;
+		public var scoreListeningObj:Object;
 		
 		[SkinPart]
-		public var scoreSpeaking:Object;
+		public var scoreSpeakingObj:Object;
 		
 		[SkinPart]
-		public var scoreWriting:Object;
+		public var scoreWritingObj:Object;
 		
 		[SkinPart]
 		public var scoreGridC1:GridColumn;
@@ -161,16 +161,16 @@ package com.clarityenglish.ielts.view.progress.components {
 					progressCourseButtonBar.requireSelection = true;
 					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);					
 					break;
-				case scoreReading:
+				case scoreReadingObj:
 					instance.label = _viewCopyProvider.getCopyForId("Reading");
 					break;
-				case scoreListening:
+				case scoreListeningObj:
 					instance.label = _viewCopyProvider.getCopyForId("Listening");
 					break;
-				case scoreSpeaking:
+				case scoreSpeakingObj:
 					instance.label = _viewCopyProvider.getCopyForId("Speaking");
 					break;
-				case scoreWriting:
+				case scoreWritingObj:
 					instance.label = _viewCopyProvider.getCopyForId("Writing");
 					break;
 				case progressBar:

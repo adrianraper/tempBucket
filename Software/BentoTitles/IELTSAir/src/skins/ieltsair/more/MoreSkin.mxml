@@ -1,10 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark">
+		xmlns:s="library://ns.adobe.com/flex/spark"
+	    creationComplete="creationComplete()">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ieltsair.view.more.MoreView")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import flashx.textLayout.elements.TextFlow;
+			import spark.utils.TextFlowUtil;
+			
+			[Bindable]
+			private var aboutUsFlow:TextFlow;
+			
+			[Bindable]
+			private var contactUsFlow1:TextFlow;
+			
+			[Bindable]
+			private var contactUsFlow2:TextFlow;
+			
+		     public function creationComplete(): void{
+				 /*var aboutUsContentString:String = hostComponent.copyProvider.getCopyForId("aboutUsContent");
+				 var contactUsContentString1:String = hostComponent.copyProvider.getCopyForId("contactUsContent1");
+				 var contactUsContentString2:String = hostComponent.copyProvider.getCopyForId("contactUsContent2");
+				 aboutUsFlow = TextFlowUtil.importFromString(aboutUsContentString);
+				 contactUsFlow1 = TextFlowUtil.importFromString(contactUsContentString1);
+				 contactUsFlow2 = TextFlowUtil.importFromString(contactUsContentString2);
+				 
+				 aboutUsFlow.color = "#4E4E4E";
+				 aboutUsFlow.fontSize = 14;
+				 aboutUsFlow.paragraphSpaceAfter = 12;
+				 aboutUsFlow.lineHeight = 22;
+				 
+				 contactUsFlow1.color = "#4E4E4E";
+				 contactUsFlow1.fontSize = 14;
+				 contactUsFlow1.paragraphSpaceAfter = 12;
+				 contactUsFlow1.lineHeight = 22;
+				 
+				 contactUsFlow2.color = "#4E4E4E";
+				 contactUsFlow2.fontSize = 14;
+				 contactUsFlow2.paragraphSpaceAfter = 12;
+				 contactUsFlow2.lineHeight = 22;*/
+				 
+			 }
+		]]>
+	</fx:Script>
+
 	
 	<!-- states -->
 	<s:states>
@@ -17,61 +60,16 @@
 	<s:ButtonBar id="moreNavBar" width="418" height="43" top="50" right="40" />
 	
 	<s:Group left="40" right="40" top="144" includeIn="about">
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AboutGraphic')"  />
-		
-		<s:RichText left="0" right="0" top="116" height="306" columnCount="2" columnGap="55">
-			<s:textFlow>
-				<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
-					<p>The British Council is an international charity that is committed to developing a wider knowledge of the English
-						language and promoting the advancement of education to encourage cultural, scientific, technological and other
-						educational exchange. The British Council was founded in 1934, incorporated by Royal Charter in 1940 and registered
-						as a charity under registration numbers 209131 (England and Wales) and SC037733 (Scotland). Our Patron is HM Queen
-					Elizabeth II and HRH The Prince of Wales is our vice-patron.</p>
-					
-					<p>IELTS is jointly owned by the British Council, IDP: IELTS Australia and the University of Cambridge ESOL Examinations
-					(Cambridge ESOL). The British Council has developed the content for Road to IELTS.</p>
-					
-					<p>To find out more about booking your IELTS test with the British Council, click here:
-						<a href="http://takeielts.britishcouncil.org" target="_blank">http://takeielts.britishcouncil.org</a></p>
-					
-					<p>Clarity is an international publisher of online resources for teaching and learning English. Clarity programs have been
-					chosen by thousands of schools and universities, and used by millions of students in over 110 countries around the world.</p>
-					
-					<p>Clarity has additionally customised electronic materials for leading providers of English language teaching, including
-						Cambridge University Press, Oxford University Press, Macmillan Education and the British Council, and has worked on
-					large-scale projects for the Beijing Olympics and HSBC. Clarity has developed the design and software for Road to IELTS.</p>
-					
-					<p paddingTop="40">
-						<img source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AboutLogos')" />
-					</p>
-				</s:TextFlow>
-			</s:textFlow>
-		</s:RichText>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='AboutGraphic')" />		
+		<s:RichText id="aboutUsRichText" left="0" right="0" top="100" height="306" columnCount="2" columnGap="55"/>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='AboutLogos')" left="500" top="330"/>
 	</s:Group>
 	
 	<s:Group left="40" right="40" top="170" includeIn="contact">
-		<s:RichText left="0" right="0" height="375" columnCount="2">
-			<s:textFlow>
-				<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
-					<p>
-					<img source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ContactTechnicalImage')" /><br/>
-					<span fontWeight="bold">Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email
-					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem and the URL of
-					your course (if you are running online).<br/>
-					Clarity Language Consultants Ltd<br/>
-					PO Box 163, Sai Kung, Hong Kong<br/>
-					Tel: +852 2701 1787<br/>
-					Fax: +852 2791 6484<br/>
-					</p>
-					
-					<p>
-					<img source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ContactContentImage')" /><br/>
-					<span fontWeight="bold">Content problems</span><br/>If you have any enquires about the content, for example, if you have questions about 
-					an answer in the exercises, please contact British Council.
-					</p>
-				</s:TextFlow>
-			</s:textFlow>
-		</s:RichText>		
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ContactTechnicalImage')" />
+		<s:RichText id="contactUsRichText1" left="0" right="0" top="40" height="375" columnCount="2" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/assets.swf', symbol='ContactContentImage')" top="240" />
+		<s:RichText id="contactUsRichText2" left="0" right="0" top="280" height="375" columnCount="2" />
 	</s:Group>
 	
 </s:Skin>

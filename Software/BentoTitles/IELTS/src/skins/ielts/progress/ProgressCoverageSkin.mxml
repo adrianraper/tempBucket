@@ -20,10 +20,10 @@
 		</s:layout>
 		<s:dataProvider>
 			<s:ArrayList>
-				<fx:Object id="CoverageReading" icon="{getStyle('readingIconSmall')}" /> 
-				<fx:Object id="CoverageListening" icon="{getStyle('listeningIconSmall')}" /> 
-				<fx:Object id="CoverageSpeaking" icon="{getStyle('speakingIconSmall')}" /> 
-				<fx:Object id="CoverageWriting" icon="{getStyle('writingIconSmall')}" />
+				<fx:Object id="CoverageReadingObj" icon="{getStyle('readingIconSmall')}" /> 
+				<fx:Object id="CoverageListeningObj" icon="{getStyle('listeningIconSmall')}" /> 
+				<fx:Object id="CoverageSpeakingObj" icon="{getStyle('speakingIconSmall')}" /> 
+				<fx:Object id="CoverageWritingObj" icon="{getStyle('writingIconSmall')}" />
 			</s:ArrayList>
 		</s:dataProvider>
 	</s:ButtonBar>
@@ -32,10 +32,10 @@
 	
 	<s:Scroller left="0" right="0" top="137" bottom="0">
 		<s:HGroup width="100%" height="100%" minWidth="0" minHeight="0">
-			<ui:CoverageExerciseComponent id="questionZoneCoverage" width="20%" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
-			<ui:CoverageExerciseComponent id="adviceZoneCoverage" width="20%" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
-			<ui:CoverageExerciseComponent id="examPracticeCoverage" width="20%" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" />
-			<ui:CoverageUnitComponent id="practiceZoneCoverage" width="100%" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
+			<ui:CoverageExerciseComponent id="questionZoneComponent" width="20%" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
+			<ui:CoverageExerciseComponent id="adviceZoneComponent" width="20%" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
+			<ui:CoverageExerciseComponent id="examPracticeComponent" width="20%" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" />
+			<ui:CoverageUnitComponent id="practiceZoneComponent" width="100%" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
 		</s:HGroup>
 	</s:Scroller>
 </s:Skin>

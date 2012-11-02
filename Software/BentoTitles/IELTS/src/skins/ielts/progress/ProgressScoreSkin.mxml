@@ -138,10 +138,10 @@
 		</s:layout>
 		<s:dataProvider>
 			<s:ArrayList>
-				<fx:Object id="scoreReading" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')" />
-				<fx:Object id="scoreListening" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" />
-				<fx:Object id="scoreSpeaking" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" />
-				<fx:Object id="scoreWriting" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />
+				<fx:Object id="scoreReadingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')" />
+				<fx:Object id="scoreListeningObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" />
+				<fx:Object id="scoreSpeakingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" />
+				<fx:Object id="scoreWritingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />
 			</s:ArrayList>
 		</s:dataProvider>
 	</s:ButtonBar>

@@ -56,15 +56,15 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 				//issue:#11 Lanuage Code
 				case practiceZoneLabel:
-					instance.text = copyProvider.getCopyForId("practiceZoneCaption");
+					instance.text = copyProvider.getCopyForId("practiceZoneLabel");
 					break;
 				case practiceZoneInstructionLabel:
-					instance.text = copyProvider.getCopyForId("practiceZoneInstruction");
+					instance.text = copyProvider.getCopyForId("practiceZoneInstructionLabel");
 					break;
 				case practiceZoneNoTestLabel:
 					var replaceObj:Object = new Object();
 					replaceObj.courseClass = this.courseClass;
-					instance.text = copyProvider.getCopyForId("practiceZoneNoTest", replaceObj);
+					instance.text = copyProvider.getCopyForId("practiceZoneNoTestLabel", replaceObj);
 					break;
 			}
 		}

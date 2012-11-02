@@ -93,57 +93,57 @@
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">	
 		
-		<s:ViewNavigator id="homeViewNavigator" label="Home" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" left="0" right="0" height="100%" >
+		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" left="0" right="0" height="100%" >
 			<s:navigationContent>
-				<s:Button label="Back" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
+				<s:Button id="homeViewNavigatorButton1" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+				<s:Button id="homeViewNavigatorButton2" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="myProgressViewNavigator" label="My Progress" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" left="0" right="0" height="100%">
+		<s:ViewNavigator id="myProgressViewNavigator" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+				<s:Button id="myProgressViewNavigatorButton1" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+				<s:Button id="myProgressViewNavigatorButton2" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="myProfileViewNavigator" label="My Profile" firstView="com.clarityenglish.ielts.view.account.AccountView" title="Road to IELTS" left="0" right="0" height="100%">
+		<s:ViewNavigator id="myProfileViewNavigator" firstView="com.clarityenglish.ielts.view.account.AccountView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0"  />
+				<s:Button id="myProfileViewNavigatorButton1" click="sectionNavigator.selectedIndex = 0"  />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+				<s:Button id="myProfileViewNavigatorButton2" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="helpViewNavigator" label="Help" firstView="com.clarityenglish.ielts.view.support.SupportView" title="Road to IELTS" left="0" right="0" height="100%">
+		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.ielts.view.support.SupportView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+				<s:Button id="helpViewNavigatorButton1" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+				<s:Button id="helpViewNavigatorButton2" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="creditsViewNavigator" label="Credits" firstView="com.clarityenglish.ielts.view.credits.CreditsView" title="Road to IELTS" left="0" right="0" height="100%">
+		<s:ViewNavigator id="creditsViewNavigator" firstView="com.clarityenglish.ielts.view.credits.CreditsView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+				<s:Button id="creditsViewNavigatorButton1" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+				<s:Button id="creditsViewNavigatorButton2" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="moreViewNavigator" label="More" firstView="com.clarityenglish.ieltsair.view.more.MoreView" title="Road to IELTS" left="0" right="0" height="100%">
+		<s:ViewNavigator id="moreViewNavigator" firstView="com.clarityenglish.ieltsair.view.more.MoreView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
-				<s:Button label="Home" click="sectionNavigator.selectedIndex = 0" />
+				<s:Button id="moreViewNavigatorButton1" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button label="Log out" click="hostComponent.logout.dispatch()" />
+				<s:Button id="moreViewNavigatorButton2" click="hostComponent.logout.dispatch()" />
 			</s:actionContent>
 		</s:ViewNavigator>
 

@@ -19,10 +19,10 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var stackedBarChart:StackedBarChart;
 		
 		[SkinPart(required="true")]
-		public var analysisInstruction1:Label;
+		public var analysisInstructionLabel1:Label;
 		
 		[SkinPart(required="true")]
-		public var analysisInstruction2:Label;
+		public var analysisInstructionLabel2:Label;
 		
 		[SkinPart(required="true")]
 		public var analysisTime:Label;
@@ -78,11 +78,11 @@ package com.clarityenglish.ielts.view.progress.components {
 					stackedBarChart.field = "duration";
 					break;
 				//issue:#11 Language Code
-				case analysisInstruction1:
-					instance.text = _viewCopyProvider.getCopyForId("analysisInstruction1");
+				case analysisInstructionLabel1:
+					instance.text = _viewCopyProvider.getCopyForId("analysisInstructionLabel1");
 					break;
-				case analysisInstruction2:
-					instance.text = _viewCopyProvider.getCopyForId("analysisInstruction2");
+				case analysisInstructionLabel2:
+					instance.text = _viewCopyProvider.getCopyForId("analysisInstructionLabel2");
 					break;
 				case durationDataGroup:
 					var classFactory:ClassFactory = new ClassFactory (com.clarityenglish.ielts.view.progress.ui.CourseDurationRenderer);

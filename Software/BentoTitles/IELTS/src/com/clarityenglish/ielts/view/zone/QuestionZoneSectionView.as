@@ -49,10 +49,10 @@ package com.clarityenglish.ielts.view.zone {
 					instance.label = copyProvider.getCopyForId("videoButton");
 					break;
 				case questionVideoLabel:
-					instance.text = copyProvider.getCopyForId("questionVideoCaption");
+					instance.text = copyProvider.getCopyForId("questionVideoLabel");
 					break;
 				case questionVideoInstructionLabel:
-					instance.text = copyProvider.getCopyForId("questionVideoInstruction");
+					instance.text = copyProvider.getCopyForId("questionVideoInstructionLabel");
 					break;
 			}
 		}

@@ -4,6 +4,9 @@ package com.clarityenglish.ieltsair {
 	import com.clarityenglish.ielts.IELTSApplicationFacade;
 	import com.clarityenglish.ieltsair.controller.NativeExitCommand;
 	
+	import com.clarityenglish.ieltsair.view.more.MoreView;
+	import com.clarityenglish.ieltsair.view.more.moreMediator;
+	
 	public class IELTSAirApplicationFacade extends IELTSApplicationFacade {
 		
 		public static function getInstance():BentoFacade {
@@ -13,6 +16,9 @@ package com.clarityenglish.ieltsair {
 		
 		override protected function initializeController():void {
 			super.initializeController();
+			
+			//issue:#11
+			mapView(MoreView, moreMediator);
 			
 			// If a fatal error occurs we want to actually exit the app, not just go to the exited state like on the web
 			removeCommand(CommonNotifications.EXIT);

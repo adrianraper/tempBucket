@@ -5,8 +5,7 @@
 			<lit name="applicationName">IELTS</lit>
 			<lit name="applicationVersion">Version {version}</lit>
 			
-			<lit name="errorUnknown" code="100">Unknown error</lit>
-			
+			<lit name="errorUnknown" code="100">Unknown error</lit>			
 			<lit name="errorNoSuchUser" code="200">Your login name or ID is not registered. Please contact your administrator. (option {loginOption})</lit>
 			<lit name="errorNoProductCode" code="201">No productCode sent.</lit>
 			<lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
@@ -24,8 +23,7 @@
 			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
 			<lit name="errorLoginKeyEmpty" code="215">The key field can't be empty ({loginOption})</lit>
 			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
-			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>
-			
+			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>		
 			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
 			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
 			<lit name="errorCantClearLicences" code="302">Unable to clear old licences.</lit>
@@ -56,83 +54,88 @@
 			<lit name="Listening">Listening</lit>
 			<lit name="Speaking">Speaking</lit>
 			<lit name="Writing">Writing</lit>
-			<lit name="lastTimeAC">Last Minute - Academic module2</lit>
-			<lit name="testDriveAC">Test Drive - Academic module2</lit>
-			<lit name="AC">Academic module2</lit>
-			<lit name="lastTimeGT">Last Minute - General Training module2</lit>
-			<lit name="testDriveGT">Test Drive - General Training module2</lit>
-			<lit name="GT">General Training module2</lit>
-			<lit name="welcomeLabel">Welcome,2</lit>
-			<lit name="demoWelcomeLabel">Welcome to the Road to IELTS demo.2</lit>
-			<lit name="confirmTestDate">Please confirm your test date on the My Profile page.2</lit>
-			<lit name="leftTestDate1">You have fewer than2</lit>
-			<lit name="leftTestDate2">until your test.2</lit>
-			<lit name="goodLuck">Good luck with your test!2</lit>
-			<lit name="hopeTestWell">Hope your test went well...2</lit>
-			<lit name="overallCoverage"> - overall coverage2</lit>
-			<lit name="myProgress">My Progress2</lit>
-			<lit name="myProfile">My Profile2</lit>
-			<lit name="help">Help2</lit>
-			<lit name="credits">Credits2</lit>
-			<lit name="more">More2</lit>
-			<lit name="Home">Home2</lit>
-			<lit name="Back">Back2</lit>
-			<lit name="LogOut">Log out2</lit>
-			<lit name="day">day2</lit>
-			<lit name="days">days2</lit>
-			<lit name="lessThan">Less than2</lit>
-			<lit name="leftUntil">left until your test.2</lit>
-			<lit name="questionZoneViewNavigator">Starting out2</lit>
-			<lit name="adviceZoneViewNavigator">Advice and tutorials2</lit>
-			<lit name="practiceZoneViewNavigator">Practice zone2</lit>
-			<lit name="testZoneViewNavigator">Test practice2</lit>
-			<lit name="downloadButton">Read eBook2</lit>
-			<lit name="videoButton">Watch video2</lit>
-			<lit name="questionVideoCaption">Starting out2</lit>
-			<lit name="questionVideoInstruction">First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test2</lit>
-			<lit name="adviceVideoCaption">Advice and tutorials2</lit>
-			<lit name="adviceVideoInstruction">Click on a thumbnail to play the video2</lit>
-			<lit name="practiceZoneCaption">Test practice2</lit>
-			<lit name="difficulty">Difficulty:2</lit>
-			<lit name="practiceZoneInstruction">Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started.2</lit>
-		    <lit name="practiceZoneNoTest">There is no downloadable test practice materials in this section.  Watch the tutorials in the Advice and tutorials section to see what happens in the {courseClass} test interview.2</lit>
-		    <lit name="progressNavBarCoverage">My coverage2</lit>
-			<lit name="progressNavBarCompare">Compare2</lit>
-			<lit name="progressNavBarAnalyse">Analyse2</lit>
-			<lit name="progressNavBarScores">My scores2</lit>
-			<lit name="questionZoneCoverage">Starting out2</lit>
-			<lit name="adviceZoneCoverage">Advice and tutorials2</lit>
-			<lit name="examPracticeCoverage">Test practice2</lit>
-			<lit name="practiceZoneCoverage">Practice zone2</lit>
-			<lit name="compareInstruction">This chart compares your scores with other Road to IELTS users worldwide2</lit>
-			<lit name="chartCaption">Average score %2</lit>
-			<lit name="analysisInstruction1">This shows how you have spent your time2</lit>
-			<lit name="analysisInstruction2">Time spent on each skill2</lit>
-			<lit name="analysisTime">You have spent {x} minute(s) in total2</lit>
-			<lit name="courseDurationRenderLabel">You have spent2</lit>
-			<lit name="courseDurationRenderTime">{time} min(s)2</lit>
-			<lit name="ProgressBarCoverage">- overall coverage2</lit>
-			<lit name="ProgressBarScore">- average score2</lit>
-			<lit name="scoreGridC1">Unit2</lit>
-			<lit name="scoreGridC2">Exercise2</lit>
-			<lit name="scoreGridC3">Score %2</lit>
-			<lit name="scoreGridC4">Time spen2</lit>
-			<lit name="scoreGridC5">Date2</lit>
-			<lit name="setTestDate">Please set your test date below:2</lit>
-			<lit name="testDateLabel">Date:2</lit>
-			<lit name="countDownLabel1">This is the remaining time until your test.2</lit>
-			<lit name="countDownLabel2">Your test is today, good luck!2</lit>
-			<lit name="countDownLabel3">Hope your test went well...2</lit>
-			<lit name="registeredName">Registered name:2</lit>
-			<lit name="email">Email:2</lit>
-			<lit name="accountStartDate">Account start date:2</lit>
-			<lit name="accountExpiryDate">Account expiry date:2</lit>
-			<lit name="saveChangesButton">Save changes2</lit>
-			<lit name="supportCaption1">How to use Road to IELTS2</lit>
-			<lit name="paragraphContent1">22Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts onvideo, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
-			<lit name="creditsContent">
+			<lit name="lastTimeAC">Last Minute - Academic module</lit>
+			<lit name="testDriveAC">Test Drive - Academic module</lit>
+			<lit name="AC">Academic module</lit>
+			<lit name="lastTimeGT">Last Minute - General Training module</lit>
+			<lit name="testDriveGT">Test Drive - General Training module</lit>
+			<lit name="GT">General Training module</lit>
+			<lit name="welcomeLabel">Welcome,</lit>
+			<lit name="demoWelcomeLabel">Welcome to the Road to IELTS demo.</lit>
+			<lit name="confirmTestDate">Please confirm your test date on the My Profile page.</lit>
+			<lit name="leftTestDate1">You have fewer than</lit>
+			<lit name="leftTestDate2">until your test.</lit>
+			<lit name="goodLuck">Good luck with your test!</lit>
+			<lit name="hopeTestWell">Hope your test went well...</lit>
+			<lit name="overallCoverage"> - overall coverage</lit>
+			<lit name="myProgress">My Progress</lit>
+			<lit name="myProfile">My Profile</lit>
+			<lit name="help">Help</lit>
+			<lit name="credits">Credits</lit>
+			<lit name="more">More</lit>
+			<lit name="Home">Home</lit>
+			<lit name="Back">Back</lit>
+			<lit name="LogOut">Log out</lit>
+			<lit name="day">day</lit>
+			<lit name="days">days</lit>
+			<lit name="lessThan">Less than</lit>
+			<lit name="leftUntil">left until your test.</lit>
+			<lit name="questionZoneViewNavigator">Starting out</lit>
+			<lit name="adviceZoneViewNavigator">Advice and tutorials</lit>
+			<lit name="practiceZoneViewNavigator">Practice zone</lit>
+			<lit name="testZoneViewNavigator">Test practice</lit>
+			<lit name="downloadButton">Read eBook</lit>
+			<lit name="videoButton">Watch video</lit>
+			<lit name="questionVideoLabel">Starting out</lit>
+			<lit name="questionVideoInstructionLabel">First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test</lit>
+			<lit name="adviceVideoLabel">Advice and tutorials</lit>
+			<lit name="adviceVideoInstructionLabel">Click on a thumbnail to play the video</lit>
+			<lit name="practiceZoneLabel">Test practice</lit>
+			<lit name="difficulty">Difficulty:</lit>
+			<lit name="practiceZoneInstructionLabel">Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started.</lit>
+		    <lit name="practiceZoneNoTestLabel">There is no downloadable test practice materials in this section.  Watch the tutorials in the Advice and tutorials section to see what happens in the {courseClass} test interview.</lit>
+		    <lit name="progressNavBarCoverage">My coverage</lit>
+			<lit name="progressNavBarCompare">Compare</lit>
+			<lit name="progressNavBarAnalyse">Analyse</lit>
+			<lit name="progressNavBarScores">My scores</lit>
+			<lit name="progressAnonymousLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
+			<lit name="questionZoneComponent">Starting out</lit>
+			<lit name="adviceZoneComponent">Advice and tutorials</lit>
+			<lit name="examPracticeComponent">Test practice</lit>
+			<lit name="practiceZoneComponent">Practice zone</lit>
+			<lit name="compareInstructionLabel">This chart compares your scores with other Road to IELTS users worldwide</lit>
+			<lit name="chartCaptionLabel">Average score %</lit>
+			<lit name="analysisInstructionLabel1">This shows how you have spent your time</lit>
+			<lit name="analysisInstructionLabel2">Time spent on each skill</lit>
+			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
+			<lit name="courseDurationRenderLabel">You have spent</lit>
+			<lit name="courseDurationRenderTime">{time} min(s)</lit>
+			<lit name="ProgressBarCoverage">- overall coverage</lit>
+			<lit name="ProgressBarScore">- average score</lit>
+			<lit name="scoreGridC1">Unit</lit>
+			<lit name="scoreGridC2">Exercise</lit>
+			<lit name="scoreGridC3">Score %</lit>
+			<lit name="scoreGridC4">Time spen</lit>
+			<lit name="scoreGridC5">Date</lit>
+			<lit name="setTestDateLabel">Please set your test date below:</lit>
+			<lit name="testDateLabel">Date:</lit>
+			<lit name="countDownLabel1">This is the remaining time until your test.</lit>
+			<lit name="countDownLabel2">Your test is today, good luck!</lit>
+			<lit name="countDownLabel3">Hope your test went well...</lit>
+			<lit name="alertEmtyDateLabel">Please set your test date below:</lit>
+			<lit name="updateError">The two new passwords you typed must be the same.</lit>
+			<lit name="updateFail">Sorry, these details can't be updated.</lit>
+			<lit name="updateSuccess">Your details have been saved.</lit>
+			<lit name="registeredNameLabel">Registered name:</lit>
+			<lit name="emailLabel">Email:</lit>
+			<lit name="accountStartDateLabel">Account start date:</lit>
+			<lit name="accountExpiryDateLabel">Account expiry date:</lit>
+			<lit name="saveChangesButton">Save changes</lit>
+			<lit name="supportCaptionSpan1">How to use Road to IELTS</lit>
+			<lit name="paragraphContentSpan1">Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts onvideo, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
+			<lit name="creditsRichText">
 			    <![CDATA[
-			            <p><span fontWeight="bold">22Project Managers</span><br/>
+			            <p><span fontWeight="bold">Project Managers</span><br/>
 							Clarity: Joe Law<br/>
 							British Council: Greg Selby</p>							
 						
@@ -202,11 +205,11 @@
 						Council will be pleased to make the necessary arrangements.</p>
 			    ]]>
 			</lit>
-			<lit name="moreAboutUs">About us2</lit>
-			<lit name="moreContactUs">Contact us2</lit>
+			<lit name="moreAboutUs">About us</lit>
+			<lit name="moreContactUs">Contact us</lit>
 			<lit name="aboutUsContent">
 			    <![CDATA[
-				    <p>22The British Council is an international charity that is committed to developing a wider knowledge of the English
+				    <p>The British Council is an international charity that is committed to developing a wider knowledge of the English
 						language and promoting the advancement of education to encourage cultural, scientific, technological and other
 						educational exchange. The British Council was founded in 1934, incorporated by Royal Charter in 1940 and registered
 						as a charity under registration numbers 209131 (England and Wales) and SC037733 (Scotland). Our Patron is HM Queen
@@ -229,7 +232,7 @@
 			<lit name="contactUsContent1">
 			    <![CDATA[
 				    <p>
-					<span fontWeight="bold">22Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email
+					<span fontWeight="bold">Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email
 					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem and the URL of
 					your course (if you are running online).<br/>
 					Clarity Language Consultants Ltd<br/>
@@ -242,7 +245,7 @@
 			<lit name="contactUsContent2">
 			    <![CDATA[
 					<p>
-					<span fontWeight="bold">22Content problems</span><br/>If you have any enquires about the content, for example, if you have questions about 
+					<span fontWeight="bold">Content problems</span><br/>If you have any enquires about the content, for example, if you have questions about 
 					an answer in the exercises, please contact British Council.
 					</p>
 				 ]]>

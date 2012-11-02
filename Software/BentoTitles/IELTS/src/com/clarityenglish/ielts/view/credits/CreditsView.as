@@ -14,7 +14,7 @@ package com.clarityenglish.ielts.view.credits {
 	public class CreditsView extends BentoView {
 		
 		[SkinPart]
-		public var creditsContent:RichText;
+		public var creditsRichText:RichText;
 		
 		//issue:#11 language Code
 		/*public override function setCopyProvider(copyProvider:CopyProvider):void {
@@ -25,14 +25,14 @@ package com.clarityenglish.ielts.view.credits {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case creditsContent:
-					var creditsContentString:String = this.copyProvider.getCopyForId("creditsContent");
+				case creditsRichText:
+					var creditsContentString:String = this.copyProvider.getCopyForId("creditsRichText");
 					var creditFlow:TextFlow = TextFlowUtil.importFromString(creditsContentString);
 					creditFlow.color = "#4E4E4E";
 					creditFlow.fontSize = 14;
 					creditFlow.lineHeight = 22;
 					creditFlow.paragraphSpaceAfter = 12;
-					creditsContent.textFlow = creditFlow;
+					creditsRichText.textFlow = creditFlow;
 					break;
 			}
 		}

@@ -70,7 +70,7 @@
 	<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.user.examDate}" left="164" top="165" />
 	
 	<!--issue:#11 Language Code-->
-	<s:Label id="setTestDate" fontSize="17" color="#082F67" left="20" top="285" />
+	<s:Label id="setTestDateLabel" fontSize="17" color="#082F67" left="20" top="285" />
 	
 	<s:HGroup left="20" top="315">
 		<s:Label id="testDateLabel" verticalAlign="bottom" fontSize="15" paddingTop="5" paddingRight="4" />
@@ -79,16 +79,16 @@
 		<s:NumericStepper id="examMinutes" minimum="0" maximum="45" stepSize="15" value="{Number(formatExamDetails(hostComponent.user, 'mins'))}" textAlign="center" />
 	</s:HGroup>
 	
-	<s:Label id="registeredName" fontSize="15" fontWeight="bold" left="20" top="350" />
+	<s:Label id="registeredNameLabel" fontSize="15" fontWeight="bold" left="20" top="350" />
 	<s:Label text="{hostComponent.user.name}" fontSize="15" left="180" top="350" />
 	
-	<s:Label id="email" fontSize="15" fontWeight="bold" left="20" top="380" />
+	<s:Label id="emailLabel" fontSize="15" fontWeight="bold" left="20" top="380" />
 	<s:Label text="{hostComponent.user.email}" fontSize="15" left="180" top="380" />
 
-	<s:Label id="accountStartDate" fontSize="15" fontWeight="bold" left="20" top="410" />
+	<s:Label id="accountStartDateLabel" fontSize="15" fontWeight="bold" left="20" top="410" />
 	<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.startDate), 'd MMMM yyyy')}" fontSize="15" left="180" top="410" />
 
-	<s:Label id="accountExpiryDate" fontSize="15" fontWeight="bold" left="20" top="440" />
+	<s:Label id="accountExpiryDateLabel" fontSize="15" fontWeight="bold" left="20" top="440" />
 	<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.expiryDate), 'd MMMM yyyy')}" fontSize="15" left="180" top="440" />
 
 	<s:Button id="saveChangesButton" visible="{hostComponent.isDirty}" includeInLayout="{hostComponent.isDirty}" left="20" top="480" />

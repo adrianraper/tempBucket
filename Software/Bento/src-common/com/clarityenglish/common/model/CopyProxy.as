@@ -70,7 +70,7 @@ package com.clarityenglish.common.model {
 					str = str.replace(regExp, replaceObj[searchString]);
 				}
 			}
-			
+			trace("str is "+str);
 			return str;
 		}
 		

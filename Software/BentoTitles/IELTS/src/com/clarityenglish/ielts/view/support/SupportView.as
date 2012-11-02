@@ -24,22 +24,22 @@ package com.clarityenglish.ielts.view.support {
 		public var buyInfoButton:Button;
 		
 		[SkinPart]
-		public var supportCaption1:SpanElement;
+		public var supportCaptionSpan1:SpanElement;
 		
 		[SkinPart]
-		public var paragraphContent1:SpanElement;
+		public var paragraphContentSpan1:SpanElement;
 		
 		[SkinPart]
-		public var supportCaption2:SpanElement;
+		public var supportCaptionSpan2:SpanElement;
 		
 		[SkinPart]
-		public var paragraphContent2:SpanElement;
+		public var paragraphContentSpan2:SpanElement;
 		
 		[SkinPart]
-		public var supportCaption3:SpanElement;
+		public var supportCaptionSpan3:SpanElement;
 		
 		[SkinPart]
-		public var paragraphContent3:SpanElement;
+		public var paragraphContentSpan3:SpanElement;
 		
 		public var register:Signal = new Signal();
 		public var buy:Signal = new Signal();
@@ -58,23 +58,23 @@ package com.clarityenglish.ielts.view.support {
 				case buyInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onBuyInfoClick);
 					break;
-				case supportCaption1:
-					instance.text = copyProvider.getCopyForId("supportCaption1");
+				case supportCaptionSpan1:
+					instance.text = copyProvider.getCopyForId("supportCaptionSpan1");
 					break;
-				case paragraphContent1:
-					instance.text  = copyProvider.getCopyForId("paragraphContent1");
+				case paragraphContentSpan1:
+					instance.text  = copyProvider.getCopyForId("paragraphContentSpan1");
 					break;
-				case supportCaption2:
-					instance.text = copyProvider.getCopyForId("supportCaption1");
+				case supportCaptionSpan2:
+					instance.text = copyProvider.getCopyForId("supportCaptionSpan1");
 					break;
-				case paragraphContent2:
-					instance.text  = copyProvider.getCopyForId("paragraphContent1");
+				case paragraphContentSpan2:
+					instance.text  = copyProvider.getCopyForId("paragraphContentSpan1");
 					break;
-				case supportCaption3:
-					instance.text = copyProvider.getCopyForId("supportCaption1");
+				case supportCaptionSpan3:
+					instance.text = copyProvider.getCopyForId("supportCaptionSpan1");
 					break;
-				case paragraphContent3:
-					instance.text  = copyProvider.getCopyForId("paragraphContent1");
+				case paragraphContentSpan3:
+					instance.text  = copyProvider.getCopyForId("paragraphContentSpan1");
 					break;
 			}
 		}

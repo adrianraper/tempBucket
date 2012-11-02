@@ -46,8 +46,8 @@
 		<s:State name="demo"  />
 	</s:states>
 	
-	<s:Label id="analysisInstruction1" left="20" top="60" />
-	<s:Label id="analysisInstruction2" left="20" top="90" />
+	<s:Label id="analysisInstructionLabel1" left="20" top="60" />
+	<s:Label id="analysisInstructionLabel2" left="20" top="90" />
 	<s:Label id="analysisTime" fontSize="16" left="20" top="120" />
 	
 	<ui:StackedBarChart id="stackedBarChart" dataProvider="{hostComponent.progressXml}" top="150" height="35" left="20" width="{durationDataGroup.width}" />

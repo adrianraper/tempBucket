@@ -47,10 +47,10 @@ package com.clarityenglish.ielts.view.zone {
 					videoSelector.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					break;
 				case adviceVideoLabel:
-					instance.text = copyProvider.getCopyForId("adviceVideoCaption");
+					instance.text = copyProvider.getCopyForId("adviceVideoLabel");
 					break;
 				case adviceVideoInstructionLabel:
-					instance.text = copyProvider.getCopyForId("adviceVideoInstruction");
+					instance.text = copyProvider.getCopyForId("adviceVideoInstructionLabel");
 					break;	
 			}
 		}

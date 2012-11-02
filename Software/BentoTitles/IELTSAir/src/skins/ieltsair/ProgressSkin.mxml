@@ -30,7 +30,7 @@
 		<s:State name="score_demo" stateGroups="demoStates,scoreStates"/>
 	</s:states>
 	
-	<s:Label left="18" height="14" top="10" text="You have logged in anonymously, so your progress will not be saved after you close the program." visible="{hostComponent.licenceType == Title.LICENCE_TYPE_AA}" />
+	<s:Label id="progressAnonymousLabel" left="18" height="14" top="10" visible="{hostComponent.licenceType == Title.LICENCE_TYPE_AA}" />
 	
 	<s:ButtonBar id="progressNavBar" height="43" top="23" right="0" />
 	

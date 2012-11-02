@@ -59,22 +59,22 @@ package com.clarityenglish.ielts.view.account {
 		public var countdownDisplay:CountdownDisplay;
 		
 		[SkinPart]
-		public var setTestDate:Label;
+		public var setTestDateLabel:Label;
 		
 		[SkinPart]
 		public var testDateLabel:Label;
 		
 		[SkinPart]
-		public var registeredName:Label;
+		public var registeredNameLabel:Label;
 		
 		[SkinPart]
-		public var email:Label;
+		public var emailLabel:Label;
 		
 		[SkinPart]
-		public var accountStartDate:Label;
+		public var accountStartDateLabel:Label;
 		
 		[SkinPart]
-		public var accountExpiryDate:Label;
+		public var accountExpiryDateLabel:Label;
 
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
@@ -125,7 +125,7 @@ package com.clarityenglish.ielts.view.account {
 						}
 						
 					} else {
-						instance.text = "Please set your test date below:"
+						instance.text = copyProvider.getCopyForId("alertEmtyDateLabel");
 					}
 					break;
 				
@@ -146,20 +146,20 @@ package com.clarityenglish.ielts.view.account {
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 				//issue:#11 Language Code
-				case setTestDate:
-					instance.text = copyProvider.getCopyForId("setTestDate");
+				case setTestDateLabel:
+					instance.text = copyProvider.getCopyForId("setTestDateLabel");
 					break;
-				case registeredName:
-					instance.text = copyProvider.getCopyForId("registeredName");
+				case registeredNameLabel:
+					instance.text = copyProvider.getCopyForId("registeredNameLabel");
 					break;
-				case email:
-					instance.text = copyProvider.getCopyForId("email");
+				case emailLabel:
+					instance.text = copyProvider.getCopyForId("emailLabel");
 					break;
-				case accountStartDate:
-					instance.text = copyProvider.getCopyForId("accountStartDate");
+				case accountStartDateLabel:
+					instance.text = copyProvider.getCopyForId("accountStartDateLabel");
 					break;
-				case accountExpiryDate:
-					instance.text = copyProvider.getCopyForId("accountExpiryDate");
+				case accountExpiryDateLabel:
+					instance.text = copyProvider.getCopyForId("accountExpiryDateLabel");
 					break;
 				case testDateLabel:
 					instance.text = copyProvider.getCopyForId("testDateLabel");
@@ -254,7 +254,8 @@ package com.clarityenglish.ielts.view.account {
 		protected function onUpdateButtonClick(event:MouseEvent):void {
 			// Any validation to do here?
 			if (newPassword && confirmPassword && (newPassword.text != confirmPassword.text)) {
-				showUpdateError("The two new passwords you typed must be the same.");
+				//issue:#11
+				showUpdateError(copyProvider.getCopyForId("updateError"));
 			} else {
 				// Trigger the update command. Use an Event or a Signal?
 				// Do I really need to pass anything at all since the mediator can get it all anyway?
@@ -277,7 +278,8 @@ package com.clarityenglish.ielts.view.account {
 			if (msg) {
 				Alert.show(msg, "Update problem");
 			} else {
-				Alert.show("Sorry, these details can't be updated.", "Update problem");				
+				//issue:#11
+				Alert.show(copyProvider.getCopyForId("updateFail"), "Update problem");				
 			}
 		}
 		
@@ -285,7 +287,8 @@ package com.clarityenglish.ielts.view.account {
 			if (msg) {
 				Alert.show(msg, "Update success");
 			} else {
-				Alert.show("Your details have been saved.", "Your profile");				
+				//isssue:#11
+				Alert.show(copyProvider.getCopyForId("updateSuccess"), "Your profile");				
 			}
 		}
 		
