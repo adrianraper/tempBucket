@@ -46,14 +46,6 @@ class CourseOps {
 		});
 	}
 	
-	public function courseUpdate() {
-		
-	}
-	
-	public function courseDelete() {
-		
-	}
-	
 	public function courseSave($filename, $xml) {
 		// Protect again directory traversal attacks; the filename *must* be in the form <some hex value>/menu.xml otherwise we are being fiddled with
 		if (preg_match("/^[0-9a-f]+\/menu\.xml$/", $filename, $matches) != 1) {
@@ -70,6 +62,27 @@ class CourseOps {
 		
 		// Save the xml file
 		file_put_contents($menuXMLFilename, $xml, LOCK_EX);
+	}
+	
+	public function courseDelete($courseXmlString) {
+		// Turn the XML string into SimpleXML
+		$course = simplexml_load_string($courseXmlString);
+		$accountFolder = $this->accountFolder;
+		
+		XmlUtils::rewriteCourseXml($this->courseFilename, function($xml) use($course, $accountFolder) {
+			// SimpleXML doesn't like default namespaces in xpath expressions so define the XHTML namespace explicitly
+			$xml->registerXPathNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
+			
+			// Find the course node in the xml and delete it
+			$courseId = $course['id'];
+			foreach ($xml->xpath("//xhtml:course[@id='$courseId']") as $courseNode) {
+				unset($courseNode[0]);
+			}
+			
+			// Rename the folder such that it is prefixed with "deleted_"
+			if (!rename($accountFolder."/".$courseId,$accountFolder."/deleted_".$courseId))
+				throw new Exception("Unable to rename folder and so could not delete course");
+		});
 	}
 	
 }

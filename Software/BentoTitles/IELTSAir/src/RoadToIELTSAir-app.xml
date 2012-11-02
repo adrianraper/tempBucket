@@ -239,6 +239,9 @@
 		together in order to use AIR's NetworkInfo APIs-->
 			    <!--<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>-->
 			    <!--<uses-permission android:name="android.permission.ACCESS_WIFI_STATE"/>-->
+			    
+			    <application android:enabled="true" android:hardwareAccelerated="true">
+			    </application>
 			</manifest>
 			
 		]]></manifestAdditions>

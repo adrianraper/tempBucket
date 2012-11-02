@@ -37,6 +37,11 @@ class RotterdamService extends BentoService {
 		$this->courseOps->courseSave($filename, $xml);
 	}
 	
+	public function courseDelete($course) {
+		// TODO: Only allow this if the logged in user has permission
+		$this->courseOps->courseDelete($course);
+	}
+	
 	/**
 	 * Create a blank account folder with all required directories and an empty course.xml (for now we're not sure there are any required directories)
 	 */

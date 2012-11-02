@@ -51,6 +51,13 @@ package com.clarityenglish.rotterdam.view.course {
 				case unitList:
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
+					
+					// #14 - auto select a unit
+					unitList.requireSelection = true;
+					callLater(function():void {
+						if (unitList.dataProvider.length > 0)
+							unitList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+					});
 					break;
 				case addUnitButton:
 					addUnitButton.addEventListener(MouseEvent.CLICK, onAddUnit);

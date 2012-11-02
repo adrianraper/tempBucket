@@ -104,6 +104,10 @@ package com.clarityenglish.rotterdam.model {
 			}
 		}
 		
+		public function courseDelete(course:XML):void {
+			new RemoteDelegate("courseDelete", [ course ], this).execute();
+		}
+		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
 		public function onDelegateResult(operation:String, data:Object):void {
@@ -113,6 +117,9 @@ package com.clarityenglish.rotterdam.model {
 					break;
 				case "courseSave":
 					sendNotification(RotterdamNotifications.COURSE_SAVED);
+					break;
+				case "courseDelete":
+					sendNotification(RotterdamNotifications.COURSE_DELETED);
 					break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);

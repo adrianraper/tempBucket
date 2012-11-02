@@ -288,7 +288,7 @@ package com.clarityenglish.common.model {
 			
 			if (Config.DEVELOPER.name == "DK") {
 				//return { courseID: "1287130400000" };
-				//return { exerciseID: "1156181253852" };
+				//return { exerciseID: "1156153794231" };
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {

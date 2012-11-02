@@ -23,5 +23,6 @@
 	
 	<s:Button id="createCourseButton" label="Create a New Course" />
 	<s:Button id="selectCourseButton" label="Edit course" enabled="{courseList.selectedItem != null}" />
+	<s:Button id="deleteCourseButton" label="Delete course" enabled="{courseList.selectedItem != null}" />
 	
 </s:Skin>
