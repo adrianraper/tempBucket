@@ -14,8 +14,8 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="com/clarityenglish/dms/DMSApplication.mxml"/>
     <application path="com/clarityenglish/resultsmanager/ResultsManager.mxml"/>
+    <application path="com/clarityenglish/dms/DMSApplication.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

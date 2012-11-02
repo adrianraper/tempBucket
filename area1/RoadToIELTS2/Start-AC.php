@@ -62,12 +62,15 @@
 		$ip = $_SERVER["REMOTE_ADDR"];
 	}
 	// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
-	if (isset($_SERVER['HTTP_REFERER'])) {
+	if (isset($_SERVER['HTTP_REFERER']) && isset($_SERVER['HTTP_REFERER']) != '') {
 		if (strpos($_SERVER['HTTP_REFERER'],'?')) {
 			$referrer=substr($_SERVER['HTTP_REFERER'],0,strpos($_SERVER['HTTP_REFERER'],'?'));
 		} else {
 			$referrer = $_SERVER['HTTP_REFERER'];
 		}
+	// For PLS, IE might strip HTTP_REFERER
+	} elseif (isset($_SESSION['Referer'])) {
+		$referrer = $_SESSION['Referer'];
 	}
 
 ?>
@@ -111,7 +114,7 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		var versionControl = "&version=943";
+		var versionControl = "&version=1097";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
