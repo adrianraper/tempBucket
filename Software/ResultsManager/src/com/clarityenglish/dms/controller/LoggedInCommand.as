@@ -32,6 +32,7 @@ package com.clarityenglish.dms.controller {
 														"termsConditions",
 														"products",
 														"languageCode",
+														"versionCode",
 														"licenceType"
 													  ] ));
 			facade.registerProxy(new AccountProxy());

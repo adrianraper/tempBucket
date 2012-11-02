@@ -46,6 +46,7 @@
 		public var licenceClearanceFrequency:String;
 		
 		public var languageCode:String;
+		public var productVersion:String;
 		public var startPage:String;
 		public var licenceFile:String;
 		public var contentLocation:String;
@@ -136,6 +137,8 @@
 			
 			// Ideally we would look up the T_ProductLanguage table to find the default language code
 			title.languageCode = "EN";
+			title.productVersion = "";
+			
 			// v3.4.2 And we do want to set the caption too. This will not trigger an extra dictionaries PHP call, so not expensive.
 			var products:Array = DictionarySingleton.getInstance().products;
 			//TraceUtils.myTrace("getting RM name from products dictionary=" + products[productCode].label);
@@ -145,6 +148,7 @@
 					break;
 				}
 			}
+			
 			return title;
 		}
 		

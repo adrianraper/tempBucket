@@ -463,6 +463,14 @@ SQL;
 					ORDER BY P.F_ProductCode
 EOD;
 				return $this->db->GetArray($sql);
+			case "versionCode":
+				$sql = <<< EOD
+					SELECT P.F_VersionCode data, V.F_Description label, P.F_ProductCode productCode
+					FROM T_Version V, T_ProductVersion P
+					WHERE P.F_VersionCode = V.F_VersionCode
+					ORDER BY P.F_ProductCode
+EOD;
+				return $this->db->GetArray($sql);
 			default:
 				throw new Exception("Unknown dictionary name '".$dictionaryName."'");
 		}
