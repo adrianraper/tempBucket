@@ -353,7 +353,7 @@
 				<mx:TextInput id="titleTextInput" editable="false" enabled="false" />
 			</mx:FormItem>
 			<mx:HBox width="100%">
-				<mx:Spacer width="10"/>
+				<mx:Spacer width="0"/>
 				<mx:FormItem id="licenceStartDateFormItem">
 					<mx:DateField id="licenceStartDateDateField" formatString="DD/MM/YYYY" editable="true" enabled="{editMode}" yearNavigationEnabled="true" />
 				</mx:FormItem>

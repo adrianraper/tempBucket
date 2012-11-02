@@ -237,7 +237,7 @@ class Title extends Content {
 		$array['F_ExpiryDate'] = substr($this->expiryDate,0,10).' 23:59:59';
 		$array['F_LicenceStartDate'] = substr($this->licenceStartDate,0,10).' 00:00:00';
 		$array['F_LanguageCode'] = $this->languageCode;
-		$array['F_ProductVersion'] = $this->ProductVersion;
+		$array['F_ProductVersion'] = $this->productVersion;
 		$array['F_StartPage'] = $this->startPage;
 		$array['F_LicenceFile'] = $this->licenceFile;
 		// v3.3 We want empty content locations to be saved as null

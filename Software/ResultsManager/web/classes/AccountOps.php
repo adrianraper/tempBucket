@@ -713,6 +713,17 @@ EOD;
 					AbstractService::$log->notice("Created ap folder=".$thisContentLocation);
 				}
 			}
+
+			// v3.4 We need to create a CCB folder, if they are adding AP for the first time, and this is not self-hosted
+			if ($title->productCode == 54 && !$account->selfHost) {
+				$thisContentLocation = $this->contentOps->getContentFolder($title->dbContentLocation, $title->productCode);
+				if (!is_dir($thisContentLocation)) {
+					mkdir($thisContentLocation, 0777);
+					AbstractService::$log->setRootID($account->id);
+					AbstractService::$log->notice("Created CCB folder=".$thisContentLocation);
+				}
+			}
+			
 			// v3.0.6 For any AA licences, add action=anonymous to the licence attributes, with a specific product code
 			// Actually, no need as Orchid will automatically set AA licence to action=anonymous if nothing else is set.
 			if ($title->licenceType == Title::LICENCE_TYPE_AA) {

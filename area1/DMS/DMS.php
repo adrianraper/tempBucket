@@ -103,7 +103,7 @@
 		};
 		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
 		flashvars.sessionid = "<?php echo session_id(); ?>";
-		swfobject.embedSWF(startControl + "DMS.swf" + argList, "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + "DMSApplication.swf" + argList, "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
 	</script>
 	<style type="text/css">
 		html, body { height:100%; }

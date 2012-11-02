@@ -483,7 +483,8 @@
 			<lit name="maxAuthorsFormItem">Max authors:</lit>
 			<lit name="maxReportersFormItem">Max reporters:</lit>
 			<lit name="licenceTypeFormItem">Licence type:</lit>
-			<lit name="languageCodeFormItem">Language code:</lit>
+			<lit name="languageCodeFormItem">Language:</lit>
+			<lit name="versionCodeFormItem">Version:</lit>
 			<lit name="startPageFormItem">Start page:</lit>
 			<lit name="licenceFileFormItem">Licence file:</lit>
 			<lit name="contentLocationFormItem">Content location:</lit>
