@@ -110,6 +110,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@span;
 		}
 		
+		[Bindable(event="columnAttrChanged")]
+		public function get ypos():uint {
+			return _xml.@ypos;
+		}
+		
 		[Bindable(event="titleAttrChanged")]
 		public function get title():String {
 			return _xml.@title;

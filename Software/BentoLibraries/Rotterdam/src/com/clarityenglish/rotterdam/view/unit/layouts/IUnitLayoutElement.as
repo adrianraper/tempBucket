@@ -4,6 +4,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 	public interface IUnitLayoutElement extends ILayoutElement {
 		
 		function get column():uint;
+		function get ypos():uint;
 		function get span():uint;
 		
 	}

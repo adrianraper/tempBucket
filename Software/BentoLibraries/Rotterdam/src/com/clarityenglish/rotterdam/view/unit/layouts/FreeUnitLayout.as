@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 	import flash.display.BitmapData;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.sampler.NewObjectSample;
 	
 	import mx.core.ILayoutElement;
 	import mx.core.mx_internal;
@@ -19,7 +20,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 	 * as it possibly can be, and uses a BitmapData canvas to draw where things are going and to figure out where the next available slots are that elements
 	 * can be positioned into.
 	 */
-	public class UnitLayout extends LayoutBase implements IUnitLayout {
+	public class FreeUnitLayout extends LayoutBase implements IUnitLayout {
 		
 		/**
 		 * Standard flex logger
@@ -30,14 +31,10 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		
 		public var horizontalGap:uint = 2;
 		
-		public var verticalGap:uint = 2;
-		
-		private var elementMap:BitmapData;
-		
-		public function UnitLayout() {
-			elementMap = new BitmapData(columns, 8191, true);
+		public function FreeUnitLayout() {
+			
 		}
-		
+
 		public function get columns():int {
 			return _columns;
 		}
@@ -53,10 +50,6 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 				return;
 			
 			var measuredHeight:Number = 0;
-			
-			// Create a new delimiters array (this is what we will check for gaps) and clear the elementMap
-			var yDelimiters:Array = [ 0 ];
-			elementMap.fillRect(new Rectangle(0, 0, elementMap.width, elementMap.height), 0x00000000);
 			
 			// Get the width of a column
 			var columnWidth:Number = (width - horizontalGap * (columns - 1)) / columns;
@@ -77,45 +70,18 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 					var elementX:uint = currentElement.column * columnWidth + xGapOffset;
 					
 					// Calculate the y position based on what is already there
-					var elementY:uint = getFirstAvailableY(currentElement, yDelimiters, elementMap);
-					if (elementY > 0)
-						elementY += verticalGap; // TODO: not 100% convinced that this works properly yet...
+					var elementY:uint = currentElement.ypos;
 					
 					measuredHeight = Math.max(measuredHeight, elementY + currentElement.getLayoutBoundsHeight());
 					
 					// Set the position
 					currentElement.setLayoutBoundsPosition(elementX, elementY);
-					
-					// Update the column heights
-					updateColumnMap(currentElement, yDelimiters, elementMap);
 				} else {
 					log.error("Only IUnitLayoutElements can be in a UnitLayout (" + target.getElementAt(i) + ")");
 				}
 			}
 			
 			target.setContentSize(width, measuredHeight);
-		}
-		
-		private function getFirstAvailableY(element:IUnitLayoutElement, yDelimiters:Array, elementMap:BitmapData):Number {
-			// Here we go through the gaps seeing if element will fit; if not it goes at the end
-			for each (var y:uint in yDelimiters) {
-				var available:Boolean = !elementMap.hitTest(new Point(0, 0), 1, new Rectangle(element.column, y, element.span, element.getPreferredBoundsHeight()));
-				if (available) {
-					return y;
-				}
-			}
-			
-			// We should never get here
-			throw new Error("Didn't find an available y for the dropped element (this shouldn't be possible!");
-			return null;
-		}
-		
-		private function updateColumnMap(element:IUnitLayoutElement, yDelimiters:Array, elementMap:BitmapData):void {
-			var yDelimiter:uint = element.getLayoutBoundsY() + element.getPreferredBoundsHeight();
-			if (yDelimiters.indexOf(yDelimiter) < 0)
-				yDelimiters.push(element.getLayoutBoundsY() + element.getPreferredBoundsHeight());
-			
-			elementMap.fillRect(new Rectangle(element.column, element.getLayoutBoundsY(), element.span, element.getLayoutBoundsHeight()), 0xFF000000);
 		}
 		
 		/**
@@ -136,24 +102,26 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		}
 		
 		/**
-		 * This needs to figure out the drop index for a certain point.  This seems to mostly work, although its not perfect.
+		 * Any action in the FreeUnitLayout brings a widget to the front, so the drop index is always at the end.
 		 */
 		override protected function calculateDropIndex(x:Number, y:Number):int {
-			// First determine the column
-			var column:int = getColumnFromX(x);
-			
-			// If we are hovering over an existing element then move to that position
-			for (var i:int = 0; i < target.numElements; i++) {
-				var bounds:Rectangle = getElementBounds(i);
-				if (bounds && bounds.contains(x, y))
-					return i;
-			}
-			
-			// Otherwise don't move
-			return -1;
+			return Math.max(0, target.numElements - 1);
 		}
 		
 		public function updateElementFromDrag(item:Object, x:Number, y:Number):Object {
+			// Figure out the new column and bound it within a valid range
+			var newColumn:int;
+			newColumn = getColumnFromX(x);
+			newColumn = Math.max(0, newColumn);
+			newColumn = Math.min(newColumn, columns - item.@span);
+			
+			// If the column has changed then rewrite the XML accordingly
+			if (newColumn != item.@column) {
+				var updatedObject:Object = item.copy();
+				updatedObject.@column = newColumn;
+				return updatedObject;
+			}
+			
 			return null;
 		}
 		

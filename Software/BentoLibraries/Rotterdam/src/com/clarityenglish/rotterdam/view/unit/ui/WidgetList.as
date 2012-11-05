@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
-	import com.clarityenglish.rotterdam.view.unit.layouts.UnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
@@ -20,7 +21,6 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.managers.DragManager;
-	import mx.utils.UIDUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	
@@ -108,28 +108,22 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			var draggedItem:Object = dragSource.dataForFormat("draggedItem") as Object;
 			var draggedIndex:int = dragSource.dataForFormat("draggedIndex") as int;
 			
-			// Figure out the new column and bound it within a valid range
-			var newColumn:int;
-			newColumn = (layout as UnitLayout).getColumnFromX(pt.x);
-			newColumn = Math.max(0, newColumn);
-			newColumn = Math.min(newColumn, (layout as UnitLayout).columns - draggedItem.@span);
-			
-			// If the column has changed then rewrite the XML accordingly
-			if (newColumn != draggedItem.@column) {
-				newObject = draggedItem.copy();
-				
-				newObject.@column = newColumn;
-				dataProvider.setItemAt(newObject, draggedIndex);
+			// Update the object using the layout's updateElementFromDrag method
+			var updatedObject:Object = (layout as IUnitLayout).updateElementFromDrag(draggedItem, pt.x, pt.y);
+			if (updatedObject) {
+				dataProvider.setItemAt(updatedObject, draggedIndex);
+				dragSource.addData(updatedObject, "draggedItem");
+				draggedItem = updatedObject;
 			}
 			
 			// Figure out the new index and rearrange the dataprovider if it has changed
-			var dropIndex:int = (layout as UnitLayout).getDropIndex(event.stageX, event.stageY);
+			var dropIndex:int = (layout as IUnitLayout).getDropIndex(event.stageX, event.stageY);
 			if (dropIndex >= 0 && dropIndex != draggedIndex) {
-				newObject = draggedItem.copy();
+				var rearrangedObject:Object = draggedItem.copy();
 				
 				dataProvider.removeItemAt(draggedIndex);
-				dataProvider.addItemAt(newObject, dropIndex);
-				dragSource.addData(newObject, "draggedItem");
+				dataProvider.addItemAt(rearrangedObject, dropIndex);
+				dragSource.addData(rearrangedObject, "draggedItem");
 				dragSource.addData(dropIndex, "draggedIndex");
 			}
 			

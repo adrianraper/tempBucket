@@ -24,7 +24,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			
 			var uid:String = UIDUtil.createUID();
 			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new audio widget");
-			var node:XML = <audio id={uid} col="0" span="1" title="New Audio widget"><text>{textFlowString}</text></audio>;
+			var node:XML = <audio id={uid} span="1" title="New Audio widget"><text>{textFlowString}</text></audio>;
 			
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			
