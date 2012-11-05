@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<literals progam="IELTS" version="2.0">
+	<language name="English International" code="EN" mediaFolder="EN">
+		<group name="group">	
+			<lit name="applicationName">IELTS</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<lit name="errorUnknown" code="100">Unknown error</lit>			
+			<lit name="errorNoSuchUser" code="200">Your login name or ID is not registered. Please contact your administrator. (option {loginOption})</lit>
+			<lit name="errorNoProductCode" code="201">No productCode sent.</lit>
+			<lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
+			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
+			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account (productCode={productCode})</lit>
+			<lit name="errorNoProductCodeInRoot" code="205">Your account does not have access to this title. (product code={productCode} root={rootID})</lit>
+			<lit name="errorWrongPassword" code="206">That name or id and/or password are not correct. Please try again. (option {loginOption})</lit>
+			<lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
+			<lit name="errorDuplicateUsers" code="208">More than one user matches these details. Please contact your administrator. (login option {loginOption})</lit>
+			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered</lit>
+			<lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
+			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
+			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
+			<lit name="errorLoginKeyEmpty" code="215">The key field can't be empty ({loginOption})</lit>
+			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
+			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>		
+			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
+			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
+			<lit name="errorCantClearLicences" code="302">Unable to clear old licences.</lit>
+			<lit name="errorTrackingLicenceFull" code="303">This licence is full, please contact your administrator.</lit>
+			<lit name="errorConcurrentLicenceFull" code="304">This licence is full, please try again later.</lit>
+			<lit name="errorReadingLicenceControlTable" code="305">Error reading licence control table. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorUnrecognisedLicenceType" code="306">The licence type {licenceType} is not recognised. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorCantFindLicence" code="307">Error, can't find this licence {licenceID}. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number</lit>
+			<lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
+			<lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
+			<lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
+			
+			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}</lit>
+			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id</lit>
+			<lit name="errorParsingExercise" code="402">Unable to read exercise {filename} ({message}). Please contact support@clarityenglish.com with the file name.</lit>
+			<lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple Exercise nodes in the menu xml matching {href}</lit>
+			<lit name="errorCantFindExerciseWithHref" code="404">Unable to find any Exercise nodes in the menu xml matching {href}</lit>
+			
+			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
+			
+			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
+			
+			<lit name="Reading">Reading</lit>
+			<lit name="Listening">Listening</lit>
+			<lit name="Speaking">Speaking</lit>
+			<lit name="Writing">Writing</lit>
+			<lit name="lastTimeAC">Last Minute - Academic module</lit>
+			<lit name="testDriveAC">Test Drive - Academic module</lit>
+			<lit name="AC">Academic module</lit>
+			<lit name="lastTimeGT">Last Minute - General Training module</lit>
+			<lit name="testDriveGT">Test Drive - General Training module</lit>
+			<lit name="GT">General Training module</lit>
+			<lit name="welcomeLabel">Welcome,</lit>
+			<lit name="demoWelcomeLabel">Welcome to the Road to IELTS demo.</lit>
+			<lit name="confirmTestDate">Please confirm your test date on the My Profile page.</lit>
+			<lit name="leftTestDate1">You have fewer than</lit>
+			<lit name="leftTestDate2">until your test.</lit>
+			<lit name="goodLuck">Good luck with your test!</lit>
+			<lit name="hopeTestWell">Hope your test went well...</lit>
+			<lit name="overallCoverage"> - overall coverage</lit>
+			<lit name="myProgress">My Progress</lit>
+			<lit name="myProfile">My Profile</lit>
+			<lit name="help">Help</lit>
+			<lit name="credits">Credits</lit>
+			<lit name="more">More</lit>
+			<lit name="Home">Home</lit>
+			<lit name="Back">Back</lit>
+			<lit name="LogOut">Log out</lit>
+			<lit name="day">day</lit>
+			<lit name="days">days</lit>
+			<lit name="lessThan">Less than</lit>
+			<lit name="leftUntil">left until your test.</lit>
+			<lit name="questionZoneViewNavigator">Starting out</lit>
+			<lit name="adviceZoneViewNavigator">Advice and tutorials</lit>
+			<lit name="practiceZoneViewNavigator">Practice zone</lit>
+			<lit name="testZoneViewNavigator">Test practice</lit>
+			<lit name="downloadButton">Read eBook</lit>
+			<lit name="videoButton">Watch video</lit>
+			<lit name="questionVideoLabel">Starting out</lit>
+			<lit name="questionVideoInstructionLabel">First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test</lit>
+			<lit name="adviceVideoLabel">Advice and tutorials</lit>
+			<lit name="adviceVideoInstructionLabel">Click on a thumbnail to play the video</lit>
+			<lit name="practiceZoneLabel">Test practice</lit>
+			<lit name="difficulty">Difficulty:</lit>
+			<lit name="practiceZoneInstructionLabel">Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started.</lit>
+		    <lit name="practiceZoneNoTestLabel">There is no downloadable test practice materials in this section.  Watch the tutorials in the Advice and tutorials section to see what happens in the {courseClass} test interview.</lit>
+		    <lit name="progressNavBarCoverage">My coverage</lit>
+			<lit name="progressNavBarCompare">Compare</lit>
+			<lit name="progressNavBarAnalyse">Analyse</lit>
+			<lit name="progressNavBarScores">My scores</lit>
+			<lit name="progressAnonymousLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
+			<lit name="questionZoneComponent">Starting out</lit>
+			<lit name="adviceZoneComponent">Advice and tutorials</lit>
+			<lit name="examPracticeComponent">Test practice</lit>
+			<lit name="practiceZoneComponent">Practice zone</lit>
+			<lit name="compareInstructionLabel">This chart compares your scores with other Road to IELTS users worldwide</lit>
+			<lit name="chartCaptionLabel">Average score %</lit>
+			<lit name="analysisInstructionLabel1">This shows how you have spent your time</lit>
+			<lit name="analysisInstructionLabel2">Time spent on each skill</lit>
+			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
+			<lit name="courseDurationRenderLabel">You have spent</lit>
+			<lit name="courseDurationRenderTime">{time} min(s)</lit>
+			<lit name="ProgressBarCoverage">- overall coverage</lit>
+			<lit name="ProgressBarScore">- average score</lit>
+			<lit name="scoreGridC1">Unit</lit>
+			<lit name="scoreGridC2">Exercise</lit>
+			<lit name="scoreGridC3">Score %</lit>
+			<lit name="scoreGridC4">Time spen</lit>
+			<lit name="scoreGridC5">Date</lit>
+			<lit name="setTestDateLabel">Please set your test date below:</lit>
+			<lit name="testDateLabel">Date:</lit>
+			<lit name="countDownLabel1">This is the remaining time until your test.</lit>
+			<lit name="countDownLabel2">Your test is today, good luck!</lit>
+			<lit name="countDownLabel3">Hope your test went well...</lit>
+			<lit name="alertEmtyDateLabel">Please set your test date below:</lit>
+			<lit name="updateError">The two new passwords you typed must be the same.</lit>
+			<lit name="updateFail">Sorry, these details can't be updated.</lit>
+			<lit name="updateSuccess">Your details have been saved.</lit>
+			<lit name="registeredNameLabel">Registered name:</lit>
+			<lit name="emailLabel">Email:</lit>
+			<lit name="accountStartDateLabel">Account start date:</lit>
+			<lit name="accountExpiryDateLabel">Account expiry date:</lit>
+			<lit name="saveChangesButton">Save changes</lit>
+			<lit name="supportCaptionSpan1">How to use Road to IELTS</lit>
+			<lit name="paragraphContentSpan1">Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts onvideo, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
+			<lit name="creditsRichText">
+			    <![CDATA[
+			            <p><span fontWeight="bold">Project Managers</span><br/>
+							Clarity: Joe Law<br/>
+							British Council: Greg Selby</p>							
+						
+						<p><span fontWeight="bold">Lead Programmer</span><br/>
+							Dave Keen</p>
+						
+						<p><span fontWeight="bold">Video recordings</span><br/>
+							Andy Lewis</p>
+						
+						<p><span fontWeight="bold">Sources of original articles and images</span><br/>
+							Photo images are taken from Shutterstock with permission.</p>
+						
+						<p>Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group.</p>
+						
+						<p><span fontWeight="bold">Tapescript</span><br/>
+							Alex Mackarow.</p>
+						
+						<p><span fontWeight="bold">Authentic articles are taken from the following publications or organisations:</span><br/>
+							Abolishing Management, One Slice at a Time<br/>
+							ACTA<br/>
+							American Artist Magazine<br/>
+							Amnesty International USA<br/>
+							Books, etc., Christmas Catalogue<br/>
+							BritainUSA.com<br/>
+							British Medical Journal<br/>
+							Canada's International Development Research Centre<br/>
+							Country Living Magazine<br/>
+							Directory of International Voluntary Work<br/>
+							ERIC Digest<br/>
+							Games on Playing Cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems)<br/>
+							Guns, Germs and Steel<br/>
+							Heathrow Express<br/>
+							Her Majesty's Stationery Office<br/>
+							History Today<br/>
+							Learndirect<br/>
+							Management Today<br/>
+							National Geographic<br/>
+							New Internationalist<br/>
+							New Statesman<br/>
+							Play: An Endangered Species<br/>
+							Prospect Magazine<br/>
+							RECOUP<br/>
+							Royal Mail<br/>
+							Success in Four Minutes or Les<br/>
+							The Articulate Mammal<br/>
+							The Australian Film Television &amp; Radio School<br/>
+							The Economist<br/>
+							The Futurist<br/>
+							The Guardian<br/>
+							The Independent<br/>
+							The Language Instinct<br/>
+							The Observer<br/>
+							The Pocket Guide to the Birds of Britain and North-West Europe<br/>
+							The Sunday Times<br/>
+							The Times<br/>
+							The US Geological Survey (USGS)<br/>
+							Time Europe<br/>
+							To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries<br/>
+							Twenty Species We May Lose in the Next 20 Years<br/>
+							UNESCO<br/>
+							Valleyfair, Cedar Fair, L.P.<br/>
+							Vanishing Languages<br/>
+							Why Newspapers Will Flourish in the Years Ahead<br/>
+							Why Study Ancient World Cultures?</p>
+						
+						<p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the British
+						Council will be pleased to make the necessary arrangements.</p>
+			    ]]>
+			</lit>
+			<lit name="moreAboutUs">About us</lit>
+			<lit name="moreContactUs">Contact us</lit>
+			<lit name="aboutUsContent">
+			    <![CDATA[
+				    <p>The British Council is an international charity that is committed to developing a wider knowledge of the English
+						language and promoting the advancement of education to encourage cultural, scientific, technological and other
+						educational exchange. The British Council was founded in 1934, incorporated by Royal Charter in 1940 and registered
+						as a charity under registration numbers 209131 (England and Wales) and SC037733 (Scotland). Our Patron is HM Queen
+					Elizabeth II and HRH The Prince of Wales is our vice-patron.</p>
+					
+					<p>IELTS is jointly owned by the British Council, IDP: IELTS Australia and the University of Cambridge ESOL Examinations
+					(Cambridge ESOL). The British Council has developed the content for Road to IELTS.</p>
+					
+					<p>To find out more about booking your IELTS test with the British Council, click here:
+						<a href="http://takeielts.britishcouncil.org" target="_blank">http://takeielts.britishcouncil.org</a></p>
+					
+					<p>Clarity is an international publisher of online resources for teaching and learning English. Clarity programs have been
+					chosen by thousands of schools and universities, and used by millions of students in over 110 countries around the world.</p>
+					
+					<p>Clarity has additionally customised electronic materials for leading providers of English language teaching, including
+						Cambridge University Press, Oxford University Press, Macmillan Education and the British Council, and has worked on
+					large-scale projects for the Beijing Olympics and HSBC. Clarity has developed the design and software for Road to IELTS.</p>
+				 ]]>
+			</lit>
+			<lit name="contactUsContent1">
+			    <![CDATA[
+				    <p>
+					<span fontWeight="bold">Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email
+					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem and the URL of
+					your course (if you are running online).<br/>
+					Clarity Language Consultants Ltd<br/>
+					PO Box 163, Sai Kung, Hong Kong<br/>
+					Tel: +852 2701 1787<br/>
+					Fax: +852 2791 6484<br/>
+					</p>
+			    ]]>
+			</lit>
+			<lit name="contactUsContent2">
+			    <![CDATA[
+					<p>
+					<span fontWeight="bold">Content problems</span><br/>If you have any enquires about the content, for example, if you have questions about 
+					an answer in the exercises, please contact British Council.
+					</p>
+				 ]]>
+			</lit>
+		</group>
+	</language>
+	<language name="English International" code="ZH" mediaFolder="ZH">
+	        <lit name="Reading">阅读</lit>
+			<lit name="Listening">听力</lit>
+	</language>
+</literals>
