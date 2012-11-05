@@ -18,10 +18,10 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 		
 		public override function execute(note:INotification):void {
 			super.execute(note)
-				
+			
 			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new text widget");
-						
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <text span="1" title="New text widget"><text>{textFlowString}</text></text>);
+			
+			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <text column="0" span="1" title="New text widget"><text>{textFlowString}</text></text>);
 		}
 		
 	}

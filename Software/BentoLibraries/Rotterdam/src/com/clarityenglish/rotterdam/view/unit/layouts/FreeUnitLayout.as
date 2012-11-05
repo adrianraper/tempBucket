@@ -1,9 +1,4 @@
 package com.clarityenglish.rotterdam.view.unit.layouts {
-	import flash.display.BitmapData;
-	import flash.geom.Point;
-	import flash.geom.Rectangle;
-	import flash.sampler.NewObjectSample;
-	
 	import mx.core.ILayoutElement;
 	import mx.core.mx_internal;
 	import mx.logging.ILogger;
@@ -76,6 +71,10 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 					
 					// Set the position
 					currentElement.setLayoutBoundsPosition(elementX, elementY);
+					
+					// #17 - this is somewhat hacky, but set the current height of the element in the XML so that WidgetAddCommand can figure out
+					// where to put new widgets.  When widget layout is figured out properly this will definitely go.
+					currentElement.layoutheight = currentElement.getLayoutBoundsHeight();
 				} else {
 					log.error("Only IUnitLayoutElements can be in a UnitLayout (" + target.getElementAt(i) + ")");
 				}

@@ -1,24 +1,19 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout;
-	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
 	
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
-	import mx.collections.ArrayCollection;
 	import mx.collections.ListCollectionView;
 	import mx.core.ClassFactory;
 	import mx.core.DragSource;
 	import mx.core.mx_internal;
-	import mx.events.CollectionEvent;
-	import mx.events.CollectionEventKind;
 	import mx.events.DragEvent;
 	import mx.events.SandboxMouseEvent;
 	import mx.logging.ILogger;
@@ -114,8 +109,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			// Update the object using the layout's updateElementFromDrag method (this does all the positioning and invalidation of the display list)
 			(layout as IUnitLayout).updateElementFromDrag(draggedItem, pt.x, pt.y);
 			
-			// Figure out the new index and rearrange the dataprovider if it has changed
-			// TODO: This is a little bit slow; doing this based on attributes or something else would probably be better
+			// Figure out the new index and rearrange the dataprovider if it has changed.
 			var dropIndex:int = (layout as IUnitLayout).getDropIndex(pt.x, pt.y);
 			if (dropIndex >= 0 && dropIndex != draggedIndex) {
 				var rearrangedObject:Object = draggedItem.copy();
@@ -137,6 +131,6 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		override protected function dragDropHandler(event:DragEvent):void {
 			// Override with an empty method so that the superclass doesn't do anything
 		}
-	
+		
 	}
 }

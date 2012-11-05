@@ -110,11 +110,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@span;
 		}
 		
-		[Bindable(event="columnAttrChanged")]
-		public function get ypos():uint {
-			return _xml.@ypos;
-		}
-		
 		[Bindable(event="titleAttrChanged")]
 		public function get title():String {
 			return _xml.@title;
@@ -123,6 +118,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		[Bindable(event="textChanged")]
 		public function get text():String {
 			return _xml.text[0].toString();
+		}
+		
+		// #17 - will not stay!
+		[Bindable(event="columnAttrChanged")]
+		public function get ypos():uint {
+			return _xml.@ypos;
+		}
+		
+		// #17 - will not stay!
+		public function set layoutheight(value:uint):void {
+			_xml.@layoutheight = value;
 		}
 		
 		public function set text(value:String):void {
