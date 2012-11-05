@@ -99,6 +99,9 @@ package com.clarityenglish.common.vo.config {
 		public var rememberLogin:Boolean;
 		public var disableAutoTimeout:Boolean;
 		
+		// #issue21
+		public var loginOption:String;
+		
 		// #410
 		public var checkNetworkAvailabilityUrl:String;
 		public var checkNetworkAvailabilityInterval:uint;
@@ -132,6 +135,10 @@ package com.clarityenglish.common.vo.config {
 		public function get rootID():Number {
 			if (this.account)
 				return Number(this.account.id);
+			
+			// #issue21
+			if (!_rootID > 0)
+				return -1;
 			
 			return _rootID;
 		}
@@ -375,6 +382,10 @@ package com.clarityenglish.common.vo.config {
 			if (xml..checkNetworkAvailabilityReconnectInterval.toString())
 				this.checkNetworkAvailabilityReconnectInterval = new Number(xml..checkNetworkAvailabilityReconnectInterval.toString());
 
+			// #issue21
+			if (xml..loginOptions.toString())
+				this.loginOption = xml..loginOption.toString();
+			
 			// For help with testing
 			if (xml..id.toString()) {
 				this.configID = xml..id.toString();

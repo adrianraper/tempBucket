@@ -193,6 +193,7 @@ class BentoService extends AbstractService {
 		Session::set('userID', $userObj->F_UserID);
 		Session::set('userType', $userObj->F_UserType);
 		
+		// #issue21 As rootID will be -1 if you have not got an account yet, this will work.
 		// #503 From login you now only have one rootID even if you started with an array
 		// If that root has changed, you have to get a new licence object for this new root
 		// To be clear: subRoots means that I use one prefix to get lots of subRoots.

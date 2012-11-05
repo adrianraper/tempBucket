@@ -84,6 +84,14 @@ package com.clarityenglish.common.model {
 				rc = scormProxy.initialise();
 			}
 			
+			// #issue21 If you are basing the account on the login, then go direct to login
+			if (config.loginOption && !config.prefix && !config.rootID) {
+				
+				// What is the minimum you need to know to go to login?
+				sendNotification(CommonNotifications.ACCOUNT_LOADED);
+				return;
+			}
+			
 			// Trigger the database call
 			if (rc)
 				getAccountSettings();

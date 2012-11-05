@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<id>/area1/RoadToIELTS2 ce.com</id>
-	<developer>DK</developer>
+	<id>/area1/RoadToIELTS2 android</id>
+	<developer>AR</developer>
 	<productCode>52</productCode>
+	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<channel name='android-rackspace' caption='android-rackspace'>

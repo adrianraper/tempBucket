@@ -102,6 +102,8 @@ package com.clarityenglish.common.model {
 			if (configProxy.getConfig().subRoots) {
 				var rootID:Array = configProxy.getConfig().subRoots.split(',');				
 			} else {
+				
+				// #issue21. You might not know a root, in which case this will return -1
 				rootID = new Array(1);
 				rootID[0] = configProxy.getRootID();
 			}
@@ -260,6 +262,12 @@ package com.clarityenglish.common.model {
 							loginSharedObject.flush();
 						}
 						
+						// #issue21 If this was a login with no known account, we now need to save the returned
+						// licence in config.
+						if (configProxy.getConfig().rootID <= 0) {
+							configProxy.setLicence(data.licence as Licence);
+						}
+						
 						// #503
 						// If login wants to change the rootID it will have sent back a new rootID in data
 						log.info("rootID was: {0}", configProxy.getConfig().rootID);
@@ -268,6 +276,7 @@ package com.clarityenglish.common.model {
 							configProxy.getConfig().rootID = new Number(data.rootID);
 						
 						log.info("rootID now: {0}, data.rootID={1}", configProxy.getConfig().rootID, new Number(data.rootID));
+						
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);
 						
