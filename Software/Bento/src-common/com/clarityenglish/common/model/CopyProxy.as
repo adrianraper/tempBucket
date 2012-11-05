@@ -21,7 +21,9 @@ package com.clarityenglish.common.model {
 		
 		public static const NAME:String = "CopyProxy";
 		
-		public static var languageCode:String = "EN";
+		//issue:#20
+		//public static var languageCode:String = "EN";
+		public static var languageCode:String;
 		
 		private var copy:XML;
 		
@@ -46,6 +48,9 @@ package com.clarityenglish.common.model {
 		public function getCopyForId(id:String, replaceObj:Object = null):String {
 			if (!this.copy)
 				throw new Error("Copy literals have not been loaded yet");
+			
+			//issue:#20 track wheter the language code be set successfully 
+			//trace("the language code is in CopyProxy is "+ languageCode);
 			
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {

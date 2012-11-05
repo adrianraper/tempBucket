@@ -338,6 +338,7 @@ package com.clarityenglish.common.model {
 						*/
 						
 						config.mergeAccountData(data);
+						
 						var authenticated:Boolean = this.checkAuthentication();
 					}
 	
@@ -351,6 +352,8 @@ package com.clarityenglish.common.model {
 					} else {
 						// #322
 						//sendNotification(CommonNotifications.CONFIG_LOADED);
+						//issue:#20
+						CopyProxy.languageCode = config.language;
 						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 					}
 					break;

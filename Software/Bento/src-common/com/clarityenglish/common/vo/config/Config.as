@@ -437,6 +437,12 @@ package com.clarityenglish.common.vo.config {
 			if (thisTitle.productVersion) 
 				this.productVersion = thisTitle.productVersion;
 			
+			//issue:#20
+			if(thisTitle.languageCode)
+				this.language = thisTitle.languageCode;
+			
+			trace("the language version is "+ thisTitle.languageCode);
+			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
 			// Its purpose is to allow an account to swap language versions easily for a title.

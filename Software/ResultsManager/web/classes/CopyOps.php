@@ -18,7 +18,9 @@ class CopyOps {
 	 * in the concrete Service file (e.g. ClarityService, DMSService, IELTSService).
 	 */
 	private function getFilename() {
-		return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
+	    // issue:#20 add language code in one file
+		//return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
+		return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 	}
 	
 	private function getXPath() {
@@ -48,7 +50,9 @@ class CopyOps {
 		$contents = file_get_contents($this->getFilename());
 		
 		// Return the file as a string to be converted to XML on the client
-		return utf8_decode($contents);
+		//issue:#20
+		//return utf8_decode($contents);
+		return $contents;
 	}
 	
 	/**
