@@ -91,7 +91,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		 * @return 
 		 */
 		public function getColumnFromX(x:Number):int {
-			return Math.floor(x / target.width * columns) - 1;
+			return Math.floor(x / target.width * columns);
 		}
 		
 		/**
@@ -108,7 +108,15 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			return Math.max(0, target.numElements - 1);
 		}
 		
-		public function updateElementFromDrag(item:Object, x:Number, y:Number):Object {
+		/**
+		 * Update the element during a drag.  In this layout this means setting the column and the ypos based on the mouse position.  This method
+		 * invalidates the target's display list when necessary.
+		 * 
+		 * @param item
+		 * @param x
+		 * @param y
+		 */
+		public function updateElementFromDrag(item:Object, x:Number, y:Number):void {
 			// Figure out the new column and bound it within a valid range
 			var newColumn:int;
 			newColumn = getColumnFromX(x);
@@ -117,12 +125,16 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			
 			// If the column has changed then rewrite the XML accordingly
 			if (newColumn != item.@column) {
-				var updatedObject:Object = item.copy();
-				updatedObject.@column = newColumn;
-				return updatedObject;
+				item.@column = newColumn;
+				target.invalidateDisplayList();
 			}
 			
-			return null;
+			// Set the y position
+			if (y != item.@ypos && y >= 0) {
+				item.@ypos = y;
+				target.invalidateDisplayList();
+			}
+				
 		}
 		
 	}

@@ -12,10 +12,13 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
 	
+	import mx.collections.ArrayCollection;
 	import mx.collections.ListCollectionView;
 	import mx.core.ClassFactory;
 	import mx.core.DragSource;
 	import mx.core.mx_internal;
+	import mx.events.CollectionEvent;
+	import mx.events.CollectionEventKind;
 	import mx.events.DragEvent;
 	import mx.events.SandboxMouseEvent;
 	import mx.logging.ILogger;
@@ -23,6 +26,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import mx.managers.DragManager;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.PointUtil;
 	
 	import spark.components.List;
 	
@@ -101,23 +105,18 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			// Defer any updates until everything has been done
 			(dataProvider as ListCollectionView).disableAutoUpdate();
 			
-			var pt:Point = new Point(event.localX, event.localY);
-			pt = DisplayObject(event.target).localToGlobal(pt);
+			var pt:Point = PointUtil.convertPointCoordinateSpace(new Point(event.stageX, event.stageY), stage, this);
 			
 			var newObject:Object;
 			var draggedItem:Object = dragSource.dataForFormat("draggedItem") as Object;
 			var draggedIndex:int = dragSource.dataForFormat("draggedIndex") as int;
 			
-			// Update the object using the layout's updateElementFromDrag method
-			var updatedObject:Object = (layout as IUnitLayout).updateElementFromDrag(draggedItem, pt.x, pt.y);
-			if (updatedObject) {
-				dataProvider.setItemAt(updatedObject, draggedIndex);
-				dragSource.addData(updatedObject, "draggedItem");
-				draggedItem = updatedObject;
-			}
+			// Update the object using the layout's updateElementFromDrag method (this does all the positioning and invalidation of the display list)
+			(layout as IUnitLayout).updateElementFromDrag(draggedItem, pt.x, pt.y);
 			
 			// Figure out the new index and rearrange the dataprovider if it has changed
-			var dropIndex:int = (layout as IUnitLayout).getDropIndex(event.stageX, event.stageY);
+			// TODO: This is a little bit slow; doing this based on attributes or something else would probably be better
+			var dropIndex:int = (layout as IUnitLayout).getDropIndex(pt.x, pt.y);
 			if (dropIndex >= 0 && dropIndex != draggedIndex) {
 				var rearrangedObject:Object = draggedItem.copy();
 				

@@ -153,8 +153,8 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 			return -1;
 		}
 		
-		public function updateElementFromDrag(item:Object, x:Number, y:Number):Object {
-			return null;
+		public function updateElementFromDrag(item:Object, x:Number, y:Number):void {
+			
 		}
 		
 	}
