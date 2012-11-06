@@ -46,11 +46,10 @@
 			
 			private function creationComplete():void {
 				debugger = new MonsterDebugger(this);
-<<<<<<< HEAD
+
 				TraceUtils.myTrace("RM started now");
-=======
+
 				TraceUtils.myTrace("RM started");
->>>>>>> change RMApplication.swf to ResultsManager.swf
 				// Hide the built in context menu
 				var cm:ContextMenu = new ContextMenu();
 				cm.hideBuiltInItems();
