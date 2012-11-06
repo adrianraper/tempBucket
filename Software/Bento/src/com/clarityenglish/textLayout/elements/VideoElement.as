@@ -4,6 +4,7 @@ package com.clarityenglish.textLayout.elements {
 	import flash.system.Capabilities;
 	import flash.system.Security;
 	import flash.utils.Dictionary;
+	import flash.utils.setTimeout;
 	
 	import flashx.textLayout.formats.FormatValue;
 	import flashx.textLayout.tlf_internal;
@@ -120,12 +121,10 @@ package com.clarityenglish.textLayout.elements {
 					component = videoPlayer;
 					
 					// #113
-					videoPlayer.addEventListener(FlexEvent.CREATION_COMPLETE, function(creationCompleteEvent:Event):void {
-						videoPlayer.fullScreenButton.enabled = !_fullScreenDisabled;
-					}, false, 0, true);
+					component.addEventListener(FlexEvent.CREATION_COMPLETE, onVideoPlayerCreationComplete);
 					
 					// Working around #22 (which seems to be http://bugs.adobe.com/jira/browse/SDK-26331, even though that is supposed to be fixed)
-					videoPlayer.addEventListener(Event.ADDED_TO_STAGE, function(addedToStageEvent:Event):void {
+					component.addEventListener(Event.ADDED_TO_STAGE, function(addedToStageEvent:Event):void {
 						addedToStageEvent.currentTarget.removeEventListener(addedToStageEvent.type, arguments.callee);
 						videoPlayer.systemManager.stage.addEventListener(FullScreenEvent.FULL_SCREEN, function(event:FullScreenEvent):void {
 							if (!event.fullScreen) {
@@ -149,6 +148,19 @@ package com.clarityenglish.textLayout.elements {
 					component = swfLoader;
 					break;
 			}
+		}
+		
+		/**
+		 * #424 - we were previously using an inline listener, but it was getting garbage collected so instead use a function and explicitly remove the listener
+		 * in removeComponent()
+		 */
+		protected function onVideoPlayerCreationComplete(e:Event):void {
+			e.target.fullScreenButton.enabled = !_fullScreenDisabled;
+		}
+		
+		public override function removeComponent():void {
+			component.removeEventListener(FlexEvent.CREATION_COMPLETE, onVideoPlayerCreationComplete);
+			super.removeComponent();
 		}
 		
 		/**
