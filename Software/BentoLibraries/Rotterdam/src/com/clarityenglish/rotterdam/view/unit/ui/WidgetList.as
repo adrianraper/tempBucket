@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
@@ -57,6 +58,8 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 					return ImageWidget;
 				case "audio":
 					return AudioWidget;
+				case "exercise":
+					return ExerciseWidget;
 				default:
 					log.error("Unsupported widget node " + name);
 					return null;

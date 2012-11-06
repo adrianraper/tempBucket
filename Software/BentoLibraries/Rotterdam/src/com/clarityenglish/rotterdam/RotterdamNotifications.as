@@ -31,6 +31,7 @@
 		public static const VIDEO_WIDGET_ADD:String = "rotterdam/video_widget_add";
 		public static const IMAGE_WIDGET_ADD:String = "rotterdam/image_widget_add";
 		public static const AUDIO_WIDGET_ADD:String = "rotterdam/audio_widget_add";
+		public static const EXERCISE_WIDGET_ADD:String = "rotterdam/exercise_widget_add";
 		
 		public static const TEXT_FORMAT:String = "rotterdam/text_format";
 		public static const TEXT_SELECTED:String = "rotterdam/text_selected";

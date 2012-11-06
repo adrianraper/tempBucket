@@ -3,7 +3,6 @@
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
-@namespace login "com.clarityenglish.rotterdam.view.login.*";
 
 unit|UnitView {
 	skinClass: ClassReference("skins.rotterdam.unit.UnitSkin");
@@ -27,4 +26,8 @@ widgets|ImageWidget {
 
 widgets|AudioWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.AudioWidgetSkin");
+}
+
+widgets|ExerciseWidget {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.ExerciseWidgetSkin");
 }

@@ -39,6 +39,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var normalAddAudioButton:Button;
 		
 		[SkinPart]
+		public var normalAddExerciseButton:Button;
+		
+		[SkinPart]
 		public var normalPreviewButton:Button;
 		
 		[SkinPart]
@@ -80,6 +83,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addImage:Signal = new Signal(Object);
 		public var addAudio:Signal = new Signal(Object);
 		public var addVideo:Signal = new Signal(Object);
+		public var addExercise:Signal = new Signal(Object);
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
@@ -133,6 +137,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case normalAddAudioButton:
 					normalAddAudioButton.addEventListener(MouseEvent.CLICK, onNormalAddAudio);
 					break;
+				case normalAddExerciseButton:
+					normalAddExerciseButton.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
+					break;
 				case normalPreviewButton:
 					normalPreviewButton.addEventListener(MouseEvent.CLICK, onNormalPreview);
 					break;
@@ -164,7 +171,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 			}
 		}
-		
+				
 		protected function onNormalAddImage(event:MouseEvent):void {
 			setCurrentState("image");
 		}
@@ -187,6 +194,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onNormalAddVideo(event:MouseEvent):void {
 			setCurrentState("video");
+		}
+		
+		protected function onNormalAddExercise(event:MouseEvent):void {
+			// TODO: Add exercise
+			addExercise.dispatch({});
 		}
 		
 		protected function onNormalCancel(event:MouseEvent):void {

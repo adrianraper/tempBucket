@@ -30,6 +30,7 @@
 			view.addImage.add(onAddImage);
 			view.addAudio.add(onAddAudio);
 			view.addVideo.add(onAddVideo);
+			view.addExercise.add(onAddExercise);
 			view.formatText.add(onFormatText);
 			view.preview.add(onPreview);
 			view.backToEditor.add(onBackToEditor);
@@ -44,6 +45,7 @@
 			view.addImage.remove(onAddImage);
 			view.addAudio.remove(onAddAudio);
 			view.addVideo.remove(onAddVideo);
+			view.addExercise.remove(onAddExercise);
 			view.formatText.remove(onFormatText);
 			view.preview.remove(onPreview);
 			view.backToEditor.remove(onBackToEditor);
@@ -87,6 +89,10 @@
 		
 		protected function onAddVideo(options:Object):void {
 			facade.sendNotification(RotterdamNotifications.VIDEO_WIDGET_ADD, options);
+		}
+		
+		protected function onAddExercise(options:Object):void {
+			facade.sendNotification(RotterdamNotifications.EXERCISE_WIDGET_ADD, options);
 		}
 		
 		protected function onFormatText(options:Object):void {

@@ -13,6 +13,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.WidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.AudioWidgetAddCommand;
+	import com.clarityenglish.rotterdam.builder.controller.widgets.ExerciseWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.ImageWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.PDFWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.TextWidgetAddCommand;
@@ -54,6 +55,7 @@
 			registerCommand(RotterdamNotifications.VIDEO_WIDGET_ADD, VideoWidgetAddCommand);
 			registerCommand(RotterdamNotifications.IMAGE_WIDGET_ADD, ImageWidgetAddCommand);
 			registerCommand(RotterdamNotifications.AUDIO_WIDGET_ADD, AudioWidgetAddCommand);
+			registerCommand(RotterdamNotifications.EXERCISE_WIDGET_ADD, ExerciseWidgetAddCommand);
 			
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD, MediaUploadCommand);
 			
