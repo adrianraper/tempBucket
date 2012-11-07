@@ -142,7 +142,8 @@ package com.clarityenglish.common.model {
 					// #338 Add group so you can get hidden content. No, this group is top level
 					// and hidden content needs my group. So just grab it from userID in the backside.
 					//var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					var params:Array = [ user.userID, account.id, (account.titles[0] as Title).id, progressType, href.url ];
+					// #issue25 Need to know user type, so send full object
+					var params:Array = [ user, account.id, (account.titles[0] as Title).id, progressType, href.url ];
 					new RemoteDelegate("getProgressData", params, this).execute();
 					
 					// Maintain a note that we are currently loading this data

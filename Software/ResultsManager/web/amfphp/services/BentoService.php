@@ -222,7 +222,7 @@ class BentoService extends AbstractService {
 		$group->addManageables(array($user));
 
 		// #341 If this is a named user then
-		if ($user->userID > 0) {
+		if ($user->userID >= 1) {
 			// Next we need to set the instance ID for the user in the database
 			$rc = $this->loginOps->setInstanceID($user->userID, $instanceID, $productCode);
 			
@@ -230,8 +230,11 @@ class BentoService extends AbstractService {
 			// you can still send back hiddenContent information and bookmarks
 			// TODO. RM currently keyed this on a session variable, so for now just use that with the groupID
 			// although maybe we need the full is of parent groups in here too.
+			// #issue25. getHiddenContent is actually dealt with in getProgressData, not here
 			Session::set('valid_groupIDs', array($group->id));
-			$contentObj = $this->contentOps->getHiddenContent($productCode);
+			//if ($user->userType == User::USER_TYPE_STUDENT)
+			//	$contentObj = $this->contentOps->getHiddenContent($productCode);
+			
 		}
 		
 		// TODO. What is a good format for sending back bookmark information?
@@ -240,10 +243,10 @@ class BentoService extends AbstractService {
 		
 		// Send this information back
 		// #503 including the root that you really found the user in
+		// #issue25 but no need for content to be sent back
 		return array("group" => $group,
 					 "licence" => $licence,
-					 "rootID" => $rootID,
-					 "content" => $contentObj);
+					 "rootID" => $rootID);
 	}
 	
 	public function logout($licence, $sessionID = null) {
@@ -264,10 +267,11 @@ class BentoService extends AbstractService {
 	 * and build an object that can act as a data-provider for a chart (or charts).
 	 * TODO. Check out authentication. I have added this to beforeFilter exceptions, though it shouldn't be.
 	 *  
+	 *  #issue25. Need user type, so send whole object
 	 *  @param userID, rootID, productCode - these are all self-explanatory
 	 *  @param progressType. This object tells us what type of progress data to return
 	 */
-	public function getProgressData($userID, $rootID, $productCode, $progressType, $menuXMLFile) {
+	public function getProgressData($user, $rootID, $productCode, $progressType, $menuXMLFile) {
 		// Before you get progress records, read the menu.xml
 		// TODO. Possibly move this bit into contentOps?
 		// This path is relative to the Bento application, not this script
@@ -298,16 +302,17 @@ class BentoService extends AbstractService {
 				
 			case Progress::PROGRESS_MY_DETAILS:
 				// #341 No need for much of this if anonymous access
-				if ($userID >= 1) {
-					$rs = $this->progressOps->getMyDetails($userID, $productCode);
+				if ($user->userID >= 1) {
+					$rs = $this->progressOps->getMyDetails($user->userID, $productCode);
 				} else {
 					$rs = array();
 				}
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataDetail($rs);
 				
 				// #339 Hidden content
-				if ($userID >= 1) {
-					$groupID = $this->manageableOps->getGroupIdForUserId($userID);
+				// #issue25 only for students
+				if ($user->userID >= 1 && $user->userType == User::USER_TYPE_STUDENT) {
+					$groupID = $this->manageableOps->getGroupIdForUserId($user->userID);
 					$rs = $this->progressOps->getHiddenContent($groupID, $productCode);
 					// If you found some hidden content records for this group, merge the enabledFlag into the menu.xml
 					if (count($rs) > 0)
@@ -318,7 +323,7 @@ class BentoService extends AbstractService {
 				
 			case Progress::PROGRESS_MY_BOOKMARK:
 				// Pick up the last exercise done as a bookmark.
-				$rs = $this->progressOps->getMyLastExercise($userID, $productCode);
+				$rs = $this->progressOps->getMyLastExercise($user->userID, $productCode);
 				$progress->dataProvider = $this->progressOps->formatBookmark($rs);
 				break;
 		}
