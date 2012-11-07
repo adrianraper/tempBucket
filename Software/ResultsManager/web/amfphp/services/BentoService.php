@@ -109,11 +109,13 @@ class BentoService extends AbstractService {
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
-		Session::set('productCode', $config['productCode']);
+		Session::set('productCode', $config['productCode']);		
 		
 		// TODO: Check with Adrian that this is ok
 		$title = $account->getTitleByProductCode($config['productCode']);
 		Session::set('dbContentLocation', $title->dbContentLocation);
+		//issue:#11
+		Session::set('languageCode', $title->languageCode);
 		
 		// TODO. Maybe it would be better to use another call to get this info again later, or pass it back from Bento
 		// I would just prefer as little session data as possible.

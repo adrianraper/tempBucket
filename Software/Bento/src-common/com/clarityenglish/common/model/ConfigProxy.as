@@ -354,6 +354,11 @@ package com.clarityenglish.common.model {
 						//sendNotification(CommonNotifications.CONFIG_LOADED);
 						//issue:#20
 						CopyProxy.languageCode = config.language;
+						//issue:#11 load ielts.xml twice
+						if ( config.language != "EN") {
+							var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+							copyProxy.getCopy();
+						}
 						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 					}
 					break;

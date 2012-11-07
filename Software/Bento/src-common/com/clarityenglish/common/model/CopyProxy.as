@@ -26,6 +26,7 @@ package com.clarityenglish.common.model {
 		public static var languageCode:String;
 		
 		private var copy:XML;
+		private var copyEN:XML;
 		
 		public function CopyProxy(data:Object = null) {
 			super(NAME, data);
@@ -50,11 +51,13 @@ package com.clarityenglish.common.model {
 				throw new Error("Copy literals have not been loaded yet");
 			
 			//issue:#20 track wheter the language code be set successfully 
-			//trace("the language code is in CopyProxy is "+ languageCode);
-			
+			trace("the language code is in CopyProxy is "+ languageCode);
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
 				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
+				//issue:#11 load ielts.xml twice 
+				copy = this.copyEN;
+				
 				// in which case try in English
 				if (languageCode != "EN") {
 					result = copy..language.(@code == "EN")..lit.(@name == id);
@@ -109,7 +112,14 @@ package com.clarityenglish.common.model {
 		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
 				case "getCopy":
-					copy = new XML(data);
+					//issue:#11 if the language code is not EN, the ielts.xml will be load twice. 
+					//We store the default en literals in copyEN for backup to the other language if the literal is missing
+					if(!copy) {
+						copy = new XML(data);
+					} else {
+						copyEN = copy;
+						copy = new XML(data);
+					}
 					sendNotification(CommonNotifications.COPY_LOADED);
 					break;
 				default:

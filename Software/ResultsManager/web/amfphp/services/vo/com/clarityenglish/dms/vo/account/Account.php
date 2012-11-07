@@ -31,6 +31,8 @@ class Account extends Reportable {
 	// v4.0 Integration with Bento
 	public $verified;
 	public $selfRegister;
+	//issue:#11
+	var $languageCode;
 	
 	/**
 	 * This is private since we get the real user object from the db in AccountOps for DMS (this is filled into $adminUser) and
@@ -125,6 +127,8 @@ class Account extends Reportable {
 		// v4.0 Integration with Bento
 		$this->selfRegister = $obj->F_SelfRegister;
 		$this->verified = $obj->F_Verified;
+		//issue:#11
+		$this->languageCode = $obj->F_LanguageCode;
 		
 	}
 	

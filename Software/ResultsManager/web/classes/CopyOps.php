@@ -19,8 +19,8 @@ class CopyOps {
 	 */
 	private function getFilename() {
 	    // issue:#20 add language code in one file
-		//return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
-		return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
+		return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
+		//return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 	}
 	
 	private function getXPath() {
