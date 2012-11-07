@@ -24,7 +24,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			
 			var uid:String = UIDUtil.createUID();
 			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new image widget");
-			var node:XML = <image id={uid} col="0" span="1" title="New Image widget"><text>{textFlowString}</text></image>;
+			var node:XML = <image id={uid} column="0" span="1" title="New Image widget"><text>{textFlowString}</text></image>;
 			
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			

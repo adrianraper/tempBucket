@@ -1,12 +1,11 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
-	import com.clarityenglish.rotterdam.view.unit.layouts.UnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
 	
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
@@ -20,9 +19,9 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	import mx.managers.DragManager;
-	import mx.utils.UIDUtil;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.PointUtil;
 	
 	import spark.components.List;
 	
@@ -101,35 +100,23 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			// Defer any updates until everything has been done
 			(dataProvider as ListCollectionView).disableAutoUpdate();
 			
-			var pt:Point = new Point(event.localX, event.localY);
-			pt = DisplayObject(event.target).localToGlobal(pt);
+			var pt:Point = PointUtil.convertPointCoordinateSpace(new Point(event.stageX, event.stageY), stage, this);
 			
 			var newObject:Object;
 			var draggedItem:Object = dragSource.dataForFormat("draggedItem") as Object;
 			var draggedIndex:int = dragSource.dataForFormat("draggedIndex") as int;
 			
-			// Figure out the new column and bound it within a valid range
-			var newColumn:int;
-			newColumn = (layout as UnitLayout).getColumnFromX(pt.x);
-			newColumn = Math.max(0, newColumn);
-			newColumn = Math.min(newColumn, (layout as UnitLayout).columns - draggedItem.@span);
+			// Update the object using the layout's updateElementFromDrag method (this does all the positioning and invalidation of the display list)
+			(layout as IUnitLayout).updateElementFromDrag(draggedItem, pt.x, pt.y);
 			
-			// If the column has changed then rewrite the XML accordingly
-			if (newColumn != draggedItem.@column) {
-				newObject = draggedItem.copy();
-				
-				newObject.@column = newColumn;
-				dataProvider.setItemAt(newObject, draggedIndex);
-			}
-			
-			// Figure out the new index and rearrange the dataprovider if it has changed
-			var dropIndex:int = (layout as UnitLayout).getDropIndex(event.stageX, event.stageY);
+			// Figure out the new index and rearrange the dataprovider if it has changed.
+			var dropIndex:int = (layout as IUnitLayout).getDropIndex(pt.x, pt.y);
 			if (dropIndex >= 0 && dropIndex != draggedIndex) {
-				newObject = draggedItem.copy();
+				var rearrangedObject:Object = draggedItem.copy();
 				
 				dataProvider.removeItemAt(draggedIndex);
-				dataProvider.addItemAt(newObject, dropIndex);
-				dragSource.addData(newObject, "draggedItem");
+				dataProvider.addItemAt(rearrangedObject, dropIndex);
+				dragSource.addData(rearrangedObject, "draggedItem");
 				dragSource.addData(dropIndex, "draggedIndex");
 			}
 			
@@ -144,6 +131,6 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		override protected function dragDropHandler(event:DragEvent):void {
 			// Override with an empty method so that the superclass doesn't do anything
 		}
-	
+		
 	}
 }

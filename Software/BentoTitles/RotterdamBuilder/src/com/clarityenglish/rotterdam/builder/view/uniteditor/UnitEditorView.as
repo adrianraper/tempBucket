@@ -80,7 +80,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 * The user has selected a widget
 		 */
 		protected function onWidgetSelected(event:IndexChangeEvent):void {
-			widgetSelect.dispatch(event.target.selectedItem);
+			if (event.target.selectedItem)
+				widgetSelect.dispatch(event.target.selectedItem);
 		}
 		
 		/**

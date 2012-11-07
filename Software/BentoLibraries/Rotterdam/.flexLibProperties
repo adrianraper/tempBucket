@@ -20,6 +20,7 @@
     <classEntry path="com.clarityenglish.rotterdam.view.course.CourseView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleView"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

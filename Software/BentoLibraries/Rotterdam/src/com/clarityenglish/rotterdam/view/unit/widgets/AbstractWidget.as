@@ -120,6 +120,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.text[0].toString();
 		}
 		
+		// #17 - will not stay!
+		[Bindable(event="columnAttrChanged")]
+		public function get ypos():uint {
+			return _xml.@ypos;
+		}
+		
+		// #17 - will not stay!
+		public function set layoutheight(value:uint):void {
+			_xml.@layoutheight = value;
+		}
+		
 		public function set text(value:String):void {
 			if (_xml) {
 				if (_xml.text.length() == 0) _xml.text = <text />;

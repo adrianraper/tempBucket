@@ -45,7 +45,7 @@ package com.clarityenglish.rotterdam.model {
 		public function get currentCourse():XHTML {
 			return _currentCourse;
 		}
-
+		
 		public function set currentCourse(value:XHTML):void {
 			_currentCourse = value;
 			
@@ -129,6 +129,6 @@ package com.clarityenglish.rotterdam.model {
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + fault.faultString);
 		}
-	
+		
 	}
 }
