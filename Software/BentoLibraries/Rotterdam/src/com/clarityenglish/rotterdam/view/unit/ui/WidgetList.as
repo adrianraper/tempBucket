@@ -45,9 +45,9 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			itemRendererFunction = widgetItemRendererFunction;
 		}
 		
-		private function nodeNameToWidgetClass(name:String):Class {
+		private function typeToWidgetClass(type:String):Class {
 			// TODO: These should probably be specified elsewhere
-			switch (name) {
+			switch (type) {
 				case "text":
 					return TextWidget;
 				case "pdf":
@@ -61,13 +61,13 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 				case "exercise":
 					return ExerciseWidget;
 				default:
-					log.error("Unsupported widget node " + name);
+					log.error("Unsupported widget type " + type);
 					return null;
 			}
 		}
 		
 		private function widgetItemRendererFunction(item:Object):ClassFactory {
-			var widgetClass:Class = nodeNameToWidgetClass(item.name());
+			var widgetClass:Class = typeToWidgetClass(item.@type);
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
 			classFactory.properties = { xml: item, editable: editable };

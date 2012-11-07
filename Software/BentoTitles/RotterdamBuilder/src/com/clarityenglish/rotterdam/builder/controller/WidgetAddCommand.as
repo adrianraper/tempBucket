@@ -29,13 +29,18 @@ package com.clarityenglish.rotterdam.builder.controller {
 			// necessitates putting the last recorded height of widgets in the XML which is very messy.  However, the layout code is all proof of concept until we
 			// figure out exactly what we want so no point making it particularly elegant for the moment.
 			xml.@ypos = 0;
-			var cursor:IViewCursor = courseProxy.widgetCollection.createCursor();
-			while (!cursor.afterLast) {
-				var item:XML = cursor.current as XML;
-				if (item.@column == 0) {
-					xml.@ypos = Math.max(parseInt(xml.@ypos), parseInt(item.@ypos) + parseInt(item.@layoutheight) + 20);
+			
+			if (courseProxy.widgetCollection) {
+				var cursor:IViewCursor = courseProxy.widgetCollection.createCursor();
+				while (!cursor.afterLast) {
+					var item:XML = cursor.current as XML;
+					if (item.@column == 0) {
+						xml.@ypos = Math.max(parseInt(xml.@ypos), parseInt(item.@ypos) + parseInt(item.@layoutheight) + 20);
+					}
+					cursor.moveNext();
 				}
-				cursor.moveNext();
+			} else {
+				log.error("No widget collection");
 			}
 			
 			// Finally add the widget

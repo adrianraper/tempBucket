@@ -24,7 +24,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			
 			// TODO: Temporary until I have discussed with Adrian
 			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new exercise widget");
-			var node:XML = <exercise column="0" span="1" title="New Exercise widget"><text>{textFlowString}</text></exercise>;
+			var node:XML = <exercise type="exercise" column="0" span="1" title="New Exercise widget"><text>{textFlowString}</text></exercise>;
 			
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			
