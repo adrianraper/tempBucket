@@ -87,6 +87,8 @@ package com.clarityenglish.common.model {
 			// #issue21 If you are basing the account on the login, then go direct to login
 			if (config.loginOption && !config.prefix && !config.rootID) {
 				
+				config.rootID = -1;
+				
 				// What is the minimum you need to know to go to login?
 				sendNotification(CommonNotifications.ACCOUNT_LOADED);
 				return;
@@ -229,13 +231,17 @@ package com.clarityenglish.common.model {
 			
 			var configUser:User;
 			
+			// #issue21. You might not have an account, but you might have loginOption from config
+			if (!loginOption)
+				loginOption = config.loginOption ? config.loginOption : null;
+			
 			// Debug auto-logins
 			switch (Config.DEVELOPER.name) {
-				case "DKweb":
-					configUser = new User({ name: "dandelion", password: "password" });
-					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 				case "AR":
-					configUser = new User({ name: "Adrian Raper", studentID: "p574528(8)", password: "passwording" });
+					configUser = new User({ name: "dandelion", password: "password", email:"dandy@email" });
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+				case "DK":
+					configUser = new User({ name: "da", studentID: "p574528(8)", password: "passwording", email: "adrian@clarityenglish.com" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 				case "network":
 					configUser = new User({ name: "Student", studentID: "123", password: "password" });
@@ -399,7 +405,7 @@ package com.clarityenglish.common.model {
 		 * Check that the user's IP or referrer match the licence.
 		 * Only run if the licence attributes say that you should.
 		 */
-		private function checkAuthentication():Boolean {
+		public function checkAuthentication():Boolean {
 			
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			var ipFault:Boolean = false;

@@ -262,10 +262,12 @@ package com.clarityenglish.common.model {
 							loginSharedObject.flush();
 						}
 						
-						// #issue21 If this was a login with no known account, we now need to save the returned
-						// licence in config.
+						// #issue21 If this was a login with no known account, we now need to save 
+						// what we now know about the account in Config
 						if (configProxy.getConfig().rootID <= 0) {
-							configProxy.setLicence(data.licence as Licence);
+							configProxy.getConfig().mergeAccountData(data);
+							var authenticated:Boolean = configProxy.checkAuthentication();
+							log.info("no account passed, so found : {0}", configProxy.getConfig().account.name);
 						}
 						
 						// #503

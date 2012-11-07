@@ -247,10 +247,16 @@ class BentoService extends AbstractService {
 		
 		// Send this information back
 		// #503 including the root that you really found the user in
-		// #issue25 but no need for content to be sent back
-		return array("group" => $group,
-					 "licence" => $licence,
-					 "rootID" => $rootID);
+		$dataObj = array("group" => $group,
+						 "licence" => $licence,
+						 "rootID" => $rootID,
+						 "content" => $contentObj);
+		
+		// #issue21 include the account you found if this login wasn't given one
+		if ($newAccount)
+			$dataObj['account'] = $newAccount;
+			
+		return $dataObj;
 	}
 	
 	public function logout($licence, $sessionID = null) {
