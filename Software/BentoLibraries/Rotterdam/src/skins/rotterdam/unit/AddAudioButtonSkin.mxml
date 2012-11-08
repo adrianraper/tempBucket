@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+ADOBE SYSTEMS INCORPORATED
+Copyright 2008 Adobe Systems Incorporated
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file
+in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+
+
+<!--- The default skin class for the Spark Button component.  
+
+@see spark.components.Button
+
+@langversion 3.0
+@playerversion Flash 10
+@playerversion AIR 1.5
+@productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+				   xmlns:comps="comps.*"
+				   minWidth="30" minHeight="30" 
+				   alpha.disabled="0.5">
+	
+	<fx:Metadata>
+		<![CDATA[ 
+		/** 
+		* @copy spark.skins.spark.ApplicationSkin#hostComponent
+		*/
+		[HostComponent("spark.components.Button")]
+		]]>
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="0" distance="0.4" alpha="0.3" />
+	</fx:Declarations>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="up"  />
+		<s:State name="over" stateGroups="overStates" />
+		<s:State name="down" stateGroups="overStates" />
+		<s:State name="disabled" />
+	</s:states>
+	
+	<s:transitions>
+		<s:Transition fromState="up" toState="over" autoReverse="true" >
+			<s:AnimateColor  targets="{[color1, color2]}"  duration="200" />
+		</s:Transition>
+		
+		<s:Transition  fromState="over" toState="up" autoReverse="true" >
+			<s:AnimateColor targets="{[color1, color2]}" duration="300" />
+		</s:Transition>
+		
+	</s:transitions>
+	
+	<s:Rect left="0" right="0" height="30" width="30" radiusX="4" radiusY="4" filters="{dropShadowFilter}" >
+		<s:fill>
+			<s:LinearGradient x="32" y="0.5" scaleX="25" rotation="90">
+				<s:GradientEntry id="color1" color="0x3C5C11" color.overStates="0xffffff" ratio="0"/>
+				<s:GradientEntry id="color2" color="0x283D0C" color.overStates="0xe3e3e3" ratio="1"/>
+				
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	<s:Group id="symbol" verticalCenter="0"  >
+		<s:Path width="16" height="18" left="7" winding="nonZero" data="M6.48828 1.53516C6.48828 1.53516 9.75391 1.8457 10.9004 3.47852 10.9004 3.47852 12.3125 5.24414 11.3857 7.84766 11.3857 7.84766 10.3701 7.31641 9.97461 7.80273 9.57617 8.28906 7.94336 11.8184 7.80859 12.9219 7.80859 12.9219 7.45703 13.4512
+				7.85547 13.8047 8.25195 14.1563 8.25195 14.334 8.95801 14.2891 8.95801 14.2891 8.64844 14.6426 9.88477 14.6875 9.88477 14.6875 11.6074 14.4238 12.709 10.7148 12.709 10.7148 13.0176 9.74609 12.709 8.28906 12.709 8.28906 13.1035 4.00977 11.7822
+				2.46289 11.7822 2.46289 10.0547 0.0605469 6.53125 0L6.31445 0C2.79102 0.0605469 1.0625 2.46289 1.0625 2.46289 -0.259766 4.00977 0.137695 8.28906 0.137695 8.28906 -0.171875 9.74609 0.137695 10.7148 0.137695 10.7148 1.24023 14.4238 2.96094 14.6875
+				2.96094 14.6875 4.19727 14.6426 3.88867 14.2891 3.88867 14.2891 4.59375 14.334 4.59375 14.1563 4.99023 13.8047 5.38867 13.4512 5.03711 12.9219 5.03711 12.9219 4.90332 11.8184 3.26953 8.28906 2.87207 7.80273 2.47656 7.31641 1.45996 7.84766 1.45996
+				7.84766 0.533203 5.24414 1.94727 3.47852 1.94727 3.47852 3.09375 1.8457 6.35938 1.53516 6.35938 1.53516L6.48828 1.53516Z" >
+			<s:fill>
+				<s:SolidColor 	color="0x8CC63F"
+								color.overStates="0x3C5C11"
+/>
+			</s:fill>
+		</s:Path>
+	</s:Group>
+</s:SparkButtonSkin>

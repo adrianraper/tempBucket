@@ -8,7 +8,8 @@
 	</fx:Metadata>
 	
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
+		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
 	</fx:Declarations>
 	
 	<!-- states -->
@@ -23,53 +24,90 @@
 		<s:State name="preview" />
 	</s:states>
 	
-	<s:Rect left="0" right="0" height="48" topLeftRadiusX="5" topRightRadiusX="5" filters="{dropShadowFilter}">
+	<s:Rect left="3" right="3" height="48" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}">
 		<s:fill>
 			<s:SolidColor color="#363636" />
+		</s:fill>
+	</s:Rect>
+	<s:Rect includeIn="normal" left="480" right="123" height="48" >
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0x8CC63F" ratio="0.5" />
+				<s:GradientEntry color="0x72A133" />
+			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
 	
 	<!-- Left buttons -->
 	<s:HGroup bottom="0" left="8" gap="7" height="48" verticalAlign="middle">
-		<s:Label includeIn="pdf" text="Upload PDF from" color="#FFFFFF" />
-		<s:Button includeIn="pdf" label="Resource Cloud" enabled="false" />
-		<s:Label includeIn="pdf" text="or" color="#FFFFFF" />
-		<s:Button includeIn="pdf" id="pdfUploadButton" label="My Computer" />
+		<s:Label includeIn="pdf" text="Upload PDF from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
+		<s:Button includeIn="pdf" id="pdfResourceCloudButton" label="Resource Cloud" enabled="false" useHandCursor="true" buttonMode="true" />
+		<s:Label includeIn="pdf" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
+		<s:Button includeIn="pdf" id="pdfUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
 		
-		<s:Label includeIn="image" text="Upload Image from" color="#FFFFFF" />
-		<s:Button includeIn="image" label="Resource Cloud" enabled="false" />
-		<s:Label includeIn="image" text="or" color="#FFFFFF" />
-		<s:Button includeIn="image" id="imageUploadButton" label="My Computer" />
+		<s:Label includeIn="image" text="Upload Image from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
+		<s:Button includeIn="image" id="imageResourceCloudButton" label="Resource Cloud" enabled="false" />
+		<s:Label includeIn="image" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
+		<s:Button includeIn="image" id="imageUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
 		
-		<s:Label includeIn="audio" text="Upload Audio from" color="#FFFFFF" />
-		<s:Button includeIn="audio" label="Resource Cloud" enabled="false" />
-		<s:Label includeIn="audio" text="or" color="#FFFFFF" />
-		<s:Button includeIn="audio" id="audioUploadButton" label="My Computer" />
+		<s:Label includeIn="audio" text="Upload Audio from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
+		<s:Button includeIn="audio" id="audioResourceCloudButton" label="Resource Cloud" enabled="false" />
+		<s:Label includeIn="audio" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
+		<s:Button includeIn="audio" id="audioUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
 		
-		<s:Label includeIn="video" text="Place your video URL here:" color="#FFFFFF" />
-		<s:TextInput includeIn="video" id="videoUrlTextInput" width="400" text="http://www.youtube.com/v/hecfFD_D_pU?version=3" />
+		<s:Label includeIn="video" text="Place your video URL here:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
+		<s:TextInput includeIn="video" id="videoUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" text="http://www.youtube.com/v/hecfFD_D_pU?version=3" />
 		
-		<s:Label includeIn="normal" text="Formatting options:" color="#FFFFFF" />
-		<s:ToggleButton includeIn="normal" id="boldButton" label="B" />
-		<s:HGroup includeIn="normal" height="100%" paddingLeft="22" gap="2">
-			<s:ToggleButton id="fontSize1Button" label="a" fontSize="11" />
-			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" />
-			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" />
+		<s:Label includeIn="text, audio, image, pdf, video" text="Formatting:" color="#FFFFFF" paddingLeft="10" paddingTop="4" />
+		<s:HGroup includeIn="text, audio, image, pdf, video" height="100%" paddingLeft="5" gap="8" verticalAlign="middle">
+			<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+			<s:ToggleButton id="fontSize1Button" label="a" fontSize="13" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 		</s:HGroup>
 	</s:HGroup>
 	
 	<!-- Right buttons -->
-	<s:HGroup bottom="0" right="0" gap="3" height="48" verticalAlign="middle">
-		<s:Button includeIn="normal" id="normalSaveButton" label="Save" />
-		<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" />
-		<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" />
-		<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" />
-		<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" />
-		<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" />
-		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" />
-		<s:Button includeIn="video" id="videoSelectButton" label="Select" />
-		<s:Button includeIn="pdf,video,image,audio" id="normalCancelButton" label="Cancel" />
-		<s:Button includeIn="preview" id="previewBackToEditorButton" label="Back to editor" />
+	<s:HGroup bottom="0" gap="10" height="48" right="513" verticalAlign="middle">
+		<s:Button includeIn="normal" id="normalSaveButton" label="Save changes" useHandCursor="true" buttonMode="true" />
+	</s:HGroup>
+	
+	<s:HGroup bottom="0" gap="10" height="48" right="394">
+	<s:Group id="symbol" includeIn="normal" >
+		
+		<s:Path left="25" top="21" winding="nonZero" data="M20.2129 14.3203C20.2129 17.8867 17.3262 20.7764 13.7598 20.7764 10.1973 20.7764 7.30469 17.8867 7.30469 14.3203 7.30469 10.7568 10.1973 7.86621 13.7598 7.86621 17.3262 7.86621 20.2129 10.7568 20.2129 14.3203ZM14.6445 10.1494L12.875 10.1494
+				12.875 13.4385 9.58594 13.4385 9.58594 15.2061 12.875 15.2061 12.875 18.4961 14.6445 18.4961 14.6445 15.2061 17.9346 15.2061 17.9346 13.4385 14.6445 13.4385 14.6445 10.1494Z" >
+			<s:fill>
+				<s:SolidColor color="0x283D0C"/>
+			</s:fill>
+		</s:Path>
+		
+		<s:Path left="16" top="15" winding="nonZero" data="M13.7598 3.77051C14.6807 3.77051 15.5586 3.93945 16.3789 4.23047L16.3789 0 0 0 0 12.626 6.01172 12.626C5.9668 12.2871 5.93555 11.9434 5.93555 11.5928 5.93555 7.27441 9.43945 3.77051 13.7598 3.77051Z" >
+			<s:fill>
+				<s:SolidColor color="0x283D0C"/>
+			</s:fill>
+		</s:Path>
+		<s:Label includeIn="normal" text="Add an item" color="0x283D0C" top="19" left="46"  />
+	</s:Group>
+	</s:HGroup>
+	
+	<s:HGroup bottom="0" right="140" gap="8" height="48" verticalAlign="middle">
+	<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" />
+	<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" />
+	<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" />
+	<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" />
+	<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" />
+	<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" />
+	</s:HGroup>
+	
+	<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
+		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" useHandCursor="true" buttonMode="true" />
+	</s:HGroup>
+	
+	<s:HGroup bottom="0" right="2" gap="3" height="48" verticalAlign="middle">
+		<s:Button includeIn="video" id="videoSelectButton" label="Select" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="pdf,video,image,audio" id="normalCancelButton" label="Cancel" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="preview" id="previewBackToEditorButton" label="Back to editor" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	
 </s:Skin>

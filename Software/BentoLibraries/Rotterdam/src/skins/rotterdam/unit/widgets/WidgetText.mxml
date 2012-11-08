@@ -58,18 +58,18 @@
 		<s:State name="editing" />
 	</s:states>
 	
-	<s:Rect id="focusHighlight" left="0" right="0" top="0" bottom="0" visible="false">
+	<s:Rect id="focusHighlight" left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4" visible="false">
 		<s:stroke>
 			<s:SolidColorStroke color="#DAC350" />
 		</s:stroke>
 		<s:fill>
-			<s:SolidColor color="#FFF8D3" />
+			<s:SolidColor color="#FFF9DB" />
 		</s:fill>
 	</s:Rect>
 	
 	<s:RichEditableText id="richEditableText"
 						left="8" right="8" top="8" minHeight="{minHeight}"
-						fontFamily="Helvetica" fontSize="14"
+						fontFamily="Helvetica" fontSize="13"
 						backgroundAlpha="0" focusSkin="{null}" 
 						editable.normal="false" editable.editing="true"
 						selectable.normal="false" selectable.editing="true"

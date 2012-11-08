@@ -19,7 +19,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		 * The font sizes for the three buttons
 		 */
 		private static var FONT_SIZES:Array = [ 14, 16, 18 ];
-		
+			
 		[SkinPart]
 		public var normalSaveButton:Button;
 		
@@ -28,7 +28,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		[SkinPart]
 		public var normalAddPDFButton:Button;
-		
+
 		[SkinPart]
 		public var normalAddVideoButton:Button;
 		
@@ -55,7 +55,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		[SkinPart]
 		public var videoUrlTextInput:TextInput;
-		
+				
 		[SkinPart]
 		public var videoSelectButton:Button;
 		

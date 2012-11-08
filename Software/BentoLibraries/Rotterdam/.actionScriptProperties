@@ -16,6 +16,7 @@
   </compiler>
   <applications>
     <application path="Rotterdam.as"/>
+    <application path="TextInputSkin.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

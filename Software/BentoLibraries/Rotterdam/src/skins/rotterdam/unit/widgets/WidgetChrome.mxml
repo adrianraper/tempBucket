@@ -34,6 +34,10 @@
 		]]>
 	</fx:Script>
 	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="0" distance="0.3" alpha="0.2" />
+	</fx:Declarations>
+
 	<fx:Metadata>
 		[Event(name="menuShow", type="com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent")]
 		[Event(name="menuHide", type="com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent")]
@@ -53,7 +57,7 @@
 	
 	<!-- Title bar -->
 	<s:Group id="dragArea" left="0" right="0" top="0" height="25">
-		<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:Rect left="0" right="0" top="0" bottom="0" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4">
 			<s:fill>
 				<s:LinearGradient scaleX="-25" rotation="90">
 					<s:GradientEntry ratio="0" color="#CBCBCB"/>
@@ -83,7 +87,7 @@
 	</s:Group>
 	
 	<!-- The stroke, including the selection stroke -->
-	<s:Rect left="0" right="0" top="0" bottom="0">
+	<s:Rect left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4" filters="{dropShadowFilter}">
 		<s:stroke>
 			<s:SolidColorStroke color="{selected ? 0x1CBBB4 : 0xD4D4D4}" />
 		</s:stroke>

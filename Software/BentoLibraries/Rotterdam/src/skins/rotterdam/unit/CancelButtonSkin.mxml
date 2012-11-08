@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+ADOBE SYSTEMS INCORPORATED
+Copyright 2008 Adobe Systems Incorporated
+All Rights Reserved.
+
+NOTICE: Adobe permits you to use, modify, and distribute this file
+in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+
+
+<!--- The default skin class for the Spark Button component.  
+
+@see spark.components.Button
+
+@langversion 3.0
+@playerversion Flash 10
+@playerversion AIR 1.5
+@productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				   xmlns:s="library://ns.adobe.com/flex/spark" 
+				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+				   minWidth="90" minHeight="48" 
+				   alpha.disabled="0.5">
+	
+	<fx:Metadata>
+		<![CDATA[ 
+		/** 
+		* @copy spark.skins.spark.ApplicationSkin#hostComponent
+		*/
+		[HostComponent("spark.components.Button")]
+		]]>
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:GlowFilter id="glowFilter" alpha="0.6" blurX="2" blurY="2" color="0x000000" knockout="false" quality="3" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" alpha="0.4" />
+
+	</fx:Declarations>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="up"  />
+		<s:State name="over" stateGroups="overStates" />
+		<s:State name="down" stateGroups="overStates" />
+		<s:State name="disabled" />
+	</s:states>
+	
+	<s:transitions>
+		<s:Transition fromState="up" toState="over" autoReverse="true" >
+			<s:AnimateColor  targets="{[color1, color2]}"  duration="200" />
+		</s:Transition>
+		
+		<s:Transition  fromState="over" toState="up" autoReverse="true" >
+			<s:AnimateColor targets="{[color1, color2]}" duration="300" />
+		</s:Transition>
+		
+	</s:transitions>
+	
+	<s:Rect left="0" right="0" height="48" topRightRadiusX="8" includeIn="over" filters="{glowFilter}" >
+		<s:fill>
+			<s:SolidColor color="0x000000"/>
+		</s:fill>
+	</s:Rect>
+	
+	<s:Rect left="0" right="0" height="48" width="90" topRightRadiusX="8" topRightRadiusY="8" >
+		<s:fill>
+			<s:LinearGradient x="32" y="0.5" scaleX="25" rotation="90">
+				<s:GradientEntry id="color1" color="0xFF4545" color.overStates="0xFF5959" ratio="0"/>
+				<s:GradientEntry id="color2" color="0xCB2027" color.overStates="0xCB2027" ratio="1"/>
+				
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	<s:Group id="symbol" top="15" left="12" >
+		<s:Path winding="nonZero" data="M15.5879 4.62891L10.96 0 7.79395 3.16699 4.62793 0 0 4.62891 3.16602 7.79395 0 10.9609 4.62793 15.5879 7.79395 12.4229 10.96 15.5879 15.5879 10.9609 12.4219 7.79395 15.5879 4.62891Z" >
+			<s:fill>
+				<s:SolidColor 	color="0x290202"
+								color.overStates="0x4F0404"
+								/>
+			</s:fill>
+		</s:Path>	
+	</s:Group>
+			
+	<!-- layer 8: text -->
+	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+	<s:Label id="labelDisplay"
+			 color="0X290202"
+			 color.over="0X4F0404"
+			 textAlign="center"
+			 verticalAlign="middle"
+			 maxDisplayedLines="1"
+			 horizontalCenter="10" verticalCenter="2"
+			 left="10" right="10" top="2" bottom="2">
+	</s:Label>
+	
+</s:SparkButtonSkin>

@@ -25,6 +25,10 @@ login|LoginView {
 	skinClass: ClassReference("skins.rotterdam.builder.login.LoginSkin");
 }
 
+login|LoginView s|Button {
+	skinClass: ClassReference("skins.rotterdam.builder.login.LoginButtonSkin");
+}
+
 title1|TitleView {
 	skinClass: ClassReference("skins.rotterdam.builder.title.TitleSkin");
 }
@@ -45,6 +49,10 @@ course1|CourseView {
 	skinClass: ClassReference("skins.rotterdam.builder.course.CourseSkin");
 }
 
+course1|CourseView s|Button#addUnitButton {
+	skinClass: ClassReference("skins.rotterdam.builder.course.AddUnitButtonSkin");
+}
+
 course|ToolBarView {
 	skinClass: ClassReference("skins.rotterdam.builder.course.ToolBarSkin");
 }
@@ -60,30 +68,53 @@ course|ToolBarView s|ToggleButton {
 }
 
 course|ToolBarView s|Button#normalSaveButton {
-	chromeColor: #2899CD;
+	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
 }
 
-course|ToolBarView s|Button#normalAddTextButton,
-course|ToolBarView s|Button#normalAddVideoButton,
-course|ToolBarView s|Button#normalAddPDFButton,
-course|ToolBarView s|Button#normalAddImageButton,
+course|ToolBarView s|Button#normalAddVideoButton,{
+	skinClass: ClassReference("skins.rotterdam.unit.AddVideoButtonSkin");
+}
+course|ToolBarView s|Button#normalAddImageButton,{
+	skinClass: ClassReference("skins.rotterdam.unit.AddImageButtonSkin");
+}
 course|ToolBarView s|Button#normalAddAudioButton {
-	chromeColor: #86BD3E;
+	skinClass: ClassReference("skins.rotterdam.unit.AddAudioButtonSkin");
+}
+
+course|ToolBarView s|Button#normalAddPDFButton, {
+skinClass: ClassReference("skins.rotterdam.unit.AddPDFButtonSkin");
+}
+
+course|ToolBarView s|Button#normalAddTextButton {
+	skinClass: ClassReference("skins.rotterdam.unit.AddTextButtonSkin");
+}
+
+course|ToolBarView s|Button#normalAddExerciseButton {
+	skinClass: ClassReference("skins.rotterdam.unit.AddExerciseButtonSkin");
 }
 
 course|ToolBarView s|Button#videoSelectButton {
-	chromeColor: #FFC602;
+	skinClass: ClassReference("skins.rotterdam.unit.VideoSelectButtonSkin");
+}
+
+course|ToolBarView s|Button#pdfResourceCloudButton,#imageResourceCloudButton,#audioResourceCloudButton {
+	skinClass: ClassReference("skins.rotterdam.unit.ResourceCloudButtonSkin");
+}
+
+course|ToolBarView s|Button#pdfUploadButton,#imageUploadButton,#audioUploadButton {
+	skinClass: ClassReference("skins.rotterdam.unit.ComputerButtonSkin");
 }
 
 course|ToolBarView s|Button#normalPreviewButton {
-	chromeColor: #FFC602;
-	topRightRadiusX: 5;
+	skinClass: ClassReference("skins.rotterdam.unit.PreviewButtonSkin");
 }
 
-course|ToolBarView s|Button#normalCancelButton,
-course|ToolBarView s|Button#previewBackToEditorButton {
-	chromeColor: #FF0000;
-	topRightRadiusX: 5;
+course|ToolBarView s|Button#previewBackToEditorButton {	
+	skinClass: ClassReference("skins.rotterdam.unit.BackToEditorButtonSkin");
+}
+
+course|ToolBarView s|Button#normalCancelButton {
+	skinClass: ClassReference("skins.rotterdam.unit.CancelButtonSkin");
 }
 
 uniteditor|UnitEditorView {
