@@ -1,7 +1,9 @@
 package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.ContentEvent;
 	import com.sparkTree.Tree;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
@@ -41,7 +43,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function onSelectButton(event:MouseEvent):void {
 			if (tree.selectedItem) {
-				trace(tree.selectedItem.uid);
+				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, true));
 				dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 			}
 		}

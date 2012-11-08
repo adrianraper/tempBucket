@@ -1,7 +1,9 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.ContentEvent;
 	
 	import flash.display.DisplayObject;
+	import flash.events.Event;
 	
 	import mx.core.FlexGlobals;
 	import mx.events.CloseEvent;
@@ -54,7 +56,17 @@ package com.clarityenglish.rotterdam.builder.controller {
 			titleWindow.closeButton.visible = false;
 			
 			// Listen for the close event so that we can cleanup
+			titleWindow.addEventListener(ContentEvent.CONTENT_SELECT, onContentSelect);
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
+		}
+		
+		/**
+		 * The user has selected some content so update the node accordingly
+		 * 
+		 * @param event
+		 */
+		protected function onContentSelect(event:ContentEvent):void {
+			node.@uid = event.uid;
 		}
 		
 		/**
@@ -64,7 +76,10 @@ package com.clarityenglish.rotterdam.builder.controller {
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
+			titleWindow.removeEventListener(ContentEvent.CONTENT_SELECT, onContentSelect);
 			titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
+			
+			delete node.@id;
 			
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
