@@ -260,20 +260,20 @@ package com.clarityenglish.common.model {
 						// Store a user config object in a shared object if rememberLogin is turned on #385
 						if (configProxy.getConfig().rememberLogin) {
 							var loginSharedObject:SharedObject = SharedObject.getLocal("login");
-							loginSharedObject.data["user"] = new User({ name: _user.name, studentID: _user.studentID, password: _user.password });
+							loginSharedObject.data["user"] = new User({ name: _user.name, studentID: _user.studentID, password: _user.password, email: _user.email });
 							loginSharedObject.flush();
 						}
 						
 						// gh#21 If login changed the account 
-						// what we now know about the account in Config
+						// save what we now know about the account in Config
 						if (data.account) {
 							// #503
 							// If login wants to change the rootID it will have sent back a new rootID in data
 							log.info("rootID changed from {0} to {1}", configProxy.getConfig().rootID, new Number(data.rootID));
 							configProxy.getConfig().rootID = new Number(data.rootID);
 							
-							//configProxy.getConfig().mergeAccountData(data);
-							//var authenticated:Boolean = configProxy.checkAuthentication();
+							configProxy.getConfig().mergeAccountData(data);
+							var authenticated:Boolean = configProxy.checkAuthentication();
 						}
 						
 						// Carry on with the process
