@@ -264,20 +264,15 @@ package com.clarityenglish.common.model {
 						
 						// #issue21 If this was a login with no known account, we now need to save 
 						// what we now know about the account in Config
-						if (configProxy.getConfig().rootID <= 0) {
+						if (data.account) {
+							// #503
+							// If login wants to change the rootID it will have sent back a new rootID in data
+							log.info("rootID changed from {0} to {1}", configProxy.getConfig().rootID, new Number(data.rootID));
+							configProxy.getConfig().rootID = new Number(data.rootID);
+							
 							configProxy.getConfig().mergeAccountData(data);
 							var authenticated:Boolean = configProxy.checkAuthentication();
-							log.info("no account passed, so found : {0}", configProxy.getConfig().account.name);
 						}
-						
-						// #503
-						// If login wants to change the rootID it will have sent back a new rootID in data
-						log.info("rootID was: {0}", configProxy.getConfig().rootID);
-						
-						if (data.rootID)
-							configProxy.getConfig().rootID = new Number(data.rootID);
-						
-						log.info("rootID now: {0}, data.rootID={1}", configProxy.getConfig().rootID, new Number(data.rootID));
 						
 						// Carry on with the process
 						sendNotification(CommonNotifications.LOGGED_IN, data);
