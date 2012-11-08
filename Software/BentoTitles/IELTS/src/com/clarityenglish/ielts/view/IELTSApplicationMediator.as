@@ -114,6 +114,8 @@ package com.clarityenglish.ielts.view {
 					break;
 				case BBStates.STATE_LOAD_COPY:
 				case BBStates.STATE_LOAD_ACCOUNT:
+				// gh#21
+				case BBStates.STATE_RELOAD_ACCOUNT:
 				case BBStates.STATE_LOAD_MENU:
 					view.currentState = "loading";
 					break;

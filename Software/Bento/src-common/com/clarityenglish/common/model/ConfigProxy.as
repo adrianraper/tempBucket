@@ -49,6 +49,8 @@ package com.clarityenglish.common.model {
 		
 		private var _dateFormatter:DateFormatter;
 		
+		private var _reloadAccount:Boolean = false;
+		
 		/**
 		 * Configuration information comes from three sources
 		 * 1) config.xml. This holds base paths and other information that is common to all accounts, but differs between products
@@ -84,12 +86,21 @@ package com.clarityenglish.common.model {
 				rc = scormProxy.initialise();
 			}
 			
-			// #issue21 If you are basing the account on the login, then go direct to login
+			// gh#21 If you are basing the account on the login, then go direct to login
 			if (config.loginOption && !config.prefix && !config.rootID) {
 				
+				// There is a minimum of account information that you will have to default to be able to display login screen
+				// productCode, productVersion and loginOption come from XML
 				config.rootID = -1;
+				config.account = new Account();
+				var dummyTitle:Title = new Title();
+				dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
+				config.account.titles = new Array(dummyTitle);
+				config.account.name = '';
+				config.account.verified = 1;
+				config.account.loginOption = config.loginOption;
+				config.licence = new Licence();
 				
-				// What is the minimum you need to know to go to login?
 				sendNotification(CommonNotifications.ACCOUNT_LOADED);
 				return;
 			}
@@ -97,6 +108,16 @@ package com.clarityenglish.common.model {
 			// Trigger the database call
 			if (rc)
 				getAccountSettings();
+		}
+
+		/**
+		 * Method to get an account from the database after login
+		 * 
+		 */
+		public function getAccountOnChange():void {
+			
+			_reloadAccount = true;
+			getAccountSettings();
 		}
 		
 		/**
@@ -231,7 +252,7 @@ package com.clarityenglish.common.model {
 			
 			var configUser:User;
 			
-			// #issue21. You might not have an account, but you might have loginOption from config
+			// gh#21. You might not have an account, but you might have loginOption from config
 			if (!loginOption)
 				loginOption = config.loginOption ? config.loginOption : null;
 			
@@ -360,7 +381,12 @@ package com.clarityenglish.common.model {
 						sendNotification(CommonNotifications.CONFIG_ERROR, "Unable to read from database"); // at this point copy can't have loaded so this is in English!
 						
 					} else if (config.anyError()) {
-						sendNotification(CommonNotifications.ACCOUNT_LOADED);
+						// gh#21
+						if (_reloadAccount) {
+							sendNotification(CommonNotifications.ACCOUNT_RELOADED);
+						} else {
+							sendNotification(CommonNotifications.ACCOUNT_LOADED);
+						}
 						sendNotification(CommonNotifications.CONFIG_ERROR, config.error);
 						
 					} else {

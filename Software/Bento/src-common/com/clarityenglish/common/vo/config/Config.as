@@ -99,7 +99,7 @@ package com.clarityenglish.common.vo.config {
 		public var rememberLogin:Boolean;
 		public var disableAutoTimeout:Boolean;
 		
-		// #issue21
+		// gh#21	
 		public var loginOption:uint;
 		
 		// #410
@@ -378,7 +378,7 @@ package com.clarityenglish.common.vo.config {
 			if (xml..checkNetworkAvailabilityReconnectInterval.toString())
 				this.checkNetworkAvailabilityReconnectInterval = new Number(xml..checkNetworkAvailabilityReconnectInterval.toString());
 
-			// #issue21
+			// gh#21
 			if (xml..loginOption.toString())
 				this.loginOption = Number(xml..loginOption.toString());
 			
@@ -427,7 +427,8 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			// Grab the account and title into our classes
-			this.account = data.account as Account;
+			if (data.account)
+				this.account = data.account as Account;
 			
 			// #341
 			if (data.group)
@@ -500,8 +501,7 @@ package com.clarityenglish.common.vo.config {
 		 */
 		public function get subRoots():String {
 			
-			// #issue21
-			if (this.account) {
+			// gh#21			if (this.account) {
 				if (this.account.licenceAttributes) {
 					for each (var lA:Object in this.account.licenceAttributes) {
 						if (lA.licenceKey.toLowerCase() == 'subroots')

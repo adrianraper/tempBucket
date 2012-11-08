@@ -161,7 +161,8 @@ class BentoService extends AbstractService {
 	// #503 rootID is now an array or rootIDs, although there will only be more than one if subRoots is set in the licence
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null) {
-		if (!$rootID) $rootID = array(Session::get('rootID'));
+		// gh#21 It is acceptable to pass a null rootID, so don't grab it from session
+		// if (!$rootID) $rootID = array(Session::get('rootID'));
 		if (!$productCode) $productCode = Session::get('productCode');
 
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
@@ -193,7 +194,7 @@ class BentoService extends AbstractService {
 		Session::set('userID', $userObj->F_UserID);
 		Session::set('userType', $userObj->F_UserType);
 		
-		// #issue21 As rootID will be -1 if you have not got an account yet, this will work.
+		// gh#21 As rootID will be -1 if you have not got an account yet, this will work.
 		// #503 From login you now only have one rootID even if you started with an array
 		// If that root has changed, you have to get a new licence object for this new root
 		// To be clear: subRoots means that I use one prefix to get lots of subRoots.
@@ -235,7 +236,7 @@ class BentoService extends AbstractService {
 			// you can still send back hiddenContent information and bookmarks
 			// TODO. RM currently keyed this on a session variable, so for now just use that with the groupID
 			// although maybe we need the full is of parent groups in here too.
-			// #issue25. getHiddenContent is actually dealt with in getProgressData, not here
+			// gh#25 getHiddenContent is actually dealt with in getProgressData, not here
 			Session::set('valid_groupIDs', array($group->id));
 			//if ($user->userType == User::USER_TYPE_STUDENT)
 			//	$contentObj = $this->contentOps->getHiddenContent($productCode);
@@ -247,12 +248,12 @@ class BentoService extends AbstractService {
 		
 		// Send this information back
 		// #503 including the root that you really found the user in
+		// gh#25 no content sent back
 		$dataObj = array("group" => $group,
 						 "licence" => $licence,
-						 "rootID" => $rootID,
-						 "content" => $contentObj);
+						 "rootID" => $rootID);
 		
-		// #issue21 include the account you found if this login wasn't given one
+		// gh#21 include the account you found if the rootID changed based on the login
 		if ($newAccount)
 			$dataObj['account'] = $newAccount;
 			

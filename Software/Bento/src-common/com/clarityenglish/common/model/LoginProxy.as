@@ -103,9 +103,11 @@ package com.clarityenglish.common.model {
 				var rootID:Array = configProxy.getConfig().subRoots.split(',');				
 			} else {
 				
-				// #issue21. You might not know a root, in which case this will return -1
-				rootID = new Array(1);
-				rootID[0] = configProxy.getRootID();
+				// gh#21 you might not know a root, in which case this will return undefined
+				if (configProxy.getRootID()) {
+					rootID = new Array(1);
+					rootID[0] = configProxy.getRootID();
+				}
 			}
 			
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode() ];
@@ -262,7 +264,7 @@ package com.clarityenglish.common.model {
 							loginSharedObject.flush();
 						}
 						
-						// #issue21 If this was a login with no known account, we now need to save 
+						// gh#21 If login changed the account 
 						// what we now know about the account in Config
 						if (data.account) {
 							// #503
@@ -270,8 +272,8 @@ package com.clarityenglish.common.model {
 							log.info("rootID changed from {0} to {1}", configProxy.getConfig().rootID, new Number(data.rootID));
 							configProxy.getConfig().rootID = new Number(data.rootID);
 							
-							configProxy.getConfig().mergeAccountData(data);
-							var authenticated:Boolean = configProxy.checkAuthentication();
+							//configProxy.getConfig().mergeAccountData(data);
+							//var authenticated:Boolean = configProxy.checkAuthentication();
 						}
 						
 						// Carry on with the process

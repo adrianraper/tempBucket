@@ -3,6 +3,7 @@
 	<id>/area1/RoadToIELTS2 android</id>
 	<developer>xx</developer>
 	<productCode>52</productCode>
+	<productVersion>R2IFV</productVersion>
 	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>

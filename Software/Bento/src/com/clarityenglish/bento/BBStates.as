@@ -4,6 +4,7 @@
 		
 		public static const STATE_LOAD_COPY:String = "state_load_copy";
 		public static const STATE_LOAD_ACCOUNT:String = "state_load_account";
+		public static const STATE_RELOAD_ACCOUNT:String = "state_reload_account";
 		public static const STATE_LOGIN:String = "state_login";
 		public static const STATE_LOAD_MENU:String = "state_load_menu";
 		public static const STATE_START_SESSION:String = "state_start_session";

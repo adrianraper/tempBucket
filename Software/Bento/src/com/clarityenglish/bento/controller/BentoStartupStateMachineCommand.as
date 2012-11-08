@@ -15,7 +15,8 @@ package com.clarityenglish.bento.controller {
 			
 			// Inject the FSM into PureMVC
 			// Note that 'changed' means entered, really
-			var fsm:XML =
+			// gh#21
+			var fsm:XML =				
 				<fsm initial={BBStates.STATE_LOAD_COPY}>
 					<state name={BBStates.STATE_LOAD_COPY} changed={CommonNotifications.COPY_LOAD}>
 					     <transition action={CommonNotifications.COPY_LOADED} target={BBStates.STATE_LOAD_ACCOUNT} />
@@ -28,10 +29,15 @@ package com.clarityenglish.bento.controller {
 					</state>              
 														
 					<state name={BBStates.STATE_LOGIN}>
-						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_LOAD_MENU} />
+						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_RELOAD_ACCOUNT} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 					
+					<state name={BBStates.STATE_RELOAD_ACCOUNT} changed={CommonNotifications.ACCOUNT_RELOAD}>
+						<transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOAD_MENU} />
+						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
+					</state>
+			
 					<state name={BBStates.STATE_LOAD_MENU} changed={BBNotifications.MENU_XHTML_LOAD}>
 						<transition action={BBNotifications.MENU_XHTML_LOADED} target={BBStates.STATE_START_SESSION} />
 						<transition action={BBNotifications.MENU_XHTML_NOT_LOADED} target={BBStates.STATE_CREDITS} />
@@ -60,13 +66,12 @@ package com.clarityenglish.bento.controller {
 			// #297 - if we are using direct login then we want to add a transition to go the credits on a failed login
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			// TODO. This is actually triggering a LoginEvent if you are doing direct - which is repeated later.
-			// #336 Does SCORM have any impact here, or can it be subsumed into directLogin?
 			if (configProxy.getDirectLogin()) {
 				var loginXML:XML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
 				loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);
 				loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_CREDITS} />);
 			}
+			
 			// #322
 			if (configProxy.getConfig().anyError()) {
 				loginXML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
