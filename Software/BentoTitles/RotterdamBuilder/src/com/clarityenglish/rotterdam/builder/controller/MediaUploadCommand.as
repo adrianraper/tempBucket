@@ -26,7 +26,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		private var uploadId:String;
+		private var tempWidgetId:String;
 		
 		private var node:XML;
 		
@@ -36,8 +36,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 			super.execute(note);
 			
 			node = note.getBody().node;
-			uploadId = note.getType();
-			log.info("Opening upload dialog with uploadId=" + uploadId);
+			tempWidgetId = note.getType();
+			log.info("Opening upload dialog with tempWidgetId=" + tempWidgetId);
 			
 			var allTypes:Array = [ note.getBody().fileFilter ];
 			fileReference = new FileReference();
@@ -72,12 +72,12 @@ package com.clarityenglish.rotterdam.builder.controller {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamUpload.php";
 			
-			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_START, null, uploadId);
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_START, null, tempWidgetId);
 			fileReference.upload(new URLRequest(uploadScript));
 		}
 		
 		private function onUploadProgress(e:ProgressEvent):void {
-			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_PROGRESS, e, uploadId);
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_PROGRESS, e, tempWidgetId);
 		}
 		
 		private function onUploadCompleteData(e:DataEvent):void {
@@ -85,18 +85,18 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			// Set the src attribute of the target node to the filename
 			node.@src = response.filename;
-			sendNotification(RotterdamNotifications.MEDIA_UPLOADED, null, uploadId);
+			sendNotification(RotterdamNotifications.MEDIA_UPLOADED, null, tempWidgetId);
 			
 			destroy();
 		}
 		
 		private function onUploadIOError(e:IOErrorEvent):void {
-			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, uploadId);
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, tempWidgetId);
 			destroy();
 		}
 		
 		private function onUploadSecurityError(e:SecurityErrorEvent):void {
-			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, uploadId);
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, tempWidgetId);
 			destroy();
 		}
 		

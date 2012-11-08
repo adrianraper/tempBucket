@@ -26,6 +26,10 @@ class RotterdamService extends BentoService {
 		}
 	}
 	
+	public function getContent() {
+		return $this->contentOps->getContent();
+	}
+	
 	public function courseCreate($course) {
 		// TODO: Only allow this if the logged in user has permission
 		$this->courseOps->courseCreate($course);

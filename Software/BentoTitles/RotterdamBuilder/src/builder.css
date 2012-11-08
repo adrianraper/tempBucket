@@ -129,6 +129,10 @@ uniteditor|UnitEditorView widgets|WidgetMenu s|Button {
 	color: #7F7F7F;
 }
 
+uniteditor|ContentSelectorView {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.ContentSelectorSkin");
+}
+
 filemanager|FileManagerView {
 	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileManagerSkin");
 }

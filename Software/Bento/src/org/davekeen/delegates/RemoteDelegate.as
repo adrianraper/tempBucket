@@ -10,6 +10,7 @@ package org.davekeen.delegates {
 	import mx.messaging.ChannelSet;
 	import mx.messaging.channels.AMFChannel;
 	import mx.rpc.AbstractOperation;
+	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
 	import mx.rpc.remoting.mxml.RemoteObject;
@@ -86,7 +87,7 @@ package org.davekeen.delegates {
 		/**
 		 * Make the remote function call.
 		 */
-		public function execute():void {
+		public function execute():AsyncToken {
 			remoteObject = new RemoteObject();
 			
 			// Set the gateway and service of the remote object
@@ -106,7 +107,7 @@ package org.davekeen.delegates {
 			
 			if (disableAppOnCall) FlexGlobals.topLevelApplication.enabled = false;
 			
-			operation.send();
+			return operation.send();
 		}
 		
 		/**

@@ -22,6 +22,7 @@
 		public static const UNIT_START:String = "rotterdam/unit_start";
 		public static const UNIT_STARTED:String = "rotterdam/unit_started";
 		
+		// Widget notifications
 		public static const WIDGET_SELECT:String = "rotterdam/widget_select";
 		public static const WIDGET_ADD:String = "rotterdam/widget_add";
 		public static const WIDGET_DELETE:String = "rotterdam/widget_delete";
@@ -33,9 +34,13 @@
 		public static const AUDIO_WIDGET_ADD:String = "rotterdam/audio_widget_add";
 		public static const EXERCISE_WIDGET_ADD:String = "rotterdam/exercise_widget_add";
 		
+		public static const CONTENT_WINDOW_SHOW:String = "rotterdam/content_window_show";
+		
+		// Text notifications
 		public static const TEXT_FORMAT:String = "rotterdam/text_format";
 		public static const TEXT_SELECTED:String = "rotterdam/text_selected";
 		
+		// Preview notifications
 		public static const PREVIEW_SHOW:String = "rotterdam/preview_show";
 		public static const PREVIEW_HIDE:String = "rotterdam/preview_hide";
 		

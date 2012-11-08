@@ -6,7 +6,7 @@
 	*/
 	[RemoteClass(alias = "com.clarityenglish.common.vo.content.Course")]
 	[Bindable]
-	public class Course extends Content {
+	public dynamic class Course extends Content {
 		
 		/**
 		 * The collection of units belonging to this course

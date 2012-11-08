@@ -6,6 +6,7 @@
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupCommand;
+	import com.clarityenglish.rotterdam.builder.controller.ContentWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
@@ -18,10 +19,13 @@
 	import com.clarityenglish.rotterdam.builder.controller.widgets.PDFWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.TextWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.VideoWidgetAddCommand;
+	import com.clarityenglish.rotterdam.builder.model.ContentProxy;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarMediator;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
@@ -36,9 +40,12 @@
 		override protected function initializeController():void {
 			super.initializeController();
 			
+			registerProxy(new ContentProxy());
+			
 			mapView(ToolBarView, ToolBarMediator);
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);
+			mapView(ContentSelectorView, ContentSelectorMediator);
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
@@ -58,6 +65,8 @@
 			registerCommand(RotterdamNotifications.EXERCISE_WIDGET_ADD, ExerciseWidgetAddCommand);
 			
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD, MediaUploadCommand);
+			
+			registerCommand(RotterdamNotifications.CONTENT_WINDOW_SHOW, ContentWindowShowCommand);
 			
 			// Remove the default Bento state machine (which isn't quite applicable to the builder) and replace it with a new one
 			removeCommand(CommonNotifications.CONFIG_LOADED);

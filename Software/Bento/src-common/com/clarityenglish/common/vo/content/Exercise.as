@@ -6,7 +6,7 @@
 	*/
 	[RemoteClass(alias = "com.clarityenglish.common.vo.content.Exercise")]
 	[Bindable]
-	public class Exercise extends Content {
+	public dynamic class Exercise extends Content {
 		
 		public static const ENABLED_FLAG_MENUON:uint = 1;
 		public static const ENABLED_FLAG_NAVIGATEON:uint = 2;

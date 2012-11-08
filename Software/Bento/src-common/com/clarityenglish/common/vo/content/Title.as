@@ -9,7 +9,7 @@
 	*/
 	[RemoteClass(alias = "com.clarityenglish.common.vo.content.Title")]
 	[Bindable]
-	public class Title extends Content {
+	public dynamic class Title extends Content {
 		
 		// Of course these are really database values (T_LicenceType) but sometimes it is quick to refer to these constants!
 		public static const LICENCE_TYPE_LT:int = 1;
