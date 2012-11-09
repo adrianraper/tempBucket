@@ -1,1 +1,0 @@
-dbHost=2&content=/Content&mainMovies=/Software/Common&interfaceMovies=/Software/AccessUK&database=SQLServer&scripting=PHP&help=/Software/AccessUK/Help/help.htm&end=1&MGSRoot=/ap

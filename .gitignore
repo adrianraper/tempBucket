@@ -1,5 +1,3 @@
-
-/area1
 /Content
 /ap
 /BritishCouncil
@@ -27,13 +25,4 @@ bin-release-temp
 /Software/BentoTitles/IELTS/src/skins/ielts/assets/textLayout_2.0.0.232.swz
 /Software/Bento/bin/Bento.swc
 /Software/Common/as3csslib/bin/csslib.swc
-
-/Software/BentoLibraries/Rotterdam/bin
-/Software/BentoTitles/IELTSIPadTester
-bin-debug
-bin-debug-temp
-bin-release
-bin-release-temp
-*.OLD
-*.IGNORE
-/desktop.ini
+AccessUK

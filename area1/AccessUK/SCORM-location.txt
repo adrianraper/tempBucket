@@ -1,1 +1,0 @@
-dbHost=2&content=http://www.ClarityEnglish.com/Content&mainMovies=http://www.ClarityEnglish.com/Software/Common&interfaceMovies=http://www.ClarityEnglish.com/Software/AccessUK&database=SQLServer&scripting=PHP&help=http://www.ClarityEnglish.com/Software/AccessUK/Help/help.htm&end=1

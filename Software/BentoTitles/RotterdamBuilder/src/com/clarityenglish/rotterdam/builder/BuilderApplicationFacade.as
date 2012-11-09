@@ -1,6 +1,7 @@
 ﻿package com.clarityenglish.rotterdam.builder {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
+	import com.clarityenglish.bento.controller.BentoResetCommand;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
@@ -41,6 +42,9 @@
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
 			registerCommand(RotterdamNotifications.COURSE_DELETE, CourseDeleteCommand);
+			
+			// gh#13
+			registerCommand(RotterdamNotifications.COURSE_RESET, BentoResetCommand);
 			
 			registerCommand(RotterdamNotifications.WIDGET_ADD, WidgetAddCommand);
 			registerCommand(RotterdamNotifications.WIDGET_DELETE, WidgetDeleteCommand);

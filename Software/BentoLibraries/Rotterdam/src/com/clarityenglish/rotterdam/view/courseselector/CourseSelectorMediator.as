@@ -34,6 +34,9 @@
 			// Load courses.xml
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.href = new Href(Href.XHTML, "courses.xml", configProxy.getConfig().paths.content);
+			
+			// gh#13 
+			facade.sendNotification(RotterdamNotifications.COURSE_RESET);
 		}
 		
 		override public function onRemove():void {
