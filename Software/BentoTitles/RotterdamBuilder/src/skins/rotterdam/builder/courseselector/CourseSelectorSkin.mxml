@@ -2,6 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx">
+	
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView")]
@@ -13,13 +14,14 @@
 		<s:State name="normal" />
 	</s:states>
 	
+	
 	<s:layout>
 		<s:VerticalLayout />
 	</s:layout>
-	
-	<s:Label text="Choose a Course" />
-	
-	<s:List id="courseList" labelField="@caption" width="100%" />
+
+	<s:Label text="Choose a Course" top="60"/>
+	<s:List id="courseList" width="100%"  borderVisible="false" labelField="@caption" >
+	</s:List>
 	
 	<s:Button id="createCourseButton" label="Create a New Course" />
 	<s:Button id="selectCourseButton" label="Edit course" enabled="{courseList.selectedItem != null}" />

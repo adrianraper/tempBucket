@@ -16,7 +16,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		[SkinPart(required="true")]
 		public var courseList:List;
-		
+			
 		[SkinPart]
 		public var createCourseButton:Button;
 		

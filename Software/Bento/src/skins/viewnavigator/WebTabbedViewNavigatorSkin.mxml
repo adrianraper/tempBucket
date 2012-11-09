@@ -15,10 +15,10 @@
 		<s:State name="portrait" />
 	</s:states>
 
-	<s:ButtonBar id="tabBar" left="0" right="0" height="50" />
+	<s:ButtonBar id="tabBar" left="0" right="0" height="50" color="0x4D4D4D" />
 	
 	<!--- @copy spark.components.SkinnableContainer#contentGroup -->
-	<s:Group id="contentGroup" left="0" right="0" top="50" bottom="0" minWidth="0" minHeight="0">
+	<s:Group id="contentGroup" left="0" right="0" top="50" bottom="0" color="0x4D4D4D" minWidth="0" minHeight="0" >
 		<s:layout>
 			<s:BasicLayout />
 		</s:layout>
