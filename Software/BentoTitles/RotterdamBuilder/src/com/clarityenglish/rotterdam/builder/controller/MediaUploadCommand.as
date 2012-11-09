@@ -7,13 +7,12 @@ package com.clarityenglish.rotterdam.builder.controller {
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	import flash.events.SecurityErrorEvent;
-	import flash.net.FileFilter;
 	import flash.net.FileReference;
 	import flash.net.URLRequest;
 	
+	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
-	import mx.utils.ObjectUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.INotification;
@@ -71,6 +70,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 		private function onUploadSelect(e:Event):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamUpload.php";
+			
+			// GH #32
+			if (FlexGlobals.topLevelApplication.parameters.sessionid) uploadScript += "?sessionid=" + FlexGlobals.topLevelApplication.parameters.sessionid;
 			
 			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_START, null, tempWidgetId);
 			fileReference.upload(new URLRequest(uploadScript));

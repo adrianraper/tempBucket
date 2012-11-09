@@ -1,13 +1,11 @@
 <?php
+if ($_REQUEST['sessionid']) session_id($_REQUEST['sessionid']); // GH #32
+
 require_once(dirname(__FILE__)."/../../config.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 require_once(dirname(__FILE__)."/../../classes/Session.php");
 require_once(dirname(__FILE__)."/../../classes/xml/XmlUtils.php");
 require_once(dirname(__FILE__)."/RotterdamService.php");
-
-// TODO: This might need to go back in when testing in the browser
-//if ($_REQUEST['SESSIONID']) session_id($_REQUEST['SESSIONID']); // fix for FileReference session bug (ticket #65)
-//session_start();
 
 $service = new RotterdamService();
 
