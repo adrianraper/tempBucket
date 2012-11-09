@@ -29,7 +29,10 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	//$dbDetails = new DBDetails(3); // To try out a specific database
 	$vars['DBDRIVER']=$dbDetails->driver;
 	
-	echo $dbDetails->dsn;
+	$pattern = '/([a-zA-Z0-9]+):\/\/([a-zA-Z0-9]+):([a-zA-Z0-9]+)@([a-zA-Z0-9-_.]+)\/([a-zA-Z0-9]+)/';
+	$replace = '\1://\2:********@\4/\5';
+	echo preg_replace($pattern, $replace, $dbDetails->dsn);
+	
 	$db = &ADONewConnection($dbDetails->dsn);
 	if (!$db) die("Connection failed");
 	// Put this line on to see all sql calls before they are made
@@ -359,4 +362,4 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	$node .= "</db>";
 	print($node);
 	$db->Close();
-?>
+
