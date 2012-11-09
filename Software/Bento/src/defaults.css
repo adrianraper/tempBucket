@@ -52,6 +52,10 @@ error|ErrorView {
 	skinClass: ClassReference("skins.bento.error.ErrorSkin");
 }
 
+error|ErrorView #closeButton {
+	skinClass: ClassReference("skins.bento.error.ErrorButtonSkin");
+}
+
 s|VideoPlayer {
 	skinClass: ClassReference("skins.bento.VideoPlayerSkin");
 }

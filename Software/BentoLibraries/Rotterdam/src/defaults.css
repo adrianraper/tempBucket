@@ -31,3 +31,19 @@ widgets|AudioWidget {
 widgets|ExerciseWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ExerciseWidgetSkin");
 }
+
+s|TitleWindow.errorTitleWindow {
+	skinClass: ClassReference("skins.rotterdam.titlewindows.ErrorTitleWindowSkin");
+}
+
+s|TitleWindow.warningTitleWindow {
+	skinClass: ClassReference("skins.rotterdam.titlewindows.ErrorTitleWindowSkin");
+}
+
+s|TitleWindow.noTitleWindow {
+	skinClass: ClassReference("skins.rotterdam.titlewindows.NoTitleWindowSkin");
+}
+
+s|TitleWindow.titleWindowClose {
+	skinClass: ClassReference("skins.rotterdam.titlewindows.TitleWindowCloseSkin");
+}
