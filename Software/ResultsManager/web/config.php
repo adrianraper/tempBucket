@@ -13,7 +13,7 @@ function writelog($level, $message) {
 
 // I need to call session_start here as this is about the first thing in any page.
 // Move into abstract service so you can use our Session class to register a handler
-session_start();
+if (!isset($noSession)) session_start();
 
 // If the total manageables in the logged in account is more than this students will not be displayed and some function disabled (RM only)
 $GLOBALS['max_manageables_for_student_display'] = 5000;

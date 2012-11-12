@@ -8,13 +8,21 @@
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView")]
 	</fx:Metadata>
 	
+	<fx:Script>
+		<![CDATA[
+			private function getIconForContent(item:Object, isOpen:* = null, isBranch:* = null):Object {
+				return hostComponent.getThumbnailForUid(item.uid);
+			}
+		]]>
+	</fx:Script>
+	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
 	
-	<sparkTree:Tree id="tree" dataProvider="{hostComponent.titleCollection}" labelField="name" width="500" height="500" bottom="50" borderVisible="false" />
+	<sparkTree:Tree id="tree" dataProvider="{hostComponent.titleCollection}" iconFunction="getIconForContent" labelField="name" width="500" height="500" bottom="50" borderVisible="false" />
 	
 	<s:HGroup width="100%" bottom="0">
 		<s:Button id="selectButton" label="Select content" enabled="{tree.selectedItem != null}" />

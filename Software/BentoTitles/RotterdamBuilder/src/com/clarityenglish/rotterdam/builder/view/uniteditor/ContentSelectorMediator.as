@@ -1,6 +1,7 @@
 ﻿package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.rotterdam.builder.model.ContentProxy;
 	
 	import mx.collections.ArrayCollection;
@@ -28,6 +29,9 @@
 			
 			var contentProxy:ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
 			contentProxy.getContent().addResponder(new ResultResponder(onContentLoadSuccess));
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.thumbnailScript = configProxy.getConfig().remoteGateway + "/services/thumbnail.php";
 		}
 		
 		override public function onRemove():void {

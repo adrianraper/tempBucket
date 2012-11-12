@@ -26,6 +26,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		[Bindable]
 		public var titleCollection:ArrayCollection;
 		
+		public var thumbnailScript:String;
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -50,6 +52,10 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function onCancelButton(event:MouseEvent):void {
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
+		}
+		
+		public function getThumbnailForUid(uid:String):String {
+			return thumbnailScript + "?uid=" + uid;
 		}
 		
 	}
