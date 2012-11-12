@@ -115,19 +115,19 @@ public class Tree extends List
 	//
 	//--------------------------------------------------------------------------
 	
-	[Embed("../../../assets/disclosureOpenIcon.png")]
+	[Embed(source="../../../assets/disclosureOpenIcon.png")]
 	private var disclosureOpenIcon:Class;
 	
-	[Embed("../../../assets/disclosureClosedIcon.png")]
+	[Embed(source="../../../assets/disclosureClosedIcon.png")]
 	private var disclosureClosedIcon:Class;
 	
-	[Embed("../../../assets/folderOpenIcon.png")]
+	[Embed(source="../../../assets/folderOpenIcon.png")]
 	private var folderOpenIcon:Class;
 	
-	[Embed("../../../assets/folderClosedIcon.png")]
+	[Embed(source="../../../assets/folderClosedIcon.png")]
 	private var folderClosedIcon:Class;
 	
-	[Embed("../../../assets/defaultLeafIcon.png")]
+	[Embed(source="../../../assets/defaultLeafIcon.png")]
 	private var defaultLeafIcon:Class;
 	
 	private var refreshRenderersCalled:Boolean = false;
@@ -440,11 +440,11 @@ public class Tree extends List
 		}
 	}
 	
-	public function getIcon(item:Object):Class
+	public function getIcon(item:Object):Object
 	{
 		var isBranch:Boolean = dataDescriptor.isBranch(item);
 		var isOpen:Boolean = isBranch ? _dataProvider.isOpen(item) : false;
-		var icon:Class = getOwnItemIcon(item, isOpen, isBranch);
+		var icon:Object = getOwnItemIcon(item, isOpen, isBranch);
 		if (icon)
 			return icon;
 		
@@ -455,14 +455,14 @@ public class Tree extends List
 		return icon;
 	}
 	
-	public function getOwnItemIcon(item:Object, isOpen:* = null, isBranch:* = null):Class
+	public function getOwnItemIcon(item:Object, isOpen:* = null, isBranch:* = null):Object
 	{
 		if (isOpen === null)
 			isOpen = _dataProvider.isOpen(item);
 		if (isBranch === null)
 			isBranch = dataDescriptor.isBranch(item);
 		
-		var icon:Class;
+		var icon:Object;
 		if (!icon && _iconFunction != null)
 			icon = _iconFunction(item, isOpen, isBranch);
 		if (icon)

@@ -12,8 +12,8 @@
 	<tree:DefaultDisclosureButton visible="{disclosureIconVisible}" 
 		click="{toggle();}" currentState="{isOpen ? 'open' : 'closed'}"/>
 	
-	<s:BitmapImage source="{icon}" visible="{Boolean(icon)}"
-		includeInLayout="{Boolean(icon)}"/>
+	<s:Image source="{icon}" visible="{Boolean(icon)}"
+				   includeInLayout="{Boolean(icon)}"/>
 	
 	<s:Label id="labelDisplay" text="{label}" color="{textColor}"/>
 	

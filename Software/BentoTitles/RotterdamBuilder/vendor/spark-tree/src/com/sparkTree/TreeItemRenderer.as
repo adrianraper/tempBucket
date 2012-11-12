@@ -205,15 +205,15 @@ public class TreeItemRenderer extends ItemRenderer implements ITreeItemRenderer
 	//  icon
 	//----------------------------------
 	
-	protected var _icon:Class;
+	protected var _icon:Object;
 	
 	[Bindable("iconChange")]
-	public function get icon():Class
+	public function get icon():Object
 	{
 		return _icon;
 	}
 	
-	public function set icon(value:Class):void
+	public function set icon(value:Object):void
 	{
 		if (_icon == value)
 			return;
