@@ -21,6 +21,8 @@
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsMediator"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsView"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

@@ -24,6 +24,8 @@
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
+	import com.clarityenglish.rotterdam.view.settings.SettingsMediator;
+	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
@@ -46,6 +48,7 @@
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);
 			mapView(ContentSelectorView, ContentSelectorMediator);
+			mapView(SettingsView, SettingsMediator);
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);

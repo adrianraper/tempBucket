@@ -57,6 +57,7 @@
 	
 	<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="200" top="0" bottom="100" />
 	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="70" useHandCursor="true" buttonMode="true" />
+	<s:Button id="courseSettingsButton" label="Course settings" left="100" bottom="70" useHandCursor="true" buttonMode="true" />
 	
 	<s:ViewNavigator id="unitViewNavigator" left="200" right="0" top="0" bottom="80" />
 	

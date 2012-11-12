@@ -12,6 +12,8 @@
 @namespace course "com.clarityenglish.rotterdam.builder.view.course.*";
 @namespace course1 "com.clarityenglish.rotterdam.view.course.*";
 @namespace title1 "com.clarityenglish.rotterdam.view.title.*";
+@namespace settings "com.clarityenglish.rotterdam.builder.view.settings.*";
+@namespace settings1 "com.clarityenglish.rotterdam.view.settings.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -82,7 +84,7 @@ course|ToolBarView s|Button#normalAddAudioButton {
 }
 
 course|ToolBarView s|Button#normalAddPDFButton, {
-skinClass: ClassReference("skins.rotterdam.unit.AddPDFButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.unit.AddPDFButtonSkin");
 }
 
 course|ToolBarView s|Button#normalAddTextButton {
@@ -135,4 +137,8 @@ uniteditor|ContentSelectorView {
 
 filemanager|FileManagerView {
 	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileManagerSkin");
+}
+
+settings1|SettingsView {
+	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSkin");
 }
