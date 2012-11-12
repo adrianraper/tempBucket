@@ -60,12 +60,14 @@ class Executive {
 			
 			// A simple upgrade to add an 'afterFilter' call at the end (if it exists)
 			if ($method != "beforeFilter" && method_exists($object, "afterFilter"))
+				// Clarity. Wrapped second arg in an array
 				call_user_func_array(array($object, "afterFilter"), array($method));
 				
 		}
 		catch(Exception $fault)
 		{
 			if ($method != "beforeFilter" && method_exists($object, "afterFilter")) 
+			// Clarity. Wrapped second arg in an array
 			call_user_func_array(array($object, "afterFilter"), array($method));
 			
 			if(get_class($fault) == "VerboseException")
