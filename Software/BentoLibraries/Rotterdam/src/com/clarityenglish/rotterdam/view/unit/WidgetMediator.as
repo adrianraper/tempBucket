@@ -36,7 +36,10 @@
 			// TODO: media/ should not be hardcoded
 			view.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
 			
+			view.thumbnailScript = configProxy.getConfig().remoteGateway + "/services/thumbnail.php";
+			
 			view.openMedia.add(onOpenMedia);
+			view.openContent.add(onOpenContent);
 			view.textSelected.add(onTextSelected);
 		}
 		
@@ -44,6 +47,7 @@
 			super.onRemove();
 			
 			view.openMedia.remove(onOpenMedia);
+			view.openContent.remove(onOpenContent);
 			view.textSelected.remove(onTextSelected);
 		}
 		
@@ -98,6 +102,16 @@
 			// TODO: media/ should not be hardcoded
 			var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 			navigateToURL(new URLRequest(srcHref.url), "_blank");
+		}
+		
+		/**
+		 * Open the Clarity content specified by the uid.
+		 * 
+		 * @param widget
+		 * @param uid
+		 */
+		private function onOpenContent(widget:XML, uid:String):void {
+			facade.sendNotification(RotterdamNotifications.CONTENT_OPEN, uid);
 		}
 		
 		protected function onTextSelected(format:TextLayoutFormat):void {

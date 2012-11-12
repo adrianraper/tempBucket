@@ -50,6 +50,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		[Bindable]
 		public var mediaFolder:String;
 		
+		[Bindable]
+		public var thumbnailScript:String;
+		
 		protected var _xml:XML;
 		
 		protected var _editable:Boolean;
@@ -57,6 +60,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected var xmlWatcher:XMLWatcher;
 		
 		public var openMedia:Signal = new Signal(XML);
+		public var openContent:Signal = new Signal(XML, String);
 		public var textSelected:Signal = new Signal(TextLayoutFormat);
 		
 		public function AbstractWidget() {

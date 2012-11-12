@@ -36,6 +36,9 @@
 		
 		public static const CONTENT_WINDOW_SHOW:String = "rotterdam/content_window_show";
 		
+		// gh#33
+		public static const CONTENT_OPEN:String = "rotterdam/content_open";
+		
 		// Text notifications
 		public static const TEXT_FORMAT:String = "rotterdam/text_format";
 		public static const TEXT_SELECTED:String = "rotterdam/text_selected";

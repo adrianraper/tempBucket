@@ -66,7 +66,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		 * @param event
 		 */
 		protected function onContentSelect(event:ContentEvent):void {
-			node.@uid = event.uid;
+			node.@contentuid = event.uid;
 		}
 		
 		/**

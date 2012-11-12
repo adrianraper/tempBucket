@@ -1,6 +1,7 @@
 ﻿package com.clarityenglish.rotterdam {
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.view.login.LoginMediator;
+	import com.clarityenglish.rotterdam.controller.ContentOpenCommand;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	import com.clarityenglish.rotterdam.controller.UnitStartCommand;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
@@ -15,6 +16,7 @@
 	import com.clarityenglish.rotterdam.view.unit.UnitView;
 	import com.clarityenglish.rotterdam.view.unit.WidgetMediator;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
@@ -29,6 +31,7 @@
 			
 			registerCommand(RotterdamNotifications.COURSE_START, CourseStartCommand);
 			registerCommand(RotterdamNotifications.UNIT_START, UnitStartCommand);
+			registerCommand(RotterdamNotifications.CONTENT_OPEN, ContentOpenCommand);
 			
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
@@ -41,6 +44,7 @@
 			mapView(VideoWidget, WidgetMediator);
 			mapView(ImageWidget, WidgetMediator);
 			mapView(AudioWidget, WidgetMediator);
+			mapView(ExerciseWidget, WidgetMediator);
 			
 		}
 		
