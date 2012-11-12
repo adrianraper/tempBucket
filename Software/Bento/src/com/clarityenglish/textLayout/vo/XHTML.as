@@ -143,6 +143,34 @@ package com.clarityenglish.textLayout.vo {
 			return _xml.descendants(String(name));
 		}
 		
+		/**
+		 * The Proxy allows us to use E4X syntax directly on the XHTML class
+		 * 
+		 * @param name
+		 * @return 
+		 */
+		flash_proxy override function setProperty(name:*, value:*):void {
+			if (flash_proxy::isAttribute(name)) {
+				_xml.@[String(name)] = value;
+			} else {
+				xml[String(name)] = value;
+			}
+		}
+		
+		/**
+		 * The Proxy allows us to use E4X syntax directly on the XHTML class
+		 * 
+		 * @param name
+		 * @return 
+		 */
+		flash_proxy override function hasProperty(name:*):Boolean {
+			if (flash_proxy::isAttribute(name)) {
+				return _xml.hasOwnProperty("@" + String(name));
+			} else {
+				return _xml.hasOwnProperty(String(name));
+			}
+		}
+		
 		public function toXMLString():String {
 			return (_xml) ? _xml.toXMLString() : null;
 		}
