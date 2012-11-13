@@ -42,7 +42,9 @@ package com.clarityenglish.ielts.view.zone {
 		
 		[Bindable(event="dataChange")]
 		public function get courseClass():String {
+			trace("courseclass is "+  _course.@["class"].toString());
 			return (_course) ? _course.@["class"].toString() : null;
+			
 		}
 		
 		protected override function getCurrentSkinState():String {

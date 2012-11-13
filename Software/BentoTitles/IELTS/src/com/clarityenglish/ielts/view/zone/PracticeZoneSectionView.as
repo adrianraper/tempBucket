@@ -8,15 +8,21 @@ package com.clarityenglish.ielts.view.zone {
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
 	
 	public class PracticeZoneSectionView extends AbstractZoneSectionView {
 		
+		[SkinPart]
+		public var practiceZoneInstructionLabel:Label;
+		
 		[SkinPart(required="true")]
 		public var unitList:List;
 		
 		public var exercisesShow:Signal = new Signal(XMLList, Object);
+		
+		
 		
 		public function get viewCopyProvider():CopyProvider {
 			return this.copyProvider;
@@ -40,6 +46,9 @@ package com.clarityenglish.ielts.view.zone {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case practiceZoneInstructionLabel:
+					practiceZoneInstructionLabel.text = copyProvider.getCopyForId("practiceZoneInstructionLabel");
+					break;
 				case unitList:
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitListChange);
 					break;

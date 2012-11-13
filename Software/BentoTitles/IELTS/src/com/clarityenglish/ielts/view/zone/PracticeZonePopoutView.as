@@ -6,6 +6,7 @@ package com.clarityenglish.ielts.view.zone {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
+	import mx.controls.Label;
 	
 	import org.osflash.signals.Signal;
 	

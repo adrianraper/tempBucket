@@ -125,8 +125,13 @@ package com.clarityenglish.ielts.view.home {
 							instance.text = "";
 						}
 					} else {
-						//issue:#11 Language Code
-						instance.text = copyProvider.getCopyForId("welcomeLabel") + " " + user.fullName + ".";
+						//For chinese literal, the phrase sequence need to be changed
+						if (CopyProxy.languageCode == "ZH"){
+							instance.text = user.fullName + " " + copyProvider.getCopyForId("welcomeLabel");
+						} else {
+							//issue:#11 Language Code
+							instance.text = copyProvider.getCopyForId("welcomeLabel") + " " + user.fullName + ".";
+						}						
 					}
 					break;
 				

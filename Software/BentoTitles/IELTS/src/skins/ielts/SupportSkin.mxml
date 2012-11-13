@@ -46,8 +46,8 @@
 					<s:p><s:span>This Test Drive version of Road to IELTS gives you all the IELTS basics.</s:span></s:p>
 					</s:RichText>
 					<s:RichText width="650" paddingLeft="0" paddingTop="10" excludeFrom="testDrive">
-						<s:p><s:span fontWeight="bold">How to use Road to IELTS</s:span></s:p>
-						<s:p><s:span>Road to IELTS is organised into four skill areas, one for each paper in IELTS. In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from IELTS experts on video, and practising specific question types using the interactive practice exercises and the mock papers.</s:span></s:p>
+						<s:p><s:span fontWeight="bold" id="supportCaptionSpan1"/></s:p>
+						<s:p><s:span id="paragraphContentSpan1"/></s:p>
 					</s:RichText>
 					<s:Button id="registerInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>
 					<s:Button id="buyInfoButton" width="95%" includeIn="testDrive" useHandCursor="true"/>

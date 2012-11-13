@@ -51,9 +51,9 @@
 		<s:State name="speaking" />
 	</s:states>
 	
-	<s:Label id="practiceZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
-	<s:Label id="practiceZoneInstructionLabel" visible="{list.dataProvider.length > 0}" fontSize="14" left="20" top="35" right="25" />
-	<s:Label id="practiceZoneNoTestLabel" visible="{list.dataProvider.length == 0}" fontSize="14" left="20" top="35" right="25" />
+	<s:Label id="examZoneLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
+	<s:Label id="examZoneInstructionLabel" visible="{list.dataProvider.length > 0 }" fontSize="14" left="20" top="35" right="25"/>
+	<s:Label id="examZoneNoTestLabel" visible="{list.dataProvider.length == 0}" fontSize="14" left="20" top="35" right="25" />
 	
 	<s:List id="list"
 			width="386"

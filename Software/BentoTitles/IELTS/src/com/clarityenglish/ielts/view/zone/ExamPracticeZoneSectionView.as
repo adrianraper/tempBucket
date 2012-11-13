@@ -26,13 +26,13 @@ package com.clarityenglish.ielts.view.zone {
 		public var rightArrow:SWFLoader;
 		
 		[SkinPart(required="true")]
-		public var practiceZoneLabel:Label;
+		public var examZoneLabel:Label;
 		
 		[SkinPart(required="true")]
-		public var practiceZoneInstructionLabel:Label;
+		public var examZoneInstructionLabel:Label;
 		
 		[SkinPart]
-		public var practiceZoneNoTestLabel:Label;
+		public var examZoneNoTestLabel:Label;
 		
 		public var exerciseSelect:Signal = new Signal(Href);
 		
@@ -45,6 +45,12 @@ package com.clarityenglish.ielts.view.zone {
 			super.commitProperties();
 			
 			list.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
+			
+			if (this.courseClass == "listening") {
+				examZoneInstructionLabel.text = copyProvider.getCopyForId("examZoneInstructionLabel1");
+			} else {
+				examZoneInstructionLabel.text = copyProvider.getCopyForId("examZoneInstructionLabel2");
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -55,16 +61,13 @@ package com.clarityenglish.ielts.view.zone {
 					list.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					break;
 				//issue:#11 Lanuage Code
-				case practiceZoneLabel:
-					instance.text = copyProvider.getCopyForId("practiceZoneLabel");
+				case examZoneLabel:
+					instance.text = copyProvider.getCopyForId("examZoneLabel");
 					break;
-				case practiceZoneInstructionLabel:
-					instance.text = copyProvider.getCopyForId("practiceZoneInstructionLabel");
-					break;
-				case practiceZoneNoTestLabel:
+				case examZoneNoTestLabel:
 					var replaceObj:Object = new Object();
 					replaceObj.courseClass = this.courseClass;
-					instance.text = copyProvider.getCopyForId("practiceZoneNoTestLabel", replaceObj);
+					instance.text = copyProvider.getCopyForId("examZoneNoTestLabel", replaceObj);
 					break;
 			}
 		}
