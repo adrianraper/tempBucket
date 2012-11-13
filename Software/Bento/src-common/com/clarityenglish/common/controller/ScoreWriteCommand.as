@@ -26,7 +26,7 @@ package com.clarityenglish.common.controller {
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (configProxy.getConfig().scorm) 
-				scormProxy.writeScore(data.UID, data.correctPercent);
+				scormProxy.writeScore(data);
 			
 		}
 		

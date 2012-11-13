@@ -2,17 +2,20 @@
 <config>
 	<id>/area1/RoadToIELTS2 in localhost</id>
 	<developer>none</developer>
-	<dbHost>0</dbHost>
+	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
-	<channel name='aws' caption='aws'>
+    <channel name='rackspace' caption='Channel 1'>
+        <streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
+    </channel>  
+    <channel name='aws' caption='Channel 2'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
 	</channel>
-	<xchannel name='network' caption='network'>
-		<streamingMedia>{contentPath}/video/</streamingMedia>
-	</xchannel>
-	<channel name='vimeo' caption='vimeo'>
+	<channel name='vimeo' caption='Channel 3'>
 		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
 	</channel>	
+    <xchannel name='network' caption='network'>
+        <streamingMedia>{contentPath}/video/</streamingMedia>
+    </xchannel>
 	<sharedMedia />
 	<brandingMedia />
 	<upgradeURL>http://www.ieltspractice.com</upgradeURL>

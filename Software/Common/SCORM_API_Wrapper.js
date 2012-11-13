@@ -522,10 +522,15 @@ pipwerks.SCORM.data.get = function(parameter){
     		return "not attempted";
     		break;
     	case "cmi.core.entry":
-    		return "ab-initio";
+    		//return "ab-initio";
+    		return "resume";
     		break;
     	case "cmi.objectives._count":
     		return "0";
+    		break;
+    	case "cmi.suspend_data":
+    		return '';
+    		//return '{"scoreSoFar":"1156153794384|13,1156153794466|33,1156153794384|53","percentComplete":10}';
     		break;
     	default:
     		return "";

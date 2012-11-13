@@ -7,6 +7,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.config.BentoError;
 	
 	import flash.display.DisplayObject;
@@ -112,6 +113,17 @@
 			
 			// If there is exercise feedback then show the exercise feedback button
 			if (view.feedbackButton) view.feedbackButton.visible = getExerciseProxy(exercise).hasExerciseFeedback();
+			
+			// #517 Hide forward if this is SCORM and there is marking
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (view.forwardButton) {
+				if (view.markingButton && view.markingButton.visible && configProxy.getConfig().scorm) {
+					 view.forwardButton.visible = false;
+				} else {
+					 view.forwardButton.visible = true;
+				}
+			}
+			
 		}
 		
 		private function onPrintExercise(dynamicView:DynamicView):void {

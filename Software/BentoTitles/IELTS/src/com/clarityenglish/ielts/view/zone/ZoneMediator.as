@@ -239,16 +239,19 @@
 					videoPlayer.source = dynamicSource;
 					videoPlayer.callLater(videoPlayer.play);
 					break;
+				
 				// Rackspace's pseudo streaming over http
 				case "http":
 					//videoPlayer.source = host + channel.item[0].streamName.toString() + ".f4m";
 					videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
 					videoPlayer.callLater(videoPlayer.play);
 					break;
+				
 				case "progressive-download":
 					videoPlayer.source = host + channel.item[0].streamName.toString();
 					videoPlayer.callLater(videoPlayer.play);
 					break;
+				
 				default:
 					log.error(protocol + " streaming type not supported");
 					videoPlayer.stop();
@@ -274,7 +277,7 @@
 					if (currentVideoStartTime) { // #318
 						var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 						var exerciseMark:ExerciseMark = new ExerciseMark();
-						exerciseMark.duration = (new Date().getTime() - currentVideoStartTime.getTime()) / 1000;
+						exerciseMark.duration = (new Date().time - currentVideoStartTime.getTime()) / 1000;
 						exerciseMark.UID = bentoProxy.getExerciseUID(currentVideoHref);
 						
 						// Trigger a notification to write the score out

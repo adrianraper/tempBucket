@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.model {
 	
+	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
@@ -79,6 +80,10 @@ package com.clarityenglish.bento.model {
 		 * Terminate SCORM communication with the LMS
 		 */
 		public function terminate():void {
+			
+			if (!scorm.complete)
+				this.unfinishedSCO();
+			
 			scorm.disconnect();
 		}
 		
@@ -89,21 +94,37 @@ package com.clarityenglish.bento.model {
 		 *   2) set the bookmark
 		 *   3) write the objective
 		 */
-		public function writeScore(exID:String, score:uint):Boolean {
+		public function writeScore(data:ExerciseMark):Boolean {
 			
-			// TODO. Get the exercise caption from the id
+			var exID:String = data.UID.split('.').pop().toString();
+			
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var exerciseNode:XML = bentoProxy.currentExerciseNode;
+			// BUG or what? For AdviceZone videos, there is no currentExercise
+			if (!exerciseNode)
+				exerciseNode = bentoProxy.menuXHTML..exercise.(@id == exID)[0];
+			
 			// Notes from Orchid
 			// SCORM says that this string should have no spaces in it! Why - I have no idea.
 			// Also can't have question marks! What about other punctuation?
 			// Moodle implementation has regex '^\\w{1,255}$' - so allowing letters, digits and underscores only.
-			var exCaption:String = exID;
+			var formattingPattern:RegExp = / /g;
+			var rawCaption:String = exerciseNode.@caption;
+			var exCaption:String = rawCaption.replace(formattingPattern, '_');
 			
-			scorm.setParameter('objective.count', String(scorm.objectiveCount++));
+			// You don't set objective count, you let the LMS do that
+			//scorm.setParameter('objective.count', String(scorm.objectiveCount++));
 			scorm.setParameter('objective.id', exCaption, scorm.objectiveCount);
 			scorm.setParameter('objective.status', 'completed', scorm.objectiveCount);
-			scorm.setParameter('objective.score', String(score), scorm.objectiveCount);
+			if (data.correctPercent >= 0)
+				scorm.setParameter('objective.score', String(data.correctPercent), scorm.objectiveCount);
+			
+			// In case you write another objective without checking with the LMS first, update the count
+			scorm.objectiveCount++;
 
-			scorm.setParameter('suspendData', this.formatSuspendData(exID, score));
+			// As well as writing it out, save the suspend data
+			scorm.suspendData = this.formatSuspendData(exID, data.correctPercent)
+			scorm.setParameter('suspendData', scorm.suspendData);
 			
 			scorm.setParameter('bookmark', this.formatBookmark(exID));
 			
@@ -117,7 +138,6 @@ package com.clarityenglish.bento.model {
 		 *   2) write the averageScore
 		 */
 		public function completeSCO():void {
-			
 			scorm.complete = true;
 			scorm.setParameter('lessonStatus', 'complete');
 			scorm.setParameter('rawScore', this.calculateAverageScore());
@@ -125,7 +145,6 @@ package com.clarityenglish.bento.model {
 				
 		}
 		public function unfinishedSCO():void {
-			
 			scorm.complete = false;
 			scorm.setParameter('lessonStatus', 'incomplete');
 			
@@ -158,12 +177,23 @@ package com.clarityenglish.bento.model {
 		private function getSessionTime():String {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			var sessionDuration:Number = configProxy.getConfig().sessionStartTime - new Date().time;
-			var sHours:Number = sessionDuration % 3600;
-			var sMinutes:Number = (sessionDuration - (sHours * 3600)) % 60;
-			var sSeconds:Number = (sessionDuration - (sHours * 3600) - (sMinutes * 60));
+			// Seconds, not milliseconds
+			var sessionDuration:Number = Math.round((new Date().time - configProxy.getConfig().sessionStartTime)/1000);
+			var sHours:Number = Math.floor(sessionDuration / 3600);
+			var sMinutes:Number = Math.floor((sessionDuration - (sHours * 3600)) / 60);
+			var sSeconds:Number = sessionDuration - (sHours * 3600) - (sMinutes * 60);
 			
-			return sHours.toString() + ":" + sMinutes.toString() + ":" + sSeconds + ".00";
+			return this.padNumber(sHours) + ":" + this.padNumber(sMinutes) + ":" + this.padNumber(sSeconds) + ".00";
+		}
+		/**
+		 * Quick utility function to pad a number with leading zeros
+		 */
+		private function padNumber(s:Number, padding:uint = 2):String {
+			var t:String = s.toString();
+			while (t.length < padding) {
+				t = '0' + t;
+			}
+			return t;
 		}
 		
 		/**
@@ -178,11 +208,15 @@ package com.clarityenglish.bento.model {
 				
 				// Read each score and add them up.
 				// If one exercise has been done twice, you include both scores
+				// But if an exercise has a score of -1, it means it was view only, so don't count it
 				var totalScore:Number = 0;
 				var numberOfScores:Number = 0;
 				for (var score:String in scores) {
-					numberOfScores++;
-					totalScore += score.split('|')[1];
+					var thisScore:int = Number(scores[score].split('|')[1]);
+					if (thisScore >= 0) {
+						numberOfScores++;
+						totalScore += thisScore;
+					}
 				}
 			}
 			
@@ -201,7 +235,7 @@ package com.clarityenglish.bento.model {
 		/**
 		 * Format the suspend data
 		 * #493 Convert to JSON
-		 * '{"scoreSoFar":"ex:1234|15,ex:5678|32","percentComplete":50}'
+		 * '{"scoreSoFar":"1234|15,5678|32","percentComplete":50}'
 		 */
 		private function formatSuspendData(exID:String, score:uint):String {
 			if (scorm.suspendData) {
@@ -214,20 +248,47 @@ package com.clarityenglish.bento.model {
 			if (suspendDataArray.scoreSoFar) {
 				var scores:Array = suspendDataArray.scoreSoFar.split(",");
 			} else {
+				suspendDataArray.scoreSoFar = {};
 				scores = new Array();
 			}
-			scores.push('ex:' + exID + '|' + score);
+			scores.push(exID + '|' + score);
 			suspendDataArray.scoreSoFar = scores.join(",");
 			
-			// Update the percent complete. 
-			// I need to get the bit of menu.xml relevant to this SCORM object and count the number of exercises in it.
-			// Then I can work out the % using scoreSoFar.
-			if (suspendDataArray.percentComplete) {
-				suspendDataArray.percentComplete = 51;
+			// Count the unique exercises done so far in suspend data
+			// It doesn't matter if I destroy the scores array as that has already been written out as a string to suspend data.
+			scores.sort();
+			for (var i:int = scores.length-1; i>0; --i){
+				if (scores[i].split('|')[0] === scores[i-1].split('|')[0])
+					scores.splice(i,1);
+			}
+			var uniqueCount:int = scores.length;
+
+			// Now count the number of exercise nodes in this unit
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var exerciseNode:XML = bentoProxy.currentExerciseNode;
+			// BUG or what? But for AdviceZone videos, there is no currentExercise
+			if (!exerciseNode) {
+				exerciseNode = bentoProxy.menuXHTML..exercise.(@id == exID)[0];			
+				var unitNode:XML = exerciseNode.parent();
 			} else {
-				suspendDataArray.percentComplete = 10;
+				unitNode = bentoProxy.currentUnitNode;
 			}
 			
+			// If your SCORM object uses group, then you need to limit the exercises in the unit to just that group
+			if (scorm.launchData.groupID) {
+				var exercises:XMLList = unitNode.exercise.(@group == scorm.launchData.groupID);
+			} else {
+				exercises = unitNode.exercise;
+			}
+			var numExercises:Number = exercises.length();
+			
+			if (numExercises == 0) {
+				suspendDataArray.percentComplete = 0;
+			} else {
+				suspendDataArray.percentComplete = Math.round(100 * uniqueCount / numExercises);
+			}
+			
+			trace("suspendData = " + JSON.stringify(suspendDataArray));
 			return JSON.stringify(suspendDataArray);
 		}
 

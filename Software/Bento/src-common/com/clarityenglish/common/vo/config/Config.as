@@ -414,7 +414,9 @@ package com.clarityenglish.common.vo.config {
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
 			// Its purpose is to allow an account to swap language versions easily for a title.
-			if (thisTitle.contentLocation) {
+			if (thisTitle.dbContentLocation) {
+				this.paths.content += thisTitle.dbContentLocation;
+			} else if (thisTitle.contentLocation) {
 				this.paths.content += thisTitle.contentLocation;
 			}
 			
