@@ -48,6 +48,10 @@
 		public static const PREVIEW_HIDE:String = "rotterdam/preview_hide";
 		
 		// Upload notifications
+		public static const MEDIA_SELECT:String = "rotterdam/media_select";
+		
+		public static const MEDIA_CLOUD_SELECT:String = "rotterdam/media_cloud_select";
+		
 		public static const MEDIA_UPLOAD:String = "rotterdam/media_upload";
 		public static const MEDIA_UPLOAD_START:String = "rotterdam/media_upload_start";
 		public static const MEDIA_UPLOAD_PROGRESS:String = "rotterdam/media_upload_progress";

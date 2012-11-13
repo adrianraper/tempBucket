@@ -32,7 +32,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				fileFilter: new FileFilter("Audio (*.mp3)", "*.mp3"),
 				node: node
 			};
-			facade.sendNotification(RotterdamNotifications.MEDIA_UPLOAD, uploadOptions, uid);
+			facade.sendNotification(RotterdamNotifications.MEDIA_SELECT, uploadOptions, uid);
 		}
 		
 	}

@@ -41,17 +41,17 @@
 	<!-- Left buttons -->
 	<s:HGroup bottom="0" left="8" gap="7" height="48" verticalAlign="middle">
 		<s:Label includeIn="pdf" text="Upload PDF from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
-		<s:Button includeIn="pdf" id="pdfResourceCloudButton" label="Resource Cloud" enabled="false" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="pdf" id="pdfResourceCloudButton" label="Resource Cloud" useHandCursor="true" buttonMode="true" />
 		<s:Label includeIn="pdf" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:Button includeIn="pdf" id="pdfUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
 		
 		<s:Label includeIn="image" text="Upload Image from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
-		<s:Button includeIn="image" id="imageResourceCloudButton" label="Resource Cloud" enabled="false" />
+		<s:Button includeIn="image" id="imageResourceCloudButton" label="Resource Cloud" />
 		<s:Label includeIn="image" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:Button includeIn="image" id="imageUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
 		
 		<s:Label includeIn="audio" text="Upload Audio from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
-		<s:Button includeIn="audio" id="audioResourceCloudButton" label="Resource Cloud" enabled="false" />
+		<s:Button includeIn="audio" id="audioResourceCloudButton" label="Resource Cloud" />
 		<s:Label includeIn="audio" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:Button includeIn="audio" id="audioUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
 		

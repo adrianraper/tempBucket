@@ -10,6 +10,8 @@
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
+	import com.clarityenglish.rotterdam.builder.controller.MediaCloudSelectCommand;
+	import com.clarityenglish.rotterdam.builder.controller.MediaSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetDeleteCommand;
@@ -24,13 +26,13 @@
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
-	import com.clarityenglish.rotterdam.view.settings.SettingsMediator;
-	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
+	import com.clarityenglish.rotterdam.view.settings.SettingsMediator;
+	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -67,6 +69,8 @@
 			registerCommand(RotterdamNotifications.AUDIO_WIDGET_ADD, AudioWidgetAddCommand);
 			registerCommand(RotterdamNotifications.EXERCISE_WIDGET_ADD, ExerciseWidgetAddCommand);
 			
+			registerCommand(RotterdamNotifications.MEDIA_SELECT, MediaSelectCommand);
+			registerCommand(RotterdamNotifications.MEDIA_CLOUD_SELECT, MediaCloudSelectCommand);
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD, MediaUploadCommand);
 			
 			registerCommand(RotterdamNotifications.CONTENT_WINDOW_SHOW, ContentWindowShowCommand);

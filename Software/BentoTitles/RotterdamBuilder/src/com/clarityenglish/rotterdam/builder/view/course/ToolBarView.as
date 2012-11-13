@@ -51,10 +51,19 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var pdfUploadButton:Button;
 		
 		[SkinPart]
+		public var pdfResourceCloudButton:Button;
+		
+		[SkinPart]
 		public var imageUploadButton:Button;
 		
 		[SkinPart]
+		public var imageResourceCloudButton:Button;
+		
+		[SkinPart]
 		public var audioUploadButton:Button;
+		
+		[SkinPart]
+		public var audioResourceCloudButton:Button;
 		
 		[SkinPart]
 		public var videoUrlTextInput:TextInput;
@@ -149,11 +158,20 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case pdfUploadButton:
 					pdfUploadButton.addEventListener(MouseEvent.CLICK, onPdfUpload);
 					break;
+				case pdfResourceCloudButton:
+					pdfResourceCloudButton.addEventListener(MouseEvent.CLICK, onPdfCloudUpload);
+					break;
 				case imageUploadButton:
 					imageUploadButton.addEventListener(MouseEvent.CLICK, onImageUpload);
 					break;
+				case imageResourceCloudButton:
+					imageResourceCloudButton.addEventListener(MouseEvent.CLICK, onImageCloudUpload);
+					break;
 				case audioUploadButton:
 					audioUploadButton.addEventListener(MouseEvent.CLICK, onAudioUpload);
+					break;
+				case audioResourceCloudButton:
+					audioResourceCloudButton.addEventListener(MouseEvent.CLICK, onAudioCloudUpload);
 					break;
 				case videoSelectButton:
 					videoSelectButton.addEventListener(MouseEvent.CLICK, onVideoSelect);
@@ -210,13 +228,28 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			setCurrentState("normal");
 		}
 		
+		protected function onPdfCloudUpload(event:MouseEvent):void {
+			addPDF.dispatch( { source: "cloud" } ); // TODO: use a constant from somewhere?
+			setCurrentState("normal");
+		}
+		
 		protected function onImageUpload(event:MouseEvent):void {
 			addImage.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
+		protected function onImageCloudUpload(event:MouseEvent):void {
+			addImage.dispatch( { source: "cloud" } ); // TODO: use a constant from somewhere?
+			setCurrentState("normal");
+		}
+		
 		protected function onAudioUpload(event:MouseEvent):void {
 			addAudio.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
+			setCurrentState("normal");
+		}
+		
+		protected function onAudioCloudUpload(event:MouseEvent):void {
+			addAudio.dispatch( { source: "cloud" } ); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		

@@ -32,7 +32,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				fileFilter: new FileFilter("Images (*.png, *.jpg, *.jpeg)", "*.png;*.jpg;*.jpeg"),
 				node: node
 			};
-			facade.sendNotification(RotterdamNotifications.MEDIA_UPLOAD, uploadOptions, uid);
+			facade.sendNotification(RotterdamNotifications.MEDIA_SELECT, uploadOptions, uid);
 		}
 		
 	}
