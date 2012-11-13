@@ -3,7 +3,7 @@
 	<id>/area1/RoadToIELTS2 in localhost</id>
 	<developer>none</developer>
 	<dbHost>2</dbHost>
-	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
 	<channel name='aws' caption='aws'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
 	</channel>

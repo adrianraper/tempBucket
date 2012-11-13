@@ -81,8 +81,11 @@ package com.clarityenglish.bento.model {
 		 */
 		public function terminate():void {
 			
-			if (!scorm.complete)
+			if (scorm.complete) {
+				this.completeSCO();
+			} else {
 				this.unfinishedSCO();
+			}
 			
 			scorm.disconnect();
 		}
@@ -138,14 +141,14 @@ package com.clarityenglish.bento.model {
 		 *   2) write the averageScore
 		 */
 		public function completeSCO():void {
-			scorm.complete = true;
-			scorm.setParameter('lessonStatus', 'complete');
+			//scorm.complete = true;
+			scorm.setParameter('lessonStatus', 'completed');
 			scorm.setParameter('rawScore', this.calculateAverageScore());
 			scorm.setParameter('sessionTime', this.getSessionTime());
 				
 		}
 		public function unfinishedSCO():void {
-			scorm.complete = false;
+			//scorm.complete = false;
 			scorm.setParameter('lessonStatus', 'incomplete');
 			
 		}
@@ -236,8 +239,9 @@ package com.clarityenglish.bento.model {
 		 * Format the suspend data
 		 * #493 Convert to JSON
 		 * '{"scoreSoFar":"1234|15,5678|32","percentComplete":50}'
+		 * #540 change to int to allow -1 as as score
 		 */
-		private function formatSuspendData(exID:String, score:uint):String {
+		private function formatSuspendData(exID:String, score:int):String {
 			if (scorm.suspendData) {
 				var suspendDataArray:Object = JSON.parse(scorm.suspendData);
 			} else {
@@ -287,6 +291,10 @@ package com.clarityenglish.bento.model {
 			} else {
 				suspendDataArray.percentComplete = Math.round(100 * uniqueCount / numExercises);
 			}
+			
+			// #540
+			if (suspendDataArray.percentComplete >= 100)
+				scorm.complete = true;
 			
 			trace("suspendData = " + JSON.stringify(suspendDataArray));
 			return JSON.stringify(suspendDataArray);

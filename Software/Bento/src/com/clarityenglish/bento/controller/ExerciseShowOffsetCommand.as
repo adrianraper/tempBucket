@@ -36,9 +36,9 @@ package com.clarityenglish.bento.controller {
 					sendNotification(BBNotifications.EXERCISE_SHOW, bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exerciseNode.@href));
 				} else {
 					// #336 This could be a good place to do SCORM writing if all exercises finished
-					// But where will you 
-					var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-					scormProxy.completeSCO();
+					// No, better on termination 
+					//var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+					//scormProxy.completeSCO();
 					
 					sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
 				}
