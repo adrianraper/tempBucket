@@ -38,9 +38,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 			tempWidgetId = note.getType();
 			log.info("Opening upload dialog with tempWidgetId=" + tempWidgetId);
 			
-			var allTypes:Array = [ note.getBody().fileFilter ];
 			fileReference = new FileReference();
-			fileReference.browse(allTypes);
+			fileReference.browse(note.getBody().typeFilter);
 			
 			fileReference.addEventListener(Event.CANCEL, onUploadCancel);
 			fileReference.addEventListener(Event.SELECT, onUploadSelect);

@@ -46,6 +46,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var contentSelectorView:ContentSelectorView = new ContentSelectorView();
+			contentSelectorView.percentWidth = contentSelectorView.percentHeight = 100;
 			titleWindow.addElement(contentSelectorView);
 			
 			// Create and centre the popup (this popup is modal)

@@ -29,8 +29,9 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			
 			var uploadOptions:Object = {
-				fileFilter: new FileFilter("Images (*.png, *.jpg, *.jpeg)", "*.png;*.jpg;*.jpeg"),
-				node: node
+				typeFilter: [ new FileFilter("Images (*.png, *.jpg, *.jpeg)", "*.png;*.jpg;*.jpeg") ],
+				node: node,
+				source: note.getBody().source
 			};
 			facade.sendNotification(RotterdamNotifications.MEDIA_SELECT, uploadOptions, uid);
 		}

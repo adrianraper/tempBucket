@@ -29,8 +29,9 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			
 			var uploadOptions:Object = {
-				fileFilter: new FileFilter("Audio (*.mp3)", "*.mp3"),
-				node: node
+				typeFilter: [ new FileFilter("Audio (*.mp3)", "*.mp3") ],
+				node: node,
+				source: note.getBody().source
 			};
 			facade.sendNotification(RotterdamNotifications.MEDIA_SELECT, uploadOptions, uid);
 		}

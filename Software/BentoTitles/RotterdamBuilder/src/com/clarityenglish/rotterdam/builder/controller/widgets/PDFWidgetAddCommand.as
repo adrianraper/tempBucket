@@ -31,7 +31,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			
 			var uploadOptions:Object = {
-				fileFilter: new FileFilter("PDF documents (*.pdf)", "*.pdf"),
+				typeFilter: [ new FileFilter("PDF documents (*.pdf)", "*.pdf") ],
 				node: node,
 				source: note.getBody().source
 			};
