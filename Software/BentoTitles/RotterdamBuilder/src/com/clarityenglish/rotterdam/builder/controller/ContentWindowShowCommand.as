@@ -80,7 +80,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			titleWindow.removeEventListener(ContentEvent.CONTENT_SELECT, onContentSelect);
 			titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
 			
-			delete node.@id;
+			delete node.@tempid;
 			
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;

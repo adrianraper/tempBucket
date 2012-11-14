@@ -51,7 +51,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private function destroy():void {
 			// TODO: Be sure that its actually a good idea to remove the id attribute
-			delete node.@id;
+			delete node.@tempid;
 			
 			fileReference.removeEventListener(Event.CANCEL, onUploadCancel);
 			fileReference.removeEventListener(Event.SELECT, onUploadSelect);

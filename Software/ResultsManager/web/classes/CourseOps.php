@@ -1,5 +1,6 @@
 <?php
 require_once(dirname(__FILE__)."/xml/XmlUtils.php");
+require_once(dirname(__FILE__)."/crypto/UniqueIdGenerator.php");
 require_once(dirname(__FILE__)."/CopyOps.php");
 
 class CourseOps {
@@ -28,8 +29,8 @@ class CourseOps {
 	public function courseCreate($course) {
 		$accountFolder = $this->accountFolder;
 		$defaultXML = $this->defaultXML;
-		XmlUtils::rewriteCourseXml($this->courseFilename, function($xml) use($course, $accountFolder, $defaultXML) {
-			$id = uniqid();
+		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($course, $accountFolder, $defaultXML) {
+			$id = UniqueIdGenerator::getUniqId();
 			
 			// Create a new course passing in the properties as XML attributes
 			$courseNode = $xml->courses->addChild("course");
@@ -46,11 +47,14 @@ class CourseOps {
 		});
 	}
 	
-	public function courseSave($filename, $xml) {
+	public function courseSave($filename, $menuXml) {
 		// Protect again directory traversal attacks; the filename *must* be in the form <some hex value>/menu.xml otherwise we are being fiddled with
-		if (preg_match("/^[0-9a-f]+\/menu\.xml$/", $filename, $matches) != 1) {
+		if (preg_match("/^([0-9a-f]+)\/menu\.xml$/", $filename, $matches) != 1) {
 			throw $this->copyOps->getExceptionForId("errorSavingCourse");
 		}
+		
+		// Get the course id
+		$courseId = $matches[1];
 		
 		// Check the file exists
 		$menuXMLFilename = "$this->accountFolder/$filename";
@@ -60,8 +64,26 @@ class CourseOps {
 		
 		// TODO: it would be rather nice to validate $xml against an xsd
 		
-		// Save the xml file
-		file_put_contents($menuXMLFilename, $xml, LOCK_EX);
+		return XmlUtils::overwriteXml($menuXMLFilename, $menuXml, function($xml) use($courseId, $accountFolder) {
+			$courses = $xml->xpath("//course");
+			
+			// Sanity checks
+			if (sizeof($courses) != 1)
+				throw new Exception("Rotterdam menu.xml files must have exactly one course node");
+			
+			$course = $courses[0];
+			
+			// If the course is missing an id then add it in
+			if (!isset($course['id'])) $course['id'] = $courseId;
+			
+			// If the units or exercises are missing ids then generate them
+			foreach ($course->unit as $unit) {
+				if (!isset($unit['id'])) $unit['id'] = UniqueIdGenerator::getUniqId();
+				foreach ($unit->exercise as $exercise) {
+					if (!isset($exercise['id'])) $exercise['id'] = UniqueIdGenerator::getUniqId();
+				}
+			}
+		});
 	}
 	
 	public function courseDelete($courseXmlString) {
@@ -69,7 +91,7 @@ class CourseOps {
 		$course = simplexml_load_string($courseXmlString);
 		$accountFolder = $this->accountFolder;
 		
-		XmlUtils::rewriteCourseXml($this->courseFilename, function($xml) use($course, $accountFolder) {
+		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($course, $accountFolder) {
 			// SimpleXML doesn't like default namespaces in xpath expressions so define the XHTML namespace explicitly
 			$xml->registerXPathNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
 			

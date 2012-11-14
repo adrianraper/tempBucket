@@ -113,13 +113,13 @@ package com.clarityenglish.rotterdam.model {
 		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
 				case "courseCreate":
-					sendNotification(RotterdamNotifications.COURSE_CREATED);
+					sendNotification(RotterdamNotifications.COURSE_CREATED, data);
 					break;
 				case "courseSave":
-					sendNotification(RotterdamNotifications.COURSE_SAVED);
+					sendNotification(RotterdamNotifications.COURSE_SAVED, data);
 					break;
 				case "courseDelete":
-					sendNotification(RotterdamNotifications.COURSE_DELETED);
+					sendNotification(RotterdamNotifications.COURSE_DELETED, data);
 					break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);

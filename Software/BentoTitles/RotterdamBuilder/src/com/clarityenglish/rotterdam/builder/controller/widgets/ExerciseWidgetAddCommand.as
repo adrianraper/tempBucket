@@ -22,9 +22,9 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var uid:String = UIDUtil.createUID();
+			var tempid:String = UIDUtil.createUID();
 			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new exercise widget");
-			var node:XML = <exercise type="exercise" id={uid} column="0" span="1" title="New Exercise widget"><text>{textFlowString}</text></exercise>;
+			var node:XML = <exercise type="exercise" tempid={tempid} column="0" span="1" title="New Exercise widget"><text>{textFlowString}</text></exercise>;
 			
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			
@@ -32,7 +32,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				node: node
 			};
 			
-			facade.sendNotification(RotterdamNotifications.CONTENT_WINDOW_SHOW, courseSelectOptions, uid);
+			facade.sendNotification(RotterdamNotifications.CONTENT_WINDOW_SHOW, courseSelectOptions, tempid);
 		}
 		
 	}

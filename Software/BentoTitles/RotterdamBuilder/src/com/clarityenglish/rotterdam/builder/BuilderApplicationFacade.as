@@ -10,6 +10,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
+	import com.clarityenglish.rotterdam.builder.controller.CourseSavedCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaCloudSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
@@ -54,6 +55,7 @@
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
+			registerCommand(RotterdamNotifications.COURSE_SAVED, CourseSavedCommand);
 			registerCommand(RotterdamNotifications.COURSE_DELETE, CourseDeleteCommand);
 			
 			// gh#13

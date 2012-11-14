@@ -32,17 +32,17 @@ class RotterdamService extends BentoService {
 	
 	public function courseCreate($course) {
 		// TODO: Only allow this if the logged in user has permission
-		$this->courseOps->courseCreate($course);
+		return $this->courseOps->courseCreate($course);
 	}
 	
 	public function courseSave($filename, $xml) {
 		// TODO: Only allow this if the logged in user has permission
-		$this->courseOps->courseSave($filename, $xml);
+		return $this->courseOps->courseSave($filename, $xml);
 	}
 	
 	public function courseDelete($course) {
 		// TODO: Only allow this if the logged in user has permission
-		$this->courseOps->courseDelete($course);
+		return $this->courseOps->courseDelete($course);
 	}
 	
 	/**

@@ -65,7 +65,7 @@
 			super.handleNotification(note);
 			
 			// Upload actions - only take these actions if the notification is meant for us (i.e. the notification type is the node's id attribute)
-			if (note.getType() == view.xml.@id) {
+			if (note.getType() == view.xml.@tempid) {
 				switch (note.getName()) {
 					case RotterdamNotifications.MEDIA_UPLOAD_START:
 						view.setUploading(true);

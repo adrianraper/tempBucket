@@ -134,17 +134,32 @@
     <classEntry path="com.clarityenglish.components.PageNumberDisplay"/>
     <classEntry path="com.clarityenglish.components.DisablableIconItemRenderer"/>
     <classEntry path="com.clarityenglish.bento.events.ExerciseEvent"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ProgressView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressCoverageMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressScoreMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressCoverageView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressCompareMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressAnalysisMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressAnalysisView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressScoreView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressCompareView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageUnitComponent"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.CourseDurationRenderer"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.StackedBarChart"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.ProgressCourseBarComponent"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageExerciseComponent"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
+    <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
     <resourceEntry destPath="skins/assets/correctIcon.png" sourcePath="skins/assets/correctIcon.png"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.png" sourcePath="skins/assets/incorrectIcon.png"/>
-    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
     <resourceEntry destPath="skins/assets/correctIcon.swf" sourcePath="skins/assets/correctIcon.swf"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.swf" sourcePath="skins/assets/incorrectIcon.swf"/>
-    <resourceEntry destPath="skins/assets/missedIcon.png" sourcePath="skins/assets/missedIcon.png"/>
     <resourceEntry destPath="skins/assets/pause.png" sourcePath="skins/assets/pause.png"/>
+    <resourceEntry destPath="skins/assets/missedIcon.png" sourcePath="skins/assets/missedIcon.png"/>
     <resourceEntry destPath="skins/assets/stop.png" sourcePath="skins/assets/stop.png"/>
   </includeResources>
   <namespaceManifests/>
