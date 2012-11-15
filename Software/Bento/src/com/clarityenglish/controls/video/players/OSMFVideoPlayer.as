@@ -72,7 +72,7 @@ class SmoothingMediaFactory extends DefaultMediaFactory {
 	protected override function resolveItems(resource:MediaResourceBase, items:Vector.<MediaFactoryItem>):MediaFactoryItem {
 		var mfi:MediaFactoryItem = super.resolveItems(resource, items);
 		/* If a custom MFI is being used, hijack it and intercept the media element it returns to set smoothing on it */
-		if (mfi && mfi.id.indexOf('org.osmf') < 0) {
+		if (mfi) {
 			_highjackedMediaCreationFunction = mfi.mediaElementCreationFunction;
 			var hijacker:MediaFactoryItem = new MediaFactoryItem(mfi.id, mfi.canHandleResourceFunction, interceptMediaElement);
 			return hijacker;
