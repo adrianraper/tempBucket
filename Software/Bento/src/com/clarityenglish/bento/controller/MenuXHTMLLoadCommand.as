@@ -20,6 +20,8 @@ package com.clarityenglish.bento.controller {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		public static var noProgress:Boolean = false;
+		
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
@@ -33,8 +35,8 @@ package com.clarityenglish.bento.controller {
 				href.filename = note.getBody().filename;
 			}
 			
-			// Allow the selection of normal or progress versions of the XML (also for Rotterdam where we can be in editing mode and don't want any progress)
-			if (note.getBody() && note.getBody().noProgress) {
+			// Allow the selection of normal or progress versions of the XML
+			if (noProgress) {
 				log.debug("Loading non-progress version of {0}", href);
 				var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 				xhtmlProxy.loadXHTML(href);

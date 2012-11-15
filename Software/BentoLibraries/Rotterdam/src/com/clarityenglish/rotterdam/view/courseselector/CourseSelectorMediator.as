@@ -70,8 +70,14 @@
 			facade.sendNotification(RotterdamNotifications.COURSE_CREATE, course);
 		}
 		
+		/**
+		 * This method is a big deal in Rotterdam; normal Bento titles are fixed to a single menu.xml file once they have started, but Rotterdam allows the menu.xml
+		 * to be changed at runtime.  And this is the function that kicks it off :)
+		 * 
+		 * @param course
+		 */
 		private function onSelectCourse(course:XML):void {
-			facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: course.@href, noProgress: true } );
+			facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: course.@href } );
 		}
 		
 		private function onDeleteCourse(course:XML):void {
