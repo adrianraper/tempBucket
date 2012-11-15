@@ -1,4 +1,5 @@
 package com.clarityenglish.common.vo.config {
+	import com.adobe.utils.StringUtil;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
@@ -593,6 +594,9 @@ package com.clarityenglish.common.vo.config {
 			var thisIPArray:Array = thisIPList.split(",");
 			for each (var thisIP:String in thisIPArray) {
 				var ipRangeArray:Array = range.split(",");
+				
+				// #37 trim any spaces
+				thisIP = StringUtil.trim(thisIP);
 				
 				for (var t:String in ipRangeArray) {
 					// first, is there an exact match?

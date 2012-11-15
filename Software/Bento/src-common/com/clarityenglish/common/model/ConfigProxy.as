@@ -359,6 +359,8 @@ package com.clarityenglish.common.model {
 			
 			// Performance logging
 			var log:PerformanceLog = new PerformanceLog(PerformanceLog.APP_LOADED, config.appLaunchTime);
+			// #37
+			log.IP = config.ip;
 			sendNotification(CommonNotifications.PERFORMANCE_LOG, log);
 		}
 		

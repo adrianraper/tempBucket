@@ -61,6 +61,10 @@
 	} else {
 		$ip = $_SERVER["REMOTE_ADDR"];
 	}
+	
+	// Just for testing IP range checking
+	$ip = '1.2.3.4, 192.168.8.63, 5.6.7.8';
+	
 	// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
 	if (isset($_SERVER['HTTP_REFERER'])) {
 		if (strpos($_SERVER['HTTP_REFERER'],'?')) {
@@ -111,7 +115,7 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		var versionControl = "&version=1078";
+		var versionControl = "&version=1096";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
