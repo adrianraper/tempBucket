@@ -35,6 +35,7 @@
 	
 	<s:TabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="0" bottom="0">
 		<s:ViewNavigator id="myCoursesViewNavigator" label="My Courses" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
+		<s:ViewNavigator label="Progress" firstView="com.clarityenglish.rotterdam.player.view.progress.ProgressView" left="0" right="0" height="100%" />		
 		<!--<s:ViewNavigator label="File manager" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
 		<s:ViewNavigator label="Course setting" left="0" right="0" height="100%" />-->
 	</s:TabbedViewNavigator>

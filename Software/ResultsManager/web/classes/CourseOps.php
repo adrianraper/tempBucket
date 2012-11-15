@@ -12,7 +12,7 @@ class CourseOps {
 	<head>
 		<script id="model" type="application/xml">
 			<menu>
-				<course />
+				<course class="default" />
 			</menu>
 		</script>
 	</head>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009"
+				xmlns:s="library://ns.adobe.com/flex/spark"
+				xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="100%"
+				autoDrawBackground="true">
+
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.player.view.progress.components.ProgressCoverageView;
+			
+			import mx.collections.XMLListCollection;
+			
+			[Bindable]
+			private var courseColor:Number;
+			
+			public override function set data(value:Object):void {
+				super.data = value;
+				
+				if (data) {
+					// #247. Show disabled menu items as such
+					if (data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8) {
+						this.enabled = false;
+					}
+					
+					courseColor = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
+					//fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xFFFFFF;
+					captionLabel.text = data.@caption;
+					exerciseIndicatorList.dataProvider = new XMLListCollection(data.exercise);
+				}
+			}
+		]]>
+	</fx:Script>
+
+	<s:HGroup left="4" horizontalCenter="left" right="10" width="100%">
+		<s:Label id="captionLabel" height="24" paddingTop="8" />
+		<s:DataGroup id="exerciseIndicatorList" width="100%" height="24" contentBackgroundAlpha="0">
+			<s:layout>
+				<s:HorizontalLayout />
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<s:DataRenderer>
+						<fx:Script>
+							<![CDATA[
+								//import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
+								
+								override public function set data(value:Object):void {
+									super.data = value;
+									
+									if (data) {
+										//var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
+										//fillColor.color = (Number(data.@done.toString()) > 0) ? courseColor : 0xB3B3B3;
+										
+										this.toolTip = data.@caption;
+									}
+								}
+							]]>
+						</fx:Script>
+						<s:Rect id="exerciseIndicator" left="0" top="8" width="8" height="8" radiusX="2" radiusY="2">
+							<s:fill>
+								<s:SolidColor id="fillColor" />
+							</s:fill>
+						</s:Rect>
+					</s:DataRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:DataGroup>
+	</s:HGroup>
+</s:ItemRenderer>

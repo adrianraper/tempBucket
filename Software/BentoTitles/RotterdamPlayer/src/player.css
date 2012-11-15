@@ -5,6 +5,16 @@
 @namespace title "com.clarityenglish.rotterdam.view.title.*";
 @namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
 @namespace course "com.clarityenglish.rotterdam.view.course.*";
+@namespace progress "com.clarityenglish.rotterdam.player.view.progress.*";
+@namespace progresscomponents "com.clarityenglish.rotterdam.player.view.progress.components.*";
+@namespace progressui "com.clarityenglish.rotterdam.player.view.progress.ui.*";
+
+global {
+	defaultColor: #00A2C8;
+	defaultColorDark: #005063;
+	/*defaultIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
+	defaultIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');*/
+}
 
 player|PlayerApplication {
 	skinClass: ClassReference("skins.rotterdam.player.PlayerApplicationSkin");
@@ -28,4 +38,49 @@ courseselector|CourseSelectorView {
 
 course|CourseView {
 	skinClass: ClassReference("skins.rotterdam.player.course.CourseSkin");
+}
+
+/* Progress view styles */
+progress|ProgressView {
+	skinClass: ClassReference("skins.rotterdam.player.ProgressSkin");
+}
+
+progress|ProgressView #progressNavBar {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.ProgressNavBarSkin");
+}
+
+progresscomponents|ProgressScoreView {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ProgressScoreSkin");
+}
+
+progresscomponents|ProgressCompareView {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ProgressCompareSkin");
+}
+
+progresscomponents|ProgressCoverageView {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ProgressCoverageSkin");
+}
+
+progresscomponents|ProgressAnalysisView {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ProgressAnalysisSkin");
+}
+
+progressui|ProgressBarRenderer {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.ProgressBarRendererSkin");
+}
+
+progresscomponents|ProgressCoverageView #progressCourseButtonBar {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.ProgressCourseButtonBarSkin");
+}
+
+progresscomponents|ProgressScoreView #progressCourseButtonBar {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.ProgressCourseButtonBarSkin");
+}
+
+progressui|CoverageExerciseComponent {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.CoverageExerciseComponentSkin");
+}
+
+progressui|CoverageUnitComponent {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.CoverageUnitComponentSkin");
 }
