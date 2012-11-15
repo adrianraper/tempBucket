@@ -3,8 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:ui="com.clarityenglish.ielts.view.progress.ui.*"
-		xmlns:skins="skins.ielts.progress.*"
-		xmlns:ns1="com.anychart.*">
+		xmlns:skins="skins.ielts.progress.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressCoverageView")]

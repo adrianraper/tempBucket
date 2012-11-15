@@ -2,8 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.ielts.view.progress.ui.*"
-		xmlns:ns1="com.anychart.*">
+		xmlns:ui="com.clarityenglish.ielts.view.progress.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressScoreView")]
@@ -139,10 +138,10 @@
 		</s:layout>
 		<s:dataProvider>
 			<s:ArrayList>
-				<fx:Object label="Reading" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')" />
-				<fx:Object label="Listening" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" />
-				<fx:Object label="Speaking" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" />
-				<fx:Object label="Writing" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />
+				<fx:Object label="Reading" icon="{getStyle('readingIconSmall')}" /> 
+				<fx:Object label="Listening" icon="{getStyle('listeningIconSmall')}" /> 
+				<fx:Object label="Speaking" icon="{getStyle('speakingIconSmall')}" /> 
+				<fx:Object label="Writing" icon="{getStyle('writingIconSmall')}" />
 			</s:ArrayList>
 		</s:dataProvider>
 	</s:ButtonBar>

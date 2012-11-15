@@ -41,7 +41,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				
 				for each (var courseNode:XML in _mySummaryXml.course) {
 					var everyoneCourseNode:XML = _everyoneSummaryXml.course.(@["class"] == courseNode.@["class"])[0];
-					xml.appendChild(<course class={courseNode.@['class']} caption={courseNode.@caption} myAverageScore={courseNode.@averageScore} everyoneAverageScore={everyoneCourseNode.@averageScore} />);
+					xml.appendChild(<course class={courseNode.@['class']} caption={courseNode.@caption} myAverageScore={courseNode.@averageScore} everyoneAverageScore={everyoneCourseNode ? everyoneCourseNode.@averageScore : 0} />);
 				}
 				
 				return new XMLListCollection(xml.course);

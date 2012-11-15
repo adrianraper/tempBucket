@@ -43,6 +43,8 @@ package com.clarityenglish.ielts.view.progress.ui {
 				var barValue:Number = new Number(_dataProvider.course.(@["class"] == seriesItem.name).attribute(_field));
 				var barWidth:Number = unscaledWidth * barValue / totalValues;
 				
+				if (isNaN(barWidth)) barWidth = 0;
+				
 				graphics.beginFill(barColour, 1);
 				graphics.drawRect(currentX, 0, barWidth, unscaledHeight);
 				graphics.endFill();
