@@ -100,11 +100,12 @@ package com.clarityenglish.common.model {
 			// #361 instanceID
 			// #503 If subRoots is set in licenceAttributes, send that instead of the main rootID
 			if (configProxy.getConfig().subRoots) {
-				var rootID:Array = configProxy.getConfig().subRoots.split(',');
+				var rootID:Array = configProxy.getConfig().subRoots.split(',');				
 			} else {
 				rootID = new Array(1);
 				rootID[0] = configProxy.getRootID();
 			}
+			
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode() ];
 			new RemoteDelegate("login", params, this).execute();
 		}

@@ -15,6 +15,9 @@ package com.clarityenglish.ielts.view.zone {
 	public class PracticeZoneSectionView extends AbstractZoneSectionView {
 		
 		[SkinPart]
+		public var practiceZoneLabel:Label;
+		
+		[SkinPart]
 		public var practiceZoneInstructionLabel:Label;
 		
 		[SkinPart(required="true")]
@@ -46,6 +49,9 @@ package com.clarityenglish.ielts.view.zone {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case practiceZoneLabel:
+					practiceZoneLabel.text = copyProvider.getCopyForId("practiceZoneLabel");
+					break;
 				case practiceZoneInstructionLabel:
 					practiceZoneInstructionLabel.text = copyProvider.getCopyForId("practiceZoneInstructionLabel");
 					break;

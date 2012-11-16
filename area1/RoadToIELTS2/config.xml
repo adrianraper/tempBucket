@@ -19,9 +19,12 @@
 	<pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2</pricesURL>
 	<registerURL>http://www.takeielts.org</registerURL>
 	<language>EN*</language>
-	<contentPath>http://dock.contentbench/Content/</contentPath>
+	<contentPath>http://192.168.8.81/Content/</contentPath>
+	<remoteDomain>http://192.168.8.81/</remoteDomain>
+	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<!--contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway-->
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 </config>

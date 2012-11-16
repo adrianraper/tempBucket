@@ -55,12 +55,10 @@ package com.clarityenglish.common.model {
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
 				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
-				//issue:#11 load ielts.xml twice 
-				copy = this.copyEN;
 				
 				// in which case try in English
 				if (languageCode != "EN") {
-					result = copy..language.(@code == "EN")..lit.(@name == id);
+					result = copyEN..language.(@code == "EN")..lit.(@name == id);
 					if (result.length() == 0) {
 						trace("Not in English either");
 						return id;

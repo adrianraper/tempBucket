@@ -13,6 +13,7 @@ package com.clarityenglish.ielts.view.support {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.RichText;
 	import spark.utils.TextFlowUtil;
 
 	public class SupportView extends BentoView {
@@ -24,10 +25,19 @@ package com.clarityenglish.ielts.view.support {
 		public var buyInfoButton:Button;
 		
 		[SkinPart]
+		public var supportTextFlow1:TextFlow;
+		
+		[SkinPart]
 		public var supportCaptionSpan1:SpanElement;
 		
 		[SkinPart]
+		public var supportTextFlow2:TextFlow;
+		
+		[SkinPart]
 		public var paragraphContentSpan1:SpanElement;
+		
+		[SkinPart]
+		public var supportTextFlow3:TextFlow;
 		
 		[SkinPart]
 		public var supportCaptionSpan2:SpanElement;
@@ -58,11 +68,32 @@ package com.clarityenglish.ielts.view.support {
 				case buyInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onBuyInfoClick);
 					break;
+				case supportTextFlow1:
+					if (config.languageCode == "ZH") {
+						instance.columnCount = 1;
+					} else {
+						instance.columnCount = 2;
+					}
+					break;
 				case supportCaptionSpan1:
 					instance.text = copyProvider.getCopyForId("supportCaptionSpan1");
 					break;
+				case supportTextFlow2:
+					if (config.languageCode == "ZH") {
+						instance.columnCount = 1;
+					} else {
+						instance.columnCount = 2;
+					}
+					break;
 				case paragraphContentSpan1:
 					instance.text  = copyProvider.getCopyForId("paragraphContentSpan1");
+					break;
+				case supportTextFlow3:
+					if (config.languageCode == "ZH") {
+						instance.columnCount = 1;
+					} else {
+						instance.columnCount = 2;
+					}
 					break;
 				case supportCaptionSpan2:
 					instance.text = copyProvider.getCopyForId("supportCaptionSpan1");
@@ -79,13 +110,14 @@ package com.clarityenglish.ielts.view.support {
 			}
 		}
 
-                //issue:#11 Language Code
-		/*public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
-		}*/
+         //issue:#11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+			trace ("the language code for the folder is "+ config.languageCode);
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
 		}
+		/*public function get assetFolder():String {
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+		}*/
 		
 		protected override function getCurrentSkinState():String {
 			switch (productVersion) {

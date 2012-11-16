@@ -184,9 +184,15 @@ package com.clarityenglish.ielts.view.home {
 					break;
 			}
 		}
+		
+		//issue:#11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+			trace ("the language code for the folder is "+ config.languageCode);
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
 		}
+		/*public function get assetFolder():String {
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+		}*/
 		
 		public function get accountName():String {
 			return _accountName;
@@ -234,7 +240,7 @@ package com.clarityenglish.ielts.view.home {
 			} else {
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
-		}
+		} 
 		
 		private function onRequestInfoClick(event:MouseEvent):void {
 			info.dispatch();

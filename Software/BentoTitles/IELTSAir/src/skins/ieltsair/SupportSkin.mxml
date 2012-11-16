@@ -54,9 +54,9 @@
 					<s:SWFLoader source="{hostComponent.assetFolder}help_home.png" horizontalCenter="0" />
 				</s:Group>
 				
-				<s:RichText top="370" left="40" right="40" height="82" columnCount="2" columnGap="55">
+				<s:RichText top="370" left="40" right="40" height="82" >
 					<s:textFlow>
-						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
+						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12" id="supportTextFlow1">
 							<p><span fontWeight="bold" id="supportCaptionSpan1"/><br/><span id="paragraphContentSpan1"/></p>
 						</s:TextFlow>
 					</s:textFlow>
@@ -68,9 +68,9 @@
 					<s:SWFLoader source="{hostComponent.assetFolder}help_skill.png" horizontalCenter="0"/>
 				</s:Group>
 				
-				<s:RichText top="370" left="40" right="40" height="82" columnCount="2" columnGap="55">
+				<s:RichText top="370" left="40" right="40" height="82">
 					<s:textFlow>
-						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
+						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12" id="supportTextFlow2">
 							<p><span id="supportCaptionSpan2" fontWeight="bold"></span><br/><span id="paragraphContentSpan2"/></p>
 						</s:TextFlow>
 					</s:textFlow>
@@ -82,9 +82,9 @@
 					<s:SWFLoader source="{hostComponent.assetFolder}help_exercise.png" horizontalCenter="0"/>
 				</s:Group>
 				
-				<s:RichText top="370" left="40" right="40" height="82" columnCount="2" columnGap="55">
+				<s:RichText top="370" left="40" right="40" height="82">
 					<s:textFlow>
-						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12">
+						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12" id="supportTextFlow3">
 							<p><span fontWeight="bold" id="supportCaptionSpan3"/><br/><span id="paragraphContentSpan3"/></p>
 						</s:TextFlow>
 					</s:textFlow>
