@@ -15,7 +15,7 @@ package com.clarityenglish.common.controller {
 		// #322
 		override public function execute(note:INotification):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			configProxy.getAccountOnChange();
+			//configProxy.getAccountOnChange();
 		}
 		
 	}

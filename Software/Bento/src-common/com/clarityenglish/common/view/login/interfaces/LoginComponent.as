@@ -18,7 +18,8 @@
 		function clearData():void;
 		function setProductVersion(productVersion:String):void;
 		function getProductVersion():String;
-		function setProductCode(productCode:uint):void;
+		// gh#39
+		function setProductCode(productCode:String):void;
 		function setLicenceType(licenceType:uint):void;
 		function setState(state:String):void;
 	}

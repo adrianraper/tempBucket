@@ -638,6 +638,7 @@ EOD;
 		if (isset($config['productCode'])) 
 			$productCode = $config['productCode'];
 		
+		// gh#39 productCode might be a comma delimited list '52,53'
 		if (!$productCode)
 			throw $this->copyOps->getExceptionForId("errorNoProductCode");
 		
@@ -673,9 +674,11 @@ EOD;
 		$account = $this->accountOps->getBentoAccount($rootID, $productCode);
 		
 		// Next get account licence details, which are not pulled in from getAccounts as DMS doesn't usually want them
+		// gh#39 TODO we need to do this for each title
 		$account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootID, $productCode));
 
 		// Also check whether we want a default content location
+		// gh#39 TODO we need to do this for each title
 		if (!$account->titles[0]->contentLocation) {
 			$sql = <<< SQL
 					SELECT F_ContentLocation 

@@ -42,13 +42,17 @@
 						// Set the iOS config xml file as well as getting the prefix, product code and font size from the iOS settings
 						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
 						
-						try { FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix"); } catch (e:TypeError) { }
-						try { FlexGlobals.topLevelApplication.parameters.productCode = IPhoneAppSettings.getInstance().stringForKey("productVersion"); } catch (e:TypeError) { }
+						// gh#39 prefix and productCode are NOT settings you can choose anymore
+						// but language is
+						//try { FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix"); } catch (e:TypeError) { }
+						//try { FlexGlobals.topLevelApplication.parameters.productCode = IPhoneAppSettings.getInstance().stringForKey("productVersion"); } catch (e:TypeError) { }
+						try { FlexGlobals.topLevelApplication.parameters.language = IPhoneAppSettings.getInstance().stringForKey("language"); } catch (e:TypeError) { }
 						try { CSSApplicator.fontSizeOffset = new Number(IPhoneAppSettings.getInstance().stringForKey("fontOffset")); } catch (e:TypeError) { }
 						
 						break;
 					case "AND":
 						// Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
+						// gh#39 I understand that Android doesn't have settings like this, so we can't change them
 						FlexGlobals.topLevelApplication.parameters.configFile = "android-config.xml";
 						break
 					default:

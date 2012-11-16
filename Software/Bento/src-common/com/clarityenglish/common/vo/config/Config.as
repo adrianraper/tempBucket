@@ -35,9 +35,11 @@ package com.clarityenglish.common.vo.config {
 		// #515 Just found that I have config.rootID and config.account.id.
 		// So I should avoid simple variables that are also held in objects
 		public var dbHost:Number;
-		public var productCode:uint;
+		// gh#39
+		public var productCode:String;
 		public var productVersion:String;
-		// #524
+		
+		// #524 languageCode determines what content is used
 		public var prefix:String;
 		// #515
 		//public var rootID:Number;
@@ -53,6 +55,7 @@ package com.clarityenglish.common.vo.config {
 		public var sessionID:String;
 		public var userID:String;
 		public var courseFile:String;
+		// language determines what string literal language is used
 		public var language:String;
 		public var action:String;
 		// #333
@@ -229,10 +232,10 @@ package com.clarityenglish.common.vo.config {
 			// which seems to suggest that I shouldn't be even trying...
 			if (paths.menuFilename.indexOf("{productCode}")>=0) {
 				switch (productCode) {
-					case 52:
+					case '52':
 						var replace:String = "Academic";
 						break;
-					case 53:
+					case '53':
 						replace = "GeneralTraining";
 						break;
 					default:
@@ -453,6 +456,9 @@ package com.clarityenglish.common.vo.config {
 				this.languageCode = thisTitle.languageCode;
 			if (thisTitle.productVersion) 
 				this.productVersion = thisTitle.productVersion;
+			// gh#39
+			if (thisTitle.productCode) 
+				this.productCode = String(thisTitle.productCode);
 			
 			//issue:#20
 			if(thisTitle.languageCode)
@@ -632,6 +638,10 @@ package com.clarityenglish.common.vo.config {
 		 */
 		public function isIPInRange(thisIPList:String, range:String):Boolean {
 			
+			// gh#39 for tablets there may be no IP address
+			if (!thisIPList) 
+				return false;
+			
 			// #346 thisIP might be a comma delimitted string too
 			var thisIPArray:Array = thisIPList.split(",");
 			for each (var thisIP:String in thisIPArray) {
@@ -676,11 +686,13 @@ package com.clarityenglish.common.vo.config {
 		 * 
 		 */
 		public function isRUInRange(thisReferrer:String, range:String):Boolean {
+			
+			// gh#39 rearrange checking order
+			if (!thisReferrer)
+				return false;
+			
 			var ruRangeArray:Array = range.split(",");
 			for (var t:String in ruRangeArray) {
-				
-				if (!thisReferrer)
-					return false;
 				
 				if (thisReferrer.toLowerCase() == ruRangeArray[t].toLowerCase())
 					return true;

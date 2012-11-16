@@ -100,7 +100,7 @@ package com.clarityenglish.common.model {
 			// #361 instanceID
 			// #503 If subRoots is set in licenceAttributes, send that instead of the main rootID
 			if (configProxy.getConfig().subRoots) {
-				var rootID:Array = configProxy.getConfig().subRoots.split(',');				
+				var rootID:Array = configProxy.getConfig().subRoots.split(',');
 			} else {
 				
 				// gh#21 you might not know a root, in which case this will return undefined
@@ -110,6 +110,7 @@ package com.clarityenglish.common.model {
 				}
 			}
 			
+			// gh#39 You might now know a productCode, in which case we have to send comma delimited list 
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode() ];
 			new RemoteDelegate("login", params, this).execute();
 		}

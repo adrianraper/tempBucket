@@ -34,8 +34,9 @@ package com.clarityenglish.ielts {
 		public static const HOME_USER:String = "R2IHU";
 		public static const DEMO:String = "R2ID";
 		
-		public static const ACADEMIC_MODULE:uint = 52;
-		public static const GENERAL_TRAINING_MODULE:uint = 53;
+		// gh#39
+		public static const ACADEMIC_MODULE:String = '52';
+		public static const GENERAL_TRAINING_MODULE:String = '53';
 		
 		public function IELTSApplication() {
 			super();

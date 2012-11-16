@@ -98,6 +98,7 @@ package com.clarityenglish.common.model {
 				config.account.titles = new Array(dummyTitle);
 				config.account.name = '';
 				config.account.verified = 1;
+				config.account.selfRegister = 0;
 				config.account.loginOption = config.loginOption;
 				config.licence = new Licence();
 				
@@ -114,11 +115,13 @@ package com.clarityenglish.common.model {
 		 * Method to get an account from the database after login
 		 * 
 		 */
+		/*
 		public function getAccountOnChange():void {
 			
 			_reloadAccount = true;
 			getAccountSettings();
 		}
+		*/
 		
 		/**
 		 * Method to get details about the account from the database
@@ -157,7 +160,7 @@ package com.clarityenglish.common.model {
 			try {
 				log.info("Open config file: {0}", filename);
 				// Once the system is stable we might drop the cache clearer
-				urlLoader.load(new URLRequest(filename + "?cache=" + new Date().getTime()));
+				urlLoader.load(new URLRequest(filename + "?cache=" + new Date().time));
 			} catch (e:SecurityError) {
 				log.error("A SecurityError has occurred for the config file {0}", filename);
 			}
@@ -217,7 +220,7 @@ package com.clarityenglish.common.model {
 			return config.productVersion;
 		}
 		
-		public function getProductCode():uint {
+		public function getProductCode():String {
 			return config.productCode;
 		}
 		

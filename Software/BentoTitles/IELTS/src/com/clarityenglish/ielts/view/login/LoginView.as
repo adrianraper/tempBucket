@@ -229,7 +229,8 @@ package com.clarityenglish.ielts.view.login {
 			}
 		}
 		
-		public function setProductCode(value:uint):void {
+		// gh#39
+		public function setProductCode(value:String):void {
 			if (_productCode != value) {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));

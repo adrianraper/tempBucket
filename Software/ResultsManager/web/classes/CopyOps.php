@@ -40,6 +40,7 @@ class CopyOps {
 	
 	/**
 	 * Read and return the XML literals document as a string
+	 * gh#39 pass language code
 	 */
 	function getCopy($code = null) {
 		// gh#39

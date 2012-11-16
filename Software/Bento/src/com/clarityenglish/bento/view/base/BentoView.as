@@ -45,7 +45,8 @@ package com.clarityenglish.bento.view.base {
 		
 		// #234
 		protected var _productVersion:String;
-		protected var _productCode:uint;
+		// gh#39
+		protected var _productCode:String;
 		protected var _licenceType:uint;
 		
 		public var media:String = "screen";
@@ -142,11 +143,11 @@ package com.clarityenglish.bento.view.base {
 		}
 		
 		[Bindable(event="productCodeChanged")]
-		public function get productCode():uint {
+		public function get productCode():String {
 			return _productCode;
 		}
 		
-		public function set productCode(value:uint):void {
+		public function set productCode(value:String):void {
 			if (_productCode != value) {
 				_productCode = value;
 				dispatchEvent(new Event("productCodeChanged"));

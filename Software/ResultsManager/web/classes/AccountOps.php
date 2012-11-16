@@ -59,32 +59,39 @@ class AccountOps {
 	 */
 	function getBentoAccount($rootID, $productCode) {
 		
-		// Read T_AccountRoot and T_Accounts from database
+		// gh#39 product code might be a comma delimited list. 
+		// This is a small query, so no performance problems just doing the IN always.
 		$sql = <<< SQL
 				SELECT r.*, t.* 
 				FROM T_AccountRoot r, T_Accounts t
 				WHERE r.F_RootID = ?
 				AND r.F_RootID = t.F_RootID
-				AND t.F_ProductCode = ?;
+				AND t.F_ProductCode in (?);
 SQL;
 		$bindingParams = array($rootID, $productCode);
 		$rs = $this->db->Execute($sql, $bindingParams);
 
+		// gh#39 It would be an error to have more titles than the number of product codes
+		$numProductCodes = substr_count($productCode, ',');
+		
 		// It would be an error to have more or less than one account
 		// It would be an error to have more or less than one title in that account
-		if ($rs->RecordCount() > 1) {
+		if ($rs->RecordCount() > $numProductCodes) {
 			throw $this->copyOps->getExceptionForId("errorMultipleProductCodeInRoot", array("productCode" => $productCode));
 		} else if ($rs->RecordCount() == 0) {
 			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID, "prefix" => $prefix));
 		} 
 		
-		$dbObj = $rs->FetchNextObj();
-		// Create the account object
-		$account = $this->_createAccountFromObj($dbObj);
-			
-		// And add the title
-		$account->addTitles(array($this->_createTitleFromObj($dbObj)));
-		
+		// gh#39 You might have multiple matching accounts
+		while ($dbObj = $rs->FetchNextObj()) {
+				
+			// Create the account object
+			$account = $this->_createAccountFromObj($dbObj);
+				
+			// And add the title
+			$account->addTitles(array($this->_createTitleFromObj($dbObj)));
+		}
+				
 		return $account;
 		
 	}

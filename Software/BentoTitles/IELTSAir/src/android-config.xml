@@ -2,9 +2,7 @@
 <config>
 	<id>/area1/RoadToIELTS2 android</id>
 	<developer>xx</developer>
-	<xxprefix>Clarity</xxprefix>
-	<productCode>52</productCode>
-	<productVersion>R2IFV</productVersion>
+	<productCode>52,53</productCode>
 	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
@@ -13,7 +11,7 @@
 	</channel>
 	<sharedMedia />
 	<brandingMedia />
-	<language>EN*</language>
+	<language>ZH</language>
 	
 	<!--contentPath>http://192.168.8.81/Content/</contentPath>
 	<remoteDomain>http://192.168.8.81/</remoteDomain>

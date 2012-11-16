@@ -206,7 +206,24 @@ class BentoService extends AbstractService {
 		// But getLicenceSlot doesn't cope with that. For now this is OK as no-one uses it.
 		$newRootID = $userObj->rootID;
 		if ($rootID != array($newRootID)) {
+			
+			// gh#39 Special case handling for BC LastMinute candidates using tablets. 
+			// The productCode will be a list '52,53', but you can find which to use from T_User.F_UserProfileOption
+			if ($userObj->F_UserProfileOption && stristr($productCode, $userObj->F_UserProfileOption))
+				$productCode = $userObj->F_UserProfileOption;
+
 			$newAccount = $this->loginOps->getAccountSettings(array('rootID' => $newRootID, 'productCode' => $productCode));
+			// gh#39 If at this point you still have multiple accounts you need to select just one
+			if (count($newAccount->titles) > 1) {
+
+				// gh#39 TODO. Need to go and check hiddenContent for this user to see if either title is completely blocked
+				// If multiple titles still remain, just pick one!
+				// For now just remove all but the first
+				$newAccount->titles = array($newAccount->titles[0]);
+				
+				$productCode = $newAccount->titles[0]->productCode;
+			}
+				
 			$licence = new Licence();
 			$licence->fromDatabaseObj($newAccount->titles[0]);
 		} 
@@ -511,6 +528,7 @@ class BentoService extends AbstractService {
 	
 	/**
 	 * Get the copy XML document
+	 * gh#39 pass language code
 	 */
 	public function getCopy($code = null) {		
 		return $this->copyOps->getCopy($code);
