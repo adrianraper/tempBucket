@@ -1,6 +1,8 @@
 <?php
 	session_start();
 	unset($_SESSION['dbHost']);
+	unset($_SESSION['UserName']);
+	unset($_SESSION['Password']);
 	
 	// make sure that we aren't picking up the special local to remote database session variables
 	if (isset($_SESSION['originalStartpage'])) unset($_SESSION['originalStartpage']);
@@ -70,7 +72,7 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		//var startControl = webShare + "/Software/ResultsManagerEncoded/web/";
+		var argList = "?version=3.6.3.1";
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
@@ -83,13 +85,20 @@
 		} else {
 			var jsPassword = swfobject.getQueryParamValue("password");
 		}
+		// What is the best way to get dbHost to RM?
+		if ("<?php echo $dbHost ?>".length>0) {
+			var jsdbHost = "<?php echo $dbHost ?>";
+		} else {
+			var jsdbHost = '0';
+		}
 		var flashvars = {
 			host: startControl,
 			username: jsUserName,
 			password: jsPassword,
 			rootID: swfobject.getQueryParamValue("rootID"),
 			server: "<?php echo $server ?>",
-			ip: "<?php echo $ip ?>"
+			ip: "<?php echo $ip ?>",
+			dbHost: jsdbHost
 		};
 		var params = {
 			id: "dms",
@@ -102,7 +111,7 @@
 		};
 		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
 		flashvars.sessionid = "<?php echo session_id(); ?>";
-		swfobject.embedSWF(startControl + "DMS.swf", "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + "DMSApplication.swf" + argList, "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
 	</script>
 	<style type="text/css">
 		html, body { height:100%; }
