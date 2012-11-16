@@ -86,26 +86,6 @@ package com.clarityenglish.common.model {
 				rc = scormProxy.initialise();
 			}
 			
-			// gh#21 If you are basing the account on the login, then go direct to login
-			if (config.loginOption && !config.prefix && !config.rootID) {
-				
-				// There is a minimum of account information that you will have to default to be able to display login screen
-				// productCode, productVersion and loginOption come from XML
-				config.rootID = -1;
-				config.account = new Account();
-				var dummyTitle:Title = new Title();
-				dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
-				config.account.titles = new Array(dummyTitle);
-				config.account.name = '';
-				config.account.verified = 1;
-				config.account.selfRegister = 0;
-				config.account.loginOption = config.loginOption;
-				config.licence = new Licence();
-				
-				sendNotification(CommonNotifications.ACCOUNT_LOADED);
-				return;
-			}
-			
 			// Trigger the database call
 			if (rc)
 				getAccountSettings();
@@ -130,20 +110,40 @@ package com.clarityenglish.common.model {
 		 */
 		private function getAccountSettings():void {
 			// TODO. Do you need to check that the remote gateway is up and running since we only just set it?
-			
 			if (Config.DEVELOPER.name.indexOf("DK") >= 0) {
 				if (!config.prefix) config.prefix = "Clarity";
 			}
 			
-			// Create a subset of the config object to pass to the remote call
-			// I could do some error handling before we go
-			//	we must have rootID or prefix (prefix is most likely)
-			//	we must have a productCode
-			//  and it isn't nice to send NaN as rootID
-			var dbConfig:Object = { dbHost: config.dbHost, prefix: config.prefix, rootID: config.rootID, productCode: config.productCode };
-			var params:Array = [ dbConfig ];
-			new RemoteDelegate("getAccountSettings", params, this).execute();
-			//onDelegateResult("getAccountSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
+			// gh#21 If you are basing the account on the login, then go direct to login
+			if (config.loginOption && !config.prefix && !config.rootID) {
+				
+				// There is a minimum of account information that you will have to default to be able to display login screen
+				// productCode, productVersion and loginOption come from XML
+				config.rootID = -1;
+				config.account = new Account();
+				var dummyTitle:Title = new Title();
+				dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
+				config.account.titles = new Array(dummyTitle);
+				config.account.name = '';
+				config.account.verified = 1;
+				config.account.selfRegister = 0;
+				config.account.loginOption = config.loginOption;
+				config.licence = new Licence();
+				
+				sendNotification(CommonNotifications.ACCOUNT_LOADED);
+				
+			} else {			
+				
+				// Create a subset of the config object to pass to the remote call
+				// I could do some error handling before we go
+				//	we must have rootID or prefix (prefix is most likely)
+				//	we must have a productCode
+				//  and it isn't nice to send NaN as rootID
+				var dbConfig:Object = { dbHost: config.dbHost, prefix: config.prefix, rootID: config.rootID, productCode: config.productCode };
+				var params:Array = [ dbConfig ];
+				new RemoteDelegate("getAccountSettings", params, this).execute();
+				//onDelegateResult("getAccountSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
+			}
 		}
 		
 		/**

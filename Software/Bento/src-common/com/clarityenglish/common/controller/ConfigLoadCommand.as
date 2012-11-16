@@ -15,7 +15,7 @@ package com.clarityenglish.common.controller {
 	public class ConfigLoadCommand extends SimpleCommand {
 		
 		override public function execute(note:INotification):void {
-			// You might have passed a special config file as a paramter. If not, use a default name and path.
+			// You might have passed a special config file as a parameter. If not, use a default name and path.
 			// The path should actually be the same folder as the start page, /area1/RoadToIELTS2
 			if (FlexGlobals.topLevelApplication.parameters.configFile) {
 				var configFile:String = FlexGlobals.topLevelApplication.parameters.configFile;

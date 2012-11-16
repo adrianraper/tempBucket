@@ -72,7 +72,7 @@ SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		// gh#39 It would be an error to have more titles than the number of product codes
-		$numProductCodes = substr_count($productCode, ',');
+		$numProductCodes = substr_count($productCode, ',') + 1;
 		
 		// It would be an error to have more or less than one account
 		// It would be an error to have more or less than one title in that account
