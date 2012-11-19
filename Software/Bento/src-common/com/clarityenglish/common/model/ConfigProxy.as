@@ -20,6 +20,7 @@ package com.clarityenglish.common.model {
 	import flash.net.SharedObject;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.utils.setTimeout;
 	
 	import mx.core.FlexGlobals;
 	import mx.formatters.DateFormatter;
@@ -48,8 +49,6 @@ package com.clarityenglish.common.model {
 		private var config:Config;
 		
 		private var _dateFormatter:DateFormatter;
-		
-		private var _reloadAccount:Boolean = false;
 		
 		/**
 		 * Configuration information comes from three sources
@@ -92,18 +91,6 @@ package com.clarityenglish.common.model {
 		}
 
 		/**
-		 * Method to get an account from the database after login
-		 * 
-		 */
-		/*
-		public function getAccountOnChange():void {
-			
-			_reloadAccount = true;
-			getAccountSettings();
-		}
-		*/
-		
-		/**
 		 * Method to get details about the account from the database
 		 *
 		 * @return void - Asynchronous call. Will return account, title, config and error objects. 
@@ -130,7 +117,12 @@ package com.clarityenglish.common.model {
 				config.account.loginOption = config.loginOption;
 				config.licence = new Licence();
 				
-				sendNotification(CommonNotifications.ACCOUNT_LOADED);
+				// gh#39 It seems that a problem is caused by sending the ACCOUNT_LOADED notification before the state machine 
+				// has properly transitioned into the next state, causing unpredictable results.
+				// So here is a hacky but working solution: 
+				setTimeout(function():void {
+					sendNotification(CommonNotifications.ACCOUNT_LOADED);
+				}, 100); 
 				
 			} else {			
 				
@@ -385,11 +377,7 @@ package com.clarityenglish.common.model {
 						
 					} else if (config.anyError()) {
 						// gh#21
-						if (_reloadAccount) {
-							sendNotification(CommonNotifications.ACCOUNT_RELOADED);
-						} else {
-							sendNotification(CommonNotifications.ACCOUNT_LOADED);
-						}
+						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 						sendNotification(CommonNotifications.CONFIG_ERROR, config.error);
 						
 					} else {
