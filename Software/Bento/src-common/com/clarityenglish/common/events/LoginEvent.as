@@ -26,7 +26,9 @@
 			
 			//this.name = username;
 			//this.password = password;
-			this.user = new User(userObject);
+			// gh#41
+			if (userObject)
+				this.user = new User(userObject);
 			this.loginOption = loginOption;
 			this.verified = verified;
 		} 

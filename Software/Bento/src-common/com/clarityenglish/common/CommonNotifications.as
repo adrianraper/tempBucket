@@ -27,7 +27,7 @@
 		
 		// gh#21
 		public static const ACCOUNT_RELOAD:String = "account_reload";
-		public static const ACCOUNT_RELOADED:String = "account_reloaded";
+		//public static const ACCOUNT_RELOADED:String = "account_reloaded";
 		
 		public static const INVALID_LOGIN:String = "invalid_login";
 		public static const INVALID_DATA:String = "invalid_data";

@@ -40,6 +40,7 @@
 	<login:BritishCouncilLoginLogo bottom="0" />
 	<login:GreyCirclesLogin bottom="0" right="0" />
 	
-	
+	<!-- #479 -->
+	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#AAAAAA" right="3" bottom="52"/>
 	
 </s:Skin>

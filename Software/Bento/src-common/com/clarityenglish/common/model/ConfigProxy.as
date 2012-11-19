@@ -257,7 +257,7 @@ package com.clarityenglish.common.model {
 					configUser = new User({ name: "dandelion", password: "password", email:"dandy@email" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 				case "DK":
-					configUser = new User({ name: "da", studentID: "p574528(8)", password: "passwording", email: "adrian@clarityenglish.com" });
+					configUser = new User({ name: "dandelion", studentID: "p574528(8)", password: "passwording", email: "adrian@clarityenglish.com" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 				case "network":
 					configUser = new User({ name: "Student", studentID: "123", password: "password" });

@@ -41,6 +41,10 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var newUserButton:Button;
 		
+		// gh#41
+		[SkinPart]
+		public var testDriveButton:Button;
+		
 		[SkinPart]
 		public var cancelButton:Button;
 		
@@ -312,6 +316,7 @@ package com.clarityenglish.ielts.view.login {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
+			trace("adding part " + instance.toString());
 			switch (instance) {
 				case loginKeyInput:
 				case passwordInput:
@@ -323,6 +328,7 @@ package com.clarityenglish.ielts.view.login {
 				case addUserButton:
 				case newUserButton:
 				case cancelButton:
+				case testDriveButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
 				case loginIDLabel:
@@ -469,6 +475,10 @@ package com.clarityenglish.ielts.view.login {
 					//user = new User({name:newNameInput.text, password:newPasswordInput.text});
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
+					break;
+				// gh#41
+				case testDriveButton:
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified));
 					break;
 				default:
 					setState("login");

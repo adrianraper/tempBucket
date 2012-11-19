@@ -72,8 +72,11 @@ package com.clarityenglish.common.model {
 			// For AA licences you still do the call as this does getLicenceSlot
 			
 			//var loginOption:uint = configProxy.getAccount().loginOption;
-			if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
-				var loginObj:Object = {username:user.name, password:user.password};
+			// gh#41 Test drive choice
+			if (user == null) {
+				var loginObj:Object = {};
+			} else if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
+				loginObj = {username:user.name, password:user.password};
 			} else if (loginOption & Config.LOGIN_BY_ID) {
 				loginObj = {studentID:user.studentID, password:user.password};
 			} else if (loginOption & Config.LOGIN_BY_EMAIL) {
@@ -107,10 +110,20 @@ package com.clarityenglish.common.model {
 				if (configProxy.getRootID()) {
 					rootID = new Array(1);
 					rootID[0] = configProxy.getRootID();
+					
+				// gh#41 An account with no root set and a null user can only mean test drive
+				} else if (user == null) {
+					// TODO: Test Drive: how to set these settings nicely??
+					loginOption = Config.LOGIN_BY_ANONYMOUS;				
+					rootID = new Array(2);
+					rootID[0] = 14031;
+					rootID[1] = 0;
+					configProxy.getConfig().productCode = '52';
+					loginObj = null;
 				}
 			}
 			
-			// gh#39 You might now know a productCode, in which case we have to send comma delimited list 
+			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list 
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode() ];
 			new RemoteDelegate("login", params, this).execute();
 		}

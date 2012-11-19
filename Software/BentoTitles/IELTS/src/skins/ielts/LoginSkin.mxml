@@ -71,7 +71,7 @@
 		<s:VGroup id="loginBlock" width="100%" includeIn="loginStates" >
 			<s:Label id="loginDetailLabel"
 					 text.loginNetwork="Please type your login details if you want to save your progress records."
-					 fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
+					 fontFamily="HelveticaNeueLtStd" fontSize="14" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
 			<s:HGroup>
 				<s:Label id="loginKey_lbl" text="{hostComponent.loginKey_lbl}" fontWeight="bold" paddingTop="6" />
@@ -87,6 +87,7 @@
 				<s:Button id="loginButton" label="Log in" />
 				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="login" />
 			</s:HGroup>
+			<s:Button id="testDriveButton" label="Test drive" />
 		</s:VGroup>
 		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
 			<s:Label id="registerDetailLabel" 

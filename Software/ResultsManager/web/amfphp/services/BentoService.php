@@ -221,8 +221,10 @@ class BentoService extends AbstractService {
 				// For now just remove all but the first
 				$newAccount->titles = array($newAccount->titles[0]);
 				
-				$productCode = $newAccount->titles[0]->productCode;
 			}
+			// gh#39 If you had multiple codes, reduce to one
+			if (stristr($productCode, ','))
+				$productCode = $newAccount->titles[0]->productCode;
 				
 			$licence = new Licence();
 			$licence->fromDatabaseObj($newAccount->titles[0]);
