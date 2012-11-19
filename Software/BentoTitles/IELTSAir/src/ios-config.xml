@@ -15,13 +15,13 @@
 	<brandingMedia />
 	<language>EN*</language>
 	
-	<contentPath>http://192.168.8.81/Content/</contentPath>
+	<!--contentPath>http://192.168.8.81/Content/</contentPath>
 	<remoteDomain>http://192.168.8.81/</remoteDomain>
-	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway-->
 	
-	<!-- <contentPath>http://dock.contentbench/Content/</contentPath>
+	<contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway> -->
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>

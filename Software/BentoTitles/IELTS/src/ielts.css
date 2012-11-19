@@ -149,24 +149,28 @@ home|HomeView s|Button#writingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="WritingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Writing.png");
 	title: "Writing";
+	titleEN: "写作";
 }
 
 home|HomeView s|Button#speakingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="SpeakingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Speaking.png");
 	title: "Speaking";
+	titleEN: "口语";
 }
 
 home|HomeView s|Button#readingCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ReadingIcon");
 	courseImage: Embed(source="skins/ielts/assets/Reading.png");
 	title: "Reading";
+	titleEN: "阅读";
 }
 
 home|HomeView s|Button#listeningCourseButton {
 	courseIcon: Embed(source="skins/ielts/assets/assets.swf", symbol="ListeningIcon");
 	courseImage: Embed(source="skins/ielts/assets/Listening.png");
 	title: "Listening";
+	titleEN: "听力";
 }
 
 home|HomeView s|Button#registerInfoButton {

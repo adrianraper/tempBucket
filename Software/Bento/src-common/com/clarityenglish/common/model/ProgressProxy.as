@@ -251,6 +251,7 @@ package com.clarityenglish.common.model {
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				var dataProvider:Object = bentoProxy.menu;
+				trace ("bentoProxy.menu is "+bentoProxy.menu);
 			} else {
 				dataProvider = loadedResources[progressType];
 			}

@@ -108,6 +108,7 @@ package com.clarityenglish.ielts.view.home {
 			//trace("partAdded in HomeView for " + partName);
 			switch (instance) {
 				case readingCourseButton:
+					instance.label = copyProvider.getCopyForId("readingCourseButton");
 				case writingCourseButton:
 				case speakingCourseButton:
 				case listeningCourseButton:

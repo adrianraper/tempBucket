@@ -252,8 +252,4 @@
 			</lit>
 		</group>
 	</language>
-	<language name="English International" code="ZH" mediaFolder="ZH">
-	        <lit name="Reading">??</lit>
-			<lit name="Listening">§v¤O</lit>
-	</language>
 </literals>
