@@ -274,10 +274,7 @@ package com.clarityenglish.rotterdam.view.login {
 			_currentState = state;
 			invalidateSkinState();
 		}
-		
-		public function setCopyProvider(copyProvider:CopyProvider):void {
-		}
-		
+				
 		public function showInvalidLogin(error:BentoError):void {
 			// #280 - this is no longer used
 		}
