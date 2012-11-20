@@ -108,6 +108,9 @@
 									practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
 									answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
 									swfLoader.source = "/skins/ielts/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
+									
+									// GH #49
+									practiceTestButton.enabled = answerKeyButton.enabled = audioPlayer.enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
 								}
 							}
 							
@@ -120,7 +123,7 @@
 					<s:Label text="{data.@caption}" top="268" horizontalCenter="0" fontSize="16" />
 					
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
-						<tlfcomponents:AudioPlayer visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
+						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
 						<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data.@href)" />
 						<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data.@answerHref)" />
 					</s:HGroup>
