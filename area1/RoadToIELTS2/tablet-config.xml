@@ -2,7 +2,7 @@
 <config>
 	<id>/area1/RoadToIELTS2 in localhost</id>
 	<developer>none</developer>
-	<dbHost>0</dbHost>
+	<dbHost>102</dbHost>
 	<loginOption>128</loginOption>
 	<productCode>52,53</productCode>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>

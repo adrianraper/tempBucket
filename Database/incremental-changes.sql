@@ -650,6 +650,13 @@ INSERT INTO T_ProductLanguage VALUES
 (53,'JP','RoadToIELTS2-Japanese');
 DELETE FROM T_Language WHERE F_LanguageCode IN ('R2IFV','R2ITD','R2ILM','R2IHU','R2ID');
 
+UPDATE T_Language
+SET F_LanguageCode='ZH'
+WHERE F_LanguageCode='ZHO';
+UPDATE T_Accounts
+SET F_LanguageCode='ZH'
+WHERE F_LanguageCode='ZHO';
+
 DROP TABLE IF EXISTS `T_Version`;
 CREATE TABLE `T_Version` (
   `F_VersionCode` varchar(16) NOT NULL,

@@ -114,6 +114,7 @@ package com.clarityenglish.common.model {
 				// gh#41 An account with no root set and a null user can only mean test drive
 				} else if (user == null) {
 					// TODO: Test Drive: how to set these settings nicely??
+					// and how to offer them a choice of different titles??
 					loginOption = Config.LOGIN_BY_ANONYMOUS;				
 					rootID = new Array(2);
 					rootID[0] = 14031;
@@ -123,8 +124,9 @@ package com.clarityenglish.common.model {
 				}
 			}
 			
-			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list 
-			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode() ];
+			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
+			// gh#36 Also need dbHost if this is the first call		
+			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode(), configProxy.getConfig().dbHost ];
 			new RemoteDelegate("login", params, this).execute();
 		}
 		

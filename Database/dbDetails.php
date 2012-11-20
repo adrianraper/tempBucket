@@ -28,8 +28,8 @@ class DBDetails {
 				*/
 				$this->driver = "mysql";
 				$this->host = "localhost";
-				$this->user = "root";
-				$this->password = "Sunshine1787";
+				$this->user = "clarity";
+				$this->password = "clarity";
 				$this->dbname = "global_r2iv2";
 				break;
 			case 101:
