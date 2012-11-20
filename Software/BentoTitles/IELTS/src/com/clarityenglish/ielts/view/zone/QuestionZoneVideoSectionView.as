@@ -1,5 +1,7 @@
 package com.clarityenglish.ielts.view.zone {
+	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.controls.video.VideoSelector;
+	import com.clarityenglish.controls.video.events.VideoScoreEvent;
 	
 	import flash.events.Event;
 	
@@ -7,6 +9,7 @@ package com.clarityenglish.ielts.view.zone {
 	import mx.collections.XMLListCollection;
 	
 	import org.davekeen.util.StringUtils;
+	import org.osflash.signals.Signal;
 	
 	public class QuestionZoneVideoSectionView extends AbstractZoneSectionView {
 		
@@ -15,7 +18,11 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var videoSelector:VideoSelector;
 		
+		public var hrefToUidFunction:Function;
+		
 		public var channelCollection:ArrayCollection;
+		
+		public var videoScore:Signal = new Signal(ExerciseMark);
 		
 		public function QuestionZoneVideoSectionView() {
 			super();
@@ -27,6 +34,7 @@ package com.clarityenglish.ielts.view.zone {
 			
 			// Only provide rss files to the video selector
 			videoSelector.href = href;
+			videoSelector.hrefToUidFunction = hrefToUidFunction;
 			videoSelector.channelCollection = channelCollection;
 			videoSelector.videoCollection = new XMLListCollection(_course.unit.(@["class"] == "question-zone").exercise.(StringUtils.endsWith(@href, ".rss")));
 		}
@@ -35,8 +43,14 @@ package com.clarityenglish.ielts.view.zone {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				
+				case videoSelector:
+					videoSelector.addEventListener(VideoScoreEvent.VIDEO_SCORE, onVideoScore);
+					break;
 			}
+		}
+		
+		protected function onVideoScore(event:VideoScoreEvent):void {
+			videoScore.dispatch(event.exerciseMark);
 		}
 		
 		/**

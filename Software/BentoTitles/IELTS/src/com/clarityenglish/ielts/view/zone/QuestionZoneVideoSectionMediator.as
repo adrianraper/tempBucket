@@ -1,7 +1,8 @@
 package com.clarityenglish.ielts.view.zone {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	
@@ -26,14 +27,24 @@ package com.clarityenglish.ielts.view.zone {
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
+			view.hrefToUidFunction = bentoProxy.getExerciseUID;
 			
 			// Inject the available video channels
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
+			
+			view.videoScore.add(onVideoScore);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.videoScore.remove(onVideoScore);
+			
+			// This is a special case that writes the score if the user goes away from the view without explicitly paused or stopping the video (GH #50)
+			var exerciseMark:ExerciseMark = view.videoSelector.getVideoScore();
+			if (exerciseMark)
+				onVideoScore(exerciseMark);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -51,6 +62,10 @@ package com.clarityenglish.ielts.view.zone {
 					view.navigator.popToFirstView(null);
 					break;
 			}
+		}
+		
+		protected function onVideoScore(exerciseMark:ExerciseMark):void {
+			sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 		}
 		
 	}

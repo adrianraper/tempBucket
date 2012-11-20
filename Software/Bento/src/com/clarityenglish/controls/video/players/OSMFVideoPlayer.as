@@ -1,5 +1,6 @@
 package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoPlayer;
+	import com.clarityenglish.controls.video.events.VideoEvent;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -9,10 +10,16 @@ package com.clarityenglish.controls.video.players {
 	import mx.events.FlexEvent;
 	
 	import org.osmf.events.BufferEvent;
+	import org.osmf.events.MediaPlayerStateChangeEvent;
+	import org.osmf.media.MediaPlayerState;
 	import org.osmf.utils.OSMFSettings;
 	
 	import spark.components.VideoPlayer;
 	
+	[Event(name="videoPlayed", type="com.clarityenglish.controls.video.events.VideoEvent")]
+	[Event(name="videoPaused", type="com.clarityenglish.controls.video.events.VideoEvent")]
+	[Event(name="videoStopped", type="com.clarityenglish.controls.video.events.VideoEvent")]
+	[Event(name="videoComplete", type="com.clarityenglish.controls.video.events.VideoEvent")]
 	public class OSMFVideoPlayer extends VideoPlayer implements IVideoPlayer {
 		
 		private static const BUFFER_TIME:int = 4;
@@ -25,6 +32,7 @@ package com.clarityenglish.controls.video.players {
 			OSMFSettings.enableStageVideo = false;
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, onCreationComplete, false, 0, true);
+			addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onStateChange, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 		}
 		
@@ -50,6 +58,20 @@ package com.clarityenglish.controls.video.players {
 			event.target.bufferTime = BUFFER_TIME;
 		}
 		
+		protected function onStateChange(event:MediaPlayerStateChangeEvent):void {
+			switch (event.state) {
+				case MediaPlayerState.READY:
+					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_READY));
+					break;
+				case MediaPlayerState.PLAYING:
+					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PLAYED));
+					break;
+				case MediaPlayerState.PAUSED:
+					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PAUSED));
+					break;
+			}
+		}
+		
 		public override function set source(value:Object):void {
 			// Setting source to null and forcing gc fixes a memory leak inherent in OSMF (not on iPad unfortunately)
 			super.source = null;
@@ -68,6 +90,7 @@ package com.clarityenglish.controls.video.players {
 		
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			removeEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onStateChange);
 			
 			// This is rather hacky, but it seems that the first time that the full screen button is pressed for an OSMF video the REMOVED_FROM_STAGE event is fired.
 			// After full screen has been pressed (for any instance) it then works normally for all future instances.  Therefore I'm using a simple timer so that I

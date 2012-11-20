@@ -1,11 +1,11 @@
 package com.clarityenglish.controls.video {
 	import com.clarityenglish.bento.events.ExerciseEvent;
+	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.controls.video.events.VideoEvent;
+	import com.clarityenglish.controls.video.events.VideoScoreEvent;
 	import com.clarityenglish.controls.video.loaders.RssVideoLoader;
-	import com.clarityenglish.controls.video.players.OSMFVideoPlayer;
 	
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
@@ -24,6 +24,7 @@ package com.clarityenglish.controls.video {
 	import spark.events.IndexChangeEvent;
 	
 	[Event(name="exerciseSelected", type="com.clarityenglish.bento.events.ExerciseEvent")]
+	[Event(name="videoScore", type="com.clarityenglish.controls.video.events.VideoScoreEvent")]
 	public class VideoSelector extends SkinnableComponent {
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
@@ -45,6 +46,9 @@ package com.clarityenglish.controls.video {
 		
 		public var href:Href;
 		
+		// This is a function that turns an href into a uid (Href -> String)
+		public var hrefToUidFunction:Function;
+		
 		protected var _channelCollection:IList;
 		protected var _channelCollectionChanged:Boolean;
 		
@@ -62,6 +66,8 @@ package com.clarityenglish.controls.video {
 		
 		protected var _channelChanged:Boolean;
 		protected var _videoChanged:Boolean;		
+		
+		private var currentVideoStartTime:Date;
 		
 		public function VideoSelector() {
 			super();
@@ -170,6 +176,11 @@ package com.clarityenglish.controls.video {
 			
 			switch (instance) {
 				case videoPlayer:
+					videoPlayer.addEventListener(VideoEvent.VIDEO_PLAYED, onVideoStarted);
+					videoPlayer.addEventListener(VideoEvent.VIDEO_READY, onVideoScore);
+					videoPlayer.addEventListener(VideoEvent.VIDEO_PAUSED, onVideoScore);
+					videoPlayer.addEventListener(TimeEvent.COMPLETE, onVideoScore);
+					
 					videoPlayer.addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
 					break;
 				case channelList:
@@ -219,6 +230,43 @@ package com.clarityenglish.controls.video {
 			} else {
 				throw new Error("VideoSelector only supports rss files");
 			}
+		}
+		
+		/**
+		 * Record the start time of the video (GH #50)
+		 * 
+		 * @param event
+		 */
+		protected function onVideoStarted(event:VideoEvent):void {
+			currentVideoStartTime = new Date();
+		}
+		
+		/**
+		 * Dispatch an ExerciseMark event with the uid and duration of the video (GH #50)
+		 * 
+		 * @param event
+		 */
+		protected function onVideoScore(event:Event = null):void {
+			var exerciseMark:ExerciseMark = getVideoScore();
+			
+			if (exerciseMark) {
+				dispatchEvent(new VideoScoreEvent(VideoScoreEvent.VIDEO_SCORE, exerciseMark));
+				currentVideoStartTime = null;
+			}
+		}
+		
+		public function getVideoScore():ExerciseMark {
+			if (videoList.selectedItem && currentVideoStartTime) { // #138
+				var videoHref:Href = href.createRelativeHref(null, videoList.selectedItem.@href);
+				
+				var exerciseMark:ExerciseMark = new ExerciseMark();
+				exerciseMark.duration = ((new Date()).time - currentVideoStartTime.getTime()) / 1000;
+				exerciseMark.UID = hrefToUidFunction(videoHref);
+				
+				return exerciseMark;
+			}
+			
+			return null;
 		}
 		
 		/**
