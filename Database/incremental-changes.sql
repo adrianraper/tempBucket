@@ -643,10 +643,10 @@ where F_ProductCode in (52,53);
 DELETE FROM T_ProductLanguage WHERE F_ProductCode IN (52,53);
 INSERT INTO T_ProductLanguage VALUES 
 (52,'EN','RoadToIELTS2-International'),
-(52,'ZHO','RoadToIELTS2-Chinese'),
+(52,'ZH','RoadToIELTS2-Chinese'),
 (52,'JP','RoadToIELTS2-Japanese'),
 (53,'EN','RoadToIELTS2-International'),
-(53,'ZHO','RoadToIELTS2-Chinese'),
+(53,'ZH','RoadToIELTS2-Chinese'),
 (53,'JP','RoadToIELTS2-Japanese');
 DELETE FROM T_Language WHERE F_LanguageCode IN ('R2IFV','R2ITD','R2ILM','R2IHU','R2ID');
 
