@@ -52,6 +52,10 @@ package com.clarityenglish.common.view.login {
 			view.setSelfRegister(configProxy.getAccount().selfRegister);
 			view.setVerified(configProxy.getAccount().verified);
 			view.setLicenceType(configProxy.getLicenceType());
+			
+			// #41
+			var noAccount:Boolean = !(configProxy.getRootID());
+			view.setNoAccount(noAccount);
 		}
         
 		/**
@@ -133,6 +137,13 @@ package com.clarityenglish.common.view.login {
 		private function onAddUser(e:LoginEvent):void {
 			sendNotification(CommonNotifications.ADD_USER, e);
 		}
-
+		
+		// gh#41 Make sure that we know which productCode they want to run
+		/*
+		private function onTestDrive(productCode:String):void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			configProxy.getConfig().productCode = productCode;			
+		}
+		*/
 	}
 }

@@ -22,6 +22,8 @@
 		function setProductCode(productCode:String):void;
 		function setLicenceType(licenceType:uint):void;
 		function setState(state:String):void;
+		// gh#41
+		function setNoAccount(noAccount:Boolean):void;
 	}
 	
 }

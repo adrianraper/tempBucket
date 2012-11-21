@@ -15,6 +15,8 @@ package com.clarityenglish.ielts.view.login {
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
+	import org.osflash.signals.Signal;
+	
 	import spark.components.Button;
 	import spark.components.FormHeading;
 	import spark.components.Label;
@@ -43,7 +45,9 @@ package com.clarityenglish.ielts.view.login {
 		
 		// gh#41
 		[SkinPart]
-		public var testDriveButton:Button;
+		public var testDriveAcademicButton:Button;
+		[SkinPart]
+		public var testDriveGeneralButton:Button;
 		
 		[SkinPart]
 		public var cancelButton:Button;
@@ -106,6 +110,10 @@ package com.clarityenglish.ielts.view.login {
 		
 		private var _currentState:String;
 		
+		// gh#41
+		private var _noAccount:Boolean;
+		//public var setTestDrive:Signal = new Signal();
+		
 		// #341
 		[Bindable]
 		public var savedName:String;
@@ -155,6 +163,17 @@ package com.clarityenglish.ielts.view.login {
 			if (_selfRegister != value) {
 				_selfRegister = value;
 			}
+		}
+		
+		// #41
+		[Bindable]
+		public function get noAccount():Boolean {
+			return _noAccount;
+		}
+		public function set noAccount(value:Boolean):void {
+			if (_noAccount != value) {
+				_noAccount = value;
+			}			
 		}
 		
 		[Bindable]
@@ -328,7 +347,8 @@ package com.clarityenglish.ielts.view.login {
 				case addUserButton:
 				case newUserButton:
 				case cancelButton:
-				case testDriveButton:
+				case testDriveAcademicButton:
+				case testDriveGeneralButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
 				case loginIDLabel:
@@ -399,6 +419,10 @@ package com.clarityenglish.ielts.view.login {
 			
 			// #341 for network version
 			setState("login");
+		}
+		// gh#41
+		public function setNoAccount(value:Boolean):void {
+			noAccount = value;
 		}
 		
 		/**
@@ -476,14 +500,27 @@ package com.clarityenglish.ielts.view.login {
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 					break;
+				
 				// gh#41
-				case testDriveButton:
+				case testDriveAcademicButton:
+				case testDriveAcademicButton:
+					if (event.target == testDriveGeneralButton) {
+						setTestDriveVersion('53');
+					} else {
+						setTestDriveVersion('52');
+					}
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified));
 					break;
+				
 				default:
 					setState("login");
 			}
 		
+		}
+		
+		// gh#41
+		private function setTestDriveVersion(productCode:String):void {
+			//setTestDrive.dispatch(productCode);
 		}
 		
 		public function setState(state:String):void {

@@ -71,7 +71,7 @@ package com.clarityenglish.common.model {
 				if (languageCode != defaultLanguageCode) {
 					result = copy..language.(@code == defaultLanguageCode)..lit.(@name == id);
 					if (result.length() == 0) {
-						trace("Not in English either");
+						trace("Not in " + defaultLanguageCode + " either");
 						return id;
 					}
 				} else {

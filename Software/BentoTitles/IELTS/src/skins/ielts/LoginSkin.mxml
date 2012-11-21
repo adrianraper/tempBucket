@@ -87,7 +87,7 @@
 				<s:Button id="loginButton" label="Log in" />
 				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="login" />
 			</s:HGroup>
-			<s:Button id="testDriveButton" label="Test drive" />
+			<s:Button id="testDriveAcademicButton" label="Test drive" visible="{hostComponent.noAccount}" includeInLayout="{hostComponent.noAccount}" includeIn="login" />
 		</s:VGroup>
 		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
 			<s:Label id="registerDetailLabel" 
