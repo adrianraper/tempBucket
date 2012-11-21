@@ -107,7 +107,9 @@
 									var courseClass:String = outerDocument.hostComponent.courseClass;
 									practiceTestButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
 									answerKeyButton.setStyle('chromeColor', getStyle(courseClass + 'Color'));
-									swfLoader.source = "/skins/ielts/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
+									// gh#51
+									//swfLoader.source = "/skins/ielts/assets/zone/testpractice_" + courseClass + (idx + 1) + ".png";
+									swfLoader.source = outerDocument.hostComponent.assetFolder + "testpractice_" + courseClass + (idx + 1) + ".png";
 									
 									// GH #49
 									practiceTestButton.enabled = answerKeyButton.enabled = audioPlayer.enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
@@ -134,7 +136,7 @@
 	
 	<components:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="12" dataProvider="{list.dataProvider}" />
 	
-	<s:SWFLoader visible="{list.dataProvider.length == 0}" source="/skins/ielts/assets/zone/testpractice_empty.png" width="386" top="90" horizontalCenter="0" />
+	<s:SWFLoader visible="{list.dataProvider.length == 0}" source="{hostComponent.assetFolder}testpractice_empty.png" width="386" top="90" horizontalCenter="0" />
 	
 	<!-- These buttons are only enabled (by CSS) in the web version -->
 	<s:SWFLoader click="scrollBy(-1)" visible="{getStyle('showArrows')}" source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ExamPracticeArrow')" left="22" top="233" scaleX="-1" mouseEnabled="true" buttonMode="true" />

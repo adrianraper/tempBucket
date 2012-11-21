@@ -42,6 +42,10 @@ package com.clarityenglish.ielts.view.zone {
 		
 		private var viewportPropertyWatcher:ChangeWatcher;
 		
+		public function get assetFolder():String {
+			return config.remoteDomain + config.assetFolder;
+		}
+		
 		public function ExamPracticeZoneSectionView() {
 			super();
 			actionBarVisible = false;

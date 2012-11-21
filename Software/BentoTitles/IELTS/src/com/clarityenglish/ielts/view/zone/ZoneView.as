@@ -110,7 +110,7 @@ package com.clarityenglish.ielts.view.zone {
 		public function get courseClass():String {
 			return (_course) ? _course.@["class"].toString() : null;
 		}
-		
+
 		public function setCourseSelectorVisible(value:Boolean):void {
 			courseSelector.visible = value;
 		}
