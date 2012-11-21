@@ -42,7 +42,7 @@
 	<ui:CourseBarRenderer id="speakingCoverageBar" data="{hostComponent.dataProvider}" courseClass="speaking" left="39" top="400" width="375" />
 	<ui:CourseBarRenderer id="writingCoverageBar" data="{hostComponent.dataProvider}" courseClass="writing" left="39" top="474" width="375" />
 	
-	<s:Button id="readingCourseButton" right="20" top="152"/>
+	<s:Button id="readingCourseButton" right="20" top="152" />
 	<s:Button id="listeningCourseButton" right="20" top="258" />
 	<s:Button id="speakingCourseButton" right="20" top="366" />
 	<s:Button id="writingCourseButton" right="20" top="473" />

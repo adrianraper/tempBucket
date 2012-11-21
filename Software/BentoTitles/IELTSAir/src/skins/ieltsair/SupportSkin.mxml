@@ -56,7 +56,7 @@
 				
 				<s:RichText top="370" left="40" right="40" height="82" >
 					<s:textFlow>
-						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12" id="supportTextFlow1">
+						<s:TextFlow xmlns="library://ns.adobe.com/flex/spark" color="#4E4E4E" fontSize="14" lineHeight="22" paragraphSpaceAfter="12" id="supportTextFlow1" columnCount="2">
 							<p><span fontWeight="bold" id="supportCaptionSpan1"/><br/><span id="paragraphContentSpan1"/></p>
 						</s:TextFlow>
 					</s:textFlow>

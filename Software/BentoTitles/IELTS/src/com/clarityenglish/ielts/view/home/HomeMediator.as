@@ -12,6 +12,8 @@
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
+	import skins.ielts.home.CourseButtonSkin;
+	
 	/**
 	 * A Mediator
 	 */
@@ -56,7 +58,7 @@
 			// Perhaps this should be in bentostartupcommand then.
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
 			// AR No need to do this again as it is done for menu.xml
-			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS); 
+			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 		}
 		
 		override public function onRemove():void {

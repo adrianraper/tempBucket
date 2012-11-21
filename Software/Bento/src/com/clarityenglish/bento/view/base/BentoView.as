@@ -69,6 +69,7 @@ package com.clarityenglish.bento.view.base {
 		//issue:#11 Language Code, need to be overriveden 
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
+			
 		}
 		
 		/**

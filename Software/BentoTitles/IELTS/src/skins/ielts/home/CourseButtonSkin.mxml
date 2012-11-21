@@ -33,16 +33,20 @@
         /** 
          * @copy spark.skins.spark.ApplicationSkin#hostComponent
          */
-        [HostComponent("spark.components.Button")]
+		[HostComponent("spark.components.Button")]
         ]]>
 	</fx:Metadata>
 
 	<fx:Script fb:purpose="styling">
 		<![CDATA[
+			import com.clarityenglish.common.model.CopyProxy;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			
 			import spark.components.Group;
 			/* Define the skin elements that should not be colorized.
 			For button, the graphics are colorized but the label is not. */
 			static private const exclusions:Array = ["labelDisplay"];
+			public var copyProvider:CopyProvider;
 			
 			/**
 			 * @private
@@ -58,6 +62,10 @@
 				useChromeColor = true;
 				super.initializationComplete();
 			}
+			
+			/*public function setCopyProvider(copyProvider:CopyProvider):void {
+				this.copyProvider = copyProvider;
+			}*/
 		]]>
 	</fx:Script>
 
@@ -162,7 +170,7 @@
 
 	<!-- layer 8: text -->
 	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-	<s:Label id="labelDisplay"
+	<!--s:Label id="labelDisplay"
 			 textAlign="center"
 			 maxDisplayedLines="3"
 			 horizontalCenter="0"
@@ -172,12 +180,12 @@
 			 right="10"
 			 top="2"
 			 bottom="2">
-	</s:Label>
+	</s:Label-->
 	
 	<!-- layer 9: IELTS course button specific stuff -->
 	<s:SWFLoader source="{getStyle('courseIcon')}" left="22" top="18" width="60" height="60" />
-	<s:Label text="{getStyle('title')}" left="95" top="38" fontSize="18" />
+	<s:Label left="95" top="38" fontSize="18" id="labelDisplay"/>
 	<s:Label text="{getStyle('description')}" left="70" right="200" top="50" width="59" alpha.up="1" alpha.over="0.9" lineHeight="16"/>
 	<s:Image source="{getStyle('courseImage')}" right="0" alpha.up="1" alpha.over="0.9"/>
-
+	
 </s:SparkButtonSkin>

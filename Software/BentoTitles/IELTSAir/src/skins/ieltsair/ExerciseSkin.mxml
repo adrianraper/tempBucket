@@ -10,16 +10,16 @@
 	
 	<fx:Declarations>
 		<fx:Array id="navigationContent">
-			<s:Button id="backToMenuButton" label="Back to menu" />
-			<s:Button id="startAgainButton" label="Start again" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
-			<s:Button id="backButton" label="Back" visible="false" />
-			<s:Button id="forwardButton" label="Forward" visible="false" />
+			<s:Button id="backToMenuButton" />
+			<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
+			<s:Button id="backButton" visible="false" />
+			<s:Button id="forwardButton" visible="false" />
 		</fx:Array>
 		
 		<fx:Array id="actionContent">
-			<s:Button id="feedbackButton" label="Feedback" visible="false" />
-			<s:Button id="markingButton" label="Marking" />
-			<s:Button label="Log out" />
+			<s:Button id="feedbackButton" visible="false" />
+			<s:Button id="markingButton" />
+			<s:Button id="exerciseLogOutButton" />
 		</fx:Array>
 	</fx:Declarations>
 	

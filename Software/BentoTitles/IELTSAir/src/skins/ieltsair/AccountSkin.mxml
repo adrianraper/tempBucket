@@ -66,7 +66,7 @@
 	</s:states>
 
 	<!--issue:#11 Language Code?-->
-	<account:HowLongGraphic left="30" top="150" />
+	<account:HowLongGraphic left="30" top="150"/>
 	<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.user.examDate}" left="164" top="165" />
 	
 	<!--issue:#11 Language Code-->
@@ -86,10 +86,10 @@
 	<s:Label text="{hostComponent.user.email}" fontSize="15" left="180" top="380" />
 
 	<s:Label id="accountStartDateLabel" fontSize="15" fontWeight="bold" left="20" top="410" />
-	<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.startDate), 'd MMMM yyyy')}" fontSize="15" left="180" top="410" />
+	<s:Label id="startDateLabel" fontSize="15" left="180" top="410" />
 
 	<s:Label id="accountExpiryDateLabel" fontSize="15" fontWeight="bold" left="20" top="440" />
-	<s:Label text="{DateUtil.formatDate(DateUtil.ansiStringToDate(hostComponent.expiryDate), 'd MMMM yyyy')}" fontSize="15" left="180" top="440" />
+	<s:Label id="endDateLabel" fontSize="15" left="180" top="440" />
 
 	<s:Button id="saveChangesButton" visible="{hostComponent.isDirty}" includeInLayout="{hostComponent.isDirty}" left="20" top="480" />
 	

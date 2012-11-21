@@ -37,12 +37,15 @@ package com.clarityenglish.bento.view.marking {
 			switch (instance) {
 				case tryAgainButton:
 					tryAgainButton.addEventListener(MouseEvent.CLICK, onTryAgainButton);
+					tryAgainButton.label = copyProvider.getCopyForId("tryAgainButton");
 					break;
 				case seeAnswersButton:
 					seeAnswersButton.addEventListener(MouseEvent.CLICK, onSeeAnswersButton);
+					seeAnswersButton.label = copyProvider.getCopyForId("seeAnswersButton");
 					break;
 				case moveForwardButton:
 					moveForwardButton.addEventListener(MouseEvent.CLICK, onMoveForwardButton);
+					moveForwardButton.label = copyProvider.getCopyForId("moveForwardButton");
 					break;
 			}
 		}

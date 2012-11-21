@@ -10,10 +10,9 @@ package com.clarityenglish.common.controller {
 	/**
 	 * SimpleCommand
 	 */
-	public class CopyLoadCommand extends SimpleCommand {
-		
+	public class CopyLoadCommand extends SimpleCommand {		
 		override public function execute(note:INotification):void {
-			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;			
 			copyProxy.getCopy();
 		}
 		

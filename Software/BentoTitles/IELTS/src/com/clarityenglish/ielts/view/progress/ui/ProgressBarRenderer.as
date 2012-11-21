@@ -4,6 +4,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 	import caurina.transitions.Tweener;
 	
 	import com.adobe.utils.StringUtil;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	import mx.graphics.SolidColor;
 	import mx.logging.ILogger;
@@ -14,7 +15,6 @@ package com.clarityenglish.ielts.view.progress.ui {
 	
 	import spark.components.Label;
 	import spark.primitives.Rect;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 		
 	public class ProgressBarRenderer extends SkinnableDataRenderer {
 		
@@ -52,17 +52,18 @@ package com.clarityenglish.ielts.view.progress.ui {
 			
 			if (data) {
 				var course:XML = (data.dataProvider as XML).course.(@["class"]==courseClass)[0];
-				solidColour.color = getStyle(courseClass + "Color");;
-				backColour.color = getStyle(courseClass + "ColorDark");;
+				solidColour.color = getStyle(courseClass + "Color");
+				backColour.color = getStyle(courseClass + "ColorDark");
 				
 				//issue:#11 language Code
 				// Is this for coverge or score?
 				if (type == 'coverage') {
-					trace("ProgressBarCoverage is "+ _copyProvider.getCopyForId("ProgressBarCoverage"));
-					commentLabel.text = StringUtils.capitalize(courseClass) + _copyProvider.getCopyForId("ProgressBarCoverage") + " " + new Number(course.@coverage) + "%";
+					var courseLabel:String = StringUtils.capitalize(courseClass).toString();
+					commentLabel.text = _copyProvider.getCopyForId(courseLabel) + _copyProvider.getCopyForId("ProgressBarCoverage") + " " + new Number(course.@coverage) + "%";
 					var percentValue:Number = new Number(course.@coverage);
 				} else {
-					commentLabel.text = StringUtils.capitalize(courseClass) + _copyProvider.getCopyForId("ProgressBarScore") + " " + new Number(course.@averageScore) + "%";
+					courseLabel = StringUtils.capitalize(courseClass).toString();
+					commentLabel.text = _copyProvider.getCopyForId(courseLabel) + _copyProvider.getCopyForId("ProgressBarScore") + " " + new Number(course.@averageScore) + "%";
 					percentValue = new Number(course.@averageScore);
 				}
 				

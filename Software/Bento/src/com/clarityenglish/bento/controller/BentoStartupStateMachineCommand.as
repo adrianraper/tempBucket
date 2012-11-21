@@ -15,19 +15,6 @@ package com.clarityenglish.bento.controller {
 			
 			// Inject the FSM into PureMVC
 			// Note that 'changed' means entered, really
-			/*
-			<fsm initial={BBStates.STATE_LOAD_ACCOUNT}>
-			<state name={BBStates.STATE_LOAD_ACCOUNT} changed={CommonNotifications.ACCOUNT_LOAD}>
-			<transition action={CommonNotifications.ACCOUNT_LOAD} target={BBStates.STATE_LOAD_COPY} />
-			<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
-			</state>
-			
-			<state name={BBStates.STATE_LOAD_COPY} changed={CommonNotifications.COPY_LOAD}>
-			<transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOGIN} />
-			<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
-			</state>
-			
-			*/
 			var fsm:XML =
 				<fsm initial={BBStates.STATE_LOAD_COPY}>
 					<state name={BBStates.STATE_LOAD_COPY} changed={CommonNotifications.COPY_LOAD}>

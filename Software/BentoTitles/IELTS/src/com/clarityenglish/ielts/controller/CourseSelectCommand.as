@@ -19,7 +19,6 @@ package com.clarityenglish.ielts.controller {
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
-			
 			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
 			ieltsProxy.currentCourseClass = note.getBody() as String;
 			

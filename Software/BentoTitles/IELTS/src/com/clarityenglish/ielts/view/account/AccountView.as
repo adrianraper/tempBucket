@@ -24,7 +24,7 @@ package com.clarityenglish.ielts.view.account {
 	import spark.components.TextInput;
 	
 	public class AccountView extends BentoView {
-				
+			
 		[SkinPart]
 		public var currentPassword:TextInput;
 		
@@ -74,7 +74,13 @@ package com.clarityenglish.ielts.view.account {
 		public var accountStartDateLabel:Label;
 		
 		[SkinPart]
+		public var startDateLabel:Label;
+		
+		[SkinPart]
 		public var accountExpiryDateLabel:Label;
+		
+		[SkinPart]
+		public var endDateLabel:Label;
 
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
@@ -158,8 +164,30 @@ package com.clarityenglish.ielts.view.account {
 				case accountStartDateLabel:
 					instance.text = copyProvider.getCopyForId("accountStartDateLabel");
 					break;
+				case startDateLabel:
+					if (config.languageCode == "ZH") {
+						var repObejct:Object = new Object();
+						repObejct.day = (DateUtil.ansiStringToDate(startDate)).day;
+						repObejct.month = (DateUtil.ansiStringToDate(startDate)).month;
+						repObejct.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
+						instance.text = copyProvider.getCopyForId("dateFormatLabel", repObejct);
+					} else {
+					    instance.text =DateUtil.formatDate(DateUtil.ansiStringToDate(startDate), 'd MMMM yyyy')
+					}
+					break;
 				case accountExpiryDateLabel:
 					instance.text = copyProvider.getCopyForId("accountExpiryDateLabel");
+					break;
+				case endDateLabel:
+					if (config.languageCode == "ZH") {
+						var objReplace:Object = new Object();
+						objReplace.day = (DateUtil.ansiStringToDate(expiryDate)).day;
+						objReplace.month = (DateUtil.ansiStringToDate(expiryDate)).month;
+						objReplace.year = (DateUtil.ansiStringToDate(expiryDate)).fullYear;
+						instance.text = copyProvider.getCopyForId("dateFormatLabel", objReplace);
+					} else {
+						instance.text =DateUtil.formatDate(DateUtil.ansiStringToDate(expiryDate), 'd MMMM yyyy')
+					}
 					break;
 				case testDateLabel:
 					instance.text = copyProvider.getCopyForId("testDateLabel");

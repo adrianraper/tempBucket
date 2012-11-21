@@ -38,6 +38,9 @@ package com.clarityenglish.ielts.view.exercise {
 		[SkinPart]
 		public var printButton:Button;
 		
+		[SkinPart]
+		public var exerciseLogOutButton:Button;
+				
 		[SkinPart(required="true")]
 		public var dynamicView:DynamicView;
 		
@@ -119,25 +122,33 @@ package com.clarityenglish.ielts.view.exercise {
 					break;
 				case startAgainButton:
 					startAgainButton.addEventListener(MouseEvent.CLICK, function():void { startAgain.dispatch(); } );
+					startAgainButton.label = copyProvider.getCopyForId("exerciseStartAgainButton");
 					break;
 				case feedbackButton:
 					feedbackButton.addEventListener(MouseEvent.CLICK, function():void { showFeedback.dispatch(); } );
+					feedbackButton.label = copyProvider.getCopyForId("exerciseFeedbackButton");
 					break;
 				case markingButton:
 					markingButton.addEventListener(MouseEvent.CLICK, function():void { showMarking.dispatch(); } );
+					markingButton.label = copyProvider.getCopyForId("exerciseMarkingButton");
 					break;
 				case forwardButton:
 					forwardButton.addEventListener(MouseEvent.CLICK, function():void { nextExercise.dispatch(); } );
+					forwardButton.label = copyProvider.getCopyForId("exerciseForwardButton");
 					break;
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, function():void { previousExercise.dispatch(); } );
+					backButton.label = copyProvider.getCopyForId("exerciseBackButton");
 					break;
 				case printButton:
 					printButton.addEventListener(MouseEvent.CLICK, function():void { printExercise.dispatch(dynamicView); } );
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, function():void { backToMenu.dispatch(); } );
+					backToMenuButton.label = copyProvider.getCopyForId("exerciseBackToMenuButton");
 					break;
+				case exerciseLogOutButton:
+					exerciseLogOutButton.label = copyProvider.getCopyForId("exerciseLogOutButton");
 			}
 		}
 		

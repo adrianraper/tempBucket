@@ -163,15 +163,20 @@ package com.clarityenglish.ielts.view.progress.components {
 					break;
 				case scoreReadingObj:
 					instance.label = _viewCopyProvider.getCopyForId("Reading");
+					//issue:#42 coursecalss cannot be read from label so we add a fixed value, courseclass, assigned to courseClass
+					instance.courseClass = "Reading";
 					break;
 				case scoreListeningObj:
 					instance.label = _viewCopyProvider.getCopyForId("Listening");
+					instance.courseClass = "Listening";
 					break;
 				case scoreSpeakingObj:
 					instance.label = _viewCopyProvider.getCopyForId("Speaking");
+					instance.courseClass = "Speaking";
 					break;
 				case scoreWritingObj:
 					instance.label = _viewCopyProvider.getCopyForId("Writing");
+					instance.courseClass = "Writing";
 					break;
 				case progressBar:
 					instance.copyProvider = _viewCopyProvider;
@@ -232,7 +237,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		 * @param String course class name
 		 */
 		public function onCourseSelect(event:Event):void {
-			courseSelect.dispatch(event.target.selectedItem.label.toLowerCase());
+			courseSelect.dispatch(event.target.selectedItem.courseClass.toLowerCase());
 		}
 	}
 

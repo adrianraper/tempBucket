@@ -15,6 +15,8 @@ package com.clarityenglish.ielts.view.home {
 	import org.davekeen.util.DateUtil;
 	import org.osflash.signals.Signal;
 	
+	import skins.ielts.home.CourseButtonSkin;
+	
 	import spark.components.Button;
 	import spark.components.Label;
 	
@@ -73,6 +75,11 @@ package com.clarityenglish.ielts.view.home {
 		public var courseSelect:Signal = new Signal(XML);
 		public var info:Signal = new Signal();
 		
+		/*public override function setCopyProvider(copyProvider:CopyProvider):void {
+			super.setCopyProvider(copyProvider);
+					
+		}*/
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -104,14 +111,27 @@ package com.clarityenglish.ielts.view.home {
 		}		
 		
 		protected override function partAdded(partName:String, instance:Object):void {
+
+			
 			super.partAdded(partName, instance);
 			//trace("partAdded in HomeView for " + partName);
 			switch (instance) {
 				case readingCourseButton:
-					instance.label = copyProvider.getCopyForId("readingCourseButton");
+					instance.label = copyProvider.getCopyForId("Reading");
+					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
+					break;
 				case writingCourseButton:
+					instance.label = copyProvider.getCopyForId("Listening");
+					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
+					break;
 				case speakingCourseButton:
+					instance.label = copyProvider.getCopyForId("Speaking");
+					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
+					break;
 				case listeningCourseButton:
+					instance.label = copyProvider.getCopyForId("Writing");
+					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
+					break;
 				case examTipsCourseButton:
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
@@ -126,13 +146,8 @@ package com.clarityenglish.ielts.view.home {
 							instance.text = "";
 						}
 					} else {
-						//For chinese literal, the phrase sequence need to be changed
-						if (CopyProxy.languageCode == "ZH"){
-							instance.text = user.fullName + " " + copyProvider.getCopyForId("welcomeLabel");
-						} else {
-							//issue:#11 Language Code
-							instance.text = copyProvider.getCopyForId("welcomeLabel") + " " + user.fullName + ".";
-						}						
+						    //issue:#11 Language Code, refined
+						instance.text = copyProvider.getCopyForId("welcomeLabel" , {fullname:user.fullName});					
 					}
 					break;
 				

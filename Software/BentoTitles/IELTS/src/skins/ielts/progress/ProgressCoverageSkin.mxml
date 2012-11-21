@@ -20,7 +20,7 @@
 		</s:layout>
 		<s:dataProvider>
 			<s:ArrayList>
-				<fx:Object id="CoverageReadingObj" icon="{getStyle('readingIconSmall')}" /> 
+				<fx:Object id="CoverageReadingObj" icon="{getStyle('readingIconSmall')}"/> 
 				<fx:Object id="CoverageListeningObj" icon="{getStyle('listeningIconSmall')}" /> 
 				<fx:Object id="CoverageSpeakingObj" icon="{getStyle('speakingIconSmall')}" /> 
 				<fx:Object id="CoverageWritingObj" icon="{getStyle('writingIconSmall')}" />

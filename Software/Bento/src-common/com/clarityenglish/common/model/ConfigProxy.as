@@ -353,12 +353,13 @@ package com.clarityenglish.common.model {
 						// #322
 						//sendNotification(CommonNotifications.CONFIG_LOADED);
 						//issue:#20
-						CopyProxy.languageCode = config.language;
-						//issue:#11 load ielts.xml twice
-						if ( config.language != "EN") {
-							var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-							copyProxy.getCopy();
-						}
+						/* #problem with login Screen: we have to put all language into one file
+						var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+						copyProxy.setLanguageCode(config.languageCode);
+						*/
+						//#problem with login Screen:
+						var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+						copyProxy.languageCode = config.languageCode;
 						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 					}
 					break;

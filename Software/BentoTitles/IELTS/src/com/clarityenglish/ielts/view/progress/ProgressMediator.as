@@ -42,6 +42,7 @@
 			switch (note.getName()) {
 				case IELTSNotifications.COURSE_CLASS_SELECTED:
 					view.currentCourseClass = note.getBody() as String;
+					trace("currentCourseClass in ProgressMediator is "+view.currentCourseClass);
 					break;
 				
 			}

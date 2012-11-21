@@ -17,6 +17,7 @@ package com.clarityenglish.ielts.view.login {
 	
 	import spark.components.Button;
 	import spark.components.FormHeading;
+	import spark.components.Label;
 	import spark.components.TextInput;
 	
 	public class LoginView extends BentoView implements LoginComponent {
@@ -57,6 +58,12 @@ package com.clarityenglish.ielts.view.login {
 
 		[SkinPart]
 		public var quickStartButton:Button;
+		
+		[SkinPart]
+		public var loginIDLabel:Label;
+		
+		[SkinPart]
+		public var passwordLabel:Label;
 		
 		[Bindable]
 		public var loginKey_lbl:String;
@@ -287,11 +294,19 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				
 				case loginButton:
+					loginButton.label = copyProvider.getCopyForId("loginButton");
 				case addUserButton:
 				case newUserButton:
 				case cancelButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
-					break;				
+					break;
+				case loginIDLabel:
+					trace("login label "+ copyProvider.getCopyForId("loginIDLabel"));
+					instance.text = copyProvider.getCopyForId("loginIDLabel");
+					break;
+				case passwordLabel:
+					passwordLabel.text = copyProvider.getCopyForId("passwordLabel");
+					break;
 			}
 		}
 
@@ -347,15 +362,15 @@ package com.clarityenglish.ielts.view.login {
 			
 			// Override normal text with Last Minute
 			if (_productVersion == IELTSApplication.LAST_MINUTE) { 
-				loginKey_lbl = "Login id:";
+				loginKey_lbl = copyProvider.getCopyForId("loginID");;
 			} else {
 				// #341 This has to be bitwise comparison, not equality
 				if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
-					loginKey_lbl = "Your name:";
+					loginKey_lbl = copyProvider.getCopyForId("yourName");
 				} else if (loginOption & Config.LOGIN_BY_ID) {
-					loginKey_lbl = "Your id:";
+					loginKey_lbl = copyProvider.getCopyForId("yourID");
 				} else if (loginOption & Config.LOGIN_BY_EMAIL) {
-					loginKey_lbl = "Your email:";
+					loginKey_lbl = copyProvider.getCopyForId("yourEmail");;
 				}
 			}
 			

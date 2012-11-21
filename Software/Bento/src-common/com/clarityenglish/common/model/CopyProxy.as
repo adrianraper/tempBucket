@@ -22,11 +22,12 @@ package com.clarityenglish.common.model {
 		public static const NAME:String = "CopyProxy";
 		
 		//issue:#20
-		//public static var languageCode:String = "EN";
-		public static var languageCode:String;
+		// defaultLanguageCode doesn't decide the initial languageCode when getCopy be code, instead it is inside CopyOps. 
+		public static var defaultLanguageCode:String = "EN";
+		public var languageCode:String;
 		
 		private var copy:XML;
-		private var copyEN:XML;
+		private var defaultCopy:XML;
 		
 		public function CopyProxy(data:Object = null) {
 			super(NAME, data);
@@ -35,6 +36,15 @@ package com.clarityenglish.common.model {
 		public function getCopy():void {
 			new RemoteDelegate("getCopy", [], this).execute();
 		}
+		
+		/*#problem with login Screen:
+		public function setLanguageCode(languageString:String):void {
+			trace("enter the setLanguageCode");
+			if (languageString != defaultLanguageCode){
+				sendNotification(CommonNotifications.COPY_LOAD, languageString);
+			}
+			this.languageCode = languageString;
+		}*/
 		
 		/**
 		 * Return the copy for the given id.  If the id is not found the id itself is returned and a message sent to the output window.
@@ -51,14 +61,14 @@ package com.clarityenglish.common.model {
 				throw new Error("Copy literals have not been loaded yet");
 			
 			//issue:#20 track wheter the language code be set successfully 
-			trace("the language code is in CopyProxy is "+ languageCode);
+			//trace("the language code is in CopyProxy is "+ languageCode);
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
 				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
 				
 				// in which case try in English
-				if (languageCode != "EN") {
-					result = copyEN..language.(@code == "EN")..lit.(@name == id);
+				if (languageCode != defaultLanguageCode) {
+					result = defaultCopy..language.(@code == defaultLanguageCode)..lit.(@name == id);
 					if (result.length() == 0) {
 						trace("Not in English either");
 						return id;
@@ -76,7 +86,6 @@ package com.clarityenglish.common.model {
 					str = str.replace(regExp, replaceObj[searchString]);
 				}
 			}
-			trace("str is "+str);
 			return str;
 		}
 		
@@ -110,14 +119,19 @@ package com.clarityenglish.common.model {
 		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
 				case "getCopy":
-					//issue:#11 if the language code is not EN, the ielts.xml will be load twice. 
-					//We store the default en literals in copyEN for backup to the other language if the literal is missing
-					if(!copy) {
-						copy = new XML(data);
+					//issue:#11 refined code, if the language code is not defaultLanugageCode, the ielts.xml will be load twice.  
+					//We store the default languageCode literals in defaultCopy for backup to the other language if the literal is missing
+					/*#problem with login Screen:
+					copy = new XML(data);					
+					if (copy..language.@code == defaultLanguageCode) { 
+						defaultCopy = copy;
+						
+					sendNotification(CommonNotifications.COPY_LOADED);
 					} else {
-						copyEN = copy;
-						copy = new XML(data);
-					}
+						trace("copy load at second time");
+						
+					}*/
+					copy = new XML(data);
 					sendNotification(CommonNotifications.COPY_LOADED);
 					break;
 				default:

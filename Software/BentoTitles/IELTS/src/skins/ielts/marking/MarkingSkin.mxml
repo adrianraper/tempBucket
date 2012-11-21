@@ -96,11 +96,11 @@
 	<s:HGroup width="90%">
 		<s:Spacer width="50%" />
 		<s:Spacer height="10" />
-		<s:Button id="tryAgainButton" label="Try again" fontSize="14" width="137" height="45" />
+		<s:Button id="tryAgainButton" fontSize="14" width="137" height="45" />
 		<s:Spacer width="50%" />
-		<s:Button id="seeAnswersButton" label="See answers" fontSize="14" width="137" height="45" />
+		<s:Button id="seeAnswersButton" fontSize="14" width="137" height="45" />
 		<s:Spacer width="50%" />
-		<s:Button id="moveForwardButton" label="Forward" fontSize="14" width="137" height="45" />
+		<s:Button id="moveForwardButton" fontSize="14" width="137" height="45" />
 		<s:Spacer width="50%" />
 	</s:HGroup>
 

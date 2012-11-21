@@ -30,12 +30,12 @@
 	<s:Label id="loginKey_lbl" left="73" top="217" text="{hostComponent.loginKey_lbl}" fontSize="16" />
 	<s:TextInput id="loginKeyInput" left="73" top="240" width="263" />
 	
-	<s:Label text="This is the ID given to you to start Road to IELTS. It looks like this: 1280-8666-1111." color="#333333" left="73" top="280" width="340" fontSize="14" />
+	<s:Label id="loginIDLabel" color="#333333" left="73" top="280" width="340" fontSize="14" />
 	
-	<s:Label text="Password:" left="73" top="345" fontSize="16" />
+	<s:Label id="passwordLabel" left="73" top="345" fontSize="16" />
 	<s:TextInput id="passwordInput" left="73" top="365" width="263" displayAsPassword="true" />
 	
-	<s:Button id="loginButton" left="73" top="416" width="120" height="44" label="Log in" fontSize="18" />
+	<s:Button id="loginButton" left="73" top="416" width="120" height="44" fontSize="18" />
 	
 	<login:BritishCouncilLoginLogo bottom="0" />
 	<login:GreyCirclesLogin bottom="0" right="0" />
