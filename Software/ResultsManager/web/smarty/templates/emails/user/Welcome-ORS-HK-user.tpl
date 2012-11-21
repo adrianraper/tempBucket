@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome to the new Road to IELTS</title>
 	<!-- <from>support@roadtoielts.com</from> -->
-	<!-- <bcc>support@roadtoielts.com</bcc> -->
 </head>
 <body>
 	

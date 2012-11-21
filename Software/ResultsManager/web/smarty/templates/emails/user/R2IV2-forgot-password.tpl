@@ -6,7 +6,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Your Road to IELTS password</title>
 	<!-- <from>support@roadtoielts.com</from> -->
-	<!-- <bcc>support@roadtoielts.com</bcc> -->
 </head>
 <body>
 	
