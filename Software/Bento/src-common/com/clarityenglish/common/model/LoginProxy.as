@@ -138,12 +138,12 @@ package com.clarityenglish.common.model {
 			// Stop the licence update timer
 			if (licenceTimer) licenceTimer.stop();
 			
-			// Tell the LMS through SCORM that you are stopping
+			// #336 Logout triggers SCORM termination
 			if (configProxy.getConfig().scorm) {
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-				//scormProxy.terminate();				
+				scormProxy.terminate();
 			}
-			
+						
 			// Clear the remote shared object, if there is one
 			var loginSharedObject:SharedObject = SharedObject.getLocal("login");
 			loginSharedObject.clear();
