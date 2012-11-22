@@ -338,10 +338,10 @@ package com.clarityenglish.common.model {
 							sendNotification(CommonNotifications.ADD_USER, loginEvent);
 							
 						} else {
-							sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
+							sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
 						}
 					} else {
-						sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault));
+						sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
 					}
 
 					break;

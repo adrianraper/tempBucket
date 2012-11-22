@@ -51,10 +51,11 @@ package com.clarityenglish.common.vo.config {
 			this.errorNumber = errNum;
 		}
 		
-		public static function create(fault:Fault):BentoError {
+		public static function create(fault:Fault, fatal:Boolean = true):BentoError {
 			var bentoError:BentoError = new BentoError();
 			bentoError.errorContext = fault.faultString;
 			bentoError.errorNumber = new Number(fault.faultCode);
+			bentoError.isFatal = fatal;
 			return bentoError;
 		}
 		
