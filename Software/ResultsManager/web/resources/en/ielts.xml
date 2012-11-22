@@ -84,7 +84,8 @@
 			<lit name="adviceZoneViewNavigator">Advice and tutorials</lit>
 			<lit name="practiceZoneViewNavigator">Practice zone</lit>
 			<lit name="testZoneViewNavigator">Test practice</lit>
-			<lit name="downloadButton">Read eBook</lit>
+			<lit name="ebookButton">Open eBook</lit>
+			<lit name="pdfButton">PDF</lit>
 			<lit name="videoButton">Watch video</lit>
 			<lit name="questionVideoLabel">Starting out</lit>
 			<lit name="questionVideoInstructionLabel">First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test</lit>
@@ -355,7 +356,8 @@
 			<lit name="adviceZoneViewNavigator">1Advice and tutorials</lit>
 			<lit name="practiceZoneViewNavigator">1Practice zone</lit>
 			<lit name="testZoneViewNavigator">1Test practice</lit>
-			<lit name="downloadButton">1Read eBook</lit>
+			<lit name="ebookButton">1Open eBook</lit>
+			<lit name="pdfButton">1PDF</lit>
 			<lit name="videoButton">1Watch video</lit>
 			<lit name="questionVideoLabel">1Starting out</lit>
 			<lit name="questionVideoInstructionLabel">1首先，可在线阅读电子书或下载PDF版文档，之后，请点击观看关于本部分考试核心介绍的视频。</lit>

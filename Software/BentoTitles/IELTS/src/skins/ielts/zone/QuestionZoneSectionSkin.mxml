@@ -11,9 +11,9 @@
 			import mx.events.FlexEvent;
 			
 			protected function colourizeButtons(event:FlexEvent = null):void {
-				//readButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
-				downloadButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
-				videoButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
+				if (readButton) readButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
+				if (downloadButton) downloadButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
+				if (videoButton) videoButton.setStyle('chromeColor', getStyle(hostComponent.courseClass + 'Color'));
 			}
 			
 		]]>
@@ -45,7 +45,7 @@
 				 source.speaking="@Embed(source='/skins/ielts/assets/zone/questionzone_speaking.png')" />
 	
 	<s:HGroup top="330" horizontalCenter="0" gap="15">
-		<!-- Even though this button says 'Read ebook' really it is download on iPad since we are using Safari to display the PDF -->
+		<s:Button id="readButton" color="#FFFFFF" width="150" visible="{getStyle('showOpenEbookButton')}" includeInLayout="{getStyle('showOpenEbookButton')}" />
 		<s:Button id="downloadButton" color="#FFFFFF" width="150" />
 		<s:Button id="videoButton" color="#FFFFFF" width="150" />
 	</s:HGroup>

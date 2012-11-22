@@ -207,6 +207,7 @@ zone|QuestionZoneVideoSectionView {
 
 zone|QuestionZoneSectionView {
 	skinClass: ClassReference("skins.ielts.zone.QuestionZoneSectionSkin");
+	showOpenEbookButton: true; /* GH #52 */
 }
 
 zone|QuestionZoneSectionView #downloadButton {

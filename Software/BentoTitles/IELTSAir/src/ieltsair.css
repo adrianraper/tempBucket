@@ -106,8 +106,13 @@ home|HomeView {
 zone|ExamPracticeZoneSectionView {
 	showArrows: false;
 }
+
 zone|ExamPracticeZoneSectionView #list {
 	horizontalScrollPolicy: auto;
+}
+
+zone|QuestionZoneSectionView { /* GH #52 */
+	showOpenEbookButton: false;
 }
 
 /* Exercise view styles */
