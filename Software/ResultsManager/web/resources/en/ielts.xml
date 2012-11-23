@@ -63,10 +63,6 @@
 			<lit name="yourID">Your id:</lit>
 			<lit name="yourEmail">Your email:</lit>
             <lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
-			<lit name="videoRichText">- 11 videos of British Council experts giving IELTS advice</lit>
-			<lit name="mockTestRichText">- Mock test papers with model answers</lit>
-			<lit name="hourRichText">- 30 hours of interactive practice activities</lit>
-			<lit name="buyInfoButton">Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
 			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
 			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
 			<lit name="Reading">Reading</lit>
@@ -103,8 +99,7 @@
 			<lit name="adviceZoneViewNavigator">Advice and tutorials</lit>
 			<lit name="practiceZoneViewNavigator">Practice zone</lit>
 			<lit name="testZoneViewNavigator">Test practice</lit>
-			<lit name="ebookButton">Open eBook</lit>
-			<lit name="pdfButton">PDF</lit>
+			<lit name="downloadButton">Read eBook</lit>
 			<lit name="videoButton">Watch video</lit>
 			<lit name="questionVideoLabel">Starting out</lit>
 			<lit name="questionVideoInstructionLabel">First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test</lit>
@@ -382,10 +377,6 @@
 			<lit name="yourID">1Your id:</lit>
 			<lit name="yourEmail">1Your email:</lit>
 			<lit name="registerInfoButton">1Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
-			<lit name="videoRichText">1- 11 videos of British Council experts giving IELTS advice</lit>
-			<lit name="mockTestRichText">1- Mock test papers with model answers</lit>
-			<lit name="hourRichText">1- 30 hours of interactive practice activities</lit>
-			<lit name="buyInfoButton">1Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
 			<lit name="noProgressText">1Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
 			<lit name="colorBarIntroLabel">1The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
 	        <lit name="Reading">1阅读</lit>
@@ -422,8 +413,7 @@
 			<lit name="adviceZoneViewNavigator">1Advice and tutorials</lit>
 			<lit name="practiceZoneViewNavigator">1Practice zone</lit>
 			<lit name="testZoneViewNavigator">1Test practice</lit>
-			<lit name="ebookButton">1Open eBook</lit>
-			<lit name="pdfButton">1PDF</lit>
+			<lit name="downloadButton">1Read eBook</lit>
 			<lit name="videoButton">1Watch video</lit>
 			<lit name="questionVideoLabel">1Starting out</lit>
 			<lit name="questionVideoInstructionLabel">1首先，可在线阅读电子书或下载PDF版文档，之后，请点击观看关于本部分考试核心介绍的视频。</lit>
@@ -695,10 +685,6 @@
 			<lit name="yourID">xYour id:</lit>
 			<lit name="yourEmail">xYour email:</lit>
             <lit name="registerInfoButton">xRegister for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
-			<lit name="videoRichText">x- 11 videos of British Council experts giving IELTS advice</lit>
-			<lit name="mockTestRichText">x- Mock test papers with model answers</lit>
-			<lit name="hourRichText">x- 30 hours of interactive practice activities</lit>
-			<lit name="buyInfoButton">xSubscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
 			<lit name="noProgressText">xWelcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
 			<lit name="colorBarIntroLabel">xThe colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
 			<lit name="Reading">xReading</lit>
