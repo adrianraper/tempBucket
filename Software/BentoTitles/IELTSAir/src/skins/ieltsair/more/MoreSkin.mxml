@@ -62,7 +62,7 @@
 	<s:Group left="40" right="40" top="144" includeIn="about">
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AboutGraphic')" />		
 		<s:RichText id="aboutUsRichText" left="0" right="0" top="100" height="306" columnCount="2" columnGap="55"/>
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AboutLogos')" left="500" top="330"/>
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AboutLogos')" right="10" top="330"/>
 	</s:Group>
 	
 	<s:Group left="40" right="40" top="170" includeIn="contact">

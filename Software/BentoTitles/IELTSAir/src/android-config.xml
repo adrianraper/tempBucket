@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<id>android</id>
-	<productCode>52,53</productCode>
-	<loginOption>128</loginOption>
-    <language>ZH</language>
+	<id>/area1/RoadToIELTS2 ce.com</id>
+	<developer>DK</developer>
+	<productCode>52</productCode>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<channel name='android-rackspace' caption='android-rackspace'>
@@ -11,10 +10,15 @@
 	</channel>
 	<sharedMedia />
 	<brandingMedia />
+	<language>EN*</language>
 	
-	<contentPath>http://www.clarityenglish.com/ContentTestbed/</contentPath>
+	<contentPath>http://192.168.8.81/Content/</contentPath>
+	<remoteDomain>http://192.168.8.81/</remoteDomain>
+	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway>
+	
+	<!--contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway-->
 	
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>

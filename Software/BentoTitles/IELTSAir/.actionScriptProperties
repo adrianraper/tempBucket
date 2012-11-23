@@ -21,9 +21,9 @@
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/spark_dmv.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
-          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/applicationupdater_ui.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/airframework.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/applicationupdater_ui.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
           <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
         </excludedEntries>
       </libraryPathEntry>
@@ -48,36 +48,36 @@
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
     <buildTarget buildTargetName="com.adobe.flexide.multiplatform.ios.platform" iosSettingsVersion="1" provisioningFile="C:/Users/Dave/.ssh/ios-clarity/development/RoadToIELTS2.mobileprovision" releasePackageType="ipa-ad-hoc">
-      <airSettings airCertificatePath="C:/Users/Dave/.ssh/ios-clarity/development/ios_development.p12" airTimestamp="true" version="1">
+      <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.ios.platform" version="2"/>
+      <airSettings airCertificatePath="C:/Users/Dave/.ssh/ios-clarity/development/ios_development.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes>
           <pathEntry path="config.xml"/>
         </airExcludes>
+        <anePaths/>
       </airSettings>
-      <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.ios.platform" version="2"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget buildTargetName="default">
-      <airSettings airCertificatePath="" airTimestamp="true" version="1">
-        <airExcludes/>
-      </airSettings>
       <multiPlatformSettings enabled="false" includePlatformLibs="false" platformID="default" version="2"/>
+      <airSettings airCertificatePath="" airTimestamp="true" anePathSet="false" version="1">
+        <airExcludes/>
+        <anePaths/>
+      </airSettings>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget buildTargetName="com.qnx.flexide.multiplatform.qnx.platform" extraPackagingOptions="" signBarFile="true">
-      <airSettings airCertificatePath="" airTimestamp="true" version="1">
-        <airExcludes/>
-      </airSettings>
       <multiPlatformSettings enabled="false" includePlatformLibs="false" platformID="com.qnx.flexide.multiplatform.qnx.platform" version="2"/>
+      <airSettings airCertificatePath="" airTimestamp="true" anePathSet="false" version="1">
+        <airExcludes/>
+        <anePaths/>
+      </airSettings>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget airDownloadURL="https://market.android.com/details?id=com.adobe.air" androidSettingsVersion="1" buildTargetName="com.adobe.flexide.multiplatform.android.platform">
       <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.android.platform" version="2"/>
-      <airSettings airCertificatePath="c:/certificates/ClarityAndroid.p12" airTimestamp="true" version="1">
-        <airExcludes>
-          <pathEntry path="ios-config.xml"/>
-          <pathEntry path="skins/ielts"/>
-          <pathEntry path="config.xml"/>
-        </airExcludes>
+      <airSettings airCertificatePath="D:/alice folder/others/android_dev.p12" airTimestamp="true" anePathSet="true" version="1">
+        <airExcludes/>
+        <anePaths/>
       </airSettings>
       <actionScriptSettings version="1"/>
     </buildTarget>
