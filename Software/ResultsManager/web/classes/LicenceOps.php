@@ -171,10 +171,11 @@ EOD;
 	 */
 	function checkExistingLicence($user, $productCode, $licence) {
 		// Is there a record in T_Session for this user/product since the date?
+		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
 		$sql = <<<EOD
 			SELECT * FROM T_Session s
 			WHERE s.F_UserID = ?
-			AND s.F_EndDateStamp >= ?
+			AND s.F_StartDateStamp >= ?
 EOD;
 
 		// To allow old Road to IELTS to count with the new
@@ -213,18 +214,19 @@ EOD;
 	 */
 	function countUsedLicences($rootID, $productCode, $licence) {
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
 		if ($licence->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
 				FROM T_Session s, T_User u
 				WHERE s.F_UserID = u.F_UserID
-				AND s.F_EndDateStamp >= ?
+				AND s.F_StartDateStamp >= ?
 EOD;
 		} else {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
 				FROM T_Session s
-				WHERE s.F_EndDateStamp >= ?
+				WHERE s.F_StartDateStamp >= ?
 EOD;
 		}
 		
@@ -426,19 +428,20 @@ EOD;
 		$fromDate = strftime('%Y-%m-%d 00:00:00', $fromDateStamp);
 		
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
 		if ($title->licenceType == Title::LICENCE_TYPE_TT) {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(u.F_UserID)) AS licencesUsed 
 				FROM T_Session s, T_User u
 				WHERE s.F_UserID = u.F_UserID
-				AND s.F_EndDateStamp >= ?
+				AND s.F_StartDateStamp >= ?
 				AND s.F_Duration > 15
 EOD;
 		} else {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
 				FROM T_Session s
-				WHERE s.F_EndDateStamp >= ?
+				WHERE s.F_StartDateStamp >= ?
 				AND s.F_Duration > 15
 EOD;
 		}
