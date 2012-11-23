@@ -72,8 +72,12 @@
     </buildTarget>
     <buildTarget airDownloadURL="https://market.android.com/details?id=com.adobe.air" androidSettingsVersion="1" buildTargetName="com.adobe.flexide.multiplatform.android.platform">
       <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.android.platform" version="2"/>
-      <airSettings airCertificatePath="C:/certificates/ClarityCertificate2015.pfx" airTimestamp="true" version="1">
-        <airExcludes/>
+      <airSettings airCertificatePath="c:/certificates/ClarityAndroid.p12" airTimestamp="true" version="1">
+        <airExcludes>
+          <pathEntry path="ios-config.xml"/>
+          <pathEntry path="skins/ielts"/>
+          <pathEntry path="config.xml"/>
+        </airExcludes>
       </airSettings>
       <actionScriptSettings version="1"/>
     </buildTarget>
