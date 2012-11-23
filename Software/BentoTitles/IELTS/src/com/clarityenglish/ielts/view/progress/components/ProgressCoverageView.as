@@ -75,9 +75,13 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		public var courseSelect:Signal = new Signal(String);
 		
+		[Bindable]
+		public var hostCopyProvider:CopyProvider;
+		
 		//issue:#11 language Code
 		public override function setCopyProvider(copyProvider:CopyProvider):void {
-			this.copyProvider = copyProvider;
+			super.setCopyProvider(copyProvider);
+			this.hostCopyProvider = copyProvider;
 		}
 		
 		/**

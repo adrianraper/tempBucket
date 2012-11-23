@@ -33,7 +33,7 @@
 		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" />
 		<s:Image source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSBigIcon')" width="100%" top="12" />
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
-		<s:SWFLoader id="upgradeButton" source="@Embed(source='/skins/ielts/assets/title/upgrade.jpg')" right="0" top="44" 
+		<s:SWFLoader id="upgradeButton" source="{hostComponent.assetFolder}upgrade.jpg" right="0" top="44" 
 					 visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 					 includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
@@ -48,16 +48,16 @@
 				  includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}">
 			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='IELTSLogoLastMinute_Icon')" left="0" top="0" width="40" height="40" />
 			<s:VGroup>
-				<s:Label text="Road to IELTS - Last Minute" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
-				<s:Label text="Special last minute practice only for British Council IELTS candidates!" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="92%" paddingLeft="7" lineHeight="18" />
+				<s:Label id="LMLabel" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="7"/>	
+				<s:Label id="LMTextLabel" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="92%" paddingLeft="7" lineHeight="18" />
 			</s:VGroup>
 		</s:HGroup>
 		
 		<s:HGroup id="fullVersion" visible="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}"
 									includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.FULL_VERSION}">
 			<s:VGroup>
-				<s:Label text="Road to IELTS" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="0"/>	
-				<s:Label text="IELTS preparation and practice" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" paddingLeft="0" lineHeight="18" />
+				<s:Label id="FVLabel" top="0" left="30" color="#174A7D" fontSize="16" fontWeight="bold" paddingTop="0" paddingLeft="0"/>	
+				<s:Label id="FVTextLabel" fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" paddingLeft="0" lineHeight="18" />
 			</s:VGroup>
 		</s:HGroup>
 		
@@ -69,7 +69,7 @@
 		</s:Rect>
 		<s:Spacer height="3" />
 		<s:VGroup id="loginBlock" width="100%" includeIn="loginStates" >
-			<s:Label text="Please type your login details to continue." 
+			<s:Label id="loginDetailLabel"
 					 text.loginNetwork="Please type your login details if you want to save your progress records."
 					 fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
@@ -79,7 +79,7 @@
 			</s:HGroup>
 			<s:Spacer height="5" />
 			<s:HGroup id="passwordBlock" includeInLayout="{hostComponent.verified}" visible="{hostComponent.verified}">
-				<s:Label text="Password:" fontWeight="bold" paddingTop="6" />
+				<s:Label id="passwordLabel" fontWeight="bold" paddingTop="6" />
 				<s:TextInput id="passwordInput" displayAsPassword="true" width="180" />
 			</s:HGroup>
 			<s:Spacer height="3" />
@@ -89,7 +89,7 @@
 			</s:HGroup>
 		</s:VGroup>
 		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
-			<s:Label text="Please type your details to register." 
+			<s:Label id="registerDetailLabel" 
 					text.registerNetwork="This is the first time you have used the program, click New user to confirm." 
 					fontFamily="HelveticaNeueLtStd" fontSize="12.6" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />

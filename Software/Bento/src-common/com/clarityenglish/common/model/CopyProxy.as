@@ -24,17 +24,18 @@ package com.clarityenglish.common.model {
 		//issue:#20
 		// defaultLanguageCode doesn't decide the initial languageCode when getCopy be code, instead it is inside CopyOps. 
 		public static var defaultLanguageCode:String = "EN";
-		public var languageCode:String;
+		public static var languageCode:String;
 		
 		private var copy:XML;
-		private var defaultCopy:XML;
+		//private var defaultCopy:XML;
 		
 		public function CopyProxy(data:Object = null) {
 			super(NAME, data);
 		}
 		
 		public function getCopy():void {
-			new RemoteDelegate("getCopy", [], this).execute();
+			var param:Array = [ defaultLanguageCode ];
+			new RemoteDelegate("getCopy", param, this).execute();
 		}
 		
 		/*#problem with login Screen:
@@ -61,14 +62,14 @@ package com.clarityenglish.common.model {
 				throw new Error("Copy literals have not been loaded yet");
 			
 			//issue:#20 track wheter the language code be set successfully 
-			//trace("the language code is in CopyProxy is "+ languageCode);
+			trace("the language code is in CopyProxy is "+ languageCode);
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
 				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
 				
 				// in which case try in English
 				if (languageCode != defaultLanguageCode) {
-					result = defaultCopy..language.(@code == defaultLanguageCode)..lit.(@name == id);
+					result = copy..language.(@code == defaultLanguageCode)..lit.(@name == id);
 					if (result.length() == 0) {
 						trace("Not in English either");
 						return id;
@@ -131,6 +132,10 @@ package com.clarityenglish.common.model {
 						trace("copy load at second time");
 						
 					}*/
+					if (!copy) {
+						trace("the first copy is "+XML(data));
+					}
+					
 					copy = new XML(data);
 					sendNotification(CommonNotifications.COPY_LOADED);
 					break;

@@ -50,6 +50,25 @@
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			<lit name="loginIDLabel">This is the ID given to you to start Road to IELTS. It looks like this: 1280-8666-1111.</lit>
+			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
+			<lit name="registerDetailLabel">Please type your details to register.</lit>
+			<lit name="LMLabel">Road to IELTS - Last Minute</lit>
+			<lit name="LMTextLabel">Special last minute practice only for British Council IELTS candidates!</lit>
+			<lit name="FVLabel">Road to IELTS</lit>
+			<lit name="FVTextLabel">IELTS preparation and practice</lit>
+			<lit name="loginButton">Log in</lit>
+			<lit name="passwordLabel">Password:</lit>
+			<lit name="yourName">Your name:</lit>
+			<lit name="loginID">Login id:</lit>
+			<lit name="yourID">Your id:</lit>
+			<lit name="yourEmail">Your email:</lit>
+            <lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
+			<lit name="videoRichText">- 11 videos of British Council experts giving IELTS advice</lit>
+			<lit name="mockTestRichText">- Mock test papers with model answers</lit>
+			<lit name="hourRichText">- 30 hours of interactive practice activities</lit>
+			<lit name="buyInfoButton">Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
+			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
+			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
 			<lit name="Reading">Reading</lit>
 			<lit name="Listening">Listening</lit>
 			<lit name="Speaking">Speaking</lit>
@@ -92,9 +111,12 @@
 			<lit name="adviceVideoLabel">Advice and tutorials</lit>
 			<lit name="adviceVideoInstructionLabel">Click on a thumbnail to play the video</lit>
 			<lit name="practiceZoneLabel">Test practice</lit>
+            <lit name="practiceZoneInstructionLabel">Choose a set below and start your IELTS language practice</lit>
 			<lit name="difficulty">Difficulty:</lit>
-			<lit name="practiceZoneInstructionLabel">Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started.</lit>
-		    <lit name="practiceZoneNoTestLabel">There is no downloadable test practice materials in this section.  Watch the tutorials in the Advice and tutorials section to see what happens in the {courseClass} test interview.</lit>
+			<lit name="examZoneLabel">Test practice</lit>
+			<lit name="examZoneInstructionLabel1">Download complete test papers. Click the audio button to start the mock listening test. As in the test, you cannot pause the audio once you have started.</lit>
+			<lit name="examZoneInstructionLabel2">Download complete test papers with answers.</lit>
+		    <lit name="examZoneNoTestLabel">There is no downloadable test practice materials in this section.  Watch the tutorials in the Advice and tutorials section to see what happens in the {courseClass} test interview.</lit>
 		    <lit name="progressNavBarCoverage">My coverage</lit>
 			<lit name="progressNavBarCompare">Compare</lit>
 			<lit name="progressNavBarAnalyse">Analyse</lit>
@@ -104,6 +126,11 @@
 			<lit name="adviceZoneComponent">Advice and tutorials</lit>
 			<lit name="examPracticeComponent">Test practice</lit>
 			<lit name="practiceZoneComponent">Practice zone</lit>
+			<lit name="notCurAvailable">Not currently available.</lit>
+			<lit name="onlyAvailableFV">Only available in the Full Version. Click above to upgrade.</lit>
+			<lit name="onlyAvailableLM">Only available in the Last Minute version. Click above to upgrade.</lit>
+			<lit name="notAvailbleDemo">Not available in this demo. For demo exercises, please go to Practice zone - Set 2. For demo practice test, please click on Practice test 1.</lit>
+			<lit name="notAvailble">Not available in the current version. Click above to upgrade.</lit>
 			<lit name="compareInstructionLabel">This chart compares your scores with other Road to IELTS users worldwide</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
 			<lit name="analysisInstructionLabel1">This shows how you have spent your time</lit>
@@ -118,6 +145,7 @@
 			<lit name="scoreGridC3">Score %</lit>
 			<lit name="scoreGridC4">Time spen</lit>
 			<lit name="scoreGridC5">Date</lit>
+			<lit name="countdownHeading">How long until my test?</lit>
 			<lit name="setTestDateLabel">Please set your test date below:</lit>
 			<lit name="testDateLabel">Date:</lit>
 			<lit name="countDownLabel1">This is the remaining time until your test.</lit>
@@ -132,6 +160,13 @@
 			<lit name="accountStartDateLabel">Account start date:</lit>
 			<lit name="accountExpiryDateLabel">Account expiry date:</lit>
 			<lit name="saveChangesButton">Save changes</lit>
+			<lit name="countdownHeadingLabel">1How long until my test?</lit>
+			<lit name="hourLabel">1Hour:</lit>
+			<lit name="minuteLabel">Minute:</lit>
+			<lit name="currentPwdLabel">Current password:</lit>
+			<lit name="newPsdLabel">New password:</lit>
+			<lit name="confirmPsdLabel">Confirm password:</lit>
+			<lit name="IELTSAppsLabel">IELTS Apps</lit>
 			<lit name="supportCaptionSpan1">How to use Road to IELTS</lit>
 			<lit name="paragraphContentSpan1">Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts onvideo, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
 			<lit name="creditsRichText">
@@ -206,6 +241,10 @@
 						Council will be pleased to make the necessary arrangements.</p>
 			    ]]>
 			</lit>
+			<lit name="keyScreenSpan">Key screens</lit>
+			<lit name="homeScreenIntroSpan">The Home screen is where you choose the skill you would like to work on.</lit>
+			<lit name="skillScreenIntroSpan">The Skill screen is where you access the eBook, advice videos, and the interactive practice activities.</lit>
+			<lit name="exerciseSreenIntroSpan">When you choose to work on an activity in the Practice zone, you will see this Exercise screen.</lit>
 			<lit name="moreAboutUs">About us</lit>
 			<lit name="moreContactUs">Contact us</lit>
 			<lit name="aboutUsContent">
@@ -232,40 +271,54 @@
 			</lit>
 			<lit name="contactUsContent1">
 			    <![CDATA[
-				    <p>
-					<span fontWeight="bold">Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email
+				    <p><span fontWeight="bold">Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email
 					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem and the URL of
 					your course (if you are running online).<br/>
 					Clarity Language Consultants Ltd<br/>
 					PO Box 163, Sai Kung, Hong Kong<br/>
 					Tel: +852 2701 1787<br/>
 					Fax: +852 2791 6484<br/>
-					</p>
+					</p>				
 			    ]]>
 			</lit>
+            <lit name="clarityRichText">
+			    <![CDATA[
+					<p><span fontWeight="bold">Clarity Language Consultants Ltd</span><br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/></p>					
+				 ]]>
+			</lit>			
 			<lit name="contactUsContent2">
 			    <![CDATA[
-					<p>
-					<span fontWeight="bold">Content problems</span><br/>If you have any enquires about the content, for example, if you have questions about 
+					<p><span fontWeight="bold">Content problems</span><br/>If you have any enquires about the content, for example, if you have questions about 
 					an answer in the exercises, please contact British Council.
-					</p>
+					</p>					
 				 ]]>
 			</lit>
-			<lit name="exerciseBackToMenuButton">1Back to Menu</lit>
-			<lit name="exerciseStartAgainButton">1Start again</lit>
-			<lit name="exerciseBackButton">1Back</lit>
-			<lit name="exerciseForwardButton">1Forward</lit>
-			<lit name="exerciseFeedbackButton">1Feedback</lit>
-			<lit name="exerciseMarkingButton">1Marking"</lit>
-			<lit name="exerciseLogOutButton">1Log out</lit>
-			<lit name="tryAgainButton">1Try again</lit>
-			<lit name="seeAnswersButton">1See answers</lit>
-			<lit name="moveForwardButton">1Forward</lit>
-			<lit name="loseAnswerWarning1">1Are you sure you want to leave this exercise?</lit>
-			<lit name="loseAnswerWarning2">(1You will lose your work in this exercise.)</lit>
-			<lit name="feedbackWarning">1This exercise has feedback you haven't read. Do you want to read it?</lit>
+			<lit name="upGradeRichText">
+			    <![CDATA[
+					<p><span fontWeight="bold">Upgrade?</span><br/>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</p>					
+				 ]]>
+			</lit>
+			<lit name="testDriveSpan">This Test Drive version of Road to IELTS gives you all the IELTS basics.</lit>
+			<lit name="userManualLabel">Click here for a detailed user manual.</lit>
+			<lit name="exerciseBackToMenuButton">Back to Menu</lit>
+			<lit name="exerciseStartAgainButton">Start again</lit>
+			<lit name="exerciseBackButton">Back</lit>
+			<lit name="exerciseForwardButton">Forward</lit>
+			<lit name="exerciseFeedbackButton">Feedback</lit>
+			<lit name="exerciseMarkingButton">Marking</lit>
+			<lit name="exerciseLogOutButton">Log out</lit>
+			<lit name="tryAgainButton">Try again</lit>
+			<lit name="seeAnswersButton">See answers</lit>
+			<lit name="moveForwardButton">Forward</lit>
+			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
+			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
+			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
+			<lit name="thankYouLabel">Thank you for using Road to IELTS.</lit>
+			<lit name="weWouldLabel">We would love to know what you think.</lit>
+			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 		</group>
 	</language>
+	
 	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
 		<group name="group">
 		    <lit name="applicationName">IELTS</lit>
@@ -315,13 +368,26 @@
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
-			<lit name="loginIDLabel">123This is the ID given to you to start Road to IELTS. It looks like this: 1280-8666-1111.</lit>
+			<lit name="loginIDLabel">1This is the ID given to you to start Road to IELTS. It looks like this: 1280-8666-1111.</lit>
+			<lit name="loginDetailLabel">1Please type your login details to continue.</lit>
+			<lit name="registerDetailLabel">1Please type your details to register.</lit>
+			<lit name="LMLabel">1Road to IELTS - Last Minute</lit>
+			<lit name="LMTextLabel">1Special last minute practice only for British Council IELTS candidates!</lit>
+			<lit name="FVLabel">1Road to IELTS</lit>
+			<lit name="FVTextLabel">1IELTS preparation and practice</lit>
 			<lit name="loginButton">1Log in</lit>
 			<lit name="passwordLabel">1Password:</lit>
 			<lit name="yourName">1Your name:</lit>
 			<lit name="loginID">1Login id:</lit>
 			<lit name="yourID">1Your id:</lit>
 			<lit name="yourEmail">1Your email:</lit>
+			<lit name="registerInfoButton">1Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
+			<lit name="videoRichText">1- 11 videos of British Council experts giving IELTS advice</lit>
+			<lit name="mockTestRichText">1- Mock test papers with model answers</lit>
+			<lit name="hourRichText">1- 30 hours of interactive practice activities</lit>
+			<lit name="buyInfoButton">1Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
+			<lit name="noProgressText">1Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
+			<lit name="colorBarIntroLabel">1The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
 	        <lit name="Reading">1阅读</lit>
 			<lit name="Listening">1听力</lit>
 			<lit name="Speaking">1口语</lit>
@@ -379,7 +445,12 @@
 			<lit name="adviceZoneComponent">1Advice and tutorials</lit>
 			<lit name="examPracticeComponent">1Test practice</lit>
 			<lit name="practiceZoneComponent">1Practice zone</lit>
-			<lit name="compareInstructionLabel">1This chart compares your scores with other Road to IELTS users worldwide.</lit>
+			<lit name="notCurAvailable">1Not currently available.</lit>
+			<lit name="onlyAvailableFV">1Only available in the Full Version. Click above to upgrade.</lit>
+			<lit name="onlyAvailableLM">1Only available in the Last Minute version. Click above to upgrade.</lit>
+			<lit name="notAvailbleDemo">1Not available in this demo. For demo exercises, please go to Practice zone - Set 2. For demo practice test, please click on Practice test 1.</lit>
+			<lit name="notAvailble">1Not available in the current version. Click above to upgrade.</lit>
+			<lit name="compareInstructionLabel">1This chart compares your scores with other Road to IELTS users worldwide.</lit>			
 			<lit name="chartCaptionLabel">1Average score %</lit>
 			<lit name="analysisInstructionLabel1">1This shows how you have spent your time.</lit>
 			<lit name="analysisInstructionLabel2">1Time spent on each skill</lit>
@@ -409,6 +480,13 @@
 			<lit name="accountStartDateLabel">1Account start date:</lit>
 			<lit name="accountExpiryDateLabel">1Account expiry date:</lit>
 			<lit name="saveChangesButton">1Save changes</lit>
+			<lit name="countdownHeadingLabel">1How long until my test?</lit>
+			<lit name="hourLabel">1Hour:</lit>
+			<lit name="minuteLabel">1Minute:</lit>
+			<lit name="currentPwdLabel">Current password:</lit>
+			<lit name="newPsdLabel">New password:</lit>
+			<lit name="confirmPsdLabel">Confirm password:</lit>
+			<lit name="IELTSAppsLabel">1IELTS Apps</lit>
 			<lit name="supportCaptionSpan1">1如何使用Road to IELTS</lit>
 			<lit name="paragraphContentSpan1">1Road to IELTS分为四个技能单元，与雅思考试的四项内容一一对应。在各个技能单元中，学习者可通过阅读相关考试介绍，观看雅思考试专家指导视频，并通过互动练习和模拟试题对特定题型进行操练，行之有效地准备雅思考试。</lit>
 			<lit name="creditsRichText">
@@ -483,6 +561,10 @@
 						Council will be pleased to make the necessary arrangements.</p>
 			    ]]>
 			</lit>
+			<lit name="keyScreenSpan">1Key screens</lit>
+			<lit name="homeScreenIntroSpan">1The Home screen is where you choose the skill you would like to work on.</lit>
+			<lit name="skillScreenIntroSpan">1The Skill screen is where you access the eBook, advice videos, and the interactive practice activities.</lit>
+			<lit name="exerciseSreenIntroSpan">1When you choose to work on an activity in the Practice zone, you will see this Exercise screen.</lit>
 			<lit name="moreAboutUs">1About us</lit>
 			<lit name="moreContactUs">1Contact us</lit>
 			<lit name="aboutUsContent">
@@ -509,19 +591,28 @@
 			</lit>
 			<lit name="contactUsContent1">
 			    <![CDATA[
-				    <p>
-					<span fontWeight="bold">123技术问题</span><br/>Clarity愿帮助您解决任何技术难题。请描述您遇到的难题，将您登陆本课程时的网页地址或网站，一齐发送至
-					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a>。<br/>Clarity Language Consultants Ltd<br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/>
+				    <p><span fontWeight="bold">123技术问题</span><br/>Clarity愿帮助您解决任何技术难题。请描述您遇到的难题，将您登陆本课程时的网页地址或网站，一齐发送至
+					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a>。<br/>Clarity Language Consultants Ltd<br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/>					
 					</p>
 			    ]]>
 			</lit>
-			<lit name="contactUsContent2">
+			<lit name="clarityRichText">
 			    <![CDATA[
-					<p>
-					<span fontWeight="bold">123内容问题</span><br/>如果您在内容方面存在疑问（例如：对练习题中的某个答案存在疑问），请联系英国文化协会。
-					</p>
+					<p><span fontWeight="bold">123Clarity Language Consultants Ltd</span><br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/></p>					
 				 ]]>
 			</lit>
+			<lit name="contactUsContent2">
+			    <![CDATA[
+					<p><span fontWeight="bold">123内容问题</span><br/>如果您在内容方面存在疑问（例如：对练习题中的某个答案存在疑问），请联系英国文化协会。</p>					
+				 ]]>
+			</lit>
+			<lit name="upGradeRichText">
+			    <![CDATA[
+					<p><span fontWeight="bold">123Upgrade?</span><br/>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</p>					
+				 ]]>
+			</lit>
+			<lit name="testDriveSpan">1This Test Drive version of Road to IELTS gives you all the IELTS basics.</lit>
+			<lit name="userManualLabel">1Click here for a detailed user manual.</lit>
 			<lit name="exerciseBackToMenuButton">1Back to Menu</lit>
 			<lit name="exerciseStartAgainButton">1Start again</lit>
 			<lit name="exerciseBackButton">1Back</lit>
@@ -535,6 +626,325 @@
 			<lit name="loseAnswerWarning1">1Are you sure you want to leave this exercise?</lit>
 			<lit name="loseAnswerWarning2">(1You will lose your work in this exercise.)</lit>
 			<lit name="feedbackWarning">1This exercise has feedback you haven't read. Do you want to read it?</lit>
+			<lit name="thankYouLabel">1Thank you for using Road to IELTS.</lit>
+			<lit name="weWouldLabel">1We would love to know what you think.</lit>
+			<lit name="creditCaptionLabel">1Credits and acknowledgements</lit>
+		</group>
+	</language>
+	
+	<language name="Japanese" code="JP" mediaFolder="JP">
+		<group name="group">	
+			<lit name="applicationName">IELTS</lit>
+			<lit name="applicationVersion">Version {version}</lit>
+			
+			<lit name="errorUnknown" code="100">Unknown error</lit>			
+			<lit name="errorNoSuchUser" code="200">Your login name or ID is not registered. Please contact your administrator. (option {loginOption})</lit>
+			<lit name="errorNoProductCode" code="201">No productCode sent.</lit>
+			<lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
+			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
+			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account (productCode={productCode})</lit>
+			<lit name="errorNoProductCodeInRoot" code="205">Your account does not have access to this title. (product code={productCode} root={rootID})</lit>
+			<lit name="errorWrongPassword" code="206">That name or id and/or password are not correct. Please try again. (option {loginOption})</lit>
+			<lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
+			<lit name="errorDuplicateUsers" code="208">More than one user matches these details. Please contact your administrator. (login option {loginOption})</lit>
+			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered</lit>
+			<lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
+			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
+			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
+			<lit name="errorLoginKeyEmpty" code="215">The key field can't be empty ({loginOption})</lit>
+			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
+			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>		
+			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
+			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
+			<lit name="errorCantClearLicences" code="302">Unable to clear old licences.</lit>
+			<lit name="errorTrackingLicenceFull" code="303">This licence is full, please contact your administrator.</lit>
+			<lit name="errorConcurrentLicenceFull" code="304">This licence is full, please try again later.</lit>
+			<lit name="errorReadingLicenceControlTable" code="305">Error reading licence control table. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorUnrecognisedLicenceType" code="306">The licence type {licenceType} is not recognised. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorCantFindLicence" code="307">Error, can't find this licence {licenceID}. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number</lit>
+			<lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
+			<lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
+			<lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
+			
+			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}</lit>
+			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id</lit>
+			<lit name="errorParsingExercise" code="402">Unable to read exercise {filename} ({message}). Please contact support@clarityenglish.com with the file name.</lit>
+			<lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple Exercise nodes in the menu xml matching {href}</lit>
+			<lit name="errorCantFindExerciseWithHref" code="404">Unable to find any Exercise nodes in the menu xml matching {href}</lit>
+			
+			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
+			
+			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>			
+			<lit name="loginIDLabel">xThis is the ID given to you to start Road to IELTS. It looks like this: 1280-8666-1111.</lit>
+			<lit name="loginDetailLabel">xPlease type your login details to continue.</lit>
+			<lit name="registerDetailLabel">xPlease type your details to register.</lit>
+			<lit name="LMLabel">xRoad to IELTS - Last Minute</lit>
+			<lit name="LMTextLabel">xSpecial last minute practice only for British Council IELTS candidates!</lit>
+			<lit name="FVLabel">xRoad to IELTS</lit>
+			<lit name="FVTextLabel">xIELTS preparation and practice</lit>
+			<lit name="loginButton">xLog in</lit>
+			<lit name="passwordLabel">xPassword:</lit>
+			<lit name="yourName">xYour name:</lit>
+			<lit name="loginID">xLogin id:</lit>
+			<lit name="yourID">xYour id:</lit>
+			<lit name="yourEmail">xYour email:</lit>
+            <lit name="registerInfoButton">xRegister for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
+			<lit name="videoRichText">x- 11 videos of British Council experts giving IELTS advice</lit>
+			<lit name="mockTestRichText">x- Mock test papers with model answers</lit>
+			<lit name="hourRichText">x- 30 hours of interactive practice activities</lit>
+			<lit name="buyInfoButton">xSubscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
+			<lit name="noProgressText">xWelcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
+			<lit name="colorBarIntroLabel">xThe colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
+			<lit name="Reading">xReading</lit>
+			<lit name="Listening">xListening</lit>
+			<lit name="Speaking">xSpeaking</lit>
+			<lit name="Writing">xWriting</lit>
+			<lit name="lastTimeAC">xLast Minute - Academic module</lit>
+			<lit name="testDriveAC">xTest Drive - Academic module</lit>
+			<lit name="AC">xAcademic module</lit>
+			<lit name="lastTimeGT">xLast Minute - General Training module</lit>
+			<lit name="testDriveGT">xTest Drive - General Training module</lit>
+			<lit name="GT">xGeneral Training module</lit>
+			<lit name="welcomeLabel">ようこそ</lit>
+			<lit name="demoWelcomeLabel">Welcome to the Road to IELTS demo.</lit>
+			<lit name="confirmTestDate">「マイプロフィール」ページで受験日を確認してください。</lit>
+			<lit name="leftTestDate1">xYou have fewer than</lit>
+			<lit name="leftTestDate2">xuntil your test.</lit>
+			<lit name="goodLuck">xGood luck with your test!</lit>
+			<lit name="hopeTestWell">xHope your test went well...</lit>
+			<lit name="overallCoverage">x - overall coverage</lit>
+			<lit name="myProgress">xMy Progress</lit>
+			<lit name="myProfile">xMy Profile</lit>
+			<lit name="help">xHelp</lit>
+			<lit name="credits">xCredits</lit>
+			<lit name="more">xMore</lit>
+			<lit name="Home">xHome</lit>
+			<lit name="Back">xBack</lit>
+			<lit name="LogOut">xLog out</lit>
+			<lit name="day">xday</lit>
+			<lit name="days">xdays</lit>
+			<lit name="lessThan">xLess than</lit>
+			<lit name="leftUntil">xleft until your test.</lit>
+			<lit name="questionZoneViewNavigator">xStarting out</lit>
+			<lit name="adviceZoneViewNavigator">xAdvice and tutorials</lit>
+			<lit name="practiceZoneViewNavigator">xPractice zone</lit>
+			<lit name="testZoneViewNavigator">xTest practice</lit>
+			<lit name="downloadButton">xRead eBook</lit>
+			<lit name="videoButton">xWatch video</lit>
+			<lit name="questionVideoLabel">xStarting out</lit>
+			<lit name="questionVideoInstructionLabel">IELTSのこのセクションに関する重要な情報について、まず電子ブックをクリックして読むか、PDFをダウンロードしてください。それからビデオをクリックして観てください。</lit>
+			<lit name="adviceVideoLabel">xAdvice and tutorials</lit>
+			<lit name="adviceVideoInstructionLabel">サムネイルをクリックして、ビデオを再生してください。</lit>
+            <lit name="practiceZoneLabel">xPractice zone</lit>			
+			<lit name="practiceZoneInstructionLabel">以下からセットを1つ選び、IELTSのトレーニングを開始してください。</lit>
+			<lit name="difficulty">xDifficulty:</lit>
+			<lit name="examZoneLabel">xTest practice</lit>
+			<lit name="examZoneInstructionLabel1">問題用紙一式をダウンロードしてください。音声ボタンをクリックして、模擬リスニングテストを開始してください。実際のIELTSと同様、リスニング問題の開始後は音声を一時停止することはできません。</lit>
+			<lit name="examZoneInstructionLabel2">問題用紙と解答一式をダウンロードしてください。</lit>
+		    <lit name="examZoneNoTestLabel">このセクションにはダウンロードできるテスト練習用の資料はありません。Advice and tutorialsセクションのビデオを観て、スピーキングテストのインタビューがどのように行われるか確認してください。</lit>
+		    <lit name="progressNavBarCoverage">xMy coverage</lit>
+			<lit name="progressNavBarCompare">xCompare</lit>
+			<lit name="progressNavBarAnalyse">xAnalyse</lit>
+			<lit name="progressNavBarScores">xMy scores</lit>
+			<lit name="progressAnonymousLabel">xYou have logged in anonymously, so your progress will not be saved after you close the program.</lit>
+			<lit name="questionZoneComponent">xStarting out</lit>
+			<lit name="adviceZoneComponent">xAdvice and tutorials</lit>
+			<lit name="examPracticeComponent">xTest practice</lit>
+			<lit name="practiceZoneComponent">xPractice zone</lit>
+			<lit name="notCurAvailable">xNot currently available.</lit>
+			<lit name="onlyAvailableFV">xOnly available in the Full Version. Click above to upgrade.</lit>
+			<lit name="onlyAvailableLM">xOnly available in the Last Minute version. Click above to upgrade.</lit>
+			<lit name="notAvailbleDemo">xNot available in this demo. For demo exercises, please go to Practice zone - Set 2. For demo practice test, please click on Practice test 1.</lit>
+			<lit name="notAvailble">xNot available in the current version. Click above to upgrade.</lit>
+			<lit name="compareInstructionLabel">xThis chart compares your scores with other Road to IELTS users worldwide</lit>
+			<lit name="chartCaptionLabel">xAverage score %</lit>
+			<lit name="analysisInstructionLabel1">xThis shows how you have spent your time</lit>
+			<lit name="analysisInstructionLabel2">xTime spent on each skill</lit>
+			<lit name="analysisTime">xYou have spent {x} minute(s) in total</lit>
+			<lit name="courseDurationRenderLabel">xYou have spent</lit>
+			<lit name="courseDurationRenderTime">x{time} min(s)</lit>
+			<lit name="ProgressBarCoverage">x- overall coverage</lit>
+			<lit name="ProgressBarScore">x- average score</lit>
+			<lit name="scoreGridC1">xUnit</lit>
+			<lit name="scoreGridC2">xExercise</lit>
+			<lit name="scoreGridC3">xScore %</lit>
+			<lit name="scoreGridC4">xTime spen</lit>
+			<lit name="scoreGridC5">xDate</lit>
+			<lit name="countdownHeading">How long until my test?</lit>
+			<lit name="setTestDateLabel">xPlease set your test date below:</lit>
+			<lit name="testDateLabel">xDate:</lit>
+			<lit name="countDownLabel1">xThis is the remaining time until your test.</lit>
+			<lit name="countDownLabel2">xYour test is today, good luck!</lit>
+			<lit name="countDownLabel3">xHope your test went well...</lit>
+			<lit name="alertEmtyDateLabel">xPlease set your test date below:</lit>
+			<lit name="updateError">xThe two new passwords you typed must be the same.</lit>
+			<lit name="updateFail">xSorry, these details can't be updated.</lit>
+			<lit name="updateSuccess">xYour details have been saved.</lit>
+			<lit name="registeredNameLabel">xRegistered name:</lit>
+			<lit name="emailLabel">xEmail:</lit>
+			<lit name="accountStartDateLabel">xAccount start date:</lit>
+			<lit name="accountExpiryDateLabel">xAccount expiry date:</lit>
+			<lit name="saveChangesButton">xSave changes</lit>
+			<lit name="countdownHeadingLabel">xHow long until my test?</lit>
+			<lit name="hourLabel">xHour:</lit>
+			<lit name="minuteLabel">xMinute:</lit>
+			<lit name="currentPwdLabel">xCurrent password:</lit>
+			<lit name="newPsdLabel">xNew password:</lit>
+			<lit name="confirmPsdLabel">xConfirm password:</lit>
+			<lit name="IELTSAppsLabel">xIELTS Apps</lit>
+			<lit name="supportCaptionSpan1">xRoad to IELTSの使い方</lit>
+			<lit name="paragraphContentSpan1">xRoad to IELTSは、4つのスキル（リスニング、リーディング、ライティング、スピーキング）で構成されており、それぞれのスキルはIELTSの各パートに対応しています。学習者は、スキルごとに効果的に受験の準備をすることができます。まず各パートに関する説明を読み、IELTSのエキスパートからのアドバイスをビデオで観ます。そして実際的な問題形式に慣れるためのインタラクティブな練習問題と模擬試験を行います。</lit>
+			<lit name="creditsRichText">
+			    <![CDATA[
+			            <p><span fontWeight="bold">xProject Managers</span><br/>
+							Clarity: Joe Law<br/>
+							British Council: Greg Selby</p>							
+						
+						<p><span fontWeight="bold">Lead Programmer</span><br/>
+							Dave Keen</p>
+						
+						<p><span fontWeight="bold">Video recordings</span><br/>
+							Andy Lewis</p>
+						
+						<p><span fontWeight="bold">Sources of original articles and images</span><br/>
+							Photo images are taken from Shutterstock with permission.</p>
+						
+						<p>Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group.</p>
+						
+						<p><span fontWeight="bold">Tapescript</span><br/>
+							Alex Mackarow.</p>
+						
+						<p><span fontWeight="bold">Authentic articles are taken from the following publications or organisations:</span><br/>
+							Abolishing Management, One Slice at a Time<br/>
+							ACTA<br/>
+							American Artist Magazine<br/>
+							Amnesty International USA<br/>
+							Books, etc., Christmas Catalogue<br/>
+							BritainUSA.com<br/>
+							British Medical Journal<br/>
+							Canada's International Development Research Centre<br/>
+							Country Living Magazine<br/>
+							Directory of International Voluntary Work<br/>
+							ERIC Digest<br/>
+							Games on Playing Cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems)<br/>
+							Guns, Germs and Steel<br/>
+							Heathrow Express<br/>
+							Her Majesty's Stationery Office<br/>
+							History Today<br/>
+							Learndirect<br/>
+							Management Today<br/>
+							National Geographic<br/>
+							New Internationalist<br/>
+							New Statesman<br/>
+							Play: An Endangered Species<br/>
+							Prospect Magazine<br/>
+							RECOUP<br/>
+							Royal Mail<br/>
+							Success in Four Minutes or Les<br/>
+							The Articulate Mammal<br/>
+							The Australian Film Television &amp; Radio School<br/>
+							The Economist<br/>
+							The Futurist<br/>
+							The Guardian<br/>
+							The Independent<br/>
+							The Language Instinct<br/>
+							The Observer<br/>
+							The Pocket Guide to the Birds of Britain and North-West Europe<br/>
+							The Sunday Times<br/>
+							The Times<br/>
+							The US Geological Survey (USGS)<br/>
+							Time Europe<br/>
+							To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries<br/>
+							Twenty Species We May Lose in the Next 20 Years<br/>
+							UNESCO<br/>
+							Valleyfair, Cedar Fair, L.P.<br/>
+							Vanishing Languages<br/>
+							Why Newspapers Will Flourish in the Years Ahead<br/>
+							Why Study Ancient World Cultures?</p>
+						
+						<p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the British
+						Council will be pleased to make the necessary arrangements.</p>
+			    ]]>
+			</lit>
+			<lit name="keyScreenSpan">xKey screens</lit>
+			<lit name="homeScreenIntroSpan">xThe Home screen is where you choose the skill you would like to work on.</lit>
+			<lit name="skillScreenIntroSpan">xThe Skill screen is where you access the eBook, advice videos, and the interactive practice activities.</lit>
+			<lit name="exerciseSreenIntroSpan">xWhen you choose to work on an activity in the Practice zone, you will see this Exercise screen.</lit>
+			<lit name="moreAboutUs">xAbout us</lit>
+			<lit name="moreContactUs">xContact us</lit>
+			<lit name="aboutUsContent">
+			    <![CDATA[
+				    <p>xThe British Council is an international charity that is committed to developing a wider knowledge of the English
+						language and promoting the advancement of education to encourage cultural, scientific, technological and other
+						educational exchange. The British Council was founded in 1934, incorporated by Royal Charter in 1940 and registered
+						as a charity under registration numbers 209131 (England and Wales) and SC037733 (Scotland). Our Patron is HM Queen
+					Elizabeth II and HRH The Prince of Wales is our vice-patron.</p>
+					
+					<p>IELTS is jointly owned by the British Council, IDP: IELTS Australia and the University of Cambridge ESOL Examinations
+					(Cambridge ESOL). The British Council has developed the content for Road to IELTS.</p>
+					
+					<p>To find out more about booking your IELTS test with the British Council, click here:
+						<a href="http://takeielts.britishcouncil.org" target="_blank">http://takeielts.britishcouncil.org</a></p>
+					
+					<p>Clarity is an international publisher of online resources for teaching and learning English. Clarity programs have been
+					chosen by thousands of schools and universities, and used by millions of students in over 110 countries around the world.</p>
+					
+					<p>Clarity has additionally customised electronic materials for leading providers of English language teaching, including
+						Cambridge University Press, Oxford University Press, Macmillan Education and the British Council, and has worked on
+					large-scale projects for the Beijing Olympics and HSBC. Clarity has developed the design and software for Road to IELTS.</p>
+				 ]]>
+			</lit>
+			<lit name="contactUsContent1">
+			    <![CDATA[
+				    <p><span fontWeight="bold">x技術的な問題</span><br/>技術的な問題が生じた場合は、Clarityが解決をサポートします。問題の詳細と、プログラムを開始したURLまたはウェブサイトを明記のうえ、
+					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a>にメールをお送りください。<br/>
+					Clarity Language Consultants Ltd<br/>
+					PO Box 163, Sai Kung, Hong Kong<br/>
+					Tel: +852 2701 1787<br/>
+					Fax: +852 2791 6484<br/>
+					</p>
+			    ]]>
+			</lit>
+			 <lit name="clarityRichText">
+			    <![CDATA[
+					<p><span fontWeight="bold">xClarity Language Consultants Ltd</span><br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/></p>					
+				 ]]>
+			</lit>	
+			<lit name="contactUsContent2">
+			    <![CDATA[
+					<p><span fontWeight="bold">x内容に関する問題</span><br/>練習問題の解答など、内容に関してのご質問がある場合は、ブリティッシュ・カウンシルまでお問い合わせください。
+					</p>
+				 ]]>
+			</lit>
+			<lit name="upGradeRichText">
+			    <![CDATA[
+					<p><span fontWeight="bold">xUpgrade?</span><br/>If you would like to enquire about purchasing the full version of Road to IELTS, please contact Clarity.</p>					
+				 ]]>
+			</lit>
+			<lit name="testDriveSpan">xThis Test Drive version of Road to IELTS gives you all the IELTS basics.</lit>
+			<lit name="userManualLabel">xClick here for a detailed user manual.</lit>
+			<lit name="exerciseBackToMenuButton">xBack to Menu</lit>
+			<lit name="exerciseStartAgainButton">xStart again</lit>
+			<lit name="exerciseBackButton">xBack</lit>
+			<lit name="exerciseForwardButton">xForward</lit>
+			<lit name="exerciseFeedbackButton">xFeedback</lit>
+			<lit name="exerciseMarkingButton">xMarking</lit>
+			<lit name="exerciseLogOutButton">xLog out</lit>
+			<lit name="tryAgainButton">xTry again</lit>
+			<lit name="seeAnswersButton">xSee answers</lit>
+			<lit name="moveForwardButton">xForward</lit>
+			<lit name="loseAnswerWarning1">xAre you sure you want to leave this exercise?</lit>
+			<lit name="loseAnswerWarning2">x(You will lose your work in this exercise.)</lit>
+			<lit name="feedbackWarning">xThis exercise has feedback you haven't read. Do you want to read it?</lit>
+			<lit name="thankYouLabel">xThank you for using Road to IELTS.</lit>
+			<lit name="weWouldLabel">xWe would love to know what you think.</lit>
+			<lit name="creditCaptionLabel">xCredits and acknowledgements</lit>
 		</group>
 	</language>
 </literals>

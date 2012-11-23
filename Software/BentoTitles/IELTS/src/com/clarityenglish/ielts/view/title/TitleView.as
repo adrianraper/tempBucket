@@ -201,18 +201,19 @@ package com.clarityenglish.ielts.view.title {
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoGeneralTraing")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
-
-		[Embed(source="/skins/ielts/assets/title/upgrade.jpg")]
-		private var upgradeInfo:Class;
+        
+		//gh#11
+		//[Embed(source="/skins/ielts/assets/title/upgrade.jpg")]
+		private var upgradeInfo:String;
 		
-		[Embed(source="/skins/ielts/assets/title/register.jpg")]
-		private var registerInfo:Class;
+		//[Embed(source="/skins/ielts/assets/title/register.jpg")]
+		private var registerInfo:String;
 		
-		[Embed(source="/skins/ielts/assets/title/price.jpg")]
-		private var priceInfo:Class;
+		//[Embed(source="/skins/ielts/assets/title/price.jpg")]
+		private var priceInfo:String;
 		
-		[Embed(source="/skins/ielts/assets/title/buy.jpg")]
-		private var buyInfo:Class;
+		//[Embed(source="/skins/ielts/assets/title/buy.jpg")]
+		private var buyInfo:String;
 		
 		public var _selectedCourseXML:XML;
 		[Bindable(event="courseSelected")]
@@ -243,6 +244,12 @@ package com.clarityenglish.ielts.view.title {
 			
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "support" ], true);
+		}
+		
+		//gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
+		public function get assetFolder():String {
+			trace ("the language code for the folder is "+ config.languageCode);
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
 		}
 		
 		[Bindable(event="productVersionChanged")]
@@ -320,21 +327,29 @@ package com.clarityenglish.ielts.view.title {
 
 		// #337
 		[Bindable(event="productVersionChanged")]
-		public function get productVersionInfo():Class {
+		public function get productVersionInfo():String {
 			switch (_productVersion) {
 				case IELTSApplication.LAST_MINUTE:
+					//gt#11
+					upgradeInfo = this.assetFolder + "upgrade.jpg";
 					return upgradeInfo;
 					break;
 				
 				case IELTSApplication.TEST_DRIVE:
+					//gt#11
+					registerInfo =  this.assetFolder + "register.jpg";
 					return registerInfo;
 					break;
 				
 				case IELTSApplication.DEMO:
 					// #337 
 					if (config.pricesURL)
+						//gt#11
+						priceInfo = this.assetFolder + "price.jpg";
 						return priceInfo;
 					
+					//gt#11
+					buyInfo	= this.assetFolder + "buy.jpg";
 					return buyInfo;
 					break;
 							
@@ -409,6 +424,7 @@ package com.clarityenglish.ielts.view.title {
 				
 				case logoutButton:
 					instance.addEventListener(MouseEvent.CLICK, onLogoutButtonClick);
+					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 				
 				case backToMenuButton:

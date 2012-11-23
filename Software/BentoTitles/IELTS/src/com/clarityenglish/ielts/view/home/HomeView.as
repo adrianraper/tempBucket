@@ -39,6 +39,12 @@ package com.clarityenglish.ielts.view.home {
 		
 		[SkinPart]
 		public var examTipsCourseButton:Button;
+		
+		[SkinPart]
+		public var noProgressText:Label;
+		
+		[SkinPart]
+		public var colorBarIntroLabel:Label;
 
 		[SkinPart(required="true")]
 		public var readingCoverageBar:CourseBarRenderer;
@@ -180,6 +186,7 @@ package com.clarityenglish.ielts.view.home {
 				
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
+					instance.label = copyProvider.getCopyForId("registerInfoButton");
 					break;
 				//issue:#11 Language Code
 				case readingCoverageBar:
@@ -197,6 +204,12 @@ package com.clarityenglish.ielts.view.home {
 				case writingCoverageBar:
 					instance.courseCaption = copyProvider.getCopyForId("Writing");
 					instance.copyProvider = copyProvider;
+					break;
+				case noProgressText:
+					instance.text = copyProvider.getCopyForId("noProgressText");
+					break;
+				case colorBarIntroLabel:
+					instance.text = copyProvider.getCopyForId("colorBarIntroLabel");
 					break;
 			}
 		}

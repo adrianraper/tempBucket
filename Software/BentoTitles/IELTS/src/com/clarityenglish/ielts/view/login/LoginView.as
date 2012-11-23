@@ -65,6 +65,24 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var passwordLabel:Label;
 		
+		[SkinPart]
+		public var LMLabel:Label;
+		
+		[SkinPart]
+		public var LMTextLabel:Label;
+		
+		[SkinPart]
+		public var FVLabel:Label;
+		
+		[SkinPart]
+		public var FVTextLabel:Label;
+		
+		[SkinPart]
+		public var loginDetailLabel:Label;
+		
+		[SkinPart]
+		public var registerDetailLabel:Label;
+		
 		[Bindable]
 		public var loginKey_lbl:String;
 		
@@ -194,6 +212,12 @@ package com.clarityenglish.ielts.view.login {
 			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
 		}
 		
+		//gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
+		public function get assetFolder():String {
+			trace ("the language code for the folder is "+ config.languageCode);
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
+		}
+		
 		[Bindable(event="productVersionChanged")]
 		public function getProductVersion():String {
 			return _productVersion;
@@ -254,27 +278,27 @@ package com.clarityenglish.ielts.view.login {
 				case IELTSApplication.ACADEMIC_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "       Last Minute - Academic module";
+							return "       "+copyProvider.getCopyForId("lastTimeAC");
 						case IELTSApplication.TEST_DRIVE:
-							return "       Test Drive - Academic module";
+							return "       "+copyProvider.getCopyForId("testDriveAC");
 						case IELTSApplication.DEMO:
-							return "                 Academic module";
+							return "                 "+copyProvider.getCopyForId("AC");
 						case IELTSApplication.FULL_VERSION:
 						default:
-							return "Academic module";
+							return copyProvider.getCopyForId("AC");
 					}
 					break;
 				case IELTSApplication.GENERAL_TRAINING_MODULE:
 					switch (_productVersion) {
 						case IELTSApplication.LAST_MINUTE:
-							return "       Last Minute - General Training module";
+							return "       "+copyProvider.getCopyForId("lastTimeGT");
 						case IELTSApplication.TEST_DRIVE:
-							return "       Test Drive - General Training module";
+							return "       "+copyProvider.getCopyForId("testDriveGT");
 						case IELTSApplication.DEMO:
-							return "                 General Training module";
+							return "                 "+copyProvider.getCopyForId("GT");
 						case IELTSApplication.FULL_VERSION:
 						default:
-							return "General Training module";
+							return copyProvider.getCopyForId("GT");
 					}
 					break;
 				default:
@@ -305,7 +329,25 @@ package com.clarityenglish.ielts.view.login {
 					instance.text = copyProvider.getCopyForId("loginIDLabel");
 					break;
 				case passwordLabel:
-					passwordLabel.text = copyProvider.getCopyForId("passwordLabel");
+					instance.text = copyProvider.getCopyForId("passwordLabel");
+					break;
+				case LMLabel:
+					instance.text = copyProvider.getCopyForId("LMLabel");
+					break;
+				case LMTextLabel:
+					instance.text = copyProvider.getCopyForId("LMTextLabel");
+					break;
+				case FVLabel:
+					instance.text = copyProvider.getCopyForId("FVLabel");
+					break;
+				case FVTextLabel:
+					instance.text = copyProvider.getCopyForId("FVTextLabel");
+					break;
+				case loginDetailLabel:
+					instance.text = copyProvider.getCopyForId("loginDetailLabel");
+					break;
+				case registerDetailLabel:
+					instance.text = copyProvider.getCopyForId("registerDetailLabel");
 					break;
 			}
 		}
@@ -370,14 +412,14 @@ package com.clarityenglish.ielts.view.login {
 				} else if (loginOption & Config.LOGIN_BY_ID) {
 					loginKey_lbl = copyProvider.getCopyForId("yourID");
 				} else if (loginOption & Config.LOGIN_BY_EMAIL) {
-					loginKey_lbl = copyProvider.getCopyForId("yourEmail");;
+					loginKey_lbl = copyProvider.getCopyForId("yourEmail");
 				}
 			}
 			
 			// #341 for self-registration
-			loginName_lbl = "Your name:";
-			loginID_lbl = "Your id:";
-			loginEmail_lbl = "Your email:";
+			loginName_lbl = copyProvider.getCopyForId("yourName");
+			loginID_lbl = copyProvider.getCopyForId("yourID");
+			loginEmail_lbl = copyProvider.getCopyForId("yourEmail");
 		}
 		
 		// #254

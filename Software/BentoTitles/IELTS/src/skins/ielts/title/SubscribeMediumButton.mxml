@@ -152,20 +152,12 @@
 	<!-- layer 8: text -->
 	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 	<s:Label id="labelDisplay"
-			 textAlign="center"
-			 maxDisplayedLines="3"
-			 horizontalCenter="0"
-			 verticalCenter="1"
-			 verticalAlign="middle"
-			 left="10"
-			 right="10"
-			 top="2"
-			 bottom="2">
+			 color="0xFFFFFF" fontWeight="bold" left="350" top="35" fontSize="15" width="90%">
 	</s:Label>
 	
 	<!-- layer 9: IELTS course button specific stuff -->
 	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/subscribe_med.png')" left="-1" />
-	<s:RichText text="Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!" color="0xFFFFFF" fontWeight="bold" left="350" top="35" fontSize="15" width="90%" />
+	<!--s:RichText text="Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!" color="0xFFFFFF" fontWeight="bold" left="350" top="35" fontSize="15" width="90%" /-->
 	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='BritishCouncilIcon')" left="350" top="100" />
 	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ClarityIcon')" left="455" top="101" />
 

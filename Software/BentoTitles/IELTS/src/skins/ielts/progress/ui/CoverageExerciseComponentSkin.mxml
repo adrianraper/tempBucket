@@ -18,7 +18,7 @@
 			
 			protected function creationComplete(event:Event):void {
 				// #234
-				popupWatcher = new DisabledPopupWatcher(itemList, hostComponent.productVersion); 
+				popupWatcher = new DisabledPopupWatcher(itemList, hostComponent.componentCopyProvider, hostComponent.productVersion ); 
 			}
 			
 		]]> 

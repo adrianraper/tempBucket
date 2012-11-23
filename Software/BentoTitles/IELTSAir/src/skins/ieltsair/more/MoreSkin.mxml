@@ -11,6 +11,7 @@
 		<![CDATA[
 			import flashx.textLayout.elements.TextFlow;
 			import spark.utils.TextFlowUtil;
+			import spark.components.RichEditableText;
 			
 			[Bindable]
 			private var aboutUsFlow:TextFlow;
@@ -43,7 +44,6 @@
 				 contactUsFlow2.fontSize = 14;
 				 contactUsFlow2.paragraphSpaceAfter = 12;
 				 contactUsFlow2.lineHeight = 22;*/
-				 
 			 }
 		]]>
 	</fx:Script>

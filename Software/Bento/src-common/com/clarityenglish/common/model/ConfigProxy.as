@@ -358,8 +358,8 @@ package com.clarityenglish.common.model {
 						copyProxy.setLanguageCode(config.languageCode);
 						*/
 						//#problem with login Screen:
-						var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-						copyProxy.languageCode = config.languageCode;
+						/*var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+						copyProxy.languageCode = config.languageCode;*/
 						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 					}
 					break;

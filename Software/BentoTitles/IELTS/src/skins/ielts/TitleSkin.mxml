@@ -38,7 +38,7 @@
 			
 			<s:SWFLoader id="infoButton" source="{hostComponent.productVersionInfo}" right="0" top="44"
 						 buttonMode="true" useHandCursor="true" />
-			<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true"/>
+			<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true" />
 		</s:Group>
 		
 		<s:Group width="100%" includeIn="exercise">

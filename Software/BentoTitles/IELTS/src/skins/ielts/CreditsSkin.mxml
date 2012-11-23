@@ -5,7 +5,7 @@
 		[HostComponent("com.clarityenglish.ielts.view.credits.CreditsView")]
 	</fx:Metadata>
 	
-	<fx:Declarations>
+	<!--fx:Declarations>
 		<fx:String id="creditsTextAsHTML">
 			<![CDATA[					
 			<p align='left'>
@@ -84,7 +84,7 @@
 			Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the British Council will be pleased    <br /> to make the necessary arrangements.
 			</p>]]>
 		</fx:String>
-	</fx:Declarations>
+	</fx:Declarations-->
 	
 	<fx:Script>
 		<![CDATA[
@@ -117,13 +117,13 @@
 			<s:VGroup width="100%" horizontalAlign="center" paddingTop="80">
 				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/credits.png')" horizontalAlign="center" horizontalCenter="0" />
 				<s:Spacer height="10" />
-				<s:Label text="Thank you for using Road to IELTS." fontSize="21" color="0X174A7D" fontWeight="bold" horizontalCenter="0" />
+				<s:Label id="thankYouLabel" fontSize="21" color="0X174A7D" fontWeight="bold" horizontalCenter="0" />
 				<s:Spacer height="0" />
-				<s:Label text="We would love to know what you think." fontSize="21" color="0X174A7D" fontWeight="bold" click="clickHandler(event)" horizontalCenter="0" />
+				<s:Label id="weWouldLabel" fontSize="21" color="0X174A7D" fontWeight="bold" click="clickHandler(event)" horizontalCenter="0" />
 				<s:Spacer height="0" />
 				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='QuestionnairekButton')" click="clickHandler(event)" buttonMode="true" useHandCursor="true" width="313" horizontalCenter="0" />
 				<s:Spacer height="10" />
-				<s:RichText text="Credits and acknowledgements" fontSize="21" horizontalCenter="0" />
+				<s:RichText id="creditCaptionLabel" fontSize="21" horizontalCenter="0" />
 			</s:VGroup>
 		</s:Group>
 		
@@ -135,7 +135,7 @@
 			</s:Rect>
 			<s:Scroller width="800" height="20%">
 				<s:Group>
-					<s:RichText id="creditsText" textFlow="{TextConverter.importToFlow(creditsTextAsHTML, TextConverter.TEXT_FIELD_HTML_FORMAT)}" />
+					<s:RichText id="creditsRichText" />
 				</s:Group>
 			</s:Scroller>
 			

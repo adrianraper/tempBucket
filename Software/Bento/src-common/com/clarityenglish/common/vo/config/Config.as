@@ -38,11 +38,11 @@ package com.clarityenglish.common.vo.config {
 		public var productCode:uint;
 		public var productVersion:String;
 		// #524
-		public var languageCode:String;
 		public var prefix:String;
 		// #515
 		//public var rootID:Number;
 		private var _rootID:Number;
+		private var _languageCode:String;
 		
 		public var username:String;
 		public var studentID:String;
@@ -141,6 +141,15 @@ package com.clarityenglish.common.vo.config {
 			} else {
 				_rootID = value;
 			}
+		}
+		
+		public function set languageCode(value:String):void {
+			CopyProxy.languageCode = value;
+			_languageCode = value;
+		}
+		
+		public function get languageCode():String {
+			return _languageCode;
 		}
 		
 		/**

@@ -57,7 +57,7 @@
 				
 				//issue:#11 Prefix changed to "Clarity"
 				// EMERGENCY HOTFIX - HARDCODE TO HCT FOR NOW
-				FlexGlobals.topLevelApplication.parameters.prefix = "Clarity";
+				FlexGlobals.topLevelApplication.parameters.prefix = "clarity";
 				
 				// The AIR application uses a custom Spinner instead of the normal dropdown
 				SelectElement.elementFactoryFunction = function():DropDownList {

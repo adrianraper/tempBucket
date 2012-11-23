@@ -13,6 +13,7 @@ package com.clarityenglish.ielts.view.support {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.RichText;
 	import spark.utils.TextFlowUtil;
 
@@ -51,6 +52,42 @@ package com.clarityenglish.ielts.view.support {
 		[SkinPart]
 		public var paragraphContentSpan3:SpanElement;
 		
+		[SkinPart]
+		public var helpLabel:RichText;
+		
+		[SkinPart]
+		public var keyScreenSpan:SpanElement;
+		
+		[SkinPart]
+		public var homeScreenIntroSpan:SpanElement;
+		
+		[SkinPart]
+		public var skillScreenIntroSpan:SpanElement;
+		
+		[SkinPart]
+		public var exerciseSreenIntroSpan:SpanElement;
+		
+		[SkinPart]
+		public var techProRichText:RichText;
+		
+		[SkinPart]
+		public var contentProRichText:RichText;
+		
+		[SkinPart]
+		public var clarityRichText:RichText;
+		
+		[SkinPart]
+		public var upGradeRichText:RichText;
+		
+		[SkinPart]
+		public var upGradeTestRichText:RichText;
+		
+		[SkinPart]
+		public var userManualLabel:Label;
+		
+		[SkinPart]
+		public var testDriveSpan:SpanElement;
+		
 		public var register:Signal = new Signal();
 		public var buy:Signal = new Signal();
 
@@ -64,9 +101,11 @@ package com.clarityenglish.ielts.view.support {
 			switch (instance) {
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRegisterInfoClick);
+					instance.label = copyProvider.getCopyForId("registerInfoButton");
 					break;
 				case buyInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onBuyInfoClick);
+					instance.label = copyProvider.getCopyForId("buyInfoButton");
 					break;
 				case supportTextFlow1:
 					if (config.languageCode == "ZH") {
@@ -106,6 +145,52 @@ package com.clarityenglish.ielts.view.support {
 					break;
 				case paragraphContentSpan3:
 					instance.text  = copyProvider.getCopyForId("paragraphContentSpan1");
+					break;
+				case helpLabel:
+					instance.text  = copyProvider.getCopyForId("help");
+					break;
+				case keyScreenSpan:
+					instance.text  = copyProvider.getCopyForId("keyScreenSpan");
+					break;
+				case homeScreenIntroSpan:
+					instance.text  = copyProvider.getCopyForId("homeScreenIntroSpan");
+					break;
+				case skillScreenIntroSpan:
+					instance.text  = copyProvider.getCopyForId("skillScreenIntroSpan");
+					break;
+				case exerciseSreenIntroSpan:
+					instance.text  = copyProvider.getCopyForId("exerciseSreenIntroSpan");
+					break;
+				case techProRichText:
+					var contactUsContentString1:String = this.copyProvider.getCopyForId("contactUsContent1");
+					var contactUsFlow1:TextFlow = TextFlowUtil.importFromString(contactUsContentString1);
+					instance.textFlow = contactUsFlow1;
+					break;
+				case contentProRichText:
+					var contactUsContentString2:String = this.copyProvider.getCopyForId("contactUsContent2");
+					var contactUsFlow2:TextFlow = TextFlowUtil.importFromString(contactUsContentString2);
+					instance.textFlow = contactUsFlow2;
+					break;
+				case clarityRichText:
+					var clarityString:String = this.copyProvider.getCopyForId("clarityRichText");
+					var clarityFlow:TextFlow = TextFlowUtil.importFromString(clarityString);
+					instance.textFlow = clarityFlow;
+					break;
+				case upGradeRichText:
+					var upGradeString:String = this.copyProvider.getCopyForId("upGradeRichText");
+					var upGradeFlow:TextFlow = TextFlowUtil.importFromString(upGradeString);
+					instance.textFlow = upGradeFlow;
+					break;
+				case upGradeTestRichText:
+					var upGradeTestString:String = this.copyProvider.getCopyForId("upGradeRichText");
+					var upGradeTestFlow:TextFlow = TextFlowUtil.importFromString(upGradeTestString);
+					instance.textFlow = upGradeTestFlow;
+					break;
+				case userManualLabel:
+					instance.text  = copyProvider.getCopyForId("userManualLabel");
+					break;
+				case testDriveSpan:
+					instance.text  = copyProvider.getCopyForId("testDriveSpan");
 					break;
 			}
 		}

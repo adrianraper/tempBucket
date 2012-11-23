@@ -5,8 +5,10 @@ package com.clarityenglish.ielts.view.credits {
 	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.elements.TextFlow;
 	
+	import mx.controls.Label;
 	import mx.controls.TextArea;
 	
+	import spark.components.Label;
 	import spark.components.RichText;
 	import spark.components.TextArea;
 	import spark.utils.TextFlowUtil;
@@ -15,6 +17,15 @@ package com.clarityenglish.ielts.view.credits {
 		
 		[SkinPart]
 		public var creditsRichText:RichText;
+		
+		[SkinPart]
+		public var thankYouLabel:spark.components.Label;
+		
+		[SkinPart]
+		public var weWouldLabel:spark.components.Label;
+		
+		[SkinPart]
+		public var creditCaptionLabel:RichText;
 		
 		//issue:#11 language Code
 		/*public override function setCopyProvider(copyProvider:CopyProvider):void {
@@ -34,6 +45,18 @@ package com.clarityenglish.ielts.view.credits {
 					creditFlow.paragraphSpaceAfter = 12;
 					creditsRichText.textFlow = creditFlow;
 					break;
+				case thankYouLabel:
+					instance.text = copyProvider.getCopyForId("thankYouLabel");
+					break;
+				case weWouldLabel:
+					instance.text = copyProvider.getCopyForId("weWouldLabel");
+					break;
+				case creditCaptionLabel:
+					var creditsLabelString:String = this.copyProvider.getCopyForId("creditCaptionLabel");
+					var creditsLabelFlow:TextFlow = TextFlowUtil.importFromString(creditsLabelString);
+					instance.textFlow = creditsLabelFlow;
+					break;
+				
 			}
 		}
 

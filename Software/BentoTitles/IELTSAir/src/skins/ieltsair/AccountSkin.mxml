@@ -48,7 +48,16 @@
 			}
 			
 			private function formatScreenDate(date:Date):String {
-				return DateUtil.formatDate(date, 'd MMMM yyyy');
+				if (date && hostComponent.config.languageCode == "ZH") {
+					var objReplace:Object = new Object();
+					trace("date's day is "+date.day);
+					objReplace.day = date.date;
+					objReplace.month = date.month + 1;
+					objReplace.year = date.fullYear;
+					return hostComponent.hostCopyProvider.getCopyForId("dateFormatLabel", objReplace);
+				} else {
+					return DateUtil.formatDate(date, 'd MMMM yyyy');
+				}
 			}
 		]]>
 	</fx:Script>

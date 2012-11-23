@@ -1,5 +1,7 @@
 package com.clarityenglish.ielts.view.progress.ui {
 	
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	
 	import mx.collections.XMLListCollection;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -23,6 +25,9 @@ package com.clarityenglish.ielts.view.progress.ui {
 		
 		[Bindable]
 		public var productVersion:String;
+		
+		[Bindable]
+		public var componentCopyProvider:CopyProvider;
 		
 	}
 }

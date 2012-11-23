@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.ielts.IELTSApplication;
 	
 	import flash.display.DisplayObject;
@@ -33,7 +34,8 @@ package com.clarityenglish.ielts.view.zone {
 		
 		private var toolTip:IToolTip;
 		
-		public function DisabledPopupWatcher(target:UIComponent, productVersion:String = null, toolTipText:String = null) {
+		//gh#11
+		public function DisabledPopupWatcher(target:UIComponent, copyProvider:CopyProvider, productVersion:String = null, toolTipText:String = null) {
 			this.target = target;
 			
 			// Determine the datagroup
@@ -49,19 +51,19 @@ package com.clarityenglish.ielts.view.zone {
 			} else {
 				switch (productVersion) {
 					case IELTSApplication.FULL_VERSION:
-						this.toolTipText = "Not currently available.";
+						this.toolTipText = copyProvider.getCopyForId("notCurAvailable");
 						break;
 					case IELTSApplication.LAST_MINUTE:
-						this.toolTipText = "Only available in the Full Version. Click above to upgrade."
+						this.toolTipText = copyProvider.getCopyForId("onlyAvailableFV");
 						break;
 					case IELTSApplication.TEST_DRIVE:
-						this.toolTipText = " Only available in the Last Minute version. Click above to upgrade."
+						this.toolTipText = copyProvider.getCopyForId("onlyAvailableLM");
 						break;
 					case IELTSApplication.DEMO:
-						this.toolTipText = "Not available in this demo. For demo exercises, please go to Practice zone - Set 2. For demo practice test, please click on Practice test 1."
+						this.toolTipText = copyProvider.getCopyForId("notAvailbleDemo");
 						break;
 					default:
-						this.toolTipText = "Not available in the current version. Click above to upgrade."
+						this.toolTipText = copyProvider.getCopyForId("notAvailble");
 				}
 			}
 			
@@ -70,6 +72,7 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		private function onMouseMove(event:MouseEvent):void {
+			trace("sopt! mouse move on spot");
 			var point:Point = PointUtil.convertPointCoordinateSpace(new Point(event.stageX, event.stageY), target.stage, target);
 			
 			// Loop through the item renderers trying to figure out if we are in one

@@ -75,6 +75,7 @@ class BentoService extends AbstractService {
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
+		
 	}
 	
 	/**
@@ -127,6 +128,7 @@ class BentoService extends AbstractService {
 					 "licence" => $licence,
 					 "group" => $group,
 					 "account" => $account);
+	    		
 	}
 	
 	/**
@@ -148,7 +150,7 @@ class BentoService extends AbstractService {
 			// Just need to change the db for Ops that you use in the first call
 			$this->loginOps->changeDB($this->db);
 			$this->manageableOps->changeDB($this->db);
-		}
+		}		
 	}
 	
 	// Rewritten from RM version
@@ -238,7 +240,6 @@ class BentoService extends AbstractService {
 			//	$contentObj = $this->contentOps->getHiddenContent($productCode);
 			
 		}
-		
 		// TODO. What is a good format for sending back bookmark information?
 		// For now I will just expect an array of courseIDs that this user has started so that
 		// you can use them in licence control.
@@ -261,6 +262,8 @@ class BentoService extends AbstractService {
 		
 		// Clear php session and authentication
 		$this->loginOps->logout();
+		
+		Session::clear();
 	}
 	
 	/**
@@ -347,7 +350,6 @@ class BentoService extends AbstractService {
 		
 		// A successful session start will return a new ID
 		$sessionID = $this->progressOps->startSession($user, $rootID, $productCode, $dateNow);
-		
 		return array("sessionID" => $sessionID);
 	}
 	
@@ -502,8 +504,8 @@ class BentoService extends AbstractService {
 	/**
 	 * Get the copy XML document
 	 */
-	public function getCopy() {
-		return $this->copyOps->getCopy();
+	public function getCopy($code = null) {		
+		return $this->copyOps->getCopy($code);
 	}
 	
 	/**

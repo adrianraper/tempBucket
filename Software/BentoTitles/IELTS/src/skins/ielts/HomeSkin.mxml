@@ -42,7 +42,7 @@
 			<s:Spacer height="1"/>
 			<ui:CourseBarRenderer data="{hostComponent.dataProvider}" courseCaption="Writing" courseClass="writing" id="writingCoverageBar" width="100%" />
 			<s:Spacer height="5"/>
-			<s:Label text="The colour bars show how much you have completed in each skill area. Go to My Progress for more details." width="80%" lineHeight="18" />	
+			<s:Label id="colorBarIntroLabel" width="80%" lineHeight="18" />	
 		</s:VGroup>
 		<s:VGroup id="welcomeGroup" width="100%" paddingTop="5" visible="{hostComponent.noProgressData}" includeInLayout="{hostComponent.noProgressData}" >
 			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/home_coursebar_demo.png')" 
@@ -53,7 +53,7 @@
 						 includeInLayout="{(!hostComponent.isDemo())}"/>			
 			
 			<s:Spacer height="10"/>
-			<s:Label id="noProgressText" text="Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill." 
+			<s:Label id="noProgressText" 
 					 width="80%" lineHeight="18" 
 					 visible="{(!hostComponent.isDemo())}"
 					 includeInLayout="{(!hostComponent.isDemo())}"/>				

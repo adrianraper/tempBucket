@@ -41,13 +41,16 @@ class CopyOps {
 	/**
 	 * Read and return the XML literals document as a string
 	 */
-	function getCopy() {
+	function getCopy($code = null) {
+		// gh#39
+		if ($code) Session::set('languageCode', $code);
+		
 		// If the file doesn't exist return false
 		if (!file_exists($this->getFilename()))
 			throw new Exception($this->getFilename()." not found");
 		
 		// Read the file
-		$contents = file_get_contents($this->getFilename());
+		$contents = file_get_contents($this->getFilename($code));
 		
 		// Return the file as a string to be converted to XML on the client
 		//issue:#20

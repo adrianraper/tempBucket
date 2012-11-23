@@ -10,6 +10,8 @@ package com.clarityenglish.ielts.view.account {
 	import flash.system.ApplicationDomain;
 	import flash.system.LoaderContext;
 	
+	import flashx.textLayout.elements.TextFlow;
+	
 	import mx.controls.Alert;
 	import mx.controls.DateField;
 	import mx.controls.SWFLoader;
@@ -21,7 +23,9 @@ package com.clarityenglish.ielts.view.account {
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.NumericStepper;
+	import spark.components.RichText;
 	import spark.components.TextInput;
+	import spark.utils.TextFlowUtil;
 	
 	public class AccountView extends BentoView {
 			
@@ -81,6 +85,45 @@ package com.clarityenglish.ielts.view.account {
 		
 		[SkinPart]
 		public var endDateLabel:Label;
+		
+		[SkinPart]
+		public var countdownHeadingLabel:Label;
+		
+		[SkinPart]
+		public var dateLabel:Label;
+		
+		[SkinPart]
+		public var hourLabel:Label;
+		
+		[SkinPart]
+		public var minuteLabel:Label;
+		
+		[SkinPart]
+		public var currentPwdLabel:Label;
+		
+		[SkinPart]
+		public var newPsdLabel:Label;
+		
+		[SkinPart]
+		public var confirmPsdLabel:Label;
+		
+		[SkinPart]
+		public var myProfileLabel:Label;
+		
+		[SkinPart]
+		public var IELTSAppsLabel:Label;
+		
+		[SkinPart]
+		public var registerInfoRichText:RichText;
+		
+		[SkinPart]
+		public var videoRichText:RichText;
+		
+		[SkinPart]
+		public var mockTestRichText:RichText;
+		
+		[SkinPart]
+		public var hourRichText:RichText;
 
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
@@ -99,6 +142,14 @@ package com.clarityenglish.ielts.view.account {
 
 		// #333
 		private var _remoteDomain:String;
+		
+		[Bindable]
+		public var hostCopyProvider:CopyProvider;
+		
+		override public function setCopyProvider(copyProvider:CopyProvider):void {
+			super.setCopyProvider(copyProvider);
+			hostCopyProvider = copyProvider;
+		}
 		
 		public function AccountView() {
 			super();
@@ -146,7 +197,7 @@ package com.clarityenglish.ielts.view.account {
 				case examHours:
 				case examMinutes:
 					instance.addEventListener(Event.CHANGE, onExamTimeChange);
-					break;
+					break; 
 				
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
@@ -191,6 +242,53 @@ package com.clarityenglish.ielts.view.account {
 					break;
 				case testDateLabel:
 					instance.text = copyProvider.getCopyForId("testDateLabel");
+					break;
+				case countdownHeadingLabel:
+					instance.text = copyProvider.getCopyForId("countdownHeadingLabel");
+					break;
+				case dateLabel:
+					instance.text = copyProvider.getCopyForId("testDateLabel");
+					break;
+				case hourLabel:
+					instance.text = copyProvider.getCopyForId("hourLabel");
+					break;
+				case minuteLabel:
+					instance.text = copyProvider.getCopyForId("minuteLabel");
+					break;
+				case currentPwdLabel:
+					instance.text = copyProvider.getCopyForId("currentPwdLabel");
+					break;
+				case newPsdLabel:
+					instance.text = copyProvider.getCopyForId("newPsdLabel");
+					break;
+				case confirmPsdLabel:
+					instance.text = copyProvider.getCopyForId("confirmPsdLabel");
+					break;
+				case myProfileLabel:
+					instance.text = copyProvider.getCopyForId("myProfile");
+					break;
+				case IELTSAppsLabel:
+					instance.text = copyProvider.getCopyForId("IELTSAppsLabel");
+					break;
+				case registerInfoRichText:
+					var registerInfoString:String = this.copyProvider.getCopyForId("registerInfoButton");
+					var registerInfoFlow:TextFlow = TextFlowUtil.importFromString(registerInfoString);
+					instance.textFlow = registerInfoFlow;
+					break;
+				case hourRichText:
+					var hourString:String = this.copyProvider.getCopyForId("hourRichText");
+					var hourFlow:TextFlow = TextFlowUtil.importFromString(hourString);
+					instance.textFlow = hourFlow;
+					break;
+				case videoRichText:
+					var videoString:String = this.copyProvider.getCopyForId("videoRichText");
+					var videoFlow:TextFlow = TextFlowUtil.importFromString(videoString);
+					instance.textFlow = videoFlow;
+					break;
+				case mockTestRichText:
+					var mockTestString:String = this.copyProvider.getCopyForId("mockTestRichText");
+					var mockTestFlow:TextFlow = TextFlowUtil.importFromString(mockTestString);
+					instance.textFlow = mockTestFlow;
 					break;
 			}
 		}

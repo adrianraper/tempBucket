@@ -13,7 +13,11 @@
 		<![CDATA[
 			protected function clickHandler(event:MouseEvent):void {
 				// TODO: Use CopyOps
-				var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com"); 
+				if (event.currentTarget.id == "upgradeButton") {
+					var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com");
+				} else {
+					urlReq = new URLRequest("http://takeielts.britishcouncil.org");  
+				}			
 				navigateToURL(urlReq, "_blank"); 
 			} 
 		]]>
@@ -32,10 +36,16 @@
 	
 	<s:Label id="welcomeLabel" left="39" top="202" />
 	<s:Label id="noticeLabel" left="39" top="221" />
-	<!--s:SWFLoader id="upgradeButton" source="{hostComponent.assetFolder}upgrade.jpg" right="20" top="0" 
-				 visible="{hostComponent.productVersion == 'R2ILM'}"
-				 includeInLayout="{hostComponent.productVersion == 'R2ILM'}"
-				 click="clickHandler(event)" buttonMode="true" useHandCursor="true" /-->
+	<s:Group right="20" top="0">
+		<s:SWFLoader id="upgradeButton" source="{hostComponent.assetFolder}upgrade.jpg" 
+					 visible="{hostComponent.productVersion == 'R2ILM'}"
+					 includeInLayout="{hostComponent.productVersion == 'R2ILM'}"
+					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
+		<s:SWFLoader id="registerButton" source="{hostComponent.assetFolder}register.jpg" 
+					 visible="{hostComponent.productVersion == 'R2ITD'}"
+					 includeInLayout="{hostComponent.productVersion == 'R2ITD'}"
+					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
+	</s:Group>
 	
 	<ui:CourseBarRenderer id="readingCoverageBar" data="{hostComponent.dataProvider}" courseClass="reading" left="39" top="252" width="375" />
 	<ui:CourseBarRenderer id="listeningCoverageBar" data="{hostComponent.dataProvider}" courseClass="listening" left="39" top="326" width="375" />

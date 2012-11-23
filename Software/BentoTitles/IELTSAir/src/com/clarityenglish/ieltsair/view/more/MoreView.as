@@ -11,7 +11,9 @@ package com.clarityenglish.ieltsair.view.more {
 	import org.davekeen.util.StateUtil;
 	
 	import spark.components.ButtonBar;
+	import spark.components.RichEditableText;
 	import spark.components.RichText;
+	import spark.components.TextArea;
 	import spark.events.IndexChangeEvent;
 	import spark.utils.TextFlowUtil;
 	
@@ -28,6 +30,7 @@ package com.clarityenglish.ieltsair.view.more {
 		
 		[SkinPart]
 		public var contactUsRichText2:RichText;
+		
 		
 		public function MoreView() {
 			StateUtil.addStates(this, [ "about", "contact" ], true);
