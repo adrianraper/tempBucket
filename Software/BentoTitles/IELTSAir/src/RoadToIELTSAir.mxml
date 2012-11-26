@@ -16,6 +16,7 @@
 			import com.clarityenglish.components.SpinnerDropDownList;
 			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
 			import com.clarityenglish.ieltsair.IELTSAirNotifications;
+			import com.clarityenglish.textLayout.conversion.XHTMLImporter;
 			import com.clarityenglish.textLayout.elements.SelectElement;
 			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
 			
@@ -35,10 +36,12 @@
 					case "IOS":
 						// Set the iOS config xml file
 						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
+						XHTMLImporter.media = "ios";
 						break;
 					case "AND":
 						// Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
 						FlexGlobals.topLevelApplication.parameters.configFile = "android-config.xml";
+						XHTMLImporter.media = "android";
 						break
 					default:
 						throw new Error("Unsupported platform - " + Capabilities.version);

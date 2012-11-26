@@ -4,6 +4,7 @@ package com.newgonzo.web.css
 	import com.newgonzo.web.css.properties.CSSPriority;
 	import com.newgonzo.web.css.rules.IStyleRule;
 	import com.newgonzo.web.css.selectors.IExtendedSelector;
+	import com.newgonzo.web.css.views.AbstractCSSView;
 	import com.newgonzo.web.css.views.ICSSView;
 	
 	import org.w3c.css.sac.ISelectorList;
@@ -172,6 +173,16 @@ package com.newgonzo.web.css
 					
 					case CSSRuleTypes.IMPORT_RULE:
 						addStyleRules(view, (rule as ICSSImportRule).styleSheet, toArray);
+						break;
+					
+					// GH #45
+					case CSSRuleTypes.MEDIA_RULE:
+						if ((view as AbstractCSSView).supportsMedia((rule as ICSSMediaRule).media)) {
+							for each (var cssRule:ICSSRule in (rule as ICSSMediaRule).cssRules) {
+								toArray.push(cssRule);
+							}
+						}
+						
 						break;
 						
 					default:

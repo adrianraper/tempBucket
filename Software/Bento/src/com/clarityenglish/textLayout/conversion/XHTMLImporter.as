@@ -1,9 +1,13 @@
 package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.textLayout.css.XHTMLCSS;
+	import com.clarityenglish.textLayout.css.XHTMLCSSContext;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.newgonzo.web.css.CSS;
+	import com.newgonzo.web.css.ICSSContext;
+	import com.newgonzo.web.css.views.ICSSView;
+	import com.newgonzo.web.css.views.XMLCSSView;
 	
 	import flashx.textLayout.conversion.TextConverter;
 	
@@ -14,6 +18,9 @@ package com.clarityenglish.textLayout.conversion {
 	import org.w3c.css.sac.CSSParseError;
 
 	public class XHTMLImporter {
+		
+		// GH #45
+		public static var media:String;
 		
 		/**
 		 * Standard flex logger
@@ -77,7 +84,9 @@ package com.clarityenglish.textLayout.conversion {
 		 * @return 
 		 */
 		private function parseCss(xhtml:XHTML):CSS {
-			var css:CSS = new XHTMLCSS();
+			var view:ICSSView = new XMLCSSView(media);
+			var context:ICSSContext = new XHTMLCSSContext(view);
+			var css:CSS = new XHTMLCSS(null, context);
 			
 			// Get the stylesheet - this is default.css stylesheet (embedded) plus any stylesheets specified in the exercise
 			var styleStrings:Array = xhtml.styleStrings; // Get the stylesheets in the exercise

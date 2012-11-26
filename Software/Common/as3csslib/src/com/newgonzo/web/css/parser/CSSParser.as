@@ -575,7 +575,7 @@ package com.newgonzo.web.css.parser
 				
 				if(currentType == Token.EOF)
 				{
-					syntaxError("Error parsing media rule: unexepcted EOF at " + current);
+					syntaxError("Error parsing media rule: unexpected EOF at " + current);
 					return;
 				}
 			}
