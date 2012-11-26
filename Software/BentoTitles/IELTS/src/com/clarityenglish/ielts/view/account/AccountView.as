@@ -1,5 +1,7 @@
 package com.clarityenglish.ielts.view.account {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
@@ -12,15 +14,18 @@ package com.clarityenglish.ielts.view.account {
 	
 	import flashx.textLayout.elements.TextFlow;
 	
+	import mx.collections.ArrayCollection;
 	import mx.controls.Alert;
 	import mx.controls.DateField;
 	import mx.controls.SWFLoader;
 	import mx.events.CalendarLayoutChangeEvent;
 	
+	import org.davekeen.util.ArrayUtils;
 	import org.davekeen.util.DateUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.DropDownList;
 	import spark.components.Label;
 	import spark.components.NumericStepper;
 	import spark.components.RichText;
@@ -87,6 +92,12 @@ package com.clarityenglish.ielts.view.account {
 		public var endDateLabel:Label;
 		
 		[SkinPart]
+		public var languageLabel:Label;
+		
+		[SkinPart]
+		public var languageDropDownList:DropDownList;
+		
+		[SkinPart]
 		public var countdownHeadingLabel:Label;
 		
 		[SkinPart]
@@ -127,6 +138,7 @@ package com.clarityenglish.ielts.view.account {
 
 		public var updateUser:Signal = new Signal(Object);
 		public var register:Signal = new Signal();
+		public var languageChange:Signal = new Signal(String);
 		
 		[Bindable]
 		public var user:User;
@@ -217,11 +229,11 @@ package com.clarityenglish.ielts.view.account {
 					break;
 				case startDateLabel:
 					if (config.languageCode == "ZH") {
-						var repObejct:Object = new Object();
-						repObejct.day = (DateUtil.ansiStringToDate(startDate)).day;
-						repObejct.month = (DateUtil.ansiStringToDate(startDate)).month;
-						repObejct.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
-						instance.text = copyProvider.getCopyForId("dateFormatLabel", repObejct);
+						var repObject:Object = new Object();
+						repObject.day = (DateUtil.ansiStringToDate(startDate)).day;
+						repObject.month = (DateUtil.ansiStringToDate(startDate)).month;
+						repObject.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
+						instance.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 					} else {
 					    instance.text =DateUtil.formatDate(DateUtil.ansiStringToDate(startDate), 'd MMMM yyyy')
 					}
@@ -237,8 +249,24 @@ package com.clarityenglish.ielts.view.account {
 						objReplace.year = (DateUtil.ansiStringToDate(expiryDate)).fullYear;
 						instance.text = copyProvider.getCopyForId("dateFormatLabel", objReplace);
 					} else {
-						instance.text =DateUtil.formatDate(DateUtil.ansiStringToDate(expiryDate), 'd MMMM yyyy')
+						instance.text = DateUtil.formatDate(DateUtil.ansiStringToDate(expiryDate), 'd MMMM yyyy')
 					}
+					break;
+				case languageLabel:
+					instance.text = copyProvider.getCopyForId("accountLanguageLabel");
+					break;
+				case languageDropDownList:
+					instance.dataProvider = new ArrayCollection([
+						{ label: "English", data: "EN" },
+						{ label: "Chinese", data: "ZH" },
+						{ label: "Japanese", data: "JP" }
+					]);
+					
+					var currentLanguage:Object = ArrayUtils.searchArrayForObject(instance.dataProvider.source, CopyProxy.languageCode, "data");
+					instance.selectedItem = currentLanguage;
+					
+					instance.addEventListener(Event.CHANGE, onLanguageChange);
+					instance.addEventListener(MouseEvent.CLICK, onLanguageChange);
 					break;
 				case testDateLabel:
 					instance.text = copyProvider.getCopyForId("testDateLabel");
@@ -328,6 +356,7 @@ package com.clarityenglish.ielts.view.account {
 		protected function onPasswordChange(eventObj:Event):void {
 			isDirty = true;
 		}
+		
 		/**
 		 * The user changed the exam date.  
 		 * @param event
@@ -336,6 +365,7 @@ package com.clarityenglish.ielts.view.account {
 		protected function onExamDateChange(eventObj:CalendarLayoutChangeEvent):void {
 			updateExamDate();
 		}
+		
 		/**
 		 * The user changed the exam hours or minutes.  
 		 * @param event
@@ -370,6 +400,13 @@ package com.clarityenglish.ielts.view.account {
 				isDirty = true;
 			}
 			
+		}
+		
+		protected function onLanguageChange(e:Event):void {
+			if (languageDropDownList.selectedItem) {
+				var languageCode:String = languageDropDownList.selectedItem.data;
+				languageChange.dispatch(languageCode);
+			}
 		}
 		
 		/**

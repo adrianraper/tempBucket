@@ -100,6 +100,7 @@
 			<lit name="practiceZoneViewNavigator">Practice zone</lit>
 			<lit name="testZoneViewNavigator">Test practice</lit>
 			<lit name="downloadButton">Read eBook</lit>
+			<lit name="pdfButton">PDF</lit>
 			<lit name="videoButton">Watch video</lit>
 			<lit name="questionVideoLabel">Starting out</lit>
 			<lit name="questionVideoInstructionLabel">First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test</lit>
@@ -154,6 +155,7 @@
 			<lit name="emailLabel">Email:</lit>
 			<lit name="accountStartDateLabel">Account start date:</lit>
 			<lit name="accountExpiryDateLabel">Account expiry date:</lit>
+			<lit name="accountLanguageLabel">Language:</lit>
 			<lit name="saveChangesButton">Save changes</lit>
 			<lit name="countdownHeadingLabel">1How long until my test?</lit>
 			<lit name="hourLabel">1Hour:</lit>
@@ -414,6 +416,7 @@
 			<lit name="practiceZoneViewNavigator">1Practice zone</lit>
 			<lit name="testZoneViewNavigator">1Test practice</lit>
 			<lit name="downloadButton">1Read eBook</lit>
+			<lit name="pdfButton">1PDF</lit>
 			<lit name="videoButton">1Watch video</lit>
 			<lit name="questionVideoLabel">1Starting out</lit>
 			<lit name="questionVideoInstructionLabel">1首先，可在线阅读电子书或下载PDF版文档，之后，请点击观看关于本部分考试核心介绍的视频。</lit>
@@ -469,6 +472,7 @@
 			<lit name="emailLabel">1Email:</lit>
 			<lit name="accountStartDateLabel">1Account start date:</lit>
 			<lit name="accountExpiryDateLabel">1Account expiry date:</lit>
+			<lit name="accountLanguageLabel">1Language:</lit>
 			<lit name="saveChangesButton">1Save changes</lit>
 			<lit name="countdownHeadingLabel">1How long until my test?</lit>
 			<lit name="hourLabel">1Hour:</lit>
@@ -722,6 +726,7 @@
 			<lit name="practiceZoneViewNavigator">xPractice zone</lit>
 			<lit name="testZoneViewNavigator">xTest practice</lit>
 			<lit name="downloadButton">xRead eBook</lit>
+			<lit name="pdfButton">xPDF</lit>
 			<lit name="videoButton">xWatch video</lit>
 			<lit name="questionVideoLabel">xStarting out</lit>
 			<lit name="questionVideoInstructionLabel">IELTSのこのセクションに関する重要な情報について、まず電子ブックをクリックして読むか、PDFをダウンロードしてください。それからビデオをクリックして観てください。</lit>
@@ -776,6 +781,7 @@
 			<lit name="emailLabel">xEmail:</lit>
 			<lit name="accountStartDateLabel">xAccount start date:</lit>
 			<lit name="accountExpiryDateLabel">xAccount expiry date:</lit>
+			<lit name="accountLanguageLabel">xLanguage:</lit>
 			<lit name="saveChangesButton">xSave changes</lit>
 			<lit name="countdownHeadingLabel">xHow long until my test?</lit>
 			<lit name="hourLabel">xHour:</lit>

@@ -133,7 +133,7 @@ package com.clarityenglish.common.model {
 						
 					}*/
 					if (!copy) {
-						trace("the first copy is "+XML(data));
+						//trace("the first copy is "+XML(data));
 					}
 					
 					copy = new XML(data);

@@ -39,7 +39,7 @@ package com.clarityenglish.ielts.view.zone {
 			switch (instance) {
 				case readButton:
 					readButton.addEventListener(MouseEvent.CLICK, onReadButtonClick);
-					instance.label = copyProvider.getCopyForId("ebookButton");
+					instance.label = copyProvider.getCopyForId("downloadButton");
 					break;
 				case downloadButton:
 					downloadButton.addEventListener(MouseEvent.CLICK, onDownloadButtonClick);

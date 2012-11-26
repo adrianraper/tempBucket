@@ -7,6 +7,9 @@
 		public static const ACTIVITY_TIMER_RESET:String = "bb/activity_timer_reset";
 		public static const BENTO_RESET:String = "bb/bento_reset";
 		
+		public static const LANGUAGE_CHANGE:String = "bb/language_change";
+		public static const LANGUAGE_CHANGED:String = "bb/language_changed";
+		
 		public static const NETWORK_CHECK_AVAILABILITY:String = "bb/network_check_availability";
 		public static const NETWORK_UNAVAILABLE:String = "bb/network_unavailable";
 		public static const NETWORK_AVAILABLE:String = "bb/network_available";

@@ -420,6 +420,7 @@ package com.clarityenglish.ielts.view.login {
 			// #341 for network version
 			setState("login");
 		}
+		
 		// gh#41
 		public function setNoAccount(value:Boolean):void {
 			noAccount = value;

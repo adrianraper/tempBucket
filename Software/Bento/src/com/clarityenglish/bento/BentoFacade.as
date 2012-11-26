@@ -66,6 +66,7 @@
 			
 			// Map built in commands
 			registerCommand(BBNotifications.BENTO_RESET, BentoResetCommand);
+			registerCommand(BBNotifications.LANGUAGE_CHANGE, LanguageChangeCommand);
 			registerCommand(BBNotifications.MENU_XHTML_LOAD, MenuXHTMLLoadCommand);
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);

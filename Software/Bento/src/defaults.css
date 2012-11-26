@@ -10,6 +10,7 @@
 @namespace tlfcomponents "com.clarityenglish.textLayout.components.*";
 @namespace error "com.clarityenglish.common.view.error.*";
 @namespace components1 "skins.bento.components.*";
+@namespace components2 "com.clarityenglish.components.*";
 
 global {
 	correctIcon: Embed(source="skins/assets/correctIcon.swf");
@@ -71,6 +72,10 @@ components|XHTMLExerciseView s|TextInput {
 
 components|XHTMLExerciseView s|DropDownList {
 	skinClass: ClassReference("skins.bento.exercise.ExerciseDropDownListSkin");
+}
+
+components2|SpinnerDropDownList {
+	skinClass: ClassReference("skins.bento.components.SpinnerDropDownListSkin");
 }
 
 mx|ToolTip {
