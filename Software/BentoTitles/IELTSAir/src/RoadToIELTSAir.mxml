@@ -39,29 +39,19 @@
 				var platform:String = Capabilities.version.split(" ")[0];
 				switch (platform) {
 					case "IOS":
-						// Set the iOS config xml file as well as getting the prefix, product code and font size from the iOS settings
+						// Set the iOS config xml file
 						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
-						
-						// gh#39 prefix and productCode are NOT settings you can choose anymore
-						// but language is
-						//try { FlexGlobals.topLevelApplication.parameters.prefix = IPhoneAppSettings.getInstance().stringForKey("prefix"); } catch (e:TypeError) { }
-						//try { FlexGlobals.topLevelApplication.parameters.productCode = IPhoneAppSettings.getInstance().stringForKey("productVersion"); } catch (e:TypeError) { }
-						try { FlexGlobals.topLevelApplication.parameters.language = IPhoneAppSettings.getInstance().stringForKey("language"); } catch (e:TypeError) { }
-						try { CSSApplicator.fontSizeOffset = new Number(IPhoneAppSettings.getInstance().stringForKey("fontOffset")); } catch (e:TypeError) { }
-						
 						break;
 					case "AND":
 						// Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
-						// gh#39 I understand that Android doesn't have settings like this, so we can't change them
 						FlexGlobals.topLevelApplication.parameters.configFile = "android-config.xml";
 						break
 					default:
 						throw new Error("Unsupported platform - " + Capabilities.version);
 				}
 				
-				// EMERGENCY HOTFIX - HARDCODE TO HCT FOR NOW
-				// Removed 6 nov 2012 as prefix no longer only HCT
-				//FlexGlobals.topLevelApplication.parameters.prefix = "HCT";
+				// Hardcode the font offset to +4 for tablet GH #55
+				CSSApplicator.fontSizeOffset = 4;
 				
 				// The AIR application uses a custom Spinner instead of the normal dropdown
 				SelectElement.elementFactoryFunction = function():DropDownList {
