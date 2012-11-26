@@ -2,7 +2,8 @@
 <config>
 	<id>/area1/RoadToIELTS2 ce.com</id>
 	<developer>DKweb</developer>
-	<productCode>52</productCode>
+	<productCode>52,53</productCode>
+	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<channel name='android-rackspace' caption='android-rackspace'>
