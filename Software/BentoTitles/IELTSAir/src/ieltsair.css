@@ -36,7 +36,7 @@ components|XHTMLExerciseView s|TextInput {
 	paddingRight: 0;
 }
 
-@media (os-platform: "Android") {
+/*@media (os-platform: "Android") {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
 	}
@@ -44,7 +44,7 @@ components|XHTMLExerciseView s|TextInput {
 	players|WebViewVideoPlayer {
 		htmlEmbed: true;
 	}
-}
+}*/
 
 @media (os-platform: "IOS") {
 	video|VideoSelector {
