@@ -60,18 +60,24 @@
         </s:fill>
     </s:Rect>
     
+	<!-- background (for drag/drop targets - determined by whether or not the component is editable) GH #60 -->
+	<s:Rect left="-2" right="-1" top="-3" bottom="-1" radiusX="2" radiusY="2" visible="{!hostComponent.editable}">
+		<s:fill>
+			<s:SolidColor color="#E6E6E6" />
+		</s:fill>
+	</s:Rect>
+	
     <!-- text -->
     <s:RichEditableText id="textDisplay"
               verticalAlign="middle"
               widthInChars="10"
               left="0" right="0" top="0" bottom="0" />
 
-	<!-- underline -->
-	<s:Line left="0" right="0" bottom="1">
+	<!-- underline (for text input - determined by whether or not the component is editable) GH #60 -->
+	<s:Line left="0" right="0" bottom="1" visible="{hostComponent.editable}">
 		<s:stroke>
-			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8"
-								color.disabledStates="#6A6A6A"/>
+			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8" color.disabledStates="#6A6A6A"/>
 		</s:stroke>
 	</s:Line>
-	
+		
 </s:SparkSkin>
