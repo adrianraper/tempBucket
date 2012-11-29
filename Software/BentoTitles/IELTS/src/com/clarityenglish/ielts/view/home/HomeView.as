@@ -214,14 +214,10 @@ package com.clarityenglish.ielts.view.home {
 			}
 		}
 		
-		//issue:#11 Language Code, read pictures from the folder base on the LanguageCode you set
+		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			trace ("the language code for the folder is "+ config.languageCode);
 			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
 		}
-		/*public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
-		}*/
 		
 		public function get accountName():String {
 			return _accountName;

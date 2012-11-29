@@ -5,12 +5,10 @@ package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
-	import com.clarityenglish.common.vo.config.Config;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.common.vo.progress.Progress;
@@ -18,16 +16,10 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flash.events.Event;
-	import flash.events.IOErrorEvent;
-	import flash.net.URLLoader;
-	import flash.net.URLRequest;
 	import flash.system.System;
 	import flash.utils.Dictionary;
+	import flash.utils.setTimeout;
 	
-	import mx.collections.ArrayCollection;
-	import mx.core.Application;
-	import mx.core.FlexGlobals;
 	import mx.formatters.DateFormatter;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -233,7 +225,6 @@ package com.clarityenglish.common.model {
 				
 				bentoProxy.menuXHTML = menuXHTML;
 				
-				//trace(bentoProxy.menuXHTML.toString());
 				sendNotification(BBNotifications.MENU_XHTML_LOADED);
 			}
 			

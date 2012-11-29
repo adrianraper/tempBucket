@@ -246,9 +246,8 @@ package com.clarityenglish.ielts.view.title {
 			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "support" ], true);
 		}
 		
-		//gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
+		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			trace ("the language code for the folder is "+ config.languageCode);
 			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
 		}
 		

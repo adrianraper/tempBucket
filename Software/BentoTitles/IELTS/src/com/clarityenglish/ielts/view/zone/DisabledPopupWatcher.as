@@ -72,7 +72,6 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		private function onMouseMove(event:MouseEvent):void {
-			trace("sopt! mouse move on spot");
 			var point:Point = PointUtil.convertPointCoordinateSpace(new Point(event.stageX, event.stageY), target.stage, target);
 			
 			// Loop through the item renderers trying to figure out if we are in one

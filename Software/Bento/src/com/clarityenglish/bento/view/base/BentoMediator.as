@@ -48,7 +48,6 @@ package com.clarityenglish.bento.view.base {
 		protected function injectCopy():void {
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			view.setCopyProvider(copyProvider);
-			trace("injectCopy setCopyProvider");
 		}
 		
 		public override function onRegister():void {
@@ -67,8 +66,6 @@ package com.clarityenglish.bento.view.base {
 			}
 			
 			injectCopy();
-			
-			
 		}
 		
 		protected function onXHTMLReady(xhtml:XHTML):void {

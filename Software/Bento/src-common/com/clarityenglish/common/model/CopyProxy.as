@@ -62,7 +62,6 @@ package com.clarityenglish.common.model {
 				throw new Error("Copy literals have not been loaded yet");
 			
 			//issue:#20 track wheter the language code be set successfully 
-			trace("the language code is in CopyProxy is "+ languageCode);
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
 				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
