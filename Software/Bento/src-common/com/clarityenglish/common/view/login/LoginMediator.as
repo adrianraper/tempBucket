@@ -48,7 +48,7 @@ package com.clarityenglish.common.view.login {
 			view.setProductCode(configProxy.getProductCode());
 			
 			// #341
-			view.setLoginOption(configProxy.getAccount().loginOption);
+			view.setLoginOption(configProxy.getLoginOption()); // GH #44
 			view.setSelfRegister(configProxy.getAccount().selfRegister);
 			view.setVerified(configProxy.getAccount().verified);
 			view.setLicenceType(configProxy.getLicenceType());

@@ -103,7 +103,7 @@ package com.clarityenglish.common.vo.config {
 		public var disableAutoTimeout:Boolean;
 		
 		// gh#21	
-		public var loginOption:uint;
+		public var loginOption:Number;
 		
 		// #410
 		public var checkNetworkAvailabilityUrl:String;

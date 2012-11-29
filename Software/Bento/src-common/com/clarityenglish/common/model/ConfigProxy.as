@@ -216,6 +216,11 @@ package com.clarityenglish.common.model {
 			return config.productCode;
 		}
 		
+		public function getLoginOption():Number {
+			// GH #44 - use the config loginOption, or if there is none use the account login option
+			return getConfig().loginOption || getAccount().loginOption;
+		}
+		
 		public function getLicenceType():uint {
 			return config.licenceType;
 		}
@@ -318,7 +323,7 @@ package com.clarityenglish.common.model {
 			
 			if (Config.DEVELOPER.name == "DK") {
 				//return { courseID: "1287130400000" };
-				//return { exerciseID: "1156153794231" };
+				//return { exerciseID: "1151344172674" };
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
