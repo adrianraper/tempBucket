@@ -28,7 +28,7 @@ package com.clarityenglish.rotterdam.builder.model {
 		public function getContent():AsyncToken {
 			return new RemoteDelegate("getContent").execute();
 		}
-		
+				
 	}
 
 }

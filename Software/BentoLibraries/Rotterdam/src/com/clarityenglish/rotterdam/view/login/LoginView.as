@@ -76,6 +76,8 @@ package com.clarityenglish.rotterdam.view.login {
 		
 		private var _currentState:String;
 		
+		// gh#41
+		private var _noAccount:Boolean;
 		public function LoginView() {
 			super();
 		}
@@ -89,6 +91,17 @@ package com.clarityenglish.rotterdam.view.login {
 			if (_selfRegister != value) {
 				_selfRegister = value;
 			}
+		}
+		
+		// #41
+		[Bindable]
+		public function get noAccount():Boolean {
+			return _noAccount;
+		}
+		public function set noAccount(value:Boolean):void {
+			if (_noAccount != value) {
+				_noAccount = value;
+			}			
 		}
 		
 		[Bindable]
@@ -144,10 +157,6 @@ package com.clarityenglish.rotterdam.view.login {
 			}
 		}
 		
-		public function setNoAccount(value:Boolean):void {
-			// TODO: Blank for the moment - but Adrian might want this to work for Rotterdam too
-		}
-		
 		// #341 Need to know if it is a network version.
 		public function get isNetwork():Boolean {
 			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
@@ -164,6 +173,7 @@ package com.clarityenglish.rotterdam.view.login {
 			}
 		}
 		
+		// gh#39
 		public function setProductCode(value:String):void {
 			if (_productCode != value) {
 				_productCode = value;
@@ -218,6 +228,11 @@ package com.clarityenglish.rotterdam.view.login {
 			
 			// #341 for network version
 			setState("login");
+		}
+		
+		// gh#41
+		public function setNoAccount(value:Boolean):void {
+			noAccount = value;
 		}
 		
 		// #254

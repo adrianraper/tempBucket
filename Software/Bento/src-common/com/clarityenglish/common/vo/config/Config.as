@@ -68,6 +68,8 @@ package com.clarityenglish.common.vo.config {
 		public var instanceID:String;
 		public var ip:String;
 		public var referrer:String;
+		// For CCB
+		public var remoteStartFolder:String
 		
 		// #335
 		public var streamingMedia:String;
@@ -377,6 +379,12 @@ package com.clarityenglish.common.vo.config {
 				this.assetFolder = xml..assetFolder.toString();
 			} else {
 				this.assetFolder = "Software/ResultsManager/web/resources/assets/";
+			}
+			// for CCB
+			if (xml..remoteStartFolder.toString()) {
+				this.remoteStartFolder = xml..remoteStartFolder.toString();
+			} else {
+				this.remoteStartFolder = "area1/";
 			}			
 
 			// #337

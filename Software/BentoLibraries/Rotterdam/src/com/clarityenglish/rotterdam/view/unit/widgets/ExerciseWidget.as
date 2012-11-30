@@ -49,6 +49,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		 * @return 
 		 */
 		public function getThumbnailForUid(uid:String):String {
+			trace("thumbnail uid=" + uid);
 			return thumbnailScript + "?uid=" + uid;
 		}
 		

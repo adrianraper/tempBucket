@@ -45,7 +45,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function onSelectButton(event:MouseEvent):void {
 			if (tree.selectedItem) {
-				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, true));
+				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, tree.selectedItem.name, true));
 				dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 			}
 		}
