@@ -58,7 +58,7 @@ package com.clarityenglish.rotterdam.view.course {
 					// #14 - auto select a unit
 					unitList.requireSelection = true;
 					callLater(function():void {
-						if (unitList.dataProvider.length > 0)
+						if (unitList.dataProvider && unitList.dataProvider.length > 0)
 							unitList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 					});
 					break;

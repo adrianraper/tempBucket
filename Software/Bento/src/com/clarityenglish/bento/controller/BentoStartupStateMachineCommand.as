@@ -18,12 +18,12 @@ package com.clarityenglish.bento.controller {
 			// gh#21
 			var fsm:XML =				
 				<fsm initial={BBStates.STATE_LOAD_COPY}>
-					<state name={BBStates.STATE_LOAD_COPY} changed={CommonNotifications.COPY_LOAD}>
+					<state name={BBStates.STATE_LOAD_COPY} entering={CommonNotifications.COPY_LOAD}>
 					     <transition action={CommonNotifications.COPY_LOADED} target={BBStates.STATE_LOAD_ACCOUNT} />
 					     <transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 					
-                    <state name={BBStates.STATE_LOAD_ACCOUNT} changed={CommonNotifications.ACCOUNT_LOAD}>
+                    <state name={BBStates.STATE_LOAD_ACCOUNT} entering={CommonNotifications.ACCOUNT_LOAD}>
 					    <transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOGIN} />
 					    <transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>              
@@ -33,13 +33,13 @@ package com.clarityenglish.bento.controller {
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 
-					<state name={BBStates.STATE_LOAD_MENU} changed={BBNotifications.MENU_XHTML_LOAD}>
+					<state name={BBStates.STATE_LOAD_MENU} entering={BBNotifications.MENU_XHTML_LOAD}>
 						<transition action={BBNotifications.MENU_XHTML_LOADED} target={BBStates.STATE_START_SESSION} />
 						<transition action={BBNotifications.MENU_XHTML_NOT_LOADED} target={BBStates.STATE_CREDITS} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 				
-					<state name={BBStates.STATE_START_SESSION} changed={BBNotifications.SESSION_START}>
+					<state name={BBStates.STATE_START_SESSION} entering={BBNotifications.SESSION_START}>
 						<transition action={BBNotifications.SESSION_STARTED} target={BBStates.STATE_TITLE} />
 						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>

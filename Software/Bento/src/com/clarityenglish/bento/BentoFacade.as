@@ -13,14 +13,17 @@
 	import com.clarityenglish.common.controller.*;
 	
 	import flash.utils.Dictionary;
+	import flash.utils.setTimeout;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.StringUtils;
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.patterns.facade.Facade;
+	import org.puremvc.as3.utilities.statemachine.State;
 	import org.puremvc.as3.utilities.statemachine.StateMachine;
 	
 	/**
@@ -172,9 +175,20 @@
 		 * @param	type
 		 */
 		override public function sendNotification(notificationName:String, body:Object = null, type:String = null):void {
-			super.sendNotification(notificationName, body, type);
-			
-			if (notificationName != StateMachine.ACTION) sendNotification(StateMachine.ACTION, null, notificationName);
+			// If this isn't a StateMachine notification (all of which begin with 'StateMachine/notes', duplicate it as an ACTION for the state machine.
+			// Put a delay before dispatching the original notification to give the state machine time to get into a new state, if necessary.
+			if (!StringUtils.beginsWith(notificationName, "StateMachine/notes")) {
+				var stateMachine:StateMachine = retrieveMediator(StateMachine.NAME) as StateMachine;
+				sendNotification(StateMachine.ACTION, null, notificationName);
+				
+				log.debug("sendNotification: " + notificationName);
+				
+				var f:Function = super.sendNotification;
+				setTimeout(function():void { f(notificationName, body, type); }, 1);
+			} else {
+				
+				super.sendNotification(notificationName, body, type);
+			}
 		}
 		
 	}

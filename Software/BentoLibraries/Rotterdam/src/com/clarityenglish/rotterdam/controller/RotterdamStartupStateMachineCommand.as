@@ -15,11 +15,11 @@ package com.clarityenglish.rotterdam.controller {
 			// Note that 'changed' means entered, really
 			var fsm:XML =				
 				<fsm initial={BBStates.STATE_LOAD_COPY}>
-					<state name={BBStates.STATE_LOAD_COPY} changed={CommonNotifications.COPY_LOAD}>
+					<state name={BBStates.STATE_LOAD_COPY} entering={CommonNotifications.COPY_LOAD}>
 						<transition action={CommonNotifications.COPY_LOADED} target={BBStates.STATE_LOAD_ACCOUNT} />
 					</state>
 					
-					<state name={BBStates.STATE_LOAD_ACCOUNT} changed={CommonNotifications.ACCOUNT_LOAD}>
+					<state name={BBStates.STATE_LOAD_ACCOUNT} entering={CommonNotifications.ACCOUNT_LOAD}>
 						<transition action={CommonNotifications.ACCOUNT_LOADED} target={BBStates.STATE_LOGIN} />
 					</state>
 					

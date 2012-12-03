@@ -151,10 +151,12 @@ package org.puremvc.as3.utilities.statemachine
 			switch( note.getName() )
 			{
 				case ACTION:
-					var action:String = note.getType();
-					var target:String = currentState.getTarget( action );
-					var newState:State = states[ target ];
-					if ( newState ) transitionTo( newState, note.getBody() );  
+					if (currentState) { 
+						var action:String = note.getType();
+						var target:String = currentState.getTarget( action );
+						var newState:State = states[ target ];
+						if ( newState ) transitionTo( newState, note.getBody() ); 
+					}
 					break;
 					
 				case CANCEL:

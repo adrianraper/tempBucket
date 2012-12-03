@@ -2,8 +2,7 @@
 Simple Command - PureMVC
  */
 package com.clarityenglish.common.controller {
-	import com.clarityenglish.bento.model.SCORMProxy;
-	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.model.LoginProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -17,6 +16,8 @@ package com.clarityenglish.common.controller {
 		override public function execute(note:INotification):void {
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			loginProxy.logout();
+			
+			sendNotification(BBNotifications.BENTO_RESET); // #61
 		}
 		
 	}

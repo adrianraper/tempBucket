@@ -39,7 +39,7 @@
 		} 
 		
 		public override function toString():String { 
-			return formatToString("LoginEvent", "type", "user.name", "loginOption", "verified", "bubbles", "cancelable", "eventPhase"); 
+			return formatToString("LoginEvent", "type", "user", "loginOption", "verified", "bubbles", "cancelable", "eventPhase"); 
 		}
 		
 	}
