@@ -1,11 +1,16 @@
 <?php
+	if (isset($_GET['session']))
+		session_id($_GET['session']);
+		
 	session_start();
+	$currentSessionID = session_id();
+	
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = '';
 
 	// For this product
-	$productCode = 54; // Rotterdam
+	//$productCode = 54; // Rotterdam
 	$swfName = 'Builder.swf';
 	$webShare = '';
 	$startControl = "$webShare/Software/BentoTitles/RotterdamBuilder/bin-debug/";
@@ -94,6 +99,7 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
+		var version = "0.0.0.1";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
@@ -101,9 +107,9 @@
 
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
-		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
-		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
-		argList+="&version=<?php echo filemtime('../../'.$startControl.$swfName); ?>";
+		var argList="?location=<?php echo $locationFile ?>";
+		argList+="&prefix=<?php echo $prefix ?>";
+		argList+="&version=" + version;
 
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
@@ -148,7 +154,8 @@
 			action: swfobject.getQueryParamValue("action"),
 			referrer: "<?php echo $referrer ?>",
 			server: "<?php echo $server ?>",
-			ip: "<?php echo $ip ?>"
+			ip: "<?php echo $ip ?>",
+			sessionid: "<?php echo $currentSessionID ?>"
 		};
 		var params = {
 			id: "bento",

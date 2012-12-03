@@ -36,10 +36,6 @@ login|LoginView s|TextInput {
 	contentBackgroundColor: #FFFFFF;
 }
 
-login|LoginView s|Button#freeCourseButton {
-	skinClass: ClassReference("skins.rotterdam.player.login.FreeCourseButtonSkin");
-}
-
 title|TitleView {
 	skinClass: ClassReference("skins.rotterdam.player.title.TitleSkin");
 }
