@@ -55,11 +55,11 @@
 		<s:State name="unitplayer" enterState="unitViewNavigatorShow(UnitView, unitViewNavigator.defaultPushTransition)" />
 	</s:states>
 	
-	<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="200" top="0" bottom="100" />
+	<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="150" top="20" bottom="30" borderVisible="false" />
 	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="70" useHandCursor="true" buttonMode="true" />
 	<s:Button id="courseSettingsButton" label="Course settings" left="100" bottom="70" useHandCursor="true" buttonMode="true" />
 	
-	<s:ViewNavigator id="unitViewNavigator" left="200" right="0" top="0" bottom="80" />
+	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="0" bottom="80" />
 	
 	<course:ToolBarView bottom="0" left="0" right="0" />
 	

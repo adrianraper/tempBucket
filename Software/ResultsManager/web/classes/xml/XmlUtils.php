@@ -9,7 +9,7 @@ class XmlUtils {
 	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
 	public static function rewriteXml($filename, $func) {
-		$fp = fopen($filename, "r+t");
+		$fp = fopen($filename, "r+b");
 		if (flock($fp, LOCK_EX)) {
 			// Read the file
 			$contents = fread($fp, filesize($filename));
@@ -30,7 +30,7 @@ class XmlUtils {
 			fflush($fp);
 			flock($fp, LOCK_UN);
 		} else {
-			throw new Exception("Problem whilst locking xml file");
+			throw new Exception("Problem whilst locking xml file $filename");
 		}
 		
 		fclose($fp);
@@ -46,7 +46,7 @@ class XmlUtils {
 	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
 	public static function overwriteXml($filename, $contents, $func) {
-		$fp = fopen($filename, "r+t");
+		$fp = fopen($filename, "r+b");
 		if (flock($fp, LOCK_EX)) {
 			$xml = simplexml_load_string($contents);
 			

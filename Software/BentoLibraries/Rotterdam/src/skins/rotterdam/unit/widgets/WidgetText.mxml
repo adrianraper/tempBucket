@@ -77,6 +77,5 @@
 						valueCommit="onValueCommit(event)"
 						selectionChange="onSelectionChange(event)"
 						focusIn.editing="focusHighlight.visible = true"
-						focusOut.editing="focusHighlight.visible = false" />
-	
+						focusOut.editing="focusHighlight.visible = false" />	
 </s:Group>

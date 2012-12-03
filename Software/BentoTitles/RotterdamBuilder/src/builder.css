@@ -27,8 +27,19 @@ login|LoginView {
 	skinClass: ClassReference("skins.rotterdam.builder.login.LoginSkin");
 }
 
-login|LoginView s|Button {
+login|LoginView s|Button#loginButton {
 	skinClass: ClassReference("skins.rotterdam.builder.login.LoginButtonSkin");
+}
+
+login|LoginView s|Button#freeCourseButton {
+	skinClass: ClassReference("skins.rotterdam.builder.login.FreeCourseButtonSkin");
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
+	borderVisible: true;
+	borderColor: #C8C8C8;
+	contentBackgroundColor: #FFFFFF;
 }
 
 title1|TitleView {

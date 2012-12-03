@@ -20,6 +20,7 @@
 	<widgets:WidgetChrome id="widgetChrome"
 						  title="{hostComponent.title}"
 						  icon="@Embed(source='/skins/assets/text-icon.png', mimeType='image/png')"
+						  icon.selected="@Embed(source='/skins/assets/video-icon.png', mimeType='image/png')"
 						  editing.editing="true"
 						  selected.selected="true"
 						  left="0" right="0" top="0" bottom="0" />

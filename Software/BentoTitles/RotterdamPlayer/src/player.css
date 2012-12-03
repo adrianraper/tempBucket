@@ -8,6 +8,7 @@
 @namespace progress "com.clarityenglish.rotterdam.player.view.progress.*";
 @namespace progresscomponents "com.clarityenglish.rotterdam.player.view.progress.components.*";
 @namespace progressui "com.clarityenglish.rotterdam.player.view.progress.ui.*";
+@namespace login "com.clarityenglish.rotterdam.view.login.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -18,6 +19,25 @@ global {
 
 player|PlayerApplication {
 	skinClass: ClassReference("skins.rotterdam.player.PlayerApplicationSkin");
+}
+
+login|LoginView {
+	skinClass: ClassReference("skins.rotterdam.player.login.LoginSkin");
+}
+
+login|LoginView s|Button#loginButton {
+	skinClass: ClassReference("skins.rotterdam.player.login.LoginButtonSkin");
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
+	borderVisible: true;
+	borderColor: #C8C8C8;
+	contentBackgroundColor: #FFFFFF;
+}
+
+login|LoginView s|Button#freeCourseButton {
+	skinClass: ClassReference("skins.rotterdam.player.login.FreeCourseButtonSkin");
 }
 
 title|TitleView {
