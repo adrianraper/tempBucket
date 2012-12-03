@@ -144,6 +144,10 @@ package com.clarityenglish.rotterdam.view.login {
 			}
 		}
 		
+		public function setNoAccount(value:Boolean):void {
+			// TODO: Blank for the moment - but Adrian might want this to work for Rotterdam too
+		}
+		
 		// #341 Need to know if it is a network version.
 		public function get isNetwork():Boolean {
 			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
@@ -160,7 +164,7 @@ package com.clarityenglish.rotterdam.view.login {
 			}
 		}
 		
-		public function setProductCode(value:uint):void {
+		public function setProductCode(value:String):void {
 			if (_productCode != value) {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));
