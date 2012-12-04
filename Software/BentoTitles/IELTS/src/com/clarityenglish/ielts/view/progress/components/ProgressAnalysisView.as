@@ -25,7 +25,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		public var analysisInstructionLabel2:Label;
 		
 		[SkinPart(required="true")]
-		public var analysisTime:Label;
+		public var analysisTimeLabel:Label;
 		
 		[SkinPart(required="true")]
 		public var durationDataGroup:DataGroup;
@@ -54,6 +54,7 @@ package com.clarityenglish.ielts.view.progress.components {
 
 		public function set progressXml(value:XML):void {
 			_progressXml = value;
+			updateTotalDuration();
 			dispatchEvent(new Event("progressChanged"));
 		}
 
@@ -84,20 +85,36 @@ package com.clarityenglish.ielts.view.progress.components {
 				case analysisInstructionLabel2:
 					instance.text = _viewCopyProvider.getCopyForId("analysisInstructionLabel2");
 					break;
+				case analysisTimeLabel:
+					updateTotalDuration();
+					break;
 				case durationDataGroup:
-					var classFactory:ClassFactory = new ClassFactory (com.clarityenglish.ielts.view.progress.ui.CourseDurationRenderer);
-					classFactory.properties = {copyProvider : _viewCopyProvider};
+					var classFactory:ClassFactory = new ClassFactory(CourseDurationRenderer);
+					classFactory.properties = { copyProvider: _viewCopyProvider };
 					instance.itemRenderer = classFactory;
 					break;
+			}
+		}
+		
+		private function updateTotalDuration():void {
+			if (progressXml && analysisTimeLabel) {
+				var duration:Number = 0;
+				for each (var course:XML in progressXml.course)
+					duration += new Number(course.@duration);
+				
+				analysisTimeLabel.text = _viewCopyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
 			}
 		}
 		
 		[Bindable(event="progressChanged")]
 		public function get totalDuration():Number {
 			var duration:Number = 0;
-			for each (var course:XML in progressXml.course)
-				duration += new Number(course.@duration);
 			
+			if (progressXml) {
+				for each (var course:XML in progressXml.course)
+					duration += new Number(course.@duration);
+			}
+				
 			return duration;
 		}
 

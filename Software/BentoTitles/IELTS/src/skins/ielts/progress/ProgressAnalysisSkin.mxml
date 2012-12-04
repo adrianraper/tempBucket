@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.ielts.view.progress.ui.*" creationComplete="creationComplete(event)">
+		xmlns:ui="com.clarityenglish.ielts.view.progress.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.progress.components.ProgressAnalysisView")]
@@ -10,31 +10,10 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.ielts.view.progress.ui.CourseDurationRenderer;
-			
 			import mx.collections.XMLListCollection;
-			import mx.events.FlexEvent;
-			
-			protected function creationComplete(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
-				//issue:#11 Languge Code, Due to totalDuration was evaluated after partAdded, so we put analysisTime text here
-				var replaceObj:Array = []
-				trace("hostComponent.totalDuration = "+ Math.floor(hostComponent.totalDuration / 60));
-				replaceObj.x = Math.floor(hostComponent.totalDuration / 60);
-				analysisTime.text = hostComponent.viewCopyProvider.getCopyForId("analysisTime", replaceObj);
-			}
-			
-			/*//issue:#11 Language Code, here we assigned hostComponent.copyProvider to CourseDurationRenderer class
-			private function itemRendererDataSet(item:Object):IFactory {
-				var classFactory:ClassFactory = new ClassFactory (com.clarityenglish.ielts.view.progress.ui.CourseDurationRenderer);
-				classFactory.properties = {copyProvider : hostComponent.copyProvider};
-				return classFactory;
-			}*/
-			
 		]]>
 	</fx:Script>
-
+	
 	<s:states>
 		<s:State name="disabled" />
 		
@@ -47,7 +26,7 @@
 	
 	<s:Label id="analysisInstructionLabel1" left="20" top="60" />
 	<s:Label id="analysisInstructionLabel2" left="20" top="90" />
-	<s:Label id="analysisTime" fontSize="16" left="20" top="120" />
+	<s:Label id="analysisTimeLabel" fontSize="16" left="20" top="120" />
 	
 	<ui:StackedBarChart id="stackedBarChart" dataProvider="{hostComponent.progressXml}" top="150" height="35" left="20" width="{durationDataGroup.width}" />
 	
