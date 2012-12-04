@@ -50,7 +50,7 @@ package com.clarityenglish.controls.video.players {
 				fullScreenButton.addEventListener(MouseEvent.CLICK, onFullScreen);
 			}
 			
-			super.partAdded(partName,instance);
+			super.partAdded(partName, instance);
 		}
 		
 		protected function onBufferingChange(event:BufferEvent):void {
