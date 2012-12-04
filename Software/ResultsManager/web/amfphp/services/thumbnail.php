@@ -33,6 +33,7 @@ if (sizeof($segments) == 0 || sizeof($segments) > 4) {
  */
 while (sizeof($segments) > 0) {
 	$imagePath = $thumbnailFolder.implode("/", $segments).".png";
+	
 	if (file_exists($imagePath)) {
 		outputPng($imagePath);
 	} else {
