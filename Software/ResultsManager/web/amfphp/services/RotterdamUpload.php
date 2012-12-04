@@ -23,7 +23,7 @@ if (!isset($_FILES['Filedata']) || $_FILES['Filedata']['tmp_name'] == "") {
 
 // Copy the uploaded file and update media.xml
 $mediaFolder = $service->mediaOps->mediaFolder;
-XmlUtils::rewriteCourseXml($service->mediaOps->mediaFilename, function($xml) use($mediaFolder) {
+XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($mediaFolder) {
 	// Get some information about the uploaded file (original name, size and mimetype)
 	$originalName = $_FILES['Filedata']['name'];
 	$size = $_FILES['Filedata']['size'];

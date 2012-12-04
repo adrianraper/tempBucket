@@ -30,7 +30,22 @@ class XmlUtils {
 			fflush($fp);
 			flock($fp, LOCK_UN);
 		} else {
-			throw new Exception("Problem whilst locking xml file $filename");
+			// gh#65 - no lock version
+			// Read the file
+			$contents = fread($fp, filesize($filename));
+			$xml = simplexml_load_string($contents);
+			
+			$func($xml);
+			
+			$dom = new DOMDocument();
+			$dom->formatOutput = true;
+			$dom->loadXML($xml->asXML());
+			
+			ftruncate($fp, 0);
+			fseek($fp, 0);
+			fwrite($fp, $dom->saveXML());
+			fflush($fp);
+			// throw new Exception("Problem whilst locking xml file $filename");
 		}
 		
 		fclose($fp);
@@ -65,7 +80,20 @@ class XmlUtils {
 			fflush($fp);
 			flock($fp, LOCK_UN);
 		} else {
-			throw new Exception("Problem whilst locking xml file");
+			// gh#65 - no lock version
+			$xml = simplexml_load_string($contents);
+			
+			$func($xml);
+			
+			$dom = new DOMDocument();
+			$dom->formatOutput = true;
+			$dom->loadXML($xml->asXML());
+			
+			ftruncate($fp, 0);
+			fseek($fp, 0);
+			fwrite($fp, $dom->saveXML());
+			fflush($fp);
+			//throw new Exception("Problem whilst locking xml file");
 		}
 		
 		fclose($fp);
