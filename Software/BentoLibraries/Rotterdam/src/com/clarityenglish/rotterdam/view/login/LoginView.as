@@ -1,7 +1,6 @@
 package com.clarityenglish.rotterdam.view.login {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.events.LoginEvent;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
@@ -13,6 +12,8 @@ package com.clarityenglish.rotterdam.view.login {
 	
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
+	
+	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.FormHeading;
@@ -300,6 +301,11 @@ package com.clarityenglish.rotterdam.view.login {
 		
 		public function clearData():void {
 			passwordInput.text = "";
+		}
+		
+		// Temporary - until Alice removes getTestDrive from the LoginMediator and interface
+		public function getTestDrive():Signal {
+			return new Signal();
 		}
 	
 	}
