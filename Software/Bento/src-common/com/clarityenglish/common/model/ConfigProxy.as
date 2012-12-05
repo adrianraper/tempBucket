@@ -397,13 +397,6 @@ package com.clarityenglish.common.model {
 						var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 						copyProxy.setLanguageCode(config.languageCode);
 						*/
-						
-						// GH #58 - if there is a language code stored in the shared object then overwrite the existing one
-						var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
-						if (settingsSharedObject.data["languageCode"]) {
-							CopyProxy.languageCode = settingsSharedObject.data["languageCode"];
-						}
-						
 						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 					}
 					break;
