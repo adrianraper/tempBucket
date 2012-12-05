@@ -217,15 +217,76 @@ SQL;
 		// Once this is all done, you can move all these session, score and membership records to rack
 		$database = 'global_r2iv2';
 		$target = 'rack80829';
+
+		$this->db->StartTrans();
 		
 		$sql = <<<SQL
-			SELECT * FROM $database.T_User;
+			SELECT * FROM $database.T_User
+			where F_Username like 'Chun%';
 SQL;
-		$bindingParams = array($expiryDate);
+		$bindingParams = array();
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
-		// Issues. Need to remove session, score and membership records that are NOT updated
-		//	so archive records that have no active F_UserID
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				$logMsg = "";
+				$user = new User();
+				$user->fromDatabaseObj($dbObj);
+				$userID = $user->userID;
+				
+				$rc = $this->db->Execute($user->toSQLInsert(), $user->toBindingParams());
+				if (!$rc)
+					throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+				
+				$newUserID = $this->db->Insert_ID();
+				$bindingParams = array($newUserID, $userID);
+				
+				$sql = <<<SQL
+					UPDATE $database.T_Membership
+					SET F_UserID = ?
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$affectedRows = $this->db->Affected_Rows();
+				$logMsg .= "For $userID, updated $affectedRows record from T_Membership";
+				
+				$sql = <<<SQL
+					UPDATE $database.T_Session
+					SET F_UserID = ?
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$affectedRows = $this->db->Affected_Rows();
+				$logMsg .= ", $affectedRows from T_Session";
+				
+				$sql = <<<SQL
+					UPDATE $database.T_Score
+					SET F_UserID = ?
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$affectedRows = $this->db->Affected_Rows();
+				$logMsg .= " and $affectedRows from T_Score";
+				
+				$sql = <<<SQL
+					DELETE FROM $database.T_User
+					WHERE F_UserID = ?;
+SQL;
+				$bindingParams = array($userID);
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$affectedRows = $this->db->Affected_Rows();
+				$logMsg .= " and deleted $affectedRows from T_User.\r\n";
+				
+				echo $logMsg;
+			}
+		}
+		// Q: will this point at rack80829 for the insert?
+
+		$this->db->CompleteTrans();
+		
+		// Issues. 
+		// Need to remove session, score and membership records that are NOT updated
+		// so archive records that have no active F_UserID. OK, SQL written
 		
 	}
 }

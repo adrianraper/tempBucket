@@ -82,14 +82,33 @@ select * from global_r2iv2.T_Groupstructure;
 
 -- For all user related information you have to insert the user and get a new id, then
 -- update all the F_UserID data in session, score, membership. Then move those.
--- That will need a program.
+-- That will need a program. InternalQueryGateway.php
+
+-- Then finally shift the session, score and membership records with the updated userID over to rack
+insert into rack80829.T_Session from
+select * from global_r2iv2.T_Session;
+insert into rack80829.T_Score from
+select * from global_r2iv2.T_Score;
 insert into rack80829.T_Membership from
 select * from global_r2iv2.T_Membership;
 
-insert into rack80829.T_User from
-select u.* from global_r2iv2.T_User u, global_r2iv2.T_Membership m 
-where u.F_UserID = m.F_UserID and 
-m.F_RootID=14030;
+-- what we do need to do here is to archive sessions, memberships and scores that do not have 
+-- a F_UserID in T_User. Are there any other tables too?
+-- I am just going to leave the expiry tables where they are.
+insert into global_r2iv2.T_Membership_Expiry from
+select * from global_r2iv2.T_Membership m
+where not exists (select * from global_r2iv2.T_User u where u.F_UserID=m.F_UserID);
+delete from global_r2iv2.T_Membership
+where F_UserID NOT IN (select F_UserID from global_r2iv2.T_User);
 
-select * from T_Session where F_RootID=14030;
-select * from T_Score where F_RootID=14030;
+insert into global_r2iv2.T_Session_Expiry from
+select * from global_r2iv2.T_Session s
+where not exists (select * from global_r2iv2.T_User u where u.F_UserID=s.F_UserID);
+delete from global_r2iv2.T_Session
+where F_UserID NOT IN (select F_UserID from global_r2iv2.T_User);
+
+insert into global_r2iv2.T_Score_Expiry from
+select * from global_r2iv2.T_Score s
+where not exists (select * from global_r2iv2.T_User u where u.F_UserID=s.F_UserID);
+delete from global_r2iv2.T_Score
+where F_UserID NOT IN (select F_UserID from global_r2iv2.T_User);

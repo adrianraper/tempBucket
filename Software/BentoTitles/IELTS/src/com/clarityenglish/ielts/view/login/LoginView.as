@@ -252,7 +252,7 @@ package com.clarityenglish.ielts.view.login {
 			}
 		}
 		
-		//gh#41
+		// gh#41
 		public function getTestDrive():Signal {
 			return setTestDrive;
 		}
