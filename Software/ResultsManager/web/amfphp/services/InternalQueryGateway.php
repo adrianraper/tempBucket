@@ -119,6 +119,9 @@ try {
 			//echo 'startDate='.$apiInformation['startDate'];
 			$rc['subscriptions'] = $thisService->internalQueryOps->getSubscriptions($apiInformation['startDate']);
 			break;
+		case 'mergeDatabases':
+			$rc = $thisService->internalQueryOps->mergeDatabases();
+			break;
 	}
 	
 	if (isset($rc['errCode']) && intval($rc['errCode']) > 0) {
@@ -137,4 +140,3 @@ try {
 }
 flush();
 exit(0)
-?>

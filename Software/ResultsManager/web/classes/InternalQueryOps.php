@@ -208,4 +208,24 @@ SQL;
 		return $this->db->Affected_Rows();
 		
 	}
+	
+	// To merge users from one database into another
+	function mergeDatabases() {
+		
+		// Need to get each active user from global_r2iv2 (r2i) and add them as a new user to rack80829 (rack)
+		// Then using the new userID, update all session, score, membership records in r2i to the new ID
+		// Once this is all done, you can move all these session, score and membership records to rack
+		$database = 'global_r2iv2';
+		$target = 'rack80829';
+		
+		$sql = <<<SQL
+			SELECT * FROM $database.T_User;
+SQL;
+		$bindingParams = array($expiryDate);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		
+		// Issues. Need to remove session, score and membership records that are NOT updated
+		//	so archive records that have no active F_UserID
+		
+	}
 }
