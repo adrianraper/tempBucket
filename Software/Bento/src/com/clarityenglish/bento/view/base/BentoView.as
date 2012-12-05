@@ -45,11 +45,15 @@ package com.clarityenglish.bento.view.base {
 		
 		// #234
 		protected var _productVersion:String;
-		// gh#39
+		
+		// GH #39
 		protected var _productCode:String;
 		protected var _licenceType:uint;
 		
 		public var media:String = "screen";
+		
+		// Used to drive onViewCreationComplete in the mediator
+		private var _isCreationComplete:Boolean;
 		
 		/**
 		 * Configuration properties commonly used in views
@@ -67,10 +71,17 @@ package com.clarityenglish.bento.view.base {
 			addEventListener(FlexEvent.PREINITIALIZE, onPreinitialize, false, 0, true);
 		}
 		
-		//issue:#11 Language Code, need to be overriveden 
+		internal function get isCreationComplete():Boolean {
+			return _isCreationComplete;
+		}
+
+		internal function set isCreationComplete(value:Boolean):void {
+			_isCreationComplete = value;
+			if (value) onViewCreationComplete();
+		}
+
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
-			
 		}
 		
 		/**
@@ -109,6 +120,13 @@ package com.clarityenglish.bento.view.base {
 		protected function onRemovedFromStage(event:Event):void {
 			_href = null;
 			_xhtml = null;
+		}
+		
+		/**
+		 * This is fired when all skin parts are available, each time the view is added to the screen.  It can be used to assign copy.
+		 */
+		protected function onViewCreationComplete():void {
+			
 		}
 		
 		[Bindable]

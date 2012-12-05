@@ -36,9 +36,11 @@ package com.clarityenglish.ielts.view.home.ui {
 		public var courseClass:String;
 		
 		private var _courseCaption:String;
+		private var _courseCaptionChanged:Boolean;
 		
 		private var _dataChanged:Boolean;
 		private var _detailData:XML;
+		
 		private var _copyProvider:CopyProvider;
 		
 		public function set copyProvider(copyProvider:CopyProvider):void {
@@ -47,6 +49,8 @@ package com.clarityenglish.ielts.view.home.ui {
 		
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
+			_courseCaptionChanged = true;
+			invalidateProperties();
 		}
 		
 		public override function set data(value:Object):void {
@@ -59,17 +63,15 @@ package com.clarityenglish.ielts.view.home.ui {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_dataChanged && _detailData) {
+			if ((_courseCaptionChanged || _dataChanged) && _detailData) {
 				var course:XML = _detailData.course.(@["class"] == courseClass)[0];
 				
 				// #338 Just in case you have hidden some of the courses
 				if (course) {
-					//var courseSummaryInfo:XML = value.course.(@["class"]==courseClass).summaryInfo[0];
 					solidColour.color = getStyle(courseClass + "Color");
 					backColour.color = getStyle(courseClass + "ColorDark");
 					commentLabel.text = _courseCaption + " " + _copyProvider.getCopyForId("overallCoverage") + " " + new Number(course.@coverage) + "%";
 					var percentValue:Number = new Number(course.@coverage);
-					//var percentValue:Number = new Number(courseSummaryInfo.@coverage);
 					
 					// Tween it
 					Tweener.removeTweens(overallProgressRect, percentWidth);
@@ -78,6 +80,8 @@ package com.clarityenglish.ielts.view.home.ui {
 					backColour.color = getStyle("disabledColor");
 					commentLabel.text = _courseCaption + " is hidden";
 				}
+				
+				_courseCaptionChanged = _dataChanged = false;
 			}
 		}
 		

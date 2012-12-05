@@ -1,16 +1,17 @@
 package com.clarityenglish.bento.view.base {
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.model.CopyProxy;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	
+	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -53,6 +54,12 @@ package com.clarityenglish.bento.view.base {
 		public override function onRegister():void {
 			super.onRegister();
 			
+			if (view.isCreationComplete) {
+				view.callLater(onViewCreationComplete, null);
+			} else {
+				view.addEventListener(FlexEvent.CREATION_COMPLETE, onViewCreationComplete);
+			}
+			
 			// Add event listeners to the view
 			view.addEventListener(BentoEvent.HREF_CHANGED, onHrefChanged, false, 0, true);
 			
@@ -76,10 +83,20 @@ package com.clarityenglish.bento.view.base {
 			
 		}
 		
+		/**
+		 * This method is designed to fire when all the skin parts are available.  In turn it will trigger an onViewCreationComplete method to fire
+		 * within the view, which is where things like copy should be assigned.
+		 */
+		protected function onViewCreationComplete(e:Event = null):void {
+			view.isCreationComplete = true;
+			view.removeEventListener(FlexEvent.CREATION_COMPLETE, onViewCreationComplete);
+		}
+		
 		public override function onRemove():void {
 			super.onRemove();
 			
 			// Remove event listeners from the view
+			view.removeEventListener(FlexEvent.CREATION_COMPLETE, onViewCreationComplete);
 			view.removeEventListener(BentoEvent.HREF_CHANGED, onHrefChanged);
 			
 			currentlyLoadedHref = null;

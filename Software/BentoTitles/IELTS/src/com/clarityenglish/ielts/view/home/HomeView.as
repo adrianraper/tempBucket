@@ -81,11 +81,6 @@ package com.clarityenglish.ielts.view.home {
 		public var courseSelect:Signal = new Signal(XML);
 		public var info:Signal = new Signal();
 		
-		/*public override function setCopyProvider(copyProvider:CopyProvider):void {
-			super.setCopyProvider(copyProvider);
-					
-		}*/
-		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -112,6 +107,61 @@ package com.clarityenglish.ielts.view.home {
 			}
 		}
 		
+		protected override function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+			
+			if (readingCourseButton) readingCourseButton.label = copyProvider.getCopyForId("Reading");
+			if (writingCourseButton) writingCourseButton.label = copyProvider.getCopyForId("Writing");
+			if (speakingCourseButton) speakingCourseButton.label = copyProvider.getCopyForId("Speaking");
+			if (listeningCourseButton) listeningCourseButton.label = copyProvider.getCopyForId("Listening");
+			
+			if (registerInfoButton) registerInfoButton.label = copyProvider.getCopyForId("registerInfoButton");
+			
+			if (readingCoverageBar) readingCoverageBar.courseCaption = copyProvider.getCopyForId("Reading");
+			if (writingCoverageBar) writingCoverageBar.courseCaption = copyProvider.getCopyForId("Writing");
+			if (speakingCoverageBar) speakingCoverageBar.courseCaption = copyProvider.getCopyForId("Speaking");
+			if (listeningCoverageBar) listeningCoverageBar.courseCaption = copyProvider.getCopyForId("Listening");
+			
+			if (noProgressText) noProgressText.text = copyProvider.getCopyForId("noProgressText");
+			if (colorBarIntroLabel) colorBarIntroLabel.text = copyProvider.getCopyForId("colorBarIntroLabel");
+			
+			if (welcomeLabel) {
+				if ((licenceType == Title.LICENCE_TYPE_AA) || 
+					((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1))) {
+					if (productVersion == IELTSApplication.DEMO) {
+						welcomeLabel.text = copyProvider.getCopyForId("demoWelcomeLabel");
+					} else {
+						welcomeLabel.text = "";
+					}
+				} else {
+					welcomeLabel.text = copyProvider.getCopyForId("welcomeLabel" , { fullname:user.fullName });					
+				}
+			}
+			
+			if (noticeLabel) {
+				// TODO. Network licence doesn't want the note about test date, but CT licence does
+				if (licenceType == Title.LICENCE_TYPE_AA || 
+					licenceType == Title.LICENCE_TYPE_NETWORK) {
+					noticeLabel.text = "Licenced to " + accountName + ".";
+				} else {
+					if (user.examDate) {
+						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
+						
+						var daysUnit:String = (daysLeft == 1) ? copyProvider.getCopyForId("day") : copyProvider.getCopyForId("days");
+						if (daysLeft > 0) {
+							noticeLabel.text = copyProvider.getCopyForId("leftTestDate1") + " " + daysLeft.toString() + " " + daysUnit + " " + copyProvider.getCopyForId("leftTestDate2");
+						} else if (daysLeft == 0) {
+							noticeLabel.text = copyProvider.getCopyForId("goodLuck");
+						} else {
+							noticeLabel.text = copyProvider.getCopyForId("hopeTestWell");;
+						}
+					} else {
+						noticeLabel.text = copyProvider.getCopyForId("confirmTestDate");
+					}
+				}
+			}
+		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 		}		
@@ -121,96 +171,24 @@ package com.clarityenglish.ielts.view.home {
 			
 			switch (instance) {
 				case readingCourseButton:
-					instance.label = copyProvider.getCopyForId("Reading");
-					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
-					break;
 				case writingCourseButton:
-					instance.label = copyProvider.getCopyForId("Listening");
-					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
-					break;
 				case speakingCourseButton:
-					instance.label = copyProvider.getCopyForId("Speaking");
-					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
-					break;
 				case listeningCourseButton:
-					instance.label = copyProvider.getCopyForId("Writing");
-					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
-					break;
 				case examTipsCourseButton:
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
-				case welcomeLabel:
-					if ((licenceType == Title.LICENCE_TYPE_AA) || 
-						((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1))) {
-						if (productVersion == IELTSApplication.DEMO) {
-							// GH #11 Language Code
-							instance.text = copyProvider.getCopyForId("demoWelcomeLabel");
-						} else {
-							instance.text = "";
-						}
-					} else {
-						    // GH #11 Language Code, refined
-						instance.text = copyProvider.getCopyForId("welcomeLabel" , {fullname:user.fullName});					
-					}
-					break;
-				
-				case noticeLabel:
-					// TODO. Network licence doesn't want the note about test date, but CT licence does
-					if (licenceType == Title.LICENCE_TYPE_AA || 
-						licenceType == Title.LICENCE_TYPE_NETWORK) {
-						instance.text = "Licenced to " + accountName + ".";
-						
-					} else {
-						if (user.examDate) {
-							var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-							//issue:#11 Language Code ?
-							var daysUnit:String = (daysLeft == 1) ? copyProvider.getCopyForId("day") : copyProvider.getCopyForId("days");
-							if (daysLeft > 0) {
-								//isssue:#11 Language Code
-								instance.text = copyProvider.getCopyForId("leftTestDate1") + " " + daysLeft.toString() + " " + daysUnit + " " + copyProvider.getCopyForId("leftTestDate2");
-							} else if (daysLeft == 0) {
-								//issue:#11 Language Code
-								instance.text = copyProvider.getCopyForId("goodLuck");
-							} else {
-								instance.text = copyProvider.getCopyForId("hopeTestWell");;
-							}
-						} else {
-							//issue:#11 Language Code
-							instance.text = copyProvider.getCopyForId("confirmTestDate");
-						}
-					}
-					break;
-				
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
-					instance.label = copyProvider.getCopyForId("registerInfoButton");
 					break;
-				//issue:#11 Language Code
 				case readingCoverageBar:
-					instance.courseCaption = copyProvider.getCopyForId("Reading");
-					instance.copyProvider = copyProvider;
-					break;
 				case listeningCoverageBar:
-					instance.courseCaption = copyProvider.getCopyForId("Listening");
-					instance.copyProvider = copyProvider;
-					break;
 				case speakingCoverageBar:
-					instance.courseCaption = copyProvider.getCopyForId("Speaking");
-					instance.copyProvider = copyProvider;
-					break;
 				case writingCoverageBar:
-					instance.courseCaption = copyProvider.getCopyForId("Writing");
 					instance.copyProvider = copyProvider;
-					break;
-				case noProgressText:
-					instance.text = copyProvider.getCopyForId("noProgressText");
-					break;
-				case colorBarIntroLabel:
-					instance.text = copyProvider.getCopyForId("colorBarIntroLabel");
 					break;
 			}
 		}
-		
+				
 		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
 			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';

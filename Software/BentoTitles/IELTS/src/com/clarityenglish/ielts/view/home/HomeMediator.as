@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.vo.progress.Progress;
@@ -36,8 +37,6 @@
 			
 			// Inject required data into the view
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			//loginout
-			trace("user is in homeMediator" + loginProxy.user);
 			view.user = loginProxy.user;
 			
 			// For standardised date formatting
