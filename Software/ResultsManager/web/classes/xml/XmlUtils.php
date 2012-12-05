@@ -9,49 +9,8 @@ class XmlUtils {
 	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
 	public static function rewriteXml($filename, $func) {
-		$fp = fopen($filename, "r+b");
-		if (flock($fp, LOCK_EX)) {
-			// Read the file
-			$contents = fread($fp, filesize($filename));
-			$xml = simplexml_load_string($contents);
-			
-			$func($xml);
-			
-			$dom = new DOMDocument();
-			$dom->formatOutput = true;
-			/*$domnode = dom_import_simplexml($xml);
-			$domnode = $dom->importNode($domnode, true);
-			$dom->appendChild($domnode);*/
-			$dom->loadXML($xml->asXML());
-			
-			ftruncate($fp, 0);
-			fseek($fp, 0);
-			fwrite($fp, $dom->saveXML());
-			fflush($fp);
-			flock($fp, LOCK_UN);
-		} else {
-			// gh#65 - no lock version
-			// Read the file
-			$contents = fread($fp, filesize($filename));
-			$xml = simplexml_load_string($contents);
-			
-			$func($xml);
-			
-			$dom = new DOMDocument();
-			$dom->formatOutput = true;
-			$dom->loadXML($xml->asXML());
-			
-			ftruncate($fp, 0);
-			fseek($fp, 0);
-			fwrite($fp, $dom->saveXML());
-			fflush($fp);
-			// throw new Exception("Problem whilst locking xml file $filename");
-		}
-		
-		fclose($fp);
-		
-		// In case the calling function wants to do something with the new XML return it as a string (usually this will be ignored though)
-		return $dom->saveXML();
+		$contents = file_get_contents($filename);
+		return self::overwriteXml($filename, $contents, $func);
 	}
 	
 	/**
@@ -61,45 +20,35 @@ class XmlUtils {
 	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
 	public static function overwriteXml($filename, $contents, $func) {
-		$fp = fopen($filename, "r+b");
-		if (flock($fp, LOCK_EX)) {
+		$lockDirname = $filename.'_lock';
+		if ($fp = @fopen($filename, 'w')) {
+			// Implement locking with a 10 second timeout in case things go awry
+			$timestamp = time();
+			while (file_exists($lockDirname) || !mkdir($lockDirname)) {
+				usleep(250);
+				if ((time() - $timestamp) > 10) {
+					throw new Exception("Timeout when waiting for file lock");
+				}
+			}
+			
 			$xml = simplexml_load_string($contents);
 			
 			$func($xml);
 			
 			$dom = new DOMDocument();
 			$dom->formatOutput = true;
-			/*$domnode = dom_import_simplexml($xml);
-			$domnode = $dom->importNode($domnode, true);
-			$dom->appendChild($domnode);*/
 			$dom->loadXML($xml->asXML());
 			
-			ftruncate($fp, 0);
-			fseek($fp, 0);
-			fwrite($fp, $dom->saveXML());
-			fflush($fp);
-			flock($fp, LOCK_UN);
+			@fwrite($fp, $dom->saveXML());
+	        @fclose($fp);
+
+			@rmdir($lockDirname);
+	        
+	        // In case the calling function wants to do something with the new XML return it as a string (usually this will be ignored though)
+			return $dom->saveXML();
 		} else {
-			// gh#65 - no lock version
-			$xml = simplexml_load_string($contents);
-			
-			$func($xml);
-			
-			$dom = new DOMDocument();
-			$dom->formatOutput = true;
-			$dom->loadXML($xml->asXML());
-			
-			ftruncate($fp, 0);
-			fseek($fp, 0);
-			fwrite($fp, $dom->saveXML());
-			fflush($fp);
-			//throw new Exception("Problem whilst locking xml file");
+			throw new Exception("Unable to open file for writing");
 		}
-		
-		fclose($fp);
-		
-		// In case the calling function wants to do something with the new XML return it as a string (usually this will be ignored though)
-		return $dom->saveXML();
 	}
 	
 }
