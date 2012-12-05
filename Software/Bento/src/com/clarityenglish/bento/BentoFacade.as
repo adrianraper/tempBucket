@@ -177,16 +177,21 @@
 		override public function sendNotification(notificationName:String, body:Object = null, type:String = null):void {
 			// If this isn't a StateMachine notification (all of which begin with 'StateMachine/notes', duplicate it as an ACTION for the state machine.
 			// Put a delay before dispatching the original notification to give the state machine time to get into a new state, if necessary.
+			// GH #73 - as it turns out putting a delay before the re-dispatch causes synchronisation issues elsewhere :(  For now remove the delay as the state
+			// machine doesn't exhibit any issues right now
 			if (!StringUtils.beginsWith(notificationName, "StateMachine/notes")) {
 				var stateMachine:StateMachine = retrieveMediator(StateMachine.NAME) as StateMachine;
 				sendNotification(StateMachine.ACTION, null, notificationName);
 				
 				log.debug("sendNotification: " + notificationName);
 				
-				var f:Function = super.sendNotification;
-				setTimeout(function():void { f(notificationName, body, type); }, 1);
-			} else {
+				super.sendNotification(notificationName, body, type);
 				
+				/*var f:Function = super.sendNotification;
+				setTimeout(function():void {
+					f(notificationName, body, type);
+				}, 1);*/
+			} else {
 				super.sendNotification(notificationName, body, type);
 			}
 		}
