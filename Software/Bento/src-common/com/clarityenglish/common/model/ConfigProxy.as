@@ -376,7 +376,7 @@ package com.clarityenglish.common.model {
 						</db>
 						*/
 						
-						//config.mergeAccountData(data);
+						config.mergeAccountData(data);
 						
 						var authenticated:Boolean = this.checkAuthentication();
 					}
