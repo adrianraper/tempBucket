@@ -340,7 +340,6 @@ package com.clarityenglish.ielts.view.login {
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
-			trace("adding part " + instance.toString());
 			switch (instance) {
 				case loginKeyInput:
 				case passwordInput:

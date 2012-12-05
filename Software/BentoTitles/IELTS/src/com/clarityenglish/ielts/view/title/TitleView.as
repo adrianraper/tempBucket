@@ -169,36 +169,27 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="HelpIcon")]
 		private var helpIcon:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
-		
 		private var fullVersionAcademicLogo:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionGeneralTraining")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionGeneralTrainingLogo:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourAcademic")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
 		private var tenHourAcademicLogo:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHourGeneralTraining")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoTenHour")]
 		private var tenHourGeneralTrainingLogo:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteAcademic")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
 		private var lastMinuteAcademicLogo:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinuteGeneralTraining")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoLastMinute")]
 		private var lastMinuteGeneralTrainingLogo:Class;
 		
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoAcademic")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoAcademicLogo:Class;
 
-		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoDemoGeneralTraing")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
         
@@ -339,26 +330,24 @@ package com.clarityenglish.ielts.view.title {
 					//gt#11
 					upgradeInfo = this.assetFolder + "upgrade.jpg";
 					return upgradeInfo;
-					break;
 				
 				case IELTSApplication.TEST_DRIVE:
 					//gt#11
 					registerInfo =  this.assetFolder + "register.jpg";
 					return registerInfo;
-					break;
 				
 				case IELTSApplication.DEMO:
 					// #337 
-					if (config.pricesURL)
+					if (config.pricesURL) {
 						//gt#11
 						priceInfo = this.assetFolder + "price.jpg";
 						return priceInfo;
+					}
 					
 					//gt#11
 					buyInfo	= this.assetFolder + "buy.jpg";
 					return buyInfo;
-					break;
-							
+					
 				case IELTSApplication.FULL_VERSION:
 				default:
 					return null;

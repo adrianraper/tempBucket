@@ -117,17 +117,15 @@ package com.clarityenglish.ielts.view.home {
 		}		
 		
 		protected override function partAdded(partName:String, instance:Object):void {
-
-			
 			super.partAdded(partName, instance);
-			//trace("partAdded in HomeView for " + partName);
+			
 			switch (instance) {
 				case readingCourseButton:
 					instance.label = copyProvider.getCopyForId("Reading");
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case writingCourseButton:
-					instance.label = copyProvider.getCopyForId("Writing");
+					instance.label = copyProvider.getCopyForId("Listening");
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case speakingCourseButton:
@@ -135,25 +133,23 @@ package com.clarityenglish.ielts.view.home {
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case listeningCourseButton:
-					instance.label = copyProvider.getCopyForId("Listening");
+					instance.label = copyProvider.getCopyForId("Writing");
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case examTipsCourseButton:
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
-				
 				case welcomeLabel:
 					if ((licenceType == Title.LICENCE_TYPE_AA) || 
 						((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1))) {
 						if (productVersion == IELTSApplication.DEMO) {
-							//issue:#11 Language Code
+							// GH #11 Language Code
 							instance.text = copyProvider.getCopyForId("demoWelcomeLabel");
 						} else {
 							instance.text = "";
 						}
 					} else {
-						    //issue:#11 Language Code, refined
-						trace("user name in HomeView is "+user.fullName);
+						    // GH #11 Language Code, refined
 						instance.text = copyProvider.getCopyForId("welcomeLabel" , {fullname:user.fullName});					
 					}
 					break;
@@ -217,7 +213,7 @@ package com.clarityenglish.ielts.view.home {
 		
 		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/ResultsManager/web/resources/' + config.languageCode.toLowerCase() + '/assets/';
+			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
 		}
 		
 		public function get accountName():String {
