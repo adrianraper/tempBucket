@@ -1,6 +1,5 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	import com.clarityenglish.rotterdam.vo.Course;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;

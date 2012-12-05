@@ -1,6 +1,5 @@
 package com.clarityenglish.rotterdam.view.courseselector {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.rotterdam.vo.Course;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
@@ -26,7 +25,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		[SkinPart]
 		public var deleteCourseButton:Button;
 		
-		public var createCourse:Signal = new Signal(Course);
+		public var createCourse:Signal = new Signal();
 		public var selectCourse:Signal = new Signal(XML);
 		public var deleteCourse:Signal = new Signal(XML);
 		
@@ -38,9 +37,6 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			super.updateViewFromXHTML(xhtml);
 			
 			courseList.dataProvider = new XMLListCollection(xhtml.courses.course);
-			
-			// Auto-select a course for testing
-			//selectCourse.dispatch(courseList.dataProvider.getItemAt(0));
 		}
 
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -60,11 +56,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		}
 		
 		protected function onCreateCourse(event:MouseEvent):void {
-			// TODO: need to have the designs to know exactly how this will work but for now just use a random name
-			var course:Course = new Course();
-			course.caption = "Course " + new Date().time;
-			
-			createCourse.dispatch(course);
+			createCourse.dispatch();
 		}
 		
 		protected function onSelectCourse(event:MouseEvent):void {

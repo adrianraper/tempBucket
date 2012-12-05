@@ -8,6 +8,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupCommand;
 	import com.clarityenglish.rotterdam.builder.controller.ContentWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
+	import com.clarityenglish.rotterdam.builder.controller.CourseCreateWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSavedCommand;
@@ -25,6 +26,8 @@
 	import com.clarityenglish.rotterdam.builder.model.ContentProxy;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarMediator;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
+	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateMediator;
+	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
@@ -52,6 +55,7 @@
 			mapView(FileManagerView, FileManagerMediator);
 			mapView(ContentSelectorView, ContentSelectorMediator);
 			mapView(SettingsView, SettingsMediator);
+			mapView(CourseCreateView, CourseCreateMediator);
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
@@ -76,6 +80,7 @@
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD, MediaUploadCommand);
 			
 			registerCommand(RotterdamNotifications.CONTENT_WINDOW_SHOW, ContentWindowShowCommand);
+			registerCommand(RotterdamNotifications.COURSE_CREATE_WINDOW_SHOW, CourseCreateWindowShowCommand);
 			
 			// Remove the default Bento state machine (which isn't quite applicable to the builder) and replace it with a new one
 			removeCommand(CommonNotifications.CONFIG_LOADED);

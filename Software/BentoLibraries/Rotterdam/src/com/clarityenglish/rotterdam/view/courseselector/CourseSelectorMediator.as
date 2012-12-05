@@ -4,9 +4,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
-	import com.clarityenglish.rotterdam.vo.Course;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -58,16 +56,19 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				// Force a reload of course.xml
 				case RotterdamNotifications.COURSE_CREATED:
+					// When a course is created go straight into it GH #75
+					facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: note.getBody() } );
+					break;
 				case RotterdamNotifications.COURSE_DELETED:
+					// Force a reload of course.xml
 					view.href = view.href.clone();
 					break;
 			}
 		}
 		
-		private function onCreateCourse(course:Course):void {
-			facade.sendNotification(RotterdamNotifications.COURSE_CREATE, course);
+		private function onCreateCourse():void {
+			facade.sendNotification(RotterdamNotifications.COURSE_CREATE_WINDOW_SHOW);
 		}
 		
 		/**

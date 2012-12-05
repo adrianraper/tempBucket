@@ -3,6 +3,7 @@
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace builder "com.clarityenglish.rotterdam.builder.*";
 @namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
+@namespace buildercourseselector "com.clarityenglish.rotterdam.builder.view.courseselector.*";
 @namespace courseeditor "com.clarityenglish.rotterdam.builder.view.courseeditor.*";
 @namespace title "com.clarityenglish.rotterdam.builder.view.title.*";
 @namespace uniteditor "com.clarityenglish.rotterdam.builder.view.uniteditor.*";
@@ -56,6 +57,10 @@ title1|TitleView s|ViewNavigator {
 
 courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
+}
+
+buildercourseselector|CourseCreateView {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseCreateSkin");
 }
 
 course1|CourseView {

@@ -4,7 +4,6 @@ Proxy - PureMVC
 package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
-	import com.clarityenglish.rotterdam.vo.Course;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.collections.ListCollectionView;
@@ -92,8 +91,8 @@ package com.clarityenglish.rotterdam.model {
 			}
 		}
 		
-		public function courseCreate(course:Course):void {
-			new RemoteDelegate("courseCreate", [ course ], this).execute();
+		public function courseCreate(courseObj:Object):void {
+			new RemoteDelegate("courseCreate", [ courseObj ], this).execute();
 		}
 		
 		public function courseSave():void {

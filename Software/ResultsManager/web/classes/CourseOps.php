@@ -28,17 +28,17 @@ class CourseOps {
 		$this->copyOps = new CopyOps();
 	}
 	
-	public function courseCreate($course) {
+	public function courseCreate($courseObj) {
 		$accountFolder = $this->accountFolder;
 		$defaultXML = $this->defaultXML;
-		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($course, $accountFolder, $defaultXML) {
-			$id = UniqueIdGenerator::getUniqId();
-			
+		$id = UniqueIdGenerator::getUniqId();
+		
+		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($courseObj, $accountFolder, $defaultXML, $id) {
 			// Create a new course passing in the properties as XML attributes
 			$courseNode = $xml->courses->addChild("course");
 			$courseNode->addAttribute("id", $id);
 			$courseNode->addAttribute("href", $id."/menu.xml");
-			foreach ($course as $key => $value)
+			foreach ($courseObj as $key => $value)
 				if (strtolower($key) != "id") $courseNode->addAttribute($key, $value);
 			
 			// Make a folder for the course
@@ -47,6 +47,9 @@ class CourseOps {
 			// Make a default menu.xml file
 			file_put_contents($accountFolder."/".$id."/menu.xml", $defaultXML);
 		});
+		
+		// Return the href of the new course
+		return $id."/menu.xml";
 	}
 	
 	public function courseSave($filename, $menuXml) {

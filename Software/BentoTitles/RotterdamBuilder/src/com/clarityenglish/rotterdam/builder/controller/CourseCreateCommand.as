@@ -1,6 +1,5 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	import com.clarityenglish.rotterdam.vo.Course;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -20,7 +19,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			super.execute(note);
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			courseProxy.courseCreate(note.getBody() as Course);
+			courseProxy.courseCreate(note.getBody());
 		}
 		
 	}
