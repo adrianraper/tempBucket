@@ -58,7 +58,7 @@
 			account.accountType = 1; // Standard invoice
 			account.accountStatus = 0; // Account created
 			account.tacStatus = 0; // Display
-			account.loginOption = 1;
+			//account.loginOption = 1;
 			account.optOutEmails = false;
 			// v3.4.2 I want to include RM by default - can I do that here?
 			var defaultRM:Title = Title.createDefault(2);

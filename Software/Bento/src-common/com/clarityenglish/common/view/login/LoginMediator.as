@@ -36,9 +36,10 @@ package com.clarityenglish.common.view.login {
 		 */
 		override public function onRegister():void {
 			super.onRegister();
-			
+		    trace("register LoginMediator");
 			view.addEventListener(LoginEvent.LOGIN, onLogin);
 			view.addEventListener(LoginEvent.ADD_USER, onAddUser);
+			view.getTestDrive().add(onTestDrive);
 			
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -139,11 +140,12 @@ package com.clarityenglish.common.view.login {
 		}
 		
 		// gh#41 Make sure that we know which productCode they want to run
-		/*
+		
 		private function onTestDrive(productCode:String):void {
+			trace("the productcode in test drive is "+ productCode);
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.getConfig().productCode = productCode;			
 		}
-		*/
+		
 	}
 }

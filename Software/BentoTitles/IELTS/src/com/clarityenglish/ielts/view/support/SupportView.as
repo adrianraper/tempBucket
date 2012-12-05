@@ -1,5 +1,6 @@
 package com.clarityenglish.ielts.view.support {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.ielts.IELTSApplication;
@@ -197,11 +198,11 @@ package com.clarityenglish.ielts.view.support {
 
          // GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
+			return config.remoteDomain + '/ResultsManager/web/resources/' + CopyProxy.languageCode.toLowerCase() + '/assets/';
 		}
 		/*public function get assetFolder():String {
 			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
-		}*/
+		}*/ 
 		
 		protected override function getCurrentSkinState():String {
 			switch (productVersion) {

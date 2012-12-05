@@ -56,7 +56,7 @@ package com.clarityenglish.ielts.view.progress {
 		public var _user:User;
 		
 		public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+			return config.remoteDomain + '/ResultsManager/web/resources/assets/';
 		}
 
 		// Constructor to let us initialise our states

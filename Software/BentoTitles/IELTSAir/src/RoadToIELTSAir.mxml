@@ -79,7 +79,7 @@
 			override protected function onAddedToStage(event:Event):void {
 				super.onAddedToStage(event);
 				
-				/*if (!logTextArea.visible) {
+				/*if (!logTextArea.visible) { 
 					logTextArea.visible = true;
 					
 					// Configure logging

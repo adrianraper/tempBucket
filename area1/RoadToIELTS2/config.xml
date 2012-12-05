@@ -2,26 +2,34 @@
 <config>
 	<id>/area1/RoadToIELTS2 in localhost</id>
 	<developer>none</developer>
-	<dbHost>102</dbHost>
+	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<channel name='aws' caption='aws'>
+	<channel name='aws' caption='Ch1'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
 	</channel>
-	<channel name='network' caption='network'>
-		<streamingMedia>{contentPath}/video/</streamingMedia>
+	<channel name='rackspace' caption='Ch2'>
+		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
 	</channel>
-	<channel name='vimeo' caption='vimeo'>
+	<channel name='vimeo' caption='Ch3'>
 		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
-	</channel>	
+	</channel>
+	<!--channel name='network' caption='network'>
+		<streamingMedia>{contentPath}/video/</streamingMedia>
+	</channel-->
 	<sharedMedia />
 	<brandingMedia />
 	<upgradeURL>http://www.ieltspractice.com</upgradeURL>
 	<pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2</pricesURL>
 	<registerURL>http://www.takeielts.org</registerURL>
-	<language>ZH</language>
-	<contentPath>http://claritydevelop/Content/</contentPath>
+	<contentPath>http://192.168.8.81/Content/</contentPath>
+	<remoteDomain>http://192.168.8.81/Software</remoteDomain>
+	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<!--contentPath>http://claritydevelop/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway-->
+	<!--contentPath>http://www.clarityenglish.com/Content/</contentPath>
+    <remoteDomain> http://122.248.233.53/SoftwareTestbed/</remoteDomain>
+    <remoteGateway>http://122.248.233.53/SoftwareTestbed/ResultsManager/web/amfphp/</remoteGateway-->
 	<remoteService>IELTSService</remoteService>
-	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	<assetFolder>/ResultsManager/web/resources/assets/</assetFolder>
 </config>

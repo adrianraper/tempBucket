@@ -49,7 +49,7 @@ package com.clarityenglish.ielts.view.zone {
 		public function ExamPracticeZoneSectionView() {
 			super();
 			actionBarVisible = false;
-		}
+		} 
 		
 		protected override function commitProperties():void {
 			super.commitProperties();

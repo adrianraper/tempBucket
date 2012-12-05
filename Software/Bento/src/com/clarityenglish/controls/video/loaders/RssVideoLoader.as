@@ -65,12 +65,19 @@ package com.clarityenglish.controls.video.loaders {
 					videoPlayer.source = dynamicSource;
 					videoPlayer.play();
 					break;
-				case "progressive-download":
-				case "http-streaming":
 				case "http":
+				case "progressive-download":
+				case "http-streaming":				
 					videoPlayer.source = host + channel.item[0].streamName.toString();
+					//trace("video source is "+ videoPlayer.source);
 					videoPlayer.play();
 					break;
+				//gt#57
+				/*case "http":
+					videoPlayer.source = host + channel.item[0].streamName.toString() + ".flv";
+					//trace("video source is "+ videoPlayer.source);
+					videoPlayer.play();
+					break;*/
 				default:
 					videoPlayer.stop();
 					videoPlayer.source = null;

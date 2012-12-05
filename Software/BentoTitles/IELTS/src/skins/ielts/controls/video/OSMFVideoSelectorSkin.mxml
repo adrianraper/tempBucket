@@ -8,14 +8,14 @@
 	</fx:Metadata>
 	
 	<!-- The video players -->
-	<!--<players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" />-->
+	<!--players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" /-->
 	<players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" visible="{videoList.selectedItem != null}" />
 	
 	<!-- Placeholder image -->
 	<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />
 	
 	<!-- Channel list -->
-	<s:List id="channelList" left="411" height="160" width="50" horizontalScrollPolicy="off" itemRenderer="spark.components.ButtonBarButton">
+	<s:List id="channelList" left="411" height="160" width="50" horizontalScrollPolicy="off" itemRenderer="com.clarityenglish.ielts.view.zone.ui.ChannelListRenderer">
 		<s:layout>
 			<s:TileLayout columnWidth="50" rowHeight="45" verticalGap="12" />
 		</s:layout>
@@ -23,7 +23,7 @@
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 	
 	<!-- Video list -->
-	<s:List id="videoList" top="234" width="461" height="150" horizontalScrollPolicy="off" minHeight="0" minWidth="0">
+	<s:List id="videoList" top="234" width="461" height="150" horizontalScrollPolicy="off" minHeight="0" minWidth="0" >
 		<s:layout>
 			<s:TileLayout requestedColumnCount="2" requestedRowCount="3" orientation="columns" columnWidth="230" verticalGap="11" horizontalGap="5" />
 		</s:layout>

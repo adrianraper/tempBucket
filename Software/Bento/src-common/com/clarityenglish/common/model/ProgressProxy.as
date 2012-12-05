@@ -119,8 +119,11 @@ package com.clarityenglish.common.model {
 			
 			// If the resource is already loading then do nothing
 			for each (var loadingData:String in dataLoading)
-				if (progressType === loadingData)
+				if (progressType === loadingData) {
+					
 					return;
+				}
+					
 
 			// Some progress is read from the databse, some is calculated from other progress
 			switch (progressType) {
@@ -242,6 +245,7 @@ package com.clarityenglish.common.model {
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				var dataProvider:Object = bentoProxy.menu;
+				trace("bentoProxy.menu ");
 			} else {
 				dataProvider = loadedResources[progressType];
 			}

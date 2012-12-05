@@ -1,31 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 ce.com</id>
-	<developer>DKweb</developer>
-	<productCode>52</productCode>
+	<productCode>52,53</productCode>
+	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<channel name="ios-vimeo" caption="vimeo">
+	<channel name='android-rackspace' caption='Ch1'>
+		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
+	</channel>
+    <channel name='vimeo' caption='Ch2'>
 		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
 	</channel>
-	<!-- <channel name="ios-rackspace" caption="rackspace">
-		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
-	</channel> -->
 	<sharedMedia />
 	<brandingMedia />
-	<language>EN*</language>
+	<language>JP</language>
 	
-	<!--contentPath>http://192.168.8.81/Content/</contentPath>
+	<!-- contentPath>http://192.168.8.81/Content/</contentPath>
 	<remoteDomain>http://192.168.8.81/</remoteDomain>
-	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway-->
+	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway> -->
 	
-	<contentPath>http://dock.contentbench/Content/</contentPath>
+	<!--  contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>-->
+	
+	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+    <remoteDomain> http://122.248.233.53/SoftwareTestbed/</remoteDomain>
+    <remoteGateway>http://122.248.233.53/SoftwareTestbed/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<remoteService>IELTSService</remoteService>
-	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
-	
+	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
+	 
 	<rememberLogin>true</rememberLogin>
 	<disableAutoTimeout>true</disableAutoTimeout>
 	

@@ -20,10 +20,10 @@
 		</s:layout>
 		<s:dataProvider>
 			<s:ArrayList>
-				<fx:Object id="CoverageReadingObj" icon="{getStyle('readingIconSmall')}"/> 
-				<fx:Object id="CoverageListeningObj" icon="{getStyle('listeningIconSmall')}" /> 
-				<fx:Object id="CoverageSpeakingObj" icon="{getStyle('speakingIconSmall')}" /> 
-				<fx:Object id="CoverageWritingObj" icon="{getStyle('writingIconSmall')}" />
+				<fx:Object id="CoverageReadingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')"/> 
+				<fx:Object id="CoverageListeningObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" /> 
+				<fx:Object id="CoverageSpeakingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" /> 
+				<fx:Object id="CoverageWritingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />
 			</s:ArrayList>
 		</s:dataProvider>
 	</s:ButtonBar>

@@ -11,7 +11,6 @@ class IELTSService extends BentoService {
 		
 		// Set the title name for resources
 		AbstractService::$title = "ielts";
-		//if (Session::is_set('languageCode')) Session::clear();
 	}
 	
 }

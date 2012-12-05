@@ -150,8 +150,10 @@ package com.clarityenglish.common.vo.config {
 		}
 		
 		public function set languageCode(value:String):void {
-			CopyProxy.languageCode = value;
-			_languageCode = value;
+			if (!_languageCode) {
+				CopyProxy.languageCode = value;
+				_languageCode = value;
+			}			
 		}
 		
 		public function get languageCode():String {
@@ -198,7 +200,11 @@ package com.clarityenglish.common.vo.config {
 			if (parameters.courseFile) this.paths.menuFilename = parameters.courseFile;
 			if (parameters.startingPoint) this.startingPoint = parameters.startingPoint;
 			if (parameters.sessionID) this.sessionID = parameters.sessionID;
-			if (parameters.language) this.language = parameters.language;
+			if (parameters.language) {
+				//trace("the language in mergeParameters is "+ parameters.language);
+				this.language = parameters.language;
+				this.languageCode = parameters.language;
+			}
 			
 			if (parameters.ip) this.ip = parameters.ip;
 			if (parameters.referrer) this.referrer = parameters.referrer;
@@ -333,7 +339,10 @@ package com.clarityenglish.common.vo.config {
 			
 			if (xml..courseID.toString()) this.courseID = xml..courseID.toString();
 			//if (xml..courseFile.toString()) this.courseFile = xml..courseFile.toString();
-			if (xml..language.toString()) this.language = xml..language.toString();
+			if (xml..language.toString()) {
+				this.language = xml..language.toString();
+				this.languageCode = xml..language.toString();
+			}
 			
 			// To handle the amfphp gateway
 			if (xml..remoteGateway.toString()) {
@@ -461,8 +470,8 @@ package com.clarityenglish.common.vo.config {
 				this.productCode = String(thisTitle.productCode);
 			
 			//issue:#20
-			if(thisTitle.languageCode)
-				this.language = thisTitle.languageCode;
+			/*if(thisTitle.languageCode)
+				this.language = thisTitle.languageCode;*/
 			
 			trace("the language version is "+ thisTitle.languageCode);
 			

@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.login {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.events.LoginEvent;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
@@ -112,7 +113,7 @@ package com.clarityenglish.ielts.view.login {
 		
 		// gh#41
 		private var _noAccount:Boolean;
-		//public var setTestDrive:Signal = new Signal();
+		public var setTestDrive:Signal = new Signal();
 		
 		// #341
 		[Bindable]
@@ -237,7 +238,7 @@ package com.clarityenglish.ielts.view.login {
 		
 		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
+			return config.remoteDomain + '/ResultsManager/web/resources/' + config.languageCode.toLowerCase() + '/assets/';
 		}
 		
 		[Bindable(event="productVersionChanged")]
@@ -249,6 +250,11 @@ package com.clarityenglish.ielts.view.login {
 				_productVersion = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
+		}
+		
+		//gh#41
+		public function getTestDrive():Signal {
+			return setTestDrive;
 		}
 		
 		// gh#39
@@ -503,7 +509,7 @@ package com.clarityenglish.ielts.view.login {
 				
 				// gh#41
 				case testDriveAcademicButton:
-				case testDriveAcademicButton:
+				case testDriveGeneralButton:
 					if (event.target == testDriveGeneralButton) {
 						setTestDriveVersion('53');
 					} else {
@@ -520,12 +526,12 @@ package com.clarityenglish.ielts.view.login {
 		
 		// gh#41
 		private function setTestDriveVersion(productCode:String):void {
-			//setTestDrive.dispatch(productCode);
+			setTestDrive.dispatch(productCode);
 		}
 		
-		public function setState(state:String):void {
+		public function setState(state:String):void {				
 			// Copy fields if appropriate
-			switch (state) {
+			switch (state) { 
 				case 'register':
 					savedName = loginKeyInput.text
 					break;

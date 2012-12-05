@@ -13,7 +13,7 @@
 	
 	<!-- The video players -->
 	<players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" visible="{videoList.selectedItem != null}" />
-	<!--<players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" />-->
+	<!--players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" /-->
 	
 	<!-- Placeholder image -->
 	<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />

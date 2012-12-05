@@ -12,6 +12,7 @@
 
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.common.model.CopyProxy;
 			import com.clarityenglish.common.vo.manageable.User;
 			
 			import org.davekeen.util.DateUtil;
@@ -48,9 +49,10 @@
 			}
 			
 			private function formatScreenDate(date:Date):String {
-				if (date && hostComponent.config.languageCode == "ZH") {
+				if (date && CopyProxy.languageCode == "ZH") {
 					var objReplace:Object = new Object();
-					trace("date's day is "+date.day);
+					trace("date's day is "+date.date);
+					trace("date's month is "+date.month);
 					objReplace.day = date.date;
 					objReplace.month = date.month + 1;
 					objReplace.year = date.fullYear;

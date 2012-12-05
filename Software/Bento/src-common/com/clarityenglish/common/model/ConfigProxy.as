@@ -115,7 +115,11 @@ package com.clarityenglish.common.model {
 				config.account.verified = 1;
 				config.account.selfRegister = 0;
 				config.account.loginOption = config.loginOption;
+				trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
 				config.licence = new Licence();
+				config.licence.licenceType = Title.LICENCE_TYPE_LT;
+                
+			
 				
 				// gh#39 It seems that a problem is caused by sending the ACCOUNT_LOADED notification before the state machine 
 				// has properly transitioned into the next state, causing unpredictable results.

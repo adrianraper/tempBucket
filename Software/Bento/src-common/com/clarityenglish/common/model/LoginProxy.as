@@ -65,16 +65,17 @@ package com.clarityenglish.common.model {
 		// #341
 		//public function login(key:String, password:String):void {
 		public function login(user:User, loginOption:Number, verified:Boolean = true):void {
+			trace("loginOption in loginProxy is "+loginOption);
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			
+			var loginObj:Object = {};
 			// For AA licences you still do the call as this does getLicenceSlot
 			
 			//var loginOption:uint = configProxy.getAccount().loginOption;
 			// gh#41 Test drive choice
 			if (user == null) {
-				var loginObj:Object = {};
+		        loginObj = null;
 			} else if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
 				loginObj = {username:user.name, password:user.password};
 			} else if (loginOption & Config.LOGIN_BY_ID) {
@@ -86,6 +87,7 @@ package com.clarityenglish.common.model {
 				var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorInvalidLoginOption", { loginOption: loginOption } ));			
 			}
+			
 			if (configProxy.getConfig().ip)
 				loginObj.ip = configProxy.getConfig().ip;
 			
@@ -97,7 +99,7 @@ package com.clarityenglish.common.model {
 				(!user.studentID || user.studentID=='') &&
 				(!user.email || user.email==''))
 				loginObj = null;
-			
+
 			// #307 Add rootID and productCode
 			// #341 Add verified to allow no password
 			// #361 instanceID
@@ -119,13 +121,14 @@ package com.clarityenglish.common.model {
 					rootID = new Array(2);
 					rootID[0] = 14031;
 					rootID[1] = 0;
-					configProxy.getConfig().productCode = '52';
+					//#gh41
+					//configProxy.getConfig().productCode = '52';
 					loginObj = null;
 				}
 			}
 			
 			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
-			// gh#36 Also need dbHost if this is the first call		
+			// gh#36 Also need dbHost if this is the first call
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode(), configProxy.getConfig().dbHost ];
 			new RemoteDelegate("login", params, this).execute();
 		}

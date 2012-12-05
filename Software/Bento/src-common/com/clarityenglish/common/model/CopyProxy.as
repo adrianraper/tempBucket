@@ -5,6 +5,7 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.config.Config;
 	
 	import mx.rpc.Fault;
 	import mx.utils.ObjectUtil;
@@ -34,7 +35,9 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function getCopy():void {
-			var param:Array = [ defaultLanguageCode ];
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var config:Config = configProxy.getConfig();
+			var param:Array = [ defaultLanguageCode, config.productCode, config.loginOption, config.dbHost ];
 			new RemoteDelegate("getCopy", param, this).execute();
 		}
 		
@@ -62,9 +65,10 @@ package com.clarityenglish.common.model {
 				throw new Error("Copy literals have not been loaded yet");
 			
 			//issue:#20 track wheter the language code be set successfully 
+			//trace("the language code is in CopyProxy is "+ languageCode);
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
-				trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
+				//trace("Unable to find literal for id '" + id + "' - this needs to be added to literals.xml");
 				
 				// in which case try in English
 				if (languageCode != defaultLanguageCode) {

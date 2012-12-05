@@ -33,7 +33,8 @@ package com.clarityenglish.controls.video.players {
 				throw new Error("This component can only be used in an AIR application");
 			
 			if (!StageWebView.isSupported)
-				throw new Error("StageWebView is not supported in this environment");
+				throw new Error("StageWebView is not supported in this environment")
+			
 		}
 		
 		public function get source():Object {

@@ -127,7 +127,7 @@ package com.clarityenglish.ielts.view.home {
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case writingCourseButton:
-					instance.label = copyProvider.getCopyForId("Listening");
+					instance.label = copyProvider.getCopyForId("Writing");
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case speakingCourseButton:
@@ -135,7 +135,7 @@ package com.clarityenglish.ielts.view.home {
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case listeningCourseButton:
-					instance.label = copyProvider.getCopyForId("Writing");
+					instance.label = copyProvider.getCopyForId("Listening");
 					instance.addEventListener(MouseEvent.CLICK, onCourseClick);
 					break;
 				case examTipsCourseButton:
@@ -216,7 +216,7 @@ package com.clarityenglish.ielts.view.home {
 		
 		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/' + config.languageCode + '/assets/';
+			return config.remoteDomain + '/ResultsManager/web/resources/' + config.languageCode.toLowerCase() + '/assets/';
 		}
 		
 		public function get accountName():String {

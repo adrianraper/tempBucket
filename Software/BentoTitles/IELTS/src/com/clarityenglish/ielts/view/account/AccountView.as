@@ -228,10 +228,10 @@ package com.clarityenglish.ielts.view.account {
 					instance.text = copyProvider.getCopyForId("accountStartDateLabel");
 					break;
 				case startDateLabel:
-					if (config.languageCode == "ZH") {
+					if (CopyProxy.languageCode == "ZH") {
 						var repObject:Object = new Object();
-						repObject.day = (DateUtil.ansiStringToDate(startDate)).day;
-						repObject.month = (DateUtil.ansiStringToDate(startDate)).month;
+						repObject.day = (DateUtil.ansiStringToDate(startDate)).date;
+						repObject.month = (DateUtil.ansiStringToDate(startDate)).month + 1;
 						repObject.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
 						instance.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 					} else {
@@ -242,10 +242,10 @@ package com.clarityenglish.ielts.view.account {
 					instance.text = copyProvider.getCopyForId("accountExpiryDateLabel");
 					break;
 				case endDateLabel:
-					if (config.languageCode == "ZH") {
+					if (CopyProxy.languageCode == "ZH") {
 						var objReplace:Object = new Object();
-						objReplace.day = (DateUtil.ansiStringToDate(expiryDate)).day;
-						objReplace.month = (DateUtil.ansiStringToDate(expiryDate)).month;
+						objReplace.day = (DateUtil.ansiStringToDate(expiryDate)).date;
+						objReplace.month = (DateUtil.ansiStringToDate(expiryDate)).month + 1;
 						objReplace.year = (DateUtil.ansiStringToDate(expiryDate)).fullYear;
 						instance.text = copyProvider.getCopyForId("dateFormatLabel", objReplace);
 					} else {

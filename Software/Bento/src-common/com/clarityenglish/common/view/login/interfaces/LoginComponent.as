@@ -4,6 +4,8 @@
 	
 	import flash.events.IEventDispatcher;
 	
+	import org.osflash.signals.Signal;
+	
 	/**
 	 * The login mediator works on LoginView components that implement this interface
 	 * 
@@ -24,6 +26,8 @@
 		function setState(state:String):void;
 		// gh#41
 		function setNoAccount(noAccount:Boolean):void;
+		//gh#41
+		function getTestDrive():Signal;
 	}
 	
 }

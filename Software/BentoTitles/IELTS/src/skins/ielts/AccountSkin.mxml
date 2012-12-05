@@ -168,7 +168,6 @@
 								<s:TextInput id="confirmPassword" width="180" />
 							</s:HGroup>
 						</s:VGroup>
-
 					</s:VGroup>
 				</s:VGroup>
 			</s:HGroup>

@@ -5,6 +5,8 @@ package com.clarityenglish.controls.video {
 	import com.clarityenglish.controls.video.events.VideoEvent;
 	import com.clarityenglish.controls.video.events.VideoScoreEvent;
 	import com.clarityenglish.controls.video.loaders.RssVideoLoader;
+	import com.clarityenglish.controls.video.players.OSMFVideoPlayer;
+	import com.clarityenglish.controls.video.players.WebViewVideoPlayer;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -99,6 +101,7 @@ package com.clarityenglish.controls.video {
 			}
 		}
 		
+		
 		[Bindable]
 		public function get placeholderSource():Object {
 			return _placeholderSource;
@@ -141,7 +144,12 @@ package com.clarityenglish.controls.video {
 			
 			if (_channelCollectionChanged) {
 				_channelCollectionChanged = false;
-				if (channelList) channelList.dataProvider = _channelCollection;
+				if (channelList) {
+					channelList.dataProvider = _channelCollection;
+
+					if (channelList.dataProvider.length>1)
+						channelList.visible = true;
+				}
 			}
 			
 			if (_videoCollectionChanged) {
@@ -188,7 +196,10 @@ package com.clarityenglish.controls.video {
 					channelList.addEventListener(IndexChangeEvent.CHANGE, onChannelSelected);
 					
 					// For the moment just hide the channel selector.  Its all working if we want to turn it back on in the future though.
-					channelList.visible = false;
+					channelList.visible = true;
+
+					//gt#57
+					channelList.labelField = "caption";
 					break;
 				case videoList:
 					videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoSelected);
@@ -221,9 +232,8 @@ package com.clarityenglish.controls.video {
 		private function loadSelectedVideo():void {
 			if (!videoList.selectedItem || !channelList.selectedItem)
 				return;
-			
 			videoPlayer.stop();
-			
+			trace("selected channel is "+ channelList.selectedIndex);
 			var url:String = href.createRelativeHref(null, videoList.selectedItem.@href).url;
 			if (url.match(/\.(rss|xml)$/)) {
 				new RssVideoLoader(videoPlayer).load(url, channelList.selectedItem);

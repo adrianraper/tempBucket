@@ -59,7 +59,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		}
 
 		public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
+			return config.remoteDomain + '/ResultsManager/web/resources/assets/';
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

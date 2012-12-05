@@ -101,6 +101,14 @@ login|LoginView s|Button {
 	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
 }
 
+login|LoginView #testDriveGeneralButton {
+	skinClass: ClassReference("skins.ielts.login.TestDriveButtonSkin");
+}
+
+login|LoginView #testDriveAcademicButton {
+	skinClass: ClassReference("skins.ielts.login.TestDriveButtonSkin");
+}
+
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");
@@ -230,6 +238,10 @@ zoneui|DifficultyRenderer {
 	skinClass: ClassReference("skins.ielts.zone.ui.DifficultyRendererSkin");
 }
 
+zoneui|ChannelListRenderer {
+	skinClass: ClassReference("skins.ielts.videoplayer.ChannelBarButtonSkin");
+}
+
 zone|ExamPracticeZoneSectionView {
 	skinClass: ClassReference("skins.ielts.zone.ExamPracticeZoneSectionSkin");
 }
@@ -301,7 +313,7 @@ progresscomponents|ProgressScoreView #progressCourseButtonBar {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressCourseButtonBarSkin");
 }
 
-progressui|CoverageExerciseComponent {
+progressui|CoverageExerciseComponent { 
 	skinClass: ClassReference("skins.ielts.progress.ui.CoverageExerciseComponentSkin");
 }
 
