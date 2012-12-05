@@ -1,6 +1,5 @@
 package com.clarityenglish.ielts.view.account {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
@@ -9,8 +8,6 @@ package com.clarityenglish.ielts.view.account {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.system.ApplicationDomain;
-	import flash.system.LoaderContext;
 	
 	import flashx.textLayout.elements.TextFlow;
 	
@@ -171,89 +168,118 @@ package com.clarityenglish.ielts.view.account {
 			return config.remoteDomain + config.assetFolder;
 		}
 		
+		public function reloadCopy():void {
+			onViewCreationComplete();
+		}
+		
+		protected override function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+			
+			if (saveChangesButton) saveChangesButton.label = copyProvider.getCopyForId("saveChangesButton");
+			
+			if (countdownLabel) {
+				// We will only tell the user about the countdown if they have confirmed their exam date
+				if (user.examDate) {
+					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
+					if (daysLeft > 0) {
+						countdownLabel.text = copyProvider.getCopyForId("countDownLabel1");
+					} else if (daysLeft == 0) {
+						countdownLabel.text = copyProvider.getCopyForId("countDownLabel2");
+					} else {
+						countdownLabel.text = copyProvider.getCopyForId("countDownLabel3");
+					}
+				} else {
+					countdownLabel.text = copyProvider.getCopyForId("alertEmtyDateLabel");
+				}
+			}
+			
+			if (setTestDateLabel) setTestDateLabel.text = copyProvider.getCopyForId("setTestDateLabel");
+			if (registeredNameLabel) registeredNameLabel.text = copyProvider.getCopyForId("registeredNameLabel");
+			if (emailLabel) emailLabel.text = copyProvider.getCopyForId("emailLabel");
+			if (accountStartDateLabel) accountStartDateLabel.text = copyProvider.getCopyForId("accountStartDateLabel");
+			
+			if (startDateLabel) {
+				if (CopyProxy.languageCode == "ZH") {
+					var repObject:Object = new Object();
+					repObject.day = (DateUtil.ansiStringToDate(startDate)).date;
+					repObject.month = (DateUtil.ansiStringToDate(startDate)).month + 1;
+					repObject.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
+					startDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
+				} else {
+					startDateLabel.text =DateUtil.formatDate(DateUtil.ansiStringToDate(startDate), 'd MMMM yyyy')
+				}
+			}
+			
+			if (endDateLabel) {
+				if (CopyProxy.languageCode == "ZH") {
+					var objReplace:Object = new Object();
+					objReplace.day = (DateUtil.ansiStringToDate(expiryDate)).date;
+					objReplace.month = (DateUtil.ansiStringToDate(expiryDate)).month + 1;
+					objReplace.year = (DateUtil.ansiStringToDate(expiryDate)).fullYear;
+					endDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", objReplace);
+				} else {
+					endDateLabel.text = DateUtil.formatDate(DateUtil.ansiStringToDate(expiryDate), 'd MMMM yyyy')
+				}
+			}
+			
+			if (accountExpiryDateLabel) accountExpiryDateLabel.text = copyProvider.getCopyForId("accountExpiryDateLabel");
+			if (languageLabel) languageLabel.text = copyProvider.getCopyForId("accountLanguageLabel");
+			
+			if (testDateLabel) testDateLabel.text = copyProvider.getCopyForId("testDateLabel");
+			if (countdownHeadingLabel) countdownHeadingLabel.text = copyProvider.getCopyForId("countdownHeadingLabel");
+			if (dateLabel) dateLabel.text = copyProvider.getCopyForId("testDateLabel");
+			if (hourLabel) hourLabel.text = copyProvider.getCopyForId("hourLabel");
+			if (minuteLabel) minuteLabel.text = copyProvider.getCopyForId("minuteLabel");
+			if (currentPwdLabel) currentPwdLabel.text = copyProvider.getCopyForId("currentPwdLabel");
+			if (newPsdLabel) newPsdLabel.text = copyProvider.getCopyForId("newPsdLabel");
+			if (confirmPsdLabel) confirmPsdLabel.text = copyProvider.getCopyForId("confirmPsdLabel");
+			if (myProfileLabel) myProfileLabel.text = copyProvider.getCopyForId("myProfile");
+			if (IELTSAppsLabel) IELTSAppsLabel.text = copyProvider.getCopyForId("IELTSAppsLabel");
+			
+			if (registerInfoRichText) {
+				var registerInfoString:String = this.copyProvider.getCopyForId("registerInfoButton");
+				var registerInfoFlow:TextFlow = TextFlowUtil.importFromString(registerInfoString);
+				registerInfoRichText.textFlow = registerInfoFlow;
+			}
+			
+			if (hourRichText) {
+				var hourString:String = this.copyProvider.getCopyForId("hourRichText");
+				var hourFlow:TextFlow = TextFlowUtil.importFromString(hourString);
+				hourRichText.textFlow = hourFlow;
+			}
+			
+			if (videoRichText) {
+				var videoString:String = this.copyProvider.getCopyForId("videoRichText");
+				var videoFlow:TextFlow = TextFlowUtil.importFromString(videoString);
+				videoRichText.textFlow = videoFlow;
+			}
+			
+			if (mockTestRichText) {
+				var mockTestString:String = this.copyProvider.getCopyForId("mockTestRichText");
+				var mockTestFlow:TextFlow = TextFlowUtil.importFromString(mockTestString);
+				mockTestRichText.textFlow = mockTestFlow;
+			}
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
 				case saveChangesButton:
 					instance.addEventListener(MouseEvent.CLICK, onUpdateButtonClick);
-					instance.label = copyProvider.getCopyForId("saveChangesButton");
 					break;
-				
-				case countdownLabel:
-					// We will only tell the user about the countdown if they have confirmed their exam date
-					if (user.examDate) {
-						var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-						if (daysLeft > 0) {
-							instance.text = copyProvider.getCopyForId("countDownLabel1");
-						} else if (daysLeft == 0) {
-							instance.text = copyProvider.getCopyForId("countDownLabel2");
-						} else {
-							//countdownDisplay.enabled = false;
-							instance.text = copyProvider.getCopyForId("countDownLabel3");
-						}
-						
-					} else {
-						instance.text = copyProvider.getCopyForId("alertEmtyDateLabel");
-					}
-					break;
-				
 				case examDateField:
 					instance.addEventListener(CalendarLayoutChangeEvent.CHANGE, onExamDateChange);
 					break;
-				
 				case newPassword:
 					instance.addEventListener(Event.CHANGE, onPasswordChange);
 					break;
-				
 				case examHours:
 				case examMinutes:
 					instance.addEventListener(Event.CHANGE, onExamTimeChange);
 					break; 
-				
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
-					break;
-				//issue:#11 Language Code
-				case setTestDateLabel:
-					instance.text = copyProvider.getCopyForId("setTestDateLabel");
-					break;
-				case registeredNameLabel:
-					instance.text = copyProvider.getCopyForId("registeredNameLabel");
-					break;
-				case emailLabel:
-					instance.text = copyProvider.getCopyForId("emailLabel");
-					break;
-				case accountStartDateLabel:
-					instance.text = copyProvider.getCopyForId("accountStartDateLabel");
-					break;
-				case startDateLabel:
-					if (CopyProxy.languageCode == "ZH") {
-						var repObject:Object = new Object();
-						repObject.day = (DateUtil.ansiStringToDate(startDate)).date;
-						repObject.month = (DateUtil.ansiStringToDate(startDate)).month + 1;
-						repObject.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
-						instance.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
-					} else {
-					    instance.text =DateUtil.formatDate(DateUtil.ansiStringToDate(startDate), 'd MMMM yyyy')
-					}
-					break;
-				case accountExpiryDateLabel:
-					instance.text = copyProvider.getCopyForId("accountExpiryDateLabel");
-					break;
-				case endDateLabel:
-					if (CopyProxy.languageCode == "ZH") {
-						var objReplace:Object = new Object();
-						objReplace.day = (DateUtil.ansiStringToDate(expiryDate)).date;
-						objReplace.month = (DateUtil.ansiStringToDate(expiryDate)).month + 1;
-						objReplace.year = (DateUtil.ansiStringToDate(expiryDate)).fullYear;
-						instance.text = copyProvider.getCopyForId("dateFormatLabel", objReplace);
-					} else {
-						instance.text = DateUtil.formatDate(DateUtil.ansiStringToDate(expiryDate), 'd MMMM yyyy')
-					}
-					break;
-				case languageLabel:
-					instance.text = copyProvider.getCopyForId("accountLanguageLabel");
 					break;
 				case languageDropDownList:
 					instance.dataProvider = new ArrayCollection([
@@ -267,56 +293,6 @@ package com.clarityenglish.ielts.view.account {
 					
 					instance.addEventListener(Event.CHANGE, onLanguageChange);
 					instance.addEventListener(MouseEvent.CLICK, onLanguageChange);
-					break;
-				case testDateLabel:
-					instance.text = copyProvider.getCopyForId("testDateLabel");
-					break;
-				case countdownHeadingLabel:
-					instance.text = copyProvider.getCopyForId("countdownHeadingLabel");
-					break;
-				case dateLabel:
-					instance.text = copyProvider.getCopyForId("testDateLabel");
-					break;
-				case hourLabel:
-					instance.text = copyProvider.getCopyForId("hourLabel");
-					break;
-				case minuteLabel:
-					instance.text = copyProvider.getCopyForId("minuteLabel");
-					break;
-				case currentPwdLabel:
-					instance.text = copyProvider.getCopyForId("currentPwdLabel");
-					break;
-				case newPsdLabel:
-					instance.text = copyProvider.getCopyForId("newPsdLabel");
-					break;
-				case confirmPsdLabel:
-					instance.text = copyProvider.getCopyForId("confirmPsdLabel");
-					break;
-				case myProfileLabel:
-					instance.text = copyProvider.getCopyForId("myProfile");
-					break;
-				case IELTSAppsLabel:
-					instance.text = copyProvider.getCopyForId("IELTSAppsLabel");
-					break;
-				case registerInfoRichText:
-					var registerInfoString:String = this.copyProvider.getCopyForId("registerInfoButton");
-					var registerInfoFlow:TextFlow = TextFlowUtil.importFromString(registerInfoString);
-					instance.textFlow = registerInfoFlow;
-					break;
-				case hourRichText:
-					var hourString:String = this.copyProvider.getCopyForId("hourRichText");
-					var hourFlow:TextFlow = TextFlowUtil.importFromString(hourString);
-					instance.textFlow = hourFlow;
-					break;
-				case videoRichText:
-					var videoString:String = this.copyProvider.getCopyForId("videoRichText");
-					var videoFlow:TextFlow = TextFlowUtil.importFromString(videoString);
-					instance.textFlow = videoFlow;
-					break;
-				case mockTestRichText:
-					var mockTestString:String = this.copyProvider.getCopyForId("mockTestRichText");
-					var mockTestFlow:TextFlow = TextFlowUtil.importFromString(mockTestString);
-					instance.textFlow = mockTestFlow;
 					break;
 			}
 		}
