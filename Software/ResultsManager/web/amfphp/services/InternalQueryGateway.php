@@ -139,4 +139,4 @@ try {
 	returnError(1, $e->getMessage());
 }
 flush();
-exit(0)
+exit(0);
