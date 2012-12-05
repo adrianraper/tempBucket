@@ -12,7 +12,9 @@ class CourseOps {
 	<head>
 		<script id="model" type="application/xml">
 			<menu>
-				<course class="default" />
+				<course class="default">
+					<unit caption="My Unit" />
+				</course>
 			</menu>
 		</script>
 	</head>
@@ -63,7 +65,6 @@ class CourseOps {
 		}
 		
 		// TODO: it would be rather nice to validate $xml against an xsd
-		
 		return XmlUtils::overwriteXml($menuXMLFilename, $menuXml, function($xml) use($courseId, $accountFolder) {
 			$courses = $xml->xpath("//course");
 			
@@ -102,7 +103,7 @@ class CourseOps {
 			}
 			
 			// Rename the folder such that it is prefixed with "deleted_"
-			if (!rename($accountFolder."/".$courseId,$accountFolder."/deleted_".$courseId))
+			if (!rename($accountFolder."/".$courseId,  $accountFolder."/deleted_".$courseId))
 				throw new Exception("Unable to rename folder and so could not delete course");
 		});
 	}
