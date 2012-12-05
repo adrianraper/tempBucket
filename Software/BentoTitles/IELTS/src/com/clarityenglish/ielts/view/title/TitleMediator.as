@@ -45,7 +45,7 @@
 			// listen for these signals
 			view.logout.add(onLogout);
 			view.backToMenu.add(onBackToMenu);
-			view.upgrade.add(onUpgradeIELTS);
+			view.upgrade.add(onUpgradeIELTS); 
 			view.register.add(onRegisterIELTS);
 			view.buy.add(onBuyIELTS);
 		}

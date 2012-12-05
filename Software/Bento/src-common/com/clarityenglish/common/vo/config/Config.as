@@ -38,6 +38,8 @@ package com.clarityenglish.common.vo.config {
 		// gh#39
 		public var productCode:String;
 		public var productVersion:String;
+		public var configProductCode:String;
+		public var configFilename:String;
 		
 		// #524 languageCode determines what content is used
 		public var prefix:String;
@@ -294,7 +296,10 @@ package com.clarityenglish.common.vo.config {
 			//if (xml..dbHost.length() > 0) this.dbHost = xml..dbHost.toString();
 			if (xml..dbHost.toString())	this.dbHost = xml..dbHost.toString();
 			if (xml..prefix.toString()) this.prefix = xml..prefix.toString();
-			if (xml..productCode.toString()) this.productCode = xml..productCode.toString();		
+			if (xml..productCode.toString()) {
+				this.configProductCode = xml..productCode.toString();;
+				this.productCode = xml..productCode.toString();		
+			}
 			if (xml..productVersion.toString()) this.productVersion = xml..productVersion.toString();
 			if (xml..action.toString()) this.action = xml..action.toString();
 			
@@ -314,8 +319,10 @@ package com.clarityenglish.common.vo.config {
 			// Name of the menu file (called courseFile to fit in with Orchid)
 			var courseFile:String = xml..courseFile.toString();
 			if (courseFile) {
+				this.configFilename = courseFile;
 				this.paths.menuFilename = courseFile;
 			} else {
+				this.configFilename = "menu.xml";
 				this.paths.menuFilename = "menu.xml";
 			}
 			
@@ -475,8 +482,6 @@ package com.clarityenglish.common.vo.config {
 			//issue:#20
 			/*if(thisTitle.languageCode)
 				this.language = thisTitle.languageCode;*/
-			
-			trace("the language version is "+ thisTitle.languageCode);
 			
 			// This is the title specific subFolder. It will be something like RoadToIELTS2-Academic
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 

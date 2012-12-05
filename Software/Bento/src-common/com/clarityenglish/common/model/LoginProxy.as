@@ -69,7 +69,6 @@ package com.clarityenglish.common.model {
 		// #341
 		//public function login(key:String, password:String):void {
 		public function login(user:User, loginOption:Number, verified:Boolean = true):void {
-			trace("loginOption in loginProxy is "+loginOption);
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -127,13 +126,12 @@ package com.clarityenglish.common.model {
 					rootID[1] = 0;
 					//#gh41
 					//configProxy.getConfig().productCode = '52';
-					loginObj = null;
+					loginObj = null;					
 				}
 			}
 			
 			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
 			// gh#36 Also need dbHost if this is the first call
-			trace("configProxy.getProductCode() = "+configProxy.getProductCode());
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode(), configProxy.getConfig().dbHost ];
 			new RemoteDelegate("login", params, this).execute();
 		}
