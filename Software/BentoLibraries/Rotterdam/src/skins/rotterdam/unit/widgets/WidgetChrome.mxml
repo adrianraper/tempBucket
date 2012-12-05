@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="skins.assets.widgets.*">
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:widgets="skins.assets.widgets.*">
 	
 	<fx:Script>
 		<![CDATA[
@@ -11,7 +12,7 @@
 			public var icon:Object;
 			
 			[Bindable]
-			public var title:String;
+			public var caption:String;
 			
 			[Bindable]
 			public var selected:Boolean;
@@ -71,7 +72,7 @@
 	<s:Image source="{icon}" mouseChildren="false" mouseEnabled="false" top="3" left="3" />
 	
 	<!-- The widget title -->
-	<s:Label text="{title}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
+	<s:Label text="{caption}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
 	
 	<!-- The menu button -->
 	<s:Group id="menuButton" right="0" width="41" height="24" buttonMode="true" mouseEnabled="true" click="onMenuButtonClick(event)" visible="{editing}">

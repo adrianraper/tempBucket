@@ -24,7 +24,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			
 			var tempid:String = UIDUtil.createUID();
 			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new pdf widget");
-			var node:XML = <exercise type="pdf" tempid={tempid} column="0" span="1" title="New PDF widget"><text>{textFlowString}</text></exercise>;
+			var node:XML = <exercise type="pdf" tempid={tempid} column="0" span="1" caption="New PDF widget"><text>{textFlowString}</text></exercise>;
 			
 			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			

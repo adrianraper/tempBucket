@@ -23,7 +23,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				
 			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new video widget");
 			
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <exercise type="video" src={src} column="0" span="2" title="New video widget"><text>{textFlowString}</text></exercise>);
+			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <exercise type="video" src={src} column="0" span="2" caption="New video widget"><text>{textFlowString}</text></exercise>);
 		}
 		
 	}

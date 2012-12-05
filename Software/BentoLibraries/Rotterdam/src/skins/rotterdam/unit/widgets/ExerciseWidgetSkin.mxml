@@ -18,7 +18,7 @@
 	
 	<!-- Chrome -->
 	<widgets:WidgetChrome id="widgetChrome"
-						  title="{hostComponent.title}"
+						  caption="{hostComponent.caption}"
 						  icon="@Embed(source='/skins/assets/exercise-icon.png', mimeType='image/png')"
 						  editing.editing="true"
 						  selected.selected="true"

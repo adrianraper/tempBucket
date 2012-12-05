@@ -114,9 +114,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@span;
 		}
 		
-		[Bindable(event="titleAttrChanged")]
-		public function get title():String {
-			return _xml.@title;
+		[Bindable(event="captionAttrChanged")]
+		public function get caption():String {
+			return _xml.@caption;
 		}
 		
 		[Bindable(event="textChanged")]

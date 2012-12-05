@@ -21,7 +21,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			
 			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new text widget");
 			
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <exercise type="text" column="0" span="1" title="New text widget"><text>{textFlowString}</text></exercise>);
+			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <exercise type="text" column="0" span="1" caption="New text widget"><text>{textFlowString}</text></exercise>);
 		}
 		
 	}
