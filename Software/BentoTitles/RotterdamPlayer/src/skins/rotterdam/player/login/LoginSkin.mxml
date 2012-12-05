@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:login="skins.rotterdam.player.assets.login.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.login.LoginView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
+	</fx:Declarations>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<!-- shadow -->
+	<s:Rect width="1200" height="640" filters="{glowFilter}" >
+		<s:fill>
+			<s:SolidColor color="0x808080" />
+		</s:fill>
+	</s:Rect>
+	
+	<!-- background -->
+	<s:Rect width="1200" height="640"   >
+		<s:fill>
+			<s:SolidColor color="0xF2F2F2" />
+		</s:fill>
+	</s:Rect>
+
+	<!-- top header -->
+	<s:Rect width="1200" height="40"  >
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0x4D4D4D" />
+				<s:GradientEntry color="0x333333"  />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	<login:HoneyGraphic left="860" top="40" />
+
+	<!-- top header -->
+	<s:Label id="sch_lbl" text="Clarity Language Consultants Ltd." right="260" top="14" fontSize="13" color="0xFFFFFF" />
+	
+	<login:LoginChrome left="200" top="130" />
+	<s:Button id="loginButton" label="Login" top="414" left="320" />
+	
+	<s:Label id="loginKey_lbl" text="Account:" left="320" top="237" fontSize="16" fontWeight="bold" color="0x333333" />
+	<s:TextInput id="loginKeyInput" width="180" height="35" left="320" top="260" />
+	
+	<s:Label text="Password:" left="320" top="325" fontSize="16" fontWeight="bold" color="0x333333" />
+	<s:TextInput id="passwordInput" displayAsPassword="true" width="180" height="35" left="320" top="345" fontSize="16" fontWeight="bold" />
+	
+	<login:ClarityEnglishLogo left="430" top="660" />
+	
+	<s:Label text="Copyright © 2012 Clarity Language Consultants Ltd. All rights reserved." left="305" top="695" color="0x333333" />
+</s:Skin>
