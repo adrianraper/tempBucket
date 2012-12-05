@@ -76,7 +76,7 @@ package com.clarityenglish.bento.controller {
 			// #377 - when disableAutoTimeout is on we want to go back to the login screen instead of the credits screen
 			if (configProxy.getConfig().disableAutoTimeout) {
 				for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_CREDITS)) {
-					creditTransition.@target = BBStates.STATE_LOGIN;
+					creditTransition.@target = BBStates.STATE_LOGIN; 
 				}
 			}
 			

@@ -89,6 +89,7 @@ package com.clarityenglish.common.vo.config {
 		
 		// Is it worth paths being a separate class?
 		public var paths:Object;
+		public var contentRoot:String;
 		
 		// Licence control is a separate class fed by this one
 		public var licence:Licence;
@@ -302,9 +303,12 @@ package com.clarityenglish.common.vo.config {
 			
 			// This is the base content folder, we expect it to be added to with title specific subFolder
 			if (xml..contentPath.toString()) {
-				this.paths.content = xml..contentPath.toString();
+				//loginout
+				this.contentRoot = xml..contentPath.toString();
+				//this.paths.content = xml..contentPath.toString();
 			} else {
-				this.paths.content = "/Content";
+				this.contentRoot= "/Content";
+				//this.paths.content = "/Content";
 			}
 			
 			// Name of the menu file (called courseFile to fit in with Orchid)
@@ -479,12 +483,16 @@ package com.clarityenglish.common.vo.config {
 			// and comes from a mix of T_ProductLanguage and T_Accounts. 
 			// Its purpose is to allow an account to swap language versions easily for a title.
 			if (thisTitle.dbContentLocation) {
-				this.paths.content += thisTitle.dbContentLocation;
+				//loginout
+				this.paths.content = this.contentRoot + thisTitle.dbContentLocation;
+				//this.paths.content += thisTitle.dbContentLocation;
 			} else if (thisTitle.contentLocation) {
 				// #472 - only concatenate if the path doesn't already end with this.  A little hacky but the chances of the normal content URL ending with the
 				// content location path already are slim to none.
 				if (!StringUtils.endsWith(this.paths.content, thisTitle.contentLocation))
-					this.paths.content += thisTitle.contentLocation;
+					//loginout
+					this.paths.content = this.contentRoot + thisTitle.contentLocation;
+					//this.paths.content += thisTitle.contentLocation;
 			}
 			
 			// See if you can now do any substitutions on the menu filename

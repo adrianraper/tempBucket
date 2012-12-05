@@ -36,6 +36,8 @@
 			
 			// Inject required data into the view
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			//loginout
+			trace("user is in homeMediator" + loginProxy.user);
 			view.user = loginProxy.user;
 			
 			// For standardised date formatting

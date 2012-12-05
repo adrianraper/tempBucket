@@ -153,6 +153,7 @@ package com.clarityenglish.ielts.view.home {
 						}
 					} else {
 						    //issue:#11 Language Code, refined
+						trace("user name in HomeView is "+user.fullName);
 						instance.text = copyProvider.getCopyForId("welcomeLabel" , {fullname:user.fullName});					
 					}
 					break;

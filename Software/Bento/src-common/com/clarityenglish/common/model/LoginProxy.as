@@ -58,6 +58,10 @@ package com.clarityenglish.common.model {
 			return _user;
 		}
 		
+		public function set user(user:User):void {
+			_user = user;
+		}
+		
 		public function get group():Group {
 			return _group;
 		}
@@ -262,7 +266,7 @@ package com.clarityenglish.common.model {
 						// TODO. Although id and name are properties of manageable and thus user in PHP
 						// it seems that it doesn't get set here. It is in manageables[0].inherited data
 						// And id and name are the two key pieces of information I need.
-						_user = data.group.manageables[0] as User;
+						this.user = data.group.manageables[0] as User;
 						//var manageable:Manageable = data.group.manageables[0] as Manageable;
 						//_user.id = user.userID;
 						//_user.name = user.fullName;
