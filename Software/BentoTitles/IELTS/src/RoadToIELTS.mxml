@@ -13,8 +13,27 @@
 	<fx:Style>
 		@namespace components "spark.components.*";
 		
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Roman.otf");
+			fontFamily: Helvetica;
+			fontStyle: normal;
+			fontWeight: normal;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
+		@font-face {
+			src: url("skins/ielts/assets/HelveticaNeueLTStd-Bd.otf");
+			fontFamily: Helvetica;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
 		global {
 			fontFamily: Helvetica;
+			fontLookup: embeddedCFF;
 			fontAntiAliasType: advanced;
 			fontSharpness: 400;
 			fontThickness: -200;
@@ -30,7 +49,6 @@
 			verticalGap: 9;
 			iconDelay: 500;
 		}
-		
 	</fx:Style>
 	
 	<fx:Style source="ielts.css" />
