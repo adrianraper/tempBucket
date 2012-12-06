@@ -55,9 +55,14 @@
 		<s:State name="unitplayer" enterState="unitViewNavigatorShow(UnitView, unitViewNavigator.defaultPushTransition)" />
 	</s:states>
 	
-	<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="150" top="20" bottom="30" borderVisible="false" />
-	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="70" useHandCursor="true" buttonMode="true" />
-	<s:Button id="courseSettingsButton" label="Course settings" left="100" bottom="70" useHandCursor="true" buttonMode="true" />
+	<s:VGroup>
+		<s:Label id="courseCaptionLabel" width="150" fontWeight="bold" />
+		<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="150" top="20" borderVisible="false" />
+	</s:VGroup>
+	
+	<s:Button id="addUnitButton" label="Add a unit" left="0" bottom="130" useHandCursor="true" buttonMode="true" />
+	<s:Button id="courseSettingsButton" label="Course settings" left="0" bottom="100" useHandCursor="true" buttonMode="true" />
+	<s:Button id="coursePublishButton" label="Publish course" left="0" bottom="70" useHandCursor="true" buttonMode="true" />
 	
 	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="0" bottom="80" />
 	

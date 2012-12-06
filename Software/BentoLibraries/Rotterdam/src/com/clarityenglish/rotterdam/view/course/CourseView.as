@@ -9,12 +9,17 @@ package com.clarityenglish.rotterdam.view.course {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	/*[SkinState("uniteditor")] - this is an optional skin state */
 	[SkinState("unitplayer")]
 	public class CourseView extends BentoView {
+		
+		[SkinPart]
+		public var courseCaptionLabel:Label;
 		
 		[SkinPart(required="true")]
 		public var unitList:List;
@@ -25,12 +30,16 @@ package com.clarityenglish.rotterdam.view.course {
 		[SkinPart]
 		public var courseSettingsButton:Button;
 		
+		[SkinPart]
+		public var coursePublishButton:Button;
+		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
 		private var _isPreviewVisible:Boolean;
 		
 		public var unitSelect:Signal = new Signal(XML);
+		public var coursePublish:Signal = new Signal();
 		
 		private function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
@@ -43,8 +52,10 @@ package com.clarityenglish.rotterdam.view.course {
 			}
 		}
 		
-		protected override function commitProperties():void {
-			super.commitProperties();
+		protected override function updateViewFromXHTML(xhtml:XHTML):void {
+			super.updateViewFromXHTML(xhtml);
+			
+			courseCaptionLabel.text = course.@caption;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -68,6 +79,9 @@ package com.clarityenglish.rotterdam.view.course {
 				case courseSettingsButton:
 					courseSettingsButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
 					break;
+				case coursePublishButton:
+					coursePublishButton.addEventListener(MouseEvent.CLICK, onCoursePublish);
+					break;
 			}
 		}
 		
@@ -83,6 +97,10 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		protected function onCourseSettings(event:MouseEvent):void {
 			navigator.pushView(SettingsView); // this won't work because settings is in builder :(
+		}
+		
+		protected function onCoursePublish(event:MouseEvent):void {
+			coursePublish.dispatch();
 		}
 		
 		/**

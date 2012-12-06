@@ -11,11 +11,7 @@ class CourseOps {
 <bento xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<script id="model" type="application/xml">
-			<menu>
-				<course class="default">
-					<unit caption="My Unit" />
-				</course>
-			</menu>
+			<menu />
 		</script>
 	</head>
 </bento>
@@ -45,7 +41,19 @@ class CourseOps {
 			mkdir($accountFolder."/".$id);
 			
 			// Make a default menu.xml file
-			file_put_contents($accountFolder."/".$id."/menu.xml", $defaultXML);
+			$menuXml = simplexml_load_string($defaultXML);
+
+			// The course node is basically the same as $courseNode above minus the href
+			$courseNode = $menuXml->head->script->menu->addChild("course");
+			$courseNode->addAttribute("id", $id);
+			foreach ($courseObj as $key => $value)
+				if (strtolower($key) != "id") $courseNode->addAttribute($key, $value);
+			
+			// Add a default unit
+			$unitNode = $courseNode->addChild("unit");
+			$unitNode->addAttribute("caption", "My unit");
+			
+			file_put_contents($accountFolder."/".$id."/menu.xml", $menuXml->saveXML());
 		});
 		
 		// Return the href of the new course

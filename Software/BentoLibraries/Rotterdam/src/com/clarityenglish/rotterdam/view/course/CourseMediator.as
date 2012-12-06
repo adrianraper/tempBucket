@@ -33,12 +33,14 @@
 			view.href = bentoProxy.menuXHTML.href;
 			
 			view.unitSelect.add(onUnitSelect);
+			view.coursePublish.add(onCoursePublish);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
 			view.unitSelect.remove(onUnitSelect);
+			view.coursePublish.remove(onCoursePublish);
 		}
 		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
@@ -75,6 +77,10 @@
 		
 		protected function onUnitSelect(unit:XML):void {
 			facade.sendNotification(RotterdamNotifications.UNIT_START, unit);
+		}
+		
+		protected function onCoursePublish():void {
+			trace("TODO: implement course publish (whatever that is!)");
 		}
 		
 	}
