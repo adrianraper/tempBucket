@@ -52,6 +52,7 @@ class CourseOps {
 			// Add a default unit
 			$unitNode = $courseNode->addChild("unit");
 			$unitNode->addAttribute("caption", "My unit");
+			$unitNode->addAttribute("description", "My unit description");
 			
 			file_put_contents($accountFolder."/".$id."/menu.xml", $menuXml->saveXML());
 		});

@@ -2,10 +2,15 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
+@namespace unitui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 
 unit|UnitView {
 	skinClass: ClassReference("skins.rotterdam.unit.UnitSkin");
+}
+
+unit|UnitHeaderView {
+	skinClass: ClassReference("skins.rotterdam.unit.ui.UnitHeaderSkin");
 }
 
 widgets|TextWidget {

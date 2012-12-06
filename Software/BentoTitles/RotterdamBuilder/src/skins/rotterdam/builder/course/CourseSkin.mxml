@@ -4,7 +4,8 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
 		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
-		initialize="onInitialize(event)" >
+		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*"
+		initialize="onInitialize(event)" xmlns:unit="com.clarityenglish.rotterdam.view.unit.*" >
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
@@ -64,7 +65,8 @@
 	<s:Button id="courseSettingsButton" label="Course settings" left="0" bottom="100" useHandCursor="true" buttonMode="true" />
 	<s:Button id="coursePublishButton" label="Publish course" left="0" bottom="70" useHandCursor="true" buttonMode="true" />
 	
-	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="0" bottom="80" />
+	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
+	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="50" bottom="80" />
 	
 	<course:ToolBarView bottom="0" left="0" right="0" />
 	

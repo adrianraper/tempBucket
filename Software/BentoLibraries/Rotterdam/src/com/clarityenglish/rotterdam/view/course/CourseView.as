@@ -1,6 +1,8 @@
 package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
+	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
 	
@@ -12,7 +14,6 @@ package com.clarityenglish.rotterdam.view.course {
 	import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	/*[SkinState("uniteditor")] - this is an optional skin state */
 	[SkinState("unitplayer")]
@@ -32,6 +33,9 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		[SkinPart]
 		public var coursePublishButton:Button;
+		
+		[SkinPart]
+		public var unitHeader:UnitHeaderView;
 		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
