@@ -238,7 +238,7 @@ package com.clarityenglish.ielts.view.login {
 		
 		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/ResultsManager/web/resources/' + config.languageCode.toLowerCase() + '/assets/';
+			return config.remoteDomain + '/ResultsManager/web/resources/' + CopyProxy.languageCode.toLowerCase() + '/assets/';
 		}
 		
 		[Bindable(event="productVersionChanged")]

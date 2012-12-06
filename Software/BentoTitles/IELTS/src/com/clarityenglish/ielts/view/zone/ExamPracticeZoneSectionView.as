@@ -82,7 +82,7 @@ package com.clarityenglish.ielts.view.zone {
 					break;
 			}
 		}
-		
+
 		protected function onViewportPropertyChange(event:Event):void {
 			// TODO: This calls stopAllAudio for every point of the scroll which is a little inefficient.  If we get performance issue this needs to be looked at
 			// (but unfortunately there is no easy way to detect a scroll in Flex 4 which is why we are going for a ChangeWatcher).

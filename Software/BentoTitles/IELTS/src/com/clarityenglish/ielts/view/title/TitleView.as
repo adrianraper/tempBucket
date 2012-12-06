@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
@@ -237,14 +238,14 @@ package com.clarityenglish.ielts.view.title {
 			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "support" ], true);
 		}
 		
-		override public function set productVersion(value:String):void {
+		/*override public function set productVersion(value:String):void {
 			trace("I got here with " + value + "!");
 			super._productCode = value;
-		}
+		}*/
 		
 		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/ResultsManager/web/resources/' + config.languageCode.toLowerCase() + '/assets/';
+			return config.remoteDomain + '/ResultsManager/web/resources/' + CopyProxy.languageCode.toLowerCase() + '/assets/';
 		}
 		
 		[Bindable(event="productCodeChanged")]
@@ -307,7 +308,7 @@ package com.clarityenglish.ielts.view.title {
 						case IELTSApplication.LAST_MINUTE:
 							return "       " + copyProvider.getCopyForId("lastTimeGT");
 						case IELTSApplication.TEST_DRIVE:
-							return "       " + copyProvider.getCopyForId("lastTimeGT");
+							return "       " + copyProvider.getCopyForId("testDriveGT");
 						case IELTSApplication.DEMO:
 							return "                 " + copyProvider.getCopyForId("GT");
 						case IELTSApplication.FULL_VERSION:

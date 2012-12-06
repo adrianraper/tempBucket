@@ -162,6 +162,7 @@
 			<lit name="currentPwdLabel">Current password:</lit>
 			<lit name="newPsdLabel">New password:</lit>
 			<lit name="confirmPsdLabel">Confirm password:</lit>
+			<lit name="accountLanguageLabel">Language:</lit>
 			<lit name="IELTSAppsLabel">IELTS Apps</lit>
 			<lit name="supportCaptionSpan1">How to use Road to IELTS</lit>
 			<lit name="paragraphContentSpan1">Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts onvideo, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
