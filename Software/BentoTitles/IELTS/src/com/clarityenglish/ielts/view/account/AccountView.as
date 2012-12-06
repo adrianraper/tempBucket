@@ -199,26 +199,32 @@ package com.clarityenglish.ielts.view.account {
 			if (accountStartDateLabel) accountStartDateLabel.text = copyProvider.getCopyForId("accountStartDateLabel");
 			
 			if (startDateLabel) {
-				if (CopyProxy.languageCode == "ZH") {
-					var repObject:Object = new Object();
-					repObject.day = (DateUtil.ansiStringToDate(startDate)).date;
-					repObject.month = (DateUtil.ansiStringToDate(startDate)).month + 1;
-					repObject.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
-					startDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
-				} else {
-					startDateLabel.text =DateUtil.formatDate(DateUtil.ansiStringToDate(startDate), 'd MMMM yyyy')
+				// gh#38
+				if (startDate) {
+					if (CopyProxy.languageCode == "ZH") {
+						var repObject:Object = new Object();
+						repObject.day = (DateUtil.ansiStringToDate(startDate)).date;
+						repObject.month = (DateUtil.ansiStringToDate(startDate)).month + 1;
+						repObject.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
+						startDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
+					} else {
+						startDateLabel.text = DateUtil.formatDate(DateUtil.ansiStringToDate(startDate), 'd MMMM yyyy')
+					}
 				}
 			}
 			
 			if (endDateLabel) {
-				if (CopyProxy.languageCode == "ZH") {
-					var objReplace:Object = new Object();
-					objReplace.day = (DateUtil.ansiStringToDate(expiryDate)).date;
-					objReplace.month = (DateUtil.ansiStringToDate(expiryDate)).month + 1;
-					objReplace.year = (DateUtil.ansiStringToDate(expiryDate)).fullYear;
-					endDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", objReplace);
-				} else {
-					endDateLabel.text = DateUtil.formatDate(DateUtil.ansiStringToDate(expiryDate), 'd MMMM yyyy')
+				// gh#38
+				if (expiryDate) {
+					if (CopyProxy.languageCode == "ZH") {
+						var objReplace:Object = new Object();
+						objReplace.day = (DateUtil.ansiStringToDate(expiryDate)).date;
+						objReplace.month = (DateUtil.ansiStringToDate(expiryDate)).month + 1;
+						objReplace.year = (DateUtil.ansiStringToDate(expiryDate)).fullYear;
+						endDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", objReplace);
+					} else {
+						endDateLabel.text = DateUtil.formatDate(DateUtil.ansiStringToDate(expiryDate), 'd MMMM yyyy')
+					}
 				}
 			}
 			
@@ -307,8 +313,9 @@ package com.clarityenglish.ielts.view.account {
 					break;
 				case IELTSApplication.FULL_VERSION:
 					var currentState:String = "fullVersion";
+					// gh#38 userID is from user not config
 					if (licenceType == Title.LICENCE_TYPE_AA ||
-						Number(config.userID) < 1)
+						Number(user.userID) < 1)
 						currentState += "_anonymous";
 					return currentState;
 					break;

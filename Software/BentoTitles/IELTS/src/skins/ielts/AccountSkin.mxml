@@ -137,13 +137,14 @@
 							<s:Label text="{hostComponent.user.email}" fontWeight="bold" />
 						</s:HGroup>
 						<s:Spacer height="3" />
-						<s:HGroup>
+						<!-- gh#38 -->
+						<s:HGroup visible="{hostComponent.startDate != null}" includeInLayout="{hostComponent.startDate != null}">
 							<s:Label id="accountStartDateLabel" />
 							<s:Spacer width="22"/>
 							<s:Label id="startDateLabel" fontWeight="bold"/>		
 						</s:HGroup>
 						<s:Spacer height="3" />
-						<s:HGroup>
+						<s:HGroup visible="{hostComponent.expiryDate != null}" includeInLayout="{hostComponent.expiryDate != null}">
 							<s:Label id="accountExpiryDateLabel" />		
 							<s:Spacer width="13"/>
 							<s:Label id="endDateLabel" fontWeight="bold"/>

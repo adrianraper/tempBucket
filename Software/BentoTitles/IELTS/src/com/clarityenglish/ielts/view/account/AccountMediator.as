@@ -48,12 +48,18 @@
 			// Start date is either account start date, or user registration date whichever is later
 			// Expiry date is either account end date, or user expiry date whichever is earlier
 			var licence:Licence = configProxy.getLicence();
-			if (loginProxy.user.registrationDate && loginProxy.user.registrationDate > licence.licenceStartDate) {
+			// gh#38
+			//if (loginProxy.user.registrationDate && loginProxy.user.registrationDate > licence.licenceStartDate) {
+			if (loginProxy.user.registrationDate) {
 				view.startDate = loginProxy.user.registrationDate;
 			} else {
-				view.startDate = licence.licenceStartDate;
+				// gh#38
+				//view.startDate = licence.licenceStartDate;
+				view.startDate = null;
 			}
-			if (loginProxy.user.expiryDate && loginProxy.user.expiryDate < licence.expiryDate) {
+			// gh#38 Show the user's expiry date if they have one, even if past the licence expiry date
+			//if (loginProxy.user.expiryDate && loginProxy.user.expiryDate < licence.expiryDate) {
+			if (loginProxy.user.expiryDate) {
 				view.expiryDate = loginProxy.user.expiryDate;
 			} else {
 				view.expiryDate = licence.expiryDate;
