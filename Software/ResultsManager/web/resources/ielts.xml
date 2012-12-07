@@ -49,6 +49,11 @@
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
+			<lit name="printButton">Print</lit>
+			<lit name="noButton">No</lit>
+			<lit name="yesButton">Yes</lit>
+			<lit name="loadingLabel">loading...</lit>
+			<lit name="closeButton">OK</lit>
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
@@ -313,7 +318,9 @@
 			<lit name="moveForwardButton">Forward</lit>
 			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
 			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
+			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
 			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
+			<lit name="footerLabel">Data © The British Council 2006-2012. Software © Clarity Language Consultants Ltd, 2012. All rights reserved.</lit>
 			<lit name="thankYouLabel">Thank you for using Road to IELTS.</lit>
 			<lit name="weWouldLabel">We would love to know what you think.</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>

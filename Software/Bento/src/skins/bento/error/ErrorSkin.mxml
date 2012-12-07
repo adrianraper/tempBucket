@@ -19,11 +19,11 @@
 		<s:SWFLoader source="@Embed(source='skins/assets/errormessage.swf')" />
 		<s:Spacer width="10" />
 		<s:VGroup>
-			<s:Label width="310" text="Sorry, there is a problem:" fontSize="16" fontWeight="bold" paddingTop="10" />
+			<s:Label id="problemLabel" width="310" fontSize="16" fontWeight="bold" paddingTop="10" />
 			<s:Spacer height="1" />
 			<s:Label width="310" text="{hostComponent.error.errorContext}" lineHeight="20" />
 			<s:Spacer height="1" />
-			<s:Button id="closeButton" label="OK" />
+			<s:Button id="closeButton" />
 		</s:VGroup>
 	</s:HGroup>
 	

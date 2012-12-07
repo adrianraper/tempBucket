@@ -11,6 +11,8 @@
 	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.controller.*;
+	import com.clarityenglish.common.view.error.ErrorMediator;
+	import com.clarityenglish.common.view.error.ErrorView;
 	
 	import flash.utils.Dictionary;
 	import flash.utils.setTimeout;
@@ -56,6 +58,7 @@
 			mapView(SWFPlayerView, SWFPlayerMediator);
 			mapView(MarkingView, MarkingMediator);
 			mapView(WarningView, WarningMediator);
+			mapView(ErrorView, ErrorMediator);
 			
 			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);

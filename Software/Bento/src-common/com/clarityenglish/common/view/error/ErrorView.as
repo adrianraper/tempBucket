@@ -14,7 +14,7 @@ package com.clarityenglish.common.view.error {
 		[SkinPart]
 		public var problemLabel:Label;
 		
-		//[SkinPart]
+		[SkinPart]
 		public var closeButton:Button;
 		
 		[SkinPart]
@@ -34,7 +34,7 @@ package com.clarityenglish.common.view.error {
 			switch (instance) {
 				case closeButton:
 					instance.addEventListener(MouseEvent.CLICK, onCloseButtonClick);
-					closeButton.label = copyProvider.getCopyForId("closeButton");
+					instance.label = copyProvider.getCopyForId("closeButton");
 					break;
 				case problemLabel:
 					instance.text = copyProvider.getCopyForId("problemLabel");

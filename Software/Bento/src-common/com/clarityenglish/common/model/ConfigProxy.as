@@ -136,8 +136,6 @@ package com.clarityenglish.common.model {
 				//	we must have rootID or prefix (prefix is most likely)
 				//	we must have a productCode
 				//  and it isn't nice to send NaN as rootID
-				trace("prefix is "+ config.prefix);
-				trace("rootID is "+ config.rootID);
 				var dbConfig:Object = { dbHost: config.dbHost, prefix: config.prefix, rootID: config.rootID, productCode: config.productCode };
 				var params:Array = [ dbConfig ];
 				new RemoteDelegate("getAccountSettings", params, this).execute();

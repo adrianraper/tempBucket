@@ -10,18 +10,16 @@ class CopyOps {
 		$this->db = $db;
 		
 		// provide a default language in the session
-		if (!Session::is_set('languageCode')) Session::set('languageCode', 'EN');
+		if (!Session::is_set('language')) Session::set('language', 'EN');
 	}
 	
 	/**
 	 * Literals are stored in resources/<language>/<title>.xml where language comes from the session (currently defaulting to EN) and the title is set
 	 * in the concrete Service file (e.g. ClarityService, DMSService, IELTSService).
-	 * Change to getting all literals from one file, just in /resources/<title>.xml
 	 */
 	private function getFilename() {
-	    // gh#20 add language code in one file
-	    //$filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
-	    $filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
+	    // issue:#20 add language code in one file
+	    $filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('language')) ? Session::get('language') : "EN")."/".AbstractService::$title.".xml";
 		return $filename; 
 		//return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 	}
@@ -47,7 +45,8 @@ class CopyOps {
 	 */
 	function getCopy($code = null) {
 		// gh#39
-		if ($code) Session::set('languageCode', $code);
+		//if ($code) Session::set('languageCode', $code);
+		if ($code) Session::set('language', $code);
 		
 		// If the file doesn't exist return false
 		if (!file_exists($this->getFilename()))
@@ -67,7 +66,7 @@ class CopyOps {
 	 */
 	function getCopyArray() {
 		$xpath = $this->getXPath();
-		$elements = $xpath->query("/literals/language[@code='".Session::get('languageCode')."']//lit");
+		$elements = $xpath->query("/literals/language[@code='".Session::get('language')."']//lit");
 		
 		$object = array();
 		foreach ($elements as $element)
@@ -79,7 +78,7 @@ class CopyOps {
 	function getCopyDOMForLanguage() {
 		$xpath = $this->getXPath();
 		
-		$elements = $xpath->query("/literals/language[@code='".Session::get('languageCode')."']");
+		$elements = $xpath->query("/literals/language[@code='".Session::get('language')."']");
 		
 		return $elements->item(0);
 	}
@@ -91,7 +90,7 @@ class CopyOps {
 		$xpath = $this->getXPath();
 		
 		// TODO: This needs to respect the language code once we've decided how it will work
-		$elements = $xpath->query("/literals/language[@code='".(($languageCode) ? $languageCode : Session::get('languageCode'))."']//lit[@name='".$id."']");
+		$elements = $xpath->query("/literals/language[@code='".(($languageCode) ? $languageCode : Session::get('language'))."']//lit[@name='".$id."']");
 		
 		// If no element was found return the id
 		if ($elements->length == 0)
@@ -113,7 +112,7 @@ class CopyOps {
 		$xpath = $this->getXPath();
 		
 		// TODO: This needs to respect the language code once we've decided how it will work
-		$element = $xpath->evaluate("string(/literals/language[@code='".(($languageCode) ? $languageCode : Session::get('languageCode'))."']//lit[@name='".$id."']/@code)");
+		$element = $xpath->evaluate("string(/literals/language[@code='".(($languageCode) ? $languageCode : Session::get('language'))."']//lit[@name='".$id."']/@code)");
 		
 		// If no element was found, default to 1
 		if (!$element) {
