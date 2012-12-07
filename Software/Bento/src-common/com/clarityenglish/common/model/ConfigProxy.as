@@ -101,6 +101,7 @@ package com.clarityenglish.common.model {
 				if (!config.prefix) config.prefix = "Clarity";
 			}
 			
+			
 			// gh#21 If you are basing the account on the login, then go direct to login
 			if (config.loginOption && !config.prefix && !config.rootID) {
 				
@@ -135,6 +136,8 @@ package com.clarityenglish.common.model {
 				//	we must have rootID or prefix (prefix is most likely)
 				//	we must have a productCode
 				//  and it isn't nice to send NaN as rootID
+				trace("prefix is "+ config.prefix);
+				trace("rootID is "+ config.rootID);
 				var dbConfig:Object = { dbHost: config.dbHost, prefix: config.prefix, rootID: config.rootID, productCode: config.productCode };
 				var params:Array = [ dbConfig ];
 				new RemoteDelegate("getAccountSettings", params, this).execute();
@@ -303,11 +306,14 @@ package com.clarityenglish.common.model {
 			
 			// Anonymous login
 			// Demo login will normally use AA licence type
-			if (config.licenceType == Title.LICENCE_TYPE_AA) 
+			if (config.licenceType == Title.LICENCE_TYPE_AA) {
 				return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
+			}
+				
 			
 			// #336 SCORM probably needs to be checked here
 			if (config.scorm) {
+				trace("scorm");
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 				configUser = new User({ name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID });
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
@@ -375,7 +381,6 @@ package com.clarityenglish.common.model {
 							<account expiryDate="2012-12-31 23:59:59" maxStudents="998" groupID="163" rootID="163" licenceType="1" institution="Clarity Language Consultants Ltd" contentLocation="TenseBuster-International" MGSRoot="" licenceStartDate="2009-01-01 00:00:00" checksum="351669aed74a984aa13f8501ecdcadcd7c8f61b3cad49eaf4611a4510abfe85e" languageCode="EN" />
 						</db>
 						*/
-						
 						config.mergeAccountData(data);
 						
 						var authenticated:Boolean = this.checkAuthentication();

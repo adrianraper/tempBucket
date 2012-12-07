@@ -15,13 +15,14 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
-	
+		
 	<ui:WidgetList id="widgetList" dataProvider="{hostComponent.widgetCollection}" left="0" right="0" top="0" bottom="0" borderColor="0xf2f2f2">
 		<ui:layout>
 			<!--<layouts:UnitLayout columns="3" horizontalGap="20" verticalGap="20" useVirtualLayout="false" />-->
 			<layouts:FreeUnitLayout columns="3" horizontalGap="18" useVirtualLayout="false" />
 		</ui:layout>
 	</ui:WidgetList>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/unit/instruction.png')" top="0" left="0"  visible="{widgetList.dataProvider.length == 0}"/>
 	
 	<widgets:WidgetMenu id="widgetMenu" />
 	

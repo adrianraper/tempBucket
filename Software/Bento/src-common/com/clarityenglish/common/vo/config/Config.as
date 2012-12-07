@@ -467,7 +467,7 @@ package com.clarityenglish.common.vo.config {
 			
 			// #306 Specifically set rootID in config
 			this.rootID = Number(this.account.id);
-			
+
 			// A temporary variable for the title - there can only be one
 			// Which I think should be caught in getRMSettings really
 			if (this.account.children.length != 1) {
