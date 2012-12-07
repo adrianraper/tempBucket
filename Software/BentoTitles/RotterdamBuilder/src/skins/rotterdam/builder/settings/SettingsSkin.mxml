@@ -11,15 +11,108 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		
+		<s:State name="calendar" />
+		<s:State name="email" />
+		<s:State name="about" />
 	</s:states>
 	
-	<s:Form width="100%">
-		<s:FormHeading label="Course settings" />
-		<s:FormItem label="Start date:">
-			<mx:DateChooser id="startDateChooser" />
-		</s:FormItem>
-	</s:Form>
+	<s:Label text="Course Settings" top="60" />
 	
+	<!-- The tab bar -->
+	<s:TabBar id="tabBar" top="100" />
+	
+	<!-- Left hand side -->
+	<s:VGroup top="140" width="390" paddingLeft="18" paddingTop="22">
+		<!-- Calendar settings -->
+		<s:VGroup includeIn="calendar">
+			<s:Label text="1. How many days between units?" fontWeight="bold" />
+			<s:TextInput width="40" />
+			
+			<s:Spacer height="20" />
+			
+			<s:Label text="2. See past units?" fontWeight="bold" />
+			<s:HGroup>
+				<s:RadioButton label="Yes" />
+				<s:RadioButton label="No" />
+			</s:HGroup>
+			
+			<s:Spacer height="20" />
+			
+			<s:Label text="3. Select the options for the group(s)" fontWeight="bold" />
+			<s:DropDownList width="300" />
+			
+			<s:Label text="Please set the course start date for this group" />
+			<s:HGroup width="300" gap="8">
+				<s:DropDownList width="70" />
+				<s:DropDownList width="125" />
+				<s:DropDownList width="90" />
+			</s:HGroup>
+		</s:VGroup>
+		
+		<!-- Email settings -->
+		<s:VGroup includeIn="email">
+			<s:Label text="Select the options for the group" fontWeight="bold" />
+			<s:DropDownList width="300" />
+			<s:List width="300" />
+			<s:TextInput width="300" />
+			<s:Button label="Add to list" />
+			
+			<s:Label text="Send automated email" fontWeight="bold" />
+			<s:CheckBox label="Welcome email" />
+			<s:CheckBox label="New unit notification email" />
+			<s:CheckBox label="Course end email" />
+		</s:VGroup>
+		
+		<s:VGroup includeIn="about">
+			<s:Label text="Course name" fontWeight="bold" />
+			<s:TextInput id="aboutCourseNameTextInput" width="300" />
+			
+			<s:Spacer height="20" />
+			
+			<s:Label text="Author" fontWeight="bold" />
+			<s:TextInput id="aboutAuthorTextInput" width="300" />
+			
+			<s:Spacer height="20" />
+			
+			<s:Label text="Email" fontWeight="bold" />
+			<s:TextInput id="aboutEmailTextInput" width="300" />
+			
+			<s:Spacer height="20" />
+			
+			<s:Label text="Contact number" fontWeight="bold" />
+			<s:TextInput id="aboutContactNumberTextInput" width="300" />
+			
+			<s:Spacer height="20" />
+			
+			<s:Label text="Direct URL for this course" fontWeight="bold" />
+			<s:Label text="www.claritycoursebuilder.com/TEST" />
+		</s:VGroup>
+	</s:VGroup>
+	
+	<!-- Right hand side -->
+	<s:VGroup top="75" left="400">
+		<!-- Calendar -->
+		<s:VGroup includeIn="calendar">
+			
+		</s:VGroup>
+		
+		<!-- Email -->
+		<s:VGroup includeIn="email">
+			
+		</s:VGroup>
+		
+		<!-- About -->
+		<s:VGroup includeIn="about">
+			<s:Label text="Course logo" fontWeight="bold" />
+			<s:HGroup>
+				<s:TextInput />
+				<s:Button label="Browse" />
+			</s:HGroup>
+			<s:Button label="Upload" />
+		</s:VGroup>
+	</s:VGroup>
+		
 	<s:Button id="backButton" label="Back" bottom="0" />
 	
 </s:Skin>
