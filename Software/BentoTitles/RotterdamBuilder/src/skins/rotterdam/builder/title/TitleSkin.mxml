@@ -35,22 +35,21 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:Rect height="40" width="100%" top="10">
-		<s:fill>
-			<s:SolidColor color="#000000" />
-		</s:fill>
-	</s:Rect>
-    <s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/title/ccb_logo.png')" top="10"/>
-    <s:Label text="Clarity Course Builder" color="0xFFFFFF" fontWeight="bold" fontSize="15" top="25" left="70"/>
-	<!--s:DropDownList right="10" top="20" buttonMode="false"/-->
-	<s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" top="25" right="70" />
+	<s:Group left="0" right="0" top="0" height="40">
+		<s:Rect left="0" right="0" top="0" bottom="0">
+			<s:fill>
+				<s:SolidColor color="#000000" />
+			</s:fill>
+		</s:Rect>
+		<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/title/ccb_logo.png')" />
+		<s:Label text="Clarity Course Builder" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="70" verticalCenter="0" />
+		<s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" right="70" verticalCenter="0" />
+	</s:Group>
 	
-	
-	<s:TabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="50" bottom="0" >
+	<s:TabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="40" bottom="0" >
 		<s:ViewNavigator id="myCoursesViewNavigator" label="My Courses" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%"/>
-		<s:ViewNavigator label="File manager" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
+		<s:ViewNavigator label="Resource Cloud" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
 		<s:ViewNavigator label="Help" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
-	
 	
 </s:Skin>
