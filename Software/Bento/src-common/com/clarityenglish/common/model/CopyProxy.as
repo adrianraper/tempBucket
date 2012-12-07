@@ -104,6 +104,14 @@ package com.clarityenglish.common.model {
 			return new Number(result[0]);
 		}
 		
+		// gh#11
+		public function getLanguageCode():String {
+			return languageCode;
+		}
+		public function getDefaultLanguageCode():String {
+			return defaultLanguageCode;
+		}
+		
 		public function getBentoErrorForId(id:String, replaceObj:Object = null, isFatal:Boolean = true):BentoError {
 			if (!this.copy)
 				throw new Error("Copy literals have not been loaded yet");

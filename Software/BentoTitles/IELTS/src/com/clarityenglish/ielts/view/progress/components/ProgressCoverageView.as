@@ -78,7 +78,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		[Bindable]
 		public var hostCopyProvider:CopyProvider;
 		
-		//issue:#11 language Code
+		// gh#11 language Code
 		public override function setCopyProvider(copyProvider:CopyProvider):void {
 			super.setCopyProvider(copyProvider);
 			this.hostCopyProvider = copyProvider;

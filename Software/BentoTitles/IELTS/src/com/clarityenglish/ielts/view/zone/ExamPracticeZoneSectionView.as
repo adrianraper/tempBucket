@@ -42,8 +42,12 @@ package com.clarityenglish.ielts.view.zone {
 		
 		private var viewportPropertyWatcher:ChangeWatcher;
 		
+		// gh#11
 		public function get assetFolder():String {
-			return config.remoteDomain + config.assetFolder;
+			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
+		}
+		public function get languageAssetFolder():String {
+			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
 		
 		public function ExamPracticeZoneSectionView() {
@@ -71,7 +75,7 @@ package com.clarityenglish.ielts.view.zone {
 					viewportPropertyWatcher = ChangeWatcher.watch(list.scroller.viewport, "horizontalScrollPosition", onViewportPropertyChange);
 					list.addEventListener(ExerciseEvent.EXERCISE_SELECTED, onExerciseSelected);
 					break;
-				//issue:#11 Lanuage Code
+				// gh#11
 				case examZoneLabel:
 					instance.text = copyProvider.getCopyForId("examZoneLabel");
 					break;
@@ -86,7 +90,7 @@ package com.clarityenglish.ielts.view.zone {
 		protected function onViewportPropertyChange(event:Event):void {
 			// TODO: This calls stopAllAudio for every point of the scroll which is a little inefficient.  If we get performance issue this needs to be looked at
 			// (but unfortunately there is no easy way to detect a scroll in Flex 4 which is why we are going for a ChangeWatcher).
-			AudioPlayer.stopAllAudio(); // GH#12
+			AudioPlayer.stopAllAudio(); // gh#12
 		}
 		
 		protected function onExerciseSelected(event:ExerciseEvent):void {

@@ -49,6 +49,8 @@ package com.clarityenglish.ielts.view.login {
 		public var testDriveAcademicButton:Button;
 		[SkinPart]
 		public var testDriveGeneralButton:Button;
+		[SkinPart]
+		public var testDriveLabel:Label;
 		
 		[SkinPart]
 		public var cancelButton:Button;
@@ -236,9 +238,12 @@ package com.clarityenglish.ielts.view.login {
 			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
 		}
 		
-		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
+		// gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/ResultsManager/web/resources/' + CopyProxy.languageCode.toLowerCase() + '/assets/';
+			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
+		}
+		public function get languageAssetFolder():String {
+			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
 		
 		[Bindable(event="productVersionChanged")]
@@ -355,8 +360,10 @@ package com.clarityenglish.ielts.view.login {
 				case testDriveGeneralButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
+				case testDriveLabel:
+					instance.text = copyProvider.getCopyForId("testDriveLabel");
+					break;
 				case loginIDLabel:
-					trace("login label "+ copyProvider.getCopyForId("loginIDLabel"));
 					instance.text = copyProvider.getCopyForId("loginIDLabel");
 					break;
 				case passwordLabel:
@@ -375,7 +382,11 @@ package com.clarityenglish.ielts.view.login {
 					instance.text = copyProvider.getCopyForId("FVTextLabel");
 					break;
 				case loginDetailLabel:
-					instance.text = copyProvider.getCopyForId("loginDetailLabel");
+					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
+						instance.text = copyProvider.getCopyForId("loginDetailLabelNetwork");
+					} else {
+						instance.text = copyProvider.getCopyForId("loginDetailLabel");
+					}
 					break;
 				case registerDetailLabel:
 					instance.text = copyProvider.getCopyForId("registerDetailLabel");

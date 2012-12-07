@@ -37,11 +37,11 @@
 	<s:Label id="welcomeLabel" left="39" top="202" />
 	<s:Label id="noticeLabel" left="39" top="221" />
 	<s:Group right="20" top="0">
-		<s:SWFLoader id="upgradeButton" source="{hostComponent.assetFolder}upgrade.jpg" 
+		<s:SWFLoader id="upgradeButton" source="{hostComponent.languageAssetFolder}upgrade.jpg" 
 					 visible="{hostComponent.productVersion == 'R2ILM'}"
 					 includeInLayout="{hostComponent.productVersion == 'R2ILM'}"
 					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
-		<s:SWFLoader id="registerButton" source="{hostComponent.assetFolder}register.jpg" 
+		<s:SWFLoader id="registerButton" source="{hostComponent.languageAssetFolder}register.jpg" 
 					 visible="{hostComponent.productVersion == 'R2ITD'}"
 					 includeInLayout="{hostComponent.productVersion == 'R2ITD'}"
 					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />

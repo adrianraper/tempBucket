@@ -25,7 +25,7 @@
 	
 	<login:InputAreaChrome left="19" top="183" />
 	<s:SWFLoader source="@Embed(source='/skins/ieltsair/assets/login/test_drive.png')" top="463" left="27"  />
-	<s:Label text="Try the FREE Test Drive version" top="485" left="218" width="340" color="0x592A0C" fontWeight="bold" fontSize="16"  />
+	<s:Label id="testDriveLabel" top="485" left="218" width="340" color="0x592A0C" fontWeight="bold" fontSize="16"  />
 	<s:Button id="testDriveAcademicButton" label="Academic" left="190" top="520" width="100" height="44" fontSize="16" />
 	<s:Button id="testDriveGeneralButton" label="General Training" left="300" top="520" width="160" height="44" fontSize="16" />
 	

@@ -58,21 +58,21 @@
 					</s:RichText>
 	
 					<s:VGroup id="homeScreen" paddingTop="10" excludeFrom="testDrive">
-						<s:SWFLoader width="680" height="325" source="{hostComponent.assetFolder}help_home.png" />
+						<s:SWFLoader width="680" height="325" source="{hostComponent.languageAssetFolder}help_home.png" />
 					</s:VGroup>
 					<s:RichText excludeFrom="testDrive">
 						<s:p><s:span id="homeScreenIntroSpan"/></s:p>
 					</s:RichText>
 					
 					<s:VGroup id="skillScreen" paddingTop="20" excludeFrom="testDrive" >
-						<s:SWFLoader width="680" height="341" source="{hostComponent.assetFolder}help_skill.png" />
+						<s:SWFLoader width="680" height="341" source="{hostComponent.languageAssetFolder}help_skill.png" />
 					</s:VGroup>
 					<s:RichText excludeFrom="testDrive">
 						<s:p><s:span id="skillScreenIntroSpan"/></s:p>
 					</s:RichText>
 					
 					<s:VGroup id="exerciseScreen" paddingTop="20" excludeFrom="testDrive">
-						<s:SWFLoader width="680" height="374" source="{hostComponent.assetFolder}help_exercise.png" />
+						<s:SWFLoader width="680" height="374" source="{hostComponent.languageAssetFolder}help_exercise.png" />
 					</s:VGroup>
 					<s:RichText excludeFrom="testDrive">
 						<s:p><s:span id="exerciseSreenIntroSpan"/></s:p>

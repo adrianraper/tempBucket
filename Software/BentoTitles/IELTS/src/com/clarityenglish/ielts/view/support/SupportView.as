@@ -196,13 +196,13 @@ package com.clarityenglish.ielts.view.support {
 			}
 		}
 
-         // GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
+         // gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/ResultsManager/web/resources/' + CopyProxy.languageCode.toLowerCase() + '/assets/';
+			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
 		}
-		/*public function get assetFolder():String {
-			return config.remoteDomain + '/Software/ResultsManager/web/resources/assets/';
-		}*/ 
+		public function get languageAssetFolder():String {
+			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
 		
 		protected override function getCurrentSkinState():String {
 			switch (productVersion) {

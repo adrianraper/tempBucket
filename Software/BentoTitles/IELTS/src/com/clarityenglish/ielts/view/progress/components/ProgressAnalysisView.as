@@ -58,8 +58,12 @@ package com.clarityenglish.ielts.view.progress.components {
 			dispatchEvent(new Event("progressChanged"));
 		}
 
+		// gh#11
 		public function get assetFolder():String {
-			return config.remoteDomain + '/ResultsManager/web/resources/assets/';
+			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
+		}
+		public function get languageAssetFolder():String {
+			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

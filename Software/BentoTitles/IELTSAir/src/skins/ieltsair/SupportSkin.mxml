@@ -51,7 +51,7 @@
 		<s:HGroup left="0" right="0" top="0" bottom="0">
 			<s:Group width="{width}" top="0" bottom="0">
 				<s:Group width="100%">
-					<s:SWFLoader source="{hostComponent.assetFolder}help_home.png" horizontalCenter="0" />
+					<s:SWFLoader source="{hostComponent.languageAssetFolder}help_home.png" horizontalCenter="0" />
 				</s:Group>
 				
 				<s:RichText top="370" left="40" right="40" height="82" >
@@ -65,7 +65,7 @@
 			
 			<s:Group width="{width}" horizontalCenter="0">
 				<s:Group width="100%">
-					<s:SWFLoader source="{hostComponent.assetFolder}help_skill.png" horizontalCenter="0"/>
+					<s:SWFLoader source="{hostComponent.languageAssetFolder}help_skill.png" horizontalCenter="0"/>
 				</s:Group>
 				
 				<s:RichText top="370" left="40" right="40" height="82">
@@ -79,7 +79,7 @@
 			
 			<s:Group width="{width}" horizontalCenter="0">
 				<s:Group width="100%">
-					<s:SWFLoader source="{hostComponent.assetFolder}help_exercise.png" horizontalCenter="0"/>
+					<s:SWFLoader source="{hostComponent.languageAssetFolder}help_exercise.png" horizontalCenter="0"/>
 				</s:Group>
 				
 				<s:RichText top="370" left="40" right="40" height="82">

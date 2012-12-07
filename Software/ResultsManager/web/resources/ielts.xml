@@ -50,8 +50,11 @@
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
-			<lit name="loginIDLabel">This is the ID given to you to start Road to IELTS. It looks like this: 1280-8666-1111.</lit>
+			<lit name="loginIDLabel">You need to have already registered your email with your school or with British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
+			<lit name="loginDetailLabelNetwork">Please type your login details if you want to save your progress records.</lit>
+			<lit name="testDriveLabel">Try the FREE Test Drive version</lit>
+			
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
 			<lit name="LMLabel">Road to IELTS - Last Minute</lit>
 			<lit name="LMTextLabel">Special last minute practice only for British Council IELTS candidates!</lit>
@@ -118,7 +121,7 @@
 			<lit name="progressNavBarCompare">Compare</lit>
 			<lit name="progressNavBarAnalyse">Analyse</lit>
 			<lit name="progressNavBarScores">My scores</lit>
-			<lit name="progressAnonymousLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
+			<lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
 			<lit name="questionZoneComponent">Starting out</lit>
 			<lit name="adviceZoneComponent">Advice and tutorials</lit>
 			<lit name="examPracticeComponent">Test practice</lit>
@@ -135,12 +138,12 @@
 			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
 			<lit name="courseDurationRenderLabel">You have spent</lit>
 			<lit name="courseDurationRenderTime">{time} min(s)</lit>
-			<lit name="ProgressBarCoverage">- overall coverage</lit>
-			<lit name="ProgressBarScore">- average score</lit>
+			<lit name="ProgressBarCoverage"> - overall coverage</lit>
+			<lit name="ProgressBarScore"> - average score</lit>
 			<lit name="scoreGridC1">Unit</lit>
 			<lit name="scoreGridC2">Exercise</lit>
 			<lit name="scoreGridC3">Score %</lit>
-			<lit name="scoreGridC4">Time spen</lit>
+			<lit name="scoreGridC4">Time spent</lit>
 			<lit name="scoreGridC5">Date</lit>
 			<lit name="countdownHeading">How long until my test?</lit>
 			<lit name="setTestDateLabel">Please set your test date below:</lit>
@@ -326,6 +329,7 @@
 /* Chinese version */
 	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
 		<group name="group">
+            <lit name="loginIDLabel">您需要已经注册了你的学校或者你的电子邮件，与英国文化协会，进行登录。</lit>		
 			<lit name="colorBarIntroLabel">彩色条形图显示了您在各个技能单元中的完成情况。详情请查看My Progress。</lit>
 	        <lit name="Reading">阅读</lit>
 			<lit name="Listening">听力</lit>

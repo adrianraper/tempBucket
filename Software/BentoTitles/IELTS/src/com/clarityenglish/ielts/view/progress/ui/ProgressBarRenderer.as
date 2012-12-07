@@ -44,7 +44,7 @@ package com.clarityenglish.ielts.view.progress.ui {
 		//issue:#11 Language Code
 		public function set copyProvider(copyProvider:CopyProvider):void {
 			_copyProvider = copyProvider;
-			trace("ProgressBarCoverage is "+ _copyProvider.getCopyForId("ProgressBarCoverage"));
+			//trace("ProgressBarCoverage is "+ _copyProvider.getCopyForId("ProgressBarCoverage"));
 		}
 
 		public override function set data(value:Object):void {

@@ -16,10 +16,12 @@ class CopyOps {
 	/**
 	 * Literals are stored in resources/<language>/<title>.xml where language comes from the session (currently defaulting to EN) and the title is set
 	 * in the concrete Service file (e.g. ClarityService, DMSService, IELTSService).
+	 * Change to getting all literals from one file, just in /resources/<title>.xml
 	 */
 	private function getFilename() {
-	    // issue:#20 add language code in one file
-	    $filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
+	    // gh#20 add language code in one file
+	    //$filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
+	    $filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 		return $filename; 
 		//return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 	}

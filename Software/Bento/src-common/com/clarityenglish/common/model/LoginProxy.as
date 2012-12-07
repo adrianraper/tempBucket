@@ -91,7 +91,7 @@ package com.clarityenglish.common.model {
 				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorInvalidLoginOption", { loginOption: loginOption } ));			
 			}
 			
-			if (configProxy.getConfig().ip && loginObj != null)
+			if (loginObj && configProxy.getConfig().ip)
 				loginObj.ip = configProxy.getConfig().ip;
 			
 			// #340

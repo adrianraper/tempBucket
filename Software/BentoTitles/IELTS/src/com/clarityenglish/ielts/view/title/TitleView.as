@@ -243,9 +243,12 @@ package com.clarityenglish.ielts.view.title {
 			super._productCode = value;
 		}*/
 		
-		// GH #11 Language Code, read pictures from the folder base on the LanguageCode you set
+		// gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
-			return config.remoteDomain + '/ResultsManager/web/resources/' + CopyProxy.languageCode.toLowerCase() + '/assets/';
+			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
+		}
+		public function get languageAssetFolder():String {
+			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
 		
 		[Bindable(event="productCodeChanged")]
@@ -329,24 +332,24 @@ package com.clarityenglish.ielts.view.title {
 			switch (_productVersion) {
 				case IELTSApplication.LAST_MINUTE:
 					//gt#11
-					upgradeInfo = this.assetFolder + "upgrade.jpg";
+					upgradeInfo = this.languageAssetFolder + "upgrade.jpg";
 					return upgradeInfo;
 				
 				case IELTSApplication.TEST_DRIVE:
 					//gt#11
-					registerInfo =  this.assetFolder + "register.jpg";
+					registerInfo =  this.languageAssetFolder + "register.jpg";
 					return registerInfo;
 				
 				case IELTSApplication.DEMO:
 					// #337 
 					if (config.pricesURL) {
 						//gt#11
-						priceInfo = this.assetFolder + "price.jpg";
+						priceInfo = this.languageAssetFolder + "price.jpg";
 						return priceInfo;
 					}
 					
 					//gt#11
-					buyInfo	= this.assetFolder + "buy.jpg";
+					buyInfo	= this.languageAssetFolder + "buy.jpg";
 					return buyInfo;
 					
 				case IELTSApplication.FULL_VERSION:

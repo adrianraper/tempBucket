@@ -7,7 +7,8 @@
 	public interface CopyProvider {
 		
 		function getCopyForId(id:String, replaceObj:Object = null):String;
-		
+		function getLanguageCode():String;
+		function getDefaultLanguageCode():String;		
 	}
 	
 }

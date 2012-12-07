@@ -164,8 +164,12 @@ package com.clarityenglish.ielts.view.account {
 			super();
 		}
 
+		// gh#11
 		public function get assetFolder():String {
-			return config.remoteDomain + config.assetFolder;
+			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
+		}
+		public function get languageAssetFolder():String {
+			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
 		
 		public function reloadCopy():void {

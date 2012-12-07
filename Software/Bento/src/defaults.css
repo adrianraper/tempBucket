@@ -79,8 +79,8 @@ components2|SpinnerDropDownList {
 }
 
 mx|ToolTip {
-	fontFamily: "HelveticaNeueLtStd";
-	fontSize: 12;
+	fontFamily: "Helvetica";
+	fontSize: 12.6;
 	color: #FFFFFF;
 	backgroundColor: #000000;
 }

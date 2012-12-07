@@ -361,7 +361,7 @@ package com.clarityenglish.common.vo.config {
 			if (xml..remoteGateway.toString()) {
 				this.remoteGateway = xml..remoteGateway.toString();
 			} else {
-				this.remoteGateway = "/Software/ResultsManager/web/amfphp/";
+				this.remoteGateway = "Software/ResultsManager/web/amfphp/";
 			}
 			if (xml..remoteService.toString()) {
 				this.remoteService = xml..remoteService.toString();
@@ -373,12 +373,12 @@ package com.clarityenglish.common.vo.config {
 			if (xml..remoteDomain.toString()) {
 				this.remoteDomain = xml..remoteDomain.toString();
 			} else {
-				this.remoteDomain = "http://www.ClarityEnglish.com/";
+				this.remoteDomain = "http://www.ClarityEnglish.com/Software/";
 			}			
 			if (xml..assetFolder.toString()) {
 				this.assetFolder = xml..assetFolder.toString();
 			} else {
-				this.assetFolder = "Software/ResultsManager/web/resources/assets/";
+				this.assetFolder = "ResultsManager/web/resources/assets/";
 			}
 			// for CCB
 			if (xml..remoteStartFolder.toString()) {
