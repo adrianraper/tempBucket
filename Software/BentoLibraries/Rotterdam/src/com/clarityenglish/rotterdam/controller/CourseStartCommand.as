@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.controller {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -20,6 +21,9 @@ package com.clarityenglish.rotterdam.controller {
 			super.execute(note);
 			
 			log.info("Course started");
+			
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			courseProxy.updateCurrentCourse();
 			
 			// The current course is the loaded menuXHTML in BentoProxy
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;

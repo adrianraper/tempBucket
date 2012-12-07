@@ -36,25 +36,23 @@ package com.clarityenglish.rotterdam.view.settings {
 		[SkinPart]
 		public var startDateChooser:DateChooser;
 		
-		private var _currentCourse:XHTML;
-		
 		private function get course():XML {	
-			return _currentCourse.selectOne("script#model[type='application/xml'] course");
+			return _xhtml.selectOne("script#model[type='application/xml'] course");
 		}
 		
-		public function set currentCourse(value:XHTML):void {
-			_currentCourse = value;
+		protected override function updateViewFromXHTML(xhtml:XHTML):void {
+			super.updateViewFromXHTML(xhtml);
+			
+			// This makes sure that commitProperties is called after menu.xml has loaded so everything can be filled in
 			invalidateProperties();
 		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_currentCourse) {
-				if (startDateChooser) startDateChooser.selectedDate = _currentCourse.hasOwnProperty("@startDate") ? new Date(_currentCourse.@startDate) : new Date();
-				
-				if (aboutCourseNameTextInput) aboutCourseNameTextInput.text = course.@caption;
-			}
+			if (startDateChooser) startDateChooser.selectedDate = course.hasOwnProperty("@startDate") ? new Date(course.@startDate) : new Date();
+			
+			if (aboutCourseNameTextInput) aboutCourseNameTextInput.text = course.@caption;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -81,7 +79,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 				case startDateChooser:
 					startDateChooser.addEventListener(Event.CHANGE, function(e:Event):void {
-						_currentCourse.@startDate = startDateChooser.selectedDate.time;
+						course.@startDate = startDateChooser.selectedDate.time;
 					});
 					break;
 			}
@@ -95,6 +93,9 @@ package com.clarityenglish.rotterdam.view.settings {
 			navigator.popView();
 		}
 		
+		/**
+		 * The state of the skin is driven by the tab bar (calendar, email or about)
+		 */
 		protected override function getCurrentSkinState():String {
 			if (tabBar && tabBar.selectedItem)
 				return tabBar.selectedItem.data;

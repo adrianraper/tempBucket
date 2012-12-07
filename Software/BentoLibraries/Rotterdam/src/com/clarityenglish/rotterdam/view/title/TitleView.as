@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.course.CourseView;
+	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
 	
 	import flash.events.Event;
 	
@@ -14,7 +15,7 @@ package com.clarityenglish.rotterdam.view.title {
 		public var myCoursesViewNavigator:ViewNavigator;
 		
 		public function showCourseView():void {
-			if (ClassUtil.getClass(myCoursesViewNavigator.activeView) != CourseView) {
+			if (ClassUtil.getClass(myCoursesViewNavigator.activeView) == CourseSelectorView) {
 				myCoursesViewNavigator.pushView(CourseView);
 			}
 		}

@@ -1,7 +1,7 @@
 ﻿package com.clarityenglish.rotterdam.view.settings {
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -22,8 +22,8 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			view.currentCourse = courseProxy.currentCourse;
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.href = bentoProxy.menuXHTML.href;
 		}
 		
 		override public function onRemove():void {
