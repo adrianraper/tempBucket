@@ -3,7 +3,6 @@
 	public class RotterdamNotifications {
 		
 		// Course notifications
-		public static const COURSE_START:String = "rotterdam/course_start";
 		public static const COURSE_STARTED:String = "rotterdam/course_started";
 		
 		public static const COURSE_CREATE:String = "rotterdam/course_create";

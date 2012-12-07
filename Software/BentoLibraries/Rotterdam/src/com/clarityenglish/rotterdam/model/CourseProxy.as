@@ -2,6 +2,7 @@
 Proxy - PureMVC
 */
 package com.clarityenglish.rotterdam.model {
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -30,8 +31,6 @@ package com.clarityenglish.rotterdam.model {
 		
 		public static const NAME:String = "CourseProxy";
 		
-		private var _currentCourse:XHTML;
-		
 		private var _currentUnit:XML;
 		
 		private var _unitCollection:ListCollectionView;
@@ -41,18 +40,18 @@ package com.clarityenglish.rotterdam.model {
 			super(NAME, data);
 		}
 		
-		public function get currentCourse():XHTML {
-			return _currentCourse;
-		}
-		
-		public function set currentCourse(value:XHTML):void {
-			_currentCourse = value;
-			
+		public function updateCurrentCourse():void {
 			_unitCollection = new XMLListCollection(courseNode.unit);
 		}
 		
+		public function get currentCourse():XHTML {
+			// The current course actually comes from the currently loaded menuXHTML, since for Rotterdam each menu.xml contains a single course
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			return bentoProxy.menuXHTML;
+		}
+		
 		private function get courseNode():XML {	
-			return _currentCourse.selectOne("script#model[type='application/xml'] course");
+			return currentCourse.selectOne("script#model[type='application/xml'] course");
 		}
 		
 		public function get unitCollection():ListCollectionView {

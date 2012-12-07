@@ -43,13 +43,6 @@
 			view.coursePublish.remove(onCoursePublish);
 		}
 		
-		protected override function onXHTMLReady(xhtml:XHTML):void {
-			super.onXHTMLReady(xhtml);
-			
-			// When the XHTML has loaded into the course editor then the course has started
-			facade.sendNotification(RotterdamNotifications.COURSE_START, xhtml);
-		}
-		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.COURSE_STARTED,

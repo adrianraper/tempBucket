@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.rotterdam {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.rotterdam.controller.ContentOpenCommand;
@@ -31,7 +32,7 @@
 			
 			registerProxy(new CourseProxy());
 			
-			registerCommand(RotterdamNotifications.COURSE_START, CourseStartCommand);
+			registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);
 			registerCommand(RotterdamNotifications.UNIT_START, UnitStartCommand);
 			registerCommand(RotterdamNotifications.CONTENT_OPEN, ContentOpenCommand);
 			
