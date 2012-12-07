@@ -109,6 +109,10 @@ login|LoginView #testDriveAcademicButton {
 	skinClass: ClassReference("skins.ielts.login.TestDriveButtonSkin");
 }
 
+login|LoginView #accountMoreButton {
+	skinClass: ClassReference("skins.ielts.login.AccountMoreButtonSkin");
+}
+
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");

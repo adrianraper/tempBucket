@@ -31,16 +31,16 @@
 	
 	<!--<s:Label text="Login with the details you have been given by your school. You can't purchase Road to IELTS through the App Store yet." top="217" left="73" width="340" />-->
 	
-	<s:Label id="loginKey_lbl" left="73" top="217" text="{hostComponent.loginKey_lbl}" fontSize="16" />
-	<s:TextInput id="loginKeyInput" left="73" top="240" width="263" />
+	<s:Label id="loginKey_lbl" left="73" top="200" text="{hostComponent.loginKey_lbl}" fontSize="16" />
+	<s:TextInput id="loginKeyInput" left="73" top="220" width="263" />
 	
-	<s:Label id="loginIDLabel" color="#333333" left="73" top="280" width="340" fontSize="14" />
+	<!--<s:Label id="loginIDLabel" color="#333333" left="73" top="280" width="340" fontSize="14" />-->
 	
-	<s:Label id="passwordLabel" left="73" top="325" fontSize="16" />
-	<s:TextInput id="passwordInput" left="73" top="345" width="263" displayAsPassword="true" />
+	<s:Label id="passwordLabel" left="73" top="270" fontSize="16" />
+	<s:TextInput id="passwordInput" left="73" top="290" width="263" displayAsPassword="true" />
 	
-	<s:Button id="loginButton" left="73" top="396" width="120" height="44" fontSize="18" />
-	
+	<s:Button id="loginButton" left="73" top="335" width="120" height="44" fontSize="18" />
+	<s:Button id="accountMoreButton" top="394" left="46" />
 	<login:BritishCouncilLoginLogo bottom="0" />
 	<login:GreyCirclesLogin bottom="0" right="0" />
 	

@@ -12,6 +12,9 @@ package com.clarityenglish.ielts.view.login {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
@@ -27,6 +30,9 @@ package com.clarityenglish.ielts.view.login {
 		
 		[SkinPart(required="true")]
 		public var loginButton:Button;
+		
+		[SkinPart]
+		public var accountMoreButton:Button;
 		
 		[SkinPart]
 		public var loginHeading:FormHeading;
@@ -391,6 +397,10 @@ package com.clarityenglish.ielts.view.login {
 				case registerDetailLabel:
 					instance.text = copyProvider.getCopyForId("registerDetailLabel");
 					break;
+				case accountMoreButton:
+					instance.label = copyProvider.getCopyForId("accountMoreButton");
+					instance.addEventListener(MouseEvent.CLICK, onAccountMoreButton);
+					break;
 			}
 		}
 
@@ -561,6 +571,11 @@ package com.clarityenglish.ielts.view.login {
 		
 		public function clearData():void {
 			passwordInput.text = "";
+		}
+		
+		public function onAccountMoreButton(event:MouseEvent):void {
+			var urlRequest:URLRequest = new URLRequest("http://www.roadtoielts.com/apps.php");
+			navigateToURL(urlRequest, "_blank");
 		}
 	
 	}
