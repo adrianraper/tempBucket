@@ -91,7 +91,7 @@ package com.clarityenglish.common.model {
 				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorInvalidLoginOption", { loginOption: loginOption } ));			
 			}
 			
-			if (configProxy.getConfig().ip)
+			if (configProxy.getConfig().ip && loginObj != null)
 				loginObj.ip = configProxy.getConfig().ip;
 			
 			// #340
@@ -102,7 +102,7 @@ package com.clarityenglish.common.model {
 				(!user.studentID || user.studentID=='') &&
 				(!user.email || user.email==''))
 				loginObj = null;
-
+			
 			// #307 Add rootID and productCode
 			// #341 Add verified to allow no password
 			// #361 instanceID
@@ -112,7 +112,7 @@ package com.clarityenglish.common.model {
 			} else {
 				
 				// gh#21 you might not know a root, in which case this will return undefined
-				if (configProxy.getRootID()) {
+				if (configProxy.getRootID() && user != null) {
 					rootID = new Array(1);
 					rootID[0] = configProxy.getRootID();
 					
@@ -126,12 +126,13 @@ package com.clarityenglish.common.model {
 					rootID[1] = 0;
 					//#gh41
 					//configProxy.getConfig().productCode = '52';
-					loginObj = null;					
+					loginObj = null;
 				}
 			}
 			
 			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
 			// gh#36 Also need dbHost if this is the first call
+			
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode(), configProxy.getConfig().dbHost ];
 			new RemoteDelegate("login", params, this).execute();
 		}
@@ -293,6 +294,9 @@ package com.clarityenglish.common.model {
 							// If login wants to change the rootID it will have sent back a new rootID in data
 							log.info("rootID changed from {0} to {1}", configProxy.getConfig().rootID, new Number(data.rootID));
 							configProxy.getConfig().rootID = new Number(data.rootID);
+							
+							if (configProxy.getConfig().paths.menuFilename.indexOf("{productVersion}")<0 || configProxy.getConfig().paths.menuFilename.indexOf("{productCode}")<0 )
+								configProxy.getConfig().paths.menuFilename = configProxy.getConfig().configFilename;
 							
 							configProxy.getConfig().mergeAccountData(data);
 							var authenticated:Boolean = configProxy.checkAuthentication();

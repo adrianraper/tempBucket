@@ -11,8 +11,10 @@ package com.clarityenglish.common.view.error {
 	import spark.components.Label;
 	
 	public class ErrorView extends BentoView {
-		
 		[SkinPart]
+		public var problemLabel:Label;
+		
+		//[SkinPart]
 		public var closeButton:Button;
 		
 		[SkinPart]
@@ -32,7 +34,11 @@ package com.clarityenglish.common.view.error {
 			switch (instance) {
 				case closeButton:
 					instance.addEventListener(MouseEvent.CLICK, onCloseButtonClick);
-					break;				
+					closeButton.label = copyProvider.getCopyForId("closeButton");
+					break;
+				case problemLabel:
+					instance.text = copyProvider.getCopyForId("problemLabel");
+					break;
 			}
 			
 		}

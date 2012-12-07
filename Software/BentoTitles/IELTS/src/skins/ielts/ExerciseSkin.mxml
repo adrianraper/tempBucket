@@ -23,7 +23,7 @@
 	<s:layout>
 		<s:BasicLayout />
 	</s:layout>
-	
+
 	<!-- Background coloured rectangle -->
 	<s:Rect left="0" right="0" top="0" bottom="0" topRightRadiusX="10" topRightRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10" includeIn="exercise">
 		<s:fill>
@@ -60,7 +60,7 @@
 	
 	<!-- Top buttons -->
 	<s:VGroup right="-15" top="40" includeIn="exercise">
-		<s:Button id="printButton" skinClass="skins.ielts.title.PrintButtonSkin" label="Print" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" />
+		<s:Button id="printButton" skinClass="skins.ielts.title.PrintButtonSkin" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" />
 	</s:VGroup>
 	
 	<!-- Ring binder shadow -->
@@ -81,13 +81,13 @@
 	<!-- Right buttons -->
 	<s:HGroup right="32" top="0" includeIn="exercise">
 		<s:Group>
-			<s:Button id="feedbackButton" skinClass="skins.ielts.title.FeedbackButtonSkin" label="Feedback" visible="false" />
-			<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" label="Marking" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
+			<s:Button id="feedbackButton" skinClass="skins.ielts.title.FeedbackButtonSkin" visible="false" />
+			<s:Button id="markingButton" skinClass="skins.ielts.title.MarkingButtonSkin" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
 		</s:Group>
 		
-		<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" label="Start again" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
-		<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" label="Back" />
-		<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" label="Forward" />
+		<s:Button id="startAgainButton" skinClass="skins.ielts.title.StartAgainButtonSkin" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
+		<s:Button id="backButton" skinClass="skins.ielts.title.BackButtonSkin" />
+		<s:Button id="forwardButton" skinClass="skins.ielts.title.ForwardButtonSkin" />
 	</s:HGroup>
 	
 	<!-- Ring binder -->
@@ -98,7 +98,7 @@
 	<!-- Footer text -->
 	<s:HGroup left="25" right="25" bottom="3" includeIn="exercise">
 		<s:Spacer width="100%" />
-		<s:Label text="Data © The British Council 2006-2012. Software © Clarity Language Consultants Ltd, 2012. All rights reserved." color="#FFFFFF" fontSize="11" />
+		<s:Label id="footerLabel" color="#FFFFFF" fontSize="11" />
 	</s:HGroup>
 	
 </s:Skin>

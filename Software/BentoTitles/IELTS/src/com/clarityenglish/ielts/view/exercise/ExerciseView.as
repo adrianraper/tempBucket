@@ -9,6 +9,8 @@ package com.clarityenglish.ielts.view.exercise {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.controls.Text;
+	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
@@ -55,6 +57,9 @@ package com.clarityenglish.ielts.view.exercise {
 			
 		[Bindable]
 		public var hasPrintStylesheet:Boolean;
+		
+		[Bindable]
+		public var footerLabel:Text;
 		
 		private var _courseCaption:String;
 		
@@ -142,6 +147,7 @@ package com.clarityenglish.ielts.view.exercise {
 					break;
 				case printButton:
 					printButton.addEventListener(MouseEvent.CLICK, function():void { printExercise.dispatch(dynamicView); } );
+					printButton.label = copyProvider.getCopyForId("printButton");
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, function():void { backToMenu.dispatch(); } );
@@ -149,6 +155,10 @@ package com.clarityenglish.ielts.view.exercise {
 					break;
 				case exerciseLogOutButton:
 					exerciseLogOutButton.label = copyProvider.getCopyForId("exerciseLogOutButton");
+					break;
+				case footerLabel:
+					footerLabel.text = copyProvider.getCopyForId("footerLabel");
+					break;
 			}
 		}
 		

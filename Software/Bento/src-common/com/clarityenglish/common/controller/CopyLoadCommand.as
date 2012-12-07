@@ -21,7 +21,6 @@ package com.clarityenglish.common.controller {
 			if (settingsSharedObject.data["languageCode"]) {
 				CopyProxy.languageCode = settingsSharedObject.data["languageCode"];
 			}
-			
 			copyProxy.getCopy();
 		}
 		

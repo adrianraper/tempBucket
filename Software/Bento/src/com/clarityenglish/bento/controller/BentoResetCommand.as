@@ -38,8 +38,8 @@ package com.clarityenglish.bento.controller {
 			config.licence.licenceType = Title.LICENCE_TYPE_LT;
 			config.productCode = config.configProductCode;
 			config.paths.menuFilename = config.configFilename;
-			/*var timeStamp:Date = new Date();
-			config.instanceID = timeStamp.getTime().toString();*/
+			var timeStamp:Date = new Date();
+			config.instanceID = timeStamp.getTime().toString();
 		}
 		
 	}

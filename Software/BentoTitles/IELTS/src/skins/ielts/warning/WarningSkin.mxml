@@ -26,9 +26,9 @@
 		<s:HGroup width="100%" paddingTop="8" paddingBottom="30" horizontalAlign="center" verticalAlign="middle">
 			<s:Spacer width="50%" />
 			<s:Spacer height="10" />
-			<s:Button id="yesButton" label="Yes" fontSize="24" width="111" height="40" />
+			<s:Button id="yesButton" fontSize="24" width="111" height="40" />
 			<s:Spacer width="10" />
-			<s:Button id="noButton" label="No" fontSize="14" width="111" height="40" />
+			<s:Button id="noButton" fontSize="14" width="111" height="40" />
 			<s:Spacer width="50%" />
 		</s:HGroup>
 	</s:VGroup>

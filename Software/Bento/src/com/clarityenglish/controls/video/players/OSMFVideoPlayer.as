@@ -21,7 +21,7 @@ package com.clarityenglish.controls.video.players {
 	[Event(name="videoStopped", type="com.clarityenglish.controls.video.events.VideoEvent")]
 	[Event(name="videoComplete", type="com.clarityenglish.controls.video.events.VideoEvent")]
 	public class OSMFVideoPlayer extends VideoPlayer implements IVideoPlayer {
-		
+		 
 		private static const BUFFER_TIME:int = 4;
 		
 		private var fullScreenTime:Number = NaN;

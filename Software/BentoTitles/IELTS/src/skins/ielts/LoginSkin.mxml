@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:login="skins.ielts.assets.login.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
@@ -38,11 +39,12 @@
 					 includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
 	</s:Group>
-	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="123">
+
+	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="123">		
 		<s:layout>
 			<s:VerticalLayout paddingTop="25" horizontalAlign="center" />
 		</s:layout>
-		
+			
 	<s:VGroup width="100%" height="100%" top="120" left="120" paddingLeft="25" >
 		<s:HGroup id="lastMinute" visible="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}"
 				  includeInLayout="{hostComponent.getProductVersion() == IELTSApplication.LAST_MINUTE}">
@@ -87,8 +89,12 @@
 				<s:Button id="loginButton" label="Log in" />
 				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="login" />
 			</s:HGroup>
-			<s:Button id="testDriveAcademicButton" label="Test drive" visible="{hostComponent.noAccount}" includeInLayout="{hostComponent.noAccount}" includeIn="login" />
+			<s:Group>
+					
+			</s:Group>				
+			<!--s:Button id="testDriveAcademicButton" label="Test drive" visible="{hostComponent.noAccount}" includeInLayout="{hostComponent.noAccount}" includeIn="login" /-->
 		</s:VGroup>
+			
 		<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
 			<s:Label id="registerDetailLabel" 
 					text.registerNetwork="This is the first time you have used the program, click New user to confirm." 
@@ -120,15 +126,23 @@
 			</s:HGroup>
 		</s:VGroup>
 		<s:Spacer height="3" />
-		<s:Rect verticalCenter="0" width="88%" height="1"  >
+		<!--s:Rect verticalCenter="0" width="88%" height="1"  >
 			<s:fill>
 				<s:SolidColor color="0x999999"  />
 			</s:fill>
-		</s:Rect>
+		</s:Rect-->
 	</s:VGroup>
 	</s:BorderContainer>
-	<s:BorderContainer right="0" width="60%" height="9%" cornerRadius="12" backgroundAlpha="0" borderAlpha="0" top="100">
-
+	<s:Group left="0" top="417" > 
+		<login:InputAreaChrome />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/test_drive.png')" top="20" left="10"/>
+		<s:Label text="Try the FREE Test Drive version" top="42" left="200" width="340" color="0x592A0C" fontWeight="bold" fontSize="16"  />
+		<s:Button id="testDriveAcademicButton" label="Academic" left="170" top="80" width="100" height="44" fontSize="16" />
+		<s:Button id="testDriveGeneralButton" label="General Training" left="280" top="80" width="160" height="44" fontSize="16" />
+	</s:Group>
+	
+	
+	<s:BorderContainer right="0" width="60%" height="9%" cornerRadius="12" backgroundAlpha="0" borderAlpha="0" top="100">	
 	<s:VGroup paddingLeft="55" paddingTop="20" width="100%">
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/login_graphic.png')" top="35" right="80" />
 	</s:VGroup>

@@ -5,12 +5,9 @@
 	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<channel name='android-rackspace' caption='Ch1'>
-		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
-	</channel>
-    <channel name='vimeo' caption='Ch2'>
-		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
-	</channel>
+	<channel name="ios-vimeo" caption="vimeo">
+        <streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+    </channel>
 	<sharedMedia />
 	<brandingMedia />
 	<language>JP</language>

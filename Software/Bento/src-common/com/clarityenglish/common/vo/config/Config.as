@@ -254,7 +254,7 @@ package com.clarityenglish.common.vo.config {
 				}
 				paths.menuFilename = paths.menuFilename.replace("{productCode}", replace);
 			}
-			
+
 			if (paths.menuFilename.indexOf("{productVersion}")>=0) {
 				switch (productVersion) {
 					case 'R2ILM':

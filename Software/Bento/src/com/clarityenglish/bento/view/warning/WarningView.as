@@ -40,9 +40,11 @@ package com.clarityenglish.bento.view.warning {
 			switch (instance) {
 				case noButton:
 					instance.addEventListener(MouseEvent.CLICK, onNoButton);
+					instance.label = copyProvider.getCopyForId("noButton");
 					break;
 				case yesButton:
 					instance.addEventListener(MouseEvent.CLICK, onYesButton);
+					instance.label = copyProvider.getCopyForId("yesButton");
 					break;
 				case warningMessage:
 					switch (type) {

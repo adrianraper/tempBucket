@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:local="*"
-		xmlns:ui="com.clarityenglish.ielts.view.account.ui.*">
+		xmlns:ui="com.clarityenglish.ielts.view.account.ui.*"
+		xmlns:components="com.clarityenglish.components.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.account.AccountView")]
@@ -169,6 +170,11 @@
 								<s:TextInput id="confirmPassword" width="180" />
 							</s:HGroup>
 						</s:VGroup>
+						<s:HGroup>
+							<s:Label id="languageLabel" left="20" top="470" />
+							<s:Spacer width="70"/>
+							<s:DropDownList id="languageDropDownList" fontSize="15" left="180" top="470" width="150" />
+						</s:HGroup>
 					</s:VGroup>
 				</s:VGroup>
 			</s:HGroup>
@@ -176,10 +182,11 @@
 		
 		<s:Spacer height="3" />
 		
-		<s:Button id="saveChangesButton" label="Save changes" 
+		<s:Button id="saveChangesButton"
 				  excludeFrom="anonymousStates"
 				  includeInLayout="{hostComponent.isDirty}"
 				  visible="{hostComponent.isDirty}"/>
+		
 		
 	</s:VGroup>
 	

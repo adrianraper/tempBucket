@@ -35,6 +35,7 @@ package com.clarityenglish.bento.controller {
 				// not to be in either for some reason then throw an error.  Note that progressProxy has constant loadedResource keys and XHTMLProxy has Href
 				// loadedResource keys; its all something of a mess, but this does seem to work for the moment.
 				if (progressProxy.hasLoadedResource(Progress.PROGRESS_MY_DETAILS)) {
+					trace("you are here");
 					progressProxy.loadXHTML(href);
 				} else if (xhtmlProxy.hasLoadedResource(href)) {
 					xhtmlProxy.loadXHTML(href);

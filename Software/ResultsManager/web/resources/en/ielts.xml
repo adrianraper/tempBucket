@@ -49,6 +49,7 @@
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
+			<lit name="problemLabel">Sorry, there is a problem:</lit>
 			<lit name="loginIDLabel">This is the ID given to you to start Road to IELTS. It looks like this: 1280-8666-1111.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
 			<lit name="registerDetailLabel">Please type your details to register.</lit>

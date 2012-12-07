@@ -52,6 +52,8 @@ package com.clarityenglish.ielts.view.progress {
 
 		public var currentCourseClass:String;
 		
+		public var anoyAlertLabel:Label;
+		
 		// #341
 		public var _user:User;
 		
@@ -103,8 +105,7 @@ package com.clarityenglish.ielts.view.progress {
 					break;
 				case progressAnonymousLabel:
 					instance.text = copyProvider.getCopyForId("progressAnonymousLabel");
-					break;
-					
+					break;					
 			}
 		}
 		
