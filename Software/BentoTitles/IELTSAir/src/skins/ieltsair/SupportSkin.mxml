@@ -29,8 +29,14 @@
 			}
 			
 			protected function onRemoveFromStage(event:Event):void {
-				changeWatcher.unwatch();
-				changeWatcher = null;
+				//gh:#80
+				//changeWatcher.unwatch();
+				//changeWatcher = null;
+				if (changeWatcher) {
+					changeWatcher.unwatch();
+					changeWatcher = null;
+				}
+				
 			}
 		]]>
 	</fx:Script>

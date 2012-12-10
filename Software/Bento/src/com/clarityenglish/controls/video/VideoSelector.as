@@ -196,7 +196,7 @@ package com.clarityenglish.controls.video {
 					channelList.addEventListener(IndexChangeEvent.CHANGE, onChannelSelected);
 					
 					// For the moment just hide the channel selector.  Its all working if we want to turn it back on in the future though.
-					channelList.visible = true;
+					  channelList.visible = false;
 
 					//gt#57
 					channelList.labelField = "caption";
