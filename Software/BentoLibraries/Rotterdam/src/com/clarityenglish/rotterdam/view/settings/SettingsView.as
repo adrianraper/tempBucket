@@ -7,6 +7,10 @@ package com.clarityenglish.rotterdam.view.settings {
 	
 	import mx.collections.ArrayList;
 	import mx.controls.DateChooser;
+	import mx.events.FlexEvent;
+	
+	import org.davekeen.util.StringUtils;
+	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.TabBar;
@@ -31,10 +35,16 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var aboutContactNumberTextInput:TextInput;
 		
 		[SkinPart(required="true")]
+		public var saveButton:Button;
+		
+		[SkinPart(required="true")]
 		public var backButton:Button;
 		
 		[SkinPart]
 		public var startDateChooser:DateChooser;
+		
+		public var saveCourse:Signal = new Signal();
+		public var back:Signal = new Signal();
 		
 		private function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
@@ -52,7 +62,11 @@ package com.clarityenglish.rotterdam.view.settings {
 			
 			if (startDateChooser) startDateChooser.selectedDate = course.hasOwnProperty("@startDate") ? new Date(course.@startDate) : new Date();
 			
+			// About data
 			if (aboutCourseNameTextInput) aboutCourseNameTextInput.text = course.@caption;
+			if (aboutAuthorTextInput) aboutAuthorTextInput.text = course.@author;
+			if (aboutEmailTextInput) aboutEmailTextInput.text = course.@email;
+			if (aboutContactNumberTextInput) aboutContactNumberTextInput.text = course.@contact;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -63,7 +77,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					tabBar.dataProvider = new ArrayList([
 						{ label: "About", data: "about" },
 						{ label: "Calendar", data: "calendar" },
-						{ label: "Email", data: "email" }
+						//{ label: "Email", data: "email" } - Email is disabled for the moment
 					]);
 					
 					tabBar.requireSelection = true;
@@ -73,6 +87,29 @@ package com.clarityenglish.rotterdam.view.settings {
 					callLater(function():void {
 						tabBar.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 					});
+					break;
+				case aboutCourseNameTextInput:
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						course.@caption = StringUtils.trim(e.target.text);
+					});
+					break;
+				case aboutAuthorTextInput:
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						course.@author = StringUtils.trim(e.target.text);
+					});
+					break;
+				case aboutEmailTextInput:
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						course.@email = StringUtils.trim(e.target.text);
+					});
+					break;
+				case aboutContactNumberTextInput:
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						course.@contact = StringUtils.trim(e.target.text);
+					});
+					break;
+				case saveButton:
+					saveButton.addEventListener(MouseEvent.CLICK, onSave);
 					break;
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBack);
@@ -84,13 +121,17 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 			}
 		}
-		
+			
 		protected function onTabBarChange(event:IndexChangeEvent):void {
 			invalidateSkinState();
 		}
 		
+		protected function onSave(event:MouseEvent):void {
+			saveCourse.dispatch();
+		}
+		
 		protected function onBack(event:MouseEvent):void {
-			navigator.popView();
+			back.dispatch();
 		}
 		
 		/**
