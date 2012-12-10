@@ -19,8 +19,5 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:HGroup gap="20" verticalAlign="middle" height="37" paddingLeft="10" paddingRight="10">
-		<s:Label id="unitCaptionLabel" text="Unit 2" color="#FFFFFF" fontWeight="bold" />
-		<s:Label id="unitDescriptionLabel" text="The perfect resume" color="#FFFFFF" fontWeight="bold" />
-	</s:HGroup>
+	<s:Label id="unitCaptionLabel" color="#FFFFFF" fontWeight="bold" left="10" top="14" />
 </s:Skin>

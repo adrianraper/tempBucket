@@ -8,12 +8,9 @@ package com.clarityenglish.rotterdam.view.unit {
 		[SkinPart(required="true")]
 		public var unitCaptionLabel:Label;
 		
-		[SkinPart(required="true")]
-		public var unitDescriptionLabel:Label;
-		
 		private var _unit:XML;
 		private var _unitChanged:Boolean;
-
+		
 		public function set unit(value:XML):void {
 			_unit = value;
 			_unitChanged = true;
@@ -25,7 +22,6 @@ package com.clarityenglish.rotterdam.view.unit {
 			
 			if (_unitChanged) {
 				unitCaptionLabel.text = _unit.@caption;
-				unitDescriptionLabel.text = _unit.@description;
 				_unitChanged = false;
 			}
 		}
