@@ -11,6 +11,7 @@ package com.clarityenglish.rotterdam.model {
 	import mx.collections.XMLListCollection;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.rpc.AsyncToken;
 	import mx.rpc.Fault;
 	
 	import org.davekeen.delegates.IDelegateResponder;
@@ -90,20 +91,21 @@ package com.clarityenglish.rotterdam.model {
 			}
 		}
 		
-		public function courseCreate(courseObj:Object):void {
-			new RemoteDelegate("courseCreate", [ courseObj ], this).execute();
+		public function courseCreate(courseObj:Object):AsyncToken {
+			return new RemoteDelegate("courseCreate", [ courseObj ], this).execute();
 		}
 		
-		public function courseSave():void {
+		public function courseSave():AsyncToken {
 			if (currentCourse) {
-				new RemoteDelegate("courseSave", [ currentCourse.href.filename, currentCourse.xml ], this).execute();
+				return new RemoteDelegate("courseSave", [ currentCourse.href.filename, currentCourse.xml ], this).execute();
 			} else {
 				log.error("Attempted to save when there was no currentCourse set");
+				return null;
 			}
 		}
 		
-		public function courseDelete(course:XML):void {
-			new RemoteDelegate("courseDelete", [ course ], this).execute();
+		public function courseDelete(course:XML):AsyncToken {
+			return new RemoteDelegate("courseDelete", [ course ], this).execute();
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
