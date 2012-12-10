@@ -25,6 +25,7 @@
 			<lit name="errorLoginKeyEmpty" code="215">The key field can't be empty ({loginOption})</lit>
 			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
 			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>
+			<lit name="errorWrongUserType" code="218">Sorry, you don't have permission to run this program. (type is {userType})</lit>
 			
 			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
 			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
@@ -49,10 +50,85 @@
 			
 			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
+
+			<lit name="errorSavingCourse" code="700">Error whilst saving this course. Please contact support@clarityenglish.com.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
+			<lit name="printButton">Print</lit>
+			<lit name="noButton">No</lit>
+			<lit name="yesButton">Yes</lit>
+			<lit name="loadingLabel">loading...</lit>
+			<lit name="closeButton">OK</lit>
+			<lit name="problemLabel">Sorry, there is a problem:</lit>
+			<lit name="loginIDLabel">You need to have already registered your email with your school or with British Council to log in.</lit>
+			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
+			<lit name="loginDetailLabelNetwork">Please type your login details if you want to save your progress records.</lit>
 			
-			<lit name="errorSavingCourse" code="700">Error whilst saving this course. Please contact support@clarityenglish.com.</lit>
+			<lit name="loginButton">Log in</lit>
+			<lit name="passwordLabel">Password:</lit>
+			<lit name="yourName">Your name:</lit>
+			<lit name="loginID">Login id:</lit>
+			<lit name="yourID">Your id:</lit>
+			<lit name="yourEmail">Your email:</lit>
+			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
+			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
+			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
+			<lit name="welcomeLabel">Welcome, {fullname}</lit>
+			<lit name="overallCoverage"> - overall coverage</lit>
+			<lit name="myProgress">My Progress</lit>
+			<lit name="myProfile">My Profile</lit>
+			<lit name="help">Help</lit>
+			<lit name="credits">Credits</lit>
+			<lit name="more">More</lit>
+			<lit name="Home">Home</lit>
+			<lit name="Back">Back</lit>
+			<lit name="LogOut">Log out</lit>
+		    <lit name="progressNavBarCoverage">My coverage</lit>
+			<lit name="progressNavBarCompare">Compare</lit>
+			<lit name="progressNavBarAnalyse">Analyse</lit>
+			<lit name="progressNavBarScores">My scores</lit>
+			<lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
+			<lit name="chartCaptionLabel">Average score %</lit>
+			<lit name="analysisInstructionLabel1">This shows how you have spent your time</lit>
+			<lit name="analysisInstructionLabel2">Time spent on each skill</lit>
+			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
+			<lit name="courseDurationRenderLabel">You have spent</lit>
+			<lit name="courseDurationRenderTime">{time} min(s)</lit>
+			<lit name="ProgressBarCoverage"> - overall coverage</lit>
+			<lit name="ProgressBarScore"> - average score</lit>
+			<lit name="scoreGridC1">Unit</lit>
+			<lit name="scoreGridC2">Exercise</lit>
+			<lit name="scoreGridC3">Score %</lit>
+			<lit name="scoreGridC4">Time spent</lit>
+			<lit name="scoreGridC5">Date</lit>
+			<lit name="updateError">The two new passwords you typed must be the same.</lit>
+			<lit name="updateFail">Sorry, these details can't be updated.</lit>
+			<lit name="updateSuccess">Your details have been saved.</lit>
+			<lit name="registeredNameLabel">Registered name:</lit>
+			<lit name="emailLabel">Email:</lit>
+			<lit name="accountStartDateLabel">Account start date:</lit>
+			<lit name="accountExpiryDateLabel">Account expiry date:</lit>
+			<lit name="saveChangesButton">Save changes</lit>
+			<lit name="currentPwdLabel">Current password:</lit>
+			<lit name="newPsdLabel">New password:</lit>
+			<lit name="confirmPsdLabel">Confirm password:</lit>
+			<lit name="accountLanguageLabel">Language:</lit>
+			<lit name="exerciseBackToMenuButton">Back to Menu</lit>
+			<lit name="exerciseStartAgainButton">Start again</lit>
+			<lit name="exerciseBackButton">Back</lit>
+			<lit name="exerciseForwardButton">Forward</lit>
+			<lit name="exerciseFeedbackButton">Feedback</lit>
+			<lit name="exerciseMarkingButton">Marking</lit>
+			<lit name="exerciseLogOutButton">Log out</lit>
+			<lit name="tryAgainButton">Try again</lit>
+			<lit name="seeAnswersButton">See answers</lit>
+			<lit name="moveForwardButton">Forward</lit>
+			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
+			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
+			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
+			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
+			<lit name="footerLabel">Data © The British Council 2006-2012. Software © Clarity Language Consultants Ltd, 2012. All rights reserved.</lit>
+			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 		</group>
 	</language>
 </literals>

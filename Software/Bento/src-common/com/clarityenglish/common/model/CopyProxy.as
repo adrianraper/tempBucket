@@ -22,7 +22,7 @@ package com.clarityenglish.common.model {
 		
 		public static const NAME:String = "CopyProxy";
 		
-		//issue:#20
+		// gh#20
 		// defaultLanguageCode doesn't decide the initial languageCode when getCopy be code, instead it is inside CopyOps. 
 		public static var defaultLanguageCode:String = "EN";
 		public static var languageCode:String;

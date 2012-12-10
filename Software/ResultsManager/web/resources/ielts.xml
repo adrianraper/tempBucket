@@ -71,7 +71,7 @@
 			<lit name="loginID">Login id:</lit>
 			<lit name="yourID">Your id:</lit>
 			<lit name="yourEmail">Your email:</lit>
-            <lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
+			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
 			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
 			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
 			<lit name="Reading">Reading</lit>

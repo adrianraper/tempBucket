@@ -75,11 +75,14 @@ EOD;
 EOD;
 			
 		// Construct the allowed login types into an SQL string and add it to the end of the query
+		// gh#66 - need to do this after the query so you can give an unauthorised msg for wrong user type
+		/*
 		$userTypesSQL = array();
 		foreach ($userTypes as $userType)
 			$userTypesSQL[] = "u.F_UserType=$userType";
 		$sql .= " AND (".implode(" OR ", $userTypesSQL).")";
-	
+		*/
+		
 		// Create the binding parameters
 		//$bindingParams = array($username, $password);
 		//$bindingParams = array($keyValue, $password);
@@ -110,6 +113,7 @@ EOD;
 				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption));
 				break;
 			case 1:
+				
 				// Valid login
 				$loginObj = $rs->FetchNextObj();
 				
@@ -120,6 +124,10 @@ EOD;
 						throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
 					}
 				}
+				
+				// gh#66 check that the retrieved record is the right type of user
+				if (!in_array($loginObj->F_UserType, $userTypes))
+					throw $this->copyOps->getExceptionForId("errorWrongUserType", array("userType" => $loginObj->F_UserType));
 				
 				// Check if the user has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
 				// AR Some users have NULL expiry date, so this will throw an exception, so add an extra condition to test for this

@@ -161,17 +161,20 @@ class BentoService extends AbstractService {
 	// #503 rootID is now an array or rootIDs, although there will only be more than one if subRoots is set in the licence
 	//function login($username, $studentID, $email, $password, $loginOption, $instanceID) {
 	// gh#46 This first call might change the dbHost that the session uses
-	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null) {
+	// gh#66 RotterdamBuilder will send allowedUserTypes and change licence
+	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
 		
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 		
 		// gh#21 It is acceptable to pass a null rootID, so don't grab it from session
 		// if (!$rootID) $rootID = array(Session::get('rootID'));
-		if (!$productCode) $productCode = Session::get('productCode');
-		
+		if (!$productCode) 
+			$productCode = Session::get('productCode');
 
-		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
+		// gh#66
+		if (!$allowedUserTypes) 
+			$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								  User::USER_TYPE_ADMINISTRATOR,
 								  User::USER_TYPE_AUTHOR,
 								  User::USER_TYPE_STUDENT,

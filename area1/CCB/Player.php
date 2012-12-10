@@ -14,6 +14,7 @@
 	$swfName = 'Player.swf';
 	$webShare = '';
 	$startControl = "$webShare/Software/BentoTitles/RotterdamPlayer/bin-debug/";
+	$locationFile = "configPlayer.xml";
 
 	// If we do not know the prefix, the page shouldn't run.
 	// The prefix might come from session variables or from the URL parameters
@@ -37,7 +38,6 @@
 		exit;
 	}
 
-	$locationFile = "config.xml";
 	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']);
 	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
 
@@ -107,7 +107,7 @@
 
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
-		var argList="?location=<?php echo $locationFile ?>";
+		var argList="?configFile=<?php echo $locationFile ?>";
 		argList+="&prefix=<?php echo $prefix ?>";
 		argList+="&version=" + version;
 

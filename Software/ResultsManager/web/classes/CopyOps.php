@@ -18,10 +18,9 @@ class CopyOps {
 	 * in the concrete Service file (e.g. ClarityService, DMSService, IELTSService).
 	 */
 	private function getFilename() {
-	    // issue:#20 add language code in one file
-	    $filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('language')) ? Session::get('language') : "EN")."/".AbstractService::$title.".xml";
-		return $filename; 
-		//return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
+	    // gh#20 add language code in one file
+	    //$filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
+	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 	}
 	
 	private function getXPath() {

@@ -59,7 +59,9 @@ package com.clarityenglish.rotterdam.view.course {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			courseCaptionLabel.text = course.@caption;
+			// gh#66 Just needed whilst course doesn't have caption...
+			if (course.hasOwnProperty("@caption"))
+				courseCaptionLabel.text = course.@caption;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
