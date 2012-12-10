@@ -29,12 +29,12 @@
 			view.selectCourse.add(onSelectCourse);
 			view.deleteCourse.add(onDeleteCourse);
 			
-			// Load courses.xml
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.href = new Href(Href.XHTML, "courses.xml", configProxy.getConfig().paths.content);
-			
 			// gh#13 
 			facade.sendNotification(RotterdamNotifications.COURSE_RESET);
+			
+			// Load courses.xml serverside GH #84
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.href = new Href(Href.XHTML, "courses.xml", configProxy.getConfig().paths.content, true);
 		}
 		
 		override public function onRemove():void {
@@ -62,7 +62,8 @@
 					break;
 				case RotterdamNotifications.COURSE_DELETED:
 					// Force a reload of course.xml
-					view.href = view.href.clone();
+					//view.href = view.href.clone();
+					facade.sendNotification(RotterdamNotifications.COURSES_LOAD);
 					break;
 			}
 		}

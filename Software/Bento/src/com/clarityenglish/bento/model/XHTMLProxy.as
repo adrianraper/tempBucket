@@ -16,7 +16,12 @@ package com.clarityenglish.bento.model {
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
+	import mx.rpc.AsyncToken;
+	import mx.rpc.events.FaultEvent;
+	import mx.rpc.events.ResultEvent;
 	
+	import org.davekeen.delegates.RemoteDelegate;
+	import org.davekeen.rpc.ResultResponder;
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -88,17 +93,31 @@ package com.clarityenglish.bento.model {
 				}
 			}
 			
-			log.debug("Loading href {0}", href);
-			
-			// Load it!
-			var urlLoader:URLLoader = new URLLoader();
-			urlLoader.addEventListener(Event.COMPLETE, onXHTMLLoadComplete);
-			urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onXHTMLLoadError);
-			urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onXHTMLSecurityError);
-			urlLoader.load(new URLRequest(href.url + ((useCacheBuster) ? "?" + new Date().time : "")));
-			
-			// Maintain a strong reference during loading so the loader isn't garbage collected, and so we have the original href
-			urlLoaders[urlLoader] = href;
+			if (href.serverSide) {
+				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($filename) GH #84
+				new RemoteDelegate("xhtmlLoad", [ href.filename ]).execute().addResponder(new ResultResponder(
+					function(e:ResultEvent, data:AsyncToken):void {
+						parseAndStoreXHTML(href, e.result.toString());
+					},
+					function(e:FaultEvent, data:AsyncToken):void {
+						var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorParsingExercise", { filename: href.filename, message: e.fault.faultString } ));
+					}
+				));
+			} else {
+				// Load the xml file normally using a URLLoader
+				log.debug("Loading href {0}", href);
+				
+				// Load it!
+				var urlLoader:URLLoader = new URLLoader();
+				urlLoader.addEventListener(Event.COMPLETE, onXHTMLLoadComplete);
+				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onXHTMLLoadError);
+				urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onXHTMLSecurityError);
+				urlLoader.load(new URLRequest(href.url + ((useCacheBuster) ? "?" + new Date().time : "")));
+				
+				// Maintain a strong reference during loading so the loader isn't garbage collected, and so we have the original href
+				urlLoaders[urlLoader] = href;
+			}
 		}
 
 		private function notifyXHTMLLoaded(href:Href):void {
@@ -122,10 +141,14 @@ package com.clarityenglish.bento.model {
 			var href:Href = urlLoaders[urlLoader];
 			delete urlLoaders[urlLoader];
 			
+			parseAndStoreXHTML(href, urlLoader.data);
+		}
+			
+		private function parseAndStoreXHTML(href:Href, data:String):void {
 			log.info("Successfully loaded XHTML from href {0}", href);
 			
 			try {
-				var xml:XML = new XML(urlLoader.data);
+				var xml:XML = new XML(data);
 			
 				switch (href.type) {
 					case Href.MENU_XHTML:

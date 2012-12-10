@@ -7,15 +7,15 @@ package com.clarityenglish.bento.vo {
 		public static const EXERCISE:String = "exercise";
 		
 		public var type:String;
-		
 		public var filename:String;
-		
 		public var currentDir:String;
+		public var serverSide:Boolean;
 		
-		public function Href(type:String, filename:String, currentDir:String = null) {
+		public function Href(type:String, filename:String, currentDir:String = null, serverSide:Boolean = false) {
 			this.type = type;
 			this.filename = filename;
 			this.currentDir = currentDir;
+			this.serverSide = serverSide;
 		}
 		
 		/**
@@ -64,7 +64,7 @@ package com.clarityenglish.bento.vo {
 		}
 		
 		public function toString():String {
-			return "[Href type=" + type + " filename=" + filename + " currentDir=" + currentDir + "]";
+			return "[Href type=" + type + " filename=" + filename + " currentDir=" + currentDir + ((serverSide) ? " *SERVERSIDE*" : "") + "]";
 		}
 		
 	}

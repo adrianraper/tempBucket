@@ -30,6 +30,9 @@ package com.clarityenglish.bento.controller {
 			if (!href) {
 				sendNotification(BBNotifications.XHTML_LOADED, { xhtml: null, href: href } ); // #192
 			} else if (href.type == Href.MENU_XHTML) {
+				if (href.serverSide)
+					throw new Error("Serverside XHTML loading is not supported for MENU_XHTML type hrefs");
+				
 				// This can go one of two ways; if the menu xhtml is loaded into ProgressProxy (as for IELTS) then get it from that, otherwise it must be in
 				// XHTMLProxy (as for Rotterdam).  We assume it must be in one of the two as MENU_XHTML is loaded directly through MENU_XHTML_LOAD.  If it turns out 
 				// not to be in either for some reason then throw an error.  Note that progressProxy has constant loadedResource keys and XHTMLProxy has Href

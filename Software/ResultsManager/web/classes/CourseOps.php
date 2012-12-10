@@ -24,6 +24,10 @@ class CourseOps {
 		$this->copyOps = new CopyOps();
 	}
 	
+	public function coursesLoad() {
+		return file_get_contents($this->courseFilename);
+	}
+	
 	public function courseCreate($courseObj) {
 		$accountFolder = $this->accountFolder;
 		$defaultXML = $this->defaultXML;
