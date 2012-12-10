@@ -59,9 +59,7 @@ package com.clarityenglish.rotterdam.view.course {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			// gh#66 Just needed whilst course doesn't have caption...
-			if (course.hasOwnProperty("@caption"))
-				courseCaptionLabel.text = course.@caption;
+			if (courseCaptionLabel) courseCaptionLabel.text = course.@caption;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -102,7 +100,7 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onCourseSettings(event:MouseEvent):void {
-			navigator.pushView(SettingsView); // this won't work because settings is in builder :(
+			navigator.pushView(SettingsView);
 		}
 		
 		protected function onCoursePublish(event:MouseEvent):void {

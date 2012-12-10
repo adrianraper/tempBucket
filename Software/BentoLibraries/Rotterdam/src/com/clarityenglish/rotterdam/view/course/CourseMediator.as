@@ -34,6 +34,9 @@
 			
 			view.unitSelect.add(onUnitSelect);
 			view.coursePublish.add(onCoursePublish);
+			
+			// In case the course has already started before the CourseView is registered GH #88
+			handleCourseStarted();
 		}
 		
 		override public function onRemove():void {
@@ -56,8 +59,7 @@
 			
 			switch (note.getName()) {
 				case RotterdamNotifications.COURSE_STARTED:
-					var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-					view.unitListCollection = courseProxy.unitCollection;
+					handleCourseStarted();
 					break;
 				case RotterdamNotifications.PREVIEW_SHOW:
 					view.previewVisible = true;
@@ -66,6 +68,11 @@
 					view.previewVisible = false;
 					break;
 			}
+		}
+		
+		protected function handleCourseStarted():void {
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			view.unitListCollection = courseProxy.unitCollection;
 		}
 		
 		protected function onUnitSelect(unit:XML):void {

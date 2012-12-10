@@ -62,8 +62,7 @@
 					break;
 				case RotterdamNotifications.COURSE_DELETED:
 					// Force a reload of course.xml
-					//view.href = view.href.clone();
-					facade.sendNotification(RotterdamNotifications.COURSES_LOAD);
+					view.href = view.href.clone();
 					break;
 			}
 		}

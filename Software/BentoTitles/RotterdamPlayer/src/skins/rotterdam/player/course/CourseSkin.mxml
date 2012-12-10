@@ -18,8 +18,12 @@
 		<s:State name="unitplayer" />
 	</s:states>
 	
-	<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="200" top="0" bottom="100" />
+	<s:VGroup>
+		<s:Label id="courseCaptionLabel" width="150" fontWeight="bold" />
+		<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="150" top="20" borderVisible="false" />
+	</s:VGroup>
 	
-	<unit:UnitView left="200" right="0" top="0" bottom="0" />
-	
+	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
+	<unit:UnitView id="unitView" left="156" right="0" top="50" bottom="80" />
+
 </s:Skin>

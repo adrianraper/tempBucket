@@ -32,7 +32,15 @@
 			
 			registerProxy(new CourseProxy());
 			
-			registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);
+			/**
+			 * GH #88 - ideally this should only be linked to MENU_XHTML_LOADED, but because of the complications of XHTMLProxy vs ProgressProxy this need to be linked
+			 * to MENU_XHTML_LOADED for the builder and PROGRESS_DATA_LOADED for the player.  Therefore this notification is in BuilderApplicationFacade and 
+			 * PlayerApplicationFacade respectively.
+			 * 
+			 * TODO: At some point we really need to consolidate XHTMLProxy and ProgressProxy!
+			 */
+			//registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);
+			
 			registerCommand(RotterdamNotifications.UNIT_START, UnitStartCommand);
 			registerCommand(RotterdamNotifications.CONTENT_OPEN, ContentOpenCommand);
 			
