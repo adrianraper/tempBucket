@@ -17,6 +17,10 @@ package com.clarityenglish.rotterdam.view.settings {
 	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
 	
+	/**
+	 * There is quite a lot of code duplication here that could be neatened up into a mini form framework that automatically links xml properties and components.
+	 * This might well be worth doing at some point.
+	 */
 	public class SettingsView extends BentoView {
 		
 		[SkinPart(required="true")]
@@ -43,8 +47,11 @@ package com.clarityenglish.rotterdam.view.settings {
 		[SkinPart]
 		public var startDateChooser:DateChooser;
 		
+		public var dirty:Signal = new Signal(); // GH #83
 		public var saveCourse:Signal = new Signal();
 		public var back:Signal = new Signal();
+		
+		private var isPopulating:Boolean;
 		
 		private function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
@@ -60,6 +67,8 @@ package com.clarityenglish.rotterdam.view.settings {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
+			isPopulating = true;
+			
 			if (startDateChooser) startDateChooser.selectedDate = course.hasOwnProperty("@startDate") ? new Date(course.@startDate) : new Date();
 			
 			// About data
@@ -67,6 +76,8 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (aboutAuthorTextInput) aboutAuthorTextInput.text = course.@author;
 			if (aboutEmailTextInput) aboutEmailTextInput.text = course.@email;
 			if (aboutContactNumberTextInput) aboutContactNumberTextInput.text = course.@contact;
+			
+			isPopulating = false;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -90,22 +101,34 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 				case aboutCourseNameTextInput:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						course.@caption = StringUtils.trim(e.target.text);
+						if (!isPopulating) {
+							course.@caption = StringUtils.trim(e.target.text);
+							dirty.dispatch();
+						}
 					});
 					break;
 				case aboutAuthorTextInput:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						course.@author = StringUtils.trim(e.target.text);
+						if (!isPopulating) {
+							course.@author = StringUtils.trim(e.target.text);
+							dirty.dispatch();
+						}
 					});
 					break;
 				case aboutEmailTextInput:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						course.@email = StringUtils.trim(e.target.text);
+						if (!isPopulating) {
+							course.@email = StringUtils.trim(e.target.text);
+							dirty.dispatch();
+						}
 					});
 					break;
 				case aboutContactNumberTextInput:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						course.@contact = StringUtils.trim(e.target.text);
+						if (!isPopulating) {
+							course.@contact = StringUtils.trim(e.target.text);
+							dirty.dispatch();
+						}
 					});
 					break;
 				case saveButton:
@@ -121,7 +144,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 			}
 		}
-			
+		
 		protected function onTabBarChange(event:IndexChangeEvent):void {
 			invalidateSkinState();
 		}

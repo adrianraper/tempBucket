@@ -55,11 +55,13 @@ package com.clarityenglish.bento.view.warning {
 						case "feedback_not_seen":
 							instance.text = copyProvider.getCopyForId("feedbackWarning");
 							break;
+						case "changes_not_saved":
+							instance.text = copyProvider.getCopyForId("loseChangesWarning");
+							break;
 					}
 					break;
 			}
 		}
-		
 		
 		protected override function partRemoved(partName:String, instance:Object):void {
 			super.partRemoved(partName, instance);

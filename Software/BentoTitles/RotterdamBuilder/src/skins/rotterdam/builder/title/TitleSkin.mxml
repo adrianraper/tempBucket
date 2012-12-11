@@ -2,6 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*"
 		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
@@ -46,10 +47,10 @@
 		<s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" right="70" verticalCenter="0" />
 	</s:Group>
 	
-	<s:TabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="40" bottom="0" >
+	<ui:CancelableTabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="40" bottom="0">
 		<s:ViewNavigator id="myCoursesViewNavigator" label="My Courses" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%"/>
 		<s:ViewNavigator label="Resource Cloud" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
 		<s:ViewNavigator label="Help" left="0" right="0" height="100%" />
-	</s:TabbedViewNavigator>
+	</ui:CancelableTabbedViewNavigator>
 	
 </s:Skin>

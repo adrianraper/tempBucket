@@ -57,13 +57,13 @@
 		 * The user sees the warning and clicks Yes. Sometimes this means go on, sometimes it means stop!
 		 */
 		protected function onYes(event:Event):void {
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var exercise:Exercise = bentoProxy.currentExercise;
-			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			
 			switch (view.type) {
 				case "lose_answers":
 					// Set the condition that caused the warning to false and try again
+					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+					var exercise:Exercise = bentoProxy.currentExercise;
+					var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+					
 					exerciseProxy.exerciseDirty = false;
 					break;
 				case "feedback_not_seen":
@@ -71,7 +71,10 @@
 					sendNotification(BBNotifications.EXERCISE_SHOW_FEEDBACK);
 					return;
 					break;
-				
+				case "changes_not_saved":
+					if (view.body is Function)
+						view.body(); // GH #83 - if the user clicks yes then run the function in the body
+					break;
 				default:
 					return;
 			}
@@ -84,16 +87,19 @@
 		 * The user sees the warning and clicks No. Sometimes this means stop, sometimes it means go on!
 		 */
 		protected function onNo(event:Event):void {
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var exercise:Exercise = bentoProxy.currentExercise;
-			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-			
 			// Some types of warning have NO action
 			switch (view.type) {
 				// #256
 				case "feedback_not_seen":
 					// Set the condition that caused the warning to false and try again
+					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+					var exercise:Exercise = bentoProxy.currentExercise;
+					var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+					
 					exerciseProxy.exerciseFeedbackSeen = true;
+					break;
+				case "changes_not_saved":
+					return; // GH #83 - if the user clicks no then do nothing
 					break;
 				default:
 					return;

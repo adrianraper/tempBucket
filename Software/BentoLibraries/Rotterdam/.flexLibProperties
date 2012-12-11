@@ -24,6 +24,7 @@
     <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsView"/>
     <classEntry path="com.clarityenglish.rotterdam.vo.UID"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.UnitHeaderView"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

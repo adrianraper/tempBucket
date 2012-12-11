@@ -23,6 +23,7 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			view.dirty.add(onDirty);
 			view.saveCourse.add(onSaveCourse);
 			view.back.add(onBack);
 			
@@ -33,13 +34,16 @@
 		override public function onRemove():void {
 			super.onRemove();
 			
+			view.dirty.remove(onDirty);
 			view.saveCourse.remove(onSaveCourse);
 			view.back.remove(onBack);
+			
+			sendNotification(RotterdamNotifications.SETTINGS_CLEAN); // GH #83
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				
+				RotterdamNotifications.COURSE_SAVED
 			]);
 		}
 		
@@ -47,8 +51,14 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				
+				case RotterdamNotifications.COURSE_SAVED:
+					sendNotification(RotterdamNotifications.SETTINGS_CLEAN); // GH #83
+					break;
 			}
+		}
+		
+		protected function onDirty():void {
+			sendNotification(RotterdamNotifications.SETTINGS_DIRTY); // GH #83
 		}
 		
 		protected function onSaveCourse():void {

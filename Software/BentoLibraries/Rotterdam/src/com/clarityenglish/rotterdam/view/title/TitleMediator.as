@@ -2,6 +2,7 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -22,15 +23,21 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			view.saveWarningShow.add(onSaveWarningShow);
 		}
-		
+				
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.saveWarningShow.remove(onSaveWarningShow);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.MENU_XHTML_LOADED,
+				RotterdamNotifications.SETTINGS_DIRTY,
+				RotterdamNotifications.SETTINGS_CLEAN,
 			]);
 		}
 		
@@ -41,7 +48,18 @@
 				case BBNotifications.MENU_XHTML_LOADED:
 					view.showCourseView();
 					break;
+				case RotterdamNotifications.SETTINGS_DIRTY:
+					view.enableSaveWarning = true; // GH #83
+					break;
+				case RotterdamNotifications.SETTINGS_CLEAN:
+					view.enableSaveWarning = false; // GH #83
+					break;
 			}
+		}
+		
+		protected function onSaveWarningShow(next:Function):void {
+			// GH #83
+			sendNotification(BBNotifications.WARN_DATA_LOSS, next, "changes_not_saved");
 		}
 		
 	}

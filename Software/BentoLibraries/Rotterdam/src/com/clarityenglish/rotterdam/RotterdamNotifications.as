@@ -47,6 +47,10 @@
 		public static const PREVIEW_SHOW:String = "rotterdam/preview_show";
 		public static const PREVIEW_HIDE:String = "rotterdam/preview_hide";
 		
+		// Settings notifications GH #83
+		public static const SETTINGS_DIRTY:String = "rotterdam/settings_dirty";
+		public static const SETTINGS_CLEAN:String = "rotterdam/settings_clean";
+		
 		// Upload notifications
 		public static const MEDIA_SELECT:String = "rotterdam/media_select";
 		

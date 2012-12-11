@@ -30,7 +30,7 @@ package com.clarityenglish.bento.controller {
 			
 			var type:String = note.getType();
 			var body:Object = note.getBody();
-
+			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "warningTitleWindow";
