@@ -168,10 +168,10 @@ package com.clarityenglish.bento.model {
 		 */
 		public function attemptToLeaveExercise(note:INotification):Boolean {
 			if (isLeavingGoingToLoseAnswers()) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "lose_answers", note: note });
+				sendNotification(BBNotifications.WARN_DATA_LOSS, note, "lose_answers");
 				return false;
 			} else if (isLeavingGoingToMissFeedback()) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { type: "feedback_not_seen", note: note });
+				sendNotification(BBNotifications.WARN_DATA_LOSS, note, "feedback_not_seen");
 				return false;
 			}
 			

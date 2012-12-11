@@ -1,9 +1,5 @@
 package com.clarityenglish.bento.controller {
-	import com.clarityenglish.bento.BBNotifications;
-	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.warning.WarningView;
-	import com.clarityenglish.bento.vo.content.Exercise;
 	
 	import flash.display.DisplayObject;
 	
@@ -32,8 +28,8 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var type:String = note.getBody().type as String;
-			var note:INotification = note.getBody().note as INotification;
+			var type:String = note.getType();
+			var body:Object = note.getBody();
 
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
@@ -42,7 +38,7 @@ package com.clarityenglish.bento.controller {
 			
 			var warningView:WarningView = new WarningView();
 			warningView.type = type;
-			warningView.note = note;
+			warningView.body = body;
 			titleWindow.addElement(warningView);
 			
 			// Create and centre the popup
@@ -54,8 +50,6 @@ package com.clarityenglish.bento.controller {
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
-
-			//sendNotification(BBNotifications.WARNING_SHOWN, exercise);
 		}
 		
 		/**

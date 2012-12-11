@@ -87,7 +87,7 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exercise:Exercise = bentoProxy.currentExercise;
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-		
+			
 			// Some types of warning have NO action
 			switch (view.type) {
 				// #256
@@ -107,7 +107,8 @@
 		 * Go on with what you were doing before the warning 
 		 */
 		protected function warningIgnored():void {
-			sendNotification(view.note.getName(), view.note.getBody(), view.note.getType());
+			if (view.body is INotification)
+				sendNotification(view.body.getName(), view.body.getBody(), view.body.getType());
 		}
 		
 	}

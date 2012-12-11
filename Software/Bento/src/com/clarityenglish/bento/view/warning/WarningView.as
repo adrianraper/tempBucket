@@ -28,7 +28,7 @@ package com.clarityenglish.bento.view.warning {
 		
 		public var type:String;
 		
-		public var note:INotification;
+		public var body:Object;
 
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -55,7 +55,6 @@ package com.clarityenglish.bento.view.warning {
 						case "feedback_not_seen":
 							instance.text = copyProvider.getCopyForId("feedbackWarning");
 							break;
-						
 					}
 					break;
 			}
