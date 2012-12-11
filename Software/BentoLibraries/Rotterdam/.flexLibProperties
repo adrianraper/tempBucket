@@ -24,7 +24,6 @@
     <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsView"/>
     <classEntry path="com.clarityenglish.rotterdam.vo.UID"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.UnitHeaderView"/>
-    <classEntry path="skins.rotterdam.unit.ui.UnitHeaderSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

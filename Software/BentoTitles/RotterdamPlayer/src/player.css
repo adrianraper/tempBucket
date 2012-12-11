@@ -9,6 +9,7 @@
 @namespace progresscomponents "com.clarityenglish.rotterdam.player.view.progress.components.*";
 @namespace progressui "com.clarityenglish.rotterdam.player.view.progress.ui.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -54,6 +55,10 @@ courseselector|CourseSelectorView {
 
 course|CourseView {
 	skinClass: ClassReference("skins.rotterdam.player.course.CourseSkin");
+}
+
+unit|UnitHeaderView {
+	skinClass: ClassReference("skins.rotterdam.player.unit.UnitHeaderSkin");
 }
 
 /* Progress view styles */

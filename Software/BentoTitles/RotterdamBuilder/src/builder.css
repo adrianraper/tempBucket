@@ -15,6 +15,7 @@
 @namespace title1 "com.clarityenglish.rotterdam.view.title.*";
 @namespace settings "com.clarityenglish.rotterdam.builder.view.settings.*";
 @namespace settings1 "com.clarityenglish.rotterdam.view.settings.*";
+@namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -133,6 +134,10 @@ course|ToolBarView s|Button#previewBackToEditorButton {
 
 course|ToolBarView s|Button#normalCancelButton {
 	skinClass: ClassReference("skins.rotterdam.unit.CancelButtonSkin");
+}
+
+unit|UnitHeaderView {
+	skinClass: ClassReference("skins.rotterdam.builder.unit.UnitHeaderSkin");
 }
 
 uniteditor|UnitEditorView {

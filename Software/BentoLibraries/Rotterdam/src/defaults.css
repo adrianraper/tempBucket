@@ -9,10 +9,6 @@ unit|UnitView {
 	skinClass: ClassReference("skins.rotterdam.unit.UnitSkin");
 }
 
-unit|UnitHeaderView {
-	skinClass: ClassReference("skins.rotterdam.unit.ui.UnitHeaderSkin");
-}
-
 widgets|TextWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.TextWidgetSkin");
 }
