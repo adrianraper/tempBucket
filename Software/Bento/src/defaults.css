@@ -11,6 +11,7 @@
 @namespace error "com.clarityenglish.common.view.error.*";
 @namespace components1 "skins.bento.components.*";
 @namespace components2 "com.clarityenglish.components.*";
+@namespace warning "com.clarityenglish.bento.view.warning.*";
 
 global {
 	correctIcon: Embed(source="skins/assets/correctIcon.swf");
@@ -55,6 +56,19 @@ error|ErrorView {
 
 error|ErrorView #closeButton {
 	skinClass: ClassReference("skins.bento.error.ErrorButtonSkin");
+}
+
+/* Warning view styles */
+warning|WarningView {
+	skinClass: ClassReference("skins.bento.warning.WarningSkin");
+}
+
+warning|WarningView #noButton {
+	skinClass: ClassReference("skins.bento.warning.WarningNoButtonSkin");
+}
+
+warning|WarningView #yesButton {	
+	skinClass: ClassReference("skins.bento.warning.WarningYesButtonSkin");
 }
 
 s|VideoPlayer {

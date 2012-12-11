@@ -373,20 +373,6 @@ marking|MarkingView #moveForwardButton {
 	skinClass: ClassReference("skins.ielts.marking.MarkingBoxButtonSkin");
 }
 
-/* Warning view styles (this overwrites the default skin) */
-warning|WarningView {
-	skinClass: ClassReference("skins.ielts.warning.WarningSkin");
-}
-
-/* currently use the same buttons as marking */
-warning|WarningView #noButton {
-	skinClass: ClassReference("skins.ielts.warning.WarningNoButtonSkin");
-}
-
-warning|WarningView #yesButton {	
-	skinClass: ClassReference("skins.ielts.warning.WarningYesButtonSkin");
-}
-
 /* Popups */
 s|TitleWindow.markingTitleWindow {
 	skinClass: ClassReference("skins.ielts.titlewindows.MarkingTitleWindowSkin");
