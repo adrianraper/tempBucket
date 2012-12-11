@@ -49,6 +49,8 @@
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
+			<lit name="accountMoreButton">To find out how to get an account, click here.</lit>
+			<lit name="testDriveLabel">Try the FREE Test Drive Version</lit>
 			<lit name="printButton">Print</lit>
 			<lit name="noButton">No</lit>
 			<lit name="yesButton">Yes</lit>
@@ -58,7 +60,6 @@
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
 			<lit name="loginDetailLabelNetwork">Please type your login details if you want to save your progress records.</lit>
-			<lit name="testDriveLabel">Try the FREE Test Drive version</lit>
 			
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
 			<lit name="LMLabel">Road to IELTS - Last Minute</lit>

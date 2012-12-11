@@ -22,7 +22,8 @@ class RotterdamService extends BentoService {
 			$this->mediaOps = new MediaOps($this->accountFolder);
 			
 			// If there is no content folder for this user then create one
-			if (!is_dir($this->accountFolder)) $this->createAccountFolder();
+			if (!is_dir($this->accountFolder))
+				$this->createAccountFolder();
 		}
 	}
 	
@@ -74,7 +75,9 @@ class RotterdamService extends BentoService {
 	<courses />
 </bento>
 XML;
-		file_put_contents($this->accountFolder."/courses.xml", $courseXML, LOCK_EX);
+		// gh#65 Can't use LOCK_EX on our NFS server
+		//file_put_contents($this->accountFolder."/courses.xml", $courseXML, LOCK_EX);
+		file_put_contents($this->accountFolder."/courses.xml", $courseXML);
 		
 		// Create a media folder containing a default meta.xml
 		mkdir($this->accountFolder."/media");
@@ -84,7 +87,9 @@ XML;
 	<files />
 </bento>	
 XML;
-		file_put_contents($this->accountFolder."/media/media.xml", $mediaXML, LOCK_EX);
+		// gh#65 Can't use LOCK_EX on our NFS server
+		//file_put_contents($this->accountFolder."/media/media.xml", $mediaXML, LOCK_EX);
+		file_put_contents($this->accountFolder."/media/media.xml", $mediaXML);
 	}
 	
 }
