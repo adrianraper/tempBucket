@@ -822,9 +822,10 @@ EOD;
 	
 	/*
 	 * Returns the content tree for the logged in user
+	 * gh#81
 	 */
-	function getContent() {
-		return $this->parseContent(false);
+	function getContent($productCodes = null) {
+		return $this->parseContent(false, null, false, null, $productCodes);
 	}
 	
 	/*
@@ -833,7 +834,6 @@ EOD;
 	function getRestrictedContent($productCode) {
 		$allProductCodes = $this->getLicencedProductCodes($productCode);
 		$allProductCodes[] = $productCode;
-		//NetDebug::trace("allProductCodes=".implode(',',$allProductCodes));
 		return $this->parseContent(false,null,false,null,implode(',',$allProductCodes));
 	}
 	/*
@@ -924,9 +924,10 @@ EOD;
 	/**
 	 * Read the account to find enabled titles, then for each get course.xml (or emu.xml) and drill down
 	 * TODO. Make productCode an array so that reports can get several, but no need for all.
+	 * gh#81 productCode is an array, including negative codes if you want to avoid this one
 	 */
-	private function parseContent($generateMaps, $rootID = null, $forDMS = false, $onExpiryDate = null, $productCode = null) {
-	
+	private function parseContent($generateMaps, $rootID = null, $forDMS = false, $onExpiryDate = null, $productCodes = null) {
+			
 		// If the rootID is not given then default to the session root (this is normal behaviour except for DMS)
 		if (!$rootID) $rootID = Session::get('rootID');
 		$bindingParams = array($rootID);
@@ -969,14 +970,32 @@ EOD;
 			$sql .= " AND a.F_ExpiryDate <= '".substr($onExpiryDate,0,10)." 23:59:59' ";
 		}
 			
-		// Unless this is DMS we want to ignore RM (productCode=2)
-		if (!$forDMS) $sql .= " AND a.F_ProductCode != 2";
-		
-		// We might want to restrict content to a list of titles (might be an array or a string list)
-		// TODO: would be better to just make it a string list!
-		if ($productCode) {
-			$sql .= " AND a.F_ProductCode in ($productCode)";
+		// gh#81
+		// It seems that nothing uses this as a list yet, but just in case
+		if ($productCodes) {
+			if (!is_array($productCodes))
+				$productCodes = explode(',',$productCodes);
+		} else if (!$forDMS) {
+			// Unless this is DMS we want to ignore RM (productCode=2)
+			$productCodes = array(-2);
 		}
+		if ($productCodes) {
+			$sqlInList = array_reduce($productCodes, 
+				function($codeArray, $item) {
+					if (is_numeric($item) && $item > 0)
+						$codeArray[] = $item;
+					return $codeArray;
+				}, null);
+			$sqlNotInList = array_reduce($productCodes,
+				function($codeList, $item) {
+					if (is_numeric($item) && $item < 0)
+						$codeArray[] = abs($item);
+					return $codeArray;
+				}, null);
+			if ($sqlInList) $sql .= ' AND a.F_ProductCode in ('.implode(',',$sqlInList).')';
+			if ($sqlNotInList) $sql .= ' AND a.F_ProductCode not in ('.implode(',',$sqlNotInList).')';
+		}
+					
 		if ($dbOK) 
 			$sql .= " ORDER BY p.F_DisplayOrder";
 		
@@ -1093,7 +1112,7 @@ EOD;
 		
 		return $titles;
 	}
-	
+		
 	/**
 	 * Build the titles for a given Bento product.
 	 *
