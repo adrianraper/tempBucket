@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 ce.com</id>
-	<developer>xx</developer>
+	<developer>DK</developer>
     <prefix>Clarity</prefix>
 	<productCode>54</productCode>
 	<dbHost>2</dbHost>

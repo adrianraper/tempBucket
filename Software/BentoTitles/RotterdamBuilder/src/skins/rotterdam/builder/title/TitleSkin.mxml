@@ -36,19 +36,30 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:Group left="0" right="0" top="0" height="40">
-		<s:Rect left="0" right="0" top="0" bottom="0">
+	<s:Group left="0" right="0" top="0">
+		<s:Rect left="0" right="0" top="0" bottom="0" height="40">
 			<s:fill>
-				<s:SolidColor color="#000000" />
+				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
+					<s:GradientEntry color="#333333" ratio="0"/>
+					<s:GradientEntry color="#595959" ratio="1"/>
+				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
-		<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/title/ccb_logo.png')" />
-		<s:Label text="Clarity Course Builder" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="70" verticalCenter="0" />
-		<s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" right="70" verticalCenter="0" />
+		<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/title/ccb_logo.png')" left="7"/>
+		<s:Label text="Clarity Course Builder" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="77" top="15"/>
+		<s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" right="70" top="15"/>
+		<s:Rect left="0" right="0" top="40" bottom="0" height="45">
+			<s:fill>
+				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
+					<s:GradientEntry color="#E6E6E6" ratio="0"/>
+					<s:GradientEntry color="#FFFFFF" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
 	</s:Group>
 	
 	<ui:CancelableTabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="40" bottom="0">
-		<s:ViewNavigator id="myCoursesViewNavigator" label="My Courses" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%"/>
+		<s:ViewNavigator id="myCoursesViewNavigator" label="My Courses" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
 		<s:ViewNavigator label="Resource Cloud" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
 		<s:ViewNavigator label="Help" left="0" right="0" height="100%" />
 	</ui:CancelableTabbedViewNavigator>
