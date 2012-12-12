@@ -124,20 +124,20 @@
 			</s:HGroup>
 		</s:VGroup>
 		<s:Spacer height="3" />
-		<!--s:Rect verticalCenter="0" width="88%" height="1"  >
+		<s:Rect verticalCenter="0" width="88%" height="1"  >
 			<s:fill>
 				<s:SolidColor color="0x999999"  />
 			</s:fill>
-		</s:Rect-->
+		</s:Rect>
 	</s:VGroup>
 	</s:BorderContainer>
-	<s:Group left="0" top="417" > 
+	<!--s:Group left="0" top="417" > 
 		<login:InputAreaChrome />
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/test_drive.png')" top="20" left="10"/>
 		<s:Label text="Try the FREE Test Drive version" top="42" left="200" width="340" color="0x592A0C" fontWeight="bold" fontSize="16"  />
 		<s:Button id="testDriveAcademicButton" label="Academic" left="170" top="80" width="100" height="44" fontSize="16" />
 		<s:Button id="testDriveGeneralButton" label="General Training" left="280" top="80" width="160" height="44" fontSize="16" />
-	</s:Group>
+	</s:Group-->
 	
 	
 	<s:BorderContainer right="0" width="60%" height="9%" cornerRadius="12" backgroundAlpha="0" borderAlpha="0" top="100">	

@@ -33,6 +33,7 @@
 			// listen for these signals
 			view.register.add(onRegisterIELTS);
 			view.buy.add(onUpgradeIELTS);
+			view.manual.add(onManualClick);
 
 		}
         
@@ -61,5 +62,13 @@
 			var registerPage:String = (configProxy.getConfig().registerURL) ? configProxy.getConfig().registerURL : "www.takeielts.org";
 			sendNotification(IELTSNotifications.IELTS_REGISTER, registerPage);
 		}
+		
+		private function onManualClick():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var manualPage:String = (configProxy.getConfig().manualURL) ? configProxy.getConfig().manualURL : "http://www.clarityenglish.com/support/user/pdf/rti2/RoadToIELTS2_Network_Guide.pdf";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, manualPage);
+		}
+		
+		
 	}
 }

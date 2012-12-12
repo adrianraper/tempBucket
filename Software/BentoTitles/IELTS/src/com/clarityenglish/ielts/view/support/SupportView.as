@@ -91,6 +91,7 @@ package com.clarityenglish.ielts.view.support {
 		
 		public var register:Signal = new Signal();
 		public var buy:Signal = new Signal();
+		public var manual:Signal = new Signal();
 
 		public function SupportView() {
 			super();
@@ -189,6 +190,7 @@ package com.clarityenglish.ielts.view.support {
 					break;
 				case userManualLabel:
 					instance.text  = copyProvider.getCopyForId("userManualLabel");
+					instance.addEventListener(MouseEvent.CLICK, onUserManualClick);
 					break;
 				case testDriveSpan:
 					instance.text  = copyProvider.getCopyForId("testDriveSpan");
@@ -227,6 +229,10 @@ package com.clarityenglish.ielts.view.support {
 		
 		private function onBuyInfoClick(event:MouseEvent):void {
 			buy.dispatch();
+		}
+		
+		private function onUserManualClick(event:MouseEvent):void {
+			manual.dispatch();
 		}
 		
 	}

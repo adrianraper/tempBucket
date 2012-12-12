@@ -23,6 +23,9 @@ package com.clarityenglish.ieltsair.view.more {
 		public var moreNavBar:ButtonBar;
 		
 		[SkinPart]
+		public var aboutUsRichText1:RichText;
+		
+		[SkinPart]
 		public var aboutUsRichText:RichText;
 		
 		[SkinPart]
@@ -56,6 +59,7 @@ package com.clarityenglish.ieltsair.view.more {
 					aboutUsFlow.fontSize = 14;
 					aboutUsFlow.paragraphSpaceAfter = 12;
 					aboutUsFlow.lineHeight = 22;
+					aboutUsFlow.columnCount = 2;
 					instance.textFlow = aboutUsFlow;
 					break;
 				case contactUsRichText1:

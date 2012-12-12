@@ -112,6 +112,7 @@ package com.clarityenglish.common.model {
 			} else {
 				
 				// gh#21 you might not know a root, in which case this will return undefined
+				//user != null is for webpage TestDrive
 				if (configProxy.getRootID() && user != null) {
 					rootID = new Array(1);
 					rootID[0] = configProxy.getRootID();
@@ -295,6 +296,7 @@ package com.clarityenglish.common.model {
 							log.info("rootID changed from {0} to {1}", configProxy.getConfig().rootID, new Number(data.rootID));
 							configProxy.getConfig().rootID = new Number(data.rootID);
 							
+							//for webpage TestDrive
 							if (configProxy.getConfig().paths.menuFilename.indexOf("{productVersion}")<0 || configProxy.getConfig().paths.menuFilename.indexOf("{productCode}")<0 )
 								configProxy.getConfig().paths.menuFilename = configProxy.getConfig().configFilename;
 							
