@@ -53,6 +53,7 @@
 
 			<lit name="errorSavingCourse" code="700">Error whilst saving this course. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorSecurity" code="701">Security error</lit>
+			<lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			<lit name="printButton">Print</lit>

@@ -346,7 +346,9 @@ package com.clarityenglish.common.model {
 				directStartObject = scormProxy.getBookmark();
 			} else {
 				// #338. This is using a utility parsing function, it is for data from queryString
-				directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
+				// It doesn't actually have to be SCORM at all, works for all passed parameters
+				if (config.startingPoint)
+					directStartObject = scormProxy.parseSCORMdata(config.startingPoint, ':');
 			}
 			
 			// #338. This is called from ProgressProxy to find out which menu bits to hide

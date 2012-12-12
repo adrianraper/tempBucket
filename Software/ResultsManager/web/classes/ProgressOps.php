@@ -28,8 +28,13 @@ class ProgressOps {
 		// simplexml_load_file(): php_network_getaddresses: getaddrinfo failed: Name or service not known
 		// So try a fileget and load the xml from string.
 		//$this->menu = simplexml_load_file($file);
-		$fileContents = file_get_contents($file);
-		$this->menu = simplexml_load_string($fileContents);
+		// gh#92 What if the requested menu.xml doesn't exist?
+		try {
+			$fileContents = file_get_contents($file);
+			$this->menu = simplexml_load_string($fileContents);
+		} catch (Exception $e) {
+			throw $this->copyOps->getExceptionForId("errorCourseDoesNotExist", array("filename" => $file));
+		}
 	}
 	
 	/**

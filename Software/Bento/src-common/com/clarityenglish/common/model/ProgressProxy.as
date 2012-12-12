@@ -542,6 +542,15 @@ package com.clarityenglish.common.model {
 						// Then notify the state machine
 						sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
 						
+					// gh#92
+					} else if (progressError.errorNumber == copyProxy.getCodeForId("errorCourseDoesNotExist")) {
+							// First show an error
+							//sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorTitleBlockedByHiddenContent", null, true ));
+							sendNotification(CommonNotifications.BENTO_ERROR, progressError);
+							
+							// Then notify the state machine
+							sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
+							
 					} else {
 					
 						sendNotification(CommonNotifications.INVALID_DATA, progressError);
