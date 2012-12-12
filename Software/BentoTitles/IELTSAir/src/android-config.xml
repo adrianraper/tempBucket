@@ -15,17 +15,17 @@
 	<brandingMedia />
 	<language>ZH</language>
 	
-	<contentPath>http://192.168.8.81/Content/</contentPath>
+	<!--  contentPath>http://192.168.8.81/Content/</contentPath>
 	<remoteDomain>http://192.168.8.81/Software/</remoteDomain>
-	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
 	<!--  contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
-	<!--  contentPath>http://www.clarityenglish.com/ContentTablet/</contentPath>
+	<contentPath>http://www.clarityenglish.com/ContentTablet/</contentPath>
     <remoteDomain> http://www.ClarityEnglish.com/SoftwareTablet/</remoteDomain>
-    <remoteGateway>http://www.ClarityEnglish.com/SoftwareTablet/ResultsManager/web/amfphp/</remoteGateway>-->
+    <remoteGateway>http://www.ClarityEnglish.com/SoftwareTablet/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
