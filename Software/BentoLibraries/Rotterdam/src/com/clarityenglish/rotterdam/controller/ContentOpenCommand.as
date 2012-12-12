@@ -29,10 +29,10 @@ package com.clarityenglish.rotterdam.controller {
 			var uid:UID = new UID(note.getBody().toString());
 			
 			// First build a URL to point to the title and content
+			// gh#92 this is a bad place to do this - should be in config or ContentOps or...
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 
-			var domain:String = configProxy.getConfig().remoteDomain;
 			var area:String = configProxy.getConfig().remoteStartFolder;
 			
 			// Set defaults for each title, that you could override in a specific config.xml (how?)
@@ -82,7 +82,8 @@ package com.clarityenglish.rotterdam.controller {
 
 			// Then run this as a new browser window
 			// TODO: At some point BentoTitles could open their exercises directly in Rotterdam Player
-			navigateToURL(new URLRequest(domain + area + startFolder + startPage + argList), "_blank");
+			// gh#92
+			navigateToURL(new URLRequest(startFolder + startPage + argList), "_blank");
 			log.info("Opening content for uid=" + uid.toString());
 		}
 		

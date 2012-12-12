@@ -13,6 +13,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.TabBar;
 	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
@@ -37,6 +38,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		[SkinPart]
 		public var aboutContactNumberTextInput:TextInput;
+		
+		[SkinPart]
+		public var directStartURLLabel:Label;
 		
 		[SkinPart(required="true")]
 		public var saveButton:Button;
@@ -76,6 +80,10 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (aboutAuthorTextInput) aboutAuthorTextInput.text = course.@author;
 			if (aboutEmailTextInput) aboutEmailTextInput.text = course.@email;
 			if (aboutContactNumberTextInput) aboutContactNumberTextInput.text = course.@contact;
+			
+			// gh#92
+			var directStartURL:String = config.remoteStartFolder + 'CCB/Player.php' + '?prefix=' + config.prefix + '&course=' + course.@id;
+			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
 			
 			isPopulating = false;
 		}

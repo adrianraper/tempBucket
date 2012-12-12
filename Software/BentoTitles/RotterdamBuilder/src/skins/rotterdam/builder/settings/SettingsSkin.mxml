@@ -86,7 +86,7 @@
 			<s:Spacer height="20" />
 			
 			<s:Label text="Direct URL for this course" fontWeight="bold" />
-			<s:Label text="www.claritycoursebuilder.com/TEST" />
+			<s:Label id="directStartURLLabel" />
 		</s:VGroup>
 	</s:VGroup>
 	

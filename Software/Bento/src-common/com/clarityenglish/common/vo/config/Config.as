@@ -385,7 +385,8 @@ package com.clarityenglish.common.vo.config {
 			if (xml..remoteStartFolder.toString()) {
 				this.remoteStartFolder = xml..remoteStartFolder.toString();
 			} else {
-				this.remoteStartFolder = "area1/";
+				// gh#92
+				this.remoteStartFolder = "http://www.ClarityEnglish.com/area1/";
 			}			
 
 			// #337
