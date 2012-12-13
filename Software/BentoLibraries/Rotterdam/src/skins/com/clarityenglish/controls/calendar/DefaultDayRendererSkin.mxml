@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 		xmlns:s="library://ns.adobe.com/flex/spark" 
+		 		xmlns:mx="library://ns.adobe.com/flex/mx"
+				width="75"
+				height="62">
+	<s:states>
+		<s:State name="inMonth" />
+		<s:State name="notInMonth" />
+	</s:states>
+	
+	<s:Rect width="100%" height="100%" radiusX="4" radiusY="4">
+		<s:stroke>
+			<s:SolidColorStroke color.inMonth="#8BC541" color.notInMonth="#B1B1B1" weight.inMonth="2" weight.notInMonth="1" />
+		</s:stroke>
+	</s:Rect>
+	
+	<s:Label id="dateLabel" color.inMonth="#363636" color.notInMonth="#989898" right="5" top="9" />
+	
+	<s:DataGroup id="labelsDataGroup">
+		<s:layout>
+			<s:VerticalLayout />
+		</s:layout>
+		<s:itemRenderer>
+			<fx:Component>
+				<s:DataRenderer>
+					<s:Rect width="32" height="20" radiusX="4" radiusY="4">
+						<s:fill>
+							<s:SolidColor color="#8BC541" />
+						</s:fill>
+					</s:Rect>
+					<s:Label color="#3D5A17" text="{data}" top="6" left="6" />
+				</s:DataRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:DataGroup>
+</s:Skin>

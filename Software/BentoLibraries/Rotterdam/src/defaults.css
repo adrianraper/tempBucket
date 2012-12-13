@@ -4,6 +4,7 @@
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace unitui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
+@namespace calendar "com.clarityenglish.controls.calendar.*";
 
 unit|UnitView {
 	skinClass: ClassReference("skins.rotterdam.unit.UnitSkin");
@@ -47,4 +48,16 @@ s|TitleWindow.noTitleWindow {
 
 s|TitleWindow.titleWindowClose {
 	skinClass: ClassReference("skins.rotterdam.titlewindows.TitleWindowCloseSkin");
+}
+
+calendar|Calendar {
+	skinClass: ClassReference("skins.com.clarityenglish.controls.calendar.DefaultCalendarSkin");
+}
+
+calendar|DayHeaderRenderer {
+	skinClass: ClassReference("skins.com.clarityenglish.controls.calendar.DefaultDayHeaderRendererSkin");
+}
+
+calendar|DayRenderer {
+	skinClass: ClassReference("skins.com.clarityenglish.controls.calendar.DefaultDayRendererSkin");
 }

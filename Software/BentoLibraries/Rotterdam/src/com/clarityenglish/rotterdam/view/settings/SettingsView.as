@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.controls.calendar.Calendar;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -7,6 +8,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	
 	import mx.collections.ArrayList;
 	import mx.controls.DateChooser;
+	import mx.controls.DateField;
 	import mx.events.FlexEvent;
 	
 	import org.davekeen.util.StringUtils;
@@ -41,6 +43,15 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		[SkinPart]
 		public var directStartURLLabel:Label;
+		
+		[SkinPart]
+		public var unitIntervalTextInput:TextInput;
+		
+		[SkinPart]
+		public var startDateField:DateField;
+		
+		[SkinPart]
+		public var calendar:Calendar;
 		
 		[SkinPart(required="true")]
 		public var saveButton:Button;
@@ -94,9 +105,9 @@ package com.clarityenglish.rotterdam.view.settings {
 			switch (instance) {
 				case tabBar:
 					tabBar.dataProvider = new ArrayList([
-						{ label: "About", data: "about" },
 						{ label: "Calendar", data: "calendar" },
 						//{ label: "Email", data: "email" } - Email is disabled for the moment
+						{ label: "About", data: "about" }
 					]);
 					
 					tabBar.requireSelection = true;
@@ -138,6 +149,10 @@ package com.clarityenglish.rotterdam.view.settings {
 							dirty.dispatch();
 						}
 					});
+					break;
+				case calendar:
+					// Default the calendar to the current year and month
+					calendar.firstOfMonth = new Date();
 					break;
 				case saveButton:
 					saveButton.addEventListener(MouseEvent.CLICK, onSave);

@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<s:HGroup horizontalCenter="0" verticalAlign="middle">
+		<s:Button id="prevMonthButton" label="&lt;" width="30" />
+		<s:Label id="monthLabel" fontWeight="bold" />
+		<s:Button id="nextMonthButton" label="&gt;" width="30" />
+	</s:HGroup>
+	
+	<s:DataGroup id="daysDataGroup" width="558" top="35" itemRenderer="com.clarityenglish.controls.calendar.DayHeaderRenderer">
+		<s:layout>
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="1" />
+		</s:layout>
+	</s:DataGroup>
+	
+	<s:DataGroup id="dataGroup" top="55" width="558" height="396" itemRenderer="com.clarityenglish.controls.calendar.DayRenderer">
+		<s:layout>
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="6" />
+		</s:layout>
+	</s:DataGroup>
+	
+</s:Skin>

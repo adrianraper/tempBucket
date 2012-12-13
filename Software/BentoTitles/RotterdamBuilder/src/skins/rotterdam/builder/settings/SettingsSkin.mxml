@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:calendar="com.clarityenglish.controls.calendar.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.settings.SettingsView")]
@@ -27,7 +27,7 @@
 		<!-- Calendar settings -->
 		<s:VGroup includeIn="calendar">
 			<s:Label text="1. How many days between units?" fontWeight="bold" />
-			<s:TextInput width="40" />
+			<s:TextInput id="unitIntervalTextInput" width="40" />
 			
 			<s:Spacer height="20" />
 			
@@ -39,15 +39,8 @@
 			
 			<s:Spacer height="20" />
 			
-			<s:Label text="3. Select the options for the group(s)" fontWeight="bold" />
-			<s:DropDownList width="300" />
-			
-			<s:Label text="Please set the course start date for this group" />
-			<s:HGroup width="300" gap="8">
-				<s:DropDownList width="70" />
-				<s:DropDownList width="125" />
-				<s:DropDownList width="90" />
-			</s:HGroup>
+			<s:Label text="3. Please set the course start date for this course" fontWeight="bold" />
+			<mx:DateField id="startDateField" />
 		</s:VGroup>
 		
 		<!-- Email settings -->
@@ -87,6 +80,9 @@
 			
 			<s:Label text="Direct URL for this course" fontWeight="bold" />
 			<s:Label id="directStartURLLabel" />
+			<!-- Disabled for the moment -->
+			<!--<s:Label text="Direct URL for this course" fontWeight="bold" />
+			<s:Label text="www.claritycoursebuilder.com/TEST" />-->
 		</s:VGroup>
 	</s:VGroup>
 	
@@ -94,7 +90,7 @@
 	<s:VGroup top="75" left="400">
 		<!-- Calendar -->
 		<s:VGroup includeIn="calendar">
-			
+			<calendar:Calendar id="calendar" />
 		</s:VGroup>
 		
 		<!-- Email -->
