@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
 	import mx.controls.DateChooser;
 	import mx.controls.DateField;
@@ -59,9 +60,6 @@ package com.clarityenglish.rotterdam.view.settings {
 		[SkinPart(required="true")]
 		public var backButton:Button;
 		
-		[SkinPart]
-		public var startDateChooser:DateChooser;
-		
 		public var dirty:Signal = new Signal(); // GH #83
 		public var saveCourse:Signal = new Signal();
 		public var back:Signal = new Signal();
@@ -84,8 +82,6 @@ package com.clarityenglish.rotterdam.view.settings {
 			
 			isPopulating = true;
 			
-			if (startDateChooser) startDateChooser.selectedDate = course.hasOwnProperty("@startDate") ? new Date(course.@startDate) : new Date();
-			
 			// About data
 			if (aboutCourseNameTextInput) aboutCourseNameTextInput.text = course.@caption;
 			if (aboutAuthorTextInput) aboutAuthorTextInput.text = course.@author;
@@ -95,6 +91,21 @@ package com.clarityenglish.rotterdam.view.settings {
 			// gh#92
 			var directStartURL:String = config.remoteStartFolder + 'CCB/Player.php' + '?prefix=' + config.prefix + '&course=' + course.@id;
 			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
+			
+			// Calendar
+			if (unitIntervalTextInput) unitIntervalTextInput.text = course.@unitInterval;
+			if (startDateField && course.hasOwnProperty("@startDate")) startDateField.selectedDate = new Date(course.@startDate);
+			
+			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
+			if (calendar && course.hasOwnProperty("@unitInterval") && course.hasOwnProperty("@startDate")) {
+				var labels:Array = [];
+				for (var n:uint = 0; n < course.unit.length(); n++) {
+					var date:Date = new Date(course.@startDate);
+					date.date += n * course.@unitInterval;
+					labels.push( { date: date, label: "U" + (n + 1) });
+				}
+				calendar.dataProvider = new ArrayCollection(labels);
+			}
 			
 			isPopulating = false;
 		}
@@ -150,6 +161,26 @@ package com.clarityenglish.rotterdam.view.settings {
 						}
 					});
 					break;
+				case unitIntervalTextInput:
+					unitIntervalTextInput.restrict = "0-9";
+					unitIntervalTextInput.maxChars = 2;
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!isPopulating) {
+							course.@unitInterval = StringUtils.trim(e.target.text);
+							dirty.dispatch();
+							invalidateProperties();
+						}
+					});
+					break;
+				case startDateField:
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!isPopulating) {
+							course.@startDate = e.target.selectedDate.time;
+							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
+							invalidateProperties();
+						}
+					});
+					break;
 				case calendar:
 					// Default the calendar to the current year and month
 					calendar.firstOfMonth = new Date();
@@ -159,11 +190,6 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBack);
-					break;
-				case startDateChooser:
-					startDateChooser.addEventListener(Event.CHANGE, function(e:Event):void {
-						course.@startDate = startDateChooser.selectedDate.time;
-					});
 					break;
 			}
 		}
