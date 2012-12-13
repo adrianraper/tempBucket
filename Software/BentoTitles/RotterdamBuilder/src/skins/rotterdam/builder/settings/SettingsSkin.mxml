@@ -7,6 +7,10 @@
 		[HostComponent("com.clarityenglish.rotterdam.view.settings.SettingsView")]
 	</fx:Metadata>
 	
+	<fx:Declarations>
+		<s:RadioButtonGroup id="pastUnitsRadioButtonGroup" />
+	</fx:Declarations>
+	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
@@ -33,8 +37,8 @@
 			
 			<s:Label text="2. See past units?" fontWeight="bold" />
 			<s:HGroup>
-				<s:RadioButton label="Yes" />
-				<s:RadioButton label="No" />
+				<s:RadioButton label="Yes" value="true" group="{pastUnitsRadioButtonGroup}" />
+				<s:RadioButton label="No" value="false" group="{pastUnitsRadioButtonGroup}"/>
 			</s:HGroup>
 			
 			<s:Spacer height="20" />

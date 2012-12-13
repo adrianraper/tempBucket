@@ -11,12 +11,14 @@ package com.clarityenglish.rotterdam.view.settings {
 	import mx.controls.DateChooser;
 	import mx.controls.DateField;
 	import mx.events.FlexEvent;
+	import mx.events.ItemClickEvent;
 	
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.Label;
+	import spark.components.RadioButtonGroup;
 	import spark.components.TabBar;
 	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
@@ -50,6 +52,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		[SkinPart]
 		public var startDateField:DateField;
+		
+		[SkinPart]
+		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
 		
 		[SkinPart]
 		public var calendar:Calendar;
@@ -95,6 +100,8 @@ package com.clarityenglish.rotterdam.view.settings {
 			// Calendar
 			if (unitIntervalTextInput) unitIntervalTextInput.text = course.@unitInterval;
 			if (startDateField && course.hasOwnProperty("@startDate")) startDateField.selectedDate = new Date(course.@startDate);
+			
+			if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (course.@seePastUnits == "true")
 			
 			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
 			if (calendar && course.hasOwnProperty("@unitInterval") && course.hasOwnProperty("@startDate")) {
@@ -177,6 +184,15 @@ package com.clarityenglish.rotterdam.view.settings {
 						if (!isPopulating) {
 							course.@startDate = e.target.selectedDate.time;
 							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
+							invalidateProperties();
+						}
+					});
+					break;
+				case pastUnitsRadioButtonGroup:
+					pastUnitsRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
+						if (!isPopulating) {
+							course.@seePastUnits = e.target.selectedValue;
+							dirty.dispatch();
 							invalidateProperties();
 						}
 					});
