@@ -3,30 +3,34 @@
  */
 package com.clarityenglish.resultsmanager.view.management {
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.vo.content.Exercise;
-	import com.clarityenglish.resultsmanager.ApplicationFacade;
-	import com.clarityenglish.resultsmanager.model.ContentProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.resultsmanager.Constants;
-	import com.clarityenglish.resultsmanager.RMNotifications;
-	import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
-	import com.clarityenglish.resultsmanager.view.management.events.ContentEvent;
-	import com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider;
+	import com.clarityenglish.common.vo.Reportable;
 	import com.clarityenglish.common.vo.content.Content;
+	import com.clarityenglish.common.vo.content.Exercise;
+	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.Manageable;
 	import com.clarityenglish.common.vo.manageable.User;
-	import com.clarityenglish.common.vo.Reportable;
+	import com.clarityenglish.resultsmanager.ApplicationFacade;
+	import com.clarityenglish.resultsmanager.Constants;
+	import com.clarityenglish.resultsmanager.RMNotifications;
+	import com.clarityenglish.resultsmanager.model.ContentProxy;
+	import com.clarityenglish.resultsmanager.view.management.components.*;
+	import com.clarityenglish.resultsmanager.view.management.events.ContentEvent;
+	import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
+	import com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider;
+	import com.clarityenglish.utils.TraceUtils;
+	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	
+	import org.davekeen.utils.ArrayUtils;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
-	import com.clarityenglish.resultsmanager.view.management.components.*;
-	import org.davekeen.utils.ArrayUtils;
-	import com.clarityenglish.utils.TraceUtils;
+
 	//import nl.demonsters.debugger.MonsterDebugger;
 	
 	/**
@@ -175,7 +179,17 @@ package com.clarityenglish.resultsmanager.view.management {
 					contentView.checkBoxRendererProvider = this as ICheckBoxRendererProvider;
 					break;
 				case RMNotifications.CONTENT_LOADED:
-					contentView.tree.dataProvider = note.getBody();
+					var allTitles:Array =  note.getBody() as Array;
+					var displayTitles:Array = [];
+					var i:Number = 0;
+					for each (var titleObj:Object in allTitles) {
+					    if (titleObj.licenceType != Title.LICENCE_TYPE_AA) {
+							displayTitles[i] = titleObj;
+							i++
+						}
+				    }
+					contentView.tree.dataProvider = displayTitles;
+					//contentView.tree.dataProvider = note.getBody();
 					// After loading content you won't need the refresh button any more
 					contentView.refreshButton.visible = false;
 					break;           

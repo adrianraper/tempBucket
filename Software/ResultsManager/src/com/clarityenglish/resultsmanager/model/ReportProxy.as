@@ -44,15 +44,20 @@ package com.clarityenglish.resultsmanager.model {
 			
 		}
 		
-		public function getReport(forReportables:Array, onReportables:Array, opts:Object, template:String="standard"):void {
+		public function getReport(forReportables:Array, forClass:String, onReportables:Array, opts:Object, template:String="standard"):void {
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			//TraceUtils.myTrace("reportProxy.getReport opts.detailedReport=" + opts.detailedReport);
 			
 			// Get the on reportable class
 			var onClass:String = ClassUtils.getClassAsString(onReportables[0]) as String;
+			//gh:#28
+			trace("onClass is "+onClass);
 			
+			//gh:#28
 			// Get the for reportable class
-			var forClass:String = ClassUtils.getClassAsString(forReportables[0]) as String;
+			//var forClass:String = ClassUtils.getClassAsString(forReportables[0]) as String;
+			var forClass:String = forClass;
+			trace("forClass is "+forClass);
 			
 			// Create the report header. You can pretty much put what you want in here.
 			var headers:Object = new Object();
@@ -150,6 +155,7 @@ package com.clarityenglish.resultsmanager.model {
 			headers.attempts = copyProvider.getCopyForId(opts.attempts + "Attempts");
 			
 			opts.headers = headers;
+			trace("opts detailed report"+ opts.detailedReport);
 			
 			// If the forReportables are Title then replace them with their sub courses as titles don't really exist
 			if (forClass == "Title") {
@@ -174,8 +180,10 @@ package com.clarityenglish.resultsmanager.model {
 			
 			// Get the for reportable JSON ID trees
 			var forReportablesIDObjects:Array = new Array();
-			for each (var reportable:Reportable in forReportables)
-				forReportablesIDObjects.push(reportable.toIDObject());
+			for each (var reportable:Reportable in forReportables) {
+				forReportablesIDObjects.push(reportable.toIDObject());				
+			}
+			trace("forReportablesIDObjects[0] "+ forReportablesIDObjects[0].Unit);	
 			
 			// Get the on reportable JSON ID trees
 			var onReportablesIDObjects:Array = new Array();

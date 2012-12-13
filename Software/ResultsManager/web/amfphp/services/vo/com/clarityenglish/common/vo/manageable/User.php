@@ -349,6 +349,8 @@ EOD;
 					break;
 				case "Course":
 					$opts[ReportBuilder::SHOW_COURSE] = true;
+					//issue:#23
+					$opts[ReportBuilder::WITHIN_COURSE] = true;
 					break;
 				case "Unit":
 					$opts[ReportBuilder::SHOW_UNIT] = true; // This automatically adds courses column

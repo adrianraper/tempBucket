@@ -1,24 +1,28 @@
 ﻿package com.clarityenglish.resultsmanager.view.management.ui {
-	import com.clarityenglish.common.view.interfaces.CopyReceiver;
-	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
-	import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
-	import com.clarityenglish.resultsmanager.view.management.events.ContentEvent;
+	import com.clarityenglish.common.view.interfaces.CopyReceiver;
+	import com.clarityenglish.common.vo.content.Content;
+	import com.clarityenglish.common.vo.content.Course;
+	import com.clarityenglish.common.vo.content.Exercise;
+	import com.clarityenglish.common.vo.content.Title;
+	import com.clarityenglish.common.vo.content.Unit;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.Manageable;
-	import com.clarityenglish.common.vo.content.Content;
-	import com.clarityenglish.common.vo.content.Exercise;
-	import com.clarityenglish.common.vo.content.Unit;
-	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.Constants;
+	import com.clarityenglish.resultsmanager.view.management.events.ContentEvent;
+	import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
+	import com.clarityenglish.utils.TraceUtils;
+	
 	import eu.orangeflash.managers.CMManager;
+	
 	import flash.display.InteractiveObject;
 	import flash.events.ContextMenuEvent;
 	import flash.events.Event;
 	import flash.ui.ContextMenu;
 	import flash.ui.ContextMenuItem;
+	
 	import org.davekeen.utils.ClassUtils;
-	import com.clarityenglish.utils.TraceUtils;
 	
 	/**
 	 * ...
@@ -137,7 +141,7 @@
 				
 			} else {
 				var selectedItem:Content = selectedItems[0] as Content;
-										 
+											 
 				// If a single Content item is selected then we can always generate a report
 				generateReportMenuItem.enabled = true;
 				// and we can always find a direct link
@@ -198,6 +202,7 @@
 				insertExerciseAfterMenuItem.enabled = (selectedItem is Exercise);
 				
 			}
+
 		}
 		
 	}

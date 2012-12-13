@@ -66,8 +66,10 @@ function runDailyJobs($triggerDate = null) {
 	$expiryDate = date('Y-m-d', addDaysToTimestamp($triggerDate, -31));
 	$database = 'rack80829';
 	$accountsMoved = $thisService->internalQueryOps->archiveExpiredAccounts($expiryDate, $database);
-	echo "Moved $accountsMoved titles from $database to expiry table for $expiryDate. $newLine";
+	echo "Moved $accountsMoved titles from $database to expiry table for $expiryDate. $newLine";	
+	
 }
+
 
 // Action
 if (isset($_REQUEST['date'])) {

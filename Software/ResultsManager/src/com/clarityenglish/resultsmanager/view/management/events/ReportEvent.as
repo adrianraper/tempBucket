@@ -31,6 +31,9 @@
 		public var detailedReport:Boolean = true;
 		public var template:String;
 		
+		//2012
+		public var forClass:String;
+		
 		// v3.2 Add in optional student ID
 		public var includeStudentID:Boolean = false;
 		
@@ -43,6 +46,8 @@
 		
 		public override function clone():Event { 
 			var event:ReportEvent = new ReportEvent(type, forReportables, onReportables, bubbles, cancelable);
+			//gh#28
+			event.forClass = forClass;
 			
 			event.fromDate = fromDate;
 			event.toDate = toDate;

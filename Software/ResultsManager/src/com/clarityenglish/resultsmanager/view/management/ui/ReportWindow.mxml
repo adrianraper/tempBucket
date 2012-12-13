@@ -9,10 +9,8 @@
 				implements="com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider, com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.resultsmanager.Constants;
 		import com.clarityenglish.common.model.interfaces.CopyProvider;
-		import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
-		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
+		import com.clarityenglish.common.vo.Reportable;
 		import com.clarityenglish.common.vo.content.Content;
 		import com.clarityenglish.common.vo.content.Course;
 		import com.clarityenglish.common.vo.content.Exercise;
@@ -21,14 +19,19 @@
 		import com.clarityenglish.common.vo.manageable.Group;
 		import com.clarityenglish.common.vo.manageable.Manageable;
 		import com.clarityenglish.common.vo.manageable.User;
-		import com.clarityenglish.common.vo.Reportable;
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
+		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
+		import com.clarityenglish.utils.TraceUtils;
+		
 		import flash.events.Event;
+		
 		import mx.collections.ArrayCollection;
 		import mx.core.ClassFactory;
 		import mx.core.IFlexDisplayObject;
 		import mx.managers.PopUpManager;
+		
 		import org.davekeen.utils.ClassUtils;
-		import com.clarityenglish.utils.TraceUtils;
 		
 		public var parentView:IFlexDisplayObject;
 		
@@ -51,6 +54,9 @@
 		
 		// v3.2 In the end this should be included in the interface, but for now I just set it on for a particular report
 		private var includeStudentID:Boolean;
+			
+		//gh:28
+		private var forClass:String;
 		
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
@@ -418,7 +424,15 @@
 			// be making the SQL bigger. In fact, it would let you drop that part of the SQL that finds the 
 			// children groups of any group you select. But probably best leave it for now.
 			var forArray:Array = new Array();
-			forArray = reportable.getSubChildrenOfClass(reportTypeComboBox.selectedItem.data);
+			//gh:#28
+			if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data) {
+				forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
+				forArray = reportable.getSubChildrenOfClass(reportTypeDataProvider[3].data);
+			} else {
+				forArray = reportable.getSubChildrenOfClass(reportTypeComboBox.selectedItem.data);
+				forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
+			}
+			
 			//TraceUtils.myTrace("got " + forArray.length + " children " + reportTypeComboBox.selectedItem.data);
 			for each (var newReportable:Reportable in forArray) {
 				if (selected) {
@@ -437,6 +451,7 @@
 		 * This selects all items of a certain type
 		 */
 		private function onSelectAll():void {
+			
 			// Build an array of all children of the dataprovider of the given type (selectedItem.data is Class)
 			var forArray:Array = new Array();
 			for each (var reportable:Reportable in forTree.dataProvider)
@@ -477,9 +492,23 @@
 			var testOnClass:Class = ClassUtils.checkObjectClasses(_onReportables);
 			//TraceUtils.myTrace("oGR class=" + testOnClass);
 			for each (var reportable:Reportable in forReportables.toArray()) {
-				if (reportable is reportTypeComboBox.selectedItem.data)
+				//gh:#28
+				trace("reportable: "+reportable);				
+				if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data) {
+					if (reportable is reportTypeDataProvider[3].data) {
+						newForReportables.push(reportable);
+					}
+				} else {
+					if (reportable is reportTypeComboBox.selectedItem.data) {
+						newForReportables.push(reportable);
+					}
+				}
+				
+				//gh:#28
+				/*if (reportable is reportTypeComboBox.selectedItem.data) {
 					newForReportables.push(reportable);
-					
+				}*/
+										
 				// v3.2 Add customised reports based on the forReportables selection
 				// I'm not really sure why this isn't (testOnClass is Manageable)
 				if (testOnClass == User || testOnClass == Group) {
@@ -546,6 +575,8 @@
 			// But at this stage I don't know how many rows there will be.
 			
 			// Dispatch it in order to generate the report
+			//gh:#28
+			reportEvent.forClass = forClass as String;
 			parentView.dispatchEvent(reportEvent);
 		}
 		

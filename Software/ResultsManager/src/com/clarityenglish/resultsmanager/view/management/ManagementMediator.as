@@ -108,8 +108,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		}
 		
 		private function onGenerateReport(e:ReportEvent):void {
-			var reportProxy:ReportProxy = facade.retrieveProxy(ReportProxy.NAME) as ReportProxy;
-			
+			var reportProxy:ReportProxy = facade.retrieveProxy(ReportProxy.NAME) as ReportProxy;			
 			var opts:Object = new Object();
 			if (e.fromDate) opts.fromDate = e.fromDate;
 			if (e.toDate) opts.toDate = e.toDate;
@@ -122,7 +121,7 @@ package com.clarityenglish.resultsmanager.view.management {
 			// v3.2 Optional id in the report
 			opts.includeStudentID = e.includeStudentID;
 			
-			reportProxy.getReport(e.forReportables, e.onReportables, opts, e.template);
+			reportProxy.getReport(e.forReportables, e.forClass, e.onReportables, opts, e.template);
 		}
 
 	}

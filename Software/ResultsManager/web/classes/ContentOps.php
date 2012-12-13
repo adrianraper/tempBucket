@@ -1169,6 +1169,8 @@ EOD;
 			//NetDebug::trace("ContentOps: course=".$course->name);
 				
 			$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
+			//issue:#23
+			$course-> totalUnits = count ($course-> units);
 				
 			if ($course->id != null) { // Ticket #104 - don't add content with missing id
 				if ($generateMaps) {
@@ -1298,6 +1300,8 @@ EOD;
 					} else {
 						$subFolder = $folder."/".$courseXML->getAttribute("courseFolder")."/".$courseXML->getAttribute("subFolder");
 						$course-> units = $this->_buildUnitsFromFile($subFolder, $courseXML->getAttribute("scaffold"), $course, $generateMaps, $courseType);
+						//issue:#23
+						$course-> totalUnits = count ($course-> units);
 					}
 				} else {
 					// Ticket #104 - if a required attribute is missing throw an error message
@@ -1391,7 +1395,9 @@ EOD;
 				//$unit->licencedProductCode = $unitXML->getAttribute("licencedProductCode");
 				//NetDebug::trace("ContentOps: unitXML, name=".$unit->name);
 
-				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps, $courseType, $groupXML);	
+				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps, $courseType, $groupXML);
+                //issue:#23
+				$unit-> totalExercises = count ($unit-> exercises);		
 				
 				if ($unit->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {

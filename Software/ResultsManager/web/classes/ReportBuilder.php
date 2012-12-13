@@ -8,11 +8,15 @@ class ReportBuilder {
 	var $opts;
 	
 	var $selectBuilder;
+	var $valideExerciseID;
 
 	const GROUPED = "grouped";
 	
 	const SHOW_TITLE = "show_title";
 	const SHOW_COURSE = "show_course";
+	//issue:#23
+	const WITHIN_COURSE = "within_course";
+	
 	const SHOW_UNIT = "show_unit"; // SHOW_UNIT automatically includes SHOW_COURSE
 	const SHOW_EXERCISE = "show_exercise"; // SHOW_EXERCISE automatically includes SHOW_UNIT & SHOW_COURSE
 	const SHOW_GROUPNAME = "show_groupname";
@@ -32,6 +36,10 @@ class ReportBuilder {
 	
 	const SHOW_AVERAGE_SCORE = "show_average_score";
 	const SHOW_COMPLETE = "show_complete";
+	//issue:#23
+	const SHOW_EXERCISE_PERCENTAGE = "show_exercise_percentage";
+	const SHOW_UNIT_PERCENTAGE = "show_unit_percentage";
+	
 	const SHOW_AVERAGE_TIME = "show_average_time";
 	const SHOW_TOTAL_TIME = "show_total_time";
 	
@@ -60,6 +68,9 @@ class ReportBuilder {
 		// AR To avoid php Notice warnings:
 		if (!isset($this->opts[ReportBuilder::SHOW_TITLE])) $this->opts[ReportBuilder::SHOW_TITLE] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_COURSE])) $this->opts[ReportBuilder::SHOW_COURSE] = "";
+		//issue:#23
+		if (!isset($this->opts[ReportBuilder::WITHIN_COURSE])) $this->opts[ReportBuilder::WITHIN_COURSE] = "";
+		
 		if (!isset($this->opts[ReportBuilder::SHOW_UNIT])) $this->opts[ReportBuilder::SHOW_UNIT] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_EXERCISE])) $this->opts[ReportBuilder::SHOW_EXERCISE] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_GROUPNAME])) $this->opts[ReportBuilder::SHOW_GROUPNAME] = "";
@@ -90,6 +101,10 @@ class ReportBuilder {
 		if (!isset($this->opts[ReportBuilder::GROUPED])) $this->opts[ReportBuilder::GROUPED] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_AVERAGE_SCORE])) $this->opts[ReportBuilder::SHOW_AVERAGE_SCORE] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_COMPLETE])) $this->opts[ReportBuilder::SHOW_COMPLETE] = "";
+		//issue:#23
+		if (!isset($this->opts[ReportBuilder::SHOW_EXERCISE_PERCENTAGE])) $this->opts[ReportBuilder::SHOW_EXERCISE_PERCENTAGE] = "";
+		if (!isset($this->opts[ReportBuilder::SHOW_UNIT_PERCENTAGE])) $this->opts[ReportBuilder::SHOW_UNIT_PERCENTAGE] = "";
+		
 		if (!isset($this->opts[ReportBuilder::SHOW_AVERAGE_TIME])) $this->opts[ReportBuilder::SHOW_AVERAGE_TIME] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_TOTAL_TIME])) $this->opts[ReportBuilder::SHOW_TOTAL_TIME] = "";
 		if (!isset($this->opts[ReportBuilder::ORDERBY_USERS])) $this->opts[ReportBuilder::ORDERBY_USERS] = "";
@@ -100,9 +115,22 @@ class ReportBuilder {
 	function setOpt($opt, $value) {
 		$this->opts[$opt] = $value;
 		
+		//issue:#23	
+		if ($opt == ReportBuilder::WITHIN_COURSE && $value) {
+			    $this->setOpt(ReportBuilder::SHOW_UNIT_PERCENTAGE, true);			
+		}
+		
 		// Special cases
-		if ($opt == ReportBuilder::SHOW_UNIT && $value) $this->setOpt(ReportBuilder::SHOW_COURSE, true);
-		if ($opt == ReportBuilder::SHOW_EXERCISE && $value) $this->setOpt(ReportBuilder::SHOW_UNIT, true);
+		if ($opt == ReportBuilder::SHOW_UNIT && $value) {
+		    $this->setOpt(ReportBuilder::SHOW_COURSE, true);
+			//issue:#23
+			$this->setOpt(ReportBuilder::SHOW_EXERCISE_PERCENTAGE, true);
+		}
+		if ($opt == ReportBuilder::SHOW_EXERCISE && $value) {
+		    $this->setOpt(ReportBuilder::SHOW_UNIT, true);
+			//issue:#23
+			$this->setOpt(ReportBuilder::SHOW_EXERCISE_PERCENTAGE, false);
+		}
 	}
 	
 	// v3.4 ReportOps needs to call this too
@@ -225,6 +253,9 @@ EOD;
 		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("ss.F_CourseID", "courseID");
 		if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("s.F_CourseID", "courseID");
 		if ($this->getOpt(ReportBuilder::SHOW_UNIT)) $this->addColumn("s.F_UnitID", "unitID");
+		//gh:#28
+		//if ($this->getOpt(ReportBuilder::SHOW_UNIT)) $this->addColumn("s.F_ExerciseID", "exerciseUnitID");
+		
 		if ($this->getOpt(ReportBuilder::SHOW_EXERCISE)) $this->addColumn("s.F_ExerciseID", "exerciseID");
 		
 		// Selection of name columns
@@ -264,6 +295,10 @@ EOD;
 		// Selection of grouped columns
 		if ($this->getOpt(ReportBuilder::SHOW_AVERAGE_SCORE)) { $this->checkGrouped(true); $this->addColumn(null, "average_score", "AVG(CASE s.F_Score WHEN -1 THEN NULL ELSE s.F_Score END)"); }
 		if ($this->getOpt(ReportBuilder::SHOW_COMPLETE)) { $this->checkGrouped(true); $this->addColumn(null, "complete", "COUNT(s.F_Score)"); }
+		//issue:#23
+		if ($this->getOpt(ReportBuilder::SHOW_EXERCISE_PERCENTAGE)) { $this->checkGrouped(true); $this->addColumn(null, "exercise_percentage", "COUNT(DISTINCT s.F_ExerciseID)"); }
+		if ($this->getOpt(ReportBuilder::SHOW_UNIT_PERCENTAGE)) { $this->checkGrouped(true); $this->addColumn(null, "unit_percentage", "COUNT(DISTINCT s.F_UnitID)"); }
+		
 		if ($this->getOpt(ReportBuilder::SHOW_AVERAGE_TIME)) { $this->checkGrouped(true); $this->addColumn(null, "average_time", "AVG(s.F_Duration)"); }
 		if ($this->getOpt(ReportBuilder::SHOW_TOTAL_TIME)) { $this->checkGrouped(true); $this->addColumn(null, "total_time", "SUM(s.F_Duration)"); }
 		
@@ -411,6 +446,7 @@ EOD;
 						}
 					}
 					// Passing true as a parameter to addWhere marks these as OR clauses instead of the default AND
+					//gh#28
 					$this->selectBuilder->addWhere("(".implode(" AND ", $wheres).")", true);
 				}
 				

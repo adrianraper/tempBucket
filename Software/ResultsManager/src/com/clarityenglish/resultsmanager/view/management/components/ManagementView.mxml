@@ -4,21 +4,26 @@
 		   implements="com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.resultsmanager.Constants;
-		import com.clarityenglish.common.model.interfaces.CopyProvider;;
-		import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
-		import com.clarityenglish.resultsmanager.view.management.ui.ReportWindow;
-		import com.clarityenglish.common.vo.content.Content;
-		import com.clarityenglish.common.vo.manageable.Manageable;
-		import flash.text.StyleSheet;
-		import mx.core.UIComponent;
-		import mx.managers.PopUpManager;
-		import org.davekeen.utils.ClassUtils;
-		import com.clarityenglish.utils.TraceUtils;
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			import com.clarityenglish.common.vo.content.Content;
+			import com.clarityenglish.common.vo.content.Title;
+			import com.clarityenglish.common.vo.manageable.Manageable;
+			import com.clarityenglish.resultsmanager.Constants;
+			import com.clarityenglish.resultsmanager.view.management.events.ReportEvent;
+			import com.clarityenglish.resultsmanager.view.management.ui.ReportWindow;
+			import com.clarityenglish.utils.TraceUtils;
+			
+			import flash.text.StyleSheet;
+			
+			import mx.core.UIComponent;
+			import mx.managers.PopUpManager;
+			
+			import org.davekeen.utils.ClassUtils;
 		
 		private var copyProvider:CopyProvider;
 		
 		public var content:Array;
+	    public var contentExcludeAA:Array = [];
 		
 		public var manageables:Array;
 		
@@ -59,8 +64,19 @@
 			
 			var testClass:Object = new (ClassUtils.checkObjectClasses(e.onReportables))();
 			
+			//RM BUG: #150
+			var i:Number = 0;
 			if (testClass is Manageable) {
-				reportWindow.setTreeDataProvider(content);
+				for each (var contentObj:Object in content) {
+					trace("contentObj licentype is "+contentObj.licenceType);
+					if (contentObj.licenceType != Title.LICENCE_TYPE_AA) {
+						contentExcludeAA[i] = contentObj;					
+						i++;
+					}
+						
+				}
+				trace("the number of contentExcludeAA is "+i);
+				reportWindow.setTreeDataProvider(contentExcludeAA);
 			} else if (testClass is Content) {
 				reportWindow.setTreeDataProvider(manageables);
 			} else {

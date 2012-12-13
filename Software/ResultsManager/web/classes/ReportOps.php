@@ -8,6 +8,7 @@ class ReportOps {
 	
 	var $contentMap;
 	
+	
 	function ReportOps($db) {
 		$this->db = $db;
 	}
@@ -347,12 +348,12 @@ class ReportOps {
 		// Go through the results replacing IDs with names, seconds with hh:ss and converting everything to an XML document
 		// AR It seems that we leave the times as seconds and let the xsl format it
 		foreach ($rows as $row) {
-			$rowXML = $dom->createElement("row");
+			$rowXML = $dom->createElement("row");		
 			
 			//echo var_dump($row);
 			$row = $this->processRowFields($row);
 			
-			foreach ($row as $key => $value) {
+			 foreach ($row as $key => $value) {
 				// This was throwing up the error DOMElement::setAttribute() [domelement.setattribute]: string is not in UTF-8
 				// But if I solve it using utf8_encode, then it screws up Chinese characters.
 				//$rowXML->setAttribute($key, $value);
@@ -361,10 +362,10 @@ class ReportOps {
 				} else {
 					$rowXML->setAttribute($key, $value);
 				}
-			}
-			
-			$reportXML->appendChild($rowXML);
+			}			
+			    $reportXML->appendChild($rowXML);   						
 		}
+		
 		if (isset($details) && $details) {
 			foreach ($details as $row) {
 				$rowXML = $dom->createElement("detail");
@@ -514,8 +515,12 @@ class ReportOps {
 				$row['courseName'] = $title->courses[$courseID]->name;
 			} else {
 				$row['courseName'] = '-no name-';
-			} 
+			}
+		    if (isset($row['unit_percentage'])) {
+		       $row['unit_percentage'] =  $row['unit_percentage']."/".($title->courses[$courseID]->totalUnits);
+		    }
 		}
+		
 		
 		// v3.4 You can't do this section unless courseID is set
 		// If unitID is set replace it with the unitName.
@@ -547,6 +552,14 @@ class ReportOps {
 				}
 				$row['unitName'] = $bestName;
 			}
+			//gh:#28			
+		    if (isset($row['exercise_percentage'])) {
+			   //for AR, some exerciseID in DB is not exist in content xml file
+			   /*if (!isset($title->courses[$courseID]->units[$unitID]->exercises[$exerciseID])) {
+			        $row['exercise_percentage'] = $row['exercise_percentage'] - 1;
+			   }*/
+		       $row['exercise_percentage'] =  $row['exercise_percentage']."/".$title->courses[$courseID]->units[$unitID]->totalExercises;
+		    }
 			//echo "unitID=$unitID, name={$title->courses[$courseID]->units['0']->name}";
 		}
 		
@@ -577,7 +590,7 @@ class ReportOps {
 					}
 				}
 				$row['exerciseName'] = $bestName;
-			}
+			}			
 		}
 		
 		// Decode any apostrophes

@@ -416,6 +416,8 @@
 			<lit name="report_startTime">Start time</lit>
 			<lit name="report_averageScore">Average score</lit>
 			<lit name="report_complete">Exercises completed</lit>
+			<lit name="report_completePercentage">Completed exercises proportion</lit>
+			<lit name="report_unitPercentage">Completed unit proportion</lit>
 			<lit name="report_averageTime_secs">Average time (seconds)</lit>
 			<lit name="report_averageTime">Average time (minutes)</lit>
 			<lit name="report_totalTime">Total time (hours : mins)</lit>

@@ -356,7 +356,9 @@
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			if (!data) return;
-			
+			//
+
+			trace("get classs " + ClassUtils.getClass(data));
 			switch (ClassUtils.getClass(data)) {
 				case Title:
 					if (useLargeIcons) {
