@@ -1,17 +1,23 @@
 package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.text.engine.FontWeight;
 	
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
+	import mx.events.FlexMouseEvent;
+	
 	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.ButtonBarButton;
+	import spark.components.Group;
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
+	import spark.primitives.Rect;
 	
 	public class ToolBarView extends BentoView {
 		
@@ -27,19 +33,37 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var normalAddTextButton:Button;
 		
 		[SkinPart]
+		public var listAddTextButton:Button;
+		
+		[SkinPart]
 		public var normalAddPDFButton:Button;
+		
+		[SkinPart]
+		public var listAddPDFButton:Button;
 
 		[SkinPart]
 		public var normalAddVideoButton:Button;
 		
 		[SkinPart]
+		public var listAddVideoButton:Button;
+		
+		[SkinPart]
 		public var normalAddImageButton:Button;
+		
+		[SkinPart]
+		public var listAddImageButton:Button;
 		
 		[SkinPart]
 		public var normalAddAudioButton:Button;
 		
 		[SkinPart]
+		public var listAddAudioButton:Button;
+		
+		[SkinPart]
 		public var normalAddExerciseButton:Button;
+		
+		[SkinPart]
+		public var listAddExerciseButton:Button;
 		
 		[SkinPart]
 		public var normalPreviewButton:Button;
@@ -86,6 +110,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var fontSize3Button:ToggleButton;
 		
+		[SkinPart]
+		public var symbol:Group;
+        
+		[SkinPart]
+		public var itemList:Group;
+		
+		[SkinPart]
+		public var addItemButton:ToggleButton;
+		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object);
 		public var addPDF:Signal = new Signal(Object);
@@ -96,6 +129,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
+
+		private var outsideClick:Boolean = false;
+		private var itemClick:Boolean = false;
 		
 		public function ToolBarView() {
 			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "preview" ], true);
@@ -119,6 +155,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			}
 		}
 		
+		protected override function onAddedToStage(event:Event):void {
+			stage.addEventListener(MouseEvent.CLICK, onStageClick);
+		}
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 		}
@@ -131,20 +171,38 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case normalSaveButton:
 					normalSaveButton.addEventListener(MouseEvent.CLICK, onNormalSave);
 					break;
+				case listAddTextButton:
+					listAddTextButton.addEventListener(MouseEvent.CLICK, onNormalAddText);
+					break;
 				case normalAddTextButton:
 					normalAddTextButton.addEventListener(MouseEvent.CLICK, onNormalAddText);
+					break;
+				case listAddPDFButton:
+					listAddPDFButton.addEventListener(MouseEvent.CLICK, onNormalAddPDF);
 					break;
 				case normalAddPDFButton:
 					normalAddPDFButton.addEventListener(MouseEvent.CLICK, onNormalAddPDF);
 					break;
+				case listAddVideoButton:
+					listAddVideoButton.addEventListener(MouseEvent.CLICK, onNormalAddVideo);
+					break;
 				case normalAddVideoButton:
 					normalAddVideoButton.addEventListener(MouseEvent.CLICK, onNormalAddVideo);
+					break;
+				case listAddImageButton:
+					listAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
 				case normalAddImageButton:
 					normalAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
+				case listAddAudioButton:
+					listAddAudioButton.addEventListener(MouseEvent.CLICK, onNormalAddAudio);
+					break;
 				case normalAddAudioButton:
 					normalAddAudioButton.addEventListener(MouseEvent.CLICK, onNormalAddAudio);
+					break;
+				case listAddExerciseButton:
+					listAddExerciseButton.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
 					break;
 				case normalAddExerciseButton:
 					normalAddExerciseButton.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
@@ -187,15 +245,22 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case fontSize3Button:
 					instance.addEventListener(MouseEvent.CLICK, onFontSizeChange);
 					break;
+				case addItemButton:
+					addItemButton.addEventListener(MouseEvent.CLICK, onAddItemClick);
+					break;
+				case itemList:
+					itemList.addEventListener(MouseEvent.CLICK, onItemListClick);
 			}
 		}
 				
 		protected function onNormalAddImage(event:MouseEvent):void {
 			setCurrentState("image");
+			itemClick = true;
 		}
 		
 		protected function onNormalAddAudio(event:MouseEvent):void {
 			setCurrentState("audio");
+			itemClick = true;
 		}
 		
 		protected function onNormalSave(event:MouseEvent):void {
@@ -204,19 +269,23 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onNormalAddText(event:MouseEvent):void {
 			addText.dispatch({});
+			itemClick = true;
 		}
 		
 		protected function onNormalAddPDF(event:MouseEvent):void {
 			setCurrentState("pdf");
+			itemClick = true;
 		}
 		
 		protected function onNormalAddVideo(event:MouseEvent):void {
 			setCurrentState("video");
+			itemClick = true;
 		}
 		
 		protected function onNormalAddExercise(event:MouseEvent):void {
 			// TODO: Add exercise
 			addExercise.dispatch({});
+			itemClick = true;
 		}
 		
 		protected function onNormalCancel(event:MouseEvent):void {
@@ -309,6 +378,29 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected override function getCurrentSkinState():String {
 			return currentState;
+		}
+		
+		protected function onAddItemClick(event:MouseEvent):void {
+			itemList.visible = true;
+			outsideClick = false;
+		}
+		
+		protected function onItemListClick(event:MouseEvent):void {
+			if (!itemClick) {
+				outsideClick = false;
+			}
+		}
+		
+		protected function onStageClick(event:MouseEvent):void {
+			if (outsideClick) {
+				itemList.visible = false;
+				addItemButton.skin.setCurrentState("up", true);
+				addItemButton.selected = false;
+			} else {
+				outsideClick = true;
+				itemClick = false;
+			}
+
 		}
 
 	}

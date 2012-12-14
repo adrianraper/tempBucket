@@ -86,6 +86,10 @@ course|ToolBarView s|ToggleButton {
 	fontSize: 13;
 }
 
+course|ToolBarView s|ToggleButton#addItemButton {
+	skinClass: ClassReference("skins.rotterdam.unit.AddItemToggleButtonSkin");
+}
+
 course|ToolBarView s|Button#normalSaveButton {
 	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
 }
@@ -93,10 +97,24 @@ course|ToolBarView s|Button#normalSaveButton {
 course|ToolBarView s|Button#normalAddVideoButton,{
 	skinClass: ClassReference("skins.rotterdam.unit.AddVideoButtonSkin");
 }
+
+course|ToolBarView s|Button#listAddVideoButton,{
+	skinClass: ClassReference("skins.rotterdam.unit.AddVideoButtonSkin");
+}
+
 course|ToolBarView s|Button#normalAddImageButton,{
 	skinClass: ClassReference("skins.rotterdam.unit.AddImageButtonSkin");
 }
+
+course|ToolBarView s|Button#listAddImageButton,{
+	skinClass: ClassReference("skins.rotterdam.unit.AddImageButtonSkin");
+}
+
 course|ToolBarView s|Button#normalAddAudioButton {
+	skinClass: ClassReference("skins.rotterdam.unit.AddAudioButtonSkin");
+}
+
+course|ToolBarView s|Button#listAddAudioButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddAudioButtonSkin");
 }
 
@@ -104,11 +122,23 @@ course|ToolBarView s|Button#normalAddPDFButton, {
 	skinClass: ClassReference("skins.rotterdam.unit.AddPDFButtonSkin");
 }
 
+course|ToolBarView s|Button#listAddPDFButton, {
+	skinClass: ClassReference("skins.rotterdam.unit.AddPDFButtonSkin");
+}
+
 course|ToolBarView s|Button#normalAddTextButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddTextButtonSkin");
 }
 
+course|ToolBarView s|Button#listAddTextButton {
+	skinClass: ClassReference("skins.rotterdam.unit.AddTextButtonSkin");
+}
+
 course|ToolBarView s|Button#normalAddExerciseButton {
+	skinClass: ClassReference("skins.rotterdam.unit.AddExerciseButtonSkin");
+}
+
+course|ToolBarView s|Button#listAddExerciseButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddExerciseButtonSkin");
 }
 

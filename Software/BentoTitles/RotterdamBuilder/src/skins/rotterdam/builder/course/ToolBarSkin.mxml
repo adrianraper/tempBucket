@@ -5,7 +5,7 @@
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.course.ToolBarView")]
-	</fx:Metadata>
+	</fx:Metadata>	
 	
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
@@ -24,12 +24,12 @@
 		<s:State name="preview" />
 	</s:states>
 	
-	<s:Rect left="3" right="3" height="48" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}">
+	<s:Rect left="3" right="3" height="48" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" bottom="0">
 		<s:fill>
 			<s:SolidColor color="#363636" />
 		</s:fill>
 	</s:Rect>
-	<s:Rect includeIn="normal" left="480" right="123" height="48" >
+	<s:Rect includeIn="normal" left="260" right="295" height="48" bottom="0">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0x8CC63F" ratio="0.5" />
@@ -67,14 +67,9 @@
 		</s:HGroup>
 	</s:HGroup>
 	
-	<!-- Right buttons -->
-	<s:HGroup bottom="0" gap="10" height="48" right="513" verticalAlign="middle">
-		<s:Button includeIn="normal" id="normalSaveButton" label="Save changes" useHandCursor="true" buttonMode="true" />
-	</s:HGroup>
-	
-	<s:HGroup bottom="0" gap="10" height="48" right="394">
-	<s:Group id="symbol" includeIn="normal" >
-		
+	<!-- Right buttons -->	
+	<!--s:HGroup bottom="0" gap="10" height="48" left="270">
+	<s:Group id="symbol" includeIn="normal">
 		<s:Path left="25" top="21" winding="nonZero" data="M20.2129 14.3203C20.2129 17.8867 17.3262 20.7764 13.7598 20.7764 10.1973 20.7764 7.30469 17.8867 7.30469 14.3203 7.30469 10.7568 10.1973 7.86621 13.7598 7.86621 17.3262 7.86621 20.2129 10.7568 20.2129 14.3203ZM14.6445 10.1494L12.875 10.1494
 				12.875 13.4385 9.58594 13.4385 9.58594 15.2061 12.875 15.2061 12.875 18.4961 14.6445 18.4961 14.6445 15.2061 17.9346 15.2061 17.9346 13.4385 14.6445 13.4385 14.6445 10.1494Z" >
 			<s:fill>
@@ -82,22 +77,48 @@
 			</s:fill>
 		</s:Path>
 		
-		<s:Path left="16" top="15" winding="nonZero" data="M13.7598 3.77051C14.6807 3.77051 15.5586 3.93945 16.3789 4.23047L16.3789 0 0 0 0 12.626 6.01172 12.626C5.9668 12.2871 5.93555 11.9434 5.93555 11.5928 5.93555 7.27441 9.43945 3.77051 13.7598 3.77051Z" >
+	    <s:Path left="16" top="15" winding="nonZero" data="M13.7598 3.77051C14.6807 3.77051 15.5586 3.93945 16.3789 4.23047L16.3789 0 0 0 0 12.626 6.01172 12.626C5.9668 12.2871 5.93555 11.9434 5.93555 11.5928 5.93555 7.27441 9.43945 3.77051 13.7598 3.77051Z" >
 			<s:fill>
 				<s:SolidColor color="0x283D0C"/>
-			</s:fill>
+			</s:fill>	
 		</s:Path>
 		<s:Label includeIn="normal" text="Add an item" color="0x283D0C" top="19" left="46"  />
 	</s:Group>
-	</s:HGroup>
+	</s:HGroup-->
+	<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="270" label="Add an Item" includeIn="normal"/>
+	<s:Group id="itemList" left="260" bottom="48" visible="false" includeIn="normal">
+		<s:Rect width="500" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" alpha="0.8">
+			<s:fill>
+				<s:SolidColor color="#363636" />
+			</s:fill>
+		</s:Rect>
+		<s:Label text="Choose the item you would like to add to your unit" color="0xFFFFFF" fontSize="19" top="35" left="35"/>
+		<s:Button id="listAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" top="70" left="35"/>
+		<s:Label text="Add text" top="80" left="80" color="0xFFFFFF" fontSize="14"/>
+		<s:Button id="listAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" top="70" left="250"/>
+		<s:Label text="Add a PDF" top="80" left="295" color="0xFFFFFF" fontSize="14"/>
+		<s:Button id="listAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" top="110" left="35"/>
+		<s:Label text="Add a video" top="120" left="80" color="0xFFFFFF" fontSize="14"/>
+		<s:Button id="listAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" top="110" left="250"/>
+		<s:Label text="Add an image" top="120" left="295" color="0xFFFFFF" fontSize="14"/>
+		<s:Button id="listAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" top="150" left="35"/>
+		<s:Label text="Add an audio" top="160" left="80" color="0xFFFFFF" fontSize="14"/>
+		<s:Button id="listAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true"  top="150" left="250"/>
+		<s:Label text="Add a Clarity exercise" top="160" left="295" color="0xFFFFFF" fontSize="14"/>
+	</s:Group>
 	
-	<s:HGroup bottom="0" right="140" gap="8" height="48" verticalAlign="middle">
+
+	<s:HGroup bottom="0" left="420" gap="8" height="48" verticalAlign="middle">
 	<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" />
+	</s:HGroup>
+	
+	<s:HGroup bottom="0" gap="10" height="48" right="140" verticalAlign="middle">
+		<s:Button includeIn="normal" id="normalSaveButton" label="Save changes" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	
 	<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
