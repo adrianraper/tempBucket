@@ -425,7 +425,11 @@
 			// children groups of any group you select. But probably best leave it for now.
 			var forArray:Array = new Array();
 			//gh:#28
-			if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data) {
+			if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data) {
+				forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
+				forArray = reportable.getSubChildrenOfClass(reportTypeDataProvider[3].data);
+			}
+			else if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data) {
 				forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
 				forArray = reportable.getSubChildrenOfClass(reportTypeDataProvider[3].data);
 			} else {
@@ -493,8 +497,8 @@
 			//TraceUtils.myTrace("oGR class=" + testOnClass);
 			for each (var reportable:Reportable in forReportables.toArray()) {
 				//gh:#28
-				trace("reportable: "+reportable);				
-				if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data) {
+				trace("reportable: "+reportable);		
+				if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data || reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data ) {
 					if (reportable is reportTypeDataProvider[3].data) {
 						newForReportables.push(reportable);
 					}

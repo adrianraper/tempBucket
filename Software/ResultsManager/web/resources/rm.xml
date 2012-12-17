@@ -571,6 +571,7 @@
 			<lit name="audioPreview">Click the play button below to preview </lit>
 			<lit name="pdfPreview">Click the PDF image below to preview </lit>
 			<lit name="exePreview">Click the exercise image to preview </lit>
+			<lit name="hiddenContentLabel">Click to edit hidden content</lit>
 		</group>
 	</language>
 </literals>

@@ -21,6 +21,8 @@
 		public static const CHECK_FOLDER:String = "check_folder";
 		public static const COPY_CONTENT_BEFORE:String = "copy_content_before";
 		public static const COPY_CONTENT_AFTER:String = "copy_content_after";
+		//gh:#29
+		public static const DISABLE_CONTENT_EDIT:String = "disable_content_edit";
 		
 		// And to show direct links to content
 		public static const DIRECT_START_LINK:String = "direct_start_link";

@@ -356,8 +356,8 @@
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			if (!data) return;
-			//
 
+			//gh:#28
 			trace("get classs " + ClassUtils.getClass(data));
 			switch (ClassUtils.getClass(data)) {
 				case Title:

@@ -73,6 +73,8 @@ package com.clarityenglish.resultsmanager.view.management {
 			
 			// v3.4 For refreshing content
 			contentView.addEventListener(ContentEvent.GET_CONTENT, onRefreshContent);
+			//gh:#29
+			contentView.addEventListener(ContentEvent.DISABLE_CONTENT_EDIT, onDisableContentEdit);
 
 		}
 		
@@ -297,6 +299,7 @@ package com.clarityenglish.resultsmanager.view.management {
 		}
 		*/
 		public function onCheckBoxClick(data:Object, selected:Boolean):void {
+			trace("enter onCheckBoxClick");
 			var content:Content = data as Content;
 			// You only come here if the checkbox is enabled.
 
@@ -311,6 +314,19 @@ package com.clarityenglish.resultsmanager.view.management {
 		private function onRefreshContent(e:ContentEvent):void {
 			var contentProxy:ContentProxy = facade.retrieveProxy(ContentProxy.NAME) as ContentProxy;
 			contentProxy.getContent();
+		}
+		
+		//gh:#29
+		private function onDisableContentEdit(e:ContentEvent):void {
+			trace("enter onDisableContentEdit");
+			if (!contentView.hiddenContentCheckBox.selected) {
+				contentView.tree.enabled = false;
+			} else {
+				contentView.tree.enabled = true;
+			}
+				
+
+			
 		}
 
 	}

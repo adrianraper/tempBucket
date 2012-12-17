@@ -38,6 +38,7 @@ class ReportBuilder {
 	const SHOW_COMPLETE = "show_complete";
 	//issue:#23
 	const SHOW_EXERCISE_PERCENTAGE = "show_exercise_percentage";
+	const SHOW_EXERCISEUNIT_PERCENTAGE = "show_exerciseunit_percentage";
 	const SHOW_UNIT_PERCENTAGE = "show_unit_percentage";
 	
 	const SHOW_AVERAGE_TIME = "show_average_time";
@@ -103,6 +104,7 @@ class ReportBuilder {
 		if (!isset($this->opts[ReportBuilder::SHOW_COMPLETE])) $this->opts[ReportBuilder::SHOW_COMPLETE] = "";
 		//issue:#23
 		if (!isset($this->opts[ReportBuilder::SHOW_EXERCISE_PERCENTAGE])) $this->opts[ReportBuilder::SHOW_EXERCISE_PERCENTAGE] = "";
+		if (!isset($this->opts[ReportBuilder::SHOW_EXERCISEUNIT_PERCENTAGE])) $this->opts[ReportBuilder::SHOW_EXERCISEUNIT_PERCENTAGE] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_UNIT_PERCENTAGE])) $this->opts[ReportBuilder::SHOW_UNIT_PERCENTAGE] = "";
 		
 		if (!isset($this->opts[ReportBuilder::SHOW_AVERAGE_TIME])) $this->opts[ReportBuilder::SHOW_AVERAGE_TIME] = "";
@@ -117,7 +119,9 @@ class ReportBuilder {
 		
 		//issue:#23	
 		if ($opt == ReportBuilder::WITHIN_COURSE && $value) {
-			    $this->setOpt(ReportBuilder::SHOW_UNIT_PERCENTAGE, true);			
+		    //gh:#23
+			//$this->setOpt(ReportBuilder::SHOW_UNIT_PERCENTAGE, true);
+            $this->setOpt(ReportBuilder::SHOW_EXERCISEUNIT_PERCENTAGE, true);			
 		}
 		
 		// Special cases
@@ -297,6 +301,7 @@ EOD;
 		if ($this->getOpt(ReportBuilder::SHOW_COMPLETE)) { $this->checkGrouped(true); $this->addColumn(null, "complete", "COUNT(s.F_Score)"); }
 		//issue:#23
 		if ($this->getOpt(ReportBuilder::SHOW_EXERCISE_PERCENTAGE)) { $this->checkGrouped(true); $this->addColumn(null, "exercise_percentage", "COUNT(DISTINCT s.F_ExerciseID)"); }
+		if ($this->getOpt(ReportBuilder::SHOW_EXERCISEUNIT_PERCENTAGE)) { $this->checkGrouped(true); $this->addColumn(null, "exerciseUnit_percentage", "COUNT(DISTINCT s.F_ExerciseID)"); }
 		if ($this->getOpt(ReportBuilder::SHOW_UNIT_PERCENTAGE)) { $this->checkGrouped(true); $this->addColumn(null, "unit_percentage", "COUNT(DISTINCT s.F_UnitID)"); }
 		
 		if ($this->getOpt(ReportBuilder::SHOW_AVERAGE_TIME)) { $this->checkGrouped(true); $this->addColumn(null, "average_time", "AVG(s.F_Duration)"); }

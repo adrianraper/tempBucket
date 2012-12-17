@@ -8,6 +8,7 @@ class ReportOps {
 	
 	var $contentMap;
 	
+	var $total;
 	
 	function ReportOps($db) {
 		$this->db = $db;
@@ -425,11 +426,12 @@ class ReportOps {
 		switch ($class) {
 			case "Course":
 				// Get all the Course objects out of the array
-				$ids = array();
+				//gh:#23
+				/*$ids = array();
 				foreach ($idObjects as $idObject)
 					$ids[] = $idObject['Course'];
 					
-				return array(ReportBuilder::FOR_COURSES => $ids);
+				return array(ReportBuilder::FOR_COURSES => $ids);*/
 			case "Unit":
 			case "Exercise":
 			case "Title":
@@ -516,8 +518,13 @@ class ReportOps {
 			} else {
 				$row['courseName'] = '-no name-';
 			}
-		    if (isset($row['unit_percentage'])) {
-		       $row['unit_percentage'] =  $row['unit_percentage']."/".($title->courses[$courseID]->totalUnits);
+			//gh:28
+		    if (isset($row['exerciseUnit_percentage'])) {
+			   $total = 0;
+			   foreach ($title->courses[$courseID]->units as $unit) {
+			       $total = $total + $unit->totalExercises;
+			   }
+		       $row['exerciseUnit_percentage'] =  $row['exerciseUnit_percentage']."/".$total;
 		    }
 		}
 		
