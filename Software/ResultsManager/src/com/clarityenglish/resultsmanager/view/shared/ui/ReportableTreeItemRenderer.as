@@ -291,6 +291,7 @@
 				if (triStateEnabled) {
 				//if (triStateEnabled && checkBox.enabled) {
 					var state:String = getState(data);
+					trace("state is "+state);
 					
 					switch (state) {
 						case OFF:

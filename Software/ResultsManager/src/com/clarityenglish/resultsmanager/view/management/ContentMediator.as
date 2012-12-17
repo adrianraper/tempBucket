@@ -269,14 +269,14 @@ package com.clarityenglish.resultsmanager.view.management {
 			// v3.1 You don't want reporters to do any selecting with hidden content
 			// though it would be nice if they could see it...
 			// v3.4 This is failing even when I click a group. Due to ManageableCMManager
-			return ((selectedManageable is Group) && (Constants.userType != User.USER_TYPE_REPORTER));
+			return ((selectedManageable is Group) && (Constants.userType != User.USER_TYPE_REPORTER)) && (contentView.hiddenContentCheckBox.selected);
 		}
 		
 		public function isCheckBoxSelected(data:Object):Boolean {
 			// Disabled checkboxes are always unselected (it looks odd otherwise) 
 			// v3.1 But maybe reporters can see anyway. No, this just blanks the whole item because it is keyed on selectedManageable.
 			// If there is no selectedManageable we could default to the top level. If selectedManageable is a user, send parent group instead.
-			if (!isCheckBoxEnabled(data)) return false;
+			if (!((selectedManageable is Group) && (Constants.userType != User.USER_TYPE_REPORTER))) return false;
 			//if (isCheckBoxEnabled(data) || (Constants.userType == User.USER_TYPE_REPORTER)) {
 			//} else {
 			//	return false;
@@ -318,15 +318,8 @@ package com.clarityenglish.resultsmanager.view.management {
 		
 		//gh:#29
 		private function onDisableContentEdit(e:ContentEvent):void {
-			trace("enter onDisableContentEdit");
-			if (!contentView.hiddenContentCheckBox.selected) {
-				contentView.tree.enabled = false;
-			} else {
-				contentView.tree.enabled = true;
-			}
-				
-
-			
+			trace("enter onDisableContentEdit");			
+			contentView.tree.invalidateList();
 		}
 
 	}

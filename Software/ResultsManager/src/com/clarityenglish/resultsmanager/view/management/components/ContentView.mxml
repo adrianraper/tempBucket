@@ -556,10 +556,10 @@
 		<mx:Button id="refreshButton" visible="true" height="18" click="onRefreshButtonClick()" />
 	</mx:HBox>
 	<mx:HBox>
+		<mx:Label width="100%" id="detailedContentLabel" paddingTop="0" paddingBottom="0" truncateToFit="true"/>
 		<mx:CheckBox id="hiddenContentCheckBox" click="onHiddenContentCheckBoxClick()"/>
 		<mx:Label id="hiddenContentLabel" />
-	</mx:HBox>	
-	<mx:Label width="100%" id="detailedContentLabel" paddingTop="0" paddingBottom="0" truncateToFit="true" />
+	</mx:HBox>		
 	<mx:VBox width="100%" height="100%" verticalGap="1">
 		<slt:SpringLoadedTree id="tree"
 							openOnClick="false"
@@ -578,7 +578,6 @@
 							labelField="name"
 							itemRollOver="onItemRollOver(event)"
 							change="onChange()" 
-						    enabled="false"
 							/>
 						<!-- Use these settings if you want to release RM without drragging in ECC -->
 						<!-- dragEnabled="false" -->

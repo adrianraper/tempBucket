@@ -57,6 +57,7 @@
 			
 		//gh:28
 		private var forClass:String;
+		private var testOnClass:Object; 
 		
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
@@ -117,7 +118,7 @@
 		public function set onReportables(onReportables:Array):void {
 			_onReportables = onReportables;
 			
-			var testOnClass:Object = new (ClassUtils.checkObjectClasses(onReportables))();
+			testOnClass = new (ClassUtils.checkObjectClasses(onReportables))();
 			// v3.2 You don't know forReportables yet - this is all about building the window to choose for reportables!
 			//var testForClass:Class = ClassUtils.checkObjectClasses(forReportables.toArray());
 			TraceUtils.myTrace("onReportables class=" + testOnClass); 
@@ -424,18 +425,25 @@
 			// be making the SQL bigger. In fact, it would let you drop that part of the SQL that finds the 
 			// children groups of any group you select. But probably best leave it for now.
 			var forArray:Array = new Array();
+			trace("forClass is "+ reportable.getSubChildrenOfClass(reportTypeComboBox.selectedItem.data));
 			//gh:#28
-			if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data) {
-				forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
-				forArray = reportable.getSubChildrenOfClass(reportTypeDataProvider[3].data);
-			}
-			else if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data) {
-				forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
-				forArray = reportable.getSubChildrenOfClass(reportTypeDataProvider[3].data);
-			} else {
+			if (testOnClass is Manageable) {
+				if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data) {
+					forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
+					forArray = reportable.getSubChildrenOfClass(reportTypeDataProvider[3].data);
+				}
+				else if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data) {
+					forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
+					forArray = reportable.getSubChildrenOfClass(reportTypeDataProvider[3].data);
+				} else {
+					forArray = reportable.getSubChildrenOfClass(reportTypeComboBox.selectedItem.data);
+					forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
+				}
+			} else if (testOnClass is Content) {
 				forArray = reportable.getSubChildrenOfClass(reportTypeComboBox.selectedItem.data);
 				forClass = ClassUtils.getClassAsString( reportTypeComboBox.selectedItem.data);
 			}
+			
 			
 			//TraceUtils.myTrace("got " + forArray.length + " children " + reportTypeComboBox.selectedItem.data);
 			for each (var newReportable:Reportable in forArray) {
@@ -497,16 +505,22 @@
 			//TraceUtils.myTrace("oGR class=" + testOnClass);
 			for each (var reportable:Reportable in forReportables.toArray()) {
 				//gh:#28
-				trace("reportable: "+reportable);		
-				if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data || reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data ) {
-					if (reportable is reportTypeDataProvider[3].data) {
-						newForReportables.push(reportable);
+				if (testOnClass is Manageable) {
+					if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data || reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data ) {
+						if (reportable is reportTypeDataProvider[3].data) {
+							newForReportables.push(reportable);
+						}
+					} else {
+						if (reportable is reportTypeComboBox.selectedItem.data) {
+							newForReportables.push(reportable);
+						}
 					}
 				} else {
 					if (reportable is reportTypeComboBox.selectedItem.data) {
 						newForReportables.push(reportable);
 					}
 				}
+				
 				
 				//gh:#28
 				/*if (reportable is reportTypeComboBox.selectedItem.data) {
