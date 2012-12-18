@@ -50,9 +50,9 @@ function loadAPIInformation() {
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.22@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	//$inputData = '{"method":"addSubscription","subscriptionID":1020,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
-	//$inputData = '{"method":"saveSubscriptionDetails","email":"douglas.engelbert.2@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
+	//$inputData = '{"method":"saveSubscriptionDetails","email":"douglas.engelbert.24@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"EN","productVersion":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
 	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1040,"status":"paid"}';
-	//$inputData = '{"method":"addSubscription","subscriptionID":"1048","emailTemplateID":"CLS_welcome","paymentMethod":"paypal","loginOption":128}';
+	//$inputData = '{"method":"addSubscription","subscriptionID":"1066","emailTemplateID":"CLS_welcome","paymentMethod":"paypal","loginOption":128}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3

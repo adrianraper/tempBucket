@@ -29,7 +29,7 @@ function loadAPIInformation() {
 	
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getSubscriptionRecords","startDate":"2012-05-01","dbHost":2}';
-	$inputData = '{"method":"mergeDatabases","dbHost":0}';
+	//$inputData = '{"method":"mergeDatabases","dbHost":2}';
 	
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 

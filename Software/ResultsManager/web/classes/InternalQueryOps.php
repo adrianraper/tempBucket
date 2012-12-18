@@ -115,17 +115,17 @@ EOD;
 		} else if ($roots) {
 			$rootList = $roots;
 		} else {
-			return 0;
+			return -1;
 		}
-		$bindingParams = array($expiryDate, $rootList);
+		$bindingParams = array($expiryDate);
 			
 		// Find all the users who we want to expire
+		// Note you can't pass rootList in bindingParams as it appears as a quoted string in that case
 		$sql = <<<SQL
 			SELECT * FROM $database.T_User u, $database.T_Membership m 
 			WHERE u.F_ExpiryDate <= ?
 			AND u.F_UserID = m.F_UserID
-			AND m.F_RootID in (?)
-			AND u.F_StudentID = '57689';
+			AND m.F_RootID in ($rootList)
 SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 
@@ -213,8 +213,6 @@ SQL;
 			DELETE FROM $database.T_Accounts 
 			WHERE F_ExpiryDate <= ?
 SQL;
-		if ($rootList) 
-			$sql .= ' AND F_RootID in (?)';			
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		// send back the number of deleted users

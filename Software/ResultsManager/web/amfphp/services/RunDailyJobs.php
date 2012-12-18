@@ -5,7 +5,8 @@
 
 /*
  * Daily jobs include 
- * archiving expired users from GlobalRoadToIELTS and global_r2iv2
+ * archiving expired users from GlobalRoadToIELTS and global_r2iv2 - stopped 18 Dec 2012
+ * archiving expired users from rack80829
  */
 set_time_limit(300);
 
@@ -24,7 +25,7 @@ if (!Authenticate::isAuthenticated()) {
 	// v3.0.6 This script may be run by CRON too, in which case skip authentication. How to tell?
 	if (isset($_SERVER["SERVER_NAME"])) {
 		echo "<h2>You are not logged in</h2>";
-		//exit(0);
+		exit(0);
 	}
 }
 // Set up line breaks for whether this is outputting to html page or a text file
@@ -59,10 +60,8 @@ function runDailyJobs($triggerDate = null) {
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
 	*/
 	
-	// For the new R2I database
-	// $database = 'global_r2iv2';
-	// For the Road to IELTS accounts in the merged database
-	$database = 'rack80830';
+	// For the Road to IELTS Last Minute accounts in the merged database
+	$database = 'rack80829';
 	$roots = array(100,101,167,168,169,170,171,14028,14030,14031);
 	$usersMoved = $thisService->internalQueryOps->archiveExpiredUsers($expiryDate, $roots, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";

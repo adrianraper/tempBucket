@@ -16,6 +16,7 @@ class Subscription {
 	public $deliveryFrequency;
 	public $contactMethod;
 	public $languageCode;
+	public $productVersion;
 	public $startDate;
 	public $password;
 	public $status;
@@ -58,6 +59,7 @@ class Subscription {
 		$this->contactMethod = $obj->F_ContactMethod;
 		$this->startDate = substr($obj->F_StartDate,0,10).' 00:00:00';
 		$this->languageCode = $obj->F_LanguageCode;
+		$this->productVersion = $obj->F_ProductVersion;
 		$this->orderRef = $obj->F_OrderRef;
 		$this->dateStamp = $obj->F_DateStamp;
 	}		
@@ -80,6 +82,7 @@ class Subscription {
 		$array['F_ContactMethod'] = $this->contactMethod;
 		$array['F_StartDate'] = $this->startDate;
 		$array['F_LanguageCode'] = $this->languageCode;
+		$array['F_ProductVersion'] = $this->productVersion;
 		$array['F_OrderRef'] = $this->orderRef;
 		$array['F_DateStamp'] = ($this->dateStamp) ? $this->dateStamp : date('Y-m-d H:i:s');
 
@@ -106,6 +109,8 @@ class Subscription {
 			$this->country = $info['country'];
 		if (isset($info['languageCode'])) 
 			$this->languageCode = $info['languageCode'];
+		if (isset($info['productVersion'])) 
+			$this->productVersion = $info['productVersion'];
 		if (isset($info['contactMethod']))
 			$this->contactMethod = $info['contactMethod'];
 		if (isset($info['deliveryFrequency']))
