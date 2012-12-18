@@ -48,14 +48,16 @@
 			<lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple Exercise nodes in the menu xml matching {href}</lit>
 			<lit name="errorCantFindExerciseWithHref" code="404">Unable to find any Exercise nodes in the menu xml matching {href}</lit>
 			
-			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
-			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorDatabaseReading" code="500">Error reading from the database. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorDatabaseWriting" code="501">Error writing to the database. Please contact support@clarityenglish.com.</lit>
 
-			<lit name="errorSavingCourse" code="700">Error whilst saving this course. Please contact support@clarityenglish.com.</lit>
+			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
+			<lit name="errorVideoLoad" code="602">This URL isn't recognised as a YouTube video. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY</lit>
+			
+			<lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorSecurity" code="701">Security error</lit>
 			<lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
 			
-			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			<lit name="printButton">Print</lit>
 			<lit name="noButton">No</lit>
 			<lit name="yesButton">Yes</lit>

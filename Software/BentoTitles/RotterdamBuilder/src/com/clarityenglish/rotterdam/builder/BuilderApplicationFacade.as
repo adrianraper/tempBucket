@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.bento.controller.BentoResetCommand;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.controller.ShowErrorCommand;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupCommand;
@@ -78,6 +79,9 @@
 			registerCommand(RotterdamNotifications.IMAGE_WIDGET_ADD, ImageWidgetAddCommand);
 			registerCommand(RotterdamNotifications.AUDIO_WIDGET_ADD, AudioWidgetAddCommand);
 			registerCommand(RotterdamNotifications.EXERCISE_WIDGET_ADD, ExerciseWidgetAddCommand);
+			
+			// gh#64
+			registerCommand(RotterdamNotifications.VIDEO_LOAD_ERROR, ShowErrorCommand);
 			
 			registerCommand(RotterdamNotifications.MEDIA_SELECT, MediaSelectCommand);
 			registerCommand(RotterdamNotifications.MEDIA_CLOUD_SELECT, MediaCloudSelectCommand);
