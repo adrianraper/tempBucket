@@ -716,8 +716,7 @@ CREATE TABLE `T_Accounts_Expiry` (
   `F_Checksum` varchar(256) DEFAULT NULL,
   `F_DeliveryFrequency` int(10) DEFAULT NULL,
   `F_LicenceClearanceDate` datetime DEFAULT NULL,
-  `F_LicenceClearanceFrequency` varchar(16) DEFAULT NULL,
-  PRIMARY KEY (`F_RootID`,`F_ProductCode`)
+  `F_LicenceClearanceFrequency` varchar(16) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 -- or --
 ALTER TABLE T_Accounts_Expiry ADD COLUMN `F_ProductVersion` varchar(8) NULL DEFAULT NULL  AFTER `F_LanguageCode`;
@@ -725,3 +724,7 @@ ALTER TABLE T_Accounts_Expiry ADD COLUMN `F_ProductVersion` varchar(8) NULL DEFA
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (841, NOW(), 'product version and customer type added');
+
+ALTER TABLE `rack80829`.`T_Accounts_Expiry` 
+DROP PRIMARY KEY ;
+

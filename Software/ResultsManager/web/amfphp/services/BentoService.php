@@ -319,6 +319,20 @@ class BentoService extends AbstractService {
 		// This path is relative to the Bento application, not this script
 		// TODO. Long term. It might be much quicker to always get everything as none of the calls should be expensive
 		// if we keep the everyone summary coming from a computed table.
+		
+		// HCT hack.
+		// If the passed menu file doesn't contain a correct version, add it in
+		if (stristr($menuXMLFile, '-.xml')) {
+			$menuXMLFile = preg_replace('/(\w+)-\.xml/i', '$1-FullVersion.xml', $menuXMLFile);
+		}
+		// and the passed user might just be an id, in which case build a temp User object
+		if (!isset($user->userID)) {
+			$userID = $user;
+			$user = new User();
+			$user->userID = $userID;
+			$user->userType = 0;
+		}
+				
 		if (stristr($menuXMLFile, 'http://') === FALSE) {
 			$menuXMLFile = '../../'.$menuXMLFile;
 		}
