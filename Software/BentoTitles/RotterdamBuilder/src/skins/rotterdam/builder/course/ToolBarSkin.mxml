@@ -85,7 +85,7 @@
 		<s:Label includeIn="normal" text="Add an item" color="0x283D0C" top="19" left="46"  />
 	</s:Group>
 	</s:HGroup-->
-	<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="270" label="Add an Item" includeIn="normal"/>
+	<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="275" label="Add an Item" includeIn="normal"/>
 	<s:Group id="itemList" left="260" bottom="48" visible="false" includeIn="normal">
 		<s:Rect width="500" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" alpha="0.8">
 			<s:fill>
@@ -108,7 +108,7 @@
 	</s:Group>
 	
 
-	<s:HGroup bottom="0" left="420" gap="8" height="48" verticalAlign="middle">
+	<s:HGroup bottom="0" left="430" gap="8" height="48" verticalAlign="middle">
 	<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" />
@@ -122,7 +122,7 @@
 	</s:HGroup>
 	
 	<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
-		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" useHandCursor="true" buttonMode="true" width="133"/>
 	</s:HGroup>
 	
 	<s:HGroup bottom="0" right="2" gap="3" height="48" verticalAlign="middle">

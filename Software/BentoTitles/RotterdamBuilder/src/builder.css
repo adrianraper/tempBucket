@@ -72,6 +72,18 @@ course1|CourseView s|Button#addUnitButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.AddUnitButtonSkin");
 }
 
+course1|CourseView s|BorderContainer#unitContainer {
+	skinClass: ClassReference("skins.rotterdam.builder.course.UnitListContainerSkin");
+}
+
+course1|CourseView s|Button#courseSettingsButton {
+	skinClass: ClassReference("skins.rotterdam.builder.course.CourseSettingButtonSkin");
+}
+
+course1|CourseView s|Button#coursePublishButton {
+	skinClass: ClassReference("skins.rotterdam.builder.course.CoursePublishButtonSkin");
+}
+
 course|ToolBarView {
 	skinClass: ClassReference("skins.rotterdam.builder.course.ToolBarSkin");
 }
