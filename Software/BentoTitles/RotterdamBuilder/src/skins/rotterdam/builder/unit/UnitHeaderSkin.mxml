@@ -16,7 +16,10 @@
 	
 	<s:Rect width="100%" height="37" radiusX="5" radiusY="5">
 		<s:fill>
-			<s:SolidColor color="#000000" />
+			<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
+				<s:GradientEntry color="#333333" ratio="0"/>
+				<s:GradientEntry color="#595959" ratio="1"/>
+			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
 	

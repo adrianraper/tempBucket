@@ -83,7 +83,7 @@
 	</s:Rect>
 	
 	<s:Group id="symbol" top="1" left="3" alpha.overStates="0.8">
-		<widgets:CogIcon2 top="8" left="6"/>
+		<widgets:CogIcon2 top="6" left="6"/>
 		<s:Label id="labelDisplay"
 				 maxDisplayedLines="1" verticalAlign="middle"
 				 paddingLeft="30" paddingRight="10" top="10" bottom="2">

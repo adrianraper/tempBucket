@@ -182,6 +182,10 @@ unit|UnitHeaderView {
 	skinClass: ClassReference("skins.rotterdam.builder.unit.UnitHeaderSkin");
 }
 
+unit|UnitHeaderView s|Button#editButton {
+	skinClass: ClassReference("skins.rotterdam.builder.unit.EditButtonSkin");
+}
+
 uniteditor|UnitEditorView {
 	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.UnitEditorSkin");
 }
