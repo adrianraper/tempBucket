@@ -327,6 +327,8 @@
 			<lit name="studentIDExistsError">Learner ID '{studentID}' already exists.</lit>
 			<lit name="usernameAndIDExistsError">Username '{username}' and learner ID '{studentID}' already exist.</lit>
 			<lit name="exceedsMaximumUserTypeError">This would exceed the maximum number of users allowed of this type.</lit>
+			<lit name="emailExistsError">Email '{email}' already exist.</lit>
+			
 			
 			<lit name="tutorialHiddenContent">/RMHiddenContent_tutorial.html</lit>
 			<lit name="guide">/Results Manager Guide.pdf</lit>

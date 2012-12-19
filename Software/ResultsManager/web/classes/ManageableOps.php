@@ -124,6 +124,7 @@ class ManageableOps {
 		//NetDebug::trace('addUser rc='.$rc['returnCode']);
 		// v3.6.1 More, this now returns full information if it is NOT a valid user
 		//if ($rC>0) {
+		//gh:#98		
 		if ($rc['returnCode']>0) {
 			// This user cannot be added (probably because it does not have a unique username in this root context)
 			// TODO: AR We should allow unique ID as an option. Kind of complex!
@@ -132,7 +133,8 @@ class ManageableOps {
 			// Perhaps I could get back an object from isUserValid {name, id, group) with items only set if they clash.
 			// I wonder if we ought to be checking for duplicate emails too?
 			// Hijack the exception code to send back the groupID. I don't like it one little bit.
-			if (($rc['returnCode'] & 1) && ($rc['returnCode'] & 2)) {
+			//gh:#98 $rc['returnCode'] & 3
+           if (($rc['returnCode'] & 1) && ($rc['returnCode'] & 2)) {
 				//NetDebug::trace('so generate name and studentID exception for group '.$rc['returnInfo'][0]['group']);
 				// both name and ID are duplicates
 				throw new Exception($this->copyOps->getCopyForId("usernameAndIDExistsError", array("username" => $user->name, "studentID" => $user->studentID))
@@ -142,13 +144,17 @@ class ManageableOps {
 				// just the ID is duplicated
 				throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array("studentID" => $user->studentID))
 									, $rc['returnInfo'][0]['group']);
-			} else {
+			} elseif ($rc['returnCode'] & 4 ) {
+			    throw new Exception($this->copyOps->getCopyForId("emailExistsError", array("email" => $user->email))
+									, $rc['returnInfo'][0]['group']);
+	        } else {
 				//NetDebug::trace('so generate name exception for group '.$rc['returnInfo'][0]['group']);
 				// assume any other error is the name
 				throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array("username" => $user->name))
 									, $rc['returnInfo'][0]['group']);
 			}
 		}
+		
 		
 		// Check this doesn't exceed the MAX_userType for teachers, authors and reporters
 		if (!$this->canAddUsersOfType($user->userType, 1))
@@ -404,7 +410,9 @@ EOD;
 						// just the ID is duplicated
 						throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array("studentID" => $user->studentID)));
 					}
-				} else {
+				} elseif ($rcType & 4 ) {
+			        throw new Exception($rcType.' '.$this->copyOps->getCopyForId("emailExistsError", array("email" => $user->email)));
+	            } else {
 					// assume any other error is the name
 					throw new Exception($rcType.' '.$this->copyOps->getCopyForId("usernameExistsError", array("username" => $user->name)));
 				}
@@ -1636,6 +1644,8 @@ EOD;
 		$username = $user->name;
 		$password = $user->password;
 		$studentID = $user->studentID;
+		//gh:#98
+		$email = $user->email;
 		
 		// v3.6.1 Check Access Control
 		$sql = 	<<<EOD
@@ -1688,6 +1698,52 @@ EOD;
 			$rootClause = '';
 		}
 		
+		//gh:#98
+	    if ($email) {
+		    $sql = <<<EOD
+		       SELECT distinct(u.F_UserID) as userID, u.F_UserName, u.F_StudentID, m.F_GroupID, u.F_Email
+               FROM T_User u, T_Membership m
+               WHERE u.F_UserID=m.F_UserID
+               AND u.F_Email = ?
+EOD;
+            $rs = $this->db->Execute($sql, array($email));
+		
+		    $rc = Array();
+		    $rc['returnInfo'] = Array();
+		
+		    switch ($rs->RecordCount()) {
+				case 0:
+					// There are no duplicates
+					// But you might need to check for ID too
+					// return true;
+					$emailOK = true;
+					break;
+				case 1:
+					$firstRecord = $rs->FetchNextObj();
+					if ((int)($firstRecord->userID) == (int)($user->userID)) {
+						//NetDebug::trace('but it is the same person');
+						$emailOK = true;
+					} else {
+						//NetDebug::trace('found another person by name');
+						$emailOK = false;
+						$rc['returnInfo'][] = Array('email'=>$firstRecord->F_Email, 'group'=>$firstRecord->F_GroupID);
+					}
+					break;
+				default:
+					// You found many existing users with this name
+					// Is this really an exception, or just a sign that this is a user your can't add/update?
+					//throw new Exception("isUserValid: More than one user was returned with username '".$username."'");
+					//return false;
+					$emailOK = false;
+					// You really should send back info on all the duplicates to be useful
+					while($record = $rs->FetchNextObj()) {
+						$rc['returnInfo'][] = Array('email' => $record->F_Email, 'group' => $record->F_GroupID);
+					}
+	        }
+		} else {
+		    $emailOK = true;
+		}
+		
 		// Bento - if the loginOption is 2, then we don't care if the name is not unique.
 		if ($loginOption & 1) {
 			// Ensure the username is unique within this context
@@ -1722,9 +1778,10 @@ EOD;
 			//$rs = $this->db->Execute($sql, array($username, $rootID));
 			$rs = $this->db->Execute($sql, array($username));
 			
-			// v3.6.1 Initialise return
+			//gh:#98
+			/*// v3.6.1 Initialise return
 			$rc = Array();
-			$rc['returnInfo'] = Array();
+			$rc['returnInfo'] = Array();*/
 			
 			switch ($rs->RecordCount()) {
 				case 0:
@@ -1820,8 +1877,9 @@ EOD;
 		// 2 = id failed
 		//return ($nameOK && $idOK);
 		$returnCode=0;
-		if (!$nameOK) $returnCode+=1;
-		if (!$idOK) $returnCode += 2;
+		if (!$nameOK) $returnCode += 1;
+		if (!$idOK) $returnCode += 2;	   
+		if (!$emailOK) $returnCode += 4;
 		$rc['returnCode']=$returnCode;
 		//return $returnCode;
 		return $rc;
