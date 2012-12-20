@@ -24,7 +24,7 @@ if (!Authenticate::isAuthenticated()) {
 	// v3.0.6 This script may be run by CRON too, in which case skip authentication. How to tell?
 	if (isset($_SERVER["SERVER_NAME"])) {
 		echo "<h2>You are not logged in</h2>";
-		exit(0);
+		//exit(0);
 	}
 }
 // Set up line breaks for whether this is outputting to html page or a text file
@@ -47,21 +47,28 @@ function runDailyJobs($triggerDate = null) {
 	// Pick up all triggers that are valid on the given date (usually this is going to be today)
 	if (!$triggerDate) $triggerDate = time();
 
-	// Archive expired users for Road to IELTS Last Minute
+	// 1. Archive expired users for Road to IELTS Last Minute
+	
 	// Need date as simple Y-m-d
 	$expiryDate = date('Y-m-d', $triggerDate);
 
-	// For the old database
+	// For the old RTI database
+	/*
 	$database = 'GlobalRoadToIELTS';
 	$usersMoved = $thisService->internalQueryOps->archiveExpiredUsers($expiryDate, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
+	*/
 	
-	// For the new database
-	$database = 'global_r2iv2';
-	$usersMoved = $thisService->internalQueryOps->archiveExpiredUsers($expiryDate, $database);
+	// For the new R2I database
+	// $database = 'global_r2iv2';
+	// For the Road to IELTS accounts in the merged database
+	$database = 'rack80830';
+	$roots = array(100,101,167,168,169,170,171,14028,14030,14031);
+	$usersMoved = $thisService->internalQueryOps->archiveExpiredUsers($expiryDate, $roots, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
 	
-	// Archive expired titles from accounts
+	// 2. Archive expired titles from accounts
+	
 	// We want to archive 1 month after expiry, so send in 1 month ago as the date
 	$expiryDate = date('Y-m-d', addDaysToTimestamp($triggerDate, -31));
 	$database = 'rack80829';

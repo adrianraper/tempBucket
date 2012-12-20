@@ -12,6 +12,8 @@
  */
 //session_id($_GET['PHPSESSID']);
 
+ini_set('max_execution_time', 300); // 5 minutes
+
 require_once(dirname(__FILE__)."/MinimalService.php");
 
 $thisService = new MinimalService();
@@ -27,7 +29,7 @@ function loadAPIInformation() {
 	
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getSubscriptionRecords","startDate":"2012-05-01","dbHost":2}';
-	$inputData = '{"method":"mergeDatabases","dbHost":2}';
+	$inputData = '{"method":"mergeDatabases","dbHost":0}';
 	
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
@@ -92,6 +94,9 @@ function returnError($errCode, $data = null) {
 	exit(0);
 }
 
+/*
+ * Action for the script
+ */
 // Load the passed data
 try {
 	// Read and validate the data

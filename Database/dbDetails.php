@@ -48,9 +48,9 @@ class DBDetails {
 				break;
 			case 20:
 				$this->driver = "mysql";
-				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
+				$this->host = "localhost";
 				$this->user = "clarity";
-				$this->password = "clarity123";
+				$this->password = "clarity";
 				$this->dbname = "rack80829";
 				break;
 			/*
@@ -80,7 +80,7 @@ class DBDetails {
 				$this->host = "localhost";
 				$this->user = "clarity";
 				$this->password = "clarity";
-				$this->dbname = "rack80829";
+				$this->dbname = "rack80830";
 		}
 
 		// Build the dsn based on a username or not

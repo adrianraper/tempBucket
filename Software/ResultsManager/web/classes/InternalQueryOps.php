@@ -106,81 +106,92 @@ EOD;
 		return $this->db->Affected_Rows();
 	}
 	
-	// For archiving expired users.
+	// For archiving expired users from a number of roots.
 	// Expected to be run by a daily CRON job
-	function archiveExpiredUsers($expiryDate, $database) {
+	function archiveExpiredUsers($expiryDate, $roots, $database) {
 		
-		// copy the expired records to the expiry tables
-		// first records from T_User
+		if (is_array($roots)) {
+			$rootList = implode(',', $roots);
+		} else if ($roots) {
+			$rootList = $roots;
+		} else {
+			return 0;
+		}
+		$bindingParams = array($expiryDate, $rootList);
+			
+		// Find all the users who we want to expire
 		$sql = <<<SQL
-			INSERT INTO $database.T_User_Expiry
-			SELECT * FROM $database.T_User where F_ExpiryDate <= ?;
+			SELECT * FROM $database.T_User u, $database.T_Membership m 
+			WHERE u.F_ExpiryDate <= ?
+			AND u.F_UserID = m.F_UserID
+			AND m.F_RootID in (?)
+			AND u.F_StudentID = '57689';
 SQL;
-		$bindingParams = array($expiryDate);
 		$rs = $this->db->Execute($sql, $bindingParams);
 
-		// TODO. You could save a lot of time by getting the list of userIDs from one SQL call
-		// and then passing it to the rest of the calls. At the moment you make the same
-		// SQL call 7 times - and it is a big table too.
+		// Loop round the recordset, inserting to *_Expiry then deleting the related records for each userID
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				
+				$this->db->StartTrans();
+				
+				$userID = $dbObj->F_UserID;
+				$bindingParams = array($userID);
+				
+				$sql = <<<SQL
+					INSERT INTO $database.T_Membership_Expiry
+					SELECT * FROM $database.T_Membership 
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM $database.T_Membership
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO $database.T_Session_Expiry
+					SELECT * FROM $database.T_Session 
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM $database.T_Session
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO $database.T_Score_Expiry
+					SELECT * FROM $database.T_Score 
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM $database.T_Score
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO $database.T_User_Expiry
+					SELECT * FROM $database.T_User 
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM $database.T_User
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$this->db->CompleteTrans();
+			}
+		}
 		
-		// and the membership records
-		$sql = <<<SQL
-			INSERT INTO $database.T_Membership_Expiry
-			SELECT * FROM $database.T_Membership where F_UserID in 
-			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);
-SQL;
-		$bindingParams = array($expiryDate);
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		// and the score records
-		$sql = <<<SQL
-			INSERT INTO $database.T_Score_Expiry
-			SELECT * FROM $database.T_Score where F_UserID in 
-			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);
-SQL;
-		$bindingParams = array($expiryDate);
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		// and the session records
-		$sql = <<<SQL
-			INSERT INTO $database.T_Session_Expiry
-			SELECT * FROM $database.T_Session where F_UserID in 
-			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);
-SQL;
-		$bindingParams = array($expiryDate);
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		// Then delete these records
-		$sql = <<<SQL
-			DELETE FROM $database.T_Score where F_UserID in 
-			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);	
-SQL;
-		$bindingParams = array($expiryDate);
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		$sql = <<<SQL
-			DELETE FROM $database.T_Session where F_UserID in 
-			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);	
-SQL;
-		$bindingParams = array($expiryDate);
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		$sql = <<<SQL
-			DELETE FROM $database.T_Membership where F_UserID in 
-			(SELECT F_UserID FROM $database.T_User where F_ExpiryDate <= ?);	
-SQL;
-		$bindingParams = array($expiryDate);
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		// Finally the T_User records as nothing else depends on them now
-		$sql = <<<SQL
-			DELETE FROM $database.T_User where F_ExpiryDate <= ?;	
-SQL;
-		$bindingParams = array($expiryDate);
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		// send back the number of deleted users
-		return $this->db->Affected_Rows();
+		// send back the number of archived users
+		return $rs->RecordCount();
 		
 	}
 	
@@ -191,7 +202,8 @@ SQL;
 		// first records from T_Accounts
 		$sql = <<<SQL
 			INSERT INTO $database.T_Accounts_Expiry
-			SELECT * FROM $database.T_Accounts where F_ExpiryDate <= ?;
+			SELECT * FROM $database.T_Accounts 
+			WHERE F_ExpiryDate <= ?
 SQL;
 		$bindingParams = array($expiryDate);
 		$rs = $this->db->Execute($sql, $bindingParams);
@@ -199,9 +211,10 @@ SQL;
 		// Then delete these records
 		$sql = <<<SQL
 			DELETE FROM $database.T_Accounts 
-			where F_ExpiryDate <= ?;	
+			WHERE F_ExpiryDate <= ?
 SQL;
-		$bindingParams = array($expiryDate);
+		if ($rootList) 
+			$sql .= ' AND F_RootID in (?)';			
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		// send back the number of deleted users
@@ -218,17 +231,21 @@ SQL;
 		$database = 'global_r2iv2';
 		$target = 'rack80829';
 
-		$this->db->StartTrans();
-		
+		//	where F_Email = 'Magdamostkova@hotmail.com';
 		$sql = <<<SQL
 			SELECT * FROM $database.T_User
-			where F_Username like 'Chun%';
+			where F_UserID > 1000
+			LIMIT 0,3000
 SQL;
 		$bindingParams = array();
 		$rs = $this->db->Execute($sql, $bindingParams);
 		
+		echo "There are ".$rs->RecordCount()." users to move.\r\n";
 		if ($rs->RecordCount() > 0) {
 			while ($dbObj = $rs->FetchNextObj()) {
+				
+				$this->db->StartTrans();
+				
 				$logMsg = "";
 				$user = new User();
 				$user->fromDatabaseObj($dbObj);
@@ -278,11 +295,10 @@ SQL;
 				$logMsg .= " and deleted $affectedRows from T_User.\r\n";
 				
 				echo $logMsg;
+				
+				$this->db->CompleteTrans();
 			}
 		}
-		// Q: will this point at rack80829 for the insert?
-
-		$this->db->CompleteTrans();
 		
 		// Issues. 
 		// Need to remove session, score and membership records that are NOT updated
