@@ -60,6 +60,10 @@ courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
 }
 
+courseselector|CourseSelectorView s|Button#createCourseButton {
+	skinClass:ClassReference("skins.rotterdam.builder.courseselector.CreateNewCourseButtonSkin");
+}
+
 buildercourseselector|CourseCreateView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseCreateSkin");
 }
