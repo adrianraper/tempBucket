@@ -52,14 +52,6 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 					}
 					break;
 			
-			// gh#64
-			var type:String = note.getBody().type;
-			switch (type) {
-				case 'youtube':
-					
-					// The current YouTube video link looks like
-					break;
-				
 				default:
 					log.error("Unknown video type " + type);
 					copyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
