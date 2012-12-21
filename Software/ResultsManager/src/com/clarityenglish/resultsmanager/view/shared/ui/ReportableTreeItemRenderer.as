@@ -1,22 +1,26 @@
 ﻿package com.clarityenglish.resultsmanager.view.shared.ui {
-	import com.clarityenglish.resultsmanager.Constants;
-	import com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider;
 	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.common.vo.content.Exercise;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.content.Unit;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.common.vo.manageable.User;
+	import com.clarityenglish.resultsmanager.Constants;
+	import com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider;
+	import com.clarityenglish.utils.TraceUtils;
+	
 	import flash.events.MouseEvent;
+	
 	import mx.controls.CheckBox;
 	import mx.controls.Image;
 	import mx.controls.treeClasses.TreeItemRenderer;
 	import mx.controls.treeClasses.TreeListData;
 	import mx.core.ClassFactory;
+	
+	import nl.demonsters.debugger.MonsterDebugger;
+	
 	import org.davekeen.controls.SmoothImage;
 	import org.davekeen.utils.ClassUtils;
-	import com.clarityenglish.utils.TraceUtils;;	
-	import nl.demonsters.debugger.MonsterDebugger;
 	
 	/**
 	 * ...
@@ -80,6 +84,8 @@
 		private var expiredImage:Image;
 		
 		private var checkBox:CheckBox;
+		
+		private var enableEdit:Boolean;
 		
 		public function ReportableTreeItemRenderer() {
 			super();
@@ -340,9 +346,14 @@
 				}
 				// set a disabled tool tip - overrides others
 				// AR If I only pass a disabled tool tip - I see it on everything. I guess I have to clear out if I don't use it.
-				if (!checkBox.enabled && checkBoxToolTips.disabledCheckBoxToolTip) {
+				if (!checkBox.enabled && !checkBox.selected && checkBoxToolTips.disabledCheckBoxToolTip) {
 					//TraceUtils.myTrace(data.caption + " setting disabledToolTip=" + checkBoxToolTips.disabledCheckBoxToolTip);
 					checkBox.toolTip = checkBoxToolTips.disabledCheckBoxToolTip;
+				}
+				
+				enableEdit = isEnableContentEdit();
+				if (!enableEdit) {
+					checkBox.toolTip = checkBoxToolTips.enableEditContent;
 				}
 				
 				checkBox.setStyle("iconColor", checkBoxColor);
@@ -423,6 +434,11 @@
 		
 		private function isCheckBoxSelected(forData:Object = null):Boolean {
 			return checkBoxRendererProvider.isCheckBoxSelected((forData) ? forData : data);
+		}
+		
+		//gh:#29
+		private function isEnableContentEdit():Boolean {
+			return checkBoxRendererProvider.isEnableContentEdit();
 		}
 		/*
 		private function isContentEdited(forData:Object = null):Boolean {

@@ -404,6 +404,11 @@
 			
 		}
 		
+	    //gh:#29 due to add isEnableContentEdit() in ICheckBoxRendererProvider, we should add isEnableContentEdit() wherever implement ICheckBoxRendererProvider
+	    public function isEnableContentEdit():Boolean {
+			return true;
+		}
+		
 		public function onCheckBoxClick(data:Object, selected:Boolean):void {
 			var reportable:Reportable = data as Reportable;
 			

@@ -87,6 +87,8 @@
 				checkBoxToolTips.offCheckBoxToolTip = copyProvider.getCopyForId("allHiddenContent");
 				checkBoxToolTips.triCheckBoxToolTip = copyProvider.getCopyForId("someHiddenContent");
 				checkBoxToolTips.onCheckBoxToolTip = copyProvider.getCopyForId("noHiddenContent");
+				//gh:29
+				checkBoxToolTips.enableEditContent = copyProvider.getCopyForId("enableEditContent");
 			}
 			tree.itemRenderer = ReportableTreeItemRenderer.getRendererFactory(true, checkBoxRendererProvider, true, 
 						//enabledToolTip, disabledToolTip);

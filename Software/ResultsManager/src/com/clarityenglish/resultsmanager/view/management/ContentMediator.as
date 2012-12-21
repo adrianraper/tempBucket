@@ -74,7 +74,7 @@ package com.clarityenglish.resultsmanager.view.management {
 			// v3.4 For refreshing content
 			contentView.addEventListener(ContentEvent.GET_CONTENT, onRefreshContent);
 			//gh:#29
-			contentView.addEventListener(ContentEvent.DISABLE_CONTENT_EDIT, onDisableContentEdit);
+			contentView.addEventListener(ContentEvent.DISABLE_CONTENT_EDIT, onEnableContentEdit);
 
 		}
 		
@@ -269,6 +269,7 @@ package com.clarityenglish.resultsmanager.view.management {
 			// v3.1 You don't want reporters to do any selecting with hidden content
 			// though it would be nice if they could see it...
 			// v3.4 This is failing even when I click a group. Due to ManageableCMManager
+			//gh:#29
 			return ((selectedManageable is Group) && (Constants.userType != User.USER_TYPE_REPORTER)) && (contentView.hiddenContentCheckBox.selected);
 		}
 		
@@ -299,7 +300,6 @@ package com.clarityenglish.resultsmanager.view.management {
 		}
 		*/
 		public function onCheckBoxClick(data:Object, selected:Boolean):void {
-			trace("enter onCheckBoxClick");
 			var content:Content = data as Content;
 			// You only come here if the checkbox is enabled.
 
@@ -316,9 +316,13 @@ package com.clarityenglish.resultsmanager.view.management {
 			contentProxy.getContent();
 		}
 		
+		//gh:29
+		public function isEnableContentEdit():Boolean{
+			return contentView.hiddenContentCheckBox.selected;
+		}
+		
 		//gh:#29
-		private function onDisableContentEdit(e:ContentEvent):void {
-			trace("enter onDisableContentEdit");			
+		private function onEnableContentEdit(e:ContentEvent):void {		
 			contentView.tree.invalidateList();
 		}
 

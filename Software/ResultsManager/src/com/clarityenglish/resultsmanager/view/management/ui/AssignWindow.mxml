@@ -8,14 +8,15 @@
 				implements="com.clarityenglish.resultsmanager.view.shared.interfaces.ICheckBoxRendererProvider, com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.resultsmanager.Constants;
-		import com.clarityenglish.common.model.interfaces.CopyProvider;;
-		import com.clarityenglish.resultsmanager.view.management.events.ExtraGroupsEvent;
-		import com.clarityenglish.resultsmanager.view.management.ui.treeClasses.AssignTreeDataDescriptor;
-		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
 		import com.clarityenglish.common.vo.manageable.Group;
 		import com.clarityenglish.common.vo.manageable.Manageable;
 		import com.clarityenglish.common.vo.manageable.User;
+		import com.clarityenglish.resultsmanager.Constants;
+		import com.clarityenglish.resultsmanager.view.management.events.ExtraGroupsEvent;
+		import com.clarityenglish.resultsmanager.view.management.ui.treeClasses.AssignTreeDataDescriptor;
+		import com.clarityenglish.resultsmanager.view.shared.ui.ReportableTreeItemRenderer;
+		
 		import mx.collections.ArrayCollection;
 		import mx.collections.ICollectionView;
 		import mx.controls.treeClasses.DefaultDataDescriptor;
@@ -74,7 +75,11 @@
 			var manageable:Manageable = data as Manageable;
 			return (!(parentGroup.contains(manageable)) && parentGroup.uid != manageable.uid);
 		}
-		
+			
+		//gh:#29 due to add isEnableContentEdit() in ICheckBoxRendererProvider, we should add isEnableContentEdit() wherever implement ICheckBoxRendererProvider
+		public function isEnableContentEdit():Boolean {
+			return true;
+		}
 		/**
 		 * Set the given group as selected.  This goes through a bunch of algorithmic shenanigans in order to ensure that the user can't select
 		 * nested classes and that only a single item of a path can be selected at once.

@@ -93,6 +93,7 @@
 			
 			<lit name="content">Content</lit>
 			<lit name="disabledHiddenContent">First click on a group. Then you will see the available content for that group.</lit>
+			<lit name="enableEditContent">You can edit hidden content by clicking checkbox above.</lit>
 			<lit name="allHiddenContent">This content is hidden for the selected group.</lit>
 			<lit name="someHiddenContent">Some of this content is available for the selected group.</lit>
 			<lit name="noHiddenContent">All this content is available for the selected group.</lit>
