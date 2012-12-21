@@ -13,22 +13,15 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
-	
-	
-	<s:layout>
-		<s:VerticalLayout />
-	</s:layout>
 
-	<s:Label text="Choose a Course" top="60" fontSize="16" fontWeight="bold"/>
-	<s:Button id="createCourseButton" label="Create a New Course" />
-	<s:List id="courseList" width="100%" borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.builder.courseselector.CourseListItemRenderer">
+	<s:Label text="Choose a Course" top="15" fontSize="16" fontWeight="bold"/>
+	<s:Button id="createCourseButton" label="Create a New Course" right="10" top="5"/>
+	<s:List id="courseList" width="100%" borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.builder.courseselector.CourseListItemRenderer" top="43">
 		<s:layout>
 			<s:VerticalLayout gap="5" horizontalAlign="justify"/>
 		</s:layout>
-	</s:List>
-	
-	
-	<s:Button id="selectCourseButton" label="Edit course" enabled="{courseList.selectedItem != null}" />
-	<s:Button id="deleteCourseButton" label="Delete course" enabled="{courseList.selectedItem != null}" />
+	</s:List>	
+	<s:Button id="selectCourseButton" label="Edit course" enabled="{courseList.selectedItem != null}" top="{courseList.height+50}"/>
+	<s:Button id="deleteCourseButton" label="Delete course" enabled="{courseList.selectedItem != null}" top="{courseList.height+80}"/>
 	
 </s:Skin>
