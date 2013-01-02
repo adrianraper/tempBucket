@@ -43,16 +43,20 @@ package com.clarityenglish.ielts.view.progress {
 		
 		[SkinPart]
 		public var progressCoverageView:ProgressCoverageView;
-		
-		[SkinPart]
-		public var anonWarning:Group;
+
+		// gh#100
+		//[SkinPart]
+		//public var anonWarning:Group;
+		[Bindable]
+		public var anonUser:Boolean = true;
 		
 		[SkinPart]
 		public var progressAnonymousLabel:Label;
 
 		public var currentCourseClass:String;
 		
-		public var anoyAlertLabel:Label;
+		// gh#100
+		//public var anoyAlertLabel:Label;
 		
 		// #341
 		public var _user:User;
@@ -79,6 +83,7 @@ package com.clarityenglish.ielts.view.progress {
 			
 			if (progressCoverageView)
 				progressCoverageView.courseClass = currentCourseClass;
+			
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -142,7 +147,7 @@ package com.clarityenglish.ielts.view.progress {
 			invalidateSkinState(); // #301
 		}
 		
-		[Bindable]
+		// gh#100 seems this is never used or set
 		public function get user():User {
 			return _user;
 		}
@@ -151,10 +156,10 @@ package com.clarityenglish.ielts.view.progress {
 			if (_user != value) {
 				_user = value;
 			}
-			if (Number(_user.id) < 1) {
-				anonWarning.visible = true;
-			}
+			// gh#100 
+			if (_user && Number(_user.id) > 0)
+				anonUser = false;
+			
 		}
-
 	}
 }

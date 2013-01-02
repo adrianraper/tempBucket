@@ -111,6 +111,10 @@ package com.clarityenglish.ielts.view.login {
 		
 		[Bindable]
 		public var loginEmail_lbl:String;
+
+		// gh#100
+		[Bindable]
+		public var loginPassword_lbl:String;
 		
 		// #341
 		private var _loginOption:Number;
@@ -126,6 +130,9 @@ package com.clarityenglish.ielts.view.login {
 		// #341
 		[Bindable]
 		public var savedName:String;
+		// gh#100
+		[Bindable]
+		public var savedPassword:String;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
@@ -388,7 +395,8 @@ package com.clarityenglish.ielts.view.login {
 					instance.text = copyProvider.getCopyForId("FVTextLabel");
 					break;
 				case loginDetailLabel:
-					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
+					// gh#100
+					if (licenceType == Title.LICENCE_TYPE_NETWORK || licenceType == Title.LICENCE_TYPE_CT) {
 						instance.text = copyProvider.getCopyForId("loginDetailLabelNetwork");
 					} else {
 						instance.text = copyProvider.getCopyForId("loginDetailLabel");
@@ -406,7 +414,8 @@ package com.clarityenglish.ielts.view.login {
 
 		// #341
 		protected override function getCurrentSkinState():String {
-			if (licenceType == Title.LICENCE_TYPE_NETWORK) {
+			// gh#100 Not sure if CT should use network skin?
+			if (licenceType == Title.LICENCE_TYPE_NETWORK || licenceType == Title.LICENCE_TYPE_CT) {
 				var networkState:String = "Network";
 			} else {
 				networkState = "";
@@ -477,12 +486,27 @@ package com.clarityenglish.ielts.view.login {
 			loginName_lbl = copyProvider.getCopyForId("yourName");
 			loginID_lbl = copyProvider.getCopyForId("yourID");
 			loginEmail_lbl = copyProvider.getCopyForId("yourEmail");
+			// gh#100
+			loginPassword_lbl = copyProvider.getCopyForId("passwordLabel");
 		}
 		
 		// #254
 		public function onEnter(event:FlexEvent):void {
 			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
-				var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
+				// gh#100 Tidy up new user details
+				//var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
+				var user:User = new User({password:passwordInput.text});
+				switch (loginOption) {
+					case 1:
+						user.name = loginKeyInput.text;
+						break;
+					case 2:
+						user.studentID = loginKeyInput.text;
+						break;
+					case 128:
+						user.email = loginKeyInput.text;
+						break;
+				}
 				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 			}
 			
@@ -494,7 +518,20 @@ package com.clarityenglish.ielts.view.login {
 					passwordInput.setFocus();
 			} else {
 				if (StringUtil.trim(loginKeyInput.text)) {
-					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:null});
+					// gh#100 Tidy up new user details
+					//user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:null});
+					user = new User({password:null});
+					switch (loginOption) {
+						case 1:
+							user.name = loginKeyInput.text;
+							break;
+						case 2:
+							user.studentID = loginKeyInput.text;
+							break;
+						case 128:
+							user.email = loginKeyInput.text;
+							break;
+					}
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 				}				
 			}
@@ -553,7 +590,8 @@ package com.clarityenglish.ielts.view.login {
 			// Copy fields if appropriate
 			switch (state) { 
 				case 'register':
-					savedName = loginKeyInput.text
+					savedName = loginKeyInput.text;
+					savedPassword = passwordInput.text;
 					break;
 			}
 			// Can't use currentState as that belongs to the view and is not automatically linked to the skin

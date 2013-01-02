@@ -125,9 +125,11 @@ package com.clarityenglish.ielts.view.home {
 			if (noProgressText) noProgressText.text = copyProvider.getCopyForId("noProgressText");
 			if (colorBarIntroLabel) colorBarIntroLabel.text = copyProvider.getCopyForId("colorBarIntroLabel");
 			
+			// gh#100 CT
 			if (welcomeLabel) {
 				if ((licenceType == Title.LICENCE_TYPE_AA) || 
-					((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1))) {
+					((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1)) ||
+					((licenceType == Title.LICENCE_TYPE_CT) && (Number(user.id) < 1))) {
 					if (productVersion == IELTSApplication.DEMO) {
 						welcomeLabel.text = copyProvider.getCopyForId("demoWelcomeLabel");
 					} else {
@@ -140,8 +142,9 @@ package com.clarityenglish.ielts.view.home {
 			
 			if (noticeLabel) {
 				// TODO. Network licence doesn't want the note about test date, but CT licence does
-				if (licenceType == Title.LICENCE_TYPE_AA || 
-					licenceType == Title.LICENCE_TYPE_NETWORK) {
+				if ((licenceType == Title.LICENCE_TYPE_AA) || 
+					((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1)) ||
+					((licenceType == Title.LICENCE_TYPE_CT) && (Number(user.id) < 1))) {
 					noticeLabel.text = "Licenced to " + accountName + ".";
 				} else {
 					if (user.examDate) {

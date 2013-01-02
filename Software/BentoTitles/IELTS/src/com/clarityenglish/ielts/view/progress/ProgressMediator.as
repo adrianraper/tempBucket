@@ -2,6 +2,7 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.ielts.model.IELTSProxy;
 	
@@ -29,6 +30,10 @@
 			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			view.currentCourseClass = ieltsProxy.currentCourseClass;
+			
+			// Inject some data to the screen.
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			view.user = loginProxy.user;
 		}
         
 		override public function listNotificationInterests():Array {
@@ -42,7 +47,7 @@
 			switch (note.getName()) {
 				case IELTSNotifications.COURSE_CLASS_SELECTED:
 					view.currentCourseClass = note.getBody() as String;
-					trace("currentCourseClass in ProgressMediator is "+view.currentCourseClass);
+					//trace("currentCourseClass in ProgressMediator is "+view.currentCourseClass);
 					break;
 				
 			}

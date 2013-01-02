@@ -15,13 +15,13 @@
 			<lit name="errorWrongPassword" code="206">That name or id and/or password are not correct. Please try again. (option {loginOption})</lit>
 			<lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
 			<lit name="errorDuplicateUsers" code="208">More than one user matches these details. Please contact your administrator. (login option {loginOption})</lit>
-			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered</lit>
+			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered.</lit>
 			<lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
 			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact your support@clarityenglish.com.</lit>
 			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
 			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
-			<lit name="errorLoginKeyEmpty" code="215">The key field can't be empty ({loginOption})</lit>
+			<lit name="errorLoginKeyEmpty" code="215">You must type your login details. ({loginOption})</lit>
 			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
 			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>		
 			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
@@ -57,9 +57,13 @@
 			<lit name="loadingLabel">loading...</lit>
 			<lit name="closeButton">OK</lit>
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
-			<lit name="loginIDLabel">You need to have already registered your email with your school or with British Council to log in.</lit>
+			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
-			<lit name="loginDetailLabelNetwork">Please type your login details if you want to save your progress records.</lit>
+			<lit name="loginDetailLabelNetwork">
+			     <![CDATA[If you already have an account, type your details to log in.
+If you are a new user, type the login id you want to use.
+If you want to be anonymous, just click Log in.]]>
+            </lit>
 			
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
 			<lit name="LMLabel">Road to IELTS - Last Minute</lit>
@@ -188,10 +192,9 @@
 						<p><span fontWeight="bold">Video recordings</span><br/>
 							Andy Lewis</p>
 						
-						<p><span fontWeight="bold">Sources of original articles and images</span><br/>
-							Photo images are taken from Shutterstock with permission.</p>
-						
-						<p>Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group.</p>
+						<p><span fontWeight="bold">Images</span><br/>
+							Photo images are taken from Shutterstock with permission.<br/>
+                            Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group.</p>
 						
 						<p><span fontWeight="bold">Tapescript</span><br/>
 							Alex Mackarow.</p>
@@ -244,8 +247,7 @@
 							Why Newspapers Will Flourish in the Years Ahead<br/>
 							Why Study Ancient World Cultures?</p>
 						
-						<p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified, the British
-						Council will be pleased to make the necessary arrangements.</p>
+						<p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified,<br/>we will be pleased to make the necessary arrangements.</p>
 			    ]]>
 			</lit>
 			<lit name="keyScreenSpan">Key screens</lit>

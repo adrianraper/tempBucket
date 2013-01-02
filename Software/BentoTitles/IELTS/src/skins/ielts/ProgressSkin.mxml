@@ -43,7 +43,7 @@
 	<s:Spacer height="80" />
 		
 	<s:HGroup width="100%">
-		<s:Label id="progressAnonymousLabel" left="0" height="14" visible="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}" includeInLayout="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}"/>
+		<s:Label id="progressAnonymousLabel" left="0" height="14" visible="{hostComponent.anonUser}" includeInLayout="{hostComponent.anonUser}"/>
 		<s:Spacer width="100%" />
 		<s:ButtonBar id="progressNavBar" height="25" />
 	</s:HGroup>

@@ -36,7 +36,7 @@ package com.clarityenglish.common.view.login {
 		 */
 		override public function onRegister():void {
 			super.onRegister();
-		    trace("register LoginMediator");
+		    //trace("register LoginMediator");
 			view.addEventListener(LoginEvent.LOGIN, onLogin);
 			view.addEventListener(LoginEvent.ADD_USER, onAddUser);
 			view.getTestDrive().add(onTestDrive);
@@ -45,7 +45,7 @@ package com.clarityenglish.common.view.login {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.setLicencee(configProxy.getAccount().name);
 			
-			trace("the product version in LoginM is "+ configProxy.getProductVersion());
+			//trace("the product version in LoginM is "+ configProxy.getProductVersion());
 			view.setProductVersion(configProxy.getProductVersion());
 			view.setProductCode(configProxy.getProductCode());
 			
@@ -106,7 +106,7 @@ package com.clarityenglish.common.view.login {
 					// If we catch this notification here, I want to handle it on the loginView
 					// So I need to reimplement view.showInvalidLogin, and also stop the notification
 					// from going on to be caught be IELTSApplicationMediator.
-					trace("caught login error in login mediator");
+					//trace("caught login error in login mediator");
 					
 					// AR Clear anything that is in the fields out - relevant to returning to this screen on logout
 					view.clearData();
@@ -121,7 +121,7 @@ package com.clarityenglish.common.view.login {
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 						onLogin(new LoginEvent(LoginEvent.LOGIN, user, configProxy.getAccount().loginOption));
 					} else {
-						trace("error from add new user");
+						//trace("error from add new user");
 						// Need to pass the error in. Perhaps the error is flagged as a popup just like wrong password in login.
 						view.setState("registerError");
 					}
@@ -141,9 +141,8 @@ package com.clarityenglish.common.view.login {
 		}
 		
 		// gh#41 Make sure that we know which productCode they want to run
-		
 		private function onTestDrive(productCode:String):void {
-			trace("the productcode in test drive is "+ productCode);
+			//trace("the productcode in test drive is "+ productCode);
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.getConfig().productCode = productCode;			
 		}

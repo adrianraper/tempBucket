@@ -389,7 +389,6 @@ package com.clarityenglish.ielts.view.title {
 			switch (instance) {
 				case navBar:
 					// Network licence doesn't want a My Profile tab
-					// TODO. But CT licence will still want it - and they are a shared value!
 					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
 						navBar.dataProvider = new ArrayCollection( [
 							{ icon: homeIcon, label: copyProvider.getCopyForId("Home"), data: "home" },

@@ -96,7 +96,9 @@ package com.clarityenglish.common.model {
 			
 			// #340
 			// Network allows anonymous entry if all fields are blank
+			// gh#100 as does CT
 			if (((configProxy.getConfig().licenceType == Title.LICENCE_TYPE_NETWORK) || 
+				(configProxy.getConfig().licenceType == Title.LICENCE_TYPE_CT) ||
 				(loginOption & Config.LOGIN_BY_ANONYMOUS)) &&
 				(!user.name || user.name=='') &&
 				(!user.studentID || user.studentID=='') &&
@@ -360,8 +362,10 @@ package com.clarityenglish.common.model {
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
 						
 						// #341 For network, if you don't find the user, offer to add them
+						// gh#100 and for CT too
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						if (configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) {
+						if ((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) ||
+							(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT)) {
 							sendNotification(CommonNotifications.CONFIRM_NEW_USER);
 							
 						// For SCORM, if the user doesn't exist, automatically add them

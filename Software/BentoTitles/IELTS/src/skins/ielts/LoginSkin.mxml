@@ -85,7 +85,9 @@
 			<s:Spacer height="3" />
 			<s:HGroup>
 				<s:Button id="loginButton" label="Log in" />
-				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="login" />
+				<!-- gh#100 
+				<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="loginStates" />
+				-->
 			</s:HGroup>
 			<s:Group>
 					
@@ -97,25 +99,25 @@
 			<s:Label id="registerDetailLabel" 
 					text.registerNetwork="This is the first time you have used the program, click New user to confirm." 
 					width="100%" lineHeight="18" />
-			<s:Spacer height="3" />
+			<s:Spacer height="3" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}"/>
 			<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
 				<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" fontWeight="bold" paddingTop="6" />
 				<s:TextInput id="loginNameInput" width="180" text="{hostComponent.savedName}"/>
 			</s:HGroup>
-			<s:Spacer height="3" />
+			<s:Spacer height="3" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}" />
 			<s:HGroup id="idGroup" visible="{hostComponent.selfRegisterID}" includeInLayout="{hostComponent.selfRegisterID}">
-				<s:Label text="Your ID:" fontWeight="bold" paddingTop="6" />
-				<s:TextInput id="loginIDInput" width="180" />
+				<s:Label id="loginID_lbl" text="{hostComponent.loginID_lbl}" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="loginIDInput" width="180" text="{hostComponent.savedName}"/>
 			</s:HGroup>
-			<s:Spacer height="3" />
+			<s:Spacer height="3" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}" />
 			<s:HGroup id="emailGroup" visible="{hostComponent.selfRegisterEmail}" includeInLayout="{hostComponent.selfRegisterEmail}">
-				<s:Label text="Your email:" fontWeight="bold" paddingTop="6" />
-				<s:TextInput id="loginEmailInput" width="180" left="500" />
+				<s:Label id="loginEmail_lbl" text="{hostComponent.loginEmail_lbl}" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="loginEmailInput" width="180" left="500" text="{hostComponent.savedName}" />
 			</s:HGroup>
-			<s:Spacer height="3" />
+			<s:Spacer height="3" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" />
 			<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
-				<s:Label text="Password:" fontWeight="bold" paddingTop="6" />
-				<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" />
+				<s:Label text="{hostComponent.loginPassword_lbl}" fontWeight="bold" paddingTop="6" />
+				<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" text="{hostComponent.savedPassword}" />
 			</s:HGroup>
 			<s:Spacer height="3" />
 			<s:HGroup>
