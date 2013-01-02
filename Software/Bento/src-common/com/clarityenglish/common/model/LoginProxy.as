@@ -113,7 +113,9 @@ package com.clarityenglish.common.model {
 				
 				// gh#21 you might not know a root, in which case this will return undefined
 				//user != null is for webpage TestDrive
-				if (configProxy.getRootID() && user != null) {
+				// gh#99 But AA licences give you a null user too! Perhaps we don't need webpage TestDrive
+				//if (configProxy.getRootID() && user != null) {
+				if (configProxy.getRootID()) {
 					rootID = new Array(1);
 					rootID[0] = configProxy.getRootID();
 					
@@ -133,7 +135,6 @@ package com.clarityenglish.common.model {
 			
 			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
 			// gh#36 Also need dbHost if this is the first call
-			
 			var params:Array = [ loginObj, loginOption, verified, configProxy.getInstanceID(), configProxy.getConfig().licence, rootID, configProxy.getProductCode(), configProxy.getConfig().dbHost ];
 			new RemoteDelegate("login", params, this).execute();
 		}
