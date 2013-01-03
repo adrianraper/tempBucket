@@ -549,6 +549,20 @@ EOD;
 		//$this->db->Execute($sql, array($loginOption, $selfRegister, $passwordRequired, Session::get('rootID')));
 		// v3.2 F_Verified is an integer
 		$useVerified = ($passwordRequired) ? 1: 0;
+		
+		// gh#101 You must ask for at least the loginOption field if you are self-registering
+		//        sadly email is NOT the same in both!
+		if ($selfRegister && ($selfRegister > 0)) {
+			if ($loginOption == 1) {
+				$selfRegister = $selfRegister | 1;
+			}
+			if ($loginOption == 2) {
+				$selfRegister = $selfRegister | 2;
+			}
+			if ($loginOption == 128) {
+				$selfRegister = $selfRegister | 4;
+			}
+		}
 		$sql = "UPDATE T_AccountRoot SET F_LoginOption=$loginOption, F_SelfRegister=$selfRegister, F_Verified=$useVerified WHERE F_RootID=?";
 		//NetDebug::trace("sql=".$sql);
 		$this->db->Execute($sql, array(Session::get('rootID')));

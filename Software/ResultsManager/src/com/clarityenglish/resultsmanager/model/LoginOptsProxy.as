@@ -26,6 +26,8 @@ package com.clarityenglish.resultsmanager.model {
 		
 		public static const USERNAME_ONLY:int = 1;
 		public static const STUDENTID_ONLY:int = 2;
+		// gh#101
+		public static const EMAIL_ONLY:int = 128;
 		public static const USERNAME_AND_STUDENTID:int = 4;
 		public static const ALLOW_ANONYMOUS:int = 8;
 		public static const NON_CE_LOGIN:int = 16;
@@ -52,7 +54,7 @@ package com.clarityenglish.resultsmanager.model {
 		}
 		
 		public function getLoginOpts():void {
-			TraceUtils.myTrace("proxy.getEmailOpts");
+			//TraceUtils.myTrace("proxy.getEmailOpts");
 			new RemoteDelegate("getLoginOpts", [], this).execute();
 		}
 		
@@ -64,7 +66,9 @@ package com.clarityenglish.resultsmanager.model {
 		public function getLoginTypeLoginOpt():int {
 			if (isLoginOptionSet(USERNAME_ONLY)) return USERNAME_ONLY;
 			if (isLoginOptionSet(STUDENTID_ONLY)) return STUDENTID_ONLY;
-			if (isLoginOptionSet(USERNAME_AND_STUDENTID)) return USERNAME_AND_STUDENTID;
+			// gh#101
+			//if (isLoginOptionSet(USERNAME_AND_STUDENTID)) return USERNAME_AND_STUDENTID;
+			if (isLoginOptionSet(EMAIL_ONLY)) return EMAIL_ONLY;
 			
 			return 0;
 		}
@@ -85,7 +89,9 @@ package com.clarityenglish.resultsmanager.model {
 		public function setLoginTypeLoginOpt(opt:int):void {
 			setLoginOption(USERNAME_ONLY, (opt == USERNAME_ONLY));
 			setLoginOption(STUDENTID_ONLY, (opt == STUDENTID_ONLY));
-			setLoginOption(USERNAME_AND_STUDENTID, (opt == USERNAME_AND_STUDENTID));
+			// gh#101
+			//setLoginOption(USERNAME_AND_STUDENTID, (opt == USERNAME_AND_STUDENTID));
+			setLoginOption(EMAIL_ONLY, (opt == EMAIL_ONLY));
 		}
 		
 		public function setAnonLoginAllowed(anonLoginAllowed:Boolean):void {

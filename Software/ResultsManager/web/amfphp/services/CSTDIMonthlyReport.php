@@ -14,13 +14,20 @@ $minimalService = new MinimalService();
 
  // The script will be run on the first of the month, reporting on the last month
  // It needs to be added to AWS cron to get the monthly triggering.
- if (isset($_GET['month'])) {
- 	$m = $_GET['month']+1;
- } else {
+if (isset($_GET['month'])) {
+	$m = $_GET['month']+1;
+ 	if ($m > 12)
+ 		$m = 1;
+} else {
 	$m = date('n'); 
- }
-$startDate = date('Y-m-d', mktime(1,1,1,$m-1,1,date('Y'))); 
-$endDate = date('Y-m-d', mktime(1,1,1,$m,0,date('Y')));
+}
+if (isset($_GET['year'])) {
+	$y = $_GET['year'];
+} else {
+	$y = date('Y');
+}
+$startDate = date('Y-m-d', mktime(1,1,1,$m-1,1,$y)); 
+$endDate = date('Y-m-d', mktime(1,1,1,$m,0,$y));
 $rootID = 14449;
 
 $outputText = '';
@@ -36,6 +43,7 @@ function writeOut($text, $mode = '') {
 	global $outputDevice;
 	global $outputText;
 	global $m;
+	global $y;
 	
 	$outputText.=$text;
 	if ($outputDevice == 'screen') {
@@ -43,7 +51,7 @@ function writeOut($text, $mode = '') {
 	} else {
 		if ($mode == 'stop') {
 			// workout the filename and open it
-			$datePart = date('Y').$m;
+			$datePart = $y.$m;
 			$baseDir = $GLOBALS['logs_dir'];
 			$baseFolder = realpath($baseDir);
 			if (!$baseFolder)
@@ -111,14 +119,15 @@ function runQuery($rootID, $startDate = null, $endDate = null) {
 	// That seems it will be a lot of separate SQL calls. However it has one great advantage in that 
 	// it will be easier to get previous month's records, which we might have to do.
 	$sql = 	<<< EOD
-				SELECT DISTINCT(u.F_UserID) as userID, u.F_StudentID as cstdi_id
+				SELECT u.F_UserID as userID, u.F_StudentID as cstdi_id, d.F_UnitID as productCode
 				FROM T_ScoreDetail d, T_User u 
 				WHERE d.F_DateStamp >= ?
 				AND d.F_DateStamp <= ?
 				AND d.F_RootID = ?
 				AND d.F_UserID = u.F_UserID
 				AND d.F_ExerciseID IN (51,52)
-				GROUP BY d.F_UserID;
+				GROUP BY d.F_UserID, d.F_UnitID
+				ORDER BY UserID
 EOD;
 	$bindingParams_1 = array($startDate, $endDate, $rootID);
 	$rs_1 = $minimalService->db->GetArray($sql, $bindingParams_1);
@@ -126,6 +135,7 @@ EOD;
 	
 		$user_id = $row_1['cstdi_id'];
 		$userID = $row_1['userID'];
+		$productCode = $row_1['productCode'];
 		
 		// Now you have a user who needs a record this month
 		// So get ALL records that they have done.
@@ -133,16 +143,18 @@ EOD;
 		// Evaluations can be many, but we are supposed to just take the first.
 		// Bugs: You will get a record if an evaluation is repeated this month, even if you shouldn't
 		// Bugs: If a user completes BW, this is going to generate a record for their CP stuff too, even though it shouldn't
+		//		 This can be fixed by passing unitID from the original record to this query.
 		$sql = 	<<< EOD
 					SELECT d.F_UserID, F_UnitID, F_ExerciseID, MIN(F_DateStamp) as firstDate, F_ItemID, F_Score, F_Detail
 					FROM T_ScoreDetail d
 					WHERE d.F_UserID = ?
+					AND d.F_UnitID = ?
 					AND ((d.F_ExerciseID = 51 AND d.F_ItemID=0)
 					OR (d.F_ExerciseID = 52 AND d.F_ItemID=6 AND d.F_Score=1))
 					GROUP BY d.F_UserID, F_UnitID, F_ExerciseID
 					ORDER BY d.F_UnitID, d.F_ExerciseID
 EOD;
-		$bindingParams_2 = array($userID);
+		$bindingParams_2 = array($userID, $productCode);
 		$rs_2 = $minimalService->db->GetArray($sql, $bindingParams_2);
 		
 		// Loop round each record for this user - there might be 2 for each title
@@ -161,7 +173,12 @@ EOD;
 					// Then ready for this new record
 					initRecord($reportRecord);
 				}
-				$lastTitle = $third_Course_id;
+				//RESET THE RECORDS
+				$lastTitle = $third_Course_id;	
+				$quiz_complete_date = '';
+				$score = '';			
+				$eval_complete_date = '';
+				$eval_result = '';					
 			}
 
 			// Have they completed the quiz (means got a certificate?)

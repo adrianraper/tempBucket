@@ -397,7 +397,7 @@ package com.clarityenglish.ielts.view.login {
 				case loginDetailLabel:
 					// gh#100
 					if (licenceType == Title.LICENCE_TYPE_NETWORK || licenceType == Title.LICENCE_TYPE_CT) {
-						instance.text = copyProvider.getCopyForId("loginDetailLabelNetwork");
+						instance.text = copyProvider.getCopyForId("loginDetailLabelNetwork", {loginText:copyProvider.getCopyForId("loginButton")});
 					} else {
 						instance.text = copyProvider.getCopyForId("loginDetailLabel");
 					}

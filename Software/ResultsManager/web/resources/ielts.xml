@@ -12,7 +12,7 @@
 			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
 			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account (productCode={productCode})</lit>
 			<lit name="errorNoProductCodeInRoot" code="205">Your account does not have access to this title. (product code={productCode} root={rootID})</lit>
-			<lit name="errorWrongPassword" code="206">That name or id and/or password are not correct. Please try again. (option {loginOption})</lit>
+			<lit name="errorWrongPassword" code="206">That name or ID and/or password are not correct. Please try again. (option {loginOption})</lit>
 			<lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
 			<lit name="errorDuplicateUsers" code="208">More than one user matches these details. Please contact your administrator. (login option {loginOption})</lit>
 			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered.</lit>
@@ -61,8 +61,8 @@
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
 			<lit name="loginDetailLabelNetwork">
 			     <![CDATA[If you already have an account, type your details to log in.
-If you are a new user, type the login id you want to use.
-If you want to be anonymous, just click Log in.]]>
+If you are a new user, type the login you want to use.
+If you want to be anonymous, just click {loginText}.]]>
             </lit>
 			
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
@@ -73,8 +73,8 @@ If you want to be anonymous, just click Log in.]]>
 			<lit name="loginButton">Log in</lit>
 			<lit name="passwordLabel">Password:</lit>
 			<lit name="yourName">Your name:</lit>
-			<lit name="loginID">Login id:</lit>
-			<lit name="yourID">Your id:</lit>
+			<lit name="loginID">Login ID:</lit>
+			<lit name="yourID">Your ID:</lit>
 			<lit name="yourEmail">Your email:</lit>
 			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
 			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>

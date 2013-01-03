@@ -27,7 +27,9 @@
 			loginTypeFormItem.label = copyProvider.getCopyForId("loginTypeLoginOpt");
 			usernameOnly.label = copyProvider.getCopyForId("usernameOnly");
 			studentIDOnly.label = copyProvider.getCopyForId("studentIDOnly");
-			usernameAndStudentID.label = copyProvider.getCopyForId("usernameAndStudentID");
+			// gh#101
+			//usernameAndStudentID.label = copyProvider.getCopyForId("usernameAndStudentID");
+			emailOnly.label = copyProvider.getCopyForId("emailOnly");
 			
 			// v3.1 Remove this item, a LT licence is not allowed to use anonymous login
 			// and an AA one doesn't need it!
@@ -136,7 +138,8 @@
 						<mx:RadioButtonGroup id="loginTypeOption" />
 						<mx:RadioButton id="usernameOnly" groupName="loginTypeOption" value="{LoginOptsProxy.USERNAME_ONLY}" />
 						<mx:RadioButton id="studentIDOnly" groupName="loginTypeOption" value="{LoginOptsProxy.STUDENTID_ONLY}" />
-						<mx:RadioButton id="usernameAndStudentID" groupName="loginTypeOption" value="{LoginOptsProxy.USERNAME_AND_STUDENTID}" />
+						<!-- gh#101 -->
+						<mx:RadioButton id="emailOnly" groupName="loginTypeOption" value="{LoginOptsProxy.EMAIL_ONLY}" />
 					</mx:FormItem>
 					<!-- 
 					<mx:FormItem id="anonLoginFormItem" direction="horizontal">

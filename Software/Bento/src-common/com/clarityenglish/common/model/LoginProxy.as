@@ -362,10 +362,11 @@ package com.clarityenglish.common.model {
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
 						
 						// #341 For network, if you don't find the user, offer to add them
-						// gh#100 and for CT too
+						// gh#100 and for CT too (so long as selfRegister is set)
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						if ((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) ||
-							(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT)) {
+						if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) ||
+							(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT)) &&
+							configProxy.getAccount().selfRegister > 0) {
 							sendNotification(CommonNotifications.CONFIRM_NEW_USER);
 							
 						// For SCORM, if the user doesn't exist, automatically add them

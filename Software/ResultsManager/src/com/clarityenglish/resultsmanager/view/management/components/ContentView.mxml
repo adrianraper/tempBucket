@@ -62,7 +62,6 @@
 			contentLabel.text = copyProvider.getCopyForId("content");
 			detailedContentLabel.text = copyProvider.getCopyForId("detailedContent");
 			refreshButton.label = copyProvider.getCopyForId("refreshButton");
-			hiddenContentLabel.text = copyProvider.getCopyForId("hiddenContentLabel");
 			
 			//dkTreeControlBar.setCopyProvider(copyProvider);
 			contentCMManager.setCopyProvider(copyProvider);
@@ -558,9 +557,9 @@
 		<mx:Button id="refreshButton" visible="true" height="18" click="onRefreshButtonClick()" />
 	</mx:HBox>
 	<mx:HBox>
-		<mx:Label width="100%" id="detailedContentLabel" paddingTop="0" paddingBottom="0" truncateToFit="true"/>
+		<mx:Spacer width="1" />
 		<mx:CheckBox id="hiddenContentCheckBox" click="onHiddenContentCheckBoxClick()"/>
-		<mx:Label id="hiddenContentLabel" />
+		<mx:Label width="100%" id="detailedContentLabel" paddingTop="0" paddingBottom="0" truncateToFit="true"/>
 	</mx:HBox>		
 	<mx:VBox width="100%" height="100%" verticalGap="1">
 		<slt:SpringLoadedTree id="tree"

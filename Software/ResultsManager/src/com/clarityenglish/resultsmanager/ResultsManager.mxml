@@ -47,9 +47,9 @@
 			private function creationComplete():void {
 				debugger = new MonsterDebugger(this);
 
-				TraceUtils.myTrace("RM started now");
+				//TraceUtils.myTrace("RM started now");
 
-				TraceUtils.myTrace("RM started");
+				//TraceUtils.myTrace("RM started");
 				// Hide the built in context menu
 				var cm:ContextMenu = new ContextMenu();
 				cm.hideBuiltInItems();

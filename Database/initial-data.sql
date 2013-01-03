@@ -122,7 +122,7 @@ UNLOCK TABLES;
 
 LOCK TABLES `T_LicenceType` WRITE;
 /*!40000 ALTER TABLE `T_LicenceType` DISABLE KEYS */;
-INSERT INTO `T_LicenceType` VALUES (1,'Learner Tracking'),(2,'Anonymous Access'),(3,'Network/Concurrent Tracking'),(4,'Single'),(5,'Individual'),(6,'Transferable Tracking');
+INSERT INTO `T_LicenceType` VALUES (1,'Learner Tracking'),(2,'Anonymous Access'),(3,'Network'),(4,'Single'),(5,'Individual'),(6,'Transferable Tracking'), (7,'Concurrent Tracking');
 /*!40000 ALTER TABLE `T_LicenceType` ENABLE KEYS */;
 UNLOCK TABLES;
 
