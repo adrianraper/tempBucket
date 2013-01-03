@@ -369,8 +369,6 @@
 			
 			if (!data) return;
 
-			//gh:#28
-			trace("get classs " + ClassUtils.getClass(data));
 			switch (ClassUtils.getClass(data)) {
 				case Title:
 					if (useLargeIcons) {
@@ -435,7 +433,7 @@
 		private function isCheckBoxSelected(forData:Object = null):Boolean {
 			return checkBoxRendererProvider.isCheckBoxSelected((forData) ? forData : data);
 		}
-		
+
 		//gh:#29
 		private function isEnableContentEdit():Boolean {
 			return checkBoxRendererProvider.isEnableContentEdit();

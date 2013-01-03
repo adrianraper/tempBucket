@@ -80,7 +80,7 @@ class DBDetails {
 				$this->host = "localhost";
 				$this->user = "clarity";
 				$this->password = "clarity";
-				$this->dbname = "rack80830";
+				$this->dbname = "rack80829";
 		}
 
 		// Build the dsn based on a username or not

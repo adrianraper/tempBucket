@@ -11,7 +11,6 @@
 		function onCheckBoxClick(data:Object, selected:Boolean):void;
 		//gh#29
 		function isEnableContentEdit():Boolean;
-		
 	}
 	
 }

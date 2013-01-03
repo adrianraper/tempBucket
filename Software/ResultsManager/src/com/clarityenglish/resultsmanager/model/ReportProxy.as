@@ -183,7 +183,7 @@ package com.clarityenglish.resultsmanager.model {
 			for each (var reportable:Reportable in forReportables) {
 				forReportablesIDObjects.push(reportable.toIDObject());				
 			}
-			trace("forReportablesIDObjects[0] "+ forReportablesIDObjects[0].Unit);	
+			//trace("forReportablesIDObjects[0] "+ forReportablesIDObjects[0].Unit);	
 			
 			// Get the on reportable JSON ID trees
 			var onReportablesIDObjects:Array = new Array();

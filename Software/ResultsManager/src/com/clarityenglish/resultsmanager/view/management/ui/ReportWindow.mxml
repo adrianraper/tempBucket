@@ -430,7 +430,6 @@
 			// be making the SQL bigger. In fact, it would let you drop that part of the SQL that finds the 
 			// children groups of any group you select. But probably best leave it for now.
 			var forArray:Array = new Array();
-			trace("forClass is "+ reportable.getSubChildrenOfClass(reportTypeComboBox.selectedItem.data));
 			//gh:#28
 			if (testOnClass is Manageable) {
 				if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data) {
@@ -509,8 +508,9 @@
 			var testOnClass:Class = ClassUtils.checkObjectClasses(_onReportables);
 			//TraceUtils.myTrace("oGR class=" + testOnClass);
 			for each (var reportable:Reportable in forReportables.toArray()) {
+				//Alice:"testOnClass is Mangeable" is not correct expression, and changed to "_onReportables[0] is Manageable"				
 				//gh:#28
-				if (testOnClass is Manageable) {
+				if (_onReportables[0] is Manageable) {
 					if (reportTypeComboBox.selectedItem.data == reportTypeDataProvider[1].data || reportTypeComboBox.selectedItem.data == reportTypeDataProvider[2].data ) {
 						if (reportable is reportTypeDataProvider[3].data) {
 							newForReportables.push(reportable);

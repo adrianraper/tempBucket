@@ -110,7 +110,7 @@
 			var reportableObj:Object = new Object();
 			do {
 				reportableObj[ClassUtils.getClassAsString(reportable)] = reportable.reportableLabel;
-				reportable = reportable.parent;
+				reportable = reportable.parent;				
 			} while (reportable);
 			
 			return reportableObj;
