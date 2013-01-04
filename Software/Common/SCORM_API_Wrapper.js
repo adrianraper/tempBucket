@@ -29,7 +29,7 @@ FlashBuilder.
 var pipwerks = {};                                  //pipwerks 'namespace' helps ensure no conflicts with possible other "SCORM" variables
 pipwerks.UTILS = {};                                //For holding UTILS functions
 pipwerks.debug = { isActive: true };                //Enable (true) or disable (false) for debug mode
-pipwerks.fakeLMS = { isActive: true };				//Clarity: Enable this to run outside an LMS for debugging
+pipwerks.fakeLMS = { isActive: false };		//Clarity: Enable this to run outside an LMS for debugging
 
 pipwerks.SCORM = {                                  //Define the SCORM object
     version:    null,                               //Store SCORM version.
@@ -522,10 +522,15 @@ pipwerks.SCORM.data.get = function(parameter){
     		return "not attempted";
     		break;
     	case "cmi.core.entry":
-    		return "ab-initio";
+    		//return "ab-initio";
+    		return "resume";
     		break;
     	case "cmi.objectives._count":
     		return "0";
+    		break;
+    	case "cmi.suspend_data":
+    		return '';
+    		//return '{"scoreSoFar":"1156153794384|13,1156153794466|33,1156153794384|53","percentComplete":10}';
     		break;
     	default:
     		return "";

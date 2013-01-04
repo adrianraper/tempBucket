@@ -980,26 +980,47 @@ EOD;
 			$productCodes = array(-2);
 		}
 		
-		/*Due to php version, array_reduce cannot be used in ClartyDevelop.
+		/*
+		 * Due to php version, array_reduce with an inline function cannot be used in ClartyDevelop.
+		 */
+		function checkInList($codeArray, $item) {
+			if (is_numeric($item) && $item > 0)
+				$codeArray[] = $item;
+			return $codeArray;
+		}
+		function checkNotInList($codeArray, $item) {
+			if (is_numeric($item) && $item < 0)
+				$codeArray[] = $item;
+			return $codeArray;
+		}
+		if ($productCodes) {
+			$sqlInList = array_reduce($productCodes, 'checkInList');
+			$sqlNotInList = array_reduce($productCodes, 'checkNotInList');
+			if ($sqlInList) $sql .= ' AND a.F_ProductCode in ('.implode(',',$sqlInList).')';
+			if ($sqlNotInList) $sql .= ' AND a.F_ProductCode not in ('.implode(',',$sqlNotInList).')';
+		}
+		
+		/*
 		if ($productCodes) {
 			$sqlInList = array_reduce($productCodes, 
 				function($codeArray, $item) {
 					if (is_numeric($item) && $item > 0)
 						$codeArray[] = $item;
 					return $codeArray;
-				}, null);
+				});
 			$sqlNotInList = array_reduce($productCodes,
-				function($codeList, $item) {
+				function($codeArray, $item) {
 					if (is_numeric($item) && $item < 0)
 						$codeArray[] = abs($item);
 					return $codeArray;
-				}, null);
+				});
 			if ($sqlInList) $sql .= ' AND a.F_ProductCode in ('.implode(',',$sqlInList).')';
 			if ($sqlNotInList) $sql .= ' AND a.F_ProductCode not in ('.implode(',',$sqlNotInList).')';
-		}*/
-		if ($productCodes) {
-			$sql .= " AND a.F_ProductCode in ($productCodes)";
 		}
+		*/
+		//if ($productCodes) {
+		//	$sql .= " AND a.F_ProductCode in (".implode(',',$productCodes).")";
+		//}
 					
 		if ($dbOK) 
 			$sql .= " ORDER BY p.F_DisplayOrder";
