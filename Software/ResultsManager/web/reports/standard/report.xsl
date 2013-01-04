@@ -75,9 +75,10 @@
 						<xsl:if test="report/row/@average_score">sortTypes.push("int");</xsl:if>
 						<xsl:if test="report/row/@complete">sortTypes.push("int");</xsl:if>
 						
-						//issue:#23
+						//gh#23
 						<xsl:if test="report/row/@exercise_percentage">sortTypes.push("int");</xsl:if>
 						<xsl:if test="report/row/@exerciseUnit_percentage">sortTypes.push("int");</xsl:if>
+						// What is this?
 						<xsl:if test="report/row/@unit_percentage">sortTypes.push("duration_custom");</xsl:if>
 						
 						<xsl:if test="report/row/@average_time">sortTypes.push("duration_custom");</xsl:if>

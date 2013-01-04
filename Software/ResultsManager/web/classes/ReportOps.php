@@ -349,12 +349,12 @@ class ReportOps {
 		// Go through the results replacing IDs with names, seconds with hh:ss and converting everything to an XML document
 		// AR It seems that we leave the times as seconds and let the xsl format it
 		foreach ($rows as $row) {
-			$rowXML = $dom->createElement("row");		
+			$rowXML = $dom->createElement("row");
 			
 			//echo var_dump($row);
 			$row = $this->processRowFields($row);
 			
-			 foreach ($row as $key => $value) {
+			foreach ($row as $key => $value) {
 				// This was throwing up the error DOMElement::setAttribute() [domelement.setattribute]: string is not in UTF-8
 				// But if I solve it using utf8_encode, then it screws up Chinese characters.
 				//$rowXML->setAttribute($key, $value);
@@ -363,10 +363,10 @@ class ReportOps {
 				} else {
 					$rowXML->setAttribute($key, $value);
 				}
-			}			
-			    $reportXML->appendChild($rowXML);   						
+			}
+			
+			$reportXML->appendChild($rowXML);
 		}
-		
 		if (isset($details) && $details) {
 			foreach ($details as $row) {
 				$rowXML = $dom->createElement("detail");
@@ -518,16 +518,16 @@ class ReportOps {
 			} else {
 				$row['courseName'] = '-no name-';
 			}
-			//gh:28
-		    if (isset($row['exerciseUnit_percentage'])) {
+			//gh#28
+			if (isset($row['exerciseUnit_percentage'])) {
 			   $total = 0;
 			   foreach ($title->courses[$courseID]->units as $unit) {
 			       $total = $total + $unit->totalExercises;
 			   }
-		       $row['exerciseUnit_percentage'] =  $row['exerciseUnit_percentage']."/".$total;
+			// gh#28 express as %
+			$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
 		    }
 		}
-		
 		
 		// v3.4 You can't do this section unless courseID is set
 		// If unitID is set replace it with the unitName.
@@ -559,13 +559,14 @@ class ReportOps {
 				}
 				$row['unitName'] = $bestName;
 			}
-			//gh:#28			
+			//gh#28			
 		    if (isset($row['exercise_percentage'])) {
 			   //for AR, some exerciseID in DB is not exist in content xml file
 			   /*if (!isset($title->courses[$courseID]->units[$unitID]->exercises[$exerciseID])) {
 			        $row['exercise_percentage'] = $row['exercise_percentage'] - 1;
 			   }*/
-		       $row['exercise_percentage'] =  $row['exercise_percentage']."/".$title->courses[$courseID]->units[$unitID]->totalExercises;
+				// gh#28 express as %
+		    	$row['exercise_percentage'] =  100 * $row['exercise_percentage'] / $title->courses[$courseID]->units[$unitID]->totalExercises;
 		    }
 			//echo "unitID=$unitID, name={$title->courses[$courseID]->units['0']->name}";
 		}
@@ -597,7 +598,7 @@ class ReportOps {
 					}
 				}
 				$row['exerciseName'] = $bestName;
-			}			
+			}
 		}
 		
 		// Decode any apostrophes

@@ -46,5 +46,4 @@ EOD;
 }	
 		
 flush();
-exit(0)
-?>
+exit(0);

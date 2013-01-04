@@ -142,7 +142,7 @@
 				
 				<xsl:if test="report/row/@average_score"><th type="ro"><xsl:value-of select="report/language//lit[@name='report_averageScore']"/></th></xsl:if>
 				<xsl:if test="report/row/@complete"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_complete']"/></th></xsl:if>
-				<!--issue:#23-->
+				<!--gh#23-->
 				<xsl:if test="report/row/@exercise_percentage"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_completePercentage']"/></th></xsl:if>
 				<xsl:if test="report/row/@exerciseUnit_percentage"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_completePercentage']"/></th></xsl:if>
 				<xsl:if test="report/row/@unit_percentage"><th type="ro" width="100px"><xsl:value-of select="report/language//lit[@name='report_unitPercentage']"/></th></xsl:if>
@@ -190,10 +190,10 @@
 					
 					<xsl:if test="@complete"><td><xsl:value-of select="@complete"/></td></xsl:if>
 					
-					<!--issue:#23-->
-					<xsl:if test="@exercise_percentage"><td><xsl:value-of select="@exercise_percentage"/></td></xsl:if>
-					<xsl:if test="@exerciseUnit_percentage"><td><xsl:value-of select="@exerciseUnit_percentage"/></td></xsl:if>
-					<xsl:if test="@unit_percentage"><td><xsl:value-of select="@unit_percentage"/></td></xsl:if>
+					<!--gh#23-->
+					<xsl:if test="@exercise_percentage"><td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@exercise_percentage" /></xsl:call-template></td></xsl:if>
+					<xsl:if test="@exerciseUnit_percentage"><td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@exerciseUnit_percentage"  /></xsl:call-template></td></xsl:if>
+					<xsl:if test="@unit_percentage"><td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@unit_percentage" /></xsl:call-template></td></xsl:if>
 					
 					<xsl:if test="@average_time"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToMinutes', string(@average_time))"/></td></xsl:if>
 					<xsl:if test="@total_time"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToHours', string(@total_time))"/></td></xsl:if>

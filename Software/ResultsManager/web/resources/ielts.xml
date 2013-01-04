@@ -362,9 +362,22 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="practiceZoneInstructionLabel">选择一套试题，开始进行雅思测试练习。</lit>
 			<lit name="examZoneInstructionLabel1">下载完整试题。点击音频按钮，进行听力模拟测试。在测试过程中，一旦点击开始播放就不能暂停。</lit>
 			<lit name="examZoneInstructionLabel2">下载完整试题及答案。</lit>
-		    <lit name="examZoneNoTestLabel">本部分不包含可下载的测试练习资料。请观看“建议与辅导”中的视频教程，了解口语考试中的实际情形。</lit>
+		    <lit name="examZoneNoTestLabel">本部分不包含可下载的测试练习资料。请观看Advice and tutorials中的视频教程，了解口语考试中的实际情形。</lit>
 			<lit name="onlyAvailableFV">仅在完整版本內才能打开此内容。点击上图按钮进行升级。</lit>
-			<lit name="dateFormatLabel">{year} 年 {month} 月 {day} 日</lit>			
+			<lit name="progressNavBarCoverage">我的完成率</lit>
+			<lit name="progressNavBarCompare">比较</lit>
+			<lit name="progressNavBarAnalyse">分析</lit>
+			<lit name="progressNavBarScores">我的分数</lit>
+			<lit name="compareInstructionLabel">下表将你的各项分数与全球其他Road to IELTS使用者的分数进行了比较。</lit>
+			<lit name="analysisInstructionLabel1">此处显示你如何分配了你的时间。</lit>
+			<lit name="analysisInstructionLabel2">每项技能所花费时间</lit>
+			<lit name="analysisTime">你总共花费了{x}分钟。</lit>
+			<lit name="testDateLabel">日期:</lit>
+			<lit name="hourLabel">几点:</lit>
+			<lit name="minuteLabel">几分:</lit>
+			<lit name="dateFormatLabel">{year} 年 {month} 月 {day} 日</lit>	
+			<lit name="countdownHeading">距离我的考试还有多长时间？</lit>
+			<lit name="setTestDateLabel">请在下方设置你的考试日期:</lit>
 			<lit name="supportCaptionSpan1">如何使用Road to IELTS</lit>
 			<lit name="paragraphContentSpan1">Road to IELTS分为四个技能单元，与雅思考试的四项内容一一对应。在各个技能单元中，学习者可通过阅读相关考试介绍，观看雅思考试专家指导视频，并通过互动练习和模拟试题对特定题型进行操练，行之有效地准备雅思考试。</lit>
 			<lit name="keyScreenSpan">主要页面</lit>
@@ -373,7 +386,7 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="exerciseSreenIntroSpan">练习页面——当您选择在练习区进行相关练习的时候，您将看到此页面。</lit>
 			<lit name="contactUsContent1">
 			    <![CDATA[
-				    <p><span fontWeight="bold">技术问题</span><br/>Clarity愿帮助您解决任何技术难题。请描述您遇到的难题，将您登陆本课程时的网页地址或网站，一齐发送至
+				    <p><span fontWeight="bold">技术问题</span><br/>Clarity愿帮助您解决任何技术难题。请描述您遇到的难题，将您登陆本课程时的网页地址或网站，一起发送至
 					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a>。<br/>Clarity Language Consultants Ltd<br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/>					
 					</p>
 			    ]]>

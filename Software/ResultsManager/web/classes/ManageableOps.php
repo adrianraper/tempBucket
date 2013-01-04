@@ -155,7 +155,6 @@ class ManageableOps {
 			}
 		}
 		
-		
 		// Check this doesn't exceed the MAX_userType for teachers, authors and reporters
 		if (!$this->canAddUsersOfType($user->userType, 1))
 			throw new Exception($this->copyOps->getCopyForId("exceedsMaximumUserTypeError"));

@@ -979,6 +979,8 @@ EOD;
 			// Unless this is DMS we want to ignore RM (productCode=2)
 			$productCodes = array(-2);
 		}
+		
+		/*Due to php version, array_reduce cannot be used in ClartyDevelop.
 		if ($productCodes) {
 			$sqlInList = array_reduce($productCodes, 
 				function($codeArray, $item) {
@@ -994,6 +996,9 @@ EOD;
 				}, null);
 			if ($sqlInList) $sql .= ' AND a.F_ProductCode in ('.implode(',',$sqlInList).')';
 			if ($sqlNotInList) $sql .= ' AND a.F_ProductCode not in ('.implode(',',$sqlNotInList).')';
+		}*/
+		if ($productCodes) {
+			$sql .= " AND a.F_ProductCode in ($productCodes)";
 		}
 					
 		if ($dbOK) 
