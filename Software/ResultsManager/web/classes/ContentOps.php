@@ -925,18 +925,8 @@ EOD;
 	 * Read the account to find enabled titles, then for each get course.xml (or emu.xml) and drill down
 	 * TODO. Make productCode an array so that reports can get several, but no need for all.
 	 * gh#81 productCode is an array, including negative codes if you want to avoid this one
+	 * gh#81 Due to php 5.2 version, array_reduce with an inline function cannot be used in ClarityDevelop.
 	 */
-	public function checkInList($codeArray, $item) {
-		if (is_numeric($item) && $item > 0)
-			$codeArray[] = $item;
-		return $codeArray;
-	}
-	public function checkNotInList($codeArray, $item) {
-		if (is_numeric($item) && $item < 0)
-			$codeArray[] = $item;
-		return $codeArray;
-	}
-	
 	public function parseContent($generateMaps, $rootID = null, $forDMS = false, $onExpiryDate = null, $productCodes = null) {
 			
 		// If the rootID is not given then default to the session root (this is normal behaviour except for DMS)
@@ -992,15 +982,23 @@ EOD;
 		}
 		
 		/*
-		 * Due to php version, array_reduce with an inline function cannot be used in ClartyDevelop.
+		 * gh#81 Due to php version, array_reduce with an inline function cannot be used in ClarityDevelop.
+		 * But I also can't declare functions... So just rewrite it badly until 5.3
 		 */
 		if ($productCodes) {
-			$sqlInList = array_reduce($productCodes, 'checkInList');
-			$sqlNotInList = array_reduce($productCodes, 'checkNotInList');
-			if ($sqlInList) $sql .= ' AND a.F_ProductCode in ('.implode(',',$sqlInList).')';
-			if ($sqlNotInList) $sql .= ' AND a.F_ProductCode not in ('.implode(',',$sqlNotInList).')';
+			$sqlInList = array();
+			$sqlNotInList = array();
+			foreach ($productCodes as $pc) {
+				if ($pc > 0) {
+					$sqlInList[] = $pc;
+				} else if ($pc < 0) {
+					$sqlNotInList[] = abs($pc);
+				}
+			}
+			if (count($sqlInList)>0) $sql .= ' AND a.F_ProductCode in ('.implode(',',$sqlInList).')';
+			if (count($sqlNotInList)>0) $sql .= ' AND a.F_ProductCode not in ('.implode(',',$sqlNotInList).')';
 		}
-		
+		//NetDebug::trace("parseContent=".$sql);
 		/*
 		if ($productCodes) {
 			$sqlInList = array_reduce($productCodes, 

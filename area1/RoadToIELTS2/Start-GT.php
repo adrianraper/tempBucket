@@ -113,7 +113,7 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		var versionControl = "&version=1097";
+		var versionControl = "&version=1101";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
@@ -188,6 +188,7 @@
 			name: "bento"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
+		// it is not possible to eliminate the effect of browser zooming without the elements position/size within the flash movie being set to absolute pixel scale from %
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
 

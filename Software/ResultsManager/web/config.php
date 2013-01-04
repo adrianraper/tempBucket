@@ -45,16 +45,15 @@ $GLOBALS['ap_data_dir'] = "../../../../ContentBench/ap";
 $GLOBALS['ccb_data_dir'] = "../../../../ContentBench/CCB";
 $GLOBALS['common_dir'] = dirname(__FILE__)."/../../../Software/Common";
 $RMFolders = "";
+
 // Can we just read dbDetails and use dbHost to point to different databases?
 // If dbHost comes from session set in Start.php, then what about generateReport?
 require_once($GLOBALS['common_dir'].'/../../Database/dbDetails.php');
+
 if (isset($_SESSION['dbHost']) && $_SESSION['dbHost'] > 0) {
 	$dbHost = intval($_SESSION['dbHost']);
 } else {
 	$dbHost=0; // Pick up default from dbDetails.
-	//$dbHost = 101; // Default for R2IV2 local
-	//$dbHost = 30; // Default for network version
-	//$dbHost = 102; // Default for global_r2iv2
 }
 $dbDetails = new DBDetails($dbHost);
 $GLOBALS['dbms'] = $dbDetails->driver;
