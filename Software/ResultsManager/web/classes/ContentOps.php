@@ -926,7 +926,18 @@ EOD;
 	 * TODO. Make productCode an array so that reports can get several, but no need for all.
 	 * gh#81 productCode is an array, including negative codes if you want to avoid this one
 	 */
-	private function parseContent($generateMaps, $rootID = null, $forDMS = false, $onExpiryDate = null, $productCodes = null) {
+	public function checkInList($codeArray, $item) {
+		if (is_numeric($item) && $item > 0)
+			$codeArray[] = $item;
+		return $codeArray;
+	}
+	public function checkNotInList($codeArray, $item) {
+		if (is_numeric($item) && $item < 0)
+			$codeArray[] = $item;
+		return $codeArray;
+	}
+	
+	public function parseContent($generateMaps, $rootID = null, $forDMS = false, $onExpiryDate = null, $productCodes = null) {
 			
 		// If the rootID is not given then default to the session root (this is normal behaviour except for DMS)
 		if (!$rootID) $rootID = Session::get('rootID');
@@ -983,16 +994,6 @@ EOD;
 		/*
 		 * Due to php version, array_reduce with an inline function cannot be used in ClartyDevelop.
 		 */
-		function checkInList($codeArray, $item) {
-			if (is_numeric($item) && $item > 0)
-				$codeArray[] = $item;
-			return $codeArray;
-		}
-		function checkNotInList($codeArray, $item) {
-			if (is_numeric($item) && $item < 0)
-				$codeArray[] = $item;
-			return $codeArray;
-		}
 		if ($productCodes) {
 			$sqlInList = array_reduce($productCodes, 'checkInList');
 			$sqlNotInList = array_reduce($productCodes, 'checkNotInList');
