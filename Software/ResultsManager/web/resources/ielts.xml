@@ -59,6 +59,10 @@
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
+            <lit name="loginDetailLabelCT">
+                 <![CDATA[If you already have an account, type your details to log in.
+If you want to be anonymous, just click {loginText}.]]>
+            </lit>
 			<lit name="loginDetailLabelNetwork">
 			     <![CDATA[If you already have an account, type your details to log in.
 If you are a new user, type the login you want to use.

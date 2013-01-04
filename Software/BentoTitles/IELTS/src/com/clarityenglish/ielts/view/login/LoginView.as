@@ -396,8 +396,14 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case loginDetailLabel:
 					// gh#100
-					if (licenceType == Title.LICENCE_TYPE_NETWORK || licenceType == Title.LICENCE_TYPE_CT) {
+					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
 						instance.text = copyProvider.getCopyForId("loginDetailLabelNetwork", {loginText:copyProvider.getCopyForId("loginButton")});
+					} else if (licenceType == Title.LICENCE_TYPE_CT) {
+						if (selfRegister && selfRegister > 0) {
+							instance.text = copyProvider.getCopyForId("loginDetailLabelNetwork", {loginText:copyProvider.getCopyForId("loginButton")});
+						} else {
+							instance.text = copyProvider.getCopyForId("loginDetailLabelCT", {loginText:copyProvider.getCopyForId("loginButton")});
+						}
 					} else {
 						instance.text = copyProvider.getCopyForId("loginDetailLabel");
 					}
