@@ -1,5 +1,7 @@
 package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.controls.calendar.Calendar;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -94,7 +96,8 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (aboutContactNumberTextInput) aboutContactNumberTextInput.text = course.@contact;
 			
 			// gh#92
-			var directStartURL:String = config.remoteStartFolder + 'CCB/Player.php' + '?prefix=' + config.prefix + '&course=' + course.@id;
+			var folderName:String = copyProvider.getCopyForId('pathCCB');
+			var directStartURL:String = config.remoteStartFolder + folderName + '/Player.php' + '?prefix=' + config.prefix + '&course=' + course.@id;
 			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
 			
 			// Calendar

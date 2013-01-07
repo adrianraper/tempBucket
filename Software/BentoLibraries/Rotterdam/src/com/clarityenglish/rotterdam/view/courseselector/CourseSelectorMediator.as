@@ -32,7 +32,7 @@
 			// gh#13 
 			facade.sendNotification(RotterdamNotifications.COURSE_RESET);
 			
-			// Load courses.xml serverside GH #84
+			// Load courses.xml serverside gh#84
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.href = new Href(Href.XHTML, "courses.xml", configProxy.getConfig().paths.content, true);
 		}

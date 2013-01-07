@@ -1,6 +1,8 @@
 package com.clarityenglish.rotterdam.controller {
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.LoginProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.vo.UID;
@@ -29,29 +31,23 @@ package com.clarityenglish.rotterdam.controller {
 			var uid:UID = new UID(note.getBody().toString());
 			
 			// First build a URL to point to the title and content
-			// gh#92 this is a bad place to do this - should be in config or ContentOps or...
+			// gh#92 Combination of UID and rotterdam.xml holds the productCode to path translation
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 
 			var area:String = configProxy.getConfig().remoteStartFolder;
 			
-			// Set defaults for each title, that you could override in a specific config.xml (how?)
-			// TODO. It seems that you could put the names into UID class as well uid.title.caption, uid.title.id, uid.title.startFolder etc
-			// Clearly it is not good to have all this hard coding here. Some of this stuff is in the database
-			// and should be picked up from ContentProxy when it does getContent.
+			// UID contains expected productCode to name translation
+			// Then rotterdam.xml contains path information for a particular installation
 			var startPage:String = 'Start.php';
-			switch (uid.title) {
-				case 9:
-					var startFolder:String = 'TenseBuster';
-					break;
-				case 33:
-					startFolder = 'ActiveReading';
-					break;
-				default:
-					// Throw an exception
-					log.error("title productCode " + uid.title + " is not recognised");
+			if (uid.titleName) {
+				var progName:String = uid.titleName;
+			} else {
+				log.error("title productCode " + uid.title + " is new");
+				progName = uid.title as String;
 			}
-			startFolder += "/";
+			var startFolder:String = copyProvider.getCopyForId("path" + progName) + "/";
 
 			// what parameters do we need to pass?
 			var parameters:Array = new Array();
@@ -79,11 +75,10 @@ package com.clarityenglish.rotterdam.controller {
 			
 			var argList:String = "?" + parameters.join("&");
 			
-
 			// Then run this as a new browser window
 			// TODO: At some point BentoTitles could open their exercises directly in Rotterdam Player
 			// gh#92
-			navigateToURL(new URLRequest(startFolder + startPage + argList), "_blank");
+			navigateToURL(new URLRequest(area + startFolder + startPage + argList), "_blank");
 			log.info("Opening content for uid=" + uid.toString());
 		}
 		

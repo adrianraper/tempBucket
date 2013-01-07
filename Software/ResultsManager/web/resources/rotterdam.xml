@@ -58,6 +58,26 @@
 			<lit name="errorSecurity" code="701">Security error</lit>
 			<lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
 			
+            <lit name="pathCCB">CCB</lit>
+            <lit name="pathTenseBuster">TenseBuster</lit>
+            <lit name="pathBusinessWriting">BusinessWriting</lit>
+            <lit name="pathClearPronunciation1">ClearPronunciation</lit>
+            <lit name="pathClearPronunciation2">ClearPronunciation2</lit>
+            <lit name="pathRoadToIELTS">RoadToIELTS</lit>
+            <lit name="pathStudySkillsSuccess">StudySkillsSuccess</lit>
+            <lit name="pathMyCanada">MyCanada</lit>
+            <lit name="pathPeacekeeper">Peacekeeper</lit>
+            <lit name="pathItsYourJob">ItsYourJob</lit>
+            <lit name="pathLamourDesTemps">LamourDesTemps</lit>
+            <lit name="pathEnglishForHotelStaff">EnglishForHotelStaff</lit>
+            <lit name="pathPracticalPlacementTest">PracticalPlacementTest</lit>
+            <lit name="pathCustomerServiceCommunicationSkills">CSCS</lit>
+            <lit name="pathIssuesInEnglish2">IssuesInEnglish2</lit>
+            <lit name="pathConnectedSpeech">ConnectedSpeech</lit>
+            <lit name="pathAccessUK">AccessUK</lit>
+            <!--  if you release a new title without compiling Rotterdam, use this for the productCode -->
+            <lit name="path55">NewTitle</lit>
+            
 			<lit name="printButton">Print</lit>
 			<lit name="noButton">No</lit>
 			<lit name="yesButton">Yes</lit>

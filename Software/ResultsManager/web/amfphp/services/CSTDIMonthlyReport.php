@@ -14,10 +14,9 @@ $minimalService = new MinimalService();
 
  // The script will be run on the first of the month, reporting on the last month
  // It needs to be added to AWS cron to get the monthly triggering.
+ // Pass the month and year that you want the report for (a Feb report is for Jan 1 - Jan 31)
 if (isset($_GET['month'])) {
-	$m = $_GET['month']+1;
- 	if ($m > 12)
- 		$m = 1;
+	$m = $_GET['month'];
 } else {
 	$m = date('n'); 
 }
@@ -28,11 +27,13 @@ if (isset($_GET['year'])) {
 }
 $startDate = date('Y-m-d', mktime(1,1,1,$m-1,1,$y)); 
 $endDate = date('Y-m-d', mktime(1,1,1,$m,0,$y));
+//echo "from $startDate to $endDate\n";
+
 $rootID = 14449;
 
 $outputText = '';
 $outputDevice = 'file';
-//$outputDevice = 'screen';
+$outputDevice = 'screen';
 
 writeOutHeader();
 runQuery($rootID, $startDate, $endDate);
@@ -47,7 +48,7 @@ function writeOut($text, $mode = '') {
 	
 	$outputText.=$text;
 	if ($outputDevice == 'screen') {
-		echo $outputText;
+		echo $text;
 	} else {
 		if ($mode == 'stop') {
 			// workout the filename and open it
@@ -118,6 +119,7 @@ function runQuery($rootID, $startDate = null, $endDate = null) {
 	//   Then for each product and user, get the detail records
 	// That seems it will be a lot of separate SQL calls. However it has one great advantage in that 
 	// it will be easier to get previous month's records, which we might have to do.
+	// Jan 2013. Update as CSTDI request to just list those users who get a certificate each month (just exerciseID=51)
 	$sql = 	<<< EOD
 				SELECT u.F_UserID as userID, u.F_StudentID as cstdi_id, d.F_UnitID as productCode
 				FROM T_ScoreDetail d, T_User u 
@@ -125,7 +127,7 @@ function runQuery($rootID, $startDate = null, $endDate = null) {
 				AND d.F_DateStamp <= ?
 				AND d.F_RootID = ?
 				AND d.F_UserID = u.F_UserID
-				AND d.F_ExerciseID IN (51,52)
+				AND d.F_ExerciseID = 51
 				GROUP BY d.F_UserID, d.F_UnitID
 				ORDER BY UserID
 EOD;
@@ -137,7 +139,7 @@ EOD;
 		$userID = $row_1['userID'];
 		$productCode = $row_1['productCode'];
 		
-		// Now you have a user who needs a record this month
+		// Now you have a user who needs a record this month for a particular title
 		// So get ALL records that they have done.
 		// Certificates should only ever have one record per title
 		// Evaluations can be many, but we are supposed to just take the first.
@@ -157,37 +159,18 @@ EOD;
 		$bindingParams_2 = array($userID, $productCode);
 		$rs_2 = $minimalService->db->GetArray($sql, $bindingParams_2);
 		
+		$third_Course_id = $productCode;
+		$quiz_complete_date = '';
+		$score = '';			
+		$eval_complete_date = '';
+		$eval_result = '';					
 		// Loop round each record for this user - there might be 2 for each title
-		$lastTitle = 0;
 		foreach ($rs_2 as $row_2) {
 			
-			// Fill up this user's record for this title
-			$third_Course_id = $row_2['F_UnitID'];
-
-			// If this is a different title from the last record, write out the last record
-			if ($lastTitle != $third_Course_id) {
-				
-				// But first time, just set the id
-				if($lastTitle > 0) {
-					writeOutRecord($reportRecord);
-					// Then ready for this new record
-					initRecord($reportRecord);
-				}
-				//RESET THE RECORDS
-				$lastTitle = $third_Course_id;	
-				$quiz_complete_date = '';
-				$score = '';			
-				$eval_complete_date = '';
-				$eval_result = '';					
-			}
-
 			// Have they completed the quiz (means got a certificate?)
 			if ($row_2['F_ExerciseID'] == 51) {
 				$quiz_complete_date = $row_2['firstDate'];
 				$score = $row_2['F_Score'];
-			} else {
-				$quiz_complete_date = '';
-				$score = '';
 			}
 			// Have they completed the evaluation (and got a score of 1 for question 6)
 			if ($row_2['F_ExerciseID'] == 52) {
@@ -215,29 +198,26 @@ EOD;
 						$eval_result = -1;
 						break;
 				}
-			} else {
-				$eval_complete_date = '';
-				$eval_result = '';
 			}
-			// Build up the report record
-			$reportRecord[0] = $user_id;
-			$reportRecord[1] = $third_Course_id;
-			// Add whatever detail you have
-			if ($eval_complete_date) {
-				$reportRecord[2] = $eval_complete_date;
-				$reportRecord[3] = $eval_result;
-			} else {
-				$reportRecord[2] = '';
-				$reportRecord[3] = '';
-			}
-			if ($quiz_complete_date) {
-				$reportRecord[4] = $quiz_complete_date;
-				$reportRecord[5] = $score;
-			} else {
-				$reportRecord[4] = '';
-				$reportRecord[5] = '';
-			}				
 		}
+		// Build up the report record
+		$reportRecord[0] = $user_id;
+		$reportRecord[1] = $third_Course_id;
+		// Add whatever detail you have
+		if ($eval_complete_date) {
+			$reportRecord[2] = $eval_complete_date;
+			$reportRecord[3] = $eval_result;
+		} else {
+			$reportRecord[2] = '';
+			$reportRecord[3] = '';
+		}
+		if ($quiz_complete_date) {
+			$reportRecord[4] = $quiz_complete_date;
+			$reportRecord[5] = $score;
+		} else {
+			$reportRecord[4] = '';
+			$reportRecord[5] = '';
+		}				
 		// Then write out the final record
 		writeOutRecord($reportRecord);
 		

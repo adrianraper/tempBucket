@@ -54,6 +54,69 @@ package com.clarityenglish.rotterdam.vo {
 			
 		}
 		
+		// gh#92
+		public function get titleName():String {
+			if (!this.title)
+				return null;
+			
+			switch (this.title) {
+				case 9:
+					return 'TenseBuster';
+					break;
+				case 10:
+					return 'BusinessWriting';
+					break;
+				case 33:
+					return 'ActiveReading';
+					break;
+				case 39:
+					return 'ClearPronunciation1';
+					break;
+				case 50:
+					return 'ClearPronunciation2';
+					break;
+				case 52:
+				case 53:
+					return 'RoadToIELTS';
+					break;
+				case 49:
+					return 'StudySkillsSuccess';
+					break;
+				case 20:
+					return 'MyCanada';
+					break;
+				case 34:
+					return 'Peacekeeper';
+					break;
+				case 38:
+					return 'ItsYourJob';
+					break;
+				case 17:
+					return 'LamourDesTemps';
+					break;
+				case 40:
+					return 'EnglishForHotelStaff';
+					break;
+				case 44:
+					return 'PracticalPlacementTest';
+					break;
+				case 48:
+					return 'AccessUK';
+					break;
+				case 43:
+					return 'CustomerServiceCommunicationSkills';
+					break;
+				case 45:
+					return 'IssuesInEnglish2';
+					break;
+				case 46:
+					return 'ConnectedSpeech';
+					break;
+			}
+			
+			return null;
+		}
+		
 		public function toString():String {
 			return (title) ? title.toString() : '' + (course) ? '.' + course.toString() : '' + (unit) ? '.' + unit.toString() : '' + (exercise) ? '.' + exercise.toString() : '';
 		}
