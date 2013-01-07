@@ -9,6 +9,7 @@ require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/SubscriptionApi.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscription.php");
+require_once($GLOBALS['common_dir'].'/../../Database/dbDetails.php');
 
 $dmsService = new DMSService();
 $nonApiInformation = array();
@@ -133,8 +134,8 @@ function returnError($errCode, $data = null) {
 	}
 	AbstractService::$debugLog->err($logMessage);
 
-	$apiReturnInfo['dsn'] = $GLOBALS['db'];
-	$apiReturnInfo['dbHost'] = $GLOBALS['dbHost'];
+	$dbDetails = new DBDetails($GLOBALS['dbHost']);
+	$apiReturnInfo['dsn'] = $dbDetails->getDetails();
 
 	$returnInfo = array_merge($apiReturnInfo, $nonApiInformation);
 	echo json_encode($returnInfo);

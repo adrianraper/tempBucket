@@ -91,7 +91,7 @@ class DBDetails {
 		if (isset($this->host) && $this->host != "")
 			$this->dsn .= $this->host.'/';
 			
-		if ($this->dbname != "")
+		if (isset($this->dbname) && $this->dbname != "")
 			$this->dsn .= $this->dbname;
 		
 		// Small optimization
@@ -99,7 +99,17 @@ class DBDetails {
 	}
 
 	public function getDetails() {
-		return $this->host."/".$this->dbname;
+		$text = $this->driver."://";
+		if (isset($this->user) && $this->user != "")
+			$text .= $this->user.":********@";
+
+		if (isset($this->host) && $this->host != "")
+			$text .= $this->host.'/';
+			
+		if (isset($this->dbname) && $this->dbname != "")
+			$text .= $this->dbname;
+		
+		return $text;
 	}
 
 }
