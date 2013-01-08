@@ -18,6 +18,10 @@
 		 */
 		public var author:String;
 		
+		// gh#89 what about other attributes of course that we now include?
+		// public var unitInterval:uint;
+		// public var startDate:String;
+		
 		// folder?
 		// subfolder?
 		// possibly taken care of on server

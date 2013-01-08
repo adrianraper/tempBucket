@@ -135,7 +135,7 @@ package com.clarityenglish.rotterdam.player.view.progress.components {
 				}
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
-				/*switch (courseClass) {
+				switch (courseClass) {
 					case "listening":
 						progressCourseButtonBar.selectedIndex = 1;
 						break;
@@ -149,7 +149,7 @@ package com.clarityenglish.rotterdam.player.view.progress.components {
 					default:
 						progressCourseButtonBar.selectedIndex = 0;
 						break;
-				}*/
+				}
 				
 				_courseChanged = _dataChanged = false;
 			}

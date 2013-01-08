@@ -26,7 +26,8 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			//var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
 			view.href = bentoProxy.menuXHTML.href;
-			//view.currentCourseClass = ieltsProxy.currentCourseClass;
+			// gh#89
+			view.currentCourseClass = '';
 		}
         
 		override public function listNotificationInterests():Array {

@@ -28,7 +28,8 @@ package com.clarityenglish.rotterdam.player.view.progress.components {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			//var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
 			view.href = bentoProxy.menuXHTML.href;
-			view.courseClass = "default";
+			// gh#89
+			view.courseClass = "";
 			
 			// Ask for the progress data you want		
 			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
