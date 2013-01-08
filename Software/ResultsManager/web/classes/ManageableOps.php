@@ -1643,7 +1643,7 @@ EOD;
 		$username = $user->name;
 		$password = $user->password;
 		$studentID = $user->studentID;
-		//gh:#98
+		//gh:#98.1
 		$email = $user->email;
 		
 		// v3.6.1 Check Access Control
@@ -1697,15 +1697,16 @@ EOD;
 			$rootClause = '';
 		}
 		
-		//gh:#98
+		//gh:#98.1
 	    if ($email) {
 		    $sql = <<<EOD
 		       SELECT distinct(u.F_UserID) as userID, u.F_UserName, u.F_StudentID, m.F_GroupID, u.F_Email
                FROM T_User u, T_Membership m
                WHERE u.F_UserID=m.F_UserID
                AND u.F_Email = ?
+			   AND m.F_RootID = ?
 EOD;
-            $rs = $this->db->Execute($sql, array($email));
+            $rs = $this->db->Execute($sql, array($email, $rootID));
 		
 		    $rc = Array();
 		    $rc['returnInfo'] = Array();
@@ -1878,6 +1879,7 @@ EOD;
 		$returnCode=0;
 		if (!$nameOK) $returnCode += 1;
 		if (!$idOK) $returnCode += 2;	   
+		//gh:#98.1
 		if (!$emailOK) $returnCode += 4;
 		$rc['returnCode']=$returnCode;
 		//return $returnCode;
