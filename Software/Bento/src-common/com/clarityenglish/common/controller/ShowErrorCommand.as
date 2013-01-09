@@ -38,7 +38,7 @@ package com.clarityenglish.common.controller {
 			titleWindow.title = "Sorry, there is a problem:";
 			
 			errorView = new ErrorView();
-			trace("load error message");
+			//trace("load error message");
 			errorView.error = note.getBody() as BentoError;
 			titleWindow.addElement(errorView);
 			
@@ -61,7 +61,7 @@ package com.clarityenglish.common.controller {
 		 * @param event
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
-			trace("you are here");
+			//trace("you are here");
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
 			
 			var isFatal:Boolean = errorView.error.isFatal;

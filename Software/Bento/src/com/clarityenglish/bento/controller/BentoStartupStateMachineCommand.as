@@ -68,10 +68,15 @@ package com.clarityenglish.bento.controller {
 			}
 			
 			// #322
-			if (configProxy.getConfig().anyError()) {
+			// gh#113 Due to change of config and account loading, you might have errors before
+			// so always add this state. And config errors come during account load, not login
+			// or can they be during login too?
+			//if (configProxy.getConfig().anyError()) {
 				loginXML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
 				loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_CREDITS} />);
-			}
+				loginXML = (fsm..state.(@name == BBStates.STATE_LOAD_ACCOUNT))[0];
+				loginXML.appendChild(<transition action={CommonNotifications.CONFIG_ERROR} target={BBStates.STATE_CREDITS} />);
+			//}
 			
 			// #377 - when disableAutoTimeout is on we want to go back to the login screen instead of the credits screen
 			if (configProxy.getConfig().disableAutoTimeout) {

@@ -102,6 +102,8 @@
 			registerCommand(CommonNotifications.BENTO_ERROR, ShowErrorCommand); // we might be able to replace everything with this
 			registerCommand(CommonNotifications.INVALID_DATA, ShowErrorCommand);
 			registerCommand(CommonNotifications.INVALID_LOGIN, ShowErrorCommand);
+			// gh#113
+			registerCommand(CommonNotifications.CONFIG_ERROR, ShowErrorCommand);
 			registerCommand(CommonNotifications.ADD_USER_FAILED, ShowErrorCommand);
 			registerCommand(CommonNotifications.EXIT, LogoutCommand);
 

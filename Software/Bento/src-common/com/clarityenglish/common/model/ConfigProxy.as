@@ -116,7 +116,7 @@ package com.clarityenglish.common.model {
 				config.account.verified = 1;
 				config.account.selfRegister = 0;
 				config.account.loginOption = config.loginOption;
-				trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
+				// trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
 				config.licence = new Licence();
 				config.licence.licenceType = Title.LICENCE_TYPE_LT;
                 
@@ -383,6 +383,8 @@ package com.clarityenglish.common.model {
 						*/
 						config.mergeAccountData(data);
 						
+						// gh#113 This IP and RU check could easily be done in PHP, in which case LoginProxy would catch it
+						// just like accountExpired. But for now leave this here with other config errors.
 						var authenticated:Boolean = this.checkAuthentication();
 					}
 	
@@ -391,7 +393,8 @@ package com.clarityenglish.common.model {
 						
 					} else if (config.anyError()) {
 						// gh#21
-						sendNotification(CommonNotifications.ACCOUNT_LOADED);
+						// gh#113
+						// sendNotification(CommonNotifications.ACCOUNT_LOADED);
 						sendNotification(CommonNotifications.CONFIG_ERROR, config.error);
 						
 					} else {
