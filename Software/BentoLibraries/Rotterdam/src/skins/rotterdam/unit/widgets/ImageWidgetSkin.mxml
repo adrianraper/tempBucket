@@ -32,7 +32,7 @@
 		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="125" />
 		
 		<!-- Image -->
-		<s:Image id="image" source="{hostComponent.mediaFolder + '/' + hostComponent.src}" visible="{hostComponent.hasSrc}" />
+		<s:Image id="image" source="{hostComponent.imageUrl}" visible="{hostComponent.hasSrc}" />
 	</s:VGroup>
 	
 </s:Skin>
