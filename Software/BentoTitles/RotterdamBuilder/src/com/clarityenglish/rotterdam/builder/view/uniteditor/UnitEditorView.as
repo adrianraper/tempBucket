@@ -37,6 +37,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		public var widgetSelect:Signal = new Signal(XML);
 		public var widgetDelete:Signal = new Signal(XML);
+		public var widgetEdit:Signal = new Signal(XML);
 		
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
@@ -45,6 +46,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			addEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete, false, 0, true);
+			addEventListener(WidgetMenuEvent.WIDGET_EDIT, onWidgetEdit, false, 0, true);
 		}
 		
 		protected override function onRemovedFromStage(event:Event):void {
@@ -53,7 +55,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			stage.removeEventListener(MouseEvent.CLICK, onStageClick);
 			removeEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu);
 			removeEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu);
-			removeEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete)
+			removeEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete);
+			removeEventListener(WidgetMenuEvent.WIDGET_EDIT, onWidgetEdit);
 		}
 		
 		protected override function commitProperties():void {
@@ -89,6 +92,13 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 */
 		protected function onWidgetDelete(event:WidgetMenuEvent):void {
 			widgetDelete.dispatch(event.xml);
+		}
+		
+		/**
+		 * Edit the widget specified in event.xml gh#115
+		 */
+		protected function onWidgetEdit(event:WidgetMenuEvent):void {
+			widgetEdit.dispatch(event.xml);
 		}
 		
 		/**

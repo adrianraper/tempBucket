@@ -54,6 +54,8 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.TEXT_SELECTED,
+				RotterdamNotifications.WIDGET_EDIT,
+				RotterdamNotifications.WIDGET_SELECT,
 			]);
 		}
 		
@@ -64,6 +66,12 @@
 				case RotterdamNotifications.TEXT_SELECTED:
 					view.setCurrentTextFormat(note.getBody() as TextLayoutFormat);
 					break;
+				case RotterdamNotifications.WIDGET_SELECT:
+					view.currentEditingWidget = null;
+					break;
+				case RotterdamNotifications.WIDGET_EDIT:
+					view.currentEditingWidget = note.getBody() as XML;
+					break;
 			}
 		}
 		
@@ -71,27 +79,33 @@
 			facade.sendNotification(RotterdamNotifications.COURSE_SAVE);
 		}
 		
-		protected function onAddText(options:Object):void {
+		protected function onAddText(options:Object, widget:XML):void {
+			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.TEXT_WIDGET_ADD, options);
 		}
 		
-		protected function onAddPDF(options:Object):void {
+		protected function onAddPDF(options:Object, widget:XML):void {
+			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.PDF_WIDGET_ADD, options);
 		}
 		
-		protected function onAddImage(options:Object):void {
+		protected function onAddImage(options:Object, widget:XML):void {
+			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.IMAGE_WIDGET_ADD, options);
 		}
 		
-		protected function onAddAudio(options:Object):void {
+		protected function onAddAudio(options:Object, widget:XML):void {
+			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.AUDIO_WIDGET_ADD, options);
 		}
 		
-		protected function onAddVideo(options:Object):void {
+		protected function onAddVideo(options:Object, widget:XML):void {
+			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.VIDEO_WIDGET_ADD, options);
 		}
 		
-		protected function onAddExercise(options:Object):void {
+		protected function onAddExercise(options:Object, widget:XML):void {
+			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.EXERCISE_WIDGET_ADD, options);
 		}
 		

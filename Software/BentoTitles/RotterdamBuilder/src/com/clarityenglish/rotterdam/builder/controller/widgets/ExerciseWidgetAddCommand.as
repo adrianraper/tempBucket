@@ -22,11 +22,17 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var tempid:String = UIDUtil.createUID();
-			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new exercise widget");
-			var node:XML = <exercise type="exercise" tempid={tempid} column="0" span="1" caption="New Exercise widget"><text>{textFlowString}</text></exercise>;
-			
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
+			var node:XML, tempid:String = UIDUtil.createUID();
+			if (note.getBody().node) {
+				node = note.getBody().node;
+			} else {
+				node = 
+					<exercise type="exercise" column="0" span="1" caption="New Exercise widget">
+						<text>{TLFUtil.textToTextFlowString("I am a new exercise widget")}</text>
+					</exercise>;
+				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
+			}
+			node.@tempid = tempid;
 			
 			var courseSelectOptions:Object = {
 				node: node

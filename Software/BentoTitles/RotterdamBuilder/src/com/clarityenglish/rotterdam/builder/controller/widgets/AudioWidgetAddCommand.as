@@ -22,11 +22,17 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var tempid:String = UIDUtil.createUID();
-			var textFlowString:String = TLFUtil.textToTextFlowString("I am a new audio widget");
-			var node:XML = <exercise type="audio" tempid={tempid} column="0" span="1" caption="New Audio widget"><text>{textFlowString}</text></exercise>;
-			
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
+			var node:XML, tempid:String = UIDUtil.createUID();
+			if (note.getBody().node) {
+				node = note.getBody().node;
+			} else {
+				node = 
+					<exercise type="audio" column="0" span="1" caption="New Audio widget">
+						<text>{TLFUtil.textToTextFlowString("I am a new audio widget")}</text>
+					</exercise>;
+				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
+			}
+			node.@tempid = tempid;
 			
 			var uploadOptions:Object = {
 				typeFilter: [ new FileFilter("Audio (*.mp3)", "*.mp3") ],

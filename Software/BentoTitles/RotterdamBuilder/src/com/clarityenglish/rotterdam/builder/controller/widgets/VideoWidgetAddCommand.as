@@ -27,7 +27,6 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			var type:String = note.getBody().type;
 			switch (type) {
 				case 'youtube':
-					
 					// The current YouTube video link looks like
 					//   http://youtu.be/oSn3i4vsGeY
 					// others look like
@@ -58,10 +57,19 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 					facade.sendNotification(RotterdamNotifications.VIDEO_LOAD_ERROR, copyProxy.getBentoErrorForId("errorVideoLoad", { href: rawSrc }));
 					return;
 			}
-				
-			var textFlowString:String = TLFUtil.textToTextFlowString("Watch this video");
 			
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <exercise type="video" src={src} column="0" span="2" caption="Video"><text>{textFlowString}</text></exercise>);
+			var node:XML;
+			if (note.getBody().node) {
+				node = note.getBody().node;
+			} else {
+				node = 
+					<exercise type="video" column="0" span="2" caption="Video">
+						<text>{TLFUtil.textToTextFlowString("Watch this video")}</text>
+					</exercise>;
+				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
+			}
+			
+			node.@src = src;
 		}
 		
 	}

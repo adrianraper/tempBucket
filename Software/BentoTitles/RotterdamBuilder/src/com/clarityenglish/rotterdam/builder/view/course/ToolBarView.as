@@ -131,12 +131,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addItemButton:ToggleButton;
 		
 		public var saveCourse:Signal = new Signal();
-		public var addText:Signal = new Signal(Object);
-		public var addPDF:Signal = new Signal(Object);
-		public var addImage:Signal = new Signal(Object);
-		public var addAudio:Signal = new Signal(Object);
-		public var addVideo:Signal = new Signal(Object);
-		public var addExercise:Signal = new Signal(Object);
+		public var addText:Signal = new Signal(Object, XML);
+		public var addPDF:Signal = new Signal(Object, XML);
+		public var addImage:Signal = new Signal(Object, XML);
+		public var addAudio:Signal = new Signal(Object, XML);
+		public var addVideo:Signal = new Signal(Object, XML);
+		public var addExercise:Signal = new Signal(Object, XML);
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
@@ -144,8 +144,28 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
 		
+		private var _currentEditingWidget:XML;
+		
 		public function ToolBarView() {
 			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "preview" ], true);
+		}
+		
+		/**
+		 * gh#115 - when currentEditingWidget is set the toolbar enters an appropriate mode for editing existing content of a widget.  In most cases this means
+		 * changing the state of the toolbar, but 'exercise' is a special case and immediately pops up the content editor.
+		 * 
+		 * @param widget
+		 */
+		public function set currentEditingWidget(widget:XML):void {
+			_currentEditingWidget = widget;
+			
+			if (!widget) {
+				setCurrentState("normal");
+			} else if (widget.@type == "exercise") {
+				addExercise.dispatch({}, _currentEditingWidget);
+			} else {
+				setCurrentState(widget.@type);
+			}
 		}
 		
 		public function setCurrentTextFormat(format:TextLayoutFormat):void {
@@ -173,7 +193,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function commitProperties():void {
 			super.commitProperties();
 		}
-		
+				
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -288,7 +308,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onNormalAddText(event:MouseEvent):void {
-			addText.dispatch({});
+			addText.dispatch({}, _currentEditingWidget);
 			itemClick = true;
 		}
 		
@@ -303,8 +323,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onNormalAddExercise(event:MouseEvent):void {
-			// TODO: Add exercise
-			addExercise.dispatch({});
+			addExercise.dispatch({}, _currentEditingWidget);
 			itemClick = true;
 		}
 		
@@ -313,57 +332,57 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onPdfUpload(event:MouseEvent):void {
-			addPDF.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
+			addPDF.dispatch( { source: "computer" }, _currentEditingWidget); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onPdfCloudUpload(event:MouseEvent):void {
-			addPDF.dispatch( { source: "cloud" } ); // TODO: use a constant from somewhere?
+			addPDF.dispatch( { source: "cloud" }, _currentEditingWidget); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onPdfUrlEnter(event:FlexEvent):void {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
-				addPDF.dispatch( { source: "external", url: url } ); // TODO: use a constant from somewhere?
+				addPDF.dispatch( { source: "external", url: url }, _currentEditingWidget); // TODO: use a constant from somewhere?
 				event.target.text = "";
 				setCurrentState("normal");
 			}
 		}
 		
 		protected function onImageUpload(event:MouseEvent):void {
-			addImage.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
+			addImage.dispatch( { source: "computer" }, _currentEditingWidget); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onImageCloudUpload(event:MouseEvent):void {
-			addImage.dispatch( { source: "cloud" } ); // TODO: use a constant from somewhere?
+			addImage.dispatch( { source: "cloud" }, _currentEditingWidget); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onImageUrlEnter(event:FlexEvent):void {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
-				addImage.dispatch( { source: "external", url: url } ); // TODO: use a constant from somewhere?
+				addImage.dispatch( { source: "external", url: url }, _currentEditingWidget); // TODO: use a constant from somewhere?
 				event.target.text = "";
 				setCurrentState("normal");
 			}
 		}
 		
 		protected function onAudioUpload(event:MouseEvent):void {
-			addAudio.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
+			addAudio.dispatch( { source: "computer" }, _currentEditingWidget); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onAudioCloudUpload(event:MouseEvent):void {
-			addAudio.dispatch( { source: "cloud" } ); // TODO: use a constant from somewhere?
+			addAudio.dispatch( { source: "cloud" }, _currentEditingWidget); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onAudioUrlEnter(event:FlexEvent):void {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
-				addAudio.dispatch( { source: "external", url: url } ); // TODO: use a constant from somewhere?
+				addAudio.dispatch( { source: "external", url: url }, _currentEditingWidget); // TODO: use a constant from somewhere?
 				event.target.text = "";
 				setCurrentState("normal");
 			}
@@ -372,7 +391,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected function onVideoSelect(event:MouseEvent):void {
 			var url:String = videoUrlTextInput.text;
 			if (url) {
-				addVideo.dispatch({ type: "youtube", url: url }); // TODO: use a constant from somewhere (in fact this isn't used yet)?
+				addVideo.dispatch( { type: "youtube", url: url }, _currentEditingWidget); // TODO: use a constant from somewhere (in fact this isn't used yet)?
 				setCurrentState("normal");
 			}
 		}
@@ -449,6 +468,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			}
 
 		}
-
+		
+		/**
+		 * gh#115 - make sure that as soon as we go back to normal state we stop editing any widget.  This should stop hard to track down errors where the
+		 * wrong widget is getting changed.
+		 * 
+		 * @param stateName
+		 * @param playTransition
+		 */
+		public override function setCurrentState(stateName:String, playTransition:Boolean = true):void {
+			if (stateName == "normal") _currentEditingWidget = null;
+			super.setCurrentState(stateName, playTransition);
+		}
+		
 	}
 }

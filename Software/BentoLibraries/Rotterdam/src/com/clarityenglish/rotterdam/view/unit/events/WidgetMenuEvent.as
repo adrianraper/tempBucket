@@ -7,6 +7,7 @@ package com.clarityenglish.rotterdam.view.unit.events {
 		public static const MENU_HIDE:String = "menuHide";
 		
 		public static const WIDGET_DELETE:String = "widgetDelete";
+		public static const WIDGET_EDIT:String = "widgetEdit";
 		
 		private var _xml:XML;
 		

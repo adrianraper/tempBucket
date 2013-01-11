@@ -28,6 +28,7 @@
 			
 			view.widgetSelect.add(onWidgetSelect);
 			view.widgetDelete.add(onWidgetDelete);
+			view.widgetEdit.add(onWidgetEdit);
 			
 			// TODO: Hacky!  Do this properly for the non-prototype version.
 			setTimeout(function():void {
@@ -41,6 +42,7 @@
 			
 			view.widgetSelect.remove(onWidgetSelect);
 			view.widgetDelete.remove(onWidgetDelete);
+			view.widgetEdit.remove(onWidgetEdit);
 			
 			AudioPlayer.stopAllAudio();
 		}
@@ -68,6 +70,10 @@
 		
 		protected function onWidgetDelete(widget:XML):void {
 			facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, widget);
+		}
+		
+		protected function onWidgetEdit(widget:XML):void {
+			facade.sendNotification(RotterdamNotifications.WIDGET_EDIT, widget);
 		}
 		
 	}

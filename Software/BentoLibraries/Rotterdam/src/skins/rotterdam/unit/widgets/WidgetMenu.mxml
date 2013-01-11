@@ -24,6 +24,11 @@
 				if (_xml) {
 					// Set the span indicator from the @span attribute
 					spanButtonBar.selectedIndex = _xml.@span - 1;
+					
+					// If there is a state with the type of the widget then set it (this allows menu customization based on widget type)
+					setCurrentState(hasState(_xml.@type) ? _xml.@type : "normal");
+				} else {
+					setCurrentState("normal");
 				}
 			}
 			
@@ -42,6 +47,11 @@
 				// Not yet implemented
 			}
 			
+			protected function onEditClick(event:MouseEvent):void {
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.WIDGET_EDIT, true, xml));
+			}
+			
 			protected function onSpanChange(event:IndexChangeEvent):void {
 				// Change the @span attribute in the XML based on the selection and shut the menu
 				_xml.@span = event.target.selectedIndex + 1;
@@ -50,6 +60,11 @@
 			
 		]]>
 	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="text" />
+	</s:states>
 	
 	<!-- The menu -->
 	<s:Group id="menu" top="25" right="0" width="162">
@@ -80,6 +95,14 @@
 			</s:Line>
 			
 			<s:Button label="Copy item" icon="{CopyIcon}" width="100%" height="50" click="onCopyClick(event)" enabled="false" />
+			
+			<s:Line width="135" excludeFrom="text" >
+				<s:stroke>
+					<s:SolidColorStroke color="#D8D8D8" />
+				</s:stroke>
+			</s:Line>
+			
+			<s:Button label="Edit item" width="100%" height="50" click="onEditClick(event)" excludeFrom="text" />
 			
 			<s:ButtonBar id="spanButtonBar" width="100%" height="50" change="onSpanChange(event)" color="0xD8D8D8">
 				<s:dataProvider>

@@ -25,6 +25,7 @@
 		public static const WIDGET_SELECT:String = "rotterdam/widget_select";
 		public static const WIDGET_ADD:String = "rotterdam/widget_add";
 		public static const WIDGET_DELETE:String = "rotterdam/widget_delete";
+		public static const WIDGET_EDIT:String = "rotterdam/widget_edit";
 		
 		public static const TEXT_WIDGET_ADD:String = "rotterdam/text_widget_add";
 		public static const PDF_WIDGET_ADD:String = "rotterdam/pdf_widget_add";

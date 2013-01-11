@@ -45,7 +45,7 @@
 		<s:Label includeIn="pdf" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:Button includeIn="pdf" id="pdfUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
 		<s:Label includeIn="pdf" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
-		<s:TextInput includeIn="pdf" id="pdfUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" prompt="Enter a URL and press enter" text="http://cran.r-project.org/web/packages/som/som.pdf" />
+		<s:TextInput includeIn="pdf" id="pdfUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" prompt="Enter a URL and press enter" />
 		
 		<s:Label includeIn="image" text="Upload Image from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:Button includeIn="image" id="imageResourceCloudButton" label="Resource Cloud" />
