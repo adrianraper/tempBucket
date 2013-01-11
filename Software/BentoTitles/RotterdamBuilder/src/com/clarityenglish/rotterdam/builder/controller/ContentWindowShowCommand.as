@@ -69,7 +69,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		 */
 		protected function onContentSelect(event:ContentEvent):void {
 			node.@contentuid = event.uid;
-			var tempText:XML = node.text;
+			//var tempText:XML = node.text;
 			// AR, this doesn't do what I want, it just removes all text from the xml
 			//var textFlowString:String = TLFUtil.textToTextFlowString(event.caption);
 			//node.text = new XML("<![CDATA[" + textFlowString + "]]>");

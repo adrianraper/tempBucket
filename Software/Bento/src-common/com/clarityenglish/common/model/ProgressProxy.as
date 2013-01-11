@@ -113,6 +113,11 @@ package com.clarityenglish.common.model {
 			// If the data has already been loaded then just return it
 			// Temporarily disable caching
 			if (loadedResources[progressType]) {
+				/*if (progressType == Progress.PROGRESS_MY_DETAILS) {
+					// GH #95 - again, XHTMLProxy and ProgressProxy *need* to be consolidated
+					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+					bentoProxy.menuXHTML = loadedResources[progressType];
+				}*/
 				notifyDataLoaded(progressType);
 				return;
 			}
@@ -120,7 +125,6 @@ package com.clarityenglish.common.model {
 			// If the resource is already loading then do nothing
 			for each (var loadingData:String in dataLoading)
 				if (progressType === loadingData) {
-					
 					return;
 				}
 					
@@ -226,9 +230,10 @@ package com.clarityenglish.common.model {
 					}
 				}
 				
+				//loadedResources[href] = menuXHTML; // GH #95
 				bentoProxy.menuXHTML = menuXHTML;
 				
-				sendNotification(BBNotifications.MENU_XHTML_LOADED);
+				sendNotification(BBNotifications.MENU_XHTML_LOADED, menuXHTML);
 			}
 			
 			return true;
@@ -242,10 +247,12 @@ package com.clarityenglish.common.model {
 		private function notifyDataLoaded(progressType:String):void {
 			// #338. Note that loadedResources[progress_my_details] is just a boolean to show that we have the data
 			// already, the actual data is held in bentoProxy
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			
+			var dataProvider:Object;
 			if (progressType == Progress.PROGRESS_MY_DETAILS) {
-				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				var dataProvider:Object = bentoProxy.menu;
-				trace("bentoProxy.menu ");
+				dataProvider = bentoProxy.menu;
+				//dataProvider = loadedResources[href]; // GH #95
 			} else {
 				dataProvider = loadedResources[progressType];
 			}

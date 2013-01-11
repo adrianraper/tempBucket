@@ -72,8 +72,6 @@ package com.clarityenglish.rotterdam.player.view {
 		private function handleStateChange(state:State):void {
 			log.debug("State machine moved into state {0}", state.name);
 			
-			log.debug("State machine moved into state {0}", state.name);
-			
 			switch (state.name) {
 				case BBStates.STATE_LOAD_COPY:
 				case BBStates.STATE_LOAD_ACCOUNT:
