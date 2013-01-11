@@ -154,6 +154,7 @@
     <classEntry path="skins.bento.warning.WarningYesButtonSkin"/>
     <classEntry path="skins.bento.warning.WarningSkin"/>
     <classEntry path="skins.bento.warning.WarningNoButtonSkin"/>
+    <classEntry path="org.davekeen.validators.URLValidator"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

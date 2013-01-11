@@ -44,16 +44,22 @@
 		<s:Button includeIn="pdf" id="pdfResourceCloudButton" label="Resource Cloud" useHandCursor="true" buttonMode="true" />
 		<s:Label includeIn="pdf" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:Button includeIn="pdf" id="pdfUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
+		<s:Label includeIn="pdf" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
+		<s:TextInput includeIn="pdf" id="pdfUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" prompt="Enter a URL and press enter" text="http://cran.r-project.org/web/packages/som/som.pdf" />
 		
 		<s:Label includeIn="image" text="Upload Image from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:Button includeIn="image" id="imageResourceCloudButton" label="Resource Cloud" />
 		<s:Label includeIn="image" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:Button includeIn="image" id="imageUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
+		<s:Label includeIn="image" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
+		<s:TextInput includeIn="image" id="imageUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" prompt="Enter a URL and press enter" />
 		
 		<s:Label includeIn="audio" text="Upload Audio from" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:Button includeIn="audio" id="audioResourceCloudButton" label="Resource Cloud" />
 		<s:Label includeIn="audio" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:Button includeIn="audio" id="audioUploadButton" label="My Computer" useHandCursor="true" buttonMode="true" />
+		<s:Label includeIn="audio" text="or" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
+		<s:TextInput includeIn="audio" id="audioUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" prompt="Enter a URL and press enter" />
 		
 		<s:Label includeIn="video" text="Place your video URL here:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="video" id="videoUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" text="http://www.youtube.com/v/hecfFD_D_pU?version=3" />

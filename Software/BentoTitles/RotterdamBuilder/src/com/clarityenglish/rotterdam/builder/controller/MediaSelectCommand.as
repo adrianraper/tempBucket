@@ -25,6 +25,12 @@ package com.clarityenglish.rotterdam.builder.controller {
 				case "cloud":
 					sendNotification(RotterdamNotifications.MEDIA_CLOUD_SELECT, note.getBody(), note.getType());
 					break;
+				case "external":
+					// gh#111 - in 'external' mode we already have a url so there is no user interaction necessary 
+					var node:XML = note.getBody().node;
+					node.@src = note.getBody().url;
+					delete node.@tempid;
+					break;
 				default:
 					log.error("Unknown source " + note.getBody().source + " for media selection");
 			}

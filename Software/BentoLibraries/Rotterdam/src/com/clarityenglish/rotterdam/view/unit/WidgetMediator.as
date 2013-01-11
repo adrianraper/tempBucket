@@ -10,6 +10,7 @@
 	
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
+	import org.davekeen.util.StringUtils;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.mediator.Mediator;
@@ -97,11 +98,17 @@
 		}
 		
 		protected function onOpenMedia(widget:XML, src:String):void {
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			
-			// TODO: media/ should not be hardcoded
-			var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
-			navigateToURL(new URLRequest(srcHref.url), "_blank");
+			if (StringUtils.beginsWith(src.toLowerCase(), "http")) {
+				// gh#111 - if this is an absolute URL (i.e. starts with 'http') then navigate to it directly
+				navigateToURL(new URLRequest(src), "_blank");
+			} else {
+				// gh#111 - otherwise construct the url inside the account folder
+				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+				
+				// TODO: media/ should not be hardcoded
+				var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
+				navigateToURL(new URLRequest(srcHref.url), "_blank");
+			}
 		}
 		
 		/**

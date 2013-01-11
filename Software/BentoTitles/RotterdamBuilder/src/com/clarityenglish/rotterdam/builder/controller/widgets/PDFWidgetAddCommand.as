@@ -31,7 +31,8 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			var uploadOptions:Object = {
 				typeFilter: [ new FileFilter("PDF documents (*.pdf)", "*.pdf") ],
 				node: node,
-				source: note.getBody().source
+				source: note.getBody().source,
+				url: note.getBody().url // gh#111 - this is only used in 'external' types where the user has already entered a url
 			};
 			facade.sendNotification(RotterdamNotifications.MEDIA_SELECT, uploadOptions, tempid);
 		}

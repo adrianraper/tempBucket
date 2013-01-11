@@ -7,9 +7,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
+	import mx.events.FlexEvent;
 	import mx.events.FlexMouseEvent;
 	
 	import org.davekeen.util.StateUtil;
+	import org.davekeen.validators.URLValidator;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
@@ -78,16 +80,25 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var pdfResourceCloudButton:Button;
 		
 		[SkinPart]
+		public var pdfUrlTextInput:TextInput;
+		
+		[SkinPart]
 		public var imageUploadButton:Button;
 		
 		[SkinPart]
 		public var imageResourceCloudButton:Button;
 		
 		[SkinPart]
+		public var imageUrlTextInput:TextInput;
+		
+		[SkinPart]
 		public var audioUploadButton:Button;
 		
 		[SkinPart]
 		public var audioResourceCloudButton:Button;
+		
+		[SkinPart]
+		public var audioUrlTextInput:TextInput;
 		
 		[SkinPart]
 		public var videoUrlTextInput:TextInput;
@@ -219,17 +230,26 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case pdfResourceCloudButton:
 					pdfResourceCloudButton.addEventListener(MouseEvent.CLICK, onPdfCloudUpload);
 					break;
+				case pdfUrlTextInput:
+					pdfUrlTextInput.addEventListener(FlexEvent.ENTER, onPdfUrlEnter);
+					break;
 				case imageUploadButton:
 					imageUploadButton.addEventListener(MouseEvent.CLICK, onImageUpload);
 					break;
 				case imageResourceCloudButton:
 					imageResourceCloudButton.addEventListener(MouseEvent.CLICK, onImageCloudUpload);
 					break;
+				case imageUrlTextInput:
+					imageUrlTextInput.addEventListener(FlexEvent.ENTER, onImageUrlEnter);
+					break;
 				case audioUploadButton:
 					audioUploadButton.addEventListener(MouseEvent.CLICK, onAudioUpload);
 					break;
 				case audioResourceCloudButton:
 					audioResourceCloudButton.addEventListener(MouseEvent.CLICK, onAudioCloudUpload);
+					break;
+				case audioUrlTextInput:
+					audioUrlTextInput.addEventListener(FlexEvent.ENTER, onAudioUrlEnter);
 					break;
 				case videoSelectButton:
 					videoSelectButton.addEventListener(MouseEvent.CLICK, onVideoSelect);
@@ -302,6 +322,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			setCurrentState("normal");
 		}
 		
+		protected function onPdfUrlEnter(event:FlexEvent):void {
+			var url:String = event.target.text;
+			if (url && !(new URLValidator().validate(url).results)) {
+				addPDF.dispatch( { source: "external", url: url } ); // TODO: use a constant from somewhere?
+				event.target.text = "";
+				setCurrentState("normal");
+			}
+		}
+		
 		protected function onImageUpload(event:MouseEvent):void {
 			addImage.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
@@ -312,6 +341,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			setCurrentState("normal");
 		}
 		
+		protected function onImageUrlEnter(event:FlexEvent):void {
+			var url:String = event.target.text;
+			if (url && !(new URLValidator().validate(url).results)) {
+				addImage.dispatch( { source: "external", url: url } ); // TODO: use a constant from somewhere?
+				event.target.text = "";
+				setCurrentState("normal");
+			}
+		}
+		
 		protected function onAudioUpload(event:MouseEvent):void {
 			addAudio.dispatch( { source: "computer" } ); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
@@ -320,6 +358,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected function onAudioCloudUpload(event:MouseEvent):void {
 			addAudio.dispatch( { source: "cloud" } ); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
+		}
+		
+		protected function onAudioUrlEnter(event:FlexEvent):void {
+			var url:String = event.target.text;
+			if (url && !(new URLValidator().validate(url).results)) {
+				addAudio.dispatch( { source: "external", url: url } ); // TODO: use a constant from somewhere?
+				event.target.text = "";
+				setCurrentState("normal");
+			}
 		}
 		
 		protected function onVideoSelect(event:MouseEvent):void {
