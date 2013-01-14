@@ -30,10 +30,4 @@
 			<location>D:/Projectbench/Software/BentoTitles/IELTS/src</location>
 		</link>
 	</linkedResources>
-	<variableList>
-		<variable>
-			<name>SDK_HOME</name>
-			<value>file:/C:/Program%20Files%20(x86)/Adobe/Adobe%20Flash%20Builder%204.5/sdks/flex_sdk_4.6.0.23201</value>
-		</variable>
-	</variableList>
 </projectDescription>
