@@ -49,11 +49,11 @@ title1|TitleView {
 }
 
 title1|TitleView s|TabbedViewNavigator {
-	skinClass: ClassReference("skins.rotterdam.builder.title.WebTabbedViewNavigatorSkin");
+	skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
 }
 
 title1|TitleView s|ViewNavigator {
-	skinClass: ClassReference("skins.rotterdam.builder.title.WebViewNavigatorSkin");
+	skinClass: ClassReference("skins.rotterdam.title.WebViewNavigatorSkin");
 }
 
 courseselector|CourseSelectorView {
@@ -77,7 +77,7 @@ course1|CourseView s|Button#addUnitButton {
 }
 
 course1|CourseView s|BorderContainer#unitContainer {
-	skinClass: ClassReference("skins.rotterdam.builder.course.UnitListContainerSkin");
+	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
 }
 
 course1|CourseView s|Button#courseSettingsButton {
@@ -183,11 +183,11 @@ course|ToolBarView s|Button#normalCancelButton {
 }
 
 unit|UnitHeaderView {
-	skinClass: ClassReference("skins.rotterdam.builder.unit.UnitHeaderSkin");
+	skinClass: ClassReference("skins.rotterdam.unit.UnitHeaderSkin");
 }
 
 unit|UnitHeaderView s|Button#editButton {
-	skinClass: ClassReference("skins.rotterdam.builder.unit.EditButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.unit.EditButtonSkin");
 }
 
 uniteditor|UnitEditorView {

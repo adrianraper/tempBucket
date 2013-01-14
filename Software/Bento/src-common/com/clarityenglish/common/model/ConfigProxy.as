@@ -76,7 +76,6 @@ package com.clarityenglish.common.model {
 			 *  Use what is passed from start page or command line
 			 */
 			config.mergeParameters(FlexGlobals.topLevelApplication.parameters);
-
 			// #336 SCORM
 			// The SCORM initialisation might fail and raise an exception. Don't bother going on...
 			var rc:Boolean = true;
@@ -165,6 +164,7 @@ package com.clarityenglish.common.model {
 		
 		public function onConfigLoadComplete(e:Event):void {
 			//config = new XML(e.target.data);
+			trace("target data: " + e.target.data);
 			config.mergeFileData(new XML(e.target.data));
 			
 			// Configure the delegate now that you have the gateway path 

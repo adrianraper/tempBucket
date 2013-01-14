@@ -18,10 +18,27 @@
 		<s:State name="unitplayer" />
 	</s:states>
 	
-	<s:VGroup>
-		<s:Label id="courseCaptionLabel" width="150" fontWeight="bold" />
-		<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" left="0" width="150" top="20" borderVisible="false" />
-	</s:VGroup>
+	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" height="{unitVGroup.height + 30}">
+		<s:layout>
+			<s:VerticalLayout paddingTop="10"/>
+		</s:layout>
+		<s:VGroup id="unitVGroup">
+			<s:Label id="courseCaptionLabel" paddingLeft="7" width="150" fontWeight="bold" fontSize="15"/>
+			<mx:Spacer height="5" />
+			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" borderVisible="false" selectionColor="0xC0C0C0">
+				<s:layout>
+					<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
+				</s:layout>
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer>
+							<s:RichText text="{data.@caption}" textIndent="18" fontSize="14" color="0x000000" height="25" paddingTop="8"/>
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:List>
+		</s:VGroup>
+	</s:BorderContainer>
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
 	<unit:UnitView id="unitView" left="156" right="0" top="50" bottom="80" />

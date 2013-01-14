@@ -13,9 +13,9 @@
       </libraryPathEntry>
       <libraryPathEntry kind="1" linkType="1" path="libs"/>
       <libraryPathEntry kind="3" linkType="1" path="/Bento/bin/Bento.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/OSMF/bin/OSMF.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/csslib/bin/csslib.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/textLayout/bin/textLayout.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="D:/alice folder/useful code/OSMF-src/OSMF/framework/OSMF/bin/OSMF.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="D:/Projectbench/Software/Common/as3csslib/bin" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="D:/TextLayoutFramework/textLayout/bin/textLayout.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/mobile/mobilecomponents.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/Rotterdam/bin/Rotterdam.swc" useDefaultLinkType="false"/>
     </libraryPath>

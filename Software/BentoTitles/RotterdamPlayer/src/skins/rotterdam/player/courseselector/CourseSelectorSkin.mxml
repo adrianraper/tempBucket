@@ -17,10 +17,8 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:Label text="Choose a Course" />
+	<s:Label text="Choose a Course" top="15" fontSize="16" fontWeight="bold"/>
 	
-	<s:List id="courseList" labelField="@caption" width="100%" />
-	
-	<s:Button id="selectCourseButton" label="Select course" enabled="{courseList.selectedItem != null}" />
+	<s:List id="courseList" labelField="@caption" width="100%" borderVisible="false" itemRenderer="skins.rotterdam.courseselector.CourseListItemRenderer" top="43"/>
 	
 </s:Skin>

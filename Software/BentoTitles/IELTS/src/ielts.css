@@ -401,3 +401,10 @@ s|TitleWindow.titleWindowClose {
 swfplayer|SWFPlayerView {
 	loadingGraphic: Embed(source="skins/ielts/assets/loading.swf");
 }
+/*debugalice: flex4.5 project setting problem?*/
+mx|ToolTip {
+	fontFamily: "Helvetica";
+	fontSize: 12.6;
+	color: #FFFFFF;
+	backgroundColor: #000000;
+}

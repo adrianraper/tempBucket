@@ -185,8 +185,10 @@ package com.clarityenglish.common.vo.config {
 		 * 	  startTime
 		 */
 		public function mergeParameters(parameters:Object):void {
-			if (parameters.dbHost)
+			if (parameters.dbHost) {
+				//trace("dbHost: "+dbHost);
 				this.dbHost = parameters.dbHost;
+			}
 			// Prefix takes precedence over rootID
 			if (parameters.prefix) {
 				this.prefix = parameters.prefix;
@@ -356,6 +358,7 @@ package com.clarityenglish.common.vo.config {
 			if (xml..language.toString()) {
 				this.language = xml..language.toString();
 				this.languageCode = xml..language.toString();
+				trace("language: "+this.language);
 			}
 			
 			// To handle the amfphp gateway

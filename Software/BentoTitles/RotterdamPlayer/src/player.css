@@ -42,11 +42,11 @@ title|TitleView {
 }
 
 title|TitleView s|TabbedViewNavigator {
-	skinClass: ClassReference("skins.viewnavigator.WebTabbedViewNavigatorSkin");
+	skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
 }
 
 title|TitleView s|ViewNavigator {
-	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
+	skinClass: ClassReference("skins.rotterdam.title.WebViewNavigatorSkin");
 }
 
 courseselector|CourseSelectorView {
@@ -57,8 +57,16 @@ course|CourseView {
 	skinClass: ClassReference("skins.rotterdam.player.course.CourseSkin");
 }
 
+course|CourseView s|BorderContainer#unitContainer {
+	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
+}
+
 unit|UnitHeaderView {
-	skinClass: ClassReference("skins.rotterdam.player.unit.UnitHeaderSkin");
+	skinClass: ClassReference("skins.rotterdam.unit.UnitHeaderSkin");
+}
+
+unit|UnitHeaderView s|Button#editButton {
+	skinClass: ClassReference("skins.rotterdam.unit.EditButtonSkin");
 }
 
 /* Progress view styles */
