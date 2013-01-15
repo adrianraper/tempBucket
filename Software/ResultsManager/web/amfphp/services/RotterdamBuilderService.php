@@ -21,7 +21,6 @@ class RotterdamBuilderService extends RotterdamService {
 		$licence->licenceType = Title::LICENCE_TYPE_LT;
 		
 		return parent::login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID, $productCode, $dbHost, $allowedUserTypes);
-		
 	}
 		
 }

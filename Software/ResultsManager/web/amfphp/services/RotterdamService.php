@@ -28,7 +28,6 @@ class RotterdamService extends BentoService {
 	}
 	
 	public function getContent() {
-		
 		// gh#81 Ignore Rotterdam when getting back Clarity content that you can use as widgets
 		$productCodes = array(-54);
 		return $this->contentOps->getContent($productCodes);
@@ -37,12 +36,12 @@ class RotterdamService extends BentoService {
 	/**
 	 * GH #84 - when loading Hrefs in Bento there is an option 'serverSide' boolean that can be set which pipes the XHTML_LOAD notification through
 	 * this server-side method instead of loading it directly, giving the server a change to fiddle with the xml before returning it (or even constructing
-	 * it completely on the fly).  For security reasons the allowed filenames MUST be specified in a switch, otherwise this could comprimise the server.
+	 * it completely on the fly).  For security reasons the allowed filenames MUST be specified in a switch, otherwise this could compromise the server.
 	 * 
 	 * TODO: allow $options to be passed in order to configure this further
 	 * TODO: all the confusion around XHTMLProxy vs ProgressProxy could potentially be fixed using this new system
 	 */
-	public function xhtmlLoad($filename) {
+	public function xhtmlLoad($filename, $type) {
 		switch ($filename) {
 			case "courses.xml":
 				return $this->courseOps->coursesLoad();
