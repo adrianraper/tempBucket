@@ -175,7 +175,6 @@ package com.clarityenglish.common.model {
 		
 		public function onConfigLoadComplete(e:Event):void {
 			//config = new XML(e.target.data);
-			trace("target data: " + e.target.data);
 			config.mergeFileData(new XML(e.target.data));
 			
 			// Configure the delegate now that you have the gateway path 
@@ -276,6 +275,9 @@ package com.clarityenglish.common.model {
 			switch (Config.DEVELOPER.name) {
 				case "AR":
 					configUser = new User({ name: "dandelion", password: "password", email:"dandy@email" });
+					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
+				case "DKweb":
+					configUser = new User({ name: "dandelion", password: "password" });
 					return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
 				case "DK":
 					configUser = new User({ name: "Mrs white", password: "password" });
