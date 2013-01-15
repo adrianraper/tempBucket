@@ -37,8 +37,9 @@
 	<s:Label id="questionVideoLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
 	<s:Label id="questionVideoInstructionLabel" fontSize="14" left="20" top="35" right="25" />
 	
+	<!-- gh#116 -->
 	<s:SWFLoader id="questionZoneEBookGraphic"
-				 left="20" right="25" top="85"
+				 left="20" top="85"
 				 source.reading="@Embed(source='/skins/ielts/assets/zone/questionzone_reading.png')"
 				 source.writing="@Embed(source='/skins/ielts/assets/zone/questionzone_writing.png')"
 				 source.listening="@Embed(source='/skins/ielts/assets/zone/questionzone_listening.png')"
