@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.vo {
 	
+	[RemoteClass(alias="com.clarityenglish.bento.vo.Href")]
 	public class Href {
 		
 		public static const XHTML:String = "xhtml";

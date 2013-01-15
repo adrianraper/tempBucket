@@ -12,6 +12,8 @@ require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/Log/Log.php");
 require_once(dirname(__FILE__)."/../../classes/Log/handlers/Log_ClarityDB.php");
 
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/Href.php");
+
 class AbstractService {
 	
 	var $db;
@@ -26,13 +28,7 @@ class AbstractService {
 		global $ADODB_mssql_mths;
 		$ADODB_mssql_date_order = 'mdy'; 
 		$ADODB_mssql_mths = array('JAN'=>1,'FEB'=>2,'MAR'=>3,'APR'=>4,'MAY'=>5,'JUN'=>6,'JUL'=>7,'AUG'=>8,'SEP'=>9,'OCT'=>10,'NOV'=>11,'DEC'=>12);
-		
-		// Force all PHP datetime functions to work in UTC
-		// Wouldn't it make more sense to work in Asia/Hong_Kong since that is where the server is?
-		//date_default_timezone_set("Asia/Hong_Kong");
-		// #518 Now set in amfphp/globals.php
-		//date_default_timezone_set("UTC");
-		
+				
 		// Small optimization
 		$ADODB_COUNTRECS = false;
 		
@@ -59,6 +55,9 @@ class AbstractService {
 		// I don't think so, it only does opening etc when called to write.
 		AbstractService::$debugLog = &Log::factory('file');
 		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');
+		
+		// Create the operation classes
+		$this->copyOps = new CopyOps();
 	}
 
 	/**
@@ -66,7 +65,6 @@ class AbstractService {
 	 * So let the database change
 	 */
 	public function changeDbHost($dbHost) {
-		
 		$dbDetails = new DBDetails($dbHost);
 		$GLOBALS['dbms'] = $dbDetails->driver;
 		$GLOBALS['db'] = $dbDetails->dsn;
@@ -80,7 +78,6 @@ class AbstractService {
 		
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
 		AbstractService::$log->setDB($this->db);
-		
 	}
 	
 	/**
@@ -96,6 +93,13 @@ class AbstractService {
 			$dictionaries[$dictionaryName] = $this->getDictionary($dictionaryName);
 		
 		return $dictionaries;
+	}
+	
+	/**
+	 * Base method for serverside xhtml calls returns an error
+	 */
+	public function xhtmlLoad($href) {
+		throw $this->copyOps->getExceptionForId("errorSecurity");
 	}
 	
 	// Authentication & security
@@ -138,7 +142,6 @@ class AbstractService {
 		// The while loop makes sure that all nested transactions are shut.  However, this is a potential danger spot as it could get
 		// caught in an infinite loop if something goes wrong with adbodb's counting.  Therefore limit this to 25 nested loops (which
 		// is far far more than we would ever have anyway)
-		
 		$n = 0;
 		while ($this->db->transCnt > 0 && $n < 25) {
 			$this->db->FailTrans();

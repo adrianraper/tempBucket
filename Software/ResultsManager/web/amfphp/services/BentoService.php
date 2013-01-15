@@ -70,12 +70,23 @@ class BentoService extends AbstractService {
 		// Create the operation classes
 		$this->accountOps = new AccountOps($this->db);
 		$this->loginOps = new LoginOps($this->db);
-		$this->copyOps = new CopyOps();
 		$this->manageableOps = new ManageableOps($this->db);
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
-		
+	}
+	
+	/**
+	 * Base method for serverside xhtml calls returns an error
+	 */
+	public function xhtmlLoad($href) {
+		switch ($href->type) {
+			case "menu_xhtml":
+				
+				break;
+			default:
+				return parent::xhtmlLoad($href);
+		}
 	}
 	
 	/**
@@ -93,7 +104,6 @@ class BentoService extends AbstractService {
 	 * @return error - Error object if required 
 	 */
 	public function getAccountSettings($config) {
-		
 		// #353 This first call might change the dbHost that the session uses
 		if (isset($config['dbHost']))
 			$this->initDbHost($config['dbHost']);
@@ -128,7 +138,6 @@ class BentoService extends AbstractService {
 					 "licence" => $licence,
 					 "group" => $group,
 					 "account" => $account);
-	    		
 	}
 	
 	/**
@@ -137,7 +146,6 @@ class BentoService extends AbstractService {
 	 */
 	private function initDbHost($dbHost) {
 		if ($GLOBALS['dbHost'] != $dbHost) {
-				
 			// Set session variable so that next time config.php is called it will use this dbHost
 			// Which should mean that you only need to pick up dbHost for the first call to a service
 			// But it would be much better if I could pass dbHost direct to the service so it simply
@@ -163,7 +171,6 @@ class BentoService extends AbstractService {
 	// gh#46 This first call might change the dbHost that the session uses
 	// gh#66 RotterdamBuilder will send allowedUserTypes and change licence
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
-		
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 		
@@ -327,6 +334,7 @@ class BentoService extends AbstractService {
 		if (stristr($menuXMLFile, '-.xml')) {
 			$menuXMLFile = preg_replace('/(\w+)-\.xml/i', '$1-FullVersion.xml', $menuXMLFile);
 		}
+		
 		// and the passed user might just be an id, in which case build a temp User object
 		if (!isset($user->userID)) {
 			$userID = $user;
@@ -400,7 +408,6 @@ class BentoService extends AbstractService {
 	 *  @param dateNow - used to get client time
 	 */
 	public function startSession($user, $rootID, $productCode, $dateNow = null) {
-		
 		// A successful session start will return a new ID
 		$sessionID = $this->progressOps->startSession($user, $rootID, $productCode, $dateNow);
 		return array("sessionID" => $sessionID);

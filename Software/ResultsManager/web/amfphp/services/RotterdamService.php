@@ -41,8 +41,8 @@ class RotterdamService extends BentoService {
 	 * TODO: allow $options to be passed in order to configure this further
 	 * TODO: all the confusion around XHTMLProxy vs ProgressProxy could potentially be fixed using this new system
 	 */
-	public function xhtmlLoad($filename, $type) {
-		switch ($filename) {
+	public function xhtmlLoad($href) {
+		switch ($href->filename) {
 			case "courses.xml":
 				return $this->courseOps->coursesLoad();
 			default:

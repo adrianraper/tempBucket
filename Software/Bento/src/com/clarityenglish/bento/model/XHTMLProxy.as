@@ -94,8 +94,8 @@ package com.clarityenglish.bento.model {
 			}
 			
 			if (href.serverSide) {
-				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($filename) GH #84
-				new RemoteDelegate("xhtmlLoad", [ href.filename, href.type ]).execute().addResponder(new ResultResponder(
+				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) GH #84
+				new RemoteDelegate("xhtmlLoad", [ href ]).execute().addResponder(new ResultResponder(
 					function(e:ResultEvent, data:AsyncToken):void {
 						parseAndStoreXHTML(href, e.result.toString());
 					},
