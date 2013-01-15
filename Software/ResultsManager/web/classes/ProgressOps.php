@@ -89,6 +89,7 @@ class ProgressOps {
 		
 		return $build;
 	}
+	
 	/**
 	 * This method merges the progress records with XML at the detail level
 	 * The rs contains a record(s) for each exercise that has been done.
@@ -231,7 +232,6 @@ insert into T_Score values
 	 * recursive function to set all child nodes to this enabledFlag
 	 */
 	function propagateEnabledFlag($node, $eF) {
-		
 		$this->setAttribute($node, 'enabledFlag', $eF);
 		
 		// Go down from this node
@@ -251,14 +251,13 @@ insert into T_Score values
 				default:
 			}	
 		}
-		
 	}
+	
 	/**
 	 * recursive function to see if all a nodes children have the same enabledFlag
 	 * @param XML $node
 	 */
 	function getCompositeEnabledFlag($node) {
-			
 		$allItemsHidden = true;
 		foreach ($node->children() as $item) {
 			// Only interested in course, unit and exercise nodes
@@ -311,6 +310,7 @@ insert into T_Score values
 		$bookmark->addAttribute('date', $score->dateStamp);
 		return $bookmark->asXML();		
 	}
+	
 	/**
 	 * This method gets one user's progress records at the summary level.
 	 * It is extremely efficent to use SQL to do this, but it means that if we change
@@ -407,7 +407,6 @@ SQL;
 	 * This method is called to insert a session record when a user starts a program
 	 */
 	function startSession($user, $rootID, $productCode, $dateNow = null) {
-		
 		// For teachers we will set rootID to -1 in the session record, so, are you a teacher?
 		// Or more specifically are you NOT a student
 		if (!$user->userType == 0)
@@ -454,7 +453,7 @@ SQL;
 	 * but sessions are written with server time so that they are accurate.
 	 */
 	function updateSession($sessionID, $dateNow = null) {
-			// Check that the date is valid
+		// Check that the date is valid
 		// #321
 		//$dateStampNow = strtotime($dateNow);
 		//if (!$dateStampNow)
@@ -488,14 +487,12 @@ EOD;
 		$bindingParams = array($dateNow, $dateNow, $sessionID);
 		$rs = $this->db->Execute($sql, $bindingParams);
 		return $rs;
-		
 	}
 	
 	/**
 	 * This method is called to insert a score record to the database 
 	 */
 	function insertScore($score, $user) {
-		
 		// For teachers we will set score to -1 in the score record, so, are you a teacher?
 		if (!$user->userType==0)
 			$score->score = -1;
@@ -547,4 +544,5 @@ EOD;
 		$bindingParams = array($groupID, $productCode);
 		return $this->db->GetArray($sql, $bindingParams);
 	}
+	
 }
