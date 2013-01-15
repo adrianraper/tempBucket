@@ -51,4 +51,33 @@ class XmlUtils {
 		}
 	}
 	
+	/**
+	 * Build an XML string by loading an href and applying a series of mappings.
+	 * 
+	 * @param unknown_type $href
+	 * @param unknown_type $db
+	 * @param unknown_type $mappings
+	 */
+	public static function buildXml($href, $db, $mappings) {
+		$contents = file_get_contents($href->getUrl());
+		$xml = simplexml_load_string($contents);
+		
+		$script = $xml->head->addChild("script");
+		$script->addAttribute("id", "mappings");
+		$script->addAttribute("type", "application/xml");
+		
+		foreach ($mappings as $mapping) {
+			$mappingXml = $mapping['mapping']->toXML($db, $xml, $mapping['options']);
+			
+			// Some mappings alter the original XML without returning anything so only import the result to $script if there actually is one
+			if ($mappingXml) {
+				$toDom = dom_import_simplexml($script);
+    			$fromDom = dom_import_simplexml($mappingXml);
+    			$toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
+			}
+		}
+		
+		return $xml->asXML();
+	}
+	
 }

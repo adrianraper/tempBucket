@@ -39,6 +39,8 @@ require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 // I already getContent - will that clash or duplicate?
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 
+require_once(dirname(__FILE__)."/../../classes/xml/XmlUtils.php");
+
 require_once(dirname(__FILE__)."/AbstractService.php");
 
 class BentoService extends AbstractService {
@@ -82,8 +84,14 @@ class BentoService extends AbstractService {
 	public function xhtmlLoad($href) {
 		switch ($href->type) {
 			case "menu_xhtml":
-				
-				break;
+				require_once(dirname(__FILE__)."/../../classes/xmldbmappings/ProgressMyDetailsMapping.php");
+				require_once(dirname(__FILE__)."/../../classes/xmldbmappings/HiddenContentMapping.php");
+				return XmlUtils::buildXml($href, $this->db, array(
+					array("mapping" => new ProgressMyDetailsMapping(),
+						  "options" => array("manageableOps" => $this->manageableOps, "userID" => Session::get('userID'), "productCode" => 52)),
+					array("mapping" => new HiddenContentMapping(),
+						  "options" => array("manageableOps" => $this->manageableOps, "progressOps" => $this->progressOps, "userID" => Session::get('userID'), "productCode" => 52))
+				));
 			default:
 				return parent::xhtmlLoad($href);
 		}

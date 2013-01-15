@@ -26,8 +26,8 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
+			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
+			
 			var href:Href = new Href(Href.MENU_XHTML, configProxy.getMenuFilename(), configProxy.getContentPath());
 			
 			// Allow the menu xml filename to be overridden by an optional parameter (this is used in Rotterdam where the app can load different menu.xml files)
@@ -38,11 +38,11 @@ package com.clarityenglish.bento.controller {
 			// Allow the selection of normal or progress versions of the XML
 			if (noProgress) {
 				log.debug("Loading non-progress version of {0}", href);
-				var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 				xhtmlProxy.loadXHTML(href);
 			} else {
 				log.debug("Loading progress version of {0}", href);
-				progressProxy.getProgressData(loginProxy.user, configProxy.getAccount(), href, Progress.PROGRESS_MY_DETAILS);
+				href.serverSide = true;
+				xhtmlProxy.loadXHTML(href);
 			}
 		}
 		

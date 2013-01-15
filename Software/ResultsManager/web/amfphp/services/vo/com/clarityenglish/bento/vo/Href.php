@@ -12,4 +12,11 @@ class Href {
 	public $currentDir;
 	public $serverSide;
 	
+	/**
+	 * Get the full url including the current dir and filename
+	 */
+	public function getUrl() {
+		return (($this->currentDir) ? $this->currentDir."/" : "").$this->filename;
+	}
+	
 }

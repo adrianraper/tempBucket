@@ -22,6 +22,20 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
+			
+			var href:Href = note.getBody() as Href;
+			
+			if (!href) {
+				sendNotification(BBNotifications.XHTML_LOADED, { xhtml: null, href: href } ); // #192
+			} else {
+				xhtmlProxy.loadXHTML(href);
+			}
+		}
+		
+		/*public override function execute(note:INotification):void {
+			super.execute(note);
+			
 			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			
@@ -48,7 +62,7 @@ package com.clarityenglish.bento.controller {
 				// All normal XHTML files go through XHTMLProxy
 				xhtmlProxy.loadXHTML(href);
 			}
-		}
+		}*/
 		
 	}
 	
