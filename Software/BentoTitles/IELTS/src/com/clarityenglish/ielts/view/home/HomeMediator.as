@@ -1,19 +1,14 @@
 ﻿package com.clarityenglish.ielts.view.home {
-	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
-	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.clarityenglish.ielts.model.IELTSProxy;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.IMediator;
-	import org.puremvc.as3.interfaces.INotification;
-	
-	import skins.ielts.home.CourseButtonSkin;
 	
 	/**
 	 * A Mediator
@@ -31,7 +26,6 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			// listen for this signal
 			view.courseSelect.add(onCourseSelected);
 			view.info.add(onInfoRequested);
 			
@@ -45,74 +39,36 @@
 			view.dateFormatter = configProxy.getDateFormatter();
 			
 			// Inject data - but not default values
-			view.productVersion = configProxy.getProductVersion();
-			view.productCode = configProxy.getProductCode();
+			// TODO: not sure if this is necessary as its already done in BentoMediator (albeit with a default) - check this with Adrian
 			view.licenceType = configProxy.getLicenceType();
 			
 			// This view runs of the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
-			
-			// Trigger loading of progress data for my summary chart
-			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, {href:view.href}, Progress.PROGRESS_MY_SUMMARY);
-			// BUG: If you do a direct start you skip this, so it crashes on coming back from an exercise
-			// Perhaps this should be in bentostartupcommand then.
-			sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_SUMMARY);
-			// AR No need to do this again as it is done for menu.xml
-			//sendNotification(BBNotifications.PROGRESS_DATA_LOAD, view.href, Progress.PROGRESS_MY_DETAILS);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
 			view.courseSelect.remove(onCourseSelected);
+			view.info.remove(onInfoRequested);
 		}
 		
-		override public function listNotificationInterests():Array {
-			return super.listNotificationInterests().concat([
-					BBNotifications.PROGRESS_DATA_LOADED,
-				]);
-		}
-		
-		override public function handleNotification(note:INotification):void {
-			super.handleNotification(note);
+		protected override function onXHTMLReady(xhtml:XHTML):void {
+			super.onXHTMLReady(xhtml);
 			
-			switch (note.getName()) {
-				case BBNotifications.PROGRESS_DATA_LOADED:
-					
-					// Split the data that comes back for the various charts
-					var rs:Object = note.getBody() as Object;
-					switch (rs.type) {
-						case Progress.PROGRESS_MY_DETAILS:
-							// How should this merge with menu - or can it just replace it?
-							// #250. Save xml rather than a string
-							//var detailDataProvider:XML = new XML(rs.dataProvider);
-							var detailDataProvider:XML = rs.dataProvider;
-							break;
-						
-						// No longer call mySummary, calculate it from myDetails instead
-						// So all this stuff goes in the above case
-						case Progress.PROGRESS_MY_SUMMARY:
-							// #250. Save xml rather than a string
-							//view.dataProvider = new XML(rs.dataProvider);
-							view.dataProvider = rs.dataProvider;
-							
-							// Do a quick check to see if there is any data
-							var foundAValue:Boolean  = false;
-							for each (var course:XML in view.dataProvider.course) {
-							//for each (var course:XML in view.dataProvider.course.summaryData) {
-								if (new Number(course.@coverage)>0) {
-									foundAValue = true;
-									break;
-								}
-							}
-							view.noProgressData = !foundAValue;
-							break;
-						
-						default:
-					}
-				
+			// Provide the model to the view so that it can extract summary data for the course bar renderers
+			view.dataProvider = xhtml..script.(@id == "model")[0];
+			
+			// Do a quick check to see if there is any data
+			var foundCoverage:Boolean  = false;
+			for each (var course:XML in view.dataProvider..course) {
+				if (new Number(course.@coverage) > 0) {
+					foundCoverage = true;
+					break;
+				}
 			}
+			view.noProgressData = !foundCoverage;
 		}
 		
 		/**
@@ -126,7 +82,7 @@
 			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
 			ieltsProxy.currentCourseClass = course.@["class"];
 		}
-
+		
 		private function onInfoRequested():void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var registerPage:String = (configProxy.getConfig().registerURL) ? configProxy.getConfig().registerURL : "www.takeielts.org";

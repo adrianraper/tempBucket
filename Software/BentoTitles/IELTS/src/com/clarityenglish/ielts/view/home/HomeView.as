@@ -196,6 +196,7 @@ package com.clarityenglish.ielts.view.home {
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
 		}
+		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
@@ -212,6 +213,7 @@ package com.clarityenglish.ielts.view.home {
 		public function isFullVersion():Boolean {
 			return (productVersion == IELTSApplication.FULL_VERSION);
 		}
+		
 		public function isDemo():Boolean {
 			return (productVersion == IELTSApplication.DEMO);
 		}

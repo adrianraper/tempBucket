@@ -39,7 +39,6 @@ package com.clarityenglish.ielts.view.home.ui {
 		private var _courseCaptionChanged:Boolean;
 		
 		private var _dataChanged:Boolean;
-		private var _detailData:XML;
 		
 		private var _copyProvider:CopyProvider;
 		
@@ -55,7 +54,6 @@ package com.clarityenglish.ielts.view.home.ui {
 		
 		public override function set data(value:Object):void {
 			super.data = value;
-			_detailData = value as XML;
 			_dataChanged = true;
 			invalidateProperties();
 		}
@@ -63,8 +61,8 @@ package com.clarityenglish.ielts.view.home.ui {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if ((_courseCaptionChanged || _dataChanged) && _detailData) {
-				var course:XML = _detailData.course.(@["class"] == courseClass)[0];
+			if ((_courseCaptionChanged || _dataChanged) && data) {
+				var course:XML = data..course.(@["class"] == courseClass)[0];
 				
 				// #338 Just in case you have hidden some of the courses
 				if (course) {
