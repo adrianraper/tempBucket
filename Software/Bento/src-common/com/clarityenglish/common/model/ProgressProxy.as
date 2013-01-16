@@ -47,17 +47,12 @@ package com.clarityenglish.common.model {
 		/**
 		 * A cache of progress types to loaded data sets 
 		 */
-		private var loadedResources:Dictionary;		
+		private var loadedResources:Dictionary;
+		
 		/**
 		 * Whilst data is loading we need to know so that we don't try to load it again
 		 */
 		private var dataLoading:Dictionary;
-		
-		/**
-		 * sessionID is the key to the session table for this user using this course
-		 * No, sessionID should be in config.
-		 */
-		//public var sessionID:String;
 		
 		/**
 		 * score is an object used to hold score information
@@ -470,9 +465,9 @@ package com.clarityenglish.common.model {
 						// Take the data loading note out now that we have a result
 						var loadingData:String = data.progress.type;
 						delete dataLoading[loadingData];
-
+						
 						log.info("Successfully loaded data for type {0}", loadingData);
-
+						
 						// Put the returned data into the cache and send out the notification
 						
 						// Menu.xml is a different type, we get back a full xhtml object, not just the menu level xml

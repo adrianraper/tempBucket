@@ -22,13 +22,12 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
-			
 			var href:Href = note.getBody() as Href;
 			
 			if (!href) {
 				sendNotification(BBNotifications.XHTML_LOADED, { xhtml: null, href: href } ); // #192
 			} else {
+				var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 				xhtmlProxy.loadXHTML(href);
 			}
 		}

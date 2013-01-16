@@ -40,8 +40,9 @@ package com.clarityenglish.bento.controller {
 				log.debug("Loading non-progress version of {0}", href);
 				xhtmlProxy.loadXHTML(href);
 			} else {
-				log.debug("Loading progress version of {0}", href);
 				href.serverSide = true;
+				
+				log.debug("Loading progress version of {0}", href);
 				xhtmlProxy.loadXHTML(href);
 			}
 		}
