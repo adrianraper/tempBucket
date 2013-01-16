@@ -46,7 +46,7 @@ SQL;
 			$course->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			
 			$stats = array("of" => 0, "count" => 0, "totalDone" => 0, "totalScore" => 0, "scoredCount" => 0, "durationCount" => 0, "duration" => 0, "averageScore" => 0, "averageDuration" => 0, "coverage" => 0);
-			foreach ($course->xpath('//xmlns:exercise') as $exercise) {
+			foreach ($course->xpath('.//xmlns:exercise') as $exercise) {
 				$exercise->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 				
 				$stats['of'] += 1;
