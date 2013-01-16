@@ -1,7 +1,7 @@
 <?php
 class HiddenContentMapping {
 	
-	public function toXML($db, $xml, $options = array()) {
+	public function transform($db, $xml, $options = array()) {
 		$menu = $xml->head->script->menu;
 		
 		// Register the namespace for menu xml so we can run xpath queries against it

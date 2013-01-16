@@ -376,6 +376,7 @@ package com.clarityenglish.common.model {
 			var params:Array = [ configProxy.getConfig().sessionID, new Date().getTime() ];
 			new RemoteDelegate("stopSession", params, this).execute();			
 		}
+		
 		/**
 		 * Use the database to record that the user has done an exercise/activity
 		 * @return void

@@ -1,7 +1,7 @@
 <?php
 class ProgressMyDetailsMapping {
 	
-	public function toXML($db, $xml, $options = array()) {
+	public function transform($db, $xml, $options = array()) {
 		// Register the namespace for menu xml so we can run xpath queries against it
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		

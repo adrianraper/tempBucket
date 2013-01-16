@@ -67,7 +67,7 @@ class XmlUtils {
 		$script->addAttribute("type", "application/xml");
 		
 		foreach ($mappings as $mapping) {
-			$mappingXml = $mapping['mapping']->toXML($db, $xml, $mapping['options']);
+			$mappingXml = $mapping['mapping']->transform($db, $xml, $mapping['options']);
 			
 			// Some mappings alter the original XML without returning anything so only import the result to $script if there actually is one
 			if ($mappingXml) {
