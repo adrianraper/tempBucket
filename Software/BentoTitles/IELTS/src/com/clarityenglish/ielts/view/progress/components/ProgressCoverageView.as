@@ -144,7 +144,7 @@ package com.clarityenglish.ielts.view.progress.components {
 				}
 				if (courseClass && detailDataProvider) {
 					focusCourse(courseClass);
-						//selectCourseData(course.@["class"]);
+					//selectCourseData(course.@["class"]);
 				}
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
