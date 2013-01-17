@@ -393,19 +393,12 @@ class BentoService extends AbstractService {
 		// Each type of progress that we get goes back in data.
 		$progress->type = $progressType;
 		switch ($progressType) {
-			// MySummary data will now be calculated by ProgressProxy from the detail data
-			/*
-			case Progress::PROGRESS_MY_SUMMARY:
-				$rs = $this->progressOps->getMySummary($userID, $productCode);
-				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
-				break;
-			*/
 			case Progress::PROGRESS_EVERYONE_SUMMARY:
 				$rs = $this->progressOps->getEveryoneSummary($productCode);
 				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
 				break;
 				
-			case Progress::PROGRESS_MY_DETAILS:
+			/*case Progress::PROGRESS_MY_DETAILS:
 				// #341 No need for much of this if anonymous access
 				if ($user->userID >= 1) {
 					$rs = $this->progressOps->getMyDetails($user->userID, $productCode);
@@ -424,7 +417,7 @@ class BentoService extends AbstractService {
 						$progress->dataProvider = $this->progressOps->mergeXMLAndHiddenContent($rs);
 						
 				}
-				break;
+				break;*/
 				
 			case Progress::PROGRESS_MY_BOOKMARK:
 				// Pick up the last exercise done as a bookmark.

@@ -9,18 +9,23 @@ class ProgressExerciseScoresTransform extends XmlTransform {
 		// Register the namespace for menu xml so we can run xpath queries against it
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
-		$user = $options['manageableOps']->getUserById($options['userID']);
-		
-		// Firstly fetch all the scores for this user and product
-		$sql = <<<SQL
-			SELECT s.*
-			FROM T_Score as s
-			WHERE s.F_UserID=?
-			AND s.F_ProductCode=?
-			ORDER BY s.F_CourseID, s.F_UnitID, s.F_ExerciseID;
+		if ($options['userID'] > 0) {
+			$user = $options['manageableOps']->getUserById($options['userID']);
+			
+			// Firstly fetch all the scores for this user and product
+			$sql = <<<SQL
+				SELECT s.*
+				FROM T_Score as s
+				WHERE s.F_UserID=?
+				AND s.F_ProductCode=?
+				ORDER BY s.F_CourseID, s.F_UnitID, s.F_ExerciseID;
 SQL;
-		$bindingParams = array($user->userID, $options['productCode']);
-		$rs = $db->GetArray($sql, $bindingParams);
+			$bindingParams = array($user->userID, $options['productCode']);
+			$rs = $db->GetArray($sql, $bindingParams);
+		} else {
+			// #341 No need for much of this if anonymous access
+			$rs = array();
+		}
 		
 		$done = array();
 		

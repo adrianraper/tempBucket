@@ -19,81 +19,6 @@ class ProgressOps {
 	
 	/**
 	 * 
-	 * This method loads a menu xml file for future use.
-	 * TODO. Is it worth caching somehow?
-	 * @param string $file
-	 * 
-	 * DELETE ME ONCE THE NEW SYSTEM IS UP AND RUNNING
-	 */
-	function getMenuXML($file) {
-		// Getting issues with this on some servers
-		// simplexml_load_file(): php_network_getaddresses: getaddrinfo failed: Name or service not known
-		// So try a fileget and load the xml from string.
-		//$this->menu = simplexml_load_file($file);
-		// gh#92 What if the requested menu.xml doesn't exist?
-		try {
-			$fileContents = file_get_contents($file);
-			$this->menu = simplexml_load_string($fileContents);
-		} catch (Exception $e) {
-			throw $this->copyOps->getExceptionForId("errorCourseDoesNotExist", array("filename" => $file));
-		}
-	}
-	
-	/**
-	 * This method merges the progress records with XML at the summary level
-	 */
-	function mergeXMLAndDataSummary($rs) {
-		// We will return an XML object, so start building it
-		$build = new SimpleXMLElement('<progress />');
-		
-		//foreach ($this->menu->xpath('//course') as $course) {
-		foreach ($this->menu->head->script->menu->course as $course) {
-			$course->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
-			// Get the number of completed exercises from the recordset for this courseID
-			// Trac #137.
-			$count = 0;
-			$averageScore = 0;
-			$averageDuration = 0;
-			$totalDuration = 0;
-			
-			foreach ($rs as $record) {
-				if ($record['F_CourseID']==$course['id']) {
-					// my data gives the number of distinct exercises I have done in this course
-					$count = $record['Count'];
-					$averageScore = $record['AverageScore'];
-					$averageDuration = $record['AverageDuration'];
-					if (isset($record['TotalDuration']))
-						$totalDuration = $record['TotalDuration'];
-					break 1;
-				}
-			}
-			// And count the number of exercises that are in the menu for this course
-			$exercises = $course->xpath('.//xmlns:exercise');
-			$total = count($exercises);
-			if ($total == 0) {
-				$coverage = 0;
-			} else {
-				$coverage = floor($count*100 / $total);
-			}
-			
-			// Put it all into a node in the return object
-			$newCourse = $build->addChild('course');
-			$newCourse->addAttribute('id', strtolower($course['id']));
-			$newCourse->addAttribute('class', strtolower($course['caption']));
-			$newCourse->addAttribute('caption',(string) $course['caption']);
-			$newCourse->addAttribute('coverage',(string) $coverage);
-			$newCourse->addAttribute('count',(string) $count);
-			$newCourse->addAttribute('of',(string) $total);
-			$newCourse->addAttribute('averageScore',$averageScore);
-			$newCourse->addAttribute('averageDuration',$averageDuration);
-			$newCourse->addAttribute('duration',$totalDuration);
-		}
-		
-		return $build;
-	}
-	
-	/**
-	 * 
 	 * Take an exercise record and return is a bookmark XML
 	 * @param recordset $rs
 	 */
@@ -104,33 +29,6 @@ class ProgressOps {
 		$bookmark->addAttribute('uid', $score->getUID());
 		$bookmark->addAttribute('date', $score->dateStamp);
 		return $bookmark->asXML();		
-	}
-	
-	/**
-	 * This method gets one user's progress records at the summary level.
-	 * It is extremely efficent to use SQL to do this, but it means that if we change
-	 * menu.xml we will still count old exercise IDs from T_Score. So we should switch
-	 * to getting the summary from the detail directly.
-	 * 
-	 * This method now obsolete.
-	 */
-	function getMySummary($userID, $productCode) {
-		// Only average the score for 'scored' records, but count them all
-		$sql = 	<<<EOD
-			SELECT F_CourseID, 
-					ROUND(AVG(IF(F_Score<0, NULL, F_Score))) as AverageScore, 
-					ROUND(AVG(F_Duration)) as AverageDuration, 
-					COUNT(DISTINCT F_ExerciseID) AS Count, 
-					SUM(F_Duration) AS TotalDuration 
-			FROM T_Score
-			WHERE F_UserID=?
-			AND F_ProductCode=?
-			GROUP BY F_CourseID
-			ORDER BY F_CourseID;
-EOD;
-		$bindingParams = array($userID, $productCode);
-		$rs = $this->db->GetArray($sql, $bindingParams);
-		return $rs;
 	}
 	
 	/**

@@ -55,10 +55,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		[Bindable]
 		public var examPracticeDataProvider:XMLListCollection;
-		
-		// TODO. Highlight the last exercise done somehow
-		public var bookmark:XML;
-		
+				
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
 		// The horribleness comes from referring to this view from a renderer in the skin, so although we already have
@@ -66,12 +63,8 @@ package com.clarityenglish.ielts.view.progress.components {
 		[Bindable]
 		public static var horribleHackCourseClass:String;
 		
-		public var _summaryData:XML;
-		public var _detailData:XML;
-		
 		private var _courseClass:String;
 		private var _courseChanged:Boolean;
-		private var _dataChanged:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
 		
@@ -82,31 +75,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		public override function setCopyProvider(copyProvider:CopyProvider):void {
 			super.setCopyProvider(copyProvider);
 			this.hostCopyProvider = copyProvider;
-		}
-		
-		/**
-		 * This setter is given a full XML that includes scores and coverage for the student.
-		 * It then breaks this down into dataProviders for the components that will display this
-		 *
-		 * @param XML value
-		 *
-		 */
-		public function set detailDataProvider(value:XML):void {
-			_detailData = value;
-			_dataChanged = true;
-			invalidateProperties();
-		}
-		
-		public function get detailDataProvider():XML {
-			return _detailData;
-		}
-		
-		public function set summaryDataProvider(value:XML):void {
-			_summaryData = value;
-		}
-		
-		public function get summaryDataProvider():XML {
-			return _summaryData;
 		}
 		
 		/**
@@ -132,19 +100,39 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			if (_courseChanged || _dataChanged) {
-				
+			
+			if (_courseChanged) {				
 				// Update the components of the view that change their data
-				if (progressBar && courseClass && summaryDataProvider) {
-					//progressBar.courseClass = course.@["class"];
+				if (progressBar && courseClass) {
 					progressBar.courseClass = courseClass;
-					// BUG. For this view I want to show coverage summary. For score view I want average score.
 					progressBar.type = "coverage";
-					progressBar.data = {dataProvider: summaryDataProvider};
+					progressBar.data = menu;
 				}
-				if (courseClass && detailDataProvider) {
-					focusCourse(courseClass);
-					//selectCourseData(course.@["class"]);
+				
+				if (courseClass) {
+					// #160 - initialise any 'zone' that might not have data in the XML
+					practiceZoneDataProvider = new XML();
+					questionZoneDataProvider = new XMLListCollection();
+					adviceZoneDataProvider = new XMLListCollection();
+					examPracticeDataProvider = new XMLListCollection();
+					
+					for each (var unitNode:XML in menu.course.(@["class"] == courseClass).unit) {
+						switch (unitNode.@["class"].toString()) {
+							case 'practice-zone':
+								// Because we need to get captions from the group node, send the whole course node as the practice zone data provider
+								practiceZoneDataProvider = unitNode.parent();
+								break;
+							case 'question-zone':
+								questionZoneDataProvider = new XMLListCollection(unitNode.exercise);
+								break;
+							case 'advice-zone':
+								adviceZoneDataProvider = new XMLListCollection(unitNode.exercise);
+								break;
+							case 'exam-practice':
+								examPracticeDataProvider = new XMLListCollection(unitNode.exercise);
+								break;
+						}
+					}
 				}
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
@@ -164,7 +152,7 @@ package com.clarityenglish.ielts.view.progress.components {
 						break;
 				}
 				
-				_courseChanged = _dataChanged = false;
+				_courseChanged = false;
 			}
 		}
 		
@@ -178,7 +166,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					break;
 				case CoverageReadingObj:
 					instance.label = copyProvider.getCopyForId("Reading");
-					//issue:#42 coursecalss cannot be read from label so we add a fixed value, courseclass, assigned to courseClass
+					// gh#42 courseclass cannot be read from label so we add a fixed value, courseclass, assigned to courseClass
 					instance.courseClass = "Reading";
 					break;
 				case CoverageListeningObj:
@@ -208,43 +196,6 @@ package com.clarityenglish.ielts.view.progress.components {
 				case progressBar:
 					instance.copyProvider = copyProvider;
 					break;
-			}
-		}
-		
-		/**
-		 * This method uses the current course class to take the full dataProvider and
-		 * split it for each component in the view
-		 * @param String courseClass
-		 *
-		 */
-		private function focusCourse(courseClass:String = null):void {
-			if (!courseClass)
-				courseClass = _courseClass;
-			
-			if (detailDataProvider) {
-				// #160 - initialise any 'zone' that might not have data in the XML
-				practiceZoneDataProvider = new XML();
-				questionZoneDataProvider = new XMLListCollection();
-				adviceZoneDataProvider = new XMLListCollection();
-				examPracticeDataProvider = new XMLListCollection();
-				for each (var unitNode:XML in detailDataProvider.course.(@["class"] == courseClass).unit) {
-					switch (unitNode.@["class"].toString()) {
-						case 'practice-zone':
-							// Because we need to get captions from the group node, send the whole
-							// course node as the practice zone data provider
-							practiceZoneDataProvider = unitNode.parent();
-							break;
-						case 'question-zone':
-							questionZoneDataProvider = new XMLListCollection(unitNode.exercise);
-							break;
-						case 'advice-zone':
-							adviceZoneDataProvider = new XMLListCollection(unitNode.exercise);
-							break;
-						case 'exam-practice':
-							examPracticeDataProvider = new XMLListCollection(unitNode.exercise);
-							break;
-					}
-				}
 			}
 		}
 		

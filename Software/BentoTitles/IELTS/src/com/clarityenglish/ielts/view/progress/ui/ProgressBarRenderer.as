@@ -39,24 +39,30 @@ package com.clarityenglish.ielts.view.progress.ui {
 		
 		public var type:String;
 		
+		private var _dataChanged:Boolean;
+		
 		private var _copyProvider:CopyProvider;
 		
-		//issue:#11 Language Code
+		// gh#11 Language Code
 		public function set copyProvider(copyProvider:CopyProvider):void {
 			_copyProvider = copyProvider;
-			//trace("ProgressBarCoverage is "+ _copyProvider.getCopyForId("ProgressBarCoverage"));
 		}
 
 		public override function set data(value:Object):void {
 			super.data = value;
+			_dataChanged = true;
+			invalidateProperties();
+		}
+		
+		protected override function commitProperties():void {
+			super.commitProperties(); 
 			
-			if (data) {
-				var course:XML = (data.dataProvider as XML).course.(@["class"]==courseClass)[0];
+			if (data && _dataChanged) {
+				var course:XML = data..course.(@["class"] == courseClass)[0];
 				solidColour.color = getStyle(courseClass + "Color");
 				backColour.color = getStyle(courseClass + "ColorDark");
 				
-				//issue:#11 language Code
-				// Is this for coverge or score?
+				// gh#11 language Code - is this for coverage or score?
 				if (type == 'coverage') {
 					var courseLabel:String = StringUtils.capitalize(courseClass).toString();
 					commentLabel.text = _copyProvider.getCopyForId(courseLabel) + _copyProvider.getCopyForId("ProgressBarCoverage") + " " + new Number(course.@coverage) + "%";
@@ -69,7 +75,9 @@ package com.clarityenglish.ielts.view.progress.ui {
 				
 				// Tween it
 				Tweener.removeTweens(overallProgressRect, percentWidth);
-				Tweener.addTween(overallProgressRect, {percentWidth: percentValue, time: 2, delay: 0, transition: "easeOutSine"});
+				Tweener.addTween(overallProgressRect, { percentWidth: percentValue, time: 2, delay: 0, transition: "easeOutSine" });
+				
+				_dataChanged = false;
 			}
 		}
 		
