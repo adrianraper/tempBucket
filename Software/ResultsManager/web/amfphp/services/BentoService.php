@@ -111,13 +111,13 @@ class BentoService extends AbstractService {
 				return parent::xhtmlLoad($href);
 		}
 	}*/
-	public function xhtmlLoad($href, $serverTransforms = array()) {
+	public function xhtmlLoad($href) {
 		switch ($href->type) {
 			case "menu_xhtml":
 				$transforms = array();
-				foreach ($serverTransforms as $serverTransform) {
+				foreach ($href->transforms as $transform) {
 					$transforms[] = array(
-						"transform" => $serverTransform,
+						"transform" => $transform,
 						"options" => array("manageableOps" => $this->manageableOps, "progressOps" => $this->progressOps, "userID" => Session::get('userID'), "productCode" => 52)
 					);
 				}

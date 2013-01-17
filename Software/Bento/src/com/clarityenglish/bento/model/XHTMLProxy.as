@@ -2,8 +2,6 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
-	import com.clarityenglish.bento.vo.content.transform.ProgressCourseSummaryTransform;
-	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -97,11 +95,7 @@ package com.clarityenglish.bento.model {
 			
 			if (href.serverSide) {
 				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) GH #84
-				
-				// TODO: Hard code some transforms for testing purposes
-				var serverSideTransforms:Array = [ new ProgressExerciseScoresTransform(), new ProgressCourseSummaryTransform() ];
-				
-				new RemoteDelegate("xhtmlLoad", [ href, serverSideTransforms ]).execute().addResponder(new ResultResponder(
+				new RemoteDelegate("xhtmlLoad", [ href ]).execute().addResponder(new ResultResponder(
 					function(e:ResultEvent, data:AsyncToken):void {
 						parseAndStoreXHTML(href, e.result.toString());
 					},
