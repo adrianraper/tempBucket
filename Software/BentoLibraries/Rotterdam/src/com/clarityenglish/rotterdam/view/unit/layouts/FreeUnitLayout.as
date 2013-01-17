@@ -29,15 +29,15 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		public function FreeUnitLayout() {
 			
 		}
-
+		
 		public function get columns():int {
 			return _columns;
 		}
-
+		
 		public function set columns(value:int):void {
 			_columns = value;
 		}
-
+		
 		public override function updateDisplayList(width:Number, height:Number):void {
 			super.updateDisplayList(width, height);
 			
@@ -133,7 +133,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 				item.@ypos = y;
 				target.invalidateDisplayList();
 			}
-				
+			
 		}
 		
 	}

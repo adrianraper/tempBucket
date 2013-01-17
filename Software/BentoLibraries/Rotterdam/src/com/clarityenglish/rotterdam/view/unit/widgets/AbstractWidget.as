@@ -93,7 +93,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function get xml():XML {
 			return _xml;
 		}
-
+		
 		public function set xml(value:XML):void {
 			if (_xml !== value) {
 				if (_xml)
@@ -192,7 +192,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			xmlWatcher.destroy();
 			xmlWatcher = null;
 		}
-	
+		
 		protected function onStateChange(event:StateChangeEvent):void {
 			invalidateSkinState();
 		}

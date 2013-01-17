@@ -52,7 +52,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			// TODO: See if the VideoWidget can be consolidated in a similar fashion
 			if (image.loaderInfo) {
 				image.width = unscaledWidth;
-				image.height = unscaledWidth * (image.loaderInfo.width / image.loaderInfo.height);
+				//gh#63 the fraction is reversed, height should be molecule
+				image.height = unscaledWidth * (image.loaderInfo.height / image.loaderInfo.width);
 				invalidateSize();
 			}
 		}

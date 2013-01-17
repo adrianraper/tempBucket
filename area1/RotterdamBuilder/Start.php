@@ -80,10 +80,10 @@
 		};
 		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
 		flashvars.sessionid = "<?php echo session_id(); ?>";
-		swfobject.embedSWF(startControl + "Builder.swf" + argList, "altContent", "100%", "100%", "9.0.45", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + "Builder.swf" + argList, "altContent", "990", "760", "9.0.45", expressInstall, flashvars, params, attr);
 	</script>
 	<style type="text/css">
-		html, body { height:100%; }
+		html, body { height:100%; text-align:center;}
 		body { 	margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
 	</style>
 </head>
