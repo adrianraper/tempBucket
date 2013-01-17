@@ -81,17 +81,48 @@ class BentoService extends AbstractService {
 	/**
 	 * Base method for serverside xhtml calls returns an error
 	 */
-	public function xhtmlLoad($href) {
+	/*public function xhtmlLoad($href) {
 		switch ($href->type) {
 			case "menu_xhtml":
-				require_once(dirname(__FILE__)."/../../classes/xmldbmappings/ProgressMyDetailsMapping.php");
-				require_once(dirname(__FILE__)."/../../classes/xmldbmappings/HiddenContentMapping.php");
+				require_once(dirname(__FILE__)."/../../classes/xmldbmappings/ProgressMyDetailsTransform.php");
+				require_once(dirname(__FILE__)."/../../classes/xmldbmappings/HiddenContentTransform.php");
 				return XmlUtils::buildXml($href, $this->db, array(
-					array("mapping" => new ProgressMyDetailsMapping(),
+					array("transform" => new ProgressMyDetailsTransform(),
 						  "options" => array("manageableOps" => $this->manageableOps, "userID" => Session::get('userID'), "productCode" => 52)),
-					array("mapping" => new HiddenContentMapping(),
+					array("transform" => new HiddenContentTransform(),
 						  "options" => array("manageableOps" => $this->manageableOps, "progressOps" => $this->progressOps, "userID" => Session::get('userID'), "productCode" => 52))
 				));
+			default:
+				return parent::xhtmlLoad($href);
+		}
+	}*/
+	/*public function xhtmlLoad($href) {
+		switch ($href->type) {
+			case "menu_xhtml":
+				require_once(dirname(__FILE__)."/../../classes/xmldbmappings/ProgressExerciseScoresTransform.php");
+				require_once(dirname(__FILE__)."/../../classes/xmldbmappings/ProgressCourseSummaryTransform.php");
+				//require_once(dirname(__FILE__)."/../../classes/xmldbmappings/HiddenContentTransform.php");
+				return XmlUtils::buildXml($href, $this->db, array(
+					array("transform" => new ProgressExerciseScoresTransform(),
+						  "options" => array("manageableOps" => $this->manageableOps, "userID" => Session::get('userID'), "productCode" => 52)),
+					array("transform" => new ProgressCourseSummaryTransform(),
+						  "options" => array("manageableOps" => $this->manageableOps, "userID" => Session::get('userID'), "productCode" => 52)),				));
+			default:
+				return parent::xhtmlLoad($href);
+		}
+	}*/
+	public function xhtmlLoad($href, $serverTransforms = array()) {
+		switch ($href->type) {
+			case "menu_xhtml":
+				$transforms = array();
+				foreach ($serverTransforms as $serverTransform) {
+					$transforms[] = array(
+						"transform" => $serverTransform,
+						"options" => array("manageableOps" => $this->manageableOps, "progressOps" => $this->progressOps, "userID" => Session::get('userID'), "productCode" => 52)
+					);
+				}
+				
+				return XmlUtils::buildXml($href, $this->db, $transforms);
 			default:
 				return parent::xhtmlLoad($href);
 		}

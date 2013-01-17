@@ -1,5 +1,9 @@
 <?php
-class HiddenContentMapping {
+class HiddenContentTransform {
+	
+	// TODO: Don't use me yet as I override setAttribute!
+	
+	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.HiddenContentTransform';
 	
 	public function transform($db, $xml, $options = array()) {
 		$menu = $xml->head->script->menu;

@@ -155,17 +155,19 @@
     <classEntry path="skins.bento.warning.WarningSkin"/>
     <classEntry path="skins.bento.warning.WarningNoButtonSkin"/>
     <classEntry path="org.davekeen.validators.URLValidator"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.transform.XmlTransform"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
+    <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
     <resourceEntry destPath="skins/assets/correctIcon.png" sourcePath="skins/assets/correctIcon.png"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.png" sourcePath="skins/assets/incorrectIcon.png"/>
-    <resourceEntry destPath="skins/assets/correctIcon.swf" sourcePath="skins/assets/correctIcon.swf"/>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
+    <resourceEntry destPath="skins/assets/correctIcon.swf" sourcePath="skins/assets/correctIcon.swf"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.swf" sourcePath="skins/assets/incorrectIcon.swf"/>
-    <resourceEntry destPath="skins/assets/pause.png" sourcePath="skins/assets/pause.png"/>
     <resourceEntry destPath="skins/assets/missedIcon.png" sourcePath="skins/assets/missedIcon.png"/>
+    <resourceEntry destPath="skins/assets/pause.png" sourcePath="skins/assets/pause.png"/>
     <resourceEntry destPath="skins/assets/stop.png" sourcePath="skins/assets/stop.png"/>
   </includeResources>
   <namespaceManifests/>

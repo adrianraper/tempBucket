@@ -58,7 +58,7 @@ class XmlUtils {
 	 * @param unknown_type $db
 	 * @param unknown_type $mappings
 	 */
-	public static function buildXml($href, $db, $mappings) {
+	public static function buildXml($href, $db, $transforms) {
 		$contents = file_get_contents($href->getUrl());
 		$xml = simplexml_load_string($contents);
 		
@@ -66,15 +66,15 @@ class XmlUtils {
 		$script->addAttribute("id", "mappings");
 		$script->addAttribute("type", "application/xml");
 		
-		foreach ($mappings as $mapping) {
-			$mappingXml = $mapping['mapping']->transform($db, $xml, $mapping['options']);
+		foreach ($transforms as $transform) {
+			/*$transformXml =*/ $transform['transform']->transform($db, $xml, $transform['options']);
 			
 			// Some mappings alter the original XML without returning anything so only import the result to $script if there actually is one
-			if ($mappingXml) {
+			/*if ($mappingXml) {
 				$toDom = dom_import_simplexml($script);
     			$fromDom = dom_import_simplexml($mappingXml);
     			$toDom->appendChild($toDom->ownerDocument->importNode($fromDom, true));
-			}
+			}*/
 		}
 		
 		return $xml->asXML();
