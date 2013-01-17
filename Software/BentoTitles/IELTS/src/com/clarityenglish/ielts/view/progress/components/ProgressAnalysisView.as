@@ -4,13 +4,10 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.ielts.view.progress.ui.CourseDurationRenderer;
 	import com.clarityenglish.ielts.view.progress.ui.StackedBarChart;
 	
-	import flash.events.Event;
-	
+	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
-	import mx.core.UIComponent;
 	
 	import spark.components.DataGroup;
-	import spark.components.DataRenderer;
 	import spark.components.Label;
 	
 	public class ProgressAnalysisView extends BentoView {
@@ -30,11 +27,8 @@ package com.clarityenglish.ielts.view.progress.components {
 		[SkinPart(required="true")]
 		public var durationDataGroup:DataGroup;
 		
-		private var _progressXml:XML;
-		
 		private var _viewCopyProvider:CopyProvider;
 		
-		//issue:#11 Language Code, due to ProgressView, setCopyProder fail to work here
 		public function set viewCopyProvider(viewCopyProvider:CopyProvider):void {
 			_viewCopyProvider = viewCopyProvider;
 		}
@@ -46,24 +40,28 @@ package com.clarityenglish.ielts.view.progress.components {
 		public override function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;	
 		}
-
-		[Bindable(event="progressChanged")]
-		public function get progressXml():XML {
-			return _progressXml;
-		}
-
-		public function set progressXml(value:XML):void {
-			_progressXml = value;
-			updateTotalDuration();
-			dispatchEvent(new Event("progressChanged"));
-		}
-
+		
 		// gh#11
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
 		}
+		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			stackedBarChart.dataProvider = menu;
+			
+			durationDataGroup.dataProvider = new XMLListCollection(menu.course);
+			
+			var duration:Number = 0;
+			for each (var course:XML in menu.course)
+				duration += new Number(course.@duration);
+				
+			analysisTimeLabel.text = _viewCopyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -82,15 +80,11 @@ package com.clarityenglish.ielts.view.progress.components {
 					// set the field we will be drawing
 					stackedBarChart.field = "duration";
 					break;
-				//issue:#11 Language Code
 				case analysisInstructionLabel1:
 					instance.text = _viewCopyProvider.getCopyForId("analysisInstructionLabel1");
 					break;
 				case analysisInstructionLabel2:
 					instance.text = _viewCopyProvider.getCopyForId("analysisInstructionLabel2");
-					break;
-				case analysisTimeLabel:
-					updateTotalDuration();
 					break;
 				case durationDataGroup:
 					var classFactory:ClassFactory = new ClassFactory(CourseDurationRenderer);
@@ -100,28 +94,16 @@ package com.clarityenglish.ielts.view.progress.components {
 			}
 		}
 		
-		private function updateTotalDuration():void {
-			if (progressXml && analysisTimeLabel) {
-				var duration:Number = 0;
-				for each (var course:XML in progressXml.course)
-					duration += new Number(course.@duration);
-				
-				analysisTimeLabel.text = _viewCopyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
-			}
-		}
-		
 		[Bindable(event="progressChanged")]
 		public function get totalDuration():Number {
 			var duration:Number = 0;
 			
-			if (progressXml) {
-				for each (var course:XML in progressXml.course)
-					duration += new Number(course.@duration);
-			}
+			for each (var course:XML in menu.course)
+				duration += new Number(course.@duration);
 				
 			return duration;
 		}
-
+		
 		/*protected override function getCurrentSkinState():String {
 			// Skin is dependent on data
 			if (productVersion == IELTSApplication.DEMO) {

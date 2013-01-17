@@ -28,9 +28,9 @@
 	<s:Label id="analysisInstructionLabel2" left="20" top="90" />
 	<s:Label id="analysisTimeLabel" fontSize="16" left="20" top="120" />
 	
-	<ui:StackedBarChart id="stackedBarChart" dataProvider="{hostComponent.progressXml}" top="150" height="35" left="20" width="{durationDataGroup.width}" />
+	<ui:StackedBarChart id="stackedBarChart" top="150" height="35" left="20" width="{durationDataGroup.width}" />
 	
-	<s:DataGroup id="durationDataGroup" dataProvider="{new XMLListCollection(hostComponent.progressXml.course)}" left="20" top="220" itemRenderer="com.clarityenglish.ielts.view.progress.ui.CourseDurationRenderer">
+	<s:DataGroup id="durationDataGroup" left="20" top="220" itemRenderer="com.clarityenglish.ielts.view.progress.ui.CourseDurationRenderer">
 		<s:layout>
 			<s:HorizontalLayout gap="15" />
 		</s:layout>
