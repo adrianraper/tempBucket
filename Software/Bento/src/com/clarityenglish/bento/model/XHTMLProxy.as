@@ -2,6 +2,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.transform.XmlTransform;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -149,7 +150,12 @@ package com.clarityenglish.bento.model {
 			
 			try {
 				var xml:XML = new XML(data);
-			
+				
+				// Run all the transforms client side (these might well be empty methods)
+				for each (var xmlTransform:XmlTransform in href.transforms)
+					xmlTransform.transform(xml);
+				
+				// Store the resource
 				switch (href.type) {
 					case Href.MENU_XHTML:
 					case Href.XHTML:

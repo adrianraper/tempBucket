@@ -8,6 +8,10 @@ abstract class XmlTransform {
 	
 	private $transforms = array();
 	
+	public function transform($db, $xml, $options = array()) {
+		
+	}
+	
 	protected function setAttributes($xml, $values) {
 		foreach ($values as $name => $value)
 			$this->setAttribute($xml, $name, $value);
