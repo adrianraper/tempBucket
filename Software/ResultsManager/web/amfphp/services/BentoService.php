@@ -432,6 +432,10 @@ class BentoService extends AbstractService {
 		return array("progress" => $progress);
 	}
 	
+	public function getEveryoneSummary($productCode) {
+		return $this->progressOps->getEveryoneSummary($productCode);
+	}
+	
 	/**
 	 * 
 	 * This service call will create a session record for this user in the database.

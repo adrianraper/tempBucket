@@ -2,11 +2,8 @@ package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
-	import flash.events.Event;
-	
 	import mx.charts.BarChart;
 	import mx.charts.CategoryAxis;
-	import mx.charts.chartClasses.IAxis;
 	import mx.collections.XMLListCollection;
 	
 	import spark.components.Label;
@@ -18,18 +15,15 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		[SkinPart(required="true")]
 		public var verticalAxis:CategoryAxis;
-
+		
 		[SkinPart]
 		public var compareInstructionLabel:Label;
 		
 		[SkinPart]
 		public var chartCaptionLabel:Label;
 		
-		private var _mySummaryXml:XML;
-		
-		private var _everyoneSummaryXml:XML;
-		
-		private var _xmlChanged:Boolean;
+		private var _everyoneCourseSummaries:Object;
+		private var _everyoneCourseSummariesChanged:Boolean;
 		
 		private var _viewCopyProvider:CopyProvider;
 		
@@ -37,46 +31,27 @@ package com.clarityenglish.ielts.view.progress.components {
 			_viewCopyProvider = viewCopyProvider;
 		}
 		
-		/*//issue:#11 language Code
-		public override function setCopyProvider(copyProvider:CopyProvider):void {
-			this.copyProvider = copyProvider;	
-		}*/
-		
-		public function set mySummaryXml(value:XML):void {
-			_mySummaryXml = value;
-			_xmlChanged = true;
-			invalidateProperties();
-		}
-
-		public function set everyoneSummaryXml(value:XML):void {
-			_everyoneSummaryXml = value;
-			_xmlChanged = true;
+		public function set everyoneCourseSummaries(value:Object):void {
+			_everyoneCourseSummaries = value;
+			_everyoneCourseSummariesChanged = true;
 			invalidateProperties();
 		}
 		
-		private function get mergedSummaryXml():XMLListCollection {
-			if (_mySummaryXml && _everyoneSummaryXml) {
-				// Merge the my and everyone summary into some XML and return a list collection of the course nodes
-				var xml:XML = <progress />;
-				
-				for each (var courseNode:XML in _mySummaryXml.course) {
-					var everyoneCourseNode:XML = _everyoneSummaryXml.course.(@["class"] == courseNode.@["class"])[0];
-					xml.appendChild(<course class={courseNode.@['class']} caption={courseNode.@caption} myAverageScore={courseNode.@averageScore} everyoneAverageScore={everyoneCourseNode ? everyoneCourseNode.@averageScore : 0} />);
-				}
-				
-				return new XMLListCollection(xml.course);
-			}
-			
-			return null;
-		}
-
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_xmlChanged) {
-				verticalAxis.dataProvider = compareChart.dataProvider = mergedSummaryXml;
+			if (_everyoneCourseSummariesChanged) {
+				// Merge the my and everyone summary into some XML and return a list collection of the course nodes
+				var xml:XML = <progress />;
 				
-				_xmlChanged = false;
+				for each (var courseNode:XML in menu.course) {
+					var everyoneAverageScore:Number = (_everyoneCourseSummaries[courseNode.@id]) ? _everyoneCourseSummaries[courseNode.@id].AverageScore : 0;
+					xml.appendChild(<course class={courseNode.@['class']} caption={courseNode.@caption} myAverageScore={courseNode.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
+				}
+				
+				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.course);
+				
+				_everyoneCourseSummariesChanged = false;
 			}
 		}
 		

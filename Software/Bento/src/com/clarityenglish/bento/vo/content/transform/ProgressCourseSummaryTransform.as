@@ -13,22 +13,22 @@ package com.clarityenglish.bento.vo.content.transform {
 				
 				for each (var exercise:XML in course..exercise) {
 					stats.of += 1;
-					if (exercise.hasOwnProperty("@done") && exercise.@done > 0) {
+					if (exercise.hasOwnProperty("@done") && Number(exercise.@done) > 0) {
 						stats.count += 1;
-						stats.totalDone += exercise.@done;
+						stats.totalDone += Number(exercise.@done);
 					}
 					
 					for each (var score:XML in exercise.score) {
 						// #232. #161. Don't let non-marked exercise scores impact the average
-						if (score.hasOwnProperty("@score") && score.@score >= 0) {
-							stats.totalScore += score.@score;
+						if (score.hasOwnProperty("@score") && Number(score.@score) >= 0) {
+							stats.totalScore += Number(score.@score);
 							stats.scoredCount += 1;
 						}
 						
 						// #318. 0 duration is for offline exercises (downloading a pdf for instance) so ignore it.
-						if (score.hasOwnProperty("@duration") && score.@duration > 0) {
+						if (score.hasOwnProperty("@duration") && Number(score.@duration) > 0) {
 							stats.durationCount += 1;
-							stats.duration += score.@duration;
+							stats.duration += Number(score.@duration);
 						}
 					}
 					

@@ -55,11 +55,8 @@ class ProgressOps {
 			WHERE F_ProductCode = ?
 			ORDER BY F_CourseID;
 EOD;
-		// Temporarily use old product code so that you get some data
-		//if ($productCode==52)
-		//	$productCode=12;
 		$bindingParams = array($productCode);
-		$rs = $this->db->GetArray($sql, $bindingParams);
+		$rs = $this->db->GetAssoc($sql, $bindingParams);
 		return $rs;
 	}
 	

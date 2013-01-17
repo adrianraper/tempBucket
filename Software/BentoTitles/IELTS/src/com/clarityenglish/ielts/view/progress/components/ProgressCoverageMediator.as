@@ -32,15 +32,14 @@ package com.clarityenglish.ielts.view.progress.components {
 			
 			// Listen for course changing signal
 			view.courseSelect.add(onCourseSelect);
-
 		}
-
+		
 		override public function onRemove():void {
 			super.onRemove();
 			
 			view.courseSelect.remove(onCourseSelect);
 		}
-				
+		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				IELTSNotifications.COURSE_CLASS_SELECTED,
@@ -60,5 +59,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		private function onCourseSelect(courseClass:String):void {
 			sendNotification(IELTSNotifications.COURSE_CLASS_SELECT, courseClass);
 		}
+		
 	}
 }
