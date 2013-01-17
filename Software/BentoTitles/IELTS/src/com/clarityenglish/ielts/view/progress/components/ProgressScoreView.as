@@ -55,47 +55,16 @@ package com.clarityenglish.ielts.view.progress.components {
 		[SkinPart]
 		public var scoreGridC5:GridColumn;
 		
-		public var chartDataProvider:XML;
-		
-		public var _summaryData:XML;
-		public var _detailData:XML;
-		
 		private var _courseClass:String;
 		private var _courseChanged:Boolean;
-		private var _dataChanged:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
 		
 	    private var _viewCopyProvider:CopyProvider;
 		
-		//issue:#11 Language Code
+		// gh#11 Language Code
 		public function set viewCopyProvider(viewCopyProvider:CopyProvider):void {
 			_viewCopyProvider = viewCopyProvider;
-		}
-				
-		/**
-		 * This setter is given a full XML that includes scores and coverage for the student.
-		 * It then breaks this down into dataProviders for the components that will display this
-		 *
-		 * @param XML value
-		 *
-		 */
-		public function set detailDataProvider(value:XML):void {
-			_detailData = value;
-			_dataChanged = true;
-			invalidateProperties();
-		}
-		
-		public function get detailDataProvider():XML {
-			return _detailData;
-		}
-		
-		public function set summaryDataProvider(value:XML):void {
-			_summaryData = value;
-		}
-		
-		public function get summaryDataProvider():XML {
-			return _summaryData;
 		}
 		
 		/**
@@ -118,18 +87,34 @@ package com.clarityenglish.ielts.view.progress.components {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_courseChanged || _dataChanged) {
+			if (_courseChanged) {
 				// Update the components of the view that change their data
-				if (progressBar && courseClass && summaryDataProvider) {
-					//progressBar.courseClass = course.@["class"];
+				if (progressBar && courseClass) {
 					progressBar.courseClass = courseClass;
-					// BUG. For this view I want to show coverage summary. For score view I want average score.
 					progressBar.type = "score";
-					progressBar.data = {dataProvider: summaryDataProvider};
+					progressBar.data = menu;
 				}
-				if (courseClass && detailDataProvider) {
-					focusCourse(courseClass);
-						//selectCourseData(course.@["class"]);
+				
+				if (courseClass) {
+					var buildXML:XMLList = menu.course.(@["class"] == courseClass).unit.exercise.score;
+					
+					// Then add the caption from the exercise to the score to make it easy to display in the grid
+					// If the grid can do some sort of subheading, then I could do something similar with the unit name too
+					for each (var score:XML in buildXML) {
+						score.@caption = score.parent().@caption;
+						
+						// Caption is different from PracticeZone and others
+						if (score.parent().hasOwnProperty("@group")) {
+							score.@unitCaption = menu.course.(@["class"] == courseClass).groups.group.(@id == score.parent().@group).@caption;
+						} else {
+							score.@unitCaption = score.parent().parent().@caption;
+						}
+						
+						// #232. Scores of -1 (nothing to mark) should show in the table as ---
+						score.@displayScore = (Number(score.@score) >= 0) ? score.@score : '---';
+					}
+					
+					tableDataProvider = new XMLListCollection(buildXML);
 				}
 				
 				// Trac 176. Make sure the buttons in the progressCourseBar component reflect current state
@@ -149,7 +134,7 @@ package com.clarityenglish.ielts.view.progress.components {
 						break;
 				}
 				
-				_courseChanged = _dataChanged = false;
+				_courseChanged = false;
 			}
 		}
 		
@@ -163,7 +148,7 @@ package com.clarityenglish.ielts.view.progress.components {
 					break;
 				case scoreReadingObj:
 					instance.label = _viewCopyProvider.getCopyForId("Reading");
-					//issue:#42 coursecalss cannot be read from label so we add a fixed value, courseclass, assigned to courseClass
+					// gh#42 coursecalss cannot be read from label so we add a fixed value, courseclass, assigned to courseClass
 					instance.courseClass = "Reading";
 					break;
 				case scoreListeningObj:
@@ -200,38 +185,6 @@ package com.clarityenglish.ielts.view.progress.components {
 		}
 		
 		/**
-		 * This method uses the current course class to take the full dataProvider and
-		 * split it for each component in the view
-		 * @param String courseClass
-		 *
-		 */
-		private function focusCourse(courseClass:String = null):void {
-			if (!courseClass)
-				courseClass = _courseClass;
-			
-			if (detailDataProvider) {
-				var buildXML:XMLList = detailDataProvider.course.(@["class"] == courseClass).unit.exercise.score;
-				// Then add the caption from the exercise to the score to make it easy to display in the grid
-				// If the grid can do some sort of subheading, then I could do something similar with the unit name too
-				for each (var score:XML in buildXML) {
-					score.@caption = score.parent().@caption;
-					
-					// Caption is different from PracticeZone and others
-					if (score.parent().hasOwnProperty("@group")) {
-						score.@unitCaption = detailDataProvider.course.(@["class"] == courseClass).groups.group.(@id == score.parent().@group).@caption;
-					} else {
-						score.@unitCaption = score.parent().parent().@caption;
-					}
-					
-					// #232. Scores of -1 (nothing to mark) should show in the table as ---
-					score.@displayScore = (Number(score.@score) >= 0) ? score.@score : '---';
-					
-				}
-				tableDataProvider = new XMLListCollection(buildXML);
-			}
-		}
-		
-		/**
 		 * The user has changed the course to be displayed
 		 *
 		 * @param String course class name
@@ -239,6 +192,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		public function onCourseSelect(event:Event):void {
 			courseSelect.dispatch(event.target.selectedItem.courseClass.toLowerCase());
 		}
+		
 	}
 
 }
