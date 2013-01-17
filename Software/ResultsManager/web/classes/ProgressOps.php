@@ -303,9 +303,13 @@ EOD;
 		$rc = $this->db->Execute($sql, $bindingParams);
 		if (!$rc)
 			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
-			
+		
 		// #308
-		return $rc;
+		// TODO: I have commented this out so I can return a real score
+		//return $rc;
+		
+		// gh#119
+		return $score;
 	}
 	
 	/**

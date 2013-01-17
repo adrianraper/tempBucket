@@ -533,12 +533,12 @@ class BentoService extends AbstractService {
 		$score->userID = $user->userID;
 		
 		// Write the score record
-		$rc = $this->progressOps->insertScore($score, $user);
+		$score = $this->progressOps->insertScore($score, $user);
 		
 		// and update the session
 		$this->updateSession($sessionID);
 		
-		return $rc;
+		return $score;
 	}
 
 	/**

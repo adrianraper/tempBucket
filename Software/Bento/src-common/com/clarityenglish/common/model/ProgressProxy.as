@@ -392,66 +392,11 @@ package com.clarityenglish.common.model {
 			var dateFormatter:DateFormatter = new DateFormatter();
 			dateFormatter.formatString = "YYYY-MM-DD JJ:NN:SS";
 			var dateNow:String = dateFormatter.format(new Date());
-
+			
 			// Just send whole user
 			//var params:Array = [ (loginProxy.user) ? loginProxy.user.id : null, sessionID, dateNow, mark ];
 			var params:Array = [ loginProxy.user, configProxy.getConfig().sessionID, dateNow, mark ];
-			
 			new RemoteDelegate("writeScore", params, this).execute();
-			
-			// TODO. Decide if we want to update our local cache of my progress with each new score
-			// or do you want to just get it afresh from the database. The former I suppose.
-			if (loadedResources[Progress.PROGRESS_MY_DETAILS]) {
-				
-				// Get the cached records
-				// #250. Save xml rather than a string
-				// NOTE: get it from bentoProxy instead of here?
-				// var currentRecords:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
-				// #338
-				//var currentRecords:XML = loadedResources[Progress.PROGRESS_MY_DETAILS].head.script.menu[0];
-				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				//var currentRecords:XML = bentoProxy.menuXHTML.xml;
-				var currentRecords:XML = bentoProxy.menu;
-				
-				// what is the UID of this record?
-				var uid:Object = UIDUtil.UID(mark.UID);
-				
-				var thisExercise:XML = currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0];
-				if (thisExercise) {
-					var thisUnit:XML = currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID)[0];
-					
-					// #161. PZ exercises need a new score node. 
-					if (thisUnit.@["class"] == 'practice-zone') {
-						// build the new score node
-						var newScoreNode:XML = <score score={mark.correctPercent} duration={mark.duration} datetime={dateNow} />;
-						currentRecords.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
-					}
-					
-					// #164. All exercises need to update their done attribute.
-					if (Number(thisExercise.@done) > 0) {
-						thisExercise.@done = Number(thisExercise.@done) + 1;
-					} else {
-						thisExercise.@done = 1;
-					}
-						
-					// #250. Don't go via a string. Just use the xml in bentoProxy.
-					//loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords.toString();
-					// #338
-					//loadedResources[Progress.PROGRESS_MY_DETAILS] = currentRecords;
-					
-					// #164. A copy of this was saved in BentoProxy.menuXHTML too (above on line 134)
-					// But because of new XML() cloning (?) - you need to update that too. Seems wrong.
-					// This doesn't work - to the extent that the coverage blobs in the menu don't update.
-					// #250. If you work on the right object, you don't need to do this
-					//var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-					//bentoProxy.menuXHTML.xml.(@id==uid.productCode).course.(@id==uid.courseID).unit.(@id==uid.unitID).exercise.(@id==uid.exerciseID)[0].appendChild(newScoreNode);
-					
-					// #338. Need to check that bentoProxy.menuXHTML has been updated by this function
-					
-					// #164. After changing the detail records, recalculate the summary
-					updateSummaryData();
-				}
-			}
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
@@ -533,7 +478,6 @@ package com.clarityenglish.common.model {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			switch (operation) {
 				case "getProgressData":
-					
 					// Special case of progress error when the whole title is blocked by hidden content
 					// in which case you don't want this user to login and take up a licence record
 					var progressError:BentoError = BentoError.create(fault);

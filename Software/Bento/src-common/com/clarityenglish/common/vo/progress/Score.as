@@ -16,6 +16,9 @@ package com.clarityenglish.common.vo.progress {
 		public var skipped:uint;
 		public var coverage:uint;
 		public var duration:uint;
+		public var dateStamp:String;
+		public var courseID:String;
+		public var exerciseID:String;
 		
 		/**
 		 * An empty constructor 

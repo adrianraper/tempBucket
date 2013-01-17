@@ -15,7 +15,6 @@
 	import com.clarityenglish.common.view.error.ErrorView;
 	
 	import flash.utils.Dictionary;
-	import flash.utils.setTimeout;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -25,7 +24,6 @@
 	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.patterns.facade.Facade;
-	import org.puremvc.as3.utilities.statemachine.State;
 	import org.puremvc.as3.utilities.statemachine.StateMachine;
 	
 	/**
@@ -111,6 +109,7 @@
 			registerCommand(BBNotifications.SESSION_START, SessionStartCommand);
 			registerCommand(BBNotifications.SESSION_STOP, SessionStopCommand);
 			registerCommand(BBNotifications.SCORE_WRITE, ScoreWriteCommand);
+			registerCommand(BBNotifications.SCORE_WRITTEN, ScoreWrittenCommand);
 			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
 			
 			// #269
