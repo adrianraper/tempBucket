@@ -44,7 +44,7 @@ package com.clarityenglish.bento.controller {
 				href.serverSide = true;
 				
 				// TODO: Hard code some transforms for testing purposes
-				href.transforms = [ new ProgressExerciseScoresTransform(), new ProgressCourseSummaryTransform(), new HiddenContentTransform(), new DirectStartDisableTransform() ];
+				href.transforms = [ new ProgressExerciseScoresTransform(), new ProgressCourseSummaryTransform(), new HiddenContentTransform(), new DirectStartDisableTransform(configProxy.getDirectStart()) ];
 				
 				log.debug("Loading progress version of {0}", href);
 				xhtmlProxy.loadXHTML(href);
