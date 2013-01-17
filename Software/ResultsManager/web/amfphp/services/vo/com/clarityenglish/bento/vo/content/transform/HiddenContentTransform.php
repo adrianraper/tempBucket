@@ -1,7 +1,7 @@
 <?php
-class HiddenContentTransform {
-	
-	// TODO: Don't use me yet as I override setAttribute!
+require_once(dirname(__FILE__)."/XmlTransform.php");
+
+class HiddenContentTransform extends XmlTransform {
 	
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.HiddenContentTransform';
 	
@@ -64,7 +64,7 @@ class HiddenContentTransform {
 				// There is a special case where the whole title has been hidden and nothing else set.
 				// Schools do this to protect limited licences. If this is the case, get out now and stop the login
 				if (((string)$menu->attributes()->enabledFlag & Content::CONTENT_DISABLED) == Content::CONTENT_DISABLED) 
-					throw $this->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
+					throw $options['copyOps']->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
 			}
 		}
 	}

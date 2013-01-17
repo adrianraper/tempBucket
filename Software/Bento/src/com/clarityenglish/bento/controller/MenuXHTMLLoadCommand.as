@@ -1,6 +1,8 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
+	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressCourseSummaryTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -42,7 +44,7 @@ package com.clarityenglish.bento.controller {
 				href.serverSide = true;
 				
 				// TODO: Hard code some transforms for testing purposes
-				href.transforms = [ new ProgressExerciseScoresTransform(), new ProgressCourseSummaryTransform() ];
+				href.transforms = [ new ProgressExerciseScoresTransform(), new ProgressCourseSummaryTransform(), new HiddenContentTransform(), new DirectStartDisableTransform() ];
 				
 				log.debug("Loading progress version of {0}", href);
 				xhtmlProxy.loadXHTML(href);
