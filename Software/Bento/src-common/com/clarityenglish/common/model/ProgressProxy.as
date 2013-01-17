@@ -125,7 +125,7 @@ package com.clarityenglish.common.model {
 					
 
 			// Some progress is read from the databse, some is calculated from other progress
-			switch (progressType) {
+			/*switch (progressType) {
 				case Progress.PROGRESS_MY_SUMMARY:
 					updateSummaryData();
 					notifyDataLoaded(progressType);
@@ -145,95 +145,9 @@ package com.clarityenglish.common.model {
 			}
 			
 			// And save the href
-			this.href = href;
+			this.href = href;*/
 		}
 		
-		/**
-		 * This function takes menu data back from the server and saves
-		 * it in the correct proxy and format.
-		 * #338
-		 * TODO. DK recommends that at some point we move the saving back to XHTMLProxy as that is
-		 * where it really should be. Even if we actually get the data from ProgressProxy.
-		 */
-		private function saveMenuData(dataProvider:Object):Boolean {
-			
-			// If this is the menu xhtml store it in BentoProxy and send a special notification (this only happens once per title) 
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			if (!bentoProxy.menuXHTML) {
-				
-				// Whilst I get back a full <head><script> xml structure, I never want more than the <menu> node.
-				// Use the XHTML class to strip the namespace from the XML
-				//var data:XHTML = new XHTML(new XML(dataProvider));
-				//var menuXHTML:XHTML = new XHTML(data.head.script.menu[0], this.href);
-				//var menuXHTML:XHTML = new XHTML(data.head.script.(@id == "model" && @type == "application/xml").menu[0], this.href);
-				var menuXHTML:XHTML = new XHTML(new XML(dataProvider), this.href);
-				
-				// #338
-				// If courseID is defined, disable the other courses.
-				// TODO. Need to update the circular animation to also respect enabledFlag.
-				// TODO. Also need to do similar thing for hiddenContent, so perhaps take it out somewhere
-				// This is also handled in state machine. Either I can do the menu enabling bits here
-				// and the direct start there, or...
-				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-				var directStart:Object = configProxy.getDirectStart();
-				
-				// #338 If you get back a course, hide the others.
-				// If you get back a unit, get it's course too for inverted-hiding as well as the other units.
-				// Road to IELTS has a group ID within a unit for an extra level of interface grouping. Pick that up too.
-				
-				if (directStart) {
-					if (directStart.exerciseID)
-						directStart.unitID = menuXHTML..unit.(descendants("exercise").@id.contains(directStart.exerciseID))[0].@id.toString();
-					
-					if (directStart.unitID)
-						directStart.courseID = menuXHTML..course.(descendants("unit").@id.contains(directStart.unitID))[0].@id.toString();
-					
-					if (directStart.courseID) {
-						for each (var course:XML in menuXHTML..course) {
-							if (course.@id == directStart.courseID) {
-								course.@enabledFlag = 3;
-								if (directStart.unitID) {
-									for each (var unit:XML in course.unit) {
-										if (unit.@id == directStart.unitID) {
-											unit.@enabledFlag = 3;
-											if (directStart.exerciseID) {
-												for each (var exercise:XML in unit.exercise) {
-													if (exercise.@id == directStart.exerciseID) {
-														exercise.@enabledFlag = 3;
-													} else {
-														exercise.@enabledFlag = 8;
-													}
-												}
-											} else if (directStart.groupID) {
-												for each (exercise in unit.exercise) {
-													if (exercise.@group == directStart.groupID) {
-														exercise.@enabledFlag = 3;
-													} else {
-														exercise.@enabledFlag = 8;
-													}
-												}
-											}
-										} else {
-											unit.@enabledFlag = 8;
-										}
-									}
-								}
-							} else {
-								course.@enabledFlag = 8;
-							}
-						}
-					}
-				}
-				
-				//loadedResources[href] = menuXHTML; // GH #95
-				bentoProxy.menuXHTML = menuXHTML;
-				
-				sendNotification(BBNotifications.MENU_XHTML_LOADED, menuXHTML);
-			}
-			
-			return true;
-		}
-
 		/**
 		 * This sends out the notification with the requested data
 		 * 
@@ -253,92 +167,6 @@ package com.clarityenglish.common.model {
 			}
 			
 			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, { type: progressType, dataProvider: dataProvider } );
-		}
-		
-		/**
-		 * This will calculate and update the summary information for progress.
-		 * It acts directly on the stored detail XML object 
-		 * 
-		 */
-		private function updateSummaryData():void {
-			// #250. Save xml rather than a string
-			//var detailXML:XML = new XML(loadedResources[Progress.PROGRESS_MY_DETAILS]);
-			// #338 loadedResources holds the full XHTML for menu
-			//var detailXML:XML = loadedResources[Progress.PROGRESS_MY_DETAILS];
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			//var detailXML:XHTML = bentoProxy.menuXHTML;
-			var detailXML:XML = bentoProxy.menu;
-			
-			var summaryXML:XML = <progress />;
-			
-			// for each course in detailXML.course
-			// of = number of exercises in the course node
-			// count = how many of the exercises have we done (doesn't count multiple goes at one exercise)
-			// totalDone = add up all the done attributes in the exercises 
-			// scoredCount = how many exercises have we got a score for (includes duplicates)
-			// durationCount = how many exercises have we got a duration for (includes duplicates)
-			// averageScore = add up all the scores in the score nodes and divide by number of score nodes (ignore score=-1)
-			// duration = add up all the durations in the score nodes
-			// averageDuration = duration divided by count
-			// coverge = count exercises that have done attribute divided by of
-			for each (var course:XML in detailXML..course) {
-			
-				var count:uint = 0;
-				var of:uint = 0;
-				var scoredCount:uint = 0;
-				var durationCount:uint = 0;
-				var duration:uint = 0;
-				var totalScore:uint = 0;
-				var totalDone:uint = 0;
-				var averageScore:uint = 0;
-				var averageDuration:uint = 0;
-				var coverage:uint = 0;
-				for each (var exercise:XML in course..exercise) {
-					of++;
-					if (Number(exercise.@done) > 0) {
-						count++;
-						totalDone+=Number(exercise.@done);
-					}
-					for each (var score:XML in exercise.score) {
-						// #232. #161. Don't let non-marked exercise scores impact the average
-						if (Number(score.@score) >= 0) {
-							totalScore += Number(score.@score);
-							scoredCount++;
-						}
-						// #318. 0 duration is for offline exercises (downloading a pdf for instance)
-						// so ignore it.
-						if (Number(score.@duration) > 0) {
-							durationCount++;
-							duration += Number(score.@duration);
-						}
-					}
-				}
-				if (scoredCount>0)
-					averageScore = Math.floor(totalScore / scoredCount);
-				
-				if (durationCount>0)
-					averageDuration = Math.floor(duration / durationCount);
-				
-				if (of > 0)
-					coverage = Math.floor(100 * count / of);
-				
-				var courseNode:XML = <course id={course.@id} 
-											class={course.@["class"]} 
-											caption={course.@caption} 
-											count={count}
-											of={count}
-											coverage={coverage}
-											averageScore={averageScore}
-											averageDuration={averageDuration}
-											duration={duration}
-											totalDone={totalDone} />;
-				
-				summaryXML[0].appendChild(courseNode);
-			}
-			
-			// #250. Save xml rather than a string
-			//loadedResources[Progress.PROGRESS_MY_SUMMARY] = summaryXML.toString();
-			loadedResources[Progress.PROGRESS_MY_SUMMARY] = summaryXML;
 		}
 		
 		/**
@@ -419,15 +247,7 @@ package com.clarityenglish.common.model {
 						// Menu.xml is a different type, we get back a full xhtml object, not just the menu level xml
 						//if (href.type == Href.MENU_XHTML) {
 						if (loadingData == Progress.PROGRESS_MY_DETAILS) {
-							// #338 All I want is the menu bit, not the full xhtml
-							//loadedResources[href] = new XHTML(new XML(data.progress.dataProvider), href);
-							// For consistency with other progress data, just grab the menu bit
-							//var myMenu:XML = new XHTML(new XML(data.progress.dataProvider)).xml;
-							//var myMenu:XML = new XML(data.progress.dataProvider);
-							// #250. Save xml rather than a string
-							//loadedResources[loadingData] = myMenu.head.script.menu.toXMLString();
-							//loadedResources[loadingData] = myMenu.head.script.menu[0];
-							loadedResources[loadingData] = this.saveMenuData(data.progress.dataProvider);
+							//loadedResources[loadingData] = this.saveMenuData(data.progress.dataProvider);
 						} else {
 							// #250. Save xml rather than a string
 							//loadedResources[loadingData] = data.progress.dataProvider;
