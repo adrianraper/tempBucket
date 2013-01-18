@@ -3,7 +3,6 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -36,7 +35,6 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.MENU_XHTML_LOADED,
-				BBNotifications.PROGRESS_DATA_LOADED, // GH #95 - again, XHTMLProxy and ProgressProxy *need* to be consolidated
 				RotterdamNotifications.SETTINGS_DIRTY,
 				RotterdamNotifications.SETTINGS_CLEAN,
 			]);
@@ -47,7 +45,6 @@
 			
 			switch (note.getName()) {
 				case BBNotifications.MENU_XHTML_LOADED:
-				case BBNotifications.PROGRESS_DATA_LOADED: // GH #95 - again, XHTMLProxy and ProgressProxy *need* to be consolidated
 					view.showCourseView();
 					break;
 				case RotterdamNotifications.SETTINGS_DIRTY:
