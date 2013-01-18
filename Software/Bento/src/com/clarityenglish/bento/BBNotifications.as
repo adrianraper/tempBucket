@@ -70,6 +70,9 @@
 		public static const EXERCISE_SHOW:String = "bb/exercise_show";
 		public static const EXERCISE_SECTION_FINISHED:String = "bb/exercise_section_finished";
 		
+		// DataProxy notifications
+		public static const DATA_KEY_CHANGED:String = "bb/data_key_changed";
+		
 		// Warnings that you are about to do something that will lose your data
 		public static const WARN_DATA_LOSS:String = "bb/warn_data_loss";
 		

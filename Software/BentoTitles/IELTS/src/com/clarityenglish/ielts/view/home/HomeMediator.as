@@ -5,7 +5,6 @@
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
-	import com.clarityenglish.ielts.model.IELTSProxy;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -76,11 +75,11 @@
 		 *
 		 */
 		private function onCourseSelected(course:XML):void {
-			// dispatch a notification, which titleMediator is listening for
+			// Open the selected course
 			sendNotification(IELTSNotifications.COURSE_SHOW, course);
 			
-			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
-			ieltsProxy.currentCourseClass = course.@["class"];
+			// Set the selected course class
+			sendNotification(IELTSNotifications.COURSE_CLASS_SELECT, course.@["class"]);
 		}
 		
 		private function onInfoRequested():void {

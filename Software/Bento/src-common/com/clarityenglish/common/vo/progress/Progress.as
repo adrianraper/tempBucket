@@ -3,6 +3,8 @@ package com.clarityenglish.common.vo.progress {
 
 	/**
 	 * 
+	 * TODO: This can be got rid of shortly
+	 * 
 	 * @author Adrian
 	 * This class is for loading and working with progress records
 	 * 

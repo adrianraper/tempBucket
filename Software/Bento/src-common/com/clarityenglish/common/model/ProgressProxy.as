@@ -4,15 +4,11 @@ Proxy - PureMVC
 package com.clarityenglish.common.model {
 	
 	import com.clarityenglish.bento.BBNotifications;
-	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
-	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
-	import com.clarityenglish.common.vo.progress.Progress;
-	import com.clarityenglish.common.vo.progress.Score;
 	import com.clarityenglish.dms.vo.account.Account;
 	
 	import mx.formatters.DateFormatter;

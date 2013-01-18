@@ -52,8 +52,6 @@ package com.clarityenglish.ielts.view.progress {
 		
 		[SkinPart]
 		public var progressAnonymousLabel:Label;
-
-		public var currentCourseClass:String;
 		
 		// gh#100
 		//public var anoyAlertLabel:Label;
@@ -74,24 +72,12 @@ package com.clarityenglish.ielts.view.progress {
 			super();
 		}
 		
-		protected override function commitProperties():void {
-			super.commitProperties();	
-			
-			// We can't rely on partAdded due to caching, so do the injection here too
-			if (progressScoreView)
-				progressScoreView.courseClass = currentCourseClass;
-			
-			if (progressCoverageView)
-				progressCoverageView.courseClass = currentCourseClass;
-			
-		}
-		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
 				case progressNavBar:
-					//issue:#11 Language Code
+					// gh#11 Language Code
 					progressNavBar.dataProvider = new ArrayCollection( [
 						{ label: copyProvider.getCopyForId("progressNavBarCoverage"), data: "coverage" },
 						{ label: copyProvider.getCopyForId("progressNavBarCompare"), data: "compare" },
@@ -102,13 +88,11 @@ package com.clarityenglish.ielts.view.progress {
 					progressNavBar.requireSelection = true;
 					progressNavBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;
-				
 				case progressScoreView:
 				case progressCompareView:
 				case progressAnalysisView:
 					 instance.viewCopyProvider = this.copyProvider;
 				case progressCoverageView:
-				
 					// #234
 					instance.productVersion = productVersion;
 					break;

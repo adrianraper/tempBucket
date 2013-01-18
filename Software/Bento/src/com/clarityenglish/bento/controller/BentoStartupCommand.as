@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.model.ExternalInterfaceProxy;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
@@ -29,6 +30,7 @@ package com.clarityenglish.bento.controller {
 			facade.registerProxy(new ProgressProxy());
 			facade.registerProxy(new CopyProxy());
 			facade.registerProxy(new ExternalInterfaceProxy());
+			facade.registerProxy(new DataProxy());
 			
 			// #336
 			facade.registerProxy(new SCORMProxy());

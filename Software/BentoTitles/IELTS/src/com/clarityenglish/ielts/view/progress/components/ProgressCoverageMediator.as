@@ -1,9 +1,9 @@
 package com.clarityenglish.ielts.view.progress.components {
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.ielts.IELTSNotifications;
-	import com.clarityenglish.ielts.model.IELTSProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -23,12 +23,12 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		override public function onRegister():void {
 			super.onRegister();
-
+			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
+			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			view.href = bentoProxy.menuXHTML.href;
-			view.courseClass = ieltsProxy.currentCourseClass;
+			view.courseClass = dataProxy.get("currentCourseClass").toString();
 			
 			// Listen for course changing signal
 			view.courseSelect.add(onCourseSelect);

@@ -36,8 +36,6 @@ package com.clarityenglish.rotterdam.player.view.progress {
 		
 		[SkinPart]
 		public var anonWarning:Group;
-
-		public var currentCourseClass:String;
 		
 		// #341
 		public var _user:User;
@@ -49,17 +47,6 @@ package com.clarityenglish.rotterdam.player.view.progress {
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();
-		}
-		
-		protected override function commitProperties():void {
-			super.commitProperties();	
-			
-			// We can't rely on partAdded due to caching, so do the injection here too
-			if (progressScoreView)
-				progressScoreView.courseClass = currentCourseClass;
-			
-			if (progressCoverageView)
-				progressCoverageView.courseClass = currentCourseClass;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

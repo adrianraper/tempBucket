@@ -1,6 +1,5 @@
 package com.clarityenglish.ielts.controller {
-	import com.clarityenglish.ielts.IELTSNotifications;
-	import com.clarityenglish.ielts.model.IELTSProxy;
+	import com.clarityenglish.bento.model.DataProxy;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -8,7 +7,6 @@ package com.clarityenglish.ielts.controller {
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
-
 	
 	public class CourseSelectCommand extends SimpleCommand {
 		
@@ -19,10 +17,9 @@ package com.clarityenglish.ielts.controller {
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
-			var ieltsProxy:IELTSProxy = facade.retrieveProxy(IELTSProxy.NAME) as IELTSProxy;
-			ieltsProxy.currentCourseClass = note.getBody() as String;
 			
-			sendNotification(IELTSNotifications.COURSE_CLASS_SELECTED, ieltsProxy.currentCourseClass);
+			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+			dataProxy.set("currentCourseClass", note.getBody() as String);
 		}
 		
 	}
