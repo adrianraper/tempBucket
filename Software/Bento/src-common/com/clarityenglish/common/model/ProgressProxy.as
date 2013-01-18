@@ -14,11 +14,6 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.vo.progress.Progress;
 	import com.clarityenglish.common.vo.progress.Score;
 	import com.clarityenglish.dms.vo.account.Account;
-	import com.clarityenglish.textLayout.vo.XHTML;
-	
-	import flash.system.System;
-	import flash.utils.Dictionary;
-	import flash.utils.setTimeout;
 	
 	import mx.formatters.DateFormatter;
 	import mx.logging.ILogger;
@@ -28,7 +23,6 @@ package com.clarityenglish.common.model {
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.util.ClassUtil;
-	import org.davekeen.util.UIDUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -45,128 +39,14 @@ package com.clarityenglish.common.model {
 		public static const NAME:String = "ProgressProxy";
 		
 		/**
-		 * A cache of progress types to loaded data sets 
-		 */
-		private var loadedResources:Dictionary;
-		
-		/**
-		 * Whilst data is loading we need to know so that we don't try to load it again
-		 */
-		private var dataLoading:Dictionary;
-		
-		/**
-		 * score is an object used to hold score information
-		 */
-		public var score:Score;
-		
-		/**
-		 * I need to save the href for the menu.xml as so much of progress depends on it
-		 */
-		// DKmenu.xml Is this OK?
-		public var href:Href;
-		
-		/**
 		 * Progress information comes from a database. Sometimes we want lots of details, and sometimes averages.
 		 */
 		public function ProgressProxy(data:Object = null) {
 			super(NAME, data);
-			
-			// For caching and load once control
-			loadedResources = new Dictionary();
-			dataLoading = new Dictionary();
 		}
 		
 		public function reset():void {
-			// #472
-			for each (var resource:* in loadedResources)
-				if (resource is XML)
-					System.disposeXML(resource);
 			
-			loadedResources = new Dictionary();
-			dataLoading = new Dictionary();
-			href = null;
-		}
-		
-		public function hasLoadedResource(href:*):Boolean {
-			return loadedResources[href];
-		}
-		
-		/**
-		 * Not sure if we should be sending an object full of data (userID, groupID, rootID, productCode, country)
-		 * or just the userID as that will let the backend get it all anyway, albeit with another db call.
-		 * Or do we just let the backend keep everything in session variables? 
-		 * I don't really like that much - it seems much safer to pass the little that we do need.
-		 * 
-		 * progressType:
-		 * 	Progress.PROGRESS_MY_DETAILS - this is the same as the menu
-		 * 	Progress.PROGRESS_MY_SUMMARY - this is calculated from MY_DETAILS
-		 * 	Progress.PROGRESS_EVERYONE_SUMMARY - this is read from a calculated table
-		 * 
-		 * @param number userID 
-		 */
-		public function getProgressData(user:User, account:Account, href:Href, progressType:String):void {
-			// If the data has already been loaded then just return it
-			// Temporarily disable caching
-			if (loadedResources[progressType]) {
-				/*if (progressType == Progress.PROGRESS_MY_DETAILS) {
-					// GH #95 - again, XHTMLProxy and ProgressProxy *need* to be consolidated
-					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-					bentoProxy.menuXHTML = loadedResources[progressType];
-				}*/
-				notifyDataLoaded(progressType);
-				return;
-			}
-			
-			// If the resource is already loading then do nothing
-			for each (var loadingData:String in dataLoading)
-				if (progressType === loadingData) {
-					return;
-				}
-					
-
-			// Some progress is read from the databse, some is calculated from other progress
-			/*switch (progressType) {
-				case Progress.PROGRESS_MY_SUMMARY:
-					updateSummaryData();
-					notifyDataLoaded(progressType);
-					break;
-					
-				default:
-					// Send user details and the URL of the menu to the backend
-					// #338 Add group so you can get hidden content. No, this group is top level
-					// and hidden content needs my group. So just grab it from userID in the backside.
-					//var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					// #issue25 Need to know user type, so send full object
-					var params:Array = [ user, account.id, (account.titles[0] as Title).id, progressType, href.url ];
-					new RemoteDelegate("getProgressData", params, this).execute();
-					
-					// Maintain a note that we are currently loading this data
-					dataLoading[progressType] = true;
-			}
-			
-			// And save the href
-			this.href = href;*/
-		}
-		
-		/**
-		 * This sends out the notification with the requested data
-		 * 
-		 * @param progressType
-		 */
-		private function notifyDataLoaded(progressType:String):void {
-			// #338. Note that loadedResources[progress_my_details] is just a boolean to show that we have the data
-			// already, the actual data is held in bentoProxy
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			
-			var dataProvider:Object;
-			if (progressType == Progress.PROGRESS_MY_DETAILS) {
-				dataProvider = bentoProxy.menu;
-				//dataProvider = loadedResources[href]; // GH #95
-			} else {
-				dataProvider = loadedResources[progressType];
-			}
-			
-			sendNotification(BBNotifications.PROGRESS_DATA_LOADED, { type: progressType, dataProvider: dataProvider } );
 		}
 		
 		/**
@@ -234,32 +114,6 @@ package com.clarityenglish.common.model {
 			
 			// TODO: Most of these generate errors on the client side; I need to implement this
 			switch (operation) {
-				case "getProgressData":
-					if (data) {
-						// Take the data loading note out now that we have a result
-						var loadingData:String = data.progress.type;
-						delete dataLoading[loadingData];
-						
-						log.info("Successfully loaded data for type {0}", loadingData);
-						
-						// Put the returned data into the cache and send out the notification
-						
-						// Menu.xml is a different type, we get back a full xhtml object, not just the menu level xml
-						//if (href.type == Href.MENU_XHTML) {
-						if (loadingData == Progress.PROGRESS_MY_DETAILS) {
-							//loadedResources[loadingData] = this.saveMenuData(data.progress.dataProvider);
-						} else {
-							// #250. Save xml rather than a string
-							//loadedResources[loadingData] = data.progress.dataProvider;
-							loadedResources[loadingData] = new XML(data.progress.dataProvider);
-						}
-						notifyDataLoaded(loadingData);						
-					} else {
-						// Can't read from the database
-						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorDatabaseReading"));
-					}
-					break;
-				
 				case "startSession":
 					if (data) {
 						configProxy.getConfig().sessionID = data.sessionID;
@@ -297,6 +151,8 @@ package com.clarityenglish.common.model {
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			switch (operation) {
+				// TODO: We no longer have a getProgressData, but there are these specific errors here which Adrian put in and don't exist in the new system.
+				// Need to check whether they still matter and if so re-implement.
 				case "getProgressData":
 					// Special case of progress error when the whole title is blocked by hidden content
 					// in which case you don't want this user to login and take up a licence record
@@ -338,28 +194,6 @@ package com.clarityenglish.common.model {
 			}
 			
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
-		}
-		
-		// Since this loads the menu xml, we need to be able to return it from cache if asked
-		public function loadXHTML(href:Href):void {
-			if (!href) {
-				log.error("progressProxy loadXHTML received a null Href");
-				return;
-			}
-			
-			// If the resource has already been loaded then just return it.
-			// #338 But this is not keyed on href, but on progress_type
-			//if (loadedResources[href]) {
-			if (loadedResources[Progress.PROGRESS_MY_DETAILS]) {
-				log.debug("Href already loaded so returning cached copy {0}", href);
-				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				sendNotification(BBNotifications.XHTML_LOADED, { xhtml: bentoProxy.menuXHTML, href: href } );
-				return;
-			} else {
-				log.error("progressProxy loadXHTML doesn't have the menu yet");
-				return;				
-			}
-			
 		}
 				
 	}

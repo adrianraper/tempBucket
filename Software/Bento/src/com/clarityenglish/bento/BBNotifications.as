@@ -22,9 +22,6 @@
 		public static const XHTML_LOADED:String = "bb/xhtml_loaded";
 		public static const XHTML_LOAD_IOERROR:String = "bb/xhtml_load_ioerror";
 		
-		public static const PROGRESS_DATA_LOADED:String = "bb/progress_data_loaded";
-		public static const PROGRESS_DATA_LOAD:String = "bb/progress_data_load";
-		
 		public static const SESSION_START:String = "bb/session_start";
 		public static const SESSION_STARTED:String = "bb/session_started";
 		public static const SESSION_STOP:String = "bb/session_stop";

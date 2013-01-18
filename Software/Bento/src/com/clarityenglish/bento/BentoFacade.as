@@ -110,7 +110,6 @@
 			registerCommand(BBNotifications.SESSION_STOP, SessionStopCommand);
 			registerCommand(BBNotifications.SCORE_WRITE, ScoreWriteCommand);
 			registerCommand(BBNotifications.SCORE_WRITTEN, ScoreWrittenCommand);
-			registerCommand(BBNotifications.PROGRESS_DATA_LOAD, ProgressDataLoadCommand);
 			
 			// #269
 			registerCommand(BBNotifications.ACTIVITY_TIMER_RESET, ActivityTimerResetCommand);

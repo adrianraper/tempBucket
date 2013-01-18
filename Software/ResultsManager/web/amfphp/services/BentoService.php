@@ -325,6 +325,9 @@ class BentoService extends AbstractService {
 		Session::clear();
 	}
 	
+	/**
+	 * This service call returns an associative array of Course_ID => course summary data for everyone and is used in progress compare
+	 */
 	public function getEveryoneSummary($productCode) {
 		return $this->progressOps->getEveryoneSummary($productCode);
 	}
