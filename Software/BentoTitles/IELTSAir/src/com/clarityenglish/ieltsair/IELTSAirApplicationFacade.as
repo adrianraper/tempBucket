@@ -17,7 +17,7 @@ package com.clarityenglish.ieltsair {
 		override protected function initializeController():void {
 			super.initializeController();
 			
-			//issue:#11
+			// gh#11
 			mapView(MoreView, MoreMediator);
 			
 			// If a fatal error occurs we want to actually exit the app, not just go to the exited state like on the web

@@ -17,16 +17,6 @@
 	import com.clarityenglish.ielts.view.login.LoginView;
 	import com.clarityenglish.ielts.view.nonetwork.NoNetworkMediator;
 	import com.clarityenglish.ielts.view.nonetwork.NoNetworkView;
-	import com.clarityenglish.bento.view.progress.ProgressMediator;
-	import com.clarityenglish.bento.view.progress.ProgressView;
-	import com.clarityenglish.bento.view.progress.components.ProgressAnalysisMediator;
-	import com.clarityenglish.bento.view.progress.components.ProgressAnalysisView;
-	import com.clarityenglish.bento.view.progress.components.ProgressCompareMediator;
-	import com.clarityenglish.bento.view.progress.components.ProgressCompareView;
-	import com.clarityenglish.bento.view.progress.components.ProgressCoverageMediator;
-	import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
-	import com.clarityenglish.bento.view.progress.components.ProgressScoreMediator;
-	import com.clarityenglish.bento.view.progress.components.ProgressScoreView;
 	import com.clarityenglish.ielts.view.support.SupportMediator;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.title.TitleMediator;
@@ -65,15 +55,10 @@
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
-			mapView(ProgressView, ProgressMediator);
 			mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(SupportView, SupportMediator);
 			mapView(ExerciseView, ExerciseMediator);
-			mapView(ProgressScoreView, ProgressScoreMediator);
-			mapView(ProgressCompareView, ProgressCompareMediator);
-			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
-			mapView(ProgressCoverageView, ProgressCoverageMediator);
 			
 			mapView(ZoneView, ZoneMediator);
 			mapView(AdviceZoneSectionView, AdviceZoneSectionMediator);

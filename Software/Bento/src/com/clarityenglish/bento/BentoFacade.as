@@ -3,6 +3,16 @@
 	import com.clarityenglish.bento.view.*;
 	import com.clarityenglish.bento.view.marking.MarkingMediator;
 	import com.clarityenglish.bento.view.marking.MarkingView;
+	import com.clarityenglish.bento.view.progress.ProgressMediator;
+	import com.clarityenglish.bento.view.progress.ProgressView;
+	import com.clarityenglish.bento.view.progress.components.ProgressAnalysisMediator;
+	import com.clarityenglish.bento.view.progress.components.ProgressAnalysisView;
+	import com.clarityenglish.bento.view.progress.components.ProgressCompareMediator;
+	import com.clarityenglish.bento.view.progress.components.ProgressCompareView;
+	import com.clarityenglish.bento.view.progress.components.ProgressCoverageMediator;
+	import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
+	import com.clarityenglish.bento.view.progress.components.ProgressScoreMediator;
+	import com.clarityenglish.bento.view.progress.components.ProgressScoreView;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerMediator;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerView;
 	import com.clarityenglish.bento.view.warning.WarningMediator;
@@ -57,6 +67,12 @@
 			mapView(MarkingView, MarkingMediator);
 			mapView(WarningView, WarningMediator);
 			mapView(ErrorView, ErrorMediator);
+			
+			mapView(ProgressView, ProgressMediator);
+			mapView(ProgressScoreView, ProgressScoreMediator);
+			mapView(ProgressCompareView, ProgressCompareMediator);
+			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
+			mapView(ProgressCoverageView, ProgressCoverageMediator);
 			
 			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);
