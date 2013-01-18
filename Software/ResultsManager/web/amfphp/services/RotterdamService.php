@@ -46,7 +46,7 @@ class RotterdamService extends BentoService {
 			case "courses.xml":
 				return $this->courseOps->coursesLoad();
 			default:
-				throw $this->copyOps->getExceptionForId("errorSecurity");
+				return parent::xhtmlLoad($href);
 		}
 	}
 	

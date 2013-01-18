@@ -92,7 +92,7 @@ class BentoService extends AbstractService {
 										   "progressOps" => $this->progressOps,
 										   "copyOps" => $this->copyOps,
 										   "userID" => Session::get('userID'),
-										   "productCode" => 52)
+										   "productCode" => Session::get('productCode'))
 					);
 				}
 				
