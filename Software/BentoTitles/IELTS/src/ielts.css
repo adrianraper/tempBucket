@@ -6,9 +6,9 @@
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace zoneui "com.clarityenglish.ielts.view.zone.ui.*";
-@namespace progress "com.clarityenglish.ielts.view.progress.*";
-@namespace progresscomponents "com.clarityenglish.ielts.view.progress.components.*";
-@namespace progressui "com.clarityenglish.ielts.view.progress.ui.*";
+@namespace progress "com.clarityenglish.bento.view.progress.*";
+@namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
+@namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace support "com.clarityenglish.ielts.view.support.*";
 @namespace exercise "com.clarityenglish.ielts.view.exercise.*";
@@ -26,9 +26,6 @@
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 @namespace video "com.clarityenglish.controls.video.*";
-@namespace progress1 "com.clarityenglish.bento.view.progress.*";
-@namespace components1 "com.clarityenglish.bento.view.progress.components.*";
-@namespace ui "com.clarityenglish.bento.view.progress.ui.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -284,47 +281,47 @@ s|VideoPlayer {
 }
 
 /* Progress view styles */
-progress1|ProgressView {
+progress|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
 
-progress1|ProgressView #progressNavBar {
+progress|ProgressView #progressNavBar {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressNavBarSkin");
 }
 
-components1|ProgressScoreView {
+progresscomponents|ProgressScoreView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressScoreSkin");
 }
 
-components1|ProgressCompareView {
+progresscomponents|ProgressCompareView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCompareSkin");
 }
 
-components1|ProgressCoverageView {
+progresscomponents|ProgressCoverageView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCoverageSkin");
 }
 
-components1|ProgressAnalysisView {
+progresscomponents|ProgressAnalysisView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressAnalysisSkin");
 }
 
-ui|ProgressBarRenderer {
+progressui|ProgressBarRenderer {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressBarRendererSkin");
 }
 
-components1|ProgressCoverageView #progressCourseButtonBar {
+progresscomponents|ProgressCoverageView #progressCourseButtonBar {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressCourseButtonBarSkin");
 }
 
-components1|ProgressScoreView #progressCourseButtonBar {
+progresscomponents|ProgressScoreView #progressCourseButtonBar {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressCourseButtonBarSkin");
 }
 
-ui|CoverageExerciseComponent { 
+progressui|CoverageExerciseComponent { 
 	skinClass: ClassReference("skins.ielts.progress.ui.CoverageExerciseComponentSkin");
 }
 
-ui|CoverageUnitComponent {
+progressui|CoverageUnitComponent {
 	skinClass: ClassReference("skins.ielts.progress.ui.CoverageUnitComponentSkin");
 }
 

@@ -9,8 +9,8 @@
 @namespace controls "com.clarityenglish.controls.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace login "com.clarityenglish.ielts.view.login.*";
-@namespace progress "com.clarityenglish.ielts.view.progress.*";
-@namespace progresscomponents "com.clarityenglish.ielts.view.progress.components.*";
+@namespace progress "com.clarityenglish.bento.view.progress.*";
+@namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace airmore "com.clarityenglish.ieltsair.view.more.*";
 @namespace airzone "com.clarityenglish.ieltsair.view.zone.*";
 @namespace support "com.clarityenglish.ielts.view.support.*";
