@@ -5,7 +5,7 @@
 		xmlns:controls="com.clarityenglish.bento.view.*"
 		xmlns:home="com.clarityenglish.ielts.view.home.*"
 		xmlns:zone="com.clarityenglish.ielts.view.zone.*"
-		xmlns:progress="com.clarityenglish.ielts.view.progress.*"
+		xmlns:progress="com.clarityenglish.bento.view.progress.*"
 		xmlns:account="com.clarityenglish.ielts.view.account.*"
 		xmlns:support="com.clarityenglish.ielts.view.support.*"
 		xmlns:exercise="com.clarityenglish.ielts.view.exercise.*">

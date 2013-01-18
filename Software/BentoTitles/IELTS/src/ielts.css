@@ -26,6 +26,9 @@
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 @namespace video "com.clarityenglish.controls.video.*";
+@namespace progress1 "com.clarityenglish.bento.view.progress.*";
+@namespace components1 "com.clarityenglish.bento.view.progress.components.*";
+@namespace ui "com.clarityenglish.bento.view.progress.ui.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -281,47 +284,47 @@ s|VideoPlayer {
 }
 
 /* Progress view styles */
-progress|ProgressView {
+progress1|ProgressView {
 	skinClass: ClassReference("skins.ielts.ProgressSkin");
 }
 
-progress|ProgressView #progressNavBar {
+progress1|ProgressView #progressNavBar {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressNavBarSkin");
 }
 
-progresscomponents|ProgressScoreView {
+components1|ProgressScoreView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressScoreSkin");
 }
 
-progresscomponents|ProgressCompareView {
+components1|ProgressCompareView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCompareSkin");
 }
 
-progresscomponents|ProgressCoverageView {
+components1|ProgressCoverageView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressCoverageSkin");
 }
 
-progresscomponents|ProgressAnalysisView {
+components1|ProgressAnalysisView {
 	skinClass: ClassReference("skins.ielts.progress.ProgressAnalysisSkin");
 }
 
-progressui|ProgressBarRenderer {
+ui|ProgressBarRenderer {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressBarRendererSkin");
 }
 
-progresscomponents|ProgressCoverageView #progressCourseButtonBar {
+components1|ProgressCoverageView #progressCourseButtonBar {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressCourseButtonBarSkin");
 }
 
-progresscomponents|ProgressScoreView #progressCourseButtonBar {
+components1|ProgressScoreView #progressCourseButtonBar {
 	skinClass: ClassReference("skins.ielts.progress.ui.ProgressCourseButtonBarSkin");
 }
 
-progressui|CoverageExerciseComponent { 
+ui|CoverageExerciseComponent { 
 	skinClass: ClassReference("skins.ielts.progress.ui.CoverageExerciseComponentSkin");
 }
 
-progressui|CoverageUnitComponent {
+ui|CoverageUnitComponent {
 	skinClass: ClassReference("skins.ielts.progress.ui.CoverageUnitComponentSkin");
 }
 

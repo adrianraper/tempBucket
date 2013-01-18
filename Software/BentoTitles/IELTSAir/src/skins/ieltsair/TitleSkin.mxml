@@ -102,7 +102,7 @@
 			</s:actionContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="myProgressViewNavigator" firstView="com.clarityenglish.ielts.view.progress.ProgressView" title="Road to IELTS" left="0" right="0" height="100%">
+		<s:ViewNavigator id="myProgressViewNavigator" firstView="com.clarityenglish.bento.view.progress.ProgressView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
 				<s:Button id="myProgressViewNavigatorButton1" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>

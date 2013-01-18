@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		creationComplete="creationComplete(event)">
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ielts.view.progress.ui.CoverageUnitComponent")]
+		[HostComponent("com.clarityenglish.bento.view.progress.ui.CoverageUnitComponent")]
 	</fx:Metadata>
 
 	<fx:Script> 

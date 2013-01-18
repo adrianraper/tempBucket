@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:DataRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 width="218" height="183">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			
+			//issue:#11 Language Code
+			[Bindable]
+			public var copyProvider:CopyProvider;
+			
+			public override function set data(value:Object):void {
+				super.data = value;
+				
+				fillColour.color = getStyle(data.@['class'] + "Color");
+				icon.source = getStyle(data.@['class'] + 'IconBare');
+				
+				//issue:#11 Language Code
+				courseDurationRendererLabel.text = copyProvider.getCopyForId("courseDurationRenderLabel");
+				var replaceObj:Object = new Object();
+				replaceObj.time = Math.floor(data.@duration / 60);
+				courseDurationRendererTime.text = copyProvider.getCopyForId("courseDurationRenderTime", replaceObj);
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!--issue:#11 Lanugage Code ?-->
+	<s:Label text="{data.@caption}" fontSize="21" />
+	
+	<s:Rect left="0" right="0" top="21" bottom="0">
+		<s:fill>
+			<s:SolidColor id="fillColour" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:SWFLoader id="icon" left="14" top="38" /> 
+	
+	<s:Label id="courseDurationRendererLabel" color="#FFFFFF" top="95" left="10" />
+	<s:Label id="courseDurationRendererTime" fontSize="24" color="#FFFFFF" top="120" left="10" />
+	
+</s:DataRenderer>

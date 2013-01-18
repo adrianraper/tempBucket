@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:controls="com.clarityenglish.bento.view.*"
 		xmlns:module="com.clarityenglish.ielts.view.module.*"
-		xmlns:progress="com.clarityenglish.ielts.view.progress.*"
+		xmlns:progress="com.clarityenglish.bento.view.progress.*"
 		xmlns:account="com.clarityenglish.ielts.view.account.*" xmlns:exercise="com.clarityenglish.ielts.view.exercise.*">
 	<!-- host component -->
 	<fx:Metadata>

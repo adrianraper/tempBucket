@@ -3,11 +3,11 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:controls="com.clarityenglish.bento.view.*"
-		xmlns:progress="com.clarityenglish.ielts.view.progress.*"
-		xmlns:components="com.clarityenglish.ielts.view.progress.components.*">
+		xmlns:progress="com.clarityenglish.bento.view.progress.*"
+		xmlns:components="com.clarityenglish.bento.view.progress.components.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ielts.view.progress.ProgressView")]
+		[HostComponent("com.clarityenglish.bento.view.progress.ProgressView")]
 	</fx:Metadata>
 	<fx:Script>
 		<![CDATA[

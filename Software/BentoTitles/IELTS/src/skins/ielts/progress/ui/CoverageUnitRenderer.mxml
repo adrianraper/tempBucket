@@ -7,7 +7,7 @@
 
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
+			import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
 			
 			import mx.collections.XMLListCollection;
 			
@@ -43,7 +43,7 @@
 					<s:DataRenderer>
 						<fx:Script>
 							<![CDATA[
-								import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
+								import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
 								
 								override public function set data(value:Object):void {
 									super.data = value;

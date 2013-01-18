@@ -156,6 +156,7 @@
     <classEntry path="org.davekeen.validators.URLValidator"/>
     <classEntry path="com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform"/>
     <classEntry path="com.clarityenglish.bento.vo.content.transform.XmlTransform"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ProgressMediator"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>

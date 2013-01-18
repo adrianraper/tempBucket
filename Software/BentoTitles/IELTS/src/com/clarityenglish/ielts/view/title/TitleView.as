@@ -10,7 +10,7 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.ielts.view.credits.CreditsView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
-	import com.clarityenglish.ielts.view.progress.ProgressView;
+	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	

@@ -6,7 +6,7 @@
 		creationComplete="creationComplete(event)">
 
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ielts.view.progress.ui.CoverageExerciseComponent")]
+		[HostComponent("com.clarityenglish.bento.view.progress.ui.CoverageExerciseComponent")]
 	</fx:Metadata>
 
 	<fx:Script> 
