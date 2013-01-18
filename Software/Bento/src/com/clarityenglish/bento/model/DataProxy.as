@@ -8,8 +8,12 @@ package com.clarityenglish.bento.model {
 	
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IProxy;
+	import org.puremvc.as3.patterns.facade.Facade;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
+	/**
+	 * This is used for storing arbitrary key/value data.
+	 */
 	public class DataProxy extends Proxy implements IProxy {
 		
 		/**
@@ -19,20 +23,44 @@ package com.clarityenglish.bento.model {
 		
 		public static const NAME:String = "DataProxy";
 		
+		private var defaultFunctions:Dictionary;
+		
 		public function DataProxy() {
 			super(NAME);
 			
 			data = new Dictionary();
+			defaultFunctions = new Dictionary();
 		}
 		
 		public function get(key:String):Object {
-			return (data[key]) ? data[key] : null;
+			if (data[key]) return data[key];
+			
+			if (defaultFunctions[key]) {
+				data[key] = defaultFunctions[key](facade);
+				return data[key];
+			}
+			
+			return null;
+		}
+		
+		public function getString(key:String):String {
+			return get(key) as String;
 		}
 		
 		public function set(key:String, value:Object):void {
 			data[key] = value;
 			
-			sendNotification(BBNotifications.DATA_KEY_CHANGED, key);
+			sendNotification(BBNotifications.DATA_CHANGED, value, key);
+		}
+		
+		/**
+		 * Set a function that will be called to generate a default if there is no value for the given key.
+		 * 
+		 * @param key The key that this will be the default function for
+		 * @param defaultFunction A function with interface: function(facade:Facade):Object
+		 */
+		public function setDefaultFunction(key:String, defaultFunction:Function):void {
+			defaultFunctions[key] = defaultFunction;
 		}
 		
 	}

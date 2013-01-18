@@ -1,9 +1,9 @@
 package com.clarityenglish.ielts.view.progress.components {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -28,11 +28,10 @@ package com.clarityenglish.ielts.view.progress.components {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			view.href = bentoProxy.menuXHTML.href;
-			view.courseClass = dataProxy.get("currentCourseClass").toString();
+			view.courseClass = dataProxy.getString("currentCourseClass");
 			
 			// Listen for course changing signal
 			view.courseSelect.add(onCourseSelect);
-
 		}
 
 		override public function onRemove():void {
@@ -43,7 +42,7 @@ package com.clarityenglish.ielts.view.progress.components {
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				IELTSNotifications.COURSE_CLASS_SELECTED,
+				BBNotifications.DATA_CHANGED,
 			]);
 		}
 		
@@ -51,14 +50,16 @@ package com.clarityenglish.ielts.view.progress.components {
 			super.handleNotification(note);	
 			
 			switch (note.getName()) {
-				case IELTSNotifications.COURSE_CLASS_SELECTED:
-					view.courseClass = note.getBody() as String;
+				case BBNotifications.DATA_CHANGED:
+					if (note.getType() == "currentCourseClass") view.courseClass = note.getBody() as String;
 					break;
 			}
 		}
 		
 		private function onCourseSelect(courseClass:String):void {
-			sendNotification(IELTSNotifications.COURSE_CLASS_SELECT, courseClass);
+			// Set the selected course class
+			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+			dataProxy.set("currentCourseClass", courseClass);
 		}
 	}
 }

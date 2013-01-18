@@ -1,5 +1,6 @@
 ﻿package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -79,7 +80,8 @@
 			sendNotification(IELTSNotifications.COURSE_SHOW, course);
 			
 			// Set the selected course class
-			sendNotification(IELTSNotifications.COURSE_CLASS_SELECT, course.@["class"]);
+			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+			dataProxy.set("currentCourseClass", course.@["class"]);
 		}
 		
 		private function onInfoRequested():void {
