@@ -2,8 +2,6 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.model.ProgressProxy;
-	import com.clarityenglish.common.vo.progress.Progress;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
