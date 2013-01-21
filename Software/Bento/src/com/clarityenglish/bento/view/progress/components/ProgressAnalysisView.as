@@ -1,6 +1,5 @@
 package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.bento.view.progress.ui.CourseDurationRenderer;
 	import com.clarityenglish.bento.view.progress.ui.StackedBarChart;
 	
@@ -30,20 +29,6 @@ package com.clarityenglish.bento.view.progress.components {
 		[SkinPart(required="true")]
 		public var durationDataGroup:DataGroup;
 		
-		private var _viewCopyProvider:CopyProvider;
-		
-		public function set viewCopyProvider(viewCopyProvider:CopyProvider):void {
-			_viewCopyProvider = viewCopyProvider;
-		}
-		
-		public function get viewCopyProvider():CopyProvider {
-			return _viewCopyProvider;
-		}
-		
-		public override function setCopyProvider(copyProvider:CopyProvider):void {
-			this.copyProvider = copyProvider;	
-		}
-		
 		// gh#11
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
@@ -51,6 +36,19 @@ package com.clarityenglish.bento.view.progress.components {
 		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		protected override function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+			
+			if (analysisInstructionLabel1) analysisInstructionLabel1.text = copyProvider.getCopyForId("analysisInstructionLabel1");
+			if (analysisInstructionLabel2) analysisInstructionLabel2.text = copyProvider.getCopyForId("analysisInstructionLabel2");
+			
+			if (durationDataGroup) {
+				var classFactory:ClassFactory = new ClassFactory(CourseDurationRenderer);
+				classFactory.properties = { copyProvider: copyProvider };
+				durationDataGroup.itemRenderer = classFactory;
+			}
 		}
 		
 		protected override function commitProperties():void {
@@ -64,7 +62,7 @@ package com.clarityenglish.bento.view.progress.components {
 			for each (var course:XML in menu.course)
 				duration += new Number(course.@duration);
 				
-			analysisTimeLabel.text = _viewCopyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
+			analysisTimeLabel.text = copyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -83,17 +81,6 @@ package com.clarityenglish.bento.view.progress.components {
 					// set the field we will be drawing
 					stackedBarChart.field = "duration";
 					break;
-				case analysisInstructionLabel1:
-					instance.text = _viewCopyProvider.getCopyForId("analysisInstructionLabel1");
-					break;
-				case analysisInstructionLabel2:
-					instance.text = _viewCopyProvider.getCopyForId("analysisInstructionLabel2");
-					break;
-				case durationDataGroup:
-					var classFactory:ClassFactory = new ClassFactory(CourseDurationRenderer);
-					classFactory.properties = { copyProvider: _viewCopyProvider };
-					instance.itemRenderer = classFactory;
-					break;
 			}
 		}
 		
@@ -106,22 +93,6 @@ package com.clarityenglish.bento.view.progress.components {
 				
 			return duration;
 		}
-		
-		/*protected override function getCurrentSkinState():String {
-			// Skin is dependent on data
-			if (productVersion == IELTSApplication.DEMO) {
-				return "demo";
-			// #320
-			} else if (numberScoreSectionsDone < 1 && numberDurationSectionsDone < 2) {
-				return "blocked";
-			} else if (numberScoreSectionsDone < 1) {
-				return "blockedScore";
-			} else if (numberDurationSectionsDone < 2) {
-				return "blockedDuration";
-			} else {
-				return "normal";
-			}
-		}*/
 		
 	}
 }

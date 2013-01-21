@@ -25,16 +25,17 @@ package com.clarityenglish.bento.view.progress.components {
 		private var _everyoneCourseSummaries:Object;
 		private var _everyoneCourseSummariesChanged:Boolean;
 		
-		private var _viewCopyProvider:CopyProvider;
-		
-		public function set viewCopyProvider(viewCopyProvider:CopyProvider):void {
-			_viewCopyProvider = viewCopyProvider;
-		}
-		
 		public function set everyoneCourseSummaries(value:Object):void {
 			_everyoneCourseSummaries = value;
 			_everyoneCourseSummariesChanged = true;
 			invalidateProperties();
+		}
+		
+		protected override function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+			
+			if (compareInstructionLabel) compareInstructionLabel.text = copyProvider.getCopyForId("compareInstructionLabel");
+			if (chartCaptionLabel) chartCaptionLabel.text = copyProvider.getCopyForId("chartCaptionLabel");
 		}
 		
 		protected override function commitProperties():void {
@@ -52,19 +53,6 @@ package com.clarityenglish.bento.view.progress.components {
 				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.course);
 				
 				_everyoneCourseSummariesChanged = false;
-			}
-		}
-		
-		protected override function partAdded(partName:String, instance:Object):void {
-			super.partAdded(partName, instance);
-			
-			switch (instance) {
-				case compareInstructionLabel:
-					instance.text = _viewCopyProvider.getCopyForId("compareInstructionLabel");
-					break;
-				case chartCaptionLabel:
-					instance.text = _viewCopyProvider.getCopyForId("chartCaptionLabel");
-					break;				
 			}
 		}
 		

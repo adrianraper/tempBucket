@@ -14,19 +14,11 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:ButtonBar id="progressCourseButtonBar" right="20" height="50">
-		<s:layout>
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" right="20" height="50">
+		<ui:layout>
 			<s:ButtonBarHorizontalLayout gap="25" />
-		</s:layout>
-		<s:dataProvider>
-			<s:ArrayList>
-				<fx:Object id="CoverageReadingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')"/> 
-				<fx:Object id="CoverageListeningObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" /> 
-				<fx:Object id="CoverageSpeakingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" /> 
-				<fx:Object id="CoverageWritingObj" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />
-			</s:ArrayList>
-		</s:dataProvider>
-	</s:ButtonBar>
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
 	
 	<ui:ProgressBarRenderer id="progressBar" top="73" left="0" right="0" />
 	
@@ -35,7 +27,7 @@
 			<ui:CoverageExerciseComponent id="questionZoneComponent" width="20%" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
 			<ui:CoverageExerciseComponent id="adviceZoneComponent" width="20%" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
 			<ui:CoverageExerciseComponent id="examPracticeComponent" width="20%" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
-			<ui:CoverageUnitComponent id="practiceZoneComponent" width="100%" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
+			<!--<ui:CoverageUnitComponent id="practiceZoneComponent" width="100%" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />-->
 		</s:HGroup>
 	</s:Scroller>
 </s:Skin>

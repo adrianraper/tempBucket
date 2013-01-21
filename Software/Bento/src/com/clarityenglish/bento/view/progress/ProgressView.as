@@ -37,6 +37,7 @@ package com.clarityenglish.bento.view.progress {
 		// gh#100
 		//[SkinPart]
 		//public var anonWarning:Group;
+		
 		[Bindable]
 		public var anonUser:Boolean = true;
 		
@@ -53,6 +54,7 @@ package com.clarityenglish.bento.view.progress {
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
 		}
+		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
@@ -77,14 +79,6 @@ package com.clarityenglish.bento.view.progress {
 					
 					progressNavBar.requireSelection = true;
 					progressNavBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
-					break;
-				case progressScoreView:
-				case progressCompareView:
-				case progressAnalysisView:
-					 instance.viewCopyProvider = this.copyProvider;
-				case progressCoverageView:
-					// #234
-					instance.productVersion = productVersion;
 					break;
 				case progressAnonymousLabel:
 					instance.text = copyProvider.getCopyForId("progressAnonymousLabel");

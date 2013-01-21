@@ -11,21 +11,34 @@
 		<![CDATA[
 			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			
-			//issue:#11 Language Code
-			[Bindable]
-			public var copyProvider:CopyProvider;
+			private var _dataChanged:Boolean;
 			
+			private var _copyProvider:CopyProvider;
+
+			public function set copyProvider(value:CopyProvider):void {
+				_copyProvider = value;
+				invalidateProperties();
+			}
+
 			public override function set data(value:Object):void {
 				super.data = value;
+				_dataChanged = true;
+				invalidateProperties();
+			}
+			
+			protected override function commitProperties():void {
+				super.commitProperties(); 
 				
-				fillColour.color = getStyle(data.@['class'] + "Color");
-				icon.source = getStyle(data.@['class'] + 'IconBare');
-				
-				//issue:#11 Language Code
-				courseDurationRendererLabel.text = copyProvider.getCopyForId("courseDurationRenderLabel");
-				var replaceObj:Object = new Object();
-				replaceObj.time = Math.floor(data.@duration / 60);
-				courseDurationRendererTime.text = copyProvider.getCopyForId("courseDurationRenderTime", replaceObj);
+				if (data && _dataChanged && _copyProvider) {
+					fillColour.color = getStyle(data.@['class'] + 'Color');
+					icon.source = getStyle(data.@['class'] + 'IconBare');
+					
+					// gh#11 Language Code
+					courseDurationRendererLabel.text = _copyProvider.getCopyForId("courseDurationRenderLabel");
+					var replaceObj:Object = new Object();
+					replaceObj.time = Math.floor(data.@duration / 60);
+					courseDurationRendererTime.text = _copyProvider.getCopyForId("courseDurationRenderTime", replaceObj);
+				}
 			}
 			
 		]]>

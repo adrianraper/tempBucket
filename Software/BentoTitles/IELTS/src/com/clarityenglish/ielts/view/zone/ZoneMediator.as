@@ -107,7 +107,7 @@
 			
 			// Set the selected course class
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
-			dataProxy.set("currentCourseClass", course.@["class"]);
+			dataProxy.set("currentCourseClass", course.@["class"].toString());
 		}
 		
 	}

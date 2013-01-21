@@ -46,6 +46,7 @@ package com.clarityenglish.bento.view.progress.ui {
 		// gh#11 Language Code
 		public function set copyProvider(copyProvider:CopyProvider):void {
 			_copyProvider = copyProvider;
+			invalidateProperties();
 		}
 
 		public override function set data(value:Object):void {
@@ -57,7 +58,7 @@ package com.clarityenglish.bento.view.progress.ui {
 		protected override function commitProperties():void {
 			super.commitProperties(); 
 			
-			if (data && _dataChanged) {
+			if (data && _copyProvider && _dataChanged) {
 				var course:XML = data..course.(@["class"] == courseClass)[0];
 				solidColour.color = getStyle(courseClass + "Color");
 				backColour.color = getStyle(courseClass + "ColorDark");

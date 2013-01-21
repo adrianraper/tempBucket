@@ -50,6 +50,8 @@ package com.clarityenglish.bento.model {
 		public function set(key:String, value:Object):void {
 			data[key] = value;
 			
+			log.info("Set {0}={1}", key, value);
+			
 			sendNotification(BBNotifications.DATA_CHANGED, value, key);
 		}
 		
