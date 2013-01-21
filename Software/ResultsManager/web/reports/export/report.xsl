@@ -2,7 +2,10 @@
 <xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 							 xmlns:php="http://php.net/xsl"
                 			 extension-element-prefixes="php">
-    <xsl:output method="text" />
+    <!--gh#120-->
+	<xsl:include href="../functions.xsl" />
+	
+	<xsl:output method="text" />
 	<xsl:template match="/">
 		<!-- Header row -->
 		<xsl:if test="report/row/@titleName"><xsl:value-of select="report/language//lit[@name='report_title']"/>,</xsl:if>
@@ -22,7 +25,7 @@
 		<xsl:if test="report/row/@average_score"><xsl:value-of select="report/language//lit[@name='report_averageScore']"/>,</xsl:if>
 		<xsl:if test="report/row/@complete"><xsl:value-of select="report/language//lit[@name='report_complete']"/>,</xsl:if>
 		<xsl:if test="report/row/@average_time"><xsl:value-of select="report/language//lit[@name='report_averageTime_secs']"/>,</xsl:if>
-		<xsl:if test="report/row/@total_time"><xsl:value-of select="report/language//lit[@name='report_totalTime_secs']"/>,</xsl:if>
+		<xsl:if test="report/row/@total_time"><xsl:value-of select="report/language//lit[@name='report_totalTime']"/>,</xsl:if>
 		<!-- Science Po -->
 		<xsl:if test="report/row/@fullName">student Name,</xsl:if>
 		<xsl:if test="report/row/@email">email,</xsl:if>
@@ -54,7 +57,8 @@
 			
 			<xsl:if test="@complete">"<xsl:value-of select="@complete"/>",</xsl:if>
 			<xsl:if test="@average_time">"<xsl:value-of select="@average_time"/>",</xsl:if>
-			<xsl:if test="@total_time">"<xsl:value-of select="@total_time"/>",</xsl:if>
+			<!--gh#120-->
+			<xsl:if test="@total_time"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToHours', string(@total_time))"/></td></xsl:if>
 			
 			<!-- Science Po -->
 			<xsl:if test="@fullName">"<xsl:value-of select="@fullName"/>",</xsl:if>
