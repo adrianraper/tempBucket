@@ -15,7 +15,7 @@
 	<upgradeURL>http://www.ieltspractice.com</upgradeURL>
 	<pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2</pricesURL>
 	<registerURL>http://www.takeielts.org</registerURL>
-	<language>EN*</language>
+	<language>ZH</language>
 	<contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>

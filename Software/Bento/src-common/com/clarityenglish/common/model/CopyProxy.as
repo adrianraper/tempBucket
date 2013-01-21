@@ -64,7 +64,7 @@ package com.clarityenglish.common.model {
 			if (!this.copy)
 				throw new Error("Copy literals have not been loaded yet");
 			
-			//issue:#20 track wheter the language code be set successfully 
+			//gh#20 track wheter the language code be set successfully 
 			//trace("the language code is in CopyProxy is "+ languageCode);
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
@@ -74,7 +74,6 @@ package com.clarityenglish.common.model {
 				if (languageCode != defaultLanguageCode) {
 					result = copy..language.(@code == defaultLanguageCode)..lit.(@name == id);
 					if (result.length() == 0) {
-						trace("Not in " + defaultLanguageCode + " either");
 						return id;
 					}
 				} else {
@@ -98,8 +97,20 @@ package com.clarityenglish.common.model {
 				throw new Error("Copy literals have not been loaded yet");
 			
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id).@code;
-			if (result.length() == 0)
-				return 1;
+			
+			// gh#127 You need to fall back to default language code if the code is not found
+			if (result.length() == 0) {
+				if (languageCode != defaultLanguageCode) {
+					result = copy..language.(@code == defaultLanguageCode)..lit.(@name == id).@code;
+					if (result.length() == 0)
+						return 0;
+					
+				} else {
+					// Not really sure what makes sense to return if you can't find the code
+					return 0;
+					
+				}
+			}
 			
 			return new Number(result[0]);
 		}
