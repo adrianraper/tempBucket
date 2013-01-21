@@ -172,10 +172,12 @@ EOD;
 	function checkExistingLicence($user, $productCode, $licence) {
 		// Is there a record in T_Session for this user/product since the date?
 		// v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
+		// gh#125 Need exactly the same conditions here as with countUsedLicences
 		$sql = <<<EOD
 			SELECT * FROM T_Session s
 			WHERE s.F_UserID = ?
 			AND s.F_StartDateStamp >= ?
+			AND s.F_Duration > 15
 EOD;
 
 		// To allow old Road to IELTS to count with the new
@@ -221,22 +223,24 @@ EOD;
 				FROM T_Session s, T_User u
 				WHERE s.F_UserID = u.F_UserID
 				AND s.F_StartDateStamp >= ?
+				AND s.F_Duration > 15
 EOD;
 		} else {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
 				FROM T_Session s
 				WHERE s.F_StartDateStamp >= ?
+				AND s.F_Duration > 15
 EOD;
 		}
 		
 		// To allow old Road to IELTS to count with the new
 		if ($productCode == 52) {
-			$sql.= "AND s.F_ProductCode IN (?, 12)";
+			$sql.= " AND s.F_ProductCode IN (?, 12)";
 		} else if ($productCode == 53) {
-			$sql.= "AND s.F_ProductCode IN (?, 13)";
+			$sql.= " AND s.F_ProductCode IN (?, 13)";
 		} else {
-			$sql.= "AND s.F_ProductCode = ?";			
+			$sql.= " AND s.F_ProductCode = ?";			
 		}
 			
 		if (stristr($rootID,',')!==FALSE) {
@@ -419,9 +423,21 @@ EOD;
 
 	/**
 	 * Count how many licences have been used in this licence period. 
-	 * Moved from UsageOps when updated to using simple T_Session count. 
+	 * Moved from UsageOps when updated to using simple T_Session count.
+	 * gh#125 duplicate of countUsedLicences, so merge into that 
 	 */
 	public function countLicencesUsed($title, $rootID, $fromDateStamp) {
+		// gh#125 convert types of passed object
+		$productCode = $title->productCode;
+		$licence = new Licence();
+		$licence->licenceClearanceDate = $title->licenceClearanceDate;
+		$licence->licenceStartDate = $title->licenceStartDate;
+		$licence->licenceClearanceFrequency = $title->licenceClearanceFrequency;
+		$licence->licenceType = $title->licenceType;
+		$licence->findLicenceClearanceDate();
+		
+		return $this->countUsedLicences($rootID, $productCode, $licence);
+		/*
 		if (!$fromDateStamp)
 			$fromDateStamp = $this->getLicenceClearanceDate($title);
 			
@@ -464,9 +480,6 @@ EOD;
 			$sql.= " AND s.F_ProductCode = ?";			
 		}
 		
-		//NetDebug::trace("USAGE: sql=".$sql);		
-		//NetDebug::trace("params: pc=".$title->productCode." date=$fromDate");		
-		
 		$rs = $this->db->GetRow($sql, array($fromDate, $title->productCode));
 		if ($rs) {
 			$licencesUsed = (int)$rs['licencesUsed'];
@@ -474,6 +487,7 @@ EOD;
 			$licencesUsed = 0;
 		}
 		return $licencesUsed;
+		*/
 	}
 
 	// v3.6.5 Figure out the most recent clearance date

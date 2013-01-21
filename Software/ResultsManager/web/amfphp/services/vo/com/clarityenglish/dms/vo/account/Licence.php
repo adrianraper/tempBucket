@@ -25,7 +25,9 @@ class Licence {
 			$this->id = $id;
 		
 	}
-	private function findLicenceClearanceDate() {
+	
+	// gh#125 needs to be called from LicenceOps, as least temporarily
+	public function findLicenceClearanceDate() {
 		// The from date for counting licence use is calculated as follows:
 		// If there is no licenceClearanceDate, then use licenceStartDate.
 		// If there is no licenceClearanceFrequency, then use +1y

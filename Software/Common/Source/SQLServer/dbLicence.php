@@ -313,7 +313,7 @@ EOD;
 			$bindingParams[] = $licenceID;
 			
 		// mode 2 no longer used
-		} else if($mode == 2) {
+		} else if ($mode == 2) {
 			//v6.5.4.5 New database has proper datetime fields. Old one did too for this table
 			//if ($vars['DATABASEVERSION']>1) {		
 			// v6.5.5.5 MySQL migration
@@ -607,10 +607,11 @@ EOD;
 		$rootID = $vars['ROOTID'];
 		// This is actually licence clearance date as calculated by getRMSettings
 		$datestamp = $vars['LICENCESTARTDATE'];
+		// gh#125 v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
 		$sql = <<<EOD
 			SELECT * FROM T_Session s
 			WHERE s.F_UserID = ?
-			AND s.F_EndDateStamp >= ?
+			AND s.F_StartDateStamp >= ?
 			AND s.F_Duration > 15
 			AND s.F_ProductCode = ?
 EOD;
@@ -636,12 +637,13 @@ EOD;
 		// This is actually licence clearance date as calculated by getRMSettings
 		$datestamp = $vars['LICENCESTARTDATE'];
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
+		v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
 		if ($vars['LICENCETYPE']=='6') {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 
 				FROM T_Session s, T_User u
 				WHERE s.F_UserID = u.F_UserID
-				AND s.F_EndDateStamp >= ?
+				AND s.F_StartDateStamp >= ?
 				AND s.F_Duration > 15
 				AND s.F_ProductCode = ?
 EOD;
@@ -650,7 +652,7 @@ EOD;
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(F_UserID)) AS licencesUsed 
 				FROM T_Session s
-				WHERE s.F_EndDateStamp >= ?
+				WHERE s.F_StartDateStamp >= ?
 				AND s.F_Duration > 15
 				AND s.F_ProductCode = ?
 EOD;
