@@ -83,7 +83,7 @@ class BentoService extends AbstractService {
 	 */
 	public function xhtmlLoad($href) {
 		switch ($href->type) {
-			case "menu_xhtml":
+			case Href::MENU_XHTML:
 				$transforms = array();
 				foreach ($href->transforms as $transform) {
 					$transforms[] = array(
