@@ -31,6 +31,14 @@ package com.clarityenglish.bento.view.progress.ui {
 		[Bindable]
 		public var componentCopyProvider:CopyProvider;*/
 		
+		public function CoverageGroupRenderer() {
+			super();
+			
+			// This is slightly hacky, but we know that CoverageGroupRenderer will always be the last one (at least whilst IELTS is the only title using it)
+			// so make it fill the rest of the page horizontally.
+			percentWidth = 100;
+		}
+		
 		public override function set data(value:Object):void {
 			super.data = value;
 			

@@ -49,12 +49,4 @@
 		</s:DataGroup>
 	</s:Scroller>
 	
-	<!--<s:Scroller left="0" right="0" top="137" bottom="0">
-		<s:HGroup width="100%" height="100%" minWidth="0" minHeight="0" paddingTop="5">
-			<ui:CoverageExerciseComponent id="questionZoneComponent" width="20%" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
-			<ui:CoverageExerciseComponent id="adviceZoneComponent" width="20%" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
-			<ui:CoverageExerciseComponent id="examPracticeComponent" width="20%" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
-			<ui:CoverageUnitComponent id="practiceZoneComponent" width="100%" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
-		</s:HGroup>
-	</s:Scroller>-->
 </s:Skin>

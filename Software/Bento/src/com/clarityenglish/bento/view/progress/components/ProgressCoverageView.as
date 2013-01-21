@@ -86,6 +86,7 @@ package com.clarityenglish.bento.view.progress.components {
 				
 				if (dataGroup) {
 					dataGroup.dataProvider = new XMLListCollection(menu.course.(@["class"] == courseClass).unit);
+					dataGroup.itemRendererFunction = dataGroup.itemRendererFunction; // Flex bug workaround: SDK-32018
 				}
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
