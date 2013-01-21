@@ -24,6 +24,8 @@
 		
 		<xsl:if test="report/row/@average_score"><xsl:value-of select="report/language//lit[@name='report_averageScore']"/>,</xsl:if>
 		<xsl:if test="report/row/@complete"><xsl:value-of select="report/language//lit[@name='report_complete']"/>,</xsl:if>
+		<xsl:if test="report/row/@exercise_percentage"><xsl:value-of select="report/language//lit[@name='report_completePercentage']"/>,</xsl:if>
+		<xsl:if test="report/row/@exerciseUnit_percentage"><xsl:value-of select="report/language//lit[@name='report_completePercentage']"/>,</xsl:if>
 		<xsl:if test="report/row/@average_time"><xsl:value-of select="report/language//lit[@name='report_averageTime_secs']"/>,</xsl:if>
 		<xsl:if test="report/row/@total_time"><xsl:value-of select="report/language//lit[@name='report_totalTime']"/>,</xsl:if>
 		<!-- Science Po -->
@@ -56,6 +58,9 @@
 			<xsl:if test="@average_score">"<xsl:value-of select="@average_score" />",</xsl:if>
 			
 			<xsl:if test="@complete">"<xsl:value-of select="@complete"/>",</xsl:if>
+			
+			<xsl:if test="@exercise_percentage">"<td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@exercise_percentage" /></xsl:call-template></td>",</xsl:if>
+			<xsl:if test="@exerciseUnit_percentage">"<td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@exerciseUnit_percentage"  /></xsl:call-template></td>",</xsl:if>
 			<xsl:if test="@average_time">"<xsl:value-of select="@average_time"/>",</xsl:if>
 			<!--gh#120-->
 			<xsl:if test="@total_time"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToHours', string(@total_time))"/></td></xsl:if>
