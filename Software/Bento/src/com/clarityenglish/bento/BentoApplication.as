@@ -19,6 +19,8 @@ package com.clarityenglish.bento {
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		public static const DEMO:String = "DEMO";
+		
 		public var isCtrlDown:Boolean;
 		
 		protected var facade:BentoFacade;

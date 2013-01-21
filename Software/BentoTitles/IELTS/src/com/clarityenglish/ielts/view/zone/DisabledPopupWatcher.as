@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.zone {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.ielts.IELTSApplication;
@@ -59,7 +60,7 @@ package com.clarityenglish.ielts.view.zone {
 					case IELTSApplication.TEST_DRIVE:
 						this.toolTipText = copyProvider.getCopyForId("onlyAvailableLM");
 						break;
-					case IELTSApplication.DEMO:
+					case BentoApplication.DEMO:
 						this.toolTipText = copyProvider.getCopyForId("notAvailbleDemo");
 						break;
 					default:

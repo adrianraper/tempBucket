@@ -32,7 +32,6 @@ package com.clarityenglish.ielts {
 		public static const LAST_MINUTE:String = "R2ILM";
 		public static const TEST_DRIVE:String = "R2ITD";
 		public static const HOME_USER:String = "R2IHU";
-		public static const DEMO:String = "R2ID";
 		
 		// gh#39
 		public static const ACADEMIC_MODULE:String = '52';

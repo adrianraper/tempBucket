@@ -1,5 +1,7 @@
 package com.clarityenglish.ielts.view.title {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -10,7 +12,6 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.ielts.view.credits.CreditsView;
 	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
-	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
@@ -261,7 +262,7 @@ package com.clarityenglish.ielts.view.title {
 							return lastMinuteAcademicLogo;
 						case IELTSApplication.TEST_DRIVE:
 							return tenHourAcademicLogo;
-						case IELTSApplication.DEMO:
+						case BentoApplication.DEMO:
 							return demoAcademicLogo;
 						case IELTSApplication.FULL_VERSION:
 							
@@ -275,7 +276,7 @@ package com.clarityenglish.ielts.view.title {
 							return lastMinuteAcademicLogo;
 						case IELTSApplication.TEST_DRIVE:
 							return tenHourGeneralTrainingLogo;
-						case IELTSApplication.DEMO:
+						case BentoApplication.DEMO:
 							return demoGeneralTrainingLogo;
 						case IELTSApplication.FULL_VERSION:
 						default:
@@ -299,7 +300,7 @@ package com.clarityenglish.ielts.view.title {
 							return "       " + copyProvider.getCopyForId("lastTimeAC");
 						case IELTSApplication.TEST_DRIVE:
 							return "       " + copyProvider.getCopyForId("testDriveAC");
-						case IELTSApplication.DEMO:
+						case BentoApplication.DEMO:
 							return "                 " + copyProvider.getCopyForId("AC");
 						case IELTSApplication.FULL_VERSION:
 						default:
@@ -312,7 +313,7 @@ package com.clarityenglish.ielts.view.title {
 							return "       " + copyProvider.getCopyForId("lastTimeGT");
 						case IELTSApplication.TEST_DRIVE:
 							return "       " + copyProvider.getCopyForId("testDriveGT");
-						case IELTSApplication.DEMO:
+						case BentoApplication.DEMO:
 							return "                 " + copyProvider.getCopyForId("GT");
 						case IELTSApplication.FULL_VERSION:
 						default:
@@ -340,7 +341,7 @@ package com.clarityenglish.ielts.view.title {
 					registerInfo =  this.languageAssetFolder + "register.jpg";
 					return registerInfo;
 				
-				case IELTSApplication.DEMO:
+				case BentoApplication.DEMO:
 					// #337 
 					if (config.pricesURL) {
 						//gt#11
@@ -620,7 +621,7 @@ package com.clarityenglish.ielts.view.title {
 				case IELTSApplication.TEST_DRIVE:
 					register.dispatch();
 					break;
-				case IELTSApplication.DEMO:
+				case BentoApplication.DEMO:
 					buy.dispatch();
 					break;
 				case IELTSApplication.FULL_VERSION:

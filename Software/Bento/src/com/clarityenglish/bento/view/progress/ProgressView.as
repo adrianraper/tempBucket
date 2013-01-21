@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.view.progress {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.components.ProgressAnalysisView;
 	import com.clarityenglish.bento.view.progress.components.ProgressCompareView;
@@ -102,10 +103,7 @@ package com.clarityenglish.bento.view.progress {
 		 */
 		protected override function getCurrentSkinState():String {
 			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
-			
-			// TODO: Can't reference this here
-			//return state + ((productVersion == IELTSApplication.DEMO) ? "_demo" : "");
-			return state;
+			return state + ((productVersion == BentoApplication.DEMO) ? "_demo" : "");
 		}
 		
 		/**

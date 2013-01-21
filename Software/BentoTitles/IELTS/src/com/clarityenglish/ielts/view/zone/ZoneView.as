@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.zone {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -71,7 +72,7 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		public function isDemo():Boolean {
-			return (productVersion == IELTSApplication.DEMO);
+			return (productVersion == BentoApplication.DEMO);
 		}
 		
 		/**

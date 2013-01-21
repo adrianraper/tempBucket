@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.home {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -130,7 +131,7 @@ package com.clarityenglish.ielts.view.home {
 				if ((licenceType == Title.LICENCE_TYPE_AA) || 
 					((licenceType == Title.LICENCE_TYPE_NETWORK) && (Number(user.id) < 1)) ||
 					((licenceType == Title.LICENCE_TYPE_CT) && (Number(user.id) < 1))) {
-					if (productVersion == IELTSApplication.DEMO) {
+					if (productVersion == BentoApplication.DEMO) {
 						welcomeLabel.text = copyProvider.getCopyForId("demoWelcomeLabel");
 					} else {
 						welcomeLabel.text = "";
@@ -215,12 +216,12 @@ package com.clarityenglish.ielts.view.home {
 		}
 		
 		public function isDemo():Boolean {
-			return (productVersion == IELTSApplication.DEMO);
+			return (productVersion == BentoApplication.DEMO);
 		}
 		
 		protected override function getCurrentSkinState():String {
 			switch (productVersion) {
-				case IELTSApplication.DEMO:
+				case BentoApplication.DEMO:
 					return "demo";
 				case IELTSApplication.TEST_DRIVE:
 					return "testDrive";

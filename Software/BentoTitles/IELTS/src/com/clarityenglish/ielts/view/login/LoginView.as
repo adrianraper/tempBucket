@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.login {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.CopyProxy;
@@ -328,7 +329,7 @@ package com.clarityenglish.ielts.view.login {
 							return "       "+copyProvider.getCopyForId("lastTimeAC");
 						case IELTSApplication.TEST_DRIVE:
 							return "       "+copyProvider.getCopyForId("testDriveAC");
-						case IELTSApplication.DEMO:
+						case BentoApplication.DEMO:
 							return "                 "+copyProvider.getCopyForId("AC");
 						case IELTSApplication.FULL_VERSION:
 						default:
@@ -341,7 +342,7 @@ package com.clarityenglish.ielts.view.login {
 							return "       "+copyProvider.getCopyForId("lastTimeGT");
 						case IELTSApplication.TEST_DRIVE:
 							return "       "+copyProvider.getCopyForId("testDriveGT");
-						case IELTSApplication.DEMO:
+						case BentoApplication.DEMO:
 							return "                 "+copyProvider.getCopyForId("GT");
 						case IELTSApplication.FULL_VERSION:
 						default:

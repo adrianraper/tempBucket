@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.support {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -208,7 +209,7 @@ package com.clarityenglish.ielts.view.support {
 		
 		protected override function getCurrentSkinState():String {
 			switch (productVersion) {
-				case IELTSApplication.DEMO:
+				case BentoApplication.DEMO:
 					return "demo";
 				case IELTSApplication.TEST_DRIVE:
 					return "testDrive";
