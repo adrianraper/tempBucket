@@ -143,10 +143,10 @@
     <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressScoreView"/>
     <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressCompareView"/>
     <classEntry path="com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageUnitComponent"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer"/>
     <classEntry path="com.clarityenglish.bento.view.progress.ui.CourseDurationRenderer"/>
     <classEntry path="com.clarityenglish.bento.view.progress.ui.StackedBarChart"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageExerciseComponent"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer"/>
     <classEntry path="com.clarityenglish.common.view.error.ErrorMediator"/>
     <classEntry path="skins.bento.warning.WarningBoxButtonSkin"/>
     <classEntry path="skins.bento.warning.WarningYesButtonSkin"/>

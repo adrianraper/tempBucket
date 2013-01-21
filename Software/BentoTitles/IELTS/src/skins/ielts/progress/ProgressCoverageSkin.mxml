@@ -11,17 +11,17 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.bento.view.progress.ui.CoverageExerciseComponent;
-			import com.clarityenglish.bento.view.progress.ui.CoverageUnitComponent;
+			import com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer;
+			import com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer;
 			
 			/**
 			 * This is specific to the IELTS ProgressCoverageSkin and replaces the default item renderer with a unit version for 'practice-zone'
 			 */
 			private function getItemRenderer(item:Object):ClassFactory {
 				if (item.@["class"] == "practice-zone") {
-					return new ClassFactory(CoverageUnitComponent);
+					return new ClassFactory(CoverageGroupRenderer);
 				} else {
-					return new ClassFactory(CoverageExerciseComponent);
+					return new ClassFactory(CoverageUnitRenderer);
 				}
 			}
 			

@@ -2,11 +2,9 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		minWidth="215" minHeight="24"
 		creationComplete="creationComplete(event)">
-
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.progress.ui.CoverageExerciseComponent")]
+		[HostComponent("com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer")]
 	</fx:Metadata>
 
 	<fx:Script> 
@@ -18,7 +16,7 @@
 			
 			protected function creationComplete(event:Event):void {
 				// #234
-				//popupWatcher = new DisabledPopupWatcher(itemList, hostComponent.componentCopyProvider, hostComponent.productVersion); 
+				//popupWatcher = new DisabledPopupWatcher(itemList1, hostComponent.componentCopyProvider, hostComponent.productVersion); 
 			}
 			
 		]]> 
@@ -28,20 +26,20 @@
 		<s:VerticalLayout horizontalAlign="left" />
 	</s:layout>
 	
-	<s:Label id="coverageHeadingLabel" paddingLeft="2" fontWeight="bold" width="100%" />
+	<s:Label id="coverageHeadingLabel" fontWeight="bold" paddingLeft="5" />
 	
-	<s:Rect left="100" right="0" top="200" bottom="0" width="100%" height="2" >
+	<s:Rect left="100" right="0" top="0" bottom="0" width="100%" height="2" >
 		<s:fill>
 			<s:SolidColor color="0x999999" />
 		</s:fill>
 	</s:Rect>
-
-	<s:DataGroup id="exerciseDataGroup"
+	
+	<s:DataGroup id="groupDataGroup"
 				 alternatingItemColors="[#FFFFFF, #DDDDDD]"
 				 width="100%"
-				 contentBackgroundAlpha="0"
-				 fontWeight="normal" 
-				 itemRenderer="skins.ielts.progress.ui.CoverageExerciseRenderer">
+				 contentBackgroundAlpha="0" 
+				 fontWeight="normal"
+				 itemRenderer="skins.ielts.progress.ui.CoverageGroupItemRenderer">
 		<s:layout>
 			<s:VerticalLayout gap="0" />
 		</s:layout>
