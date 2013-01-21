@@ -83,7 +83,7 @@ package com.clarityenglish.bento.model {
 			// If the resource has already been loaded then just return it
 			if (loadedResources[href]) {
 				log.debug("Href already loaded so returning cached copy {0}", href);
-				notifyXHTMLLoaded(href);
+				notifyXHTMLLoaded(href, true);
 				return;
 			}
 			
@@ -137,7 +137,14 @@ package com.clarityenglish.bento.model {
 			}
 		}
 
-		private function notifyXHTMLLoaded(href:Href):void {
+		/**
+		 * This is called when XHTML has been loaded, either directly or from the server-side.  The cached parameter is used to make sure that MENU_XHTML_LOADED
+		 * is only sent once per menu.xml file.
+		 * 
+		 * @param href
+		 * @param cached
+		 */
+		private function notifyXHTMLLoaded(href:Href, cached:Boolean = false):void {
 			if (href.type == Href.MENU_XHTML) {
 				// If this is the menu xhtml store it in BentoProxy and send a special notification
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -145,7 +152,7 @@ package com.clarityenglish.bento.model {
 				//sendNotification(BBNotifications.BENTO_RESET); // TODO: not sure if this has undesired consequences...
 				
 				bentoProxy.menuXHTML = loadedResources[href];
-				sendNotification(BBNotifications.MENU_XHTML_LOADED, loadedResources[href]);
+				if (!cached) sendNotification(BBNotifications.MENU_XHTML_LOADED, loadedResources[href]);
 			}
 			
 			// Whether or not this is menu XHTML, we always want to send the XHTML_LOADED notification as it drives BentoMediators

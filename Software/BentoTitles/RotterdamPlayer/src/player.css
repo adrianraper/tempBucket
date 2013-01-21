@@ -106,10 +106,10 @@ progresscomponents|ProgressScoreView #progressCourseButtonBar {
 	skinClass: ClassReference("skins.rotterdam.player.progress.ui.ProgressCourseButtonBarSkin");
 }
 
-progressui|CoverageExerciseComponent {
-	skinClass: ClassReference("skins.rotterdam.player.progress.ui.CoverageExerciseComponentSkin");
+progressui|CoverageUnitRenderer { 
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.CoverageUnitRendererSkin");
 }
 
-progressui|CoverageUnitComponent {
-	skinClass: ClassReference("skins.rotterdam.player.progress.ui.CoverageUnitComponentSkin");
+progressui|CoverageGroupRenderer {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.CoverageGroupRendererSkin");
 }

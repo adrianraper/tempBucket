@@ -19,12 +19,9 @@
 				
 				if (data) {
 					// #247. Show disabled menu items as such
-					if (data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8) {
-						this.enabled = false;
-					}
+					this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
 					
 					courseColor = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
-					//fillColor.color = (Number(data.@done.toString())>0) ? courseColor : 0xFFFFFF;
 					captionLabel.text = data.@caption;
 					exerciseIndicatorList.dataProvider = new XMLListCollection(data.exercise);
 				}
@@ -43,14 +40,14 @@
 					<s:DataRenderer>
 						<fx:Script>
 							<![CDATA[
-								//import com.clarityenglish.ielts.view.progress.components.ProgressCoverageView;
+								import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
 								
 								override public function set data(value:Object):void {
 									super.data = value;
 									
 									if (data) {
-										//var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
-										//fillColor.color = (Number(data.@done.toString()) > 0) ? courseColor : 0xB3B3B3;
+										var courseColor:Number = getStyle(ProgressCoverageView.horribleHackCourseClass + 'Color');
+										fillColor.color = (Number(data.@done.toString()) > 0) ? courseColor : 0xB3B3B3;
 										
 										this.toolTip = data.@caption;
 									}

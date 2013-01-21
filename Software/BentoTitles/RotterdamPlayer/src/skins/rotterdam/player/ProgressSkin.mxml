@@ -44,9 +44,11 @@
 		<s:Label left="0" height="14" top="80" text="You have logged in anonymously, so your progress will not be saved after you close the program." />
 	</s:Group>
 	
-	<s:Group width="100%">
-		<s:ButtonBar id="progressNavBar" left="0" height="25" top="10" />
-	</s:Group>
+	<s:HGroup width="100%">
+		<s:Label id="progressAnonymousLabel" left="0" height="14" visible="{hostComponent.isAnonymousUser}" includeInLayout="{hostComponent.isAnonymousUser}"/>
+		<s:Spacer width="100%" />
+		<s:ButtonBar id="progressNavBar" height="25" />
+	</s:HGroup>
 
 	<s:Group top="10" width="100%">
 		<s:Line width="100%">

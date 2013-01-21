@@ -3,39 +3,50 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*"
-		xmlns:skins="com.clarityenglish.bento.progress.*">
+		xmlns:skins="skins.ielts.progress.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCoverageView")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer;
+			import com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer;
+			
+			/**
+			 * This is specific to the IELTS ProgressCoverageSkin and replaces the default item renderer with a unit version for 'practice-zone'
+			 */
+			private function getItemRenderer(item:Object):ClassFactory {
+				if (item.@["class"] == "practice-zone") {
+					return new ClassFactory(CoverageGroupRenderer);
+				} else {
+					return new ClassFactory(CoverageUnitRenderer);
+				}
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:ButtonBar id="progressCourseButtonBar" right="20" height="50">
-		<s:layout>
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" right="20" height="50">
+		<ui:layout>
 			<s:ButtonBarHorizontalLayout gap="25" />
-		</s:layout>
-		<s:dataProvider>
-			<s:ArrayList>
-				<!--<fx:Object label="Reading" icon="{getStyle('readingIconSmall')}" /> 
-				<fx:Object label="Listening" icon="{getStyle('listeningIconSmall')}" /> 
-				<fx:Object label="Speaking" icon="{getStyle('speakingIconSmall')}" /> 
-				<fx:Object label="Writing" icon="{getStyle('writingIconSmall')}" />-->
-			</s:ArrayList>
-		</s:dataProvider>
-	</s:ButtonBar>
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
 	
 	<ui:ProgressBarRenderer id="progressBar" top="73" left="0" right="0" />
 	
 	<s:Scroller left="0" right="0" top="137" bottom="0">
-		<s:HGroup width="100%" height="100%" minWidth="0" minHeight="0">
-			<!--<ui:CoverageExerciseComponent id="questionZoneCoverage" width="20%" caption="Starting out" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
-			<ui:CoverageExerciseComponent id="adviceZoneCoverage" width="20%" caption="Advice and tutorials" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
-			<ui:CoverageExerciseComponent id="examPracticeCoverage" width="20%" caption="Test practice" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" />
-			<ui:CoverageUnitComponent id="practiceZoneCoverage" width="100%" caption="Practice zone" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />-->
-		</s:HGroup>
+		<s:DataGroup id="dataGroup" width="100%" height="100%" minWidth="0" minHeight="0" itemRendererFunction="getItemRenderer">
+			<s:layout>
+				<s:HorizontalLayout paddingTop="5" />
+			</s:layout>
+		</s:DataGroup>
 	</s:Scroller>
+	
 </s:Skin>

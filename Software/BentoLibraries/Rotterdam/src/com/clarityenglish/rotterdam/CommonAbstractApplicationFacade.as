@@ -39,7 +39,7 @@
 			 * 
 			 * TODO: At some point we really need to consolidate XHTMLProxy and ProgressProxy!
 			 */
-			//registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);
+			registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);
 			
 			registerCommand(RotterdamNotifications.UNIT_START, UnitStartCommand);
 			registerCommand(RotterdamNotifications.CONTENT_OPEN, ContentOpenCommand);

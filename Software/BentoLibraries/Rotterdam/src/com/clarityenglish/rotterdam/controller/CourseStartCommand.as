@@ -1,7 +1,9 @@
 package com.clarityenglish.rotterdam.controller {
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;

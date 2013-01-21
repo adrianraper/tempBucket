@@ -131,31 +131,23 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
-
-	<s:ButtonBar id="progressCourseButtonBar" right="20" height="50">
-		<s:layout>
+	
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" right="20" height="50">
+		<ui:layout>
 			<s:ButtonBarHorizontalLayout gap="25" />
-		</s:layout>
-		<s:dataProvider>
-			<s:ArrayList>
-				<!--<fx:Object label="Reading" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall')" />
-				<fx:Object label="Listening" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='ListeningIconSmall')" />
-				<fx:Object label="Speaking" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='SpeakingIconSmall')" />
-				<fx:Object label="Writing" icon="@Embed(source='skins/ielts/assets/assets.swf', symbol='WritingIconSmall')" />-->
-			</s:ArrayList>
-		</s:dataProvider>
-	</s:ButtonBar>
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
 
 	<ui:ProgressBarRenderer id="progressBar" top="73" left="0" right="0" />
 	
 	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" top="137" bottom="0">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn headerText="Unit" dataField="@unitCaption" sortCompareFunction="sortUnits" />
-				<s:GridColumn headerText="Exercise" dataField="@caption" />
-				<s:GridColumn headerText="Score %" dataField="@displayScore" sortCompareFunction="sortScores" />
-				<s:GridColumn headerText="Time spent" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" />
-				<s:GridColumn headerText="Date" dataField="@datetime" />
+				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" />
+				<s:GridColumn id="scoreGridC2" dataField="@caption" />
+				<s:GridColumn id="scoreGridC3" dataField="@displayScore" sortCompareFunction="sortScores" />
+				<s:GridColumn id="scoreGridC4" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" />
+				<s:GridColumn id="scoreGridC5" dataField="@datetime" />
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>

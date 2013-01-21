@@ -34,7 +34,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				BBNotifications.MENU_XHTML_LOADED,
+				RotterdamNotifications.COURSE_STARTED,
 				RotterdamNotifications.SETTINGS_DIRTY,
 				RotterdamNotifications.SETTINGS_CLEAN,
 			]);
@@ -44,7 +44,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case BBNotifications.MENU_XHTML_LOADED:
+				case RotterdamNotifications.COURSE_STARTED:
 					view.showCourseView();
 					break;
 				case RotterdamNotifications.SETTINGS_DIRTY:
