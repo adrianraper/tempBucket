@@ -61,6 +61,7 @@ class CourseOps {
 			// The course node is basically the same as $courseNode above minus the href
 			$courseNode = $menuXml->head->script->menu->addChild("course");
 			$courseNode->addAttribute("id", $id);
+			$courseNode->addAttribute("class", ""); // In order for progress to work the course needs an empty class
 			foreach ($courseObj as $key => $value)
 				if (strtolower($key) != "id") $courseNode->addAttribute($key, $value);
 			

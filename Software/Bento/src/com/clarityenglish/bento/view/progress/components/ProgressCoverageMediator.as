@@ -28,7 +28,7 @@ package com.clarityenglish.bento.view.progress.components {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			view.href = bentoProxy.menuXHTML.href;
-			view.courseClass = dataProxy.getString("currentCourseClass");
+			view.courseClass = dataProxy.getString("currentCourseClass") || "";
 			
 			// Listen for course changing signal
 			view.courseSelect.add(onCourseSelect);
