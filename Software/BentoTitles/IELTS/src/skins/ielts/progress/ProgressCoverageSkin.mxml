@@ -9,6 +9,25 @@
 		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCoverageView")]
 	</fx:Metadata>
 	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.view.progress.ui.CoverageExerciseComponent;
+			import com.clarityenglish.bento.view.progress.ui.CoverageUnitComponent;
+			
+			/**
+			 * This is specific to the IELTS ProgressCoverageSkin and replaces the default item renderer with a unit version for 'practice-zone'
+			 */
+			private function getItemRenderer(item:Object):ClassFactory {
+				if (item.@["class"] == "practice-zone") {
+					return new ClassFactory(CoverageUnitComponent);
+				} else {
+					return new ClassFactory(CoverageExerciseComponent);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
@@ -23,11 +42,19 @@
 	<ui:ProgressBarRenderer id="progressBar" top="73" left="0" right="0" />
 	
 	<s:Scroller left="0" right="0" top="137" bottom="0">
+		<s:DataGroup id="dataGroup" width="100%" height="100%" minWidth="0" minHeight="0" itemRendererFunction="getItemRenderer">
+			<s:layout>
+				<s:HorizontalLayout paddingTop="5" />
+			</s:layout>
+		</s:DataGroup>
+	</s:Scroller>
+	
+	<!--<s:Scroller left="0" right="0" top="137" bottom="0">
 		<s:HGroup width="100%" height="100%" minWidth="0" minHeight="0" paddingTop="5">
 			<ui:CoverageExerciseComponent id="questionZoneComponent" width="20%" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
 			<ui:CoverageExerciseComponent id="adviceZoneComponent" width="20%" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
 			<ui:CoverageExerciseComponent id="examPracticeComponent" width="20%" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
-			<!--<ui:CoverageUnitComponent id="practiceZoneComponent" width="100%" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />-->
+			<ui:CoverageUnitComponent id="practiceZoneComponent" width="100%" dataProvider="{hostComponent.practiceZoneDataProvider}" productVersion="{hostComponent.productVersion}" componentCopyProvider="{hostComponent.hostCopyProvider}" />
 		</s:HGroup>
-	</s:Scroller>
+	</s:Scroller>-->
 </s:Skin>

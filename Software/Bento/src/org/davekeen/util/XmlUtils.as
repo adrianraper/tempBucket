@@ -27,5 +27,16 @@
 					targetNodes[n]["@" + attribute] = sourceNodes[n]["@" + attribute];
 		}
 		
+		/**
+		 * Creates a copy of the given xml node with all attributes but without any children.
+		 * 
+		 * @param xml
+		 */
+		public static function copyTopLevelNode(xml:XML):XML {
+			var xmlCopy:XML = xml.copy();
+			xmlCopy.setChildren([]);
+			return xmlCopy;
+		}
+		
 	}
 }

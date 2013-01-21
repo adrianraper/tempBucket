@@ -9,9 +9,11 @@ package com.clarityenglish.bento.view.progress.components {
 	
 	import mx.collections.ArrayList;
 	import mx.collections.XMLListCollection;
+	import mx.core.ClassFactory;
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.DataGroup;
 	import spark.events.IndexChangeEvent;
 	
 	/**
@@ -26,6 +28,9 @@ package com.clarityenglish.bento.view.progress.components {
 		public var progressBar:ProgressBarRenderer;
 		
 		[SkinPart]
+		public var dataGroup:DataGroup;
+		
+		/*[SkinPart]
 		public var questionZoneComponent:CoverageExerciseComponent;
 		
 		[SkinPart]
@@ -47,7 +52,7 @@ package com.clarityenglish.bento.view.progress.components {
 		public var adviceZoneDataProvider:XMLListCollection;
 		
 		[Bindable]
-		public var examPracticeDataProvider:XMLListCollection;
+		public var examPracticeDataProvider:XMLListCollection;*/
 				
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -61,14 +66,14 @@ package com.clarityenglish.bento.view.progress.components {
 		
 		public var courseSelect:Signal = new Signal(String);
 		
-		[Bindable]
+		/*[Bindable]
 		public var hostCopyProvider:CopyProvider; // TODO: get rid of this
 		
 		// gh#11 language Code
 		public override function setCopyProvider(copyProvider:CopyProvider):void {
 			super.setCopyProvider(copyProvider);
 			this.hostCopyProvider = copyProvider;
-		}
+		}*/
 		
 		/**
 		 * This can be called from outside the view to make the view display a different course
@@ -102,10 +107,12 @@ package com.clarityenglish.bento.view.progress.components {
 			
 			if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
 			if (progressBar) progressBar.copyProvider = copyProvider;
-			if (questionZoneComponent) questionZoneComponent.caption = copyProvider.getCopyForId("questionZoneComponent");
+			
+			// TODO: these will go!
+			/*if (questionZoneComponent) questionZoneComponent.caption = copyProvider.getCopyForId("questionZoneComponent");
 			if (adviceZoneComponent) adviceZoneComponent.caption = copyProvider.getCopyForId("adviceZoneComponent");
 			if (examPracticeComponent) examPracticeComponent.caption = copyProvider.getCopyForId("examPracticeComponent");
-			if (practiceZoneComponent) practiceZoneComponent.caption = copyProvider.getCopyForId("practiceZoneComponent");
+			if (practiceZoneComponent) practiceZoneComponent.caption = copyProvider.getCopyForId("practiceZoneComponent");*/
 		}
 		
 		protected override function commitProperties():void {
@@ -119,7 +126,11 @@ package com.clarityenglish.bento.view.progress.components {
 					progressBar.data = menu;
 				}
 				
-				if (courseClass) {
+				if (dataGroup) {
+					dataGroup.dataProvider = new XMLListCollection(menu.course.(@["class"] == courseClass).unit);
+				}
+				
+				/*if (courseClass) {
 					// #160 - initialise any 'zone' that might not have data in the XML
 					practiceZoneDataProvider = new XMLListCollection();
 					questionZoneDataProvider = new XMLListCollection();
@@ -143,7 +154,7 @@ package com.clarityenglish.bento.view.progress.components {
 								break;
 						}
 					}
-				}
+				}*/
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
 				if (progressCourseButtonBar) progressCourseButtonBar.courseClass = courseClass;
@@ -158,6 +169,11 @@ package com.clarityenglish.bento.view.progress.components {
 			switch (instance) {
 				case progressCourseButtonBar:
 					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);
+					break;
+				case dataGroup:
+					// The datagroup defaults to CoverageExerciseComponent (which will be the case for most titles).  If this needs to be changed, such as
+					// in IELTS then it can be overridden in the skin.
+					dataGroup.itemRenderer = new ClassFactory(CoverageExerciseComponent);
 					break;
 			}
 		}

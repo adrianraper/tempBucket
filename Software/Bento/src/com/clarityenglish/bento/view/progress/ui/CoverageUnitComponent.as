@@ -1,55 +1,57 @@
 package com.clarityenglish.bento.view.progress.ui {
 	
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	import almerblank.flex.spark.components.SkinnableDataRenderer;
 	
 	import mx.collections.XMLListCollection;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.XmlUtils;
 	
-	import spark.components.supportClasses.SkinnableComponent;
+	import spark.components.DataGroup;
+	import spark.components.Label;
 	
-	public class CoverageUnitComponent extends SkinnableComponent {
+	public class CoverageUnitComponent extends SkinnableDataRenderer {
 
 		/**
 		 * Standard flex logger
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		[Bindable]
-		public var caption:String;
+		[SkinPart(required="true")]
+		public var coverageHeadingLabel:Label;
 		
-		[Bindable]
-		public var listDataProvider:XMLListCollection;
-
-		[Bindable]
+		[SkinPart(required="true")]
+		public var groupDataGroup:DataGroup;
+		
+		/*[Bindable]
 		public var productVersion:String;
 		
 		[Bindable]
-		public var componentCopyProvider:CopyProvider;
+		public var componentCopyProvider:CopyProvider;*/
 		
-		/**
-		 * This function will take a course node and create a list of exercises in the practice-zone
-		 * grouped by group ID, with a caption for each and a set of nodes for each exercise in the group
-		 * 
-		 */
-		public function set dataProvider(value:XML):void {
-			if (value) {
-				var listDP:XMLList= new XMLList();
-				var newNode:XML = new XML();
-				var newItem:XML = new XML();
-				var builder:XML = new XML();
-				builder = <list />;
-				for each (var group:XML in value.groups.group) {
-					newNode = <group caption={group.@caption} enabledFlag={group.@enabledFlag} />;
-					for each (var exercise:XML in value.unit.(@["class"] == 'practice-zone').exercise.(@["group"] == group.@id)) {
-						newItem = <exercise caption={exercise.@caption} done={exercise.@done} />;
-						newNode.appendChild(newItem);
+		public override function set data(value:Object):void {
+			super.data = value;
+			
+			if (data) {
+				coverageHeadingLabel.text = value.@caption;
+				
+				// Group exercises together by their <group>
+				var xml:XML = <coverage />;
+				for each (var group:XML in value.parent().groups.group) {
+					var groupNode:XML = XmlUtils.copyTopLevelNode(group);
+					for each (var exercise:XML in value.exercise.(@["group"] == group.@id)) {
+						var exerciseNode:XML = XmlUtils.copyTopLevelNode(exercise);
+						groupNode.appendChild(exerciseNode);
 					}
-					builder.appendChild(newNode);
+					xml.appendChild(groupNode);
 				}
-				listDataProvider = new XMLListCollection(builder.group);
+				
+				groupDataGroup.dataProvider = new XMLListCollection(xml.group);
+			} else {
+				coverageHeadingLabel.text = "";
+				groupDataGroup.dataProvider = null;
 			}
 		}
 
