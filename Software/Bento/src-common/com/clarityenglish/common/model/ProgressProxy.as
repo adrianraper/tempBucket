@@ -142,52 +142,8 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
-			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-			switch (operation) {
-				// TODO: We no longer have a getProgressData, but there are these specific errors here which Adrian put in and don't exist in the new system.
-				// Need to check whether they still matter and if so re-implement.
-				case "getProgressData":
-					// Special case of progress error when the whole title is blocked by hidden content
-					// in which case you don't want this user to login and take up a licence record
-					var progressError:BentoError = BentoError.create(fault);
-					if (progressError.errorNumber == copyProxy.getCodeForId("errorTitleBlockedByHiddenContent")) {
-						// First show an error
-						//sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorTitleBlockedByHiddenContent", null, true ));
-						sendNotification(CommonNotifications.BENTO_ERROR, progressError);
-						
-						// Then notify the state machine
-						sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
-						
-					// gh#92
-					} else if (progressError.errorNumber == copyProxy.getCodeForId("errorCourseDoesNotExist")) {
-							// First show an error
-							//sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorTitleBlockedByHiddenContent", null, true ));
-							sendNotification(CommonNotifications.BENTO_ERROR, progressError);
-							
-							// Then notify the state machine
-							sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
-							
-					} else {
-					
-						sendNotification(CommonNotifications.INVALID_DATA, progressError);
-						
-					}
-					
-					// TODO: Current ProgressOps doesn't throw specific errors so this is commented for now and everything is assumed to be INVALID_DATA
-					// If the error has stopped the loading of menu.xml, then can't get past login
-					/*if (progressError.errorNumber == BentoError.ERROR_CONTENT_MENU) {
-						sendNotification(CommonNotifications.INVALID_DATA, progressError);
-					} else {
-						// This might be complicated, but in this case we probably just want
-						// to warn the user that their progress records can't be saved or read
-						// but we could still go on with the show?
-						sendNotification(BBNotifications.INVALID_PROGRESS_DATA, progressError);
-					}
-					break;*/
-			}
-			
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
-				
+		
 	}
 }
