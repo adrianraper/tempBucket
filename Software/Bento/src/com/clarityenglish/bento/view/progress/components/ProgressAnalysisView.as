@@ -10,6 +10,9 @@ package com.clarityenglish.bento.view.progress.components {
 	import spark.components.DataGroup;
 	import spark.components.Label;
 	
+	/**
+	 * TODO: This class is way too specific; we don't want to be specifying course classes in here since we want it to be shared between all titles.
+	 */
 	public class ProgressAnalysisView extends BentoView {
 		
 		[SkinPart(required="true")]

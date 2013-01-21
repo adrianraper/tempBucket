@@ -124,7 +124,6 @@ package com.clarityenglish.bento.model {
 		private function notifyXHTMLLoaded(href:Href):void {
 			if (href.type == Href.MENU_XHTML) {
 				// If this is the menu xhtml store it in BentoProxy and send a special notification
-				// Note that IELTS overrides this behaviour since it uses ProgressProxy to get menu xml instead.  However, Rotterdam editor still uses this.
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				
 				//sendNotification(BBNotifications.BENTO_RESET); // TODO: not sure if this has undesired consequences...

@@ -5,7 +5,7 @@ class ProgressExerciseScoresTransform extends XmlTransform {
 	
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform';
 	
-public function transform($db, $xml, $options = array()) {
+	public function transform($db, $xml, $options = array()) {
 		// Register the namespace for menu xml so we can run xpath queries against it
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
@@ -35,20 +35,23 @@ SQL;
 			$existingExerciseXPath = $xml->xpath('/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:exercise[@id="'.$record['F_ExerciseID'].'"]');
 			if (count($existingExerciseXPath) == 0) {
 				// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
-				throw $options['copyOps']->getExceptionForId("errorMultipleExerciseWithSameId", array("exerciseID" => $record['F_ExerciseID']));
+				throw $options['copyOps']->getExceptionForId("errorNoExerciseWithId", array("exerciseID" => $record['F_ExerciseID']));
 			} else if (count($existingExerciseXPath) > 1) {
 				// Whilst we are mixing up old and new IDs, this might happen.  Just ignore the record.
+				//throw $options['copyOps']->getExceptionForId("errorMultipleExerciseWithSameId", array("exerciseID" => $record['F_ExerciseID']));
 			} else {
 				$exercise = $existingExerciseXPath[0];
 				
-				// Add the <score> node as a child of the approriate exercise
-				$score = $exercise->addChild('score');
-				$score->addAttribute('score', $record['F_Score']);
-				$score->addAttribute('duration', $record['F_Duration']);
-				$score->addAttribute('datetime', $record['F_DateStamp']);
-				
-				// Increment the @done attribute
-				$exercise['done'] = ($exercise['done']) ? $exercise['done'] + 1 : 1;
+				// Add the <score> node as a child of the approriate exercise (if it exists)
+				if ($exercise) {
+					$score = $exercise->addChild('score');
+					$score->addAttribute('score', $record['F_Score']);
+					$score->addAttribute('duration', $record['F_Duration']);
+					$score->addAttribute('datetime', $record['F_DateStamp']);
+					
+					// Increment the @done attribute
+					$exercise['done'] = ($exercise['done']) ? $exercise['done'] + 1 : 1;
+				}
 			}
 		}
 	}

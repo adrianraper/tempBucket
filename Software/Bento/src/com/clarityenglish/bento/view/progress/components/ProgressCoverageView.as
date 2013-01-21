@@ -12,6 +12,9 @@ package com.clarityenglish.bento.view.progress.components {
 	import spark.components.ButtonBar;
 	import spark.events.IndexChangeEvent;
 	
+	/**
+	 * TODO: This class is way too specific; we don't want to be specifying course classes in here since we want it to be shared between all titles.
+	 */
 	public class ProgressCoverageView extends BentoView {
 		
 		[SkinPart(required="true")]
@@ -20,16 +23,16 @@ package com.clarityenglish.bento.view.progress.components {
 		[SkinPart(required="true")]
 		public var progressBar:ProgressBarRenderer;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var questionZoneComponent:CoverageExerciseComponent;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var practiceZoneComponent:CoverageUnitComponent;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var adviceZoneComponent:CoverageExerciseComponent;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var examPracticeComponent:CoverageExerciseComponent;
 		
 		[SkinPart]

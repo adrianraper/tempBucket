@@ -5,9 +5,9 @@
 @namespace title "com.clarityenglish.rotterdam.view.title.*";
 @namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
 @namespace course "com.clarityenglish.rotterdam.view.course.*";
-@namespace progress "com.clarityenglish.rotterdam.player.view.progress.*";
-@namespace progresscomponents "com.clarityenglish.rotterdam.player.view.progress.components.*";
-@namespace progressui "com.clarityenglish.rotterdam.player.view.progress.ui.*";
+@namespace progress "com.clarityenglish.bento.view.progress.*";
+@namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
+@namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 

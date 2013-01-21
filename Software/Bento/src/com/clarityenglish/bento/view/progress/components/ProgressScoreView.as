@@ -14,6 +14,9 @@ package com.clarityenglish.bento.view.progress.components {
 	import spark.components.gridClasses.GridColumn;
 	import spark.events.IndexChangeEvent;
 	
+	/**
+	 * TODO: This class is way too specific; we don't want to be specifying course classes in here since we want it to be shared between all titles.
+	 */
 	public class ProgressScoreView extends BentoView {
 		
 		[SkinPart(required="true")]

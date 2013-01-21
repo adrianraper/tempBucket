@@ -7,7 +7,7 @@
 
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.rotterdam.player.view.progress.components.ProgressCoverageView;
+			import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
 			
 			public override function set data(value:Object):void {
 				super.data = value;

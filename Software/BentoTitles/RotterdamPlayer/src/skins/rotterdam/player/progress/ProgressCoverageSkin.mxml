@@ -2,11 +2,11 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.player.view.progress.ui.*"
-		xmlns:skins="com.clarityenglish.rotterdam.player.progress.*">
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*"
+		xmlns:skins="com.clarityenglish.bento.progress.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.player.view.progress.components.ProgressCoverageView")]
+		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCoverageView")]
 	</fx:Metadata>
 	
 	<s:states>
@@ -32,7 +32,6 @@
 	
 	<s:Scroller left="0" right="0" top="137" bottom="0">
 		<s:HGroup width="100%" height="100%" minWidth="0" minHeight="0">
-			<ui:CoverageExerciseComponent id="exerciseCoverage" width="100%" caption="Ooof" dataProvider="{hostComponent.exerciseCoverageDataProvider}" />
 			<!--<ui:CoverageExerciseComponent id="questionZoneCoverage" width="20%" caption="Starting out" dataProvider="{hostComponent.questionZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
 			<ui:CoverageExerciseComponent id="adviceZoneCoverage" width="20%" caption="Advice and tutorials" dataProvider="{hostComponent.adviceZoneDataProvider}" productVersion="{hostComponent.productVersion}" />
 			<ui:CoverageExerciseComponent id="examPracticeCoverage" width="20%" caption="Test practice" dataProvider="{hostComponent.examPracticeDataProvider}" productVersion="{hostComponent.productVersion}" />

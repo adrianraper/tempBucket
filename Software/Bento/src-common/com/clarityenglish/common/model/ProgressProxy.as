@@ -22,9 +22,6 @@ package com.clarityenglish.common.model {
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
-	/**
-	 * This is all rather confused - the roles of XHTMLProxy and ProgressProxy are rather mixed up.  These should be looked at carefully at some point.
-	 */
 	public class ProgressProxy extends Proxy implements IProxy, IDelegateResponder {
 		
 		/**

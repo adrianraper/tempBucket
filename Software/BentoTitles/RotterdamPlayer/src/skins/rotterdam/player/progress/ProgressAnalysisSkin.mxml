@@ -2,10 +2,10 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.player.view.progress.ui.*">
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.player.view.progress.components.ProgressAnalysisView")]
+		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressAnalysisView")]
 	</fx:Metadata>
 	
 	<fx:Script>
@@ -24,13 +24,13 @@
 		<s:State name="demo"  />
 	</s:states>
 	
-	<s:Label text="This shows how you have spent your time" left="20" top="60" />
-	<s:Label text="Time spent on each skill" left="20" top="90" />
-	<s:Label text="You have spent {Math.floor(hostComponent.totalDuration / 60)} minute(s) in total" fontSize="16" left="20" top="120" />
+	<s:Label id="analysisInstructionLabel1" left="20" top="60" />
+	<s:Label id="analysisInstructionLabel2" left="20" top="90" />
+	<s:Label id="analysisTimeLabel" fontSize="16" left="20" top="120" />
 	
-	<ui:StackedBarChart id="stackedBarChart" dataProvider="{hostComponent.progressXml}" top="150" height="35" left="20" width="{durationDataGroup.width}" />
+	<ui:StackedBarChart id="stackedBarChart" top="150" height="35" left="20" width="{durationDataGroup.width}" />
 	
-	<s:DataGroup id="durationDataGroup" dataProvider="{new XMLListCollection(hostComponent.progressXml.course)}" left="20" top="220" itemRenderer="com.clarityenglish.rotterdam.player.view.progress.ui.CourseDurationRenderer">
+	<s:DataGroup id="durationDataGroup" left="20" top="220" itemRenderer="com.clarityenglish.bento.view.progress.ui.CourseDurationRenderer">
 		<s:layout>
 			<s:HorizontalLayout gap="15" />
 		</s:layout>

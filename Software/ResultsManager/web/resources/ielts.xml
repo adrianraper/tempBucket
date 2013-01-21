@@ -45,6 +45,7 @@
 			<lit name="errorParsingExercise" code="402">Unable to read exercise {filename} ({message}). Please contact support@clarityenglish.com with the file name.</lit>
 			<lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple Exercise nodes in the menu xml matching {href}</lit>
 			<lit name="errorCantFindExerciseWithHref" code="404">Unable to find any Exercise nodes in the menu xml matching {href}</lit>
+			<lit name="errorNoExerciseWithId" code="405">The menu xml has no exercise node with id={exerciseID}</lit>
 			
 			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>

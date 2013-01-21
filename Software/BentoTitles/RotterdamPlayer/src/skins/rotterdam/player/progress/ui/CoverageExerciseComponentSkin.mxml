@@ -5,7 +5,7 @@
 		minWidth="215" minHeight="24">
 
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.player.view.progress.ui.CoverageExerciseComponent")]
+		[HostComponent("com.clarityenglish.bento.view.progress.ui.CoverageExerciseComponent")]
 	</fx:Metadata>
 
 	<fx:Script> 

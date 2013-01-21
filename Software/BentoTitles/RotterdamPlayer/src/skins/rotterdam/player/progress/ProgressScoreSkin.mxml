@@ -2,10 +2,10 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.player.view.progress.ui.*">
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.player.view.progress.components.ProgressScoreView")]
+		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressScoreView")]
 	</fx:Metadata>
 
 	<fx:Script>
