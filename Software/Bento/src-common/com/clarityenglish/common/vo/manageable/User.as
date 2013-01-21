@@ -175,6 +175,15 @@
 		}
 		
 		/**
+		 * Is this an anonymous user?
+		 * 
+		 * @return 
+		 */
+		public function isAnonymous():Boolean {
+			return Number(id) <= 0;
+		}
+		
+		/**
 		 * Check if a user is licenced for the given title
 		 * v3.2 Should be deprectated
 		 * @param	title

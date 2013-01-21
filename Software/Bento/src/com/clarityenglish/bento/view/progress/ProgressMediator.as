@@ -26,9 +26,9 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			
-			// Inject some data to the screen.
+			// Inject whether this is an anonymous user or not
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			view.user = loginProxy.user;
+			view.isAnonymousUser = !loginProxy.user || loginProxy.user.isAnonymous();
 		}
 		
 	}
