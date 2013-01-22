@@ -21,7 +21,7 @@ package com.clarityenglish.bento.controller {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		public static var noProgress:Boolean = false;
+		public static var transforms:Array;
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
@@ -29,26 +29,18 @@ package com.clarityenglish.bento.controller {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			
-			var href:Href = new Href(Href.MENU_XHTML, configProxy.getMenuFilename(), configProxy.getContentPath());
+			// Construct an href for the menu.xml file.  Note that MENU_XHTML loading is *always* done server-side
+			var href:Href = new Href(Href.MENU_XHTML, configProxy.getMenuFilename(), configProxy.getContentPath(), true);
 			
 			// Allow the menu xml filename to be overridden by an optional parameter (this is used in Rotterdam where the app can load different menu.xml files)
 			if (note.getBody() && note.getBody().filename) {
 				href.filename = note.getBody().filename;
 			}
 			
-			// Allow the selection of normal or progress versions of the XML
-			if (noProgress) {
-				log.debug("Loading non-progress version of {0}", href);
-				xhtmlProxy.loadXHTML(href);
-			} else {
-				href.serverSide = true;
-				
-				// TODO: Hard code some transforms for testing purposes
-				href.transforms = [ new ProgressExerciseScoresTransform(), new ProgressCourseSummaryTransform(), new HiddenContentTransform(), new DirectStartDisableTransform(configProxy.getDirectStart()) ];
-				
-				log.debug("Loading progress version of {0}", href);
-				xhtmlProxy.loadXHTML(href);
-			}
+			href.transforms = transforms;
+			
+			log.debug("Loading MENU_XHTML - {0}", href);
+			xhtmlProxy.loadXHTML(href);
 		}
 		
 	}

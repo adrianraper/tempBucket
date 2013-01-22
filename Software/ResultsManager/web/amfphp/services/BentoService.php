@@ -85,15 +85,17 @@ class BentoService extends AbstractService {
 		switch ($href->type) {
 			case Href::MENU_XHTML:
 				$transforms = array();
-				foreach ($href->transforms as $transform) {
-					$transforms[] = array(
-						"transform" => $transform,
-						"options" => array("manageableOps" => $this->manageableOps,
-										   "progressOps" => $this->progressOps,
-										   "copyOps" => $this->copyOps,
-										   "userID" => Session::get('userID'),
-										   "productCode" => Session::get('productCode'))
-					);
+				if ($href->transforms) {
+					foreach ($href->transforms as $transform) {
+						$transforms[] = array(
+							"transform" => $transform,
+							"options" => array("manageableOps" => $this->manageableOps,
+											   "progressOps" => $this->progressOps,
+											   "copyOps" => $this->copyOps,
+											   "userID" => Session::get('userID'),
+											   "productCode" => Session::get('productCode'))
+						);
+					}
 				}
 				
 				return XmlUtils::buildXml($href, $this->db, $transforms);
