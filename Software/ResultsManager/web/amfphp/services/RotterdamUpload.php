@@ -40,6 +40,21 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 	// Move the file into the media directory
 	move_uploaded_file($_FILES['Filedata']['tmp_name'], $mediaFolder."/".$filename);
 	
+	switch ($mimeType) {
+		case "image/gif":
+		case "image/jpeg":
+		case "image/png":
+			// gh#104 - if this is an image then resize it to width 450 (for now)
+			$image = new Imagick($mediaFolder."/".$filename);
+			$image->scaleimage(450, 0);
+			$image->writeimage();
+			$image->destroy();
+			break;
+		case "application/pdf":
+			
+			break;
+	}
+	
 	// Finally update media.xml with the a new file node
 	$fileNode = $xml->files->addChild("file");
 	$fileNode->addAttribute("id", $id);
