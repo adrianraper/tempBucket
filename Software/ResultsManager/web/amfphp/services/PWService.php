@@ -18,6 +18,10 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Course.
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Unit.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercise.php");
 
+// gh#125
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Licence.php");
+
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/LoginOps.php");

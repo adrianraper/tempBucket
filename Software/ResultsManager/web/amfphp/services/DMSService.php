@@ -18,7 +18,10 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Course.
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Unit.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Exercise.php");
 
+// gh#125
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Account.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Licence.php");
+
 // v3.1 Add for trigger processing
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/Trigger.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/trigger/Condition.php");
