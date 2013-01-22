@@ -47,11 +47,19 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 			// gh#104 - if this is an image then resize it to width 450 (for now)
 			$image = new Imagick($mediaFolder."/".$filename);
 			$image->scaleimage(450, 0);
+			$size = $image->getImageLength();
 			$image->writeimage();
 			$image->destroy();
 			break;
 		case "application/pdf":
-			
+			// gh#105 - if this is a pdf then generate a thumbnail of the first page with height 30 (for now)
+			$image = new Imagick($mediaFolder."/".$filename."[0]");
+			$image->setImageFormat("jpg");
+			$image->scaleimage(0, 30);
+			$size = $image->getImageLength();
+			$thumbnail = $filename."-thumb.jpg";
+			$image->writeimage($mediaFolder."/".$thumbnail);
+			$image->destroy();
 			break;
 	}
 	
@@ -63,6 +71,7 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 	$fileNode->addAttribute("mimeType", $mimeType);
 	$fileNode->addAttribute("size", $size);
 	$fileNode->addAttribute("createdOn", $createdTimestamp);
+	if ($thumbnail) $fileNode->addAttribute("thumbnail", $thumbnail);
 	
 	echo json_encode(array("success" => true, "filename" => $filename));
 });
