@@ -84,8 +84,11 @@ package com.clarityenglish.rotterdam.builder.controller {
 		private function onUploadCompleteData(e:DataEvent):void {
 			var response:Object = JSON.parse(e.data);
 			
-			// Set the src attribute of the target node to the filename
-			node.@src = response.filename;
+			// Merge returned keys/values into the node's attributes (apart from success)
+			for (var key:String in response) {
+				if (key != "success") node.@[key] = response[key];
+			}
+			
 			sendNotification(RotterdamNotifications.MEDIA_UPLOADED, null, tempWidgetId);
 			
 			destroy();

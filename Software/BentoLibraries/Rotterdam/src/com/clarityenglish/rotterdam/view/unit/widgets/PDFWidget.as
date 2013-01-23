@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
-	import flash.events.Event;
 	import flash.events.MouseEvent;
+	
+	import org.davekeen.util.StringUtils;
 	
 	import spark.components.Image;
 	
@@ -21,6 +22,26 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		[Bindable(event="srcAttrChanged")]
 		public function get hasSrc():Boolean {
 			return _xml.hasOwnProperty("@src");
+		}
+		
+		[Bindable(event="thumbnailAttrChanged")]
+		public function get thumbnail():String {
+			return _xml.@thumbnail;
+		}
+		
+		[Bindable(event="thumbnailAttrChanged")]
+		public function get hasThumbnail():Boolean {
+			return _xml.hasOwnProperty("@thumbnail");
+		}
+
+		[Bindable(event="thumbnailAttrChanged")]
+		public function get thumbnailUrl():String {
+			if (hasThumbnail) {
+				// gh#111 - support absolute and relative image urls
+				return (StringUtils.beginsWith(thumbnail.toLowerCase(), "http")) ? thumbnail : mediaFolder + "/" + thumbnail;
+			}
+			
+			return null;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

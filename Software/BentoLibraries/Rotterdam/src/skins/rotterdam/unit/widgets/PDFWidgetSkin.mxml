@@ -27,6 +27,9 @@
 	<!-- PDF icon -->
 	<s:Image id="pdfImage" source="@Embed(source='/skins/assets/pdf-large-icon.png', mimeType='image/png')" visible="{hostComponent.hasSrc}" top="35" left="6" />
 	
+	<!-- Thumbnail -->
+	<s:Image id="thumbnailImage" source="{hostComponent.thumbnailUrl}" visible="{hostComponent.hasThumbnail}" top="35" left="56" />
+	
 	<!-- Progress bar -->
 	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
 	
