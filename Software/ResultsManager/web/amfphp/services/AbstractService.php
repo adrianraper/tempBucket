@@ -38,8 +38,10 @@ class AbstractService {
 		
 		// Persistant connections are faster, but on my setup (XP Pro SP2, SQL Server 2008 Express) this causes sporadic crashes.
 		// Check on the production server to see if it works with that configuration.
-		$this->db = ADONewConnection($GLOBALS['db']."?persist");
-		//$this->db = &ADONewConnection($GLOBALS['db']);
+		// gh#109 PHP 5.3 and Apache between them seem not to like persistent connections
+		// 	we keep getting "mysql_pconnect(): MySQL server has gone away" error. So remove this and try it.
+		//$this->db = ADONewConnection($GLOBALS['db']."?persist");
+		$this->db = &ADONewConnection($GLOBALS['db']);
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
 		if ($GLOBALS['dbms'] == 'mysql') 
