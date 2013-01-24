@@ -3,29 +3,29 @@
   <includeClasses>
     <classEntry path="com.clarityenglish.rotterdam.BuilderStates"/>
     <classEntry path="com.clarityenglish.rotterdam.CommonAbstractApplicationFacade"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorMediator"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView"/>
     <classEntry path="com.clarityenglish.rotterdam.RotterdamNotifications"/>
-    <classEntry path="skins.rotterdam.unit.UnitSkin"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.TextWidget"/>
-    <classEntry path="skins.rotterdam.unit.widgets.TextWidgetSkin"/>
-    <classEntry path="skins.rotterdam.unit.widgets.WidgetChrome"/>
-    <classEntry path="skins.rotterdam.unit.widgets.MenuButtonSkin"/>
     <classEntry path="com.clarityenglish.rotterdam.controller.CourseStartCommand"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.login.LoginView"/>
     <classEntry path="com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand"/>
     <classEntry path="com.clarityenglish.rotterdam.view.course.CourseMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.course.CourseView"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.title.TitleView"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorMediator"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.login.LoginView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsView"/>
-    <classEntry path="com.clarityenglish.rotterdam.vo.UID"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.unit.UnitHeaderView"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.title.TitleView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.UnitHeaderView"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.TextWidget"/>
+    <classEntry path="com.clarityenglish.rotterdam.vo.UID"/>
     <classEntry path="skins.rotterdam.unit.AddItemToggleButtonSkin"/>
+    <classEntry path="skins.rotterdam.unit.UnitSkin"/>
+    <classEntry path="skins.rotterdam.unit.widgets.MenuButtonSkin"/>
+    <classEntry path="skins.rotterdam.unit.widgets.TextWidgetSkin"/>
+    <classEntry path="skins.rotterdam.unit.widgets.WidgetChrome"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

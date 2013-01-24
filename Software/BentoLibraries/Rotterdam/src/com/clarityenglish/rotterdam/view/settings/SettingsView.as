@@ -4,6 +4,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.controls.calendar.Calendar;
 	import com.clarityenglish.textLayout.vo.XHTML;
+	import com.sparkTree.Tree;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -48,6 +49,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		[SkinPart]
 		public var directStartURLLabel:Label;
+		
+		[SkinPart]
+		public var groupTree:Tree;
 		
 		[SkinPart]
 		public var unitIntervalTextInput:TextInput;

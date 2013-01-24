@@ -222,17 +222,17 @@ public class AdvancedDataGridItemRenderer extends GridItemRenderer implements IT
 	protected var _icon:Class;
 	
 	[Bindable("iconChange")]
-	public function get icon():Class
+	public function get icon():Object
 	{
 		return _icon;
 	}
 	
-	public function set icon(value:Class):void
+	public function set icon(value:Object):void
 	{
 		if (_icon == value)
 			return;
 		
-		_icon = value;
+		_icon = value as Class;
 		dispatchEvent(new Event("iconChange"));
 	}
 	

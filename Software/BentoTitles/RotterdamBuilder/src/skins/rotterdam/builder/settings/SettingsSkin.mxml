@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:calendar="com.clarityenglish.controls.calendar.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:calendar="com.clarityenglish.controls.calendar.*" xmlns:sparkTree="com.sparkTree.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.settings.SettingsView")]
@@ -30,12 +30,17 @@
 	<s:VGroup top="140" width="390" paddingLeft="18" paddingTop="22">
 		<!-- Calendar settings -->
 		<s:VGroup includeIn="calendar">
-			<s:Label text="1. How many days between units?" fontWeight="bold" />
+			<s:Label text="1. Select a group" fontWeight="bold" />
+			<sparkTree:Tree id="groupTree" />
+			
+			<s:Spacer height="20" />
+			
+			<s:Label text="2. How many days between units?" fontWeight="bold" />
 			<s:TextInput id="unitIntervalTextInput" width="40" />
 			
 			<s:Spacer height="20" />
 			
-			<s:Label text="2. See past units?" fontWeight="bold" />
+			<s:Label text="3. See past units?" fontWeight="bold" />
 			<s:HGroup>
 				<s:RadioButton label="Yes" value="true" group="{pastUnitsRadioButtonGroup}" />
 				<s:RadioButton label="No" value="false" group="{pastUnitsRadioButtonGroup}"/>
@@ -43,7 +48,7 @@
 			
 			<s:Spacer height="20" />
 			
-			<s:Label text="3. Please set the course start date for this course" fontWeight="bold" />
+			<s:Label text="4. Please set the course start date for this course" fontWeight="bold" />
 			<mx:DateField id="startDateField" />
 		</s:VGroup>
 		
