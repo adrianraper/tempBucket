@@ -71,12 +71,12 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 	$fileNode->addAttribute("mimeType", $mimeType);
 	$fileNode->addAttribute("size", $size);
 	$fileNode->addAttribute("createdOn", $createdTimestamp);
-	if ($thumbnail) $fileNode->addAttribute("thumbnail", $thumbnail);
+	if (isset($thumbnail)) $fileNode->addAttribute("thumbnail", $thumbnail);
 	
 	$result = array("success" => true, "src" => $filename);
 	
 	// If we generated a thumbnail add it to the response
-	if ($thumbnail) $result["thumbnail"] = $thumbnail;
+	if (isset($thumbnail)) $result["thumbnail"] = $thumbnail;
 	
 	echo json_encode($result);
 });
