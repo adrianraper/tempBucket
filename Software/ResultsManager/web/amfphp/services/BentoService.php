@@ -286,6 +286,9 @@ class BentoService extends AbstractService {
 		// Add the user into the group
 		$group->addManageables(array($user));
 		
+		// This resets valid_userIDs
+		$groupTree = $this->manageableOps->getAllManageables(true);
+		
 		// #341 If this is a named user then
 		if ($user->userID >= 1) {
 			// Next we need to set the instance ID for the user in the database
@@ -309,6 +312,7 @@ class BentoService extends AbstractService {
 		// #503 including the root that you really found the user in
 		// gh#25 no content sent back
 		$dataObj = array("group" => $group,
+						 "groupTree" => $groupTree,
 						 "licence" => $licence,
 						 "rootID" => $rootID);
 		

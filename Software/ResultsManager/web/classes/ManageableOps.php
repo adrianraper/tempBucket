@@ -1389,8 +1389,10 @@ EOD;
 		return $this->setExtraGroups($teacher, $existingGroups);
 	}
 	
-	function getAllManageables() {
-		return $this->getManageables(Session::get('groupIDs'), false, true);
+	function getAllManageables($onlyGroups = false) {
+		// Get manageables for all the given groups.  If $onlyGroups is set (i.e. only get groups) then do not store authentication details or we end up with no
+		// validated users in the session and we can't use any functions.
+		return $this->getManageables(Session::get('groupIDs'), false, !$onlyGroups, $onlyGroups);
 	}
 	
 	/*
@@ -1402,7 +1404,7 @@ EOD;
 	 *                 true when we are retrieving the entire tree for the logged in user (i.e. from getAllManageables) or this might
 	 * 				   result in unexpected behaviour.
 	 */
-	function getManageables($groupIDArray, $authenticate = true, $storeIDs = false) {
+	function getManageables($groupIDArray, $authenticate = true, $storeIDs = false, $onlyGroups = false) {
 		// Ensure that the logged in user has permission to access this group
 		if ($authenticate) AuthenticationOps::authenticateGroupIDs($groupIDArray);
 		
@@ -1427,8 +1429,7 @@ EOD;
 			
 			$rootGroup = $this->_createGroupFromObj($rootGroupRS->FetchNextObj());
 			
-			$rootGroup->addManageables($this->_getManageables($rootGroup));
-			//NetDebug::trace('ManageableOps.getManageables root group='.$rootGroup->id);
+			$rootGroup->addManageables($this->_getManageables($rootGroup, $onlyGroups));
 			
 			if ($storeIDs) {
 				AuthenticationOps::addValidUserIds($rootGroup->getSubUserIds());
@@ -1444,7 +1445,7 @@ EOD;
 	/*
 	 * Recursive function to generate a tree of manageables from a given root group node.
 	 */
-	private function _getManageables($group) {
+	private function _getManageables($group, $onlyGroups = false) {
 		$result = array();
 
 		$childrenArray = $this->_getChildrenOfGroups($group);
@@ -1456,18 +1457,20 @@ EOD;
 		if ($groupsRS->RecordCount() > 0) {
 			while ($childGroupObj = $groupsRS->FetchNextObj()) {
 				$childGroup = $this->_createGroupFromObj($childGroupObj);
-				$childGroup->addManageables($this->_getManageables($childGroup));
+				$childGroup->addManageables($this->_getManageables($childGroup, $onlyGroups));
 				$result[] = $childGroup;
 			}
 		}
 
 		// Add the users
-		if ($usersRS->RecordCount() > 0) {
-			while ($userObj = $usersRS->FetchNextObj()) {
-				$user = $this->_createUserFromObj($userObj);
-				// v3.3 Multi-group users.
-				$user->id = (string)$group->id.'.'.$user->userID;
-				$group->addManageables(array($user));
+		if (!$onlyGroups) {
+			if ($usersRS->RecordCount() > 0) {
+				while ($userObj = $usersRS->FetchNextObj()) {
+					$user = $this->_createUserFromObj($userObj);
+					// v3.3 Multi-group users.
+					$user->id = (string)$group->id.'.'.$user->userID;
+					$group->addManageables(array($user));
+				}
 			}
 		}
 
