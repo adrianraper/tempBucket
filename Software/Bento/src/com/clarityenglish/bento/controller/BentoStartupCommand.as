@@ -11,6 +11,10 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
 	
+	import flash.system.Capabilities;
+	
+	import mx.core.FlexGlobals;
+	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
@@ -18,6 +22,10 @@ package com.clarityenglish.bento.controller {
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
+			
+			// If we are running in the standalone player use a session name of 'flash' so authentication and uploads still work
+			if (Capabilities.playerType == "StandAlone" && FlexGlobals.topLevelApplication.parameters.sessionid == undefined)
+				FlexGlobals.topLevelApplication.parameters.sessionid = "flash";
 			
 			// #269
 			sendNotification(BBNotifications.ACTIVITY_TIMER_RESET);

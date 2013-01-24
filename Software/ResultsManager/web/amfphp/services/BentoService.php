@@ -80,6 +80,8 @@ class BentoService extends AbstractService {
 	
 	/**
 	 * Base method for serverside xhtml calls returns an error
+	 * TODO: This needs some protection to stop directory traversal and loading anything that isn't an xml file.  We could also ensure that
+	 * current dir starts with http://<contentserver>, since xhtml is always loaded with a URL rather than a file.
 	 */
 	public function xhtmlLoad($href) {
 		switch ($href->type) {
@@ -224,7 +226,11 @@ class BentoService extends AbstractService {
 		// TODO. I think I will mostly just send userID rather than need to keep it in session variables. Right?
 		// Well, above I am using rootID and productCode from sessionVariables...
 		Session::set('valid_userIDs', array($userObj->F_UserID));
-		Session::set('groupIDs', array_merge(array($userObj->F_GroupID), $this->manageableOps->getExtraGroups($userObj->F_UserID)));		
+				
+		// There *is* no F_GroupID!
+		//Session::set('groupIDs', array_merge(array($userObj->F_GroupID), $this->manageableOps->getExtraGroups($userObj->F_UserID)));
+		Session::set('groupIDs', array_merge(array($userObj->groupID), $this->manageableOps->getExtraGroups($userObj->F_UserID)));	
+		
 		Session::set('userID', $userObj->F_UserID);
 		Session::set('userType', $userObj->F_UserType);
 		
@@ -279,7 +285,7 @@ class BentoService extends AbstractService {
 		
 		// Add the user into the group
 		$group->addManageables(array($user));
-
+		
 		// #341 If this is a named user then
 		if ($user->userID >= 1) {
 			// Next we need to set the instance ID for the user in the database

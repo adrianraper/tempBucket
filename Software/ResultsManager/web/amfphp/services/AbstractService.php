@@ -109,6 +109,7 @@ class AbstractService {
 		if ($function_called == "login" || 
 			$function_called == "logout" || 
 			$function_called == "getCopy" ||
+			$function_called == "xhtmlLoad" || // for test drive
 			$function_called == "getContent" ||
 			$function_called == "getProgressData" ||
 			$function_called == "getCoverage" ||

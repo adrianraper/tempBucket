@@ -9,7 +9,6 @@ package com.clarityenglish.common.model {
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
-	import com.clarityenglish.common.vo.config.PerformanceLog;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.dms.vo.account.Account;
@@ -177,8 +176,9 @@ package com.clarityenglish.common.model {
 			//config = new XML(e.target.data);
 			config.mergeFileData(new XML(e.target.data));
 			
-			// Configure the delegate now that you have the gateway path 
-			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php");
+			// Configure the delegate now that you have the gateway path.  If a sessionid is defined in the FlashVars then add it to the gateway.
+			var sessionParams:Object = (FlexGlobals.topLevelApplication.parameters.sessionid != undefined) ? { PHPSESSID: FlexGlobals.topLevelApplication.parameters.sessionid } : null;		
+			RemoteDelegate.setGateway(config.remoteGateway + "gateway.php", sessionParams);
 			RemoteDelegate.setService(config.remoteService);
 			
 			// A special case; if disableAutoTimeout is true then turn off the activity timer #385

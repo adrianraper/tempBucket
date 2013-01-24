@@ -40,7 +40,7 @@ class AuthenticationOps {
 		if (!AuthenticationOps::$useAuthentication) return;
 		
 		// If there are no ids in the array do nothing
-		if (sizeof($groupIdArray) == 0) return;
+		if (!is_array($groupIdArray) || sizeof($groupIdArray) == 0) return;
 		
 		$diff = array_diff($groupIdArray, Session::get('valid_groupIDs'));
 			

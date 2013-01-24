@@ -49,11 +49,20 @@ package org.davekeen.delegates {
 		}
 		
 		/**
-		 * Statically set the gateway for the delegate.  For AMFPHP this will be the absolute URL of a gateway.php file.
+		 * Statically set the gateway for the delegate.  For AMFPHP this will be the absolute URL of a gateway.php file.  There is an option getParams
+		 * object argument, which list permanent get parameters that will be added to the url.  Typically this would be used for a sessionid.
 		 * 
 		 * @param	url
 		 */
-		public static function setGateway(url:String):void {
+		public static function setGateway(url:String, getParams:Object = null):void {
+			if (getParams) {
+				var getArray:Array = [];
+				for (var key:String in getParams)
+					getArray.push(key + "=" + getParams[key]);
+				
+				url += "?" + encodeURI(getArray.join("&"));
+			}
+			
 			channelSet = new ChannelSet();
 			var amfChannel:AMFChannel = new AMFChannel("amfphp", url);
 			channelSet.addChannel(amfChannel);

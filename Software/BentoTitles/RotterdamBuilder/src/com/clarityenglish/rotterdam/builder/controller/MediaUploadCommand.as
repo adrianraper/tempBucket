@@ -71,7 +71,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamUpload.php";
 			
 			// GH #32
-			if (FlexGlobals.topLevelApplication.parameters.sessionid) uploadScript += "?sessionid=" + FlexGlobals.topLevelApplication.parameters.sessionid;
+			if (FlexGlobals.topLevelApplication.parameters.sessionid) uploadScript += "?PHPSESSID=" + FlexGlobals.topLevelApplication.parameters.sessionid;
 			
 			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_START, null, tempWidgetId);
 			fileReference.upload(new URLRequest(uploadScript));

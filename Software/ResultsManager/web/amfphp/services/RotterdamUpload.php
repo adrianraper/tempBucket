@@ -1,5 +1,5 @@
 <?php
-if ($_REQUEST['sessionid']) session_id($_REQUEST['sessionid']); // GH #32
+if ($_GET['PHPSESSID']) session_id($_GET['PHPSESSID']); // GH #32
 
 require_once(dirname(__FILE__)."/../../config.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
