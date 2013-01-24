@@ -22,7 +22,6 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
-    <application path="com/clarityenglish/rotterdam/builder/BuilderApplication.as"/>
     <application path="Builder.mxml"/>
   </applications>
   <modules/>
