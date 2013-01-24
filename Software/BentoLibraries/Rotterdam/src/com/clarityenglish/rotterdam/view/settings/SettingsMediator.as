@@ -2,7 +2,10 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	
+	import mx.collections.ArrayCollection;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -29,6 +32,9 @@
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
+			
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			view.groupTreesCollection = new ArrayCollection(loginProxy.groupTrees);
 		}
 		
 		override public function onRemove():void {

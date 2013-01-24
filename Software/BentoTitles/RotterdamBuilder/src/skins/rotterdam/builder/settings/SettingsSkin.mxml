@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:calendar="com.clarityenglish.controls.calendar.*" xmlns:sparkTree="com.sparkTree.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:calendar="com.clarityenglish.controls.calendar.*"
+		xmlns:sparkTree="com.sparkTree.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.settings.SettingsView")]
@@ -10,6 +12,17 @@
 	<fx:Declarations>
 		<s:RadioButtonGroup id="pastUnitsRadioButtonGroup" />
 	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			[Embed(source="skins/rotterdam/builder/assets/settings/group_icon.swf", symbol="GroupIcon")]
+			private var groupIcon:Class;
+			
+			private function getTreeIcon(item:Object, isOpen:Boolean, isBranch:Boolean):Class {
+				return groupIcon;
+			}
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -31,25 +44,25 @@
 		<!-- Calendar settings -->
 		<s:VGroup includeIn="calendar">
 			<s:Label text="1. Select a group" fontWeight="bold" />
-			<sparkTree:Tree id="groupTree" />
+			<sparkTree:Tree id="groupTree" dataProvider="{hostComponent.groupTreesCollection}" width="300" labelField="name" iconFunction="getTreeIcon" />
 			
 			<s:Spacer height="20" />
 			
 			<s:Label text="2. How many days between units?" fontWeight="bold" />
-			<s:TextInput id="unitIntervalTextInput" width="40" />
+			<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
 			
 			<s:Spacer height="20" />
 			
 			<s:Label text="3. See past units?" fontWeight="bold" />
 			<s:HGroup>
-				<s:RadioButton label="Yes" value="true" group="{pastUnitsRadioButtonGroup}" />
-				<s:RadioButton label="No" value="false" group="{pastUnitsRadioButtonGroup}"/>
+				<s:RadioButton label="Yes" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+				<s:RadioButton label="No" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
 			</s:HGroup>
 			
 			<s:Spacer height="20" />
 			
 			<s:Label text="4. Please set the course start date for this course" fontWeight="bold" />
-			<mx:DateField id="startDateField" />
+			<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
 		</s:VGroup>
 		
 		<!-- Email settings -->
@@ -99,7 +112,7 @@
 	<s:VGroup top="75" left="400">
 		<!-- Calendar -->
 		<s:VGroup includeIn="calendar">
-			<calendar:Calendar id="calendar" />
+			<calendar:Calendar id="calendar" enabled="{groupTree.selectedItem != null}" />
 		</s:VGroup>
 		
 		<!-- Email -->

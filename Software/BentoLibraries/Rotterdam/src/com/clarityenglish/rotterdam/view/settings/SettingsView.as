@@ -1,7 +1,5 @@
 package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.model.CopyProxy;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.controls.calendar.Calendar;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.sparkTree.Tree;
@@ -11,7 +9,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
-	import mx.controls.DateChooser;
+	import mx.collections.ListCollectionView;
 	import mx.controls.DateField;
 	import mx.events.FlexEvent;
 	import mx.events.ItemClickEvent;
@@ -70,6 +68,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		[SkinPart(required="true")]
 		public var backButton:Button;
+		
+		[Bindable]
+		public var groupTreesCollection:ListCollectionView;
 		
 		public var dirty:Signal = new Signal(); // GH #83
 		public var saveCourse:Signal = new Signal();
@@ -174,6 +175,9 @@ package com.clarityenglish.rotterdam.view.settings {
 							dirty.dispatch();
 						}
 					});
+					break;
+				case groupTree:
+					
 					break;
 				case unitIntervalTextInput:
 					unitIntervalTextInput.restrict = "0-9";

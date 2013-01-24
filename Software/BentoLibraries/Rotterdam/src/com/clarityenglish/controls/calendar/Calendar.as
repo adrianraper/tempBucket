@@ -135,5 +135,9 @@ package com.clarityenglish.controls.calendar {
 			if (firstOfMonth) firstOfMonth = new Date(firstOfMonth.fullYear, firstOfMonth.month - 1);
 		}
 		
+		override protected function getCurrentSkinState():String {
+			return (enabled) ? "normal" : "disabled";
+		}
+		
 	}
 }
