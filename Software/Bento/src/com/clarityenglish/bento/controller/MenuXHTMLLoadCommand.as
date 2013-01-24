@@ -33,8 +33,10 @@ package com.clarityenglish.bento.controller {
 			var href:Href = new Href(Href.MENU_XHTML, configProxy.getMenuFilename(), configProxy.getContentPath(), true);
 			
 			// Allow the menu xml filename to be overridden by an optional parameter (this is used in Rotterdam where the app can load different menu.xml files)
-			if (note.getBody() && note.getBody().filename) {
-				href.filename = note.getBody().filename;
+			// and also allow an options object (which is passed vertabim to the transforms) to be specified.
+			if (note.getBody()) {
+				if (note.getBody().filename) href.filename = note.getBody().filename;
+				if (note.getBody().options) href.options = note.getBody().options;
 			}
 			
 			href.transforms = transforms;

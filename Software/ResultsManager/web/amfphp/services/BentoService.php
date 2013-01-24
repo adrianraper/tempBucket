@@ -95,7 +95,8 @@ class BentoService extends AbstractService {
 											   "progressOps" => $this->progressOps,
 											   "copyOps" => $this->copyOps,
 											   "userID" => Session::get('userID'),
-											   "productCode" => Session::get('productCode'))
+											   "productCode" => Session::get('productCode'),
+											   "href" => $href)
 						);
 					}
 				}
@@ -286,8 +287,8 @@ class BentoService extends AbstractService {
 		// Add the user into the group
 		$group->addManageables(array($user));
 		
-		// This resets valid_userIDs
-		$groupTree = $this->manageableOps->getAllManageables(true);
+		// Get the group hierarchies for all groups this user is allowed to use
+		$groupTrees = $this->manageableOps->getAllManageables(true);
 		
 		// #341 If this is a named user then
 		if ($user->userID >= 1) {
@@ -312,7 +313,7 @@ class BentoService extends AbstractService {
 		// #503 including the root that you really found the user in
 		// gh#25 no content sent back
 		$dataObj = array("group" => $group,
-						 "groupTree" => $groupTree,
+						 "groupTrees" => $groupTrees,
 						 "licence" => $licence,
 						 "rootID" => $rootID);
 		

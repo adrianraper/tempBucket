@@ -12,6 +12,7 @@ class Href {
 	public $currentDir;
 	public $serverSide;
 	public $transforms;
+	public $options;
 	
 	/**
 	 * Get the full url including the current dir and filename

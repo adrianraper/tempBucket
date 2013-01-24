@@ -1520,8 +1520,9 @@ EOD;
 		
 		return $result;
 	}
+	
 	// This to just try and quickly get subgroups from SQL
-	private function getGroupSubgroups($startGroupID) {
+	public function getGroupSubgroups($startGroupID) {
 		$subGroupIDs = array($startGroupID);
 		$sql = <<<EOD
 				SELECT F_GroupID
@@ -1530,17 +1531,17 @@ EOD;
 				AND F_GroupParent <> F_GroupID
 EOD;
 		$groupRS = $this->db->Execute($sql, array($startGroupID));
-		if ($groupRS->recordCount()>0) {		
+		if ($groupRS->recordCount() > 0) {		
 			foreach ($groupRS->GetArray() as $group) {
 				$subGroupIDs = array_merge($subGroupIDs, $this->getGroupSubgroups($group['F_GroupID']));
 			}
-		} 
+		}
 		
 		return $subGroupIDs;
 	}
+	
 	// Count the users in these groups
 	public function countUsersInGroup($groupsArray) {
-		
 		// Get all subgroup IDs
 		$subGroupsArray = array();
 		foreach ($groupsArray as $groupID) {

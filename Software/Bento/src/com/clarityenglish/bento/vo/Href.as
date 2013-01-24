@@ -12,6 +12,7 @@ package com.clarityenglish.bento.vo {
 		public var currentDir:String;
 		public var serverSide:Boolean;
 		public var transforms:Array;
+		public var options:Object;
 		
 		public function Href(type:String, filename:String, currentDir:String = null, serverSide:Boolean = false, transforms:Array = null) {
 			this.type = type;

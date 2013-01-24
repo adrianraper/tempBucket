@@ -62,9 +62,9 @@ class XmlUtils {
 		$contents = file_get_contents($href->getUrl());
 		$xml = simplexml_load_string($contents);
 		
-		$script = $xml->head->addChild("script");
+		/*$script = $xml->head->addChild("script");
 		$script->addAttribute("id", "mappings");
-		$script->addAttribute("type", "application/xml");
+		$script->addAttribute("type", "application/xml");*/
 		
 		foreach ($transforms as $transform) {
 			/*$transformXml =*/ $transform['transform']->transform($db, $xml, $transform['options']);
