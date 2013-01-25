@@ -126,19 +126,23 @@ package com.clarityenglish.rotterdam.view.settings {
 			
 			// Calendar
 			if (selectedPublicationGroup) {
-				if (unitIntervalTextInput && selectedPublicationGroup.hasOwnProperty("@unitInterval")) unitIntervalTextInput.text = selectedPublicationGroup.@unitInterval;
-				if (startDateField && selectedPublicationGroup.hasOwnProperty("@startDate")) startDateField.selectedDate = DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate);
-				if (pastUnitsRadioButtonGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup.@seePastUnits == "true");
-			
+				if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup.hasOwnProperty("@unitInterval")) ? selectedPublicationGroup.@unitInterval : null;
+				if (startDateField) startDateField.selectedDate = (selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
+				if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
+				
 				// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
-				if (calendar && selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
-					var labels:Array = [];
-					for (var n:uint = 0; n < course.unit.length(); n++) {
-						var date:Date = DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate);
-						date.date += n * selectedPublicationGroup.@unitInterval;
-						labels.push( { date: date, label: "U" + (n + 1) });
+				if (calendar) {
+					if (selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
+						var labels:Array = [];
+						for (var n:uint = 0; n < course.unit.length(); n++) {
+							var date:Date = DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate);
+							date.date += n * selectedPublicationGroup.@unitInterval;
+							labels.push( { date: date, label: "U" + (n + 1) });
+						}
+						calendar.dataProvider = new ArrayCollection(labels);
+					} else {
+						calendar.dataProvider = null;
 					}
-					calendar.dataProvider = new ArrayCollection(labels);
 				}
 			}
 			
@@ -213,7 +217,7 @@ package com.clarityenglish.rotterdam.view.settings {
 				case startDateField:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
-							selectedPublicationGroup.@startDate = DateUtil.dateToAnsiString(e.target.selectedDate);
+							if (e.target.selectedDate) selectedPublicationGroup.@startDate = DateUtil.dateToAnsiString(e.target.selectedDate);
 							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
 							invalidateProperties();
 						}

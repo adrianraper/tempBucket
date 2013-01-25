@@ -18,6 +18,8 @@
 		}
 		
 		public static function dateToAnsiString(date:Date):String {
+			if (!date) return null;
+			
 			// For some reason a date with a timestamp of 0 return NaN so put a special case in
 			if (date.getTime() == 0) {
 				return "1970-01-01 00:00:00";
