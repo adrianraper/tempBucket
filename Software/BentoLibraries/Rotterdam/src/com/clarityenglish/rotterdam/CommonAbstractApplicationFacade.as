@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.rotterdam.controller.ContentOpenCommand;
+	import com.clarityenglish.rotterdam.controller.CourseResetCommand;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	import com.clarityenglish.rotterdam.controller.UnitStartCommand;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
@@ -43,6 +44,9 @@
 			
 			registerCommand(RotterdamNotifications.UNIT_START, UnitStartCommand);
 			registerCommand(RotterdamNotifications.CONTENT_OPEN, ContentOpenCommand);
+			
+			// gh#13
+			registerCommand(RotterdamNotifications.COURSE_RESET, CourseResetCommand);
 			
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);

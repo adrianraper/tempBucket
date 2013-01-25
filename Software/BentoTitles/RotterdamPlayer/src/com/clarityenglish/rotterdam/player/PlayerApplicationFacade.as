@@ -20,10 +20,6 @@
 			removeCommand(CommonNotifications.CONFIG_LOADED);
 			registerCommand(CommonNotifications.CONFIG_LOADED, RotterdamStartupStateMachineCommand);
 			
-			// GH #88 (see CommonAbstractApplicationFacade for comments on this)
-			// TODO: This notification doesn't exist any more!  What to do?
-			//registerCommand(BBNotifications.PROGRESS_DATA_LOADED, CourseStartCommand);
-			
 			registerCommand(BBNotifications.STARTUP, PlayerStartupCommand);
 		}
 		
