@@ -35,6 +35,7 @@
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
+	import com.clarityenglish.rotterdam.controller.CourseResetCommand;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
 	import com.clarityenglish.rotterdam.view.settings.SettingsMediator;
@@ -59,7 +60,7 @@
 			mapView(SettingsView, SettingsMediator);
 			mapView(CourseCreateView, CourseCreateMediator);
 			
-			// GH #88 (see CommonAbstractApplicationFacade for comments on this)
+			// gh#88 (see CommonAbstractApplicationFacade for comments on this)
 			registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);
 			
 			registerCommand(RotterdamNotifications.COURSE_CREATE, CourseCreateCommand);
@@ -67,8 +68,8 @@
 			registerCommand(RotterdamNotifications.COURSE_SAVED, CourseSavedCommand);
 			registerCommand(RotterdamNotifications.COURSE_DELETE, CourseDeleteCommand);
 			
-			// GH #13
-			registerCommand(RotterdamNotifications.COURSE_RESET, BentoResetCommand);
+			// gh#13
+			registerCommand(RotterdamNotifications.COURSE_RESET, CourseResetCommand);
 			
 			registerCommand(RotterdamNotifications.WIDGET_ADD, WidgetAddCommand);
 			registerCommand(RotterdamNotifications.WIDGET_DELETE, WidgetDeleteCommand);

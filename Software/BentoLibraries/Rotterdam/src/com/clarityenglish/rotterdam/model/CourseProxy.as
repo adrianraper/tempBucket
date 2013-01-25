@@ -41,6 +41,11 @@ package com.clarityenglish.rotterdam.model {
 			super(NAME, data);
 		}
 		
+		// gh#13
+		public function reset():void {
+			
+		}
+		
 		public function updateCurrentCourse():void {
 			_unitCollection = new XMLListCollection(courseNode.unit);
 		}

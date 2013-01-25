@@ -67,6 +67,19 @@ package com.clarityenglish.common.model {
 			config = new Config();
 		}
 		
+		// gh#13
+		public function reset():void {
+			// TODO. Examine if these really are the right things to reset for a fresh login
+			// Especially the licence type
+			config.rootID = new Number();
+			config.licence = new Licence();
+			config.licence.licenceType = Title.LICENCE_TYPE_LT;
+			config.productCode = config.configProductCode;
+			config.paths.menuFilename = config.configFilename;
+			var timeStamp:Date = new Date();
+			config.instanceID = timeStamp.getTime().toString();			
+		}
+		
 		/**
 		 * Method to get details sent on the command line, or from the start page
 		 * 
@@ -118,8 +131,6 @@ package com.clarityenglish.common.model {
 				// trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
 				config.licence = new Licence();
 				config.licence.licenceType = Title.LICENCE_TYPE_LT;
-                
-			
 				
 				// gh#39 It seems that a problem is caused by sending the ACCOUNT_LOADED notification before the state machine 
 				// has properly transitioned into the next state, causing unpredictable results.

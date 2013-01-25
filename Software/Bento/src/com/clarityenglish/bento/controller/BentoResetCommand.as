@@ -31,15 +31,9 @@ package com.clarityenglish.bento.controller {
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			xhtmlProxy.reset();
 			
+			// gh#13
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var config:Config = configProxy.getConfig();
-			config.rootID = new Number();
-			config.licence = new Licence();
-			config.licence.licenceType = Title.LICENCE_TYPE_LT;
-			config.productCode = config.configProductCode;
-			config.paths.menuFilename = config.configFilename;
-			var timeStamp:Date = new Date();
-			config.instanceID = timeStamp.getTime().toString();
+			configProxy.reset();
 		}
 		
 	}
