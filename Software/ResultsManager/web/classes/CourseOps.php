@@ -17,7 +17,8 @@ class CourseOps {
 </bento>
 ';
 	
-	function __construct($accountFolder = null) {
+	function __construct($db, $accountFolder = null) {
+		$this->db = $db;
 		$this->accountFolder = $accountFolder;
 		$this->courseFilename = $this->accountFolder."/courses.xml";
 		
@@ -92,9 +93,14 @@ class CourseOps {
 			throw $this->copyOps->getExceptionForId("errorSavingCourse");
 		}
 		
+		$db = $this->db;
+		
 		// TODO: it would be rather nice to validate $xml against an xsd
-		return XmlUtils::overwriteXml($menuXMLFilename, $menuXml, function($xml) use($courseId, $accountFolder) {
-			$courses = $xml->xpath("//course");
+		return XmlUtils::overwriteXml($menuXMLFilename, $menuXml, function($xml) use($courseId, $accountFolder, $db) {
+			// SimpleXML doesn't like default namespaces in xpath expressions so define the XHTML namespace explicitly
+			$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+			
+			$courses = $xml->xpath("//xmlns:course");
 			
 			// Sanity checks
 			if (sizeof($courses) != 1)
@@ -112,6 +118,27 @@ class CourseOps {
 					if (!isset($exercise['id'])) $exercise['id'] = UniqueIdGenerator::getUniqId();
 				}
 			}
+			
+			// This stuff should really go into a transform (fromXML()?), but for now hardcode it here
+			
+			// 1. Write publication data to the database
+			foreach ($course->publication->group as $group) {
+				$fields = array(
+					"F_GroupID" => $group['id'],
+					"F_RootID" => Session::get('rootID'),
+					"F_CourseID" => $course['id'],
+					"F_StartMethod" => "'group'"
+				);
+				
+				if (isset($group['unitInterval'])) $fields["F_UnitInterval"] = $group['unitInterval'];
+				if (isset($group['seePastUnits'])) $fields["F_SeePastUnits"] = ($group['seePastUnits'] == "true") ? 1 : 0;
+				// TODO: start date
+				
+				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"));
+			}
+			
+			// 2. Remove publication data so it doesn't get saved
+			unset($course->publication);
 		});
 	}
 	
@@ -122,11 +149,11 @@ class CourseOps {
 		
 		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($course, $accountFolder) {
 			// SimpleXML doesn't like default namespaces in xpath expressions so define the XHTML namespace explicitly
-			$xml->registerXPathNamespace('xhtml', 'http://www.w3.org/1999/xhtml');
+			$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			
 			// Find the course node in the xml and delete it
 			$courseId = $course['id'];
-			foreach ($xml->xpath("//xhtml:course[@id='$courseId']") as $courseNode) {
+			foreach ($xml->xpath("//xmlns:course[@id='$courseId']") as $courseNode) {
 				unset($courseNode[0]);
 			}
 			

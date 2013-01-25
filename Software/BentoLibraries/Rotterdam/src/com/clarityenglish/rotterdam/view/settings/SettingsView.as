@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.controls.calendar.Calendar;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.sparkTree.Tree;
@@ -26,7 +27,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	
 	/**
 	 * There is quite a lot of code duplication here that could be neatened up into a mini form framework that automatically links xml properties and components.
-	 * This might well be worth doing at some point.
+	 * in a Rails/Symfony style form system.  This might well be worth doing at some point, but for the moment just leave it hand coded.
 	 */
 	public class SettingsView extends BentoView {
 		
@@ -82,6 +83,24 @@ package com.clarityenglish.rotterdam.view.settings {
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
 		}
 		
+		/**
+		 * Get the publication group currently selected in the XML, and if there isn't one then create it
+		 */
+		private function get selectedPublicationGroup():XML {
+			if (groupTree && groupTree.selectedItem != null) {
+				var results:XMLList = course.publication.group.(@id == groupTree.selectedItem.id);
+				if (results.length() == 0) {
+					// Create a new group node and return it
+					course.publication.appendChild(<group id={groupTree.selectedItem.id} />);
+					return course.publication.group.(@id == groupTree.selectedItem.id)[0];
+				} else {
+					return results[0];
+				}
+			} else {
+				return null;
+			}
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -106,17 +125,18 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
 			
 			// Calendar
-			if (unitIntervalTextInput) unitIntervalTextInput.text = course.@unitInterval;
-			if (startDateField && course.hasOwnProperty("@startDate")) startDateField.selectedDate = new Date(course.@startDate);
-			
-			if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (course.@seePastUnits == "true")
+			if (selectedPublicationGroup) {
+				if (unitIntervalTextInput) unitIntervalTextInput.text = selectedPublicationGroup.@unitInterval;
+				if (startDateField && course.hasOwnProperty("@startDate")) startDateField.selectedDate = new Date(selectedPublicationGroup.@startDate);
+				if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup.@seePastUnits == "true");
+			}
 			
 			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
-			if (calendar && course.hasOwnProperty("@unitInterval") && course.hasOwnProperty("@startDate")) {
+			if (calendar && selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
 				var labels:Array = [];
 				for (var n:uint = 0; n < course.unit.length(); n++) {
-					var date:Date = new Date(course.@startDate);
-					date.date += n * course.@unitInterval;
+					var date:Date = new Date(selectedPublicationGroup.@startDate);
+					date.date += n * selectedPublicationGroup.@unitInterval;
 					labels.push( { date: date, label: "U" + (n + 1) });
 				}
 				calendar.dataProvider = new ArrayCollection(labels);
@@ -177,14 +197,14 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				case groupTree:
-					
+					groupTree.addEventListener(IndexChangeEvent.CHANGE, onCalendarTreeChange);
 					break;
 				case unitIntervalTextInput:
 					unitIntervalTextInput.restrict = "0-9";
 					unitIntervalTextInput.maxChars = 2;
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
-							course.@unitInterval = StringUtils.trim(e.target.text);
+							selectedPublicationGroup.@unitInterval = StringUtils.trim(e.target.text);
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -193,7 +213,7 @@ package com.clarityenglish.rotterdam.view.settings {
 				case startDateField:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
-							course.@startDate = e.target.selectedDate.time;
+							selectedPublicationGroup.@startDate = e.target.selectedDate.time;
 							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
 							invalidateProperties();
 						}
@@ -202,7 +222,7 @@ package com.clarityenglish.rotterdam.view.settings {
 				case pastUnitsRadioButtonGroup:
 					pastUnitsRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
-							course.@seePastUnits = e.target.selectedValue;
+							selectedPublicationGroup.@seePastUnits = e.target.selectedValue;
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -219,6 +239,10 @@ package com.clarityenglish.rotterdam.view.settings {
 					backButton.addEventListener(MouseEvent.CLICK, onBack);
 					break;
 			}
+		}
+		
+		protected function onCalendarTreeChange(event:IndexChangeEvent):void {
+			invalidateProperties();
 		}
 		
 		protected function onTabBarChange(event:IndexChangeEvent):void {

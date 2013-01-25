@@ -18,7 +18,7 @@ class RotterdamService extends BentoService {
 		if (Session::is_set('userID')) {
 			// Get the path from config.php, but it would be better to come from the application, set in config.xml
 			$this->accountFolder = "../../".$GLOBALS['ccb_data_dir']."/".Session::get('dbContentLocation');
-			$this->courseOps = new CourseOps($this->accountFolder);
+			$this->courseOps = new CourseOps($this->db, $this->accountFolder);
 			$this->mediaOps = new MediaOps($this->accountFolder);
 			
 			// If there is no content folder for this user then create one

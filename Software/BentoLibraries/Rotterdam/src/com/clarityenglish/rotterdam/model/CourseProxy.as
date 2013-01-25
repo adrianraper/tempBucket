@@ -102,7 +102,10 @@ package com.clarityenglish.rotterdam.model {
 		
 		public function courseSave():AsyncToken {
 			if (currentCourse) {
-				return new RemoteDelegate("courseSave", [ currentCourse.href.filename, currentCourse.xml ], this).execute();
+				var xmlString:String = currentCourse.xml.toXMLString();
+				xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
+				
+				return new RemoteDelegate("courseSave", [ currentCourse.href.filename, xmlString ], this).execute();
 			} else {
 				log.error("Attempted to save when there was no currentCourse set");
 				return null;
