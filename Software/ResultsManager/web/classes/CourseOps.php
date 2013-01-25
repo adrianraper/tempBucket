@@ -127,14 +127,15 @@ class CourseOps {
 					"F_GroupID" => $group['id'],
 					"F_RootID" => Session::get('rootID'),
 					"F_CourseID" => $course['id'],
-					"F_StartMethod" => "'group'"
+					"F_StartMethod" => "group"
 				);
 				
 				if (isset($group['unitInterval'])) $fields["F_UnitInterval"] = $group['unitInterval'];
 				if (isset($group['seePastUnits'])) $fields["F_SeePastUnits"] = ($group['seePastUnits'] == "true") ? 1 : 0;
+				if (isset($group['startDate'])) $fields["F_StartDate"] = $group['startDate'];
 				// TODO: start date
 				
-				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"));
+				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
 			}
 			
 			// 2. Remove publication data so it doesn't get saved

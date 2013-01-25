@@ -1,6 +1,5 @@
 package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.controls.calendar.Calendar;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.sparkTree.Tree;
@@ -15,6 +14,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import mx.events.FlexEvent;
 	import mx.events.ItemClickEvent;
 	
+	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
@@ -126,20 +126,20 @@ package com.clarityenglish.rotterdam.view.settings {
 			
 			// Calendar
 			if (selectedPublicationGroup) {
-				if (unitIntervalTextInput) unitIntervalTextInput.text = selectedPublicationGroup.@unitInterval;
-				if (startDateField && course.hasOwnProperty("@startDate")) startDateField.selectedDate = new Date(selectedPublicationGroup.@startDate);
-				if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup.@seePastUnits == "true");
-			}
+				if (unitIntervalTextInput && selectedPublicationGroup.hasOwnProperty("@unitInterval")) unitIntervalTextInput.text = selectedPublicationGroup.@unitInterval;
+				if (startDateField && selectedPublicationGroup.hasOwnProperty("@startDate")) startDateField.selectedDate = DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate);
+				if (pastUnitsRadioButtonGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup.@seePastUnits == "true");
 			
-			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
-			if (calendar && selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
-				var labels:Array = [];
-				for (var n:uint = 0; n < course.unit.length(); n++) {
-					var date:Date = new Date(selectedPublicationGroup.@startDate);
-					date.date += n * selectedPublicationGroup.@unitInterval;
-					labels.push( { date: date, label: "U" + (n + 1) });
+				// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
+				if (calendar && selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
+					var labels:Array = [];
+					for (var n:uint = 0; n < course.unit.length(); n++) {
+						var date:Date = DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate);
+						date.date += n * selectedPublicationGroup.@unitInterval;
+						labels.push( { date: date, label: "U" + (n + 1) });
+					}
+					calendar.dataProvider = new ArrayCollection(labels);
 				}
-				calendar.dataProvider = new ArrayCollection(labels);
 			}
 			
 			isPopulating = false;
@@ -213,7 +213,7 @@ package com.clarityenglish.rotterdam.view.settings {
 				case startDateField:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
-							selectedPublicationGroup.@startDate = e.target.selectedDate.time;
+							selectedPublicationGroup.@startDate = DateUtil.dateToAnsiString(e.target.selectedDate);
 							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
 							invalidateProperties();
 						}

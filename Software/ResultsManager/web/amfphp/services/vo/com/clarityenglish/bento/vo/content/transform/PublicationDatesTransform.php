@@ -17,7 +17,7 @@ class PublicationDatesTransform extends XmlTransform {
 		
 		// Now look in the database for publication data on each of these groups
 		$groupIdInString = join(",", $groupIDs);
-		$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits ".
+		$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits, ".$db->SQLDate("Y-m-d H:i:s", "F_StartDate")." F_StartDate ".
 			   "FROM T_CourseStart ".
 			   "WHERE F_GroupID IN (".$groupIdInString.") ".
 			   "AND F_RootID = ? ".
@@ -35,7 +35,7 @@ class PublicationDatesTransform extends XmlTransform {
 			$groupNode->addAttribute("id", $courseStartObj['F_GroupID']);
 			$groupNode->addAttribute("unitInterval", $courseStartObj['F_UnitInterval']);
 			$groupNode->addAttribute("seePastUnits", ($courseStartObj['F_SeePastUnits'] == 1) ? "true" : "false");
-			$groupNode->addAttribute("startDate", time());
+			$groupNode->addAttribute("startDate", $courseStartObj['F_StartDate']);
 		}
 	}
 	

@@ -22,8 +22,6 @@
 			if (date.getTime() == 0) {
 				return "1970-01-01 00:00:00";
 			} else {
-				// Note. When I changed from mx.formatters to spark.formatters, the following format became invalid
-				//return DateUtil.formatDate(date, "YYYY-MM-DD JJ:NN:SS");
 				return DateUtil.formatDate(date, "yyyy-MM-dd HH:mm:ss");
 			}
 		}
