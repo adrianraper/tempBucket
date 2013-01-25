@@ -40,7 +40,11 @@ $conditions = array();
 // Turn the ID array into an array of accounts
 $accounts = $dmsService->getAccounts($accountIDArray, $conditions);
 
+// Change output format
+if (stristr('account_mail_merge,account_export',$template)) {
+	header("Content-Type: text/csv; charset=\"utf-8\"");
+	header("Content-Disposition: attachment; filename=\"DMSAccountMailMerge.csv\"");
+}
 echo $dmsService->templateOps->fetchTemplate("dms_reports/".$template, array("accounts" => $accounts));
 
-exit(0)
-?>
+exit(0);
