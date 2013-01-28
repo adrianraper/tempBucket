@@ -79,32 +79,30 @@ class BentoService extends AbstractService {
 	}
 	
 	/**
-	 * Base method for serverside xhtml calls returns an error
-	 * TODO: This needs some protection to stop directory traversal and loading anything that isn't an xml file.  We could also ensure that
-	 * current dir starts with http://<contentserver>, since xhtml is always loaded with a URL rather than a file.
+	 * Server-side XML loading, implementing transforms.
 	 */
 	public function xhtmlLoad($href) {
-		switch ($href->type) {
-			case Href::MENU_XHTML:
-				$transforms = array();
-				if ($href->transforms) {
-					foreach ($href->transforms as $transform) {
-						$transforms[] = array(
-							"transform" => $transform,
-							"options" => array("manageableOps" => $this->manageableOps,
-											   "progressOps" => $this->progressOps,
-											   "copyOps" => $this->copyOps,
-											   "userID" => Session::get('userID'),
-											   "productCode" => Session::get('productCode'),
-											   "href" => $href)
-						);
-					}
-				}
-				
-				return XmlUtils::buildXml($href, $this->db, $transforms);
-			default:
-				return parent::xhtmlLoad($href);
+		if ((strpos($href->currentDir, 'http') != 0) || // If the currentDir doesn't start with http then disallow
+		    (substr($href->filename, -strlen('.xml')) != '.xml') || // If the filename doesn't end with .xml then disallow
+		    (strpos($href->getUrl(), ".."))) // If there is any directory traversal in the full url then disallow
+			return parent::xhtmlLoad($href);
+		
+		$transforms = array();
+		if ($href->transforms) {
+			foreach ($href->transforms as $transform) {
+				$transforms[] = array(
+					"transform" => $transform,
+					"options" => array("manageableOps" => $this->manageableOps,
+									   "progressOps" => $this->progressOps,
+									   "copyOps" => $this->copyOps,
+									   "userID" => Session::get('userID'),
+									   "productCode" => Session::get('productCode'),
+									   "href" => $href)
+				);
+			}
 		}
+		
+		return XmlUtils::buildXml($href, $this->db, $transforms);		
 	}
 	
 	/**

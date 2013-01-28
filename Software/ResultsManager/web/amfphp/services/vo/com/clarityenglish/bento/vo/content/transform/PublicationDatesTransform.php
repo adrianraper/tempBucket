@@ -1,6 +1,9 @@
 <?php
 require_once(dirname(__FILE__)."/XmlTransform.php");
 
+/**
+ * This transform adds in all publication date information for all accessible groups.  It is used by Rotterdam builder.
+ */
 class PublicationDatesTransform extends XmlTransform {
 	
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.PublicationDatesTransform';

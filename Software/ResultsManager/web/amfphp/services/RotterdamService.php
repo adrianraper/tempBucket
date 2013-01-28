@@ -33,20 +33,6 @@ class RotterdamService extends BentoService {
 		return $this->contentOps->getContent($productCodes);
 	}
 	
-	/**
-	 * GH #84 - when loading Hrefs in Bento there is an option 'serverSide' boolean that can be set which pipes the XHTML_LOAD notification through
-	 * this server-side method instead of loading it directly, giving the server a change to fiddle with the xml before returning it (or even constructing
-	 * it completely on the fly).  For security reasons the allowed filenames MUST be specified in a switch, otherwise this could compromise the server.
-	 */
-	public function xhtmlLoad($href) {
-		switch ($href->filename) {
-			case "courses.xml":
-				return $this->courseOps->coursesLoad();
-			default:
-				return parent::xhtmlLoad($href);
-		}
-	}
-	
 	public function courseCreate($course) {
 		// TODO: Only allow this if the logged in user has permission
 		return $this->courseOps->courseCreate($course);
