@@ -1521,6 +1521,21 @@ EOD;
 		return $result;
 	}
 	
+	/**
+	 * Get the parent group id.
+	 */
+	public function getGroupParent($startGroupID) {
+		$sql = <<<EOD
+				SELECT F_GroupParent as parentID
+				FROM T_Groupstructure
+				WHERE F_GroupID = ?
+				AND F_GroupParent <> F_GroupID
+EOD;
+		
+		$groupObjs = $this->db->getArray($sql, array($startGroupID));
+		return (sizeof($groupObjs) == 0) ? null : $groupObjs[0]['parentID'];
+	}
+	
 	// This to just try and quickly get subgroups from SQL
 	public function getGroupSubgroups($startGroupID) {
 		$subGroupIDs = array($startGroupID);

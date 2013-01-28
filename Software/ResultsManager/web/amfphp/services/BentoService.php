@@ -208,16 +208,12 @@ class BentoService extends AbstractService {
 		// Hack the name for now
 		$user->fullName = $user->name;
 		
-		// TODO. I think I will mostly just send userID rather than need to keep it in session variables. Right?
-		// Well, above I am using rootID and productCode from sessionVariables...
+		// Set various session variables
 		Session::set('valid_userIDs', array($userObj->F_UserID));
-				
-		// There *is* no F_GroupID!
-		//Session::set('groupIDs', array_merge(array($userObj->F_GroupID), $this->manageableOps->getExtraGroups($userObj->F_UserID)));
-		Session::set('groupIDs', array_merge(array($userObj->groupID), $this->manageableOps->getExtraGroups($userObj->F_UserID)));	
-		
 		Session::set('userID', $userObj->F_UserID);
 		Session::set('userType', $userObj->F_UserType);
+		Session::set('groupID', $userObj->groupID);	
+		Session::set('groupIDs', array_merge(array($userObj->groupID), $this->manageableOps->getExtraGroups($userObj->F_UserID)));	
 		
 		// gh#21 As rootID will be -1 if you have not got an account yet, this will work.
 		// #503 From login you now only have one rootID even if you started with an array

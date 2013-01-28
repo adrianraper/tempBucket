@@ -14,8 +14,17 @@ class PublicationCourseTransform extends XmlTransform {
 		
 		$user = $service->manageableOps->getUserById(Session::get('userID'));
 		
-		// Look up the appropriate course settings
-		var_dump($user);
+		$coursesToRemove = array();
+		foreach ($xml->courses->course as $course)
+			if (!$service->courseOps->getCourseStart($course['id']))
+				$coursesToRemove[] = $course;
+		
+		// Remove the unpublished courses from the XML.  Note that SimpleXML doesn't provide an easy way to remove a node,
+		// so translate to a DOMElement for this operation.
+		foreach ($coursesToRemove as $courseToRemove) {
+			$dom = dom_import_simplexml($courseToRemove);
+        	$dom->parentNode->removeChild($dom);
+		}
 	}
 	
 }

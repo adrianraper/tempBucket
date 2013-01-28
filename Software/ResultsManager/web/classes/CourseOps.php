@@ -23,6 +23,7 @@ class CourseOps {
 		$this->courseFilename = $this->accountFolder."/courses.xml";
 		
 		$this->copyOps = new CopyOps();
+		$this->manageableOps = new ManageableOps($db);
 	}
 	
 	public function courseCreate($courseObj) {
@@ -146,6 +147,25 @@ class CourseOps {
 			if (!rename($accountFolder."/".$courseId,  $accountFolder."/deleted_".$courseId))
 				throw new Exception("Unable to rename folder and so could not delete course");
 		});
+	}
+	
+	public function getCourseStart($id) {
+		$groupID = Session::get('groupID');
+		do {
+			$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits, ".$this->db->SQLDate("Y-m-d H:i:s", "F_StartDate")." F_StartDate ".
+			   	   "FROM T_CourseStart ".
+			   	   "WHERE F_GroupID = ? ".
+			  	   "AND F_RootID = ? ".
+			  	   "AND F_CourseID = ?";
+			$results = $this->db->GetArray($sql, array($groupID, Session::get('rootID'), $id));
+			$result = (sizeof($results) == 0) ? null : $results[0];
+			$groupID = $this->manageableOps->getGroupParent($groupID);
+			
+			// It is possible to have a result which doesn't contain all the bits we need (e.g. a start date and a unit interval) so only count if we have both
+			$gotResult = !(is_null($result)) && $result['F_UnitInterval'] && $result['F_StartDate'];
+		} while (!$gotResult && !is_null($groupID));
+		
+		return $result;
 	}
 	
 }
