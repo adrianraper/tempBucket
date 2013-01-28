@@ -5,7 +5,7 @@ package com.clarityenglish.recorder {
 	 */
 	public class Constants {
 		
-		public static const VERSION_NUMBER:String = "4.0.1.5";
+		public static const VERSION_NUMBER:String = "4.0.2";
 		
 	}
 

@@ -57,7 +57,7 @@
 			if (PlayerUtils.isAirApplication()) {
 				var appDescriptor:XML = NativeApplication.nativeApplication.applicationDescriptor;
 				var ns:Namespace = appDescriptor.namespace();
-				var appVersion:String = appDescriptor.ns::version[0];
+				var appVersion:String = appDescriptor.ns::versionNumber;
 				recorder.applicationView.versionLabel = "V" + appVersion;
 				//trace("appmediator, version=" + appVersion);
 			}
@@ -81,11 +81,11 @@
 			// The AIR app should check to see if there is an update
 			// Use the AIR built-in framework
 			appUpdater = new ApplicationUpdaterUI();
-			appUpdater.configurationFile = new File("app:/updateConfig.xml"); 
+			//appUpdater.configurationFile = new File("app:/updateConfig.xml"); 
 			// The following appUpdated settings should be read from a configuration file really.
 			// But how do I package that with the AIR app? Put it in the /bin folder and use adt with file_or_dir and -C option
-			//appUpdater.updateURL = "http://www.ClarityEnglish.com/Software/Updates/ClarityRecorderUpdate.xml";
-			//appUpdater.delay = 30; // check every month
+			appUpdater.updateURL = "http://www.ClarityEnglish.com/Software/Updates/ClarityRecorderUpdate.xml";
+			appUpdater.delay = 30; // check every month
 			//appUpdater.delay = 1; // check every day for the moment
 			appUpdater.addEventListener(UpdateEvent.INITIALIZED, onAppUpdate);
 			appUpdater.addEventListener(ErrorEvent.ERROR, onError);

@@ -243,7 +243,7 @@
 					// What about testing the version to see if we need an upgrade?
 					// I could read application.xml in this folder and pick up the version number from that to compare it.
 					// For now hardcode.
-					var latestVersion = "4.0.1.5";
+					var latestVersion = "4.0.2";
 					if (needUpgrade(version, latestVersion)) {
 						cmdUpgrade.visible = true;
 						cmdUpgrade.addEventListener(MouseEvent.CLICK, installApp);
@@ -260,10 +260,10 @@
 				// Sadly this must be an absolute URL, not relative
 				//var url:String = "/Software/Recorder/air/ClarityRecorder.air";
 				msgTxt.text = "Please choose Open rather than Save if you are asked.";
-				var url:String = "http://www.ClarityEnglish.com/Software/Recorder/air/ClarityRecorder.air";
+				var url:String = "http://www.ClarityEnglish.com/Software/Recorder/bin/AIRClarityRecorder.air";
 				//var url:String = "http://claritymain/Software/Recorder/air/ClarityRecorder.air";
 				//var runtimeVersion:String = "2.0beta2";
-				var runtimeVersion:String = "2.0";
+				var runtimeVersion:String = "3.0";
 				var arguments:Array = ["launchFromBrowser"]; // Optional
 				airSWF.installApplication(url, runtimeVersion, arguments);
 				// You should only allow the close if you know that AIR is installed. If it isn't the start checking.
