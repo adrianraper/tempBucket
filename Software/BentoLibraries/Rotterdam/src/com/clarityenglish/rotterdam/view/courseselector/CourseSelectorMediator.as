@@ -58,7 +58,7 @@
 			switch (note.getName()) {
 				case RotterdamNotifications.COURSE_CREATED:
 					// When a course is created go straight into it GH #75
-					facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: note.getBody() } );
+					facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: note.getBody().filename, options: { courseId: note.getBody().id } } );
 					break;
 				case RotterdamNotifications.COURSE_DELETED:
 					// Force a reload of course.xml

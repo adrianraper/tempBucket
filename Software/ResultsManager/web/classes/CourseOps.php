@@ -59,23 +59,23 @@ class CourseOps {
 			// Make a default menu.xml file
 			$menuXml = simplexml_load_string($defaultXML);
 
-			// The course node is basically the same as $courseNode above minus the href
-			$courseNode = $menuXml->head->script->menu->addChild("course");
-			$courseNode->addAttribute("id", $id);
-			$courseNode->addAttribute("class", ""); // In order for progress to work the course needs an empty class
+			// The course node in menu.xml is basically the same as $courseNode above minus the href
+			$menuCourseNode = $menuXml->head->script->menu->addChild("course");
+			$menuCourseNode->addAttribute("id", $id);
+			$menuCourseNode->addAttribute("class", ""); // In order for progress to work the course needs an empty class
 			foreach ($courseObj as $key => $value)
-				if (strtolower($key) != "id") $courseNode->addAttribute($key, $value);
+				if (strtolower($key) != "id") $menuCourseNode->addAttribute($key, $value);
 			
 			// Add a default unit
-			$unitNode = $courseNode->addChild("unit");
+			$unitNode = $menuCourseNode->addChild("unit");
 			$unitNode->addAttribute("caption", "My unit");
 			$unitNode->addAttribute("description", "My unit description");
 			
 			file_put_contents($accountFolder."/".$id."/menu.xml", $menuXml->saveXML());
 		});
 		
-		// Return the href of the new course
-		return $id."/menu.xml";
+		// Return the id and filename of the new course
+		return array("id" => $id, "filename" => $id."/menu.xml");
 	}
 	
 	public function courseSave($filename, $menuXml) {
@@ -133,7 +133,6 @@ class CourseOps {
 				if (isset($group['unitInterval'])) $fields["F_UnitInterval"] = $group['unitInterval'];
 				if (isset($group['seePastUnits'])) $fields["F_SeePastUnits"] = ($group['seePastUnits'] == "true") ? 1 : 0;
 				if (isset($group['startDate'])) $fields["F_StartDate"] = $group['startDate'];
-				// TODO: start date
 				
 				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
 			}
