@@ -52,18 +52,14 @@ class XmlUtils {
 	}
 	
 	/**
-	 * Build an XML string by loading an href and applying a series of mappings.
-	 * 
-	 * @param unknown_type $href
-	 * @param unknown_type $db
-	 * @param unknown_type $mappings
+	 * Build an XML string by loading an href and applying a series of transforms.
 	 */
-	public static function buildXml($href, $db, $transforms) {
+	public static function buildXml($href, $db, $service) {
 		$contents = file_get_contents($href->getUrl());
 		$xml = simplexml_load_string($contents);
 		
-		foreach ($transforms as $transform)
-			$transform['transform']->transform($db, $xml, $transform['options']);
+		foreach ($href->transforms as $transform)
+			$transform->transform($db, $xml, $href, $service);
 		
 		return $xml->asXML();
 	}

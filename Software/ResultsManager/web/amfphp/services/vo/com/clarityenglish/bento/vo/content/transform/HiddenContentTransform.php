@@ -5,19 +5,19 @@ class HiddenContentTransform extends XmlTransform {
 	
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.HiddenContentTransform';
 	
-	public function transform($db, $xml, $options = array()) {
+	public function transform($db, $xml, $href, $service) {
 		$menu = $xml->head->script->menu;
 		
 		// Register the namespace for menu xml so we can run xpath queries against it
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
-		$user = $options['manageableOps']->getUserById($options['userID']);
+		$user = $service->manageableOps->getUserById(Session::get('userID'));
 		
 		// #339 Hidden content
 		// #issue25 only for students
 		if ($user->userID >= 1 && $user->userType == User::USER_TYPE_STUDENT) {
-			$groupID = $options['manageableOps']->getGroupIdForUserId($user->userID);
-			$rs = $options['progressOps']->getHiddenContent($groupID, $options['productCode']);
+			$groupID = $service->manageableOps->getGroupIdForUserId($user->userID);
+			$rs = $service->progressOps->getHiddenContent($groupID, Session::get('productCode'));
 			
 			// If you found some hidden content records for this group, merge the enabledFlag into the menu.xml
 			if (count($rs) > 0) {
@@ -64,7 +64,7 @@ class HiddenContentTransform extends XmlTransform {
 				// There is a special case where the whole title has been hidden and nothing else set.
 				// Schools do this to protect limited licences. If this is the case, get out now and stop the login
 				if (((string)$menu->attributes()->enabledFlag & Content::CONTENT_DISABLED) == Content::CONTENT_DISABLED) 
-					throw $options['copyOps']->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
+					throw $service->copyOps->getExceptionForId("errorTitleBlockedByHiddenContent", array("groupID" => $groupID));
 			}
 		}
 	}

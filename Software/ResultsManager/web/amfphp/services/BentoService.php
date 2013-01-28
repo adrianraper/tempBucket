@@ -80,6 +80,7 @@ class BentoService extends AbstractService {
 	
 	/**
 	 * Server-side XML loading, implementing transforms.
+	 * TODO: Replace the hard-coded options with $bentoService (pointing to $this) and $href which should cover all cases.
 	 */
 	public function xhtmlLoad($href) {
 		if ((strpos($href->currentDir, 'http') != 0) || // If the currentDir doesn't start with http then disallow
@@ -87,22 +88,7 @@ class BentoService extends AbstractService {
 		    (strpos($href->getUrl(), ".."))) // If there is any directory traversal in the full url then disallow
 			return parent::xhtmlLoad($href);
 		
-		$transforms = array();
-		if ($href->transforms) {
-			foreach ($href->transforms as $transform) {
-				$transforms[] = array(
-					"transform" => $transform,
-					"options" => array("manageableOps" => $this->manageableOps,
-									   "progressOps" => $this->progressOps,
-									   "copyOps" => $this->copyOps,
-									   "userID" => Session::get('userID'),
-									   "productCode" => Session::get('productCode'),
-									   "href" => $href)
-				);
-			}
-		}
-		
-		return XmlUtils::buildXml($href, $this->db, $transforms);		
+		return XmlUtils::buildXml($href, $this->db, $this);
 	}
 	
 	/**
