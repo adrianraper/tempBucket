@@ -1,8 +1,9 @@
 package com.clarityenglish.ielts.controller {
 	import com.clarityenglish.bento.controller.BentoStartupCommand;
-	import com.clarityenglish.bento.controller.MenuXHTMLLoadCommand;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.DataProxy;
+	import com.clarityenglish.bento.model.XHTMLProxy;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressCourseSummaryTransform;
@@ -27,8 +28,13 @@ package com.clarityenglish.ielts.controller {
 			});
 			
 			// Set the transforms that IELTS uses on its menu.xml files
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			MenuXHTMLLoadCommand.transforms = [ new ProgressExerciseScoresTransform(), new ProgressCourseSummaryTransform(), new HiddenContentTransform(), new DirectStartDisableTransform(configProxy.getDirectStart()) ];
+			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;			
+			var transforms:Array = [ new ProgressExerciseScoresTransform(),
+									 new ProgressCourseSummaryTransform(),
+									 new HiddenContentTransform(),
+									 new DirectStartDisableTransform(configProxy.getDirectStart()) ];
+			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
 			
 			facade.registerMediator(new IELTSApplicationMediator(note.getBody()));
 		}

@@ -1,10 +1,6 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
-	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
-	import com.clarityenglish.bento.vo.content.transform.ProgressCourseSummaryTransform;
-	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
 	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import mx.logging.ILogger;
@@ -21,8 +17,6 @@ package com.clarityenglish.bento.controller {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		public static var transforms:Array;
-		
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
@@ -38,8 +32,6 @@ package com.clarityenglish.bento.controller {
 				if (note.getBody().filename) href.filename = note.getBody().filename;
 				if (note.getBody().options) href.options = note.getBody().options;
 			}
-			
-			href.transforms = transforms;
 			
 			log.debug("Loading MENU_XHTML - {0}", href);
 			xhtmlProxy.loadXHTML(href);

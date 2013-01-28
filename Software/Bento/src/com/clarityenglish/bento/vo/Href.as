@@ -14,12 +14,12 @@ package com.clarityenglish.bento.vo {
 		public var transforms:Array;
 		public var options:Object;
 		
-		public function Href(type:String, filename:String, currentDir:String = null, serverSide:Boolean = false, transforms:Array = null) {
+		public function Href(type:String, filename:String, currentDir:String = null, serverSide:Boolean = false) {
 			this.type = type;
 			this.filename = filename;
 			this.currentDir = currentDir;
 			this.serverSide = serverSide;
-			this.transforms = transforms;
+			this.transforms = [];
 		}
 		
 		/**
@@ -62,8 +62,12 @@ package com.clarityenglish.bento.vo {
 			return new Href(type, filename, rootPath);
 		}
 		
+		public function resetTransforms():void {
+			transforms = [];
+		}
+		
 		public function clone():Href {
-			return new Href(type, filename, currentDir);
+			return new Href(type, filename, currentDir, serverSide);
 		}
 		
 		public function toString():String {

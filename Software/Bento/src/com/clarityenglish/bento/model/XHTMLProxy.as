@@ -53,13 +53,22 @@ package com.clarityenglish.bento.model {
 		 */
 		private var urlLoaders:Dictionary;
 		
+		/**
+		 * This maintains a list of transforms that server-side XHTML loads should be checked against 
+		 */
+		private var transformDefinitions:Vector.<TransformDefinition>;
+		
 		public function XHTMLProxy() {
 			super(NAME);
 			
 			loadedResources = new Dictionary();
 			urlLoaders = new Dictionary();
+			transformDefinitions = new Vector.<TransformDefinition>();
 		}
 		
+		/**
+		 * Clears all stateful data from this instance of the XHTMLProxy.
+		 */
 		public function reset():void {
 			// #472
 			for each (var resource:* in loadedResources)
@@ -72,6 +81,18 @@ package com.clarityenglish.bento.model {
 		
 		public function hasLoadedResource(href:*):Boolean {
 			return loadedResources[href];
+		}
+		
+		/**
+		 * Register a set of transforms that will be automatically applied to a server-side xhtmlLoad call based on the href type and the href filename.  If
+		 * forTypes or forFilename is ommitted, then the transforms will match all types and/or filenames.
+		 * 
+		 * @param transforms An array of XmlTransforms
+		 * @param forTypes An array of types (these are constants in Href; e.g. Href.MENU_XHTML)
+		 * @param forFilename A regexp that the filename must match
+		 */
+		public function registerTransforms(transforms:Array, forTypes:Array = null, forFilename:RegExp = null):void {
+			transformDefinitions.push(new TransformDefinition(transforms, forTypes, forFilename));
 		}
 		
 		public function loadXHTML(href:Href):void {
@@ -96,6 +117,11 @@ package com.clarityenglish.bento.model {
 			}
 			
 			if (href.serverSide) {
+				// Determine if the href matches any of the registered transforms and if so add those transforms
+				href.resetTransforms();
+				for each (var transformDefinition:TransformDefinition in transformDefinitions)
+					transformDefinition.injectTransforms(href);
+				
 				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) GH #84
 				new RemoteDelegate("xhtmlLoad", [ href ]).execute().addResponder(new ResultResponder(
 					function(e:ResultEvent, data:AsyncToken):void {
@@ -215,4 +241,35 @@ package com.clarityenglish.bento.model {
 		}
 		
 	}
+}
+
+import com.clarityenglish.bento.vo.Href;
+import com.clarityenglish.bento.vo.content.transform.XmlTransform;
+
+class TransformDefinition {
+	
+	private var transforms:Array;
+	private var forTypes:Array;
+	private var forFilename:RegExp;
+	
+	public function TransformDefinition(transforms:Array, forTypes:Array, forFilename:RegExp) {
+		this.transforms = transforms;
+		this.forTypes = forTypes;
+		this.forFilename = forFilename;
+	}
+	
+	public function injectTransforms(href:Href):void {
+		// If a type is specified then check that the href matches, otherwise return
+		if (forTypes && forTypes.indexOf(href.type) == -1)
+			return;
+		
+		// If a filename regexp is specified then check that the href matches, otherwise return
+		if (forFilename && forFilename.exec(href.filename) == null)
+			return;
+		
+		// If we have reached here then we want to add the transforms
+		for each (var transform:XmlTransform in transforms)
+			href.transforms.push(transform);
+	}
+	
 }
