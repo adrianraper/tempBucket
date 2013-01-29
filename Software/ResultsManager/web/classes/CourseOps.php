@@ -155,8 +155,11 @@ class CourseOps {
 		// Turn the XML string into SimpleXML
 		$course = simplexml_load_string($courseXmlString);
 		$accountFolder = $this->accountFolder;
+		$db = $this->db;
 		
-		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($course, $accountFolder) {
+		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($course, $accountFolder, $db) {
+			$db->StartTrans();
+			
 			// SimpleXML doesn't like default namespaces in xpath expressions so define the XHTML namespace explicitly
 			$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			
@@ -169,6 +172,12 @@ class CourseOps {
 			// Rename the folder such that it is prefixed with "deleted_"
 			if (!rename($accountFolder."/".$courseId,  $accountFolder."/deleted_".$courseId))
 				throw new Exception("Unable to rename folder and so could not delete course");
+			
+			// #155
+			$db->Execute("DELETE FROM T_CourseStart WHERE F_RootID = ? AND F_CourseID = ?", array(Session::get('rootID'), $courseId));
+			$db->Execute("DELETE FROM T_UnitStart WHERE F_RootID = ? AND F_CourseID = ?", array(Session::get('rootID'), $courseId));
+			
+			$db->CompleteTrans();
 		});
 	}
 	
