@@ -43,7 +43,7 @@
 	<!--<s:TextInput id="searchTextInput" />-->
 	<s:HGroup top="10">
 		<s:SWFLoader source="@Embed(source = '/skins/rotterdam/builder/assets/cloud/icon_resource-cloud.png')" />
-		<s:Label text="Resrouce Cloud" fontWeight="bold" fontSize="16" />
+		<s:Label text="Resource Cloud" fontWeight="bold" fontSize="16" />
 	</s:HGroup>
 	
 	<s:Spacer height="10"/>
