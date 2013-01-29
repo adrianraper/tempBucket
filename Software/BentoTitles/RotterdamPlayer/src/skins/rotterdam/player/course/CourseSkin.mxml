@@ -32,6 +32,15 @@
 				<s:itemRenderer>
 					<fx:Component>
 						<s:ItemRenderer>
+							<fx:Script>
+								<![CDATA[
+									public override function set data(value:Object):void {
+										// gh#151
+										super.data = value;
+										if (data) this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
+									}
+								]]>
+							</fx:Script>
 							<s:RichText text="{data.@caption}" textIndent="18" fontSize="14" color="0x000000" height="25" paddingTop="8"/>
 						</s:ItemRenderer>
 					</fx:Component>
