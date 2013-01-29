@@ -173,7 +173,7 @@ class CourseOps {
 	public function getCourseStart($id) {
 		$groupID = Session::get('groupID');
 		do {
-			$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits, ".$this->db->SQLDate("Y-m-d H:i:s", "F_StartDate")." F_StartDate ".
+			$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits, ".$this->db->SQLDate("Y-m-d", "F_StartDate")." F_StartDate ".
 			   	   "FROM T_CourseStart ".
 			   	   "WHERE F_GroupID = ? ".
 			  	   "AND F_RootID = ? ".

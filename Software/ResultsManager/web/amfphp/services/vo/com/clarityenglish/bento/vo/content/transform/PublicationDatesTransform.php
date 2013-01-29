@@ -20,7 +20,7 @@ class PublicationDatesTransform extends XmlTransform {
 		
 		// Now look in the database for publication data on each of these groups
 		$groupIdInString = join(",", $groupIDs);
-		$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits, ".$db->SQLDate("Y-m-d H:i:s", "F_StartDate")." F_StartDate ".
+		$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits, ".$db->SQLDate("Y-m-d", "F_StartDate")." F_StartDate ".
 			   "FROM T_CourseStart ".
 			   "WHERE F_GroupID IN (".$groupIdInString.") ".
 			   "AND F_RootID = ? ".
