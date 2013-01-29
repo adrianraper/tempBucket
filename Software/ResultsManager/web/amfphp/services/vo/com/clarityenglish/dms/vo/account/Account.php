@@ -31,7 +31,7 @@ class Account extends Reportable {
 	// v4.0 Integration with Bento
 	public $verified;
 	public $selfRegister;
-	//issue:#11
+	//gh#11
 	var $languageCode;
 	
 	/**
@@ -127,8 +127,8 @@ class Account extends Reportable {
 		// v4.0 Integration with Bento
 		$this->selfRegister = $obj->F_SelfRegister;
 		$this->verified = $obj->F_Verified;
-		//issue:#11
-		$this->languageCode = $obj->F_LanguageCode;
+		//gh#11
+		//$this->languageCode = $obj->F_LanguageCode;
 		
 	}
 	

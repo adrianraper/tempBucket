@@ -3,6 +3,8 @@ require_once(dirname(__FILE__)."/SelectBuilder.php");
 require_once(dirname(__FILE__)."/crypto/RSAKey.php");
 require_once(dirname(__FILE__)."/crypto/Base8.php");
 
+// gh#149
+/*
 $mypostfix = $neg_mypostfix = "";
 for($i=0;$i<10;++$i) {
 	if($i > 0) {
@@ -21,6 +23,7 @@ for($i=0;$i<10;++$i) {
 
 DEFINE('MYPOSTFIX', $mypostfix);
 DEFINE('NEG_MYPOSTFIX', $neg_mypostfix);
+*/
 
 class AccountOps {
 
@@ -144,10 +147,13 @@ SQL;
 				//echo "condition=$condition=$value<br/>";
 				switch ($condition) {
 					case 'individuals':
+						// gh#149
 						if ($value == 'true') {
-							$selectBuilder->addWhere(NEG_MYPOSTFIX);
+							//$selectBuilder->addWhere(NEG_MYPOSTFIX);
+							$selectBuilder->addWhere("a.F_Prefix REGEXP '^[0-9]+$'");
 						} else {
-							$selectBuilder->addWhere(MYPOSTFIX);
+							//$selectBuilder->addWhere(MYPOSTFIX);
+							$selectBuilder->addWhere("NOT (a.F_Prefix REGEXP '^[0-9]+$')");
 						}
 						break;
 					case 'expiryDate':
@@ -280,6 +286,10 @@ SQL;
 							$selectBuilder->addWhere("a.F_RootID = '".substr($value,2)."'");
 						} elseif (substr($value,0,2)== 'D:') {
 							$selectBuilder->addWhere("a.F_ResellerCode = '".substr($value,2)."'");
+						// gh#149
+						} elseif (substr($value,0,6)== 'since:') {
+							$selectBuilder->addWhere("t.F_LicenceStartDate >= '".substr($value,6)."'");
+							$needsAccountsTable = true;
 						} elseif (substr($value,0,3)== 'PC:') {
 							$selectBuilder->addWhere("t.F_ProductCode = '".substr($value,3)."'");
 							$needsAccountsTable = true;
@@ -932,13 +942,15 @@ EOD;
 	// This one is for CLS accounts which have unique emails for the admin user
 	public function getAccountFromEmail($email) {
 	
+		// gh#149
+		//$sql .= ' AND ('.NEG_MYPOSTFIX.')';
 		$sql = 	<<<EOD
 				SELECT r.F_RootID rootID
 				FROM T_AccountRoot r, T_User u
 				WHERE r.F_AdminUserID = u.F_UserID
-			AND u.F_Email = ?
+				AND u.F_Email = ?
+				AND r.F_Prefix REGEXP '^[0-9]+$'
 EOD;
-		$sql .= ' AND ('.NEG_MYPOSTFIX.')';
 		//echo $sql;
 		$rs = $this->db->Execute($sql, array($email));
 		
@@ -1031,11 +1043,12 @@ EOD;
 	 * Utility function to return the next sequential number for prefixes, (and obfuscate it)
 	 */
 	public function getNextPrefix() {
+		// gh#149
 		$sql = 	<<<EOD
 				SELECT MAX(F_Prefix) AS MAXPREFIX from T_AccountRoot
-				WHERE   
+				WHERE F_Prefix REGEXP '^[0-9]+$'
 EOD;
-		$sql .= NEG_MYPOSTFIX;
+		//$sql .= NEG_MYPOSTFIX;
 		$rs = $this->db->Execute($sql);
 		return ((string)((int)($rs->FetchNextObj()->MAXPREFIX) + 1));
 	}
