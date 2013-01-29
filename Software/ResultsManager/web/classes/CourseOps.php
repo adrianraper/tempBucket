@@ -127,6 +127,7 @@ class CourseOps {
 				// 2.2 Next delete and rewrite any rows in T_UnitStart relating to this course
 				$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID = ? AND F_RootID = ? AND F_CourseID = ?", array((string)$group['id'], Session::get('rootID'), (string)$course['id']));
 				
+				// Currently we figure this out here, but this may be better calculated on the client since at some point it will be editable anyway
 				if (isset($group['startDate']) && $group['startDate'] != "" && isset($group['unitInterval']) && $group['unitInterval'] != "") {
 					$startTimestamp = strtotime($group['startDate']);
 					foreach ($course->unit as $unit) {
