@@ -109,18 +109,39 @@ class CourseOps {
 			
 			// 1. Write publication data to the database
 			foreach ($course->publication->group as $group) {
+				// 1.1 First write the T_CourseStart row
 				$fields = array(
-					"F_GroupID" => $group['id'],
+					"F_GroupID" => (string)$group['id'],
 					"F_RootID" => Session::get('rootID'),
-					"F_CourseID" => $course['id'],
+					"F_CourseID" => (string)$course['id'],
 					"F_StartMethod" => "group"
 				);
 				
-				if (isset($group['unitInterval'])) $fields["F_UnitInterval"] = $group['unitInterval'];
-				if (isset($group['seePastUnits'])) $fields["F_SeePastUnits"] = ($group['seePastUnits'] == "true") ? 1 : 0;
-				if (isset($group['startDate'])) $fields["F_StartDate"] = $group['startDate'];
+				if (isset($group['unitInterval']) && $group['unitInterval'] != "") $fields["F_UnitInterval"] = $group['unitInterval'];
+				if (isset($group['seePastUnits']) && $group['seePastUnits'] != "") $fields["F_SeePastUnits"] = ($group['seePastUnits'] == "true") ? 1 : 0;
+				if (isset($group['startDate']) && $group['startDate'] != "") $fields["F_StartDate"] = $group['startDate'];
 				
 				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
+				
+				// 2.2 Next delete and rewrite any rows in T_UnitStart relating to this course
+				$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID = ? AND F_RootID = ? AND F_CourseID = ?", array((string)$group['id'], Session::get('rootID'), (string)$course['id']));
+				
+				if (isset($group['startDate']) && $group['startDate'] != "" && isset($group['unitInterval']) && $group['unitInterval'] != "") {
+					$startTimestamp = strtotime($group['startDate']);
+					foreach ($course->unit as $unit) {
+						$fields = array(
+							"F_GroupID" => (string)$group['id'],
+							"F_RootID" => Session::get('rootID'),
+							"F_CourseID" => (string)$course['id'],
+							"F_UnitID" => (string)$unit['id'],
+							"F_StartDate" => $startTimestamp
+						);
+						
+						$db->AutoExecute("T_UnitStart", $fields, "INSERT");
+						
+						$startTimestamp += $group['unitInterval'] * 86400;
+					}
+				}
 			}
 			
 			// 2. Remove publication data so it doesn't get saved

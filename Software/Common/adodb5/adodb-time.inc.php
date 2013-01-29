@@ -729,7 +729,9 @@ global $ADODB_DATETIME_CLASS;
 	} else {
 		if (isset($TZ)) return $TZ;
 		$y = date('Y');
-		$TZ = mktime(0,0,0,12,2,$y,0) - gmmktime(0,0,0,12,2,$y,0);
+		// gh#148 - this was causing an issue with latest version of PHP so patched as in https://github.com/mybb/mybb/commit/8075571b03f9553980a4b97b54c9341fe64d46aa
+		//$TZ = mktime(0,0,0,12,2,$y,0) - gmmktime(0,0,0,12,2,$y,0);
+		$TZ = mktime(0,0,0,12,2,$y) - gmmktime(0,0,0,12,2,$y);
 	}
 	
 	return $TZ;
