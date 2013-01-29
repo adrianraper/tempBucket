@@ -63,7 +63,7 @@
 		<s:VGroup id="unitVGroup">
 			<s:Label id="courseCaptionLabel" paddingLeft="7" width="150" fontWeight="bold" fontSize="15"/>
 			<mx:Spacer height="5" />
-			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" borderVisible="false" selectionColor="0xC0C0C0">
+			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" borderVisible="false" selectionColor="0xC0C0C0" >
 				<s:layout>
 					<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
 				</s:layout>

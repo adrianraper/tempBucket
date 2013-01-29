@@ -19,6 +19,6 @@
 	
 	<s:Label text="Choose a Course" top="15" fontSize="16" fontWeight="bold"/>
 	
-	<s:List id="courseList" labelField="@caption" width="100%" borderVisible="false" itemRenderer="skins.rotterdam.courseselector.CourseListItemRenderer" top="43"/>
+	<s:List id="courseList" labelField="@caption" width="100%" borderVisible="false" itemRenderer="skins.rotterdam.player.courseselector.CourseListItemRenderer" top="43"/>
 	
 </s:Skin>

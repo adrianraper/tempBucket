@@ -7,7 +7,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
 	import flash.geom.Point;
+	import flash.utils.Timer;
 	
 	import mx.collections.ListCollectionView;
 	import mx.core.UIComponent;
@@ -38,6 +40,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var widgetSelect:Signal = new Signal(XML);
 		public var widgetDelete:Signal = new Signal(XML);
 		public var widgetEdit:Signal = new Signal(XML);
+		
+		[Bindable] 
+		public var timer:Timer = new Timer(50);
 		
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
@@ -153,6 +158,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				onHideWidgetMenu();
 			}
 		}
+		
 		
 	}
 }

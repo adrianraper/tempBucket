@@ -6,18 +6,23 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 	import flash.events.MouseEvent;
 	import flash.net.FileFilter;
 	
+	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
+	import mx.controls.DataGrid;
 	import mx.events.CloseEvent;
 	
 	import org.davekeen.util.StringUtils;
+	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.DataGrid;
+	import spark.components.Label;
 	import spark.components.List;
 	
 	public class FileManagerView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var fileList:List;
+		public var fileList:spark.components.DataGrid;
 		
 		[SkinPart]
 		public var selectButton:Button;
@@ -25,17 +30,33 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		[SkinPart]
 		public var cancelButton:Button;
 		
+		[SkinPart]
+		public var PDFFilesTotal:Label;
+		
+		[SkinPart]
+		public var ImageFilesTotal:Label;
+		
+		[SkinPart]
+		public var AudioFilesTotal:Label;
+		
 		private var fileListCollection:XMLListCollection;
+		private var _piechartCollection:ArrayCollection;
 		
 		private var _typeFilter:Array;
 		private var _typeFilterChanged:Boolean;
 		
 		private var _selectMode:Boolean;
 		
+		private var totalPDF:Number;
+		private var totalImage:Number;
+		private var totalAudio:Number;
+		private var totalFile:Number;
+		
 		public function FileManagerView():void {
 			super();
 			
 			fileListCollection = new XMLListCollection();
+			_piechartCollection = new ArrayCollection();
 		}
 		
 		public function set typeFilter(value:Array):void {
@@ -51,6 +72,10 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 				_selectMode = value;
 				invalidateSkinState();
 			}
+		}
+		
+		public function get piechartCollection():ArrayCollection {
+			return _piechartCollection;
 		}
 		
 		protected override function commitProperties():void {
@@ -79,12 +104,38 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 				}
 				fileListCollection.refresh();
 			}
+			
+			PDFFilesTotal.text = Math.round((totalPDF/totalFile)*100).toString()+ "%";
+			ImageFilesTotal.text =  Math.round((totalImage/totalFile)*100).toString()+ "%";
+			AudioFilesTotal.text = Math.round((totalAudio/totalFile)*100).toString()+ "%";
+			
 		}
 
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
 			fileListCollection.source = xhtml.files.file;
+			
+			totalPDF = 0;
+			totalImage = 0;
+			totalAudio = 0;
+			for each (var file:XML in fileListCollection) {
+				var fileType:String = file.@mimeType;
+				if (fileType.search("pdf") > 0) {
+					totalPDF ++;
+				}
+				if (fileType.search("image") == 0) {
+					totalImage ++;
+				}
+				if (fileType.search("octet-stream") > 0) {
+					totalAudio ++;
+				}
+			}
+			totalFile = fileListCollection.length;
+			_piechartCollection.addItem({type: "PDF", total: totalPDF});
+			_piechartCollection.addItem({type: "Image", total: totalImage});
+			_piechartCollection.addItem({type: "Audio", total: totalAudio});
+			
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -93,6 +144,7 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			switch (instance) {
 				case fileList:
 					fileList.dataProvider = fileListCollection;
+					fileList.addEventListener(MouseEvent.CLICK, onSelectItem);
 					break;
 				case selectButton:
 					selectButton.addEventListener(MouseEvent.CLICK, onSelect);
@@ -105,13 +157,17 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		
 		protected function onSelect(event:MouseEvent):void {
 			if (fileList.selectedItem) {
-				dispatchEvent(new FileManagerEvent(FileManagerEvent.FILE_SELECT, fileList.selectedItem, true));
+				dispatchEvent(new FileManagerEvent(FileManagerEvent.FILE_SELECT, fileList.selectedItem as XML, true));
 				dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 			}
 		}
 		
 		protected function onCancel(event:MouseEvent):void {
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
+		}
+		
+		protected function onSelectItem (event:MouseEvent):void {
+			this.selectMode = true;
 		}
 		
 		protected override function getCurrentSkinState():String {

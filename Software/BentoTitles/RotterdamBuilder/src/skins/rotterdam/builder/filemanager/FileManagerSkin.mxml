@@ -19,12 +19,54 @@
 	</s:layout>
 	
 	<!--<s:TextInput id="searchTextInput" />-->
+	<s:HGroup>
+		<s:SWFLoader source="@Embed(source = '/skins/rotterdam/builder/assets/cloud/icon_resource-cloud.png')" />
+		<s:Label text="Resrouce Cloud" fontWeight="bold" fontSize="16" />
+	</s:HGroup>
 	
-	<s:List id="fileList" labelField="@filename" width="100%" />
+	<s:Spacer height="10"/>
 	
-	<s:HGroup includeIn="select">
-		<s:Button id="selectButton" label="Select" enabled="{fileList.selectedItem != null}" />
-		<s:Button id="cancelButton" label="Cancel" />
+	<s:Group width="100%">
+		<s:DataGrid id="fileList" borderVisible="false" width="70%">
+			<s:columns>
+				<s:ArrayList>
+					<s:GridColumn dataField="@originalName" headerText="Name"/>
+					<s:GridColumn dataField="" headerText="Used"/>
+					<s:GridColumn dataField="@size" headerText="Size"/>
+					<s:GridColumn dataField="" headerText="Tags"/>
+				</s:ArrayList>
+			</s:columns>
+		</s:DataGrid>
+		<s:Panel title="My Storage space" right="0" width="30%" height="120%" borderVisible="false" dropShadowVisible="false">
+			<mx:PieChart dataProvider="{hostComponent.piechartCollection}" scaleX="0.5" scaleY="0.5" horizontalCenter="0" verticalCenter="0">
+				<mx:series>
+					<mx:PieSeries field="total" nameField="type" filters="[]"/>
+				</mx:series>
+				
+			</mx:PieChart>	
+		</s:Panel>		
+	</s:Group>
+	
+	
+	<s:HGroup visible="{this.currentState == 'select'}" paddingLeft="5">
+		<s:Button id="selectButton" label="Select" enabled="{fileList.selectedItem != null}"/>
+		<s:Spacer width="5"/>
+		<s:Button id="cancelButton" label="Cancel"/>
+	</s:HGroup>
+	
+	<s:HGroup paddingTop="20">
+		<s:Group>
+			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_reading.png')"/>
+			<s:Label id="PDFFilesTotal" bottom="10" right="10" text="10"/>
+		</s:Group>
+		<s:Group>
+			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_writing.png')"/>
+			<s:Label id="ImageFilesTotal" bottom="10" right="10"  text="10"/>
+		</s:Group>
+		<s:Group>
+			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_listening.png')"/>
+			<s:Label id="AudioFilesTotal" bottom="10" right="10" />
+		</s:Group>		
 	</s:HGroup>
 	
 </s:Skin>

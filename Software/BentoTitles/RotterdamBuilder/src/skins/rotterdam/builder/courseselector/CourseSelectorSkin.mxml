@@ -8,19 +8,25 @@
 		[HostComponent("com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView")]
 	</fx:Metadata>
 	
+	<fx:Script>
+		<![CDATA[
+			public function onDeleteButtonClick():void {
+				hostComponent.deleteCourseClick();
+			}
+		]]>
+	</fx:Script>
+	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
-
+	
 	<s:Label text="Choose a Course" top="15" fontSize="16" fontWeight="bold"/>
 	<s:Button id="createCourseButton" label="Create a New Course" right="10" top="5"/>
-	<s:List id="courseList" width="100%" borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.courseselector.CourseListItemRenderer" top="43">
+	<s:List id="courseList" width="100%" borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.builder.courseselector.CourseListItemRenderer" top="43">
 		<s:layout>
 			<s:VerticalLayout gap="5" horizontalAlign="justify"/>
 		</s:layout>
-	</s:List>
-	<s:Button id="deleteCourseButton" label="Delete course" enabled="{courseList.selectedItem != null}" top="{courseList.height+80}"/>
-	
+	</s:List>	
 </s:Skin>

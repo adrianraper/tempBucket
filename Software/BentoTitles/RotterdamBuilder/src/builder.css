@@ -210,6 +210,23 @@ filemanager|FileManagerView {
 	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileManagerSkin");
 }
 
+filemanager|FileManagerView s|DataGrid#fileList {
+	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileListDataGrid");
+	alternatingRowColors: #FFFFFF, #D7EDF7;
+}
+
+filemanager|FileManagerView s|Button {
+	skinClass: ClassReference("skins.rotterdam.builder.filemanager.CloudButtonSkin");
+}
+
 settings1|SettingsView {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSkin");
+}
+
+settings1|SettingsView s|Button#saveButton {
+	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSaveButtonSkin");
+}
+
+settings1|SettingsView s|Button#backButton {
+	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsBackButtonSkin");
 }
