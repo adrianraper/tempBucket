@@ -7,6 +7,7 @@ package com.clarityenglish.rotterdam.view.course {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ListCollectionView;
+	import mx.collections.XMLListCollection;
 	
 	import org.osflash.signals.Signal;
 	
@@ -70,11 +71,20 @@ package com.clarityenglish.rotterdam.view.course {
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
 					
-					// #14 - auto select a unit
-					unitList.requireSelection = true;
+					// gh#14 - auto select a unit and gh#151 - autoselect the first enabled unit
 					callLater(function():void {
-						if (unitList.dataProvider && unitList.dataProvider.length > 0)
-							unitList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+						if (unitList.dataProvider && unitList.dataProvider.length > 0) {
+							for each (var unit:XML in (unitList.dataProvider as XMLListCollection).source) {
+								if (!(unit.hasOwnProperty("@enabledFlag") && unit.@enabledFlag & 8)) {
+									unitList.requireSelection = true;
+									unitList.selectedItem = unit;
+									unitList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+									break;
+								}
+							}
+							
+							// If we reach here then there are no enabled units - probably we want to display a graphic or something
+						}
 					});
 					break;
 				case addUnitButton:
