@@ -49,12 +49,12 @@
 			<s:Label text="1. Select a group" fontWeight="bold" />
 			<sparkTree:Tree id="groupTree" dataProvider="{hostComponent.groupTreesCollection}" width="300" labelField="name" iconFunction="getTreeIcon" />
 			
-			<s:Spacer height="20" />
+			<s:Spacer height="12" />
 			
 			<s:Label text="2. How many days between units?" fontWeight="bold" />
 			<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
 			
-			<s:Spacer height="20" />
+			<s:Spacer height="12" />
 			
 			<s:Label text="3. See past units?" fontWeight="bold" />
 			<s:HGroup>
@@ -62,10 +62,15 @@
 				<s:RadioButton label="No" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
 			</s:HGroup>
 			
-			<s:Spacer height="20" />
+			<s:Spacer height="12" />
 			
 			<s:Label text="4. Please set the course start date for this course" fontWeight="bold" />
 			<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
+			
+			<s:Spacer height="12" />
+			
+			<s:Label text="5. Please set the course end date for this course" fontWeight="bold" />
+			<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" />
 		</s:VGroup>
 		
 		<!-- Email settings -->

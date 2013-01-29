@@ -120,6 +120,7 @@ class CourseOps {
 				if (isset($group['unitInterval']) && $group['unitInterval'] != "") $fields["F_UnitInterval"] = $group['unitInterval'];
 				if (isset($group['seePastUnits']) && $group['seePastUnits'] != "") $fields["F_SeePastUnits"] = ($group['seePastUnits'] == "true") ? 1 : 0;
 				if (isset($group['startDate']) && $group['startDate'] != "") $fields["F_StartDate"] = $group['startDate'];
+				if (isset($group['endDate']) && $group['endDate'] != "") $fields["F_EndDate"] = $group['endDate'];
 				
 				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
 				
@@ -173,7 +174,7 @@ class CourseOps {
 	public function getCourseStart($id) {
 		$groupID = Session::get('groupID');
 		do {
-			$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits, ".$this->db->SQLDate("Y-m-d", "F_StartDate")." F_StartDate ".
+			$sql = "SELECT F_GroupID, F_UnitInterval, F_SeePastUnits, ".$this->db->SQLDate("Y-m-d", "F_StartDate")." F_StartDate, ".$this->db->SQLDate("Y-m-d", "F_EndDate")." F_EndDate ".
 			   	   "FROM T_CourseStart ".
 			   	   "WHERE F_GroupID = ? ".
 			  	   "AND F_RootID = ? ".
@@ -182,8 +183,8 @@ class CourseOps {
 			$result = (sizeof($results) == 0) ? null : $results[0];
 			$groupID = $this->manageableOps->getGroupParent($groupID);
 			
-			// It is possible to have a result which doesn't contain all the bits we need (e.g. a start date and a unit interval) so only count if we have both
-			$gotResult = !(is_null($result)) && $result['F_UnitInterval'] && $result['F_StartDate'];
+			// It is possible to have a result which doesn't contain all the bits we need (e.g. a start date, end date and unit interval) so only count if we have all
+			$gotResult = !(is_null($result)) && $result['F_UnitInterval'] && $result['F_StartDate'] && $result['F_EndDate'];
 		} while (!$gotResult && !is_null($groupID));
 		
 		return $result;

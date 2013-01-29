@@ -21,24 +21,29 @@ class PublicationUnitTransform extends XmlTransform {
 		if (is_null($courseStartObj)) {
 			// TODO: This shouldn't be possible!  Throw some kind of error.
 		} else {
-			// Get the unit ids and start dates from T_UnitStart for all units that are before the current date (use SQL to strip out the time component)
-			$sql = "SELECT F_UnitID ".
-			   	   "FROM T_UnitStart ".
-			   	   "WHERE F_GroupID = ? ".
-			  	   "AND F_RootID = ? ".
-			  	   "AND F_CourseID = ? ".
-				   "AND F_StartDate <= DATE(NOW()) ".
-				   "ORDER BY F_StartDate";
-			$results = $db->GetArray($sql, array(Session::get('groupID'), Session::get('rootID'), $course['id']));
-			
-			// If see past units is off, then we are only interested in the last available unit (if there is one)
-			if (!$courseStartObj['F_SeePastUnits'])
-				$results = (sizeof($results) == 0) ? array() : array(array_pop($results));
-			
-			// Turn $results into a flat array of ids
-			$validUnitIds = array();
-			foreach ($results as $result)
-				$validUnitIds[] = $result['F_UnitID']; 
+			if (time() > strtotime($courseStartObj['F_EndDate'])) {
+				// If we are here then we are passed the end date and the course has finished, so there are no valid unit ids.
+				$validUnitIds = array();
+			} else {
+				// Get the unit ids and start dates from T_UnitStart for all units that are before the current date (use SQL to strip out the time component)
+				$sql = "SELECT F_UnitID ".
+				   	   "FROM T_UnitStart ".
+				   	   "WHERE F_GroupID = ? ".
+				  	   "AND F_RootID = ? ".
+				  	   "AND F_CourseID = ? ".
+					   "AND F_StartDate <= DATE(NOW()) ".
+					   "ORDER BY F_StartDate";
+				$results = $db->GetArray($sql, array(Session::get('groupID'), Session::get('rootID'), $course['id']));
+				
+				// If see past units is off, then we are only interested in the last available unit (if there is one)
+				if (!$courseStartObj['F_SeePastUnits'])
+					$results = (sizeof($results) == 0) ? array() : array(array_pop($results));
+				
+				// Turn $results into a flat array of ids
+				$validUnitIds = array();
+				foreach ($results as $result)
+					$validUnitIds[] = $result['F_UnitID'];
+			}
 			
 			// Now go through the XML setting the enabled flag for any unit that isn't in $validUnitIds
 			foreach ($course->unit as $unit) {

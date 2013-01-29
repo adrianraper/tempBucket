@@ -59,6 +59,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var startDateField:DateField;
 		
 		[SkinPart]
+		public var endDateField:DateField;
+		
+		[SkinPart]
 		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
 		
 		[SkinPart]
@@ -128,6 +131,7 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (selectedPublicationGroup) {
 				if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup.hasOwnProperty("@unitInterval")) ? selectedPublicationGroup.@unitInterval : null;
 				if (startDateField) startDateField.selectedDate = (selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
+				if (endDateField) endDateField.selectedDate = (selectedPublicationGroup.hasOwnProperty("@endDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
 				if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
 				
 				// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
@@ -218,6 +222,15 @@ package com.clarityenglish.rotterdam.view.settings {
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							if (e.target.selectedDate) selectedPublicationGroup.@startDate = DateUtil.dateToAnsiString(e.target.selectedDate);
+							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
+							invalidateProperties();
+						}
+					});
+					break;
+				case endDateField:
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!isPopulating) {
+							if (e.target.selectedDate) selectedPublicationGroup.@endDate = DateUtil.dateToAnsiString(e.target.selectedDate);
 							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
 							invalidateProperties();
 						}
