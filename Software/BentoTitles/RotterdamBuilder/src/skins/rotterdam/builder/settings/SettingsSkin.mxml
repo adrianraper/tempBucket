@@ -35,12 +35,12 @@
 		<s:State name="about" />
 	</s:states>
 	
-	<widgets:CogIcon2 top="15" left="6"/>
-	<s:Label text="Course Settings" top="15" left="28" fontSize="16" fontWeight="bold"/>
+	<widgets:CogIcon2 top="15" left="6" />
+	<s:Label text="Course Settings" top="15" left="28" fontSize="16" fontWeight="bold" />
 	
 	<!-- The tab bar -->
-	<s:TabBar id="tabBar" top="65" left="20"/>
-	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="100"/>
+	<s:TabBar id="tabBar" top="65" left="20" />
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="100" />
 	
 	<!-- Left hand side -->
 	<s:VGroup top="100" width="390" paddingLeft="18" paddingTop="22" left="10">
@@ -139,12 +139,10 @@
 			<s:Button label="Upload" />-->
 		</s:VGroup>
 	</s:VGroup>
-		
 	
-	<s:HGroup bottom="110" left="20" gap="20">
+	<s:HGroup bottom="18" left="26" gap="20">
 		<s:Button id="backButton" label="Back" />
 		<s:Button id="saveButton" label="Save changes" />
 	</s:HGroup>
-	
 	
 </s:Skin>
