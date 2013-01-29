@@ -1,4 +1,6 @@
 package com.clarityenglish.textLayout.elements {
+	import com.clarityenglish.controls.video.players.OSMFVideoPlayer;
+	
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
 	import flash.system.Capabilities;
@@ -86,9 +88,10 @@ package com.clarityenglish.textLayout.elements {
 		public function createComponent():void {
 			switch(getVideoType()) {
 				case NORMAL:
-					var videoPlayer:VideoPlayer = new VideoPlayer();
-					videoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange, false, 0, true);
-					videoPlayer.addEventListener(TimeEvent.COMPLETE, onTimeComplete, false, 0, true);
+					trace("enter createComponent");
+					var videoPlayer:OSMFVideoPlayer = new OSMFVideoPlayer();
+					//videoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange, false, 0, true);
+					//videoPlayer.addEventListener(TimeEvent.COMPLETE, onTimeComplete, false, 0, true);
 					
 					// To let practice zone video come from rtmp too, we need some handling here
 					// But this does NOT work, we see nothing in the exercise.
@@ -170,7 +173,7 @@ package com.clarityenglish.textLayout.elements {
 		 * 
 		 * @param event
 		 */
-		private function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
+		/*private function onMediaPlayerStateChange(event:MediaPlayerStateChangeEvent):void {
 			var videoPlayer:VideoPlayer = event.target as VideoPlayer;
 			
 			switch (event.state) {
@@ -208,12 +211,12 @@ package com.clarityenglish.textLayout.elements {
 					currentlyPlayingVideoPlayer = null;
 				}
 			}
-		}
+		}*/
 		
-		private function onTimeComplete(event:TimeEvent):void {
+		/*private function onTimeComplete(event:TimeEvent):void {
 			// #206
 			currentlyPlayerVideoHasFinished = true;
-		}
+		}*/
 		
 		/**
 		 * A funky way to statically store a VideoPlayer without making a reference and breaking GC
