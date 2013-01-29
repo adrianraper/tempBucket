@@ -9,6 +9,10 @@ class PublicationUnitTransform extends XmlTransform {
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.PublicationUnitTransform';
 	
 	public function transform($db, $xml, $href, $service) {
+		// #154 - only do the transform for students
+		$user = $service->manageableOps->getUserById(Session::get('userID'));
+		if ($user->userType > User::USER_TYPE_STUDENT) return;
+		
 		// Register the namespace for menu xml so we can run xpath queries against it
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
