@@ -71,7 +71,7 @@
 	
 	<s:transitions>
 		<s:Transition>
-			<s:Animate target="{trapezoidTab}" duration="200">
+			<s:Animate target="{trapezoidTab}" duration="150" >
 				<s:SimpleMotionPath property="top" />			
 			</s:Animate>
 		</s:Transition>
@@ -79,7 +79,7 @@
     
 	<!-- layer 2: fill -->
 	<!--- @private -->
-	<s:Group id="trapezoidTab"  y="10" left="0" right="0" top="10" top.selectedStates="0" bottom="0" filters="{dropShadowFilter}">
+	<s:Group id="trapezoidTab"  y="10" left="0" right="0" top="6" top.selectedStates="0" bottom="0" filters="{dropShadowFilter}">
 		<s:Path left="0" right="0" top="0" bottom="0" >
 			<s:data>M110.999 37.2583C111.778 39.3154 110.616 40.999 108.416 40.999L4 40.999C1.7998 40.999 0 39.1992 0 36.999L0 4C0 1.7998 1.7998 0 4 0L92.8911 0C95.0913 0 97.5283 1.68359 98.3076 3.74072L110.999 37.2583Z</s:data>
 			<s:fill>
@@ -90,7 +90,7 @@
 			</s:fill>
 		</s:Path>
 		<s:Label id="labelDisplay"
-				 horizontalCenter="-6" top="10" fontWeight="bold" fontSize="13">
+				 horizontalCenter="-6" top="14" fontWeight="bold" fontSize="13">
 		</s:Label>
 	</s:Group>
 

@@ -61,3 +61,11 @@ calendar|DayHeaderRenderer {
 calendar|DayRenderer {
 	skinClass: ClassReference("skins.com.clarityenglish.controls.calendar.DefaultDayRendererSkin");
 }
+
+calendar|Calendar s|Button#prevMonthButton {
+	skinClass: ClassReference("skins.com.clarityenglish.controls.calendar.PreMonthButtonSkin");
+}
+
+calendar|Calendar s|Button#nextMonthButton {
+	skinClass: ClassReference("skins.com.clarityenglish.controls.calendar.NextMonthButtonSkin");
+}

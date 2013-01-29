@@ -42,6 +42,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
     xmlns:s="library://ns.adobe.com/flex/spark" 
     xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+	xmlns:header="skins.rotterdam.builder.filemanager.*"
     alpha.disabled="0.5" minWidth="89" minHeight="84">
     
     <fx:Metadata>
@@ -152,7 +153,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
         <!--- Defines the value of the headerRenderer property for the columnHeaderGroup. 
               The default is spark.skins.spark.DefaultGridHeaderRenderer -->
         <fx:Component id="headerRenderer">
-            <s:DefaultGridHeaderRenderer />
+            <header:DataGridHeaderRenderer/>
         </fx:Component>
         
         <!--- @private -->
@@ -290,7 +291,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
         
         <!--- @private -->
         <s:GridColumnHeaderGroup id="columnHeaderGroup"
-            paddingLeft="1" paddingTop="1" paddingRight="1" minHeight="21" 
+            paddingLeft="1" paddingTop="1" paddingRight="1" minHeight="26" 
             columnSeparator="{headerColumnSeparator}"
             headerRenderer="{headerRenderer}"/>
 

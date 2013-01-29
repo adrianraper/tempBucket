@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:calendar="com.clarityenglish.controls.calendar.*"
-		xmlns:sparkTree="com.sparkTree.*">
+		xmlns:sparkTree="com.sparkTree.*"
+		xmlns:widgets="skins.assets.widgets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.settings.SettingsView")]
@@ -38,11 +39,11 @@
 	<s:Label text="Course Settings" top="15" left="28" fontSize="16" fontWeight="bold"/>
 	
 	<!-- The tab bar -->
-	<s:TabBar id="tabBar" top="100" skinClass="skins.rotterdam.builder.settings.SettingTabBarSkin" left="20"/>
-	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="135"/>
+	<s:TabBar id="tabBar" top="65" left="20"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="100"/>
 	
 	<!-- Left hand side -->
-	<s:VGroup top="140" width="390" paddingLeft="18" paddingTop="22" left="10">
+	<s:VGroup top="100" width="390" paddingLeft="18" paddingTop="22" left="10">
 		<!-- Calendar settings -->
 		<s:VGroup includeIn="calendar">
 			<s:Label text="1. Select a group" fontWeight="bold" />
@@ -111,7 +112,7 @@
 	</s:VGroup>
 	
 	<!-- Right hand side -->
-	<s:VGroup top="75" left="500">
+	<s:VGroup top="110" right="0">
 		<!-- Calendar -->
 		<s:VGroup includeIn="calendar">
 			<calendar:Calendar id="calendar" enabled="{groupTree.selectedItem != null}" />
@@ -134,7 +135,8 @@
 		</s:VGroup>
 	</s:VGroup>
 		
-	<s:HGroup bottom="150" left="10" gap="20">
+	
+	<s:HGroup bottom="110" left="20" gap="20">
 		<s:Button id="backButton" label="Back" />
 		<s:Button id="saveButton" label="Save changes" />
 	</s:HGroup>

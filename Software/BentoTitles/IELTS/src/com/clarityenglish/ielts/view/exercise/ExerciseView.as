@@ -99,10 +99,11 @@ package com.clarityenglish.ielts.view.exercise {
 			super.updateViewFromXHTML(xhtml);
 			
 			dynamicView.href = href;
-			
+			trace ("exercise href: " + href);
 			// Only show the back and forward buttons if this is an action exercise (i.e. not for the pdf ebook accessed directly from the zone view)
 			// TODO: When we have real custom views this might not work anymore as it assumes anything not DynamicView.DEFAULT_VIEW isn't a real exercise
 			var exercise:Exercise = _xhtml as Exercise;
+			
 			if (exercise) {
 				var visibleValue:Boolean = (!exercise.model.view || exercise.model.view == DynamicView.DEFAULT_VIEW);
 				if (forwardButton) {

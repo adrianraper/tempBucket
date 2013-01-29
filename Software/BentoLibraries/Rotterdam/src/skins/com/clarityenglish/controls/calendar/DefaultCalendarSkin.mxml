@@ -13,20 +13,20 @@
 	</s:states>
 	
 	<s:HGroup horizontalCenter="0" verticalAlign="middle">
-		<s:Button id="prevMonthButton" label="&lt;" width="30" />
+		<s:Button id="prevMonthButton" />
 		<s:Label id="monthLabel" fontWeight="bold" />
-		<s:Button id="nextMonthButton" label="&gt;" width="30" />
+		<s:Button id="nextMonthButton" />
 	</s:HGroup>
 	
-	<s:DataGroup id="daysDataGroup" width="558" top="35" itemRenderer="com.clarityenglish.controls.calendar.DayHeaderRenderer">
+	<s:DataGroup id="daysDataGroup" width="638" top="35" itemRenderer="com.clarityenglish.controls.calendar.DayHeaderRenderer">
 		<s:layout>
-			<s:TileLayout requestedColumnCount="7" requestedRowCount="1" />
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="1" columnWidth="85"/>
 		</s:layout>
 	</s:DataGroup>
 	
-	<s:DataGroup id="dataGroup" top="55" width="558" height="396" itemRenderer="com.clarityenglish.controls.calendar.DayRenderer">
+	<s:DataGroup id="dataGroup" top="55" width="638" height="396" itemRenderer="com.clarityenglish.controls.calendar.DayRenderer">
 		<s:layout>
-			<s:TileLayout requestedColumnCount="7" requestedRowCount="6" />
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="6" columnWidth="85"/>
 		</s:layout>
 	</s:DataGroup>
 	

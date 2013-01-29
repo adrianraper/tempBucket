@@ -219,6 +219,19 @@ filemanager|FileManagerView s|Button {
 	skinClass: ClassReference("skins.rotterdam.builder.filemanager.CloudButtonSkin");
 }
 
+filemanager|FileManagerView s|Panel#settingPanel {
+	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FilePanelSkin");
+}
+
+filemanager|FileManagerView s|Button#selectButton {
+	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileSelectButtonSkin");
+}
+
+filemanager|FileManagerView s|Button#cancelButton {
+	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileCancleButtonSkin");
+}
+
+
 settings1|SettingsView {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSkin");
 }
@@ -230,3 +243,8 @@ settings1|SettingsView s|Button#saveButton {
 settings1|SettingsView s|Button#backButton {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsBackButtonSkin");
 }
+
+settings1|SettingsView s|TabBar#tabBar {
+	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingTabBarSkin");
+}
+

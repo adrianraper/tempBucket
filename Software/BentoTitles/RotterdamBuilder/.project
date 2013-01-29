@@ -19,7 +19,12 @@
 		<link>
 			<name>[source path] src</name>
 			<type>2</type>
-			<location>/Rotterdam/vendor/spark-tree/src</location>
+			<location>D:/Projectbench/Software/BentoLibraries/Rotterdam/vendor/spark-tree/src</location>
+		</link>
+		<link>
+			<name>bin-debug</name>
+			<type>2</type>
+			<location>D:/Projectbench/Software/ResultsManager/web</location>
 		</link>
 	</linkedResources>
 </projectDescription>

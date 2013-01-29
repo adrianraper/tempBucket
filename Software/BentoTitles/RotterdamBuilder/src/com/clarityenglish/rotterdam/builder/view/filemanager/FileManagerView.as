@@ -39,6 +39,7 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		[SkinPart]
 		public var AudioFilesTotal:Label;
 		
+		[Bindable]
 		private var fileListCollection:XMLListCollection;
 		private var _piechartCollection:ArrayCollection;
 		
@@ -104,7 +105,7 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 				}
 				fileListCollection.refresh();
 			}
-			
+						
 			PDFFilesTotal.text = Math.round((totalPDF/totalFile)*100).toString()+ "%";
 			ImageFilesTotal.text =  Math.round((totalImage/totalFile)*100).toString()+ "%";
 			AudioFilesTotal.text = Math.round((totalAudio/totalFile)*100).toString()+ "%";
@@ -115,7 +116,7 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			super.updateViewFromXHTML(xhtml);
 			
 			fileListCollection.source = xhtml.files.file;
-			
+
 			totalPDF = 0;
 			totalImage = 0;
 			totalAudio = 0;
