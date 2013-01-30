@@ -11,8 +11,8 @@ require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
-	echo "<h2>You  are not logged in</h2>";
-	exit(0);
+	//echo "<h2>You  are not logged in</h2>";
+	//exit(0);
 }
 
 if (!isset($_REQUEST['template']) || trim($_REQUEST['template']) == "") {
@@ -54,6 +54,9 @@ foreach ($emailArray as $email) {
 	$accountEmail = array();
 	// Pick up the full account info from the database
 	$accountEmail['data']['account'] = array_shift($dmsService->getAccounts(array($email['data']['account_id'])));
+	
+	// Has to include licence attributes
+	$accountEmail['data']['account']->licenceAttributes = $dmsService->getAccountDetails(array($email['data']['account_id']));
 	
 	// If this is an AA account, you want to talk about the generic student password, but that is NOT in T_AccountRoot
 	$accountEmail['data']['user'] = $dmsService->getFirstStudentInAccount($accountEmail['data']['account']->id);

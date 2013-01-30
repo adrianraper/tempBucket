@@ -46,7 +46,7 @@
 Please keep this email for later reference.</p>
 
             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Paying by money transfer</p>
-            <ul style="margin:0; padding:0 0 0 25px; list-style:decimal; line-height:18px;">
+            <ul style="margin:0; padding:0 0 0 25px; list-style:decimal; line-height:18px; font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px;">
              	<li style="margin:0 0 10px 0;">Locate your nearest Western Union money transfer agent. (Go to <a href="http://www.westernunion.com" target="_blank">www.westernunion.com</a>).</li>
               	<li style="margin:0 0 10px 0;">Go to the agent's office and pay the above amount in <span style="color:#0A436E; font-weight:bold;">US Dollars</span>.</li>
                 
@@ -91,7 +91,7 @@ Please keep this email for later reference.</p>
                    <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Please note that the sum received in payment must be nett of bank charges.</p>
                    
                    <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Send us an email when you have completed the payment so we know it has been sent. In the email please provide your:<br />
-                <ol style="margin:0; padding:0 0 0 25px; list-style-type: lower-roman;  line-height:18px;">
+                <ol style="margin:0; padding:0 0 0 25px; list-style-type: lower-roman;  line-height:18px; font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px;">
                 	<li>Sender name</li>
                     <li>Sender Country</li>
                     <li>Bank transaction reference number</li>

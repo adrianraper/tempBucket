@@ -15,6 +15,9 @@ function writelog($level, $message) {
 // Move into abstract service so you can use our Session class to register a handler
 if (!isset($noSession)) session_start();
 
+// Whilst this is done in amfphp globals, some scripts don't run through that
+date_default_timezone_set("UTC");
+
 // If the total manageables in the logged in account is more than this students will not be displayed and some function disabled (RM only)
 $GLOBALS['max_manageables_for_student_display'] = 5000;
 

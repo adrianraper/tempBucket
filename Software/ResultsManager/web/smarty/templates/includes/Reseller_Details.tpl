@@ -15,11 +15,11 @@
     <td width="9"></td>
     <td width="258" align="left" valign="top">
      <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Your local contact is:</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mr Markus Maciulaitis</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mr Scott Maxwell</p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">
 		Bookery Education<br />
 		Australia<br />
-		Tel: 03 9654 2883<br />
+		Tel: +61 3 9654 2883<br />
 		Email: <a href="mailto: info@bookery.com.au">info@bookery.com.au</a>	</p>   </td>
   </tr>
     <tr>
@@ -38,7 +38,7 @@
       </tr>
       <tr>
     <td width="9" height="103" ></td>
-    <td width="84"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_ues.jpg" width="46" height="88" align="right" style="margin:2px 0 0 10px;" /></td>
+    <td width="84"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_ues.jpg" width="83" height="75" align="right" style="margin:2px 0 0 10px;" /></td>
     <td width="9"></td>
     <td width="258" align="left" valign="top">
      <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Your local contact is:</p>
@@ -82,7 +82,7 @@
 		Young India Films<br />
 		India<br />
 		Tel: [91] 44-2829 5693<br />
-		Email: <a href="mailto: yif@vsnl.com">yif@vsnl.com</a>
+		Email: <a href="mailto: info@youngindiafilms.in">info@youngindiafilms.in</a>
 	  </p>  </td>
   </tr>
     
@@ -224,7 +224,7 @@
     
     <tr>
     <td width="12" height="96"></td>
-    <td width="91"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_solusi.jpg" width="82" height="74" align="right" style="margin:8px 0 0 0;" /></td>
+    <td width="91"  valign="top"><img src="http://www.clarityenglish.com/images/email/q_solusi.jpg" width="83" height="77" align="right" style="margin:8px 0 0 0;" /></td>
     <td width="10"></td>
     <td width="247" align="left" valign="top">
    
