@@ -31,17 +31,17 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		public var cancelButton:Button;
 		
 		[SkinPart]
-		public var PDFFilesTotal:Label;
+		public var pdfFilesTotal:Label;
 		
 		[SkinPart]
-		public var ImageFilesTotal:Label;
+		public var imageFilesTotal:Label;
 		
 		[SkinPart]
-		public var AudioFilesTotal:Label;
+		public var audioFilesTotal:Label;
 		
 		[Bindable]
 		private var fileListCollection:XMLListCollection;
-		private var _piechartCollection:ArrayCollection;
+		private var _pieChartCollection:ArrayCollection;
 		
 		private var _typeFilter:Array;
 		private var _typeFilterChanged:Boolean;
@@ -57,7 +57,7 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			super();
 			
 			fileListCollection = new XMLListCollection();
-			_piechartCollection = new ArrayCollection();
+			_pieChartCollection = new ArrayCollection();
 		}
 		
 		public function set typeFilter(value:Array):void {
@@ -75,8 +75,8 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			}
 		}
 		
-		public function get piechartCollection():ArrayCollection {
-			return _piechartCollection;
+		public function get pieChartCollection():ArrayCollection {
+			return _pieChartCollection;
 		}
 		
 		protected override function commitProperties():void {
@@ -106,9 +106,9 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 				fileListCollection.refresh();
 			}
 						
-			PDFFilesTotal.text = Math.round((totalPDF/totalFile)*100).toString()+ "%";
-			ImageFilesTotal.text =  Math.round((totalImage/totalFile)*100).toString()+ "%";
-			AudioFilesTotal.text = Math.round((totalAudio/totalFile)*100).toString()+ "%";
+			pdfFilesTotal.text = Math.round((totalPDF/totalFile)*100).toString()+ "%";
+			imageFilesTotal.text =  Math.round((totalImage/totalFile)*100).toString()+ "%";
+			audioFilesTotal.text = Math.round((totalAudio/totalFile)*100).toString()+ "%";
 			
 		}
 
@@ -133,9 +133,9 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 				}
 			}
 			totalFile = fileListCollection.length;
-			_piechartCollection.addItem({type: "PDF", total: totalPDF});
-			_piechartCollection.addItem({type: "Image", total: totalImage});
-			_piechartCollection.addItem({type: "Audio", total: totalAudio});
+			_pieChartCollection.addItem({type: "PDF", total: totalPDF});
+			_pieChartCollection.addItem({type: "Image", total: totalImage});
+			_pieChartCollection.addItem({type: "Audio", total: totalAudio});
 			
 		}
 		

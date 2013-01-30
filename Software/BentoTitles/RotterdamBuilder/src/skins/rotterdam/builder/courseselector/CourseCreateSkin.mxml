@@ -23,7 +23,7 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:Form skinClass="skins.rotterdam.builder.courseselector.CourseCreateFormSkin">
+	<s:Form>
 		<s:FormHeading label="Create a new course" left="16"/>
 		<s:FormItem label="Course name:" required="true" fontSize="13">
 			<s:TextInput id="captionTextInput" widthInChars="15"/>

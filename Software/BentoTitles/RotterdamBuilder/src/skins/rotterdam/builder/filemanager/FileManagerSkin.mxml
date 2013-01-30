@@ -58,7 +58,7 @@
 			</s:columns>
 		</s:DataGrid>
 		<s:Panel id="settingPanel" title="My Storage space" right="0" width="35%" height="120%" borderVisible="false" dropShadowVisible="false">
-			<mx:PieChart dataProvider="{hostComponent.piechartCollection}" scaleX="0.5" scaleY="0.5" horizontalCenter="0" verticalCenter="0" showDataTips="true">
+			<mx:PieChart dataProvider="{hostComponent.pieChartCollection}" scaleX="0.5" scaleY="0.5" horizontalCenter="0" verticalCenter="0" showDataTips="true">
 				<mx:series>
 					<mx:PieSeries field="total" nameField="type" filters="[]">
 						<mx:fills>
@@ -83,17 +83,17 @@
 		<s:VGroup verticalAlign="middle" horizontalAlign="center">
 			<s:Label text="PDF files" color="#324718" fontSize="16" fontWeight="bold"/>
 			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_pdf.png')"/>
-			<s:Label id="PDFFilesTotal" color="#324718" fontSize="16" fontWeight="bold"/>
+			<s:Label id="pdfFilesTotal" color="#324718" fontSize="16" fontWeight="bold"/>
 		</s:VGroup>
 		<s:VGroup verticalAlign="middle" horizontalAlign="center">
 			<s:Label text="Image files" color="#5C4800" fontSize="16" fontWeight="bold"/>
 			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_image.png')"/>
-			<s:Label id="ImageFilesTotal" color="#5C4800" fontSize="16" fontWeight="bold"/>
+			<s:Label id="imageFilesTotal" color="#5C4800" fontSize="16" fontWeight="bold"/>
 		</s:VGroup>
 		<s:VGroup verticalAlign="middle" horizontalAlign="center">
 			<s:Label text="Audio files" color="#14536E" fontSize="16" fontWeight="bold"/>
 			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_audio.png')"/>
-			<s:Label id="AudioFilesTotal" color="#14536E" fontSize="16" fontWeight="bold"/>
+			<s:Label id="audioFilesTotal" color="#14536E" fontSize="16" fontWeight="bold"/>
 		</s:VGroup>		
 	</s:HGroup>	
 	
