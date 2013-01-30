@@ -28,6 +28,8 @@
     <classEntry path="skins.rotterdam.unit.widgets.WidgetChrome"/>
     <classEntry path="skins.com.clarityenglish.controls.calendar.PreMonthButtonSkin"/>
     <classEntry path="skins.com.clarityenglish.controls.calendar.NextMonthButtonSkin"/>
+    <classEntry path="skins.rotterdam.ui.GreyButtonSkin"/>
+    <classEntry path="skins.rotterdam.ui.OrangeButtonSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

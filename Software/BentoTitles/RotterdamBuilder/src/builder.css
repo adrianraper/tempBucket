@@ -3,6 +3,7 @@
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace builder "com.clarityenglish.rotterdam.builder.*";
 @namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
+@namespace courseselector1 "com.clarityenglish.rotterdam.builder.view.courseselector.*";
 @namespace buildercourseselector "com.clarityenglish.rotterdam.builder.view.courseselector.*";
 @namespace courseeditor "com.clarityenglish.rotterdam.builder.view.courseeditor.*";
 @namespace title "com.clarityenglish.rotterdam.builder.view.title.*";
@@ -61,7 +62,15 @@ courseselector|CourseSelectorView {
 }
 
 courseselector|CourseSelectorView s|Button#createCourseButton {
-	skinClass:ClassReference("skins.rotterdam.builder.courseselector.CreateNewCourseButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+}
+
+courseselector1|CourseCreateView s|Button#createButton {
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+}
+
+courseselector1|CourseCreateView s|Button#cancelButton {
+	skinClass: ClassReference("skins.rotterdam.ui.GreyButtonSkin");
 }
 
 buildercourseselector|CourseCreateView {
@@ -212,7 +221,7 @@ filemanager|FileManagerView {
 
 filemanager|FileManagerView s|DataGrid#fileList {
 	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileListDataGrid");
-	alternatingRowColors: #FFFFFF, #D7EDF7;
+	alternatingRowColors: #FFFFFF, #F2F2F2;
 }
 
 filemanager|FileManagerView s|Button {
@@ -224,11 +233,11 @@ filemanager|FileManagerView s|Panel#settingPanel {
 }
 
 filemanager|FileManagerView s|Button#selectButton {
-	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileSelectButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 }
 
 filemanager|FileManagerView s|Button#cancelButton {
-	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileCancleButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.ui.GreyButtonSkin");
 }
 
 
@@ -246,5 +255,11 @@ settings1|SettingsView s|Button#backButton {
 
 settings1|SettingsView s|TabBar#tabBar {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingTabBarSkin");
+}
+
+.markingTitleWindow {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.TitleWindowSkin");
+	cornerRadius: 8;
+	borderColor: #A1A1A1;
 }
 

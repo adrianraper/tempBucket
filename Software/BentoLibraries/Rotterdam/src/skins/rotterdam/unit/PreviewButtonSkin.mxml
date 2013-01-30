@@ -75,7 +75,6 @@ in accordance with the terms of the license agreement accompanying it.
 	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
 	<s:Label id="labelDisplay"
 			 color="0X473809"
-			 color.over="0X6C5407"
 			 textAlign="center"
 			 verticalAlign="middle"
 			 maxDisplayedLines="1"

@@ -73,8 +73,7 @@
 		</s:Panel>				
 	</s:Group>
 	
-	
-	<s:HGroup visible="{this.currentState == 'select'}" paddingLeft="5" top="380">
+	<s:HGroup visible="{this.currentState == 'select'}" paddingLeft="5" top="410">
 		<s:Button id="selectButton" label="Select" enabled="{fileList.selectedItem != null}" width="80" fontSize="13"/>
 		<s:Spacer width="5"/>
 		<s:Button id="cancelButton" label="Cancel" width="80" fontSize="13"/>

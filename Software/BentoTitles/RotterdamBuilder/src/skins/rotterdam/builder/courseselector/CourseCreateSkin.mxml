@@ -23,14 +23,17 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:Form>
-		<s:FormHeading label="Create a new course" />
-		<s:FormItem label="Course name:" required="true">
-			<s:TextInput id="captionTextInput" />
+	<s:Form skinClass="skins.rotterdam.builder.courseselector.CourseCreateFormSkin">
+		<s:FormHeading label="Create a new course" left="16"/>
+		<s:FormItem label="Course name:" required="true" fontSize="13">
+			<s:TextInput id="captionTextInput" widthInChars="15"/>
 		</s:FormItem>
 	</s:Form>
 	
-	<s:Button id="createButton" label="Create" enabled="{StringUtils.trim(captionTextInput.text).length > 0}" />
-	<s:Button id="cancelButton" label="Cancel" />
+	<s:HGroup paddingLeft="15" paddingBottom="15" paddingTop="15" gap="150">
+		<s:Button id="createButton" label="Create" width="80" fontSize="12" enabled="{StringUtils.trim(captionTextInput.text).length > 0}"/>
+		<s:Button id="cancelButton" label="Cancel" width="80" fontSize="12"/>
+	</s:HGroup>
+
 	
 </s:Skin>
