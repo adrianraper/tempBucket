@@ -9,6 +9,7 @@ require_once($GLOBALS['adodb_libs']."adodb-exceptions.inc.php");
 require_once($GLOBALS['adodb_libs']."adodb.inc.php");
 
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Course.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscription.php");
@@ -18,7 +19,15 @@ require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
 
 // v3.4 This is used for internal queries
 require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");
+
+// v3.4 This is used for daily jobs
+require_once(dirname(__FILE__)."/../../classes/DailyJobObs.php");
+
+// Common ops
+require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
+require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
+require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
 
@@ -38,9 +47,15 @@ class MinimalService extends AbstractService {
 		// Set the title name for resources
 		AbstractService::$title = "rm";
 		
-		// v3.4 For internal queries - how to use a different dbHost?
+		// v3.4 For internal queries
 		$this->internalQueryOps = new InternalQueryOps($this->db);
+		
+		// gh#122 for daily jobs
+		$this->dailyJobOps = new DailyJobObs($this->db);
+		$this->courseOps = new CourseOps($this->db);
+		
 		$this->manageableOps = new ManageableOps($this->db);
+		$this->emailOps = new EmailOps($this->db);
 		
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;
@@ -60,13 +75,18 @@ class MinimalService extends AbstractService {
 			// did this check in the constructor.
 			$_SESSION['dbHost'] = $dbHost;
 			
-			// Use AbstractService
-			$this->changeDbHost($dbHost);
-			
-			// Just need to change the db for Ops that you use in the first call
-			$this->internalQueryOps->changeDB($this->db);
-			$this->manageableOps->changeDB($this->db);
+			$this->changeDB($dbHost);
 		}
+	}
+		
+	public function changeDB($dbHost) {
+		$this->changeDbHost($dbHost);
+		
+		$this->manageableOps->changeDB($this->db);
+		$this->emailOps->changeDB($this->db);
+		$this->internalQueryOps->changeDB($this->db);
+		$this->dailyJobOps->changeDB($this->db);
+		$this->courseOps->changeDB($this->db);
 	}
 	
 	public function checkDirectStartSecurityCode($securityCode) {

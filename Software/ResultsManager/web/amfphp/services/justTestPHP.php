@@ -1,9 +1,5 @@
 <?php
-$menuXMLFile = 'http://dock.contentbench/Content/RoadToIELTS2-International/menu-GeneralTraining-.xml';
-		if (stristr($menuXMLFile, '-.xml')) {
-			$menuXMLFile = preg_replace('/(\w+)-\.xml/i', '$1-FullVersion.xml', $menuXMLFile);
-		}
-
-		echo $menuXMLFile;
+$regDate = strtotime('-2 month');
+echo date('Y-m-d', $regDate);
 flush();
 exit();

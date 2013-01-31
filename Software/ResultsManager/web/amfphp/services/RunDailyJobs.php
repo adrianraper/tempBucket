@@ -60,10 +60,11 @@ function runDailyJobs($triggerDate = null) {
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
 	*/
 	
+	/*
 	// For the Road to IELTS Last Minute accounts in the merged database
 	$database = 'rack80829';
 	$roots = array(100,101,167,168,169,170,171,14028,14030,14031);
-	$usersMoved = $thisService->internalQueryOps->archiveExpiredUsers($expiryDate, $roots, $database);
+	$usersMoved = $thisService->dailyJobOps->archiveExpiredUsers($expiryDate, $roots, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
 	
 	// 2. Archive expired titles from accounts
@@ -71,11 +72,52 @@ function runDailyJobs($triggerDate = null) {
 	// We want to archive 1 month after expiry, so send in 1 month ago as the date
 	$expiryDate = date('Y-m-d', addDaysToTimestamp($triggerDate, -31));
 	$database = 'rack80829';
-	$accountsMoved = $thisService->internalQueryOps->archiveExpiredAccounts($expiryDate, $database);
+	$accountsMoved = $thisService->dailyJobOps->archiveExpiredAccounts($expiryDate, $database);
 	echo "Moved $accountsMoved titles from $database to expiry table for $expiryDate. $newLine";	
 	
-}
+	// 3. Archive older users from some roots
 
+	// We want to archive users who took their test more than a month ago from LearnEnglish accounts
+	$regDate = date('Y-m-d', addDaysToTimestamp($triggerDate, -31));
+	$roots = array(13982);
+	$rc = $thisService->dailyJobOps->archiveOldUsers($roots,$regDate);
+	echo "Archived $rc LearnEnglish level test users who registered before $regDate. $newLine";	
+	
+	// 4. EmailMe for Rotterdam
+	
+	// First task is to find units that start today, get all users in the groups the units are published for
+	// and send out the email
+	$templateID = 'EmailMeUnitStart';
+	$emailArray = $thisService->dailyJobOps->getEmailsForGroupUnitStart($expiryDate);
+	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+		// Send the emails
+		$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+		echo "Sent ".length($emailArray)." emails for units starting $expiryDate. $newLine";
+			
+	} else {
+		// Or print on screen
+		foreach($emailArray as $email) {
+			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+		}
+	}
+
+	*/
+	// Then repeat for courses that are published to start whenever a user first goes into them
+	$templateID = 'EmailMeUserFirstStart';
+	$emailArray = $thisService->dailyJobOps->getEmailsForUserFirstStart($expiryDate);
+	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+		// Send the emails
+		$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+		echo "Sent ".length($emailArray)." emails for users starting $expiryDate. $newLine";
+			
+	} else {
+		// Or print on screen
+		foreach($emailArray as $email) {
+			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+		}
+	}
+	
+}
 
 // Action
 if (isset($_REQUEST['date'])) {

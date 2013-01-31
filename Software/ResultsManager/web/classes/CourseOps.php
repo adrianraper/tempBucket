@@ -5,6 +5,8 @@ require_once(dirname(__FILE__)."/CopyOps.php");
 
 class CourseOps {
 	
+	var $db;
+
 	var $accountFolder;
 	
 	var $defaultXML = '
@@ -19,11 +21,25 @@ class CourseOps {
 	
 	function __construct($db, $accountFolder = null) {
 		$this->db = $db;
-		$this->accountFolder = $accountFolder;
-		$this->courseFilename = $this->accountFolder."/courses.xml";
-		
+		if ($accountFolder) 
+			$this->setAccountFolder($accountFolder);
+			
 		$this->copyOps = new CopyOps();
 		$this->manageableOps = new ManageableOps($db);
+	}
+	
+	/**
+	 * If you changed the db, you'll need to refresh it here
+	 * Not a very neat function...
+	 */
+	function changeDB($db) {
+		$this->db = $db;
+	} 
+	
+	// gh#122	
+	public function setAccountFolder($accountFolder) {
+		$this->accountFolder = $accountFolder;
+		$this->courseFilename = $this->accountFolder."/courses.xml";
 	}
 	
 	public function courseCreate($courseObj) {
@@ -199,5 +215,62 @@ class CourseOps {
 		
 		return $result;
 	}
+
+	// gh#122
+	public function getCourse($id) {
+		$xml = simplexml_load_file($this->accountFolder."/".$id."/menu.xml");
+		return $xml->head->script->menu->course;
+	}
+
+	// gh#122
+	public function getCourseUsersFromGroup($courseID, $groupID, $today){
+
+		$groupArray = $this->getGroupSubgroups($groupID, $courseID);
+		$groupList = implode(',', $groupArray);
+		
+		// Using the list of all groups, get the users in them
+		$sql = <<<SQL
+			SELECT u.* FROM T_User u, T_Membership m 
+			WHERE u.F_UserID = m.F_UserID
+			AND m.F_GroupID in ($groupList)
+			AND (u.F_ExpiryDate >= ? OR u.F_ExpiryDate IS NULL)
+SQL;
+		$bindingParams = array($today);
+		
+		return $this->db->Execute($sql, $bindingParams);
+	}
 	
+	// gh#122 Recursive function to get all subgroups of this group
+	// that do NOT have their own course publication date
+	private function getGroupSubgroups($startGroupID, $courseID) {
+		$subGroupIDs = array($startGroupID);
+		$sql = <<<EOD
+				SELECT F_GroupID
+				FROM T_Groupstructure
+				WHERE F_GroupParent = ?
+				AND F_GroupParent <> F_GroupID
+EOD;
+		$groupRS = $this->db->Execute($sql, array($startGroupID));
+		
+		if ($groupRS->recordCount()>0) {		
+			foreach ($groupRS->GetArray() as $group) {
+				// Only include this group if it doesn't have its own publication for this course
+				$sql = <<<EOD
+						SELECT *
+						FROM T_CourseStart
+						WHERE F_GroupID = ?
+						AND F_CourseID = ?
+EOD;
+				$courseRS = $this->db->Execute($sql, array($group['F_GroupID'], $courseID));
+				
+				if ($courseRS->recordCount() == 0) {		
+					$subGroupIDs = array_merge($subGroupIDs, $this->getGroupSubgroups($group['F_GroupID'], $courseID));
+					
+				}
+			}
+		} 
+		
+		return $subGroupIDs;
+	}
+		
 }

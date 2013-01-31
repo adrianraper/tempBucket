@@ -1,4 +1,5 @@
 <?php
+
 	if (isset($_GET['session']))
 		session_id($_GET['session']);
 		
@@ -13,8 +14,8 @@
 	$productCode = 53; // RoadToIELTS 2
 	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
-	$startControl = "$webShare/Software/ResultsManager/web/";
-
+	$startControl = "$webShare/Software/Deploy/IELTS/bin-debug/";
+	
 	// If we do not know the prefix, the page shouldn't run.
 	// The prefix might come from session variables or from the URL parameters
 	// Read URL first in case session variables are lingering
@@ -113,7 +114,7 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		var versionControl = "&version=1101";
+		var versionControl = "&version=1107";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
@@ -124,7 +125,7 @@
 		//var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
 		//argList+="&cache=<?php echo time() ?>";
 		
-		var argList="?location=<?php echo $locationFile ?>";
+		var argList="?configFile=<?php echo $locationFile ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
 		argList+=versionControl;
 
@@ -187,8 +188,7 @@
 			id: "bento",
 			name: "bento"
 		};
-		var expressInstall = startControl + "expressInstall.swf";
-		// it is not possible to eliminate the effect of browser zooming without the elements position/size within the flash movie being set to absolute pixel scale from %
+		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
 

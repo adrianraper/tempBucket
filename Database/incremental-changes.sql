@@ -728,3 +728,42 @@ VALUES (841, NOW(), 'product version and customer type added');
 ALTER TABLE `rack80829`.`T_Accounts_Expiry` 
 DROP PRIMARY KEY ;
 
+-- gh#107
+DROP TABLE IF EXISTS `rack80829`.`T_CourseStart`;
+CREATE  TABLE `rack80829`.`T_CourseStart` (
+  `F_GroupID` int(10) NOT NULL,
+  `F_RootID` int(10) NOT NULL,
+  `F_CourseID` bigint(20) NOT NULL,
+  `F_StartMethod` varchar(8),
+  `F_StartDate` datetime DEFAULT NULL,
+  `F_EndDate` datetime DEFAULT NULL,
+  `F_UnitInterval` smallint(5) DEFAULT NULL,
+  `F_SeePastUnits` tinyint(4) DEFAULT 1,
+  PRIMARY KEY (`F_GroupID`, `F_CourseID`) );
+
+DROP TABLE IF EXISTS `rack80829`.`T_UnitStart`;
+CREATE  TABLE `rack80829`.`T_UnitStart` (
+  `F_GroupID` int(10) NOT NULL,
+  `F_RootID` int(10) NOT NULL,
+  `F_CourseID` bigint(20) NOT NULL,
+  `F_UnitID` bigint(20) NOT NULL,
+  `F_StartDate` datetime NOT NULL,
+  PRIMARY KEY (`F_GroupID`, `F_CourseID`, `F_UnitID`) );
+
+-- Testing data
+INSERT T_CourseStart VALUES
+(21560,163,319104163123193047,'group',7,'2013-01-17',null,1);
+INSERT T_UnitStart VALUES
+(21560,163,319104163123193047,319104389804193040,'2013-01-17');
+INSERT T_CourseStart VALUES
+(30255,163,319104163123193047,'group',7,'2013-01-17',null,1);
+INSERT T_UnitStart VALUES
+(30255,163,319104163123193047,319104389804193040,'2013-02-01');
+INSERT T_CourseStart VALUES
+(25078,163,319104163123193047,'user',7,'2013-01-17',null,1);
+INSERT INTO T_Session
+(`F_CourseID`,`F_CourseName`,`F_Duration`,`F_EndDateStamp`,`F_ProductCode`,`F_RootID`,`F_StartDateStamp`,`F_UserID`)
+VALUES 
+(319104163123193047,null,60,'2013-01-20 10:01:00',54,163,'2013-01-20 10:00:00',195254),
+(319104163123193047,null,60,'2013-01-15 10:01:00',54,163,'2013-01-15 10:00:00',195255);
+

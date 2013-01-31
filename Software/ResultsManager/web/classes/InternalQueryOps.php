@@ -16,8 +16,9 @@ class InternalQueryOps {
 		$this->db = $db;
 	}
 	
-	function findEmail($email) {
-		// Given an email, find it for a user and the linked root
+	// Given an email, find the user(s) and the linked root(s)
+	// I don't know what calls this that could want multiple roots returned
+	function getUsersFromEmail($email) {
 		$sql = <<<SQL
 			SELECT u.*, a.F_RootID, a.F_Name
 			FROM T_User u, T_Membership m, T_AccountRoot a
@@ -37,6 +38,27 @@ SQL;
 			}
 		} else {
 			$resultArray = array('errCode' => 100, 'data'=> $email.'-'.$GLOBALS['db']);
+		}
+		return $resultArray;
+	}
+	
+	// Given a studentID, find the user(s)
+	// I don't know what calls this that could want multiple roots returned
+	function getUsersFromStudentID($id) {
+		// Given an ID, send back the user record
+		$sql = "SELECT * FROM T_User WHERE F_StudentID=?";
+		$rc = $this->db->GetArray($sql, array($id));
+		$resultArray = array();
+		if ($rc) {
+			foreach ($rc as $result) {
+				$resultArray[] = array('studentID' => $result['F_StudentID'],
+								'password' => $result['F_Password'],
+								'email' => $result['F_Email'],
+								'registrationDate' => $result['F_RegistrationDate'],
+								'userName' => $result['F_UserName']);
+			}
+		} else {
+			$resultArray = array('errCode' => 100, 'data'=> $id.'-'.$GLOBALS['db']);
 		}
 		return $resultArray;
 	}
@@ -69,25 +91,6 @@ SQL;
 		return $subscriptions;
 	}
 	
-	function getGlobalR2IUser($id) {
-		// Given an ID, send back the user record
-		$sql = "SELECT * FROM T_User WHERE F_StudentID=?";
-		$rc = $this->db->GetArray($sql, array($id));
-		$resultArray = array();
-		if ($rc) {
-			foreach ($rc as $result) {
-				$resultArray[] = array('studentID' => $result['F_StudentID'],
-								'password' => $result['F_Password'],
-								'email' => $result['F_Email'],
-								'registrationDate' => $result['F_RegistrationDate'],
-								'userName' => $result['F_UserName']);
-			}
-		} else {
-			$resultArray = array('errCode' => 100, 'data'=> $id.'-'.$GLOBALS['db']);
-		}
-		return $resultArray;
-	}
-	
 	function updateSessionsForDeletedUsers($rootID, $productCode) {
 	
 		//AND s.F_StartDateStamp>'2010-09-07'
@@ -104,120 +107,6 @@ EOD;
 		$bindingParams = array($productCode, $rootID);
 		$rc = $this->db->Execute($sql, $bindingParams);
 		return $this->db->Affected_Rows();
-	}
-	
-	// For archiving expired users from a number of roots.
-	// Expected to be run by a daily CRON job
-	function archiveExpiredUsers($expiryDate, $roots, $database) {
-		
-		if (is_array($roots)) {
-			$rootList = implode(',', $roots);
-		} else if ($roots) {
-			$rootList = $roots;
-		} else {
-			return -1;
-		}
-		$bindingParams = array($expiryDate);
-			
-		// Find all the users who we want to expire
-		// Note you can't pass rootList in bindingParams as it appears as a quoted string in that case
-		$sql = <<<SQL
-			SELECT * FROM $database.T_User u, $database.T_Membership m 
-			WHERE u.F_ExpiryDate <= ?
-			AND u.F_UserID = m.F_UserID
-			AND m.F_RootID in ($rootList)
-SQL;
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		// Loop round the recordset, inserting to *_Expiry then deleting the related records for each userID
-		if ($rs->RecordCount() > 0) {
-			while ($dbObj = $rs->FetchNextObj()) {
-				
-				$this->db->StartTrans();
-				
-				$userID = $dbObj->F_UserID;
-				$bindingParams = array($userID);
-				
-				$sql = <<<SQL
-					INSERT INTO $database.T_Membership_Expiry
-					SELECT * FROM $database.T_Membership 
-					WHERE F_UserID = ?;
-SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				$sql = <<<SQL
-					DELETE FROM $database.T_Membership
-					WHERE F_UserID = ?;
-SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				
-				$sql = <<<SQL
-					INSERT INTO $database.T_Session_Expiry
-					SELECT * FROM $database.T_Session 
-					WHERE F_UserID = ?;
-SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				$sql = <<<SQL
-					DELETE FROM $database.T_Session
-					WHERE F_UserID = ?;
-SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				
-				$sql = <<<SQL
-					INSERT INTO $database.T_Score_Expiry
-					SELECT * FROM $database.T_Score 
-					WHERE F_UserID = ?;
-SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				$sql = <<<SQL
-					DELETE FROM $database.T_Score
-					WHERE F_UserID = ?;
-SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				
-				$sql = <<<SQL
-					INSERT INTO $database.T_User_Expiry
-					SELECT * FROM $database.T_User 
-					WHERE F_UserID = ?;
-SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				$sql = <<<SQL
-					DELETE FROM $database.T_User
-					WHERE F_UserID = ?;
-SQL;
-				$rc = $this->db->Execute($sql, $bindingParams);
-				
-				$this->db->CompleteTrans();
-			}
-		}
-		
-		// send back the number of archived users
-		return $rs->RecordCount();
-		
-	}
-	
-	// To delete records from T_Accounts when the licence has expired and move them to archive table
-	function archiveExpiredAccounts($expiryDate, $database) {
-		
-		// copy the expired records to the expiry tables
-		// first records from T_Accounts
-		$sql = <<<SQL
-			INSERT INTO $database.T_Accounts_Expiry
-			SELECT * FROM $database.T_Accounts 
-			WHERE F_ExpiryDate <= ?
-SQL;
-		$bindingParams = array($expiryDate);
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		// Then delete these records
-		$sql = <<<SQL
-			DELETE FROM $database.T_Accounts 
-			WHERE F_ExpiryDate <= ?
-SQL;
-		$rs = $this->db->Execute($sql, $bindingParams);
-
-		// send back the number of deleted users
-		return $this->db->Affected_Rows();
-		
 	}
 	
 	// To merge users from one database into another
@@ -303,4 +192,5 @@ SQL;
 		// so archive records that have no active F_UserID. OK, SQL written
 		
 	}
+		
 }

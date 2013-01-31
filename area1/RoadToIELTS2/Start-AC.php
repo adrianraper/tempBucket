@@ -14,7 +14,7 @@
 	$productCode = 52; // RoadToIELTS 2
 	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
-	$startControl = "$webShare/Software/ResultsManager/web/";
+	$startControl = "$webShare/Software/Deploy/IELTS/bin-debug/";
 	
 	// If we do not know the prefix, the page shouldn't run.
 	// The prefix might come from session variables or from the URL parameters
@@ -114,7 +114,7 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		var versionControl = "&version=1097";
+		var versionControl = "&version=1107";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
@@ -125,7 +125,7 @@
 		//var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
 		//argList+="&cache=<?php echo time() ?>";
 		
-		var argList="?location=<?php echo $locationFile ?>";
+		var argList="?configFile=<?php echo $locationFile ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
 		argList+=versionControl;
 

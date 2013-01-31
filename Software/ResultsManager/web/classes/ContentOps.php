@@ -1194,8 +1194,8 @@ EOD;
 			//NetDebug::trace("ContentOps: course=".$course->name);
 				
 			$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
-			//issue:#23
-			$course-> totalUnits = count ($course-> units);
+			//gh#23
+			$course->totalUnits = count($course-> units);
 				
 			if ($course->id != null) { // Ticket #104 - don't add content with missing id
 				if ($generateMaps) {
@@ -1325,8 +1325,8 @@ EOD;
 					} else {
 						$subFolder = $folder."/".$courseXML->getAttribute("courseFolder")."/".$courseXML->getAttribute("subFolder");
 						$course-> units = $this->_buildUnitsFromFile($subFolder, $courseXML->getAttribute("scaffold"), $course, $generateMaps, $courseType);
-						//issue:#23
-						$course-> totalUnits = count ($course-> units);
+						//gh#23
+						$course->totalUnits = count($course-> units);
 					}
 				} else {
 					// Ticket #104 - if a required attribute is missing throw an error message
@@ -1421,8 +1421,8 @@ EOD;
 				//NetDebug::trace("ContentOps: unitXML, name=".$unit->name);
 
 				$unit->exercises = $this->_buildExercises($unitXML, $unit, $generateMaps, $courseType, $groupXML);
-                //issue:#23
-				$unit-> totalExercises = count ($unit-> exercises);		
+				//gh#23
+				$unit->totalExercises = count($unit-> exercises);		
 				
 				if ($unit->id != null) { // Ticket #104 - don't add content with missing id
 					if ($generateMaps) {
@@ -1633,7 +1633,8 @@ EOD;
 			//$partialReturn['languageCode'] = $rs['F_LanguageCode'];
 		}
 		$partialReturn['languageCode'] = $rs['F_LanguageCode'];
+		//$partialReturn['productVersion'] = $rs['F_ProductVersion']; //Added by Dicky, 14/01/2013
 		return $partialReturn;
 	}
 }
-?>
+

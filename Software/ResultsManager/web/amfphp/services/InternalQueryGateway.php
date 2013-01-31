@@ -30,6 +30,9 @@ function loadAPIInformation() {
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getSubscriptionRecords","startDate":"2012-05-01","dbHost":2}';
 	//$inputData = '{"method":"mergeDatabases","dbHost":2}';
+	//$inputData = '{"method":"archiveOldUsers","rootID":13982,"registrationDate":"-2 month","dbHost":2}';
+	$inputData = '{"method":"emailMeByGroup","xdate":"2013-01-17","dbHost":2}';
+	//$inputData = '{"method":"emailMeByUser","date":"2013-01-15","dbHost":2}';
 	
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
@@ -105,26 +108,111 @@ try {
 	//echo "loaded API";
 	
 	// You might want a different dbHost which you have now got - so override the settings from config.php
-	if ($GLOBALS['dbHost'] != $apiInformation->dbHost)
-		$thisService->changeDB($apiInformation->dbHost);
+	if ($GLOBALS['dbHost'] != $apiInformation['dbHost'])
+		$thisService->changeDB($apiInformation['dbHost']);
 	
 	switch ($apiInformation['method']) {
 		case 'getGlobalR2IUser':
-			$rc = $thisService->internalQueryOps->getGlobalR2IUser($apiInformation['id']);
+			$rc = $thisService->internalQueryOps->getUsersFromStudentID($apiInformation['id']);
 			break;
 		case 'updateSessionsForDeletedUsers':
 			$rc = $thisService->internalQueryOps->updateSessionsForDeletedUsers($apiInformation['rootID']);
 			break;
 		case 'findEmail':
-			$rc = $thisService->internalQueryOps->findEmail($apiInformation['email']);
+			$rc = $thisService->internalQueryOps->getUsersFromEmail($apiInformation['email']);
 			break;
+			
+		case 'archiveOldUsers':
+			if (!isset($apiInformation['rootID']))
+				throw new Exception("No rootID has been sent");
+			if (isset($apiInformation['registrationDate'])) {
+				$regDate = strtotime($apiInformation['registrationDate']);
+				if (!$regDate)
+					throw new Exception("Invalid date");
+			} else {
+				$regDate = time();
+			}
+			$rc = $thisService->dailyJobOps->archiveOldUsers(array($apiInformation['rootID']),date('Y-m-d',$regDate));
+			break;
+			
 		case 'getSubscriptionRecords':
 			//echo 'startDate='.$apiInformation['startDate'];
 			$rc['subscriptions'] = $thisService->internalQueryOps->getSubscriptions($apiInformation['startDate']);
 			break;
+			
+		// The following is very specific to the one time we merged two databases
 		case 'mergeDatabases':
 			$rc = $thisService->internalQueryOps->mergeDatabases();
 			break;
+			
+		// For testing EmailMe - normally run from RunDailyJobs
+		case 'emailMeByGroup':
+			$templateID = 'EmailMeUnitStart';
+			if (isset($apiInformation['date'])) {
+				$dateStamp = strtotime($apiInformation['date']);
+				if (!$dateStamp)
+					throw new Exception("Invalid date");
+			} else {
+				$dateStamp = time();
+			}
+			$date = date('Y-m-d', $dateStamp);
+			$emailArray = $thisService->dailyJobOps->getEmailsForGroupUnitStart($date);
+			if (count($emailArray) > 0) {
+				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+					// Send the emails
+					$thisService->emailOps->sendEmails("", $templateID, $emailArray);
+						
+				} else {
+					// Or print on screen
+					$newLine = '<br/>';
+					foreach($emailArray as $email) {
+						echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+					}
+					
+				}
+				$rc['count'] = count($emailArray);
+				$rc['date'] = $date;
+				$rc['comment'] = 'sent emails to group users';
+				
+			} else {
+				$rc = 0;
+			}
+			break;
+			
+		// For testing EmailMe - normally run from RunDailyJobs
+		case 'emailMeByUser':
+			$templateID = 'EmailMeUnitStart';
+			if (isset($apiInformation['date'])) {
+				$dateStamp = strtotime($apiInformation['date']);
+				if (!$dateStamp)
+					throw new Exception("Invalid date");
+			} else {
+				$dateStamp = time();
+			}
+			$date = date('Y-m-d', $dateStamp);
+			$emailArray = $thisService->dailyJobOps->getEmailsForUserUnitStart($date);
+			if (count($emailArray) > 0) {
+				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+					// Send the emails
+					$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
+						
+				} else {
+					// Or print on screen
+					$newLine = '<br/>';
+					foreach($emailArray as $email) {
+						echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
+					}
+					
+				}
+				$rc['count'] = count($emailArray);
+				$rc['date'] = $date;
+				$rc['comment'] = 'sent emails to individual users';
+				
+			} else {
+				$rc = 0;
+			}
+			break;
+			
 	}
 	
 	if (isset($rc['errCode']) && intval($rc['errCode']) > 0) {

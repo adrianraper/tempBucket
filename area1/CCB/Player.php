@@ -13,7 +13,7 @@
 	$productCode = 54; // Rotterdam
 	$swfName = 'Player.swf';
 	$webShare = '';
-	$startControl = "$webShare/Software/BentoTitles/RotterdamPlayer/bin-debug/";
+	$startControl = "$webShare/Software/Deploy/RotterdamPlayer/bin-debug/";
 	$locationFile = "configPlayer.xml";
 
 	// If we do not know the prefix, the page shouldn't run.

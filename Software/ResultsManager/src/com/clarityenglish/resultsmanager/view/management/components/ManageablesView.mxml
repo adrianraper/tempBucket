@@ -619,6 +619,10 @@
 				} else {
 					userDescriptor = item.name;
 				}
+				// gh#122 add email if present
+				if (item.email)
+					userDescriptor += ' (' + item.email + ')';
+				
 				// Is this you?
 				//MonsterDebugger.trace(this, "user name=" + item.name + " id=" + item.userID + " me=" + Constants.userID);
 				if (item.userID == Constants.userID) {
