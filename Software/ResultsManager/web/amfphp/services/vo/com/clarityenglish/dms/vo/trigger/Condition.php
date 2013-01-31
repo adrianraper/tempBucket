@@ -67,7 +67,9 @@ class Condition {
 		if (isset($conditionArray['accountType'])) 
 			$this->accountType = $conditionArray['accountType'];
 		if (isset($conditionArray['customerType'])) 
-			$this->accountType = $conditionArray['customerType'];
+			$this->customerType = $conditionArray['customerType'];
+		if (isset($conditionArray['notCustomerType'])) 
+			$this->notCustomerType = $conditionArray['notCustomerType'];
 		if (isset($conditionArray['accountStatus'])) 
 			$this->accountStatus = $conditionArray['accountStatus'];
 		if (isset($conditionArray['notAccountStatus'])) 

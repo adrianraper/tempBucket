@@ -87,7 +87,7 @@
 	<p style="margin:0 0 10px 0;">Use the following direct {if $multipleTitles=='true'}links{else}link{/if} to access the programs through your barcode page:</p>
 	{foreach name=orderDetails from=$account->titles item=title}
 		{if !$title->name|stristr:"Results Manager" && !$title->name|stristr:"Practice Centre" && $title->productCode!='3' && $title->productCode!='12' && $title->productCode!='13'}
-			<p style="margin:0 0 10px 0;"><a href="http://www.ClarityEnglish.com/library/{$account->prefix}/index.php?pc={$title->productCode}" target="_blank">http://www.ClarityEnglish.com/library/{$account->prefix}/index.php?pc={$title->productCode}</a>
+			<p style="font-size: 11px; margin:0 0 10px 0;">{$title->name}<br/><a href="http://www.ClarityEnglish.com/library/{$account->prefix}/index.php?pc={$title->productCode}" target="_blank">http://www.ClarityEnglish.com/library/{$account->prefix}/index.php?pc={$title->productCode}</a>
 		{/if}
 	{/foreach}
 {else}
@@ -102,7 +102,7 @@
 	<p>On this page, if your IP matches the range {$IPrange}, you will go straight through to the program. If not, you have to type a barcode. 
 	This must match the pattern:<br/>{$barcode}.</p>
 {elseif $hasIP == 'true'}
-	<p>You will only gain access to the program if your IP (directly or through a proxy) matches {$IPrange}.</p>
+	<p>You will only gain access to the program if your IP (directly or through a proxy) matches the range {$IPrange}.</p>
 {else}
 	<div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0; border:2px solid">
 		<p>IMPORTANT NOTE:
@@ -110,8 +110,9 @@ A direct link must only be pasted in a password-protected area of your website.
 This is to protect your licence and to prevent access from unlicensed learners. If you have any queries about this, please contact us or check the online support pages.</p>
 	</div>
 {/if}
-<p>You can also use the following URL for administrators to access Results Manager.<br />
-<a href="http://www.ClarityEnglish.com/area1/ResultsManager/Start.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/ResultsManager/Start.php?prefix={$account->prefix}</br></a></p>
+<p style="margin:10px 0 0 0;">You can also use the following URL to access Results Manager to see usage stats.</p>
+<p style="font-size: 11px;"><a href="http://www.ClarityEnglish.com/area1/ResultsManager/Start.php?prefix={$account->prefix}" target="_blank">http://www.ClarityEnglish.com/area1/ResultsManager/Start.php?prefix={$account->prefix}</br></a></p>
+<p style="margin:10px 0 0 0;">Please see the FAQ on our library support site for more information, or email us.</p>
 
 <!-- 
 -- 5. Promotional materials

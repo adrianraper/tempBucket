@@ -84,6 +84,12 @@ class TriggerOps {
 					$accountConditions["expiryDate"] = null;
 				}
 				if (isset($trigger->condition->accountType)) $accountConditions["accountType"] = $trigger->condition->accountType;
+				// Library - if you don't specifically set a customer type, assume customer type must be null or 0
+				if (isset($trigger->condition->customerType)) {
+					$accountConditions["customerType"] = $trigger->condition->customerType;
+				} else {
+					$accountConditions["customerType"] = 0;
+				}
 				// v3.7 The trigger system should ignore accountStatus=suspended (3) unless specifically set
 				if (isset($trigger->condition->accountStatus)) {
 					$accountConditions["accountStatus"] = $trigger->condition->accountStatus;

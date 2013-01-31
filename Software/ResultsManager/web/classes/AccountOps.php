@@ -184,7 +184,14 @@ SQL;
 						$selectBuilder->addWhere("a.F_AccountType = '".$value."'");
 						break;
 					case 'customerType':
-						$selectBuilder->addWhere("a.F_CustomerType = '".$value."'");
+						if ($value == 0) {
+							$selectBuilder->addWhere("(a.F_CustomerType = 0 OR a.F_CustomerType is null)");
+						} else {
+							$selectBuilder->addWhere("a.F_CustomerType = '".$value."'");
+						}
+						break;
+					case 'notCustomerType':
+						$selectBuilder->addWhere("NOT a.F_CustomerType = '".$value."'");
 						break;
 					case 'accountStatus':
 						$selectBuilder->addWhere("a.F_AccountStatus = '".$value."'");
@@ -358,7 +365,7 @@ SQL;
 		//throw new Exception($selectBuilder->toSQL());
 		$sql = $selectBuilder->toSQL();
 		//NetDebug::trace($sql);
-		// echo $sql;
+		echo $sql;
 		//$accountsRS = $this->db->Execute($selectBuilder->toSQL($sql)); 
 		$accountsRS = $this->db->Execute($sql); 
 		//NetDebug::trace("accounts=".$accountsRS->RecordCount());

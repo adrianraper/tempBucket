@@ -302,6 +302,8 @@ $testingTriggers .= "trial reminders";
 $testingTriggers .= "EmailMe";
 //$testingTriggers = "justThese";
 
+$fixedDateShift = 0;
+
 // The use of F_Frequency doesn't make any sense at the moment. Everything is simply running on a daily basis.
 // This is where I can elect to run weekly or monthly triggers
 // Is today the first of the month?
@@ -339,7 +341,7 @@ if (stripos($testingTriggers, "subscription reminders") !== false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 if (stripos($testingTriggers, "usage stats") !== false) {
@@ -348,7 +350,7 @@ if (stripos($testingTriggers, "usage stats") !== false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 if (stripos($testingTriggers, "support") !== false) {
@@ -357,7 +359,7 @@ if (stripos($testingTriggers, "support") !== false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 // This sends emails about an account to Clarity or the reseller
@@ -368,7 +370,7 @@ if (stripos($testingTriggers, "quotations")!==false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $internalTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 if (stripos($testingTriggers, "EmailMe")!==false) {
@@ -377,7 +379,7 @@ if (stripos($testingTriggers, "EmailMe")!==false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 if (stripos($testingTriggers, "justThese")!==false) {
@@ -386,7 +388,7 @@ if (stripos($testingTriggers, "justThese")!==false) {
 	if (isset($_REQUEST['date'])) {
 		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), intval($_REQUEST['date']))); // 1=tomorrow, -1=yesterday
 	} else {
-		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), 0)); // today
+		runTriggers($msgType, $subscriptionTriggers, addDaysToTimestamp(time(), $fixedDateShift)); // today
 	}
 }
 
