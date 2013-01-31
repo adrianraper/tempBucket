@@ -42,8 +42,8 @@ $accounts = $dmsService->getAccounts($accountIDArray, $conditions);
 
 // Change output format
 if (stristr('account_mail_merge,account_export',$template)) {
-	header("Content-Type: text/csv; charset=\"utf-8\"");
-	header("Content-Disposition: attachment; filename=\"DMSAccountMailMerge.csv\"");
+	header("Content-Type: text/txt; charset=\"utf-8\"");
+	header("Content-Disposition: attachment; filename=\"DMSAccountMailMerge.txt\"");
 }
 echo $dmsService->templateOps->fetchTemplate("dms_reports/".$template, array("accounts" => $accounts));
 
