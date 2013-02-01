@@ -37,7 +37,7 @@ class PublicationUnitTransform extends XmlTransform {
 				  	   "AND F_CourseID = ? ".
 					   "AND F_StartDate <= DATE(NOW()) ".
 					   "ORDER BY F_StartDate";
-				$results = $db->GetArray($sql, array(Session::get('groupID'), Session::get('rootID'), $course['id']));
+				$results = $db->GetArray($sql, array($courseStartObj['F_GroupID'], Session::get('rootID'), $course['id']));
 				
 				// If see past units is off, then we are only interested in the last available unit (if there is one)
 				if (!$courseStartObj['F_SeePastUnits'])
