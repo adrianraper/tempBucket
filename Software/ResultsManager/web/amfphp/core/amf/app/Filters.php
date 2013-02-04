@@ -102,6 +102,9 @@ function authenticationFilter (&$amf) {
 		//Fix for godaddy not allowing ini_get
 		$sessionName = "PHPSESSID";
 	}
+	
+	if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
+	
 	session_start();
 	$session_id = session_id();
 	if(!strpos($_SERVER['QUERY_STRING'], $session_id) !== FALSE)

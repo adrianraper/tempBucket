@@ -1,5 +1,5 @@
 <?php
-if ($_GET['PHPSESSID']) session_id($_GET['PHPSESSID']); // GH #32
+if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
 
 require_once(dirname(__FILE__)."/../../config.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
@@ -47,8 +47,9 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 			// gh#104 - if this is an image then resize it to width 450 (for now)
 			$image = new Imagick($mediaFolder."/".$filename);
 			$image->scaleimage(450, 0);
-			$size = $image->getImageLength();
+			
 			$image->writeimage();
+			$size = $image->getImageLength();
 			$image->destroy();
 			break;
 		case "application/pdf":
