@@ -13,8 +13,6 @@
 /shared
 /shares
 /ServerStuff
-/Software/BentoLibraries/Rotterdam/bin
-/Software/BentoTitles/IELTSIPadTester
 bin-debug
 bin-debug-temp
 bin-release
@@ -34,4 +32,3 @@ logs
 /Software/ResultsManager/web/smarty/templates_c/
 /Software/ResultsManager/html-template
 /Software/ResultsManager/web/ResultsManager.swf
-/Software/BentoTitles/RotterdamBuilder/.project

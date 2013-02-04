@@ -13,7 +13,7 @@
 	//$productCode = 54; // Rotterdam
 	$swfName = 'Builder.swf';
 	$webShare = '';
-	$startControl = "$webShare/Software/Deploy/RotterdamBuilder/bin-debug/";
+	$startControl = "$webShare/Software/BentoTitles/RotterdamBuilder/bin-debug/";
 	$locationFile = "configBuilder.xml";
 
 	// If we do not know the prefix, the page shouldn't run.
