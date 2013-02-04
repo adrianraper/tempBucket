@@ -390,6 +390,17 @@ package com.clarityenglish.rotterdam.view.settings {
 		}
 		
 		private function areSettingsValid(group:com.clarityenglish.common.vo.manageable.Group):Boolean {
+			var results:XMLList = course.publication.group.(@id == group.id);
+			if (results && results.length() > 0) {
+				var result:XML = results[0];
+				if (result.hasOwnProperty("@id") &&
+					result.hasOwnProperty("@seePastUnits") &&
+					result.hasOwnProperty("@unitInterval") &&
+					result.hasOwnProperty("@startDate") &&
+					result.hasOwnProperty("@endDate")) {
+					return true;
+				}
+			}
 			return false;
 		}
 		
