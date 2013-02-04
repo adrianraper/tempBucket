@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.controls.calendar.Calendar;
+	import com.clarityenglish.rotterdam.view.settings.events.SettingsEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.sparkTree.Tree;
 	
@@ -233,6 +234,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 				case groupTree:
 					groupTree.addEventListener(IndexChangeEvent.CHANGE, onCalendarTreeChange);
+					groupTree.addEventListener(SettingsEvent.CALENDER_SETTINGS_DELETE, onCalendarSettingsDelete);
 					break;
 				case unitIntervalTextInput:
 					unitIntervalTextInput.restrict = "0-9";
@@ -317,6 +319,10 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		protected function onCalendarTreeChange(event:IndexChangeEvent):void {
 			invalidateProperties();
+		}
+		
+		protected function onCalendarSettingsDelete(event:SettingsEvent):void {
+			trace("Delete!");
 		}
 		
 		protected function onTabBarChange(event:IndexChangeEvent):void {

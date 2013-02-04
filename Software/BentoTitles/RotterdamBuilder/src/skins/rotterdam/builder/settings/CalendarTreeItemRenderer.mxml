@@ -4,9 +4,19 @@
 					   xmlns:mx="library://ns.adobe.com/flex/mx" 
 					   xmlns:tree="com.sparkTree.*">
 	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.view.settings.events.SettingsEvent;
+			
+			protected function onDeleteSettingsClick(event:MouseEvent):void {
+				dispatchEvent(new SettingsEvent(SettingsEvent.CALENDER_SETTINGS_DELETE, true));
+			}
+		]]>
+	</fx:Script>
+	
 	<tree:layout>
 		<s:HorizontalLayout paddingLeft="{indentation + 4}" verticalAlign="middle"
-							paddingBottom="4" paddingTop="4" paddingRight="4"/>
+							paddingBottom="4" paddingTop="4" paddingRight="7"/>
 	</tree:layout>
 	
 	<tree:DefaultDisclosureButton visible="{disclosureIconVisible}"
@@ -19,7 +29,6 @@
 	
 	<s:Spacer width="100%" />
 	
-	<s:Image source="{icon}" visible="{Boolean(icon)}"
-			 includeInLayout="{Boolean(icon)}"/>
+	<s:Button skinClass="skins.rotterdam.builder.courseselector.CourseDeleteButtonSkin" click="onDeleteSettingsClick(event)" />
 	
 </tree:TreeItemRenderer>
