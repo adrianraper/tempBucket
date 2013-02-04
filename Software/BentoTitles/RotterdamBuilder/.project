@@ -42,10 +42,5 @@
 			<type>2</type>
 			<locationURI>SDK_HOME/frameworks/projects/mobiletheme/src</locationURI>
 		</link>
-		<link>
-			<name>bin-debug</name>
-			<type>2</type>
-			<location>D:/ProjectBench/Software/BentoTitles/RotterdamBuilder/bin-debug</location>
-		</link>
 	</linkedResources>
 </projectDescription>
