@@ -6,6 +6,7 @@
 		<project>Bento</project>
 		<project>Rotterdam</project>
 		<project>csslib</project>
+		<project>OSMF</project>
 		<project>textLayout</project>
 	</projects>
 	<buildSpec>

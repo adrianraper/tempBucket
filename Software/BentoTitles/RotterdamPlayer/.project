@@ -4,9 +4,9 @@
 	<comment></comment>
 	<projects>
 		<project>Bento</project>
+		<project>Rotterdam</project>
 		<project>csslib</project>
 		<project>OSMF</project>
-		<project>Rotterdam</project>
 		<project>textLayout</project>
 	</projects>
 	<buildSpec>
@@ -42,11 +42,6 @@
 			<name>[source path] src</name>
 			<type>2</type>
 			<locationURI>SDK_HOME/frameworks/projects/mobiletheme/src</locationURI>
-		</link>
-		<link>
-			<name>bin-debug</name>
-			<type>2</type>
-			<location>D:/ProjectBench/Software/Deploy/RotterdamPlayer/bin-debug</location>
 		</link>
 	</linkedResources>
 </projectDescription>
