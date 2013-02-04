@@ -1,7 +1,9 @@
 package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.controls.calendar.Calendar;
 	import com.clarityenglish.rotterdam.view.settings.events.SettingsEvent;
+	import com.clarityenglish.rotterdam.view.settings.ui.CalendarTreeItemRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.sparkTree.Tree;
 	
@@ -18,11 +20,9 @@ package com.clarityenglish.rotterdam.view.settings {
 	import mx.events.ItemClickEvent;
 	import mx.validators.DateValidator;
 	import mx.validators.StringValidator;
-	import mx.validators.Validator;
 	
 	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StringUtils;
-	import org.davekeen.util.XmlUtils;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
@@ -71,7 +71,7 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var endDateField:DateField;
 		
 		[SkinPart]
-		public var seePastUnitsGroup:Group;
+		public var seePastUnitsGroup:spark.components.Group;
 		
 		[SkinPart]
 		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
@@ -124,7 +124,7 @@ package com.clarityenglish.rotterdam.view.settings {
 				var results:XMLList = course.publication.group.(@id == groupTree.selectedItem.id);
 				if (results.length() == 0) {
 					// Create a new group node and return it
-					course.publication.appendChild(<group id={groupTree.selectedItem.id} seePastUnits="true" />);
+					course.publication.appendChild(<group id={groupTree.selectedItem.id} />);
 					return course.publication.group.(@id == groupTree.selectedItem.id)[0];
 				} else {
 					return results[0];
@@ -233,7 +233,14 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				case groupTree:
-					groupTree.addEventListener(IndexChangeEvent.CHANGE, onCalendarTreeChange);
+					var itemRenderer:ClassFactory = new ClassFactory(CalendarTreeItemRenderer);
+					itemRenderer.properties = {
+						hasSettings: hasSettings,
+						areSettingsValid: areSettingsValid
+					};
+					groupTree.itemRenderer = itemRenderer;
+					
+					groupTree.addEventListener(IndexChangeEvent.CHANGE, function(e:Event):void { invalidateProperties(); });
 					groupTree.addEventListener(SettingsEvent.CALENDER_SETTINGS_DELETE, onCalendarSettingsDelete);
 					break;
 				case unitIntervalTextInput:
@@ -250,8 +257,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							selectedPublicationGroup.@unitInterval = StringUtils.trim(e.target.text);
-							dirty.dispatch();
-							invalidateProperties();
+							calendarSettingsChanged();
 						}
 					});
 					break;
@@ -265,8 +271,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							if (e.target.selectedDate) selectedPublicationGroup.@startDate = DateUtil.dateToAnsiString(e.target.selectedDate);
-							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
-							invalidateProperties();
+							calendarSettingsChanged(false);
 						}
 					});
 					break;
@@ -280,8 +285,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							if (e.target.selectedDate) selectedPublicationGroup.@endDate = DateUtil.dateToAnsiString(e.target.selectedDate);
-							//dirty.dispatch(); - I don't know why, but the mx DateField throws a VALUE_COMMIT at a weird time so its always dirty.  Disable for now.
-							invalidateProperties();
+							calendarSettingsChanged(false);
 						}
 					});
 					break;
@@ -298,8 +302,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					pastUnitsRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
 							selectedPublicationGroup.@seePastUnits = e.target.selectedValue;
-							dirty.dispatch();
-							invalidateProperties();
+							calendarSettingsChanged();
 						}
 					});
 					
@@ -317,12 +320,13 @@ package com.clarityenglish.rotterdam.view.settings {
 			}
 		}
 		
-		protected function onCalendarTreeChange(event:IndexChangeEvent):void {
-			invalidateProperties();
-		}
-		
 		protected function onCalendarSettingsDelete(event:SettingsEvent):void {
-			trace("Delete!");
+			var results:XMLList = course.publication.group.(@id == event.group.id);
+			if (results && results.length() > 0) {
+				var result:XML = results[0];
+				delete (result.parent().children()[result.childIndex()]);
+				calendarSettingsChanged();
+			}
 		}
 		
 		protected function onTabBarChange(event:IndexChangeEvent):void {
@@ -353,6 +357,40 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		protected function onBack(event:MouseEvent):void {
 			back.dispatch();
+		}
+		
+		/**
+		 * Whenever a calendar setting is changed this is called.  It sets the settings dirty, invalidates properties (unless explicitly told not to) and refreshes
+		 * the group tree.
+		 * 
+		 * @param doInvalidateProperties
+		 */
+		private function calendarSettingsChanged(doInvalidateProperties:Boolean = true):void {
+			dirty.dispatch();
+			if (doInvalidateProperties) invalidateProperties();
+			groupTree.refreshRenderers();
+		}
+		
+		/**
+		 * A group has settings if it exists and has at least one other attribute apart from @id.  This is used by the CalendarTreeItemRenderer to figure out
+		 * what icons/buttons to display.
+		 * 
+		 * @param group
+		 */
+		private function hasSettings(group:com.clarityenglish.common.vo.manageable.Group):Boolean {
+			var results:XMLList = course.publication.group.(@id == group.id);
+			if (results && results.length() > 0) {
+				for each (var attribute:XML in results[0].attributes()) {
+					if (attribute.name() != "id")
+						return true;
+				}
+			}
+			
+			return false;
+		}
+		
+		private function areSettingsValid(group:com.clarityenglish.common.vo.manageable.Group):Boolean {
+			return false;
 		}
 		
 		/**

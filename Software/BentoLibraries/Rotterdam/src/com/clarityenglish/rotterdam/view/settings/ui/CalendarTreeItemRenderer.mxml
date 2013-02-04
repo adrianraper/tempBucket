@@ -6,10 +6,17 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.common.vo.manageable.Group;
 			import com.clarityenglish.rotterdam.view.settings.events.SettingsEvent;
 			
+			[Bindable]
+			public var hasSettings:Function;
+			
+			[Bindable]
+			public var areSettingsValid:Function;
+			
 			protected function onDeleteSettingsClick(event:MouseEvent):void {
-				dispatchEvent(new SettingsEvent(SettingsEvent.CALENDER_SETTINGS_DELETE, true));
+				dispatchEvent(new SettingsEvent(SettingsEvent.CALENDER_SETTINGS_DELETE, data as Group, true));
 			}
 		]]>
 	</fx:Script>
@@ -26,6 +33,6 @@
 	
 	<s:Spacer width="100%" />
 	
-	<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="onDeleteSettingsClick(event)" />
+	<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" visible="{hasSettings(data)}" click="onDeleteSettingsClick(event)" />
 	
 </tree:TreeItemRenderer>

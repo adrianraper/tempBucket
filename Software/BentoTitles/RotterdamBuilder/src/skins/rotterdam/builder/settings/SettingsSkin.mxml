@@ -52,8 +52,7 @@
 							dataProvider="{hostComponent.groupTreesCollection}"
 							width="300"
 							labelField="name"
-							iconFunction="getTreeIcon"
-							itemRenderer="com.clarityenglish.rotterdam.view.settings.ui.CalendarTreeItemRenderer" />
+							iconFunction="getTreeIcon" />
 			
 			<s:Spacer height="12" />
 			

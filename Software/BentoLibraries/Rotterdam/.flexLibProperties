@@ -29,8 +29,14 @@
     <classEntry path="skins.com.clarityenglish.controls.calendar.PreMonthButtonSkin"/>
     <classEntry path="skins.com.clarityenglish.controls.calendar.NextMonthButtonSkin"/>
     <classEntry path="skins.rotterdam.ui.GreyButtonSkin"/>
+<<<<<<< HEAD
     <classEntry path="skins.rotterdam.ui.OrangeButtonSkin"/>    <classEntry path="com.clarityenglish.rotterdam.view.settings.ui.CalendarTreeItemRenderer"/>
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent"/>    <classEntry path="skins.rotterdam.ui.DeleteButtonSkin"/>  </includeClasses>
+=======
+    <classEntry path="skins.rotterdam.ui.OrangeButtonSkin"/>
+    <classEntry path="skins.rotterdam.ui.DeleteButtonSkin"/>
+  </includeClasses>
+>>>>>>> 6fc62ff... Implemented the course settings delete button
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
   </includeResources>
