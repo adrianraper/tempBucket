@@ -62,8 +62,7 @@
 	</s:VGroup>
 	
 	<s:Group right="25" verticalCenter="0">
-		<s:Button id="deleteCourseButton" skinClass="skins.rotterdam.builder.courseselector.CourseDeleteButtonSkin" click="{dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, true))}"/>
+		<s:Button id="deleteCourseButton" skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="{dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, true))}"/>
 	</s:Group>
-	
 	
 </s:ItemRenderer>

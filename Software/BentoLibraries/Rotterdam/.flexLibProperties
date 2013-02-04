@@ -29,9 +29,8 @@
     <classEntry path="skins.com.clarityenglish.controls.calendar.PreMonthButtonSkin"/>
     <classEntry path="skins.com.clarityenglish.controls.calendar.NextMonthButtonSkin"/>
     <classEntry path="skins.rotterdam.ui.GreyButtonSkin"/>
-    <classEntry path="skins.rotterdam.ui.OrangeButtonSkin"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent"/>
-  </includeClasses>
+    <classEntry path="skins.rotterdam.ui.OrangeButtonSkin"/>    <classEntry path="com.clarityenglish.rotterdam.view.settings.ui.CalendarTreeItemRenderer"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent"/>    <classEntry path="skins.rotterdam.ui.DeleteButtonSkin"/>  </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
   </includeResources>

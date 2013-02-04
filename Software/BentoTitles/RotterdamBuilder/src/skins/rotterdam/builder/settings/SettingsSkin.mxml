@@ -53,7 +53,7 @@
 							width="300"
 							labelField="name"
 							iconFunction="getTreeIcon"
-							itemRenderer="skins.rotterdam.builder.settings.CalendarTreeItemRenderer" />
+							itemRenderer="com.clarityenglish.rotterdam.view.settings.ui.CalendarTreeItemRenderer" />
 			
 			<s:Spacer height="12" />
 			

@@ -15,20 +15,17 @@
 	</fx:Script>
 	
 	<tree:layout>
-		<s:HorizontalLayout paddingLeft="{indentation + 4}" verticalAlign="middle"
-							paddingBottom="4" paddingTop="4" paddingRight="7"/>
+		<s:HorizontalLayout paddingLeft="{indentation + 4}" verticalAlign="middle" paddingBottom="4" paddingTop="4" paddingRight="7"/>
 	</tree:layout>
 	
-	<tree:DefaultDisclosureButton visible="{disclosureIconVisible}"
-								  click="{toggle();}" currentState="{isOpen ? 'open' : 'closed'}"/>
+	<tree:DefaultDisclosureButton visible="{disclosureIconVisible}" click="toggle()" currentState="{isOpen ? 'open' : 'closed'}"/>
 	
-	<s:Image source="{icon}" visible="{Boolean(icon)}"
-			 includeInLayout="{Boolean(icon)}"/>
+	<s:Image source="{icon}" visible="{Boolean(icon)}" includeInLayout="{Boolean(icon)}"/>
 	
 	<s:Label id="labelDisplay" text="{label}" color="{textColor}"/>
 	
 	<s:Spacer width="100%" />
 	
-	<s:Button skinClass="skins.rotterdam.builder.courseselector.CourseDeleteButtonSkin" click="onDeleteSettingsClick(event)" />
+	<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="onDeleteSettingsClick(event)" />
 	
 </tree:TreeItemRenderer>

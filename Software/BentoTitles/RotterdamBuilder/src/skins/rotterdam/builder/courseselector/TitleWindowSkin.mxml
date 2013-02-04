@@ -223,7 +223,7 @@
                 <s:Group id="moveArea" left="0" right="0" top="0" bottom="0" />
                 
                 <!--- @copy spark.components.TitleWindow#closeButton -->
-                <s:Button id="closeButton" skinClass="skins.rotterdam.builder.courseselector.CourseDeleteButtonSkin"
+                <s:Button id="closeButton" skinClass="skins.rotterdam.ui.DeleteButtonSkin"
                           width="15" height="15" right="15" top="6" />
             </s:Group>
             
