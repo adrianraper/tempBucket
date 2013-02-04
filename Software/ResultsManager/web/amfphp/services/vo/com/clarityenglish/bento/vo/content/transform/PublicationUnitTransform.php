@@ -30,13 +30,19 @@ class PublicationUnitTransform extends XmlTransform {
 				$validUnitIds = array();
 			} else {
 				// Get the unit ids and start dates from T_UnitStart for all units that are before the current date (use SQL to strip out the time component)
-				$sql = "SELECT F_UnitID ".
-				   	   "FROM T_UnitStart ".
-				   	   "WHERE F_GroupID = ? ".
-				  	   "AND F_RootID = ? ".
-				  	   "AND F_CourseID = ? ".
-					   "AND F_StartDate <= DATE(NOW()) ".
-					   "ORDER BY F_StartDate";
+				$sql = <<<EOD
+					SELECT F_UnitID
+						FROM T_UnitStart
+						WHERE F_GroupID = ?
+						AND F_RootID = ?
+						AND F_CourseID = ?
+						AND F_StartDate <= DATE(NOW())
+						ORDER BY F_StartDate
+EOD;
+				
+				// gh#144 Remember that it is not necessarily the user's group that we are basing this on, but the
+				// most relevant group in the hierarchy
+				//$results = $db->GetArray($sql, array(Session::get('groupID'), Session::get('rootID'), $course['id']));
 				$results = $db->GetArray($sql, array($courseStartObj['F_GroupID'], Session::get('rootID'), $course['id']));
 				
 				// If see past units is off, then we are only interested in the last available unit (if there is one)
