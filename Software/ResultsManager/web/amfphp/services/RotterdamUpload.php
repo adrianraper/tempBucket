@@ -47,9 +47,7 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 			// gh#104 - if this is an image then resize it to width 450 (for now)
 			$image = new Imagick($mediaFolder."/".$filename);
 			$image->scaleimage(450, 0);
-			
 			$image->writeimage();
-			$size = $image->getImageLength();
 			$image->destroy();
 			break;
 		case "application/pdf":
@@ -57,12 +55,16 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 			$image = new Imagick($mediaFolder."/".$filename."[0]");
 			$image->setImageFormat("jpg");
 			$image->scaleimage(0, 30);
-			$size = $image->getImageLength();
 			$thumbnail = $filename."-thumb.jpg";
 			$image->writeimage($mediaFolder."/".$thumbnail);
 			$image->destroy();
 			break;
 	}
+	
+	// Get the image size by re-opening it (for some reason getImageLength doesn't work after a resize) gh#157
+	$image = new Imagick($mediaFolder."/".$filename);
+	$size = $image->getImageLength();
+	$image->destroy();
 	
 	// Finally update media.xml with the a new file node
 	$fileNode = $xml->files->addChild("file");
