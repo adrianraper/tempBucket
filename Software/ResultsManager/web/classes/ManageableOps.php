@@ -1905,5 +1905,30 @@ EOD;
 		return $rc;
 	}
 	
+	
+	/**
+	 * This returns a specific database feedback selected from a given user email, user of licencetype 5 is excluded
+	 * Dicky's implementation on 8 Jan 2013
+	 */
+	function getUserByEmail($stubUser) {
+
+		$key = $stubUser->email;
+		$sql = <<<EOD
+				SELECT DISTINCT u.F_UserID, u.F_Password, u.F_Email, a.F_LicenceType
+				FROM T_User u
+				JOIN T_Membership m ON u.F_UserID = m.F_UserID 
+				JOIN T_Accounts a ON m.F_RootID = a.F_RootID 
+				WHERE u.F_Email = ?
+				AND a.F_LicenceType <> 5
+EOD;
+
+	// change that back to 5
+		$usersRS = $this->db->Execute($sql, array($key));
+		// How can we use AuthenticationOps to make sure that the logged in teacher has rights over this user?
+		// #341 There might not be a teacher
+		//AuthenticationOps::authenticateUsers(array($user));
+		return $usersRS;
+	}
+	
 }
 ?>

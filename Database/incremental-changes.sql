@@ -136,10 +136,10 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (7,'NAS Software Inc',NULL,'sam@nas.ca',4),
 (8,'Study Plan S.L.',NULL,'stephenbe@studyplan.es',102),
 (9,'Voice Works International Pte Ltd',NULL,NULL,103),
-(10,'Win Hoe Company Limited',NULL,'kima@ms14.hinet.net,kima.huang@msa.hinet.net,kenix@clarityenglish.com',9),
-(11,'Young India Films',NULL,'youngindiafilms@airtelmail.in,yif@vsnl.com',3),
-(12,'Clarity in Hong Kong',NULL,'kenix.wong@clarityenglish.com,admin@clarityenglish.com',2),
-(13,'Clarity direct',NULL,'admin@clarityenglish.com',2),
+(10,'Win Hoe Company Limited',NULL,'kima@ms14.hinet.net,kima.huang@msa.hinet.net',9),
+(11,'Young India Films',NULL,'info@youngindiafilms.in',3),
+(12,'Clarity in Hong Kong',NULL,'sales@clarityenglish.com',2),
+(13,'Clarity direct',NULL,'sales@clarityenglish.com',2),
 (14,'P.T. Solusi Nusantara',NULL,'ervida@solusi-nusantara.com',8),
 (15,'Rosanna d o o',NULL,'rossana@t-2.net',104),
 (16,'Attica S.A.',NULL,'karine.finck@attica.fr',100),
@@ -147,7 +147,7 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (18,'Source Learning System (Thailand)',NULL,'udomchai@source.co.th',11),
 (19,'Lingualearn Ltd',NULL,'mike@lingualearn.com',105),
 (20,'Lara Kytapcilik','old name for Turkey','administrator@eltturkey.com',200),
-(21,'Clarity online subscription',NULL,'kenix.wong@clarityenglish.com',20),
+(21,'Clarity online subscription',NULL,'cynthia.lau@clarityenglish.com',20),
 (22,'Celestron Ltda',NULL,'valdenegro@celestron.cl',16),
 (23,'Sinirsiz Egitim Hizmetleri','new name for Turkey','administrator@eltturkey.com',17),
 (24,'Edict Electronics Sdn Bhd',NULL,'mary@edict.com.my',18),
@@ -156,12 +156,12 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (28,'Protea Textware',NULL,'orders@proteatextware.com.au',21),
 (29,'The Learning Institute',NULL,'kiran@the-learninginstitute.com',105),
 (30,'SchoolNet',NULL,'joe@school.hk',21),
-(31,'BeeCrazy',NULL,'kenix.wong@clarityenglish.com',21),
-(32,'HKA',NULL,'philip.lam@clarityenglish.com,cynthia.lau@clarityenglish.com,kenix.wong@clarityenglish.com',1),
-(33,'HKB',NULL,'philip.lam@clarityenglish.com,cynthia.lau@clarityenglish.com,kenix.wong@clarityenglish.com',1),
+(31,'BeeCrazy',NULL,'sales@clarityenglish.com',21),
+(32,'HKA',NULL,'philip.lam@clarityenglish.com,cynthia.lau@clarityenglish.com',1),
+(33,'HKB',NULL,'philip.lam@clarityenglish.com,cynthia.lau@clarityenglish.com',1),
 (34,'Complejo de Consultoria de Idiomas',NULL,'elizabeth.pena@etciberoamerica.com',99),
 (35,'Micromail',NULL,'diarmuid@micromail.ie',105),
-(36,'IELTSPractice.com',NULL,'alfred.ng@clarityenglish.com',20),
+(36,'IELTSPractice.com',NULL,'cynthia.lau@clarityenglish.com',20),
 (37,'Vietnam Book Promotion Service',NULL,'thao@vietnambookpromotion.com',19),
 (38,'Subramoni Iyer (Qatar)',NULL,'subramoni.iyer@windowslive.com',7);
 
@@ -367,7 +367,7 @@ VALUES
 (44,'Daily GlobalRoadToIELTS archive expired users',null,null,0,'method=dbChange&select=SELECT * FROM T_AccountRoot where F_RootID=163&update=CALL archiveExpiredUsers()',null,'2012-01-01','SQL','daily',0);
 
 -- Learn English Test Japanese
-INSERT INTO `T_Language` VALUES ('JP','Japanese');
+INSERT INTO `T_Language` VALUES ('JP','日本人 (Japanese)');
 INSERT INTO T_ProductLanguage VAUES (36, 'JP', 'ILATest-Japanese');
 
 -- 3 Jan 2012
@@ -662,7 +662,7 @@ SET F_LanguageCode='ZH'
 WHERE F_LanguageCode='ZHO';
 
 INSERT INTO T_Language VALUES
-('ZH','???? (Putonghua)');
+('ZH','简体中文 (Putonghua)');
 
 DROP TABLE IF EXISTS `T_Version`;
 CREATE TABLE `T_Version` (
@@ -728,6 +728,9 @@ VALUES (841, NOW(), 'product version and customer type added');
 ALTER TABLE `rack80829`.`T_Accounts_Expiry` 
 DROP PRIMARY KEY ;
 
+-- For R2I in subscriptions
+ALTER TABLE T_Subscription ADD COLUMN `F_ProductVersion` varchar(8) NULL DEFAULT NULL AFTER `F_LanguageCode`;
+
 -- gh#107
 DROP TABLE IF EXISTS `rack80829`.`T_CourseStart`;
 CREATE  TABLE `rack80829`.`T_CourseStart` (
@@ -767,3 +770,6 @@ VALUES
 (319104163123193047,null,60,'2013-01-20 10:01:00',54,163,'2013-01-20 10:00:00',195254),
 (319104163123193047,null,60,'2013-01-15 10:01:00',54,163,'2013-01-15 10:00:00',195255);
 
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (1107, NOW(), 'course publication dates');

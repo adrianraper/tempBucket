@@ -239,6 +239,9 @@ EOD;
 		
 		// Just pick up an existing account, or create a new one?
 		if (stristr($apiInformation->method, 'update') !== false) {
+			if (!isset($apiInformation->email) && isset($apiInformation->subscription->email))
+				$apiInformation->email = $apiInformation->subscription->email;
+				
 			return $this->accountOps->getAccountFromEmail($apiInformation->email);
 			
 		} else {
@@ -322,17 +325,14 @@ EOD;
 					//echo 'add same one but expiring on '.$newTitle-> expiryDate.'<br/>';
 					// TODO: This is not a sensible renewal set of rules
 					// Take the latest expiry date and the corresponding number of students
-					if (!$newTitle->expiryDate > $title->expiryDate) {
-						// The new title doesn't extend the existing one, so just delete it?
-						throw new Exception("Unexpected: the new title doesn't extend the old one.".$title->productCode);
-					} else {
-						// We have a matching title that somehow needs to be extended. But exactly how?
-						// Dumb answer is just to remove old title and let it be added back with the new parameters.
-						$account->removeTitles(array($title));
-					}
+					// The newTitle.expiryDate is based on offer duration from today.
+					// but the original subscription might have a few days left, so add them on
+					$timeLeft = strtotime($title->expiryDate) - strtotime(date('Y-m-d 23:59:59'));
+					$daysLeft = round($timeLeft / 86400);
+					$title->expiryDate = date('Y-m-d 23:59:59', strtotime('+'.$daysLeft.' days',strtotime($newTitle->expiryDate)));
+					$account->removeTitles(array($title));
 				}
 			}
-			// No date clash, so add this title to the account
 			$account->addTitles(array($newTitle));
 		}
 		
@@ -423,6 +423,8 @@ EOD;
 						$thisTitle->maxReporters = $apiInformation->maxReporters;
 						$thisTitle->maxAuthors = $apiInformation->maxAuthors;
 
+						$thisTitle->productVersion = $apiInformation->productVersion;  //added by Dicky, 11/01/2013
+						
 						// Starting today
 						$thisTitle->licenceStartDate = $apiInformation->subscription->startDate;
 						$thisTitle->expiryDate = $apiInformation->subscription->expiryDate;
@@ -575,18 +577,15 @@ EOD;
 	}
 
 	// Save the account object you have built up
-	public function saveAccount($account) {
+	public function saveAccount($account, $apiInformation) {
 	
-		// TODO. We don't have update yet
-		/*
 		if (stristr($apiInformation->method, 'update') !== false) {
 			//echo "try to upgrade the account<br/>";
 			$this->accountOps->updateAccounts(array($account));
 		} else {
-		*/
 			// For early testing, you might not want to actually add the account
 			$this->accountOps->addAccount($account);
-		//}
+		}
 	}
 
 	// Write the subscription record to the database and any logs that you want

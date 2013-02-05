@@ -42,7 +42,7 @@ bgColor=#ffffff align=center>
       <P style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
       We are sad to inform you that your subscription will be ending in&nbsp;7 days,<br/>on {format_ansi_date ansiDate=$expiryDate format='%d %B %Y'}.</P>
       <P style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
-      Write us a testimonial and we will extend your subscription for another week.</P></DIV></TD></TR>
+      Write us a piece of advice for other IELTS candidates and we will extend your subscription for another week.</P></DIV></TD></TR>
   <TR>
     <TD colSpan=3><IMG alt="Extend your subscription by 1 FREE WEEK!" 
       src="http://www.clarityenglish.com/images/email/ieltspractice/img_reminder_wk.jpg" 
@@ -55,22 +55,25 @@ bgColor=#ffffff align=center>
       style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; LIST-STYLE-TYPE: decimal; MARGIN: 0px 0px 15px; PADDING-LEFT: 20px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
         <LI 
         style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Write 
-        us 50 words or more on how Road to IELTS has helped you prepare for the 
-        IELTS test. 
+        us 50 words or more of advice you would give to candidates preparing for the IELTS test, and tell us why you are taking IELTS (eg: to go to  Regent's Business School, UK) and the band score you require. Click <a href="http://www.facebook.com/PractiseforIELTS" target="_blank">here</a> to check our Facebook "Tip from an IELTS candidate" for your reference.        </LI>
+        
         <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Send 
-        your photo to <A 
-        href="mailto: support@ieltspractice.com?subject=Write a testimonial with your photo to extend your subscription!">support@ieltspractice.com</A> 
-        so we can present your comment to others. 
+        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Send your photo to <A 
+        href="mailto: support@ieltspractice.com?subject=Send IELTS advice with your photo to extend your subscription!">support@ieltspractice.com</A> 
+        so we can present your comment to others. </LI>
+        
+        <LI 
+        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Like our <a href="http://www.facebook.com/PractiseforIELTS" target="_blank">IELTSpractice.com Facebook page</a> to get the daily tips and advice for IELTS preparation.</LI>
+        
+        
         <LI 
         style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">By 
-        sending your comments and photo you confirm that you have read and agree 
-        to the <a href="#terms">terms and conditions</a>. </LI>
+        sending your advice and photo you confirm that you have read and agreed to the <a href="#terms">terms and conditions</a>. </LI>
       </UL><A 
       style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px" 
-      href="mailto: support@ieltspractice.com?subject=Write a testimonial with your photo to extend your subscription!"><IMG 
+      href="mailto: support@ieltspractice.com?subject=Send IELTS advice with your photo to extend your subscription!"><IMG 
       style="BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #facc38; MARGIN: 0px 0px 15px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; COLOR: #37250d; BORDER-LEFT-WIDTH: 0px" 
-      alt="Write a testimonial with your photo to extend your subscription!" 
+      alt="Send IELTS advice with your photo to extend your subscription!" 
       src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_testimonial.jpg" 
       width=507 height=79></A> <A 
       style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px" 
@@ -105,7 +108,7 @@ bgColor=#ffffff align=center>
       style="PADDING-BOTTOM: 0px; PADDING-LEFT: 48px; PADDING-RIGHT: 48px; PADDING-TOP: 0px">
       <a name="terms"></a>
       <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 20px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #0399d6; FONT-SIZE: 18px; FONT-WEIGHT: bold; PADDING-TOP: 0px">Terms 
+      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 20px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #0399d6; FONT-SIZE: 18px; FONT-WEIGHT: bold; PADDING-TOP: 0px">*Terms 
       and Conditions</P>
       <P 
       style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Please 
@@ -155,10 +158,16 @@ bgColor=#ffffff align=center>
           purposes of their submission to and publication on IELTSpractice.com 
           and for the purposes specified above. </LI></UL>
         <LI 
+        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Only one licence extension is available per subscriber.</LI>
+        
+        <LI 
         style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">These 
         terms and conditions will be governed by the laws of England and Wales 
         and the parties agree to submit to the exclusive jurisdiction of the 
-        English Courts. </LI></UL></DIV></TD></TR>
+        English Courts. </LI>
+        
+        
+        </UL></DIV></TD></TR>
   <TR>
     <TD height=81 
     background=http://www.clarityenglish.com/images/email/ieltspractice/img_btm_bubble.jpg 

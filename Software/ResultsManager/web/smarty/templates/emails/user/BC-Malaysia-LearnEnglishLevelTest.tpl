@@ -7,7 +7,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>LearnEnglish Level Test</title>
 	<!-- <from>%22British Council Kuala Lumpur%22 %3Ckualalumpur@britishcouncil.org.my%3E</from> -->
-	<!-- <bcc>adrian.raper@clarityenglish.com, kualalumpur@britishcouncil.org.my</bcc> -->
+	<!-- <bcc>kualalumpur@britishcouncil.org.my</bcc> -->
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; background-color:#E5E5E5;">
 Dear {$user->name}<br/>

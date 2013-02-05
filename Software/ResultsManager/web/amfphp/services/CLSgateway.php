@@ -52,13 +52,12 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"addSubscription","subscriptionID":1020,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	//$inputData = '{"method":"saveSubscriptionDetails","email":"douglas.engelbert.24@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"EN","productVersion":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
 	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1040,"status":"paid"}';
-	//$inputData = '{"method":"addSubscription","subscriptionID":"1066","emailTemplateID":"CLS_welcome","paymentMethod":"paypal","loginOption":128}';
+	//$inputData = '{"method":"updateSubscription","subscriptionID":"3705","emailTemplateID":"ieltspractice_renew","paymentMethod":"paypal"}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
 		//throw new Exception("Error decoding data: ".json_last_error().': '.$inputData);
 		throw new Exception('Error decoding data: '.$inputData);
-	
 	
 	// We are expecting a method and parameters as an object
 	// First check mandatory fields exist
@@ -129,7 +128,7 @@ function returnError($errCode, $data = null) {
 			$apiReturnInfo['message'] = 'SubscriptionID is not valid, '.$data;
 			break;
 		default:
-			$apiReturnInfo['message'] = 'Unknown error';
+			$apiReturnInfo['message'] = 'Unknown error'.$data;
 			break;
 	}
 	// Write out the error to the log (we probably don't know the orderRef, but if we do, include it)
@@ -223,7 +222,7 @@ EOD;
 		
 			// Then add or update the account (skip if just testing)
 			if (!$apiInformation->transactionTest) {
-				$dmsService->subscriptionOps->saveAccount($account);
+				$dmsService->subscriptionOps->saveAccount($account, $apiInformation);
 				
 				// make the root of the changed account explicit in the log
 				AbstractService::$log->setRootID($account->id);
@@ -296,6 +295,81 @@ EOD;
 								'prefix' => $account->prefix);
 
 			break;
+			
+		case "updateSubscription":
+			// If we received a subscription ID, then pick up data from the table using that as a key
+			if ($apiInformation->subscription->id) {
+				
+				$subscriptionData = new Subscription();
+				$sql = <<<EOD
+				SELECT * FROM T_Subscription
+				WHERE F_SubscriptionID = ?
+EOD;
+				$bindingParams = array($apiInformation->subscription->id);
+				$rs = $dmsService->db->Execute($sql, $bindingParams);
+				if ($rs->RecordCount() == 1){
+					$dbObj = $rs->FetchNextObj();
+					$subscriptionData->fromDatabaseObj($dbObj);
+				} else {
+					returnError(1, 'No such subscription ID '.$apiInformation->subscription->id);
+				}
+								
+				$apiInformation->subscription = $subscriptionData;
+				
+			// If we didn't, it is an error
+			} else {
+				returnError(1, 'No subscription ID passed');
+			}
+
+			
+			// get the account (this relies on the method name having 'update' in it !)
+			$account = $dmsService->subscriptionOps->getAccountDetails($apiInformation);
+			if (!$account)
+				returnError(1, 'No account for '.$apiInformation->email);
+			
+			// Update the titles in this account
+			$oldExpiryDate = $account->titles[0]->expiryDate;
+			$dmsService->subscriptionOps->addTitlesToAccount($account, $apiInformation);
+			$newExpiryDate = $account->titles[0]->expiryDate;
+			
+			// Then add or update the account (skip if just testing)
+			if (!$apiInformation->transactionTest) {
+				$dmsService->subscriptionOps->saveAccount($account, $apiInformation);
+				
+				// make the root of the changed account explicit in the log
+				AbstractService::$log->setRootID($account->id);
+				AbstractService::$log->notice("Renewed CLS subscription=".$account->name." until $newExpiryDate, sub id=".$apiInformation->subscription->id.', for reseller='.$apiInformation->subscription->resellerID);
+				
+			} else {
+				AbstractService::$debugLog->warning("skip actually renewing for ".$account->name);
+			}
+			$apiInformation->subscription->status = 'Account updated';
+			$apiInformation->subscription->rootID = $account->id;
+			$dmsService->subscriptionOps->updateSubscriptionStatus($apiInformation);
+				
+			// If they want an email sent, do that
+			if (isset($apiInformation->emailTemplateID) && $apiInformation->emailTemplateID!='') {
+				$dmsService->subscriptionOps->sendEmail($account, $apiInformation);
+				AbstractService::$debugLog->info("sent email to ".$account->adminUser->email.' using '.$apiInformation->emailTemplateID);
+			}
+		
+			// TODO: Whilst we log the new account, we should also send our accounts team an email
+			if (!$apiInformation->transactionTest) {
+				$emailTemplateID = 'CLSgateway_accounts_notification';
+				$dmsService->subscriptionOps->sendAccountsEmail($apiInformation, $emailTemplateID);
+			}
+					
+			$apiReturnInfo = array('account' => $account,
+								'subscriptionID' => $apiInformation->subscription->id, 
+								'password' => $account->adminUser->password, 
+								'orderRef' => $apiInformation->subscription->orderRef, 
+								'CLSreference' => $account->invoiceNumber, 
+								'emailSentTo' => $account->adminUser->email, 
+								'prefix' => $account->prefix,
+								'oldExpiryDate' => $oldExpiryDate, // two additional data get passed for displaying renew_step4_success page
+								'newExpiryDate' => $newExpiryDate);
+			break;
+			
 		default:
 			returnError(1, 'Invalid method '.$apiInformation->method);
 						
