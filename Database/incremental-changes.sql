@@ -773,3 +773,12 @@ VALUES
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1107, NOW(), 'course publication dates');
+
+ALTER TABLE `rack80829`.`T_Membership_Expiry` 
+ADD UNIQUE INDEX `Index_2` (`F_GroupID` ASC, `F_UserID` ASC) 
+, ADD INDEX `Index_1` (`F_RootID` ASC) 
+, ADD INDEX `Index_3` (`F_GroupID` ASC, `F_RootID` ASC);
+
+ALTER TABLE `rack80829`.`T_User_Expiry` 
+ADD UNIQUE INDEX `Index_2` (`F_UserID` ASC) 
+, ADD INDEX `Index_1` (`F_RegistrationDate` ASC);

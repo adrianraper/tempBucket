@@ -333,7 +333,7 @@ EOD;
 					$account->removeTitles(array($title));
 				}
 			}
-			$account->addTitles(array($newTitle));
+			$account->addTitles(array($title));
 		}
 		
 		return $account;

@@ -9,7 +9,7 @@
     * |                  http://www.phpguru.org/static/license.html                  |
     * o------------------------------------------------------------------------------o
     *
-    * © Copyright 2008,2009 Richard Heyes
+    * ï¿½ Copyright 2008,2009 Richard Heyes
     */
 
 require_once(dirname(__FILE__) . '/mimePart.php');
@@ -773,11 +773,17 @@ class Rmail
             case 'smtp':
                 require_once(dirname(__FILE__) . '/smtp.php');
                 require_once(dirname(__FILE__) . '/RFC822.php');
-                $smtp = &smtp::connect($this->smtp_params);
+                // Generates PHP warnings 'Non-static method smtp::connect() should not be called statically'
+                //$smtp = &smtp::connect($this->smtp_params);
+                $smtp = new smtp($this->smtp_params);
+                $smtp->connect();
                 
                 // Parse recipients argument for internet addresses
                 foreach ($recipients as $recipient) {
-                    $addresses = Mail_RFC822::parseAddressList($recipient, $this->smtp_params['helo'], null, false);
+                   	// Generates PHP warnings 'Non-static method Mail_RFC822::parseAddressList() should not be called statically'
+                    //$addresses = Mail_RFC822::parseAddressList($recipient, $this->smtp_params['helo'], null, false);
+                    $mailRFC822 = new Mail_RFC822($recipient, $this->smtp_params['helo'], null, false);
+                    $addresses = $mailRFC822->parseAddressList();
                     foreach ($addresses as $address) {
                         $smtp_recipients[] = sprintf('%s@%s', $address->mailbox, $address->host);
                     }
@@ -789,7 +795,10 @@ class Rmail
                 // Cc and Bcc as we go
                 foreach ($this->headers as $name => $value) {
                     if ($name == 'Cc' OR $name == 'Bcc') {
-                        $addresses = Mail_RFC822::parseAddressList($value, $this->smtp_params['helo'], null, false);
+                    	// Generates PHP warnings 'Non-static method Mail_RFC822::parseAddressList() should not be called statically'
+                        //$addresses = Mail_RFC822::parseAddressList($value, $this->smtp_params['helo'], null, false);
+                        $mailRFC822 = new Mail_RFC822($value, $this->smtp_params['helo'], null, false);
+                        $addresses = $mailRFC822->parseAddressList();
                         foreach ($addresses as $address) {
                             $smtp_recipients[] = sprintf('%s@%s', $address->mailbox, $address->host);
                         }
@@ -811,7 +820,10 @@ class Rmail
                 if (isset($this->return_path)) {
                     $send_params['from'] = $this->return_path;
                 } elseif (!empty($this->headers['From'])) {
-                    $from = Mail_RFC822::parseAddressList($this->headers['From']);
+                	// Generates PHP warnings 'Non-static method Mail_RFC822::parseAddressList() should not be called statically'
+					//$from = Mail_RFC822::parseAddressList($this->headers['From']);
+                    $mailRFC822 = new Mail_RFC822($this->headers['From']);
+                    $from = $mailRFC822->parseAddressList();
                     $send_params['from'] = sprintf('%s@%s', $from[0]->mailbox, $from[0]->host);
                 } else {
                     $send_params['from'] = 'postmaster@' . $this->smtp_params['helo'];

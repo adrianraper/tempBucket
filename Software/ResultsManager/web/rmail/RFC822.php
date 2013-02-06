@@ -9,7 +9,7 @@
     * |                  http://www.phpguru.org/static/license.html                  |
     * o------------------------------------------------------------------------------o
     *
-    * © Copyright 2008,2009 Richard Heyes
+    * ï¿½ Copyright 2008,2009 Richard Heyes
     */
 
 /**
@@ -592,8 +592,12 @@ class Mail_RFC822
             }
         }
 
-        for($i=0; $i<count(@$comments); $i++){
-            $mailbox = str_replace('('.$comments[$i].')', '', $mailbox);
+        // Generating PHP error 'Undefined variable: comments'
+        //for($i=0; $i<count(@$comments); $i++){
+        if (isset($comments)) {
+	        for($i=0; $i<count($comments); $i++){
+	            $mailbox = str_replace('('.$comments[$i].')', '', $mailbox);
+	        }
         }
         $mailbox = trim($mailbox);
 
