@@ -30,13 +30,13 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		[SkinPart]
 		public var cancelButton:Button;
 		
-		[SkinPart]
+
 		public var pdfFilesTotal:Label;
 		
-		[SkinPart]
+
 		public var imageFilesTotal:Label;
 		
-		[SkinPart]
+
 		public var audioFilesTotal:Label;
 		
 		[Bindable]
@@ -47,11 +47,20 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		private var _typeFilterChanged:Boolean;
 		
 		private var _selectMode:Boolean;
+		//gh158
+		private var _popUpMode:Boolean;
 		
 		private var totalPDF:Number;
 		private var totalImage:Number;
-		private var totalAudio:Number;
+		private var totalAudio:Number;		
 		private var totalFile:Number;
+		
+		[Bindable]
+		public var textPDF:String;
+		[Bindable]
+		public var textImage:String;
+		[Bindable]
+		public var textAudio:String;
 		
 		public function FileManagerView():void {
 			super();
@@ -72,6 +81,12 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			if (_selectMode !== value) {
 				_selectMode = value;
 				invalidateSkinState();
+			}
+		}
+		
+		public function set popUpMode(value:Boolean):void {
+			if (_popUpMode !== value) {
+				_popUpMode = value;
 			}
 		}
 		
@@ -104,11 +119,7 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 					fileListCollection.filterFunction = null;
 				}
 				fileListCollection.refresh();
-			}
-						
-			pdfFilesTotal.text = Math.round((totalPDF/totalFile)*100).toString()+ "%";
-			imageFilesTotal.text =  Math.round((totalImage/totalFile)*100).toString()+ "%";
-			audioFilesTotal.text = Math.round((totalAudio/totalFile)*100).toString()+ "%";
+			}			
 			
 		}
 
@@ -137,6 +148,9 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			_pieChartCollection.addItem({type: "Image", total: totalImage});
 			_pieChartCollection.addItem({type: "Audio", total: totalAudio});
 			
+			textPDF = Math.round((totalPDF/totalFile)*100).toString()+ "%";
+			textImage = Math.round((totalImage/totalFile)*100).toString()+ "%";
+			textAudio = Math.round((totalAudio/totalFile)*100).toString()+ "%";
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -172,7 +186,14 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		}
 		
 		protected override function getCurrentSkinState():String {
-			return (_selectMode) ? "select" : super.getCurrentSkinState();
+			//gh#158
+			if (_selectMode == true) {
+				if (_popUpMode == true) {
+					return "select";
+				}
+			} 
+			return super.getCurrentSkinState();
+			//return (_selectMode) ? "select" : super.getCurrentSkinState();
 		}
 		
 	}

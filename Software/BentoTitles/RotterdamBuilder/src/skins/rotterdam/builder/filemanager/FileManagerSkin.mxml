@@ -41,15 +41,15 @@
 
 	
 	<!--<s:TextInput id="searchTextInput" />-->
-	<s:HGroup top="10">
+	<s:HGroup top="10" includeIn="normal">
 		<s:SWFLoader source="@Embed(source = '/skins/rotterdam/builder/assets/cloud/icon_resource-cloud.png')" />
 		<s:Label text="Resource Cloud" fontWeight="bold" fontSize="16" />
 	</s:HGroup>
 	
 	<s:Spacer height="10"/>
 	
-	<s:Group width="100%" top="50">
-		<s:DataGrid id="fileList" borderVisible="false" width="65%">
+	<s:Group width="100%" top.normal="50" top.select="10">
+		<s:DataGrid id="fileList" borderVisible="false" width.normal="65%" width.select="100%" height.normal="500">
 			<s:columns>
 				<s:ArrayList>
 					<s:GridColumn dataField="@filename" headerText="Name"/>
@@ -57,7 +57,7 @@
 				</s:ArrayList>
 			</s:columns>
 		</s:DataGrid>
-		<s:Panel id="settingPanel" title="My Storage space" right="0" width="35%" height="120%" borderVisible="false" dropShadowVisible="false">
+		<s:Panel id="settingPanel" title="My Storage space" right="0" width="35%" height="350" borderVisible="false" dropShadowVisible="false" includeIn="normal">
 			<mx:PieChart dataProvider="{hostComponent.pieChartCollection}" scaleX="0.5" scaleY="0.5" horizontalCenter="0" verticalCenter="0" showDataTips="true">
 				<mx:series>
 					<mx:PieSeries field="total" nameField="type" filters="[]">
@@ -73,27 +73,27 @@
 		</s:Panel>				
 	</s:Group>
 	
-	<s:HGroup visible="{this.currentState == 'select'}" paddingLeft="5" top="410">
+	<s:HGroup top="310" paddingBottom="10" includeIn="select">
 		<s:Button id="selectButton" label="Select" enabled="{fileList.selectedItem != null}" width="80" fontSize="13"/>
 		<s:Spacer width="5"/>
 		<s:Button id="cancelButton" label="Cancel" width="80" fontSize="13"/>
 	</s:HGroup>
 	
-	<s:HGroup top="380" right="10" gap="15">
+	<s:HGroup top="420" right="10" gap="15" includeIn="normal">
 		<s:VGroup verticalAlign="middle" horizontalAlign="center">
 			<s:Label text="PDF files" color="#324718" fontSize="16" fontWeight="bold"/>
 			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_pdf.png')"/>
-			<s:Label id="pdfFilesTotal" color="#324718" fontSize="16" fontWeight="bold"/>
+			<s:Label id="pdfFilesTotal" color="#324718" fontSize="16" fontWeight="bold" text="{hostComponent.textPDF}"/>
 		</s:VGroup>
 		<s:VGroup verticalAlign="middle" horizontalAlign="center">
 			<s:Label text="Image files" color="#5C4800" fontSize="16" fontWeight="bold"/>
 			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_image.png')"/>
-			<s:Label id="imageFilesTotal" color="#5C4800" fontSize="16" fontWeight="bold"/>
+			<s:Label id="imageFilesTotal" color="#5C4800" fontSize="16" fontWeight="bold" text="{hostComponent.textImage}"/>
 		</s:VGroup>
 		<s:VGroup verticalAlign="middle" horizontalAlign="center">
 			<s:Label text="Audio files" color="#14536E" fontSize="16" fontWeight="bold"/>
 			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_audio.png')"/>
-			<s:Label id="audioFilesTotal" color="#14536E" fontSize="16" fontWeight="bold"/>
+			<s:Label id="audioFilesTotal" color="#14536E" fontSize="16" fontWeight="bold" text="{hostComponent.textAudio}"/>
 		</s:VGroup>		
 	</s:HGroup>	
 	
