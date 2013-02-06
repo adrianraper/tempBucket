@@ -37,9 +37,9 @@
         <div style="border:#CCCCCC 1px solid; padding:10px; margin:0 0 15px 0;">
        	  <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Login details</p>
             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">
-            	<strong>Member name: </strong>{$api->subscription->email}</p>
+            	<strong>Login: </strong>{$account->adminUser->email}</p>
             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">
-            	<strong>Password: </strong>{$api->subscription->password}</p>
+            	<strong>Password: </strong>{$account->adminUser->password}</p>
             <a href="http://www.IELTSPractice.com" target="_blank">
             <img src="http://www.clarityenglish.com/images/email/ieltspractice/btn_learn.jpg" width="190" height="42" border="0" />
             </a>
@@ -50,8 +50,7 @@ Please keep this email for later reference.</p>
              <div style="border:#CCCCCC 1px solid; padding:10px; margin:0 0 15px 0;">
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Renewal details</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Reference number: </strong>{$api->subscription->id}</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Name: </strong>{$api->subscription->name}</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Email: </strong>{$api->subscription->email}</p>
+                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Name: </strong>{$account->adminUser->name}</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Renewal: </strong>{$api->offerName}</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Now expires on: </strong>{format_ansi_date ansiDate=$account->titles[0]->expiryDate format='%d %B %Y'}</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Payment method: </strong>{$api->paymentMethod}</p>

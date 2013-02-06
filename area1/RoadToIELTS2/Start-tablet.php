@@ -14,7 +14,7 @@
 	// $productCode = 52; // RoadToIELTS 2
 	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
-	$startControl = "$webShare/Software/ResultsManager/web/";
+	$startControl = "$webShare/Software/BentoTitles/IELTS/bin-debug/";
 
 	$locationFile = "tablet-config.xml";
 	

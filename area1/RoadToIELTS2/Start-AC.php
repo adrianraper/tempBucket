@@ -14,7 +14,7 @@
 	$productCode = 52; // RoadToIELTS 2
 	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
-	$startControl = "$webShare/Software/Deploy/IELTS/bin-debug/";
+	$startControl = "$webShare/Software/BentoTitles/IELTS/bin-debug/";
 	
 	// If we do not know the prefix, the page shouldn't run.
 	// The prefix might come from session variables or from the URL parameters
