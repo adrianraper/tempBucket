@@ -3,6 +3,7 @@ package com.clarityenglish.textLayout.elements {
 	
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
+	import flash.events.TimerEvent;
 	import flash.system.Capabilities;
 	import flash.system.Security;
 	import flash.utils.Dictionary;
@@ -40,6 +41,9 @@ package com.clarityenglish.textLayout.elements {
 		private var _fullScreenDisabled:Boolean = false;
 		
 		private var _videoDimensionsCalculated:Boolean;
+		
+		//gh#145 replay
+		private var videoPlayer:OSMFVideoPlayer;
 		
 		// #306
 		private var currentlyPlayerVideoHasFinished:Boolean;
@@ -88,8 +92,8 @@ package com.clarityenglish.textLayout.elements {
 		public function createComponent():void {
 			switch(getVideoType()) {
 				case NORMAL:
-					trace("enter createComponent");
-					var videoPlayer:OSMFVideoPlayer = new OSMFVideoPlayer();
+					//gh#145 replay
+					videoPlayer = new OSMFVideoPlayer();
 					//videoPlayer.addEventListener(MediaPlayerStateChangeEvent.MEDIA_PLAYER_STATE_CHANGE, onMediaPlayerStateChange, false, 0, true);
 					//videoPlayer.addEventListener(TimeEvent.COMPLETE, onTimeComplete, false, 0, true);
 					
@@ -120,6 +124,9 @@ package com.clarityenglish.textLayout.elements {
 					videoPlayer.autoPlay = _autoPlay;
 					
 					videoPlayer.autoDisplayFirstFrame = true;
+					
+					//gh#145 replay
+					videoPlayer.addEventListener(TimeEvent.COMPLETE, onVideoPlayerComplete);
 					
 					component = videoPlayer;
 					
@@ -164,6 +171,12 @@ package com.clarityenglish.textLayout.elements {
 		public override function removeComponent():void {
 			component.removeEventListener(FlexEvent.CREATION_COMPLETE, onVideoPlayerCreationComplete);
 			super.removeComponent();
+		}
+		
+		//gh#145 replay
+		protected function onVideoPlayerComplete(event:TimeEvent):void {
+			trace("you are here");
+			videoPlayer.endVideo = true;
 		}
 		
 		/**

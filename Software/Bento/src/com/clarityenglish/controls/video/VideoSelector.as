@@ -248,7 +248,7 @@ package com.clarityenglish.controls.video {
 		 * @param event
 		 */
 		protected function onVideoStarted(event:VideoEvent):void {
-			currentVideoStartTime = new Date();
+			currentVideoStartTime = new Date()
 		}
 		
 		/**

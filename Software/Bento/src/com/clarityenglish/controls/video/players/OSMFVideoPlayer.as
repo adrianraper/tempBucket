@@ -23,6 +23,8 @@ package com.clarityenglish.controls.video.players {
 	public class OSMFVideoPlayer extends VideoPlayer implements IVideoPlayer {
 		 
 		private static const BUFFER_TIME:int = 4;
+		//gh#145 replay
+		public var endVideo:Boolean = false;
 		
 		private var fullScreenTime:Number = NaN;
 		
@@ -58,10 +60,13 @@ package com.clarityenglish.controls.video.players {
 			event.target.bufferTime = BUFFER_TIME;
 		}
 		
-		protected function onStateChange(event:MediaPlayerStateChangeEvent):void {
+		protected function onStateChange(event:MediaPlayerStateChangeEvent):void {		
 			switch (event.state) {
 				case MediaPlayerState.READY:
 					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_READY));
+					//gh#145 replay
+					if (endVideo)
+						this.pause();
 					break;
 				case MediaPlayerState.PLAYING:
 					dispatchEvent(new VideoEvent(VideoEvent.VIDEO_PLAYED));
