@@ -49,6 +49,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 			fileManagerView.percentWidth = fileManagerView.percentHeight = 100;
 			fileManagerView.typeFilter = note.getBody().typeFilter;
 			fileManagerView.selectMode = true;
+			//gh#158
+			fileManagerView.popUpMode = true;
 			titleWindow.addElement(fileManagerView);
 			
 			// Create and centre the popup (this popup is modal)
