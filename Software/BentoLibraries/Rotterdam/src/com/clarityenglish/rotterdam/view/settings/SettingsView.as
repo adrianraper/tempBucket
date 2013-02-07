@@ -13,6 +13,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
+	import mx.collections.IViewCursor;
 	import mx.collections.ListCollectionView;
 	import mx.controls.DateField;
 	import mx.core.ClassFactory;
@@ -88,8 +89,6 @@ package com.clarityenglish.rotterdam.view.settings {
 		[Bindable]
 		public var groupTreesCollection:ListCollectionView;
 		
-		private var validators:Array;
-		
 		public var dirty:Signal = new Signal(); // GH #83
 		public var saveCourse:Signal = new Signal();
 		public var back:Signal = new Signal();
@@ -98,7 +97,6 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		public function SettingsView() {
 			super();
-			validators = [];
 		}
 		
 		// gh#152 - the settings view actually works on a copy of the course
@@ -178,6 +176,29 @@ package com.clarityenglish.rotterdam.view.settings {
 				}
 			}
 			
+			// Only enable the save button if calendar settings are valid
+			if (saveButton) {
+				// Firstly get all the groups, all the way down the tree
+				var allGroups:Array = [];
+				var cursor:IViewCursor = groupTreesCollection.createCursor();
+				while (!cursor.afterLast) {
+					var group:com.clarityenglish.common.vo.manageable.Group = cursor.current as com.clarityenglish.common.vo.manageable.Group;
+					allGroups.push(group);
+					allGroups = allGroups.concat(group.getSubGroups());
+					cursor.moveNext();
+				}
+				
+				// Now go through the groups, checking each is valid
+				var isValid:Boolean = true;
+				for each (group in allGroups) {
+					if (hasSettings(group) && !areSettingsValid(group)) {
+						isValid = false;
+						break;
+					}
+				}
+				saveButton.enabled = isValid;
+			}
+			
 			isPopulating = false;
 		}
 		
@@ -247,13 +268,6 @@ package com.clarityenglish.rotterdam.view.settings {
 					unitIntervalTextInput.restrict = "0-9";
 					unitIntervalTextInput.maxChars = 2;
 					
-					var unitIntervalValidator:NumberValidator = new NumberValidator();
-					unitIntervalValidator.source = unitIntervalTextInput;
-					unitIntervalValidator.property = "text";
-					unitIntervalValidator.required = true;
-					unitIntervalValidator.minValue = 1;
-					validators.push(unitIntervalValidator);
-					
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							selectedPublicationGroup.@unitInterval = StringUtils.trim(e.target.text);
@@ -262,12 +276,6 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				case startDateField:
-					var startDateValidator:DateValidator = new DateValidator();
-					startDateValidator.source = startDateField;
-					startDateValidator.property = "selectedDate";
-					startDateValidator.required = true;
-					validators.push(startDateValidator);
-					
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							if (e.target.selectedDate) selectedPublicationGroup.@startDate = DateUtil.dateToAnsiString(e.target.selectedDate);
@@ -276,12 +284,6 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				case endDateField:
-					var endDateValidator:DateValidator = new DateValidator();
-					endDateValidator.source = endDateField;
-					endDateValidator.property = "selectedDate";
-					endDateValidator.required = true;
-					validators.push(endDateValidator);
-					
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							if (e.target.selectedDate) selectedPublicationGroup.@endDate = DateUtil.dateToAnsiString(e.target.selectedDate);
@@ -290,22 +292,12 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				case pastUnitsRadioButtonGroup:
-					setTimeout(function():void {
-						var seePastUnitsValidator:StringValidator = new StringValidator();
-						seePastUnitsValidator.source = pastUnitsRadioButtonGroup;
-						seePastUnitsValidator.property = "selection";
-						seePastUnitsValidator.required = true;
-						//seePastUnitsValidator.listener = seePastUnitsGroup;
-						validators.push(seePastUnitsValidator);
-					}, 1000);
-					
 					pastUnitsRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
 							selectedPublicationGroup.@seePastUnits = e.target.selectedValue;
 							calendarSettingsChanged();
 						}
 					});
-					
 					break;
 				case calendar:
 					// Default the calendar to the current year and month
@@ -367,7 +359,7 @@ package com.clarityenglish.rotterdam.view.settings {
 		 */
 		private function calendarSettingsChanged(doInvalidateProperties:Boolean = true):void {
 			dirty.dispatch();
-			if (doInvalidateProperties) invalidateProperties();
+			/*if (doInvalidateProperties)*/ invalidateProperties();
 			groupTree.refreshRenderers();
 		}
 		
@@ -389,6 +381,13 @@ package com.clarityenglish.rotterdam.view.settings {
 			return false;
 		}
 		
+		/**
+		 * Determine if the settings for the given group are valid or not.  This is used by the CalendarTreeItemRenderer to figure out what icons/buttons to display,
+		 * and also to determine whether or not we are allowed to save.
+		 * 
+		 * @param group
+		 * @return 
+		 */
 		private function areSettingsValid(group:com.clarityenglish.common.vo.manageable.Group):Boolean {
 			var results:XMLList = course.publication.group.(@id == group.id);
 			if (results && results.length() > 0) {
@@ -397,7 +396,8 @@ package com.clarityenglish.rotterdam.view.settings {
 					result.hasOwnProperty("@seePastUnits") &&
 					result.hasOwnProperty("@unitInterval") &&
 					result.hasOwnProperty("@startDate") &&
-					result.hasOwnProperty("@endDate")) {
+					result.hasOwnProperty("@endDate") &&
+					DateUtil.ansiStringToDate(result.@startDate) < DateUtil.ansiStringToDate(result.@endDate)) {
 					return true;
 				}
 			}
