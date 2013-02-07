@@ -3,6 +3,11 @@
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
 				autoDrawBackground="false">
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
+		]]>
+	</fx:Script>
 	
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
@@ -57,7 +62,7 @@
 	</s:VGroup>
 	
 	<s:Group right="25" verticalCenter="0">
-		<s:Button id="deleteCourseButton" skinClass="skins.rotterdam.builder.courseselector.CourseDeleteButtonSkin" click="{parentDocument.parentDocument.onDeleteButtonClick()}"/>
+		<s:Button id="deleteCourseButton" skinClass="skins.rotterdam.builder.courseselector.CourseDeleteButtonSkin" click="{dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, true))}"/>
 	</s:Group>
 	
 	

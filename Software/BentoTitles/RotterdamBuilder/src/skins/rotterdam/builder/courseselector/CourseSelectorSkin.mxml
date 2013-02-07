@@ -8,14 +8,6 @@
 		[HostComponent("com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView")]
 	</fx:Metadata>
 	
-	<fx:Script>
-		<![CDATA[
-			public function onDeleteButtonClick():void {
-				hostComponent.deleteCourseClick();
-			}
-		]]>
-	</fx:Script>
-	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />

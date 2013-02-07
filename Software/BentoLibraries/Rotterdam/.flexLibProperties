@@ -30,6 +30,7 @@
     <classEntry path="skins.com.clarityenglish.controls.calendar.NextMonthButtonSkin"/>
     <classEntry path="skins.rotterdam.ui.GreyButtonSkin"/>
     <classEntry path="skins.rotterdam.ui.OrangeButtonSkin"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

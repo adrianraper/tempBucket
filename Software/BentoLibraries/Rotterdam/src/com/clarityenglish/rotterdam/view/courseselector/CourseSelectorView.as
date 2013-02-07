@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.courseselector {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
@@ -46,6 +47,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				case courseList:
 					courseList.dataGroup.doubleClickEnabled = true;
 					courseList.dataGroup.addEventListener(MouseEvent.CLICK, onSelectCourse);
+					courseList.addEventListener(CourseDeleteEvent.COURSE_DELETE, onDeleteCourse);
 					break;
 			}
 		}
@@ -60,7 +62,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				selectCourse.dispatch(courseList.selectedItem);
 		}
 		
-		public function deleteCourseClick():void {
+		protected function onDeleteCourse(event:CourseDeleteEvent):void {
 			if (courseList.selectedItem)
 				deleteCourse.dispatch(courseList.selectedItem);
 		}

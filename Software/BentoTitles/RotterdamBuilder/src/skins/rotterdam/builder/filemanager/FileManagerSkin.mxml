@@ -79,7 +79,7 @@
 		<s:Button id="cancelButton" label="Cancel" width="80" fontSize="13"/>
 	</s:HGroup>
 	
-	<s:HGroup top="420" right="10" gap="15" includeIn="normal">
+	<s:HGroup top="420" right="40" gap="15" includeIn="normal">
 		<s:VGroup verticalAlign="middle" horizontalAlign="center">
 			<s:Label text="PDF files" color="#324718" fontSize="16" fontWeight="bold"/>
 			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_pdf.png')"/>
