@@ -226,6 +226,11 @@ try {
 					}
 				}
 					
+				// ORS and NEEA don't set passwords, so default to the student ID
+				if (strtolower($apiInformation->registrationMethod) == 'ors-portal')
+					if (!$apiInformation->password)
+						$apiInformation->password = $apiInformation->studentID;
+						
 				$user = $loginService->addUser($apiInformation, $group);
 				AbstractService::$debugLog->info("added new user ".$user->name." expire on ".$user->expiryDate);
 				

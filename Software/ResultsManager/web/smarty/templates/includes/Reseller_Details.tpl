@@ -349,7 +349,7 @@
         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Win Hoe Company Limited<br />
 		Taiwan<br />
 		Tel: [886] 4-2451-8175  <br />
-		Email: <a href="mailto: kima@ms14.hinet.net">kima@ms14.hinet.net</a>
+		Email: <a href="mailto:kima@winhoe.com">kima@winhoe.com</a>
 	  </p> </td>
   </tr>
     

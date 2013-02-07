@@ -65,8 +65,8 @@ package com.clarityenglish.ielts.view.account {
 		[SkinPart]
 		public var countdownDisplay:CountdownDisplay;
 		
-		[SkinPart]
-		public var setTestDateLabel:Label;
+		//[SkinPart]
+		//public var setTestDateLabel:Label;
 		
 		[SkinPart]
 		public var testDateLabel:Label;
@@ -111,10 +111,10 @@ package com.clarityenglish.ielts.view.account {
 		public var currentPwdLabel:Label;
 		
 		[SkinPart]
-		public var newPsdLabel:Label;
+		public var newPwdLabel:Label;
 		
 		[SkinPart]
-		public var confirmPsdLabel:Label;
+		public var confirmPwdLabel:Label;
 		
 		[SkinPart]
 		public var myProfileLabel:Label;
@@ -194,11 +194,11 @@ package com.clarityenglish.ielts.view.account {
 						countdownLabel.text = copyProvider.getCopyForId("countDownLabel3");
 					}
 				} else {
-					countdownLabel.text = copyProvider.getCopyForId("alertEmtyDateLabel");
+					countdownLabel.text = copyProvider.getCopyForId("alertEmptyDateLabel");
 				}
 			}
 			
-			if (setTestDateLabel) setTestDateLabel.text = copyProvider.getCopyForId("setTestDateLabel");
+			//if (setTestDateLabel) setTestDateLabel.text = copyProvider.getCopyForId("setTestDateLabel");
 			if (registeredNameLabel) registeredNameLabel.text = copyProvider.getCopyForId("registeredNameLabel");
 			if (emailLabel) emailLabel.text = copyProvider.getCopyForId("emailLabel");
 			if (accountStartDateLabel) accountStartDateLabel.text = copyProvider.getCopyForId("accountStartDateLabel");
@@ -206,30 +206,33 @@ package com.clarityenglish.ielts.view.account {
 			if (startDateLabel) {
 				// gh#38
 				if (startDate) {
+					// TODO. I'm guessing that the date formatter can do the full Chinese date as well?
+					var repObject:Object = new Object();
+					var thisDate:Date = DateUtil.ansiStringToDate(startDate);
+					repObject.day = thisDate.date;
+					repObject.year = thisDate.fullYear;
 					if (CopyProxy.languageCode == "ZH") {
-						var repObject:Object = new Object();
-						repObject.day = (DateUtil.ansiStringToDate(startDate)).date;
-						repObject.month = (DateUtil.ansiStringToDate(startDate)).month + 1;
-						repObject.year = (DateUtil.ansiStringToDate(startDate)).fullYear;
-						startDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
+						repObject.month = thisDate.month + 1;
 					} else {
-						startDateLabel.text = DateUtil.formatDate(DateUtil.ansiStringToDate(startDate), 'd MMMM yyyy')
+						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
 					}
+					startDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 				}
 			}
 			
 			if (endDateLabel) {
 				// gh#38
 				if (expiryDate) {
+					repObject = new Object();
+					thisDate = DateUtil.ansiStringToDate(expiryDate);
+					repObject.day = thisDate.date;
+					repObject.year = thisDate.fullYear;
 					if (CopyProxy.languageCode == "ZH") {
-						var objReplace:Object = new Object();
-						objReplace.day = (DateUtil.ansiStringToDate(expiryDate)).date;
-						objReplace.month = (DateUtil.ansiStringToDate(expiryDate)).month + 1;
-						objReplace.year = (DateUtil.ansiStringToDate(expiryDate)).fullYear;
-						endDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", objReplace);
+						repObject.month = thisDate.month + 1;
 					} else {
-						endDateLabel.text = DateUtil.formatDate(DateUtil.ansiStringToDate(expiryDate), 'd MMMM yyyy')
+						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
 					}
+					endDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 				}
 			}
 			
@@ -242,8 +245,8 @@ package com.clarityenglish.ielts.view.account {
 			if (hourLabel) hourLabel.text = copyProvider.getCopyForId("hourLabel");
 			if (minuteLabel) minuteLabel.text = copyProvider.getCopyForId("minuteLabel");
 			if (currentPwdLabel) currentPwdLabel.text = copyProvider.getCopyForId("currentPwdLabel");
-			if (newPsdLabel) newPsdLabel.text = copyProvider.getCopyForId("newPsdLabel");
-			if (confirmPsdLabel) confirmPsdLabel.text = copyProvider.getCopyForId("confirmPsdLabel");
+			if (newPwdLabel) newPwdLabel.text = copyProvider.getCopyForId("newPwdLabel");
+			if (confirmPwdLabel) confirmPwdLabel.text = copyProvider.getCopyForId("confirmPwdLabel");
 			if (myProfileLabel) myProfileLabel.text = copyProvider.getCopyForId("myProfile");
 			if (IELTSAppsLabel) IELTSAppsLabel.text = copyProvider.getCopyForId("IELTSAppsLabel");
 			
@@ -383,10 +386,10 @@ package com.clarityenglish.ielts.view.account {
 				//userDetails.examDate.setHours(examHours.value as Number, examMinutes.value as Number);
 				var examDateTime:Number = baseDateTime + (examHours.value as Number)*60*60*1000 + (examMinutes.value as Number)*60*1000;
 				user.examDate = new Date(examDateTime);
-				trace("exam date changed to " + DateUtil.formatDate(user.examDate, "yyyy-MM-dd hh:mm"));
+				//trace("exam date changed to " + DateUtil.formatDate(user.examDate, "yyyy-MM-dd hh:mm"));
 				
-				isDirty = true;
 			}
+			isDirty = true;
 			
 		}
 		
@@ -394,7 +397,11 @@ package com.clarityenglish.ielts.view.account {
 			if (languageDropDownList.selectedItem) {
 				var languageCode:String = languageDropDownList.selectedItem.data;
 				languageChange.dispatch(languageCode);
+				
+				// gh#163
+				isDirty = true;
 			}
+			
 		}
 		
 		/**

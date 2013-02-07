@@ -9,7 +9,7 @@
     * |                  http://www.phpguru.org/static/license.html                  |
     * o------------------------------------------------------------------------------o
     *
-    * � Copyright 2008,2009 Richard Heyes
+    * © Copyright 2008,2009 Richard Heyes
     */
 
 require_once(dirname(__FILE__) . '/mimePart.php');
@@ -821,7 +821,7 @@ class Rmail
                     $send_params['from'] = $this->return_path;
                 } elseif (!empty($this->headers['From'])) {
                 	// Generates PHP warnings 'Non-static method Mail_RFC822::parseAddressList() should not be called statically'
-					//$from = Mail_RFC822::parseAddressList($this->headers['From']);
+			//$from = Mail_RFC822::parseAddressList($this->headers['From']);
                     $mailRFC822 = new Mail_RFC822($this->headers['From']);
                     $from = $mailRFC822->parseAddressList();
                     $send_params['from'] = sprintf('%s@%s', $from[0]->mailbox, $from[0]->host);

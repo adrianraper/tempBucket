@@ -1,5 +1,4 @@
 <?php
-
 	if (isset($_GET['session']))
 		session_id($_GET['session']);
 		

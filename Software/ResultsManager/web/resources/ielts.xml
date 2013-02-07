@@ -162,12 +162,11 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="scoreGridC4">Time spent</lit>
 			<lit name="scoreGridC5">Date</lit>
 			<lit name="countdownHeading">How long until my test?</lit>
-			<lit name="setTestDateLabel">Please set your test date below:</lit>
 			<lit name="testDateLabel">Date:</lit>
 			<lit name="countDownLabel1">This is the remaining time until your test.</lit>
 			<lit name="countDownLabel2">Your test is today, good luck!</lit>
 			<lit name="countDownLabel3">Hope your test went well...</lit>
-			<lit name="alertEmtyDateLabel">Please set your test date below:</lit>
+			<lit name="alertEmptyDateLabel">Please set your test date to see the countdown.</lit>
 			<lit name="updateError">The two new passwords you typed must be the same.</lit>
 			<lit name="updateFail">Sorry, these details can't be updated.</lit>
 			<lit name="updateSuccess">Your details have been saved.</lit>
@@ -179,9 +178,11 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="countdownHeadingLabel">How long until my test?</lit>
 			<lit name="hourLabel">Hour:</lit>
 			<lit name="minuteLabel">Minute:</lit>
+			<lit name="dateFormatLabel">{day} {month} {year}</lit>    
+			
 			<lit name="currentPwdLabel">Current password:</lit>
-			<lit name="newPsdLabel">New password:</lit>
-			<lit name="confirmPsdLabel">Confirm password:</lit>
+			<lit name="newPwdLabel">New password:</lit>
+			<lit name="confirmPwdLabel">Confirm password:</lit>
 			<lit name="accountLanguageLabel">Language:</lit>
 			<lit name="IELTSAppsLabel">IELTS Apps</lit>
 			<lit name="supportCaptionSpan1">How to use Road to IELTS</lit>
@@ -336,13 +337,6 @@ If you want to be anonymous, just click {loginText}.]]>
 		</group>
 	</language>
 
-
-	
-	
-	
-	
-	
-/* Chinese version */
 	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
 		<group name="group">
             <lit name="loginIDLabel">您需要已经注册了你的学校或者你的电子邮件，与英国文化协会，进行登录。</lit>		
@@ -401,12 +395,6 @@ If you want to be anonymous, just click {loginText}.]]>
 		</group>
 	</language>
 	
-	
-	
-	
-	
-	
-/* Japanese version */
 	<language name="Japanese" code="JP" mediaFolder="JP">
 		<group name="group">	
 			<lit name="noProgressText">Road to IELTSへようこそ。各スキルに役立つ情報を見るには、右側のボタンをクリックしてください</lit>

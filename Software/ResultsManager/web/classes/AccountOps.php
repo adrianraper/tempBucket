@@ -69,9 +69,9 @@ class AccountOps {
 				FROM T_AccountRoot r, T_Accounts t
 				WHERE r.F_RootID = ?
 				AND r.F_RootID = t.F_RootID
-				AND t.F_ProductCode in (?);
+				AND t.F_ProductCode in ($productCode);
 SQL;
-		$bindingParams = array($rootID, $productCode);
+		$bindingParams = array($rootID);
 		$rs = $this->db->Execute($sql, $bindingParams);
 
 		// gh#39 It would be an error to have more titles than the number of product codes
@@ -85,18 +85,16 @@ SQL;
 			throw $this->copyOps->getExceptionForId("errorNoProductCodeInRoot", array("productCode" => $productCode, "rootID" => $rootID, "prefix" => $prefix));
 		} 
 		
-		// gh#39 You might have multiple matching accounts
+		// Create the account object (just use the first record if multiple ones as they will all be the same account details)
+		$dbObj = $rs->FetchObj();
+		$account = $this->_createAccountFromObj($dbObj);
+				
+		// gh#39 You might have multiple matching titles
 		while ($dbObj = $rs->FetchNextObj()) {
-				
-			// Create the account object
-			$account = $this->_createAccountFromObj($dbObj);
-				
-			// And add the title
 			$account->addTitles(array($this->_createTitleFromObj($dbObj)));
 		}
 				
 		return $account;
-		
 	}
 	
 	/**

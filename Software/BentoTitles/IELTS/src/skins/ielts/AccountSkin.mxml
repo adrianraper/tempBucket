@@ -48,17 +48,20 @@
 				examDateField.selectableRange = {rangeStart: selectStartDate, rangeEnd: selectEndDate};
 			}
 			
-			private function formatScreenDate(date:Date):String {
-				if (date && hostComponent.config.languageCode == "ZH") {
-					var objReplace:Object = new Object();
-					trace("date's day is "+date.day);
-					objReplace.day = date.date;
-					objReplace.month = date.month + 1;
-					objReplace.year = date.fullYear;
-					return hostComponent.hostCopyProvider.getCopyForId("dateFormatLabel", objReplace);
-				} else {
-					return DateUtil.formatDate(date, 'd MMMM yyyy');
-				}			
+			private function formatScreenDate(thisDate:Date):String {
+				if (thisDate) {
+					var repObject:Object = new Object();
+					repObject.day = thisDate.date;
+					repObject.year = thisDate.fullYear;
+					// gh#163 - probably better to get language code from explicit setting in the view
+					if (languageDropDownList.selectedItem.data == "ZH") {
+						repObject.month = thisDate.month + 1;
+					} else {
+						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
+					}
+					return hostComponent.hostCopyProvider.getCopyForId("dateFormatLabel", repObject);
+				}
+				return '';
 			}
 		]]>
 	</fx:Script>
@@ -92,92 +95,98 @@
 		
 		<s:VGroup width="120" height="100%" >	
 			<s:Label id="countdownHeadingLabel" />
-			<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.user.examDate}" />
-			
 			<s:Spacer height="3" />
+			<s:HGroup paddingLeft="10">
+				<s:VGroup width="100%" height="100%" top="150"  >
+					<s:Label id="dateLabel" verticalAlign="bottom"  />
+					<mx:DateField id="examDateField" creationComplete="dateChooserInit(hostComponent.user);" 
+								  labelFunction="formatScreenDate" />
+				</s:VGroup>
+				
+				<s:VGroup>
+					<s:Label id="hourLabel" verticalAlign="bottom"  />
+					<s:NumericStepper id="examHours" minimum="0" maximum="23" stepSize="1" 
+									  value="{Number(formatExamDetails(hostComponent.user, 'hours'))}" textAlign="center"/>
+				</s:VGroup>
+				
+				<s:VGroup>
+					<s:Label id="minuteLabel" verticalAlign="bottom"  />
+					<s:NumericStepper id="examMinutes" minimum="0" maximum="45" stepSize="15" 
+									  value="{Number(formatExamDetails(hostComponent.user, 'mins'))}" textAlign="center"/>
+				</s:VGroup>
+			</s:HGroup>
+			<s:Spacer height="5" />
+			<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.user.examDate}" />
+			<s:Spacer height="3" />
+			<s:Label id="countdownLabel" left="5" fontWeight="bold"  />
+			<s:Spacer height="5" />
 			
-			<s:HGroup width="100%" height="100%" top="96" >
-				<s:VGroup paddingTop="3">
+				<s:VGroup width="100%" height="100%" top="96">
 
-					<s:Label id="countdownLabel" fontWeight="bold"  />
-					
-					<s:HGroup paddingTop="5">
-						<s:VGroup width="100%" height="100%" top="150"  >
-							<s:Label id="dateLabel" verticalAlign="bottom"  />
-							<mx:DateField id="examDateField" creationComplete="dateChooserInit(hostComponent.user);" 
-										  labelFunction="formatScreenDate" />
-						</s:VGroup>
-						
-						<s:VGroup>
-							<s:Label id="hourLabel" verticalAlign="bottom"  />
-							<s:NumericStepper id="examHours" minimum="0" maximum="23" stepSize="1" 
-											  value="{Number(formatExamDetails(hostComponent.user, 'hours'))}" textAlign="center"/>
-						</s:VGroup>
-						
-						<s:VGroup>
-							<s:Label id="minuteLabel" verticalAlign="bottom"  />
-							<s:NumericStepper id="examMinutes" minimum="0" maximum="45" stepSize="15" 
-											  value="{Number(formatExamDetails(hostComponent.user, 'mins'))}" textAlign="center"/>
-						</s:VGroup>
-					</s:HGroup>
+					<s:Rect left="0" right="0" top="0" bottom="0" width="100%" height="1" >
+						<s:fill>
+							<s:SolidColor color="0x999999" />
+						</s:fill>
+					</s:Rect>
 					
 					<s:SWFLoader width="100%" height="100%" 
 								 source="{hostComponent.assetFolder}profile_demo.png" 
 								 includeIn="demo" />
 					
 					<s:VGroup paddingTop="13" excludeFrom="anonymousStates" >	
-						<s:HGroup>
+						<s:HGroup width="320" >
 							<s:Label id="registeredNameLabel" />
-							<s:Spacer width="30"/>
+							<s:Spacer width="100%"/>
 							<s:Label text="{hostComponent.user.fullName}" fontWeight="bold" />
 						</s:HGroup>
 						<s:Spacer height="3" />
-						<s:HGroup>
+						<s:HGroup width="320" >
 							<s:Label id="emailLabel" />
-							<s:Spacer width="94"/>
+							<s:Spacer width="100%"/>
 							<s:Label text="{hostComponent.user.email}" fontWeight="bold" />
 						</s:HGroup>
 						<s:Spacer height="3" />
 						<!-- gh#38 -->
-						<s:HGroup visible="{hostComponent.startDate != null}" includeInLayout="{hostComponent.startDate != null}">
+						<s:HGroup width="320" visible="{hostComponent.startDate != null}" includeInLayout="{hostComponent.startDate != null}">
 							<s:Label id="accountStartDateLabel" />
-							<s:Spacer width="22"/>
+							<s:Spacer width="100%"/>
 							<s:Label id="startDateLabel" fontWeight="bold"/>		
 						</s:HGroup>
 						<s:Spacer height="3" />
-						<s:HGroup visible="{hostComponent.expiryDate != null}" includeInLayout="{hostComponent.expiryDate != null}">
+						<s:HGroup width="320" visible="{hostComponent.expiryDate != null}" includeInLayout="{hostComponent.expiryDate != null}">
 							<s:Label id="accountExpiryDateLabel" />		
-							<s:Spacer width="13"/>
+							<s:Spacer width="100%"/>
 							<s:Label id="endDateLabel" fontWeight="bold"/>
 						</s:HGroup>
 						<s:Spacer height="3" />
-						<s:VGroup includeIn="homeUser" >
-							<s:HGroup>
+						<!-- gh#163 -->
+						<s:VGroup excludeFrom="anonymousStates" >
+							<s:HGroup width="320" >
 								<s:Label  id="currentPwdLabel" />
-								<s:Spacer width="24"/>
+								<s:Spacer width="100%"/>
 								<s:TextInput id="currentPassword" width="180" />
 							</s:HGroup>
 							<s:Spacer height="3" />
-							<s:HGroup>
-								<s:Label id="newPsdLabel" />
-								<s:Spacer width="40"/>
+							<s:HGroup width="320" >
+								<s:Label id="newPwdLabel" />
+								<s:Spacer width="100%"/>
 								<s:TextInput id="newPassword" width="180"  />
 							</s:HGroup>
 							<s:Spacer height="3" />
-							<s:HGroup>
-								<s:Label id="confirmPsdLabel" />
-								<s:Spacer width="22"/>
+							<s:HGroup width="320" >
+								<s:Label id="confirmPwdLabel" />
+								<s:Spacer width="100%"/>
 								<s:TextInput id="confirmPassword" width="180" />
 							</s:HGroup>
+							<s:Spacer height="3" />
 						</s:VGroup>
-						<s:HGroup>
+						<s:HGroup width="320" >
 							<s:Label id="languageLabel" left="20" top="470" />
-							<s:Spacer width="70"/>
+							<s:Spacer width="100%"/>
 							<s:DropDownList id="languageDropDownList" fontSize="15" left="180" top="470" width="150" />
 						</s:HGroup>
 					</s:VGroup>
 				</s:VGroup>
-			</s:HGroup>
 		</s:VGroup>
 		
 		<s:Spacer height="3" />

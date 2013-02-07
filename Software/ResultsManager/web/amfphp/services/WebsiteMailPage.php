@@ -251,6 +251,7 @@ EOD;
 					break;
 				
 				case "19": #ce.com support site enquiry form
+				/* Original footer enquiry form
 					$toClarity = sendEmail(28);
 					$toCustomer = sendEmail(29);
 					if ( ($toClarity) AND ($toCustomer) ) {
@@ -260,7 +261,43 @@ EOD;
 						echo 'false';
 					}
 					break;
-				
+				*/
+				$toClarity = sendEmail(28);
+				if ($data['sector'] == "Home user" || $data['sector'] == "Student") {
+					$toCustomer = sendEmail(29) && sendEmail(22);
+					//if ( ($toClarity) AND ($toCustomer) )
+					//	$returnPage = "http://www.ClarityLifeSkills.com";
+					//$returnTopPage = true;
+				} else if ($data['sector'] == "IELTS candidate") {
+					$toCustomer = sendEmail(29);
+					//if ( ($toClarity) AND ($toCustomer) )
+					//	$returnPage = "http://www.ieltspractice.com";
+					//$returnTopPage = true;
+				} else {
+					$toCustomer = sendEmail(29);			
+					//if ( ($toClarity) AND ($toCustomer) )
+					//	$returnPage = "$serverLocation/email/enquiry_thanks.php";
+					//else
+					//	$returnPage = "$serverLocation/email/enquiry_oops.php";
+					//$returnTopPage = false;
+				}
+				if ( ($toClarity) AND ($toCustomer) ) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;
+				case "20": #ieltspractice.com support site enquiry form
+					$toClarity = sendEmail(30);
+					$toCustomer = sendEmail(31);
+					if ( ($toClarity) AND ($toCustomer) ) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;					
 				default:
 					$errorInfo = 'error=1&message=unexpected requestID';
 		}
@@ -303,7 +340,7 @@ function sendEmail($templateID) {
 	$claritySupport = "Clarity Support <support@clarityenglish.com>";
 	$clarityAccount = "Clarity Accounts <accounts@clarityenglish.com>";
 	$clarityCLSSupport = "ClarityLifeSkills <support@claritylifeskills.com>";
-	$clarityIELTSSupport = "IELTS practice <support@ieltspractice.com>";
+	$clarityIELTSSupport = "IELTS Practice Support<support@ieltspractice.com>";
 	#not used
 	//$clarityCLSAdmin = "ClarityLifeSkills Admin <support@claritylifeskills.com>";
 	
@@ -550,7 +587,7 @@ function sendEmail($templateID) {
 			$subject = "ClarityLifeSkills enquiry acknowledgement";
 			$from = $clarityCLSSupport;
 			break;
-
+		/* Original email sent to clarity & customer
 		case 28: # CE.com Support site enquiry - to Clarity
 			$body = file_get_contents("$templateFolder/email_support_contactus_toClarity.htm");
 			$to = $claritySupport;
@@ -565,7 +602,50 @@ function sendEmail($templateID) {
 			$subject = "Clarity Support enquiry acknowledgement";
 			$from = $claritySupport;
 			break;		
+		*/	
+		case 28: # CE.com Support site enquiry - to Clarity
+			$body = file_get_contents("$templateFolder/form_enquiry_toClarity.htm");
+			$to = $clarityInfo;
+			$subject = $data['sector'] . " enquiry: Clarity English information request";
+			$from = $data['email'];
+			break;
 			
+		case 29: # CE.com  enquiry form - to customer
+			if($data['sector']=="Home user"||$data['sector']=="Student") { //for student
+				// The home user/student email doesn't need a header or footer
+				//$body = file_get_contents("$templateFolder/email_enquiry_toHomeUser_header.htm");
+				//$body .= file_get_contents("$templateFolder/email_enquiry_toHomeUser_contents.htm");
+				$body = file_get_contents("$templateFolder/form_enquiry_toHomeUser_master.htm");
+				$from = $clarityCLSSupport;
+			} else if($data['sector']=="IELTS candidate") { //for IELTS Candidates
+				$body = file_get_contents("$templateFolder/form_enquiry_toIELTScandidates_byEmail.htm");
+				$from = $clarityIELTSSupport;
+			} else { //not student
+				$body = file_get_contents("$templateFolder/form_enquiry_toCustomer_header.htm");
+				$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_byEmail.htm");				
+				$from = $clarityNews;
+				$body .= file_get_contents("$templateFolder/email_enquiry_toCustomer_footer.htm");
+			}
+			// This only leads to complications
+			//$to = "'".$data['customerName']."' <".$data['customerEmail'].">";
+			$to = $data['email'];
+			
+			$subject = "Clarity English information request"; 
+
+			break;
+		case 30: # ieltspractice.com contact us - to Clarity
+			$body = file_get_contents("$templateFolder/email_IPS_contactus_toClarity.htm");
+			$to = $clarityIELTSSupport;
+			$subject = "IELTSpractice.com, Contact us";
+			$from = $clarityIELTSSupport;
+			break;
+			
+		case 31: #  ieltspractice.com contact us - to Customer
+			$body = file_get_contents("$templateFolder/email_IPS_contactus_toCustomer.htm");
+			$to = $data['email'];
+			$subject = "IELTSpractice.com enquiry acknowledgement";
+			$from = $clarityIELTSSupport;
+			break;		
 		default:
 			return false;
 	}

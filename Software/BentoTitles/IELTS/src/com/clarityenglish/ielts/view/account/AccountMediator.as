@@ -97,7 +97,7 @@
 					view.isDirty = false;
 					break;
 				case BBNotifications.LANGUAGE_CHANGED:
-					view.reloadCopy(); // GH #72
+					view.reloadCopy(); // gh#72
 					break;
 			}
 		}

@@ -147,7 +147,11 @@ class LoginService extends AbstractService {
 			
 		$stubUser->userType = User::USER_TYPE_STUDENT;
 		$stubUser->registrationDate = date('Y-m-d H:i:s');
-		$stubUser->registerMethod = "loginService";
+		if ($loginDetails->registerMethod) {
+			$stubUser->registerMethod = $loginDetails->registerMethod;
+		} else {
+			$stubUser->registerMethod = "loginService";
+		}
 		
 		return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID);
 	}
