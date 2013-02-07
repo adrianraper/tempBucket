@@ -35,15 +35,16 @@
 		<s:State name="about" />
 	</s:states>
 	
-	<widgets:CogIcon2 top="15" left="6" />
-	<s:Label text="Course Settings" top="15" left="28" fontSize="16" fontWeight="bold" />
+	<widgets:CogIcon2 top="25" left="20" />
+	<s:Label text="Course Settings" top="25" left="45" fontSize="16" fontWeight="bold" />
 	
 	<!-- The tab bar -->
-	<s:TabBar id="tabBar" top="65" left="20" />
-	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="100" />
+	<s:TabBar id="tabBar" top="70" left="30"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="105" left="10" includeIn="calendar"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/about-bg.png')" top="105" left="10" includeIn="about"/>
 	
 	<!-- Left hand side -->
-	<s:VGroup top="100" width="390" paddingLeft="18" paddingTop="22" left="10">
+	<s:VGroup id="leftHandSide" top="100" width="390" paddingTop="22" left="40">
 		<!-- Calendar settings -->
 		<s:VGroup includeIn="calendar">
 			<s:Label text="1. Select a group" fontWeight="bold" />
@@ -87,7 +88,7 @@
 			<s:CheckBox label="Course end email" />
 		</s:VGroup>
 		
-		<s:VGroup includeIn="about">
+		<s:VGroup includeIn="about" paddingTop="10">
 			<s:Label text="Course name" fontWeight="bold" />
 			<s:TextInput id="aboutCourseNameTextInput" width="300" />
 			
@@ -117,7 +118,7 @@
 	</s:VGroup>
 	
 	<!-- Right hand side -->
-	<s:VGroup top="110" right="0">
+	<s:VGroup top="145" left="440">
 		<!-- Calendar -->
 		<s:VGroup includeIn="calendar">
 			<calendar:Calendar id="calendar" enabled="{groupTree.selectedItem != null}" />
@@ -140,7 +141,7 @@
 		</s:VGroup>
 	</s:VGroup>
 	
-	<s:HGroup bottom="18" left="26" gap="20">
+	<s:HGroup bottom="18" left="30" verticalCenter="210" gap="20">
 		<s:Button id="backButton" label="Back" />
 		<s:Button id="saveButton" label="Save changes" />
 	</s:HGroup>

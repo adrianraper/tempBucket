@@ -67,9 +67,25 @@
 							<s:SolidColor color="#29ABE2" alpha="1"/>
 						</mx:fills>
 					</mx:PieSeries>
-				</mx:series>
-				
-			</mx:PieChart>	
+				</mx:series>			
+			</mx:PieChart>
+			<s:HGroup top="335" horizontalCenter="0" gap="15" includeIn="normal">
+				<s:VGroup verticalAlign="middle" horizontalAlign="center">
+					<s:Label text="PDF files" color="#324718" fontSize="16" fontWeight="bold"/>
+					<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_pdf.png')"/>
+					<s:Label id="pdfFilesTotal" color="#324718" fontSize="16" fontWeight="bold" text="{hostComponent.textPDF}"/>
+				</s:VGroup>
+				<s:VGroup verticalAlign="middle" horizontalAlign="center">
+					<s:Label text="Image files" color="#5C4800" fontSize="16" fontWeight="bold"/>
+					<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_image.png')"/>
+					<s:Label id="imageFilesTotal" color="#5C4800" fontSize="16" fontWeight="bold" text="{hostComponent.textImage}"/>
+				</s:VGroup>
+				<s:VGroup verticalAlign="middle" horizontalAlign="center">
+					<s:Label text="Audio files" color="#14536E" fontSize="16" fontWeight="bold"/>
+					<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_audio.png')"/>
+					<s:Label id="audioFilesTotal" color="#14536E" fontSize="16" fontWeight="bold" text="{hostComponent.textAudio}"/>
+				</s:VGroup>		
+			</s:HGroup>	
 		</s:Panel>				
 	</s:Group>
 	
@@ -79,23 +95,7 @@
 		<s:Button id="cancelButton" label="Cancel" width="80" fontSize="13"/>
 	</s:HGroup>
 	
-	<s:HGroup top="420" right="40" gap="15" includeIn="normal">
-		<s:VGroup verticalAlign="middle" horizontalAlign="center">
-			<s:Label text="PDF files" color="#324718" fontSize="16" fontWeight="bold"/>
-			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_pdf.png')"/>
-			<s:Label id="pdfFilesTotal" color="#324718" fontSize="16" fontWeight="bold" text="{hostComponent.textPDF}"/>
-		</s:VGroup>
-		<s:VGroup verticalAlign="middle" horizontalAlign="center">
-			<s:Label text="Image files" color="#5C4800" fontSize="16" fontWeight="bold"/>
-			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_image.png')"/>
-			<s:Label id="imageFilesTotal" color="#5C4800" fontSize="16" fontWeight="bold" text="{hostComponent.textImage}"/>
-		</s:VGroup>
-		<s:VGroup verticalAlign="middle" horizontalAlign="center">
-			<s:Label text="Audio files" color="#14536E" fontSize="16" fontWeight="bold"/>
-			<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_audio.png')"/>
-			<s:Label id="audioFilesTotal" color="#14536E" fontSize="16" fontWeight="bold" text="{hostComponent.textAudio}"/>
-		</s:VGroup>		
-	</s:HGroup>	
+	
 	
 	
 </s:Skin>
