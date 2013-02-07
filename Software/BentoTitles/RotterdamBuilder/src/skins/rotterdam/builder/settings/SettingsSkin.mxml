@@ -48,7 +48,12 @@
 		<!-- Calendar settings -->
 		<s:VGroup includeIn="calendar">
 			<s:Label text="1. Select a group" fontWeight="bold" />
-			<sparkTree:Tree id="groupTree" dataProvider="{hostComponent.groupTreesCollection}" width="300" labelField="name" iconFunction="getTreeIcon" />
+			<sparkTree:Tree id="groupTree"
+							dataProvider="{hostComponent.groupTreesCollection}"
+							width="300"
+							labelField="name"
+							iconFunction="getTreeIcon"
+							itemRenderer="skins.rotterdam.builder.settings.CalendarTreeItemRenderer" />
 			
 			<s:Spacer height="12" />
 			
@@ -58,7 +63,7 @@
 			<s:Spacer height="12" />
 			
 			<s:Label text="3. See past units?" fontWeight="bold" />
-			<s:HGroup>
+			<s:HGroup id="seePastUnitsGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
 				<s:RadioButton label="Yes" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
 				<s:RadioButton label="No" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
 			</s:HGroup>

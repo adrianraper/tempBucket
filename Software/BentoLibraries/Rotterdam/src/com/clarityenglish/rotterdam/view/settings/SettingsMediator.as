@@ -7,6 +7,7 @@
 	
 	import mx.collections.ArrayCollection;
 	
+	import org.davekeen.util.ArrayUtils;
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -34,7 +35,7 @@
 			view.href = bentoProxy.menuXHTML.href;
 			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			view.groupTreesCollection = new ArrayCollection(loginProxy.groupTrees);
+			view.groupTreesCollection = new ArrayCollection(ArrayUtils.duplicate(loginProxy.groupTrees) as Array);
 		}
 		
 		override public function onRemove():void {

@@ -14,8 +14,7 @@
 @namespace course "com.clarityenglish.rotterdam.builder.view.course.*";
 @namespace course1 "com.clarityenglish.rotterdam.view.course.*";
 @namespace title1 "com.clarityenglish.rotterdam.view.title.*";
-@namespace settings "com.clarityenglish.rotterdam.builder.view.settings.*";
-@namespace settings1 "com.clarityenglish.rotterdam.view.settings.*";
+@namespace settings "com.clarityenglish.rotterdam.view.settings.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 
 s|Range {
@@ -240,20 +239,23 @@ filemanager|FileManagerView s|Button#cancelButton {
 	skinClass: ClassReference("skins.rotterdam.ui.GreyButtonSkin");
 }
 
-
-settings1|SettingsView {
+settings|SettingsView {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSkin");
 }
 
-settings1|SettingsView s|Button#saveButton {
+settings|SettingsView s|FormItem {
+	errorColor: red;
+}
+
+settings|SettingsView s|Button#saveButton {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSaveButtonSkin");
 }
 
-settings1|SettingsView s|Button#backButton {
+settings|SettingsView s|Button#backButton {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsBackButtonSkin");
 }
 
-settings1|SettingsView s|TabBar#tabBar {
+settings|SettingsView s|TabBar#tabBar {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingTabBarSkin");
 }
 

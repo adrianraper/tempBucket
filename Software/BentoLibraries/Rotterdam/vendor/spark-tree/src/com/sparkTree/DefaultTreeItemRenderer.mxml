@@ -9,7 +9,7 @@
 			paddingBottom="4" paddingTop="4"/>
 	</tree:layout>
 	
-	<tree:DefaultDisclosureButton visible="{disclosureIconVisible}" 
+	<tree:DefaultDisclosureButton visible="{disclosureIconVisible}"
 		click="{toggle();}" currentState="{isOpen ? 'open' : 'closed'}"/>
 	
 	<s:Image source="{icon}" visible="{Boolean(icon)}"

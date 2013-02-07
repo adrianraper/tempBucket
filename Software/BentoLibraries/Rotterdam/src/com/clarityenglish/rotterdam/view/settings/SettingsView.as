@@ -6,24 +6,32 @@ package com.clarityenglish.rotterdam.view.settings {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.utils.setTimeout;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
 	import mx.collections.ListCollectionView;
 	import mx.controls.DateField;
+	import mx.core.ClassFactory;
 	import mx.events.FlexEvent;
 	import mx.events.ItemClickEvent;
+	import mx.validators.DateValidator;
+	import mx.validators.StringValidator;
+	import mx.validators.Validator;
 	
 	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StringUtils;
+	import org.davekeen.util.XmlUtils;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.RadioButtonGroup;
 	import spark.components.TabBar;
 	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
+	import spark.validators.NumberValidator;
 	
 	/**
 	 * There is quite a lot of code duplication here that could be neatened up into a mini form framework that automatically links xml properties and components.
@@ -62,6 +70,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var endDateField:DateField;
 		
 		[SkinPart]
+		public var seePastUnitsGroup:Group;
+		
+		[SkinPart]
 		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
 		
 		[SkinPart]
@@ -76,14 +87,32 @@ package com.clarityenglish.rotterdam.view.settings {
 		[Bindable]
 		public var groupTreesCollection:ListCollectionView;
 		
+		private var validators:Array;
+		
 		public var dirty:Signal = new Signal(); // GH #83
 		public var saveCourse:Signal = new Signal();
 		public var back:Signal = new Signal();
 		
 		private var isPopulating:Boolean;
 		
-		private function get course():XML {	
-			return _xhtml.selectOne("script#model[type='application/xml'] course");
+		public function SettingsView() {
+			super();
+			validators = [];
+		}
+		
+		// gh#152 - the settings view actually works on a copy of the course
+		private var _cachedCourse:XML;
+		private function get course():XML {
+			if (!_cachedCourse) _cachedCourse = _xhtml.selectOne("script#model[type='application/xml'] > menu > course").copy();
+			return _cachedCourse;
+		}
+		
+		/**
+		 * This integrates the cached course into the real XHTML and clears the cache
+		 */
+		private function mergeCourseToXHTML():void {
+			_xhtml.selectOne("script#model[type='application/xml'] > menu").setChildren(course);
+			_cachedCourse = null;
 		}
 		
 		/**
@@ -94,7 +123,7 @@ package com.clarityenglish.rotterdam.view.settings {
 				var results:XMLList = course.publication.group.(@id == groupTree.selectedItem.id);
 				if (results.length() == 0) {
 					// Create a new group node and return it
-					course.publication.appendChild(<group id={groupTree.selectedItem.id} />);
+					course.publication.appendChild(<group id={groupTree.selectedItem.id} seePastUnits="true" />);
 					return course.publication.group.(@id == groupTree.selectedItem.id)[0];
 				} else {
 					return results[0];
@@ -128,25 +157,23 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
 			
 			// Calendar
-			if (selectedPublicationGroup) {
-				if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup.hasOwnProperty("@unitInterval")) ? selectedPublicationGroup.@unitInterval : null;
-				if (startDateField) startDateField.selectedDate = (selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
-				if (endDateField) endDateField.selectedDate = (selectedPublicationGroup.hasOwnProperty("@endDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
-				if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
-				
-				// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
-				if (calendar) {
-					if (selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
-						var labels:Array = [];
-						for (var n:uint = 0; n < course.unit.length(); n++) {
-							var date:Date = DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate);
-							date.date += n * selectedPublicationGroup.@unitInterval;
-							labels.push( { date: date, label: "U" + (n + 1) });
-						}
-						calendar.dataProvider = new ArrayCollection(labels);
-					} else {
-						calendar.dataProvider = null;
+			if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval")) ? selectedPublicationGroup.@unitInterval : null;
+			if (startDateField) startDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
+			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
+			if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
+			
+			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
+			if (calendar) {
+				if (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
+					var labels:Array = [];
+					for (var n:uint = 0; n < course.unit.length(); n++) {
+						var date:Date = DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate);
+						date.date += n * selectedPublicationGroup.@unitInterval;
+						labels.push( { date: date, label: "U" + (n + 1) });
 					}
+					calendar.dataProvider = new ArrayCollection(labels);
+				} else {
+					calendar.dataProvider = null;
 				}
 			}
 			
@@ -210,6 +237,14 @@ package com.clarityenglish.rotterdam.view.settings {
 				case unitIntervalTextInput:
 					unitIntervalTextInput.restrict = "0-9";
 					unitIntervalTextInput.maxChars = 2;
+					
+					var unitIntervalValidator:NumberValidator = new NumberValidator();
+					unitIntervalValidator.source = unitIntervalTextInput;
+					unitIntervalValidator.property = "text";
+					unitIntervalValidator.required = true;
+					unitIntervalValidator.minValue = 1;
+					validators.push(unitIntervalValidator);
+					
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							selectedPublicationGroup.@unitInterval = StringUtils.trim(e.target.text);
@@ -219,6 +254,12 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				case startDateField:
+					var startDateValidator:DateValidator = new DateValidator();
+					startDateValidator.source = startDateField;
+					startDateValidator.property = "selectedDate";
+					startDateValidator.required = true;
+					validators.push(startDateValidator);
+					
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							if (e.target.selectedDate) selectedPublicationGroup.@startDate = DateUtil.dateToAnsiString(e.target.selectedDate);
@@ -228,6 +269,12 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				case endDateField:
+					var endDateValidator:DateValidator = new DateValidator();
+					endDateValidator.source = endDateField;
+					endDateValidator.property = "selectedDate";
+					endDateValidator.required = true;
+					validators.push(endDateValidator);
+					
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							if (e.target.selectedDate) selectedPublicationGroup.@endDate = DateUtil.dateToAnsiString(e.target.selectedDate);
@@ -237,6 +284,15 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				case pastUnitsRadioButtonGroup:
+					setTimeout(function():void {
+						var seePastUnitsValidator:StringValidator = new StringValidator();
+						seePastUnitsValidator.source = pastUnitsRadioButtonGroup;
+						seePastUnitsValidator.property = "selection";
+						seePastUnitsValidator.required = true;
+						//seePastUnitsValidator.listener = seePastUnitsGroup;
+						validators.push(seePastUnitsValidator);
+					}, 1000);
+					
 					pastUnitsRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
 							selectedPublicationGroup.@seePastUnits = e.target.selectedValue;
@@ -244,6 +300,7 @@ package com.clarityenglish.rotterdam.view.settings {
 							invalidateProperties();
 						}
 					});
+					
 					break;
 				case calendar:
 					// Default the calendar to the current year and month
@@ -267,6 +324,24 @@ package com.clarityenglish.rotterdam.view.settings {
 		}
 		
 		protected function onSave(event:MouseEvent):void {
+			// Remove any groups without all the required information
+			for each (var group:XML in course.publication.group) {
+				if (!group.hasOwnProperty("@id") ||
+					!group.hasOwnProperty("@seePastUnits") ||
+					!group.hasOwnProperty("@unitInterval") ||
+					!group.hasOwnProperty("@startDate") ||
+					!group.hasOwnProperty("@endDate")) {
+					delete (group.parent().children()[group.childIndex()]);
+				}
+			}
+			
+			groupTree.selectedItem = null;
+			groupTree.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+			
+			// Merge the temporary course into the real XHTML
+			mergeCourseToXHTML();
+			
+			// Save
 			saveCourse.dispatch();
 		}
 		

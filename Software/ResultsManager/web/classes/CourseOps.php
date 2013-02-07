@@ -96,9 +96,12 @@ class CourseOps {
 		}
 		
 		$db = $this->db;
+		$copyOps = $this->copyOps;
 		
 		// TODO: it would be rather nice to validate $xml against an xsd
-		return XmlUtils::overwriteXml($menuXMLFilename, $menuXml, function($xml) use($courseId, $accountFolder, $db) {
+		return XmlUtils::overwriteXml($menuXMLFilename, $menuXml, function($xml) use($courseId, $accountFolder, $db, $copyOps) {
+			$db->StartTrans();
+			
 			// SimpleXML doesn't like default namespaces in xpath expressions so define the XHTML namespace explicitly
 			$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			
@@ -125,18 +128,24 @@ class CourseOps {
 			
 			// 1. Write publication data to the database
 			foreach ($course->publication->group as $group) {
+				// If we are missing any required data then throw an exception
+				if (!isset($group['unitInterval']) || $group['unitInterval'] == "" ||
+					!isset($group['seePastUnits']) || $group['seePastUnits'] == "" ||
+					!isset($group['startDate']) || $group['startDate'] == "" ||
+					!isset($group['endDate']) || $group['endDate'] == "")
+					throw $copyOps->getExceptionForId("errorSavingCourse");
+				
 				// 1.1 First write the T_CourseStart row
 				$fields = array(
 					"F_GroupID" => (string)$group['id'],
 					"F_RootID" => Session::get('rootID'),
 					"F_CourseID" => (string)$course['id'],
-					"F_StartMethod" => "group"
+					"F_StartMethod" => "group",
+					"F_UnitInterval" => $group['unitInterval'],
+					"F_SeePastUnits" => (($group['seePastUnits'] == "true") ? 1 : 0),
+					"F_StartDate" => $group['startDate'],
+					"F_EndDate" => $group['endDate']
 				);
-				
-				if (isset($group['unitInterval']) && $group['unitInterval'] != "") $fields["F_UnitInterval"] = $group['unitInterval'];
-				if (isset($group['seePastUnits']) && $group['seePastUnits'] != "") $fields["F_SeePastUnits"] = ($group['seePastUnits'] == "true") ? 1 : 0;
-				if (isset($group['startDate']) && $group['startDate'] != "") $fields["F_StartDate"] = $group['startDate'];
-				if (isset($group['endDate']) && $group['endDate'] != "") $fields["F_EndDate"] = $group['endDate'];
 				
 				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
 				
@@ -144,26 +153,26 @@ class CourseOps {
 				$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID = ? AND F_RootID = ? AND F_CourseID = ?", array((string)$group['id'], Session::get('rootID'), (string)$course['id']));
 				
 				// Currently we figure this out here, but this may be better calculated on the client since at some point it will be editable anyway
-				if (isset($group['startDate']) && $group['startDate'] != "" && isset($group['unitInterval']) && $group['unitInterval'] != "") {
-					$startTimestamp = strtotime($group['startDate']);
-					foreach ($course->unit as $unit) {
-						$fields = array(
-							"F_GroupID" => (string)$group['id'],
-							"F_RootID" => Session::get('rootID'),
-							"F_CourseID" => (string)$course['id'],
-							"F_UnitID" => (string)$unit['id'],
-							"F_StartDate" => $startTimestamp
-						);
-						
-						$db->AutoExecute("T_UnitStart", $fields, "INSERT");
-						
-						$startTimestamp += $group['unitInterval'] * 86400;
-					}
+				$startTimestamp = strtotime($group['startDate']);
+				foreach ($course->unit as $unit) {
+					$fields = array(
+						"F_GroupID" => (string)$group['id'],
+						"F_RootID" => Session::get('rootID'),
+						"F_CourseID" => (string)$course['id'],
+						"F_UnitID" => (string)$unit['id'],
+						"F_StartDate" => $startTimestamp
+					);
+					
+					$db->AutoExecute("T_UnitStart", $fields, "INSERT");
+					
+					$startTimestamp += $group['unitInterval'] * 86400;
 				}
 			}
 			
 			// 2. Remove publication data so it doesn't get saved
 			unset($course->publication);
+			
+			$db->CompleteTrans();
 		});
 	}
 	
