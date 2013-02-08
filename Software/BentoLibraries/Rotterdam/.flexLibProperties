@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="com.clarityenglish.rotterdam.BuilderStates"/>
     <classEntry path="com.clarityenglish.rotterdam.CommonAbstractApplicationFacade"/>
     <classEntry path="com.clarityenglish.rotterdam.RotterdamNotifications"/>
     <classEntry path="com.clarityenglish.rotterdam.controller.CourseStartCommand"/>
