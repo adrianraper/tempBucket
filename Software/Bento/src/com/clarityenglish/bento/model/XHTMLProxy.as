@@ -58,6 +58,16 @@ package com.clarityenglish.bento.model {
 		 */
 		private var transformDefinitions:Vector.<TransformDefinition>;
 		
+		/**
+		 * A function that is called before a new XHTML file is loaded  
+		 */
+		public var beforeXHTMLLoadFunction:Function;
+		
+		/**
+		 * A function that is called before after an XHTML file is loaded  
+		 */
+		public var afterXHTMLLoadFunction:Function;
+		
 		public function XHTMLProxy() {
 			super(NAME);
 			
@@ -116,6 +126,8 @@ package com.clarityenglish.bento.model {
 				}
 			}
 			
+			if (beforeXHTMLLoadFunction !== null) beforeXHTMLLoadFunction(facade, href);
+			
 			if (href.serverSide) {
 				// Determine if the href matches any of the registered transforms and if so add those transforms
 				href.resetTransforms();
@@ -171,6 +183,8 @@ package com.clarityenglish.bento.model {
 		 * @param cached
 		 */
 		private function notifyXHTMLLoaded(href:Href, cached:Boolean = false):void {
+			if (afterXHTMLLoadFunction !== null) afterXHTMLLoadFunction(facade, href);
+			
 			if (href.type == Href.MENU_XHTML) {
 				// If this is the menu xhtml store it in BentoProxy and send a special notification
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;

@@ -3,9 +3,12 @@ Proxy - PureMVC
 */
 package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
+	
+	import flash.events.Event;
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
@@ -13,11 +16,13 @@ package com.clarityenglish.rotterdam.model {
 	import mx.logging.Log;
 	import mx.rpc.AsyncToken;
 	import mx.rpc.Fault;
+	import mx.utils.XMLNotifier;
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.util.ClassUtil;
 	import org.puremvc.as3.interfaces.IProxy;
+	import org.puremvc.as3.patterns.facade.Facade;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
 	/**
@@ -37,8 +42,13 @@ package com.clarityenglish.rotterdam.model {
 		private var _unitCollection:ListCollectionView;
 		private var _widgetCollection:ListCollectionView;
 		
+		private var xmlWatcher:XMLChangeWatcher;
+		
 		public function CourseProxy(data:Object = null) {
 			super(NAME, data);
+			
+			xmlWatcher = new XMLChangeWatcher();
+			xmlWatcher.addEventListener(Event.CHANGE, onXmlChange);
 		}
 		
 		// gh#13
@@ -46,6 +56,31 @@ package com.clarityenglish.rotterdam.model {
 			
 		}
 		
+		public function beforeXHTMLLoad(facade:Facade, href:Href):void {
+			if (href.type == Href.MENU_XHTML) {
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				if (bentoProxy.menuXHTML) {
+					XMLNotifier.getInstance().unwatchXML(bentoProxy.menuXHTML.xml, xmlWatcher);
+				}
+			}
+		}
+		
+		public function afterXHTMLLoad(facade:Facade, href:Href):void {
+			if (href.type == Href.MENU_XHTML) {
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				if (bentoProxy.menuXHTML) {
+					XMLNotifier.getInstance().watchXML(bentoProxy.menuXHTML.xml, xmlWatcher);
+				}
+			}
+		}
+		
+		protected function onXmlChange(event:Event):void {
+			// This is where we will notify that the xhtml file is dirty
+		}
+		
+		/**
+		 * This is called by CourseStartCommand and can be used to do Rotterdam specific stuff when a course (i.e. menu.xml file) is loaded.
+		 */
 		public function updateCurrentCourse():void {
 			_unitCollection = new XMLListCollection(courseNode.unit);
 		}
@@ -139,4 +174,16 @@ package com.clarityenglish.rotterdam.model {
 		}
 		
 	}
+}
+import flash.events.Event;
+import flash.events.EventDispatcher;
+
+import mx.utils.IXMLNotifiable;
+
+class XMLChangeWatcher extends EventDispatcher implements IXMLNotifiable {
+	
+	public function xmlNotification(currentTarget:Object, type:String, target:Object, value:Object, detail:Object):void {
+		dispatchEvent(new Event(Event.CHANGE));
+	}
+	
 }
