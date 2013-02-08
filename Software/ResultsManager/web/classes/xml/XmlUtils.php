@@ -20,6 +20,8 @@ class XmlUtils {
 	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
 	public static function overwriteXml($filename, $contents, $func) {
+		$originalContents = file_get_contents($filename); // TODO: check carefully if this is a security hole
+		
 		$lockDirname = $filename.'_lock';
 		if ($fp = @fopen($filename, 'w')) {
 			// Implement locking with a 10 second timeout in case things go awry
@@ -45,7 +47,13 @@ class XmlUtils {
 			$dom->formatOutput = true;
 			$dom->loadXML($xml->asXML());
 			
-			@fwrite($fp, $dom->saveXML());
+			// If there is an exception then we should replace the file with its original contents, otherwise the new contents
+			if ($exception) {
+				@fwrite($fp, $originalContents);
+			} else {
+				@fwrite($fp, $dom->saveXML());
+			}
+			
 	        @fclose($fp);
 
 			@rmdir($lockDirname);
