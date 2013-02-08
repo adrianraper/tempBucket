@@ -27,7 +27,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup 2", "name":"Kima 130","studentID":"winhoe 130", "teacherName":"jessie_teacher", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8123-4567","name":"heston bloom","password":"1234","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-10-04 03:14:24","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8987-3456","name":"Gustomer","password":"uiop","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-08-29","country":"Hong Kong","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
-	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8965-3456","name":"Adrian\'s 邓小平","password":"asdf","email":"adrian.raper@clarityenglish.com","groupID":"168","productCode":"52","expiryDate":"2012-08-29","country":"Hong Kong","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
+	//$inputData = '{"method":"getOrAddUser","studentID":"XX999-21407-00020","name":"xxD\u00e2v\u00efd V\u00e2h\u00e9y\u00f6","email":"david.vahey@britishcouncil.org","dbHost":"2","productCode":52,"expiryDate":"2013-03-07 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"22155","loginOption":"2","emailTemplateID":"ORS-welcome","country":"UK","city":"British Council ORS","adminPassword":"clarity88","registerMethod":"ORS-portal"}';
 	//$inputData = '{"method":"forgotPassword","studentID":"5216-8965-3456","dbHost":102,"loginOption":2}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
@@ -78,8 +78,9 @@ function returnError($errCode, $data = null) {
 	//	$logMessage.= ' orderRef='.$apiInformation->orderRef;
 	//}
 	AbstractService::$debugLog->err($logMessage);
-	
-	$apiReturnInfo['dsn'] = $GLOBALS['db'];
+
+	$dbDetails = new DBDetails($GLOBALS['dbHost']);
+	$apiReturnInfo['dsn'] = $dbDetails->getDetails();
 	$apiReturnInfo['dbHost'] = $GLOBALS['dbHost'];
 
 	echo json_encode($apiReturnInfo);

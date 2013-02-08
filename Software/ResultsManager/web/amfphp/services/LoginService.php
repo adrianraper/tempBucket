@@ -110,6 +110,7 @@ class LoginService extends AbstractService {
 			$stubUser->custom3 = $loginDetails->custom3;
 		if ($loginDetails->custom4)
 			$stubUser->custom4 = $loginDetails->custom4;
+			// gh#163
 		// If an explicit expiryDate is set, that is used
 		if ($loginDetails->expiryDate) {
 			$stubUser->expiryDate = $loginDetails->expiryDate;
