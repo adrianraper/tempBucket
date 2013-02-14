@@ -27,7 +27,7 @@ class LoginAPI {
 	var $custom4;
 	var $subscriptionPeriod;
 	var $licenceType;
-	var $registrationMethod;
+	var $registerMethod;
 	
 	// Autogroup
 	var $groupName;
@@ -88,8 +88,8 @@ class LoginAPI {
 			$this->subscriptionPeriod = $info['subscriptionPeriod'];
 		if (isset($info['licenceType'])) 
 			$this->licenceType = $info['licenceType'];
-		if (isset($info['registrationMethod'])) 
-			$this->registrationMethod = $info['registrationMethod'];
+		if (isset($info['registerMethod'])) 
+			$this->registerMethod = $info['registerMethod'];
 			
 		// AutoGroup.
 		if (isset($info['groupName'])) 

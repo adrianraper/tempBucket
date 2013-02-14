@@ -154,7 +154,8 @@ class LoginService extends AbstractService {
 			$stubUser->registerMethod = "loginService";
 		}
 		
-		return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID);
+		// gh#164 pass loginOption to help with quick duplicate checking
+		return $this->manageableOps->addUser($stubUser, $group, $loginDetails->rootID, $loginDetails->loginOption);
 	}
 	/**
 	 * Return the group object given groupID or a user in that group

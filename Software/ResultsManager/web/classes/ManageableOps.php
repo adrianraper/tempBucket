@@ -113,7 +113,7 @@ class ManageableOps {
 	 * TODO It might make a lot more sense to have a cleaner importWithMove that first checks existence and then moves or adds
 	 * 	rather than adding and catching exceptions.
 	 */
-	function addUser($user, $parentGroup, $rootID = null) {
+	function addUser($user, $parentGroup, $rootID = null, $loginOption = null) {
 		// Ensure that this user has permission to access the parent group
 		AuthenticationOps::authenticateGroups(array($parentGroup));
 		
@@ -164,6 +164,7 @@ class ManageableOps {
 		//$dbObj = $user->toAssocArray();
 		//NetDebug::trace('sql expire='.$dbObj['F_ExpiryDate']);
 		
+		$this->db->SetTransactionMode("SERIALIZABLE");
 		$this->db->StartTrans();
 		
 		// #340 SQLite doesn't like autoexecute
@@ -198,7 +199,17 @@ EOD;
 		//$dbObj['F_RootID'] = ($rootID) ? $rootID : Session::get('rootID'); // If root id is given then use that (for DMS), otherwise use the session root
 		//$this->db->AutoExecute("T_Membership", $dbObj, "INSERT");
 		
-		$this->db->CompleteTrans();
+		// gh#164 Check that you haven't just added a duplicate before you commit the transaction
+		// Problems - this call uses Authenticate user - which we haven't set yet.
+		// If we raise an exception, the transaction is still committed! So need to catch it
+		try {
+			$rc = $this->getUserByKey($user, $rootID, $loginOption);
+		} catch (Exception $e) {
+			// gh#164 even though this is called, the transaction still commits!
+			$this->db->FailTrans();
+		}
+		
+		$rc = $this->db->CompleteTrans();
 		
 		// Add this to the valid user for the logged in user
 		// v3.4 Multi-group users
@@ -1082,10 +1093,20 @@ EOD;
 	
 	/**
 	 * This returns a specific user object defined by a key set from loginOption
+	 * gh#164 you might pass the loginOption now
 	 */
-	function getUserByKey($stubUser, $rootID = NULL) {
+	function getUserByKey($stubUser, $rootID = NULL, $loginOption = null) {
 		
-		if (isset($stubUser->name)) {
+		if ($loginOption == 1) {
+			$whereClause = 'WHERE u.F_UserName=?';
+			$key = $stubUser->name;
+		} else if ($loginOption == 2) {
+			$whereClause = 'WHERE u.F_StudentID=?';
+			$key = $stubUser->studentID;
+		} else if ($loginOption == 128) {
+			$whereClause = 'WHERE u.F_Email=?';
+			$key = $stubUser->email;
+		} else if (isset($stubUser->name)) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
 		} else if (isset($stubUser->studentID)) {
@@ -1097,18 +1118,25 @@ EOD;
 		} else {
 			throw new Exception("Unspecified loginOption");
 		}
-		$sql  = "SELECT ".User::getSelectFields($this->db);
-		$sql .= <<<EOD
-				FROM T_User u LEFT JOIN 
-				T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
-				T_Groupstructure g ON m.F_GroupID = g.F_GroupID 
-				$whereClause
-EOD;
-		$bindingParams = array($key);
-		
+		// gh#164 No need to join on membership if you don't have a rootID
 		if ($rootID != null) {
-			$sql.= "AND m.F_RootID=?";
-			$bindingParams[] = $rootID;
+			$sql  = "SELECT ".User::getSelectFields($this->db);
+			$sql .= <<<EOD
+					FROM T_User u LEFT JOIN 
+					T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
+					T_Groupstructure g ON m.F_GroupID = g.F_GroupID 
+					$whereClause
+					AND m.F_RootID=?
+EOD;
+			$bindingParams = array($key, $rootID);
+		} else {
+			$sql  = "SELECT ".User::getSelectFields($this->db);
+			$sql .= <<<EOD
+					FROM T_User u 
+					$whereClause
+EOD;
+			$bindingParams = array($key);
+			
 		}
 		
 		$usersRS = $this->db->Execute($sql, $bindingParams);

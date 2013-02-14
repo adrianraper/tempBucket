@@ -146,11 +146,13 @@ SQL;
 			
 		// Find all the users who we want to expire
 		// Note you can't pass rootList in bindingParams as it appears as a quoted string in that case
+		// Only archive students
 		$sql = <<<SQL
 			SELECT * FROM $database.T_User u, $database.T_Membership m 
 			WHERE u.F_RegistrationDate <= ?
 			AND u.F_UserID = m.F_UserID
 			AND m.F_RootID in ($rootList)
+			AND u.F_UserType = 0
 SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 
@@ -418,6 +420,67 @@ SQL;
 			}
 		}
 		return $emailArray;
+	}
+
+	// Utility to bring back users from the archive table
+	function restoreArchivedTeachers($roots) {
+			
+		if (is_array($roots)) {
+			$rootList = implode(',', $roots);
+		} else if ($roots) {
+			$rootList = $roots;
+		} else {
+			return -1;
+		}
+			
+		$sql = <<<SQL
+			SELECT * FROM T_User_Expiry u, T_Membership_Expiry m 
+			WHERE u.F_UserID = m.F_UserID
+			AND m.F_RootID in ($rootList)
+			AND u.F_UserType > 0
+SQL;
+		$rs = $this->db->Execute($sql);
+		
+		// Loop round the array, inserting to * then deleting the related records for each userID from _Expiry
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+						
+				$this->db->StartTrans();
+				
+				$userID = $dbObj->F_UserID;
+				$bindingParams = array($userID);
+				
+				$sql = <<<SQL
+					INSERT INTO T_Membership
+					SELECT * FROM T_Membership_Expiry 
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_Membership_Expiry
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$sql = <<<SQL
+					INSERT INTO T_User
+					SELECT * FROM T_User_Expiry 
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				$sql = <<<SQL
+					DELETE FROM T_User_Expiry
+					WHERE F_UserID = ?;
+SQL;
+				$rc = $this->db->Execute($sql, $bindingParams);
+				
+				$this->db->CompleteTrans();
+			}
+		}
+		
+		// send back the number of restored users
+		return $rs->RecordCount();
+		
 	}
 	
 }
