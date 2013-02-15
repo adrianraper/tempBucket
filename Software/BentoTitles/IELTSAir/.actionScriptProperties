@@ -2,7 +2,7 @@
 <actionScriptProperties analytics="false" mainApplicationPath="RoadToIELTSAir.mxml" projectUUID="ece4bb8e-461e-46f6-9833-cac5333bf9c0" version="10">
   <compiler additionalCompilerArguments="-locale en_US&#13;&#10;-define=CONFIG::LOGGING,false&#13;&#10;-swf-version=16" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="true" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath>
-      <compilerSourcePathEntry kind="1" linkType="1" path="D:/Projectbench/Software/BentoTitles/IELTS/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="D:/ProjectBench/Software/BentoTitles/IELTS/src"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">
@@ -48,38 +48,34 @@
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
   <buildTargets>
     <buildTarget buildTargetName="com.adobe.flexide.multiplatform.ios.platform" iosSettingsVersion="1" provisioningFile="C:/Users/Dave/.ssh/ios-clarity/development/RoadToIELTS2.mobileprovision" releasePackageType="ipa-ad-hoc">
-      <airSettings airCertificatePath="C:/Users/Dave/.ssh/ios-clarity/development/ios_development.p12" airTimestamp="true" anePathSet="false" version="1">
+      <airSettings airCertificatePath="C:/Certificates/ios_development.p12" airTimestamp="true" version="1">
         <airExcludes>
           <pathEntry path="config.xml"/>
           <pathEntry path="Settings.bundle"/>
         </airExcludes>
-        <anePaths/>
       </airSettings>
       <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.ios.platform" version="2"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget buildTargetName="default">
-      <airSettings airCertificatePath="" airTimestamp="true" anePathSet="false" version="1">
+      <airSettings airCertificatePath="" airTimestamp="true" version="1">
         <airExcludes/>
-        <anePaths/>
       </airSettings>
       <multiPlatformSettings enabled="false" includePlatformLibs="false" platformID="default" version="2"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget buildTargetName="com.qnx.flexide.multiplatform.qnx.platform" extraPackagingOptions="" signBarFile="true">
-      <airSettings airCertificatePath="" airTimestamp="true" anePathSet="false" version="1">
+      <airSettings airCertificatePath="" airTimestamp="true" version="1">
         <airExcludes/>
-        <anePaths/>
       </airSettings>
       <multiPlatformSettings enabled="false" includePlatformLibs="false" platformID="com.qnx.flexide.multiplatform.qnx.platform" version="2"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
     <buildTarget airDownloadURL="https://market.android.com/details?id=com.adobe.air" androidSettingsVersion="1" buildTargetName="com.adobe.flexide.multiplatform.android.platform">
-      <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.android.platform" version="2"/>
-      <airSettings airCertificatePath="D:/alice folder/KEY/ClarityAndroid.p12" airTimestamp="true" anePathSet="true" version="1">
+      <airSettings airCertificatePath="C:/Certificates/ClarityAndroid.p12" airTimestamp="true" version="1">
         <airExcludes/>
-        <anePaths/>
       </airSettings>
+      <multiPlatformSettings enabled="true" includePlatformLibs="false" platformID="com.adobe.flexide.multiplatform.android.platform" version="2"/>
       <actionScriptSettings version="1"/>
     </buildTarget>
   </buildTargets>
