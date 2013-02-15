@@ -484,7 +484,7 @@ package com.clarityenglish.common.vo.config {
 			
 			var thisTitle:Title = this.account.getTitle();
 			
-			//issue:#11 thisTitle.language changed to thisTitle.productVersion due to Alice local database add F_ProductVersion column			
+			// gh#11 thisTitle.language changed to thisTitle.productVersion due to Alice local database add F_ProductVersion column			
 			// The account holds the languageCode - which in Bento terms is productVersion
 			// #524
 			if (thisTitle.languageCode) 
@@ -494,7 +494,7 @@ package com.clarityenglish.common.vo.config {
 			// gh#39
 			if (thisTitle.productCode) 
 				this.productCode = String(thisTitle.productCode);
-			//issue:#20
+			// gh#20
 			/*if(thisTitle.languageCode)
 				this.language = thisTitle.languageCode;*/
 			

@@ -35,7 +35,8 @@ SQL;
 			$existingExerciseXPath = $xml->xpath('/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:exercise[@id="'.$record['F_ExerciseID'].'"]');
 			if (count($existingExerciseXPath) == 0) {
 				// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
-				throw $service->copyOps->getExceptionForId("errorNoExerciseWithId", array("exerciseID" => $record['F_ExerciseID']));
+				// gh#165 this is now stopping me - it will have to be that we ignore any score that no longer has an id in the menu 
+				//throw $service->copyOps->getExceptionForId("errorNoExerciseWithId", array("exerciseID" => $record['F_ExerciseID']));
 			} else if (count($existingExerciseXPath) > 1) {
 				// Whilst we are mixing up old and new IDs, this might happen.  Just ignore the record.
 				//throw $service->copyOps->getExceptionForId("errorMultipleExerciseWithSameId", array("exerciseID" => $record['F_ExerciseID']));

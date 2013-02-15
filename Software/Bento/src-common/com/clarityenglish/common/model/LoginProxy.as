@@ -98,8 +98,9 @@ package com.clarityenglish.common.model {
 			// #340
 			// Network allows anonymous entry if all fields are blank
 			// gh#100 as does CT
-			if (((configProxy.getConfig().licenceType == Title.LICENCE_TYPE_NETWORK) || 
-				(configProxy.getConfig().licenceType == Title.LICENCE_TYPE_CT) ||
+			// gh#165
+			if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) || 
+				(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) ||
 				(loginOption & Config.LOGIN_BY_ANONYMOUS)) &&
 				(!user.name || user.name=='') &&
 				(!user.studentID || user.studentID=='') &&
@@ -135,6 +136,9 @@ package com.clarityenglish.common.model {
 					loginObj = null;
 				}
 			}
+			
+			// gh#165 This call requires licence!
+			configProxy.getConfig().licence.licenceType = configProxy.getLicenceType();
 			
 			// gh#39 You might not know an exact productCode, in which case we have to send comma delimited list
 			// gh#36 Also need dbHost if this is the first call

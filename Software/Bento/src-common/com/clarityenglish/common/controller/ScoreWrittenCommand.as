@@ -23,7 +23,9 @@ package com.clarityenglish.common.controller {
 			
 			// First find the exercise xml
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			var exercise:XML = bentoProxy.menuXHTML.selectOne("script#model[type='application/xml'] exercise[id='" + score.exerciseID + "']");
+			// gh#165 just in case you have already logged out
+			if (bentoProxy.menuXHTML)
+				var exercise:XML = bentoProxy.menuXHTML.selectOne("script#model[type='application/xml'] exercise[id='" + score.exerciseID + "']");
 			
 			if (exercise) {
 				// 1. Insert a new <score> node as a child of the <exercise> (the same as ProgressExerciseScoresTransform does on the server)

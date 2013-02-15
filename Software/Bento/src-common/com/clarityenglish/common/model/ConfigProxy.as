@@ -72,11 +72,23 @@ package com.clarityenglish.common.model {
 			// Especially the licence type
 			config.rootID = new Number();
 			config.licence = new Licence();
-			config.licence.licenceType = Title.LICENCE_TYPE_LT;
+			// gh#165 licence type is set in config top level AND in config.licence
+			//this.setLicenceType = Title.LICENCE_TYPE_LT;
+			//config.licence.licenceType = Title.LICENCE_TYPE_LT;
+			config.account = new Account();
+			var dummyTitle:Title = new Title();
+			dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
+			config.account.titles = new Array(dummyTitle);
+			config.account.name = '';
+			config.account.verified = 1;
+			config.account.selfRegister = 0;
+			config.account.loginOption = config.loginOption;
+			
 			config.productCode = config.configProductCode;
 			config.paths.menuFilename = config.configFilename;
 			var timeStamp:Date = new Date();
-			config.instanceID = timeStamp.getTime().toString();			
+			config.instanceID = timeStamp.getTime().toString();
+			
 		}
 		
 		/**
@@ -129,7 +141,8 @@ package com.clarityenglish.common.model {
 				config.account.loginOption = config.loginOption;
 				// trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
 				config.licence = new Licence();
-				config.licence.licenceType = Title.LICENCE_TYPE_LT;
+				// gh#165
+				// config.licence.licenceType = Title.LICENCE_TYPE_LT;
 				
 				// gh#39 It seems that a problem is caused by sending the ACCOUNT_LOADED notification before the state machine 
 				// has properly transitioned into the next state, causing unpredictable results.
@@ -232,10 +245,11 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function getLoginOption():Number {
-			// GH #44 - use the config loginOption, or if there is none use the account login option
+			// gh#44 - use the config loginOption, or if there is none use the account login option
 			return getConfig().loginOption || getAccount().loginOption;
 		}
 		
+		// gh#165 licence type stored in multiple places
 		public function getLicenceType():uint {
 			return config.licenceType;
 		}
@@ -309,7 +323,7 @@ package com.clarityenglish.common.model {
 				(config.username && (loginOption & Config.LOGIN_BY_NAME_AND_ID)) ||
 				(config.studentID && (loginOption & Config.LOGIN_BY_ID)) || 
 				(config.email && (loginOption & Config.LOGIN_BY_EMAIL))) {
-				trace("direct start from config, studentID=" + config.studentID + " loginOption=" + loginOption);
+				//trace("direct start from config, studentID=" + config.studentID + " loginOption=" + loginOption);
 				
 				configUser = new User({ name:config.username, studentID:config.studentID, email:config.email, password:config.password });
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);
@@ -317,7 +331,7 @@ package com.clarityenglish.common.model {
 			
 			// Anonymous login
 			// Demo login will normally use AA licence type
-			if (config.licenceType == Title.LICENCE_TYPE_AA) {
+			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) { // gh#165
 				return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
 			}
 				
