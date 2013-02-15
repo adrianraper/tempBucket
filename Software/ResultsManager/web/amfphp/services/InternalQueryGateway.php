@@ -31,7 +31,8 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getSubscriptionRecords","startDate":"2012-05-01","dbHost":2}';
 	//$inputData = '{"method":"mergeDatabases","dbHost":2}';
 	//$inputData = '{"method":"archiveOldUsers","rootID":13982,"registrationDate":"-2 month","dbHost":2}';
-	$inputData = '{"method":"emailMeByGroup","xdate":"2013-01-17","dbHost":2}';
+	$inputData = '{"method":"restoreArchivedTeachers","rootID":13982,"dbHost":200}';
+	//$inputData = '{"method":"emailMeByGroup","xdate":"2013-01-17","dbHost":2}';
 	//$inputData = '{"method":"emailMeByUser","date":"2013-01-15","dbHost":2}';
 	
 	$postInformation= json_decode($inputData, true);	
@@ -133,6 +134,13 @@ try {
 				$regDate = time();
 			}
 			$rc = $thisService->dailyJobOps->archiveOldUsers(array($apiInformation['rootID']),date('Y-m-d',$regDate));
+			break;
+
+		// A very manual process to restore users based on ---
+		case 'restoreArchivedTeachers':
+			if (!isset($apiInformation['rootID']))
+				throw new Exception("No rootID has been sent");
+			$rc = $thisService->dailyJobOps->restoreArchivedTeachers(array($apiInformation['rootID']));
 			break;
 			
 		case 'getSubscriptionRecords':
