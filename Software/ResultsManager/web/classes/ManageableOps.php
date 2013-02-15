@@ -95,10 +95,10 @@ class ManageableOps {
 			$newGroup = $this->addGroup($newGroup, $tempParentGroup, true);
 			// Will you keep going or is this the last in the hierarchy?
 			if ($counter==count($groupNames)-1) {
-				NetDebug::trace("addGroupHierarchy, added all that I need to");
+				//NetDebug::trace("addGroupHierarchy, added all that I need to");
 				return $newGroup;
 			} else {
-				NetDebug::trace("addGroupHierarchy, keep going after adding new one");
+				//NetDebug::trace("addGroupHierarchy, keep going after adding new one");
 				// But the trouble is that the new group is not a manageable in the array that I already have
 				// So I might end up adding it again
 				$tempParentGroup = $newGroup;
@@ -247,7 +247,7 @@ EOD;
 			$updateRequired = true;
 		}
 		if ($updateRequired) {
-			NetDebug::trace('ManageableOps.updateUser update him first='.$user->name);
+			//NetDebug::trace('ManageableOps.updateUser update him first='.$user->name);
 			// Update the user record
 			$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
 			/*
@@ -552,11 +552,11 @@ EOD;
 					
 					// Get all the user IDs we need to delete. Same as above.
 					$userIdArray = $manageable->getSubUserIds();
-					NetDebug::trace('ManageableOps.deleteAccounts all users='.implode(",",$userIdArray));
+					//NetDebug::trace('ManageableOps.deleteAccounts all users='.implode(",",$userIdArray));
 					
 					// Ensure that this root context has permission to access all these groups
 					AuthenticationOps::authenticateGroupIDs($groupIdArray);
-					NetDebug::trace('ManageableOps.deleteAccounts all groups='.implode(",",$groupIdArray));
+					//NetDebug::trace('ManageableOps.deleteAccounts all groups='.implode(",",$groupIdArray));
 					
 					// Delete the groups
 					$this->deleteGroupsById($groupIdArray);
@@ -734,15 +734,15 @@ EOD;
 	 */
 	function updateManageableNames($groups) {
 		$this->db->StartTrans();
-		NetDebug::trace('ManageableOps.updateManageableNames groups='.count($groups));
+		//NetDebug::trace('ManageableOps.updateManageableNames groups='.count($groups));
 		foreach ($groups as $group) {
 			$manageables = $group->manageables;
-			NetDebug::trace('ManageableOps.updateManageableNames group='.$group->name);
+			//NetDebug::trace('ManageableOps.updateManageableNames group='.$group->name);
 			foreach ($manageables as $manageable) {
-				NetDebug::trace('ManageableOps.getUser from id='.$manageable->studentID);
+				//NetDebug::trace('ManageableOps.getUser from id='.$manageable->studentID);
 				$user = $this->getUserByLearnerId($manageable);
 				if ($user) {
-					NetDebug::trace('ManageableOps.got name='.$user->name);
+					//NetDebug::trace('ManageableOps.got name='.$user->name);
 					
 					// Update the existing user name
 					$updateRequired = false;
@@ -752,7 +752,7 @@ EOD;
 						$updateRequired = true;
 					}
 					if ($updateRequired) {
-						NetDebug::trace('ManageableOps.updateUser to='.$user->name);
+						//NetDebug::trace('ManageableOps.updateUser to='.$user->name);
 						// Update the user record
 						$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
 					}
@@ -861,7 +861,7 @@ EOD;
 				// There was an error adding this as a new user, so do you want to try to move/update them?
 				// v3.6.1 Allowing moving and importing
 				if ($moveExistingStudents) {
-					NetDebug::trace("importing, ".$manageable->name." exists in group ".$e->getCode()." so try to move them to ".$parentGroup->id);
+					//NetDebug::trace("importing, ".$manageable->name." exists in group ".$e->getCode()." so try to move them to ".$parentGroup->id);
 					try {
 						// To avoid appearing to move any duplicated students who you don't really want to move, check groups first
 						// TODO But how???

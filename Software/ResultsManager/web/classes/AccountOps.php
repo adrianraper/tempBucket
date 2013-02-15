@@ -365,7 +365,7 @@ SQL;
 		//throw new Exception($selectBuilder->toSQL());
 		$sql = $selectBuilder->toSQL();
 		//NetDebug::trace($sql);
-		echo $sql;
+		//echo $sql;
 		//$accountsRS = $this->db->Execute($selectBuilder->toSQL($sql)); 
 		$accountsRS = $this->db->Execute($sql); 
 		//NetDebug::trace("accounts=".$accountsRS->RecordCount());
