@@ -12,7 +12,9 @@ class LICENCE {
 		global $db;
 		
 		// v6.5.5.0 Tracking licence uses now based on the time the user sends
-		$this->dateNow = $vars['DATESTAMP'];
+		// v6.6.4 Always use server time for session records
+		//$this->dateNow = $vars['DATESTAMP'];
+		//$this->dateNow = date('Y-m-d H:i:s', time());
 
 		// v6.5.5.0 We don't try to limit teachers
 		if ($vars['USERTYPE']==0) {
@@ -108,7 +110,7 @@ EOD;
 		}
 
 		// Finally insert this user in the licence control table
-		$this->dateNow = date('Y-m-d H:i:s');
+		//$this->dateNow = date('Y-m-d H:i:s');
 		return $this->insertLicenceRecord(  $vars, 'x', 'y', $node );
 
 	}
@@ -222,11 +224,12 @@ EOD;
 		// v6.5.6 It is possible that this is a list of roots, in which case take the first as the default
 		$rootArray = explode(",", $rootID);
 		$singleRootID = $rootArray[0];
-		if (isset($this->dateNow)) {
-			$dateNow = $this->dateNow;
-		} else {
+		// v6.6.4 Always use server time for session records
+		//if (isset($this->dateNow)) {
+		//	$dateNow = $this->dateNow;
+		//} else {
 			$dateNow = date('Y-m-d H:i:s', time());
-		}
+		//}
 		$productCode = $vars['PRODUCTCODE'];
 		$userID = $vars['USERID'];
 		if ($userID=="") {
@@ -402,11 +405,12 @@ EOD;
 		$id = $vars['LICENCEID'];
 		// v6.5.5.0 Should I use $vars['datestamp'] to get the user's own dates rather than the server time?
 		//$dateNow = $this->dateNow;
-		if (isset($this->dateNow)) {
-			$dateNow = $this->dateNow;
-		} else {
+		// v6.6.4 Always use server time for session records
+		//if (isset($this->dateNow)) {
+		//	$dateNow = $this->dateNow;
+		//} else {
 			$dateNow = date('Y-m-d H:i:s', time());
-		}
+		//}
 		// v6.5.5.1 but the SQL doesn't fail if the F_LicenceID is missing, it just updates 0 records. No good to us.
 		// So need to use a SELECT first
 		$sql = <<<EOD
@@ -445,11 +449,12 @@ EOD;
 		global $db;
 		
 		//$dateNow = $this->dateNow;
-		if (isset($this->dateNow)) {
-			$dateNow = $this->dateNow;
-		} else {
+		// v6.6.4 Always use server time for session records		
+		//if (isset($this->dateNow)) {
+		//	$dateNow = $this->dateNow;
+		//} else {
 			$dateNow = date('Y-m-d H:i:s', time());
-		}
+		//}
 		// v6.5.4.5 use Akamai header if applicable
 		// This can trigger a PHP warning if not present, so wrap with array_key_exists
 		if (array_key_exists('HTTP_TRUE_CLIENT_IP', $_SERVER)) {
@@ -637,7 +642,7 @@ EOD;
 		// This is actually licence clearance date as calculated by getRMSettings
 		$datestamp = $vars['LICENCESTARTDATE'];
 		// Transferable tracking needs to invoke the T_User table as well to ignore records from users that don't exist anymore.
-		v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
+		// gh#125 v6.6.4 change to counting based on F_StartDateStamp to avoid problems in F_EndDateStamp
 		if ($vars['LICENCETYPE']=='6') {
 			$sql = <<<EOD
 				SELECT COUNT(DISTINCT(s.F_UserID)) AS licencesUsed 

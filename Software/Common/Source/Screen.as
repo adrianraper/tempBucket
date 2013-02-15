@@ -540,7 +540,7 @@ _global.ORCHID.root.buttonsHolder.ExerciseScreen.display = function() {
 	//if (	(_global.ORCHID.LoadedExercises[0].mode & _global.ORCHID.exMode.NoMarkingButton) ||
 	//	 (_global.ORCHID.LoadedExercises[0].mode & _global.ORCHID.exMode.NeutralMarking)){
 	//myTrace("show marking button=" + _global.ORCHID.LoadedExercises[0].settings.buttons.marking);
-	if (	!_global.ORCHID.LoadedExercises[0].settings.buttons.marking ||
+	if (!_global.ORCHID.LoadedExercises[0].settings.buttons.marking ||
 		// v6.4.2.7 wrong object name
 		//_global.ORCHID.LoadedExercises[0].settings.marking.neutral) {
 		_global.ORCHID.LoadedExercises[0].settings.feedback.neutral) {
@@ -665,7 +665,15 @@ _global.ORCHID.root.buttonsHolder.ExerciseScreen.display = function() {
 	if (!_global.ORCHID.LoadedExercises[0].settings.buttons.forward) {
 		this.navForward_pb.setEnabled(false);			
 	} else {
-		this.navForward_pb.setEnabled(true);
+		// v6.6.0.5 SCORM handling
+		// If this is SCORM and we have a marking button, hide the forward button as you don't want to skip exercises that can be marked.
+		myTrace("screens, SCORM+marking check. scorm=" + _global.ORCHID.commandLine.scorm + " markingBtn=" + this.exMarking_pb.getEnabled());
+		if (_global.ORCHID.commandLine.scorm && this.exMarking_pb.getEnabled()) {
+			myTrace("screen, SCORM. SO hide forward button");
+			this.navForward_pb.setEnabled(false);
+		} else {
+			this.navForward_pb.setEnabled(true);
+		}
 	}
 	if (!_global.ORCHID.LoadedExercises[0].settings.buttons.hints) {
 		this.hint_pb.setEnabled(false);			

@@ -1043,6 +1043,7 @@ View.prototype.displayMsgBox = function(msgType, goTo, marking) {
 		// warning message if Flash won't let you print
 		case "noPrint":
 		case "noRecorder":
+		case "mustMarkSCORM":
 			/*
 			var initObj = {_x:240, _y:250, branding:_global.ORCHID.root.licenceHolder.licenceNS.branding};
 			//v6.2 use generic AP msg box
@@ -1233,7 +1234,7 @@ View.prototype.displayMsgBox = function(msgType, goTo, marking) {
 // v6.4.3 Extract the common stuff for message box from the above
 View.prototype.commonMsgBox = function(msgType, goTo, marking) {
 	//var initObj = {_x:200, _y:100, borderSpacer:6};
-	//myTrace("commonMsgBox with " + msgType + " goTo.scope=" + goTo.scope+ " marking=" + marking);
+	myTrace("commonMsgBox with " + msgType + " goTo.scope=" + goTo.scope+ " marking=" + marking);
 	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0) {
 		var initObj = {_x:260, _y:140, branding:_global.ORCHID.root.licenceHolder.licenceNS.branding};	
 	} else {
@@ -1251,6 +1252,7 @@ View.prototype.commonMsgBox = function(msgType, goTo, marking) {
 			break;
 		case "noPrint":
 		case "noRecorder":
+		case "mustMarkSCORM":
 			myMsgBox.setTitle(_global.ORCHID.literalModelObj.getLiteral("warning", "labels")); 
 			break;
 		default:
@@ -1397,6 +1399,7 @@ View.prototype.commonMsgBox = function(msgType, goTo, marking) {
 		case "noPrint":
 		case "noRecorder":
 		case "hintText":
+		case "mustMarkSCORM":
 			myMsgBox.setButtons([{caption:_global.ORCHID.literalModelObj.getLiteral("ok", "buttons"), setReleaseAction:myObj.onOK}]);
 			myMsgBox.setCloseHandler(myObj.onOK);
 			break;
@@ -1447,9 +1450,12 @@ View.prototype.commonMsgBox = function(msgType, goTo, marking) {
 		case "noPrint":
 			clt.text = _global.ORCHID.literalModelObj.getLiteral("cannotPrint", "messages");
 			break;
+		case "mustMarkSCORM":
+			clt.text = _global.ORCHID.literalModelObj.getLiteral("cannotSkipMarkingSCORM", "messages");
+			break;
 		case "noRecorder":
 			clt.html = true;
-			var supportLink = "<u><a href='http://www.clarity.com.hk/technical-support/ClarityRecorder.htm' target='_blank'>www.ClaritySupport.com</a></u>";
+			var supportLink = "<u><a href='http://www.clarityenglish.com/support/ClarityRecorder' target='_blank'>www.ClarityEnglish.com/support</a></u>";
 			var substList = [{tag:"[x]", text:supportLink}];
 			clt.htmlText = substTags(_global.ORCHID.literalModelObj.getLiteral("cannotRecord", "messages"), substList);
 			break;
@@ -2422,6 +2428,12 @@ View.prototype.setStartAgain = function(enabled) {
 	} else {
 		_global.ORCHID.root.buttonsHolder.ExerciseScreen.navStartAgain_pb.setEnabled(enabled);
 	}
+	// v6.6.0.5 SCORM handling
+	// If you switched off forward button because this is SCORM, put it back on now you have done marking
+	myTrace("and SCORM is " + _global.ORCHID.commandLine.scorm + " so enable forward button");
+	if (_global.ORCHID.commandLine.scorm) {
+		_global.ORCHID.root.buttonsHolder.ExerciseScreen.navForward_pb.setEnabled(true);
+	}		
 }
 
 View.prototype.setFeedback = function(enabled) {
@@ -4234,7 +4246,7 @@ View.prototype.cmdMenu = function(component) {
 }
 
 View.prototype.moveExercise = function(component, direction) {
-	//myTrace("moveExercise: .marked=" + _global.ORCHID.session.currentItem.marked);
+	myTrace("moveExercise: .marked=" + _global.ORCHID.session.currentItem.marked);
 	// v6.3.2 If the exercise has not been marked yet, you must record that it has been done
 	// That is mostly done here, but if you get the pop-up and then decide to come back here
 	// and finish, we don't want it done. So that is left until displayMsgBox to do.
@@ -4290,13 +4302,25 @@ View.prototype.moveExercise = function(component, direction) {
 	}
 	// For now override this as I don't actually want to implement this yet.
 	noFeedbackSeen = false;
+	// v6.6.0.5 SCORM handling
+	var isSCORM = (_global.ORCHID.commandLine.scorm == true);
 	
 	// First, if it has been marked, then don't do any other checking
 	if (beenMarked == true) {
 		//myTrace("marking: been marked already");
+		
 	// If it can be marked, (but hasn't been) and something has been done, then you need to 
 	// confirm that they really want to go on before marking it. So the marking is done
 	// in the displayMsgBox bit IF they are asked and say YES (or are not asked)
+	
+	// v6.6.0.5 SCORM handling
+	// If you are running in SCORM, then simply don't let someone just click forward through an exercise without getting a score
+	// Otherwise we can't let you complete the SCO and difficult to just go back and do one exercise.
+	} else if (isExercise && hasMarking && isSCORM && (direction == "forward")) {
+		myTrace("SCORM but not clicked marking.");
+		_global.ORCHID.viewObj.displayMsgBox("mustMarkSCORM");
+		return;
+		
 	} else if (isExercise && hasMarking && isDirty) {
 		//myTrace("marking: will they continue?");
 		//mainMarking();

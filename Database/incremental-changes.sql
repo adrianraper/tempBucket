@@ -782,3 +782,8 @@ ADD UNIQUE INDEX `Index_2` (`F_GroupID` ASC, `F_UserID` ASC)
 ALTER TABLE `rack80829`.`T_User_Expiry` 
 ADD UNIQUE INDEX `Index_2` (`F_UserID` ASC) 
 , ADD INDEX `Index_1` (`F_RegistrationDate` ASC);
+
+INSERT INTO `T_Product` VALUES
+(22,'GEPTListening',NULL,888);
+INSERT INTO `T_ProductLanguage` VALUES 
+(22,'EN','GEPTListening');

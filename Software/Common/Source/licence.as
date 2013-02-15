@@ -133,6 +133,7 @@ licenceNS.getConfirmLicence = function() {
 		if (this.master.productCode==undefined){
 			// v6.5.4.4 CE.com has licences with product names such as 'STUDY SKILLS Success ONLINE'. So make the match case insensitive
 			//switch (this.master.product) {
+			myTrace("looking for " + this.master.product.toLowerCase());
 			switch (this.master.product.toLowerCase()) {
 			case "tense buster":
 				//this.master.productCode = 1001;
@@ -190,6 +191,9 @@ licenceNS.getConfirmLicence = function() {
 			case "gept":
 				//this.master.productCode = 2100;
 				this.master.productCode = 15;
+				break;
+			case "gept listening":
+				this.master.productCode = 22;
 				break;
 			case "holistic english":
 				//this.master.productCode = 2110;
@@ -584,6 +588,7 @@ licenceNS.setProductBranding = function(productCode) {
 		branding = "NAS/LdT";
 		break;
 	case 15:
+	case 22:
 		branding = "WinHoe/GEPT";
 		break;
 	case 16:

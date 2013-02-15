@@ -811,11 +811,12 @@ EOD;
 		//$date = $Db->now();
 		//$thisCourseName = $vars['COURSENAME'];
 		//$node .= "<note>coursename='$thisCourseName' </note>";
-		if (isset($this->dateNow)) {
-			$dateNow = $this->dateNow;
-		} else {
+		// v6.6.4 Always use server time for session records
+		//if (isset($this->dateNow)) {
+		//	$dateNow = $this->dateNow;
+		//} else {
 			$dateNow = date('Y-m-d H:i:s', time());
-		}
+		//}
 		//$date = $vars['DATESTAMP'];
 		//$returnCode = $this->insertSessionRecord($vars, $dateNow);
 		
@@ -2253,11 +2254,12 @@ EOD;
 		//$date = $vars['DATESTAMP'];
 		// v6.5.5.0 Should I use $vars['datestamp'] to get the user's own dates rather than the server time?
 		//$dateNow = $this->dateNow;
-		if (isset($this->dateNow)) {
-			$dateNow = $this->dateNow;
-		} else {
+		// v6.6.4 Always use server time for session records
+		//if (isset($this->dateNow)) {
+		//	$dateNow = $this->dateNow;
+		//} else {
 			$dateNow = date('Y-m-d H:i:s', time());
-		}
+		//}
 		$sid = $vars['SESSIONID'];
 		$bindingParams = array($dateNow);
 		//v6.5.4.5 New database has proper datetime fields and a (redundant) duration
@@ -3289,11 +3291,12 @@ EOD;
 					}
 
 					// Insert this session
-					if (isset($this->dateNow)) {
-						$dateNow = $this->dateNow;
-					} else {
+					// v6.6.4 Always use server time for session records
+					//if (isset($this->dateNow)) {
+					//	$dateNow = $this->dateNow;
+					//} else {
 						$dateNow = date('Y-m-d H:i:s', time());
-					}
+					//}
 					$vars['ROOTID'] = $dbObj->RootID;
 					$sessionID = $this->insertSessionRecord($vars, $dateNow);
 					//print 'affected_rows=' .$Db->affected_rows;
@@ -4241,11 +4244,12 @@ EOD;
 		$sid  = $vars['SESSIONID'];
 		$pid  = $vars['PRODUCTCODE'];
 		$uid  = $vars['USERID'];
-		if (isset($this->dateNow)) {
-			$dateNow = $this->dateNow;
-		} else {
+		// v6.6.4 Always use server time for session records
+		//if (isset($this->dateNow)) {
+		//	$dateNow = $this->dateNow;
+		//} else {
 			$dateNow = date('Y-m-d 00:00:00', time());
-		}
+		//}
 		// First need to get rootID from T_Session and licenceType from T_Accounts
 		$sql = <<<EOD
 			SELECT a.F_RootID as rootID, a.F_LicenceType as licenceType FROM T_Session s, T_Accounts a
