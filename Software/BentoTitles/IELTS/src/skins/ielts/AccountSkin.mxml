@@ -54,11 +54,12 @@
 					repObject.day = thisDate.date;
 					repObject.year = thisDate.fullYear;
 					// gh#163 - probably better to get language code from explicit setting in the view
-					if (languageDropDownList.selectedItem.data == "ZH") {
+					//Alice delete this part for 1. TD failed to work. 2. useless
+					/*if (languageDropDownList.selectedItem.data == "ZH") {
 						repObject.month = thisDate.month + 1;
-					} else {
+					} else {*/
 						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
-					}
+					//}
 					return hostComponent.hostCopyProvider.getCopyForId("dateFormatLabel", repObject);
 				}
 				return '';

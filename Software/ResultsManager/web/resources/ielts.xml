@@ -185,6 +185,10 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="confirmPwdLabel">Confirm password:</lit>
 			<lit name="accountLanguageLabel">Language:</lit>
 			<lit name="IELTSAppsLabel">IELTS Apps</lit>
+			<lit name="videoRichText">11 videos of British Council experts giving IELTS advice</lit>
+			<lit name="mockTestRichText">Mock test papers with model answers</lit>
+			<lit name="hourRichText">30 hours of interactive practice activities</lit>
+			<lit name="buyInfoButton">Subscribe to the Full Version of Road to IELTS for 120 hours of IELTS practice materials!</lit>
 			<lit name="supportCaptionSpan1">How to use Road to IELTS</lit>
 			<lit name="paragraphContentSpan1">Road to IELTS is organised into four skill areas, one for each paper in IELTS.In each skill area learners can prepare effectively for their test by reading information about each paper, getting advice from experts onvideo, and practising specific question types using the interactive practice exercises and the mock papers.</lit>
 			<lit name="creditsRichText">
