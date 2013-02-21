@@ -15,8 +15,8 @@ if (!isset($_GET['uid'])) {
 }
 
 $uid = $_GET['uid'];
-$thumbnailFolder = dirname(__FILE__)."/../../".$GLOBALS['data_dir']."/../Thumbnails/";
 
+$thumbnailFolder = "D:\Projectbench\Thumbnails/";
 // Sanitise $uid to prevent directory traversal attacks by not allowing more than one consecutive dot or anything that isn't a number.
 $uid = preg_replace("/\.{2,}|[^0-9.]*/", "", $uid);
 
@@ -31,8 +31,18 @@ if (sizeof($segments) == 0 || sizeof($segments) > 4) {
  * So the algorithm goes: replace . with / and stick .png on the end.  If the file exists then that's the one we are looking for otherwise pop a segment
  * off the end and have another go.  If we don't find any then use default.png
  */
-while (sizeof($segments) > 0) {
+while (sizeof($segments) > 0 && sizeof($segments) < 4) {
 	$imagePath = $thumbnailFolder.implode("/", $segments).".png";
+	
+	if (file_exists($imagePath)) {
+		outputPng($imagePath);
+	} else {
+		array_pop($segments);
+	}
+}
+
+if (sizeof($segments) == 4) {
+	$imagePath = $thumbnailFolder.$segments[0]."/".$segments[1]."/"."default.png";
 	
 	if (file_exists($imagePath)) {
 		outputPng($imagePath);

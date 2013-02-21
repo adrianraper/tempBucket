@@ -13,6 +13,15 @@
 			private function getIconForContent(item:Object, isOpen:* = null, isBranch:* = null):Object {
 				return hostComponent.getThumbnailForUid(item.uid);
 			}
+			
+			private function tree_labelFunc(item:Object):String {
+				if (getQualifiedClassName(item).indexOf("Exercise") != -1) {
+					return item.name;
+				} else {
+					return null;
+				}
+				
+			}
 		]]>
 	</fx:Script>
 	
@@ -22,7 +31,7 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<sparkTree:Tree id="tree" dataProvider="{hostComponent.titleCollection}" iconFunction="getIconForContent" labelField="name" width="500" height="500" bottom="50" borderVisible="false" />
+	<sparkTree:Tree id="tree" dataProvider="{hostComponent.titleCollection}" labelFunction="tree_labelFunc" iconFunction="getIconForContent" labelField="name" width="500" height="500" bottom="50" borderVisible="false" />
 	
 	<s:HGroup width="100%" bottom="0">
 		<s:Button id="selectButton" label="Select content" enabled="{tree.selectedItem != null}" />
