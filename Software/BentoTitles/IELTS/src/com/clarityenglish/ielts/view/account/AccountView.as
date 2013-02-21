@@ -211,11 +211,11 @@ package com.clarityenglish.ielts.view.account {
 					var thisDate:Date = DateUtil.ansiStringToDate(startDate);
 					repObject.day = thisDate.date;
 					repObject.year = thisDate.fullYear;
-					if (CopyProxy.languageCode == "ZH") {
+					/*if (CopyProxy.languageCode == "ZH") {
 						repObject.month = thisDate.month + 1;
-					} else {
+					} else {*/
 						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
-					}
+					//}
 					startDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 				}
 			}
@@ -227,11 +227,11 @@ package com.clarityenglish.ielts.view.account {
 					thisDate = DateUtil.ansiStringToDate(expiryDate);
 					repObject.day = thisDate.date;
 					repObject.year = thisDate.fullYear;
-					if (CopyProxy.languageCode == "ZH") {
+					/*if (CopyProxy.languageCode == "ZH") {
 						repObject.month = thisDate.month + 1;
-					} else {
+					} else {*/
 						repObject.month = DateUtil.formatDate(thisDate, 'MMMM');
-					}
+					//}
 					endDateLabel.text = copyProvider.getCopyForId("dateFormatLabel", repObject);
 				}
 			}
