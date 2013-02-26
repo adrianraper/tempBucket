@@ -49,7 +49,7 @@
 	<s:Spacer height="10"/>
 	
 	<s:Group width="100%" top.normal="50" top.select="10">
-		<s:DataGrid id="fileList" borderVisible="false" width.normal="65%" width.select="100%" height.normal="500">
+		<s:DataGrid id="fileList" borderVisible="false" width.normal="65%" width.select="100%" height.normal="500" selectionColor="#FFF6CC" rollOverColor="#FFF6CC" caretColor="#FFF6CC">
 			<s:columns>
 				<s:ArrayList>
 					<s:GridColumn dataField="@filename" headerText="Name"/>
@@ -57,6 +57,7 @@
 				</s:ArrayList>
 			</s:columns>
 		</s:DataGrid>
+		
 		<s:Panel id="settingPanel" title="My Storage space" right="0" width="35%" height="350" borderVisible="false" dropShadowVisible="false" includeIn="normal">
 			<mx:PieChart dataProvider="{hostComponent.pieChartCollection}" scaleX="0.5" scaleY="0.5" horizontalCenter="0" verticalCenter="0" showDataTips="true">
 				<mx:series>
@@ -89,11 +90,10 @@
 		</s:Panel>				
 	</s:Group>
 	
-	<s:HGroup top="310" paddingBottom="10" includeIn="select">
-		<s:Button id="selectButton" label="Select" enabled="{fileList.selectedItem != null}" width="80" fontSize="13"/>
-		<s:Spacer width="5"/>
-		<s:Button id="cancelButton" label="Cancel" width="80" fontSize="13"/>
-	</s:HGroup>
+	<s:Group top="310" bottom="10" includeIn="select" right.select="10" left.select="10">
+		<s:Button id="selectButton" label="Select" enabled="{fileList.selectedItem != null}" width="80" fontSize="13" />
+		<s:Button id="cancelButton" label="Cancel" width="80" fontSize="13" right.select="0"/>
+	</s:Group>
 	
 	
 	

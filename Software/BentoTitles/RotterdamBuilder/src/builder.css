@@ -16,6 +16,7 @@
 @namespace title1 "com.clarityenglish.rotterdam.view.title.*";
 @namespace settings "com.clarityenglish.rotterdam.view.settings.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
+@namespace sparkTree "com.sparkTree.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -210,8 +211,28 @@ uniteditor|UnitEditorView widgets|WidgetMenu s|Button {
 	color: #7F7F7F;
 }
 
+uniteditor|ContentSelectorView s|Button#selectButton {
+	skinClass:ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+}
+
+uniteditor|ContentSelectorView s|Button#cancelButton {
+	skinClass:ClassReference("skins.rotterdam.ui.GreyButtonSkin");
+}
+
 uniteditor|ContentSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.ContentSelectorSkin");
+}
+
+uniteditor|ContentSelectorView sparkTree|Tree {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.TreeSkin");
+}
+
+uniteditor|ContentSelectorView sparkTree|Tree s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.scroller.VerticalScrollBarSkin");
+}
+
+uniteditor|ContentSelectorView sparkTree|Tree s|HScrollBar {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.scroller.HorizontalScrollBarSkin");
 }
 
 filemanager|FileManagerView {
@@ -221,6 +242,10 @@ filemanager|FileManagerView {
 filemanager|FileManagerView s|DataGrid#fileList {
 	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileListDataGrid");
 	alternatingRowColors: #FFFFFF, #F2F2F2;
+}
+
+filemanager|FileManagerView s|DataGrid#fileList s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.scroller.VerticalScrollBarSkin");
 }
 
 filemanager|FileManagerView s|Button {
@@ -238,6 +263,7 @@ filemanager|FileManagerView s|Button#selectButton {
 filemanager|FileManagerView s|Button#cancelButton {
 	skinClass: ClassReference("skins.rotterdam.ui.GreyButtonSkin");
 }
+
 
 settings|SettingsView {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSkin");

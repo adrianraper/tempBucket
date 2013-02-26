@@ -36,7 +36,7 @@
     </fx:Metadata>
 	
 	<fx:Declarations>
-		<s:GlowFilter id="glowFilter" alpha="0.6" blurX="2" blurY="2" color="0x000000" knockout="false" quality="3" />
+		<s:GlowFilter id="glowFilter" alpha="0.6" blurX="2" blurY="2" color="0x000000" knockout="false" quality="10" />
 		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="0.5" alpha="0.8" />
 	</fx:Declarations>
         

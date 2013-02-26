@@ -41,7 +41,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
-			//titleWindow.styleName = "markingTitleWindow"; ... if we want to skin the title window
+			titleWindow.styleName = "markingTitleWindow"; //... if we want to skin the title window
 			titleWindow.title = "Resources Cloud";
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			

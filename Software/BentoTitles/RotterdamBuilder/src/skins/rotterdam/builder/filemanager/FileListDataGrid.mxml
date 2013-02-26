@@ -189,9 +189,9 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
         <!--- @private -->
         <fx:Component id="rowSeparator">
             <s:Line>
-                <s:stroke>
+                <!--s:stroke>
                     <s:SolidColorStroke color="0xE6E6E6" weight="1" caps="square"/>
-                </s:stroke>
+                </s:stroke-->
             </s:Line>
         </fx:Component>
         
@@ -308,14 +308,10 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
             <!-- header separator, scroller and grid -->
             <s:VGroup horizontalAlign="justify" height="100%" width="100%" gap="-1">
                 <!--- @private -->
-                <s:Line id="headerSeparator">
-                    <s:stroke>
-                        <s:SolidColorStroke color="0x696969" weight="1" caps="square"/>
-                    </s:stroke>
-                </s:Line>          
+                    
                 
                 <!--- @private -->
-                <s:Scroller id="scroller" minViewportInset="1" hasFocusableChildren="false" height="100%">
+                <s:Scroller id="scroller"  hasFocusableChildren="false" height="100%">
                     <!--- @private -->
                     <s:Grid id="grid" itemRenderer="spark.skins.spark.DefaultGridItemRenderer">
                         <s:GridLayer name="backgroundLayer"/>

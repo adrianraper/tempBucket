@@ -28,11 +28,20 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		public var thumbnailScript:String;
 		
+		[Embed(source="/skins/rotterdam/builder/assets/unit/icon_program_arrow_right.png")]
+		public var arrowRight:Class;
+		
+		[Embed(source="/skins/rotterdam/builder/assets/unit/icon_program_arrow_down.png")]
+		public var arrowDown:Class;
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
 				case tree:
+					tree.setStyle("disclosureClosedIcon", arrowRight);
+					tree.setStyle("disclosureOpenIcon", arrowDown);
+					tree.setStyle("padddingLeft", 10);
 					break;
 				case selectButton:
 					selectButton.addEventListener(MouseEvent.CLICK, onSelectButton);
