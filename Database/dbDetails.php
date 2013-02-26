@@ -83,7 +83,7 @@ class DBDetails {
 				
 			case 2:
 			default:
-				$this->driver = "mysql";
+				$this->driver = "mysqlt";
 				$this->host = "localhost";
 				$this->user = "clarity";
 				$this->password = "clarity";
