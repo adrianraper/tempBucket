@@ -2,8 +2,11 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.controls.video.VideoSelector;
 	import com.clarityenglish.controls.video.events.VideoScoreEvent;
+	
+	import flash.events.Event;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.XMLListCollection;
@@ -11,7 +14,6 @@ package com.clarityenglish.ielts.view.zone {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Label;
-	import flash.events.Event;
 	
 	public class AdviceZoneSectionView extends AbstractZoneSectionView {
 		
@@ -30,6 +32,10 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public var exerciseSelect:Signal = new Signal(Href);
 		public var videoScore:Signal = new Signal(ExerciseMark);
+		
+		public function get viewCopyProvider():CopyProvider {
+			return this.copyProvider;
+		}
 		
 		public function AdviceZoneSectionView() {
 			super();

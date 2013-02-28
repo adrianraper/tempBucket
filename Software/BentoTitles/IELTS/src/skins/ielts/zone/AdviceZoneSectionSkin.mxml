@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:video="com.clarityenglish.controls.video.*">
+		xmlns:video="com.clarityenglish.controls.video.*"
+		creationComplete="creationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.zone.AdviceZoneSectionView")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
+			
+			import mx.events.FlexEvent;
+			
+			// #302 - ensure the popupwatchers isn't garbage collected
+			private var popupWatcher:DisabledPopupWatcher
+			protected function creationComplete(event:Event):void {
+				popupWatcher = new DisabledPopupWatcher(videoSelector.videoList, hostComponent.viewCopyProvider, hostComponent.productVersion ); 
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
