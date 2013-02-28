@@ -39,8 +39,9 @@ class HiddenContentTransform extends XmlTransform {
 					$uid = end($uidArray);
 					switch (count($uidArray)) {
 						case 1:
-							// Since xpath returns an array, need to keep all our nodes the same type
-							$node = array($xml);
+							// gh#171
+							//$node = array($xml);
+							$node = $xml->xpath('.//xmlns:menu[@id="'.$uid.'"]');
 							break;
 						case 2:
 							$node = $xml->xpath('.//xmlns:course[@id="'.$uid.'"]');
