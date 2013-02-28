@@ -51,8 +51,8 @@
 			private function formatScreenDate(date:Date):String {
 				if (date && CopyProxy.languageCode == "ZH") {
 					var objReplace:Object = new Object();
-					trace("date's day is "+date.date);
-					trace("date's month is "+date.month);
+					//trace("date's day is "+date.date);
+					//trace("date's month is "+date.month);
 					objReplace.day = date.date;
 					objReplace.month = date.month + 1;
 					objReplace.year = date.fullYear;
@@ -76,11 +76,11 @@
 		<s:State name="testDrive" stateGroups="anonymousStates" />
 	</s:states>
 
-	<!--issue:#11 Language Code?-->
+	<!--gh#11 Language Code?-->
 	<account:HowLongGraphic left="30" top="150"/>
 	<local:CountdownDisplay id="countdownDisplay" targetDate="{hostComponent.user.examDate}" left="164" top="165" />
 	
-	<!--issue:#11 Language Code-->
+	<!--gh#11 Language Code-->
 	<s:Label id="setTestDateLabel" fontSize="17" color="#082F67" left="20" top="285" />
 	
 	<s:HGroup left="20" top="315">
@@ -90,24 +90,26 @@
 		<s:NumericStepper id="examMinutes" minimum="0" maximum="45" stepSize="15" value="{Number(formatExamDetails(hostComponent.user, 'mins'))}" textAlign="center" />
 	</s:HGroup>
 	
-	<s:Label id="registeredNameLabel" fontSize="15" fontWeight="bold" left="20" top="350" />
-	<s:Label text="{hostComponent.user.name}" fontSize="15" left="180" top="350" />
+	<s:Label id="registeredNameLabel" excludeFrom="anonymousStates" fontSize="15" fontWeight="bold" left="20" top="350" />
+	<s:Label text="{hostComponent.user.name}" excludeFrom="anonymousStates" fontSize="15" left="180" top="350" />
 	
-	<s:Label id="emailLabel" fontSize="15" fontWeight="bold" left="20" top="380" />
-	<s:Label text="{hostComponent.user.email}" fontSize="15" left="180" top="380" />
+	<s:Label id="emailLabel" fontSize="15" excludeFrom="anonymousStates" fontWeight="bold" left="20" top="380" />
+	<s:Label text="{hostComponent.user.email}" excludeFrom="anonymousStates" fontSize="15" left="180" top="380" />
 
-	<s:Label id="accountStartDateLabel" fontSize="15" fontWeight="bold" left="20" top="410" />
-	<s:Label id="startDateLabel" fontSize="15" left="180" top="410" />
+	<s:Label id="accountStartDateLabel" excludeFrom="anonymousStates" fontSize="15" fontWeight="bold" left="20" top="410" />
+	<s:Label id="startDateLabel" excludeFrom="anonymousStates" fontSize="15" left="180" top="410" />
 
-	<s:Label id="accountExpiryDateLabel" fontSize="15" fontWeight="bold" left="20" top="440" />
-	<s:Label id="endDateLabel" fontSize="15" left="180" top="440" />
+	<s:Label id="accountExpiryDateLabel" excludeFrom="anonymousStates" fontSize="15" fontWeight="bold" left="20" top="440" />
+	<s:Label id="endDateLabel" excludeFrom="anonymousStates" fontSize="15" left="180" top="440" />
 
 	<s:Label id="languageLabel" fontSize="15" fontWeight="bold" left="20" top="470" />
 	<components:SpinnerDropDownList id="languageDropDownList" fontSize="15" left="180" top="470" width="150" />
 	
-	<s:Button id="saveChangesButton" visible="{hostComponent.isDirty}" includeInLayout="{hostComponent.isDirty}" left="20" top="500" />
+	<!-- gh#166 Don't need for anonymous -->
+	<s:Button id="saveChangesButton" excludeFrom="anonymousStates" visible="{hostComponent.isDirty}" 
+			  includeInLayout="{hostComponent.isDirty}" left="20" top="500" />
 	
-	<!--issue:#11 Language Code?-->
+	<!--gh#11 Language Code-->
 	<ui:GradeWidget right="72" top="168" />
 
 </s:Skin>

@@ -98,103 +98,102 @@ package com.clarityenglish.ielts.view.support {
 			super();
 		}
 
+		// gh#93
+		protected override function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+			
+			if (registerInfoButton) registerInfoButton.label = copyProvider.getCopyForId("registerInfoButton");
+			if (buyInfoButton) buyInfoButton.label = copyProvider.getCopyForId("buyInfoButton");
+			if (supportTextFlow1) {
+				if (config.languageCode == "ZH") {
+					supportTextFlow1.columnCount = 1;
+				} else {
+					supportTextFlow1.columnCount = 2;
+				}
+			}
+			if (supportTextFlow2) {
+				if (config.languageCode == "ZH") {
+					supportTextFlow2.columnCount = 1;
+				} else {
+					supportTextFlow2.columnCount = 2;
+				}
+			}
+			if (supportTextFlow3) {
+				if (config.languageCode == "ZH") {
+					supportTextFlow3.columnCount = 1;
+				} else {
+					supportTextFlow3.columnCount = 2;
+				}
+			}
+			if (supportCaptionSpan1) supportCaptionSpan1.text = copyProvider.getCopyForId("supportCaptionSpan1");
+			if (supportCaptionSpan2) supportCaptionSpan2.text = copyProvider.getCopyForId("supportCaptionSpan1");
+			if (supportCaptionSpan3) supportCaptionSpan3.text = copyProvider.getCopyForId("supportCaptionSpan1");
+			if (paragraphContentSpan1) paragraphContentSpan1.text = copyProvider.getCopyForId("paragraphContentSpan1");
+			if (paragraphContentSpan2) paragraphContentSpan2.text = copyProvider.getCopyForId("paragraphContentSpan1");
+			if (paragraphContentSpan3) paragraphContentSpan3.text = copyProvider.getCopyForId("paragraphContentSpan1");
+			if (helpLabel) helpLabel.text = copyProvider.getCopyForId("help");
+			if (keyScreenSpan) keyScreenSpan.text = copyProvider.getCopyForId("keyScreenSpan");
+			if (homeScreenIntroSpan) homeScreenIntroSpan.text = copyProvider.getCopyForId("homeScreenIntroSpan");
+			if (skillScreenIntroSpan) skillScreenIntroSpan.text = copyProvider.getCopyForId("skillScreenIntroSpan");
+			if (exerciseSreenIntroSpan) exerciseSreenIntroSpan.text = copyProvider.getCopyForId("exerciseSreenIntroSpan");
+			if (techProRichText) {
+				switch (productVersion) {
+					case IELTSApplication.TEST_DRIVE:
+					case IELTSApplication.LAST_MINUTE:
+						var supportEmail:String = this.copyProvider.getCopyForId("supportEmailR2I");
+						break;
+					case IELTSApplication.HOME_USER:
+						supportEmail = this.copyProvider.getCopyForId("supportEmailIP");
+						break;
+					case BentoApplication.DEMO:
+					case IELTSApplication.FULL_VERSION:
+					default:
+						supportEmail = this.copyProvider.getCopyForId("supportEmailCE");
+						break;
+				}
+				var replaceObj:Object = new Object();
+				replaceObj.supportEmail = supportEmail;
+				var contactUsContentString1:String = this.copyProvider.getCopyForId("contactUsContent1", replaceObj);
+				var contactUsFlow1:TextFlow = TextFlowUtil.importFromString(contactUsContentString1);
+				techProRichText.textFlow = contactUsFlow1;
+			}
+			if (contentProRichText) {
+				var contactUsContentString2:String = this.copyProvider.getCopyForId("contactUsContent2");
+				var contactUsFlow2:TextFlow = TextFlowUtil.importFromString(contactUsContentString2);
+				contentProRichText.textFlow = contactUsFlow2;
+			}
+			if (clarityRichText) {
+				var clarityString:String = this.copyProvider.getCopyForId("clarityRichText");
+				var clarityFlow:TextFlow = TextFlowUtil.importFromString(clarityString);
+				clarityRichText.textFlow = clarityFlow;
+			}
+			if (upGradeRichText) {
+				var upGradeString:String = this.copyProvider.getCopyForId("upGradeRichText");
+				var upGradeFlow:TextFlow = TextFlowUtil.importFromString(upGradeString);
+				upGradeRichText.textFlow = upGradeFlow;
+			}
+			if (upGradeTestRichText) {
+				var upGradeTestString:String = this.copyProvider.getCopyForId("upGradeRichText");
+				var upGradeTestFlow:TextFlow = TextFlowUtil.importFromString(upGradeTestString);
+				upGradeTestRichText.textFlow = upGradeTestFlow;
+			}
+			if (userManualLabel) userManualLabel.text = copyProvider.getCopyForId("userManualLabel");
+			if (testDriveSpan) testDriveSpan.text = copyProvider.getCopyForId("testDriveSpan");
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
+			// gh#93
 			switch (instance) {
 				case registerInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRegisterInfoClick);
-					instance.label = copyProvider.getCopyForId("registerInfoButton");
 					break;
 				case buyInfoButton:
 					instance.addEventListener(MouseEvent.CLICK, onBuyInfoClick);
-					instance.label = copyProvider.getCopyForId("buyInfoButton");
-					break;
-				case supportTextFlow1:
-					if (config.languageCode == "ZH") {
-						instance.columnCount = 1;
-					} else {
-						instance.columnCount = 2;
-					}
-					break;
-				case supportCaptionSpan1:
-					instance.text = copyProvider.getCopyForId("supportCaptionSpan1");
-					break;
-				case supportTextFlow2:
-					if (config.languageCode == "ZH") {
-						instance.columnCount = 1;
-					} else {
-						instance.columnCount = 2;
-					}
-					break;
-				case paragraphContentSpan1:
-					instance.text  = copyProvider.getCopyForId("paragraphContentSpan1");
-					break;
-				case supportTextFlow3:
-					if (config.languageCode == "ZH") {
-						instance.columnCount = 1;
-					} else {
-						instance.columnCount = 2;
-					}
-					break;
-				case supportCaptionSpan2:
-					instance.text = copyProvider.getCopyForId("supportCaptionSpan1");
-					break;
-				case paragraphContentSpan2:
-					instance.text  = copyProvider.getCopyForId("paragraphContentSpan1");
-					break;
-				case supportCaptionSpan3:
-					instance.text = copyProvider.getCopyForId("supportCaptionSpan1");
-					break;
-				case paragraphContentSpan3:
-					instance.text  = copyProvider.getCopyForId("paragraphContentSpan1");
-					break;
-				case helpLabel:
-					instance.text  = copyProvider.getCopyForId("help");
-					break;
-				case keyScreenSpan:
-					instance.text  = copyProvider.getCopyForId("keyScreenSpan");
-					break;
-				case homeScreenIntroSpan:
-					instance.text  = copyProvider.getCopyForId("homeScreenIntroSpan");
-					break;
-				case skillScreenIntroSpan:
-					instance.text  = copyProvider.getCopyForId("skillScreenIntroSpan");
-					break;
-				case exerciseSreenIntroSpan:
-					instance.text  = copyProvider.getCopyForId("exerciseSreenIntroSpan");
-					break;
-				case techProRichText:
-					var contactUsContentString1:String = this.copyProvider.getCopyForId("contactUsContent1");
-					var contactUsFlow1:TextFlow = TextFlowUtil.importFromString(contactUsContentString1);
-					instance.textFlow = contactUsFlow1;
-					break;
-				case contentProRichText:
-					var contactUsContentString2:String = this.copyProvider.getCopyForId("contactUsContent2");
-					var contactUsFlow2:TextFlow = TextFlowUtil.importFromString(contactUsContentString2);
-					instance.textFlow = contactUsFlow2;
-					break;
-				case clarityRichText:
-					var clarityString:String = this.copyProvider.getCopyForId("clarityRichText");
-					var clarityFlow:TextFlow = TextFlowUtil.importFromString(clarityString);
-					instance.textFlow = clarityFlow;
-					break;
-				case upGradeRichText:
-					var upGradeString:String = this.copyProvider.getCopyForId("upGradeRichText");
-					var upGradeFlow:TextFlow = TextFlowUtil.importFromString(upGradeString);
-					instance.textFlow = upGradeFlow;
-					break;
-				case upGradeTestRichText:
-					var upGradeTestString:String = this.copyProvider.getCopyForId("upGradeRichText");
-					var upGradeTestFlow:TextFlow = TextFlowUtil.importFromString(upGradeTestString);
-					instance.textFlow = upGradeTestFlow;
 					break;
 				case userManualLabel:
-					instance.text  = copyProvider.getCopyForId("userManualLabel");
 					instance.addEventListener(MouseEvent.CLICK, onUserManualClick);
-					break;
-				case testDriveSpan:
-					instance.text  = copyProvider.getCopyForId("testDriveSpan");
 					break;
 			}
 		}

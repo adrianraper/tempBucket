@@ -17,7 +17,7 @@
 			<lit name="errorDuplicateUsers" code="208">More than one user matches these details. Please contact your administrator. (login option {loginOption})</lit>
 			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered.</lit>
 			<lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
-			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
 			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
@@ -51,7 +51,7 @@
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
-			<lit name="accountMoreButton">To find out how to get an account, click here.</lit>
+			<lit name="accountMoreButton">To find out how to get an account, tap here.</lit>
 			<lit name="testDriveLabel">Try the FREE Test Drive Version</lit>
 			<lit name="printButton">Print</lit>
 			<lit name="noButton">No</lit>
@@ -289,11 +289,14 @@ If you want to be anonymous, just click {loginText}.]]>
 					large-scale projects for the Beijing Olympics and HSBC. Clarity has developed the design and software for Road to IELTS.</p>
 				 ]]>
 			</lit>
+			<lit name="supportEmailCE">support@clarityenglish.com</lit>
+			<lit name="supportEmailIP">support@ieltspractice.com</lit>
+			<lit name="supportEmailR2I">support@roadtoielts.com</lit>
 			<lit name="contactUsContent1">
 			    <![CDATA[
 				    <p><span fontWeight="bold">Technical problems</span><br/>Clarity will be pleased to help you any technical problems. Email
-					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a> with a description of your problem and the URL of
-					your course (if you are running online).<br/>
+					<a href="emailto:{supportEmail}">{supportEmail}</a> with a description of your problem. Please tell us
+					if you are using a tablet or your URL if you are running online.<br/>
 					Clarity Language Consultants Ltd<br/>
 					PO Box 163, Sai Kung, Hong Kong<br/>
 					Tel: +852 2701 1787<br/>
@@ -387,7 +390,7 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="contactUsContent1">
 			    <![CDATA[
 				    <p><span fontWeight="bold">技术问题</span><br/>Clarity愿帮助您解决任何技术难题。请描述您遇到的难题，将您登陆本课程时的网页地址或网站，一起发送至
-					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a>。<br/>Clarity Language Consultants Ltd<br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/>					
+					<a href="emailto:{supportEmail}">{supportEmail}</a>。<br/>Clarity Language Consultants Ltd<br/>PO Box 163, Sai Kung, Hong Kong<br/>Tel: +852 2701 1787<br/>Fax: +852 2791 6484<br/>					
 					</p>
 			    ]]>
 			</lit>
@@ -420,7 +423,7 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="contactUsContent1">
 			    <![CDATA[
 				    <p><span fontWeight="bold">技術的な問題</span><br/>技術的な問題が生じた場合は、Clarityが解決をサポートします。問題の詳細と、プログラムを開始したURLまたはウェブサイトを明記のうえ、
-					<a href="emailto:support@clarityenglish.com">support@clarityenglish.com</a>にメールをお送りください。<br/>
+					<a href="emailto:{supportEmail}">{supportEmail}</a>にメールをお送りください。<br/>
 					Clarity Language Consultants Ltd<br/>
 					PO Box 163, Sai Kung, Hong Kong<br/>
 					Tel: +852 2701 1787<br/>

@@ -40,7 +40,8 @@ class AbstractService {
 		$this->db = ADONewConnection($GLOBALS['db']);
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
-		if ($GLOBALS['dbms'] == 'mysql') 
+		// gh#166 and allow for mysqlt as dbms too
+		if (stristr($GLOBALS['dbms'],'mysql')) 
 			$charSetRC = mysql_set_charset('utf8');
 		
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
@@ -73,7 +74,8 @@ class AbstractService {
 		$this->db = ADONewConnection($GLOBALS['db']."?persist");
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
-		if ($GLOBALS['dbms'] == 'mysql')
+		// gh#166 and allow for mysqlt as dbms too
+		if (stristr($GLOBALS['dbms'],'mysql')) 
 			$charSetRC = mysql_set_charset('utf8');
 		
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
@@ -114,6 +116,7 @@ class AbstractService {
 			$function_called == "getProgressData" ||
 			$function_called == "getCoverage" ||
 			$function_called == "getEveryonesCoverage" ||
+			$function_called == "getEveryoneSummary" ||
 			$function_called == "getAccountSettings" ||
 			$function_called == "startSession" ||
 			$function_called == "updateSession" ||

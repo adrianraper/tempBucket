@@ -10,7 +10,7 @@
     </channel>
 	<sharedMedia />
 	<brandingMedia />
-	<language>JP</language>
+	<language>ZH</language>
 	
 	<contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
@@ -30,6 +30,11 @@
 	<rememberLogin>true</rememberLogin>
 	<disableAutoTimeout>true</disableAutoTimeout>
 	
+    <upgradeURL>http://www.ieltspractice.com</upgradeURL>
+    <pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2</pricesURL>
+    <registerURL>http://takeielts.britishcouncil.org/</registerURL>
+    <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
+    
 	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>
 	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
 	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>

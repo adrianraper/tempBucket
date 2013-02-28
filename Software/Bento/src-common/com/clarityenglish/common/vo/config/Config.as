@@ -85,6 +85,8 @@ package com.clarityenglish.common.vo.config {
 		public var pricesURL:String;
 		public var registerURL:String;
 		public var manualURL:String;
+		// gh#166
+		public var getAccountURL:String;
 		
 		// To help with testing
 		public var configID:String;
@@ -400,7 +402,9 @@ package com.clarityenglish.common.vo.config {
 			if (xml..registerURL.toString())
 				this.registerURL = xml..registerURL.toString();
 			if (xml..manualURL.toString())
-				this.manualURL = xml..manualUTL.toString();
+				this.manualURL = xml..manualURL.toString();
+			if (xml..getAccountURL.toString())
+				this.getAccountURL = xml..getAccountURL.toString();
 			
 			// #385
 			if (xml..rememberLogin.toString() == "true")

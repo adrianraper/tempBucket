@@ -619,7 +619,8 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		public function onAccountMoreButton(event:MouseEvent):void {
-			var urlRequest:URLRequest = new URLRequest("http://www.roadtoielts.com/apps.php");
+			var infoPage:String = (config.getAccountURL) ? config.getAccountURL : "www.roadtoielts.com";
+			var urlRequest:URLRequest = new URLRequest(infoPage);
 			navigateToURL(urlRequest, "_blank");
 		}
 	

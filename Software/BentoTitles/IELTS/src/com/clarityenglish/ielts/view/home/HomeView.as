@@ -11,6 +11,7 @@ package com.clarityenglish.ielts.view.home {
 	
 	import flash.events.MouseEvent;
 	
+	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.DateUtil;
@@ -190,6 +191,8 @@ package com.clarityenglish.ielts.view.home {
 				case writingCoverageBar:
 					instance.copyProvider = copyProvider;
 					break;
+				
+				// gh#166
 			}
 		}
 				

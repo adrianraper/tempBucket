@@ -11,15 +11,19 @@
 	
 	<fx:Script>
 		<![CDATA[
-			protected function clickHandler(event:MouseEvent):void {
-				// TODO: Use CopyOps
-				if (event.currentTarget.id == "upgradeButton") {
-					var urlReq:URLRequest = new URLRequest("http://www.ieltspractice.com");
+			/**
+			 * Push items around the screen
+			 */
+			protected function floatCourses(top:uint, pv:String):uint {
+				// gh#166
+				// I really can't see why I can't access hostComponent directly in this function!
+				if (pv == 'R2ITD') {
+					return top - 60;
 				} else {
-					urlReq = new URLRequest("http://takeielts.britishcouncil.org");  
-				}			
-				navigateToURL(urlReq, "_blank"); 
-			} 
+					return top;
+				}
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -36,25 +40,28 @@
 	
 	<s:Label id="welcomeLabel" left="39" top="202" />
 	<s:Label id="noticeLabel" left="39" top="221" />
+	<!-- gh#167 move to title skin
 	<s:Group right="20" top="0">
 		<s:SWFLoader id="upgradeButton" source="{hostComponent.languageAssetFolder}upgrade.jpg" 
 					 visible="{hostComponent.productVersion == 'R2ILM'}"
 					 includeInLayout="{hostComponent.productVersion == 'R2ILM'}"
-					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
+					 buttonMode="true" useHandCursor="true" />
 		<s:SWFLoader id="registerButton" source="{hostComponent.languageAssetFolder}register.jpg" 
 					 visible="{hostComponent.productVersion == 'R2ITD'}"
 					 includeInLayout="{hostComponent.productVersion == 'R2ITD'}"
-					 click="clickHandler(event)" buttonMode="true" useHandCursor="true" />
+					 buttonMode="true" useHandCursor="true" />
 	</s:Group>
-	
+	-->
 	<ui:CourseBarRenderer id="readingCoverageBar" data="{hostComponent.dataProvider}" courseClass="reading" left="39" top="252" width="375" />
 	<ui:CourseBarRenderer id="listeningCoverageBar" data="{hostComponent.dataProvider}" courseClass="listening" left="39" top="326" width="375" />
 	<ui:CourseBarRenderer id="speakingCoverageBar" data="{hostComponent.dataProvider}" courseClass="speaking" left="39" top="400" width="375" />
 	<ui:CourseBarRenderer id="writingCoverageBar" data="{hostComponent.dataProvider}" courseClass="writing" left="39" top="474" width="375" />
 	
-	<s:Button id="readingCourseButton" right="20" top="152" />
-	<s:Button id="listeningCourseButton" right="20" top="258" />
-	<s:Button id="speakingCourseButton" right="20" top="366" />
-	<s:Button id="writingCourseButton" right="20" top="473" />
+	<s:Button id="readingCourseButton" right="20" top="{this.floatCourses(142, hostComponent.productVersion)}" />
+	<s:Button id="listeningCourseButton" right="20" top="{this.floatCourses(248, hostComponent.productVersion)}" />
+	<s:Button id="speakingCourseButton" right="20" top="{this.floatCourses(354, hostComponent.productVersion)}" />
+	<s:Button id="writingCourseButton" right="20" top="{this.floatCourses(460, hostComponent.productVersion)}" />
+	<s:Button id="registerInfoButton" visible="{hostComponent.productVersion == 'R2ITD'}" 
+			  includeInLayout="{hostComponent.productVersion == 'R2ITD'}" right="20" top="{this.floatCourses(566, hostComponent.productVersion)}" useHandCursor="true"  />
 	
 </s:Skin>
