@@ -272,7 +272,8 @@ package com.clarityenglish.common.vo.config {
 					case 'R2IHU':
 						replace = "FullVersion";
 						break;
-					case 'R2ID':
+					// gh#166
+					case 'DEMO':
 						replace = "Demo";
 						break;
 					default:

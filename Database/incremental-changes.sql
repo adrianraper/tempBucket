@@ -432,8 +432,8 @@ INSERT INTO rack80829.T_ProductLanguage VALUES
 (53,'R2IFV','RoadToIELTS2'),
 (52,'R2IHU','RoadToIELTS2'),
 (53,'R2IHU','RoadToIELTS2'),
-(52,'R2ID','RoadToIELTS2'),
-(53,'R2ID','RoadToIELTS2');
+(52,'DEMO','RoadToIELTS2'),
+(53,'DEMO','RoadToIELTS2');
 
 DELETE FROM rack80829.T_Language WHERE F_LanguageCode IN ('AC10','AC30','ACFull','GT10','GT30','GTFull','R2ILM','R2I10','R2IFull','R2IFV','R2ITD','R2IHU','R2ID');
 INSERT INTO rack80829.T_Language VALUES 
@@ -441,8 +441,9 @@ INSERT INTO rack80829.T_Language VALUES
 ('R2ITD','Test drive'),
 ('R2IFV','Full version'),
 ('R2IHU','Home user'),
-('R2ID','Demo');
+('DEMO','Demo');
 
+/*
 DELETE FROM global_r2iv2.T_ProductLanguage WHERE F_ProductCode IN (52,53);
 INSERT INTO global_r2iv2.T_ProductLanguage VALUES 
 (52,'R2ILM','RoadToIELTS2'),
@@ -453,8 +454,8 @@ INSERT INTO global_r2iv2.T_ProductLanguage VALUES
 (53,'R2IFV','RoadToIELTS2'),
 (52,'R2IHU','RoadToIELTS2'),
 (53,'R2IHU','RoadToIELTS2'),
-(52,'R2ID','RoadToIELTS2'),
-(53,'R2ID','RoadToIELTS2');
+(52,'DEMO','RoadToIELTS2'),
+(53,'DEMO','RoadToIELTS2');
 
 DELETE FROM global_r2iv2.T_Language WHERE F_LanguageCode IN ('AC10','AC30','ACFull','GT10','GT30','GTFull','R2ILM','R2I10','R2IFull','R2IFV','R2ITD','R2IHU','R2ID');
 INSERT INTO global_r2iv2.T_Language VALUES 
@@ -462,7 +463,8 @@ INSERT INTO global_r2iv2.T_Language VALUES
 ('R2ITD','Test drive'),
 ('R2IFV','Full version'),
 ('R2IHU','Home user'),
-('R2ID','Demo');
+('DEMO','Demo');
+*/
 
 -- For beta records
 UPDATE T_Accounts SET F_LanguageCode='R2ILM'
@@ -674,7 +676,7 @@ INSERT INTO `T_Version` VALUES
 ('R2IFV','Full Version'),
 ('R2ILM','Last Minute'),
 ('R2IHU','Home User'),
-('R2ID','Demo'),
+('DEMO','Demo'),
 ('R2ITD','Test Drive');
 
 DROP TABLE IF EXISTS `T_ProductVersion`;
@@ -687,12 +689,12 @@ INSERT INTO `T_ProductVersion` VALUES
 (52,'R2IFV'),
 (52,'R2ILM'),
 (52,'R2IHU'),
-(52,'R2ID'),
+(52,'DEMO'),
 (52,'R2ITD'),
 (53,'R2IFV'),
 (53,'R2ILM'),
 (53,'R2IHU'),
-(53,'R2ID'),
+(53,'DEMO'),
 (53,'R2ITD');
 
 -- Create accounts expiry table
@@ -787,3 +789,36 @@ INSERT INTO `T_Product` VALUES
 (22,'GEPTListening',NULL,888);
 INSERT INTO `T_ProductLanguage` VALUES 
 (22,'EN','GEPTListening');
+
+-- Global product version of demo rather R2I specific
+DELETE FROM T_Version WHERE F_VersionCode IN ('R2ID');
+INSERT INTO `T_Version` VALUES 
+('DEMO','Demo');
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode IN (52,53);
+INSERT INTO `T_ProductVersion` VALUES 
+(52,'R2IFV'),
+(52,'R2ILM'),
+(52,'R2IHU'),
+(52,'DEMO'),
+(52,'R2ITD'),
+(53,'R2IFV'),
+(53,'R2ILM'),
+(53,'R2IHU'),
+(53,'DEMO'),
+(53,'R2ITD');
+
+DELETE FROM T_ProductLanguage WHERE F_ProductCode IN (52,53);
+INSERT INTO T_ProductLanguage VALUES 
+(52,'EN','RoadToIELTS2-International'),
+(53,'EN','RoadToIELTS2-International'),
+(52,'JP','RoadToIELTS2-Japanese'),
+(53,'JP','RoadToIELTS2-Japanese'),
+(52,'ZH','RoadToIELTS2-Chinese'),
+(53,'ZH','RoadToIELTS2-Chinese');
+
+DELETE FROM rack80829.T_Language WHERE F_LanguageCode IN ('R2ILM','R2IFV','R2ITD','R2IHU','R2ID');
+
+-- to update existing accounts (probably only one)
+update T_Accounts set F_ProductVersion = 'DEMO' where F_ProductVersion = 'R2ID';
+select * from T_Accounts where F_RootID = 10103;
