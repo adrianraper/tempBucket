@@ -455,7 +455,7 @@
 			for each (var m:Manageable in dragItems) {
 				// v3.4 Multi-group users
 				//if (!(m is manageableClass) || (m is User && Constants.userID == m.id)) {
-				if (!(m is manageableClass) || (m is User && Constants.userID == (m as User).userID)) {
+				if (!(m is manageableClass) || (m is User && Constants.userID == (m as User).userID) || (m is User && (m as User).userType == 2)) {
 					e.preventDefault();
 					tree.hideDropFeedback(e);
 					return;

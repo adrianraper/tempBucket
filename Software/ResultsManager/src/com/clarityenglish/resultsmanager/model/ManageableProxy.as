@@ -3,21 +3,24 @@ Proxy - PureMVC
 */
 package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.common.vo.manageable.Manageable;
+	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.Constants;
-	import com.clarityenglish.common.vo.manageable.Manageable;
 	import com.clarityenglish.resultsmanager.RMNotifications;
+	import com.clarityenglish.utils.TraceUtils;
+	
 	import flash.net.URLRequest;
 	import flash.net.URLVariables;
+	import flash.net.navigateToURL;
+	
 	import mx.events.PropertyChangeEvent;
+	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
-	import flash.net.navigateToURL;
-	import com.clarityenglish.common.vo.manageable.User;
-	import com.clarityenglish.common.vo.manageable.Group;
-	import com.clarityenglish.utils.TraceUtils;
 	//import nl.demonsters.debugger.MonsterDebugger;
 	
 	/**
@@ -92,14 +95,17 @@ package com.clarityenglish.resultsmanager.model {
 			// v3.4 There are three ways in which an author can appear in a group. This is one of them.
 			// If the manageable being moved is an author, I want to initialise the group for Edited Content
 			for each (var manageable:Manageable in manageables) {
-				if ((manageable as User).userType == User.USER_TYPE_AUTHOR) {
-					//MonsterDebugger.trace(this, "moving an author into " + parent.id);
-					// v3.5 This is the wrong path. It should be less than this.
-					//var editedContentLocation:String = '../../../ap/' + Constants.prefix + '/Courses/EditedContent-' + parent.id;
-					var editedContentLocation:String = '../../../ap/' + Constants.prefix;
-					new RemoteDelegate("initEditedContent", [ editedContentLocation, parent.id ], this).execute();
-					// I only needed to find one, so break now
-					break;
+				//gh#170 adding manageable is user justment
+				if (manageable is User) {
+					if ((manageable as User).userType == User.USER_TYPE_AUTHOR) {
+						//MonsterDebugger.trace(this, "moving an author into " + parent.id);
+						// v3.5 This is the wrong path. It should be less than this.
+						//var editedContentLocation:String = '../../../ap/' + Constants.prefix + '/Courses/EditedContent-' + parent.id;
+						var editedContentLocation:String = '../../../ap/' + Constants.prefix;
+						new RemoteDelegate("initEditedContent", [ editedContentLocation, parent.id ], this).execute();
+						// I only needed to find one, so break now
+						break;
+					}
 				}
 			}
 		}
