@@ -509,4 +509,11 @@ EOD;
 		return 0;
 	}
 
+	/**
+	 * gh#119 Old versions of the swf will crash if they don't find this method. So use it as a way to tell them to upgrade
+	 */
+	public function getProgressData() {
+		throw $this->copyOps->getExceptionForId("errorMustUpgradeApp");	
+	}
+	
 }

@@ -49,6 +49,7 @@
 			
 			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorMustUpgradeApp" code="502">You have to upgrade your app as it will not work with the database. If you have an iPad, upgrade from the iTunes store. If you are using a browser, clear your cache.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			<lit name="accountMoreButton">To find out how to get an account, tap here.</lit>
