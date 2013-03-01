@@ -379,7 +379,7 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="testDateLabel">日期:</lit>
 			<lit name="hourLabel">几点:</lit>
 			<lit name="minuteLabel">几分:</lit>
-			<!--lit name="dateFormatLabel">{year} 年 {month} 月 {day} 日</lit-->	
+			<lit name="dateFormatLabel">{year} 年 {month} 月 {day} 日</lit>	
 			<lit name="countdownHeading">距离我的考试还有多长时间？</lit>
 			<lit name="setTestDateLabel">请在下方设置你的考试日期:</lit>
 			<lit name="supportCaptionSpan1">如何使用Road to IELTS</lit>

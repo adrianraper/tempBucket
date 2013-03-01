@@ -322,18 +322,15 @@ EOD;
 			foreach ($account->titles as $title) {
 				//echo "Existing title is ".$title->productCode.' expiring on '.$title-> expiryDate.'<br/>';
 				if ($title->productCode == $newTitle->productCode) {
-					//echo 'add same one but expiring on '.$newTitle-> expiryDate.'<br/>';
-					// TODO: This is not a sensible renewal set of rules
-					// Take the latest expiry date and the corresponding number of students
 					// The newTitle.expiryDate is based on offer duration from today.
 					// but the original subscription might have a few days left, so add them on
 					$timeLeft = strtotime($title->expiryDate) - strtotime(date('Y-m-d 23:59:59'));
 					$daysLeft = round($timeLeft / 86400);
-					$title->expiryDate = date('Y-m-d 23:59:59', strtotime('+'.$daysLeft.' days',strtotime($newTitle->expiryDate)));
+					$newTitle->expiryDate = date('Y-m-d 23:59:59', strtotime('+'.$daysLeft.' days',strtotime($newTitle->expiryDate)));
 					$account->removeTitles(array($title));
 				}
 			}
-			$account->addTitles(array($title));
+			$account->addTitles(array($newTitle));
 		}
 		
 		return $account;
@@ -394,6 +391,9 @@ EOD;
 				// The language code you sent with api MIGHT be wrong for this product (EN for CSCS for instance)
 				// getDetailsFromProductCode will have sent back the default if yours is not good, so use that
 				$thisTitle->languageCode = $thisProduct['languageCode'];
+				
+				// gh#172
+				$thisTitle->productVersion = $apiInformation->subscription->productVersion;
 				
 				// Not used yet, but passed correctly so accept
 				$thisTitle->deliveryFrequency = $apiInformation->subscription->deliveryFrequency;
