@@ -46,7 +46,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					break;
 				case courseList:
 					courseList.dataGroup.doubleClickEnabled = true;
-					courseList.dataGroup.addEventListener(MouseEvent.CLICK, onSelectCourse);
+					courseList.dataGroup.addEventListener(MouseEvent.DOUBLE_CLICK, onSelectCourse);
 					courseList.addEventListener(CourseDeleteEvent.COURSE_DELETE, onDeleteCourse);
 					break;
 			}
