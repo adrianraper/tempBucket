@@ -250,6 +250,8 @@ package com.clarityenglish.ielts.view.home {
 			if (matchingCourses.length() == 0) {
 				log.error("Unable to find a course with class {0}", event.target.getStyle("title").toLowerCase());
 			} else {
+				//alice: store the courseID in confugure here
+				config.courseID = matchingCourses.@id;
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
 		} 

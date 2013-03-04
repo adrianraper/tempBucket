@@ -169,6 +169,9 @@ package com.clarityenglish.ielts.view.zone {
 			if (matchingCourses.length() == 0) {
 				log.error("Unable to find a matching course");
 			} else {
+				//alice: store the courseID in confugure here
+				trace("click widget");
+				config.courseID = matchingCourses.@id;
 				courseSelect.dispatch(matchingCourses[0] as XML);
 			}
 		}
