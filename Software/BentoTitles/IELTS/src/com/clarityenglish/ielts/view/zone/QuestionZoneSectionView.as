@@ -58,6 +58,24 @@ package com.clarityenglish.ielts.view.zone {
 			}
 		}
 		
+		// gh#135 hidden content for Starting Out
+		// TODO needs disabledpopupwatcher added
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			for each (var questionZoneNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
+				if (questionZoneNode.@href.indexOf(".xml") > 0) {
+					readButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+				}
+				if (questionZoneNode.@href.indexOf(".pdf") > 0) { 
+					downloadButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+				}
+				if (questionZoneNode.@href.indexOf(".rss") > 0) { 
+					videoButton.enabled = !(questionZoneNode.hasOwnProperty("@enabledFlag") && (Number(questionZoneNode.@enabledFlag.toString()) & 8));
+				}
+			}
+		}
+
 		protected function onReadButtonClick(event:MouseEvent):void {
 			// Question Zone can have more than one exercise (eBook and pdf), so dangerous to assume order
 			// Also a bit dubious, but can we base it on the file type?
