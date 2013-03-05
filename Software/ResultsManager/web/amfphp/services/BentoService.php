@@ -173,13 +173,18 @@ class BentoService extends AbstractService {
 	// gh#46 This first call might change the dbHost that the session uses
 	// gh#66 RotterdamBuilder will send allowedUserTypes and change licence
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
+		
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 		
 		// gh#21 It is acceptable to pass a null rootID, so don't grab it from session
 		// if (!$rootID) $rootID = array(Session::get('rootID'));
-		if (!$productCode) 
+		// gh#176
+		if ($productCode) {
+			Session::set('productCode', $productCode);			
+		}  else {
 			$productCode = Session::get('productCode');
+		}
 
 		// gh#66
 		if (!$allowedUserTypes) 
@@ -234,21 +239,30 @@ class BentoService extends AbstractService {
 				$productCode = $userObj->F_UserProfileOption;
 
 			$newAccount = $this->loginOps->getAccountSettings(array('rootID' => $newRootID, 'productCode' => $productCode));
+			
 			// gh#39 If at this point you still have multiple accounts you need to select just one
 			if (count($newAccount->titles) > 1) {
 
-				// gh#39 TODO. Need to go and check hiddenContent for this user to see if either title is completely blocked
-				// If multiple titles still remain, just pick one!
-				// For now just remove all but the first
-				$newAccount->titles = array($newAccount->titles[0]);
-				
+				// gh#39 gh#135 Need to go and check hiddenContent for this user to see if either title is completely blocked
+				// Problem as it requires lots of duplication from HiddenContentTransform, and you have to do it for
+				// both of the product codes...hmmm. Too bad, it will just have to be done.
+				// Note that after filtering, we have lost the titles, BUT the index is not reset
+				$newAccount->titles = array_filter($newAccount->titles, array($this, 'blockFilter'));
+								
 			}
+			// If multiple titles still remain, just pick the first!
+			$newAccount->titles = array(reset($newAccount->titles));
+				
 			// gh#39 If you had multiple codes, reduce to one
 			if (stristr($productCode, ','))
 				$productCode = $newAccount->titles[0]->productCode;
 				
+			// gh#135 make sure that productCode is now in session variables
+			Session::set('productCode', $productCode);
+				
 			$licence = new Licence();
 			$licence->fromDatabaseObj($newAccount->titles[0]);
+			
 		} 
 		
 		$rootID = $newRootID;
@@ -303,7 +317,25 @@ class BentoService extends AbstractService {
 			
 		return $dataObj;
 	}
-	
+	protected function blockFilter($thisTitle) {
+	 					
+		$thisPC = $thisTitle->productCode;					
+		$rs = $this->progressOps->getHiddenContent(Session::get('groupID'), $thisPC);
+		
+		// Just be really simplistic and see if there is a top level blocking record
+		if (count($rs) > 0) {
+			foreach ($rs as $record) {
+				$fullUID = $record['UID'];
+				$eF = $record['eF'];
+				if ($fullUID == $thisPC && $eF == Content::CONTENT_DISABLED) {
+					// This title is blocked, so remove it from the account								
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	 	
 	public function logout($licence, $sessionID = null) {
 		// Clear the licence
 		$rs = $this->licenceOps->dropLicenceSlot($licence);

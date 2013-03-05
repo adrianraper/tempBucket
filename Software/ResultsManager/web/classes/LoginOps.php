@@ -700,18 +700,20 @@ EOD;
 		$account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootID, $productCode));
 
 		// Also check whether we want a default content location
-		// gh#39 TODO we need to do this for each title
-		if (!$account->titles[0]->contentLocation) {
-			$sql = <<< SQL
-					SELECT F_ContentLocation 
-					FROM T_ProductLanguage
-					WHERE F_ProductCode = ?
-					AND F_LanguageCode = ?;
+		// gh#39 gh#135
+		foreach ($account->titles as $thisTitle) {
+			if (!$thisTitle->contentLocation) {
+				$sql = <<< SQL
+						SELECT F_ContentLocation 
+						FROM T_ProductLanguage
+						WHERE F_ProductCode = ?
+						AND F_LanguageCode = ?;
 SQL;
-			$bindingParams = array($productCode, $account->titles[0]->languageCode);
-			$rs = $this->db->Execute($sql, $bindingParams);	
-			if ($rs) 
-				$account->titles[0]->contentLocation = $rs->FetchNextObj()->F_ContentLocation;
+				$bindingParams = array($thisTitle->productCode, $thisTitle->languageCode);
+				$rs = $this->db->Execute($sql, $bindingParams);	
+				if ($rs) 
+					$thisTitle->contentLocation = $rs->FetchNextObj()->F_ContentLocation;
+			}
 		}
 		
 		return $account;

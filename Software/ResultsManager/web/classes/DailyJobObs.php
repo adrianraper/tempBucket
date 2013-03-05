@@ -7,7 +7,9 @@ class DailyJobObs {
 	function DailyJobObs($db = null) {
 		$this->db = $db;
 		$this->manageableOps = new ManageableOps($this->db);
-		$this->courseOps = new CourseOps($this->db);
+		if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
+			$this->courseOps = new CourseOps($this->db);
+		}
 	}
 	
 	/**
