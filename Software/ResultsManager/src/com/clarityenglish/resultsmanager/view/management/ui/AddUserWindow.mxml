@@ -95,7 +95,13 @@
 					_user.password = passwordTextInput.text;
 					
 					// If visible set the expiry date
-					if (expireFormItem.visible) _user.expiryDate = (expireButtonGroup.selection == neverRadioButton) ? null : DateUtils.dateToAnsiString(expireDateField.selectedDate);
+					//gh #175
+					if (expireFormItem.visible) {
+						expireDateField.selectedDate.hours = 23;
+						expireDateField.selectedDate.minutes = 59;
+						expireDateField.selectedDate.seconds = 59;
+						_user.expiryDate = (expireButtonGroup.selection == neverRadioButton) ? null : DateUtils.dateToAnsiString(expireDateField.selectedDate);
+					}
 					//TraceUtils.myTrace("date from calendar is " + _user.expiryDate);
 					
 					// If visible set the user type
@@ -112,8 +118,14 @@
 							user.password = passwordTextInput.text;
 					
 					if (expireButtonGroup.selection)
-						for each (user in _users)
+						for each (user in _users) {
+							//# gh175
+							expireDateField.selectedDate.hours = 23;
+							expireDateField.selectedDate.minutes = 59;
+							expireDateField.selectedDate.seconds = 59;
 							user.expiryDate = (expireButtonGroup.selection == neverRadioButton) ? null : DateUtils.dateToAnsiString(expireDateField.selectedDate);
+					}
+							
 					
 					if (userTypeComboBox.value != null) {
 						for each (user in _users)
