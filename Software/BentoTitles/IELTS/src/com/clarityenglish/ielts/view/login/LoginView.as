@@ -74,8 +74,9 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var newPasswordInput:TextInput;
 
+		// gh#100
 		[SkinPart]
-		public var quickStartButton:Button;
+		public var justStartButton:Button;
 		
 		[SkinPart]
 		public var loginIDLabel:Label;
@@ -552,12 +553,17 @@ package com.clarityenglish.ielts.view.login {
 		protected function onLoginButtonClick(event:MouseEvent):void {
 			// Trigger login, registration, add new user or cancel
 			switch (event.target) {
+				/*
 				case quickStartButton:
 					var user:User = new User({name:"Adrian Raper", password:"password"});
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
+				*/
+				case justStartButton:
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, new User(), loginOption, verified));
+					break;
 				case loginButton:
-					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
+					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case newUserButton:

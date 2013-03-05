@@ -63,13 +63,12 @@
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
             <lit name="loginDetailLabelCT">
-                 <![CDATA[If you already have an account, type your details to log in.
-If you want to be anonymous, just click {loginText}.]]>
+                 <![CDATA[Or, if you already have an account, type your details to log in.]]>
             </lit>
 			<lit name="loginDetailLabelNetwork">
 			     <![CDATA[If you already have an account, type your details to log in.
-If you are a new user, type the login you want to use.
-If you want to be anonymous, just click {loginText}.]]>
+If you want a new account, type the details you want to use.
+Or just click {loginText}.]]>
             </lit>
 			
 			<lit name="registerDetailLabel">Please type your details to register.</lit>

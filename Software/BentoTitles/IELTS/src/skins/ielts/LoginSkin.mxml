@@ -70,6 +70,20 @@
 			</s:fill>
 		</s:Rect>
 		<s:Spacer height="3" />
+		<s:VGroup id="networkStartBlock" width="100%" includeIn="loginNetwork" horizontalAlign="center" >
+			<s:Spacer height="20" />
+			<s:Button id="justStartButton" label="Start" />
+			<s:Spacer height="20" />
+		</s:VGroup>
+		<s:VGroup width="100%" includeIn="loginNetwork" >
+			<s:Rect verticalCenter="0" width="88%" height="1"  >
+				<s:fill>
+					<s:SolidColor color="0x999999"  />
+				</s:fill>
+			</s:Rect>
+			<s:Spacer height="3" />
+		</s:VGroup>
+		
 		<s:VGroup id="loginBlock" width="100%" includeIn="loginStates" >
 			<s:Label id="loginDetailLabel" width="100%" lineHeight="18" />
 			<s:Spacer height="3" />
