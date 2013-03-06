@@ -19,7 +19,7 @@
 		<fx:Array id="actionContent">
 			<s:Button id="feedbackButton" visible="false" />
 			<s:Button id="markingButton" />
-			<s:Button id="exerciseLogOutButton" />
+			<!--s:Button id="exerciseLogOutButton" /-->
 		</fx:Array>
 	</fx:Declarations>
 	

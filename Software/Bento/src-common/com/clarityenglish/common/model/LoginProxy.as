@@ -336,7 +336,6 @@ package com.clarityenglish.common.model {
 					break;
 				
 				case "logout":
-					trace("back from logout");
 					sendNotification(CommonNotifications.LOGGED_OUT);
 					break;
 				

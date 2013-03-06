@@ -16,9 +16,9 @@
 	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
-	<contentPath>http://211.151.90.72/Content/</contentPath>
-    <remoteDomain> http://211.151.90.72/Software/</remoteDomain>
-    <remoteGateway>http://211.151.90.72/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
+    <remoteDomain> http://roadtoielts.chinaielts.org/Software/</remoteDomain>
+    <remoteGateway>http://roadtoielts.chinaielts.org/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<!--  contentPath>http://www.clarityenglish.com/ContentTablet/</contentPath>
     <remoteDomain> http://www.clarityenglish.com/SoftwareTestbed/</remoteDomain>

@@ -100,7 +100,7 @@
 				<s:Button id="homeViewNavigatorButton1" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />
 			</s:navigationContent>
 			<s:actionContent>
-				<s:Button id="homeViewNavigatorButton2" click="hostComponent.logout.dispatch()" />
+				<s:Button id="homeViewNavigatorButton2" click="hostComponent.logout.dispatch()" visible="{ClassUtil.getClass(homeViewNavigator.activeView) == homeViewNavigator.firstView}"/>
 			</s:actionContent>
 		</s:ViewNavigator>
 		

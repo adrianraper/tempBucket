@@ -31,7 +31,7 @@ package com.clarityenglish.common.controller {
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
-			
+
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "errorTitleWindow";
@@ -61,7 +61,6 @@ package com.clarityenglish.common.controller {
 		 * @param event
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
-			//trace("you are here");
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
 			
 			var isFatal:Boolean = errorView.error.isFatal;
