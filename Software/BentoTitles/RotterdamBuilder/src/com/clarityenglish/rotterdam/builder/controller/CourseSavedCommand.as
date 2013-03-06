@@ -22,7 +22,11 @@ package com.clarityenglish.rotterdam.builder.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			
+			// Disable the dirty watcher in CourseProxy for these operations (#90)
+			courseProxy.xmlWatcherEnabled = false;
 			
 			// This is very hacky; remove the namespace.  Namespaces in general need to be sorted out.
 			var xmlString:String = note.getBody().toString();
@@ -33,6 +37,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 			XmlUtils.copyXmlAttributes(returnedXml, bentoProxy.menuXHTML.xml, "course", [ "id" ]);
 			XmlUtils.copyXmlAttributes(returnedXml, bentoProxy.menuXHTML.xml, "unit", [ "id" ]);
 			XmlUtils.copyXmlAttributes(returnedXml, bentoProxy.menuXHTML.xml, "exercise", [ "id" ]);
+			
+			// And turn the dirty watcher in CourseProxy back on now that we are done (#90)
+			courseProxy.xmlWatcherEnabled = true;
 		}
 		
 	}

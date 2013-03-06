@@ -26,12 +26,9 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
-			
-			// TODO: Hacky!  Do this properly for the non-prototype version.
-			setTimeout(function():void {
-				var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-				view.widgetCollection = courseProxy.widgetCollection;
-			}, 1000);
+						
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			view.widgetCollection = courseProxy.widgetCollection;
 		}
 		
 		override public function onRemove():void {
