@@ -22,6 +22,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function get hasContentuid():Boolean {
 			return _xml.hasOwnProperty("@contentuid");
 		}
+
+		[Bindable(event="exercisetitleAttrChanged")]
+		public function get exercisetitle():String {
+			return _xml.@exercisetitle;
+		}
+
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
@@ -49,7 +55,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		 * @return 
 		 */
 		public function getThumbnailForUid(uid:String):String {
-			trace("thumbnail uid=" + uid);
 			return thumbnailScript + "?uid=" + uid;
 		}
 		

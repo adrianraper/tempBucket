@@ -5,6 +5,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.utils.getQualifiedClassName;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
@@ -54,6 +55,10 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function onSelectButton(event:MouseEvent):void {
 			if (tree.selectedItem) {
+				//gh #181
+				if (getQualifiedClassName(tree.selectedItem).indexOf("Exercise") == -1) {
+					tree.selectedItem.name = "";
+				}
 				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, tree.selectedItem.name, true));
 				dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 			}
