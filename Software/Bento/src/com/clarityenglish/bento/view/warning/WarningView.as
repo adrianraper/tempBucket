@@ -49,14 +49,17 @@ package com.clarityenglish.bento.view.warning {
 				case warningMessage:
 					switch (type) {
 						case "lose_answers":
-							instance.text = copyProvider.getCopyForId("loseAnswerWarning1") +
-							copyProvider.getCopyForId("loseAnswerWarning2");
+							instance.text = copyProvider.getCopyForId("loseAnswerWarning1") + copyProvider.getCopyForId("loseAnswerWarning2");
 							break;
 						case "feedback_not_seen":
 							instance.text = copyProvider.getCopyForId("feedbackWarning");
 							break;
 						case "changes_not_saved":
-							instance.text = copyProvider.getCopyForId("loseChangesWarning");
+							if (body && body.message) {
+								instance.text = body.message; // gh#90 (allow a custom message for changes_not_saved)
+							} else {
+								instance.text = copyProvider.getCopyForId("loseChangesWarning");
+							}
 							break;
 					}
 					break;

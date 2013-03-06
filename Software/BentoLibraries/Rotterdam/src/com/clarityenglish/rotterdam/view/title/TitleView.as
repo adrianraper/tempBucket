@@ -17,9 +17,7 @@ package com.clarityenglish.rotterdam.view.title {
 		[SkinPart(required="true")]
 		public var myCoursesViewNavigator:ViewNavigator;
 		
-		public var enableSaveWarning:Boolean;
-		
-		public var saveWarningShow:Signal = new Signal(Function); 
+		public var dirtyWarningShow:Signal = new Signal(Function); 
 		
 		public function showCourseView():void {
 			if (ClassUtil.getClass(myCoursesViewNavigator.activeView) == CourseSelectorView) {
@@ -36,13 +34,9 @@ package com.clarityenglish.rotterdam.view.title {
 			
 			switch (instance) {
 				case tabbedViewNavigator:
-					// GH #83
+					// gh#83
 					tabbedViewNavigator.changeConfirmFunction = function(next:Function):void {
-						if (enableSaveWarning) {
-							saveWarningShow.dispatch(next);
-						} else {
-							next();
-						}
+						dirtyWarningShow.dispatch(next); // If there is no dirty warning this will cause next() to be executed immediately
 					};
 					break;
 			}

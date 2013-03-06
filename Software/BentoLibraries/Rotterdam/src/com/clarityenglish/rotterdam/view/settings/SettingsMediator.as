@@ -45,27 +45,11 @@
 			view.saveCourse.remove(onSaveCourse);
 			view.back.remove(onBack);
 			
-			sendNotification(RotterdamNotifications.SETTINGS_CLEAN); // GH #83
-		}
-		
-		override public function listNotificationInterests():Array {
-			return super.listNotificationInterests().concat([
-				RotterdamNotifications.COURSE_SAVED
-			]);
-		}
-		
-		override public function handleNotification(note:INotification):void {
-			super.handleNotification(note);
-			
-			switch (note.getName()) {
-				case RotterdamNotifications.COURSE_SAVED:
-					sendNotification(RotterdamNotifications.SETTINGS_CLEAN); // GH #83
-					break;
-			}
+			sendNotification(RotterdamNotifications.COURSE_CLEAN, "settings"); // GH #83
 		}
 		
 		protected function onDirty():void {
-			sendNotification(RotterdamNotifications.SETTINGS_DIRTY); // GH #83
+			sendNotification(RotterdamNotifications.COURSE_DIRTY, "settings"); // GH #83
 		}
 		
 		protected function onSaveCourse():void {

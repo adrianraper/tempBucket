@@ -1,8 +1,7 @@
 package com.clarityenglish.rotterdam.builder.controller {
-	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -40,6 +39,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			// And turn the dirty watcher in CourseProxy back on now that we are done (#90)
 			courseProxy.xmlWatcherEnabled = true;
+			
+			sendNotification(RotterdamNotifications.COURSE_CLEAN, "settings"); // GH #83
+			sendNotification(RotterdamNotifications.COURSE_CLEAN, "xhtml"); // GH #90
 		}
 		
 	}

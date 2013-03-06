@@ -5,6 +5,8 @@ package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -44,8 +46,12 @@ package com.clarityenglish.rotterdam.model {
 		
 		private var xmlWatcher:XMLChangeWatcher;
 		
+		private var dirtyObj:Object;
+		
 		public function CourseProxy(data:Object = null) {
 			super(NAME, data);
+			
+			dirtyObj = {};
 			
 			xmlWatcher = new XMLChangeWatcher();
 			xmlWatcher.addEventListener(XMLChangeWatcherEvent.XML_CHANGE, onXmlChange);
@@ -53,7 +59,7 @@ package com.clarityenglish.rotterdam.model {
 		
 		// gh#13
 		public function reset():void {
-			
+			dirtyObj = {}; // gh#90
 		}
 		
 		public function set xmlWatcherEnabled(value:Boolean):void {
@@ -79,7 +85,7 @@ package com.clarityenglish.rotterdam.model {
 		}
 		
 		/**
-		 * #90 - this listener detects real user initiated changes.  It filters out changes which happen automatically in the framework.
+		 * gh#90 - this listener detects real user initiated changes.  It filters out changes which happen automatically in the framework.
 		 * 
 		 * @param event
 		 */
@@ -91,7 +97,32 @@ package com.clarityenglish.rotterdam.model {
 			if (event.changeType == "nodeChanged" && event.value == event.detail) return;
 			
 			// This was a real change!
-			trace(event.toString())
+			sendNotification(RotterdamNotifications.COURSE_DIRTY, "xhtml");
+		}
+		
+		public function setDirty(type:String):void {
+			dirtyObj[type] = true;
+			log.info("Set dirty: " + type);
+		}
+		
+		public function setClean(type:String):void {
+			delete dirtyObj[type];
+			log.info("Set clean: " + type);
+		}
+		
+		public function get isDirty():Boolean {
+			for (var type:String in dirtyObj)
+				return true;
+			
+			return false;
+		}
+		
+		public function getDirtyMessage():String {
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+			for (var type:String in dirtyObj)
+				return copyProvider.getCopyForId(type + "Dirty");
+			
+			return null;
 		}
 		
 		/**

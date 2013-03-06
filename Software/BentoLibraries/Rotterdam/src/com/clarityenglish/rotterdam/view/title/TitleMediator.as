@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -23,20 +24,18 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			view.saveWarningShow.add(onSaveWarningShow);
+			view.dirtyWarningShow.add(onDirtyWarningShow);
 		}
 				
 		override public function onRemove():void {
 			super.onRemove();
 			
-			view.saveWarningShow.remove(onSaveWarningShow);
+			view.dirtyWarningShow.remove(onDirtyWarningShow);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.COURSE_STARTED,
-				RotterdamNotifications.SETTINGS_DIRTY,
-				RotterdamNotifications.SETTINGS_CLEAN,
 			]);
 		}
 		
@@ -47,18 +46,17 @@
 				case RotterdamNotifications.COURSE_STARTED:
 					view.showCourseView();
 					break;
-				case RotterdamNotifications.SETTINGS_DIRTY:
-					view.enableSaveWarning = true; // GH #83
-					break;
-				case RotterdamNotifications.SETTINGS_CLEAN:
-					view.enableSaveWarning = false; // GH #83
-					break;
 			}
 		}
 		
-		protected function onSaveWarningShow(next:Function):void {
-			// GH #83
-			sendNotification(BBNotifications.WARN_DATA_LOSS, next, "changes_not_saved");
+		protected function onDirtyWarningShow(next:Function):void {
+			// gh#83 and gh#90
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			if (courseProxy.isDirty) {
+				sendNotification(BBNotifications.WARN_DATA_LOSS, { message: courseProxy.getDirtyMessage(), func: next }, "changes_not_saved");
+			} else {
+				next();
+			}
 		}
 		
 	}

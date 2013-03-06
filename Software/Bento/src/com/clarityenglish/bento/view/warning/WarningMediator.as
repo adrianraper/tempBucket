@@ -72,8 +72,8 @@
 					return;
 					break;
 				case "changes_not_saved":
-					if (view.body is Function)
-						view.body(); // GH #83 - if the user clicks yes then run the function in the body
+					if (view.body && view.body.func is Function)
+						view.body.func(); // GH #83 - if the user clicks yes then run the function in the body
 					break;
 				default:
 					return;

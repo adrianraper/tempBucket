@@ -31,6 +31,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private var fileReference:FileReference;
 		
+		private static var uploadCount:int; // This keeps track of uploads in progress for UPLOADS_DIRTY and UPLOADS_CLEAN gh#90
+		
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
@@ -90,7 +92,6 @@ package com.clarityenglish.rotterdam.builder.controller {
 			}
 			
 			sendNotification(RotterdamNotifications.MEDIA_UPLOADED, null, tempWidgetId);
-			
 			destroy();
 		}
 		
@@ -102,6 +103,16 @@ package com.clarityenglish.rotterdam.builder.controller {
 		private function onUploadSecurityError(e:SecurityErrorEvent):void {
 			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, tempWidgetId);
 			destroy();
+		}
+		
+		private function increaseUploadCount():void {
+			uploadCount++;
+			sendNotification(RotterdamNotifications.COURSE_DIRTY, "uploads"); // gh#90
+		}
+		
+		private function decreaseUploadCount():void {
+			uploadCount--;
+			if (uploadCount == 0) sendNotification(RotterdamNotifications.COURSE_CLEAN, "uploads"); // gh#90
 		}
 		
 	}
