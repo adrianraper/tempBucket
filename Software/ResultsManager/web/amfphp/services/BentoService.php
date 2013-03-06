@@ -512,8 +512,103 @@ EOD;
 	/**
 	 * gh#119 Old versions of the swf will crash if they don't find this method. So use it as a way to tell them to upgrade
 	 */
-	public function getProgressData() {
-		throw $this->copyOps->getExceptionForId("errorMustUpgradeApp");	
+	public function getProgressData($user = null, $rootID = null, $productCode = null, $progressType = null, $menuXMLFile = null) {
+		// gh#178 if you have an old iPad version you can't upgrade yet
+		$rootID = Session::get('rootID');
+		if (!array_search($rootID, array(14276,14277,14278,14279,14280,14281,14282,14283,14284,14285,14286,14287,14288,14289,14290,14291,14292)) === false) {
+			require_once(dirname(__FILE__)."/../../classes/OldProgressOps.php");
+			$this->oldProgressOps = new OldProgressOps($this->db);
+			return $this->oldGetProgressData($user, $rootID, $productCode, $progressType, $menuXMLFile);
+		} else {
+			throw $this->copyOps->getExceptionForId("errorMustUpgradeApp");	
+		}
+	}
+	
+	/**
+	 * 
+	 * This service call will get progress data from the database, merge it with the menu.xml
+	 * and build an object that can act as a data-provider for a chart (or charts).
+	 * TODO. Check out authentication. I have added this to beforeFilter exceptions, though it shouldn't be.
+	 *  
+	 *  #issue25. Need user type, so send whole object
+	 *  @param userID, rootID, productCode - these are all self-explanatory
+	 *  @param progressType. This object tells us what type of progress data to return
+	 */
+	public function oldGetProgressData($user, $rootID, $productCode, $progressType, $menuXMLFile) {
+		// Before you get progress records, read the menu.xml
+		// TODO. Possibly move this bit into contentOps?
+		// This path is relative to the Bento application, not this script
+		// TODO. Long term. It might be much quicker to always get everything as none of the calls should be expensive
+		// if we keep the everyone summary coming from a computed table.
+		
+		// HCT hack.
+		// If the passed menu file doesn't contain a correct version, add it in
+		if (stristr($menuXMLFile, '-.xml')) {
+			$menuXMLFile = preg_replace('/(\w+)-\.xml/i', '$1-FullVersion.xml', $menuXMLFile);
+		}
+		// and the passed user might just be an id, in which case build a temp User object
+		if (!isset($user->userID)) {
+			$userID = $user;
+			$user = new User();
+			$user->userID = $userID;
+			$user->userType = 0;
+		}
+				
+		if (stristr($menuXMLFile, 'http://') === FALSE) {
+			$menuXMLFile = '../../'.$menuXMLFile;
+		}
+		
+		$this->oldProgressOps->getMenuXML($menuXMLFile);
+		$progress = new Progress();
+		
+		// Each type of progress that we get goes back in data.
+		$progress->type = $progressType;
+		switch ($progressType) {
+			// MySummary data will now be calculated by ProgressProxy from the detail data
+			/*
+			case Progress::PROGRESS_MY_SUMMARY:
+				$rs = $this->progressOps->getMySummary($userID, $productCode);
+				$progress->dataProvider = $this->progressOps->mergeXMLAndDataSummary($rs);
+				break;
+			*/
+			case Progress::PROGRESS_EVERYONE_SUMMARY:
+				$rs = $this->oldProgressOps->getEveryoneSummary($productCode);
+				$progress->dataProvider = $this->oldProgressOps->mergeXMLAndDataSummary($rs);
+				break;
+				
+			case Progress::PROGRESS_MY_DETAILS:
+				// #341 No need for much of this if anonymous access
+				if ($user->userID >= 1) {
+					$rs = $this->oldProgressOps->getMyDetails($user->userID, $productCode);
+				} else {
+					$rs = array();
+				}
+				
+				$progress->dataProvider = $this->oldProgressOps->mergeXMLAndDataDetail($rs);
+				
+				// #339 Hidden content
+				// #issue25 only for students
+				if ($user->userID >= 1 && $user->userType == User::USER_TYPE_STUDENT) {
+					$groupID = $this->manageableOps->getGroupIdForUserId($user->userID);
+					$rs = $this->oldProgressOps->getHiddenContent($groupID, $productCode);
+					// If you found some hidden content records for this group, merge the enabledFlag into the menu.xml
+					if (count($rs) > 0)
+						$progress->dataProvider = $this->oldProgressOps->mergeXMLAndHiddenContent($rs);
+						
+				}
+				break;
+				
+			case Progress::PROGRESS_MY_BOOKMARK:
+				// Pick up the last exercise done as a bookmark.
+				$rs = $this->oldProgressOps->getMyLastExercise($user->userID, $productCode);
+				$progress->dataProvider = $this->oldProgressOps->formatBookmark($rs);
+				break;
+		}
+			
+		//	a list of exercises with score, duration and startDate - including ones I haven't done for coverage reporting
+		//	a summary at the course level for practiceZone scores for me and for everyone else
+		//	a summary at the course level for time spent by me
+		return array("progress" => $progress);
 	}
 	
 }
