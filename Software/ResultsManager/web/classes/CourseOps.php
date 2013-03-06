@@ -116,11 +116,12 @@ class CourseOps {
 			// If the course is missing an id then add it in
 			if (!isset($course['id'])) $course['id'] = $courseId;
 			
-			// If the units or exercises are missing ids then generate them
+			// If the units or exercises are missing ids then generate them.  At the same time if any unit has a tempid attribute, remove it.
 			foreach ($course->unit as $unit) {
 				if (!isset($unit['id'])) $unit['id'] = UniqueIdGenerator::getUniqId();
 				foreach ($unit->exercise as $exercise) {
 					if (!isset($exercise['id'])) $exercise['id'] = UniqueIdGenerator::getUniqId();
+					if (isset($exercise['tempid'])) unset($exercise['tempid']); // gh#90
 				}
 			}
 			
