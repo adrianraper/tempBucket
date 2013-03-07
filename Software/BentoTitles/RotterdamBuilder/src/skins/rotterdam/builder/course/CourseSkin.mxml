@@ -80,10 +80,17 @@
 	
 	<s:VGroup top="{unitContainer.height + 10}" left="2">
 		<s:Button id="addUnitButton" label="Add a unit" useHandCursor="true" buttonMode="true" />
-		<s:Button id="courseSettingsButton" label="Course settings" bottom="100" useHandCursor="true" buttonMode="true" />
-		<s:Button id="coursePublishButton" label="Publish course" bottom="70" useHandCursor="true" buttonMode="true" />
+		<s:Button id="courseSettingsButton" label="Course settings" useHandCursor="true" buttonMode="true" />
+		<s:Button id="coursePublishButton" label="Publish course" useHandCursor="true" buttonMode="true" />
+		
+		<!-- temporarily put these buttons here (gh#110) but they will likely move elsewhere later -->
+		<s:Spacer height="20" />
+		<s:Label text="Unit:" fontWeight="bold" />
+		<s:HGroup width="100%">
+			<s:Button id="unitCopyButton" label="Copy" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
+			<s:Button id="unitPasteButton" label="Paste" width="50%" useHandCursor="true" buttonMode="true" />
+		</s:HGroup>
 	</s:VGroup>
-	
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
 	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="50" bottom="80" />

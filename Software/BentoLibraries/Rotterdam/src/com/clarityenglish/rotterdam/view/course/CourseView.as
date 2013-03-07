@@ -4,6 +4,7 @@ package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ListCollectionView;
@@ -34,6 +35,12 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		[SkinPart]
 		public var coursePublishButton:Button;
+		
+		[SkinPart]
+		public var unitCopyButton:Button;
+		
+		[SkinPart]
+		public var unitPasteButton:Button;
 		
 		[SkinPart]
 		public var unitHeader:UnitHeaderView;
@@ -96,6 +103,12 @@ package com.clarityenglish.rotterdam.view.course {
 				case coursePublishButton:
 					coursePublishButton.addEventListener(MouseEvent.CLICK, onCoursePublish);
 					break;
+				case unitCopyButton:
+					unitCopyButton.addEventListener(MouseEvent.CLICK, onUnitCopy);
+					break;
+				case unitPasteButton:
+					unitPasteButton.addEventListener(MouseEvent.CLICK, onUnitPaste);
+					break;
 			}
 		}
 		
@@ -115,6 +128,14 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		protected function onCoursePublish(event:MouseEvent):void {
 			coursePublish.dispatch();
+		}
+		
+		protected function onUnitCopy(event:MouseEvent):void {
+			dispatchEvent(new Event(Event.COPY, true));
+		}
+		
+		protected function onUnitPaste(event:MouseEvent):void {
+			dispatchEvent(new Event(Event.PASTE, true));
 		}
 		
 		/**

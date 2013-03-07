@@ -2,12 +2,10 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	import com.clarityenglish.textLayout.vo.XHTML;
+	
+	import flash.events.Event;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -35,6 +33,10 @@
 			view.unitSelect.add(onUnitSelect);
 			view.coursePublish.add(onCoursePublish);
 			
+			// gh#110 - use real events instead of signals because they hook into system copy/paste shortcuts automatically
+			view.addEventListener(Event.COPY, onUnitCopy);
+			view.addEventListener(Event.PASTE, onUnitPaste);
+			
 			// In case the course has already started before the CourseView is registered GH #88
 			handleCourseStarted();
 		}
@@ -44,6 +46,9 @@
 			
 			view.unitSelect.remove(onUnitSelect);
 			view.coursePublish.remove(onCoursePublish);
+			
+			view.removeEventListener(Event.COPY, onUnitCopy);
+			view.removeEventListener(Event.PASTE, onUnitPaste);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -81,6 +86,14 @@
 		
 		protected function onCoursePublish():void {
 			trace("TODO: implement course publish (whatever that is!)");
+		}
+		
+		protected function onUnitCopy(event:Event):void {
+			facade.sendNotification(RotterdamNotifications.UNIT_COPY, view.unitList.selectedItem);
+		}
+		
+		protected function onUnitPaste(event:Event):void {
+			facade.sendNotification(RotterdamNotifications.UNIT_PASTE);
 		}
 		
 	}

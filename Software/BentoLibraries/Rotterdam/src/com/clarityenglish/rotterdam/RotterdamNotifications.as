@@ -66,6 +66,10 @@
 		public static const MEDIA_UPLOAD_ERROR:String = "rotterdam/media_upload_error";
 		public static const MEDIA_UPLOADED:String = "rotterdam/media_uploaded";
 		
+		// Copy/paste unit gh#110
+		public static const UNIT_COPY:String = "rotterdam/unit_copy";
+		public static const UNIT_PASTE:String = "rotterdam/unit_paste";
+		
 	}
 	
 }
