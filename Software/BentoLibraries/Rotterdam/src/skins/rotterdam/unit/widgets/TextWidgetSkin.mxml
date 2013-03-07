@@ -25,6 +25,6 @@
 						  left="0" right="0" top="0" bottom="0" />
 	
 	<!-- Text -->
-	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" top="25" right="0" minHeight="125" visible="{hostComponent.isCaptionChanged}" />
+	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" top="25" right="0" minHeight="125" />
 	
 </s:Skin>

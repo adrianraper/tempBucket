@@ -121,16 +121,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@caption;
 		}
 		
-		//gh #160
-		public function get isCaptionChanged():Boolean {
-			//so far the way I think about to recognize default string is the string's length plus content
-			if (_xml.text[0].toString().indexOf("Type a description here") != -1 && _xml.text[0].toString().length == 154 && editable == false ) {	
-				return false;
-			} else {
-				return true;
-			}			
-		}
-		
 		[Bindable(event="textChanged")]
 		public function get text():String {
 			return _xml.text[0].toString();
