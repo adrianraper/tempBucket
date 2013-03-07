@@ -63,7 +63,9 @@ package com.clarityenglish.bento.view.progress.ui {
 				// If the course class has changed then go through and make sure the correct item is selected
 				for (var n:uint = 0; n < dataProvider.length; n++) {
 					if (dataProvider.getItemAt(n).courseClass == _courseClass) {
-						selectedIndex = n;
+						callLater(function():void { // gh#180
+							selectedIndex = n;
+						});
 						break;
 					}
 				}
