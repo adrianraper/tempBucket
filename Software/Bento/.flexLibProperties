@@ -153,6 +153,7 @@
     <classEntry path="com.clarityenglish.bento.vo.content.transform.XmlTransform"/>
     <classEntry path="com.clarityenglish.bento.view.progress.ProgressMediator"/>
     <classEntry path="com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar"/>
+    <classEntry path="com.clarityenglish.components.PromptingRichEditableText"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>

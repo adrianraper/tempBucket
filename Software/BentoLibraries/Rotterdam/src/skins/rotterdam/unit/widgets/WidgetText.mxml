@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:components="com.clarityenglish.components.*">
 	
 	<fx:Script>
 		<![CDATA[
@@ -46,8 +46,10 @@
 			}
 			
 			protected function onSelectionChange(event:FlexEvent):void {
-				var format:TextLayoutFormat = richEditableText.getFormatOfRange(null, richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
-				dispatchEvent(new WidgetTextFormatMenuEvent(WidgetTextFormatMenuEvent.TEXT_SELECTED, false, format));
+				if (richEditableText.text != "") { // this check stops an exception in the TLF related to gh#160 when clicking around very fast
+					var format:TextLayoutFormat = richEditableText.getFormatOfRange(null, richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
+					dispatchEvent(new WidgetTextFormatMenuEvent(WidgetTextFormatMenuEvent.TEXT_SELECTED, false, format));
+				}
 			}
 			
 		]]>
@@ -67,15 +69,16 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:RichEditableText id="richEditableText"
-						left="8" right="8" top="8" minHeight="{minHeight}"
-						fontFamily="Helvetica" fontSize="13"
-						backgroundAlpha="0" focusSkin="{null}" 
-						editable.normal="false" editable.editing="true"
-						selectable.normal="false" selectable.editing="true"
-						textFlow="{TextConverter.importToFlow(new XML(widget.text), TextConverter.TEXT_LAYOUT_FORMAT)}"
-						valueCommit="onValueCommit(event)"
-						selectionChange="onSelectionChange(event)"
-						focusIn.editing="focusHighlight.visible = true"
-						focusOut.editing="focusHighlight.visible = false" />	
+	<components:PromptingRichEditableText id="richEditableText"
+										  placeholder="{widget.placeholder}"
+										  left="8" right="8" top="8" minHeight="{minHeight}"
+										  fontFamily="Helvetica" fontSize="13"
+										  backgroundAlpha="0" focusSkin="{null}" 
+										  editable.normal="false" editable.editing="true"
+										  selectable.normal="false" selectable.editing="true"
+										  textFlow="{TextConverter.importToFlow(new XML(widget.text), TextConverter.TEXT_LAYOUT_FORMAT)}"
+										  valueCommit="onValueCommit(event)"
+										  selectionChange="onSelectionChange(event)"
+										  focusIn.editing="focusHighlight.visible = true"
+										  focusOut.editing="focusHighlight.visible = false" />	
 </s:Group>

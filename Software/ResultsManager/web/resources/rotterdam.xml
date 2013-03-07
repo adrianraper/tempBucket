@@ -159,6 +159,7 @@
 			<lit name="xhtmlDirty">Your changes to this course have not been saved. Are you sure you want to continue?</lit>
 			<lit name="settingsDirty">Your changes the the settings have not been saved. Are you sure you want to continue?</lit>
 			<lit name="uploadsDirty">There are files currently uploading. Are you sure you want to continue?</lit>
+			<lit name="widgetPlaceholderText">Type a description here.</lit>
 		</group>
 	</language>
 </literals>

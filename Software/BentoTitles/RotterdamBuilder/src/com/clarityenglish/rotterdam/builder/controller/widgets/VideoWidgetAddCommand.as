@@ -62,10 +62,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			if (note.getBody().node) {
 				node = note.getBody().node;
 			} else {
-				node = 
-					<exercise type="video" column="0" span="2" caption="Video">
-						<text>{TLFUtil.textToTextFlowString("Type a description here")}</text>
-					</exercise>;
+				node = <exercise type="video" column="0" span="2" caption="Video"><text></text></exercise>;
 				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			}
 			

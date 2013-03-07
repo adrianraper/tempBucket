@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.rotterdam.view.unit {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	
@@ -33,11 +35,13 @@
 			super.onRegister();
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			
 			// TODO: media/ should not be hardcoded
 			view.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
-			
 			view.thumbnailScript = configProxy.getConfig().remoteGateway + "/services/thumbnail.php";
+			
+			view.placeholder = copyProvider.getCopyForId("widgetPlaceholderText");
 			
 			view.openMedia.add(onOpenMedia);
 			view.openContent.add(onOpenContent);

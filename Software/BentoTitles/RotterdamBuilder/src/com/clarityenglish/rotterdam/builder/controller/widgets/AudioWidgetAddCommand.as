@@ -26,10 +26,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			if (note.getBody().node) {
 				node = note.getBody().node;
 			} else {
-				node = 
-					<exercise type="audio" column="0" span="1" caption="Audio">
-						<text>{TLFUtil.textToTextFlowString("Type a description here")}</text>
-					</exercise>;
+				node = <exercise type="audio" column="0" span="1" caption="Audio"><text></text></exercise>;
 				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			}
 			node.@tempid = tempid;

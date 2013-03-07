@@ -55,6 +55,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		[Bindable]
 		public var thumbnailScript:String;
 		
+		[Bindable]
+		public var placeholder:String;
+		
 		protected var _xml:XML;
 		
 		protected var _editable:Boolean;

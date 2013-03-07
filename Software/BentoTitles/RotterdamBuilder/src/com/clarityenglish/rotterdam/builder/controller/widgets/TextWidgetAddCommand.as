@@ -19,9 +19,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 		public override function execute(note:INotification):void {
 			super.execute(note)
 			
-			var textFlowString:String = TLFUtil.textToTextFlowString("Type a description here");
-			
-			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <exercise type="text" column="0" span="1" caption="Text"><text>{textFlowString}</text></exercise>);
+			facade.sendNotification(RotterdamNotifications.WIDGET_ADD, <exercise type="text" column="0" span="1" caption="Text"><text></text></exercise>);
 		}
 		
 	}
