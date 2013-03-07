@@ -34,7 +34,7 @@ package com.clarityenglish.bento.model {
 				ExternalInterface.addCallback("isDirty", isDirty);
 				ExternalInterface.addCallback("getDirtyMessage", getDirtyMessage);
 				
-				//ExternalInterface.addCallback("isExerciseDirty", isExerciseDirty);
+				ExternalInterface.addCallback("isExerciseDirty", isExerciseDirty); // TODO: replace me at some point!
 			} else {
 				log.debug("External interface is not available in this container");
 			}
@@ -50,7 +50,8 @@ package com.clarityenglish.bento.model {
 			return bentoProxy.getDirtyMessage();
 		}
 		
-		/*private function isExerciseDirty():Boolean {
+		// TODO: This should be replaced by the new clean/dirty system, but in practice its quite complicated so leave it for the moment.
+		private function isExerciseDirty():Boolean {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
 			// If we are not currently in an exercise then it can't be dirty
@@ -67,7 +68,7 @@ package com.clarityenglish.bento.model {
 			// Otherwise retrieve the dirty flag from the exercise proxy
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
 			return exerciseProxy.exerciseDirty;
-		}*/
+		}
 		
 	}
 	

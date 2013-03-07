@@ -229,11 +229,21 @@ package com.clarityenglish.bento.model {
 			return pid + "." + cid + "." + uid + "." + eid;
 		}
 		
+		/**
+		 * gh#90, gh#182, #224 - set the 'type' as dirty.  This will cause a popup 'Are you sure' type message to popup when shutting the browser.
+		 * 
+		 * @param type
+		 */
 		public function setDirty(type:String):void {
 			dirtyObj[type] = true;
 			log.info("Set dirty: " + type);
 		}
 		
+		/**
+		 * gh#90, gh#182, #224 - set the 'type' as clean.  This will cause a popup 'Are you sure' type message to popup when shutting the browser.
+		 * 
+		 * @param type
+		 */
 		public function setClean(type:String):void {
 			delete dirtyObj[type];
 			log.info("Set clean: " + type);

@@ -56,6 +56,7 @@ package com.clarityenglish.common.model {
 			var params:Array = [ user, account.id, (account.titles[0] as Title).id, configProxy.getConfig().sessionStartTime ];
 			new RemoteDelegate("startSession", params, this).execute();			
 		}
+		
 		/**
 		 * Update the database session record 
 		 * @return void
