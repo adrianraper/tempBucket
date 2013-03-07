@@ -27,8 +27,8 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				node = note.getBody().node;
 			} else {
 				node = 
-					<exercise type="exercise" column="0" span="1" caption="New Exercise widget">
-						<text>{TLFUtil.textToTextFlowString("I am a new exercise widget")}</text>
+					<exercise type="exercise" column="0" span="1" caption="Exercise">
+						<text>{TLFUtil.textToTextFlowString("Type a description here")}</text>
 					</exercise>;
 				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			}

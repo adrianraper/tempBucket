@@ -64,7 +64,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			} else {
 				node = 
 					<exercise type="video" column="0" span="2" caption="Video">
-						<text>{TLFUtil.textToTextFlowString("Watch this video")}</text>
+						<text>{TLFUtil.textToTextFlowString("Type a description here")}</text>
 					</exercise>;
 				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			}

@@ -8,6 +8,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	
+	import flashx.textLayout.conversion.TextConverter;
+	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
 	import mx.events.StateChangeEvent;
@@ -117,6 +119,16 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		[Bindable(event="captionAttrChanged")]
 		public function get caption():String {
 			return _xml.@caption;
+		}
+		
+		//gh #160
+		public function get isCaptionChanged():Boolean {
+			//so far the way I think about to recognize default string is the string's length plus content
+			if (_xml.text[0].toString().indexOf("Type a description here") != -1 && _xml.text[0].toString().length == 154 && editable == false ) {	
+				return false;
+			} else {
+				return true;
+			}			
 		}
 		
 		[Bindable(event="textChanged")]

@@ -32,6 +32,6 @@
 	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
 	
 	<!-- Text -->
-	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" top="75" minHeight="75"  />
+	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" top="75" minHeight="75" visible="{hostComponent.isCaptionChanged}" />
 	
 </s:Skin>

@@ -29,7 +29,7 @@
 	
 	<s:VGroup left="0" right="0" top="25" paddingBottom="10">
 		<!-- Text -->
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="125" />
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="125" visible="{hostComponent.isCaptionChanged}" />
 		
 		<!-- Image -->
 		<s:Image id="image" source="{hostComponent.imageUrl}" visible="{hostComponent.hasSrc}" />

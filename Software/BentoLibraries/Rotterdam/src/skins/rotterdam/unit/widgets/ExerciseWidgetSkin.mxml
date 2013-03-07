@@ -30,6 +30,6 @@
 	<s:Label id="exerciseTitle" text="{hostComponent.exercisetitle}" top="50" left="45"/>
 	
 	<!-- Text -->
-	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" top="75" minHeight="75" />
+	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" top="75" minHeight="75" visible="{hostComponent.isCaptionChanged}" />
 	
 </s:Skin>
