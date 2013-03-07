@@ -1,21 +1,17 @@
 $(window).load(function() {
 	thisMovie("bento").focus();
 	
-	// #224. Extend so that we check isDirty from bento - only ask if this is true.  jQuery is weird with beforeunload so bind directly.
+	// gh#182 and #224 - apparently jQuery is weird with beforeunload so bind directly.
 	window.onbeforeunload = function() {
-		if (thisMovie("bento").isExerciseDirty()) {
-			// TODO. If they say yes, can you catch that and do .browserClosing like below?
-			return "If you close this window now you may lose data you are working on and will need to start again.";
-		} else {
-			// Try to send a logout (for stuff like session updating)
-			thisMovie("bento").browserClosing();
+		if (thisMovie("bento").isDirty()) {
+			return thisMovie("bento").getDirtyMessage();
 		}
-	}
+	};
 	
 	// #295
 	log = function(message) {
 		console.log(message);
-	}
+	};
 	
 	// #255
 	// issues: 
@@ -46,7 +42,7 @@ $(window).load(function() {
 		// Center the flash object
 		$("#bento").css("left", Math.max(0, ($(window).width() - width) / 2))
 				   .css("top", Math.max(0, ($(window).height() - height) / 2));
-	}
+	};
 	
 	$(window).on("resize", onResize);
 	onResize();
