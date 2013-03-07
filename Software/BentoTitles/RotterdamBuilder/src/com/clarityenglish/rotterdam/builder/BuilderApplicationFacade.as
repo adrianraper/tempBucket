@@ -16,6 +16,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.MediaSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
 	import com.clarityenglish.rotterdam.builder.controller.UnitCopyCommand;
+	import com.clarityenglish.rotterdam.builder.controller.UnitPasteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.AudioWidgetAddCommand;
@@ -35,13 +36,10 @@
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
-	import com.clarityenglish.rotterdam.controller.CourseCleanCommand;
-	import com.clarityenglish.rotterdam.controller.CourseDirtyCommand;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
 	import com.clarityenglish.rotterdam.view.settings.SettingsMediator;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
-	import com.clarityenglish.rotterdam.builder.controller.UnitPasteCommand;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -89,10 +87,6 @@
 			
 			registerCommand(RotterdamNotifications.CONTENT_WINDOW_SHOW, ContentWindowShowCommand);
 			registerCommand(RotterdamNotifications.COURSE_CREATE_WINDOW_SHOW, CourseCreateWindowShowCommand);
-			
-			// gh#84 and gh#90
-			registerCommand(RotterdamNotifications.COURSE_DIRTY, CourseDirtyCommand);
-			registerCommand(RotterdamNotifications.COURSE_CLEAN, CourseCleanCommand);
 			
 			// gh#110
 			registerCommand(RotterdamNotifications.UNIT_COPY, UnitCopyCommand);

@@ -2,6 +2,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.system.System;
@@ -31,8 +32,12 @@ package com.clarityenglish.bento.model {
 		
 		private var _currentExercise:Exercise;
 		
+		private var dirtyObj:Object;
+		
 		public function BentoProxy() {
 			super(NAME);
+			
+			dirtyObj = {};
 		}
 		
 		public function reset():void {
@@ -40,6 +45,7 @@ package com.clarityenglish.bento.model {
 			if (_menuXHTML) System.disposeXML(_menuXHTML.xml);
 			_menuXHTML = null;
 			_currentExercise = null;
+			dirtyObj = {}; // gh#90
 		}
 		
 		/**
@@ -221,6 +227,31 @@ package com.clarityenglish.bento.model {
 			var pid:String = thisNode.parent().parent().parent().@id;
 			
 			return pid + "." + cid + "." + uid + "." + eid;
+		}
+		
+		public function setDirty(type:String):void {
+			dirtyObj[type] = true;
+			log.info("Set dirty: " + type);
+		}
+		
+		public function setClean(type:String):void {
+			delete dirtyObj[type];
+			log.info("Set clean: " + type);
+		}
+		
+		public function get isDirty():Boolean {
+			for (var type:String in dirtyObj)
+				return true;
+			
+			return false;
+		}
+		
+		public function getDirtyMessage():String {
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+			for (var type:String in dirtyObj)
+				return copyProvider.getCopyForId(type + "Dirty");
+			
+			return null;
 		}
 		
 	}

@@ -50,11 +50,7 @@
 		// Preview notifications
 		public static const PREVIEW_SHOW:String = "rotterdam/preview_show";
 		public static const PREVIEW_HIDE:String = "rotterdam/preview_hide";
-		
-		// gh#90 - these are the final notifications which actually turn the warning box on and off
-		public static const COURSE_DIRTY:String = "rotterdam/course_dirty";
-		public static const COURSE_CLEAN:String = "rotterdam/course_clean";
-		
+				
 		// Upload notifications
 		public static const MEDIA_SELECT:String = "rotterdam/media_select";
 		

@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.rotterdam.view.settings {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
@@ -9,7 +10,6 @@
 	
 	import org.davekeen.util.ArrayUtils;
 	import org.puremvc.as3.interfaces.IMediator;
-	import org.puremvc.as3.interfaces.INotification;
 	
 	/**
 	 * A Mediator
@@ -45,11 +45,11 @@
 			view.saveCourse.remove(onSaveCourse);
 			view.back.remove(onBack);
 			
-			sendNotification(RotterdamNotifications.COURSE_CLEAN, "settings"); // GH #83
+			sendNotification(BBNotifications.ITEM_CLEAN, "settings"); // GH #83
 		}
 		
 		protected function onDirty():void {
-			sendNotification(RotterdamNotifications.COURSE_DIRTY, "settings"); // GH #83
+			sendNotification(BBNotifications.ITEM_DIRTY, "settings"); // GH #83
 		}
 		
 		protected function onSaveCourse():void {

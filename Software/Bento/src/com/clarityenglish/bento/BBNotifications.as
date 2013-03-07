@@ -70,6 +70,10 @@
 		public static const EXERCISE_SHOW:String = "bb/exercise_show";
 		public static const EXERCISE_SECTION_FINISHED:String = "bb/exercise_section_finished";
 		
+		// gh#90 - set items (which can be anything) dirty or clean
+		public static const ITEM_DIRTY:String = "bb/item_dirty";
+		public static const ITEM_CLEAN:String = "bb/item_clean";
+		
 		// DataProxy notifications
 		public static const DATA_CHANGED:String = "bb/data_changed";
 		

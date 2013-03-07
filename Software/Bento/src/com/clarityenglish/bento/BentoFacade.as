@@ -139,6 +139,10 @@
 
 			// Performance logging
 			registerCommand(CommonNotifications.PERFORMANCE_LOG, PerformanceLogCommand);
+			
+			// gh#84 and gh#90
+			registerCommand(BBNotifications.ITEM_DIRTY, ItemDirtyCommand);
+			registerCommand(BBNotifications.ITEM_CLEAN, ItemCleanCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

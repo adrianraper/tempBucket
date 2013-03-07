@@ -1,5 +1,5 @@
-package com.clarityenglish.rotterdam.controller {
-	import com.clarityenglish.rotterdam.model.CourseProxy;
+package com.clarityenglish.bento.controller {
+	import com.clarityenglish.bento.model.BentoProxy;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -8,7 +8,7 @@ package com.clarityenglish.rotterdam.controller {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class CourseCleanCommand extends SimpleCommand {
+	public class ItemCleanCommand extends SimpleCommand {
 		
 		/**
 		 * Standard flex logger
@@ -18,8 +18,8 @@ package com.clarityenglish.rotterdam.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			courseProxy.setClean(note.getBody().toString());
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			bentoProxy.setClean(note.getBody().toString());
 		}
 		
 	}

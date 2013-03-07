@@ -1,5 +1,6 @@
 ﻿package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
@@ -51,9 +52,9 @@
 		
 		protected function onDirtyWarningShow(next:Function):void {
 			// gh#83 and gh#90
-			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			if (courseProxy.isDirty) {
-				sendNotification(BBNotifications.WARN_DATA_LOSS, { message: courseProxy.getDirtyMessage(), func: next }, "changes_not_saved");
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			if (bentoProxy.isDirty) {
+				sendNotification(BBNotifications.WARN_DATA_LOSS, { message: bentoProxy.getDirtyMessage(), func: next }, "changes_not_saved");
 			} else {
 				next();
 			}

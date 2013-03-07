@@ -1,4 +1,5 @@
 package com.clarityenglish.rotterdam.builder.controller {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
@@ -107,12 +108,12 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private function increaseUploadCount():void {
 			uploadCount++;
-			sendNotification(RotterdamNotifications.COURSE_DIRTY, "uploads"); // gh#90
+			sendNotification(BBNotifications.ITEM_DIRTY, "uploads"); // gh#90
 		}
 		
 		private function decreaseUploadCount():void {
 			uploadCount--;
-			if (uploadCount == 0) sendNotification(RotterdamNotifications.COURSE_CLEAN, "uploads"); // gh#90
+			if (uploadCount == 0) sendNotification(BBNotifications.ITEM_CLEAN, "uploads"); // gh#90
 		}
 		
 	}
