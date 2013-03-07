@@ -56,12 +56,6 @@ package com.clarityenglish.bento.model {
 			return exerciseProxy.exerciseDirty;
 		}
 		
-		private function browserClosing():Boolean {
-			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			loginProxy.logout();
-			return true;
-		}
-		
 	}
 	
 }
