@@ -59,7 +59,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				if (getQualifiedClassName(tree.selectedItem).indexOf("Exercise") == -1) {
 					tree.selectedItem.name = "";
 				}
-				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, tree.selectedItem.name, true));
+				//gh #181 enhancement: adding program title to each practice you select
+				var rootItem:Object = tree.selectedItem
+				while (rootItem.parent) {
+					rootItem = rootItem.parent;
+				}
+				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, tree.selectedItem.name, rootItem.name, true));
 				dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 			}
 		}

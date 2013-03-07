@@ -71,6 +71,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			node.@contentuid = event.uid;
 			//gh #181
 			node.@exercisetitle = event.caption;
+			node.@caption = event.program;
 			//var tempText:XML = node.text;
 			// AR, this doesn't do what I want, it just removes all text from the xml
 			//var textFlowString:String = TLFUtil.textToTextFlowString(event.caption);
