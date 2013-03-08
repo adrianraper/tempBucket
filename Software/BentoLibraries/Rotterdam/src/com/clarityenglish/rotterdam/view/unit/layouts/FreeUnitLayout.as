@@ -66,8 +66,8 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 					
 					// Calculate the y position based on what is already there
 					var elementY:uint = currentElement.ypos;
-					
-					measuredHeight = Math.max(measuredHeight, elementY + currentElement.getLayoutBoundsHeight());
+					//alice measureHeight + 70
+					measuredHeight = Math.max(measuredHeight, elementY + currentElement.getLayoutBoundsHeight()) + 70;
 					
 					// Set the position
 					currentElement.setLayoutBoundsPosition(elementX, elementY);

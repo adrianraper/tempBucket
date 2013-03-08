@@ -135,7 +135,20 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					
 					widgetMenu.xml = currentMenuWidget.xml;
 					widgetMenu.x = pt.x + currentMenuWidget.x;
-					widgetMenu.y = pt.y; // TODO: This doesn't give the correct position when the list is scrolled vertically
+					//alice: 200 stands for text widget height, I now need be ablet to read each widget height
+					trace("pt y: "+pt.y);					
+					trace("scroller y: "+widgetList.scroller.verticalScrollBar.value);
+					trace("widgetList height: "+widgetList.height);
+					var temp: Number = pt.y + 200 + 70 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
+					trace("temp: "+ temp);
+					if ((pt.y + 200 + 70 - widgetList.scroller.verticalScrollBar.value) > widgetList.height ) {									
+							var minY:Number = 200 + 70 - (widgetList.height - pt.y)-widgetList.scroller.verticalScrollBar.value;
+							trace("minY: "+minY);
+							widgetList.scroller.verticalScrollBar.value = widgetList.scroller.verticalScrollBar.value + minY;
+							widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;					
+					} else {
+						widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;
+					}
 				});
 			}
 		}
