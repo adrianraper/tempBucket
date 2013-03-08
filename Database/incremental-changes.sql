@@ -777,12 +777,12 @@ INSERT INTO `T_DatabaseVersion`
 VALUES (1107, NOW(), 'course publication dates');
 
 ALTER TABLE `rack80829`.`T_Membership_Expiry` 
-ADD UNIQUE INDEX `Index_2` (`F_GroupID` ASC, `F_UserID` ASC) 
+ADD INDEX `Index_2` (`F_GroupID` ASC, `F_UserID` ASC) 
 , ADD INDEX `Index_1` (`F_RootID` ASC) 
 , ADD INDEX `Index_3` (`F_GroupID` ASC, `F_RootID` ASC);
 
 ALTER TABLE `rack80829`.`T_User_Expiry` 
-ADD UNIQUE INDEX `Index_2` (`F_UserID` ASC) 
+ADD INDEX `Index_2` (`F_UserID` ASC) 
 , ADD INDEX `Index_1` (`F_RegistrationDate` ASC);
 
 INSERT INTO `T_Product` VALUES
@@ -821,4 +821,25 @@ DELETE FROM rack80829.T_Language WHERE F_LanguageCode IN ('R2ILM','R2IFV','R2ITD
 
 -- to update existing accounts (probably only one)
 update T_Accounts set F_ProductVersion = 'DEMO' where F_ProductVersion = 'R2ID';
-select * from T_Accounts where F_RootID = 10103;
+
+ALTER TABLE `rack80829`.`T_Membership_Expiry` 
+DROP INDEX `Index_3` 
+, DROP INDEX `Index_1` 
+, DROP INDEX `Index_2` ;
+
+ALTER TABLE `rack80829`.`T_Membership_Expiry` 
+ADD INDEX `Index_1` (`F_RootID` ASC) 
+, ADD INDEX `Index_2` (`F_UserID` ASC, `F_GroupID` ASC) 
+, ADD INDEX `Index_3` (`F_GroupID` ASC, `F_RootID` ASC) ;
+
+ALTER TABLE `rack80829`.`T_User_Expiry` 
+DROP INDEX `Index_1` 
+, DROP INDEX `Index_2` ;
+
+ALTER TABLE `rack80829`.`T_User_Expiry` 
+ADD INDEX `Index_2` (`F_UserID` ASC) 
+, ADD INDEX `Index_1` (`F_RegistrationDate` ASC);
+
+ALTER TABLE `rack80829`.`T_EditedContent` CHANGE COLUMN `ID` `ID` BIGINT(19) NULL DEFAULT 0;
+-- or 
+ALTER TABLE `rack80829`.`T_EditedContent` ADD COLUMN `ID` BIGINT(19) NULL DEFAULT 0 AFTER `F_RelatedUID`;

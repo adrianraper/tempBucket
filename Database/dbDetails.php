@@ -19,7 +19,7 @@ class DBDetails {
 				$this->dbname = "copy_global_r2iv2";
 				break;
 			case 200:
-				$this->driver = "mysql";
+				$this->driver = "mysqlt";
 				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
 				$this->user = "clarity";
 				$this->password = "clarity123";

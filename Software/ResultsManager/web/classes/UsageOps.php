@@ -242,13 +242,16 @@ EOD;
 			} else {
 				$sqldatemonth = $this->db->SQLDATE('m', F_StartDateStamp);
 			}
+			// gh#178 Not really this issue, just done at the same time!
+			// This also fails in sqlite for the F_StartDateStamp < '2014'
+			// needs to be '2014-01-01' which will be fine for MySQL too.
 			$sql = 	<<<EOD
 					select count(F_SessionID) sessionCount, $sqldatemonth month
 					from T_Session
 					where F_RootID = ?
 					and F_ProductCode = ?
 					and F_StartDateStamp>='$i-01-01'
-					and F_StartDateStamp<'$j'
+					and F_StartDateStamp<'$j-01-01'
 					group by $sqldatemonth
 					order by $sqldatemonth;
 EOD;
