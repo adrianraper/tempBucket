@@ -32,13 +32,16 @@
 		<s:State name="demo"  />
 	</s:states>
 	
-	<s:Label id="analysisInstructionLabel1" left="20" top="60" />
-	<s:Label id="analysisInstructionLabel2" left="20" top="90" />
-	<s:Label id="analysisTimeLabel" fontSize="16" left="20" top="120" />
+	<s:Label id="analysisInstructionLabel1" fontWeight="bold" left="20" top="20" />
+	<s:Label id="analysisInstructionLabel2" left="20" top="55" />
 	
-	<ui:StackedCircleChart id="stackedChart" right="0" width="180" height="180" />
+	<s:Group right="0" >
+		<s:Label id="analysisTimeLabel" fontSize="16" />
+		<ui:StackedCircleChart id="stackedChart" top="230" width="180" height="180" />
+	</s:Group>
 	
-	<s:DataGroup id="durationDataGroup" left="20" top="220">
+	
+	<s:DataGroup id="durationDataGroup" left="20" top="95">
 		<s:layout>
 			<s:TileLayout horizontalGap="15" verticalGap="15" requestedColumnCount="3" />
 		</s:layout>
@@ -57,9 +60,13 @@
 							public var copyProvider:CopyProvider;
 							
 							[Bindable("dataChange")]
+							public function get itemIndex():int {
+								return (owner as DataGroup).dataProvider.getItemIndex(data);
+							}
+							
+							[Bindable("dataChange")]
 							public function get strokeColour():Number {
 								// Cycle the stroke colour through the 'unitColours' array (defined in the global tag of player.css)
-								var itemIndex:int = (owner as DataGroup).dataProvider.getItemIndex(data);
 								var unitColours:Array = getStyle("unitColours");
 								return unitColours[itemIndex % unitColours.length];
 							}
@@ -70,6 +77,12 @@
 							<s:SolidColorStroke color="{strokeColour}" weight="2" />
 						</s:stroke>
 					</s:Rect>
+					
+					<s:Label text="Unit {itemIndex + 1}" fontSize="21" left="10" top="10" />
+					<s:Label text="{data.@caption}" fontSize="12" top="40" left="10" />
+					
+					<s:Label text="{copyProvider.getCopyForId('courseDurationRenderLabel')}" top="75" left="10" />
+					<s:Label text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" fontSize="24" top="100" left="10" />
 				</s:DataRenderer>
 			</fx:Component>
 		</s:itemRenderer>
