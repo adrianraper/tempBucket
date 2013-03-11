@@ -16,6 +16,8 @@ global {
 	defaultColorDark: #005063;
 	/*defaultIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
 	defaultIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');*/
+	
+	unitColours: #fbdc29, #9fdd30, #41b9ed, #8c64ab, #e94288, #c92d30, #ff7700, #2db9ae, #35379e
 }
 
 player|PlayerApplication {

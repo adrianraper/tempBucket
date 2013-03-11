@@ -29,6 +29,16 @@ package com.clarityenglish.bento.view.progress.components {
 		[SkinPart(required="true")]
 		public var durationDataGroup:DataGroup;
 		
+		// #18 - analysis can be course based (e.g. IELTS) or unit based (e.g. CCB)
+		public var _type:String;
+		public static const UNIT_BASED:String = "progressanalysisview/unit_based";
+		public static const COURSE_BASED:String = "progressanalysisview/course_based";
+		
+		public function set type(value:String):void {
+			_type = value;
+			invalidateProperties();
+		}
+		
 		// gh#11
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
@@ -55,15 +65,33 @@ package com.clarityenglish.bento.view.progress.components {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			stackedChart.dataProvider = menu;
+			if (!_type) return;
 			
-			durationDataGroup.dataProvider = new XMLListCollection(menu.course);
-			
-			var duration:Number = 0;
-			for each (var course:XML in menu.course)
-				duration += new Number(course.@duration);
-				
-			analysisTimeLabel.text = copyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
+			switch (_type) {
+				case COURSE_BASED:
+					stackedChart.dataProvider = menu;
+					
+					durationDataGroup.dataProvider = new XMLListCollection(menu.course);
+					
+					var duration:Number = 0;
+					for each (var course:XML in menu.course)
+						duration += new Number(course.@duration);
+						
+					analysisTimeLabel.text = copyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
+					
+					break;
+				case UNIT_BASED:
+					//stackedChart.dataProvider = menu;
+					
+					durationDataGroup.dataProvider = new XMLListCollection(menu.course.unit);
+					
+					var duration:Number = 0;
+					for each (var unit:XML in menu.course.unit)
+						duration += new Number(unit.@duration);
+					
+					analysisTimeLabel.text = copyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
+					break;
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
