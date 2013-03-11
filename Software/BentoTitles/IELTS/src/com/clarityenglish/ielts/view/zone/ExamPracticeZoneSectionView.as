@@ -49,6 +49,10 @@ package com.clarityenglish.ielts.view.zone {
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
+		//gh #184
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
 		
 		public function ExamPracticeZoneSectionView() {
 			super();

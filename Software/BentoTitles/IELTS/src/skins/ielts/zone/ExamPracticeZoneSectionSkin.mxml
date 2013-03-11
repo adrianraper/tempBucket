@@ -74,6 +74,7 @@
 					<fx:Script>
 						<![CDATA[
 							import com.clarityenglish.bento.events.ExerciseEvent;
+							import com.clarityenglish.common.model.interfaces.CopyProvider;
 							import com.clarityenglish.ielts.view.zone.ZoneView;
 							
 							import flash.utils.setTimeout;
@@ -113,6 +114,13 @@
 									
 									// GH #49
 									practiceTestButton.enabled = answerKeyButton.enabled = audioPlayer.enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
+									
+									//gh #184
+									if (practiceTestButton.enabled) {
+										practiceLabel.text = data.@caption;
+									} else {
+										practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailbleDemo");
+									}
 								}
 							}
 							
@@ -122,7 +130,7 @@
 						]]>
 					</fx:Script>
 					<s:SWFLoader id="swfLoader" />
-					<s:Label text="{data.@caption}" top="268" horizontalCenter="0" fontSize="16" />
+					<s:Label id="practiceLabel" top="268" horizontalCenter="0" fontSize="16" />
 					
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
 						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
