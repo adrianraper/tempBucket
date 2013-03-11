@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.progress.ui.IStackedChart;
 	import com.clarityenglish.bento.view.progress.ui.StackedBarChart;
 	
 	import mx.collections.XMLListCollection;
@@ -14,7 +15,7 @@ package com.clarityenglish.bento.view.progress.components {
 	public class ProgressAnalysisView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var stackedBarChart:StackedBarChart;
+		public var stackedChart:IStackedChart;
 		
 		[SkinPart(required="true")]
 		public var analysisInstructionLabel1:Label;
@@ -54,7 +55,7 @@ package com.clarityenglish.bento.view.progress.components {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			stackedBarChart.dataProvider = menu;
+			stackedChart.dataProvider = menu;
 			
 			durationDataGroup.dataProvider = new XMLListCollection(menu.course);
 			
@@ -69,9 +70,9 @@ package com.clarityenglish.bento.view.progress.components {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case stackedBarChart:
+				case stackedChart:
 					// Set the series and colours for the stacked bar chart based on CSS styles
-					stackedBarChart.series = [
+					stackedChart.series = [
 						{ name: "reading", colour: getStyle("readingColor") },
 						{ name: "listening", colour: getStyle("listeningColor") },
 						{ name: "speaking", colour: getStyle("speakingColor") },
@@ -79,7 +80,7 @@ package com.clarityenglish.bento.view.progress.components {
 					]
 					
 					// set the field we will be drawing
-					stackedBarChart.field = "duration";
+					stackedChart.field = "duration";
 					break;
 			}
 		}

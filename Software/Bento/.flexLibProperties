@@ -155,6 +155,7 @@
     <classEntry path="com.clarityenglish.components.PromptingRichEditableText"/>
     <classEntry path="com.clarityenglish.bento.controller.ItemCleanCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.ItemDirtyCommand"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.IStackedChart"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

@@ -1,7 +1,7 @@
 package com.clarityenglish.bento.view.progress.ui {
 	import mx.core.UIComponent;
 	
-	public class StackedBarChart extends UIComponent {
+	public class StackedBarChart extends UIComponent implements IStackedChart {
 		
 		private var _series:Array;
 		private var _field:String;
