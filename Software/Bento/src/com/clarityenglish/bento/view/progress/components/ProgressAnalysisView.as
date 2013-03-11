@@ -1,6 +1,5 @@
 package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.progress.ui.CourseDurationRenderer;
 	import com.clarityenglish.bento.view.progress.ui.StackedBarChart;
 	
 	import mx.collections.XMLListCollection;
@@ -45,7 +44,8 @@ package com.clarityenglish.bento.view.progress.components {
 			if (analysisInstructionLabel2) analysisInstructionLabel2.text = copyProvider.getCopyForId("analysisInstructionLabel2");
 			
 			if (durationDataGroup) {
-				var classFactory:ClassFactory = new ClassFactory(CourseDurationRenderer);
+				// Inject the copy provider into the data provider
+				var classFactory:ClassFactory = durationDataGroup.itemRenderer as ClassFactory;
 				classFactory.properties = { copyProvider: copyProvider };
 				durationDataGroup.itemRenderer = classFactory;
 			}

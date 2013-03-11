@@ -30,10 +30,46 @@
 	
 	<ui:StackedBarChart id="stackedBarChart" top="150" height="35" left="20" width="{durationDataGroup.width}" />
 	
-	<s:DataGroup id="durationDataGroup" left="20" top="220" itemRenderer="com.clarityenglish.bento.view.progress.ui.CourseDurationRenderer">
+	<s:DataGroup id="durationDataGroup" left="20" top="220">
 		<s:layout>
 			<s:HorizontalLayout gap="15" />
 		</s:layout>
+		<s:itemRenderer>
+			<fx:Component>
+				<s:DataRenderer width="218" height="183">
+					<fx:Script>
+						<![CDATA[
+							import com.clarityenglish.common.model.interfaces.CopyProvider;
+							
+							[Bindable]
+							public var copyProvider:CopyProvider;
+							
+							[Bindable("dataChange")]
+							private function get fillColour():Number {
+								return getStyle(data.@['class'] + 'Color');
+							}
+							
+							[Bindable("dataChange")]
+							private function get icon():Object {
+								return getStyle(data.@['class'] + 'IconBare');
+							}
+						]]>
+					</fx:Script>
+					<s:Label text="{data.@caption}" fontSize="21" />
+					
+					<s:Rect left="0" right="0" top="21" bottom="0">
+						<s:fill>
+							<s:SolidColor color="{fillColour}" />
+						</s:fill>
+					</s:Rect>
+					
+					<s:SWFLoader source="{icon}" left="14" top="38" /> 
+					
+					<s:Label text="{copyProvider.getCopyForId('courseDurationRenderLabel')}" color="#FFFFFF" top="95" left="10" />
+					<s:Label text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" fontSize="24" color="#FFFFFF" top="120" left="10" />
+				</s:DataRenderer>
+			</fx:Component>
+		</s:itemRenderer>
 	</s:DataGroup>
 	
 </s:Skin>
