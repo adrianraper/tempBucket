@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
-	<contentPath>../../../../Content/RoadToIELTS-Academic/Courses/1150976390861/</contentPath>
+    <prefix>Clarity</prefix>
+    <productCode>52</productCode>
+	<contentPath>RoadToIELTS2-International</contentPath>
 	<dbHost>2</dbHost>
+    <contentPath>http://dock.contentbench/Content/</contentPath>
+    <remoteDomain>http://dock.projectbench/Software/</remoteDomain>
+    <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>>
+    <remoteService>IELTSService</remoteService>
+    <assetFolder>ResultsManager/web/resources/assets/</assetFolder>
 </config>

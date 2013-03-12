@@ -67,9 +67,14 @@ class Exercise {
 					$this->type = Exercise::EXERCISE_TYPE_MULTIPLECHOICE;
 					$this->questionBased = true;
 					break;
+				case 'stopdrop':
+					$this->type = Exercise::EXERCISE_TYPE_DROPDOWN;
+					$this->questionBased = true;
+					break;
 				// Then text based versions with standard names
 				case 'dropdown':
 				case 'presentation':
+				case 'bullet':
 				case 'targetspotting':
 				case 'proofreading':
 				case 'errorcorrection':

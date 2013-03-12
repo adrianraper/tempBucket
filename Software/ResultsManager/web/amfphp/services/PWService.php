@@ -78,7 +78,7 @@ class PWService extends AbstractService {
 		
 		if ($loginObj) {			
 			// RM specific setup values for this root
-			if (isset($loginObj->F_LangaugeCode) && strlength($loginObj->F_LanguageCode)>0) {
+			if (isset($loginObj->F_LangaugeCode) && strlen($loginObj->F_LanguageCode)>0) {
 				Session::set('languageCode', $loginObj->F_LanguageCode);
 			} else {
 				Session::set('languageCode', 'EN');
