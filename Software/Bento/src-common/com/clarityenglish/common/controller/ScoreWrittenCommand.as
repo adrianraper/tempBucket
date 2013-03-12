@@ -4,7 +4,7 @@ Simple Command - PureMVC
 package com.clarityenglish.common.controller {
 	
 	import com.clarityenglish.bento.model.BentoProxy;
-	import com.clarityenglish.bento.vo.content.transform.ProgressCourseSummaryTransform;
+	import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
 	import com.clarityenglish.common.vo.progress.Score;
 	
 	import org.puremvc.as3.interfaces.INotification;
@@ -36,7 +36,7 @@ package com.clarityenglish.common.controller {
 				
 				// 3. Rerun the ProgressCourseSummaryTransform on the client to update the summary data
 				// TODO: I would have thought that this wouldn't work because of namespacing differences, but actually it seems to work fine
-				new ProgressCourseSummaryTransform().transform(bentoProxy.menuXHTML.xml);
+				new ProgressSummaryTransform().transform(bentoProxy.menuXHTML.xml);
 			}
 		}
 		

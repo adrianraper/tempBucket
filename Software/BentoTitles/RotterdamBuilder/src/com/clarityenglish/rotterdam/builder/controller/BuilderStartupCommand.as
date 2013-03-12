@@ -7,7 +7,6 @@ package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.rotterdam.builder.view.BuilderApplicationMediator;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
-	import org.puremvc.as3.interfaces.IFacade;
 	import org.puremvc.as3.interfaces.INotification;
 
 	public class BuilderStartupCommand extends BentoStartupCommand {

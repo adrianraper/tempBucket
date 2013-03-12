@@ -6,8 +6,8 @@ package com.clarityenglish.ielts.controller {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
-	import com.clarityenglish.bento.vo.content.transform.ProgressCourseSummaryTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
+	import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.ielts.view.IELTSApplicationMediator;
 	
@@ -31,7 +31,7 @@ package com.clarityenglish.ielts.controller {
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;			
 			var transforms:Array = [ new ProgressExerciseScoresTransform(),
-									 new ProgressCourseSummaryTransform(),
+									 new ProgressSummaryTransform(),
 									 new HiddenContentTransform(),
 									 new DirectStartDisableTransform(configProxy.getDirectStart()) ];
 			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
