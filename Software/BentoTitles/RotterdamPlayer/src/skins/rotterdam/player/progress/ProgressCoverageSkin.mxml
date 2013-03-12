@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*"
-		xmlns:skins="skins.ielts.progress.*">
+		xmlns:skins="skins.ielts.progress.*" xmlns:progress="skins.rotterdam.player.assets.progress.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCoverageView")]
@@ -23,7 +23,7 @@
 	
 	<s:HGroup width="100%" height="100%" top="50" >
 		<!-- The unit selector -->
-		<s:List id="list" dataProvider="{hostComponent.unitListCollection}" width="200" height="100%">
+		<s:List id="list" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" width="200" height="100%">
 			<s:layout>
 				<s:VerticalLayout gap="1" />
 			</s:layout>
@@ -34,23 +34,44 @@
 							<s:VerticalLayout paddingLeft="9" paddingRight="4" paddingTop="11" paddingBottom="6" />
 						</s:layout>
 						<s:Label text="{data.@caption}" fontSize="15" />
+						<!-- TODO: completion bar -->
 					</s:ItemRenderer>
 				</fx:Component>
 			</s:itemRenderer>
 		</s:List>
-	
+		
 		<!-- The exercise list area -->
 		<s:VGroup>
 			<s:Label text="{list.selectedItem.@caption}" fontSize="20" fontWeight="bold" />
 			
+			<s:HGroup paddingTop="10" paddingBottom="10">
+				<progress:CompletedIcon />
+				<s:Label text="Completed" paddingTop="3" />
+				
+				<progress:NotCompletedIcon />
+				<s:Label text="Not completed" paddingTop="3" />
+			</s:HGroup>
+			
 			<s:DataGroup dataProvider="{new XMLListCollection(list.selectedItem.exercise)}">
 				<s:layout>
-					<s:VerticalLayout />
+					<s:VerticalLayout gap="12" />
 				</s:layout>
 				<s:itemRenderer>
 					<fx:Component>
 						<s:DataRenderer>
-							<s:Label text="{data.@caption}" fontSize="15" />
+							<fx:Script>
+								<![CDATA[
+									[Bindable("dataChange")]
+									protected function get isDone():Boolean {
+										return data && data.hasOwnProperty("@done") && new Number(data.attribute("done")) > 0;
+									}
+								]]>
+							</fx:Script>
+							<s:HGroup>
+								<progress:NotCompletedIcon scaleX="1.2" scaleY="1.2" visible="{!isDone}" includeInLayout="{!isDone}" />
+								<progress:CompletedIcon scaleX="1.2" scaleY="1.2" visible="{isDone}" includeInLayout="{isDone}" />
+								<s:Label text="{data.@caption}" fontSize="15" paddingTop="3" />
+							</s:HGroup>
 						</s:DataRenderer>
 					</fx:Component>
 				</s:itemRenderer>

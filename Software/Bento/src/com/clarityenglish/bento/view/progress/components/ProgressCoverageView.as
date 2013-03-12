@@ -1,17 +1,14 @@
 package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer;
 	import com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
-	import mx.core.ClassFactory;
 	
 	import org.osflash.signals.Signal;
 	
-	import spark.components.DataGroup;
 	import spark.events.IndexChangeEvent;
 	
 	/**
@@ -79,7 +76,7 @@ package com.clarityenglish.bento.view.progress.components {
 			
 			if (_courseChanged) {				
 				// Update the components of the view that change their data
-				if (progressBar && courseClass) {
+				if (progressBar && courseClass != null) {
 					progressBar.courseClass = courseClass;
 					progressBar.type = "coverage";
 					progressBar.data = menu;
