@@ -5,6 +5,7 @@ package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
 	
@@ -24,8 +25,8 @@ package com.clarityenglish.bento.view.progress.components {
 		[SkinPart(required="true")]
 		public var progressBar:ProgressBarRenderer;
 		
-		[SkinPart]
-		public var dataGroup:DataGroup;
+		[Bindable]
+		public var unitListCollection:ListCollectionView;
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -63,7 +64,7 @@ package com.clarityenglish.bento.view.progress.components {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			progressCourseButtonBar.courses = menu.course;
+			if (progressCourseButtonBar) progressCourseButtonBar.courses = menu.course;
 		}
 		
 		protected override function onViewCreationComplete():void {
@@ -84,10 +85,7 @@ package com.clarityenglish.bento.view.progress.components {
 					progressBar.data = menu;
 				}
 				
-				if (dataGroup) {
-					dataGroup.dataProvider = new XMLListCollection(menu.course.(@["class"] == courseClass).unit);
-					dataGroup.itemRendererFunction = dataGroup.itemRendererFunction; // Flex bug workaround: SDK-32018
-				}
+				unitListCollection = new XMLListCollection(menu.course.(@["class"] == courseClass).unit);
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
 				if (progressCourseButtonBar) progressCourseButtonBar.courseClass = courseClass;
@@ -102,11 +100,6 @@ package com.clarityenglish.bento.view.progress.components {
 			switch (instance) {
 				case progressCourseButtonBar:
 					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);
-					break;
-				case dataGroup:
-					// The datagroup defaults to CoverageExerciseComponent (which will be the case for most titles).  If this needs to be changed, such as
-					// in IELTS then it can be overridden in the skin.
-					dataGroup.itemRenderer = new ClassFactory(CoverageUnitRenderer);
 					break;
 			}
 		}
