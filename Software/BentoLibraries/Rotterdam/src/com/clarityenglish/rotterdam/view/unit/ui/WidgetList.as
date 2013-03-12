@@ -110,7 +110,8 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			var draggedIndex:int = dragSource.dataForFormat("draggedIndex") as int;
 			
 			// Update the object using the layout's updateElementFromDrag method (this does all the positioning and invalidation of the display list)
-			(layout as IUnitLayout).updateElementFromDrag(draggedItem, pt.x, pt.y);
+			//gh: #186 the virtual widget postition display odd
+			(layout as IUnitLayout).updateElementFromDrag(draggedItem, pt.x, pt.y + this.scroller.verticalScrollBar.value);
 			
 			// Figure out the new index and rearrange the dataprovider if it has changed.
 			var dropIndex:int = (layout as IUnitLayout).getDropIndex(pt.x, pt.y);

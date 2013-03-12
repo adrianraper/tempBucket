@@ -135,17 +135,17 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					
 					widgetMenu.xml = currentMenuWidget.xml;
 					widgetMenu.x = pt.x + currentMenuWidget.x;
-					//alice: 200 stands for text widget height, I now need be ablet to read each widget height
-					trace("pt y: "+pt.y);					
-					trace("scroller y: "+widgetList.scroller.verticalScrollBar.value);
-					trace("widgetList height: "+widgetList.height);
-					var temp: Number = pt.y + 200 + 70 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
-					trace("temp: "+ temp);
-					if ((pt.y + 200 + 70 - widgetList.scroller.verticalScrollBar.value) > widgetList.height ) {									
-							var minY:Number = 200 + 70 - (widgetList.height - pt.y)-widgetList.scroller.verticalScrollBar.value;
-							trace("minY: "+minY);
-							widgetList.scroller.verticalScrollBar.value = widgetList.scroller.verticalScrollBar.value + minY;
-							widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;					
+					
+					//gh: #185 we should be able to read the height of menuBar
+					if (widgetMenu.currentState == "text") {
+						var offsetY:Number = pt.y + 225 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
+					} else {
+						offsetY = pt.y + 275 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
+					}					
+					trace("offsetY: "+ offsetY);
+					if (offsetY > 0) {
+							widgetList.scroller.verticalScrollBar.value = widgetList.scroller.verticalScrollBar.value + offsetY;
+							widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;
 					} else {
 						widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;
 					}
