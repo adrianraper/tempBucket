@@ -1,7 +1,6 @@
 package com.clarityenglish.bento.view.progress.components {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ui.IStackedChart;
-	import com.clarityenglish.bento.view.progress.ui.StackedBarChart;
 	
 	import mx.collections.XMLListCollection;
 	import mx.core.ClassFactory;
@@ -67,31 +66,21 @@ package com.clarityenglish.bento.view.progress.components {
 			
 			if (!_type) return;
 			
-			switch (_type) {
-				case COURSE_BASED:
-					stackedChart.dataProvider = menu;
-					
-					durationDataGroup.dataProvider = new XMLListCollection(menu.course);
-					
-					var duration:Number = 0;
-					for each (var course:XML in menu.course)
-						duration += new Number(course.@duration);
-						
-					analysisTimeLabel.text = copyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
-					
-					break;
-				case UNIT_BASED:
-					//stackedChart.dataProvider = menu;
-					
-					durationDataGroup.dataProvider = new XMLListCollection(menu.course.unit);
-					
-					var duration:Number = 0;
-					for each (var unit:XML in menu.course.unit)
-						duration += new Number(unit.@duration);
-					
-					analysisTimeLabel.text = copyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
-					break;
+			var targetNodes:XMLList;
+			if (_type == COURSE_BASED) {
+				targetNodes = menu.course;
+			} else if (_type == UNIT_BASED) {
+				targetNodes = menu.course.unit;
 			}
+			
+			stackedChart.dataProvider = targetNodes;
+			
+			durationDataGroup.dataProvider = new XMLListCollection(targetNodes);
+			var duration:Number = 0;
+			for each (var item:XML in targetNodes)
+				duration += new Number(item.@duration);
+			
+			analysisTimeLabel.text = copyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -99,14 +88,6 @@ package com.clarityenglish.bento.view.progress.components {
 			
 			switch (instance) {
 				case stackedChart:
-					// Set the series and colours for the stacked bar chart based on CSS styles
-					stackedChart.series = [
-						{ name: "reading", colour: getStyle("readingColor") },
-						{ name: "listening", colour: getStyle("listeningColor") },
-						{ name: "speaking", colour: getStyle("speakingColor") },
-						{ name: "writing", colour: getStyle("writingColor") }
-					]
-					
 					// set the field we will be drawing
 					stackedChart.field = "duration";
 					break;

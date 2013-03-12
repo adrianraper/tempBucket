@@ -35,7 +35,8 @@
 	<s:Label id="analysisInstructionLabel2" left="20" top="120" />
 	<s:Label id="analysisTimeLabel" fontSize="16" left="20" top="150" />
 	
-	<ui:StackedBarChart id="stackedChart" top="150" height="35" left="20" width="{durationDataGroup.width}" />
+	<ui:StackedBarChart id="stackedChart" top="150" height="35" left="20" width="{durationDataGroup.width}"
+						colours="{[getStyle('readingColor'), getStyle('listeningColor'), getStyle('speakingColor'), getStyle('writingColor')]}" />
 	
 	<s:DataGroup id="durationDataGroup" left="20" top="220">
 		<s:layout>

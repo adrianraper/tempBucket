@@ -3,12 +3,12 @@ package com.clarityenglish.bento.view.progress.ui {
 	
 	public class StackedBarChart extends UIComponent implements IStackedChart {
 		
-		private var _series:Array;
+		private var _colours:Array = [];
 		private var _field:String;
 		private var _dataProvider:Object;
 		
-		public function set series(value:Array):void {
-			_series = value;
+		public function set colours(value:Array):void {
+			_colours = value;
 			invalidateDisplayList();
 		}
 		
@@ -27,20 +27,20 @@ package com.clarityenglish.bento.view.progress.ui {
 			
 			graphics.clear();
 			
-			if (!_series || !_field || !_dataProvider) return;
+			if (!_field || !_dataProvider) return;
 			
 			// Determine the total of all the values and store it
-			var seriesItem:Object;
+			var item:Object;
 			var totalValues:Number = 0;
-			for each (seriesItem in _series)
-				totalValues += new Number(_dataProvider.course.(@["class"] == seriesItem.name).attribute(_field));
+			for each (item in _dataProvider)
+				totalValues += new Number(item.attribute(_field));
 			
 			// Draw the bar chart with the colours specified in series
-			var currentX:Number = 0;
-			for each (seriesItem in _series) {
+			var currentX:Number = 0, idx:int = 0;
+			for each (item in _dataProvider) {
 				// Determine colour and width
-				var barColour:Number = seriesItem.colour;
-				var barValue:Number = new Number(_dataProvider.course.(@["class"] == seriesItem.name).attribute(_field));
+				var barColour:Number = _colours[idx];
+				var barValue:Number = new Number(item.attribute(_field));
 				var barWidth:Number = unscaledWidth * barValue / totalValues;
 				
 				if (isNaN(barWidth)) barWidth = 0;
@@ -50,8 +50,9 @@ package com.clarityenglish.bento.view.progress.ui {
 				graphics.endFill();
 				
 				currentX += barWidth;
+				idx++;
 			}
 		}
-	
+		
 	}
 }

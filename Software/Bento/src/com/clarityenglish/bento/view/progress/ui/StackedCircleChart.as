@@ -3,14 +3,8 @@ package com.clarityenglish.bento.view.progress.ui {
 	
 	public class StackedCircleChart extends UIComponent implements IStackedChart {
 		
-		private var _series:Array;
 		private var _field:String;
 		private var _dataProvider:Object;
-		
-		public function set series(value:Array):void {
-			_series = value;
-			invalidateDisplayList();
-		}
 		
 		public function set field(value:String):void {
 			_field = value;
@@ -27,7 +21,7 @@ package com.clarityenglish.bento.view.progress.ui {
 			
 			graphics.clear();
 			
-			if (!_series || !_field || !_dataProvider) return;
+			if (!_field || !_dataProvider) return;
 			
 			// Implement drawing the circle graph!
 			graphics.beginFill(0xFF0000, 1);
