@@ -120,8 +120,8 @@
 			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
 			<lit name="courseDurationRenderLabel">You have spent</lit>
 			<lit name="courseDurationRenderTime">{time} min(s)</lit>
-			<lit name="ProgressBarCoverage"> - overall coverage</lit>
-			<lit name="ProgressBarScore"> - average score</lit>
+			<lit name="progressBarCoverage">Overall coverage</lit>
+			<lit name="progressBarScore">Average score</lit>
 			<lit name="scoreGridC1">Unit</lit>
 			<lit name="scoreGridC2">Exercise</lit>
 			<lit name="scoreGridC3">Score %</lit>

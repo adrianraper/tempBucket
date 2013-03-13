@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx">
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer")]
+	</fx:Metadata>
+	
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -11,14 +15,14 @@
 	<s:VGroup width="100%" height="70" top="17" left="0">
 		<s:Rect height="30" percentWidth="100" radiusX="8" radiusY="8">
 			<s:fill>
-				<s:SolidColor id="backColour" color="#00FF00" />
+				<s:SolidColor color="{hostComponent.trackColour}" />
 			</s:fill>
 		</s:Rect>
 	</s:VGroup>
 	<s:VGroup width="100%" height="70" top="17" left="0">
 		<s:Rect id="overallProgressRect" percentWidth="0" height="30" radiusX="8" radiusY="8">
 			<s:fill>
-				<s:SolidColor id="solidColour" color="#CCED9A" />
+				<s:SolidColor color="{hostComponent.fillColour}" />
 			</s:fill>
 		</s:Rect>
 	</s:VGroup>

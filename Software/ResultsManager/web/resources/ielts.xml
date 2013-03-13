@@ -154,8 +154,8 @@ Or just click {loginText}.]]>
 			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
 			<lit name="courseDurationRenderLabel">You have spent</lit>
 			<lit name="courseDurationRenderTime">{time} min(s)</lit>
-			<lit name="ProgressBarCoverage">&#160;- overall coverage</lit>
-			<lit name="ProgressBarScore">&#160;- average score</lit>
+			<lit name="progressBarCoverage">{course} - overall coverage</lit> <!--&#160;-->
+			<lit name="progressBarScore">{course} - average score</lit>
 			<lit name="scoreGridC1">Unit</lit>
 			<lit name="scoreGridC2">Exercise</lit>
 			<lit name="scoreGridC3">Score %</lit>

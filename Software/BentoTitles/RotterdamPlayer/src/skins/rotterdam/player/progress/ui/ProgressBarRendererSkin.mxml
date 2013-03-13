@@ -9,16 +9,16 @@
 		<s:Label id="commentLabel" color="#303030" />
 	</s:HGroup>
 	<s:VGroup width="100%" height="70" top="17" left="0">
-		<s:Rect height="30" percentWidth="100" radiusX="8" radiusY="8">
+		<s:Rect height="12" percentWidth="100" radiusX="3" radiusY="3">
 			<s:fill>
-				<s:SolidColor id="backColour" color="#00FF00" />
+				<s:SolidColor id="backColour" color="#000000" />
 			</s:fill>
 		</s:Rect>
 	</s:VGroup>
 	<s:VGroup width="100%" height="70" top="17" left="0">
-		<s:Rect id="overallProgressRect" percentWidth="0" height="30" radiusX="8" radiusY="8">
+		<s:Rect id="overallProgressRect" height="12" percentWidth="0" radiusX="3" radiusY="3">
 			<s:fill>
-				<s:SolidColor id="solidColour" color="#CCED9A" />
+				<s:SolidColor color="#FFBE10" />
 			</s:fill>
 		</s:Rect>
 	</s:VGroup>

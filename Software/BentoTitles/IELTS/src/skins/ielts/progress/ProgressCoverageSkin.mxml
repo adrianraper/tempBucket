@@ -11,8 +11,9 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer;
+			import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
 			import com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer;
+			import com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer;
 			
 			/**
 			 * This is specific to the IELTS ProgressCoverageSkin and replaces the default item renderer with a unit version for 'practice-zone'
@@ -39,7 +40,12 @@
 		</ui:layout>
 	</ui:ProgressCourseButtonBar>
 	
-	<ui:ProgressBarRenderer id="progressBar" top="73" left="0" right="0" />
+	<ui:ProgressBarRenderer id="progressBar"
+							trackColour="{hostComponent.getStyle(hostComponent.courseClass + 'ColorDark')}"
+							fillColour="{hostComponent.getStyle(hostComponent.courseClass + 'Color')}"
+							top="73"
+							left="0"
+							right="0" />
 	
 	<s:Scroller left="0" right="0" top="137" bottom="0">
 		<s:DataGroup dataProvider="{hostComponent.unitListCollection}" itemRendererFunction="getItemRenderer" width="100%" height="100%" minWidth="0" minHeight="0">

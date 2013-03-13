@@ -138,7 +138,12 @@
 		</ui:layout>
 	</ui:ProgressCourseButtonBar>
 
-	<ui:ProgressBarRenderer id="progressBar" top="73" left="0" right="0" />
+	<ui:ProgressBarRenderer id="progressBar"
+							trackColour="{hostComponent.getStyle(hostComponent.courseClass + 'ColorDark')}"
+							fillColour="{hostComponent.getStyle(hostComponent.courseClass + 'Color')}"
+							top="73"
+							left="0"
+							right="0" />
 	
 	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" top="137" bottom="0">
 		<s:columns>

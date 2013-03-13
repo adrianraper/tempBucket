@@ -28,58 +28,35 @@ package com.clarityenglish.bento.view.progress.ui {
 		
 		[SkinPart(required="true")]
 		public var overallProgressRect:Rect;
-
-		[SkinPart(required="true")]
-		public var solidColour:SolidColor;
 		
-		[SkinPart(required="true")]
-		public var backColour:SolidColor;
+		[Bindable]
+		public var trackColour:Number;
 		
-		public var courseClass:String;
+		[Bindable]
+		public var fillColour:Number;
 		
-		public var type:String;
+		private var _label:String;
 		
-		private var _dataChanged:Boolean;
-		
-		private var _copyProvider:CopyProvider;
-		
-		// gh#11 Language Code
-		public function set copyProvider(copyProvider:CopyProvider):void {
-			_copyProvider = copyProvider;
+		public function set label(value:String):void {
+			_label = value;
 			invalidateProperties();
 		}
-
+		
 		public override function set data(value:Object):void {
 			super.data = value;
-			_dataChanged = true;
 			invalidateProperties();
 		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties(); 
 			
-			if (data && _copyProvider && _dataChanged) {
-				var course:XML = data..course.(@["class"] == courseClass)[0];
-				solidColour.color = getStyle(courseClass + "Color");
-				backColour.color = getStyle(courseClass + "ColorDark");
-				
-				// gh#11 language Code - is this for coverage or score?
-				if (type == 'coverage') {
-					var courseLabel:String = StringUtils.capitalize(courseClass).toString();
-					commentLabel.text = _copyProvider.getCopyForId(courseLabel) + _copyProvider.getCopyForId("ProgressBarCoverage") + " " + new Number(course.@coverage) + "%";
-					var percentValue:Number = new Number(course.@coverage);
-				} else {
-					courseLabel = StringUtils.capitalize(courseClass).toString();
-					commentLabel.text = _copyProvider.getCopyForId(courseLabel) + _copyProvider.getCopyForId("ProgressBarScore") + " " + new Number(course.@averageScore) + "%";
-					percentValue = new Number(course.@averageScore);
-				}
-				
-				// Tween it
-				Tweener.removeTweens(overallProgressRect, percentWidth);
-				Tweener.addTween(overallProgressRect, { percentWidth: percentValue, time: 2, delay: 0, transition: "easeOutSine" });
-				
-				_dataChanged = false;
+			if (_label) {
+				commentLabel.text = _label +  " " + new Number(data) + "%";
 			}
+			
+			// Tween it
+			Tweener.removeTweens(overallProgressRect, percentWidth);
+			Tweener.addTween(overallProgressRect, { percentWidth: data, time: 2, delay: 0, transition: "easeOutSine" });
 		}
 		
 	}

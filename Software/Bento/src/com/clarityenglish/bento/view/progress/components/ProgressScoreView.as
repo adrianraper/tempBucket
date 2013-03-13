@@ -8,6 +8,7 @@ package com.clarityenglish.bento.view.progress.components {
 	
 	import mx.collections.XMLListCollection;
 	
+	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.DataGrid;
@@ -72,7 +73,6 @@ package com.clarityenglish.bento.view.progress.components {
 			super.onViewCreationComplete();
 			
 			if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
-			if (progressBar) progressBar.copyProvider = copyProvider;
 			if (scoreGridC1) scoreGridC1.headerText = copyProvider.getCopyForId("scoreGridC1");
 			if (scoreGridC2) scoreGridC2.headerText = copyProvider.getCopyForId("scoreGridC2");
 			if (scoreGridC3) scoreGridC3.headerText = copyProvider.getCopyForId("scoreGridC3");
@@ -90,11 +90,9 @@ package com.clarityenglish.bento.view.progress.components {
 			super.commitProperties();
 			
 			if (_courseChanged) {
-				// Update the components of the view that change their data
-				if (progressBar && courseClass) {
-					progressBar.courseClass = courseClass;
-					progressBar.type = "score";
-					progressBar.data = menu;
+				if (progressBar) {
+					progressBar.label = copyProvider.getCopyForId("progressBarScore", { course: copyProvider.getCopyForId(StringUtils.capitalize(courseClass)) });
+					progressBar.data = menu.course.(@["class"] == courseClass).@averageScore;
 				}
 				
 				if (courseClass) {

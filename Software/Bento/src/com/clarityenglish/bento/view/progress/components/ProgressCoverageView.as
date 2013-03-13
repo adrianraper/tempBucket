@@ -7,6 +7,7 @@ package com.clarityenglish.bento.view.progress.components {
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	
+	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
 	import spark.events.IndexChangeEvent;
@@ -68,18 +69,15 @@ package com.clarityenglish.bento.view.progress.components {
 			super.onViewCreationComplete();
 			
 			if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
-			if (progressBar) progressBar.copyProvider = copyProvider;
 		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_courseChanged) {				
-				// Update the components of the view that change their data
-				if (progressBar && courseClass != null) {
-					progressBar.courseClass = courseClass;
-					progressBar.type = "coverage";
-					progressBar.data = menu;
+			if (_courseChanged) {	
+				if (progressBar) {
+					progressBar.label = copyProvider.getCopyForId("progressBarCoverage", { course: copyProvider.getCopyForId(StringUtils.capitalize(courseClass)) });
+					progressBar.data = menu.course.(@["class"] == courseClass).@coverage;
 				}
 				
 				unitListCollection = new XMLListCollection(menu.course.(@["class"] == courseClass).unit);
