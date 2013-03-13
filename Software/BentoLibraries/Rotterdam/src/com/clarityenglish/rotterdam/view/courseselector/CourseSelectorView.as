@@ -6,6 +6,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
+	import mx.controls.Alert;
+	import mx.events.CloseEvent;
+	import mx.managers.PopUpManager;
 	
 	import org.osflash.signals.Signal;
 	
@@ -57,14 +60,21 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		}
 		
 		protected function onSelectCourse(event:MouseEvent):void {
-			trace("courseList selectedItem: "+ courseList.selectedItem);
 			if (courseList.selectedItem)
 				selectCourse.dispatch(courseList.selectedItem);
 		}
 		
 		protected function onDeleteCourse(event:CourseDeleteEvent):void {
-			if (courseList.selectedItem)
-				deleteCourse.dispatch(courseList.selectedItem);
+			var alert:Alert = Alert.show("Are you sure", "Delete", Alert.YES | Alert.NO, this, alterListener);
+			alert.styleName = "markingTitleWindow";
+			PopUpManager.centerPopUp (alert);
+		}
+		
+		private function alterListener(event:CloseEvent):void {
+			if (event.detail == Alert.YES) {
+				if (courseList.selectedItem)
+					deleteCourse.dispatch(courseList.selectedItem);
+			}
 		}
 		
 	}

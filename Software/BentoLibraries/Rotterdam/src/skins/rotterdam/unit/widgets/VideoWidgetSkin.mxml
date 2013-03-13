@@ -26,7 +26,7 @@
 	
 	<s:VGroup left="0" right="0" top="25">
 		<!-- Text -->
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" minHeight="80" />
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" minHeight="80" width="100%"/>
 		
 		<!-- Video -->
 		<s:Group id="videoHolder" left="0" right="0">

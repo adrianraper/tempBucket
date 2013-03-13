@@ -148,9 +148,23 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			_pieChartCollection.addItem({type: "Image", total: totalImage});
 			_pieChartCollection.addItem({type: "Audio", total: totalAudio});
 			
-			textPDF = Math.round((totalPDF/totalFile)*100).toString()+ "%";
-			textImage = Math.round((totalImage/totalFile)*100).toString()+ "%";
-			textAudio = Math.round((totalAudio/totalFile)*100).toString()+ "%";
+			if (totalPDF == 0) {
+				textPDF = "0%";
+			} else {
+				textPDF = Math.round((totalPDF/totalFile)*100).toString()+ "%";
+			}
+			
+			if (totalImage == 0) {
+				textImage = "0%";
+			} else {
+				textImage = Math.round((totalImage/totalFile)*100).toString()+ "%";
+			}
+			
+			if (totalAudio == 0) {
+				textAudio = "0%";
+			} else {
+				textAudio = Math.round((totalAudio/totalFile)*100).toString()+ "%";
+			}			
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
