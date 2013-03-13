@@ -160,6 +160,8 @@
 			<lit name="settingsDirty">Your changes the the settings have not been saved. Are you sure you want to continue?</lit>
 			<lit name="uploadsDirty">There are files currently uploading. Are you sure you want to continue?</lit>
 			<lit name="widgetPlaceholderText">Type a description here.</lit>
+			<lit name="emptyFileLabel">You have not uploaded any files to the Resource Cloud</lit>
+			<lit name="emptyFileLabel2">You have not uploaded any files here</lit>
 		</group>
 	</language>
 </literals>

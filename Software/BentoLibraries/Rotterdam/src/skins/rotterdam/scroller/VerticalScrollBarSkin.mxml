@@ -67,27 +67,27 @@ VScrollBarThumbSkin and VScrollBarTrackSkin classes, respectively.
             @see spark.skins.spark.VScrollBarTrackSkin -->
     <s:Button id="track" top="0" bottom="0" height="54"
               focusEnabled="false" tabEnabled="false"
-              skinClass="com.clarityenglish.rotterdam.view.scroller.VerticalScrollBarTrackSkin" />
+              skinClass="skins.rotterdam.scroller.VerticalScrollBarTrackSkin" />
     
     <!--- The default skin class is VScrollBarThumbSkin.
             @copy spark.components.supportClasses.TrackBase#thumb 
             @see spark.skins.spark.VScrollBarThumbSkin -->
-    <s:Button id="thumb" 
+    <s:Button id="thumb" left="10"
               focusEnabled="false" visible.inactive="false" tabEnabled="false"
-              skinClass="com.clarityenglish.rotterdam.view.scroller.VerticalScrollBarThumbSkin" />
+              skinClass="skins.rotterdam.scroller.VerticalScrollBarThumbSkin" />
     
     <!--- The default skin class is ScrollBarUpButtonSkin. 
             @copy spark.components.supportClasses.ScrollBarBase#decrementButton 
             @see spark.skins.spark.ScrollBarUpButtonSkin -->
-    <!--s:Button id="decrementButton" top="0" enabled.inactive="false"
+    <s:Button id="decrementButton" top="0" left="10" right="1" enabled.inactive="false"
               focusEnabled="false" tabEnabled="false"
-              skinClass="spark.skins.spark.ScrollBarUpButtonSkin" /-->
+              skinClass="skins.rotterdam.scroller.DirectionButton" />
     
     <!---  The default skin class is ScrollBarDownButtonSkin. 
             @copy spark.components.supportClasses.ScrollBarBase#incrementButton
             @see spark.skins.spark.ScrollBarDownButtonSkin -->
-    <!--s:Button id="incrementButton" bottom="0" enabled.inactive="false"
+    <s:Button id="incrementButton" bottom="0" left="10" right="1" enabled.inactive="false"
               focusEnabled="false" tabEnabled="false"
-              skinClass="spark.skins.spark.ScrollBarDownButtonSkin" /-->
+              skinClass="skins.rotterdam.scroller.DirectionButton" />
 
 </s:SparkSkin>

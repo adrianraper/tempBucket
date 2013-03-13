@@ -39,6 +39,9 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 
 		public var audioFilesTotal:Label;
 		
+		[SkinPart]
+		public var emptyFileLabel:Label;
+		
 		[Bindable]
 		private var fileListCollection:XMLListCollection;
 		private var _pieChartCollection:ArrayCollection;
@@ -50,10 +53,10 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		//gh158
 		private var _popUpMode:Boolean;
 		
-		private var totalPDF:Number;
-		private var totalImage:Number;
-		private var totalAudio:Number;		
-		private var totalFile:Number;
+		private var _totalPDF:Number = 0;
+		private var _totalImage:Number = 0;
+		private var _totalAudio:Number = 0;
+		private  var _totalFile:Number = 0;
 		
 		[Bindable]
 		public var textPDF:String;
@@ -94,6 +97,38 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			return _pieChartCollection;
 		}
 		
+		[Bindable]
+		public function set totalFile(value:Number):void {
+			_totalFile = value;
+		}
+		public function get totalFile():Number {
+			return _totalFile;
+		}
+		
+		[Bindable]
+		public function set totalPDF(value:Number):void {
+			_totalPDF = value;
+		}
+		public function get totalPDF():Number {
+			return _totalPDF;
+		}
+		
+		[Bindable]
+		public function set totalImage(value:Number):void {
+			_totalImage = value;
+		}
+		public function get totalImage():Number {
+			return _totalImage;
+		}
+		
+		[Bindable]
+		public function set totalAudio(value:Number):void {
+			_totalAudio = value;
+		}
+		public function get totalAudio():Number {
+			return _totalAudio;
+		}				
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
@@ -120,7 +155,6 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 				}
 				fileListCollection.refresh();
 			}			
-			
 		}
 
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -128,42 +162,39 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			
 			fileListCollection.source = xhtml.files.file;
 
-			totalPDF = 0;
-			totalImage = 0;
-			totalAudio = 0;
 			for each (var file:XML in fileListCollection) {
 				var fileType:String = file.@mimeType;
 				if (fileType.search("pdf") > 0) {
-					totalPDF ++;
+					_totalPDF ++;
 				}
 				if (fileType.search("image") == 0) {
-					totalImage ++;
+					_totalImage ++;
 				}
 				if (fileType.search("octet-stream") > 0) {
-					totalAudio ++;
+					_totalAudio ++;
 				}
 			}
-			totalFile = fileListCollection.length;
-			_pieChartCollection.addItem({type: "PDF", total: totalPDF});
-			_pieChartCollection.addItem({type: "Image", total: totalImage});
-			_pieChartCollection.addItem({type: "Audio", total: totalAudio});
+			this.totalFile = fileListCollection.length;
+			_pieChartCollection.addItem({type: "PDF", total: _totalPDF});
+			_pieChartCollection.addItem({type: "Image", total: _totalImage});
+			_pieChartCollection.addItem({type: "Audio", total: _totalAudio});
 			
 			if (totalPDF == 0) {
 				textPDF = "0%";
 			} else {
-				textPDF = Math.round((totalPDF/totalFile)*100).toString()+ "%";
+				textPDF = Math.round((_totalPDF/_totalFile)*100).toString()+ "%";
 			}
 			
 			if (totalImage == 0) {
 				textImage = "0%";
 			} else {
-				textImage = Math.round((totalImage/totalFile)*100).toString()+ "%";
+				textImage = Math.round((_totalImage/_totalFile)*100).toString()+ "%";
 			}
 			
 			if (totalAudio == 0) {
 				textAudio = "0%";
 			} else {
-				textAudio = Math.round((totalAudio/totalFile)*100).toString()+ "%";
+				textAudio = Math.round((_totalAudio/_totalFile)*100).toString()+ "%";
 			}			
 		}
 		
@@ -180,6 +211,13 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 					break;
 				case cancelButton:
 					cancelButton.addEventListener(MouseEvent.CLICK, onCancel);
+					break;
+				case emptyFileLabel:
+					if (this.getCurrentSkinState() == "normal"){
+						emptyFileLabel.text = copyProvider.getCopyForId("emptyFileLabel");
+					} else {
+						emptyFileLabel.text = copyProvider.getCopyForId("emptyFileLabel2");
+					}					
 					break;
 			}
 		}

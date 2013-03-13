@@ -47,7 +47,7 @@
 		<s:State name="disabled" />
 	</s:states>
     
-	<s:Rect left="0" right="0" height="30" radiusX="4" radiusY="4" filters="{dropShadowFilter}" alpha.overStates="0.6" >
+	<s:Rect left="0" right="0" height="35" radiusX="4" radiusY="4" filters="{dropShadowFilter}" alpha.overStates="0.6" >
 		<s:fill>
 			<s:LinearGradient x="32" y="0.5" scaleX="25" rotation="90">
 				<s:GradientEntry id="color1" color="0xFFFFFF" ratio="0"/>

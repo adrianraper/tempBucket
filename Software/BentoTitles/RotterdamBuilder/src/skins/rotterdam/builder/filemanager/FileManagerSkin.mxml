@@ -41,7 +41,7 @@
 
 	
 	<!--<s:TextInput id="searchTextInput" />-->
-	<s:HGroup top="10" includeIn="normal">
+	<s:HGroup top="10" left="26" includeIn="normal">
 		<s:SWFLoader source="@Embed(source = '/skins/rotterdam/builder/assets/cloud/icon_resource-cloud.png')" />
 		<s:Label text="Resource Cloud" fontWeight="bold" fontSize="16" />
 	</s:HGroup>
@@ -49,7 +49,8 @@
 	<s:Spacer height="10"/>
 	
 	<s:Group width="100%" top.normal="50" top.select="10">
-		<s:DataGrid id="fileList" borderVisible="false" width.normal="65%" width.select="100%" height.normal="500" selectionColor="#FFF6CC" rollOverColor="#FFF6CC" caretColor="#FFF6CC">
+	
+		<s:DataGrid id="fileList" borderVisible="false" width.normal="65%" width.select="500" height.normal="500" height.select="280" selectionColor="#FFF6CC" rollOverColor="#FFF6CC" caretColor="#FFF6CC">
 			<s:columns>
 				<s:ArrayList>
 					<s:GridColumn dataField="@filename" headerText="Name"/>
@@ -57,9 +58,20 @@
 				</s:ArrayList>
 			</s:columns>
 		</s:DataGrid>
+		<s:Rect top="25" width.normal="65%" width.select="500" height.normal="500" height.select="260" visible="{hostComponent.totalFile == 0}">
+			<s:fill>
+				<s:SolidColor color="0xE6E6E6" alpha="0.5" />
+			</s:fill>
+		</s:Rect>
+		<s:Label id="emptyFileLabel" horizontalCenter.normal="-220" horizontalCenter.select="0" verticalCenter="0" visible="{hostComponent.totalFile == 0}" fontSize="15"/>
 		
 		<s:Panel id="settingPanel" title="My Storage space" right="0" width="35%" height="350" borderVisible="false" dropShadowVisible="false" includeIn="normal">
-			<mx:PieChart dataProvider="{hostComponent.pieChartCollection}" scaleX="0.5" scaleY="0.5" horizontalCenter="0" verticalCenter="0" showDataTips="true">
+			<s:Ellipse width="220" height="220" horizontalCenter="0" verticalCenter="0">
+				<s:fill>
+					<s:SolidColor color="0xE6E6E6" />
+				</s:fill>
+			</s:Ellipse>
+			<mx:PieChart dataProvider="{hostComponent.pieChartCollection}" scaleX="0.6" scaleY="0.6" horizontalCenter="0" verticalCenter="0" showDataTips="true">
 				<mx:series>
 					<mx:PieSeries field="total" nameField="type" filters="[]">
 						<mx:fills>
@@ -70,7 +82,7 @@
 					</mx:PieSeries>
 				</mx:series>			
 			</mx:PieChart>
-			<s:HGroup top="335" horizontalCenter="0" gap="15" includeIn="normal">
+						<s:HGroup top="335" horizontalCenter="0" gap="15" includeIn="normal">
 				<s:VGroup verticalAlign="middle" horizontalAlign="center">
 					<s:Label text="PDF files" color="#324718" fontSize="16" fontWeight="bold"/>
 					<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_pdf.png')"/>

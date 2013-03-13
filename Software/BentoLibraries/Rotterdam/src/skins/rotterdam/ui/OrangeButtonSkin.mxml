@@ -48,13 +48,13 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:Rect left="0" right="0" height="30" radiusX="4" radiusY="4" includeIn="over" filters="{glowFilter}" >
+	<s:Rect left="0" right="0" height="35" radiusX="4" radiusY="4" includeIn="over" filters="{glowFilter}" >
 		<s:fill>
 			<s:SolidColor color="0x000000"/>
 		</s:fill>
 	</s:Rect>
 	
-	<s:Rect left="0" right="0" height="30" radiusX="4" radiusY="4" filters="{dropShadowFilter}">
+	<s:Rect left="0" right="0" height="35" radiusX="4" radiusY="4" filters="{dropShadowFilter}">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0XFFC700" ratio="0.5" />

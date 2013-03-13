@@ -66,11 +66,11 @@ courseselector|CourseSelectorView s|Button#createCourseButton {
 }
 
 courseselector|CourseSelectorView s|List s|HScrollBar {
-	skinClass: ClassReference("com.clarityenglish.rotterdam.view.scroller.HorizontalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
 }
 
 courseselector|CourseSelectorView s|List s|VScrollBar {
-	skinClass: ClassReference("com.clarityenglish.rotterdam.view.scroller.VerticalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
 
 
@@ -237,11 +237,11 @@ uniteditor|ContentSelectorView sparkTree|Tree {
 }
 
 uniteditor|ContentSelectorView sparkTree|Tree s|VScrollBar {
-	skinClass: ClassReference("com.clarityenglish.rotterdam.view.scroller.VerticalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
 
 uniteditor|ContentSelectorView sparkTree|Tree s|HScrollBar {
-	skinClass: ClassReference("com.clarityenglish.rotterdam.view.scroller.HorizontalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
 }
 
 filemanager|FileManagerView {
@@ -254,7 +254,11 @@ filemanager|FileManagerView s|DataGrid#fileList {
 }
 
 filemanager|FileManagerView s|DataGrid#fileList s|VScrollBar {
-	skinClass: ClassReference("com.clarityenglish.rotterdam.view.scroller.VerticalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
+filemanager|FileManagerView s|DataGrid#fileList s|HScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
 }
 
 filemanager|FileManagerView s|Button {

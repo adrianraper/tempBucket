@@ -15,7 +15,7 @@
 	</s:states>
 	
 	<s:Label text="Choose a Course" top="15" fontSize="16" fontWeight="bold" left="26"/>
-	<s:Button id="createCourseButton" label="Create a New Course" right="50" top="55"/>
+	<s:Button id="createCourseButton" label="Create a New Course" right="55" top="43" width="150" fontWeight="bold" />
 	<s:List id="courseList" left="77" right="250" borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.builder.courseselector.CourseListItemRenderer" top="43" bottom="10">
 		<s:layout>
 			<s:VerticalLayout gap="5" horizontalAlign="justify"/>

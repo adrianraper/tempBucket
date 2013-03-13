@@ -51,7 +51,7 @@ in accordance with the terms of the license agreement accompanying it.
 	</s:states>
 	
 	<!-- background -->
-	<s:Rect left="0" top="0" right="0" bottom="0" minWidth="10" minHeight="14">
+	<s:Rect left="0" top="10" right="0" bottom="10" minWidth="8" minHeight="14">
 		<!--s:stroke>
 			<s:SolidColorStroke color="0xFF0000" weight="1"/>
 		</s:stroke>
@@ -61,7 +61,7 @@ in accordance with the terms of the license agreement accompanying it.
 	</s:Rect>
 	
 	<!-- fill -->
-	<s:Rect left="1" top="1" right="1" bottom="1" radiusX="6" radiusY="6">
+	<s:Rect left="1" top="11" right="1" bottom="11" radiusX="6" radiusY="6">
 		<s:fill>
 			<s:LinearGradient rotation="0">
 				<s:GradientEntry color="0XFF9D00" />

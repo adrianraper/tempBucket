@@ -15,8 +15,8 @@ if (!isset($_GET['uid'])) {
 }
 
 $uid = $_GET['uid'];
-$thumbnailFolder = dirname(__FILE__)."/../../".$GLOBALS['data_dir']."/../Thumbnails/";
-//$thumbnailFolder = "D:\Projectbench\Thumbnails/";
+//$thumbnailFolder = dirname(__FILE__)."/../../".$GLOBALS['data_dir']."/../Thumbnails/";
+$thumbnailFolder = dirname(__FILE__).$GLOBALS['interface_dir']."../resources/thumbnails/";
 // Sanitise $uid to prevent directory traversal attacks by not allowing more than one consecutive dot or anything that isn't a number.
 $uid = preg_replace("/\.{2,}|[^0-9.]*/", "", $uid);
 
