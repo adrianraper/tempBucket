@@ -12,6 +12,7 @@
 @namespace components1 "skins.bento.components.*";
 @namespace components2 "com.clarityenglish.components.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
+@namespace tink "ws.tink.spark.controls.*";
 
 global {
 	correctIcon: Embed(source="skins/assets/correctIcon.swf");
@@ -97,4 +98,8 @@ mx|ToolTip {
 	fontSize: 12.6;
 	color: #FFFFFF;
 	backgroundColor: #000000;
+}
+
+tink|Alert {
+	skinClass: ClassReference("ws.tink.spark.skins.controls.AlertSkin");
 }

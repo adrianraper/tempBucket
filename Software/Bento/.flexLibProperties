@@ -156,6 +156,8 @@
     <classEntry path="com.clarityenglish.bento.controller.ItemCleanCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.ItemDirtyCommand"/>
     <classEntry path="com.clarityenglish.bento.view.progress.ui.IStackedChart"/>
+    <classEntry path="ws.tink.spark.controls.Alert"/>
+    <classEntry path="ws.tink.spark.skins.controls.AlertSkin"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

@@ -6,7 +6,6 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
-	import mx.controls.Alert;
 	import mx.events.CloseEvent;
 	import mx.managers.PopUpManager;
 	
@@ -14,6 +13,8 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	
 	import spark.components.Button;
 	import spark.components.List;
+	
+	import ws.tink.spark.controls.Alert;
 	
 	public class CourseSelectorView extends BentoView {
 		
@@ -65,15 +66,11 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		}
 		
 		protected function onDeleteCourse(event:CourseDeleteEvent):void {
-			var alert:Alert = Alert.show("Are you sure", "Delete", Alert.YES | Alert.NO, this, alterListener);
-			alert.styleName = "markingTitleWindow";
-			PopUpManager.centerPopUp (alert);
-		}
-		
-		private function alterListener(event:CloseEvent):void {
-			if (event.detail == Alert.YES) {
-				if (courseList.selectedItem)
-					deleteCourse.dispatch(courseList.selectedItem);
+			if (courseList.selectedItem) {
+				Alert.show("Are you sure", "Delete", Vector.<String>([ "No", "Yes" ]), this, function(event:CloseEvent):void {
+					if (event.detail == 1)
+						deleteCourse.dispatch(courseList.selectedItem);
+				});
 			}
 		}
 		
