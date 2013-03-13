@@ -85,7 +85,7 @@ class Stats {
 	}
 	
 	public function get coverage():Number {
-		return (of > 0) ? Math.floor(count / of) : 0;
+		return (of > 0) ? Math.floor(count / of * 100) : 0;
 	}
 	
 	public function writeToNode(node:XML):void {
