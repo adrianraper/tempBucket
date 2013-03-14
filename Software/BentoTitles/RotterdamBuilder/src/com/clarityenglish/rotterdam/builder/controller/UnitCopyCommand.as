@@ -20,10 +20,17 @@ package com.clarityenglish.rotterdam.builder.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var unit:XML = note.getBody() as XML;
+			// Take a copy
+			var unitCopy:XML = (note.getBody() as XML).copy();
 			
+			// Remove the ids from the unit itself and all the exercises gh#110
+			delete unitCopy.@id;
+			for each (var exercise:XML in unitCopy..exercise)
+				delete exercise.@id;
+			
+			// Write the unit
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
-			dataProxy.set("clipboard", { type: "unit", xml: unit.copy() });
+			dataProxy.set("clipboard", { type: "unit", xml: unitCopy });
 		}
 		
 	}
