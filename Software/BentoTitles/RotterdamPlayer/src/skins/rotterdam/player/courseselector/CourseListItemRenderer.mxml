@@ -17,7 +17,7 @@
 	
 	<s:Rect filters="{[dropShadowFilter]}" height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
 		<s:fill>
-			<s:SolidColor color="0xFFFFFF"/>
+			<s:SolidColor color="0xFFFFFF" color.hovered="0xFFF6CC" color.selected="0xFFF6CC"/>
 		</s:fill>
 	</s:Rect>
 	
@@ -32,11 +32,11 @@
 		</s:Path>
 	</s:Group>
 	
-	<s:Group left="80" verticalCenter="0">
+	<s:Group left="25" verticalCenter="0">
 		<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="350"/>
 	</s:Group>
 	
-	<s:Group left="450" id="publishIcon" verticalCenter="0" horizontalCenter="center">
+	<!--s:Group left="450" id="publishIcon" verticalCenter="0" horizontalCenter="center">
 		<s:BitmapImage />
 		<s:Label text="published"/>
 	</s:Group>
@@ -54,7 +54,7 @@
 	<s:VGroup right="80" verticalCenter="0" horizontalAlign="center">
 		<s:Label text="Views" fontSize="15" fontWeight="bold" />
 		<s:Label text="0" fontSize="15" fontWeight="bold" paddingTop="5"/>
-	</s:VGroup>
+	</s:VGroup-->
 	
 	
 </s:ItemRenderer>

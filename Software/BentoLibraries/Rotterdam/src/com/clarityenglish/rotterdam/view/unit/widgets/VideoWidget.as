@@ -1,5 +1,8 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
+	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.events.ProgressEvent;
 	
 	import mx.controls.SWFLoader;
 	
@@ -34,7 +37,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			
 			switch (instance) {
 				case swfLoader:
-					swfLoader.addEventListener(Event.COMPLETE, onSwfLoaderComplete);
+					swfLoader.addEventListener(Event.COMPLETE, onSwfLoaderComplete);					
 					swfLoader.scaleContent = true;
 					swfLoader.maintainAspectRatio = true;
 					reloadVideo();
@@ -44,11 +47,13 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected function onSwfLoaderComplete(event:Event):void {
 			event.target.content.addEventListener("onReady", resizeVideo, false, 0, true);
+			//alice: Detect video play
+			event.target.content.addEventListener(MouseEvent.CLICK, onClickVideo);
 		}
 		
 		protected function reloadVideo(event:Event = null):void {
 			if (hasSrc)
-				swfLoader.load(src);
+				swfLoader.load(src)
 		}
 		
 		protected function resizeVideo(event:Event = null):void {
@@ -72,6 +77,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.onRemovedFromStage(event);
 			
 			removeEventListener("srcAttrChanged", reloadVideo);
+		}
+		
+		//alice: Detect video play
+		protected function onClickVideo(event:MouseEvent):void {
+				trace("click video widget");
+			
 		}
 		
 	}

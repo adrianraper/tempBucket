@@ -10,6 +10,7 @@
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
+@namespace ui "skins.rotterdam.player.progress.ui.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -17,7 +18,8 @@ global {
 	/*defaultIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
 	defaultIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');*/
 	
-	unitColours: #fbdc29, #9fdd30, #41b9ed, #8c64ab, #e94288, #c92d30, #ff7700, #2db9ae, #35379e
+	unitColours: #FFCC00, #99CC33, #29ABE2, #77449D, #D4145A, #AA0000, #FF5900, #00A99D, #140382;
+	gradientColours: #FFFF66, #CCFF33, #70D9FF, #AD8EC4, #FF73BB, #FF8085, #FFBD00, #7AD6C7, #617AC4;
 }
 
 player|PlayerApplication {
@@ -77,7 +79,7 @@ progress|ProgressView {
 }
 
 progress|ProgressView #progressNavBar {
-	skinClass: ClassReference("skins.rotterdam.player.progress.ui.ProgressNavBarSkin");
+	skinClass: ClassReference("skins.rotterdam.settings.TabButtonBarSkin");
 }
 
 progresscomponents|ProgressScoreView {
@@ -94,6 +96,10 @@ progresscomponents|ProgressCoverageView {
 
 progresscomponents|ProgressAnalysisView {
 	skinClass: ClassReference("skins.rotterdam.player.progress.ProgressAnalysisSkin");
+}
+
+progresscomponents|ProgressAnalysisView ui|StackedCircleChart {
+	skinClass: ClassReference("skins.rotterdam.player.progress.ui.StackedCircleChart");
 }
 
 progressui|ProgressBarRenderer {

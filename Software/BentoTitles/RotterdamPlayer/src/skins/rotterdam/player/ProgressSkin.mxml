@@ -4,7 +4,8 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:controls="com.clarityenglish.bento.view.*"
 		xmlns:progress="com.clarityenglish.bento.view.progress.*"
-		xmlns:components="com.clarityenglish.bento.view.progress.components.*">
+		xmlns:components="com.clarityenglish.bento.view.progress.components.*"
+		creationComplete="initial()">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.ProgressView")]
@@ -12,8 +13,27 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.vo.content.Title;
+			
+			import mx.collections.ArrayCollection;
+			
+			import spark.components.ButtonBarButton;
+			
+			//alice reassgin the dataprovide to progressNavBar
+			protected function initial():void {
+				if (hostComponent.progressNavBar.dataProvider){
+					//alice: the copyProvider cannot get so far
+					progressNavBar.dataProvider = new ArrayCollection( [
+						{ label: "coverage", data: "coverage" },
+						{ label:  "analysis", data: "analysis" },
+					] );
+				}
+			}
 		]]>
 	</fx:Script>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
+	</fx:Declarations>
 	
 	<s:states>
 		<s:State name="disabled" />
@@ -30,41 +50,44 @@
 		<s:State name="score_demo" stateGroups="demoStates,scoreStates"/>
 	</s:states>
 	
-	<s:layout>
+	<!--s:layout>
 		<s:VerticalLayout />
-	</s:layout>
+	</s:layout-->
 	
 	<s:transitions>
 		<s:Transition fromState="*" toState="*" autoReverse="true">
-			<s:Wipe direction="left" duration="100" targets="{[progressCoverageView, progressCompareView, progressAnalysisView, progressScoreView ]}" />
+			<s:Wipe direction="left" duration="100" targets="{[progressCoverageView, progressAnalysisView ]}" />
 		</s:Transition>
 	</s:transitions>
+	
+	<s:HGroup top="10" left="26">
+		<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/progress/icon_progress.png')"/>
+		<s:Label id="progressCaption" paddingTop="5" text="My Progress" fontSize="16" fontWeight="bold"/>
+	</s:HGroup>	
 
 	<s:Group id="anonWarning" width="100%" visible="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}" includeInLayout="true">
 		<s:Label left="0" height="14" top="80" text="You have logged in anonymously, so your progress will not be saved after you close the program." />
 	</s:Group>
 	
-	<s:HGroup width="100%">
-		<s:Label id="progressAnonymousLabel" left="0" height="14" visible="{hostComponent.isAnonymousUser}" includeInLayout="{hostComponent.isAnonymousUser}"/>
+	<s:HGroup width="100%" paddingLeft="20" top="60">
+		<s:ButtonBar id="progressNavBar"/>
 		<s:Spacer width="100%" />
-		<s:ButtonBar id="progressNavBar" height="25" />
+		<s:Label id="progressAnonymousLabel" left="0" height="14" visible="{hostComponent.isAnonymousUser}" includeInLayout="{hostComponent.isAnonymousUser}"/>				
 	</s:HGroup>
-
-	<s:Group top="10" width="100%">
-		<s:Line width="100%">
-			<s:stroke>
-				<s:SolidColorStroke color="0x878787" weight="1"/>
-			</s:stroke>
-		</s:Line> 
+	
+	<s:Group width="100%" height="100%" top="100" left="2" right="2" bottom="2">
+		<s:Rect  width="100%" height="100%" filters="{[dropShadowFilter]}">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF"/>
+			</s:fill>
+		</s:Rect>
 	</s:Group>
 
-	<s:HGroup width="100%" height="100%">
+	<s:HGroup width="100%" height="100%" top="110" left="15" bottom="5" right="15">
 		<s:Group width="100%" height="100%">
 			<s:Group width="100%" height="100%" includeIn="normalStates">
 				<components:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
-				<components:ProgressCompareView id="progressCompareView" width="100%" height="100%" includeIn="compare" />
 				<components:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis" />
-				<components:ProgressScoreView id="progressScoreView" width="100%" height="100%" includeIn="score" />
 			</s:Group>
 			
 			<s:Image id="demoImage" width="954" height="516" 

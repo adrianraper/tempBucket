@@ -58,7 +58,7 @@
 	<s:Label text="Password:" left="320" top="325" fontSize="16" fontWeight="bold" color="0x333333" />
 	<s:TextInput id="passwordInput" displayAsPassword="true" width="180" height="35" left="320" top="345" fontSize="16" fontWeight="bold" />
 	
-	<s:Button id="freeCourseButton" label="Test it out now!	Create a FREE demo course" left="730" top="420" />
+	<!--s:Button id="freeCourseButton" label="Test it out now!	Create a FREE demo course" left="730" top="420" /-->
 	<login:ClarityEnglishLogo left="430" top="660" />
 	
 	<s:Label text="Copyright © 2012 Clarity Language Consultants Ltd. All rights reserved." left="305" top="695" color="0x333333" />

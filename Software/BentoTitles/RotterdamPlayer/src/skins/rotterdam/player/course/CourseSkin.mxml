@@ -4,11 +4,25 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
 		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
-		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*" >
+		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*" 
+	    creationComplete="initial(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			//alice: delete the edit button in player
+			protected function initial(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				unitHeader.editButton.visible = false;
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -50,6 +64,6 @@
 	</s:BorderContainer>
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
-	<unit:UnitView id="unitView" left="156" right="0" top="50" bottom="80" />
+	<unit:UnitView id="unitView" left="156" right="0" top="50" bottom="0" />
 
 </s:Skin>
