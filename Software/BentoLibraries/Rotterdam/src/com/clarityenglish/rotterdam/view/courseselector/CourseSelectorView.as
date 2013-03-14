@@ -66,12 +66,10 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		}
 		
 		protected function onDeleteCourse(event:CourseDeleteEvent):void {
-			if (courseList.selectedItem) {
-				Alert.show("Are you sure", "Delete", Vector.<String>([ "No", "Yes" ]), this, function(event:CloseEvent):void {
-					if (event.detail == 1)
-						deleteCourse.dispatch(courseList.selectedItem);
-				});
-			}
+			Alert.show("Are you sure", "Delete", Vector.<String>([ "No", "Yes" ]), this, function(closeEvent:CloseEvent):void {
+				if (closeEvent.detail == 1)
+					deleteCourse.dispatch(event.course);
+			});
 		}
 		
 	}

@@ -22,7 +22,7 @@
 	
 	<s:Rect filters="{[dropShadowFilter]}" height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
 		<s:fill>
-			<s:SolidColor color="0xFFFFFF" color.hovered="0xFFF6CC" color.selected="0xFFF6CC"/>
+			<s:SolidColor color="0xFFFFFF" color.hovered="0xFFF6CC" color.selected="0xFFF6CC" />
 		</s:fill>
 	</s:Rect>
 	
@@ -31,38 +31,20 @@
 			<s:fill>
 				<s:LinearGradient rotation="45" scaleX="50" x="0" y="0">
 					<s:GradientEntry color="0XFFC700" />
-					<s:GradientEntry color="0xD19026"/>
+					<s:GradientEntry color="0xD19026" />
 				</s:LinearGradient>
 			</s:fill>
 		</s:Path>
 	</s:Group>
 	
 	<s:Group left="25" verticalCenter="0">
-		<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="350"/>
+		<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="350" />
 	</s:Group>
 	
-	<!--s:Group left="450" id="publishIcon" verticalCenter="0" horizontalCenter="center">
-		<s:BitmapImage />
-		<s:Label text="published"/>
-	</s:Group-->
-	
-	<!--s:VGroup left="540" verticalCenter="0" horizontalAlign="center">
-		<s:Label text="Total unit(s)" fontSize="15" fontWeight="bold"/>
-		<s:Label text="0" fontSize="15" fontWeight="bold" paddingTop="5"/>
-	</s:VGroup-->
-	
-	<!--s:VGroup left="680" verticalCenter="0" horizontalAlign="center">
-		<s:Label text="Usage statitics" fontSize="15" fontWeight="bold" />
-		<s:Label text="0" fontSize="15" fontWeight="bold" paddingTop="5"/>
-	</s:VGroup-->
-	
-	<!--s:VGroup right="80" verticalCenter="0" horizontalAlign="center">
-		<s:Label text="Views" fontSize="15" fontWeight="bold" />
-		<s:Label text="0" fontSize="15" fontWeight="bold" paddingTop="5"/>
-	</s:VGroup-->
-	
 	<s:Group right="25" verticalCenter="0">
-		<s:Button id="deleteCourseButton" skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="{dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, true))}"/>
+		<s:Button id="deleteCourseButton"
+				  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
+				  click="dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, data as XML, true))" />
 	</s:Group>
 	
 </s:ItemRenderer>

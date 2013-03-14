@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -9,6 +10,7 @@ package com.clarityenglish.rotterdam.view.course {
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
+	import mx.events.CloseEvent;
 	
 	import org.osflash.signals.Signal;
 	
@@ -16,6 +18,8 @@ package com.clarityenglish.rotterdam.view.course {
 	import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
+	
+	import ws.tink.spark.controls.Alert;
 	
 	/*[SkinState("uniteditor")] - this is an optional skin state */
 	[SkinState("unitplayer")]
@@ -77,6 +81,7 @@ package com.clarityenglish.rotterdam.view.course {
 				case unitList:
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
+					unitList.addEventListener(UnitDeleteEvent.UNIT_DELETE, onUnitDelete);
 					
 					// gh#14 - auto select a unit and gh#151 - autoselect the first enabled unit
 					callLater(function():void {
@@ -114,6 +119,13 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		protected function onUnitSelected(event:IndexChangeEvent):void {
 			unitSelect.dispatch(event.target.selectedItem);
+		}
+		
+		protected function onUnitDelete(event:UnitDeleteEvent):void {
+			Alert.show("Are you sure", "Delete", Vector.<String>([ "No", "Yes" ]), this, function(closeEvent:CloseEvent):void {
+				if (closeEvent.detail == 1)
+					unitListCollection.removeItemAt(unitListCollection.getItemIndex(event.unit));
+			});
 		}
 		
 		private function onAddUnit(event:MouseEvent):void {
