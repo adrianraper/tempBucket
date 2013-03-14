@@ -284,6 +284,15 @@ class BentoService extends AbstractService {
 		// Get the group hierarchies for all groups this user is allowed to use
 		$groupTrees = $this->manageableOps->getAllManageables(true);
 		
+		// gh#148 And I need this as a flat list of group IDs too
+		$subGroupIds = array();
+		foreach ($groupTrees as $m)
+			if (get_class($m) == "Group") {
+				$subGroupIds[] = $m->id;
+				$subGroupIds = array_merge($subGroupIds, $m->getSubGroupIds());
+			}
+		Session::set('groupTreeIDs', $subGroupIds);	
+		
 		// #341 If this is a named user then
 		if ($user->userID >= 1) {
 			// Next we need to set the instance ID for the user in the database

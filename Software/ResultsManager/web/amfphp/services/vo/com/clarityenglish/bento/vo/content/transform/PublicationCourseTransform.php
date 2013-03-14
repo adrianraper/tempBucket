@@ -18,7 +18,7 @@ class PublicationCourseTransform extends XmlTransform {
 		
 		$coursesToRemove = array();
 		foreach ($xml->courses->course as $course)
-			if (!$service->courseOps->getCourseStart($course['id']))
+			if (!$service->courseOps->getCourseStart((string)$course['id']))
 				$coursesToRemove[] = $course;
 		
 		// Remove the unpublished courses from the XML.  Note that SimpleXML doesn't provide an easy way to remove a node,

@@ -97,7 +97,6 @@ class CourseOps {
 		
 		$db = $this->db;
 		$copyOps = $this->copyOps;
-		// gh#148 missing?
 		$accountFolder = $this->accountFolder;
 		
 		// TODO: it would be rather nice to validate $xml against an xsd
@@ -129,6 +128,13 @@ class CourseOps {
 			
 			// This stuff should really go into a transform (fromXML()?), but for now hardcode it here
 			
+			// gh#148 If you have just removed publication data for a group, that will NOT exist here
+			// but we do need to delete it. So first step is to delete ALL records for groups in the list
+			// then you can add them back below.
+			$groupIDs = implode(',', Session::get('groupTreeIDs'));
+			$db->Execute("DELETE FROM T_CourseStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array((string)$course['id']));
+			$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array((string)$course['id']));
+			
 			// 1. Write publication data to the database
  			foreach ($course->publication->group as $group) {
 				// If we are missing any required data then throw an exception
@@ -154,9 +160,7 @@ class CourseOps {
 				//$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
 				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_CourseID"), true);
 				
-				// 2.2 Next delete and rewrite any rows in T_UnitStart relating to this course
-				$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID = ? AND F_RootID = ? AND F_CourseID = ?", array((string)$group['id'], Session::get('rootID'), (string)$course['id']));
-				
+				// 2. Next rewrite any rows in T_UnitStart relating to this course
 				// Currently we figure this out here, but this may be better calculated on the client since at some point it will be editable anyway
 				$startTimestamp = strtotime($group['startDate']);
 				foreach ($course->unit as $unit) {
@@ -174,9 +178,11 @@ class CourseOps {
 				}
 			}
 			
-			// 2. Remove publication data so it doesn't get saved
-			// gh#191 crash
-			// unset($course->publication);
+			// 3. Remove publication data so it doesn't get saved
+			// gh#191 If you have iterated round the publication loop, you can't now unset it (at least with my PHP)
+			//unset($course->publication);
+			$dom = dom_import_simplexml($course->publication);
+       		$dom->parentNode->removeChild($dom);
 			
 			$db->CompleteTrans();
 		});
@@ -225,7 +231,8 @@ class CourseOps {
 			$groupID = $this->manageableOps->getGroupParent($groupID);
 			
 			// It is possible to have a result which doesn't contain all the bits we need (e.g. a start date, end date and unit interval) so only count if we have all
-			$gotResult = !(is_null($result)) && $result['F_UnitInterval'] && $result['F_StartDate'] && $result['F_EndDate'];
+			// gh#118 But unitInterval might be 0 - which is fine
+			$gotResult = !(is_null($result)) && ($result['F_UnitInterval'] >=0 ) && $result['F_StartDate'] && $result['F_EndDate'];
 		} while (!$gotResult && !is_null($groupID));
 		
 		return $result;
