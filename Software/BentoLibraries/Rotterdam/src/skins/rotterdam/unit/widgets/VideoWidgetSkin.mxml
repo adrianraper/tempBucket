@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:widgets="skins.rotterdam.unit.widgets.*"
-		minHeight="150">
+		minHeight="80">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget")]
@@ -26,7 +26,7 @@
 	
 	<s:VGroup left="0" right="0" top="25">
 		<!-- Text -->
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" minHeight="80" width="100%"/>
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 		
 		<!-- Video -->
 		<s:Group id="videoHolder" left="0" right="0">

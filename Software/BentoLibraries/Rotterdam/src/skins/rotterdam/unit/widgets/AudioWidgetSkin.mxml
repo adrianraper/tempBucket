@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:widgets="skins.rotterdam.unit.widgets.*"
 		xmlns:components="com.clarityenglish.textLayout.components.*"
-		minHeight="150">
+		minHeight="80">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget")]
@@ -25,13 +25,15 @@
 						  selected.selected="true"
 						  left="0" right="0" top="0" bottom="0" />
 	
-	<!-- Audio player -->
-	<components:AudioPlayer src="{hostComponent.audioUrl}" top="35" left="6" controls="full" />
-	
 	<!-- Progress bar -->
 	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
 	
-	<!-- Text -->
-	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" top="75" minHeight="75" />
+	<s:VGroup left="0" right="0" top="25" paddingBottom="10" horizontalAlign="center">
+		<!-- Text -->
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		
+		<!-- Audio player -->
+		<components:AudioPlayer src="{hostComponent.audioUrl}" controls="full" />
+	</s:VGroup>
 	
 </s:Skin>

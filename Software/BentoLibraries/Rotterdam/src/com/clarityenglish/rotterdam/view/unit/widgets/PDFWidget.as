@@ -8,7 +8,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	public class PDFWidget extends AbstractWidget {
 		
 		[SkinPart(required="true")]
-		public var pdfImage:Image;
+		public var thumbnailImage:Image;
 		
 		public function PDFWidget() {
 			super();
@@ -48,9 +48,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case pdfImage:
-					pdfImage.buttonMode = true;
-					pdfImage.addEventListener(MouseEvent.CLICK, onPdfImageClick);
+				case thumbnailImage:
+					thumbnailImage.buttonMode = true;
+					thumbnailImage.addEventListener(MouseEvent.CLICK, onPdfImageClick);
 					break;
 			}
 		}

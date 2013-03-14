@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:widgets="skins.rotterdam.unit.widgets.*"
-		minHeight="150">
+		minHeight="80">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget")]
@@ -24,12 +24,17 @@
 						  selected.selected="true"
 						  left="0" right="0" top="0" bottom="0" />
 	
-	<!-- PDF icon -->
-	<s:Image id="exerciseImage" source="{hostComponent.getThumbnailForUid(hostComponent.contentuid)}" top="35" left="6" />
-	<!--gh #181-->
-	<s:Label id="exerciseTitle" text="{hostComponent.exercisetitle}" top="50" left="45"/>
-	
-	<!-- Text -->
-	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" left="0" right="0" top="75" minHeight="75" />
+	<s:VGroup left="0" right="0" top="25" paddingBottom="10">
+		<!-- Text -->
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		
+		<s:VGroup paddingLeft="8">
+			<!-- Exercise icon -->
+			<s:Image id="exerciseImage" source="{hostComponent.getThumbnailForUid(hostComponent.contentuid)}" />
+			
+			<!--gh #181-->
+			<s:Label id="exerciseTitle" text="{hostComponent.exercisetitle}" />
+		</s:VGroup>
+	</s:VGroup>
 	
 </s:Skin>
