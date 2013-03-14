@@ -68,6 +68,10 @@ package com.clarityenglish.rotterdam.view.course {
 			}
 		}
 		
+		public function canPasteFromTarget(target:Object):Boolean {
+			return target == unitList || target == unitPasteButton;
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -147,7 +151,9 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onUnitPaste(event:MouseEvent):void {
-			dispatchEvent(new Event(Event.PASTE, true));
+			// gh#110 - dispatch the event from the button rather than the view so that we can test for the target before actually doing the paste.  This means
+			// that we can make sure pastes only happen when the list has the focus, or the button was clicked.
+			unitPasteButton.dispatchEvent(new Event(Event.PASTE, true));
 		}
 		
 		/**

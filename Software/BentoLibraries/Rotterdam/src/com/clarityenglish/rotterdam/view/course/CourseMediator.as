@@ -93,7 +93,8 @@
 		}
 		
 		protected function onUnitPaste(event:Event):void {
-			facade.sendNotification(RotterdamNotifications.UNIT_PASTE);
+			if (view.canPasteFromTarget(event.target))
+				facade.sendNotification(RotterdamNotifications.UNIT_PASTE);
 		}
 		
 	}
