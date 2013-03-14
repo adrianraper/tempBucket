@@ -97,6 +97,8 @@ class CourseOps {
 		
 		$db = $this->db;
 		$copyOps = $this->copyOps;
+		// gh#148 missing?
+		$accountFolder = $this->accountFolder;
 		
 		// TODO: it would be rather nice to validate $xml against an xsd
 		return XmlUtils::overwriteXml($menuXMLFilename, $menuXml, function($xml) use($courseId, $accountFolder, $db, $copyOps) {
@@ -128,13 +130,13 @@ class CourseOps {
 			// This stuff should really go into a transform (fromXML()?), but for now hardcode it here
 			
 			// 1. Write publication data to the database
-			foreach ($course->publication->group as $group) {
+ 			foreach ($course->publication->group as $group) {
 				// If we are missing any required data then throw an exception
 				if (!isset($group['unitInterval']) || $group['unitInterval'] == "" ||
 					!isset($group['seePastUnits']) || $group['seePastUnits'] == "" ||
 					!isset($group['startDate']) || $group['startDate'] == "" ||
 					!isset($group['endDate']) || $group['endDate'] == "")
-					throw $copyOps->getExceptionForId("errorSavingCourse");
+					throw $copyOps->getExceptionForId("errorSavingCourseDates");
 				
 				// 1.1 First write the T_CourseStart row
 				$fields = array(
@@ -148,7 +150,9 @@ class CourseOps {
 					"F_EndDate" => $group['endDate']
 				);
 				
-				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
+				// gh#148 PrimaryKey is just groupID and courseID
+				//$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
+				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_CourseID"), true);
 				
 				// 2.2 Next delete and rewrite any rows in T_UnitStart relating to this course
 				$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID = ? AND F_RootID = ? AND F_CourseID = ?", array((string)$group['id'], Session::get('rootID'), (string)$course['id']));
@@ -171,7 +175,8 @@ class CourseOps {
 			}
 			
 			// 2. Remove publication data so it doesn't get saved
-			unset($course->publication);
+			// gh#191 crash
+			// unset($course->publication);
 			
 			$db->CompleteTrans();
 		});

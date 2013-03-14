@@ -24,7 +24,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getUser","email":"tandan_shiva@yahoo.com","licenceType":"5","dbHost":102,"loginOption":"8"}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","licenceType":5,"loginOption":128,"dbHost":20}';
 	//$inputData = '{"method":"getUser","email":"alongworth@stowe.co.uk","loginOption":128,"dbHost":20}';
-	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"Clarity", "groupName":"Winhoe autogroup 2", "name":"Kima 130","studentID":"winhoe 130", "teacherName":"jessie_teacher", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
+	//$inputData = '{"method":"getOrAddUserAutoGroup", "prefix":"TW_TTU", "groupName":"noGroup", "name":"winhoey", "password":"testing", "teacherName":"TTU_Teacher", "adminPassword":"68777214", "dbHost":2, "city":"Taichung", "country":"Taiwan", "loginOption":1}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8123-4567","name":"heston bloom","password":"1234","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-10-04 03:14:24","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8987-3456","name":"Gustomer","password":"uiop","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-08-29","country":"Hong Kong","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"xx999-21407-00020","name":"xxD\u00e2v\u00efd V\u00e2h\u00e9y\u00f6","email":"dosh.10@noodles.hk","dbHost":"200","productCode":52,"expiryDate":"2013-03-07 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"22155","loginOption":"2","country":"UK","city":"British Council ORS","adminPassword":"clarity88","registerMethod":"ORS-portal"}';
@@ -179,12 +179,10 @@ try {
 		case 'getOrAddUser':
 		case 'getOrAddUserAutoGroup':
 			
-			// gh#164 To speed up adding new users, always get group
-			$group = $loginService->getGroup($apiInformation);
-			
 			// If you are using just a group to add user, need to get rootID now
 			// Get the whole account info as well
 			if (!$apiInformation->prefix && !$apiInformation->rootID) {
+				$group = $loginService->getGroup($apiInformation);
 				if (!$group)
 					returnError(252, $apiInformation->groupID);
 					
@@ -215,6 +213,9 @@ try {
 			$user = $loginService->getUser($apiInformation);
 			
 			if ($user==false) {
+				if (!$group)
+					$group = $loginService->getGroup($apiInformation, $account);
+					
 				if ($group==false) {
 					// Autogroup. We need to add new groups
 					if ($apiInformation->method == "getOrAddUserAutoGroup") {
