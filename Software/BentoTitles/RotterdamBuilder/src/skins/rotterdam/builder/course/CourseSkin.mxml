@@ -69,8 +69,8 @@
 				</s:layout>
 				<s:itemRenderer>
 					<fx:Component>
-						<s:ItemRenderer>
-							<s:RichText text="{data.@caption}" textIndent="18" fontSize="14" color="0x000000" height="25" paddingTop="8"/>
+						<s:ItemRenderer width="100%">
+							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="105" maxDisplayedLines="1" height="25" paddingLeft="18" paddingTop="8"/>
 						</s:ItemRenderer>
 					</fx:Component>
 				</s:itemRenderer>
