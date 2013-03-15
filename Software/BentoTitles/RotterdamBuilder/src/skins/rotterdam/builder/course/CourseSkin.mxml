@@ -104,8 +104,8 @@
 	</s:VGroup>
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50"/>
-	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="50" bottom="80" />
+	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="55" bottom="100" />
 	
-	<course:ToolBarView bottom="0" left="0" right="0" />
+	<course:ToolBarView bottom="38" left="0" right="0" />
 	
 </s:Skin>

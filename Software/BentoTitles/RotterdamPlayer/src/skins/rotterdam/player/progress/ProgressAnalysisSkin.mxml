@@ -32,22 +32,22 @@
 		<s:State name="demo"  />
 	</s:states>
 	
-	<s:Label id="analysisInstructionLabel1" fontWeight="bold" fontSize="16" top="10" />
-	<s:Label id="analysisInstructionLabel2" top="45" fontSize="14"/>
+	<s:Label id="analysisInstructionLabel1" fontWeight="bold" fontSize="16" top="10" left="20"/>
+	<s:Label id="analysisInstructionLabel2" top="45" fontSize="14" left="20"/>
 	
-	<s:Group right="0" >
+	<s:Group right="40" >
 		<s:Label id="analysisTimeLabel" fontSize="14" top="45" />
 		<ui:StackedCircleChart id="stackedChart" top="60" width="240" height="240" skinClass="skins.rotterdam.player.progress.ui.StackedCircleChart"/>
 	</s:Group>
 	
 	
-	<s:DataGroup id="durationDataGroup" top="70">
+	<s:DataGroup id="durationDataGroup" top="70" left="20">
 		<s:layout>
-			<s:TileLayout horizontalGap="15" verticalGap="15" requestedColumnCount="3" />
+			<s:TileLayout horizontalGap="20" verticalGap="15" requestedColumnCount="3" />
 		</s:layout>
 		<s:itemRenderer>
 			<fx:Component>
-				<s:DataRenderer width="190" height="136">
+				<s:DataRenderer width="220" height="136">
 					<fx:Script>
 						<![CDATA[
 							import com.clarityenglish.bento.model.DataProxy;
@@ -85,7 +85,7 @@
 						</s:stroke>
 					</s:Rect>
 					
-					<s:Path data="M 170 0 L 190 0 L 190 20 L 170 0 Z">
+					<s:Path data="M 200 0 L 220 0 L 220 20 L 200 0 Z">
 						<s:fill>
 							<s:LinearGradient rotation="135" scaleX="180" x="300" y="0">
 								<s:GradientEntry color="{gradiantColour}" ratio="0"/>	
@@ -94,11 +94,14 @@
 						</s:fill>
 					</s:Path>
 					<s:Label text="Unit {itemIndex + 1}" fontSize="21" fontWeight="bold" left="10" top="10" />
-					<s:Line xFrom="10" yFrom="30" xTo="180" yTo="30">
-						<s:stroke>
-							<s:SolidColorStroke color="0x000000"/>
-						</s:stroke>
-					</s:Line>
+					<s:Group left="10" right="10" top="30">
+						<s:Line width="100%">
+							<s:stroke>
+								<s:SolidColorStroke color="0x000000"/>
+							</s:stroke>
+						</s:Line>
+					</s:Group>
+					
 					<s:Label text="{data.@caption}" fontSize="16" top="40" left="10" />
 					
 					<s:Label text="{copyProvider.getCopyForId('courseDurationRenderLabel')}" top="75" left="10" />

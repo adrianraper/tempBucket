@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
         xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
 		xmlns:login="com.clarityenglish.rotterdam.view.login.*"
-		xmlns:title="com.clarityenglish.rotterdam.view.title.*">
+		xmlns:title="com.clarityenglish.rotterdam.view.title.*"
+		xmlns:login1="skins.rotterdam.player.assets.login.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.player.PlayerApplication")]
@@ -26,6 +27,18 @@
 		
 		<!--<credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" />
 		<nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />-->
+	</s:Group>
+	
+	<!-- Footer -->
+	<s:Group left="0" right="0" height="35" bottom="0">
+		<s:Rect left="0" right="0" top="0" bottom="0">
+			<s:fill>
+				<s:SolidColor color="#333333" />
+			</s:fill>
+		</s:Rect>
+		<login1:ClarityEnglishLogo left="23" top="8" height="20" width="100" />
+		<s:Label id="copyrightLabel" text="Software, Design, Navigation © Clarity Language Consultants Ltd, 2013. All rights reserved." color="#FFFFFF" paddingTop="13" right="20" fontSize="12" />
+		<s:Label id="versionLabel" text="v{hostComponent.versionNumber}" color="#FFFFFF" paddingTop="13" right="530" fontSize="12" />
 	</s:Group>
 	
 </s:Skin>

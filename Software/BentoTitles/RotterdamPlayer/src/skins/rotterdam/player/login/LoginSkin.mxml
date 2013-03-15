@@ -26,11 +26,14 @@
 	</s:Rect>
 	
 	<!-- background -->
-	<s:Rect width="1200" height="640"   >
-		<s:fill>
-			<s:SolidColor color="0xF2F2F2" />
-		</s:fill>
-	</s:Rect>
+	<s:Group width="100%" height="100%">
+		<s:Rect width="100%" height="100%"   >
+			<s:fill>
+				<s:SolidColor color="0xF2F2F2" />
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+
 
 	<!-- top header -->
 	<s:Rect width="1200" height="40"  >
@@ -55,8 +58,4 @@
 	
 	<s:Label text="Password:" left="320" top="325" fontSize="16" fontWeight="bold" color="0x333333" />
 	<s:TextInput id="passwordInput" displayAsPassword="true" width="180" height="35" left="320" top="345" fontSize="16" fontWeight="bold" />
-	
-	<login:ClarityEnglishLogo left="430" top="660" />
-	
-	<s:Label text="Copyright © 2012 Clarity Language Consultants Ltd. All rights reserved." left="305" top="695" color="0x333333" />
 </s:Skin>

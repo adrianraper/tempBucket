@@ -64,6 +64,6 @@
 	</s:BorderContainer>
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
-	<unit:UnitView id="unitView" left="156" right="0" top="50" bottom="0" />
+	<unit:UnitView id="unitView" left="156" right="0" top="55" bottom="50" />
 
 </s:Skin>
