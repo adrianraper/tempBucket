@@ -18,7 +18,7 @@
 			protected function initial(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-				unitHeader.editButton.visible = false;
+				hostComponent.previewVisible = true;
 			}
 			
 		]]>

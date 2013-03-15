@@ -89,7 +89,7 @@
 		</s:VGroup>
 	</s:BorderContainer>
 	
-	<s:VGroup top="{unitContainer.height + 10}" left="2">
+	<s:VGroup top="{unitContainer.height + 10}" left="2" includeIn="uniteditor">
 		<s:Button id="addUnitButton" label="Add a unit" useHandCursor="true" buttonMode="true" />
 		<s:Button id="courseSettingsButton" label="Course settings" useHandCursor="true" buttonMode="true" />
 		<s:Button id="coursePublishButton" label="Publish course" useHandCursor="true" buttonMode="true" />
@@ -103,7 +103,7 @@
 		</s:HGroup>
 	</s:VGroup>
 	
-	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
+	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50"/>
 	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="50" bottom="80" />
 	
 	<course:ToolBarView bottom="0" left="0" right="0" />

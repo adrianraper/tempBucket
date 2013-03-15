@@ -78,6 +78,18 @@ package com.clarityenglish.rotterdam.view.course {
 			if (courseCaptionLabel) courseCaptionLabel.text = course.@caption;
 		}
 		
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			if (_isPreviewVisible) {
+				if (unitHeader.editButton)
+					unitHeader.editButton.visible = false;
+			} else {
+				if (unitHeader.editButton)
+					unitHeader.editButton.visible = true;
+			}
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
