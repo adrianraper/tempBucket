@@ -17,6 +17,7 @@
 @namespace settings "com.clarityenglish.rotterdam.view.settings.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace sparkTree "com.sparkTree.*";
+@namespace tink "ws.tink.spark.controls.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -73,6 +74,12 @@ courseselector|CourseSelectorView s|List s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
 
+tink|Alert {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.AlertSkin");
+	cornerRadius: 8;
+	buttonStyleName: orangeButton;
+	buttonHeight: 10;
+}
 
 courseselector1|CourseCreateView s|Button#createButton {
 	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
@@ -302,5 +309,10 @@ settings|SettingsView s|TabBar#tabBar {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.TitleWindowSkin");
 	cornerRadius: 8;
 	borderColor: #A1A1A1;
+}
+
+.orangeButton {
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+	buttonHeight: 25;
 }
 

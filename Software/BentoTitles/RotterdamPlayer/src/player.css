@@ -57,6 +57,10 @@ courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.player.courseselector.CourseSelectorSkin");
 }
 
+courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
+	skinClass:ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
 course|CourseView {
 	skinClass: ClassReference("skins.rotterdam.player.course.CourseSkin");
 }

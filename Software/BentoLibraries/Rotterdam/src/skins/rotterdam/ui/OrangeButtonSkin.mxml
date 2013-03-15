@@ -39,7 +39,28 @@
 		<s:GlowFilter id="glowFilter" alpha="0.6" blurX="2" blurY="2" color="0x000000" knockout="false" quality="10" />
 		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="0.5" alpha="0.8" />
 	</fx:Declarations>
-        
+     
+	<fx:Script>
+		<![CDATA[
+			
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+				if (shadow) {
+					if (getStyle("buttonHeight"))
+						shadow.height = getStyle("buttonHeight");
+					else
+						shadow.height = 35;
+				}
+				
+				if (fill) {
+					if (getStyle("buttonHeight")) 
+						fill.height = getStyle("buttonHeight");
+					else
+						fill.height = 35;
+				}
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+			}
+		]]>
+	</fx:Script>
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -48,13 +69,13 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:Rect left="0" right="0" height="35" radiusX="4" radiusY="4" includeIn="over" filters="{glowFilter}" >
+	<s:Rect id="shadow" left="0" right="0" radiusX="4" radiusY="4" includeIn="over" filters="{glowFilter}" >
 		<s:fill>
 			<s:SolidColor color="0x000000"/>
 		</s:fill>
 	</s:Rect>
 	
-	<s:Rect left="0" right="0" height="35" radiusX="4" radiusY="4" filters="{dropShadowFilter}">
+	<s:Rect id="fill" left="0" right="0" radiusX="4" radiusY="4" filters="{dropShadowFilter}">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0XFFC700" ratio="0.5" />
