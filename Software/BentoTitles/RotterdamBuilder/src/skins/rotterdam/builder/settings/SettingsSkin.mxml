@@ -92,7 +92,7 @@
 			<s:CheckBox label="Course end email" />
 		</s:VGroup>
 		
-		<s:VGroup includeIn="about" paddingTop="10">
+		<s:VGroup includeIn="about" paddingTop="70">
 			<s:Label text="Course name" fontWeight="bold" />
 			<s:TextInput id="aboutCourseNameTextInput" width="300" />
 			
@@ -103,18 +103,18 @@
 			
 			<s:Spacer height="20" />
 			
-			<s:Label text="Email" fontWeight="bold" />
-			<s:TextInput id="aboutEmailTextInput" width="300" />
+			<!--s:Label text="Email" fontWeight="bold" />
+			<s:TextInput id="aboutEmailTextInput" width="300" /-->
 			
 			<s:Spacer height="20" />
 			
-			<s:Label text="Contact number" fontWeight="bold" />
-			<s:TextInput id="aboutContactNumberTextInput" width="300" />
+			<!--s:Label text="Contact number" fontWeight="bold" />
+			<s:TextInput id="aboutContactNumberTextInput" width="300" /-->
 			
 			<s:Spacer height="20" />
 			
 			<s:Label text="Direct URL for this course" fontWeight="bold" />
-			<s:Label id="directStartURLLabel" />
+			<s:RichEditableText id="directStartURLLabel" editable="false" />
 			<!-- Disabled for the moment -->
 			<!--<s:Label text="Direct URL for this course" fontWeight="bold" />
 			<s:Label text="www.claritycoursebuilder.com/TEST" />-->

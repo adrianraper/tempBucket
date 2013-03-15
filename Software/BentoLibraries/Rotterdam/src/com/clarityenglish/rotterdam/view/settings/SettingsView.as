@@ -30,6 +30,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.RadioButtonGroup;
+	import spark.components.RichEditableText;
 	import spark.components.TabBar;
 	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
@@ -57,7 +58,7 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var aboutContactNumberTextInput:TextInput;
 		
 		[SkinPart]
-		public var directStartURLLabel:Label;
+		public var directStartURLLabel:RichEditableText;
 		
 		[SkinPart]
 		public var groupTree:Tree;
