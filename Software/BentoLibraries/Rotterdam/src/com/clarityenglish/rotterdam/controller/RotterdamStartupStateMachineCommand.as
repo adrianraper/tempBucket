@@ -1,4 +1,5 @@
 package com.clarityenglish.rotterdam.controller {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.common.CommonNotifications;
 	
@@ -24,7 +25,12 @@ package com.clarityenglish.rotterdam.controller {
 					</state>
 					
 					<state name={BBStates.STATE_LOGIN}>
-						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_TITLE} />
+						<transition action={CommonNotifications.LOGGED_IN} target={BBStates.STATE_START_SESSION} />
+					</state>
+			
+					<state name={BBStates.STATE_START_SESSION} entering={BBNotifications.SESSION_START}>
+						<transition action={BBNotifications.SESSION_STARTED} target={BBStates.STATE_TITLE} />
+						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 					
 					<state name={BBStates.STATE_TITLE}>
