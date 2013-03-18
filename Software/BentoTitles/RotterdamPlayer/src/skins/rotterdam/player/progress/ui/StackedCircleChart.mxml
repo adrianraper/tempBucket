@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:progress="skins.rotterdam.player.assets.progress.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.ui.StackedCircleChart")]
@@ -41,6 +42,8 @@
 			<mx:PieSeries field="{hostComponent.field}" fills="{getStyle('unitColours')}" filters="{glowFilter}" />
 		</mx:series>
 	</mx:PieChart>
+	<progress:piechart_gray filters="{glowFilter}" left="13" top="14"/>
+	
 	<s:VGroup horizontalCenter="0" verticalCenter="0" horizontalAlign="center" visible="{dateTipShow}">
 		<s:Label text="Unit {hostComponent.pieUnitIndex}" fontSize="18" fontWeight="bold"/>
 		<s:Label text="{hostComponent.pieDuration} mins(s)" fontSize="18"/>
