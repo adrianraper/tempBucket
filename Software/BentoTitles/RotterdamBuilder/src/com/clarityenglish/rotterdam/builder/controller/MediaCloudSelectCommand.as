@@ -1,4 +1,5 @@
 package com.clarityenglish.rotterdam.builder.controller {
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.events.FileManagerEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.ContentEvent;
@@ -62,6 +63,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(FileManagerEvent.FILE_SELECT, onFileSelect);
+			//gh #212
+			titleWindow.addEventListener(FileManagerEvent.FILE_CANCEL, onFileCancel);
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 		}
 		
@@ -72,6 +75,12 @@ package com.clarityenglish.rotterdam.builder.controller {
 		 */
 		protected function onFileSelect(event:FileManagerEvent):void {
 			node.@src = event.mediaNode.@filename;
+		}
+		
+		//alice
+		protected function onFileCancel(event:FileManagerEvent):void {
+			if (!node.hasOwnProperty("@src"))
+				facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, node);
 		}
 		
 		/**

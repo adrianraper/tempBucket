@@ -70,6 +70,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onCancelButton(event:MouseEvent):void {
+			//gh #212
+			dispatchEvent(new ContentEvent(ContentEvent.CONTENT_CANCEL, null, null, null, true));
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		

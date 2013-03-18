@@ -66,6 +66,10 @@ package com.clarityenglish.rotterdam.builder.controller {
 		}
 		
 		private function onUploadCancel(e:Event):void {
+			//gh #212
+			if (!node.hasOwnProperty("@src")) {
+				facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, node);
+			}			
 			destroy();
 		}
 		

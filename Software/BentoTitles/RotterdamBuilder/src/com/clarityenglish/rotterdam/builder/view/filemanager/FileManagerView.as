@@ -230,6 +230,8 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		}
 		
 		protected function onCancel(event:MouseEvent):void {
+			//gh #212
+			dispatchEvent(new FileManagerEvent(FileManagerEvent.FILE_CANCEL, null, true));
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		

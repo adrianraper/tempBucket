@@ -4,6 +4,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 	public class ContentEvent extends Event {
 		
 		public static const CONTENT_SELECT:String = "contentSelect";
+		//gh #212 
+		public static const CONTENT_CANCEL:String = "contentCancel";		
 		
 		private var _uid:String;
 		private var _caption:String;

@@ -14,7 +14,6 @@
 			import mx.controls.dataGridClasses.DataGridColumn;
 			private function sizeFunction(item:Object, column:GridColumn):String {
 				var size:Number = Number(item.@size);				
-				trace("size: "+size);
 				if (size > 1024 && size < 1048576){
 					return roundUp(size/1024).toString() + " K";
 				} else if (size > 1048576 && size < 1073741824) {

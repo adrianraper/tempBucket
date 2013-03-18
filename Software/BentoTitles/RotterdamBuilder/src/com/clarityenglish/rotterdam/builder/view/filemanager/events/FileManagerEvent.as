@@ -4,6 +4,8 @@ package com.clarityenglish.rotterdam.builder.view.filemanager.events {
 	public class FileManagerEvent extends Event {
 		
 		public static const FILE_SELECT:String = "fileSelect";
+		//gh #212
+		public static const FILE_CANCEL:String = "fileCancle";
 		
 		private var _mediaNode:XML;
 		

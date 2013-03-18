@@ -1,4 +1,5 @@
 package com.clarityenglish.rotterdam.builder.controller {
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.ContentEvent;
 	import com.clarityenglish.textLayout.util.TLFUtil;
@@ -59,6 +60,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(ContentEvent.CONTENT_SELECT, onContentSelect);
+			//gh #212
+			titleWindow.addEventListener(ContentEvent.CONTENT_CANCEL, onContentCancel);
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 		}
 		
@@ -76,6 +79,12 @@ package com.clarityenglish.rotterdam.builder.controller {
 			// AR, this doesn't do what I want, it just removes all text from the xml
 			//var textFlowString:String = TLFUtil.textToTextFlowString(event.caption);
 			//node.text = new XML("<![CDATA[" + textFlowString + "]]>");
+		}
+		
+		//gh #212
+		protected function onContentCancel(event:ContentEvent):void {
+			if (!node.hasOwnProperty("@contentuid"))
+				facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, node);
 		}
 		
 		/**
