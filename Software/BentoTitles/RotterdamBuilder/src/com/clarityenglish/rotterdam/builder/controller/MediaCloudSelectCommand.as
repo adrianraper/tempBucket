@@ -77,7 +77,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			node.@src = event.mediaNode.@filename;
 		}
 		
-		//alice
+		//gh #212
 		protected function onFileCancel(event:FileManagerEvent):void {
 			if (!node.hasOwnProperty("@src"))
 				facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, node);
