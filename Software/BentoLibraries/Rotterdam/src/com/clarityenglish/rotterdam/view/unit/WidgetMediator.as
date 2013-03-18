@@ -115,15 +115,6 @@
 				var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 				navigateToURL(new URLRequest(srcHref.url), "_blank");
 			}
-			
-			//gh #106
-			var exerciseMark:ExerciseMark = new ExerciseMark();
-			exerciseMark.duration = 30;
-			exerciseMark.UID = view.clarityUid;
-			trace("UID: "+exerciseMark.UID);
-			var temp:Number = view.ypos;
-			trace("ypos: "+temp);
-			sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 		}
 		
 		/**

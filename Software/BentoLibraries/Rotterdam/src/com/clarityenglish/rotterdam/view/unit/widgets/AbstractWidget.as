@@ -135,19 +135,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@ypos;
 		}
 		
-		[Bindalbe(event="idAttrChanged")]
-		public function get clarityUid():String {
-			if (_xml.(hasOwnProperty("@id"))) {
-				var eid:String = _xml.@id;
-				var unitid:String = _xml.parent().@id;	
-				var cid:String = _xml.parent().parent().@id;	
-			} else {
-				cid = uid = eid = '0';
-			}
-			var uidString:String = "54." + cid + "." + unitid + "." + eid;
-			return uidString;
-		}
-		
 		// #17 - will not stay!
 		public function set layoutheight(value:uint):void {
 			_xml.@layoutheight = value;
