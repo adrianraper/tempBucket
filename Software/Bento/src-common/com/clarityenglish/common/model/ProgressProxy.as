@@ -111,6 +111,8 @@ package com.clarityenglish.common.model {
 				case "startSession":
 					if (data) {
 						configProxy.getConfig().sessionID = data.sessionID;
+						//alice
+						trace("sessionID in ProgressProxy: "+configProxy.getConfig().sessionID);
 						sendNotification(BBNotifications.SESSION_STARTED, data);
 					} else {
 						// Can't write to the database

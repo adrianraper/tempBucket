@@ -210,6 +210,8 @@ package com.clarityenglish.common.vo.config {
 			if (parameters.courseFile) this.paths.menuFilename = parameters.courseFile;
 			if (parameters.startingPoint) this.startingPoint = parameters.startingPoint;
 			if (parameters.sessionID) this.sessionID = parameters.sessionID;
+			//alice
+			trace("session ID: "+this.sessionID);
 			if (parameters.language) {
 				//trace("the language in mergeParameters is "+ parameters.language);
 				this.language = parameters.language;

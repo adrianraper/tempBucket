@@ -65,7 +65,7 @@
 		// Copy/paste unit gh#110
 		public static const UNIT_COPY:String = "rotterdam/unit_copy";
 		public static const UNIT_PASTE:String = "rotterdam/unit_paste";
-		
+
 	}
 	
 }
