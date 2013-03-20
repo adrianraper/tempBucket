@@ -11,6 +11,7 @@ package com.clarityenglish.rotterdam.view.course {
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.events.CloseEvent;
+	import mx.events.IndexChangedEvent;
 	
 	import org.osflash.signals.Signal;
 	
@@ -53,6 +54,9 @@ package com.clarityenglish.rotterdam.view.course {
 		public var unitListCollection:ListCollectionView;
 		
 		private var _isPreviewVisible:Boolean;
+		//gh #211
+		private var currentIndex:Number;
+		private var unitListLength:Number;
 		
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
@@ -94,18 +98,20 @@ package com.clarityenglish.rotterdam.view.course {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case unitList:
+				case unitList:									
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
 					unitList.addEventListener(UnitDeleteEvent.UNIT_DELETE, onUnitDelete);
 					
 					// gh#14 - auto select a unit and gh#151 - autoselect the first enabled unit
 					callLater(function():void {
-						if (unitList.dataProvider && unitList.dataProvider.length > 0) {
+						if (unitList.dataProvider && unitList.dataProvider.length > 0) {								
 							for each (var unit:XML in (unitList.dataProvider as XMLListCollection).source) {
 								if (!(unit.hasOwnProperty("@enabledFlag") && unit.@enabledFlag & 8)) {
 									unitList.requireSelection = true;
 									unitList.selectedItem = unit;
+									//gh #211
+									unitList.selectedIndex = 0;
 									unitList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 									break;
 								}
@@ -138,9 +144,31 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onUnitDelete(event:UnitDeleteEvent):void {
+			//gh #211
+			unitListLength = unitList.dataProvider.length;
+			currentIndex = unitListCollection.getItemIndex(event.unit);
+
 			Alert.show("Are you sure", "Delete", Vector.<String>([ "No", "Yes" ]), this, function(closeEvent:CloseEvent):void {
-				if (closeEvent.detail == 1)
-					unitListCollection.removeItemAt(unitListCollection.getItemIndex(event.unit));
+				if (closeEvent.detail == 1) {
+					if (unitListLength > 1) {
+						unitListCollection.removeItemAt(unitListCollection.getItemIndex(event.unit));
+						
+						//gh #211
+						if (currentIndex != 0) {							
+							unitList.selectedIndex = currentIndex-1;
+						} 
+						unitList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));						
+					} else {					
+						var unitXML:XML = event.unit;
+						var exerciseTotal:Number = unitXML.children().length();
+						while (exerciseTotal > 0){
+							delete unitXML.children()[0];
+							exerciseTotal--;
+						}
+						unitXML.@caption = "My unit";
+						unitSelect.dispatch(unitXML);
+					}									
+				}				
 			});
 		}
 		
