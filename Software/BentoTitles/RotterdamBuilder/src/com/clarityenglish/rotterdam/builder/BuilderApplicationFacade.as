@@ -15,6 +15,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.MediaCloudSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
+	import com.clarityenglish.rotterdam.builder.controller.SendWelcomeEmailCommand;
 	import com.clarityenglish.rotterdam.builder.controller.UnitCopyCommand;
 	import com.clarityenglish.rotterdam.builder.controller.UnitPasteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.WidgetAddCommand;
@@ -91,6 +92,9 @@
 			// gh#110
 			registerCommand(RotterdamNotifications.UNIT_COPY, UnitCopyCommand);
 			registerCommand(RotterdamNotifications.UNIT_PASTE, UnitPasteCommand);
+			
+			// gh#122
+			registerCommand(RotterdamNotifications.SEND_WELCOME_EMAIL, SendWelcomeEmailCommand);
 			
 			// Remove the default Bento state machine (which isn't quite applicable to the builder) and replace it with a new one
 			removeCommand(CommonNotifications.CONFIG_LOADED);

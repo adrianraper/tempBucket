@@ -66,6 +66,9 @@
 		public static const UNIT_COPY:String = "rotterdam/unit_copy";
 		public static const UNIT_PASTE:String = "rotterdam/unit_paste";
 
+		// gh#122
+		public static const SEND_WELCOME_EMAIL:String = "rotterdam/send_welcome_email"; 
+		public static const WELCOME_EMAIL_SENT:String = "rotterdam/welcome_email_sent"; 
 	}
 	
 }

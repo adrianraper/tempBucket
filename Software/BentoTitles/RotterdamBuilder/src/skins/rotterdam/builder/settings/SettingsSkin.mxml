@@ -40,7 +40,7 @@
 	
 	<!-- The tab bar -->
 	<s:TabBar id="tabBar" top="70" left="30"/>
-	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="105" left="10" includeIn="calendar"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="105" left="10" includeIn="calendar,email"/>
 	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/about-bg.png')" top="105" left="10" includeIn="about"/>
 	
 	<!-- Left hand side -->
@@ -69,27 +69,19 @@
 			
 			<s:Spacer height="12" />
 			
-			<s:Label text="4. Please set the course start date for this course" fontWeight="bold" />
+			<s:Label text="4. Start date for this course" fontWeight="bold" />
 			<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
 			
 			<s:Spacer height="12" />
 			
-			<s:Label text="5. Please set the course end date for this course" fontWeight="bold" />
+			<s:Label text="5. End date for this course" fontWeight="bold" />
 			<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" />
 		</s:VGroup>
 		
 		<!-- Email settings -->
 		<s:VGroup includeIn="email">
-			<s:Label text="Select the options for the group" fontWeight="bold" />
-			<s:DropDownList width="300" />
-			<s:List width="300" />
-			<s:TextInput width="300" />
-			<s:Button label="Add to list" />
-			
-			<s:Label text="Send automated email" fontWeight="bold" />
-			<s:CheckBox label="Welcome email" />
-			<s:CheckBox label="New unit notification email" />
-			<s:CheckBox label="Course end email" />
+			<s:CheckBox id="sendAlertEmail" label="Send an email to all students when a new unit is available." />
+			<s:Button id="welcomeEmailButton" label="Send welcome email now" />
 		</s:VGroup>
 		
 		<s:VGroup includeIn="about" paddingTop="70">
@@ -130,7 +122,7 @@
 		
 		<!-- Email -->
 		<s:VGroup includeIn="email">
-			
+			<!-- could be a place to type in free form email addresses -->
 		</s:VGroup>
 		
 		<!-- About -->

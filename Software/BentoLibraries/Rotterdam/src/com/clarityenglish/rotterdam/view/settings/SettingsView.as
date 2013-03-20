@@ -27,6 +27,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.CheckBox;
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.RadioButtonGroup;
@@ -77,6 +78,13 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		[SkinPart]
 		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
+
+		// gh#122
+		[SkinPart]
+		public var sendAlertEmail:spark.components.CheckBox;
+		
+		[SkinPart]
+		public var welcomeEmailButton:Button;
 		
 		[SkinPart]
 		public var calendar:Calendar;
@@ -90,9 +98,10 @@ package com.clarityenglish.rotterdam.view.settings {
 		[Bindable]
 		public var groupTreesCollection:ListCollectionView;
 		
-		public var dirty:Signal = new Signal(); // GH #83
+		public var dirty:Signal = new Signal(); // gh#83
 		public var saveCourse:Signal = new Signal();
 		public var back:Signal = new Signal();
+		public var sendEmail:Signal = new Signal(); //gh#122
 		
 		private var isPopulating:Boolean;
 		
@@ -151,6 +160,9 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (aboutEmailTextInput) aboutEmailTextInput.text = course.@email;
 			if (aboutContactNumberTextInput) aboutContactNumberTextInput.text = course.@contact;
 			
+			// gh#122 Email
+			if (sendAlertEmail) sendAlertEmail.selected = course.@sendNotifications;
+			
 			// gh#92
 			var folderName:String = copyProvider.getCopyForId('pathCCB');
 			var directStartURL:String = config.remoteStartFolder + folderName + '/Player.php' + '?prefix=' + config.prefix + '&course=' + course.@id;
@@ -162,7 +174,7 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
 			if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
 			
-			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates GH #87
+			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates gh#87
 			if (calendar) {
 				if (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
 					var labels:Array = [];
@@ -209,9 +221,9 @@ package com.clarityenglish.rotterdam.view.settings {
 			switch (instance) {
 				case tabBar:
 					tabBar.dataProvider = new ArrayList([
-						{ label: "Calendar", data: "calendar" },
-						//{ label: "Email", data: "email" } - Email is disabled for the moment
-						{ label: "About", data: "about" }
+						{ label: "Publish dates", data: "calendar" },
+						{ label: "Notifications", data: "email" }, 
+						{ label: "About this course", data: "about" }
 					]);
 					
 					tabBar.requireSelection = true;
@@ -300,6 +312,15 @@ package com.clarityenglish.rotterdam.view.settings {
 						}
 					});
 					break;
+				// gh#122
+				case sendAlertEmail:
+					instance.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
+						if (!isPopulating) {
+							course.@sendNotifications = e.target.selected;
+							dirty.dispatch();
+						}
+					});
+					break;
 				case calendar:
 					// Default the calendar to the current year and month
 					calendar.firstOfMonth = new Date();
@@ -309,6 +330,9 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBack);
+					break;
+				case welcomeEmailButton:
+					saveButton.addEventListener(MouseEvent.CLICK, onSendWelcomeEmail);
 					break;
 			}
 		}
@@ -325,7 +349,18 @@ package com.clarityenglish.rotterdam.view.settings {
 		protected function onTabBarChange(event:IndexChangeEvent):void {
 			invalidateSkinState();
 		}
-		
+
+		// gh#122 Trigger the backend to send out a welcome email now to all students in the selected group
+		protected function onSendWelcomeEmail(event:MouseEvent):void {
+			// Nothing to do if this group doesn't have a publication date
+			var results:XMLList = course.publication.group.(@id == selectedPublicationGroup.@id);
+			if (results && results.length() > 0) {
+				sendEmail.dispatch(course[0].id.toString(), selectedPublicationGroup.@id as Number);
+			} else {
+				// TODO. How to raise an error? Or do you just disable the button until this condition is fulfilled/
+			}
+		}
+
 		protected function onSave(event:MouseEvent):void {
 			// Remove any groups without all the required information
 			for each (var group:XML in course.publication.group) {

@@ -30,6 +30,7 @@
 			view.dirty.add(onDirty);
 			view.saveCourse.add(onSaveCourse);
 			view.back.add(onBack);
+			view.sendEmail.add(onSendEmail);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
@@ -44,12 +45,13 @@
 			view.dirty.remove(onDirty);
 			view.saveCourse.remove(onSaveCourse);
 			view.back.remove(onBack);
+			view.sendEmail.remove(onSendEmail);
 			
-			sendNotification(BBNotifications.ITEM_CLEAN, "settings"); // GH #83
+			sendNotification(BBNotifications.ITEM_CLEAN, "settings"); // gh#83
 		}
 		
 		protected function onDirty():void {
-			sendNotification(BBNotifications.ITEM_DIRTY, "settings"); // GH #83
+			sendNotification(BBNotifications.ITEM_DIRTY, "settings"); // gh#83
 		}
 		
 		protected function onSaveCourse():void {
@@ -58,6 +60,11 @@
 		
 		protected function onBack():void {
 			view.navigator.popView();
+		}
+
+		// gh#122
+		protected function onSendEmail(courseID:String, groupID:Number):void {
+			facade.sendNotification(RotterdamNotifications.SEND_WELCOME_EMAIL, {courseID: courseID, groupID: groupID});
 		}
 		
 	}
