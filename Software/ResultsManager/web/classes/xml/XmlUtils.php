@@ -64,7 +64,7 @@ class XmlUtils {
 	        // In case the calling function wants to do something with the new XML return it as a string (usually this will be ignored though)
 			return $dom->saveXML();
 		} else {
-			throw new Exception("Unable to open file for writing");
+			throw new Exception("Unable to open $filename for writing");
 		}
 	}
 	

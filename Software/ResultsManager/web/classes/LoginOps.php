@@ -109,6 +109,10 @@ EOD;
 		
 		switch ($rs->RecordCount()) {
 			case 0:
+				// Whilst testing tablet login, tell me about all logins
+				$logMessage = "login $keyValue no such user";
+				if (($loginOption & 128) && ($rootID == null)) $logMessage.=' -tablet-';
+				AbstractService::$debugLog->info($logMessage);
 				// Invalid login
 				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption));
 				break;
@@ -121,6 +125,9 @@ EOD;
 				// #341 Only check password if you have set this to be the case 
 				if ($verified) {
 					if ($password != $loginObj->F_Password) {
+						$logMessage = "login $keyValue wrong password, they typed $password, should be ".$loginObj->F_Password;
+						if (($loginOption & 128) && ($rootID == null)) $logMessage.=' -tablet-';
+						AbstractService::$debugLog->info($logMessage);
 						throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
 					}
 				}
@@ -137,8 +144,15 @@ EOD;
 						(strtotime($loginObj->F_ExpiryDate) > 0) && 
 						(strtotime($loginObj->F_ExpiryDate) < strtotime(date("Y-m-d")))) {
 					
-					throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($loginObj->F_ExpiryDate))));
+						$logMessage = "login $keyValue but expired on ".$loginObj->F_ExpiryDate;
+						if (($loginOption & 128) && ($rootID == null)) $logMessage.= '-tablet-';
+						AbstractService::$debugLog->info($logMessage);
+						throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($loginObj->F_ExpiryDate))));
 				}
+				
+				$logMessage = "login $keyValue success";
+				if (($loginOption & 128) && ($rootID == null)) $logMessage.=' -tablet-';
+				AbstractService::$debugLog->info($logMessage);
 				
 				// Authenticate the user with the session
 				Authenticate::login($loginObj->F_UserName, $loginObj->F_UserType);
