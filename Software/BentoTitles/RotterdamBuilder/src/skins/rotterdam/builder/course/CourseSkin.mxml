@@ -92,7 +92,11 @@
 	<s:VGroup top="{unitContainer.height + 10}" left="2" includeIn="uniteditor">
 		<s:Button id="addUnitButton" label="Add a unit" useHandCursor="true" buttonMode="true" />
 		<s:Button id="courseSettingsButton" label="Course settings" useHandCursor="true" buttonMode="true" />
-		<s:Button id="coursePublishButton" label="Publish course" useHandCursor="true" buttonMode="true" />
+		<!-- gh#208 -->
+		<s:Button id="coursePublishButton" label="Publish course" useHandCursor="true" buttonMode="true" 
+				  			visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" />
+		<s:Label id="courseAlreadyPublishLabel" text="This course has already been published."
+				 			visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}"/>
 		
 		<!-- temporarily put these buttons here (gh#110) but they will likely move elsewhere later -->
 		<s:Spacer height="20" />

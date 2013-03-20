@@ -1,7 +1,10 @@
 ﻿package com.clarityenglish.rotterdam.view.course {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
@@ -37,8 +40,13 @@
 			view.addEventListener(Event.COPY, onUnitCopy);
 			view.addEventListener(Event.PASTE, onUnitPaste);
 			
-			// In case the course has already started before the CourseView is registered GH #88
+			// In case the course has already started before the CourseView is registered gh#88
 			handleCourseStarted();
+			
+			// gh#208 need the teacher's group
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			view.group = loginProxy.group;
+
 		}
 		
 		override public function onRemove():void {
@@ -56,6 +64,7 @@
 				RotterdamNotifications.COURSE_STARTED,
 				RotterdamNotifications.PREVIEW_SHOW,
 				RotterdamNotifications.PREVIEW_HIDE,
+				BBNotifications.ITEM_DIRTY,
 			]);
 		}
 		
@@ -72,6 +81,10 @@
 				case RotterdamNotifications.PREVIEW_HIDE:
 					view.previewVisible = false;
 					break;
+				case BBNotifications.ITEM_DIRTY:
+					if (note.getBody().toString() == 'settings')
+						view.publishChanged();
+					break;
 			}
 		}
 		
@@ -85,7 +98,10 @@
 		}
 		
 		protected function onCoursePublish():void {
-			trace("TODO: implement course publish (whatever that is!)");
+			view.publishChanged();
+			// I am undecided if you should auto save when you click publish (or just set ITEM_DIRTY). 
+			// I currently think - yes. You are, after all, doing a 1-click publish.
+			facade.sendNotification(RotterdamNotifications.COURSE_SAVE);
 		}
 		
 		protected function onUnitCopy(event:Event):void {

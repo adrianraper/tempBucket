@@ -1,5 +1,7 @@
 package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.base.events.BentoEvent;
+	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
@@ -7,6 +9,7 @@ package com.clarityenglish.rotterdam.view.course {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.globalization.DateTimeFormatter;
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
@@ -53,6 +56,10 @@ package com.clarityenglish.rotterdam.view.course {
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
+		// gh#208 DK: should we pass the group from the mediator to here so that the view can create the default node
+		// or should we just let the mediator do it?
+		public var group:Group;
+		
 		private var _isPreviewVisible:Boolean;
 		//gh #211
 		private var currentIndex:Number;
@@ -61,7 +68,7 @@ package com.clarityenglish.rotterdam.view.course {
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
 		
-		private function get course():XML {	
+		public function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
 		}
 		
@@ -70,6 +77,13 @@ package com.clarityenglish.rotterdam.view.course {
 				_isPreviewVisible = value;
 				invalidateSkinState();
 			}
+		}
+		
+		// gh#208
+		[Bindable(event="publishChanged")]
+		public function get canPublish():Boolean {
+			var temp:Boolean = (course.publication && course.publication.group.length() == 0) ? true : false;
+			return temp;
 		}
 		
 		public function canPasteFromTarget(target:Object):Boolean {
@@ -183,7 +197,20 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onCoursePublish(event:MouseEvent):void {
-			coursePublish.dispatch();
+			// gh#208
+			// Check to see if you can use 1-click publish, only on an untouched course
+			if (course.publication.group.length() == 0) {
+				// create a default publication node
+				var formatter:DateTimeFormatter = new DateTimeFormatter("en-US");
+				formatter.setDateTimePattern("yyyy-MM-dd");
+				var now:Date = new Date();
+				var startDate:String = formatter.format(now);
+				now.setFullYear(now.fullYear + 1);
+				var endDate:String = formatter.format(now);
+				
+				course.publication.appendChild(<group id={group.id} seePastUnits='1' unitInterval='0' startDate={startDate} endDate={endDate} />);
+				coursePublish.dispatch();
+			}
 		}
 		
 		protected function onUnitCopy(event:MouseEvent):void {
@@ -194,6 +221,11 @@ package com.clarityenglish.rotterdam.view.course {
 			// gh#110 - dispatch the event from the button rather than the view so that we can test for the target before actually doing the paste.  This means
 			// that we can make sure pastes only happen when the list has the focus, or the button was clicked.
 			unitPasteButton.dispatchEvent(new Event(Event.PASTE, true));
+		}
+		
+		// gh#208 
+		public function publishChanged():void {
+			dispatchEvent(new Event("publishChanged"));
 		}
 		
 		/**
