@@ -47,7 +47,7 @@ login|LoginView s|Button#freeCourseButton {
 }*/
 
 login|LoginView s|TextInput {
-	skinClass: ClassReference("skins.rotterdam.builder.login.LoginTextInputSkin");
+	skinClass: ClassReference("skins.rotterdam.ui.LoginTextInputSkin");
 	cornerRadius: 5;
 }
 

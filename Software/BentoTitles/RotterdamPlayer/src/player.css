@@ -34,11 +34,16 @@ login|LoginView s|Button#loginButton {
 	skinClass: ClassReference("skins.rotterdam.player.login.LoginButtonSkin");
 }
 
-login|LoginView s|TextInput {
+/*login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
 	borderVisible: true;
 	borderColor: #C8C8C8;
 	contentBackgroundColor: #FFFFFF;
+}*/
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.rotterdam.ui.LoginTextInputSkin");
+	cornerRadius: 5;
 }
 
 title|TitleView {
