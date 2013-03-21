@@ -10,6 +10,8 @@
 	
 	<fx:Declarations>
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
+		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false"/>
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
 	</fx:Declarations>
 	
 	<!-- states -->
@@ -29,7 +31,12 @@
 	<s:Group width="100%" height="100%">
 		<s:Rect width="100%" height="100%">
 			<s:fill>
-				<s:SolidColor color="0xF2F2F2" />
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0xFFFFFF" ratio="0" />
+					<s:GradientEntry color="0xFFFFFF" ratio="0.3" />
+					<s:GradientEntry color="0xE6E6E6" ratio="0.6" />
+					<s:GradientEntry color="0xE6E6E6" ratio="1" />
+				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
 	</s:Group>
@@ -45,21 +52,38 @@
 		</s:fill>
 	</s:Rect>
 	
-	<login:HoneyGraphic left="860" top="40" />
-
 	<!-- top header -->
-	<s:Label id="sch_lbl" text="Clarity Language Consultants Ltd." right="260" top="14" fontSize="13" color="0xFFFFFF" />
+	<s:Label id="sch_lbl" text="Clarity Language Consultants Ltd." right="20" top="14" fontSize="13" color="0xFFFFFF" />
 	
-	<login:LoginChrome left="200" top="130" />
-	<s:Button id="loginButton" label="Login" top="414" left="320" />
+	<!--login:LoginChrome left="200" top="130" /-->
+	<s:Group horizontalCenter="0" top="80">
+		<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/HoneyCones.png')" left="-130" bottom="-50" />
+		<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/HoneyConesLarge.png')" right="-90" bottom="-100" />
+		<s:Rect width="424" height="290" filters="{dropShadowFilter}" radiusX="8" radiusY="8" verticalCenter="50" horizontalCenter="0" alpha="0.7">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF"/>
+			</s:fill>
+		</s:Rect>	
+		<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/CCBLogo.png')" />
+		<s:Group horizontalCenter="0" verticalCenter="70">
+			<s:VGroup horizontalAlign="center" gap="60">
+				<s:VGroup gap="30">
+					<s:VGroup>
+						<s:Label id="loginKey_lbl" text="Account:" fontSize="16" fontWeight="bold" color="0x333333"/>
+						<s:TextInput id="loginKeyInput" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
+					</s:VGroup>
+					
+					<s:VGroup>
+						<s:Label text="Password:" fontSize="16" fontWeight="bold" color="0x333333" />
+						<s:TextInput id="passwordInput" displayAsPassword="true" width="220" height="35" fontSize="16" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+					</s:VGroup>
+				</s:VGroup>
+				<s:Button id="loginButton" label="Login"/>	
+			</s:VGroup>
+		</s:Group>
+		<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/FreeCourse.png')" bottom="-50" right="0" scaleX="1.2" scaleY="1.2"/>
+	</s:Group>	
 	
-	<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/FreeCourse.png')" top="380" right="460"  />
-	
-	<s:Label id="loginKey_lbl" text="Account:" left="320" top="237" fontSize="16" fontWeight="bold" color="0x333333" />
-	<s:TextInput id="loginKeyInput" width="180" height="35" left="320" top="260" />
-	
-	<s:Label text="Password:" left="320" top="325" fontSize="16" fontWeight="bold" color="0x333333" />
-	<s:TextInput id="passwordInput" displayAsPassword="true" width="180" height="35" left="320" top="345" fontSize="16" fontWeight="bold" />
-	
+	<login:HoneyGraphic horizontalCenter="300" top="40" />
 	<!--s:Button id="freeCourseButton" label="Test it out now!	Create a FREE demo course" left="730" top="420" /-->
 </s:Skin>

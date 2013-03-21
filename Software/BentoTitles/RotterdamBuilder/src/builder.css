@@ -39,11 +39,16 @@ login|LoginView s|Button#freeCourseButton {
 	skinClass: ClassReference("skins.rotterdam.builder.login.FreeCourseButtonSkin");
 }
 
-login|LoginView s|TextInput {
+/*login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
 	borderVisible: true;
 	borderColor: #C8C8C8;
 	contentBackgroundColor: #FFFFFF;
+}*/
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.rotterdam.builder.login.LoginTextInputSkin");
+	cornerRadius: 5;
 }
 
 title1|TitleView {
