@@ -152,7 +152,7 @@ package com.clarityenglish.bento.model {
 								break;
 							default:
 								if (href.type == Href.MENU_XHTML) {
-									sendNotification(copyProxy.getBentoErrorForId("errorParsingExercise", { filename: href.filename, message: e.fault.faultString } ));
+									sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorParsingExercise", { filename: href.filename, message: e.fault.faultString } ));
 								} else {
 									sendNotification(CommonNotifications.INVALID_DATA, bentoError);
 								}
