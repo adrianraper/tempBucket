@@ -18,7 +18,6 @@ class RotterdamBuilderService extends RotterdamService {
 	}
 	
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null) {
-		
 		// gh#66 
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,
 								  User::USER_TYPE_ADMINISTRATOR,
@@ -28,6 +27,45 @@ class RotterdamBuilderService extends RotterdamService {
 		$licence->licenceType = Title::LICENCE_TYPE_LT;
 		
 		return parent::login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID, $productCode, $dbHost, $allowedUserTypes);
+	}
+	
+	public function xhtmlLoad($href) {
+		$xhtml = parent::xhtmlLoad($href);
+		
+		// gh#142
+		if ($href->type == Href::MENU_XHTML) {
+			$courseId = $href->options["courseId"];
+			
+			$sql = <<<EOD
+				SELECT F_UserID 
+				FROM T_CourseConcurrency
+				WHERE F_CourseID=?
+				AND F_RootID=?
+				AND F_UserID != ?
+				AND F_Timestamp > DATE_SUB(NOW(), INTERVAL 1 MINUTE)
+EOD;
+			
+			$results = $this->db->GetCol($sql, array($courseId, Session::get('rootID'), Session::get('userID')));
+			
+			if ($results[0] > 0)
+				throw $this->copyOps->getExceptionForId("errorConcurrentCourseAccess");
+			
+			// Otherwise this is a successfuly login so update the timer (this is also done every minute triggered by the client)
+			$this->courseSessionUpdate($href->options["courseId"]);
+		}
+		
+		return $xhtml;
+	}
+	
+	public function courseSessionUpdate($courseId) {
+		$fields = array(
+			"F_RootID" => Session::get('rootID'),
+			"F_UserID" => Session::get('userID'),
+			"F_CourseID" => (string)$courseId,
+			"F_Timestamp" => "NOW()",
+		);
+		
+		$this->db->Replace("T_CourseConcurrency", $fields, array("F_RootID", "F_UserID"));
 	}
 	
 	public function courseCreate($course) {

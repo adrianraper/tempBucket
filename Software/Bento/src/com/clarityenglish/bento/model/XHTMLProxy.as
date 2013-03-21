@@ -150,6 +150,11 @@ package com.clarityenglish.bento.model {
 								sendNotification(CommonNotifications.BENTO_ERROR, bentoError);
 								sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
 								break;
+							case copyProxy.getCodeForId("errorConcurrentCourseAccess"): // gh#142
+								bentoError.isFatal = false;
+								sendNotification(CommonNotifications.BENTO_ERROR, bentoError);
+								sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
+								break;
 							default:
 								if (href.type == Href.MENU_XHTML) {
 									sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorParsingExercise", { filename: href.filename, message: e.fault.faultString } ));

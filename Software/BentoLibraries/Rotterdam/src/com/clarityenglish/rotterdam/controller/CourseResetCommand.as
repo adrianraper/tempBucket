@@ -23,15 +23,15 @@ package com.clarityenglish.rotterdam.controller {
 			super.execute(note);
 			
 			var progressProxy:ProgressProxy = facade.retrieveProxy(ProgressProxy.NAME) as ProgressProxy;
-			progressProxy.reset();
-			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.reset();
-			
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
-			xhtmlProxy.reset();
-			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			
+			courseProxy.courseEnd();
+			
+			progressProxy.reset();
+			bentoProxy.reset();
+			xhtmlProxy.reset();
 			courseProxy.reset();
 		}
 		

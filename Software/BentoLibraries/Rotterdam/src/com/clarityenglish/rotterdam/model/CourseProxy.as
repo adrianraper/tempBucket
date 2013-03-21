@@ -10,6 +10,8 @@ package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
@@ -45,11 +47,16 @@ package com.clarityenglish.rotterdam.model {
 		
 		private var xmlWatcher:XMLChangeWatcher;
 		
+		private var courseSessionTimer:Timer;
+		
 		public function CourseProxy(data:Object = null) {
 			super(NAME, data);
 			
 			xmlWatcher = new XMLChangeWatcher();
 			xmlWatcher.addEventListener(XMLChangeWatcherEvent.XML_CHANGE, onXmlChange);
+			
+			courseSessionTimer = new Timer(60 * 1000);
+			courseSessionTimer.addEventListener(TimerEvent.TIMER, onCourseSessionTimer);
 		}
 		
 		// gh#13
@@ -157,7 +164,7 @@ package com.clarityenglish.rotterdam.model {
 				var xmlString:String = currentCourse.xml.toXMLString();
 				xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
 				
-				return new RemoteDelegate("courseSave", [ currentCourse.href.filename, xmlString ], this).execute();
+				return new RemoteDelegate("courseSave", [ currentCourse.href .filename, xmlString ], this).execute();
 			} else {
 				log.error("Attempted to save when there was no currentCourse set");
 				return null;
@@ -166,6 +173,20 @@ package com.clarityenglish.rotterdam.model {
 		
 		public function courseDelete(course:XML):AsyncToken {
 			return new RemoteDelegate("courseDelete", [ course ], this).execute();
+		}
+		
+		public function courseStart():void {
+			courseSessionTimer.start();
+		}
+		
+		private function onCourseSessionTimer(event:TimerEvent):void {
+			if (currentCourse) {
+				new RemoteDelegate("courseSessionUpdate", [ courseNode.@id.toString() ], this).execute();
+			}
+		}
+		
+		public function courseEnd():void {
+			courseSessionTimer.reset();
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
@@ -180,6 +201,9 @@ package com.clarityenglish.rotterdam.model {
 					break;
 				case "courseDelete":
 					sendNotification(RotterdamNotifications.COURSE_DELETED, data);
+					break;
+				case "courseSessionUpdate":
+					// No action
 					break;
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);

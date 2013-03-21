@@ -30,6 +30,8 @@ package com.clarityenglish.rotterdam.controller {
 			// The current course is the loaded menuXHTML in BentoProxy
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
+			courseProxy.courseStart();
+			
 			facade.sendNotification(RotterdamNotifications.COURSE_STARTED, bentoProxy.menuXHTML);
 		}
 		
