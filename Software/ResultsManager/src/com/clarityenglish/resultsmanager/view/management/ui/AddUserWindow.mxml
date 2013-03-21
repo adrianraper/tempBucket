@@ -96,11 +96,13 @@
 					
 					// If visible set the expiry date
 					//gh #175
-					if (expireFormItem.visible) {
+					if (expireFormItem.visible && (expireButtonGroup.selection != neverRadioButton)) {
 						expireDateField.selectedDate.hours = 23;
 						expireDateField.selectedDate.minutes = 59;
 						expireDateField.selectedDate.seconds = 59;
-						_user.expiryDate = (expireButtonGroup.selection == neverRadioButton) ? null : DateUtils.dateToAnsiString(expireDateField.selectedDate);
+						_user.expiryDate = DateUtils.dateToAnsiString(expireDateField.selectedDate);
+					} else {
+						_user.expiryDate = null;
 					}
 					//TraceUtils.myTrace("date from calendar is " + _user.expiryDate);
 					
