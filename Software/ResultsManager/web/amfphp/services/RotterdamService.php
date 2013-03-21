@@ -20,10 +20,6 @@ class RotterdamService extends BentoService {
 			$this->accountFolder = "../../".$GLOBALS['ccb_data_dir']."/".Session::get('dbContentLocation');
 			$this->courseOps = new CourseOps($this->db, $this->accountFolder);
 			$this->mediaOps = new MediaOps($this->accountFolder);
-			
-			// If there is no content folder for this user then create one
-			if (!is_dir($this->accountFolder))
-				$this->createAccountFolder();
 		}
 	}
 	
@@ -31,51 +27,6 @@ class RotterdamService extends BentoService {
 		// gh#81 Ignore Rotterdam when getting back Clarity content that you can use as widgets
 		$productCodes = array(-54);
 		return $this->contentOps->getContent($productCodes);
-	}
-	
-	public function courseCreate($course) {
-		// TODO: Only allow this if the logged in user has permission
-		return $this->courseOps->courseCreate($course);
-	}
-	
-	public function courseSave($filename, $xml) {
-		// TODO: Only allow this if the logged in user has permission
-		return $this->courseOps->courseSave($filename, $xml);
-	}
-	
-	public function courseDelete($course) {
-		// TODO: Only allow this if the logged in user has permission
-		return $this->courseOps->courseDelete($course);
-	}
-	
-	/**
-	 * Create a blank account folder with all required directories and an empty course.xml (for now we're not sure there are any required directories)
-	 */
-	private function createAccountFolder() {
-		// Create the account folder containing a default courses.xml
-		// GH #65 - by only doing this if mkdir returns true we are effectively implementing concurrency locking (since if it returns false then someone else is doing
-		// it, and the delay of half a second will be more than enough for it to complete).
-		if (mkdir($this->accountFolder)) {
-			$courseXML = <<<XML
-<?xml version="1.0" encoding="utf-8"?>
-<bento xmlns="http://www.w3.org/1999/xhtml">
-	<courses />
-</bento>
-XML;
-			file_put_contents($this->accountFolder."/courses.xml", $courseXML);
-			
-			// Create a media folder containing a default meta.xml
-			mkdir($this->accountFolder."/media");
-			$mediaXML = <<<XML
-<?xml version="1.0" encoding="utf-8"?>
-<bento xmlns="http://www.w3.org/1999/xhtml">
-	<files />
-</bento>	
-XML;
-			file_put_contents($this->accountFolder."/media/media.xml", $mediaXML);
-		} else {
-			usleep(500);
-		}
 	}
 	
 }
