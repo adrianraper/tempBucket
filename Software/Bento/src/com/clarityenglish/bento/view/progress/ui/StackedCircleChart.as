@@ -54,7 +54,7 @@ package com.clarityenglish.bento.view.progress.ui {
 		
 		[Bindable]
 		public function set pieUnitIndex(value:Number):void {
-			_pieUnitIndex = value + 1;
+			_pieUnitIndex = value;
 		}
 		
 		public function get pieUnitIndex():Number {

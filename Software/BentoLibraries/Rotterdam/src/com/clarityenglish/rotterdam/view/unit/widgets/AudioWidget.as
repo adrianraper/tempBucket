@@ -1,8 +1,12 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
+	import com.clarityenglish.textLayout.components.AudioPlayer;
+	
+	import flash.events.Event;
+	import flash.events.MouseEvent;
+	
 	import org.davekeen.util.StringUtils;
 	
 	public class AudioWidget extends AbstractWidget {
-		
 		public function AudioWidget() {
 			super();
 		}
@@ -25,6 +29,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			}
 			
 			return null;
+		}
+		
+		//gh #106
+		public function onPlayClicked(event:MouseEvent):void {
+			playAudio.dispatch(xml);
 		}
 		
 	}

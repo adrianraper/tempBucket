@@ -67,6 +67,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public var openMedia:Signal = new Signal(XML);
 		public var openContent:Signal = new Signal(XML, String);
 		public var textSelected:Signal = new Signal(TextLayoutFormat);
+		//gh #106
+		public var playVideo:Signal = new Signal(XML);
+		public var playAudio:Signal = new Signal(XML);
 		
 		public function AbstractWidget() {
 			super();
@@ -138,6 +141,21 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		// #17 - will not stay!
 		public function set layoutheight(value:uint):void {
 			_xml.@layoutheight = value;
+		}
+		
+		//gh #106
+		public function get clarityUID():String {
+			if (_xml && _xml.(hasOwnProperty("@id"))) {
+				var eid:String = _xml.@id;
+				var unitid:String = _xml.parent().@id;			
+				var cid:String = _xml.parent().parent().@id;			
+				//var pid:String = _xml.parent().parent().parent().@id;
+			} else {
+				cid = unitid = eid = '0';
+			}
+			
+			var UID:String = "54" + "." + cid + "." + unitid + "." + eid;
+			return UID;
 		}
 		
 		public function set text(value:String):void {

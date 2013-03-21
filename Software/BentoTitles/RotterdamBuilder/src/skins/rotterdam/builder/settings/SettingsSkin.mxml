@@ -114,7 +114,7 @@
 			<s:Spacer height="20" />
 			
 			<s:Label text="Direct URL for this course" fontWeight="bold" />
-			<s:RichEditableText id="directStartURLLabel" editable="false" />
+			<s:TextInput id="directStartURLLabel" editable="false" width="800" borderVisible="false"/>
 			<!-- Disabled for the moment -->
 			<!--<s:Label text="Direct URL for this course" fontWeight="bold" />
 			<s:Label text="www.claritycoursebuilder.com/TEST" />-->

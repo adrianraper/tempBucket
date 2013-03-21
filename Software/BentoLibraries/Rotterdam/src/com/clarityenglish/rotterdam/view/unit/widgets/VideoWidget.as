@@ -15,10 +15,14 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		[SkinPart]
 		public var swfLoader:SWFLoader;
+
+		//gh #106
+		private var recordFlag:Boolean;
 		
 		public function VideoWidget() {
 			super();
 			
+			recordFlag = true;
 			addEventListener("srcAttrChanged", reloadVideo, false, 0, true);
 		}
 		
@@ -37,7 +41,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			
 			switch (instance) {
 				case swfLoader:
-					swfLoader.addEventListener(Event.COMPLETE, onSwfLoaderComplete);					
+					swfLoader.addEventListener(Event.COMPLETE, onSwfLoaderComplete);
 					swfLoader.scaleContent = true;
 					swfLoader.maintainAspectRatio = true;
 					reloadVideo();
@@ -47,7 +51,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected function onSwfLoaderComplete(event:Event):void {
 			event.target.content.addEventListener("onReady", resizeVideo, false, 0, true);
-			//alice: Detect video play
+			//gh #106
 			event.target.content.addEventListener(MouseEvent.CLICK, onClickVideo);
 		}
 		
@@ -79,10 +83,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			removeEventListener("srcAttrChanged", reloadVideo);
 		}
 		
-		//alice: Detect video play
+		//gh #106
 		protected function onClickVideo(event:MouseEvent):void {
-				trace("click video widget");
+			if (recordFlag)
+				playVideo.dispatch(xml);
 			
+			recordFlag = false;
 		}
 		
 	}

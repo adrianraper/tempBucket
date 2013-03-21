@@ -25,6 +25,9 @@
 	 */
 	public class WidgetMediator extends Mediator implements IMediator {
 		
+		//gh #106
+		private var exerciseMark:ExerciseMark = new ExerciseMark();
+		
 		public function WidgetMediator(mediatorName:String, viewComponent:Object) {
 			super(mediatorName, viewComponent);
 		}
@@ -48,6 +51,10 @@
 			view.openMedia.add(onOpenMedia);
 			view.openContent.add(onOpenContent);
 			view.textSelected.add(onTextSelected);
+			
+			//gh #106
+			view.playVideo.add(onPlayVideo);
+			view.playAudio.add(onPlayAudio);
 		}
 		
 		override public function onRemove():void {
@@ -56,6 +63,10 @@
 			view.openMedia.remove(onOpenMedia);
 			view.openContent.remove(onOpenContent);
 			view.textSelected.remove(onTextSelected);
+			
+			//gh #106
+			view.playVideo.remove(onPlayVideo);
+			view.playAudio.remove(onPlayAudio);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -115,6 +126,10 @@
 				var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 				navigateToURL(new URLRequest(srcHref.url), "_blank");
 			}
+			//gh #106
+			exerciseMark.duration = 120;
+			exerciseMark.UID = view.clarityUID;
+			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 		}
 		
 		/**
@@ -129,6 +144,20 @@
 		
 		protected function onTextSelected(format:TextLayoutFormat):void {
 			facade.sendNotification(RotterdamNotifications.TEXT_SELECTED, format);
+		}
+		
+		//gh #106
+		protected function onPlayVideo(widget:XML):void {
+			exerciseMark.duration = 60;
+			exerciseMark.UID = view.clarityUID;
+			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
+		}
+		
+		//gh #106
+		protected function onPlayAudio(widget:XML):void {
+			exerciseMark.duration = 60;
+			exerciseMark.UID = view.clarityUID;
+			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 		}
 		
 	}

@@ -58,7 +58,7 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var aboutContactNumberTextInput:TextInput;
 		
 		[SkinPart]
-		public var directStartURLLabel:RichEditableText;
+		public var directStartURLLabel:TextInput;
 		
 		[SkinPart]
 		public var groupTree:Tree;
