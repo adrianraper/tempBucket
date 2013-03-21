@@ -81,7 +81,7 @@ package com.clarityenglish.rotterdam.view.settings {
 
 		// gh#122
 		[SkinPart]
-		public var sendAlertEmail:spark.components.CheckBox;
+		public var sendAlertEmailCheckbox:spark.components.CheckBox;
 		
 		[SkinPart]
 		public var welcomeEmailButton:Button;
@@ -160,8 +160,8 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (aboutEmailTextInput) aboutEmailTextInput.text = course.@email;
 			if (aboutContactNumberTextInput) aboutContactNumberTextInput.text = course.@contact;
 			
-			// gh#122 Email
-			if (sendAlertEmail) sendAlertEmail.selected = course.@sendNotifications;
+			// gh#122 Notifications data
+			if (sendAlertEmailCheckbox) sendAlertEmailCheckbox.selected = (course.hasOwnProperty("@sendNotifications")) ? (course.@sendNotifications == 'true' ? true : false) : false;
 			
 			// gh#92
 			var folderName:String = copyProvider.getCopyForId('pathCCB');
@@ -313,8 +313,8 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					break;
 				// gh#122
-				case sendAlertEmail:
-					instance.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
+				case sendAlertEmailCheckbox:
+					instance.addEventListener(MouseEvent.CLICK, function(e:Event):void {
 						if (!isPopulating) {
 							course.@sendNotifications = e.target.selected;
 							dirty.dispatch();

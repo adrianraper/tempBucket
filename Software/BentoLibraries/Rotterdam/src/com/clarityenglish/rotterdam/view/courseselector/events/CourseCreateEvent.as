@@ -1,5 +1,8 @@
 package com.clarityenglish.rotterdam.view.courseselector.events {
 	import flash.events.Event;
+	import flash.globalization.DateTimeFormatter;
+	
+	import org.davekeen.util.DateUtil;
 	
 	public class CourseCreateEvent extends Event {
 		
@@ -21,8 +24,10 @@ package com.clarityenglish.rotterdam.view.courseselector.events {
 		 * A course is just a set of keys and values; this creates the set for passing to the server
 		 */
 		public function getCourseObj():Object {
+			// gh#184
 			return {
-				caption: _caption
+				caption: _caption,
+				created: DateUtil.dateToAnsiString(new Date())
 			};
 		}
 		

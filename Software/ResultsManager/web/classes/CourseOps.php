@@ -52,9 +52,16 @@ class CourseOps {
 			$courseNode = $xml->courses->addChild("course");
 			$courseNode->addAttribute("id", $id);
 			$courseNode->addAttribute("href", $id."/menu.xml");
-			foreach ($courseObj as $key => $value)
-				if (strtolower($key) != "id") $courseNode->addAttribute($key, $value);
-			
+			foreach ($courseObj as $key => $value) {
+				// gh#184 Don't duplicate caption in course and menu
+				switch (strtolower($key)) {
+					case 'id':
+					case 'caption':
+						break;
+					default:
+						$courseNode->addAttribute($key, $value);
+				}
+			}
 			// Make a folder for the course
 			mkdir($accountFolder."/".$id);
 			

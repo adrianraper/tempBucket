@@ -45,8 +45,8 @@
 	
 	<!-- Left hand side -->
 	<s:VGroup id="leftHandSide" top="100" width="390" paddingTop="22" left="40">
-		<!-- Calendar settings -->
-		<s:VGroup includeIn="calendar">
+		<!-- Group selector -->
+		<s:VGroup includeIn="calendar,email">
 			<s:Label text="1. Select a group" fontWeight="bold" />
 			<sparkTree:Tree id="groupTree"
 							dataProvider="{hostComponent.groupTreesCollection}"
@@ -55,6 +55,9 @@
 							iconFunction="getTreeIcon" />
 			
 			<s:Spacer height="12" />
+		</s:VGroup>
+		<!-- Publication dates settings -->
+		<s:VGroup includeIn="calendar">
 			
 			<s:Label text="2. How many days between units?" fontWeight="bold" />
 			<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
@@ -78,12 +81,16 @@
 			<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" />
 		</s:VGroup>
 		
-		<!-- Email settings -->
+		<!-- Notification settings -->
 		<s:VGroup includeIn="email">
-			<s:CheckBox id="sendAlertEmail" label="Send an email to all students when a new unit is available." />
-			<s:Button id="welcomeEmailButton" label="Send welcome email now" />
+			<s:Label text="2. Click to send a welcome email for this course to students in the selected group." fontWeight="bold" />
+			<s:Button id="welcomeEmailButton" label="Email now" enabled="{groupTree.selectedItem != null}"/>
+			<s:Spacer height="12" />
+			<s:Label text="For all students doing this course on a week-by-week basis:" />
+			<s:CheckBox id="sendAlertEmailCheckbox" label="Send an email when a new unit is available." />
 		</s:VGroup>
 		
+		<!-- About this course -->
 		<s:VGroup includeIn="about" paddingTop="70">
 			<s:Label text="Course name" fontWeight="bold" />
 			<s:TextInput id="aboutCourseNameTextInput" width="300" />
