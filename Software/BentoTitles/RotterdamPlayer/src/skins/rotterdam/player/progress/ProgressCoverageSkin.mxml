@@ -68,7 +68,7 @@
 				<s:Label text="Not completed" paddingTop="3" />
 			</s:HGroup>
 			
-			<s:DataGroup dataProvider="{new XMLListCollection(list.selectedItem.exercise)}">
+			<s:DataGroup dataProvider="{new XMLListCollection(list.selectedItem.exercise.(@type == 'audio' || @type == 'pdf' || @type == 'video' || @type == 'exercise'))}">
 				<s:layout>
 					<s:VerticalLayout gap="12" />
 				</s:layout>
