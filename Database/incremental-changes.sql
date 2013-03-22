@@ -843,3 +843,15 @@ ADD INDEX `Index_2` (`F_UserID` ASC)
 ALTER TABLE `rack80829`.`T_EditedContent` CHANGE COLUMN `ID` `ID` BIGINT(19) NULL DEFAULT 0;
 -- or 
 ALTER TABLE `rack80829`.`T_EditedContent` ADD COLUMN `ID` BIGINT(19) NULL DEFAULT 0 AFTER `F_RelatedUID`;
+
+CREATE TABLE T_CourseConcurrency (
+F_RootID int(11) NOT NULL,
+F_UserID int(11) NOT NULL,
+F_CourseID bigint(20) NOT NULL,
+F_Timestamp datetime NOT NULL,
+PRIMARY KEY (F_UserID,F_CourseID)
+) ENGINE=InnoDB;
+
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (1142, NOW(), 'course concurrency');

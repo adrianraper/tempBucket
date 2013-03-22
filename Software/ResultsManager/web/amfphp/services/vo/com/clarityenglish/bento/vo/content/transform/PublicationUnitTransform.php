@@ -57,9 +57,12 @@ EOD;
 			
 			// Now go through the XML setting the enabled flag for any unit that isn't in $validUnitIds
 			foreach ($course->unit as $unit) {
-				if (!in_array($unit['id'], $validUnitIds)) {
+				// gh#2 remember that $unit['id'] is a SimpleXMLElement, and that long strings need strict comparison for in_array
+				$thisUnitID = (string)$unit['id'];
+				if (!in_array($thisUnitID, $validUnitIds, true)) {
 					$unit->addAttribute("enabledFlag", ($unit['enabledFlag'] || 0) | 8);
 				}
+				
 			}
 		}
 	}

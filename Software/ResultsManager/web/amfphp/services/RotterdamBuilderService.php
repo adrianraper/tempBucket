@@ -40,12 +40,11 @@ class RotterdamBuilderService extends RotterdamService {
 				SELECT F_UserID 
 				FROM T_CourseConcurrency
 				WHERE F_CourseID=?
-				AND F_RootID=?
 				AND F_UserID != ?
 				AND F_Timestamp > DATE_SUB(NOW(), INTERVAL 1 MINUTE)
 EOD;
 			
-			$results = $this->db->GetCol($sql, array($courseId, Session::get('rootID'), Session::get('userID')));
+			$results = $this->db->GetCol($sql, array($courseId, Session::get('userID')));
 			
 			if ($results[0] > 0)
 				throw $this->copyOps->getExceptionForId("errorConcurrentCourseAccess");
@@ -65,7 +64,7 @@ EOD;
 			"F_Timestamp" => "NOW()",
 		);
 		
-		$this->db->Replace("T_CourseConcurrency", $fields, array("F_RootID", "F_UserID"));
+		$this->db->Replace("T_CourseConcurrency", $fields, array("F_UserID", "F_CourseID"));
 	}
 	
 	public function courseCreate($course) {

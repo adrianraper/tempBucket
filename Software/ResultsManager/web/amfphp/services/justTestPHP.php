@@ -1,4 +1,5 @@
 <?php
+/*
 	$args = "prefix=GLOBAL&session=123gadfasdf456798&studentID=P574528(8)&password=Sunshine1787&padding=00000000000000000000000000";
 	
 	$key = '123457980123457890';
@@ -8,7 +9,6 @@
 	$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_256, MCRYPT_MODE_ECB);
 	$iv = mcrypt_create_iv($iv_size, MCRYPT_RAND);
 	$encryptedArgs = mcrypt_encrypt(MCRYPT_RIJNDAEL_256, $key, $args, MCRYPT_MODE_ECB, $iv);
-	/*
 	$td = mcrypt_module_open('rijndael-256', '', 'ofb', '');
 	$iv = mcrypt_create_iv(mcrypt_enc_get_iv_size($td), MCRYPT_RAND);
     $ks = mcrypt_enc_get_key_size($td);
@@ -17,11 +17,41 @@
     $encryptedArgs = mcrypt_generic($td, $args);
 	mcrypt_generic_deinit($td);
 	mcrypt_module_close($td);
-	*/
     
 	$passedArgs = base64_encode($encryptedArgs);
 	$newURL = 'http://dock.projectbench/Software/ResultsManager/web/amfphp/services/justTestPHP2.php?data='.$passedArgs;
 	header('Location: ' . $newURL);
-	
+	*/
+
+	$validUnitIds = array();
+	$validUnitIds[] = '377666536745193046';
+
+		$thisUnitID = '377666536745193047';
+				if (in_array($thisUnitID, $validUnitIds, true)) {
+					$goodGosh = true;
+				} else {
+					$goodGosh = false;
+				}
+		$thisUnitID = '377666536';
+				if (in_array($thisUnitID, $validUnitIds)) {
+					$goodness = true;
+				} else {
+					$goodGosh = false;
+				}
+	$validUnitIds = array();
+	$validUnitIds[] = '377666536745';
+
+		$thisUnitID = '377666536746';
+				if (in_array($thisUnitID, $validUnitIds)) {
+					$goodGosh = true;
+				} else {
+					$goodGosh = false;
+				}
+		$thisUnitID = '377666536';
+				if (in_array('adfsadf', $validUnitIds)) {
+					$goodness = true;
+				} else {
+					$goodGosh = false;
+				}
 flush();
 exit();
