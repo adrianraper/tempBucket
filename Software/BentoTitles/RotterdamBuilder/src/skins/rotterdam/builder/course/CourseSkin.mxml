@@ -91,12 +91,6 @@
 	
 	<s:VGroup top="{unitContainer.height + 10}" left="2" includeIn="uniteditor">
 		<s:Button id="addUnitButton" label="Add a unit" useHandCursor="true" buttonMode="true" />
-		<s:Button id="courseSettingsButton" label="Course settings" useHandCursor="true" buttonMode="true" />
-		<!-- gh#208 -->
-		<s:Button id="coursePublishButton" label="Publish course" useHandCursor="true" buttonMode="true" 
-				  			visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" />
-		<s:Label id="courseAlreadyPublishLabel" text="This course has already been published."
-				 			visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}"/>
 		
 		<!-- temporarily put these buttons here (gh#110) but they will likely move elsewhere later -->
 		<s:Spacer height="20" />
@@ -109,6 +103,30 @@
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50"/>
 	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="55" bottom="100" />
+	
+	<!--alice p-->
+	<s:VGroup bottom="120" width="150" gap="-1" includeIn="uniteditor">	
+		<s:Group id="publishSelectionGroup" visible="false">
+			<!--s:Rect width="140" height="200" left="8" radiusX="8" radiusY="8" alpha="0.8">
+			<s:fill>
+			<s:SolidColor color="#363636" />
+			</s:fill>
+			</s:Rect-->
+			<s:VGroup left="8" gap="-3">							
+				<s:Group>
+					<!-- gh#208 -->
+					<s:Button id="oneClickPublishButton" label="1-click" useHandCursor="true" buttonMode="true" height="100" width="140"
+							  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" />
+				</s:Group>
+				
+				<s:Button id="publishSettingsButton" label="Publish settings" useHandCursor="true" buttonMode="true" height="100" width="140"/>
+			</s:VGroup>			
+		</s:Group>		
+		<s:Group>
+			<s:ToggleButton id="publishCoursButton" label="Publish Course" height="50" width="140" left="8" fontWeight="bold" fontSize="12" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" />
+			<s:Button id="publishChangeButton" label="Change publish details" left="3" fontWeight="bold" fontSize="12" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
+		</s:Group>
+	</s:VGroup>
 	
 	<course:ToolBarView bottom="38" left="0" right="0" />
 	

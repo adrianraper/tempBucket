@@ -65,6 +65,9 @@
 		// Copy/paste unit gh#110
 		public static const UNIT_COPY:String = "rotterdam/unit_copy";
 		public static const UNIT_PASTE:String = "rotterdam/unit_paste";
+		
+		//alice s
+		public static const HELP_PUBLISH_WINDOWN_SHOW:String = "rotterdam/help_publish_window_show";
 
 		// gh#122
 		public static const SEND_WELCOME_EMAIL:String = "rotterdam/send_welcome_email"; 

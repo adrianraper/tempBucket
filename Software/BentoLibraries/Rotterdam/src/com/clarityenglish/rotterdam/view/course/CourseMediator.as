@@ -36,6 +36,9 @@
 			view.unitSelect.add(onUnitSelect);
 			view.coursePublish.add(onCoursePublish);
 			
+			//alice s
+			view.helpPublish.add(onHelpPublish);
+			
 			// gh#110 - use real events instead of signals because they hook into system copy/paste shortcuts automatically
 			view.addEventListener(Event.COPY, onUnitCopy);
 			view.addEventListener(Event.PASTE, onUnitPaste);
@@ -111,6 +114,11 @@
 		protected function onUnitPaste(event:Event):void {
 			if (view.canPasteFromTarget(event.target))
 				facade.sendNotification(RotterdamNotifications.UNIT_PASTE);
+		}
+		
+		//alice s
+		protected function onHelpPublish():void {
+			facade.sendNotification(RotterdamNotifications.HELP_PUBLISH_WINDOWN_SHOW);
 		}
 		
 	}

@@ -12,6 +12,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSavedCommand;
+	import com.clarityenglish.rotterdam.builder.controller.HelpPublishWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaCloudSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
@@ -33,6 +34,8 @@
 	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
+	import com.clarityenglish.rotterdam.builder.view.settings.HelpPublishMediator;
+	import com.clarityenglish.rotterdam.builder.view.settings.HelpPublishView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
@@ -60,6 +63,8 @@
 			mapView(ContentSelectorView, ContentSelectorMediator);
 			mapView(SettingsView, SettingsMediator);
 			mapView(CourseCreateView, CourseCreateMediator);
+			//alice s
+			mapView(HelpPublishView, HelpPublishMediator);
 			
 			// gh#88 (see CommonAbstractApplicationFacade for comments on this)
 			registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);
@@ -88,6 +93,8 @@
 			
 			registerCommand(RotterdamNotifications.CONTENT_WINDOW_SHOW, ContentWindowShowCommand);
 			registerCommand(RotterdamNotifications.COURSE_CREATE_WINDOW_SHOW, CourseCreateWindowShowCommand);
+			//alice s
+			registerCommand(RotterdamNotifications.HELP_PUBLISH_WINDOWN_SHOW, HelpPublishWindowShowCommand);
 			
 			// gh#110
 			registerCommand(RotterdamNotifications.UNIT_COPY, UnitCopyCommand);

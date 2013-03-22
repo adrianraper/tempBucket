@@ -19,8 +19,10 @@ package com.clarityenglish.rotterdam.view.course {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
+	import spark.components.ToggleButton;
 	import spark.events.IndexChangeEvent;
 	
 	import ws.tink.spark.controls.Alert;
@@ -39,10 +41,10 @@ package com.clarityenglish.rotterdam.view.course {
 		public var addUnitButton:Button;
 		
 		[SkinPart]
-		public var courseSettingsButton:Button;
+		public var publishSettingsButton:Button;
 		
 		[SkinPart]
-		public var coursePublishButton:Button;
+		public var oneClickPublishButton:Button;
 		
 		[SkinPart]
 		public var unitCopyButton:Button;
@@ -53,20 +55,35 @@ package com.clarityenglish.rotterdam.view.course {
 		[SkinPart]
 		public var unitHeader:UnitHeaderView;
 		
+		[SkinPart]
+		public var publishCoursButton:ToggleButton;
+		
+		[SkinPart]
+		public var publishSelectionGroup:spark.components.Group;
+		
+		[SkinPart]
+		public var publishChangeButton:Button;
+		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
 		// gh#208 DK: should we pass the group from the mediator to here so that the view can create the default node
 		// or should we just let the mediator do it?
-		public var group:Group;
+		public var group:com.clarityenglish.common.vo.manageable.Group;
 		
 		private var _isPreviewVisible:Boolean;
 		//gh #211
 		private var currentIndex:Number;
 		private var unitListLength:Number;
 		
+		//alice p
+		private var outsideClick:Boolean = false;
+		private var itemClick:Boolean = false;
+		
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
+		//alice s
+		public var helpPublish:Signal = new Signal();
 		
 		public function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
@@ -94,6 +111,11 @@ package com.clarityenglish.rotterdam.view.course {
 			super.updateViewFromXHTML(xhtml);
 			
 			if (courseCaptionLabel) courseCaptionLabel.text = course.@caption;
+		}
+		
+		//alice p
+		protected override function onAddedToStage(event:Event):void {
+			stage.addEventListener(MouseEvent.CLICK, onStageClick);
 		}
 		
 		protected override function commitProperties():void {
@@ -138,17 +160,27 @@ package com.clarityenglish.rotterdam.view.course {
 				case addUnitButton:
 					addUnitButton.addEventListener(MouseEvent.CLICK, onAddUnit);
 					break;
-				case courseSettingsButton:
-					courseSettingsButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
+				case publishSettingsButton:
+					publishSettingsButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
 					break;
-				case coursePublishButton:
-					coursePublishButton.addEventListener(MouseEvent.CLICK, onCoursePublish);
+				case oneClickPublishButton:
+					oneClickPublishButton.addEventListener(MouseEvent.CLICK, onCoursePublish);
 					break;
 				case unitCopyButton:
 					unitCopyButton.addEventListener(MouseEvent.CLICK, onUnitCopy);
 					break;
 				case unitPasteButton:
 					unitPasteButton.addEventListener(MouseEvent.CLICK, onUnitPaste);
+					break;
+				//alice p
+				case publishCoursButton:
+					publishCoursButton.addEventListener(MouseEvent.CLICK, onPublishCourse);
+					break;
+				case publishSelectionGroup:
+					publishSelectionGroup.addEventListener(MouseEvent.CLICK, onPublishSelection);
+					break
+				case publishChangeButton:
+					publishChangeButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
 					break;
 			}
 		}
@@ -161,7 +193,7 @@ package com.clarityenglish.rotterdam.view.course {
 			//gh #211
 			unitListLength = unitList.dataProvider.length;
 			currentIndex = unitListCollection.getItemIndex(event.unit);
-
+			
 			Alert.show("Are you sure", "Delete", Vector.<String>([ "No", "Yes" ]), this, function(closeEvent:CloseEvent):void {
 				if (closeEvent.detail == 1) {
 					if (unitListLength > 1) {
@@ -193,7 +225,13 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onCourseSettings(event:MouseEvent):void {
+			//alice S
+			if (this.canPublish) {
+				helpPublish.dispatch();
+			}
 			navigator.pushView(SettingsView);
+			
+			itemClick = true;
 		}
 		
 		protected function onCoursePublish(event:MouseEvent):void {
@@ -211,6 +249,8 @@ package com.clarityenglish.rotterdam.view.course {
 				course.publication.appendChild(<group id={group.id} seePastUnits='1' unitInterval='0' startDate={startDate} endDate={endDate} />);
 				coursePublish.dispatch();
 			}
+			
+			itemClick = true;
 		}
 		
 		protected function onUnitCopy(event:MouseEvent):void {
@@ -234,6 +274,32 @@ package com.clarityenglish.rotterdam.view.course {
 		protected override function getCurrentSkinState():String {
 			return (_isPreviewVisible) ? "unitplayer" : "uniteditor";
 		}
-
+		
+		//alice p
+		protected function onPublishCourse(event:MouseEvent):void {
+			publishSelectionGroup.visible = true;
+			outsideClick = false;
+		}
+		
+		//alice p
+		protected function onPublishSelection(event:MouseEvent):void {
+			if (!itemClick) {
+				outsideClick = false;
+			}
+		}
+		
+		//alice p
+		protected function onStageClick(event:MouseEvent):void {
+			if (outsideClick) {
+				publishSelectionGroup.visible = false;
+				publishCoursButton.skin.setCurrentState("up", true);
+				publishCoursButton.selected = false;
+			} else {
+				outsideClick = true;
+				itemClick = false;
+			}
+			
+		}
+		
 	}
 }

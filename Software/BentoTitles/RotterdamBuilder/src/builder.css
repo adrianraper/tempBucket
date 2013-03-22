@@ -18,6 +18,7 @@
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace sparkTree "com.sparkTree.*";
 @namespace tink "ws.tink.spark.controls.*";
+@namespace showPublishSettingDemo "com.clarityenglish.rotterdam.builder.view.settings.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -110,12 +111,29 @@ course1|CourseView s|BorderContainer#unitContainer {
 	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
 }
 
-course1|CourseView s|Button#courseSettingsButton {
+/*course1|CourseView s|Button#courseSettingsButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.CourseSettingButtonSkin");
 }
 
 course1|CourseView s|Button#coursePublishButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.CoursePublishButtonSkin");
+}*/
+
+course1|CourseView s|Button#publishSettingsButton {
+	skinClass: ClassReference("skins.rotterdam.builder.course.publishSettingButtonSkin");
+}
+
+course1|CourseView s|Button#oneClickPublishButton {
+	skinClass: ClassReference("skins.rotterdam.builder.course.oneClickPublishButtonSkin");
+}
+
+course1|CourseView s|ToggleButton#publishCoursButton {
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeToggleButtonSkin");
+}
+
+course1|CourseView s|Button#publishChangeButton {
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+	buttonHeight: 50;
 }
 
 course|ToolBarView {
@@ -299,15 +317,24 @@ settings|SettingsView s|FormItem {
 }
 
 settings|SettingsView s|Button#saveButton {
-	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSaveButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
 }
 
 settings|SettingsView s|Button#backButton {
-	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsBackButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.unit.CancelButtonSkin");
 }
 
 settings|SettingsView s|TabBar#tabBar {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingTabBarSkin");
+}
+
+showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {
+	skinsClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+}
+
+showPublishSettingDemo|HelpPublishView {
+	skinClass: ClassReference("skins.rotterdam.builder.settings.HelpPublishSkin");
+	headerVisible: false;
 }
 
 .markingTitleWindow {
@@ -316,8 +343,14 @@ settings|SettingsView s|TabBar#tabBar {
 	borderColor: #A1A1A1;
 }
 
+.noHeaderTitleWindow {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.TitleWindowSkin");
+	cornerRadius: 8;
+	borderColor: #A1A1A1;
+	headerVisible: false;
+}
+
 .orangeButton {
 	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 	buttonHeight: 25;
 }
-

@@ -4,7 +4,8 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:calendar="com.clarityenglish.controls.calendar.*"
 		xmlns:sparkTree="com.sparkTree.*"
-		xmlns:widgets="skins.assets.widgets.*">
+		xmlns:widgets="skins.assets.widgets.*"
+		xmlns:settings="com.clarityenglish.rotterdam.view.settings.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.settings.SettingsView")]
@@ -12,6 +13,8 @@
 	
 	<fx:Declarations>
 		<s:RadioButtonGroup id="pastUnitsRadioButtonGroup" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
+		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
 	</fx:Declarations>
 	
 	<fx:Script>
@@ -141,9 +144,31 @@
 		</s:VGroup>
 	</s:VGroup>
 	
-	<s:HGroup bottom="18" left="30" verticalCenter="210" gap="20">
+	<!--s:HGroup bottom="18" left="30" verticalCenter="210" gap="20">
 		<s:Button id="backButton" label="Back" />
 		<s:Button id="saveButton" label="Save changes" />
-	</s:HGroup>
+	</s:HGroup-->
+	
+	<s:Group bottom="38" left="0" right="0">
+		<s:Rect left="3" right="3" height="48" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" bottom="0">
+			<s:fill>
+				<s:SolidColor color="#363636" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect includeIn="normal" left="260" right="295" height="48" bottom="0">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0x8CC63F" ratio="0.5" />
+					<s:GradientEntry color="0x72A133" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+		<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
+			<s:Button id="saveButton" label="Save and Publish" useHandCursor="true" buttonMode="true" width="160"/>
+			<s:Button id="backButton" label="Cancel" useHandCursor="true" buttonMode="true" />
+		</s:HGroup>
+	</s:Group>
+
 	
 </s:Skin>

@@ -115,6 +115,8 @@
             borderStroke.alpha = getStyle("borderAlpha");
             backgroundFill.color = getStyle("backgroundColor");
             backgroundFill.alpha = getStyle("backgroundAlpha");
+			
+			topGroup.visible = getStyle("headerVisible");
             
             super.updateDisplayList(unscaledWidth, unscaledHeight);
         }
@@ -200,7 +202,7 @@
                 <s:VerticalLayout gap="0" horizontalAlign="justify" />
             </s:layout>
             <!--- @private -->
-            <s:Group id="topGroup" mask="{topGroupMask}">
+            <s:Group id="topGroup" mask="{topGroupMask}" >
                 
                 <!--- layer 0: title bar fill @private -->
                 <s:Rect id="tbFill" left="0" right="0" top="0" bottom="1" height="33" filters="{dropShadowFilter}">
