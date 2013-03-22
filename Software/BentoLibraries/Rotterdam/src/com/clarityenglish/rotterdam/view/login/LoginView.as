@@ -17,6 +17,7 @@ package com.clarityenglish.rotterdam.view.login {
 	
 	import spark.components.Button;
 	import spark.components.FormHeading;
+	import spark.components.Label;
 	import spark.components.TextInput;
 	
 	public class LoginView extends BentoView implements LoginComponent {
@@ -58,8 +59,8 @@ package com.clarityenglish.rotterdam.view.login {
 		[SkinPart]
 		public var quickStartButton:Button;
 		
-		[Bindable]
-		public var loginKey_lbl:String;
+		[SkinPart]
+		public var loginKey_lbl:Label;
 		
 		[Bindable]
 		public var loginName_lbl:String;
@@ -69,6 +70,9 @@ package com.clarityenglish.rotterdam.view.login {
 		
 		[Bindable]
 		public var loginEmail_lbl:String;
+		
+		[SkinPart]
+		public var loginPassword_lbl:Label;
 		
 		// #341
 		private var _loginOption:Number;
@@ -196,7 +200,14 @@ package com.clarityenglish.rotterdam.view.login {
 				case newUserButton:
 				case cancelButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
-					break;				
+					break;
+				case loginKey_lbl:
+					trace("get leteral");
+					loginKey_lbl.text = this.copyProvider.getCopyForId("yourName");
+					break;
+				case loginPassword_lbl:
+					loginPassword_lbl.text = this.copyProvider.getCopyForId("passwordLabel");
+					break;
 			}
 		}
 		

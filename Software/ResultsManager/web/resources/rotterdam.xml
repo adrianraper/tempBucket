@@ -94,7 +94,7 @@
 			
 			<lit name="loginButton">Log in</lit>
 			<lit name="passwordLabel">Password:</lit>
-			<lit name="yourName">Your name:</lit>
+			<lit name="yourName">Name:</lit>
 			<lit name="loginID">Login id:</lit>
 			<lit name="yourID">Your id:</lit>
 			<lit name="yourEmail">Your email:</lit>

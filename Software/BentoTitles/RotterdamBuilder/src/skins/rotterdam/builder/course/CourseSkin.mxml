@@ -80,7 +80,7 @@
 								<s:Button id="deleteCourseButton"
 										  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
 										  visible="false"
-										  click="dispatchEvent(new UnitDeleteEvent(UnitDeleteEvent.UNIT_DELETE, data as XML, true))" />
+										  click="dispatchEvent(new UnitDeleteEvent(UnitDeleteEvent.UNIT_DELETE, data as XML, true))" scaleX="0.8" scaleY="0.8"/>
 							</s:Group>
 						</s:ItemRenderer>
 					</fx:Component>
