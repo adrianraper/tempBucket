@@ -344,7 +344,7 @@ Or just click {loginText}.]]>
 		</group>
 	</language>
 
-	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
+	<language name="Simplified Chinese" code="ZHO" mediaFolder="ZH">
 		<group name="group">
             <lit name="loginIDLabel">您需要已经注册了你的学校或者你的电子邮件，与英国文化协会，进行登录。</lit>		
 			<lit name="colorBarIntroLabel">彩色条形图显示了您在各个技能单元中的完成情况。详情请查看My Progress。</lit>
