@@ -112,5 +112,12 @@ XML;
 			usleep(500);
 		}
 	}
-		
+
+	// gh#122
+	public function sendWelcomeEmail($courseID, $groupID) {
+		// This will send a welcome email to any student in this group for this course
+		// (and subgroups that don't have their own publication data??)
+		// TODO. Can I make this trigger a background process so I can get back quickly?
+		return true;
+	}
 }

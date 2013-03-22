@@ -236,11 +236,16 @@ SQL;
 		$emailArray = array();
 		
 		$sql = <<<SQL
-			SELECT us.* FROM T_UnitStart us, T_CourseStart cs 
+			SELECT us.*, 
+					ar.F_Prefix as prefix, ar.F_LoginOption as loginOption,	a.F_ContentLocation as contentLocation
+			FROM T_UnitStart us, T_CourseStart cs, T_AccountRoot ar, T_Accounts a 
 			WHERE us.F_CourseID = cs.F_CourseID
 			AND us.F_GroupID = cs.F_GroupID
 			AND us.F_StartDate = ? 
 			AND cs.F_StartMethod = 'group'
+			AND ar.F_RootID = cs.F_RootID
+			AND ar.F_RootID = a.F_RootID
+			AND a.F_ProductCode = 54
 			ORDER by us.F_CourseID
 SQL;
 		$bindingParams = array($today);
@@ -253,14 +258,18 @@ SQL;
 				$courseID = $dbObj->F_CourseID;
 				$groupID = $dbObj->F_GroupID;
 				$unitID = $dbObj->F_UnitID;
+				// TODO. Would it be better to get the whole account object?
+				$contentLocation = $dbObj->contentLocation;
+				$prefix = $dbObj->prefix;
+				$loginOption = $dbObj->loginOption;
 				
 				// I want to get course and unit data - but that means reading the xml!
 				// I would like to put the course name, teacher details, unit name, direct start URL into the email
 				// If I order the SQL by group ID, then I can at least do all at once
-				// TODO. Add T_Accounts into the query keyed on F_RootID to get the CCB dbContentLocation
-				$this->courseOps->setAccountFolder('../../'.$GLOBALS['ccb_data_dir'].'/'.'Clarity');
+				$this->courseOps->setAccountFolder('../../'.$GLOBALS['ccb_data_dir'].'/'.$contentLocation);
 				
 				if ($savedCourseID != $courseID) {
+					// Add properties to the course object that we will send to the email
 					// TODO. This seems abusive use of the course since we give it properties that are not in the class
 					$course = new Course();
 					$courseXML = $this->courseOps->getCourse($courseID);
@@ -268,7 +277,8 @@ SQL;
 					
 					foreach ($courseXML->attributes() as $key => $value)
 						$course->{$key} = (string) $value;
-						
+
+					// Grab the unit caption
 					$unitXML = $courseXML->xpath("//xmlns:unit[@id='$unitID']");
 					foreach ($unitXML[0]->attributes() as $key => $value) {
 						if (strtolower($key) == 'caption') {
@@ -276,7 +286,11 @@ SQL;
 							break;
 						}
 					}
-						
+					// Add other useful data into the course
+					$course->prefix = $prefix;
+					$course->loginOption = $loginOption;
+					$course->startDate = $today;
+			
 				}
 				
 				// Now we need get all the active users in this group

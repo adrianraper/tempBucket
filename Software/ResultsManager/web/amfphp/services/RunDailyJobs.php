@@ -23,10 +23,12 @@ date_default_timezone_set('UTC');
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
 	// v3.0.6 This script may be run by CRON too, in which case skip authentication. How to tell?
+	/*
 	if (isset($_SERVER["SERVER_NAME"])) {
 		echo "<h2>You are not logged in</h2>";
 		exit(0);
 	}
+	*/
 }
 // Set up line breaks for whether this is outputting to html page or a text file
 if (isset($_SERVER["SERVER_NAME"])) {
@@ -83,16 +85,21 @@ function runDailyJobs($triggerDate = null) {
 	$rc = $thisService->dailyJobOps->archiveOldUsers($roots,$regDate);
 	echo "Archived $rc LearnEnglish level test users who registered before $regDate. $newLine";	
 	
+	*/
 	// 4. EmailMe for Rotterdam
 	
 	// First task is to find units that start today, get all users in the groups the units are published for
-	// and send out the email
+	// and send out the email.
+	// Date is UTC and this job runs at 16:00 UTC. So it should be based on units starting tomorrow.
+	// This means that Vancouver students will see the email the day before the unit is available, so wording
+	// in the email needs to include the date rather than 'now/today'.
+	$courseDate = date('Y-m-d', addDaysToTimestamp($triggerDate, 1));
 	$templateID = 'EmailMeUnitStart';
-	$emailArray = $thisService->dailyJobOps->getEmailsForGroupUnitStart($expiryDate);
+	$emailArray = $thisService->dailyJobOps->getEmailsForGroupUnitStart($courseDate);
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
 		$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-		echo "Sent ".length($emailArray)." emails for units starting $expiryDate. $newLine";
+		echo "Sent ".count($emailArray)." emails for units starting $courseDate. $newLine";
 			
 	} else {
 		// Or print on screen
@@ -101,14 +108,14 @@ function runDailyJobs($triggerDate = null) {
 		}
 	}
 
-	*/
+	/*
 	// Then repeat for courses that are published to start whenever a user first goes into them
 	$templateID = 'EmailMeUserFirstStart';
 	$emailArray = $thisService->dailyJobOps->getEmailsForUserFirstStart($expiryDate);
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
 		$thisService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
-		echo "Sent ".length($emailArray)." emails for users starting $expiryDate. $newLine";
+		echo "Sent ".count($emailArray)." emails for users starting $expiryDate. $newLine";
 			
 	} else {
 		// Or print on screen
@@ -116,7 +123,7 @@ function runDailyJobs($triggerDate = null) {
 			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 		}
 	}
-	
+	*/
 }
 
 // Action

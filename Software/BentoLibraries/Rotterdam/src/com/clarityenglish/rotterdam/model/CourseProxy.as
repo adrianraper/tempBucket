@@ -188,7 +188,13 @@ package com.clarityenglish.rotterdam.model {
 		public function courseEnd():void {
 			courseSessionTimer.reset();
 		}
+
 		
+		// gh#122
+		public function sendWelcomeEmail(courseID:String, groupID:Number):AsyncToken {
+			return new RemoteDelegate("sendWelcomeEmail", [ courseID, groupID ], this).execute();
+		}
+
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
 		public function onDelegateResult(operation:String, data:Object):void {

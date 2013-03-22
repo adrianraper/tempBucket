@@ -102,8 +102,8 @@
 			
 			<s:Spacer height="20" />
 			
-			<!--s:Label text="Email" fontWeight="bold" />
-			<s:TextInput id="aboutEmailTextInput" width="300" /-->
+			<s:Label text="Contact email" fontWeight="bold" />
+			<s:TextInput id="aboutEmailTextInput" width="300" />
 			
 			<s:Spacer height="20" />
 			
@@ -114,9 +114,6 @@
 			
 			<s:Label text="Direct URL for this course" fontWeight="bold" />
 			<s:TextInput id="directStartURLLabel" editable="false" width="800" borderVisible="false"/>
-			<!-- Disabled for the moment -->
-			<!--<s:Label text="Direct URL for this course" fontWeight="bold" />
-			<s:Label text="www.claritycoursebuilder.com/TEST" />-->
 		</s:VGroup>
 	</s:VGroup>
 	
