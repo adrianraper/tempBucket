@@ -290,15 +290,16 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		//alice p
 		protected function onStageClick(event:MouseEvent):void {
-			if (outsideClick) {
-				publishSelectionGroup.visible = false;
-				publishCoursButton.skin.setCurrentState("up", true);
-				publishCoursButton.selected = false;
-			} else {
-				outsideClick = true;
-				itemClick = false;
-			}
-			
+			if (publishSelectionGroup) {
+				if (outsideClick) {
+					publishSelectionGroup.visible = false;
+					publishCoursButton.skin.setCurrentState("up", true);
+					publishCoursButton.selected = false;
+				} else {
+					outsideClick = true;
+					itemClick = false;
+				}
+			}						
 		}
 		
 	}
