@@ -145,7 +145,7 @@ Or just click {loginText}.]]>
 			<lit name="notCurAvailable">Not currently available.</lit>
 			<lit name="onlyAvailableFV">Only available in the Full Version. Click above to upgrade.</lit>
 			<lit name="onlyAvailableLM">Only available in the Last Minute version. Click above to upgrade.</lit>
-			<lit name="notAvailbleDemo">Not available in this demo.</lit>
+			<lit name="notAvailbleDemo">Not available in this demo. For demo exercises, please go to Practice zone - Set 2. For demo practice test, please click on Practice test 1.</lit>
 			<lit name="notAvailble">Not available in the current version. Click above to upgrade.</lit>
 			<lit name="compareInstructionLabel">This chart compares your scores with other Road to IELTS users worldwide</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>

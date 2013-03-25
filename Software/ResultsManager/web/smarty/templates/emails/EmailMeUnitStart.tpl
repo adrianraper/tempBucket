@@ -5,6 +5,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title>{$course->caption} new unit coming up</title>
 		<!-- <from>support@clarityenglish.com</from> -->
+		<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->		
 	</head>
 <body>
 <!-- 
@@ -18,6 +19,7 @@
   </tr>
   <tr align="left" valign="top">
     <td>
+	<p style="margin: 0 0 10px 0; padding:0;">== Please note that this email is send as part of beta-testing the Clarity Course Builder ==</p>
 	<p style="margin: 0 0 10px 0; padding:0;">Dear {$user->name}</p>
 	<p style="margin: 0 0 10px 0; padding:0;">A new unit in the course {$course->caption} is available, starting from {$course->startDate}.</p>
 	<p style="margin: 0 0 10px 0; padding:0;">It's called: <b>{$course->unitName}</b></p>
