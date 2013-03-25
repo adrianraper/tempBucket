@@ -90,7 +90,7 @@
 			</s:fill>
 		</s:Path>
 		<s:Label id="labelDisplay"
-				 horizontalCenter="-6" top="14" fontWeight="bold" fontSize="13">
+				 horizontalCenter="-6" top="14" paddingRight="10" paddingLeft="10" fontWeight="bold" fontSize="13">
 		</s:Label>
 	</s:Group>
 

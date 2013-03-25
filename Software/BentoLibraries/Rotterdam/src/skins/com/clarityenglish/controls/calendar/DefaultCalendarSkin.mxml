@@ -18,15 +18,15 @@
 		<s:Button id="nextMonthButton" />
 	</s:HGroup>
 	
-	<s:DataGroup id="daysDataGroup" width="638" top="35" itemRenderer="com.clarityenglish.controls.calendar.DayHeaderRenderer">
+	<s:DataGroup id="daysDataGroup" width="700" top="35" itemRenderer="com.clarityenglish.controls.calendar.DayHeaderRenderer">
 		<s:layout>
-			<s:TileLayout requestedColumnCount="7" requestedRowCount="1" columnWidth="85"/>
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="1" columnWidth="95" horizontalGap="10"/>
 		</s:layout>
 	</s:DataGroup>
 	
-	<s:DataGroup id="dataGroup" top="55" width="638" height="396" itemRenderer="com.clarityenglish.controls.calendar.DayRenderer">
+	<s:DataGroup id="dataGroup" top="55" width="700" height="396" itemRenderer="com.clarityenglish.controls.calendar.DayRenderer">
 		<s:layout>
-			<s:TileLayout requestedColumnCount="7" requestedRowCount="6" columnWidth="85"/>
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="6" columnWidth="95" rowHeight="70" verticalGap="10" horizontalGap="10"/>
 		</s:layout>
 	</s:DataGroup>
 	

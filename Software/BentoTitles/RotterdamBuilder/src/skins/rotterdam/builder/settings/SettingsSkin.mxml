@@ -13,6 +13,7 @@
 	
 	<fx:Declarations>
 		<s:RadioButtonGroup id="pastUnitsRadioButtonGroup" />
+		<s:RadioButtonGroup id="unitIntervalRadioButtonGroup" />
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
 	</fx:Declarations>
@@ -43,26 +44,58 @@
 	
 	<!-- The tab bar -->
 	<s:TabBar id="tabBar" top="70" left="30"/>
-	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="105" left="10" includeIn="calendar,email"/>
-	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/about-bg.png')" top="105" left="10" includeIn="about"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="105" left="10" includeIn="calendar,email, about"/>
+	<!--s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/about-bg.png')" top="105" left="10" includeIn="about"/-->
 	
 	<!-- Left hand side -->
-	<s:VGroup id="leftHandSide" top="100" width="390" paddingTop="22" left="40">
+	<s:VGroup id="leftHandSide" top="100" width="390" paddingTop="22" left="40">		
+		<s:Spacer height="12" />
 		<!-- Group selector -->
 		<s:VGroup includeIn="calendar,email">
-			<s:Label text="1. Select a group" fontWeight="bold" />
+			<s:Label id="selectGroupLabel"  fontWeight="bold" />
 			<sparkTree:Tree id="groupTree"
 							dataProvider="{hostComponent.groupTreesCollection}"
 							width="300"
 							labelField="name"
 							iconFunction="getTreeIcon" />
 			
-			<s:Spacer height="12" />
+			<s:Spacer height="18" />
 		</s:VGroup>
 		<!-- Publication dates settings -->
 		<s:VGroup includeIn="calendar">
 			
-			<s:Label text="2. How many days between units?" fontWeight="bold" />
+			<s:Label id="startDateLabel" fontWeight="bold" />
+			<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
+			
+			<s:Spacer height="18" />
+			
+			<s:Label id="endDateLabel" fontWeight="bold" />
+			<s:Label id="endDateInstruLabel" />
+			<s:HGroup>
+				<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" />
+				<s:Button id="clearEndDateButton" />
+			</s:HGroup>		
+				
+			<s:Spacer height="18" />
+			
+			<s:Label id="unitIntervalLabel" fontWeight="bold" />
+			<s:VGroup id="unitIntervalGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
+				<s:RadioButton id="allUnitAvaRadioButton" value="true" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+				<s:HGroup>
+					<s:RadioButton id="unitSuccesiveRadioButton" value="false" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+					<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
+				</s:HGroup>				
+			</s:VGroup>			
+			
+			<s:Spacer height="18" />
+			
+			<s:Label id="seePastUnitLabel" fontWeight="bold" />
+			<s:HGroup id="seePastUnitsGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
+				<s:RadioButton id="yesRoadioButton" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+				<s:RadioButton id="noRoadioButton" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+			</s:HGroup>
+			
+			<!--s:Label text="2. How many days between units?" fontWeight="bold" />
 			<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
 			
 			<s:Spacer height="12" />
@@ -81,7 +114,7 @@
 			<s:Spacer height="12" />
 			
 			<s:Label text="5. End date for this course" fontWeight="bold" />
-			<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" />
+			<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" /-->
 		</s:VGroup>
 		
 		<!-- Notification settings -->
@@ -94,7 +127,7 @@
 		</s:VGroup>
 		
 		<!-- About this course -->
-		<s:VGroup includeIn="about" paddingTop="70">
+		<s:VGroup includeIn="about" paddingTop="22">
 			<s:Label text="Course name" fontWeight="bold" />
 			<s:TextInput id="aboutCourseNameTextInput" width="300" />
 			
@@ -121,7 +154,7 @@
 	</s:VGroup>
 	
 	<!-- Right hand side -->
-	<s:VGroup top="145" left="440">
+	<s:VGroup top="105" left="440">
 		<!-- Calendar -->
 		<s:VGroup includeIn="calendar">
 			<calendar:Calendar id="calendar" enabled="{groupTree.selectedItem != null}" />

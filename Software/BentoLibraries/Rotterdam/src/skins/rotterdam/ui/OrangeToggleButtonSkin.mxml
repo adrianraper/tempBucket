@@ -121,9 +121,9 @@
         <s:fill>
             <s:LinearGradient rotation="90">
                 <s:GradientEntry color="0XFFC700" 
-                               color.selectedStates="0XFFC700"/>
+                               color.selectedStates="0XFFDE01"/>
                 <s:GradientEntry color="0XFF9D00" 
-                               color.selectedStates="0XFF9D00" />
+                               color.selectedStates="0xFFBF01" />
             </s:LinearGradient>
         </s:fill>
     </s:Rect>

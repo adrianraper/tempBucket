@@ -116,7 +116,13 @@
             backgroundFill.color = getStyle("backgroundColor");
             backgroundFill.alpha = getStyle("backgroundAlpha");
 			
-			topGroup.visible = getStyle("headerVisible");
+			if (getStyle("headerVisible") == false)
+			{
+				topGroup.visible = false;
+			}
+			else {
+				topGroup.visible = true;
+			}		
             
             super.updateDisplayList(unscaledWidth, unscaledHeight);
         }

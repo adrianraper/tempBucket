@@ -17,6 +17,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import mx.collections.ListCollectionView;
 	import mx.controls.DateField;
 	import mx.core.ClassFactory;
+	import mx.events.CalendarLayoutChangeEvent;
 	import mx.events.FlexEvent;
 	import mx.events.ItemClickEvent;
 	import mx.validators.DateValidator;
@@ -29,7 +30,9 @@ package com.clarityenglish.rotterdam.view.settings {
 	import spark.components.Button;
 	import spark.components.CheckBox;
 	import spark.components.Group;
+	import spark.components.HGroup;
 	import spark.components.Label;
+	import spark.components.RadioButton;
 	import spark.components.RadioButtonGroup;
 	import spark.components.RichEditableText;
 	import spark.components.TabBar;
@@ -78,6 +81,46 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		[SkinPart]
 		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
+		
+		//alice p
+		[SkinPart]
+		public var unitIntervalGroup:spark.components.Group;
+		
+		[SkinPart]
+		public var unitIntervalRadioButtonGroup:RadioButtonGroup;
+		
+		[SkinPart]
+		public var seePastUnitLabel:Label;
+		
+		[SkinPart]
+		public var selectGroupLabel:Label;
+		
+		[SkinPart]
+		public var startDateLabel:Label;
+		
+		[SkinPart]
+		public var endDateLabel:Label;
+		
+		[SkinPart]
+		public var endDateInstruLabel:Label;
+		
+		[SkinPart]
+		public var unitIntervalLabel:Label;
+		
+		[SkinPart]
+		public var allUnitAvaRadioButton:RadioButton;
+		
+		[SkinPart]
+		public var unitSuccesiveRadioButton:RadioButton;
+		
+		[SkinPart]
+		public var yesRoadioButton:RadioButton;
+		
+		[SkinPart]
+		public var noRoadioButton:RadioButton;
+		
+		[SkinPart]
+		public var clearEndDateButton:Button;
 
 		// gh#122
 		[SkinPart]
@@ -169,11 +212,14 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
 			
 			// Calendar
-			if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval")) ? selectedPublicationGroup.@unitInterval : null;
+			if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && (selectedPublicationGroup.@unitInterval != 0)) ? selectedPublicationGroup.@unitInterval : null;
 			if (startDateField) startDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
 			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
 			if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
-			
+			//alice p
+			if (unitIntervalRadioButtonGroup) unitIntervalRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval == 0) : null;
+			pastUnitsRadioButtonGroup.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
+
 			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates gh#87
 			if (calendar) {
 				if (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
@@ -304,6 +350,20 @@ package com.clarityenglish.rotterdam.view.settings {
 						}
 					});
 					break;
+				//alice p
+				case unitIntervalRadioButtonGroup:
+					unitIntervalRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
+						if (!isPopulating) {
+							if (e.target.selectedValue) {
+								selectedPublicationGroup.@unitInterval = 0;
+								pastUnitsRadioButtonGroup.enabled = false;
+								calendarSettingsChanged();
+							} else {
+								pastUnitsRadioButtonGroup.enabled = true;
+							}							
+						}
+					});
+					break;
 				case pastUnitsRadioButtonGroup:
 					pastUnitsRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
@@ -333,6 +393,39 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 				case welcomeEmailButton:
 					saveButton.addEventListener(MouseEvent.CLICK, onSendWelcomeEmail);
+					break;
+				case seePastUnitLabel:
+					seePastUnitLabel.text = copyProvider.getCopyForId("seePastUnitLabel");
+					break;
+				case selectGroupLabel:
+					selectGroupLabel.text = copyProvider.getCopyForId("selectGroupLabel");
+					break;
+				case startDateLabel:
+					startDateLabel.text = copyProvider.getCopyForId("startDateLabel");
+					break;
+				case endDateLabel:
+					endDateLabel.text = copyProvider.getCopyForId("endDateLabel");
+					break;
+				case endDateInstruLabel:
+					endDateInstruLabel.text = copyProvider.getCopyForId("endDateInstruLabel");
+					break;
+				case unitIntervalLabel:
+					unitIntervalLabel.text = copyProvider.getCopyForId("unitIntervalLabel");
+					break;
+				case allUnitAvaRadioButton:
+					allUnitAvaRadioButton.label = copyProvider.getCopyForId("allUnitAvaRadioButton");
+					break;
+				case unitSuccesiveRadioButton:
+					unitSuccesiveRadioButton.label = copyProvider.getCopyForId("unitSuccesiveRadioButton");
+					break;
+				case yesRoadioButton:
+					yesRoadioButton.label = copyProvider.getCopyForId("yesRoadioButton");
+					break;
+				case noRoadioButton:
+					noRoadioButton.label = copyProvider.getCopyForId("noRoadioButton");
+					break;
+				case clearEndDateButton:
+					clearEndDateButton.addEventListener(MouseEvent.CLICK, onClearEndDate);
 					break;
 			}
 		}
@@ -381,10 +474,18 @@ package com.clarityenglish.rotterdam.view.settings {
 			
 			// Save
 			saveCourse.dispatch();
+			
+			//alice p
+			back.dispatch();
 		}
 		
 		protected function onBack(event:MouseEvent):void {
 			back.dispatch();
+		}
+		
+		protected function onClearEndDate(event:MouseEvent):void {
+			trace("you clear end date");
+			endDateField.selectedDate = null;
 		}
 		
 		/**
@@ -429,13 +530,14 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (results && results.length() > 0) {
 				var result:XML = results[0];
 				if (result.hasOwnProperty("@id") &&
-					result.hasOwnProperty("@seePastUnits") &&
+					//result.hasOwnProperty("@seePastUnits") &&
 					result.hasOwnProperty("@unitInterval") &&
-					result.hasOwnProperty("@startDate") &&
-					result.hasOwnProperty("@endDate") &&
-					DateUtil.ansiStringToDate(result.@startDate) < DateUtil.ansiStringToDate(result.@endDate)) {
-					return true;
-				}
+					result.hasOwnProperty("@startDate")) {
+						if (result.hasOwnProperty("@endDate")) {
+							return (DateUtil.ansiStringToDate(result.@startDate) < DateUtil.ansiStringToDate(result.@endDate));
+						}		
+						return true;
+					}
 			}
 			return false;
 		}

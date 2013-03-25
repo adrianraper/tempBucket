@@ -325,7 +325,7 @@ settings|SettingsView s|Button#backButton {
 }
 
 settings|SettingsView s|TabBar#tabBar {
-	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingTabBarSkin");
+	skinClass: ClassReference("skins.rotterdam.settings.SettingTabBarSkin");
 }
 
 showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {

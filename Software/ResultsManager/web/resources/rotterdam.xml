@@ -164,6 +164,16 @@
 			<lit name="widgetPlaceholderText">Type a description here.</lit>
 			<lit name="emptyFileLabel">You have not uploaded any files to the Resource Cloud</lit>
 			<lit name="emptyFileLabel2">You have not uploaded any files here</lit>
+			<lit name="selectGroupLabel">1. Select a group</lit>
+			<lit name="startDateLabel">2. Start date for this course</lit>
+			<lit name="endDateLabel">3. End date for this course</lit>
+			<lit name="endDateInstruLabel">(leave this blank if you don't want the course to end)</lit>
+			<lit name="unitIntervalLabel">4. week-by-week setting</lit>
+			<lit name="allUnitAvaRadioButton">All units available from start date</lit>
+			<lit name="unitSuccesiveRadioButton">How many days between unit</lit>
+			<lit name="seePastUnitLabel">5. See past units?</lit>
+			<lit name="yesRoadioButton">Yes</lit>
+			<lit name="noRoadioButton">No</lit>
 		</group>
 	</language>
 </literals>
