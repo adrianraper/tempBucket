@@ -164,8 +164,9 @@
 		public function save():void {
 			if (selectedTitle) {
 				// Force Author Plus to fill in contentLocation.
+				// gh#219 Also CCB
 				// Sadly this just gives a warning and still goes to the next screen. But better than nothing.
-				if (selectedTitle.productCode == 1 && contentLocationTextInput.text == "") {
+				if (((selectedTitle.productCode == 1) || (selectedTitle.productCode == 54)) && contentLocationTextInput.text == "") {
 					Alert.show(copyProvider.getCopyForId("AuthorPlusContentLocationEmpty"), "Please note...", Alert.OK, this);					
 				} else {
 					selectedTitle.expiryDate = DateUtils.dateToAnsiString(expiryDateDateField.selectedDate);
@@ -271,13 +272,19 @@
 							// Title.createDefault should work out the caption since it is called from other places too
 							//title.name = caption;
 							// Author Plus doesn't have a default location, we need to base it on the prefix
-							if (productCode == 1) {
+							// gh#219 and CCB
+							if ((productCode == 1) || (productCode == 54)) {
 								// I am not sure that this always puts the correct stuff in the screen field
 								// We assume that the location for Author Plus will have &content=../ap in it
 								//title.contentLocation = "../ap/" + account.prefix;
 								// v3.5 Note that contentLocation is a calculated field, we need the pure database field here
 								//title.contentLocation = account.prefix;
-								title.dbContentLocation = account.prefix;
+								// gh#219 if you are just creating this account, it will not exist yet, so
+								// need to get value from the detailsPane screen. Can you? No. 
+								// So put nothing in value and use the warning to remind you.
+								if (account.prefix) 
+									title.dbContentLocation = account.prefix;
+								
 							} else {
 								// v3.3 Otherwise we assume that there will be no override of the default
 								//title.contentLocation = defaultContentLocation;

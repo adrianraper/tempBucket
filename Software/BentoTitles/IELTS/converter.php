@@ -27,8 +27,8 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/vo/Answer.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/conversion/ConversionOps.php");
 
 // If you want to see echo stmts, then use plainView
-$plainView=true;
-$batch=false;
+$plainView=false;
+$batch=true;
 if ($plainView) {
 	header ('Content-Type: text/plain');
 	$newline = "\n";
@@ -42,10 +42,10 @@ if ($plainView) {
 // and output to the new folder structure.
 
 // Get the file
-$contentFolder = dirname(__FILE__).'/../../../Content';
-$titleFolder = $contentFolder.'/RoadToIELTS-General';
+$contentFolder = dirname(__FILE__).'/../../../ap/';
+$titleFolder = $contentFolder.'/RTIPR';
 //$titleFolderOut = $contentFolder.'/RoadToIELTS2-Academic';
-$titleFolderOut = $contentFolder.'/RoadToIELTS2';
+$titleFolderOut = $contentFolder.'/RTIPR-Bento';
 
 // Add an extra loop to do all folders at once
 $topFolder = $titleFolder.'/Courses';
@@ -81,6 +81,9 @@ if ($batch && $handle1 = opendir($topFolder)) {
 			
 			// For each node in the menu, get the skill and the filename
 			foreach ($menuXML->item as $unitNode) {
+				/*
+				 * When converting from AP, no need to do this
+				 * 
 				// Convert the caption to a skill
 				switch ((string) $unitNode['caption']) {
 					case 'Writing 1':
@@ -99,13 +102,18 @@ if ($batch && $handle1 = opendir($topFolder)) {
 						break;
 				}
 				$exerciseFolderOut = $titleFolderOut.'/'.$skillFolder.'/exercises/';
+				*/
+				$exerciseFolderOut = $titleFolderOut.'/'.$courseFolder.'/Exercises/';
 				// Then loop for all exercises in that unit node
 				foreach ($unitNode->item as $exercise) {
+					/*
+					 * AP conversion
 					// But we don't want listening and reading introductions
 					if ($skillFolder=='listening' || $skillFolder=='reading') {
 						if ((string) $exercise['caption']=='Introduction')
 							continue(1);
 					} 
+					 */
 					// Finally, copy the file
 					
 					$exerciseFile = $exercise['fileName'];
@@ -225,6 +233,7 @@ function convertExercise($infile, $outfile) {
 	// Will we need different classes for different types?
 	switch (strtolower($type)) {
 		case 'presentation':
+		case 'bullet':
 			$exercise = new Presentation($xml);
 			break;
 		case 'dragon':
@@ -236,6 +245,7 @@ function convertExercise($infile, $outfile) {
 			$exercise = new Gapfill($xml);
 			break;
 		case 'dropdown':
+		case 'stopdrop':
 			$exercise = new Dropdown($xml);
 			break;
 		case 'analyze':
@@ -254,7 +264,9 @@ function convertExercise($infile, $outfile) {
 			break;
 		default;
 			//throw new Exception("unknown exercise type $type");
-			echo "unknown exercise type $type for $exerciseID $newline";
+			$exerciseID = $attr['id'];
+			$fileName = basename($infile);
+			echo "unknown exercise type $type for $fileName $newline";
 			return;
 	}
 	// At the end of construction, you can check the object if you want
@@ -273,7 +285,7 @@ function convertExercise($infile, $outfile) {
 			$converter->setOutputFile($outfile);
 			$rc = $converter->createOutput();
 			//$outURL = $exerciseURL.$exerciseID.'.xml';
-			//echo " and writing out $outfile $newline";
+			echo " writing out $type $outfile $newline";
 //			break;
 //	}
 }

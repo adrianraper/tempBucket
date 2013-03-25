@@ -136,8 +136,29 @@
 			// Add licence clearance - but just keep as NULL
 			
 			// Ideally we would look up the T_ProductLanguage table to find the default language code
-			title.languageCode = "EN";
+			// gh#219 especially for CP since the default is BREN. This code will use EN if available
+			// otherwise it will pick the last language in the list (this is as likely to be the default as the first)
+			var defaultLC:String = "EN";
+			title.languageCode = defaultLC;
+			var productLanguages:Array = DictionarySingleton.getInstance().languageCode;
+			for each (var language:Object in productLanguages) {
+				if (language.productCode == productCode) {
+					title.languageCode = language.data;
+					if (language.data == defaultLC)
+						break;
+				}
+			}
+			// gh#219 do the same for productVersion
+			var defaultV:String = "FV";
 			title.productVersion = "";
+			var productVersions:Array = DictionarySingleton.getInstance().versionCode;
+			for each (var version:Object in productVersions) {
+				if (version.productCode == productCode) {
+					title.productVersion = version.data;
+					if (version.data.indexOf(defaultV) >= 0)
+						break;
+				}
+			}
 			
 			// v3.4.2 And we do want to set the caption too. This will not trigger an extra dictionaries PHP call, so not expensive.
 			var products:Array = DictionarySingleton.getInstance().products;

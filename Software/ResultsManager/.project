@@ -32,4 +32,11 @@
 		<nature>org.eclipse.php.core.PHPNature</nature>
 		<nature>com.zend.php.flashbuilder.core.FlexPHPNature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>bin-release1</name>
+			<type>2</type>
+			<location>D:/ProjectBench/ResultsManager/web</location>
+		</link>
+	</linkedResources>
 </projectDescription>

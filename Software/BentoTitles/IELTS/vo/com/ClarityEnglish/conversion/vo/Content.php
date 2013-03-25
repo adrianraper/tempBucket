@@ -243,6 +243,7 @@ class Content{
 	function qbBodyOutput($exerciseType) {
 		global $newline;
 		$builder='';
+		$buildText='';
 		// Each question in any question based exercise extends content so comes here
 		// Need to add TARGET_SPOTTING for RTI-GT
 		if (($exerciseType==Exercise::EXERCISE_TYPE_MULTIPLECHOICE) ||
@@ -300,7 +301,6 @@ class Content{
 			// As you do it, you want to find any drops and replace them with an input field
 			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
-			$buildText='';
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
 					// Read the fields to find the matching answer
@@ -354,7 +354,7 @@ class Content{
 			// As you do it, you want to find any drops and replace them with an input field
 			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
-			$buildText='';
+			//$buildText='';
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
 					// Read the fields to find the matching answer
@@ -415,7 +415,7 @@ class Content{
 			// As you do it, you want to find any drops and replace them with an input field
 			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
-			$buildText='';
+			//$buildText='';
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
 					// Read the fields to find the matching answer
@@ -471,7 +471,7 @@ class Content{
 			// As you do it, you want to find any drops and replace them with an input field
 			// You will also write out a question node in the script node. NO, that is done already.
 			$pattern = '/([^\[]*)[\[]([\d]+)[\]]([^\[]*)/is';
-			$buildText='';
+			//$buildText='';
 			if (preg_match_all($pattern, $builder, $matches, PREG_SET_ORDER)) {
 				foreach ($matches as $m) {
 					// Read the fields to find the matching answer

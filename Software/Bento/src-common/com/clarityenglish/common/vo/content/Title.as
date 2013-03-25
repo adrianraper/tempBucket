@@ -152,9 +152,8 @@
 			title.licenceStartDate = DateUtil.dateToAnsiString(new Date());
 			title.licenceType = 1;
 			
-			
 			// Ideally we would look up the T_ProductLanguage table to find the default language code
-			//issue:#20 
+			//gh#20 
 			//title.languageCode = "EN";
 			// v3.4.2 And we do want to set the caption too. This will not trigger an extra dictionaries PHP call, so not expensive.
 			var products:Array = DictionarySingleton.getInstance().products;

@@ -935,7 +935,8 @@ EOD;
 		// This is left for now. You get a double error message, but that is kind of OK
 		// v3.5 Now dbContentLocation is tied to the field in DMS and is the direct database link
 		//if ($title-> productCode == 1 && ($title->contentLocation == "" || $title->contentLocation == null))
-		if ($title-> productCode == 1 && ($title->dbContentLocation == "" || $title->dbContentLocation == null))
+		// Also CCB
+		if (($title->productCode == 1 || $title->productCode == 54) && ($title->dbContentLocation == "" || $title->dbContentLocation == null))
 			return false;
 			
 		return true;

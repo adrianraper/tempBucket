@@ -245,7 +245,7 @@ class Title extends Content {
 		if ($this->dbContentLocation && !$this->dbContentLocation=="") {
 			$array['F_ContentLocation'] = $this->dbContentLocation;
 		}
-		// 3.5 Defaut content location is never saved
+		// 3.5 Default content location is never saved
 		$array['F_LicenceType'] = $this->licenceType;
 		$array['F_Checksum'] = $this->checksum;
 		$array['F_DeliveryFrequency'] = $this->deliveryFrequency;
