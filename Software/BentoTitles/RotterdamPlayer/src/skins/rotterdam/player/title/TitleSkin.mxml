@@ -12,7 +12,9 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
+			
 			import org.davekeen.transitions.PatchedSlideViewTransition;
+			
 			import spark.transitions.ViewTransitionDirection;
 			
 			protected function onCreationComplete(event:FlexEvent):void {
@@ -32,6 +34,7 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		<s:State name="course_selector" />
 	</s:states>
 	
 	<s:Group left="0" right="0" top="0">
@@ -58,13 +61,7 @@
 	
 	<ui:CancelableTabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="40" bottom="0">
 		<s:ViewNavigator id="myCoursesViewNavigator" label="My Courses" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
-		
-		<s:ViewNavigator label="Progress" firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" />
-		
-		<!--<s:ViewNavigator label="Progress" firstView="com.clarityenglish.rotterdam.player.view.progress.ProgressView" left="0" right="0" height="100%" />-->		
-		
-		<!--<s:ViewNavigator label="File manager" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
-		<s:ViewNavigator label="Course setting" left="0" right="0" height="100%" />-->
+		<s:ViewNavigator label="Progress" firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" excludeFrom="course_selector" />
 	</ui:CancelableTabbedViewNavigator>
 	
 </s:Skin>
