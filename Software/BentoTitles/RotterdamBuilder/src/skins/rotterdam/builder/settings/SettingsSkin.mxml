@@ -73,7 +73,7 @@
 			<s:Label id="endDateInstruLabel" />
 			<s:HGroup>
 				<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" />
-				<s:Button id="clearEndDateButton" />
+				<!--s:Button id="clearEndDateButton" /-->
 			</s:HGroup>		
 				
 			<s:Spacer height="18" />
