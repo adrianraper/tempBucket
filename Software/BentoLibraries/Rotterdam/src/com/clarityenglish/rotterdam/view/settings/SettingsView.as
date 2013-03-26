@@ -217,6 +217,7 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
 			if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
 			//alice p
+			trace("pastUnitsRadioButtonGroup selectedValue: "+pastUnitsRadioButtonGroup.selectedValue );
 			if (unitIntervalRadioButtonGroup) unitIntervalRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval == 0) : null;
 			pastUnitsRadioButtonGroup.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
 
@@ -356,6 +357,7 @@ package com.clarityenglish.rotterdam.view.settings {
 						if (!isPopulating) {
 							if (e.target.selectedValue) {
 								selectedPublicationGroup.@unitInterval = 0;
+								selectedPublicationGroup.@seePastUnits = null;
 								pastUnitsRadioButtonGroup.enabled = false;
 								calendarSettingsChanged();
 							} else {
@@ -530,7 +532,7 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (results && results.length() > 0) {
 				var result:XML = results[0];
 				if (result.hasOwnProperty("@id") &&
-					//result.hasOwnProperty("@seePastUnits") &&
+					result.hasOwnProperty("@seePastUnits") &&
 					result.hasOwnProperty("@unitInterval") &&
 					result.hasOwnProperty("@startDate")) {
 						if (result.hasOwnProperty("@endDate")) {
