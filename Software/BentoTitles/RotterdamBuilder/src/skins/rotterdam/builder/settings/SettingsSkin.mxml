@@ -20,6 +20,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.events.FlexEvent;
 			[Embed(source="skins/rotterdam/builder/assets/settings/group_icon.swf", symbol="GroupIcon")]
 			private var groupIcon:Class;
 			
@@ -72,7 +73,7 @@
 			<s:Label id="endDateLabel" fontWeight="bold" />
 			<s:Label id="endDateInstruLabel" />
 			<s:HGroup>
-				<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" />
+				<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" editable="true"/>
 				<!--s:Button id="clearEndDateButton" /-->
 			</s:HGroup>		
 				

@@ -8,6 +8,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import com.sparkTree.Tree;
 	
 	import flash.events.Event;
+	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
 	import flash.utils.setTimeout;
 	
@@ -214,7 +215,7 @@ package com.clarityenglish.rotterdam.view.settings {
 			// Calendar
 			if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && (selectedPublicationGroup.@unitInterval != 0)) ? selectedPublicationGroup.@unitInterval : null;
 			if (startDateField) startDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
-			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
+			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate") && (selectedPublicationGroup.@endDate != null)) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
 			if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits") && (selectedPublicationGroup.@seePastUnits != null)) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
 			//alice p
 			if (unitIntervalRadioButtonGroup) unitIntervalRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval == 0) : null;
@@ -345,10 +346,14 @@ package com.clarityenglish.rotterdam.view.settings {
 				case endDateField:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
-							if (e.target.selectedDate) selectedPublicationGroup.@endDate = DateUtil.dateToAnsiString(e.target.selectedDate);
-							calendarSettingsChanged(false);
+							//if (e.target.selectedDate) selectedPublicationGroup.@endDate = DateUtil.dateToAnsiString(e.target.selectedDate);
+							if (selectedPublicationGroup) {
+								selectedPublicationGroup.@endDate = (e.target.selectedDate != null) ? DateUtil.dateToAnsiString(e.target.selectedDate) : null;
+								calendarSettingsChanged(false);
+							}										
 						}
 					});
+					endDateField.addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, onMouseFocusChange);
 					break;
 				//alice p
 				case unitIntervalRadioButtonGroup:
@@ -485,8 +490,8 @@ package com.clarityenglish.rotterdam.view.settings {
 		}
 		
 		protected function onClearEndDate(event:MouseEvent):void {
-			trace("you clear end date");
-			endDateField.selectedDate = null;
+			selectedPublicationGroup.@endDate = null;
+			invalidateProperties();
 		}
 		
 		/**
@@ -511,7 +516,8 @@ package com.clarityenglish.rotterdam.view.settings {
 			var results:XMLList = course.publication.group.(@id == group.id);
 			if (results && results.length() > 0) {
 				for each (var attribute:XML in results[0].attributes()) {
-					if (attribute.name() != "id")
+					//alice p
+					if (attribute.name() != "id" && attribute.valueOf() != null)
 						return true;
 				}
 			}
@@ -534,7 +540,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					result.hasOwnProperty("@seePastUnits") &&
 					result.hasOwnProperty("@unitInterval") &&
 					result.hasOwnProperty("@startDate")) {
-						if (result.hasOwnProperty("@endDate")) {
+						if (result.hasOwnProperty("@endDate") && result.@endDate != null) {
 							return (DateUtil.ansiStringToDate(result.@startDate) < DateUtil.ansiStringToDate(result.@endDate));
 						}		
 						return true;
@@ -551,6 +557,17 @@ package com.clarityenglish.rotterdam.view.settings {
 				return tabBar.selectedItem.data;
 			
 			return super.getCurrentSkinState();
+		}
+		
+		protected function onMouseFocusChange(event:FocusEvent):void {			
+			if (event.target != endDateField) {
+				if (endDateField.text == "") {
+					endDateField.selectedDate = null;
+					selectedPublicationGroup.@endDate = null;
+					endDateField.focusManager.deactivate();
+				}				
+			}
+			
 		}
 		
 	}
