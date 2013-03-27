@@ -125,6 +125,9 @@ package com.clarityenglish.common.vo.config {
 		// #336
 		public var sessionStartTime:Number;
 		
+		//gh #225
+		public var _illustrationCloseFlag:Boolean;
+		
 		/**
 		 * Developer option
 		 */
@@ -136,6 +139,7 @@ package com.clarityenglish.common.vo.config {
 			this.error = new BentoError();
 			this.channels = [];
 			this.scorm = false;
+			this.illustrationCloseFlag = true;
 		}
 		
 		/**
@@ -166,6 +170,16 @@ package com.clarityenglish.common.vo.config {
 		
 		public function get languageCode():String {
 			return _languageCode;
+		}
+		
+		public function set illustrationCloseFlag(value:Boolean):void {
+			if (_illustrationCloseFlag != value) {
+				_illustrationCloseFlag = value;
+			}
+		}
+		
+		public function get illustrationCloseFlag():Boolean {
+			return _illustrationCloseFlag;
 		}
 		
 		/**

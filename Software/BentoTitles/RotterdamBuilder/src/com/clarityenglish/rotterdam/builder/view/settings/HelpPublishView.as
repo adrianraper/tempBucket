@@ -29,7 +29,11 @@ package com.clarityenglish.rotterdam.builder.view.settings
 		}
 		
 		protected function onIKnow(event:Event):void {
+			//gh #225
+			config.illustrationCloseFlag = false;
+			
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
+			
 		}
 	}
 }
