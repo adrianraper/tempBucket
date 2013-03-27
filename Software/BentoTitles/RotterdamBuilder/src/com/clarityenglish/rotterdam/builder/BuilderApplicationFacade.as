@@ -16,6 +16,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.MediaCloudSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
+	import com.clarityenglish.rotterdam.builder.controller.MediaUploadErrorCommand;
 	import com.clarityenglish.rotterdam.builder.controller.SendWelcomeEmailCommand;
 	import com.clarityenglish.rotterdam.builder.controller.UnitCopyCommand;
 	import com.clarityenglish.rotterdam.builder.controller.UnitPasteCommand;
@@ -90,6 +91,7 @@
 			registerCommand(RotterdamNotifications.MEDIA_SELECT, MediaSelectCommand);
 			registerCommand(RotterdamNotifications.MEDIA_CLOUD_SELECT, MediaCloudSelectCommand);
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD, MediaUploadCommand);
+			registerCommand(RotterdamNotifications.MEDIA_UPLOAD_ERROR, MediaUploadErrorCommand);
 			
 			registerCommand(RotterdamNotifications.CONTENT_WINDOW_SHOW, ContentWindowShowCommand);
 			registerCommand(RotterdamNotifications.COURSE_CREATE_WINDOW_SHOW, CourseCreateWindowShowCommand);

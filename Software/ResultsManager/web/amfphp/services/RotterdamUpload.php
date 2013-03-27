@@ -11,13 +11,13 @@ $service = new RotterdamService();
 
 // Fail if the user isn't authenticated
 if (!Authenticate::isAuthenticated()) {
-	echo json_encode(array("success" => false, "message" => "Not authenticated"));
+	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorUploadNotAuthenticated")));
 	exit(0);
 }
 
 // Fail if there is no uploaded file
 if (!isset($_FILES['Filedata']) || $_FILES['Filedata']['tmp_name'] == "") {
-	echo json_encode(array("success" => false, "message" => "No valid file was found in the POST"));
+	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("uploadNoPOST")));
 	exit(0);
 }
 

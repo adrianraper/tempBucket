@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
 	import flash.events.DataEvent;
@@ -67,9 +68,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private function onUploadCancel(e:Event):void {
 			//gh #212
-			if (!node.hasOwnProperty("@src")) {
+			if (!node.hasOwnProperty("@src"))
 				facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, node);
-			}			
+			
 			destroy();
 		}
 		
@@ -91,22 +92,26 @@ package com.clarityenglish.rotterdam.builder.controller {
 		private function onUploadCompleteData(e:DataEvent):void {
 			var response:Object = JSON.parse(e.data);
 			
-			// Merge returned keys/values into the node's attributes (apart from success)
-			for (var key:String in response) {
-				if (key != "success") node.@[key] = response[key];
+			if (!response.success) {
+				sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, { node: node, message: response.message }, tempWidgetId);
+			} else {
+				// Merge returned keys/values into the node's attributes (apart from success)
+				for (var key:String in response)
+					if (key != "success") node.@[key] = response[key];
+				
+				sendNotification(RotterdamNotifications.MEDIA_UPLOADED, null, tempWidgetId);
 			}
 			
-			sendNotification(RotterdamNotifications.MEDIA_UPLOADED, null, tempWidgetId);
 			destroy();
 		}
 		
 		private function onUploadIOError(e:IOErrorEvent):void {
-			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, tempWidgetId);
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, { node: node, message: e.text }, tempWidgetId);
 			destroy();
 		}
 		
 		private function onUploadSecurityError(e:SecurityErrorEvent):void {
-			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, e.text, tempWidgetId);
+			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, { node: node, message: e.text }, tempWidgetId);
 			destroy();
 		}
 		

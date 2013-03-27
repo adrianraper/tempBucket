@@ -62,6 +62,9 @@
 			<lit name="errorSavingCourseDates" code="703">Error saving publication dates for this course.</lit>
 			<lit name="errorConcurrentCourseAccess" code="704">Somebody is already editing this course.  Please try again later.</lit>
 			
+			<lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated.  Please contact support@clarityenglish.com</lit>
+			<lit name="errorUploadNoPOST" code="706">No POST data was found in this upload.  Please contact support@clarityenglish.com.</lit>
+			
             <lit name="pathCCB">CCB</lit>
             <lit name="pathTenseBuster">TenseBuster</lit>
             <lit name="pathBusinessWriting">BusinessWriting</lit>

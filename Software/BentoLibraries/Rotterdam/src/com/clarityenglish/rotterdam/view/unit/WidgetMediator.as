@@ -74,7 +74,6 @@
 				RotterdamNotifications.MEDIA_UPLOAD_START,
 				RotterdamNotifications.MEDIA_UPLOAD_PROGRESS,
 				RotterdamNotifications.MEDIA_UPLOADED,
-				RotterdamNotifications.MEDIA_UPLOAD_ERROR,
 				RotterdamNotifications.TEXT_FORMAT,
 			]);
 		}
@@ -93,9 +92,6 @@
 						break;
 					case RotterdamNotifications.MEDIA_UPLOADED:
 						view.setUploading(false);
-						break;
-					case RotterdamNotifications.MEDIA_UPLOAD_ERROR:
-						trace("upload error");
 						break;
 				}
 			}
