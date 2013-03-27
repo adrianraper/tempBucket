@@ -59,16 +59,6 @@ class BentoService extends AbstractService {
 		// Set the product name for logging
 		AbstractService::$log->setProductName("Bento");
 		
-		// Set the root id (if set)
-		// I am now using is_set, but is that safe? If not set it might be an error. 
-		if (Session::is_set('userID')) {
-			AbstractService::$log->setIdent(Session::get('userID'));
-		}
-		
-		if (Session::is_set('rootID')) {
-			AbstractService::$log->setRootID(Session::get('rootID'));
-		}
-		
 		// Create the operation classes
 		$this->accountOps = new AccountOps($this->db);
 		$this->loginOps = new LoginOps($this->db);
@@ -76,6 +66,17 @@ class BentoService extends AbstractService {
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
+		
+		// Set the root id (if set)
+		// I am now using is_set, but is that safe? If not set it might be an error. 
+		if (Session::is_set('userID')) {
+			AbstractService::$log->setIdent(Session::get('userID'));
+			$this->loginOps->setTimeZoneForUser(Session::get('userID')); // gh#156
+		}
+		
+		if (Session::is_set('rootID')) {
+			AbstractService::$log->setRootID(Session::get('rootID'));
+		}
 	}
 	
 	/**
@@ -173,7 +174,6 @@ class BentoService extends AbstractService {
 	// gh#46 This first call might change the dbHost that the session uses
 	// gh#66 RotterdamBuilder will send allowedUserTypes and change licence
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null, $allowedUserTypes = null) {
-		
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 		
@@ -231,8 +231,8 @@ class BentoService extends AbstractService {
 		// have the same licence details, and I need to pass those roots to getLicenceSlot.
 		// But getLicenceSlot doesn't cope with that. For now this is OK as no-one uses it.
 		$newRootID = $userObj->rootID;
+		
 		if ($rootID != array($newRootID)) {
-			
 			// gh#39 Special case handling for BC LastMinute candidates using tablets. 
 			// The productCode will be a list '52,53', but you can find which to use from T_User.F_UserProfileOption
 			if ($userObj->F_UserProfileOption && stristr($productCode, $userObj->F_UserProfileOption))
@@ -286,11 +286,12 @@ class BentoService extends AbstractService {
 		
 		// gh#148 And I need this as a flat list of group IDs too
 		$subGroupIds = array();
-		foreach ($groupTrees as $m)
+		foreach ($groupTrees as $m) {
 			if (get_class($m) == "Group") {
 				$subGroupIds[] = $m->id;
 				$subGroupIds = array_merge($subGroupIds, $m->getSubGroupIds());
 			}
+		}
 		Session::set('groupTreeIDs', $subGroupIds);	
 		
 		// #341 If this is a named user then
@@ -326,8 +327,8 @@ class BentoService extends AbstractService {
 			
 		return $dataObj;
 	}
+	
 	protected function blockFilter($thisTitle) {
-	 					
 		$thisPC = $thisTitle->productCode;					
 		$rs = $this->progressOps->getHiddenContent(Session::get('groupID'), $thisPC);
 		

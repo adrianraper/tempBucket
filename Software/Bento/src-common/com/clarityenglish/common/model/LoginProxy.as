@@ -73,7 +73,8 @@ package com.clarityenglish.common.model {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var loginObj:Object = {};
+			var loginObj:Object;
+			
 			// For AA licences you still do the call as this does getLicenceSlot
 			
 			//var loginOption:uint = configProxy.getAccount().loginOption;
@@ -81,11 +82,11 @@ package com.clarityenglish.common.model {
 			if (user == null) {
 		        loginObj = null;
 			} else if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
-				loginObj = {username:user.name, password:user.password};
+				loginObj = { username: user.name, password: user.password};
 			} else if (loginOption & Config.LOGIN_BY_ID) {
-				loginObj = {studentID:user.studentID, password:user.password};
+				loginObj = { studentID: user.studentID, password: user.password};
 			} else if (loginOption & Config.LOGIN_BY_EMAIL) {
-				loginObj = {email:user.email, password:user.password};
+				loginObj = { email: user.email, password: user.password };
 			} else {
 				// Throw an error as you don't know how to login
 				var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
@@ -94,6 +95,8 @@ package com.clarityenglish.common.model {
 			
 			if (loginObj && configProxy.getConfig().ip)
 				loginObj.ip = configProxy.getConfig().ip;
+			
+			loginObj.timezoneOffset = new Date().timezoneOffset; // gh#156
 			
 			// #340
 			// Network allows anonymous entry if all fields are blank

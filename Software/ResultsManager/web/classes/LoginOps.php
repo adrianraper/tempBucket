@@ -73,39 +73,25 @@ EOD;
 		$sql .=	<<<EOD
 				WHERE $key = ?
 EOD;
-			
-		// Construct the allowed login types into an SQL string and add it to the end of the query
-		// gh#66 - need to do this after the query so you can give an unauthorised msg for wrong user type
-		/*
-		$userTypesSQL = array();
-		foreach ($userTypes as $userType)
-			$userTypesSQL[] = "u.F_UserType=$userType";
-		$sql .= " AND (".implode(" OR ", $userTypesSQL).")";
-		*/
 		
 		// Create the binding parameters
-		//$bindingParams = array($username, $password);
-		//$bindingParams = array($keyValue, $password);
 		$bindingParams = array($keyValue);
 		
 		if ($rootID != null) {
 			// #503 rootID is an array
 			if (is_array($rootID)) {
 				if (count($rootID) > 1) {
-					$sql.= "AND m.F_RootID IN (".implode(",",$rootID).")";
+					$sql .= "AND m.F_RootID IN (".implode(",", $rootID).")";
 				} else {
-					$sql.= "AND m.F_RootID=".implode(",",$rootID);
+					$sql .= "AND m.F_RootID=".implode(",", $rootID);
 				}
 			} else {
-				$sql.= "AND m.F_RootID=?";
+				$sql .= "AND m.F_RootID=?";
 				$bindingParams[] = $rootID;
 			}
 		}
 		
-		//NetDebug::trace("sql=".$sql);
-		//NetDebug::trace("bindingParams=".implode(",",$bindingParams));
 		$rs = $this->db->Execute($sql, $bindingParams);
-		//NetDebug::trace("records==".$rs->RecordCount());
 		
 		switch ($rs->RecordCount()) {
 			case 0:
@@ -117,15 +103,14 @@ EOD;
 				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption));
 				break;
 			case 1:
-				
 				// Valid login
-				$loginObj = $rs->FetchNextObj();
+				$dbLoginObj = $rs->FetchNextObj();
 				
 				// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
 				// #341 Only check password if you have set this to be the case 
 				if ($verified) {
-					if ($password != $loginObj->F_Password) {
-						$logMessage = "login $keyValue wrong password, they typed $password, should be ".$loginObj->F_Password;
+					if ($password != $dbLoginObj->F_Password) {
+						$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
 						if (($loginOption & 128) && ($rootID == null)) $logMessage.=' -tablet-';
 						AbstractService::$debugLog->info($logMessage);
 						throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
@@ -133,21 +118,21 @@ EOD;
 				}
 				
 				// gh#66 check that the retrieved record is the right type of user
-				if (!in_array($loginObj->F_UserType, $userTypes))
-					throw $this->copyOps->getExceptionForId("errorWrongUserType", array("userType" => $loginObj->F_UserType));
+				if (!in_array($dbLoginObj->F_UserType, $userTypes))
+					throw $this->copyOps->getExceptionForId("errorWrongUserType", array("userType" => $dbLoginObj->F_UserType));
 				
 				// Check if the user has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
 				// AR Some users have NULL expiry date, so this will throw an exception, so add an extra condition to test for this
 				// Also, you can't use strtotime on this date format if year > 2038
-				if ($loginObj->F_ExpiryDate && ($loginObj->F_ExpiryDate > '2038')) $loginObj->F_ExpiryDate = '2038-01-01';
-				if ($loginObj->F_ExpiryDate && 
-						(strtotime($loginObj->F_ExpiryDate) > 0) && 
-						(strtotime($loginObj->F_ExpiryDate) < strtotime(date("Y-m-d")))) {
+				if ($dbLoginObj->F_ExpiryDate && ($dbLoginObj->F_ExpiryDate > '2038')) $dbLoginObj->F_ExpiryDate = '2038-01-01';
+				if ($dbLoginObj->F_ExpiryDate && 
+						(strtotime($dbLoginObj->F_ExpiryDate) > 0) && 
+						(strtotime($dbLoginObj->F_ExpiryDate) < strtotime(date("Y-m-d")))) {
 					
-						$logMessage = "login $keyValue but expired on ".$loginObj->F_ExpiryDate;
+						$logMessage = "login $keyValue but expired on ".$dbLoginObj->F_ExpiryDate;
 						if (($loginOption & 128) && ($rootID == null)) $logMessage.= '-tablet-';
 						AbstractService::$debugLog->info($logMessage);
-						throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($loginObj->F_ExpiryDate))));
+						throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($dbLoginObj->F_ExpiryDate))));
 				}
 				
 				$logMessage = "login $keyValue success";
@@ -155,10 +140,13 @@ EOD;
 				AbstractService::$debugLog->info($logMessage);
 				
 				// Authenticate the user with the session
-				Authenticate::login($loginObj->F_UserName, $loginObj->F_UserType);
+				Authenticate::login($dbLoginObj->F_UserName, $dbLoginObj->F_UserType);
 				
-				// Return the loginObj so the specific service can continue with whatever action it likes
-				return $loginObj;
+				// gh#156 - update the timezone difference for this user in the database
+				$this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array(-$loginObj["timezoneOffset"] / 60, $dbLoginObj->F_UserID));
+				
+				// Return the $dbLoginObj so the specific service can continue with whatever action it likes
+				return $dbLoginObj;
 				break;
 				
 			default:
@@ -731,5 +719,49 @@ SQL;
 		}
 		
 		return $account;
+	}
+	
+	// gh#156
+	public function setTimeZoneForUser($userID) {
+		$zones = array(
+	        'Kwajalein' => -12.00,
+	        'Pacific/Midway' => -11.00,
+	        'Pacific/Honolulu' => -10.00,
+	        'America/Anchorage' => -9.00,
+	        'America/Los_Angeles' => -8.00,
+	        'America/Denver' => -7.00,
+	        'America/Tegucigalpa' => -6.00,
+	        'America/New_York' => -5.00,
+	        'America/Caracas' => -4.30,
+	        'America/Halifax' => -4.00,
+	        'America/St_Johns' => -3.30,
+	        'America/Argentina/Buenos_Aires' => -3.00,
+	        'America/Sao_Paulo' => -3.00,
+	        'Atlantic/South_Georgia' => -2.00,
+	        'Atlantic/Azores' => -1.00,
+	        'Europe/Dublin' => 0,
+	        'Europe/Belgrade' => 1.00,
+	        'Europe/Minsk' => 2.00,
+	        'Asia/Kuwait' => 3.00,
+	        'Asia/Tehran' => 3.30,
+	        'Asia/Muscat' => 4.00,
+	        'Asia/Yekaterinburg' => 5.00,
+	        'Asia/Kolkata' => 5.30,
+	        'Asia/Katmandu' => 5.45,
+	        'Asia/Dhaka' => 6.00,
+	        'Asia/Rangoon' => 6.30,
+	        'Asia/Krasnoyarsk' => 7.00,
+	        'Asia/Brunei' => 8.00,
+	        'Asia/Seoul' => 9.00,
+	        'Australia/Darwin' => 9.30,
+	        'Australia/Canberra' => 10.00,
+	        'Asia/Magadan' => 11.00,
+	        'Pacific/Fiji' => 12.00,
+	        'Pacific/Tongatapu' => 13.00
+    	);
+    	
+    	$cols = $this->db->getCol("SELECT F_TimeZoneOffset FROM T_User WHERE F_UserID=?", array($userID));
+    	$index = array_keys($zones, $cols[0]);
+    	if (sizeof($index) == 1) date_default_timezone_set($index[0]);
 	}
 }

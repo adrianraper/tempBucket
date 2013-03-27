@@ -127,6 +127,7 @@ class User extends Manageable {
 EOD;
 		return $sql;
 	}
+	
 	/**
 	 * Convert this object into an SQL INSERT statement
 	 */
@@ -147,6 +148,7 @@ EOD;
 EOD;
 		return $sql;
 	}
+	
 	function toBindingParams() {
 		return array($this->name, $this->email, $this->password, $this->studentID, $this->userType, 
 					$this->expiryDate, $this->startDate, $this->registrationDate, $this->birthday,
