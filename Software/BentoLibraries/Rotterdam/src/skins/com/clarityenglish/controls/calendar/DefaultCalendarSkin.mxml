@@ -20,13 +20,13 @@
 	
 	<s:DataGroup id="daysDataGroup" top="35" itemRenderer="com.clarityenglish.controls.calendar.DayHeaderRenderer">
 		<s:layout>
-			<s:TileLayout requestedColumnCount="7" requestedRowCount="1" columnWidth="80" horizontalGap="10"/>
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="1" columnWidth="80" horizontalGap="8"/>
 		</s:layout>
 	</s:DataGroup>
 	
 	<s:DataGroup id="dataGroup" top="55" height="396" itemRenderer="com.clarityenglish.controls.calendar.DayRenderer">
 		<s:layout>
-			<s:TileLayout requestedColumnCount="7" requestedRowCount="6" columnWidth="80" verticalGap="10" horizontalGap="10"/>
+			<s:TileLayout requestedColumnCount="7" requestedRowCount="6" columnWidth="80" verticalGap="8" horizontalGap="8"/>
 		</s:layout>
 	</s:DataGroup>
 	

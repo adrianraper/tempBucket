@@ -15,6 +15,7 @@
 		<s:RadioButtonGroup id="pastUnitsRadioButtonGroup" />
 		<s:RadioButtonGroup id="unitIntervalRadioButtonGroup" />
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
 	</fx:Declarations>
 	
@@ -45,118 +46,133 @@
 
 	<!-- The tab bar -->
 	<s:TabBar id="tabBar" top="70" left="30"/>
-	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="105" left="10" includeIn="calendar,email, about"/>
+	<s:Group id="settingBackground" width="100%" height="83%" top="110" left="10" right="10">
+		<s:Rect filters="{dropShadowFilter2}" width="100%" height="100%" >
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>	
+	<!--s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/course-setting-bg.png')" top="105" left="10" includeIn="calendar,email, about" height="768"/-->
 	<!--s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/settings/about-bg.png')" top="105" left="10" includeIn="about"/-->
 	
 	<!-- Left hand side -->
-	<s:VGroup id="leftHandSide" top="100" paddingTop="22" left="40">		
-		<s:Spacer height="12" />
-		<!-- Group selector -->
-		<s:VGroup includeIn="calendar,email">
-			<s:Label id="selectGroupLabel"  fontWeight="bold" />
-			<sparkTree:Tree id="groupTree"
-							dataProvider="{hostComponent.groupTreesCollection}"
-							width="300"
-							labelField="name"
-							iconFunction="getTreeIcon" />
-			
-			<s:Spacer height="18" />
-		</s:VGroup>
-		<!-- Publication dates settings -->
-		<s:VGroup includeIn="calendar">
-			
-			<s:Label id="startDateLabel" fontWeight="bold" />
-			<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
-			
-			<s:Spacer height="18" />
-			
-			<s:Label id="endDateLabel" fontWeight="bold" />
-			<s:Label id="endDateInstruLabel" />
-			<s:HGroup>
-				<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" editable="true"/>
-				<!--s:Button id="clearEndDateButton" /-->
-			</s:HGroup>		
-			
-			<s:Spacer height="18" />
-			
-			<s:Label id="unitIntervalLabel" fontWeight="bold" />
-			<s:VGroup id="unitIntervalGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
-				<s:RadioButton id="allUnitAvaRadioButton" value="true" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
-				<s:HGroup>
-					<s:RadioButton id="unitSuccesiveRadioButton" value="false" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+	<s:Group left="40" height="82%" top="115">
+		<s:Scroller id="publishSettingScroller"  height="100%">
+			<s:VGroup id="leftHandSide" paddingRight="5">	
+				<s:Spacer height="{settingBackground.height * 0.05}" />
+				<!-- Group selector -->
+				<s:VGroup includeIn="calendar,email">
+					<s:Label id="selectGroupLabel"  fontWeight="bold" />
+					<sparkTree:Tree id="groupTree"
+									dataProvider="{hostComponent.groupTreesCollection}"
+									width="300"
+									labelField="name"
+									iconFunction="getTreeIcon" />
+					
+					<s:Spacer height="{settingBackground.height * 0.03}" />
+				</s:VGroup>
+				<!-- Publication dates settings -->
+				<s:VGroup includeIn="calendar">
+					
+					<s:Label id="startDateLabel" fontWeight="bold" />
+					<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
+					
+					<s:Spacer height="{settingBackground.height * 0.03}" />
+					
+					<s:Label id="endDateLabel" fontWeight="bold" />
+					<s:Label id="endDateInstruLabel" />
+					<s:HGroup>
+						<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" editable="true"/>
+						<!--s:Button id="clearEndDateButton" /-->
+					</s:HGroup>		
+					
+					<s:Spacer height="{settingBackground.height * 0.03}" />
+					
+					<s:Label id="unitIntervalLabel" fontWeight="bold" />
+					<s:VGroup id="unitIntervalGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
+						<s:RadioButton id="allUnitAvaRadioButton" value="true" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+						<s:HGroup>
+							<s:RadioButton id="unitSuccesiveRadioButton" value="false" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+							<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
+						</s:HGroup>				
+					</s:VGroup>			
+					
+					<s:Spacer height="{settingBackground.height * 0.03}" />
+					
+					<s:Label id="seePastUnitLabel" fontWeight="bold" />
+					<s:HGroup id="seePastUnitsGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
+						<s:RadioButton id="yesRoadioButton" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+						<s:RadioButton id="noRoadioButton" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+					</s:HGroup>
+					
+					<!--s:Label text="2. How many days between units?" fontWeight="bold" />
 					<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
-				</s:HGroup>				
-			</s:VGroup>			
-			
-			<s:Spacer height="18" />
-			
-			<s:Label id="seePastUnitLabel" fontWeight="bold" />
-			<s:HGroup id="seePastUnitsGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
-				<s:RadioButton id="yesRoadioButton" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
-				<s:RadioButton id="noRoadioButton" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
-			</s:HGroup>
-			
-			<!--s:Label text="2. How many days between units?" fontWeight="bold" />
-			<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
-			
-			<s:Spacer height="12" />
-			
-			<s:Label text="3. See past units?" fontWeight="bold" />
-			<s:HGroup id="seePastUnitsGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
-			<s:RadioButton label="Yes" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
-			<s:RadioButton label="No" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
-			</s:HGroup>
-			
-			<s:Spacer height="12" />
-			
-			<s:Label text="4. Start date for this course" fontWeight="bold" />
-			<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
-			
-			<s:Spacer height="12" />
-			
-			<s:Label text="5. End date for this course" fontWeight="bold" />
-			<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" /-->
-		</s:VGroup>
+					
+					<s:Spacer height="12" />
+					
+					<s:Label text="3. See past units?" fontWeight="bold" />
+					<s:HGroup id="seePastUnitsGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
+					<s:RadioButton label="Yes" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+					<s:RadioButton label="No" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+					</s:HGroup>
+					
+					<s:Spacer height="12" />
+					
+					<s:Label text="4. Start date for this course" fontWeight="bold" />
+					<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
+					
+					<s:Spacer height="12" />
+					
+					<s:Label text="5. End date for this course" fontWeight="bold" />
+					<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" /-->
+				</s:VGroup>
+				
+				
+				
+				<!-- Notification settings -->
+				<s:VGroup includeIn="email">
+					<s:Label text="2. Click to send a welcome email for this course to students in the selected group." fontWeight="bold" />
+					<s:Button id="welcomeEmailButton" label="Email now" enabled="{groupTree.selectedItem != null}"/>
+					<s:Spacer height="{settingBackground.height * 0.03}" />
+					<s:Label text="For all students doing this course on a week-by-week basis:" />
+					<s:CheckBox id="sendAlertEmailCheckbox" label="Send an email when a new unit is available." />
+				</s:VGroup>
+				
+				<!-- About this course -->
+				<s:VGroup includeIn="about" paddingTop="22" left="0" right="0">
+					<s:Label text="Course name" fontWeight="bold" />
+					<s:TextInput id="aboutCourseNameTextInput" width="300" />
+					
+					<s:Spacer height="{settingBackground.height * 0.05}" />
+					
+					<s:Label text="Author" fontWeight="bold" />
+					<s:TextInput id="aboutAuthorTextInput" width="300" />
+					
+					<s:Spacer height="{settingBackground.height * 0.05}" />
+					
+					<s:Label text="Contact email" fontWeight="bold" />
+					<s:TextInput id="aboutEmailTextInput" width="300" />
+					
+					<s:Spacer height="{settingBackground.height * 0.05}" />
+					
+					<!--s:Label text="Contact number" fontWeight="bold" />
+					<s:TextInput id="aboutContactNumberTextInput" width="300" /-->
+					
+					<s:Spacer height="{settingBackground.height * 0.05}" />
+					
+					<s:Label text="Direct URL for this course" fontWeight="bold" />
+					<s:TextInput id="directStartURLLabel" editable="false" width="700" borderVisible="false"/>
+					
+				</s:VGroup>
+			</s:VGroup>
+		</s:Scroller>		
+	</s:Group>
 		
-		<!-- Notification settings -->
-		<s:VGroup includeIn="email">
-			<s:Label text="2. Click to send a welcome email for this course to students in the selected group." fontWeight="bold" />
-			<s:Button id="welcomeEmailButton" label="Email now" enabled="{groupTree.selectedItem != null}"/>
-			<s:Spacer height="12" />
-			<s:Label text="For all students doing this course on a week-by-week basis:" />
-			<s:CheckBox id="sendAlertEmailCheckbox" label="Send an email when a new unit is available." />
-		</s:VGroup>
-		
-		<!-- About this course -->
-		<s:VGroup includeIn="about" paddingTop="22" left="0" right="0">
-			<s:Label text="Course name" fontWeight="bold" />
-			<s:TextInput id="aboutCourseNameTextInput" width="300" />
-			
-			<s:Spacer height="20" />
-			
-			<s:Label text="Author" fontWeight="bold" />
-			<s:TextInput id="aboutAuthorTextInput" width="300" />
-			
-			<s:Spacer height="20" />
-			
-			<s:Label text="Contact email" fontWeight="bold" />
-			<s:TextInput id="aboutEmailTextInput" width="300" />
-			
-			<s:Spacer height="20" />
-			
-			<!--s:Label text="Contact number" fontWeight="bold" />
-			<s:TextInput id="aboutContactNumberTextInput" width="300" /-->
-			
-			<s:Spacer height="20" />
-			
-			<s:Label text="Direct URL for this course" fontWeight="bold" />
-			<s:TextInput id="directStartURLLabel" editable="false" width="700" borderVisible="false"/>
-			
-		</s:VGroup>
-	</s:VGroup>
+	
 	
 	<!-- Right hand side -->
-	<s:VGroup top="155" horizontalCenter="180">
+	<s:VGroup verticalCenter="0" horizontalCenter="180">
 		<!-- Calendar -->
 		<s:VGroup includeIn="calendar">
 			<calendar:Calendar id="calendar" enabled="{groupTree.selectedItem != null}" />
@@ -204,5 +220,5 @@
 			<s:Button id="backButton" label="Cancel" useHandCursor="true" buttonMode="true" />
 		</s:HGroup>
 	</s:Group>
-	
+
 </s:Skin>

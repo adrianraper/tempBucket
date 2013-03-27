@@ -328,6 +328,10 @@ settings|SettingsView s|TabBar#tabBar {
 	skinClass: ClassReference("skins.rotterdam.settings.SettingTabBarSkin");
 }
 
+settings|SettingsView s|Scroller#publishSettingScroller s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
 showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {
 	skinsClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 }

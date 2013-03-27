@@ -103,7 +103,7 @@
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
-		var coordsMinHeight = "900"; var coordsMaxHeight = null;
+		var coordsMinHeight = "768"; var coordsMaxHeight = null;
 
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
