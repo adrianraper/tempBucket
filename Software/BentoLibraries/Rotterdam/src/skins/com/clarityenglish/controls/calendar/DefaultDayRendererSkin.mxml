@@ -9,7 +9,7 @@
 		<s:State name="notInMonth" />
 	</s:states>
 	
-	<s:Rect width="95" height="100%" radiusX="4" radiusY="4">
+	<s:Rect width="80" height="100%" radiusX="4" radiusY="4">
 		<s:stroke>
 			<s:SolidColorStroke color.inMonth="#8BC541" color.notInMonth="#B1B1B1" weight.inMonth="2" weight.notInMonth="1" />
 		</s:stroke>

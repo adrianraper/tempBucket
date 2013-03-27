@@ -3,6 +3,6 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx">
 	
-	<s:Label id="dayLabel" width="95" paddingRight="10" textAlign="right" fontWeight="bold" />
+	<s:Label id="dayLabel" width="80" paddingRight="10" textAlign="right" fontWeight="bold" />
 	
 </s:Skin>

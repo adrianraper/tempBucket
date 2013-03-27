@@ -138,11 +138,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					
 					//gh: #185 we should be able to read the height of menuBar
 					if (widgetMenu.currentState == "text") {
-						var offsetY:Number = pt.y + 225 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
+						var offsetY:Number = pt.y + 230 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
 					} else {
-						offsetY = pt.y + 275 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
+						offsetY = pt.y + 280 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
 					}					
-					trace("offsetY: "+ offsetY);
+
 					if (offsetY > 0) {
 							widgetList.scroller.verticalScrollBar.value = widgetList.scroller.verticalScrollBar.value + offsetY;
 							widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;
