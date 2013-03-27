@@ -225,8 +225,8 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onCourseSettings(event:MouseEvent):void {
-			//alice S
-			if (this.canPublish) {
+			//gh #225
+			if (this.canPublish && config.illustrationCloseFlag) {
 				helpPublish.dispatch();
 			}
 			navigator.pushView(SettingsView);
