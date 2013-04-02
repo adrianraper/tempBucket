@@ -72,6 +72,9 @@
 		// gh#122
 		public static const SEND_WELCOME_EMAIL:String = "rotterdam/send_welcome_email"; 
 		public static const WELCOME_EMAIL_SENT:String = "rotterdam/welcome_email_sent"; 
+		
+		//gh #221
+		public static const ADD_WEB_URL:String = "rotterdam/add_web_url";
 	}
 	
 }

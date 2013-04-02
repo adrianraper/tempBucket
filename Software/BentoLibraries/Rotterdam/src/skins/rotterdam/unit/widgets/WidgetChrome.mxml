@@ -6,6 +6,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 			import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
 			
 			[Bindable]
@@ -31,6 +32,11 @@
 						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
 						break;
 				}
+			}
+			
+			//alice
+			protected function onLinkButtonClick(event:MouseEvent):void {
+				dispatchEvent(new WidgetLinkEvent(WidgetLinkEvent.ADD_LINK,false));
 			}
 		]]>
 	</fx:Script>
@@ -73,6 +79,9 @@
 	
 	<!-- The widget title -->
 	<s:Label text="{caption}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
+	
+	<!--alice-->
+	<s:Button id="linkButton" right="50" label="link" top="3" click="onLinkButtonClick(event)"/>
 	
 	<!-- The menu button -->
 	<s:Group id="menuButton" right="0" width="41" height="24" buttonMode="true" mouseEnabled="true" click="onMenuButtonClick(event)" visible="{editing}">

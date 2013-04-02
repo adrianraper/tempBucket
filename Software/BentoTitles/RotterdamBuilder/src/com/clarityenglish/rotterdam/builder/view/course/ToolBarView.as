@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -102,9 +103,20 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		[SkinPart]
 		public var videoUrlTextInput:TextInput;
+		
+		//gh #221
+		[SkinPart]
+		public var webUrlTextInput:TextInput;
+		
+		[SkinPart]
+		public var captionTextInput:TextInput;
 				
 		[SkinPart]
 		public var videoSelectButton:Button;
+		
+		//gh #221
+		[SkinPart]
+		public var linkSelectButton:Button;
 		
 		[SkinPart]
 		public var previewBackToEditorButton:Button;
@@ -130,6 +142,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var addItemButton:ToggleButton;
 		
+		//gh #221
+		[SkinPart]
+		public var normalAddLinkButton:Button;
+		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object, XML);
 		public var addPDF:Signal = new Signal(Object, XML);
@@ -140,6 +156,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
+		//gh #221
+		public var addLink:Signal = new Signal(XML);
 
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
@@ -147,7 +165,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		private var _currentEditingWidget:XML;
 		
 		public function ToolBarView() {
-			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "preview" ], true);
+			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "link", "preview" ], true);
 		}
 		
 		/**
@@ -290,6 +308,14 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case itemList:
 					itemList.addEventListener(MouseEvent.CLICK, onItemListClick);
+					break;
+				//gh #221
+				case normalAddLinkButton:
+					normalAddLinkButton.addEventListener(MouseEvent.CLICK, onNormalAddWebLink);
+					break;
+				case linkSelectButton:
+					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);
+					break;
 			}
 		}
 				
@@ -324,6 +350,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onNormalAddExercise(event:MouseEvent):void {
 			addExercise.dispatch({}, _currentEditingWidget);
+			itemClick = true;
+		}
+		
+		//gh #221
+		protected function onNormalAddWebLink(event:MouseEvent):void {
+			setCurrentState("link");
 			itemClick = true;
 		}
 		
@@ -394,6 +426,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				addVideo.dispatch( { type: "youtube", url: url }, _currentEditingWidget); // TODO: use a constant from somewhere (in fact this isn't used yet)?
 				setCurrentState("normal");
 			}
+		}
+		
+		//gh #221
+		protected function onLinkSelect(event:MouseEvent):void {
+			if (webUrlTextInput.text != null) {
+				captionTextInput.text = (captionTextInput.text == "")? webUrlTextInput.text: captionTextInput.text;
+				trace("captionTextInput text: "+captionTextInput.text );
+				trace("webUrlTextInput text: "+webUrlTextInput.text );
+				var linkXML:XML = <a href={webUrlTextInput.text} target="_blank">{captionTextInput.text}</a> ;
+				trace("linkXML: "+linkXML);
+				addLink.dispatch(linkXML);
+			}		
 		}
 		
 		protected function onNormalPreview(event:MouseEvent):void {

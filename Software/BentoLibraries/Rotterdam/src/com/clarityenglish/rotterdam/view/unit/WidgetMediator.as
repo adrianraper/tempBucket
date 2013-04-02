@@ -75,6 +75,7 @@
 				RotterdamNotifications.MEDIA_UPLOAD_PROGRESS,
 				RotterdamNotifications.MEDIA_UPLOADED,
 				RotterdamNotifications.TEXT_FORMAT,
+				RotterdamNotifications.ADD_WEB_URL,
 			]);
 		}
 		
@@ -101,6 +102,10 @@
 				switch (note.getName()) {
 					case RotterdamNotifications.TEXT_FORMAT:
 						handleTextFormat(note.getBody());
+						break;
+					//gh #221
+					case RotterdamNotifications.ADD_WEB_URL:
+						view.onAddLink(note.getBody() as XML);
 						break;
 				}
 			}
@@ -154,7 +159,6 @@
 			exerciseMark.duration = 60;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
-		}
-		
+		}		
 	}
 }

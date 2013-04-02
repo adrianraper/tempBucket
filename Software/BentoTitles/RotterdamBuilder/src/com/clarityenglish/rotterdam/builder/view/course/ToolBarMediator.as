@@ -34,6 +34,8 @@
 			view.formatText.add(onFormatText);
 			view.preview.add(onPreview);
 			view.backToEditor.add(onBackToEditor);
+			//gh #221
+			view.addLink.add(onAddLink);
 		}
 		
 		override public function onRemove():void {
@@ -49,6 +51,7 @@
 			view.formatText.remove(onFormatText);
 			view.preview.remove(onPreview);
 			view.backToEditor.remove(onBackToEditor);
+			view.addLink.remove(onAddLink);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -121,5 +124,10 @@
 			facade.sendNotification(RotterdamNotifications.PREVIEW_HIDE);
 		}
 		
+		//gh 221
+		protected function onAddLink(webURL:XML):void {
+			trace("webURL: "+webURL);
+			facade.sendNotification(RotterdamNotifications.ADD_WEB_URL, webURL);
+		}
 	}
 }

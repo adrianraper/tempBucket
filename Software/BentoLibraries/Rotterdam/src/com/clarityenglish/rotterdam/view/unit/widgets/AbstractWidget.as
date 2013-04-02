@@ -8,6 +8,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	
+	import flashx.textLayout.conversion.ConversionType;
 	import flashx.textLayout.conversion.TextConverter;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.formats.TextLayoutFormat;
@@ -25,6 +26,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import skins.rotterdam.unit.widgets.WidgetText;
 	
 	import spark.components.supportClasses.Range;
+	import spark.utils.TextFlowUtil;
 	
 	/**
 	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
@@ -198,6 +200,53 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected function onTextSelected(event:WidgetTextFormatMenuEvent):void {
 			textSelected.dispatch(event.format);
+		}
+		
+		//alice
+		public function onAddLink(webURL:XML):void {
+			trace("recieved webURL: "+webURL);
+			var textFlow:TextFlow = widgetText.richEditableText.textFlow;
+			var textXML:Object = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE);
+			textXML.appendChild(webURL);
+			widgetText.richEditableText.textFlow = TextConverter.importToFlow(textXML, TextConverter.TEXT_FIELD_HTML_FORMAT);
+			/*var startIndex:Number = Math.min(widgetText.anchorPos, widgetText.activePos);
+			var endIndex:Number = Math.max(widgetText.anchorPos, widgetText.activePos);
+			trace("startIndex: "+startIndex);
+			trace("endIndex: "+endIndex);
+			
+			var text:String = widgetText.richEditableText.text;
+			trace("text: "+text);
+			var selectText:String = text.substring(widgetText.anchorPos, widgetText.activePos);
+			trace ("slecte text: "+selectText);
+			
+			var firstFlow:FlowGroupElement = widgetText.richEditableText.textFlow.splitAtIndex(startIndex);
+			trace("firstFlow: "+firstFlow.getText());
+			
+			/*var firstText:String = text.substring(0, startIndex);
+			trace("first text length: "+firstText.length);
+			var firstFlow:TextFlow = TextFlowUtil.importFromString(firstText);
+			var firstXML:Object = TextConverter.export(firstFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE);
+			trace ("fristXML: "+firstXML);
+			
+			var lastText:String = widgetText.richEditableText.text.substring(endIndex);
+			var lastFlow:TextFlow = TextFlowUtil.importFromString(lastText);
+			var lastXML:Object = TextConverter.export(lastFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE);
+			trace("lastXML: "+lastXML);
+
+			var linkSelectText:XML = <a href={selectText} target="_blank">{selectText}</a> ;
+			
+			firstXML.appendChild(linkSelectText);
+			firstXML.appendChild(lastXML.children());
+			trace("firstXL: "+firstXML);
+			var linkFlow:TextFlow = TextConverter.importToFlow(firstXML, TextConverter.TEXT_FIELD_HTML_FORMAT);
+			widgetText.richEditableText.textFlow = linkFlow;
+			/*firstXML.appendChild(linkSelectText);
+			trace ("fristXML2: "+firstXML);*/
+			
+			/*var linkFlow:TextFlow = TextFlowUtil.importFromXML(linkSelectText);
+			firstFlow.replaceChildren(firstFlow.numChildren, firstFlow.numChildren, getFlowElementChildren(linkFlow));
+			lastFlow.replaceChildren(0, 0, getFlowElementChildren(firstFlow));
+			widgetText.richEditableText.textFlow = firstFlow;*/
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {
