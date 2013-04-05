@@ -34,9 +34,9 @@
 				}
 			}
 			
-			//alice
+			//gh #221
 			protected function onLinkButtonClick(event:MouseEvent):void {
-				dispatchEvent(new WidgetLinkEvent(WidgetLinkEvent.ADD_LINK,false));
+				dispatchEvent(new WidgetLinkEvent(WidgetLinkEvent.ADD_LINK, true));
 			}
 		]]>
 	</fx:Script>

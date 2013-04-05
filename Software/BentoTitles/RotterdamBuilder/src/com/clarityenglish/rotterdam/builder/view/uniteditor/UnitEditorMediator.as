@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	
 	import flash.utils.setTimeout;
@@ -29,6 +30,9 @@
 			view.widgetSelect.add(onWidgetSelect);
 			view.widgetDelete.add(onWidgetDelete);
 			view.widgetEdit.add(onWidgetEdit);
+			
+			//gh #221
+			view.addEventListener(WidgetLinkEvent.ADD_LINK, onAddLink);
 			
 			// TODO: Hacky!  Do this properly for the non-prototype version.
 			setTimeout(function():void {
@@ -76,5 +80,9 @@
 			facade.sendNotification(RotterdamNotifications.WIDGET_EDIT, widget);
 		}
 		
+		//gh #221
+		protected function onAddLink(event:WidgetLinkEvent):void {
+			facade.sendNotification(RotterdamNotifications.WEB_URL_SELECT);
+		}
 	}
 }

@@ -65,9 +65,9 @@
 		<s:Label includeIn="video" text="Place your video URL here:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="video" id="videoUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" text="http://www.youtube.com/v/hecfFD_D_pU?version=3" />
 		
-		<s:Label includeIn="link" text="Input your video URL here:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
+		<s:Label includeIn="link" text="Input your web URL here:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="webUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />
-		<s:Label includeIn="link" text="Caption:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
+		<s:Label includeIn="link" text="Text to display:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="captionTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />
 		
 		
@@ -128,7 +128,6 @@
 	<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" />
 	<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddLinkButton" label="Add Link" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	
 	<s:HGroup bottom="0" gap="10" height="48" right="140" verticalAlign="middle">

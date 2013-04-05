@@ -99,8 +99,7 @@ package com.clarityenglish.rotterdam.view.course {
 		// gh#208
 		[Bindable(event="publishChanged")]
 		public function get canPublish():Boolean {
-			var temp:Boolean = (course.publication && course.publication.group.length() == 0) ? true : false;
-			return temp;
+			return(course.publication && course.publication.group.length() == 0) ? true : false;
 		}
 		
 		public function canPasteFromTarget(target:Object):Boolean {
@@ -109,7 +108,6 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
-			
 			if (courseCaptionLabel) courseCaptionLabel.text = course.@caption;
 		}
 		

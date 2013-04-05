@@ -142,10 +142,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var addItemButton:ToggleButton;
 		
-		//gh #221
-		[SkinPart]
-		public var normalAddLinkButton:Button;
-		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object, XML);
 		public var addPDF:Signal = new Signal(Object, XML);
@@ -205,7 +201,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected override function onAddedToStage(event:Event):void {
-			stage.addEventListener(MouseEvent.CLICK, onStageClick);
+			super.onAddedToStage(event);
+			
+			stage.addEventListener(MouseEvent.CLICK, onStageClick);			
+			addEventListener(WidgetLinkEvent.ADD_LINK, onAddLink, false, 0, true);
 		}
 		
 		protected override function commitProperties():void {
@@ -310,11 +309,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					itemList.addEventListener(MouseEvent.CLICK, onItemListClick);
 					break;
 				//gh #221
-				case normalAddLinkButton:
-					normalAddLinkButton.addEventListener(MouseEvent.CLICK, onNormalAddWebLink);
-					break;
 				case linkSelectButton:
-					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);
+					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);					
 					break;
 			}
 		}
@@ -354,7 +350,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		//gh #221
-		protected function onNormalAddWebLink(event:MouseEvent):void {
+		public function onNormalAddWebLink():void {
 			setCurrentState("link");
 			itemClick = true;
 		}
@@ -432,11 +428,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected function onLinkSelect(event:MouseEvent):void {
 			if (webUrlTextInput.text != null) {
 				captionTextInput.text = (captionTextInput.text == "")? webUrlTextInput.text: captionTextInput.text;
-				trace("captionTextInput text: "+captionTextInput.text );
-				trace("webUrlTextInput text: "+webUrlTextInput.text );
 				var linkXML:XML = <a href={webUrlTextInput.text} target="_blank">{captionTextInput.text}</a> ;
-				trace("linkXML: "+linkXML);
 				addLink.dispatch(linkXML);
+				setCurrentState("normal");
 			}		
 		}
 		
@@ -511,6 +505,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				itemClick = false;
 			}
 
+		}
+		
+		//gh #221
+		protected function onAddLink(event:WidgetLinkEvent):void {
+			trace("got the widget link event");
 		}
 		
 		/**

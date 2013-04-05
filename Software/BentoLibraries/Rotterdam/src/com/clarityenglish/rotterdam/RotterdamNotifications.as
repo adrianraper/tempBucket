@@ -75,6 +75,7 @@
 		
 		//gh #221
 		public static const ADD_WEB_URL:String = "rotterdam/add_web_url";
+		public static const WEB_URL_SELECT:String = "rotterdam/web_url_select";
 	}
 	
 }

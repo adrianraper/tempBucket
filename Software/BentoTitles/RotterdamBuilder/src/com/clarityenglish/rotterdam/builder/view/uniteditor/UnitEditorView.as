@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.ui.WidgetList;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
@@ -12,6 +13,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import flash.utils.Timer;
 	
 	import mx.collections.ListCollectionView;
+	import mx.core.FlexGlobals;
 	import mx.core.UIComponent;
 	
 	import org.osflash.signals.Signal;
@@ -48,6 +50,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			super.onAddedToStage(event);
 			
 			stage.addEventListener(MouseEvent.CLICK, onStageClick, false, 0, true);
+			//gh #228
+			stage.addEventListener(Event.RESIZE, onResize);
 			addEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete, false, 0, true);
@@ -77,6 +81,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					widgetList.dragEnabled = widgetList.dropEnabled = widgetList.dragMoveEnabled = true;
 					widgetList.addEventListener(Event.CHANGE, onWidgetSelected, false, 0, true);
 					widgetList.addEventListener(WidgetLayoutEvent.LAYOUT_CHANGED, onLayoutChanged, false, 0, true);
+					//gh #228
+					widgetList.maxWidth = FlexGlobals.topLevelApplication.width - 160;
 					break;
 				case widgetMenu:
 					widgetMenu.visible = false;
@@ -160,6 +166,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			widgetMenu.visible = false;
 		}
 		
+		//gh #228
+		protected function onResize(event:Event):void {
+			widgetList.maxWidth = FlexGlobals.topLevelApplication.width - 160;
+		}
+		
 		/**
 		 * Any click that is not on the cog button or on the open widget menu will close the menu
 		 */
@@ -171,6 +182,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				onHideWidgetMenu();
 			}
 		}
+		
 		
 		
 	}
