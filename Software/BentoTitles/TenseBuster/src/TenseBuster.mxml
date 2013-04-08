@@ -1,8 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Application xmlns:fx="http://ns.adobe.com/mxml/2009" 
-			   xmlns:s="library://ns.adobe.com/flex/spark" 
-			   xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="955" minHeight="600">
-	<fx:Declarations>
-		<!-- Place non-visual elements (e.g., services, value objects) here -->
-	</fx:Declarations>
-</s:Application>
+<tensebuster:TenseBusterApplication xmlns:fx="http://ns.adobe.com/mxml/2009"
+									xmlns:s="library://ns.adobe.com/flex/spark"
+									xmlns:tensebuster="com.clarityenglish.tensebuster.*"
+									minWidth="990" minHeight="760"
+									initialize="onInitialize(event)">
+	<fx:Metadata>
+		[SWF(width="990", height="760")]
+	</fx:Metadata>
+	
+	<fx:Style source="tensebuster.css" />
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.tensebuster.TenseBusterApplicationFacade;
+			
+			import mx.events.FlexEvent;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				versionNumber = "0.0.0.000";
+				
+				facade = TenseBusterApplicationFacade.getInstance();
+			}
+			
+		]]>
+	</fx:Script>
+</tensebuster:TenseBusterApplication>

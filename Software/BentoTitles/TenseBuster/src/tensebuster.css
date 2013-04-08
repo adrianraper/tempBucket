@@ -1,0 +1,5 @@
+@namespace tensebuster "com.clarityenglish.tensebuster.*";
+
+tensebuster|TenseBusterApplication {
+	skinClass: ClassReference("skins.tensebuster.TenseBusterApplicationSkin");
+}
