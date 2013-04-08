@@ -1,8 +1,11 @@
 ﻿package com.clarityenglish.tensebuster {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
-	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.tensebuster.controller.TenseBusterStartupCommand;
+	import com.clarityenglish.tensebuster.view.home.HomeMediator;
+	import com.clarityenglish.tensebuster.view.home.HomeView;
+	import com.clarityenglish.tensebuster.view.title.TitleMediator;
+	import com.clarityenglish.tensebuster.view.title.TitleView;
 	
 	/**
 	* ...
@@ -20,10 +23,10 @@
 			
 			// Map IELTS specific views to their mediators
 			/*mapView(NoNetworkView, NoNetworkMediator);
-			mapView(LoginView, LoginMediator);
+			mapView(LoginView, LoginMediator);*/
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
-			mapView(AccountView, AccountMediator);
+			/*mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(SupportView, SupportMediator);
 			mapView(ExerciseView, ExerciseMediator);

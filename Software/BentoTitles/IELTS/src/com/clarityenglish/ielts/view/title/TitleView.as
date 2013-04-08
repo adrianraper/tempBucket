@@ -3,8 +3,6 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.model.CopyProxy;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
@@ -248,6 +246,7 @@ package com.clarityenglish.ielts.view.title {
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
 		}
+		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
