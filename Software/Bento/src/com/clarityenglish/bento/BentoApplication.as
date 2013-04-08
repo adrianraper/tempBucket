@@ -1,6 +1,10 @@
 package com.clarityenglish.bento {
+	import caurina.transitions.properties.CurveModifiers;
+	import caurina.transitions.properties.DisplayShortcuts;
+	
 	import com.clarityenglish.textLayout.util.TLF2Application;
 	
+	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.ui.Keyboard;
@@ -18,6 +22,9 @@ package com.clarityenglish.bento {
 		 * Standard flex logger
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
+		
+		[Bindable]
+		public var versionNumber:String = "(unknown)";
 		
 		public static const DEMO:String = "DEMO";
 		
@@ -38,6 +45,10 @@ package com.clarityenglish.bento {
 			
 			creationPolicy = "none";
 			
+			// Initialize some Tweener plugins
+			DisplayShortcuts.init();
+			CurveModifiers.init();
+			
 			// Create deferred content with maximum priority so that this happens before any other ADDED_TO_STAGE listeners fire
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, int.MAX_VALUE);
 			
@@ -52,6 +63,8 @@ package com.clarityenglish.bento {
 		
 		private function onAddedToStage(event:Event):void {
 			log.info("Added to stage");
+			
+			stage.quality = StageQuality.BEST;
 			
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			
@@ -87,6 +100,10 @@ package com.clarityenglish.bento {
 		
 		protected function onKeyUp(event:KeyboardEvent):void {
 			if (event.keyCode == Keyboard.CONTROL) isCtrlDown = false;
+		}
+		
+		protected override function getCurrentSkinState():String {
+			return currentState;
 		}
 		
 	}

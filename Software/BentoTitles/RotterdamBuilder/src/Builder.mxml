@@ -22,7 +22,6 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.bento.controller.MenuXHTMLLoadCommand;
 			import com.clarityenglish.rotterdam.builder.BuilderApplicationFacade;
 			
 			import mx.events.FlexEvent;
