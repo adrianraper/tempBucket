@@ -215,11 +215,13 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && (selectedPublicationGroup.@unitInterval != 0)) ? selectedPublicationGroup.@unitInterval : null;
 			if (startDateField) startDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
 			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate") && (selectedPublicationGroup.@endDate != null)) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
-			if (pastUnitsRadioButtonGroup) pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits") && (selectedPublicationGroup.@seePastUnits != null)) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
-			//alice p
+			if (pastUnitsRadioButtonGroup) {
+				pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits") && (selectedPublicationGroup.@seePastUnits != null)) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
+				pastUnitsRadioButtonGroup.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
+			}
+			
 			if (unitIntervalRadioButtonGroup) unitIntervalRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval == 0) : null;
-			pastUnitsRadioButtonGroup.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
-
+			
 			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates gh#87
 			if (calendar) {
 				if (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && selectedPublicationGroup.hasOwnProperty("@startDate")) {
@@ -345,7 +347,6 @@ package com.clarityenglish.rotterdam.view.settings {
 				case endDateField:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
-							//if (e.target.selectedDate) selectedPublicationGroup.@endDate = DateUtil.dateToAnsiString(e.target.selectedDate);
 							if (selectedPublicationGroup) {
 								selectedPublicationGroup.@endDate = (e.target.selectedDate != null) ? DateUtil.dateToAnsiString(e.target.selectedDate) : null;
 								calendarSettingsChanged(false);
@@ -354,7 +355,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					});
 					endDateField.addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, onMouseFocusChange);
 					break;
-				//alice p
+				// Alice - publication code (not totally finished)
 				case unitIntervalRadioButtonGroup:
 					unitIntervalRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
@@ -465,8 +466,7 @@ package com.clarityenglish.rotterdam.view.settings {
 				if (!group.hasOwnProperty("@id") ||
 					!group.hasOwnProperty("@seePastUnits") ||
 					!group.hasOwnProperty("@unitInterval") ||
-					!group.hasOwnProperty("@startDate") ||
-					!group.hasOwnProperty("@endDate")) {
+					!group.hasOwnProperty("@startDate")) {
 					delete (group.parent().children()[group.childIndex()]);
 				}
 			}
