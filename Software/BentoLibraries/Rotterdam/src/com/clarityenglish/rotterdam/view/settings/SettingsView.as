@@ -83,7 +83,6 @@ package com.clarityenglish.rotterdam.view.settings {
 		[SkinPart]
 		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
 		
-		//alice p
 		[SkinPart]
 		public var unitIntervalGroup:spark.components.Group;
 		
@@ -112,13 +111,13 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var allUnitAvaRadioButton:RadioButton;
 		
 		[SkinPart]
-		public var unitSuccesiveRadioButton:RadioButton;
+		public var unitSuccessiveRadioButton:RadioButton;
 		
 		[SkinPart]
-		public var yesRoadioButton:RadioButton;
+		public var yesRadioButton:RadioButton;
 		
 		[SkinPart]
-		public var noRoadioButton:RadioButton;
+		public var noRadioButton:RadioButton;
 		
 		[SkinPart]
 		public var clearEndDateButton:Button;
@@ -413,7 +412,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					endDateLabel.text = copyProvider.getCopyForId("endDateLabel");
 					break;
 				case endDateInstruLabel:
-					endDateInstruLabel.text = copyProvider.getCopyForId("endDateInstruLabel");
+					endDateInstruLabel.text = copyProvider.getCopyForId("endDateInstructionLabel");
 					break;
 				case unitIntervalLabel:
 					unitIntervalLabel.text = copyProvider.getCopyForId("unitIntervalLabel");
@@ -421,14 +420,14 @@ package com.clarityenglish.rotterdam.view.settings {
 				case allUnitAvaRadioButton:
 					allUnitAvaRadioButton.label = copyProvider.getCopyForId("allUnitAvaRadioButton");
 					break;
-				case unitSuccesiveRadioButton:
-					unitSuccesiveRadioButton.label = copyProvider.getCopyForId("unitSuccesiveRadioButton");
+				case unitSuccessiveRadioButton:
+					unitSuccessiveRadioButton.label = copyProvider.getCopyForId("unitSuccessiveRadioButton");
 					break;
-				case yesRoadioButton:
-					yesRoadioButton.label = copyProvider.getCopyForId("yesRoadioButton");
+				case yesRadioButton:
+					yesRadioButton.label = copyProvider.getCopyForId("yesRadioButton");
 					break;
-				case noRoadioButton:
-					noRoadioButton.label = copyProvider.getCopyForId("noRoadioButton");
+				case noRadioButton:
+					noRadioButton.label = copyProvider.getCopyForId("noRadioButton");
 					break;
 				case clearEndDateButton:
 					clearEndDateButton.addEventListener(MouseEvent.CLICK, onClearEndDate);

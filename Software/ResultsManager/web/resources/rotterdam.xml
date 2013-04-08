@@ -170,13 +170,13 @@
 			<lit name="selectGroupLabel">1. Select a group</lit>
 			<lit name="startDateLabel">2. Start date for this course</lit>
 			<lit name="endDateLabel">3. End date for this course</lit>
-			<lit name="endDateInstruLabel">(leave this blank if you don't want the course to end)</lit>
+			<lit name="endDateInstructionLabel">(leave this blank if you don't want the course to end)</lit>
 			<lit name="unitIntervalLabel">4. week-by-week setting</lit>
 			<lit name="allUnitAvaRadioButton">All units available from start date</lit>
-			<lit name="unitSuccesiveRadioButton">How many days between unit</lit>
+			<lit name="unitSuccessiveRadioButton">How many days between unit</lit>
 			<lit name="seePastUnitLabel">5. See past units?</lit>
-			<lit name="yesRoadioButton">Yes</lit>
-			<lit name="noRoadioButton">No</lit>
+			<lit name="yesRadioButton">Yes</lit>
+			<lit name="noRadioButton">No</lit>
 		</group>
 	</language>
 </literals>

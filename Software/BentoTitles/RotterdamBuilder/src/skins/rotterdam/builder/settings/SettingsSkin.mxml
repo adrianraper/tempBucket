@@ -72,6 +72,7 @@
 					
 					<s:Spacer height="{settingBackground.height * 0.03}" />
 				</s:VGroup>
+				
 				<!-- Publication dates settings -->
 				<s:VGroup includeIn="calendar">
 					
@@ -81,7 +82,7 @@
 					<s:Spacer height="{settingBackground.height * 0.03}" />
 					
 					<s:Label id="endDateLabel" fontWeight="bold" />
-					<s:Label id="endDateInstruLabel" />
+					<s:Label id="endDateInstructionLabel" />
 					<s:HGroup>
 						<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" editable="true"/>
 						<!--s:Button id="clearEndDateButton" /-->
@@ -93,7 +94,7 @@
 					<s:VGroup id="unitIntervalGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
 						<s:RadioButton id="allUnitAvaRadioButton" value="true" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
 						<s:HGroup>
-							<s:RadioButton id="unitSuccesiveRadioButton" value="false" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+							<s:RadioButton id="unitSuccessiveRadioButton" value="false" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
 							<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
 						</s:HGroup>				
 					</s:VGroup>			
@@ -102,8 +103,8 @@
 					
 					<s:Label id="seePastUnitLabel" fontWeight="bold" />
 					<s:HGroup id="seePastUnitsGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
-						<s:RadioButton id="yesRoadioButton" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
-						<s:RadioButton id="noRoadioButton" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+						<s:RadioButton id="yesRadioButton" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+						<s:RadioButton id="noRadioButton" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
 					</s:HGroup>
 					
 					<!--s:Label text="2. How many days between units?" fontWeight="bold" />
