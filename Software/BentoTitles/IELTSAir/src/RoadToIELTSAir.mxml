@@ -76,9 +76,7 @@
 				FlexGlobals.topLevelApplication.loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onUncaughtError);
 			}
 			
-			override protected function onAddedToStage(event:Event):void {
-				super.onAddedToStage(event);
-				
+			protected function onAddedToStage(event:Event):void {
 				/*if (!logTextArea.visible) { 
 					logTextArea.visible = true;
 					
