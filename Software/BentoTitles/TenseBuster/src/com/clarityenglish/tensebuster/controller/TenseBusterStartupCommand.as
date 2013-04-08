@@ -1,5 +1,13 @@
 package com.clarityenglish.tensebuster.controller {
 	import com.clarityenglish.bento.controller.BentoStartupCommand;
+	import com.clarityenglish.bento.model.XHTMLProxy;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
+	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
+	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
+	import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
+	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.tensebuster.view.TenseBusterApplicationMediator;
 	
 	import org.puremvc.as3.interfaces.INotification;
 
@@ -10,13 +18,14 @@ package com.clarityenglish.tensebuster.controller {
 			
 			/*var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			
-			// Set the default function for currentCouseClass to retrieve the class of the first course
+			// Set the default function for currentCourseClass to retrieve the class of the first course
 			dataProxy.setDefaultFunction("currentCourseClass", function(facade:Facade):Object {
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				return (bentoProxy.menuXHTML) ? bentoProxy.menuXHTML..course[0].@["class"].toString() : null;
-			});
+			});*/
 			
-			// Set the transforms that IELTS uses on its menu.xml files
+			// Set the transforms that TenseBuster uses on its menu.xml files
+			// TODO: currently these are the same as IELTS
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;			
 			var transforms:Array = [ new ProgressExerciseScoresTransform(),
@@ -25,9 +34,7 @@ package com.clarityenglish.tensebuster.controller {
 									 new DirectStartDisableTransform(configProxy.getDirectStart()) ];
 			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
 			
-			facade.registerMediator(new IELTSApplicationMediator(note.getBody()));*/
-			
-			trace("STARTUP!!!!!!!!!!!!");
+			facade.registerMediator(new TenseBusterApplicationMediator(note.getBody()));
 		}
 
 	}

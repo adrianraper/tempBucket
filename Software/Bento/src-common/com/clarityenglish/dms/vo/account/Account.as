@@ -38,6 +38,7 @@
 		// v4.0 Integration with Bento
 		public var verified:Number;
 		public var selfRegister:Number;
+		public var languageCode:String;
 		
 		public var adminUser:User;
 		
