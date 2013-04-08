@@ -75,7 +75,7 @@
 				RotterdamNotifications.MEDIA_UPLOAD_PROGRESS,
 				RotterdamNotifications.MEDIA_UPLOADED,
 				RotterdamNotifications.TEXT_FORMAT,
-				RotterdamNotifications.ADD_WEB_URL,
+				RotterdamNotifications.WEB_URL_ADD,
 			]);
 		}
 		
@@ -103,8 +103,7 @@
 					case RotterdamNotifications.TEXT_FORMAT:
 						handleTextFormat(note.getBody());
 						break;
-					//gh #221
-					case RotterdamNotifications.ADD_WEB_URL:
+					case RotterdamNotifications.WEB_URL_ADD: // gh#221
 						view.onAddLink(note.getBody() as XML);
 						break;
 				}

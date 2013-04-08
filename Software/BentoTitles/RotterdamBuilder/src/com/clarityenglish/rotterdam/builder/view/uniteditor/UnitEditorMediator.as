@@ -80,7 +80,7 @@
 			facade.sendNotification(RotterdamNotifications.WIDGET_EDIT, widget);
 		}
 		
-		//gh #221
+		// gh#221
 		protected function onAddLink(event:WidgetLinkEvent):void {
 			facade.sendNotification(RotterdamNotifications.WEB_URL_SELECT);
 		}

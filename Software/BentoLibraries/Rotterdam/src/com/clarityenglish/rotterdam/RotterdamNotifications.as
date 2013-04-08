@@ -66,15 +66,15 @@
 		public static const UNIT_COPY:String = "rotterdam/unit_copy";
 		public static const UNIT_PASTE:String = "rotterdam/unit_paste";
 		
-		//alice s
-		public static const HELP_PUBLISH_WINDOWN_SHOW:String = "rotterdam/help_publish_window_show";
+		// alice s
+		public static const HELP_PUBLISH_WINDOW_SHOW:String = "rotterdam/help_publish_window_show";
 
 		// gh#122
 		public static const SEND_WELCOME_EMAIL:String = "rotterdam/send_welcome_email"; 
 		public static const WELCOME_EMAIL_SENT:String = "rotterdam/welcome_email_sent"; 
 		
-		//gh #221
-		public static const ADD_WEB_URL:String = "rotterdam/add_web_url";
+		// gh#221
+		public static const WEB_URL_ADD:String = "rotterdam/web_url_add";
 		public static const WEB_URL_SELECT:String = "rotterdam/web_url_select";
 	}
 	

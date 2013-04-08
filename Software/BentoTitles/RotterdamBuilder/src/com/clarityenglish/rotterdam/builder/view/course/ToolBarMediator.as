@@ -131,7 +131,7 @@
 		
 		//gh #221
 		protected function onAddLink(webURL:XML):void {
-			facade.sendNotification(RotterdamNotifications.ADD_WEB_URL, webURL);
+			facade.sendNotification(RotterdamNotifications.WEB_URL_ADD, webURL);
 		}
 	}
 }

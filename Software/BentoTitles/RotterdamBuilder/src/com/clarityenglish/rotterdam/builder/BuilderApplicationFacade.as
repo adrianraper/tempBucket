@@ -96,7 +96,7 @@
 			registerCommand(RotterdamNotifications.CONTENT_WINDOW_SHOW, ContentWindowShowCommand);
 			registerCommand(RotterdamNotifications.COURSE_CREATE_WINDOW_SHOW, CourseCreateWindowShowCommand);
 			//alice s
-			registerCommand(RotterdamNotifications.HELP_PUBLISH_WINDOWN_SHOW, HelpPublishWindowShowCommand);
+			registerCommand(RotterdamNotifications.HELP_PUBLISH_WINDOW_SHOW, HelpPublishWindowShowCommand);
 			
 			// gh#110
 			registerCommand(RotterdamNotifications.UNIT_COPY, UnitCopyCommand);

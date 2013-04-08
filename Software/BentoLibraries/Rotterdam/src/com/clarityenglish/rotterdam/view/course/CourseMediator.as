@@ -118,7 +118,7 @@
 		
 		//alice s
 		protected function onHelpPublish():void {
-			facade.sendNotification(RotterdamNotifications.HELP_PUBLISH_WINDOWN_SHOW);
+			facade.sendNotification(RotterdamNotifications.HELP_PUBLISH_WINDOW_SHOW);
 		}
 		
 	}
