@@ -31,7 +31,6 @@
   </compiler>
   <applications>
     <application path="RoadToIELTS.mxml"/>
-    <application path="com/clarityenglish/ielts/IELTSApplication.as"/>
   </applications>
   <modules/>
   <buildCSSFiles>
