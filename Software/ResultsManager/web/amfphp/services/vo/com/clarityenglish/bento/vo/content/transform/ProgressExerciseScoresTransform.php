@@ -55,6 +55,35 @@ SQL;
 				}
 			}
 		}
+		
+		foreach ($xml->head->script->menu->course->unit as $unit)  {
+			foreach ($unit->exercise as $exercise){
+				if ($exercise['contentuid']) {
+					$uid= explode(".", $exercise['contentuid']);
+
+					$sql = <<<SQL
+						SELECT SUM(F_Duration) F_Duration, SUM(F_Score) F_Score, MIN(F_DateStamp) F_DateStamp
+						FROM T_Score as s
+						WHERE s.F_UserID=?
+						AND s.F_ProductCode=?
+						AND s.F_CourseID =?
+						And s.F_UnitID = ?;
+SQL;
+					$bindingParams = array($user->userID, $uid[0], $uid[1], $uid[2]);
+					$rs = $db->GetArray($sql, $bindingParams);
+					
+					foreach ($rs as $record2) {
+						$score = $exercise->addChild('score');
+						$score->addAttribute('score', $record2['F_Score']);
+						$score->addAttribute('duration', $record2['F_Duration']);
+						$score->addAttribute('datetime', $record2['F_DateStamp']);
+					
+						// Increment the @done attribute
+						$exercise['done'] = ($exercise['done']) ? $exercise['done'] + 1 : 1;
+					}
+				}
+			}			
+		}
 	}
 	
 }

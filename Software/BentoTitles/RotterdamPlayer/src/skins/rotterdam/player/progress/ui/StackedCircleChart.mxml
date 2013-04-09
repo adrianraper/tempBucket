@@ -42,7 +42,7 @@
 			<mx:PieSeries field="{hostComponent.field}" fills="{getStyle('unitColours')}" filters="{glowFilter}"/>
 		</mx:series>
 	</mx:PieChart>
-	<progress:piechart_gray filters="{glowFilter}" left="13" top="14" visible="{hostComponent.dataProvider.@duration == 0}"/>
+	<progress:piechart_gray filters="{glowFilter}" left="13" top="14" visible="{hostComponent.emptyPieShow}"/>
 	
 	<s:VGroup horizontalCenter="0" verticalCenter="0" horizontalAlign="center" visible="{dateTipShow}">
 		<s:Label text="Unit {hostComponent.pieUnitIndex + 1}" fontSize="18" fontWeight="bold"/>

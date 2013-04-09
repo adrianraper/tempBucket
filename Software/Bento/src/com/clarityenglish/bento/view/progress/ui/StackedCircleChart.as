@@ -1,4 +1,6 @@
 package com.clarityenglish.bento.view.progress.ui {
+	import flash.media.Video;
+	
 	import mx.charts.PieChart;
 	import mx.charts.series.PieSeries;
 	import mx.charts.series.items.PieSeriesItem;
@@ -16,6 +18,7 @@ package com.clarityenglish.bento.view.progress.ui {
 		private var _dataTip:String;
 		private var _pieDuration:Number = 0;
 		private var _pieUnitIndex:Number = 0;
+		private var _emptyPieShow:Boolean = true;
 		
 		[Bindable]
 		public var dataTipLabel:String;
@@ -60,8 +63,15 @@ package com.clarityenglish.bento.view.progress.ui {
 		public function get pieUnitIndex():Number {
 			return _pieUnitIndex;
 		}
-
-
+		
+		[Bindable]
+		public function set emptyPieShow(value:Boolean):void {
+			_emptyPieShow = value;
+		}
+		
+		public function get emptyPieShow():Boolean {
+			return _emptyPieShow;
+		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
@@ -69,6 +79,17 @@ package com.clarityenglish.bento.view.progress.ui {
 			graphics.clear();
 			
 			if (!_field || !_dataProvider) return;
+			
+			var i:Number = 0
+			for each (var duration:Number in _dataProvider.@duration) {
+				trace("duraton: "+duration);
+				if (duration > 60) {
+					this.emptyPieShow = false;
+				} else {
+					_dataProvider.@duration[i] = 0;
+				}
+				i++;
+			}
 
 			// Implement drawing the circle graph!
 			/*graphics.beginFill(0xFF0000, 1);

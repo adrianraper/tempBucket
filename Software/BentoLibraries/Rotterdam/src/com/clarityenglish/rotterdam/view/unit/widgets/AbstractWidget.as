@@ -207,7 +207,13 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();
 			
 			var textXML:XML = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
-			textXML.appendChild(anchorTag);
+			
+			//gh #221: enalbe web link insert next to text
+			if (textXML.children().children() == "") {
+				textXML.children().appendChild(anchorTag);
+			} else {
+				textXML.children()[textXML.children().length()-1].appendChild(anchorTag);
+			}
 			
 			text = textXML.toXMLString();
 		}
