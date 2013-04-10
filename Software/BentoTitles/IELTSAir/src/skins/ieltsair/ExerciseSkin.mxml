@@ -5,7 +5,7 @@
 		xmlns:view="com.clarityenglish.bento.view.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ielts.view.exercise.ExerciseView")]
+		[HostComponent("com.clarityenglish.bento.view.exercise.ExerciseView")]
 	</fx:Metadata>
 	
 	<fx:Declarations>

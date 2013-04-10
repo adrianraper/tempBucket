@@ -10,8 +10,8 @@
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.credits.CreditsMediator;
 	import com.clarityenglish.ielts.view.credits.CreditsView;
-	import com.clarityenglish.ielts.view.exercise.ExerciseMediator;
-	import com.clarityenglish.ielts.view.exercise.ExerciseView;
+	import com.clarityenglish.bento.view.exercise.ExerciseMediator;
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeMediator;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.login.LoginView;

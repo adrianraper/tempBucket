@@ -8,7 +8,7 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.credits.CreditsView;
-	import com.clarityenglish.ielts.view.exercise.ExerciseView;
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;

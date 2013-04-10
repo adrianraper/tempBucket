@@ -11,7 +11,7 @@
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
 @namespace support "com.clarityenglish.ielts.view.support.*";
-@namespace exercise "com.clarityenglish.ielts.view.exercise.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace home "com.clarityenglish.ielts.view.home.*";
 @namespace homeui "com.clarityenglish.ielts.view.home.ui.*";
 @namespace compare "com.clarityenglish.ielts.view.progress.components.*";
