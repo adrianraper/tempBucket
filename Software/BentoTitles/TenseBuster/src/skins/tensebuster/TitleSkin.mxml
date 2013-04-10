@@ -21,6 +21,6 @@
 	
 	<home:HomeView width="100%" height="100%" includeIn="home" />
 	<zone:ZoneView width="100%" height="100%" includeIn="zone" course="{hostComponent.selectedCourseXML}" />
-	<exercise:ExerciseView width="100%" height="100%" includeIn="exercise" />
+	<exercise:ExerciseView width="100%" height="100%" includeIn="exercise" href="{hostComponent.currentExerciseHref}" />
 	
 </s:Skin>

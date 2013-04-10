@@ -69,15 +69,6 @@
 		</s:fill>
 	</s:Rect>
 	
-	<!-- Ring binder shadow -->
-	<s:Group left="0" top="34" bottom="20" clipAndEnableScrolling="true" includeIn="exercise">
-		<s:Rect width="50" height="100%">
-			<s:fill>
-				<s:SolidColor color="#000000" alpha="0.4" />
-			</s:fill>
-		</s:Rect>
-	</s:Group>
-	
 	<!-- Exercise -->
 	<view:DynamicView id="dynamicView" left="25" right="25" top="34" bottom="20" /> <!-- scaleX="{4/3}" scaleY="{4/3}" -->
 	

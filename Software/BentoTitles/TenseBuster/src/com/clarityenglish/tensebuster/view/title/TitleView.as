@@ -11,7 +11,8 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		private var _selectedCourseXML:XML;
 		
-		private var currentExerciseHref:Href;
+		[Bindable]
+		public var currentExerciseHref:Href;
 		
 		[SkinPart]
 		public var exerciseView:ExerciseView;
@@ -37,7 +38,7 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
-			if (exerciseView) exerciseView.href = currentExerciseHref;
+			//if (exerciseView) exerciseView.href = currentExerciseHref;
 			callLater(invalidateSkinState); // callLater is part of #192
 			
 			// This is for mobile skins; if the ExerciseView is already top of the stack then set the href, otherwise push a new ExerciseView
