@@ -49,6 +49,8 @@
 			
 			view.isMediated = true; // #222
 			
+			updateCourse();
+			
 			// #514 If you are SCORM you don't want the course selector
 			// #378 Actually, you will still use it, just disable the courses that are hidden.
 			//view.useCourseSelector = !configProxy.getConfig().scorm;
@@ -65,6 +67,7 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
+				BBNotifications.COURSE_STARTED,
 				BBNotifications.SCORE_WRITTEN,
 				IELTSNotifications.PRACTICE_ZONE_POPUP_SHOW,
 				IELTSNotifications.PRACTICE_ZONE_POPUP_HIDE,
@@ -75,6 +78,9 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
+				case BBNotifications.COURSE_STARTED:
+					updateCourse();
+					break;
 				// #164 For updating of coverage blobs when you do another exercise
 				case BBNotifications.SCORE_WRITTEN:
 					//view.popoutExerciseSelector.exercises = view.refreshedExercises();
@@ -86,6 +92,11 @@
 					view.setCourseSelectorVisible(true);
 					break;
 			}
+		}
+		
+		private function updateCourse():void {
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			view.course = bentoProxy.selectedNode; // TODO: force this to course somehow?
 		}
 		
 		/**
