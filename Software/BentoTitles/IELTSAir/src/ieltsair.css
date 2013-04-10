@@ -5,7 +5,7 @@
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace ui "com.clarityenglish.ielts.view.zone.ui.*";
-@namespace exercise "com.clarityenglish.ielts.view.exercise.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace controls "com.clarityenglish.controls.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace login "com.clarityenglish.ielts.view.login.*";
