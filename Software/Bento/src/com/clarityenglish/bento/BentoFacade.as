@@ -105,6 +105,7 @@
 			registerCommand(BBNotifications.EXERCISE_PRINT, ExercisePrintCommand);
 			registerCommand(BBNotifications.EXERCISE_TRY_AGAIN, ExerciseTryAgainCommand);
 			registerCommand(BBNotifications.EXERCISE_RESTART, ExerciseRestartCommand);
+			registerCommand(BBNotifications.PDF_SHOW, PdfShowCommand);
 			registerCommand(BBNotifications.WORD_CLICK, WordClickCommand);
 			
 			// AR add in login and logout

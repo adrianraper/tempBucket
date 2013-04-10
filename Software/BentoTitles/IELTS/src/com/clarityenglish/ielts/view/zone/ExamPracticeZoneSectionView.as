@@ -38,7 +38,7 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart]
 		public var examZoneNoTestLabel:Label;
 		
-		public var exerciseSelect:Signal = new Signal(Href);
+		public var exerciseSelect:Signal = new Signal(XML, String);
 		
 		private var viewportPropertyWatcher:ChangeWatcher;
 		
@@ -98,7 +98,7 @@ package com.clarityenglish.ielts.view.zone {
 		}
 		
 		protected function onExerciseSelected(event:ExerciseEvent):void {
-			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, event.hrefFilename));
+			exerciseSelect.dispatch(event.node, event.attribute);
 		}
 		
 		public function stopAllAudio():void {

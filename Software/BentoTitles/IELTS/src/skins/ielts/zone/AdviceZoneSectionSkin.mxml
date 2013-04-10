@@ -17,7 +17,7 @@
 			// #302 - ensure the popupwatchers isn't garbage collected
 			private var popupWatcher:DisabledPopupWatcher
 			protected function creationComplete(event:Event):void {
-				popupWatcher = new DisabledPopupWatcher(videoSelector.videoList, hostComponent.viewCopyProvider, hostComponent.productVersion ); 
+				popupWatcher = new DisabledPopupWatcher(videoSelector.videoList, hostComponent.viewCopyProvider, hostComponent.productVersion);
 			}
 			
 		]]>

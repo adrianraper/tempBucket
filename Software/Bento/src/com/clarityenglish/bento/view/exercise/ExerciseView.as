@@ -90,10 +90,10 @@ package com.clarityenglish.bento.view.exercise {
 			super();
 		}
 		
-		override public function set data(value:Object):void {
+		/*override public function set data(value:Object):void {
 			super.data = data;
 			href = value as Href;
-		}
+		}*/
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -116,7 +116,6 @@ package com.clarityenglish.bento.view.exercise {
 					backButton.includeInLayout = visibleValue;
 				}
 			}
-				
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

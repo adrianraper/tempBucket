@@ -1,6 +1,7 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.vo.Href;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -22,16 +23,32 @@ package com.clarityenglish.bento.controller {
 			var selectedNode:XML = note.getBody() as XML;
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			bentoProxy.selectedNode = selectedNode;
 			
 			switch (selectedNode.localName()) {
 				case "course":
+					bentoProxy.selectedNode = selectedNode;
 					sendNotification(BBNotifications.COURSE_START, selectedNode);
 					sendNotification(BBNotifications.COURSE_STARTED, selectedNode);
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGED, selectedNode);
+					break;
+				case "exercise":
+					var attribute:String = note.getType() || "href";
+					var href:Href = bentoProxy.createRelativeHref(Href.EXERCISE, selectedNode.@[attribute]);
+					switch (href.extension) {
+						case "xml":
+							bentoProxy.selectedNode = selectedNode;
+							// TODO: exercise start & stop notifications here?
+							sendNotification(BBNotifications.SELECTED_NODE_CHANGED, selectedNode);
+							break;
+						case "pdf":
+							sendNotification(BBNotifications.PDF_SHOW, href);
+							break;
+						default:
+							log.error("Attempt to load href with unknown extension {0} - {1}", href.extension, href);
+							break;
+					}
 					break;
 			}
-			
-			sendNotification(BBNotifications.SELECTED_NODE_CHANGED, selectedNode);
 		}
 		
 	}

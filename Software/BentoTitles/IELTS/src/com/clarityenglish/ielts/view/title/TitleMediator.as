@@ -83,9 +83,10 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				BBNotifications.EXERCISE_SHOW,
+				//BBNotifications.EXERCISE_SHOW,
 				BBNotifications.EXERCISE_SECTION_FINISHED,
-				BBNotifications.COURSE_STARTED,
+				//BBNotifications.COURSE_STARTED,
+				BBNotifications.SELECTED_NODE_CHANGED,
 			]);
 		}
 		
@@ -93,15 +94,18 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case BBNotifications.EXERCISE_SHOW:
+				/*case BBNotifications.EXERCISE_SHOW:
 					var href:Href = note.getBody() as Href;
 					view.showExercise(href);
 					break;
 				case BBNotifications.EXERCISE_SECTION_FINISHED:
 					view.showExercise(null);
-					break;
-				case BBNotifications.COURSE_STARTED:
+					break;*/
+				/*case BBNotifications.COURSE_STARTED:
 					view.selectedCourseXML = note.getBody() as XML;
+					break;*/
+				case BBNotifications.SELECTED_NODE_CHANGED:
+					view.selectedNode = note.getBody() as XML;
 					break;
 			}
 		}

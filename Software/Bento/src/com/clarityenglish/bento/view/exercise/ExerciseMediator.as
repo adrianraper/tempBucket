@@ -5,9 +5,11 @@
 	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.googlecode.bindagetools.Bind;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -39,6 +41,11 @@
 			view.previousExercise.add(onPreviousExercise);
 			view.printExercise.add(onPrintExercise);
 			view.backToMenu.add(onBackToMenu);
+			
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			Bind.fromProperty(bentoProxy, "selectedNode").convert(function(node:XML):Href {
+				return bentoProxy.createRelativeHref(Href.EXERCISE, node.@href);
+			}).toProperty(view, "href");
 		}
 		
 		public override function onRemove():void {

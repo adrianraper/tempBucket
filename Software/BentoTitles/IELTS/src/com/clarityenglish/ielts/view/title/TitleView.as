@@ -1,6 +1,7 @@
 package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.content.Title;
@@ -8,7 +9,6 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.credits.CreditsView;
-	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
@@ -192,25 +192,8 @@ package com.clarityenglish.ielts.view.title {
 
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
-        
-		//gh#11
-		//[Embed(source="/skins/ielts/assets/title/upgrade.jpg")]
-		private var upgradeInfo:String;
 		
-		//[Embed(source="/skins/ielts/assets/title/register.jpg")]
-		private var registerInfo:String;
-		
-		//[Embed(source="/skins/ielts/assets/title/price.jpg")]
-		private var priceInfo:String;
-		
-		//[Embed(source="/skins/ielts/assets/title/buy.jpg")]
-		private var buyInfo:String;
-		
-		private var _selectedCourseXML:XML;
-		[Bindable(event="courseSelected")]
-		public function get selectedCourseXML():XML {
-			return _selectedCourseXML;
-		}
+		/*private var _selectedCourseXML:XML;
 		
 		public function set selectedCourseXML(value:XML):void {
 			_selectedCourseXML = value;
@@ -228,16 +211,60 @@ package com.clarityenglish.ielts.view.title {
 					}
 				}
 			}
-			
-			dispatchEvent(new Event("courseSelected"));
 		}
 		
-		// Constructor to let us initialise our states
+		public function showExercise(exerciseHref:Href):void {
+			currentExerciseHref = exerciseHref;
+			if (exerciseView) exerciseView.href = currentExerciseHref;
+			callLater(invalidateSkinState); // callLater is part of #192
+		
+			// This is for mobile skins; if the ExerciseView is already top of the stack then set the href, otherwise push a new ExerciseView
+			if (homeViewNavigator) {
+				if (ClassUtil.getClass(homeViewNavigator.activeView) == ExerciseView) {
+					if (currentExerciseHref) {
+						(homeViewNavigator.activeView as ExerciseView).href = currentExerciseHref;
+					} else {
+						homeViewNavigator.popView();
+					}
+				} else {
+					homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
+				}
+			}
+		}*/
+		
+		private var _selectedNode:XML;
+		
+		public function set selectedNode(value:XML):void {
+			_selectedNode = value;
+			
+			switch (_selectedNode.localName()) {
+				case "course":
+					currentState = "zone";
+					invalidateSkinState();
+					break;
+				case "exercise":
+					currentState = "exercise";
+					invalidateSkinState();
+					break;
+			}
+		}
+		
+		/**
+		 * 
+		 * This shows what state the skin is currently in
+		 * 
+		 * @return string State name 
+		 */
+		protected override function getCurrentSkinState():String {
+			/*if (currentExerciseHref) return "exercise";*/
+			return currentState;
+		}
+		
 		public function TitleView() {
 			super();
 			
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "support" ], true);
+			StateUtil.addStates(this, [ "home", "zone", "exercise", "account", "progress", "support" ], true);
 		}
 		
 		// gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
@@ -329,27 +356,12 @@ package com.clarityenglish.ielts.view.title {
 		public function get productVersionInfo():String {
 			switch (_productVersion) {
 				case IELTSApplication.LAST_MINUTE:
-					//gt#11
-					upgradeInfo = this.languageAssetFolder + "upgrade.jpg";
-					return upgradeInfo;
-				
+					return this.languageAssetFolder + "upgrade.jpg";
 				case IELTSApplication.TEST_DRIVE:
-					//gt#11
-					registerInfo =  this.languageAssetFolder + "register.jpg";
-					return registerInfo;
-				
+					return this.languageAssetFolder + "register.jpg";
 				case BentoApplication.DEMO:
-					// #337 
-					if (config.pricesURL) {
-						//gt#11
-						priceInfo = this.languageAssetFolder + "price.jpg";
-						return priceInfo;
-					}
-					
-					//gt#11
-					buyInfo	= this.languageAssetFolder + "buy.jpg";
-					return buyInfo;
-					
+					// #337
+					return this.languageAssetFolder + (config.pricesURL) ? "price.jpg" : "buy.jpg";
 				case IELTSApplication.FULL_VERSION:
 				default:
 					return null;
@@ -360,25 +372,6 @@ package com.clarityenglish.ielts.view.title {
 		[Bindable(event="licenceTypeChanged")]
 		public function get licenceTypeText():String {
 			return Title.getLicenceTypeText(_licenceType);
-		}
-		
-		public function showExercise(exerciseHref:Href):void {
-			currentExerciseHref = exerciseHref;
-			if (exerciseView) exerciseView.href = currentExerciseHref;
-			callLater(invalidateSkinState); // callLater is part of #192
-			
-			// This is for mobile skins; if the ExerciseView is already top of the stack then set the href, otherwise push a new ExerciseView
-			if (homeViewNavigator) {
-				if (ClassUtil.getClass(homeViewNavigator.activeView) == ExerciseView) {
-					if (currentExerciseHref) {
-						(homeViewNavigator.activeView as ExerciseView).href = currentExerciseHref;
-					} else {
-						homeViewNavigator.popView();
-					}
-				} else {
-					homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
-				}
-			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -522,19 +515,6 @@ package com.clarityenglish.ielts.view.title {
 					instance.removeEventListener(MouseEvent.CLICK, onLogoutButtonClick);
 					break;
 			}
-		}
-		
-		/**
-		 * 
-		 * This shows what state the skin is currently in
-		 * 
-		 * @return string State name 
-		 */
-		protected override function getCurrentSkinState():String {
-			if (currentExerciseHref)
-				return "exercise";
-			
-			return currentState;
 		}
 		
 		/**

@@ -29,7 +29,6 @@
 		public static const SCORE_WRITE:String = "bb/score_write";
 		public static const SCORE_WRITTEN:String = "bb/score_written";
 		
-		
 		// Selection and navigation notifications
 		public static const SELECTED_NODE_CHANGE:String = "bb/selected_node_change";
 		public static const SELECTED_NODE_CHANGED:String = "bb/selected_node_changed";
@@ -48,6 +47,8 @@
 		public static const EXERCISE_STARTED:String = "bb/exercise_started";
 		public static const EXERCISE_STOP:String = "bb/exercise_stop";
 		public static const EXERCISE_STOPPED:String = "bb/exercise_stopped";
+		
+		public static const PDF_SHOW:String = "bb/pdf_show";
 		
 		// Account notifications
 		public static const USER_UPDATE:String = "bb/user_update";

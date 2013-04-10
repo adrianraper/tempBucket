@@ -2,10 +2,6 @@ package com.clarityenglish.ielts {
 	
 	public class IELTSNotifications {
 		
-		public static const HREF_SELECTED:String = "ielts/href_select";
-		
-		public static const PDF_SHOW:String = "ielts/pdf_show";
-		
 		public static const PRACTICE_ZONE_POPUP_SHOW:String = "ielts/practice_zone_popup_show";
 		public static const PRACTICE_ZONE_POPUP_HIDE:String = "ielts/practice_zone_popup_hide";
 		

@@ -106,12 +106,12 @@ package com.clarityenglish.ielts.view {
 				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
 				
 				if (exercise) {
-					var href:Href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
-					sendNotification(IELTSNotifications.HREF_SELECTED, href);
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
 					return true;
 				}
 				
 			}
+			
 			// If groupID is defined, go straight to the first exercise in the group
 			if (directStart.groupID) {
 				// If you don't have a unitID as well, the group is meaningless
@@ -120,9 +120,10 @@ package com.clarityenglish.ielts.view {
 					
 					if (unit) {
 						exercise = unit.exercise.(@group == directStart.groupID)[0];
-						href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
-						sendNotification(IELTSNotifications.HREF_SELECTED, href);
-						return true;
+						if (exercise) {
+							sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+							return true;
+						}
 					}
 				}				
 			}

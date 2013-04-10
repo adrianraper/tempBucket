@@ -52,6 +52,16 @@ package com.clarityenglish.bento.model {
 		}
 		
 		/**
+		 * A shortcut for creating an href relative to the currently loaded menu.xml
+		 */
+		public function createRelativeHref(type:String, filename:String):Href {
+			if (!menuXHTML)
+				throw new Error("Attempted to create a relative href with no menu.xml");
+				
+			return menuXHTML.href.createRelativeHref(type, filename);
+		}
+		
+		/**
 		 * This gets the currently playing menu xml file
 		 * 
 		 * @return 
