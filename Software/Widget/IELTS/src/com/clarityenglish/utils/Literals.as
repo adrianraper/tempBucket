@@ -25,12 +25,12 @@
 		 * @param	message The text to display
 		 * @return
 		 */
-		public function Literals(defaultLanguage:String = 'EN', applicationName:String = 'SelfAssessedBandScoreCalculator') {
+		public function Literals(defaultLanguage:String = 'EN', applicationName:String = 'BandScoreCalculator') {
 			
 			// Set the default langauge to use
 			this.literalsLanguage = defaultLanguage;
 			this.applicationName = applicationName;
-			//TraceUtils.myTrace("in lits for " + this.literalsLanguage);
+			//TraceUtils.myTrace("in lits for " + applicationName + " in " + this.literalsLanguage);
 			
 		}
 		public function loadXMLFile(folder:String=null) {
@@ -41,7 +41,7 @@
 				if (folder.charAt(folder.length-1)!="/")
 					folder+="/";
 			}
-			TraceUtils.myTrace("path=" + folder);
+			//TraceUtils.myTrace("path=" + folder);
 			literalsLoader.load(new URLRequest(folder + "literals.xml"));
 			literalsLoader.addEventListener(Event.COMPLETE, processXML);
 		}
@@ -49,18 +49,18 @@
 		private function processXML(e:Event):void {
 			this.literalsXML = new XML(e.target.data);
 			//TraceUtils.myTrace(this.literalsXML.language.(@code==this.literalsLanguage).group.(@name=='BandScoreCalculator').toXMLString());
-			//TraceUtils.myTrace(this.getLiteral('applicationName'));
+			//TraceUtils.myTrace('got ' + this.literalsXML.toString());
 			// Broadcast an event for the literals class
 			dispatchEvent(new Event(Literals.LOADED));
 		}
 		
-		public function literalExists(name:String):Boolean {
+		public function literalExists(litName:String):Boolean {
 			if (!this.literalsXML) return false;
-			var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==name);
+			var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==litName);
 			if (thisLiteral.length()==0) {
 				// If you are not working in English, check that in case it has extra literals
 				if (this.literalsLanguage!='EN') {
-					thisLiteral = this.literalsXML.language.(@code=='EN').group.(@name==this.applicationName||@name=='common').lit.(@name==name);
+					thisLiteral = this.literalsXML.language.(@code=='EN').group.(@name==this.applicationName||@name=='common').lit.(@name==litName);
 					if (thisLiteral.length() == 0) {
 						return false;
 					}
@@ -71,24 +71,23 @@
 			return true;			
 		}
 		
-		public function getLiteral(name:String, replaceObj:Object=null):String {
+		// Note that you can't use 'name' as the variable in (@name==name). So change to litName.
+		public function getLiteral(litName:String, replaceObj:Object=null):String {
 			if (!this.literalsXML) return 'not loaded';
-			//TraceUtils.myTrace('getting ' + name);
-			//var thisLiteral = this.literalsXML.language.(@name==this.literalsLanguage).group.(@name=='BandScoreCalculator').lit.(@name==name);
-			//var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName).lit.(@name==name);
-			var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==name);
-			//TraceUtils.myTrace("xmllist = " + thisLiteral.toString());
+			//TraceUtils.myTrace('getting ' + litName);
+			var thisLiteral:XMLList = this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==litName);
+			//TraceUtils.myTrace("xmllist = " + this.literalsXML.language.(@code==this.literalsLanguage).group.(@name==this.applicationName||@name=='common').lit.(@name==litName));
 			
 			if (thisLiteral.length()==0) {
 				// If you are not working in English, check that in case it has extra literals
 				if (this.literalsLanguage!='EN') {
-					TraceUtils.myTrace("try English for " + name);
-					thisLiteral = this.literalsXML.language.(@code=='EN').group.(@name==this.applicationName||@name=='common').lit.(@name==name);
+					TraceUtils.myTrace("try English for " + litName);
+					thisLiteral = this.literalsXML.language.(@code=='EN').group.(@name==this.applicationName||@name=='common').lit.(@name==litName);
 					if (thisLiteral.length() == 0) {
-						return name;
+						return litName;
 					}
 				} else {
-					return name;
+					return litName;
 				}
 				
 			} 

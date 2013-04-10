@@ -2,9 +2,10 @@
 <literals progam="IELTS Widgets" version="1.0">
 	<language name="English International" code="EN" mediaFolder="EN">
 		<group name="common">
-			<lit name="btnMoreInfo">Free IELTS Practice</lit>
+			<lit name="btnMoreInfo">IELTS Practice</lit>
 			<lit name="btnRegister">Register for IELTS</lit>
 			<lit name="btnTryAgain">Do it again</lit>
+			<lit name="moreInfoGlobal">http://www.ieltspractice.com</lit>
 			
 			<lit name="registerGlobal">http://takeielts.britishcouncil.org/book-your-test/book-now</lit>
 			<lit name="registerAfghanistan">http://takeielts.britishcouncil.org/locations/Afghanistan</lit>
@@ -162,11 +163,11 @@
 			<lit name="btnCalculate">Calculate</lit>
 			
 			<lit name="bandScoreDescriptor">
-				<![CDATA[<font family='Helvetica' size='12'>Your scores<br/><b>Listening {bandScoreListening}</b><br/><b>Reading {bandScoreReading}</b></font>]]>
+				<![CDATA[<font family='Arial' size='12'>Your scores<br/><b>Listening {bandScoreListening}</b><br/><b>Reading {bandScoreReading}</b></font>]]>
 			</lit>
 			<lit name="disclaimer">These scores are estimates only.</lit>
 			<lit name="disclaimerFull">
-				<![CDATA[<textformat leading="-2"><font family='Helvetica' size='10' >Please remember that we calculate these scores based on your own assessment of your strengths and weaknesses in different parts of the IELTS test. You are not guaranteed to get these score results in the actual test.</font></textformat>]]>
+				<![CDATA[<textformat leading="-2"><font family='Arial' size='11' >Please remember that we calculate these scores based on your own assessment of your strengths and weaknesses in different parts of the IELTS test. You are not guaranteed to get these score results in the actual test.</font></textformat>]]>
 			</lit>
 			<lit name="statusRestart"></lit>
 			<lit name="statusNeedNumber">Type a number.</lit>
@@ -185,11 +186,11 @@
 			<lit name="btnCalculate">Calculate</lit>
 
 			<lit name="bandScoreDescriptor">
-				<![CDATA[<font family='Helvetica' size='12'>Your score<br/><b>{bandScore}</b></font>]]>
+				<![CDATA[<font family='Arial' size='12'>Your score<br/><b>{bandScore}</b></font>]]>
 			</lit>
 			<lit name="disclaimer">This score is an estimate only.</lit>
 			<lit name="disclaimerFull">
-				<![CDATA[<textformat leading="-2"><font family='Helvetica' size='10' >Please remember that we calculate these scores based on your own assessment of your strengths and weaknesses in different parts of the IELTS test. You are not guaranteed to get these score results in the actual test.</font></textformat>]]>
+				<![CDATA[<textformat leading="-2"><font family='Arial' size='11' >Please remember that we calculate these scores based on your own assessment of your strengths and weaknesses in different parts of the IELTS test. You are not guaranteed to get these score results in the actual test.</font></textformat>]]>
 			</lit>
 			<lit name="statusRestart"></lit>
 		</group>
@@ -202,11 +203,11 @@
 			<lit name="noResults">No matches were found in the database, please try again.</lit>
 			<lit name="btnCalculate">Search</lit>
 
-			<lit name="whatToDo">Double-click below for details</lit>
+			<lit name="whatToDo">Double-click for more details.</lit>
 			<lit name="whatToDoFull">Double-click a name to go to a detailed page about that institution.</lit>
 			<lit name="disclaimer">These results are for guidance.</lit>
 			<lit name="disclaimerFull">
-				<![CDATA[<textformat leading="-2"><font family='Helvetica' size='10' >Check with the faculty you wish to apply to for the exact requirements for your programme of study. Other institutions that are not listed may also accept IELTS. Double-click results for full details.</font></textformat>]]>
+				<![CDATA[<textformat leading="-2"><font family='Arial' size='11' >Check with the faculty you wish to apply to for the exact requirements for your programme of study. Other institutions that are not listed may also accept IELTS. Double-click results for full details.</font></textformat>]]>
 			</lit>
 			<lit name="statusRestart"></lit>
 		</group>
@@ -227,7 +228,7 @@
 			<lit name="btnTryAgain">再做一次</lit>
 
 			<lit name="bandScoreDescriptor">
-				<![CDATA[<font family='Helvetica' size='12'>Your scores will be<br/><b>Listening {bandScoreListening}</b><br/><b>Reading {bandScoreReading}</b></font>]]>
+				<![CDATA[<font family='Arial' size='12'>Your scores will be<br/><b>Listening {bandScoreListening}</b><br/><b>Reading {bandScoreReading}</b></font>]]>
 			</lit>
 		</group>
 		<group name="PredictYourBandScore">	

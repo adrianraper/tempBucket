@@ -855,3 +855,18 @@ PRIMARY KEY (F_UserID,F_CourseID)
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1142, NOW(), 'course concurrency');
+
+ALTER TABLE T_User ADD COLUMN F_TimeZoneOffset FLOAT(3,1) NULL DEFAULT 0;
+ALTER TABLE T_User_Expiry ADD COLUMN F_TimeZoneOffset FLOAT(3,1) NULL DEFAULT 0;
+
+-- Tense Buster v10
+INSERT INTO `T_Product` VALUES (55,'Tense Buster V10',NULL,10);
+INSERT INTO `T_ProductLanguage` VALUES 
+(55,'EN','TenseBuster10-International'),
+(55,'NAMEN','TenseBuster10-NAmerican'),
+(55,'INDEN','TenseBuster10-Indian');
+
+INSERT INTO `T_Version` VALUES 
+('FV','Full Version');
+INSERT INTO `T_ProductVersion` VALUES 
+(55,'FV');

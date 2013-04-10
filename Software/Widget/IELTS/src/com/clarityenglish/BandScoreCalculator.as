@@ -234,7 +234,7 @@ package com.clarityenglish
 			title_txt.wordWrap = true;
 			title_txt.width = width - horizontalPadding * 2;
 			titleTF = new TextFormat();
-			titleTF.font = "Helvetica";
+			titleTF.font = "Arial";
 			titleTF.color = "0xFFFFFFFF";
 			titleTF.size = 13;
 			titleTF.align = TextFormatAlign.CENTER;
@@ -251,7 +251,7 @@ package com.clarityenglish
 			
 			// What size should fonts be in the other fields?
 			var textTF:TextFormat = new TextFormat();
-			textTF.font = "Helvetica";
+			textTF.font = "Arial";
 			textTF.color = "0xFF000000";
 			// it could be a little bigger if you want and have more space
 			if (width>160) {
@@ -286,7 +286,7 @@ package com.clarityenglish
 			
 			// And text on the Button
 			var buttonTF:TextFormat = new TextFormat();
-			buttonTF.font = "Helvetica";
+			buttonTF.font = "Arial";
 			buttonTF.color = "0xFFFFFFFF";
 			buttonTF.align = TextFormatAlign.CENTER;
 			//buttonTF.bold = true;
@@ -418,11 +418,11 @@ package com.clarityenglish
 			TraceUtils.myTrace("you clicked");
 			var errorStyle:TextFormat = new TextFormat();
 			errorStyle.color = 0xFF0000;
-			errorStyle.font = "Helvetica";
+			errorStyle.font = "Arial";
 			errorStyle.size = 12;
 			var normalStyle:TextFormat = new TextFormat();
 			normalStyle.color = 0x000000;
-			normalStyle.font = "Helvetica";
+			normalStyle.font = "Arial";
 			normalStyle.size = 12;
 			var formHasError:Boolean = false;
 			
@@ -647,12 +647,14 @@ package com.clarityenglish
 			this.disclaimer.visible = false;
 			
 			// At the end of this, write a log if we know the referrer
+			/*
+			 * Stop logging April 2013 - it is not used
 			if (websiteReferrer!="") {
 				TraceUtils.myTrace("log to " + websiteReferrer);
 				// Since you are running on many domains, this must be a full URL
-				//var url:String = "http://www.ClarityEnglish/Software/Common/lib/php/writeLog.php";
+				//var url:String = "http://p1.ClarityEnglish/Software/Common/lib/php/writeLog.php";
 				//var url:String = "http://dock.fixbench/Software/Common/lib/php/writeLog.php";
-				var url:String = "http://p1.ClarityEnglish.com/Software/Common/lib/php/writeLog.php";
+				var url:String = "http://www.ClarityEnglish.com/Software/Common/lib/php/writeLog.php";
 				var request:URLRequest = new URLRequest(url);
 				var variables:URLVariables = new URLVariables();
 				variables.referrer = websiteReferrer;
@@ -673,6 +675,7 @@ package com.clarityenglish
 			} else {
 				TraceUtils.myTrace("don't log as we don't know referrer");
 			}
+			*/
 		}
 	}
 

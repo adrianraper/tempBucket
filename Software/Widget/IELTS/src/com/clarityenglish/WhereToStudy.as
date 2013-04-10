@@ -243,7 +243,7 @@
 			title_txt.wordWrap = true;
 			title_txt.width = width - horizontalPadding * 2;
 			titleTF = new TextFormat();
-			titleTF.font = "Helvetica";
+			titleTF.font = "Arial";
 			titleTF.color = "0xFFFFFFFF";
 			titleTF.size = 13;
 			titleTF.align = TextFormatAlign.CENTER;
@@ -260,7 +260,7 @@
 			
 			// What size should fonts be in the other fields?
 			var textTF:TextFormat = new TextFormat();
-			textTF.font = "Helvetica";
+			textTF.font = "Arial";
 			textTF.color = "0xFF000000";
 			// it could be a little bigger if you want and have more space
 			if (width>160) {
@@ -291,7 +291,7 @@
 			// Text format for the list box and search box (just to cure the cut-off W)
 			//resultFields.list_txt.defaultTextFormat = textTF;
 			var listTextFormat:TextFormat = new TextFormat();
-			listTextFormat.font = "Helvetica";
+			listTextFormat.font = "Arial";
 			listTextFormat.color = "0xFF000000";
 			listTextFormat.leftMargin = 0.6;
 			resultFields.list_txt.setRendererStyle("textFormat", listTextFormat);
@@ -299,7 +299,7 @@
 			
 			// And text on the Button
 			var buttonTF:TextFormat = new TextFormat();
-			buttonTF.font = "Helvetica";
+			buttonTF.font = "Arial";
 			buttonTF.color = "0xFFFFFFFF";
 			buttonTF.align = TextFormatAlign.CENTER;
 			//buttonTF.bold = true;
@@ -477,6 +477,7 @@
 			this.resultFields.visible = true;
 			this.disclaimer.visible = false;
 			
+			/*
 			if (websiteReferrer!="") {
 				TraceUtils.myTrace("log to " + websiteReferrer);
 				// Since you are running on many domains, this must be a full URL
@@ -504,7 +505,7 @@
 			} else {
 				TraceUtils.myTrace("don't log as we don't know referrer");
 			}
-			
+			*/
 		}
 		private function institutionNiceName(item:Object):String {
 			//return item.score + "-" + item.name;
@@ -515,7 +516,7 @@
 			var item:Object = e.item;
 			//TraceUtils.myTrace("you are over " + list.itemToLabel(item));
 			//var titleTF:TextFormat = new TextFormat();
-			//titleTF.font = "Helvetica";
+			//titleTF.font = "Arial";
 			//titleTF.color = "0xFFFFFFFF";
 			//titleTF.size = 11;
 			//titleTF.align = TextFormatAlign.CENTER;
