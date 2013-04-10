@@ -32,7 +32,7 @@ package com.clarityenglish.bento.controller {
 				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, FlexGlobals.topLevelApplication); // #265
 				
 				if (exerciseNode) {
-					sendNotification(BBNotifications.EXERCISE_SHOW, bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exerciseNode.@href));
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exerciseNode);
 				} else {
 					sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
 				}

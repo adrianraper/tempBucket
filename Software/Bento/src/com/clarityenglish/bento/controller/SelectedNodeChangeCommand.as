@@ -31,6 +31,9 @@ package com.clarityenglish.bento.controller {
 					sendNotification(BBNotifications.COURSE_STARTED, selectedNode);
 					sendNotification(BBNotifications.SELECTED_NODE_CHANGED, selectedNode);
 					break;
+				case "unit":
+					// TODO: what goes here?
+					break;
 				case "exercise":
 					var attribute:String = note.getType() || "href";
 					var href:Href = bentoProxy.createRelativeHref(Href.EXERCISE, selectedNode.@[attribute]);
@@ -48,6 +51,8 @@ package com.clarityenglish.bento.controller {
 							break;
 					}
 					break;
+				default:
+					log.error("Unknown node selected: " + selectedNode.toXMLString());
 			}
 		}
 		

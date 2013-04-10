@@ -44,7 +44,7 @@
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			Bind.fromProperty(bentoProxy, "selectedNode").convert(function(node:XML):Href {
-				return bentoProxy.createRelativeHref(Href.EXERCISE, node.@href);
+				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href) : null;
 			}).toProperty(view, "href");
 		}
 		

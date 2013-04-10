@@ -29,7 +29,11 @@ package com.clarityenglish.bento.controller {
 			// #210, #256 - warning messages when leaving an exercise
 			if (exerciseProxy.attemptToLeaveExercise(note)) {
 				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, FlexGlobals.topLevelApplication); // #265
-				sendNotification(BBNotifications.EXERCISE_SHOW, bentoProxy.currentExercise.href.clone());
+				
+				// A little hacky, but simply set the selected node to null for a moment in order to reload the exercise
+				var originalNode:XML = bentoProxy.selectedNode;
+				bentoProxy.selectedNode = null;
+				sendNotification(BBNotifications.SELECTED_NODE_CHANGE, originalNode);
 			}
 		}
 		
