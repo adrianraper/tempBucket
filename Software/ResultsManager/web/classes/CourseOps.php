@@ -240,7 +240,9 @@ class CourseOps {
 			
 			// It is possible to have a result which doesn't contain all the bits we need (e.g. a start date, end date and unit interval) so only count if we have all
 			// gh#118 But unitInterval might be 0 - which is fine
-			$gotResult = !(is_null($result)) && ($result['F_UnitInterval'] >=0 ) && $result['F_StartDate'] && $result['F_EndDate'];
+			//$gotResult = !(is_null($result)) && ($result['F_UnitInterval'] >=0 ) && $result['F_StartDate'] && $result['F_EndDate'];
+			//gh #237
+			$gotResult = !(is_null($result)) && ($result['F_UnitInterval'] >=0 ) && $result['F_StartDate'];
 		} while (!$gotResult && !is_null($groupID));
 		
 		return $result;

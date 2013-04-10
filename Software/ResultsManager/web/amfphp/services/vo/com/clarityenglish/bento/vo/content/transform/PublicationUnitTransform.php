@@ -25,7 +25,8 @@ class PublicationUnitTransform extends XmlTransform {
 		if (is_null($courseStartObj)) {
 			// TODO: This shouldn't be possible!  Throw some kind of error.
 		} else {
-			if (time() > strtotime($courseStartObj['F_EndDate'])) {
+			//gh #237
+			if (!is_null($courseStartObj['F_EndDate']) && time() > strtotime($courseStartObj['F_EndDate'])) {
 				// If we are here then we are passed the end date and the course has finished, so there are no valid unit ids.
 				$validUnitIds = array();
 			} else {

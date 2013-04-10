@@ -216,7 +216,7 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (startDateField) startDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
 			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate") && (selectedPublicationGroup.@endDate != null)) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
 			if (pastUnitsRadioButtonGroup) {
-				pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits") && (selectedPublicationGroup.@seePastUnits != null)) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
+				pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
 				pastUnitsRadioButtonGroup.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
 			}
 			
@@ -361,7 +361,7 @@ package com.clarityenglish.rotterdam.view.settings {
 						if (!isPopulating) {
 							if (e.target.selectedValue) {
 								selectedPublicationGroup.@unitInterval = 0;
-								selectedPublicationGroup.@seePastUnits = null;
+								selectedPublicationGroup.@seePastUnits = true;
 								pastUnitsRadioButtonGroup.enabled = false;
 								calendarSettingsChanged();
 							} else {

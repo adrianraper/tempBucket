@@ -29,7 +29,6 @@
 			
 			public function rollOverTip(event:ChartItemEvent):void {
 				psi = event.hitData.chartItem as PieSeriesItem;
-				//alice
 				hostComponent.pieDuration = psi.item.@duration;
 				hostComponent.pieUnitIndex = psi.item.childIndex();
 				dateTipShow = true;
