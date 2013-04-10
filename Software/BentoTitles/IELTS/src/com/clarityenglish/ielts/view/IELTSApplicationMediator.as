@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.Href;
@@ -134,7 +135,7 @@ package com.clarityenglish.ielts.view {
 				var unit:XML = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 				
 				if (unit) {
-					sendNotification(IELTSNotifications.COURSE_SHOW, unit.parent());
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.parent());
 					return true;
 				}
 			}
@@ -145,7 +146,7 @@ package com.clarityenglish.ielts.view {
 				var course:XML = bentoProxy.menuXHTML..course.(@id == directStart.courseID)[0];
 				
 				if (course) {
-					sendNotification(IELTSNotifications.COURSE_SHOW, course);
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
 					return true;
 				}
 			}

@@ -89,6 +89,7 @@
 			registerCommand(BBNotifications.LANGUAGE_CHANGE, LanguageChangeCommand);
 			registerCommand(BBNotifications.MENU_XHTML_LOAD, MenuXHTMLLoadCommand);
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
+			registerCommand(BBNotifications.SELECTED_NODE_CHANGE, SelectedNodeChangeCommand);
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);
 			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
 			registerCommand(BBNotifications.QUESTION_INCORRECT_ANSWER, QuestionIncorrectAnswerCommand);

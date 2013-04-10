@@ -29,6 +29,27 @@
 		public static const SCORE_WRITE:String = "bb/score_write";
 		public static const SCORE_WRITTEN:String = "bb/score_written";
 		
+		
+		// Selection and navigation notifications
+		public static const SELECTED_NODE_CHANGE:String = "bb/selected_node_change";
+		public static const SELECTED_NODE_CHANGED:String = "bb/selected_node_changed";
+		
+		public static const COURSE_START:String = "bb/course_start";
+		public static const COURSE_STARTED:String = "bb/course_started";
+		public static const COURSE_STOP:String = "bb/course_stop";
+		public static const COURSE_STOPPED:String = "bb/course_stopped";
+		
+		public static const UNIT_START:String = "bb/unit_start";
+		public static const UNIT_STARTED:String = "bb/unit_started";
+		public static const UNIT_STOP:String = "bb/unit_stop";
+		public static const UNIT_STOPPED:String = "bb/unit_stopped";
+		
+		public static const EXERCISE_START:String = "bb/exercise_start";
+		public static const EXERCISE_STARTED:String = "bb/exercise_started";
+		public static const EXERCISE_STOP:String = "bb/exercise_stop";
+		public static const EXERCISE_STOPPED:String = "bb/exercise_stopped";
+		
+		// Account notifications
 		public static const USER_UPDATE:String = "bb/user_update";
 		public static const USER_UPDATED:String = "bb/user_updated";
 		
@@ -48,18 +69,6 @@
 		public static const EXERCISE_SHOW_PREVIOUS:String = "bb/exercise_show_previous";
 		public static const EXERCISE_SHOW_OFFSET:String = "bb/exercise_show_offset";
 		public static const EXERCISE_SHOW_FEEDBACK:String = "bb/exercise_show_feedback";
-		
-		// Start/stop notifications
-		public static const COURSE_START:String = "bb/course_start";
-		public static const COURSE_STARTED:String = "bb/course_started";
-		
-		public static const UNIT_START:String = "bb/unit_start";
-		public static const UNIT_STARTED:String = "bb/unit_started";
-		
-		public static const EXERCISE_START:String = "bb/exercise_start";
-		public static const EXERCISE_STARTED:String = "bb/exercise_started";
-		public static const EXERCISE_STOP:String = "bb/exercise_stop";
-		public static const EXERCISE_STOPPED:String = "bb/exercise_stopped";
 		
 		// This notification is sent when the user clicks the print button
 		public static const EXERCISE_PRINT:String = "bb/exercise_print";

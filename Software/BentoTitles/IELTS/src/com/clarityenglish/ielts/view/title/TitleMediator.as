@@ -85,7 +85,7 @@
 			return super.listNotificationInterests().concat([
 				BBNotifications.EXERCISE_SHOW,
 				BBNotifications.EXERCISE_SECTION_FINISHED,
-				IELTSNotifications.COURSE_SHOW,
+				BBNotifications.COURSE_STARTED,
 			]);
 		}
 		
@@ -100,7 +100,7 @@
 				case BBNotifications.EXERCISE_SECTION_FINISHED:
 					view.showExercise(null);
 					break;
-				case IELTSNotifications.COURSE_SHOW:
+				case BBNotifications.COURSE_STARTED:
 					view.selectedCourseXML = note.getBody() as XML;
 					break;
 			}

@@ -103,7 +103,7 @@
 		 */
 		private function onCourseSelected(course:XML):void {
 			// Open the selected course
-			sendNotification(IELTSNotifications.COURSE_SHOW, course);
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
 			
 			// Set the selected course class
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
