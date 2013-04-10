@@ -83,7 +83,6 @@
 		public static const FEEDBACK_SHOW:String = "bb/feedback_show";
 		
 		// The specific title will want to implement actions on these two notifications
-		public static const EXERCISE_SHOW:String = "bb/exercise_show";
 		public static const EXERCISE_SECTION_FINISHED:String = "bb/exercise_section_finished";
 		
 		// gh#90 - set items (which can be anything) dirty or clean
