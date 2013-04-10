@@ -65,11 +65,12 @@ package com.clarityenglish.rotterdam.controller {
 				parameters.push(course);
 			}
 			
-			if (uid.unit) {
+			//gh #238
+			if (uid.unit && !uid.exercise) {
 				var startingPoint:String = "startingPoint=unit:" + uid.unit;
 				parameters.push(startingPoint);
-			} else if (uid.exercise) {
-				startingPoint = "startingPoint=ex:" + uid.unit;
+			} else if (uid.unit && uid.exercise) {
+				startingPoint = "startingPoint=ex:" + uid.exercise;
 				parameters.push(startingPoint);
 			}
 			

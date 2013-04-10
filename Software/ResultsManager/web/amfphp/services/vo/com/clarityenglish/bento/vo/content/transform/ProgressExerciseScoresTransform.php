@@ -58,10 +58,12 @@ SQL;
 		
 		foreach ($xml->head->script->menu->course->unit as $unit)  {
 			foreach ($unit->exercise as $exercise){
+				//gh #238
 				if ($exercise['contentuid']) {
 					$uid= explode(".", $exercise['contentuid']);
-
-					$sql = <<<SQL
+					//alice: if add "my score" later in progress, the SUM(F_Score) need to be changed
+					if (count($uid) == 3) {						
+						$sql = <<<SQL
 						SELECT SUM(F_Duration) F_Duration, SUM(F_Score) F_Score, MIN(F_DateStamp) F_DateStamp
 						FROM T_Score as s
 						WHERE s.F_UserID=?
@@ -69,7 +71,21 @@ SQL;
 						AND s.F_CourseID =?
 						And s.F_UnitID = ?;
 SQL;
-					$bindingParams = array($user->userID, $uid[0], $uid[1], $uid[2]);
+						$bindingParams = array($user->userID, $uid[0], $uid[1], $uid[2]);					
+					} else if (count($uid) == 4) {
+						$sql = <<<SQL
+						SELECT SUM(F_Duration) F_Duration, MAX(F_Score) F_Score, MIN(F_DateStamp) F_DateStamp
+						FROM T_Score as s
+						WHERE s.F_UserID=?
+						AND s.F_ProductCode=?
+						AND s.F_CourseID =?
+						And s.F_UnitID = ?
+						And s.F_ExerciseID = ?;
+SQL;
+						$bindingParams = array($user->userID, $uid[0], $uid[1], $uid[2], $uid[3]);
+					}
+
+					
 					$rs = $db->GetArray($sql, $bindingParams);
 					
 					foreach ($rs as $record2) {
