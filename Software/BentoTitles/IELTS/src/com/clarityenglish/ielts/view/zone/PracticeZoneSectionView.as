@@ -25,8 +25,6 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public var exercisesShow:Signal = new Signal(XMLList, Object);
 		
-		
-		
 		public function get viewCopyProvider():CopyProvider {
 			return this.copyProvider;
 		}

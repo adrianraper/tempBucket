@@ -131,7 +131,6 @@ package com.clarityenglish.ielts.view.zone {
 					sectionNavigator.addEventListener(Event.CHANGE, onSectionNavigatorChange, false, 0, true);
 					if (lastSelectedSectionIdx >= 0) sectionNavigator.selectedIndex = lastSelectedSectionIdx;
 					break;
-				//issue:#11 Language Code
 				case questionZoneViewNavigator:
 					instance.label = copyProvider.getCopyForId("questionZoneViewNavigator");
 					break;

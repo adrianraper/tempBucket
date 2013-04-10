@@ -1,8 +1,8 @@
-package com.clarityenglish.ielts {
+package com.clarityenglish.tensebuster {
 	
 	public class TenseBusterNotifications {
 		
-		public static const COURSE_SHOW:String = "ielts/course_show";
+		public static const COURSE_SHOW:String = "tensebuster/course_show";
 		
 	}
 	

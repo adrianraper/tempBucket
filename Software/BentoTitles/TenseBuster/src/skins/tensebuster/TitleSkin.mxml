@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:home="com.clarityenglish.tensebuster.view.home.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:home="com.clarityenglish.tensebuster.view.home.*"
+		xmlns:zone="com.clarityenglish.tensebuster.view.zone.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.title.TitleView")]
@@ -11,8 +13,12 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		
+		<s:State name="home" />
+		<s:State name="zone" />
 	</s:states>
 	
-	<home:HomeView width="100%" height="100%" />
+	<home:HomeView width="100%" height="100%" includeIn="home" />
+	<zone:ZoneView width="100%" height="100%" includeIn="zone" course="{hostComponent.selectedCourseXML}" />
 	
 </s:Skin>

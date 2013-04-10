@@ -6,6 +6,8 @@
 	import com.clarityenglish.tensebuster.view.home.HomeView;
 	import com.clarityenglish.tensebuster.view.title.TitleMediator;
 	import com.clarityenglish.tensebuster.view.title.TitleView;
+	import com.clarityenglish.tensebuster.view.zone.ZoneMediator;
+	import com.clarityenglish.tensebuster.view.zone.ZoneView;
 	
 	/**
 	* ...
@@ -26,18 +28,11 @@
 			mapView(LoginView, LoginMediator);*/
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
+			mapView(ZoneView, ZoneMediator);
 			/*mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(SupportView, SupportMediator);
 			mapView(ExerciseView, ExerciseMediator);
-			
-			mapView(ZoneView, ZoneMediator);
-			mapView(AdviceZoneSectionView, AdviceZoneSectionMediator);
-			mapView(QuestionZoneVideoSectionView, QuestionZoneVideoSectionMediator);
-			mapView(QuestionZoneSectionView, QuestionZoneSectionMediator);
-			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
-			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);
-			mapView(ExamPracticeZoneSectionView, ExamPracticeZoneSectionMediator);*/
 			
 			// Register IELTS specific commands
 			/*registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);

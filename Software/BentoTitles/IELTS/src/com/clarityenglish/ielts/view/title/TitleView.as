@@ -206,9 +206,12 @@ package com.clarityenglish.ielts.view.title {
 		//[Embed(source="/skins/ielts/assets/title/buy.jpg")]
 		private var buyInfo:String;
 		
-		public var _selectedCourseXML:XML;
+		private var _selectedCourseXML:XML;
 		[Bindable(event="courseSelected")]
-		public function get selectedCourseXML():XML { return _selectedCourseXML; }
+		public function get selectedCourseXML():XML {
+			return _selectedCourseXML;
+		}
+		
 		public function set selectedCourseXML(value:XML):void {
 			_selectedCourseXML = value;
 			
@@ -236,11 +239,6 @@ package com.clarityenglish.ielts.view.title {
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "zone", "account", "progress", "support" ], true);
 		}
-		
-		/*override public function set productVersion(value:String):void {
-			trace("I got here with " + value + "!");
-			super._productCode = value;
-		}*/
 		
 		// gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
 		public function get assetFolder():String {
