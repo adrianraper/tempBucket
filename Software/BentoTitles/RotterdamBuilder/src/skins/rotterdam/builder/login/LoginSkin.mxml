@@ -14,6 +14,14 @@
 		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
 	</fx:Declarations>
 	
+	<fx:Script>
+		<![CDATA[
+			protected function 	onFreeCourseClick(event:MouseEvent):void {	
+				navigateToURL(new URLRequest("http://www.clarityenglish.com"),"_blank");
+			}
+		]]>
+	</fx:Script>
+	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
@@ -78,7 +86,7 @@
 				<s:Button id="loginButton" label="Login"/>	
 			</s:VGroup>
 		</s:Group>
-		<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/FreeCourse.png')" bottom="-50" right="0" scaleX="1.2" scaleY="1.2"/>
+		<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/login/FreeCourse.png')" bottom="-50" right="0" scaleX="1.2" scaleY="1.2" click="onFreeCourseClick(event)" buttonMode="true"/>
 	</s:Group>	
 	
 	<login:HoneyGraphic horizontalCenter="300" top="40" />

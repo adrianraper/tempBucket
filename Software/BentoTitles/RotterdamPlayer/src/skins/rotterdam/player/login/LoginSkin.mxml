@@ -21,15 +21,15 @@
 	</s:states>
 	
 	<!-- shadow -->
-	<s:Rect width="1200" height="640" filters="{glowFilter}" >
+	<s:Rect top="0" bottom="0" left="0" right="0" filters="{glowFilter}" >
 		<s:fill>
 			<s:SolidColor color="0x808080" />
 		</s:fill>
 	</s:Rect>
 	
 	<!-- background -->
-	<s:Group width="100%" height="100%">
-		<s:Rect width="100%" height="100%"   >
+	<s:Group top="0" bottom="0" left="0" right="0">
+		<s:Rect>
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="0xFFFFFF" ratio="0" />
@@ -43,7 +43,7 @@
 
 
 	<!-- top header -->
-	<s:Rect width="1200" height="40"  >
+	<s:Rect left="0" right="0" height="40"  >
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0x4D4D4D" />
@@ -63,8 +63,8 @@
 			<s:fill>
 				<s:SolidColor color="0xFFFFFF"/>
 			</s:fill>
-		</s:Rect>	
-		<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/CCBLogo.png')" />
+		</s:Rect>
+
 		<s:Group horizontalCenter="0" verticalCenter="70">
 			<s:VGroup horizontalAlign="center" gap="60">
 				<s:VGroup gap="30">
@@ -84,5 +84,5 @@
 	</s:Group>
 	
 	<login:HoneyGraphic left="860" top="40" />
-
+	<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/CCBLogo.png')" right="140" bottom="100" />
 </s:Skin>
