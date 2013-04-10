@@ -64,7 +64,6 @@
 			mapView(ContentSelectorView, ContentSelectorMediator);
 			mapView(SettingsView, SettingsMediator);
 			mapView(CourseCreateView, CourseCreateMediator);
-			//alice s
 			mapView(HelpPublishView, HelpPublishMediator);
 			
 			// gh#88 (see CommonAbstractApplicationFacade for comments on this)

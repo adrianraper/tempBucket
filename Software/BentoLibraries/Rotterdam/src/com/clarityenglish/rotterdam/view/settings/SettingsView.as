@@ -479,8 +479,6 @@ package com.clarityenglish.rotterdam.view.settings {
 			
 			// Save
 			saveCourse.dispatch();
-			
-			//alice p
 			back.dispatch();
 		}
 		

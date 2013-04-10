@@ -210,6 +210,10 @@ course|ToolBarView s|Button#videoSelectButton {
 	skinClass: ClassReference("skins.rotterdam.unit.VideoSelectButtonSkin");
 }
 
+course|ToolBarView s|Button#linkSelectButton {
+	skinClass: ClassReference("skins.rotterdam.unit.VideoSelectButtonSkin");
+}
+
 course|ToolBarView s|Button#pdfResourceCloudButton,#imageResourceCloudButton,#audioResourceCloudButton {
 	skinClass: ClassReference("skins.rotterdam.unit.ResourceCloudButtonSkin");
 }

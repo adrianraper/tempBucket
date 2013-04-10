@@ -37,6 +37,7 @@
 			view.backToEditor.add(onBackToEditor);
 			//gh #221
 			view.addLink.add(onAddLink);
+			view.cancelLink.add(onCancelLink);
 		}
 		
 		override public function onRemove():void {
@@ -132,6 +133,11 @@
 		//gh #221
 		protected function onAddLink(webURL:XML):void {
 			facade.sendNotification(RotterdamNotifications.WEB_URL_ADD, webURL);
+		}
+		
+		//gh #221
+		protected function onCancelLink():void {
+			facade.sendNotification(RotterdamNotifications.WEB_URL_CANCEL);
 		}
 	}
 }

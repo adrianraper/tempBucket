@@ -36,6 +36,7 @@
 			
 			//gh #221
 			protected function onLinkButtonClick(event:MouseEvent):void {
+				linkButtonRect.alpha = 1;
 				dispatchEvent(new WidgetLinkEvent(WidgetLinkEvent.ADD_LINK, true));
 			}
 		]]>
@@ -81,14 +82,18 @@
 	<s:Label text="{caption}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
 	
 	<!--gh #221-->
-	<!--s:Button id="linkButton" right="50" label="+link" top="3" click="onLinkButtonClick(event)"/-->
-	<s:Group id="linkButton" right="50" top="4" click="onLinkButtonClick(event)" mouseEnabled="true" buttonMode="true" visible="{editing}">
-		<s:Rect right="0" width="50" height="17" radiusX="2" radiusY="2" >
+	
+	<s:Group right="40" mouseEnabled="true" click="onLinkButtonClick(event)" buttonMode="true" visible="{editing}" mouseOver="linkLabel.visible = true" mouseOut="linkLabel.visible = false" >
+		<s:Label id="linkLabel" text="Add Link" right="35" top="8" visible="false"/>
+		<s:Rect id="linkButtonRect" width="30" height="24" right="0" alpha = "0">
+			<s:stroke>
+				<s:SolidColorStroke color="#D8D8D8" />
+			</s:stroke>
 			<s:fill>
-				<s:SolidColor color="#7F7F7F" />
+				<s:SolidColor color="#F2F2F2" />
 			</s:fill>
 		</s:Rect>
-		<s:Label text="+ Link" color="#FFFFFF" verticalCenter="0" horizontalCenter="0" fontWeight="bold" />
+		<widgets:LinkIcon top="7" right="8" rotation="-5" />
 	</s:Group>
 	
 	<!-- The menu button -->

@@ -154,6 +154,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var backToEditor:Signal = new Signal();
 		//gh #221
 		public var addLink:Signal = new Signal(XML);
+		public var cancelLink:Signal = new Signal();
 
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
@@ -204,7 +205,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			super.onAddedToStage(event);
 			
 			stage.addEventListener(MouseEvent.CLICK, onStageClick);			
-			addEventListener(WidgetLinkEvent.ADD_LINK, onAddLink, false, 0, true);
 		}
 		
 		protected override function commitProperties():void {
@@ -356,6 +356,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onNormalCancel(event:MouseEvent):void {
+			if (this.currentState == "link") {
+				cancelLink.dispatch();
+			}
 			setCurrentState("normal");
 		}
 		
@@ -505,11 +508,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				itemClick = false;
 			}
 
-		}
-		
-		//gh #221
-		protected function onAddLink(event:WidgetLinkEvent):void {
-			trace("got the widget link event");
 		}
 		
 		/**

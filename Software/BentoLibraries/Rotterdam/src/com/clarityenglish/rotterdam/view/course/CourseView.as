@@ -76,13 +76,11 @@ package com.clarityenglish.rotterdam.view.course {
 		private var currentIndex:Number;
 		private var unitListLength:Number;
 		
-		//alice p
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
 		
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
-		//alice s
 		public var helpPublish:Signal = new Signal();
 		
 		public function get course():XML {	
@@ -111,7 +109,7 @@ package com.clarityenglish.rotterdam.view.course {
 			if (courseCaptionLabel) courseCaptionLabel.text = course.@caption;
 		}
 		
-		//alice p
+		//gh #208
 		protected override function onAddedToStage(event:Event):void {
 			stage.addEventListener(MouseEvent.CLICK, onStageClick);
 		}
@@ -170,7 +168,7 @@ package com.clarityenglish.rotterdam.view.course {
 				case unitPasteButton:
 					unitPasteButton.addEventListener(MouseEvent.CLICK, onUnitPaste);
 					break;
-				//alice p
+				//gh #208
 				case publishCoursButton:
 					publishCoursButton.addEventListener(MouseEvent.CLICK, onPublishCourse);
 					break;
@@ -273,20 +271,20 @@ package com.clarityenglish.rotterdam.view.course {
 			return (_isPreviewVisible) ? "unitplayer" : "uniteditor";
 		}
 		
-		//alice p
+		//gh #208
 		protected function onPublishCourse(event:MouseEvent):void {
 			publishSelectionGroup.visible = true;
 			outsideClick = false;
 		}
 		
-		//alice p
+		//gh #208
 		protected function onPublishSelection(event:MouseEvent):void {
 			if (!itemClick) {
 				outsideClick = false;
 			}
 		}
 		
-		//alice p
+		//gh #208
 		protected function onStageClick(event:MouseEvent):void {
 			if (publishSelectionGroup) {
 				if (outsideClick) {

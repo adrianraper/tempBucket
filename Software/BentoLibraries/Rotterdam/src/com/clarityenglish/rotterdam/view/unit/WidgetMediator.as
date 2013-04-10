@@ -76,6 +76,7 @@
 				RotterdamNotifications.MEDIA_UPLOADED,
 				RotterdamNotifications.TEXT_FORMAT,
 				RotterdamNotifications.WEB_URL_ADD,
+				RotterdamNotifications.WEB_URL_CANCEL,
 			]);
 		}
 		
@@ -105,6 +106,10 @@
 						break;
 					case RotterdamNotifications.WEB_URL_ADD: // gh#221
 						view.onAddLink(note.getBody() as XML);
+						view.widgetChrome.linkButtonRect.alpha = 0;
+						break;
+					case RotterdamNotifications.WEB_URL_CANCEL:
+						view.widgetChrome.linkButtonRect.alpha = 0;
 						break;
 				}
 			}

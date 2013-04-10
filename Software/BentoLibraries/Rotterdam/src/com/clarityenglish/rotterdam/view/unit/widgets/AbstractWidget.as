@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	
 	import flashx.textLayout.conversion.ConversionType;
@@ -13,6 +14,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
+	import mx.events.DragEvent;
 	import mx.events.StateChangeEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -209,7 +211,10 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			var textXML:XML = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
 			
 			//gh #221: enalbe web link insert next to text
-			if (textXML.children().children() == "") {
+			if (textXML == "") {
+				textXML.appendChild(anchorTag);
+			}
+			else if (textXML.children().children() == "") {
 				textXML.children().appendChild(anchorTag);
 			} else {
 				textXML.children()[textXML.children().length()-1].appendChild(anchorTag);
