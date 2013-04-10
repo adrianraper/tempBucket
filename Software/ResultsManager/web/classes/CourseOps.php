@@ -147,8 +147,9 @@ class CourseOps {
 				// If we are missing any required data then throw an exception
 				if (!isset($group['unitInterval']) || $group['unitInterval'] == "" ||
 					!isset($group['seePastUnits']) || $group['seePastUnits'] == "" ||
-					!isset($group['startDate']) || $group['startDate'] == "" ||
-					!isset($group['endDate']) || $group['endDate'] == "")
+					!isset($group['startDate']) || $group['startDate'] == "" //||
+					//!isset($group['endDate']) || $group['endDate'] == ""
+					)
 					throw $copyOps->getExceptionForId("errorSavingCourseDates");
 				
 				// 1.1 First write the T_CourseStart row
