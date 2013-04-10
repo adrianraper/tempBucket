@@ -1,16 +1,20 @@
 package com.clarityenglish.tensebuster.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
+	import com.clarityenglish.bento.vo.Href;
 	
 	import flash.events.Event;
 	
 	import org.davekeen.util.StateUtil;
-	import com.clarityenglish.bento.vo.Href;
 	
 	public class TitleView extends BentoView {
 		
 		private var _selectedCourseXML:XML;
 		
 		private var currentExerciseHref:Href;
+		
+		[SkinPart]
+		public var exerciseView:ExerciseView;
 		
 		[Bindable(event="courseSelected")]
 		public function get selectedCourseXML():XML {
@@ -33,13 +37,11 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function showExercise(exerciseHref:Href):void {
 			currentExerciseHref = exerciseHref;
-			
-			trace("SET EXERCISE!");
-			/*if (exerciseView) exerciseView.href = currentExerciseHref;
+			if (exerciseView) exerciseView.href = currentExerciseHref;
 			callLater(invalidateSkinState); // callLater is part of #192
 			
 			// This is for mobile skins; if the ExerciseView is already top of the stack then set the href, otherwise push a new ExerciseView
-			if (homeViewNavigator) {
+			/*if (homeViewNavigator) {
 				if (ClassUtil.getClass(homeViewNavigator.activeView) == ExerciseView) {
 					if (currentExerciseHref) {
 						(homeViewNavigator.activeView as ExerciseView).href = currentExerciseHref;
@@ -61,6 +63,9 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		protected override function getCurrentSkinState():String {
+			if (currentExerciseHref)
+				return "exercise";
+			
 			return currentState;
 		}
 		

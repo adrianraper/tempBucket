@@ -2,6 +2,7 @@
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
 @namespace home "com.clarityenglish.tensebuster.view.home.*";
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
 
 tensebuster|TenseBusterApplication {
 	skinClass: ClassReference("skins.tensebuster.TenseBusterApplicationSkin");
@@ -17,4 +18,8 @@ home|HomeView {
 
 zone|ZoneView {
 	skinClass: ClassReference("skins.tensebuster.ZoneSkin");
+}
+
+exercise|ExerciseView {
+	skinClass: ClassReference("skins.tensebuster.ExerciseSkin");
 }

@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.tensebuster {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
+	import com.clarityenglish.bento.view.exercise.ExerciseMediator;
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.tensebuster.controller.TenseBusterStartupCommand;
 	import com.clarityenglish.tensebuster.view.home.HomeMediator;
 	import com.clarityenglish.tensebuster.view.home.HomeView;
@@ -29,10 +31,10 @@
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
 			mapView(ZoneView, ZoneMediator);
+			mapView(ExerciseView, ExerciseMediator);
 			/*mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(SupportView, SupportMediator);
-			mapView(ExerciseView, ExerciseMediator);
 			
 			// Register IELTS specific commands
 			/*registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);
