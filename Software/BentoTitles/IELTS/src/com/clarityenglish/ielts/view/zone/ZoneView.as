@@ -61,14 +61,9 @@ package com.clarityenglish.ielts.view.zone {
 		[Bindable]
 		public static var horribleHackCourseClass:String;
 		
-		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
 		public var videoSelected:Signal = new Signal(Href, String);
 		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
-		
-		public function isDemo():Boolean {
-			return (productVersion == BentoApplication.DEMO);
-		}
 		
 		/**
 		 * This can be called from outside the view to make the view display a different course

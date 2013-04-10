@@ -4,7 +4,6 @@
 	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
@@ -42,7 +41,6 @@
 			
 			// listen for these signals
 			view.courseSelect.add(onCourseSelected);
-			view.exerciseSelect.add(onExerciseSelected);
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -61,7 +59,6 @@
 			super.onRemove();
 			
 			view.courseSelect.remove(onCourseSelected);
-			view.exerciseSelect.remove(onExerciseSelected);
 			
 			view.isMediated = false; // #222
 		}
@@ -89,15 +86,6 @@
 					view.setCourseSelectorVisible(true);
 					break;
 			}
-		}
-		
-		/**
-		 * An exercise was selected. Based on the extension of the Href we either want to open an exercise or open a pdf.
-		 * 
-		 * @param href
-		 */
-		private function onExerciseSelected(href:Href):void {
-			sendNotification(IELTSNotifications.HREF_SELECTED, href);
 		}
 		
 		/**
