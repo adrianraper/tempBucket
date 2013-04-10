@@ -33,6 +33,8 @@
 		public static const SELECTED_NODE_CHANGE:String = "bb/selected_node_change";
 		public static const SELECTED_NODE_CHANGED:String = "bb/selected_node_changed";
 		
+		public static const SELECTED_NODE_UP:String = "bb/selected_node_up";
+		
 		public static const COURSE_START:String = "bb/course_start";
 		public static const COURSE_STARTED:String = "bb/course_started";
 		public static const COURSE_STOP:String = "bb/course_stop";
@@ -81,9 +83,6 @@
 		public static const ANSWERS_SHOW:String = "bb/answers_show";
 		
 		public static const FEEDBACK_SHOW:String = "bb/feedback_show";
-		
-		// The specific title will want to implement actions on these two notifications
-		public static const EXERCISE_SECTION_FINISHED:String = "bb/exercise_section_finished";
 		
 		// gh#90 - set items (which can be anything) dirty or clean
 		public static const ITEM_DIRTY:String = "bb/item_dirty";

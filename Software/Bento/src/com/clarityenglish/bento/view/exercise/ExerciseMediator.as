@@ -161,7 +161,7 @@
 		}
 		
 		private function onBackToMenu():void {
-			sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
+			sendNotification(BBNotifications.SELECTED_NODE_UP);
 		}
 		
 	}
