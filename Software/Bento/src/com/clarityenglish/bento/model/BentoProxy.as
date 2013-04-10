@@ -32,9 +32,10 @@ package com.clarityenglish.bento.model {
 		
 		private var _currentExercise:Exercise;
 		
-		private var _selectedNode:XML;
-		
 		private var dirtyObj:Object;
+		
+		[Bindable]
+		public var selectedNode:XML;
 		
 		public function BentoProxy() {
 			super(NAME);
@@ -68,16 +69,6 @@ package com.clarityenglish.bento.model {
 			log.debug("Set menuXHTML in BentoProxy");
 			
 			_menuXHTML = value;
-		}
-		
-		public function get selectedNode():XML {
-			log.debug("Set selectedNode in BentoProxy");
-			
-			return _selectedNode;
-		}
-		
-		public function set selectedNode(value:XML):void {
-			_selectedNode = value;
 		}
 		
 		/**

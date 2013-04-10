@@ -8,7 +8,7 @@
 		xmlns:progress="com.clarityenglish.bento.view.progress.*"
 		xmlns:account="com.clarityenglish.ielts.view.account.*"
 		xmlns:support="com.clarityenglish.ielts.view.support.*"
-		xmlns:exercise="com.clarityenglish.ielts.view.exercise.*" xmlns:exercise1="com.clarityenglish.bento.view.exercise.*">
+		xmlns:exercise="com.clarityenglish.bento.view.exercise.*">
 
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
@@ -55,7 +55,7 @@
 				<progress:ProgressView id="progressView" width="100%" height="100%" includeIn="progress" />
 				<account:AccountView id="accountView" width="100%" height="100%" includeIn="account" />
 				<support:SupportView id="supportView" width="100%" height="100%" includeIn="support" />
-				<exercise1:ExerciseView id="exerciseView" width="100%" height="100%" includeIn="exercise" />
+				<exercise:ExerciseView id="exerciseView" width="100%" height="100%" includeIn="exercise" />
 			</s:Group>
 		</s:HGroup>
 		
