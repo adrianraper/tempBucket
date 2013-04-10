@@ -49,7 +49,13 @@
 		public static const EXERCISE_SHOW_OFFSET:String = "bb/exercise_show_offset";
 		public static const EXERCISE_SHOW_FEEDBACK:String = "bb/exercise_show_feedback";
 		
-		// These are sent by XHTMLExerciseMediator when exercises start and stop.
+		// Start/stop notifications
+		public static const COURSE_START:String = "bb/course_start";
+		public static const COURSE_STARTED:String = "bb/course_started";
+		
+		public static const UNIT_START:String = "bb/unit_start";
+		public static const UNIT_STARTED:String = "bb/unit_started";
+		
 		public static const EXERCISE_START:String = "bb/exercise_start";
 		public static const EXERCISE_STARTED:String = "bb/exercise_started";
 		public static const EXERCISE_STOP:String = "bb/exercise_stop";

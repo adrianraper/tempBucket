@@ -3,8 +3,6 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.rotterdam.RotterdamNotifications;
-	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -36,7 +34,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				RotterdamNotifications.COURSE_STARTED,
+				BBNotifications.COURSE_STARTED,
 			]);
 		}
 		
@@ -44,7 +42,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case RotterdamNotifications.COURSE_STARTED:
+				case BBNotifications.COURSE_STARTED:
 					view.showCourseView();
 					break;
 			}
