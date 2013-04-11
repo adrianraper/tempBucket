@@ -11,9 +11,6 @@ package com.clarityenglish.bento.controller {
 	
 	/**
 	 * Select the parent of the currently selected node.  Used for 'back' buttons, amongst other things.
-	 * TODO: This isn't correct.  Probably best would be to have selectedCourse, selectedUnit, selectedExercise all derived from selectedNode (and with binding based on it)
-	 * and have views/mediators grab/bindage-tools to the appropriate one.  Then we can e.g. go up to the unit instead of the course and still have everything work correctly
-	 * since the derived getters will traverse up the hierarchy to determine the bits.
 	 */
 	public class SelectedNodeUpCommand extends SimpleCommand {
 		
@@ -26,7 +23,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, bentoProxy.selectedNode.parent().parent());
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, bentoProxy.selectedNode.parent());
 		}
 		
 	}

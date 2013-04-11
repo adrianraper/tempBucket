@@ -239,6 +239,7 @@ package com.clarityenglish.ielts.view.title {
 			
 			switch (_selectedNode.localName()) {
 				case "course":
+				case "unit":
 					currentState = "zone";
 					invalidateSkinState();
 					break;

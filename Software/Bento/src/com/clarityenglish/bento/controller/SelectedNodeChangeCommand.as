@@ -32,7 +32,9 @@ package com.clarityenglish.bento.controller {
 					sendNotification(BBNotifications.SELECTED_NODE_CHANGED, selectedNode);
 					break;
 				case "unit":
-					// TODO: what goes here?
+					bentoProxy.selectedNode = selectedNode;
+					// TODO: unit start & stop notifications here?
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGED, selectedNode);
 					break;
 				case "exercise":
 					var attribute:String = note.getType() || "href";

@@ -43,7 +43,7 @@
 			view.backToMenu.add(onBackToMenu);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			Bind.fromProperty(bentoProxy, "selectedNode").convert(function(node:XML):Href {
+			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
 				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href) : null;
 			}).toProperty(view, "href");
 		}

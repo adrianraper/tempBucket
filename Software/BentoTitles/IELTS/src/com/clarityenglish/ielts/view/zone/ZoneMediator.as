@@ -48,7 +48,7 @@
 			
 			view.isMediated = true; // #222
 			
-			Bind.fromProperty(bentoProxy, "selectedNode").toProperty(view, "course");
+			Bind.fromProperty(bentoProxy, "selectedCourseNode").toProperty(view, "course");
 			
 			// #514 If you are SCORM you don't want the course selector
 			// #378 Actually, you will still use it, just disable the courses that are hidden.

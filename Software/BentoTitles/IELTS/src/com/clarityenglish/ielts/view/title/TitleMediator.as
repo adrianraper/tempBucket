@@ -75,11 +75,6 @@
 				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
 				sendNotification(BBNotifications.SELECTED_NODE_UP);
 			}
-			
-			/*if (exerciseProxy.attemptToLeaveExercise(new Notification(BBNotifications.EXERCISE_SECTION_FINISHED))) {
-				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
-				sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
-			}*/
 		}
 		
 		override public function onRemove():void {
@@ -88,7 +83,6 @@
         
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				//BBNotifications.EXERCISE_SECTION_FINISHED,
 				BBNotifications.SELECTED_NODE_CHANGED,
 			]);
 		}
@@ -97,9 +91,6 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				/*case BBNotifications.EXERCISE_SECTION_FINISHED:
-					view.showExercise(null);
-					break;*/
 				case BBNotifications.SELECTED_NODE_CHANGED:
 					view.selectedNode = note.getBody() as XML;
 					break;

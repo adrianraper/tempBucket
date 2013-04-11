@@ -5,12 +5,14 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.system.System;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.XmlUtils;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -34,8 +36,7 @@ package com.clarityenglish.bento.model {
 		
 		private var dirtyObj:Object;
 		
-		[Bindable]
-		public var selectedNode:XML;
+		private var _selectedNode:XML;
 		
 		public function BentoProxy() {
 			super(NAME);
@@ -43,6 +44,31 @@ package com.clarityenglish.bento.model {
 			dirtyObj = {};
 		}
 		
+		public function set selectedNode(value:XML):void {
+			_selectedNode = value;
+			dispatchEvent(new Event("selectedNodeChanged"));
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedNode():XML {
+			return _selectedNode;
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedExerciseNode():XML {
+			return XmlUtils.searchUpForNode(selectedNode, "exercise");
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedUnitNode():XML {
+			return XmlUtils.searchUpForNode(selectedNode, "unit");
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedCourseNode():XML {
+			return XmlUtils.searchUpForNode(selectedNode, "course");
+		}
+
 		public function reset():void {
 			// #472
 			if (_menuXHTML) System.disposeXML(_menuXHTML.xml);

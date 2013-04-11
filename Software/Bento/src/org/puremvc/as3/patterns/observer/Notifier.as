@@ -4,6 +4,8 @@
 */
 package org.puremvc.as3.patterns.observer
 {
+	import flash.events.EventDispatcher;
+	
 	import org.puremvc.as3.interfaces.*;
 	import org.puremvc.as3.patterns.facade.Facade;
 	
@@ -32,7 +34,7 @@ package org.puremvc.as3.patterns.observer
 	 * @see org.puremvc.as3.patterns.command.SimpleCommand SimpleCommand
 	 * @see org.puremvc.as3.patterns.command.MacroCommand MacroCommand
 	 */
-	public class Notifier implements INotifier
+	public class Notifier extends EventDispatcher implements INotifier
 	{
 		/**
 		 * Create and send an <code>INotification</code>.
