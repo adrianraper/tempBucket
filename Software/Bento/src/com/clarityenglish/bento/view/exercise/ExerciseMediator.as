@@ -81,12 +81,12 @@
 					
 					var breadcrumb:Array = [];
 					try { // #303
-						breadcrumb.push(bentoProxy.currentCourseNode.@caption);
-						if (bentoProxy.currentGroupNode) breadcrumb.push(bentoProxy.currentGroupNode.@caption);
-						breadcrumb.push(bentoProxy.currentExerciseNode.@caption);
+						breadcrumb.push(bentoProxy.selectedCourseNode.@caption);
+						if (bentoProxy.selectedGroupNode) breadcrumb.push(bentoProxy.selectedGroupNode.@caption);
+						breadcrumb.push(bentoProxy.selectedExerciseNode.@caption);
 						view.exerciseTitle = breadcrumb.join(" > ");
 						
-						view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
+						view.courseCaption = bentoProxy.selectedCourseNode.@caption.toLowerCase();
 					} catch (e:BentoError) {
 						sendNotification(CommonNotifications.BENTO_ERROR, e);
 						return;
