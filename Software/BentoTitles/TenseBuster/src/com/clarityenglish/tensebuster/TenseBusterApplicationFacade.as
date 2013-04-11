@@ -34,15 +34,7 @@
 			mapView(ExerciseView, ExerciseMediator);
 			/*mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
-			mapView(SupportView, SupportMediator);
-			
-			// Register IELTS specific commands
-			/*registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);
-			registerCommand(IELTSNotifications.PDF_SHOW, PdfShowCommand);*/
-			
-			// Upgrade, register and buy
-			// registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);
-			/*registerCommand(IELTSNotifications.IELTS_REGISTER, IELTSRegisterCommand);*/
+			mapView(SupportView, SupportMediator);*/
 			
 			registerCommand(BBNotifications.STARTUP, TenseBusterStartupCommand);
 		}

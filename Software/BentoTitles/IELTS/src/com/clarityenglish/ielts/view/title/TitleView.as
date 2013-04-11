@@ -241,24 +241,11 @@ package com.clarityenglish.ielts.view.title {
 				case "course":
 				case "unit":
 					currentState = "zone";
-					invalidateSkinState();
 					break;
 				case "exercise":
 					currentState = "exercise";
-					invalidateSkinState();
 					break;
 			}
-		}
-		
-		/**
-		 * 
-		 * This shows what state the skin is currently in
-		 * 
-		 * @return string State name 
-		 */
-		protected override function getCurrentSkinState():String {
-			/*if (currentExerciseHref) return "exercise";*/
-			return currentState;
 		}
 		
 		public function TitleView() {
@@ -407,24 +394,16 @@ package com.clarityenglish.ielts.view.title {
 						}
 					} );
 					break;
-				
 				case sectionNavigator:
 					sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, updateStateFromSectionNavigator);
 					break;
-				
 				case logoutButton:
 					instance.addEventListener(MouseEvent.CLICK, onLogoutButtonClick);
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
-				
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
-				
-				case exerciseView:
-					exerciseView.href = currentExerciseHref;
-					break;
-				
 				case noticeLabel:
 					// TODO: Check whether we know the exam date, if not say go to my account page to set it
 					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
@@ -437,13 +416,10 @@ package com.clarityenglish.ielts.view.title {
 						instance.text = copyProvider.getCopyForId("countDownLabel3");
 					}
 					break;
-				
-				// #299
-				// #337
+				// #299, #337
 				case infoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
-				//issue:#11 Language Code
 				case homeViewNavigator:
 					instance.label = copyProvider.getCopyForId("Home");
 					break;
@@ -498,7 +474,6 @@ package com.clarityenglish.ielts.view.title {
 				case moreViewNavigatorButton2:
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
-				
 			}
 		}
 		
@@ -574,10 +549,10 @@ package com.clarityenglish.ielts.view.title {
 			shortDelayTimer.addEventListener(TimerEvent.TIMER, timerHandler);
 			shortDelayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, resetLogoutButton);
 		}
+		
 		// #260 
 		// This function enables logoutButton no matter what
 		private function resetLogoutButton(event:TimerEvent):void {
-			trace("enable logout button");
 			if (logoutButton) logoutButton.enabled = true;
 		}
 		
@@ -606,6 +581,11 @@ package com.clarityenglish.ielts.view.title {
 				default:
 			}
 		}
+		
+		protected override function getCurrentSkinState():String {
+			return currentState;
+		}
+		
 	}
 	
 }

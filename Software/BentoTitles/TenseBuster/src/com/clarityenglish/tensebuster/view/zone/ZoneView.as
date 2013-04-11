@@ -25,6 +25,7 @@ package com.clarityenglish.tensebuster.view.zone {
 		private var _courseChanged:Boolean;
 		
 		public var exerciseShow:Signal = new Signal(Href);
+		public var exerciseSelect:Signal = new Signal(XML);
 		
 		[Bindable(event="courseChanged")]
 		public function get course():XML {
@@ -75,9 +76,7 @@ package com.clarityenglish.tensebuster.view.zone {
 		
 		protected function onExerciseClick(event:MouseEvent):void {
 			var exercise:XML = event.currentTarget.selectedItem as XML;
-			if (exercise)
-				exerciseShow.dispatch(href.createRelativeHref(Href.EXERCISE, exerciseList.selectedItem.@href.toString()));
-			
+			if (exercise) exerciseSelect.dispatch(exercise);
 		}
 		
 	}

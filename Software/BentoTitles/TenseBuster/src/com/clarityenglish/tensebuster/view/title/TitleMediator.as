@@ -3,8 +3,6 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.tensebuster.TenseBusterNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -32,8 +30,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				TenseBusterNotifications.COURSE_SHOW,
-				BBNotifications.EXERCISE_SHOW,
+				BBNotifications.SELECTED_NODE_CHANGED,
 			]);
 		}
 		
@@ -41,12 +38,8 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case TenseBusterNotifications.COURSE_SHOW:
-					view.selectedCourseXML = note.getBody() as XML;
-					break;
-				case BBNotifications.EXERCISE_SHOW:
-					var href:Href = note.getBody() as Href;
-					view.showExercise(href);
+				case BBNotifications.SELECTED_NODE_CHANGED:
+					view.selectedNode = note.getBody() as XML;
 					break;
 			}
 		}
