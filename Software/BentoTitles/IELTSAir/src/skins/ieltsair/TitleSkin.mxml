@@ -54,7 +54,7 @@
 				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
 				homeViewNavigator.defaultPopTransition = popTransition;
 				
-				hostComponent.setNavStateMap(sectionNavigator.tabBar, {
+				hostComponent.setNavStateMap(sectionNavigator, {
 					home: HomeView,
 					zone: ZoneView,
 					progress: ProgressView,

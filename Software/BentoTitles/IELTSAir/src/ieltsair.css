@@ -96,6 +96,22 @@ title|TitleView {
 	skinClass: ClassReference("skins.ieltsair.TitleSkin");
 }
 
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("spark.skins.mobile.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since ielts.css has changed it */
+}
+
+title|TitleView s|ViewNavigator {
+	skinClass: ClassReference("spark.skins.mobile.ViewNavigatorSkin"); /* this is actually resetting it back to the default since ielts.css has changed it */
+}
+
+title|TitleView s|TabbedViewNavigator #tabBar {
+	chromeColor: #262526;
+	color: #DDDDDD;
+	fontSize: 10;
+	fontWeight: normal;
+	iconPlacement: top;
+}
+
 /* Home view styles */
 home|HomeView {
 	skinClass: ClassReference("skins.ieltsair.HomeSkin");

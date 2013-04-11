@@ -55,7 +55,7 @@ title|TitleView s|TabbedViewNavigator {
 }
 
 title|TitleView s|ViewNavigator {
-	skinClass: ClassReference("skins.rotterdam.title.WebViewNavigatorSkin");
+	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
 }
 
 courseselector|CourseSelectorView {
