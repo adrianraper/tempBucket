@@ -143,8 +143,6 @@ package com.clarityenglish.ielts.view.title {
 		[SkinPart]
 		public var sectionNavigator:TabbedViewNavigator;
 		
-		private var currentExerciseHref:Href;
-		
 		// #337
 		public var candidateOnlyInfo:Boolean = false;
 		
@@ -241,6 +239,7 @@ package com.clarityenglish.ielts.view.title {
 				case "course":
 				case "unit":
 					currentState = "zone";
+					if (navBar) navBar.selectedIndex = -1; // this is ugly; should I put it in a listener in the skin instead?  I reckon yes.
 					break;
 				case "exercise":
 					currentState = "exercise";

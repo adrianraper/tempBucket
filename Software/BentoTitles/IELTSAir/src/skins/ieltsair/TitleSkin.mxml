@@ -5,7 +5,8 @@
 		xmlns:title="skins.ieltsair.assets.title.*"
 		xmlns:assets="skins.ieltsair.assets.*"
 		xmlns:zone="com.clarityenglish.ielts.view.zone.*"
-		creationComplete="creationComplete(event)" >
+		creationComplete="creationComplete(event)"
+		currentStateChange="onCurrentStateChange(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
@@ -14,14 +15,17 @@
 		<![CDATA[
 			import caurina.transitions.Tweener;
 			
+			import com.clarityenglish.bento.view.exercise.ExerciseView;
+			import com.clarityenglish.ielts.view.zone.ZoneView;
+			
 			import mx.events.FlexEvent;
+			import mx.events.StateChangeEvent;
 			
 			import org.davekeen.transitions.PatchedSlideViewTransition;
 			import org.davekeen.util.ClassUtil;
 			
 			import skins.ieltsair.assets.title.*;
 			
-			import spark.transitions.ViewTransitionBase;
 			import spark.transitions.ViewTransitionDirection;
 			
 			protected function creationComplete(event:FlexEvent):void {
@@ -61,6 +65,18 @@
 				
 				callLater((currentState == "exercise") ? sectionNavigator.hideTabBar : sectionNavigator.showTabBar);
 				hostComponent.updateStateFromSectionNavigator();
+			}
+			
+			protected function onCurrentStateChange(event:StateChangeEvent):void {
+				// This is a good start, but doesn't totally work with the back button.
+				switch (event.newState) {
+					case "zone":
+						if (ClassUtil.getClass(homeViewNavigator.activeView) != ZoneView) homeViewNavigator.pushView(ZoneView);
+						break;
+					case "exercise":
+						if (ClassUtil.getClass(homeViewNavigator.activeView) != ExerciseView) homeViewNavigator.pushView(ExerciseView);
+						break;
+				}
 			}
 			
 		]]>
