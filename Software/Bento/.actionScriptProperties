@@ -4,6 +4,14 @@
     <compilerSourcePath>
       <compilerSourcePathEntry kind="1" linkType="1" path="src-common"/>
       <compilerSourcePathEntry kind="1" linkType="1" path="vendor/bindage-tools/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendor/alivepdf/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendor/as3-signals/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendor/puremvc/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendor/scorm-api-wrapper/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendor/tink/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendor/tweener/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendor/vector-collection/src"/>
+      <compilerSourcePathEntry kind="1" linkType="1" path="vendor/corelib/src"/>
     </compilerSourcePath>
     <libraryPath defaultLinkType="0">
       <libraryPathEntry kind="4" path="">

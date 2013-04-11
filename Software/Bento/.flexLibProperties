@@ -11,6 +11,7 @@
     <classEntry path="com.clarityenglish.bento.controller.ItemDirtyCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.MarkingShowCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.NetworkCheckAvailability"/>
+    <classEntry path="com.clarityenglish.bento.controller.PdfShowCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.QuestionNodeAnswerCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.QuestionStringAnswerCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.XHTMLLoadCommand"/>
@@ -159,7 +160,6 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
     <classEntry path="com.clarityenglish.common.vo.progress.Progress"/>
-    <classEntry path="com.clarityenglish.bento.controller.PdfShowCommand"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
