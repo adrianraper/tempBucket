@@ -37,10 +37,10 @@
 			<s:ButtonBar id="navBar" right="105" height="35" top="5">
 				<s:dataProvider>
 					<s:ArrayList>
-						<fx:Object id="homeNavBarItem" label="Home" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='HomeIcon')" data="home" />
-						<fx:Object id="myProgressNavBarItem" label="myProgress" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ProgressIcon')" data="progress" />
-						<fx:Object id="myProfileNavBarItem" label="myProfile" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AccountIcon')" data="account" />
-						<fx:Object id="helpNavBarItem" label="help" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='HelpIcon')" data="support" />
+						<fx:Object id="homeNavBarItem" label="Home" state="home" icon="{getStyle('homeIcon')}" />
+						<fx:Object id="myProgressNavBarItem" label="myProgress" state="progress" icon="{getStyle('progressIcon')}" />
+						<fx:Object id="myProfileNavBarItem" label="myProfile" state="account" icon="{getStyle('profileIcon')}" />
+						<fx:Object id="helpNavBarItem" label="help" state="support" icon="{getStyle('helpIcon')}" />
 					</s:ArrayList>
 				</s:dataProvider>
 			</s:ButtonBar>

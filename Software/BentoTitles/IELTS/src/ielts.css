@@ -115,10 +115,14 @@ login|LoginView #accountMoreButton {
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");
+	homeIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="HomeIcon");
+	progressIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="ProgressIcon");
+	profileIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="AccountIcon");
+	helpIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="HelpIcon");
 }
 
 title|TitleView #navBar {
-	skinClass: ClassReference("skins.ielts.title.NavBarSkin");
+	skinClass: ClassReference("skins.ielts.title.NavBarSkin");	
 }
 
 title|TitleView s|TabbedViewNavigator #tabBar {
@@ -132,20 +136,6 @@ title|TitleView s|TabbedViewNavigator #tabBar {
 title|TitleView #logoutButton {
 	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
 }
-
-/* #337
-title|UpgradeView {
-	skinClass: ClassReference("skins.ielts.title.UpgradeSkin");
-}
-
-title|UpgradeView #teacherButton {
-	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
-}
-
-title|UpgradeView #candidateButton {
-	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
-}
-*/
 
 /* Home view styles */
 home|HomeView {

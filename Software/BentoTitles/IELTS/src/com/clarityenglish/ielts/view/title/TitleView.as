@@ -369,7 +369,7 @@ package com.clarityenglish.ielts.view.title {
 				case navBar:
 					// Network licence doesn't want a My Profile tab
 					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
-						var myProfileItem:Object = ArrayUtils.searchArrayForObject(navBar.dataProvider.toArray(), "account", "data");
+						var myProfileItem:Object = ArrayUtils.searchArrayForObject(navBar.dataProvider.toArray(), "account", "state");
 						if (myProfileItem) navBar.dataProvider.removeItemAt(navBar.dataProvider.getItemIndex(myProfileItem));
 					}
 					
@@ -468,22 +468,6 @@ package com.clarityenglish.ielts.view.title {
 			}
 		}
 		
-		protected override function partRemoved(partName:String, instance:Object):void {
-			super.partRemoved(partName, instance);
-			
-			switch (instance) {
-				case navBar:
-					navBar.removeEventListener(Event.CHANGE, onNavBarIndexChange);
-					break;
-				case backToMenuButton:
-					instance.removeEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
-					break;
-				case logoutButton:
-					instance.removeEventListener(MouseEvent.CLICK, onLogoutButtonClick);
-					break;
-			}
-		}
-		
 		/**
 		 * When the tab is changed invalidate the skin state to force getCurrentSkinState() to get called again
 		 * 
@@ -491,7 +475,7 @@ package com.clarityenglish.ielts.view.title {
 		 */
 		protected function onNavBarIndexChange(event:Event):void {
 			// We can set the skin state from the tab bar click
-			if (event.target.selectedItem) currentState = event.target.selectedItem.data;
+			if (event.target.selectedItem) currentState = event.target.selectedItem.state;
 		}
 		
 		protected function onLogoutButtonClick(event:MouseEvent):void {
