@@ -22,6 +22,7 @@ package com.clarityenglish.ielts.view.title {
 	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
 	
+	import org.davekeen.util.ArrayUtils;
 	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StateUtil;
@@ -47,6 +48,9 @@ package com.clarityenglish.ielts.view.title {
 		public var homeViewNavigator:ViewNavigator;
 		
 		[SkinPart]
+		public var homeNavBarItem:Object;
+		
+		[SkinPart]
 		public var homeViewNavigatorButton1:Button;
 		
 		[SkinPart]
@@ -54,6 +58,9 @@ package com.clarityenglish.ielts.view.title {
 		
 		[SkinPart]
 		public var myProgressViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var myProgressNavBarItem:Object;
 		
 		[SkinPart]
 		public var myProgressViewNavigatorButton1:Button;
@@ -65,6 +72,9 @@ package com.clarityenglish.ielts.view.title {
 		public var myProfileViewNavigator:ViewNavigator;
 		
 		[SkinPart]
+		public var myProfileNavBarItem:Object;
+		
+		[SkinPart]
 		public var myProfileViewNavigatorButton1:Button;
 		
 		[SkinPart]
@@ -72,6 +82,9 @@ package com.clarityenglish.ielts.view.title {
 		
 		[SkinPart]
 		public var helpViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var helpNavBarItem:Object;
 		
 		[SkinPart]
 		public var helpViewNavigatorButton1:Button;
@@ -154,18 +167,6 @@ package com.clarityenglish.ielts.view.title {
 		public var register:Signal = new Signal();
 		public var upgrade:Signal = new Signal();
 		public var buy:Signal = new Signal();
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="HomeIcon")]
-		private var homeIcon:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="ProgressIcon")]
-		private var progressIcon:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="AccountIcon")]
-		private var accountIcon:Class;
-		
-		[Embed(source="/skins/ielts/assets/assets.swf", symbol="HelpIcon")]
-		private var helpIcon:Class;
 		
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionAcademicLogo:Class;
@@ -368,18 +369,8 @@ package com.clarityenglish.ielts.view.title {
 				case navBar:
 					// Network licence doesn't want a My Profile tab
 					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
-						navBar.dataProvider = new ArrayCollection( [
-							{ icon: homeIcon, label: copyProvider.getCopyForId("Home"), data: "home" },
-							{ icon: progressIcon, label: copyProvider.getCopyForId("myProgress"), data: "progress" },
-							{ icon: helpIcon, label: copyProvider.getCopyForId("help"), data: "support" },
-						] );
-					} else {
-						navBar.dataProvider = new ArrayCollection( [
-							{ icon: homeIcon, label: copyProvider.getCopyForId("Home"), data: "home" },
-							{ icon: progressIcon, label: copyProvider.getCopyForId("myProgress"), data: "progress" },
-							{ icon: accountIcon, label: copyProvider.getCopyForId("myProfile"), data: "account" },
-							{ icon: helpIcon, label: copyProvider.getCopyForId("help"), data: "support" },
-						] );
+						var myProfileItem:Object = ArrayUtils.searchArrayForObject(navBar.dataProvider.toArray(), "account", "data");
+						if (myProfileItem) navBar.dataProvider.removeItemAt(navBar.dataProvider.getItemIndex(myProfileItem));
 					}
 					
 					navBar.selectedIndex = 0;
@@ -391,7 +382,7 @@ package com.clarityenglish.ielts.view.title {
 							e.preventDefault();
 							navBar.callLater(function():void { navBar.selectedIndex = e.oldIndex; });
 						}
-					} );
+					});
 					break;
 				case logoutButton:
 					instance.addEventListener(MouseEvent.CLICK, onLogoutButtonClick);
@@ -417,6 +408,7 @@ package com.clarityenglish.ielts.view.title {
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 				case homeViewNavigator:
+				case homeNavBarItem:
 					instance.label = copyProvider.getCopyForId("Home");
 					break;
 				case homeViewNavigatorButton1:
@@ -426,6 +418,7 @@ package com.clarityenglish.ielts.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 			    case myProgressViewNavigator:
+				case myProgressNavBarItem:
 					instance.label = copyProvider.getCopyForId("myProgress");
 					break;
 				case myProgressViewNavigatorButton1:
@@ -435,6 +428,7 @@ package com.clarityenglish.ielts.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 				case myProfileViewNavigator:
+				case myProfileNavBarItem:
 					instance.label = copyProvider.getCopyForId("myProfile");
 					break;
 				case myProfileViewNavigatorButton1:
@@ -444,6 +438,7 @@ package com.clarityenglish.ielts.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 				case helpViewNavigator:
+				case helpNavBarItem:
 					instance.label = copyProvider.getCopyForId("help");
 					break;
 				case helpViewNavigatorButton1:

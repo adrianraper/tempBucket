@@ -34,7 +34,16 @@
 			<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSSubIcon')" top="52" />
 			<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" />
 			<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" />
-			<s:ButtonBar id="navBar" right="105" height="35" top="5" />
+			<s:ButtonBar id="navBar" right="105" height="35" top="5">
+				<s:dataProvider>
+					<s:ArrayList>
+						<fx:Object id="homeNavBarItem" label="Home" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='HomeIcon')" data="home" />
+						<fx:Object id="myProgressNavBarItem" label="myProgress" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='ProgressIcon')" data="progress" />
+						<fx:Object id="myProfileNavBarItem" label="myProfile" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='AccountIcon')" data="account" />
+						<fx:Object id="helpNavBarItem" label="help" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='HelpIcon')" data="support" />
+					</s:ArrayList>
+				</s:dataProvider>
+			</s:ButtonBar>
 			
 			<s:SWFLoader id="infoButton" source="{hostComponent.productVersionInfo}" right="0" top="44" buttonMode="true" useHandCursor="true" />
 			<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true" />
