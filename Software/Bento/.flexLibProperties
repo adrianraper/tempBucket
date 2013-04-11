@@ -101,7 +101,6 @@
     <classEntry path="flexUnitTests.tests.VectorMapTest"/>
     <classEntry path="flexUnitTests.tests.XHTMLTest"/>
     <classEntry path="net.digitalprimates.collections.VectorList"/>
-    <classEntry path="net.digitalprimates.collections.VectorListCollection"/>
     <classEntry path="org.davekeen.collections.VectorMap"/>
     <classEntry path="org.davekeen.delegates.IDelegate"/>
     <classEntry path="org.davekeen.delegates.IDelegateResponder"/>

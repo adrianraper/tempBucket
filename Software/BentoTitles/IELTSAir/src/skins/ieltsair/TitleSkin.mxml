@@ -16,6 +16,10 @@
 			import caurina.transitions.Tweener;
 			
 			import com.clarityenglish.bento.view.exercise.ExerciseView;
+			import com.clarityenglish.bento.view.progress.ProgressView;
+			import com.clarityenglish.ielts.view.account.AccountView;
+			import com.clarityenglish.ielts.view.home.HomeView;
+			import com.clarityenglish.ielts.view.support.SupportView;
 			import com.clarityenglish.ielts.view.zone.ZoneView;
 			
 			import mx.events.FlexEvent;
@@ -49,6 +53,14 @@
 				popTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
 				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
 				homeViewNavigator.defaultPopTransition = popTransition;
+				
+				hostComponent.setNavigatorStateMap(sectionNavigator, {
+					home: HomeView,
+					zone: ZoneView,
+					progress: ProgressView,
+					account: AccountView,
+					support: SupportView
+				});
 			}
 			
 			protected function onTransitionStarted(event:FlexEvent):void {
@@ -64,7 +76,6 @@
 				callLater(Tweener.resumeAllTweens);
 				
 				callLater((currentState == "exercise") ? sectionNavigator.hideTabBar : sectionNavigator.showTabBar);
-				hostComponent.updateStateFromSectionNavigator();
 			}
 			
 			protected function onCurrentStateChange(event:StateChangeEvent):void {
@@ -110,7 +121,6 @@
 	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#AAAAAA" right="3" bottom="52" excludeFrom="exercise" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">	
-		
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.ielts.view.home.HomeView" title="Road to IELTS" hide="practiceZonePopoutView.visible = false" left="0" right="0" height="100%" >
 			<s:navigationContent>
 				<s:Button id="homeViewNavigatorButton1" click="homeViewNavigator.popView();" visible="{ClassUtil.getClass(homeViewNavigator.activeView) !== homeViewNavigator.firstView}" />

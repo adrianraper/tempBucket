@@ -393,9 +393,6 @@ package com.clarityenglish.ielts.view.title {
 						}
 					} );
 					break;
-				case sectionNavigator:
-					sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, updateStateFromSectionNavigator);
-					break;
 				case logoutButton:
 					instance.addEventListener(MouseEvent.CLICK, onLogoutButtonClick);
 					instance.label = copyProvider.getCopyForId("LogOut");
@@ -500,33 +497,6 @@ package com.clarityenglish.ielts.view.title {
 		protected function onNavBarIndexChange(event:Event):void {
 			// We can set the skin state from the tab bar click
 			if (event.target.selectedItem) currentState = event.target.selectedItem.data;
-		}
-		
-		/**
-		 * Keep the state in sync with changes to the mobile tabbed navigator
-		 * TODO: It would be much neater if this could be combined with the navBar somehow
-		 */
-		public function updateStateFromSectionNavigator(event:IndexChangeEvent = null):void {
-			switch (ClassUtil.getClass(sectionNavigator.selectedNavigator.activeView)) {
-				case HomeView:
-					currentState = "home";
-					break;
-				case ZoneView:
-					currentState = "zone";
-					break;
-				case ProgressView:
-					currentState = "progress";
-					break;
-				case AccountView:
-					currentState = "account";
-					break;
-				case SupportView:
-					currentState = "support";
-					break;
-				case CreditsView:
-					// This has no state at present
-					break;
-			}
 		}
 		
 		protected function onLogoutButtonClick(event:MouseEvent):void {

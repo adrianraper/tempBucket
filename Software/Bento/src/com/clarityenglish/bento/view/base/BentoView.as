@@ -14,8 +14,11 @@ package com.clarityenglish.bento.view.base {
 	
 	import org.davekeen.util.ClassUtil;
 	
+	import spark.components.TabbedViewNavigator;
 	import spark.components.View;
+	import spark.components.ViewNavigator;
 	import spark.components.supportClasses.SkinnableComponent;
+	import spark.transitions.ViewTransitionBase;
 	
 	/**
 	 * This is the parent class of all views in Bento.
@@ -42,6 +45,12 @@ package com.clarityenglish.bento.view.base {
 		 */
 		protected var _xhtml:XHTML;
 		private var _xhtmlChanged:Boolean;
+		
+		/**
+		 * This is used in mobile skins to allow view navigators to be linked to view states 
+		 */
+		private var _stateMap:Object;
+		private var _tabbedViewNavigator:TabbedViewNavigator;
 		
 		// #234
 		protected var _productVersion:String;
@@ -120,6 +129,8 @@ package com.clarityenglish.bento.view.base {
 		protected function onRemovedFromStage(event:Event):void {
 			_href = null;
 			_xhtml = null;
+			_stateMap = null;
+			_tabbedViewNavigator = null;
 		}
 		
 		/**
@@ -210,6 +221,33 @@ package com.clarityenglish.bento.view.base {
 		protected function get menu():XML {
 			// #338 The model no longer holds head and script for the menu
 			return (_xhtml) ? _xhtml.head.script.(@id == "model" && @type == "application/xml").menu[0] : null;
+		}
+		
+		/**
+		 * Link a tabbed view navigator to view states so that clicking on the navigator changes the view state automatically based on the selected tab and
+		 * active view.  The stateMap parameter is an object where the keys are the states and the values are the view classes.
+		 * 
+		 * @param tabbedViewNavigator
+		 * @param stateMap
+		 */
+		public function setNavigatorStateMap(tabbedViewNavigator:TabbedViewNavigator, stateMap:Object):void {
+			_tabbedViewNavigator = tabbedViewNavigator;
+			_stateMap = stateMap;
+			
+			// We update on a change, or on a transition within any view navigator.  All listeners are weak so shouldn't cause memory leaks.
+			tabbedViewNavigator.addEventListener(Event.CHANGE, onNavigatorChange, false, 0, true);
+			for each (var viewNavigator:ViewNavigator in tabbedViewNavigator.navigators)
+				viewNavigator.defaultPopTransition.addEventListener(FlexEvent.TRANSITION_END, onNavigatorChange, false, 0, true);
+		}
+
+		private function onNavigatorChange(event:Event):void {
+			var viewClass:Class = ClassUtil.getClass(_tabbedViewNavigator.selectedNavigator.activeView);
+			for (var state:String in _stateMap) {
+				if (viewClass === _stateMap[state]) {
+					currentState = state;
+					break;
+				}
+			}
 		}
 		
 	}
