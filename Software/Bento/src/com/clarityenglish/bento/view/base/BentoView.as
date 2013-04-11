@@ -17,6 +17,7 @@ package com.clarityenglish.bento.view.base {
 	import spark.components.TabbedViewNavigator;
 	import spark.components.View;
 	import spark.components.ViewNavigator;
+	import spark.components.supportClasses.ButtonBarBase;
 	import spark.components.supportClasses.SkinnableComponent;
 	import spark.transitions.ViewTransitionBase;
 	
@@ -131,6 +132,7 @@ package com.clarityenglish.bento.view.base {
 			_xhtml = null;
 			_stateMap = null;
 			_tabbedViewNavigator = null;
+			_buttonBar = null;
 		}
 		
 		/**
@@ -230,7 +232,34 @@ package com.clarityenglish.bento.view.base {
 		 * @param tabbedViewNavigator
 		 * @param stateMap
 		 */
-		public function setNavigatorStateMap(tabbedViewNavigator:TabbedViewNavigator, stateMap:Object):void {
+		private var _buttonBar:ButtonBarBase;
+		public function setNavStateMap(buttonBar:ButtonBarBase, stateMap:Object):void {
+			_buttonBar = buttonBar;
+			_stateMap = stateMap;
+			
+			// We update on a change of the button bar.  All listeners are weak so shouldn't cause memory leaks.
+			_buttonBar.addEventListener(Event.CHANGE, onNavigatorChange, false, 0, true);
+			
+			// In the event that this buttonBar is within a TabbedViewNavigator we also want to update when any internal transitions end
+			if (_buttonBar.dataProvider is TabbedViewNavigator) {
+				for each (var viewNavigator:ViewNavigator in (_buttonBar.dataProvider as TabbedViewNavigator).navigators)
+					viewNavigator.defaultPopTransition.addEventListener(FlexEvent.TRANSITION_END, onNavigatorChange, false, 0, true);
+			}
+		}
+		
+		private function onNavigatorChange(event:Event):void {
+			if (_buttonBar.dataProvider is TabbedViewNavigator) {
+				var viewClass:Class = ClassUtil.getClass((_buttonBar.dataProvider as TabbedViewNavigator).selectedNavigator.activeView);
+				for (var state:String in _stateMap) {
+					if (viewClass === _stateMap[state]) {
+						currentState = state;
+						break;
+					}
+				}
+			}
+		}
+		
+		/*public function setNavStateMap(tabbedViewNavigator:TabbedViewNavigator, stateMap:Object):void {
 			_tabbedViewNavigator = tabbedViewNavigator;
 			_stateMap = stateMap;
 			
@@ -248,7 +277,7 @@ package com.clarityenglish.bento.view.base {
 					break;
 				}
 			}
-		}
+		}*/
 		
 	}
 	

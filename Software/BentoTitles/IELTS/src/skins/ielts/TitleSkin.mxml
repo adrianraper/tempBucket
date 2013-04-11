@@ -8,11 +8,29 @@
 		xmlns:progress="com.clarityenglish.bento.view.progress.*"
 		xmlns:account="com.clarityenglish.ielts.view.account.*"
 		xmlns:support="com.clarityenglish.ielts.view.support.*"
-		xmlns:exercise="com.clarityenglish.bento.view.exercise.*">
+		xmlns:exercise="com.clarityenglish.bento.view.exercise.*"
+		creationComplete="creationComplete(event)">
 
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function creationComplete(event:FlexEvent):void {
+				hostComponent.setNavStateMap(navBar, {
+					home: HomeView,
+					zone: ZoneView,
+					progress: ProgressView,
+					account: AccountView,
+					support: SupportView
+				});
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<s:states>
 		<s:State name="disabled" />

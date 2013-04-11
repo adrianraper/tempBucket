@@ -241,6 +241,7 @@ package com.clarityenglish.ielts.view.title {
 				case "unit":
 					currentState = "zone";
 					if (navBar) navBar.selectedIndex = -1; // this is ugly; should I put it in a listener in the skin instead?  I reckon yes.
+					// In fact if I manage to automate the nav bar like I have the tabbed navigation bar this will happen automatically anyway					
 					break;
 				case "exercise":
 					currentState = "exercise";

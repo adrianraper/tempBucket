@@ -54,7 +54,7 @@
 				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
 				homeViewNavigator.defaultPopTransition = popTransition;
 				
-				hostComponent.setNavigatorStateMap(sectionNavigator, {
+				hostComponent.setNavStateMap(sectionNavigator.tabBar, {
 					home: HomeView,
 					zone: ZoneView,
 					progress: ProgressView,
@@ -79,6 +79,7 @@
 			}
 			
 			protected function onCurrentStateChange(event:StateChangeEvent):void {
+				trace(">>>>>>>>>>>>>>>>>>>>> CHANGED TO " + event.newState);
 				// This is a good start, but doesn't totally work with the back button.
 				switch (event.newState) {
 					case "zone":
