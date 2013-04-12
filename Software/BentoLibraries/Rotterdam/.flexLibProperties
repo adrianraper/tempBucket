@@ -35,7 +35,10 @@
     <classEntry path="skins.rotterdam.scroller.DirectionButton"/>
     <classEntry path="skins.rotterdam.settings.TabButtonBarSkin"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent"/>
+<<<<<<< Updated upstream
     <classEntry path="skins.rotterdam.unit.PublishCourseButtonSkin"/>
+=======
+>>>>>>> Stashed changes
     <classEntry path="skins.rotterdam.unit.PublishChangeButtonSkin"/>
   </includeClasses>
   <includeResources>
