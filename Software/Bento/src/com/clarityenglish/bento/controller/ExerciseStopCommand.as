@@ -28,7 +28,6 @@ package com.clarityenglish.bento.controller {
 			
 			// Stop the current exercise (if there is one) and clean up
 			if (bentoProxy.currentExercise) {
-				
 				var exercise:Exercise = bentoProxy.currentExercise;
 				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 				var exerciseHasQuestions:Boolean = exercise.hasQuestions();
@@ -41,7 +40,7 @@ package com.clarityenglish.bento.controller {
 					
 					// Add more data to the exerciseMark ready to send it as a score
 					exerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
-					exerciseMark.UID = bentoProxy.getCurrentExerciseUID();
+					exerciseMark.UID = bentoProxy.getExerciseUID(exercise.href);
 					
 					sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 				}
