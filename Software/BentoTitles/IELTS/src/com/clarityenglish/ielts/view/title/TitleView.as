@@ -150,12 +150,8 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
 		
-		private var _selectedNode:XML;
-		
 		public function set selectedNode(value:XML):void {
-			_selectedNode = value;
-			
-			switch (_selectedNode.localName()) {
+			switch (value.localName()) {
 				case "course":
 				case "unit":
 					currentState = "zone";			
@@ -298,7 +294,7 @@ package com.clarityenglish.ielts.view.title {
 					setNavStateMap(sectionNavigator, {
 						home: { viewClass: HomeView },
 						zone: { viewClass: ZoneView, stack: true },
-						exercise: { viewClass: ExerciseView, stack: true, hideTabBar: true },
+						exercise: { viewClass: ExerciseView, stack: true },
 						progress: { viewClass: ProgressView },
 						account: { viewClass: AccountView },
 						support: { viewClass: SupportView }
