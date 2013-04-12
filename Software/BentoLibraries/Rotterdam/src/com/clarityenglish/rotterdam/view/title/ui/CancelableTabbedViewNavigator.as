@@ -20,7 +20,9 @@ package com.clarityenglish.rotterdam.view.title.ui {
 			super();
 		}
 		
+		/*gh #242
 		public override function set selectedIndex(value:int):void {
+			trace("set index: "+value);
 			var next:Function = function():void {
 				_setSelectedIndex(value);
 			};
@@ -30,22 +32,25 @@ package com.clarityenglish.rotterdam.view.title.ui {
 			} else {
 				next();
 			}
-		}
+		}*/
 		
 		private function _setSelectedIndex(value:int):void {
 			super.selectedIndex = value;
 		}
 		
 		mx_internal override function tabBarRenderer_clickHandler(event:MouseEvent):void {
-			var next:Function = function():void {
-				_tabBarRenderer_clickHandler(event);
-			};
-			
-			if (changeConfirmFunction !== null) {
-				changeConfirmFunction(next);
-			} else {
-				next();
-			}
+			//gh #242
+			if (((event.target).itemIndex == super.selectedIndex) && super.selectedIndex == 0 ) {
+				var next:Function = function():void {
+					_tabBarRenderer_clickHandler(event);
+				};
+				
+				if (changeConfirmFunction !== null) {
+					changeConfirmFunction(next);
+				} else {
+					next();
+				}
+			}		
 		}
 		
 		private function _tabBarRenderer_clickHandler(event:MouseEvent):void {
