@@ -17,8 +17,10 @@
 		<s:State name="exercise" />
 	</s:states>
 	
+	<s:Button id="backToMenuButton" label="Back to Menu" right="10" top="4" includeIn="exercise" />
+	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
-		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Home" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 	
 </s:Skin>
