@@ -165,9 +165,10 @@ package com.clarityenglish.rotterdam.view.course {
 				case unitCopyButton:
 					unitCopyButton.addEventListener(MouseEvent.CLICK, onUnitCopy);
 					break;
+				/*gh #204
 				case unitPasteButton:
 					unitPasteButton.addEventListener(MouseEvent.CLICK, onUnitPaste);
-					break;
+					break;*/
 				//gh #208
 				case publishCoursButton:
 					publishCoursButton.addEventListener(MouseEvent.CLICK, onPublishCourse);
@@ -253,11 +254,12 @@ package com.clarityenglish.rotterdam.view.course {
 			dispatchEvent(new Event(Event.COPY, true));
 		}
 		
+		/*gh #240
 		protected function onUnitPaste(event:MouseEvent):void {
 			// gh#110 - dispatch the event from the button rather than the view so that we can test for the target before actually doing the paste.  This means
 			// that we can make sure pastes only happen when the list has the focus, or the button was clicked.
 			unitPasteButton.dispatchEvent(new Event(Event.PASTE, true));
-		}
+		}*/
 		
 		// gh#208 
 		public function publishChanged():void {

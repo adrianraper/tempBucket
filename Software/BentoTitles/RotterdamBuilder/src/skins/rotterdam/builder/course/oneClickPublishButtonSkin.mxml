@@ -23,7 +23,7 @@ in accordance with the terms of the license agreement accompanying it.
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-				   minWidth="21" minHeight="21" 
+				   minWidth="100" minHeight="48" 
 				   alpha.disabled="0.5">
 	
 	<fx:Metadata>
@@ -34,11 +34,6 @@ in accordance with the terms of the license agreement accompanying it.
 		[HostComponent("spark.components.Button")]
 		]]>
 	</fx:Metadata>
-	
-	<fx:Declarations>
-		<s:GlowFilter id="glowFilter" alpha="0.6" blurX="2" blurY="2" color="0x000000" knockout="false" quality="10" />
-		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="0.5" alpha="0.8" />
-	</fx:Declarations>
 	
 	<fx:Script fb:purpose="styling">
 		<![CDATA[         
@@ -90,18 +85,41 @@ in accordance with the terms of the license agreement accompanying it.
 		<s:State name="disabled" />
 	</s:states>
 	
-	<s:Rect id="fill" left="1" right="1" top="1" bottom="1" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" filters="{dropShadowFilter}">
+	<s:Rect id="fill" left="2" right="2" top="2" bottom="1" topLeftRadiusX="4" topLeftRadiusY="4" topRightRadiusX="4" topRightRadiusY="4" >
 		<s:fill>
-			<s:SolidColor color="0xFFF6CC" color.down="0xF9DC65" color.over="0xF9DC65"/>
+			<s:SolidColor color="0x363636" alpha="0.8"/>
 		</s:fill>
 	</s:Rect>
+	
+	<s:Rect left="2" right="2" top="2" bottom="1" topLeftRadiusX="4" topLeftRadiusY="4" topRightRadiusX="4" topRightRadiusY="4" includeIn="over">
+		<s:fill>
+			<s:SolidColor color="0xFFFFFF" alpha="0.1"/>
+		</s:fill>
+	</s:Rect>
+	
+	<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/icon_1click.png')" top="10" left="14"/>
+	
+	<s:Group left="105" includeIn="over">
+		<s:SWFLoader top="20" source="@Embed(source='skins/rotterdam/builder/assets/unit/icon_PublishCourse_arrow.png')"/>
+		<s:Rect left="15" width="180" height="50" radiusX="8" radiusY="8">
+			<s:fill>
+				<s:SolidColor color="0xFCEEBB" />
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke color="0x333333" />
+			</s:stroke>
+		</s:Rect>
+		<s:Label left="30" top="12" text="Your course is immediately available to all your student" width="195" lineHeight="18"/>
+	</s:Group>
 	
 	<!-- layer 8: text -->
 	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 	<s:Label id="labelDisplay"
+			 color="0xFFFFFF"
+			 fontSize="14"
 			 textAlign="center"
 			 maxDisplayedLines="1"
-			 horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+			 horizontalCenter="10" verticalCenter="2" verticalAlign="middle"
 			 left="10" right="10" top="2" bottom="2">
 	</s:Label>
 	

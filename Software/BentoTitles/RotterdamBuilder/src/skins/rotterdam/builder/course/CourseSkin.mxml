@@ -93,41 +93,39 @@
 		<s:Button id="addUnitButton" label="Add a unit" useHandCursor="true" buttonMode="true" />
 		
 		<!-- temporarily put these buttons here (gh#110) but they will likely move elsewhere later -->
-		<s:Spacer height="20" />
-		<s:Label text="Unit:" fontWeight="bold" />
+		<!--s:Spacer height="20" /-->
+		<!--s:Label text="Unit:" fontWeight="bold" /-->
 		<s:HGroup width="100%">
-			<s:Button id="unitCopyButton" label="Copy" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
-			<s:Button id="unitPasteButton" label="Paste" width="50%" useHandCursor="true" buttonMode="true" />
+			<s:Button id="unitCopyButton" label="Duplicate unit" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
+			<!--s:Button id="unitPasteButton" label="Paste" width="50%" useHandCursor="true" buttonMode="true" /-->
 		</s:HGroup>
 	</s:VGroup>
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50"/>
 	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="55" bottom="100" />
 	
+	<course:ToolBarView id="toolBar" bottom="38" left="0" right="0" />
+	
 	<!--alice p-->
-	<s:VGroup bottom="120" width="150" gap="-1" includeIn="uniteditor">	
-		<s:Group id="publishSelectionGroup" visible="false">
-			<!--s:Rect width="140" height="200" left="8" radiusX="8" radiusY="8" alpha="0.8">
-			<s:fill>
-			<s:SolidColor color="#363636" />
-			</s:fill>
-			</s:Rect-->
-			<s:VGroup left="8" gap="-3">							
-				<s:Group>
-					<!-- gh#208 -->
-					<s:Button id="oneClickPublishButton" label="1-click" useHandCursor="true" buttonMode="true" height="100" width="140"
-							  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" />
-				</s:Group>
-				
-				<s:Button id="publishSettingsButton" label="Publish settings" useHandCursor="true" buttonMode="true" height="100" width="140"/>
-			</s:VGroup>			
-		</s:Group>		
+	<s:VGroup left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">	
+		<s:VGroup paddingLeft="30" id="publishSelectionGroup" visible="false">
+			<s:Group>
+				<s:Rect width="100" height="100" topLeftRadiusX="8" topRightRadiusX="8">
+					<s:fill>
+						<s:LinearGradient rotation="90">
+							<s:GradientEntry color="0XFFC700" ratio="0.5" />
+							<s:GradientEntry color="0XFF9D00" />
+						</s:LinearGradient>
+					</s:fill>
+				</s:Rect>
+				<s:Button id="oneClickPublishButton" label="1 click" useHandCursor="true" buttonMode="true"
+						  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="100" height="50"/>
+				<s:Button id="publishSettingsButton" top="50" label="Publish settings" useHandCursor="true" buttonMode="true" width="100" height="50"/>
+			</s:Group>					
+		</s:VGroup>		
 		<s:Group>
-			<s:ToggleButton id="publishCoursButton" label="Publish Course" height="50" width="140" left="8" fontWeight="bold" fontSize="12" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" />
-			<s:Button id="publishChangeButton" label="Change publish details" left="3" fontWeight="bold" fontSize="12" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
+			<s:ToggleButton id="publishCoursButton" label="Publish Course" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" />
+			<s:Button id="publishChangeButton" label="Change publish details" height="50" fontWeight="bold" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
 		</s:Group>
-	</s:VGroup>
-	
-	<course:ToolBarView bottom="38" left="0" right="0" />
-	
+	</s:VGroup>	
 </s:Skin>

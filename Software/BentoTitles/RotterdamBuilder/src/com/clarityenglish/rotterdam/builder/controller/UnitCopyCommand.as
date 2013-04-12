@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.bento.model.DataProxy;
+	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import flash.desktop.Clipboard;
 	
@@ -31,6 +32,13 @@ package com.clarityenglish.rotterdam.builder.controller {
 			// Write the unit
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			dataProxy.set("clipboard", { type: "unit", xml: unitCopy });
+			
+			//gh #240
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			var clipboard:Object = dataProxy.get("clipboard");
+			if (clipboard && clipboard.type == "unit") {
+				courseProxy.unitCollection.addItem(clipboard.xml);
+			}
 		}
 		
 	}

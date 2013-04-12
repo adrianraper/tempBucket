@@ -217,8 +217,8 @@
 		</s:Rect>
 		
 		<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
-			<s:Button id="saveButton" label="Save and Publish" useHandCursor="true" buttonMode="true" width="160"/>
-			<s:Button id="backButton" label="Cancel" useHandCursor="true" buttonMode="true" />
+			<s:Button id="saveButton" label="Save and Publish" useHandCursor="true" buttonMode="true" width="160" fontWeight="bold"/>
+			<s:Button id="backButton" label="Cancel" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
 		</s:HGroup>
 	</s:Group>
 

@@ -39,7 +39,8 @@
 			
 			// gh#110 - use real events instead of signals because they hook into system copy/paste shortcuts automatically
 			view.addEventListener(Event.COPY, onUnitCopy);
-			view.addEventListener(Event.PASTE, onUnitPaste);
+			//gh #240
+			//view.addEventListener(Event.PASTE, onUnitPaste);
 			
 			// In case the course has already started before the CourseView is registered gh#88
 			handleCourseStarted();
@@ -57,7 +58,8 @@
 			view.coursePublish.remove(onCoursePublish);
 			
 			view.removeEventListener(Event.COPY, onUnitCopy);
-			view.removeEventListener(Event.PASTE, onUnitPaste);
+			//gh #240
+			//view.removeEventListener(Event.PASTE, onUnitPaste);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -109,10 +111,11 @@
 			facade.sendNotification(RotterdamNotifications.UNIT_COPY, view.unitList.selectedItem);
 		}
 		
+		/*gh #240
 		protected function onUnitPaste(event:Event):void {
 			if (view.canPasteFromTarget(event.target))
 				facade.sendNotification(RotterdamNotifications.UNIT_PASTE);
-		}
+		}*/
 
 		protected function onHelpPublish():void {
 			facade.sendNotification(RotterdamNotifications.HELP_PUBLISH_WINDOW_SHOW);

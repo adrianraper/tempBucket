@@ -12,7 +12,7 @@
     </s:states>
     
 	<s:Group>
-		<s:SWFLoader id="demonPic" source="@Embed(source='/skins/rotterdam/builder/assets/settings/demonstration.png')"/>
+		<s:SWFLoader id="demonPic" source="@Embed(source='/skins/rotterdam/builder/assets/settings/demonstration.png')" left="30" right="30"/>
 		<s:Button id="iKnowButton" label="Yes, I know" bottom="10" right="10" skinClass="skins.rotterdam.ui.OrangeButtonSkin"/>
 	</s:Group>	
 </s:Skin>

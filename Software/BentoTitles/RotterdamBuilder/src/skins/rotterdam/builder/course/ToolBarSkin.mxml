@@ -30,7 +30,7 @@
 			<s:SolidColor color="#363636" />
 		</s:fill>
 	</s:Rect>
-	<s:Rect includeIn="normal" left="260" right="295" height="48" bottom="0">
+	<s:Rect includeIn="normal" left="495" right="295" height="48" bottom="0">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0x8CC63F" ratio="0.5" />
@@ -68,12 +68,12 @@
 		<s:Label includeIn="link" text="Input your web URL here:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="webUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />
 		<s:Label includeIn="link" text="Text to display:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
-		<s:TextInput includeIn="link" id="captionTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />
+		<s:TextInput includeIn="link" id="captionTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />	
 		
-		
-		<s:Label includeIn="normal" text="Formatting:" color="#FFFFFF" paddingLeft="10" paddingTop="4" />
-		<s:HGroup includeIn="normal" height="100%" paddingLeft="5" gap="8" verticalAlign="middle">
+		<s:HGroup includeIn="normal" height="100%" paddingLeft="168" gap="8" verticalAlign="middle">
+			<s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" />
 			<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+			<s:Label includeIn="normal" paddingTop="5" text="Font size" fontWeight="bold" color="#FFFFFF" paddingLeft="15" />
 			<s:ToggleButton id="fontSize1Button" label="a" fontSize="13" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
@@ -98,7 +98,7 @@
 		<s:Label includeIn="normal" text="Add an item" color="0x283D0C" top="19" left="46"  />
 	</s:Group>
 	</s:HGroup-->
-	<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="275" label="Add an Item" includeIn="normal"/>
+	<!--s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="275" label="Add an Item" includeIn="normal"/>
 	<s:Group id="itemList" left="260" bottom="48" visible="false" includeIn="normal">
 		<s:Rect width="500" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" alpha="0.8">
 			<s:fill>
@@ -118,31 +118,38 @@
 		<s:Label text="Add an audio" top="160" left="80" color="0xFFFFFF" fontSize="14"/>
 		<s:Button id="listAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true"  top="150" left="250"/>
 		<s:Label text="Add a Clarity exercise" top="160" left="295" color="0xFFFFFF" fontSize="14"/>
-	</s:Group>
+	</s:Group-->
 	
 
-	<s:HGroup bottom="0" left="430" gap="8" height="48" verticalAlign="middle">
-	<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" />
-	<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" />
-	<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" />
-	<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" />
-	<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" />
-	<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" />
+	<s:HGroup bottom="0" left="512" gap="8" height="48" verticalAlign="middle">
+	<s:Label text="Add an item" color="0x283D0C" paddingTop="5" fontWeight="bold" includeIn="normal" />
+	<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" mouseOver="textLabel.visible = true; textLabel.includeInLayout = true;" mouseOut="textLabel.visible = false; textLabel.includeInLayout = false;"/>
+	<s:Label  id="textLabel" text="Add text" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>
+	<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" mouseOver="pdfLabel.visible = true; pdfLabel.includeInLayout = true;" mouseOut="pdfLabel.visible = false; pdfLabel.includeInLayout = false;" />
+	<s:Label  id="pdfLabel" text="Add a PDF" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>
+	<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" mouseOver="videoLabel.visible = true; videoLabel.includeInLayout = true;" mouseOut="videoLabel.visible = false; videoLabel.includeInLayout = false;" />
+	<s:Label  id="videoLabel" text="Add a video" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>
+	<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" mouseOver="imageLabel.visible = true; imageLabel.includeInLayout = true;" mouseOut="imageLabel.visible = false; imageLabel.includeInLayout = false;"/>
+	<s:Label  id="imageLabel" text="Add an image" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>	
+	<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" mouseOver="audioLabel.visible = true; audioLabel.includeInLayout = true;" mouseOut="audioLabel.visible = false; audioLabel.includeInLayout = false;"/>
+	<s:Label  id="audioLabel" text="Add an audio" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>	
+	<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true"  mouseOver="exerciseLabel.visible = true; exerciseLabel.includeInLayout = true;" mouseOut="exerciseLabel.visible = false; exerciseLabel.includeInLayout = false;"/>
+	<s:Label  id="exerciseLabel" text="Add a Clarity exercise" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" width="80" fontSize="11"/>	
 	</s:HGroup>
 	
 	<s:HGroup bottom="0" gap="10" height="48" right="140" verticalAlign="middle">
-		<s:Button includeIn="normal" id="normalSaveButton" label="Save changes" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalSaveButton" label="Save changes" useHandCursor="true" buttonMode="true" fontWeight="bold" />
 	</s:HGroup>
 	
 	<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
-		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" useHandCursor="true" buttonMode="true" width="133"/>
+		<s:Button includeIn="normal" id="normalPreviewButton" label="Preview" useHandCursor="true" buttonMode="true" width="133" fontWeight="bold"/>
 	</s:HGroup>
 	
 	<s:HGroup bottom="0" right="2" gap="3" height="48" verticalAlign="middle">
-		<s:Button includeIn="video" id="videoSelectButton" label="Select" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="link" id="linkSelectButton" label="Select" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="pdf,video,image,audio,link" id="normalCancelButton" label="Cancel" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="preview" id="previewBackToEditorButton" label="Back to editor" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="video" id="videoSelectButton" label="Select" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		<s:Button includeIn="link" id="linkSelectButton" label="Select" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		<s:Button includeIn="pdf,video,image,audio,link" id="normalCancelButton" label="Cancel" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		<s:Button includeIn="preview" id="previewBackToEditorButton" label="Back to editor" fontWeight="bold" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	
 </s:Skin>

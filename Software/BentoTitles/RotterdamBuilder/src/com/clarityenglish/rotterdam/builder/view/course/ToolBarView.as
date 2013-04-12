@@ -204,7 +204,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
 			
-			stage.addEventListener(MouseEvent.CLICK, onStageClick);			
+			//stage.addEventListener(MouseEvent.CLICK, onStageClick);			
 		}
 		
 		protected override function commitProperties():void {
@@ -302,12 +302,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case fontSize3Button:
 					instance.addEventListener(MouseEvent.CLICK, onFontSizeChange);
 					break;
-				case addItemButton:
+				/*case addItemButton:
 					addItemButton.addEventListener(MouseEvent.CLICK, onAddItemClick);
 					break;
 				case itemList:
 					itemList.addEventListener(MouseEvent.CLICK, onItemListClick);
-					break;
+					break;*/
 				//gh #221
 				case linkSelectButton:
 					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);					
@@ -487,7 +487,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			return currentState;
 		}
 		
-		protected function onAddItemClick(event:MouseEvent):void {
+		/*protected function onAddItemClick(event:MouseEvent):void {
 			itemList.visible = true;
 			outsideClick = false;
 		}
@@ -508,7 +508,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				itemClick = false;
 			}
 
-		}
+		}*/
 		
 		/**
 		 * gh#115 - make sure that as soon as we go back to normal state we stop editing any widget.  This should stop hard to track down errors where the

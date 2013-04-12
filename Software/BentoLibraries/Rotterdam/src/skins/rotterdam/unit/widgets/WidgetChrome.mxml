@@ -38,6 +38,8 @@
 			protected function onLinkButtonClick(event:MouseEvent):void {
 				linkButtonRect.alpha = 1;
 				dispatchEvent(new WidgetLinkEvent(WidgetLinkEvent.ADD_LINK, true));
+				//alice: When link button clicked, we should disable the menu button
+				menuButton.enabled = false;
 			}
 		]]>
 	</fx:Script>
@@ -83,8 +85,16 @@
 	
 	<!--gh #221-->
 	
-	<s:Group right="40" mouseEnabled="true" click="onLinkButtonClick(event)" buttonMode="true" visible="{editing}" mouseOver="linkLabel.visible = true" mouseOut="linkLabel.visible = false" >
-		<s:Label id="linkLabel" text="Add Link" right="35" top="8" visible="false"/>
+	<s:Group right="40" mouseEnabled="true" click="onLinkButtonClick(event)" buttonMode="true" visible="{editing}" mouseOver="linkLabel.visible = true; linkButtonOverRect.alpha = 1" mouseOut="linkLabel.visible = false; linkButtonOverRect.alpha = 0" >
+		<s:Label id="linkLabel" text="Add Link" right="35" top="8" visible="false" fontSize="11"/>
+		<s:Rect id="linkButtonOverRect" width="30" height="24" right="0" alpha = "0">
+			<s:stroke>
+				<s:SolidColorStroke color="#D8D8D8" />
+			</s:stroke>
+			<s:fill>
+				<s:SolidColor color="#F2F2F2" />
+			</s:fill>
+		</s:Rect>
 		<s:Rect id="linkButtonRect" width="30" height="24" right="0" alpha = "0">
 			<s:stroke>
 				<s:SolidColorStroke color="#D8D8D8" />
