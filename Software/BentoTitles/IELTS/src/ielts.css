@@ -133,10 +133,6 @@ title|TitleView zone|ZoneView s|TabbedViewNavigator #tabBar {
 	iconPlacement: top;
 }
 
-title|TitleView s|ViewNavigator {
-	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
-}
-
 title|TitleView #navBar {
 	skinClass: ClassReference("skins.ielts.title.NavBarSkin");	
 }
@@ -195,10 +191,6 @@ zone|ZoneView {
 
 zone|ZoneView #sectionNavigator {
 	skinClass: ClassReference("skins.ielts.zone.SectionNavigatorSkin");
-}
-
-zone|ZoneView s|ViewNavigator {
-	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
 }
 
 zone|ZoneView #sectionNavigator #tabBar {
