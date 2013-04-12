@@ -3,37 +3,29 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.bento.view.progress.ProgressView;
-	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.vo.content.Title;
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.account.AccountView;
-	import com.clarityenglish.ielts.view.credits.CreditsView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
-	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
-	import mx.collections.ArrayCollection;
 	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
 	
-	import org.davekeen.util.ArrayUtils;
-	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
-	import spark.components.ButtonBar;
 	import spark.components.Label;
 	import spark.components.TabbedViewNavigator;
 	import spark.components.ViewNavigator;
-	import spark.events.IndexChangeEvent;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
@@ -45,10 +37,10 @@ package com.clarityenglish.ielts.view.title {
 	public class TitleView extends BentoView {
 		
 		[SkinPart]
-		public var homeViewNavigator:ViewNavigator;
+		public var sectionNavigator:TabbedViewNavigator;
 		
 		[SkinPart]
-		public var homeNavBarItem:Object;
+		public var homeViewNavigator:ViewNavigator;
 		
 		[SkinPart]
 		public var homeViewNavigatorButton1:Button;
@@ -60,9 +52,6 @@ package com.clarityenglish.ielts.view.title {
 		public var myProgressViewNavigator:ViewNavigator;
 		
 		[SkinPart]
-		public var myProgressNavBarItem:Object;
-		
-		[SkinPart]
 		public var myProgressViewNavigatorButton1:Button;
 		
 		[SkinPart]
@@ -72,9 +61,6 @@ package com.clarityenglish.ielts.view.title {
 		public var myProfileViewNavigator:ViewNavigator;
 		
 		[SkinPart]
-		public var myProfileNavBarItem:Object;
-		
-		[SkinPart]
 		public var myProfileViewNavigatorButton1:Button;
 		
 		[SkinPart]
@@ -82,9 +68,6 @@ package com.clarityenglish.ielts.view.title {
 		
 		[SkinPart]
 		public var helpViewNavigator:ViewNavigator;
-		
-		[SkinPart]
-		public var helpNavBarItem:Object;
 		
 		[SkinPart]
 		public var helpViewNavigatorButton1:Button;
@@ -111,31 +94,10 @@ package com.clarityenglish.ielts.view.title {
 		public var moreViewNavigatorButton2:Button;
 		
 		[SkinPart]
-		public var navBar:ButtonBar;
-		
-		[SkinPart]
 		public var logoutButton:Button;
 		
 		[SkinPart]
 		public var backToMenuButton:Button;
-		
-		[SkinPart]
-		public var homeView:HomeView;
-		
-		[SkinPart]
-		public var zoneView:ZoneView;
-		
-		[SkinPart]
-		public var progressView:ProgressView;
-		
-		[SkinPart]
-		public var accountView:AccountView;
-		
-		[SkinPart]
-		public var supportView:SupportView;
-		
-		[SkinPart]
-		public var exerciseView:ExerciseView;
 		
 		[SkinPart]
 		public var noticeLabel:Label;
@@ -151,10 +113,6 @@ package com.clarityenglish.ielts.view.title {
 		
 		[Bindable]
 		public var dateFormatter:DateFormatter;
-		
-		// These SkinParts are only in the ipad app
-		[SkinPart]
-		public var sectionNavigator:TabbedViewNavigator;
 		
 		// #337
 		public var candidateOnlyInfo:Boolean = false;
@@ -239,9 +197,7 @@ package com.clarityenglish.ielts.view.title {
 			switch (_selectedNode.localName()) {
 				case "course":
 				case "unit":
-					currentState = "zone";
-					if (navBar) navBar.selectedIndex = -1; // this is ugly; should I put it in a listener in the skin instead?  I reckon yes.
-					// In fact if I manage to automate the nav bar like I have the tabbed navigation bar this will happen automatically anyway					
+					currentState = "zone";			
 					break;
 				case "exercise":
 					currentState = "exercise";
@@ -363,26 +319,28 @@ package com.clarityenglish.ielts.view.title {
 			return Title.getLicenceTypeText(_licenceType);
 		}
 		
+		protected override function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+			
+			// Don't show profile tab for network users
+			if (licenceType == Title.LICENCE_TYPE_NETWORK) {
+				var profileIdx:int = sectionNavigator.tabBar.dataProvider.getItemIndex(myProfileViewNavigator);
+				if (profileIdx >= 0) sectionNavigator.tabBar.dataProvider.removeItemAt(profileIdx);
+			}
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case navBar:
-					// Network licence doesn't want a My Profile tab
-					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
-						var myProfileItem:Object = ArrayUtils.searchArrayForObject(navBar.dataProvider.toArray(), "account", "state");
-						if (myProfileItem) navBar.dataProvider.removeItemAt(navBar.dataProvider.getItemIndex(myProfileItem));
-					}
-					
-					navBar.selectedIndex = 0;
-					navBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
-					
-					// This is some slightly hacky code to ensure that the user cannot deselect a navbar button whilst still allowing us to set selectedIndex=-1 programatically (#140)
-					navBar.addEventListener(IndexChangeEvent.CHANGE, function(e:IndexChangeEvent):void {
-						if (e.newIndex == -1) {
-							e.preventDefault();
-							navBar.callLater(function():void { navBar.selectedIndex = e.oldIndex; });
-						}
+				case sectionNavigator:
+					setNavStateMap(sectionNavigator, {
+						home: { view: HomeView },
+						zone: { view: ZoneView, stack: true },
+						exercise: { view: ExerciseView, stack: true, hideTabBar: true },
+						progress: { view: ProgressView },
+						account: { view: AccountView },
+						support: { view: SupportView }
 					});
 					break;
 				case logoutButton:
@@ -409,7 +367,6 @@ package com.clarityenglish.ielts.view.title {
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 				case homeViewNavigator:
-				case homeNavBarItem:
 					instance.label = copyProvider.getCopyForId("Home");
 					break;
 				case homeViewNavigatorButton1:
@@ -419,7 +376,6 @@ package com.clarityenglish.ielts.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 			    case myProgressViewNavigator:
-				case myProgressNavBarItem:
 					instance.label = copyProvider.getCopyForId("myProgress");
 					break;
 				case myProgressViewNavigatorButton1:
@@ -429,7 +385,6 @@ package com.clarityenglish.ielts.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 				case myProfileViewNavigator:
-				case myProfileNavBarItem:
 					instance.label = copyProvider.getCopyForId("myProfile");
 					break;
 				case myProfileViewNavigatorButton1:
@@ -439,7 +394,6 @@ package com.clarityenglish.ielts.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 				case helpViewNavigator:
-				case helpNavBarItem:
 					instance.label = copyProvider.getCopyForId("help");
 					break;
 				case helpViewNavigatorButton1:
@@ -467,16 +421,6 @@ package com.clarityenglish.ielts.view.title {
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 			}
-		}
-		
-		/**
-		 * When the tab is changed invalidate the skin state to force getCurrentSkinState() to get called again
-		 * 
-		 * @param event
-		 */
-		protected function onNavBarIndexChange(event:Event):void {
-			// We can set the skin state from the tab bar click
-			if (event.target.selectedItem) currentState = event.target.selectedItem.state;
 		}
 		
 		protected function onLogoutButtonClick(event:MouseEvent):void {
@@ -508,10 +452,10 @@ package com.clarityenglish.ielts.view.title {
 		// #260 
 		// If the ZoneView is mediated, then enable the logoutButton and stop the Timer
 		private function timerHandler(event:TimerEvent):void {
-			if (zoneView && zoneView.isMediated) {
+			/*if (zoneView && zoneView.isMediated) {
 				callLater(resetLogoutButton, new Array(event));
 				shortDelayTimer.stop();
-			}
+			}*/
 		}
 		
 		// #337

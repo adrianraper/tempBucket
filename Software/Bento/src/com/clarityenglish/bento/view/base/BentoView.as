@@ -244,7 +244,7 @@ package com.clarityenglish.bento.view.base {
 		private function onNavigatorChange(event:Event):void {
 			var viewClass:Class = ClassUtil.getClass(_tabbedViewNavigator.selectedNavigator.activeView);
 			for (var state:String in _stateMap) {
-				if (viewClass === _stateMap[state]) {
+				if (viewClass === _stateMap[state].view) {
 					currentState = state;
 					break;
 				}

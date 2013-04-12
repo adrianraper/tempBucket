@@ -53,14 +53,6 @@
 				popTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
 				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
 				homeViewNavigator.defaultPopTransition = popTransition;
-				
-				hostComponent.setNavStateMap(sectionNavigator, {
-					home: HomeView,
-					zone: ZoneView,
-					progress: ProgressView,
-					account: AccountView,
-					support: SupportView
-				});
 			}
 			
 			protected function onTransitionStarted(event:FlexEvent):void {
