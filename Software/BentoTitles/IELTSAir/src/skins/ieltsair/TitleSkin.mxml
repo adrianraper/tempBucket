@@ -5,32 +5,23 @@
 		xmlns:title="skins.ieltsair.assets.title.*"
 		xmlns:assets="skins.ieltsair.assets.*"
 		xmlns:zone="com.clarityenglish.ielts.view.zone.*"
-		creationComplete="creationComplete(event)"
-		currentStateChange="onCurrentStateChange(event)">
+		creationComplete="creationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.title.TitleView")]
 	</fx:Metadata>
 	<fx:Script>
 		<![CDATA[
-			import caurina.transitions.Tweener;
-			
-			import com.clarityenglish.bento.view.exercise.ExerciseView;
 			import com.clarityenglish.bento.view.progress.ProgressView;
 			import com.clarityenglish.ielts.view.account.AccountView;
 			import com.clarityenglish.ielts.view.home.HomeView;
 			import com.clarityenglish.ielts.view.support.SupportView;
-			import com.clarityenglish.ielts.view.zone.ZoneView;
 			
 			import mx.events.FlexEvent;
-			import mx.events.StateChangeEvent;
 			
-			import org.davekeen.transitions.PatchedSlideViewTransition;
 			import org.davekeen.util.ClassUtil;
 			
 			import skins.ieltsair.assets.title.*;
-			
-			import spark.transitions.ViewTransitionDirection;
 			
 			protected function creationComplete(event:FlexEvent):void {
 				homeViewNavigator.icon = new HomeIcon();
@@ -39,50 +30,7 @@
 				helpViewNavigator.icon = new HelpIcon();
 				creditsViewNavigator.icon = new CreditsIcon();
 				moreViewNavigator.icon = new MoreIcon();
-				
-				// This is a little hacky, but we can't get rid of the tab bar until the transition has finished so figure it out there.  We also need to use a custom
-				// PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
-				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
-				pushTransition.direction = ViewTransitionDirection.LEFT;
-				pushTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
-				pushTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
-				homeViewNavigator.defaultPushTransition = pushTransition;
-				
-				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
-				popTransition.direction = ViewTransitionDirection.RIGHT;
-				popTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
-				popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
-				homeViewNavigator.defaultPopTransition = popTransition;
 			}
-			
-			protected function onTransitionStarted(event:FlexEvent):void {
-				// #390
-				Tweener.pauseAllTweens();
-			}
-			
-			/**
-			 * Hide the tab bar if the state is 'exercise' at the end of a transition, otherwise show the tab bar
-			 */
-			protected function onTransitionFinished(event:FlexEvent):void {
-				// #390
-				callLater(Tweener.resumeAllTweens);
-				
-				callLater((currentState == "exercise") ? sectionNavigator.hideTabBar : sectionNavigator.showTabBar);
-			}
-			
-			protected function onCurrentStateChange(event:StateChangeEvent):void {
-				trace(">>>>>>>>>>>>>>>>>>>>> CHANGED TO " + event.newState);
-				// This is a good start, but doesn't totally work with the back button.
-				switch (event.newState) {
-					case "zone":
-						if (ClassUtil.getClass(homeViewNavigator.activeView) != ZoneView) homeViewNavigator.pushView(ZoneView);
-						break;
-					case "exercise":
-						if (ClassUtil.getClass(homeViewNavigator.activeView) != ExerciseView) homeViewNavigator.pushView(ExerciseView);
-						break;
-				}
-			}
-			
 		]]>
 	</fx:Script>
 	

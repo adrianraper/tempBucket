@@ -150,45 +150,6 @@ package com.clarityenglish.ielts.view.title {
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoDemo")]
 		private var demoGeneralTrainingLogo:Class;
 		
-		/*private var _selectedCourseXML:XML;
-		
-		public function set selectedCourseXML(value:XML):void {
-			_selectedCourseXML = value;
-			
-			if (_selectedCourseXML) {
-				currentState = "zone";
-				if (navBar) navBar.selectedIndex = -1;
-				
-				// This is for mobile skins; if the ZoneView is top of the stack then push the data, otherwise push ZoneView and data
-				if (homeViewNavigator) {
-					if (ClassUtil.getClass(homeViewNavigator.activeView) == ZoneView) {
-						homeViewNavigator.activeView.data = _selectedCourseXML;
-					} else {
-						homeViewNavigator.pushView(ZoneView, _selectedCourseXML);
-					}
-				}
-			}
-		}
-		
-		public function showExercise(exerciseHref:Href):void {
-			currentExerciseHref = exerciseHref;
-			if (exerciseView) exerciseView.href = currentExerciseHref;
-			callLater(invalidateSkinState); // callLater is part of #192
-		
-			// This is for mobile skins; if the ExerciseView is already top of the stack then set the href, otherwise push a new ExerciseView
-			if (homeViewNavigator) {
-				if (ClassUtil.getClass(homeViewNavigator.activeView) == ExerciseView) {
-					if (currentExerciseHref) {
-						(homeViewNavigator.activeView as ExerciseView).href = currentExerciseHref;
-					} else {
-						homeViewNavigator.popView();
-					}
-				} else {
-					homeViewNavigator.pushView(ExerciseView, currentExerciseHref);
-				}
-			}
-		}*/
-		
 		private var _selectedNode:XML;
 		
 		public function set selectedNode(value:XML):void {
@@ -335,12 +296,12 @@ package com.clarityenglish.ielts.view.title {
 			switch (instance) {
 				case sectionNavigator:
 					setNavStateMap(sectionNavigator, {
-						home: { view: HomeView },
-						zone: { view: ZoneView, stack: true },
-						exercise: { view: ExerciseView, stack: true, hideTabBar: true },
-						progress: { view: ProgressView },
-						account: { view: AccountView },
-						support: { view: SupportView }
+						home: { viewClass: HomeView },
+						zone: { viewClass: ZoneView, stack: true },
+						exercise: { viewClass: ExerciseView, stack: true, hideTabBar: true },
+						progress: { viewClass: ProgressView },
+						account: { viewClass: AccountView },
+						support: { viewClass: SupportView }
 					});
 					break;
 				case logoutButton:
@@ -353,7 +314,7 @@ package com.clarityenglish.ielts.view.title {
 				case noticeLabel:
 					// TODO: Check whether we know the exam date, if not say go to my account page to set it
 					var daysLeft:Number = DateUtil.dateDiff(new Date(), user.examDate, "d");
-					var daysUnit:String = (daysLeft==1) ? copyProvider.getCopyForId("day") : copyProvider.getCopyForId("days");
+					var daysUnit:String = (daysLeft == 1) ? copyProvider.getCopyForId("day") : copyProvider.getCopyForId("days");
 					if (daysLeft > 0) {
 						instance.text = copyProvider.getCopyForId("lessThan") + " " + daysLeft.toString() + " " + daysUnit + " " + copyProvider.getCopyForId("leftUntil");
 					} else if (daysLeft == 0) {
