@@ -124,11 +124,11 @@ course1|CourseView s|Button#coursePublishButton {
 }*/
 
 course1|CourseView s|Button#publishSettingsButton {
-	skinClass: ClassReference("skins.rotterdam.builder.course.publishSettingButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.builder.course.PublishSettingButtonSkin");
 }
 
 course1|CourseView s|Button#oneClickPublishButton {
-	skinClass: ClassReference("skins.rotterdam.builder.course.oneClickPublishButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.builder.course.OneClickPublishButtonSkin");
 }
 
 course1|CourseView s|ToggleButton#publishCoursButton {
