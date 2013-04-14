@@ -88,12 +88,9 @@ package com.clarityenglish.bento.view.exercise {
 		
 		public function ExerciseView() {
 			super();
+			
+			tabBarVisible = false;
 		}
-		
-		/*override public function set data(value:Object):void {
-			super.data = data;
-			href = value as Href;
-		}*/
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);

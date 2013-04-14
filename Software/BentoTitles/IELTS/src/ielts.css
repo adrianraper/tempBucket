@@ -115,13 +115,17 @@ login|LoginView #accountMoreButton {
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");
+	homeIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="HomeIcon");
+	progressIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="ProgressIcon");
+	profileIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="AccountIcon");
+	helpIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="HelpIcon");
 }
 
-title|TitleView #navBar {
-	skinClass: ClassReference("skins.ielts.title.NavBarSkin");
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.ielts.title.WebTabbedViewNavigatorSkin");
 }
 
-title|TitleView s|TabbedViewNavigator #tabBar {
+title|TitleView zone|ZoneView s|TabbedViewNavigator #tabBar {
 	chromeColor: #262526;
 	color: #DDDDDD;
 	fontSize: 10;
@@ -129,23 +133,13 @@ title|TitleView s|TabbedViewNavigator #tabBar {
 	iconPlacement: top;
 }
 
+title|TitleView #navBar {
+	skinClass: ClassReference("skins.ielts.title.NavBarSkin");	
+}
+
 title|TitleView #logoutButton {
 	skinClass: ClassReference("skins.ielts.title.LogoutButtonSkin");
 }
-
-/* #337
-title|UpgradeView {
-	skinClass: ClassReference("skins.ielts.title.UpgradeSkin");
-}
-
-title|UpgradeView #teacherButton {
-	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
-}
-
-title|UpgradeView #candidateButton {
-	skinClass: ClassReference("skins.ielts.login.LoginButtonSkin");
-}
-*/
 
 /* Home view styles */
 home|HomeView {
@@ -197,10 +191,6 @@ zone|ZoneView {
 
 zone|ZoneView #sectionNavigator {
 	skinClass: ClassReference("skins.ielts.zone.SectionNavigatorSkin");
-}
-
-zone|ZoneView s|ViewNavigator {
-	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
 }
 
 zone|ZoneView #sectionNavigator #tabBar {

@@ -28,6 +28,14 @@ global {
 	missedIconHeight: 17;
 }
 
+s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.viewnavigator.WebTabbedViewNavigatorSkin");
+}
+
+s|ViewNavigator {
+	skinClass: ClassReference("skins.viewnavigator.WebViewNavigatorSkin");
+}
+
 components|XHTMLExerciseView {
 	skinClass: ClassReference("skins.bento.exercise.XHTMLExerciseSkin");
 	printingSkinClass: ClassReference("skins.bento.exercise.XHTMLExercisePrintingSkin");

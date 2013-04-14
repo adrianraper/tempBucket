@@ -6,16 +6,18 @@ package com.clarityenglish.bento.view.base {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
+	import flash.utils.Dictionary;
 	
-	import mx.core.mx_internal;
 	import mx.events.FlexEvent;
+	import mx.events.StateChangeEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
 	
+	import spark.components.TabbedViewNavigator;
 	import spark.components.View;
-	import spark.components.supportClasses.SkinnableComponent;
+	import spark.components.ViewNavigator;
 	
 	/**
 	 * This is the parent class of all views in Bento.
@@ -43,10 +45,15 @@ package com.clarityenglish.bento.view.base {
 		protected var _xhtml:XHTML;
 		private var _xhtmlChanged:Boolean;
 		
+		/**
+		 * This is used to allow view navigators to be linked to view states gh#241
+		 */
+		private var _navStateMapInstances:Dictionary = new Dictionary(true);
+		
 		// #234
 		protected var _productVersion:String;
 		
-		// GH #39
+		// gh#39
 		protected var _productCode:String;
 		protected var _licenceType:uint;
 		
@@ -120,6 +127,7 @@ package com.clarityenglish.bento.view.base {
 		protected function onRemovedFromStage(event:Event):void {
 			_href = null;
 			_xhtml = null;
+			_navStateMapInstances = null;
 		}
 		
 		/**
@@ -212,6 +220,137 @@ package com.clarityenglish.bento.view.base {
 			return (_xhtml) ? _xhtml.head.script.(@id == "model" && @type == "application/xml").menu[0] : null;
 		}
 		
+		/**
+		 * Link a tabbed view navigator to view states so that clicking on the navigator changes the view state automatically based on the selected tab and
+		 * active view.  The stateMap parameter is an object where the keys are the states and the values are the view classes.
+		 * 
+		 * @param tabbedViewNavigator
+		 * @param stateMap
+		 */
+		public function setNavStateMap(tabbedViewNavigator:TabbedViewNavigator, stateMap:Object):void {
+			if (!_navStateMapInstances[tabbedViewNavigator]) _navStateMapInstances[tabbedViewNavigator] = new NavStateMap(this, tabbedViewNavigator);
+			var navStateMap:NavStateMap = _navStateMapInstances[tabbedViewNavigator];
+			
+			navStateMap.setStateMap(stateMap);
+		}
+		
+	}
+	
+}
+
+import caurina.transitions.Tweener;
+
+import com.clarityenglish.bento.view.base.BentoView;
+
+import flash.events.Event;
+import flash.utils.Dictionary;
+
+import mx.core.mx_internal;
+import mx.events.FlexEvent;
+import mx.events.StateChangeEvent;
+
+import org.davekeen.transitions.PatchedSlideViewTransition;
+import org.davekeen.util.ClassUtil;
+
+import spark.components.TabbedViewNavigator;
+import spark.components.ViewNavigator;
+import spark.components.supportClasses.NavigationStack;
+import spark.transitions.ViewTransitionDirection;
+
+class NavStateMap {
+	
+	private var view:BentoView;
+	private var tabbedViewNavigator:TabbedViewNavigator;
+	private var stateMap:Object;
+	
+	private var isTabbedViewNavigatorChange:Boolean;
+	
+	private var pushTransition:PatchedSlideViewTransition;
+	private var popTransition:PatchedSlideViewTransition;
+	
+	public function NavStateMap(view:BentoView, tabbedViewNavigator:TabbedViewNavigator) {
+		this.view = view;
+		this.tabbedViewNavigator = tabbedViewNavigator;
+		
+		// Replace the default transition with our patched version (the built-in Flex one has a bug)
+		pushTransition = new PatchedSlideViewTransition();
+		pushTransition.direction = ViewTransitionDirection.LEFT;
+		pushTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
+		pushTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
+		
+		popTransition = new PatchedSlideViewTransition();
+		popTransition.direction = ViewTransitionDirection.RIGHT;
+		popTransition.addEventListener(FlexEvent.TRANSITION_START, onTransitionStarted);
+		popTransition.addEventListener(FlexEvent.TRANSITION_END, onTransitionFinished);
+		
+		for each (var viewNavigator:ViewNavigator in tabbedViewNavigator.navigators) {
+			viewNavigator.defaultPushTransition = pushTransition;
+			viewNavigator.defaultPopTransition = popTransition;
+		}
+		
+		// We update the state when the user clicks a tab.
+		tabbedViewNavigator.addEventListener(Event.CHANGE, onNavigatorChange, false, 0, true);
+		
+		// We also need to listen for state changes on the view itself
+		view.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onCurrentStateChange, false, 0, true);
+	}
+	
+	public function setStateMap(stateMap:Object):void {
+		this.stateMap = stateMap;
+	}
+	
+	private function onNavigatorChange(event:Event):void {
+		isTabbedViewNavigatorChange = true;
+		
+		var selectedView:Class = ClassUtil.getClass(tabbedViewNavigator.selectedNavigator.activeView);
+		var state:String = findStateByViewClass(selectedView);
+		if (state) view.currentState = state;
+		
+		isTabbedViewNavigatorChange = false;
+	}
+	
+	private function onCurrentStateChange(event:StateChangeEvent):void {
+		if (!isTabbedViewNavigatorChange) {
+			var oldMap:Object = findMapByState(event.oldState), newMap:Object = findMapByState(event.newState);
+			
+			var navigationStack:NavigationStack = (tabbedViewNavigator.selectedNavigator) ? tabbedViewNavigator.selectedNavigator.mx_internal::navigationStack : null;
+			if (oldMap && oldMap.stack && navigationStack && navigationStack.length > 1 && navigationStack.mx_internal::source[navigationStack.length - 2].viewClass === newMap.viewClass) {
+				(tabbedViewNavigator.selectedNavigator as ViewNavigator).popView();
+			} else if (newMap.stack) {
+				(tabbedViewNavigator.selectedNavigator as ViewNavigator).pushView(newMap.viewClass);
+			} else {
+				// TODO: change tab
+			}
+		}
+	}
+	
+	protected function onTransitionStarted(event:FlexEvent):void {
+		Tweener.pauseAllTweens(); // #390
+	}
+	
+	protected function onTransitionFinished(event:FlexEvent):void {
+		view.callLater(Tweener.resumeAllTweens); // #390
+		
+		var selectedView:Class = ClassUtil.getClass(tabbedViewNavigator.selectedNavigator.activeView);
+		var state:String = findStateByViewClass(selectedView);
+		var map:Object = findMapByState(state);
+		
+		if (state) {
+			// Set the state if it isn't already correct (if this transition was initiated by the view calling popView it won't be set yet)
+			if (view.currentState != state) view.currentState = state;
+		}
+	}
+	
+	private function findStateByViewClass(viewClass:Class):String {
+		for (var state:String in stateMap)
+			if (viewClass === stateMap[state].viewClass)
+				return state;
+		
+		return null;
+	}
+	
+	private function findMapByState(state:String):Object {
+		return stateMap[state];
 	}
 	
 }
