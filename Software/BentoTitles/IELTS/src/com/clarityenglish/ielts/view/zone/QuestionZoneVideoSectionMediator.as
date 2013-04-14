@@ -4,7 +4,6 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.common.model.ConfigProxy;
-	import com.clarityenglish.ielts.IELTSNotifications;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -49,7 +48,7 @@ package com.clarityenglish.ielts.view.zone {
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				IELTSNotifications.COURSE_SHOW,
+				BBNotifications.COURSE_STARTED,
 			]);
 		}
 		
@@ -57,7 +56,7 @@ package com.clarityenglish.ielts.view.zone {
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case IELTSNotifications.COURSE_SHOW:
+				case BBNotifications.COURSE_STARTED:
 					// #510 - when the course is changed go back to the main starting out view
 					view.navigator.popToFirstView(null);
 					break;

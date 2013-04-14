@@ -5,9 +5,11 @@
 	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.googlecode.bindagetools.Bind;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -39,6 +41,11 @@
 			view.previousExercise.add(onPreviousExercise);
 			view.printExercise.add(onPrintExercise);
 			view.backToMenu.add(onBackToMenu);
+			
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
+				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href) : null;
+			}).toProperty(view, "href");
 		}
 		
 		public override function onRemove():void {
@@ -74,12 +81,12 @@
 					
 					var breadcrumb:Array = [];
 					try { // #303
-						breadcrumb.push(bentoProxy.currentCourseNode.@caption);
-						if (bentoProxy.currentGroupNode) breadcrumb.push(bentoProxy.currentGroupNode.@caption);
-						breadcrumb.push(bentoProxy.currentExerciseNode.@caption);
+						breadcrumb.push(bentoProxy.selectedCourseNode.@caption);
+						if (bentoProxy.selectedGroupNode) breadcrumb.push(bentoProxy.selectedGroupNode.@caption);
+						breadcrumb.push(bentoProxy.selectedExerciseNode.@caption);
 						view.exerciseTitle = breadcrumb.join(" > ");
 						
-						view.courseCaption = bentoProxy.currentCourseNode.@caption.toLowerCase();
+						view.courseCaption = bentoProxy.selectedCourseNode.@caption.toLowerCase();
 					} catch (e:BentoError) {
 						sendNotification(CommonNotifications.BENTO_ERROR, e);
 						return;
@@ -154,7 +161,7 @@
 		}
 		
 		private function onBackToMenu():void {
-			sendNotification(BBNotifications.EXERCISE_SECTION_FINISHED);
+			sendNotification(BBNotifications.SELECTED_NODE_UP);
 		}
 		
 	}

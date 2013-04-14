@@ -5,6 +5,7 @@
 	<projects>
 		<project>Bento</project>
 		<project>csslib</project>
+		<project>IELTS</project>
 		<project>OSMF</project>
 		<project>textLayout</project>
 	</projects>

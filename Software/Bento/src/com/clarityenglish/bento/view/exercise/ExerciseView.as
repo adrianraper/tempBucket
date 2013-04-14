@@ -88,11 +88,8 @@ package com.clarityenglish.bento.view.exercise {
 		
 		public function ExerciseView() {
 			super();
-		}
-		
-		override public function set data(value:Object):void {
-			super.data = data;
-			href = value as Href;
+			
+			tabBarVisible = false;
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -116,7 +113,6 @@ package com.clarityenglish.bento.view.exercise {
 					backButton.includeInLayout = visibleValue;
 				}
 			}
-				
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

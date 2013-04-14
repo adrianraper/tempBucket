@@ -1,12 +1,10 @@
 ﻿package com.clarityenglish.rotterdam.view.unit {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.vo.XHTML;
-	
-	import flash.utils.setTimeout;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -43,7 +41,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				RotterdamNotifications.UNIT_STARTED,
+				BBNotifications.UNIT_STARTED,
 			]);
 		}
 		
@@ -51,7 +49,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case RotterdamNotifications.UNIT_STARTED:
+				case BBNotifications.UNIT_STARTED:
 					var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 					view.widgetCollection = courseProxy.widgetCollection;
 					break;

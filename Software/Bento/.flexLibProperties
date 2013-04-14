@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
   <includeClasses>
+    <classEntry path="com.clarityenglish.alivepdf.pdf.PDF"/>
     <classEntry path="com.clarityenglish.bento.BBNotifications"/>
     <classEntry path="com.clarityenglish.bento.BentoApplication"/>
     <classEntry path="com.clarityenglish.bento.BentoFacade"/>
     <classEntry path="com.clarityenglish.bento.controller.BentoStartupCommand"/>
+    <classEntry path="com.clarityenglish.bento.controller.FeedbackShowCommand"/>
+    <classEntry path="com.clarityenglish.bento.controller.ItemCleanCommand"/>
+    <classEntry path="com.clarityenglish.bento.controller.ItemDirtyCommand"/>
+    <classEntry path="com.clarityenglish.bento.controller.MarkingShowCommand"/>
+    <classEntry path="com.clarityenglish.bento.controller.NetworkCheckAvailability"/>
+    <classEntry path="com.clarityenglish.bento.controller.PdfShowCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.QuestionNodeAnswerCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.QuestionStringAnswerCommand"/>
-    <classEntry path="com.clarityenglish.bento.controller.FeedbackShowCommand"/>
-    <classEntry path="com.clarityenglish.bento.controller.MarkingShowCommand"/>
     <classEntry path="com.clarityenglish.bento.controller.XHTMLLoadCommand"/>
+    <classEntry path="com.clarityenglish.bento.events.ExerciseEvent"/>
     <classEntry path="com.clarityenglish.bento.model.ExerciseProxy"/>
     <classEntry path="com.clarityenglish.bento.model.XHTMLProxy"/>
     <classEntry path="com.clarityenglish.bento.view.DynamicMediator"/>
@@ -17,11 +23,26 @@
     <classEntry path="com.clarityenglish.bento.view.base.BentoMediator"/>
     <classEntry path="com.clarityenglish.bento.view.base.BentoView"/>
     <classEntry path="com.clarityenglish.bento.view.base.events.BentoEvent"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseView"/>
     <classEntry path="com.clarityenglish.bento.view.interfaces.IBentoApplication"/>
     <classEntry path="com.clarityenglish.bento.view.marking.MarkingMediator"/>
     <classEntry path="com.clarityenglish.bento.view.marking.MarkingView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ProgressMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ProgressView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressAnalysisMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressAnalysisView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressScoreMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressScoreView"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.IStackedChart"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar"/>
+    <classEntry path="com.clarityenglish.bento.view.progress.ui.StackedBarChart"/>
     <classEntry path="com.clarityenglish.bento.view.swfplayer.SWFPlayerMediator"/>
     <classEntry path="com.clarityenglish.bento.view.swfplayer.SWFPlayerView"/>
+    <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.IExerciseView"/>
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.XHTMLExerciseMediator"/>
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView"/>
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AnswerableBehaviour"/>
@@ -37,6 +58,12 @@
     <classEntry path="com.clarityenglish.bento.vo.content.model.answer.Feedback"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.answer.NodeAnswer"/>
     <classEntry path="com.clarityenglish.bento.vo.content.model.answer.TextAnswer"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform"/>
+    <classEntry path="com.clarityenglish.bento.vo.content.transform.XmlTransform"/>
+    <classEntry path="com.clarityenglish.components.DisablableIconItemRenderer"/>
+    <classEntry path="com.clarityenglish.components.PageNumberDisplay"/>
+    <classEntry path="com.clarityenglish.components.PatchedSpinnerList"/>
+    <classEntry path="com.clarityenglish.components.PromptingRichEditableText"/>
     <classEntry path="com.clarityenglish.textLayout.components.AudioPlayer"/>
     <classEntry path="com.clarityenglish.textLayout.components.XHTMLRichText"/>
     <classEntry path="com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour"/>
@@ -68,30 +95,40 @@
     <classEntry path="com.clarityenglish.textLayout.util.TLF2SystemManager"/>
     <classEntry path="com.clarityenglish.textLayout.util.TLFUtil"/>
     <classEntry path="com.clarityenglish.textLayout.vo.XHTML"/>
+    <classEntry path="com.pipwerks.SCORM"/>
     <classEntry path="flexUnitTests.BentoTests"/>
     <classEntry path="flexUnitTests.tests.ExerciseProxyTest"/>
     <classEntry path="flexUnitTests.tests.VectorMapTest"/>
     <classEntry path="flexUnitTests.tests.XHTMLTest"/>
     <classEntry path="net.digitalprimates.collections.VectorList"/>
-    <classEntry path="net.digitalprimates.collections.VectorListCollection"/>
     <classEntry path="org.davekeen.collections.VectorMap"/>
     <classEntry path="org.davekeen.delegates.IDelegate"/>
     <classEntry path="org.davekeen.delegates.IDelegateResponder"/>
     <classEntry path="org.davekeen.delegates.RemoteDelegate"/>
+    <classEntry path="org.davekeen.transitions.PatchedSlideViewTransition"/>
     <classEntry path="org.davekeen.util.ClassUtil"/>
     <classEntry path="org.davekeen.util.Closure"/>
     <classEntry path="org.davekeen.util.DateUtil"/>
     <classEntry path="org.davekeen.util.PointUtil"/>
     <classEntry path="org.davekeen.util.StateUtil"/>
+    <classEntry path="org.davekeen.validators.URLValidator"/>
     <classEntry path="org.flexlayouts.layouts.FlowLayout"/>
-    <classEntry path="skins.bento.DynamicViewSkin"/>
     <classEntry path="skins.bento.BentoTitleWindowSkin"/>
+    <classEntry path="skins.bento.DynamicViewSkin"/>
     <classEntry path="skins.bento.VideoPlayerSkin"/>
     <classEntry path="skins.bento.components.AudioPlayerSkin"/>
     <classEntry path="skins.bento.exercise.ExerciseDropDownListButtonSkin"/>
     <classEntry path="skins.bento.exercise.ExerciseTextInputSkin"/>
     <classEntry path="skins.bento.exercise.XHTMLExerciseSkin"/>
     <classEntry path="skins.bento.swfplayer.SWFPlayerSkin"/>
+    <classEntry path="skins.bento.warning.WarningBoxButtonSkin"/>
+    <classEntry path="skins.bento.warning.WarningNoButtonSkin"/>
+    <classEntry path="skins.bento.warning.WarningSkin"/>
+    <classEntry path="skins.bento.warning.WarningYesButtonSkin"/>
+    <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
+    <classEntry path="skins.viewnavigator.WebViewNavigatorSkin"/>
+    <classEntry path="ws.tink.spark.controls.Alert"/>
+    <classEntry path="ws.tink.spark.skins.controls.AlertSkin"/>
     <classEntry path="com.clarityenglish.common.CommonNotifications"/>
     <classEntry path="com.clarityenglish.common.controller.LoginCommand"/>
     <classEntry path="com.clarityenglish.common.controller.LogoutCommand"/>
@@ -104,6 +141,7 @@
     <classEntry path="com.clarityenglish.common.model.ProgressProxy"/>
     <classEntry path="com.clarityenglish.common.model.interfaces.CopyProvider"/>
     <classEntry path="com.clarityenglish.common.view.AbstractApplicationMediator"/>
+    <classEntry path="com.clarityenglish.common.view.error.ErrorMediator"/>
     <classEntry path="com.clarityenglish.common.view.interfaces.CopyReceiver"/>
     <classEntry path="com.clarityenglish.common.view.login.LoginMediator"/>
     <classEntry path="com.clarityenglish.common.view.login.interfaces.LoginComponent"/>
@@ -121,56 +159,17 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
     <classEntry path="com.clarityenglish.common.vo.progress.Progress"/>
-    <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.IExerciseView"/>
-    <classEntry path="com.clarityenglish.alivepdf.pdf.PDF"/>
-    <classEntry path="com.pipwerks.SCORM"/>
-    <classEntry path="org.davekeen.transitions.PatchedSlideViewTransition"/>
-    <classEntry path="org.davekeen.components.PatchedVideoDisplay"/>
-    <classEntry path="com.clarityenglish.components.PatchedSpinnerList"/>
-    <classEntry path="com.clarityenglish.bento.controller.NetworkCheckAvailability"/>
-    <classEntry path="skins.viewnavigator.WebViewNavigatorSkin"/>
-    <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
-    <classEntry path="com.clarityenglish.components.PageNumberDisplay"/>
-    <classEntry path="com.clarityenglish.components.DisablableIconItemRenderer"/>
-    <classEntry path="com.clarityenglish.bento.events.ExerciseEvent"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ProgressView"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressScoreMediator"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressAnalysisMediator"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressAnalysisView"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.components.ProgressScoreView"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ui.StackedBarChart"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ui.CoverageUnitRenderer"/>
-    <classEntry path="com.clarityenglish.common.view.error.ErrorMediator"/>
-    <classEntry path="skins.bento.warning.WarningBoxButtonSkin"/>
-    <classEntry path="skins.bento.warning.WarningYesButtonSkin"/>
-    <classEntry path="skins.bento.warning.WarningSkin"/>
-    <classEntry path="skins.bento.warning.WarningNoButtonSkin"/>
-    <classEntry path="org.davekeen.validators.URLValidator"/>
-    <classEntry path="com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform"/>
-    <classEntry path="com.clarityenglish.bento.vo.content.transform.XmlTransform"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ProgressMediator"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar"/>
-    <classEntry path="com.clarityenglish.components.PromptingRichEditableText"/>
-    <classEntry path="com.clarityenglish.bento.controller.ItemCleanCommand"/>
-    <classEntry path="com.clarityenglish.bento.controller.ItemDirtyCommand"/>
-    <classEntry path="com.clarityenglish.bento.view.progress.ui.IStackedChart"/>
-    <classEntry path="ws.tink.spark.controls.Alert"/>
-    <classEntry path="ws.tink.spark.skins.controls.AlertSkin"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseMediator"/>
-    <classEntry path="com.clarityenglish.bento.view.exercise.ExerciseView"/>
   </includeClasses>
   <includeResources>
-    <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
+    <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
     <resourceEntry destPath="skins/assets/correctIcon.png" sourcePath="skins/assets/correctIcon.png"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.png" sourcePath="skins/assets/incorrectIcon.png"/>
-    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
     <resourceEntry destPath="skins/assets/correctIcon.swf" sourcePath="skins/assets/correctIcon.swf"/>
+    <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
     <resourceEntry destPath="skins/assets/incorrectIcon.swf" sourcePath="skins/assets/incorrectIcon.swf"/>
-    <resourceEntry destPath="skins/assets/missedIcon.png" sourcePath="skins/assets/missedIcon.png"/>
     <resourceEntry destPath="skins/assets/pause.png" sourcePath="skins/assets/pause.png"/>
+    <resourceEntry destPath="skins/assets/missedIcon.png" sourcePath="skins/assets/missedIcon.png"/>
     <resourceEntry destPath="skins/assets/stop.png" sourcePath="skins/assets/stop.png"/>
   </includeResources>
   <namespaceManifests/>

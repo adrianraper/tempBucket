@@ -5,12 +5,14 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.system.System;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.XmlUtils;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
 	
@@ -34,18 +36,62 @@ package com.clarityenglish.bento.model {
 		
 		private var dirtyObj:Object;
 		
+		private var _selectedNode:XML;
+		
 		public function BentoProxy() {
 			super(NAME);
 			
 			dirtyObj = {};
 		}
 		
+		public function set selectedNode(value:XML):void {
+			_selectedNode = value;
+			dispatchEvent(new Event("selectedNodeChanged"));
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedNode():XML {
+			return _selectedNode;
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedExerciseNode():XML {
+			return XmlUtils.searchUpForNode(selectedNode, "exercise");
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedGroupNode():XML {
+			if (!selectedExerciseNode.hasOwnProperty("@group")) return null;
+			var matchingGroups:XMLList = selectedCourseNode.groups[0].group.(@id == selectedExerciseNode.@group);
+			return (matchingGroups.length() == 1) ? matchingGroups[0] : null;
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedUnitNode():XML {
+			return XmlUtils.searchUpForNode(selectedNode, "unit");
+		}
+		
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedCourseNode():XML {
+			return XmlUtils.searchUpForNode(selectedNode, "course");
+		}
+
 		public function reset():void {
 			// #472
 			if (_menuXHTML) System.disposeXML(_menuXHTML.xml);
 			_menuXHTML = null;
 			_currentExercise = null;
 			dirtyObj = {}; // gh#90
+		}
+		
+		/**
+		 * A shortcut for creating an href relative to the currently loaded menu.xml
+		 */
+		public function createRelativeHref(type:String, filename:String):Href {
+			if (!menuXHTML)
+				throw new Error("Attempted to create a relative href with no menu.xml");
+				
+			return menuXHTML.href.createRelativeHref(type, filename);
 		}
 		
 		/**
@@ -93,58 +139,6 @@ package com.clarityenglish.bento.model {
 			_currentExercise = value;
 		}
 		
-		/**
-		 * This gets the exercise node in the menu xml matching the exercise the user is currently in.  If there is no exercise
-		 * (i.e. the user is not currently in an exercise) this will return null.
-		 * 
-		 * @return 
-		 */
-		public function get currentExerciseNode():XML {
-			if (!menuXHTML) {
-				log.error("Attempt to use current exercise when there is no menu xml");
-				return null;
-			}
-			
-			if (!currentExercise) {
-				log.error("Attempt to use current exercise when there is no current exercise");
-				return null;
-			}
-			
-			var copyProxy:CopyProxy;
-			
-			// Locate the exercise node in menuXHTML for currentExercise by matching the hrefs
-			var matchingExerciseNodes:XMLList = menu..exercise.(@href == currentExercise.href.filename);
-			if (matchingExerciseNodes.length() > 1) {
-				copyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-				throw copyProxy.getBentoErrorForId("errorMultipleExerciseWithSameHref", { href: currentExercise.href });
-			} else if (matchingExerciseNodes.length() == 0) {
-				copyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-				throw copyProxy.getBentoErrorForId("errorCantFindExerciseWithHref", { href: currentExercise.href });
-			}
-			
-			return matchingExerciseNodes[0];
-		}
-		
-		public function get currentUnitNode():XML {
-			return currentExerciseNode.parent();
-		}
-		
-		public function get currentCourseNode():XML {
-			return currentUnitNode.parent();
-		}
-		
-		public function get currentMenuNode():XML {
-			return currentCourseNode.parent();
-		}
-		
-		public function get currentGroupNode():XML {
-			if (!currentExerciseNode.hasOwnProperty("@group"))
-				return null;
-			
-			var matchingGroups:XMLList = currentCourseNode.groups[0].group.(@id == currentExerciseNode.@group);
-			return (matchingGroups.length() == 1) ? matchingGroups[0] : null;
-		}
-		
 		public function getNextExerciseNode():XML {
 			return getExerciseNodeWithOffset(1);
 		}
@@ -159,17 +153,17 @@ package com.clarityenglish.bento.model {
 			// Keep going through potential exercises until we find one with Exercise.linkExerciseInMenu  or we reach !(parentMatch && groupMatch) - the end of the section
 			while (!(parentMatch && groupMatch)) {
 				// If the offset is less than 0 then we can't find a match
-				if (currentExerciseNode.childIndex() + offset < 0)
+				if (selectedExerciseNode.childIndex() + offset < 0)
 					return null;
 				
-				otherExerciseNode = currentExerciseNode.parent().children()[currentExerciseNode.childIndex() + offset];
+				otherExerciseNode = selectedExerciseNode.parent().children()[selectedExerciseNode.childIndex() + offset];
 				
 				// If there is no matching node then we can't find a match
 				if (!otherExerciseNode)
 					return null;
 				
-				var parentMatch:Boolean = (currentExerciseNode.parent() === otherExerciseNode.parent());
-				var groupMatch:Boolean = (!currentExerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (currentExerciseNode.@group == otherExerciseNode.@group);
+				var parentMatch:Boolean = (selectedExerciseNode.parent() === otherExerciseNode.parent());
+				var groupMatch:Boolean = (!selectedExerciseNode.hasOwnProperty("@group") && !otherExerciseNode.hasOwnProperty("@group")) || (selectedExerciseNode.@group == otherExerciseNode.@group);
 				
 				// If this exercise is valid to link to, then return it
 				if (parentMatch && groupMatch && Exercise.linkExerciseInMenu(otherExerciseNode))
@@ -193,10 +187,10 @@ package com.clarityenglish.bento.model {
 				return "";
 			}
 			
-			var eid:String = currentExerciseNode.@id;			
-			var uid:String = currentUnitNode.@id;			
-			var cid:String = currentCourseNode.@id;			
-			var pid:String = currentMenuNode.@id;
+			var eid:String = selectedExerciseNode.@id;			
+			var uid:String = selectedUnitNode.@id;			
+			var cid:String = selectedCourseNode.@id;			
+			var pid:String = selectedCourseNode.parent().@id;
 			
 			return pid + "." + cid + "." + uid + "." + eid;
 		}

@@ -61,19 +61,9 @@ package com.clarityenglish.ielts.view.zone {
 		[Bindable]
 		public static var horribleHackCourseClass:String;
 		
-		public var exerciseSelect:Signal = new Signal(Href);
 		public var courseSelect:Signal = new Signal(XML);
 		public var videoSelected:Signal = new Signal(Href, String);
 		public var videoPlayerStateChange:Signal = new Signal(MediaPlayerStateChangeEvent);
-		
-		// #299
-		public function isFullVersion():Boolean {
-			return (productVersion == IELTSApplication.FULL_VERSION);
-		}
-		
-		public function isDemo():Boolean {
-			return (productVersion == BentoApplication.DEMO);
-		}
 		
 		/**
 		 * This can be called from outside the view to make the view display a different course
@@ -85,17 +75,16 @@ package com.clarityenglish.ielts.view.zone {
 			_course = value;
 			_courseChanged = true;
 			
+			horribleHackCourseClass = (_course) ? _course.@["class"].toString() : null;
+			
 			invalidateProperties();
 			invalidateSkinState();
 			
 			dispatchEvent(new Event("courseChanged", true));
-			
-			horribleHackCourseClass = courseClass;
 		}
 		
 		[Bindable(event="courseChanged")]
 		public function get course():XML {
-			// TODO: In the long run we might not need this - its just so I can set it in firstViewData for the moment
 			return _course;
 		}
 		
@@ -107,11 +96,6 @@ package com.clarityenglish.ielts.view.zone {
 			course = data as XML;
 		}
 		
-		[Bindable(event="courseChanged")]
-		public function get courseClass():String {
-			return (_course) ? _course.@["class"].toString() : null;
-		}
-
 		public function setCourseSelectorVisible(value:Boolean):void {
 			courseSelector.visible = value;
 		}

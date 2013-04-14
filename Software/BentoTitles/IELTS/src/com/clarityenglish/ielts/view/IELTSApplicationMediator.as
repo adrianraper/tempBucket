@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.Href;
@@ -105,12 +106,12 @@ package com.clarityenglish.ielts.view {
 				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
 				
 				if (exercise) {
-					var href:Href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
-					sendNotification(IELTSNotifications.HREF_SELECTED, href);
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
 					return true;
 				}
 				
 			}
+			
 			// If groupID is defined, go straight to the first exercise in the group
 			if (directStart.groupID) {
 				// If you don't have a unitID as well, the group is meaningless
@@ -119,9 +120,10 @@ package com.clarityenglish.ielts.view {
 					
 					if (unit) {
 						exercise = unit.exercise.(@group == directStart.groupID)[0];
-						href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
-						sendNotification(IELTSNotifications.HREF_SELECTED, href);
-						return true;
+						if (exercise) {
+							sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+							return true;
+						}
 					}
 				}				
 			}
@@ -134,7 +136,7 @@ package com.clarityenglish.ielts.view {
 				var unit:XML = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 				
 				if (unit) {
-					sendNotification(IELTSNotifications.COURSE_SHOW, unit.parent());
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.parent());
 					return true;
 				}
 			}
@@ -145,7 +147,7 @@ package com.clarityenglish.ielts.view {
 				var course:XML = bentoProxy.menuXHTML..course.(@id == directStart.courseID)[0];
 				
 				if (course) {
-					sendNotification(IELTSNotifications.COURSE_SHOW, course);
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
 					return true;
 				}
 			}

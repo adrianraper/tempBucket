@@ -1,4 +1,5 @@
 package com.clarityenglish.ielts.view.zone {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
@@ -60,9 +61,9 @@ package com.clarityenglish.ielts.view.zone {
 			}
 		}
 		
-		protected function onExerciseSelect(href:Href):void {
+		protected function onExerciseSelect(node:XML):void {
 			sendNotification(IELTSNotifications.PRACTICE_ZONE_POPUP_HIDE);
-			sendNotification(IELTSNotifications.HREF_SELECTED, href);
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node);
 		}
 		
 	}

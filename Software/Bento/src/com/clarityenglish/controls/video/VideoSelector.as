@@ -291,7 +291,7 @@ package com.clarityenglish.controls.video {
 		
 		protected function onScriptButtonClicked(event:MouseEvent):void {
 			if (videoList.selectedItem && videoList.selectedItem.hasOwnProperty("@scriptHref"))
-				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, videoList.selectedItem.@scriptHref.toString()));
+				dispatchEvent(new ExerciseEvent(ExerciseEvent.EXERCISE_SELECTED, videoList.selectedItem.@scriptHref, videoList.selectedItem, "scriptHref"));
 		}
 		
 	}

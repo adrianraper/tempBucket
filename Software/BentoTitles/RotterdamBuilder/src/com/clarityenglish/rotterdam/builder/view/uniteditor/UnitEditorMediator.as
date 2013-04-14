@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.rotterdam.builder.view.uniteditor {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
@@ -53,7 +54,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				RotterdamNotifications.UNIT_STARTED,
+				BBNotifications.UNIT_STARTED,
 			]);
 		}
 		
@@ -61,7 +62,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case RotterdamNotifications.UNIT_STARTED:
+				case BBNotifications.UNIT_STARTED:
 					var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 					view.widgetCollection = courseProxy.widgetCollection;
 					break;

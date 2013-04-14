@@ -64,8 +64,8 @@ package com.clarityenglish.ielts.view.zone {
 			}
 		}
 		
-		protected function onExerciseSelect(href:Href):void {
-			sendNotification(IELTSNotifications.HREF_SELECTED, href);
+		protected function onExerciseSelect(node:XML, attribute:String):void {
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node, attribute);
 		}
 		
 		protected function onVideoScore(exerciseMark:ExerciseMark):void {

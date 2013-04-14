@@ -26,7 +26,7 @@ package skins.ielts.zone.ui {
 		 */
 		protected function onAddedToStage(event:Event):void {
 			var zoneView:ZoneView = parentDocument["hostComponent"];
-			changeWatcher = ChangeWatcher.watch(zoneView, "courseClass", onCourseClassChanged, false, true);
+			changeWatcher = ChangeWatcher.watch(zoneView, "course", onCourseClassChanged, false, true);
 			
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
@@ -56,7 +56,8 @@ package skins.ielts.zone.ui {
 				case "overAndSelected":
 				case "downAndSelected":
 					var zoneView:ZoneView = parentDocument["hostComponent"];
-					graphics.beginFill(getStyle(zoneView.courseClass + "ColorDark"));
+					if (zoneView.course)
+						graphics.beginFill(getStyle(zoneView.course.@['class'] + "ColorDark"));
 					break;
 				default:
 					graphics.beginFill(0x202020);

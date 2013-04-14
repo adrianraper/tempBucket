@@ -64,7 +64,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				RotterdamNotifications.COURSE_STARTED,
+				BBNotifications.COURSE_STARTED,
 				RotterdamNotifications.PREVIEW_SHOW,
 				RotterdamNotifications.PREVIEW_HIDE,
 				BBNotifications.ITEM_DIRTY,
@@ -75,7 +75,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case RotterdamNotifications.COURSE_STARTED:
+				case BBNotifications.COURSE_STARTED:
 					handleCourseStarted();
 					break;
 				case RotterdamNotifications.PREVIEW_SHOW:
@@ -97,7 +97,7 @@
 		}
 		
 		protected function onUnitSelect(unit:XML):void {
-			facade.sendNotification(RotterdamNotifications.UNIT_START, unit);
+			facade.sendNotification(BBNotifications.UNIT_START, unit);
 		}
 		
 		protected function onCoursePublish():void {

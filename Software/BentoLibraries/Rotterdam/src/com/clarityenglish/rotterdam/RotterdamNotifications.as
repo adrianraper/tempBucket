@@ -3,8 +3,6 @@
 	public class RotterdamNotifications {
 		
 		// Course notifications
-		public static const COURSE_STARTED:String = "rotterdam/course_started";
-		
 		public static const COURSE_CREATE:String = "rotterdam/course_create";
 		public static const COURSE_CREATED:String = "rotterdam/course_created";
 		
@@ -16,10 +14,6 @@
 		
 		// gh#13
 		public static const COURSE_RESET:String = "rotterdam/course_reset";
-		
-		// Unit notifications
-		public static const UNIT_START:String = "rotterdam/unit_start";
-		public static const UNIT_STARTED:String = "rotterdam/unit_started";
 		
 		// Widget notifications
 		public static const WIDGET_SELECT:String = "rotterdam/widget_select";

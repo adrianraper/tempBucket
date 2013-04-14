@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.tensebuster.view.home {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
@@ -49,12 +50,7 @@
 		}
 		
 		protected function onCourseSelected(course:XML):void {
-			/**
-			 * TODO: The current method of selecting a course (taken from IELTS using a COURSE_SHOW notification) is quite messy and doesn't scale all that well across titles and
-			 * devices.  For Tensebuster its still ok, since we don't want to prematurely optimize this without seeing at least one more title, but if the pattern for course/unit
-			 * selection keeps going for future titles there are definitely much cleaner ways to do this.
-			 */
-			sendNotification(TenseBusterNotifications.COURSE_SHOW, course);
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
 		}
 		
 	}

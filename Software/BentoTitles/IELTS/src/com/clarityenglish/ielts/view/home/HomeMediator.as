@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.ielts.view.home {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
@@ -77,7 +78,7 @@
 		 */
 		private function onCourseSelected(course:XML):void {
 			// Open the selected course
-			sendNotification(IELTSNotifications.COURSE_SHOW, course);
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
 			
 			// Set the selected course class
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
