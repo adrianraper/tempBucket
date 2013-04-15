@@ -78,6 +78,8 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="CTLoginTitleLabel">How to access Road to IELTS</lit>
 			<lit name="CTillustration1Label">Register or log in with your email and password if you want to keep your exercise scores over multiple login sessions.</lit>
 			<lit name="CTillustration2Label">If you don't want to keep your exercise scores once you have logged out of Road to IELTS, click Start program below.</lit>
+			<lit name="CTLoginButton">Register or log in</lit>
+			<lit name="CTStartButton">Start program</lit>
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
 			<lit name="LMLabel">Road to IELTS - Last Minute</lit>
 			<lit name="LMTextLabel">Special last minute practice only for British Council IELTS candidates!</lit>

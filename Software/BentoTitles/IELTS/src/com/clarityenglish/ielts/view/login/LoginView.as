@@ -124,6 +124,18 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var CTillustration2Label:Label;
 		
+		[SkinPart]
+		public var emailLabel:Label;
+		
+		[SkinPart]
+		public var psdlLabel:Label;
+		
+		[SkinPart]
+		public var CTLoginButton:Button;
+		
+		[SkinPart]
+		public var CTStartButton:Button;
+		
 		[Bindable]
 		public var loginKey_lbl:String;
 		
@@ -460,6 +472,18 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case CTillustration2Label:
 					instance.text = copyProvider.getCopyForId("CTillustration2Label");
+					break;
+				case emailLabel:
+					instance.text = copyProvider.getCopyForId("yourEmail");
+					break;
+				case psdlLabel:
+					instance.text = copyProvider.getCopyForId("passwordLabel");
+					break;
+				case CTLoginButton:
+					instance.label = copyProvider.getCopyForId("CTLoginButton");
+					break;
+				case CTStartButton:
+					instance.label = copyProvider.getCopyForId("CTStartButton");
 					break;
 			}
 		}
