@@ -204,7 +204,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
 			
-			//stage.addEventListener(MouseEvent.CLICK, onStageClick);			
+			//stage.addEventListener(MouseEvent.CLICK, onStageClick);
+			stage.addEventListener(Event.RESIZE, onScreenResize);
 		}
 		
 		protected override function commitProperties():void {
@@ -485,6 +486,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected override function getCurrentSkinState():String {
 			return currentState;
+		}
+		
+		//alice
+		protected function onScreenResize(event:Event):void {
+			trace("stage width: " +stage.stageWidth);
+			
 		}
 		
 		/*protected function onAddItemClick(event:MouseEvent):void {
