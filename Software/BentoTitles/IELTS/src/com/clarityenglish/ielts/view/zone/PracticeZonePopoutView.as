@@ -1,12 +1,10 @@
 package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.vo.Href;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
-	import mx.controls.Label;
 	
 	import org.osflash.signals.Signal;
 	
@@ -24,7 +22,7 @@ package com.clarityenglish.ielts.view.zone {
 		private var _caption:String;
 		private var _exercises:XMLList;
 		
-		public var exerciseSelect:Signal = new Signal(Href);
+		public var exerciseSelect:Signal = new Signal(XML);
 		
 		public function set caption(value:String):void {
 			_caption = value;
@@ -61,7 +59,7 @@ package com.clarityenglish.ielts.view.zone {
 		protected function onExerciseSelected(event:Event):void {
 			// Fire the exerciseSelect signal
 			if (exerciseList.selectedItem) {
-				exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, exerciseList.selectedItem.@href.toString()));
+				exerciseSelect.dispatch(exerciseList.selectedItem);
 			} else {
 				log.error("Reached onExerciseClick with null value in exerciseList.selectedItem");
 			}

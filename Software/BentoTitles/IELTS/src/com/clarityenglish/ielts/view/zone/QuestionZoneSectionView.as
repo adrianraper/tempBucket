@@ -26,7 +26,7 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var questionVideoInstructionLabel:Label;
 		
-		public var exerciseSelect:Signal = new Signal(Href);
+		public var exerciseSelect:Signal = new Signal(XML);
 		
 		public function QuestionZoneSectionView() {
 			super();
@@ -84,16 +84,16 @@ package com.clarityenglish.ielts.view.zone {
 				if (questionZoneEBookNode.@href.indexOf(".xml") > 0) 
 					break;
 			}
-			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZoneEBookNode.@href));
+			exerciseSelect.dispatch(questionZoneEBookNode);
 		}
 		
 		protected function onDownloadButtonClick(event:MouseEvent):void {
 			// as above for file type
 			for each (var questionZonePDFNode:XML in _course.unit.(@["class"] == "question-zone").exercise) {
-				if (questionZonePDFNode.@href.indexOf(".pdf") > 0) 
+				if (questionZonePDFNode.@href.indexOf(".pdf") > 0)
 					break;
 			}
-			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, questionZonePDFNode.@href));
+			exerciseSelect.dispatch(questionZonePDFNode);
 		}
 		
 		/**

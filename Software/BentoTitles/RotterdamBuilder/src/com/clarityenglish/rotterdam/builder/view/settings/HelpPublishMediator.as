@@ -1,15 +1,13 @@
-package com.clarityenglish.rotterdam.builder.view.settings
-{
+package com.clarityenglish.rotterdam.builder.view.settings {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class HelpPublishMediator extends BentoMediator implements IMediator
-	{
-		public function HelpPublishMediator(mediatorName:String, viewComponent:BentoView)
-		{
+	public class HelpPublishMediator extends BentoMediator implements IMediator {
+		
+		public function HelpPublishMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
@@ -38,5 +36,6 @@ package com.clarityenglish.rotterdam.builder.view.settings
 				
 			}
 		}
+		
 	}
 }

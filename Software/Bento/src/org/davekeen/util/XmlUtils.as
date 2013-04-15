@@ -38,5 +38,21 @@
 			return xmlCopy;
 		}
 		
+		/**
+		 * Traverse up the hierarchy searching for a node called nodeName in xml.
+		 * 
+		 * @param xml
+		 * @param nodeName
+		 * 
+		 */
+		public static function searchUpForNode(xml:XML, nodeName:String):XML {
+			var currentNode:XML = xml;
+			while (currentNode) {
+				if (currentNode.localName().toString() == nodeName) return currentNode;
+				currentNode = currentNode.parent();
+			}
+			return null;
+		}
+		
 	}
 }

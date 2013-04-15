@@ -32,16 +32,18 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var url:String = configProxy.getConfig().checkNetworkAvailabilityUrl;
-			
-			if (url) {
-				urlLoader = new URLLoader();
-				urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, function(e:HTTPStatusEvent):void {
-					if (e.status == 200) onSuccess();
-				});
-				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onFailure, false, 0, true);
-				urlLoader.addEventListener(IOErrorEvent.NETWORK_ERROR, onFailure, false, 0, true);
-				urlLoader.load(new URLRequest(url));
+			if (configProxy) {
+				var url:String = configProxy.getConfig().checkNetworkAvailabilityUrl;
+				
+				if (url) {
+					urlLoader = new URLLoader();
+					urlLoader.addEventListener(HTTPStatusEvent.HTTP_STATUS, function(e:HTTPStatusEvent):void {
+						if (e.status == 200) onSuccess();
+					});
+					urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onFailure, false, 0, true);
+					urlLoader.addEventListener(IOErrorEvent.NETWORK_ERROR, onFailure, false, 0, true);
+					urlLoader.load(new URLRequest(url));
+				}
 			}
 		}
 		

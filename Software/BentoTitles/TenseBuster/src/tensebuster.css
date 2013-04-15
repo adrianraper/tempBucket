@@ -1,0 +1,25 @@
+@namespace tensebuster "com.clarityenglish.tensebuster.*";
+@namespace title "com.clarityenglish.tensebuster.view.title.*";
+@namespace home "com.clarityenglish.tensebuster.view.home.*";
+@namespace zone "com.clarityenglish.tensebuster.view.zone.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
+
+tensebuster|TenseBusterApplication {
+	skinClass: ClassReference("skins.tensebuster.TenseBusterApplicationSkin");
+}
+
+title|TitleView {
+	skinClass: ClassReference("skins.tensebuster.TitleSkin");
+}
+
+home|HomeView {
+	skinClass: ClassReference("skins.tensebuster.HomeSkin");
+}
+
+zone|ZoneView {
+	skinClass: ClassReference("skins.tensebuster.ZoneSkin");
+}
+
+exercise|ExerciseView {
+	skinClass: ClassReference("skins.tensebuster.ExerciseSkin");
+}

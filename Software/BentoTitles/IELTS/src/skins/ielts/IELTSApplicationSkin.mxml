@@ -18,10 +18,11 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
-		<s:State name="credits" />
-		<s:State name="title" />
-		<s:State name="login" />
+		
 		<s:State name="loading" />
+		<s:State name="login" />
+		<s:State name="title" />
+		<s:State name="credits" />
 		<s:State name="nonetwork" />
 	</s:states>
 	

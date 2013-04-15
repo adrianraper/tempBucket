@@ -3,15 +3,10 @@ package com.clarityenglish.ielts.view {
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.Href;
-	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.IELTSNotifications;
-	
-	import flash.events.TimerEvent;
-	import flash.utils.Timer;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -31,27 +26,12 @@ package com.clarityenglish.ielts.view {
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		private var networkCheckAvailabilityTimer:Timer;
-		
-		private var checkNetworkAvailabilityInterval:Number;
-		private var checkNetworkAvailabilityReconnectInterval:Number;
-		
 		public function IELTSApplicationMediator(viewComponent:Object) {
 			super(NAME, viewComponent);
 		}
 
 		private function get view():IELTSApplication {
 			return viewComponent as IELTSApplication;
-		}
-		
-		override public function onRegister():void {
-			super.onRegister();
-		}
-		
-		public override function onRemove():void {
-			super.onRemove();
-			networkCheckAvailabilityTimer.reset();
-			networkCheckAvailabilityTimer = null;
 		}
 		
 		/**
@@ -62,9 +42,7 @@ package com.clarityenglish.ielts.view {
 		override public function listNotificationInterests():Array {
 			// Concatenate any extra notifications to the array returned by this function in the superclass
 			return super.listNotificationInterests().concat([
-				BBNotifications.NETWORK_AVAILABLE,
-				BBNotifications.NETWORK_UNAVAILABLE,
-				CommonNotifications.CONFIG_LOADED,
+				
 			]);
 		}
 		
@@ -79,28 +57,6 @@ package com.clarityenglish.ielts.view {
 			switch (note.getName()) {
 				case StateMachine.CHANGED:
 					handleStateChange(note.getBody() as State);
-					break;
-				case CommonNotifications.CONFIG_LOADED:
-					// #472 - once config has loaded start the network availability time if there is one
-					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-					checkNetworkAvailabilityInterval = configProxy.getConfig().checkNetworkAvailabilityInterval;
-					checkNetworkAvailabilityReconnectInterval = configProxy.getConfig().checkNetworkAvailabilityReconnectInterval;
-					
-					if (configProxy.getConfig().checkNetworkAvailabilityUrl && checkNetworkAvailabilityInterval > 0 && checkNetworkAvailabilityReconnectInterval > 0) {
-						networkCheckAvailabilityTimer = new Timer(checkNetworkAvailabilityInterval * 1000);
-						networkCheckAvailabilityTimer.addEventListener(TimerEvent.TIMER, function(e:TimerEvent):void {
-							sendNotification(BBNotifications.NETWORK_CHECK_AVAILABILITY);
-						});
-						networkCheckAvailabilityTimer.start();
-					}
-					break;
-				case BBNotifications.NETWORK_AVAILABLE:
-					if (networkCheckAvailabilityTimer)
-						networkCheckAvailabilityTimer.delay = checkNetworkAvailabilityInterval * 1000;
-					break;
-				case BBNotifications.NETWORK_UNAVAILABLE:
-					if (networkCheckAvailabilityTimer)
-						networkCheckAvailabilityTimer.delay = checkNetworkAvailabilityReconnectInterval * 1000;
 					break;
 			}
 		}
@@ -150,12 +106,12 @@ package com.clarityenglish.ielts.view {
 				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
 				
 				if (exercise) {
-					var href:Href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
-					sendNotification(IELTSNotifications.HREF_SELECTED, href);
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
 					return true;
 				}
 				
 			}
+			
 			// If groupID is defined, go straight to the first exercise in the group
 			if (directStart.groupID) {
 				// If you don't have a unitID as well, the group is meaningless
@@ -164,9 +120,10 @@ package com.clarityenglish.ielts.view {
 					
 					if (unit) {
 						exercise = unit.exercise.(@group == directStart.groupID)[0];
-						href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE, exercise.@href);
-						sendNotification(IELTSNotifications.HREF_SELECTED, href);
-						return true;
+						if (exercise) {
+							sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+							return true;
+						}
 					}
 				}				
 			}
@@ -179,7 +136,7 @@ package com.clarityenglish.ielts.view {
 				var unit:XML = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 				
 				if (unit) {
-					sendNotification(IELTSNotifications.COURSE_SHOW, unit.parent());
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.parent());
 					return true;
 				}
 			}
@@ -190,7 +147,7 @@ package com.clarityenglish.ielts.view {
 				var course:XML = bentoProxy.menuXHTML..course.(@id == directStart.courseID)[0];
 				
 				if (course) {
-					sendNotification(IELTSNotifications.COURSE_SHOW, course);
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
 					return true;
 				}
 			}

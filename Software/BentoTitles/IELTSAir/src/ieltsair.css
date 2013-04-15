@@ -5,7 +5,7 @@
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace ui "com.clarityenglish.ielts.view.zone.ui.*";
-@namespace exercise "com.clarityenglish.ielts.view.exercise.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace controls "com.clarityenglish.controls.*";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace login "com.clarityenglish.ielts.view.login.*";
@@ -94,6 +94,22 @@ login|LoginView s|Button {
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ieltsair.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("spark.skins.mobile.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since ielts.css has changed it */
+}
+
+title|TitleView s|ViewNavigator {
+	skinClass: ClassReference("spark.skins.mobile.ViewNavigatorSkin"); /* this is actually resetting it back to the default since ielts.css has changed it */
+}
+
+title|TitleView s|TabbedViewNavigator #tabBar {
+	chromeColor: #262526;
+	color: #DDDDDD;
+	fontSize: 10;
+	fontWeight: normal;
+	iconPlacement: top;
 }
 
 /* Home view styles */

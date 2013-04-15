@@ -29,6 +29,30 @@
 		public static const SCORE_WRITE:String = "bb/score_write";
 		public static const SCORE_WRITTEN:String = "bb/score_written";
 		
+		// Selection and navigation notifications
+		public static const SELECTED_NODE_CHANGE:String = "bb/selected_node_change";
+		public static const SELECTED_NODE_CHANGED:String = "bb/selected_node_changed";
+		
+		public static const SELECTED_NODE_UP:String = "bb/selected_node_up";
+		
+		public static const COURSE_START:String = "bb/course_start";
+		public static const COURSE_STARTED:String = "bb/course_started";
+		public static const COURSE_STOP:String = "bb/course_stop";
+		public static const COURSE_STOPPED:String = "bb/course_stopped";
+		
+		public static const UNIT_START:String = "bb/unit_start";
+		public static const UNIT_STARTED:String = "bb/unit_started";
+		public static const UNIT_STOP:String = "bb/unit_stop";
+		public static const UNIT_STOPPED:String = "bb/unit_stopped";
+		
+		public static const EXERCISE_START:String = "bb/exercise_start";
+		public static const EXERCISE_STARTED:String = "bb/exercise_started";
+		public static const EXERCISE_STOP:String = "bb/exercise_stop";
+		public static const EXERCISE_STOPPED:String = "bb/exercise_stopped";
+		
+		public static const PDF_SHOW:String = "bb/pdf_show";
+		
+		// Account notifications
 		public static const USER_UPDATE:String = "bb/user_update";
 		public static const USER_UPDATED:String = "bb/user_updated";
 		
@@ -49,12 +73,6 @@
 		public static const EXERCISE_SHOW_OFFSET:String = "bb/exercise_show_offset";
 		public static const EXERCISE_SHOW_FEEDBACK:String = "bb/exercise_show_feedback";
 		
-		// These are sent by XHTMLExerciseMediator when exercises start and stop.
-		public static const EXERCISE_START:String = "bb/exercise_start";
-		public static const EXERCISE_STARTED:String = "bb/exercise_started";
-		public static const EXERCISE_STOP:String = "bb/exercise_stop";
-		public static const EXERCISE_STOPPED:String = "bb/exercise_stopped";
-		
 		// This notification is sent when the user clicks the print button
 		public static const EXERCISE_PRINT:String = "bb/exercise_print";
 		public static const EXERCISE_PRINTED:String = "bb/exercise_printed";
@@ -65,10 +83,6 @@
 		public static const ANSWERS_SHOW:String = "bb/answers_show";
 		
 		public static const FEEDBACK_SHOW:String = "bb/feedback_show";
-		
-		// The specific title will want to implement actions on these two notifications
-		public static const EXERCISE_SHOW:String = "bb/exercise_show";
-		public static const EXERCISE_SECTION_FINISHED:String = "bb/exercise_section_finished";
 		
 		// gh#90 - set items (which can be anything) dirty or clean
 		public static const ITEM_DIRTY:String = "bb/item_dirty";

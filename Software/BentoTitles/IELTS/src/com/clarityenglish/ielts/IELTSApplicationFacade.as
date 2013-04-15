@@ -1,17 +1,15 @@
 ﻿package com.clarityenglish.ielts {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
+	import com.clarityenglish.bento.view.exercise.ExerciseMediator;
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.common.view.login.LoginMediator;
-	import com.clarityenglish.ielts.controller.HrefSelectedCommand;
 	import com.clarityenglish.ielts.controller.IELTSRegisterCommand;
 	import com.clarityenglish.ielts.controller.IELTSStartupCommand;
-	import com.clarityenglish.ielts.controller.PdfShowCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
 	import com.clarityenglish.ielts.view.credits.CreditsMediator;
 	import com.clarityenglish.ielts.view.credits.CreditsView;
-	import com.clarityenglish.ielts.view.exercise.ExerciseMediator;
-	import com.clarityenglish.ielts.view.exercise.ExerciseView;
 	import com.clarityenglish.ielts.view.home.HomeMediator;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.login.LoginView;
@@ -67,10 +65,6 @@
 			mapView(PracticeZoneSectionView, PracticeZoneSectionMediator);
 			mapView(PracticeZonePopoutView, PracticeZonePopoutMediator);
 			mapView(ExamPracticeZoneSectionView, ExamPracticeZoneSectionMediator);
-			
-			// Register IELTS specific commands
-			registerCommand(IELTSNotifications.HREF_SELECTED, HrefSelectedCommand);
-			registerCommand(IELTSNotifications.PDF_SHOW, PdfShowCommand);
 			
 			// Upgrade, register and buy
 			// registerCommand(IELTSNotifications.IELTS_UPGRADE_WINDOW_SHOW, IELTSUpgradeWindowShowCommand);

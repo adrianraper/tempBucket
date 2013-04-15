@@ -21,7 +21,7 @@ package com.clarityenglish.ielts.controller {
 			
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			
-			// Set the default function for currentCouseClass to retrieve the class of the first course
+			// Set the default function for currentCourseClass to retrieve the class of the first course
 			dataProxy.setDefaultFunction("currentCourseClass", function(facade:Facade):Object {
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				return (bentoProxy.menuXHTML) ? bentoProxy.menuXHTML..course[0].@["class"].toString() : null;

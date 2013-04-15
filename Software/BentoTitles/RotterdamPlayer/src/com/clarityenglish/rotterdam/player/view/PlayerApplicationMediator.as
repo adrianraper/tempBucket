@@ -32,14 +32,6 @@ package com.clarityenglish.rotterdam.player.view {
 			return viewComponent as PlayerApplication;
 		}
 		
-		override public function onRegister():void {
-			super.onRegister();
-		}
-		
-		public override function onRemove():void {
-			super.onRemove();
-		}
-		
 		/**
 		 * List all notifications this Mediator is interested in.
 		 *

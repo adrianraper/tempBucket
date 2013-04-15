@@ -28,7 +28,6 @@ package com.clarityenglish.ielts.view.zone {
 			dispatchEvent(new Event("dataChange"));
 		}
 		
-		
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
 			
@@ -38,7 +37,6 @@ package com.clarityenglish.ielts.view.zone {
 			if (!zoneView) throw new Error("An AbstractZoneSectionView can only live in a ZoneView navigator");
 			data = zoneView.course;
 		}
-
 		
 		[Bindable(event="dataChange")]
 		public function get courseClass():String {

@@ -29,14 +29,6 @@ package com.clarityenglish.rotterdam.builder.view {
 			return viewComponent as BuilderApplication;
 		}
 		
-		override public function onRegister():void {
-			super.onRegister();
-		}
-		
-		public override function onRemove():void {
-			super.onRemove();
-		}
-		
 		/**
 		 * List all notifications this Mediator is interested in.
 		 *

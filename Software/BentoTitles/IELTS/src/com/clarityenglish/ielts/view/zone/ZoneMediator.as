@@ -4,10 +4,10 @@
 	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.ielts.IELTSNotifications;
+	import com.googlecode.bindagetools.Bind;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -41,13 +41,14 @@
 			
 			// listen for these signals
 			view.courseSelect.add(onCourseSelected);
-			view.exerciseSelect.add(onExerciseSelected);
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			
 			view.isMediated = true; // #222
+			
+			Bind.fromProperty(bentoProxy, "selectedCourseNode").toProperty(view, "course");
 			
 			// #514 If you are SCORM you don't want the course selector
 			// #378 Actually, you will still use it, just disable the courses that are hidden.
@@ -58,7 +59,6 @@
 			super.onRemove();
 			
 			view.courseSelect.remove(onCourseSelected);
-			view.exerciseSelect.remove(onExerciseSelected);
 			
 			view.isMediated = false; // #222
 		}
@@ -89,21 +89,12 @@
 		}
 		
 		/**
-		 * An exercise was selected. Based on the extension of the Href we either want to open an exercise or open a pdf.
-		 * 
-		 * @param href
-		 */
-		private function onExerciseSelected(href:Href):void {
-			sendNotification(IELTSNotifications.HREF_SELECTED, href);
-		}
-		
-		/**
 		 * Trigger the display of a course in the zone view
 		 *
 		 */
 		private function onCourseSelected(course:XML):void {
 			// Open the selected course
-			sendNotification(IELTSNotifications.COURSE_SHOW, course);
+			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, course);
 			
 			// Set the selected course class
 			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;

@@ -2,12 +2,16 @@
  Mediator - PureMVC
  */
 package com.clarityenglish.common.view {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.interfaces.IBentoApplication;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
 	import com.clarityenglish.common.model.ConfigProxy;
+	
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -29,6 +33,11 @@ package com.clarityenglish.common.view {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
+		private var networkCheckAvailabilityTimer:Timer;
+		
+		private var checkNetworkAvailabilityInterval:Number;
+		private var checkNetworkAvailabilityReconnectInterval:Number;
+		
 		public function AbstractApplicationMediator(NAME:String, viewComponent:Object) {
 			// pass the viewComponent to the superclass where 
 			// it will be stored in the inherited viewComponent property
@@ -41,20 +50,21 @@ package com.clarityenglish.common.view {
 				throw new Error("The main application must extend com.clarityenglish.bento.BentoApplication");
 		}
 		
-		/**
-		 * xxx
-		 */
 		private function get view():IBentoApplication {
 			return (viewComponent as IBentoApplication);
 		}
 		
-		/**
-		 * Setup event listeners and register sub-mediators
-		 */
 		override public function onRegister():void {
 			super.onRegister();
 		}
-        
+		
+		public override function onRemove():void {
+			super.onRemove();
+			
+			networkCheckAvailabilityTimer.reset();
+			networkCheckAvailabilityTimer = null;
+		}
+		
 		/**
 		 * List all notifications this Mediator is interested in.
 		 * <P>
@@ -68,8 +78,10 @@ package com.clarityenglish.common.view {
 					CommonNotifications.TRACE_NOTICE,
 					CommonNotifications.TRACE_WARNING,
 					CommonNotifications.TRACE_ERROR,
-					CommonNotifications.COPY_LOADED,
 					StateMachine.CHANGED,
+					BBNotifications.NETWORK_AVAILABLE,
+					BBNotifications.NETWORK_UNAVAILABLE,
+					CommonNotifications.CONFIG_LOADED,
 			];
 		}
 
@@ -92,16 +104,31 @@ package com.clarityenglish.common.view {
 					break;
 				case CommonNotifications.TRACE_ERROR:
 					log.error(note.getBody().toString());
-					//Alert.show(note.getBody() as String, "Error", Alert.OK, application as Sprite);
-					break;
-				case CommonNotifications.COPY_LOADED:
-					// Set the alert box labels from the copy
-					//var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
-					//Alert.yesLabel = copyProvider.getCopyForId("yes");
-					//Alert.noLabel = copyProvider.getCopyForId("no");
 					break;
 				case StateMachine.CHANGED:
 					handleStateChange(note.getBody() as State);
+					break;
+				case CommonNotifications.CONFIG_LOADED:
+					// #472 - once config has loaded start the network availability time if there is one
+					var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+					checkNetworkAvailabilityInterval = configProxy.getConfig().checkNetworkAvailabilityInterval;
+					checkNetworkAvailabilityReconnectInterval = configProxy.getConfig().checkNetworkAvailabilityReconnectInterval;
+					
+					if (configProxy.getConfig().checkNetworkAvailabilityUrl && checkNetworkAvailabilityInterval > 0 && checkNetworkAvailabilityReconnectInterval > 0) {
+						networkCheckAvailabilityTimer = new Timer(checkNetworkAvailabilityInterval * 1000);
+						networkCheckAvailabilityTimer.addEventListener(TimerEvent.TIMER, function(e:TimerEvent):void {
+							sendNotification(BBNotifications.NETWORK_CHECK_AVAILABILITY);
+						});
+						networkCheckAvailabilityTimer.start();
+					}
+					break;
+				case BBNotifications.NETWORK_AVAILABLE:
+					if (networkCheckAvailabilityTimer)
+						networkCheckAvailabilityTimer.delay = checkNetworkAvailabilityInterval * 1000;
+					break;
+				case BBNotifications.NETWORK_UNAVAILABLE:
+					if (networkCheckAvailabilityTimer)
+						networkCheckAvailabilityTimer.delay = checkNetworkAvailabilityReconnectInterval * 1000;
 					break;
 				default:
 					break;		

@@ -30,7 +30,7 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public var hrefToUidFunction:Function;
 		
-		public var exerciseSelect:Signal = new Signal(Href);
+		public var exerciseSelect:Signal = new Signal(XML, String);
 		public var videoScore:Signal = new Signal(ExerciseMark);
 		
 		public function get viewCopyProvider():CopyProvider {
@@ -70,12 +70,12 @@ package com.clarityenglish.ielts.view.zone {
 		
 		/**
 		 * In the context of this view, "exercise selected" actually means clicking on the script button for videos that have an associated script.
-		 * This will end up launching a PDF.
+		 * This will end up launching a PDF (in this case in the scriptHref attribute).
 		 *
 		 * @param event
 		 */
 		protected function onExerciseSelected(event:ExerciseEvent):void {
-			exerciseSelect.dispatch(href.createRelativeHref(Href.EXERCISE, event.hrefFilename));
+			exerciseSelect.dispatch(event.node, event.attribute);
 		}
 		
 		protected function onVideoScore(event:VideoScoreEvent):void {
