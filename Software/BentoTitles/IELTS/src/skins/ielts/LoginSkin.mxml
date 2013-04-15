@@ -82,8 +82,8 @@
 			</s:VGroup>
 		</s:HGroup>
 	</s:BorderContainer>
-	<s:Group top="300" right="10" includeIn="loginConcurrentTracking">
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/login_graphic.png')" top="35" right="80" width="50%" height="50%"/>
+	<s:Group top="250" right="0" includeIn="loginConcurrentTracking">
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/login/login_graphic.png')" top="35" right="80" width="80%" height="80%"/>
 	</s:Group>
 	
 	<s:BorderContainer left="0" width="40%" height="96%" backgroundColor="#F9F9F9" cornerRadius="12" borderColor="#CCCCCC" top="123" excludeFrom="loginConcurrentTracking">		
