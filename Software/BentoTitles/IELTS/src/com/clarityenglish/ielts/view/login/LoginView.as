@@ -136,6 +136,12 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var CTStartButton:Button;
 		
+		[SkinPart]
+		public var emailInput:TextInput;
+		
+		[SkinPart]
+		public var psdInput:TextInput;
+		
 		[Bindable]
 		public var loginKey_lbl:String;
 		
@@ -481,9 +487,11 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case CTLoginButton:
 					instance.label = copyProvider.getCopyForId("CTLoginButton");
+					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
 				case CTStartButton:
 					instance.label = copyProvider.getCopyForId("CTStartButton");
+					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
 			}
 		}
@@ -634,6 +642,14 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case loginButton:
 					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
+					break;
+				case CTLoginButton:
+					user = new User({name:emailInput.text, email:emailInput.text, password:psdInput.text});
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
+					break;
+				case CTStartButton:
+					user =  new User();
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case newUserButton:

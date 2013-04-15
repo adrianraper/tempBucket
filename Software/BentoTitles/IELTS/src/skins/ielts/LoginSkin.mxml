@@ -58,7 +58,7 @@
 				</s:HGroup>
 				<s:HGroup paddingTop="5">
 					<s:Label id="psdlLabel" fontSize="14" fontWeight="bold" paddingTop="5" paddingRight="5"/>
-					<s:TextInput id="psdInput" width="180" />
+					<s:TextInput id="psdInput" width="180" displayAsPassword="true" />
 				</s:HGroup>
 				<s:Spacer height="10"/>
 				<s:Button id="CTLoginButton" width="120"/>
