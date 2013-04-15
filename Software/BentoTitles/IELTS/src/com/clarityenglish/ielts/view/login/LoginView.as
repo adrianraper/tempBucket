@@ -102,6 +102,28 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var registerDetailLabel:Label;
 		
+		//alice: CT login page
+		[SkinPart]
+		public var CTOptionLabel:Label;
+		
+		[SkinPart]
+		public var CTOption1Label:Label;
+		
+		[SkinPart]
+		public var CTOption1Label2:Label;
+		
+		[SkinPart]
+		public var CTOptionLabel2:Label;
+		
+		[SkinPart]
+		public var CTOption2Label:Label;
+		
+		[SkinPart]
+		public var CTillustration1Label:Label;
+		
+		[SkinPart]
+		public var CTillustration2Label:Label;
+		
 		[Bindable]
 		public var loginKey_lbl:String;
 		
@@ -417,14 +439,38 @@ package com.clarityenglish.ielts.view.login {
 					instance.label = copyProvider.getCopyForId("accountMoreButton");
 					instance.addEventListener(MouseEvent.CLICK, onAccountMoreButton);
 					break;
+				//alice: CT login page
+				case CTOptionLabel:
+					instance.text = copyProvider.getCopyForId("CTOptionLabel");
+					break;
+				case CTOption1Label:
+					instance.text = copyProvider.getCopyForId("CTOption1Label");
+					break;
+				case CTOption1Label2:
+					instance.text = copyProvider.getCopyForId("CTOption1Label2");
+					break;
+				case CTOptionLabel2:
+					instance.text = copyProvider.getCopyForId("CTOptionLabel");
+					break;
+				case CTOption2Label:
+					instance.text = copyProvider.getCopyForId("CTOption2Label");
+					break;
+				case CTillustration1Label:
+					instance.text = copyProvider.getCopyForId("CTillustration1Label");
+					break;
+				case CTillustration2Label:
+					instance.text = copyProvider.getCopyForId("CTillustration2Label");
+					break;
 			}
 		}
 
 		// #341
 		protected override function getCurrentSkinState():String {
 			// gh#100 Not sure if CT should use network skin?
-			if (licenceType == Title.LICENCE_TYPE_NETWORK || licenceType == Title.LICENCE_TYPE_CT) {
+			if (licenceType == Title.LICENCE_TYPE_NETWORK) {
 				var networkState:String = "Network";
+			} else if (licenceType == Title.LICENCE_TYPE_CT) {
+				networkState = "ConcurrentTracking";
 			} else {
 				networkState = "";
 			}
