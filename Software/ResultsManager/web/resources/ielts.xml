@@ -49,7 +49,8 @@
 			
 			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
-			<lit name="errorMustUpgradeApp" code="502">You have to upgrade your app as it will not work with the database. If you have an iPad, upgrade from the iTunes store. If you are using a browser, clear your cache.</lit>
+			<lit name="xxerrorMustUpgradeApp" code="502">You have to upgrade your app as it will not work with the database. If you have an iPad, upgrade from the iTunes store. If you are using a browser, clear your cache.</lit>
+			<lit name="errorMustUpgradeApp" code="502">Sorry, there is a problem with the iPad app right now. Please try again in a few hours. If you are using a browser, clear your cache to upgrade and try again.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			<lit name="accountMoreButton">To find out how to get an account, tap here.</lit>
@@ -63,12 +64,13 @@
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
             <lit name="loginDetailLabelCT">
-                 <![CDATA[Or, if you already have an account, type your details to log in.]]>
+                 <![CDATA[If you already have an account, type your details to log in.
+If you want to be anonymous, just click {loginText}.]]>
             </lit>
 			<lit name="loginDetailLabelNetwork">
 			     <![CDATA[If you already have an account, type your details to log in.
-If you want a new account, type the details you want to use.
-Or just click {loginText}.]]>
+If you are a new user, type the login you want to use.
+If you want to be anonymous, just click {loginText}.]]>
             </lit>
 			
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
@@ -154,8 +156,8 @@ Or just click {loginText}.]]>
 			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
 			<lit name="courseDurationRenderLabel">You have spent</lit>
 			<lit name="courseDurationRenderTime">{time} min(s)</lit>
-			<lit name="progressBarCoverage">{course} - overall coverage</lit> <!--&#160;-->
-			<lit name="progressBarScore">{course} - average score</lit>
+			<lit name="ProgressBarCoverage">{course}- overall coverage</lit>
+			<lit name="ProgressBarScore">&#160;- average score</lit>
 			<lit name="scoreGridC1">Unit</lit>
 			<lit name="scoreGridC2">Exercise</lit>
 			<lit name="scoreGridC3">Score %</lit>
@@ -344,7 +346,7 @@ Or just click {loginText}.]]>
 		</group>
 	</language>
 
-	<language name="Simplified Chinese" code="ZHO" mediaFolder="ZH">
+	<language name="Simplified Chinese" code="ZH" mediaFolder="ZH">
 		<group name="group">
             <lit name="loginIDLabel">您需要已经注册了你的学校或者你的电子邮件，与英国文化协会，进行登录。</lit>		
 			<lit name="colorBarIntroLabel">彩色条形图显示了您在各个技能单元中的完成情况。详情请查看My Progress。</lit>
