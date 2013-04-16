@@ -94,8 +94,8 @@
 	<s:Rect left="0" right="0" height="48" width="150" filters="{dropShadowFilter}" >
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry id="color1" color.up="0x8CC63F" color.over="0x3C5C11" color.down="0x8CC63F" color.selectedStates="0x8CC63F" ratio="0"/>	
-				<s:GradientEntry id="color2" color.up="0x72A133" color.over="0x213309" color.down="0x72A133" color.selectedStates="0x72A133" ratio="1"/>
+				<s:GradientEntry id="color1" color.up="0x8CC63F" color.over="0x3C5C11" color.down="0x3C5C11" color.selectedStates="0x3C5C11" ratio="0"/>	
+				<s:GradientEntry id="color2" color.up="0x72A133" color.over="0x213309" color.down="0x213309" color.selectedStates="0x213309" ratio="1"/>
 				<!--s:GradientEntry id="color3" color.up="0x8CC63F" color.over="0x3A5A10" color.down="0x3A5A10" color.selectedStates="0x3A5A10" ratio="0.9"/>
 				<s:GradientEntry id="color4" color.up="0x8CC63F" color.over="0x213309" color.down="0x213309" color.selectedStates="0x213309"/-->				
 			</s:LinearGradient>
@@ -106,8 +106,8 @@
 		<s:Path winding="nonZero" data="M3.5 18C1.57031 18 0 16.4297 0 14.5L0 3.5C0 1.57031 1.57031 0 3.5 0L14.5 0C16.4297 0 18 1.57031 18 3.5L18 14.5C18 16.4297 16.4297 18 14.5 18L3.5 18Z" >
 			<s:fill>
 				<s:LinearGradient x="9.00049" y="18" scaleX="17.9995" rotation="-90">
-					<s:GradientEntry color="0x213309" color.selectedStates="0x213309" color.over="0x8CC63F" color.down="0x213309" ratio="0"/>
-					<s:GradientEntry color="0x3C5C11" color.selectedStates="0x3C5C11" color.over="0x72A133" color.down="0x3C5C11" ratio="1"/>
+					<s:GradientEntry color="0x213309" color.selectedStates="0x8CC63F" color.over="0x8CC63F" color.down="0x8CC63F" ratio="0"/>
+					<s:GradientEntry color="0x3C5C11" color.selectedStates="0x72A133" color.over="0x72A133" color.down="0x72A133" ratio="1"/>
 				</s:LinearGradient>
 			</s:fill>
 		</s:Path>
@@ -120,7 +120,7 @@
 		<s:Path winding="nonZero" data="M11.5449 12.7705C10.4434 12.7705 8.64063 12.7705 7.53906 12.7705 6.4375 12.7705 5.98682 11.9902 6.5376 11.0361 7.08838 10.082 7.98975 8.52148 8.54053 7.56738 9.09131 6.61328 9.99268 6.61328 10.543 7.56738 11.0947 8.52148 11.9951 10.082
 				12.5469 11.0361 13.0977 11.9902 12.6465 12.7705 11.5449 12.7705Z" >
 			<s:fill>
-				<s:SolidColor color="0x8CC63F" color.selectedStates="0x8CC63F" color.over="0x213309" color.down="0x8CC63F"/>
+				<s:SolidColor color="0x8CC63F" color.selectedStates="0x213309" color.over="0x213309" color.down="0x213309"/>
 			</s:fill>
 		</s:Path>
 	</s:Group>
@@ -130,8 +130,8 @@
 	<s:Label id="labelDisplay"
 			 color="0x213309"
 			 color.over="0x8CC63F"
-			 color.down="0x213309"
-			 color.selectedStates="0x213309"
+			 color.down="0x8CC63F"
+			 color.selectedStates="0x8CC63F"
 			 fontWeight="bold"
 			 textAlign="center"
 			 verticalAlign="middle"

@@ -18,6 +18,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	import spark.components.Button;
 	import spark.components.ButtonBarButton;
 	import spark.components.Group;
+	import spark.components.HGroup;
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
 	import spark.primitives.Rect;
@@ -142,6 +143,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var addItemButton:ToggleButton;
 		
+		//alice: small screen size solution
+		[SkinPart]
+		public var iconGroup:HGroup;
+		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object, XML);
 		public var addPDF:Signal = new Signal(Object, XML);
@@ -158,6 +163,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
+		//alice: small screen size solution
+		private var smallSreenFlag:Boolean;
 		
 		private var _currentEditingWidget:XML;
 		
@@ -204,12 +211,33 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
 			
-			//stage.addEventListener(MouseEvent.CLICK, onStageClick);
-			stage.addEventListener(Event.RESIZE, onScreenResize);
+			if (stage.stageWidth == 1200) {
+				smallSreenFlag = false;
+			} else {
+				smallSreenFlag = true;
+			}
+			
+			stage.addEventListener(MouseEvent.CLICK, onStageClick);
+			addEventListener(Event.RESIZE, onScreenResize);
+		}
+		
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			
+			stage.removeEventListener(MouseEvent.CLICK, onStageClick);
+			removeEventListener(Event.RESIZE, onScreenResize);
 		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
+			
+			if (smallSreenFlag) {
+				addItemButton.visible = true;
+				iconGroup.visible = false; 
+			} else {
+				addItemButton.visible = false;
+				iconGroup.visible = true; 
+			}
 		}
 				
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -303,12 +331,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case fontSize3Button:
 					instance.addEventListener(MouseEvent.CLICK, onFontSizeChange);
 					break;
-				/*case addItemButton:
+				case addItemButton:
 					addItemButton.addEventListener(MouseEvent.CLICK, onAddItemClick);
 					break;
 				case itemList:
 					itemList.addEventListener(MouseEvent.CLICK, onItemListClick);
-					break;*/
+					break;
 				//gh #221
 				case linkSelectButton:
 					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);					
@@ -488,13 +516,17 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			return currentState;
 		}
 		
-		//alice
+		//alice: small screen size solution
 		protected function onScreenResize(event:Event):void {
-			trace("stage width: " +stage.stageWidth);
-			
+			if (stage.stageWidth == 1200) {
+				smallSreenFlag = false;
+			} else {
+				smallSreenFlag = true;
+			}
+			invalidateProperties();				
 		}
 		
-		/*protected function onAddItemClick(event:MouseEvent):void {
+		protected function onAddItemClick(event:MouseEvent):void {
 			itemList.visible = true;
 			outsideClick = false;
 		}
@@ -515,7 +547,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				itemClick = false;
 			}
 
-		}*/
+		}
 		
 		/**
 		 * gh#115 - make sure that as soon as we go back to normal state we stop editing any widget.  This should stop hard to track down errors where the

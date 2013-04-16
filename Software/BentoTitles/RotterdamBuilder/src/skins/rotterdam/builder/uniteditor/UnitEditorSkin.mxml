@@ -22,7 +22,7 @@
 			<layouts:FreeUnitLayout columns="3" horizontalGap="18" useVirtualLayout="false" />
 		</ui:layout>
 	</ui:WidgetList>
-	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/unit/instruction.png')" top="0" left="0"  visible="{widgetList.dataProvider.length == 0}"/>
+	<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/unit/instruction.png')" top="0" left="0" bottom="0" visible="{widgetList.dataProvider.length == 0}"/>
 	
 	<widgets:WidgetMenu id="widgetMenu" />
 	

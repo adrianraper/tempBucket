@@ -98,8 +98,8 @@
 		<s:Label includeIn="normal" text="Add an item" color="0x283D0C" top="19" left="46"  />
 	</s:Group>
 	</s:HGroup-->
-	<!--s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="275" label="Add an Item" includeIn="normal"/>
-	<s:Group id="itemList" left="260" bottom="48" visible="false" includeIn="normal">
+	<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="512" label="Add an Item" visible="false"/>
+	<s:Group id="itemList" left="495" bottom="48" visible="false" includeIn="normal">
 		<s:Rect width="500" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" alpha="0.8">
 			<s:fill>
 				<s:SolidColor color="#363636" />
@@ -118,10 +118,10 @@
 		<s:Label text="Add an audio" top="160" left="80" color="0xFFFFFF" fontSize="14"/>
 		<s:Button id="listAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true"  top="150" left="250"/>
 		<s:Label text="Add a Clarity exercise" top="160" left="295" color="0xFFFFFF" fontSize="14"/>
-	</s:Group-->
+	</s:Group>
 	
 
-	<s:HGroup bottom="0" left="512" gap="8" height="48" verticalAlign="middle">
+	<s:HGroup id="iconGroup" bottom="0" left="512" gap="8" height="48" verticalAlign="middle">
 	<s:Label text="Add an item" color="0x283D0C" paddingTop="5" fontWeight="bold" includeIn="normal" />
 	<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" mouseOver="textLabel.visible = true; textLabel.includeInLayout = true;" mouseOut="textLabel.visible = false; textLabel.includeInLayout = false;"/>
 	<s:Label  id="textLabel" text="Add text" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>

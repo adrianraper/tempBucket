@@ -17,6 +17,7 @@
 @namespace sparkTree "com.sparkTree.*";
 @namespace tink "ws.tink.spark.controls.*";
 @namespace showPublishSettingDemo "com.clarityenglish.rotterdam.builder.view.settings.*";
+@namespace ui "com.clarityenglish.rotterdam.view.unit.ui.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -347,6 +348,10 @@ showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {
 showPublishSettingDemo|HelpPublishView {
 	skinClass: ClassReference("skins.rotterdam.builder.settings.HelpPublishSkin");
 	headerVisible: false;
+}
+
+ui|WidgetList s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
 
 .markingTitleWindow {
