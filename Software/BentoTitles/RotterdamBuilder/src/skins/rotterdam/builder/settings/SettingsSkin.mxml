@@ -82,7 +82,7 @@
 					<s:Spacer height="{settingBackground.height * 0.03}" />
 					
 					<s:Label id="endDateLabel" fontWeight="bold" />
-					<s:Label id="endDateInstructionLabel" />
+					<s:Label id="endDateInstruLabel" />
 					<s:HGroup>
 						<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" editable="true"/>
 						<!--s:Button id="clearEndDateButton" /-->
