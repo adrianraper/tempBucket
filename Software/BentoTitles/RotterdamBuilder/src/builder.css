@@ -212,18 +212,18 @@ course|ToolBarView s|Button#linkSelectButton {
 	skinClass: ClassReference("skins.rotterdam.unit.VideoSelectButtonSkin");
 }
 
-course|ToolBarView s|Button#pdfResourceCloudButton,
-course|ToolBarView s|Button#imageResourceCloudButton,
-course|ToolBarView s|Button#audioResourceCloudButton {
+buildercourse|ToolBarView s|Button#pdfResourceCloudButton,
+buildercourse|ToolBarView s|Button#imageResourceCloudButton,
+buildercourse|ToolBarView s|Button#audioResourceCloudButton {
 	skinClass: ClassReference("skins.rotterdam.unit.ResourceCloudButtonSkin");
 }
 
-course|ToolBarView s|Button#pdfUploadButton,
-course|ToolBarView s|Button#imageUploadButton,
-course|ToolBarView s|Button#audioUploadButton,
-course|ToolBarView s|Button#pdfUploadButton,
-course|ToolBarView s|Button#imageUploadButton,
-course|ToolBarView s|Button#audioUploadButton {
+buildercourse|ToolBarView s|Button#pdfUploadButton,
+buildercourse|ToolBarView s|Button#imageUploadButton,
+buildercourse|ToolBarView s|Button#audioUploadButton,
+buildercourse|ToolBarView s|Button#pdfUploadButton,
+buildercourse|ToolBarView s|Button#imageUploadButton,
+buildercourse|ToolBarView s|Button#audioUploadButton {
 	skinClass: ClassReference("skins.rotterdam.unit.ComputerButtonSkin");
 }
 

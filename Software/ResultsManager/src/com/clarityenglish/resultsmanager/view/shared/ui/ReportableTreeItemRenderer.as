@@ -297,8 +297,7 @@
 				if (triStateEnabled) {
 				//if (triStateEnabled && checkBox.enabled) {
 					var state:String = getState(data);
-					trace("state is "+state);
-					
+
 					switch (state) {
 						case OFF:
 						case EMPTY:
@@ -490,6 +489,21 @@
 			if (!data.children)
 				return isCheckBoxSelected(data) ? ON : OFF;
 			
+			//gh#223
+			if (data.hasOwnProperty("productCode") && data.productCode == "54" ){
+				if (data.children) {
+					return isCheckBoxSelected(data) ? ON : OFF; 
+				} else {
+					return OFF;
+				}
+			}
+			
+			//gh#223
+			if (data.parent && ClassUtils.getClass(data.parent) == Title) {
+				if (data.parent.productCode == "54") {
+					return isCheckBoxSelected(data) ? ON : OFF; 
+				}
+			}
 			// If a branch then work out its state from the children
 			var selectedCount:int = 0;
 			var totalCount:int = data.children.length;

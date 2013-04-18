@@ -1,7 +1,9 @@
 package com.clarityenglish.common.controller {
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.view.error.ErrorView;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.config.Config;
 	
 	import flash.display.DisplayObject;
 	
@@ -69,8 +71,14 @@ package com.clarityenglish.common.controller {
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
 			
-			// Exit the program
-			if (isFatal) sendNotification(CommonNotifications.EXIT);
+			//gh #223
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var config:Config = configProxy.getConfig();
+			trace("product code: "+config.productCode);
+			if (config.productCode != "54") {
+				// Exit the program
+				if (isFatal) sendNotification(CommonNotifications.EXIT);
+			}
 		}
 		
 	}

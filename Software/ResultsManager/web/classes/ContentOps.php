@@ -1119,7 +1119,8 @@ EOD;
 				//AbstractService::$log->notice("get content from =".$folder."/".$titleObj->indexFile);
 
 				if ($forDMS || file_exists($folder."/".$titleObj->indexFile)) {
-					if ($courseType == 'bento') {
+					//gh#223
+					if ($courseType == 'bento' || $courseType == 'rotterdam') {
 						$rs = $this->_buildBentoTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
 					} else {	
 						$rs = $this->_buildTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
@@ -1192,10 +1193,14 @@ EOD;
 			$course->name = urldecode($courseXML->getAttribute("caption"));
 			$course->enabledFlag = $courseXML->getAttribute("enabledFlag");
 			//NetDebug::trace("ContentOps: course=".$course->name);
-				
-			$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
-			//gh#23
-			$course->totalUnits = count($course-> units);
+
+			//gh#223
+			if ($courseType != 'rotterdam') {
+				$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
+				//gh#23
+				$course->totalUnits = count($course-> units);
+			}
+			
 				
 			if ($course->id != null) { // Ticket #104 - don't add content with missing id
 				if ($generateMaps) {
