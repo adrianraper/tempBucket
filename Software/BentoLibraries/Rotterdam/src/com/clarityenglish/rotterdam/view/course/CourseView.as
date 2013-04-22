@@ -117,13 +117,13 @@ package com.clarityenglish.rotterdam.view.course {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_isPreviewVisible) {
+			/*if (_isPreviewVisible) {
 				if (unitHeader.editButton)
 					unitHeader.editButton.visible = false;
 			} else {
 				if (unitHeader.editButton)
 					unitHeader.editButton.visible = true;
-			}
+			}*/
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
