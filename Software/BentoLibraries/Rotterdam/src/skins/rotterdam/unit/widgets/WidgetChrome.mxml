@@ -81,7 +81,8 @@
 	<s:Image source="{icon}" mouseChildren="false" mouseEnabled="false" top="3" left="3" />
 	
 	<!-- The widget title -->
-	<s:Label text="{caption}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
+	<!--s:Label text="{caption}" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" /-->
+	<s:TextInput id="widgetCaptionTextInput" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" right="125" top="3" borderVisible="false" contentBackgroundAlpha="0" />
 	
 	<!--gh #221-->
 	

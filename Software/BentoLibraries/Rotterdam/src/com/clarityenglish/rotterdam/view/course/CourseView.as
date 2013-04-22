@@ -243,7 +243,7 @@ package com.clarityenglish.rotterdam.view.course {
 				now.setFullYear(now.fullYear + 1);
 				var endDate:String = formatter.format(now);
 				
-				course.publication.appendChild(<group id={group.id} seePastUnits='1' unitInterval='0' startDate={startDate} endDate={endDate} />);
+				course.publication.appendChild(<group id={group.id} seePastUnits='true' unitInterval='0' startDate={startDate} endDate={endDate} />);
 				coursePublish.dispatch();
 			}
 			

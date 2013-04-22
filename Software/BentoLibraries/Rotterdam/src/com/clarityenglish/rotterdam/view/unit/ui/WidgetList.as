@@ -70,7 +70,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			var widgetClass:Class = typeToWidgetClass(item.@type);
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
-			classFactory.properties = { xml: item, editable: editable };
+			classFactory.properties = { xml: item, editable: editable, widgetCationChanged: true };
 			return classFactory;
 		}
 		

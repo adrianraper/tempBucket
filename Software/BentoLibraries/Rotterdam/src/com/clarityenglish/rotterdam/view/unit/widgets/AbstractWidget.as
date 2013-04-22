@@ -1,11 +1,13 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
+	import com.adobe.utils.StringUtil;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	
 	import flash.events.Event;
+	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	
@@ -15,6 +17,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
 	import mx.events.DragEvent;
+	import mx.events.FlexEvent;
 	import mx.events.StateChangeEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -22,6 +25,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	
 	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StateUtil;
+	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
 	import skins.rotterdam.unit.widgets.WidgetChrome;
@@ -67,6 +71,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected var _editable:Boolean;
 		
 		protected var xmlWatcher:XMLWatcher;
+		
+		//gh#187
+		protected var _widgetCationChanged:Boolean;
 		
 		public var openMedia:Signal = new Signal(XML);
 		public var openContent:Signal = new Signal(XML, String);
@@ -114,6 +121,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				_xml = value;
 				XMLNotifier.getInstance().watchXML(_xml, xmlWatcher);
 			}
+		}
+		
+		//gh#187
+		public function get widgetCationChanged():Boolean {
+			return _widgetCationChanged;
+		}
+		
+		public function set widgetCationChanged(value:Boolean):void {
+			if (_widgetCationChanged != value) {
+				_widgetCationChanged = value;
+			}	
 		}
 		
 		[Bindable(event="columnAttrChanged")]
@@ -180,6 +198,16 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
 		}
 		
+		//gh#187
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			if (_widgetCationChanged) {
+				if (widgetChrome.widgetCaptionTextInput) widgetChrome.widgetCaptionTextInput.text = _xml.@caption;
+				_widgetCationChanged = false;
+			}
+		}
+		
 		protected function validateUnitListLayout(e:Event = null):void {
 			invalidateParentSizeAndDisplayList();
 			validateNow();
@@ -196,6 +224,10 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					break;
 				case widgetText:
 					widgetText.addEventListener(WidgetTextFormatMenuEvent.TEXT_SELECTED, onTextSelected);
+					break;
+				case widgetChrome:
+					widgetChrome.widgetCaptionTextInput.addEventListener(FocusEvent.FOCUS_OUT, onDone);
+					widgetChrome.widgetCaptionTextInput.addEventListener(FlexEvent.ENTER, onDone);
 					break;
 			}
 		}
@@ -255,6 +287,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			}
 			
 			return null;
+		}
+		
+		protected function onDone(event:Event):void {
+			_xml.@caption = StringUtils.trim(widgetChrome.widgetCaptionTextInput.text);
+			
+			callLater(function():void {
+				_widgetCationChanged = true;
+				invalidateProperties();
+			});
 		}
 		
 	}
