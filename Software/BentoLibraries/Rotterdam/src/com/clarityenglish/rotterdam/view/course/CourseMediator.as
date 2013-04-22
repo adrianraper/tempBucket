@@ -3,10 +3,10 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
+	import com.googlecode.bindagetools.Bind;
 	
 	import flash.events.Event;
 	
@@ -38,17 +38,16 @@
 			view.helpPublish.add(onHelpPublish);
 			
 			// gh#110 - use real events instead of signals because they hook into system copy/paste shortcuts automatically
-			view.unitDuplcate.add(onUnitCopy);
-			//gh #240
+			view.unitDuplicate.add(onUnitDuplicate);
+			// gh#240
 			//view.addEventListener(Event.PASTE, onUnitPaste);
-			
-			// In case the course has already started before the CourseView is registered gh#88
-			handleCourseStarted();
 			
 			// gh#208 need the teacher's group
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			view.group = loginProxy.group;
-
+			
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			Bind.fromProperty(courseProxy, "unitCollection").toProperty(view, "unitListCollection");
 		}
 		
 		override public function onRemove():void {
@@ -56,13 +55,14 @@
 			
 			view.unitSelect.remove(onUnitSelect);
 			view.coursePublish.remove(onCoursePublish);
+			view.unitDuplicate.remove(onUnitDuplicate);
+			
 			//gh #240
 			//view.removeEventListener(Event.PASTE, onUnitPaste);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				BBNotifications.COURSE_STARTED,
 				RotterdamNotifications.PREVIEW_SHOW,
 				RotterdamNotifications.PREVIEW_HIDE,
 				BBNotifications.ITEM_DIRTY,
@@ -73,9 +73,6 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case BBNotifications.COURSE_STARTED:
-					handleCourseStarted();
-					break;
 				case RotterdamNotifications.PREVIEW_SHOW:
 					view.previewVisible = true;
 					break;
@@ -89,11 +86,6 @@
 			}
 		}
 		
-		protected function handleCourseStarted():void {
-			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			view.unitListCollection = courseProxy.unitCollection;
-		}
-		
 		protected function onUnitSelect(unit:XML):void {
 			facade.sendNotification(BBNotifications.UNIT_START, unit);
 		}
@@ -105,11 +97,11 @@
 			facade.sendNotification(RotterdamNotifications.COURSE_SAVE);
 		}
 		
-		protected function onUnitCopy():void {
+		protected function onUnitDuplicate():void {
 			facade.sendNotification(RotterdamNotifications.UNIT_COPY, view.unitList.selectedItem);
 		}
 		
-		/*gh #240
+		/* gh#240
 		protected function onUnitPaste(event:Event):void {
 			if (view.canPasteFromTarget(event.target))
 				facade.sendNotification(RotterdamNotifications.UNIT_PASTE);

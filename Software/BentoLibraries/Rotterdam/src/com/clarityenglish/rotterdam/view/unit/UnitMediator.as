@@ -1,10 +1,9 @@
 ﻿package com.clarityenglish.rotterdam.view.unit {
-	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
-	import com.clarityenglish.textLayout.vo.XHTML;
+	import com.googlecode.bindagetools.Bind;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -26,7 +25,7 @@
 			super.onRegister();
 						
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			view.widgetCollection = courseProxy.widgetCollection;
+			Bind.fromProperty(courseProxy, "widgetCollection").toProperty(view, "widgetCollection");
 		}
 		
 		override public function onRemove():void {
@@ -35,13 +34,9 @@
 			AudioPlayer.stopAllAudio();
 		}
 		
-		protected override function onXHTMLReady(xhtml:XHTML):void {
-			super.onXHTMLReady(xhtml);
-		}
-		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				BBNotifications.UNIT_STARTED,
+				
 			]);
 		}
 		
@@ -49,10 +44,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case BBNotifications.UNIT_STARTED:
-					var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-					view.widgetCollection = courseProxy.widgetCollection;
-					break;
+				
 			}
 		}
 		

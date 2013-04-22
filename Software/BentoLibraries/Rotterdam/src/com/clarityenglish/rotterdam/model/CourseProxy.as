@@ -107,10 +107,15 @@ package com.clarityenglish.rotterdam.model {
 		 */
 		public function updateCurrentCourse():void {
 			_unitCollection = new XMLListCollection(courseNode.unit);
+			dispatchEvent(new Event("unitCollectionChanged"));
+			
+			// Make sure the same unit stays selected (if there is one)
+			if (currentUnit) currentUnit = courseNode.unit.(@id == currentUnit.@id)[0];
 		}
 		
 		public function get currentCourse():XHTML {
-			// The current course actually comes from the currently loaded menuXHTML, since for Rotterdam each menu.xml contains a single course
+			// The current course actually comes from the currently loaded menuXHTML, since for Rotterdam each menu.xml contains a single course (although this should
+			// maybe return the course node for clarity)
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			return bentoProxy.menuXHTML;
 		}
@@ -119,6 +124,7 @@ package com.clarityenglish.rotterdam.model {
 			return currentCourse.selectOne("script#model[type='application/xml'] course");
 		}
 		
+		[Bindable(event="unitCollectionChanged")]
 		public function get unitCollection():ListCollectionView {
 			return _unitCollection;
 		}
@@ -130,9 +136,11 @@ package com.clarityenglish.rotterdam.model {
 		public function set currentUnit(value:XML):void {
 			_currentUnit = value;
 			
-			_widgetCollection = new XMLListCollection(value.*);
+			_widgetCollection = (value) ? new XMLListCollection(value.*) : null;
+			dispatchEvent(new Event("widgetCollectionChanged"));
 		}
 		
+		[Bindable(event="widgetCollectionChanged")]
 		public function get widgetCollection():ListCollectionView {
 			return _widgetCollection;
 		}
@@ -164,7 +172,7 @@ package com.clarityenglish.rotterdam.model {
 				var xmlString:String = currentCourse.xml.toXMLString();
 				xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
 				
-				return new RemoteDelegate("courseSave", [ currentCourse.href .filename, xmlString ], this).execute();
+				return new RemoteDelegate("courseSave", [ currentCourse.href.filename, xmlString ], this).execute();
 			} else {
 				log.error("Attempted to save when there was no currentCourse set");
 				return null;

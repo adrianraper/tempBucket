@@ -1,14 +1,12 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
-	import com.adobe.utils.StringUtil;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	
 	import flash.events.Event;
 	import flash.events.FocusEvent;
-	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
 	
 	import flashx.textLayout.conversion.ConversionType;
@@ -16,7 +14,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
-	import mx.events.DragEvent;
 	import mx.events.FlexEvent;
 	import mx.events.StateChangeEvent;
 	import mx.logging.ILogger;
@@ -32,7 +29,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import skins.rotterdam.unit.widgets.WidgetText;
 	
 	import spark.components.supportClasses.Range;
-	import spark.utils.TextFlowUtil;
 	
 	/**
 	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
@@ -165,7 +161,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			_xml.@layoutheight = value;
 		}
 		
-		//gh #106
+		// gh#106
 		public function get clarityUID():String {
 			if (_xml && _xml.(hasOwnProperty("@id"))) {
 				var eid:String = _xml.@id;

@@ -6,8 +6,12 @@
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
+	import com.googlecode.bindagetools.Bind;
 	
 	import flash.utils.setTimeout;
+	
+	import mx.events.CollectionEvent;
+	import mx.events.CollectionEventKind;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -32,14 +36,11 @@
 			view.widgetDelete.add(onWidgetDelete);
 			view.widgetEdit.add(onWidgetEdit);
 			
-			//gh #221
+			// gh#221
 			view.addEventListener(WidgetLinkEvent.ADD_LINK, onAddLink);
 			
-			// TODO: Hacky!  Do this properly for the non-prototype version.
-			setTimeout(function():void {
-				var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-				view.widgetCollection = courseProxy.widgetCollection;
-			}, 1000);
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			Bind.fromProperty(courseProxy, "widgetCollection").toProperty(view, "widgetCollection");
 		}
 		
 		override public function onRemove():void {
@@ -54,7 +55,7 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				BBNotifications.UNIT_STARTED,
+				
 			]);
 		}
 		
@@ -62,10 +63,7 @@
 			super.handleNotification(note);
 			
 			switch (note.getName()) {
-				case BBNotifications.UNIT_STARTED:
-					var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-					view.widgetCollection = courseProxy.widgetCollection;
-					break;
+				
 			}
 		}		
 		
