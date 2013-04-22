@@ -82,6 +82,7 @@ package com.clarityenglish.rotterdam.view.course {
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
 		public var helpPublish:Signal = new Signal();
+		public var unitDuplcate:Signal = new Signal();
 		
 		public function get course():XML {	
 			return _xhtml.selectOne("script#model[type='application/xml'] course");
@@ -251,7 +252,7 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onUnitCopy(event:MouseEvent):void {
-			dispatchEvent(new Event(Event.COPY, true));
+			unitDuplcate.dispatch();
 		}
 		
 		/*gh #240
