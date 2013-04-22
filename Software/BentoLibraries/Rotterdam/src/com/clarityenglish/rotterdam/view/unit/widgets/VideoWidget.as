@@ -5,6 +5,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flash.events.ProgressEvent;
 	
 	import mx.controls.SWFLoader;
+	import mx.events.FlexEvent;
 	
 	import spark.components.Group;
 	
@@ -24,6 +25,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			
 			recordFlag = true;
 			addEventListener("srcAttrChanged", reloadVideo, false, 0, true);
+			//gh#215
+			addEventListener(FlexEvent.HIDE, stopVideo, false, 0, true);
 		}
 		
 		[Bindable(event="srcAttrChanged")]
@@ -81,6 +84,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.onRemovedFromStage(event);
 			
 			removeEventListener("srcAttrChanged", reloadVideo);
+			
+			if (swfLoader.content)
+				stopVideo();
 		}
 		
 		//gh #106
@@ -89,6 +95,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				playVideo.dispatch(xml);
 			
 			recordFlag = false;
+		}
+		
+		//gh#215
+		private function stopVideo(event:Event = null):void {
+			swfLoader.content["stopVideo"]();
 		}
 		
 	}

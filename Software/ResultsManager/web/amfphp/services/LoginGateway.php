@@ -213,7 +213,7 @@ try {
 			$user = $loginService->getUser($apiInformation);
 			
 			if ($user==false) {
-				if (!$group)
+				if (!isset($group))
 					$group = $loginService->getGroup($apiInformation, $account);
 					
 				if ($group==false) {
