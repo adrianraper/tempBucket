@@ -25,7 +25,7 @@
 	 */
 	public class WidgetMediator extends Mediator implements IMediator {
 		
-		//gh #106
+		//gh#106
 		private var exerciseMark:ExerciseMark = new ExerciseMark();
 		
 		public function WidgetMediator(mediatorName:String, viewComponent:Object) {
@@ -77,6 +77,7 @@
 				RotterdamNotifications.TEXT_FORMAT,
 				RotterdamNotifications.WEB_URL_ADD,
 				RotterdamNotifications.WEB_URL_CANCEL,
+				RotterdamNotifications.WIDGET_RENAME,
 			]);
 		}
 		
@@ -113,6 +114,11 @@
 						view.widgetChrome.linkButtonRect.alpha = 0;
 						view.widgetChrome.menuButton.enabled = true;
 						break;
+					case RotterdamNotifications.WIDGET_RENAME:
+						view.widgetChrome.widgetCaptionTextInput.visible = true;
+						view.widgetChrome.widgetCaptionTextInput.setFocus();
+						view.widgetChrome.widgetCaptionLabel.visible = false;
+						break;
 				}
 			}
 		}
@@ -133,7 +139,7 @@
 				var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 				navigateToURL(new URLRequest(srcHref.url), "_blank");
 			}
-			//gh #106
+			//gh#106
 			exerciseMark.duration = 120;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
@@ -153,14 +159,14 @@
 			facade.sendNotification(RotterdamNotifications.TEXT_SELECTED, format);
 		}
 		
-		//gh #106
+		//gh#106
 		protected function onPlayVideo(widget:XML):void {
 			exerciseMark.duration = 60;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 		}
 		
-		//gh #106
+		//gh#106
 		protected function onPlayAudio(widget:XML):void {
 			exerciseMark.duration = 60;
 			exerciseMark.UID = view.clarityUID;

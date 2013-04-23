@@ -35,6 +35,8 @@
 			view.widgetSelect.add(onWidgetSelect);
 			view.widgetDelete.add(onWidgetDelete);
 			view.widgetEdit.add(onWidgetEdit);
+			//gh@187
+			view.widgetRename.add(onWidgetRename);
 			
 			// gh#221
 			view.addEventListener(WidgetLinkEvent.ADD_LINK, onAddLink);
@@ -82,6 +84,11 @@
 		// gh#221
 		protected function onAddLink(event:WidgetLinkEvent):void {
 			facade.sendNotification(RotterdamNotifications.WEB_URL_SELECT);
+		}
+		
+		//gh#187
+		protected function onWidgetRename():void {
+			facade.sendNotification(RotterdamNotifications.WIDGET_RENAME);
 		}
 	}
 }

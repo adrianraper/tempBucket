@@ -42,6 +42,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var widgetSelect:Signal = new Signal(XML);
 		public var widgetDelete:Signal = new Signal(XML);
 		public var widgetEdit:Signal = new Signal(XML);
+		//gh#187
+		public var widgetRename:Signal = new Signal();
 		
 		[Bindable] 
 		public var timer:Timer = new Timer(50);
@@ -56,6 +58,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete, false, 0, true);
 			addEventListener(WidgetMenuEvent.WIDGET_EDIT, onWidgetEdit, false, 0, true);
+			//gh#187
+			addEventListener(WidgetMenuEvent.WIDGET_RENAME, onWidgetRename, false, 0, true);
 		}
 		
 		protected override function onRemovedFromStage(event:Event):void {
@@ -110,6 +114,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 */
 		protected function onWidgetEdit(event:WidgetMenuEvent):void {
 			widgetEdit.dispatch(event.xml);
+		}
+		
+		//gh#187
+		protected function onWidgetRename(event:WidgetMenuEvent):void {
+			widgetRename.dispatch();
 		}
 		
 		/**

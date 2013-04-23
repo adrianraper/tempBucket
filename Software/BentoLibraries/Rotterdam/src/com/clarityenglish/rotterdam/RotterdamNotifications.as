@@ -20,6 +20,8 @@
 		public static const WIDGET_ADD:String = "rotterdam/widget_add";
 		public static const WIDGET_DELETE:String = "rotterdam/widget_delete";
 		public static const WIDGET_EDIT:String = "rotterdam/widget_edit";
+		//gh#187
+		public static const WIDGET_RENAME:String = "rotterdam/widget_rename";
 		
 		public static const TEXT_WIDGET_ADD:String = "rotterdam/text_widget_add";
 		public static const PDF_WIDGET_ADD:String = "rotterdam/pdf_widget_add";

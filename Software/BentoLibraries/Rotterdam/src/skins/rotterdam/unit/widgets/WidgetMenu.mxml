@@ -34,7 +34,8 @@
 			
 			protected function onRenameClick(event:MouseEvent):void {
 				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
-				// Not yet implemented
+				// gh#187
+				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.WIDGET_RENAME, true));
 			}
 			
 			protected function onDeleteClick(event:MouseEvent):void {
@@ -78,7 +79,7 @@
 		</s:Rect>
 		
 		<s:VGroup left="0" right="0" gap="0" horizontalAlign="center">
-			<s:Button label="Rename item" icon="{CopyIcon}" width="100%" height="50" click="onRenameClick(event)" enabled="false" />
+			<s:Button label="Rename item" icon="{CopyIcon}" width="100%" height="50" click="onRenameClick(event)" enabled="true" />
 			
 			<s:Line width="135">
 				<s:stroke>

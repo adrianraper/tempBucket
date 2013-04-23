@@ -8,6 +8,8 @@ package com.clarityenglish.rotterdam.view.unit.events {
 		
 		public static const WIDGET_DELETE:String = "widgetDelete";
 		public static const WIDGET_EDIT:String = "widgetEdit";
+		//gh#187
+		public static const WIDGET_RENAME:String = "widgetRename";
 		
 		private var _xml:XML;
 		
