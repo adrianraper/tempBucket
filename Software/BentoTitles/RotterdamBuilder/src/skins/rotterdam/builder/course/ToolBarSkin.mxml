@@ -98,28 +98,29 @@
 		<s:Label includeIn="normal" text="Add an item" color="0x283D0C" top="19" left="46"  />
 	</s:Group>
 	</s:HGroup-->
-	<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="512" label="Add an Item" visible="false"/>
-	<s:Group id="itemList" left="495" bottom="48" visible="false" includeIn="normal">
-		<s:Rect width="500" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" alpha="0.8">
-			<s:fill>
-				<s:SolidColor color="#363636" />
-			</s:fill>
-		</s:Rect>
-		<s:Label text="Choose the item you would like to add to your unit" color="0xFFFFFF" fontSize="19" top="35" left="35"/>
-		<s:Button id="listAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" top="70" left="35"/>
-		<s:Label text="Add text" top="80" left="80" color="0xFFFFFF" fontSize="14"/>
-		<s:Button id="listAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" top="70" left="250"/>
-		<s:Label text="Add a PDF" top="80" left="295" color="0xFFFFFF" fontSize="14"/>
-		<s:Button id="listAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" top="110" left="35"/>
-		<s:Label text="Add a video" top="120" left="80" color="0xFFFFFF" fontSize="14"/>
-		<s:Button id="listAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" top="110" left="250"/>
-		<s:Label text="Add an image" top="120" left="295" color="0xFFFFFF" fontSize="14"/>
-		<s:Button id="listAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" top="150" left="35"/>
-		<s:Label text="Add an audio" top="160" left="80" color="0xFFFFFF" fontSize="14"/>
-		<s:Button id="listAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true"  top="150" left="250"/>
-		<s:Label text="Add a Clarity exercise" top="160" left="295" color="0xFFFFFF" fontSize="14"/>
-	</s:Group>
-	
+	<s:Group id="addItemButtonGroup" visible="false">
+		<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="512" label="Add an Item" includeIn="normal"/>
+		<s:Group id="itemList" left="495" bottom="48" includeIn="normal">
+			<s:Rect width="500" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" alpha="0.8">
+				<s:fill>
+					<s:SolidColor color="#363636" />
+				</s:fill>
+			</s:Rect>
+			<s:Label text="Choose the item you would like to add to your unit" color="0xFFFFFF" fontSize="19" top="35" left="35"/>
+			<s:Button id="listAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" top="70" left="35"/>
+			<s:Label text="Add text" top="80" left="80" color="0xFFFFFF" fontSize="14"/>
+			<s:Button id="listAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" top="70" left="250"/>
+			<s:Label text="Add a PDF" top="80" left="295" color="0xFFFFFF" fontSize="14"/>
+			<s:Button id="listAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" top="110" left="35"/>
+			<s:Label text="Add a video" top="120" left="80" color="0xFFFFFF" fontSize="14"/>
+			<s:Button id="listAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" top="110" left="250"/>
+			<s:Label text="Add an image" top="120" left="295" color="0xFFFFFF" fontSize="14"/>
+			<s:Button id="listAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" top="150" left="35"/>
+			<s:Label text="Add an audio" top="160" left="80" color="0xFFFFFF" fontSize="14"/>
+			<s:Button id="listAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true"  top="150" left="250"/>
+			<s:Label text="Add a Clarity exercise" top="160" left="295" color="0xFFFFFF" fontSize="14"/>
+		</s:Group>
+	</s:Group>	
 
 	<s:HGroup id="iconGroup" bottom="0" left="512" gap="8" height="48" verticalAlign="middle">
 	<s:Label text="Add an item" color="0x283D0C" paddingTop="5" fontWeight="bold" includeIn="normal" />

@@ -147,6 +147,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var iconGroup:HGroup;
 		
+		[SkinPart]
+		public var addItemButtonGroup:Group;
+		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object, XML);
 		public var addPDF:Signal = new Signal(Object, XML);
@@ -212,12 +215,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
 			
-			if (stage.stageWidth == 1200) {
-				smallScreenFlag = false;
-			} else {
-				smallScreenFlag = true;
-			}
-			
+			smallScreenFlag = (stage.stageWidth <= 1200);
 			stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			addEventListener(Event.RESIZE, onScreenResize);
 		}
@@ -233,10 +231,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			super.commitProperties();
 			
 			if (smallScreenFlag) {
-				addItemButton.visible = true;
+				addItemButtonGroup.visible = true;
 				iconGroup.visible = false; 
 			} else {
-				addItemButton.visible = false;
+				addItemButtonGroup.visible = false;
 				iconGroup.visible = true; 
 			}
 		}
