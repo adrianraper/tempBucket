@@ -157,14 +157,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
-		//gh #221
+		// gh#221
 		public var addLink:Signal = new Signal(XML);
 		public var cancelLink:Signal = new Signal();
 
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
-		//alice: small screen size solution
-		private var smallSreenFlag:Boolean;
+		
+		// alice: small screen size solution
+		private var smallScreenFlag:Boolean;
 		
 		private var _currentEditingWidget:XML;
 		
@@ -212,9 +213,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			super.onAddedToStage(event);
 			
 			if (stage.stageWidth == 1200) {
-				smallSreenFlag = false;
+				smallScreenFlag = false;
 			} else {
-				smallSreenFlag = true;
+				smallScreenFlag = true;
 			}
 			
 			stage.addEventListener(MouseEvent.CLICK, onStageClick);
@@ -231,7 +232,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (smallSreenFlag) {
+			if (smallScreenFlag) {
 				addItemButton.visible = true;
 				iconGroup.visible = false; 
 			} else {
@@ -519,9 +520,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		//alice: small screen size solution
 		protected function onScreenResize(event:Event):void {
 			if (stage.stageWidth == 1200) {
-				smallSreenFlag = false;
+				smallScreenFlag = false;
 			} else {
-				smallSreenFlag = true;
+				smallScreenFlag = true;
 			}
 			invalidateProperties();				
 		}

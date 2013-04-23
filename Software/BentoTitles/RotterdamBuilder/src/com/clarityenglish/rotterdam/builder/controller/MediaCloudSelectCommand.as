@@ -75,6 +75,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		 */
 		protected function onFileSelect(event:FileManagerEvent):void {
 			node.@src = event.mediaNode.@filename;
+			if (event.mediaNode.hasOwnProperty("@thumbnail")) node.@thumbnail = event.mediaNode.@thumbnail; // gh#210
 		}
 		
 		//gh #212
