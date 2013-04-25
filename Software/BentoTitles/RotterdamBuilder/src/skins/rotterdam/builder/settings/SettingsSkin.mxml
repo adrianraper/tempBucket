@@ -68,7 +68,7 @@
 									dataProvider="{hostComponent.groupTreesCollection}"
 									width="300"
 									labelField="name"
-									iconFunction="getTreeIcon" />
+									iconFunction="getTreeIcon" height="200" />
 					
 					<s:Spacer height="{settingBackground.height * 0.03}" />
 				</s:VGroup>

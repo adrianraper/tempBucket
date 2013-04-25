@@ -63,7 +63,7 @@
 		<s:TextInput includeIn="audio" id="audioUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" prompt="Enter a URL and press enter" />
 		
 		<s:Label includeIn="video" text="Place your video URL here:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
-		<s:TextInput includeIn="video" id="videoUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" text="http://www.youtube.com/v/hecfFD_D_pU?version=3" />
+		<s:TextInput includeIn="video" id="videoUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" text="http://http://www.youtube.com/watch?v=sm_hEaUJKiw" />
 		
 		<s:Label includeIn="link" text="Input your web URL here:" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="webUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />
