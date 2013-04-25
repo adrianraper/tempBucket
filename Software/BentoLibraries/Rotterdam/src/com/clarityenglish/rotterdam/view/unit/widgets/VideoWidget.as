@@ -66,6 +66,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected function resizeVideo(event:Event = null):void {
 			if (swfLoader && swfLoader.content && swfLoader.content["setSize"] && videoHolder) {
 				swfLoader.content["setSize"](width - 16, videoHolder.height);
+				widgetText.width = width;
 				
 				// These three lines are a bit hacky, but otherwise the YouTube video doesn't want to centre itself properly
 				swfLoader.x = 8;
