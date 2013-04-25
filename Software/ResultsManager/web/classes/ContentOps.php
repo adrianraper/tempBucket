@@ -1168,6 +1168,11 @@ EOD;
 		// If we only want titles then stop here and don't load any more
 		if ($forDMS) return $title;
 		
+		//gh#223
+		if ($courseType == 'rotterdam') {
+			return $title;
+		}
+		
 		$doc = new DOMDocument();
 		//NetDebug::trace("read folder=".$folder."/".$title->indexFile);
 		// v3.2 Extra protection in case folders are missing
@@ -1194,12 +1199,9 @@ EOD;
 			$course->enabledFlag = $courseXML->getAttribute("enabledFlag");
 			//NetDebug::trace("ContentOps: course=".$course->name);
 
-			//gh#223
-			if ($courseType != 'rotterdam') {
-				$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
-				//gh#23
-				$course->totalUnits = count($course-> units);
-			}
+			$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
+			//gh#23
+			$course->totalUnits = count($course-> units);
 			
 				
 			if ($course->id != null) { // Ticket #104 - don't add content with missing id

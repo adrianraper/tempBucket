@@ -74,11 +74,8 @@ package com.clarityenglish.common.controller {
 			//gh #223
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var config:Config = configProxy.getConfig();
-			trace("product code: "+config.productCode);
-			if (config.productCode != "54") {
-				// Exit the program
-				if (isFatal) sendNotification(CommonNotifications.EXIT);
-			}
+			// Exit the program
+			if (isFatal) sendNotification(CommonNotifications.EXIT);
 		}
 		
 	}

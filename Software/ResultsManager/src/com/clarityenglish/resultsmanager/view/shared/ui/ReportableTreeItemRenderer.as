@@ -32,6 +32,7 @@
 		private static const ON:String = "on";
 		private static const TRI:String = "tri";
 		private static const EMPTY:String = "empty";
+		private static const DISABLE:String = "disable";
 		
 		[Embed(source="/../assets/group_icon.swf")]
 		private var groupIcon:Class;
@@ -332,6 +333,9 @@
 								checkBox.toolTip = checkBoxToolTips.triCheckBoxToolTip;
 							}
 							break;
+						case DISABLE:
+							checkBox.enabled = false;
+							break;
 					}
 				} else {
 					checkBox.selected = isCheckBoxSelected();
@@ -491,19 +495,9 @@
 			
 			//gh#223
 			if (data.hasOwnProperty("productCode") && data.productCode == "54" ){
-				if (data.children) {
-					return isCheckBoxSelected(data) ? ON : OFF; 
-				} else {
-					return OFF;
-				}
+					return DISABLE;
 			}
 			
-			//gh#223
-			if (data.parent && ClassUtils.getClass(data.parent) == Title) {
-				if (data.parent.productCode == "54") {
-					return isCheckBoxSelected(data) ? ON : OFF; 
-				}
-			}
 			// If a branch then work out its state from the children
 			var selectedCount:int = 0;
 			var totalCount:int = data.children.length;
