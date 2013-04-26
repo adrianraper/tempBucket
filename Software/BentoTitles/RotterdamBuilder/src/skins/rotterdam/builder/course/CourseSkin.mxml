@@ -48,6 +48,10 @@
 		]]>
 	</fx:Script>
 	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" alpha="0.4" />		
+	</fx:Declarations>
+	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
@@ -108,19 +112,17 @@
 	
 	<!--alice p-->
 	<s:VGroup left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">	
-		<s:VGroup paddingLeft="30" id="publishSelectionGroup" visible="false">
+		<s:VGroup paddingLeft="2" id="publishSelectionGroup" visible="false">
 			<s:Group>
-				<s:Rect width="100" height="100" topLeftRadiusX="8" topRightRadiusX="8">
+				<s:Rect width="152" height="180" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
 					<s:fill>
-						<s:LinearGradient rotation="90">
-							<s:GradientEntry color="0XFFC700" ratio="0.5" />
-							<s:GradientEntry color="0XFF9D00" />
-						</s:LinearGradient>
+						<s:SolidColor color="0XF7F2F0" />
 					</s:fill>
 				</s:Rect>
 				<s:Button id="oneClickPublishButton" label="1 click" useHandCursor="true" buttonMode="true"
-						  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="100" height="50"/>
-				<s:Button id="publishSettingsButton" top="50" label="Publish settings" useHandCursor="true" buttonMode="true" width="100" height="50"/>
+						  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6"/>
+				
+				<s:Button id="publishSettingsButton" label="Publish setting" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="70"/>
 			</s:Group>					
 		</s:VGroup>		
 		<s:Group>

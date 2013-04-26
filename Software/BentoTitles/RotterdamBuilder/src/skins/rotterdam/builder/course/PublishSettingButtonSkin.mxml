@@ -90,9 +90,12 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:Rect id="fill" left="2" right="2" top="2" bottom="1" >
+	<s:Rect id="fill" left="2" right="2" top="2" bottom="1" radiusX="6" radiusY="6" filters="{dropShadowFilter}" >
 		<s:fill>
-			<s:SolidColor color="0x363636" alpha="0.8"/>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry id="color1" color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" />
+				<s:GradientEntry id="color2" color="0XFF9D00" color.over="0XFFE382" color.down="0XFFE382" />
+			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
 	
@@ -104,7 +107,7 @@
 	
 	<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/icon_changeSettings.png')" top="12" left="10"/>
 	
-	<s:Group left="105" includeIn="over">
+	<!--s:Group left="105" includeIn="over">
 		<s:SWFLoader top="20" source="@Embed(source='skins/rotterdam/builder/assets/unit/icon_PublishCourse_arrow.png')"/>
 		<s:Rect left="15" top="7" width="145" height="36" radiusX="8" radiusY="8">
 			<s:fill>
@@ -115,17 +118,17 @@
 			</s:stroke>
 		</s:Rect>
 		<s:Label left="30" top="20" text="week by week setting" width="195" lineHeight="18"/>
-	</s:Group>
+	</s:Group-->
     
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 	<s:Label id="labelDisplay"
-			 color="0xFFFFFF"
-			 fontSize="13"
-			 textAlign="center"
+			 color="0x000000"
+			 fontSize="13" fontWeight="bold"
 			 maxDisplayedLines="2"
-			 horizontalCenter="15" verticalCenter="2" verticalAlign="middle"
-			 left="10" right="10" top="2" bottom="2">
+			 left="40" right="10" top="17" bottom="2">
 	</s:Label>
+	
+	<s:Label id="publishSettingsLabel" text="It is the week by week setting" width="110" top="33" left="40" color="0x000000" fontSize="13"/>
     
 </s:SparkButtonSkin>

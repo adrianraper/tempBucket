@@ -73,9 +73,9 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true };
 			
 			//gh#260
-			if (scroller.verticalScrollBar) {
+			/*if (scroller.verticalScrollBar) {
 				scroller.verticalScrollBar.value = scroller.verticalScrollBar.maximum + 280;
-			}
+			}*/
 			
 			return classFactory;
 		}
@@ -140,7 +140,6 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		
 		override protected function dragDropHandler(event:DragEvent):void {
 			// Override with an empty method so that the superclass doesn't do anything
-		}
-		
+		}		
 	}
 }

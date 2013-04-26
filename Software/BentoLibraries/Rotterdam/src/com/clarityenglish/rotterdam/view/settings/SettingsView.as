@@ -398,7 +398,7 @@ package com.clarityenglish.rotterdam.view.settings {
 					backButton.addEventListener(MouseEvent.CLICK, onBack);
 					break;
 				case welcomeEmailButton:
-					saveButton.addEventListener(MouseEvent.CLICK, onSendWelcomeEmail);
+					welcomeEmailButton.addEventListener(MouseEvent.CLICK, onSendWelcomeEmail);
 					break;
 				case seePastUnitLabel:
 					seePastUnitLabel.text = copyProvider.getCopyForId("seePastUnitLabel");
