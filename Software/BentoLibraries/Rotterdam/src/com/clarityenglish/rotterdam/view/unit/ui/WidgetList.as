@@ -71,9 +71,15 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
 			classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true };
+			
+			//gh#260
+			if (scroller.verticalScrollBar) {
+				scroller.verticalScrollBar.value = scroller.verticalScrollBar.maximum + 280;
+			}
+			
 			return classFactory;
 		}
-		
+
 		override protected function dragStartHandler(event:DragEvent):void {
 			if (event.isDefaultPrevented())
 				return;
