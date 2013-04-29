@@ -60,10 +60,10 @@
 			<lit name="errorSecurity" code="701">Security error</lit>
 			<lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
 			<lit name="errorSavingCourseDates" code="703">Error saving publication dates for this course.</lit>
-			<lit name="errorConcurrentCourseAccess" code="704">Somebody is already editing this course.  Please try again later.</lit>
+			<lit name="errorConcurrentCourseAccess" code="704">Somebody is already editing this course. Please try again later.</lit>
 			
-			<lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated.  Please contact support@clarityenglish.com</lit>
-			<lit name="errorUploadNoPOST" code="706">No POST data was found in this upload.  Please contact support@clarityenglish.com.</lit>
+			<lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated. Please contact support@clarityenglish.com</lit>
+			<lit name="errorUploadNoPOST" code="706">No POST data was found in this upload. Please contact support@clarityenglish.com.</lit>
 			
             <lit name="pathCCB">CCB</lit>
             <lit name="pathTenseBuster">TenseBuster</lit>
@@ -101,9 +101,6 @@
 			<lit name="loginID">Login id:</lit>
 			<lit name="yourID">Your id:</lit>
 			<lit name="yourEmail">Your email:</lit>
-			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
-			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
-			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
 			<lit name="welcomeLabel">Welcome, {fullname}</lit>
 			<lit name="overallCoverage"> - overall coverage</lit>
 			<lit name="myProgress">My Progress</lit>
@@ -159,10 +156,10 @@
 			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
 			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
-			<lit name="footerLabel">Data © The British Council 2006-2012. Software © Clarity Language Consultants Ltd, 2012. All rights reserved.</lit>
+			<lit name="footerLabel">Software, design, navigation © Clarity Language Consultants Ltd, 2013. All rights reserved.</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 			<lit name="xhtmlDirty">Your changes to this course have not been saved. Are you sure you want to continue?</lit>
-			<lit name="settingsDirty">Your changes the the settings have not been saved. Are you sure you want to continue?</lit>
+			<lit name="settingsDirty">Your changes to the settings have not been saved. Are you sure you want to continue?</lit>
 			<lit name="uploadsDirty">There are files currently uploading. Are you sure you want to continue?</lit>
 			<lit name="widgetPlaceholderText">Type a description here.</lit>
 			<lit name="emptyFileLabel">You have not uploaded any files to the Resource Cloud</lit>
@@ -173,7 +170,7 @@
 			<lit name="endDateInstructionLabel">(leave this blank if you don't want the course to end)</lit>
 			<lit name="unitIntervalLabel">4. week-by-week setting</lit>
 			<lit name="allUnitAvaRadioButton">All units available from start date</lit>
-			<lit name="unitSuccessiveRadioButton">How many days between unit</lit>
+			<lit name="unitSuccessiveRadioButton">Days between units</lit>
 			<lit name="seePastUnitLabel">5. See past units?</lit>
 			<lit name="yesRadioButton">Yes</lit>
 			<lit name="noRadioButton">No</lit>

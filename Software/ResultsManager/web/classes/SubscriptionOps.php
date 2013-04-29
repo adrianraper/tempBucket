@@ -325,7 +325,8 @@ EOD;
 					// The newTitle.expiryDate is based on offer duration from today.
 					// but the original subscription might have a few days left, so add them on
 					$timeLeft = strtotime($title->expiryDate) - strtotime(date('Y-m-d 23:59:59'));
-					$daysLeft = round($timeLeft / 86400);
+					// gh#272
+					$daysLeft = max(round($timeLeft / 86400), 0);
 					$newTitle->expiryDate = date('Y-m-d 23:59:59', strtotime('+'.$daysLeft.' days',strtotime($newTitle->expiryDate)));
 					$account->removeTitles(array($title));
 				}

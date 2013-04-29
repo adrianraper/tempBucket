@@ -152,8 +152,8 @@
     </tr>
 </table>
     
-{elseif $resellerCode=='3'}
-	{* Edutech *}
+{elseif $resellerCode=='28'}
+	{* Protea *}
     
 <table width="360" border="0" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/q_mid.jpg" bgcolor="#EDEDED">
       <tr>
@@ -164,16 +164,20 @@
     
     <tr>
     <td width="12" height="94"></td>
-    <td width="90" valign="top"><img src="http://www.clarityenglish.com/images/email/q_edutech.jpg" width="83" height="40" align="right" style="margin:25px 0 0 0;"/></td>
+    <td width="90" valign="top"><img src="http://www.clarityenglish.com/images/email/q_protea.jpg" width="83" height="40" align="right" style="margin:25px 0 0 0;"/></td>
     <td width="8"></td>
     <td width="250" align="left" valign="top">
       <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Your local contact is:</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mrs Shameema Parveen </strong></p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Virginia Westwood </strong></p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">
-		Edutech Middle East<br />
-		United Arab Emirates<br />
-		Tel: [971] 4 357 2002<br />
-		Email: <a href="mailto: shameema@edutech.com">shameema@edutech.com</a>
+		Protea Textware Pty Ltd<br />
+		PO Box 49<br />
+		Hurstbridge  Vic 3099<br />
+		p: (03) 9714 8660<br />
+		m: 0408 971 446<br />
+		f: (03) 9714 8644<br />
+		w: www.proteatextware.com.au<br />
+		e: <a href="mailto: orders@proteatextware.com.au">orders@proteatextware.com.au</a>
       </p></td>
   </tr>
     
