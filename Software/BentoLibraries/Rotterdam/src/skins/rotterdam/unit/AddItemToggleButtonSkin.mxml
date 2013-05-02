@@ -54,18 +54,6 @@
             //useChromeColor = true;
             super.initializationComplete();
         }
-		
-		override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
-			/*if(getStyle("ratio1")) {
-				color1.ratio = getStyle("ratio1");
-			}
-			if(getStyle("ratio2")) {
-				color2.ratio = getStyle("ratio2");
-			}*/
-		}
         
     </fx:Script>
 	
@@ -128,8 +116,8 @@
 			<s:Path winding="nonZero" data="M3.5 18C1.57031 18 0 16.4297 0 14.5L0 3.5C0 1.57031 1.57031 0 3.5 0L14.5 0C16.4297 0 18 1.57031 18 3.5L18 14.5C18 16.4297 16.4297 18 14.5 18L3.5 18Z" >
 				<s:fill>
 					<s:LinearGradient x="9.00049" y="18" scaleX="17.9995" rotation="-90">
-						<s:GradientEntry id="color1" color="0x3C5E11" color.selectedStates="0x8CC63F" color.over="0x8CC63F" color.down="0x8CC63F" ratio="1"/>
-						<s:GradientEntry id="color2" color="0x709E33" color.selectedStates="0x72A133" color.over="0x72A133" color.down="0x72A133" ratio="0" />
+						<s:GradientEntry id="color1" color="0x3C5E11" color.selectedStates="0x8CC63F" color.over="0x8CC63F" color.down="0x8CC63F" ratio="0" />
+						<s:GradientEntry id="color2" color="0x709E33" color.selectedStates="0x72A133" color.over="0x72A133" color.down="0x72A133" ratio="1"/>
 					</s:LinearGradient>
 				</s:fill>
 			</s:Path>

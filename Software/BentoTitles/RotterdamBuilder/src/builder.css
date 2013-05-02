@@ -152,16 +152,12 @@ buildercourse|ToolBarView s|ToggleButton#addItemButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddItemToggleButtonSkin");
 }
 
-buildercourse|ToolBarView s|ToggleButton#upToggleButton {
-	skinClass: ClassReference("skins.rotterdam.unit.AddItemToggleButtonSkin");
-	ratio1: 0;
-	ratio2: 1;
+buildercourse|ToolBarView s|Button#upButton {
+	skinClass: ClassReference("skins.rotterdam.unit.UpArrowButtonSkin");
 }
 
-buildercourse|ToolBarView s|ToggleButton#downToggleButton {
-	skinClass: ClassReference("skins.rotterdam.unit.AddItemToggleButtonSkin");
-	ratio1: 1;
-	ratio2: 0.5;
+buildercourse|ToolBarView s|Button#downButton {
+	skinClass: ClassReference("skins.rotterdam.unit.DownArrowButtonSkin");
 }
 
 buildercourse|ToolBarView s|Button#normalSaveButton {

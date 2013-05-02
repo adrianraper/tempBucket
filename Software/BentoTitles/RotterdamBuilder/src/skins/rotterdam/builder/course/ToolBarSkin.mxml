@@ -11,19 +11,23 @@
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
 				
-		<s:Animate id="upAim" targets="{[itemList]}" duration="300" effectEnd="onUpAimStop(event)" >
+		<s:Animate id="upAim" targets="{[itemList]}" duration="300">
 			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="140" />
+		</s:Animate>
+		
+		<s:Animate id="addAim" targets="{[itemList]}" duration="300">
+			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="200" />
 		</s:Animate>
 	</fx:Declarations>
 	
 	<fx:Script>
 		<![CDATA[
-			protected function onUpAimStop(event:Event):void {
+			/*protected function onUpAimStop(event:Event):void {
 				if (hostComponent.downArrowClick) {
 					itemList.alpha = 0;
 					iconGroup.alpha = 1;
 				}			
-			}
+			}*/
 		]]>
 	</fx:Script>
 	
@@ -114,27 +118,49 @@
 	</s:Group>
 	</s:HGroup-->
 	<s:Group id="addItemButtonGroup" includeIn="normal">
-		<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="512" label="Add an Item" visible="false" />
-		<s:Group id="itemList" left="495" bottom="48" height="0" alpha="0">
-			<s:Rect id="widgetRect" width="410" height="140" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
-				<s:fill>
-					<!--s:LinearGradient rotation="90">
+		<s:Group id="itemList" left="495" bottom="48" height="0" alpha="0" width="0">
+			<s:Group id="largePopUpGroup">
+				<s:Rect width="410" height="140" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+					<s:fill>
+						<!--s:LinearGradient rotation="90">
 						<s:GradientEntry color="0x8CC63F" ratio="0.5" />
 						<s:GradientEntry color="0x72A133" />
-					</s:LinearGradient-->
-					<s:SolidColor color="0x8CC63F" />
-				</s:fill>
-			</s:Rect>
-			<s:Rect width="410" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
-				<s:fill>
-					<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0x3C5C11" ratio="0.5" />
-						<s:GradientEntry color="0x283D0C" />
-					</s:LinearGradient>
-				</s:fill>			
-			</s:Rect>
-			<s:Label text="Choose the item you would like to add to your unit" color="0x8CC63F" fontSize="14" top="15" left="25" />
-			<s:ToggleButton id="downToggleButton" left="360" top="10" rotation="180" click="upAim.play(null, true);"/>
+						</s:LinearGradient-->
+						<s:SolidColor color="0x8CC63F" />
+					</s:fill>
+				</s:Rect>
+				<s:Rect width="410" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+					<s:fill>
+						<s:LinearGradient rotation="90">
+							<s:GradientEntry color="0x3C5C11" ratio="0.5" />
+							<s:GradientEntry color="0x283D0C" />
+						</s:LinearGradient>
+					</s:fill>			
+				</s:Rect>
+				<s:Label text="Choose the item you would like to add to your unit" color="0x8CC63F" fontSize="14" top="15" left="25" />
+				<s:Button id="downButton" left="360" top="10" click="upAim.play(null, true);"/>
+			</s:Group>
+			
+			<s:Group id="smallPopUpGroup">
+				<s:Rect width="410" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+					<s:fill>
+						<s:LinearGradient rotation="90">
+						<s:GradientEntry color="0x8CC63F" ratio="0.5" />
+						<s:GradientEntry color="0x72A133" />
+						</s:LinearGradient>
+					</s:fill>
+				</s:Rect>
+				<s:Rect width="410" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+					<s:fill>
+						<s:LinearGradient rotation="90">
+							<s:GradientEntry color="0x3C5C11" ratio="0.5" />
+							<s:GradientEntry color="0x283D0C" />
+						</s:LinearGradient>
+					</s:fill>			
+				</s:Rect>
+				<s:Label text="Choose the item you would like to add to your unit" color="0x8CC63F" fontSize="14" top="15" left="40" />
+			</s:Group>
+			
 			<s:Button id="listAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" top="60" left="25"/>
 			<s:Label text="Add text" top="70" left="65" color="0x283D0C" fontSize="13"/>
 			<s:Button id="listAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" top="60" left="215"/>
@@ -150,7 +176,7 @@
 		</s:Group>
 	</s:Group>	
 
-	<s:HGroup id="iconGroup" bottom="0" left="512" gap="8" height="48" verticalAlign="middle" alpha="1">
+	<s:HGroup id="iconGroup" bottom="0" right="312" gap="8" height="48" verticalAlign="middle" alpha="1">
 		<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" />
@@ -158,8 +184,10 @@
 		<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" />
 		<s:Spacer width="30" />
-		<s:ToggleButton id="upToggleButton" label="Learn more" click="upAim.play();" includeIn="normal"/>
+		<s:Button id="upButton" label="Learn more" click="upAim.play();" includeIn="normal"/>
 	</s:HGroup>
+	
+	<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" right="300" label="Add an Item" visible="false" click="addAim.play()" />
 	
 	<s:HGroup bottom="0" gap="10" height="48" right="140" verticalAlign="middle">
 		<s:Button includeIn="normal" id="normalSaveButton" label="Save changes" useHandCursor="true" buttonMode="true" fontWeight="bold" />

@@ -8,6 +8,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
+	import mx.events.EffectEvent;
 	import mx.events.FlexEvent;
 	import mx.events.FlexMouseEvent;
 	
@@ -145,7 +146,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addItemButton:ToggleButton;
 		
 		[SkinPart]
-		public var upToggleButton:ToggleButton;
+		public var upButton:Button;
 		
 		//alice: small screen size solution
 		[SkinPart]
@@ -155,7 +156,16 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addItemButtonGroup:Group;
 		
 		[SkinPart]
-		public var downToggleButton:ToggleButton;
+		public var downButton:Button;
+		
+		[SkinPart]
+		public var upAim:Animate;
+		
+		[SkinPart]
+		public var largePopUpGroup:Group;
+		
+		[SkinPart]
+		public var smallPopUpGroup:Group;
 		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object, XML);
@@ -223,7 +233,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
 			
-			smallScreenFlag = (stage.stageWidth <= 1200);
+			smallScreenFlag = (stage.stageWidth < 1200);
 			stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			addEventListener(Event.RESIZE, onScreenResize);
 		}
@@ -350,11 +360,14 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case linkSelectButton:
 					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);					
 					break;
-				case upToggleButton:
-					upToggleButton.addEventListener(MouseEvent.CLICK, onAddItemClick);
+				case upButton:
+					upButton.addEventListener(MouseEvent.CLICK, onUpClick);
 					break;
-				case downToggleButton:
-					downToggleButton.addEventListener(MouseEvent.CLICK, onDownClick);
+				case downButton:
+					downButton.addEventListener(MouseEvent.CLICK, onDownClick);
+					break;
+				case upAim:
+					upAim.addEventListener(EffectEvent.EFFECT_END, onUpAimEnd);
 					break;
 			}
 		}
@@ -533,16 +546,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		//alice: small screen size solution
 		protected function onScreenResize(event:Event):void {
-			if (stage.stageWidth == 1200) {
-				smallScreenFlag = false;
-			} else {
+			if (stage.stageWidth < 1200) {
 				smallScreenFlag = true;
+			} else {
+				smallScreenFlag = false;
 			}
 			invalidateProperties();				
 		}
 		
-		protected function onAddItemClick(event:MouseEvent):void {
+		protected function onUpClick(event:MouseEvent):void {
 			iconGroup.alpha = 0;
+			largePopUpGroup.visible = true;
+			smallPopUpGroup.visible = false;
 			itemList.alpha = 1;
 			outsideClick = false;
 			downArrowClick = false; 
@@ -553,6 +568,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			downArrowClick = true;
 		}
 		
+		protected function onAddItemClick(event:MouseEvent):void {
+			largePopUpGroup.visible = false;
+			smallPopUpGroup.visible = true;
+			itemList.alpha = 1;
+			outsideClick = false;
+			downArrowClick = false; 
+		}
+		
+		//The pop up menu will not shrink if user click on menu itself
 		protected function onItemListClick(event:MouseEvent):void {
 			if (!itemClick) {
 				outsideClick = false;
@@ -563,8 +587,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			if (outsideClick) {
 				addItemButton.skin.setCurrentState("up", true);
 				addItemButton.selected = false;
-				upToggleButton.skin.setCurrentState("up", true);
-				upToggleButton.selected = false;
+				downArrowClick = true;
+				upAim.play(null, true);
 			} else {
 				outsideClick = true;
 				itemClick = false;
@@ -572,6 +596,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 
 		}
 		
+		protected function onUpAimEnd(event:Event):void {
+			if (downArrowClick) {
+				itemList.alpha = 0;
+				iconGroup.alpha = 1;
+			}
+		}
 		/**
 		 * gh#115 - make sure that as soon as we go back to normal state we stop editing any widget.  This should stop hard to track down errors where the
 		 * wrong widget is getting changed.

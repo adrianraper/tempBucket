@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+
+    ADOBE SYSTEMS INCORPORATED
+    Copyright 2008 Adobe Systems Incorporated
+    All Rights Reserved.
+
+    NOTICE: Adobe permits you to use, modify, and distribute this file
+    in accordance with the terms of the license agreement accompanying it.
+
+-->
+
+<!--- The default skin class for the Spark Button component.  
+
+       @see spark.components.Button
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+             xmlns:s="library://ns.adobe.com/flex/spark" 
+             xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+             minWidth="21" minHeight="21" 
+             alpha.disabled="0.5">
+     
+    <fx:Metadata>
+        <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.Button")]
+        ]]>
+    </fx:Metadata>
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+	
+	<s:transitions>
+		<s:Transition fromState="up" toState="over" autoReverse="true" >
+			<s:AnimateColor  targets="{[color1, color2]}"  duration="200" />
+		</s:Transition>
+		
+		<s:Transition  fromState="over" toState="up" autoReverse="true" >
+			<s:AnimateColor targets="{[color1, color2]}" duration="300" />
+		</s:Transition>
+		
+	</s:transitions>
+    
+	<s:HGroup verticalCenter="0">
+		<!-- layer 8: text -->
+		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+		<s:Label id="labelDisplay"
+				 color="0x213309"
+				 fontWeight="bold"
+				 maxDisplayedLines="1"
+				 left="10" right="10" paddingTop="5">
+		</s:Label>
+		
+		<s:Group id="symbol" top="15">
+			<s:Path winding="nonZero" data="M3.5 18C1.57031 18 0 16.4297 0 14.5L0 3.5C0 1.57031 1.57031 0 3.5 0L14.5 0C16.4297 0 18 1.57031 18 3.5L18 14.5C18 16.4297 16.4297 18 14.5 18L3.5 18Z" >
+				<s:fill>
+					<s:LinearGradient id="backRect" x="9.00049" y="18" scaleX="17.9995" rotation="-90">
+						<s:GradientEntry id="color1" color="0x3C5E11" color.over="0x8CC63F" color.down="0x8CC63F" />
+						<s:GradientEntry id="color2" color="0x709E33" color.over="0x72A133" color.down="0x72A133" />
+					</s:LinearGradient>
+				</s:fill>
+			</s:Path>
+			<s:Path winding="nonZero" data=" M15 1C16.6543 1 18 2.3457 18 4L18 15.0005C18 16.6548 16.6543 18.0005 15 18.0005L4 18.0005C2.3457 18.0005 1 16.6548 1 15.0005L1 4C1 2.3457 2.3457 1 4 1L15 1M15 0 4 0C1.7998 0 0 1.7998 0 4L0 15.0005C0 17.2007 1.7998 19.0005 4 19.0005L15 19.0005
+					C17.2002 19.0005 19 17.2007 19 15.0005L19 4C19 1.7998 17.2002 0 15 0L15 0Z" >
+				<s:fill>
+					<s:SolidColor color="0x213309"/>
+				</s:fill>
+			</s:Path>
+			<s:Group x="6.21924" y="6.22949" >
+				<s:Path winding="nonZero" data=" M1.23682 0C2.33838 0 4.14111 0 5.24268 0 6.34424 0 6.79443 0.780273 6.24365 1.73438 5.69287 2.68848 4.7915 4.24951 4.24072 5.20264 3.68994 6.15771 2.78857 6.15771 2.23779 5.20264 1.68701 4.24951 0.785645 2.68848 0.234863 1.73438 -0.315918 0.780273
+						0.135254 0 1.23682 0Z" >
+					<s:fill>
+						<s:SolidColor color="0xFFFFFF" color.over="0x213309" color.down="0x213309"/>
+					</s:fill>
+				</s:Path>
+			</s:Group>		
+		</s:Group>
+	</s:HGroup>
+    
+</s:SparkButtonSkin>
