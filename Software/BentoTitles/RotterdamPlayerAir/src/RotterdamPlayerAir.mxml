@@ -114,6 +114,6 @@
 	</fx:Script>
 	
 	<fx:Style source="player.css" />
-	<!--<fx:Style source="playerair.css" />-->
+	<fx:Style source="playerair.css" />
 	
 </player:PlayerApplication>

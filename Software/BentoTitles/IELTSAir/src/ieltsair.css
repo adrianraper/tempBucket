@@ -16,7 +16,7 @@
 @namespace support "com.clarityenglish.ielts.view.support.*";
 @namespace credits "com.clarityenglish.ielts.view.credits.*";
 @namespace account "com.clarityenglish.ielts.view.account.*";
-@namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
+@namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace players "com.clarityenglish.controls.video.players.*";
 
@@ -29,7 +29,7 @@ s|TitleWindow {
 }
 
 components|XHTMLExerciseView s|TextInput {
-	skinClass: ClassReference("skins.ieltsair.bento.exercise.ExerciseTextInputSkin");
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
 	contentBackgroundColor: #FFFFFF;
 	contentBackgroundAlpha: 1;
 	paddingLeft: 0;
@@ -63,7 +63,7 @@ ielts|IELTSApplication s|ActionBar {
 
 ielts|IELTSApplication s|ActionBar {
 	/* #484 */
-	skinClass: ClassReference("skins.ieltsair.title.PaddableActionBarSkin");
+	skinClass: ClassReference("skins.air.PaddableActionBarSkin");
 	buttonSpacing: 5;
 }
 

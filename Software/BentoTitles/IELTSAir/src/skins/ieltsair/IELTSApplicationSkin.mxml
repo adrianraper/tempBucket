@@ -9,7 +9,7 @@
 		xmlns:credits="com.clarityenglish.ielts.view.credits.*"
 		xmlns:title="com.clarityenglish.ielts.view.title.*"
 		xmlns:application="skins.ieltsair.assets.application.*"
-		xmlns:nonetwork="com.clarityenglish.ielts.view.nonetwork.*">
+		xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*" xmlns:application1="skins.air.assets.application.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.IELTSApplication")]
@@ -20,15 +20,15 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 		
-		<s:State name="credits" />
-		<s:State name="title" />
-		<s:State name="login" />
 		<s:State name="loading" />
+		<s:State name="login" />
+		<s:State name="title" />
+		<s:State name="credits" />
 		<s:State name="nonetwork" />
 	</s:states>
 	
 	<!-- Gradient -->
-	<application:BackgroundGradient left="0" right="0" top="0" bottom="0" cacheAsBitmap="true" />
+	<application1:BackgroundGradient left="0" right="0" top="0" bottom="0" cacheAsBitmap="true" />
 	
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">

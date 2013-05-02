@@ -95,12 +95,12 @@
     <classEntry path="com.clarityenglish.textLayout.util.TLF2SystemManager"/>
     <classEntry path="com.clarityenglish.textLayout.util.TLFUtil"/>
     <classEntry path="com.clarityenglish.textLayout.vo.XHTML"/>
-    <classEntry path="com.pipwerks.SCORM"/>
     <classEntry path="flexUnitTests.BentoTests"/>
     <classEntry path="flexUnitTests.tests.ExerciseProxyTest"/>
     <classEntry path="flexUnitTests.tests.VectorMapTest"/>
     <classEntry path="flexUnitTests.tests.XHTMLTest"/>
     <classEntry path="org.davekeen.collections.VectorMap"/>
+    <classEntry path="org.davekeen.core.RetinaRuntimeDPIProvider"/>
     <classEntry path="org.davekeen.delegates.IDelegate"/>
     <classEntry path="org.davekeen.delegates.IDelegateResponder"/>
     <classEntry path="org.davekeen.delegates.RemoteDelegate"/>
@@ -112,6 +112,7 @@
     <classEntry path="org.davekeen.util.StateUtil"/>
     <classEntry path="org.davekeen.validators.URLValidator"/>
     <classEntry path="org.flexlayouts.layouts.FlowLayout"/>
+    <classEntry path="skins.air.bento.exercise.ExerciseTextInputSkin"/>
     <classEntry path="skins.bento.BentoTitleWindowSkin"/>
     <classEntry path="skins.bento.DynamicViewSkin"/>
     <classEntry path="skins.bento.VideoPlayerSkin"/>
@@ -126,8 +127,6 @@
     <classEntry path="skins.bento.warning.WarningYesButtonSkin"/>
     <classEntry path="skins.viewnavigator.WebTabbedViewNavigatorSkin"/>
     <classEntry path="skins.viewnavigator.WebViewNavigatorSkin"/>
-    <classEntry path="ws.tink.spark.controls.Alert"/>
-    <classEntry path="ws.tink.spark.skins.controls.AlertSkin"/>
     <classEntry path="com.clarityenglish.common.CommonNotifications"/>
     <classEntry path="com.clarityenglish.common.controller.LoginCommand"/>
     <classEntry path="com.clarityenglish.common.controller.LogoutCommand"/>
@@ -158,7 +157,13 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
     <classEntry path="com.clarityenglish.common.vo.progress.Progress"/>
-    <classEntry path="org.davekeen.core.RetinaRuntimeDPIProvider"/>
+    <classEntry path="com.pipwerks.SCORM"/>
+    <classEntry path="ws.tink.spark.controls.Alert"/>
+    <classEntry path="ws.tink.spark.skins.controls.AlertSkin"/>
+    <classEntry path="skins.air.PaddableActionBarSkin"/>
+    <classEntry path="skins.air.assets.application.BackgroundGradient"/>
+    <classEntry path="com.clarityenglish.bento.view.nonetwork.NoNetworkMediator"/>
+    <classEntry path="com.clarityenglish.bento.view.nonetwork.NoNetworkView"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

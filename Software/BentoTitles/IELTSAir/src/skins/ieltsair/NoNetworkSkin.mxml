@@ -5,7 +5,7 @@
 		xmlns:assets="skins.ieltsair.assets.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.ielts.view.nonetwork.NoNetworkView")]
+		[HostComponent("com.clarityenglish.bento.view.nonetwork.NoNetworkView")]
 	</fx:Metadata>
 	
 	<!-- states -->

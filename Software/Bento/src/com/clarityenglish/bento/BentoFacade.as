@@ -3,6 +3,8 @@
 	import com.clarityenglish.bento.view.*;
 	import com.clarityenglish.bento.view.marking.MarkingMediator;
 	import com.clarityenglish.bento.view.marking.MarkingView;
+	import com.clarityenglish.bento.view.nonetwork.NoNetworkMediator;
+	import com.clarityenglish.bento.view.nonetwork.NoNetworkView;
 	import com.clarityenglish.bento.view.progress.ProgressMediator;
 	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.bento.view.progress.components.ProgressAnalysisMediator;
@@ -67,6 +69,7 @@
 			mapView(MarkingView, MarkingMediator);
 			mapView(WarningView, WarningMediator);
 			mapView(ErrorView, ErrorMediator);
+			mapView(NoNetworkView, NoNetworkMediator);
 			
 			mapView(ProgressView, ProgressMediator);
 			mapView(ProgressScoreView, ProgressScoreMediator);

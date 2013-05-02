@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:s="library://ns.adobe.com/flex/spark"
+        xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+		xmlns:login="com.clarityenglish.rotterdam.view.login.*"
+		xmlns:title="com.clarityenglish.rotterdam.view.title.*"
+		xmlns:application="skins.air.assets.application.*"
+		xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.player.PlayerApplication")]
+	</fx:Metadata>
+	
+    <s:states>
+		<s:State name="disabled" />
+        <s:State name="normal" />
+		
+        <s:State name="loading" />
+        <s:State name="login" />
+        <s:State name="title" />
+		<s:State name="nonetwork" />
+    </s:states>
+	
+	<!-- Gradient -->
+	<application:BackgroundGradient left="0" right="0" top="0" bottom="0" cacheAsBitmap="true" />
+	
+	<!-- Body -->
+	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
+		<s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" />
+		<login:LoginView id="loginView" width="100%" height="100%" includeIn="login" />
+		<title:TitleView id="titleView" width="100%" height="100%" includeIn="title" />
+		<!-- <credits:CreditsView id="creditsView" width="100%" height="100%" includeIn="credits" /> -->
+		<nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />
+	</s:Group>
+	
+</s:Skin>

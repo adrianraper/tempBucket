@@ -13,8 +13,6 @@
 	import com.clarityenglish.ielts.view.home.HomeMediator;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.login.LoginView;
-	import com.clarityenglish.ielts.view.nonetwork.NoNetworkMediator;
-	import com.clarityenglish.ielts.view.nonetwork.NoNetworkView;
 	import com.clarityenglish.ielts.view.support.SupportMediator;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.title.TitleMediator;
@@ -49,7 +47,6 @@
 			super.initializeController();
 			
 			// Map IELTS specific views to their mediators
-			mapView(NoNetworkView, NoNetworkMediator);
 			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
