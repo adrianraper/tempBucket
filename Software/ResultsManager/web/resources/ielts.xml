@@ -72,9 +72,8 @@ If you want to be anonymous, just click {loginText}.]]>
 If you are a new user, type the login you want to use.
 If you want to be anonymous, just click {loginText}.]]>
             </lit>
-			<lit name="CTOptionLabel">Option</lit>
-			<lit name="CTOption1Label">: Email login</lit>
-			<lit name="CTOption2Label">: Simple login</lit>
+			<lit name="CTOption1Label">Option 1: Login</lit>
+			<lit name="CTOption2Label">Option 2: Anonymous</lit>
 			<lit name="CTLoginTitleLabel">How to access Road to IELTS</lit>
 			<lit name="CTillustration1Label">Register or log in with your email and password if you want to keep your exercise scores over multiple login sessions.</lit>
 			<lit name="CTillustration2Label">If you don't want to keep your exercise scores once you have logged out of Road to IELTS, click Start program below.</lit>

@@ -164,7 +164,7 @@
     
     <tr>
     <td width="12" height="94"></td>
-    <td width="90" valign="top"><img src="http://www.clarityenglish.com/images/email/q_protea.jpg" width="83" height="40" align="right" style="margin:25px 0 0 0;"/></td>
+    <td width="90" valign="top"><img src="http://www.clarityenglish.com/images/email/q_protea.jpg" width="75" height="71" align="right" style="margin:25px 0 0 0;"/></td>
     <td width="8"></td>
     <td width="250" align="left" valign="top">
       <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Your local contact is:</p>

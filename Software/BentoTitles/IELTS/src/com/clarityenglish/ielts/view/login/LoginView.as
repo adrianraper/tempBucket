@@ -498,11 +498,10 @@ package com.clarityenglish.ielts.view.login {
 
 		// #341
 		protected override function getCurrentSkinState():String {
-			// gh#100 Not sure if CT should use network skin?
-			if (licenceType == Title.LICENCE_TYPE_NETWORK) {
-				var networkState:String = "Network";
-			} else if (licenceType == Title.LICENCE_TYPE_CT) {
-				networkState = "ConcurrentTracking";
+			// gh#100 CT and network use the same skin
+			if (licenceType == Title.LICENCE_TYPE_NETWORK ||
+				licenceType == Title.LICENCE_TYPE_CT) {
+				var networkState:String = "ConcurrentTracking";
 			} else {
 				networkState = "";
 			}
