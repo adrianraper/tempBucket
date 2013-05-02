@@ -10,7 +10,22 @@
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
+				
+		<s:Animate id="upAim" targets="{[itemList]}" duration="300" effectEnd="onUpAimStop(event)" >
+			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="140" />
+		</s:Animate>
 	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			protected function onUpAimStop(event:Event):void {
+				if (hostComponent.downArrowClick) {
+					itemList.alpha = 0;
+					iconGroup.alpha = 1;
+				}			
+			}
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -98,44 +113,52 @@
 		<s:Label includeIn="normal" text="Add an item" color="0x283D0C" top="19" left="46"  />
 	</s:Group>
 	</s:HGroup-->
-	<s:Group id="addItemButtonGroup" visible="false">
-		<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="512" label="Add an Item" includeIn="normal"/>
-		<s:Group id="itemList" left="495" bottom="48" includeIn="normal">
-			<s:Rect width="500" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" alpha="0.8">
+	<s:Group id="addItemButtonGroup" includeIn="normal">
+		<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" left="512" label="Add an Item" visible="false" />
+		<s:Group id="itemList" left="495" bottom="48" height="0" alpha="0">
+			<s:Rect id="widgetRect" width="410" height="140" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
 				<s:fill>
-					<s:SolidColor color="#363636" />
+					<!--s:LinearGradient rotation="90">
+						<s:GradientEntry color="0x8CC63F" ratio="0.5" />
+						<s:GradientEntry color="0x72A133" />
+					</s:LinearGradient-->
+					<s:SolidColor color="0x8CC63F" />
 				</s:fill>
 			</s:Rect>
-			<s:Label text="Choose the item you would like to add to your unit" color="0xFFFFFF" fontSize="19" top="35" left="35"/>
-			<s:Button id="listAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" top="70" left="35"/>
-			<s:Label text="Add text" top="80" left="80" color="0xFFFFFF" fontSize="14"/>
-			<s:Button id="listAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" top="70" left="250"/>
-			<s:Label text="Add a PDF" top="80" left="295" color="0xFFFFFF" fontSize="14"/>
-			<s:Button id="listAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" top="110" left="35"/>
-			<s:Label text="Add a video" top="120" left="80" color="0xFFFFFF" fontSize="14"/>
-			<s:Button id="listAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" top="110" left="250"/>
-			<s:Label text="Add an image" top="120" left="295" color="0xFFFFFF" fontSize="14"/>
-			<s:Button id="listAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" top="150" left="35"/>
-			<s:Label text="Add an audio" top="160" left="80" color="0xFFFFFF" fontSize="14"/>
-			<s:Button id="listAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true"  top="150" left="250"/>
-			<s:Label text="Add a Clarity exercise" top="160" left="295" color="0xFFFFFF" fontSize="14"/>
+			<s:Rect width="410" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+				<s:fill>
+					<s:LinearGradient rotation="90">
+						<s:GradientEntry color="0x3C5C11" ratio="0.5" />
+						<s:GradientEntry color="0x283D0C" />
+					</s:LinearGradient>
+				</s:fill>			
+			</s:Rect>
+			<s:Label text="Choose the item you would like to add to your unit" color="0x8CC63F" fontSize="14" top="15" left="25" />
+			<s:ToggleButton id="downToggleButton" left="360" top="10" rotation="180" click="upAim.play(null, true);"/>
+			<s:Button id="listAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" top="60" left="25"/>
+			<s:Label text="Add text" top="70" left="65" color="0x283D0C" fontSize="13"/>
+			<s:Button id="listAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" top="60" left="215"/>
+			<s:Label text="Add a PDF" top="70" left="255" color="0x283D0C" fontSize="13"/>
+			<s:Button id="listAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" top="100" left="25"/>
+			<s:Label text="Add a video" top="110" left="65" color="0x283D0C" fontSize="13"/>
+			<s:Button id="listAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" top="100" left="215"/>
+			<s:Label text="Add an image" top="110" left="255" color="0x283D0C" fontSize="13"/>
+			<s:Button id="listAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" top="140" left="25"/>
+			<s:Label text="Add an audio" top="150" left="65" color="0x283D0C" fontSize="13"/>
+			<s:Button id="listAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" top="140" left="215"/>
+			<s:Label text="Add a Clarity exercise" top="150" left="255" color="0x283D0C" fontSize="13"/>
 		</s:Group>
 	</s:Group>	
 
-	<s:HGroup id="iconGroup" bottom="0" left="512" gap="8" height="48" verticalAlign="middle">
-	<s:Label text="Add an item" color="0x283D0C" paddingTop="5" fontWeight="bold" includeIn="normal" />
-	<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" mouseOver="textLabel.visible = true; textLabel.includeInLayout = true;" mouseOut="textLabel.visible = false; textLabel.includeInLayout = false;"/>
-	<s:Label  id="textLabel" text="Add text" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>
-	<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" mouseOver="pdfLabel.visible = true; pdfLabel.includeInLayout = true;" mouseOut="pdfLabel.visible = false; pdfLabel.includeInLayout = false;" />
-	<s:Label  id="pdfLabel" text="Add a PDF" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>
-	<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" mouseOver="videoLabel.visible = true; videoLabel.includeInLayout = true;" mouseOut="videoLabel.visible = false; videoLabel.includeInLayout = false;" />
-	<s:Label  id="videoLabel" text="Add a video" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>
-	<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" mouseOver="imageLabel.visible = true; imageLabel.includeInLayout = true;" mouseOut="imageLabel.visible = false; imageLabel.includeInLayout = false;"/>
-	<s:Label  id="imageLabel" text="Add an image" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>	
-	<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" mouseOver="audioLabel.visible = true; audioLabel.includeInLayout = true;" mouseOut="audioLabel.visible = false; audioLabel.includeInLayout = false;"/>
-	<s:Label  id="audioLabel" text="Add an audio" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" fontSize="11"/>	
-	<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true"  mouseOver="exerciseLabel.visible = true; exerciseLabel.includeInLayout = true;" mouseOut="exerciseLabel.visible = false; exerciseLabel.includeInLayout = false;"/>
-	<s:Label  id="exerciseLabel" text="Add a Clarity exercise" visible="false" includeInLayout="false" paddingTop="5" color="0x213309" width="80" fontSize="11"/>	
+	<s:HGroup id="iconGroup" bottom="0" left="512" gap="8" height="48" verticalAlign="middle" alpha="1">
+		<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" />	
+		<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" />
+		<s:Spacer width="30" />
+		<s:ToggleButton id="upToggleButton" label="Learn more" click="upAim.play();" includeIn="normal"/>
 	</s:HGroup>
 	
 	<s:HGroup bottom="0" gap="10" height="48" right="140" verticalAlign="middle">

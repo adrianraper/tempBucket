@@ -21,6 +21,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	import spark.components.HGroup;
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
+	import spark.effects.Animate;
 	import spark.primitives.Rect;
 	
 	public class ToolBarView extends BentoView {
@@ -143,12 +144,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var addItemButton:ToggleButton;
 		
+		[SkinPart]
+		public var upToggleButton:ToggleButton;
+		
 		//alice: small screen size solution
 		[SkinPart]
 		public var iconGroup:HGroup;
 		
 		[SkinPart]
 		public var addItemButtonGroup:Group;
+		
+		[SkinPart]
+		public var downToggleButton:ToggleButton;
 		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object, XML);
@@ -166,6 +173,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
+		public var downArrowClick:Boolean;
 		
 		// alice: small screen size solution
 		private var smallScreenFlag:Boolean;
@@ -230,13 +238,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (smallScreenFlag) {
-				addItemButtonGroup.visible = true;
-				iconGroup.visible = false; 
-			} else {
-				addItemButtonGroup.visible = false;
-				iconGroup.visible = true; 
-			}
+			if (addItemButton) {
+				if (smallScreenFlag) {
+					addItemButton.visible = true;
+					iconGroup.visible = false; 
+				} else {
+					addItemButton.visible = false;
+					iconGroup.visible = true; 
+				}
+			}		
 		}
 				
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -339,6 +349,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				//gh #221
 				case linkSelectButton:
 					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);					
+					break;
+				case upToggleButton:
+					upToggleButton.addEventListener(MouseEvent.CLICK, onAddItemClick);
+					break;
+				case downToggleButton:
+					downToggleButton.addEventListener(MouseEvent.CLICK, onDownClick);
 					break;
 			}
 		}
@@ -526,8 +542,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onAddItemClick(event:MouseEvent):void {
-			itemList.visible = true;
+			iconGroup.alpha = 0;
+			itemList.alpha = 1;
 			outsideClick = false;
+			downArrowClick = false; 
+		}
+		
+		protected function onDownClick(event:MouseEvent):void {
+			itemClick = true;
+			downArrowClick = true;
 		}
 		
 		protected function onItemListClick(event:MouseEvent):void {
@@ -538,9 +561,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onStageClick(event:MouseEvent):void {
 			if (outsideClick) {
-				itemList.visible = false;
 				addItemButton.skin.setCurrentState("up", true);
 				addItemButton.selected = false;
+				upToggleButton.skin.setCurrentState("up", true);
+				upToggleButton.selected = false;
 			} else {
 				outsideClick = true;
 				itemClick = false;

@@ -49,7 +49,11 @@
 	</fx:Script>
 	
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" alpha="0.4" />		
+		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" alpha="0.4" />
+		
+		<s:Animate id="aim" targets="{[publishSelectionGroup]}" duration="300">
+			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="180" />
+		</s:Animate>
 	</fx:Declarations>
 	
 	<!-- states -->
@@ -112,7 +116,7 @@
 	
 	<!--alice p-->
 	<s:VGroup left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">	
-		<s:VGroup paddingLeft="2" id="publishSelectionGroup" visible="false">
+		<s:VGroup paddingLeft="2" id="publishSelectionGroup" height="0" alpha="0">
 			<s:Group>
 				<s:Rect width="152" height="180" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
 					<s:fill>
@@ -126,8 +130,14 @@
 			</s:Group>					
 		</s:VGroup>		
 		<s:Group>
-			<s:ToggleButton id="publishCoursButton" label="Publish Course" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" />
+			<s:ToggleButton id="publishCoursButton" label="Publish Course" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="aim.play()" />
 			<s:Button id="publishChangeButton" label="Change publish details" height="50" fontWeight="bold" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
 		</s:Group>
-	</s:VGroup>	
+	</s:VGroup>
+	
+	<s:Rect left="3" right="3" height="5" bottom="33">
+		<s:fill>
+			<s:SolidColor color="#ffffff" />
+		</s:fill>
+	</s:Rect>
 </s:Skin>

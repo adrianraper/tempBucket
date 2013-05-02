@@ -14,6 +14,7 @@ package com.clarityenglish.rotterdam.view.course {
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.events.CloseEvent;
+	import mx.events.EffectEvent;
 	import mx.events.IndexChangedEvent;
 	
 	import org.osflash.signals.Signal;
@@ -23,6 +24,7 @@ package com.clarityenglish.rotterdam.view.course {
 	import spark.components.Label;
 	import spark.components.List;
 	import spark.components.ToggleButton;
+	import spark.effects.Animate;
 	import spark.events.IndexChangeEvent;
 	
 	import ws.tink.spark.controls.Alert;
@@ -67,6 +69,9 @@ package com.clarityenglish.rotterdam.view.course {
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
+		[SkinPart]
+		public var aim:Animate;
+		
 		// gh#208 DK: should we pass the group from the mediator to here so that the view can create the default node
 		// or should we just let the mediator do it?
 		public var group:com.clarityenglish.common.vo.manageable.Group;
@@ -78,6 +83,7 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
+		private var isHide:Boolean;
 		
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
@@ -180,6 +186,9 @@ package com.clarityenglish.rotterdam.view.course {
 				case publishChangeButton:
 					publishChangeButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
 					break;
+				case aim:
+					aim.addEventListener(EffectEvent.EFFECT_END, onAimEnd);
+					break;
 			}
 		}
 		
@@ -276,7 +285,8 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		//gh #208
 		protected function onPublishCourse(event:MouseEvent):void {
-			publishSelectionGroup.visible = true;
+			publishSelectionGroup.alpha = 1;
+			isHide = false;
 			outsideClick = false;
 		}
 		
@@ -291,14 +301,21 @@ package com.clarityenglish.rotterdam.view.course {
 		protected function onStageClick(event:MouseEvent):void {
 			if (publishSelectionGroup) {
 				if (outsideClick) {
-					publishSelectionGroup.visible = false;
+					aim.play(null, true);
+					isHide = true;
 					publishCoursButton.skin.setCurrentState("up", true);
 					publishCoursButton.selected = false;
+					
 				} else {
 					outsideClick = true;
 					itemClick = false;
 				}
 			}						
+		}
+		
+		protected function onAimEnd(event:Event):void {
+			if (isHide) 
+				publishSelectionGroup.alpha = 0;
 		}
 		
 	}
