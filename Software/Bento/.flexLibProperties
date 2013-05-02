@@ -158,6 +158,7 @@
     <classEntry path="com.clarityenglish.common.vo.manageable.Manageable"/>
     <classEntry path="com.clarityenglish.common.vo.manageable.User"/>
     <classEntry path="com.clarityenglish.common.vo.progress.Progress"/>
+    <classEntry path="org.davekeen.core.RetinaRuntimeDPIProvider"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>

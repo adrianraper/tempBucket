@@ -8,14 +8,14 @@
 						applicationComplete="onApplicationComplete(event)"
 						addedToStage="onAddedToStage(event)"
 						applicationDPI="160"
-						runtimeDPIProvider="RetinaRuntimeDPIProvider"
+						runtimeDPIProvider="org.davekeen.core.RetinaRuntimeDPIProvider"
 						gestureSwipe="onGestureSwipe(event)">
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.common.CommonNotifications;
 			import com.clarityenglish.common.vo.config.BentoError;
 			import com.clarityenglish.components.SpinnerDropDownList;
 			import com.clarityenglish.ieltsair.IELTSAirApplicationFacade;
-			import com.clarityenglish.ieltsair.IELTSAirNotifications;
 			import com.clarityenglish.textLayout.conversion.XHTMLImporter;
 			import com.clarityenglish.textLayout.elements.SelectElement;
 			import com.clarityenglish.textLayout.stylesheets.applicators.CSSApplicator;
@@ -29,6 +29,7 @@
 			
 			import spark.components.DropDownList;
 			
+			// TODO: This is duplicated in IELTS and Rotterdam!!  Refactor!!
 			protected function onInitialize(event:FlexEvent):void {
 				// Determine what platform we are running on
 				var platform:String = Capabilities.version.split(" ")[0];
@@ -112,7 +113,7 @@
 			
 			protected function onGestureSwipe(event:TransformGestureEvent):void {
 				if (facade)
-					facade.sendNotification((event.offsetX < 1 ? IELTSAirNotifications.GESTURE_SWIPE_LEFT : IELTSAirNotifications.GESTURE_SWIPE_RIGHT), event.offsetX);
+					facade.sendNotification((event.offsetX < 1 ? CommonNotifications.GESTURE_SWIPE_LEFT : CommonNotifications.GESTURE_SWIPE_RIGHT), event.offsetX);
 			}
 			
 		]]>

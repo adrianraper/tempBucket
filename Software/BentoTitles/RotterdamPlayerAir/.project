@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>RotterdamPlayerAir</name>
+	<comment></comment>
+	<projects>
+		<project>Bento</project>
+		<project>csslib</project>
+		<project>OSMF</project>
+		<project>Rotterdam</project>
+		<project>RotterdamPlayer</project>
+		<project>textLayout</project>
+	</projects>
+	<buildSpec>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.flexbuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+		<buildCommand>
+			<name>com.adobe.flexbuilder.project.apollobuilder</name>
+			<arguments>
+			</arguments>
+		</buildCommand>
+	</buildSpec>
+	<natures>
+		<nature>com.adobe.flexide.project.multiplatform.multiplatformnature</nature>
+		<nature>com.adobe.flexbuilder.project.apollonature</nature>
+		<nature>com.adobe.flexbuilder.project.flexnature</nature>
+		<nature>com.adobe.flexbuilder.project.actionscriptnature</nature>
+	</natures>
+	<linkedResources>
+		<link>
+			<name>[source path] src</name>
+			<type>2</type>
+			<location>D:/Projects/Clarity/software/Software/BentoTitles/RotterdamPlayer/src</location>
+		</link>
+	</linkedResources>
+</projectDescription>

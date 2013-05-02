@@ -31,7 +31,7 @@
 	
 	<s:HGroup width="100%" height="100%" top="65" left="20" right="20">
 		<!-- The unit selector -->
-		<s:List id="list" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" width="280" height="100%" borderVisible="false" rollOverColor="0xEDEDEE" selectionColor="0xFFFCDF">
+		<s:List id="list" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" width="280" height="100%" borderVisible="false" selectionColor="0xFFFCDF"> <!-- rollOverColor="0xEDEDEE" -->
 			<s:layout>
 				<s:VerticalLayout gap="1" />
 			</s:layout>

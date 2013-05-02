@@ -1,0 +1,177 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace home "com.clarityenglish.ielts.view.home.*";
+@namespace title "com.clarityenglish.ielts.view.title.*";
+@namespace zone "com.clarityenglish.ielts.view.zone.*";
+@namespace ielts "com.clarityenglish.ielts.*";
+@namespace ui "com.clarityenglish.ielts.view.zone.ui.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
+@namespace controls "com.clarityenglish.controls.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+@namespace login "com.clarityenglish.ielts.view.login.*";
+@namespace progress "com.clarityenglish.bento.view.progress.*";
+@namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
+@namespace airmore "com.clarityenglish.ieltsair.view.more.*";
+@namespace airzone "com.clarityenglish.ieltsair.view.zone.*";
+@namespace support "com.clarityenglish.ielts.view.support.*";
+@namespace credits "com.clarityenglish.ielts.view.credits.*";
+@namespace account "com.clarityenglish.ielts.view.account.*";
+@namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
+@namespace video "com.clarityenglish.controls.video.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
+
+global {
+	interactionMode: touch;
+}
+
+s|TitleWindow {
+	dropShadowVisible: true; /* #389 even though FB thinks this isn't supported it is in our skins */
+}
+
+components|XHTMLExerciseView s|TextInput {
+	skinClass: ClassReference("skins.ieltsair.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
+/*@media (os-platform: "Android") {
+	video|VideoSelector {
+		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
+	}
+	
+	players|WebViewVideoPlayer {
+		htmlEmbed: true;
+	}
+}*/
+
+@media (os-platform: "IOS") {
+	video|VideoSelector {
+		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
+	}
+}
+
+ielts|IELTSApplication {
+	skinClass: ClassReference("skins.ieltsair.IELTSApplicationSkin");
+}
+
+ielts|IELTSApplication s|ActionBar {
+	chromeColor: #067EBC;
+	defaultButtonAppearance: beveled;
+}
+
+ielts|IELTSApplication s|ActionBar {
+	/* #484 */
+	skinClass: ClassReference("skins.ieltsair.title.PaddableActionBarSkin");
+	buttonSpacing: 5;
+}
+
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#startAgainButton,
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
+ielts|IELTSApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
+	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
+}
+
+/* No network styles (#472) */
+nonetwork|NoNetworkView {
+	skinClass: ClassReference("skins.ieltsair.NoNetworkSkin");
+}
+
+/* Login view styles */
+login|LoginView {
+	skinClass: ClassReference("skins.ieltsair.LoginSkin");
+}
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
+}
+
+login|LoginView s|Button {
+	chromeColor: #2793CE;
+}
+
+/* Title view styles */
+title|TitleView {
+	skinClass: ClassReference("skins.ieltsair.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("spark.skins.mobile.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since ielts.css has changed it */
+}
+
+title|TitleView s|ViewNavigator {
+	skinClass: ClassReference("spark.skins.mobile.ViewNavigatorSkin"); /* this is actually resetting it back to the default since ielts.css has changed it */
+}
+
+title|TitleView s|TabbedViewNavigator #tabBar {
+	chromeColor: #262526;
+	color: #DDDDDD;
+	fontSize: 10;
+	fontWeight: normal;
+	iconPlacement: top;
+}
+
+/* Home view styles */
+home|HomeView {
+	skinClass: ClassReference("skins.ieltsair.HomeSkin");
+	backgroundAlpha: 0;
+}
+
+/* Zone view styles */
+zone|ExamPracticeZoneSectionView {
+	showArrows: false;
+}
+
+zone|ExamPracticeZoneSectionView #list {
+	horizontalScrollPolicy: auto;
+}
+
+zone|QuestionZoneSectionView { /* GH #52 */
+	showOpenEbookButton: false;
+}
+
+/* Exercise view styles */
+exercise|ExerciseView {
+	skinClass: ClassReference("skins.ieltsair.ExerciseSkin");
+	top: 5;
+	left: 20;
+	right: 35;
+}
+
+/* Progress view styles */
+progress|ProgressView {
+	left: 20;
+	right: 20;
+	skinClass: ClassReference("skins.ieltsair.ProgressSkin");
+}
+
+/* Account view styles */
+account|AccountView {
+	skinClass: ClassReference("skins.ieltsair.AccountSkin");
+}
+
+/* Support view styles */
+support|SupportView {
+	skinClass: ClassReference("skins.ieltsair.SupportSkin");
+}
+
+/* Credits view styles */
+credits|CreditsView {
+	skinClass: ClassReference("skins.ieltsair.CreditsSkin");
+}
+
+/* More view styles */
+airmore|MoreView {
+	skinClass: ClassReference("skins.ieltsair.more.MoreSkin");
+}
+
+airmore|MoreView #moreNavBar {
+	skinClass: ClassReference("skins.ieltsair.progress.ui.NavBarSkin");
+}
+
+/* Popups */
+s|TitleWindow.feedbackTitleWindow {
+	/* #419 - CSS selectors for sizing don't seem to work so I have to create a whole new skin just to make the X button bigger :( */
+	skinClass: ClassReference("skins.ieltsair.titlewindows.FeedbackTitleWindowSkin");
+}

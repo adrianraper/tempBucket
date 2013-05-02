@@ -53,6 +53,9 @@
 		
 		public static const PERFORMANCE_LOG:String = "performance_log";
 		
+		public static const GESTURE_SWIPE_LEFT:String = "gesture_swipe_left";
+		public static const GESTURE_SWIPE_RIGHT:String = "gesture_swipe_right";
+		
 	}
 	
 }

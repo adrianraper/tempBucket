@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/RoadToIELTS2 ce.com</id>
+	<productCode>54</productCode>
+	<loginOption>128</loginOption>
+	<dbHost>2</dbHost>
+	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+	<channel name="ios-vimeo" caption="vimeo">
+        <streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+    </channel>
+	<sharedMedia />
+	<brandingMedia />
+	<language>EN</language>
+	
+	<contentPath>http://dock.contentbench/CCB/</contentPath>
+	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>>
+	
+	<!--  contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
+    <remoteDomain> http://roadtoielts.chinaielts.org/Software/</remoteDomain>
+    <remoteGateway>http://roadtoielts.chinaielts.org/Software/ResultsManager/web/amfphp/</remoteGateway>-->
+	
+	<!-- <contentPath>http://www.clarityenglish.com/ContentTablet/</contentPath>
+    <remoteDomain> http://www.clarityenglish.com/SoftwareTestbed/</remoteDomain>
+    <remoteGateway>http://www.clarityenglish.com/SoftwareTestbed/ResultsManager/web/amfphp/</remoteGateway> -->
+	
+	<remoteService>RotterdamPlayerService</remoteService>
+	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
+	 
+	<rememberLogin>true</rememberLogin>
+	<disableAutoTimeout>true</disableAutoTimeout>
+	
+    <!-- <upgradeURL>http://www.ieltspractice.com</upgradeURL>
+    <pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2</pricesURL>
+    <registerURL>http://takeielts.britishcouncil.org/</registerURL>
+    <getAccountURL>http://www.roadtoielts.com/</getAccountURL> -->
+    
+	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
+	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
+	
+</config>
