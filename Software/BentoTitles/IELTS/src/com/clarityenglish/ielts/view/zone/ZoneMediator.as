@@ -46,6 +46,7 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			
+			// gh#278 TitleView can no longer get at ZoneView (is this true?) so can't use this flag.
 			view.isMediated = true; // #222
 			
 			Bind.fromProperty(bentoProxy, "selectedCourseNode").toProperty(view, "course");
@@ -60,6 +61,7 @@
 			
 			view.courseSelect.remove(onCourseSelected);
 			
+			// gh#278 TitleView can no longer get at ZoneView (is this true?) so can't use this flag.
 			view.isMediated = false; // #222
 		}
         

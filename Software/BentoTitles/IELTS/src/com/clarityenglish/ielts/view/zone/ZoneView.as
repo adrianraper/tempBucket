@@ -50,6 +50,7 @@ package com.clarityenglish.ielts.view.zone {
 		
 		/**
 		 * ZoneView specifically needs to know if it is mediated or not in order to implement #222.  This is not necessary for most views.
+		 * gh#278 TitleView can no longer get at ZoneView (is this true?) so can't use this flag.
 		 */
 		public var isMediated:Boolean;
 		

@@ -409,10 +409,15 @@ package com.clarityenglish.ielts.view.title {
 		// #260 
 		// If the ZoneView is mediated, then enable the logoutButton and stop the Timer
 		private function timerHandler(event:TimerEvent):void {
+			// gh#278 This was removed because zoneView no longer exists, but the functionality is still required!
 			/*if (zoneView && zoneView.isMediated) {
 				callLater(resetLogoutButton, new Array(event));
 				shortDelayTimer.stop();
 			}*/
+			if (currentState != 'exercise') {
+				callLater(resetLogoutButton, new Array(event));
+				shortDelayTimer.stop();
+			}
 		}
 		
 		// #337
