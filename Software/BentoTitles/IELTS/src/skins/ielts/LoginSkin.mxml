@@ -25,7 +25,7 @@
 		<s:State name="login" stateGroups="loginStates" />
 		<s:State name="loginConcurrentTracking" stateGroups="loginStates" />
 		<s:State name="register" stateGroups="registerStates" />
-		<s:State name="registerNetwork" stateGroups="registerStates" />
+		<s:State name="registerConcurrentTracking" stateGroups="registerStates" />
 		<s:State name="registerError" stateGroups="registerStates" />
 	</s:states>
 
@@ -44,11 +44,11 @@
 	<s:HGroup width="100%" height="100%" top="123">
 		
 	<s:BorderContainer left="20" width="40%" cornerRadius="12" borderColor="0xCCCCCC"  >
-		<s:VGroup paddingLeft="20" paddingBottom="50">
-			<s:Label id="CTOption1Label" fontSize="16" color="0x0C436B" paddingTop="20" includeIn="loginConcurrentTracking"/>
+		<s:VGroup paddingLeft="20" paddingBottom="50" width="100%" >
+			<s:Label id="CTOption1Label" width="100%" fontSize="16" color="0x0C436B" paddingTop="20" includeIn="loginStates"/>
 			
 			<s:VGroup id="loginBlock" width="100%" includeIn="loginStates">
-				<s:Label id="loginDetailLabel" width="75%" lineHeight="18" fontSize="13" color="0x000000" paddingTop="10" />
+				<s:Label id="loginDetailLabel" width="100%" fontSize="13" color="0x000000" paddingTop="10" />
 				<s:Spacer height="3" />
 				<s:HGroup>
 					<s:Label id="loginKey_lbl" text="{hostComponent.loginKey_lbl}" fontWeight="bold" paddingTop="6" />
@@ -61,16 +61,17 @@
 				</s:HGroup>
 				<s:Spacer height="3" />
 				<s:HGroup>
-					<s:Button id="loginButton" label="loginButton" />
+					<s:Button id="loginButton" label="loginButton" width="{(hostComponent.selfRegister) ? 140 : 120}"/>
 					<!-- gh#100 
 					<s:Button id="newUserButton" label="New user" visible="{hostComponent.selfRegister > 0}" includeInLayout="{hostComponent.selfRegister > 0}" includeIn="loginStates" />
 					-->
 				</s:HGroup>
 			</s:VGroup>
+			<s:Label id="RegisterOption1Label" fontSize="16" color="0x0C436B" paddingTop="20" includeIn="registerStates"/>
 			<s:VGroup id="registerBlock" width="100%" includeIn="registerStates">
 				<s:Label id="registerDetailLabel" 
-						text.registerNetwork="This is the first time you have used the program, click New user to confirm." 
-						width="100%" lineHeight="18" />
+						text.registerConcurrentTracking="This is the first time you have used the program, click New user to confirm." 
+						width="100%" fontSize="13" color="0x000000" paddingTop="10" />
 				<s:Spacer height="3" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}"/>
 				<s:HGroup id="nameGroup" visible="{hostComponent.selfRegisterName}" includeInLayout="{hostComponent.selfRegisterName}">
 					<s:Label id="loginName_lbl" text="{hostComponent.loginName_lbl}" fontWeight="bold" paddingTop="6" />
@@ -97,27 +98,15 @@
 					<s:Button id="cancelButton" label="Cancel" />
 				</s:HGroup>
 			</s:VGroup>
-			<!--
-			<s:HGroup paddingTop="10">
-				<s:Label id="emailLabel" fontSize="14" fontWeight="bold" paddingTop="5"/>
-				<s:TextInput id="emailInput" width="180" />
-			</s:HGroup>
-			<s:HGroup paddingTop="5">
-				<s:Label id="psdlLabel" fontSize="14" fontWeight="bold" paddingTop="5" paddingRight="5"/>
-				<s:TextInput id="psdInput" width="180" displayAsPassword="true" />
-			</s:HGroup>
-			<s:Spacer height="10"/>
-			<s:Button id="CTLoginButton" width="120"/>
-			-->
 		</s:VGroup>
 	</s:BorderContainer>
 	<s:VGroup width="60%" >
 		<s:HGroup width="100%">
 			<s:Spacer width="20" />
 			<s:BorderContainer width="66%" right="20" cornerRadius="12" borderColor="0xCCCCCC" includeIn="loginConcurrentTracking">
-				<s:VGroup paddingLeft="20" paddingBottom="50">
-					<s:Label id="CTOption2Label" fontSize="16" color="0x0C436B" paddingTop="20"/>
-					<s:Label id="CTillustration2Label" fontSize="13" color="0x000000" paddingTop="10" width="75%"/>
+				<s:VGroup width="100%" paddingLeft="20" paddingBottom="50">
+					<s:Label id="CTOption2Label" fontSize="16" color="0x0C436B" paddingTop="20" width="100%"/>
+					<s:Label id="CTDetailLabel" fontSize="13" color="0x000000" paddingTop="10" width="100%"/>
 					<s:Spacer height="10"/>
 					<s:Button id="CTStartButton" width="120"/>
 				</s:VGroup>

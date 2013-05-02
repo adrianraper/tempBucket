@@ -102,27 +102,21 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var registerDetailLabel:Label;
 		
-		//alice: CT login page
-		[SkinPart]
-		public var CTOptionLabel:Label;
-		
+		//gh#100 CT login page
 		[SkinPart]
 		public var CTOption1Label:Label;
-		
-		[SkinPart]
-		public var CTOption1Label2:Label;
-		
-		[SkinPart]
-		public var CTOptionLabel2:Label;
 		
 		[SkinPart]
 		public var CTOption2Label:Label;
 		
 		[SkinPart]
-		public var CTillustration1Label:Label;
+		public var LTOption1Label:Label;
 		
 		[SkinPart]
-		public var CTillustration2Label:Label;
+		public var RegisterOption1Label:Label;
+		
+		[SkinPart]
+		public var CTDetailLabel:Label;
 		
 		[SkinPart]
 		public var emailLabel:Label;
@@ -406,8 +400,13 @@ package com.clarityenglish.ielts.view.login {
 					instance.addEventListener(FlexEvent.ENTER, onEnter, false, 0, true);
 					break;
 				
+				// gh#100
 				case loginButton:
-					loginButton.label = copyProvider.getCopyForId("loginButton");
+					if (selfRegister) {
+						loginButton.label = copyProvider.getCopyForId("CTLoginButton");
+					} else {
+						loginButton.label = copyProvider.getCopyForId("loginButton");
+					};
 				case addUserButton:
 				case newUserButton:
 				case cancelButton:
@@ -438,16 +437,27 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case loginDetailLabel:
 					// gh#100
-					if (licenceType == Title.LICENCE_TYPE_NETWORK) {
-						instance.text = copyProvider.getCopyForId("loginDetailLabelNetwork", {loginText:copyProvider.getCopyForId("loginButton")});
-					} else if (licenceType == Title.LICENCE_TYPE_CT) {
-						if (selfRegister && selfRegister > 0) {
-							instance.text = copyProvider.getCopyForId("loginDetailLabelNetwork", {loginText:copyProvider.getCopyForId("loginButton")});
-						} else {
-							instance.text = copyProvider.getCopyForId("loginDetailLabelCT", {loginText:copyProvider.getCopyForId("loginButton")});
-						}
+					if (selfRegister) {
+						replaceObj = {loginText:copyProvider.getCopyForId("CTLoginButton")};
 					} else {
-						instance.text = copyProvider.getCopyForId("loginDetailLabel");
+						replaceObj = {loginText:copyProvider.getCopyForId("loginButton")};
+					}
+					if (licenceType == Title.LICENCE_TYPE_NETWORK ||
+						licenceType == Title.LICENCE_TYPE_CT) {
+						switch (loginOption) {
+							case 1:
+								replaceObj.loginDetail = copyProvider.getCopyForId("nameLoginDetail");
+								break;
+							case 2:
+								replaceObj.loginDetail = copyProvider.getCopyForId("IDLoginDetail");
+								break;
+							case 128:
+								replaceObj.loginDetail = copyProvider.getCopyForId("emailLoginDetail");;
+								break;
+						}
+						instance.text = copyProvider.getCopyForId("loginDetailLabelCT", replaceObj);
+					} else {
+						instance.text = copyProvider.getCopyForId("loginDetailLabel", replaceObj);
 					}
 					break;
 				case registerDetailLabel:
@@ -457,37 +467,33 @@ package com.clarityenglish.ielts.view.login {
 					instance.label = copyProvider.getCopyForId("accountMoreButton");
 					instance.addEventListener(MouseEvent.CLICK, onAccountMoreButton);
 					break;
-				//alice: CT login page
-				case CTOptionLabel:
-					instance.text = copyProvider.getCopyForId("CTOptionLabel");
-					break;
+				//gh#100 CT login page
 				case CTOption1Label:
-					instance.text = copyProvider.getCopyForId("CTOption1Label");
-					break;
-				case CTOption1Label2:
-					instance.text = copyProvider.getCopyForId("CTOption1Label2");
-					break;
-				case CTOptionLabel2:
-					instance.text = copyProvider.getCopyForId("CTOptionLabel");
+					if (licenceType == Title.LICENCE_TYPE_NETWORK ||
+						licenceType == Title.LICENCE_TYPE_CT) {
+						instance.text = copyProvider.getCopyForId("CTOption1Label");
+					} else {
+						instance.text = copyProvider.getCopyForId("LTOption1Label");
+					}
 					break;
 				case CTOption2Label:
 					instance.text = copyProvider.getCopyForId("CTOption2Label");
 					break;
-				case CTillustration1Label:
-					instance.text = copyProvider.getCopyForId("CTillustration1Label");
+				case RegisterOption1Label:
+					instance.text = copyProvider.getCopyForId("RegisterOption1Label");
 					break;
-				case CTillustration2Label:
-					instance.text = copyProvider.getCopyForId("CTillustration2Label");
+				case LTOption1Label:
+					instance.text = copyProvider.getCopyForId("LTOption1Label");
+					break;
+				case CTDetailLabel:
+					var replaceObj:Object = {loginText:copyProvider.getCopyForId("CTStartButton")};
+					instance.text = copyProvider.getCopyForId("CTDetailLabel", replaceObj);
 					break;
 				case emailLabel:
 					instance.text = copyProvider.getCopyForId("yourEmail");
 					break;
 				case psdlLabel:
 					instance.text = copyProvider.getCopyForId("passwordLabel");
-					break;
-				case CTLoginButton:
-					instance.label = copyProvider.getCopyForId("CTLoginButton");
-					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
 				case CTStartButton:
 					instance.label = copyProvider.getCopyForId("CTStartButton");
@@ -559,12 +565,13 @@ package com.clarityenglish.ielts.view.login {
 			} else {
 				// #341 This has to be bitwise comparison, not equality
 				if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
-					loginKey_lbl = copyProvider.getCopyForId("yourName");
+					var replaceObj:Object = {loginDetail:copyProvider.getCopyForId("nameLoginDetail")};
 				} else if (loginOption & Config.LOGIN_BY_ID) {
-					loginKey_lbl = copyProvider.getCopyForId("yourID");
+					replaceObj = {loginDetail:copyProvider.getCopyForId("IDLoginDetail")};
 				} else if (loginOption & Config.LOGIN_BY_EMAIL) {
-					loginKey_lbl = copyProvider.getCopyForId("yourEmail");
+					replaceObj = {loginDetail:copyProvider.getCopyForId("emailLoginDetail")};
 				}
+				loginKey_lbl = copyProvider.getCopyForId("yourLoginDetail", replaceObj);
 			}
 			
 			// #341 for self-registration
@@ -636,15 +643,9 @@ package com.clarityenglish.ielts.view.login {
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				*/
-				case justStartButton:
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, new User(), loginOption, verified));
-					break;
 				case loginButton:
-					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
-					break;
 				case CTLoginButton:
-					user = new User({name:emailInput.text, email:emailInput.text, password:psdInput.text});
+					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case CTStartButton:

@@ -96,7 +96,8 @@ package com.clarityenglish.common.model {
 			if (loginObj && configProxy.getConfig().ip)
 				loginObj.ip = configProxy.getConfig().ip;
 			
-			loginObj.timezoneOffset = new Date().timezoneOffset; // gh#156
+			if (loginObj)
+				loginObj.timezoneOffset = new Date().timezoneOffset; // gh#156
 			
 			// #340
 			// Network allows anonymous entry if all fields are blank
@@ -362,9 +363,12 @@ package com.clarityenglish.common.model {
 						
 						// #341 For network, if you don't find the user, offer to add them
 						// gh#100 and for CT too (so long as selfRegister is set)
+						// gh#100 and for LT/TT too surely!
 						var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-						if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) ||
-							(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT)) &&
+						if ((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK ||
+							configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
+							configProxy.getLicenceType() == Title.LICENCE_TYPE_LT ||
+							configProxy.getLicenceType() == Title.LICENCE_TYPE_TT) &&
 							configProxy.getAccount().selfRegister > 0) {
 							sendNotification(CommonNotifications.CONFIRM_NEW_USER);
 							

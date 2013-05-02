@@ -6,7 +6,7 @@
 			<lit name="applicationVersion">Version {version}</lit>
 			
 			<lit name="errorUnknown" code="100">Unknown error</lit>			
-			<lit name="errorNoSuchUser" code="200">Your login name or ID is not registered. Please contact your administrator. (option {loginOption})</lit>
+			<lit name="errorNoSuchUser" code="200">Your login details are not registered. Please contact your administrator. (option {loginOption})</lit>
 			<lit name="errorNoProductCode" code="201">No productCode sent.</lit>
 			<lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
 			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
@@ -62,21 +62,15 @@
 			<lit name="closeButton">OK</lit>
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
-			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
+			<lit name="loginDetailLabel">Please type your details and click {loginText}.</lit>
             <lit name="loginDetailLabelCT">
-                 <![CDATA[If you already have an account, type your details to log in.
-If you want to be anonymous, just click {loginText}.]]>
+                 <![CDATA[If you want to keep a record of your progress, fill in your {loginDetail} and password, then click {loginText}.]]>
             </lit>
-			<lit name="loginDetailLabelNetwork">
-			     <![CDATA[If you already have an account, type your details to log in.
-If you are a new user, type the login you want to use.
-If you want to be anonymous, just click {loginText}.]]>
-            </lit>
-			<lit name="CTOption1Label">Option 1: Login</lit>
+			<lit name="CTDetailLabel">If you just want to practise with Road to IELTS, click {loginText}.</lit>
+			<lit name="CTOption1Label">Option 1: Tracking</lit>
 			<lit name="CTOption2Label">Option 2: Anonymous</lit>
-			<lit name="CTLoginTitleLabel">How to access Road to IELTS</lit>
-			<lit name="CTillustration1Label">Register or log in with your email and password if you want to keep your exercise scores over multiple login sessions.</lit>
-			<lit name="CTillustration2Label">If you don't want to keep your exercise scores once you have logged out of Road to IELTS, click Start program below.</lit>
+			<lit name="LTOption1Label">Get started</lit>
+			<lit name="RegisterOption1Label">Your details</lit>
 			<lit name="CTLoginButton">Register or log in</lit>
 			<lit name="CTStartButton">Start program</lit>
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
@@ -86,6 +80,10 @@ If you want to be anonymous, just click {loginText}.]]>
 			<lit name="FVTextLabel">IELTS preparation and practice</lit>
 			<lit name="loginButton">Log in</lit>
 			<lit name="passwordLabel">Password:</lit>
+			<lit name="yourLoginDetail">Your {loginDetail}:</lit>
+			<lit name="nameLoginDetail">name</lit>
+			<lit name="IDLoginDetail">ID</lit>
+			<lit name="emailLoginDetail">email</lit>
 			<lit name="yourName">Your name:</lit>
 			<lit name="loginID">Login ID:</lit>
 			<lit name="yourID">Your ID:</lit>
