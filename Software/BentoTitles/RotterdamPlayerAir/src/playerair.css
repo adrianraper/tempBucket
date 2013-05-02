@@ -14,6 +14,11 @@ s|TitleWindow {
 	dropShadowVisible: true; /* #389 even though FB thinks this isn't supported it is in our skins */
 }
 
+s|List {
+	borderVisible: false;
+	contentBackgroundAlpha: 0;
+}
+
 components|XHTMLExerciseView s|TextInput {
 	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
 	contentBackgroundColor: #FFFFFF;
