@@ -29,7 +29,8 @@
 		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 		
 		<!-- Video -->
-		<s:Group id="videoHolder" left="0" right="0">
+		<!--gh#246 add height for videoHolder-->
+		<s:Group id="videoHolder" left="0" right="0" height="375">
 			<s:SWFLoader id="swfLoader" visible.dragging="false" />
 		</s:Group>
 	</s:VGroup>
