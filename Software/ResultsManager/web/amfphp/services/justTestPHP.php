@@ -23,6 +23,7 @@
 	header('Location: ' . $newURL);
 	*/
 
+/*
 	$validUnitIds = array();
 	$validUnitIds[] = '377666536745193046';
 
@@ -53,5 +54,11 @@
 				} else {
 					$goodGosh = false;
 				}
+*/
+	if (strtotime('2013-05-04 23:59:59') > strtotime(date("Y-m-d"))) {
+		echo "it is still valid";
+	} else {
+		echo "you have expired";
+	}
 flush();
 exit();

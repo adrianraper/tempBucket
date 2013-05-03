@@ -28,23 +28,22 @@ class LoginOps {
 	function loginBento($loginObj, $loginOption, $verified, $userTypes, $rootID, $productCode = null) {
 		// Pull out the relevant login details from the passed object
 		// loginOption controls what fields you use to login with.
-		// TODO. make it use constants.
 		// TODO. The code below doesn't properly do username+studentID at the moment
-		if ($loginOption & 1 || $loginOption & 4) {
+		if ($loginOption & User::LOGIN_BY_NAME || $loginOption & User::LOGIN_BY_NAME_AND_ID) {
 			if (isset($loginObj['username'])) {
 				$key = 'u.F_UserName';
 				$keyValue = $loginObj['username'];
 			} else {
 				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
 			}
-		} elseif ($loginOption & 2) {
+		} elseif ($loginOption & User::LOGIN_BY_ID) {
 			if (isset($loginObj['studentID'])) {
 				$key = 'u.F_StudentID';
 				$keyValue = $loginObj['studentID'];
 			} else {
 				throw $this->copyOps->getExceptionForId("errorLoginKeyEmpty", array("loginOption" => $loginOption));
 			}
-		} elseif ($loginOption & 128) {
+		} elseif ($loginOption & User::LOGIN_BY_EMAIL) {
 			if (isset($loginObj['email'])) {
 				$key = 'u.F_Email';
 				$keyValue = $loginObj['email'];
@@ -97,63 +96,167 @@ EOD;
 			case 0:
 				// Whilst testing tablet login, tell me about all logins
 				$logMessage = "login $keyValue no such user";
-				if (($loginOption & 128) && ($rootID == null)) $logMessage.=' -tablet-';
+				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
 				AbstractService::$debugLog->info($logMessage);
 				// Invalid login
 				throw $this->copyOps->getExceptionForId("errorNoSuchUser", array("loginOption" => $loginOption));
 				break;
+				
 			case 1:
 				// Valid login
 				$dbLoginObj = $rs->FetchNextObj();
-				
-				// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
-				// #341 Only check password if you have set this to be the case 
-				if ($verified) {
-					if ($password != $dbLoginObj->F_Password) {
-						$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
-						if (($loginOption & 128) && ($rootID == null)) $logMessage.=' -tablet-';
-						AbstractService::$debugLog->info($logMessage);
-						throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
-					}
-				}
-				
-				// gh#66 check that the retrieved record is the right type of user
-				if (!in_array($dbLoginObj->F_UserType, $userTypes))
-					throw $this->copyOps->getExceptionForId("errorWrongUserType", array("userType" => $dbLoginObj->F_UserType));
-				
-				// Check if the user has expired.  Specify the language code as EN when getting copy as we haven't logged in yet.
-				// AR Some users have NULL expiry date, so this will throw an exception, so add an extra condition to test for this
-				// Also, you can't use strtotime on this date format if year > 2038
-				if ($dbLoginObj->F_ExpiryDate && ($dbLoginObj->F_ExpiryDate > '2038')) $dbLoginObj->F_ExpiryDate = '2038-01-01';
-				if ($dbLoginObj->F_ExpiryDate && 
-						(strtotime($dbLoginObj->F_ExpiryDate) > 0) && 
-						(strtotime($dbLoginObj->F_ExpiryDate) < strtotime(date("Y-m-d")))) {
-					
-						$logMessage = "login $keyValue but expired on ".$dbLoginObj->F_ExpiryDate;
-						if (($loginOption & 128) && ($rootID == null)) $logMessage.= '-tablet-';
-						AbstractService::$debugLog->info($logMessage);
-						throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($dbLoginObj->F_ExpiryDate))));
-				}
-				
-				$logMessage = "login $keyValue success";
-				if (($loginOption & 128) && ($rootID == null)) $logMessage.=' -tablet-';
-				AbstractService::$debugLog->info($logMessage);
-				
-				// Authenticate the user with the session
-				Authenticate::login($dbLoginObj->F_UserName, $dbLoginObj->F_UserType);
-				
-				// gh#156 - update the timezone difference for this user in the database
-				$this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array(-$loginObj["timezoneOffset"] / 60, $dbLoginObj->F_UserID));
-				
-				// Return the $dbLoginObj so the specific service can continue with whatever action it likes
-				return $dbLoginObj;
 				break;
 				
 			default:
 				// More than one user with this name/password
+				// gh#231 It is entirely possible to have two user records for the same person in the db
+				// typically one would be an LM account and the other a IP.com purchase
+				// So first of all see if you can figure out some rules for picking one of the multiple users
+				
+				// 1. Does the password match just one of them?
+				$matches = 0;
+				while ($userObj = $rs->FetchNextObj()) {
+					if ($password == $userObj->F_Password) {
+						$dbLoginObj = $userObj;
+						$matches++;
+					}
+				}
+				if ($matches == 1)
+					continue;
+				
+				// 2. Is there just one that has not expired?
+				$matches = 0;
+				$rs->MoveFirst();
+				while ($userObj = $rs->FetchNextObj()) {
+					if ($userObj->F_ExpiryDate && ($userObj->F_ExpiryDate > '2038')) $userObj->F_ExpiryDate = '2038-01-01';
+					if (($userObj->F_ExpiryDate == null) ||
+						($userObj->F_ExpiryDate && 
+							(strtotime($userObj->F_ExpiryDate) > strtotime(date("Y-m-d"))))) {
+						$dbLoginObj = $userObj;
+						$matches++;
+					}
+				}
+				if ($matches == 1)
+					continue;
+					
+				// 3. What about by account attributes?
+				$rs->MoveFirst();
+				while ($userObj = $rs->FetchNextObj()) {
+					$userIDArray[] = $userObj->F_UserID;
+				}
+				$userIDList = join(',', $userIDArray);
+				
+				// requires a SQL look up on the accounts for each user
+				$selectFields = array("g.F_GroupID as groupID",
+								"m.F_RootID as rootID",
+								"a.F_ProductVersion as productVersion",
+								"a.F_ExpiryDate as expiryDate",
+								"u.*");
+				$sql  = "SELECT ".join(",", $selectFields);
+				$sql .= <<<EOD
+					from T_User u, T_Membership m, T_Groupstructure g, T_Accounts a
+					where a.F_RootID = m.F_RootID
+					and m.F_UserID = u.F_UserID
+					and g.F_GroupID = m.F_GroupID
+					and u.F_UserID in ($userIDList)
+					and a.F_ProductCode in ($productCode);
+EOD;
+				$rs1 = $this->db->Execute($sql);
+				
+				// Can we rank them by programVersion? HomeUser > FullVersion > LastMinute > TestDrive > Demo
+				$matches = 0;
+				$rs1->MoveFirst();
+				while ($accountObj = $rs1->FetchNextObj()) {
+					if ($accountObj->productVersion && stristr($accountObj->productVersion, 'HU')) {
+						
+						// the account must still be active
+						if ($accountObj->expiryDate && ($accountObj->expiryDate > '2038')) $accountObj->expiryDate = '2038-01-01';
+						if (strtotime($accountObj->expiryDate) > strtotime(date("Y-m-d"))) {
+							
+							// There might be more than one account record for one user, so only count
+							// duplicates with different userIDs.
+							if ($dbLoginObj->F_UserID != $accountObj->F_UserID) {
+								$dbLoginObj = $accountObj;
+								$matches++;
+							} else {
+								if ($matches == 0) $matches++;
+							}
+						}
+					}
+				}
+				if ($matches == 1)
+					continue;
+					
+				$matches = 0;
+				$rs1->MoveFirst();
+				while ($accountObj = $rs1->FetchNextObj()) {
+					if ($accountObj->productVersion && stristr($accountObj->productVersion, 'FV')) {
+						// the account must still be active
+						if ($accountObj->expiryDate && ($accountObj->expiryDate > '2038')) $accountObj->expiryDate = '2038-01-01';
+						if (strtotime($accountObj->expiryDate) > strtotime(date("Y-m-d"))) {
+							
+							// There might be more than one account record for one user, so only count
+							// duplicates with different userIDs.
+							if ($dbLoginObj->F_UserID != $accountObj->F_UserID) {
+								$dbLoginObj = $accountObj;
+								$matches++;
+							} else {
+								if ($matches == 0) $matches++;
+							}
+						}
+					}
+				}
+				if ($matches == 1)
+					continue;
+					
+				// TODO. This is not perfect. You might have an expired account that is HU and it is chosen over
+				// non-expired FV ones.
+				
 				throw $this->copyOps->getExceptionForId("errorDuplicateUsers", array("loginOption" => $loginOption));
 		}
 		
+		// A special case to check that the password matches the case (by default MSSQL and MYSQL are case-insensitive)
+		// #341 Only check password if you have set this to be the case 
+		if ($verified) {
+			if ($password != $dbLoginObj->F_Password) {
+				$logMessage = "login $keyValue wrong password, they typed $password, should be ".$dbLoginObj->F_Password;
+				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
+				AbstractService::$debugLog->info($logMessage);
+				throw $this->copyOps->getExceptionForId("errorWrongPassword", array("loginOption" => $loginOption));
+			}
+		}
+		
+		// gh#66 check that the retrieved record is the right type of user
+		if (!in_array($dbLoginObj->F_UserType, $userTypes))
+			throw $this->copyOps->getExceptionForId("errorWrongUserType", array("userType" => $dbLoginObj->F_UserType));
+		
+		// Check if the user has expired.
+		// AR Some users have NULL expiry date, so this will throw an exception, so add an extra condition to test for this
+		// Also, you can't use strtotime on this date format if year > 2038
+		if ($dbLoginObj->F_ExpiryDate && ($dbLoginObj->F_ExpiryDate > '2038')) $dbLoginObj->F_ExpiryDate = '2038-01-01';
+		if ($dbLoginObj->F_ExpiryDate && 
+				(strtotime($dbLoginObj->F_ExpiryDate) > 0) && 
+				(strtotime($dbLoginObj->F_ExpiryDate) < strtotime(date("Y-m-d")))) {
+			
+				$logMessage = "login $keyValue but expired on ".$dbLoginObj->F_ExpiryDate;
+				if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.= '-tablet-';
+				AbstractService::$debugLog->info($logMessage);
+				throw $this->copyOps->getExceptionForId("errorUserExpired", array("expiryDate" => date("d M Y", strtotime($dbLoginObj->F_ExpiryDate))));
+		}
+		
+		$logMessage = "login $keyValue success";
+		if (($loginOption & User::LOGIN_BY_EMAIL) && ($rootID == null)) $logMessage.=' -tablet-';
+		AbstractService::$debugLog->info($logMessage);
+		
+		// Authenticate the user with the session
+		Authenticate::login($dbLoginObj->F_UserName, $dbLoginObj->F_UserType);
+		
+		// gh#156 - update the timezone difference for this user in the database
+		$this->db->Execute("UPDATE T_User SET F_TimeZoneOffset=? WHERE F_UserID=?", array(-$loginObj["timezoneOffset"] / 60, $dbLoginObj->F_UserID));
+		
+		// Return the $dbLoginObj so the specific service can continue with whatever action it likes
+		return $dbLoginObj;
+
 	}
 	
 	/**
@@ -555,13 +658,13 @@ EOD;
 		// gh#101 You must ask for at least the loginOption field if you are self-registering
 		//        sadly email is NOT the same in both!
 		if ($selfRegister && ($selfRegister > 0)) {
-			if ($loginOption == 1) {
+			if ($loginOption == User::LOGIN_BY_NAME) {
 				$selfRegister = $selfRegister | 1;
 			}
-			if ($loginOption == 2) {
+			if ($loginOption == User::LOGIN_BY_ID) {
 				$selfRegister = $selfRegister | 2;
 			}
-			if ($loginOption == 128) {
+			if ($loginOption == User::LOGIN_BY_EMAIL) {
 				$selfRegister = $selfRegister | 4;
 			}
 		}
