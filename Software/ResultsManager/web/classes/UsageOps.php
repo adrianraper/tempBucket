@@ -192,6 +192,11 @@ EOD;
 	 */
 	private function getAASessionCounts($title, $fromDate, $toDate) {
 		
+		// For HCT aggregated results, include all roots
+		$rootID = Session::get('rootID');
+		if ($rootID == 14292)
+			$rootID = '14276,14277,14278,14279,14280,14281,14282,14283,14284,14285,14286,14287,14288,14289,14290,14291,14292';
+		
 		$fromDateStamp = $fromDate;
 		$toDateStamp = $toDate;
 		// Need a loop for each year covered by these dates
@@ -242,22 +247,33 @@ EOD;
 			} else {
 				$sqldatemonth = $this->db->SQLDATE('m', F_StartDateStamp);
 			}
+			
 			// gh#178 Not really this issue, just done at the same time!
 			// This also fails in sqlite for the F_StartDateStamp < '2014'
 			// needs to be '2014-01-01' which will be fine for MySQL too.
-			$sql = 	<<<EOD
+			$sql = <<<EOD
 					select count(F_SessionID) sessionCount, $sqldatemonth month
 					from T_Session
-					where F_RootID = ?
-					and F_ProductCode = ?
+					where F_ProductCode = ?
 					and F_StartDateStamp>='$i-01-01'
 					and F_StartDateStamp<'$j-01-01'
+EOD;
+			if (stristr($rootID,',')!==FALSE) {
+				$sql.= " AND F_RootID in ($rootID)";
+			} else if ($rootID=='*') {
+				// check all roots in that case - just for special cases, usually self-hosting
+				// Note that leaving the root empty would include teachers
+				$sql.= " AND F_RootID > 0";
+			} else {
+				$sql.= " AND F_RootID = $rootID";
+			}
+			$sql .= <<<EOD
 					group by $sqldatemonth
 					order by $sqldatemonth;
 EOD;
-			//NetDebug::trace("sql=". $sql);
+			NetDebug::trace("session graph sql=". $sql);
 			//$statsArray["$i"] = $this->db->GetArray($sql, array(Session::get('rootID'), $title->id, $i, $i+1));
-			$statsArray["$i"] = $this->db->GetArray($sql, array(Session::get('rootID'), $title->id));
+			$statsArray["$i"] = $this->db->GetArray($sql, array($title->id));
 		}
 		
 		//return array("2009"=>$rs2009, "2010"=>$rs2010);
@@ -582,29 +598,49 @@ EOD;
 		$fromDateStamp = $fromDate;
 		$toDateStamp = $toDate;
 		
+		// For HCT aggregated results, include all roots
+		$rootID = Session::get('rootID');
+		if ($rootID == 14292)
+			$rootID = '14276,14277,14278,14279,14280,14281,14282,14283,14284,14285,14286,14287,14288,14289,14290,14291,14292';
+		
 		$sql = 	<<<EOD
 				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) totalCourse, SUM(ss.F_Duration) totalDuration
 				FROM T_Session ss
 				WHERE ss.F_ProductCode=?
-				AND ss.F_RootID = ?
 				AND ss.F_StartDateStamp >= ?
 				AND ss.F_StartDateStamp <= ?
 				AND ss.F_Duration <= ?
 EOD;
+		if (stristr($rootID,',')!==FALSE) {
+			$sql.= " AND ss.F_RootID in ($rootID)";
+		} else if ($rootID=='*') {
+			// check all roots in that case - just for special cases, usually self-hosting
+			// Note that leaving the root empty would include teachers
+			$sql.= " AND ss.F_RootID > 0";
+		} else {
+			$sql.= " AND ss.F_RootID = $rootID";
+		}
 		
-		$rs = $this->db->GetArray($sql, array($title->id, Session::get('rootID'), $fromDateStamp, $toDateStamp, 43200));
+		$rs = $this->db->GetArray($sql, array($title->id, $rootID, $fromDateStamp, $toDateStamp, 43200));
 		
 		$sql2 = 	<<<EOD
 				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) totalCourse
 				FROM T_Session ss
 				WHERE ss.F_ProductCode=?
-				AND ss.F_RootID = ?
 				AND ss.F_StartDateStamp >= ?
 				AND ss.F_StartDateStamp <= ?
 				AND ss.F_Duration > ?
 EOD;
-        
-		$rs2 = $this->db->GetArray($sql2, array($title->id, Session::get('rootID'), $fromDateStamp, $toDateStamp, 43200));
+		if (stristr($rootID,',')!==FALSE) {
+			$sql.= " AND ss.F_RootID in ($rootID)";
+		} else if ($rootID=='*') {
+			// check all roots in that case - just for special cases, usually self-hosting
+			// Note that leaving the root empty would include teachers
+			$sql.= " AND ss.F_RootID > 0";
+		} else {
+			$sql.= " AND ss.F_RootID = $rootID";
+		}		
+		$rs2 = $this->db->GetArray($sql2, array($title->id, $rootID, $fromDateStamp, $toDateStamp, 43200));
 		$rs[0][totalDuration] = $rs[0][totalDuration]+$rs2[0][totalCourse]*21600; 
 		$rs[0][totalCourse] = $rs[0][totalCourse]+$rs2[0][totalCourse];
 		//return $rs['overLastYear'];

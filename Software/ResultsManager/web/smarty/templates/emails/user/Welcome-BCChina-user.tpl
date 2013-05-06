@@ -7,7 +7,6 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <title>Welcome to the new Road to IELTS</title>
 	<!-- <from>support@roadtoielts.com</from> -->
-	<!-- <bcc>support@roadtoielts.com</bcc> -->
 </head>
 <body>
 <div style="margin: 8px;">
@@ -25,7 +24,7 @@
    	  <div style="margin:0; padding:0;">
         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:5px 0 5px 0; padding:0; color:#000000; line-height:18px;">Dear {$user->name},</p>
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">Welcome to the new Road to IELTS online preparation platform. You can login at the following URL with your ID and password.</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><a href="http://www.roadtoielts.com/BritishCouncil/login.php" target="_blank">www.roadtoielts.com/BritishCouncil/China</a></p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><a href="http://roadtoielts.chinaielts.org/BritishCouncil/China/" target="_blank">www.roadtoielts.com/BritishCouncil/China</a></p>
 			<div style="margin:10px 50px 30px 10px; padding:0; background-color:#999999;">
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:10px 0 0 0; margin:10px 20px 5px 20px; color:#000000; line-height:18px; ">Login ID: {$user->studentID}</p>
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; padding:0 0 10px 0; margin:0 20px 5px 20px; line-height:18px; ">Password: {$user->password}</p>

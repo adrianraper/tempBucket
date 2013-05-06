@@ -21,7 +21,7 @@
   <tr>
     <td colspan="3">
         
-	  <div style="padding:0 48px;">
+	  <div style="padding:0 48px; margin:0;">
            
            		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Dear {$body.name}</p>
            
@@ -32,7 +32,7 @@
 Please keep this email for later reference.</p>
 
 
-<div style="border:#CCCCCC 1px solid; padding:10px; margin:0 0 15px 0;">
+<div style="border:#CCCCCC 1px solid; padding:10px; margin:0;">
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Personal details</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Reference number: </strong>{$body.refNo}</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Name: </strong>{$body.name}</p>
@@ -43,35 +43,93 @@ Please keep this email for later reference.</p>
                 
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Payment method: </strong>{$api->paymentMethod}</p>
 			</div>
-
-
-            <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Paying by money transfer</p>
-            <ul style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0 0 0 25px; list-style:decimal; line-height:18px;">
-             	<li style="margin:0 0 10px 0;">Locate your nearest Western Union money transfer agent. (Go to <a href="http://www.westernunion.com" target="_blank">www.westernunion.com</a>).</li>
-              	<li style="margin:0 0 10px 0;">Go to the agent's office and pay ${$body.amount} in <span style="color:#0A436E; font-weight:bold;">US Dollars</span>.</li>
+			</div>
+            
+      <table width="600" border="0" cellspacing="0" cellpadding="0" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; line-height:18px;">
+  <tr>
+    <td height="15" colspan="4"></td>
+    </tr>
+  <tr>
+    <td colspan="4"><p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0 48px; color:#0399D6; font-weight:bold;line-height:18px;">Pay by money transfer</p></td>
+    </tr>
+  <tr>
+    <td width="55"></td>
+    <td width="22" align="left" valign="top">1.</td>
+    <td width="465">Locate your nearest Western Union money transfer agent. <BR />
+      (Go to <a href="http://www.westernunion.com" target="_blank">www.westernunion.com</a>).</td>
+    <td width="58"></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="4"></td>
+    </tr>
+  <tr>
+    <td></td>
+    <td align="left" valign="top">2.</td>
+    <td>Go to the agent's office and pay ${$body.amount} in <span style="color:#0A436E; font-weight:bold;">US Dollars</span>.</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="4"></td>
+    </tr>
+  <tr>
+    <td></td>
+    <td align="left" valign="top">3.</td>
+    <td>Give the agent the special instruction: <span style="color:#0A436E; font-weight:bold;">Recipient must receive money in US$ (not Hong Kong Dollars)</span>.</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="4"></td>
+    </tr>
+  <tr>
+    <td></td>
+    <td align="left" valign="top">4.</td>
+    <td>Fill in the receiver's details on the Send Money form as below:
+    
+    <ol style="margin:5px 0 0 0; padding:0; list-style-type: none;  line-height:18px;">
+              	<li  style="margin:0; padding:0;">First name: Ka Pui</li>
+<li style="margin:0; padding:0;">Middle name: Christine</li>
+<li style="margin:0; padding:0;">Last name: Ng</li>
+<li style="margin:0; padding:0;">City: Hong Kong</li>
+<li style="margin:0; padding:0;">Country: Hong Kong</li>
+<li style="margin:0; padding:0;">Click <a href="http://www.clarityenglish.com/images/email/ieltspractice/WesternUnionSample_Clarity.jpg" target="_blank">here</a> to see a sample</li>
+</ol>    </td>
+    <td></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="4"></td>
+    </tr>
+  <tr>
+    <td background="http://www.clarityenglish.com/images/email/ieltspractice/list_arrow_left.jpg"></td>
+    <td align="left" valign="top" background="http://www.clarityenglish.com/images/email/ieltspractice/list_top_bg.jpg">
+    	<p style="padding:8px 0 0 0; margin:0;">5.</p>
+    </td>
+    <td background="http://www.clarityenglish.com/images/email/ieltspractice/list_top_bg.jpg">
+    	<p style="padding:8px 0 5px 0; margin:0;">Send us an email when you have completed the payment so we know it has been sent. In the email please provide:</p>
                 
-                <li style="margin:0 0 10px 0;">Give the agent the special instruction: <span style="color:#0A436E; font-weight:bold;">Recipient must receive money in US$ (not Hong Kong Dollars)</span>.</li>
-                
-                
-                
-                
-              <li style="margin:0 0 10px 0;">Make your payment to: <br />Ng, Ka Pui Christine                </li>
-                <li  style="margin:0 0 10px 0;">Send us an email when you have completed the payment so we know it has been sent. In the email please provide:<br />
-                
-                <ol style="margin:5px 0 0 0; padding:0 0 0 25px; list-style-type: lower-roman;  line-height:18px;">
+                <ol style="margin:0; padding:0 0 0 25px; list-style-type: lower-roman;  line-height:18px;">
                 	<li>Sender name</li>
                     <li>Sender country</li>
                     <li>Money Control Transfer Number (10-digit)</li>
                     <li>The reference number at the top of this email</li>
-                </ol>
-                </li>
-        </ul>
-            
-        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Pay by Direct Bank Deposit</p>
-             
+                </ol>    </td>
+    <td background="http://www.clarityenglish.com/images/email/ieltspractice/list_right_bg.jpg"></td>
+  </tr>
+  <tr>
+    <td height="9" colspan="4" background="http://www.clarityenglish.com/images/email/ieltspractice/list_btm_bg.jpg"></td>
+    </tr>
+  
+</table>
 
-
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">
+<table width="600" border="0" cellspacing="0" cellpadding="0" style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; line-height:18px;">
+  <tr>
+    <td height="15" colspan="3"></td>
+  </tr>
+  <tr>
+    <td colspan="3"><p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0 48px; color:#0399D6; font-weight:bold;line-height:18px;">Pay by direct bank deposit</p></td>
+    </tr>
+  <tr>
+    <td width="55"></td>
+    <td width="487"><p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
                    <strong> Bank transfer</strong><br />
                     Payable to: Clarity Language Consultants Ltd<br />
                     SWIFT number: HSBC HKHH<br />
@@ -82,21 +140,50 @@ Please keep this email for later reference.</p>
                     Bank address:<br />
                     HSBC, Sai Kung Office, Shop 9,<br />
                     Sai Kung Gardens,<br />
-                    Sai Kung, Hong Kong                  </p>
-                  
-                   <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Please note that the sum received in payment must be nett of bank charges.</p>
-                   
-                   <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Send us an email when you have completed the payment so we know it has been sent. In the email please provide your:<br />
-                <ol style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0 0 0 25px; list-style-type: lower-roman;  line-height:18px;">
+                    Sai Kung, Hong Kong                    </p></td>
+    <td width="58"></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="3"></td>
+    </tr>
+  <tr>
+    <td></td>
+    <td>Please note that the sum received in payment must be nett of bank charges.</td>
+    <td></td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+  </tr>
+  <tr>
+    <td height="10" colspan="3"></td>
+    </tr>
+  <tr>
+    <td background="http://www.clarityenglish.com/images/email/ieltspractice/list_arrow_left.jpg"></td>
+    <td  background="http://www.clarityenglish.com/images/email/ieltspractice/list_top_bg.jpg">
+    	<p style="padding:8px 0 5px 0; margin:0;">Send us an email when you have completed the payment so we know it has been sent.<br /> In the email please provide:</p>
+        <ol style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0 0 0 25px; list-style-type: lower-roman;  line-height:18px;">
                 	<li>Sender name</li>
                     <li>Sender country</li>
                     <li>Bank transaction reference number</li>
+                    <li>Payment advice / receipt</li>
                   <li>The reference number at the top of this email</li>
-                </ol>
-                
-                
-                </p>
-                
+                </ol>    </td>
+    <td background="http://www.clarityenglish.com/images/email/ieltspractice/list_right_bg.jpg"></td>
+  </tr>
+  
+  <tr>
+    <td height="9" colspan="3" background="http://www.clarityenglish.com/images/email/ieltspractice/list_btm_bg.jpg"></td>
+    </tr>
+  <tr>
+    <td height="15" colspan="3"></td>
+  </tr>
+</table>
+
+		
+        
+<div style="padding:0 48px; margin:0;">
                 
                		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Please feel free to contact us if you have any questions.</p>
 
@@ -105,7 +192,8 @@ Please keep this email for later reference.</p>
                         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
                  	Ms Christine Ng<br />
                    Accounts Manager, Clarity</p>
-           </div>           </td>
+                   </div>
+    </td>
   </tr>
   
   <tr>
@@ -116,7 +204,7 @@ Please keep this email for later reference.</p>
   <tr>
         <td width="10" background="http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_left.jpg">            </td>
         <td width="579"  bgcolor="#343434">
-       <div style="padding:20px 48px;">
+       <div style="padding:20px 48px; color:#FFFFFF;">
          
             
             
@@ -126,8 +214,7 @@ Please keep this email for later reference.</p>
                 T: (+852) 2791 1787 | F: (+852) 2791 6484<br />
               E: <a href="mailto:support@ieltspractice.com" style="color:#FFFFFF;">support@ieltspractice.com</a> | W: <a href="http://www.IELTSpractice.com" target="_blank" style="color:#FFFFFF;">www.IELTSpractice.com</a>              </p> 
               
-               <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; 0; padding:0; color:#FFFFFF; line-height:18px;">
-               Your privacy is important to us. Please review IELTSpractice.com privacy
+               <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; 0; padding:0; color:#FFFFFF; line-height:18px;">Your privacy is important to us. Please review IELTSpractice.com privacy
 policy by clicking here: <a href="http://www.ieltspractice.com/terms.php" target="_blank" style="color:#FFFFFF;">http://www.ieltspractice.com/terms.php</a></p>
     </div>
         

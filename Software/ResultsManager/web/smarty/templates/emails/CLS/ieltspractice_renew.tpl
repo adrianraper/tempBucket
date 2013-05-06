@@ -47,15 +47,27 @@
         	 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Below are the details you entered while purchasing at IELTSpractice.com.
 Please keep this email for later reference.</p>
              
-             <div style="border:#CCCCCC 1px solid; padding:10px; margin:0 0 15px 0;">
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Renewal details</p>
+             <div style="border:#CCCCCC 1px solid; padding:10px; margin:0 0 20px 0;">
+               <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Renewal details</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Reference number: </strong>{$api->subscription->id}</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Name: </strong>{$account->adminUser->name}</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Renewal: </strong>{$api->offerName}</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Now expires on: </strong>{format_ansi_date ansiDate=$account->titles[0]->expiryDate format='%d %B %Y'}</p>
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Payment method: </strong>{$api->paymentMethod}</p>
 			</div>
-           </div>	 </td>
+            
+            <div  style="margin:0 0 20px 0; padding:0;">
+          <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px; font-weight:bold;">Using an iPad? Download our app here. It's FREE!</p>
+             
+             <a href="https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&ign-mpt=uo%3D4" target="_blank">
+                 <img src="http://www.clarityenglish.com/images/email/ieltspractice/badge_appstore.jpg" border="0" width="135" height="40" />
+             </a>
+        </div>
+        
+        <div style="clear:both;"></div>
+            
+            
+      </div>	 </td>
   </tr>
   
   <tr>
@@ -68,7 +80,7 @@ Please keep this email for later reference.</p>
                    	    <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Please feel free to contact us at <a href='mailto:support@ieltspractice.com'>support@ieltspractice.com</a> if you have any questions.</p>
 
 						<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">Best wishes</p>
-                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:15px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_nicolelung.jpg" width="103" height="25" alt="Nicole Lung"/></p>
+                        <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:10px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_nicolelung.jpg" width="103" height="25" alt="Nicole Lung"/></p>
                         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
                  	Nicole Lung<br />
                     Marketing Executive, Clarity</p>                    </td>

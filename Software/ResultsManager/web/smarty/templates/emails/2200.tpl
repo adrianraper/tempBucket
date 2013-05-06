@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Extend your IELTSpractice subscription?</title>
+	<title>Renew your IELTSpractice subscription?</title>
 	<!-- <from>%22IELTSPractice.com%22 %3Csupport@ieltspractice.com%3E</from> -->
 	<!-- <bcc>alfred.ng@clarityenglish.com</bcc> -->
 </head>
@@ -30,7 +30,7 @@ bgColor=#ffffff align=center>
     background=http://www.clarityenglish.com/images/email/ieltspractice/subtitle.jpg 
     colSpan=3>
       <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 53px; MARGIN: 0px; PADDING-LEFT: 48px; PADDING-RIGHT: 48px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 13px; FONT-WEIGHT: bold; PADDING-TOP: 0px">Extend 
+      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 53px; MARGIN: 0px; PADDING-LEFT: 48px; PADDING-RIGHT: 48px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 13px; FONT-WEIGHT: bold; PADDING-TOP: 0px">Renew 
       your subscription?</P></TD></TR>
   <TR>
     <TD colSpan=3>
@@ -41,137 +41,45 @@ bgColor=#ffffff align=center>
       you for choosing Road to IELTS. We hope it has improved your skills and helped you develop your confidence in taking the IELTS test.</P>
       <P style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
       We are sad to inform you that your subscription will be ending in&nbsp;7 days,<br/>on {format_ansi_date ansiDate=$expiryDate format='%d %B %Y'}.</P>
-      <P style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
-      Write us a piece of advice for other IELTS candidates and we will extend your subscription for another week.</P></DIV></TD></TR>
-  <TR>
-    <TD colSpan=3><IMG alt="Extend your subscription by 1 FREE WEEK!" 
-      src="http://www.clarityenglish.com/images/email/ieltspractice/img_reminder_wk.jpg" 
-      width=600 height=318> 
-      <DIV 
-      style="PADDING-BOTTOM: 0px; PADDING-LEFT: 48px; PADDING-RIGHT: 48px; PADDING-TOP: 0px">
-      <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 15px 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #0399d6; FONT-SIZE: 18px; FONT-WEIGHT: bold; PADDING-TOP: 0px">Instructions</P>
-      <UL 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; LIST-STYLE-TYPE: decimal; MARGIN: 0px 0px 15px; PADDING-LEFT: 20px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
-        <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Write 
-        us 50 words or more of advice you would give to candidates preparing for the IELTS test, and tell us why you are taking IELTS (eg: to go to  Regent's Business School, UK) and the band score you require. Click <a href="http://www.facebook.com/PractiseforIELTS" target="_blank">here</a> to check our Facebook "Tip from an IELTS candidate" for your reference.        </LI>
-        
-        <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Send your photo to <A 
-        href="mailto: support@ieltspractice.com?subject=Send IELTS advice with your photo to extend your subscription!">support@ieltspractice.com</A> 
-        so we can present your comment to others. </LI>
-        
-        <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Like our <a href="http://www.facebook.com/PractiseforIELTS" target="_blank">IELTSpractice.com Facebook page</a> to get the daily tips and advice for IELTS preparation.</LI>
-        
-        
-        <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">By 
-        sending your advice and photo you confirm that you have read and agreed to the <a href="#terms">terms and conditions</a>. </LI>
-      </UL><A 
-      style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px" 
-      href="mailto: support@ieltspractice.com?subject=Send IELTS advice with your photo to extend your subscription!"><IMG 
-      style="BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #facc38; MARGIN: 0px 0px 15px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; COLOR: #37250d; BORDER-LEFT-WIDTH: 0px" 
-      alt="Send IELTS advice with your photo to extend your subscription!" 
-      src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_testimonial.jpg" 
-      width=507 height=79></A> <A 
-      style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px" 
-      href="mailto: support@ieltspractice.com?subject=Renew IELTSpractice subscription"><IMG 
+       
+       
+       <P style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
+     If you would like to renew, please log in to  <a href="http://www.IELTSpractice.com" target="_blank">www.IELTSpractice.com</a>. Click "Renew my licence" on the page.</P>
+     
+     <A style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px" href="http://www.ieltspractice.com" target="_blank">
+     <IMG 
       style="BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #f8931f; MARGIN: 0px 0px 15px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; COLOR: #3b1a09; BORDER-LEFT-WIDTH: 0px" 
-      alt="Renew subscription for USD49.99" 
+      alt="Log in and resubscribe now!" 
       src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_renew.jpg" 
-      width=276 height=41></A> 
-      <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Please 
-      feel free to contact us at <A 
-      href="mailto: support@ieltspractice.com">support@ieltspractice.com</A> if 
-      you have any questions.</P>
-      <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Best 
-      wishes</P>
-      <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 5px 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px"><IMG 
+      width=183 height=40></A>
+     
+     
+       
+        
+       
+     
+     
+     <P style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Please feel free to contact us at <a href="mailto:support@ieltspractice.com">support@ieltspractice.com</a> if you have any questions.</P>
+
+<P style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Best wishes</P>
+
+<P style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 5px 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px"><IMG 
       alt="Nicole Lung" 
       src="http://www.clarityenglish.com/images/email/ieltspractice/sign_nicolelung.jpg" 
       width=103 height=25></P>
       <P 
       style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Nicole 
-      Lung<BR>Marketing Executive, Clarity</P></DIV></TD></TR>
+      Lung<BR>Marketing Executive, Clarity</P>
+     
+     
+      </DIV></TD></TR>
+  
   <TR>
     <TD height=81 
-    background=http://www.clarityenglish.com/images/email/ieltspractice/reminder_line.jpg 
+    background=http://www.clarityenglish.com/images/email/ieltspractice/img_btm_plain.jpg
     colSpan=3></TD></TR>
-  <TR>
-    <TD colSpan=3>
-      <DIV 
-      style="PADDING-BOTTOM: 0px; PADDING-LEFT: 48px; PADDING-RIGHT: 48px; PADDING-TOP: 0px">
-      <a name="terms"></a>
-      <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 20px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #0399d6; FONT-SIZE: 18px; FONT-WEIGHT: bold; PADDING-TOP: 0px">*Terms 
-      and Conditions</P>
-      <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Please 
-      remember that, by submitting photograph(s) and comments you confirm that 
-      you agree to the terms and conditions below.</P>
-      <P 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; FONT-WEIGHT: bold; PADDING-TOP: 0px">Terms 
-      and conditions for submitting photographs to IELTSpractice.com</P>
-      <UL 
-      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; LIST-STYLE-TYPE: decimal; MARGIN: 0px 0px 15px; PADDING-LEFT: 20px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
-        <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">By 
-        submitting your photograph and comments you agree to grant Clarity 
-        Language Consultants Ltd. a perpetual, royalty-free, non-exclusive, 
-        sub-licenseable right and license to use, reproduce, modify, adapt, 
-        publish, create derivative works from, distribute, make available to the 
-        public, and exercise all copyright and publicity rights with respect to 
-        your photograph and comments worldwide and/or to incorporate your 
-        photograph and comments in other works and publications in any media now 
-        known or later developed for the full term of any rights that may exist 
-        in your photograph. If you do not want to grant to Clarity Language 
-        Consultants Ltd. the rights set out above, please do not submit your 
-        photograph and comments to IELTSpractice.com. 
-        <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Further 
-        to paragraph 1 above, by submitting your photograph and comments to 
-        IELTSpractice.com you: 
-        <UL 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; LIST-STYLE-TYPE: lower-roman; MARGIN: 0px 0px 15px; PADDING-LEFT: 25px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">
-          <LI 
-          style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">warrant 
-          that your photograph is your true self and that you have the right to 
-          make it available to Clarity Language Consultants Ltd. for all the 
-          purposes specified above; 
-          <LI 
-          style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">warrant 
-          that your photograph and comments do not infringe any law. 
-          <LI 
-          style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">agree 
-          to indemnify Clarity Language Consultants Ltd. against all legal fees, 
-          damages and other expenses that may be incurred by Clarity Language 
-          Consultants Ltd. as a result of your breach of the above warranties; 
-          and 
-          <LI 
-          style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">agree 
-          to waive any moral rights in your photograph and comments for the 
-          purposes of their submission to and publication on IELTSpractice.com 
-          and for the purposes specified above. </LI></UL>
-        <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">Only one licence extension is available per subscriber.</LI>
-        
-        <LI 
-        style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 10px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #000000; FONT-SIZE: 13px; PADDING-TOP: 0px">These 
-        terms and conditions will be governed by the laws of England and Wales 
-        and the parties agree to submit to the exclusive jurisdiction of the 
-        English Courts. </LI>
-        
-        
-        </UL></DIV></TD></TR>
-  <TR>
-    <TD height=81 
-    background=http://www.clarityenglish.com/images/email/ieltspractice/img_btm_bubble.jpg 
-    colSpan=3></TD></TR>
+  
+  
   <TR>
     <TD 
     background=http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_left.jpg 

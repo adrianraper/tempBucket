@@ -36,7 +36,7 @@
            
            		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Dear {$account->adminUser->name}</p>
                 
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Your Road to IELTS subscription has ended. If you would like to extend your subscription, please click on the button below.</p>
+                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Your Road to IELTS subscription has ended. If you would like to extend your subscription, please log in to  <a href="http://www.IELTSpractice.com" target="_blank">www.IELTSpractice.com</a>. Click "Renew my licence" on the page.</p>
                 
               
                 
@@ -44,7 +44,12 @@
                 
            
         
-        <a href="mailto: support@ieltspractice.com?subject=Renew IELTSpractice subscription" style="border:0;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_renew.jpg" alt="Renew subscription for USD49.99" width="276" height="41" style="margin:0 0 15px 0; border:0; background-color:#F8931F; color:#3B1A09;"/></a>        </div></td>
+        <A style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px" href="http://www.ieltspractice.com" target="_blank">
+     <IMG 
+      style="BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #f8931f; MARGIN: 0px 0px 15px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; COLOR: #3b1a09; BORDER-LEFT-WIDTH: 0px" 
+      alt="Log in and resubscribe now!" 
+      src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_renew.jpg" 
+      width=183 height=40></A>       </div></td>
   </tr>
   
   <tr>
