@@ -49,6 +49,9 @@
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.COURSE_CREATED,
 				RotterdamNotifications.COURSE_DELETED,
+				BBNotifications.MENU_XHTML_LOAD,
+				BBNotifications.MENU_XHTML_LOADED,
+				BBNotifications.MENU_XHTML_NOT_LOADED,
 			]);
 		}
 		
@@ -63,6 +66,13 @@
 				case RotterdamNotifications.COURSE_DELETED:
 					// Force a reload of course.xml
 					view.href = view.href.clone();
+					break;
+				case BBNotifications.MENU_XHTML_LOAD:
+					view.enabled = false; // gh#280
+					break;
+				case BBNotifications.MENU_XHTML_LOADED:
+				case BBNotifications.MENU_XHTML_NOT_LOADED:
+					view.enabled = true; // gh#280
 					break;
 			}
 		}

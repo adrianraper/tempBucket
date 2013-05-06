@@ -148,12 +148,10 @@ package com.clarityenglish.bento.model {
 							case copyProxy.getCodeForId("errorTitleBlockedByHiddenContent"):
 							case copyProxy.getCodeForId("errorCourseDoesNotExist"):
 								sendNotification(CommonNotifications.BENTO_ERROR, bentoError);
-								sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
 								break;
 							case copyProxy.getCodeForId("errorConcurrentCourseAccess"): // gh#142
 								bentoError.isFatal = false;
 								sendNotification(CommonNotifications.BENTO_ERROR, bentoError);
-								sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
 								break;
 							default:
 								if (href.type == Href.MENU_XHTML) {
@@ -162,6 +160,8 @@ package com.clarityenglish.bento.model {
 									sendNotification(CommonNotifications.INVALID_DATA, bentoError);
 								}
 						}
+						
+						sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
 					}
 				));
 			} else {
@@ -248,16 +248,17 @@ package com.clarityenglish.bento.model {
 			
 			log.info("IO error loading from href {0} - {1}", href, event.text);
 			sendNotification(BBNotifications.XHTML_LOAD_IOERROR, { href: href } );
-			
+			sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
 			delete urlLoaders[urlLoader];
 		}
 		
 		private function onXHTMLSecurityError(event:SecurityErrorEvent):void {
 			var urlLoader:URLLoader = event.target as URLLoader;
 			var href:Href = urlLoaders[urlLoader];
-			delete urlLoaders[urlLoader];
 			
 			log.info("Security error loading from href {0} - {1}", href, event.text);
+			sendNotification(BBNotifications.MENU_XHTML_NOT_LOADED);
+			delete urlLoaders[urlLoader];
 		}
 		
 	}
