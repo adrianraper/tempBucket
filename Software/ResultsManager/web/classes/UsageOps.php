@@ -621,7 +621,7 @@ EOD;
 			$sql.= " AND ss.F_RootID = $rootID";
 		}
 		
-		$rs = $this->db->GetArray($sql, array($title->id, $rootID, $fromDateStamp, $toDateStamp, 43200));
+		$rs = $this->db->GetArray($sql, array($title->id, $fromDateStamp, $toDateStamp, 43200));
 		
 		$sql2 = 	<<<EOD
 				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) totalCourse
@@ -640,7 +640,7 @@ EOD;
 		} else {
 			$sql.= " AND ss.F_RootID = $rootID";
 		}		
-		$rs2 = $this->db->GetArray($sql2, array($title->id, $rootID, $fromDateStamp, $toDateStamp, 43200));
+		$rs2 = $this->db->GetArray($sql2, array($title->id, $fromDateStamp, $toDateStamp, 43200));
 		$rs[0][totalDuration] = $rs[0][totalDuration]+$rs2[0][totalCourse]*21600; 
 		$rs[0][totalCourse] = $rs[0][totalCourse]+$rs2[0][totalCourse];
 		//return $rs['overLastYear'];

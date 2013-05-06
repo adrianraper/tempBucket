@@ -342,6 +342,18 @@
 			return (obj) ? obj.label : "";
 		}
 		
+		// gh#231
+		/*
+		private function getLoginOptionLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().loginOption, item.loginOption, "data");
+			return (obj) ? obj.label : "";
+		}
+		private function getSelfRegisterOptionLabel(item:Object, column:DataGridColumn):String {
+			var obj:Object = ArrayUtils.searchArrayForObject(DictionarySingleton.getInstance().selfRegisterOption, item.loginOption, "data");
+			return (obj) ? obj.label : "";
+		}
+		*/
+		
 		// v3.0.5 I have made reference a textarea, so we only want the first line to be displayed in the grid
 		// But if this is NULL, calling this function crashes the datagrid.
 		private function getReferenceLabel(item:Object, column:DataGridColumn):String {

@@ -37,6 +37,9 @@
 		// v3.5 Flexibility of email system
 		public var optOutEmails:Boolean;
 		public var optOutEmailDate:String;
+		// gh#231
+		public var selfRegister:Number;
+		public var verified:Boolean;
 		
 		public var adminUser:User;
 		
@@ -59,6 +62,8 @@
 			account.accountStatus = 0; // Account created
 			account.tacStatus = 0; // Display
 			account.loginOption = 1;
+			// gh#213
+			account.selfRegister = 0;
 			account.optOutEmails = false;
 			// v3.4.2 I want to include RM by default - can I do that here?
 			var defaultRM:Title = Title.createDefault(2);

@@ -44,7 +44,7 @@
 	<s:HGroup width="100%" height="100%" top="123">
 		
 	<s:BorderContainer left="20" width="40%" cornerRadius="12" borderColor="0xCCCCCC"  >
-		<s:VGroup paddingLeft="20" paddingBottom="50" width="100%" >
+		<s:VGroup paddingLeft="20" paddingBottom="50" paddingRight="20" width="100%" >
 			<s:Label id="CTOption1Label" width="100%" fontSize="16" color="0x0C436B" paddingTop="20" includeIn="loginStates"/>
 			
 			<s:VGroup id="loginBlock" width="100%" includeIn="loginStates">
@@ -104,7 +104,7 @@
 		<s:HGroup width="100%">
 			<s:Spacer width="20" />
 			<s:BorderContainer width="66%" right="20" cornerRadius="12" borderColor="0xCCCCCC" includeIn="loginConcurrentTracking">
-				<s:VGroup width="100%" paddingLeft="20" paddingBottom="50">
+				<s:VGroup width="100%" paddingLeft="20" paddingBottom="50" paddingRight="20">
 					<s:Label id="CTOption2Label" fontSize="16" color="0x0C436B" paddingTop="20" width="100%"/>
 					<s:Label id="CTDetailLabel" fontSize="13" color="0x000000" paddingTop="10" width="100%"/>
 					<s:Spacer height="10"/>

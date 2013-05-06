@@ -870,3 +870,34 @@ INSERT INTO `T_Version` VALUES
 ('FV','Full Version');
 INSERT INTO `T_ProductVersion` VALUES 
 (55,'FV');
+
+-- DMS login option and self register
+DROP TABLE IF EXISTS `T_LoginOption`;
+CREATE  TABLE `T_LoginOption` (
+  `F_Type` SMALLINT NOT NULL ,
+  `F_Description` VARCHAR(45) NULL ,
+  PRIMARY KEY (`F_Type`) );
+INSERT INTO `T_LoginOption`
+(`F_Type`,`F_Description`)
+VALUES
+(1,'Name'),
+(2,'ID'),
+(128,'Email'),
+(4,'Name and ID (old)');
+
+DROP TABLE IF EXISTS `T_SelfRegisterOption`;
+CREATE  TABLE `T_SelfRegisterOption` (
+  `F_Type` SMALLINT NOT NULL ,
+  `F_Description` VARCHAR(45) NULL ,
+  PRIMARY KEY (`F_Type`) );
+INSERT INTO `T_SelfRegisterOption`
+(`F_Type`,`F_Description`)
+VALUES
+(0,'Not allowed'),
+(17,'Name only'),
+(18,'ID only'),
+(19,'Name and ID'),
+(20,'Email only'),
+(21,'Name and email'),
+(23,'Name, ID and email');
+

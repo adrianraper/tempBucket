@@ -13,9 +13,9 @@
 		<s:State name="normal" />
 		
 		<s:State name="login" stateGroups="loginStates" />
-		<s:State name="loginNetwork" stateGroups="loginStates" />
+		<s:State name="loginConcurrentTracking" stateGroups="loginStates" />
 		<s:State name="register" stateGroups="registerStates" />
-		<s:State name="registerNetwork" stateGroups="registerStates" />
+		<s:State name="registerConcurrentTracking" stateGroups="registerStates" />
 		<s:State name="registerError" stateGroups="registerStates" />
 	</s:states>
 	

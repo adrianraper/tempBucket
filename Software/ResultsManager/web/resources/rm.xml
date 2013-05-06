@@ -514,6 +514,7 @@
 			<lit name="prefixFormItem">Prefix:</lit>
 			<lit name="selfHostFormItem">Self-hosted:</lit>
 			<lit name="loginOptionFormItem">Student login option:</lit>
+			<lit name="selfRegisterFormItem">Student self register:</lit>
 			<lit name="optOutEmailsFormItem">Opt out of emails:</lit>
 			<lit name="optOutEmailDateFormItem">until</lit>
 			

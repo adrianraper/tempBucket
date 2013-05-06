@@ -15,13 +15,15 @@
 	<brandingMedia />
 	<language>EN</language>
 	
+	<!--  
 	<contentPath>http://www.clarityenglish.com/ContentTablet/</contentPath>
     <remoteDomain> http://www.clarityenglish.com/SoftwareTestbed/</remoteDomain>
     <remoteGateway>http://www.clarityenglish.com/SoftwareTestbed/ResultsManager/web/amfphp/</remoteGateway>
+	-->
 	
-	<!--  contentPath>http://Claritydevelop/Content/</contentPath>
-	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>-->
+    <contentPath>http://dock.contentbench/Content/</contentPath>
+    <remoteDomain>http://dock.projectbench/</remoteDomain>
+    <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<!--  contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
     <remoteDomain>http://roadtoielts.chinaielts.org/Software/</remoteDomain>

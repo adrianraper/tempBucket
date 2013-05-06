@@ -64,10 +64,10 @@
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your details and click {loginText}.</lit>
             <lit name="loginDetailLabelCT">
-                 <![CDATA[If you want to keep a record of your progress, fill in your {loginDetail} and password, then click {loginText}.]]>
+                 <![CDATA[If you want to keep a record of your progress, fill in your {loginDetail} and password, and then click {loginText}.]]>
             </lit>
 			<lit name="CTDetailLabel">If you just want to practise with Road to IELTS, click {loginText}.</lit>
-			<lit name="CTOption1Label">Option 1: Tracking</lit>
+			<lit name="CTOption1Label">Option 1: Progress Tracking</lit>
 			<lit name="CTOption2Label">Option 2: Anonymous</lit>
 			<lit name="LTOption1Label">Get started</lit>
 			<lit name="RegisterOption1Label">Your details</lit>

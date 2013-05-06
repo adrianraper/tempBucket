@@ -33,6 +33,8 @@ package com.clarityenglish.dms.controller {
 														"products",
 														"languageCode",
 														"versionCode",
+														"loginOption",
+														"selfRegisterOption",
 														"licenceType"
 													  ] ));
 			facade.registerProxy(new AccountProxy());

@@ -493,6 +493,13 @@ EOD;
 					ORDER BY P.F_ProductCode
 EOD;
 				return $this->db->GetArray($sql);
+			// gh#231
+			case "loginOption":
+				$result = $this->db->GetArray("SELECT F_Type data, F_Description label FROM T_LoginOption");
+				break;
+			case "selfRegisterOption":
+				$result = $this->db->GetArray("SELECT F_Type data, F_Description label FROM T_SelfRegisterOption");
+				break;
 			default:
 				throw new Exception("Unknown dictionary name '".$dictionaryName."'");
 		}

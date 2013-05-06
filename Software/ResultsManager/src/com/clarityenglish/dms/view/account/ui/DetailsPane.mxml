@@ -49,6 +49,8 @@
 			selfHostFormItem.label = copyProvider.getCopyForId("selfHostFormItem");
 			// v3.0.6 Login option
 			loginOptionFormItem.label = copyProvider.getCopyForId("loginOptionFormItem");
+			// gh#231
+			selfRegisterFormItem.label = copyProvider.getCopyForId("selfRegisterFormItem");
 			// v3.5 Opt out of emails
 			optOutEmailsFormItem.label = copyProvider.getCopyForId("optOutEmailsFormItem");
 			optOutEmailDateFormItem.label = copyProvider.getCopyForId("optOutEmailDateFormItem");
@@ -90,7 +92,9 @@
 			account.selfHost = selfHostCheckBox.selected;
 			// v3.0.6 Login option. I don't really want to display this, but it seems that if I don't, I lose it.
 			//account.loginOption = loginOptionInput.text as Number;
-			account.loginOption = Number(loginOptionInput.text);
+			// gh#231
+			account.loginOption = loginOptionComboBox.value as Number;
+			account.selfRegister = selfRegisterComboBox.value as Number;
 			//TraceUtils.myTrace("account.loginOption=" + account.loginOption + " from " + loginOptionInput.text);
 			// v3.5 Email flexibility
 			account.optOutEmails = optOutEmailsCheckBox.selected;
@@ -157,7 +161,11 @@
 			<mx:CheckBox id="selfHostCheckBox" enabled="{editMode}" selected="{account.selfHost}" />
 		</mx:FormItem>
 		<mx:FormItem id="loginOptionFormItem">
-			<mx:TextInput width="50" id="loginOptionInput" enabled="false" text="{account.loginOption}" />
+			<fxc:VAComboBox id="loginOptionComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().loginOption}" value="{account.loginOption}" />
+			<!-- <mx:TextInput width="50" id="loginOptionInput" enabled="false" text="{account.loginOption}" /> -->
+		</mx:FormItem>
+		<mx:FormItem id="selfRegisterFormItem">
+			<fxc:VAComboBox id="selfRegisterComboBox" enabled="{editMode}" dataField="data" dataProvider="{DictionarySingleton.getInstance().selfRegisterOption}" value="{account.selfRegister}" />
 		</mx:FormItem>
 	</mx:Form>
 	<mx:Form right="50">
