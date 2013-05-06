@@ -329,12 +329,13 @@ package com.clarityenglish.rotterdam.view.settings {
 					unitIntervalTextInput.restrict = "0-9";
 					unitIntervalTextInput.maxChars = 2;
 					
-					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						if (!isPopulating) {
-							selectedPublicationGroup.@unitInterval = StringUtils.trim(e.target.text);
-							calendarSettingsChanged();
-						}
-					});
+					instance.addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, function(e:Event):void {
+							if (!isPopulating) {
+								unitIntervalTextInput.focusManager.deactivate();
+								selectedPublicationGroup.@unitInterval = StringUtils.trim(e.target.text);
+								calendarSettingsChanged();
+							}
+					}, true);						
 					break;
 				case startDateField:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
@@ -353,7 +354,7 @@ package com.clarityenglish.rotterdam.view.settings {
 							}										
 						}
 					});
-					endDateField.addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, onMouseFocusChange);
+					//endDateField.addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, onMouseFocusChange);
 					break;
 				// Alice - publication code (not totally finished)
 				case unitIntervalRadioButtonGroup:
@@ -556,15 +557,12 @@ package com.clarityenglish.rotterdam.view.settings {
 			return super.getCurrentSkinState();
 		}
 		
-		protected function onMouseFocusChange(event:FocusEvent):void {			
-			if (event.target != endDateField) {
-				if (endDateField.text == "") {
-					endDateField.selectedDate = null;
-					selectedPublicationGroup.@endDate = null;
-					endDateField.focusManager.deactivate();
-				}				
+		protected function onMouseFocusChange(event:FocusEvent):void {
+			if (endDateField.text == "") {
+				endDateField.selectedDate = null;
+				selectedPublicationGroup.@endDate = null;					
 			}
-			
+			endDateField.focusManager.deactivate();
 		}
 		
 	}

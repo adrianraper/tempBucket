@@ -77,14 +77,14 @@
 				<s:VGroup includeIn="calendar">
 					
 					<s:Label id="startDateLabel" fontWeight="bold" />
-					<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" />
+					<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" formatString="DD/MM/YYYY" />
 					
 					<s:Spacer height="{settingBackground.height * 0.03}" />
 					
 					<s:Label id="endDateLabel" fontWeight="bold" />
 					<s:Label id="endDateInstruLabel" />
 					<s:HGroup>
-						<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" editable="true"/>
+						<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" editable="true" formatString="DD/MM/YYYY"/>
 						<!--s:Button id="clearEndDateButton" /-->
 					</s:HGroup>		
 					
@@ -95,7 +95,7 @@
 						<s:RadioButton id="allUnitAvaRadioButton" value="true" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
 						<s:HGroup>
 							<s:RadioButton id="unitSuccessiveRadioButton" value="false" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
-							<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}" />
+							<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}"/>
 						</s:HGroup>				
 					</s:VGroup>			
 					
