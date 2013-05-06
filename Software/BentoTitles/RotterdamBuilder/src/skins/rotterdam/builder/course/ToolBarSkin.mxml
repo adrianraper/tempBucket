@@ -91,11 +91,11 @@
 		
 		<s:HGroup includeIn="normal" height="100%" paddingLeft="168" gap="8" verticalAlign="middle">
 			<s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" />
-			<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+			<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" enabled="false" />
 			<s:Label includeIn="normal" paddingTop="5" text="Font size" fontWeight="bold" color="#FFFFFF" paddingLeft="15" />
-			<s:ToggleButton id="fontSize1Button" label="a" fontSize="13" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
-			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
-			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+			<s:ToggleButton id="fontSize1Button" label="a" fontSize="13" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" enabled="false" />
+			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" enabled="false" />
+			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" enabled="false"/>
 		</s:HGroup>
 	</s:HGroup>
 	
@@ -187,7 +187,10 @@
 		<s:Button id="upButton" label="Learn more" click="upAim.play();" includeIn="normal"/>
 	</s:HGroup>
 	
-	<s:ToggleButton id="addItemButton"  height="48" width="130" bottom="0" right="300" label="Add an Item" visible="false" click="addAim.play()" />
+	<s:Group left="500" right="270" bottom="0" includeIn="normal">
+		<s:ToggleButton id="addItemButton" horizontalCenter="0" height="48" width="130" label="Add an Item" visible="false"/>
+	</s:Group>
+
 	
 	<s:HGroup bottom="0" gap="10" height="48" right="140" verticalAlign="middle">
 		<s:Button includeIn="normal" id="normalSaveButton" label="Save changes" useHandCursor="true" buttonMode="true" fontWeight="bold" />

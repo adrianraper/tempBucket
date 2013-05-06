@@ -571,9 +571,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected function onAddItemClick(event:MouseEvent):void {
 			largePopUpGroup.visible = false;
 			smallPopUpGroup.visible = true;
+			itemList.height = 200;
 			itemList.alpha = 1;
 			outsideClick = false;
-			downArrowClick = false; 
 		}
 		
 		//The pop up menu will not shrink if user click on menu itself
@@ -585,10 +585,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onStageClick(event:MouseEvent):void {
 			if (outsideClick) {
-				addItemButton.skin.setCurrentState("up", true);
-				addItemButton.selected = false;
-				downArrowClick = true;
-				upAim.play(null, true);
+				if (!addItemButton.selected) {
+					upAim.play(null, true);
+					downArrowClick = true;
+				} else {
+					addItemButton.skin.setCurrentState("up", true);
+					addItemButton.selected = false;
+					itemList.alpha = 0;
+					itemList.height = 0;
+				}				
 			} else {
 				outsideClick = true;
 				itemClick = false;
