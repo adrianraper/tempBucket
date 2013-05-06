@@ -110,7 +110,8 @@ package com.clarityenglish.rotterdam.model {
 			dispatchEvent(new Event("unitCollectionChanged"));
 			
 			// Make sure the same unit stays selected (if there is one)
-			if (currentUnit && courseNode.unit.hasOwnProperty("id")) currentUnit = courseNode.unit.(@id == currentUnit.@id)[0];
+			//Alice: For the newly created unit, the unit ID is empty
+			if (currentUnit && courseNode.unit.hasOwnProperty("@id")) currentUnit = courseNode.unit.(@id == currentUnit.@id)[0];
 		}
 		
 		public function get currentCourse():XHTML {
