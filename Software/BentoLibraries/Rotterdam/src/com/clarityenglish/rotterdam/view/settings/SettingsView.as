@@ -163,7 +163,7 @@ package com.clarityenglish.rotterdam.view.settings {
 		 * This integrates the cached course into the real XHTML and clears the cache
 		 */
 		private function mergeCourseToXHTML():void {
-			_xhtml.selectOne("script#model[type='application/xml'] > menu > course").setChildren(course.*);
+			_xhtml.selectOne("script#model[type='application/xml'] > menu").setChildren(course);
 			_cachedCourse = null;
 		}
 		
@@ -287,6 +287,7 @@ package com.clarityenglish.rotterdam.view.settings {
 						if (!isPopulating) {
 							course.@caption = StringUtils.trim(e.target.text);
 							dirty.dispatch();
+							invalidateProperties();
 						}
 					});
 					break;

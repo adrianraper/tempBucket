@@ -85,9 +85,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.onRemovedFromStage(event);
 			
 			removeEventListener("srcAttrChanged", reloadVideo);
-			
-			if (swfLoader.content)
-				stopVideo();
+
+			stopVideo();
 		}
 		
 		//gh #106
@@ -100,7 +99,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		//gh#215
 		private function stopVideo(event:Event = null):void {
-			swfLoader.content["stopVideo"]();
+			if (swfLoader.content)
+				swfLoader.content["stopVideo"]();
 		}
 		
 	}
