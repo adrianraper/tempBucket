@@ -34,7 +34,6 @@ package com.clarityenglish.controls.video.players {
 			
 			if (!StageWebView.isSupported)
 				throw new Error("StageWebView is not supported in this environment")
-			
 		}
 		
 		public function get source():Object {
@@ -87,16 +86,34 @@ package com.clarityenglish.controls.video.players {
 						if (getStyle("htmlEmbed")) {
 							var html:String = "<!DOCTYPE html>";
 							html += "<html>";
-							html += "	<head>";
-							html += "		<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
-							html += "	</head>";
-							html += "	<body style='margin:0;padding:0;border:0;'>";
-							html += "		<video width='"+ stageWebView.viewPort.width + "' height='" + stageWebView.viewPort.height + "' controls='controls' autoplay src='" + source.toString() + "'></video>";
-							html += "	</body>";
+							html += "<head>";
+							html += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
+							html += "</head>";
+							html += "<body style='margin:0;padding:0;border:0;'>";
+							html += "	<video width='"+ stageWebView.viewPort.width + "' height='" + stageWebView.viewPort.height + "' controls='controls' autoplay src='" + source.toString() + "'></video>";
+							html += "</body>";
 							html += "</html>";
 							
 							log.debug(html);
 							
+							stageWebView.loadString(html);
+						} else if (true) {
+							// TEMP: youtube test
+							html = "<!DOCTYPE html>";
+							html += "<html>";
+							html += "<head>";
+							html += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
+							html += "</head>";
+							html += "<body style='margin:0;padding:0;border:0;overflow:hidden'>";
+							html += "	<iframe id='player'";
+							html += "			type='text/html'";
+							html += "			width='"+ stageWebView.viewPort.width + "'";
+							html += "			height='"+ stageWebView.viewPort.height + "'";
+							html += "			src='http://www.youtube.com/embed/M7lc1UVf-VE?rel=0&hd=1&fs=1'";
+							html += "			frameborder='0'>";
+							html += "	</iframe>";
+							html += "</body>";
+							html += "</html>";
 							stageWebView.loadString(html);
 						} else {
 							log.debug("loading url {0}", source.toString());

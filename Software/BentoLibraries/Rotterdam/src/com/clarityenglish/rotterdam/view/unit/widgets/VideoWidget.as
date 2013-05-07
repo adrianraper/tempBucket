@@ -1,4 +1,6 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
+	import com.clarityenglish.controls.video.IVideoPlayer;
+	
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -16,8 +18,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		[SkinPart]
 		public var swfLoader:SWFLoader;
+		
+		[SkinPart]
+		public var videoPlayer:IVideoPlayer;
 
-		//gh #106
+		// gh#106
 		private var recordFlag:Boolean;
 		
 		private var player:Object;
@@ -27,7 +32,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			
 			recordFlag = true;
 			addEventListener("srcAttrChanged", reloadVideo, false, 0, true);
-			//gh#215
+			
+			// gh#215
 			addEventListener(FlexEvent.HIDE, stopVideo, false, 0, true);
 		}
 		
@@ -51,29 +57,44 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					swfLoader.maintainAspectRatio = true;
 					reloadVideo();
 					break;
+				case videoPlayer:
+					reloadVideo();
+					break;
 			}
 		}
 		
 		protected function onSwfLoaderComplete(event:Event):void {
 			event.target.content.addEventListener("onReady", resizeVideo, false, 0, true);
-			//gh #106
+			// gh#106
 			event.target.content.addEventListener(MouseEvent.CLICK, onClickVideo);
 		}
 		
 		protected function reloadVideo(event:Event = null):void {
-			if (hasSrc)
-				swfLoader.load(src)
+			if (hasSrc) {
+				if (swfLoader) swfLoader.load(src);
+				
+				if (videoPlayer) {
+					videoPlayer.source = src;
+				}
+			}
 		}
 		
 		protected function resizeVideo(event:Event = null):void {
 			if (swfLoader && swfLoader.content && swfLoader.content["setSize"] && videoHolder) {
-				swfLoader.content["setSize"](width - 16, videoHolder.height-12);
+				swfLoader.content["setSize"](width - 16, videoHolder.height - 12);
 				widgetText.width = width;
 				
 				// These three lines are a bit hacky, but otherwise the YouTube video doesn't want to centre itself properly
 				swfLoader.x = 8;
 				//swfLoader.height = videoHolder.height + 12;
 				invalidateSize();
+			}
+			
+			if (videoPlayer) {
+				videoPlayer.width = width - 16;
+				videoPlayer.height = videoHolder.height - 8;
+				videoPlayer.x = 4;
+				videoPlayer.play();
 			}
 		}
 		
@@ -87,11 +108,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.onRemovedFromStage(event);
 			
 			removeEventListener("srcAttrChanged", reloadVideo);
-
-			stopVideo();
 		}
 		
-		//gh #106
+		// gh#106
 		protected function onClickVideo(event:MouseEvent):void {
 			if (recordFlag)
 				playVideo.dispatch(xml);
@@ -99,13 +118,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			recordFlag = false;
 		}
 		
-		//gh#215
+		// gh#215
 		private function stopVideo(event:Event = null):void {
-			if (swfLoader.content) {
+			if (swfLoader && swfLoader.content) {
 				player = swfLoader.content;
 				player.stopVideo();
-			}			
-			//swfLoader.content["stopVideo"]();
+				// This was merged from Alice - not too sure what its about... check when we get the new video ANE component
+			}
+
+			if (videoPlayer) videoPlayer.stop();
 		}
 		
 	}

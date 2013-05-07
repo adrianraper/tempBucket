@@ -5,6 +5,7 @@
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace title "com.clarityenglish.rotterdam.view.title.*";
+@namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 
 global {
 	interactionMode: touch;
@@ -38,8 +39,8 @@ components|XHTMLExerciseView s|TextInput {
 }*/
 
 @media (os-platform: "IOS") {
-	video|VideoSelector {
-		/*skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");*/
+	widgets|VideoWidget {
+		skinClass: ClassReference("skinsair.rotterdam.unit.widgets.VideoWidgetSkin");
 	}
 }
 

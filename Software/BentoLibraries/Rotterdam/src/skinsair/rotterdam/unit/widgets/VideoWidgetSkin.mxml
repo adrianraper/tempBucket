@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:widgets="skins.rotterdam.unit.widgets.*"
-		minHeight="80">
+		minHeight="80" xmlns:players="com.clarityenglish.controls.video.players.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget")]
@@ -31,7 +31,8 @@
 		<!-- Video -->
 		<!-- gh#246 add height for videoHolder-->
 		<s:Group id="videoHolder" left="0" right="0" height="375">
-			<s:SWFLoader id="swfLoader" visible.dragging="false" />
+			<!--<s:SWFLoader id="swfLoader" visible.dragging="false" />-->
+			<players:WebViewVideoPlayer id="videoPlayer" visible.dragging="false" />
 		</s:Group>
 	</s:VGroup>
 	
