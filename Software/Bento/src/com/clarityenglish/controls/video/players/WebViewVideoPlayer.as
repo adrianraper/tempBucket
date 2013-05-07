@@ -6,6 +6,7 @@ package com.clarityenglish.controls.video.players {
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
 	
+	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -27,6 +28,7 @@ package com.clarityenglish.controls.video.players {
 		
 		public function WebViewVideoPlayer() {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+			addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			
 			if (!StageWebView)
@@ -45,6 +47,8 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		private function get html():String {
+			if (!stageWebView.viewPort) return null;
+			
 			var matches:Array = (source.toString()) ? source.toString().match(/^(\w+):?(.*)$/i) : null;
 			if (!matches || matches.length < 3) return source.toString();
 			
@@ -61,13 +65,14 @@ package com.clarityenglish.controls.video.players {
 					html += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
 					html += "</head>";
 					html += "<body style='margin:0;padding:0;border:0;overflow:hidden'>";
-					html += "	<iframe id='player'";
+					html += "I am HTML...";
+					/*html += "	<iframe id='player'";
 					html += "			type='text/html'";
 					html += "			width='"+ stageWebView.viewPort.width + "'";
 					html += "			height='"+ stageWebView.viewPort.height + "'";
 					html += "			src='http://www.youtube.com/embed/" + id + "?rel=0&hd=1&fs=1'";
 					html += "			frameborder='0'>";
-					html += "	</iframe>";
+					html += "	</iframe>";*/
 					html += "</body>";
 					html += "</html>";
 					break;
@@ -111,7 +116,7 @@ package com.clarityenglish.controls.video.players {
 			
 			if (!stageWebView.viewPort) {
 				var globalPos:Point = contentToGlobal(new Point(x, y));
-				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, unscaledWidth * dpiScaleFactor, unscaledHeight * dpiScaleFactor);
+				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, Math.max(0, unscaledWidth * dpiScaleFactor), unscaledHeight * dpiScaleFactor);
 			}
 		}
 		
@@ -122,11 +127,15 @@ package com.clarityenglish.controls.video.players {
 				if (source) {
 					if (stageWebView) {
 						if (isHtml) {
-							log.debug("loading html {0}", html.toString());
-							stageWebView.loadString(html);
+							if (html) {
+								log.debug("loading html {0}", html.toString());
+								stageWebView.loadString(html);
+							}
 						} else {
-							log.debug("loading url {0}", source.toString());
-							stageWebView.loadURL(source.toString());
+							if (source.toString()) {
+								log.debug("loading url {0}", source.toString());
+								stageWebView.loadURL(source.toString());
+							}
 						}
 					}
 				} else {
@@ -145,16 +154,30 @@ package com.clarityenglish.controls.video.players {
 		protected function onAddedToStage(event:Event):void {
 			// Make sure that commitProperties runs when the component is added to the stage so that stageWebView.stage can be set
 			invalidateProperties();
+			
+			addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			removeEventListener(FlexEvent.HIDE, onRemovedFromStage);
+			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 			
 			stop();
 			
 			if (stageWebView) {
+				stageWebView.reload();
+				stageWebView.stage = null;
+				stageWebView.viewPort = null;
 				stageWebView.dispose();
 				stageWebView = null;
+			}
+		}
+		
+		protected function onEnterFrame(event:Event):void {
+			if (stageWebView.viewPort) {
+				var globalPos:Point = contentToGlobal(new Point(x, y));
+				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, stageWebView.viewPort.width, stageWebView.viewPort.height);
 			}
 		}
 		
