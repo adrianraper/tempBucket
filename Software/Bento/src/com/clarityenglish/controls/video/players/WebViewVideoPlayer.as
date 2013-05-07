@@ -65,14 +65,13 @@ package com.clarityenglish.controls.video.players {
 					html += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
 					html += "</head>";
 					html += "<body style='margin:0;padding:0;border:0;overflow:hidden'>";
-					html += "I am HTML...";
-					/*html += "	<iframe id='player'";
+					html += "	<iframe id='player'";
 					html += "			type='text/html'";
 					html += "			width='"+ stageWebView.viewPort.width + "'";
 					html += "			height='"+ stageWebView.viewPort.height + "'";
 					html += "			src='http://www.youtube.com/embed/" + id + "?rel=0&hd=1&fs=1'";
 					html += "			frameborder='0'>";
-					html += "	</iframe>";*/
+					html += "	</iframe>";
 					html += "</body>";
 					html += "</html>";
 					break;
@@ -163,10 +162,7 @@ package com.clarityenglish.controls.video.players {
 			removeEventListener(FlexEvent.HIDE, onRemovedFromStage);
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 			
-			stop();
-			
 			if (stageWebView) {
-				stageWebView.reload();
 				stageWebView.stage = null;
 				stageWebView.viewPort = null;
 				stageWebView.dispose();
