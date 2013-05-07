@@ -271,7 +271,7 @@ EOD;
 					group by $sqldatemonth
 					order by $sqldatemonth;
 EOD;
-			NetDebug::trace("session graph sql=". $sql);
+			//NetDebug::trace("session graph sql=". $sql);
 			//$statsArray["$i"] = $this->db->GetArray($sql, array(Session::get('rootID'), $title->id, $i, $i+1));
 			$statsArray["$i"] = $this->db->GetArray($sql, array($title->id));
 		}
@@ -603,13 +603,16 @@ EOD;
 		if ($rootID == 14292)
 			$rootID = '14276,14277,14278,14279,14280,14281,14282,14283,14284,14285,14286,14287,14288,14289,14290,14291,14292';
 		
+		// Tidy up the two SQL statements into one, with the HCT aggregated result
+		$secondsLimit = 10800; // 3 hours
 		$sql = 	<<<EOD
-				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) totalCourse, SUM(ss.F_Duration) totalDuration
+				SELECT F_CourseID courseID, 
+					COUNT(ss.F_SessionID) as totalCourse, 
+					SUM(IF(ss.F_Duration>$secondsLimit,$secondsLimit,ss.F_Duration)) as totalDuration
 				FROM T_Session ss
-				WHERE ss.F_ProductCode=?
+				WHERE ss.F_ProductCode = ?
 				AND ss.F_StartDateStamp >= ?
 				AND ss.F_StartDateStamp <= ?
-				AND ss.F_Duration <= ?
 EOD;
 		if (stristr($rootID,',')!==FALSE) {
 			$sql.= " AND ss.F_RootID in ($rootID)";
@@ -621,29 +624,8 @@ EOD;
 			$sql.= " AND ss.F_RootID = $rootID";
 		}
 		
-		$rs = $this->db->GetArray($sql, array($title->id, $fromDateStamp, $toDateStamp, 43200));
+		$rs = $this->db->GetArray($sql, array($title->id, $fromDateStamp, $toDateStamp));
 		
-		$sql2 = 	<<<EOD
-				SELECT F_CourseID courseID, COUNT(ss.F_SessionID) totalCourse
-				FROM T_Session ss
-				WHERE ss.F_ProductCode=?
-				AND ss.F_StartDateStamp >= ?
-				AND ss.F_StartDateStamp <= ?
-				AND ss.F_Duration > ?
-EOD;
-		if (stristr($rootID,',')!==FALSE) {
-			$sql.= " AND ss.F_RootID in ($rootID)";
-		} else if ($rootID=='*') {
-			// check all roots in that case - just for special cases, usually self-hosting
-			// Note that leaving the root empty would include teachers
-			$sql.= " AND ss.F_RootID > 0";
-		} else {
-			$sql.= " AND ss.F_RootID = $rootID";
-		}		
-		$rs2 = $this->db->GetArray($sql2, array($title->id, $fromDateStamp, $toDateStamp, 43200));
-		$rs[0][totalDuration] = $rs[0][totalDuration]+$rs2[0][totalCourse]*21600; 
-		$rs[0][totalCourse] = $rs[0][totalCourse]+$rs2[0][totalCourse];
-		//return $rs['overLastYear'];
 		return $rs;
 	}
 	

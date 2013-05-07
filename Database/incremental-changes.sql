@@ -785,10 +785,12 @@ ALTER TABLE `rack80829`.`T_User_Expiry`
 ADD INDEX `Index_2` (`F_UserID` ASC) 
 , ADD INDEX `Index_1` (`F_RegistrationDate` ASC);
 
+DELETE FROM T_Product WHERE F_ProductCode = 22;
 INSERT INTO `T_Product` VALUES
-(22,'GEPTListening',NULL,888);
+(22,'Listening Bank',NULL,888);
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 22;
 INSERT INTO `T_ProductLanguage` VALUES 
-(22,'EN','GEPTListening');
+(22,'NAMEN','Listening Bank');
 
 -- Global product version of demo rather R2I specific
 DELETE FROM T_Version WHERE F_VersionCode IN ('R2ID');
