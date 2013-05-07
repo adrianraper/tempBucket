@@ -39,6 +39,44 @@ package com.clarityenglish.controls.video.players {
 		public function get source():Object {
 			return _source;
 		}
+		
+		private function get isHtml():Boolean {
+			return source && source.toString().match(/^https?:\/\//i) == null;
+		}
+		
+		private function get html():String {
+			var matches:Array = (source.toString()) ? source.toString().match(/^(\w+):?(.*)$/i) : null;
+			if (!matches || matches.length < 3) return source.toString();
+			
+			var format:String = matches[1];
+			var id:String = matches[2];
+			
+			var html:String = "";
+			
+			switch (format) {
+				case "youtube":
+					html += "<!DOCTYPE html>";
+					html += "<html>";
+					html += "<head>";
+					html += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
+					html += "</head>";
+					html += "<body style='margin:0;padding:0;border:0;overflow:hidden'>";
+					html += "	<iframe id='player'";
+					html += "			type='text/html'";
+					html += "			width='"+ stageWebView.viewPort.width + "'";
+					html += "			height='"+ stageWebView.viewPort.height + "'";
+					html += "			src='http://www.youtube.com/embed/" + id + "?rel=0&hd=1&fs=1'";
+					html += "			frameborder='0'>";
+					html += "	</iframe>";
+					html += "</body>";
+					html += "</html>";
+					break;
+				default:
+					return "Unsupported source: " + source.toString();
+			}
+			
+			return html;
+		}
 
 		public function set source(value:Object):void {
 			_source = value;
@@ -83,37 +121,8 @@ package com.clarityenglish.controls.video.players {
 			callLater(function():void {
 				if (source) {
 					if (stageWebView) {
-						if (getStyle("htmlEmbed")) {
-							var html:String = "<!DOCTYPE html>";
-							html += "<html>";
-							html += "<head>";
-							html += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
-							html += "</head>";
-							html += "<body style='margin:0;padding:0;border:0;'>";
-							html += "	<video width='"+ stageWebView.viewPort.width + "' height='" + stageWebView.viewPort.height + "' controls='controls' autoplay src='" + source.toString() + "'></video>";
-							html += "</body>";
-							html += "</html>";
-							
-							log.debug(html);
-							
-							stageWebView.loadString(html);
-						} else if (true) {
-							// TEMP: youtube test
-							html = "<!DOCTYPE html>";
-							html += "<html>";
-							html += "<head>";
-							html += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
-							html += "</head>";
-							html += "<body style='margin:0;padding:0;border:0;overflow:hidden'>";
-							html += "	<iframe id='player'";
-							html += "			type='text/html'";
-							html += "			width='"+ stageWebView.viewPort.width + "'";
-							html += "			height='"+ stageWebView.viewPort.height + "'";
-							html += "			src='http://www.youtube.com/embed/M7lc1UVf-VE?rel=0&hd=1&fs=1'";
-							html += "			frameborder='0'>";
-							html += "	</iframe>";
-							html += "</body>";
-							html += "</html>";
+						if (isHtml) {
+							log.debug("loading html {0}", html.toString());
 							stageWebView.loadString(html);
 						} else {
 							log.debug("loading url {0}", source.toString());

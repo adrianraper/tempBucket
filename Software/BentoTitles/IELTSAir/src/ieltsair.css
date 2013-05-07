@@ -40,10 +40,6 @@ components|XHTMLExerciseView s|TextInput {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.ieltsair.controls.video.WebViewVideoSelectorSkin");
 	}
-	
-	players|WebViewVideoPlayer {
-		htmlEmbed: true;
-	}
 }*/
 
 @media (os-platform: "IOS") {

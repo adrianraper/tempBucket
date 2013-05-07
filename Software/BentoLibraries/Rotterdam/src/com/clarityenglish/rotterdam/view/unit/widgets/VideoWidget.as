@@ -1,10 +1,8 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
 	import com.clarityenglish.controls.video.IVideoPlayer;
 	
-	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
-	import flash.events.ProgressEvent;
 	
 	import mx.controls.SWFLoader;
 	import mx.events.FlexEvent;
@@ -71,7 +69,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected function reloadVideo(event:Event = null):void {
 			if (hasSrc) {
-				if (swfLoader) swfLoader.load(src);
+				if (swfLoader) {
+					// TODO: This is only temporary; ultimately we need to wrap youtube into the OSMF player with a plugin
+					var matches:Array = src.match(/^(\w+):?(.*)$/i);
+					swfLoader.load("http://www.youtube.com/v/" + matches[2] + "?version=3");
+				}
 				
 				if (videoPlayer) {
 					videoPlayer.source = src;

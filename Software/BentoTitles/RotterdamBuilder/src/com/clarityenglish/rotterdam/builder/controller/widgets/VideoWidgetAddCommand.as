@@ -41,8 +41,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 					var youtubePattern:RegExp = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
 					var matches:Array = rawSrc.match(youtubePattern);
 					if (matches && matches.length == 2) {
-						var src:String = 'http://www.youtube.com/v/' + matches[1] + '?version=3';
-						
+						var src:String = "youtube:" + matches[1];
 					} else {
 						log.error("Can't parse video ID from " + rawSrc);
 						var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
