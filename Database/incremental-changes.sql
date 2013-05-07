@@ -901,3 +901,18 @@ VALUES
 (21,'Name and email'),
 (23,'Name, ID and email');
 
+-- Library emails
+ALTER TABLE `T_Triggers` CHANGE COLUMN `F_TemplateID` `F_TemplateID` VARCHAR(64) NOT NULL  ;
+INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`) 
+VALUES 
+(48,'Library reminder start+7d',NULL,NULL,'library/32','method=getAccounts&startDate={now}-7d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1),
+(49,'Library reminder usage stats',NULL,NULL,'library/20','method=getAccounts&startDay={day}&customerType=1&accountType=1&notLicenceType=5&selfHost=false&active=true&optOutEmails=false',NULL,NULL,'usageStats','daily',2),
+(50,'Library support start+1.5m',NULL,NULL,'library/34','method=getAccounts&startDate={now}-1.5m&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',4),
+(51,'Library support start+6.5m',NULL,NULL,'library/35','method=getAccounts&startDate={now}-6.5m&customerType=1&accountType=1&notLicenceType=5','2011-12-31 00:00:00',NULL,'email','daily',4),
+(52,'Library reminder end-2.5m',NULL,NULL,'library/36','method=getAccounts&expiryDate={now}+10w&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1),
+(53,'Library create a quotation',NULL,NULL,'library/37','method=getAccounts&expiryDate={now}+11w&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'internalEmail','daily',0),
+(54,'Library reminder end-1.5m',NULL,NULL,'library/38','method=getAccounts&expiryDate={now}+45d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1),
+(55,'Library reminder end-2w',NULL,NULL,'library/39','method=getAccounts&expiryDate={now}+14d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1),
+(56,'Library reminder end tomorrow',NULL,NULL,'library/40','method=getAccounts&expiryDate={now}+1d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1),
+(57,'Library reminder end today',NULL,NULL,'library/41','method=getAccounts&expiryDate={now}&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1),
+(58,'Library reminder ended',NULL,NULL,'library/42','method=getAccounts&expiryDate={now}-14d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
