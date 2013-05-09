@@ -78,8 +78,9 @@ package com.clarityenglish.rotterdam.view.unit {
 		protected function onDone(event:Event =  null):void {			
 			_unit.@caption = StringUtils.trim(unitCaptionTextInput.text);			
 			_editing = false;
-			invalidateSkinState();
+			unitCaptionTextInput.focusManager.deactivate();
 			
+			invalidateSkinState();
 			callLater(function():void {
 				_unitChanged = true;
 				invalidateProperties();

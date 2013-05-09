@@ -38,6 +38,7 @@
     <classEntry path="skins.rotterdam.unit.PublishChangeButtonSkin"/>
     <classEntry path="skins.rotterdam.unit.DownArrowButtonSkin"/>
     <classEntry path="skins.rotterdam.unit.UpArrowButtonSkin"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.events.WidgetLinkCaptureEvent"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

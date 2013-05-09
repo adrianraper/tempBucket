@@ -6,6 +6,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkCaptureEvent;
 			import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
 			import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 			import com.googlecode.bindagetools.Bind;
@@ -67,6 +68,8 @@
 				if (richEditableText.text != "") { // this check stops an exception in the TLF related to gh#160 when clicking around very fast
 					var format:TextLayoutFormat = richEditableText.getFormatOfRange(null, richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
 					dispatchEvent(new WidgetTextFormatMenuEvent(WidgetTextFormatMenuEvent.TEXT_SELECTED, false, format));
+
+					dispatchEvent(new WidgetLinkCaptureEvent(WidgetLinkCaptureEvent.LINK_CAPTURE, false, richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition));
 				}
 			}
 			
@@ -97,5 +100,5 @@
 										  valueCommit="onValueCommit(event)"
 										  selectionChange="onSelectionChange(event)"
 										  focusIn.editing="focusHighlight.visible = true"
-										  focusOut.editing="focusHighlight.visible = false" />	
+										  focusOut.editing="focusHighlight.visible = false" whiteSpaceCollapse="preserve"/>	
 </s:Group>

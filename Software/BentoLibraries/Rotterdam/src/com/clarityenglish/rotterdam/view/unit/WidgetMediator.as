@@ -106,7 +106,7 @@
 						handleTextFormat(note.getBody());
 						break;
 					case RotterdamNotifications.WEB_URL_ADD: // gh#221
-						view.onAddLink(note.getBody() as XML);
+						view.onAddLink(note.getBody().webUrlString, note.getBody().captionString);
 						view.widgetChrome.linkButtonRect.alpha = 0;
 						view.widgetChrome.menuButton.enabled = true;
 						break;

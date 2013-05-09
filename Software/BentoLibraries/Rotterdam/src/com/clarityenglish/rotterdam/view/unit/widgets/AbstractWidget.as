@@ -2,18 +2,29 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkCaptureEvent;
+	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
+	import com.newgonzo.web.css.selectors.ClassCondition;
 	
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.ProgressEvent;
+	import flash.text.TextField;
+	import flash.xml.XMLNode;
+	import flash.xml.XMLNodeType;
 	
 	import flashx.textLayout.conversion.ConversionType;
 	import flashx.textLayout.conversion.TextConverter;
+	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.LinkElement;
+	import flashx.textLayout.elements.ParagraphElement;
+	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
+	import mx.core.ClassFactory;
 	import mx.events.FlexEvent;
 	import mx.events.StateChangeEvent;
 	import mx.logging.ILogger;
@@ -29,7 +40,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import skins.rotterdam.unit.widgets.WidgetText;
 	
 	import spark.components.supportClasses.Range;
+	import spark.utils.TextFlowUtil;
 	
+	/**
+	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
+	 * For example, [Bindable("titleAttrChanged")].
+	 */
 	[SkinState("normal")]
 	[SkinState("editing_normal")]
 	[SkinState("editing_selected")]
@@ -64,16 +80,19 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected var xmlWatcher:XMLWatcher;
 		
-		// gh#187
+		//gh#187
 		protected var _widgetCaptionChanged:Boolean;
 		
 		public var openMedia:Signal = new Signal(XML);
 		public var openContent:Signal = new Signal(XML, String);
 		public var textSelected:Signal = new Signal(TextLayoutFormat);
-		
-		// gh #106
+		//gh #106
 		public var playVideo:Signal = new Signal(XML);
 		public var playAudio:Signal = new Signal(XML);
+		
+		private var anchorPosition:Number = 0;
+		private var activePosition:Number = 0;
+		private var captureCaption:String = "";
 		
 		public function AbstractWidget() {
 			super();
@@ -88,6 +107,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			addEventListener("spanAttrChanged", validateUnitListLayout, false, 0, true);
 			addEventListener("columnAttrChanged", validateUnitListLayout, false, 0, true);
 			addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange, false, 0, true);
+			
+			addEventListener(WidgetLinkEvent.ADD_LINK, onAddSelectedText, false, 0, true);
 		}
 		
 		public function set editable(value:Boolean):void {
@@ -116,7 +137,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			}
 		}
 		
-		// gh#187
+		//gh#187
 		public function get widgetCaptionChanged():Boolean {
 			return _widgetCaptionChanged;
 		}
@@ -158,7 +179,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			_xml.@layoutheight = value;
 		}
 		
-		// gh#106
+		//gh#106
 		public function get clarityUID():String {
 			if (_xml && _xml.(hasOwnProperty("@id"))) {
 				var eid:String = _xml.@id;
@@ -191,7 +212,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
 		}
 		
-		// gh#187
+		//gh#187
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
@@ -218,8 +239,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					break;
 				case widgetText:
 					widgetText.addEventListener(WidgetTextFormatMenuEvent.TEXT_SELECTED, onTextSelected);
+					widgetText.addEventListener(WidgetLinkCaptureEvent.LINK_CAPTURE, onLinkCapture);
 					break;
-				// gh#187
+				//gh#187
 				case widgetChrome:
 					widgetChrome.widgetCaptionTextInput.addEventListener(FocusEvent.FOCUS_OUT, onDone);
 					widgetChrome.widgetCaptionTextInput.addEventListener(FlexEvent.ENTER, onDone);
@@ -231,23 +253,79 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			textSelected.dispatch(event.format);
 		}
 		
-		// gh#221
-		public function onAddLink(anchorTag:XML):void {
-			var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();
-			
-			var textXML:XML = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
-			
-			// gh#221 - enable web link insert next to text
-			if (textXML == "") {
-				textXML.appendChild(anchorTag);
-			}
-			else if (textXML.children().children() == "") {
-				textXML.children().appendChild(anchorTag);
+		//gh#221
+		public function onAddLink(webUrlString:String, captionString:String):void {
+			trace("webUrlString: "+ webUrlString);
+			trace("captionString: "+captionString);
+			if (anchorPosition == 0 && activePosition == 0) {
+				var anchorTag:XML = <a href={webUrlString} target="_blank">{captionString}</a>;
+				var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();
+				
+				var textXML:XML = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
+				
+				//gh#221: enalbe web link insert next to text
+				if (textXML == "") {
+					textXML.appendChild(anchorTag);
+				}
+				else if (textXML.children().children() == "") {
+					textXML.children().appendChild(anchorTag);
+				} else {
+					textXML.children()[textXML.children().length()-1].appendChild(anchorTag);
+				}
+				
+				text = textXML.toXMLString();
 			} else {
-				textXML.children()[textXML.children().length() - 1].appendChild(anchorTag);
+				//gh287 XML settings Pretty usefull!! Not sure whether I should put it here
+				XML.ignoreWhitespace = false;
+				XML.prettyPrinting = false;
+				trace("text: "+text);
+				var richTextFlow:TextFlow =  widgetText.richEditableText.textFlow;
+				var lastFlowElment:TextFlow = richTextFlow.splitAtPosition(activePosition) as TextFlow;
+				var chopFlowElment:FlowElement = richTextFlow.splitAtPosition(anchorPosition)
+				trace("first flow: "+richTextFlow.getText());
+				trace("last flow: "+lastFlowElment.getText());
+				var firstParagraph:ParagraphElement= richTextFlow.getChildAt(richTextFlow.numChildren -1) as ParagraphElement;
+				trace("total children: "+richTextFlow.numChildren);
+				//insert link element
+				var linkElement:LinkElement = new LinkElement();
+				linkElement.href = webUrlString;
+				linkElement.target = "_blank";
+				var linkSpan:SpanElement = new SpanElement();
+				linkSpan.text = captionString;
+				linkElement.addChild(linkSpan);
+				if (firstParagraph) {
+					firstParagraph.addChild(linkElement);
+					var lastP:ParagraphElement = lastFlowElment.getChildAt(0) as ParagraphElement;					
+					if (lastP) {
+						firstParagraph.replaceChildren(firstParagraph.numChildren, firstParagraph.numChildren, getParagraphChildren(lastP));
+					}
+				}
+				trace("richTextFlow: "+richTextFlow.getText());
+				richTextFlow.removeChildAt(richTextFlow.numChildren - 1);
+				richTextFlow.addChild(firstParagraph);
+				var totalNumber:Number = lastFlowElment.numChildren;
+				for (var i:int = 1; i < totalNumber; i++ ) {
+					var paragraphElement:ParagraphElement = lastFlowElment.getChildAt(1) as ParagraphElement;
+					richTextFlow.addChild(paragraphElement);
+				}
+				var firstXML:XML = firstXML = TextConverter.export(richTextFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;			
+				text = firstXML.toXMLString();
 			}
 			
-			text = textXML.toXMLString();
+			anchorPosition = 0;
+			activePosition = 0;
+			captureCaption = "";
+		}
+		
+		private function getParagraphChildren(p:ParagraphElement):Array
+		{
+			var kids:Array =[];
+			var numKids:int = p.numChildren;
+			for (var i:int = 0; i<numKids; i++)
+			{
+				kids.push( p.getChildAt(i) );
+			}
+			return kids;
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {
@@ -284,7 +362,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return null;
 		}
 		
-		// gh#187
+		//gh#187
 		protected function onDone(event:Event):void {
 			_xml.@caption = StringUtils.trim(widgetChrome.widgetCaptionTextInput.text);
 			
@@ -295,6 +373,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				_widgetCaptionChanged = true;
 				invalidateProperties();
 			});
+		}
+		
+		protected function onLinkCapture(event:WidgetLinkCaptureEvent):void {
+			anchorPosition = Math.min(event.anchorPosition, event.activePosition);
+			activePosition = Math.max(event.anchorPosition, event.activePosition);
+			captureCaption = widgetText.richEditableText.text.substring(anchorPosition, activePosition);
+		}
+		
+		// Intercept the WidgetLinkEvent here to assign text parameter 
+		protected function onAddSelectedText(event:WidgetLinkEvent):void {
+			event.text = captureCaption;
 		}
 		
 	}

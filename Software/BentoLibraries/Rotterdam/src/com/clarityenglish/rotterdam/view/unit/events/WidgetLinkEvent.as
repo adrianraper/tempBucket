@@ -6,9 +6,26 @@ package com.clarityenglish.rotterdam.view.unit.events
 	{
 		public static const ADD_LINK:String = "addLink";
 		
-		public function WidgetLinkEvent(type:String, bubbles:Boolean)
+		private var _text:String;
+		
+		public function WidgetLinkEvent(type:String, bubbles:Boolean, text:String = "")
 		{
-			super(type, bubbles);
+			super(type, bubbles, false);
+			
+			this._text = text;
+		}
+		
+		[Bindable]
+		public function get text():String {
+			return this._text;
+		}
+		
+		public function set text(value:String):void {
+			_text = value;
+		}
+		
+		public override function clone():Event {
+			return new WidgetLinkEvent(type, bubbles, text);
 		}
 	}
 }

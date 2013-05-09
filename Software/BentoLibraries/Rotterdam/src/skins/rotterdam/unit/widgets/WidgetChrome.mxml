@@ -34,7 +34,7 @@
 				}
 			}
 			
-			//gh #221
+			//gh#221
 			protected function onLinkButtonClick(event:MouseEvent):void {
 				linkButtonRect.alpha = 1;
 				dispatchEvent(new WidgetLinkEvent(WidgetLinkEvent.ADD_LINK, true));

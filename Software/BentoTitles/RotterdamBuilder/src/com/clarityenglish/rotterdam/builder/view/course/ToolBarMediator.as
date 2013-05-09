@@ -80,6 +80,7 @@
 					break;
 				case RotterdamNotifications.WEB_URL_SELECT:
 					view.onNormalAddWebLink();
+					view.captureCaption = note.getBody() as String;
 					break;
 			}
 		}
@@ -131,8 +132,11 @@
 		}
 		
 		//gh #221
-		protected function onAddLink(webURL:XML):void {
-			facade.sendNotification(RotterdamNotifications.WEB_URL_ADD, webURL);
+		protected function onAddLink(webUrlString:String, captionString:String ):void {
+			var linkStrings:Object = new Object();
+			linkStrings.webUrlString = webUrlString;
+			linkStrings.captionString = captionString;
+			facade.sendNotification(RotterdamNotifications.WEB_URL_ADD, linkStrings);
 		}
 		
 		//gh #221

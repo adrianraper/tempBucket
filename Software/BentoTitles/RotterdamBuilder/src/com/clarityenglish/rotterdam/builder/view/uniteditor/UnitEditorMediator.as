@@ -83,7 +83,7 @@
 		
 		// gh#221
 		protected function onAddLink(event:WidgetLinkEvent):void {
-			facade.sendNotification(RotterdamNotifications.WEB_URL_SELECT);
+			facade.sendNotification(RotterdamNotifications.WEB_URL_SELECT, event.text);
 		}
 		
 		//gh#187

@@ -216,7 +216,7 @@ buildercourse|ToolBarView s|Button#videoSelectButton {
 	skinClass: ClassReference("skins.rotterdam.unit.VideoSelectButtonSkin");
 }
 
-course|ToolBarView s|Button#linkSelectButton {
+buildercourse|ToolBarView s|Button#linkSelectButton {
 	skinClass: ClassReference("skins.rotterdam.unit.VideoSelectButtonSkin");
 }
 

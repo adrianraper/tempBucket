@@ -221,7 +221,7 @@ package com.clarityenglish.bento.model {
 				// Run all the transforms client side (these might well be empty methods)
 				for each (var xmlTransform:XmlTransform in href.transforms)
 					xmlTransform.transform(xml);
-				
+
 				// Store the resource
 				switch (href.type) {
 					case Href.MENU_XHTML:
@@ -236,7 +236,8 @@ package com.clarityenglish.bento.model {
 				notifyXHTMLLoaded(href);
 			} catch (e:Error) {
 				var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorParsingExercise", { filename: href.filename, message: e.message } ));
+				//alice: in order to target the error I add this new error type errorParsingExerciseDetection1
+				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorParsingExerciseDetection1", { filename: href.filename, message1: href.transforms.length, message2: e.message } ));
 				return;
 			}
 		}
