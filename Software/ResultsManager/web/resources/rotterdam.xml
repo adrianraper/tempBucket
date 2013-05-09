@@ -64,6 +64,7 @@
 			
 			<lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated. Please contact support@clarityenglish.com</lit>
 			<lit name="errorUploadNoPOST" code="706">No POST data was found in this upload. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorExceedMaxFileSize" code="707">Your file is too big, please upload a file less than 5M.</lit>
 			
             <lit name="pathCCB">CCB</lit>
             <lit name="pathTenseBuster">TenseBuster</lit>

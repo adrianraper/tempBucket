@@ -8,6 +8,7 @@ require_once(dirname(__FILE__)."/../../classes/xml/XmlUtils.php");
 require_once(dirname(__FILE__)."/RotterdamService.php");
 
 $service = new RotterdamService();
+$MAXIMUM_FILESIZE = 1024*1024*5;
 
 // Fail if the user isn't authenticated
 if (!Authenticate::isAuthenticated()) {
@@ -15,9 +16,12 @@ if (!Authenticate::isAuthenticated()) {
 	exit(0);
 }
 
-// Fail if there is no uploaded file
-if (!isset($_FILES['Filedata']) || $_FILES['Filedata']['tmp_name'] == "") {
-	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("uploadNoPOST")));
+//else if: Fail if there is no uploaded file//
+if ($_FILES['Filedata']['size'] > $MAXIMUM_FILESIZE) {
+	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorExceedMaxFileSize")));
+	exit(0);
+} else if (!isset($_FILES['Filedata']) || $_FILES['Filedata']['tmp_name'] == "") {
+	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorUploadNoPOST")));
 	exit(0);
 }
 
