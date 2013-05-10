@@ -5,9 +5,16 @@
 /*
  * The only job this runs is to send emails placed in the T_PendingEmails table 
  */
-set_time_limit(59);
 // How many emails will you send at once? 
 $batchLoad = 10;
+set_time_limit(59);
+
+// Parameters you can use to pause the sending of emails, or manually send x at once
+$paused = false;
+if (isset($_REQUEST["override"])) {
+	$batchLoad = intval($_REQUEST["override"]);
+	$paused = false;
+}
 
 require_once(dirname(__FILE__)."/MinimalService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
@@ -85,24 +92,17 @@ SQL;
 				$rc = $thisService->db->Execute($sqlUpdate, array($emailID));
 			}
 		}
-		/*
-		 * 
-			$savedEmail = unserialize($dbObj->F_Data);
-			$thisEmail = array("to" => $to, "data" => $savedEmail['data']);
-			if (isset($savedEmail['cc']))
-				$thisEmail['cc'] = $savedEmail['cc'];
-			if (isset($savedEmail['bcc']))
-				$thisEmail['bcc'] = $savedEmail['bcc'];
-			if (isset($savedEmail['attachments']))
-				$thisEmail['attachments'] = $savedEmail['attachments'];
-		 */
 	}
 	echo "Sent ".$rs->RecordCount()." pending emails. $newLine";					
 	
 }
 
 // Action
-sendPendingEmails();
+if ($paused) {
+	echo "sending emails is paused.$newLine";
+} else {
+	sendPendingEmails();
+}
 
 flush();
 exit(0);
