@@ -255,6 +255,10 @@ unit|UnitHeaderView s|Button#editButton {
 	skinClass: ClassReference("skins.rotterdam.unit.EditButtonSkin");
 }
 
+unit|UnitHeaderView s|Button#doneButton {
+	skinClass: ClassReference("skins.rotterdam.unit.EditButtonSkin");
+}
+
 uniteditor|UnitEditorView {
 	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.UnitEditorSkin");
 }

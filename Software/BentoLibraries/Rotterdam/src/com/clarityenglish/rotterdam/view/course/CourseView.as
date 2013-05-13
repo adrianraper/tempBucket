@@ -280,6 +280,14 @@ package com.clarityenglish.rotterdam.view.course {
 		 * TODO: Switch between editing and viewing
 		 */
 		protected override function getCurrentSkinState():String {
+			if (unitHeader) {
+				if (_isPreviewVisible) {
+					unitHeader.editButton.visible = false;
+				} else {
+					if (unitHeader.editButton)
+						unitHeader.editButton.visible = true;
+				}
+			}		
 			return (_isPreviewVisible) ? "unitplayer" : "uniteditor";
 		}
 		

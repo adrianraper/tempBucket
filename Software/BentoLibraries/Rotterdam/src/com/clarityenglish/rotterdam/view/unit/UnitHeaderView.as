@@ -15,17 +15,17 @@ package com.clarityenglish.rotterdam.view.unit {
 	
 	public class UnitHeaderView extends BentoView {
 		
-		/*[SkinPart(required="true")]
+		[SkinPart(required="true")]
 		public var unitCaptionLabel:Label;
 		
 		[SkinPart]
-		public var editButton:Button;*/
+		public var editButton:Button;
 		
 		[SkinPart]
 		public var unitCaptionTextInput:TextInput;
 		
-		/*[SkinPart]
-		public var doneButton:Button;*/
+		[SkinPart]
+		public var doneButton:Button;
 		
 		private var _unit:XML;
 		private var _unitChanged:Boolean;
@@ -37,12 +37,12 @@ package com.clarityenglish.rotterdam.view.unit {
 			_unitChanged = true;
 			invalidateProperties();
 		}
-		
+
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
 			if (_unitChanged) {
-				//if (unitCaptionLabel) unitCaptionLabel.text = _unit.@caption;
+				if (unitCaptionLabel) unitCaptionLabel.text = _unit.@caption;
 				if (unitCaptionTextInput) unitCaptionTextInput.text = _unit.@caption;
 				_unitChanged = false;
 			}
@@ -52,20 +52,19 @@ package com.clarityenglish.rotterdam.view.unit {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				/*case editButton:
+				case editButton:
 					editButton.addEventListener(MouseEvent.CLICK, onEdit);
 					break;
 				case doneButton:
 					doneButton.addEventListener(MouseEvent.CLICK, onDone);
-					break;*/
+					break;
 				case unitCaptionTextInput:
 					unitCaptionTextInput.addEventListener(FlexEvent.ENTER, onDone);
-					unitCaptionTextInput.addEventListener(FocusEvent.FOCUS_OUT, onDone);
 					break;
 			}
 		}
 		
-		/*protected function onEdit(event:MouseEvent):void {
+		protected function onEdit(event:MouseEvent):void {
 			_editing = true;
 			invalidateSkinState();
 			
@@ -74,11 +73,10 @@ package com.clarityenglish.rotterdam.view.unit {
 				unitCaptionTextInput.setFocus();
 				unitCaptionTextInput.selectAll();
 			});
-		}*/
+		}
 		
-		protected function onDone(event:Event):void {
-			_unit.@caption = StringUtils.trim(unitCaptionTextInput.text);
-			
+		protected function onDone(event:Event =  null):void {			
+			_unit.@caption = StringUtils.trim(unitCaptionTextInput.text);			
 			_editing = false;
 			invalidateSkinState();
 			

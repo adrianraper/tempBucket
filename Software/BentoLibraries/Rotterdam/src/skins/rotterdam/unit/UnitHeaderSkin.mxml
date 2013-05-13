@@ -21,11 +21,13 @@
 				<s:GradientEntry color="#595959" ratio="1"/>
 			</s:LinearGradient>
 		</s:fill>
-	</s:Rect>
+	</s:Rect>	
 	
-	<!--s:Label id="unitCaptionLabel" color="#FFFFFF" fontWeight="bold" left="12" top="14" includeIn="normal" /-->
-	<!--s:Button id="editButton" label="Edit" right="10" top="8" includeIn="normal" /-->
+	<s:HGroup left="8" top="8">
+		<s:Label id="unitCaptionLabel" color="#FFFFFF" fontWeight="bold" includeIn="normal" paddingTop="4" paddingRight="5"/>
+		<s:TextInput id="unitCaptionTextInput" widthInChars="8" maxChars="14" paddingRight="5" color="#FFFFFF" contentBackgroundAlpha="0" fontWeight="bold" borderVisible="false" includeIn="editing"/>
+		<s:Button id="editButton" label="Edit" includeIn="normal" />
+		<s:Button id="doneButton" label="Done" right="10" top="8" includeIn="editing" />
+	</s:HGroup>
 	
-	<s:TextInput id="unitCaptionTextInput" width="100%" color="#FFFFFF" contentBackgroundAlpha="0" fontWeight="bold" left="8" right="8" top="8" borderVisible="false" />
-	<!--s:Button id="doneButton" label="Done" right="10" top="8" includeIn="editing" /-->
 </s:Skin>
