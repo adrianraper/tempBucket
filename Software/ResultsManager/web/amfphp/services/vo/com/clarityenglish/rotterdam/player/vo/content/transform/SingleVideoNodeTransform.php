@@ -17,7 +17,7 @@ class SingleVideoNodeTransform extends XmlTransform {
 					if ($atLeastOneExercise) {
 						unset($exercise["src"]);
 						$exercise["type"] = "text";
-						$text = '<TextFlow whiteSpaceCollapse="preserve" version="3.0.0" xmlns="http://ns.adobe.com/textLayout/2008"><p><span>Only one video widget is allowed per widget on iOS.</span></p></TextFlow>';
+						$text = '<TextFlow whiteSpaceCollapse="preserve" version="3.0.0" xmlns="http://ns.adobe.com/textLayout/2008"><p><span>'.$service->copyOps->getCopyForId("errorSingleVideoIOS").'</span></p></TextFlow>';
 						
 						if (isset($exercise->text)) {
 							$textDom = dom_import_simplexml($exercise->text);
