@@ -24,9 +24,12 @@ require_once(dirname(__FILE__)."/../../classes/InternalQueryOps.php");
 require_once(dirname(__FILE__)."/../../classes/DailyJobObs.php");
 
 // Common ops
+require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
+require_once(dirname(__FILE__)."/../../classes/ContentOps.php");
+require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
+require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
 require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
-require_once(dirname(__FILE__)."/../../classes/CopyOps.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
@@ -50,12 +53,12 @@ class MinimalService extends AbstractService {
 		// v3.4 For internal queries
 		$this->internalQueryOps = new InternalQueryOps($this->db);
 		
+		$this->manageableOps = new ManageableOps($this->db);
+		$this->emailOps = new EmailOps($this->db);
+		
 		// gh#122 for daily jobs
 		$this->dailyJobOps = new DailyJobObs($this->db);
 		$this->courseOps = new CourseOps($this->db);
-		
-		$this->manageableOps = new ManageableOps($this->db);
-		$this->emailOps = new EmailOps($this->db);
 		
 		// DMS has no restrictions on user/group access so disable manageable authentication
 		AuthenticationOps::$useAuthentication = false;

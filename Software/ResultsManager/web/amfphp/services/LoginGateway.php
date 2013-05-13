@@ -267,7 +267,7 @@ try {
 				// If we want to send an email on adding a new user, do it here
 				if ($apiInformation->emailTemplateID) {
 					$loginService->subscriptionOps->sendUserEmail($user, $apiInformation);
-					AbstractService::$debugLog->info("sent email to ".$user->email.' using '.$apiInformation->emailTemplateID);
+					AbstractService::$debugLog->info("queued email to ".$user->email.' using '.$apiInformation->emailTemplateID);
 				}
 			} else {
 				AbstractService::$debugLog->info("returned existing user ".$user->name." expires on ".$user->expiryDate);

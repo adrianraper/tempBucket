@@ -20,7 +20,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			super.execute(note);
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			courseProxy.sendWelcomeEmail(note.getBody().courseID as String, note.getBody().groupID as Number);
+			courseProxy.sendWelcomeEmail(note.getBody().course as XML, note.getBody().groupID as Number);
 			
 			log.debug("Sending welcome emails");
 		}

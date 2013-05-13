@@ -63,8 +63,8 @@
 		}
 
 		// gh#122
-		protected function onSendEmail(courseID:String, groupID:Number):void {
-			facade.sendNotification(RotterdamNotifications.SEND_WELCOME_EMAIL, {courseID: courseID, groupID: groupID});
+		protected function onSendEmail(course:XML, groupID:Number):void {
+			facade.sendNotification(RotterdamNotifications.SEND_WELCOME_EMAIL, {course: course, groupID: groupID});
 		}
 		
 	}

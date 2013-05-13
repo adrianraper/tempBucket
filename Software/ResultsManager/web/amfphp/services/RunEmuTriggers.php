@@ -78,7 +78,8 @@ function runTriggers($triggerIDArray = null, $triggerDate = null, $frequency = n
 						
 					// Send the emails
 					// If you want to use the Smarty cache, you have to send TRUE as the third parameter
-					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray, true);
+					// gh#226 cache switched to pending
+					$dmsService->emailOps->sendEmails("", $trigger->templateID, $emailArray);
 					//echo "sent ".count($triggerResults)." email(s) for trigger ".$trigger->triggerID."; ";
 				} else {
 					foreach ($triggerResults as $result) {

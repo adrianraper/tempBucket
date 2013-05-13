@@ -774,9 +774,10 @@ class Rmail
                 require_once(dirname(__FILE__) . '/smtp.php');
                 require_once(dirname(__FILE__) . '/RFC822.php');
                 // Generates PHP warnings 'Non-static method smtp::connect() should not be called statically'
-                //$smtp = &smtp::connect($this->smtp_params);
-                $smtp = new smtp($this->smtp_params);
-                $smtp->connect();
+                // gh#226 However, you MUST call statically otherwise Rmail the smtp code doesn't set status correctly
+                $smtp = &smtp::connect($this->smtp_params);
+                //$smtp = new smtp($this->smtp_params);
+                $rc = $smtp->connect();
                 
                 // Parse recipients argument for internet addresses
                 foreach ($recipients as $recipient) {
@@ -821,7 +822,7 @@ class Rmail
                     $send_params['from'] = $this->return_path;
                 } elseif (!empty($this->headers['From'])) {
                 	// Generates PHP warnings 'Non-static method Mail_RFC822::parseAddressList() should not be called statically'
-			//$from = Mail_RFC822::parseAddressList($this->headers['From']);
+					//$from = Mail_RFC822::parseAddressList($this->headers['From']);
                     $mailRFC822 = new Mail_RFC822($this->headers['From']);
                     $from = $mailRFC822->parseAddressList();
                     $send_params['from'] = sprintf('%s@%s', $from[0]->mailbox, $from[0]->host);

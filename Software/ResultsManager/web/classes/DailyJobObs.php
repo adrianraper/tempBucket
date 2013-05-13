@@ -223,6 +223,32 @@ SQL;
 		return $rs->RecordCount();
 		
 	}
+
+	// For archiving sent emails.
+	// Expected to be run by a daily CRON job
+	function archiveSentEmails($database) {
+		
+		$this->db->StartTrans();
+		$sql = <<<SQL
+			INSERT INTO $database.T_SentEmails
+			SELECT * FROM $database.T_PendingEmails 
+			WHERE F_SentTimestamp is not null;
+SQL;
+		$rs = $this->db->Execute($sql);
+		
+		$sql = <<<SQL
+			DELETE FROM $database.T_PendingEmails
+			WHERE F_SentTimestamp is not null;
+SQL;
+		$rs = $this->db->Execute($sql);
+		$recordCount = $this->db->Affected_Rows();
+		
+		$this->db->CompleteTrans();
+		
+		// send back the number of archived emails
+		return $recordCount;
+		
+	}
 	
 	/*
 	 * gh#122 For courses that are published as groupAssigned (the default) see if
@@ -266,7 +292,10 @@ SQL;
 				// I want to get course and unit data - but that means reading the xml!
 				// I would like to put the course name, teacher details, unit name, direct start URL into the email
 				// If I order the SQL by group ID, then I can at least do all at once
-				$this->courseOps->setAccountFolder('../../'.$GLOBALS['ccb_data_dir'].'/'.$contentLocation);
+				// $this->courseOps->setAccountFolder('../../'.$GLOBALS['ccb_data_dir'].'/'.$contentLocation);
+				// gh#122 Trouble working out a folder path that works for php command line AND URL running.
+				// echo "DailyJobOps running from ".__DIR__."/n";
+				$this->courseOps->setAccountFolder(dirname(__FILE__).'/../'.$GLOBALS['ccb_data_dir'].'/'.$contentLocation);
 				
 				if ($savedCourseID != $courseID) {
 					// Add properties to the course object that we will send to the email
@@ -305,8 +334,8 @@ SQL;
 						// Send email IF we have one
 						if (isset($user->email) && $user->email) {
 							// Just during inital testing - only send emails to me
-							// $toEmail = $user->email;
 							$toEmail = 'adrian@noodles.hk';
+							//$toEmail = $user->email;
 							$emailData = array("user" => $user, "course" => $course);
 							$thisEmail = array("to" => $toEmail, "data" => $emailData);
 							$emailArray[] = $thisEmail;

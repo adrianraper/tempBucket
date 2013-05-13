@@ -172,6 +172,7 @@ UPDATE `rack80829`.`T_Triggers` SET `F_ValidToDate`='2011-08-29' WHERE F_Trigger
 UPDATE T_Triggers SET F_ValidFromDate='2011-12-31' WHERE F_TriggerID=35;
 
 DROP TABLE IF EXISTS `T_CcbSchedule`;
+/*
 CREATE TABLE `T_CcbSchedule` (
   `F_SID` bigint(20) NOT NULL AUTO_INCREMENT,
   `F_GroupID` int(10) NOT NULL,
@@ -184,7 +185,7 @@ CREATE TABLE `T_CcbSchedule` (
   `F_Enabled` tinyint(1) NOT NULL DEFAULT '1',
   PRIMARY KEY (`F_SID`)
 )
-
+*/
 INSERT INTO `rack80829`.`T_Triggers`
 (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`)
 VALUES
@@ -858,8 +859,30 @@ INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1142, NOW(), 'course concurrency');
 
+DROP TABLE IF EXISTS `T_PendingEmails`;
+CREATE TABLE T_PendingEmails (
+F_EmailID bigint(20) NOT NULL AUTO_INCREMENT,
+F_To varchar(64) NOT NULL,
+F_TemplateID varchar(64) NOT NULL,
+F_Data text,
+F_RequestTimestamp datetime DEFAULT NULL,
+F_SentTimestamp datetime DEFAULT NULL,
+F_DelayUntil datetime DEFAULT NULL,
+PRIMARY KEY (F_EmailID),
+  KEY `Index_1` (F_SentTimestamp),
+  INDEX `Index_2` (`F_RequestTimestamp` ASC)
+) ENGINE=InnoDB;
+
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (1143, NOW(), 'pending emails');
+
 ALTER TABLE T_User ADD COLUMN F_TimeZoneOffset FLOAT(3,1) NULL DEFAULT 0;
 ALTER TABLE T_User_Expiry ADD COLUMN F_TimeZoneOffset FLOAT(3,1) NULL DEFAULT 0;
+
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (1156, NOW(), 'timezone offset');
 
 -- Tense Buster v10
 INSERT INTO `T_Product` VALUES (55,'Tense Buster V10',NULL,10);
@@ -918,3 +941,19 @@ VALUES
 (56,'Library reminder end tomorrow',NULL,NULL,'library/40','method=getAccounts&expiryDate={now}+1d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1),
 (57,'Library reminder end today',NULL,NULL,'library/41','method=getAccounts&expiryDate={now}&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1),
 (58,'Library reminder ended',NULL,NULL,'library/42','method=getAccounts&expiryDate={now}-14d&customerType=1&accountType=1&notLicenceType=5',NULL,NULL,'email','daily',1);
+
+-- gh#226
+ALTER TABLE `T_PendingEmails` 
+ADD INDEX `Index_2` (`F_RequestTimestamp` ASC) ;
+
+DROP TABLE IF EXISTS `T_SentEmails`;
+CREATE TABLE T_SentEmails (
+F_EmailID bigint(20) NOT NULL,
+F_To varchar(64) NOT NULL,
+F_TemplateID varchar(64) NOT NULL,
+F_Data text,
+F_RequestTimestamp datetime DEFAULT NULL,
+F_SentTimestamp datetime DEFAULT NULL,
+F_DelayUntil datetime DEFAULT NULL
+) ENGINE=InnoDB;
+

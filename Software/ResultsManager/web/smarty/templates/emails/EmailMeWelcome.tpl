@@ -1,9 +1,9 @@
-{* Name: EmailMeUnitStart *}
-{* Description: Email sent when a new unit becomes active to all users in groups assigned to this course *}
+{* Name: EmailMeWelcome *}
+{* Description: Email sent to users in a selected group to tell them about a new course *}
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>{$course->caption} new unit coming up</title>
+		<title>{$course->caption} will start soon</title>
 		<!-- <from>support@clarityenglish.com</from> -->
 		<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->		
 	</head>
@@ -21,8 +21,7 @@
     <td>
 	<p style="margin: 0 0 10px 0; padding:0;">== Please note that this email is send as part of beta-testing the Clarity Course Builder ==</p>
 	<p style="margin: 0 0 10px 0; padding:0;">Dear {$user->name}</p>
-	<p style="margin: 0 0 10px 0; padding:0;">A new unit in the course <b>{$course->caption}</b> is available, starting from {$course->startDate}.</p>
-	<p style="margin: 0 0 10px 0; padding:0;">It's called: <b>{$course->unitName}</b></p>
+	<p style="margin: 0 0 10px 0; padding:0;">A new course called {$course->caption} will be available from {$course->startDate}.</p>
 	<p style="margin: 0 0 10px 0; padding:0;">You can start it directly from 
 <a href="http://ccb.clarityenglish.com/area1/CCB/Player.php?prefix={$course->prefix}&course={$course->id}">http://ccb.clarityenglish.com/area1/CCB/Player.php?prefix={$course->prefix}&course={$course->id}</a>
 </p>

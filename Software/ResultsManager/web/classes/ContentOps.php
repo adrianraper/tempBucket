@@ -1202,7 +1202,6 @@ EOD;
 			$course->units = $this->_buildBentoUnits($courseXML, $course, $generateMaps, $courseType);
 			//gh#23
 			$course->totalUnits = count($course-> units);
-			
 				
 			if ($course->id != null) { // Ticket #104 - don't add content with missing id
 				if ($generateMaps) {

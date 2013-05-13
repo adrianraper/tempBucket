@@ -394,13 +394,13 @@ package com.clarityenglish.rotterdam.view.settings {
 					calendar.firstOfMonth = new Date();
 					break;
 				case saveButton:
-					saveButton.addEventListener(MouseEvent.CLICK, onSave);
+					instance.addEventListener(MouseEvent.CLICK, onSave);
 					break;
 				case backButton:
-					backButton.addEventListener(MouseEvent.CLICK, onBack);
+					instance.addEventListener(MouseEvent.CLICK, onBack);
 					break;
 				case welcomeEmailButton:
-					welcomeEmailButton.addEventListener(MouseEvent.CLICK, onSendWelcomeEmail);
+					instance.addEventListener(MouseEvent.CLICK, onSendWelcomeEmail);
 					break;
 				case seePastUnitLabel:
 					seePastUnitLabel.text = copyProvider.getCopyForId("seePastUnitLabel");
@@ -456,7 +456,8 @@ package com.clarityenglish.rotterdam.view.settings {
 			// Nothing to do if this group doesn't have a publication date
 			var results:XMLList = course.publication.group.(@id == selectedPublicationGroup.@id);
 			if (results && results.length() > 0) {
-				sendEmail.dispatch(course[0].id.toString(), selectedPublicationGroup.@id as Number);
+				var groupID:Number = selectedPublicationGroup.@id;
+				sendEmail.dispatch(course, groupID);
 			} else {
 				// TODO. How to raise an error? Or do you just disable the button until this condition is fulfilled/
 			}

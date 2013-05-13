@@ -200,8 +200,8 @@ package com.clarityenglish.rotterdam.model {
 
 		
 		// gh#122
-		public function sendWelcomeEmail(courseID:String, groupID:Number):AsyncToken {
-			return new RemoteDelegate("sendWelcomeEmail", [ courseID, groupID ], this).execute();
+		public function sendWelcomeEmail(course:XML, groupID:Number):AsyncToken {
+			return new RemoteDelegate("sendWelcomeEmail", [ course, groupID ], this).execute();
 		}
 
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
@@ -218,6 +218,7 @@ package com.clarityenglish.rotterdam.model {
 					sendNotification(RotterdamNotifications.COURSE_DELETED, data);
 					break;
 				case "courseSessionUpdate":
+				case "sendWelcomeEmail":
 					// No action
 					break;
 				default:

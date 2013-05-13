@@ -75,7 +75,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
 			//$trigger->rootID = Array(5,7,28,163,10719,11091);
-			//$trigger->rootID = Array(13376,13670);
+			// $trigger->rootID = Array(100);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
 		$trigger->condition->notProductCode = '12,13';

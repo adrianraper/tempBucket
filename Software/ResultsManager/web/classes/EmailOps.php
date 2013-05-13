@@ -33,120 +33,162 @@ class EmailOps {
 	 * "attachments" => array(new stringAttachment($licenceFileText, 'licence.ini') 
 	 *
 	 * One email per element will be sent.
+	 * gh#226 set default to be to use pendingEmails to send
 	 */
-	function sendEmails($from, $templateName, $emailArray, $useCache = false) {
+	function sendEmails($from, $templateName, $emailArray, $immediateDispatch = false) {
 		$errors = array();
 				
-		// Loop through $emailArray sending one email per entry
-		foreach ($emailArray as $email) {
-			// Configure the Rmail object.  As there is no removeAttachments method we need to do this once per mail.
-			$mail = new Rmail();	
-			$mail->setHTMLCharset('UTF-8');
-			$mail->setTextCharset('UTF-8');
-			$mail->setTextEncoding(new EightBitEncoding());
-			$mail->setHTMLEncoding(new EightBitEncoding());
-			$mail->setSMTPParams($GLOBALS['rmail_smtp_host'], $GLOBALS['rmail_smtp_port'], $GLOBALS['rmail_smtp_helo'], $GLOBALS['rmail_smtp_auth'], $GLOBALS['rmail_smtp_username'], $GLOBALS['rmail_smtp_password']);
-			// v3.5 You might have sent $from in the parameters, or you might get it from the template.
-			// This is just the default.
-			//$mail->setFrom($GLOBALS['rmail_from']);
-			$useFrom = $GLOBALS['rmail_from'];
+		// gh#226 Insert records into the pendingEmails table, unless you are specifically requesting immediate dispatch
+		if (!$immediateDispatch){
+			$errors = $this->queueEmails($from, $templateName, $emailArray);
+						
+		} else {
 			
-			$to = $email['to'];
-			$data = $email['data'];
-			// #516 Try to stop odd characters corrupting the template.
-			// No, you can't use the cache otherwise all emails in this batch get the same data
-			$useCache = false;
-			
-			$emailHTML = $this->templateOps->fetchTemplate("emails/".$templateName, $data, $useCache);
-			
-			// Get the subject of the email from the <title></title> tag
-			$mail->setSubject($this->getSubjectFromHTMLTitle($emailHTML));
-			$mail->setHTML($emailHTML);
-
-			// Check if there is a from in the template - will only be expecting one
-			$templateFrom = urldecode($this->getFromFromTemplate($emailHTML)); 
-			if (isset($templateFrom) && $templateFrom!='') {
-				$useFrom = $templateFrom;
-			}
-			//$useFrom = "\"Adrian Raper, Clarity\" <adrian@clarityenglish.com>";
-			$mail->setFrom($useFrom);
-			
-			// Check if any cc or bcc from the template (must be written in the header in comments)
-			$ccArray = array($this->getCcFromTemplate($emailHTML)); 
-			$bccArray = array($this->getBccFromTemplate($emailHTML));
-			// Check if there is any cc or bcc set in the $email object
-			// Check if there is any cc or bcc set in the $email object
-			if (isset($email['cc'])) {
-				$ccArray = array_merge($ccArray,$email['cc']);
-			}
-			if (isset($email['bcc'])) {
-				$bccArray = array_merge($bccArray,$email['bcc']);
-			}
-			// implode and explode to make certain that there are no comma delimitted string as single elements
-			$ccArray = explode(",", implode(",", $ccArray));
-			$bccArray = explode(",", implode(",", $bccArray));
-			// Use a marker to be able to split cc and bcc later
-			$bccStartMarker = array('bccStart');
-
-			// I would like to remove any duplicates - which can easily happen for resellers
-			// Remove to from cc and bcc
-			$toArray = array($email['to']);
-			$fullArray = array_unique(array_merge($toArray, $ccArray, $bccStartMarker, $bccArray));
-			//$fullArray = array_merge($toArray, $ccArray, $bccStartMarker, $bccArray);
-			// Dump the 'to'
-			array_shift($fullArray);
-			// Find the bccStartMarker to split cc and bcc
-			$bccKey = array_search('bccStart',$fullArray);
-			$ccArray = array_slice($fullArray, 0, $bccKey);
-			$bccArray = array_slice($fullArray, $bccKey + 1);
-			
-			// Put cleaned data into the mail class
-			$mail->setCc(implode(",",$ccArray));
-			$mail->setBcc(implode(",",$bccArray));
-			//echo 'final cc='.implode(",", $ccArray);
-			//echo 'final bcc='.implode(",", $bccArray);
-
-			// Does the template list any attachment file?
-			if ($this->getAttachmentFromTemplate($emailHTML)) {
-				//echo "try to add ".$this->getAttachmentFromTemplate($emailHTML);
-				$attachments = array(new fileAttachment($this->getAttachmentFromTemplate($emailHTML)));
-			} else {
-				$attachments = array();
-			}
-			
-			// Add any attachments in the email
-			// See subscriptionOps->sendSupplierEmail for example of sending attachments in emailArray
-			if (isset($email['attachments'])) {
-				//$attachments = $email['attachments'];
-				$attachments = array_merge($attachments, $email['attachments']);
-			}
-			if ($attachments) {
-				foreach ($attachments as $attachment) {
-					$mail->addAttachment($attachment);
+			// Loop through $emailArray sending one email per entry
+			foreach ($emailArray as $email) {
+				// Configure the Rmail object.  As there is no removeAttachments method we need to do this once per mail.
+				$mail = new Rmail();	
+				$mail->setHTMLCharset('UTF-8');
+				$mail->setTextCharset('UTF-8');
+				$mail->setTextEncoding(new EightBitEncoding());
+				$mail->setHTMLEncoding(new EightBitEncoding());
+				$mail->setSMTPParams($GLOBALS['rmail_smtp_host'], $GLOBALS['rmail_smtp_port'], $GLOBALS['rmail_smtp_helo'], $GLOBALS['rmail_smtp_auth'], $GLOBALS['rmail_smtp_username'], $GLOBALS['rmail_smtp_password']);
+				// v3.5 You might have sent $from in the parameters, or you might get it from the template.
+				// This is just the default.
+				//$mail->setFrom($GLOBALS['rmail_from']);
+				$useFrom = $GLOBALS['rmail_from'];
+				
+				$to = $email['to'];
+				// #516 Try to stop odd characters corrupting the template.
+				// No, you can't use the cache otherwise all emails in this batch get the same data
+				$useCache = false;
+				
+				$emailHTML = $this->templateOps->fetchTemplate("emails/".$templateName, $email['data'], $useCache);
+				
+				// Get the subject of the email from the <title></title> tag
+				$mail->setSubject($this->getSubjectFromHTMLTitle($emailHTML));
+				$mail->setHTML($emailHTML);
+	
+				// Check if there is a from in the template - will only be expecting one
+				$templateFrom = urldecode($this->getFromFromTemplate($emailHTML)); 
+				if (isset($templateFrom) && $templateFrom!='') {
+					$useFrom = $templateFrom;
 				}
+				//$useFrom = "\"Adrian Raper, Clarity\" <adrian@clarityenglish.com>";
+				$mail->setFrom($useFrom);
+				
+				// Check if any cc or bcc from the template (must be written in the header in comments)
+				$ccFromTemplate = $this->getCcFromTemplate($emailHTML);
+				$ccArray = ($ccFromTemplate) ? array($ccFromTemplate) : array(); 
+				$bccFromTemplate = $this->getBccFromTemplate($emailHTML);
+				$bccArray = ($bccFromTemplate) ? array($bccFromTemplate) : array(); 
+				
+				// Check if there is any cc or bcc set in the $email object
+				if (isset($email['cc'])) {
+					$ccArray = array_merge($ccArray,$email['cc']);
+				}
+				if (isset($email['bcc'])) {
+					$bccArray = array_merge($bccArray,$email['bcc']);
+				}
+				// implode and explode to make certain that there are no comma delimitted string as single elements
+				$ccArray = explode(",", implode(",", $ccArray));
+				$bccArray = explode(",", implode(",", $bccArray));
+				// Use a marker to be able to split cc and bcc later
+				$bccStartMarker = array('bccStart');
+	
+				// I would like to remove any duplicates - which can easily happen for resellers
+				// Remove to from cc and bcc
+				$toArray = array($email['to']);
+				$fullArray = array_unique(array_merge($toArray, $ccArray, $bccStartMarker, $bccArray));
+				//$fullArray = array_merge($toArray, $ccArray, $bccStartMarker, $bccArray);
+				// Dump the 'to'
+				array_shift($fullArray);
+				// Find the bccStartMarker to split cc and bcc
+				$bccKey = array_search('bccStart',$fullArray);
+				$ccArray = array_slice($fullArray, 0, $bccKey);
+				$bccArray = array_slice($fullArray, $bccKey + 1);
+				
+				// Put cleaned data into the mail class
+				$mail->setCc(implode(",",$ccArray));
+				$mail->setBcc(implode(",",$bccArray));
+				//echo 'final cc='.implode(",", $ccArray);
+				//echo 'final bcc='.implode(",", $bccArray);
+	
+				// Does the template list any attachment file?
+				if ($this->getAttachmentFromTemplate($emailHTML)) {
+					//echo "try to add ".$this->getAttachmentFromTemplate($emailHTML);
+					$attachments = array(new fileAttachment($this->getAttachmentFromTemplate($emailHTML)));
+				} else {
+					$attachments = array();
+				}
+				
+				// Add any attachments in the email
+				// See subscriptionOps->sendSupplierEmail for example of sending attachments in emailArray
+				if (isset($email['attachments'])) {
+					//$attachments = $email['attachments'];
+					$attachments = array_merge($attachments, $email['attachments']);
+				}
+				if ($attachments) {
+					foreach ($attachments as $attachment) {
+						$mail->addAttachment($attachment);
+					}
+				}
+				// Just for testing if I just want the emails to come to me
+				//$to = 'adrian.raper@gmail.com';
+				//$mail->setCc('');
+				//$mail->setBcc('');
+				
+				// Do the send
+				$result = $mail->send(array($to), "smtp");
+				$ccList = implode(",",$ccArray);
+				$bccList = implode(",",$bccArray);
+				if (!$result) {
+					$logMsg = "Email error: ".$mail->errors[0]." sending $to with template $templateName";
+				} else {
+					$logMsg = "Sent email to $to with template $templateName and subject {$this->getSubjectFromHTMLTitle($emailHTML)} from $useFrom cc $ccList bcc $bccList";
+				}
+				AbstractService::$log->notice($logMsg);
+				
+				if (!$result) $errors[] = $mail->errors[0];
 			}
-			// Just for testing if I just want the emails to come to me
-			//$to = 'adrian.raper@gmail.com';
-			//$mail->setCc('');
-			//$mail->setBcc('');
-			
-			// Do the send
-			$result = $mail->send(array($to), "smtp");
-			$ccList = implode(",",$ccArray);
-			$bccList = implode(",",$bccArray);
-			if (!$result) {
-				$logMsg = "Email error: ".$mail->errors[0]." sending $to with template $templateName";
-			} else {
-				$logMsg = "Sent email to $to with template $templateName and subject {$this->getSubjectFromHTMLTitle($emailHTML)} from $useFrom cc $ccList bcc $bccList";
-			}
-			AbstractService::$log->notice($logMsg);
-			
-			if (!$result) $errors = $mail->errors;
 		}
 		
 		// Return any errors
 		return $errors;
 	}
+	
+	// gh#226 Function to queue emails for later sending
+	function queueEmails($from, $templateName, $emailArray, $delayUntil = null) {
+		$errors = array();
+		foreach ($emailArray as $email) {
+			// Make sure that you are storing valid JSON data
+			$json_data = json_encode($email);
+			// This is only PHP5.3
+			//if (json_last_error() === JSON_ERROR_NONE) { 
+   			if ($json_data != FALSE) { 
+   				
+   				// It shouldn't happen, but if F_To is empty, just junk the email
+   				if (!isset($email['to'])) {
+   					$errors[] = 'No TO field for email to account '.$email['data']['account']->name;	
+   					echo 'No TO field for email to account '.$email['data']['account']->name;	
+   				} else {
+					$sql = 	<<<EOD
+							INSERT INTO T_PendingEmails
+							(`F_To`,`F_TemplateID`,`F_Data`,`F_RequestTimestamp`, `F_DelayUntil`)
+							VALUES (?,?,?,?,?); 
+EOD;
+					$rs = $this->db->Execute($sql, array($email['to'], $templateName, $json_data, date('Y-m-d G:i:s'), $delayUntil));
+					if (!$rs) $errors[] = $rs->lastDBError();
+   				}
+   			} else {
+				// This is only PHP5.3
+   				//$errors[] = json_last_error();
+   				$errors[] = 'JSON encoding error';
+   			}			
+		}	
+		return $errors;
+	}
+	
 	// A version of the above to cope with the old way of sending emails (directly via php.mail)
 	function sendWebsiteEmails($email) {
 		$errors = array();
@@ -246,7 +288,11 @@ class EmailOps {
 		if (isset($emailAPI->transactionTest) && ($emailAPI->transactionTest=='true')) {
 			echo "<b>send {$emailAPI->templateID}, to: ".$emailAPI->to."</b><br/><br/>";
 		} else {
-			$errors = $this->sendEmails("", $emailAPI->templateID, array($emailArray));
+			if (isset($emailAPI->immediateDispatch) && ($emailAPI->immediateDispatch)) {
+				$errors = $this->sendEmails("", $emailAPI->templateID, array($emailArray), true);
+			} else {
+				$errors = $this->sendEmails("", $emailAPI->templateID, array($emailArray));
+			}
 		}
 		// What about handling errors?
 		if (!empty($errors)) {
@@ -254,6 +300,7 @@ class EmailOps {
 		}
 		return true;
 	}
+	
 	// TODO: Use emailAPI.
 	function sendOrEchoEmail($account, $emailData, $templateID) {
 	//function sendOrEchoEmail($emailAPI) {

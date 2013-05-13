@@ -3,6 +3,8 @@
  * Called from amfphp gateway from Flex
  */
 require_once(dirname(__FILE__)."/RotterdamService.php");
+require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
+require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 
 class RotterdamBuilderService extends RotterdamService {
 	
@@ -87,7 +89,7 @@ EOD;
 	 */
 	private function createAccountFolder() {
 		// Create the account folder containing a default courses.xml
-		// GH #65 - by only doing this if mkdir returns true we are effectively implementing concurrency locking (since if it returns false then someone else is doing
+		// gh#65 - by only doing this if mkdir returns true we are effectively implementing concurrency locking (since if it returns false then someone else is doing
 		// it, and the delay of half a second will be more than enough for it to complete).
 		if (mkdir($this->accountFolder)) {
 			$courseXML = <<<XML
@@ -113,10 +115,10 @@ XML;
 	}
 
 	// gh#122
-	public function sendWelcomeEmail($courseID, $groupID) {
+	public function sendWelcomeEmail($courseXML, $groupID) {
 		// This will send a welcome email to any student in this group for this course
 		// (and subgroups that don't have their own publication data??)
-		// TODO. Can I make this trigger a background process so I can get back quickly?
-		return true;
+		// TODO. Make this process just put records into a database and then a cron job can send them
+		return $this->courseOps->sendWelcomeEmail($courseXML, $groupID);
 	}
 }

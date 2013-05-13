@@ -23,6 +23,7 @@ date_default_timezone_set('UTC');
 $serverLocation = 'http://www.clarityenglish.com/';
 $returnTopPage = false;
 $returnPage = $serverLocation."email/oops.php";
+$cc="";
 
 	// Information is sent to us as an input from cURL
 	$postXML = file_get_contents("php://input");
@@ -297,7 +298,16 @@ EOD;
 					else {
 						echo 'false';
 					}
-					break;					
+					break;	
+				case "99": #Server monitoring alert
+					$toClarity = sendEmail(99);
+					if ($toClarity) {
+						echo 'true';
+					}
+					else {
+						echo 'false';
+					}
+					break;						
 				default:
 					$errorInfo = 'error=1&message=unexpected requestID';
 		}
@@ -332,6 +342,8 @@ function sendEmail($templateID) {
 	global $serverLocation;
 	
 	// Set common variables
+	$clarityTest = "Clarity Testing <vivying.cheng@clarityenglish.com>";
+	$clarityNicole = "Nicole Lung <nicole.lung@clarityenglish.com>";
 	$claritySales = "Clarity Admin <sales@clarityenglish.com>";
 	$clarityNews = "Clarity English <news@clarityenglish.com>";
 	$clarityInfo = "Clarity Info <info@clarityenglish.com>";
@@ -361,8 +373,10 @@ function sendEmail($templateID) {
 
 		case 2: # Price enquiry page - to Clarity
 			$body = file_get_contents("$templateFolder/email_priceEnquiry_toClarity.htm");		
-			$subject = "Price enquiry";
+			$subject = $data['sector'] . " enquiry: Price enquiry (" . date(DATE_RFC822) .")"; 
+
 			$to = $claritySales;
+			
 			If ($data['price']<>"") {
 				$subject .= " - for ". $data['price'];
 				$data['price'] = "?price=". $data['price'];			

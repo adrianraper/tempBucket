@@ -854,6 +854,9 @@ EOD;
 		}
 		$accountsRS = $this->db->Execute($sql, $bindingParams); 
 		$result = array();
+		
+		// gh#226 It is possible that T_AccountEmails doesn't have a record for this root
+		// That indicates some kind of error, but we don't need to worry about it here
 		if ($accountsRS->RecordCount() > 0) {
 			while ($emailObj = $accountsRS->FetchNextObj()) {
 				if ($emailObj->F_AdminUser) {
@@ -862,6 +865,8 @@ EOD;
 					$result[] = $emailObj->F_Email;
 				}
 			}
+		} else if ($accountsRS->RecordCount() == 0) {
+			$result[] = $adminUserEmail;
 		}
 		return $result;
 	}
@@ -1014,6 +1019,7 @@ EOD;
 		$accounts = $this->getAccounts(array($rootID));
 		return array_shift($accounts);
 	}
+	
 	public function getAccountFromPrefix($prefix) {
 	
 		$rootID = $this->getAccountRootID($prefix);

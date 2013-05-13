@@ -26,6 +26,7 @@ class CourseOps {
 			
 		$this->copyOps = new CopyOps();
 		$this->manageableOps = new ManageableOps($db);
+		$this->emailOps = new EmailOps($db);
 	}
 	
 	/**
@@ -304,5 +305,85 @@ EOD;
 		
 		return $subGroupIDs;
 	}
+
+	// TODO. Not sure if this is the right place for this function. 
+	// I had to add emailOps to courseOps, ok?
+	public function sendWelcomeEmail($courseXML, $groupID) {
+
+		// Initialise
+		$emailArray = array();
+		$today = date('Y-m-d');
 		
+		// We are sent course information as XML
+		$xml = simplexml_load_string($courseXML);
+		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+		$course = new Course();
+		foreach ($xml->attributes() as $key => $value)
+			$course->{$key} = (string) $value;
+		
+		$publication = $xml->publication;
+		if ($publication) {
+			foreach ($publication->group as $group) {
+				if ($group['id'] == $groupID) {
+					$course->startDate = (string) $group['startDate'];
+					break;
+				}
+			}
+		}
+		// Need to get some account information from the db for this group
+		// TODO. This might be better as a method in AccountOps
+		$sql = 	<<<EOD
+				SELECT r.*, a.*
+				FROM T_AccountRoot r, T_Accounts a, T_Membership m
+				WHERE r.F_RootID = m.F_RootID
+				AND a.F_RootID = r.F_RootID
+				AND m.F_GroupID = ?
+				LIMIT 1
+EOD;
+		$rs = $this->db->Execute($sql, array($groupID));
+		
+		switch ($rs->RecordCount()) {
+			case 0:
+				// There is no-one in this group yet, so don't know which account it is, raise an error
+				return false;
+				break;
+			case 1:
+				// One record, good.
+				$dbObj = $rs->FetchNextObj();
+				break;
+			default:
+				return false;
+		}
+		$course->prefix = $dbObj->F_Prefix;
+		$course->contentLocation = $dbObj->F_ContentLocation;
+		$course->loginOption = $dbObj->F_LoginOption;
+		
+		// Now we need get all the active users in this group
+		$userRS = $this->getCourseUsersFromGroup($courseID, $groupID, $today);
+				
+		// Loop round the users and build an email array
+		if ($userRS->RecordCount() > 0) {
+			while ($userObj = $userRS->FetchNextObj()) {
+				$user = new User();
+				$user->fromDatabaseObj($userObj);
+				
+				// Send email IF we have one
+				if (isset($user->email) && $user->email) {
+					// Just during inital testing - only send emails to me
+					// $toEmail = $user->email;
+					$toEmail = 'adrian@noodles.hk';
+					$emailData = array("user" => $user, "course" => $course);
+					$thisEmail = array("to" => $toEmail, "data" => json_encode($emailData));
+					$emailArray[] = $thisEmail;
+					
+				}
+			}
+		}
+		
+		// gh#226
+		$rc = $this->emailOps->sendEmails('', 'EmailMeWelcome', $emailArray);
+
+		return count($emailArray);
+	}
+	
 }
