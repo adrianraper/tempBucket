@@ -868,6 +868,7 @@ F_Data text,
 F_RequestTimestamp datetime DEFAULT NULL,
 F_SentTimestamp datetime DEFAULT NULL,
 F_DelayUntil datetime DEFAULT NULL,
+F_Attempts smallint DEFAULT 0,
 PRIMARY KEY (F_EmailID),
   KEY `Index_1` (F_SentTimestamp),
   INDEX `Index_2` (`F_RequestTimestamp` ASC)
@@ -954,6 +955,10 @@ F_TemplateID varchar(64) NOT NULL,
 F_Data text,
 F_RequestTimestamp datetime DEFAULT NULL,
 F_SentTimestamp datetime DEFAULT NULL,
-F_DelayUntil datetime DEFAULT NULL
+F_DelayUntil datetime DEFAULT NULL,
+F_Attempts smallint DEFAULT 0
 ) ENGINE=InnoDB;
+
+ALTER TABLE `T_PendingEmails` ADD COLUMN `F_Attempts` SMALLINT NULL DEFAULT 0  AFTER `F_DelayUntil` ;
+ALTER TABLE `T_SentEmails` ADD COLUMN `F_Attempts` SMALLINT NULL DEFAULT 0  AFTER `F_DelayUntil` ;
 

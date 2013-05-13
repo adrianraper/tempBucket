@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>IELTSpractice - Your payment method ({$body.refNo})</title>
+<title>IELTSpractice - Your payment method ({$body->refNo})</title>
 	<!-- <from>support@ieltspractice.com</from> -->
 	<!-- <bcc>accounts@clarityenglish.com,support@ieltspractice.com</bcc> -->
 </head>
@@ -23,7 +23,7 @@
         
 	  <div style="padding:0 48px; margin:0;">
            
-           		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Dear {$body.name}</p>
+           		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Dear {$body->name}</p>
            
         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Thank you for subscribing to IELTSpractice.com! Please follow the steps below to make payment. Login details will be sent to you as soon as the payment has been confirmed.</p>
         
@@ -34,12 +34,12 @@ Please keep this email for later reference.</p>
 
 <div style="border:#CCCCCC 1px solid; padding:10px; margin:0;">
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Personal details</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Reference number: </strong>{$body.refNo}</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Name: </strong>{$body.name}</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Email: </strong>{$body.email}</p>
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Module: </strong> {$body.offerDetail}</p>
+                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Reference number: </strong>{$body->refNo}</p>
+                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Name: </strong>{$body->name}</p>
+                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Email: </strong>{$body->email}</p>
+                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Module: </strong> {$body->offerDetail}</p>
                 
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Subscription price:</strong> US${$body.amount}</p>
+                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Subscription price:</strong> US${$body->amount}</p>
                 
                 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;"><strong>Payment method: </strong>{$api->paymentMethod}</p>
 			</div>
@@ -65,7 +65,7 @@ Please keep this email for later reference.</p>
   <tr>
     <td></td>
     <td align="left" valign="top">2.</td>
-    <td>Go to the agent's office and pay ${$body.amount} in <span style="color:#0A436E; font-weight:bold;">US Dollars</span>.</td>
+    <td>Go to the agent's office and pay ${$body->amount} in <span style="color:#0A436E; font-weight:bold;">US Dollars</span>.</td>
     <td></td>
   </tr>
   <tr>

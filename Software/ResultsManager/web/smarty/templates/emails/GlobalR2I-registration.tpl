@@ -26,12 +26,12 @@ font-size: 11px;}
     <td height="10" width="150"></td>
   </tr>
   <tr align="left" valign="top">
-    <td height="28" >Dear {$body.name}</td>
+    <td height="28" >Dear {$body->name}</td>
     <td height="28"></td>
   </tr>
   <tr align="left" valign="top">
     <td height="28" >You have been registered for Road to IELTS. The start page for your account is: 
-	<a href="http://www.ieltspractice.com/BritishCouncil/RoadToIELTS/login.php?loginID={$body.loginID}">www.ieltspractice.com/BritishCouncil/RoadToIELTS</a></td>
+	<a href="http://www.ieltspractice.com/BritishCouncil/RoadToIELTS/login.php?loginID={$body->loginID}">www.ieltspractice.com/BritishCouncil/RoadToIELTS</a></td>
     <td height="28" ></td>
   </tr>
   <tr align="left" valign="top">
@@ -39,7 +39,7 @@ font-size: 11px;}
     <td height="28" ></td>
   </tr>
   <tr align="left" valign="top">
-    <td height="28" >Login id: {$body.loginID}<br/>Password: {$body.password}</td>
+    <td height="28" >Login id: {$body->loginID}<br/>Password: {$body->password}</td>
     <td height="28" ></td>
   </tr>
   </tbody>

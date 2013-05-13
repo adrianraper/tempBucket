@@ -27,7 +27,7 @@ font-size: 11px;}
     <td height="10" width="150"></td>
   </tr>
   <tr align="left" valign="top">
-    <td height="28" >Dear {$body.name}</td>
+    <td height="28" >Dear {$body->name}</td>
     <td height="28"></td>
   </tr>
   <tr align="left" valign="top">
@@ -35,10 +35,10 @@ font-size: 11px;}
     <td height="28" ></td>
   </tr>
   <tr align="left" valign="top">
-    <td height="28" >Login id: <b>{$body.loginID}</b><br/>
-	Password: <b>{$body.password}</b><br/>
-	URL: <a href="http://www.ieltspractice.com/BritishCouncil/RoadToIELTS/login.php?loginID={$body.loginID}">www.ieltspractice.com/BritishCouncil/RoadToIELTS</a><br/>
-	Expiry date: {$body.expiryDate}
+    <td height="28" >Login id: <b>{$body->loginID}</b><br/>
+	Password: <b>{$body->password}</b><br/>
+	URL: <a href="http://www.ieltspractice.com/BritishCouncil/RoadToIELTS/login.php?loginID={$body->loginID}">www.ieltspractice.com/BritishCouncil/RoadToIELTS</a><br/>
+	Expiry date: {$body->expiryDate}
 	</td>
     <td height="28" ></td>
   </tr>

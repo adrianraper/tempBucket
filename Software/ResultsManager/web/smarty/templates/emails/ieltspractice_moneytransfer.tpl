@@ -18,8 +18,8 @@
   <tr>
     <td width="355" valign="top">
     	<div style="padding:60px 10px 0 30px">
-        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Dear {$body.name}</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Many thanks for your subscription of {$body.offerDetail} individual version. We will get back to you with the online payment link within one working day. Please reply to this email if you don't receive the payment link.</p>
+        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Dear {$body->name}</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Many thanks for your subscription of {$body->offerDetail} individual version. We will get back to you with the online payment link within one working day. Please reply to this email if you don't receive the payment link.</p>
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Many thanks!<br />The Clarity Team</p>
     </div>    </td>
     <td height="320" colspan="2" background="http://www.ieltspractice.com/images/email/img_circle_menu.jpg">&nbsp;</td>

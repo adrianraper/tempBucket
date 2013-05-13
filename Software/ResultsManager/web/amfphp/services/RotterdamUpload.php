@@ -5,7 +5,7 @@ require_once(dirname(__FILE__)."/../../config.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 require_once(dirname(__FILE__)."/../../classes/Session.php");
 require_once(dirname(__FILE__)."/../../classes/xml/XmlUtils.php");
-require_once(dirname(__FILE__)."/RotterdamService.php");
+require_once(dirname(__FILE__)."/RotterdamBuilderService.php");
 
 $service = new RotterdamService();
 $MAXIMUM_FILESIZE = 1024*1024*5;

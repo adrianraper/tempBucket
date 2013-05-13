@@ -698,6 +698,7 @@ package com.clarityenglish.common.vo.config {
 				return false;
 			
 			// #346 thisIP might be a comma delimitted string too
+			// BUG, this list might have spaces which stop the matching
 			var thisIPArray:Array = thisIPList.split(",");
 			for each (var thisIP:String in thisIPArray) {
 				var ipRangeArray:Array = range.split(",");

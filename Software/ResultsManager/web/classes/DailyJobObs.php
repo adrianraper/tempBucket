@@ -334,8 +334,8 @@ SQL;
 						// Send email IF we have one
 						if (isset($user->email) && $user->email) {
 							// Just during inital testing - only send emails to me
-							$toEmail = 'adrian@noodles.hk';
-							//$toEmail = $user->email;
+							//$toEmail = 'adrian@noodles.hk';
+							$toEmail = $user->email;
 							$emailData = array("user" => $user, "course" => $course);
 							$thisEmail = array("to" => $toEmail, "data" => $emailData);
 							$emailArray[] = $thisEmail;

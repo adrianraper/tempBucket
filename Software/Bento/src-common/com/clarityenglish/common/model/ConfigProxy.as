@@ -476,7 +476,7 @@ package com.clarityenglish.common.model {
 						ipFault = true;
 					} else {
 						// If you are successful, then this is all you need
-						trace("your ip, " + config.ip + ", is in the listed range.");
+						// trace("your ip, " + config.ip + ", is in the listed range.");
 						config.error = new BentoError();
 						return true;
 					}
@@ -489,7 +489,7 @@ package com.clarityenglish.common.model {
 						config.error = copyProxy.getBentoErrorForId("errorRUDoesntMatch", { referrer: config.referrer }, true );
 						ruFault = true;
 					} else {
-						trace("your referrer, " + config.referrer + ", is in the listed range.");
+						// trace("your referrer, " + config.referrer + ", is in the listed range.");
 						config.error = new BentoError();
 						return true;
 					}

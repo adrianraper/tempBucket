@@ -21,11 +21,11 @@
     <td width="355" valign="top">
     	<div style="padding:60px 10px 0 30px">
         	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">The following person has requested an online payment link:</p>
-        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">name: {$body.name}</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">subscription detail: {$body.offerDetail}.</p>
-			<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Reference number: {$body.refNo}</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Email: {$body.email}</p>
-            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">country: {$body.country}</p>
+        	<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">name: {$body->name}</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">subscription detail: {$body->offerDetail}.</p>
+			<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Reference number: {$body->refNo}</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">Email: {$body->email}</p>
+            <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000; line-height:18px;">country: {$body->country}</p>
     </div>    </td>
     <td height="320" colspan="2" background="http://www.ieltspractice.com/images/email/img_circle_menu.jpg">&nbsp;</td>
   </tr>

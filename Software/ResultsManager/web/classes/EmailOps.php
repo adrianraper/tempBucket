@@ -142,8 +142,15 @@ class EmailOps {
 				$result = $mail->send(array($to), "smtp");
 				$ccList = implode(",",$ccArray);
 				$bccList = implode(",",$bccArray);
+				
+				if ($to == 'adrian.2@noodles.hk')
+					throw new Exception("Don't much like adrian ".$mail->errors[0]);
+				
 				if (!$result) {
 					$logMsg = "Email error: ".$mail->errors[0]." sending $to with template $templateName";
+					// gh#226
+					throw new Exception($mail->errors[0]);
+					
 				} else {
 					$logMsg = "Sent email to $to with template $templateName and subject {$this->getSubjectFromHTMLTitle($emailHTML)} from $useFrom cc $ccList bcc $bccList";
 				}

@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Welcome to IELTSpractice.com (Ref NO: {$body.refNo})</title>
+<title>Welcome to IELTSpractice.com (Ref NO: {$body->refNo})</title>
 <!-- <bcc>admin@claritylifeskills.com,accounts@clarityenglish.com</bcc> -->
 </head>
 
@@ -25,22 +25,22 @@
         
 	  <div style="padding:0 48px;">
            
-           		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Dear {$body.name}</p>
+           		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Dear {$body->name}</p>
            
         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Thank you for subscribing to IELTSpractice.com! Please follow the steps below to make payment. Login details will be sent to you as soon as the payment has been confirmed.</p>
         
-         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;"><strong>Your reference number is: {$body.refNo}</strong></p>
+         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;"><strong>Your reference number is: {$body->refNo}</strong></p>
         
         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">You have selected the following:</p>
         
         <div style="border:#CCCCCC 1px solid; padding:10px; margin:0 0 15px 0;">
        	  <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 14px; margin:0 0 5px 0; padding:0; color:#0399D6; font-weight:bold;line-height:18px;">Program options</p>
             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">
-            	<strong>Module:</strong> {$body.offerDetail} online subscription (US${$body.amount})</p>
+            	<strong>Module:</strong> {$body->offerDetail} online subscription (US${$body->amount})</p>
             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">
             	<strong>Expires on:</strong> 30 days after we confirm your payment</p>
              <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px;">
-            	<strong>Your country:</strong> {$body.country}</p>           
+            	<strong>Your country:</strong> {$body->country}</p>           
             </div>
         	 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Below are the details you have entered while registering for IELTSpractice.com.
 Please keep this email for later reference.</p>
