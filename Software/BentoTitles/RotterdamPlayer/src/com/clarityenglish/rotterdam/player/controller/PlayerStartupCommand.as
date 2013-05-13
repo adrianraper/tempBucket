@@ -11,6 +11,9 @@ package com.clarityenglish.rotterdam.player.controller {
 	import com.clarityenglish.bento.vo.content.transform.PublicationUnitTransform;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.rotterdam.player.view.PlayerApplicationMediator;
+	import com.clarityenglish.rotterdam.player.vo.content.transform.SingleVideoNodeTransform;
+	
+	import flash.system.Capabilities;
 	
 	import org.puremvc.as3.interfaces.INotification;
 
@@ -27,6 +30,12 @@ package com.clarityenglish.rotterdam.player.controller {
 									 new HiddenContentTransform(),
 									 new DirectStartDisableTransform(configProxy.getDirectStart()),
 									 new PublicationUnitTransform() ];
+			
+			// gh#294
+			if (Capabilities.version.split(" ")[0] == "IOS") {
+				transforms.push(new SingleVideoNodeTransform());
+			}
+			
 			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
 			
 			// Set the transforms that Rotterdam player uses when loading its courses.xml files (gh#144)
