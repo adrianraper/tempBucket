@@ -77,7 +77,7 @@
 				</s:layout>
 				<s:itemRenderer>
 					<fx:Component>
-						<s:ItemRenderer width="100%" mouseOver="deleteCourseButton.visible = true" mouseOut="deleteCourseButton.visible = false">
+						<s:ItemRenderer width="100%" mouseOver="deleteCourseButton.visible = true" mouseOut="deleteCourseButton.visible = false" toolTip="{data.@caption}">
 							<fx:Script>
 								<![CDATA[
 									import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
