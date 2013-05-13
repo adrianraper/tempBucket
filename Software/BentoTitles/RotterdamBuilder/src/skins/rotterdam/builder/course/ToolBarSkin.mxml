@@ -138,7 +138,7 @@
 					</s:fill>			
 				</s:Rect>
 				<s:Label text="Choose the item you would like to add to your unit" color="0x8CC63F" fontSize="14" top="15" left="25" />
-				<s:Button id="downButton" left="360" top="10" click="upAim.play(null, true);"/>
+				<s:Button id="downButton" left="370" top="10" click="upAim.play(null, true);"/>
 			</s:Group>
 			
 			<s:Group id="smallPopUpGroup">
