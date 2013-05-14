@@ -23,11 +23,11 @@
 		</s:fill>
 	</s:Rect>	
 	
-	<s:HGroup left="8" right="8" top="8">
+	<s:HGroup left="8" right="8" top="8" gap="10">
 		<s:Button id="editButton" label="Edit" includeIn="normal" />
 		<s:Button id="doneButton" label="Done" right="10" top="8" includeIn="editing" />
-		<s:Label id="unitCaptionLabel" color="#FFFFFF" fontWeight="bold" includeIn="normal" paddingTop="4" paddingRight="5"/>
-		<s:TextInput id="unitCaptionTextInput" color="#FFFFFF" contentBackgroundAlpha="0" fontWeight="bold" width="100%" paddingRight="5" borderVisible="false" includeIn="editing"/>		
+		<s:Label id="unitCaptionLabel" color="#FFFFFF" fontWeight="bold" includeIn="normal" paddingTop="4"/>
+		<s:TextInput id="unitCaptionTextInput" color="#FFFFFF" contentBackgroundAlpha="0" fontWeight="bold" width="100%" borderVisible="false" includeIn="editing"/>		
 	</s:HGroup>
 	
 </s:Skin>

@@ -15,7 +15,6 @@
 		<![CDATA[
 			import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
 			import com.clarityenglish.rotterdam.view.unit.UnitView;
-			
 			import mx.events.FlexEvent;
 			
 			import org.davekeen.transitions.PatchedSlideViewTransition;
@@ -32,6 +31,9 @@
 				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
 				popTransition.direction = ViewTransitionDirection.DOWN;
 				unitViewNavigator.defaultPopTransition = popTransition;
+				
+				styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("backgroundColor","#333333");
+				styleManager.getStyleDeclaration("mx.controls.ToolTip").setStyle("fontSize","13");
 			}
 			
 			private function unitViewNavigatorShow(viewClass:Class, transition:ViewTransitionBase = null):void {
@@ -77,12 +79,13 @@
 				</s:layout>
 				<s:itemRenderer>
 					<fx:Component>
-						<s:ItemRenderer width="100%" mouseOver="deleteCourseButton.visible = true" mouseOut="deleteCourseButton.visible = false" toolTip="{data.@caption}">
+						<s:ItemRenderer width="100%" mouseOver="deleteCourseButton.visible = true" mouseOut="deleteCourseButton.visible = false" toolTip="{data.@caption}" >
 							<fx:Script>
 								<![CDATA[
 									import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 								]]>
 							</fx:Script>
+							
 							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="105" maxDisplayedLines="1" height="25" paddingLeft="18" paddingTop="8" />
 							<s:Group right="2" verticalCenter="0">
 								<s:Button id="deleteCourseButton"
