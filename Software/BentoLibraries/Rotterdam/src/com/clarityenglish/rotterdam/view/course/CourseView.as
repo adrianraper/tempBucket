@@ -84,6 +84,7 @@ package com.clarityenglish.rotterdam.view.course {
 		private var outsideClick:Boolean = false;
 		private var itemClick:Boolean = false;
 		private var isHide:Boolean;
+		private var isPreview:Boolean = false;
 		
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
@@ -280,13 +281,15 @@ package com.clarityenglish.rotterdam.view.course {
 		 * TODO: Switch between editing and viewing
 		 */
 		protected override function getCurrentSkinState():String {
-			if (unitHeader) {
-				if (_isPreviewVisible) {
-					unitHeader.editButton.visible = false;
-				} else {
-					if (unitHeader.editButton)
-						unitHeader.editButton.visible = true;
-				}
+			if (_isPreviewVisible) {
+				unitHeader.editButton.visible = false;
+				unitHeader.unitCaptionLabel.left = 10;
+				isPreview = true;
+			} else {
+				if (isPreview) {
+					unitHeader.editButton.visible = true;
+					unitHeader.unitCaptionLabel.left = 65;
+				}				
 			}		
 			return (_isPreviewVisible) ? "unitplayer" : "uniteditor";
 		}

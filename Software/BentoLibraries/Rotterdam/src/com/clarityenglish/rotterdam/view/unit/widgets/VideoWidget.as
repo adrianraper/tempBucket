@@ -20,6 +20,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		//gh #106
 		private var recordFlag:Boolean;
 		
+		private var player:Object;
+		
 		public function VideoWidget() {
 			super();
 			
@@ -99,8 +101,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		//gh#215
 		private function stopVideo(event:Event = null):void {
-			if (swfLoader.content)
-				swfLoader.content["stopVideo"]();
+			if (swfLoader.content) {
+				player = swfLoader.content;
+				player.stopVideo();
+			}			
+			//swfLoader.content["stopVideo"]();
 		}
 		
 	}

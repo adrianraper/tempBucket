@@ -119,7 +119,7 @@
 									if (practiceTestButton.enabled) {
 										practiceLabel.text = data.@caption;
 									} else {
-										practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailbleDemo");
+										practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
 									}
 								}
 							}

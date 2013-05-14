@@ -42,5 +42,10 @@
 			<type>2</type>
 			<locationURI>SDK_HOME/frameworks/projects/mobiletheme/src</locationURI>
 		</link>
+		<link>
+			<name>bin-release4</name>
+			<type>2</type>
+			<location>D:/Projectbench/Software/ResultsManager/web</location>
+		</link>
 	</linkedResources>
 </projectDescription>

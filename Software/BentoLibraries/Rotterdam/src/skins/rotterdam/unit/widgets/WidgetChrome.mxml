@@ -85,9 +85,8 @@
 	<s:TextInput id="widgetCaptionTextInput" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" right="125" top="3" borderVisible="false" contentBackgroundAlpha="0" editable="true" visible="false" />
 	
 	<!--gh #221-->
-	
-	<s:Group right="40" mouseEnabled="true" click="onLinkButtonClick(event)" buttonMode="true" visible="{editing}" mouseOver="linkLabel.visible = true; linkButtonOverRect.alpha = 1" mouseOut="linkLabel.visible = false; linkButtonOverRect.alpha = 0" >
-		<s:Label id="linkLabel" text="Add Link" right="35" top="8" visible="false" fontSize="11"/>
+	<s:Label id="linkLabel" text="Add Link" right="75" top="8" visible="false" fontSize="11"/>
+	<s:Group right="40" mouseEnabled="true" click="onLinkButtonClick(event)" buttonMode="true" visible="{editing}" mouseOver="linkLabel.visible = true; linkButtonOverRect.alpha = 1" mouseOut="linkLabel.visible = false; linkButtonOverRect.alpha = 0" >		
 		<s:Rect id="linkButtonOverRect" width="30" height="24" right="0" alpha = "0">
 			<s:stroke>
 				<s:SolidColorStroke color="#D8D8D8" />

@@ -263,7 +263,7 @@ package com.clarityenglish.ielts.view.title {
 					return this.languageAssetFolder + "register.jpg";
 				case BentoApplication.DEMO:
 					// #337
-					return this.languageAssetFolder + (config.pricesURL) ? "price.jpg" : "buy.jpg";
+					return this.languageAssetFolder + ((config.pricesURL) ? "price.jpg" : "buy.jpg");
 				case IELTSApplication.FULL_VERSION:
 				default:
 					return null;
