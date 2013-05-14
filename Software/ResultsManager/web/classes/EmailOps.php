@@ -1,5 +1,8 @@
 <?php
 require_once($GLOBALS['rmail_libs']."/Rmail.php");
+
+require_once(dirname(__FILE__)."/TemplateOps.php");
+
 class EmailOps {
 	
 	var $db;

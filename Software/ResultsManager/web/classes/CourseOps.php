@@ -2,6 +2,7 @@
 require_once(dirname(__FILE__)."/xml/XmlUtils.php");
 require_once(dirname(__FILE__)."/crypto/UniqueIdGenerator.php");
 require_once(dirname(__FILE__)."/CopyOps.php");
+require_once(dirname(__FILE__)."/EmailOps.php");
 
 class CourseOps {
 	
