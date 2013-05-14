@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:widgets="skins.rotterdam.unit.widgets.*"
-		minHeight="80" xmlns:players="com.clarityenglish.controls.video.players.*">
+		xmlns:players="com.clarityenglish.controls.video.players.*"
+		minHeight="80" >
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget")]
