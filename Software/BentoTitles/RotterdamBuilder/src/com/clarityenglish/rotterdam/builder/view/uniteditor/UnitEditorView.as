@@ -53,13 +53,13 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			super.onAddedToStage(event);
 			
 			stage.addEventListener(MouseEvent.CLICK, onStageClick, false, 0, true);
-			//gh #228
+			// gh#228
 			stage.addEventListener(Event.RESIZE, onResize);
 			addEventListener(WidgetMenuEvent.MENU_SHOW, onShowWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.MENU_HIDE, onHideWidgetMenu, false, 0, true);
 			addEventListener(WidgetMenuEvent.WIDGET_DELETE, onWidgetDelete, false, 0, true);
 			addEventListener(WidgetMenuEvent.WIDGET_EDIT, onWidgetEdit, false, 0, true);
-			//gh#187
+			// gh#187
 			addEventListener(WidgetMenuEvent.WIDGET_RENAME, onWidgetRename, false, 0, true);
 		}
 		
@@ -86,7 +86,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					widgetList.dragEnabled = widgetList.dropEnabled = widgetList.dragMoveEnabled = true;
 					widgetList.addEventListener(Event.CHANGE, onWidgetSelected, false, 0, true);
 					widgetList.addEventListener(WidgetLayoutEvent.LAYOUT_CHANGED, onLayoutChanged, false, 0, true);
-					//gh #228
+					// gh#228
 					widgetList.maxWidth = FlexGlobals.topLevelApplication.width - 160;
 					break;
 				case widgetMenu:
@@ -117,7 +117,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			widgetEdit.dispatch(event.xml);
 		}
 		
-		//gh#187
+		// gh#187
 		protected function onWidgetRename(event:WidgetMenuEvent):void {
 			widgetRename.dispatch();
 		}
@@ -163,7 +163,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					widgetMenu.xml = currentMenuWidget.xml;
 					widgetMenu.x = pt.x + currentMenuWidget.x;
 					
-					//gh: #185 we should be able to read the height of menuBar
+					// gh#185 - we should be able to read the height of menuBar
 					if (widgetMenu.currentState == "text") {
 						var offsetY:Number = pt.y + 230 - widgetList.scroller.verticalScrollBar.value - widgetList.height;
 					} else {
@@ -171,8 +171,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					}					
 
 					if (offsetY > 0) {
-							widgetList.scroller.verticalScrollBar.value = widgetList.scroller.verticalScrollBar.value + offsetY;
-							widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;
+						widgetList.scroller.verticalScrollBar.value = widgetList.scroller.verticalScrollBar.value + offsetY;
+						widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;
 					} else {
 						widgetMenu.y = pt.y - widgetList.scroller.verticalScrollBar.value;
 					}
@@ -187,7 +187,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			widgetMenu.visible = false;
 		}
 		
-		//gh #228
+		// gh#228
 		protected function onResize(event:Event):void {
 			widgetList.maxWidth = FlexGlobals.topLevelApplication.width - 160;
 		}

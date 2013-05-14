@@ -5,7 +5,7 @@
 		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
 		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
 		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*" 
-	    creationComplete="initial(event)">
+	    creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
@@ -14,13 +14,10 @@
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
-			//alice: delete the edit button in player
-			protected function initial(event:FlexEvent):void
-			{
-				// TODO Auto-generated method stub
+			// alice: delete the edit button in player
+			protected function onCreationComplete(event:FlexEvent):void {
 				hostComponent.previewVisible = true;
 			}
-			
 		]]>
 	</fx:Script>
 	

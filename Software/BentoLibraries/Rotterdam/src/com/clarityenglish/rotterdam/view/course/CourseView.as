@@ -1,6 +1,5 @@
 package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
@@ -15,7 +14,6 @@ package com.clarityenglish.rotterdam.view.course {
 	import mx.collections.XMLListCollection;
 	import mx.events.CloseEvent;
 	import mx.events.EffectEvent;
-	import mx.events.IndexChangedEvent;
 	
 	import org.osflash.signals.Signal;
 	
@@ -70,21 +68,21 @@ package com.clarityenglish.rotterdam.view.course {
 		public var unitListCollection:ListCollectionView;
 		
 		[SkinPart]
-		public var aim:Animate;
+		public var anim:Animate;
 		
 		// gh#208 DK: should we pass the group from the mediator to here so that the view can create the default node
 		// or should we just let the mediator do it?
 		public var group:com.clarityenglish.common.vo.manageable.Group;
 		
 		private var _isPreviewVisible:Boolean;
-		//gh #211
+		// gh#211
 		private var currentIndex:Number;
 		private var unitListLength:Number;
 		
-		private var outsideClick:Boolean = false;
-		private var itemClick:Boolean = false;
-		private var isHide:Boolean;
-		private var isPreview:Boolean = false;
+		private var isOutsideClick:Boolean;
+		private var isItemClick:Boolean;
+		private var isHidden:Boolean;
+		private var isPreview:Boolean;
 		
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
@@ -117,7 +115,7 @@ package com.clarityenglish.rotterdam.view.course {
 			if (courseCaptionLabel) courseCaptionLabel.text = course.@caption;
 		}
 		
-		//gh #208
+		// gh#208
 		protected override function onAddedToStage(event:Event):void {
 			stage.addEventListener(MouseEvent.CLICK, onStageClick);
 		}
@@ -187,8 +185,8 @@ package com.clarityenglish.rotterdam.view.course {
 				case publishChangeButton:
 					publishChangeButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
 					break;
-				case aim:
-					aim.addEventListener(EffectEvent.EFFECT_END, onAimEnd);
+				case anim:
+					anim.addEventListener(EffectEvent.EFFECT_END, onAnimEnd);
 					break;
 			}
 		}
@@ -198,7 +196,7 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onUnitDelete(event:UnitDeleteEvent):void {
-			//gh #211
+			// gh#211
 			unitListLength = unitList.dataProvider.length;
 			currentIndex = unitListCollection.getItemIndex(event.unit);
 			
@@ -207,7 +205,7 @@ package com.clarityenglish.rotterdam.view.course {
 					if (unitListLength > 1) {
 						unitListCollection.removeItemAt(unitListCollection.getItemIndex(event.unit));
 						
-						//gh #211
+						// gh#211
 						if (currentIndex != 0) {							
 							unitList.selectedIndex = currentIndex-1;
 						} 
@@ -233,13 +231,13 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onCourseSettings(event:MouseEvent):void {
-			//gh #225
+			// gh#225
 			if (this.canPublish && config.illustrationCloseFlag) {
 				helpPublish.dispatch();
 			}
 			navigator.pushView(SettingsView);
 			
-			itemClick = true;
+			isItemClick = true;
 		}
 		
 		protected function onCoursePublish(event:MouseEvent):void {
@@ -258,7 +256,7 @@ package com.clarityenglish.rotterdam.view.course {
 				coursePublish.dispatch();
 			}
 			
-			itemClick = true;
+			isItemClick = true;
 		}
 		
 		protected function onUnitCopy(event:MouseEvent):void {
@@ -294,38 +292,38 @@ package com.clarityenglish.rotterdam.view.course {
 			return (_isPreviewVisible) ? "unitplayer" : "uniteditor";
 		}
 		
-		//gh #208
+		// gh#208
 		protected function onPublishCourse(event:MouseEvent):void {
 			publishSelectionGroup.alpha = 1;
-			isHide = false;
-			outsideClick = false;
+			isHidden = false;
+			isOutsideClick = false;
 		}
 		
-		//gh #208
+		// gh#208
 		protected function onPublishSelection(event:MouseEvent):void {
-			if (!itemClick) {
-				outsideClick = false;
+			if (!isItemClick) {
+				isOutsideClick = false;
 			}
 		}
 		
-		//gh #208
+		// gh#208
 		protected function onStageClick(event:MouseEvent):void {
 			if (publishSelectionGroup) {
-				if (outsideClick) {
-					aim.play(null, true);
-					isHide = true;
+				if (isOutsideClick) {
+					anim.play(null, true);
+					isHidden = true;
 					publishCoursButton.skin.setCurrentState("up", true);
 					publishCoursButton.selected = false;
 					
 				} else {
-					outsideClick = true;
-					itemClick = false;
+					isOutsideClick = true;
+					isItemClick = false;
 				}
 			}						
 		}
 		
-		protected function onAimEnd(event:Event):void {
-			if (isHide) 
+		protected function onAnimEnd(event:Event):void {
+			if (isHidden) 
 				publishSelectionGroup.alpha = 0;
 		}
 		

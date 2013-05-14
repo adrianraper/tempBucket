@@ -1,6 +1,5 @@
 package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -10,20 +9,17 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	
 	import mx.events.EffectEvent;
 	import mx.events.FlexEvent;
-	import mx.events.FlexMouseEvent;
 	
 	import org.davekeen.util.StateUtil;
 	import org.davekeen.validators.URLValidator;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
-	import spark.components.ButtonBarButton;
 	import spark.components.Group;
 	import spark.components.HGroup;
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
 	import spark.effects.Animate;
-	import spark.primitives.Rect;
 	
 	public class ToolBarView extends BentoView {
 		
@@ -107,7 +103,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var videoUrlTextInput:TextInput;
 		
-		//gh #221
+		// gh#221
 		[SkinPart]
 		public var webUrlTextInput:TextInput;
 		
@@ -117,7 +113,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var videoSelectButton:Button;
 		
-		//gh #221
+		// gh#221
 		[SkinPart]
 		public var linkSelectButton:Button;
 		
@@ -148,7 +144,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var upButton:Button;
 		
-		//alice: small screen size solution
+		// alice: small screen size solution
 		[SkinPart]
 		public var iconGroup:HGroup;
 		
@@ -159,7 +155,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var downButton:Button;
 		
 		[SkinPart]
-		public var upAim:Animate;
+		public var upAnim:Animate;
 		
 		[SkinPart]
 		public var largePopUpGroup:Group;
@@ -181,9 +177,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addLink:Signal = new Signal(XML);
 		public var cancelLink:Signal = new Signal();
 
-		private var outsideClick:Boolean = false;
-		private var itemClick:Boolean = false;
-		public var downArrowClick:Boolean;
+		private var isOutsideClick:Boolean;
+		private var isItemClick:Boolean;
+		public var isDownArrowClick:Boolean;
 		
 		// alice: small screen size solution
 		private var smallScreenFlag:Boolean;
@@ -356,7 +352,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case itemList:
 					itemList.addEventListener(MouseEvent.CLICK, onItemListClick);
 					break;
-				//gh #221
+				// gh#221
 				case linkSelectButton:
 					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);					
 					break;
@@ -366,20 +362,20 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case downButton:
 					downButton.addEventListener(MouseEvent.CLICK, onDownClick);
 					break;
-				case upAim:
-					upAim.addEventListener(EffectEvent.EFFECT_END, onUpAimEnd);
+				case upAnim:
+					upAnim.addEventListener(EffectEvent.EFFECT_END, onUpAimEnd);
 					break;
 			}
 		}
 				
 		protected function onNormalAddImage(event:MouseEvent):void {
 			setCurrentState("image");
-			itemClick = true;
+			isItemClick = true;
 		}
 		
 		protected function onNormalAddAudio(event:MouseEvent):void {
 			setCurrentState("audio");
-			itemClick = true;
+			isItemClick = true;
 		}
 		
 		protected function onNormalSave(event:MouseEvent):void {
@@ -388,28 +384,28 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onNormalAddText(event:MouseEvent):void {
 			addText.dispatch({}, _currentEditingWidget);
-			itemClick = true;
+			isItemClick = true;
 		}
 		
 		protected function onNormalAddPDF(event:MouseEvent):void {
 			setCurrentState("pdf");
-			itemClick = true;
+			isItemClick = true;
 		}
 		
 		protected function onNormalAddVideo(event:MouseEvent):void {
 			setCurrentState("video");
-			itemClick = true;
+			isItemClick = true;
 		}
 		
 		protected function onNormalAddExercise(event:MouseEvent):void {
 			addExercise.dispatch({}, _currentEditingWidget);
-			itemClick = true;
+			isItemClick = true;
 		}
 		
-		//gh #221
+		// gh#221
 		public function onNormalAddWebLink():void {
 			setCurrentState("link");
-			itemClick = true;
+			isItemClick = true;
 		}
 		
 		protected function onNormalCancel(event:MouseEvent):void {
@@ -484,7 +480,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			}
 		}
 		
-		//gh #221
+		// gh#221
 		protected function onLinkSelect(event:MouseEvent):void {
 			if (webUrlTextInput.text != null) {
 				captionTextInput.text = (captionTextInput.text == "")? webUrlTextInput.text: captionTextInput.text;
@@ -544,7 +540,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			return currentState;
 		}
 		
-		//alice: small screen size solution
+		// alice: small screen size solution
 		protected function onScreenResize(event:Event):void {
 			if (stage.stageWidth < 1200) {
 				smallScreenFlag = true;
@@ -559,13 +555,13 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			largePopUpGroup.visible = true;
 			smallPopUpGroup.visible = false;
 			itemList.alpha = 1;
-			outsideClick = false;
-			downArrowClick = false; 
+			isOutsideClick = false;
+			isDownArrowClick = false; 
 		}
 		
 		protected function onDownClick(event:MouseEvent):void {
-			itemClick = true;
-			downArrowClick = true;
+			isItemClick = true;
+			isDownArrowClick = true;
 		}
 		
 		protected function onAddItemClick(event:MouseEvent):void {
@@ -573,21 +569,21 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			smallPopUpGroup.visible = true;
 			itemList.height = 200;
 			itemList.alpha = 1;
-			outsideClick = false;
+			isOutsideClick = false;
 		}
 		
-		//The pop up menu will not shrink if user click on menu itself
+		// The pop up menu will not shrink if user click on menu itself
 		protected function onItemListClick(event:MouseEvent):void {
-			if (!itemClick) {
-				outsideClick = false;
+			if (!isItemClick) {
+				isOutsideClick = false;
 			}
 		}
 		
 		protected function onStageClick(event:MouseEvent):void {
-			if (outsideClick) {
+			if (isOutsideClick) {
 				if (!addItemButton.selected) {
-					upAim.play(null, true);
-					downArrowClick = true;
+					upAnim.play(null, true);
+					isDownArrowClick = true;
 				} else {
 					addItemButton.skin.setCurrentState("up", true);
 					addItemButton.selected = false;
@@ -595,18 +591,19 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					itemList.height = 0;
 				}				
 			} else {
-				outsideClick = true;
-				itemClick = false;
+				isOutsideClick = true;
+				isItemClick = false;
 			}
 
 		}
 		
 		protected function onUpAimEnd(event:Event):void {
-			if (downArrowClick) {
+			if (isDownArrowClick) {
 				itemList.alpha = 0;
 				iconGroup.alpha = 1;
 			}
 		}
+		
 		/**
 		 * gh#115 - make sure that as soon as we go back to normal state we stop editing any widget.  This should stop hard to track down errors where the
 		 * wrong widget is getting changed.

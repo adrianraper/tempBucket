@@ -11,19 +11,19 @@
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
 				
-		<s:Animate id="upAim" targets="{[itemList]}" duration="300">
+		<s:Animate id="upAnim" targets="{[itemList]}" duration="300">
 			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="140" />
 		</s:Animate>
 		
-		<s:Animate id="addAim" targets="{[itemList]}" duration="300">
+		<s:Animate id="addAnim" targets="{[itemList]}" duration="300">
 			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="200" />
 		</s:Animate>
 	</fx:Declarations>
 	
 	<fx:Script>
 		<![CDATA[
-			/*protected function onUpAimStop(event:Event):void {
-				if (hostComponent.downArrowClick) {
+			/*protected function onUpAnimStop(event:Event):void {
+				if (hostComponent.isDownArrowClick) {
 					itemList.alpha = 0;
 					iconGroup.alpha = 1;
 				}			
@@ -138,7 +138,7 @@
 					</s:fill>			
 				</s:Rect>
 				<s:Label text="Choose the item you would like to add to your unit" color="0x8CC63F" fontSize="14" top="15" left="25" />
-				<s:Button id="downButton" left="370" top="10" click="upAim.play(null, true);"/>
+				<s:Button id="downButton" left="370" top="10" click="upAnim.play(null, true);"/>
 			</s:Group>
 			
 			<s:Group id="smallPopUpGroup">
@@ -184,7 +184,7 @@
 		<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" />
 		<s:Spacer width="30" />
-		<s:Button id="upButton" label="Learn more" click="upAim.play();" includeIn="normal"/>
+		<s:Button id="upButton" label="Learn more" click="upAnim.play();" includeIn="normal"/>
 	</s:HGroup>
 	
 	<s:Group left="500" right="270" bottom="0" includeIn="normal">

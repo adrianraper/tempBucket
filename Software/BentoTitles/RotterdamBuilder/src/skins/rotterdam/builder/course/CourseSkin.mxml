@@ -5,7 +5,8 @@
 		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
 		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
 		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*"
-		initialize="onInitialize(event)" xmlns:unit="com.clarityenglish.rotterdam.view.unit.*" >
+		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*"
+		initialize="onInitialize(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
@@ -53,7 +54,7 @@
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" alpha="0.4" />
 		
-		<s:Animate id="aim" targets="{[publishSelectionGroup]}" duration="300">
+		<s:Animate id="anim" targets="{[publishSelectionGroup]}" duration="300">
 			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="180" />
 		</s:Animate>
 	</fx:Declarations>
@@ -133,7 +134,7 @@
 			</s:Group>					
 		</s:VGroup>		
 		<s:Group>
-			<s:ToggleButton id="publishCoursButton" label="Publish Course" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="aim.play()" />
+			<s:ToggleButton id="publishCoursButton" label="Publish Course" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" />
 			<s:Button id="publishChangeButton" label="Change publish details" height="50" fontWeight="bold" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
 		</s:Group>
 	</s:VGroup>
