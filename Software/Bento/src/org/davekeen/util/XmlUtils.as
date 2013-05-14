@@ -54,5 +54,39 @@
 			return null;
 		}
 		
+		/**
+		 * Wrap a function in a 'safe' xml context where spaces are preserved. gh#235
+		 */ 
+		public static function preserveSpaces(func:Function):Object {
+			var result:Object;
+			
+			var originalSettings:Object = {
+				ignoreProcessingInstructions: XML.ignoreProcessingInstructions,
+				ignoreWhitespace: XML.ignoreWhitespace,
+				prettyPrinting: XML.prettyPrinting
+			};
+			
+			var resetXMLSettings:Function = function():void {
+				XML.ignoreProcessingInstructions = originalSettings.ignoreProcessingInstructions;
+				XML.ignoreWhitespace = originalSettings.ignoreWhitespace;
+				XML.prettyPrinting = originalSettings.prettyPrinting;
+			}
+			
+			try {
+				XML.ignoreProcessingInstructions = false;
+				XML.ignoreWhitespace = false;
+				XML.prettyPrinting = false;
+				
+				result = func();
+				
+				resetXMLSettings();
+			} catch(e:Error) {
+				resetXMLSettings();
+				throw(e);
+			}
+			
+			return result;
+		}
+		
 	}
 }

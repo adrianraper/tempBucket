@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:components="com.clarityenglish.components.*">
+		 xmlns:mx="library://ns.adobe.com/flex/mx"
+		 xmlns:components="com.clarityenglish.components.*">
 	
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
 			import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
+			import com.googlecode.bindagetools.Bind;
 			
 			import flashx.textLayout.conversion.ConversionType;
 			import flashx.textLayout.conversion.TextConverter;
@@ -14,11 +16,27 @@
 			
 			import mx.events.FlexEvent;
 			
-			[Bindable]
-			public var widget:AbstractWidget;
+			import org.davekeen.util.XmlUtils;
+			
+			private var _widget:AbstractWidget;
 			
 			private var _editing:Boolean;
 			
+			[Bindable]
+			public function get widget():AbstractWidget {
+				return _widget;
+			}
+
+			public function set widget(value:AbstractWidget):void {
+				_widget = value;
+				
+				Bind.fromProperty(widget, "text")
+					.convert(function(value:Object):Object {
+						var xml:XML = XmlUtils.preserveSpaces(function():XML { return new XML(value) } ); // gh#235
+						return TextConverter.importToFlow(xml, TextConverter.TEXT_LAYOUT_FORMAT);
+					}).toProperty(richEditableText, "textFlow");
+			}
+
 			public function set editing(value:Boolean):void {
 				if (_editing !== value) {
 					_editing = value;
@@ -76,7 +94,6 @@
 										  backgroundAlpha="0" focusSkin="{null}" 
 										  editable.normal="false" editable.editing="true"
 										  selectable.normal="false" selectable.editing="true"
-										  textFlow="{TextConverter.importToFlow(new XML(widget.text), TextConverter.TEXT_LAYOUT_FORMAT)}"
 										  valueCommit="onValueCommit(event)"
 										  selectionChange="onSelectionChange(event)"
 										  focusIn.editing="focusHighlight.visible = true"

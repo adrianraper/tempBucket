@@ -30,10 +30,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	
 	import spark.components.supportClasses.Range;
 	
-	/**
-	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
-	 * For example, [Bindable("titleAttrChanged")].
-	 */
 	[SkinState("normal")]
 	[SkinState("editing_normal")]
 	[SkinState("editing_selected")]
@@ -68,13 +64,14 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected var xmlWatcher:XMLWatcher;
 		
-		//gh#187
+		// gh#187
 		protected var _widgetCaptionChanged:Boolean;
 		
 		public var openMedia:Signal = new Signal(XML);
 		public var openContent:Signal = new Signal(XML, String);
 		public var textSelected:Signal = new Signal(TextLayoutFormat);
-		//gh #106
+		
+		// gh #106
 		public var playVideo:Signal = new Signal(XML);
 		public var playAudio:Signal = new Signal(XML);
 		
@@ -119,7 +116,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			}
 		}
 		
-		//gh#187
+		// gh#187
 		public function get widgetCaptionChanged():Boolean {
 			return _widgetCaptionChanged;
 		}
@@ -161,7 +158,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			_xml.@layoutheight = value;
 		}
 		
-		//gh#106
+		// gh#106
 		public function get clarityUID():String {
 			if (_xml && _xml.(hasOwnProperty("@id"))) {
 				var eid:String = _xml.@id;
@@ -194,7 +191,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
 		}
 		
-		//gh#187
+		// gh#187
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
@@ -222,7 +219,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				case widgetText:
 					widgetText.addEventListener(WidgetTextFormatMenuEvent.TEXT_SELECTED, onTextSelected);
 					break;
-				//gh#187
+				// gh#187
 				case widgetChrome:
 					widgetChrome.widgetCaptionTextInput.addEventListener(FocusEvent.FOCUS_OUT, onDone);
 					widgetChrome.widgetCaptionTextInput.addEventListener(FlexEvent.ENTER, onDone);
@@ -234,20 +231,20 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			textSelected.dispatch(event.format);
 		}
 		
-		//gh#221
+		// gh#221
 		public function onAddLink(anchorTag:XML):void {
 			var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();
 			
 			var textXML:XML = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
 			
-			//gh#221: enalbe web link insert next to text
+			// gh#221 - enable web link insert next to text
 			if (textXML == "") {
 				textXML.appendChild(anchorTag);
 			}
 			else if (textXML.children().children() == "") {
 				textXML.children().appendChild(anchorTag);
 			} else {
-				textXML.children()[textXML.children().length()-1].appendChild(anchorTag);
+				textXML.children()[textXML.children().length() - 1].appendChild(anchorTag);
 			}
 			
 			text = textXML.toXMLString();
@@ -287,7 +284,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return null;
 		}
 		
-		//gh#187
+		// gh#187
 		protected function onDone(event:Event):void {
 			_xml.@caption = StringUtils.trim(widgetChrome.widgetCaptionTextInput.text);
 			
