@@ -6,27 +6,21 @@ package com.clarityenglish.rotterdam.view.unit.events
 	{
 		public static const LINK_CAPTURE:String = "linkCapture";
 		
-		private var _anchorPosition:Number;
-		private var _activePosition:Number;
+		private var _caption:String;
 		
-		public function WidgetLinkCaptureEvent(type:String, bubbles:Boolean, anchorPosition:Number, activePosition:Number)
+		public function WidgetLinkCaptureEvent(type:String, bubbles:Boolean, caption:String)
 		{
 			super(type, bubbles, false);
 			
-			this._anchorPosition = anchorPosition;
-			this._activePosition = activePosition;
+			this._caption = caption;
 		}
 		
-		public function get anchorPosition():Number {
-			return this._anchorPosition;
-		}
-		
-		public function get activePosition():Number {
-			return this._activePosition;
+		public function get caption():String {
+			return this._caption;
 		}
 		
 		public override function clone():Event {
-			return new WidgetLinkCaptureEvent(type, bubbles, anchorPosition, activePosition);
+			return new WidgetLinkCaptureEvent(type, bubbles, caption);
 		}
 	}
 }

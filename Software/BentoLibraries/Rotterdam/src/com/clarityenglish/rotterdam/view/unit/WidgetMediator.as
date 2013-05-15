@@ -106,7 +106,7 @@
 						handleTextFormat(note.getBody());
 						break;
 					case RotterdamNotifications.WEB_URL_ADD: // gh#221
-						view.onAddLink(note.getBody().webUrlString, note.getBody().captionString);
+						onAddLink(note.getBody().webUrlString, note.getBody().captionString);
 						view.widgetChrome.linkButtonRect.alpha = 0;
 						view.widgetChrome.menuButton.enabled = true;
 						break;
@@ -125,6 +125,10 @@
 		
 		protected function handleTextFormat(options:Object):void {
 			view.widgetText.applyTextLayoutFormat(options.format);
+		}
+		
+		protected function onAddLink (webUrlString:String, captionString:String):void {
+			view.widgetText.AddLink(webUrlString, captionString);
 		}
 		
 		protected function onOpenMedia(widget:XML, src:String):void {

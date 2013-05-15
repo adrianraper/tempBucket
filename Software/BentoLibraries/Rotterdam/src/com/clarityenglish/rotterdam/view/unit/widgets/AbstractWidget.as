@@ -90,9 +90,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		//gh #106
 		public var playVideo:Signal = new Signal(XML);
 		public var playAudio:Signal = new Signal(XML);
-		
-		private var anchorPosition:Number = 0;
-		private var activePosition:Number = 0;
+
 		private var captureCaption:String = "";
 		
 		public function AbstractWidget() {
@@ -254,69 +252,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			textSelected.dispatch(event.format);
 		}
 		
-		//gh#221
-		public function onAddLink(webUrlString:String, captionString:String):void {
-			XmlUtils.preserveSpaces(function():void {	
-			if (anchorPosition == 0 && activePosition == 0) {
-				var anchorTag:XML = <a href={webUrlString} target="_blank">{captionString}</a>;
-				var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();				
-				var textXML:XML = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
-				
-				//gh#221: enalbe web link insert next to text
-				if (textXML == "") {
-					textXML.appendChild(anchorTag);
-				}
-				else if (textXML.children().children() == "") {
-					textXML.children().appendChild(anchorTag);
-				} else {
-					textXML.children()[textXML.children().length()-1].appendChild(anchorTag);
-				}
-				text = textXML.toXMLString();
-			} else {				
-				var richTextFlow:TextFlow =  widgetText.richEditableText.textFlow;
-				var lastFlowElment:TextFlow = richTextFlow.splitAtPosition(activePosition) as TextFlow;
-				var chopFlowElment:FlowElement = richTextFlow.splitAtPosition(anchorPosition)
-				if (richTextFlow.numChildren > 0) {
-					var firstParagraph:ParagraphElement= richTextFlow.getChildAt(richTextFlow.numChildren -1) as ParagraphElement;
-				} else {
-					firstParagraph = new ParagraphElement();
-				}				
-				
-				//insert link element
-				var linkElement:LinkElement = new LinkElement();
-				linkElement.href = webUrlString;
-				linkElement.target = "_blank";
-				var linkSpan:SpanElement = new SpanElement();
-				linkSpan.text = captionString;
-				linkElement.addChild(linkSpan);
-				if (firstParagraph) {
-					firstParagraph.addChild(linkElement);
-					var lastP:ParagraphElement = lastFlowElment.getChildAt(0) as ParagraphElement;					
-					if (lastP) {
-						firstParagraph.replaceChildren(firstParagraph.numChildren, firstParagraph.numChildren, getParagraphChildren(lastP));
-					}
-				}
-				
-				//Delete the last child in first part and add new selected child, then merge with last part
-				if (richTextFlow.numChildren > 0) {
-					richTextFlow.removeChildAt(richTextFlow.numChildren - 1);
-				}			
-				richTextFlow.addChild(firstParagraph);
-				var totalNumber:Number = lastFlowElment.numChildren;
-				for (var i:int = 1; i < totalNumber; i++ ) {
-					var paragraphElement:ParagraphElement = lastFlowElment.getChildAt(1) as ParagraphElement;
-					richTextFlow.addChild(paragraphElement);
-				}
-
-				var	firstXML:XML = TextConverter.export(richTextFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
-				text = firstXML.toString();
-			}});
-			
-			anchorPosition = 0;
-			activePosition = 0;
-			captureCaption = "";
-		}
-		
 		private function getParagraphChildren(p:ParagraphElement):Array
 		{
 			var kids:Array =[];
@@ -376,9 +311,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected function onLinkCapture(event:WidgetLinkCaptureEvent):void {
-			anchorPosition = Math.min(event.anchorPosition, event.activePosition);
-			activePosition = Math.max(event.anchorPosition, event.activePosition);
-			captureCaption = widgetText.richEditableText.text.substring(anchorPosition, activePosition);
+			captureCaption = event.caption;
 		}
 		
 		// Intercept the WidgetLinkEvent here to assign text parameter 
