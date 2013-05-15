@@ -256,7 +256,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		//gh#221
 		public function onAddLink(webUrlString:String, captionString:String):void {
-			XML.prettyPrinting = false;
+			XmlUtils.preserveSpaces(function():void {	
 			if (anchorPosition == 0 && activePosition == 0) {
 				var anchorTag:XML = <a href={webUrlString} target="_blank">{captionString}</a>;
 				var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();				
@@ -310,7 +310,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 
 				var	firstXML:XML = TextConverter.export(richTextFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
 				text = firstXML.toString();
-			}
+			}});
 			
 			anchorPosition = 0;
 			activePosition = 0;
