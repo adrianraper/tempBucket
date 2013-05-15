@@ -34,6 +34,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StateUtil;
 	import org.davekeen.util.StringUtils;
+	import org.davekeen.util.XmlUtils;
 	import org.osflash.signals.Signal;
 	
 	import skins.rotterdam.unit.widgets.WidgetChrome;
@@ -255,12 +256,10 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		//gh#221
 		public function onAddLink(webUrlString:String, captionString:String):void {
-			trace("webUrlString: "+ webUrlString);
-			trace("captionString: "+captionString);
+			XML.prettyPrinting = false;
 			if (anchorPosition == 0 && activePosition == 0) {
 				var anchorTag:XML = <a href={webUrlString} target="_blank">{captionString}</a>;
-				var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();
-				
+				var textFlow:TextFlow = TextConverter.importToFlow(text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();				
 				var textXML:XML = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
 				
 				//gh#221: enalbe web link insert next to text
@@ -272,20 +271,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				} else {
 					textXML.children()[textXML.children().length()-1].appendChild(anchorTag);
 				}
-				
 				text = textXML.toXMLString();
-			} else {
-				//gh287 XML settings Pretty usefull!! Not sure whether I should put it here
-				XML.ignoreWhitespace = false;
-				XML.prettyPrinting = false;
-				trace("text: "+text);
+			} else {				
 				var richTextFlow:TextFlow =  widgetText.richEditableText.textFlow;
 				var lastFlowElment:TextFlow = richTextFlow.splitAtPosition(activePosition) as TextFlow;
 				var chopFlowElment:FlowElement = richTextFlow.splitAtPosition(anchorPosition)
-				trace("first flow: "+richTextFlow.getText());
-				trace("last flow: "+lastFlowElment.getText());
-				var firstParagraph:ParagraphElement= richTextFlow.getChildAt(richTextFlow.numChildren -1) as ParagraphElement;
-				trace("total children: "+richTextFlow.numChildren);
+				if (richTextFlow.numChildren > 0) {
+					var firstParagraph:ParagraphElement= richTextFlow.getChildAt(richTextFlow.numChildren -1) as ParagraphElement;
+				} else {
+					firstParagraph = new ParagraphElement();
+				}				
+				
 				//insert link element
 				var linkElement:LinkElement = new LinkElement();
 				linkElement.href = webUrlString;
@@ -300,16 +296,20 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 						firstParagraph.replaceChildren(firstParagraph.numChildren, firstParagraph.numChildren, getParagraphChildren(lastP));
 					}
 				}
-				trace("richTextFlow: "+richTextFlow.getText());
-				richTextFlow.removeChildAt(richTextFlow.numChildren - 1);
+				
+				//Delete the last child in first part and add new selected child, then merge with last part
+				if (richTextFlow.numChildren > 0) {
+					richTextFlow.removeChildAt(richTextFlow.numChildren - 1);
+				}			
 				richTextFlow.addChild(firstParagraph);
 				var totalNumber:Number = lastFlowElment.numChildren;
 				for (var i:int = 1; i < totalNumber; i++ ) {
 					var paragraphElement:ParagraphElement = lastFlowElment.getChildAt(1) as ParagraphElement;
 					richTextFlow.addChild(paragraphElement);
 				}
-				var firstXML:XML = firstXML = TextConverter.export(richTextFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;			
-				text = firstXML.toXMLString();
+
+				var	firstXML:XML = TextConverter.export(richTextFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
+				text = firstXML.toString();
 			}
 			
 			anchorPosition = 0;

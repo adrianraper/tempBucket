@@ -79,8 +79,7 @@
 					view.currentEditingWidget = note.getBody() as XML;
 					break;
 				case RotterdamNotifications.WEB_URL_SELECT:
-					view.onNormalAddWebLink();
-					view.captureCaption = note.getBody() as String;
+					view.onNormalAddWebLink(note.getBody() as String);
 					break;
 			}
 		}

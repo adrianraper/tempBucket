@@ -174,12 +174,13 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
 		// gh#221
-		public var addLink:Signal = new Signal(XML);
+		public var addLink:Signal = new Signal(String, String);
 		public var cancelLink:Signal = new Signal();
 
 		private var isOutsideClick:Boolean;
 		private var isItemClick:Boolean;
 		public var isDownArrowClick:Boolean;
+		public var captureCaption:String;
 		
 		// alice: small screen size solution
 		private var smallScreenFlag:Boolean;
@@ -403,8 +404,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		// gh#221
-		public function onNormalAddWebLink():void {
+		public function onNormalAddWebLink(text:String):void {
 			setCurrentState("link");
+			callLater(function():void { 
+				captionTextInput.text = text;
+			});
 			isItemClick = true;
 		}
 		
@@ -484,8 +488,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected function onLinkSelect(event:MouseEvent):void {
 			if (webUrlTextInput.text != null) {
 				captionTextInput.text = (captionTextInput.text == "")? webUrlTextInput.text: captionTextInput.text;
-				var linkXML:XML = <a href={webUrlTextInput.text} target="_blank">{captionTextInput.text}</a> ;
-				addLink.dispatch(linkXML);
+				addLink.dispatch(webUrlTextInput.text, captionTextInput.text);
+				webUrlTextInput.text = "";
+				captionTextInput.text = "";
 				setCurrentState("normal");
 			}		
 		}
