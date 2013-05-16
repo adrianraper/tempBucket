@@ -157,7 +157,6 @@ package com.clarityenglish.rotterdam.view.login {
 		public function set loginOption(value:Number):void {
 			if (_loginOption != value) {
 				_loginOption = value;
-				trace("login option: "+loginOption);
 				// BUG. Why doesn't this work?
 				dispatchEvent(new Event("loginOptionChanged"));
 				changeLoginLabels();

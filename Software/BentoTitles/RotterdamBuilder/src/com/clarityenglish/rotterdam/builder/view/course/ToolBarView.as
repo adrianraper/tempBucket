@@ -179,6 +179,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 
 		private var isOutsideClick:Boolean;
 		private var isItemClick:Boolean;
+		private var isUpArrowClick:Boolean = false;
 		public var isDownArrowClick:Boolean;
 		public var captureCaption:String;
 		
@@ -250,8 +251,13 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					addItemButton.visible = true;
 					iconGroup.visible = false; 
 				} else {
+					if (isUpArrowClick) {
+						iconGroup.visible = false;
+					} else {
+						iconGroup.visible = true; 
+					}
 					addItemButton.visible = false;
-					iconGroup.visible = true; 
+					
 				}
 			}		
 		}
@@ -556,15 +562,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onUpClick(event:MouseEvent):void {
-			iconGroup.alpha = 0;
+			isUpArrowClick = true;
 			largePopUpGroup.visible = true;
 			smallPopUpGroup.visible = false;
 			itemList.alpha = 1;
 			isOutsideClick = false;
 			isDownArrowClick = false; 
+			
+			invalidateProperties();
 		}
 		
 		protected function onDownClick(event:MouseEvent):void {
+			isUpArrowClick = false
 			isItemClick = true;
 			isDownArrowClick = true;
 		}
@@ -605,7 +614,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected function onUpAimEnd(event:Event):void {
 			if (isDownArrowClick) {
 				itemList.alpha = 0;
-				iconGroup.alpha = 1;
+				isUpArrowClick = false;
 			}
 		}
 		

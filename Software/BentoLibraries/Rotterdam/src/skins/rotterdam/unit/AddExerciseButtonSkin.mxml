@@ -71,7 +71,8 @@ in accordance with the terms of the license agreement accompanying it.
 		</s:fill>
 	</s:Rect>
 	
-	<s:Group id="symbol" verticalCenter="0" >
+	<s:Label text="Ex" fontWeight="bold" fontSize="15" horizontalCenter="0" color="0x8CC63F" color.overStates="0x3C5C11" verticalCenter="1"/>
+	<!--s:Group id="symbol" verticalCenter="0" >
 		<s:Path left="7" winding="nonZero" data="M13.6689 0L1.38672 11.6436 1.41309 11.5645 1.38477 11.6455 1.37598 11.6523 1.34375 11.7617 1.31055 11.8789 1.08887 12.5566 1.10938 12.5635 1.73633 12.7764 1.81934 12.6748 2.68652 11.6133 2.91992 12.1523 3.10742 12.582 3.13965 13.4727C3.13965
 				13.4727 4.40918 13.2744 4.67773 14.0117 4.7666 14.2598 4.9209 14.3701 5.08301 14.417 5.40723 14.5117 5.77246 14.3379 5.77246 14.3379 5.77246 14.3379 6.26465 13.623 5.94043 14.2637 5.87402 14.3955 5.84668 14.5391 5.83496 14.6846 5.81152 15 5.88379
 				15.3213 5.95898 15.5498L17.7842 4.33691 13.6689 0Z" >
@@ -88,5 +89,5 @@ in accordance with the terms of the license agreement accompanying it.
 								color.overStates="0x3C5C11"/>
 			</s:fill>
 		</s:Path>
-	</s:Group>
+	</s:Group-->
 </s:SparkButtonSkin>
