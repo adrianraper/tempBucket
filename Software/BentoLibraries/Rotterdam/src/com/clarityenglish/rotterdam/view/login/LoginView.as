@@ -59,8 +59,8 @@ package com.clarityenglish.rotterdam.view.login {
 		[SkinPart]
 		public var quickStartButton:Button;
 		
-		[SkinPart]
-		public var loginKey_lbl:Label;
+		[Bindable]
+		public var loginKey_lbl:String;
 		
 		[Bindable]
 		public var loginName_lbl:String;
@@ -71,8 +71,8 @@ package com.clarityenglish.rotterdam.view.login {
 		[Bindable]
 		public var loginEmail_lbl:String;
 		
-		[SkinPart]
-		public var loginPassword_lbl:Label;
+		[Bindable]
+		public var loginPassword_lbl:String;
 		
 		// #341
 		private var _loginOption:Number;
@@ -157,8 +157,10 @@ package com.clarityenglish.rotterdam.view.login {
 		public function set loginOption(value:Number):void {
 			if (_loginOption != value) {
 				_loginOption = value;
+				trace("login option: "+loginOption);
 				// BUG. Why doesn't this work?
 				dispatchEvent(new Event("loginOptionChanged"));
+				changeLoginLabels();
 			}
 		}
 		
@@ -201,13 +203,6 @@ package com.clarityenglish.rotterdam.view.login {
 				case cancelButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
-				case loginKey_lbl:
-					trace("get leteral");
-					loginKey_lbl.text = this.copyProvider.getCopyForId("yourName");
-					break;
-				case loginPassword_lbl:
-					loginPassword_lbl.text = this.copyProvider.getCopyForId("passwordLabel");
-					break;
 			}
 		}
 		
@@ -247,6 +242,27 @@ package com.clarityenglish.rotterdam.view.login {
 			noAccount = value;
 		}
 		
+		/**
+		 * To let you work out what data you need for logging in to this account. 
+		 * @param Number loginOption
+		 * 
+		 */
+		[Bindable(event="loginOptionChanged")]
+		public function changeLoginLabels():void {
+			// #341 This has to be bitwise comparison, not equality
+			if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
+				var replaceObj:Object = {loginDetail:copyProvider.getCopyForId("nameLoginDetail")};
+			} else if (loginOption & Config.LOGIN_BY_ID) {
+				replaceObj = {loginDetail:copyProvider.getCopyForId("IDLoginDetail")};
+			} else if (loginOption & Config.LOGIN_BY_EMAIL) {
+				replaceObj = {loginDetail:copyProvider.getCopyForId("emailLoginDetail")};
+			}
+			loginKey_lbl = copyProvider.getCopyForId("yourLoginDetail", replaceObj);	
+
+			// gh#100
+			loginPassword_lbl = copyProvider.getCopyForId("passwordLabel");
+		}
+		
 		// #254
 		public function onEnter(event:FlexEvent):void {
 			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
@@ -281,6 +297,7 @@ package com.clarityenglish.rotterdam.view.login {
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case loginButton:
+					trace("email: "+loginKeyInput.text);
 					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;

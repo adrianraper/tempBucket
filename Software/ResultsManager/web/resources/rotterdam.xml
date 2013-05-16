@@ -99,7 +99,10 @@
 			
 			<lit name="loginButton">Log in</lit>
 			<lit name="passwordLabel">Password:</lit>
-			<lit name="yourName">Name:</lit>
+			<lit name="yourLoginDetail">Your {loginDetail}:</lit>
+			<lit name="nameLoginDetail">name</lit>
+			<lit name="IDLoginDetail">ID</lit>
+			<lit name="emailLoginDetail">email</lit>
 			<lit name="loginID">Login id:</lit>
 			<lit name="yourID">Your id:</lit>
 			<lit name="yourEmail">Your email:</lit>
