@@ -255,6 +255,8 @@ package com.clarityenglish.rotterdam.view.login {
 				replaceObj = {loginDetail:copyProvider.getCopyForId("IDLoginDetail")};
 			} else if (loginOption & Config.LOGIN_BY_EMAIL) {
 				replaceObj = {loginDetail:copyProvider.getCopyForId("emailLoginDetail")};
+			} else {
+				replaceObj = {loginDetail:copyProvider.getCopyForId("nameLoginDetail")};
 			}
 			loginKey_lbl = copyProvider.getCopyForId("yourLoginDetail", replaceObj);	
 

@@ -69,12 +69,12 @@
 			<s:VGroup horizontalAlign="center" gap="60">
 				<s:VGroup gap="30">
 					<s:VGroup>
-						<s:Label id="loginKey_lbl" fontSize="16" fontWeight="bold" color="0x333333"/>
+						<s:Label id="loginKey_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginKey_lbl}"/>
 						<s:TextInput id="loginKeyInput" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 					</s:VGroup>
 					
 					<s:VGroup>
-						<s:Label id="loginPassword_lbl" fontSize="16" fontWeight="bold" color="0x333333" />
+						<s:Label id="loginPassword_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginPassword_lbl}" />
 						<s:TextInput id="passwordInput" displayAsPassword="true" width="220" height="35" fontSize="16" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
 					</s:VGroup>
 				</s:VGroup>

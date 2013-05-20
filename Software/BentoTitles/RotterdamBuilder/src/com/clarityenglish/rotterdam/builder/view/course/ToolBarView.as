@@ -205,6 +205,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				setCurrentState("normal");
 			} else if (widget.@type == "exercise") {
 				addExercise.dispatch({}, _currentEditingWidget);
+				_currentEditingWidget = null;
 			} else {
 				setCurrentState(widget.@type);
 			}

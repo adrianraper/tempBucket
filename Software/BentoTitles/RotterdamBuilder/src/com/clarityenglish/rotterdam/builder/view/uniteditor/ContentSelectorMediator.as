@@ -54,7 +54,6 @@
 		}
 		
 		private function onContentLoadSuccess(e:ResultEvent, token:Object):void {
-			trace("result: "+e.result);
 			view.titleCollection = new ArrayCollection(e.result as Array);
 		}
 		

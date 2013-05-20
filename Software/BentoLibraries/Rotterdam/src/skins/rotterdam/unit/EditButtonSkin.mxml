@@ -79,7 +79,7 @@ in accordance with the terms of the license agreement accompanying it.
 				<s:GradientEntry id="color1" color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" ratio="0.5"/>
 				<s:GradientEntry id="color2" color="0XFF9D00" color.over="0XFFE382" color.down="0XFFE382" ratio="1" />							
 			</s:LinearGradient-->
-			<s:SolidColor color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" />
+			<s:SolidColor color="0XFFFFFF" color.over="0XE6E6E6" color.down="0XE6E6E6" />
 		</s:fill>
 	</s:Rect>
 	

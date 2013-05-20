@@ -69,6 +69,7 @@
 			
             <lit name="pathCCB">CCB</lit>
             <lit name="pathTenseBuster">TenseBuster</lit>
+             <lit name="pathActiveReading">ActiveReading</lit>
             <lit name="pathBusinessWriting">BusinessWriting</lit>
             <lit name="pathClearPronunciation1">ClearPronunciation</lit>
             <lit name="pathClearPronunciation2">ClearPronunciation2</lit>
