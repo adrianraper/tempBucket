@@ -123,13 +123,13 @@ package com.clarityenglish.rotterdam.view.course {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			/*if (_isPreviewVisible) {
+			if (_isPreviewVisible) {
 				if (unitHeader.editButton)
 					unitHeader.editButton.visible = false;
 			} else {
 				if (unitHeader.editButton)
 					unitHeader.editButton.visible = true;
-			}*/
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -279,16 +279,6 @@ package com.clarityenglish.rotterdam.view.course {
 		 * TODO: Switch between editing and viewing
 		 */
 		protected override function getCurrentSkinState():String {
-			if (_isPreviewVisible) {
-				unitHeader.editButton.visible = false;
-				unitHeader.unitCaptionLabel.left = 10;
-				isPreview = true;
-			} else {
-				if (isPreview) {
-					unitHeader.editButton.visible = true;
-					unitHeader.unitCaptionLabel.left = 65;
-				}				
-			}		
 			return (_isPreviewVisible) ? "unitplayer" : "uniteditor";
 		}
 		

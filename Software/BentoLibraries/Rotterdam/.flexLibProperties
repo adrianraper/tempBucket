@@ -39,6 +39,9 @@
     <classEntry path="skins.rotterdam.unit.DownArrowButtonSkin"/>
     <classEntry path="skins.rotterdam.unit.UpArrowButtonSkin"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.events.WidgetLinkCaptureEvent"/>
+    <classEntry path="skins.rotterdam.scroller.GreyVerticalScrollBarSkin"/>
+    <classEntry path="skins.rotterdam.scroller.GreyVerticalScrollBarThumbSkin"/>
+    <classEntry path="skins.rotterdam.scroller.GreyDirectionButton"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

@@ -26,7 +26,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		/**
 		 * The font sizes for the three buttons
 		 */
-		private static var FONT_SIZES:Array = [ 14, 16, 18 ];
+		private static var FONT_SIZES:Array = [ 13, 15, 17 ];
 			
 		[SkinPart]
 		public var normalSaveButton:Button;
@@ -515,6 +515,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			var format:TextLayoutFormat = new TextLayoutFormat();
 			format.fontWeight = (boldButton.selected) ? FontWeight.BOLD : FontWeight.NORMAL;
 			formatText.dispatch( { format: format } );
+			isOutsideClick = false;
 		}
 		
 		protected function onFontSizeChange(event:MouseEvent):void {
@@ -537,6 +538,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			}
 			
 			formatText.dispatch( { format: format } );
+			isOutsideClick = false;
 		}
 		
 		protected function selectFontSizeButton(selectedButton:ToggleButton):void {
@@ -545,6 +547,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				button.selected = false;
 			
 			selectedButton.selected = true;
+		}
+		
+		protected function disSelectFontFormattingButton():void {
+			for each (var button:ToggleButton in [ boldButton, fontSize1Button, fontSize2Button, fontSize3Button ])
+				button.selected = false;
 		}
 		
 		protected override function getCurrentSkinState():String {
@@ -573,7 +580,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onDownClick(event:MouseEvent):void {
-			isUpArrowClick = false
 			isItemClick = true;
 			isDownArrowClick = true;
 		}
@@ -595,6 +601,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onStageClick(event:MouseEvent):void {
 			if (isOutsideClick) {
+				disSelectFontFormattingButton();
 				if (!addItemButton.selected) {
 					upAnim.play(null, true);
 					isDownArrowClick = true;

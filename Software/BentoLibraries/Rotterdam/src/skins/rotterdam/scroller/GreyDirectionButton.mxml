@@ -22,9 +22,8 @@ in accordance with the terms of the license agreement accompanying it.
 -->
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
-				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-				   minWidth="21" minHeight="21" 
-				   alpha.disabled="0.5" xmlns:widgets="skins.assets.widgets.*">
+				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+				   alpha.disabled="0.5">
 	
 	<fx:Metadata>
 		<![CDATA[ 
@@ -61,32 +60,19 @@ in accordance with the terms of the license agreement accompanying it.
 		]]>        
 	</fx:Script>
 	
-	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="0.5" alpha="0.8" />
-	</fx:Declarations>
-	
 	<!-- states -->
 	<s:states>
-		<s:State name="up"  />
-		<s:State name="over" stateGroups="overStates" />
-		<s:State name="down" stateGroups="overStates" />
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
 		<s:State name="disabled" />
 	</s:states>
 	
-	<s:Rect id="fill" left="2" right="2" top="2" bottom="1" radiusX="5" radiusY="5" filters="{dropShadowFilter}" width="40" height="20">
+	<s:Ellipse id="fill" width="8" height="8">
 		<s:fill>
-			<!--s:LinearGradient rotation="90">
-				<s:GradientEntry id="color1" color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" ratio="0.5"/>
-				<s:GradientEntry id="color2" color="0XFF9D00" color.over="0XFFE382" color.down="0XFFE382" ratio="1" />							
-			</s:LinearGradient-->
-			<s:SolidColor color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" />
+			<s:SolidColor color="0XC2C2C2" />
 		</s:fill>
-	</s:Rect>
+	</s:Ellipse>
 	
-	<s:Label id="labelDisplay"
-			 maxDisplayedLines="1" horizontalCenter="0"
-			 color="0x000000"
-			 top="8" bottom="0">
-	</s:Label>
 	
 </s:SparkButtonSkin>

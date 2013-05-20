@@ -28,13 +28,13 @@
 		<!-- Text -->
 		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 		
-		<s:VGroup paddingLeft="8">
+		<s:HGroup paddingLeft="8" gap="10">
 			<!-- Exercise icon -->
 			<s:Image id="exerciseImage" source="{hostComponent.getThumbnailForUid(hostComponent.contentuid)}" />
 			
 			<!--gh #181-->
-			<s:Label id="exerciseTitle" text="{hostComponent.exercisetitle}" />
-		</s:VGroup>
+			<s:Label id="exerciseTitle" text="{hostComponent.exercisetitle}" paddingTop="{exerciseImage.height/2}"/>
+		</s:HGroup>
 	</s:VGroup>
 	
 </s:Skin>

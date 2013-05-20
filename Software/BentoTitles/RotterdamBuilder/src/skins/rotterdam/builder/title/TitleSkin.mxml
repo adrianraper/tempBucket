@@ -47,7 +47,7 @@
 		</s:Rect>
 		<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/title/ccb_logo.png')" left="35" top="8"/>
 		<s:Label text="Clarity Course Builder" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="70" top="15"/>
-		<s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" right="70" top="15"/>
+		<!--s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" right="70" top="15"/-->
 		<s:Rect left="0" right="0" top="40" bottom="0" height="45">
 			<s:fill>
 				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">

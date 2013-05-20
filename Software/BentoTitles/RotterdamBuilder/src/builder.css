@@ -305,7 +305,7 @@ filemanager|FileManagerView s|DataGrid#fileList {
 }
 
 filemanager|FileManagerView s|DataGrid#fileList s|VScrollBar {
-	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
 filemanager|FileManagerView s|DataGrid#fileList s|HScrollBar {
@@ -350,7 +350,7 @@ settings|SettingsView s|TabBar#tabBar {
 }
 
 settings|SettingsView s|Scroller#publishSettingScroller s|VScrollBar {
-	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
 showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {
@@ -363,7 +363,7 @@ showPublishSettingDemo|HelpPublishView {
 }
 
 ui|WidgetList s|VScrollBar {
-	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
 .markingTitleWindow {
