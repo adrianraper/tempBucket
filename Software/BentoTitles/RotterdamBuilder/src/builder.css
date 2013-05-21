@@ -126,7 +126,7 @@ course|CourseView s|Button#oneClickPublishButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.OneClickPublishButtonSkin");
 }
 
-course|CourseView s|ToggleButton#publishCoursButton {
+course|CourseView s|ToggleButton#publishCourseButton {
 	skinClass: ClassReference("skins.rotterdam.unit.PublishCourseButtonSkin");
 }
 

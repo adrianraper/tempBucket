@@ -3,8 +3,6 @@
  * Called from amfphp gateway from Flex
  */
 require_once(dirname(__FILE__)."/BentoService.php");
-require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
-require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 require_once(dirname(__FILE__)."/../../classes/MediaOps.php");
 

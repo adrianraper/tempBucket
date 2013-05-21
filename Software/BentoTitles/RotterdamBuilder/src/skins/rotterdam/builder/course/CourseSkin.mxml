@@ -108,7 +108,7 @@
 		<!--s:Spacer height="20" /-->
 		<!--s:Label text="Unit:" fontWeight="bold" /-->
 		<s:HGroup width="100%">
-			<s:Button id="unitCopyButton" label="Duplicate unit" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
+			<s:Button id="unitCopyButton" label="Duplicate a unit" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
 			<!--s:Button id="unitPasteButton" label="Paste" width="50%" useHandCursor="true" buttonMode="true" /-->
 		</s:HGroup>
 	</s:VGroup>
@@ -127,15 +127,15 @@
 						<s:SolidColor color="0XF7F2F0" />
 					</s:fill>
 				</s:Rect>
-				<s:Button id="oneClickPublishButton" label="1 click" useHandCursor="true" buttonMode="true"
+				<s:Button id="oneClickPublishButton" label="1-click" useHandCursor="true" buttonMode="true"
 						  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6"/>
 				
-				<s:Button id="publishSettingsButton" label="Publish setting" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="70"/>
+				<s:Button id="publishSettingsButton" label="Publish settings" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="70"/>
 			</s:Group>					
 		</s:VGroup>		
 		<s:Group>
-			<s:ToggleButton id="publishCoursButton" label="Publish Course" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" />
-			<s:Button id="publishChangeButton" label="Change publish details" height="50" fontWeight="bold" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
+			<s:ToggleButton id="publishCourseButton" label="Publish course" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" />
+			<s:Button id="publishChangeButton" label="Change published details" height="50" fontWeight="bold" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
 		</s:Group>
 	</s:VGroup>
 	

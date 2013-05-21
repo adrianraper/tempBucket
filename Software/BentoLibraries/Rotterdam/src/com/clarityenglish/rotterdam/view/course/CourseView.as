@@ -56,7 +56,7 @@ package com.clarityenglish.rotterdam.view.course {
 		public var unitHeader:UnitHeaderView;
 		
 		[SkinPart]
-		public var publishCoursButton:ToggleButton;
+		public var publishCourseButton:ToggleButton;
 		
 		[SkinPart]
 		public var publishSelectionGroup:spark.components.Group;
@@ -176,8 +176,8 @@ package com.clarityenglish.rotterdam.view.course {
 					unitPasteButton.addEventListener(MouseEvent.CLICK, onUnitPaste);
 					break;*/
 				//gh #208
-				case publishCoursButton:
-					publishCoursButton.addEventListener(MouseEvent.CLICK, onPublishCourse);
+				case publishCourseButton:
+					publishCourseButton.addEventListener(MouseEvent.CLICK, onPublishCourse);
 					break;
 				case publishSelectionGroup:
 					publishSelectionGroup.addEventListener(MouseEvent.CLICK, onPublishSelection);
@@ -302,8 +302,8 @@ package com.clarityenglish.rotterdam.view.course {
 				if (isOutsideClick) {
 					anim.play(null, true);
 					isHidden = true;
-					publishCoursButton.skin.setCurrentState("up", true);
-					publishCoursButton.selected = false;
+					publishCourseButton.skin.setCurrentState("up", true);
+					publishCourseButton.selected = false;
 					
 				} else {
 					isOutsideClick = true;

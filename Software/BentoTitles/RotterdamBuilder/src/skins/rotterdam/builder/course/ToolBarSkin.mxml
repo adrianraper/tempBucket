@@ -179,16 +179,16 @@
 	<s:HGroup id="iconGroup" bottom="0" right="312" gap="8" height="48" verticalAlign="middle" alpha="1">
 		<s:Button includeIn="normal" id="normalAddTextButton" label="Add text" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddPDFButton" label="Add PDF" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddVideoButton" label="Add Video" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddImageButton" label="Add Image" useHandCursor="true" buttonMode="true" />	
-		<s:Button includeIn="normal" id="normalAddAudioButton" label="Add Audio" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add Exercise" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddVideoButton" label="Add video" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddImageButton" label="Add image" useHandCursor="true" buttonMode="true" />	
+		<s:Button includeIn="normal" id="normalAddAudioButton" label="Add audio" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddExerciseButton" label="Add exercise" useHandCursor="true" buttonMode="true" />
 		<s:Spacer width="30" />
 		<s:Button id="upButton" label="Learn more" click="upAnim.play();" includeIn="normal"/>
 	</s:HGroup>
 	
 	<s:Group left="500" right="270" bottom="0" includeIn="normal">
-		<s:ToggleButton id="addItemButton" horizontalCenter="0" height="48" width="130" label="Add an Item" visible="false"/>
+		<s:ToggleButton id="addItemButton" horizontalCenter="0" height="48" width="130" label="Add an item" visible="false"/>
 	</s:Group>
 
 	

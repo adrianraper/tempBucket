@@ -9,7 +9,6 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Quotation request for {$account->name}</title>
 	<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
-	<!-- <bcc>admin@clarityenglish.com</bcc> -->
 </head>
 <body style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px;">
 <div style="width:600px; margin:0 auto; padding:0;">
