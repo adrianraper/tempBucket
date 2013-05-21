@@ -30,7 +30,7 @@
 	<s:HGroup left="0" right="0" top="25" paddingLeft="6" paddingRight="1" paddingBottom="1">
 		<!-- Thumbnail -->
 		<s:HGroup paddingLeft="2" paddingTop="2" paddingRight="2" paddingBottom="2">
-			<s:Image id="thumbnailImage" source="{hostComponent.thumbnailUrl}" visible="{hostComponent.hasThumbnail}" />
+			<s:Image id="thumbnailImage" source="{hostComponent.thumbnailUrl}" visible="{hostComponent.hasSrc}" />
 		</s:HGroup>
 		
 		<!-- Text -->

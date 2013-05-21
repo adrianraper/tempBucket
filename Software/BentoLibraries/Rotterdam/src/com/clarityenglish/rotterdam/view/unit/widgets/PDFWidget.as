@@ -39,6 +39,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			if (hasThumbnail) {
 				// gh#111 - support absolute and relative image urls
 				return (StringUtils.beginsWith(thumbnail.toLowerCase(), "http")) ? thumbnail : mediaFolder + "/" + thumbnail;
+			} else {
+				// gh#259
+				return thumbnailScript + "?type=pdf";
 			}
 			
 			return null;
