@@ -128,6 +128,6 @@ in accordance with the terms of the license agreement accompanying it.
 			 left="40" right="10" top="10" bottom="2">
 	</s:Label>
 	
-	<s:Label id="oneClickLabel" text="Your course is immediately available to all your students" width="110" top="25" left="40" color="0x000000" fontSize="13"/>
+	<s:Label id="oneClickLabel" text="Your course is immediately available to all your students." width="110" top="25" left="40" color="0x000000" fontSize="13"/>
 	
 </s:SparkButtonSkin>

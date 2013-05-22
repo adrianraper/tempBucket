@@ -17,7 +17,9 @@
 				var uidArray:Array = uidString.split(".");
 				
 				if (searchTitle(uidArray[0]) || uidArray.length == 1) {
-					//alice: single folder structure's  maximum uid change to 3
+					// The following code is so that a title like BW or SSS which only has one course
+					// will not show the title and course level in the content selector window
+					//alice: single folder structure's maximum uid change to 3
 					if ((uidArray.length == 2 && getQualifiedClassName(item).indexOf("Unit") != -1) || (uidArray.length == 3 && getQualifiedClassName(item).indexOf("Exercise") != -1)) {
 						hostComponent.isSingleFolder = true;
 						return hostComponent.getThumbnailForUid(item.uid);
@@ -51,7 +53,7 @@
 				}												
 			}
 			
-			//tempt function for those title don't have thumbnail
+			//temp function for those titles that don't have thumbnails yet
 			private function searchTitle(title:Number):Boolean {
 				for (var i:Number = 0; i <titles.length; i++) {
 					if (title == titles[i]) {

@@ -136,6 +136,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			currentMenuWidget = newMenuWidget;
 			onLayoutChanged();
 
+			// gh#293
 			if (currentMenuWidget.column == 2) {
 				widgetMenu.spanButtonBar.enabled = false;
 			} else if (currentMenuWidget.span == 2 && currentMenuWidget.column == 1) {
@@ -148,7 +149,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				widgetMenu.spanButtonBar.enabled = true;
 				widgetMenu.setSpanButtonEnable(2, true);
 			}
-			
 			
 			widgetMenu.visible = true;
 		}

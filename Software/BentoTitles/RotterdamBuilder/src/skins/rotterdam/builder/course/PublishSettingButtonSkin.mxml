@@ -129,6 +129,6 @@
 			 left="40" right="10" top="17" bottom="2">
 	</s:Label>
 	
-	<s:Label id="publishSettingsLabel" text="Scheduling options for your course" width="110" top="33" left="40" color="0x000000" fontSize="13"/>
+	<s:Label id="publishSettingsLabel" text="Scheduling options for your course." width="110" top="33" left="40" color="0x000000" fontSize="13"/>
     
 </s:SparkButtonSkin>

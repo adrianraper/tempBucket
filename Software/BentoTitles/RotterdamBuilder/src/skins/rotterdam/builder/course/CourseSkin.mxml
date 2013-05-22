@@ -55,7 +55,7 @@
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" alpha="0.4" />
 		
 		<s:Animate id="anim" targets="{[publishSelectionGroup]}" duration="300">
-			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="180" />
+			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="200" />
 		</s:Animate>
 	</fx:Declarations>
 	
@@ -122,7 +122,7 @@
 	<s:VGroup left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">	
 		<s:VGroup paddingLeft="2" id="publishSelectionGroup" height="0" alpha="0">
 			<s:Group>
-				<s:Rect width="152" height="180" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
+				<s:Rect width="152" height="200" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
 					<s:fill>
 						<s:SolidColor color="0XF7F2F0" />
 					</s:fill>
@@ -130,7 +130,7 @@
 				<s:Button id="oneClickPublishButton" label="1-click" useHandCursor="true" buttonMode="true"
 						  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6"/>
 				
-				<s:Button id="publishSettingsButton" label="Publish settings" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="70"/>
+				<s:Button id="publishSettingsButton" label="Advanced" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="90"/>
 			</s:Group>					
 		</s:VGroup>		
 		<s:Group>
