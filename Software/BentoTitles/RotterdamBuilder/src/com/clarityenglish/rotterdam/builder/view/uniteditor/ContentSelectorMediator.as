@@ -2,6 +2,7 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.rotterdam.builder.model.ContentProxy;
 	
 	import mx.collections.ArrayCollection;
@@ -55,6 +56,20 @@
 		
 		private function onContentLoadSuccess(e:ResultEvent, token:Object):void {
 			view.titleCollection = new ArrayCollection(e.result as Array);
+			filter(view.titleCollection);
+			view.titleCollection.refresh();
+		}
+		
+		// alice: program like CP has a single folder structure
+		//filter is used to remove the single folder and display unit directly after title
+		private function filter(titleCollection:ArrayCollection):void {
+			for each (var item:Object in titleCollection) {
+				if (item.children.length == 1) {
+					var course:Object = item.children[0];
+					var units:Object = course.children;
+					item.children = units;
+				}
+			}
 		}
 		
 	}

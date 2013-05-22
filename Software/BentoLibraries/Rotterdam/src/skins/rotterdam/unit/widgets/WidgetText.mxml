@@ -70,8 +70,18 @@
 			}
 			
 			public function AddLink(webUrlString:String, captionString:String):void {
-				var anchorPosition:int = richEditableText.selectionAnchorPosition;
-				var activePosition:int = richEditableText.selectionActivePosition;
+				var anchorPosition:int = Math.min(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
+				var activePosition:int = Math.max(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
+				//alice: solve the problem when add link in an empty text box (activePosition=-1 anchorPosition=-1)
+				if (anchorPosition == activePosition && activePosition == -1) {
+					anchorPosition = 0;
+					activePosition = 0;
+				}
+				
+				if (webUrlString.search("http://") == -1) {
+					webUrlString = "http://" + webUrlString;
+				}
+
 				XmlUtils.preserveSpaces(function():void {	
 					if (anchorPosition == 0 && activePosition == 0) {
 						var anchorTag:XML = <a href={webUrlString} target="_blank">{captionString}</a>;
@@ -88,7 +98,7 @@
 							textXML.children()[textXML.children().length()-1].appendChild(anchorTag);
 						}
 						widget.text = textXML.toXMLString();
-					} else {				
+					} else {
 						var richTextFlow:TextFlow = richEditableText.textFlow;
 						var lastFlowElment:TextFlow = richTextFlow.splitAtPosition(activePosition) as TextFlow;
 						var chopFlowElment:FlowElement = richTextFlow.splitAtPosition(anchorPosition)

@@ -25,7 +25,7 @@ class RotterdamService extends BentoService {
 	
 	public function getContent() {
 		// gh#81 Ignore Rotterdam when getting back Clarity content that you can use as widgets
-		$productCodes = array(-54);
+		$productCodes = array(-54, -12, -13);
 		return $this->contentOps->getContent($productCodes);
 	}
 	

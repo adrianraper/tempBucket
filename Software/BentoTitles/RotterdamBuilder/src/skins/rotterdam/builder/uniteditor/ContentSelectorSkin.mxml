@@ -9,18 +9,55 @@
 	</fx:Metadata>
 	
 	<fx:Script>
-		<![CDATA[			
-			private function getIconForContent(item:Object, isOpen:* = null, isBranch:* = null):Object {
-				return hostComponent.getThumbnailForUid(item.uid);
-			}
+		<![CDATA[
+			private var titles:Array = [9, 52, 50, 39, 33];
 			
-			private function tree_labelFunc(item:Object):String {
-				if (getQualifiedClassName(item).indexOf("Exercise") != -1) {
-					return item.name;
+			private function getIconForContent(item:Object, isOpen:* = null, isBranch:* = null):Object {
+				var uidString:String = item.uid;
+				var uidArray:Array = uidString.split(".");
+				
+				if (searchTitle(uidArray[0]) || uidArray.length == 1) {
+					//alice: single folder structure's  maximum uid change to 3
+					if ((uidArray.length == 2 && getQualifiedClassName(item).indexOf("Unit") != -1) || (uidArray.length == 3 && getQualifiedClassName(item).indexOf("Exercise") != -1)) {
+						return hostComponent.getThumbnailForUid(item.uid, true);
+					} else {
+						//original code
+						return hostComponent.getThumbnailForUid(item.uid, false);
+					}					
 				} else {
 					return null;
 				}
 				
+				
+			}
+			
+			private function tree_labelFunc(item:Object):String {
+				var uidString:String = item.uid;
+				var uidArray:Array = uidString.split(".");
+				if (searchTitle(uidArray[0])) {
+					if (getQualifiedClassName(item).indexOf("Exercise") != -1) {
+						return item.name;
+					} else {
+						return null;
+					}
+				} else {
+					if (uidArray.length > 1) {
+						return item.name;
+					} else {
+						return null;
+					}
+				}												
+			}
+			
+			//tempt function for those title don't have thumbnail
+			private function searchTitle(title:Number):Boolean {
+				for (var i:Number = 0; i <titles.length; i++) {
+					if (title == titles[i]) {
+						return true;
+					} 
+				}
+				
+				return false;
 			}
 			
 		]]>

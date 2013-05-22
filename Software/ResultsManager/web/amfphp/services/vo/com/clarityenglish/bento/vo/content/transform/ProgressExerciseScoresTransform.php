@@ -28,35 +28,33 @@ SQL;
 		}
 		
 		$done = array();
-		if ($rs) {
-			// For each matching exercise add in a @done counter and child <score> nodes
-			foreach ( $rs as $record ) {
-				// Only output a score if the exercise that the score refers to exists in the main xml document, otherwise we don't care
-				$existingExerciseXPath = $xml->xpath ( '/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:exercise[@id="' . $record ['F_ExerciseID'] . '"]' );
-				if (count ( $existingExerciseXPath ) == 0) {
-					// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
+		
+		// For each matching exercise add in a @done counter and child <score> nodes
+		foreach ($rs as $record) {
+			// Only output a score if the exercise that the score refers to exists in the main xml document, otherwise we don't care
+			$existingExerciseXPath = $xml->xpath('/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:exercise[@id="'.$record['F_ExerciseID'].'"]');
+			if (count($existingExerciseXPath) == 0) {
+				// I could use other parts of the UID to confirm which one we want, though it would also be good to throw an error
 				// gh#165 this is now stopping me - it will have to be that we ignore any score that no longer has an id in the menu 
 				//throw $service->copyOps->getExceptionForId("errorNoExerciseWithId", array("exerciseID" => $record['F_ExerciseID']));
-				} else if (count ( $existingExerciseXPath ) > 1) {
-					// Whilst we are mixing up old and new IDs, this might happen.  Just ignore the record.
+			} else if (count($existingExerciseXPath) > 1) {
+				// Whilst we are mixing up old and new IDs, this might happen.  Just ignore the record.
 				//throw $service->copyOps->getExceptionForId("errorMultipleExerciseWithSameId", array("exerciseID" => $record['F_ExerciseID']));
-				} else {
-					$exercise = $existingExerciseXPath [0];
+			} else {
+				$exercise = $existingExerciseXPath[0];
+				
+				// Add the <score> node as a child of the approriate exercise (if it exists)
+				if ($exercise) {
+					$score = $exercise->addChild('score');
+					$score->addAttribute('score', $record['F_Score']);
+					$score->addAttribute('duration', $record['F_Duration']);
+					$score->addAttribute('datetime', $record['F_DateStamp']);
 					
-					// Add the <score> node as a child of the approriate exercise (if it exists)
-					if ($exercise) {
-						$score = $exercise->addChild ( 'score' );
-						$score->addAttribute ( 'score', $record ['F_Score'] );
-						$score->addAttribute ( 'duration', $record ['F_Duration'] );
-						$score->addAttribute ( 'datetime', $record ['F_DateStamp'] );
-						
-						// Increment the @done attribute
-						$exercise ['done'] = ($exercise ['done']) ? $exercise ['done'] + 1 : 1;
-					}
+					// Increment the @done attribute
+					$exercise['done'] = ($exercise['done']) ? $exercise['done'] + 1 : 1;
 				}
 			}
 		}
-		
 		
 		foreach ($xml->head->script->menu->course->unit as $unit)  {
 			foreach ($unit->exercise as $exercise){

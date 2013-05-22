@@ -75,8 +75,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		
-		public function getThumbnailForUid(uid:String):String {
-			return thumbnailScript + "?uid=" + uid;
+		public function getThumbnailForUid(uid:String, flag:Boolean):String {
+			return thumbnailScript + "?uid=" + uid + "&flag=" + flag;
 		}
 		
 	}
