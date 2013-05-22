@@ -9,13 +9,13 @@ function outputPng($imagePath) {
 	die();
 }
 
-if (!isset($_GET['uid']) || !isset($_GET['flag'])) {
+if (!isset($_GET['uid']) || !isset($_GET['isSingleFolder'])) {
 	echo "No uid given";
 	return;
 }
 
 $uid = $_GET['uid'];
-$flag = $_GET['flag'] == 'true' ? true : false;
+$isSingleFolder = $_GET['isSingleFolder'] == 'true' ? true : false;
 //$thumbnailFolder = dirname(__FILE__)."/../../".$GLOBALS['data_dir']."/../Thumbnails/";
 $thumbnailFolder = dirname(__FILE__).$GLOBALS['interface_dir']."../resources/thumbnails/";
 // Sanitise $uid to prevent directory traversal attacks by not allowing more than one consecutive dot or anything that isn't a number.
@@ -33,7 +33,7 @@ if (sizeof($segments) == 0 || sizeof($segments) > 4) {
  * off the end and have another go.  If we don't find any then use default.png
  */
 
-if (!$flag) {
+if (!$isSingleFolder) {
 	while ( sizeof ( $segments ) > 0 && sizeof ( $segments ) < 4 ) {
 		$imagePath = $thumbnailFolder . implode ( "/", $segments ) . ".png";
 		
@@ -74,8 +74,5 @@ if (!$flag) {
 		}
 	}
 }
-
-
-
 
 outputPng($thumbnailFolder."/default.png");

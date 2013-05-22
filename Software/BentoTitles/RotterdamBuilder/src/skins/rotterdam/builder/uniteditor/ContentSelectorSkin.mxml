@@ -19,10 +19,12 @@
 				if (searchTitle(uidArray[0]) || uidArray.length == 1) {
 					//alice: single folder structure's  maximum uid change to 3
 					if ((uidArray.length == 2 && getQualifiedClassName(item).indexOf("Unit") != -1) || (uidArray.length == 3 && getQualifiedClassName(item).indexOf("Exercise") != -1)) {
-						return hostComponent.getThumbnailForUid(item.uid, true);
+						hostComponent.isSingleFolder = true;
+						return hostComponent.getThumbnailForUid(item.uid);
 					} else {
+						hostComponent.isSingleFolder = false;
 						//original code
-						return hostComponent.getThumbnailForUid(item.uid, false);
+						return hostComponent.getThumbnailForUid(item.uid);
 					}					
 				} else {
 					return null;

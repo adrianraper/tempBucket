@@ -3,11 +3,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flash.events.MouseEvent;
 	
 	import spark.components.Image;
+	import spark.components.Label;
 	
 	public class ExerciseWidget extends AbstractWidget {
 		
 		[SkinPart(required="true")]
 		public var exerciseImage:Image;
+		
+		[SkinPart]
+		public var exerciseTitle:Label;
 		
 		public function ExerciseWidget() {
 			super();
@@ -27,16 +31,24 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function get exercisetitle():String {
 			return _xml.@exercisetitle;
 		}
+		
+		[Bindable(event="issinglefolderAttrChanged")]
+		public function get issinglefolder():Boolean {
+			var isSingleFolder:Boolean = (_xml.@issinglefolder == "true")? true : false;
+			return isSingleFolder;
+		}
 
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case exerciseTitle:
 				case exerciseImage:
-					exerciseImage.buttonMode = true;
-					exerciseImage.addEventListener(MouseEvent.CLICK, onExerciseImageClick);
+					instance.buttonMode = true;
+					instance.addEventListener(MouseEvent.CLICK, onExerciseImageClick);
 					break;
+				
 			}
 		}
 		
@@ -54,8 +66,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		 * @param uid
 		 * @return 
 		 */
-		public function getThumbnailForUid(uid:String):String {
-			return thumbnailScript + "?uid=" + uid;
+		public function getThumbnailForUid(uid:String, isSingleFolder:Boolean):String {
+			return thumbnailScript + "?uid=" + uid + "&isSingleFolder=" + isSingleFolder;
 		}
 		
 	}
