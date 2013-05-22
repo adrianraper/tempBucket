@@ -330,15 +330,17 @@ package com.clarityenglish.common.model {
 			}
 			
 			// Anonymous login
-			// Demo login will normally use AA licence type
 			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) { // gh#165
-				return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
+				
+				// gh#300 Builder doesn't allow anonymous login
+				if (config.remoteService.toLowerCase().indexOf("builder") < 0)
+					return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
 			}
 				
 			
 			// #336 SCORM probably needs to be checked here
 			if (config.scorm) {
-				trace("scorm");
+				//trace("scorm");
 				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 				configUser = new User({ name:scormProxy.scorm.studentName, studentID:scormProxy.scorm.studentID });
 				return new LoginEvent(LoginEvent.LOGIN, configUser, loginOption, verified);

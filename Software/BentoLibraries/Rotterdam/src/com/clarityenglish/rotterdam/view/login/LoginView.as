@@ -298,7 +298,7 @@ package com.clarityenglish.rotterdam.view.login {
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case loginButton:
-					trace("email: "+loginKeyInput.text);
+					//trace("email: "+loginKeyInput.text);
 					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
