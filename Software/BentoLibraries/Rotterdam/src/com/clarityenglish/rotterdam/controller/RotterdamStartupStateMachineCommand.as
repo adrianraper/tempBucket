@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
@@ -34,14 +35,17 @@ package com.clarityenglish.rotterdam.controller {
 					</state>
 					
 					<state name={BBStates.STATE_TITLE}>
+						<transition action={CommonNotifications.LOGGED_OUT} target={BBStates.STATE_CREDITS}/>
+						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 					
 					<state name={BBStates.STATE_CREDITS}>
+						<transition action={BBNotifications.NETWORK_UNAVAILABLE} target={BBStates.STATE_NO_NETWORK} />
 					</state>
 				</fsm>;
 			
 			// #297 - if we are using direct login then we want to add a transition to go the credits on a failed login
-			//var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
 			// TODO. This is actually triggering a LoginEvent if you are doing direct - which is repeated later.
 			// #336 Does SCORM have any impact here, or can it be subsumed into directLogin?
@@ -57,11 +61,11 @@ package com.clarityenglish.rotterdam.controller {
 			}*/
 			
 			// #377 - when disableAutoTimeout is on we want to go back to the login screen instead of the credits screen
-			/*if (configProxy.getConfig().disableAutoTimeout) {
+			if (configProxy.getConfig().disableAutoTimeout) {
 				for each (var creditTransition:XML in fsm..transition.(@target == BBStates.STATE_CREDITS)) {
 					creditTransition.@target = BBStates.STATE_LOGIN;
 				}
-			}*/
+			}
 			
 			// Kick off the state machine
 			var fsmInjector:FSMInjector = new FSMInjector(fsm);

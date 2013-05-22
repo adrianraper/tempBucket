@@ -336,7 +336,7 @@ package com.clarityenglish.rotterdam.view.settings {
 								selectedPublicationGroup.@unitInterval = StringUtils.trim(e.target.text);
 								calendarSettingsChanged();
 							}
-					}, true);						
+					});						
 					break;
 				case startDateField:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {

@@ -10,6 +10,7 @@
 			
 			import skins.assets.widgets.*;
 			
+			import spark.components.ButtonBarButton;
 			import spark.events.IndexChangeEvent;
 			
 			private var _xml:XML;
@@ -57,6 +58,10 @@
 				// Change the @span attribute in the XML based on the selection and shut the menu
 				_xml.@span = event.target.selectedIndex + 1;
 				dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
+			}
+			
+			public function setSpanButtonEnable(index:Number, enable:Boolean):void {
+				(spanButtonBar.dataGroup.getElementAt(index) as ButtonBarButton).enabled = enable;
 			}
 			
 		]]>

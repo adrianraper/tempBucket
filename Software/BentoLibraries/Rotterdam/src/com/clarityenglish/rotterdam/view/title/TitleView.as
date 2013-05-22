@@ -5,10 +5,14 @@ package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	
+	import mx.controls.Button;
 	
 	import org.davekeen.util.ClassUtil;
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Button;
 	import spark.components.ViewNavigator;
 	import spark.events.IndexChangeEvent;
 	
@@ -20,7 +24,12 @@ package com.clarityenglish.rotterdam.view.title {
 		[SkinPart(required="true")]
 		public var myCoursesViewNavigator:ViewNavigator;
 		
-		public var dirtyWarningShow:Signal = new Signal(Function); 
+		[SkinPart]
+		public var logoutButton:spark.components.Button;
+		
+		public var dirtyWarningShow:Signal = new Signal(Function);
+		
+		public var logOut:Signal = new Signal();
 		
 		public function showCourseView():void {
 			if (ClassUtil.getClass(myCoursesViewNavigator.activeView) == CourseSelectorView) {
@@ -42,6 +51,10 @@ package com.clarityenglish.rotterdam.view.title {
 					// gh#197
 					myCoursesViewNavigator.addEventListener("viewChangeComplete", function(e:Event):void { invalidateSkinState(); });
 					break;
+				case logoutButton:
+					//gh#217
+					logoutButton.addEventListener(MouseEvent.CLICK, onLogOutClick);
+					break;
 			}
 		}
 		
@@ -51,7 +64,11 @@ package com.clarityenglish.rotterdam.view.title {
 				? "course_selector"
 				: super.getCurrentSkinState();
 		}
-
+		
+		//gh#217
+		protected function onLogOutClick(event:Event):void {
+			logOut.dispatch();
+		}
 		
 	}
 }

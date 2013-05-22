@@ -59,6 +59,10 @@ title|TitleView s|TabbedViewNavigator {
 	skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
 }
 
+title|TitleView s|Button#logoutButton {
+	
+}
+
 courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
 }

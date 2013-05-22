@@ -270,6 +270,7 @@ package com.clarityenglish.ielts.view.title {
 			}
 			return null;
 		}
+		
 
 		[Bindable(event="licenceTypeChanged")]
 		public function get licenceTypeText():String {

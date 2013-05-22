@@ -135,14 +135,15 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			// Set the current menu widget, position it and make it visible
 			currentMenuWidget = newMenuWidget;
 			onLayoutChanged();
-			
+
 			if (currentMenuWidget.column == 2 || currentMenuWidget.span * currentMenuWidget.column == 2) {
 				widgetMenu.spanButtonBar.enabled = false;
 			} else if (currentMenuWidget.column == 1 ) {
-				(widgetMenu.spanButtonBar.dataGroup.getElementAt(2) as ButtonBarButton).enabled = false;
+				widgetMenu.spanButtonBar.enabled = true;
+				widgetMenu.setSpanButtonEnable(2, false);
 			} else {
 				widgetMenu.spanButtonBar.enabled = true;
-				(widgetMenu.spanButtonBar.dataGroup.getElementAt(2) as ButtonBarButton).enabled = true;
+				widgetMenu.setSpanButtonEnable(2, true);
 			}
 			
 			

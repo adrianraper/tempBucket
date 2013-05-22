@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.CommonNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -24,6 +25,7 @@
 			super.onRegister();
 			
 			view.dirtyWarningShow.add(onDirtyWarningShow);
+			view.logOut.add(onLogOut);
 		}
 				
 		override public function onRemove():void {
@@ -56,6 +58,22 @@
 			} else {
 				next();
 			}
+		}
+		
+		//gh#217
+		private function onLogOut():void {
+			/*var logOutFun:Function = function():void {
+				sendNotification(CommonNotifications.LOGOUT);
+				view.myCoursesViewNavigator.popToFirstView();
+			}
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			if (bentoProxy.isDirty) {
+				sendNotification(BBNotifications.WARN_DATA_LOSS, { message: bentoProxy.getDirtyMessage(), func: logOutFun }, "changes_not_saved");
+			} else {
+				logOutFun();
+			}*/
+			
+			sendNotification(CommonNotifications.LOGOUT);
 		}
 		
 	}

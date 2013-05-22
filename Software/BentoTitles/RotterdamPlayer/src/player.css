@@ -11,6 +11,7 @@
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace ui "skins.rotterdam.player.progress.ui.*";
+@namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -125,4 +126,8 @@ progressui|CoverageUnitRenderer {
 
 progressui|CoverageGroupRenderer {
 	skinClass: ClassReference("skins.rotterdam.player.progress.ui.CoverageGroupRendererSkin");
+}
+
+ui2|WidgetList s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
