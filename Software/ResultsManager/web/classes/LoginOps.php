@@ -113,6 +113,10 @@ EOD;
 				// typically one would be an LM account and the other a IP.com purchase
 				// So first of all see if you can figure out some rules for picking one of the multiple users
 				
+				// Do some logging to check this, especially with tablets
+				$logMessage = "login $keyValue has ".$rs->RecordCount()." matches";
+				AbstractService::$debugLog->info($logMessage);
+				
 				// 1. Does the password match just one of them?
 				$matches = 0;
 				while ($userObj = $rs->FetchNextObj()) {
@@ -121,8 +125,11 @@ EOD;
 						$matches++;
 					}
 				}
-				if ($matches == 1)
+				if ($matches == 1) {
+					$logMessage = "use password to match ".$dbLoginObj->F_UserID;
+					AbstractService::$debugLog->info($logMessage);
 					continue;
+				}
 				
 				// 2. Is there just one that has not expired?
 				$matches = 0;
@@ -136,7 +143,7 @@ EOD;
 						$matches++;
 					}
 				}
-				if ($matches == 1)
+				if ($matches == 1) 
 					continue;
 					
 				// 3. What about by account attributes?
@@ -167,6 +174,10 @@ EOD;
 				$matches = 0;
 				$rs1->MoveFirst();
 				while ($accountObj = $rs1->FetchNextObj()) {
+					
+					$logMessage = "root ".$accountObj->rootID." is a ".$accountObj->productVersion;
+					AbstractService::$debugLog->info($logMessage);
+					
 					if ($accountObj->productVersion && stristr($accountObj->productVersion, 'HU')) {
 						
 						// the account must still be active
@@ -184,7 +195,7 @@ EOD;
 						}
 					}
 				}
-				if ($matches == 1)
+				if ($matches == 1) 
 					continue;
 					
 				$matches = 0;

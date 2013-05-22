@@ -6,7 +6,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>CLS ref:{$api->subscription->orderRef}</title>
+<title>CLS ref:{$api->subscription->orderRef} - {$api->subscription->name}</title>
 	<!-- <from>support@clarityenglish.com</from> -->
 	<!-- <cc>support@ieltspractice.com</cc> -->
 	<!-- <bcc>adrian.raper@clarityenglish.com,alfred.ng@clarityenglish.com</bcc> -->

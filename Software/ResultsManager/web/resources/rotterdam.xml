@@ -74,7 +74,7 @@
             <lit name="pathClearPronunciation1">ClearPronunciation</lit>
             <lit name="pathClearPronunciation2">ClearPronunciation2</lit>
             <lit name="pathRoadToIELTS">RoadToIELTS</lit>
-            <lit name="pathStudySkillsSuccess">StudySkillsSuccess</lit>
+            <lit name="pathStudySkillsSuccess">StudySkillsSuccessV9</lit>
             <lit name="pathMyCanada">MyCanada</lit>
             <lit name="pathPeacekeeper">Peacekeeper</lit>
             <lit name="pathItsYourJob">ItsYourJob</lit>
@@ -85,6 +85,7 @@
             <lit name="pathIssuesInEnglish2">IssuesInEnglish2</lit>
             <lit name="pathConnectedSpeech">ConnectedSpeech</lit>
             <lit name="pathAccessUK">AccessUK</lit>
+            <lit name="pathAuthorPlus">AuthorPlus</lit>
             <!--  if you release a new title without compiling Rotterdam, use this for the productCode -->
             <lit name="path55">NewTitle</lit>
             
