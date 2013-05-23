@@ -134,9 +134,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				_xml = value;
 				XMLNotifier.getInstance().watchXML(_xml, xmlWatcher);
 			}
+			
+			invalidateProperties();
 		}
 		
-		//gh#187
+		// gh#187
 		public function get widgetCaptionChanged():Boolean {
 			return _widgetCaptionChanged;
 		}
@@ -178,7 +180,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			_xml.@layoutheight = value;
 		}
 		
-		//gh#106
+		// gh#106
 		public function get clarityUID():String {
 			if (_xml && _xml.(hasOwnProperty("@id"))) {
 				var eid:String = _xml.@id;
@@ -211,7 +213,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
 		}
 		
-		//gh#187
+		// gh#187
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
@@ -240,7 +242,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					widgetText.addEventListener(WidgetTextFormatMenuEvent.TEXT_SELECTED, onTextSelected);
 					widgetText.addEventListener(WidgetLinkCaptureEvent.LINK_CAPTURE, onLinkCapture);
 					break;
-				//gh#187
+				// gh#187
 				case widgetChrome:
 					widgetChrome.widgetCaptionTextInput.addEventListener(FocusEvent.FOCUS_OUT, onDone);
 					widgetChrome.widgetCaptionTextInput.addEventListener(FlexEvent.ENTER, onDone);
@@ -252,13 +254,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			textSelected.dispatch(event.format);
 		}
 		
-		private function getParagraphChildren(p:ParagraphElement):Array
-		{
-			var kids:Array =[];
+		private function getParagraphChildren(p:ParagraphElement):Array {
+			var kids:Array = [];
 			var numKids:int = p.numChildren;
-			for (var i:int = 0; i<numKids; i++)
-			{
-				kids.push( p.getChildAt(i) );
+			for (var i:int = 0; i < numKids; i++) {
+				kids.push(p.getChildAt(i));
 			}
 			return kids;
 		}
@@ -297,7 +297,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return null;
 		}
 		
-		//gh#187
+		// gh#187
 		protected function onDone(event:Event):void {
 			_xml.@caption = StringUtils.trim(widgetChrome.widgetCaptionTextInput.text);
 			
@@ -321,6 +321,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 	}
 }
+
 import flash.events.Event;
 import flash.events.EventDispatcher;
 

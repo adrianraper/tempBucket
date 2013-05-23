@@ -149,7 +149,8 @@ package com.clarityenglish.rotterdam.view.course {
 								if (!(unit.hasOwnProperty("@enabledFlag") && unit.@enabledFlag & 8)) {
 									unitList.requireSelection = true;
 									unitList.selectedItem = unit;
-									//gh #211
+									
+									// gh#211
 									unitList.selectedIndex = 0;
 									unitList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 									break;

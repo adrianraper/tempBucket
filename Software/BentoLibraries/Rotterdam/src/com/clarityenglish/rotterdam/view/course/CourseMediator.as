@@ -57,7 +57,7 @@
 			view.coursePublish.remove(onCoursePublish);
 			view.unitDuplicate.remove(onUnitDuplicate);
 			
-			//gh #240
+			// gh#240
 			//view.removeEventListener(Event.PASTE, onUnitPaste);
 		}
 		

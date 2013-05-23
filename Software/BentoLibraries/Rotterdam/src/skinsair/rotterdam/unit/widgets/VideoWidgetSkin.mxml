@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:widgets="skins.rotterdam.unit.widgets.*"
 		xmlns:players="com.clarityenglish.controls.video.players.*"
-		minHeight="80" >
+		minHeight="80">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget")]
@@ -33,7 +33,8 @@
 		<!-- gh#246 add height for videoHolder-->
 		<s:Group id="videoHolder" left="0" right="0" height="375">
 			<!--<s:SWFLoader id="swfLoader" visible.dragging="false" />-->
-			<players:WebViewVideoPlayer id="videoPlayer" visible.dragging="false" />
+			<!--<players:WebViewVideoPlayer id="videoPlayer" visible.dragging="false" />-->
+			<players:NewWebViewVideoPlayer id="videoPlayer" visible.dragging="false" />
 		</s:Group>
 	</s:VGroup>
 	

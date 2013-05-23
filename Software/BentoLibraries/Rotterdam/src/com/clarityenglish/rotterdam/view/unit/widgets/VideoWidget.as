@@ -62,7 +62,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected function onSwfLoaderComplete(event:Event):void {
-			event.target.content.addEventListener("onReady", resizeVideo, false, 0, true);
+			event.target.content.addEventListener("onReady", function():void { invalidateDisplayList(); }, false, 0, true);
 			// gh#106
 			event.target.content.addEventListener(MouseEvent.CLICK, onClickVideo);
 		}
@@ -81,7 +81,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			}
 		}
 		
-		protected function resizeVideo(event:Event = null):void {
+		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
 			if (swfLoader && swfLoader.content && swfLoader.content["setSize"] && videoHolder) {
 				swfLoader.content["setSize"](width - 16, videoHolder.height - 12);
 				widgetText.width = width;
@@ -98,12 +100,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				videoPlayer.x = 4;
 				videoPlayer.play();
 			}
-		}
-		
-		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
-			resizeVideo();
 		}
 		
 		protected override function onRemovedFromStage(event:Event):void {
@@ -128,7 +124,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				// This was merged from Alice - not too sure what its about... check when we get the new video ANE component
 			}
 
-			if (videoPlayer) videoPlayer.stop();
+			if (videoPlayer) {
+				videoPlayer.stop();
+			}
 		}
 		
 	}
