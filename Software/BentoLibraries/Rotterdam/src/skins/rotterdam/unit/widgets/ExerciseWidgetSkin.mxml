@@ -30,7 +30,7 @@
 		
 		<s:HGroup paddingLeft="8" gap="10">
 			<!-- Exercise icon -->
-			<s:Image id="exerciseImage" source="{hostComponent.getThumbnailForUid(hostComponent.contentuid, hostComponent.issinglefolder)}" />
+			<s:Image id="exerciseImage" source="{hostComponent.getThumbnailForUid(hostComponent.contentuid, hostComponent.exIndex)}" />
 			
 			<!--gh #181-->
 			<s:Label id="exerciseTitle" text="{hostComponent.exercisetitle}" paddingTop="{exerciseImage.height/2}" />

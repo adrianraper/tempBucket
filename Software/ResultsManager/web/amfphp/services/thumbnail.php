@@ -9,13 +9,13 @@ function outputPng($imagePath) {
 	die();
 }
 
-if (!isset($_GET['uid']) || !isset($_GET['isSingleFolder'])) {
+if (!isset($_GET['uid']) || !isset($_GET['exIndex'])) {
 	echo "No uid given";
 	return;
 }
 
 $uid = $_GET['uid'];
-$isSingleFolder = $_GET['isSingleFolder'] == 'true' ? true : false;
+$exIndex = $_GET['exIndex'];
 //$thumbnailFolder = dirname(__FILE__)."/../../".$GLOBALS['data_dir']."/../Thumbnails/";
 $thumbnailFolder = dirname(__FILE__).$GLOBALS['interface_dir']."../resources/thumbnails/";
 // Sanitise $uid to prevent directory traversal attacks by not allowing more than one consecutive dot or anything that isn't a number.
@@ -33,45 +33,30 @@ if (sizeof($segments) == 0 || sizeof($segments) > 4) {
  * off the end and have another go.  If we don't find any then use default.png
  */
 
-if (!$isSingleFolder) {
-	while ( sizeof ( $segments ) > 0 && sizeof ( $segments ) < 4 ) {
-		$imagePath = $thumbnailFolder . implode ( "/", $segments ) . ".png";
-		
-		if (file_exists ( $imagePath )) {
-			outputPng ( $imagePath );
-		} else {
-			array_pop ( $segments );
-		}
-	}
+while ( sizeof ( $segments ) > 0 && sizeof ( $segments ) < $exIndex ) {
+	$imagePath = $thumbnailFolder . implode ( "/", $segments ) . ".png";
 	
-	if (sizeof ( $segments ) == 4) {
-		$imagePath = $thumbnailFolder . $segments [0] . "/" . $segments [1] . "/" . "default.png";
-		
-		if (file_exists ( $imagePath )) {
-			outputPng ( $imagePath );
-		} else {
-			array_pop ( $segments );
-		}
+	if (file_exists ( $imagePath )) {
+		outputPng ( $imagePath );
+	} else {
+		array_pop ( $segments );
 	}
-} else {
-	while ( sizeof ( $segments ) > 0 && sizeof ( $segments ) < 3 ) {
-		$imagePath = $thumbnailFolder . implode ( "/", $segments ) . ".png";
-		
-		if (file_exists ( $imagePath )) {
-			outputPng ( $imagePath );
-		} else {
-			array_pop ( $segments );
-		}
+}
+
+if (sizeof ( $segments ) == $exIndex) {
+	$max = $exIndex - 2;
+	$imagePath = $thumbnailFolder;
+	for($i = 0; $i < $max; $i ++) {
+		$imagePath = $imagePath . $segments [$i] . "/";
 	}
+	$imagePath = $imagePath . "default.png";
+	//$imagePath = $thumbnailFolder . $segments [0] . "/" . $segments [1] . "/" . "default.png";
 	
-	if (sizeof ( $segments ) == 3) {
-		$imagePath = $thumbnailFolder . $segments [0] . "/" . "default.png";
-		
-		if (file_exists ( $imagePath )) {
-			outputPng ( $imagePath );
-		} else {
-			array_pop ( $segments );
-		}
+
+	if (file_exists ( $imagePath )) {
+		outputPng ( $imagePath );
+	} else {
+		array_pop ( $segments );
 	}
 }
 

@@ -28,7 +28,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var titleCollection:ArrayCollection;
 		
 		public var thumbnailScript:String;
-		public var isSingleFolder:Boolean;
+		public var exIndex:Number;
 		
 		[Embed(source="/skins/rotterdam/builder/assets/unit/icon_program_arrow_right.png")]
 		public var arrowRight:Class;
@@ -65,19 +65,19 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				while (rootItem.parent) {
 					rootItem = rootItem.parent;
 				}
-				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, tree.selectedItem.name, rootItem.name, isSingleFolder, true));
+				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, tree.selectedItem.name, rootItem.name, exIndex, true));
 				dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 			}
 		}
 		
 		protected function onCancelButton(event:MouseEvent):void {
 			//gh #212
-			dispatchEvent(new ContentEvent(ContentEvent.CONTENT_CANCEL, null, null, null, false, true));
+			dispatchEvent(new ContentEvent(ContentEvent.CONTENT_CANCEL, null, null, null, 0, true));
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		
 		public function getThumbnailForUid(uid:String):String {
-			return thumbnailScript + "?uid=" + uid + "&isSingleFolder=" + isSingleFolder;
+			return thumbnailScript + "?uid=" + uid + "&exIndex=" + exIndex;
 		}
 		
 	}

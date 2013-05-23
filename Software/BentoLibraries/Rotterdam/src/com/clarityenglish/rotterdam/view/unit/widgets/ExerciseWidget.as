@@ -32,10 +32,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@exercisetitle;
 		}
 		
-		[Bindable(event="issinglefolderAttrChanged")]
-		public function get issinglefolder():Boolean {
-			var isSingleFolder:Boolean = (_xml.@issinglefolder == "true")? true : false;
-			return isSingleFolder;
+		[Bindable(event="exIndexAttrChanged")]
+		public function get exIndex():Number {
+			return _xml.@exIndex;
 		}
 
 		
@@ -66,8 +65,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		 * @param uid
 		 * @return 
 		 */
-		public function getThumbnailForUid(uid:String, isSingleFolder:Boolean):String {
-			return thumbnailScript + "?uid=" + uid + "&isSingleFolder=" + isSingleFolder;
+		public function getThumbnailForUid(uid:String, exIndex:Number):String {
+			return thumbnailScript + "?uid=" + uid + "&exIndex=" + exIndex;
 		}
 		
 	}

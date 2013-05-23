@@ -21,14 +21,19 @@
 					// will not show the title and course level in the content selector window
 					//alice: single folder structure's maximum uid change to 3
 					if ((uidArray.length == 2 && getQualifiedClassName(item).indexOf("Unit") != -1) || (uidArray.length == 3 && getQualifiedClassName(item).indexOf("Exercise") != -1)) {
-						hostComponent.isSingleFolder = true;
+						hostComponent.exIndex = 3;
 						return hostComponent.getThumbnailForUid(item.uid);
 					} else {
-						hostComponent.isSingleFolder = false;
+						hostComponent.exIndex = 4;
 						//original code
 						return hostComponent.getThumbnailForUid(item.uid);
 					}					
 				} else {
+					if ((uidArray.length == 2 && getQualifiedClassName(item).indexOf("Unit") != -1) || (uidArray.length == 3 && getQualifiedClassName(item).indexOf("Exercise") != -1)) {
+						hostComponent.exIndex = 3;
+					} else {
+						hostComponent.exIndex = 4;
+					}
 					return null;
 				}
 				

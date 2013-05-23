@@ -11,16 +11,16 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 		private var _caption:String;
 		//gh #181
 		private var _program:String;
-		private var _isSingleFolder:Boolean;
+		private var _exIndex:Number;
 		
-		public function ContentEvent(type:String, uid:String, caption:String, program:String, isSingleFolder:Boolean, bubbles:Boolean) {
+		public function ContentEvent(type:String, uid:String, caption:String, program:String, exIndex:Number, bubbles:Boolean) {
 			super(type, bubbles, false);
 			
 			this._uid = uid;
 			this._caption = caption;
 			//#181
 			this._program = program;
-			this._isSingleFolder = isSingleFolder;
+			this._exIndex = exIndex;
 		}
 		
 		public function get uid():String {
@@ -36,16 +36,16 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 			return _program;
 		}
 		
-		public function get isSingleFolder():Boolean {
-			return _isSingleFolder;
+		public function get exIndex():Number {
+			return _exIndex;
 		}
 		
 		public override function clone():Event {
-			return new ContentEvent(type, uid, caption, program, isSingleFolder, bubbles);
+			return new ContentEvent(type, uid, caption, program, exIndex, bubbles);
 		}
 		
 		public override function toString():String {
-			return formatToString("ContentEvent", "uid", "caption", "program", "isSingleFolder", "bubbles");
+			return formatToString("ContentEvent", "uid", "caption", "program", "exIndex", "bubbles");
 		}
 	}
 }

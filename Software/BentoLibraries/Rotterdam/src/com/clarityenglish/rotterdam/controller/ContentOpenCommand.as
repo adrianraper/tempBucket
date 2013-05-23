@@ -40,7 +40,15 @@ package com.clarityenglish.rotterdam.controller {
 			
 			// UID contains expected productCode to name translation
 			// Then rotterdam.xml contains path information for a particular installation
-			var startPage:String = 'Start.php';
+			// gh#310
+			if (uid.title == 52) {
+				var startPage:String = 'Start-AC.php';
+			} else if (uid.title == 53) {
+				startPage = 'Start-GT.php';
+			} else {
+				startPage = 'Start.php';
+			}
+
 			if (uid.titleName) {
 				var progName:String = uid.titleName;
 			} else {
