@@ -23,6 +23,10 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			super.execute(note);
 			
 			var node:XML, tempid:String = UIDUtil.createUID();
+			var title:String
+			if (note.getBody().title) {
+				title = note.getBody().title;
+			}
 			if (note.getBody().node) {
 				node = note.getBody().node;
 			} else {
@@ -34,6 +38,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			var uploadOptions:Object = {
 				typeFilter: [ new FileFilter("PDF documents (*.pdf)", "*.pdf") ],
 				node: node,
+				title: title,
 				source: note.getBody().source,
 				url: note.getBody().url // gh#111 - this is only used in 'external' types where the user has already entered a url
 			};

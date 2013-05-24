@@ -4,6 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
 		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
+		xmlns:courseui="com.clarityenglish.rotterdam.view.course.ui.*"
 		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*"
 		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*"
 		initialize="onInitialize(event)">
@@ -102,13 +103,13 @@
 	</s:BorderContainer>
 	
 	<s:VGroup top="{unitContainer.height + 10}" left="2" includeIn="uniteditor">
-		<s:Button id="addUnitButton" label="Add a unit" useHandCursor="true" buttonMode="true" />
+		<s:Button id="addUnitButton" useHandCursor="true" buttonMode="true" />
 		
 		<!-- temporarily put these buttons here (gh#110) but they will likely move elsewhere later -->
 		<!--s:Spacer height="20" /-->
 		<!--s:Label text="Unit:" fontWeight="bold" /-->
 		<s:HGroup width="100%">
-			<s:Button id="unitCopyButton" label="Duplicate a unit" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
+			<s:Button id="unitCopyButton" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
 			<!--s:Button id="unitPasteButton" label="Paste" width="50%" useHandCursor="true" buttonMode="true" /-->
 		</s:HGroup>
 	</s:VGroup>
@@ -127,15 +128,14 @@
 						<s:SolidColor color="0XF7F2F0" />
 					</s:fill>
 				</s:Rect>
-				<s:Button id="oneClickPublishButton" label="1-click" useHandCursor="true" buttonMode="true"
-						  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6"/>
-				
-				<s:Button id="publishSettingsButton" label="Advanced" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="90"/>
+				<courseui:PublishButton id="oneClickPublishButton" useHandCursor="true" buttonMode="true"
+						  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6" />
+				<courseui:PublishButton id="publishSettingsButton" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="90"/>
 			</s:Group>					
 		</s:VGroup>		
 		<s:Group>
-			<s:ToggleButton id="publishCourseButton" label="Publish course" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" />
-			<s:Button id="publishChangeButton" label="Change published details" height="50" fontWeight="bold" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
+			<s:ToggleButton id="publishCourseButton" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" />
+			<s:Button id="publishChangeButton" height="50" fontWeight="bold" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" />
 		</s:Group>
 	</s:VGroup>
 	

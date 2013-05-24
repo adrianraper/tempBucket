@@ -25,6 +25,12 @@ package com.clarityenglish.rotterdam.view.title {
 		public var myCoursesViewNavigator:ViewNavigator;
 		
 		[SkinPart]
+		public var cloudViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var helpViewNavigator:ViewNavigator;
+		
+		[SkinPart]
 		public var logoutButton:spark.components.Button;
 		
 		public var dirtyWarningShow:Signal = new Signal(Function);
@@ -50,6 +56,13 @@ package com.clarityenglish.rotterdam.view.title {
 				case myCoursesViewNavigator:
 					// gh#197
 					myCoursesViewNavigator.addEventListener("viewChangeComplete", function(e:Event):void { invalidateSkinState(); });
+					myCoursesViewNavigator.label = copyProvider.getCopyForId("myCoursesViewNavigator");
+					break;
+				case cloudViewNavigator:
+					cloudViewNavigator.label = copyProvider.getCopyForId("cloudViewNavigator");
+					break;
+				case helpViewNavigator:
+					helpViewNavigator.label = copyProvider.getCopyForId("helpViewNavigator");
 					break;
 				case logoutButton:
 					//gh#217

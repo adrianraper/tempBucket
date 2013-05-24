@@ -42,6 +42,7 @@
     <classEntry path="skins.rotterdam.scroller.GreyVerticalScrollBarSkin"/>
     <classEntry path="skins.rotterdam.scroller.GreyVerticalScrollBarThumbSkin"/>
     <classEntry path="skins.rotterdam.scroller.GreyDirectionButton"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.course.ui.PublishButton"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

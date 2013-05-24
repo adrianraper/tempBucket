@@ -54,9 +54,11 @@ package com.clarityenglish.rotterdam.view.unit {
 			switch (instance) {
 				case editButton:
 					editButton.addEventListener(MouseEvent.CLICK, onEdit);
+					editButton.label = copyProvider.getCopyForId("editButton");
 					break;
 				case doneButton:
 					doneButton.addEventListener(MouseEvent.CLICK, onDone);
+					doneButton.label = copyProvider.getCopyForId("doneButton");
 					break;
 				case unitCaptionTextInput:
 					unitCaptionTextInput.addEventListener(FlexEvent.ENTER, onDone);

@@ -18,11 +18,25 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 	import spark.components.DataGrid;
 	import spark.components.Label;
 	import spark.components.List;
+	import spark.components.Panel;
+	import spark.components.gridClasses.GridColumn;
 	
 	public class FileManagerView extends BentoView {
 		
+		[SkinPart]
+		public var resourseCloudLabel:Label;
+		
 		[SkinPart(required="true")]
 		public var fileList:spark.components.DataGrid;
+		
+		[SkinPart]
+		public var nameGridColumn:GridColumn;
+		
+		[SkinPart]
+		public var sizeGridColumn:GridColumn;
+		
+		[SkinPart]
+		public var settingPanel:Panel;
 		
 		[SkinPart]
 		public var selectButton:Button;
@@ -30,6 +44,14 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 		[SkinPart]
 		public var cancelButton:Button;
 		
+		[SkinPart]
+		public var pdfFilesLabel:Label;
+		
+		[SkinPart]
+		public var imageFilesLabel:Label;
+		
+		[SkinPart]
+		public var audioFilesLabel:Label;
 
 		public var pdfFilesTotal:Label;
 		
@@ -202,15 +224,29 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case resourseCloudLabel:
+					resourseCloudLabel.text = copyProvider.getCopyForId("resourseCloudLabel");
+					break;
 				case fileList:
 					fileList.dataProvider = fileListCollection;
 					fileList.addEventListener(MouseEvent.CLICK, onSelectItem);
 					break;
+				case nameGridColumn:
+					nameGridColumn.headerText = copyProvider.getCopyForId("nameGridColumn");
+					break;
+				case sizeGridColumn:
+					sizeGridColumn.headerText = copyProvider.getCopyForId("sizeGridColumn");
+					break;
+				case settingPanel:
+					settingPanel.title = copyProvider.getCopyForId("settingPanel");
+					break;
 				case selectButton:
 					selectButton.addEventListener(MouseEvent.CLICK, onSelect);
+					selectButton.label = copyProvider.getCopyForId("selectButton");
 					break;
 				case cancelButton:
 					cancelButton.addEventListener(MouseEvent.CLICK, onCancel);
+					cancelButton.label = copyProvider.getCopyForId("cancelButton");
 					break;
 				case emptyFileLabel:
 					if (this.getCurrentSkinState() == "normal"){
@@ -218,6 +254,15 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 					} else {
 						emptyFileLabel.text = copyProvider.getCopyForId("emptyFileLabel2");
 					}					
+					break;
+				case pdfFilesLabel:
+					pdfFilesLabel.text = copyProvider.getCopyForId("pdfFilesLabel");
+					break;
+				case imageFilesLabel:
+					imageFilesLabel.text = copyProvider.getCopyForId("imageFilesLabel");
+					break;
+				case audioFilesLabel:
+					audioFilesLabel.text = copyProvider.getCopyForId("audioFilesLabel");
 					break;
 			}
 		}

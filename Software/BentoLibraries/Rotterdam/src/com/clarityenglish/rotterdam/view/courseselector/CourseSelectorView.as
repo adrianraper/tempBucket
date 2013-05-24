@@ -12,6 +12,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.List;
 	
 	import ws.tink.spark.controls.Alert;
@@ -26,6 +27,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		[SkinPart]
 		public var deleteCourseButton:Button;
+		
+		[SkinPart]
+		public var courseListTitleLabel:Label;
 		
 		public var createCourse:Signal = new Signal();
 		public var selectCourse:Signal = new Signal(XML);
@@ -47,11 +51,15 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			switch (instance) {
 				case createCourseButton:
 					createCourseButton.addEventListener(MouseEvent.CLICK, onCreateCourse);
+					createCourseButton.label = copyProvider.getCopyForId("courseListTitleLabel");
 					break;
 				case courseList:
 					courseList.dataGroup.doubleClickEnabled = true;
 					courseList.dataGroup.addEventListener(MouseEvent.DOUBLE_CLICK, onSelectCourse);
 					courseList.addEventListener(CourseDeleteEvent.COURSE_DELETE, onDeleteCourse);
+					break;
+				case courseListTitleLabel:
+					courseListTitleLabel.text = copyProvider.getCopyForId("courseListTitleLabel");
 					break;
 			}
 		}

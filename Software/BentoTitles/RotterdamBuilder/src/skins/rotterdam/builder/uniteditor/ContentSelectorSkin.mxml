@@ -81,8 +81,8 @@
 	<sparkTree:Tree id="tree" dataProvider="{hostComponent.titleCollection}" labelFunction="tree_labelFunc" iconFunction="getIconForContent" labelField="name" width="380" height="500" bottom="50" borderVisible="false" rollOverColor="#FFF6CC" selectionColor="#FFF6CC"/>
 	
 	<s:Group left="10"  bottom="10" right="10">
-		<s:Button id="selectButton" label="Select content" enabled="{tree.selectedItem != null}" />
-		<s:Button id="cancelButton" label="Cancel" right="0"/>
+		<s:Button id="selectButton" enabled="{tree.selectedItem != null}" />
+		<s:Button id="cancelButton" right="0"/>
 	</s:Group>
 	
 </s:Skin>

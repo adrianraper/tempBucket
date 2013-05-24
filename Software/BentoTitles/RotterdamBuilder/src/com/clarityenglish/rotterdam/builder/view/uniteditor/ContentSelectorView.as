@@ -47,9 +47,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case selectButton:
 					selectButton.addEventListener(MouseEvent.CLICK, onSelectButton);
+					selectButton.label = copyProvider.getCopyForId("selectContentButton");
 					break;
 				case cancelButton:
 					cancelButton.addEventListener(MouseEvent.CLICK, onCancelButton);
+					cancelButton.label = copyProvider.getCopyForId("cancelButton");
 					break;
 			}
 		}

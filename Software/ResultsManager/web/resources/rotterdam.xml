@@ -1,3 +1,4 @@
+
 <?xml version="1.0" encoding="UTF-8"?>
 <literals progam="IELTS" version="2.0">
 	<language name="English International" code="EN" mediaFolder="EN">
@@ -171,6 +172,10 @@
 			<lit name="widgetPlaceholderText">Type a description here.</lit>
 			<lit name="emptyFileLabel">You have not uploaded any files to the Resource Cloud</lit>
 			<lit name="emptyFileLabel2">You have not uploaded any files here</lit>
+			<lit name="courseSettingsLabel">Course Settings</lit>
+			<lit name="publishDatesLabel">Publish dates</lit>
+			<lit name="notificationsLabel">Notifications</lit>
+			<lit name="aboutLabel">About this course</lit>
 			<lit name="selectGroupLabel">1. Select a group</lit>
 			<lit name="startDateLabel">2. Start date for this course</lit>
 			<lit name="endDateLabel">3. End date for this course</lit>
@@ -181,6 +186,62 @@
 			<lit name="seePastUnitLabel">5. See past units?</lit>
 			<lit name="yesRadioButton">Yes</lit>
 			<lit name="noRadioButton">No</lit>
+			<lit name="welcomeEmailLabel">2. Click to send a welcome email for this course to students in the selected group.</lit>
+			<lit name="welcomeEmailButton">Email now2</lit>
+			<lit name="forStudentLabel">For all students doing this course on a week-by-week basis:</lit>
+			<lit name="sendAlertEmailCheckbox">Send an email when a new unit is available.</lit>
+			<lit name="courseNameLabel">Course name</lit>
+			<lit name="authorLabel">Author</lit>
+			<lit name="contactEmailLabel">Contact email</lit>
+			<lit name="directURLLabel">Direct URL for this course</lit>
+			<lit name="courseListTitleLabel">Choose a Course</lit>
+			<lit name="createCourseButton">Create a New Course</lit>
+			<lit name="myCoursesViewNavigator">My Courses</lit>
+			<lit name="cloudViewNavigator">Resource Cloud</lit>
+			<lit name="helpViewNavigator">Help</lit>
+			<lit name="editButton">Edit</lit>
+			<lit name="doneButton">Done</lit>
+			<lit name="addUnitButton">Add a unit</lit>
+			<lit name="unitCopyButton">Duplicate a unit</lit>
+			<lit name="publishCourseButton">Publish course</lit>
+			<lit name="publishChangeButton">Change published details</lit>
+			<lit name="oneClickPublishButton">1-click</lit>
+			<lit name="publishSettingsButton">Advanced</lit>
+			<lit name="oneClickLabel">Your course is immediately available to all your students.</lit>
+			<lit name="publishSettingsLabel">Scheduling options for your course.</lit>
+			<lit name="uploadPDFLabel">Upload PDF from</lit>
+			<lit name="resourceCloudButton">Resource Cloud2</lit>
+			<lit name="orLabel">or</lit>
+			<lit name="myComputerButton">My Computer</lit>
+			<lit name="uploadImageLabel">Upload Image from</lit>
+			<lit name="uploadAudioLabel">Upload Audio from</lit>
+			<lit name="uploadVideoLabel">Place your video URL here:</lit>
+			<lit name="webLinkURLLabel">Input your web URL here:</lit>
+			<lit name="webLinkTextLabel">Text to display:</lit>
+			<lit name="upButton">Learn more</lit>
+			<lit name="addTextLabel">Add text</lit>
+			<lit name="addPDFLabel">Add a PDF</lit>
+			<lit name="addVideoLabel">Add a video</lit>
+			<lit name="addIamgeLabel">Add an image</lit>
+			<lit name="addAudioLabel">Add an audio</lit>
+			<lit name="addExerciseLabel">Add a Clarity exercise</lit>
+			<lit name="itemListLabel">Choose the item you would like to add to your unit</lit>
+			<lit name="addItemButton">Add an item</lit>
+			<lit name="normalSaveButton">Save changes</lit>
+			<lit name="normalPreviewButton">Preview</lit>
+			<lit name="selectButton">Select</lit>
+			<lit name="cancelButton">Cancel</lit>
+			<lit name="backButton">Back to editor</lit>
+			<lit name="savePublishButton">Save and Publish</lit>
+			<lit name="resourseCloudLabel">Resource Cloud</lit>
+			<lit name="nameGridColumn">Name</lit>
+			<lit name="sizeGridColumn">Size</lit>
+			<lit name="settingPanel">My Storage space</lit>
+			<lit name="pdfFilesLabel">PDF files</lit>
+			<lit name="imageFilesLabel">Image files</lit>
+			<lit name="audioFilesLabel">Audio files</lit>
+			<lit name="contentWindowTitle">Select Clarity content</lit>
+			<lit name="selectContentButton">Select content</lit>
 		</group>
 	</language>
 </literals>

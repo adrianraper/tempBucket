@@ -61,9 +61,9 @@
 	</s:Group>
 	
 	<ui:CancelableTabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="40" bottom="0">
-		<s:ViewNavigator id="myCoursesViewNavigator" label="My Courses" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
-		<s:ViewNavigator label="Resource Cloud" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
-		<s:ViewNavigator label="Help" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="cloudViewNavigator" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="helpViewNavigator" left="0" right="0" height="100%" />
 	</ui:CancelableTabbedViewNavigator>
 	
 </s:Skin>

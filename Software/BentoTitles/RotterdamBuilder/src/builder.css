@@ -11,6 +11,7 @@
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace buildercourse "com.clarityenglish.rotterdam.builder.view.course.*";
 @namespace course "com.clarityenglish.rotterdam.view.course.*";
+@namespace courseui "com.clarityenglish.rotterdam.view.course.ui.*";
 @namespace title "com.clarityenglish.rotterdam.view.title.*";
 @namespace settings "com.clarityenglish.rotterdam.view.settings.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
@@ -122,11 +123,11 @@ course|CourseView s|Button#coursePublishButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.CoursePublishButtonSkin");
 }*/
 
-course|CourseView s|Button#publishSettingsButton {
+course|CourseView courseui|PublishButton#publishSettingsButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.PublishSettingButtonSkin");
 }
 
-course|CourseView s|Button#oneClickPublishButton {
+course|CourseView courseui|PublishButton#oneClickPublishButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.OneClickPublishButtonSkin");
 }
 

@@ -47,6 +47,9 @@ package com.clarityenglish.rotterdam.view.settings {
 	 */
 	public class SettingsView extends BentoView {
 		
+		[SkinPart]
+		public var courseSettingsLabel:Label;
+		
 		[SkinPart(required="true")]
 		public var tabBar:TabBar;
 		
@@ -127,7 +130,25 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var sendAlertEmailCheckbox:spark.components.CheckBox;
 		
 		[SkinPart]
+		public var welcomeEmailLabel:Label;
+		
+		[SkinPart]
 		public var welcomeEmailButton:Button;
+		
+		[SkinPart]
+		public var forStudentLabel:Label;
+		
+		[SkinPart]
+		public var courseNameLabel:Label;
+		
+		[SkinPart]
+		public var authorLabel:Label;
+		
+		[SkinPart]
+		public var contactEmailLabel:Label;
+		
+		[SkinPart]
+		public var directURLLabel:Label;
 		
 		[SkinPart]
 		public var calendar:Calendar;
@@ -267,11 +288,14 @@ package com.clarityenglish.rotterdam.view.settings {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case courseSettingsLabel:
+					courseSettingsLabel.text = copyProvider.getCopyForId("courseSettingsLabel");
+					break;
 				case tabBar:
 					tabBar.dataProvider = new ArrayList([
-						{ label: "Publish dates", data: "calendar" },
-						{ label: "Notifications", data: "email" }, 
-						{ label: "About this course", data: "about" }
+						{ label: copyProvider.getCopyForId("publishDatesLabel"), data: "calendar" },
+						{ label: copyProvider.getCopyForId("notificationsLabel"), data: "email" }, 
+						{ label: copyProvider.getCopyForId("aboutLabel"), data: "about" }
 					]);
 					
 					tabBar.requireSelection = true;
@@ -388,6 +412,7 @@ package com.clarityenglish.rotterdam.view.settings {
 							dirty.dispatch();
 						}
 					});
+					instance.label = copyProvider.getCopyForId("sendAlertEmailCheckbox");
 					break;
 				case calendar:
 					// Default the calendar to the current year and month
@@ -395,12 +420,15 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 				case saveButton:
 					instance.addEventListener(MouseEvent.CLICK, onSave);
+					instance.label = copyProvider.getCopyForId("savePublishButton");
 					break;
 				case backButton:
 					instance.addEventListener(MouseEvent.CLICK, onBack);
+					instance.label = copyProvider.getCopyForId("cancelButton");
 					break;
 				case welcomeEmailButton:
 					instance.addEventListener(MouseEvent.CLICK, onSendWelcomeEmail);
+					instance.label = copyProvider.getCopyForId("welcomeEmailButton");
 					break;
 				case seePastUnitLabel:
 					seePastUnitLabel.text = copyProvider.getCopyForId("seePastUnitLabel");
@@ -434,6 +462,24 @@ package com.clarityenglish.rotterdam.view.settings {
 					break;
 				case clearEndDateButton:
 					clearEndDateButton.addEventListener(MouseEvent.CLICK, onClearEndDate);
+					break;
+				case welcomeEmailLabel:
+					welcomeEmailLabel.text = copyProvider.getCopyForId("welcomeEmailLabel");
+					break;
+				case forStudentLabel:
+					forStudentLabel.text = copyProvider.getCopyForId("forStudentLabel");
+					break;
+				case courseNameLabel:
+					courseNameLabel.text = copyProvider.getCopyForId("courseNameLabel");
+					break;
+				case authorLabel:
+					authorLabel.text = copyProvider.getCopyForId("authorLabel");
+					break;
+				case contactEmailLabel:
+					contactEmailLabel.text = copyProvider.getCopyForId("contactEmailLabel");
+					break;
+				case directURLLabel:
+					directURLLabel.text = copyProvider.getCopyForId("directURLLabel");
 					break;
 			}
 		}

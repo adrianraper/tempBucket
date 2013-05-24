@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
+	import com.clarityenglish.rotterdam.view.course.ui.PublishButton;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -41,10 +42,10 @@ package com.clarityenglish.rotterdam.view.course {
 		public var addUnitButton:Button;
 		
 		[SkinPart]
-		public var publishSettingsButton:Button;
+		public var publishSettingsButton:PublishButton;
 		
 		[SkinPart]
-		public var oneClickPublishButton:Button;
+		public var oneClickPublishButton:PublishButton;
 		
 		[SkinPart]
 		public var unitCopyButton:Button;
@@ -161,15 +162,21 @@ package com.clarityenglish.rotterdam.view.course {
 					break;
 				case addUnitButton:
 					addUnitButton.addEventListener(MouseEvent.CLICK, onAddUnit);
+					addUnitButton.label = copyProvider.getCopyForId("addUnitButton");
 					break;
 				case publishSettingsButton:
 					publishSettingsButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
+					publishSettingsButton.label = copyProvider.getCopyForId("publishSettingsButton");
+					publishSettingsButton.text = copyProvider.getCopyForId("publishSettingsLabel");
 					break;
 				case oneClickPublishButton:
 					oneClickPublishButton.addEventListener(MouseEvent.CLICK, onCoursePublish);
+					oneClickPublishButton.label = copyProvider.getCopyForId("oneClickPublishButton");
+					oneClickPublishButton.text = copyProvider.getCopyForId("oneClickLabel");
 					break;
 				case unitCopyButton:
 					unitCopyButton.addEventListener(MouseEvent.CLICK, onUnitCopy);
+					unitCopyButton.label = copyProvider.getCopyForId("unitCopyButton");
 					break;
 				/*gh #204
 				case unitPasteButton:
@@ -178,12 +185,14 @@ package com.clarityenglish.rotterdam.view.course {
 				//gh #208
 				case publishCourseButton:
 					publishCourseButton.addEventListener(MouseEvent.CLICK, onPublishCourse);
+					publishCourseButton.label = copyProvider.getCopyForId("publishCourseButton");
 					break;
 				case publishSelectionGroup:
 					publishSelectionGroup.addEventListener(MouseEvent.CLICK, onPublishSelection);
 					break
 				case publishChangeButton:
 					publishChangeButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
+					publishChangeButton.label = copyProvider.getCopyForId("publishChangeButton");
 					break;
 				case anim:
 					anim.addEventListener(EffectEvent.EFFECT_END, onAnimEnd);

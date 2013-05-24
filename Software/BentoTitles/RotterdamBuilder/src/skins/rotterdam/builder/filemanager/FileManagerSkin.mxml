@@ -42,7 +42,7 @@
 	<!--<s:TextInput id="searchTextInput" />-->
 	<s:HGroup top="10" left="26" includeIn="normal">
 		<s:SWFLoader source="@Embed(source = '/skins/rotterdam/builder/assets/cloud/icon_resource-cloud.png')" />
-		<s:Label text="Resource Cloud" fontWeight="bold" fontSize="16" />
+		<s:Label id="resourseCloudLabel" fontWeight="bold" fontSize="16" />
 	</s:HGroup>
 	
 	<s:Spacer height="10"/>
@@ -52,8 +52,8 @@
 		<s:DataGrid id="fileList" borderVisible="false" width.normal="65%" width.select="500" height.normal="500" height.select="280" selectionColor="#FFF6CC" rollOverColor="#FFF6CC" caretColor="#FFF6CC">
 			<s:columns>
 				<s:ArrayList>
-					<s:GridColumn dataField="@filename" headerText="Name"/>
-					<s:GridColumn dataField="@size" headerText="Size" labelFunction="sizeFunction"/>
+					<s:GridColumn id="nameGridColumn" dataField="@filename" />
+					<s:GridColumn id="sizeGridColumn" dataField="@size" labelFunction="sizeFunction"/>
 				</s:ArrayList>
 			</s:columns>
 		</s:DataGrid>
@@ -64,7 +64,7 @@
 		</s:Rect>
 		<s:Label id="emptyFileLabel" horizontalCenter.normal="-220" horizontalCenter.select="0" verticalCenter="0" visible="{hostComponent.totalFile == 0}" fontSize="15"/>
 		
-		<s:Panel id="settingPanel" title="My Storage space" right="0" width="35%" height="350" borderVisible="false" dropShadowVisible="false" includeIn="normal">
+		<s:Panel id="settingPanel" right="0" width="35%" height="350" borderVisible="false" dropShadowVisible="false" includeIn="normal">
 			<s:Ellipse width="220" height="220" horizontalCenter="0" verticalCenter="0">
 				<s:fill>
 					<s:SolidColor color="0xE6E6E6" />
@@ -83,17 +83,17 @@
 			</mx:PieChart>
 						<s:HGroup top="335" horizontalCenter="0" gap="15" includeIn="normal">
 				<s:VGroup verticalAlign="middle" horizontalAlign="center">
-					<s:Label text="PDF files" color="#324718" fontSize="16" fontWeight="bold"/>
+					<s:Label id="pdfFilesLabel" color="#324718" fontSize="16" fontWeight="bold"/>
 					<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_pdf.png')"/>
 					<s:Label id="pdfFilesTotal" color="#324718" fontSize="16" fontWeight="bold" text="{hostComponent.textPDF}"/>
 				</s:VGroup>
 				<s:VGroup verticalAlign="middle" horizontalAlign="center">
-					<s:Label text="Image files" color="#5C4800" fontSize="16" fontWeight="bold"/>
+					<s:Label id="imageFilesLabel" color="#5C4800" fontSize="16" fontWeight="bold"/>
 					<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_image.png')"/>
 					<s:Label id="imageFilesTotal" color="#5C4800" fontSize="16" fontWeight="bold" text="{hostComponent.textImage}"/>
 				</s:VGroup>
 				<s:VGroup verticalAlign="middle" horizontalAlign="center">
-					<s:Label text="Audio files" color="#14536E" fontSize="16" fontWeight="bold"/>
+					<s:Label id="audioFilesLabel" color="#14536E" fontSize="16" fontWeight="bold"/>
 					<s:SWFLoader source="@Embed(source='/skins/rotterdam/builder/assets/cloud/icon_audio.png')"/>
 					<s:Label id="audioFilesTotal" color="#14536E" fontSize="16" fontWeight="bold" text="{hostComponent.textAudio}"/>
 				</s:VGroup>		
@@ -102,8 +102,8 @@
 	</s:Group>
 	
 	<s:Group top="310" bottom="10" includeIn="select" right.select="10" left.select="10">
-		<s:Button id="selectButton" label="Select" enabled="{fileList.selectedItem != null}" width="80" fontSize="13" />
-		<s:Button id="cancelButton" label="Cancel" width="80" fontSize="13" right.select="0"/>
+		<s:Button id="selectButton" enabled="{fileList.selectedItem != null}" width="80" fontSize="13" />
+		<s:Button id="cancelButton" width="80" fontSize="13" right.select="0"/>
 	</s:Group>
 	
 	

@@ -93,17 +93,20 @@
 			facade.sendNotification(RotterdamNotifications.TEXT_WIDGET_ADD, options);
 		}
 		
-		protected function onAddPDF(options:Object, widget:XML):void {
+		protected function onAddPDF(options:Object, widget:XML, title:String = null):void {
+			if (title) options.title = title;
 			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.PDF_WIDGET_ADD, options);
 		}
 		
-		protected function onAddImage(options:Object, widget:XML):void {
+		protected function onAddImage(options:Object, widget:XML, title:String = null):void {
+			if (title) options.title = title;
 			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.IMAGE_WIDGET_ADD, options);
 		}
 		
-		protected function onAddAudio(options:Object, widget:XML):void {
+		protected function onAddAudio(options:Object, widget:XML, title:String = null):void {
+			if (title) options.title = title;
 			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.AUDIO_WIDGET_ADD, options);
 		}
@@ -113,8 +116,10 @@
 			facade.sendNotification(RotterdamNotifications.VIDEO_WIDGET_ADD, options);
 		}
 		
-		protected function onAddExercise(options:Object, widget:XML):void {
-			if (widget) options.node = widget; // gh#115 - edit an existing widget
+		// gh#305
+		protected function onAddExercise(options:Object, widget:XML, title:String):void {
+			options.title = title
+			if (widget) options.node = widget; // gh#115 - edit an existing widget				
 			facade.sendNotification(RotterdamNotifications.EXERCISE_WIDGET_ADD, options);
 		}
 		

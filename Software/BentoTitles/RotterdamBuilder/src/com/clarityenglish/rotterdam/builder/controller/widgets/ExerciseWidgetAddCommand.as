@@ -23,6 +23,11 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			super.execute(note);
 			
 			var node:XML, tempid:String = UIDUtil.createUID();
+			var title:String;
+			if(note.getBody().title) {
+				title = note.getBody().title;
+			}			
+
 			if (note.getBody().node) {
 				node = note.getBody().node;
 			} else {
@@ -32,7 +37,8 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			node.@tempid = tempid;
 			
 			var courseSelectOptions:Object = {
-				node: node
+				node: node,
+				title: title
 			};
 			
 			facade.sendNotification(RotterdamNotifications.CONTENT_WINDOW_SHOW, courseSelectOptions, tempid);

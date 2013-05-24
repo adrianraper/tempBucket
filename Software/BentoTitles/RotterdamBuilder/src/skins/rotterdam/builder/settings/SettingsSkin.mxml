@@ -42,7 +42,7 @@
 	</s:states>
 	
 	<widgets:CogIcon2 top="25" left="20" />
-	<s:Label text="Course Settings" top="25" left="45" fontSize="16" fontWeight="bold" />
+	<s:Label id="courseSettingsLabel" top="25" left="45" fontSize="16" fontWeight="bold" />
 
 	<!-- The tab bar -->
 	<s:TabBar id="tabBar" top="70" left="30"/>
@@ -133,26 +133,26 @@
 				
 				<!-- Notification settings -->
 				<s:VGroup includeIn="email">
-					<s:Label text="2. Click to send a welcome email for this course to students in the selected group." fontWeight="bold" />
-					<s:Button id="welcomeEmailButton" label="Email now" enabled="{groupTree.selectedItem != null}"/>
+					<s:Label id="welcomeEmailLabel" fontWeight="bold" />
+					<s:Button id="welcomeEmailButton" enabled="{groupTree.selectedItem != null}"/>
 					<s:Spacer height="{settingBackground.height * 0.03}" />
-					<s:Label text="For all students doing this course on a week-by-week basis:" />
-					<s:CheckBox id="sendAlertEmailCheckbox" label="Send an email when a new unit is available." />
+					<s:Label id="forStudentLabel" />
+					<s:CheckBox id="sendAlertEmailCheckbox" />
 				</s:VGroup>
 				
 				<!-- About this course -->
 				<s:VGroup includeIn="about" paddingTop="22" left="0" right="0">
-					<s:Label text="Course name" fontWeight="bold" />
+					<s:Label id="courseNameLabel" fontWeight="bold" />
 					<s:TextInput id="aboutCourseNameTextInput" width="300" />
 					
 					<s:Spacer height="{settingBackground.height * 0.05}" />
 					
-					<s:Label text="Author" fontWeight="bold" />
+					<s:Label id="authorLabel" fontWeight="bold" />
 					<s:TextInput id="aboutAuthorTextInput" width="300" />
 					
 					<s:Spacer height="{settingBackground.height * 0.05}" />
 					
-					<s:Label text="Contact email" fontWeight="bold" />
+					<s:Label id="contactEmailLabel" fontWeight="bold" />
 					<s:TextInput id="aboutEmailTextInput" width="300" />
 					
 					<s:Spacer height="{settingBackground.height * 0.05}" />
@@ -162,7 +162,7 @@
 					
 					<s:Spacer height="{settingBackground.height * 0.05}" />
 					
-					<s:Label text="Direct URL for this course" fontWeight="bold" />
+					<s:Label id="directURLLabel" fontWeight="bold" />
 					<s:TextInput id="directStartURLLabel" editable="false" width="700" borderVisible="false"/>
 					
 				</s:VGroup>
@@ -217,8 +217,8 @@
 		</s:Rect>
 		
 		<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
-			<s:Button id="saveButton" label="Save and Publish" useHandCursor="true" buttonMode="true" width="160" fontWeight="bold"/>
-			<s:Button id="backButton" label="Cancel" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+			<s:Button id="saveButton" useHandCursor="true" buttonMode="true" width="160" fontWeight="bold"/>
+			<s:Button id="backButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
 		</s:HGroup>
 	</s:Group>
 
