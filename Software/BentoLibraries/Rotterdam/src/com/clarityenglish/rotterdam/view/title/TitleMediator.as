@@ -25,7 +25,10 @@
 			super.onRegister();
 			
 			view.dirtyWarningShow.add(onDirtyWarningShow);
-			view.logOut.add(onLogOut);
+			view.logout.add(onLogout);
+			
+			// gh#299 - always start in course selector
+			view.currentState = "course_selector";
 		}
 				
 		override public function onRemove():void {
@@ -60,8 +63,8 @@
 			}
 		}
 		
-		//gh#217
-		private function onLogOut():void {
+		// gh#217
+		private function onLogout():void {
 			/*var logOutFun:Function = function():void {
 				sendNotification(CommonNotifications.LOGOUT);
 				view.myCoursesViewNavigator.popToFirstView();

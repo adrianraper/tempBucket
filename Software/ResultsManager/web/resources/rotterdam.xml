@@ -198,6 +198,7 @@
 			<lit name="courseListTitleLabel">Choose a Course</lit>
 			<lit name="createCourseButton">Create a New Course</lit>
 			<lit name="myCoursesViewNavigator">My Courses</lit>
+			<lit name="progressViewNavigator">Progress</lit>
 			<lit name="cloudViewNavigator">Resource Cloud</lit>
 			<lit name="helpViewNavigator">Help</lit>
 			<lit name="editButton">Edit</lit>

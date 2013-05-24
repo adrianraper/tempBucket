@@ -39,8 +39,8 @@ package com.clarityenglish.rotterdam.view.title.ui {
 		}
 		
 		mx_internal override function tabBarRenderer_clickHandler(event:MouseEvent):void {
-			//gh #242
-			if (((event.target).itemIndex == super.selectedIndex) && super.selectedIndex == 0 ) {
+			// gh#242
+			if (((event.target).itemIndex == super.selectedIndex) && super.selectedIndex == 0) {
 				var next:Function = function():void {
 					_tabBarRenderer_clickHandler(event);
 				};

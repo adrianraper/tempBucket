@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.rotterdam.view.course.CourseView;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
@@ -7,22 +8,27 @@ package com.clarityenglish.rotterdam.view.title {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import mx.controls.Button;
-	
-	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.ViewNavigator;
-	import spark.events.IndexChangeEvent;
 	
+	// This tells us that the skin has these states, but the view needs to know about them too
+	[SkinState("course_selector")]
+	[SkinState("course")]
+	//[SkinState("progress")] - optional
+	//[SkinState("filemanager")] - optional
 	public class TitleView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var tabbedViewNavigator:CancelableTabbedViewNavigator;
+		public var sectionNavigator:CancelableTabbedViewNavigator;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var myCoursesViewNavigator:ViewNavigator;
+		
+		[SkinPart]
+		public var progressViewNavigator:ViewNavigator;
 		
 		[SkinPart]
 		public var cloudViewNavigator:ViewNavigator;
@@ -31,32 +37,45 @@ package com.clarityenglish.rotterdam.view.title {
 		public var helpViewNavigator:ViewNavigator;
 		
 		[SkinPart]
-		public var logoutButton:spark.components.Button;
+		public var logoutButton:Button;
 		
 		public var dirtyWarningShow:Signal = new Signal(Function);
 		
-		public var logOut:Signal = new Signal();
+		public var logout:Signal = new Signal();
+		
+		public function TitleView() {
+			super();
+			
+			// The first one listed will be the default
+			StateUtil.addStates(this, [ "course_selector", "course", "progress" ], true);
+		}
 		
 		public function showCourseView():void {
-			if (ClassUtil.getClass(myCoursesViewNavigator.activeView) == CourseSelectorView) {
-				myCoursesViewNavigator.pushView(CourseView);
-			}
+			currentState = "course";
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case tabbedViewNavigator:
+				case sectionNavigator:
+					setNavStateMap(sectionNavigator, {
+						course_selector: { viewClass: CourseSelectorView },
+						course: { viewClass: CourseView, stack: true }
+						// TODO: this really should be here, but there is some bug whereby the framework is straight away changing back from progress to course, so leave for now
+						//progress: { viewClass: ProgressView }
+					});
+					
 					// gh#83
-					tabbedViewNavigator.changeConfirmFunction = function(next:Function):void {
+					sectionNavigator.changeConfirmFunction = function(next:Function):void {
 						dirtyWarningShow.dispatch(next); // If there is no dirty warning this will cause next() to be executed immediately
 					};
 					break;
 				case myCoursesViewNavigator:
-					// gh#197
-					myCoursesViewNavigator.addEventListener("viewChangeComplete", function(e:Event):void { invalidateSkinState(); });
 					myCoursesViewNavigator.label = copyProvider.getCopyForId("myCoursesViewNavigator");
+					break;
+				case progressViewNavigator:
+					progressViewNavigator.label = copyProvider.getCopyForId("progressViewNavigator");
 					break;
 				case cloudViewNavigator:
 					cloudViewNavigator.label = copyProvider.getCopyForId("cloudViewNavigator");
@@ -65,22 +84,20 @@ package com.clarityenglish.rotterdam.view.title {
 					helpViewNavigator.label = copyProvider.getCopyForId("helpViewNavigator");
 					break;
 				case logoutButton:
-					//gh#217
-					logoutButton.addEventListener(MouseEvent.CLICK, onLogOutClick);
+					// gh#217
+					logoutButton.label = copyProvider.getCopyForId("LogOut");
+					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
 			}
 		}
 		
 		protected override function getCurrentSkinState():String {
-			// gh#197
-			return (myCoursesViewNavigator && ClassUtil.getClass(myCoursesViewNavigator.activeView) == CourseSelectorView && skin.hasState("course_selector"))
-				? "course_selector"
-				: super.getCurrentSkinState();
+			return currentState;
 		}
 		
-		//gh#217
-		protected function onLogOutClick(event:Event):void {
-			logOut.dispatch();
+		// gh#217
+		protected function onLogoutClick(event:Event):void {
+			logout.dispatch();
 		}
 		
 	}

@@ -180,8 +180,8 @@ package com.clarityenglish.common.model {
 			
 			// #323
 			if (user && (configProxy.getLicenceType() == Title.LICENCE_TYPE_LT || 
-						configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
-						configProxy.getLicenceType() == Title.LICENCE_TYPE_TT)) {
+						 configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
+						 configProxy.getLicenceType() == Title.LICENCE_TYPE_TT)) {
 				
 				// #319 Instance ID per productCode
 				var params:Array = [ user.userID, configProxy.getProductCode() ];

@@ -12,6 +12,7 @@ package com.clarityenglish.rotterdam.builder {
 	[SkinState("loading")]
 	[SkinState("login")]
 	[SkinState("title")]
+	[SkinState("credits")]
 	public class BuilderApplication extends BentoApplication implements IBentoApplication {
 		
 		public var browserManager:IBrowserManager;
@@ -19,7 +20,7 @@ package com.clarityenglish.rotterdam.builder {
 		public function BuilderApplication() {
 			super();
 			
-			StateUtil.addStates(this, [ "loading", "login", "title" ], true);
+			StateUtil.addStates(this, [ "loading", "login", "title", "credits" ], true);
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, creationComplete);
 		}

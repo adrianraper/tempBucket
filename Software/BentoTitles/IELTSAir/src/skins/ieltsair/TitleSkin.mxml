@@ -90,7 +90,7 @@
 			</s:navigationContent>
 		</s:ViewNavigator>
 		
-		<s:ViewNavigator id="creditsViewNavigator" firstView="com.clarityenglish.ielts.view.credits.CreditsView" title="Road to IELTS" left="0" right="0" height="100%">
+		<s:ViewNavigator id="creditsViewNavigator" firstView="com.clarityenglish.bento.view.credits.CreditsView" title="Road to IELTS" left="0" right="0" height="100%">
 			<s:navigationContent>
 				<s:Button id="creditsViewNavigatorButton1" click="sectionNavigator.selectedIndex = 0" />
 			</s:navigationContent>

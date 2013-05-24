@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.bento {
 	import com.clarityenglish.bento.controller.*;
 	import com.clarityenglish.bento.view.*;
+	import com.clarityenglish.bento.view.credits.CreditsMediator;
+	import com.clarityenglish.bento.view.credits.CreditsView;
 	import com.clarityenglish.bento.view.marking.MarkingMediator;
 	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.view.nonetwork.NoNetworkMediator;
@@ -69,6 +71,7 @@
 			mapView(MarkingView, MarkingMediator);
 			mapView(WarningView, WarningMediator);
 			mapView(ErrorView, ErrorMediator);
+			mapView(CreditsView, CreditsMediator);
 			mapView(NoNetworkView, NoNetworkMediator);
 			
 			mapView(ProgressView, ProgressMediator);

@@ -5,6 +5,7 @@
 @namespace unitui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 @namespace calendar "com.clarityenglish.controls.calendar.*";
+@namespace credits "com.clarityenglish.bento.view.credits.*";
 
 unit|UnitView {
 	skinClass: ClassReference("skins.rotterdam.unit.UnitSkin");
@@ -68,4 +69,8 @@ calendar|Calendar s|Button#prevMonthButton {
 
 calendar|Calendar s|Button#nextMonthButton {
 	skinClass: ClassReference("skins.com.clarityenglish.controls.calendar.NextMonthButtonSkin");
+}
+
+credits|CreditsView {
+	skinClass: ClassReference("skins.rotterdam.CreditsSkin");
 }

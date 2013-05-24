@@ -2,7 +2,7 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace login "com.clarityenglish.ielts.view.login.*";
-@namespace credits "com.clarityenglish.ielts.view.credits.*";
+@namespace credits "com.clarityenglish.bento.view.credits.*";
 @namespace title "com.clarityenglish.ielts.view.title.*";
 @namespace zone "com.clarityenglish.ielts.view.zone.*";
 @namespace zoneui "com.clarityenglish.ielts.view.zone.ui.*";

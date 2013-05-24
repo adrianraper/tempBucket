@@ -2,39 +2,20 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*"
-		creationComplete="onCreationComplete(event)">
+		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.title.TitleView")]
 	</fx:Metadata>
 	
-	<fx:Script>
-		<![CDATA[
-			import mx.events.FlexEvent;
-			
-			import org.davekeen.transitions.PatchedSlideViewTransition;
-			
-			import spark.transitions.ViewTransitionDirection;
-			
-			protected function onCreationComplete(event:FlexEvent):void {
-				// Use a custom PatchedSlideViewTransition as the stock one has a bug when the tab bar is hidden.
-				var pushTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
-				pushTransition.direction = ViewTransitionDirection.LEFT;
-				myCoursesViewNavigator.defaultPushTransition = pushTransition;
-				
-				var popTransition:PatchedSlideViewTransition = new PatchedSlideViewTransition();
-				popTransition.direction = ViewTransitionDirection.RIGHT;
-				myCoursesViewNavigator.defaultPopTransition = popTransition;
-			}
-		]]>
-	</fx:Script>
-	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		
 		<s:State name="course_selector" />
+		<s:State name="course" />
+		<s:State name="progress" />
 	</s:states>
 	
 	<s:Group left="0" right="0" top="0">
@@ -48,7 +29,10 @@
 		</s:Rect>
 		<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/title/ccb_logo.png')" left="35" top="8"/>
 		<s:Label text="Clarity Course Player" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="70" top="15"/>
-		<s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" right="70" top="15"/>
+		<s:Label text="Clarity Language Consultants Ltd." color="0xFFFFFF" fontSize="12" right="80" top="15"/>
+		
+		<s:Button id="logoutButton" right="5" top="8" />
+		
 		<s:Rect left="0" right="0" top="40" bottom="0" height="45">
 			<s:fill>
 				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
@@ -59,8 +43,8 @@
 		</s:Rect>
 	</s:Group>
 	
-	<ui:CancelableTabbedViewNavigator id="tabbedViewNavigator" left="0" right="0" top="40" bottom="0">
-		<s:ViewNavigator id="myCoursesViewNavigator" label="My Courses" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
+	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="40" bottom="0">
+		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
 		<s:ViewNavigator label="Progress" firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" excludeFrom="course_selector" />
 	</ui:CancelableTabbedViewNavigator>
 	

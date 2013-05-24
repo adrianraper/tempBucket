@@ -6,10 +6,10 @@
 		xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*"
 		xmlns:login="com.clarityenglish.ielts.view.login.*"
 		xmlns:menu="com.clarityenglish.ielts.view.title.*"
-		xmlns:credits="com.clarityenglish.ielts.view.credits.*"
+		xmlns:credits="com.clarityenglish.bento.view.credits.*"
 		xmlns:title="com.clarityenglish.ielts.view.title.*"
-		xmlns:application="skins.ieltsair.assets.application.*"
-		xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*" xmlns:application1="skins.air.assets.application.*">
+		xmlns:application="skins.air.assets.application.*"
+		xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.IELTSApplication")]
@@ -28,7 +28,7 @@
 	</s:states>
 	
 	<!-- Gradient -->
-	<application1:BackgroundGradient left="0" right="0" top="0" bottom="0" cacheAsBitmap="true" />
+	<application:BackgroundGradient left="0" right="0" top="0" bottom="0" cacheAsBitmap="true" />
 	
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">

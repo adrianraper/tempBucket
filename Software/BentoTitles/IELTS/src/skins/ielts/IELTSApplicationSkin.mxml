@@ -6,7 +6,7 @@
 		xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*"
 		xmlns:login="com.clarityenglish.ielts.view.login.*"
 		xmlns:menu="com.clarityenglish.ielts.view.title.*"
-		xmlns:credits="com.clarityenglish.ielts.view.credits.*"
+		xmlns:credits="com.clarityenglish.bento.view.credits.*"
 		xmlns:title="com.clarityenglish.ielts.view.title.*"
 		xmlns:nonetwork="com.clarityenglish.bento.view.nonetwork.*">
 	<!-- host component -->

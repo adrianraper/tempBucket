@@ -164,6 +164,8 @@
     <classEntry path="skins.air.assets.application.BackgroundGradient"/>
     <classEntry path="com.clarityenglish.bento.view.nonetwork.NoNetworkMediator"/>
     <classEntry path="com.clarityenglish.bento.view.nonetwork.NoNetworkView"/>
+    <classEntry path="com.clarityenglish.bento.view.credits.CreditsView"/>
+    <classEntry path="com.clarityenglish.bento.view.credits.CreditsMediator"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
