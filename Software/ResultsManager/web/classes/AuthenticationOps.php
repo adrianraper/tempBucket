@@ -105,8 +105,9 @@ class AuthenticationOps {
 		// If there are no ids in the array do nothing
 		if (sizeof($userIdArray) == 0) return;
 		
-		$diff = array_diff($userIdArray, Session::get('valid_userIDs'));
-			
+		$valid_userIDs = Session::is_set('valid_userIDs') ? Session::get('valid_userIDs') : array();
+		$diff = array_diff($userIdArray, $valid_userIDs);
+		
 		if (sizeof($diff) == 0) {
 			return;
 		} else {
