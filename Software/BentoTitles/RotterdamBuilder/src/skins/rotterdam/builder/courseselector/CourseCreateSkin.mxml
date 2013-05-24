@@ -32,8 +32,7 @@
 	</s:layout>
 	
 	<s:Form width="100%" height="100%" defaultButton="{createButton}">
-		<s:FormHeading left="16" label="Create a new course" />
-		<s:FormItem label="Course name:" fontSize="13" required="true">
+		<s:FormItem label="Course name:" fontSize="13" required="false">
 			<s:TextInput id="captionTextInput" widthInChars="15" />
 		</s:FormItem>
 		

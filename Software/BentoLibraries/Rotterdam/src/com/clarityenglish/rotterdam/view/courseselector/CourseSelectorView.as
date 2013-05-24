@@ -74,8 +74,8 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		}
 		
 		protected function onDeleteCourse(event:CourseDeleteEvent):void {
-			Alert.show("Are you sure", "Delete", Vector.<String>([ "No", "Yes" ]), this, function(closeEvent:CloseEvent):void {
-				if (closeEvent.detail == 1)
+			Alert.show("Do you want to delete this course?", "There is no undo...", Vector.<String>([ "Yes", "No" ]), this, function(closeEvent:CloseEvent):void {
+				if (closeEvent.detail == 0)
 					deleteCourse.dispatch(event.course);
 			});
 		}

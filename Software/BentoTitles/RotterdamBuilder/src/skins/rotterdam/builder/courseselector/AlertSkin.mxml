@@ -180,7 +180,7 @@ in accordance with the terms of the license agreement accompanying it.
 		
 		<!-- layer 3: contents -->
 		<!--- Contains the vertical stack of titlebar content and controlbar. -->
-		<s:Group left="1" right="1" top="1" bottom="1" id="contents" width="200" height="120">
+		<s:Group left="1" right="1" top="1" bottom="1" id="contents" width="250" height="120">
 			<s:layout>
 				<s:VerticalLayout gap="0" horizontalAlign="justify" />
 			</s:layout>
@@ -242,7 +242,7 @@ in accordance with the terms of the license agreement accompanying it.
 						  verticalAlign="middle" >
 					<s:Label id="messageDisplay"
 							 left="3" right="3" top="1" bottom="0" minHeight="30"
-							 color="0xFF0000" fontWeight="bold"  fontSize="14"/>
+							 color="0x000000" fontWeight="normal"  fontSize="14"/>
 					<s:HGroup id="buttonGroup" width="100%" minWidth="0" minHeight="0"
 							  gap="50"/>
 				</s:VGroup>

@@ -67,7 +67,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		}
 		
 		private function onUploadCancel(e:Event):void {
-			//gh #212
+			// gh#212
 			if (!node.hasOwnProperty("@src"))
 				facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, node);
 			
@@ -78,7 +78,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamUpload.php";
 			
-			// GH #32
+			// gh#32
 			if (FlexGlobals.topLevelApplication.parameters.sessionid) uploadScript += "?PHPSESSID=" + FlexGlobals.topLevelApplication.parameters.sessionid;
 			
 			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_START, null, tempWidgetId);
