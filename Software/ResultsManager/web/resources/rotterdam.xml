@@ -209,7 +209,7 @@
 			<lit name="oneClickLabel">Your course is immediately available to all your students.</lit>
 			<lit name="publishSettingsLabel">Scheduling options for your course.</lit>
 			<lit name="uploadPDFLabel">Upload PDF from</lit>
-			<lit name="resourceCloudButton">Resource Cloud2</lit>
+			<lit name="resourceCloudButton">Resource Cloud</lit>
 			<lit name="orLabel">or</lit>
 			<lit name="myComputerButton">My Computer</lit>
 			<lit name="uploadImageLabel">Upload Image from</lit>
