@@ -51,7 +51,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			switch (instance) {
 				case createCourseButton:
 					createCourseButton.addEventListener(MouseEvent.CLICK, onCreateCourse);
-					createCourseButton.label = copyProvider.getCopyForId("courseListTitleLabel");
+					createCourseButton.label = copyProvider.getCopyForId("createCourseButton");
 					break;
 				case courseList:
 					courseList.dataGroup.doubleClickEnabled = true;
@@ -74,7 +74,11 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		}
 		
 		protected function onDeleteCourse(event:CourseDeleteEvent):void {
-			Alert.show("Do you want to delete this course?", "There is no undo...", Vector.<String>([ "Yes", "No" ]), this, function(closeEvent:CloseEvent):void {
+			var alertMessage:String = copyProvider.getCopyForId("deleteCourseWarning");
+			var alertTitle:String = copyProvider.getCopyForId("noUndoWarning");
+			var alertYes:String = copyProvider.getCopyForId("yesButton");
+			var alertNo:String = copyProvider.getCopyForId("noButton");
+			Alert.show(alertMessage, alertTitle, Vector.<String>([ alertYes, alertNo ]), this, function(closeEvent:CloseEvent):void {
 				if (closeEvent.detail == 0)
 					deleteCourse.dispatch(event.course);
 			});

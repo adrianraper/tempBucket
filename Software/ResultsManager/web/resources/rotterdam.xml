@@ -8,7 +8,7 @@
 			<lit name="errorUnknown" code="100">Unknown error</lit>
 			
 			<lit name="errorNoSuchUser" code="200">Your login name or ID is not registered. Please contact your administrator. (option {loginOption})</lit>
-			<lit name="errorNoProductCode" code="201">No productCode sent.</lit>
+			<lit name="errorNoProductCode" code="201">No product code sent.</lit>
 			<lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
 			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
 			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account (productCode={productCode})</lit>
@@ -67,7 +67,7 @@
 			<lit name="errorUploadNoPOST" code="706">No POST data was found in this upload. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorExceedMaxFileSize" code="707">Your file is too big, please upload a file less than 5M.</lit>
 			
-			<lit name="errorSingleVideoIOS" code="707">Only a single video widget per exercise is currently supported on iOS.</lit>
+			<lit name="errorSingleVideoIOS" code="707">Only a single video per unit is currently supported on iOS.</lit>
 			
             <lit name="pathCCB">CCB</lit>
             <lit name="pathTenseBuster">TenseBuster</lit>
@@ -171,8 +171,8 @@
 			<lit name="settingsDirty">Your changes to the settings have not been saved. Are you sure you want to continue?</lit>
 			<lit name="uploadsDirty">There are files currently uploading. Are you sure you want to continue?</lit>
 			<lit name="widgetPlaceholderText">Type a description here.</lit>
-			<lit name="emptyFileLabel">You have not uploaded any files to the Resource Cloud</lit>
-			<lit name="emptyFileLabel2">You have not uploaded any files here</lit>
+			<lit name="emptyFileLabel">You have not uploaded any files to the Resource Cloud.</lit>
+			<lit name="emptyFileLabel2">You have not uploaded any files here.</lit>
 			<lit name="courseSettingsLabel">Course Settings</lit>
 			<lit name="publishDatesLabel">Publish dates</lit>
 			<lit name="notificationsLabel">Notifications</lit>
@@ -188,15 +188,15 @@
 			<lit name="yesRadioButton">Yes</lit>
 			<lit name="noRadioButton">No</lit>
 			<lit name="welcomeEmailLabel">2. Click to send a welcome email for this course to students in the selected group.</lit>
-			<lit name="welcomeEmailButton">Email now2</lit>
+			<lit name="welcomeEmailButton">Email now</lit>
 			<lit name="forStudentLabel">For all students doing this course on a week-by-week basis:</lit>
 			<lit name="sendAlertEmailCheckbox">Send an email when a new unit is available.</lit>
 			<lit name="courseNameLabel">Course name</lit>
 			<lit name="authorLabel">Author</lit>
 			<lit name="contactEmailLabel">Contact email</lit>
 			<lit name="directURLLabel">Direct URL for this course</lit>
-			<lit name="courseListTitleLabel">Choose a Course</lit>
-			<lit name="createCourseButton">Create a New Course</lit>
+			<lit name="courseListTitleLabel">Choose a course</lit>
+			<lit name="createCourseButton">Create a new course</lit>
 			<lit name="myCoursesViewNavigator">My Courses</lit>
 			<lit name="progressViewNavigator">Progress</lit>
 			<lit name="cloudViewNavigator">Resource Cloud</lit>
@@ -215,8 +215,8 @@
 			<lit name="resourceCloudButton">Resource Cloud</lit>
 			<lit name="orLabel">or</lit>
 			<lit name="myComputerButton">My Computer</lit>
-			<lit name="uploadImageLabel">Upload Image from</lit>
-			<lit name="uploadAudioLabel">Upload Audio from</lit>
+			<lit name="uploadImageLabel">Upload the image from</lit>
+			<lit name="uploadAudioLabel">Upload the audio from</lit>
 			<lit name="uploadVideoLabel">Place your video URL here:</lit>
 			<lit name="webLinkURLLabel">Input your web URL here:</lit>
 			<lit name="webLinkTextLabel">Text to display:</lit>
@@ -234,16 +234,19 @@
 			<lit name="selectButton">Select</lit>
 			<lit name="cancelButton">Cancel</lit>
 			<lit name="backButton">Back to editor</lit>
-			<lit name="savePublishButton">Save and Publish</lit>
+			<lit name="savePublishButton">Save and publish</lit>
 			<lit name="resourseCloudLabel">Resource Cloud</lit>
 			<lit name="nameGridColumn">Name</lit>
 			<lit name="sizeGridColumn">Size</lit>
-			<lit name="settingPanel">My Storage space</lit>
+			<lit name="settingPanel">My storage space</lit>
 			<lit name="pdfFilesLabel">PDF files</lit>
 			<lit name="imageFilesLabel">Image files</lit>
 			<lit name="audioFilesLabel">Audio files</lit>
 			<lit name="contentWindowTitle">Select Clarity content</lit>
 			<lit name="selectContentButton">Select content</lit>
+			<lit name="deleteCourseWarning">Do you want to delete this course?</lit>
+			<lit name="noUndoWarning">There is no undo...</lit>
+			
 		</group>
 	</language>
 </literals>
