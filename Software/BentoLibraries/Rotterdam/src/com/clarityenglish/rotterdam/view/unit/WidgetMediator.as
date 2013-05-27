@@ -51,8 +51,10 @@
 			view.openMedia.add(onOpenMedia);
 			view.openContent.add(onOpenContent);
 			view.textSelected.add(onTextSelected);
+			// gh#306
+			view.captionSelected.add(onCaptionSelected);
 			
-			//gh #106
+			// gh#106
 			view.playVideo.add(onPlayVideo);
 			view.playAudio.add(onPlayAudio);
 		}
@@ -63,6 +65,7 @@
 			view.openMedia.remove(onOpenMedia);
 			view.openContent.remove(onOpenContent);
 			view.textSelected.remove(onTextSelected);
+			view.captionSelected.remove(onCaptionSelected);
 			
 			//gh #106
 			view.playVideo.remove(onPlayVideo);
@@ -107,11 +110,9 @@
 						break;
 					case RotterdamNotifications.WEB_URL_ADD: // gh#221
 						onAddLink(note.getBody().webUrlString, note.getBody().captionString);
-						view.widgetChrome.linkButtonRect.alpha = 0;
 						view.widgetChrome.menuButton.enabled = true;
 						break;
 					case RotterdamNotifications.WEB_URL_CANCEL:
-						view.widgetChrome.linkButtonRect.alpha = 0;
 						view.widgetChrome.menuButton.enabled = true;
 						break;
 					case RotterdamNotifications.WIDGET_RENAME:
@@ -161,6 +162,10 @@
 		
 		protected function onTextSelected(format:TextLayoutFormat):void {
 			facade.sendNotification(RotterdamNotifications.TEXT_SELECTED, format);
+		}
+		
+		protected function onCaptionSelected(caption:String):void {
+			facade.sendNotification(RotterdamNotifications.CAPTION_SELECTED, caption);
 		}
 		
 		//gh#106

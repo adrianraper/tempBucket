@@ -3,7 +3,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkCaptureEvent;
-	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
 	import com.newgonzo.web.css.selectors.ClassCondition;
@@ -81,13 +80,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected var xmlWatcher:XMLWatcher;
 		
-		//gh#187
+		// gh#187
 		protected var _widgetCaptionChanged:Boolean;
 		
 		public var openMedia:Signal = new Signal(XML);
 		public var openContent:Signal = new Signal(XML, String);
 		public var textSelected:Signal = new Signal(TextLayoutFormat);
-		//gh #106
+		// gh#306
+		public var captionSelected:Signal = new Signal(String);
+		// gh#106
 		public var playVideo:Signal = new Signal(XML);
 		public var playAudio:Signal = new Signal(XML);
 
@@ -106,8 +107,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			addEventListener("spanAttrChanged", validateUnitListLayout, false, 0, true);
 			addEventListener("columnAttrChanged", validateUnitListLayout, false, 0, true);
 			addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange, false, 0, true);
-			
-			addEventListener(WidgetLinkEvent.ADD_LINK, onAddSelectedText, false, 0, true);
 		}
 		
 		public function set editable(value:Boolean):void {
@@ -240,7 +239,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					break;
 				case widgetText:
 					widgetText.addEventListener(WidgetTextFormatMenuEvent.TEXT_SELECTED, onTextSelected);
-					widgetText.addEventListener(WidgetLinkCaptureEvent.LINK_CAPTURE, onLinkCapture);
+					widgetText.addEventListener(WidgetLinkCaptureEvent.CAPTION_SELECTED, onCaptionSlected);
 					break;
 				// gh#187
 				case widgetChrome:
@@ -252,6 +251,10 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected function onTextSelected(event:WidgetTextFormatMenuEvent):void {
 			textSelected.dispatch(event.format);
+		}
+		
+		protected function onCaptionSlected(event:WidgetLinkCaptureEvent):void {
+			captionSelected.dispatch(event.caption);
 		}
 		
 		private function getParagraphChildren(p:ParagraphElement):Array {
@@ -309,16 +312,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				invalidateProperties();
 			});
 		}
-		
-		protected function onLinkCapture(event:WidgetLinkCaptureEvent):void {
-			captureCaption = event.caption;
-		}
-		
-		// Intercept the WidgetLinkEvent here to assign text parameter 
-		protected function onAddSelectedText(event:WidgetLinkEvent):void {
-			event.text = captureCaption;
-		}
-		
 	}
 }
 

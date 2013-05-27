@@ -6,7 +6,6 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 			import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
 			
 			[Bindable]
@@ -32,14 +31,6 @@
 						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_HIDE, true));
 						break;
 				}
-			}
-			
-			//gh#221
-			protected function onLinkButtonClick(event:MouseEvent):void {
-				linkButtonRect.alpha = 1;
-				dispatchEvent(new WidgetLinkEvent(WidgetLinkEvent.ADD_LINK, true));
-				//alice: When link button clicked, we should disable the menu button
-				menuButton.enabled = false;
 			}
 		]]>
 	</fx:Script>
@@ -83,28 +74,6 @@
 	<!-- The widget title -->
 	<s:Label id="widgetCaptionLabel" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" top="9" mouseChildren="false" mouseEnabled="false" />
 	<s:TextInput id="widgetCaptionTextInput" color="#7F7F7F" fontSize="13" fontStyle="italic" left="33" right="125" top="3" borderVisible="false" contentBackgroundAlpha="0" editable="true" visible="false" />
-	
-	<!--gh #221-->
-	<s:Label id="linkLabel" text="Add Link" right="75" top="8" visible="false" fontSize="11"/>
-	<s:Group right="40" mouseEnabled="true" click="onLinkButtonClick(event)" buttonMode="true" visible="{editing}" mouseOver="linkLabel.visible = true; linkButtonOverRect.alpha = 1" mouseOut="linkLabel.visible = false; linkButtonOverRect.alpha = 0" >		
-		<s:Rect id="linkButtonOverRect" width="30" height="24" right="0" alpha = "0">
-			<s:stroke>
-				<s:SolidColorStroke color="#D8D8D8" />
-			</s:stroke>
-			<s:fill>
-				<s:SolidColor color="#F2F2F2" />
-			</s:fill>
-		</s:Rect>
-		<s:Rect id="linkButtonRect" width="30" height="24" right="0" alpha = "0">
-			<s:stroke>
-				<s:SolidColorStroke color="#D8D8D8" />
-			</s:stroke>
-			<s:fill>
-				<s:SolidColor color="#F2F2F2" />
-			</s:fill>
-		</s:Rect>
-		<widgets:LinkIcon top="7" right="8" rotation="-5" />
-	</s:Group>
 	
 	<!-- The menu button -->
 	<s:Group id="menuButton" right="0" width="41" height="24" buttonMode="true" mouseEnabled="true" click="onMenuButtonClick(event)" visible="{editing}">

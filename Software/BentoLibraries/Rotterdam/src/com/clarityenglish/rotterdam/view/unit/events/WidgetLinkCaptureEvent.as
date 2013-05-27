@@ -4,7 +4,7 @@ package com.clarityenglish.rotterdam.view.unit.events
 	
 	public class WidgetLinkCaptureEvent extends Event
 	{
-		public static const LINK_CAPTURE:String = "linkCapture";
+		public static const CAPTION_SELECTED:String = "captionSelected";
 		
 		private var _caption:String;
 		

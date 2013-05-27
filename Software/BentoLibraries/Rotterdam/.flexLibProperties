@@ -34,7 +34,6 @@
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent"/>
     <classEntry path="skins.rotterdam.scroller.DirectionButton"/>
     <classEntry path="skins.rotterdam.settings.TabButtonBarSkin"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent"/>
     <classEntry path="skins.rotterdam.unit.PublishChangeButtonSkin"/>
     <classEntry path="skins.rotterdam.unit.DownArrowButtonSkin"/>
     <classEntry path="skins.rotterdam.unit.UpArrowButtonSkin"/>

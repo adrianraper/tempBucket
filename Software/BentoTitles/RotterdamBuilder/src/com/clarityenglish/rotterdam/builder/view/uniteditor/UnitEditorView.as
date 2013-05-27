@@ -1,7 +1,6 @@
 package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
-	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.ui.WidgetList;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;

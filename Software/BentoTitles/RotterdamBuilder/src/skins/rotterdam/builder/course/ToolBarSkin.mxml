@@ -49,7 +49,7 @@
 			<s:SolidColor color="#363636" />
 		</s:fill>
 	</s:Rect>
-	<s:Rect includeIn="normal" left="495" right="295" height="48" bottom="0">
+	<s:Rect includeIn="normal" left="520" right="295" height="48" bottom="0">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0x8CC63F" ratio="0.5" />
@@ -90,12 +90,18 @@
 		<s:TextInput includeIn="link" id="captionTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />	
 		
 		<s:HGroup includeIn="normal" height="100%" paddingLeft="168" gap="8" verticalAlign="middle">
-			<s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" />
+			<!--s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" /-->
 			<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
-			<s:Label includeIn="normal" paddingTop="5" text="Font size" fontWeight="bold" color="#FFFFFF" paddingLeft="15" />
+			<s:ToggleButton id="underlineButton" label="U" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" textDecoration="underline"/>
+			<s:ToggleButton id="italicButton" label="I" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" fontStyle="italic"/>
+			<s:Spacer width="8" />
+			<!--s:Label includeIn="normal" paddingTop="5" text="Font size" fontWeight="bold" color="#FFFFFF" paddingLeft="15" /-->
 			<s:ToggleButton id="fontSize1Button" label="a" fontSize="13" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+			<s:Spacer width="8" />
+			<s:Label text="URL" fontWeight="bold" color="0xFFFFFF"/>
+			<s:Button id="urlButton" />
 		</s:HGroup>
 	</s:HGroup>
 	
@@ -176,14 +182,14 @@
 		</s:Group>
 	</s:Group>	
 
-	<s:HGroup id="iconGroup" bottom="0" right="312" gap="8" height="48" verticalAlign="middle" alpha="1">
+	<s:HGroup id="iconGroup" bottom="0" right="310" gap="8" height="48" verticalAlign="middle" alpha="1">
 		<s:Button includeIn="normal" id="normalAddTextButton" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddPDFButton" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddVideoButton" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddImageButton" useHandCursor="true" buttonMode="true" />	
 		<s:Button includeIn="normal" id="normalAddAudioButton" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddExerciseButton" useHandCursor="true" buttonMode="true" />
-		<s:Spacer width="30" />
+		<s:Spacer width="20" />
 		<s:Button id="upButton" click="upAnim.play();" includeIn="normal"/>
 	</s:HGroup>
 	

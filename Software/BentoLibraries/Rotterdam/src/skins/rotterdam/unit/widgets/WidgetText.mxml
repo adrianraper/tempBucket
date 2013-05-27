@@ -156,7 +156,7 @@
 					dispatchEvent(new WidgetTextFormatMenuEvent(WidgetTextFormatMenuEvent.TEXT_SELECTED, false, format));
 					
 					var caption:String = richEditableText.text.substring(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
-					dispatchEvent(new WidgetLinkCaptureEvent(WidgetLinkCaptureEvent.LINK_CAPTURE, false, caption));
+					dispatchEvent(new WidgetLinkCaptureEvent(WidgetLinkCaptureEvent.CAPTION_SELECTED, false, caption));
 				}
 			}
 			

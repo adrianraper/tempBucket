@@ -2,7 +2,6 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
-	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
@@ -61,7 +60,7 @@
 				RotterdamNotifications.TEXT_SELECTED,
 				RotterdamNotifications.WIDGET_EDIT,
 				RotterdamNotifications.WIDGET_SELECT,
-				RotterdamNotifications.WEB_URL_SELECT,
+				RotterdamNotifications.CAPTION_SELECTED,
 			]);
 		}
 		
@@ -78,8 +77,8 @@
 				case RotterdamNotifications.WIDGET_EDIT:
 					view.currentEditingWidget = note.getBody() as XML;
 					break;
-				case RotterdamNotifications.WEB_URL_SELECT:
-					view.onNormalAddWebLink(note.getBody() as String);
+				case RotterdamNotifications.CAPTION_SELECTED:
+					view.urlCaption = note.getBody() as String;
 					break;
 			}
 		}

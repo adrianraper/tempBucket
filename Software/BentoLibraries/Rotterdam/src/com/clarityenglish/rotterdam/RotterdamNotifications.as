@@ -42,6 +42,8 @@
 		// Text notifications
 		public static const TEXT_FORMAT:String = "rotterdam/text_format";
 		public static const TEXT_SELECTED:String = "rotterdam/text_selected";
+		// gh#306
+		public static const CAPTION_SELECTED:String = "rotterdam/caption_selected";
 		
 		// Preview notifications
 		public static const PREVIEW_SHOW:String = "rotterdam/preview_show";
@@ -71,7 +73,6 @@
 		
 		// gh#221
 		public static const WEB_URL_ADD:String = "rotterdam/web_url_add";
-		public static const WEB_URL_SELECT:String = "rotterdam/web_url_select";
 		public static const WEB_URL_CANCEL:String = "rotterdam/web_url_cancel";
 	}
 	

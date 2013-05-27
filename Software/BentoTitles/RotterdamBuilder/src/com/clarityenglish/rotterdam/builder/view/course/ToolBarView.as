@@ -4,8 +4,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.text.FontStyle;
 	import flash.text.engine.FontWeight;
 	
+	import flashx.textLayout.formats.TextDecoration;
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
 	import mx.events.EffectEvent;
@@ -180,6 +182,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var boldButton:ToggleButton;
 		
 		[SkinPart]
+		public var underlineButton:ToggleButton;
+		
+		[SkinPart]
+		public var italicButton:ToggleButton;
+		
+		[SkinPart]
 		public var fontSize1Button:ToggleButton;
 		
 		[SkinPart]
@@ -187,6 +195,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		[SkinPart]
 		public var fontSize3Button:ToggleButton;
+		
+		[SkinPart]
+		public var urlButton:Button;
 		
 		[SkinPart]
 		public var symbol:Group;
@@ -249,12 +260,24 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		private var smallScreenFlag:Boolean;
 		
 		private var _currentEditingWidget:XML;
+		private var _urlCaption:String = "";
 		
 		[Bindable]
 		private var contentWindowTitle:String;
 		
 		[Bindable]
 		private var cloudWindowTitle:String;
+		
+		[Bindable]
+		public function get urlCaption():String {
+			return _urlCaption;
+		}
+		
+		public function set urlCaption(value:String):void {
+			if (value) {
+				_urlCaption = value;
+			}
+		}
 		
 		public function ToolBarView() {
 			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "link", "preview" ], true);
@@ -282,7 +305,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public function setCurrentTextFormat(format:TextLayoutFormat):void {
 			// Set the bold button
 			boldButton.selected = (format.fontWeight == FontWeight.BOLD);
-			
+			underlineButton.selected = (format.textDecoration == TextDecoration.UNDERLINE);
+			italicButton.selected = (format.fontStyle == FontStyle.ITALIC);
+				
 			// Set the font size
 			switch (format.fontSize) {
 				case FONT_SIZES[0]:
@@ -479,10 +504,19 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case boldButton:
 					boldButton.addEventListener(MouseEvent.CLICK, onBoldChange);
 					break;
+				case underlineButton:
+					underlineButton.addEventListener(MouseEvent.CLICK, onUnderlineChange);
+					break;
+				case italicButton:
+					italicButton.addEventListener(MouseEvent.CLICK, onItalicChange);
+					break;
 				case fontSize1Button:
 				case fontSize2Button:
 				case fontSize3Button:
 					instance.addEventListener(MouseEvent.CLICK, onFontSizeChange);
+					break;
+				case urlButton:
+					urlButton.addEventListener(MouseEvent.CLICK, onURLClick);
 					break;
 				case addItemButton:
 					addItemButton.addEventListener(MouseEvent.CLICK, onAddItemClick);
@@ -547,11 +581,13 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			isItemClick = true;
 		}
 		
-		// gh#221
-		public function onNormalAddWebLink(text:String):void {
+		// gh#306
+		public function onURLClick(event:MouseEvent):void {
 			setCurrentState("link");
 			callLater(function():void { 
-				captionTextInput.text = text;
+				if (urlCaption) {
+					captionTextInput.text = urlCaption;
+				}
 			});
 			isItemClick = true;
 		}
@@ -656,6 +692,20 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			isOutsideClick = false;
 		}
 		
+		protected function onUnderlineChange(event:MouseEvent):void {
+			var format:TextLayoutFormat = new TextLayoutFormat();
+			format.textDecoration = (underlineButton.selected) ? TextDecoration.UNDERLINE : TextDecoration.NONE;
+			formatText.dispatch( { format: format } );
+			isOutsideClick = false;
+		}
+		
+		protected function onItalicChange(event:MouseEvent):void {
+			var format2:TextLayoutFormat = new TextLayoutFormat();
+			format2.fontStyle = (italicButton.selected) ? "italic" : "normal";
+			formatText.dispatch( { format: format2 } );
+			isOutsideClick = false;
+		}
+		
 		protected function onFontSizeChange(event:MouseEvent):void {
 			// It isn't really 'correct' to have 3 toggle buttons, but ButtonBars are such a hassle to skin that this is way quicker
 			var selectedButton:ToggleButton = event.target as ToggleButton;
@@ -688,7 +738,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function disSelectFontFormattingButton():void {
-			for each (var button:ToggleButton in [ boldButton, fontSize1Button, fontSize2Button, fontSize3Button ])
+			for each (var button:ToggleButton in [ boldButton, underlineButton, italicButton, fontSize1Button, fontSize2Button, fontSize3Button ])
 				button.selected = false;
 		}
 		

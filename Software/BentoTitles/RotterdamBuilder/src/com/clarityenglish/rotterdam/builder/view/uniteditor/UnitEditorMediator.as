@@ -4,7 +4,6 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
-	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkEvent;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.googlecode.bindagetools.Bind;
 	
@@ -37,9 +36,6 @@
 			view.widgetEdit.add(onWidgetEdit);
 			//gh@187
 			view.widgetRename.add(onWidgetRename);
-			
-			// gh#221
-			view.addEventListener(WidgetLinkEvent.ADD_LINK, onAddLink);
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			Bind.fromProperty(courseProxy, "widgetCollection").toProperty(view, "widgetCollection");
@@ -79,11 +75,6 @@
 		
 		protected function onWidgetEdit(widget:XML):void {
 			facade.sendNotification(RotterdamNotifications.WIDGET_EDIT, widget);
-		}
-		
-		// gh#221
-		protected function onAddLink(event:WidgetLinkEvent):void {
-			facade.sendNotification(RotterdamNotifications.WEB_URL_SELECT, event.text);
 		}
 		
 		//gh#187

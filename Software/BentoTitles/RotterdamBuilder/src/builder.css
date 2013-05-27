@@ -153,6 +153,10 @@ buildercourse|ToolBarView s|ToggleButton {
 	fontSize: 13;
 }
 
+buildercourse|ToolBarView s|Button#urlButton {
+	skinClass: ClassReference("skins.rotterdam.builder.course.URLButtonSkin");
+}
+
 buildercourse|ToolBarView s|ToggleButton#addItemButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddItemToggleButtonSkin");
 }
