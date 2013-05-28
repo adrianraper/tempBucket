@@ -27,6 +27,7 @@ if ($_FILES['Filedata']['size'] > $MAXIMUM_FILESIZE) {
 
 // Copy the uploaded file and update media.xml
 $mediaFolder = $service->mediaOps->mediaFolder;
+
 XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($mediaFolder) {
 	// Get some information about the uploaded file (original name, size and mimetype)
 	$originalName = $_FILES['Filedata']['name'];
@@ -42,7 +43,7 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 	$filename = pathinfo($_FILES['Filedata']['name'], PATHINFO_FILENAME)."-".$createdTimestamp.".".pathinfo($_FILES['Filedata']['name'], PATHINFO_EXTENSION);
 	
 	// Move the file into the media directory
-	move_uploaded_file($_FILES['Filedata']['tmp_name'], $mediaFolder."/".$filename);
+	move_uploaded_file($_FILES['Filedata']['tmp_name'], $mediaFolder."/".$filename);	
 	
 	switch ($mimeType) {
 		case "image/gif":
@@ -50,7 +51,8 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 		case "image/png":
 			// gh#104 - if this is an image then resize it to width 450 (for now)
 			$image = new Imagick($mediaFolder."/".$filename);
-			$image->scaleimage(450, 0);
+			// gh#312
+			//$image->scaleimage(547, 0);			
 			$image->writeimage();
 			$image->destroy();
 			break;

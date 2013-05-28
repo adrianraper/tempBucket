@@ -41,38 +41,62 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				
+				case image:
+					image.addEventListener(Event.COMPLETE, onImageUploadComplete);
+					break;
 			}
 		}
 		
 	 	protected override function commitProperties():void {
 			super.commitProperties();
-			
-			if (image) {
-				
-			}
-			
+
+		}
+		
+		protected function onImageUploadComplete(event:Event):void {
+			invalidateDisplayList();
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
+			// gh#312
+			if (span == 1) {
+				var oneColumnWidth:Number = Math.round(unscaledWidth/span);				
+			} else if (span == 2) {
+				oneColumnWidth = Math.round((unscaledWidth - 2) / span );
+			} else if (span == 3) {
+				oneColumnWidth = Math.round((unscaledWidth - 4) / span );
+			}
+			
+			var twoColumnWidth:Number = 2*oneColumnWidth + 2;
+			var threeColumnWidth:Number = 3*oneColumnWidth + 4;
+			
 			// After lots of mucking about it turns out that this is what we need to get the image to size correctly!
 			// TODO: See if the VideoWidget can be consolidated in a similar fashion
 			if (image.loaderInfo) {
-				// gh#312
-				/*if (image.sourceWidth < unscaledWidth && span == 1) {
+				if (image.sourceWidth <= oneColumnWidth) {
 					image.width = image.sourceWidth;
 					image.height = image.sourceHeight;
-					isSmallImage = true;
-				} else {*/
-					// gh#311
+				} else if (image.sourceWidth > oneColumnWidth && image.sourceWidth <= twoColumnWidth) {
+					if (span == 1) {
+						image.width = unscaledWidth - 2;
+						image.height = unscaledWidth * (image.sourceHeight / image.sourceWidth);
+					} else {
+						image.width = image.sourceWidth;
+						image.height = image.sourceHeight;
+					}
+				} else if (image.sourceWidth > twoColumnWidth && image.sourceWidth <= threeColumnWidth) {
+					if (span == 3) {
+						image.width = image.sourceWidth;
+						image.height = image.sourceHeight;
+					} else {
+						image.width = unscaledWidth - 2;
+						image.height = unscaledWidth * (image.sourceHeight / image.sourceWidth);
+					}
+				} else {
 					image.width = unscaledWidth - 2;
-					// gh#63 the fraction is reversed, height should be molecule
-					// gh#63
-					//image.height = unscaledWidth * (image.loaderInfo.height / image.loaderInfo.width);
 					image.height = unscaledWidth * (image.sourceHeight / image.sourceWidth);
-				//}								
+				}
 				
 				invalidateSize();
 			}
