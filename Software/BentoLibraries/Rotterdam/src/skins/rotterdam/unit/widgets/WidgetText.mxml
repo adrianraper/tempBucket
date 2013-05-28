@@ -151,8 +151,10 @@
 			}
 			
 			protected function onSelectionChange(event:FlexEvent):void {
+				var selectionAnchorPosition:Number = Math.min(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
+				var selectionActivePosition:Number = Math.max(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
 				if (richEditableText.text != "") { // this check stops an exception in the TLF related to gh#160 when clicking around very fast
-					var format:TextLayoutFormat = richEditableText.getFormatOfRange(null, richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
+					var format:TextLayoutFormat = richEditableText.getFormatOfRange(null, selectionAnchorPosition, selectionActivePosition);
 					dispatchEvent(new WidgetTextFormatMenuEvent(WidgetTextFormatMenuEvent.TEXT_SELECTED, false, format));
 					
 					var caption:String = richEditableText.text.substring(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);

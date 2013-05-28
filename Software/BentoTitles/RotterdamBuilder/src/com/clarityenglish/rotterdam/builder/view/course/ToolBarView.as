@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	import flash.events.MouseEvent;
 	import flash.text.FontStyle;
 	import flash.text.engine.FontWeight;
+	import flash.utils.*;
 	
 	import flashx.textLayout.formats.TextDecoration;
 	import flashx.textLayout.formats.TextLayoutFormat;
@@ -18,6 +19,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.DataGroup;
 	import spark.components.Group;
 	import spark.components.HGroup;
 	import spark.components.Label;
@@ -788,8 +790,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onStageClick(event:MouseEvent):void {
-			if (isOutsideClick) {
+			// gh#306
+			if (Class(getDefinitionByName(getQualifiedClassName(event.target))) == DataGroup ) {
 				disSelectFontFormattingButton();
+			}
+			if (isOutsideClick) {
 				if (!addItemButton.selected) {
 					upAnim.play(null, true);
 					isDownArrowClick = true;
