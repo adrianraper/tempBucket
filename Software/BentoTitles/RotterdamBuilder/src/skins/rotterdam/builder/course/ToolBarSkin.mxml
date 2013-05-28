@@ -82,7 +82,7 @@
 		<s:TextInput includeIn="audio" id="audioUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" prompt="Enter a URL and press enter" />
 		
 		<s:Label includeIn="video" id="uploadVideoLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
-		<s:TextInput includeIn="video" id="videoUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" text="http://http://www.youtube.com/watch?v=sm_hEaUJKiw" />
+		<s:TextInput includeIn="video" id="videoUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" text="http://www.youtube.com/watch?v=sm_hEaUJKiw" />
 		
 		<s:Label includeIn="link" id="webLinkURLLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="webUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />
@@ -100,8 +100,8 @@
 			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 			<s:Spacer width="8" />
-			<s:Label text="URL" fontWeight="bold" color="0xFFFFFF"/>
-			<s:Button id="urlButton" />
+			<s:Label text="URL" fontWeight="bold" color="0xFFFFFF" />
+			<s:Button id="urlButton" useHandCursor="true" buttonMode="true"/>
 		</s:HGroup>
 	</s:HGroup>
 	
@@ -124,9 +124,9 @@
 	</s:Group>
 	</s:HGroup-->
 	<s:Group id="addItemButtonGroup" includeIn="normal">
-		<s:Group id="itemList" left="495" bottom="48" height="0" alpha="0" width="0">
+		<s:Group id="itemList" left="520" bottom="48" height="0" alpha="0" width="0">
 			<s:Group id="largePopUpGroup">
-				<s:Rect width="410" height="140" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+				<s:Rect width="385" height="140" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
 					<s:fill>
 						<!--s:LinearGradient rotation="90">
 						<s:GradientEntry color="0x8CC63F" ratio="0.5" />
@@ -135,7 +135,7 @@
 						<s:SolidColor color="0x8CC63F" />
 					</s:fill>
 				</s:Rect>
-				<s:Rect width="410" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+				<s:Rect width="385" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
 					<s:fill>
 						<s:LinearGradient rotation="90">
 							<s:GradientEntry color="0x3C5C11" ratio="0.5" />
@@ -143,12 +143,12 @@
 						</s:LinearGradient>
 					</s:fill>			
 				</s:Rect>
-				<s:Label id="itemListLabel" color="0x8CC63F" fontSize="14" top="15" left="25" />
-				<s:Button id="downButton" left="370" top="10" click="upAnim.play(null, true);"/>
+				<s:Label id="itemListLabel" color="0x8CC63F" fontSize="14" top="15" left="20" />
+				<s:Button id="downButton" left="345" top="10" click="upAnim.play(null, true);" useHandCursor="true" buttonMode="true"/>
 			</s:Group>
 			
 			<s:Group id="smallPopUpGroup">
-				<s:Rect width="410" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+				<s:Rect width="385" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
 					<s:fill>
 						<s:LinearGradient rotation="90">
 						<s:GradientEntry color="0x8CC63F" ratio="0.5" />
@@ -156,7 +156,7 @@
 						</s:LinearGradient>
 					</s:fill>
 				</s:Rect>
-				<s:Rect width="410" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+				<s:Rect width="385" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
 					<s:fill>
 						<s:LinearGradient rotation="90">
 							<s:GradientEntry color="0x3C5C11" ratio="0.5" />
@@ -164,21 +164,21 @@
 						</s:LinearGradient>
 					</s:fill>			
 				</s:Rect>
-				<s:Label id="itemListLabel2" color="0x8CC63F" fontSize="14" top="15" left="40" />
+				<s:Label id="itemListLabel2" color="0x8CC63F" fontSize="14" top="15" left="30" />
 			</s:Group>
 			
 			<s:Button id="listAddTextButton" useHandCursor="true" buttonMode="true" top="60" left="25"/>
-			<s:Label id="addTextLabel" top="70" left="65" color="0x283D0C" fontSize="13"/>
-			<s:Button id="listAddPDFButton" useHandCursor="true" buttonMode="true" top="60" left="215"/>
-			<s:Label id="addPDFLabel" top="70" left="255" color="0x283D0C" fontSize="13"/>
+			<s:Label id="addTextLabel" top="70" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddPDFButton" useHandCursor="true" buttonMode="true" top="60" left="190"/>
+			<s:Label id="addPDFLabel" top="70" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 			<s:Button id="listAddVideoButton" useHandCursor="true" buttonMode="true" top="100" left="25"/>
-			<s:Label id="addVideoLabel" top="110" left="65" color="0x283D0C" fontSize="13"/>
-			<s:Button id="listAddImageButton" useHandCursor="true" buttonMode="true" top="100" left="215"/>
-			<s:Label id="addIamgeLabel" top="110" left="255" color="0x283D0C" fontSize="13"/>
+			<s:Label id="addVideoLabel" top="110" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddImageButton" useHandCursor="true" buttonMode="true" top="100" left="190"/>
+			<s:Label id="addIamgeLabel" top="110" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 			<s:Button id="listAddAudioButton" useHandCursor="true" buttonMode="true" top="140" left="25"/>
-			<s:Label id="addAudioLabel" top="150" left="65" color="0x283D0C" fontSize="13"/>
-			<s:Button id="listAddExerciseButton" useHandCursor="true" buttonMode="true" top="140" left="215"/>
-			<s:Label id="addExerciseLabel" top="150" left="255" color="0x283D0C" fontSize="13"/>
+			<s:Label id="addAudioLabel" top="150" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddExerciseButton" useHandCursor="true" buttonMode="true" top="140" left="190"/>
+			<s:Label id="addExerciseLabel" top="150" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 		</s:Group>
 	</s:Group>	
 
@@ -190,11 +190,11 @@
 		<s:Button includeIn="normal" id="normalAddAudioButton" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddExerciseButton" useHandCursor="true" buttonMode="true" />
 		<s:Spacer width="20" />
-		<s:Button id="upButton" click="upAnim.play();" includeIn="normal"/>
+		<s:Button id="upButton" click="upAnim.play();" includeIn="normal" useHandCursor="true" buttonMode="true"/>
 	</s:HGroup>
 	
-	<s:Group left="500" right="270" bottom="0" includeIn="normal">
-		<s:ToggleButton id="addItemButton" horizontalCenter="0" height="48" width="130" visible="false"/>
+	<s:Group left="520" right="270" bottom="0" includeIn="normal">
+		<s:ToggleButton id="addItemButton" horizontalCenter="0" height="48" width="130" visible="false" useHandCursor="true" buttonMode="true"/>
 	</s:Group>
 
 	

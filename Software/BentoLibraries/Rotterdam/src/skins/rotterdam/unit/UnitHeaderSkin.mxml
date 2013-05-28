@@ -26,8 +26,8 @@
 	<s:Group left="8" right="8">
 		<s:Label id="unitCaptionLabel" color="#FFFFFF" fontWeight="bold" includeIn="normal"  top="13" fontSize="13" left="10"/>
 		<s:TextInput id="unitCaptionTextInput" color="#FFFFFF" contentBackgroundAlpha="0" fontSize="13" fontWeight="bold" width="100%" borderVisible="false" includeIn="editing" left="10" right="75" top="8"/>
-		<s:Button id="editButton" includeIn="normal" fontSize="11" left="{unitCaptionLabel.width + 30}" top="7" />
-		<s:Button id="doneButton" includeIn="editing" fontSize="11" right="10" top="7"/>		
+		<s:Button id="editButton" includeIn="normal" fontSize="11" left="{unitCaptionLabel.width + 30}" top="7" useHandCursor="true" buttonMode="true" />
+		<s:Button id="doneButton" includeIn="editing" fontSize="11" right="10" top="7" useHandCursor="true" buttonMode="true" />		
 	</s:Group>
 	
 </s:Skin>

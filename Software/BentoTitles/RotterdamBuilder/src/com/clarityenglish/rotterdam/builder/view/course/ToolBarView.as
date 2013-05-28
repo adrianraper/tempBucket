@@ -375,6 +375,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case addTextLabel:
 					addTextLabel.text = copyProvider.getCopyForId("addTextLabel");
+					addTextLabel.addEventListener(MouseEvent.CLICK, onNormalAddText);
 					break;
 				case normalAddTextButton:
 					normalAddTextButton.addEventListener(MouseEvent.CLICK, onNormalAddText);
@@ -384,6 +385,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case addPDFLabel:
 					addPDFLabel.text = copyProvider.getCopyForId("addPDFLabel");
+					addPDFLabel.addEventListener(MouseEvent.CLICK, onNormalAddPDF);
 					break;
 				case normalAddPDFButton:
 					normalAddPDFButton.addEventListener(MouseEvent.CLICK, onNormalAddPDF);
@@ -393,6 +395,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case addVideoLabel:
 					addVideoLabel.text = copyProvider.getCopyForId("addVideoLabel");
+					addVideoLabel.addEventListener(MouseEvent.CLICK, onNormalAddVideo);
 					break;
 				case normalAddVideoButton:
 					normalAddVideoButton.addEventListener(MouseEvent.CLICK, onNormalAddVideo);
@@ -402,6 +405,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case addIamgeLabel:
 					addIamgeLabel.text = copyProvider.getCopyForId("addIamgeLabel");
+					addIamgeLabel.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
 				case normalAddImageButton:
 					normalAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
@@ -411,6 +415,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case addAudioLabel:
 					addAudioLabel.text = copyProvider.getCopyForId("addAudioLabel");
+					addAudioLabel.addEventListener(MouseEvent.CLICK, onNormalAddAudio);
 					break;
 				case normalAddAudioButton:
 					normalAddAudioButton.addEventListener(MouseEvent.CLICK, onNormalAddAudio);
@@ -420,6 +425,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case addExerciseLabel:
 					addExerciseLabel.text = copyProvider.getCopyForId("addExerciseLabel");
+					addExerciseLabel.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
 					break;
 				case normalAddExerciseButton:
 					normalAddExerciseButton.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
