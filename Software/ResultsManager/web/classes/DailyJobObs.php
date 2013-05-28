@@ -1,5 +1,4 @@
 <?php
-
 class DailyJobObs {
 	
 	var $db;
@@ -529,5 +528,68 @@ SQL;
 		return $rs->RecordCount();
 		
 	}
-	
+
+	/*
+	 * For checking each account's CCB activity.
+	 * Will count courses, units and exercises from xml directory trawling
+	 * Will count student activity from database query
+	 * Write summary record to db, which can be queried by a charting tool
+	 */
+	public function monitorCBBActivity($db) {
+
+		// First get a list of all active CCB accounts
+		$sql = <<<SQL
+			SELECT ar.*, a.F_ContentLocation FROM T_AccountRoot ar, T_Accounts a 
+			WHERE ar.F_RootID = a.F_RootID
+			AND a.F_ProductCode = 54
+			AND a.F_ExpiryDate < now();
+SQL;
+		$rs = $this->db->Execute($sql);
+		
+		if ($rs->RecordCount() > 0) {
+			while ($dbObj = $rs->FetchNextObj()) {
+				
+				$rootID = $dbObj->F_RootID;
+				$prefix = $dbObj->F_Prefix;
+				$accountName = $dbObj->F_Name;
+				$contentLocation = $dbObj->F_ContentLocation;
+				
+				// Then for each account, open course.xml and count the nodes
+				$this->courseOps->setAccountFolder(dirname(__FILE__).'/../'.$GLOBALS['ccb_data_dir'].'/'.$contentLocation);
+				$courseXML = simplexml_load_file($this->courseOps->accountFolder);
+				foreach ($courseXML->course as $course) {
+					$courses++;
+					if (isset($course[id])) $courseID = $course[id];
+
+					// For each course node, open the menu.xml in the folder and count the units/exercises
+					$courseXML = $this->courseOps->getCourse($courseID);
+					$courseXML->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+					
+					$units = count($courseXML->xpath("//xmlns:unit"));
+					$exercises = count($courseXML->xpath("//xmlns:exercise"));
+				}
+				
+				// For each account, count the session records (just students) from database
+				$sql = <<<SQL
+L					SELECT COUNT(1) as counter
+					FROM T_Session s 
+					WHERE s.F_RootID = ?
+					AND s.F_ProductCode = 54
+SQL;
+				$rs1 = $this->db->Execute($sql, $bindingParams);
+				if ($rs1->RecordCount() > 0) {
+					$dbObj1 = $rs1->FetchNextObj();
+					$sessions = $dbObj1->counter;
+				}
+				
+				// Create a summary record and write to the database if it is different from yesterday
+				$sql = <<<SQL
+					INSERT INTO T_CCB_Activity
+					('F_RootID','F_DateStamp','F_Courses','F_Units','F_Exercises','F_Sessions')
+					VALUES (?, now(), ?, ?, ?, ?)
+SQL;
+				$rs = $this->db->Execute($sql, $bindingParams);
+			}
+		
+	} 
 }

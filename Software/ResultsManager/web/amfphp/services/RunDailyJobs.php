@@ -132,6 +132,13 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->archiveSentEmails($database);
 	echo "Archived $rc sent emails. $newLine";	
+
+	// 6. Count the amount of CCB material and activity for each account
+
+	// Grab the materials data from XML, session data from SQL and write summary to the db
+	$database = 'rack80829';
+	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
+	echo "$rc accounts active yesterday. $newLine";	
 	
 }
 
