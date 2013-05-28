@@ -542,10 +542,10 @@ SQL;
 			SELECT ar.*, a.F_ContentLocation FROM T_AccountRoot ar, T_Accounts a 
 			WHERE ar.F_RootID = a.F_RootID
 			AND a.F_ProductCode = 54
-			AND a.F_ExpiryDate < now();
+			AND a.F_ExpiryDate >= NOW();
 SQL;
 		$rs = $this->db->Execute($sql);
-		
+		$accounts = 0;
 		if ($rs->RecordCount() > 0) {
 			while ($dbObj = $rs->FetchNextObj()) {
 				
@@ -554,28 +554,49 @@ SQL;
 				$accountName = $dbObj->F_Name;
 				$contentLocation = $dbObj->F_ContentLocation;
 				
+				if (!isset($contentLocation)) {
+					AbstractService::$debugLog->notice("Account $accountName ($rootID) has no content location");
+					echo "Account $accountName ($rootID) has no content location";
+					continue 1;
+				}
+					
 				// Then for each account, open course.xml and count the nodes
+				$courses = $units = $exercises = $sessions = 0;
 				$this->courseOps->setAccountFolder(dirname(__FILE__).'/../'.$GLOBALS['ccb_data_dir'].'/'.$contentLocation);
-				$courseXML = simplexml_load_file($this->courseOps->accountFolder);
-				foreach ($courseXML->course as $course) {
+				$courseXML = simplexml_load_file($this->courseOps->courseFilename);
+				if (!$courseXML) {
+					AbstractService::$debugLog->notice("Account $accountName has no courses.xml");
+					echo "Account $accountName has no courses.xml";
+					continue 1;
+				}
+				$courseXML->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+				
+				$courseNodes = $courseXML->xpath("//xmlns:course");
+				foreach ($courseNodes as $course) {
 					$courses++;
-					if (isset($course[id])) $courseID = $course[id];
+					if (isset($course['id'])) $courseID = (string) $course['id'];
 
 					// For each course node, open the menu.xml in the folder and count the units/exercises
-					$courseXML = $this->courseOps->getCourse($courseID);
-					$courseXML->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+					$menuXML = $this->courseOps->getCourse($courseID);
+					if (!$menuXML) {
+						AbstractService::$debugLog->notice("Course $prefix.$courseID has no menu.xml");
+						echo "Course $prefix.$courseID has no menu.xml";
+						continue 1;
+					}
+					$menuXML->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 					
-					$units = count($courseXML->xpath("//xmlns:unit"));
-					$exercises = count($courseXML->xpath("//xmlns:exercise"));
+					$units += count($menuXML->xpath("//xmlns:unit"));
+					$exercises += count($menuXML->xpath("//xmlns:exercise"));
 				}
 				
 				// For each account, count the session records (just students) from database
 				$sql = <<<SQL
-L					SELECT COUNT(1) as counter
+					SELECT COUNT(1) as counter
 					FROM T_Session s 
 					WHERE s.F_RootID = ?
 					AND s.F_ProductCode = 54
 SQL;
+				$bindingParams = array($rootID);
 				$rs1 = $this->db->Execute($sql, $bindingParams);
 				if ($rs1->RecordCount() > 0) {
 					$dbObj1 = $rs1->FetchNextObj();
@@ -584,12 +605,38 @@ SQL;
 				
 				// Create a summary record and write to the database if it is different from yesterday
 				$sql = <<<SQL
-					INSERT INTO T_CCB_Activity
-					('F_RootID','F_DateStamp','F_Courses','F_Units','F_Exercises','F_Sessions')
-					VALUES (?, now(), ?, ?, ?, ?)
+					SELECT * FROM T_CCB_Activity
+					WHERE F_RootID = ?
+					ORDER BY F_DateStamp DESC
+					LIMIT 0,1
 SQL;
-				$rs = $this->db->Execute($sql, $bindingParams);
+				$bindingParams = array($rootID);
+				$rs2 = $this->db->Execute($sql, $bindingParams);
+				if ($rs2->RecordCount() > 0) {
+					$dbObj2 = $rs2->FetchNextObj();
+					
+				} else {
+					// This might be the first record for this root
+					$dbObj2 = null;
+				}	
+				
+				if ($dbObj2 == null ||
+					$dbObj2->F_Courses != $courses ||
+					$dbObj2->F_Units != $units ||
+					$dbObj2->F_Exercises != $exercises ||
+					$dbObj2->F_Sessions != $sessions) {
+			
+					$sql = <<<SQL
+						INSERT INTO T_CCB_Activity
+						(F_RootID,F_DateStamp,F_Courses,F_Units,F_Exercises,F_Sessions)
+						VALUES ($rootID, NOW(), $courses, $units, $exercises, $sessions)
+SQL;
+					$rc = $this->db->Execute($sql);
+					$accounts++;
+				}
 			}
+		}
 		
+		return $accounts;
 	} 
 }

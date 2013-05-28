@@ -94,6 +94,7 @@ function runDailyJobs($triggerDate = null) {
 	// Date is UTC and this job runs at 16:00 UTC. So it should be based on units starting tomorrow.
 	// This means that Vancouver students will see the email the day before the unit is available, so wording
 	// in the email needs to include the date rather than 'now/today'.
+	/*
 	$courseDate = date('Y-m-d', addDaysToTimestamp($triggerDate, 1));
 	$templateID = 'EmailMeUnitStart';
 	$emailArray = $thisService->dailyJobOps->getEmailsForGroupUnitStart($courseDate);
@@ -109,7 +110,7 @@ function runDailyJobs($triggerDate = null) {
 			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 		}
 	}
-
+	*/
 	/*
 	// Then repeat for courses that are published to start whenever a user first goes into them
 	$templateID = 'EmailMeUserFirstStart';
@@ -129,9 +130,11 @@ function runDailyJobs($triggerDate = null) {
 	// 5. Archive sent emails
 
 	// Clean up the T_PendingEmails, remove everything that has been sent
+	/*
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->archiveSentEmails($database);
-	echo "Archived $rc sent emails. $newLine";	
+	echo "Archived $rc sent emails. $newLine";
+	*/	
 
 	// 6. Count the amount of CCB material and activity for each account
 

@@ -962,3 +962,15 @@ F_Attempts smallint DEFAULT 0
 ALTER TABLE `T_PendingEmails` ADD COLUMN `F_Attempts` SMALLINT NULL DEFAULT 0  AFTER `F_DelayUntil` ;
 ALTER TABLE `T_SentEmails` ADD COLUMN `F_Attempts` SMALLINT NULL DEFAULT 0  AFTER `F_DelayUntil` ;
 
+-- CCB Activity
+DROP TABLE IF EXISTS `T_CCB_Activity`;
+CREATE TABLE T_CCB_Activity (
+F_RootID int(11) NOT NULL,
+F_DateStamp datetime NOT NULL,
+F_Courses smallint DEFAULT NULL,
+F_Units smallint DEFAULT NULL,
+F_Exercises smallint DEFAULT NULL,
+F_Sessions smallint DEFAULT NULL,
+  KEY `Index_1` (F_RootID)
+) ENGINE=InnoDB;
+
