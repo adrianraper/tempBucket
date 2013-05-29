@@ -52,15 +52,25 @@ limitations under the License.
 		<s:State name="disabled" />
 	</s:states>
 	
+	<s:transitions>
+		<s:Transition fromState="up" toState="over" autoReverse="true" >
+			<s:AnimateColor  targets="{[color1, color2]}"  duration="200" />
+		</s:Transition>
+		
+		<s:Transition  fromState="over" toState="up" autoReverse="true" >
+			<s:AnimateColor targets="{[color1, color2]}" duration="300" />
+		</s:Transition>		
+	</s:transitions>
+	
 	<!-- layer 2: fill -->
 	<!--- @private -->
 	<s:Rect id="fill" left="1" right="1" top="1" bottom="1" radiusX="5">
 		<s:fill>
 			<s:LinearGradient rotation="-90">
-				<s:GradientEntry color="0xC4C4C4" 
+				<s:GradientEntry id="color1" color="0xC4C4C4" 
 								 color.over="0xD9D9D9" 
 								 color.down="0xD9D9D9" />
-				<s:GradientEntry color="0xF2F2F2" 
+				<s:GradientEntry id="color2" color="0xF2F2F2" 
 								 color.over="0xFFFFFF" 
 								 color.down="0xFFFFFF" />
 			</s:LinearGradient>

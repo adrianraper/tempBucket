@@ -68,6 +68,17 @@
         <s:State name="down" />
         <s:State name="disabled" />
     </s:states>
+	
+	<s:transitions>
+		<s:Transition fromState="up" toState="over" autoReverse="true" >
+			<s:AnimateColor  targets="{[color1, color2]}"  duration="200" />
+		</s:Transition>
+		
+		<s:Transition  fromState="over" toState="up" autoReverse="true" >
+			<s:AnimateColor targets="{[color1, color2]}" duration="300" />
+		</s:Transition>
+		
+	</s:transitions>
     
 	<s:Rect id="shadow" left="0" right="0" radiusX="4" radiusY="4" includeIn="over" filters="{glowFilter}" >
 		<s:fill>
@@ -78,8 +89,8 @@
 	<s:Rect id="fill" left="0" right="0" radiusX="4" radiusY="4" filters="{dropShadowFilter}">
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0XFFC700" ratio="0.5" />
-				<s:GradientEntry color="0XFF9D00" />
+				<s:GradientEntry id="color1" color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" ratio="0.5" />
+				<s:GradientEntry id="color2" color="0XFF9D00" color.over="0XFFE382" color.down="0XFFE382"/>
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>

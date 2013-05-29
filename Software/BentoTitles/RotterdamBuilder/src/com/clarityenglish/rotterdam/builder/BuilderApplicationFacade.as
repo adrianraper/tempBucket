@@ -35,6 +35,8 @@
 	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
+	import com.clarityenglish.rotterdam.builder.view.help.HelpMediator;
+	import com.clarityenglish.rotterdam.builder.view.help.HelpView;
 	import com.clarityenglish.rotterdam.builder.view.settings.HelpPublishMediator;
 	import com.clarityenglish.rotterdam.builder.view.settings.HelpPublishView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
@@ -65,6 +67,7 @@
 			mapView(SettingsView, SettingsMediator);
 			mapView(CourseCreateView, CourseCreateMediator);
 			mapView(HelpPublishView, HelpPublishMediator);
+			mapView(HelpView, HelpMediator);
 			
 			// gh#88 (see CommonAbstractApplicationFacade for comments on this)
 			registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);

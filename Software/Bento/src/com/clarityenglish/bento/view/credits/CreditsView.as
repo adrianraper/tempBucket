@@ -27,6 +27,9 @@ package com.clarityenglish.bento.view.credits {
 		[SkinPart]
 		public var creditCaptionLabel:RichText;
 		
+		[SkinPart]
+		public var creditLabel:spark.components.Label;
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -50,6 +53,9 @@ package com.clarityenglish.bento.view.credits {
 					var creditsLabelString:String = this.copyProvider.getCopyForId("creditCaptionLabel");
 					var creditsLabelFlow:TextFlow = TextFlowUtil.importFromString(creditsLabelString);
 					instance.textFlow = creditsLabelFlow;
+					break;
+				case creditLabel:
+					creditLabel.text = copyProvider.getCopyForId("creditLabel");
 					break;
 				
 			}

@@ -133,5 +133,5 @@ progressui|CoverageGroupRenderer {
 }
 
 ui2|WidgetList s|VScrollBar {
-	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }

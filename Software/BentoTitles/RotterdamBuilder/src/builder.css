@@ -19,6 +19,7 @@
 @namespace tink "ws.tink.spark.controls.*";
 @namespace showPublishSettingDemo "com.clarityenglish.rotterdam.builder.view.settings.*";
 @namespace ui "com.clarityenglish.rotterdam.view.unit.ui.*";
+@namespace help "com.clarityenglish.rotterdam.builder.view.help.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -373,6 +374,15 @@ showPublishSettingDemo|HelpPublishView {
 
 ui|WidgetList s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
+}
+
+help|HelpView {
+	skinClass: ClassReference("skins.rotterdam.builder.help.HelpSkin");
+}
+
+help|HelpView s|Button#helpButton {
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+	buttonHeight: 40;
 }
 
 .markingTitleWindow {

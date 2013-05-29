@@ -46,7 +46,7 @@
 	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="40" bottom="0">
 		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="cloudViewNavigator" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" />
-		<s:ViewNavigator id="helpViewNavigator" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.rotterdam.builder.view.help.HelpView" left="0" right="0" height="100%" />
 	</ui:CancelableTabbedViewNavigator>
 	
 </s:Skin>
