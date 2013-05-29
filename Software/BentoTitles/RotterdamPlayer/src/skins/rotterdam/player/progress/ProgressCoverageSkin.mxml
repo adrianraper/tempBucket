@@ -62,10 +62,10 @@
 			
 			<s:HGroup paddingTop="10" paddingBottom="10">
 				<progress:CompletedIcon />
-				<s:Label text="Completed" paddingTop="3" />
+				<s:Label text="Started" paddingTop="3" />
 				
 				<progress:NotCompletedIcon />
-				<s:Label text="Not completed" paddingTop="3" />
+				<s:Label text="Not started" paddingTop="3" />
 			</s:HGroup>
 			
 			<s:DataGroup dataProvider="{new XMLListCollection(list.selectedItem.exercise.(@type == 'audio' || @type == 'pdf' || @type == 'video' || @type == 'exercise'))}">

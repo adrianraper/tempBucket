@@ -61,7 +61,7 @@ title|TitleView s|TabbedViewNavigator {
 }
 
 title|TitleView s|Button#logoutButton {
-	
+	skinClass: 	ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }
 
 courseselector|CourseSelectorView {

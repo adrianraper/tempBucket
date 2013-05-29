@@ -30,7 +30,7 @@
 		<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/title/ccb_logo.png')" left="35" top="8"/>
 		<s:Label text="Clarity Course Player" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="70" top="15"/>
 		
-		<s:Button id="logoutButton" right="5" top="8" />
+		<s:Button id="logoutButton" right="10" top="4" useHandCursor="true" buttonMode="true" />
 		
 		<s:Rect left="0" right="0" top="40" bottom="0" height="45">
 			<s:fill>
