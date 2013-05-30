@@ -210,8 +210,12 @@ package com.clarityenglish.rotterdam.view.course {
 			unitListLength = unitList.dataProvider.length;
 			currentIndex = unitListCollection.getItemIndex(event.unit);
 			
-			Alert.show("Are you sure", "Delete", Vector.<String>([ "No", "Yes" ]), this, function(closeEvent:CloseEvent):void {
-				if (closeEvent.detail == 1) {
+			var alertMessage:String = copyProvider.getCopyForId("deleteUnitWarning");
+			var alertTitle:String = copyProvider.getCopyForId("noUndoWarning");
+			var alertYes:String = copyProvider.getCopyForId("yesButton");
+			var alertNo:String = copyProvider.getCopyForId("noButton");
+			Alert.show(alertMessage, alertTitle, Vector.<String>([ alertYes, alertNo ]), this, function(closeEvent:CloseEvent):void {
+				if (closeEvent.detail == 0) {
 					if (unitListLength > 1) {
 						unitListCollection.removeItemAt(unitListCollection.getItemIndex(event.unit));
 						
@@ -227,7 +231,7 @@ package com.clarityenglish.rotterdam.view.course {
 							delete unitXML.children()[0];
 							exerciseTotal--;
 						}
-						unitXML.@caption = "My unit";
+						unitXML.@caption = copyProvider.getCopyForId("newUnitCaption");
 						unitSelect.dispatch(unitXML);
 					}									
 				}				
@@ -237,7 +241,8 @@ package com.clarityenglish.rotterdam.view.course {
 		private function onAddUnit(event:MouseEvent):void {
 			// TODO: need to have the designs to know exactly how this will work but for now just use a random name.
 			// Also this should use a notification and command instead of adding it directly to the collection.
-			unitListCollection.addItem(<unit caption='New unit' />);
+			var newUnitCaption:String = copyProvider.getCopyForId("newUnitCaption");
+			unitListCollection.addItem(<unit caption={newUnitCaption} />);
 		}
 		
 		protected function onCourseSettings(event:MouseEvent):void {

@@ -245,12 +245,14 @@
 			<lit name="contentWindowTitle">Select Clarity content</lit>
 			<lit name="selectContentButton">Select content</lit>
 			<lit name="deleteCourseWarning">Do you want to delete this course?</lit>
+			<lit name="deleteUnitWarning">Do you want to delete this unit?</lit>
 			<lit name="noUndoWarning">There is no undo...</lit>
 			<lit name="creditLabel">Thank you for using Clarity Course Builder.</lit>
-			<lit name="helpButton">Course Help Centre</lit>
-			<lit name="helpURL"><![CDATA[http://ccb.clarityenglish.com/area1/CCB/Player.php?prefix=CST&course=439011031594193044]]></lit>
-			<lit name="helpLabel1">Please also feel free to email us on support@clarityenlish.com</lit>
+			<lit name="helpButton">Support materials</lit>
+			<lit name="helpURL"><![CDATA[http://www.clarityenglish.com/area1/CCB/Player.php?prefix=CST&course=439011031594193044]]></lit>
+			<lit name="helpLabel1">Please also feel free to email us at support@clarityenglish.com</lit>
 			<lit name="helpLabel2">with any questions you have or problems you are having.</lit>
+			<lit name="newUnitCaption">New unit</lit>
 		</group>
 	</language>
 </literals>
