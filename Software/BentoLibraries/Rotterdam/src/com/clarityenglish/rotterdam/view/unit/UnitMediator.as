@@ -26,17 +26,13 @@
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			Bind.fromProperty(courseProxy, "widgetCollection")
-				.toProperty(view, "widgetCollection")
+				.toProperty(view, "widgetCollection");
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
 			AudioPlayer.stopAllAudio();
-			
-			// gh#279 - this helps with strange video rendering on the iPad for no obvious reason...
-			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			courseProxy.currentUnit = null;
 		}
 		
 		override public function listNotificationInterests():Array {

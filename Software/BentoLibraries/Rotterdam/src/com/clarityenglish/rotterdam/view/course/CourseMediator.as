@@ -59,6 +59,10 @@
 			
 			// gh#240
 			//view.removeEventListener(Event.PASTE, onUnitPaste);
+			
+			// gh#279 - this helps with strange video rendering on the iPad for no obvious reason...
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			courseProxy.currentUnit = null;
 		}
 		
 		override public function listNotificationInterests():Array {
