@@ -31,6 +31,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private var node:XML;
 		
+		private var span:Number;
+		
 		private var fileReference:FileReference;
 		
 		private static var uploadCount:int; // This keeps track of uploads in progress for UPLOADS_DIRTY and UPLOADS_CLEAN gh#90
@@ -39,6 +41,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 			super.execute(note);
 			
 			node = note.getBody().node;
+			// gh#312
+			span = note.getBody().span;
 			tempWidgetId = note.getType();
 			log.info("Opening upload dialog with tempWidgetId=" + tempWidgetId);
 			
@@ -79,7 +83,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamUpload.php";
 			
 			// gh#32
-			if (FlexGlobals.topLevelApplication.parameters.sessionid) uploadScript += "?PHPSESSID=" + FlexGlobals.topLevelApplication.parameters.sessionid;
+			if (FlexGlobals.topLevelApplication.parameters.sessionid) uploadScript += "?PHPSESSID=" + FlexGlobals.topLevelApplication.parameters.sessionid + "&span=" + span;
 			
 			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_START, null, tempWidgetId);
 			fileReference.upload(new URLRequest(uploadScript));

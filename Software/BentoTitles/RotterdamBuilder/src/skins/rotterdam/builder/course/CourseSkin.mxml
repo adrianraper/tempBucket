@@ -72,33 +72,29 @@
 		<s:layout>
 			<s:VerticalLayout paddingTop="10"/>
 		</s:layout>
-		<s:VGroup id="unitVGroup">
+		<s:VGroup id="unitVGroup" height="97%">
 			<s:Label id="courseCaptionLabel" paddingLeft="7" width="150" fontWeight="bold" fontSize="15"/>
 			<mx:Spacer height="5" />
-			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" borderVisible="false" selectionColor="0xC0C0C0">
+			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" height="100%" borderVisible="false" selectionColor="0xC0C0C0" >
 				<s:layout>
 					<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
 				</s:layout>
 				<s:itemRenderer>
 					<fx:Component>
-						<s:ItemRenderer width="100%" mouseOver="deleteCourseButton.visible = true" mouseOut="deleteCourseButton.visible = false" >
+						<s:ItemRenderer width="100%" mouseOver="deleteCourseButton.visible = true" mouseOut="deleteCourseButton.visible = false" toolTip="{data.@caption}" >
 							<fx:Script>
 								<![CDATA[
 									import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 								]]>
 							</fx:Script>
-							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
+							
+							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="105" maxDisplayedLines="1" height="25" paddingLeft="18" paddingTop="8" />
 							<s:Group right="2" verticalCenter="0">
 								<s:Button id="deleteCourseButton"
 										  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
 										  visible="false"
 										  click="dispatchEvent(new UnitDeleteEvent(UnitDeleteEvent.UNIT_DELETE, data as XML, true))" scaleX="0.8" scaleY="0.8"/>
 							</s:Group>
-							<s:Line width="90%" horizontalCenter="0" >
-								<s:stroke>
-									<s:SolidColorStroke color="#FFBF40" weight="1" caps="square"/>
-								</s:stroke>
-							</s:Line>
 						</s:ItemRenderer>
 					</fx:Component>
 				</s:itemRenderer>

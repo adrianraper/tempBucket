@@ -112,6 +112,10 @@ course|CourseView s|BorderContainer#unitContainer {
 	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
 }
 
+course|CourseView s|List#unitList s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
+}
+
 course|CourseView s|Button#unitCopyButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.DuplicateUnitButtonSkin");
 }

@@ -31,7 +31,7 @@
 	
 	<s:HGroup width="100%" height="100%" top="65" left="20" right="20">
 		<!-- The unit selector -->
-		<s:List id="list" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" width="280" height="100%" borderVisible="false" selectionColor="0xFFFCDF"> <!-- rollOverColor="0xEDEDEE" -->
+		<s:List id="list" dataProvider="{hostComponent.unitListCollection}" requireSelection="true" width="30%" height="100%" borderVisible="false" selectionColor="0xFFFCDF"> <!-- rollOverColor="0xEDEDEE" -->
 			<s:layout>
 				<s:VerticalLayout gap="1" />
 			</s:layout>
@@ -41,7 +41,7 @@
 						<s:layout>
 							<s:VerticalLayout paddingLeft="9" paddingRight="4" paddingTop="11" paddingBottom="6" />
 						</s:layout>
-						<s:Label text="{data.@caption}" fontSize="15" />
+						<s:Label text="{data.@caption}" fontSize="15" width="100%"/>
 						<!-- TODO: completion bar -->
 					</s:ItemRenderer>
 				</fx:Component>
@@ -57,43 +57,44 @@
 		</s:Group>
 		
 		<!-- The exercise list area -->
-		<s:VGroup paddingLeft="10">
-			<s:Label text="{list.selectedItem.@caption}" fontSize="20" fontWeight="bold" />
-			
-			<s:HGroup paddingTop="10" paddingBottom="10">
-				<progress:CompletedIcon />
-				<s:Label text="Started" paddingTop="3" />
+		<s:Scroller id="exerciseScroller" height="100%" width="100%">
+			<s:VGroup paddingLeft="10" width="100%" height="100%">
+				<s:Label text="{list.selectedItem.@caption}" fontSize="20" fontWeight="bold" width="100%" right="0"/>
 				
-				<progress:NotCompletedIcon />
-				<s:Label text="Not started" paddingTop="3" />
-			</s:HGroup>
-			
-			<s:DataGroup dataProvider="{new XMLListCollection(list.selectedItem.exercise.(@type == 'audio' || @type == 'pdf' || @type == 'video' || @type == 'exercise'))}">
-				<s:layout>
-					<s:VerticalLayout gap="12" />
-				</s:layout>
-				<s:itemRenderer>
-					<fx:Component>
-						<s:DataRenderer>
-							<fx:Script>
-								<![CDATA[
-									[Bindable("dataChange")]
-									protected function get isDone():Boolean {
-										return data && data.hasOwnProperty("@done") && new Number(data.attribute("done")) > 0;
-									}
-								]]>
-							</fx:Script>
-							<s:HGroup>
-								<progress:NotCompletedIcon scaleX="1.2" scaleY="1.2" visible="{!isDone}" includeInLayout="{!isDone}" />
-								<progress:CompletedIcon scaleX="1.2" scaleY="1.2" visible="{isDone}" includeInLayout="{isDone}" />
-								<s:Label text="{data.@caption}" fontSize="15" paddingTop="3" />
-							</s:HGroup>
-						</s:DataRenderer>
-					</fx:Component>
-				</s:itemRenderer>
-			</s:DataGroup>
-		</s:VGroup>
-		
+				<s:HGroup paddingTop="10" paddingBottom="10">
+					<progress:CompletedIcon />
+					<s:Label text="Started" paddingTop="3" />
+					
+					<progress:NotCompletedIcon />
+					<s:Label text="Not started" paddingTop="3" />
+				</s:HGroup>
+				
+				<s:DataGroup dataProvider="{new XMLListCollection(list.selectedItem.exercise.(@type == 'audio' || @type == 'pdf' || @type == 'video' || @type == 'exercise'))}">
+					<s:layout>
+						<s:VerticalLayout gap="12" />
+					</s:layout>
+					<s:itemRenderer>
+						<fx:Component>
+							<s:DataRenderer>
+								<fx:Script>
+									<![CDATA[
+										[Bindable("dataChange")]
+										protected function get isDone():Boolean {
+											return data && data.hasOwnProperty("@done") && new Number(data.attribute("done")) > 0;
+										}
+									]]>
+								</fx:Script>
+								<s:HGroup>
+									<progress:NotCompletedIcon scaleX="1.2" scaleY="1.2" visible="{!isDone}" includeInLayout="{!isDone}" />
+									<progress:CompletedIcon scaleX="1.2" scaleY="1.2" visible="{isDone}" includeInLayout="{isDone}" />
+									<s:Label text="{data.@caption}" fontSize="15" paddingTop="3" />
+								</s:HGroup>
+							</s:DataRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:DataGroup>				
+			</s:VGroup>
+		</s:Scroller>	
 		<!-- The unit completion area -->
 	</s:HGroup>
 	

@@ -39,6 +39,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				typeFilter: [ new FileFilter("Images (*.png, *.jpg, *.jpeg)", "*.png;*.jpg;*.jpeg") ],
 				node: node,
 				title: title,
+				span: note.getBody().span,
 				source: note.getBody().source,
 					url: note.getBody().url // gh#111 - this is only used in 'external' types where the user has already entered a url
 			};

@@ -23,8 +23,8 @@
 				if (hostComponent.progressNavBar.dataProvider){
 					//alice: the copyProvider cannot get so far
 					progressNavBar.dataProvider = new ArrayCollection( [
-						{ label: "coverage", data: "coverage" },
-						{ label:  "analysis", data: "analysis" },
+						{ label: hostComponent.getCopyProvider().getCopyForId("coverageLabel"), data: "coverage" },
+						{ label: hostComponent.getCopyProvider().getCopyForId("analysisLabel"), data: "analysis" },
 					] );
 				}
 			}

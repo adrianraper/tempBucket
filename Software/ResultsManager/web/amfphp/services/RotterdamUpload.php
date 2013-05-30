@@ -1,5 +1,11 @@
 <?php
 if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
+if (!isset($_GET['span'])) {
+	echo "No span given";
+	return;
+} 
+
+$span = $_GET['span'];
 
 require_once(dirname(__FILE__)."/../../config.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
@@ -28,7 +34,7 @@ if ($_FILES['Filedata']['size'] > $MAXIMUM_FILESIZE) {
 // Copy the uploaded file and update media.xml
 $mediaFolder = $service->mediaOps->mediaFolder;
 
-XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($mediaFolder) {
+XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($mediaFolder, $span) {
 	// Get some information about the uploaded file (original name, size and mimetype)
 	$originalName = $_FILES['Filedata']['name'];
 	$size = $_FILES['Filedata']['size'];
@@ -52,7 +58,20 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 			// gh#104 - if this is an image then resize it to width 450 (for now)
 			$image = new Imagick($mediaFolder."/".$filename);
 			// gh#312
-			//$image->scaleimage(547, 0);			
+			//$image->scaleimage(547, 0);
+			if ($span == 1) {
+				if ($image->getimagewidth() > 328) {
+					$image->scaleimage(328, 0);
+				}
+			} else if ($span == 2) {			
+				if ($image->getimagewidth() > 674) {
+					$image->scaleimage(674, 0);
+				}
+			} else if ($span == 3) {
+				if ($image->getimagewidth() > 1020) {
+					$image->scaleimage(1020, 0);
+				}
+			}
 			$image->writeimage();
 			$image->destroy();
 			break;

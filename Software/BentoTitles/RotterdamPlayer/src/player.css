@@ -104,12 +104,28 @@ progresscomponents|ProgressCoverageView {
 	skinClass: ClassReference("skins.rotterdam.player.progress.ProgressCoverageSkin");
 }
 
+progresscomponents|ProgressCoverageView s|List s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
+progresscomponents|ProgressCoverageView s|List s|HScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
+}
+
+progresscomponents|ProgressCoverageView s|Scroller#exerciseScroller s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
 progresscomponents|ProgressAnalysisView {
 	skinClass: ClassReference("skins.rotterdam.player.progress.ProgressAnalysisSkin");
 }
 
 progresscomponents|ProgressAnalysisView ui|StackedCircleChart {
 	skinClass: ClassReference("skins.rotterdam.player.progress.ui.StackedCircleChart");
+}
+
+progresscomponents|ProgressAnalysisView s|Scroller#unitGoupsScroller s|VScrollBar{
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
 
 progressui|ProgressBarRenderer {

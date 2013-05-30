@@ -58,7 +58,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
+
 			// gh#312
 			if (span == 1) {
 				var oneColumnWidth:Number = Math.round(unscaledWidth/span);				

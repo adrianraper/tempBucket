@@ -35,80 +35,81 @@
 	<s:Label id="analysisInstructionLabel1" fontWeight="bold" fontSize="16" top="10" left="20"/>
 	<s:Label id="analysisInstructionLabel2" top="45" fontSize="14" left="20"/>
 	
-	<s:Group right="40" >
+
+	
+	<s:Scroller id="unitGoupsScroller" width="100%" height="100%" top="70" left="20">
+		<s:DataGroup id="durationDataGroup">
+			<s:layout>
+				<s:TileLayout horizontalGap="20" verticalGap="15" requestedColumnCount="3" />
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<s:DataRenderer width="220" height="136">
+						<fx:Script>
+							<![CDATA[
+								import com.clarityenglish.bento.model.DataProxy;
+								import com.clarityenglish.common.model.interfaces.CopyProvider;
+								
+								import spark.components.DataGroup;
+								import spark.components.supportClasses.ItemRenderer;
+								
+								[Bindable]
+								public var copyProvider:CopyProvider;
+								
+								[Bindable("dataChange")]
+								public function get itemIndex():int {
+									return (owner as DataGroup).dataProvider.getItemIndex(data);
+								}
+								
+								[Bindable("dataChange")]
+								public function get strokeColour():Number {
+									// Cycle the stroke colour through the 'unitColours' array (defined in the global tag of player.css)
+									var unitColours:Array = getStyle("unitColours");
+									return unitColours[itemIndex % unitColours.length];
+								}
+								
+								[Bindable("dataChange")]
+								public function get gradiantColour():Number {
+									// Cycle the stroke colour through the 'unitColours' array (defined in the global tag of player.css)
+									var gradientColours:Array = getStyle("gradientColours");
+									return gradientColours[itemIndex % gradientColours.length];
+								}
+							]]>
+						</fx:Script>
+						<s:Rect left="0" right="0" top="0" bottom="0" radiusX="8" radiusY="8">
+							<s:stroke>
+								<s:SolidColorStroke color="{strokeColour}" weight="2" />
+							</s:stroke>
+						</s:Rect>
+						
+						<s:Path data="M 200 0 L 220 0 L 220 20 L 200 0 Z">
+							<s:fill>
+								<s:LinearGradient rotation="135" scaleX="180" x="300" y="0">
+									<s:GradientEntry color="{gradiantColour}" ratio="0"/>	
+									<s:GradientEntry color="{strokeColour}" ratio="1"/>	
+								</s:LinearGradient>
+							</s:fill>
+						</s:Path>
+						<s:Label text="Unit {itemIndex + 1}" fontSize="21" fontWeight="bold" left="10" top="10" />
+						<s:Group left="10" right="10" top="30">
+							<s:Line width="100%">
+								<s:stroke>
+									<s:SolidColorStroke color="0x000000"/>
+								</s:stroke>
+							</s:Line>
+						</s:Group>
+						
+						<s:Label text="{data.@caption}" fontSize="16" top="40" left="10" maxDisplayedLines="2" width="190"/>
+						
+						<s:Label text="{copyProvider.getCopyForId('courseDurationRenderLabel')}" top="80" left="10" />
+						<s:Label text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" fontSize="24" top="100" left="10" />
+					</s:DataRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:DataGroup>
+	</s:Scroller>
+	<s:Group horizontalCenter="365" >
 		<s:Label id="analysisTimeLabel" fontSize="14" top="45" />
 		<ui:StackedCircleChart id="stackedChart" top="60" width="240" height="240" skinClass="skins.rotterdam.player.progress.ui.StackedCircleChart"/>
 	</s:Group>
-	
-	
-	<s:DataGroup id="durationDataGroup" top="70" left="20">
-		<s:layout>
-			<s:TileLayout horizontalGap="20" verticalGap="15" requestedColumnCount="3" />
-		</s:layout>
-		<s:itemRenderer>
-			<fx:Component>
-				<s:DataRenderer width="220" height="136">
-					<fx:Script>
-						<![CDATA[
-							import com.clarityenglish.bento.model.DataProxy;
-							import com.clarityenglish.common.model.interfaces.CopyProvider;
-							
-							import spark.components.DataGroup;
-							import spark.components.supportClasses.ItemRenderer;
-							
-							[Bindable]
-							public var copyProvider:CopyProvider;
-							
-							[Bindable("dataChange")]
-							public function get itemIndex():int {
-								return (owner as DataGroup).dataProvider.getItemIndex(data);
-							}
-							
-							[Bindable("dataChange")]
-							public function get strokeColour():Number {
-								// Cycle the stroke colour through the 'unitColours' array (defined in the global tag of player.css)
-								var unitColours:Array = getStyle("unitColours");
-								return unitColours[itemIndex % unitColours.length];
-							}
-							
-							[Bindable("dataChange")]
-							public function get gradiantColour():Number {
-								// Cycle the stroke colour through the 'unitColours' array (defined in the global tag of player.css)
-								var gradientColours:Array = getStyle("gradientColours");
-								return gradientColours[itemIndex % gradientColours.length];
-							}
-						]]>
-					</fx:Script>
-					<s:Rect left="0" right="0" top="0" bottom="0" radiusX="8" radiusY="8">
-						<s:stroke>
-							<s:SolidColorStroke color="{strokeColour}" weight="2" />
-						</s:stroke>
-					</s:Rect>
-					
-					<s:Path data="M 200 0 L 220 0 L 220 20 L 200 0 Z">
-						<s:fill>
-							<s:LinearGradient rotation="135" scaleX="180" x="300" y="0">
-								<s:GradientEntry color="{gradiantColour}" ratio="0"/>	
-								<s:GradientEntry color="{strokeColour}" ratio="1"/>	
-							</s:LinearGradient>
-						</s:fill>
-					</s:Path>
-					<s:Label text="Unit {itemIndex + 1}" fontSize="21" fontWeight="bold" left="10" top="10" />
-					<s:Group left="10" right="10" top="30">
-						<s:Line width="100%">
-							<s:stroke>
-								<s:SolidColorStroke color="0x000000"/>
-							</s:stroke>
-						</s:Line>
-					</s:Group>
-					
-					<s:Label text="{data.@caption}" fontSize="16" top="40" left="10" />
-					
-					<s:Label text="{copyProvider.getCopyForId('courseDurationRenderLabel')}" top="75" left="10" />
-					<s:Label text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" fontSize="24" top="100" left="10" />
-				</s:DataRenderer>
-			</fx:Component>
-		</s:itemRenderer>
-	</s:DataGroup>
-	
 </s:Skin>

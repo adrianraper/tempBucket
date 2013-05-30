@@ -100,7 +100,12 @@
 		
 		protected function onAddImage(options:Object, widget:XML, title:String = null):void {
 			if (title) options.title = title;
-			if (widget) options.node = widget; // gh#115 - edit an existing widget
+			if (widget) {
+				options.node = widget; // gh#115 - edit an existing widget
+				options.span = widget.@span; // gh#312
+			} else {
+				options.span = 1;
+			}
 			facade.sendNotification(RotterdamNotifications.IMAGE_WIDGET_ADD, options);
 		}
 		

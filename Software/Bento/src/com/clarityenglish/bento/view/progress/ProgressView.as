@@ -5,6 +5,7 @@ package com.clarityenglish.bento.view.progress {
 	import com.clarityenglish.bento.view.progress.components.ProgressCompareView;
 	import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
 	import com.clarityenglish.bento.view.progress.components.ProgressScoreView;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	import flash.events.Event;
 	
@@ -47,6 +48,10 @@ package com.clarityenglish.bento.view.progress {
 		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
 		}
 
 		// Constructor to let us initialise our states
