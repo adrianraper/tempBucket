@@ -1,6 +1,5 @@
 package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -14,6 +13,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	import mx.events.EffectEvent;
 	import mx.events.FlexEvent;
 	
+	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StateUtil;
 	import org.davekeen.validators.URLValidator;
 	import org.osflash.signals.Signal;
@@ -550,7 +550,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					downButton.addEventListener(MouseEvent.CLICK, onDownClick);
 					break;
 				case upAnim:
-					upAnim.addEventListener(EffectEvent.EFFECT_END, onUpAimEnd);
+					upAnim.addEventListener(EffectEvent.EFFECT_END, onUpAnimEnd);
 					break;
 			}
 		}
@@ -797,7 +797,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onStageClick(event:MouseEvent):void {
 			// gh#306
-			if (Class(getDefinitionByName(getQualifiedClassName(event.target))) == DataGroup ) {
+			if (ClassUtil.getClass(event.target) == DataGroup) {
 				disSelectFontFormattingButton();
 			}
 			if (isOutsideClick) {
@@ -817,7 +817,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 
 		}
 		
-		protected function onUpAimEnd(event:Event):void {
+		protected function onUpAnimEnd(event:Event):void {
 			if (isDownArrowClick) {
 				itemList.alpha = 0;
 				isUpArrowClick = false;
