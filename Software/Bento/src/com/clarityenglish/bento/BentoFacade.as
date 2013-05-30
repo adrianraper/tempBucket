@@ -94,6 +94,7 @@
 			registerCommand(BBNotifications.BENTO_RESET, BentoResetCommand);
 			registerCommand(BBNotifications.LANGUAGE_CHANGE, LanguageChangeCommand);
 			registerCommand(BBNotifications.MENU_XHTML_LOAD, MenuXHTMLLoadCommand);
+			registerCommand(BBNotifications.MENU_XHTML_RELOAD, MenuXHTMLReloadCommand);
 			registerCommand(BBNotifications.XHTML_LOAD, XHTMLLoadCommand);
 			registerCommand(BBNotifications.SELECTED_NODE_CHANGE, SelectedNodeChangeCommand);
 			registerCommand(BBNotifications.SELECTED_NODE_UP, SelectedNodeUpCommand);

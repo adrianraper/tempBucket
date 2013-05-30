@@ -18,6 +18,8 @@
 		public static const MENU_XHTML_LOADED:String = "bb/menu_xhtml_loaded";
 		public static const MENU_XHTML_NOT_LOADED:String = "bb/menu_xhtml_not_loaded";
 		
+		public static const MENU_XHTML_RELOAD:String = "bb/menu_xhtml_reload";
+		
 		public static const XHTML_LOAD:String = "bb/xhtml_load";
 		public static const XHTML_LOADED:String = "bb/xhtml_loaded";
 		public static const XHTML_LOAD_IOERROR:String = "bb/xhtml_load_ioerror";

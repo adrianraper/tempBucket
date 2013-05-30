@@ -105,6 +105,21 @@ package com.clarityenglish.bento.model {
 			transformDefinitions.push(new TransformDefinition(transforms, forTypes, forFilename));
 		}
 		
+		public function reloadXHTML():void {
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			
+			if (!bentoProxy.menuXHTML) {
+				log.error("reloadXHTML was called when no menu xhtml was loaded");
+				return;
+			}
+			
+			// Clear the entry from the cache and reload
+			if (loadedResources[bentoProxy.menuXHTML.href])
+				delete loadedResources[bentoProxy.menuXHTML.href];
+			
+			loadXHTML(bentoProxy.menuXHTML.href);
+		}
+		
 		public function loadXHTML(href:Href):void {
 			if (!href) {
 				log.error("loadXHTML received a null Href");
@@ -236,7 +251,7 @@ package com.clarityenglish.bento.model {
 				notifyXHTMLLoaded(href);
 			} catch (e:Error) {
 				var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-				//alice: in order to target the error I add this new error type errorParsingExerciseDetection1
+				// alice: in order to target the error I add this new error type errorParsingExerciseDetection1
 				sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorParsingExerciseDetection1", { filename: href.filename, message1: href.transforms.length, message2: e.message } ));
 				return;
 			}
