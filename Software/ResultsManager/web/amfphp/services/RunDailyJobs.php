@@ -130,11 +130,9 @@ function runDailyJobs($triggerDate = null) {
 	// 5. Archive sent emails
 
 	// Clean up the T_PendingEmails, remove everything that has been sent
-	/*
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->archiveSentEmails($database);
 	echo "Archived $rc sent emails. $newLine";
-	*/	
 
 	// 6. Count the amount of CCB material and activity for each account
 

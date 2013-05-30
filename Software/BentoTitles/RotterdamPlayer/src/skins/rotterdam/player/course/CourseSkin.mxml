@@ -29,20 +29,21 @@
 		<s:State name="unitplayer" />
 	</s:states>
 	
-	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" maxHeight="{hostComponent.height * 0.95}" minHeight="90">
+	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" 
+					   maxHeight="{hostComponent.height*0.90}" minHeight="90">
 		<s:layout>
 			<s:VerticalLayout paddingTop="10" paddingBottom="10"/>
 		</s:layout>
 		<s:VGroup id="unitVGroup" height="100%">
-			<s:Label id="courseCaptionLabel" paddingLeft="7" width="150" fontWeight="bold" fontSize="15"/>
+			<s:Label id="courseCaptionLabel" paddingLeft="8" paddingRight="8" width="150" fontWeight="bold" fontSize="15"/>
 			<mx:Spacer height="5" />
-			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" height="100%" borderVisible="false" selectionColor="0xC0C0C0">
+			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" height="100%" borderVisible="false" selectionColor="0xC0C0C0" >
 				<s:layout>
 					<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
 				</s:layout>
 				<s:itemRenderer>
 					<fx:Component>
-						<s:ItemRenderer width="100%" toolTip="{data.@caption}">
+						<s:ItemRenderer width="100%">
 							<fx:Script>
 								<![CDATA[
 									public override function set data(value:Object):void {

@@ -68,12 +68,13 @@
 		<s:State name="unitplayer" enterState="unitViewNavigatorShow(UnitView, unitViewNavigator.defaultPushTransition)" />
 	</s:states>
 	
-	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" maxHeight="{hostComponent.height*0.75}" minHeight="90">
+	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" 
+					maxHeight="{hostComponent.height*0.75}" minHeight="90">
 		<s:layout>
 			<s:VerticalLayout paddingTop="10" paddingBottom="10"/>
 		</s:layout>
 		<s:VGroup id="unitVGroup" height="100%">
-			<s:Label id="courseCaptionLabel" paddingLeft="7" width="150" fontWeight="bold" fontSize="15"/>
+			<s:Label id="courseCaptionLabel" paddingLeft="8" paddingRight="8" width="150" fontWeight="bold" fontSize="15"/>
 			<mx:Spacer height="5" />
 			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" height="100%" borderVisible="false" selectionColor="0xC0C0C0" >
 				<s:layout>
@@ -88,13 +89,19 @@
 								]]>
 							</fx:Script>
 							
-							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="105" maxDisplayedLines="1" height="25" paddingLeft="18" paddingTop="8" />
+							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
 							<s:Group right="2" verticalCenter="0">
 								<s:Button id="deleteCourseButton"
 										  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
 										  visible="false"
 										  click="dispatchEvent(new UnitDeleteEvent(UnitDeleteEvent.UNIT_DELETE, data as XML, true))" useHandCursor="true" buttonMode="true" scaleX="0.8" scaleY="0.8"/>
 							</s:Group>
+							<!-- gh#322 -->
+							<s:Line width="90%" horizontalCenter="0" >
+								<s:stroke>
+									<s:SolidColorStroke color="#FFBF40" weight="1" caps="square"/>
+								</s:stroke>
+							</s:Line>
 						</s:ItemRenderer>
 					</fx:Component>
 				</s:itemRenderer>

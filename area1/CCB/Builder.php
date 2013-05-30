@@ -10,7 +10,7 @@
 	$referrer = $ip = $server = $productCode = '';
 
 	// For this product
-	//$productCode = 54; // Rotterdam
+	$productCode = 54; // Rotterdam
 	$swfName = 'Builder.swf';
 	$webShare = '';
 	$startControl = "$webShare/Software/BentoTitles/RotterdamBuilder/bin-debug/";
@@ -103,7 +103,7 @@
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
-		var coordsMinHeight = "740"; var coordsMaxHeight = null;
+		var coordsMinHeight = "760"; var coordsMaxHeight = null;
 
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
