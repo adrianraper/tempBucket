@@ -244,7 +244,7 @@ in accordance with the terms of the license agreement accompanying it.
 							 left="3" right="3" top="1" bottom="0" minHeight="30"
 							 color="0x000000" fontWeight="normal"  fontSize="14"/>
 					<s:HGroup id="buttonGroup" width="100%" minWidth="0" minHeight="0"
-							  gap="50"/>
+							  gap="100"/>
 				</s:VGroup>
 			</s:HGroup>
 			
