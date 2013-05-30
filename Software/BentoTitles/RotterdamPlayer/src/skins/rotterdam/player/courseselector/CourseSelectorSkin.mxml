@@ -14,7 +14,7 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:Label text="Choose a Course" top="15" left="26" fontSize="16" fontWeight="bold"/>
+	<s:Label id="courseListTitleLabel" top="15" fontSize="16" fontWeight="bold" left="26"/>
 	
 	<s:List id="courseList" labelField="@caption" width="100%" borderVisible="false" itemRenderer="skins.rotterdam.player.courseselector.CourseListItemRenderer" top="43" left="77" right="77" bottom="50">
 		<s:layout>

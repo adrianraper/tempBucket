@@ -16,7 +16,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			protected function 	onFreeCourseClick(event:MouseEvent):void {	
+			protected function onFreeCourseClick(event:MouseEvent):void {	
 				navigateToURL(new URLRequest("http://www.clarityenglish.com/service/prog/CCB-GettingStarted/index.html"),"_blank");
 			}
 		]]>

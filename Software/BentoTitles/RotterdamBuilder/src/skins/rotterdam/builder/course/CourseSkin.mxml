@@ -75,8 +75,7 @@
 		<s:VGroup id="unitVGroup">
 			<s:Label id="courseCaptionLabel" paddingLeft="7" width="150" fontWeight="bold" fontSize="15"/>
 			<mx:Spacer height="5" />
-			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" borderVisible="false" 
-					selectionColor="0xC0C0C0" >
+			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" borderVisible="false" selectionColor="0xC0C0C0">
 				<s:layout>
 					<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
 				</s:layout>
@@ -88,7 +87,6 @@
 									import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 								]]>
 							</fx:Script>
-							
 							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
 							<s:Group right="2" verticalCenter="0">
 								<s:Button id="deleteCourseButton"
