@@ -125,7 +125,7 @@ package com.clarityenglish.common.vo.config {
 		// #336
 		public var sessionStartTime:Number;
 		
-		//gh #225
+		// gh#225
 		public var _illustrationCloseFlag:Boolean;
 		
 		/**

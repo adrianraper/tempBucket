@@ -19,6 +19,8 @@
  <remoteDomain>http://dock.projectbench/</remoteDomain>
  <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
  
+ <remoteStartFolder>http://dock.projectbench/area1/</remoteStartFolder>
+ 
  <remoteService>RotterdamPlayerService</remoteService>
  <!--<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>-->
  

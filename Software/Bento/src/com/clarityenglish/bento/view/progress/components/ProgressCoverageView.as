@@ -74,7 +74,7 @@ package com.clarityenglish.bento.view.progress.components {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_courseChanged) {	
+			if (_courseChanged && menu) {	
 				if (progressBar) {
 					progressBar.label = copyProvider.getCopyForId("progressBarCoverage", { course: copyProvider.getCopyForId(StringUtils.capitalize(courseClass)) });
 					progressBar.data = menu.course.(@["class"] == courseClass).@coverage;
