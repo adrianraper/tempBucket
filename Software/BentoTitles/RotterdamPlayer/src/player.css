@@ -75,6 +75,10 @@ course|CourseView s|BorderContainer#unitContainer {
 	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
 }
 
+course|CourseView s|List#unitList s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
+}
+
 unit|UnitHeaderView {
 	skinClass: ClassReference("skins.rotterdam.unit.UnitHeaderSkin");
 }
