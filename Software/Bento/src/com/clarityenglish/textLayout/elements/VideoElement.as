@@ -3,11 +3,9 @@ package com.clarityenglish.textLayout.elements {
 	
 	import flash.events.Event;
 	import flash.events.FullScreenEvent;
-	import flash.events.TimerEvent;
 	import flash.system.Capabilities;
 	import flash.system.Security;
 	import flash.utils.Dictionary;
-	import flash.utils.setTimeout;
 	
 	import flashx.textLayout.formats.FormatValue;
 	import flashx.textLayout.tlf_internal;
@@ -15,9 +13,7 @@ package com.clarityenglish.textLayout.elements {
 	import mx.controls.SWFLoader;
 	import mx.events.FlexEvent;
 	
-	import org.osmf.events.MediaPlayerStateChangeEvent;
 	import org.osmf.events.TimeEvent;
-	import org.osmf.media.MediaPlayerState;
 	import org.osmf.net.DynamicStreamingItem;
 	import org.osmf.net.DynamicStreamingResource;
 	import org.osmf.net.StreamType;

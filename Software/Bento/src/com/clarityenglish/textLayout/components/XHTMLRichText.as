@@ -1,6 +1,5 @@
 package com.clarityenglish.textLayout.components {
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
-	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.conversion.XHTMLImporter;
 	import com.clarityenglish.textLayout.events.RenderFlowEvent;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
@@ -9,10 +8,6 @@ package com.clarityenglish.textLayout.components {
 	import com.newgonzo.web.css.CSS;
 	
 	import flash.events.Event;
-	import flash.utils.setTimeout;
-	
-	import flashx.textLayout.elements.TextFlow;
-	import flashx.textLayout.events.UpdateCompleteEvent;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;

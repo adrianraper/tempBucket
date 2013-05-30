@@ -92,7 +92,6 @@ import flash.events.Event;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 import flash.events.MouseEvent;
-import flash.utils.setTimeout;
 
 import flashx.textLayout.elements.FlowElement;
 import flashx.textLayout.elements.TextFlow;
@@ -100,7 +99,6 @@ import flashx.textLayout.events.FlowElementMouseEvent;
 import flashx.textLayout.events.UpdateCompleteEvent;
 import flashx.textLayout.tlf_internal;
 
-import mx.events.FlexEvent;
 import mx.logging.ILogger;
 import mx.logging.Log;
 import mx.utils.UIDUtil;

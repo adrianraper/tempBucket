@@ -1,16 +1,10 @@
 ﻿package com.clarityenglish.rotterdam.builder.view.uniteditor {
-	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.googlecode.bindagetools.Bind;
-	
-	import flash.utils.setTimeout;
-	
-	import mx.events.CollectionEvent;
-	import mx.events.CollectionEventKind;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;

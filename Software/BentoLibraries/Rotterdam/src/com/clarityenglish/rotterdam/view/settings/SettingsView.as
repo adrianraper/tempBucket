@@ -10,7 +10,6 @@ package com.clarityenglish.rotterdam.view.settings {
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
-	import flash.utils.setTimeout;
 	
 	import mx.collections.ArrayCollection;
 	import mx.collections.ArrayList;
@@ -18,11 +17,8 @@ package com.clarityenglish.rotterdam.view.settings {
 	import mx.collections.ListCollectionView;
 	import mx.controls.DateField;
 	import mx.core.ClassFactory;
-	import mx.events.CalendarLayoutChangeEvent;
 	import mx.events.FlexEvent;
 	import mx.events.ItemClickEvent;
-	import mx.validators.DateValidator;
-	import mx.validators.StringValidator;
 	
 	import org.davekeen.util.DateUtil;
 	import org.davekeen.util.StringUtils;
@@ -31,15 +27,12 @@ package com.clarityenglish.rotterdam.view.settings {
 	import spark.components.Button;
 	import spark.components.CheckBox;
 	import spark.components.Group;
-	import spark.components.HGroup;
 	import spark.components.Label;
 	import spark.components.RadioButton;
 	import spark.components.RadioButtonGroup;
-	import spark.components.RichEditableText;
 	import spark.components.TabBar;
 	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
-	import spark.validators.NumberValidator;
 	
 	/**
 	 * There is quite a lot of code duplication here that could be neatened up into a mini form framework that automatically links xml properties and components.
