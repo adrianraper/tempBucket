@@ -68,7 +68,7 @@
 		<s:State name="unitplayer" enterState="unitViewNavigatorShow(UnitView, unitViewNavigator.defaultPushTransition)" />
 	</s:states>
 	
-	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" maxHeight="{hostComponent.height*0.8}" minHeight="90">
+	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" maxHeight="{hostComponent.height*0.75}" minHeight="90">
 		<s:layout>
 			<s:VerticalLayout paddingTop="10" paddingBottom="10"/>
 		</s:layout>

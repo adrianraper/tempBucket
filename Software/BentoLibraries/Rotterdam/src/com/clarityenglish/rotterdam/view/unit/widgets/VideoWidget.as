@@ -62,7 +62,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected function onSwfLoaderComplete(event:Event):void {
-			event.target.content.addEventListener("onReady", function():void { invalidateDisplayList(); }, false, 0, true);
+			// gh#328
+			//event.target.content.addEventListener("onReady", function():void { invalidateDisplayList(); }, false, 0, true);
+			event.target.content.addEventListener("onReady", resizeVideo, false, 0, true);
 			// gh#106
 			event.target.content.addEventListener(MouseEvent.CLICK, onClickVideo);
 		}
@@ -84,7 +86,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
-			if (swfLoader && swfLoader.content && swfLoader.content["setSize"] && videoHolder) {
+			// gh#328
+			resizeVideo();
+			/*if (swfLoader && swfLoader.content && swfLoader.content["setSize"] && videoHolder) {
 				swfLoader.content["setSize"](width - 16, videoHolder.height - 12);
 				widgetText.width = width;
 				
@@ -92,7 +96,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				swfLoader.x = 8;
 				//swfLoader.height = videoHolder.height + 12;
 				invalidateSize();
-			}
+			}*/
 			
 			if (videoPlayer) {
 				videoPlayer.width = width - 16;
@@ -102,6 +106,18 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			}
 		}
 		
+		protected function resizeVideo(event:Event = null):void {
+			if (swfLoader && swfLoader.content && swfLoader.content["setSize"] && videoHolder) {
+				swfLoader.content["setSize"](width - 16, videoHolder.height-12);
+				widgetText.width = width;
+				
+				// These three lines are a bit hacky, but otherwise the YouTube video doesn't want to centre itself properly
+				swfLoader.x = 8;
+				//swfLoader.height = videoHolder.height + 12;
+				invalidateSize();
+			}
+		}
+
 		protected override function onRemovedFromStage(event:Event):void {
 			super.onRemovedFromStage(event);
 			
@@ -118,7 +134,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		// gh#215
 		private function stopVideo(event:Event = null):void {
-			if (swfLoader && swfLoader.content) {
+			if (swfLoader && swfLoader.content && swfLoader.content["stopVideo"]) {
 				player = swfLoader.content;
 				player.stopVideo();
 				// This was merged from Alice - not too sure what its about... check when we get the new video ANE component
