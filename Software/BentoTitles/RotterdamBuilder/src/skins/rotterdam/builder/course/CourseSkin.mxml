@@ -68,11 +68,11 @@
 		<s:State name="unitplayer" enterState="unitViewNavigatorShow(UnitView, unitViewNavigator.defaultPushTransition)" />
 	</s:states>
 	
-	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" height="{unitVGroup.height + 30}">
+	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" maxHeight="{hostComponent.height*0.8}" minHeight="90">
 		<s:layout>
-			<s:VerticalLayout paddingTop="10"/>
+			<s:VerticalLayout paddingTop="10" paddingBottom="10"/>
 		</s:layout>
-		<s:VGroup id="unitVGroup" height="97%">
+		<s:VGroup id="unitVGroup" height="100%">
 			<s:Label id="courseCaptionLabel" paddingLeft="7" width="150" fontWeight="bold" fontSize="15"/>
 			<mx:Spacer height="5" />
 			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" height="100%" borderVisible="false" selectionColor="0xC0C0C0" >
@@ -120,7 +120,7 @@
 	<course:ToolBarView id="toolBar" bottom="38" left="0" right="0" />
 	
 	<!--alice p-->
-	<s:VGroup left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">	
+	<s:VGroup id="publishVGroup" left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">	
 		<s:VGroup paddingLeft="2" id="publishSelectionGroup" height="0" alpha="0">
 			<s:Group>
 				<s:Rect width="152" height="200" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
