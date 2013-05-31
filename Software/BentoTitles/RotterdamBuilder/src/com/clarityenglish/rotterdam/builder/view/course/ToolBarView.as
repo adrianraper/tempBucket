@@ -263,6 +263,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		private var _currentEditingWidget:XML;
 		private var _urlCaption:String = "";
+		private var _urlString:String = "";
 		
 		[Bindable]
 		private var contentWindowTitle:String;
@@ -276,9 +277,16 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		public function set urlCaption(value:String):void {
-			if (value) {
 				_urlCaption = value;
-			}
+		}
+		
+		[Bindable]
+		public function get urlString():String {
+			return _urlString;
+		}
+		
+		public function set urlString(value:String):void {
+				_urlString = value;
 		}
 		
 		public function ToolBarView() {
@@ -595,6 +603,13 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			callLater(function():void { 
 				if (urlCaption) {
 					captionTextInput.text = urlCaption;
+				} else {
+					captionTextInput.text = "";
+				}
+				if (urlString) {
+					webUrlTextInput.text = urlString;
+				} else {
+					webUrlTextInput.text = "";
 				}
 			});
 			isItemClick = true;
@@ -602,6 +617,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onNormalCancel(event:MouseEvent):void {
 			if (this.currentState == "link") {
+				urlCaption = "";
+				urlString = "";
 				cancelLink.dispatch();
 			}
 			setCurrentState("normal");
@@ -677,10 +694,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			if (webUrlTextInput.text != null) {
 				captionTextInput.text = (captionTextInput.text == "")? webUrlTextInput.text: captionTextInput.text;
 				addLink.dispatch(webUrlTextInput.text, captionTextInput.text);
-				webUrlTextInput.text = "";
-				captionTextInput.text = "";
 				setCurrentState("normal");
-			}		
+			}
+			urlCaption = "";
+			urlString = "";
 		}
 		
 		protected function onNormalPreview(event:MouseEvent):void {

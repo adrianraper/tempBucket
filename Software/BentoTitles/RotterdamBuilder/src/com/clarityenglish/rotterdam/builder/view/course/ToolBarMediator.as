@@ -78,7 +78,8 @@
 					view.currentEditingWidget = note.getBody() as XML;
 					break;
 				case RotterdamNotifications.CAPTION_SELECTED:
-					view.urlCaption = note.getBody() as String;
+					view.urlCaption = note.getBody().caption as String;
+					view.urlString = note.getBody().urlString as String;
 					break;
 			}
 		}

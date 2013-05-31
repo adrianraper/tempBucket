@@ -11,18 +11,27 @@
 			import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 			import com.googlecode.bindagetools.Bind;
 			
+			import flash.text.engine.TextElement;
+			
+			import flashx.textLayout.compose.FlowComposerBase;
+			import flashx.textLayout.compose.FlowDamageType;
 			import flashx.textLayout.conversion.ConversionType;
 			import flashx.textLayout.conversion.TextConverter;
 			import flashx.textLayout.elements.FlowElement;
+			import flashx.textLayout.elements.FlowGroupElement;
+			import flashx.textLayout.elements.FlowLeafElement;
 			import flashx.textLayout.elements.LinkElement;
 			import flashx.textLayout.elements.ParagraphElement;
 			import flashx.textLayout.elements.SpanElement;
 			import flashx.textLayout.elements.TextFlow;
 			import flashx.textLayout.formats.TextLayoutFormat;
 			
+			import mx.collections.XMLListCollection;
 			import mx.events.FlexEvent;
 			
 			import org.davekeen.util.XmlUtils;
+			
+			import spark.utils.TextFlowUtil;
 			
 			private var _widget:AbstractWidget;
 			
@@ -78,9 +87,12 @@
 					activePosition = 0;
 				}
 				
-				if (webUrlString.search("http://") == -1) {
+				if (webUrlString && webUrlString.search("http://") == -1) {
 					webUrlString = "http://" + webUrlString;
 				}
+				
+				// test
+				
 
 				XmlUtils.preserveSpaces(function():void {	
 					if (anchorPosition == 0 && activePosition == 0) {
@@ -101,25 +113,42 @@
 					} else {
 						var richTextFlow:TextFlow = richEditableText.textFlow;
 						var lastFlowElment:TextFlow = richTextFlow.splitAtPosition(activePosition) as TextFlow;
-						var chopFlowElment:FlowElement = richTextFlow.splitAtPosition(anchorPosition)
+						var chopFlowElment:TextFlow = richTextFlow.splitAtPosition(anchorPosition) as TextFlow;
+
 						if (richTextFlow.numChildren > 0) {
 							var firstParagraph:ParagraphElement= richTextFlow.getChildAt(richTextFlow.numChildren -1) as ParagraphElement;
 						} else {
 							firstParagraph = new ParagraphElement();
 						}				
 						
-						//insert link element
-						var linkElement:LinkElement = new LinkElement();
-						linkElement.href = webUrlString;
-						linkElement.target = "_blank";
-						var linkSpan:SpanElement = new SpanElement();
-						linkSpan.text = captionString;
-						linkElement.addChild(linkSpan);
-						if (firstParagraph) {
-							firstParagraph.addChild(linkElement);
-							var lastP:ParagraphElement = lastFlowElment.getChildAt(0) as ParagraphElement;					
-							if (lastP) {
-								firstParagraph.replaceChildren(firstParagraph.numChildren, firstParagraph.numChildren, getParagraphChildren(lastP));
+						// gh#320
+						var choplastElement:FlowElement = chopFlowElment.getLastLeaf() as FlowElement;
+						if (choplastElement.parent is LinkElement && webUrlString == "") {
+							var spanElement:SpanElement = new SpanElement();
+							spanElement.text = captionString;
+							
+							if (firstParagraph) {
+								firstParagraph.addChild(spanElement);
+								var lastP:ParagraphElement = lastFlowElment.getChildAt(0) as ParagraphElement;					
+								if (lastP) {
+									firstParagraph.replaceChildren(firstParagraph.numChildren, firstParagraph.numChildren, getParagraphChildren(lastP));
+								}
+							}
+						} else {
+							//insert link element
+							var linkElement:LinkElement = new LinkElement();
+							linkElement.href = webUrlString;
+							linkElement.target = "_blank";
+							var linkSpan:SpanElement = new SpanElement();
+							linkSpan.text = captionString;
+							linkElement.addChild(linkSpan);
+							
+							if (firstParagraph) {
+								firstParagraph.addChild(linkElement);
+								lastP = lastFlowElment.getChildAt(0) as ParagraphElement;					
+								if (lastP) {
+									firstParagraph.replaceChildren(firstParagraph.numChildren, firstParagraph.numChildren, getParagraphChildren(lastP));
+								}
 							}
 						}
 						
@@ -158,7 +187,17 @@
 					dispatchEvent(new WidgetTextFormatMenuEvent(WidgetTextFormatMenuEvent.TEXT_SELECTED, false, format));
 					
 					var caption:String = richEditableText.text.substring(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
-					dispatchEvent(new WidgetLinkCaptureEvent(WidgetLinkCaptureEvent.CAPTION_SELECTED, false, caption));
+					
+					// gh#320
+					var urlTextFlow:TextFlow = richEditableText.textFlow;
+					var urlTextFlowElement:FlowElement = urlTextFlow.findLeaf(selectionAnchorPosition) as FlowElement;				
+					if (urlTextFlowElement.parent is LinkElement) {
+						var linkElement:LinkElement = urlTextFlowElement.parent as LinkElement;
+						var urlString:String = linkElement.href;
+						trace("url: "+linkElement.href);
+					}
+
+					dispatchEvent(new WidgetLinkCaptureEvent(WidgetLinkCaptureEvent.CAPTION_SELECTED, false, caption, urlString));
 				}
 			}
 			

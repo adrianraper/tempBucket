@@ -87,7 +87,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public var openContent:Signal = new Signal(XML, String);
 		public var textSelected:Signal = new Signal(TextLayoutFormat);
 		// gh#306
-		public var captionSelected:Signal = new Signal(String);
+		public var captionSelected:Signal = new Signal(String, String);
 		// gh#106
 		public var playVideo:Signal = new Signal(XML);
 		public var playAudio:Signal = new Signal(XML);
@@ -254,7 +254,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected function onCaptionSlected(event:WidgetLinkCaptureEvent):void {
-			captionSelected.dispatch(event.caption);
+			captionSelected.dispatch(event.caption, event.urlString);
 		}
 		
 		private function getParagraphChildren(p:ParagraphElement):Array {

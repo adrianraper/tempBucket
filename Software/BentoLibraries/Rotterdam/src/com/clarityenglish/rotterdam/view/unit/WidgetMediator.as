@@ -164,8 +164,12 @@
 			facade.sendNotification(RotterdamNotifications.TEXT_SELECTED, format);
 		}
 		
-		protected function onCaptionSelected(caption:String):void {
-			facade.sendNotification(RotterdamNotifications.CAPTION_SELECTED, caption);
+		protected function onCaptionSelected(caption:String, urlString:String):void {
+			trace("urlString: "+urlString);
+			var linkObj:Object = new Object();
+			linkObj.caption = caption;
+			linkObj.urlString = urlString
+			facade.sendNotification(RotterdamNotifications.CAPTION_SELECTED, linkObj);
 		}
 		
 		//gh#106
