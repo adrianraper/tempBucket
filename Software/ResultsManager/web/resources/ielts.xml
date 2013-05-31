@@ -49,8 +49,8 @@
 			
 			<lit name="errorDatabaseReading" code="500">Error whilst reading from the database. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorDatabaseWriting" code="501">Error whilst writing to the database. Please contact support@clarityenglish.com.</lit>
-			<lit name="xxerrorMustUpgradeApp" code="502">You have to upgrade your app as it will not work with the database. If you have an iPad, upgrade from the iTunes store. If you are using a browser, clear your cache.</lit>
-			<lit name="errorMustUpgradeApp" code="502">Sorry, there is a problem with the iPad app right now. Please try again in a few hours. If you are using a browser, clear your cache to upgrade and try again.</lit>
+			<lit name="errorMustUpgradeApp" code="502">You have to upgrade your app as it will not work with the database. If you have an iPad, upgrade from the iTunes App Store. If you are using a browser, clear your cache.</lit>
+			<lit name="xxerrorMustUpgradeApp" code="502">Sorry, there is a problem with the iPad app right now. Please try again in a few hours. If you are using a browser, clear your cache to upgrade and try again.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			<lit name="accountMoreButton">To find out how to get an account, tap here.</lit>
@@ -340,7 +340,7 @@
 			<lit name="tryAgainButton">Try again</lit>
 			<lit name="seeAnswersButton">See answers</lit>
 			<lit name="moveForwardButton">Forward</lit>
-			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
+			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise? </lit>
 			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
 			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>

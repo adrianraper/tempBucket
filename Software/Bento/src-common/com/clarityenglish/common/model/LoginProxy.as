@@ -179,7 +179,9 @@ package com.clarityenglish.common.model {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
 			// #323
-			if (user && (configProxy.getLicenceType() == Title.LICENCE_TYPE_LT || 
+			// gh#335 Library Premium uses CT, but it might still be anonymous
+			if (user && (Number(user.userID) > 0) &&
+						(configProxy.getLicenceType() == Title.LICENCE_TYPE_LT || 
 						 configProxy.getLicenceType() == Title.LICENCE_TYPE_CT ||
 						 configProxy.getLicenceType() == Title.LICENCE_TYPE_TT)) {
 				

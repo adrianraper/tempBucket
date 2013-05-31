@@ -318,6 +318,9 @@ EOD;
 			throw $this->copyOps->getExceptionForId("errorNoSuchGroup");
 		}
 			
+		// gh#334 Authenticate the user with the session
+		Authenticate::login($loginObj->F_UserName, $loginObj->F_UserType);
+		
 		return $loginObj;
 	}
 	

@@ -203,6 +203,7 @@ class BentoService extends AbstractService {
 			($licence->licenceType == Title::LICENCE_TYPE_CT && $loginObj == NULL) ||
 			($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {
 			$userObj = $this->loginOps->anonymousUser($rootID);
+			
 		} else {
 			// First, confirm that the user details are correct
 			$userObj = $this->loginOps->loginBento($loginObj, $loginOption, $verified, $allowedUserTypes, $rootID, $productCode);
@@ -556,6 +557,8 @@ EOD;
 	 */
 	public function getProgressData($user = null, $rootID = null, $productCode = null, $progressType = null, $menuXMLFile = null) {
 		// gh#178 if you have an old iPad version you can't upgrade yet
+		// 31 May 2013 - now you can upgrade, so force this...
+		/*
 		$rootID = Session::get('rootID');
 		if (!array_search($rootID, array(14276,14277,14278,14279,14280,14281,14282,14283,14284,14285,14286,14287,14288,14289,14290,14291,14292)) === false) {
 			require_once(dirname(__FILE__)."/../../classes/OldProgressOps.php");
@@ -564,6 +567,8 @@ EOD;
 		} else {
 			throw $this->copyOps->getExceptionForId("errorMustUpgradeApp");	
 		}
+		*/
+		throw $this->copyOps->getExceptionForId("errorMustUpgradeApp");	
 	}
 	
 	/**

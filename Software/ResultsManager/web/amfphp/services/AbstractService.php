@@ -108,23 +108,26 @@ class AbstractService {
 	public function beforeFilter($function_called) {
 		// These functions can be called without logging in
 		// TODO. Too many are having to go in here - why aren't I validating my login?
+		/*
+		// gh#334
+			$function_called == "xhtmlLoad" ||
+			$function_called == "startSession" ||
+			$function_called == "updateSession" ||
+			$function_called == "stopSession" ||
+			$function_called == "writeScore" ||
+		*/
 		if ($function_called == "login" || 
 			$function_called == "logout" || 
 			$function_called == "getCopy" ||
-			$function_called == "xhtmlLoad" || // for test drive
 			$function_called == "getContent" ||
 			$function_called == "getProgressData" ||
 			$function_called == "getCoverage" ||
 			$function_called == "getEveryonesCoverage" ||
 			$function_called == "getEveryoneSummary" ||
 			$function_called == "getAccountSettings" ||
-			$function_called == "startSession" ||
-			$function_called == "updateSession" ||
-			$function_called == "stopSession" ||
 			$function_called == "updateUser" ||
 			$function_called == "updateLicence" ||
 			$function_called == "getInstanceID" ||
-			$function_called == "writeScore" ||
 			$function_called == "addUser" ||
 			$function_called == "getCCBContent"
 			) return true;
