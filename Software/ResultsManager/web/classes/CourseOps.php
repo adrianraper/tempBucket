@@ -252,8 +252,12 @@ class CourseOps {
 
 	// gh#122
 	public function getCourse($id) {
-		$xml = simplexml_load_file($this->accountFolder."/".$id."/menu.xml");
-		return $xml->head->script->menu->course;
+		if (file_exists($this->accountFolder."/".$id."/menu.xml")) {
+			$xml = simplexml_load_file($this->accountFolder."/".$id."/menu.xml");
+			return $xml->head->script->menu->course;
+		} else {
+			return false;
+		} 
 	}
 
 	// gh#122

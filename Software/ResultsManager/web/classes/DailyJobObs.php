@@ -563,8 +563,9 @@ SQL;
 				// Then for each account, open course.xml and count the nodes
 				$courses = $units = $exercises = $sessions = 0;
 				$this->courseOps->setAccountFolder(dirname(__FILE__).'/../'.$GLOBALS['ccb_data_dir'].'/'.$contentLocation);
-				$courseXML = simplexml_load_file($this->courseOps->courseFilename);
-				if (!$courseXML) {
+				if (file_exists($this->courseOps->courseFilename)) {
+					$courseXML = simplexml_load_file($this->courseOps->courseFilename);
+				} else {
 					AbstractService::$debugLog->notice("Account $accountName has no courses.xml");
 					echo "Account $accountName has no courses.xml";
 					continue 1;
