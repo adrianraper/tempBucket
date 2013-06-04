@@ -1,11 +1,6 @@
 <?php
 if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
-if (!isset($_GET['span'])) {
-	echo "No span given";
-	return;
-} 
-
-$span = $_GET['span'];
+if (isset($_GET['span'])) $span = $_GET['span'];
 
 require_once(dirname(__FILE__)."/../../config.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
@@ -50,7 +45,7 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 	
 	// Move the file into the media directory
 	move_uploaded_file($_FILES['Filedata']['tmp_name'], $mediaFolder."/".$filename);	
-	
+
 	switch ($mimeType) {
 		case "image/gif":
 		case "image/jpeg":
@@ -77,12 +72,14 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 			break;
 		case "application/pdf":
 			// gh#105 - if this is a pdf then generate a thumbnail of the first page with height 30 (for now)
-			$image = new Imagick($mediaFolder."/".$filename."[0]");
-			$image->setImageFormat("jpg");
-			$image->scaleimage(100, 0);
+			AbstractService::$debugLog->info("you are here4.1");
+			$pdfThumbnailImage = new Imagick($mediaFolder."/".$filename."[0]");
+				AbstractService::$debugLog->info("you are here4");
+			$pdfThumbnailImage->setImageFormat("jpg");
+			$pdfThumbnailImage->scaleimage(100, 0);
 			$thumbnail = $filename."-thumb.jpg";
-			$image->writeimage($mediaFolder."/".$thumbnail);
-			$image->destroy();
+			$pdfThumbnailImage->writeimage($mediaFolder."/".$thumbnail);
+			$pdfThumbnailImage->destroy();
 			break;
 	}
 

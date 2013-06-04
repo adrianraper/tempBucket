@@ -345,6 +345,10 @@ credits|CreditsView {
 	skinClass: ClassReference("skins.ielts.CreditsSkin");
 }
 
+credits|CreditsView s|Button#moreButton {
+	skinClass: ClassReference("skins.ielts.credits.CreditsButtonSkin");
+}
+
 /* Marking view styles (this overwrites the default skin) */
 marking|MarkingView {
 	skinClass: ClassReference("skins.ielts.marking.MarkingSkin");

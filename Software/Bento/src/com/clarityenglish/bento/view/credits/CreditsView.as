@@ -8,6 +8,7 @@ package com.clarityenglish.bento.view.credits {
 	import mx.controls.Label;
 	import mx.controls.TextArea;
 	
+	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.RichText;
 	import spark.components.TextArea;
@@ -22,6 +23,18 @@ package com.clarityenglish.bento.view.credits {
 		public var thankYouLabel:spark.components.Label;
 		
 		[SkinPart]
+		public var thankYouLabel2:spark.components.Label;
+		
+		[SkinPart]
+		public var upgradeLabel:spark.components.Label;
+		
+		[SkinPart]
+		public var fullVersionLabel:spark.components.Label;
+		
+		[SkinPart]
+		public var moreButton:Button;
+		
+		[SkinPart]
 		public var weWouldLabel:spark.components.Label;
 		
 		[SkinPart]
@@ -29,6 +42,10 @@ package com.clarityenglish.bento.view.credits {
 		
 		[SkinPart]
 		public var creditLabel:spark.components.Label;
+		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
@@ -44,6 +61,7 @@ package com.clarityenglish.bento.view.credits {
 					creditsRichText.textFlow = creditFlow;
 					break;
 				case thankYouLabel:
+				case thankYouLabel2:
 					instance.text = copyProvider.getCopyForId("thankYouLabel");
 					break;
 				case weWouldLabel:
@@ -57,7 +75,28 @@ package com.clarityenglish.bento.view.credits {
 				case creditLabel:
 					creditLabel.text = copyProvider.getCopyForId("creditLabel");
 					break;
+				case upgradeLabel:
+					upgradeLabel.text = copyProvider.getCopyForId("upgradeLabel");
+					break;
+				case fullVersionLabel:
+					fullVersionLabel.text = copyProvider.getCopyForId("fullVersionLabel");
+					break;
+				case moreButton:
+					moreButton.label = copyProvider.getCopyForId("moreButton");
+					break;
 				
+			}
+		}
+		
+		protected override function getCurrentSkinState():String {
+			trace("product version: "+super.getCurrentSkinState());
+			switch (productVersion) {
+				case "R2ITD":
+					return "testDrive";
+				case "R2ILM":
+					return "lastMinute";
+				default:
+					return super.getCurrentSkinState();
 			}
 		}
 

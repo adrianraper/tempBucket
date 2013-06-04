@@ -348,6 +348,10 @@
 			<lit name="thankYouLabel">Thank you for using Road to IELTS.</lit>
 			<lit name="weWouldLabel">We would love to know what you think.</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
+			<lit name="upgradeLabel">Thinking of upgrading to the</lit>
+			<lit name="fullVersionLabel">full version?</lit>
+			<lit name="moreButton">To find out more</lit>
+			<lit name="moreURL"><![CDATA[http://www.ieltspractice.com/]]></lit>
 		</group>
 	</language>
 

@@ -42,7 +42,12 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			node = note.getBody().node;
 			// gh#312
-			span = note.getBody().span;
+			if (!note.getBody().span) {
+				trace("we are here");
+				span = 1;
+			} else {
+				span = note.getBody().span;	
+			}		
 			tempWidgetId = note.getType();
 			log.info("Opening upload dialog with tempWidgetId=" + tempWidgetId);
 			

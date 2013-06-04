@@ -91,6 +91,7 @@ import com.clarityenglish.textLayout.vo.XHTML;
 import flash.events.Event;
 import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
+import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 
 import flashx.textLayout.elements.FlowElement;
@@ -341,7 +342,6 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		
 		onAnswerSubmitted(e, exercise, question, inputNode);
 	}
-	
 }
 
 /**
