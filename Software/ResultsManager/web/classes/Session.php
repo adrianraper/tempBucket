@@ -35,7 +35,8 @@ class Session {
 	
 	// gh#341
 	public static function un_set($key) {
-		unset($_SESSION[self::$name."_".$key]);
+		if (isset($_SESSION[self::$name."_".$key]))
+			unset($_SESSION[self::$name."_".$key]);
 	}
 	
 }
