@@ -53,11 +53,12 @@ class BentoService extends AbstractService {
 		if (get_class($this) == "BentoService")
 			throw new Exception("Cannot use BentoService as a gateway; extend with a title specific child (e.g. IELTSService)");
 		
-		// A unique ID to distinguish sessions between multiple Clarity applications
-		Session::setSessionName("Bento");
-		
+		// gh#341
+		if (!Session::getSessionName())
+			Session::setSessionName("Bento");
+			
 		// Set the product name for logging
-		AbstractService::$log->setProductName("Bento");
+		AbstractService::$log->setProductName(Session::getSessionName());
 		
 		// Create the operation classes
 		$this->accountOps = new AccountOps($this->db);
@@ -70,8 +71,11 @@ class BentoService extends AbstractService {
 		// Set the root id (if set)
 		// I am now using is_set, but is that safe? If not set it might be an error. 
 		if (Session::is_set('userID')) {
+			AbstractService::$debugLog->notice("Bento-".Session::getSessionName()." service for userID=".Session::get('userID'));
 			AbstractService::$log->setIdent(Session::get('userID'));
 			$this->loginOps->setTimeZoneForUser(Session::get('userID')); // gh#156
+		} else {
+			AbstractService::$debugLog->notice("Bento service for NO userID");
 		}
 		
 		if (Session::is_set('rootID')) {
@@ -533,7 +537,7 @@ class BentoService extends AbstractService {
 	 * Get the copy XML document
 	 * gh#39 pass language code
 	 */
-	public function getCopy($code = null) {		
+	public function getCopy($code = null) {
 		return $this->copyOps->getCopy($code);
 	}
 	

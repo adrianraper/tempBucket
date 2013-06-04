@@ -8,7 +8,8 @@ require_once(dirname(__FILE__)."/../../classes/Session.php");
 require_once(dirname(__FILE__)."/../../classes/xml/XmlUtils.php");
 require_once(dirname(__FILE__)."/RotterdamBuilderService.php");
 
-$service = new RotterdamService();
+// gh#341
+$service = new RotterdamBuilderService();
 $MAXIMUM_FILESIZE = 1024*1024*5;
 
 // Fail if the user isn't authenticated

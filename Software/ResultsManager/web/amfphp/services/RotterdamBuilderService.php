@@ -7,13 +7,25 @@ require_once(dirname(__FILE__)."/RotterdamService.php");
 class RotterdamBuilderService extends RotterdamService {
 	
 	function __construct() {
-		parent::__construct();
+		// gh#341 A unique ID to distinguish sessions between multiple Clarity applications
+		Session::setSessionName("RotterdamBuilder");
 		
+		parent::__construct();
+
 		// If a user is logged in then get the content folder
 		if (Session::is_set('userID')) {
-			// If there is no content folder for this user then create one
-			if (!is_dir($this->accountFolder))
-				$this->createAccountFolder();
+			
+			// gh#338 This is a check that the account content folder has a good structure
+			// Look for a media file (which implies the full folder structure exists)
+			if (!file_exists($this->accountFolder."/media/media.xml")) {
+				// If there is no content folder for this user then create one
+				if (!is_dir($this->accountFolder))
+					$this->createAccountFolder();
+				$this->createMediaFolder();
+			}
+			// Also look for a courses file in the account folder
+			if (!file_exists($this->accountFolder."/courses.xml"))
+				$this->createCoursesXML();
 		}
 	}
 	
@@ -90,16 +102,17 @@ EOD;
 		// gh#65 - by only doing this if mkdir returns true we are effectively implementing concurrency locking (since if it returns false then someone else is doing
 		// it, and the delay of half a second will be more than enough for it to complete).
 		if (mkdir($this->accountFolder)) {
-			$courseXML = <<<XML
-<?xml version="1.0" encoding="utf-8"?>
-<bento xmlns="http://www.w3.org/1999/xhtml">
-	<courses />
-</bento>
-XML;
-			file_put_contents($this->accountFolder."/courses.xml", $courseXML);
-			
-			// Create a media folder containing a default meta.xml
-			mkdir($this->accountFolder."/media");
+			$this->createCoursesXML();
+			$this->createMediaFolder();	
+		} else {
+			usleep(500);
+		}
+	}
+
+	// gh#339
+	private function createMediaFolder() {
+		// Create a media folder containing a default meta.xml
+		if (mkdir($this->accountFolder."/media")) {
 			$mediaXML = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
@@ -107,11 +120,18 @@ XML;
 </bento>	
 XML;
 			file_put_contents($this->accountFolder."/media/media.xml", $mediaXML);
-		} else {
-			usleep(500);
-		}
+		}		
 	}
-
+	private function createCoursesXML() {
+		$courseXML = <<<XML
+<?xml version="1.0" encoding="utf-8"?>
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<courses />
+</bento>
+XML;
+		file_put_contents($this->accountFolder."/courses.xml", $courseXML);
+	}
+	
 	// gh#122
 	public function sendWelcomeEmail($courseXML, $groupID) {
 		// This will send a welcome email to any student in this group for this course

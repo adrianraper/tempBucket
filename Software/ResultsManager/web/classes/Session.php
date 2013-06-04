@@ -8,6 +8,11 @@ class Session {
 		self::$name = $name;
 	}
 
+	// gh#341
+	public static function getSessionName() {
+		return self::$name;
+	}
+
 	public static function set($key, $value) {
 		$_SESSION[self::$name."_".$key] = $value;
 	}
@@ -27,5 +32,11 @@ class Session {
 			}
 		}
 	}
+	
+	// gh#341
+	public static function un_set($key) {
+		unset($_SESSION[self::$name."_".$key]);
+	}
+	
 }
 

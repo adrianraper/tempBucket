@@ -13,6 +13,7 @@
  * @version $Id: Authenticate.php,v 1.11 2005/03/24 22:19:48 pmineault Exp $
  */
  
+// gh#341 Need amfphp to use different session handling for different services so multiple titles can run at once
 class Authenticate {
 	/**
 	 * isAuthenticated hides the session implementation for tracking user access.
@@ -20,7 +21,8 @@ class Authenticate {
 	 * @return bool Whether the current user has been authenticated
 	 */
 	function isAuthenticated () {
-		if (isset($_SESSION['amfphp_username'])) {
+		//if (isset($_SESSION['amfphp_username'])) {
+		if (Session::is_set('amfphp_username')) {
 			return true;
 		} else {
 			return false;
@@ -31,15 +33,13 @@ class Authenticate {
 	 * getAuthUser returns the current user name of the user that is logged in with the session.
 	 * @return string the name of the authenticated user
 	 */
-	function getAuthUser () 
-	{
-		if(isset($_SESSION['amfphp_username']))
-		{
-		  return $_SESSION['amfphp_username'];
-		}
-		else
-		{
-		  return false;
+	function getAuthUser () {
+		//if(isset($_SESSION['amfphp_username']))
+		if (Session::is_set('amfphp_username')) {
+			//return $_SESSION['amfphp_username'];
+			return Session::get('amfphp_username');
+		} else {
+			return false;
 		}
 	} 
 	/**
@@ -59,12 +59,11 @@ class Authenticate {
 		foreach($methodRoles as $key => $role) {
 			$methodRoles[$key] = strtolower(trim($role));
 		}
-		if(!isset($_SESSION['amfphp_roles']))
-		{
-			$_SESSION['amfphp_roles'] = "";
+		//if(!isset($_SESSION['amfphp_roles']))
+		if(!Session::is_set('amfphp_roles'))
+			Session::set('amfphp_roles','');
 			
-		}
-		$userRoles = explode(",", $_SESSION['amfphp_roles']); // split the users session roles into an array
+		$userRoles = explode(",", Session::get('amfphp_roles')); // split the users session roles into an array
 		
 		foreach($userRoles as $key => $role) {
 			$userRoles[$key] = strtolower(trim($role));
@@ -84,18 +83,20 @@ class Authenticate {
 	 * @param string $roles The comma delimited list of roles for the user
 	 */
 	function login($name, $roles) {
-		if(!session_id())
-		{
+		if(!session_id()) 
 			session_start();
-		}
-		$_SESSION['amfphp_username'] = $name;
-		$_SESSION['amfphp_roles'] = $roles;
+			
+		//$_SESSION['amfphp_username'] = $name;
+		//$_SESSION['amfphp_roles'] = $roles;
+		Session::set('amfphp_username', $name);
+		Session::set('amfphp_roles', $roles);
 	} 
 
 	/**
 	 * logout kills the user session and terminates the login properties
 	 */
 	function logout() {
+		/*
 		$_SESSION['amfphp_username'] = null;
 		$_SESSION['amfphp_roles'] = null;
 		if(isset($_SESSION['amfphp_username']))
@@ -106,8 +107,9 @@ class Authenticate {
 		{
 			unset($_SESSION['amfphp_roles']);
 		}
+		*/
+		Session::un_set('amfphp_username');
+		Session::un_set('amfphp_roles');
 		return true;
 	} 
-} 
-
-?>
+}
