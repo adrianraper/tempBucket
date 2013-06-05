@@ -298,6 +298,9 @@ EOD;
 				$thisUser->startDate = date('Y-m-d').' 00:00:00';
 			}
 			$thisUser->expiryDate = '';
+			if (isset($apiInformation->subscription->birthday)) {
+				$thisUser->birthday = $apiInformation->subscription->birthday;
+			} 
 			$account->adminUser = $thisUser;
 		
 			// Should I add the account to the database now?

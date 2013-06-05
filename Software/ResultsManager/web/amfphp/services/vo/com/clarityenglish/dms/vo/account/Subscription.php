@@ -30,6 +30,9 @@ class Subscription {
 	// Never sent, but stored after account is created
 	public $rootID;
 	
+	// added to store the IP.com test date
+	public $birthday;
+	
 	public function Subscription($id = null) {
 		
 		if ($id)
@@ -62,6 +65,7 @@ class Subscription {
 		$this->productVersion = $obj->F_ProductVersion;
 		$this->orderRef = $obj->F_OrderRef;
 		$this->dateStamp = $obj->F_DateStamp;
+		$this->birthday = substr($obj->F_Birthday,0,10).' 00:00:00';
 	}		
 	/**
 	 * Convert this object to an associative array ready to pass to AutoExecute.
@@ -85,6 +89,7 @@ class Subscription {
 		$array['F_ProductVersion'] = $this->productVersion;
 		$array['F_OrderRef'] = $this->orderRef;
 		$array['F_DateStamp'] = ($this->dateStamp) ? $this->dateStamp : date('Y-m-d H:i:s');
+		$array['F_Birthday'] = $this->birthday;
 
 		return $array;
 	}
@@ -144,7 +149,9 @@ class Subscription {
 		} elseif (isset($info['subscriptionStatus'])) {
 			$this->status = $info['subscriptionStatus'];
 		}
-			
+		
+		if (isset($info['birthday']))
+			$this->birthday = $info['birthday'];
 	}
 	/**
 	 * If you want to print a subscription record
