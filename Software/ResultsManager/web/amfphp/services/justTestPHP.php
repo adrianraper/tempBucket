@@ -55,15 +55,20 @@
 					$goodGosh = false;
 				}
 */
+/*
 	if (strtotime('2013-05-04 23:59:59') > strtotime(date("Y-m-d"))) {
 		echo "it is still valid";
 	} else {
 		echo "you have expired";
 	}
-	
+*/
 	if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
     	echo 'I am at least PHP version 5.3.0, my version: ' . PHP_VERSION . "\n";
-	}	
+	}
+	$contents = file_get_contents(dirname(__FILE__).'/../../../../../../ContentBench/CCB/Clarity/courses.xml');
+	if ($contents)
+		$xml = simplexml_load_string($contents);
+	print_r($xml);	
 		
 flush();
 exit();

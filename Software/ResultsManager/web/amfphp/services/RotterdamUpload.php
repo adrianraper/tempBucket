@@ -73,9 +73,7 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 			break;
 		case "application/pdf":
 			// gh#105 - if this is a pdf then generate a thumbnail of the first page with height 30 (for now)
-			AbstractService::$debugLog->info("you are here4.1");
 			$pdfThumbnailImage = new Imagick($mediaFolder."/".$filename."[0]");
-				AbstractService::$debugLog->info("you are here4");
 			$pdfThumbnailImage->setImageFormat("jpg");
 			$pdfThumbnailImage->scaleimage(100, 0);
 			$thumbnail = $filename."-thumb.jpg";

@@ -974,3 +974,4 @@ F_Sessions smallint DEFAULT NULL,
   KEY `Index_1` (F_RootID)
 ) ENGINE=InnoDB;
 
+ALTER TABLE `T_Subscription` ADD COLUMN `F_Birthday` DATETIME NULL DEFAULT NULL AFTER `F_OrderRef`;

@@ -19,13 +19,18 @@ class RotterdamBuilderService extends RotterdamService {
 			// Look for a media file (which implies the full folder structure exists)
 			if (!file_exists($this->accountFolder."/media/media.xml")) {
 				// If there is no content folder for this user then create one
-				if (!is_dir($this->accountFolder))
+				if (!is_dir($this->accountFolder)){
 					$this->createAccountFolder();
-				$this->createMediaFolder();
+				}
+				if (!is_dir($this->accountFolder."/media")){
+					$this->createMediaFolder();
+				}
+				$this->createMediaXML();
 			}
 			// Also look for a courses file in the account folder
-			if (!file_exists($this->accountFolder."/courses.xml"))
+			if (!file_exists($this->accountFolder."/courses.xml")) {
 				$this->createCoursesXML();
+			}
 		}
 	}
 	
@@ -103,7 +108,6 @@ EOD;
 		// it, and the delay of half a second will be more than enough for it to complete).
 		if (mkdir($this->accountFolder)) {
 			$this->createCoursesXML();
-			$this->createMediaFolder();	
 		} else {
 			usleep(500);
 		}
@@ -111,8 +115,13 @@ EOD;
 
 	// gh#339
 	private function createMediaFolder() {
-		// Create a media folder containing a default meta.xml
-		if (mkdir($this->accountFolder."/media")) {
+		// Create a media folder
+		return mkdir($this->accountFolder."/media");
+	}
+	
+	private function createMediaXML() {
+		// Create a default meta.xml
+		if (is_dir($this->accountFolder."/media")) {
 			$mediaXML = <<<XML
 <?xml version="1.0" encoding="utf-8"?>
 <bento xmlns="http://www.w3.org/1999/xhtml">
