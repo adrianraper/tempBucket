@@ -24,7 +24,7 @@
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
 			 xmlns:widgets="skins.rotterdam.builder.assets.toolbar.*"
-             minWidth="30" minHeight="30" 
+             minWidth="35" minHeight="25" 
              alpha.disabled="0.5">
      
     <fx:Metadata>
@@ -52,16 +52,28 @@
 		<s:GlowFilter blurX="2" blurY="2" quality="3" strength="2" color="0x473809" inner="true" />
 	</s:filters>
 	
+	<s:transitions>
+		<s:Transition fromState="up" toState="over" autoReverse="true" >
+			<s:AnimateColor  targets="{[color1, color2]}"  duration="200" />
+		</s:Transition>
+		
+		<s:Transition  fromState="over" toState="up" autoReverse="true" >
+			<s:AnimateColor targets="{[color1, color2]}" duration="300" />
+		</s:Transition>		
+	</s:transitions>
+	
 	<!-- layer 2: fill -->
 	<!--- @private -->
-	<s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4" filters="{dropShadowFilter}">
+	<s:Rect id="fill" left="0" right="0" top="0" bottom="0" radiusX="8" radiusY="8" filters="{dropShadowFilter}">
 		<s:fill>
-			<s:LinearGradient x="32" y="0.5" scaleX="25" rotation="90">
-				<s:GradientEntry color="0xFFFFFF" 
+			<s:LinearGradient  rotation="90">
+				<s:GradientEntry id="color1" 
+								 color="0xFFFFFF" 
 								 color.over="0xFFDD69" 
 								 color.down="0xEBB701" 
 								 />
-				<s:GradientEntry color="0xFFFFFF" 
+				<s:GradientEntry id="color2" 
+								 color="0xFFFFFF" 
 								 color.over="0xFFC701" 
 								 color.down="0xEBB701"  
 								 />

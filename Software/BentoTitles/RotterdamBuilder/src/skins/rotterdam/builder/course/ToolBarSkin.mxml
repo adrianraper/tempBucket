@@ -100,7 +100,7 @@
 			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
 			<s:Spacer width="8" />
-			<s:Label text="URL" fontWeight="bold" color="0xFFFFFF" />
+			<s:Label text="URL" fontWeight="bold" color="0xFFFFFF" paddingTop="3" />
 			<s:Button id="urlButton" useHandCursor="true" buttonMode="true"/>
 		</s:HGroup>
 	</s:HGroup>

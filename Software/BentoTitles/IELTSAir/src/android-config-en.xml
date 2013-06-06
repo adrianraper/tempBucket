@@ -22,7 +22,7 @@
 	-->
 	
     <contentPath>http://dock.contentbench/Content/</contentPath>
-    <remoteDomain>http://dock.projectbench/</remoteDomain>
+    <remoteDomain>http://dock.projectbench/Software/</remoteDomain>
     <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<!--  contentPath>http://roadtoielts.chinaielts.org/Content/</contentPath>
