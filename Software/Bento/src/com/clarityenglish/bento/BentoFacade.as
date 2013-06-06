@@ -115,6 +115,8 @@
 			registerCommand(BBNotifications.EXERCISE_RESTART, ExerciseRestartCommand);
 			registerCommand(BBNotifications.PDF_SHOW, PdfShowCommand);
 			registerCommand(BBNotifications.WORD_CLICK, WordClickCommand);
+			// gh#338
+			registerCommand(BBNotifications.HINT_SHOW, HintShowCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.ADD_USER, AddUserCommand);

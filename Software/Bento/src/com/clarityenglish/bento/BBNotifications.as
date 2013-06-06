@@ -104,6 +104,8 @@
 		
 		public static const CLOSE_ALL_POPUPS:String = "bb/close_all_popups";
 		
+		// gh#338
+		public static const HINT_SHOW:String = "bb/hint_show";
 	}
 	
 }

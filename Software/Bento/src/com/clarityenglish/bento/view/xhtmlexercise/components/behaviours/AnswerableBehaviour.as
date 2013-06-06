@@ -75,6 +75,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	}
 }
 
+import com.clarityenglish.bento.BentoApplication;
+import com.clarityenglish.bento.view.xhtmlexercise.events.HintEvent;
 import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 import com.clarityenglish.bento.vo.content.Exercise;
 import com.clarityenglish.bento.vo.content.model.Question;
@@ -100,6 +102,7 @@ import flashx.textLayout.events.FlowElementMouseEvent;
 import flashx.textLayout.events.UpdateCompleteEvent;
 import flashx.textLayout.tlf_internal;
 
+import mx.core.FlexGlobals;
 import mx.logging.ILogger;
 import mx.logging.Log;
 import mx.utils.UIDUtil;
@@ -261,7 +264,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			var inputElement:InputElement = flowElementXmlBiMap.getFlowElement(source) as InputElement;
 			if (inputElement) {
 				inputElement.text = getLongestAnswerValue(question.answers);
-				
+
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
 					//eventMirror.addEventListener(FlexEvent.VALUE_COMMIT, Closure.create(this, onAnswerSubmitted, exercise, question, source));
@@ -336,6 +339,12 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 	 * @param inputNode
 	 */
 	private function onAnswerClicked(e:Event, exercise:Exercise, question:Question, inputNode:XML):void {
+		// gh#338
+		var bentoApplication:BentoApplication = FlexGlobals.topLevelApplication as BentoApplication;
+		if (bentoApplication.isCtrlDown) {
+			container.dispatchEvent(new HintEvent(HintEvent.HINT_SHOW, question, true));
+			return;
+		}
 		// This is only relevant for a disabled node
 		if (!XHTML.hasClass(inputNode, "disabled"))
 			return;

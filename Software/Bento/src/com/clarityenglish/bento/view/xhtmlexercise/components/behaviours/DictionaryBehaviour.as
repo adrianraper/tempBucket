@@ -29,7 +29,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function DictionaryBehaviour(container:Group) {
 			// BUG. Drop dictionary from Road to IELTS for now
 			super(container);
-			return;
+			//return;
 			
 			// Listen for clicks on the render flow
 			container.addEventListener(Event.REMOVED_FROM_STAGE, onContainerRemovedFromStage)
@@ -55,7 +55,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function onRenderFlowClick(event:RenderFlowMouseEvent):void {
 			var mouseEvent:MouseEvent = event.mouseEvent;
 			var textFlow:TextFlow = event.textFlow;
-			
+
 			// Get the click coordinates relative to this component
 			var clickPoint:Object = container.globalToLocal(new Point(mouseEvent.stageX, mouseEvent.stageY));
 			

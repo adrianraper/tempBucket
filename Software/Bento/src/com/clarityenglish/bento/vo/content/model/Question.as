@@ -18,6 +18,7 @@ package com.clarityenglish.bento.vo.content.model {
 		private var exercise:Exercise;
 		
 		private var _answers:Vector.<Answer>;
+		private var _hint:Hint;
 		
 		public function Question(xml:XML, exercise:Exercise) {
 			this.xml = xml;
@@ -27,6 +28,11 @@ package com.clarityenglish.bento.vo.content.model {
 			_answers = new Vector.<Answer>();
 			for each (var answerNode:XML in xml.answer)
 				_answers.push(Answer.create(answerNode));
+				
+			// gh#338
+			if (xml.hasOwnProperty("hint")) {
+				_hint = new Hint(xml.hint[0]);
+			}
 		}
 		
 		public function get type():String {
@@ -43,6 +49,11 @@ package com.clarityenglish.bento.vo.content.model {
 		
 		public function get answers():Vector.<Answer> {
 			return _answers;
+		}
+		
+		// gh#338
+		public function get hint():Hint {
+			return _hint;
 		}
 		
 		/**

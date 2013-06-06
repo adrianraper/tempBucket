@@ -54,6 +54,9 @@ package com.clarityenglish.textLayout.elements {
 		
 		private var _gapText:String;
 		
+		// gh#338
+		private var _showHint:Boolean;
+		
 		/**
 		 * If the input was populated by drag and drop, this is the node and flow element that was dropped
 		 */
@@ -170,6 +173,16 @@ package com.clarityenglish.textLayout.elements {
 			_type = value;
 		}
 		
+		// gh#338
+		[Bindable]
+		public function get showHint():Boolean {
+			return _showHint;
+		}
+		
+		public function set showHint(value:Boolean):void {
+				_showHint = value;
+		}
+		
 		public function createComponent():void {
 			// The default type is text
 			if (!_type)
@@ -190,14 +203,10 @@ package com.clarityenglish.textLayout.elements {
 					
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
 					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:Event):void {
-						if (!disableValueCommitEvent)
+						if (!disableValueCommitEvent){
 							getEventMirror().dispatchEvent(e.clone());
-					});
-					
-					// gh#338
-					component.addEventListener(MouseEvent.CLICK, function(e:MouseEvent):void {
-						if(e.ctrlKey)
-							getEventMirror().dispatchEvent(e.clone());
+						}
+							
 					});
 					break;
 				case TYPE_DROPTARGET:
