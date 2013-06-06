@@ -156,7 +156,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		protected function onWordClick(event:DictionaryEvent):void {
-			trace("on word click");
 			sendNotification(BBNotifications.WORD_CLICK, event.word);
 		}
 		

@@ -110,7 +110,8 @@ package com.clarityenglish.bento.vo.content {
 		 * Does this exercise have any questions?  This is mostly used to figure out whether to display the marking button and when to write scores.
 		 */
 		public function hasQuestions():Boolean {
-			return (model.questions.length > 0);
+			// gh#347, 336
+			return (model.questions.length > 0 && model.hasSettingParam("delayedMarking"));
 		}
 		
 		/**

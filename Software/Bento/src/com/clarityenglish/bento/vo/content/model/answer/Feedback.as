@@ -16,7 +16,8 @@ package com.clarityenglish.bento.vo.content.model.answer {
 		}
 		
 		public function get title():String {
-			return (xml.@title.toString().length > 0) ? xml.@title : "Feedback";
+			// gh#347
+			return (xml.hasOwnProperty("@title")) ? xml.@title : "Feedback";
 		}
 		
 		public function get width():Number {
