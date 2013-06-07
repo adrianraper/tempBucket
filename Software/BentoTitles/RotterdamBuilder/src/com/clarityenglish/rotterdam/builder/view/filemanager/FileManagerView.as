@@ -168,7 +168,8 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 					fileListCollection.filterFunction = function(fileNode:XML):Boolean {
 						for each (var extension:String in extensions) {
 							// gh#332
-							if (StringUtils.endsWith(fileNode.@originalName.toLowerCase(), extension))
+							var originalName:String = fileNode.@originalName;
+							if (StringUtils.endsWith(originalName.toLowerCase(), extension))
 								return true;
 						}
 						return false;
