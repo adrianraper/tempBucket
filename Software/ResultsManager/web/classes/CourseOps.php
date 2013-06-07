@@ -86,7 +86,8 @@ class CourseOps {
 		});
 		
 		// Return the id and filename of the new course
-		return array("id" => $id, "filename" => $id."/menu.xml");
+		// gh#345 What was the accountFolder set to when this course was created? 
+		return array("id" => $id, "filename" => $id."/menu.xml", "accountFolder" => $this->accountFolder);
 	}
 	
 	public function courseSave($filename, $menuXml) {
