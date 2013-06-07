@@ -22,6 +22,7 @@ class Authenticate {
 	 */
 	function isAuthenticated () {
 		//if (isset($_SESSION['amfphp_username'])) {
+		//AbstractService::$debugLog->info('isAuthenticated from '.Session::getSessionName());
 		if (Session::is_set('amfphp_username')) {
 			return true;
 		} else {
@@ -88,6 +89,7 @@ class Authenticate {
 			
 		//$_SESSION['amfphp_username'] = $name;
 		//$_SESSION['amfphp_roles'] = $roles;
+		//AbstractService::$debugLog->info('authenticate.login to '.Session::getSessionName().' for '.$name);
 		Session::set('amfphp_username', $name);
 		Session::set('amfphp_roles', $roles);
 	} 

@@ -167,7 +167,8 @@ package com.clarityenglish.rotterdam.builder.view.filemanager {
 					// Create a filter function that only shows files with the appropriate extension
 					fileListCollection.filterFunction = function(fileNode:XML):Boolean {
 						for each (var extension:String in extensions) {
-							if (StringUtils.endsWith(fileNode.@originalName, extension))
+							// gh#332
+							if (StringUtils.endsWith(fileNode.@originalName.toLowerCase(), extension))
 								return true;
 						}
 						return false;

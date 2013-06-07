@@ -6,7 +6,6 @@
 ini_set('max_execution_time', 300); // 5 minutes
 
 require_once(dirname(__FILE__)."/ClarityService.php");
-//require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
 class XSLTFunctions {
@@ -81,8 +80,8 @@ class XSLTFunctions {
 	}
 }
 
-// This will be called in config.php. If it was recalled here, it would generate a PHP warning and do nothing.
-//session_start();
+// This has to moved before authentication check
+$clarityService = new ClarityService();
 
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
@@ -110,8 +109,6 @@ $template = $_REQUEST['template'] == "" ? "standard" : $_REQUEST['template'];
 $pattern = '/..\//';
 $replacement = '';
 $template = preg_replace($pattern, $replacement, $template);
-
-$clarityService = new ClarityService();
 
 // Generate the report based on the options passed to the script
 // v3.0.4 I need to pass the template in for special processing

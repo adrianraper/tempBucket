@@ -7,17 +7,14 @@
 require_once(dirname(__FILE__)."/ClarityService.php");
 require_once(dirname(__FILE__)."/../core/shared/util/Authenticate.php");
 
-if (!isset($_REQUEST['groupIDs']) || !isset($_REQUEST['userIDs'])) exit();
-
-session_start();
-
+$clarityService = new ClarityService();
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
 	echo "<h2>You are not logged in</h2>";
 	exit(0);
 }
 
-$clarityService = new ClarityService();
+if (!isset($_REQUEST['groupIDs']) || !isset($_REQUEST['userIDs'])) exit();
 
 $rootID = Session::get('rootID');
 

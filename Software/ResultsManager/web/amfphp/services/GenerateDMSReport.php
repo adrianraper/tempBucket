@@ -6,7 +6,7 @@
 require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
-//session_start();
+$dmsService = new DMSService();
 
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
@@ -30,8 +30,6 @@ $accountIDArray = $_REQUEST['accountIDArray'] == "" ? array() : json_decode(stri
 $pattern = '/..\//';
 $replacement = '';
 $template = preg_replace($pattern, $replacement, $template);
-
-$dmsService = new DMSService();
 
 // What about conditions for selecting accounts?
 //$conditions = array("active" => "true");

@@ -41,7 +41,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				title: title,
 				span: note.getBody().span,
 				source: note.getBody().source,
-					url: note.getBody().url // gh#111 - this is only used in 'external' types where the user has already entered a url
+				url: note.getBody().url // gh#111 - this is only used in 'external' types where the user has already entered a url
 			};
 			facade.sendNotification(RotterdamNotifications.MEDIA_SELECT, uploadOptions, tempid);
 		}

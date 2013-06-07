@@ -6,7 +6,7 @@
 require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
-session_start();
+$dmsService = new DMSService();
 
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
@@ -17,8 +17,6 @@ if (!Authenticate::isAuthenticated()) {
 function addDaysToTimestamp($timestamp, $days) {
 	return date("Y-m-d", $timestamp + ($days * 86400));
 }
-
-$dmsService = new DMSService();
 
 // Since this will be the only place we ever access the log table for reading we might as well keep the code here
 $sql = <<<EOD

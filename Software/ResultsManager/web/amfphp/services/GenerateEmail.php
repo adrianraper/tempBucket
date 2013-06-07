@@ -6,13 +6,12 @@
 require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
-// DMSService does this
-//session_start();
+$dmsService = new DMSService();
 
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
-	//echo "<h2>You  are not logged in</h2>";
-	//exit(0);
+	echo "<h2>You are not logged in</h2>";
+	exit(0);
 }
 
 if (!isset($_REQUEST['template']) || trim($_REQUEST['template']) == "") {
@@ -44,8 +43,6 @@ $smarty->force_compile = true;
 $pattern = '/..\//';
 $replacement = '';
 $template = preg_replace($pattern, $replacement, $template);
-
-$dmsService = new DMSService();
 
 // DMS doesn't serialize the account, but instead just puts an 'account_id' in the data attribute.  Here we go through the array and
 // rebuild it getting the real account objects for the account_ids.
