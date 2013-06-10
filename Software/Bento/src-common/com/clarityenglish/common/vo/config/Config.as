@@ -5,6 +5,15 @@ package com.clarityenglish.common.vo.config {
 	import com.clarityenglish.dms.vo.account.Account;
 	import com.clarityenglish.dms.vo.account.Licence;
 	
+	import flash.events.Event;
+	import flash.events.IOErrorEvent;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
+	
+	import mx.logging.ILogger;
+	import mx.logging.Log;
+	
+	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StringUtils;
 	
 	/**
@@ -12,6 +21,11 @@ package com.clarityenglish.common.vo.config {
 	 * It includes licence control, user and account information.
 	 */
 	public class Config {
+		
+		/**
+		 * Standard flex logger
+		 */
+		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
 		public static const LOGIN_BY_NAME:uint = 1;
 		public static const LOGIN_BY_ID:uint = 2;
@@ -72,7 +86,8 @@ package com.clarityenglish.common.vo.config {
 		public var remoteStartFolder:String
 		
 		// #335
-		public var streamingMedia:String;
+		// gh#356
+		public var localStreamingMedia:String;
 		public var mediaChannel:String;
 		
 		public var channels:Array;
@@ -358,7 +373,7 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			// #335
-			if (xml..streamingMedia.toString()) this.streamingMedia = xml..streamingMedia.toString();
+			if (xml..streamingMedia.toString()) this.paths.streamingMedia = xml..streamingMedia.toString();
 
 			if (xml..mediaChannel.toString()) {
 				this.mediaChannel = xml..mediaChannel.toString();
@@ -375,7 +390,7 @@ package com.clarityenglish.common.vo.config {
 			if (xml..language.toString()) {
 				this.language = xml..language.toString();
 				this.languageCode = xml..language.toString();
-				trace("language: "+this.language);
+				//trace("language: "+this.language);
 			}
 			
 			// To handle the amfphp gateway
@@ -537,11 +552,20 @@ package com.clarityenglish.common.vo.config {
 			buildMenuFilename();
 
 			// You can now adjust the sharedMedia path as necessary
-			// Remember that streamingMedia might look like 
+			// Remember that it might look like 
 			// sharedMedia={contentPath}/sharedMedia
 			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('{contentPath}').join(this.paths.content);
 			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('{prefix}').join(data.prefix);
 		
+			// gh#356 If there is a local channel available tested if it is accessible
+			localStreamingMedia = getLicenceAttribute('localStreamingMedia');
+			if (localStreamingMedia) {
+				var urlLoader:URLLoader = new URLLoader();
+				urlLoader.addEventListener(Event.COMPLETE, onStreamingMediaCheckLoaded);
+				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onStreamingMediaCheckError);
+				urlLoader.load(new URLRequest(localStreamingMedia + "streamingMediaCheck.xml"));
+			}
+			
 			// Whilst the title/account holds most licence info, it is nice to keep it in one class
 			this.licence = data.licence as Licence;
 		}
@@ -571,6 +595,21 @@ package com.clarityenglish.common.vo.config {
 				}
 			}
 			return null;
+		}
+		/*
+		 * This is a more general version of the above
+		 * gh#356
+		 */
+		public function getLicenceAttribute(attr:String):String {
+			if (this.account) {
+				if (this.account.licenceAttributes) {
+					for each (var lA:Object in this.account.licenceAttributes) {
+						if (lA.licenceKey.toLowerCase() == attr.toLowerCase())
+							return lA.licenceValue;
+					}
+				}
+			}
+			return null;			
 		}
 		
 		/**
@@ -754,11 +793,27 @@ package com.clarityenglish.common.vo.config {
 					return true;
 				
 				if (thisReferrer.toLowerCase().indexOf(ruRangeArray[t].toLowerCase()) >= 0) {
-					trace("partial referrer match");
+					//trace("partial referrer match");
 					return true;
 				}
 			}
 			return false;
+		}
+		
+		// gh#356 localStreamingMedia path is accessible, so ONLY use that
+		private function onStreamingMediaCheckLoaded(event:Event):void {
+			channels = new Array();
+			var channelObject:ChannelObject = new ChannelObject();
+			channelObject.name = 'network';
+			channelObject.caption = 'local';
+			channelObject.streamingMedia = this.localStreamingMedia;
+			channels.push(channelObject);
+		}
+
+		// gh#365 localStreamingMedia was not accessible, so just ignore it
+		private function onStreamingMediaCheckError(event:IOErrorEvent):void {
+			var urlLoader:URLLoader = event.target as URLLoader;
+			log.info("Could not access local streaming media " + event.text);
 		}
 	}
 }

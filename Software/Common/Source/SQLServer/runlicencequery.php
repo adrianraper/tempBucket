@@ -39,10 +39,12 @@ require_once(dirname(__FILE__)."/dbLicence.php");
 			// v6.5.5.0 now both concurrent and Learner Tracking licences get licence slot
 			// v6.5.5.5 as do network licence. Allow strings and numbers for a while. But we should go to licenceType=n.
 			// v6.6.0 IYJ still has some old variables
+			// gh#357
 			if ($vars['LICENCING']=='concurrent' || $vars['LICENCING']=='network' ||
 				$vars['LICENCING']=='2' || $vars['LICENCING']=='3' ||
 				$vars['LICENCETYPE']=='concurrent' || $vars['LICENCETYPE']=='network' ||
-				$vars['LICENCETYPE']=='2' || $vars['LICENCETYPE']=='3') {
+				$vars['LICENCETYPE']=='2' || $vars['LICENCETYPE']=='3' || 
+				$vars['LICENCETYPE']=='7') {
 				$rC = $Licence->getConcurrentLicenceSlot( $vars, $node );
 			} else {
 				$rC = $Licence->getTrackingLicenceSlot( $vars, $node );

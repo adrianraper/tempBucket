@@ -637,7 +637,7 @@ EOD;
 	// v6.5.6.7 Change to T_LicenceControl table
 	function checkAvailableLicences( &$vars, &$node) {
 		global $db;
-		$pid  = $vars['PRODUCTCODE'];
+		$pid = $vars['PRODUCTCODE'];
 		$rootID = $vars['ROOTID'];
 		// This is actually licence clearance date as calculated by getRMSettings
 		$datestamp = $vars['LICENCESTARTDATE'];
