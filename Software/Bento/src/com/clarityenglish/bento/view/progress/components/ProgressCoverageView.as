@@ -10,6 +10,7 @@ package com.clarityenglish.bento.view.progress.components {
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Label;
 	import spark.events.IndexChangeEvent;
 	
 	/**
@@ -22,6 +23,15 @@ package com.clarityenglish.bento.view.progress.components {
 		
 		[SkinPart(required="true")]
 		public var progressBar:ProgressBarRenderer;
+		
+		[SkinPart]
+		public var completeLabel:Label;
+		
+		[SkinPart]
+		public var notCompleteLabel:Label;
+		
+		[SkinPart]
+		public var othersLabel:Label;
 		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
@@ -95,6 +105,15 @@ package com.clarityenglish.bento.view.progress.components {
 			switch (instance) {
 				case progressCourseButtonBar:
 					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);
+					break;
+				case completeLabel:
+					completeLabel.text = copyProvider.getCopyForId("completeLabel");
+					break;
+				case notCompleteLabel:
+					notCompleteLabel.text = copyProvider.getCopyForId("notCompleteLabel");
+					break;
+				case othersLabel:
+					othersLabel.text = copyProvider.getCopyForId("othersLabel");
 					break;
 			}
 		}

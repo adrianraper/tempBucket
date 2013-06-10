@@ -255,6 +255,9 @@
 			<lit name="helpLabel1">Please also feel free to email us at support@clarityenglish.com</lit>
 			<lit name="helpLabel2">with any questions you have or problems you are having.</lit>
 			<lit name="newUnitCaption">New unit</lit>
+			<lit name="completeLabel">Started</lit>
+			<lit name="notCompleteLabel">Not started</lit>
+			<lit name="othersLabel">No record available</lit>
 		</group>
 	</language>
 </literals>

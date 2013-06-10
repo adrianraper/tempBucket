@@ -63,10 +63,13 @@
 				
 				<s:HGroup paddingTop="10" paddingBottom="10">
 					<progress:CompletedIcon />
-					<s:Label text="Started" paddingTop="3" />
+					<s:Label id="completeLabel" paddingTop="3" />
 					
 					<progress:NotCompletedIcon />
-					<s:Label text="Not started" paddingTop="3" />
+					<s:Label id="notCompleteLabel" paddingTop="3" />
+					
+					<progress:OthersIcon />
+					<s:Label id="othersLabel" paddingTop="3" />
 				</s:HGroup>
 				
 				<s:DataGroup dataProvider="{new XMLListCollection(list.selectedItem.exercise.(@type == 'audio' || @type == 'pdf' || @type == 'video' || @type == 'exercise'))}">
@@ -92,7 +95,31 @@
 							</s:DataRenderer>
 						</fx:Component>
 					</s:itemRenderer>
-				</s:DataGroup>				
+				</s:DataGroup>
+				<s:Spacer height="2" />
+				<s:DataGroup dataProvider="{new XMLListCollection(list.selectedItem.exercise.(@type == 'image' || @type == 'text'))}">
+					<s:layout>
+						<s:VerticalLayout gap="12" />
+					</s:layout>
+					<s:itemRenderer>
+						<fx:Component>
+							<s:DataRenderer>
+								<fx:Script>
+									<![CDATA[
+										[Bindable("dataChange")]
+										protected function get isDone():Boolean {
+											return data && data.hasOwnProperty("@done") && new Number(data.attribute("done")) > 0;
+										}
+									]]>
+								</fx:Script>
+								<s:HGroup>
+									<progress:OthersIcon scaleX="1.2" scaleY="1.2" />	
+									<s:Label text="{data.@caption}" fontSize="15" paddingTop="3" />
+								</s:HGroup>
+							</s:DataRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:DataGroup>
 			</s:VGroup>
 		</s:Scroller>	
 		<!-- The unit completion area -->
