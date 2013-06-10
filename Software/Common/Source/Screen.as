@@ -1200,6 +1200,18 @@ _global.ORCHID.root.buttonsHolder.LoginScreen.display = function() {
 		this.i_studentID._visible = false;
 		this.studentID_lbl._visible = false;
 	}
+	/*
+	// gh#358 This is what we should do, but none of the interfaces have email on the login screen!
+	if (me.loginOption & _global.ORCHID.accessControl.ACEmailOnly) {
+		this.i_email._visible = true;
+		this.email_lbl._visible = true;
+		this.i_email.tabEnabled = true;
+	} else {
+		this.i_email._visible = false;
+		this.email_lbl._visible = false;
+	}
+	*/
+	
 	// always allow a password
 	// v6.3 NO - this should be RM controlled as well
 	if (me.verified) {

@@ -148,6 +148,11 @@ ProgramSettingsObject.prototype.load = function() {
 				this.master.selfRegister = tN.attributes.selfRegister;
 				myTrace("RM settings: login=" + this.master.loginOption + " verified=" + this.master.verified + " selfReg=" + this.master.selfRegister);
 				
+				// gh#358 Force the email login option to actually ask for name since we can't cope with email login
+				if (this.master.loginOption == _global.ORCHID.accessControl.ACEmailOnly) {
+					myTrace("reset email login to name - can't cope!");
+					this.master.loginOption = _global.ORCHID.accessControl.ACUserNameOnly;
+				}
 			// v6.3.5 And also a decrypt node
 			} else if (tN.nodeName == "decrypt") {
 				// parse the returned XML to get decryption details

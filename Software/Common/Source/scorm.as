@@ -442,7 +442,11 @@ scormNS.getCMIName = function(purpose, index) {
 			return "cmi.objectives." + index + ".score.raw";
 			break;
 		case "objective.status":
-			return "cmi.objectives." + index + ".status";
+			if (scormNS.version == "1.3") {
+				return "cmi.objectives." + index + ".completion_status";
+			} else {
+				return "cmi.objectives." + index + ".status";
+			}
 			break;
 		case "rubbish":
 			return "cmi.rubbish";
@@ -1037,17 +1041,23 @@ scormNS.setExitStatus = function(justExit) {
 			timeSpent = 0;
 		}
 		//myTrace("time spent=" + timeSpent);
-		var timeParts = new Array();
-		// SCORM needs HHHH:MM:SS.SS
-		timeParts[0] = _global.ORCHID.root.objectHolder.make2digitString(Math.floor(timeSpent / (1000*60*60)),4);
-		//myTrace("hours=" + timeParts[0]);
-		timeParts[1] = _global.ORCHID.root.objectHolder.make2digitString(Math.floor((timeSpent - (timeParts[0]*(1000*60*60))) / (1000*60)));
-		timeParts[2] = _global.ORCHID.root.objectHolder.make2digitString(Math.floor((timeSpent - (timeParts[0]*(1000*60*60)) - (timeParts[1]*(1000*60))) / 1000));
-		//timeParts[3] = _global.ORCHID.root.objectHolder.make2digitString(0);
-		var timeString = timeParts.join(":");
-		// milliseconds (which we don't bother with) are appended after a . rather than a :
-		timeString = timeString + ".00";
-		//myTrace("this session lasted " + timeString,0);	
+		// SCORM 2004 needs 'PTnnnS'
+		if (scormNS.version == "1.3") {
+			var timeInSeconds = Math.floor(timeSpent / 1000);
+			var timeString = 'PT' + timeInSeconds + 'S';
+		} else {
+			// SCORM 1.2 needs HHHH:MM:SS.SS
+			var timeParts = new Array();
+			timeParts[0] = _global.ORCHID.root.objectHolder.make2digitString(Math.floor(timeSpent / (1000*60*60)),4);
+			//myTrace("hours=" + timeParts[0]);
+			timeParts[1] = _global.ORCHID.root.objectHolder.make2digitString(Math.floor((timeSpent - (timeParts[0]*(1000*60*60))) / (1000*60)));
+			timeParts[2] = _global.ORCHID.root.objectHolder.make2digitString(Math.floor((timeSpent - (timeParts[0]*(1000*60*60)) - (timeParts[1]*(1000*60))) / 1000));
+			//timeParts[3] = _global.ORCHID.root.objectHolder.make2digitString(0);
+			var timeString = timeParts.join(":");
+			// milliseconds (which we don't bother with) are appended after a . rather than a :
+			timeString = timeString + ".00";
+		}
+		myTrace("write to sessionTime=" + timeString,0);	
 		//scormNS.LMSSetValue(scormNS.getCMIName("sessionTime"),timeString,"SCORMSetTime",scormNS.setTimeCallback);
 		var cmiData = [{name:scormNS.getCMIName("sessionTime"), value:timeString, variable:"SCORMSetTime"}];
 		scormNS.LMSSetValue(cmiData,scormNS.setTimeCallback);
