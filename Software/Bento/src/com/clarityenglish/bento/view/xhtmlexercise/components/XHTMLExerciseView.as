@@ -3,6 +3,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.IExerciseView;
+	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
@@ -13,6 +14,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
+	import com.clarityenglish.textLayout.elements.AudioElement;
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
 	import com.clarityenglish.textLayout.elements.TextComponentElement;
@@ -81,6 +83,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	
 		// TODO: These should be in IELTS, not Bento?
 		public var courseClass:String;
+		// gh#348
+		private var _audioStack:Vector.<AudioElement>;
 		
 		// TODO: These should be in IELTS, not Bento?
 		[Bindable]
@@ -93,6 +97,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			super();
 			
 			opaqueBackground = 0xFFFFFF; // #376
+		}
+		
+		// gh#348
+		public function set audioStack(value:Vector.<AudioElement>):void {
+			_audioStack = value;
+		}
+		
+		[Bindable]
+		public function get audioStack():Vector.<AudioElement> {
+			return _audioStack;
 		}
 		
 		/**
@@ -345,6 +359,22 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			}
 			
 			textFlowDamageAccumulator.updateDamagedTextFlows();
+		}
+		
+		// gh#348
+		public function setAudioVisible():void {
+			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
+			
+			// in exercise.xml settings you need to add <param name="delayAudioDisplay" value="true"/> in order to trigger feedback audio work
+			if (exercise.model.getSettingParam("delayAudioDisplay")) {
+				for each (var audioElement:AudioElement in audioStack) {
+					audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, audioElement));
+					
+					TLFUtil.markFlowElementFormatChanged(audioElement);
+					textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());
+				}
+				textFlowDamageAccumulator.updateDamagedTextFlows();
+			}			
 		}
 		
 	}

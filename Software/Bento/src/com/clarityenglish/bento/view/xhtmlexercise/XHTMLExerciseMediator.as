@@ -4,9 +4,11 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.xhtmlexercise.events.AudioStackEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.DictionaryEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.FeedbackEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.HintEvent;
+	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
@@ -39,6 +41,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
 			// gh#338
 			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true);
+			// gh#348
+			view.addEventListener(AudioStackEvent.Audio_Stack_Ready, onAudioStackReady, false, 0, true);
 		}
 		
 		public override function onRemove():void {
@@ -111,6 +115,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					view.markAnswerMap(question, answerMap, true);
 				}
 			}
+			
+			// gh#348
+			view.setAudioVisible();	
 		}
 		
 		protected function handleMarkingShown(note:INotification):void {
@@ -118,7 +125,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.setExerciseMarked();
 			
 			// Stop all audio
-			view.stopAllAudio();
+			view.stopAllAudio();		
 		}
 		
 		/**
@@ -163,6 +170,10 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			sendNotification(BBNotifications.HINT_SHOW, { exercise: view.exercise, question: event.question } );
 		}
 		
+		// gh#348
+		protected function onAudioStackReady(event:AudioStackEvent):void {
+			view.audioStack= event.audioStack;
+		}
 	}
 	
 }

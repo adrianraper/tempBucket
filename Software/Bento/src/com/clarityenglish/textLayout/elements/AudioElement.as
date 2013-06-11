@@ -52,6 +52,14 @@ package com.clarityenglish.textLayout.elements {
 			component.addEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 		}
 		
+		// gh348
+		public function removeCompoment():void {
+			component = new AudioPlayer();
+			(component as AudioPlayer).src = null;
+			(component as AudioPlayer).controls = null;
+			(component as AudioPlayer).autoplay = false;
+		}
+		
 		protected function onComponentCreationComplete(event:FlexEvent):void {
 			if (component) {
 				component.removeEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);

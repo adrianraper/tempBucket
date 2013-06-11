@@ -12,12 +12,13 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AnswerableBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AudioFeedbackBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DictionaryBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DraggableBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.MarkableIconsBehaviour;
 			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.PopupableBehaviour;
 			import com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour;
-
+			
 			import mx.events.FlexMouseEvent;
 			
 			protected function onScrollerMouseWheelChanging(event:FlexMouseEvent):void {
@@ -85,7 +86,7 @@
 			</s:Rect>
 			
 			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="10" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-				<components:XHTMLRichText id="readingTextRichText" top="5" left="30" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+				<components:XHTMLRichText id="readingTextRichText" top="5" left="30" right="5" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour]}" />
 			</s:Scroller>
 		</s:Group>
 		
@@ -97,7 +98,7 @@
 			</s:Rect>
 			
 			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="0" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour]}" />
 			</s:Scroller>
 		</s:Group>		
 	</s:Group>

@@ -2,6 +2,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
+	import com.clarityenglish.textLayout.elements.AudioElement;
 	
 	import flash.events.IEventDispatcher;
 	
@@ -13,6 +14,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		function markAnswerMap(question:Question, answerMap:AnswerMap, isShowAnswers:Boolean = false):void
 		function setExerciseMarked(marked:Boolean = true):void;
 		function stopAllAudio():void;
+		// gh#348
+		function set audioStack(value:Vector.<AudioElement>):void;
+		function setAudioVisible():void;
 		
 	}
 	
