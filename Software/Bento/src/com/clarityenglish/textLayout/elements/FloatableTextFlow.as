@@ -55,10 +55,28 @@ package com.clarityenglish.textLayout.elements {
 		private var _marginTop:Number = 0;
 		private var _marginBottom:Number = 0;
 		
-		public var borderStyle:String = BORDER_STYLE_NONE;
-		public var borderRadius:Number = 0;
+		/*public var borderStyle:String = BORDER_STYLE_NONE;
 		public var borderColor:Number = 0;
-		private var _borderWidth:Number = 0;
+		private var _borderWidth:Number = 0;*/
+		
+		// gh#364
+		public var borderTopStyle:String = BORDER_STYLE_NONE;
+		public var borderTopColor:Number = 0;
+		private var _borderTopWidth:Number = 0;
+		
+		public var borderRightStyle:String = BORDER_STYLE_NONE;
+		public var borderRightColor:Number = 0;
+		private var _borderRightWidth:Number = 0;
+		
+		public var borderBottomStyle:String = BORDER_STYLE_NONE;
+		public var borderBottomColor:Number = 0;
+		private var _borderBottomWidth:Number = 0;
+		
+		public var borderLeftStyle:String = BORDER_STYLE_NONE;
+		public var borderLeftColor:Number = 0;
+		private var _borderLeftWidth:Number = 0;
+		
+		public var borderRadius:Number = 0;
 		
 		private var originalPaddingLeft:Number = 0;
 		private var originalPaddingRight:Number = 0;
@@ -121,23 +139,50 @@ package com.clarityenglish.textLayout.elements {
 			return _marginBottom;
 		}
 
-		public function set borderWidth(value:Number):void {
-			_borderWidth = value;
+		public function set borderTopWidth(value:Number):void {
+			_borderTopWidth = value;
 			updateRealPadding();
 		}
 		
-		public function get borderWidth():Number {
-			return _borderWidth;
+		public function get borderTopWidth():Number {
+			return _borderTopWidth;
+		}
+		
+		public function set borderRightWidth(value:Number):void {
+			_borderRightWidth = value;
+			updateRealPadding();
+		}
+		
+		public function get borderRightWidth():Number {
+			return _borderRightWidth;
+		}
+		
+		public function set borderBottomWidth(value:Number):void {
+			_borderBottomWidth = value;
+			updateRealPadding();
+		}
+		
+		public function get borderBottomWidth():Number {
+			return _borderBottomWidth;
+		}
+		
+		public function set borderLeftWidth(value:Number):void {
+			_borderLeftWidth = value;
+			updateRealPadding();
+		}
+		
+		public function get borderLeftWidth():Number {
+			return _borderLeftWidth;
 		}
 		
 		/**
 		 * We make up the actual TLF padding out of the padding, margin and border (as defined in the CSS box model)
 		 */
 		private function updateRealPadding():void {
-			writableTextLayoutFormat().setStyle("paddingLeft", originalPaddingLeft + _marginLeft + (_borderWidth * 2));
-			writableTextLayoutFormat().setStyle("paddingRight", originalPaddingRight + _marginRight + (_borderWidth * 2));
-			writableTextLayoutFormat().setStyle("paddingTop", originalPaddingTop + _marginTop + (_borderWidth * 2));
-			writableTextLayoutFormat().setStyle("paddingBottom", originalPaddingBottom + _marginBottom + (_borderWidth * 2));
+			writableTextLayoutFormat().setStyle("paddingLeft", originalPaddingLeft + _marginLeft + (_borderLeftWidth * 2));
+			writableTextLayoutFormat().setStyle("paddingRight", originalPaddingRight + _marginRight + (_borderRightWidth * 2));
+			writableTextLayoutFormat().setStyle("paddingTop", originalPaddingTop + _marginTop + (_borderTopWidth * 2));
+			writableTextLayoutFormat().setStyle("paddingBottom", originalPaddingBottom + _marginBottom + (_borderBottomWidth * 2));
 			
 			formatChanged();
 		}
@@ -214,6 +259,32 @@ package com.clarityenglish.textLayout.elements {
 		 */
 		public function isFixedHeight():Boolean {
 			return height != null && !isPercentHeight();
+		}
+		
+		/**
+		 * Returns true if this box has at least one border
+		 * 
+		 * @return 
+		 */
+		public function hasBorder():Boolean {
+			return (
+				borderTopStyle != FloatableTextFlow.BORDER_STYLE_NONE && borderTopWidth > 0 ||
+				borderRightStyle != FloatableTextFlow.BORDER_STYLE_NONE && borderRightWidth > 0 ||
+				borderBottomStyle != FloatableTextFlow.BORDER_STYLE_NONE && borderBottomWidth > 0 ||
+				borderLeftStyle != FloatableTextFlow.BORDER_STYLE_NONE && borderLeftWidth > 0);
+		}
+		
+		/**
+		 * Returns true if this box has every border
+		 *
+		 * @return
+		 */ 
+		public function hasAllBorders():Boolean {
+			return (
+				borderTopStyle != FloatableTextFlow.BORDER_STYLE_NONE && borderTopWidth > 0 &&
+				borderRightStyle != FloatableTextFlow.BORDER_STYLE_NONE && borderRightWidth > 0 &&
+				borderBottomStyle != FloatableTextFlow.BORDER_STYLE_NONE && borderBottomWidth > 0 &&
+				borderLeftStyle != FloatableTextFlow.BORDER_STYLE_NONE && borderLeftWidth > 0);
 		}
 		
 		/** 

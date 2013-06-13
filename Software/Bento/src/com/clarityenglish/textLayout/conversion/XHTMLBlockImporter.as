@@ -466,9 +466,23 @@ package com.clarityenglish.textLayout.conversion {
 			if (style.height) element.height = style.height;
 			if (style.float) element.float = style.float;
 			
-			if (style.borderStyle) element.borderStyle = style.borderStyle;
-			if (style.borderWidth) element.borderWidth = style.borderWidth;
-			if (style.borderColor) element.borderColor = style.borderColor;
+			// gh#364
+			if (style.borderTopStyle) element.borderTopStyle = style.borderTopStyle;
+			if (style.borderTopWidth) element.borderTopWidth = style.borderTopWidth;
+			if (style.borderTopColor) element.borderTopColor = style.borderTopColor;
+			
+			if (style.borderRightStyle) element.borderRightStyle = style.borderRightStyle;
+			if (style.borderRightWidth) element.borderRightWidth = style.borderRightWidth;
+			if (style.borderRightColor) element.borderRightColor = style.borderRightColor;
+			
+			if (style.borderBottomStyle) element.borderBottomStyle = style.borderBottomStyle;
+			if (style.borderBottomWidth) element.borderBottomWidth = style.borderBottomWidth;
+			if (style.borderBottomColor) element.borderBottomColor = style.borderBottomColor;
+			
+			if (style.borderLeftStyle) element.borderLeftStyle = style.borderLeftStyle;
+			if (style.borderLeftWidth) element.borderLeftWidth = style.borderLeftWidth;
+			if (style.borderLeftColor) element.borderLeftColor = style.borderLeftColor;
+			
 			if (style.borderRadius) element.borderRadius = style.borderRadius;
 			
 			if (style.paddingLeft) element.paddingLeft = style.paddingLeft;

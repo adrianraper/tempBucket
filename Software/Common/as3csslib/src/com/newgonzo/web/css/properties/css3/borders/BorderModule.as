@@ -33,11 +33,11 @@ package com.newgonzo.web.css.properties.css3.borders
 			new BorderWidthManager(BorderProperties.BORDER_LEFT_WIDTH),
 			
 			// border-radius
-			new BorderRadiusShorthand(),
+			/*new BorderRadiusShorthand(),
 			new BorderRadiusManager(BorderProperties.BORDER_TOP_LEFT_RADIUS),
 			new BorderRadiusManager(BorderProperties.BORDER_TOP_RIGHT_RADIUS),
 			new BorderRadiusManager(BorderProperties.BORDER_BOTTOM_LEFT_RADIUS),
-			new BorderRadiusManager(BorderProperties.BORDER_BOTTOM_RIGHT_RADIUS)
+			new BorderRadiusManager(BorderProperties.BORDER_BOTTOM_RIGHT_RADIUS)*/
 		];
 	}
 }

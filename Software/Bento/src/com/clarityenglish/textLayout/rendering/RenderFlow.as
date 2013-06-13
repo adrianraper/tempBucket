@@ -141,10 +141,16 @@ package com.clarityenglish.textLayout.rendering {
 				}
 				
 				// gh#363
-				if (childRenderFlow._textFlow.marginLeft) calculatedWidth += childRenderFlow._textFlow.marginLeft;
-				if (childRenderFlow._textFlow.marginRight) calculatedWidth += childRenderFlow._textFlow.marginRight;
 				if (childRenderFlow._textFlow.marginTop) calculatedHeight += childRenderFlow._textFlow.marginTop;
+				if (childRenderFlow._textFlow.marginRight) calculatedWidth += childRenderFlow._textFlow.marginRight;
 				if (childRenderFlow._textFlow.marginBottom) calculatedHeight += childRenderFlow._textFlow.marginBottom;
+				if (childRenderFlow._textFlow.marginLeft) calculatedWidth += childRenderFlow._textFlow.marginLeft;
+				
+				// gh#364
+				if (childRenderFlow._textFlow.borderTopWidth) calculatedWidth += childRenderFlow._textFlow.borderTopWidth;
+				if (childRenderFlow._textFlow.borderRightWidth) calculatedWidth += childRenderFlow._textFlow.borderRightWidth;
+				if (childRenderFlow._textFlow.borderBottomWidth) calculatedHeight += childRenderFlow._textFlow.borderBottomWidth;
+				if (childRenderFlow._textFlow.borderLeftWidth) calculatedHeight += childRenderFlow._textFlow.borderLeftWidth;
 				
 				// This recurses down the tree
 				childRenderFlow.setLayoutBoundsSize(calculatedWidth, calculatedHeight);
@@ -225,26 +231,59 @@ package com.clarityenglish.textLayout.rendering {
 		 * Also draw any background colour as the rectangle fill.
 		 */
 		private function drawBorderAndBackground():void {
-			var hasBorder:Boolean = (_textFlow.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE);
+			var hasBorder:Boolean = _textFlow.hasBorder();
 			var hasBackgroundColor:Boolean = (_textFlow.backgroundColor != null);
 			
 			graphics.clear();
 			
 			if (inlineGraphicElementPlaceholder && (hasBorder || hasBackgroundColor)) {
-				var borderX:Number = _textFlow.marginLeft + _textFlow.borderWidth / 2;
-				var borderY:Number = _textFlow.marginTop + _textFlow.borderWidth / 2;
-				var borderWidth:Number = inlineGraphicElementPlaceholder.width - _textFlow.marginLeft - _textFlow.marginRight - _textFlow.borderWidth;
-				var borderHeight:Number = inlineGraphicElementPlaceholder.height - _textFlow.marginTop - _textFlow.marginBottom - _textFlow.borderWidth;
+				var borderBoxX:Number = _textFlow.marginLeft + _textFlow.borderLeftWidth + _textFlow.borderRightWidth / 2;
+				var borderBoxY:Number = _textFlow.marginTop + _textFlow.borderTopWidth + _textFlow.borderBottomWidth / 2;
+				var borderBoxWidth:Number = inlineGraphicElementPlaceholder.width - _textFlow.marginLeft - _textFlow.marginRight - ((_textFlow.borderLeftWidth + _textFlow.borderRightWidth) / 2);
+				var borderBoxHeight:Number = inlineGraphicElementPlaceholder.height - _textFlow.marginTop - _textFlow.marginBottom - ((_textFlow.borderTopWidth + _textFlow.borderBottomWidth) / 2);
 				
-				graphics.lineStyle(_textFlow.borderWidth, _textFlow.borderColor, (hasBorder) ? 1 : 0);
+				// TODO: Note that unlike a real browser, we don't draw any border-radius unless all edges are shown (this would be complicated to implement and is super rare)
+				var borderBoxRadius:Number = (_textFlow.hasAllBorders()) ? _textFlow.borderRadius : 0;
 				
-				if (hasBackgroundColor)
+				// First draw the background color, if there is one
+				if (hasBackgroundColor) {
 					graphics.beginFill(_textFlow.backgroundColor);
-				
-				graphics.drawRoundRect(borderX, borderY, borderWidth, borderHeight, _textFlow.borderRadius, _textFlow.borderRadius);
-				
-				if (hasBackgroundColor)
+					graphics.drawRoundRect(borderBoxX, borderBoxY, borderBoxWidth, borderBoxHeight, borderBoxRadius, borderBoxRadius);
 					graphics.endFill();
+				}
+				
+				if (hasBorder) {
+					if (borderBoxRadius) {
+						// If there is a radius then get the stroke style from borderLeft* and just use that for every edge
+						graphics.lineStyle(_textFlow.borderLeftWidth, _textFlow.borderLeftColor, 1);
+						graphics.drawRoundRect(borderBoxX, borderBoxY, borderBoxWidth, borderBoxHeight, borderBoxRadius, borderBoxRadius);
+					} else {
+						// Otherwise draw each edge one at a time
+						if (_textFlow.borderTopStyle != FloatableTextFlow.BORDER_STYLE_NONE && _textFlow.borderTopWidth > 0) {
+							graphics.lineStyle(_textFlow.borderBottomWidth, _textFlow.borderBottomColor, 1);
+							graphics.moveTo(borderBoxX, borderBoxY);
+							graphics.lineTo(borderBoxX + borderBoxWidth, borderBoxY);
+						}
+						
+						if (_textFlow.borderRightStyle != FloatableTextFlow.BORDER_STYLE_NONE && _textFlow.borderRightWidth > 0) {
+							graphics.lineStyle(_textFlow.borderRightWidth, _textFlow.borderRightColor, 1);
+							graphics.moveTo(borderBoxX + borderBoxWidth, borderBoxY);
+							graphics.lineTo(borderBoxX + borderBoxWidth, borderBoxY + borderBoxHeight);
+						}
+						
+						if (_textFlow.borderBottomStyle != FloatableTextFlow.BORDER_STYLE_NONE && _textFlow.borderBottomWidth > 0) {
+							graphics.lineStyle(_textFlow.borderBottomWidth, _textFlow.borderBottomColor, 1);
+							graphics.moveTo(borderBoxX, borderBoxY + borderBoxHeight);
+							graphics.lineTo(borderBoxX + borderBoxWidth, borderBoxY + borderBoxHeight);
+						}
+						
+						if (_textFlow.borderLeftStyle != FloatableTextFlow.BORDER_STYLE_NONE && _textFlow.borderLeftWidth > 0) {
+							graphics.lineStyle(_textFlow.borderLeftWidth, _textFlow.borderLeftColor, 1);
+							graphics.moveTo(borderBoxX, borderBoxY);
+							graphics.lineTo(borderBoxX, borderBoxY + borderBoxHeight);
+						}
+					}
+				}
 			}
 		}
 		
