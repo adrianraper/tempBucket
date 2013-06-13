@@ -20,9 +20,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	public class AudioFeedbackBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
 		private var _isMarked:Boolean;
-		private var isFirstLoad:Boolean = true;
 		private var audioStack:Vector.<AudioElement> = new Vector.<AudioElement>();
-		private var delayDisplayAudioStack:Vector.<AudioElement> = new Vector.<AudioElement>();
+		private var feedbackAudioStack:Vector.<AudioElement> = new Vector.<AudioElement>();
 		
 		public function get isMarked():Boolean {
 			return _isMarked;
@@ -38,66 +37,56 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			super(container);
 		}
 		
-		public function onCreateChildren():void
-		{
+		public function onCreateChildren():void {
 		}
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
 			if (!textFlow.hasEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED)) textFlow.addEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED, onMarkButtonClicked);
 			
-			if (isFirstLoad && getAudioElements(textFlow).length > 0) {
+			if (getAudioElements(textFlow).length > 0) {
 				for each (var componentElement:IComponentElement in getAudioElements(textFlow)) {
-					var audioElement:AudioElement = componentElement as AudioElement;  
-					if (!audioElement.hasComponent()) {
-						audioElement.createComponent();
-					}
-					audioStack.push(audioElement);
+					var audioElement:AudioElement = componentElement as AudioElement; 
+					if (audioElement.type == "feedback") {
+						if (audioStack.indexOf(audioElement) == -1) {
+							audioStack.push(audioElement);
+						}
+					}					
 				}
+				// the dispatcher will keep sending event once onTextFlowUpdate being called
 				container.dispatchEvent(new AudioStackEvent(AudioStackEvent.Audio_Stack_Ready, audioStack, true));
-				isFirstLoad = false;
 			}
-
-			for each (var delayAudioElement:AudioElement in delayDisplayAudioStack) {				
-				var containingBlock:RenderFlow = delayAudioElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
-				if (!delayAudioElement.hasComponent()) {
-					delayAudioElement.controls = "compact";
-					delayAudioElement.createComponent();
-					containingBlock.addChild(delayAudioElement.getComponent());
-				} else {
-					delayAudioElement.removeCompoment();
-					delayAudioElement.controls = "compact";
-					delayAudioElement.createComponent();
-					containingBlock.addChild(delayAudioElement.getComponent());
-					var delayAudioPlayer:AudioPlayer = delayAudioElement.getComponent() as AudioPlayer;
-				}
+			
+			for each (var feedbackAudioElement:AudioElement in feedbackAudioStack) {				
+				var containingBlock:RenderFlow = feedbackAudioElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+				// in OverlayBehaviour, in order to detect feedback audio we didn't block creating component there but we didn't add the component to the containing block 
+				containingBlock.addChild(feedbackAudioElement.getComponent());
 				
 				// Position and size the component in line with its underlying text
-				var bounds:Rectangle = delayAudioElement.getElementBounds();
+				var bounds:Rectangle = feedbackAudioElement.getElementBounds();
 				if (bounds) {
-					if (!isNaN(bounds.width)) delayAudioElement.getComponent().width = bounds.width;
-					if (!isNaN(bounds.height)) delayAudioElement.getComponent().height = bounds.height;
-					delayAudioElement.getComponent().x = bounds.x;
-					delayAudioElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
+					if (!isNaN(bounds.width)) feedbackAudioElement.getComponent().width = bounds.width;
+					if (!isNaN(bounds.height)) feedbackAudioElement.getComponent().height = bounds.height;
+					feedbackAudioElement.getComponent().x = bounds.x;
+					feedbackAudioElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
 					
 					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
-					delayAudioElement.getComponent().visible = !delayAudioElement.hideChrome;
+					feedbackAudioElement.getComponent().visible = !feedbackAudioElement.hideChrome;
 				}
 			}
-			delayDisplayAudioStack.splice(0,delayDisplayAudioStack.length);
+			feedbackAudioStack.splice(0,feedbackAudioStack.length);
 		}
 		
-		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void
-		{
+		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
 			textFlow.removeEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED, onMarkButtonClicked);
 			
-			delayDisplayAudioStack.splice(0,delayDisplayAudioStack.length);
+			feedbackAudioStack.splice(0,feedbackAudioStack.length);
 		}
 		
 		protected function onMarkButtonClicked (event:MarkingButtonEvent):void {
-			delayDisplayAudioStack.push(event.delayAudioElement);
+			feedbackAudioStack.push(event.delayAudioElement);
 		}
 		
 		private function getAudioElements(textFlow:TextFlow):Array {

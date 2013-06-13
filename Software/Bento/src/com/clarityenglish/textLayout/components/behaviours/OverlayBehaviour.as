@@ -1,4 +1,5 @@
 package com.clarityenglish.textLayout.components.behaviours {
+	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.AudioElement;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
@@ -49,6 +50,12 @@ package com.clarityenglish.textLayout.components.behaviours {
 				// If the component hasn't yet been created then create a new one and add it to the containing block
 				if (!componentElement.hasComponent()) {
 					componentElement.createComponent();
+					// gh#348 the feedback audio will be add to stage in AudioFeedbackBehaviour
+					if (componentElement.getComponent() is AudioPlayer) {
+						var audioElement:AudioElement = componentElement as AudioElement;
+						if  (audioElement.type == "feedback")
+							continue;
+					}
 					containingBlock.addChild(componentElement.getComponent());
 				}
 				

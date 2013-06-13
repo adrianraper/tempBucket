@@ -117,7 +117,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			}
 			
 			// gh#348
-			view.setAudioVisible();	
+			view.enableFeedbackAudio();	
 		}
 		
 		protected function handleMarkingShown(note:INotification):void {

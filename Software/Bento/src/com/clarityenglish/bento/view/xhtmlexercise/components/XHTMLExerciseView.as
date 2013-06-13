@@ -362,19 +362,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		}
 		
 		// gh#348
-		public function setAudioVisible():void {
+		public function enableFeedbackAudio():void {
 			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
 			
 			// in exercise.xml settings you need to add <param name="delayAudioDisplay" value="true"/> in order to trigger feedback audio work
-			if (exercise.model.getSettingParam("delayAudioDisplay")) {
-				for each (var audioElement:AudioElement in audioStack) {
-					audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, audioElement));
-					
-					TLFUtil.markFlowElementFormatChanged(audioElement);
-					textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());
-				}
-				textFlowDamageAccumulator.updateDamagedTextFlows();
-			}			
+			for each (var audioElement:AudioElement in audioStack) {
+				audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, audioElement));
+				
+				TLFUtil.markFlowElementFormatChanged(audioElement);
+				textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());
+			}
+			textFlowDamageAccumulator.updateDamagedTextFlows();				
 		}
 		
 	}

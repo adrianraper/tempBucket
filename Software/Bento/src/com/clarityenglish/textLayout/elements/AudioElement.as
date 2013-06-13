@@ -18,6 +18,9 @@ package com.clarityenglish.textLayout.elements {
 		
 		private var _autoplay:Boolean;
 		
+		// gh#348
+		private var _type:String;
+		
 		public function AudioElement() {
 			super();
 		}
@@ -28,6 +31,16 @@ package com.clarityenglish.textLayout.elements {
 		
 		public function set controls(value:String):void {
 			_controls = value;
+		}
+		
+		// gh#348
+		public function set type(value:String):void {
+			_type = value;
+		}
+		
+		[Bindable]
+		public function get type():String {
+			return _type
 		}
 		
 		public function set autoplay(value:String):void {
