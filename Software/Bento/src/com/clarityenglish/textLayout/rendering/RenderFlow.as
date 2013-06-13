@@ -126,7 +126,7 @@ package com.clarityenglish.textLayout.rendering {
 				
 				// Implement width for block level elements
 				if (childRenderFlow._textFlow.display == FloatableTextFlow.DISPLAY_BLOCK) {
-					calculatedWidth = width;
+					// TODO: what is this for???
 					if (childRenderFlow._textFlow.marginLeft) calculatedWidth -= childRenderFlow._textFlow.marginLeft;
 				}
 				
@@ -139,6 +139,12 @@ package com.clarityenglish.textLayout.rendering {
 						calculatedHeight = height * childRenderFlow._textFlow.percentHeight / 100;
 						break;
 				}
+				
+				// gh#363
+				if (childRenderFlow._textFlow.marginLeft) calculatedWidth += childRenderFlow._textFlow.marginLeft;
+				if (childRenderFlow._textFlow.marginRight) calculatedWidth += childRenderFlow._textFlow.marginRight;
+				if (childRenderFlow._textFlow.marginTop) calculatedHeight += childRenderFlow._textFlow.marginTop;
+				if (childRenderFlow._textFlow.marginBottom) calculatedHeight += childRenderFlow._textFlow.marginBottom;
 				
 				// This recurses down the tree
 				childRenderFlow.setLayoutBoundsSize(calculatedWidth, calculatedHeight);
@@ -193,6 +199,12 @@ package com.clarityenglish.textLayout.rendering {
 						placeholderHeight = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
 						break;
 				}
+				
+				// gh#363
+				if (_textFlow.marginLeft) placeholderWidth += _textFlow.marginLeft;
+				if (_textFlow.marginRight) placeholderWidth += _textFlow.marginRight;
+				if (_textFlow.marginTop) placeholderHeight += _textFlow.marginTop;
+				if (_textFlow.marginBottom) placeholderHeight += _textFlow.marginBottom;
 				
 				// Set the placeholder size
 				inlineGraphicElementPlaceholder.width = placeholderWidth;
