@@ -86,6 +86,24 @@ package com.clarityenglish.tensebuster.view {
 		 * @return 
 		 */
 		private function handleDirectStart():Boolean {
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var directStart:Object = configProxy.getDirectStart();
+			
+			if (!directStart) return false;
+			
+			// #338
+			// If exerciseID is defined go straight into an exercise.
+			if (directStart.exerciseID) {
+				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
+				
+				if (exercise) {
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+					return true;
+				}
+				
+			}
+			
 			return false;
 		}
 	
