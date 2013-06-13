@@ -73,7 +73,7 @@ package com.clarityenglish.rotterdam.controller {
 				parameters.push(course);
 			}
 			
-			//gh #238
+			// gh#238
 			if (uid.unit && !uid.exercise) {
 				var startingPoint:String = "startingPoint=unit:" + uid.unit;
 				parameters.push(startingPoint);

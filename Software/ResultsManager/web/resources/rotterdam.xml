@@ -71,7 +71,7 @@
 			
             <lit name="pathCCB">CCB</lit>
             <lit name="pathTenseBuster">TenseBuster</lit>
-             <lit name="pathActiveReading">ActiveReading</lit>
+            <lit name="pathActiveReading">ActiveReading</lit>
             <lit name="pathBusinessWriting">BusinessWriting</lit>
             <lit name="pathClearPronunciation1">ClearPronunciation</lit>
             <lit name="pathClearPronunciation2">ClearPronunciation2</lit>
@@ -88,6 +88,7 @@
             <lit name="pathConnectedSpeech">ConnectedSpeech</lit>
             <lit name="pathAccessUK">AccessUK</lit>
             <lit name="pathAuthorPlus">AuthorPlus</lit>
+            <lit name="pathnull">AuthorPlus</lit>
             <!--  if you release a new title without compiling Rotterdam, use this for the productCode -->
             <lit name="path55">NewTitle</lit>
             

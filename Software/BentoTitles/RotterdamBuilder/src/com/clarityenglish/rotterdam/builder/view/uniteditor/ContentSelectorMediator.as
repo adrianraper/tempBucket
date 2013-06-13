@@ -60,11 +60,12 @@
 			view.titleCollection.refresh();
 		}
 		
-		// alice: program like CP has a single folder structure
-		//filter is used to remove the single folder and display unit directly after title
+		// alice: program like CP has a single course structure
+		// this filter is used to remove the course level and display unit directly after title
 		private function filter(titleCollection:ArrayCollection):void {
 			for each (var item:Object in titleCollection) {
-				if (item.children.length == 1) {
+				// gh#360 Author Plus might only have one course, but still need to see the title and the course
+				if (item.children.length == 1 && item.productCode != 1) {
 					var course:Object = item.children[0];
 					var units:Object = course.children;
 					item.children = units;

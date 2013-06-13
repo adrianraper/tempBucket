@@ -63,13 +63,13 @@ function runDailyJobs($triggerDate = null) {
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
 	*/
 	
-	/*
 	// For the Road to IELTS Last Minute accounts in the merged database
 	$database = 'rack80829';
-	$roots = array(100,101,167,168,169,170,171,14028,14030,14031);
+	$roots = array(163);
 	$usersMoved = $thisService->dailyJobOps->archiveExpiredUsers($expiryDate, $roots, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
 	
+	/*
 	// 2. Archive expired titles from accounts
 	
 	// We want to archive 1 month after expiry, so send in 1 month ago as the date
@@ -132,7 +132,6 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->archiveSentEmails($database);
 	echo "Archived $rc sent emails. $newLine";
-	*/
 
 	// 6. Count the amount of CCB material and activity for each account
 
@@ -140,6 +139,7 @@ function runDailyJobs($triggerDate = null) {
 	$database = 'rack80829';
 	$rc = $thisService->dailyJobOps->monitorCBBActivity($database);
 	echo "$rc accounts active yesterday. $newLine";	
+	*/
 	
 }
 

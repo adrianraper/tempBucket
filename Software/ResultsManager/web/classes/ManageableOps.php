@@ -624,10 +624,19 @@ EOD;
 	 * @param An array of user ids to delete
 	 */
 	function deleteUsersById($userIdArray) {
-		// If there are no ids in the array do nothing
-		if (sizeof($userIdArray) == 0) return;
 		
-		$userIdInString = join(",", $userIdArray);
+		// gh#359
+		$filteredIdArray = array_filter($userIdArray, function ($userID) {
+			if ($userID < 0)
+				AbstractService::$debugLog->notice("Request to delete user $userID repulsed! ManageableOps.deleteUsersByID");
+			
+			return ($userID > 0);
+		});
+		
+		// If there are no ids in the array do nothing
+		if (sizeof($filteredIdArray) == 0) return;
+		
+		$userIdInString = join(",", $filteredIdArray);
 		
 		// Delete users from the T_User table
 		$this->db->Execute("DELETE FROM T_User WHERE F_UserID IN ($userIdInString)");

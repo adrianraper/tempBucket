@@ -51,6 +51,12 @@ SQL;
 				$userID = $dbObj->F_UserID;
 				$bindingParams = array($userID);
 				
+				// gh#359
+				if ($userID < 1) {
+					AbstractService::$debugLog->notice("Request to delete user $userID repulsed! DailyJobOps.archiveExpiredUsers");
+					continue 1;
+				}
+				 
 				$sql = <<<SQL
 					INSERT INTO $database.T_Membership_Expiry
 					SELECT * FROM $database.T_Membership 

@@ -59,7 +59,11 @@ package com.clarityenglish.rotterdam.vo {
 			if (!this.title)
 				return null;
 			
+			// gh#360
 			switch (this.title) {
+				case 1:
+					return 'AuthorPlus';
+					break;
 				case 9:
 					return 'TenseBuster';
 					break;
