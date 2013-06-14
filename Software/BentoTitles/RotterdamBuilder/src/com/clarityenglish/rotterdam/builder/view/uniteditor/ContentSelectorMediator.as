@@ -69,6 +69,8 @@
 					var course:Object = item.children[0];
 					var units:Object = course.children;
 					item.children = units;
+					// gh#366
+					item.courseID = course.id;
 				}
 			}
 		}
