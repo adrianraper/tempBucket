@@ -57,7 +57,7 @@ package com.clarityenglish.rotterdam.controller {
 			}
 			var startFolder:String = copyProvider.getCopyForId("path" + progName) + "/";
 
-			// what parameters do we need to pass?
+			// What parameters do we need to pass?
 			var parameters:Array = new Array();
 			var prefix:String = "prefix=" + configProxy.getAccount().prefix;
 			parameters.push(prefix);

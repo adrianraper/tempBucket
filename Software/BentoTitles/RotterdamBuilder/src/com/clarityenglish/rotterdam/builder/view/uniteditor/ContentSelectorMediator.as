@@ -56,8 +56,10 @@
 		
 		private function onContentLoadSuccess(e:ResultEvent, token:Object):void {
 			view.titleCollection = new ArrayCollection(e.result as Array);
-			filter(view.titleCollection);
-			view.titleCollection.refresh();
+			// gh#360
+			// But this ruins the UID, although it looks right in the widget
+			//filter(view.titleCollection);
+			//view.titleCollection.refresh();
 		}
 		
 		// alice: program like CP has a single course structure
