@@ -132,7 +132,7 @@
 			<lit name="questionVideoInstructionLabel">First click to read the eBook.  Then click to watch a video setting out the key facts in this section of the IELTS test</lit>
 			<lit name="adviceVideoLabel">Advice and tutorials</lit>
 			<lit name="adviceVideoInstructionLabel">Click on a thumbnail to play the video</lit>
-			<lit name="practiceZoneLabel">Test practice</lit>
+			<lit name="practiceZoneLabel">Practice zone</lit>
             <lit name="practiceZoneInstructionLabel">Choose a set below and start your IELTS language practice</lit>
 			<lit name="difficulty">Difficulty:</lit>
 			<lit name="examZoneLabel">Test practice</lit>
