@@ -123,7 +123,8 @@ function securityAction (&$amfbody) {
 				if ($className=='DMSService' || $className=='ClarityService') {
 					$ex = new MessageException(E_USER_ERROR, "Your authentication has been lost, please login again.", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
 				} else {
-					$ex = new MessageException(E_USER_ERROR, "Method $methodName access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
+					$ex = new MessageException(E_USER_ERROR, "Method access blocked by beforeFilter in " . $className . " class", __FILE__, __LINE__, "AMFPHP_AUTHENTICATE_ERROR");
+					error_log("Error Detection by sky for beforeFilter, className: " . $className . "; MethodName: " . serialize($methodName) . "; classConstruct: " . serialize($classConstruct) . "; amfbody: " .  serialize($amfbody) . "\n", 3, AMFPHP_BASE . "core\shared\app\skyerror.log");
 				}
 				MessageException::throwException($amfbody, $ex);
 				return false;
