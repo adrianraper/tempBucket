@@ -15,29 +15,28 @@
 			private function getIconForContent(item:Object, isOpen:* = null, isBranch:* = null):Object {
 				var uidString:String = item.uid;
 				var uidArray:Array = uidString.split(".");
+				var uid:String = item.uid;
 				
 				if (searchTitle(uidArray[0]) || uidArray.length == 1) {
 					// The following code is so that a title like BW or SSS which only has one course
 					// will not show the title and course level in the content selector window
 					//alice: single folder structure's maximum uid change to 3
-					if ((uidArray.length == 2 && getQualifiedClassName(item).indexOf("Unit") != -1) || (uidArray.length == 3 && getQualifiedClassName(item).indexOf("Exercise") != -1)) {
-						hostComponent.exIndex = 3;
-						return hostComponent.getThumbnailForUid(item.uid);
-					} else {
-						hostComponent.exIndex = 4;
-						//original code
-						return hostComponent.getThumbnailForUid(item.uid);
-					}					
-				} else {
-					if ((uidArray.length == 2 && getQualifiedClassName(item).indexOf("Unit") != -1) || (uidArray.length == 3 && getQualifiedClassName(item).indexOf("Exercise") != -1)) {
-						hostComponent.exIndex = 3;
-					} else {
-						hostComponent.exIndex = 4;
+					if ((uidArray.length == 2 && getQualifiedClassName(item).indexOf("Unit") != -1)) {
+						var title:Object = item.parent;
+						if (title.courseID) {
+							uid = title.id + "." + title.courseID + "." + item.id;
+						}
+					} else if(uidArray.length == 3 && getQualifiedClassName(item).indexOf("Exercise") != -1) {
+						title = item.parent.parent;
+						if (title.courseID) {
+							uid = title.id + "." + title.courseID + "." + item.parent.id + "." + item.id;
+						}
 					}
+					//original code
+					return hostComponent.getThumbnailForUid(uid);
+				} else {
 					return null;
-				}
-				
-				
+				}								
 			}
 			
 			private function tree_labelFunc(item:Object):String {

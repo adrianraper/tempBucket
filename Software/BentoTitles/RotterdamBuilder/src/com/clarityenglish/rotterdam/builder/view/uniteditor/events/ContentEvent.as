@@ -13,14 +13,13 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 		private var _program:String;
 		private var _exIndex:Number;
 		
-		public function ContentEvent(type:String, uid:String, caption:String, program:String, exIndex:Number, bubbles:Boolean) {
+		public function ContentEvent(type:String, uid:String, caption:String, program:String, bubbles:Boolean) {
 			super(type, bubbles, false);
 			
 			this._uid = uid;
 			this._caption = caption;
 			// gh#181
 			this._program = program;
-			this._exIndex = exIndex;
 		}
 		
 		public function get uid():String {
@@ -36,16 +35,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 			return _program;
 		}
 		
-		public function get exIndex():Number {
-			return _exIndex;
-		}
-		
 		public override function clone():Event {
-			return new ContentEvent(type, uid, caption, program, exIndex, bubbles);
+			return new ContentEvent(type, uid, caption, program, bubbles);
 		}
 		
 		public override function toString():String {
-			return formatToString("ContentEvent", "uid", "caption", "program", "exIndex", "bubbles");
+			return formatToString("ContentEvent", "uid", "caption", "program", "bubbles");
 		}
 	}
 }

@@ -58,11 +58,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function onSelectButton(event:MouseEvent):void {
 			if (tree.selectedItem) {
-				// gh#181
+				//gh #181
 				if (getQualifiedClassName(tree.selectedItem).indexOf("Exercise") == -1) {
 					tree.selectedItem.name = "";
 				}
-				// gh#181 enhancement: adding program title to each practice you select
+				//gh #181 enhancement: adding program title to each practice you select
 				var rootItem:Object = tree.selectedItem
 				while (rootItem.parent) {
 					rootItem = rootItem.parent;
@@ -87,7 +87,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onCancelButton(event:MouseEvent):void {
-			// gh#212
+			//gh #212
 			dispatchEvent(new ContentEvent(ContentEvent.CONTENT_CANCEL, null, null, null, true));
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}

@@ -9,13 +9,13 @@ function outputPng($imagePath) {
 	die();
 }
 
-if (!isset($_GET['uid']) || !isset($_GET['exIndex'])) {
+if (!isset($_GET['uid'])) {
 	echo "No uid given";
 	return;
 }
 
 $uid = $_GET['uid'];
-$exIndex = $_GET['exIndex'];
+
 //$thumbnailFolder = dirname(__FILE__)."/../../".$GLOBALS['data_dir']."/../Thumbnails/";
 $thumbnailFolder = dirname(__FILE__).$GLOBALS['interface_dir']."../resources/thumbnails/";
 // Sanitise $uid to prevent directory traversal attacks by not allowing more than one consecutive dot or anything that isn't a number.
@@ -33,7 +33,7 @@ if (sizeof($segments) == 0 || sizeof($segments) > 4) {
  * off the end and have another go.  If we don't find any then use default.png
  */
 
-while ( sizeof ( $segments ) > 0 && sizeof ( $segments ) < $exIndex ) {
+while ( sizeof ( $segments ) > 0 && sizeof ( $segments ) < 4 ) {
 	$imagePath = $thumbnailFolder . implode ( "/", $segments ) . ".png";
 	
 	if (file_exists ( $imagePath )) {
@@ -43,8 +43,8 @@ while ( sizeof ( $segments ) > 0 && sizeof ( $segments ) < $exIndex ) {
 	}
 }
 
-if (sizeof ( $segments ) == $exIndex) {
-	$max = $exIndex - 2;
+if (sizeof ( $segments ) == 4) {
+	$max = 2;
 	$imagePath = $thumbnailFolder;
 	for($i = 0; $i < $max; $i ++) {
 		$imagePath = $imagePath . $segments [$i] . "/";
