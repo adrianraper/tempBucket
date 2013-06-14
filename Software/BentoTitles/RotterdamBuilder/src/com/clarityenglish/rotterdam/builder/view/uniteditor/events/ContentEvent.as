@@ -4,12 +4,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 	public class ContentEvent extends Event {
 		
 		public static const CONTENT_SELECT:String = "contentSelect";
-		//gh #212 
+		// gh#212 
 		public static const CONTENT_CANCEL:String = "contentCancel";		
 		
 		private var _uid:String;
 		private var _caption:String;
-		//gh #181
+		// gh#181
 		private var _program:String;
 		private var _exIndex:Number;
 		
@@ -18,7 +18,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 			
 			this._uid = uid;
 			this._caption = caption;
-			//#181
+			// gh#181
 			this._program = program;
 		}
 		
@@ -30,7 +30,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 			return _caption;
 		}
 		
-		//gh #181
+		// gh#181
 		public function get program():String {
 			return _program;
 		}
