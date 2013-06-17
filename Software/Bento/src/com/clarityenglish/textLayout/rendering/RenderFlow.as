@@ -4,33 +4,24 @@ package com.clarityenglish.textLayout.rendering {
 	import com.clarityenglish.textLayout.events.RenderFlowMouseEvent;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
-	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.container.ContainerController;
 	import flashx.textLayout.elements.InlineGraphicElement;
 	import flashx.textLayout.elements.InlineGraphicElementStatus;
-	import flashx.textLayout.elements.OverflowPolicy;
 	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.events.StatusChangeEvent;
 	import flashx.textLayout.events.UpdateCompleteEvent;
 	
-	import mx.core.IInvalidating;
 	import mx.core.UIComponent;
 	import mx.core.mx_internal;
-	import mx.events.ResizeEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
-	
-	import spark.components.Group;
-	import spark.components.ResizeMode;
-	import spark.core.SpriteVisualElement;
 	
 	use namespace mx_internal;
 	
@@ -114,6 +105,11 @@ package com.clarityenglish.textLayout.rendering {
 			
 			// Go down the RenderFlow tree sizing the children where possible (i.e. when not dynamic)
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
+				// gh#369 - for now the rule is that fixed widths get passed down
+				if (childRenderFlow._textFlow.widthType == FloatableTextFlow.SIZE_DYNAMIC && _textFlow.widthType == FloatableTextFlow.SIZE_FIXED) {
+					childRenderFlow._textFlow.width = _textFlow.width - _textFlow.borderLeftWidth - _textFlow.borderRightWidth;
+				}
+				
 				var calculatedWidth:Number;
 				switch (childRenderFlow._textFlow.widthType) {
 					case FloatableTextFlow.SIZE_FIXED:
@@ -194,6 +190,9 @@ package com.clarityenglish.textLayout.rendering {
 						break;
 					case FloatableTextFlow.SIZE_DYNAMIC:
 						placeholderWidth = _textFlow.flowComposer.getControllerAt(0).getContentBounds().width;
+						// gh#363
+						if (_textFlow.marginRight) placeholderWidth += _textFlow.marginRight;
+						if (_textFlow.marginLeft) placeholderWidth += _textFlow.marginLeft;
 						break;
 				}
 				

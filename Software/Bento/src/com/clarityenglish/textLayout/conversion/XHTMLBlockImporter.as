@@ -199,19 +199,20 @@ package com.clarityenglish.textLayout.conversion {
 			if (style.float == FloatableTextFlow.FLOAT_LEFT || style.float == FloatableTextFlow.FLOAT_RIGHT)
 				return true;
 			
+			// Anything with relative position is a separate flow
 			if (style.position == FloatableTextFlow.POSITION_RELATIVE)
 				return true;
 			
+			// Anything with a border is a separate flow, otherwise we can't draw its bounds
+			if (style.borderTopWidth || style.borderRightWidth || style.borderBottomWidth || style.borderLeftWidth) {
+				return true;
+			}
+			
+			// ???
 			if (style.display == FloatableTextFlow.DISPLAY_BLOCK)
 				return true;
 			
-			/*if (style.position == FloatableTextFlow.POSITION_ABSOLUTE)
-				return true;*/
-			
-			// TODO: This is no good as it gets inherited so everything ends up being a seperate flow.  Implicit display:block might be the way forward.
-			/*if (style.borderStyle != FloatableTextFlow.BORDER_STYLE_NONE)
-				return true;*/
-			
+			// ???
 			if (style.overflow == FloatableTextFlow.OVERFLOW_HIDDEN)
 				return true;
 			
