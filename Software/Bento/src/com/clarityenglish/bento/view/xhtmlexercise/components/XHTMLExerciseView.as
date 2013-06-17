@@ -14,6 +14,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import com.clarityenglish.bento.vo.content.model.answer.TextAnswer;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
+	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.AudioElement;
 	import com.clarityenglish.textLayout.elements.InputElement;
 	import com.clarityenglish.textLayout.elements.SelectElement;
@@ -365,14 +366,26 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		public function enableFeedbackAudio():void {
 			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
 			
-			// in exercise.xml settings you need to add <param name="delayAudioDisplay" value="true"/> in order to trigger feedback audio work
-			for each (var audioElement:AudioElement in audioStack) {
+			var audioNodes:Array = exercise.select("audio.audio-feedback");
+			for each (var node:XML in audioNodes) {
+				var audioElement:AudioElement = getFlowElement(node) as AudioElement;
 				audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, audioElement));
 				
 				TLFUtil.markFlowElementFormatChanged(audioElement);
 				textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());
 			}
 			textFlowDamageAccumulator.updateDamagedTextFlows();				
+		}
+		
+		public function showTextUnderline(source:XML):void {
+			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
+
+			XHTML.removeClasses(source, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
+			var flowElement:FlowElement = getFlowElement(source);
+			XHTML.addClass(source, Answer.SELECTED);
+			TLFUtil.markFlowElementFormatChanged(flowElement);
+			textFlowDamageAccumulator.damageTextFlow(getFlowElement(source).getTextFlow());
+			textFlowDamageAccumulator.updateDamagedTextFlows();			
 		}
 		
 	}

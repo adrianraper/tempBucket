@@ -1,5 +1,4 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
-	import com.clarityenglish.bento.view.xhtmlexercise.events.AudioStackEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
@@ -42,19 +41,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
 			if (!textFlow.hasEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED)) textFlow.addEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED, onMarkButtonClicked);
-			
-			if (getAudioElements(textFlow).length > 0) {
-				for each (var componentElement:IComponentElement in getAudioElements(textFlow)) {
-					var audioElement:AudioElement = componentElement as AudioElement; 
-					if (audioElement.type == "feedback") {
-						if (audioStack.indexOf(audioElement) == -1) {
-							audioStack.push(audioElement);
-						}
-					}					
-				}
-				// the dispatcher will keep sending event once onTextFlowUpdate being called
-				container.dispatchEvent(new AudioStackEvent(AudioStackEvent.Audio_Stack_Ready, audioStack, true));
-			}
 			
 			for each (var feedbackAudioElement:AudioElement in feedbackAudioStack) {				
 				var containingBlock:RenderFlow = feedbackAudioElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
