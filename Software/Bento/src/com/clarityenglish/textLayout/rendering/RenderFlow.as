@@ -147,10 +147,10 @@ package com.clarityenglish.textLayout.rendering {
 				if (childRenderFlow._textFlow.marginLeft) calculatedWidth += childRenderFlow._textFlow.marginLeft;
 				
 				// gh#364
-				if (childRenderFlow._textFlow.borderTopWidth) calculatedWidth += childRenderFlow._textFlow.borderTopWidth;
+				if (childRenderFlow._textFlow.borderTopWidth) calculatedHeight += childRenderFlow._textFlow.borderTopWidth;
 				if (childRenderFlow._textFlow.borderRightWidth) calculatedWidth += childRenderFlow._textFlow.borderRightWidth;
 				if (childRenderFlow._textFlow.borderBottomWidth) calculatedHeight += childRenderFlow._textFlow.borderBottomWidth;
-				if (childRenderFlow._textFlow.borderLeftWidth) calculatedHeight += childRenderFlow._textFlow.borderLeftWidth;
+				if (childRenderFlow._textFlow.borderLeftWidth) calculatedWidth += childRenderFlow._textFlow.borderLeftWidth;
 				
 				// This recurses down the tree
 				childRenderFlow.setLayoutBoundsSize(calculatedWidth, calculatedHeight);
@@ -185,6 +185,9 @@ package com.clarityenglish.textLayout.rendering {
 				switch (_textFlow.widthType) {
 					case FloatableTextFlow.SIZE_FIXED:
 						placeholderWidth = _textFlow.width;
+						// gh#363
+						if (_textFlow.marginRight) placeholderWidth += _textFlow.marginRight;
+						if (_textFlow.marginLeft) placeholderWidth += _textFlow.marginLeft;
 						break;
 					case FloatableTextFlow.SIZE_PERCENTAGE:
 						placeholderWidth = width;
@@ -197,6 +200,9 @@ package com.clarityenglish.textLayout.rendering {
 				switch (_textFlow.heightType) {
 					case FloatableTextFlow.SIZE_FIXED:
 						placeholderHeight = _textFlow.height;
+						// gh#363
+						if (_textFlow.marginTop) placeholderHeight += _textFlow.marginTop;
+						if (_textFlow.marginBottom) placeholderHeight += _textFlow.marginBottom;
 						break;
 					case FloatableTextFlow.SIZE_PERCENTAGE:
 						placeholderHeight = height;
@@ -205,12 +211,6 @@ package com.clarityenglish.textLayout.rendering {
 						placeholderHeight = _textFlow.flowComposer.getControllerAt(0).getContentBounds().height;
 						break;
 				}
-				
-				// gh#363
-				if (_textFlow.marginLeft) placeholderWidth += _textFlow.marginLeft;
-				if (_textFlow.marginRight) placeholderWidth += _textFlow.marginRight;
-				if (_textFlow.marginTop) placeholderHeight += _textFlow.marginTop;
-				if (_textFlow.marginBottom) placeholderHeight += _textFlow.marginBottom;
 				
 				// Set the placeholder size
 				inlineGraphicElementPlaceholder.width = placeholderWidth;
