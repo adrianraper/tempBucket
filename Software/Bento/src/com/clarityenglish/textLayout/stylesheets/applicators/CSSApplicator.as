@@ -42,7 +42,7 @@ package com.clarityenglish.textLayout.stylesheets.applicators {
 					textLayoutFormat[prop] = filterStyleValue(style, prop);
 				} else {
 					if (!element.hasOwnProperty(prop)) {
-						log.warn("Property not found - {0} (appying to {1})", prop, element);
+						log.warn("Property not found - {0} (applying to {1})", prop, element);
 					}
 				}
 			}

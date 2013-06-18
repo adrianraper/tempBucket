@@ -119,3 +119,8 @@ tt {
 q {
 	color: rgb(38, 86, 145);
 }
+
+/* These are the default block level elements.  Everything else is inline.  Too difficult to implement right now though. */
+/*header, section, audio, video, div, h1, h2, h3, h4, h5, h6, hr, ol, ul, p, address, blockquote, pre, dl {
+	display: block;
+}*/

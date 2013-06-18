@@ -100,12 +100,15 @@ package com.clarityenglish.textLayout.rendering {
 			}
 		}
 		
+		/**
+		 * TODO: Something is odd with the recursion here; it gets all the children, but it will never process *this* RenderFlow.  Did I do this on purpose?
+		 */
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
 			super.setLayoutBoundsSize(width, height, postLayoutTransform);
 			
 			// Go down the RenderFlow tree sizing the children where possible (i.e. when not dynamic)
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
-				// gh#369 - for now the rule is that fixed widths get passed down
+				// gh#369 - if the parent is fixed size then pass down the value so it fills the width without any special coding :)
 				if (childRenderFlow._textFlow.widthType == FloatableTextFlow.SIZE_DYNAMIC && _textFlow.widthType == FloatableTextFlow.SIZE_FIXED) {
 					childRenderFlow._textFlow.width = _textFlow.width - _textFlow.borderLeftWidth - _textFlow.borderRightWidth;
 				}
@@ -118,12 +121,6 @@ package com.clarityenglish.textLayout.rendering {
 					case FloatableTextFlow.SIZE_PERCENTAGE:
 						calculatedWidth = width * childRenderFlow._textFlow.percentWidth / 100;
 						break;
-				}
-				
-				// Implement width for block level elements
-				if (childRenderFlow._textFlow.display == FloatableTextFlow.DISPLAY_BLOCK) {
-					// TODO: what is this for???
-					if (childRenderFlow._textFlow.marginLeft) calculatedWidth -= childRenderFlow._textFlow.marginLeft;
 				}
 				
 				var calculatedHeight:Number;
