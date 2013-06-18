@@ -4,6 +4,7 @@
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace s "library://ns.adobe.com/flex/spark";
+@namespace components "com.clarityenglish.textLayout.components.*";
 
 tensebuster|TenseBusterApplication {
 	skinClass: ClassReference("skins.tensebuster.TenseBusterApplicationSkin");
@@ -27,4 +28,11 @@ exercise|ExerciseView {
 
 s|VideoPlayer {
 	skinClass: ClassReference("skins.bento.VideoPlayerSkin");
+}
+
+components|AudioPlayer {
+	compactStoppedIcon: Embed(source="skins/tensebuster/assets/audio-up-icon.png");
+	compactPlayedIcon: Embed(source="skins/tensebuster/assets/audio-up-icon.png");
+	compactPausedIcon: Embed(source="skins/tensebuster/assets/audio-up-icon.png");
+	compactPlayingIcon: Embed(source="skins/tensebuster/assets/audio-playing-icon.png");
 }
