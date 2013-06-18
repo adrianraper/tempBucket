@@ -269,6 +269,11 @@ package com.clarityenglish.common.model {
 		public function getDateFormatter():DateFormatter {
 			return _dateFormatter;
 		}
+
+		// gh#371
+		public function getOtherParameters():Object {
+			return config.otherParameters;
+		}
 		
 		/**
 		 * Direct login is implemented here. If a LoginEvent is returned then the application should log straight in without showing a login screen.

@@ -58,28 +58,42 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function onSelectButton(event:MouseEvent):void {
 			if (tree.selectedItem) {
-				//gh #181
+				// gh#181
 				if (getQualifiedClassName(tree.selectedItem).indexOf("Exercise") == -1) {
 					tree.selectedItem.name = "";
 				}
-				//gh #181 enhancement: adding program title to each practice you select
+				// gh#181 enhancement: adding program title to each practice you select
 				var rootItem:Object = tree.selectedItem
 				while (rootItem.parent) {
 					rootItem = rootItem.parent;
 				}
-				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, tree.selectedItem.uid, tree.selectedItem.name, rootItem.name, exIndex, true));
+				// gh#366
+				// Due to we delete course id in filter for single course title, here we insert the course id back
+				var uid:String =  tree.selectedItem.uid;
+				if (getQualifiedClassName(tree.selectedItem).indexOf("Unit") != -1) {
+					var title:Object = tree.selectedItem.parent;
+					if (title.courseID) {
+						uid = title.id + "." + title.courseID + "." + tree.selectedItem.id;
+					}
+				} else if (getQualifiedClassName(tree.selectedItem).indexOf("Exercise") != -1) {
+					title = tree.selectedItem.parent.parent;
+					if (title.courseID) {
+						uid = title.id + "." + title.courseID + "." + tree.selectedItem.parent.id + "." + tree.selectedItem.id;
+					}
+				}	
+				dispatchEvent(new ContentEvent(ContentEvent.CONTENT_SELECT, uid, tree.selectedItem.name, rootItem.name, true));
 				dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 			}
 		}
 		
 		protected function onCancelButton(event:MouseEvent):void {
-			//gh #212
-			dispatchEvent(new ContentEvent(ContentEvent.CONTENT_CANCEL, null, null, null, 0, true));
+			// gh#212
+			dispatchEvent(new ContentEvent(ContentEvent.CONTENT_CANCEL, null, null, null, true));
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		
 		public function getThumbnailForUid(uid:String):String {
-			return thumbnailScript + "?uid=" + uid + "&exIndex=" + exIndex;
+			return thumbnailScript + "?uid=" + uid;
 		}
 		
 	}

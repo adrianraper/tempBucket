@@ -7,10 +7,13 @@ package com.clarityenglish.rotterdam.controller {
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.vo.UID;
 	import com.clarityenglish.textLayout.vo.XHTML;
+	import com.clarityenglish.utils.crypt.Crypt;
 	
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
+	import flash.utils.ByteArray;
 	
+	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -82,15 +85,20 @@ package com.clarityenglish.rotterdam.controller {
 				parameters.push(startingPoint);
 			}
 			
-			var argList:String = "?" + parameters.join("&");
+			// gh#371
+			var playerParameters:Object = configProxy.getOtherParameters();
+			if (playerParameters.resize) parameters.push("resize=" + playerParameters.resize);
 			
+			var crypt:Crypt = new Crypt();
+			var argList:String = "?data=" + crypt.encryptURL(parameters.join("&"));
+			
+
 			// Then run this as a new browser window
 			// TODO: At some point BentoTitles could open their exercises directly in Rotterdam Player
 			// gh#92
 			navigateToURL(new URLRequest(area + startFolder + startPage + argList), "_blank");
 			log.info("Opening content for uid=" + uid.toString());
 		}
-		
 	}
 	
 }

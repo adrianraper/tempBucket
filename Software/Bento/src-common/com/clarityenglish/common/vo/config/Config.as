@@ -143,6 +143,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#225
 		public var _illustrationCloseFlag:Boolean;
 		
+		// gh#371
+		public var otherParameters:Object;
+		
 		/**
 		 * Developer option
 		 */
@@ -216,54 +219,55 @@ package com.clarityenglish.common.vo.config {
 		 * 	  startTime
 		 */
 		public function mergeParameters(parameters:Object):void {
-			if (parameters.dbHost) {
-				//trace("dbHost: "+dbHost);
-				this.dbHost = parameters.dbHost;
-			}
-			// Prefix takes precedence over rootID
-			if (parameters.prefix) {
-				this.prefix = parameters.prefix;
-			} else if (parameters.rootID) {
-				this.rootID = parameters.rootID;
-			}
 			
-			if (parameters.userID) this.userID = parameters.userID;
-			if (parameters.username) this.username = parameters.username;
-			if (parameters.studentID) this.studentID = parameters.studentID;
-			if (parameters.email) this.email = parameters.email;
-			
-			if (parameters.productCode) this.productCode = parameters.productCode;
-			if (parameters.password) this.password = parameters.password;
-			// #338 Legacy has parameter called course not courseID
-			if (parameters.course) this.courseID = parameters.course;
-			if (parameters.courseFile) this.paths.menuFilename = parameters.courseFile;
-			if (parameters.startingPoint) this.startingPoint = parameters.startingPoint;
-			if (parameters.sessionID) this.sessionID = parameters.sessionID;
-			if (parameters.language) {
-				//trace("the language in mergeParameters is "+ parameters.language);
-				this.language = parameters.language;
-				this.languageCode = parameters.language;
+			// gh#371
+			this.otherParameters = new Object();
+			for (var property:String in parameters) {
+				switch (property) {
+					case 'dbHost':
+					case 'prefix':
+					case 'userID':
+					case 'username':
+					case 'studentID':
+					case 'email':
+					case 'productCode':
+					case 'password':
+					case 'courseFile':
+					case 'startingPoint':
+					case 'sessionID':
+					case 'ip':
+					case 'referrer':
+					case 'instanceID':
+					// #336 SCORM
+					case 'scorm':
+						if (this.hasOwnProperty(property))
+							this[property] = parameters[property];
+						break;
+					// #338 Legacy has parameter called course not courseID
+					case 'course':
+					case 'courseID':
+						this.courseID = parameters[property];
+						break;
+					// Assuming this comes from PHP it will be in seconds, as time is in milliseconds
+					// But cleaner to convert it in the start page
+					case 'startTime':
+						this.appLaunchTime = parameters[property];
+						break;
+					case 'language':
+						this.language = parameters[property];
+						this.languageCode = parameters[property];
+						break;
+					default:
+						this.otherParameters[property] = parameters[property];	
+				}
 			}
-			
-			if (parameters.ip) this.ip = parameters.ip;
-			if (parameters.referrer) this.referrer = parameters.referrer;
-
+				
 			// #361
-			if (parameters.instanceID) {
-				this.instanceID = parameters.instanceID;
-			} else {
+			if (!this.instanceID) {
 				var timeStamp:Date = new Date();
 				this.instanceID = timeStamp.getTime().toString();
 			}
-			
-			// #336 SCORM
-			if (parameters.scorm) this.scorm = parameters.scorm;
-			
-			// Assuming this comes from PHP it will be in seconds, as time is in milliseconds
-			// But cleaner to convert it in the start page
-			if (parameters.startTime)
-				this.appLaunchTime = parameters.startTime;
-
+				
 		}
 		/**
 		 * Do any substitutions that you can for the menu filename

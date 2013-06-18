@@ -25,7 +25,7 @@
 	 */
 	public class WidgetMediator extends Mediator implements IMediator {
 		
-		//gh#106
+		// gh#106
 		private var exerciseMark:ExerciseMark = new ExerciseMark();
 		
 		public function WidgetMediator(mediatorName:String, viewComponent:Object) {
@@ -67,7 +67,7 @@
 			view.textSelected.remove(onTextSelected);
 			view.captionSelected.remove(onCaptionSelected);
 			
-			//gh #106
+			// gh#106
 			view.playVideo.remove(onPlayVideo);
 			view.playAudio.remove(onPlayAudio);
 		}
@@ -144,7 +144,7 @@
 				var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 				navigateToURL(new URLRequest(srcHref.url), "_blank");
 			}
-			//gh#106
+			// gh#106
 			exerciseMark.duration = 120;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
@@ -165,21 +165,21 @@
 		}
 		
 		protected function onCaptionSelected(caption:String, urlString:String):void {
-			trace("urlString: "+urlString);
+			//trace("urlString: "+urlString);
 			var linkObj:Object = new Object();
 			linkObj.caption = caption;
 			linkObj.urlString = urlString
 			facade.sendNotification(RotterdamNotifications.CAPTION_SELECTED, linkObj);
 		}
 		
-		//gh#106
+		// gh#106
 		protected function onPlayVideo(widget:XML):void {
 			exerciseMark.duration = 60;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 		}
 		
-		//gh#106
+		// gh#106
 		protected function onPlayAudio(widget:XML):void {
 			exerciseMark.duration = 60;
 			exerciseMark.UID = view.clarityUID;

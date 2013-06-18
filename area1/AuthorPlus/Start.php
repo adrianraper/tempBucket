@@ -1,61 +1,50 @@
 <?php
-	//require_once('../../englishonline/productClass.php');
+
+	require_once('../../Software/Common/encryptURL.php');
+	
 	session_start();
-	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
-	$studentID = $Email = $userID = $instanceID = '';
-	$referrer = $ip = $server = $productCode = '';
+	$username = $password = $extraParam = $licenceFile = $prefix = $version = '';
+	$studentID = $email = $userID = $instanceID = '';
+	$referrer = $ip = $server = $productCode = $courseFile = $accountName = '';
 	
 	// For this product
 	$productCode = 1; // Author Plus
-	
-	// If we do not know the prefix, the page shouldn't run.
-	// The prefix might come from session variables or from the URL parameters
-	// Read URL first in case session variables are lingering
-	// allow case insensitive parameters
-	if (isset($_GET['prefix'])) {
-		$prefix = $_GET['prefix'];
-	} elseif (isset($_GET['Prefix'])) {
-		$prefix = $_GET['Prefix'];
-	} elseif (isset($_SESSION['Prefix'])) {
-		$prefix = $_SESSION['Prefix'];
+	// gh#371 Is data passed encrypted in the URL?
+	if (isset($_GET['data'])) {
+		$crypt = new Crypt();
+		$data = $crypt->decodeSafeChars($_GET['data']);
+		parse_str($crypt->decrypt($data));
+		
 	} else {
-		// I think we should go to the page not found - otherwise you have no clue what is happening
-		// This is NOT the correct way to generate a page not found error.
-		header("location: /error/404_programs.htm");
-		//header("HTTP/1.0 404 Not Found");
-		//echo "page not found";
-		//header("location: /index.php");
+		// change capitalisation of variables
+		if (isset($_SESSION['UserID'])) $userID = $_SESSION['UserID']; 
+		if (isset($_SESSION['UserName'])) $username = $_SESSION['UserName']; 
+		if (isset($_SESSION['Password'])) $password = $_SESSION['Password'];
+		if (isset($_SESSION['StudentID'])) $studentID = $_SESSION['StudentID'];
+		if (isset($_SESSION['Email'])) $email = $_SESSION['Email'];
+		if (isset($_SESSION['InstanceID'])) $instanceID = $_SESSION['InstanceID'];
+		if (isset($_SESSION['AccountName'])) $accountName = $_SESSION['AccountName'];
+			
+		// If we do not know the prefix, the page shouldn't run.
+		// The prefix might come from session variables or from the URL parameters
+		// Read URL first in case session variables are lingering
+		// allow case insensitive parameters
+		if (isset($_GET['prefix'])) {
+			$prefix = $_GET['prefix'];
+		} elseif (isset($_GET['Prefix'])) {
+			$prefix = $_GET['Prefix'];
+		} elseif (isset($_SESSION['Prefix'])) {
+			$prefix = $_SESSION['Prefix'];
+		}
+	}
+
+	if (!$prefix) {
+		$logStr = "from Start page Time=".date("D M j G:i:s T Y").", HTTP_HOST=".$_SERVER['HTTP_HOST'].", HTTP_X_FORWARDED_FOR=".$_SERVER['HTTP_X_FORWARDED_FOR'].", HTTP_CLIENT_IP=".$_SERVER["HTTP_CLIENT_IP"].", REMOTE_ADDR=".$_SERVER["REMOTE_ADDR"].", pc=".$productCode;
+		error_log("$logStr\r\n", 3, "/tmp/session_vars.log");
+		header("location: /error/session_timeout.htm");
 		exit;
 	}
-	// v6.5.5.1 If the licence file exists, send a reference to it. Here we work out what the name would be.
-	$licenceFile = $prefix."_licence.txt";
 	
-	// v6.5.5.6 For default accounts you no longer need to pass version as this is all read from the database
-	// Different language versions share the same location file as &content is now a root and the languageCode from T_Accounts is used as the literals
-	// You can still override this if you want in a specific location file
-	// The language version might come from session variables or from the URL parameters
-	/*
-	if (isset($_SESSION['ActiveReading'])) {
-		$version = $_SESSION['ActiveReading']->languageCode;
-	} elseif (isset($_GET['version'])){
-		$version = $_GET['version'];
-	} elseif (isset($_GET['Version'])){
-		$version = $_GET['Version'];
-	} else {
-		$version="";
-	}
-	switch ($version) {
-		case "NAMEN":
-			$locationFile = "location-NAmEN.txt";
-			break;
-		case "INDEN":
-			$locationFile = "location-IndEN.txt";
-			break;
-		default:
-			$locationFile = "location.txt";
-	}
-	//echo "&version=".$version."&location=".$locationFile;
-	*/
 	$locationFile = "location.txt";
 
 	// Make sure we know where is the udp (mod rewrite doesn't change the start folder)
@@ -71,16 +60,16 @@
 	} else {
 		$courseFile = "course.xml";
 	}
-	if (isset($_SESSION['UserID'])) $userID = $_SESSION['UserID'];
-	if (isset($_SESSION['UserName'])) $userName = $_SESSION['UserName']; 
-	if (isset($_SESSION['Password'])) $password = $_SESSION['Password'];
-	if (isset($_SESSION['StudentID'])) $studentID = $_SESSION['StudentID'];
-	if (isset($_SESSION['Email'])) $Email = $_SESSION['Email'];
-	if (isset($_SESSION['InstanceID'])) $instanceID = $_SESSION['InstanceID'];
 	
-	$server=$_SERVER['HTTP_HOST'];
-	// For Akamai served files- a special header is attached. Check the Akamai configuration to see which files this works for.
-	if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+	$server = $_SERVER['HTTP_HOST'];
+	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
+	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
+		// Not always it doesn't. So need to send the whole list to the licence checking algorithm. Better send as a list than an array.
+		//$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
+		//$ip = $ipList[0];
+		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
 		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
 	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
 		$ip = $_SERVER["HTTP_CLIENT_IP"];
@@ -94,12 +83,11 @@
 		} else {
 			$referrer = $_SERVER['HTTP_REFERER'];
 		}
+	} else if (isset($_SESSION['Referer'])) {
+		$referrer = $_SESSION['Referer'];
 	}
-	// Specifically send a licence file for this customer and override the location
-	//$licenceFile = '&licence='.$prefix.'_licence.txt';
-	//$licenceFile = '&licence=licence.txt';
-	//$locationFile = 'location-SQLServer.txt';
-	
+	// There is a stange behaviour while resize not working if nothing is on the screen. Temp solution: make a empty div.
+	echo "<p> </p>";	
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -155,12 +143,13 @@
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=<?php echo $locationFile ?>";
-		argList+="<?php if (file_exists(dirname(__FILE__).'/'.$licenceFile)) {echo '&licence='.$licenceFile;} ?>";
 		argList+="&prefix=<?php echo $prefix ?>&productCode=<?php echo $productCode ?>";
+		argList+="&cache=<?php echo time() ?>";
+		argList+="&accountName=<?php echo $accountName; ?>";
 		
 		// see whether variables have come from command line or, preferentially, session variables
-		if ("<?php echo $userName ?>".length>0) {
-			var jsUserName = "<?php echo $userName ?>";
+		if ("<?php echo $username ?>".length>0) {
+			var jsUserName = "<?php echo $username ?>";
 		} else {
 			var jsUserName = swfobject.getQueryParamValue("username");
 		}
@@ -179,8 +168,8 @@
 		} else {
 			var jsUserID = swfobject.getQueryParamValue("userID");
 		}
-		if ("<?php echo $Email ?>".length>0) {
-			var jsEmail = "<?php echo $Email ?>";
+		if ("<?php echo $email ?>".length>0) {
+			var jsEmail = "<?php echo $email ?>";
 		} else {
 			var jsEmail = swfobject.getQueryParamValue("email");
 		}
@@ -189,21 +178,20 @@
 		} else {
 			var jsInstanceID = swfobject.getQueryParamValue("instanceID");
 		}
-		if ("<?php echo $courseFile ?>".length>0) {
-			var jscourseFile = "<?php echo $courseFile ?>";
+		// the rest can come from other kinds of integration
+		if ("<?php echo $course ?>".length>0) {
+			var queryStringCourseID = "<?php echo $course ?>";
 		} else {
-			var jscourseFile = swfobject.getQueryParamValue("courseFile");
+			var queryStringCourseID = swfobject.getQueryParamValue("course");
+		}
+		if ("<?php echo $startingPoint ?>".length>0) {
+			var queryStringStartingPoint = "<?php echo $startingPoint ?>";
+		} else {
+			var queryStringStartingPoint = swfobject.getQueryParamValue("startingPoint");
 		}
 		var queryStringPreview = swfobject.getQueryParamValue("s_preview");
 		var queryStringCourseID = swfobject.getQueryParamValue("s_courseid");
 		var queryStringStartingPoint = swfobject.getQueryParamValue("s_exerciseid");
-		// the rest can come from other kinds of integration
-		if (queryStringCourseID == "") {
-			queryStringCourseID = swfobject.getQueryParamValue("course");
-		}
-		if (queryStringStartingPoint == "") {
-			queryStringStartingPoint = swfobject.getQueryParamValue("startingPoint");
-		}
 		var flashvars = {
 			username: jsUserName,
 			password: jsPassword,
@@ -211,18 +199,27 @@
 			userID: jsUserID,
 			email: jsEmail,
 			instanceID: jsInstanceID,
-			startingPoint: queryStringStartingPoint,
 			course: queryStringCourseID,
-			courseFile: jscourseFile,
+			startingPoint: queryStringStartingPoint,
 			action: swfobject.getQueryParamValue("action"),
 			referrer: "<?php echo $referrer ?>",
 			server: "<?php echo $server ?>",
-			ip: "<?php echo $ip ?>"
+			ip: "<?php echo $ip ?>",
+			courseFile: "<?php echo $courseFile ?>",
+			licence: ""
 		};
 		if (queryStringPreview=="true") flashvars.preview = "true";					
+		// v6.5.6 For preview from RM - overwrite any other conflicting parameters
+		//if (swfobject.getQueryParamValue("s_preview")=='true') {
+		if (swfobject.getQueryParamValue("preview")) {
+			flashvars.preview = "true";
+		}
+			
 		var params = {
 			id: "orchid",
 			name: "orchid",
+			scale: "showall",
+			menu: "false",
 			allowfullscreen: "true"
 		};
 		// v6.5.5.6 Allow resize screen mode
@@ -236,17 +233,32 @@
 			name: "orchid"
 		};
 		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", coordsWidth, coordsHeight, "9.0.28", expressInstall, flashvars, params, attr);
+//		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", coordsWidth, coordsHeight, "9.0.28", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
 	</script>
+
+<!--CSS pop up layout box-->
+<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
 <style type="text/css">
-html, body {
-	margin: 0px 0px auto;
-	text-align:center;
-	height: 100%;
-}
+	body { 	margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
 </style>
 </head>
 <body onload="onLoad()">
+<?php 
+//2013 Mar 5 Vivying added 
+//if it is resizing flag, disable the scollbar enabling in CSS by removing the div id
+if (isset($_GET['resize'])) {
+?> 
+<div id="">
+<?php 
+}
+else {
+//otheriwse this id in CSS will enable the scrollbar
+?> 	
+<div id="load_program_original">
+<?php 
+}
+?> 	
 	<div align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 9.</p>
 		<p>It seems your browser doesn't have this.</p>
@@ -258,5 +270,7 @@ html, body {
 This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
 Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
 to switch this on and then refresh this page.</NOSCRIPT>
+</div>
+
 </body>
 </html>
