@@ -208,6 +208,15 @@ package com.clarityenglish.textLayout.conversion {
 				return true;
 			}
 			
+			// Likewise with a background color
+			if (style.backgroundColor !== undefined) {
+				return true;
+			}
+			
+			// An inline block creates a new flow (in fact this is basically what an inline block means)
+			if (style.display == FloatableTextFlow.DISPLAY_INLINE_BLOCK)
+				return true;
+			
 			// ???
 			if (style.display == FloatableTextFlow.DISPLAY_BLOCK)
 				return true;
