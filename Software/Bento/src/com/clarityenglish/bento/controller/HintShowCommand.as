@@ -1,5 +1,4 @@
-package com.clarityenglish.bento.controller
-{
+package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.vo.content.model.Hint;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
@@ -27,20 +26,23 @@ package com.clarityenglish.bento.controller
 	import spark.components.TitleWindow;
 	import spark.events.TitleWindowBoundsEvent;
 	
-	public class HintShowCommand extends SimpleCommand
-	{
+	public class HintShowCommand extends SimpleCommand {
+		
 		private static var titleWindow:TitleWindow;
 		
 		private static var titleWindowAdded:Boolean;
 		
-		private var hint:Hint;
 		private var question:Question;
 		
 		override public function execute(note:INotification):void {
 			super.execute(note);
 			
 			question = note.getBody().question;
-			hint = question.hint;
+			
+			var hint:Hint = question.hint;
+			
+			if (!hint) return;
+			
 			var xhtml:XHTML = note.getBody().exercise as XHTML;
 			
 			var hintNode:XML = xhtml.selectOne("#" + hint.source);
@@ -60,7 +62,8 @@ package com.clarityenglish.bento.controller
 				
 				// Default to 300 width, variable height unless defined otherwise in the XML
 				xhtmlRichText.width = (isNaN(hint.width)) ? 300 : hint.width;
-				if (!isNaN(hint.height)) xhtmlRichText.height = hint.height;
+				if (!isNaN(hint.height))
+					xhtmlRichText.height = hint.height;
 				
 				xhtmlRichText.xhtml = xhtml;
 				xhtmlRichText.nodeId = "#" + hint.source;
@@ -70,7 +73,8 @@ package com.clarityenglish.bento.controller
 				scroller.viewport = xhtmlRichText;
 				titleWindow.addElement(scroller);
 				
-				if (!titleWindowAdded) setTimeout(addPopupWindow, 150);
+				if (!titleWindowAdded)
+					setTimeout(addPopupWindow, 150);
 			}
 		}
 		
@@ -94,7 +98,7 @@ package com.clarityenglish.bento.controller
 		
 		/**
 		 * Keep the window on the screen (#197)
-		 * 
+		 *
 		 * @param event
 		 */
 		protected function onWindowMoving(event:TitleWindowBoundsEvent):void {
@@ -113,7 +117,7 @@ package com.clarityenglish.bento.controller
 		
 		/**
 		 * Close the popup and make all variables eligible for garbage collection
-		 * 
+		 *
 		 * @param event
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
@@ -125,15 +129,14 @@ package com.clarityenglish.bento.controller
 			PopUpManager.removePopUp(titleWindow);
 			
 			(FlexGlobals.topLevelApplication as DisplayObject).stage.removeEventListener(KeyboardEvent.KEY_DOWN, onKeyboardDown);
-
+			
 			titleWindowAdded = false;
 			titleWindow = null;
-			hint = null;
 		}
 		
 		/**
 		 * The escape and enter keys also close the popup
-		 * 
+		 *
 		 * @param event
 		 */
 		protected function onKeyboardDown(event:KeyboardEvent):void {
