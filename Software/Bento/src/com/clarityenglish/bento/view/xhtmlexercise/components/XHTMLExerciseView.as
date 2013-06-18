@@ -164,7 +164,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					group.visible = group.includeInLayout = (sectionName == "header") ? exercise.hasHeader() : exercise.hasSection(sectionName);
 					
 					xhtmlRichText.xhtml = exercise;
-					xhtmlRichText.nodeId = (sectionName == "header") ? "header" : "#" + sectionName;
+					xhtmlRichText.nodeId = (sectionName == "header") ? "body > header" : "#" + sectionName;
 					
 					// #258
 					group.removeEventListener(MouseEvent.CLICK, onSectionClick);
