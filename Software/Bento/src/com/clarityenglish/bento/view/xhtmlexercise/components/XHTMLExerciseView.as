@@ -46,7 +46,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		 * For each section the containing group (i.e. the thing that should be hidden if there is no content) should be named {section}Group
 		 * and the ExerciseRichText that displays the content should be named {section}RichText.
 		 */
-		private static const SUPPORTED_SECTIONS:Array = [ "header", "noscroll", "body", "readingText" ];
+		private static const SUPPORTED_SECTIONS:Array = [ "header", "noscroll", "body", "readingText", "rightNoScroll" ];
 		
 		/**
 		 * These sections are required in all skins
@@ -77,6 +77,12 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var readingTextRichText:XHTMLRichText;
+		
+		[SkinPart(type="spark.components.Group", required="false")]
+		public var rightNoScrollGroup:Group;
+		
+		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
+		public var rightNoScrollRichText:XHTMLRichText;
 		
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var backColour:SolidColor;
