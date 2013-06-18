@@ -301,8 +301,9 @@ package com.clarityenglish.textLayout.rendering {
 						
 						switch (childRenderFlow._textFlow.position) {
 							case FloatableTextFlow.POSITION_RELATIVE:
-								// If we are using relative positioning apply the transform
-								pos.offset(childRenderFlow._textFlow.left, childRenderFlow._textFlow.top);
+								// If we are using relative positioning apply the transform gh#374
+								if (!isNaN(childRenderFlow._textFlow.left)) pos.x += childRenderFlow._textFlow.left;
+								if (!isNaN(childRenderFlow._textFlow.top)) pos.y += childRenderFlow._textFlow.top;
 								break;
 						}
 						
