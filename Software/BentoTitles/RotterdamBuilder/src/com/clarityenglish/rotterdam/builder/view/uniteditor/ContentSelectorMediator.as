@@ -56,13 +56,11 @@
 		
 		private function onContentLoadSuccess(e:ResultEvent, token:Object):void {
 			view.titleCollection = new ArrayCollection(e.result as Array);
-			// gh#360
-			// But this ruins the UID, although it looks right in the widget
-			//filter(view.titleCollection);
-			//view.titleCollection.refresh();
+			filter(view.titleCollection);
+			view.titleCollection.refresh();
 		}
 		
-		// alice: program like CP has a single course structure
+		// alice: program like SSS has a single course structure
 		// this filter is used to remove the course level and display unit directly after title
 		private function filter(titleCollection:ArrayCollection):void {
 			for each (var item:Object in titleCollection) {

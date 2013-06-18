@@ -157,6 +157,10 @@
 			ip: "<?php echo $ip ?>",
 			sessionid: "<?php echo $currentSessionID ?>"
 		};
+		// gh#371
+		if (swfobject.getQueryParamValue("resize"))
+			flashvars.resize = swfobject.getQueryParamValue("resize");
+		
 		var params = {
 			id: "bento",
 			name: "bento",
