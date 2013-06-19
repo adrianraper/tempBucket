@@ -51,6 +51,8 @@ package com.clarityenglish.rotterdam.controller {
 			} else {
 				startPage = 'Start.php';
 			}
+			// temporary prefix until Start pages all confirmed
+			startPage = 'CCB-' + startPage;
 
 			if (uid.titleName) {
 				var progName:String = uid.titleName;

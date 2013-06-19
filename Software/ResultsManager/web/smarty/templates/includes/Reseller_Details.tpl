@@ -173,11 +173,9 @@
 		Protea Textware Pty Ltd<br />
 		PO Box 49<br />
 		Hurstbridge  Vic 3099<br />
-		p: (03) 9714 8660<br />
-		m: 0408 971 446<br />
-		f: (03) 9714 8644<br />
-		w: www.proteatextware.com.au<br />
-		e: <a href="mailto: orders@proteatextware.com.au">orders@proteatextware.com.au</a>
+		Tel: (03) 9714 8660<br />
+		Mobile: 0408 971 446<br />
+		Email: <a href="mailto: orders@proteatextware.com.au">orders@proteatextware.com.au</a>
       </p></td>
   </tr>
     
@@ -237,7 +235,7 @@
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">SOLUSI Educational Technology<br />
 		Indonesia<br />
 		Tel: [62] 61-733 1286<br />
-		Email: <a href="mailto: ervida@solusi-nusantara.com">ervida@solusi-nusantara.com</a><br />
+		Email: <a href="mailto:ervida@solusieducationaltechnology.com">ervida@solusieducationaltechnology.com</a><br />
 	  </p> </td>
   </tr>
     

@@ -30,7 +30,7 @@ if (isset($_SERVER['HTTP_REFERER'])) {
 // How do we want to write it to the server? From here or within the widget?
 // We don't really want to get an item logged each time a page is refreshed that contains the widget.
 // So choose to log each time the widget action button is clicked.
-echo ('var flashVars={widgetdatalanguage:"'.$dataLanguage.'", widgetdatacountry:"'.$dataCountry.'", widgetdatabclogo:"'.$dataBCLogo.'", widgetdatareferrer:"'.$referrer.'"};var params={salign:"left", scale:"noscale", bgcolor:"'.$color.'"};');
+echo ('var flashVars={widgetdatalanguage:"'.$dataLanguage.'", widgetdatacountry:"'.$dataCountry.'", widgetdatabclogo:"'.$dataBCLogo.'", widgetdatareferrer:"'.$referrer.'", widgetdatawidth:"'.$dataWidth.'", widgetdataheight:"'.$dataHeight.'"};var params={salign:"left", scale:"noscale", bgcolor:"'.$color.'"};');
 echo ('swfobject.embedSWF("http://'.$_SERVER['HTTP_HOST'].'/Software/Widget/IELTS/bin/WhereToStudy-'.$swfWidth.'.swf", "WhereToStudy", "'.$dataWidth.'", "'.$dataHeight.'", "9.0.28", null, flashVars, params);');
 echo ('document.write("<div id=\"WhereToStudy\" >Replace with widget</div>");');
 ?>
