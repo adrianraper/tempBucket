@@ -42,7 +42,7 @@ package com.clarityenglish.bento {
 			logTarget.includeCategory = true;
 			logTarget.includeLevel = true;
 			Log.addTarget(logTarget);
-			
+
 			creationPolicy = "none";
 			
 			// Initialize some Tweener plugins
