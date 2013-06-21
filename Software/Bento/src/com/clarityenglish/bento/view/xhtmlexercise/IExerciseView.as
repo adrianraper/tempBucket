@@ -15,8 +15,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		function setExerciseMarked(marked:Boolean = true):void;
 		function stopAllAudio():void;
 		// gh#348
-		function set audioStack(value:Vector.<AudioElement>):void;
 		function enableFeedbackAudio():void;
+		function showTextUnderline(source:XML):void;
 		
 	}
 	

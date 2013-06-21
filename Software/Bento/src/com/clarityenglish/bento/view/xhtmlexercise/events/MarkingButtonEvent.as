@@ -8,17 +8,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.events
 	{
 		public static const MARK_BUTTON_CLICKED:String = "markButtonClicked";
 		
-		private var _delayAudioElement:AudioElement;
+		private var _isMarked:Boolean;
 		 
-		public function MarkingButtonEvent(type:String, delayAudioElement:AudioElement, bubbles:Boolean=false)
+		public function MarkingButtonEvent(type:String, isMarked:Boolean, bubbles:Boolean=false)
 		{
 			super(type, bubbles);
 			
-			this._delayAudioElement = delayAudioElement;
+			this._isMarked = isMarked;
 		}
 		
-		public function get delayAudioElement():AudioElement {
-			return _delayAudioElement;
+		public function get isMarked():Boolean {
+			return _isMarked;
 		}
 	}
 }

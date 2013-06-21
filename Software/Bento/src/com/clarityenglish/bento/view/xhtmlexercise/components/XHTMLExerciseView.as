@@ -105,16 +105,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			opaqueBackground = 0xFFFFFF; // #376
 		}
 		
-		// gh#348
-		public function set audioStack(value:Vector.<AudioElement>):void {
-			_audioStack = value;
-		}
-		
-		[Bindable]
-		public function get audioStack():Vector.<AudioElement> {
-			return _audioStack;
-		}
-		
 		/**
 		 * Since this view can only be driven by an Exercise provide a helper to typecast it
 		 * 
@@ -371,14 +361,26 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		public function enableFeedbackAudio():void {
 			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
 			
-			// in exercise.xml settings you need to add <param name="delayAudioDisplay" value="true"/> in order to trigger feedback audio work
-			for each (var audioElement:AudioElement in audioStack) {
-				audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, audioElement));
+			var audioNodes:Array = exercise.select("audio.audio-feedback");
+			for each (var node:XML in audioNodes) {
+				var audioElement:AudioElement = getFlowElement(node) as AudioElement;
+				audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, true));
 				
 				TLFUtil.markFlowElementFormatChanged(audioElement);
 				textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());
 			}
 			textFlowDamageAccumulator.updateDamagedTextFlows();				
+		}
+		
+		public function showTextUnderline(source:XML):void {
+			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
+	
+			XHTML.removeClasses(source, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
+			var flowElement:FlowElement = getFlowElement(source);
+			XHTML.addClass(source, Answer.SELECTED);
+			TLFUtil.markFlowElementFormatChanged(flowElement);
+			textFlowDamageAccumulator.damageTextFlow(getFlowElement(source).getTextFlow());
+			textFlowDamageAccumulator.updateDamagedTextFlows();			
 		}
 		
 	}

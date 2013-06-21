@@ -66,7 +66,7 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		// gh348
-		public function removeCompoment():void {
+		public function clearCompoment():void {
 			component = new AudioPlayer();
 			(component as AudioPlayer).src = null;
 			(component as AudioPlayer).controls = null;
