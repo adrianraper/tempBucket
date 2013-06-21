@@ -10,13 +10,13 @@
 	
 	<fx:Script>
 		<![CDATA[
-			private var titles:Array = [9, 52, 50, 39, 33, 53, 49, 10, 38, 40, 44, 45, 48, 46];
+			private var titles:Array = [9, 52, 50, 39, 33, 53, 49, 10, 38, 40, 44, 45, 48];
 			
 			private function getIconForContent(item:Object, isOpen:* = null, isBranch:* = null):Object {
 				var uidString:String = item.uid;
 				var uidArray:Array = uidString.split(".");
 				var uid:String = item.uid;
-				
+
 				if (searchTitle(uidArray[0]) || uidArray.length == 1) {
 					// The following code is so that a title like BW or SSS which only has one course
 					// will not show the title and course level in the content selector window
