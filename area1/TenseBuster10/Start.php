@@ -117,8 +117,8 @@
 		var versionControl = "&version=1107";
 
 		// v6.5.5.6 Allow resize screen mode
-		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
-		var coordsMinHeight = "760"; var coordsMaxHeight = null;
+		var coordsMinWidth = "990"; var coordsMaxWidth = "1024";
+		var coordsMinHeight = "760"; var coordsMaxHeight = "768";
 
 		//var sections = location.pathname.split("/");
 		//var userdatapath = sections.slice(0,sections.length-1).join("/");
