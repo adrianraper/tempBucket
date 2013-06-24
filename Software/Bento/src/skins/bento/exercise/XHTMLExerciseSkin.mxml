@@ -42,14 +42,14 @@
 	</s:layout>
 	
 	<s:Group id="headerGroup" width="100%">
-		<s:Rect width="100%" height="100%" minHeight="52" >
+		<s:Rect width="100%" height="37" >
 			<s:fill>
-				<s:SolidColor color="#F5D767" />
+				<s:SolidColor color="#D7D7D7" />
 			</s:fill>
 		</s:Rect>
 		
-		<components:XHTMLRichText id="headerRichText" top="13" left="38" bottom="13" width="87%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
-		<s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" />
+		<components:XHTMLRichText id="headerRichText" top="13" left="0" bottom="13" width="100%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+		<!--s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" /-->
 		
 		<s:Group right="0" width="27%" height="100%" visible="{hostComponent.atLeastOneSelectedAnswerHasFeedback}">
 			<s:Rect width="100%" height="100%">
@@ -102,7 +102,7 @@
 			</s:Scroller>
 		</s:Group>
 		
-		<s:Group id="rightNoScrollGroup" width="450" height="100%" minHeight="52" right="0">
+		<s:Group id="rightNoScrollGroup" width="312" height="100%" minHeight="52" right="0">
 			<s:Rect width="100%" height="100%">
 				<s:fill>
 					<s:SolidColor color="#FFFFFF" />

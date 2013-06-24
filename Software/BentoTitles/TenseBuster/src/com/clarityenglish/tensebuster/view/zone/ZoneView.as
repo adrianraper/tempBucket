@@ -16,30 +16,29 @@ package com.clarityenglish.tensebuster.view.zone {
 	public class ZoneView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var unitList:List;
-		
-		[SkinPart(required="true")]
 		public var exerciseList:List;
 		
-		private var _course:XML;
-		private var _courseChanged:Boolean;
+		private var _unit:XML;
+		private var _unitChanged:Boolean;
+		
+		private var uidString:String;
 		
 		public var exerciseShow:Signal = new Signal(Href);
 		public var exerciseSelect:Signal = new Signal(XML);
 		
-		[Bindable(event="courseChanged")]
-		public function get course():XML {
-			return _course;
+		[Bindable(event="unitChanged")]
+		public function get unit():XML {
+			return _unit;
 		}
 		
-		public function set course(value:XML):void {
-			_course = value;
-			_courseChanged = true;
+		public function set unit(value:XML):void {
+			_unit= value;
+			_unitChanged = true;
 			
 			invalidateProperties();
 			invalidateSkinState();
 			
-			dispatchEvent(new Event("courseChanged", true));
+			dispatchEvent(new Event("unitChanged", true));
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -49,11 +48,9 @@ package com.clarityenglish.tensebuster.view.zone {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (_courseChanged) {
-				
-				unitList.dataProvider = new XMLListCollection(_course.unit);
-				
-				_courseChanged = false;
+			if (_unitChanged) {
+				exerciseList.dataProvider = new XMLListCollection(_unit.exercise);
+				_unitChanged = false;
 			}
 		}
 		
@@ -61,17 +58,10 @@ package com.clarityenglish.tensebuster.view.zone {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case unitList:
-					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitChange);
-					break;
 				case exerciseList:
 					exerciseList.addEventListener(MouseEvent.CLICK, onExerciseClick);
 					break;
 			}
-		}
-		
-		protected function onUnitChange(event:IndexChangeEvent):void {
-			exerciseList.dataProvider = new XMLListCollection(unitList.selectedItem.exercise);
 		}
 		
 		protected function onExerciseClick(event:MouseEvent):void {

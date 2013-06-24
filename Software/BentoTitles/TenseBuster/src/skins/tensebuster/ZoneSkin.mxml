@@ -20,7 +20,6 @@
 	<s:Label text="Tense Buster v10: select a unit and exercise" fontSize="30" fontWeight="bold" />
 	
 	<s:HGroup width="100%" height="100%">
-		<s:List id="unitList" width="50%" height="100%" labelField="@caption" />
 		<s:List id="exerciseList" width="50%" height="100%" labelField="@caption" />
 	</s:HGroup>
 	

@@ -1,6 +1,7 @@
 @namespace tensebuster "com.clarityenglish.tensebuster.*";
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
 @namespace home "com.clarityenglish.tensebuster.view.home.*";
+@namespace unit "com.clarityenglish.tensebuster.view.unit.*";
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace s "library://ns.adobe.com/flex/spark";
@@ -14,8 +15,16 @@ title|TitleView {
 	skinClass: ClassReference("skins.tensebuster.TitleSkin");
 }
 
+title|TitleView s|Button#backToMenuButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.BackToMenuButtonSkin");
+}
+
 home|HomeView {
 	skinClass: ClassReference("skins.tensebuster.HomeSkin");
+}
+
+unit|UnitView {
+	skinClass: ClassReference("skins.tensebuster.UnitSkin");
 }
 
 zone|ZoneView {
@@ -24,6 +33,26 @@ zone|ZoneView {
 
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.tensebuster.ExerciseSkin");
+}
+
+exercise|ExerciseView s|Button#backButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.BackButtonSkin");
+}
+
+exercise|ExerciseView s|Button#forwardButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.ForwardButtonSkin");
+}
+
+exercise|ExerciseView s|Button#markingButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.MarkingButtonSkin");
+}
+
+exercise|ExerciseView s|Button#printButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.PrintButtonSkin");
+}
+
+exercise|ExerciseView s|Button#startAgainButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.StartAgainButtonSkin");
 }
 
 s|VideoPlayer {

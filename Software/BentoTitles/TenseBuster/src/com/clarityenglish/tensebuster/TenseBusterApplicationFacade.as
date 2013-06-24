@@ -8,6 +8,8 @@
 	import com.clarityenglish.tensebuster.view.home.HomeView;
 	import com.clarityenglish.tensebuster.view.title.TitleMediator;
 	import com.clarityenglish.tensebuster.view.title.TitleView;
+	import com.clarityenglish.tensebuster.view.unit.UnitMediator;
+	import com.clarityenglish.tensebuster.view.unit.UnitView;
 	import com.clarityenglish.tensebuster.view.zone.ZoneMediator;
 	import com.clarityenglish.tensebuster.view.zone.ZoneView;
 	
@@ -30,6 +32,7 @@
 			mapView(LoginView, LoginMediator);*/
 			mapView(TitleView, TitleMediator);
 			mapView(HomeView, HomeMediator);
+			mapView(UnitView, UnitMediator);
 			mapView(ZoneView, ZoneMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			/*mapView(AccountView, AccountMediator);

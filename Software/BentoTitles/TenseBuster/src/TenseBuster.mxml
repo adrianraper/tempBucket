@@ -5,7 +5,7 @@
 									minWidth="990" minHeight="760"
 									initialize="onInitialize(event)">
 	<fx:Metadata>
-		[SWF(width="990", height="760")]
+		[SWF(width="990", height="768")]
 	</fx:Metadata>
 	
 	<fx:Style source="tensebuster.css" />

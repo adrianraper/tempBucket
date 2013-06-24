@@ -13,14 +13,26 @@
 		<s:State name="normal" />
 		
 		<s:State name="home" />
+		<s:State name="unit" />
 		<s:State name="zone" />
 		<s:State name="exercise" />
 	</s:states>
 	
-	<s:Button id="backToMenuButton" label="Back to Menu" right="10" top="4" includeIn="exercise" />
-	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Home" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
+	
+	<s:Group top="180" left="70" visible="{hostComponent.currentState == 'exercise'}">
+		<s:HGroup verticalAlign="middle">
+			<s:SWFLoader id="courseThumbnail"  />
+			<s:Label text="{hostComponent.courseCaption}" color="0x420000" fontSize="19" />
+			<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
+			<s:SWFLoader id="unitThumbnail"  />
+			<s:Label text="{hostComponent.unitCaption}" color="0x333333" fontSize="14" />
+			<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
+			<s:Label text="{hostComponent.exerciseCaption}" color="0xEC1C32" fontSize="14" />
+		</s:HGroup>	
+	</s:Group>
+	<s:Button id="backToMenuButton" label="Back to Menu" right="75" top="180" color="0xFFFFFF" fontWeight="bold" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
 	
 </s:Skin>

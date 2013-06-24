@@ -23,14 +23,14 @@
 		
 		public override function onRegister():void {
 			super.onRegister();
-			
+
 			view.exerciseSelect.add(onExerciseSelect);
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			
-			Bind.fromProperty(bentoProxy, "selectedCourseNode").toProperty(view, "course");
+			Bind.fromProperty(bentoProxy, "selectedUnitNode").toProperty(view, "unit");
 		}
 		
 		public override function onRemove():void {
