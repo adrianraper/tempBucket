@@ -146,12 +146,15 @@ SQL;
 				switch ($condition) {
 					case 'individuals':
 						// gh#149
-						if ($value == 'true') {
-							//$selectBuilder->addWhere(NEG_MYPOSTFIX);
-							$selectBuilder->addWhere("a.F_Prefix REGEXP '^[0-9]+$'");
-						} else {
-							//$selectBuilder->addWhere(MYPOSTFIX);
-							$selectBuilder->addWhere("NOT (a.F_Prefix REGEXP '^[0-9]+$')");
+						// Ignore for sqlite?
+						if ($GLOBALS['dbms'] != 'pdo_sqlite') {
+							if ($value == 'true') {
+								//$selectBuilder->addWhere(NEG_MYPOSTFIX);
+								$selectBuilder->addWhere("a.F_Prefix REGEXP '^[0-9]+$'");
+							} else {
+								//$selectBuilder->addWhere(MYPOSTFIX);
+								$selectBuilder->addWhere("NOT (a.F_Prefix REGEXP '^[0-9]+$')");
+							}
 						}
 						break;
 					case 'expiryDate':

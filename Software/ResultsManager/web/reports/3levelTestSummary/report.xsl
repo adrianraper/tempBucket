@@ -141,8 +141,8 @@
 								</td>
 								<td>
 									<xsl:choose>
-										<xsl:when test="$grammarCorrect + $vocabularyCorrect + $listeningCorrect + $selfAssessment &gt; 90"> Advanced </xsl:when>
-										<xsl:when test="$grammarCorrect + $vocabularyCorrect + $listeningCorrect + $selfAssessment &gt; 46"> Intermediate </xsl:when>
+										<xsl:when test="@grammarCorrect + @vocabularyCorrect + @listeningCorrect + @selfAssessment &gt; 90"> Advanced </xsl:when>
+										<xsl:when test="@grammarCorrect + @vocabularyCorrect + @listeningCorrect + @selfAssessment &gt; 46"> Intermediate </xsl:when>
 										<xsl:otherwise> Elementary </xsl:otherwise>
 									</xsl:choose>
 								</td>

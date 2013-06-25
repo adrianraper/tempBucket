@@ -271,6 +271,8 @@ try {
 				}
 			} else {
 				AbstractService::$debugLog->info("returned existing user ".$user->name." expires on ".$user->expiryDate);
+				//update the user information if it is changed
+				$loginService->updateUserInformation($apiInformation, $user);
 			}
 			
 			// TODO: Should also return account information to mirror getUser

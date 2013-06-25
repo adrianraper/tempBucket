@@ -58,6 +58,13 @@
 	<?php require '../phpToJavascriptVars.php'; ?>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/loadOrchid.js"></script>
 
+	<!-- 
+		Add any extra parameters to the flashvars array here 
+	 -->
+	<script type="text/javascript">
+		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
+	</script>
+	
 <!--CSS pop up layout box-->
 <link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
 <style type="text/css">

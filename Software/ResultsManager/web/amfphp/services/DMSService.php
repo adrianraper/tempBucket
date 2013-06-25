@@ -114,15 +114,13 @@ class DMSService extends AbstractService {
 			// did this check in the constructor.
 			$_SESSION['dbHost'] = $dbHost;
 			
-			$this->changeDB($dbHost);
+			// Use AbstractService
+			$this->changeDbHost($dbHost);
+			
+			// Just need to change the db for Ops that you use in the first call
+			$this->loginOps->changeDB($this->db);
+			$this->manageableOps->changeDB($this->db);
 		}
-	}
-
-	public function changeDB($dbHost) {
-		$this->changeDbHost($dbHost);
-		
-		$this->manageableOps->changeDB($this->db);
-		$this->loginOps->changeDB($this->db);
 	}
 	
 	public function login($username, $password, $rootID = null) {

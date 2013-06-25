@@ -45,7 +45,10 @@ require_once(dirname(__FILE__)."/crypto/Base8.php");
 	switch ( strtoupper($vars['METHOD']) ) {
 	
 		case 'GETRMSETTINGS':
-			$node .= "<note>dbhost=".$dbDetails->host." dbname=".$dbDetails->dbname." driver=".$dbDetails->driver."</note>";
+			$node .= "<note>";
+			if (isset($dbDetails->host))
+				$node .= "dbhost=".$dbDetails->host;
+			$node .= " dbname=".$dbDetails->dbname." driver=".$dbDetails->driver."</note>";
 			$rC = $Progress->checkDatabaseVersion( $vars, $node );
 			if ($rC) {
 				$rC = $Progress->getRMSettings( $vars, $node );
