@@ -47,7 +47,7 @@ package com.clarityenglish.tensebuster.view.title {
 			switch (_selectedNode.localName()) {
 				case "course":
 					courseID = _selectedNode.@id;
-					_courseUID = "90."+_selectedNode.@id as String;
+					_courseUID = "9."+_selectedNode.@id as String;
 					courseCaption = _selectedNode.@caption;
 					courseThumbnail.source = getThumbnailForUid(_courseUID);
 					currentState = "unit";

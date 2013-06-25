@@ -42,7 +42,7 @@
 	</s:layout>
 	
 	<s:Group id="headerGroup" width="100%">
-		<s:Rect width="100%" height="37" >
+		<s:Rect width="100%" height="77" >
 			<s:fill>
 				<s:SolidColor color="#D7D7D7" />
 			</s:fill>
