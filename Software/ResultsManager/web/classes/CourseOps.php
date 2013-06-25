@@ -161,29 +161,42 @@ class CourseOps {
 					"F_RootID" => Session::get('rootID'),
 					"F_CourseID" => (string)$course['id'],
 					"F_StartMethod" => "group",
-					"F_UnitInterval" => $group['unitInterval'],
-					"F_SeePastUnits" => (($group['seePastUnits'] == "true") ? 1 : 0),
-					"F_StartDate" => $group['startDate'],
-					"F_EndDate" => $group['endDate']
+					"F_UnitInterval" => (string)$group['unitInterval'],
+					"F_SeePastUnits" => ((string)($group['seePastUnits'] == "true") ? 1 : 0),
+					"F_StartDate" => (string)$group['startDate'],
+					"F_EndDate" => (string)$group['endDate']
 				);
 				
 				// gh#148 PrimaryKey is just groupID and courseID
 				//$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
-				$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_CourseID"), true);
+				$rc = $db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_CourseID"), true);
+				// AbstractService::$debugLog->notice("update T_CourseStart gives $rc");
 				
 				// 2. Next rewrite any rows in T_UnitStart relating to this course
 				// Currently we figure this out here, but this may be better calculated on the client since at some point it will be editable anyway
-				$startTimestamp = strtotime($group['startDate']);
+				$startTimestamp = strtotime((string)$group['startDate']);
 				foreach ($course->unit as $unit) {
+					/*
+					// SQLite fails to insert, but no errors
 					$fields = array(
 						"F_GroupID" => (string)$group['id'],
 						"F_RootID" => Session::get('rootID'),
 						"F_CourseID" => (string)$course['id'],
 						"F_UnitID" => (string)$unit['id'],
-						"F_StartDate" => $startTimestamp
+						"F_StartDate" => (string)$group['startDate']
 					);
-					
-					$db->AutoExecute("T_UnitStart", $fields, "INSERT");
+					$rc = $db->AutoExecute("T_UnitStart", $fields, "INSERT");
+					*/
+					$sql = <<<SQL
+						INSERT INTO T_UnitStart 
+						(F_GroupID,F_RootID,F_CourseID,F_UnitID,F_StartDate)
+						VALUES (?,?,?,?,?)
+SQL;
+					$bindingParams = array((string)$group['id'],Session::get('rootID'),(string)$course['id'],(string)$unit['id'],
+										date('Y-m-d H:i:s', $startTimestamp));
+					$rc = $db->Execute($sql, $bindingParams);					
+					if (!$rc)
+						AbstractService::$debugLog->notice("insert to T_UnitStart failed");
 					
 					$startTimestamp += $group['unitInterval'] * 86400;
 				}

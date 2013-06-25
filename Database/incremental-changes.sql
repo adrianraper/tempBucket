@@ -735,8 +735,8 @@ DROP PRIMARY KEY ;
 ALTER TABLE T_Subscription ADD COLUMN `F_ProductVersion` varchar(8) NULL DEFAULT NULL AFTER `F_LanguageCode`;
 
 -- gh#107
-DROP TABLE IF EXISTS `rack80829`.`T_CourseStart`;
-CREATE  TABLE `rack80829`.`T_CourseStart` (
+DROP TABLE IF EXISTS `T_CourseStart`;
+CREATE  TABLE `T_CourseStart` (
   `F_GroupID` int(10) NOT NULL,
   `F_RootID` int(10) NOT NULL,
   `F_CourseID` bigint(20) NOT NULL,
@@ -747,8 +747,8 @@ CREATE  TABLE `rack80829`.`T_CourseStart` (
   `F_SeePastUnits` tinyint(4) DEFAULT 1,
   PRIMARY KEY (`F_GroupID`, `F_CourseID`) );
 
-DROP TABLE IF EXISTS `rack80829`.`T_UnitStart`;
-CREATE  TABLE `rack80829`.`T_UnitStart` (
+DROP TABLE IF EXISTS `T_UnitStart`;
+CREATE  TABLE `T_UnitStart` (
   `F_GroupID` int(10) NOT NULL,
   `F_RootID` int(10) NOT NULL,
   `F_CourseID` bigint(20) NOT NULL,
@@ -820,12 +820,12 @@ INSERT INTO T_ProductLanguage VALUES
 (52,'ZH','RoadToIELTS2-Chinese'),
 (53,'ZH','RoadToIELTS2-Chinese');
 
-DELETE FROM rack80829.T_Language WHERE F_LanguageCode IN ('R2ILM','R2IFV','R2ITD','R2IHU','R2ID');
+DELETE FROM T_Language WHERE F_LanguageCode IN ('R2ILM','R2IFV','R2ITD','R2IHU','R2ID');
 
 -- to update existing accounts (probably only one)
 update T_Accounts set F_ProductVersion = 'DEMO' where F_ProductVersion = 'R2ID';
 
-ALTER TABLE `rack80829`.`T_Membership_Expiry` 
+ALTER TABLE `T_Membership_Expiry` 
 DROP INDEX `Index_3` 
 , DROP INDEX `Index_1` 
 , DROP INDEX `Index_2` ;
@@ -843,9 +843,9 @@ ALTER TABLE `rack80829`.`T_User_Expiry`
 ADD INDEX `Index_2` (`F_UserID` ASC) 
 , ADD INDEX `Index_1` (`F_RegistrationDate` ASC);
 
-ALTER TABLE `rack80829`.`T_EditedContent` CHANGE COLUMN `ID` `ID` BIGINT(19) NULL DEFAULT 0;
+ALTER TABLE `T_EditedContent` CHANGE COLUMN `ID` `ID` BIGINT(19) NULL DEFAULT 0;
 -- or 
-ALTER TABLE `rack80829`.`T_EditedContent` ADD COLUMN `ID` BIGINT(19) NULL DEFAULT 0 AFTER `F_RelatedUID`;
+ALTER TABLE `T_EditedContent` ADD COLUMN `ID` BIGINT(19) NULL DEFAULT 0 AFTER `F_RelatedUID`;
 
 CREATE TABLE T_CourseConcurrency (
 F_RootID int(11) NOT NULL,

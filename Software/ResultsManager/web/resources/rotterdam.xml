@@ -250,7 +250,7 @@
 			<lit name="deleteCourseWarning">Do you want to delete this course?</lit>
 			<lit name="deleteUnitWarning">Do you want to delete this unit?</lit>
 			<lit name="noUndoWarning">There is no undo...</lit>
-			<lit name="creditLabel">Thank you for using Clarity Course Builder.</lit>
+			<lit name="creditLabel">Thank you for using the Clarity Course Builder.</lit>
 			<lit name="helpButton">Support materials</lit>
 			<lit name="helpURL"><![CDATA[http://www.clarityenglish.com/area1/CCB/Player.php?prefix=CST&course=439011031594193044]]></lit>
 			<lit name="helpLabel1">Please also feel free to email us at support@clarityenglish.com</lit>

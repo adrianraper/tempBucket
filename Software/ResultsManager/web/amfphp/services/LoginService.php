@@ -239,4 +239,17 @@ class LoginService extends AbstractService {
 	public function getAccountFromUser($user) {
 		return $this->accountOps->getAccountFromUser($user);
 	}
+	
+	public function updateUserInformation($loginDetails, $user) {
+		if (isset($loginDetails->name) && $user->name != $loginDetails->name) $user->name = $loginDetails->name;
+		if (isset($loginDetails->email) && $user->email != $loginDetails->email) $user->email = $loginDetails->email;
+		if (isset($loginDetails->expiryDate) && $user->expiryDate != $loginDetails->expiryDate) $user->expiryDate = $loginDetails->expiryDate;
+		if (isset($loginDetails->country) && $user->country != $loginDetails->country) $user->country = $loginDetails->country;
+		if (isset($loginDetails->city) && $user->city != $loginDetails->city) $user->city = $loginDetails->city;
+		if (isset($loginDetails->birthday) && substr($user->birthday,0,10) != substr($loginDetails->birthday,0,10)) $user->birthday = $loginDetails->birthday;
+		
+		$usersArray[0] = $user;
+		
+		return $this->manageableOps->updateUsers($usersArray, $loginDetails->rootID);
+	}
 }

@@ -14,7 +14,7 @@
 	// The language version might come from session variables or from the URL parameters
 	// v6.5.6.4 Not quite. If you login to CE.com, it picks up $_SESSION['TenseBuster']->languageCode so you CAN set location and courseFile here.
 	// If you are not running from CE.com - then you MUST pass &version=INDEN or ZHO to pick it up properly
-	if (session_is_registered('TenseBuster')) {
+	if (isset($_SESSION['TenseBuster'])) {
 		$TenseBuster = $_SESSION['TenseBuster'];
 		$version = $TenseBuster->languageCode;
 	} elseif (isset($_GET['version'])){
@@ -58,6 +58,13 @@
 	<?php require '../phpToJavascriptVars.php'; ?>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/loadOrchid.js"></script>
 
+	<!-- 
+		Add any extra parameters to the flashvars array here 
+	 -->
+	<script type="text/javascript">
+		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
+	</script>
+	
 <!--CSS pop up layout box-->
 <link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
 <style type="text/css">

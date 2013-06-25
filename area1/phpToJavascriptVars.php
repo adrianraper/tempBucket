@@ -61,4 +61,10 @@ if ($startingPoint) {
 } else {
 	echo 'swfobject.getQueryParamValue("startingPoint");';
 }
+echo 'var jsResize=';
+if ($resize) {
+	echo '"'.$resize.'";';
+} else {
+	echo 'swfobject.getQueryParamValue("resize");';
+}
 echo '</script>';

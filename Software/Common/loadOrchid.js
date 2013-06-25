@@ -58,7 +58,7 @@
 			allowfullscreen: "true"
 		};
 		// v6.5.5.6 Allow resize screen mode
-		if (swfobject.getQueryParamValue("resize")=="true") {
+		if (jsResize || swfobject.getQueryParamValue("resize")=="true") {
 			params.scale="showall";
 		} else {
 			params.scale="noScale";

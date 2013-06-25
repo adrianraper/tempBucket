@@ -37,7 +37,13 @@ require_once(dirname(__FILE__)."/dbProgress.php");
 	$vars['DBDRIVER']=$dbDetails->driver;
 	// You shouldn't display the full details, but what is it safe to display?
 	//$node .="<note>".$dbDetails->dsn."</note>";
-	$node .='<note>'.$dbDetails->driver.'://'.$dbDetails->user.':'.'********'.'@'.$dbDetails->host.'/'.$dbDetails->dbname.'</note>';
+	$node .='<note>'.$dbDetails->driver.'://';
+	if (isset($dbDetails->user))
+		$node .= $dbDetails->user.':'.'********';
+	if (isset($dbDetails->host))
+		$node .= '@'.$dbDetails->host.'/';
+	if (isset($dbDetails->dbname))
+		$node .= $dbDetails->dbname.'</note>';
 	$db = &ADONewConnection($dbDetails->dsn);
 	if (!$db) die("Connection failed");
 	//$db->debug = true;

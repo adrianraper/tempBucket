@@ -83,12 +83,11 @@ XmlUtils::rewriteXml($service->mediaOps->mediaFilename, function($xml) use($medi
 	}
 
 	// Get the image size by re-opening it (for some reason getImageLength doesn't work after a resize) gh#157
-	if ($image) {
+	if (isset($image) && $image) {
 		$image = new Imagick($mediaFolder."/".$filename);
 		$size = $image->getImageLength();
 		$image->destroy();
 	}
-	
 	
 	// Finally update media.xml with the a new file node
 	$fileNode = $xml->files->addChild("file");

@@ -93,6 +93,7 @@ package com.clarityenglish.rotterdam.controller {
 			
 			var crypt:Crypt = new Crypt();
 			var argList:String = "?data=" + crypt.encryptURL(parameters.join("&"));
+			log.info("plain arglist=" + parameters.join("&"));
 			
 
 			// Then run this as a new browser window

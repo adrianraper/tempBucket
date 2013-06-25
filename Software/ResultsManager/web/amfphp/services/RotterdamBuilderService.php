@@ -54,15 +54,24 @@ class RotterdamBuilderService extends RotterdamService {
 		// gh#142
 		if ($href->type == Href::MENU_XHTML) {
 			$courseId = $href->options["courseId"];
-			
-			$sql = <<<EOD
-				SELECT F_UserID 
-				FROM T_CourseConcurrency
-				WHERE F_CourseID=?
-				AND F_UserID != ?
-				AND F_Timestamp > DATE_SUB(?, INTERVAL 1 MINUTE)
+
+			if ($GLOBALS['dbms'] == 'pdo_sqlite') {
+				$sql = <<<EOD
+					SELECT F_UserID 
+					FROM T_CourseConcurrency
+					WHERE F_CourseID=?
+					AND F_UserID != ?
+					AND F_Timestamp > datetime(?, '-1 minute')
 EOD;
-			
+			} else {
+				$sql = <<<EOD
+					SELECT F_UserID 
+					FROM T_CourseConcurrency
+					WHERE F_CourseID=?
+					AND F_UserID != ?
+					AND F_Timestamp > DATE_SUB(?, INTERVAL 1 MINUTE)
+EOD;
+			}
 			$results = $this->db->GetCol($sql, array($courseId, Session::get('userID'), date("Y-m-d H:i:s")));
 			
 			if ($results[0] > 0)
