@@ -260,7 +260,7 @@ package com.clarityenglish.bento.model {
 		 */
 		public function questionAnswer(question:Question, answer:Answer, key:Object = null, disabled:Boolean = false):void {
 			checkExercise();
-			
+
 			if (!disabled) {
 				log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
 				
@@ -272,7 +272,6 @@ package com.clarityenglish.bento.model {
 				var answerMap:AnswerMap = getSelectedAnswerMap(question);
 				
 				var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
-				
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
 				if (question.isMutuallyExclusive()) answerMap.clear();
@@ -283,7 +282,7 @@ package com.clarityenglish.bento.model {
 					// Add the answer
 					answerMap.put(key, answer);
 				}
-				
+
 				// Trac 121. You have now answered a question, so the exercise is dirty
 				exerciseDirty = true;
 				
@@ -328,7 +327,7 @@ package com.clarityenglish.bento.model {
 					answer = new TextAnswer(<answer value={(answer as TextAnswer).value} correct={false}/>);
 				}
 			}
-			
+
 			if (question.isMutuallyExclusive()) {
 				// For mutually exlusive questions we store the answer if there isn't one already
 				if (markableAnswerMap.keys.length == 0) {
@@ -340,6 +339,10 @@ package com.clarityenglish.bento.model {
 				if (!(markableAnswerMap.containsKey(key))) {
 					markableAnswerMap.put(key, answer);
 					log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
+				} else {
+					// gh#351
+					var removedAnswer:Answer = markableAnswerMap.remove(key);
+					markableAnswerMap.put(key, answer);
 				}
 			}
 			
@@ -379,7 +382,6 @@ package com.clarityenglish.bento.model {
 			if (targetNodes) {
 				targetNodes = targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
-					
 					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
 						var idx:int = correctAnswers.indexOf(selectedAnswer);
 						if (idx > -1) {
@@ -400,6 +402,7 @@ package com.clarityenglish.bento.model {
 					// 5. If the current answer is empty or incorrect then add it to the answer map
 					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
 						var correctAnswer:Answer = correctAnswers[0]
+						
 						answerMap.put(targetNode, correctAnswer);
 						correctAnswers.shift();
 						

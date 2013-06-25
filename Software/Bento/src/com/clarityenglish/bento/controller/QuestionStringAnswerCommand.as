@@ -32,7 +32,7 @@ package com.clarityenglish.bento.controller {
 			var disabled:Boolean = note.getBody().disabled;
 			
 			var textAnswer:TextAnswer = getTextAnswer(question, answerString, exercise.isCaseSensitive());
-			
+
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 			exerciseProxy.questionAnswer(question, textAnswer, key, disabled);
 		}
@@ -58,10 +58,9 @@ package com.clarityenglish.bento.controller {
 			
 			// If we reached here then no answer was matched so create a new one, including the unmatched feedback if there was any
 			var xmlString:String = "";
-			xmlString += "<answer value='" + answerString + "'>";
-			if (question.unmatchedFeedbackSource) xmlString += "<feedback source='" + question.unmatchedFeedbackSource + "' />";
+			xmlString += '<answer value="' + answerString + '">';
+			if (question.unmatchedFeedbackSource) xmlString += '<feedback source="' + question.unmatchedFeedbackSource + '" />';
 			xmlString += "</answer>";
-			
 			return new TextAnswer(new XML(xmlString));
 		}
 		
