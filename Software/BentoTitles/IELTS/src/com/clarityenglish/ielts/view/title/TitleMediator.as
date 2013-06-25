@@ -93,6 +93,8 @@
 			switch (note.getName()) {
 				case BBNotifications.SELECTED_NODE_CHANGED:
 					view.selectedNode = note.getBody() as XML;
+					// gh#383
+					view.getCourseClass(note.getBody() as XML);
 					break;
 			}
 		}

@@ -120,6 +120,9 @@ package com.clarityenglish.ielts.view.title {
 		// #260 
 		private var shortDelayTimer:Timer;
 		
+		// gh#383
+		private var _inforButtonSource:String;
+		
 		public var logout:Signal = new Signal();
 		public var backToMenu:Signal = new Signal();
 		public var register:Signal = new Signal();
@@ -154,7 +157,7 @@ package com.clarityenglish.ielts.view.title {
 			switch (value.localName()) {
 				case "course":
 				case "unit":
-					currentState = "zone";			
+					currentState = "zone";
 					break;
 				case "exercise":
 					currentState = "exercise";
@@ -176,6 +179,16 @@ package com.clarityenglish.ielts.view.title {
 		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		// gh#383
+		[Bindable]
+		public function get inforButtonSource():String {
+			return _inforButtonSource;
+		}
+		
+		public function set inforButtonSource(value:String):void {
+			_inforButtonSource = value;
 		}
 		
 		[Bindable(event="productCodeChanged")]
@@ -323,6 +336,8 @@ package com.clarityenglish.ielts.view.title {
 				// #299, #337
 				case infoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
+					// gh#383 assign the initial value to inforButton source
+					inforButtonSource = this.languageAssetFolder + "upgrade.jpg";
 					break;
 				case homeViewNavigator:
 					instance.label = copyProvider.getCopyForId("Home");
@@ -442,6 +457,25 @@ package com.clarityenglish.ielts.view.title {
 			return currentState;
 		}
 		
+		// gh383
+		public function getCourseClass(value:XML):void {
+			if (value.localName() == "course") {
+				switch (value.@["class"].toString()) {
+					case "reading":
+						inforButtonSource = this.languageAssetFolder + "upgrade.jpg";
+						break;
+					case "listening":
+						inforButtonSource = this.languageAssetFolder + "register.jpg";
+						break;
+					case "speaking":
+						inforButtonSource = this.languageAssetFolder + "register.jpg";
+						break;
+					case "writing":
+						inforButtonSource = this.languageAssetFolder + "register.jpg";
+						break;
+				}
+			}
+		}
 	}
 	
 }
