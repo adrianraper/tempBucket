@@ -364,7 +364,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			var audioNodes:Array = exercise.select("audio.audio-feedback");
 			for each (var node:XML in audioNodes) {
 				var audioElement:AudioElement = getFlowElement(node) as AudioElement;
-				audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, true));
+				audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, audioElement));
 				
 				TLFUtil.markFlowElementFormatChanged(audioElement);
 				textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());

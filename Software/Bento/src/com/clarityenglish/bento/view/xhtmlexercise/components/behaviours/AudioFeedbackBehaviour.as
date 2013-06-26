@@ -18,20 +18,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import spark.components.Group;
 	
 	public class AudioFeedbackBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
-		
-		private var _isMarked:Boolean;
 		private var audioStack:Vector.<AudioElement> = new Vector.<AudioElement>();
 		private var feedbackAudioStack:Vector.<AudioElement> = new Vector.<AudioElement>();
-		
-		public function get isMarked():Boolean {
-			return _isMarked;
-		}
-		
-		public function set isMarked(value:Boolean):void {
-			if (_isMarked != value) {
-				_isMarked = value;
-			}
-		}
 		
 		public function AudioFeedbackBehaviour(container:Group) {
 			super(container);
@@ -43,39 +31,32 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
 			if (!textFlow.hasEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED)) textFlow.addEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED, onMarkButtonClicked);
 			
-			if (isMarked) {
-				for each (var feedbackAudioElement:AudioElement in feedbackAudioStack) {				
-					var containingBlock:RenderFlow = feedbackAudioElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+			for each (var feedbackAudioElement:AudioElement in feedbackAudioStack) {				
+				var containingBlock:RenderFlow = feedbackAudioElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+				
+				feedbackAudioElement.clearCompoment();
+				feedbackAudioElement.controls = "compact";
+				feedbackAudioElement.createComponent();
+				
+				// in OverlayBehaviour, in order to detect feedback audio we didn't block creating component there but we didn't add the component to the containing block 
+				containingBlock.addChild(feedbackAudioElement.getComponent());
+				
+				// Position and size the component in line with its underlying text
+				var bounds:Rectangle = feedbackAudioElement.getElementBounds();
+				if (bounds) {
+					if (!isNaN(bounds.width)) feedbackAudioElement.getComponent().width = bounds.width;
+					if (!isNaN(bounds.height)) feedbackAudioElement.getComponent().height = bounds.height;
+					feedbackAudioElement.getComponent().x = bounds.x;
+					feedbackAudioElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
 					
-					feedbackAudioElement.clearCompoment();
-					feedbackAudioElement.controls = "compact";
-					feedbackAudioElement.createComponent();
-					
-					// in OverlayBehaviour, in order to detect feedback audio we didn't block creating component there but we didn't add the component to the containing block 
-					containingBlock.addChild(feedbackAudioElement.getComponent());
-					
-					// Position and size the component in line with its underlying text
-					var bounds:Rectangle = feedbackAudioElement.getElementBounds();
-					if (bounds) {
-						if (!isNaN(bounds.width)) feedbackAudioElement.getComponent().width = bounds.width;
-						if (!isNaN(bounds.height)) feedbackAudioElement.getComponent().height = bounds.height;
-						feedbackAudioElement.getComponent().x = bounds.x;
-						feedbackAudioElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
-						
-						// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
-						feedbackAudioElement.getComponent().visible = !feedbackAudioElement.hideChrome;
-					}
+					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
+					feedbackAudioElement.getComponent().visible = !feedbackAudioElement.hideChrome;
 				}
-				feedbackAudioStack.splice(0,feedbackAudioStack.length);
 			}
+			feedbackAudioStack.splice(0,feedbackAudioStack.length);
 		}
 		
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
-			var exercise:Exercise = xhtml as Exercise;
-			for each (var audioNode:XML in exercise.select("audio.audio-feedback")) {
-				var audioElement:AudioElement = flowElementXmlBiMap.getFlowElement(audioNode) as AudioElement;
-				feedbackAudioStack.push(audioElement);	
-			}
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
@@ -85,20 +66,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		}
 		
 		protected function onMarkButtonClicked (event:MarkingButtonEvent):void {
-			trace("marking button clicked");
-			this.isMarked = event.isMarked;
-		}
-		
-		private function getAudioElements(textFlow:TextFlow):Array {
-			var floatableTextFlow:FloatableTextFlow = textFlow as FloatableTextFlow;
-			
-			// Get all the elements that we will overlay
-			if (floatableTextFlow) {
-				return [ ].concat(
-					floatableTextFlow.getElementsByClass(AudioElement));
-			}
-			
-			return null;
+			feedbackAudioStack.push(event.audioELement);
 		}
 	}
 }
