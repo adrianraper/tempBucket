@@ -36,24 +36,23 @@
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgLeft.png')" left="15" top="206"/>
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgRight.png')" left="950" top="206"/>
 	
-	<!--Red line-->
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/TB-bg-redLine.png')" top="166" left="40"/>
-	
-	<!-- Right buttons -->
+	<!-- Top Left buttons -->
 	<s:HGroup left="70" top="168" includeIn="exercise" gap="0">
 		<s:Button id="backButton" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="forwardButton" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
 
 		<s:Group>
 			<s:Button id="feedbackButton" visible="false" />			
-		</s:Group>
-
-		
+		</s:Group>		
 	</s:HGroup>	
 	
+	<!-- Top Right buttons -->
 	<s:HGroup right="300" top="168" includeIn="exercise" gap="0">
 		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true" />
 		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
-	</s:HGroup>
+	</s:HGroup>	
+	
+	<!--Red line-->
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/TB-bg-redLine.png')" top="166" left="40"/>
 </s:Skin>

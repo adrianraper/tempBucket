@@ -7,6 +7,14 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace components "com.clarityenglish.textLayout.components.*";
 
+global {
+	EColor : #EC1C32;
+	LColor : #D68130;
+	IColor : #8AA13B;
+	UColor : #0499A6;
+	AColor : #5D3996;	
+}
+
 tensebuster|TenseBusterApplication {
 	skinClass: ClassReference("skins.tensebuster.TenseBusterApplicationSkin");
 }

@@ -13,6 +13,7 @@ package com.clarityenglish.tensebuster.view.title {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.TabbedViewNavigator;
 	import spark.components.mediaClasses.VolumeBar;
 	
@@ -37,6 +38,8 @@ package com.clarityenglish.tensebuster.view.title {
 		private var _unitUID:String;
 		private var _unitCaption:String;
 		private var _exerciseCaption:String;
+		[Bindable]
+		public static var courseCode:String;
 		
 		public var backToMenu:Signal = new Signal();
 		public var thumbnailScript:String;
@@ -51,6 +54,7 @@ package com.clarityenglish.tensebuster.view.title {
 					courseCaption = _selectedNode.@caption;
 					courseThumbnail.source = getThumbnailForUid(_courseUID);
 					currentState = "unit";
+					courseCode = courseCaption.charAt(0);
 					break;
 				case "unit":
 					_unitUID = _courseUID+"."+courseID;
@@ -124,7 +128,6 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		public function getThumbnailForUid(uid:String):String {
-			trace("uid: "+uid);
 			return thumbnailScript + "?uid=" + uid + "&exIndex=" + 4;
 		}
 		

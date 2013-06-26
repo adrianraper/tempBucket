@@ -42,6 +42,10 @@
         [HostComponent("spark.components.Button")]
         ]]>
     </fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="70" distance="1.5" alpha="0.8"/>
+	</fx:Declarations>
     
     <!-- states -->
     <s:states>
@@ -51,14 +55,15 @@
         <s:State name="disabled" />
     </s:states>
     
-    <icon:printBg />
-	<icon:printIcon left="15" top="8"/>
-    <!-- layer 8: text -->
-    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-    <s:Label id="labelDisplay"
-             textAlign="center"
-             maxDisplayedLines="1"
-			 left="30" right="10" top="11" bottom="2">
-    </s:Label>
-    
+	<s:Group top.over="2" top.up="0">
+		<icon:printBg filters="{dropShadowFilter}" />
+		<icon:printIcon left="15" top="8" />
+		<!-- layer 8: text -->
+		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+		<s:Label id="labelDisplay"
+				 textAlign="center"
+				 maxDisplayedLines="1"
+				 left="30" right="10" top="11" bottom="2">
+		</s:Label>
+    </s:Group>
 </s:SparkButtonSkin>
