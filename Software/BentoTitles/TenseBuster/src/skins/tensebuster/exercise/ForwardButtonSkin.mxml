@@ -56,7 +56,7 @@
     </s:states>
     
 	<s:Group top.over="2" top.up="0">
-		<icon:forwardBg filters="{dropShadowFilter}"/>
+		<icon:forwardBg filters.up="{[dropShadowFilter]}"/>
 		<icon:forwardIcon  right="15" top="10"/>
 		
 		<!-- layer 8: text -->

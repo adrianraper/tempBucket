@@ -64,8 +64,8 @@
 	<s:Rect width="123" height="28" radiusX="8" radiusY="8" top="1" right="1" left="1">
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0x999999"/>
-				<s:GradientEntry color="0x000000" />
+				<s:GradientEntry color="0x999999" color.over="0xB7B6B7" color.down="0xB7B6B7"/>
+				<s:GradientEntry color="0x000000" color.over="0x252625" color.down="0x252625"/>
 			</s:LinearGradient>
 		</s:fill>
 		<s:stroke>

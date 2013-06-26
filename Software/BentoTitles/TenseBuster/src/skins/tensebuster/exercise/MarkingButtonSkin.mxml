@@ -56,7 +56,7 @@
     </s:states>
     
 	<s:Group top.over="2" top.up="0">
-		<icon:markingBg filters="{dropShadowFilter}" />
+		<icon:markingBg filters.up="{[dropShadowFilter]}" />
 		<icon:markingIcon left="10" top="8" /> 
 		
 		<!-- layer 8: text -->
