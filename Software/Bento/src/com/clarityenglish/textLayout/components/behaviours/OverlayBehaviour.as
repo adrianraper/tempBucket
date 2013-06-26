@@ -1,4 +1,5 @@
 package com.clarityenglish.textLayout.components.behaviours {
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.textLayout.components.AudioPlayer;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.elements.AudioElement;
@@ -21,6 +22,8 @@ package com.clarityenglish.textLayout.components.behaviours {
 	import spark.components.Group;
 	
 	public class OverlayBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
+		private var audioNodes:Array = [];
+		private var xmlBiMap:FlowElementXmlBiMap;
 		
 		public function OverlayBehaviour(container:Group):void {
 			super(container);
@@ -28,7 +31,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 		
 		private function getComponentElements(textFlow:TextFlow):Array {
 			var floatableTextFlow:FloatableTextFlow = textFlow as FloatableTextFlow;
-			
+
 			// Get all the elements that we will overlay
 			if (floatableTextFlow) {
 				return [ ].concat(
@@ -53,8 +56,10 @@ package com.clarityenglish.textLayout.components.behaviours {
 					// gh#348 the feedback audio will be add to stage in AudioFeedbackBehaviour
 					if (componentElement.getComponent() is AudioPlayer) {
 						var audioElement:AudioElement = componentElement as AudioElement;
-						if  (audioElement.type == "feedback")
+						if (getAudioElementIndex(audioElement) >= 0) {
 							continue;
+						}
+							
 					}
 					containingBlock.addChild(componentElement.getComponent());
 				}
@@ -80,12 +85,27 @@ package com.clarityenglish.textLayout.components.behaviours {
 			}
 		}
 		
-		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { }
+		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { 
+			var exercise:Exercise = xhtml as Exercise;
+			xmlBiMap = flowElementXmlBiMap;
+			
+			audioNodes = exercise.select("audio.audio-feedback");
+		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
 			for each (var componentElement:IComponentElement in getComponentElements(textFlow))
 				if (componentElement.hasComponent())
 					componentElement.removeComponent();
+		}
+		
+		private function getAudioElementIndex(element:AudioElement):Number {
+			for each (var node:XML in audioNodes) {
+				var audioElement:AudioElement = xmlBiMap.getFlowElement(node) as AudioElement;
+				if(element == audioElement) {
+					return audioNodes.indexOf(node);
+				}
+			}
+			return -1;
 		}
 		
 	}

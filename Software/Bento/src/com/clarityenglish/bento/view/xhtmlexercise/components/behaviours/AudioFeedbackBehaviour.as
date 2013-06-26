@@ -31,11 +31,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
 			if (!textFlow.hasEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED)) textFlow.addEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED, onMarkButtonClicked);
 			
-			for each (var feedbackAudioElement:AudioElement in feedbackAudioStack) {				
+			for each (var feedbackAudioElement:AudioElement in feedbackAudioStack) {
 				var containingBlock:RenderFlow = feedbackAudioElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
-				
-				feedbackAudioElement.clearCompoment();
-				feedbackAudioElement.controls = "compact";
+
 				feedbackAudioElement.createComponent();
 				
 				// in OverlayBehaviour, in order to detect feedback audio we didn't block creating component there but we didn't add the component to the containing block 
