@@ -282,9 +282,12 @@ package com.clarityenglish.bento.model {
 					// Add the answer
 					answerMap.put(key, answer);
 				}
-
-				// Trac 121. You have now answered a question, so the exercise is dirty
-				exerciseDirty = true;
+				
+				// gh#347
+				if (question.type != Question.TARGET_SPOTTING_QUESTION) {
+					// Trac 121. You have now answered a question, so the exercise is dirty
+					exerciseDirty = true;
+				}
 				
 				// Send a notification to say the question has been answered
 				sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );

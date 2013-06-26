@@ -141,9 +141,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}
-			
-			if (event.question.type == Question.TARGET_SPOTTING_QUESTION)
-				view.showTextUnderline(event.key as XML);
 		}
 		
 		/**

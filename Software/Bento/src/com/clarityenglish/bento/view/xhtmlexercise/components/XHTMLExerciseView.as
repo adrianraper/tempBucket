@@ -206,7 +206,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					textFlowDamageAccumulator.damageTextFlow(getFlowElement(otherSource).getTextFlow());
 				}
 			}
-			
+
 			for each (var key:Object in answerMap.keys) {
 				var answer:Answer = answerMap.get(key);
 				var answerNode:XML = key as XML;
@@ -370,17 +370,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());
 			}
 			textFlowDamageAccumulator.updateDamagedTextFlows();				
-		}
-		
-		public function showTextUnderline(source:XML):void {
-			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
-	
-			XHTML.removeClasses(source, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
-			var flowElement:FlowElement = getFlowElement(source);
-			XHTML.addClass(source, Answer.SELECTED);
-			TLFUtil.markFlowElementFormatChanged(flowElement);
-			textFlowDamageAccumulator.damageTextFlow(getFlowElement(source).getTextFlow());
-			textFlowDamageAccumulator.updateDamagedTextFlows();			
 		}
 		
 	}
