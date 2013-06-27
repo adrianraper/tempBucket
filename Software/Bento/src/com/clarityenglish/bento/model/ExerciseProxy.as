@@ -284,7 +284,9 @@ package com.clarityenglish.bento.model {
 				}
 				
 				// gh#347
-				if (question.type != Question.TARGET_SPOTTING_QUESTION) {
+				if (question.type == Question.TARGET_SPOTTING_QUESTION && exercise.model.getSettingParam("delayedMarking") == null) {
+					exerciseDirty = false;											
+				} else {
 					// Trac 121. You have now answered a question, so the exercise is dirty
 					exerciseDirty = true;
 				}
