@@ -2,6 +2,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform;
 	import com.clarityenglish.bento.vo.content.transform.XmlTransform;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.CopyProxy;
@@ -142,10 +143,17 @@ package com.clarityenglish.bento.model {
 			}
 			
 			if (beforeXHTMLLoadFunction !== null) beforeXHTMLLoadFunction(facade, href);
-			
+			// gh#265
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (href.serverSide) {
 				// Determine if the href matches any of the registered transforms and if so add those transforms
-				href.resetTransforms();
+				href.resetTransforms();				
+				// gh#265				
+				if (href.type == Href.EXERCISE) {
+					transformDefinitions.splice(0, transformDefinitions.length);
+					var transforms:Array = [new RandomizedTestTransform()];
+					registerTransforms(transforms, [ Href.EXERCISE ]);
+				}
 				for each (var transformDefinition:TransformDefinition in transformDefinitions)
 					transformDefinition.injectTransforms(href);
 				

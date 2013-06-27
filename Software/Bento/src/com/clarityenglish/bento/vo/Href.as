@@ -58,8 +58,9 @@ package com.clarityenglish.bento.vo {
 		 * @param filename
 		 * @return 
 		 */
-		public function createRelativeHref(type:String, filename:String):Href {
-			return new Href(type, filename, rootPath);
+		// gh#265 add "serverSide" to the function
+		public function createRelativeHref(type:String, filename:String, serverSide:Boolean = false):Href {
+			return new Href(type, filename, rootPath, serverSide);
 		}
 		
 		public function resetTransforms():void {

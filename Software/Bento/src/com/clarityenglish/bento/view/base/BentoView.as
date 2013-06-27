@@ -150,6 +150,8 @@ package com.clarityenglish.bento.view.base {
 		}
 		
 		public function set xhtml(value:XHTML):void {
+			if (value)
+				trace("xhtml: "+value.xml);
 			_xhtml = value;
 			_xhtmlChanged = true;
 			

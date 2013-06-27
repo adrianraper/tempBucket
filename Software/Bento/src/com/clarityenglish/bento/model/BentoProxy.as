@@ -75,6 +75,12 @@ package com.clarityenglish.bento.model {
 		public function get selectedCourseNode():XML {
 			return XmlUtils.searchUpForNode(selectedNode, "course");
 		}
+		
+		// gh#265
+		[Bindable(event="selectedNodeChanged")]
+		public function get selectedNodeType():String {			
+			return (selectedExerciseNode.hasOwnProperty("@type") == true)? selectedExerciseNode.@type : null;
+		}
 
 		public function reset():void {
 			// #472
@@ -87,11 +93,12 @@ package com.clarityenglish.bento.model {
 		/**
 		 * A shortcut for creating an href relative to the currently loaded menu.xml
 		 */
-		public function createRelativeHref(type:String, filename:String):Href {
+		// gh#265 add "serverSide" to the function 
+		public function createRelativeHref(type:String, filename:String, serverSide:Boolean = false):Href {
 			if (!menuXHTML)
 				throw new Error("Attempted to create a relative href with no menu.xml");
 				
-			return menuXHTML.href.createRelativeHref(type, filename);
+			return menuXHTML.href.createRelativeHref(type, filename, serverSide);
 		}
 		
 		/**
