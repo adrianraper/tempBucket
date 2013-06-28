@@ -57,7 +57,7 @@
     
 	<s:Group top.over="2" top.up="0">
 		<icon:startAgainBg filters.up="{[dropShadowFilter]}" />
-		<icon:startAgainIcon left="15" top="8" />
+		<icon:startAgainIcon left="15" top="7" />
 		
 		<!-- layer 8: text -->
 		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->

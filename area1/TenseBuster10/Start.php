@@ -193,7 +193,7 @@
 	</script>
 
 </head>
-<body style="background-color:#F9F9F9;">
+<body style="background-color:#FFFFFF;">
 	<div style="background-color:#F9F9F9;" align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 10.2.</p>
 		<p>It seems your browser doesn't have this.</p>
