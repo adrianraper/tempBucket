@@ -46,7 +46,7 @@ package com.clarityenglish.bento.controller {
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
-			
+
 			feedback = note.getBody().feedback as Feedback;
 			var xhtml:XHTML = note.getBody().exercise as XHTML;
 			var substitutions:Object = note.getBody().substitutions;
@@ -85,13 +85,18 @@ package com.clarityenglish.bento.controller {
 				// Default to 300 width, variable height unless defined otherwise in the XML
 				xhtmlRichText.width = (isNaN(feedback.width)) ? 300 : feedback.width;
 				if (!isNaN(feedback.height)) xhtmlRichText.height = feedback.height;
-				
+			
 				xhtmlRichText.xhtml = xhtml;
 				xhtmlRichText.nodeId = "#" + feedback.source;
 				xhtmlRichText.addEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
 				
 				// #127
 				var scroller:Scroller = new Scroller();
+				scroller.left = 25;
+				scroller.right = 25;
+				scroller.top = 20;
+				scroller.bottom = 20;
+				scroller.maxHeight = 320;
 				scroller.viewport = xhtmlRichText;
 				titleWindow.addElement(scroller);
 				

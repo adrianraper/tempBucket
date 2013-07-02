@@ -86,6 +86,10 @@
 		
 		public static const FEEDBACK_SHOW:String = "bb/feedback_show";
 		
+		// gh#388
+		public static const FEEDBACK_REMINDER:String = "bb/feedback_reminder";
+		public static const FEEDBACK_REMINDER_SHOW:String = "bb/feedback_reminder_show";
+		
 		// gh#90 - set items (which can be anything) dirty or clean
 		public static const ITEM_DIRTY:String = "bb/item_dirty";
 		public static const ITEM_CLEAN:String = "bb/item_clean";

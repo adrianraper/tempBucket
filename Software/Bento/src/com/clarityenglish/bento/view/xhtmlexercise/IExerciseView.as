@@ -6,6 +6,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	
 	import flash.events.IEventDispatcher;
 	
+	import org.osflash.signals.Signal;
+	
 	public interface IExerciseView extends IEventDispatcher {
 		
 		function set courseCaption(value:String):void;
@@ -16,7 +18,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		function stopAllAudio():void;
 		// gh#348
 		function enableFeedbackAudio():void;
-		
+		// gh#388
+		function getFeedbackDisplay():Signal;
 	}
 	
 }

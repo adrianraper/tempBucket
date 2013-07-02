@@ -40,10 +40,7 @@
 	<s:HGroup left="70" top="168" includeIn="exercise" gap="0">
 		<s:Button id="backButton" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="forwardButton" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
-
-		<s:Group>
-			<s:Button id="feedbackButton" visible="false" />			
-		</s:Group>		
+		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>	
 	
 	<!-- Top Right buttons -->

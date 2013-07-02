@@ -22,10 +22,14 @@
 		<s:State name="unit" />
 		<s:State name="zone" />
 		<s:State name="exercise" />
+		<s:State name="progress" />
+		<s:State name="profile" />
 	</s:states>
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Home" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.tensebuster.view.progress.ProgressView" label="Progress" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="profileViewNavigator" firstView="com.clarityenglish.tensebuster.view.profile.ProfileView" label="My profile" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 	
 	<s:Group top="175" left="70" visible="{hostComponent.currentState == 'exercise'}">

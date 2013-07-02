@@ -2,6 +2,7 @@ package com.clarityenglish.tensebuster.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.tensebuster.view.home.HomeView;
+	import com.clarityenglish.tensebuster.view.progress.ProgressView;
 	import com.clarityenglish.tensebuster.view.unit.UnitView;
 	import com.clarityenglish.tensebuster.view.zone.ZoneView;
 	
@@ -98,7 +99,7 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function TitleView() {
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "home", "unit", "zone", "exercise" ], true);
+			StateUtil.addStates(this, [ "home", "unit", "zone", "exercise", "progress", "profile" ], true);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

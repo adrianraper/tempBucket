@@ -16,6 +16,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	
 	import flashx.textLayout.elements.BreakElement;
 	
+	import org.osflash.signals.Signal;
 	import org.puremvc.as3.interfaces.INotification;
 	
 	public class XHTMLExerciseMediator extends BentoMediator {
@@ -40,6 +41,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
 			// gh#338
 			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true);
+			// gh#388
+			(view.getFeedbackDisplay() as Signal).add(onFeedbackDisplay);
 		}
 		
 		public override function onRemove():void {
@@ -165,6 +168,11 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		
 		protected function onHintShow(event:HintEvent):void {
 			sendNotification(BBNotifications.HINT_SHOW, { exercise: view.exercise, question: event.question } );
+		}
+		
+		// gh#388
+		protected function onFeedbackDisplay(value:Boolean):void {
+			sendNotification(BBNotifications.FEEDBACK_REMINDER, value);
 		}
 	}
 	

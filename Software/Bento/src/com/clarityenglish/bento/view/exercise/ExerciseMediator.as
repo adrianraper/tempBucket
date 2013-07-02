@@ -41,6 +41,8 @@
 			view.previousExercise.add(onPreviousExercise);
 			view.printExercise.add(onPrintExercise);
 			view.backToMenu.add(onBackToMenu);
+			// gh#388
+			view.showFeedbackReminder.add(onShowFeedbackReminder);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
@@ -67,6 +69,8 @@
 			view.previousExercise.remove(onPreviousExercise);
 			view.printExercise.remove(onPrintExercise);
 			view.backToMenu.remove(onBackToMenu);
+			// gh#388
+			view.showFeedbackReminder.remove(onShowFeedbackReminder);
 			
 			// #414
 			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view);
@@ -78,6 +82,7 @@
 				BBNotifications.MARKING_SHOWN,
 				BBNotifications.EXERCISE_PRINTED,
 				BBNotifications.EXERCISE_TRY_AGAIN,
+				BBNotifications.FEEDBACK_REMINDER,
 			]);
 		}
 		
@@ -123,6 +128,9 @@
 					view.isMarked = false;
 					configureButtonVisibility(note.getBody() as Exercise);
 					break;
+				case BBNotifications.FEEDBACK_REMINDER:
+					feedbackReminderVisibility(note.getBody() as Boolean);
+					break;
 			}
 		}
 		
@@ -130,7 +138,15 @@
 			if (view.markingButton) view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
 			
 			// If there is exercise feedback then show the exercise feedback button
-			if (view.feedbackButton) view.feedbackButton.visible = view.feedbackButton.includeInLayout = getExerciseProxy(exercise).hasExerciseFeedback();
+			if (view.feedbackButton) view.feedbackButton.visible = view.feedbackButton.includeInLayout = getExerciseProxy(exercise).hasExerciseFeedback();	
+		}
+		
+		// gh#388
+		private function feedbackReminderVisibility(value:Boolean):void {
+			if (view.feedbackButton) {
+				view.feedbackButton.visible = view.feedbackButton.includeInLayout = value;
+				view.isFeedbackReminder = true;
+			}
 		}
 		
 		private function onPrintExercise(dynamicView:DynamicView):void {
@@ -171,6 +187,11 @@
 		
 		private function onBackToMenu():void {
 			sendNotification(BBNotifications.SELECTED_NODE_UP);
+		}
+		
+		// gh#388
+		private function onShowFeedbackReminder(value:String):void {
+			sendNotification(BBNotifications.FEEDBACK_REMINDER_SHOW, value);
 		}
 		
 	}

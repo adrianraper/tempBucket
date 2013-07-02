@@ -6,6 +6,10 @@
 	import com.clarityenglish.tensebuster.controller.TenseBusterStartupCommand;
 	import com.clarityenglish.tensebuster.view.home.HomeMediator;
 	import com.clarityenglish.tensebuster.view.home.HomeView;
+	import com.clarityenglish.tensebuster.view.profile.ProfileMediator;
+	import com.clarityenglish.tensebuster.view.profile.ProfileView;
+	import com.clarityenglish.tensebuster.view.progress.ProgressMediator;
+	import com.clarityenglish.tensebuster.view.progress.ProgressView;
 	import com.clarityenglish.tensebuster.view.title.TitleMediator;
 	import com.clarityenglish.tensebuster.view.title.TitleView;
 	import com.clarityenglish.tensebuster.view.unit.UnitMediator;
@@ -35,6 +39,8 @@
 			mapView(UnitView, UnitMediator);
 			mapView(ZoneView, ZoneMediator);
 			mapView(ExerciseView, ExerciseMediator);
+			mapView(ProgressView, ProgressMediator);
+			mapView(ProfileView, ProfileMediator);
 			/*mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(SupportView, SupportMediator);*/

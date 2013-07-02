@@ -4,8 +4,10 @@
 @namespace unit "com.clarityenglish.tensebuster.view.unit.*";
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
+@namespace progress "com.clarityenglish.tensebuster.view.progress.*";
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace components "com.clarityenglish.textLayout.components.*";
+@namespace profile "com.clarityenglish.tensebuster.view.profile.*";
 
 global {
 	EColor : #EC1C32;
@@ -13,6 +15,10 @@ global {
 	IColor : #8AA13B;
 	UColor : #0499A6;
 	AColor : #5D3996;	
+}
+
+s|TitleWindow.feedbackTitleWindow {
+	skinClass: ClassReference("skins.tensebuster.titleWindows.FeedbackTitleWindowSkin");
 }
 
 tensebuster|TenseBusterApplication {
@@ -62,6 +68,19 @@ exercise|ExerciseView s|Button#printButton {
 exercise|ExerciseView s|Button#startAgainButton {
 	skinClass: ClassReference("skins.tensebuster.exercise.StartAgainButtonSkin");
 }
+
+exercise|ExerciseView s|Button#feedbackButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.FeedbackButtonSkin");
+}
+
+progress|ProgressView {
+	skinClass: ClassReference("skins.tensebuster.progress.ProgressSkin");
+}
+
+profile|ProfileView {
+	skinClass: ClassReference("skins.tensebuster.profile.ProfileSkin");
+}
+	
 
 s|VideoPlayer {
 	skinClass: ClassReference("skins.bento.VideoPlayerSkin");

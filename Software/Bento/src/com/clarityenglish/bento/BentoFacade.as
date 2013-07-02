@@ -155,6 +155,9 @@
 			// gh#84 and gh#90
 			registerCommand(BBNotifications.ITEM_DIRTY, ItemDirtyCommand);
 			registerCommand(BBNotifications.ITEM_CLEAN, ItemCleanCommand);
+			
+			// gh#388
+			registerCommand(BBNotifications.FEEDBACK_REMINDER_SHOW, FeedbackReminderShowCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

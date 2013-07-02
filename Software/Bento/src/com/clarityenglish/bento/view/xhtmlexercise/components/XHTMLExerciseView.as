@@ -32,6 +32,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import mx.graphics.SolidColor;
 	
 	import org.davekeen.util.PointUtil;
+	import org.osflash.signals.Signal;
 	
 	import spark.components.Group;
 	
@@ -99,6 +100,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		[Bindable]
 		public var atLeastOneSelectedAnswerHasFeedback:Boolean;
 		
+		public var feedbackDisplay:Signal = new Signal(Boolean);
+		
 		public function XHTMLExerciseView() {
 			super();
 			
@@ -114,6 +117,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			return _xhtml as Exercise;
 		}
 		
+		// gh#388
+		public function getFeedbackDisplay():Signal {
+			return feedbackDisplay;
+		}
 		/**
 		 * Search through all the sections for the given node
 		 * 
@@ -299,7 +306,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				XHTML.addClass(answerNode, answer.markingClass);
 				
 				// #102
-				if (isShowAnswers && answer.feedback) atLeastOneSelectedAnswerHasFeedback = true;
+				// gh#388
+				if (isShowAnswers && answer.feedback) {	
+					atLeastOneSelectedAnswerHasFeedback = true;
+					feedbackDisplay.dispatch(atLeastOneSelectedAnswerHasFeedback);
+				}
 				
 				TLFUtil.markFlowElementFormatChanged(answerElement);
 				textFlowDamageAccumulator.damageTextFlow(answerElement.getTextFlow());
