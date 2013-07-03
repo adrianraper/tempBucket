@@ -146,8 +146,8 @@ SQL;
 				switch ($condition) {
 					case 'individuals':
 						// gh#149
-						// Ignore for sqlite?
-						if ($GLOBALS['dbms'] != 'pdo_sqlite') {
+						// gh #385 Ignore for sqlite as we don't plan running DMS there
+						if (stristr($GLOBALS['dbms'],'sqlite') !== FALSE) {
 							if ($value == 'true') {
 								//$selectBuilder->addWhere(NEG_MYPOSTFIX);
 								$selectBuilder->addWhere("a.F_Prefix REGEXP '^[0-9]+$'");

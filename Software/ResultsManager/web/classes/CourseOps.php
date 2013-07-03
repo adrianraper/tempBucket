@@ -156,6 +156,7 @@ class CourseOps {
 					throw $copyOps->getExceptionForId("errorSavingCourseDates");
 				
 				// 1.1 First write the T_CourseStart row
+				// gh#385 Make sure all simpleXML objects are converted to string
 				$fields = array(
 					"F_GroupID" => (string)$group['id'],
 					"F_RootID" => Session::get('rootID'),
@@ -177,7 +178,8 @@ class CourseOps {
 				$startTimestamp = strtotime((string)$group['startDate']);
 				foreach ($course->unit as $unit) {
 					/*
-					// SQLite fails to insert, but no errors
+					 * gh#385 SQLite fails to insert this, but no errors
+					 * also we were relying on MySQL to implicitly turn a timestamp into a datetime - which fails for SQLite
 					$fields = array(
 						"F_GroupID" => (string)$group['id'],
 						"F_RootID" => Session::get('rootID'),
@@ -189,7 +191,7 @@ class CourseOps {
 					*/
 					$sql = <<<SQL
 						INSERT INTO T_UnitStart 
-						(F_GroupID,F_RootID,F_CourseID,F_UnitID,F_StartDate)
+						(F_GroupID, F_RootID, F_CourseID, F_UnitID, F_StartDate)
 						VALUES (?,?,?,?,?)
 SQL;
 					$bindingParams = array((string)$group['id'],Session::get('rootID'),(string)$course['id'],(string)$unit['id'],
