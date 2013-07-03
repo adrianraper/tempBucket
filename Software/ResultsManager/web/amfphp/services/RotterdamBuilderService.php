@@ -55,29 +55,23 @@ class RotterdamBuilderService extends RotterdamService {
 		if ($href->type == Href::MENU_XHTML) {
 			$courseId = $href->options["courseId"];
 
-			if ($GLOBALS['dbms'] == 'pdo_sqlite') {
-				$sql = <<<EOD
-					SELECT F_UserID 
-					FROM T_CourseConcurrency
-					WHERE F_CourseID=?
-					AND F_UserID != ?
-					AND F_Timestamp > datetime(?, '-1 minute')
+			// gh#385
+			$datetimeStamp = new DateTime();
+			$datetimeStamp->add(new DateInterval('PT-1M'));
+			$sql = <<<EOD
+				SELECT F_UserID 
+				FROM T_CourseConcurrency
+				WHERE F_CourseID = ?
+				AND F_UserID != ?
+				AND F_Timestamp > ?;
 EOD;
-			} else {
-				$sql = <<<EOD
-					SELECT F_UserID 
-					FROM T_CourseConcurrency
-					WHERE F_CourseID=?
-					AND F_UserID != ?
-					AND F_Timestamp > DATE_SUB(?, INTERVAL 1 MINUTE)
-EOD;
-			}
-			$results = $this->db->GetCol($sql, array($courseId, Session::get('userID'), date("Y-m-d H:i:s")));
+			$bindingParams = array($courseId, Session::get('userID'), $datetimeStamp);
+			$results = $this->db->GetCol($sql, $bindingParams);
 			
 			if ($results[0] > 0)
 				throw $this->copyOps->getExceptionForId("errorConcurrentCourseAccess");
 			
-			// Otherwise this is a successfuly login so update the timer (this is also done every minute triggered by the client)
+			// Otherwise this is a successfull login so update the timer (this is also done every minute triggered by the client)
 			$this->courseSessionUpdate($href->options["courseId"]);
 		}
 		

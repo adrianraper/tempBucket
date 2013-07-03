@@ -93,14 +93,13 @@ package com.clarityenglish.rotterdam.controller {
 			
 			var crypt:Crypt = new Crypt();
 			var argList:String = "?data=" + crypt.encryptURL(parameters.join("&"));
-			log.info("plain arglist=" + parameters.join("&"));
-			
+			// log.info("plain arglist=" + parameters.join("&"));
 
 			// Then run this as a new browser window
 			// TODO: At some point BentoTitles could open their exercises directly in Rotterdam Player
 			// gh#92
 			navigateToURL(new URLRequest(area + startFolder + startPage + argList), "_blank");
-			log.info("Opening content for uid=" + uid.toString());
+			// log.info("Opening content for uid=" + uid.toString());
 		}
 	}
 	
