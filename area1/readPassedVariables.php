@@ -32,10 +32,3 @@
 			$prefix = $_SESSION['Prefix'];
 		}
 	}
-
-	if (!$prefix) {
-		$logStr = "from Start page Time=".date("D M j G:i:s T Y").", HTTP_HOST=".$_SERVER['HTTP_HOST'].", HTTP_X_FORWARDED_FOR=".$_SERVER['HTTP_X_FORWARDED_FOR'].", HTTP_CLIENT_IP=".$_SERVER["HTTP_CLIENT_IP"].", REMOTE_ADDR=".$_SERVER["REMOTE_ADDR"].", pc=".$productCode;
-		error_log("$logStr\r\n", 3, "/tmp/session_vars.log");
-		header("location: /error/session_timeout.htm");
-		exit;
-	}

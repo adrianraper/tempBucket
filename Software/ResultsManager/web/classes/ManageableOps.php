@@ -1753,7 +1753,7 @@ EOD;
 			$rootClause = '';
 		}
 		
-		//gh:#98.1
+		// gh#98.1
 		// Sky/AR If we always block duplicate emails, it means that ORS can't use ID login and pass duplicate emails
 		// which the Indian agents insist on doing.
 		//if ($email) {
@@ -1837,7 +1837,7 @@ EOD;
 			//$rs = $this->db->Execute($sql, array($username, $rootID));
 			$rs = $this->db->Execute($sql, array($username));
 			
-			//gh:#98
+			//gh#98
 			/*// v3.6.1 Initialise return
 			$rc = Array();
 			$rc['returnInfo'] = Array();*/

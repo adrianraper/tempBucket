@@ -62,6 +62,7 @@
 		echo "you have expired";
 	}
 */
+/*
 	if (version_compare(PHP_VERSION, '5.3.0') >= 0) {
     	echo 'I am at least PHP version 5.3.0, my version: ' . PHP_VERSION . "\n";
 	}
@@ -69,6 +70,51 @@
 	if ($contents)
 		$xml = simplexml_load_string($contents);
 	print_r($xml);	
+*/
+	function isIPInRange($ip, $ipRangeList) {
+	 	$ipRangeArray = explode(',', $ipRangeList);
+		foreach ($ipRangeArray as $ipRange) {
+			// first, is there an exact match?
+			if ($ip == $ipRange)
+				return true;
+			
+			// or does it fall in the range? 
+			// assume nnn.nnn.nnn.x-y or nnn.nnn.x-y
+			$targetBlocks = explode('.',$ipRange);
+			$thisBlocks = explode(".",$ip);
+			// how far down do they specify?
+			for ($i=0; $i<count($targetBlocks); $i++) {
+				// echo "match ".$thisBlocks[$i]." against ".$targetBlocks[$i]."<br/>";
+				if ($targetBlocks[$i] == $thisBlocks[$i]) {
+				} else if (strpos($targetBlocks[$i], '-') !== FALSE) {
+					$targetArray = explode('-',$targetBlocks[$i]);
+					$targetStart = (int) $targetArray[0];
+					$targetEnd = (int) $targetArray[1];
+					$thisDetail = (int) $thisBlocks[$i];
+					if ($targetStart <= $thisDetail && $thisDetail <= $targetEnd) {
+						//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
+						return true;
+					}
+				} else {
+					//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
+					break;
+				}
+			}
+		}
+		return false;
+	}
+	$ip = '192.168.8.74';
+	$ranges = '192.168.8.56';
+	$ranges = '192.168.8.55,192.168.8.0-75,192.168.8.76-78';
+	//$ranges = '192.168.8-16.0-64'; // will ignore 4th bit range
+	//$ranges = '192.168.8-16';
+	//$ranges = '192.168.8'; // will not work
+	//$ranges = '192.168'; // will not work
+	if (isIPInRange($ip, $ranges)) {
+		echo "yes, $ip is in range $ranges";
+	} else {
+		echo "no, $ip is NOT in range $ranges";
+	}
 		
 flush();
 exit();
