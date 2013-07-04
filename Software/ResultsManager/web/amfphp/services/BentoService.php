@@ -117,6 +117,10 @@ class BentoService extends AbstractService {
 		
 		$account = $this->loginOps->getAccountSettings($config);
 		
+		// gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
+		if (!$account)
+			return null;
+		
 		// TODO. We will also need the top group ID for this account to help with hiddenContent
 		// Actually hidden content might want the group that comes back from login rather than this one?
 		// and for addUser
@@ -166,6 +170,14 @@ class BentoService extends AbstractService {
 			$this->loginOps->changeDB($this->db);
 			$this->manageableOps->changeDB($this->db);
 		}		
+	}
+	
+	/**
+	 * This call checks to see if a given IP is registered to a particular account.
+	 * It is separate from getAccountSettings so that the calling program can cope differently with the response 
+	 */
+	public function getIPMatch($config) {
+		return $this->getAccountSettings($config);
 	}
 	
 	// Rewritten from RM version

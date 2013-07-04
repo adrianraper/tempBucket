@@ -124,45 +124,50 @@ package com.clarityenglish.common.model {
 				if (!config.prefix) config.prefix = "Clarity";
 			}
 			
-			
 			// gh#21 If you are basing the account on the login, then go direct to login
 			if (config.loginOption && !config.prefix && !config.rootID) {
-				
-				// There is a minimum of account information that you will have to default to be able to display login screen
-				// productCode, productVersion and loginOption come from XML
-				config.rootID = -1;
-				config.account = new Account();
-				var dummyTitle:Title = new Title();
-				dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
-				config.account.titles = new Array(dummyTitle);
-				config.account.name = '';
-				config.account.verified = 1;
-				config.account.selfRegister = 0;
-				config.account.loginOption = config.loginOption;
-				// trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
-				config.licence = new Licence();
-				// gh#165
-				// config.licence.licenceType = Title.LICENCE_TYPE_LT;
-				
-				// gh#39 It seems that a problem is caused by sending the ACCOUNT_LOADED notification before the state machine 
-				// has properly transitioned into the next state, causing unpredictable results.
-				// So here is a hacky but working solution: 
-				setTimeout(function():void {
-					sendNotification(CommonNotifications.ACCOUNT_LOADED);
-				}, 100); 
+				// gh#315 Trigger a call to check the IP first
+				var dbConfig:Object = { dbHost: config.dbHost, ip: config.ip, productCode: config.productCode };
+				var params:Array = [ dbConfig ];
+				new RemoteDelegate("getIPMatch", params, this).execute();
 				
 			} else {			
-				
 				// Create a subset of the config object to pass to the remote call
 				// I could do some error handling before we go
 				//	we must have rootID or prefix (prefix is most likely)
 				//	we must have a productCode
 				//  and it isn't nice to send NaN as rootID
-				var dbConfig:Object = { dbHost: config.dbHost, prefix: config.prefix, rootID: config.rootID, productCode: config.productCode };
-				var params:Array = [ dbConfig ];
+				dbConfig = { dbHost: config.dbHost, prefix: config.prefix, rootID: config.rootID, productCode: config.productCode };
+				params = [ dbConfig ];
 				new RemoteDelegate("getAccountSettings", params, this).execute();
-				//onDelegateResult("getAccountSettings", {status:"success", account:{rootID:"163", name:'Clarity', loginOptions:2, verified:true, licenceStartDate:100, licenceExpiryDate:999999999}});
 			}
+		}
+
+		// gh#315
+		public function createDummyAccount():void {
+			// There is a minimum of account information that you will have to default to be able to display login screen
+			// productCode, productVersion and loginOption come from XML
+			config.rootID = -1;
+			config.account = new Account();
+			var dummyTitle:Title = new Title();
+			dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
+			config.account.titles = new Array(dummyTitle);
+			config.account.name = '';
+			config.account.verified = 1;
+			config.account.selfRegister = 0;
+			config.account.loginOption = config.loginOption;
+			// trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
+			config.licence = new Licence();
+			// gh#165
+			// config.licence.licenceType = Title.LICENCE_TYPE_LT;
+			
+			// gh#39 It seems that a problem is caused by sending the ACCOUNT_LOADED notification before the state machine 
+			// has properly transitioned into the next state, causing unpredictable results.
+			// So here is a hacky but working solution: 
+			setTimeout(function():void {
+				sendNotification(CommonNotifications.ACCOUNT_LOADED);
+			}, 100); 
+			
 		}
 		
 		/**
@@ -397,6 +402,14 @@ package com.clarityenglish.common.model {
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		public function onDelegateResult(operation:String, data:Object):void {
 			switch (operation) {
+				// gh#315
+				case "getIPMatch":
+					// If there is no data, it means no account found, so trigger login based account
+					if (!data) {
+						this.createDummyAccount();
+						break;
+					}
+					// No break as data contains the full account information so process it as in getAccountSettings
 				case "getAccountSettings":
 					if (data) {
 						// TODO. We should be able to set the language code for 
@@ -443,6 +456,7 @@ package com.clarityenglish.common.model {
 						sendNotification(CommonNotifications.ACCOUNT_LOADED);
 					}
 					break;
+				
 				default:
 					sendNotification(CommonNotifications.TRACE_ERROR, "Result from unknown operation: " + operation);
 			}

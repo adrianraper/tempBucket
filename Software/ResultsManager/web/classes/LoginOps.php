@@ -778,7 +778,10 @@ EOD;
 			$rootID = $config['rootID'];
 		if (isset($config['productCode'])) 
 			$productCode = $config['productCode'];
-		
+		// gh#315
+		if (isset($config['ip'])) 
+			$ip = $config['ip'];
+			
 		// gh#39 productCode might be a comma delimited list '52,53'
 		if (!$productCode)
 			throw $this->copyOps->getExceptionForId("errorNoProductCode");
@@ -790,8 +793,18 @@ EOD;
 		//	$prefix = $config['prefix'];
 		//if (!$rootID)
 		//	throw new Exception("No rootID sent to getAccountSettings", 100);
-		if (!$prefix && !$rootID)
-			throw $this->copyOps->getExceptionForId("errorNoPrefixOrRoot");
+		if (!$prefix && !$rootID) {
+			// gh#315 Allow lookup for IP
+			if ($ip) {
+				$rawRootID = $this->accountOps->getRootIDFromIP($ip);
+				$rootID = (int) $rawRootID;
+				if (!$rootID) 
+					return null;
+					
+			} else {
+				throw $this->copyOps->getExceptionForId("errorNoPrefixOrRoot");
+			}
+		}
 		
 		// Query the database
 		// Kind of silly, but bento is usually keyed on prefix and getAccounts always works on rootID

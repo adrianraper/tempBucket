@@ -15,6 +15,6 @@
 	$referrer = $ip = $server = $productCode = $accountName = '';
 	$course = $startingPoint = $resize = '';
 
-	$locationFile = "location.txt";
-	$courseFile='course.xml';
+	$locationFile = 'location.txt';
+	$courseFile = 'course.xml';
 	

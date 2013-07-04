@@ -1,63 +1,33 @@
 <?php
-
-	if (isset($_GET['session']))
-		session_id($_GET['session']);
-		
-	session_start();
-	$currentSessionID = session_id();
+	// Initialisation
+	require_once '../startInit.php';
 	
-	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
-	$studentID = $Email = $email = $userID = $instanceID = '';
-	$referrer = $ip = $server = $productCode = '';
-
+	// Picking up passed data
+	require_once '../readPassedVariables.php';
+	
 	// For this product
-	// $productCode = 52; // RoadToIELTS 2
+	$productCode = 52; // RoadToIELTS 2
 	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
 	$startControl = "$webShare/Software/BentoTitles/IELTS/bin-debug/";
-
-	$locationFile = "tablet-config.xml";
 	
-	if (isset($_SESSION['UserID'])) $userID = $_SESSION['UserID'];
-	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']);
-	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
-	if (isset($_SESSION['StudentID'])) $studentID = $_SESSION['StudentID'];
-	if (isset($_SESSION['Email'])) $Email = $_SESSION['Email'];
-	if (isset($_SESSION['InstanceID'])) $instanceID = $_SESSION['InstanceID'];
-
-	$server = $_SERVER['HTTP_HOST'];
-	// v6.5.6 Add support for HTTP_X_FORWARDED_FOR
-	if (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-		// This might show a list of IPs. Assume/hope that EZProxy puts itself at the head of the list.
-		// Not always it doesn't. So need to send the whole list to the licence checking algorithm. Better send as a list than an array.
-		//$ipList = explode(',',$_SERVER['HTTP_X_FORWARDED_FOR']);
-		//$ip = $ipList[0];
-		$ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
-		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
-	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
-		$ip = $_SERVER["HTTP_CLIENT_IP"];
-	} else {
-		$ip = $_SERVER["REMOTE_ADDR"];
-	}
-	// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
-	if (isset($_SERVER['HTTP_REFERER']) && isset($_SERVER['HTTP_REFERER']) != '') {
-		if (strpos($_SERVER['HTTP_REFERER'],'?')) {
-			$referrer=substr($_SERVER['HTTP_REFERER'],0,strpos($_SERVER['HTTP_REFERER'],'?'));
-		} else {
-			$referrer = $_SERVER['HTTP_REFERER'];
-		}
+	// Picking up IP and referrer for security checking
+	require_once '../securityCheck.php';
+	
+	$locationFile = "tablet-config.xml";
 	// For PLS, IE might strip HTTP_REFERER
-	} elseif (isset($_SESSION['Referer'])) {
+	if (isset($_SESSION['Referer'])) {
 		$referrer = $_SESSION['Referer'];
 	}
-
+	
+	// There is a strange bug that squishes everything up if the page is empty apart from the swf
+	echo "<p/>";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
 	<title>Road to IELTS from Clarity and the British Council</title>
-	<link rel="shortcut icon" href="<?php echo $webShare ?>/Software/R2IV2.ico" type="image/x-icon" />
+	<link rel="shortcut icon" href="/Software/R2IV2.ico" type="image/x-icon" />
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta name="language" content="en" />
 	<meta name="description" content="" />
@@ -93,7 +63,7 @@
 		var webShare = "<?php echo $webShare ?>";
 		var startControl = "<?php echo $startControl ?>";
 		var swfName = "<?php echo $swfName ?>";
-		var versionControl = "&version=1097";
+		var versionControl = "&version=1107";
 
 		// v6.5.5.6 Allow resize screen mode
 		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
@@ -170,19 +140,17 @@
 		var expressInstall = webShare + "/Software/Common/expressInstall.swf";
 		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
-
+	
+<!--CSS pop up layout box-->
+<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
+<style type="text/css">
+	body { 	margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
+</style>
 </head>
-<body style="background-color:#F9F9F9;">
-	<div style="background-color:#F9F9F9;" align="center" id="altContent">
-		<p>This application requires Adobe's Flash player, running at least version 10.2.</p>
-		<p>It seems your browser doesn't have this.</p>
-		<p>Please download the latest Adobe Flash Player.</p>
-		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
-		<p>If you still get this message after installation, then your browser is stopping the scripts on this page from running.</p>
-	</div>
-<NOSCRIPT style="font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;">
-This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
-Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
-to switch this on and then refresh this page.</NOSCRIPT>
+<body onload="onLoad()">
+
+<?php require_once '../resizeCSS.php';?>
+<?php require_once '../orchidAltContent.php';?>
+
 </body>
 </html>

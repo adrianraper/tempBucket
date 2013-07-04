@@ -125,6 +125,7 @@ class AbstractService {
 			$function_called == "getEveryonesCoverage" ||
 			$function_called == "getEveryoneSummary" ||
 			$function_called == "getAccountSettings" ||
+			$function_called == "getIPMatch" ||
 			$function_called == "updateUser" ||
 			$function_called == "updateLicence" ||
 			$function_called == "getInstanceID" ||
