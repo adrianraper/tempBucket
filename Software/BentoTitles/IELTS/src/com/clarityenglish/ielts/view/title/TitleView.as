@@ -11,11 +11,15 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
 	
+	import flashx.textLayout.elements.TextFlow;
+	
 	import mx.controls.SWFLoader;
+	import mx.controls.Text;
 	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.DateUtil;
@@ -24,8 +28,10 @@ package com.clarityenglish.ielts.view.title {
 	
 	import spark.components.Button;
 	import spark.components.Label;
+	import spark.components.RichEditableText;
 	import spark.components.TabbedViewNavigator;
 	import spark.components.ViewNavigator;
+	import spark.utils.TextFlowUtil;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
@@ -103,6 +109,10 @@ package com.clarityenglish.ielts.view.title {
 		public var noticeLabel:Label;
 		
 		[SkinPart]
+		public var topInforButton:InforButton;
+		
+		// gh#383
+		[SkinPart]
 		public var infoButton:SWFLoader;
 		
 		[Bindable]
@@ -121,7 +131,8 @@ package com.clarityenglish.ielts.view.title {
 		private var shortDelayTimer:Timer;
 		
 		// gh#383
-		private var _inforButtonSource:String;
+		private var _infoButtonText:String;
+		private var _inforButtonTextFlow:TextFlow;
 		
 		public var logout:Signal = new Signal();
 		public var backToMenu:Signal = new Signal();
@@ -183,12 +194,22 @@ package com.clarityenglish.ielts.view.title {
 		
 		// gh#383
 		[Bindable]
-		public function get inforButtonSource():String {
-			return _inforButtonSource;
+		public function get infoButtonText():String {
+			return _infoButtonText;
 		}
 		
-		public function set inforButtonSource(value:String):void {
-			_inforButtonSource = value;
+		public function set infoButtonText(value:String):void {
+			_infoButtonText = value;
+		}
+		
+		// gh#383
+		[Bindable]
+		public function get inforButtonTextFlow():TextFlow {
+			return _inforButtonTextFlow;
+		}
+		
+		public function set inforButtonTextFlow(value:TextFlow):void {
+			_inforButtonTextFlow = value;
 		}
 		
 		[Bindable(event="productCodeChanged")]
@@ -284,6 +305,18 @@ package com.clarityenglish.ielts.view.title {
 			return null;
 		}
 		
+		// gh#383
+		[Bindable(event="productVersionChanged")]
+		public function get productVersionInforButton():Boolean {
+			if (_productVersion == IELTSApplication.LAST_MINUTE) {
+				// assign default value to information button in home menu page
+				infoButtonText = copyProvider.getCopyForId("infoReadingText");
+				inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);
+				return true;
+			} else {
+				return false;
+			}
+		}
 
 		[Bindable(event="licenceTypeChanged")]
 		public function get licenceTypeText():String {
@@ -336,8 +369,10 @@ package com.clarityenglish.ielts.view.title {
 				// #299, #337
 				case infoButton:
 					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
-					// gh#383 assign the initial value to inforButton source
-					inforButtonSource = this.languageAssetFolder + "upgrade.jpg";
+					break;
+				// gh#383
+				case topInforButton:
+					instance.addEventListener(MouseEvent.CLICK, onRequestInfoClick);
 					break;
 				case homeViewNavigator:
 					instance.label = copyProvider.getCopyForId("Home");
@@ -457,24 +492,31 @@ package com.clarityenglish.ielts.view.title {
 			return currentState;
 		}
 		
-		// gh383
+		// gh#383
 		public function getCourseClass(value:XML):void {
-			if (value.localName() == "course") {
-				switch (value.@["class"].toString()) {
-					case "reading":
-						inforButtonSource = this.languageAssetFolder + "upgrade.jpg";
-						break;
-					case "listening":
-						inforButtonSource = this.languageAssetFolder + "register.jpg";
-						break;
-					case "speaking":
-						inforButtonSource = this.languageAssetFolder + "register.jpg";
-						break;
-					case "writing":
-						inforButtonSource = this.languageAssetFolder + "register.jpg";
-						break;
-				}
-			}
+				if (value.localName() == "course") {
+					switch (value.@["class"].toString()) {
+						case "reading":
+							infoButtonText = copyProvider.getCopyForId("infoReadingText");
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);						
+							break;
+						case "listening":
+							infoButtonText = copyProvider.getCopyForId("infoListeningText");
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							break;
+						case "speaking":
+							infoButtonText = copyProvider.getCopyForId("infoSpeakingText");
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							break;
+						case "writing":
+							infoButtonText = copyProvider.getCopyForId("infoWritingText");
+							inforButtonTextFlow = TextFlowUtil.importFromString(infoButtonText);	
+							break;
+						default:
+							
+							break;
+					}
+				}			
 		}
 	}
 	

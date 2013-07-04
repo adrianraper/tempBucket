@@ -60,7 +60,7 @@
 		</s:VGroup>		
 	</s:VGroup>
 	<s:VGroup width="100%">
-		<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 50}">
+		<s:VGroup width="100%" paddingTop="{(hostComponent.isFullVersion()) ? 20 : 70}">
 			<s:Button id="readingCourseButton" width="100%" />
 			<s:Spacer height="1" />
 			<s:Button id="listeningCourseButton" width="100%" />
@@ -72,6 +72,23 @@
 		<s:VGroup width="100%" includeIn="testDrive" paddingTop="6">
 			<s:Button id="registerInfoButton" width="100%" useHandCursor="true"  />
 		</s:VGroup>
-	</s:VGroup>
+		<!--gh#383-->
+		<s:HGroup paddingTop="10" includeIn="lastMinute">
+			<s:Group>
+				<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/LMPromoteLeft.png')" width="100%" left="-5"/>
+				<s:Label id="promoteWording1" width="125" left="193" top="20" fontSize="12" fontWeight="bold" color="0x0A446B" />
+				<s:Label id="promoteWording2" width="120" left="195" top="70" fontSize="11" color="0x0A446B"/>
+			</s:Group>
+			<s:VGroup paddingTop="7">
+				<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/LMPromoteRight.png')" />
+				<s:Spacer height="8" />
+				<s:Group right="0">
+					<s:Button id="findMoreButton" fontSize="18" color="0xFFFFFF" useHandCursor="true" buttonMode="true"/>
+					<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/findMoreIcon.png')" right="-80" top="10"/>
+				</s:Group>
+				
+			</s:VGroup>			
+		</s:HGroup>		
+	</s:VGroup>	
 
 </s:Skin>

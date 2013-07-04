@@ -66,6 +66,16 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart(required="true")]
 		public var noticeLabel:Label;
 		
+		// gh#383
+		[SkinPart]
+		public var findMoreButton:Button;
+		
+		[SkinPart]
+		public var promoteWording1:Label;
+		
+		[SkinPart]
+		public var promoteWording2:Label;
+		
 		[Bindable]
 		public var dataProvider:XML;
 		
@@ -82,6 +92,8 @@ package com.clarityenglish.ielts.view.home {
 		
 		public var courseSelect:Signal = new Signal(XML);
 		public var info:Signal = new Signal();
+		// gh#383
+		public var findMore:Signal = new Signal();
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -187,8 +199,16 @@ package com.clarityenglish.ielts.view.home {
 				case writingCoverageBar:
 					instance.copyProvider = copyProvider;
 					break;
-				
-				// gh#166
+				// gh#383
+				case findMoreButton:
+					findMoreButton.addEventListener(MouseEvent.CLICK, onFindMoreClicked);
+					break;
+				case promoteWording1:
+					promoteWording1.text = copyProvider.getCopyForId("promoteWording1");
+					break;
+				case promoteWording2:
+					promoteWording2.text = copyProvider.getCopyForId("promoteWording2");
+					break;
 			}
 		}
 				
@@ -252,6 +272,11 @@ package com.clarityenglish.ielts.view.home {
 		
 		private function onRequestInfoClick(event:MouseEvent):void {
 			info.dispatch();
+		}
+		
+		// gh#383
+		protected function onFindMoreClicked(event:MouseEvent):void {
+			findMore.dispatch();
 		}
 
 	}

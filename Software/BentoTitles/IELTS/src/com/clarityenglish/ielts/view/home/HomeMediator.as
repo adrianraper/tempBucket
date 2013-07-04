@@ -46,6 +46,8 @@
 			// This view runs of the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
+			// gh#383
+			view.findMore.add(onFindMoreClicked);
 		}
 		
 		override public function onRemove():void {
@@ -89,6 +91,13 @@
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var registerPage:String = (configProxy.getConfig().registerURL) ? configProxy.getConfig().registerURL : "www.takeielts.org";
 			sendNotification(IELTSNotifications.IELTS_REGISTER, registerPage);
+		}
+		
+		// gh#383
+		protected function onFindMoreClicked():void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var morePage:String = (configProxy.getConfig().upgradeURL) ? configProxy.getConfig().upgradeURL : "www.ieltspractice.com";
+			sendNotification(IELTSNotifications.IELTS_REGISTER, morePage);
 		}
 
 	}
