@@ -1,4 +1,15 @@
-<div align="center" id="altContent">
+<?php 
+
+//2013 Mar 5 Vivying added 
+if (isset($_GET['resize']) || $resize) {
+	//if it is resizing flag, disable the scollbar enabling in CSS
+	echo '<div id="load_program_resize">';
+} else {
+	//otherwise this id in CSS will enable the scrollbar
+	echo '<div id="load_program_original">';
+}
+?>
+<div id="altContent">
 	<p>This application requires Adobe's Flash player, running at least version 9.</p>
 	<p>It seems your browser doesn't have this.</p>
 	<p>Please download the latest Adobe Flash Player.</p>
@@ -8,5 +19,6 @@
 <NOSCRIPT>
 This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
 Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
-to switch this on and then refresh this page.</NOSCRIPT>
+to switch this on and then refresh this page.
+</NOSCRIPT>
 </div>

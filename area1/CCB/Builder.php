@@ -4,6 +4,8 @@
 		
 	session_start();
 	$currentSessionID = session_id();
+
+	unset($_SESSION['dbHost']);
 	
 	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $Email = $email = $userID = $instanceID = '';
