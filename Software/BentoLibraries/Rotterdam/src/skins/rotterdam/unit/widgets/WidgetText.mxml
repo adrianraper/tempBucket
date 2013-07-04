@@ -218,13 +218,14 @@
 		</s:fill>
 	</s:Rect>
 	
+	<!-- gh#389 selectable is always true -->
 	<components:PromptingRichEditableText id="richEditableText"
 										  placeholder="{widget.placeholder}"
 										  left="8" right="8" top="8" minHeight="{minHeight}"
 										  fontFamily="Helvetica" fontSize="13"
 										  backgroundAlpha="0" focusSkin="{null}" 
 										  editable.normal="false" editable.editing="true"
-										  selectable.normal="false" selectable.editing="true"
+										  selectable="true"
 										  valueCommit="onValueCommit(event)"
 										  selectionChange="onSelectionChange(event)"
 										  focusIn.editing="focusHighlight.visible = true"

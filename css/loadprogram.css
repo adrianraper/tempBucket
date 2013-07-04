@@ -4,7 +4,7 @@
 html{-webkit-text-size-adjust:none;} 
 
 body {
-	margin: 10px 0 0 0;
+	margin:0 0 0 0;
 	font-family:Verdana, Arial, Helvetica, sans-serif;
 	font-size:11px;
 	text-align:center;
@@ -12,7 +12,42 @@ body {
 }
 
 #altContent {
-	margin:40px 0 0 0;
+	margin:0 0 0 0;
 	padding:0;
-	text-align: center;
+	text-align:left;
+}
+
+#load_program_resize {
+	margin:0;
+	padding:0;
+}
+
+#load_program_original {
+	overflow:auto scroll;
+	display:block;
+	height:640px;
+	width:760px;
+	position:absolute;
+	left:50%;
+	top:50%;
+	margin:-320px 0 0 -380px;
+}
+/* Powerpoint */
+#note_line {
+	text-align:center;
+	background-color:#FFFFFF;
+	color:#000000;
+	font-size:12px;
+	padding:5px 0;
+	margin:0 auto;
+}
+#ppt_content {
+	width:720px;
+	margin:0 auto;
+	padding:0;
+}
+#ppt_content_advance {
+	width:953px;
+	margin:0 auto;
+	padding:0;
 }
