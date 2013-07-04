@@ -30,7 +30,7 @@
 		import mx.controls.Alert;
 		import gs.util.PlayerUtils;
 		import com.clarityenglish.recorder.Constants;
-		import com.clarityenglish.utils.TraceUtils;
+		//import com.clarityenglish.utils.TraceUtils;
 		//import nl.demonsters.debugger.MonsterDebugger;
 		//public var debugger:MonsterDebugger;
 		
