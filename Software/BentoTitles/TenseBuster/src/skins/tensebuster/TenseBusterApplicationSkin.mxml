@@ -31,7 +31,7 @@
 	</s:Group>
 	
 	<!-- Footer -->
-	<s:Group left="15" right="0" height="37" bottom="0">
+	<s:Group horizontalCenter="0" height="37" bottom="0">
 		<!--s:Rect left="0" right="0" top="0" bottom="0">
 			<s:fill>
 				<s:SolidColor color="#333333" />

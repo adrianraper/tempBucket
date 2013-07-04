@@ -117,8 +117,8 @@
 		var versionControl = "&version=1107";
 
 		// v6.5.5.6 Allow resize screen mode
-		var coordsMinWidth = "990"; var coordsMaxWidth = "1024";
-		var coordsMinHeight = "760"; var coordsMaxHeight = "768";
+		var coordsMinWidth = "990"; var coordsMaxWidth = "990";
+		var coordsMinHeight = "760"; var coordsMaxHeight = "970";
 
 		//var sections = location.pathname.split("/");
 		//var userdatapath = sections.slice(0,sections.length-1).join("/");
@@ -193,7 +193,7 @@
 	</script>
 
 </head>
-<body style="background-color:#FFFFFF;">
+<body style="background-color:#F9F9F9;">
 	<div style="background-color:#F9F9F9;" align="center" id="altContent">
 		<p>This application requires Adobe's Flash player, running at least version 10.2.</p>
 		<p>It seems your browser doesn't have this.</p>

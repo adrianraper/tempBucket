@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCoverageView")]
+	</fx:Metadata>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+	<ui:ProgressBarRenderer id="progressBar" top="10" left="20" right="20" />
+	
+	<s:Group top="55" width="100%" left="20" right="20">
+		<s:Line width="100%" >
+			<s:stroke>
+				<s:SolidColorStroke color="0xE6E6E6" />
+			</s:stroke>
+		</s:Line>
+	</s:Group>
+
+</s:Skin>

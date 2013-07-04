@@ -8,12 +8,16 @@ package com.clarityenglish.tensebuster.view.home {
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Label;
 	import spark.components.List;
 	
 	public class HomeView extends BentoView {
 		
 		[SkinPart(required="true")]
 		public var coursesList:List;
+		
+		[SkinPart]
+		public var homeInstructionLabel:Label;
 		
 		public var courseSelect:Signal = new Signal(XML);
 		
@@ -29,6 +33,9 @@ package com.clarityenglish.tensebuster.view.home {
 			switch (instance) {
 				case coursesList:
 					coursesList.addEventListener(MouseEvent.CLICK, onListClick);
+					break;
+				case homeInstructionLabel:
+					homeInstructionLabel.text = copyProvider.getCopyForId("homeInstructionLabel");
 					break;
 			}
 		}

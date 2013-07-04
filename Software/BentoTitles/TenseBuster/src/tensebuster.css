@@ -4,17 +4,29 @@
 @namespace unit "com.clarityenglish.tensebuster.view.unit.*";
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
-@namespace progress "com.clarityenglish.tensebuster.view.progress.*";
+@namespace progress "com.clarityenglish.bento.view.progress.*";
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace components "com.clarityenglish.textLayout.components.*";
 @namespace profile "com.clarityenglish.tensebuster.view.profile.*";
+@namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 
 global {
 	EColor : #EC1C32;
 	LColor : #D68130;
 	IColor : #8AA13B;
 	UColor : #0499A6;
-	AColor : #5D3996;	
+	AColor : #5D3996;
+	
+	topGradientColors: #7C0124, #61473D, #4F6600, #1C667D, #3D1FA8;
+	midGradientColors: #EC1C32, #B5805C, #A3B838, #82B8C4, #826EC4;
+	bottomGradientColors: #780024, #61473D, #4F6617, #1C667D, #3D1FA8;
+	
+	topOverGradientColors: #9C012D, #825F52, #5C7700, #23819E, #4925C9;
+	midOverGradientColors: #FF364B, #E6A275, #B8D42D, #8AD3E3, #9881E6;
+	bottomOverGradientColors: #99002E, #825F52, #66831D, #23819E, #4925C9;
+	
+	ProgressIcon: Embed(source="skins/tensebuster/assets/arrow.png");
+	ProgressOverIcon: Embed(source="skins/tensebuster/assets/bgLeft.png");
 }
 
 s|TitleWindow.feedbackTitleWindow {
@@ -31,6 +43,10 @@ title|TitleView {
 
 title|TitleView s|Button#backToMenuButton {
 	skinClass: ClassReference("skins.tensebuster.exercise.BackToMenuButtonSkin");
+}
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.tensebuster.title.TabbedViewNavigatorSkin");
 }
 
 home|HomeView {
@@ -80,7 +96,8 @@ progress|ProgressView {
 profile|ProfileView {
 	skinClass: ClassReference("skins.tensebuster.profile.ProfileSkin");
 }
-	
+
+
 
 s|VideoPlayer {
 	skinClass: ClassReference("skins.bento.VideoPlayerSkin");

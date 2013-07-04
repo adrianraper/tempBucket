@@ -12,5 +12,6 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:List id="unitList" labelField="@caption" width="100%" height="100%" />
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/tbBg.png')" horizontalAlign="center" bottom="5"/>
+	<s:List id="unitList" labelField="@caption" />
 </s:Skin>

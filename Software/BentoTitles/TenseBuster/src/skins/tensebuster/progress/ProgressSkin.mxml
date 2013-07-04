@@ -5,7 +5,7 @@
 		xmlns:components="com.clarityenglish.bento.view.progress.components.*">
 	
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressView")]
+		[HostComponent("com.clarityenglish.bento.view.progress.ProgressView")]
 	</fx:Metadata>
 	
 	<fx:Declarations>

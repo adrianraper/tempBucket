@@ -53,8 +53,9 @@ package com.clarityenglish.tensebuster.view.progress
 		/**
 		 * The state of the skin is driven by the tab bar (coverage, compare or analyse)
 		 */
-		protected override function getCurrentSkinState():String {			
-			return super.getCurrentSkinState();
+		protected override function getCurrentSkinState():String {
+			var state:String = (!progressNavBar || !progressNavBar.selectedItem) ? "coverage" : progressNavBar.selectedItem.data;
+			return state;
 		}
 	}
 }

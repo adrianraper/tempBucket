@@ -259,6 +259,8 @@
 			<lit name="completeLabel">Started</lit>
 			<lit name="notCompleteLabel">Not started</lit>
 			<lit name="othersLabel">No record available</lit>
+			
+			<lit name="homeInstructionLabel">Please choose a level</lit>
 		</group>
 	</language>
 </literals>
