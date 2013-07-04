@@ -25,8 +25,15 @@ global {
 	midOverGradientColors: #FF364B, #E6A275, #B8D42D, #8AD3E3, #9881E6;
 	bottomOverGradientColors: #99002E, #825F52, #66831D, #23819E, #4925C9;
 	
-	ProgressIcon: Embed(source="skins/tensebuster/assets/arrow.png");
-	ProgressOverIcon: Embed(source="skins/tensebuster/assets/bgLeft.png");
+	ProgressIcon: Embed(source="skins/tensebuster/assets/title/progressIcon.png");
+	ProgressOverIcon: Embed(source="skins/tensebuster/assets/title/progressOverIcon.png");
+	ProgressBg: Embed(source="skins/tensebuster/assets/title/progressBg.png");
+	ProgressOverBg: Embed(source="skins/tensebuster/assets/title/progressOverBg.png");
+	
+	ProfileIcon: Embed(source="skins/tensebuster/assets/title/profileIcon.png");
+	ProfileOverIcon: Embed(source="skins/tensebuster/assets/title/profileOverIcon.png");
+	ProfileBg: Embed(source="skins/tensebuster/assets/title/profileBg.png");
+	ProfileOverBg: Embed(source="skins/tensebuster/assets/title/profileOverBg.png");
 }
 
 s|TitleWindow.feedbackTitleWindow {

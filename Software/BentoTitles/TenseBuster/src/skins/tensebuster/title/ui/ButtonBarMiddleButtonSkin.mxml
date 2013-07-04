@@ -33,12 +33,20 @@
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
                    minWidth="21" minHeight="21" 
                    alpha.disabledStates="0.5">
-	<fx:Metadata>[HostComponent("spark.components.ButtonBarButton")]</fx:Metadata>
+	<fx:Metadata>
+		[HostComponent("spark.components.ButtonBarButton")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="0" distance="0.4" alpha="0.8" />
+	</fx:Declarations>
 	
 	<fx:Script>  
 		<![CDATA[  
 			private var _image:Class;
-			private var _imageOver:Class;
+			private var _overImage:Class;
+			private var _bg:Class;
+			private var _overBg:Class;
 			
 			[Bindable]
 			public function get image():Class {
@@ -50,20 +58,42 @@
 			}
 			
 			[Bindable]
-			public function get imageOver():Class {
-				return _imageOver;
+			public function get overImage():Class {
+				return _overImage;
 			}
 			
-			public function set imageOver(value:Class):void {
-				_imageOver = value;
+			public function set overImage(value:Class):void {
+				_overImage = value;
+			}
+			
+			[Bindable]
+			public function get bg():Class {
+				return _bg;
+			}
+			
+			public function set bg(value:Class):void {
+				_bg = value;
+			}
+			
+			[Bindable]
+			public function get overBg():Class {
+				return _overBg;
+			}
+			
+			public function set overBg(value:Class):void {
+				_overBg = value;
 			}
 			
 			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void  
 			{  
 				super.updateDisplayList((this.hostComponent as Object).outerDocument.hostComponent.width, unscaledHeight);  
+				var textArray:Array = ((this as Object).hostComponent.label as String).split(" ");
 
-				image = Class(getStyle((this as Object).hostComponent.data.label + "Icon"));
-				imageOver = Class(getStyle((this as Object).hostComponent.data.label + "OverIcon"));
+				image = Class(getStyle(textArray[1] + "Icon"));
+				overImage = Class(getStyle(textArray[1] + "OverIcon"));
+				
+				bg = Class(getStyle(textArray[1] + "Bg"));
+				overBg = Class(getStyle(textArray[1] + "OverBg"));
 			}            
 			
 		]]>  
@@ -81,9 +111,11 @@
         <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
-    
-   <!--s:BitmapImage id="icon" source.up="{image}" source.over="{imageOver}" /-->
    
+	<s:Group filters="{[dropShadowFilter]}">
+		<s:SWFLoader id="backGround" source.up="{bg}" source.over="{overBg}" source.down="{overBg}" source.selectedStates="{overBg}" />
+		<s:SWFLoader id="icon" source.up="{image}" source.over="{overImage}" source.down="{overImage}" source.selectedStates="{overImage}" top="10" left="15" />
+	</s:Group>  
     
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
@@ -91,8 +123,8 @@
              textAlign="center"
              verticalAlign="middle"
              maxDisplayedLines="1"
-             horizontalCenter="0" verticalCenter="1"
-             left="10" right="10" top="2" bottom="2">
+			 left="40" top="12"
+			 color.up="0x000000" color.selectedStates="0xFFFFFF" color.over="0xFFFFFF" color.down="0xFFFFFF">
     </s:Label>
     
 </s:SparkButtonSkin>

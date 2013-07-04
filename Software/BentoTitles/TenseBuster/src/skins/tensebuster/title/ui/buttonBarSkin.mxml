@@ -71,9 +71,9 @@
             @default spark.skins.spark.ButtonBarLastButtonSkin
             @see spark.skins.spark.ButtonBarLastButtonSkin
         -->
-        <fx:Component id="lastButton" >
+        <!--fx:Component id="lastButton" >
             <s:ButtonBarButton skinClass="spark.skins.spark.ButtonBarLastButtonSkin" />
-        </fx:Component>
+        </fx:Component-->
 
     </fx:Declarations>
 
