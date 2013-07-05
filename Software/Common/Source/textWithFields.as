@@ -556,7 +556,7 @@ TextWithFieldsClass.prototype.setEvents = function(eventNames) {
 		if (this._$coverAlpha > 0 && typeof this._$coverAlpha == "number") {
 			myCanvas._alpha = this._$coverAlpha;
 		} else {
-			myCanvas._alpha = 0;
+			myCanvas._alpha = 100; //IE10+Win8 fix gh#390
 		}
 		//trace(eventNames.generalMouseUp);
 		//trace("test generalMouseUp = " + myCanvas.onRelease());
@@ -1500,7 +1500,7 @@ TextWithFieldsClass.prototype.addFieldCover = function(fieldIDX) {
 		if (this._$coverAlpha > 0 && typeof this._$coverAlpha == "number") {
 			thisCover._alpha = this._$coverAlpha;
 		} else {
-			thisCover._alpha = 0;
+			thisCover._alpha = 100; //IE10+Win8 fix gh#390
 		}
 		// is this where we should add cursor hiding or not?
 		// it might work best to always hide the cursor here and let the events

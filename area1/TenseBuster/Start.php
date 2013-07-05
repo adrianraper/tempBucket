@@ -72,9 +72,6 @@
 </style>
 </head>
 <body onload="onLoad()">
-
-<?php require_once '../resizeCSS.php';?>
 <?php require_once '../orchidAltContent.php';?>
-
 </body>
 </html>

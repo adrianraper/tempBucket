@@ -6,7 +6,7 @@
 	require_once '../readPassedVariables.php';
 	
 	// For this product
-	$productCode = 52; // RoadToIELTS 2
+	$productCode = '52,53'; // RoadToIELTS 2
 	$swfName = 'RoadToIELTS.swf';
 	$webShare = '';
 	$startControl = "$webShare/Software/BentoTitles/IELTS/bin-debug/";
@@ -148,9 +148,6 @@
 </style>
 </head>
 <body onload="onLoad()">
-
-<?php require_once '../resizeCSS.php';?>
 <?php require_once '../orchidAltContent.php';?>
-
 </body>
 </html>
