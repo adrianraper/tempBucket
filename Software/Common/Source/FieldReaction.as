@@ -118,7 +118,7 @@ _global.ORCHID.fieldDrag = function() {
 		realDrag._width = this._width;
 		realDrag._height = this._height;
 	}
-	realDrag._alpha = 0;
+	realDrag._alpha = 100; //IE10+Win8 fix gh#390
 	// link the single dragger back to the cover that it is currently working with
 	realDrag.cover = this;
 	//myTrace("drag with " + realDrag + " w=" + realDrag._width + ",h=" + realDrag._height + " from " + this);
@@ -2261,7 +2261,7 @@ createTypingBox = function(thisField, fieldCover) {
 	gapHolder._y = coord.y - rootYOffset;
 	gapHolder._width = fieldCover._width;
 	gapHolder._height = fieldCover._height;
-	gapHolder._alpha = 0;
+	gapHolder._alpha = 100; //IE10+Win8 fix gh#390
 	gapHolder._focusrect = false;
 	// link the single gap back to the cover that it is currently working with
 	// v6.2 I seem to do this again a little later direct to the myGap

@@ -52,6 +52,9 @@ class Crypt {
 	function decodeSafeChars($text) {
 		return strtr($text, '-_~', '+/=');
 	}
+	function encodeSafeChars($text) {
+		return strtr($text, '+/=', '-_~');
+	}
 }
 // These are older functions used for BC LELT tests and R2I LM registration
 // They should be deprecated and phased out

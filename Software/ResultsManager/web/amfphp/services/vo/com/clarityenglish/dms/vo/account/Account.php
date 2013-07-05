@@ -56,7 +56,8 @@ class Account extends Reportable {
 	 * Concatenate the parameter array onto our current array
 	 */
 	function addTitles($t) {
-		$this->titles = array_merge($t, $this->titles);
+		// gh#254 add new titles to the end of the array
+		$this->titles = array_merge($this->titles, $t);
 	}
 	/*
 	 * Need a function that will remove an array of titles from this account

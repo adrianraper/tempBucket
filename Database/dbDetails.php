@@ -76,24 +76,22 @@ class DBDetails {
 				$this->dbname = "clarity";
 				break;
 				
-			case 30:
+			// Different paths from RM code and Orchid code
+			case 100:
+				$this->driver = "pdo_sqlite"; 
+				$this->dbname  = urlencode("../../../../../Database/clarity.db");
+				$this->driver = "pdo_sqlite"; 
+				$this->dbname  = urlencode("../../../../Database/clarity.db");
+				break;
+					
+			case 2:
+			default:
 				$this->driver = "mysqlt";
 				$this->host = "localhost";
 				$this->user = "clarity";
 				$this->password = "clarity";
 				$this->dbname = "rack80829";
 				break;
-				
-			// Different paths from RM code and Orchid code
-			case 100:
-				$this->driver = "pdo_sqlite"; 
-				$this->dbname  = urlencode("../../../../../Database/clarity.db");
-				break;
-			case 2:
-			default:
-				$this->driver = "pdo_sqlite"; 
-				$this->dbname  = urlencode("../../../../Database/clarity.db");
-				break;	
 		}
 
 		// Build the dsn based on a username or not
