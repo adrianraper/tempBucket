@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.title.InforButton")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="0.4" alpha="0.5" />
+	</fx:Declarations>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<s:Group filters="{[dropShadowFilter]}">
+		<s:Path x="-7.62939e-005" y="6.10352e-005" top="5" data="M407.629 3.1181 73.4464 3.1181C64.7511 -0.940491 51.5587 -1.13776 37.7979 3.1181L36.0401 3.1181C27.1964 3.1181 19.3917 7.77631 14.9444 14.7568 3.43855 23.6376 -2.45598 34.7939 0.96785 43.7304 4.49324 52.9228 16.919 57.2724 31.9766 55.831 33.2999
+				56.0497 34.6573 56.1689 36.0401 56.1689L407.629 56.1689C421.379 56.1689 432.629 44.9189 432.629 31.1689L432.629 28.1181C432.629 14.3681 421.379 3.1181 407.629 3.1181Z">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0x1175BC" color.over="0x2194D5" color.down="0x2194D5" ratio="0"/>
+					<s:GradientEntry color="0x3491CF" color.over="0x3F9EE3" color.down="0x3F9EE3" ratio="0.2"/>
+					<s:GradientEntry color="0x0A446B" color.over="0x0B5AA1" color.down="0x0B5AA1" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/lmSubscribeIcon.png')" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/LMSubscribeR.png')" right="15" top="18"/>
+		
+		<s:RichEditableText id="textDisplay" textFlow="{hostComponent.richTextFlow}" color="0xFFFFFF" fontSize="15" left="90" top="20" bottom="0" paddingRight="8" paddingLeft="8" />
+	</s:Group>	
+</s:Skin>
