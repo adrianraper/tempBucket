@@ -91,12 +91,14 @@
 			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
 			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
 			<lit name="colorBarIntroLabel">The color bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
-			<lit name="infoReadingText"> <![CDATA[<p>Worried about your band scores?</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
+			<lit name="infoReadingText"> <![CDATA[<p>Succeed in IELTS.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoListeningText"><![CDATA[<p>Improve your band scores.</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoSpeakingText"><![CDATA[<p>Need more practice?</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
 			<lit name="infoWritingText"><![CDATA[<p>Worried about your band scores?</p><p>Subscribe to the <span fontWeight="bold">Full Version</span> now!</p>]]></lit>
-			<lit name="promoteWording1">“Road to IELTS made my overall band score of 8 possible...”</lit>
-			<lit name="promoteWording2">Pramitha Ranshika Saudi Arabia</lit>
+			<lit name="promoteWording1">“Road to IELTS made</lit>
+			<lit name="promoteWording2">my overall band</lit>
+			<lit name="promoteWording3">score of 8 possible...”</lit>
+			<lit name="promoteWording4">Pramitha Ranshika Saudi Arabia</lit>
 			<lit name="Reading">Reading</lit>
 			<lit name="Listening">Listening</lit>
 			<lit name="Speaking">Speaking</lit>

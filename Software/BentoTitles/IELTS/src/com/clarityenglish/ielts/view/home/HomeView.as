@@ -76,6 +76,12 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart]
 		public var promoteWording2:Label;
 		
+		[SkinPart]
+		public var promoteWording3:Label;
+		
+		[SkinPart]
+		public var promoteWording4:Label;
+		
 		[Bindable]
 		public var dataProvider:XML;
 		
@@ -208,6 +214,12 @@ package com.clarityenglish.ielts.view.home {
 					break;
 				case promoteWording2:
 					promoteWording2.text = copyProvider.getCopyForId("promoteWording2");
+					break;
+				case promoteWording3:
+					promoteWording3.text = copyProvider.getCopyForId("promoteWording3");
+					break;
+				case promoteWording4:
+					promoteWording4.text = copyProvider.getCopyForId("promoteWording4");
 					break;
 			}
 		}
