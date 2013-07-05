@@ -37,9 +37,19 @@
 									return topGradientColors[index % topGradientColors.length];
 								}
 							
-								public function getMidGradientColor(index:Number):Number {
-									var midGradientColors:Array = getStyle("midGradientColors");
-									return midGradientColors[index % midGradientColors.length];
+								public function getMidTopGradientColor(index:Number):Number {
+									var midTopGradientColors:Array = getStyle("midTopGradientColors");
+									return midTopGradientColors[index % midTopGradientColors.length];
+								}
+							
+								public function getCenterGradientColor(index:Number):Number {
+									var centerGradientColors:Array = getStyle("centerGradientColors");
+									return centerGradientColors[index % centerGradientColors.length];
+								}
+							
+								public function getMidBottomGradientColor(index:Number):Number {
+									var midBottomGradientColors:Array = getStyle("midBottomGradientColors");
+									return midBottomGradientColors[index % midBottomGradientColors.length];
 								}
 							
 								public function getBottomGradientColor(index:Number):Number {
@@ -52,12 +62,22 @@
 									return topOverGradientColors[index % topOverGradientColors.length];
 								}
 							
-								public function getMidOverGradientColors(index:Number):Number {
-									var midOverGradientColors:Array = getStyle("midOverGradientColors");
-									return midOverGradientColors[index % midOverGradientColors.length];
+								public function getMidTopOverGradientColor(index:Number):Number {
+									var midTopOverGradientColors:Array = getStyle("midTopOverGradientColors");
+									return midTopOverGradientColors[index % midTopOverGradientColors.length];
 								}
 							
-								public function getBottomOverGradientColors(index:Number):Number {
+								public function getCenterOverGradientColor(index:Number):Number {
+									var centerOverGradientColors:Array = getStyle("centerOverGradientColors");
+									return centerOverGradientColors[index % centerOverGradientColors.length];
+								}
+							
+								public function getMidBottomOverGradientColor(index:Number):Number {
+									var midBottomOverGradientColors:Array = getStyle("midBottomOverGradientColors");
+									return midBottomOverGradientColors[index % midBottomOverGradientColors.length];
+								}
+							
+								public function getBottomOverGradientColor(index:Number):Number {
 									var bottomOverGradientColors:Array = getStyle("bottomOverGradientColors");
 									return bottomOverGradientColors[index % bottomOverGradientColors.length];
 								}
@@ -82,9 +102,10 @@
 									<s:fill>
 										<s:LinearGradient rotation="90">
 											<s:GradientEntry color="{getTopGradientColor(getIndex(data))}" color.hovered="{getOverTopGradientColor(getIndex(data))}" ratio="0" />
-											<s:GradientEntry color="{getMidGradientColor(getIndex(data))}" color.hovered="{getMidOverGradientColors(getIndex(data))}" ratio="0.4" />
-											<s:GradientEntry color="{getMidGradientColor(getIndex(data))}" color.hovered="{getMidOverGradientColors(getIndex(data))}" ratio="0.6" />
-											<s:GradientEntry color="{getBottomGradientColor(getIndex(data))}" color.hovered="{getBottomOverGradientColors(getIndex(data))}" ratio="1" />
+											<s:GradientEntry color="{getMidTopGradientColor(getIndex(data))}" color.hovered="{getMidTopOverGradientColor(getIndex(data))}" ratio="0.25" />
+											<s:GradientEntry color="{getCenterGradientColor(getIndex(data))}" color.hovered="{getCenterOverGradientColor(getIndex(data))}" ratio="0.5" />
+											<s:GradientEntry color="{getMidBottomGradientColor(getIndex(data))}" color.hovered="{getMidBottomOverGradientColor(getIndex(data))}" ratio="0.75" />
+											<s:GradientEntry color="{getBottomGradientColor(getIndex(data))}" color.hovered="{getBottomOverGradientColor(getIndex(data))}" ratio="1" />
 										</s:LinearGradient>
 									</s:fill>
 								</s:Path>

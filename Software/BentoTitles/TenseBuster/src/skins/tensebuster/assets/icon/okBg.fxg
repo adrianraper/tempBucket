@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="36.2402" viewWidth="75.1196" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="36.24" d:pageWidth="75.12" d:type="layer" d:userLabel="Artboard 1">
+    <Group blendMode="normal" d:type="layer" d:userLabel="Layer 1">
+      <Group blendMode="normal" ai:seqID="1">
+        <Group blendMode="normal" ai:seqID="2" flm:knockout="false">
+          <Path x="1.70068" y="0.283203" winding="nonZero" ai:seqID="4" data="M11.1743 32.666C9.61523 32.666 7.36621 31.8418 6.17627 30.835L2.16357 27.4385C0.973633 26.4316 0 24.332 0 22.7725L0 2.83447C0 1.27539 1.27539 0 2.83447 0L68.7373 0C70.2969 0 71.5723 1.27539 71.5723 2.83447L71.5723 22.7725C71.5723 24.332 70.5986
+ 26.4316 69.4082 27.4385L65.3965 30.835C64.2061 31.8418 61.957 32.666 60.3975 32.666L11.1743 32.666Z">
+            <fill>
+              <SolidColor color="#EB2133"/>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private>
+      <d:FontMap>
+        <d:Map fontFamily="HelveticaNeueLT Std Med" fontStyle="normal" fontWeight="normal" postScriptName="HelveticaNeueLTStd-Md"/>
+      </d:FontMap>
+    </Private>
+  </Graphic>

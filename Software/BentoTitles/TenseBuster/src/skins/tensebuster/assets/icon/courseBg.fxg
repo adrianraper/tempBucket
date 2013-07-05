@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="44.2217" viewWidth="234.173" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="44.222" d:pageWidth="234.173" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1" flm:knockout="false">
+        <Path winding="nonZero" ai:seqID="2" data="M12.4829 44.2217C10.9238 44.2217 8.6748 43.3975 7.48486 42.3906L2.16357 37.8877C0.973633 36.8809 0 34.7813 0 33.2222L0 10.9995C0 9.44043 0.973633 7.34082 2.16357 6.33398L7.48486 1.83105C8.6748 0.824219 10.9238 0 12.4829 0L221.689 0C223.248 0 225.497
+ 0.82373 226.688 1.83105L232.009 6.33398C233.199 7.34131 234.173 9.44043 234.173 10.9995L234.173 33.2222C234.173 34.7813 233.199 36.8804 232.009 37.8877L226.688 42.3906C225.497 43.3979 223.248 44.2217 221.689 44.2217L12.4829 44.2217Z">
+        </Path>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>
