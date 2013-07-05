@@ -221,7 +221,7 @@
 				var stateMachine:StateMachine = retrieveMediator(StateMachine.NAME) as StateMachine;
 				sendNotification(StateMachine.ACTION, null, notificationName);
 				
-				log.debug("sendNotification: " + notificationName);
+				//log.debug("sendNotification: " + notificationName);
 				
 				super.sendNotification(notificationName, body, type);
 				

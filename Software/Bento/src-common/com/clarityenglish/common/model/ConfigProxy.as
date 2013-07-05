@@ -358,9 +358,10 @@ package com.clarityenglish.common.model {
 		public function getDirectStart():Object {
 			var directStartObject:Object = new Object();
 			
-			if (Config.DEVELOPER.name == "DK") {
+			if (Config.DEVELOPER.name == "DKweb") {
 				//return { courseID: "1287130400000" };
-				//return { exerciseID: "1151344172674" };
+				//return { exerciseID: "2287130110007" };
+				return { exerciseID: "2287130110005" };
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {

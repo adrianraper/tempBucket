@@ -1,6 +1,10 @@
 package com.clarityenglish.tensebuster.controller {
+	import com.clarityenglish.bento.RecorderNotifications;
 	import com.clarityenglish.bento.controller.BentoStartupCommand;
+	import com.clarityenglish.bento.model.AudioProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
+	import com.clarityenglish.bento.model.adaptor.IRecorderAdaptor;
+	import com.clarityenglish.bento.model.adaptor.WebRecorderAdaptor;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
@@ -15,6 +19,11 @@ package com.clarityenglish.tensebuster.controller {
 
 		public override function execute(note:INotification):void {
 			super.execute(note);
+			
+			// gh#267
+			var recorderAdaptor:IRecorderAdaptor = new WebRecorderAdaptor(); // for now hardcode the web recorder adaptor
+			facade.registerProxy(new AudioProxy(RecorderNotifications.RECORD_PROXY_NAME, true, recorderAdaptor));
+			facade.registerProxy(new AudioProxy(RecorderNotifications.MODEL_PROXY_NAME, false, recorderAdaptor));
 			
 			/*var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
 			

@@ -173,6 +173,7 @@
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent"/>
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.events.AudioStackEvent"/>
     <classEntry path="com.clarityenglish.bento.controller.FeedbackReminderShowCommand"/>
+    <classEntry path="com.clarityenglish.bento.RecorderNotifications"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
