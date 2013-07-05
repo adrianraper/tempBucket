@@ -1,0 +1,78 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+@namespace tensebuster "com.clarityenglish.tensebuster.*";
+@namespace title "com.clarityenglish.tensebuster.view.title.*";
+
+global {
+	interactionMode: touch;
+}
+
+s|TitleWindow {
+	dropShadowVisible: true; /* #389 even though FB thinks this isn't supported it is in our skins */
+}
+
+s|List {
+	borderVisible: false;
+	contentBackgroundAlpha: 0;
+}
+
+components|XHTMLExerciseView s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
+tensebuster|TenseBusterApplication {
+	skinClass: ClassReference("skins.tensebusterair.TenseBusterApplicationSkin");
+}
+
+tensebuster|TenseBusterApplication s|ActionBar {
+	chromeColor: #067EBC;
+	defaultButtonAppearance: beveled;
+}
+
+tensebuster|TenseBusterApplication s|ActionBar {
+	/* #484 */
+	skinClass: ClassReference("skins.air.PaddableActionBarSkin");
+	buttonSpacing: 5;
+}
+
+tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#startAgainButton,
+tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
+tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
+	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
+}
+
+/* No network styles (#472) */
+/*nonetwork|NoNetworkView {
+skinClass: ClassReference("skins.ieltsair.NoNetworkSkin");
+}*/
+
+/* Login view styles */
+/*login|LoginView {
+skinClass: ClassReference("skins.ieltsair.LoginSkin");
+}*/
+
+/* Title view styles */
+/*title|TitleView {
+	skinClass: ClassReference("skins.rotterdam.playerair.title.TitleSkin");
+}*/
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("spark.skins.mobile.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+}
+
+title|TitleView s|ViewNavigator {
+	skinClass: ClassReference("spark.skins.mobile.ViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+}
+
+title|TitleView s|TabbedViewNavigator #tabBar {
+	chromeColor: #262526;
+	color: #DDDDDD;
+	fontSize: 10;
+	fontWeight: normal;
+	iconPlacement: top;
+}

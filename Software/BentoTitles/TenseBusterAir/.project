@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>RotterdamPlayerAir</name>
+	<name>TenseBusterAir</name>
 	<comment></comment>
 	<projects>
-		<project>Bento</project>
-		<project>csslib</project>
-		<project>OSMF</project>
-		<project>Rotterdam</project>
-		<project>RotterdamPlayer</project>
-		<project>textLayout</project>
 	</projects>
 	<buildSpec>
 		<buildCommand>
@@ -32,7 +26,7 @@
 		<link>
 			<name>[source path] src</name>
 			<type>2</type>
-			<location>D:/Projects/Clarity/software/Software/BentoTitles/RotterdamPlayer/src</location>
+			<location>D:/Projects/Clarity/software/Software/BentoTitles/TenseBuster/src</location>
 		</link>
 	</linkedResources>
 </projectDescription>

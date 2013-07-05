@@ -4,6 +4,7 @@
 	<developer>DKweb</developer>
 	<dbHost>2</dbHost>
 	<productCode>55</productCode>
+	<loginOption>128</loginOption>
 	<courseFile>menu-{productVersion}.xml</courseFile>
 	<channel name='aws' caption='aws'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
@@ -32,5 +33,12 @@
 	<remoteService>TenseBusterService</remoteService>
 	
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+	<rememberLogin>true</rememberLogin>
+	<disableAutoTimeout>true</disableAutoTimeout>
+	
+	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
+	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
 </config>
 
