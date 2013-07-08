@@ -38,7 +38,7 @@
 	</fx:Metadata>
     
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="0" distance="0.4" alpha="0.8" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="270" distance="0.4" alpha="0.3" />
 	</fx:Declarations>
 	
     <!-- host component -->
@@ -54,9 +54,9 @@
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
     
-   <s:Group filters="{[dropShadowFilter]}">
-	   <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/home.png')" visible.up="true" visible.overStates="false" visible.downStates="false" left="0" top="0" />
-	   <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/homeOver.png')" visible.up="false" visible.overStates="true" visible.downStates="true" left="0" right="0"/>
+   <s:Group>
+	   <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/home.png')" visible.up="true" visible.overStates="false" visible.downStates="false" left="0" top="0" filters="{[dropShadowFilter]}" />
+	   <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/homeOver.png')" visible.up="false" visible.overStates="true" visible.downStates="true" left="0" right="0" filters="{[dropShadowFilter]}"/>
    </s:Group>
    
     

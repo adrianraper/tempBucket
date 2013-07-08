@@ -38,7 +38,7 @@
 	</fx:Metadata>
 	
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="0" distance="0.4" alpha="0.8" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="270" distance="0.4" alpha="0.3" />
 	</fx:Declarations>
 	
 	<fx:Script>  
@@ -112,9 +112,9 @@
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
    
-	<s:Group filters="{[dropShadowFilter]}">
-		<s:SWFLoader id="backGround" source.up="{bg}" source.over="{overBg}" source.down="{overBg}" source.selectedStates="{overBg}" />
-		<s:SWFLoader id="icon" source.up="{image}" source.over="{overImage}" source.down="{overImage}" source.selectedStates="{overImage}" top="10" left="15" />
+	<s:Group>
+		<s:SWFLoader id="backGround" source.up="{bg}" source.over="{overBg}" source.down="{overBg}" source.selectedStates="{overBg}" filters="{[dropShadowFilter]}"/>
+		<s:SWFLoader id="icon" source.up="{image}" source.over="{overImage}" source.down="{overImage}" source.selectedStates="{overImage}" top="10" left="15" filters="{[dropShadowFilter]}"/>
 	</s:Group>  
     
     <!-- layer 8: text -->

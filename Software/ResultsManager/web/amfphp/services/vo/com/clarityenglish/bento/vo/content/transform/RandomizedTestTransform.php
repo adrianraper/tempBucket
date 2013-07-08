@@ -44,7 +44,7 @@ class RandomizedTestTransform extends XmlTransform {
 					if (count ( $randArray ) > 0) {
 						for($i = 0; $i < count ( $randArray ); $i ++) {
 							if ($n == $randArray [$i]) {
-								$n = rand ( 0, 25 );
+								$n = rand ( 0, 24 );
 								$i = - 1;
 							}
 						}
@@ -80,7 +80,7 @@ class RandomizedTestTransform extends XmlTransform {
 				//$xmlBody = $xmlPath->query($gapQuery)->item(0);
 				$gapFillQuestion = $bankDoc->getElementsByTagName("GapFillQuestion");
 				for($i = 0; $i < 5; $i ++) {
-					$n = rand ( 0, 9 );
+					$n = rand ( 0, 24 );
 					// make sure $n is unique
 					if (count ( $randArray ) > 0) {
 						for($i = 0; $i < count ( $randArray ); $i ++) {
@@ -97,7 +97,7 @@ class RandomizedTestTransform extends XmlTransform {
 					$xmlQuestions->appendChild ( $xmlGapModelNode );
 					
 					// copy question text to template
-					$gapQuestionID = $gapQuestionModel->getAttribute ( 'source' );
+					/*$gapQuestionID = $gapQuestionModel->getAttribute ( 'source' );
 					AbstractService::$debugLog->info ( 'gapQuestionID: ' . $gapQuestionID );
 					$gapQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:input[@id="' . $gapQuestionID . '"]';
 					$gapQuestionText = $xPath->query ( $gapQuestionQuery )->item ( 0 )->parentNode;
@@ -106,7 +106,12 @@ class RandomizedTestTransform extends XmlTransform {
 					$gapLineQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:p[@class="linespace"]';
 					$gapLine = $xPath->query ( $gapLineQuery )->item ( 0 );
 					$xmlGapLineNode = $xmlDoc->importNode ( $gapLine );
-					$xmlBody->appendChild ( $xmlGapLineNode );
+					$xmlBody->appendChild ( $xmlGapLineNode );*/
+					$gapQuestionID  = $gapFillQuestion->item ( $n )->getAttribute ( 'block' );
+					$gapQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]/xmlns:div[@id="' . $gapQuestionID . '"]';
+					$gapQuestionText = $xPath->query ( $gapQuestionQuery )->item ( 0 );
+					$xmlGapQuestionNode = $xmlDoc->importNode ( $gapQuestionText, true );
+					$xmlBody->appendChild ( $xmlGapQuestionNode );
 				}
 			}
 		}
