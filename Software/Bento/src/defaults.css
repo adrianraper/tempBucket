@@ -13,6 +13,7 @@
 @namespace components2 "com.clarityenglish.components.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
 @namespace tink "ws.tink.spark.controls.*";
+@namespace recorder "com.clarityenglish.bento.view.recorder.*";
 
 global {
 	correctIcon: Embed(source="skins/assets/correctIcon.swf");
@@ -86,6 +87,10 @@ s|VideoPlayer {
 
 s|TitleWindow {
 	skinClass: ClassReference("skins.bento.BentoTitleWindowSkin");
+}
+
+recorder|RecorderView {
+	skinClass: ClassReference("skins.bento.recorder.RecorderSkin");
 }
 
 components|XHTMLExerciseView s|TextInput {

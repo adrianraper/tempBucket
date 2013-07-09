@@ -36,7 +36,9 @@ package com.clarityenglish.bento {
 		
 		public static const CLEAR_WAVEFORM:String = "recorder/clear_waveform";
 		
+		public static const RECORDING_START:String = "recorder/recording_start";
 		public static const RECORDING_STARTED:String = "recorder/recording_started";
+		
 		public static const RECORDING_STOPPED:String = "recorder/recording_stopped";
 		
 		public static const COMPARE_TO:String = "recorder/compare_to";

@@ -1,5 +1,6 @@
 ﻿package com.clarityenglish.bento {
 	import com.clarityenglish.bento.controller.*;
+	import com.clarityenglish.bento.controller.recorder.RecordingStartCommand;
 	import com.clarityenglish.bento.view.*;
 	import com.clarityenglish.bento.view.credits.CreditsMediator;
 	import com.clarityenglish.bento.view.credits.CreditsView;
@@ -17,6 +18,8 @@
 	import com.clarityenglish.bento.view.progress.components.ProgressCoverageView;
 	import com.clarityenglish.bento.view.progress.components.ProgressScoreMediator;
 	import com.clarityenglish.bento.view.progress.components.ProgressScoreView;
+	import com.clarityenglish.bento.view.recorder.RecorderMediator;
+	import com.clarityenglish.bento.view.recorder.RecorderView;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerMediator;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerView;
 	import com.clarityenglish.bento.view.warning.WarningMediator;
@@ -79,6 +82,8 @@
 			mapView(ProgressCompareView, ProgressCompareMediator);
 			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
 			mapView(ProgressCoverageView, ProgressCoverageMediator);
+			
+			mapView(RecorderView, RecorderMediator);
 			
 			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);
@@ -158,6 +163,9 @@
 			
 			// gh#388
 			registerCommand(BBNotifications.FEEDBACK_REMINDER_SHOW, FeedbackReminderShowCommand);
+			
+			// gh#267
+			registerCommand(RecorderNotifications.RECORDING_START, RecordingStartCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Group d:id="20" flm:knockout="false" x="0" y="4">
+		<s:Rect height="24" d:id="21" radiusX="3.98381" radiusY="3.98381" flm:variant="8" width="44" x="0" y="0">
+			<s:fill>
+				<s:LinearGradient rotation="180" scaleX="44.7452" x="44.7411" y="12.0757">
+					<s:GradientEntry color="#333333" ratio="0"/>
+					<s:GradientEntry color="#757576" ratio="0.448485"/>
+					<s:GradientEntry color="#717172" ratio="0.583319"/>
+					<s:GradientEntry color="#646465" ratio="0.721181"/>
+					<s:GradientEntry color="#505050" ratio="0.86014"/>
+					<s:GradientEntry color="#333333" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Group d:id="22" flm:knockout="false" x="0" y.over="0" id="group2" y.down="2" y.up="1" y.disabled="1">
+		<s:Rect height="24" d:id="23" radiusX="3.98381" radiusY="3.98381" flm:variant="9" width="44" x="0" y="0">
+			<s:fill>
+				<s:LinearGradient rotation="180" scaleX="44.7452" x="44.7411" y="11.7212">
+					<s:GradientEntry color="#E6E6E6" ratio="0"/>
+					<s:GradientEntry color="#FFFFFF" ratio="0.672727"/>
+					<s:GradientEntry color="#FAFAFA" ratio="0.853051"/>
+					<s:GradientEntry color="#E6E6E6" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Group flm:knockout="false" x="20" y.over="5" id="group1" y.down="7" y.up="6" y.disabled="6">
+		<s:Path data="M 0 6.282 L 0 0 L 3.474 3.14 L 6.95 6.282 L 3.474 9.421 L 0 12.565 L 0 6.282 Z" winding="nonZero" x="0.727" y="0.428">
+			<s:fill>
+				<s:SolidColor color="#333333" color.over="#FABE78" color.down="#F7931E" color.disabled="#CCCCCC"/>
+			</s:fill>
+		</s:Path>
+	</s:Group>
+</s:Skin>
