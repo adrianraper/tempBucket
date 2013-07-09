@@ -93,6 +93,10 @@ recorder|RecorderView {
 	skinClass: ClassReference("skins.bento.recorder.RecorderSkin");
 }
 
+recorder|WaveformView {
+	skinClass: ClassReference("skins.bento.recorder.WaveformSkin")
+}
+
 components|XHTMLExerciseView s|TextInput {
 	focusAlpha: 0;
 	skinClass: ClassReference("skins.bento.exercise.ExerciseTextInputSkin");

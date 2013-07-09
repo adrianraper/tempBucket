@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.bento {
 	import com.clarityenglish.bento.controller.*;
-	import com.clarityenglish.bento.controller.recorder.RecordingStartCommand;
+	import com.clarityenglish.bento.controller.recorder.ClearWaveformCommand;
+	import com.clarityenglish.bento.controller.recorder.CompareToCommand;
+	import com.clarityenglish.bento.controller.recorder.CutWaveformCommand;
 	import com.clarityenglish.bento.view.*;
 	import com.clarityenglish.bento.view.credits.CreditsMediator;
 	import com.clarityenglish.bento.view.credits.CreditsView;
@@ -168,7 +170,9 @@
 			registerCommand(BBNotifications.FEEDBACK_REMINDER_SHOW, FeedbackReminderShowCommand);
 			
 			// gh#267
-			registerCommand(RecorderNotifications.RECORDING_START, RecordingStartCommand);
+			registerCommand(RecorderNotifications.CUT_WAVEFORM, CutWaveformCommand);
+			registerCommand(RecorderNotifications.CLEAR_WAVEFORM, ClearWaveformCommand);
+			registerCommand(RecorderNotifications.COMPARE_TO, CompareToCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

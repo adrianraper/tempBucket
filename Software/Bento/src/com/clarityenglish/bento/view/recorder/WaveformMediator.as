@@ -88,14 +88,14 @@ package com.clarityenglish.bento.view.recorder {
 		 * @return Array the list of Nofitication names
 		 */
 		override public function listNotificationInterests():Array {
-			return [
-					RecorderNotifications.AUDIO_BYTES_READY,
-					RecorderNotifications.PLAYHEAD_POSITION,
-					RecorderNotifications.INPUT_LEVEL,
-					RecorderNotifications.RECORDING_STARTED,
-					RecorderNotifications.RECORDING_STOPPED,
-					RecorderNotifications.CLEAR_WAVEFORM,
-					];
+			return super.listNotificationInterests().concat([
+				RecorderNotifications.AUDIO_BYTES_READY,
+				RecorderNotifications.PLAYHEAD_POSITION,
+				RecorderNotifications.INPUT_LEVEL,
+				RecorderNotifications.RECORDING_STARTED,
+				RecorderNotifications.RECORDING_STOPPED,
+				RecorderNotifications.CLEAR_WAVEFORM,
+			]);
 		}
 
 		/**
@@ -129,7 +129,6 @@ package com.clarityenglish.bento.view.recorder {
 					}
 					break;
 				case RecorderNotifications.RECORDING_STOPPED:
-					//trace("waveformMediator." + note.getName());
 					if (note.getType() == audioProxyName) {
 						view.waveformRenderer.recording = false;
 						updateMp3Info();
@@ -146,11 +145,11 @@ package com.clarityenglish.bento.view.recorder {
 						myTimer.start();
 
 						function runOnce(event:TimerEvent):void {
-							view.pauseButton.enabled = true;
-							view.playButton.enabled = true;
-							//trace("set play button on later");
+							if (view.pauseButton) view.pauseButton.enabled = true;
+							if (view.playButton) view.playButton.enabled = true;
+							if (view.newButton) view.newButton.enabled = true;
+							if (view.saveButton) view.saveButton.enabled = true;
 						}
-
 					}
 					break;
 				case RecorderNotifications.CLEAR_WAVEFORM:
@@ -203,8 +202,10 @@ package com.clarityenglish.bento.view.recorder {
 			audioProxy.record();
 			// Bug 4. 17 July 2010. AR
 			// You can't pause or play whilst you are recording. Disable it here, then enable once you stop recording.
-			view.pauseButton.enabled = false;
-			view.playButton.enabled = false;
+			if (view.pauseButton) view.pauseButton.enabled = false;
+			if (view.playButton) view.playButton.enabled = false;
+			if (view.newButton) view.newButton.enabled = false;
+			if (view.saveButton) view.saveButton.enabled = false;
 		}
 		
 		private function onSaveMP3(e:WaveformEvent):void {

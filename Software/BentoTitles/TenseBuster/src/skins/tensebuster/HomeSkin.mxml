@@ -118,5 +118,5 @@
 			</fx:Component>
 		</s:itemRenderer>
 	</s:List>
-	<recorder:RecorderView width="300" height="100" right="0" top="0" />
+	<recorder:RecorderView height="100" right="0" top="0" />
 </s:Skin>

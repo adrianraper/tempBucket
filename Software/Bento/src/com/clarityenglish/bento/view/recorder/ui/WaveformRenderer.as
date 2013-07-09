@@ -210,8 +210,10 @@ package com.clarityenglish.bento.view.recorder.ui {
 		 * Set the position and visibility of the playhead
 		 */
 		public function set playheadPosition(playheadPosition:Number):void {
-			playheadSprite.visible = (playheadPosition > -1);
-			playheadSprite.x = sampleToX(playheadPosition);
+			if (playheadSprite) {
+				playheadSprite.visible = (playheadPosition > -1);
+				playheadSprite.x = sampleToX(playheadPosition);
+			}
 			
 			if (followMode && playheadPosition > -1) follow(playheadPosition);
 		}
@@ -336,8 +338,6 @@ package com.clarityenglish.bento.view.recorder.ui {
 						if (rightSelection > rightSample) sampleDifference = rightSample - rightSelection;
 						if (rightSelection < leftSample && leftSample >= 0) sampleDifference = leftSample - rightSelection;
 						
-						trace(sampleDifference);
-						
 						if (!isNaN(sampleDifference)) {
 							//sampleDifference = rightSample - rightSelection;
 							leftSample = leftSample - sampleDifference;
@@ -369,7 +369,6 @@ package com.clarityenglish.bento.view.recorder.ui {
 		private function onMouseOut(e:MouseEvent):void {
 			// Need to see if you have really left the waveform
 			// and if you have, which direction are you going in so that we can start a scroll and keep extending the selection
-			trace("left that waveform " + e.target.toString());
 		}
 		
 		/**
@@ -460,7 +459,7 @@ package com.clarityenglish.bento.view.recorder.ui {
 			// Draw the background grid
 			drawGrid(unscaledWidth, unscaledHeight);
 			
-			if (samples) {
+			if (samples && unscaledWidth > 0 && unscaledHeight > 0) {
 				// Draw the waveform
 				bitmapData = new BitmapData(unscaledWidth, unscaledHeight, true);
 				renderWaveform(unscaledWidth, unscaledHeight);
