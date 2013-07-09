@@ -20,6 +20,8 @@
 	import com.clarityenglish.bento.view.progress.components.ProgressScoreView;
 	import com.clarityenglish.bento.view.recorder.RecorderMediator;
 	import com.clarityenglish.bento.view.recorder.RecorderView;
+	import com.clarityenglish.bento.view.recorder.WaveformMediator;
+	import com.clarityenglish.bento.view.recorder.WaveformView;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerMediator;
 	import com.clarityenglish.bento.view.swfplayer.SWFPlayerView;
 	import com.clarityenglish.bento.view.warning.WarningMediator;
@@ -84,6 +86,7 @@
 			mapView(ProgressCoverageView, ProgressCoverageMediator);
 			
 			mapView(RecorderView, RecorderMediator);
+			mapView(WaveformView, WaveformMediator);
 			
 			// Initial config loading before the state machine is initialized
 			registerCommand(CommonNotifications.CONFIG_LOAD, ConfigLoadCommand);

@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:ui="com.clarityenglish.bento.view.recorder.ui.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:ui="com.clarityenglish.bento.view.recorder.ui.*"
+		xmlns:recorder="com.clarityenglish.bento.view.recorder.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.recorder.RecorderView")]
@@ -13,12 +15,14 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:HGroup gap="2" verticalAlign="middle">
+	<!--<s:HGroup gap="2" verticalAlign="middle">
 		<ui:LevelMeter id="levelMeter" width="4" height="26" />
 		<s:Button id="recordButton" skinClass="skins.bento.recorder.buttons.RecordButtonSkin" />
 		<s:Button id="playButton" skinClass="skins.bento.recorder.buttons.PlayButtonSkin" />
 		<s:Button id="stopButton" skinClass="skins.bento.recorder.buttons.StopButtonSkin" />
 		<s:Button id="pauseButton" skinClass="skins.bento.recorder.buttons.PauseButtonSkin" />
 		<s:HSlider id="scrubBar" height="12" />
-	</s:HGroup>
+	</s:HGroup>-->
+	
+	<recorder:WaveformView width="500" height="300" />
 </s:Skin>
