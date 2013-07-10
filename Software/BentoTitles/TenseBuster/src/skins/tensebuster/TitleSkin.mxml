@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.title.TitleView")]
@@ -43,6 +43,8 @@
 			<s:Label text="{hostComponent.exerciseCaption}" color="{getStyle(TitleView.courseCode + 'Color')}" fontSize="14" paddingTop="6" />
 		</s:HGroup>	
 	</s:Group>
+	
 	<s:Button id="backToMenuButton" label="Back to Menu" right="75" top="180" color="0xFFFFFF" fontWeight="bold" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
+	<recorder:RecorderView right="0" includeIn="exercise" />
 	
 </s:Skin>

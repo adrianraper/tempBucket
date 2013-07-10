@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.bento.view.recorder {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.RecorderNotifications;
 	import com.clarityenglish.bento.model.AudioProxy;
+	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
@@ -54,18 +56,21 @@
 				RecorderNotifications.MP3_LOAD_PROGRESS,
 				RecorderNotifications.MP3_LOAD_COMPLETE,
 				RecorderNotifications.MP3_SAVE_COMPLETE,
-				/*ApplicationFacade.COMPARE_TO,
-				ApplicationFacade.COMPARE_STATE,
-				ApplicationFacade.PLAYING_COMPLETE,
-				ApplicationFacade.RECORDING_STOPPED,
-				ApplicationFacade.RELEASE_ALWAYS_ON_TOP,
-				ApplicationFacade.NO_MICROPHONE,
-				ApplicationFacade.GOT_MICROPHONE,*/
+				RecorderNotifications.NO_MICROPHONE,
+				RecorderNotifications.GOT_MICROPHONE,
+				BBNotifications.AUDIO_PLAYED,
+				BBNotifications.EXERCISE_STARTED,
 			]);
 		}
 		
 		override public function handleNotification(note:INotification):void {
 			switch (note.getName()) {
+				case RecorderNotifications.NO_MICROPHONE:
+					view.setCurrentState("nomic");
+					break;
+				case RecorderNotifications.GOT_MICROPHONE:
+					view.setCurrentState("minimized");
+					break;
 				case RecorderNotifications.MP3_LOAD_START:
 					stateBeforeProgress = view.currentState;
 					
@@ -111,11 +116,23 @@
 					break;
 				case RecorderNotifications.MP3_SAVE_COMPLETE:
 					break;
+				case BBNotifications.EXERCISE_STARTED:
+					// Clear the last played audio in the DataProxy (since its per exercise)
+					var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+					dataProxy.clear("lastPlayedAudioInExerise");
+					break;
+				case BBNotifications.AUDIO_PLAYED:
+					// Store the last played audio in the DataProxy
+					dataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+					dataProxy.set("lastPlayedAudioInExerise", note.getBody());
+					break;
 			}
 		}
 		
 		protected function onCompare(event:Event):void {
-			sendNotification(RecorderNotifications.COMPARE_TO, "http://www.ruffness.com/ruffness/mp3/fortress.mp3");
+			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;
+			if (dataProxy.has("lastPlayedAudioInExerise"))
+				sendNotification(RecorderNotifications.COMPARE_TO, dataProxy.get("lastPlayedAudioInExerise"));
 		}
 		
 	}

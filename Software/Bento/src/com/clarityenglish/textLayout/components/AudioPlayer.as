@@ -1,4 +1,6 @@
 package com.clarityenglish.textLayout.components {
+	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
+	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.ProgressEvent;
@@ -10,6 +12,8 @@ package com.clarityenglish.textLayout.components {
 	
 	import mx.core.UIComponent;
 	import mx.events.FlexEvent;
+	
+	import org.osmf.events.AudioEvent;
 	
 	import spark.components.mediaClasses.ScrubBar;
 	import spark.components.supportClasses.SkinnableComponent;
@@ -197,6 +201,8 @@ package com.clarityenglish.textLayout.components {
 			// Change the status and invalidate the skin state
 			soundStatus = PLAYING;
 			invalidateSkinState();
+			
+			dispatchEvent(new AudioPlayerEvent(AudioPlayerEvent.PLAY, src, true));
 		}
 		
 		protected function seek(time:Number):void {

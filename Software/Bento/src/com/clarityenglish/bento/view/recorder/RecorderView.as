@@ -23,7 +23,7 @@ package com.clarityenglish.bento.view.recorder {
 		public var progressBar:ProgressBar;
 		
 		public function RecorderView() {
-			StateUtil.addStates(this, [ "minimized", "full", "compare", "progress" ], true);
+			StateUtil.addStates(this, [ "minimized", "full", "compare", "progress", "nomic" ], true);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

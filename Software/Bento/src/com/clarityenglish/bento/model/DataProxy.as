@@ -55,6 +55,15 @@ package com.clarityenglish.bento.model {
 			sendNotification(BBNotifications.DATA_CHANGED, value, key);
 		}
 		
+		public function clear(key:String):void {
+			delete data[key];
+			sendNotification(BBNotifications.DATA_CHANGED, null, key);
+		}
+		
+		public function has(key:String):Boolean {
+			return data.hasOwnProperty(key);
+		}
+		
 		/**
 		 * Set a function that will be called to generate a default if there is no value for the given key.
 		 * 

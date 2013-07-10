@@ -39,6 +39,9 @@
 			[Bindable]
 			public var audioProxyName:String;
 			
+			[Bindable]
+			public var isCompareEnabled:Boolean;
+			
 			[SkinPart]		
 			public var recordButton:Button;
 			

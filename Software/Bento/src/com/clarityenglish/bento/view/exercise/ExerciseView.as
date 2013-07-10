@@ -4,6 +4,7 @@ package com.clarityenglish.bento.view.exercise {
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -97,8 +98,8 @@ package com.clarityenglish.bento.view.exercise {
 		public var previousExercise:Signal = new Signal();
 		public var printExercise:Signal = new Signal(DynamicView);
 		public var backToMenu:Signal = new Signal();
-		// gh#388
-		public var showFeedbackReminder:Signal = new Signal(String);
+		public var showFeedbackReminder:Signal = new Signal(String); // gh#388
+		public var audioPlayed:Signal = new Signal(String); // gh#267
 		
 		public function ExerciseView() {
 			super();
@@ -135,6 +136,7 @@ package com.clarityenglish.bento.view.exercise {
 			switch (instance) {
 				case dynamicView:
 					dynamicView.addEventListener(BentoEvent.XHTML_READY, function():void { invalidateSkinState(); } );
+					dynamicView.addEventListener(AudioPlayerEvent.PLAY, function(e:AudioPlayerEvent):void { audioPlayed.dispatch(e.src); } );
 					break;
 				case startAgainButton:
 					startAgainButton.addEventListener(MouseEvent.CLICK, function():void { startAgain.dispatch(); } );

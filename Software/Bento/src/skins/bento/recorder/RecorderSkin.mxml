@@ -23,6 +23,7 @@
 		<s:State name="full" />
 		<s:State name="compare" />
 		<s:State name="progress" />
+		<s:State name="nomic" />
 	</s:states>
 	
 	<s:VGroup>
@@ -37,8 +38,8 @@
 		</s:VGroup>
 	</s:Group>
 	
-	<!--<s:Group horizontalCenter="-250" verticalCenter="0" visible.normal="true">
-		<s:Label id="warningLabel" width="200" textAlign="center" text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in." />
-	</s:Group>-->
+	<s:Group horizontalCenter="0" verticalCenter="0" includeIn="nomic">
+		<s:Label id="warningLabel" width="100%" textAlign="center" text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in." />
+	</s:Group>
 	
 </s:Skin>

@@ -2,6 +2,7 @@
  Mediator - PureMVC
  */
 package com.clarityenglish.bento.view.recorder {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.RecorderNotifications;
 	import com.clarityenglish.bento.model.AudioProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
@@ -90,6 +91,7 @@ package com.clarityenglish.bento.view.recorder {
 				RecorderNotifications.RECORDING_STARTED,
 				RecorderNotifications.RECORDING_STOPPED,
 				RecorderNotifications.CLEAR_WAVEFORM,
+				BBNotifications.DATA_CHANGED,
 			]);
 		}
 
@@ -153,6 +155,11 @@ package com.clarityenglish.bento.view.recorder {
 					if (note.getType() == view.audioProxyName) {
 						view.reset();
 						updateMp3Info();
+					}
+					break;
+				case BBNotifications.DATA_CHANGED:
+					if (note.getType() == "lastPlayedAudioInExerise") {
+						view.isCompareEnabled = (note.getBody() !== null);
 					}
 					break;
 				default:

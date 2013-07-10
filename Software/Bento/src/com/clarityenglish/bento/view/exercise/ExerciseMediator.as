@@ -41,8 +41,8 @@
 			view.previousExercise.add(onPreviousExercise);
 			view.printExercise.add(onPrintExercise);
 			view.backToMenu.add(onBackToMenu);
-			// gh#388
-			view.showFeedbackReminder.add(onShowFeedbackReminder);
+			view.showFeedbackReminder.add(onShowFeedbackReminder); // gh#388
+			view.audioPlayed.add(onAudioPlayed); // gh#267
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
@@ -69,8 +69,8 @@
 			view.previousExercise.remove(onPreviousExercise);
 			view.printExercise.remove(onPrintExercise);
 			view.backToMenu.remove(onBackToMenu);
-			// gh#388
-			view.showFeedbackReminder.remove(onShowFeedbackReminder);
+			view.showFeedbackReminder.remove(onShowFeedbackReminder); // gh#388
+			view.audioPlayed.add(onAudioPlayed); // gh#267
 			
 			// #414
 			sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view);
@@ -192,6 +192,11 @@
 		// gh#388
 		private function onShowFeedbackReminder(value:String):void {
 			sendNotification(BBNotifications.FEEDBACK_REMINDER_SHOW, value);
+		}
+		
+		// gh#267
+		private function onAudioPlayed(src:String):void {
+			sendNotification(BBNotifications.AUDIO_PLAYED, src);
 		}
 		
 	}

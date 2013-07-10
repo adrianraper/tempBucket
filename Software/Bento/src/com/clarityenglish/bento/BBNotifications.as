@@ -110,6 +110,9 @@
 		
 		// gh#338
 		public static const HINT_SHOW:String = "bb/hint_show";
+		
+		// gh#267
+		public static const AUDIO_PLAYED:String = "bb/audio_played";
 	}
 	
 }
