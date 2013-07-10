@@ -9,7 +9,6 @@ package com.clarityenglish.bento.view.recorder {
 	import com.clarityenglish.bento.view.recorder.events.WaveformEvent;
 	import com.clarityenglish.bento.view.recorder.events.WaveformRangeEvent;
 	
-	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.net.FileReference;
 	import flash.utils.Timer;
@@ -48,8 +47,6 @@ package com.clarityenglish.bento.view.recorder {
 			view.addEventListener(WaveformEvent.SAVE_MP3, onSaveMP3);
 			//view.addEventListener(WaveformEvent.LOAD_MP3, onLoadMP3);
 			view.addEventListener(WaveformEvent.NEW_WAVE, onNewWave);
-			view.addEventListener(WaveformEvent.COMPARE, onCompare);
-			
 			view.addEventListener(WaveformRangeEvent.CUT, onCut);
 			
 			// Inject variables into the view
@@ -77,8 +74,6 @@ package com.clarityenglish.bento.view.recorder {
 			view.removeEventListener(WaveformEvent.SAVE_MP3, onSaveMP3);
 			//view.removeEventListener(WaveformEvent.LOAD_MP3, onLoadMP3);
 			view.removeEventListener(WaveformEvent.NEW_WAVE, onNewWave);
-			view.removeEventListener(WaveformEvent.COMPARE, onCompare);
-			
 			view.removeEventListener(WaveformRangeEvent.CUT, onCut);
 		}
 		
@@ -222,10 +217,6 @@ package com.clarityenglish.bento.view.recorder {
 			sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, audioProxyName);
 		}
 		
-		protected function onCompare(event:Event):void {
-			trace("COMPARE! COMPARE! COMPARE! COMPARE! COMPARE!");
-		}
-		
 		/*
 		 * Work this out later
 		 * 
@@ -254,7 +245,6 @@ package com.clarityenglish.bento.view.recorder {
 			fileReference.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onLoadError);
 			fileReference.browse( [ new FileFilter("MP3 File", "*.mp3") ] );
 		}
-		
 		private function onFileReferenceSelect(e:Event):void {
 			// Ar v4.0.1.2 It seems to me that you can't completely pass the fileReference around like this.
 			// as the load function never triggers any events.
@@ -263,7 +253,6 @@ package com.clarityenglish.bento.view.recorder {
 			trace("onFileReference for " + fileReference.name + ", " + fileReference.size);
 			//fileReference.load();			
 		}
-		
 		private function onFileReferenceCancel(e:Event):void {
 			trace("cancelled");
 		}
@@ -283,7 +272,7 @@ package com.clarityenglish.bento.view.recorder {
 			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
 			audioProxy.loadMP3FromBytes(fileReference.data);
 		}
-		*/		
+		*/
 		
 		private function onCut(e:WaveformRangeEvent):void {
 			sendNotification(RecorderNotifications.CUT_WAVEFORM, { left: e.left, right: e.right }, audioProxyName);

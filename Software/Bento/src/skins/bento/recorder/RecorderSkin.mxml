@@ -19,7 +19,9 @@
 		<s:State name="compare" />
 	</s:states>
 	
-	<recorder:WaveformView id="recordWaveformView" minimized.minimized="true" minimized.full="false" />
-	<!--<recorder:WaveformView id="modelWaveformView" minimized.minimized="true" minimized.full="false" />-->
+	<s:VGroup>
+		<recorder:WaveformView id="recordWaveformView" minimized.minimized="true" minimized.full="false" />
+		<recorder:WaveformView id="compareWaveformView" minimized="false" includeIn="compare" />
+	</s:VGroup>
 	
 </s:Skin>

@@ -46,7 +46,7 @@
 	<s:Group id="contentGroup" left="22" right="82" top="16" bottom="47" visible.minimized="false" includeInLayout.minimized="false" />
 	<s:HSlider id="scrubSlider" skinClass="skins.bento.recorder.buttons.HorizontalSliderSkin"
 			   enabled="{!hostComponent.isRecording}"
-			   minimum="0" maximum="1" snapInterval="0.001" value="0" bottom="-15" left="0" right="0" toolTip="Scrub bar" includeIn="minimized" />
+			   minimum="0" maximum="1" snapInterval="0.001" value="0" bottom="-15" left="10" right="10" toolTip="Scrub bar" includeIn="minimized" />
 	
 	<s:VSlider id="gainSlider" skinClass="skins.bento.recorder.buttons.VerticalSliderSkin" minimum="0" maximum="2" snapInterval="0.05" value="1" top="26" right="52" bottom="58" toolTip="Visual gain" includeIn="full" />
 	

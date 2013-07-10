@@ -8,7 +8,6 @@
 		 
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.bento.model.adaptor.IRecorderAdaptor;
 			import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
 			import com.clarityenglish.bento.view.recorder.events.WaveformEvent;
 			import com.clarityenglish.bento.view.recorder.events.WaveformRangeEvent;
@@ -200,13 +199,13 @@
 						newButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.NEW_WAVE)); } );
 						break;
 					case compareButton:
-						compareButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.COMPARE)); } );
+						compareButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.COMPARE)); } );
 						break;
 					case minButton:
-						minButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.MINIMIZE)); } );
+						minButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.MINIMIZE)); } );
 						break;
 					case maxButton:
-						maxButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.MAXIMIZE)); } );
+						maxButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.MAXIMIZE)); } );
 						break
 					case helpButton:
 						helpButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.HELP, "help", true)); } );
@@ -238,8 +237,8 @@
 	<!-- This with the scrub bar	
 	<ui:WaveformRenderer id="waveformRenderer" data="{samples}" playbackGain="{gainSlider.value}" scrubValue="{scrubSlider.value}" width="100%" height="100%" sampleRate="{sampleRate}" dragMode="{dragMode}" select="onWaveformSelect(event)" showSamples="{SECONDS_TO_SHOW * sampleRate}" />
 	 -->
-	<!-- This without the scrub bar	 -->
+	<!-- This without the scrub bar -->
 	<ui:WaveformRenderer id="waveformRenderer" data="{samples}" playbackGain="{gainSlider.value}" scrubValue="{scrubSlider.value}" width="100%" height="100%" sampleRate="{sampleRate}" dragMode="{dragMode}" select="onWaveformSelect(event)" showSamples="{SECONDS_TO_SHOW * sampleRate}" />
-	<!-- This with the scrub bar	 -->
+	<!-- This with the scrub bar -->
 	
 </bento:BentoView>
