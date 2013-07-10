@@ -21,16 +21,13 @@ package com.clarityenglish.bento.view.recorder {
 	 */
 	public class WaveformMediator extends BentoMediator implements IMediator {
 		
-		// The name of the audio proxy that drives this waveform view
-		private var audioProxyName:String;
-		
 		//private var mp3FileReference:FileReference;
 		private var fileReference:FileReference;
 		
 		public function WaveformMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 			
-			this.audioProxyName = RecorderNotifications.RECORD_PROXY_NAME; // TODO: should be defined in the mxml instantiating the view
+			//this.audioProxyName = RecorderNotifications.RECORD_PROXY_NAME; // TODO: should be defined in the mxml instantiating the view
 		}
 		
 		private function get view():WaveformView {
@@ -50,7 +47,7 @@ package com.clarityenglish.bento.view.recorder {
 			view.addEventListener(WaveformRangeEvent.CUT, onCut);
 			
 			// Inject variables into the view
-			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			view.isRecordEnabled = audioProxy.isRecordEnabled();
 			view.sampleRate = AudioProxy.SAMPLE_RATE;
 			// v4.0.1.1 Small step to help trouble shoot
@@ -111,15 +108,15 @@ package com.clarityenglish.bento.view.recorder {
 					prepareView();
 					break;
 				case RecorderNotifications.PLAYHEAD_POSITION:
-					if (note.getType() == audioProxyName)
+					if (note.getType() == view.audioProxyName)
 						view.waveformRenderer.playheadPosition = note.getBody() as Number;
 					break;
 				case RecorderNotifications.INPUT_LEVEL:
-					if (note.getType() == audioProxyName)
+					if (note.getType() == view.audioProxyName)
 						view.levelMeter.data = note.getBody();
 					break;
 				case RecorderNotifications.RECORDING_STARTED:
-					if (note.getType() == audioProxyName) {
+					if (note.getType() == view.audioProxyName) {
 						view.isRecording = true;
 						view.waveformRenderer.recording = true;
 						
@@ -128,7 +125,7 @@ package com.clarityenglish.bento.view.recorder {
 					}
 					break;
 				case RecorderNotifications.RECORDING_STOPPED:
-					if (note.getType() == audioProxyName) {
+					if (note.getType() == view.audioProxyName) {
 						view.isRecording = false;
 						view.waveformRenderer.recording = false;
 						updateMp3Info();
@@ -153,7 +150,7 @@ package com.clarityenglish.bento.view.recorder {
 					}
 					break;
 				case RecorderNotifications.CLEAR_WAVEFORM:
-					if (note.getType() == audioProxyName) {
+					if (note.getType() == view.audioProxyName) {
 						view.reset();
 						updateMp3Info();
 					}
@@ -164,14 +161,14 @@ package com.clarityenglish.bento.view.recorder {
 		}
 		
 		private function prepareView():void {
-			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			view.samples = audioProxy.samples;
 			
 			updateMp3Info();
 		}
 		
 		private function updateMp3Info():void {
-			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			
 			view.mp3FileSizeText = (audioProxy.samples) ? "MP3 file size " + Math.round(audioProxy.samples.length / 22000) + "kb" : "-";
 			var duration:String = ((audioProxy.samples.length / AudioProxy.SAMPLE_RATE / 8) as Number).toFixed(1);
@@ -179,23 +176,23 @@ package com.clarityenglish.bento.view.recorder {
 		}
 		
 		private function onPlay(e:WaveformEvent):void {
-			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			audioProxy.play(view.waveformRenderer.leftSelection, view.waveformRenderer.rightSelection);
 		}
 		
 		private function onPause(e:WaveformEvent):void {
-			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			audioProxy.pause();
 		}
 		
 		private function onStop(e:WaveformEvent):void {
-			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			audioProxy.stop();
 		}
 		
 		private function onRecord(e:WaveformEvent):void {
 			//trace("on record");
-			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			// Bug 4. 27 July 2010. AR
 			// You should stop playing before you start recording.
 			audioProxy.stop();
@@ -209,12 +206,12 @@ package com.clarityenglish.bento.view.recorder {
 		}
 		
 		private function onSaveMP3(e:WaveformEvent):void {
-			var audioProxy:AudioProxy = facade.retrieveProxy(audioProxyName) as AudioProxy;
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
 			audioProxy.encodeSamplesToMP3();
 		}
 		
 		private function onNewWave(e:WaveformEvent):void {
-			sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, audioProxyName);
+			sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, view.audioProxyName);
 		}
 		
 		/*
@@ -275,7 +272,7 @@ package com.clarityenglish.bento.view.recorder {
 		*/
 		
 		private function onCut(e:WaveformRangeEvent):void {
-			sendNotification(RecorderNotifications.CUT_WAVEFORM, { left: e.left, right: e.right }, audioProxyName);
+			sendNotification(RecorderNotifications.CUT_WAVEFORM, { left: e.left, right: e.right }, view.audioProxyName);
 		}
 		
 	}

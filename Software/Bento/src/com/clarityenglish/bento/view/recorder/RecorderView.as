@@ -40,6 +40,7 @@ package com.clarityenglish.bento.view.recorder {
 		
 		protected function onCompare(event:RecorderEvent):void {
 			currentState = "compare";
+			dispatchEvent(event.clone());
 		}
 		
 		protected override function getCurrentSkinState():String {

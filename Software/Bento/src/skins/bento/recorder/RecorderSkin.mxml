@@ -8,6 +8,11 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.recorder.RecorderView")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.RecorderNotifications;
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -20,8 +25,8 @@
 	</s:states>
 	
 	<s:VGroup>
-		<recorder:WaveformView id="recordWaveformView" minimized.minimized="true" minimized.full="false" />
-		<recorder:WaveformView id="compareWaveformView" minimized="false" includeIn="compare" />
+		<recorder:WaveformView id="recordWaveformView" audioProxyName="{RecorderNotifications.RECORD_PROXY_NAME}" minimized.minimized="true" minimized.full="false" />
+		<recorder:WaveformView id="compareWaveformView" audioProxyName="{RecorderNotifications.MODEL_PROXY_NAME}" minimized="false" includeIn="compare" />
 	</s:VGroup>
 	
 </s:Skin>

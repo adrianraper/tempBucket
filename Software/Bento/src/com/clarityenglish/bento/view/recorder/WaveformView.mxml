@@ -36,6 +36,9 @@
 			[Bindable]
 			public var isRecording:Boolean;
 			
+			[Bindable]
+			public var audioProxyName:String;
+			
 			[SkinPart]		
 			public var recordButton:Button;
 			
