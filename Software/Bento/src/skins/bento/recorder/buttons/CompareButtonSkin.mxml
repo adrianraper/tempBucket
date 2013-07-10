@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark" xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008" xmlns:ai="http://ns.adobe.com/ai/2009">
+	<fx:Metadata>[HostComponent("spark.components.Button")]</fx:Metadata>
+	<s:states>
+		<s:State name="up"/>
+		<s:State name="over"/>
+		<s:State name="down"/>
+		<s:State name="disabled"/>
+	</s:states>
+	<s:Group d:id="93" flm:knockout="false" x="0" y="4">
+		<s:Rect height="24" d:id="94" radiusX="3.98381" radiusY="3.98381" flm:variant="69" width="45" x="0" y="0">
+			<s:fill>
+				<s:LinearGradient rotation="180" scaleX="44.7452" x="44.7421" y="12.0757">
+					<s:GradientEntry color="#333333" ratio="0"/>
+					<s:GradientEntry color="#757576" ratio="0.448485"/>
+					<s:GradientEntry color="#717172" ratio="0.583319"/>
+					<s:GradientEntry color="#646465" ratio="0.721181"/>
+					<s:GradientEntry color="#505050" ratio="0.86014"/>
+					<s:GradientEntry color="#333333" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:Group d:id="95" flm:knockout="false" x="0" y.over="0" id="group1" y.down="2" y.up="1" y.disabled="1">
+		<s:Rect height="24" d:id="96" radiusX="3.98381" radiusY="3.98381" flm:variant="70" width="45" x="0" y="0">
+			<s:fill>
+				<s:LinearGradient rotation="180" scaleX="44.7452" x="44.7421" y="11.7212">
+					<s:GradientEntry color="#E6E6E6" ratio="0"/>
+					<s:GradientEntry color="#FFFFFF" ratio="0.672727"/>
+					<s:GradientEntry color="#FAFAFA" ratio="0.853051"/>
+					<s:GradientEntry color="#E6E6E6" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	<s:RichText ai:aa="2" color="#333333" columnCount="1" fontFamily="Verdana" fontSize="11" d:id="97" kerning="on" lineHeight="12.1766" tabStops="S31.3113708496094" text="Cmp" textAlign="center" trackingRight="-2.5%" d:userLabel="New" flm:variant="71" whiteSpaceCollapse="preserve" x="11" y.over="7" id="richtext2" color.over="#FABE78" tabStops.over="S0" y.down="9" color.down="#F7931E" tabStops.down="S0" color.disabled="#CCCCCC" tabStops.disabled="S0" y.up="8" y.disabled="8"/>
+</s:Skin>

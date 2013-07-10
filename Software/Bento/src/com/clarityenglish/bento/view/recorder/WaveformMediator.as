@@ -9,6 +9,7 @@ package com.clarityenglish.bento.view.recorder {
 	import com.clarityenglish.bento.view.recorder.events.WaveformEvent;
 	import com.clarityenglish.bento.view.recorder.events.WaveformRangeEvent;
 	
+	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.net.FileReference;
 	import flash.utils.Timer;
@@ -47,6 +48,7 @@ package com.clarityenglish.bento.view.recorder {
 			view.addEventListener(WaveformEvent.SAVE_MP3, onSaveMP3);
 			//view.addEventListener(WaveformEvent.LOAD_MP3, onLoadMP3);
 			view.addEventListener(WaveformEvent.NEW_WAVE, onNewWave);
+			view.addEventListener(WaveformEvent.COMPARE, onCompare);
 			
 			view.addEventListener(WaveformRangeEvent.CUT, onCut);
 			
@@ -75,6 +77,7 @@ package com.clarityenglish.bento.view.recorder {
 			view.removeEventListener(WaveformEvent.SAVE_MP3, onSaveMP3);
 			//view.removeEventListener(WaveformEvent.LOAD_MP3, onLoadMP3);
 			view.removeEventListener(WaveformEvent.NEW_WAVE, onNewWave);
+			view.removeEventListener(WaveformEvent.COMPARE, onCompare);
 			
 			view.removeEventListener(WaveformRangeEvent.CUT, onCut);
 		}
@@ -122,6 +125,7 @@ package com.clarityenglish.bento.view.recorder {
 					break;
 				case RecorderNotifications.RECORDING_STARTED:
 					if (note.getType() == audioProxyName) {
+						view.isRecording = true;
 						view.waveformRenderer.recording = true;
 						
 						view.mp3FileSizeText = "Recording...";
@@ -130,6 +134,7 @@ package com.clarityenglish.bento.view.recorder {
 					break;
 				case RecorderNotifications.RECORDING_STOPPED:
 					if (note.getType() == audioProxyName) {
+						view.isRecording = false;
 						view.waveformRenderer.recording = false;
 						updateMp3Info();
 						// Bug 4. 17 July 2010. AR
@@ -215,6 +220,10 @@ package com.clarityenglish.bento.view.recorder {
 		
 		private function onNewWave(e:WaveformEvent):void {
 			sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, audioProxyName);
+		}
+		
+		protected function onCompare(event:Event):void {
+			trace("COMPARE! COMPARE! COMPARE! COMPARE! COMPARE!");
 		}
 		
 		/*

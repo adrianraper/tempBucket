@@ -34,6 +34,9 @@
 			[Bindable]
 			public var sampleRate:Number;
 			
+			[Bindable]
+			public var isRecording:Boolean;
+			
 			[SkinPart]		
 			public var recordButton:Button;
 			
@@ -56,7 +59,13 @@
 			public var newButton:Button;
 			
 			[SkinPart]
+			public var compareButton:Button;
+			
+			[SkinPart]
 			public var minButton:Button;
+			
+			[SkinPart]
+			public var maxButton:Button;
 			
 			[SkinPart]
 			public var helpButton:Button;
@@ -153,7 +162,6 @@
 				switch (e.target) {
 					case showAllContextMenuItem:
 						waveformRenderer.showAll();
-						
 						// There seems to be a Flex 4 bug where the context menu is left behind (only in web mode) so might need to do some kind of redraw here
 						break;
 					case resetViewContextMenuItem:
@@ -191,11 +199,20 @@
 					case newButton:
 						newButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.NEW_WAVE)); } );
 						break;
+					case compareButton:
+						compareButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.COMPARE)); } );
+						break;
 					/*case minButton:
 						minButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.STOP)); 
 																					   dispatchEvent(new RecorderEvent(RecorderEvent.CHANGE_STATE, "record", true));
 																					   dispatchEvent(new AIRWindowEvent(AIRWindowEvent.RELEASE_ALWAYS_IN_FRONT, true)); } );
 						break;*/
+					case minButton:
+						minButton.addEventListener(MouseEvent.CLICK, function():void { isMinimized = true; } );
+						break;
+					case maxButton:
+						maxButton.addEventListener(MouseEvent.CLICK, function():void { isMinimized = false; } );
+						break
 					case helpButton:
 						helpButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.HELP, "help", true)); } );
 						break;
@@ -204,7 +221,6 @@
 						break;
 				}
 			}
-			
 			
 			private function onWaveformSelect(e:WaveformRangeEvent):void {
 				cutContextMenuItem.enabled = e.left < e.right;
