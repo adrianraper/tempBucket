@@ -343,7 +343,9 @@ package com.clarityenglish.bento.model {
 				isRecording = false;
 				sendNotification(RecorderNotifications.RECORDING_STOPPED, null, getProxyName());
 			}
-				
+			
+			// Stop listening
+			microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 		}
 		
 		/**
@@ -368,8 +370,8 @@ package com.clarityenglish.bento.model {
 		 * @param	idx
 		 */
 		public function setMicrophone(idx:int):void {
-			if (microphone)
-				microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
+			//if (microphone)
+			//	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 			
 			microphone = Microphone.getMicrophone(idx);
 			microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
@@ -386,7 +388,7 @@ package com.clarityenglish.bento.model {
 				microphone.setSilenceLevel(0);
 				microphone.rate = 44;
 				
-				microphone.addEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
+				//microphone.addEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 				//microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
 			}
 		}
@@ -397,6 +399,10 @@ package com.clarityenglish.bento.model {
 				stop();
 				return;
 			}
+			
+			// Start listening
+			microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
+			microphone.addEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 			
 			// If clear waveform is true then clear the wave
 			if (clearWaveform)

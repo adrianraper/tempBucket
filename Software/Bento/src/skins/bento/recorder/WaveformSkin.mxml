@@ -54,6 +54,7 @@
 				   top.minimized="0" bottom.minimized="0" right.minimized="0"
 				   right.full="25" top.full="32" bottom.full="60"
 				   toolTip="Recording level meter"
+				   visible="{hostComponent.isRecording}"
 				   includeIn="record" />
 	
 </s:Skin>
