@@ -14,7 +14,7 @@ package com.clarityenglish.textLayout.events {
 		private var _controller:ContainerController;
 		
 		public function RenderFlowEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, textFlow:TextFlow = null, controller:ContainerController = null) {
-			super(type, bubbles, bubbles);
+			super(type, bubbles, cancelable);
 			
 			this._textFlow = textFlow;
 			this._controller = controller;
