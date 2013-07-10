@@ -13,8 +13,13 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		
+		<s:State name="minimized" />
+		<s:State name="full" />
+		<s:State name="compare" />
 	</s:states>
 	
-	<recorder:WaveformView isMinimized="true" />
+	<recorder:WaveformView id="recordWaveformView" minimized.minimized="true" minimized.full="false" />
+	<!--<recorder:WaveformView id="modelWaveformView" minimized.minimized="true" minimized.full="false" />-->
 	
 </s:Skin>

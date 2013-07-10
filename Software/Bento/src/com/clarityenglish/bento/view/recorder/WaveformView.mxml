@@ -107,12 +107,12 @@
 			public function get isRecordEnabled():Boolean { return _isRecordEnabled; }
 			
 			[Bindable]
-			public function set isMinimized(value:Boolean):void {
+			public function set minimized(value:Boolean):void {
 				_isMinimized = value;
 				invalidateSkinState();
 			}
 			
-			public function get isMinimized():Boolean { return _isMinimized; }
+			public function get minimized():Boolean { return _isMinimized; }
 			
 			[Bindable]
 			public function set dragMode(value:String):void {
@@ -202,16 +202,11 @@
 					case compareButton:
 						compareButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.COMPARE)); } );
 						break;
-					/*case minButton:
-						minButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.STOP)); 
-																					   dispatchEvent(new RecorderEvent(RecorderEvent.CHANGE_STATE, "record", true));
-																					   dispatchEvent(new AIRWindowEvent(AIRWindowEvent.RELEASE_ALWAYS_IN_FRONT, true)); } );
-						break;*/
 					case minButton:
-						minButton.addEventListener(MouseEvent.CLICK, function():void { isMinimized = true; } );
+						minButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.MINIMIZE)); } );
 						break;
 					case maxButton:
-						maxButton.addEventListener(MouseEvent.CLICK, function():void { isMinimized = false; } );
+						maxButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new WaveformEvent(WaveformEvent.MAXIMIZE)); } );
 						break
 					case helpButton:
 						helpButton.addEventListener(MouseEvent.CLICK, function():void { dispatchEvent(new RecorderEvent(RecorderEvent.HELP, "help", true)); } );
