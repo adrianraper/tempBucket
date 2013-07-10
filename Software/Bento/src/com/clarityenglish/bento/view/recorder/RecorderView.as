@@ -2,9 +2,11 @@ package com.clarityenglish.bento.view.recorder {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
 	
-	import flash.events.Event;
+	import mx.controls.ProgressBar;
 	
 	import org.davekeen.util.StateUtil;
+	
+	import spark.components.Label;
 	
 	public class RecorderView extends BentoView {
 		
@@ -14,8 +16,14 @@ package com.clarityenglish.bento.view.recorder {
 		[SkinPart(required="true")]
 		public var compareWaveformView:WaveformView;
 		
+		[SkinPart(required="true")]
+		public var progressLabel:Label;
+		
+		[SkinPart(required="true")]
+		public var progressBar:ProgressBar;
+		
 		public function RecorderView() {
-			StateUtil.addStates(this, [ "minimized", "full", "compare" ], true);
+			StateUtil.addStates(this, [ "minimized", "full", "compare", "progress" ], true);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

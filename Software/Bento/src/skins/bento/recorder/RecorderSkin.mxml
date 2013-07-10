@@ -22,11 +22,23 @@
 		<s:State name="minimized" />
 		<s:State name="full" />
 		<s:State name="compare" />
+		<s:State name="progress" />
 	</s:states>
 	
 	<s:VGroup>
 		<recorder:WaveformView id="recordWaveformView" audioProxyName="{RecorderNotifications.RECORD_PROXY_NAME}" minimized.minimized="true" minimized.full="false" />
 		<recorder:WaveformView id="compareWaveformView" audioProxyName="{RecorderNotifications.MODEL_PROXY_NAME}" minimized="false" includeIn="compare" />
 	</s:VGroup>
+	
+	<s:Group horizontalCenter="0" verticalCenter="0" visible="false" visible.progress="true">
+		<s:VGroup>
+			<s:Label id="progressLabel" text="Doing stuff..." />
+			<mx:ProgressBar id="progressBar" mode="manual" />
+		</s:VGroup>
+	</s:Group>
+	
+	<!--<s:Group horizontalCenter="-250" verticalCenter="0" visible.normal="true">
+		<s:Label id="warningLabel" width="200" textAlign="center" text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in." />
+	</s:Group>-->
 	
 </s:Skin>

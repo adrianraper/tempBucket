@@ -10,7 +10,7 @@ package com.clarityenglish.bento.model.adaptor {
 	public class WebRecorderAdaptor extends EventDispatcher implements IRecorderAdaptor {
 		
 		public function setContextMenuItems(contextMenu:*, menuItems:Array):void {
-			(contextMenu as ContextMenu).customItems = menuItems;
+			//(contextMenu as ContextMenu).customItems = menuItems;
 		}
 		
 		public function saveMp3Data(mp3Data:ByteArray, filename:String = null):void {

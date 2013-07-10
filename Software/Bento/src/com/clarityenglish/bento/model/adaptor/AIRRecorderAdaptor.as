@@ -18,7 +18,7 @@ package com.clarityenglish.bento.model.adaptor {
 		private var mp3Data:ByteArray;
 		
 		public function setContextMenuItems(contextMenu:*, menuItems:Array):void {
-			(contextMenu as NativeMenu).items = menuItems;
+			//(contextMenu as NativeMenu).items = menuItems;
 		}
 		
 		public function saveMp3Data(mp3Data:ByteArray, filename:String = null):void {

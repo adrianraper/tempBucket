@@ -3,6 +3,7 @@ package com.clarityenglish.tensebuster.controller {
 	import com.clarityenglish.bento.controller.BentoStartupCommand;
 	import com.clarityenglish.bento.model.AudioProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
+	import com.clarityenglish.bento.model.adaptor.AIRRecorderAdaptor;
 	import com.clarityenglish.bento.model.adaptor.IRecorderAdaptor;
 	import com.clarityenglish.bento.model.adaptor.WebRecorderAdaptor;
 	import com.clarityenglish.bento.vo.Href;
@@ -13,6 +14,7 @@ package com.clarityenglish.tensebuster.controller {
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.tensebuster.view.TenseBusterApplicationMediator;
 	
+	import org.davekeen.util.PlayerUtils;
 	import org.puremvc.as3.interfaces.INotification;
 
 	public class TenseBusterStartupCommand extends BentoStartupCommand {
@@ -21,7 +23,7 @@ package com.clarityenglish.tensebuster.controller {
 			super.execute(note);
 			
 			// gh#267
-			var recorderAdaptor:IRecorderAdaptor = new WebRecorderAdaptor(); // for now hardcode the web recorder adaptor
+			var recorderAdaptor:IRecorderAdaptor = (PlayerUtils.isAirApplication()) ? new AIRRecorderAdaptor() : new WebRecorderAdaptor();
 			facade.registerProxy(new AudioProxy(RecorderNotifications.RECORD_PROXY_NAME, true, recorderAdaptor));
 			facade.registerProxy(new AudioProxy(RecorderNotifications.MODEL_PROXY_NAME, false, recorderAdaptor));
 			
