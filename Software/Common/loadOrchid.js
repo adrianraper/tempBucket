@@ -1,6 +1,3 @@
-		// ****
-		// Change this variable along with the above fixed paths
-		var webShare = "";
 		// 
 		// ****
 		function thisMovie(movieName) {
@@ -20,7 +17,6 @@
 		}
 		// *********
 		// *********
-		var startControl = webShare + "/Software/Common/";
 		var sections = location.pathname.split("/");
 		var userdatapath = sections.slice(0,sections.length-1).join("/");
 		var argList="?browser=true&userDataPath=" + userdatapath + "&location=" + jsLocation;
@@ -67,4 +63,4 @@
 			id: "orchid",
 			name: "orchid"
 		};
-		var expressInstall = startControl + "expressInstall.swf";
+		var expressInstall = jsWebShare + "/Software/Common/expressInstall.swf";
