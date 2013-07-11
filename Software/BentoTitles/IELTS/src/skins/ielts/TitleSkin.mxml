@@ -41,7 +41,7 @@
 		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" />
 		<!--s:SWFLoader id="infoButton" source="{hostComponent.inforButtonSource}" right="0" top="44" buttonMode="true" useHandCursor="true" /-->
 		<!--gh#383-->
-		<title:InforButton id="topInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" right="10" top="50" buttonMode="true" useHandCursor="true" trackingLeft="1.3" visible="{hostComponent.productVersionInforButton}" />
+		<title:InforButton id="topInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" right="10" top="55" buttonMode="true" useHandCursor="true" visible="{hostComponent.productVersionInforButton}" />
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true" />
 	</s:Group>
 	

@@ -20,8 +20,8 @@
 	</s:states>
 	
 	<s:Group filters="{[dropShadowFilter]}">
-		<s:Path x="-7.62939e-005" y="6.10352e-005" top="5" data="M407.629 3.1181 73.4464 3.1181C64.7511 -0.940491 51.5587 -1.13776 37.7979 3.1181L36.0401 3.1181C27.1964 3.1181 19.3917 7.77631 14.9444 14.7568 3.43855 23.6376 -2.45598 34.7939 0.96785 43.7304 4.49324 52.9228 16.919 57.2724 31.9766 55.831 33.2999
-				56.0497 34.6573 56.1689 36.0401 56.1689L407.629 56.1689C421.379 56.1689 432.629 44.9189 432.629 31.1689L432.629 28.1181C432.629 14.3681 421.379 3.1181 407.629 3.1181Z">
+		<s:Path x="-4.57764e-005" y="6.10352e-005" data="M373.162 3.00238 70.7051 3.00238C62.334 -0.904846 49.6348 -1.09528 36.3877 3.00238L34.6954 3.00238C26.1817 3.00238 18.668 7.48578 14.3868 14.2065 3.31059 22.7553 -2.36421 33.4955 0.931686 42.0981 4.32524 50.9477 16.2872 55.1352 30.7832 53.7475
+				32.0567 53.9584 33.3643 54.0727 34.6954 54.0727L373.162 54.0727C386.4 54.0727 397.23 43.2426 397.23 30.0053L397.23 27.0688C397.23 13.8325 386.4 3.00238 373.162 3.00238Z">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="0x1175BC" color.over="0x2194D5" color.down="0x2194D5" ratio="0"/>
@@ -30,9 +30,9 @@
 				</s:LinearGradient>
 			</s:fill>
 		</s:Path>
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/lmSubscribeIcon.png')" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/LMSubscribeR.png')" right="15" top="18"/>
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/lmSubscribeIcon.png')" top="-6" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/LMSubscribeR.png')" right="12" top="10"/>
 		
-		<s:RichEditableText id="textDisplay" textFlow="{hostComponent.richTextFlow}" color="0xFFFFFF" fontSize="15" left="90" top="20" bottom="0" paddingRight="8" paddingLeft="8" />
+		<s:RichEditableText id="textDisplay" textFlow="{hostComponent.richTextFlow}" color="0xFFFFFF" fontSize="15.5" left="83" top="13" bottom="0" paddingRight="8" paddingLeft="8" />
 	</s:Group>	
 </s:Skin>

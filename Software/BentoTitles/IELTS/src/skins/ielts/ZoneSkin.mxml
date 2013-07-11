@@ -50,7 +50,7 @@
 	<zone:ZonesBars top="70" right="10" />
 	<zone:ZonesBinder top="70" right="10" />
 	
-	<s:Label text="{hostComponent.course.@caption}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="104" right="30" />
+	<s:Label text="{hostComponent.course.@caption}" color="#FFFFFF" fontSize="18" fontWeight="bold" top="124" right="30" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" width="518" height="492" top="164" right="10">		
 		<s:ViewNavigator id="questionZoneViewNavigator" width="100%" height="100%" label="Starting out" firstView="com.clarityenglish.ielts.view.zone.QuestionZoneSectionView" firstViewData="{hostComponent.course}" />
