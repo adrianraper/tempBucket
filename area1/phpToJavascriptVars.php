@@ -6,12 +6,22 @@
 echo '<script type="text/javascript">';
 echo 'var jsLocation="'.$locationFile.'";';
 echo 'var jsPrefix="'.$prefix.'";';
-echo 'var jsProductCode="'.$productCode.'";';
+echo 'var jsProductCode='.$productCode.';';
 echo 'var jsAccountName="'.$accountName.'";';
 echo 'var jsReferrer="'.$referrer.'";';
 echo 'var jsServer="'.$server.'";';
 echo 'var jsIP="'.$ip.'";';
 echo 'var jsCourseFile="'.$courseFile.'";';
+
+echo 'var jsWebShare="'.$webShare.'";';
+echo 'var jsSwfName="'.$swfName.'";';
+echo 'var jsStartControl="'.$startControl.'";';
+echo 'var jsVersion="'.$version.'";';
+
+echo 'var jsCoordsMinWidth="'.$coordsMinWidth.'";';
+echo 'var jsCoordsMinHeight="'.$coordsMinHeight.'";';
+echo 'var jsCoordsMaxWidth="'.$coordsMaxWidth.'";';
+echo 'var jsCoordsMaxHeight="'.$coordsMaxHeight.'";';
 
 echo 'var jsUserName=';
 if ($username) {
@@ -67,4 +77,5 @@ if ($resize) {
 } else {
 	echo 'swfobject.getQueryParamValue("resize");';
 }
+echo 'var jsStartTime='.round(microtime(true)*1000);
 echo '</script>';

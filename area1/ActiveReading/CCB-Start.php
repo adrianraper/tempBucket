@@ -30,19 +30,23 @@
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 
-	<?php require '../phpToJavascriptVars.php'; ?>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
+	<?php require '../phpToJavascriptVars.php'; ?>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/loadOrchid.js"></script>
 
 	<!-- 
 		Add any extra parameters to the flashvars array here 
 	 -->
 	<script type="text/javascript">
-		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(jsStartControl + jsSwfName + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
 	</script>
 	
-<link rel="stylesheet" type="text/css" href="/css/loadprogram.css" />
+<!--CSS pop up layout box-->
+<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
+<style type="text/css">
+	body {margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
+</style>
 </head>
 <body onload="onLoad()">
 <?php require_once '../orchidAltContent.php';?>

@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <literals progam="Author Plus" version="6.5.5.0">
 <language code="EN" name="English, International" mediaFolder="EN">
 <group name="buttons">
@@ -170,17 +170,18 @@
 <lit name="noExercise">This unit has no exercises in it.</lit>
 <lit name="countdownHint">To help you guess this word, here are the letters in it:[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="OALD#glossaryURL">http://www.oxfordadvancedlearnersdictionary.com/dictionary/[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">You clicked #ca#.</lit>
 <lit name="userOrIDExists">Sorry, that name or ID is already taken, please try others.</lit>
 <lit name="French-English#glossaryURL">http://www.wordreference.com/fren/[x]</lit>
 <lit name="English-French#glossaryURL">http://www.wordreference.com/enfr/[x]</lit>
+<lit name="English-Spanish#glossaryURL">http://www.wordreference.com/enes/[x]</lit>
 <lit name="allCorrect">Click a correct answer to see feedback for that question.</lit>
 <lit name="wellDoneNoFeedback">Yes, that is correct.</lit>
 <lit name="sorryNoFeedback">No, that is not correct.</lit>
@@ -246,7 +247,7 @@
 <lit name="licencedTo">Licenced to: [x]</lit>
 </group>
 <group name="messages">
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=A</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/american-english/direct/?q=[x]</lit>
 <lit name="certificateFooter">This language course was licenced to [institution].</lit>
 </group>
 </language>
@@ -416,12 +417,12 @@
 <lit name="noExercise">此單元沒有提供練習。</lit>
 <lit name="countdownHint">為幫助您猜出這個單字，此為其中包含的字母 :[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionaries.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">您點選了 #ca#。</lit>
 <lit name="userOrIDExists">抱歉，該用戶名稱或學習帳號已被使用，請用其他名稱或帳號登入。</lit>
 <lit name="French-English#glossaryURL">http://www.wordreference.com/fren/[x]</lit>
@@ -633,8 +634,8 @@
 <lit name="noExercise">此单元没有提供练习。</lit>
 <lit name="countdownHint">为帮助你解答，此为其中包含的单字：[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionaries.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
@@ -842,12 +843,12 @@
 <lit name="noExercise">Esta unidad no tiene ejercicios.</lit>
 <lit name="countdownHint">Para ayudarte a acertar esta palabra, aquí están las letras que contiene:[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionaries.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">Haz clic en #ca#.</lit>
 <lit name="userOrIDExists">Lo sentimos, ese nombre o ID ya está en uso, por favor, intenta otros.</lit>
 <lit name="allCorrect">Tienes todas las respuestas correctas, no hay comentarios.</lit>
@@ -1049,14 +1050,14 @@
 <lit name="noGlossaryEntry">Désolé, il n'y a pas d'entrée dans le glossaire pour [x]. </lit>
 <lit name="typePassword">S'il vous plaît taper le mot de passe pour ce compte. </lit>
 <lit name="noExercise">Cette unité ne comporte pas d'exercices.</lit>
-<lit name="countdownHint">Pour vous aider à deviner ce mot, voici les lettres:[newline][tab][x] </lit>
+<lit name="countdownHint">Pour vous aider à deviner ce mot, voici les lettres:[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionaries.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">Vous avez cliqué sur #ca#.</lit>
 <lit name="userOrIDExists">Désolé, ce nom ou ID est déjà pris, veuillez essayer d'autres.</lit>
 <lit name="allCorrect">Il n’y a pas de feedback car toutes vos réponses sont bonnes.</lit>
@@ -1260,12 +1261,12 @@
 <lit name="noExercise">ไม่มีแบบฝึกหัดในบทเรียนนี้</lit>
 <lit name="countdownHint">เพื่อช่วยในการเดาคำของคุณ ตัวอักษรสำหรับคำนี้คือ:[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionaries.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">คุณคลิก [x]</lit>
 <lit name="userOrIDExists">ขออภัย ชื่อหรือ ID นี้ได้ถูกใช้งานไปแล้ว กรุณาเลือกชื่อหรือ ID อื่น</lit>
 <lit name="allCorrect">คุณตอบคำถามถูกหมดทุกข้อ  จึงไม่มีคำอธิบายเฉลย</lit>
@@ -1469,12 +1470,12 @@
 <lit name="noExercise">Unit ini tidak mempunyai latihan.</lit>
 <lit name="countdownHint">Untuk menolong anda meneka perkataan, gunnakan huruf-huruf ini:[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionaries.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">Anda telah klik atas #ca#.</lit>
 <lit name="userOrIDExists">Maaf, nama atau ID itu sudah dipakai, sila cuba yang lain.</lit>
 <lit name="allCorrect">Anda telah menjawab semua soalan dengan betul. Oleh kerana itu, tiada maklumbalas diperlukan.</lit>
@@ -1678,12 +1679,12 @@
 <lit name="noExercise">Denna enhet saknar övningar.</lit>
 <lit name="countdownHint">För att underlätta för dig här är bokstäverna i ordet:[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionaries.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">Du klickade</lit>
 <lit name="userOrIDExists">Tyvärr är detta namn eller ID redan använt, prova ett annat.</lit>
 <lit name="allCorrect">Du besvarade alla frågor rätt, så det finns ingen feedback.</lit>
@@ -1897,12 +1898,12 @@
 <lit name="noExercise">このユニットに練習の内容がありません。</lit>
 <lit name="countdownHint">この単語を推測するのを助けるために、[newline][tab][x]中にアルファベットが含まれています。</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionaries.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">#ca#が選択されました。</lit>
 <lit name="userOrIDExists">すみません、このユーザー名またはアカウント名がすでに使用されています。他のユーザー名またはアカウント名を使用してください。</lit>
 <lit name="French-English#glossaryURL">http://www.wordreference.com/fren/[x]</lit>

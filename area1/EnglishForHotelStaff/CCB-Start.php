@@ -5,6 +5,12 @@
 	// Picking up passed data
 	require_once '../readPassedVariables.php';
 	
+	// Handling no prefix
+	if (!$prefix) {
+		header("location: /error/noPrefix.htm");
+		exit;
+	}
+	
 	// For this product
 	$productCode = 40; // English for Hotel Staff
 	
@@ -33,19 +39,16 @@
 		Add any extra parameters to the flashvars array here 
 	 -->
 	<script type="text/javascript">
-		swfobject.embedSWF(startControl + "control.swf" + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(jsStartControl + jsSwfName + argList, "altContent", "100%", "100%", "9.0.28", expressInstall, flashvars, params, attr);
 	</script>
 	
 <!--CSS pop up layout box-->
 <link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
 <style type="text/css">
-	body { 	margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
+	body {margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
 </style>
 </head>
 <body onload="onLoad()">
-
-<?php require_once '../resizeCSS.php';?>
 <?php require_once '../orchidAltContent.php';?>
-
 </body>
 </html>

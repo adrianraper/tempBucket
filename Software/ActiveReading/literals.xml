@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <literals progam="Active Reading" version="6.5.5.0">
 <language code="EN" name="English, International" mediaFolder="EN">
 <group name="buttons">
@@ -170,13 +170,13 @@
 <lit name="noExercise">This unit has no exercises in it.</lit>
 <lit name="countdownHint">To help you guess this word, here are the letters in it:[newline][tab][x]</lit>
 <lit name="Dictionary.com#glossaryURL">http://dictionary.reference.com/search?q=[x]</lit>
-<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/?q=[x]</lit>
-<lit name="CLD#glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="CALD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
+<lit name="CLD#glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="OALD#glossaryURL">http://www.oxfordadvancedlearnersdictionary.com/dictionary/[x]</lit>
 <lit name="Merriam-Webster#glossaryURL">http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&amp;va=[x]</lit>
 <lit name="WordCentral#glossaryURL">http://www.wordcentral.com/cgi-bin/Search?book=Student&amp;va=[x]</lit>
 <lit name="ChinaLanguage.com#glossaryURL">http://www.chinalanguage.com/cgi-bin/ecdict.php?query=[x]&amp;dbase=ec</lit>
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=L</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/british/direct/?q=[x]</lit>
 <lit name="neutralFeedback">You clicked #ca#.</lit>
 <lit name="userOrIDExists">Sorry, that name or ID is already taken, please try others.</lit>
 <lit name="French-English#glossaryURL">http://www.wordreference.com/fren/[x]</lit>
@@ -249,7 +249,7 @@
 <lit name="licencedTo">Licenced to: [x]</lit>
 </group>
 <group name="messages">
-<lit name="glossaryURL">http://dictionaries.cambridge.org/results.asp?searchword=[x]&amp;dict=A</lit>
+<lit name="glossaryURL">http://dictionary.cambridge.org/search/american-english/direct/?q=[x]</lit>
 <lit name="certificateFooter">This language course was licenced to [institution].</lit>
 </group>
 </language>

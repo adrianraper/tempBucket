@@ -29,11 +29,11 @@ $(window).load(function() {
 		var width = $(window).width();
 		var height = $(window).height();
 		
-		if (coordsMinWidth) width = Math.max(width, coordsMinWidth);
-		if (coordsMaxWidth) width = Math.min(width, coordsMaxWidth);
+		if (jsCoordsMinWidth) width = Math.max(width, jsCoordsMinWidth);
+		if (jsCoordsMaxWidth) width = Math.min(width, jsCoordsMaxWidth);
 		
-		if (coordsMinHeight) height = Math.max(height, coordsMinHeight);
-		if (coordsMaxHeight) height = Math.min(height, coordsMaxHeight);
+		if (jsCoordsMinHeight) height = Math.max(height, jsCoordsMinHeight);
+		if (jsCoordsMaxHeight) height = Math.min(height, jsCoordsMaxHeight);
 		
 		// Deal with the scrollbars in a cross-browser friendly way
 		if (!$.browser.mozilla) {

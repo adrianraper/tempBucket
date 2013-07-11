@@ -18,3 +18,7 @@
 	$locationFile = 'location.txt';
 	$courseFile = 'course.xml';
 	
+	$webshare = '';
+	$swfName = 'control.swf';
+	$startControl = '/Software/Common/';
+	

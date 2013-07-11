@@ -1,0 +1,1 @@
+content=http://dock.contentbench/Content&mainMovies=/Software/Common&interfaceMovies=/Software/iRead&sharedMedia=/Software/iRead/sharedMedia&help=/Software/iRead/Help/help.htm#openWindow&scripting=php&database=SQLServer&dbHost=2&brandMovies=/Content/i-Read/branding&customised=true&end=1
