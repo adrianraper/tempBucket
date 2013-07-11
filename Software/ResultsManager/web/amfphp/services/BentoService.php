@@ -121,6 +121,15 @@ class BentoService extends AbstractService {
 		if (!$account)
 			return null;
 		
+		// gh#315 Can only cope with one title, and tablet login by IP might find an account with 2
+		if (count($account->titles) > 1) {
+			$account->titles = array(reset($account->titles));
+				
+			// gh#39 If you had multiple codes, reduce to one
+			if (stristr($config['productCode'], ','))
+				$config['productCode'] = $account->titles[0]->productCode;
+		}
+		
 		// TODO. We will also need the top group ID for this account to help with hiddenContent
 		// Actually hidden content might want the group that comes back from login rather than this one?
 		// and for addUser
@@ -177,6 +186,15 @@ class BentoService extends AbstractService {
 	 * It is separate from getAccountSettings so that the calling program can cope differently with the response 
 	 */
 	public function getIPMatch($config) {
+		
+		// #gh315 iPads don't send their IP, but you can pick it up here
+		if (!$config['ip']) {
+			$config['ip'] = getenv("REMOTE_ADDR");
+			AbstractService::$debugLog->notice("picked up ip as ".$config['ip']);
+		} else {
+			AbstractService::$debugLog->notice("was passed ip as ".$config['ip']);
+		}
+			
 		return $this->getAccountSettings($config);
 	}
 	

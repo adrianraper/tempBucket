@@ -1033,17 +1033,20 @@ EOD;
 	}
 	
 	/**
-	 * Is there an account linked to an IP in the licence attributes?
+	 * gh#315 Is there an account linked to an IP in the licence attributes?
 	 */
-	public function getRootIDFromIP($ip) {
+	public function getRootIDFromIP($ip, $productCode = null) {
 		// You can match against a complete IP like this:
 		//		AND l.F_Value like '%$ip%'
 		// But since many are ranges we have to do that in a php loop I think - or could a regex cope?
 		$sql = 	<<<EOD
 				SELECT l.F_RootID as rootID, l.F_Value as ranges
 				FROM T_LicenceAttributes l
-				WHERE l.F_Key = 'IPRange'
+				WHERE l.F_Key = 'IPrange'
 EOD;
+		if ($productCode)
+			$sql .= " AND l.F_ProductCode in ($productCode)";
+			
 		$rs = $this->db->Execute($sql);
 		
 		$foundRoots = array();
@@ -1066,7 +1069,7 @@ EOD;
 				break;
 			default:
 				// Many records means we can't know which root this user belongs to, raise an error
-				throw $this->copyOps->getExceptionForId("errorMultipleIPMatches");
+				throw $this->copyOps->getExceptionForId("errorMultipleIPMatches", array("ip" => $ip));
 		}
 		
 		return $rootID;
@@ -1077,30 +1080,38 @@ EOD;
 	private function isIPInRange($ip, $ipRangeList) {
 	 	$ipRangeArray = explode(',', $ipRangeList);
 		foreach ($ipRangeArray as $ipRange) {
-			// first, is there an exact match?
-			if ($ip == $ipRange)
-				return true;
+			$ipRange = trim($ipRange);
 			
-			// or does it fall in the range? 
-			// assume nnn.nnn.nnn.x-y or nnn.nnn.x-y
-			$targetBlocks = explode('.',$ipRange);
-			$thisBlocks = explode(".",$ip);
-			// how far down do they specify?
-			for ($i=0; $i<count($targetBlocks); $i++) {
-				// echo "match ".$thisBlocks[$i]." against ".$targetBlocks[$i]."<br/>";
-				if ($targetBlocks[$i] == $thisBlocks[$i]) {
-				} else if (strpos($targetBlocks[$i], '-') !== FALSE) {
-					$targetArray = explode('-',$targetBlocks[$i]);
-					$targetStart = (int) $targetArray[0];
-					$targetEnd = (int) $targetArray[1];
-					$thisDetail = (int) $thisBlocks[$i];
-					if ($targetStart <= $thisDetail && $thisDetail <= $targetEnd) {
-						//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
-						return true;
+			// loop through the ip addresses you are running from
+		 	$myIpArray = explode(',', $ip);
+			foreach ($myIpArray as $myIp) {
+				$myIp = trim($myIp);
+
+				// first, is there an exact match?
+				if ($myIp == $ipRange)
+					return true;
+				
+				// or does it fall in the range? 
+				// assume nnn.nnn.nnn.x-y or nnn.nnn.x-y
+				$targetBlocks = explode('.',$ipRange);
+				$thisBlocks = explode(".",$myIp);
+				// how far down do they specify?
+				for ($i=0; $i<count($targetBlocks); $i++) {
+					// echo "match ".$thisBlocks[$i]." against ".$targetBlocks[$i]."<br/>";
+					if ($targetBlocks[$i] == $thisBlocks[$i]) {
+					} else if (strpos($targetBlocks[$i], '-') !== FALSE) {
+						$targetArray = explode('-',$targetBlocks[$i]);
+						$targetStart = (int) $targetArray[0];
+						$targetEnd = (int) $targetArray[1];
+						$thisDetail = (int) $thisBlocks[$i];
+						if ($targetStart <= $thisDetail && $thisDetail <= $targetEnd) {
+							//myTrace("range match " + thisDetail + " between " + targetStart + " and " + targetEnd);
+							return true;
+						}
+					} else {
+						//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
+						break;
 					}
-				} else {
-					//myTrace("no match between " + targetBlocks[i] + " and " + thisBlocks[i]);
-					break;
 				}
 			}
 		}
