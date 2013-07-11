@@ -796,7 +796,7 @@ EOD;
 		if (!$prefix && !$rootID) {
 			// gh#315 Allow lookup for IP
 			if ($ip) {
-				$rawRootID = $this->accountOps->getRootIDFromIP($ip);
+				$rawRootID = $this->accountOps->getRootIDFromIP($ip, $productCode);
 				$rootID = (int) $rawRootID;
 				if (!$rootID) 
 					return null;

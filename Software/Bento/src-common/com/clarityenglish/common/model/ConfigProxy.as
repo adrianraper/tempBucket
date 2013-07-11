@@ -152,7 +152,7 @@ package com.clarityenglish.common.model {
 			var dummyTitle:Title = new Title();
 			dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
 			config.account.titles = new Array(dummyTitle);
-			config.account.name = '';
+			config.account.name = 'x';
 			config.account.verified = 1;
 			config.account.selfRegister = 0;
 			config.account.loginOption = config.loginOption;
@@ -468,9 +468,19 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			var thisError:BentoError = BentoError.create(fault);
+			
 			switch (operation) {
+				// gh#315
+				case "getIPMatch":
+					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
+						this.createDummyAccount();
+						break;
+					}
+
 				case "getAccountSettings":
-					sendNotification(CommonNotifications.CONFIG_ERROR, BentoError.create(fault));
+					sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
 					break;
 			}
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);

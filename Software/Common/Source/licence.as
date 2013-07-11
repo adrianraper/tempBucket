@@ -631,19 +631,20 @@ licenceNS.inIPRange = function(thisIPList, targetRange) {
 	// #346 thisIP might be a comma delimitted string too
 	var thisIPArray = thisIPList.split(",");
 	for (var idx in thisIPArray) {
-		var thisIP = thisIPArray[idx];
+		// v6.6.0.6 trim IP addresses
+		var thisIP = thisIPArray[idx].trim("both"); 
 	
 		// change targetRange to be an array of addresses
 		for (var t in targetRange) {
 			//myTrace("check " + thisIP + " against " + targetRange[t]);
 			// first, is there an exact match?
-			if (thisIP == targetRange[t]) {
+			if (thisIP == targetRange[t].trim("both")) {
 				//myTrace("direct match");
 				return true;
 			}
 			// or is it a simple comma delimitted list with an exact match
 			// v6.4.2 This seems pretty silly since we have already split the string on commas!
-			var targetList = targetRange[t].split(",");
+			var targetList = targetRange[t].trim("both").split(",");
 			for (var i in targetList) {
 				if (targetList[i] == thisIP) {
 					//myTrace("list match against " + i);
@@ -652,7 +653,7 @@ licenceNS.inIPRange = function(thisIPList, targetRange) {
 			}
 			// or does it fall in the range? 
 			// assume nnn.nnn.nnn.x-y
-			var targetBlocks = targetRange[t].split(".");
+			var targetBlocks = targetRange[t].trim("both").split(".");
 			var thisBlocks = thisIP.split(".");
 			// how far down do they specify?
 			for (var i=0; i<thisBlocks.length; i++) {

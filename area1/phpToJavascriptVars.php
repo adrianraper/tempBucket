@@ -6,7 +6,7 @@
 echo '<script type="text/javascript">';
 echo 'var jsLocation="'.$locationFile.'";';
 echo 'var jsPrefix="'.$prefix.'";';
-echo 'var jsProductCode='.$productCode.';';
+echo 'var jsProductCode="'.$productCode.'";';
 echo 'var jsAccountName="'.$accountName.'";';
 echo 'var jsReferrer="'.$referrer.'";';
 echo 'var jsServer="'.$server.'";';
