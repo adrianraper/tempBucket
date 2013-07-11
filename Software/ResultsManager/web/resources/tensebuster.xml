@@ -261,6 +261,7 @@
 			<lit name="othersLabel">No record available</lit>
 			
 			<lit name="homeInstructionLabel">Please choose a level</lit>
+			<lit name="unitInstructionLabel">Please choose a unit</lit>
 		</group>
 	</language>
 </literals>

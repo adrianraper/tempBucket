@@ -114,7 +114,7 @@
                 <!--- Defines the TitleWindowSkin class's background fill. The default color is 0xFFFFFF. -->
                 <s:LinearGradient rotation="-90">
 					<s:GradientEntry color="0xB3B3B3" ratio="0" />
-					<s:GradientEntry color="0xFFFFFF" ratio="0.7" />
+					<s:GradientEntry color="0xFFFFFF" ratio="0.2" />
 					<s:GradientEntry color="0xFFFFFF" ratio="1"/>
 				</s:LinearGradient>
             </s:fill>

@@ -22,6 +22,21 @@
 					<fx:Script>
 						<![CDATA[
 								import spark.components.List;
+							
+								[Embed(source='skins/tensebuster/assets/courseIcon/Elementary.png')]
+								private static  var EIcon:Class;
+							
+								[Embed(source="skins/tensebuster/assets/courseIcon/Lower Intermediate.png")]
+								private static  var LIcon:Class;
+								
+								[Embed(source="skins/tensebuster/assets/courseIcon/Intermediate.png")]
+								private static  var IIcon:Class;
+							
+								[Embed(source="skins/tensebuster/assets/courseIcon/Upper Intermediate.png")]
+								private static  var UIcon:Class;
+							
+								[Embed(source="skins/tensebuster/assets/courseIcon/Advanced.png")]
+								private static  var AIcon:Class;
 								
 								public function getIndex(data:Object):Number {
 									return (owner as List).dataProvider.getItemIndex(data);
@@ -57,29 +72,59 @@
 									return bottomGradientColors[index % bottomGradientColors.length];
 								}
 							
-								public function getOverTopGradientColor(index:Number):Number {
-									var topOverGradientColors:Array = getStyle("topOverGradientColors");
+								public function getTopOverGradientColor(index:Number):Number {
+									var topOverGradientColors:Array = getStyle("topLightGradientColors");
 									return topOverGradientColors[index % topOverGradientColors.length];
 								}
 							
 								public function getMidTopOverGradientColor(index:Number):Number {
-									var midTopOverGradientColors:Array = getStyle("midTopOverGradientColors");
+									var midTopOverGradientColors:Array = getStyle("midTopLightGradientColors");
 									return midTopOverGradientColors[index % midTopOverGradientColors.length];
 								}
 							
 								public function getCenterOverGradientColor(index:Number):Number {
-									var centerOverGradientColors:Array = getStyle("centerOverGradientColors");
+									var centerOverGradientColors:Array = getStyle("centerLightGradientColors");
 									return centerOverGradientColors[index % centerOverGradientColors.length];
 								}
 							
 								public function getMidBottomOverGradientColor(index:Number):Number {
-									var midBottomOverGradientColors:Array = getStyle("midBottomOverGradientColors");
+									var midBottomOverGradientColors:Array = getStyle("midBottomLightGradientColors");
 									return midBottomOverGradientColors[index % midBottomOverGradientColors.length];
 								}
 							
 								public function getBottomOverGradientColor(index:Number):Number {
-									var bottomOverGradientColors:Array = getStyle("bottomOverGradientColors");
+									var bottomOverGradientColors:Array = getStyle("bottomLightGradientColors");
 									return bottomOverGradientColors[index % bottomOverGradientColors.length];
+								}
+							
+								public function get iconSouce():Class {
+									var className:String = data.@caption;
+									var firstLetter:String = className.charAt(0);
+									switch (firstLetter) {
+										case "E":
+											return EIcon;
+											break;
+										case "L":
+											return LIcon;
+											break;
+										case "I":
+											return IIcon;
+											break;
+										case "U":
+											return UIcon;
+											break;
+										case "A":
+											return AIcon;
+											break;
+										default:
+											return null;
+									}
+								}
+							
+								override public function set data(value:Object):void {
+									super.data = value;
+									
+									icon.source = iconSouce;
 								}
 						]]>
 					</fx:Script>
@@ -107,7 +152,7 @@
 										0.82373 226.688 1.83105L232.009 6.33398C233.199 7.34131 234.173 9.44043 234.173 10.9995L234.173 33.2222C234.173 34.7813 233.199 36.8804 232.009 37.8877L226.688 42.3906C225.497 43.3979 223.248 44.2217 221.689 44.2217L12.4829 44.2217Z">
 									<s:fill>
 										<s:LinearGradient rotation="90">
-											<s:GradientEntry color="{getTopGradientColor(getIndex(data))}" color.hovered="{getOverTopGradientColor(getIndex(data))}" color.selected="{getOverTopGradientColor(getIndex(data))}" ratio="0" />
+											<s:GradientEntry color="{getTopGradientColor(getIndex(data))}" color.hovered="{getTopOverGradientColor(getIndex(data))}" color.selected="{getTopOverGradientColor(getIndex(data))}" ratio="0" />
 											<s:GradientEntry color="{getMidTopGradientColor(getIndex(data))}" color.hovered="{getMidTopOverGradientColor(getIndex(data))}" color.selected="{getMidTopOverGradientColor(getIndex(data))}" ratio="0.25" />
 											<s:GradientEntry color="{getCenterGradientColor(getIndex(data))}" color.hovered="{getCenterOverGradientColor(getIndex(data))}" color.selected="{getCenterOverGradientColor(getIndex(data))}" ratio="0.5" />
 											<s:GradientEntry color="{getMidBottomGradientColor(getIndex(data))}" color.hovered="{getMidBottomOverGradientColor(getIndex(data))}" color.selected="{getMidBottomOverGradientColor(getIndex(data))}" ratio="0.75" />
@@ -117,7 +162,7 @@
 								</s:Path>
 								<s:Label text="{data.@caption}" color="0xFFFFFF" top="15" left="45" fontSize="19" />
 							</s:Group>
-							<s:SWFLoader source="skins/tensebuster/assets/courseIcon/{data.@caption}.png" />
+							<s:SWFLoader id="icon" />
 						</s:Group>																		
 					</s:HGroup>
  				</s:ItemRenderer>

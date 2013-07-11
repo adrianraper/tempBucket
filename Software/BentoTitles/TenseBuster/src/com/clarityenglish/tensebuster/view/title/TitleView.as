@@ -6,6 +6,7 @@ package com.clarityenglish.tensebuster.view.title {
 	import com.clarityenglish.tensebuster.view.unit.UnitView;
 	import com.clarityenglish.tensebuster.view.zone.ZoneView;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.controls.SWFLoader;
@@ -14,9 +15,11 @@ package com.clarityenglish.tensebuster.view.title {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.HGroup;
 	import spark.components.Label;
 	import spark.components.TabbedViewNavigator;
 	import spark.components.mediaClasses.VolumeBar;
+	import spark.events.IndexChangeEvent;
 	
 	public class TitleView extends BentoView {
 		
@@ -31,6 +34,15 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		[SkinPart]
 		public var unitThumbnail:SWFLoader;
+		
+		[SkinPart]
+		public var coursePath:HGroup;
+		
+		[SkinPart]
+		public var unitPath:HGroup;
+		
+		[SkinPart]
+		public var exercisePath:HGroup;
 		
 		private var _selectedNode:XML;
 		private var courseID:String;
@@ -47,15 +59,15 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function set selectedNode(value:XML):void {
 			_selectedNode = value;
-			
+
 			switch (_selectedNode.localName()) {
 				case "course":
 					courseID = _selectedNode.@id;
 					_courseUID = "9."+_selectedNode.@id as String;
 					courseCaption = _selectedNode.@caption;
 					courseThumbnail.source = getThumbnailForUid(_courseUID);
-					currentState = "unit";
 					courseCode = courseCaption.charAt(0);
+					currentState = "unit";
 					break;
 				case "unit":
 					_unitUID = _courseUID+"."+courseID;
@@ -102,13 +114,42 @@ package com.clarityenglish.tensebuster.view.title {
 			StateUtil.addStates(this, [ "home", "unit", "zone", "exercise", "progress", "profile" ], true);
 		}
 		
+		protected override function commitProperties():void {
+			super.commitProperties();
+
+		}
+		
+		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
+			if (currentState == "unit") {
+				callLater(function():void {
+					coursePath.visible = true;
+					unitPath.visible = false;
+					exercisePath.visible = false;
+				});
+			} else if (currentState == "zone") {
+				callLater(function():void {
+					coursePath.visible = true;
+					unitPath.visible = true;
+					exercisePath.visible = false;
+				});
+			} else if (currentState == "exercise") {
+				callLater(function():void {
+					coursePath.visible = true;
+					unitPath.visible = true;
+					exercisePath.visible = true;
+				});
+			}
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
 				case sectionNavigator:
 					setNavStateMap(sectionNavigator, {
-						home: { viewClass: HomeView },
+						home: { viewClass: HomeView},
 						unit: { viewClass: UnitView, stack: true},
 						zone: { viewClass: ZoneView, stack: true },
 						exercise: { viewClass: ExerciseView, stack: true },
@@ -126,6 +167,14 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		protected override function getCurrentSkinState():String {
+			if (currentState == "home") {
+				if (coursePath)
+					coursePath.visible = false;
+				if (unitPath)
+					unitPath.visible = false;
+				if (exercisePath)
+					exercisePath.visible = false;
+			}
 			return currentState;
 		}
 		

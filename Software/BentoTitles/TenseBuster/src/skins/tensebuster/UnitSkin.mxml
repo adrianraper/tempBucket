@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:exercise="skins.tensebuster.assets.exercise.*">
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:ui="com.clarityenglish.tensebuster.view.unit.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.unit.UnitView")]
@@ -28,6 +28,18 @@
 		<exercise:topPanel top="40" right="28" left="28" />
 		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/unit/unitBg.png')" bottom="25" left="28" />
 	</s:Group>
-	
-	<s:List id="unitList" labelField="@caption" top="50"/>
+
+	<s:Label id="unitInstructionLabel" top="120" left="90" />
+	<s:List id="unitList" top="200" bottom="20" horizontalCenter="0" contentBackgroundAlpha="0" borderVisible="false">
+		<s:layout>
+			<s:TileLayout horizontalGap="50" verticalGap="50" requestedColumnCount="3" />
+		</s:layout>
+		<s:itemRenderer>
+			<fx:Component>
+				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+					<ui:ProgressUnitButton id="progressUnitButton" coverage="{data.@coverage}" caption="{data.@caption}" courseIndex="{outerDocument.hostComponent.courseIndex}"/>
+				</s:ItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
 </s:Skin>

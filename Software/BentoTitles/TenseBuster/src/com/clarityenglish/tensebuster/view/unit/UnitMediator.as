@@ -4,9 +4,11 @@ package com.clarityenglish.tensebuster.view.unit
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.tensebuster.TenseBusterNotifications;
 	import com.googlecode.bindagetools.Bind;
 	
 	import org.puremvc.as3.interfaces.IMediator;
+	import org.puremvc.as3.interfaces.INotification;
 	
 	public class UnitMediator extends BentoMediator implements IMediator {
 		public function UnitMediator(mediatorName:String, viewComponent:BentoView)
@@ -33,6 +35,16 @@ package com.clarityenglish.tensebuster.view.unit
 			super.onRemove();
 			
 			view.unitSelect.remove(onUnitSelected);
+		}
+		
+		public override function listNotificationInterests():Array {
+			return super.listNotificationInterests().concat([
+
+			]);
+		}
+		
+		override public function handleNotification(note:INotification):void {
+			super.handleNotification(note);
 		}
 		
 		protected function onUnitSelected(unit:XML):void {
