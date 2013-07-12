@@ -38,7 +38,8 @@
 			server: jsServer,
 			ip: jsIP,
 			courseFile: jsCourseFile,
-			licence: ""
+			licence: "",
+			sessionid: jsSessionID
 		};
 			
 		var params = {

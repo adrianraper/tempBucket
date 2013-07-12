@@ -57,7 +57,7 @@ class RotterdamBuilderService extends RotterdamService {
 
 			// gh#385
 			$datetimeStamp = new DateTime();
-			$datetimeStamp->add(new DateInterval('PT-1M'));
+			$datetimeStamp->sub(new DateInterval('PT1M'));
 			$sql = <<<EOD
 				SELECT F_UserID 
 				FROM T_CourseConcurrency
@@ -65,7 +65,7 @@ class RotterdamBuilderService extends RotterdamService {
 				AND F_UserID != ?
 				AND F_Timestamp > ?;
 EOD;
-			$bindingParams = array($courseId, Session::get('userID'), $datetimeStamp);
+			$bindingParams = array($courseId, Session::get('userID'), $datetimeStamp->format('Y-m-d H:i:s'));
 			$results = $this->db->GetCol($sql, $bindingParams);
 			
 			if ($results[0] > 0)

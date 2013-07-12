@@ -1,66 +1,32 @@
 <?php
-	if (isset($_GET['session']))
-		session_id($_GET['session']);
-		
-	session_start();
-	$currentSessionID = session_id();
-
-	unset($_SESSION['dbHost']);
+	// Initialisation
+	require_once '../startInit.php';
 	
-	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
-	$studentID = $Email = $email = $userID = $instanceID = '';
-	$referrer = $ip = $server = $productCode = '';
-
+	// Picking up passed data
+	require_once '../readPassedVariables.php';
+	
+	// Handling no prefix
+	if (!$prefix) {
+		header("location: /error/noPrefix.htm");
+		exit;
+	}
+	
 	// For this product
 	$productCode = 54; // Rotterdam
 	$swfName = 'Builder.swf';
-	$webShare = '';
-	$startControl = "$webShare/Software/BentoTitles/RotterdamBuilder/bin-debug/";
+	$startControl = '/Software/BentoTitles/RotterdamBuilder/bin-debug/';
+	$version = '1107';
+	$coordsMinWidth = '990';
+	$coordsMaxWidth = '1200';
+	$coordsMinHeight = '760';
+	$coordsMaxHeight = null;
 	$locationFile = "configBuilder.xml";
 
-	// If we do not know the prefix, the page shouldn't run.
-	// The prefix might come from session variables or from the URL parameters
-	// Read URL first in case session variables are lingering
-	// allow case insensitive parameters
-	if (isset($_GET['prefix'])) {
-		$prefix = $_GET['prefix'];
-	} elseif (isset($_GET['Prefix'])) {
-		$prefix = $_GET['Prefix'];
-	} elseif (isset($_SESSION['Prefix'])) {
-		$prefix = $_SESSION['Prefix'];
-	} else {
-		// I think we should go to the page not found - otherwise you have no clue what is happening
-		// This is NOT the correct way to generate a page not found error.
-		//404 is not a suitable error message when sessions vars times out
-		//header("location: /error/404_programs.htm");
-		header("location: /error/session_timeout.htm");
-		//header("HTTP/1.0 404 Not Found");
-		//echo "page not found";
-		//header("location: /index.php");
-		exit;
-	}
-
-	if (isset($_SESSION['UserName'])) $userName = rawurlencode($_SESSION['UserName']);
-	if (isset($_SESSION['Password'])) $password = rawurlencode($_SESSION['Password']);
-
-	$server=$_SERVER['HTTP_HOST'];
-	// For Akamai served files- a special header is attached. Check the Akamai configuration to see which files this works for.
-	if (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
-		$ip=$_SERVER['HTTP_TRUE_CLIENT_IP'];
-	} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) {
-		$ip = $_SERVER["HTTP_CLIENT_IP"];
-	} else {
-		$ip = $_SERVER["REMOTE_ADDR"];
-	}
-	// it is dangerous to send the whole referrer as you might get confused with parameters (specifically content)
-	if (isset($_SERVER['HTTP_REFERER'])) {
-		if (strpos($_SERVER['HTTP_REFERER'],'?')) {
-			$referrer=substr($_SERVER['HTTP_REFERER'],0,strpos($_SERVER['HTTP_REFERER'],'?'));
-		} else {
-			$referrer = $_SERVER['HTTP_REFERER'];
-		}
-	}
-
+	// Picking up IP and referrer for security checking
+	require_once '../securityCheck.php';
+	
+	// There is a strange bug that squishes everything up if the page is empty apart from the swf
+	echo "<p/>";
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
@@ -78,120 +44,24 @@
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/openwin.js"></script>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/swfobject2.js"></script>
 
+	<?php require '../phpToJavascriptVars.php'; ?>
 	<script type="text/javascript" language="JavaScript" src="/Software/Common/ielts.js"></script>
+	<script type="text/javascript" language="JavaScript" src="/Software/Common/loadBento.js"></script>
 
+	<!-- 
+		Add any extra parameters to the flashvars array here 
+	 -->
 	<script type="text/javascript">
-		// ****
-		//
-		// ****
-		function thisMovie(movieName) {
-			if (window.document[movieName]) {
-				return window.document[movieName];
-			}
-			if (navigator.appName.indexOf("Microsoft Internet") == -1) {
-				if (document.embeds && document.embeds[movieName])
-					return document.embeds[movieName];
-			} else { // if (navigator.appName.indexOf("Microsoft Internet")!=-1)
-				return document.getElementById(movieName);
-			}
-		}
-
-		// *********
-		// *********
-		var webShare = "<?php echo $webShare ?>";
-		var startControl = "<?php echo $startControl ?>";
-		var swfName = "<?php echo $swfName ?>";
-		var version = "1.0.0.371";
-
-		// v6.5.5.6 Allow resize screen mode
-		var coordsMinWidth = "990"; var coordsMaxWidth = "1200";
-		var coordsMinHeight = "760"; var coordsMaxHeight = null;
-
-		var sections = location.pathname.split("/");
-		var userdatapath = sections.slice(0,sections.length-1).join("/");
-		var argList="?configFile=<?php echo $locationFile ?>";
-		argList+="&prefix=<?php echo $prefix ?>";
-		argList+="&version=" + version;
-
-		// see whether variables have come from command line or, preferentially, session variables
-		if ("<?php echo $userName ?>".length>0) {
-			var jsUserName = "<?php echo $userName ?>";
-		} else {
-			var jsUserName = swfobject.getQueryParamValue("username");
-		}
-		if ("<?php echo $password ?>".length>0) {
-			var jsPassword = "<?php echo $password ?>";
-		} else {
-			var jsPassword = swfobject.getQueryParamValue("password");
-		}
-		if ("<?php echo $studentID ?>".length>0) {
-			var jsStudentID = "<?php echo $studentID ?>";
-		} else {
-			var jsStudentID = swfobject.getQueryParamValue("studentID");
-		}
-		if ("<?php echo $userID ?>".length>0) {
-			var jsUserID = "<?php echo $userID ?>";
-		} else {
-			var jsUserID = swfobject.getQueryParamValue("userID");
-		}
-		if ("<?php echo $email ?>".length>0) {
-			var jsEmail = "<?php echo $email ?>";
-		} else {
-			var jsEmail = swfobject.getQueryParamValue("email");
-		}
-		if ("<?php echo $instanceID ?>".length>0) {
-			var jsInstanceID = "<?php echo $instanceID ?>";
-		} else {
-			var jsInstanceID = swfobject.getQueryParamValue("instanceID");
-		}
-		var flashvars = {
-			username: jsUserName,
-			password: jsPassword,
-			studentID: jsStudentID,
-			userID: jsUserID,
-			email: jsEmail,
-			instanceID: jsInstanceID,
-			startingPoint: swfobject.getQueryParamValue("startingPoint"),
-			course: swfobject.getQueryParamValue("course"),
-			action: swfobject.getQueryParamValue("action"),
-			referrer: "<?php echo $referrer ?>",
-			server: "<?php echo $server ?>",
-			ip: "<?php echo $ip ?>",
-			sessionid: "<?php echo $currentSessionID ?>"
-		};
-
-		// gh#371
-		if (swfobject.getQueryParamValue("resize"))
-			flashvars.resize = swfobject.getQueryParamValue("resize");
-		
-		var params = {
-			id: "bento",
-			name: "bento",
-			quality: "high",
-			allowfullscreen: "true",
-			scale: "default",
-			allowscriptaccess: "always"
-		};
-		var attr = {
-			id: "bento",
-			name: "bento"
-		};
-		var expressInstall = startControl + "expressInstall.swf";
-		swfobject.embedSWF(startControl + swfName + argList, "altContent", coordsMinWidth, coordsMinHeight, "10.2.0", expressInstall, flashvars, params, attr);
+		swfobject.embedSWF(jsWebShare + jsStartControl + jsSwfName + argList, "altContent", "100%", "100%", "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
-
+	
+<!--CSS pop up layout box-->
+<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
+<style type="text/css">
+	body {margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
+</style>
 </head>
-<body style="background-color:#F9F9F9;">
-	<div style="background-color:#F9F9F9;" align="center" id="altContent">
-		<p>This application requires Adobe's Flash player, running at least version 9.</p>
-		<p>It seems your browser doesn't have this.</p>
-		<p>Please download the latest Adobe Flash Player.</p>
-		<p><a href="http://www.adobe.com/go/getflashplayer"><img src="http://www.adobe.com/images/shared/download_buttons/get_flash_player.gif" alt="Get Adobe Flash player" border="0"/></a></p>
-		<p>If you still get this message, then your browser is stopping the scripts on this page from running.</p>
-	</div>
-<NOSCRIPT style="font-family: Arial, Helvetica, sans-serif; font-size:12px; text-align:center;">
-This application requires your browser to support javascript and to have Adobe's Flash player installed. <br>
-Your browser does not support scripting at the moment. If you are allowed, please use Internet Options from the menu<br>
-to switch this on and then refresh this page.</NOSCRIPT>
+<body onload="onLoad()">
+<?php require_once '../bentoAltContent.php';?>
 </body>
 </html>
