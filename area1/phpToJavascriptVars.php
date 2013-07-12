@@ -23,6 +23,8 @@ echo 'var jsCoordsMinHeight="'.$coordsMinHeight.'";';
 echo 'var jsCoordsMaxWidth="'.$coordsMaxWidth.'";';
 echo 'var jsCoordsMaxHeight="'.$coordsMaxHeight.'";';
 
+echo 'var jsSessionID="'.$currentSessionID.'";';
+
 echo 'var jsUserName=';
 if ($username) {
 	echo '"'.$username.'";';

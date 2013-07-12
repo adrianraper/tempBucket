@@ -13,6 +13,8 @@ $service = new RotterdamBuilderService();
 $MAXIMUM_FILESIZE = 1024*1024*5;
 
 // Fail if the user isn't authenticated
+AbstractService::$debugLog->info('in RotterdamUpload, session name is '.Session::getSessionName().' user is '.Authenticate::getAuthUser());
+
 if (!Authenticate::isAuthenticated()) {
 	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorUploadNotAuthenticated")));
 	exit(0);
