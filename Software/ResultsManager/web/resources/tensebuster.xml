@@ -262,6 +262,7 @@
 			
 			<lit name="homeInstructionLabel">Please choose a level</lit>
 			<lit name="unitInstructionLabel">Please choose a unit</lit>
+			<lit name="exInstructionLabel">Please choose a exercise</lit>
 		</group>
 	</language>
 </literals>

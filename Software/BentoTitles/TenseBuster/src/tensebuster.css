@@ -42,6 +42,10 @@ global {
 	midBottomProOverGradientColors: #FF4D5F, #FFB98C, #B8D442, #8EE1F5, #B7A2FF;
 	bottomProOverGradientColors: #FF3636, #CF9C80, #83B800, #32AACF, #9F85FF;
 	
+	exGradientColors: #EE867C, #E0D468, #8AC352, #53C5C5, #6F8BE1;
+	exOverGradientColors: #FFA38D, #FFFFB8, #B7D670, #70E2E2, #8DA9FF;
+	exLabelColors: #C41C32, #875600, #3E6B00, #007882, #3C1778;
+	
 	ProgressIcon: Embed(source="skins/tensebuster/assets/title/progressIcon.png");
 	ProgressOverIcon: Embed(source="skins/tensebuster/assets/title/progressOverIcon.png");
 	ProgressBg: Embed(source="skins/tensebuster/assets/title/progressBg.png");
@@ -87,6 +91,10 @@ progressui|ProgressUnitButton {
 
 zone|ZoneView {
 	skinClass: ClassReference("skins.tensebuster.ZoneSkin");
+}
+
+zone|ZoneView s|Button#backToUnitButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.BackToMenuButtonSkin");
 }
 
 exercise|ExerciseView {

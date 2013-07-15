@@ -7,24 +7,58 @@ package com.clarityenglish.tensebuster.view.zone {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
+	import mx.controls.SWFLoader;
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
+	import spark.primitives.Path;
 	
 	public class ZoneView extends BentoView {
 		
 		[SkinPart(required="true")]
 		public var exerciseList:List;
 		
+		[SkinPart]
+		public var numberIcon:SWFLoader;
+		
+		[SkinPart]
+		public var exInstructionLabel:Label;
+		
+		[SkinPart]
+		public var backToUnitButton:Button;
+		
 		private var _unit:XML;
 		private var _unitChanged:Boolean;
+		// gh#398
+		private var _courseIndex:Number;
+		private var caption:String;
+		private var numberIconSource:String;
+		private var courseArray:Array = ["Elementary", "Lower Intermediate", "Intermediate", "Upper Intermediate", "Advanced"];
 		
 		private var uidString:String;
 		
 		public var exerciseShow:Signal = new Signal(Href);
 		public var exerciseSelect:Signal = new Signal(XML);
+		public var backToUnit:Signal = new Signal();
+	
+		[Embed(source="skins/tensebuster/assets/zone/A10.png")]
+		private var A13:Class;
+		
+		[Embed(source='skins/tensebuster/assets/zone/E10.png')]
+		private var E13:Class;
+		
+		[Embed(source="skins/tensebuster/assets/zone/I10.png")]
+		private var I13:Class;
+		
+		[Embed(source="skins/tensebuster/assets/zone/U10.png")]
+		private var U13:Class;
+		
+		[Embed(source="skins/tensebuster/assets/zone/L10.png")]
+		private var L13:Class;
 		
 		[Bindable(event="unitChanged")]
 		public function get unit():XML {
@@ -32,13 +66,24 @@ package com.clarityenglish.tensebuster.view.zone {
 		}
 		
 		public function set unit(value:XML):void {
-			_unit= value;
-			_unitChanged = true;
-			
-			invalidateProperties();
-			invalidateSkinState();
-			
-			dispatchEvent(new Event("unitChanged", true));
+			if (value) {
+				_unit= value;
+				_unitChanged = true;
+				
+				invalidateProperties();
+				invalidateSkinState();
+				
+				dispatchEvent(new Event("unitChanged", true));
+			}		
+		}
+		
+		[Bindable]
+		public function get courseIndex():Number {
+			return _courseIndex;
+		}
+		
+		public function set courseIndex(value:Number):void {
+			_courseIndex = value;
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -50,7 +95,33 @@ package com.clarityenglish.tensebuster.view.zone {
 			
 			if (_unitChanged) {
 				exerciseList.dataProvider = new XMLListCollection(_unit.exercise);
+				caption = _unit.parent().@caption;
+				courseIndex = courseArray.indexOf(caption);
+				numberIconSource = caption.charAt(0) + exerciseList.dataProvider.length;
+				numberIcon.source = getSource(numberIconSource);
 				_unitChanged = false;
+			}
+		}
+		
+		public function getSource(value:String):Class {
+			switch (value) {
+				case "A13":
+					return A13;
+					break;
+				case "E13":
+					return E13;
+					break;
+				case "I13":
+					return I13;
+					break;
+				case "U13":
+					return U13;
+					break;
+				case "L13":
+					return L13;
+					break;
+				default:
+					return null;
 			}
 		}
 		
@@ -61,12 +132,22 @@ package com.clarityenglish.tensebuster.view.zone {
 				case exerciseList:
 					exerciseList.addEventListener(MouseEvent.CLICK, onExerciseClick);
 					break;
+				case exInstructionLabel:
+					exInstructionLabel.text = copyProvider.getCopyForId("exInstructionLabel");
+					break;
+				case backToUnitButton:
+					backToUnitButton.addEventListener(MouseEvent.CLICK, onBackToUnitClick);
+					break;
 			}
 		}
 		
 		protected function onExerciseClick(event:MouseEvent):void {
 			var exercise:XML = event.currentTarget.selectedItem as XML;
 			if (exercise) exerciseSelect.dispatch(exercise);
+		}
+		
+		protected function onBackToUnitClick(event:MouseEvent):void {
+			backToUnit.dispatch();
 		}
 		
 	}

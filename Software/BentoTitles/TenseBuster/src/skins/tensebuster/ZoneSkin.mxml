@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:exercise="skins.tensebuster.assets.exercise.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:exercise="skins.tensebuster.assets.exercise.*" creationComplete="{numberFadeEffect.play()}">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.zone.ZoneView")]
@@ -9,6 +9,7 @@
 	
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
+		<s:Fade id="numberFadeEffect" target="{numberIcon}" duration="2000" alphaFrom="0" alphaTo="1"/>
 	</fx:Declarations>
 	
 	<!-- states -->
@@ -17,10 +18,10 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" top="0"/-->
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/>	
 	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
 		<!--rectangle panel-->
-		<s:Rect left="28" right="28" bottom="15" top="70">
+		<s:Rect left="29" right="29" bottom="15" top="70">
 			<s:fill>
 				<s:SolidColor color="0xFFFFFF"/>
 			</s:fill>
@@ -30,6 +31,88 @@
 		<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/unit/unitBg.png')" bottom="25" left="28" /-->
 	</s:Group>
 	
-	<s:List id="exerciseList" top="60" bottom="50" left="50" right="50" labelField="@caption" />
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/zone/zoneBg.png')" bottom="25" left="28" />
+	
+	<s:Label id="exInstructionLabel" top="110" left="90" />
+	<s:Button id="backToUnitButton" label="Back to Unit" right="60" top="58" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
+	<s:SWFLoader id="numberIcon" top="140" left="85"/>		
+	<s:List id="exerciseList" top="140" bottom="60" left="135" width="30%" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">
+		<s:itemRenderer>
+			<fx:Component>
+				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" dataChange="{fadeEffect.play()}">
+					<fx:Script>
+						<![CDATA[
+							import com.clarityenglish.common.vo.content.Unit;
+							
+							import spark.components.List;
+							
+							[Bindable]
+							private var courseIndex:Number;
+							
+							private var caption:String;
+							
+							public override function set data(value:Object):void {
+								super.data = value;
+								
+								courseIndex = outerDocument.hostComponent.courseIndex;
+							}
+							
+							public function getExColor(index:Number):Number {
+								var colors:Array = getStyle("exGradientColors");
+								return colors[index];
+							}
+							
+							public function getExOverColor(index:Number):Number {
+								var colors:Array = getStyle("exOverGradientColors");
+								return colors[index];
+							}
+							
+							public function getExLabelColor(index:Number):Number {
+								var colors:Array = getStyle("exLabelColors");
+								return colors[index];
+							}
+						]]>
+					</fx:Script>
+					
+					<s:states>
+						<s:State name="normal" />
+						<s:State name="hovered" />
+						<s:State name="selected" />
+					</s:states>
+					
+					<s:layout>
+						<s:VerticalLayout paddingBottom="5" />
+					</s:layout>
+					
+					<fx:Declarations>
+						<s:Fade id="fadeEffect" target="{exButtonGroup}" duration="2000" alphaFrom="0" alphaTo="1"/>
+					</fx:Declarations>
+					
+					<s:Group id="exButtonGroup" alpha="0">
+						<s:Path id="unDonePath"  data="M12.4829 44.2217C10.9238 44.2217 8.6748 43.3975 7.48486 42.3906L2.16357 37.8877C0.973633 36.8809 0 34.7813 0 33.2222L0 10.9995C0 9.44043 0.973633 7.34082 2.16357 6.33398L7.48486 1.83105C8.6748 0.824219 10.9238 0 12.4829 0L221.689 0C223.248 0 225.497
+								0.82373 226.688 1.83105L232.009 6.33398C233.199 7.34131 234.173 9.44043 234.173 10.9995L234.173 33.2222C234.173 34.7813 233.199 36.8804 232.009 37.8877L226.688 42.3906C225.497 43.3979 223.248 44.2217 221.689 44.2217L12.4829 44.2217Z">
+							<s:fill>
+								<s:LinearGradient rotation="90">
+									<s:GradientEntry color="0xFFFFFF" color.hovered="0xFFFFFF" color.selected="0xFFFFFF" ratio="0" />
+									<s:GradientEntry color="0x808080" color.hovered="{getExOverColor(courseIndex)}" color.selected="{getExOverColor(courseIndex)}" ratio="0.25" />
+								</s:LinearGradient>
+							</s:fill>
+						</s:Path>
+						
+						<s:Path id="donePath" visible="{data.hasOwnProperty('@done')}" data="M12.4829 44.2217C10.9238 44.2217 8.6748 43.3975 7.48486 42.3906L2.16357 37.8877C0.973633 36.8809 0 34.7813 0 33.2222L0 10.9995C0 9.44043 0.973633 7.34082 2.16357 6.33398L7.48486 1.83105C8.6748 0.824219 10.9238 0 12.4829 0L221.689 0C223.248 0 225.497
+								0.82373 226.688 1.83105L232.009 6.33398C233.199 7.34131 234.173 9.44043 234.173 10.9995L234.173 33.2222C234.173 34.7813 233.199 36.8804 232.009 37.8877L226.688 42.3906C225.497 43.3979 223.248 44.2217 221.689 44.2217L12.4829 44.2217Z">
+							<s:fill>
+								<s:LinearGradient rotation="90">
+									<s:GradientEntry color="0xFFFFFF" color.hovered="0xFFFFFF" color.selected="0xFFFFFF" ratio="0" />
+									<s:GradientEntry color="{getExColor(courseIndex)}" color.hovered="{getExOverColor(courseIndex)}" color.selected="{getExOverColor(courseIndex)}" ratio="0.25" />
+								</s:LinearGradient>
+							</s:fill>
+						</s:Path>									
+						<s:Label id="exCaption" text="{data.@caption}" color="{getExLabelColor(courseIndex)}" top="15" left="20" fontSize="19"/>
+					</s:Group>						
+				</s:ItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>	
 	
 </s:Skin>

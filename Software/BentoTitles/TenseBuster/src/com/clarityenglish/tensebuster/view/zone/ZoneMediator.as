@@ -23,20 +23,22 @@
 		
 		public override function onRegister():void {
 			super.onRegister();
-
+			
 			view.exerciseSelect.add(onExerciseSelect);
+			view.backToUnit.add(onBackToUnitClick);
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			
-			Bind.fromProperty(bentoProxy, "selectedUnitNode").toProperty(view, "unit");
+			Bind.fromProperty(bentoProxy, "selectedUnitNode").toProperty(view, "unit"); 
 		}
 		
 		public override function onRemove():void {
 			super.onRemove();
 			
 			view.exerciseSelect.remove(onExerciseSelect);
+			view.backToUnit.remove(onBackToUnitClick);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -55,6 +57,10 @@
 		
 		protected function onExerciseSelect(node:XML, attribute:String = null):void {
 			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, node, attribute);
+		}
+		
+		protected function onBackToUnitClick():void {
+			sendNotification(BBNotifications.SELECTED_NODE_UP);
 		}
 		
 	}
