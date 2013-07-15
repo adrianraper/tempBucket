@@ -345,7 +345,7 @@ package com.clarityenglish.bento.model {
 			}
 			
 			// Stop listening
-			microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
+			if (microphone) microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 		}
 		
 		/**
