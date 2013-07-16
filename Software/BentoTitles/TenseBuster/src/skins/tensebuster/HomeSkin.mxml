@@ -11,14 +11,14 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
-	</s:states>	
+	</s:states>
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/tbBg.png')" horizontalAlign="center" bottom="5"/>
 	<s:Label id="homeInstructionLabel" top="60" left="60" />
-	<s:List id="coursesList" labelField="@caption" borderVisible="false" top="80" left="50" contentBackgroundAlpha="0">
+	<s:List id="coursesList" labelField="@caption" borderVisible="false" top="80" left="50" contentBackgroundAlpha="0" width="100%">
 		<s:itemRenderer>
 			<fx:Component>
-				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" dataChange="{fly.play()}">
 					<fx:Script>
 						<![CDATA[
 								import spark.components.List;
@@ -84,6 +84,12 @@
 						]]>
 					</fx:Script>
 					
+					<fx:Declarations>
+						<s:Animate id="fly" target="{courseButton}" duration="400" startDelay="{getIndex(data) * 100}">
+							<s:SimpleMotionPath property="paddingLeft" valueFrom="-300" valueTo="{getPaddingLeft(getIndex(data))}" />
+						</s:Animate>
+					</fx:Declarations>
+					
 					<s:states>
 						<s:State name="normal" />
 						<s:State name="hovered" />
@@ -94,18 +100,18 @@
 						<s:VerticalLayout paddingTop="15" paddingBottom="15" />
 					</s:layout>
 					
-					<s:HGroup paddingLeft="{getPaddingLeft(getIndex(data))}" gap="-10">
+					<s:HGroup id="courseButton" paddingLeft="-300" gap="-10" >
 						<s:Group>
 							<s:Group left="35" top="10">
 								<s:Path data="M12.4829 44.2217C10.9238 44.2217 8.6748 43.3975 7.48486 42.3906L2.16357 37.8877C0.973633 36.8809 0 34.7813 0 33.2222L0 10.9995C0 9.44043 0.973633 7.34082 2.16357 6.33398L7.48486 1.83105C8.6748 0.824219 10.9238 0 12.4829 0L221.689 0C223.248 0 225.497
 										0.82373 226.688 1.83105L232.009 6.33398C233.199 7.34131 234.173 9.44043 234.173 10.9995L234.173 33.2222C234.173 34.7813 233.199 36.8804 232.009 37.8877L226.688 42.3906C225.497 43.3979 223.248 44.2217 221.689 44.2217L12.4829 44.2217Z">
 									<s:fill>
 										<s:LinearGradient rotation="90">
-											<s:GradientEntry color="{getTopGradientColor(getIndex(data))}" color.hovered="{getOverTopGradientColor(getIndex(data))}" ratio="0" />
-											<s:GradientEntry color="{getMidTopGradientColor(getIndex(data))}" color.hovered="{getMidTopOverGradientColor(getIndex(data))}" ratio="0.25" />
-											<s:GradientEntry color="{getCenterGradientColor(getIndex(data))}" color.hovered="{getCenterOverGradientColor(getIndex(data))}" ratio="0.5" />
-											<s:GradientEntry color="{getMidBottomGradientColor(getIndex(data))}" color.hovered="{getMidBottomOverGradientColor(getIndex(data))}" ratio="0.75" />
-											<s:GradientEntry color="{getBottomGradientColor(getIndex(data))}" color.hovered="{getBottomOverGradientColor(getIndex(data))}" ratio="1" />
+											<s:GradientEntry color="{getTopGradientColor(getIndex(data))}" color.hovered="{getOverTopGradientColor(getIndex(data))}" color.selected="{getOverTopGradientColor(getIndex(data))}" ratio="0" />
+											<s:GradientEntry color="{getMidTopGradientColor(getIndex(data))}" color.hovered="{getMidTopOverGradientColor(getIndex(data))}" color.selected="{getMidTopOverGradientColor(getIndex(data))}" ratio="0.25" />
+											<s:GradientEntry color="{getCenterGradientColor(getIndex(data))}" color.hovered="{getCenterOverGradientColor(getIndex(data))}" color.selected="{getCenterOverGradientColor(getIndex(data))}" ratio="0.5" />
+											<s:GradientEntry color="{getMidBottomGradientColor(getIndex(data))}" color.hovered="{getMidBottomOverGradientColor(getIndex(data))}" color.selected="{getMidBottomOverGradientColor(getIndex(data))}" ratio="0.75" />
+											<s:GradientEntry color="{getBottomGradientColor(getIndex(data))}" color.hovered="{getBottomOverGradientColor(getIndex(data))}" color.selected="{getBottomOverGradientColor(getIndex(data))}" ratio="1" />
 										</s:LinearGradient>
 									</s:fill>
 								</s:Path>
@@ -113,8 +119,8 @@
 							</s:Group>
 							<s:SWFLoader source="skins/tensebuster/assets/courseIcon/{data.@caption}.png" />
 						</s:Group>																		
-					</s:HGroup>				
-				</s:ItemRenderer>
+					</s:HGroup>
+ 				</s:ItemRenderer>
 			</fx:Component>
 		</s:itemRenderer>
 	</s:List>

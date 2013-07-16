@@ -54,10 +54,8 @@ package com.clarityenglish.bento.view {
 				if (view is BentoView) {
 					// Create the new view and add it.  For the moment just use the default XHTMLExerciseView, but this will be definable in the XML
 					var bentoView:BentoView = view as BentoView;
-					//bentoView.percentWidth = bentoView.percentHeight = 100;
-					bentoView.left = 0; 
-					bentoView.right = 0;
-					bentoView.top = bentoView.bottom = 0;
+					bentoView.percentWidth = bentoView.percentHeight = 100;
+					bentoView.left = bentoView.right = bentoView.top = bentoView.bottom = 0;
 					bentoView.media = media;
 					bentoView.href = href;
 					contentGroup.addElement(bentoView);

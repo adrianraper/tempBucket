@@ -32,7 +32,7 @@
 		<s:ViewNavigator id="profileViewNavigator" firstView="com.clarityenglish.tensebuster.view.profile.ProfileView" label="My Profile" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 	
-	<s:Group top="175" left="70" visible="{hostComponent.currentState == 'exercise'}">
+	<s:Group top="135" left="50" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:SWFLoader id="courseThumbnail" />
 			<s:Label text="{hostComponent.courseCaption}" color="0x420000" fontSize="19" paddingTop="2" />
@@ -43,8 +43,7 @@
 			<s:Label text="{hostComponent.exerciseCaption}" color="{getStyle(TitleView.courseCode + 'Color')}" fontSize="14" paddingTop="6" />
 		</s:HGroup>	
 	</s:Group>
-	
-	<s:Button id="backToMenuButton" label="Back to Menu" right="75" top="180" color="0xFFFFFF" fontWeight="bold" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
+	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="140" color="0xFFFFFF" fontWeight="bold" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
 	<recorder:RecorderView right="0" includeIn="exercise" />
 	
 </s:Skin>
