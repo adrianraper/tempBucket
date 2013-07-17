@@ -134,7 +134,7 @@
 			<lit name="courseDurationRenderTime">{time} min(s)</lit>
 			<lit name="coverageLabel">coverage</lit>
 			<lit name="analysisLabel">analysis</lit>
-			<lit name="progressBarCoverage">Overall coverage</lit>
+			<lit name="progressBarCoverage">{course}- Overall coverage</lit>
 			<lit name="progressBarScore">Average score</lit>
 			<lit name="scoreGridC1">Unit</lit>
 			<lit name="scoreGridC2">Exercise</lit>
@@ -260,6 +260,11 @@
 			<lit name="notCompleteLabel">Not started</lit>
 			<lit name="othersLabel">No record available</lit>
 			
+			<lit name="Elementary">Elementary</lit>
+			<lit name="Lowerintermediate">Lower Intermediate</lit>
+			<lit name="Intermediate">Intermediate</lit>lit>
+			<lit name="Upperintermediate">Upper Intermediate</lit>
+			<lit name="Advanced">Advanced</lit>
 			<lit name="homeInstructionLabel">Please choose a level</lit>
 			<lit name="unitInstructionLabel">Please choose a unit</lit>
 			<lit name="exInstructionLabel">Please choose a exercise</lit>

@@ -10,6 +10,8 @@
 @namespace profile "com.clarityenglish.tensebuster.view.profile.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progressui "com.clarityenglish.tensebuster.view.unit.ui.*";
+@namespace bentoprogressui "com.clarityenglish.bento.view.progress.ui.*";
+@namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 
 global {
 	EColor : #EC1C32;
@@ -55,6 +57,34 @@ global {
 	ProfileOverIcon: Embed(source="skins/tensebuster/assets/title/profileOverIcon.png");
 	ProfileBg: Embed(source="skins/tensebuster/assets/title/progressBg.png");
 	ProfileOverBg: Embed(source="skins/tensebuster/assets/title/progressOverBg.png");
+	
+	elementaryIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/elementary.png");
+	lowerintermediateIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/lowerIntermediate.png");
+	intermediateIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/intermediate.png");
+	upperintermediateIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/upperIntermediate.png");
+	advancedIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/advanced.png");
+	
+	ENumber10: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ENumber10.png");
+	ENumber11: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ENumber11.png");
+	ENumber12: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ENumber12.png");
+	
+	
+	LNumber10: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/LNumber10.png");
+	LNumber11: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/LNumber11.png");
+	LNumber12: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/LNumber12.png");
+	
+	INumber10: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/INumber10.png");
+	INumber11: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/INumber11.png");
+	INumber12: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/INumber12.png");
+	
+	UNumber10: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/UNumber10.png");
+	UNumber11: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/UNumber11.png");
+	UNumber12: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/UNumber12.png");
+	
+	ANumber10: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ANumber10.png");
+	ANumber11: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ANumber11.png");
+	ANumber12: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ANumber12.png");
+	
 }
 
 s|TitleWindow.feedbackTitleWindow {
@@ -127,6 +157,22 @@ exercise|ExerciseView s|Button#feedbackButton {
 
 progress|ProgressView {
 	skinClass: ClassReference("skins.tensebuster.progress.ProgressSkin");
+}
+
+progress|ProgressView s|ButtonBar#progressNavBar {
+	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressNavBarSkin");
+}
+
+progresscomponents|ProgressCoverageView {
+	skinClass: ClassReference("skins.tensebuster.progress.ProgressCoverageSkin");
+}
+
+progresscomponents|ProgressCoverageView #progressCourseButtonBar {
+	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressCourseButtonBarSkin");
+}
+
+bentoprogressui|ProgressBarRenderer {
+	skinClass: ClassReference("skins.tensebuster.unit.ui.ProgressBarRendererSkin");
 }
 
 profile|ProfileView {

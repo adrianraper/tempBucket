@@ -15,7 +15,7 @@
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/tbBg.png')" horizontalAlign="center" bottom="5"/>
 	<s:Label id="homeInstructionLabel" top="60" left="60" />
-	<s:List id="coursesList" labelField="@caption" borderVisible="false" top="80" left="50" contentBackgroundAlpha="0" width="100%">
+	<s:List id="coursesList" labelField="@caption" borderVisible="false" top="80" left="50" contentBackgroundAlpha="0" width="40%">
 		<s:itemRenderer>
 			<fx:Component>
 				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" dataChange="{fly.play()}">

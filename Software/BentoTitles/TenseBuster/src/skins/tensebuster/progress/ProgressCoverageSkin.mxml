@@ -2,25 +2,184 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
-		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*">
+		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" xmlns:exerciseNumber="skins.tensebuster.assets.exerciseNumber.*" xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCoverageView")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[			
+			import mx.collections.XMLListCollection;
+			private function getItemRenderer(item:Object):ClassFactory {
+				return item.@caption;
+			}
+		]]>
+	</fx:Script>
 
     <s:states>
         <s:State name="normal" />
         <s:State name="disabled" />
     </s:states>
-    
-	<ui:ProgressBarRenderer id="progressBar" top="10" left="20" right="20" />
 	
-	<s:Group top="55" width="100%" left="20" right="20">
-		<s:Line width="100%" >
-			<s:stroke>
-				<s:SolidColorStroke color="0xE6E6E6" />
-			</s:stroke>
-		</s:Line>
-	</s:Group>
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
+		<ui:layout>
+			<s:ButtonBarHorizontalLayout gap="16" />
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
+    
+	<ui:ProgressBarRenderer id="progressBar" top="90" left="50" right="50" />
+	
+	<s:Scroller left="50" right="0" top="167" bottom="0">
+		<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">
+			<s:layout>
+				<s:VerticalLayout paddingTop="5" gap="20" />
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<s:DataRenderer>
+						<fx:Script>
+							<![CDATA[
+								import mx.collections.XMLListCollection;								
+								
+								public function getIcon(value:Number):Class {
+									var course:String = data.parent().@caption;
+									var firstLetter:String = course.charAt(0);
+									var source:String = firstLetter+"Number"+value;
+									return getStyle(source);
+								}
+								
+								override public function set data(value:Object):void {
+									super.data = value;
+									
+									numberIcon10.visible = false;
+									numberIcon11.visible = false;
+									numberIcon12.visible = false;
+									
+									if (data) {
+										var dataLength:Number = (owner as DataGroup).dataProvider.length;
+										switch (dataLength) {
+											case 10:
+												numberIcon10.source = getIcon(10);
+												numberIcon10.visible = true;
+												break;
+											case 11:
+												numberIcon11.source = getIcon(11);
+												numberIcon11.visible = true;
+												break;
+											default:
+												numberIcon12.source = getIcon(12);
+												numberIcon12.visible = true;
+												break;										
+										}
+									}								
+								}
+								
+							]]>
+						</fx:Script>
+						<s:Label text="{data.@caption}" fontSize="15" />
+						<s:Group left="200">
+							<s:SWFLoader id="numberIcon10" visible="false"/>
+							<s:SWFLoader id="numberIcon11" visible="false"/>
+							<s:SWFLoader id="numberIcon12" visible="false"/>
+						</s:Group>						
+						<s:DataGroup left="200" dataProvider="{new XMLListCollection(data.exercise)}">
+							<s:layout>
+								<s:HorizontalLayout/>
+							</s:layout>
+							<s:itemRenderer>
+								<fx:Component>
+									<s:DataRenderer>
+										<fx:Script>
+											<![CDATA[
+												import spark.components.DataGroup;
+												
+												public function getIndex(data:Object):Number {
+													return (owner as DataGroup).dataProvider.getItemIndex(data);
+												}
+												
+												override public function set data(value:Object):void {
+													super.data = value;
+
+													e1.visible = false;
+													e2.visible = false;
+													e3.visible = false;
+													e4.visible = false;
+													e5.visible = false;
+													e6.visible = false;
+													e7.visible = false;
+													e8.visible = false;
+													e9.visible = false;
+													e10.visible = false;
+													
+													if (data && !data.hasOwnProperty("@done")) {
+														switch (getIndex(data)) {
+															case 0:
+																e1.visible = true;
+																break;
+															case 1:
+																e2.visible = true;
+																break;
+															case 2:
+																e3.visible = true;
+																break;
+															case 3:
+																e4.visible = true;
+																break;
+															case 4:
+																e5.visible = true;
+																break;
+															case 5:
+																e6.visible = true;
+																break;
+															case 6:
+																e7.visible = true;
+																break;
+															case 7:
+																e8.visible = true;
+																break;
+															case 8:
+																e9.visible = true;
+																break;
+															case 9:
+																e10.visible = true;
+																break;
+															case 10:
+																e11.visible = true;
+																break;
+															case 11:
+																e12.visible = true;
+																break;
+														}
+													}
+												}
+											]]>
+										</fx:Script>
+										<s:Group width="21.5" top="-1">
+											<exerciseNumber:e1 id="e1" visible="false" left="0"/>
+											<exerciseNumber:e2 id="e2" visible="false" left="0"/>
+											<exerciseNumber:e3 id="e3" visible="false" left="0"/>
+											<exerciseNumber:e4 id="e4" visible="false" left="1.5"/>
+											<exerciseNumber:e5 id="e5" visible="false" left="2"/>
+											<exerciseNumber:e6 id="e6" visible="false" left="2.5"/>
+											<exerciseNumber:e7 id="e7" visible="false" left="2"/>
+											<exerciseNumber:e8 id="e8" visible="false" left="2.5"/>
+											<exerciseNumber:e9 id="e9" visible="false" left="4"/>
+											<exerciseNumber:e10 id="e10" visible="false" left="2"/>
+											<exerciseNumber:e11 id="e11" visible="false" left="9.5"/>
+											<exerciseNumber:e12 id="e12" visible="false" left="17.5" />
+											<!--s:SWFLoader id="e10" source="@Embed(source='skins/tensebuster/assets/exerciseNumber/10.png')" visible="false"/>
+											<s:SWFLoader id="e11" source="@Embed(source='skins/tensebuster/assets/exerciseNumber/11.png')" visible="false"/>
+											<s:SWFLoader id="e12" source="@Embed(source='skins/tensebuster/assets/exerciseNumber/12.png')" visible="false"/-->
+										</s:Group>										
+									</s:DataRenderer>
+								</fx:Component>
+							</s:itemRenderer>
+						</s:DataGroup>						
+					</s:DataRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:DataGroup>
+	</s:Scroller>
 
 </s:Skin>

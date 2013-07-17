@@ -112,7 +112,7 @@
 			 color.selectedUpStates="0x303030"
 			 color.over="0x808080"
 			 color.up="0xCCCCCC"
-			 fontSize="12.6">
+			 fontSize="14" fontWeight.up="normal" fontWeight.selectedStates="bold">
     </s:Label>
 	
 </s:SparkButtonSkin>
