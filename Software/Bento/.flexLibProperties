@@ -120,6 +120,7 @@
     <classEntry path="skins.bento.exercise.ExerciseDropDownListButtonSkin"/>
     <classEntry path="skins.bento.exercise.ExerciseTextInputSkin"/>
     <classEntry path="skins.bento.exercise.XHTMLExerciseSkin"/>
+    <classEntry path="skins.bento.recorder.RecorderSkin"/>
     <classEntry path="skins.bento.swfplayer.SWFPlayerSkin"/>
     <classEntry path="skins.bento.warning.WarningBoxButtonSkin"/>
     <classEntry path="skins.bento.warning.WarningNoButtonSkin"/>
@@ -174,10 +175,6 @@
     <classEntry path="com.clarityenglish.bento.view.xhtmlexercise.events.AudioStackEvent"/>
     <classEntry path="com.clarityenglish.bento.controller.FeedbackReminderShowCommand"/>
     <classEntry path="com.clarityenglish.bento.RecorderNotifications"/>
-<<<<<<< Updated upstream
-    <classEntry path="skins.bento.recorder.RecorderSkin"/>
-=======
->>>>>>> Stashed changes
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>
