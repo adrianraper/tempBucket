@@ -2,10 +2,6 @@ package com.clarityenglish.tensebuster.view.unit.ui
 {
 	import caurina.transitions.Tweener;
 	
-	import flash.events.Event;
-	
-	import skins.tensebuster.assets.unit.leftSide;
-	
 	import spark.components.supportClasses.ButtonBase;
 	import spark.primitives.Path;
 	import spark.primitives.Rect;
