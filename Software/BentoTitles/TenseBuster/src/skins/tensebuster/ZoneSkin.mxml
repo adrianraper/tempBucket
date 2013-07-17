@@ -33,6 +33,14 @@
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/zone/zoneBg.png')" bottom="25" left="28" />
 	
+	<s:HGroup verticalAlign="middle" top="60" left="50">
+		<s:SWFLoader id="courseThumbnail" source="{hostComponent.courseIcon}" />
+		<s:Label text="{hostComponent.courseCaption}" color="0x420000" fontSize="19" paddingTop="2" />
+		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
+		<s:SWFLoader id="unitThumbnail" source="{hostComponent.unitIcon}"/>
+		<s:Label text="{hostComponent.unitCaption}" color="0x333333" fontSize="14" paddingTop="6" />
+	</s:HGroup>
+	
 	<s:Label id="exInstructionLabel" top="110" left="90" />
 	<s:Button id="backToUnitButton" label="Back to Unit" right="60" top="58" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
 	<s:SWFLoader id="numberIcon" top="140" left="85"/>		

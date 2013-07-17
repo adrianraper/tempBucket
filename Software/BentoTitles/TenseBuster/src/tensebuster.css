@@ -64,6 +64,12 @@ global {
 	upperintermediateIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/upperIntermediate.png");
 	advancedIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/advanced.png");
 	
+	elementaryUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/elementary.png");
+	lowerintermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/lowerIntermediate.png");
+	intermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/intermediate.png");
+	upperintermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/upperIntermediate.png");
+	advancedUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/advanced.png");
+	
 	ENumber10: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ENumber10.png");
 	ENumber11: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ENumber11.png");
 	ENumber12: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ENumber12.png");

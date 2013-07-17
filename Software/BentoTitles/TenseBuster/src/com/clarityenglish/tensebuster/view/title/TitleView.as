@@ -122,7 +122,7 @@ package com.clarityenglish.tensebuster.view.title {
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
-			if (currentState == "unit") {
+			/*if (currentState == "unit") {
 				callLater(function():void {
 					coursePath.visible = true;
 					unitPath.visible = false;
@@ -140,7 +140,7 @@ package com.clarityenglish.tensebuster.view.title {
 					unitPath.visible = true;
 					exercisePath.visible = true;
 				});
-			}
+			}*/
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -167,14 +167,14 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		protected override function getCurrentSkinState():String {
-			if (currentState == "home") {
+			/*if (currentState == "home") {
 				if (coursePath)
 					coursePath.visible = false;
 				if (unitPath)
 					unitPath.visible = false;
 				if (exercisePath)
 					exercisePath.visible = false;
-			}
+			}*/
 			return currentState;
 		}
 		

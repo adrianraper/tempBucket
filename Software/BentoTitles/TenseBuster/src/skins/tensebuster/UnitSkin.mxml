@@ -28,6 +28,11 @@
 		<exercise:topPanel top="40" right="28" left="28" />
 		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/unit/unitBg.png')" bottom="25" left="28" />
 	</s:Group>
+	
+	<s:HGroup verticalAlign="middle" id="coursePath" top="60" left="50">
+		<s:SWFLoader id="courseThumbnail" source="{hostComponent.courseIcon}" />
+		<s:Label text="{hostComponent.courseCaption}" color="0x420000" fontSize="19" paddingTop="2" />
+	</s:HGroup>
 
 	<s:Label id="unitInstructionLabel" top="120" left="90" />
 	<s:List id="unitList" top="200" bottom="20" horizontalCenter="0" contentBackgroundAlpha="0" borderVisible="false">

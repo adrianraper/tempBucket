@@ -35,6 +35,9 @@ package com.clarityenglish.tensebuster.view.zone {
 		private var _unitChanged:Boolean;
 		// gh#398
 		private var _courseIndex:Number;
+		private var _courseCaption:String;
+		private var _courseClass:String;
+		private var _unitCaption:String;
 		private var caption:String;
 		private var numberIconSource:String;
 		private var courseArray:Array = ["Elementary", "Lower Intermediate", "Intermediate", "Upper Intermediate", "Advanced"];
@@ -86,6 +89,47 @@ package com.clarityenglish.tensebuster.view.zone {
 			_courseIndex = value;
 		}
 		
+		[Bindable]
+		public function get courseClass():String {
+			return _courseClass;
+		}
+		
+		public function set courseClass(value:String):void {
+			_courseClass = value;
+			if (value)
+				dispatchEvent(new Event("courseChange"));
+		}
+		
+		[Bindable]
+		public function get courseCaption():String {
+			return _courseCaption;
+		}
+		
+		
+		public function set courseCaption(value:String):void {
+			_courseCaption = value;
+		}
+		
+		[Bindable("courseChange")]
+		public function get courseIcon():Class {
+			return getStyle(courseClass + "IconSmall");
+		}
+		
+		[Bindable]
+		public function get unitCaption():String {
+			return _unitCaption;
+		}
+		
+		
+		public function set unitCaption(value:String):void {
+			_unitCaption = value;
+		}
+		
+		[Bindable("courseChange")]
+		public function get unitIcon():Class {
+			return getStyle(courseClass + "UnitIconSmall");
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 		}
@@ -95,9 +139,11 @@ package com.clarityenglish.tensebuster.view.zone {
 			
 			if (_unitChanged) {
 				exerciseList.dataProvider = new XMLListCollection(_unit.exercise);
-				caption = _unit.parent().@caption;
-				courseIndex = courseArray.indexOf(caption);
-				numberIconSource = caption.charAt(0) + exerciseList.dataProvider.length;
+				courseCaption = _unit.parent().@caption;
+				unitCaption = _unit.@caption;
+				courseClass = _unit.parent().@["class"];
+				courseIndex = courseArray.indexOf(courseCaption);
+				numberIconSource = courseCaption.charAt(0) + exerciseList.dataProvider.length;
 				numberIcon.source = getSource(numberIconSource);
 				_unitChanged = false;
 			}

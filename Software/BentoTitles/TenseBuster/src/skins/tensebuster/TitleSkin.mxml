@@ -32,18 +32,18 @@
 		<s:ViewNavigator id="profileViewNavigator" firstView="com.clarityenglish.tensebuster.view.profile.ProfileView" label="My Profile" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 	
-	<s:Group top="135" left="50">
+	<s:Group top="135" left="50" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
-			<s:HGroup verticalAlign="middle" id="coursePath" visible="false">
+			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:SWFLoader id="courseThumbnail" />
 				<s:Label text="{hostComponent.courseCaption}" color="0x420000" fontSize="19" paddingTop="2" />
 			</s:HGroup>
-			<s:HGroup verticalAlign="middle" id="unitPath" visible="false">
+			<s:HGroup verticalAlign="middle" id="unitPath">
 				<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
 				<s:SWFLoader id="unitThumbnail" />
 				<s:Label text="{hostComponent.unitCaption}" color="0x333333" fontSize="14" paddingTop="6" />
 			</s:HGroup>
-			<s:HGroup verticalAlign="middle" id="exercisePath" visible="false">
+			<s:HGroup verticalAlign="middle" id="exercisePath">
 				<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
 				<s:Label text="{hostComponent.exerciseCaption}" color="{getStyle(TitleView.courseCode + 'Color')}" fontSize="14" paddingTop="6" />
 			</s:HGroup>

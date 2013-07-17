@@ -41,7 +41,6 @@
 		<exercise:topPanel top="40" right="28" left="28" />
 	</s:Group>
 	
-	
 	<!-- Exercise -->
 	<view:DynamicView id="dynamicView" left="60" right="60" top="130" bottom="20"/>
 	

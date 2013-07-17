@@ -8,6 +8,7 @@ package com.clarityenglish.tensebuster.view.unit
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
+	import mx.controls.SWFLoader;
 	
 	import org.osflash.signals.Signal;
 	
@@ -27,9 +28,15 @@ package com.clarityenglish.tensebuster.view.unit
 		[SkinPart]
 		public var progressUnitButton:ProgressUnitButton;
 		
+		[SkinPart]
+		public var courseThumbnail:SWFLoader;
+		
 		private var _course:XML;
 		private var _courseChanged:Boolean; 
 		private var _courseIndex:Number = 0;
+		private var _courseCaption:String;
+		private var _courseClass:String;
+		private var _courseIcon:String;
 		private var courseArray:Array = ["Elementary", "Lower Intermediate", "Intermediate", "Upper Intermediate", "Advanced"];
 		
 		public var unitSelect:Signal = new Signal(XML);
@@ -50,6 +57,32 @@ package com.clarityenglish.tensebuster.view.unit
 		}
 		
 		[Bindable]
+		public function get courseClass():String {
+			return _courseClass;
+		}
+		
+		public function set courseClass(value:String):void {
+			_courseClass = value;
+			if (value)
+		    	dispatchEvent(new Event("courseChange"));
+		}
+		
+		[Bindable]
+		public function get courseCaption():String {
+			return _courseCaption;
+		}
+		
+		
+		public function set courseCaption(value:String):void {
+			_courseCaption = value;
+		}
+		
+		[Bindable("courseChange")]
+		public function get courseIcon():Class {
+			return getStyle(courseClass + "IconSmall");
+		}
+		
+		[Bindable]
 		public function get courseIndex():Number {
 			return _courseIndex;
 		}
@@ -65,7 +98,8 @@ package com.clarityenglish.tensebuster.view.unit
 			super.commitProperties();
 
 			if (_courseChanged) {
-				var courseCaption:String = _course.@caption;
+				courseCaption = _course.@caption;
+				courseClass = _course.@["class"];
 				courseIndex = courseArray.indexOf(courseCaption);
 				unitList.dataProvider = new XMLListCollection(_course.unit);
 				_courseChanged = false;
