@@ -147,7 +147,8 @@ SQL;
 					case 'individuals':
 						// gh#149
 						// gh #385 Ignore for sqlite as we don't plan running DMS there
-						if (stristr($GLOBALS['dbms'],'sqlite') !== FALSE) {
+						// gh #403
+						if (stristr($GLOBALS['dbms'],'sqlite') !== 'sqlite') {
 							if ($value == 'true') {
 								//$selectBuilder->addWhere(NEG_MYPOSTFIX);
 								$selectBuilder->addWhere("a.F_Prefix REGEXP '^[0-9]+$'");
