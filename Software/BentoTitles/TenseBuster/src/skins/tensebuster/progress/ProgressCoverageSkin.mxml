@@ -168,9 +168,6 @@
 											<exerciseNumber:e10 id="e10" visible="false" left="2"/>
 											<exerciseNumber:e11 id="e11" visible="false" left="9.5"/>
 											<exerciseNumber:e12 id="e12" visible="false" left="17.5" />
-											<!--s:SWFLoader id="e10" source="@Embed(source='skins/tensebuster/assets/exerciseNumber/10.png')" visible="false"/>
-											<s:SWFLoader id="e11" source="@Embed(source='skins/tensebuster/assets/exerciseNumber/11.png')" visible="false"/>
-											<s:SWFLoader id="e12" source="@Embed(source='skins/tensebuster/assets/exerciseNumber/12.png')" visible="false"/-->
 										</s:Group>										
 									</s:DataRenderer>
 								</fx:Component>

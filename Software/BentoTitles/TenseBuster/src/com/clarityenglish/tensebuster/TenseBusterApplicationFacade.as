@@ -8,6 +8,8 @@
 	import com.clarityenglish.tensebuster.view.home.HomeView;
 	import com.clarityenglish.tensebuster.view.profile.ProfileMediator;
 	import com.clarityenglish.tensebuster.view.profile.ProfileView;
+	import com.clarityenglish.tensebuster.view.progress.ProgressAnalysisMediator;
+	import com.clarityenglish.tensebuster.view.progress.ProgressAnalysisView;
 	import com.clarityenglish.tensebuster.view.progress.ProgressMediator;
 	import com.clarityenglish.tensebuster.view.progress.ProgressView;
 	import com.clarityenglish.tensebuster.view.title.TitleMediator;
@@ -40,7 +42,7 @@
 			mapView(ZoneView, ZoneMediator);
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(ProgressView, ProgressMediator);
-			mapView(ProfileView, ProfileMediator);
+			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
 			/*mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(SupportView, SupportMediator);*/

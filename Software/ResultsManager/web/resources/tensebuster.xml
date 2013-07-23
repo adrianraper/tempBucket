@@ -129,9 +129,7 @@
 			<lit name="chartCaptionLabel">Average score %</lit>
 			<lit name="analysisInstructionLabel1">This shows how  spent your time</lit>
 			<lit name="analysisInstructionLabel2">Time spent on each unit</lit>
-			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
 			<lit name="courseDurationRenderLabel">You have spent</lit>
-			<lit name="courseDurationRenderTime">{time} min(s)</lit>
 			<lit name="coverageLabel">coverage</lit>
 			<lit name="analysisLabel">analysis</lit>
 			<lit name="progressBarCoverage">{course}- Overall coverage</lit>
@@ -268,6 +266,14 @@
 			<lit name="homeInstructionLabel">Please choose a level</lit>
 			<lit name="unitInstructionLabel">Please choose a unit</lit>
 			<lit name="exInstructionLabel">Please choose a exercise</lit>
+			<lit name="analyseInstructionLabel">This shows how you spent your time on each unit in {course}:</lit>
+			<lit name="circleWedgeLabel">Total time you have spent</lit>
+			<lit name="analysisTime">{x}</lit>
+			<lit name="minLabel">min(s)</lit>
+			<lit name="courseDurationRenderTime">{time}</lit>
+			<lit name="totalLabel">Total:</lit>
+			<lit name="emptyCircleWedgeCourseLabel">There is no record yet</lit>
+			<lit name="totalTimeLabel">Total time you have spent</lit>
 		</group>
 	</language>
 </literals>
