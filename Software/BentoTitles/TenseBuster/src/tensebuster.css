@@ -22,6 +22,23 @@ global {
 	UColor : #0499A6;
 	AColor : #5D3996;
 	
+	EHeaderColor: #FFC1BD;
+	LHeaderColor: #FFFFD4;
+	IHeaderColor: #CDEBBC;
+	UHeaderColor: #AEE5E8;
+	AHeaderColor: #B4C3F0;
+	
+	eBarColor1: #7C0124;
+	eBarColor2: #EC1C32;
+	lBarColor1: #603813;
+	lBarColor2: #E0E06B;
+	iBarColor1: #3A4F00;
+	iBarColor2: #8BC452;
+	uBarColor1: #004766;
+	uBarColor2: #53C5C5;
+	aBarColor1: #2F226D;
+	aBarColor2: #6F8BE1;
+	
 	topGradientColors: #780024, #61473D, #4F6617, #1C667D, #3D1FA8;
 	midTopGradientColors: #E51A31, #A07254, #8A9F27, #67A2B1, #6F58BC;
 	centerGradientColors: #EC1C32, #B5805C, #A3B838, #82B8C4, #826EC4;
@@ -183,6 +200,14 @@ progresstb|ProgressView s|ButtonBar#progressNavBar {
 
 progresscomponents|ProgressCoverageView {
 	skinClass: ClassReference("skins.tensebuster.progress.ProgressCoverageSkin");
+}
+
+progresscomponents|ProgressScoreView {
+	skinClass: ClassReference("skins.tensebuster.progress.ProgressScoreSkin");
+}
+
+progresscomponents|ProgressScoreView s|DataGrid#scoreDetailsDataGrid {
+	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressScoreDataGridSkin");
 }
 
 progressui|ProgressCourseButtonBar {

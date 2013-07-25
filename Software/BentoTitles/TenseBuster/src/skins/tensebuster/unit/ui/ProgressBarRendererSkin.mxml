@@ -6,6 +6,10 @@
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
 	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer")]
+	</fx:Metadata>
+	
 	<s:HGroup>
 		<s:Label id="commentLabel" left="0" color="#303030" fontSize="14" fontWeight="bold"/>
 	</s:HGroup>
@@ -20,8 +24,8 @@
 		<s:Rect id="overallProgressRect" height="12" percentWidth="0">
 			<s:fill>
 				<s:LinearGradient>
-					<s:GradientEntry color="0x7C0124" />
-					<s:GradientEntry color="0xEC1C32" />
+					<s:GradientEntry color="{hostComponent.trackColour}" />
+					<s:GradientEntry color="{hostComponent.fillColour}" />
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>

@@ -88,13 +88,13 @@ package com.clarityenglish.bento.view.progress.components {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-			
+		
 			if (_courseChanged) {
 				if (progressBar) {
 					progressBar.label = copyProvider.getCopyForId("progressBarScore", { course: copyProvider.getCopyForId(StringUtils.capitalize(courseClass)) });
 					progressBar.data = menu.course.(@["class"] == courseClass).@averageScore;
 				}
-				
+
 				if (courseClass) {
 					var buildXML:XMLList = menu.course.(@["class"] == courseClass).unit.exercise.score;
 					
@@ -115,6 +115,9 @@ package com.clarityenglish.bento.view.progress.components {
 					}
 					
 					tableDataProvider = new XMLListCollection(buildXML);
+					
+					//alice: get courseClass in scoreDetailsDataGrid;
+					scoreDetailsDataGrid.name = courseClass;
 				}
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
