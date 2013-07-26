@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" >
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="org.davekeen.core.*" >
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressCompareView")]
@@ -136,7 +136,7 @@
 					</s:LinearGradient>
 				</mx:fill>
 			</mx:BarSeries>
-			<mx:BarSeries id="everyOneBarSeries" yField="@caption" xField="@everyoneAverageScore" displayName="Everyone's scores" maxBarWidth="8" >
+			<mx:BarSeries id="everyOneBarSeries" yField="@caption" xField="@everyoneAverageScore" displayName="Everyone's scores" maxBarWidth="5" >
 				<mx:fill>
 					<s:LinearGradient>
 						<s:GradientEntry id="everyOneAveScoreColor1" />
@@ -151,5 +151,25 @@
 			<s:SolidColor color="#B3B3B3" />
 		</s:fill>
 	</s:Rect>
-	<mx:Grid id="myGrid" bottom="110" left="270"/>
+	<s:HGroup bottom="110" left="270">
+		<s:Rect width="16" height="10">
+			<s:fill>
+				<s:LinearGradient>
+					<s:GradientEntry id="legendGradientColor1" />
+					<s:GradientEntry id="legendGradientColor2" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:Label id="mylegendLabel" fontSize="12" />
+		<s:Spacer width="10" />
+		<s:Rect width="16" height="10">
+			<s:fill>
+				<s:LinearGradient>
+					<s:GradientEntry id="everyonelegendGradientColor1" />
+					<s:GradientEntry id="everyonelegendGradientColor2" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:Label id="everyonelegendLabel" fontSize="12" />
+	</s:HGroup>
 </s:Skin>

@@ -63,6 +63,24 @@ package com.clarityenglish.tensebuster.view.progress
 		[SkinPart]
 		public var compareInstructionLabel:Label;
 		
+		[SkinPart]
+		public var legendGradientColor1:GradientEntry;
+		
+		[SkinPart]
+		public var legendGradientColor2:GradientEntry;
+		
+		[SkinPart]
+		public var mylegendLabel:Label;
+		
+		[SkinPart]
+		public var everyonelegendGradientColor1:GradientEntry;
+		
+		[SkinPart]
+		public var everyonelegendGradientColor2:GradientEntry;
+		
+		[SkinPart]
+		public var everyonelegendLabel:Label;
+		
 		private var _everyoneCourseSummaries:Object;
 		private var _everyoneCourseSummariesChanged:Boolean;
 		private var _courseClass:String;
@@ -100,6 +118,8 @@ package com.clarityenglish.tensebuster.view.progress
 			if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
 			horizontalAxis.title = copyProvider.getCopyForId("verticalAxisTitle");
 			compareInstructionLabel.text = copyProvider.getCopyForId("compareInstructionLabel");
+			mylegendLabel.text = copyProvider.getCopyForId("mylegendLabel");
+			everyonelegendLabel.text = copyProvider.getCopyForId("everyonelegendLabel");
 		}
 		
 		public function set everyoneCourseSummaries(value:Object):void {
@@ -126,11 +146,14 @@ package com.clarityenglish.tensebuster.view.progress
 					verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.unit);
 					
 					myAveScoreColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
+					legendGradientColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
 					myAveScoreColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
-					everyOneAveScoreColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
-					everyOneAveScoreColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
-					//myLegend.visible = true;
-					drawLegend();
+					legendGradientColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
+					everyOneAveScoreColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
+					everyonelegendGradientColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
+					everyOneAveScoreColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");
+					everyonelegendGradientColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");					
+					//drawLegend();
 
 				_courseChanged = false;
 			}
@@ -154,48 +177,5 @@ package com.clarityenglish.tensebuster.view.progress
 		public function onCourseSelect(event:IndexChangeEvent):void {
 			courseSelect.dispatch(event.target.selectedItem.courseClass.toLowerCase());
 		}
-		
-		public function drawLegend():void {
-			// Use a counter for the series. 
-			clearLegend();
-			for (var j:int = 0; j < 1; j++) { 
-				var gr:GridRow = new GridRow(); 
-				myGrid.addChild(gr); 
-				for (var k:int = 0; k < 2; k++) {
-					var gi:GridItem = new GridItem(); 
-					gr.addChild(gi); 
-					var li:LegendItem = new LegendItem();
-					// Apply the current series' displayName to the LegendItem's label. 
-					if (k == 0) {
-						li.label = myBarSeries.displayName 
-					} else {
-						li.label = everyOneBarSeries.displayName; 
-					}
-					
-					// Get the current series' fill. 
-					var sc:LinearGradient = new LinearGradient();
-					var gradientEntry1:GradientEntry = new GradientEntry();
-					var gradientEntry2:GradientEntry = new GradientEntry();
-					if (k == 0) {
-						var color1:Number = getStyle(courseClass.charAt(0) + "BarColor1");
-						var color2:Number = getStyle(courseClass.charAt(0) + "BarColor2");
-					} else {
-						color1 = getStyle(courseClass.charAt(0) + "OtherBarColor1");
-						color2 = getStyle(courseClass.charAt(0) + "OtherBarColor2");
-					}					
-					gradientEntry1.color = color1;					
-					gradientEntry2.color = color2;
-					sc.entries = [gradientEntry1, gradientEntry2];
-					// Apply the current series' fill to the corresponding LegendItem. 
-					li.setStyle("fill", sc); 
-					li.setStyle("fontSize", 12);
-					gi.addChild(li);
-				}
-			} 
-		}
-		
-		private function clearLegend():void { 
-			myGrid.removeAllChildren();
-		} 
 	}
 }

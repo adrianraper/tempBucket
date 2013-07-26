@@ -292,6 +292,8 @@
 			 	<p>and has achieved an average score of <span fontWeight="bold" fontSize="20">{aveScore}%.</span></p>
 			 	]]>
 			 </lit>
+			 <lit name="mylegendLabel">My scores</lit>
+			 <lit name="everyonelegendLabel">Everyone's scores</lit>
 		</group>
 	</language>
 </literals>
