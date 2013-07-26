@@ -93,7 +93,7 @@
 					</s:states>
 					
 					<s:layout>
-						<s:VerticalLayout paddingBottom="5" />
+						<s:VerticalLayout paddingBottom="12" />
 					</s:layout>
 					
 					<fx:Declarations>

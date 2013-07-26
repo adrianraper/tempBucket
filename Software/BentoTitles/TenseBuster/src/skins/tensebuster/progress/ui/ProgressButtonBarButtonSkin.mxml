@@ -36,7 +36,7 @@
 	<fx:Metadata>[HostComponent("spark.components.ButtonBarButton")]</fx:Metadata>
 	
 	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="250" distance="0.8" alpha="0.5" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="250" distance="1" alpha="0.3" blurX="8" blurY="8" />
 	</fx:Declarations>
     
     <!-- host component -->

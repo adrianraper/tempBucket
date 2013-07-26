@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" >
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressCompareView")]
+	</fx:Metadata>
+    
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.vo.content.Unit;
+			
+			import mx.charts.CategoryAxis;
+			import mx.charts.ChartItem;
+			import mx.charts.LegendItem;
+			import mx.charts.LinearAxis;
+			import mx.collections.ArrayCollection;
+			import mx.collections.XMLListCollection;
+			import mx.containers.GridItem;
+			import mx.containers.GridRow;
+			import mx.containers.TileDirection;
+			import mx.events.FlexEvent;
+			import mx.graphics.IFill;
+			import mx.graphics.SolidColor;
+			
+			import org.davekeen.util.StringUtils;
+			
+			private function myAverageScoreFill(element:ChartItem, index:Number):IFill {
+				return new SolidColor(getStyle("EColor"));
+			}
+			
+			private function everyoneAverageScoreFill(element:ChartItem, index:Number):IFill {
+				return new SolidColor(getStyle("AColor"));
+			}
+			
+			public function percentageLabel(item:Object, prevValue:Object, axis:LinearAxis):String {
+				return item + "%";
+			}
+			
+			public function captionLabel(item:Object, prevValue:Object, axis:CategoryAxis, categoryItem:Object):String {
+				return categoryItem.@caption;
+			}
+			
+			/*private function drawLegend():void {
+				// Use a counter for the series. 
+				clearLegend();
+				
+				for (var k:int = 0; k < 1; k++) {
+					var li:LegendItem = new LegendItem(); 
+					// Apply the current series' displayName to the LegendItem's label. 
+					if (k == 0) {
+						li.label = myBarSeries.displayName 
+					} else {
+						li.label = everyOneBarSeries.displayName; 
+					}
+					
+					// Get the current series' fill. 
+					var sc:LinearGradient = new LinearGradient();
+					var gradientEntry1:GradientEntry = new GradientEntry();
+					var gradientEntry2:GradientEntry = new GradientEntry();
+					if (k == 0) {
+						var color1:Number = getStyle(hostComponent.courseClass.charAt(0) + "BarColor1");
+						var color2:Number = getStyle(hostComponent.courseClass.charAt(0) + "BarColor2");
+					} else {
+						color1 = getStyle(hostComponent.courseClass.charAt(0) + "OtherBarColor1");
+						color2 = getStyle(hostComponent.courseClass.charAt(0) + "OtherBarColor2");
+					}					
+					gradientEntry1.color = color1;					
+					gradientEntry2.color = color2;
+					sc.entries = [gradientEntry1, gradientEntry2];
+					// Apply the current series' fill to the corresponding LegendItem. 
+					li.setStyle("fill", sc); 
+					li.setStyle("fontSize", 12); 
+					myLegend.addChild(li);
+				}				
+			}
+			
+			private function clearLegend():void { 
+				myLegend.removeAllChildren();
+			} */
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:SolidColorStroke id="blankStroke" color="#00ff00" weight="0" alpha="0" />
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
+		<ui:layout>
+			<s:ButtonBarHorizontalLayout gap="16" />
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
+	
+	<s:Rect top="60" left="45" right="50" height="1">
+		<s:fill>
+			<s:SolidColor color="0xEC1C32" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:Label id="compareInstructionLabel" left="50" top="90" fontSize="15" />
+	
+	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
+	<mx:BarChart id="compareChart" left="50" right="60" top="130" bottom="150" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="220">
+		<mx:horizontalAxis>
+			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
+		</mx:horizontalAxis>
+		<mx:verticalAxis>
+			<mx:CategoryAxis id="verticalAxis" categoryField="@caption" labelFunction="captionLabel"  />
+		</mx:verticalAxis>
+		
+		<mx:horizontalAxisRenderers>
+			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="13" showLine="false" tickStroke="{blankStroke}" placement="top" />
+		</mx:horizontalAxisRenderers>
+		<mx:verticalAxisRenderers>
+			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" tickStroke="{blankStroke}"  labelGap="50">
+				<mx:axisStroke>
+					<mx:SolidColorStroke color="#B3B3B3" weight="1"/>
+				</mx:axisStroke>
+			</mx:AxisRenderer>
+		</mx:verticalAxisRenderers>
+		
+		<mx:series>
+			<mx:BarSeries id="myBarSeries" yField="@caption" xField="@myAverageScore" displayName="My scores" maxBarWidth="8" >
+				<mx:fill>
+					<s:LinearGradient>
+						<s:GradientEntry id="myAveScoreColor1" />
+						<s:GradientEntry id="myAveScoreColor2" />
+					</s:LinearGradient>
+				</mx:fill>
+			</mx:BarSeries>
+			<mx:BarSeries id="everyOneBarSeries" yField="@caption" xField="@everyoneAverageScore" displayName="Everyone's scores" maxBarWidth="8" >
+				<mx:fill>
+					<s:LinearGradient>
+						<s:GradientEntry id="everyOneAveScoreColor1" />
+						<s:GradientEntry id="everyOneAveScoreColor2" />
+					</s:LinearGradient>
+				</mx:fill>				
+			</mx:BarSeries>
+		</mx:series>
+	</mx:BarChart>
+	<s:Rect width="645" left="270" bottom="150" height="1">
+		<s:fill>
+			<s:SolidColor color="#B3B3B3" />
+		</s:fill>
+	</s:Rect>
+	<mx:Grid id="myGrid" bottom="110" left="270"/>
+</s:Skin>

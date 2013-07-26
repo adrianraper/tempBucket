@@ -35,7 +35,7 @@
 		</ui:layout>
 	</ui:ProgressCourseButtonBar>
 	
-	<s:Rect top="60" left="50" right="50" height="2">
+	<s:Rect top="60" left="45" right="50" height="1">
 		<s:fill>
 			<s:SolidColor color="0xEC1C32" />
 		</s:fill>

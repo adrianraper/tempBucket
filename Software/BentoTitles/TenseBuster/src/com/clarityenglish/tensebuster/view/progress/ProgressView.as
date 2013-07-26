@@ -24,7 +24,7 @@ package com.clarityenglish.tensebuster.view.progress
 		public var progressScoreView:ProgressScoreView;
 
 		[SkinPart]
-		public var progressCompareView:ProgressCompareView;
+		public var progressCompareView:com.clarityenglish.tensebuster.view.progress.ProgressCompareView;
 		
 		[SkinPart]
 		public var progressAnalysisView:com.clarityenglish.tensebuster.view.progress.ProgressAnalysisView;
@@ -67,8 +67,8 @@ package com.clarityenglish.tensebuster.view.progress
 						{ label: copyProvider.getCopyForId("progressNavBarCompare"), data: "compare" },
 						{ label: copyProvider.getCopyForId("progressNavBarAnalyse"), data: "analysis" },
 						{ label: copyProvider.getCopyForId("progressNavBarScores"), data: "score" },
+						{ label: copyProvider.getCopyForId("progressNavBarCertificate"), data: "certificate" },
 					] );
-					
 					progressNavBar.requireSelection = true;
 					progressNavBar.addEventListener(Event.CHANGE, onNavBarIndexChange);
 					break;

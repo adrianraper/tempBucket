@@ -10,6 +10,14 @@
 	
 	<fx:Style source="tensebuster.css" />
 	
+	<fx:Style>
+		@font-face {
+			src: url("skins/tensebuster/assets/progress/certificate/HANDSEAN.TTF");
+			fontFamily: Sean;
+			advancedAntiAliasing: true;
+		}
+	</fx:Style>
+	
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.tensebuster.TenseBusterApplicationFacade;

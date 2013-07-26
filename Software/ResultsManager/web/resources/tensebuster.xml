@@ -92,7 +92,6 @@
             <!--  if you release a new title without compiling Rotterdam, use this for the productCode -->
             <lit name="path55">NewTitle</lit>
             
-			<lit name="printButton">Print</lit>
 			<lit name="noButton">No</lit>
 			<lit name="yesButton">Yes</lit>
 			<lit name="loadingLabel">loading...</lit>
@@ -120,11 +119,7 @@
 			<lit name="more">More</lit>
 			<lit name="Home">Home</lit>
 			<lit name="Back">Back</lit>
-			<lit name="LogOut">Log out</lit>
-		    <lit name="progressNavBarCoverage">My coverage</lit>
-			<lit name="progressNavBarCompare">Compare</lit>
-			<lit name="progressNavBarAnalyse">Analyse</lit>
-			<lit name="progressNavBarScores">My scores</lit>
+			<lit name="LogOut">Log out</lit>	   
 			<lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
 			<lit name="analysisInstructionLabel1">This shows how  spent your time</lit>
@@ -263,6 +258,7 @@
 			<lit name="Intermediate">Intermediate</lit>lit>
 			<lit name="Upperintermediate">Upper Intermediate</lit>
 			<lit name="Advanced">Advanced</lit>
+			<lit name="printButton">Print</lit>
 			<lit name="homeInstructionLabel">Please choose a level</lit>
 			<lit name="unitInstructionLabel">Please choose a unit</lit>
 			<lit name="exInstructionLabel">Please choose a exercise</lit>
@@ -274,6 +270,28 @@
 			<lit name="totalLabel">Total:</lit>
 			<lit name="emptyCircleWedgeCourseLabel">There is no record yet</lit>
 			<lit name="totalTimeLabel">Total time you have spent</lit>
+			<lit name="verticalAxisTitle">Average score(%)</lit>
+			<lit name="compareInstructionLabel">Copare your average score to other learners.</lit>
+			<lit name="progressNavBarCoverage">My coverage</lit>
+			<lit name="progressNavBarCompare">Compare</lit>
+			<lit name="progressNavBarAnalyse">Analyse</lit>
+			<lit name="progressNavBarScores">My score</lit>
+			<lit name="progressNavBarCertificate">My certificate</lit>
+			<lit name="oopsLabel">Oops...</lit>
+			<lit name="notCompleteString">
+			 <![CDATA[
+			 	<p>You have note completed this level yet, so you cannot receive a certificate.</p>
+			 	<p>So far you have completed <span fontWeight="bold" fontSize="20">{exerciseAmount} of {totalExercise} exercise</span> and your average score is <span fontWeight="bold" fontSize="20">{aveScor}%.</span></p>
+			 	<p>Go to <span fontWeight="bold" fontSize="20">My Coverage</span> to see which exercises you have not completed so that</p>
+			 	<p>you can finish the whole level</p> 
+			 ]]>
+			 </lit>
+			 <lit name="completeString">
+			 	<![CDATA[
+			 	<p>This is to certify that this learner has completed this level</p>
+			 	<p>and has achieved an average score of <span fontWeight="bold" fontSize="20">{aveScore}%.</span></p>
+			 	]]>
+			 </lit>
 		</group>
 	</language>
 </literals>

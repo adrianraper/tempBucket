@@ -10,6 +10,10 @@
 	import com.clarityenglish.tensebuster.view.profile.ProfileView;
 	import com.clarityenglish.tensebuster.view.progress.ProgressAnalysisMediator;
 	import com.clarityenglish.tensebuster.view.progress.ProgressAnalysisView;
+	import com.clarityenglish.tensebuster.view.progress.ProgressCertificateMediator;
+	import com.clarityenglish.tensebuster.view.progress.ProgressCertificateView;
+	import com.clarityenglish.tensebuster.view.progress.ProgressCompareMediator;
+	import com.clarityenglish.tensebuster.view.progress.ProgressCompareView;
 	import com.clarityenglish.tensebuster.view.progress.ProgressMediator;
 	import com.clarityenglish.tensebuster.view.progress.ProgressView;
 	import com.clarityenglish.tensebuster.view.title.TitleMediator;
@@ -43,6 +47,8 @@
 			mapView(ExerciseView, ExerciseMediator);
 			mapView(ProgressView, ProgressMediator);
 			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
+			mapView(ProgressCompareView, ProgressCompareMediator);
+			mapView(ProgressCertificateView, ProgressCertificateMediator);
 			/*mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(SupportView, SupportMediator);*/

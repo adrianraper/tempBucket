@@ -56,7 +56,7 @@
 			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="13" showLine="false" tickStroke="{blankStroke}" placement="top" />
 		</mx:horizontalAxisRenderers>
 		<mx:verticalAxisRenderers>
-			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" showLine="false" tickStroke="{blankStroke}" />
+			<mx:AxisRenderer axis="{verticalAxis}" fontSize="15" showLine="false" tickStroke="{blankStroke}"/>
 		</mx:verticalAxisRenderers>
 		
 		<mx:annotationElements>

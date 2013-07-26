@@ -14,10 +14,11 @@
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progresstb "com.clarityenglish.tensebuster.view.progress.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
+@namespace mx "library://ns.adobe.com/flex/mx";
 
 global {
 	EColor : #EC1C32;
-	LColor : #D68130;
+	LColor : #D19D2E;
 	IColor : #8AA13B;
 	UColor : #0499A6;
 	AColor : #5D3996;
@@ -38,6 +39,17 @@ global {
 	uBarColor2: #53C5C5;
 	aBarColor1: #2F226D;
 	aBarColor2: #6F8BE1;
+	
+	eOtherBarColor1: #FF3636;
+	eOtherBarColor2: #FF7575;
+	lOtherBarColor1: #EBC53D;
+	lOtherBarColor2: #EDEDA6;
+	iOtherBarColor1: #729C00;
+	iOtherBarColor2: #B5ED7E;
+	uOtherBarColor1: #198DBF;
+	uOtherBarColor2: #79F7F1;
+	aOtherBarColor1: #6449E8;
+	aOtherBarColor2: #94AEFF;
 	
 	topGradientColors: #780024, #61473D, #4F6617, #1C667D, #3D1FA8;
 	midTopGradientColors: #E51A31, #A07254, #8A9F27, #67A2B1, #6F58BC;
@@ -198,6 +210,18 @@ progresstb|ProgressView s|ButtonBar#progressNavBar {
 	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressNavBarSkin");
 }
 
+progresstb|ProgressCompareView {
+	skinClass: ClassReference("skins.tensebuster.progress.ProgressCompareSkin");
+}
+
+progresstb|ProgressCertificateView {
+	skinClass: ClassReference("skins.tensebuster.progress.ProgressCertificateSkin");
+}
+
+progresstb|ProgressCertificateView s|Button#printButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.PrintButtonSkin");
+}
+
 progresscomponents|ProgressCoverageView {
 	skinClass: ClassReference("skins.tensebuster.progress.ProgressCoverageSkin");
 }
@@ -232,4 +256,18 @@ components|AudioPlayer {
 	compactPlayedIcon: Embed(source="skins/tensebuster/assets/audio-up-icon.png");
 	compactPausedIcon: Embed(source="skins/tensebuster/assets/audio-up-icon.png");
 	compactPlayingIcon: Embed(source="skins/tensebuster/assets/audio-playing-icon.png");
+}
+
+mx|LegendItem
+{
+	font-weight:bold;     
+	textFieldClass: ClassReference("mx.core.UITextField");
+}
+
+.axisTitleStyle {
+	textDecoration:underline;
+}
+
+.barLabelStyle {
+	verticalAlign:left;
 }

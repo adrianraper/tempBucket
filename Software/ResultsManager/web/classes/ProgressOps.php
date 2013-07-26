@@ -61,6 +61,23 @@ EOD;
 	}
 	
 	/**
+	 * This method gets all users' progress records
+	 */
+	function getEveryoneUnitSummary($productCode, $rootID) {
+		$sql = 	<<<EOD
+			SELECT AVG(sc.F_Score) as AverageScore, sc.F_UnitID as UnitID, sc.F_CourseID as CourseID
+    		FROM t_score sc, t_session s
+    		WHERE s.F_ProductCode = ?
+    		AND s.F_RootID = ?
+    		AND s.F_SessionID = sc.F_SessionID
+    		GROUP BY sc.F_UnitID
+    		ORDER BY sc.F_UnitID;
+EOD;
+		$bindingParams = array($productCode, $rootID);
+		$rs = $this->db->GetAssoc($sql, $bindingParams);
+		return $rs;
+	}
+	/**
 	 * This method gets the user's last record
 	 */
 	function getMyLastExercise($userID, $productCode) {
