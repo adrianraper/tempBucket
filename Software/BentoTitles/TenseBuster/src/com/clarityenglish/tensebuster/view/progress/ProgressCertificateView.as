@@ -53,10 +53,19 @@ package com.clarityenglish.tensebuster.view.progress
 		public var certificateSWFLoader:SWFLoader;
 		
 		[SkinPart]
+		public var nameTextLabel:Label;
+		
+		[SkinPart]
 		public var nameLabel:Label;
 		
 		[SkinPart]
+		public var courseTextLabel:Label;
+		
+		[SkinPart]
 		public var courseLabel:Label;
+		
+		[SkinPart]
+		public var dateTextLabel:Label;
 		
 		[SkinPart]
 		public var dateLabel:Label;
@@ -72,6 +81,9 @@ package com.clarityenglish.tensebuster.view.progress
 		
 		[SkinPart]
 		public var printGroup:spark.components.Group;
+		
+		[SkinPart]
+		public var certificateFooter:SWFLoader;
 		
 		[Embed(source="skins/tensebuster/assets/progress/certificate/ACert.png")]
 		private static var ACert:Class;
@@ -121,6 +133,9 @@ package com.clarityenglish.tensebuster.view.progress
 			oopsLabel.text = copyProvider.getCopyForId("oopsLabel");
 			nameLabel.text = user.fullName;
 			printButton.label = copyProvider.getCopyForId("printButton");
+			nameTextLabel.text = copyProvider.getCopyForId("nameTextLabel");
+			courseTextLabel.text = copyProvider.getCopyForId("courseTextLabel");
+			dateTextLabel.text = copyProvider.getCopyForId("dateTextLabel");
 		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
@@ -155,12 +170,14 @@ package com.clarityenglish.tensebuster.view.progress
 				printGroup.visible = false;
 				if (exerciseAmount != totalExercise) {
 					oopsVGroup.visible = true;
+					certificateFooter.visible = true;
 					oopsLabel.setStyle("color", getStyle(StringUtils.capitalize(courseClass.charAt(0)) + "Color"));
 					var notCompleteString:String = copyProvider.getCopyForId("notCompleteString", {exerciseAmount: exerciseAmount, totalExercise: totalExercise, aveScor: aveScore});
 					var textFlow:TextFlow = TextFlowUtil.importFromString(notCompleteString);
 					notCompleteRichEditableText.textFlow = textFlow;
 				} else {
 					certificateGroup.visible = true;
+					certificateFooter.visible = false;
 					printGroup.visible = true;
 					switch (courseClass.charAt(0)) {
 						case "e":
@@ -224,7 +241,7 @@ package com.clarityenglish.tensebuster.view.progress
 			
 			// we add a page
 			myPDF.addPage();
-			//var resizeMode:Resize = new Resize(Mode.FIT_TO_PAGE, Position.CENTERED);
+			//var resizeMode:org.alivepdf.layout.Resize = new Resize(Mode.FIT_TO_PAGE, Position.CENTERED);
 			myPDF.addImage(certificateGroup, null, -25, 0, 290);
 			
 			// to save the PDF your specificy the path to the create.php script

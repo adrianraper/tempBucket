@@ -102,8 +102,8 @@
 			<lit name="loginDetailLabelNetwork">Please type your login details if you want to save your progress records.</lit>
 			
 			<lit name="loginButton">Log in</lit>
-			<lit name="passwordLabel">Password:</lit>
-			<lit name="yourLoginDetail">Your {loginDetail}:</lit>
+			<lit name="passwordLabel">Password</lit>
+			<lit name="yourLoginDetail">Your {loginDetail}</lit>
 			<lit name="nameLoginDetail">name</lit>
 			<lit name="IDLoginDetail">ID</lit>
 			<lit name="emailLoginDetail">email</lit>
@@ -259,6 +259,8 @@
 			<lit name="Upperintermediate">Upper Intermediate</lit>
 			<lit name="Advanced">Advanced</lit>
 			<lit name="printButton">Print</lit>
+			<lit name="loginInputTitle">Tense Buster</lit>
+			<lit name="loginInstruction">Please type in your login details to continue.</lit>
 			<lit name="homeInstructionLabel">Please choose a level</lit>
 			<lit name="unitInstructionLabel">Please choose a unit</lit>
 			<lit name="exInstructionLabel">Please choose a exercise</lit>
@@ -277,6 +279,9 @@
 			<lit name="progressNavBarAnalyse">Analyse</lit>
 			<lit name="progressNavBarScores">My score</lit>
 			<lit name="progressNavBarCertificate">My certificate</lit>
+			<lit name="nameTextLabel">Name:</lit>
+			<lit name="courseTextLabel">Course:</lit>
+			<lit name="dateTextLabel">Date:</lit>
 			<lit name="oopsLabel">Oops...</lit>
 			<lit name="notCompleteString">
 			 <![CDATA[

@@ -1,4 +1,5 @@
 @namespace tensebuster "com.clarityenglish.tensebuster.*";
+@namespace login "com.clarityenglish.tensebuster.view.login.*";
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
 @namespace home "com.clarityenglish.tensebuster.view.home.*";
 @namespace unit "com.clarityenglish.tensebuster.view.unit.*";
@@ -128,6 +129,14 @@ global {
 	ANumber11: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ANumber11.png");
 	ANumber12: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ANumber12.png");
 	
+}
+
+login|LoginView  {
+	skinClass: ClassReference("skins.tensebuster.LoginSkin");
+}
+
+login|LoginView s|Button#loginButton {
+	skinClass: ClassReference("skins.tensebuster.login.LoginButtonSkin");
 }
 
 s|TitleWindow.feedbackTitleWindow {

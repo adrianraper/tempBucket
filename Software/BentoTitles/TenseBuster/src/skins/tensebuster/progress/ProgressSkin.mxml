@@ -34,7 +34,11 @@
 		<!--rectangle panel-->
 		<s:Rect left="29" right="29" bottom="15" top="120">
 			<s:fill>
-				<s:SolidColor color="0xFFFFFF"/>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0xFFFFFF" ratio="0"/>
+					<s:GradientEntry color="0xFFFFFF" ratio="0.8"/>
+					<s:GradientEntry color="0xB3B3B3" ratio="1"/>
+				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
 		<!--top panel-->	
@@ -52,4 +56,6 @@
 			</s:Group>
 		</s:Group>
 	</s:HGroup>
+	
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/progressFooter.png')" bottom="25" left="28" excludeFrom="[score, certificate]" />
 </s:Skin>

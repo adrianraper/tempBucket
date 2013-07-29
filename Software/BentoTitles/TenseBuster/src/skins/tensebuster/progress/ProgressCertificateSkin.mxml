@@ -37,12 +37,20 @@
 	<s:Scroller top="120" bottom="0">
 		<s:Group id="certificateGroup">
 			<s:SWFLoader id="certificateSWFLoader" left="60" />
-			<s:VGroup  top="150" left="230" gap="16">
-				<s:Label id="nameLabel" fontWeight="bold" fontSize="16" />
-				<s:Label id="courseLabel" fontWeight="bold" fontSize="16" />
-				<s:Label id="dateLabel" fontWeight="bold" fontSize="16" />
-			</s:VGroup>			
+			<s:HGroup top="150" left="160" gap="16">
+				<s:VGroup gap="10">
+					<s:Label id="nameTextLabel" fontSize="15" />
+					<s:Label id="courseTextLabel" fontSize="15" />
+					<s:Label id="dateTextLabel" fontSize="15" />
+				</s:VGroup>
+				<s:VGroup gap="10">
+					<s:Label id="nameLabel" fontWeight="bold" fontSize="16" />						
+					<s:Label id="courseLabel" fontWeight="bold" fontSize="16" />
+					<s:Label id="dateLabel" fontWeight="bold" fontSize="16" />
+				</s:VGroup>										
+			</s:HGroup>						
 			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" verticalCenter="20" fontSize="14" textAlign="center" />
 		</s:Group>
 	</s:Scroller>
+	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='skins/tensebuster/assets/progress/progressFooter.png')" bottom="-25" left="13" />
 </s:Skin>
