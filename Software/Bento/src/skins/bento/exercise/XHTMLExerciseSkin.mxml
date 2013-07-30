@@ -121,7 +121,10 @@
 				</s:fill>
 			</s:Rect>
 			
-			<components:XHTMLRichText id="rightNoScrollRichText" top="0" left="0" right="0" bottom="0" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour]}" />
+			<components:XHTMLRichText id="rightNoScrollRichText" top="-1" left="0" right="0" bottom="0" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour]}" />
+			<!--blue the right no scroll image-->
+			<s:SWFLoader source="@Embed(source='skins/assets/sideBlur.png')" left="-1" />
+			<s:SWFLoader source="@Embed(source='skins/assets/bottomBlur.png')" top="560" right="0"/>
 		</s:Group>
 	</s:Group>		
 </s:Skin>

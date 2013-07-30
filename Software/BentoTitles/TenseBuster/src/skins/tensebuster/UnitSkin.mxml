@@ -31,7 +31,7 @@
 	
 	<s:HGroup verticalAlign="middle" id="coursePath" top="60" left="50">
 		<s:SWFLoader id="courseThumbnail" source="{hostComponent.courseIcon}" />
-		<s:Label text="{hostComponent.courseCaption}" color="0x420000" fontSize="19" paddingTop="2" />
+		<s:Label text="{hostComponent.courseCaption}" color="0x333333" fontSize="19" paddingTop="2" />
 	</s:HGroup>
 
 	<s:Label id="unitInstructionLabel" top="120" left="90" />

@@ -46,7 +46,7 @@
 	<s:Scroller left="50" right="0" top="167" bottom="0">
 		<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">
 			<s:layout>
-				<s:VerticalLayout paddingTop="5" gap="20" />
+				<s:VerticalLayout paddingTop="15" gap="20" />
 			</s:layout>
 			<s:itemRenderer>
 				<fx:Component>
@@ -166,9 +166,21 @@
 														}
 													}
 												}
+												
+												// mouse over show the exercise name
+												protected function onMouseOver(event:MouseEvent):void {
+													exLabel.text = data.@caption;
+													exLabel.visible = true;
+												}
+												
+												protected function onMouseOut(event:MouseEvent):void {
+													exLabel.visible = false;
+												}
+												
 											]]>
 										</fx:Script>
-										<s:Group width="21.5" top="-1">
+										<s:Group width="21.5" top="-1" mouseOver="onMouseOver(event)" mouseOut="onMouseOut(event)">
+											<s:Label id="exLabel" visible="false" top="-10"/>
 											<exerciseNumber:e1 id="e1" visible="false" left="0"/>
 											<exerciseNumber:e2 id="e2" visible="false" left="0"/>
 											<exerciseNumber:e3 id="e3" visible="false" left="0"/>

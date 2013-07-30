@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*">
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:recorder="com.clarityenglish.bento.view.recorder.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.title.TitleView")]
@@ -17,7 +16,6 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
-		
 		<s:State name="home" />
 		<s:State name="unit" />
 		<s:State name="zone" />
@@ -25,14 +23,14 @@
 		<s:State name="progress" />
 		<s:State name="profile" />
 	</s:states>
-			
+	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Home"  left="0" right="0" height="100%" />
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.tensebuster.view.progress.ProgressView" label="My Progress" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="profileViewNavigator" firstView="com.clarityenglish.tensebuster.view.profile.ProfileView" label="My Profile" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 	
-	<s:Group top="135" left="50" visible="{hostComponent.currentState == 'exercise'}">
+	<s:Group top="100" left="50" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:SWFLoader id="courseThumbnail" />
@@ -49,7 +47,6 @@
 			</s:HGroup>
 		</s:HGroup>	
 	</s:Group>
-	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="140" color="0xFFFFFF" fontWeight="bold" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
+	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="100" color="0xFFFFFF" fontWeight="bold" fontSize="12" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
 	<recorder:RecorderView right="0" includeIn="exercise" />
-	
 </s:Skin>

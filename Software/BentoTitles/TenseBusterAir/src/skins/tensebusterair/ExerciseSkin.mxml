@@ -1,9 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:view="com.clarityenglish.bento.view.*"
-		xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*">
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:view="com.clarityenglish.bento.view.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.exercise.ExerciseView")]
@@ -28,7 +25,7 @@
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" right="0" bottom="0"/>
 	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}" includeIn="exercise">
 		<!--rectangle exercise panel-->
-		<s:Rect left="28" right="28" bottom="15" top="70">
+		<s:Rect left="28" right="28" bottom="0" top="70">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="0xFFFFFF" ratio="0"/>
@@ -42,10 +39,10 @@
 	</s:Group>
 	
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="60" right="60" top="130" bottom="20"/>
+	<view:DynamicView id="dynamicView" left="60" right="60" top="130" bottom="0"/>
 	
 	<!--Backgroud left and right-->
-	<s:Rect width="20" bottom="0" top="100" left="40" includeIn="exercise">
+	<!--s:Rect width="20" bottom="0" top="100" left="40" includeIn="exercise">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0xFFFFFF"/>
@@ -60,7 +57,7 @@
 				<s:GradientEntry color="0xEA2133"/>
 			</s:LinearGradient>
 		</s:fill>
-	</s:Rect>
+	</s:Rect-->
 	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgLeft.png')" left="15" top="206"/>
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgRight.png')" left="950" top="206"/-->
 	

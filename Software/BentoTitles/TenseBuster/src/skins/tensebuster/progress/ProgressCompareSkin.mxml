@@ -151,7 +151,7 @@
 			<s:SolidColor color="#B3B3B3" />
 		</s:fill>
 	</s:Rect>
-	<s:HGroup bottom="110" left="270">
+	<s:HGroup bottom="110" left="250">
 		<s:Rect width="16" height="10">
 			<s:fill>
 				<s:LinearGradient>
