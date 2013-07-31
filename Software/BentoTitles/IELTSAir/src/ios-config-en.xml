@@ -20,9 +20,9 @@
     <remoteDomain> http://claritydevelop/Software/</remoteDomain>
     <remoteGateway>http://claritydevelop/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
-	<contentPath>http://www.clarityenglish.com/ContentTablet/</contentPath>
-    <remoteDomain> http://www.clarityenglish.com/SoftwareTestbed/</remoteDomain>
-    <remoteGateway>http://www.clarityenglish.com/SoftwareTestbed/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+    <remoteDomain> http://www.clarityenglish.com/Software/</remoteDomain>
+    <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>

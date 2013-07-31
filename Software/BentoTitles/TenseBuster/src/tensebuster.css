@@ -86,6 +86,18 @@ global {
 	uCircleWedgeColors: #5BCAE3, #1376A1, #1376A1, #1376A1, #004766, #528793;
 	aCircleWedgeColors: #3F2796, #3F2796, #3F2796, #2A1D4F, #968CCF, #C7B8FF;
 	
+	eLabelFillColor: #FFD7D7;
+	lLabelFillColor: #FFFFB3;
+	iLabelFillColor: #E5FFC4;
+	uLabelFillColor: #ADE0E0;
+	aLabelFillColor: #BACBFF;
+	
+	eLabelBorderColor: #F12424;
+	lLabelBorderColor: #603813;
+	iLabelBorderColor: #344701;
+	uLabelBorderColor: #004766;
+	aLabelBorderColor: #423099;
+	
 	ProgressIcon: Embed(source="skins/tensebuster/assets/title/progressIcon.png");
 	ProgressOverIcon: Embed(source="skins/tensebuster/assets/title/progressOverIcon.png");
 	ProgressBg: Embed(source="skins/tensebuster/assets/title/progressBg.png");
@@ -233,6 +245,10 @@ progresstb|ProgressCertificateView s|Button#printButton {
 
 progresscomponents|ProgressCoverageView {
 	skinClass: ClassReference("skins.tensebuster.progress.ProgressCoverageSkin");
+}
+
+progresscomponents|ProgressCoverageView #exLabelButton {
+	skinClass: ClassReference("skins.tensebuster.progress.ui.ExLabelButtonSkin");
 }
 
 progresscomponents|ProgressScoreView {

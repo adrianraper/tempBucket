@@ -91,4 +91,3 @@ progresstb|ProgressView {
 progresscomponents|ProgressScoreView {
 	skinClass: ClassReference("skins.tensebusterair.progress.ProgressScoreSkin");
 }
-}
