@@ -44,6 +44,9 @@ package com.clarityenglish.tensebuster.view.title {
 		[SkinPart]
 		public var exercisePath:HGroup;
 		
+		[SkinPart]
+		public var logoutButton:Button;
+		
 		private var _selectedNode:XML;
 		private var courseID:String;
 		private var _courseUID:String;
@@ -55,6 +58,8 @@ package com.clarityenglish.tensebuster.view.title {
 		public static var courseCode:String;
 		
 		public var backToMenu:Signal = new Signal();
+		public var logout:Signal = new Signal();
+		
 		public var thumbnailScript:String;
 		
 		public function set selectedNode(value:XML):void {
@@ -159,6 +164,10 @@ package com.clarityenglish.tensebuster.view.title {
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
+				case logoutButton:
+					logoutButton.label = copyProvider.getCopyForId("logoutButton");
+					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
+					break;
 			}
 		}
 		
@@ -180,6 +189,11 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function getThumbnailForUid(uid:String):String {
 			return thumbnailScript + "?uid=" + uid + "&exIndex=" + 4;
+		}
+		
+		// gh#217
+		protected function onLogoutClick(event:Event):void {
+			logout.dispatch();
 		}
 		
 	}

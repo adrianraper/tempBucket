@@ -42,7 +42,7 @@
 	</s:Group>
 	
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="60" right="60" top="130" bottom="20"/>
+	<view:DynamicView id="dynamicView" left="60" right="60" top="134" bottom="20"/>
 	
 	<!--Backgroud left and right-->
 	<s:Rect width="20" bottom="0" top="100" left="40" includeIn="exercise">
@@ -65,19 +65,19 @@
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgRight.png')" left="950" top="206"/-->
 	
 	<!-- Top Left buttons -->
-	<s:HGroup left="60" top="92" includeIn="exercise" gap="0">
+	<s:HGroup left="60" top="96" includeIn="exercise" gap="0">
 		<s:Button id="backButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="forwardButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>	
 	
 	<!-- Top Right buttons -->
-	<s:HGroup right="60" top="92" includeIn="exercise" gap="0">
+	<s:HGroup right="60" top="96" includeIn="exercise" gap="0">
 		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" color="0xFFFFFF" fontWeight="bold" buttonMode="true" fontSize="12" useHandCursor="true"/>
 	</s:HGroup>	
 	
 	<!--Red line-->
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/TB-bg-redLine.png')" top="90" left="25"/>
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/TB-bg-redLine.png')" top="94" left="25"/>
 </s:Skin>

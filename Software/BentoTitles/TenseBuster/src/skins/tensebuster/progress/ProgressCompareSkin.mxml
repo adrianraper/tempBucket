@@ -108,7 +108,7 @@
 	<s:Label id="compareInstructionLabel" left="50" top="90" fontSize="15" />
 	
 	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
-	<mx:BarChart id="compareChart" left="30" right="60" top="130" bottom="150" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="220">
+	<mx:BarChart id="compareChart" left="30" right="60" top="130" bottom="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="220">
 		<mx:horizontalAxis>
 			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
 		</mx:horizontalAxis>
@@ -120,7 +120,7 @@
 			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="13" showLine="false" tickStroke="{blankStroke}" placement="top" />
 		</mx:horizontalAxisRenderers>
 		<mx:verticalAxisRenderers>
-			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" tickStroke="{blankStroke}"  labelGap="30">
+			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" tickStroke="{blankStroke}"  labelGap="20">
 				<mx:axisStroke>
 					<mx:SolidColorStroke color="#B3B3B3" weight="1"/>
 				</mx:axisStroke>
@@ -146,12 +146,12 @@
 			</mx:BarSeries>
 		</mx:series>
 	</mx:BarChart>
-	<s:Rect width="645" left="250" bottom="150" height="1">
+	<s:Rect width="645" left="250" bottom="120" height="1">
 		<s:fill>
 			<s:SolidColor color="#B3B3B3" />
 		</s:fill>
 	</s:Rect>
-	<s:HGroup bottom="110" left="250">
+	<s:HGroup bottom="90" left="250">
 		<s:Rect width="16" height="10">
 			<s:fill>
 				<s:LinearGradient>

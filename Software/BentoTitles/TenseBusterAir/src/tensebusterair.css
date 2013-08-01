@@ -3,6 +3,7 @@
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace tensebuster "com.clarityenglish.tensebuster.*";
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
+@namespace login "com.clarityenglish.tensebuster.view.login.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progresstb "com.clarityenglish.tensebuster.view.progress.*";
@@ -55,9 +56,9 @@ skinClass: ClassReference("skins.ieltsair.NoNetworkSkin");
 }*/
 
 /* Login view styles */
-/*login|LoginView {
-skinClass: ClassReference("skins.ieltsair.LoginSkin");
-}*/
+login|LoginView {
+skinClass: ClassReference("skins.tensebusterair.LoginSkin");
+}
 
 /* Title view styles */
 title|TitleView {

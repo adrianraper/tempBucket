@@ -42,128 +42,130 @@
 	<ui1:StackedCircleWedgeChart id="stackedChart" top="150" height="35" right="40"/>
 	<s:Group right="190" top="190" width="200" id="circleWedgeTimeGroup">
 		<s:VGroup id="timeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
-			<s:Label id="circleWedgeCourseLabel" fontSize="15"/>
+			<s:Label id="circleWedgeCourseLabel" fontSize="14"/>
 			<s:HGroup>
-				<s:Label id="analysisTimeLabel" fontSize="24" fontWeight="bold"/>
-				<s:Label id="minLabel" fontSize="15" paddingTop="4" />
+				<s:Label id="analysisTimeLabel" fontSize="26" fontWeight="bold"/>
+				<s:Label id="minLabel" fontSize="14" paddingTop="4" />
 			</s:HGroup>			
 		</s:VGroup>
 		<s:VGroup horizontalAlign="center" horizontalCenter="0" gap="10">
 			<s:Label id="emptyCircleWedgeCourseLabel" fontSize="15" visible="false"/>		
 		</s:VGroup>
 		<s:VGroup id="totalTimeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
-			<s:Label id="totalTimeLabel" fontSize="15"/>
+			<s:Label id="totalTimeLabel" fontSize="14"/>
 			<s:HGroup>
-				<s:Label id="totalTimeNumberLabel" fontSize="24" fontWeight="bold"/>
-				<s:Label id="totalTimeMinLabel" fontSize="15" paddingTop="4" />
+				<s:Label id="totalTimeNumberLabel" fontSize="26" fontWeight="bold"/>
+				<s:Label id="totalTimeMinLabel" fontSize="14" paddingTop="4" />
 			</s:HGroup>			
 		</s:VGroup>
 	</s:Group>	
 	
-	<s:VGroup left="50" top="160">
-		<s:DataGroup id="durationDataGroup" dataProvider="{hostComponent.unitListCollection}">
-			<s:layout>
-				<s:VerticalLayout gap="15" />
-			</s:layout>
-			<s:itemRenderer>
-				<fx:Component>
-					<s:DataRenderer>
-						<fx:Script>
-							<![CDATA[
-								import com.clarityenglish.common.model.interfaces.CopyProvider;
-								import com.googlecode.bindagetools.util.Util;
-								
-								import spark.components.DataGroup;
-								
-								[Bindable]
-								public var copyProvider:CopyProvider;
-								
-								[Embed(source="skins/tensebuster/assets/progress/analyse/EDashline.png")]
-								private static var EDashline:Class;
-								
-								[Embed(source="skins/tensebuster/assets/progress/analyse/LDashline.png")]
-								private static var LDashline:Class;
-								
-								[Embed(source="skins/tensebuster/assets/progress/analyse/IDashline.png")]
-								private static var IDashline:Class;
-								
-								[Embed(source="skins/tensebuster/assets/progress/analyse/UDashline.png")]
-								private static var UDashline:Class;
-								
-								[Embed(source="skins/tensebuster/assets/progress/analyse/ADashline.png")]
-								private static var ADashline:Class;
-								
-								
-								private function getTimeColour(data:Object):Number {
-									if (data) {
-										var index:Number = (owner as DataGroup).dataProvider.getItemIndex(data);
-										var courseCaption:String = (owner as DataGroup).dataProvider[index].parent().@caption;
-										return getStyle(courseCaption.charAt(0) + "Color");
-									}
-									return 0;
-								}
-								
-								override public function set data(value:Object):void {
-									super.data = value;
+	<s:Scroller left="50" top="160" bottom="35">
+		<s:VGroup>
+			<s:DataGroup id="durationDataGroup" dataProvider="{hostComponent.unitListCollection}">
+				<s:layout>
+					<s:VerticalLayout gap="15" />
+				</s:layout>
+				<s:itemRenderer>
+					<fx:Component>
+						<s:DataRenderer>
+							<fx:Script>
+								<![CDATA[
+									import com.clarityenglish.common.model.interfaces.CopyProvider;
+									import com.googlecode.bindagetools.util.Util;
 									
-									dashline.source = dashlineSource;
-								}
-								
-								protected function get dashlineSource():Class {
-									if (data) {
-										var index:Number = (owner as DataGroup).dataProvider.getItemIndex(data);
-										var courseCaption:String = (owner as DataGroup).dataProvider[index].parent().@caption;
-										
-										switch (courseCaption.charAt(0)) {
-											case "E":
-												return EDashline;
-												break;
-											case "L":
-												return LDashline;
-												break;
-											case "I":
-												return IDashline;
-												break;
-											case "U":
-												return UDashline;
-												break;
-											case "A":
-												return ADashline;
-												break;
-											default:
-												return null;
-										}										
-									} else {
-										return null;
+									import spark.components.DataGroup;
+									
+									[Bindable]
+									public var copyProvider:CopyProvider;
+									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/EDashline.png")]
+									private static var EDashline:Class;
+									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/LDashline.png")]
+									private static var LDashline:Class;
+									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/IDashline.png")]
+									private static var IDashline:Class;
+									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/UDashline.png")]
+									private static var UDashline:Class;
+									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/ADashline.png")]
+									private static var ADashline:Class;
+									
+									
+									private function getTimeColour(data:Object):Number {
+										if (data) {
+											var index:Number = (owner as DataGroup).dataProvider.getItemIndex(data);
+											var courseCaption:String = (owner as DataGroup).dataProvider[index].parent().@caption;
+											return getStyle(courseCaption.charAt(0) + "Color");
+										}
+										return 0;
 									}
-								}
-							]]>
-						</fx:Script>
-						<s:Label text="{data.@caption}" fontSize="15"/>
-						<s:HGroup horizontalAlign="right" left="260" top="-5" width="50">
-							<s:Label id="durationLable" text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" color="{getTimeColour(data)}"  fontSize="24" fontWeight="bold"  />
-							<s:Label id="minLabel" fontSize="15" text="{copyProvider.getCopyForId('minLabel')}" color="{getTimeColour(data)}" paddingTop="6"/>
-						</s:HGroup>
-						<s:SWFLoader id="dashline" top="20"/>
-					</s:DataRenderer>
-				</fx:Component>
-			</s:itemRenderer>
-		</s:DataGroup>
-		<s:VGroup paddingTop="-10">
-			<s:Rect width="305" height="2">
-				<s:fill>
-					<s:SolidColor id="boundaryLineSolidColor" />
-				</s:fill>
-			</s:Rect>
-			<s:Group top="16">
-				<s:HGroup paddingTop="16">
-					<s:Label id="totalLabel" fontSize="15" />
-				</s:HGroup>
-				<s:HGroup left="260" paddingTop="16" horizontalAlign="right" width="50">
-					<s:Label id="totalDurationLabel" fontSize="24" fontWeight="bold" paddingTop="-5" />
-					<s:Label id="totalMinLabel" fontSize="15" paddingTop="2" />
-				</s:HGroup>
-			</s:Group>			
-		</s:VGroup>		
-	</s:VGroup>	
+									
+									override public function set data(value:Object):void {
+										super.data = value;
+										
+										dashline.source = dashlineSource;
+									}
+									
+									protected function get dashlineSource():Class {
+										if (data) {
+											var index:Number = (owner as DataGroup).dataProvider.getItemIndex(data);
+											var courseCaption:String = (owner as DataGroup).dataProvider[index].parent().@caption;
+											
+											switch (courseCaption.charAt(0)) {
+												case "E":
+													return EDashline;
+													break;
+												case "L":
+													return LDashline;
+													break;
+												case "I":
+													return IDashline;
+													break;
+												case "U":
+													return UDashline;
+													break;
+												case "A":
+													return ADashline;
+													break;
+												default:
+													return null;
+											}										
+										} else {
+											return null;
+										}
+									}
+								]]>
+							</fx:Script>
+							<s:Label text="{data.@caption}" fontSize="14"/>
+							<s:HGroup horizontalAlign="right" left="255" top="0" width="50">
+								<s:Label id="durationLable" text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" color="{getTimeColour(data)}"  fontSize="26" fontWeight="bold"  />
+								<s:Label id="minLabel" fontSize="14" text="{copyProvider.getCopyForId('minLabel')}" color="{getTimeColour(data)}" paddingTop="6"/>
+							</s:HGroup>
+							<s:SWFLoader id="dashline" top="20"/>
+						</s:DataRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:DataGroup>
+			<s:VGroup paddingTop="-10">
+				<s:Rect width="305" height="2">
+					<s:fill>
+						<s:SolidColor id="boundaryLineSolidColor" />
+					</s:fill>
+				</s:Rect>
+				<s:Group top="16">
+					<s:HGroup paddingTop="16">
+						<s:Label id="totalLabel" fontSize="14" />
+					</s:HGroup>
+					<s:HGroup left="255" paddingTop="16" horizontalAlign="right" width="50">
+						<s:Label id="totalDurationLabel" fontSize="26" fontWeight="bold" paddingTop="-5" />
+						<s:Label id="totalMinLabel" fontSize="14" paddingTop="2" />
+					</s:HGroup>
+				</s:Group>			
+			</s:VGroup>		
+		</s:VGroup>	
+	</s:Scroller>	
 </s:Skin>

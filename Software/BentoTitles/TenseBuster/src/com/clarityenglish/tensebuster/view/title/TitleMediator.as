@@ -4,6 +4,7 @@
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -34,6 +35,8 @@
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.thumbnailScript = configProxy.getConfig().remoteGateway + "/services/thumbnail.php";
+			
+			view.logout.add(onLogout);
 		}
 		
 		public override function onRemove():void {
@@ -73,5 +76,8 @@
 			}
 		}
 		
+		private function onLogout():void {
+			sendNotification(CommonNotifications.LOGOUT);
+		}
 	}
 }

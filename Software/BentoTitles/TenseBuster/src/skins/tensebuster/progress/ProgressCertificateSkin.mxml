@@ -24,9 +24,9 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:VGroup id="oopsVGroup" left="200" top="220" width="700" visible="false">
-		<s:Label id="oopsLabel" left="0" fontSize="36" fontFamily="Sean" />
-		<s:RichEditableText id="notCompleteRichEditableText" width="100%" fontSize="16" lineHeight="30" paddingLeft="30" paddingTop="20"/>
+	<s:VGroup id="oopsVGroup" left="200" top="160" width="700" visible="false">
+		<s:Label id="oopsLabel" paddingLeft="-40" fontSize="36" fontFamily="Sean" />
+		<s:RichEditableText id="notCompleteRichEditableText" width="100%" paddingTop="25" fontSize="16" lineHeight="30" horizontalCenter="0"/>
 	</s:VGroup>
 	
 	<s:Group id="printGroup" right="0" top="60">
@@ -34,7 +34,7 @@
 		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60"/>		
 	</s:Group>
 	
-	<s:Scroller top="120" bottom="0">
+	<s:Scroller top="110" bottom="0">
 		<s:Group id="certificateGroup">
 			<s:SWFLoader id="certificateSWFLoader" left="60" />
 			<s:HGroup top="150" left="160" gap="16">
@@ -49,7 +49,7 @@
 					<s:Label id="dateLabel" fontWeight="bold" fontSize="16" />
 				</s:VGroup>										
 			</s:HGroup>						
-			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" verticalCenter="20" fontSize="14" textAlign="center" />
+			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="260" fontSize="14" textAlign="center" />
 		</s:Group>
 	</s:Scroller>
 	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='skins/tensebuster/assets/progress/progressFooter.png')" bottom="-25" left="13" />

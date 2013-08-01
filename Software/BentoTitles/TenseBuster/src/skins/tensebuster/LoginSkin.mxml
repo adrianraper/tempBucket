@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+		alpha.disabled="0.5">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.login.LoginView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
+		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false"/>
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
+	</fx:Declarations>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/>
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/loginInput.png')" left="20" top="100"/>
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/loginBG.png')" bottom="25" />
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="20" horizontalCenter="0" />
+	
+	<s:Group horizontalCenter="0" verticalCenter="-140">
+		<s:VGroup horizontalAlign="center" gap="30">
+			<s:VGroup gap="5">
+				<s:Label id="loginInputTitle" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+				<s:Rect width="245" height="1">
+					<s:fill>
+						<s:SolidColor color="0xEC1C32" />
+					</s:fill>
+				</s:Rect>
+				<s:Spacer height="15"/>
+				<s:Label id="loginInstruction" fontSize="12" color="0xFFFFFF"/>
+				<s:Spacer height="10" />
+				<s:VGroup gap="15">
+					<s:HGroup gap="8">
+						<s:Label id="loginKey_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}" paddingTop="5"/>
+						<s:TextInput id="loginKeyInput" width="169" height="21" filters="{dropShadowFilter2}" borderVisible="false" fontSize="14" />
+					</s:HGroup>					
+					<s:HGroup gap="10">
+						<s:Label id="loginPassword_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" paddingTop="5"/>
+						<s:TextInput id="passwordInput" displayAsPassword="true" width="169" height="21" fontSize="20" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+					</s:HGroup>
+				</s:VGroup>				
+			</s:VGroup>
+			<s:Button id="loginButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>	
+		</s:VGroup>
+	</s:Group>
+
+</s:Skin>

@@ -5,6 +5,8 @@
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.tensebuster.controller.TenseBusterStartupCommand;
+	import com.clarityenglish.tensebuster.view.help.HelpMediator;
+	import com.clarityenglish.tensebuster.view.help.HelpView;
 	import com.clarityenglish.tensebuster.view.home.HomeMediator;
 	import com.clarityenglish.tensebuster.view.home.HomeView;
 	import com.clarityenglish.tensebuster.view.login.LoginView;
@@ -51,6 +53,7 @@
 			mapView(ProgressAnalysisView, ProgressAnalysisMediator);
 			mapView(ProgressCompareView, ProgressCompareMediator);
 			mapView(ProgressCertificateView, ProgressCertificateMediator);
+			mapView(HelpView, HelpMediator);
 			/*mapView(AccountView, AccountMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(SupportView, SupportMediator);*/
