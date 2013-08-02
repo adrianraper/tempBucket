@@ -61,6 +61,12 @@ class RandomizedTestTransform extends XmlTransform {
 					//$multiQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:li[@id="' . $multiQuestionID . '"]';
 					$multiQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]/xmlns:div[@id="' . $multiQuestionID . '"]';
 					$multiQuestionText = $xPath->query( $multiQuestionQuery )->item ( 0 );
+					$questionNumberDoc = new DOMDocument();
+					$questionNumberDoc->loadXML('<span class="question-number">'.($i+1).'</span>');
+					$questionNumberNode = $questionNumberDoc->getElementsByTagName("span")->item(0);
+					$questionNumberNode = $bankDoc->importNode($questionNumberNode, true);
+					$questionTextNode = $multiQuestionText->childNodes->item(0);
+					$multiQuestionText->insertBefore($questionNumberNode, $questionTextNode);					
 					$xmlMultiQuestionNode = $xmlDoc->importNode ( $multiQuestionText, true );
 					$xmlBody->appendChild ( $xmlMultiQuestionNode );
 					
@@ -110,11 +116,18 @@ class RandomizedTestTransform extends XmlTransform {
 					$gapQuestionID  = $gapFillQuestion->item ( $n )->getAttribute ( 'block' );
 					$gapQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]/xmlns:div[@id="' . $gapQuestionID . '"]';
 					$gapQuestionText = $xPath->query ( $gapQuestionQuery )->item ( 0 );
+					$questionNumberDoc = new DOMDocument();
+					$questionNumberDoc->loadXML('<span class="question-number">'.($i+6).'</span>');
+					$gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("span")->item(0);
+					$gapQuestionNumberNode = $bankDoc->importNode($gapQuestionNumberNode, true);
+					$gapQuestionTextNode = $gapQuestionText->childNodes->item(0);
+					$gapQuestionText->insertBefore($gapQuestionNumberNode, $gapQuestionTextNode);
 					$xmlGapQuestionNode = $xmlDoc->importNode ( $gapQuestionText, true );
 					$xmlBody->appendChild ( $xmlGapQuestionNode );
 				}
 			}
 		}
+		AbstractService::$debugLog->info("question type: ".$questionType);
 		return $xmlDoc->saveXML();						
 	}
 }

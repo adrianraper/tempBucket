@@ -282,7 +282,7 @@ credits|CreditsView {
 
 
 s|VideoPlayer {
-	skinClass: ClassReference("skins.bento.VideoPlayerSkin");
+	skinClass: ClassReference("skins.tensebuster.exercise.ui.VideoPlayerSkin");
 }
 
 components|AudioPlayer {
