@@ -53,6 +53,9 @@ package com.clarityenglish.tensebuster.view.progress {
 		public var analyseInstructionLabel:Label;
 		
 		[SkinPart]
+		public var circleWedgeInstructionLabel:Label;
+		
+		[SkinPart]
 		public var minLabel:Label;
 		
 		[SkinPart]
@@ -155,6 +158,7 @@ package com.clarityenglish.tensebuster.view.progress {
 			emptyCircleWedgeCourseLabel.text = copyProvider.getCopyForId("emptyCircleWedgeCourseLabel");
 			totalTimeLabel.text = copyProvider.getCopyForId("totalTimeLabel");
 			totalTimeMinLabel.text = copyProvider.getCopyForId("minLabel");
+			circleWedgeInstructionLabel.text = copyProvider.getCopyForId("circleWedgeInstructionLabel");
 		}
 		
 		protected override function commitProperties():void {

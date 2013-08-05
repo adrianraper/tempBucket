@@ -118,6 +118,7 @@ package com.clarityenglish.bento.view.progress.components {
 					
 					//alice: get courseClass in scoreDetailsDataGrid;
 					scoreDetailsDataGrid.name = courseClass;
+					scoreDetailsDataGrid.skin.invalidateDisplayList();
 				}
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state

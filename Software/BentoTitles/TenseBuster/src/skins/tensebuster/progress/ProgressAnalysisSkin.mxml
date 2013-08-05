@@ -39,7 +39,8 @@
 	
 	<s:Label id="analyseInstructionLabel" top="100" left="50" fontSize="15" fontWeight="bold" />
 	
-	<ui1:StackedCircleWedgeChart id="stackedChart" top="150" height="35" right="40"/>
+	<ui1:StackedCircleWedgeChart id="stackedChart" top="150" height="35" right="40"/>	
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/analyse/whiteSemiCircle.png')" top="150" right="100" />
 	<s:Group right="190" top="190" width="200" id="circleWedgeTimeGroup">
 		<s:VGroup id="timeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
 			<s:Label id="circleWedgeCourseLabel" fontSize="14"/>
@@ -58,6 +59,7 @@
 				<s:Label id="totalTimeMinLabel" fontSize="14" paddingTop="4" />
 			</s:HGroup>			
 		</s:VGroup>
+		<s:Label id="circleWedgeInstructionLabel" top="230" horizontalCenter="0" fontSize="12" />
 	</s:Group>	
 	
 	<s:Scroller left="50" top="160" bottom="35">
@@ -140,12 +142,12 @@
 									}
 								]]>
 							</fx:Script>
-							<s:Label text="{data.@caption}" fontSize="14"/>
+							<s:Label text="{data.@caption}" fontSize="14" top="8"/>
 							<s:HGroup horizontalAlign="right" left="255" top="0" width="50">
 								<s:Label id="durationLable" text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" color="{getTimeColour(data)}"  fontSize="26" fontWeight="bold"  />
 								<s:Label id="minLabel" fontSize="14" text="{copyProvider.getCopyForId('minLabel')}" color="{getTimeColour(data)}" paddingTop="6"/>
 							</s:HGroup>
-							<s:SWFLoader id="dashline" top="20"/>
+							<s:SWFLoader id="dashline" top="23"/>
 						</s:DataRenderer>
 					</fx:Component>
 				</s:itemRenderer>

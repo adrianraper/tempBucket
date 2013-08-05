@@ -172,7 +172,8 @@ package com.clarityenglish.tensebuster.view.progress
 					oopsVGroup.visible = true;
 					certificateFooter.visible = true;
 					oopsLabel.setStyle("color", getStyle(StringUtils.capitalize(courseClass.charAt(0)) + "Color"));
-					var notCompleteString:String = copyProvider.getCopyForId("notCompleteString", {exerciseAmount: exerciseAmount, totalExercise: totalExercise, aveScor: aveScore});
+					var courseCaption:String = menu.course.(@["class"] == courseClass).@caption;
+					var notCompleteString:String = copyProvider.getCopyForId("notCompleteString", {courseCaption: courseCaption,  exerciseAmount: exerciseAmount, totalExercise: totalExercise, aveScor: aveScore});
 					var textFlow:TextFlow = TextFlowUtil.importFromString(notCompleteString);
 					notCompleteRichEditableText.textFlow = textFlow;
 				} else {

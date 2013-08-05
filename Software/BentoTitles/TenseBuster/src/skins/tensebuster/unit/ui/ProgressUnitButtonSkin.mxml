@@ -172,7 +172,7 @@
 			</s:fill>
 		</s:Path>
 					
-		<s:Label id="caption" text="{hostComponent.caption}" color="0xFFFFFF" top="15" left="20" fontSize="17"/>
+		<s:Label id="caption" text="{hostComponent.caption}" color="0xFFFFFF" top="15" left="20" fontSize="17" fontWeight="bold"/>
 	</s:Group>
 
 </s:Skin>

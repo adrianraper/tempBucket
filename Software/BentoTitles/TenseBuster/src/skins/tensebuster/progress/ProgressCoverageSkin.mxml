@@ -43,6 +43,8 @@
     
 	<ui:ProgressBarRenderer id="progressBar" top="90" left="50" right="50" />
 	
+	<s:Label id="coverageInstructionLabel" top="140" left="50" fontSize="15" />
+			 
 	<s:Scroller left="50" right="0" top="164" bottom="0">
 		<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">
 			<s:layout>

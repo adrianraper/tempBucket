@@ -33,6 +33,9 @@ package com.clarityenglish.bento.view.progress.components {
 		[SkinPart]
 		public var othersLabel:Label;
 		
+		[SkinPart]
+		public var coverageInstructionLabel:Label;
+		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
@@ -114,6 +117,9 @@ package com.clarityenglish.bento.view.progress.components {
 					break;
 				case othersLabel:
 					othersLabel.text = copyProvider.getCopyForId("othersLabel");
+					break;
+				case coverageInstructionLabel:
+					coverageInstructionLabel.text = copyProvider.getCopyForId("coverageInstructionLabel");
 					break;
 			}
 		}
