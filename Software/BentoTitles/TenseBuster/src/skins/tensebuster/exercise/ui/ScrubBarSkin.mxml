@@ -83,7 +83,7 @@
     <s:Group id="loadedRangeArea" x="0" y="3" height="5" includeInLayout="false">
     
         <!-- inset 7 and 6 pixels because that's thumbSize/2 -->
-        <s:Group left="2" right="2" top="0" bottom="0" minWidth="0">
+        <s:Group left="2" right="9" top="0" bottom="0" minWidth="0">
         
             <!-- fill -->
             <s:Rect left="1" right="1" top="1" bottom="1" radiusX="6" radiusY="6">
@@ -122,7 +122,7 @@
     <s:Group id="playedArea" x="0" y="3" height="5" includeInLayout="false">
     
         <!-- inset 7 and 6 pixels because that's thumbSize/2 -->
-        <s:Group left="2" right="2" top="0" bottom="0" minWidth="0">
+        <s:Group left="2" right="9" top="0" bottom="0" minWidth="0">
         
             <!-- inner glow -->
             <!--s:Rect left="1" right="1" top="1" bottom="1">

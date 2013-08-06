@@ -41,7 +41,7 @@
 		</s:layout>
 		<s:itemRenderer>
 			<fx:Component>				
-				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" dataChange="{fadeEffect.play()}">
+				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" initialize="{fadeEffect.play()}">
 					<s:transitions>
 						<s:Transition>
 							<s:Fade id="fadeEffect" target="{unitButtonGroup}" duration="2000" alphaFrom="0" alphaTo="1"/>

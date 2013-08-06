@@ -47,7 +47,7 @@
 	<s:List id="exerciseList" top="140" bottom="60" left="135" width="270" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">
 		<s:itemRenderer>
 			<fx:Component>
-				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" dataChange="{fadeEffect.play()}">
+				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" initialize="{fadeEffect.play()}">
 					<fx:Script>
 						<![CDATA[
 							import com.clarityenglish.common.vo.content.Unit;

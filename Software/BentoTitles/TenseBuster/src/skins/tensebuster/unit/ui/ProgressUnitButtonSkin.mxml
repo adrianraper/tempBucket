@@ -134,7 +134,7 @@
 			</s:fill>
 		</s:Path>
 		
-		<s:HGroup id="progressBar" width="100%" gap="-1">
+		<s:HGroup id="progressBar" width="96%" gap="-1">
 			<s:Path id="leftSide" visible="true" data="M9.64844 40.0935C9.64844 41.653 8.6748 42.1042 7.48438 41.0974L2.16406 36.5935C0.973633 35.5866 0 33.487 0 31.9275L0 9.70627C0 8.14719 0.973633 6.04758 2.16406 5.04074L7.48438 0.536835C8.6748 -0.470001 9.64844 -0.0188293 9.64844 1.54025L9.64844
 					40.0935Z">
 				<s:fill>
@@ -147,7 +147,7 @@
 					</s:LinearGradient>
 				</s:fill>
 			</s:Path>
-			<s:Rect id="overallProgressPath" width="92.5%" height="44">
+			<s:Rect id="overallProgressPath" height="44">
 				<s:fill>
 					<s:LinearGradient rotation="90">
 						<s:GradientEntry color="{getProTopColor(hostComponent.courseIndex)}" color.over="{getProOverTopColor(hostComponent.courseIndex)}" color.down="{getProOverTopColor(hostComponent.courseIndex)}" ratio="0" />
