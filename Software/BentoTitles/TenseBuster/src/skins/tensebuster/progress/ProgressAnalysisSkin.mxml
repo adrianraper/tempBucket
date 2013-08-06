@@ -37,25 +37,25 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:Label id="analyseInstructionLabel" top="100" left="50" fontSize="15" fontWeight="bold" />
-	
-	<ui1:StackedCircleWedgeChart id="stackedChart" top="150" height="35" right="40"/>	
+	<s:Label id="analyseInstructionLabel" top="90" left="50" fontSize="15" fontWeight="bold" />
+
+	<ui1:StackedCircleWedgeChart id="stackedChart" top="150" height="35" right="40" />
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/analyse/whiteSemiCircle.png')" top="150" right="100" />
 	<s:Group right="190" top="190" width="200" id="circleWedgeTimeGroup">
 		<s:VGroup id="timeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
-			<s:Label id="circleWedgeCourseLabel" fontSize="14"/>
+			<s:Label id="circleWedgeCourseLabel" fontSize="14" />
 			<s:HGroup>
-				<s:Label id="analysisTimeLabel" fontSize="26" fontWeight="bold"/>
+				<s:Label id="analysisTimeLabel" fontSize="26" fontWeight="bold" />
 				<s:Label id="minLabel" fontSize="14" paddingTop="4" />
 			</s:HGroup>			
 		</s:VGroup>
 		<s:VGroup horizontalAlign="center" horizontalCenter="0" gap="10">
-			<s:Label id="emptyCircleWedgeCourseLabel" fontSize="15" visible="false"/>		
+			<s:Label id="emptyCircleWedgeCourseLabel" fontSize="15" visible="false" />		
 		</s:VGroup>
 		<s:VGroup id="totalTimeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
 			<s:Label id="totalTimeLabel" fontSize="14"/>
 			<s:HGroup>
-				<s:Label id="totalTimeNumberLabel" fontSize="26" fontWeight="bold"/>
+				<s:Label id="totalTimeNumberLabel" fontSize="26" fontWeight="bold" />
 				<s:Label id="totalTimeMinLabel" fontSize="14" paddingTop="4" />
 			</s:HGroup>			
 		</s:VGroup>
@@ -142,7 +142,7 @@
 									}
 								]]>
 							</fx:Script>
-							<s:Label text="{data.@caption}" fontSize="14" top="8"/>
+							<s:Label text="{data.@caption}" fontSize="14" top="8" />
 							<s:HGroup horizontalAlign="right" left="255" top="0" width="50">
 								<s:Label id="durationLable" text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" color="{getTimeColour(data)}"  fontSize="26" fontWeight="bold"  />
 								<s:Label id="minLabel" fontSize="14" text="{copyProvider.getCopyForId('minLabel')}" color="{getTimeColour(data)}" paddingTop="6"/>

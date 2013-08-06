@@ -27,7 +27,7 @@
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/>	
 	
-	<s:HGroup width="100%" paddingLeft="60" top="55">
+	<s:HGroup width="100%" paddingLeft="65" top="55">
 		<s:ButtonBar id="progressNavBar"/>			
 	</s:HGroup>
 	

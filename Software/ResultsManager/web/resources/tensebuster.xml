@@ -275,7 +275,7 @@
 			<lit name="emptyCircleWedgeCourseLabel">There is no record yet</lit>
 			<lit name="totalTimeLabel">Total time you have spent</lit>
 			<lit name="verticalAxisTitle">Average score(%)</lit>
-			<lit name="compareInstructionLabel">Copare your average score to other learners.</lit>
+			<lit name="compareInstructionLabel">Compare your average score to other learners.</lit>
 			<lit name="progressNavBarCoverage">My coverage</lit>
 			<lit name="progressNavBarCompare">Compare</lit>
 			<lit name="progressNavBarAnalyse">Analyse</lit>

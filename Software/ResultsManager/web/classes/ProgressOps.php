@@ -74,7 +74,9 @@ EOD;
     		ORDER BY sc.F_UnitID;
 EOD;
 		$bindingParams = array($productCode, $rootID);
-		$rs = $this->db->GetAssoc($sql, $bindingParams);
+		AbstractService::$debugLog->info("productCode: ".$productCode);
+		AbstractService::$debugLog->info("rootID: ".$rootID);
+		$rs = $this->db->Execute($sql, $bindingParams);		
 		return $rs;
 	}
 	/**

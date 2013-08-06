@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for the mute button of a Spark VideoPlayer component  
+      in the normal skin state. The normal skin state means the component is not in 
+      one of the <code>fullScreen</code> skin states.  
+
+      @see spark.components.VideoPlayer
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+   xmlns:fb="http://ns.adobe.com/flashbuilder/2009" creationComplete="init()"
+   alpha.disabled="0.5">
+
+    <!-- host component -->
+    <fx:Metadata>
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.mediaClasses.MuteButton")]
+    </fx:Metadata>
+    
+    <fx:Script>
+        <![CDATA[
+            import mx.events.FlexEvent;
+            import spark.components.mediaClasses.VolumeBar;
+           
+            private function init():void
+            {
+                // this is essentially just binding code.  Anytime the volume changes, 
+                // let us know.
+                volume = hostComponent.muted ? 0 : hostComponent.volume;
+                hostComponent.addEventListener(FlexEvent.VALUE_COMMIT, valueCommitHandler);
+                hostComponent.addEventListener(FlexEvent.MUTED_CHANGE, valueCommitHandler);
+            }
+            
+            private function valueCommitHandler(event:Event):void
+            {
+                volume = hostComponent.muted ? 0 : hostComponent.volume;
+            }
+            
+            private var _volume:Number = 1;
+
+            /**
+            *  The volume of the video player, specified as a value between 0 and 1.
+            */
+            public function get volume():Number
+            {
+                return _volume;
+            }
+            
+            public function set volume(value:Number):void
+            {
+                if (value == _volume)
+                    return;
+                
+                _volume = value;
+                
+                /*var bar1:Array = [bar1_1, bar1_2, bar1_3]; // 0-.25
+                var bar2:Array = [bar2_1, bar2_2, bar2_3]; // .25-.5
+                var bar3:Array = [bar3_1, bar3_2, bar3_3]; // .5-.75
+                var bar4:Array = [bar4_1, bar4_2, bar4_3]; // .75-.1
+                var bars:Array = [bar1, bar2, bar3, bar4];*/
+                
+                /*var curValue:Number = 0;
+                for (var i:int = 0; i < bars.length; i++)
+                {
+                    if (value <= curValue)
+                        setAlphaTo(bars[i], 0);
+                    else if (value >= (curValue + 0.25))
+                        setAlphaTo(bars[i], 1);
+                    else
+                        setAlphaTo(bars[i], (value-curValue)*4);
+                    
+                    curValue += 0.25;
+                }*/
+            }
+            
+            private function setAlphaTo(bar:Array, alpha:Number):void
+            {
+                for (var i:int = 0; i < bar.length; i++)
+                {
+                    bar[i].alpha = alpha;
+                }
+            }
+        ]]>
+    </fx:Script>
+    
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over"/>
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+        
+    <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/video/controlBg.png')" />
+    
+    <!--- Defines the volume symbol. -->
+	<s:Group verticalCenter="0" horizontalCenter="0">
+		<s:Path y="1.04053" winding="nonZero" data="M5.03027 0 1.76465 2.57129 0 2.57129 0 6.55176 1.76465 6.55176 5.03027 9.12305 5.03027 0Z">
+			<s:fill>
+				<s:SolidColor color="#303030"/>
+			</s:fill>
+		</s:Path>
+		
+		<s:Path x="6.75488" y="2.58313" winding="nonZero" data="M0.875977 0.144897C0.682617 -0.0484619 0.34375 -0.0484619 0.150391 0.144897 0.0527344 0.241577 0 0.37146 0 0.509155 0 0.646851 0.0537109 0.775757 0.150391 0.870483 0.728516 1.44958 1.04785 2.21912 1.04785 3.0365 1.04785 3.85095 0.730469 4.61853
+				0.155273 5.19861 0.0566406 5.29626 0.00195313 5.42615 0.00292969 5.56482 0.00390625 5.70154 0.0585938 5.83044 0.154297 5.92322 0.249023 6.02185 0.37793 6.07556 0.515625 6.07556 0.654297 6.07556 0.78418 6.02185 0.880859 5.92419 1.65039 5.15173
+				2.07422 4.12537 2.07422 3.0365 2.07422 1.94373 1.64941 0.917358 0.875977 0.144897Z">
+			<s:fill>
+				<s:SolidColor color="#303030"/>
+			</s:fill>
+		</s:Path>
+		
+		<s:Path x="8.5498" y="0.00012207" winding="nonZero" data="M0.694336 11.2006C0.517578 11.2006 0.342773 11.1322 0.206055 10.9994 -0.0615234 10.7318 -0.0615234 10.2943 0.206055 10.0267 1.38672 8.84314 2.03613 7.27185 2.03613 5.60291 2.03613 3.93103 1.38477 2.35876 0.202148 1.17517 -0.0673828 0.907593 -0.0673828
+				0.469116 0.202148 0.200562 0.470703 -0.0670166 0.907227 -0.0670166 1.17578 0.200562 2.61816 1.64392 3.41406 3.56189 3.41406 5.60291 3.41406 7.64099 2.62109 9.55798 1.18164 10.9994 1.04883 11.1322 0.870117 11.2006 0.694336 11.2006Z">
+			<s:fill>
+				<s:SolidColor color="#303030"/>
+			</s:fill>
+		</s:Path>
+	</s:Group>
+	
+</s:SparkSkin>

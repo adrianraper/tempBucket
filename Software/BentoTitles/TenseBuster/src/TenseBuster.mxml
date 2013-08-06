@@ -16,6 +16,15 @@
 			fontFamily: Sean;
 			advancedAntiAliasing: true;
 		}
+		
+		global {
+			fontFamily: Helvetica;
+			fontLookup: embeddedCFF;
+			fontAntiAliasType: advanced;
+			fontSharpness: 400;
+			fontThickness: -200;
+			color: #333333;
+		}
 	</fx:Style>
 	
 	<fx:Script>

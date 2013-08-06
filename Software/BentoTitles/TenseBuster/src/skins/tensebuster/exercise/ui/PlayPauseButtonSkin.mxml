@@ -33,73 +33,17 @@
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
                    minWidth="21" minHeight="21" 
                    alpha.disabledStates="0.5">
-	<fx:Metadata>
-		[HostComponent("spark.components.ButtonBarButton")]
-	</fx:Metadata>
-	
-	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="270" distance="0.4" alpha="0.3" />
-	</fx:Declarations>
-	
-	<fx:Script>  
-		<![CDATA[  
-			private var _image:Class;
-			private var _overImage:Class;
-			private var _bg:Class;
-			private var _overBg:Class;
-			
-			[Bindable]
-			public function get image():Class {
-				return _image;
-			}
-			
-			public function set image(value:Class):void {
-				_image = value;
-			}
-			
-			[Bindable]
-			public function get overImage():Class {
-				return _overImage;
-			}
-			
-			public function set overImage(value:Class):void {
-				_overImage = value;
-			}
-			
-			[Bindable]
-			public function get bg():Class {
-				return _bg;
-			}
-			
-			public function set bg(value:Class):void {
-				_bg = value;
-			}
-			
-			[Bindable]
-			public function get overBg():Class {
-				return _overBg;
-			}
-			
-			public function set overBg(value:Class):void {
-				_overBg = value;
-			}
-			
-			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void  
-			{  
-				super.updateDisplayList((this.hostComponent as Object).outerDocument.hostComponent.width, unscaledHeight);  
-				var textArray:Array = ((this as Object).hostComponent.label as String).split(" ");
-
-				image = Class(getStyle(textArray[1] + "Icon"));
-				overImage = Class(getStyle(textArray[1] + "OverIcon"));
-				
-				bg = Class(getStyle(textArray[1] + "Bg"));
-				overBg = Class(getStyle(textArray[1] + "OverBg"));
-			}            
-			
-		]]>  
-	</fx:Script>  
     
     <!-- host component -->
+    <fx:Metadata>
+    <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.ToggleButton")]
+    ]]>
+    </fx:Metadata>
+    
     <!-- states -->
     <s:states>
         <s:State name="up" />
@@ -111,20 +55,61 @@
         <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
-   
-	<s:Group>
-		<s:SWFLoader id="backGround" source.up="{bg}" source.over="{overBg}" source.down="{overBg}" source.selectedStates="{overBg}" filters="{[dropShadowFilter]}" top="0" height="30"/>
-		<s:SWFLoader id="icon" source.up="{image}" source.over="{overImage}" source.down="{overImage}" source.selectedStates="{overImage}" top="9" left="15" />
-	</s:Group>  
+	
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/video/controlBg.png')" />
     
+	<!--- Defines the play symbol. -->
+	<s:Group horizontalCenter="1" verticalCenter="0" excludeFrom="selectedStates" id="playSymbol">
+		
+		<!-- triangle -->
+		<s:Path winding="evenOdd" data="M 1 0 L 1 13 L 8 7 L 1 0 Z">
+			<s:fill>
+				<!--- @private -->
+				<s:SolidColor color="0x30302F" id="playSymbolFill"/>
+			</s:fill>
+		</s:Path>
+		
+		<!-- triangle drop shadow on bottom/right -->
+		<s:Line xFrom="1" xTo="7" yFrom="0" yTo="7">
+			<s:stroke>
+				<s:SolidColorStroke color="0x000000" alpha="0.33" />
+			</s:stroke>
+		</s:Line>
+		
+		<!-- line on left of triangle -->
+		<s:Line x="0" yFrom="0" yTo="13">
+			<s:stroke>
+				<s:SolidColorStroke color="0x000000" alpha="0.5" />
+			</s:stroke>
+		</s:Line>
+	</s:Group>
+	
+	<!--- Defines the pause symbol. -->
+	<s:Group horizontalCenter="1" verticalCenter="0" includeIn="selectedStates" id="pauseSymbol">
+		
+		<!-- big line on left -->
+		<s:Rect left="0" top="0" height="11" width="3">
+			<s:fill>
+				<s:SolidColor color="#303030" />
+			</s:fill>
+		</s:Rect>
+		
+		<!-- big line on right -->
+		<s:Rect left="4" top="0" height="11" width="3">
+			<s:fill>
+				<s:SolidColor color="#303030" />
+			</s:fill>
+		</s:Rect>
+		
+	</s:Group>
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
     <s:Label id="labelDisplay"
              textAlign="center"
              verticalAlign="middle"
              maxDisplayedLines="1"
-			 left="35" top="12"
-			 color.up="0x000000" color.selectedStates="0xFFFFFF" color.over="0xFFFFFF" color.down="0xFFFFFF">
+             horizontalCenter="0" verticalCenter="1"
+             left="10" right="10" top="2" bottom="2">
     </s:Label>
     
 </s:SparkButtonSkin>

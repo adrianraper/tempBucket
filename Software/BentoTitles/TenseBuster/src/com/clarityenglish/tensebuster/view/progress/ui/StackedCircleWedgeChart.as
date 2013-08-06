@@ -71,11 +71,14 @@ package com.clarityenglish.tensebuster.view.progress.ui
 					var duration:Number = new Number(item.attribute(_field));
 					var barValue:Number = Math.floor(duration / 60);
 					if (totalValues != 0) {
-						var barAngle:Number = Math.floor((barValue * 180)/totalValues);
+						var barAngle:Number = Math.round((barValue * 180)/totalValues);
 					} else {
 						barAngle = 0;
 					}
 					
+					if (barAngle + currentAngle > 180) {
+						barAngle = 180 - currentAngle; 
+					}
 					// draw and add the arc to stage
 					myArc.graphics.beginFill(barColour, 1);
 					drawArc(myArc, -250, 0, 240, barAngle,currentAngle); //spriteName, startX, startY, radius, arcAngle, startAngle

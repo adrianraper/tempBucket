@@ -85,7 +85,7 @@ global {
 	lCircleWedgeColors: #FFE79E, #603813, #E0E06B, #FFFFB8, #D19D2E, #7A6138;
 	iCircleWedgeColors: #7A6138, #7BA35B, #ECFFB3, #364A00, #C2F065, #378500;
 	uCircleWedgeColors: #5BCAE3, #1376A1, #6ED4D4, #BCE0E0, #004766, #528793;
-	aCircleWedgeColors: #3F2796, #3F2796, #3F2796, #2A1D4F, #968CCF, #C7B8FF;
+	aCircleWedgeColors: #3F2796, #6E59CC, #E9DEFF, #2A1D4F, #968CCF, #C7B8FF;
 	
 	eLabelFillColor: #FFD7D7;
 	lLabelFillColor: #FFFFB3;
@@ -286,10 +286,13 @@ s|VideoPlayer {
 }
 
 components|AudioPlayer {
-	compactStoppedIcon: Embed(source="skins/tensebuster/assets/audio-up-icon.png");
-	compactPlayedIcon: Embed(source="skins/tensebuster/assets/audio-up-icon.png");
-	compactPausedIcon: Embed(source="skins/tensebuster/assets/audio-up-icon.png");
-	compactPlayingIcon: Embed(source="skins/tensebuster/assets/audio-playing-icon.png");
+	compactStoppedIcon: Embed(source="skins/tensebuster/assets/exercise/audio/audio-up-icon.png");
+	compactPlayedIcon: Embed(source="skins/tensebuster/assets/exercise/audio/audio-up-icon.png");
+	compactPausedIcon: Embed(source="skins/tensebuster/assets/exercise/audio/audio-up-icon.png");
+	compactPlayingIcon: Embed(source="skins/tensebuster/assets/exercise/audio/audio-playing-icon.png");
+	
+	fullPlayIcon: Embed(source="skins/tensebuster/assets/exercise/audio/fullAudioPlay.png");
+	fullPauseIcon: Embed(source="skins/tensebuster/assets/exercise/audio/fullAudioPause.png");
 }
 
 mx|LegendItem

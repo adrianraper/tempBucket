@@ -54,7 +54,7 @@
             @see spark.skins.spark.ButtonBarFirstButtonSkin
         -->
         <fx:Component id="firstButton">
-            <s:ButtonBarButton skinClass="skins.tensebuster.title.ui.ButtonBarFirstButtonSkin" buttonMode="true" useHandCursor="true" top="0" />
+            <s:ButtonBarButton skinClass="skins.tensebuster.title.ui.ButtonBarFirstButtonSkin" buttonMode="true" useHandCursor="true" />
         </fx:Component>
 
         <!--- 
@@ -63,7 +63,7 @@
             @see spark.skins.spark.ButtonBarMiddleButtonSkin
         -->
         <fx:Component id="middleButton" >
-            <s:ButtonBarButton skinClass="skins.tensebuster.title.ui.ButtonBarMiddleButtonSkin" buttonMode="true" useHandCursor="true" top="0"/>
+            <s:ButtonBarButton skinClass="skins.tensebuster.title.ui.ButtonBarMiddleButtonSkin" buttonMode="true" useHandCursor="true" />
         </fx:Component>
 
         <!--- 
@@ -72,7 +72,7 @@
             @see spark.skins.spark.ButtonBarLastButtonSkin
         -->
         <fx:Component id="lastButton" >
-            <s:ButtonBarButton skinClass="skins.tensebuster.title.ui.ButtonBarLastButtonSkin" buttonMode="true" useHandCursor="true" top="0"/>
+            <s:ButtonBarButton skinClass="skins.tensebuster.title.ui.ButtonBarLastButtonSkin" buttonMode="true" useHandCursor="true" />
         </fx:Component>
 
     </fx:Declarations>

@@ -291,7 +291,6 @@ and <code>sortIndicator</code> properties.</p>
 			 */
 			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void
 			{
-				trace("update header display list");
 				// Apply chrome color
 				if (chromeColorChanged)
 				{
