@@ -42,6 +42,9 @@ package com.clarityenglish.bento.view.exercise {
 		public var printButton:Button;
 		
 		[SkinPart]
+		public var recorderButton:Button;
+		
+		[SkinPart]
 		public var exerciseLogOutButton:Button;
 				
 		[SkinPart(required="true")]
@@ -100,6 +103,8 @@ package com.clarityenglish.bento.view.exercise {
 		public var backToMenu:Signal = new Signal();
 		public var showFeedbackReminder:Signal = new Signal(String); // gh#388
 		public var audioPlayed:Signal = new Signal(String); // gh#267
+		// gh#267
+		public var record:Signal = new Signal(); 
 		
 		public function ExerciseView() {
 			super();
@@ -177,6 +182,10 @@ package com.clarityenglish.bento.view.exercise {
 					break;
 				case footerLabel:
 					footerLabel.text = copyProvider.getCopyForId("footerLabel");
+					break;
+				case recorderButton:
+					recorderButton.label = copyProvider.getCopyForId("recorderButton");
+					recorderButton.addEventListener(MouseEvent.CLICK, function():void { record.dispatch(); });
 					break;
 			}
 		}

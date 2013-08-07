@@ -259,6 +259,7 @@
 			<lit name="Advanced">Advanced</lit>
 			<lit name="logoutButton">Log out</lit>
 			<lit name="printButton">Print</lit>
+			<lit name="recorderButton">Record</lit>
 			<lit name="loginInputTitle">Tense Buster</lit>
 			<lit name="loginInstruction">Please type in your login details to continue.</lit>
 			<lit name="homeInstructionLabel">Please choose a level</lit>

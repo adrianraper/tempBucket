@@ -75,6 +75,7 @@
 	<s:HGroup right="60" top="96" includeIn="exercise" gap="0">
 		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="recorderButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" color="0xFFFFFF" fontWeight="bold" buttonMode="true" fontSize="12" useHandCursor="true"/>
 	</s:HGroup>	
 	

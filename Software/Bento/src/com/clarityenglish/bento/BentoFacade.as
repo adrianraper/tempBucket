@@ -173,6 +173,7 @@
 			registerCommand(RecorderNotifications.CUT_WAVEFORM, CutWaveformCommand);
 			registerCommand(RecorderNotifications.CLEAR_WAVEFORM, ClearWaveformCommand);
 			registerCommand(RecorderNotifications.COMPARE_TO, CompareToCommand);
+			registerCommand(BBNotifications.RECORDER_SHOW, RecorderShowCommand);
 		}
 		
 		protected function mapView(viewClass:Class, mediatorClass:Class):void {

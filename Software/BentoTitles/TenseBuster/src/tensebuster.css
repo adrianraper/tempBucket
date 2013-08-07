@@ -224,6 +224,10 @@ exercise|ExerciseView s|Button#feedbackButton {
 	skinClass: ClassReference("skins.tensebuster.exercise.FeedbackButtonSkin");
 }
 
+exercise|ExerciseView s|Button#recorderButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.RecorderButtonSkin");
+}
+
 progresstb|ProgressView {
 	skinClass: ClassReference("skins.tensebuster.progress.ProgressSkin");
 }
@@ -280,6 +284,9 @@ credits|CreditsView {
 	skinClass: ClassReference("skins.tensebuster.CreditsSkin");
 }
 
+s|TitleWindow.RecorderTitleWindow {
+	skinClass: ClassReference("skins.tensebuster.exercise.RecorderTitleWindowSkin");
+}
 
 s|VideoPlayer {
 	skinClass: ClassReference("skins.tensebuster.exercise.ui.VideoPlayerSkin");
@@ -293,6 +300,10 @@ components|AudioPlayer {
 	
 	fullPlayIcon: Embed(source="skins/tensebuster/assets/exercise/audio/fullAudioPlay.png");
 	fullPauseIcon: Embed(source="skins/tensebuster/assets/exercise/audio/fullAudioPause.png");
+}
+
+components|AudioPlayer s|ScrubBar#scrubBar {
+	skinClass: ClassReference("skins.tensebuster.exercise.ui.AudioScrubBarSkin");
 }
 
 mx|LegendItem

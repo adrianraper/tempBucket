@@ -113,6 +113,9 @@
 		
 		// gh#267
 		public static const AUDIO_PLAYED:String = "bb/audio_played";
+		
+		// gh#267
+		public static const RECORDER_SHOW:String = "bb/recorder_show";
 	}
 	
 }
