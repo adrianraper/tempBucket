@@ -15,7 +15,7 @@
     <td width="9"></td>
     <td width="258" align="left" valign="top">
      <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">Your local contact is:</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Mr Scott Maxwell</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0 0 5px 0; padding:0; color:#000000; font-weight:bold;">Ms Jennifer Paschal</p>
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 11px; margin:0; padding:0; color:#000000;">
 		Bookery Education<br />
 		Australia<br />

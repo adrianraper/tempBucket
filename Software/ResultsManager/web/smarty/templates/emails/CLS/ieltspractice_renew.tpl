@@ -57,11 +57,11 @@ Please keep this email for later reference.</p>
 			</div>
             
             <div  style="margin:0 0 20px 0; padding:0;">
-          <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px; font-weight:bold;">Using an iPad? Download our app here. It's FREE!</p>
+          <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#000000; line-height:18px; font-weight:bold;">Using an iPad or tablet? Download our app here. It's free!</p>
              
-             <a href="https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&ign-mpt=uo%3D4" target="_blank">
-                 <img src="http://www.clarityenglish.com/images/email/ieltspractice/badge_appstore.jpg" border="0" width="135" height="40" />
-             </a>
+             <a href="https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&ign-mpt=uo%3D4" target="_blank" >
+                 <img src="http://www.clarityenglish.com/images/email/ieltspractice/badge_appstore.jpg" border="0" width="135" height="40" style="margin:0 5px 0 0;" /></a><a href="https://play.google.com/store/apps/details?id=air.com.clarityenglish.ielts.app" target="_blank"><img src="http://www.clarityenglish.com/images/email/ieltspractice/badge_googleplay_small.jpg" border="0" width="117" height="40" /></a>
+             
         </div>
         
         <div style="clear:both;"></div>
@@ -83,7 +83,7 @@ Please keep this email for later reference.</p>
                         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:10px 0; padding:0; color:#000000; line-height:18px;"><img src="http://www.clarityenglish.com/images/email/ieltspractice/sign_nicolelung.jpg" width="103" height="25" alt="Nicole Lung"/></p>
                         <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000; line-height:18px;">
                  	Nicole Lung<br />
-                    Marketing Executive, Clarity</p>                    </td>
+                    Senior Marketing Executive, Clarity</p>                    </td>
                       <td width="185" valign="top"></td>
                     </tr>
                   </table>    </td>
