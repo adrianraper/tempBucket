@@ -22,17 +22,7 @@
 {/literal}
 	</style></head>
 <body>
-{foreach name=orderDetails from=$account->titles item=title}
-	{if $title->name|stristr:"Results Manager"}
-		{assign var='hasRM' value='true'}
-		{if $title->licenceType == 2}
-			{assign var='hasAARM' value='true'}
-		{/if}
-	{/if}
-	{if $title->name|stristr:"Author Plus"}
-		{assign var='hasAP' value='true'}
-	{/if}
-{/foreach}
+
 {* Also work out some other stuff about the licences to help with wording *}
 {if $account->titles|@count > 1}
 	{assign var='multipleTitles' value='true'}
@@ -42,7 +32,7 @@
     <div style="width:500px; margin:a auto; padding:10px 50px 20px 50px;">
 		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">Dear Colleague</p>
         <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 5px 0; padding:0; color:#1A6585; font-weight:bold;">Updated account: {$account->name}</p>
-		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">This email is to confirm that your Clarity English account has been updated. The email has reminders of some technical and administrative aspects of your account, so please keep it in a safe place, as you may want to refer to it later.</p>
+		<p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0 0 10px 0; padding:0; color:#000000;">This email is to confirm that your Clarity English account has been updated. It deals with the technical and administrative aspects of your account, so please keep it in a safe place, as you may want to refer to it later.</p>
 
         <div style="background-color:#EBEBEB; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
             <p style="font-family: Verdana, Arial, Helvetica, sans-serif; font-size: 12px; margin:0; padding:0; color:#000000;">In this email we deal with the following areas.</p>
@@ -89,7 +79,7 @@
 		{assign var='barcode' value=$licenceAttribute.licenceValue}
 	{/if}
 {/foreach}
-<p style="margin:10px 0 5px 0; color:#1A6585; font-weight:bold;">4. Setting up a direct link to your Clarity English programs</p>
+<p style="margin:10px 0 5px 0; color:#1A6585; font-weight:bold;">3. Setting up a direct link to your Clarity English programs</p>
 {if $hasBarcode == 'true'}
 	<p style="margin:0 0 10px 0;">Use the following direct {if $multipleTitles=='true'}links{else}link{/if} to access the programs through your barcode page:</p>
 	{foreach name=orderDetails from=$account->titles item=title}
@@ -124,14 +114,14 @@ This is to protect your licence and to prevent access from unlicensed learners. 
 <!-- 
 -- 4. Promotional materials
 -->
-<p style="margin:10px 0 5px 0; color:#1A6585; font-weight:bold;">5. Promotional items</p>
+<p style="margin:10px 0 5px 0; color:#1A6585; font-weight:bold;">4. Promotional items</p>
 <p>Click on the link below to link to support videos, to download web graphics, flyers and syllabus documents, and to request posters<br />
 <a href="http://www.clarityenglish.com/lib/resources/" target="_blank">http://www.clarityenglish.com/lib/resources/</a></p>
 
 <!-- 
 -- 5. Support
 -->
-<p style="margin:10px 0 5px 0; color:#1A6585; font-weight:bold;">6. Support</p>
+<p style="margin:10px 0 5px 0; color:#1A6585; font-weight:bold;">5. Support</p>
 	<p style="margin:0 0 10px 0;">If at any time you have queries, requests or suggestions, the Clarity Support team is here to help:</p>
 	<p style="margin:0 0 10px 20px; padding:0; color:#000000;">
 	Email: <a href="mailto:support@clarityenglish.com">support@clarityenglish.com</a> <br />

@@ -13,7 +13,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Your IELTSpractice subscription has ended.</title>
 	<!-- <from>%22IELTSPractice.com%22 %3Csupport@ieltspractice.com%3E</from> -->
-	<!-- <bcc>alfred.ng@clarityenglish.com</bcc> -->
+	<!-- <bcc>support@ieltspractice.com</bcc> -->
 </head>
 <body style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; background-color:#E5E5E5;">
 <table width="600" border="0" align="center" cellpadding="0" cellspacing="0" background="http://www.clarityenglish.com/images/email/ieltspractice/bg.jpg" bgcolor="#FFFFFF">

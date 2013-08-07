@@ -187,7 +187,7 @@ class BentoService extends AbstractService {
 	 */
 	public function getIPMatch($config) {
 		
-		// #gh315 iPads don't send their IP, but you can pick it up here
+		// gh#315 iPads don't send their IP, but you can pick it up here
 		if (!$config['ip']) {
 			$config['ip'] = getenv("REMOTE_ADDR");
 			AbstractService::$debugLog->notice("picked up ip as ".$config['ip']);
