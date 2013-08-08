@@ -30,7 +30,7 @@ function loadAPIInformation() {
 	$inputData = file_get_contents("php://input");
 	//$inputData = '{"method":"getSubscriptionRecords","startDate":"2013-01-01","dbHost":2}';
 	//$inputData = '{"method":"mergeDatabases","dbHost":2}';
-	//$inputData = '{"method":"archiveOldUsers","rootID":13982,"registrationDate":"-2 month","dbHost":2}';
+	$inputData = '{"method":"archiveOldUsers","rootID":13982,"registrationDate":"-2 month","dbHost":2}';
 	//$inputData = '{"method":"restoreArchivedTeachers","rootID":13982,"dbHost":200}';
 	//$inputData = '{"method":"emailMeByGroup","xdate":"2013-01-17","dbHost":2}';
 	//$inputData = '{"method":"emailMeByUser","date":"2013-01-15","dbHost":2}';
