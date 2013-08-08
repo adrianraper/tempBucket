@@ -31,7 +31,7 @@
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009" blendMode="normal" mouseEnabled="false"
-    minWidth="76" minHeight="76" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5" xmlns:titleWindow="skins.tensebuster.assets.titleWindow.*">
+    minWidth="76" minHeight="76" alpha.disabled="0.5" alpha.disabledWithControlBar="0.5" xmlns:recorder="skins.tensebuster.assets.exercise.recorder.*">
     
     <fx:Metadata>
         <![CDATA[ 
@@ -40,13 +40,7 @@
          */
         [HostComponent("spark.components.TitleWindow")]
         ]]>
-    </fx:Metadata>
-	
-	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="5" alpha="0.5" blurX="5" blurY="5" />
-		<s:DropShadowFilter id="dropShadowTitleFilter" angle="260" distance="0.5" alpha="0.5" />
-		<s:DropShadowFilter id="dropShadowElementFilter" angle="70" distance="1.5" alpha="0.8" />
-	</fx:Declarations>
+    </fx:Metadata> 
     
 	<!--
 		NOTE: this skin file contains sub-parts that may continue to react to
@@ -63,9 +57,9 @@
     </s:states>
     
     <!--- drop shadow can't be hittable so it stays sibling of other graphics @private-->
-    <s:RectangularDropShadow id="dropShadow" alpha="0.5" 
-							 distance="1.5" blurX="8" blurY="5"
-							 angle="260" color="0x000000" left="2" top="18" right="2" bottom="12" />
+    <!--s:RectangularDropShadow id="dropShadow" blurX="20" blurY="20" alpha="0.32" 
+                             alpha.inactiveGroup="0.22" distance="11"  distance.inactiveGroup="7"
+                             angle="90" color="0x000000" left="0" top="0" right="0" bottom="0"/-->
     
     <!--- drop shadow can't be hittable so all other graphics go in this group -->
     <s:Group left="0" right="0" top="0" bottom="0">
@@ -92,54 +86,34 @@
         </s:Group>
         
         <!--- layer 1: border @private -->
-        <!--s:Rect id="border" left="0" right="0" top="0" bottom="0" >
-            <s:stroke-->
+        <!--s:Rect id="border" left="0" right="0" top="0" bottom="0" -->
+            <!--s:stroke-->
                 <!--- Defines the TitleWindowSkin class's border stroke. The default value is 1. -->
                 <!--s:SolidColorStroke id="borderStroke" weight="1" />
             </s:stroke>
         </s:Rect-->
         
         <!-- layer 2: background fill -->
-		<s:Rect left="2" top="40" right="2" bottom="43">
-			<s:fill>
-				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="0xEC1C32" />
-					<s:GradientEntry color="0xFFFFFF" />
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
         <!--- Defines the appearance of the TitleWindowSkin class's background. -->
-        <s:Rect id="background" left="20" top="40" right="20" bottom="43" filters="{[dropShadowFilter]}">
-            <s:fill>
+        <!--s:Rect id="background" left="1" top="1" right="1" bottom="1">
+            <s:fill-->
                 <!--- Defines the TitleWindowSkin class's background fill. The default color is 0xFFFFFF. -->
-                <s:LinearGradient rotation="-90">
-					<s:GradientEntry color="0xB3B3B3" ratio="0" />
-					<s:GradientEntry color="0xFFFFFF" ratio="0.2" />
-					<s:GradientEntry color="0xFFFFFF" ratio="1"/>
-				</s:LinearGradient>
+                <!--s:SolidColor id="backgroundFill" color="#FFFFFF"/>
             </s:fill>
-        </s:Rect>
+        </s:Rect-->
         
         <!-- layer 3: contents -->
         <!--- Contains the vertical stack of title bar content and control bar. -->
-        <s:Group left="0" right="1" top="0" bottom="1" id="contents">
+        <s:Group left="1" right="1" top="1" bottom="1" id="contents">
             <s:layout>
                 <s:VerticalLayout gap="0" horizontalAlign="justify" />
             </s:layout>
             <!--- @private -->
             <s:Group id="topGroup" mask="{topGroupMask}">
-
-				<s:Group left="2" right="2" top="5" filters="{[dropShadowTitleFilter]}">
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackUpLeft.png')" left="0"  />
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackUpRight.png')" right="0" />	
-					<titleWindow:feedbackUpMiddle left="15" right="15" bottom="5" />	
-				</s:Group>							
-									
-				<s:Rect left="2" right="2" bottom="3" height="5" filters="{[dropShadowElementFilter]}">
-					<s:fill>
-						<s:SolidColor color="0xEC1C32" />
-					</s:fill>
-				</s:Rect>
+				
+				<!--recorder:titleBar top="12" /-->
+				<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/recorder/RecorderBarUp.png')" top="12" />
+                
                 <!--- layer 0: title bar fill @private -->
                 <!--s:Rect id="tbFill" left="0" right="0" top="0" bottom="1">
                     <s:fill>
@@ -179,16 +153,16 @@
                 <!-- layer 3: text -->
                 <!--- @copy spark.components.Panel#titleDisplay -->
                 <s:Label id="titleDisplay" maxDisplayedLines="1"
-                         left="20" right="36" top="7" bottom="0" minHeight="30"
-                         verticalAlign="middle" fontSize="20" />
+                         left="12" top="23" bottom="0"
+                         fontWeight="bold" color="0xFFFFFF" text="try" fontSize="14" />
                 
                 <!-- layer 4: moveArea -->
                 <!--- @copy spark.components.TitleWindow#moveArea -->
                 <s:Group id="moveArea" left="0" right="0" top="0" bottom="0" />
                 
                 <!--- @copy spark.components.TitleWindow#closeButton -->
-                <!--s:Button id="closeButton" skinClass="spark.skins.spark.TitleWindowCloseButtonSkin"
-                          width="15" height="15" right="20" top="15" /-->
+                <s:Button id="closeButton" skinClass="skins.tensebuster.exercise.recorder.ui.CloseButtonSkin"
+                          width="15" right="10" top="18" useHandCursor="true" buttonMode="true" />
             </s:Group>
             
             <!--
@@ -200,24 +174,6 @@
             <s:Group id="contentGroup" width="100%" height="100%" minWidth="0" minHeight="0">
             </s:Group>
             
-			<!--Bottom part-->
-			<s:Group bottom="2" height="43" filters="{[dropShadowFilter]}">
-				<!--titleWindow:bottom left="2" right="2" /-->
-				<s:Group left="2" right="2">
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackBottomLeft.png')" left="0" />
-					<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/titleWindow/feedbackBottomRight.png')" right="0" />
-					<titleWindow:feedbackBottomMiddle left="15" right="15" />
-				</s:Group>
-				
-				<s:Button id="closeButton" skinClass="skins.tensebuster.titleWindows.OKButtonSkin" label="OK" color="0xFFFFFF" fontWeight="bold" fontSize="14" right="15" top="0" buttonMode="true" useHandCursor="true" />
-				
-				<s:Rect top="0" left="2" right="2" height="5" filters="{[dropShadowElementFilter]}">
-					<s:fill>
-						<s:SolidColor color="0xEC1C32" />
-					</s:fill>
-				</s:Rect>								
-			</s:Group>		
-			
             <!--- @private -->
             <s:Group id="bottomGroup" minWidth="0" minHeight="0" 
                      includeIn="withControls">  

@@ -21,15 +21,17 @@
 		<s:State name="certificate" stateGroups="normalStates, certificateStates"/>
 	</s:states>
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/>
+	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/-->
 	
 	<s:HGroup width="100%" paddingLeft="60" top="55">
 		<s:ButtonBar id="progressNavBar" fontSize="12"/>			
 	</s:HGroup>
 	
-	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/progress/progressFooter.png')" horizontalCenter="0" verticalCenter="48" excludeFrom="[score, certificate]" filters="{[dropShadowFilter]}" />
+	
+	<!--s:Group width="100%" height="100%" filters="{[dropShadowFilter]}"-->
 		<!--rectangle panel-->
-		<s:Rect left="29" right="29" bottom="0" top="120">
+		<!--s:Rect left="29" right="29" bottom="0" top="120">
 			<s:fill>
 				<s:LinearGradient rotation="90">
 					<s:GradientEntry color="0xFFFFFF" ratio="0"/>
@@ -37,11 +39,11 @@
 					<s:GradientEntry color="0xB3B3B3" ratio="1"/>
 				</s:LinearGradient>
 			</s:fill>
-		</s:Rect>
+		</s:Rect-->
 		<!--top panel-->	
-		<exercise:topPanel top="90" right="28" left="28" />
-	</s:Group>
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/progressFooter.png')" bottom="20" left="28" excludeFrom="[score, certificate]" />
+		<!--exercise:topPanel top="90" right="28" left="28" />
+	</s:Group-->
+	
 	
 	<s:HGroup width="100%" height="100%" top="100" left="15" bottom="50" right="15">
 		<s:Group width="100%" height="100%">

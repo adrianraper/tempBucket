@@ -17,6 +17,8 @@
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace credits "com.clarityenglish.bento.view.credits.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
+@namespace recorder "com.clarityenglish.bento.view.recorder.*";
 
 global {
 	EColor : #EC1C32;
@@ -99,6 +101,8 @@ global {
 	uLabelBorderColor: #004766;
 	aLabelBorderColor: #423099;
 	
+	markingColours: #2CA874, #E61E1E, #0066FF;
+	
 	ProgressIcon: Embed(source="skins/tensebuster/assets/title/progressIcon.png");
 	ProgressOverIcon: Embed(source="skins/tensebuster/assets/title/progressOverIcon.png");
 	ProgressBg: Embed(source="skins/tensebuster/assets/title/progressBg.png");
@@ -153,7 +157,7 @@ login|LoginView s|Button#loginButton {
 }
 
 s|TitleWindow.feedbackTitleWindow {
-	skinClass: ClassReference("skins.tensebuster.titleWindows.FeedbackTitleWindowSkin");
+	skinClass: ClassReference("skins.tensebuster.exercise.titleWindows.FeedbackTitleWindowSkin");
 }
 
 tensebuster|TenseBusterApplication {
@@ -285,11 +289,35 @@ credits|CreditsView {
 }
 
 s|TitleWindow.RecorderTitleWindow {
-	skinClass: ClassReference("skins.tensebuster.exercise.RecorderTitleWindowSkin");
+	skinClass: ClassReference("skins.tensebuster.exercise.titleWindows.RecorderTitleWindowSkin");
+}
+
+s|TitleWindow.markingTitleWindow {
+	skinClass: ClassReference("skins.tensebuster.exercise.titleWindows.MarkingTitleWindowSkin");
 }
 
 s|VideoPlayer {
 	skinClass: ClassReference("skins.tensebuster.exercise.ui.VideoPlayerSkin");
+}
+
+marking|MarkingView {
+	skinClass: ClassReference("skins.tensebuster.exercise.marking.MarkingSkin");
+}
+
+marking|MarkingView s|Button#tryAgainButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.marking.TryAgainButtonSkin");
+}
+
+marking|MarkingView s|Button#seeAnswersButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.marking.SeeAnswerButtonSkin");
+}
+
+marking|MarkingView s|Button#moveForwardButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.marking.TryAgainButtonSkin");
+}
+
+recorder|WaveformView {
+	skinClass: ClassReference("skins.tensebuster.exercise.recorder.WaveformSkin");
 }
 
 components|AudioPlayer {

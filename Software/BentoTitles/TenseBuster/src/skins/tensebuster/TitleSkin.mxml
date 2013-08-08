@@ -54,7 +54,5 @@
 			</s:HGroup>
 		</s:HGroup>	
 	</s:Group>
-	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="140" color="0xFFFFFF" fontWeight="bold" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
-	<recorder:RecorderView right="0" includeIn="exercise" />
-	
+	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="140" color="0xFFFFFF" fontWeight="bold" includeIn="exercise" buttonMode="true" useHandCursor="true"/>	
 </s:Skin>

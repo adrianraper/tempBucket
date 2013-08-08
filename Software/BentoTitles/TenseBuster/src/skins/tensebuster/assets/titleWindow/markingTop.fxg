@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="39.9854" viewWidth="354.878" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="39.985" d:pageWidth="354.878" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group x="-8" ai:seqID="1">
+        <mask>
+          <Group x="8" ai:spare="1">
+            <Rect width="354.878" height="39.9854" ai:seqID="2">
+              <fill>
+                <SolidColor color="#FFFFFF"/>
+              </fill>
+            </Rect>
+          </Group>
+        </mask>
+        <Group ai:seqID="3">
+          <Group ai:seqID="4">
+            <Path x="8" winding="nonZero" ai:seqID="5" data="M11.791 0 0 11.792 0 160.276 354.878 160.276 354.878 11.792 343.087 0 11.791 0Z">
+              <fill>
+                <LinearGradient x="177.439" y="94.8477" scaleX="66.2211" rotation="90">
+                  <GradientEntry ratio="0" color="#FFFFFF"/>
+                  <GradientEntry ratio="0.340877" color="#FCFCFC"/>
+                  <GradientEntry ratio="0.583847" color="#F1F1F1"/>
+                  <GradientEntry ratio="0.80193" color="#D9D9D9"/>
+                  <GradientEntry ratio="1" color="#B4B4B4"/>
+                </LinearGradient>
+              </fill>
+            </Path>
+            <Path x="8" y="37" winding="nonZero" ai:seqID="6" data="M343.087 160.276 354.878 148.484 354.878 0 0 0 0 148.484 11.791 160.276 343.087 160.276Z">
+              <fill>
+                <LinearGradient x="177.438" y="65.4297" scaleX="66.2211" rotation="270">
+                  <GradientEntry ratio="0" color="#FFFFFF"/>
+                  <GradientEntry ratio="0.340877" color="#FCFCFC"/>
+                  <GradientEntry ratio="0.583847" color="#F1F1F1"/>
+                  <GradientEntry ratio="0.80193" color="#D9D9D9"/>
+                  <GradientEntry ratio="1" color="#B4B4B4"/>
+                </LinearGradient>
+              </fill>
+              <filters>
+                <DropShadowFilter blurX="6" blurY="6" quality="2" color="#010101" alpha="0.5" angle="63.4349" distance="2.23607"/>
+              </filters>
+            </Path>
+            <Rect x="8" y="36.4268" width="354.878" height="138.934" ai:seqID="7">
+              <fill>
+                <SolidColor color="#FFFFFF"/>
+              </fill>
+            </Rect>
+            <Rect x="23.3389" y="44.0771" width="324.66" height="112.173" ai:seqID="8">
+              <fill>
+                <LinearGradient x="162.33" y="0" scaleX="112.173" rotation="90">
+                  <GradientEntry ratio="0" color="#FFFFFF"/>
+                  <GradientEntry ratio="0.340877" color="#FCFCFC"/>
+                  <GradientEntry ratio="0.583847" color="#F1F1F1"/>
+                  <GradientEntry ratio="0.80193" color="#D9D9D9"/>
+                  <GradientEntry ratio="1" color="#B4B4B4"/>
+                </LinearGradient>
+              </fill>
+              <filters>
+                <DropShadowFilter blurX="1.1338" blurY="1.1338" quality="2" color="#010101" alpha="0.5" angle="90" distance="1.4173"/>
+              </filters>
+            </Rect>
+            <Group x="276.427" y="157.75" ai:seqID="9">
+              <Group ai:seqID="10" flm:knockout="false">
+                <Path winding="nonZero" ai:seqID="11" data="M11.1748 31.166C9.61523 31.166 7.36621 30.3418 6.17578 29.335L2.16406 25.9385C0.973633 24.9316 0 22.832 0 21.2725L0 2.83496C0 1.27539 1.27539 0 2.83496 0L68.7373 0C70.2969 0 71.5723 1.27539 71.5723 2.83496L71.5723 21.2725C71.5723 22.832 70.5986
+ 24.9316 69.4082 25.9385L65.3965 29.335C64.2061 30.3418 61.957 31.166 60.3975 31.166L11.1748 31.166Z">
+                  <fill>
+                    <SolidColor color="#EB2133"/>
+                  </fill>
+                </Path>
+              </Group>
+              <Group x="25.6162" y="9.17285" ai:seqID="12">
+                <RichText x="10.1152" y="1.62427" columnCount="1" textAlign="center" tabStops="S65.4385 " fontFamily="HelveticaNeueLT Std Med" fontSize="14" kerning="on" lineHeight="16.8" color="#FFFFFF" whiteSpaceCollapse="preserve" ai:aa="2" ai:seqID="13">
+                  <content><p fontFamily="HelveticaNeueLT Std Med"><span fontFamily="HelveticaNeueLT Std Med">OK</span></p></content>
+                </RichText>
+              </Group>
+            </Group>
+            <Rect x="8" y="156.25" width="354.878" height="3" ai:seqID="14">
+              <fill>
+                <SolidColor color="#EB2133"/>
+              </fill>
+              <filters>
+                <DropShadowFilter blurX="2" blurY="2" quality="2" color="#010101" alpha="0.4" angle="90" distance="1"/>
+              </filters>
+            </Rect>
+          </Group>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private>
+      <d:FontMap>
+        <d:Map fontFamily="HelveticaNeueLT Std Med" fontStyle="normal" fontWeight="normal" postScriptName="HelveticaNeueLTStd-Md"/>
+      </d:FontMap>
+    </Private>
+  </Graphic>

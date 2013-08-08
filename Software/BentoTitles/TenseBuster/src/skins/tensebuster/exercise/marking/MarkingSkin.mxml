@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		initialize="onInitialize(event)" 
+		xmlns:titleWindow="skins.tensebuster.assets.titleWindow.*"
+		height="195" width="360">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.marking.MarkingView")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var markingCount:ArrayCollection;
+			
+			protected function onInitialize(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if (hostComponent.exerciseMark) {
+					markingCount = new ArrayCollection([{Count: hostComponent.exerciseMark.correctCount}, {Count: hostComponent.exerciseMark.incorrectCount}, {Count: hostComponent.exerciseMark.missedCount}]);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="5" alpha="0.5" blurX="5" blurY="5" />
+		<s:DropShadowFilter id="dropShadowElementFilter" angle="70" distance="1.5" alpha="0.8" />
+	</fx:Declarations>
+
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:Group id="content" width="230" height="155">
+		<s:HGroup left="16" gap="-5">
+			<mx:PieChart id="markingPieChart" width="25%" height="35%" paddingTop="10" dataProvider="{markingCount}" innerRadius="0.55">
+				<mx:series>
+					<mx:PieSeries field="Count" filters="{[]}" fills="{getStyle('markingColours')}"/>
+				</mx:series>
+			</mx:PieChart>
+			<s:VGroup paddingTop="40">
+				<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.correctPercent}% in this exercise." fontSize="12" />
+				<s:Spacer height="6"/>
+				<s:Label text="Correct: {hostComponent.exerciseMark.correctCount}" color="#2CA874" />
+				<s:Label text="Incorrect: {hostComponent.exerciseMark.incorrectCount}" color="#E61E1E" />
+				<s:Label text="Missed: {hostComponent.exerciseMark.missedCount}" color="#0066FF"/>
+			</s:VGroup>		
+		</s:HGroup>		
+	</s:Group>
+	
+	<s:Group bottom="0" left="2" right="0" filters="{[dropShadowFilter]}">
+		<titleWindow:markingBottom />	
+	</s:Group>
+	
+	<s:HGroup bottom="10" left="20" gap="12">
+		<s:Button id="tryAgainButton" label="Try again" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="seeAnswersButton" label="See answers" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="moveForwardButton" label="Move forward" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
+	</s:HGroup>
+	
+	<s:Rect bottom="40" left="2" right="2" height="5" filters="{[dropShadowElementFilter]}">
+		<s:fill>
+			<s:SolidColor color="0xEC1C32" />
+		</s:fill>
+	</s:Rect>	
+
+</s:Skin>
