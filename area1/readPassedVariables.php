@@ -13,7 +13,7 @@
 	} else {
 		// change capitalisation of variables
 		if (isset($_SESSION['UserID'])) $userID = $_SESSION['UserID']; 
-		if (isset($_SESSION['UserName'])) $username = $_SESSION['UserName']; 
+		if (isset($_SESSION['UserName'])) $userName = $_SESSION['UserName']; 
 		if (isset($_SESSION['Password'])) $password = $_SESSION['Password'];
 		if (isset($_SESSION['StudentID'])) $studentID = $_SESSION['StudentID'];
 		if (isset($_SESSION['Email'])) $email = $_SESSION['Email'];

@@ -67,8 +67,18 @@ package com.clarityenglish.rotterdam.controller {
 			var prefix:String = "prefix=" + configProxy.getAccount().prefix;
 			parameters.push(prefix);
 			
-			var user:String = "username=" + loginProxy.user.name;
+			// gh#371 capitalisation
+			var user:String = "userName=" + loginProxy.user.name;
 			parameters.push(user);
+
+			if (loginProxy.user.email) {
+				var email:String = "email=" + loginProxy.user.email;
+				parameters.push(email);
+			}
+			if (loginProxy.user.studentID) {
+				var id:String = "studentID=" + loginProxy.user.studentID;
+				parameters.push(id);
+			}
 			
 			var password:String = "password=" + loginProxy.user.password;
 			parameters.push(password);
@@ -93,7 +103,7 @@ package com.clarityenglish.rotterdam.controller {
 			
 			var crypt:Crypt = new Crypt();
 			var argList:String = "?data=" + crypt.encryptURL(parameters.join("&"));
-			// log.info("plain arglist=" + parameters.join("&"));
+			log.info("plain arglist=" + parameters.join("&"));
 
 			// Then run this as a new browser window
 			// TODO: At some point BentoTitles could open their exercises directly in Rotterdam Player

@@ -10,7 +10,7 @@
 	session_start();
 	$currentSessionID = session_id();
 	
-	$username = $password = $extraParam = $licenceFile = $prefix = $version = '';
+	$userName = $password = $extraParam = $licenceFile = $prefix = $version = '';
 	$studentID = $email = $userID = $instanceID = '';
 	$referrer = $ip = $server = $productCode = $accountName = '';
 	$course = $startingPoint = $resize = '';

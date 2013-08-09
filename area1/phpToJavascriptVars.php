@@ -26,8 +26,8 @@ echo 'var jsCoordsMaxHeight="'.$coordsMaxHeight.'";';
 echo 'var jsSessionID="'.$currentSessionID.'";';
 
 echo 'var jsUserName=';
-if ($username) {
-	echo '"'.$username.'";';
+if ($userName) {
+	echo '"'.$userName.'";';
 } else {
 	echo 'swfobject.getQueryParamValue("username");';
 }
