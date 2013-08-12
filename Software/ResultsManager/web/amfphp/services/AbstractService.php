@@ -22,6 +22,8 @@ class AbstractService {
 	
 	static $log;
 	static $debugLog;
+	// gh#448
+	static $controlLog;
 
 	function __construct() {
 		// This deals with a date bug in AdoDB MSSQL driver
@@ -56,6 +58,9 @@ class AbstractService {
 		// I don't think so, it only does opening etc when called to write.
 		AbstractService::$debugLog = &Log::factory('file');
 		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');
+		
+		AbstractService::$controlLog = &Log::factory('file');
+		AbstractService::$controlLog->setFileName($GLOBALS['logs_dir'].'controlLog.txt');
 		
 		// Create the operation classes
 		$this->copyOps = new CopyOps();

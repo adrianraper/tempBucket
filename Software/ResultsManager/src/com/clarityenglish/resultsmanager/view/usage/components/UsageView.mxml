@@ -164,12 +164,11 @@
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("activityUserCountsA");
 			} else if (selectedTitle.productCode == 1001){
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("activityUserCountsB");
-			}else if (selectedTitle.productCode == 9 || selectedTitle.productCode == 46 || selectedTitle.productCode == 33 || selectedTitle.productCode == 45){
+			} else if (selectedTitle.productCode == 9 || selectedTitle.productCode == 46 || selectedTitle.productCode == 33 || selectedTitle.productCode == 45){
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsB");
-			}
-			else if (selectedTitle.productCode == 37) {
+			} else if (selectedTitle.productCode == 37) {
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsC");
-			}else{
+			} else{
 				someCourseCounts.courseUserCountsLabel.text = copyProvider.getCopyForId("courseUserCountsA");
 			}
 		}

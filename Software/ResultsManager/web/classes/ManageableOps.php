@@ -40,6 +40,9 @@ class ManageableOps {
 		// Add the auto-generated id to the original group object
 		$group->id = $this->db->Insert_ID();
 		
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a group(s) with id='.$group->id.' to group '.$parentGroup->id);
+		
 		// If parentGroup is null then this is a special case and a top-level group has been created (in DMS) so we need to set
 		// parentGroup to the same as ID.  Since this is the only place this will ever happen just do it with straight SQL.
 		if (!$parentGroup) 
@@ -118,6 +121,10 @@ class ManageableOps {
 		AuthenticationOps::authenticateGroups(array($parentGroup));
 		
 		// v3.1 Need to pass rootID as it may not be in session variables (DMS)
+		// gh#353 How can you add a user if you don't know the root?
+		// isUserValid picks up a default root, but getUserByKey doesn't.
+		if (!$rootID) $rootID = Session::get('rootID');
+		
 		// v3.6.1 Also checking for studentID, so return is a binary flag
 		//if (!$this->isUserValid($user, $rootID)) {
 		$rc = $this->isUserValid($user, $rootID);
@@ -186,7 +193,7 @@ class ManageableOps {
 			INSERT INTO T_Membership (F_UserID,F_GroupID,F_RootID)
 			VALUES (?,?,?) 
 EOD;
-		$bindingParams = array($user->userID, $parentGroup->id, ($rootID) ? $rootID : Session::get('rootID'));
+		$bindingParams = array($user->userID, $parentGroup->id, $rootID);
 		$rc = $this->db->Execute($sql, $bindingParams);
 		if (!$rc)
 			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
@@ -207,9 +214,14 @@ EOD;
 		} catch (Exception $e) {
 			// gh#164 even though this is called, the transaction still commits!
 			$this->db->FailTrans();
+			// gh#353 Need to send exception for a message to the user
+			throw $this->copyOps->getExceptionForId("duplicateKeyError", array("loginOption" => $loginOption));
 		}
 		
 		$rc = $this->db->CompleteTrans();
+		
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a user with id='.$user->userID.' to group '.$parentGroup->id);
 		
 		// Add this to the valid user for the logged in user
 		// v3.4 Multi-group users
@@ -508,6 +520,9 @@ EOD;
 		$this->db->Execute("UPDATE T_Membership SET F_GroupID=? WHERE F_UserID IN (".$userIdInString.")", array($parentGroup->id));
 		
 		$this->db->CompleteTrans();
+		
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' moved a user(s) with id='.$userIdInString.' to group '.$parentGroup->id);
 	}
 	
 	function moveGroups($groupsArray, $parentGroup) {
@@ -532,6 +547,9 @@ EOD;
 		$this->db->Execute("UPDATE T_Groupstructure SET F_GroupParent=? WHERE F_GroupID IN (".$groupIdInString.")", array($parentGroup->id));
 		
 		$this->db->CompleteTrans();
+		
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' moved a group(s) with id='.$groupIdInString.' to group '.$parentGroup->id);
 	}
 	
 	/**
@@ -544,7 +562,9 @@ EOD;
 		$this->db->StartTrans();
 		
 		foreach ($manageablesArray as $manageable) {
-			//NetDebug::trace('ManageableOps.dM id='.$manageable->id.' class='.get_class($manageable));
+			// gh#448
+			AbstractService::$controlLog->info('userID '.Session::get('userID').' deleted a '.get_class($manageable).' with id='.$manageable->id.' and name='.$manageable->name);
+			
 			switch (get_class($manageable)) {
 				case "Group":
 					// A special case - it is not possible to delete top level groups in RM
