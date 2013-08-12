@@ -16,6 +16,8 @@ class TenseBusterService extends BentoService {
 		AbstractService::$title = "tensebuster";
 	}
 	
+	// AR not necessary for TB
+	/*
 	// HCT hack.  If the passed menu file doesn't contain a correct version, add it in
 	public function xhtmlLoad($href) {
 		if ($href->type == Href::MENU_XHTML && stristr($href->filename, '-.xml'))
@@ -23,5 +25,6 @@ class TenseBusterService extends BentoService {
     	
     	return parent::xhtmlLoad($href);
 	}
+	*/
 	
 }
