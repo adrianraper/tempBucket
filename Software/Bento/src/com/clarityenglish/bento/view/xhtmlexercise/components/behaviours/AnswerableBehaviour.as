@@ -313,8 +313,11 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				if (!exercise.model.getSettingParam("allowMultipleDrags")) {
 					container.callLater(function():void {
 						XHTML.addClasses(inputElement.droppedNode, [ "disabled", "used" ]);
-						TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
-						inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+						// gh#473 Does it matter if the element has become null since you created this anonymous function?
+						if (inputElement.droppedFlowElement) {
+							TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
+							inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+						}
 					});
 				}
 			}
