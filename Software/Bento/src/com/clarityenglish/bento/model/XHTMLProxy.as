@@ -5,6 +5,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform;
 	import com.clarityenglish.bento.vo.content.transform.XmlTransform;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -35,9 +36,9 @@ package com.clarityenglish.bento.model {
 		
 		/**
 		 * If this is true then use a cachebuster (a randomly generated string) on the end of XML files so they don't get cached.
-		 * TODO: This should be configurable in config.xml 
+		 * TODO: gh#476 This should be configurable in config.xml 
 		 */
-		private static const useCacheBuster:Boolean = true;
+		private var useCacheBuster:Boolean = false;
 		
 		/**
 		 * Standard flex logger
@@ -65,7 +66,7 @@ package com.clarityenglish.bento.model {
 		public var beforeXHTMLLoadFunction:Function;
 		
 		/**
-		 * A function that is called before after an XHTML file is loaded  
+		 * A function that is called after an XHTML file is loaded  
 		 */
 		public var afterXHTMLLoadFunction:Function;
 		
@@ -75,13 +76,15 @@ package com.clarityenglish.bento.model {
 			loadedResources = new Dictionary();
 			urlLoaders = new Dictionary();
 			transformDefinitions = new Vector.<TransformDefinition>();
+			
+			// gh#476 You can't set cacheBuster here as config has not been read yet
 		}
 		
 		/**
 		 * Clears all stateful data from this instance of the XHTMLProxy.
 		 */
 		public function reset():void {
-			// #472
+			// 472
 			for each (var resource:* in loadedResources)
 				if (resource is XML)
 					System.disposeXML(resource);
@@ -142,6 +145,10 @@ package com.clarityenglish.bento.model {
 				}
 			}
 			
+			// gh#476 
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			useCacheBuster = configProxy.getConfig().useCacheBuster;
+			
 			if (beforeXHTMLLoadFunction !== null) beforeXHTMLLoadFunction(facade, href);
 			// gh#265
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -157,7 +164,7 @@ package com.clarityenglish.bento.model {
 				for each (var transformDefinition:TransformDefinition in transformDefinitions)
 					transformDefinition.injectTransforms(href);
 				
-				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) GH #84
+				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) gh#84
 				new RemoteDelegate("xhtmlLoad", [ href ]).execute().addResponder(new ResultResponder(
 					function(e:ResultEvent, data:AsyncToken):void {
 						parseAndStoreXHTML(href, e.result.toString());

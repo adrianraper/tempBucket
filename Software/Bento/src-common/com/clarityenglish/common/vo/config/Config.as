@@ -133,7 +133,6 @@ package com.clarityenglish.common.vo.config {
 		public var checkNetworkAvailabilityInterval:uint;
 		public var checkNetworkAvailabilityReconnectInterval:uint;
 		
-
 		// For performance logging
 		public var appLaunchTime:Number;
 
@@ -145,6 +144,9 @@ package com.clarityenglish.common.vo.config {
 		
 		// gh#371
 		public var otherParameters:Object;
+		
+		// gh#476
+		public var useCacheBuster:Boolean;
 		
 		/**
 		 * Developer option
@@ -158,6 +160,8 @@ package com.clarityenglish.common.vo.config {
 			this.channels = [];
 			this.scorm = false;
 			this.illustrationCloseFlag = true;
+			// gh#476
+			this.useCacheBuster = false;
 		}
 		
 		/**
@@ -458,6 +462,10 @@ package com.clarityenglish.common.vo.config {
 			if (xml..loginOption.toString())
 				this.loginOption = Number(xml..loginOption.toString());
 			
+			// gh#476
+			if (xml..useCacheBuster.toString() == "true")
+				this.useCacheBuster = true;
+
 			// For help with testing
 			if (xml..id.toString()) {
 				this.configID = xml..id.toString();
@@ -470,7 +478,7 @@ package com.clarityenglish.common.vo.config {
 			if (xml..referrer.toString()) {
 				this.referrer = xml..referrer.toString();
 			}
-			trace("config.xml has id=" + this.configID);
+			//trace("config.xml has id=" + this.configID);
 		}
 		
 		/**
