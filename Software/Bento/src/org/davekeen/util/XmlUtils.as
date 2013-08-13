@@ -88,5 +88,20 @@
 			return result;
 		}
 		
+		/**
+		 * Randomise the order of nodes in an XMLList
+		 * This changes the data you send it.
+		 */
+		public static function randomiseList(list:XMLList):XMLList {
+			var m:uint = list.length();
+			while (m) {
+				var i:uint = Math.floor(Math.random() * m--);
+				var t:XML = list[m];
+				list[m] = list[i];
+				list[i] = t;
+			}
+			return list;
+		}
+
 	}
 }

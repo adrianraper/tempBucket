@@ -8,6 +8,8 @@ package com.clarityenglish.textLayout.elements {
 	import mx.collections.XMLListCollection;
 	import mx.events.FlexEvent;
 	
+	import org.davekeen.util.XmlUtils;
+	
 	import skins.bento.components.SpinnerDropDownListSkin;
 	
 	import spark.components.DropDownList;
@@ -56,7 +58,8 @@ package com.clarityenglish.textLayout.elements {
 			
 			// Default to a normal DropDownList, but also allow a custom elementFactoryFunction to be defined (used to create the Spinner for AIR apps)
 			var dropDownList:DropDownList = (elementFactoryFunction == null) ? new DropDownList() : elementFactoryFunction();
-			dropDownList.dataProvider = new XMLListCollection(_options);
+			// gh#480 randomise the order of the answers			
+			dropDownList.dataProvider = new XMLListCollection(XmlUtils.randomiseList(_options));
 			component = dropDownList;
 			
 			// Duplicate some events on the event mirror so other things can listen to the FlowElement
