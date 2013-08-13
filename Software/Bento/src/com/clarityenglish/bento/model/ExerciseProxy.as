@@ -110,9 +110,12 @@ package com.clarityenglish.bento.model {
 			if (exercise.model && exercise.model.hasSettingParam("autoMarkTimeout")) {
 				var autoMarkTimerDelay:int = exercise.model.getSettingParam("autoMarkTimeout");
 				
-				autoMarkTimer = new Timer(autoMarkTimerDelay * 1000, 1);
-				autoMarkTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onAutoTimerComplete);
-				autoMarkTimer.start();
+				// gh#510 and at least 2 seconds!
+				if (autoMarkTimerDelay > 1) {
+					autoMarkTimer = new Timer(autoMarkTimerDelay * 1000, 1);
+					autoMarkTimer.addEventListener(TimerEvent.TIMER_COMPLETE, onAutoTimerComplete);
+					autoMarkTimer.start();
+				}
 			}
 		}
 		
