@@ -59,8 +59,8 @@ package com.clarityenglish.bento.controller {
 			// If we reached here then no answer was matched so create a new one, including the unmatched feedback if there was any
 			// gh#350 if the original answer has feedback we should also add it to the answer node
 			var xmlString:String = "";
-			trace("feedback: "+question.answers[0].feedback);
-			xmlString += '<answer value="' + answerString + '">';
+			// gh#515 protect apostrophe/quote characters from XML string syntax
+			xmlString += '<answer value="' + answerString.replace(/(")/g, "&quot;") + '">';
 			if (question.unmatchedFeedbackSource) {
 				xmlString += '<feedback source="' + question.unmatchedFeedbackSource + '" />';
 			} else if (question.answers[0].feedback) {
