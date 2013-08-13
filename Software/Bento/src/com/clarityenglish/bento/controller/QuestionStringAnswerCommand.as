@@ -58,6 +58,7 @@ package com.clarityenglish.bento.controller {
 			
 			// If we reached here then no answer was matched so create a new one, including the unmatched feedback if there was any
 			var xmlString:String = "";
+			// gh#515 protect apostrophe characters
 			xmlString += "<answer value='" + answerString + "'>";
 			if (question.unmatchedFeedbackSource) xmlString += "<feedback source='" + question.unmatchedFeedbackSource + "' />";
 			xmlString += "</answer>";
