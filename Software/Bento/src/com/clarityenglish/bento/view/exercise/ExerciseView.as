@@ -150,8 +150,8 @@ package com.clarityenglish.bento.view.exercise {
 				case feedbackButton:
 					feedbackButton.addEventListener(MouseEvent.CLICK, function():void {
 						if (isFeedbackReminder) {
-							var text:String = "Please click on the answers to show feedback";
-							showFeedbackReminder.dispatch(text);
+							// #gh413
+							showFeedbackReminder.dispatch(copyProvider.getCopyForId("feedbackClickAnswersMsg"));
 						} else {
 							showFeedback.dispatch();
 						}} );

@@ -162,6 +162,9 @@
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
 			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
 			<lit name="footerLabel">© Clarity Language Consultants Ltd, 1993-2013. All rights reserved.</lit>
+            <lit name="feedbackClickAnswersMsg">Click on any answer to see feedback.</lit>			
+            
+			<!--  these all seem to be from CCB -->
 			<lit name="xhtmlDirty">Your changes to this course have not been saved. Are you sure you want to continue?</lit>
 			<lit name="settingsDirty">Your changes to the settings have not been saved. Are you sure you want to continue?</lit>
 			<lit name="uploadsDirty">There are files currently uploading. Are you sure you want to continue?</lit>
@@ -251,7 +254,8 @@
 			<lit name="completeLabel">Started</lit>
 			<lit name="notCompleteLabel">Not started</lit>
 			<lit name="othersLabel">No record available</lit>
-			
+            <!--  end of CCB section -->
+            			
 			<lit name="Elementary">Elementary</lit>
 			<lit name="Lowerintermediate">Lower Intermediate</lit>
 			<lit name="Intermediate">Intermediate</lit>lit>
