@@ -9,6 +9,7 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.tensebuster.view.title.TitleView;
+			
 		]]>
 	</fx:Script>
 	
@@ -24,13 +25,16 @@
 		<s:State name="profile" />
 	</s:states>
 	
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/title/header.jpg')" top="0" horizontalCenter="0" />
+	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Home"  left="0" right="0" height="100%" />
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.tensebuster.view.progress.ProgressView" label="My Progress" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="profileViewNavigator" firstView="com.clarityenglish.tensebuster.view.profile.ProfileView" label="My Profile" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="logOutViewNavigator" firstView="com.clarityenglish.bento.view.credits.CreditsView" label="Log out" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 	
-	<s:Group top="100" left="50" visible="{hostComponent.currentState == 'exercise'}">
+	<s:Group top="117" left="60" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:SWFLoader id="courseThumbnail" />
@@ -47,6 +51,5 @@
 			</s:HGroup>
 		</s:HGroup>	
 	</s:Group>
-	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="100" color="0xFFFFFF" fontWeight="bold" fontSize="12" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
-	<recorder:RecorderView right="0" includeIn="exercise" />
+	<s:Button id="backToMenuButton" label="Back to Menu" horizontalCenter="390" top="120" color="0xFFFFFF" fontWeight="bold" fontSize="12" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
 </s:Skin>

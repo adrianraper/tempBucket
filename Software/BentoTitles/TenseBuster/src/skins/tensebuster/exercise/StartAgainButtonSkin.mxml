@@ -55,7 +55,7 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:Group top.over="2" top.up="0">
+	<s:Group top.over="2" top.down="2" top.up="0">
 		<icon:startAgainBg filters.up="{[dropShadowFilter]}" />
 		<icon:startAgainIcon left="15" top="7" />
 		

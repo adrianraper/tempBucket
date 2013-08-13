@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for a Spark ToggleButton component.  
+
+     @see spark.components.ToggleButton
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+                   xmlns:s="library://ns.adobe.com/flex/spark" 
+                   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+                   minWidth="21" minHeight="21" 
+                   alpha.disabledStates="0.5">
+	<fx:Metadata>[HostComponent("spark.components.ButtonBarButton")]</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="270" distance="0.4" alpha="0.3" />
+	</fx:Declarations>
+    
+    <!-- host component -->
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" stateGroups="overStates" />
+        <s:State name="down" stateGroups="downStates" />
+        <s:State name="disabled" stateGroups="disabledStates" />
+        <s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+        <s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
+        <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
+        <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+    </s:states>
+    
+	<s:VGroup gap="-1" horizontalAlign="right" filters="{[dropShadowFilter]}">
+		<s:Path winding="nonZero" data="M225.314 0 12.5879 0C10.373 0 7.58008 3.35547 6.38086 7.45508L3.61719 16.936 0 29.3359 225.314 29.3359 225.314 16.936 225.314 0Z">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="#FFFFFF" color.down="#FDF2EC" color.over="#FDF2EC" color.selectedStates="#FDF2EC" />
+					<s:GradientEntry color="#DCDCDC" color.down="#DB2E21" color.over="#DB2E21" color.selectedStates="#DB2E21" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>	
+		<s:Path winding="nonZero" data="M0 24.5605 232.479 24.5605 232.479 0 7.16406 0 0 24.5605Z">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="#C8C8C8" color.down="#B60F2C" color.over="#B60F2C" color.selectedStates="#B60F2C" />
+					<s:GradientEntry color="#E6E6E6" color.down="#B60F2C" color.over="#B60F2C" color.selectedStates="#B60F2C" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+	</s:VGroup>
+	<s:Group top="12" left="50" id="homeIcon">
+		<s:Path x="-0.000122295" winding="nonZero" data="M28.6046 12.0293 24.6378 8.61816 18.0636 2.96484 14.6144 0 11.1632 2.96484 4.59094 8.62207 0.624146 12.0293C-0.127807 12.6768 -0.211792 13.8076 0.434693 14.5625 1.07922 15.3174 2.21594 15.3994 2.96399 14.7529L4.59094 13.3545 14.6144 4.7334 24.6378
+				13.3545 26.2609 14.7529C26.6027 15.043 27.0206 15.1885 27.4308 15.1885 27.9406 15.1885 28.4406 14.9736 28.7941 14.5625 29.4386 13.8076 29.3566 12.6768 28.6046 12.0293Z">
+			<s:fill>
+				<s:SolidColor color="#D61C32" color.down="#FFFFFF" color.over="#FFFFFF" color.selectedStates="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+		<s:Rect x="4.69043" y="1.91602" width="4.28906" height="6.28711">
+			<s:fill>
+				<s:SolidColor color="#D61C32" color.down="#FFFFFF" color.over="#FFFFFF" color.selectedStates="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+		<s:Path x="4.59082" y="6.38379" winding="nonZero" data="M10.0234 0 0 8.61719 0 21.5684 6.45898 21.5684 6.45898 12.5205 13.5859 12.5205 13.5859 21.5684 20.0469 21.5684 20.0469 8.61719 10.0234 0Z">
+			<s:fill>
+				<s:SolidColor color="#D61C32" color.down="#FFFFFF" color.over="#FFFFFF" color.selectedStates="#FFFFFF"/>
+			</s:fill>
+		</s:Path>
+	</s:Group>
+
+	<!-- layer 8: text -->
+    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+    <s:Label id="labelDisplay"
+             textAlign="center"
+             verticalAlign="middle"
+             maxDisplayedLines="1"
+			 horizontalCenter="15" verticalCenter="3" fontSize="21"
+			 color.up="0x000000" color.selectedStates="0xFFFFFF" color.over="0xFFFFFF" color.down="0xFFFFFF">
+    </s:Label>
+    
+</s:SparkButtonSkin>

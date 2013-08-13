@@ -270,6 +270,7 @@ progresscomponents|ProgressScoreView {
 
 progresscomponents|ProgressScoreView s|DataGrid#scoreDetailsDataGrid {
 	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressScoreDataGridSkin");
+	borderAlpha: 0;
 }
 
 progressui|ProgressCourseButtonBar {

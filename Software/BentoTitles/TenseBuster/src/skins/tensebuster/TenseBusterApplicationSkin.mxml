@@ -133,9 +133,11 @@
 			</s:fill>
 		</s:Rect-->
 		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/TB-footer.png')" />
-		<!--<login1:ClarityEnglishLogo left="23" top="8" height="20" width="100" />-->
-		<s:Label id="copyrightLabel" text="Software, Design, Navigation © Clarity Language Consultants Ltd, 2013. All rights reserved." color="#FFFFFF" paddingTop="18" right="20" fontSize="12" />
-		<s:Label id="versionLabel" text="v{hostComponent.versionNumber}" color="#FFFFFF" paddingTop="18" right="530" fontSize="12" />
+		<s:HGroup right="10" top="12">
+			<s:Label id="versionLabel" text="v{hostComponent.versionNumber}" color="#FFFFFF" fontSize="12" paddingTop="6" />
+			<s:Label id="copyrightLabel" text="Software, Design, Navigation © Clarity Language Consultants Ltd, 1993-2013. All rights reserved." color="#FFFFFF" fontSize="12" paddingTop="6" />
+			<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/clarityenglishLogo.png')" />
+		</s:HGroup>		
 	</s:Group>
 	
 	<s:Scroller top="560" bottom="30" horizontalCenter="0" width="720" visible="{hostComponent.currentState == 'credits'}">

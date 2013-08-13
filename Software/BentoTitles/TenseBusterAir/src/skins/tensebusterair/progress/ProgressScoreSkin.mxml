@@ -140,6 +140,10 @@
 		]]>
 	</fx:Script>
 	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="8" blurY="8" alpha="0.3" distance="1" angle="180" knockout="false" />
+	</fx:Declarations>
+	
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
@@ -158,8 +162,7 @@
 	</s:Rect>
 	
 	<ui:ProgressBarRenderer id="progressBar" top="90" left="50" right="50" />
-	
-	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="48" right="44" top="147" bottom="0" name="elementary">
+	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="48" right="44" top="147" bottom="10" name="elementary">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" width="240"/>

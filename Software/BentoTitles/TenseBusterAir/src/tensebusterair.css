@@ -7,6 +7,9 @@
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progresstb "com.clarityenglish.tensebuster.view.progress.*";
+@namespace home "com.clarityenglish.tensebuster.view.home.*";
+@namespace unit "com.clarityenglish.tensebuster.view.unit.*";
+@namespace zone "com.clarityenglish.tensebuster.view.zone.*";
 
 global {
 	interactionMode: touch;
@@ -33,14 +36,14 @@ tensebuster|TenseBusterApplication {
 	skinClass: ClassReference("skins.tensebusterair.TenseBusterApplicationSkin");
 }
 
-tensebuster|TenseBusterApplication s|ActionBar {
+/*tensebuster|TenseBusterApplication s|ActionBar {
 	chromeColor: #067EBC;
 	defaultButtonAppearance: beveled;
 }
 
-tensebuster|TenseBusterApplication s|ActionBar {
+tensebuster|TenseBusterApplication s|ActionBar {*/
 	/* #484 */
-	skinClass: ClassReference("skins.air.PaddableActionBarSkin");
+	/*skinClass: ClassReference("skins.air.PaddableActionBarSkin");
 	buttonSpacing: 5;
 }
 
@@ -48,7 +51,7 @@ tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s
 tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#backButton,
 tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s|Button#forwardButton {
 	skinClass: ClassReference("spark.skins.mobile.BeveledActionButtonSkin");
-}
+}*/
 
 /* No network styles (#472) */
 /*nonetwork|NoNetworkView {
@@ -66,19 +69,33 @@ title|TitleView {
 }
 
 title|TitleView s|TabbedViewNavigator {
-	skinClass: ClassReference("spark.skins.mobile.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+	width: 1004;
+	skinClass: ClassReference("com.clarityenglish.tensebusterair.title.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
 }
 
 title|TitleView s|ViewNavigator {
-	skinClass: ClassReference("spark.skins.mobile.ViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+	skinClass: ClassReference("com.clarityenglish.tensebusterair.title.ViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
 }
 
 title|TitleView s|TabbedViewNavigator #tabBar {
-	chromeColor: #262526;
+	/*chromeColor: #262526;
 	color: #DDDDDD;
 	fontSize: 10;
 	fontWeight: normal;
-	iconPlacement: top;
+	iconPlacement: top;*/
+	skinClass: ClassReference("skins.tensebusterair.title.NavigatorTabBarSkin");
+}
+
+home|HomeView {
+	skinClass: ClassReference("skins.tensebusterair.HomeSkin");
+}
+
+unit|UnitView {
+	skinClass: ClassReference("skins.tensebusterair.UnitSkin");
+}
+
+zone|ZoneView {
+	skinClass: ClassReference("skins.tensebusterair.ZoneSkin");
 }
 
 exercise|ExerciseView {
@@ -89,6 +106,10 @@ progresstb|ProgressView {
 	skinClass: ClassReference("skins.tensebusterair.ProgressSkin");
 }
 
-progresscomponents|ProgressScoreView {
-	skinClass: ClassReference("skins.tensebusterair.progress.ProgressScoreSkin");
+progresstb|ProgressCertificateView {
+	skinClasss: ClassReference("skins.tensebusterair.progress.ProgressCertificateSkin");
 }
+
+/*progresscomponents|ProgressScoreView {
+	skinClass: ClassReference("skins.tensebusterair.progress.ProgressScoreSkin");
+}*/

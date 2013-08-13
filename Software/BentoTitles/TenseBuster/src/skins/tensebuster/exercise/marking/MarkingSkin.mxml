@@ -49,9 +49,9 @@
 			<s:VGroup paddingTop="40">
 				<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.correctPercent}% in this exercise." fontSize="12" />
 				<s:Spacer height="6"/>
-				<s:Label text="Correct: {hostComponent.exerciseMark.correctCount}" color="#2CA874" />
-				<s:Label text="Incorrect: {hostComponent.exerciseMark.incorrectCount}" color="#E61E1E" />
-				<s:Label text="Missed: {hostComponent.exerciseMark.missedCount}" color="#0066FF"/>
+				<s:Label text="Correct: {hostComponent.exerciseMark.correctCount}" color="#2CA874" fontSize="12" />
+				<s:Label text="Incorrect: {hostComponent.exerciseMark.incorrectCount}" color="#E61E1E" fontSize="12" />
+				<s:Label text="Missed: {hostComponent.exerciseMark.missedCount}" color="#0066FF" fontSize="12" />
 			</s:VGroup>		
 		</s:HGroup>		
 	</s:Group>

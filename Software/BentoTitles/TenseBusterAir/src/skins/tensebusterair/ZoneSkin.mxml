@@ -18,22 +18,22 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/>	
-	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
+	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/-->	
+	<!--s:Group width="100%" height="100%" filters="{[dropShadowFilter]}"-->
 		<!--rectangle panel-->
-		<s:Rect left="29" right="29" bottom="15" top="70">
+		<!--s:Rect left="29" right="29" bottom="15" top="70">
 			<s:fill>
 				<s:SolidColor color="0xFFFFFF"/>
 			</s:fill>
-		</s:Rect>
+		</s:Rect-->
 		<!--top panel-->	
-		<exercise:topPanel top="40" right="28" left="28" />
-		<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/unit/unitBg.png')" bottom="25" left="28" /-->
-	</s:Group>
+		<!--exercise:topPanel top="40" right="28" left="28" />
+		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/unit/unitBg.png')" bottom="25" left="28" />
+	</s:Group-->
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/zone/zoneBg.png')" bottom="25" left="28" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/zone/zoneBg.png')" horizontalCenter="0" bottom="0" filters="{[dropShadowFilter]}" />
 	
-	<s:HGroup verticalAlign="middle" top="60" left="50">
+	<s:HGroup verticalAlign="middle" verticalCenter="-220" left="60">
 		<s:SWFLoader id="courseThumbnail" source="{hostComponent.courseIcon}" />
 		<s:Label text="{hostComponent.courseCaption}" color="0x333333" fontSize="19" paddingTop="2" />
 		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
@@ -41,12 +41,12 @@
 		<s:Label text="{hostComponent.unitCaption}" color="0x333333" fontSize="14" paddingTop="6" />
 	</s:HGroup>
 	
-	<s:Label id="exInstructionLabel" top="110" left="90" />
-	<s:Button id="backToUnitButton" label="Back to Unit" right="60" top="58" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
+	<s:Label id="exInstructionLabel" verticalCenter="-180" left="100" />
+	<s:Button id="backToUnitButton" label="Back to Unit" verticalCenter="-230" horizontalCenter="380" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 	
-	<s:Scroller top="140" bottom="60" left="85">
+	<s:Scroller top="220" bottom="20" horizontalCenter="-260">
 		<s:HGroup>
-			<s:SWFLoader id="numberIcon"/>			
+			<s:SWFLoader id="numberIcon"/>		
 			<s:List id="exerciseList" width="270" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">
 				<s:itemRenderer>
 					<fx:Component>
@@ -126,7 +126,7 @@
 						</s:ItemRenderer>
 					</fx:Component>
 				</s:itemRenderer>
-			</s:List>
+			</s:List>	
 		</s:HGroup>
-	</s:Scroller>			
+	</s:Scroller>		
 </s:Skin>
