@@ -19,7 +19,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		// gh#348
 		function enableFeedbackAudio():void;
 		// gh#388
-		function getFeedbackDisplay():Signal;
+		// gh#413
+		function getQuestionFeedback():Signal;
 	}
 	
 }

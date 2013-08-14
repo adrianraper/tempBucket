@@ -87,7 +87,8 @@
 		public static const FEEDBACK_SHOW:String = "bb/feedback_show";
 		
 		// gh#388
-		public static const FEEDBACK_REMINDER:String = "bb/feedback_reminder";
+		// gh#413
+		public static const GOT_QUESTION_FEEDBACK:String = "bb/got_question_feedback";
 		public static const FEEDBACK_REMINDER_SHOW:String = "bb/feedback_reminder_show";
 		
 		// gh#90 - set items (which can be anything) dirty or clean

@@ -374,7 +374,10 @@ package com.clarityenglish.bento.model {
 			//	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 			
 			microphone = Microphone.getMicrophone(idx);
-			microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
+			
+			// gh#530
+			if (microphone)
+				microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
 			// v4.0.1.2 Error checking
 			if (microphone == null) {
 				//trace("microphone = null");

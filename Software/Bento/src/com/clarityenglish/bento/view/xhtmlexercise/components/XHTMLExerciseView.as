@@ -100,8 +100,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		[Bindable]
 		public var atLeastOneSelectedAnswerHasFeedback:Boolean;
 		
-		public var feedbackDisplay:Signal = new Signal(Boolean);
-		
+		// gh#413
+		public var gotQuestionFeedback:Signal = new Signal(Boolean);
+				
 		public function XHTMLExerciseView() {
 			super();
 			
@@ -118,8 +119,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		}
 		
 		// gh#388
-		public function getFeedbackDisplay():Signal {
-			return feedbackDisplay;
+		// gh#413
+		public function getQuestionFeedback():Signal {
+			return gotQuestionFeedback;
 		}
 		/**
 		 * Search through all the sections for the given node
@@ -309,7 +311,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				// gh#388
 				if (isShowAnswers && answer.feedback) {	
 					atLeastOneSelectedAnswerHasFeedback = true;
-					feedbackDisplay.dispatch(atLeastOneSelectedAnswerHasFeedback);
+					// gh#413 I need to get this into exerciseView
+					//gotQuestionFeedback.dispatch(atLeastOneSelectedAnswerHasFeedback);
 				}
 				
 				TLFUtil.markFlowElementFormatChanged(answerElement);

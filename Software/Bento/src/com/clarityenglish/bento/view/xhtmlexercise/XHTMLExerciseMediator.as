@@ -42,7 +42,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			// gh#338
 			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true);
 			// gh#388
-			(view.getFeedbackDisplay() as Signal).add(onFeedbackDisplay);
+			// gh#413
+			(view.getQuestionFeedback() as Signal).add(onGotQuestionFeedback);
 		}
 		
 		public override function onRemove():void {
@@ -171,8 +172,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		// gh#388
-		protected function onFeedbackDisplay(value:Boolean):void {
-			sendNotification(BBNotifications.FEEDBACK_REMINDER, value);
+		// gh#413
+		protected function onGotQuestionFeedback(value:Boolean):void {
+			sendNotification(BBNotifications.GOT_QUESTION_FEEDBACK, value);
 		}
 	}
 	

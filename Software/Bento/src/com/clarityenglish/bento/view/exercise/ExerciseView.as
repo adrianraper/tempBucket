@@ -68,7 +68,9 @@ package com.clarityenglish.bento.view.exercise {
 		private var _courseCaption:String;
 		
 		// gh#388
-		private var _isFeedbackReminder:Boolean;
+		// gh#413
+		private var _hasExerciseFeedback:Boolean;
+		private var _hasQuestionFeedback:Boolean;
 		
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
@@ -86,12 +88,20 @@ package com.clarityenglish.bento.view.exercise {
 		}
 		
 		[Bindable]
-		public function get isFeedbackReminder():Boolean {
-			return _isFeedbackReminder;
+		public function get hasExerciseFeedback():Boolean {
+			return _hasExerciseFeedback;
 		}
 		
-		public function set isFeedbackReminder(value:Boolean):void {
-			_isFeedbackReminder = value;
+		public function set hasExerciseFeedback(value:Boolean):void {
+			_hasExerciseFeedback = value;
+		}
+		[Bindable]
+		public function get hasQuestionFeedback():Boolean {
+			return _hasQuestionFeedback;
+		}
+		
+		public function set hasQuestionFeedback(value:Boolean):void {
+			_hasQuestionFeedback = value;
 		}
 		
 		public var startAgain:Signal = new Signal();
@@ -149,11 +159,11 @@ package com.clarityenglish.bento.view.exercise {
 					break;
 				case feedbackButton:
 					feedbackButton.addEventListener(MouseEvent.CLICK, function():void {
-						if (isFeedbackReminder) {
-							// #gh413
-							showFeedbackReminder.dispatch(copyProvider.getCopyForId("feedbackClickAnswersMsg"));
-						} else {
+						// gh#413
+						if (hasExerciseFeedback) {
 							showFeedback.dispatch();
+						} else {
+							showFeedbackReminder.dispatch(copyProvider.getCopyForId("feedbackClickAnswersMsg"));
 						}} );
 					feedbackButton.label = copyProvider.getCopyForId("exerciseFeedbackButton");
 					break;

@@ -51,6 +51,7 @@
 		<components:XHTMLRichText id="headerRichText" top="13" left="0" bottom="13" width="100%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
 		<!--s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" /-->
 		
+		<!-- gh#388 -->
 		<!--s:Group right="0" width="27%" height="100%" visible="{hostComponent.atLeastOneSelectedAnswerHasFeedback}">
 			<s:Rect width="100%" height="100%">
 				<s:fill>

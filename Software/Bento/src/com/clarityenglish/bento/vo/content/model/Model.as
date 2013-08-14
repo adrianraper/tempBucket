@@ -64,6 +64,20 @@ package com.clarityenglish.bento.vo.content.model {
 			return _exerciseFeedback;
 		}
 		
+		// gh#388
+		public function hasQuestionFeedback():Boolean {
+			for each (var question:Question in _questions) {
+				if (question.unmatchedFeedbackSource)
+					return true;
+				
+				for each (var answer:Answer in question.answers) {
+					if (answer.feedback)
+						return true;
+				}
+			}
+			return false;
+		}
+		
 		/**
 		 * Given a node in the body of the exercise, this returns all the possible Answer nodes that could match it.  This only really applies for
 		 * <input> and <select> nodes, and returns all the Answers in a matching Question.

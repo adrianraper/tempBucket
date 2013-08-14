@@ -84,7 +84,7 @@
 				BBNotifications.MARKING_SHOWN,
 				BBNotifications.EXERCISE_PRINTED,
 				BBNotifications.EXERCISE_TRY_AGAIN,
-				BBNotifications.FEEDBACK_REMINDER,
+				BBNotifications.GOT_QUESTION_FEEDBACK,
 			]);
 		}
 		
@@ -130,8 +130,9 @@
 					view.isMarked = false;
 					configureButtonVisibility(note.getBody() as Exercise);
 					break;
-				case BBNotifications.FEEDBACK_REMINDER:
-					feedbackReminderVisibility(note.getBody() as Boolean);
+				// gh#413
+				case BBNotifications.GOT_QUESTION_FEEDBACK:
+					feedbackButtonVisibility(note.getBody() as Boolean);
 					break;
 			}
 		}
@@ -140,14 +141,24 @@
 			if (view.markingButton) view.markingButton.visible = view.markingButton.includeInLayout = !(getExerciseProxy(exercise).exerciseMarked) && exercise.hasQuestions();
 			
 			// If there is exercise feedback then show the exercise feedback button
-			if (view.feedbackButton) view.feedbackButton.visible = view.feedbackButton.includeInLayout = getExerciseProxy(exercise).hasExerciseFeedback();	
+			// gh#413
+			if (view.feedbackButton){
+				if (getExerciseProxy(exercise).hasExerciseFeedback())
+					view.hasExerciseFeedback = true;
+				
+				if (getExerciseProxy(exercise).hasQuestionFeedback())
+					view.hasQuestionFeedback = true;
+				
+				if (view.hasExerciseFeedback || view.hasQuestionFeedback)
+					view.feedbackButton.visible = view.feedbackButton.includeInLayout = true; 	
+			}
 		}
 		
 		// gh#388
-		private function feedbackReminderVisibility(value:Boolean):void {
+		// gh#413
+		private function feedbackButtonVisibility(value:Boolean):void {
 			if (view.feedbackButton) {
 				view.feedbackButton.visible = view.feedbackButton.includeInLayout = value;
-				view.isFeedbackReminder = true;
 			}
 		}
 		

@@ -531,6 +531,11 @@ package com.clarityenglish.bento.model {
 			}
 		}
 		
+		// gh#388
+		public function hasQuestionFeedback():Boolean {
+			return exercise.model.hasQuestionFeedback();
+		}
+		
 		public function hasExerciseFeedback():Boolean {
 			return (getExerciseFeedback() != null);
 		}
