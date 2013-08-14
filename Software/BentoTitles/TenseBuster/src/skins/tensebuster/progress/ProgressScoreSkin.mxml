@@ -158,9 +158,9 @@
 		</s:fill>
 	</s:Rect>
 	
-	<ui:ProgressBarRenderer id="progressBar" top="90" left="50" right="50" />
+	<ui:ProgressBarRenderer id="progressBar" top="80" left="50" right="50" />
 	
-	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="48" right="44" top="147" bottom="0" name="elementary">
+	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="48" right="44" top="137" bottom="0" name="elementary">
 		<s:columns>
 			<s:ArrayList>
 				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" width="240"/>
@@ -171,5 +171,5 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-	<s:Button id="ScoreEmptyScoreLabelButton" fontSize="12" fontWeight="normal" horizontalCenter="0" verticalCenter="0" />
+	<s:Button id="ScoreEmptyScoreLabelButton" fontSize="12" fontWeight="normal" horizontalCenter="0" verticalCenter="40" />
 </s:Skin>

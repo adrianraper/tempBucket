@@ -221,7 +221,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					textFlowDamageAccumulator.damageTextFlow(getFlowElement(otherSource).getTextFlow());
 				}
 			}
-
+			
+			trace("is answer map empty: "+answerMap.isEmpty());
 			for each (var key:Object in answerMap.keys) {
 				var answer:Answer = answerMap.get(key);
 				var answerNode:XML = key as XML;
@@ -229,7 +230,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				
 				// Add the selected class
 				XHTML.addClass(answerNode, Answer.SELECTED);
-				
+				trace("test you are here");
 				// Refresh the element and update the screen
 				// TODO: This is crazy inefficient!  Instead build up the text flows that have changed and do them once each at the end.
 				TLFUtil.markFlowElementFormatChanged(answerElement);

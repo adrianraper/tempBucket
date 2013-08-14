@@ -26,9 +26,9 @@
 		</s:fill>
 	</s:Rect>	
 	
-	<s:VGroup id="oopsVGroup" left="200" top="160" bottom="0" visible="false">
+	<s:VGroup id="oopsVGroup" horizontalCenter="0" top="160" bottom="0" visible="false">
 		<s:Label id="oopsLabel" paddingLeft="-40" fontSize="36" fontFamily="Sean" />
-		<s:RichEditableText id="notCompleteRichEditableText" width="100%" paddingTop="25" fontSize="16" lineHeight="30" horizontalCenter="0"/>
+		<s:RichEditableText id="notCompleteRichEditableText" width="100%" paddingTop="25" fontSize="13" lineHeight="30" horizontalCenter="0"/>
 	</s:VGroup>
 	
 	<s:Group id="printGroup" right="0" top="60">

@@ -274,17 +274,21 @@ package com.clarityenglish.bento.model {
 				// Get the answer map for this question
 				var answerMap:AnswerMap = getSelectedAnswerMap(question);
 				
-				var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
+				// gh#526: comment out
+				//var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
+				
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
 				if (question.isMutuallyExclusive()) answerMap.clear();
 				
-				if (question.isSelectable()) {
+				// gh#526: comment out
+				/*if (question.isSelectable()) {
 					if (!didKeyAlreadyExist) answerMap.put(key, answer);
 				} else {
 					// Add the answer
 					answerMap.put(key, answer);
-				}
+				}*/
+				answerMap.put(key, answer);
 				
 				// gh#347
 				if (question.type == Question.TARGET_SPOTTING_QUESTION && exercise.model.getSettingParam("delayedMarking") == null) {

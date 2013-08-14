@@ -37,7 +37,7 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:Label id="analyseInstructionLabel" top="80" left="50" fontSize="15" />
+	<s:Label id="analyseInstructionLabel" top="80" left="50" fontSize="13" />
 
 	<ui1:StackedCircleWedgeChart id="stackedChart" top="120" height="35" right="40" />
 	<s:Path right="100" top="120" winding="nonZero" data="M381.42 0 0 0C0 105.326 85.3853 190.71 190.71 190.71 296.037 190.71 381.42 105.326 381.42 0Z">
@@ -53,9 +53,6 @@
 				<s:Label id="minLabel" fontSize="14" paddingTop="4" />
 			</s:HGroup>			
 		</s:VGroup>
-		<s:VGroup horizontalAlign="center" horizontalCenter="0" gap="10">
-			<s:Label id="emptyCircleWedgeCourseLabel" fontSize="15" visible="false" />		
-		</s:VGroup>
 		<s:VGroup id="totalTimeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
 			<s:Label id="totalTimeLabel" fontSize="14"/>
 			<s:HGroup>
@@ -63,7 +60,7 @@
 				<s:Label id="totalTimeMinLabel" fontSize="14" paddingTop="4" />
 			</s:HGroup>			
 		</s:VGroup>
-		<s:Button id="circleWedgeInstructionLabel" top="220" horizontalCenter="0" fontSize="12" fontWeight="normal" />
+		<s:Button id="circleWedgeInstructionLabel" top="220" horizontalCenter="0" fontSize="13" fontWeight="normal" />
 	</s:Group>	
 	
 	<s:Scroller left="50" top="110" bottom="60">
@@ -146,8 +143,8 @@
 									}
 								]]>
 							</fx:Script>
-							<s:Label text="{data.@caption}" fontSize="12" top="8" fontWeight="bold" />
-							<s:HGroup horizontalAlign="right" left="250" right="5" top="5" width="55">
+							<s:Label text="{data.@caption}" fontSize="13" top="8" fontWeight="bold" />
+							<s:HGroup horizontalAlign="right" left="240" right="5" top="5" width="55">
 								<s:Label id="durationLable" text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" color="{getTimeColour(data)}"  fontSize="26" fontWeight="bold"  />
 								<s:Label id="minLabel" fontSize="14" text="{copyProvider.getCopyForId('minLabel')}" color="{getTimeColour(data)}" paddingTop="6"/>
 							</s:HGroup>
@@ -164,9 +161,9 @@
 				</s:Rect>
 				<s:Group top="16">
 					<s:HGroup paddingTop="16">
-						<s:Label id="totalLabel" fontSize="14" fontWeight="bold" />
+						<s:Label id="totalLabel" fontSize="13" fontWeight="bold" />
 					</s:HGroup>
-					<s:HGroup left="255" paddingTop="16" horizontalAlign="right" width="50">
+					<s:HGroup left="240" paddingTop="16" horizontalAlign="right" right="5" width="55">
 						<s:Label id="totalDurationLabel" fontSize="26" fontWeight="bold" paddingTop="-5" />
 						<s:Label id="totalMinLabel" fontSize="14" paddingTop="2" />
 					</s:HGroup>

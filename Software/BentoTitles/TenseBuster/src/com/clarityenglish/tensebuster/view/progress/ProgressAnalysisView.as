@@ -72,9 +72,6 @@ package com.clarityenglish.tensebuster.view.progress {
 		public var boundaryLineSolidColor:SolidColor;
 		
 		[SkinPart]
-		public var emptyCircleWedgeCourseLabel:Label;
-		
-		[SkinPart]
 		public var totalTimeLabel:Label;
 		
 		[SkinPart]
@@ -156,7 +153,6 @@ package com.clarityenglish.tensebuster.view.progress {
 				if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
 			}
 			
-			emptyCircleWedgeCourseLabel.text = copyProvider.getCopyForId("emptyCircleWedgeCourseLabel");
 			totalTimeLabel.text = copyProvider.getCopyForId("totalTimeLabel");
 			totalTimeMinLabel.text = copyProvider.getCopyForId("minLabel");
 			circleWedgeInstructionLabel.label = copyProvider.getCopyForId("circleWedgeInstructionLabel");
@@ -191,17 +187,9 @@ package com.clarityenglish.tensebuster.view.progress {
 			totalLabel.text = copyProvider.getCopyForId("totalLabel");
 			totalMinLabel.text = copyProvider.getCopyForId("minLabel");
 			
-			trace("duraton: "+duration);
-			if (duration == 0) {
-				emptyCircleWedgeCourseLabel.visible = true;
-				totalTimeWedgeVGroup.visible = false;
-			} else {
-				emptyCircleWedgeCourseLabel.visible = false;
-				totalTimeWedgeVGroup.visible = true;
-				totalTimeNumberLabel.text = String(duration);
-				totalTimeNumberLabel.setStyle("color", getStyle(courseCaption.charAt(0) + "Color"));
-				totalTimeMinLabel.setStyle("color", getStyle(courseCaption.charAt(0) + "Color"));
-			}
+			totalTimeNumberLabel.text = String(duration);
+			totalTimeNumberLabel.setStyle("color", getStyle(courseCaption.charAt(0) + "Color"));
+			totalTimeMinLabel.setStyle("color", getStyle(courseCaption.charAt(0) + "Color"));			
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -255,16 +243,12 @@ package com.clarityenglish.tensebuster.view.progress {
 		}
 		
 		protected function onStackedBarMouseOut(event:StackedBarMouseOutEvent):void {
-			if (emptyCircleWedgeCourseLabel.visible == false) {
 				timeWedgeVGroup.visible = false;
 				totalTimeWedgeVGroup.visible = true;
-			}					
 		}
 		
 		protected function onMouseOut(event:MouseEvent):void {
-			if (emptyCircleWedgeCourseLabel.visible == false) {
 				totalTimeWedgeVGroup.visible = true;
-			}			
 		}
 	}
 }

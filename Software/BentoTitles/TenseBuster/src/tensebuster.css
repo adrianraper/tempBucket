@@ -19,6 +19,7 @@
 @namespace credits "com.clarityenglish.bento.view.credits.*";
 @namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
+@namespace view "com.clarityenglish.bento.view.*";
 
 global {
 	EColor : #EC1C32;
@@ -351,6 +352,10 @@ mx|LegendItem
 {
 	font-weight:bold;     
 	textFieldClass: ClassReference("mx.core.UITextField");
+}
+
+view|DynamicView s|Group s|VScrollBar {
+	skinClass: ClassReference("skins.tensebuster.scroller.VScrollerBarSkin");
 }
 
 .axisTitleStyle {

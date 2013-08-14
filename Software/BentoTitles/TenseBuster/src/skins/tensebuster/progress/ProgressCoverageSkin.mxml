@@ -11,6 +11,8 @@
 	<fx:Script>
 		<![CDATA[			
 			import mx.collections.XMLListCollection;
+			
+			import org.davekeen.util.StringUtils;
 			private function getItemRenderer(item:Object):ClassFactory {
 				return item.@caption;
 			}
@@ -19,7 +21,9 @@
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
 				
 				progressBar.trackColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor1');
-				progressBar.fillColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor2'); 
+				progressBar.fillColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor2');
+				
+				completeSolidColor.color = getStyle(StringUtils.capitalize(hostComponent.courseClass.charAt(0)) + 'Color');
 			}
 		]]>
 	</fx:Script>
@@ -41,12 +45,24 @@
 		</s:fill>
 	</s:Rect>
     
-	<ui:ProgressBarRenderer id="progressBar" top="90" left="50" right="50" />
-	
-	<s:VGroup top="140" left="50" gap="2">
-		<s:Label id="coverageInstructionLabel1" fontSize="15" />
-		<s:Label id="coverageInstructionLabel2" fontSize="15" />
-	</s:VGroup>	
+	<ui:ProgressBarRenderer id="progressBar" top="80" left="50" right="50" />
+
+	<s:Label id="coverageInstructionLabel" top="130" left="50" fontSize="13" />
+	<s:HGroup left="250" top="165">
+		<s:Rect width="10" height="10">
+			<s:fill>
+				<s:SolidColor id="completeSolidColor" />
+			</s:fill>
+		</s:Rect>
+		<s:Label id="completeLabel" fontSize="13"/>
+		<s:Spacer width="10"/>
+		<s:Rect width="10" height="10">
+			<s:fill>
+				<s:SolidColor color="#B4B4B5" />
+			</s:fill>
+		</s:Rect>
+		<s:Label id="notCompleteLabel" fontSize="13"/>
+	</s:HGroup>
 			 
 	<s:Scroller left="50" right="0" top="174" bottom="0">
 		<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">

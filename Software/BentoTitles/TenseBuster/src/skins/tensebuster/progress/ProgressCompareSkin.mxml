@@ -105,7 +105,7 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:Label id="compareInstructionLabel" left="50" top="90" fontSize="15" />
+	<s:Label id="compareInstructionLabel" left="50" top="90" fontSize="13" />
 	
 	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
 	<mx:BarChart id="compareChart" left="30" right="60" top="130" bottom="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="220">

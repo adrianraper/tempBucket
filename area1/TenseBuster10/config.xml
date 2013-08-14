@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/TenseBuster in localhost</id>
-	<developer>DKwebx</developer>
+	<developer>DKweb</developer>
 	<dbHost>2</dbHost>
 	<productCode>55</productCode>
 	<useCacheBuster>true</useCacheBuster>
