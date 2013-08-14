@@ -43,9 +43,12 @@
     
 	<ui:ProgressBarRenderer id="progressBar" top="90" left="50" right="50" />
 	
-	<s:Label id="coverageInstructionLabel" top="140" left="50" fontSize="15" fontWeight="bold" />
+	<s:VGroup top="140" left="50" gap="2">
+		<s:Label id="coverageInstructionLabel1" fontSize="15" />
+		<s:Label id="coverageInstructionLabel2" fontSize="15" />
+	</s:VGroup>	
 			 
-	<s:Scroller left="50" right="0" top="164" bottom="0">
+	<s:Scroller left="50" right="0" top="174" bottom="0">
 		<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">
 			<s:layout>
 				<s:VerticalLayout paddingTop="15" gap="16" />
@@ -134,7 +137,7 @@
 								
 							]]>
 						</fx:Script>
-						<s:Label text="{data.@caption}" fontSize="13" />
+						<s:Label text="{data.@caption}" fontSize="13" fontWeight="bold" />
 						<s:Group left="200">
 							<s:SWFLoader id="numberIcon10" visible="false"/>
 							<s:SWFLoader id="numberIcon11" visible="false"/>

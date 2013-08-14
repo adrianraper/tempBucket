@@ -163,7 +163,7 @@ package com.clarityenglish.bento.model {
 				}
 				for each (var transformDefinition:TransformDefinition in transformDefinitions)
 					transformDefinition.injectTransforms(href);
-				
+					
 				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) gh#84
 				new RemoteDelegate("xhtmlLoad", [ href ]).execute().addResponder(new ResultResponder(
 					function(e:ResultEvent, data:AsyncToken):void {
@@ -174,6 +174,7 @@ package com.clarityenglish.bento.model {
 						// menu xml, but in fact perhaps we should throw BBNotifications.MENU_XHTML_NOT_LOADED for any menu.xml loading error?
 						var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 						var bentoError:BentoError = BentoError.create(e.fault);
+
 						switch (bentoError.errorNumber) {
 							case copyProxy.getCodeForId("errorTitleBlockedByHiddenContent"):
 							case copyProxy.getCodeForId("errorCourseDoesNotExist"):

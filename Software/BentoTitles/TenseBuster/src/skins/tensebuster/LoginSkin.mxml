@@ -43,7 +43,7 @@
 					</s:HGroup>					
 					<s:HGroup gap="10">
 						<s:Label id="loginPassword_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" paddingTop="5"/>
-						<s:TextInput id="passwordInput" displayAsPassword="true" width="169" height="21" fontSize="20" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+						<s:TextInput id="passwordInput" displayAsPassword="true" width="169" height="21" fontSize="12" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
 					</s:HGroup>
 				</s:VGroup>				
 			</s:VGroup>

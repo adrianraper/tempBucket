@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/TenseBuster in localhost</id>
-	<developer>DKweb</developer>
+	<developer>DK</developer>
 	<dbHost>2</dbHost>
 	<productCode>55</productCode>
 	<loginOption>128</loginOption>
@@ -26,15 +26,15 @@
 	<!--contentPath>http://192.168.8.81/Content/</contentPath>
 	<remoteDomain>http://192.168.8.81/</remoteDomain>
 	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway-->
-	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
+	<contentPath>http://dock.contentbench/Content/</contentPath>
 	
-	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
-	<remoteGateway>http://www.clarityenglish.com/SoftwareTablet/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>TenseBusterService</remoteService>
 	
-	<assetFolder>SoftwareTablet/ResultsManager/web/resources/assets/</assetFolder>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	
-	<rememberLogin>true</rememberLogin>
+	<rememberLogin>false</rememberLogin>
 	<disableAutoTimeout>true</disableAutoTimeout>
 	
 	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>

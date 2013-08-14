@@ -69,7 +69,7 @@ title|TitleView {
 }
 
 title|TitleView s|TabbedViewNavigator {
-	width: 1004;
+	width: 784;
 	skinClass: ClassReference("com.clarityenglish.tensebusterair.title.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
 }
 
@@ -84,6 +84,10 @@ title|TitleView s|TabbedViewNavigator #tabBar {
 	fontWeight: normal;
 	iconPlacement: top;*/
 	skinClass: ClassReference("skins.tensebusterair.title.NavigatorTabBarSkin");
+}
+
+title|TitleView s|Button#logoutButton {
+	skinClass: ClassReference("skins.tensebusterair.title.LogOutButtonSkin");
 }
 
 home|HomeView {

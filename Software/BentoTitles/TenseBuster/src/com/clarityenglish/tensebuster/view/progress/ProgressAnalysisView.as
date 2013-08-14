@@ -21,6 +21,7 @@ package com.clarityenglish.tensebuster.view.progress {
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Button;
 	import spark.components.DataGroup;
 	import spark.components.Group;
 	import spark.components.Label;
@@ -53,7 +54,7 @@ package com.clarityenglish.tensebuster.view.progress {
 		public var analyseInstructionLabel:Label;
 		
 		[SkinPart]
-		public var circleWedgeInstructionLabel:Label;
+		public var circleWedgeInstructionLabel:Button;
 		
 		[SkinPart]
 		public var minLabel:Label;
@@ -158,7 +159,7 @@ package com.clarityenglish.tensebuster.view.progress {
 			emptyCircleWedgeCourseLabel.text = copyProvider.getCopyForId("emptyCircleWedgeCourseLabel");
 			totalTimeLabel.text = copyProvider.getCopyForId("totalTimeLabel");
 			totalTimeMinLabel.text = copyProvider.getCopyForId("minLabel");
-			circleWedgeInstructionLabel.text = copyProvider.getCopyForId("circleWedgeInstructionLabel");
+			circleWedgeInstructionLabel.label = copyProvider.getCopyForId("circleWedgeInstructionLabel");
 		}
 		
 		protected override function commitProperties():void {

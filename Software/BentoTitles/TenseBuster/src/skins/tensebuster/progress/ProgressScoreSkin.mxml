@@ -171,5 +171,5 @@
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-
+	<s:Button id="ScoreEmptyScoreLabelButton" fontSize="12" fontWeight="normal" horizontalCenter="0" verticalCenter="0" />
 </s:Skin>

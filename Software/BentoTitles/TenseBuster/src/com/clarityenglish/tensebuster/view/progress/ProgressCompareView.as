@@ -22,6 +22,7 @@ package com.clarityenglish.tensebuster.view.progress
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Button;
 	import spark.components.Label;
 	import spark.events.IndexChangeEvent;
 	
@@ -81,10 +82,14 @@ package com.clarityenglish.tensebuster.view.progress
 		[SkinPart]
 		public var everyonelegendLabel:Label;
 		
+		[SkinPart]
+		public var compareEmptyScoreLabel:Button;
+		
 		private var _everyoneCourseSummaries:Object;
 		private var _everyoneCourseSummariesChanged:Boolean;
 		private var _courseClass:String;
 		private var _courseChanged:Boolean;
+		private var isNoData:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
 		
@@ -120,6 +125,7 @@ package com.clarityenglish.tensebuster.view.progress
 			compareInstructionLabel.text = copyProvider.getCopyForId("compareInstructionLabel");
 			mylegendLabel.text = copyProvider.getCopyForId("mylegendLabel");
 			everyonelegendLabel.text = copyProvider.getCopyForId("everyonelegendLabel");
+			compareEmptyScoreLabel.label = copyProvider.getCopyForId("compareEmptyScoreLabel");
 		}
 		
 		public function set everyoneCourseSummaries(value:Object):void {
@@ -135,26 +141,37 @@ package com.clarityenglish.tensebuster.view.progress
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state
 				if (progressCourseButtonBar) progressCourseButtonBar.courseClass = courseClass;
-
-					// Merge the my and everyone summary into some XML and return a list collection of the course nodes
-					var xml:XML = <progress />;
-					for each (var untiNode:XML in menu.course.(@["class"] == courseClass).unit) {
-						var everyoneAverageScore:Number = (_everyoneCourseSummaries[untiNode.@id]) ? _everyoneCourseSummaries[untiNode.@id].AverageScore : 0;
-						xml.appendChild(<unit caption={untiNode.@caption} myAverageScore={untiNode.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
+				
+				// alice: Flag for empty score
+				isNoData = true;
+				
+				// Merge the my and everyone summary into some XML and return a list collection of the course nodes
+				var xml:XML = <progress />;
+				for each (var untiNode:XML in menu.course.(@["class"] == courseClass).unit) {
+					var everyoneAverageScore:Number = (_everyoneCourseSummaries[untiNode.@id]) ? _everyoneCourseSummaries[untiNode.@id].AverageScore : 0;
+					xml.appendChild(<unit caption={untiNode.@caption} myAverageScore={untiNode.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
+					if (untiNode.@averageScore > 0 || everyoneAverageScore > 0) {
+						isNoData = false;
 					}
-					trace("progress: "+xml);
-					verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.unit);
-					
-					myAveScoreColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
-					legendGradientColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
-					myAveScoreColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
-					legendGradientColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
-					everyOneAveScoreColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
-					everyonelegendGradientColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
-					everyOneAveScoreColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");
-					everyonelegendGradientColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");					
-					//drawLegend();
-
+				}
+				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.unit);
+				
+				if (isNoData) {
+					compareEmptyScoreLabel.visible = true;					
+				} else {
+					compareEmptyScoreLabel.visible = false;
+				}
+				
+				myAveScoreColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
+				legendGradientColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
+				myAveScoreColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
+				legendGradientColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
+				everyOneAveScoreColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
+				everyonelegendGradientColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
+				everyOneAveScoreColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");
+				everyonelegendGradientColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");					
+				//drawLegend();
+				
 				_courseChanged = false;
 			}
 		}

@@ -240,12 +240,20 @@ progresstb|ProgressAnalysisView {
 	skinClass: ClassReference("skins.tensebuster.progress.ProgressAnalysisSkin");
 }
 
+progresstb|ProgressAnalysisView s|Button#circleWedgeInstructionLabel {
+	skinClass: ClassReference("skins.tensebuster.progress.ui.GreyLabelButtonSkin");
+}
+
 progresstb|ProgressView s|ButtonBar#progressNavBar {
 	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressNavBarSkin");
 }
 
 progresstb|ProgressCompareView {
 	skinClass: ClassReference("skins.tensebuster.progress.ProgressCompareSkin");
+}
+
+progresstb|ProgressCompareView s|Button#compareEmptyScoreLabel {
+	skinClass: ClassReference("skins.tensebuster.progress.ui.GreyLabelButtonSkin");
 }
 
 progresstb|ProgressCertificateView {
@@ -271,6 +279,10 @@ progresscomponents|ProgressScoreView {
 progresscomponents|ProgressScoreView s|DataGrid#scoreDetailsDataGrid {
 	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressScoreDataGridSkin");
 	borderAlpha: 0;
+}
+
+progresscomponents|ProgressScoreView s|Button#ScoreEmptyScoreLabelButton {
+	skinClass: ClassReference("skins.tensebuster.progress.ui.GreyLabelButtonSkin");
 }
 
 progressui|ProgressCourseButtonBar {

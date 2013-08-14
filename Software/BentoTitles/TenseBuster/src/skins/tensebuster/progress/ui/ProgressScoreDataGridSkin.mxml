@@ -248,30 +248,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
     
     <fx:Script>
     <![CDATA[
-		import mx.core.mx_internal;
 		import org.davekeen.util.StringUtils;
-		import mx.collections.XMLListCollection;
-        static private const exclusions:Array = ["scroller", "background", "columnHeaderGroup"];
-        static private const contentFill:Array = ["bgFill"];
-        
-        /**
-         * @private
-         */
-        override public function get colorizeExclusions():Array {return exclusions;}
-        
-        /**
-         * @private
-         */
-        override public function get contentItems():Array {return contentFill};
-        
-        /**
-         * @private
-         */
-        override protected function initializationComplete():void
-        {
-            useChromeColor = true;
-            super.initializationComplete();
-        }
         
         /**
          * @private

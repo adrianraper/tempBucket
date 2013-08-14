@@ -269,7 +269,8 @@
 			<lit name="homeInstructionLabel">Please choose a level</lit>
 			<lit name="unitInstructionLabel">Please choose a unit</lit>
 			<lit name="exInstructionLabel">Please choose a exercise</lit>
-			<lit name="coverageInstructionLabel">Move your mouse cursor over each number below for the names of the exercises.</lit>
+			<lit name="coverageInstructionLabel1">Numbers in red below are the exercises you have done. The numbers in grey are the ones you have not done.</lit>
+			<lit name="coverageInstructionLabel2">Move your cursor over the numbers to see which exercises they are.</lit>
 			<lit name="analyseInstructionLabel">This shows how you spent your time on each unit in {course}:</lit>
 			<lit name="circleWedgeInstructionLabel">Units you have not done are not shown in the chart above.</lit>
 			<lit name="circleWedgeLabel">Total time you have spent</lit>
@@ -292,9 +293,9 @@
 			<lit name="oopsLabel">Oops...</lit>
 			<lit name="notCompleteString">
 			 <![CDATA[
-			 	<p>You have note completed <span fontWeight="bold" fontSize="20">{courseCaption}</span> yet, so you cannot receive a certificate.</p>
-			 	<p>So far you have completed <span fontWeight="bold" fontSize="20">{exerciseAmount} of {totalExercise} exercise</span> and your average score is <span fontWeight="bold" fontSize="20">{aveScor}%.</span></p>
-			 	<p>Go to <span fontWeight="bold" fontSize="20">My Coverage</span> to see which exercises you have not completed so that</p>
+			 	<p>You have note completed <span fontWeight="bold" fontSize="18">{courseCaption}</span> yet, so you cannot receive a certificate.</p>
+			 	<p>So far you have completed <span fontWeight="bold" fontSize="18">{exerciseAmount} of {totalExercise} exercise</span> and your average score is <span fontWeight="bold" fontSize="18">{aveScor}%.</span></p>
+			 	<p>Go to <span fontWeight="bold" fontSize="18">My Coverage</span> to see which exercises you have not completed so that</p>
 			 	<p>you can finish the whole level</p> 
 			 ]]>
 			 </lit>
@@ -306,6 +307,8 @@
 			 </lit>
 			 <lit name="mylegendLabel">My scores</lit>
 			 <lit name="everyonelegendLabel">Everyone's scores</lit>
+			 <lit name="compareEmptyScoreLabel">You must first complete an exercise to see this chart.</lit>
+			 <lit name="ScoreEmptyScoreLabelButton">You must first complete an exercise to see data in this table.</lit>
 			 <lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 			 <lit name="creditsRichText">
 			    <![CDATA[
@@ -378,6 +381,7 @@
 			    ]]>
 			</lit>
 			<lit name="thankYouLabel">Thank you for using Tense Buster.</lit>
+			
 		</group>
 	</language>
 </literals>

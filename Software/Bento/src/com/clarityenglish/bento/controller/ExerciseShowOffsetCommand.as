@@ -34,7 +34,8 @@ package com.clarityenglish.bento.controller {
 				if (exerciseNode) {
 					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exerciseNode);
 				} else {
-					sendNotification(BBNotifications.SELECTED_NODE_UP);
+					// alice: Comment out for TB
+					//sendNotification(BBNotifications.SELECTED_NODE_UP);
 				}
 			}
 		}

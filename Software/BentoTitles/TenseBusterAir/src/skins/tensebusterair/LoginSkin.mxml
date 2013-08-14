@@ -38,7 +38,7 @@
 				<s:VGroup gap="15">
 					<s:HGroup gap="8">
 						<s:Label id="loginKey_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}" paddingTop="5"/>
-						<s:TextInput id="loginKeyInput" width="169" height="30" filters="{dropShadowFilter2}" borderVisible="false" fontSize="14" />
+						<s:TextInput id="loginKeyInput" width="169" height="30" filters="{dropShadowFilter2}" borderVisible="false" fontSize="12" />
 					</s:HGroup>					
 					<s:HGroup gap="10">
 						<s:Label id="loginPassword_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" paddingTop="5"/>
