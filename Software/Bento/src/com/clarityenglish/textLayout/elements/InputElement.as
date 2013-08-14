@@ -65,6 +65,9 @@ package com.clarityenglish.textLayout.elements {
 		
 		private var disableValueCommitEvent:Boolean;
 		
+		// gh#407 hold the longest answer, only useful for errorCorrection
+		private var _longestAnswer:String;
+		
 		public function InputElement() {
 			super();
 		}
@@ -123,7 +126,15 @@ package com.clarityenglish.textLayout.elements {
 		public function set gapAfterPadding(value:Number):void {
 			_gapAfterPadding = value;
 		}
-		
+
+		// gh#407 hold the longest answer, only useful for errorCorrection
+		public function set longestAnswer(value:String):void {
+			_longestAnswer = value;
+		}
+		public function get longestAnswer():String {
+			return _longestAnswer;
+		}
+
 		public function set gapText(value:String):void {
 			_gapText = value;
 			

@@ -142,15 +142,18 @@
 			
 			// If there is exercise feedback then show the exercise feedback button
 			// gh#413
-			if (view.feedbackButton){
-				if (getExerciseProxy(exercise).hasExerciseFeedback())
-					view.hasExerciseFeedback = true;
-				
-				if (getExerciseProxy(exercise).hasQuestionFeedback())
-					view.hasQuestionFeedback = true;
-				
-				if (view.hasExerciseFeedback || view.hasQuestionFeedback)
-					view.feedbackButton.visible = view.feedbackButton.includeInLayout = true; 	
+			if (view.feedbackButton) {
+				if (getExerciseProxy(exercise).exerciseMarked){
+					if (getExerciseProxy(exercise).hasExerciseFeedback())
+						view.hasExerciseFeedback = feedbackVisible = true;
+					
+					if (getExerciseProxy(exercise).hasQuestionFeedback())
+						view.hasQuestionFeedback = feedbackVisible = true;
+					
+				} else {
+					var feedbackVisible:Boolean = false;
+				}
+				view.feedbackButton.visible = view.feedbackButton.includeInLayout = feedbackVisible;
 			}
 		}
 		

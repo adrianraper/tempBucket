@@ -96,6 +96,7 @@ import flash.events.IEventDispatcher;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
 
+import flashx.textLayout.compose.FlowDamageType;
 import flashx.textLayout.elements.FlowElement;
 import flashx.textLayout.elements.TextFlow;
 import flashx.textLayout.events.FlowElementMouseEvent;
@@ -377,6 +378,9 @@ class ErrorCorrectionAnswerManager extends InputAnswerManager implements IAnswer
 				// Error correction questions start with their text input hidden
 				inputElement.hideChrome = true;
 				
+				// gh#407 save the longest answer
+				inputElement.longestAnswer = getLongestAnswerValue(question.answers);
+				
 				// When the user clicks on the text show the component
 				var eventMirror:IEventDispatcher = inputElement.tlf_internal::getEventMirror();
 				if (eventMirror) {
@@ -390,13 +394,25 @@ class ErrorCorrectionAnswerManager extends InputAnswerManager implements IAnswer
 	
 	private function onErrorCorrectionTextClick(e:FlowElementMouseEvent):void {
 		log.info("Click detected on an error detection question");
-		
+
 		if ((e.flowElement as TextComponentElement).hideChrome) {
 			// Set hide chrome to false, and dispatch a fake UPDATE_COMPLETE event to force OverlayBehaviour to redraw its components
 			(e.flowElement as TextComponentElement).hideChrome = false;
 			
+			// gh#407 If I set element.text to the longest answer at this point, it will stick nicely
+			(e.flowElement as TextComponentElement).text = (e.flowElement as InputElement).longestAnswer;
+			
 			var tf:TextFlow = e.flowElement.getTextFlow();
-			tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
+			// gh#413 copied from inputElement.dragDrop - is this how to get the flow updated? Seems to work.
+			TLFUtil.markFlowElementFormatChanged(e.flowElement);
+			tf.flowComposer.updateAllControllers();
+			//tf.dispatchEvent(new UpdateCompleteEvent(UpdateCompleteEvent.UPDATE_COMPLETE, true, false, tf, tf.flowComposer.getControllerAt(0)));
+			
+		} else {
+			// gh#533 If you are in a gap stop the click from triggering incorrect onSectionClick event
+			// No, this doesn't work. What is it about the above code that DOES stop the event
+			//e.stopPropagation();
+			//e.preventDefault();
 		}
 	}
 	

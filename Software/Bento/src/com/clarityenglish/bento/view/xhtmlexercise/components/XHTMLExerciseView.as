@@ -35,6 +35,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Group;
+	import spark.components.TextInput;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
 	[Event(name="feedbackShow", type="com.clarityenglish.bento.view.xhtmlexercise.events.FeedbackEvent")]
@@ -179,6 +180,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		 * @param event
 		 */
 		protected function onSectionClick(event:MouseEvent):void {
+			
+			// gh#533 If you are in a gap, stop the click from progressing with this event
+			if (event.target.hasOwnProperty("editable") && event.target.editable)
+				return;
+			
 			dispatchEvent(new SectionEvent(SectionEvent.INCORRECT_QUESTION_ANSWER, null, null, null, true));
 			
 			var swfLoader:SWFLoader = new SWFLoader();
