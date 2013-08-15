@@ -72,10 +72,14 @@ package com.clarityenglish.textLayout.components.behaviours {
 				// Position and size the component in line with its underlying text
 				var bounds:Rectangle = componentElement.getElementBounds();
 				if (bounds) {
+					// gh#472 To make the overlay deep enough, tweak the bounds that come back
 					if (!isNaN(bounds.width)) componentElement.getComponent().width = bounds.width;
-					if (!isNaN(bounds.height)) componentElement.getComponent().height = bounds.height;
-					componentElement.getComponent().x = bounds.x;
-					componentElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
+					if (!isNaN(bounds.height)) componentElement.getComponent().height = bounds.height + 1;
+					componentElement.getComponent().x = bounds.x; 
+					// gh#536 DK originally had this comment: // for some reason -1 is necessary to get everything to line up
+					// AR BUT 0 for gapfill in a split screen. Does that indicate that this is a css conflict issue?
+					// Yes. If I drop most css, I now get the gap too low! So set here as perfect for no css.
+					componentElement.getComponent().y = bounds.y - 1; 
 					
 					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
 					componentElement.getComponent().visible = !componentElement.hideChrome;

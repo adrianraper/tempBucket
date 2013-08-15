@@ -173,6 +173,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				if (DragManager.isDragging) {
 					// First get the bounds of the draggable flow leaf element
 					var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(e.flowElement as FlowLeafElement);
+					// gh#450 tweak the x, y and height so that the bitmap snapped for a drag contains the text correctly
+					elementBounds.x += -2;
+					elementBounds.y += -1;
+					elementBounds.height += 1;
 					
 					// Convert the element bounds from their original coordinate space to the container coordinate space
 					var containingBlock:RenderFlow = e.flowElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;

@@ -18,9 +18,10 @@
       @playerversion AIR 1.5
       @productversion Flex 4
 -->
+<!-- gh#472 Don't dull the 'disabled' fields as this just means after marking -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark"
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
-    alpha.disabledStates="0.5" blendMode="normal">
+    alpha.disabledStates="1" blendMode="normal">
 
     <fx:Metadata>
     <![CDATA[ 
@@ -53,28 +54,33 @@
     </s:states>
     
 	<!-- background (we need to go negative on a few coordinates in order to always cover the text) -->
-    <s:Rect id="background" left="0" right="-1" top="-2" bottom="0">
-        <s:fill>
             <!--- @private Defines the background fill color. -->
-            <s:SolidColor id="bgFill" color="0xFFFFFF" />
+	<!-- gh#472 remove the background altogether
+    <s:Rect id="background" left="0" right="0" top="0" bottom="0">
+        <s:fill>
+            <s:SolidColor id="bgFill" color="0xFF0000" />
         </s:fill>
     </s:Rect>
-    
-	<!-- background (for drag/drop targets - determined by whether or not the component is editable) GH #60 -->
-	<s:Rect left="-2" right="-1" top="-3" bottom="-1" radiusX="2" radiusY="2" visible="{!hostComponent.editable}">
-		<s:fill>
-			<s:SolidColor color="#E6E6E6" />
-		</s:fill>
-	</s:Rect>
+    -->
 	
+	<!-- background (for drop targets - determined by whether or not the component is editable) gh#60 -->
+	<!-- gh#472 --> 
+	<!-- 
+	<s:Rect left="-2" right="-2" top="-3" bottom="-3" radiusX="3" radiusY="3" visible="{!hostComponent.editable}">
+		<s:stroke>
+			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8" color.disabledStates="#6A6A6A"/>
+		</s:stroke>
+	</s:Rect>
+	-->
     <!-- text -->
     <s:RichEditableText id="textDisplay"
               verticalAlign="middle"
               widthInChars="10"
               left="0" right="0" top="0" bottom="0" />
 
-	<!-- underline (for text input - determined by whether or not the component is editable) GH #60 -->
-	<s:Line left="0" right="0" bottom="1" visible="{hostComponent.editable}">
+	<!-- underline (for text input - determined by whether or not the component is editable) gh#60 -->
+	<!-- gh#472 {hostComponent.editable} -->
+	<s:Line left="0" right="0" bottom="0" visible="true">
 		<s:stroke>
 			<s:SolidColorStroke color="#6A6A6A" weight="1" alpha="0.8" color.disabledStates="#6A6A6A"/>
 		</s:stroke>

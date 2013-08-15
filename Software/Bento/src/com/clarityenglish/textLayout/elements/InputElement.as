@@ -328,11 +328,14 @@ package com.clarityenglish.textLayout.elements {
 				super.text = value;
 				
 				// #170 - put in an extra space at the end of the previous element in order to force word-wrap.  Very hacky!
+				// gh#472 and causes all drops to shift a bit right so alignment looks bad. Remove and live with the original bug. 
+				/*
 				var previousSibling:FlowElement = getPreviousSibling();
 				if (previousSibling is SpanElement) {
 					var spanElement:SpanElement = previousSibling as SpanElement;
 					if (spanElement.text.substr(spanElement.text.length - 1, 1) != " ") spanElement.text += " ";
 				}
+				*/
 			}
 		}
 		
