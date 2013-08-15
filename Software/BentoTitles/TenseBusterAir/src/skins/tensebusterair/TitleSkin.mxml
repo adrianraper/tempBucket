@@ -30,7 +30,8 @@
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Menu"  left="0" right="0" height="100%" />
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.tensebuster.view.progress.ProgressView" label="My Progress" left="0" right="0" height="100%" />
-		<s:ViewNavigator id="profileViewNavigator" firstView="com.clarityenglish.tensebuster.view.profile.ProfileView" label="My Profile" left="0" right="0" height="100%" />
+		<!--s:ViewNavigator id="profileViewNavigator" firstView="com.clarityenglish.tensebuster.view.profile.ProfileView" label="My Profile" left="0" right="0" height="100%" /-->
+		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.tensebuster.view.help.HelpView" label="Help" left="0" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 	
 	<s:Button id="logoutButton" bottom="0" right="10" fontWeight="normal" buttonMode="true" useHandCursor="true" excludeFrom="exercise" />

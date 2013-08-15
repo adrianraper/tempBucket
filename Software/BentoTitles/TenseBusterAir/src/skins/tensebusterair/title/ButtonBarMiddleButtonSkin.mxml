@@ -47,12 +47,12 @@ limitations under the License.
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
 				
 				var textArray:Array = ((this as Object).hostComponent.label as String).split(" ");
-				if (textArray[1] == "Profile") {
-					progressIcon.visible = false;
-					profileIcon.visible = true;
-				} else {
+				if (textArray[1] == "Progress") {
 					progressIcon.visible = true;
-					profileIcon.visible = false;
+					helpIcon.visible = false;
+				} else {
+					progressIcon.visible = false;
+					helpIcon.visible = true;
 				}
 			}
 		]]>
@@ -111,7 +111,7 @@ limitations under the License.
 			</s:fill>
 		</s:Rect>
 	</s:Group>
-	<s:Group id="profileIcon"  top="10" left="50">
+	<s:Group id="helpIcon"  top="10" left="50">
 		<s:Group x="9.16992" y="6.4248">
 			<s:Path winding="nonZero" data="M4.92383 14.0371C4.92383 11.4414 5.19531 10.3037 7.68164 8.5459 8.73828 7.81641 9.36133 6.97559 9.36133 5.86816 9.36133 3.75781 7.87109 3.19043 6.73633 3.19043 4.30273 3.19043 3.94922 5.03125 3.8125 6.30078L3.8125 6.32813 0 6.32813C0 1.62305 3.54492
 				  0 6.49219 0 8.11523 0 13.418 0.460938 13.418 5.76074 13.418 7.95117 12.2246 9.24805 10.1406 10.7363 8.98047 11.5771 8.49219 12.0928 8.49219 14.0371L4.92383 14.0371ZM8.76563 19.6621 4.81641 19.6621 4.81641 15.8496 8.76563 15.8496 8.76563 19.6621Z">

@@ -354,6 +354,10 @@ mx|LegendItem
 	textFieldClass: ClassReference("mx.core.UITextField");
 }
 
+s|Scroller s|VScrollBar {
+	skinClass: ClassReference("skins.tensebuster.scroller.VScrollerBarSkin");
+}
+
 view|DynamicView s|Group s|VScrollBar {
 	skinClass: ClassReference("skins.tensebuster.scroller.VScrollerBarSkin");
 }

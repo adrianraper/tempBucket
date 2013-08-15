@@ -44,7 +44,7 @@
 	<s:Label id="exInstructionLabel" top="110" left="90" />
 	<s:Button id="backToUnitButton" label="Back to Unit" right="60" top="58" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 	
-	<s:Scroller top="140" bottom="60" left="85">
+	<s:Scroller id="exerciseListScorller" top="140" bottom="60" left="85">
 		<s:HGroup>
 			<s:SWFLoader id="numberIcon"/>			
 			<s:List id="exerciseList" width="270" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">
