@@ -284,43 +284,48 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		var answerOrString:* = null;
 		
 		// Ignore empty answers (where there is neither a typed value, nor a dropped node)
-		if (inputElement.enteredValue == "" && !inputElement.droppedNode)
-			return;
+		/*if (inputElement.enteredValue == "" && !inputElement.droppedNode)
+			return;*/
 		
 		// If there is a dropped node then match it up to an answer if possible
-		if (inputElement.droppedNode) {
-			for each (var nodeAnswer:NodeAnswer in question.answers) {
-				var answerSourceNodes:Vector.<XML> = nodeAnswer.getSourceNodes(exercise);
-				if (answerSourceNodes && answerSourceNodes.indexOf(inputElement.droppedNode) > -1) {
-					// If the dropped node matches any of the source nodes then this is the matching answer
-					answerOrString = nodeAnswer;
-					break;
+		if (inputElement.type == InputElement.TYPE_DROPTARGET) {
+			if (inputElement.droppedNode) {
+				for each (var nodeAnswer:NodeAnswer in question.answers) {
+					var answerSourceNodes:Vector.<XML> = nodeAnswer.getSourceNodes(exercise);
+					if (answerSourceNodes && answerSourceNodes.indexOf(inputElement.droppedNode) > -1) {
+						// If the dropped node matches any of the source nodes then this is the matching answer
+						answerOrString = nodeAnswer;
+						break;
+					}
 				}
-			}
-			
-			if (!answerOrString) {
-				// If the dropped node doesn't match any of the source nodes then we need to make a new answer with the droppedNode as the source.
-				// In case the dropped node doesn't have an id then we auto-generate one and add it to the XHTML.
-				if (!inputElement.droppedNode.hasOwnProperty("@id"))
-					inputElement.droppedNode.@id = "auto-" + UIDUtil.createUID();
 				
-				// Create a NodeAnswer pointing to the dropped node with a score of 0
-				var source:String = inputElement.droppedNode.@id;
-				answerOrString = new NodeAnswer(<Answer score="0" source={source} />);
-			}
-			
-			if (inputElement.droppedFlowElement) {
-				// #11 - once a drag source has been moved it becomes disabled, unless allowMultipleDrags is set
-				if (!exercise.model.getSettingParam("allowMultipleDrags")) {
-					container.callLater(function():void {
-						XHTML.addClasses(inputElement.droppedNode, [ "disabled", "used" ]);
-						// gh#473 Does it matter if the element has become null since you created this anonymous function?
-						if (inputElement.droppedFlowElement) {
-							TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
-							inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
-						}
-					});
+				if (!answerOrString) {
+					// If the dropped node doesn't match any of the source nodes then we need to make a new answer with the droppedNode as the source.
+					// In case the dropped node doesn't have an id then we auto-generate one and add it to the XHTML.
+					if (!inputElement.droppedNode.hasOwnProperty("@id"))
+						inputElement.droppedNode.@id = "auto-" + UIDUtil.createUID();
+					
+					// Create a NodeAnswer pointing to the dropped node with a score of 0
+					var source:String = inputElement.droppedNode.@id;
+					answerOrString = new NodeAnswer(<Answer score="0" source={source} />);				
 				}
+				
+				if (inputElement.droppedFlowElement) {
+					// #11 - once a drag source has been moved it becomes disabled, unless allowMultipleDrags is set
+					if (!exercise.model.getSettingParam("allowMultipleDrags")) {
+						container.callLater(function():void {
+							XHTML.addClasses(inputElement.droppedNode, [ "disabled", "used" ]);
+							// gh#473 Does it matter if the element has become null since you created this anonymous function?
+							if (inputElement.droppedFlowElement) {
+								TLFUtil.markFlowElementFormatChanged(inputElement.droppedFlowElement);
+								inputElement.droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+							}
+						});
+					}
+				}
+			} else {
+				// gh#474: once the answer was cleared we assign score=-1 to it in order to recognize later in ExerciseProxy: questionAnswer()
+				answerOrString = new NodeAnswer(<Answer score="-1"/>);
 			}
 		}
 		
@@ -329,7 +334,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		// string and create a TextAnswer to pass on to ExerciseProxy. 
 		if (!answerOrString)
 			answerOrString = inputElement.enteredValue;
-		
+
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true));
 	}
 	

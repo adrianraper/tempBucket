@@ -365,6 +365,8 @@ package com.clarityenglish.textLayout.elements {
 			value = "";
 			(component as TextInput).text = "";
 			getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, this));
+			// gh#474: when the answer is cleared, we need to reassign the value to answer
+			getEventMirror().dispatchEvent(new FocusEvent(FocusEvent.FOCUS_OUT));
 		}
 		
 		private function updateComponentFromValue():void {

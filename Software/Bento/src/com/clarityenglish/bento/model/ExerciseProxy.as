@@ -280,7 +280,7 @@ package com.clarityenglish.bento.model {
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
 				if (question.isMutuallyExclusive()) answerMap.clear();
-				
+	
 				// gh#526: comment out
 				/*if (question.isSelectable()) {
 					if (!didKeyAlreadyExist) answerMap.put(key, answer);
@@ -288,7 +288,14 @@ package com.clarityenglish.bento.model {
 					// Add the answer
 					answerMap.put(key, answer);
 				}*/
-				answerMap.put(key, answer);
+				// gh#474: score < 0 stands for the answer that was be cleared which is empty now
+				trace("answer: "+answer.toXMLString());
+				if (answer.score >=  0 ) {
+					answerMap.put(key, answer);
+				} else {
+					answerMap.clear();
+				}
+				
 				
 				// gh#347
 				if (question.type == Question.TARGET_SPOTTING_QUESTION && exercise.model.getSettingParam("delayedMarking") == null) {
