@@ -55,7 +55,7 @@ package com.clarityenglish.bento.controller {
 			PopUpManager.centerPopUp(titleWindow);
 			
 			// Hide the close button
-			//titleWindow.closeButton.visible = false;
+			titleWindow.closeButton.visible = false;
 			
 			// Listen for the close event so that we can cleanup
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);

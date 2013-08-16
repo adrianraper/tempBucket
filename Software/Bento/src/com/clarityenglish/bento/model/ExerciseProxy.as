@@ -287,16 +287,8 @@ package com.clarityenglish.bento.model {
 				} else {
 					// Add the answer
 					answerMap.put(key, answer);
-				}*/
-				// gh#474: score < 0 stands for the answer that was be cleared which is empty now
-				trace("answer: "+answer.toXMLString());
-				if (answer.score >=  0 ) {
-					answerMap.put(key, answer);
-				} else {
-					answerMap.clear();
-				}
-				
-				
+				}*/				
+				answerMap.put(key, answer);
 				// gh#347
 				if (question.type == Question.TARGET_SPOTTING_QUESTION && exercise.model.getSettingParam("delayedMarking") == null) {
 					exerciseDirty = false;											
@@ -342,6 +334,8 @@ package com.clarityenglish.bento.model {
 			// have removed the synonymGroup check.  It needs to be confirmed that this has no undesirable side effects.
 			if (answer is TextAnswer /*&& answer.synonymGroup*/) {
 				var existingIdx:int = markableAnswerMap.values.indexOf(answer);
+				trace("answer: "+answer.toXMLString());
+				trace("existingIdx: "+existingIdx);
 				if (existingIdx >= 0) {
 					answer = new TextAnswer(<answer value={(answer as TextAnswer).value} correct={false}/>);
 				}

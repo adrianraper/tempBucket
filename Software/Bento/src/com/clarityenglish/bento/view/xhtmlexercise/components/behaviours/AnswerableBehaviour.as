@@ -325,7 +325,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				}
 			} else {
 				// gh#474: once the answer was cleared we assign score=-1 to it in order to recognize later in ExerciseProxy: questionAnswer()
-				answerOrString = new NodeAnswer(<Answer score="-1"/>);
+				answerOrString = new NodeAnswer(<Answer correct="neutral"/>);
 			}
 		}
 		

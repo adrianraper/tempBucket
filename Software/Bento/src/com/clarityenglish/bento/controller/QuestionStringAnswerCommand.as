@@ -60,12 +60,12 @@ package com.clarityenglish.bento.controller {
 			// gh#350 if the original answer has feedback we should also add it to the answer node
 			var xmlString:String = "";
 			// gh#474
-			var score:Number = 0;
+			var correct:String;
 			if (answerString == "") {
-				score = -1;
+				correct = "neutral";
 			}
 			// gh#515 protect apostrophe/quote characters from XML string syntax
-			xmlString += '<answer value="' + answerString.replace(/(")/g, "&quot;") + '" score="' + score + '">';
+			xmlString += '<answer value="' + answerString.replace(/(")/g, "&quot;") + '" correct="' + correct + '">';
 			if (question.unmatchedFeedbackSource) {
 				xmlString += '<feedback source="' + question.unmatchedFeedbackSource + '" />';
 			} else if (question.answers[0].feedback) {

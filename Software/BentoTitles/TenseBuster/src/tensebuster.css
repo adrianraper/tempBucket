@@ -20,6 +20,7 @@
 @namespace marking "com.clarityenglish.bento.view.marking.*";
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 @namespace view "com.clarityenglish.bento.view.*";
+@namespace warning "com.clarityenglish.bento.view.warning.*";
 
 global {
 	EColor : #EC1C32;
@@ -310,6 +311,10 @@ s|TitleWindow.markingTitleWindow {
 	skinClass: ClassReference("skins.tensebuster.exercise.titleWindows.MarkingTitleWindowSkin");
 }
 
+s|TitleWindow.warningTitleWindow {
+	skinClass: ClassReference("skins.tensebuster.exercise.titleWindows.FeedbackTitleWindowSkin");
+}
+
 s|VideoPlayer {
 	skinClass: ClassReference("skins.tensebuster.exercise.ui.VideoPlayerSkin");
 }
@@ -328,6 +333,18 @@ marking|MarkingView s|Button#seeAnswersButton {
 
 marking|MarkingView s|Button#moveForwardButton {
 	skinClass: ClassReference("skins.tensebuster.exercise.marking.TryAgainButtonSkin");
+}
+
+warning|WarningView {
+	skinClass: ClassReference("skins.tensebuster.exercise.warning.WarningSkin");
+}
+
+warning|WarningView s|Button#yesButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.warning.YesButtonSkin");
+}
+
+warning|WarningView s|Button#noButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.warning.NoButtonSkin");
 }
 
 recorder|WaveformView {

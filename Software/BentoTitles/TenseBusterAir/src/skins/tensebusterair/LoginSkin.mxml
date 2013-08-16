@@ -50,4 +50,5 @@
 		</s:VGroup>
 	</s:Group>
 
+	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#000000" right="3" bottom="0"/>
 </s:Skin>
