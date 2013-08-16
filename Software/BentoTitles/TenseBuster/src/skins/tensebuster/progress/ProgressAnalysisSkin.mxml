@@ -67,7 +67,7 @@
 		<s:VGroup>
 			<s:DataGroup id="durationDataGroup" dataProvider="{hostComponent.unitListCollection}">
 				<s:layout>
-					<s:VerticalLayout gap="15" />
+					<s:VerticalLayout gap="15" horizontalAlign="right" />
 				</s:layout>
 				<s:itemRenderer>
 					<fx:Component>
@@ -144,7 +144,7 @@
 								]]>
 							</fx:Script>
 							<s:Label text="{data.@caption}" fontSize="13" top="8" fontWeight="bold" />
-							<s:HGroup horizontalAlign="right" left="240" right="5" top="5" width="55">
+							<s:HGroup horizontalAlign="right" left="210" right="0" top="5" width="55">
 								<s:Label id="durationLable" text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" color="{getTimeColour(data)}"  fontSize="26" fontWeight="bold"  />
 								<s:Label id="minLabel" fontSize="14" text="{copyProvider.getCopyForId('minLabel')}" color="{getTimeColour(data)}" paddingTop="6"/>
 							</s:HGroup>
@@ -153,17 +153,17 @@
 					</fx:Component>
 				</s:itemRenderer>
 			</s:DataGroup>
-			<s:VGroup paddingTop="-10">
+			<s:VGroup width="305" left="20" paddingTop="-10" horizontalAlign="right">
 				<s:Rect width="305" height="2">
 					<s:fill>
 						<s:SolidColor id="boundaryLineSolidColor" />
 					</s:fill>
 				</s:Rect>
-				<s:Group top="16">
-					<s:HGroup paddingTop="16">
-						<s:Label id="totalLabel" fontSize="13" fontWeight="bold" />
+				<s:Group width="100%" top="16">
+					<s:HGroup left="0" paddingTop="16">
+						<s:Label id="totalLabel" fontSize="13" fontWeight="bold"/>
 					</s:HGroup>
-					<s:HGroup left="240" paddingTop="16" horizontalAlign="right" right="5" width="55">
+					<s:HGroup paddingTop="16" horizontalAlign="right" right="3">
 						<s:Label id="totalDurationLabel" fontSize="26" fontWeight="bold" paddingTop="-5" />
 						<s:Label id="totalMinLabel" fontSize="14" paddingTop="2" />
 					</s:HGroup>
