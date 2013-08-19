@@ -23,8 +23,11 @@ package com.clarityenglish.bento.controller {
 			var selectedNode:XML = note.getBody() as XML;
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			
+
 			switch (selectedNode.localName()) {
+				case "menu":
+					sendNotification(BBNotifications.SELECTED_NODE_CHANGED, selectedNode);
+					break;
 				case "course":
 					bentoProxy.selectedNode = selectedNode;
 					sendNotification(BBNotifications.COURSE_START, selectedNode);
@@ -54,7 +57,7 @@ package com.clarityenglish.bento.controller {
 					}
 					break;
 				default:
-					log.error("Unknown node selected: " + selectedNode.toXMLString());
+					//log.error("Unknown node selected: " + selectedNode.toXMLString());
 			}
 		}
 		

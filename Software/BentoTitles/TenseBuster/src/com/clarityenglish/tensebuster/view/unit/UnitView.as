@@ -12,6 +12,7 @@ package com.clarityenglish.tensebuster.view.unit
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Button;
 	import spark.components.DataGroup;
 	import spark.components.Label;
 	import spark.components.List;
@@ -31,6 +32,9 @@ package com.clarityenglish.tensebuster.view.unit
 		[SkinPart]
 		public var courseThumbnail:SWFLoader;
 		
+		[SkinPart]
+		public var backButton:Button;
+		
 		private var _course:XML;
 		private var _courseChanged:Boolean; 
 		private var _courseIndex:Number = 0;
@@ -40,6 +44,7 @@ package com.clarityenglish.tensebuster.view.unit
 		private var courseArray:Array = ["Elementary", "Lower Intermediate", "Intermediate", "Upper Intermediate", "Advanced"];
 		
 		public var unitSelect:Signal = new Signal(XML);
+		public var backtoUpperLevel:Signal = new Signal();
 		
 		[Bindable(event="courseChanged")]
 		public function get course():XML {
@@ -116,6 +121,9 @@ package com.clarityenglish.tensebuster.view.unit
 				case unitInstructionLabel:
 					unitInstructionLabel.text = copyProvider.getCopyForId("unitInstructionLabel");
 					break;
+				case backButton:
+					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
+					break;
 			}
 		}
 		
@@ -124,6 +132,10 @@ package com.clarityenglish.tensebuster.view.unit
 			if (unit)
 				unitSelect.dispatch(unit);
 			
+		}
+		
+		protected function onBackButtonClick(event:MouseEvent):void {
+			backtoUpperLevel.dispatch();
 		}
 	}
 }

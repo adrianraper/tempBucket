@@ -29,7 +29,7 @@ package com.clarityenglish.tensebuster.view.zone {
 		public var exInstructionLabel:Label;
 		
 		[SkinPart]
-		public var backToUnitButton:Button;
+		public var backButton:Button;
 		
 		private var _unit:XML;
 		private var _unitChanged:Boolean;
@@ -46,7 +46,7 @@ package com.clarityenglish.tensebuster.view.zone {
 		
 		public var exerciseShow:Signal = new Signal(Href);
 		public var exerciseSelect:Signal = new Signal(XML);
-		public var backToUnit:Signal = new Signal();
+		public var backToUpperLevel:Signal = new Signal();
 	
 		[Embed(source="skins/tensebuster/assets/zone/A10.png")]
 		private var A13:Class;
@@ -181,8 +181,8 @@ package com.clarityenglish.tensebuster.view.zone {
 				case exInstructionLabel:
 					exInstructionLabel.text = copyProvider.getCopyForId("exInstructionLabel");
 					break;
-				case backToUnitButton:
-					backToUnitButton.addEventListener(MouseEvent.CLICK, onBackToUnitClick);
+				case backButton:
+					backButton.addEventListener(MouseEvent.CLICK, onBackToUnitClick);
 					break;
 			}
 		}
@@ -193,7 +193,7 @@ package com.clarityenglish.tensebuster.view.zone {
 		}
 		
 		protected function onBackToUnitClick(event:MouseEvent):void {
-			backToUnit.dispatch();
+			backToUpperLevel.dispatch();
 		}
 		
 	}

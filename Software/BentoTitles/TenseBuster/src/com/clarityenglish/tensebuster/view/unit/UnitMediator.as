@@ -29,6 +29,7 @@ package com.clarityenglish.tensebuster.view.unit
 			Bind.fromProperty(bentoProxy, "selectedCourseNode").toProperty(view, "course");
 			
 			view.unitSelect.add(onUnitSelected);
+			view.backtoUpperLevel.add(onBacktoUpperLevel);
 		}
 		
 		public override function onRemove():void {
@@ -49,6 +50,10 @@ package com.clarityenglish.tensebuster.view.unit
 		
 		protected function onUnitSelected(unit:XML):void {
 			sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit);
+		}
+		
+		protected function onBacktoUpperLevel():void {
+			sendNotification(BBNotifications.SELECTED_NODE_UP);
 		}
 	}
 }

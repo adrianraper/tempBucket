@@ -25,7 +25,7 @@
 			super.onRegister();
 			
 			view.exerciseSelect.add(onExerciseSelect);
-			view.backToUnit.add(onBackToUnitClick);
+			view.backToUpperLevel.add(onBackToUnitClick);
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -38,7 +38,7 @@
 			super.onRemove();
 			
 			view.exerciseSelect.remove(onExerciseSelect);
-			view.backToUnit.remove(onBackToUnitClick);
+			view.backToUpperLevel.remove(onBackToUnitClick);
 		}
 		
 		override public function listNotificationInterests():Array {

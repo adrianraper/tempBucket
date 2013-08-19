@@ -171,7 +171,7 @@ title|TitleView {
 }
 
 title|TitleView s|Button#backToMenuButton {
-	skinClass: ClassReference("skins.tensebuster.exercise.BackToMenuButtonSkin");
+	skinClass: ClassReference("skins.tensebuster.ui.BackButtonSkin");
 }
 
 title|TitleView s|TabbedViewNavigator {
@@ -190,6 +190,10 @@ unit|UnitView {
 	skinClass: ClassReference("skins.tensebuster.UnitSkin");
 }
 
+unit|UnitView s|Button#backButton {
+	skinClass: ClassReference("skins.tensebuster.ui.BackButtonSkin");
+}
+
 unitui|ProgressUnitButton {
 	skinClass: ClassReference("skins.tensebuster.unit.ui.ProgressUnitButtonSkin");
 }
@@ -198,8 +202,8 @@ zone|ZoneView {
 	skinClass: ClassReference("skins.tensebuster.ZoneSkin");
 }
 
-zone|ZoneView s|Button#backToUnitButton {
-	skinClass: ClassReference("skins.tensebuster.exercise.BackToMenuButtonSkin");
+zone|ZoneView s|Button#backButton {
+	skinClass: ClassReference("skins.tensebuster.ui.BackButtonSkin");
 }
 
 exercise|ExerciseView {

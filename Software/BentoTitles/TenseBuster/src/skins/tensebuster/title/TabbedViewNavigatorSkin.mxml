@@ -17,12 +17,12 @@
     </s:states>
     
     <!--- Defines the appearance of the SkinnableContainer class's background. -->
-    <s:Rect id="background" left="0" right="0" top="0" bottom="0">
-        <s:fill>
+    <!--s:Rect id="background" left="0" right="0" top="0" bottom="0">
+        <s:fill-->
             <!--- @private -->
-            <s:SolidColor id="bgFill" color="#FFFFFF"/>
+            <!--s:SolidColor id="bgFill" color="#FFFFFF"/>
         </s:fill>
-    </s:Rect>
+    </s:Rect-->
 	
     <!--
         Note: setting the minimum size to 0 here so that changes to the host component's
@@ -36,7 +36,7 @@
         </s:layout>
     </s:Group>	
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="20" horizontalCenter="0" />
+	
 	<s:ButtonBar id="tabBar" skinClass="skins.tensebuster.title.ui.buttonBarSkin" right="120" top="37" />
 
 </s:Skin>

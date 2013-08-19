@@ -15,6 +15,7 @@ package com.clarityenglish.tensebuster.view.title {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.ButtonBarButton;
 	import spark.components.HGroup;
 	import spark.components.Label;
 	import spark.components.TabbedViewNavigator;
@@ -65,7 +66,11 @@ package com.clarityenglish.tensebuster.view.title {
 		public function set selectedNode(value:XML):void {
 			_selectedNode = value;
 
+			trace("localName: "+_selectedNode.localName());
 			switch (_selectedNode.localName()) {
+				case "menu":
+					currentState = "home";
+					break;
 				case "course":
 					courseID = _selectedNode.@id;
 					_courseUID = "9."+_selectedNode.@id as String;
@@ -183,7 +188,13 @@ package com.clarityenglish.tensebuster.view.title {
 					unitPath.visible = false;
 				if (exercisePath)
 					exercisePath.visible = false;
-			}*/
+			}*/ 
+			// disable Menu button bar button when current page is unit or zone page.
+			if (currentState == "unit" || currentState == "zone") {
+				ButtonBarButton(sectionNavigator.tabBar.dataGroup.getElementAt(0)).enabled = false;
+			} else if (currentState == "progress" || currentState == "help") {
+				ButtonBarButton(sectionNavigator.tabBar.dataGroup.getElementAt(0)).enabled = true;
+			}
 			return currentState;
 		}
 		

@@ -42,9 +42,9 @@
 	</s:HGroup>
 	
 	<s:Label id="exInstructionLabel" verticalCenter="-180" left="100" />
-	<s:Button id="backToUnitButton" label="Back to Unit" verticalCenter="-230" horizontalCenter="380" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
+	<s:Button id="backButton" label="Back to Unit" verticalCenter="-220" horizontalCenter="375" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 	
-	<s:Scroller top="220" bottom="20" horizontalCenter="-260">
+	<s:Scroller top="200" bottom="20" horizontalCenter="-260">
 		<s:HGroup>
 			<s:SWFLoader id="numberIcon"/>		
 			<s:List id="exerciseList" width="270" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">

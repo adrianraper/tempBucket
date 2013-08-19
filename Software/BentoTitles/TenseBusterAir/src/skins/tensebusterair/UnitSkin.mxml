@@ -35,7 +35,9 @@
 	</s:HGroup>
 	
 	<s:Label id="unitInstructionLabel" verticalCenter="-180" left="100" />
-	<s:List id="unitList" verticalCenter="15" horizontalCenter="0" contentBackgroundAlpha="0" borderVisible="false">
+	<s:Button id="backButton" label="Back to Level" horizontalCenter="375" top="113" color="0x000000" fontWeight="bold" fontSize="13" buttonMode="true" useHandCursor="true"/>
+	
+	<s:List id="unitList" top="200" horizontalCenter="0" contentBackgroundAlpha="0" borderVisible="false">
 		<s:layout>
 			<s:TileLayout horizontalGap="50" verticalGap="50" requestedColumnCount="3" />
 		</s:layout>

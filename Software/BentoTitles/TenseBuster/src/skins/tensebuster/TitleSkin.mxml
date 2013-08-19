@@ -25,7 +25,9 @@
 		<s:State name="progress" />
 		<s:State name="profile" />
 	</s:states>
-			
+	
+	<s:SWFLoader id="background" source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="20" horizontalCenter="0" excludeFrom="exercise" />
+	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Menu"  left="0" right="0" height="100%" />
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.tensebuster.view.progress.ProgressView" label="My Progress" left="0" right="0" height="100%" />
@@ -35,7 +37,7 @@
 	
 	<s:Button id="logoutButton" right="21" top="37" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
 	
-	<s:Group top="135" left="55" visible="{hostComponent.currentState == 'exercise'}">
+	<s:Group top="45" left="55" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:SWFLoader id="courseThumbnail" />
@@ -54,5 +56,5 @@
 			</s:HGroup>
 		</s:HGroup>	
 	</s:Group>
-	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="140" color="0xFFFFFF" fontWeight="bold" includeIn="exercise" buttonMode="true" useHandCursor="true"/>	
+	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="35" color="0x000000" fontWeight="bold" fontSize="13" includeIn="exercise" buttonMode="true" useHandCursor="true"/>	
 </s:Skin>
