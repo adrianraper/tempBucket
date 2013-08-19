@@ -160,9 +160,13 @@
 			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
 			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
-			<lit name="feedbackWarning">This exercise has feedback you haven't read.  Do you want to read it?</lit>
+			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
 			<lit name="footerLabel">Software, Design, Navigation © Clarity Language Consultants Ltd, 1993-2013. All rights reserved.</lit>
             <lit name="feedbackClickAnswersMsg">Click on any answer to see feedback.</lit>			
+            <lit name="correctFeedbackTitle">Well done</lit>
+            <lit name="incorrectFeedbackTitle">Sorry</lit>
+            <lit name="neutralFeedbackTitle"></lit>
+            <lit name="generalFeedbackTitle"></lit>
             
 			<!--  these all seem to be from CCB -->
 			<lit name="xhtmlDirty">Your changes to this course have not been saved. Are you sure you want to continue?</lit>

@@ -1,7 +1,10 @@
 package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.bento.vo.content.model.answer.Feedback;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.components.XHTMLRichText;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -73,7 +76,6 @@ package com.clarityenglish.bento.controller {
 				if (!titleWindow) {
 					titleWindow = new TitleWindow();
 					titleWindow.styleName = "feedbackTitleWindow";
-					titleWindow.title = feedback.title;
 					titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
 				} else {
 					titleWindow.removeElement(titleWindow.getElementAt(0));
@@ -85,7 +87,7 @@ package com.clarityenglish.bento.controller {
 				// Default to 300 width, variable height unless defined otherwise in the XML
 				xhtmlRichText.width = (isNaN(feedback.width)) ? 300 : feedback.width;
 				if (!isNaN(feedback.height)) xhtmlRichText.height = feedback.height;
-			
+
 				xhtmlRichText.xhtml = xhtml;
 				xhtmlRichText.nodeId = "#" + feedback.source;
 				xhtmlRichText.addEventListener(XHTMLEvent.CSS_PARSED, onCssParsed);
@@ -104,6 +106,22 @@ package com.clarityenglish.bento.controller {
 				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(note.getBody().exercise as Exercise)) as ExerciseProxy;
 				exerciseProxy.exerciseFeedbackSeen = true;
 				
+				// gh#516 Instant feedback changes the window title (unless specifically set)
+				var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+				if (feedback.title) {
+					titleWindow.title = feedback.title;					
+				} else if (feedback.answer && !exerciseProxy.exerciseMarked) {
+					if (feedback.answer.markingClass == Answer.CORRECT) {
+						titleWindow.title = copyProvider.getCopyForId('correctFeedbackTitle');
+					} else if (feedback.answer.markingClass == Answer.INCORRECT) {
+						titleWindow.title = copyProvider.getCopyForId('incorrectFeedbackTitle');
+					} else {
+						titleWindow.title = copyProvider.getCopyForId('neutralFeedbackTitle');					
+					}
+				} else {
+					titleWindow.title = copyProvider.getCopyForId('generalFeedbackTitle');					
+				}
+
 				// This is very hacky, but otherwise the feedback popup can hijack uncommitted textfields and break the tab flow.  There is probably
 				// a neater way to do this, but this works and doesn't seem to do any harm.
 				if (!titleWindowAdded) setTimeout(addPopupWindow, 150);
@@ -138,6 +156,7 @@ package com.clarityenglish.bento.controller {
 			if (style.backgroundColor) titleWindow.setStyle("popUpBarColor", style.backgroundColor);
 			if (style.opacity) titleWindow.setStyle("popUpBarAlpha", style.opacity);
 			if (style.color) titleWindow.setStyle("popUpBarTextColor", style.color);
+			
 		}
 		
 		/**

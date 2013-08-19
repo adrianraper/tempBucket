@@ -79,8 +79,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				var bounds:Rectangle = TLFUtil.getFlowElementBounds(flowElement);
 				if (bounds) {
 					// Convert the bounds from their original coordinate space to the coordinate space of the container
+					// gh#572 Nested containingBlocks send the icons all over the place
+					/*
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
-					
+					*/
 					flowElementIcon.getComponent().x = bounds.right; // marking goes to the right of the component
 					//flowElementIcon.getComponent().y = bounds.y - ((flowElementIcon.getComponent().height - bounds.height) / 2); // centre the icon vertically on the component
 					flowElementIcon.getComponent().y = bounds.bottom - flowElementIcon.getComponent().height; // #177
