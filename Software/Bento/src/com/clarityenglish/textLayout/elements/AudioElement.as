@@ -21,6 +21,8 @@ package com.clarityenglish.textLayout.elements {
 		// gh#348
 		private var _type:String;
 		
+		private var _playComponentEnable:Boolean;
+		
 		public function AudioElement() {
 			super();
 		}
@@ -41,6 +43,12 @@ package com.clarityenglish.textLayout.elements {
 		[Bindable]
 		public function get type():String {
 			return _type
+		}
+		
+		// disable playComponent for feedback audio before click "see answer"
+		public function set playComponentEnable(value:Boolean):void {
+			_playComponentEnable = value;
+			(component as AudioPlayer).playComponentEnable = value;
 		}
 		
 		public function set autoplay(value:String):void {

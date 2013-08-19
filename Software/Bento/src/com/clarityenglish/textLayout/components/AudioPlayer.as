@@ -53,6 +53,9 @@ package com.clarityenglish.textLayout.components {
 		
 		public var autoplay:Boolean;
 		
+		[Bindable]
+		public var playComponentEnable:Boolean;
+		
 		/**
 		 * A timer for updating the scrub bar as the sound plays 
 		 */
