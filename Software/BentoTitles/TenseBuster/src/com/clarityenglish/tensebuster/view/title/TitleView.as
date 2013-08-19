@@ -159,11 +159,11 @@ package com.clarityenglish.tensebuster.view.title {
 			switch (instance) {
 				case sectionNavigator:
 					setNavStateMap(sectionNavigator, {
-						home: { viewClass: HomeView},
-						unit: { viewClass: UnitView, stack: true},
+						home: { viewClass: HomeView },
+						unit: { viewClass: UnitView, stack: true },
 						zone: { viewClass: ZoneView, stack: true },
 						exercise: { viewClass: ExerciseView, stack: true },
-						progress: { viewClass: ProgressView}
+						progress: { viewClass: ProgressView }
 					});
 					break;
 				case backToMenuButton:

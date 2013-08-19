@@ -293,10 +293,24 @@ class NavStateMap {
 		
 		// We also need to listen for state changes on the view itself
 		view.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onCurrentStateChange, false, 0, true);
+		
+		// And for added to stage in order to implement #584
+		view.addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
 	}
 	
 	public function setStateMap(stateMap:Object):void {
 		this.stateMap = stateMap;
+	}
+	
+	private function onAddedToStage(event:Event):void {
+		// gh#584 - the added to stage event is called every time (apart from the first time) that the navigator is shown.  In this case we forceably return the current navigator
+		// to its initial state, as well as setting the state on the view.
+		if (ClassUtil.getClass(tabbedViewNavigator.activeView) !== tabbedViewNavigator.activeView.navigator.firstView) {
+			tabbedViewNavigator.activeView.navigator.popToFirstView();
+			isTabbedViewNavigatorChange = true;
+			view.currentState = findStateByViewClass(tabbedViewNavigator.activeView.navigator.firstView);
+			isTabbedViewNavigatorChange = false;
+		}
 	}
 	
 	private function onNavigatorChange(event:Event):void {

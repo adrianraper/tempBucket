@@ -28,7 +28,7 @@
 			
 			// This view runs off the menu xml so inject it here
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			view.href = bentoProxy.menuXHTML.href;
+			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
 		}
 		
 		public override function onRemove():void {

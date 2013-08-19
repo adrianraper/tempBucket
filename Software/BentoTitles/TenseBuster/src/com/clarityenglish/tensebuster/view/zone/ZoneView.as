@@ -139,9 +139,9 @@ package com.clarityenglish.tensebuster.view.zone {
 			
 			if (_unitChanged) {
 				exerciseList.dataProvider = new XMLListCollection(_unit.exercise);
-				courseCaption = _unit.parent().@caption;
+				if (unit.parent() && unit.parent().hasOwnProperty("@caption")) courseCaption = _unit.parent().@caption;
 				unitCaption = _unit.@caption;
-				courseClass = _unit.parent().@["class"];
+				if (_unit.parent() && _unit.parent().hasOwnProperty("@class")) courseClass = _unit.parent().@["class"];
 				courseIndex = courseArray.indexOf(courseCaption);
 				numberIconSource = courseCaption.charAt(0) + exerciseList.dataProvider.length;
 				numberIcon.source = getSource(numberIconSource);
@@ -153,19 +153,14 @@ package com.clarityenglish.tensebuster.view.zone {
 			switch (value) {
 				case "A13":
 					return A13;
-					break;
 				case "E13":
 					return E13;
-					break;
 				case "I13":
 					return I13;
-					break;
 				case "U13":
 					return U13;
-					break;
 				case "L13":
 					return L13;
-					break;
 				default:
 					return null;
 			}
