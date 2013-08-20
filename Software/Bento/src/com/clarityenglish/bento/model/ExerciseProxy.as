@@ -334,8 +334,8 @@ package com.clarityenglish.bento.model {
 			// have removed the synonymGroup check.  It needs to be confirmed that this has no undesirable side effects.
 			if (answer is TextAnswer /*&& answer.synonymGroup*/) {
 				var existingIdx:int = markableAnswerMap.values.indexOf(answer);
-				trace("answer: "+answer.toXMLString());
-				trace("existingIdx: "+existingIdx);
+				//trace("answer: "+answer.toXMLString());
+				//trace("existingIdx: "+existingIdx);
 				if (existingIdx >= 0) {
 					answer = new TextAnswer(<answer value={(answer as TextAnswer).value} correct={false}/>);
 				}
@@ -550,7 +550,11 @@ package com.clarityenglish.bento.model {
 			var exerciseFeedback:Feedback = getExerciseFeedback();
 			
 			if (exerciseFeedback) {
-				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: exerciseFeedback /*, substitutions: substitutions*/ } );
+				// gh#554
+				var substitutions:Object = {};
+				substitutions.yourScore = _exerciseMark.correctPercent;
+
+				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: exerciseFeedback , substitutions: substitutions } );
 			}
 		}
 		
