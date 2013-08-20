@@ -13,6 +13,7 @@ package com.clarityenglish.bento.view.recorder.events {
 		public static const MINIMIZE:String = "recorder/minimize";
 		public static const MAXIMIZE:String = "recorder/maximize";
 		public static const COMPARE:String = "recorder/compare";
+		public static const SHOW:String = "recorder/show";
 		
 		public var data:Object;
 		

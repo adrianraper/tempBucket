@@ -43,8 +43,7 @@
 			view.backToMenu.add(onBackToMenu);
 			view.showFeedbackReminder.add(onShowFeedbackReminder); // gh#388
 			view.audioPlayed.add(onAudioPlayed); // gh#267
-			// gh#267
-			view.record.add(onRecord);
+			view.record.add(onRecord); // gh#267
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
@@ -218,7 +217,6 @@
 		// gh#267
 		private function onRecord():void {
 			sendNotification(BBNotifications.RECORDER_SHOW);
-			
 		}
 		
 	}
