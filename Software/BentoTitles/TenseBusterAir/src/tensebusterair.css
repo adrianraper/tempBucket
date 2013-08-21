@@ -11,6 +11,7 @@
 @namespace unit "com.clarityenglish.tensebuster.view.unit.*";
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
 @namespace view "com.clarityenglish.bento.view.*";
+@namespace help "com.clarityenglish.tensebuster.view.help.*";
 
 global {
 	interactionMode: touch;
@@ -118,6 +119,14 @@ progresstb|ProgressCertificateView {
 /*progresscomponents|ProgressScoreView {
 	skinClass: ClassReference("skins.tensebusterair.progress.ProgressScoreSkin");
 }*/
+
+help|HelpView {
+	skinClass: ClassReference("skins.tensebusterair.HelpSkin");
+}
+
+help|HelpView s|ButtonBarButton#helpListButtonBarButton {
+	skinClass: ClassReference("skins.tensebusterair.help.HelpListButtonBarButtonSkin");
+}
 
 s|Scroller s|VScrollBar {
 	skinClass: ClassReference("spark.skins.mobile.VScrollBarSkin");

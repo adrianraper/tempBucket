@@ -352,10 +352,11 @@ package com.clarityenglish.textLayout.elements {
 				return;
 			
 			// #11
-			if (_droppedNode && _droppedFlowElement) {
+			// gh#585 d)
+			if (_droppedNode /*&& _droppedFlowElement*/) {
 				XHTML.removeClasses(_droppedNode, ["disabled", "used"]);
-				TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
-				droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
+				//TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
+				//droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
 			}
 			
 			// #101 states than no matter what the source will be cleared so no need to check for DragManager.NONE - if (DragManager.getFeedback() == DragManager.NONE) {

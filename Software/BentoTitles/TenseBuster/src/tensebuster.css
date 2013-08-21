@@ -21,6 +21,7 @@
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 @namespace view "com.clarityenglish.bento.view.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
+@namespace help "com.clarityenglish.tensebuster.view.help.*";
 
 global {
 	EColor : #EC1C32;
@@ -147,6 +148,19 @@ global {
 	ANumber10: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ANumber10.png");
 	ANumber11: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ANumber11.png");
 	ANumber12: Embed("skins/tensebuster/assets/progress/coverage/numberIcon/ANumber12.png");
+	
+	helpIcon1: Embed("skins/tensebuster/assets/help/numberIcon/number1.png");
+	helpIcon2: Embed("skins/tensebuster/assets/help/numberIcon/number2.png");
+	helpIcon3: Embed("skins/tensebuster/assets/help/numberIcon/number3.png");
+	helpIcon4: Embed("skins/tensebuster/assets/help/numberIcon/number4.png");
+	helpIcon5: Embed("skins/tensebuster/assets/help/numberIcon/number5.png");
+	helpIcon6: Embed("skins/tensebuster/assets/help/numberIcon/number6.png");
+	helpIcon7: Embed("skins/tensebuster/assets/help/numberIcon/number7.png");
+	helpIcon8: Embed("skins/tensebuster/assets/help/numberIcon/number8.png");
+	helpIcon9: Embed("skins/tensebuster/assets/help/numberIcon/number9.png");
+	helpIcon10: Embed("skins/tensebuster/assets/help/numberIcon/number10.png");
+	
+	aboutTBPic: Embed("skins/tensebuster/assets/help/aboutTBPic.png");
 	
 }
 

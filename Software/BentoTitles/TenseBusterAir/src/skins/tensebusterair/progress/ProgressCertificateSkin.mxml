@@ -51,7 +51,7 @@
 					<s:Label id="dateLabel" fontWeight="bold" fontSize="16" />
 				</s:VGroup>										
 			</s:HGroup>						
-			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="260" fontSize="14" textAlign="center" />
+			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="260" fontSize="14" textAlign="center" editable="false" />
 		</s:Group>
 	</s:Scroller>
 </s:Skin>

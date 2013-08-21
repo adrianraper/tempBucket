@@ -298,7 +298,7 @@
 			 	<p>You have not completed <span fontWeight="bold" fontSize="16">{courseCaption}</span> yet, so you cannot receive a certificate.</p>
 			 	<p>So far you have completed <span fontWeight="bold" fontSize="16">{exerciseAmount} of {totalExercise} exercises</span> and your average score is <span fontWeight="bold" fontSize="16">{aveScor}%.</span></p>
 			 	<p>Go to <span fontWeight="bold" fontSize="16">My Coverage</span> to see which exercises you have not completed so that</p>
-			 	<p>you can finish the whole level</p> 
+			 	<p>you can finish the whole level.</p> 
 			 ]]>
 			 </lit>
 			 <lit name="completeString">
@@ -385,6 +385,59 @@
 			    ]]>
 			</lit>
 			<lit name="thankYouLabel">Thank you for using Tense Buster.</lit>
+			<lit name="listXML">
+				<![CDATA[
+					<list>
+						<item caption="About Tense Buster">
+							<group>
+								<title>What is TenseBuster?</title>
+								<numberContent>false</numberContent>
+								<content>aboutTBContent</content>
+								<pic>aboutTBPic</pic>
+							</group>	
+						</item>
+						<item caption="Getting started">
+							<group>
+								<title>Main menu</title>
+								<numberContent>mainMenuNumberContent</numberContent>
+								<content>false</content>
+								<pic>mainMenuPic</pic>
+							</group>
+							<group>
+								<title>Level menu screen</title>
+								<numberContent>levelMenuNumberContent</numberContent>
+								<content>false</content>
+								<pic>levelMenuPic</pic>
+							</group>
+						</item>
+					</list>
+				]]>
+			</lit>
+			<lit name="aboutTBContent">
+				<![CDATA[
+					<p>You have not completed yet, so you cannot receive a certificate.</p>
+			 		<p>So far you have completed exercises and your average score is.</p>
+			 		<p>Go to <span fontWeight="bold" fontSize="16">My Coverage</span> to see which exercises you have not completed so that</p>
+			 		<p>you can finish the whole level</p>
+				]]>
+			</lit>
+			<lit name="mainMenuNumberContent">
+				 <![CDATA[
+				 	<content>
+				 		<item>Level: Click to see teh grammar topics in each level.</item>
+				 		<item>Click Home at any time to go back to the main menu.</item>
+				 		<item>My progress: see the My Progress section below.</item>
+				 	</content>
+				 ]]>
+			</lit>
+			<lit name="levelMenuNumberContent">
+				<![CDATA[
+					<content>
+						<item>Grammar topic: Click to see the exercises in each topic</item>
+						<item>Home button: Click to return to the Home screen</item>
+					</content>
+				]]>
+			</lit>
 			
 		</group>
 	</language>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/TenseBuster in localhost</id>
-	<developer>DKx</developer>
+	<developer>DK</developer>
 	<dbHost>2</dbHost>
 	<productCode>55</productCode>
 	<loginOption>128</loginOption>

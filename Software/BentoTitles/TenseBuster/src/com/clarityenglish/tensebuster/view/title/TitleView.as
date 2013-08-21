@@ -66,7 +66,6 @@ package com.clarityenglish.tensebuster.view.title {
 		public function set selectedNode(value:XML):void {
 			_selectedNode = value;
 
-			trace("localName: "+_selectedNode.localName());
 			switch (_selectedNode.localName()) {
 				case "menu":
 					currentState = "home";

@@ -72,32 +72,32 @@
 	<s:Group top="16" left="50" id="homeIcon">
 		<s:Path data="M5.3418 2.66992C5.3418 4.14844 4.14844 5.3457 2.67383 5.3457 1.19531 5.3457 0 4.14844 0 2.66992 0 1.19727 1.19531 0 2.67383 0 4.14844 0 5.3418 1.19727 5.3418 2.66992Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#D61C32" color.over="0xFFFFFF" color.down="0xFFFFFF" color.selectedStates="0xFFFFFF"/>
 			</s:fill>
 		</s:Path>
 		<s:Path x="7.47656" y="1.20703" data="M20.3125 1.46289C20.3125 2.27539 19.6602 2.92773 18.8516 2.92773L1.4668 2.92773C0.658203 2.92773 0 2.27539 0 1.46289L0 1.46289C0 0.65625 0.658203 0 1.4668 0L18.8516 0C19.6602 0 20.3125 0.65625 20.3125 1.46289L20.3125 1.46289Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#D61C32" color.over="0xFFFFFF" color.down="0xFFFFFF" color.selectedStates="0xFFFFFF"/>
 			</s:fill>
 		</s:Path>
 		<s:Path y="8.86719" data="M5.3418 2.67188C5.3418 4.14453 4.14844 5.34375 2.67383 5.34375 1.19531 5.34375 0 4.14453 0 2.67188 0 1.19727 1.19531 0 2.67383 0 4.14844 0 5.3418 1.19727 5.3418 2.67188Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#D61C32" color.over="0xFFFFFF" color.down="0xFFFFFF" color.selectedStates="0xFFFFFF"/>
 			</s:fill>
 		</s:Path>
 		<s:Path x="7.47656" y="10.0742" data="M20.3047 1.46484C20.3047 2.27344 19.6504 2.92773 18.8438 2.92773L1.4668 2.92773C0.658203 2.92773 0 2.27344 0 1.46484L0 1.46484C0 0.658203 0.658203 0 1.4668 0L18.8438 0C19.6504 0 20.3047 0.658203 20.3047 1.46484L20.3047 1.46484Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#D61C32" color.over="0xFFFFFF" color.down="0xFFFFFF" color.selectedStates="0xFFFFFF"/>
 			</s:fill>
 		</s:Path>
 		<s:Path y="17.7363" data="M5.3418 2.66992C5.3418 4.14453 4.14844 5.33984 2.67383 5.33984 1.19531 5.33984 0 4.14453 0 2.66992 0 1.19336 1.19531 0 2.67383 0 4.14844 0 5.3418 1.19336 5.3418 2.66992Z">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#D61C32" color.over="0xFFFFFF" color.down="0xFFFFFF" color.selectedStates="0xFFFFFF"/>
 			</s:fill>
 		</s:Path>
 		<s:Rect x="7.47656" y="18.9395" width="20.3164" height="2.93164" radiusX="1.46762" radiusY="1.46762">
 			<s:fill>
-				<s:SolidColor color="#FFFFFF"/>
+				<s:SolidColor color="#D61C32" color.over="0xFFFFFF" color.down="0xFFFFFF" color.selectedStates="0xFFFFFF"/>
 			</s:fill>
 		</s:Rect>
 	</s:Group>

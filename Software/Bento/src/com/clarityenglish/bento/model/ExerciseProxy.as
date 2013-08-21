@@ -280,7 +280,7 @@ package com.clarityenglish.bento.model {
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
 				if (question.isMutuallyExclusive()) answerMap.clear();
-	
+				
 				// gh#526: comment out
 				/*if (question.isSelectable()) {
 					if (!didKeyAlreadyExist) answerMap.put(key, answer);
@@ -413,9 +413,10 @@ package com.clarityenglish.bento.model {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					
 					// 5. If the current answer is empty or incorrect then add it to the answer map
-					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
+					// gh#474 add selectedAnswer.markingClass == Answer.NEUTRAL for drag an drop: drag in and drag out an answer operation
+					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT || selectedAnswer.markingClass == Answer.NEUTRAL) {
 						var correctAnswer:Answer = correctAnswers[0]
-						
+
 						answerMap.put(targetNode, correctAnswer);
 						correctAnswers.shift();
 						
