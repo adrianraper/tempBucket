@@ -76,7 +76,7 @@
     
     <!--- The skin pat that defines the video timeline. The timeline shows the current playhead location  
           in the video, the amount of the video previously played, and the loaded in part of the video. -->
-    <s:Button id="track" width="421" top="5" height="19"
+    <s:Button id="track" width="340" top="5" height="19"
               skinClass="skins.tensebuster.exercise.ui.AudioScrubBarTrackSkin" />
 
     <!--- @copy spark.components.mediaClasses.ScrubBar#loadedRangeArea -->

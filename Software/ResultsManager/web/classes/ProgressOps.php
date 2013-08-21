@@ -66,7 +66,7 @@ EOD;
 	function getEveryoneUnitSummary($productCode, $rootID) {
 		$sql = 	<<<EOD
 			SELECT AVG(sc.F_Score) as AverageScore, sc.F_UnitID as UnitID, sc.F_CourseID as CourseID
-    		FROM t_score sc, t_session s
+    		FROM T_Score sc, T_Session s
     		WHERE s.F_ProductCode = ?
     		AND s.F_RootID = ?
     		AND s.F_SessionID = sc.F_SessionID
@@ -74,9 +74,7 @@ EOD;
     		ORDER BY sc.F_UnitID;
 EOD;
 		$bindingParams = array($productCode, $rootID);
-		AbstractService::$debugLog->info("productCode: ".$productCode);
-		AbstractService::$debugLog->info("rootID: ".$rootID);
-		$rs = $this->db->Execute($sql, $bindingParams);		
+		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}
 	/**

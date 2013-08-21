@@ -90,6 +90,7 @@ package com.clarityenglish.tensebuster.view.progress
 		private var _courseClass:String;
 		private var _courseChanged:Boolean;
 		private var isNoData:Boolean;
+		private var everyOneScoreObject:Object = new Object();
 		
 		public var courseSelect:Signal = new Signal(String);
 		
@@ -131,6 +132,9 @@ package com.clarityenglish.tensebuster.view.progress
 		public function set everyoneCourseSummaries(value:Object):void {
 			_everyoneCourseSummaries = value;
 			_everyoneCourseSummariesChanged = true;
+			for (var i:Number = 0; i < _everyoneCourseSummaries.length; i++) {
+				everyOneScoreObject[_everyoneCourseSummaries[i].UnitID] = _everyoneCourseSummaries[i].AverageScore;
+			}
 			invalidateProperties();
 		}
 		
@@ -147,10 +151,11 @@ package com.clarityenglish.tensebuster.view.progress
 				
 				// Merge the my and everyone summary into some XML and return a list collection of the course nodes
 				var xml:XML = <progress />;
-				for each (var untiNode:XML in menu.course.(@["class"] == courseClass).unit) {
-					var everyoneAverageScore:Number = (_everyoneCourseSummaries[untiNode.@id]) ? _everyoneCourseSummaries[untiNode.@id].AverageScore : 0;
-					xml.appendChild(<unit caption={untiNode.@caption} myAverageScore={untiNode.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
-					if (untiNode.@averageScore > 0 || everyoneAverageScore > 0) {
+				
+				for each (var unitNode:XML in menu.course.(@["class"] == courseClass).unit) {
+					var everyoneAverageScore:Number = (everyOneScoreObject[unitNode.@id]) ? everyOneScoreObject[unitNode.@id] : 0;
+					xml.appendChild(<unit caption={unitNode.@caption} myAverageScore={unitNode.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
+					if (unitNode.@averageScore > 0 || everyoneAverageScore > 0) {
 						isNoData = false;
 					}
 				}

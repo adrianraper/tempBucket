@@ -49,19 +49,34 @@ package com.clarityenglish.tensebuster.view.zone {
 		public var backToUpperLevel:Signal = new Signal();
 	
 		[Embed(source="skins/tensebuster/assets/zone/A10.png")]
-		private var A13:Class;
+		private var A10:Class;
 		
 		[Embed(source='skins/tensebuster/assets/zone/E10.png')]
-		private var E13:Class;
+		private var E10:Class;
 		
 		[Embed(source="skins/tensebuster/assets/zone/I10.png")]
-		private var I13:Class;
+		private var I10:Class;
 		
 		[Embed(source="skins/tensebuster/assets/zone/U10.png")]
-		private var U13:Class;
+		private var U10:Class;
 		
-		[Embed(source="skins/tensebuster/assets/zone/L10.png")]
-		private var L13:Class;
+		[Embed(source="skins/tensebuster/assets/zone/L11.png")]
+		private var L10:Class;
+		
+		[Embed(source="skins/tensebuster/assets/zone/A11.png")]
+		private var A11:Class;
+		
+		[Embed(source='skins/tensebuster/assets/zone/E11.png')]
+		private var E11:Class;
+		
+		[Embed(source="skins/tensebuster/assets/zone/I11.png")]
+		private var I11:Class;
+		
+		[Embed(source="skins/tensebuster/assets/zone/U11.png")]
+		private var U11:Class;
+		
+		[Embed(source="skins/tensebuster/assets/zone/L11.png")]
+		private var L11:Class;
 		
 		[Bindable(event="unitChanged")]
 		public function get unit():XML {
@@ -151,16 +166,26 @@ package com.clarityenglish.tensebuster.view.zone {
 		
 		public function getSource(value:String):Class {
 			switch (value) {
-				case "A13":
-					return A13;
-				case "E13":
-					return E13;
-				case "I13":
-					return I13;
-				case "U13":
-					return U13;
-				case "L13":
-					return L13;
+				case "A10":
+					return A10;
+				case "A11":
+					return A11;
+				case "E10":
+					return E10;
+				case "E11":
+					return E11;
+				case "I10":
+					return I10;
+				case "I11":
+					return I11;
+				case "U10":
+					return U10;
+				case "U11":
+					return U11;
+				case "L10":
+					return L10;
+				case "L11":
+					return L11;
 				default:
 					return null;
 			}
