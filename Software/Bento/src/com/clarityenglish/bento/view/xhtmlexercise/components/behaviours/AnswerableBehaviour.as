@@ -284,6 +284,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		var answerOrString:* = null;
 		
 		// Ignore empty answers (where there is neither a typed value, nor a dropped node)
+		// gh#585 comment out
 		/*if (inputElement.enteredValue == "" && !inputElement.droppedNode)
 			return;*/
 		
@@ -324,7 +325,6 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 					}
 				}
 			} else {
-				// gh#474: once the answer was cleared we assign score=-1 to it in order to recognize later in ExerciseProxy: questionAnswer()
 				answerOrString = new NodeAnswer(<Answer correct="neutral"/>);
 			}
 		}
@@ -334,7 +334,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		// string and create a TextAnswer to pass on to ExerciseProxy. 
 		if (!answerOrString)
 			answerOrString = inputElement.enteredValue;
-
+		
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true));
 	}
 	

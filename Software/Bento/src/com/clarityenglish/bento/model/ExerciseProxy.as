@@ -273,10 +273,9 @@ package com.clarityenglish.bento.model {
 				
 				// Get the answer map for this question
 				var answerMap:AnswerMap = getSelectedAnswerMap(question);
-				
-				// gh#526: comment out
-				//var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
-				
+
+				var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
+
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
 				if (question.isMutuallyExclusive()) answerMap.clear();
@@ -287,8 +286,14 @@ package com.clarityenglish.bento.model {
 				} else {
 					// Add the answer
 					answerMap.put(key, answer);
-				}*/				
-				answerMap.put(key, answer);
+				}*/
+				// gh#585 b)
+				if (!delayedMarking) {
+						if (!didKeyAlreadyExist) answerMap.put(key, answer);
+				}else {
+					answerMap.put(key, answer);
+				}
+				
 				// gh#347
 				if (question.type == Question.TARGET_SPOTTING_QUESTION && exercise.model.getSettingParam("delayedMarking") == null) {
 					exerciseDirty = false;											
@@ -334,8 +339,6 @@ package com.clarityenglish.bento.model {
 			// have removed the synonymGroup check.  It needs to be confirmed that this has no undesirable side effects.
 			if (answer is TextAnswer /*&& answer.synonymGroup*/) {
 				var existingIdx:int = markableAnswerMap.values.indexOf(answer);
-				//trace("answer: "+answer.toXMLString());
-				//trace("existingIdx: "+existingIdx);
 				if (existingIdx >= 0) {
 					answer = new TextAnswer(<answer value={(answer as TextAnswer).value} correct={false}/>);
 				}
@@ -381,7 +384,8 @@ package com.clarityenglish.bento.model {
 			checkExercise();
 			
 			var answerMap:AnswerMap = new AnswerMap();
-			var selectedAnswerMap:AnswerMap = getSelectedAnswerMap(question);
+			// gh#585 c)var selectedAnswerMap:AnswerMap = getSelectedAnswerMap(question);
+			var selectedAnswerMap:AnswerMap = getMarkableAnswerMap(question);
 			
 			// 1. Get all the possible correct answers.  If there are no correct answers for this question do nothing at all.
 			var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();
@@ -396,6 +400,7 @@ package com.clarityenglish.bento.model {
 				targetNodes = targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
+						trace("selectedAnswer: "+selectedAnswer.toXMLString());
 						var idx:int = correctAnswers.indexOf(selectedAnswer);
 						if (idx > -1) {
 							// Remove the correct answer
@@ -465,7 +470,8 @@ package com.clarityenglish.bento.model {
 			
 			// Go through the questions
 			for each (var question:Question in exercise.model.questions) {
-				var answerMap:AnswerMap = markableAnswerMap[question] as AnswerMap;
+				// gh#585 var answerMap:AnswerMap = markableAnswerMap[question] as AnswerMap;
+				var answerMap:AnswerMap = selectedAnswerMap[question] as AnswerMap;
 				
 				// These are the correct and incorrect count for this question
 				var correctCount:uint = 0;
@@ -550,11 +556,7 @@ package com.clarityenglish.bento.model {
 			var exerciseFeedback:Feedback = getExerciseFeedback();
 			
 			if (exerciseFeedback) {
-				// gh#554
-				var substitutions:Object = {};
-				substitutions.yourScore = _exerciseMark.correctPercent;
-
-				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: exerciseFeedback , substitutions: substitutions } );
+				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: exerciseFeedback /*, substitutions: substitutions*/ } );
 			}
 		}
 		
