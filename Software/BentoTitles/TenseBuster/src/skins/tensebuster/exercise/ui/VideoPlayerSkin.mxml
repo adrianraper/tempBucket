@@ -156,7 +156,7 @@ in accordance with the terms of the license agreement accompanying it.
 									skinClass.fullScreenStates="spark.skins.spark.mediaClasses.fullScreen.PlayPauseButtonSkin"
 									layoutDirection="ltr"
 									focusIn="event.target.depth=1"
-									focusOut="event.target.depth=0" />
+									focusOut="event.target.depth=0" buttonMode="true" useHandCursor="true" />
 					
 					<!-- scrubbar + the currentTime/duration labels -->
 					<s:Group left="35" right="35" top="0" bottom="15">

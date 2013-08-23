@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" 
+		xmlns:exercise="skins.tensebuster.assets.exercise.*" 
+		xmlns:help="skins.tensebuster.assets.help.*" 
+		xmlns:components="com.clarityenglish.components.*"
+	    creationComplete="creationComplete(event)" xmlns:help1="skins.tensebuster.help.*" >
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.help.HelpView")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.binding.utils.BindingUtils;
+			import mx.binding.utils.ChangeWatcher;
+			import mx.collections.ArrayCollection;
+			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
+			
+			private var changeWatcher:ChangeWatcher;
+			
+			protected function clickHandler(event:MouseEvent):void
+			{
+				// scroll to the first page when switch to different help item
+				if (helpScorller) {
+					helpScorller.viewport.horizontalScrollPosition = 0;
+				}
+			}
+			
+			protected function creationComplete(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				changeWatcher = BindingUtils.bindSetter(onScroll, helpScorller.viewport, "horizontalScrollPosition");
+			}
+			
+			protected function onScroll(x:* = null):void {
+				if (helpScorller.horizontalScrollBar) {
+					pageNumberDisplay.selectedIndex = Math.floor(helpScorller.horizontalScrollBar.value / helpScorller.viewport.width);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			
+			public function getCopyProvider():CopyProvider {
+				return hostComponent.getCopyProvider();
+			}
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="disabled" />
+	</s:states>
+	
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/help/helpBg.png')" horizontalCenter="0" bottom="-40" filters="{[dropShadowFilter]}"/>
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/help/helpTitle.png')" top="110" left="80" />
+	
+	<s:Rect left="35" right="35" top="170" height="105">
+		<s:fill>
+			<s:SolidColor color="0xec1c32"/>
+		</s:fill>
+	</s:Rect>
+	<s:List id="helpList" labelField="@caption" left="55" right="75" top="170" height="105" click="clickHandler(event)" requireSelection="true">
+		<s:layout>
+			<s:TileLayout horizontalGap="50" verticalGap="50" paddingTop="10" paddingBottom="15" requestedColumnCount="3" />
+		</s:layout>
+		<s:itemRenderer >
+			<fx:Component>
+				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+					<s:states>
+						<s:State name="normal" />
+						<s:State name="hovered" />
+						<s:State name="selected" />
+					</s:states>
+					
+					<s:HGroup gap="5">
+						<help:helpSelectionArrow visible.selected="true" visible.hovered="true" visible.normal="false" />
+						<s:Label color="0xFFFFFF" text="{data.@caption}" paddingTop="5"/>						
+					</s:HGroup>					
+				</s:ItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+	
+	<s:Scroller id="helpScorller" width="900" horizontalCenter="0" top="300" height="400">
+		<s:DataGroup id="helpDataGroup" dataProvider="{new XMLListCollection(helpList.selectedItem.group)}" left="35" width="900"  height="400" >
+			<s:layout>
+				<s:HorizontalLayout useVirtualLayout="true"/>
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<s:DataRenderer width="900" height="400">
+						<fx:Script>
+							<![CDATA[
+								import flashx.textLayout.elements.TextFlow;
+								
+								import mx.collections.XMLListCollection;
+								
+								import spark.utils.TextFlowUtil;
+								
+								private var contentString:String;
+								private var contentTextFlow:TextFlow;
+								private var numberContentString:String;
+								private var numberContentXML:XML;
+								
+								override public function set data(value:Object):void {
+									super.data = value;
+									
+									if (data) {
+										if (data.content != "false") {
+											contentRichText.visible = true;
+											contentRichText.includeInLayout = true;
+											contentString = outerDocument.getCopyProvider().getCopyForId(data.content);
+											contentTextFlow = TextFlowUtil.importFromString(contentString);
+											contentRichText.textFlow = contentTextFlow;
+										} else {
+											contentRichText.visible = false;
+											contentRichText.includeInLayout = false;
+										}
+										
+										if (data.numberContent != "false") {
+											numberContentDataGroup.visible = true;
+											numberContentDataGroup.includeInLayout = true;
+											numberContentString = outerDocument.getCopyProvider().getCopyForId(data.numberContent);
+											numberContentXML = XML(numberContentString);
+											numberContentDataGroup.dataProvider = new XMLListCollection(numberContentXML.item);
+										} else {
+											numberContentDataGroup.visible = false;
+											numberContentDataGroup.includeInLayout = false;
+										}
+										
+										helpPic.source = getStyle(data.pic);
+									}								
+								}
+							]]>
+						</fx:Script>
+						<s:HGroup>
+							<s:VGroup width="420">
+								<s:Label text="{data.parent().@caption}" />
+								<s:Label text="{data.title}" />
+								<s:DataGroup id="numberContentDataGroup">
+									<s:layout>
+										<s:VerticalLayout gap="15"/>
+									</s:layout>
+									<s:itemRenderer>
+										<fx:Component>
+											<s:ItemRenderer>
+												<s:HGroup gap="10">
+													<s:SWFLoader source="{getStyle('helpIcon' + (itemIndex + 1))}" />
+													<s:Label text="{data}" paddingTop="5" />
+												</s:HGroup>										
+											</s:ItemRenderer>
+										</fx:Component>
+									</s:itemRenderer>
+								</s:DataGroup>
+								<s:RichText id="contentRichText" />
+							</s:VGroup>
+							<s:SWFLoader id="helpPic" width="480" right="35" />
+						</s:HGroup>										
+					</s:DataRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:DataGroup>
+	</s:Scroller>
+	
+	<help1:PageNumberDisplay id="pageNumberDisplay" horizontalCenter="0" bottom="60" visible="false" />
+</s:Skin>
