@@ -52,6 +52,7 @@
 				</s:VGroup>										
 			</s:HGroup>						
 			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="260" fontSize="14" textAlign="center" editable="false" />
+			<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/certificate/signiture.png')" bottom="5" right="190" />
 		</s:Group>
 	</s:Scroller>
 </s:Skin>

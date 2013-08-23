@@ -154,6 +154,20 @@
 				}
 				view.feedbackButton.visible = view.feedbackButton.includeInLayout = feedbackVisible;
 			}
+			
+			if (exercise.getRule() != null) {
+				view.ruleLink = exercise.getRule();
+			} else {
+				view.ruleLink = null;
+			}
+
+			if (view.ruleButton) {
+				if (exercise.getRule() != null) {
+					view.ruleButton.visible = true;
+				} else {
+					view.ruleButton.visible = false;
+				}
+			}
 		}
 		
 		// gh#388

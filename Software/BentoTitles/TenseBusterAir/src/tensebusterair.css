@@ -12,6 +12,7 @@
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
 @namespace view "com.clarityenglish.bento.view.*";
 @namespace help "com.clarityenglish.tensebuster.view.help.*";
+@namespace ui "com.clarityenglish.tensebusterair.unit.ui.*";
 
 global {
 	interactionMode: touch;
@@ -98,6 +99,10 @@ home|HomeView {
 
 unit|UnitView {
 	skinClass: ClassReference("skins.tensebusterair.UnitSkin");
+}
+
+unit|UnitView ui|ProgressUnitButton {
+	skinClass: ClassReference("skins.tensebusterair.unit.ProgressUnitButtonSkin");
 }
 
 zone|ZoneView {

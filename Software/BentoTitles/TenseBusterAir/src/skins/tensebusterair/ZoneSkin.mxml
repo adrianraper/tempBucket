@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:exercise="skins.tensebuster.assets.exercise.*" creationComplete="{numberFadeEffect.play()}">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:exercise="skins.tensebuster.assets.exercise.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.zone.ZoneView")]
@@ -9,7 +9,7 @@
 	
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
-		<s:Fade id="numberFadeEffect" target="{numberIcon}" duration="2000" alphaFrom="0" alphaTo="1"/>
+		<!--s:Fade id="numberFadeEffect" target="{numberIcon}" duration="2000" alphaFrom="0" alphaTo="1"/-->
 	</fx:Declarations>
 	
 	<!-- states -->
@@ -45,12 +45,14 @@
 	<s:Button id="backButton" label="Back to Unit" verticalCenter="-220" horizontalCenter="375" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 	
 	<s:Scroller top="200" bottom="20" horizontalCenter="-260">
-		<s:HGroup>
-			<s:SWFLoader id="numberIcon"/>		
+		<s:HGroup gap="8">
+			<s:HGroup paddingTop="8">
+				<s:SWFLoader id="numberIcon"/>
+			</s:HGroup>					
 			<s:List id="exerciseList" width="270" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">
 				<s:itemRenderer>
 					<fx:Component>
-						<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" initialize="{fadeEffect.play()}">
+						<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
 							<fx:Script>
 								<![CDATA[
 									import com.clarityenglish.common.vo.content.Unit;
@@ -100,10 +102,10 @@
 							</s:layout>
 							
 							<fx:Declarations>
-								<s:Fade id="fadeEffect" target="{exButtonGroup}" duration="2000" alphaFrom="0" alphaTo="1"/>
+								<!--s:Fade id="fadeEffect" target="{exButtonGroup}" duration="2000" alphaFrom="0" alphaTo="1"/-->
 							</fx:Declarations>
 							
-							<s:Group id="exButtonGroup" alpha="0">
+							<s:Group id="exButtonGroup" alpha="1">
 								<s:Rect id="unDonePath" left="2" height="30" width="264" radiusX="6" radiusY="6" filters="{[dropShadowFilter]}">
 									<s:fill>
 										<s:LinearGradient rotation="90">

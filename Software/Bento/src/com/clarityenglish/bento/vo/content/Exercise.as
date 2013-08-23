@@ -114,6 +114,10 @@ package com.clarityenglish.bento.vo.content {
 			return (model.questions.length > 0 && model.hasSettingParam("delayedMarking"));
 		}
 		
+		public function getRule():String {
+			return model.getRule();
+		}
+		
 		/**
 		 * This is a static function that determines whether an exercise should be navigable to or not. It runs off the exercise xml node in the menu
 		 * xml, not the exercise file itself.

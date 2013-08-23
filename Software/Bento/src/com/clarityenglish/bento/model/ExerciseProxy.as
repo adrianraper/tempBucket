@@ -265,15 +265,19 @@ package com.clarityenglish.bento.model {
 			checkExercise();
 
 			if (!disabled) {
-				log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
+				log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);					
+				
+				// Get the answer map for this question
+				var answerMap:AnswerMap = getSelectedAnswerMap(question);
+				
+				// gh#588
+				if (answer.markingClass == Answer.NEUTRAL && !answerMap.containsKey(key)) 
+					return;
 				
 				// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
 				if (!delayedMarking)
 					markQuestion(question, answer, key);
 				
-				// Get the answer map for this question
-				var answerMap:AnswerMap = getSelectedAnswerMap(question);
-
 				var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
 
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
@@ -289,7 +293,7 @@ package com.clarityenglish.bento.model {
 				}*/
 				// gh#585 b)
 				if (!delayedMarking) {
-						if (!didKeyAlreadyExist) answerMap.put(key, answer);
+					if (!didKeyAlreadyExist) answerMap.put(key, answer);
 				}else {
 					answerMap.put(key, answer);
 				}

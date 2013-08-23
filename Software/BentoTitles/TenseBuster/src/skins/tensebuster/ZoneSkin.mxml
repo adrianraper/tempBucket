@@ -45,8 +45,10 @@
 	<s:Button id="backButton" label="Back to Unit" right="60" top="53" color="0x000000" fontWeight="bold" fontSize="13" buttonMode="true" useHandCursor="true"/>
 	
 	<s:Scroller id="exerciseListScorller" top="140" bottom="60" left="85">
-		<s:HGroup>
-			<s:SWFLoader id="numberIcon"/>			
+		<s:HGroup gap="8">
+			<s:HGroup paddingTop="8">
+				<s:SWFLoader id="numberIcon"/>		
+			</s:HGroup>			
 			<s:List id="exerciseList" width="270" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">
 				<s:itemRenderer>
 					<fx:Component>

@@ -1,6 +1,7 @@
 package com.clarityenglish.tensebuster.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
+	import com.clarityenglish.tensebuster.view.help.HelpView;
 	import com.clarityenglish.tensebuster.view.home.HomeView;
 	import com.clarityenglish.tensebuster.view.progress.ProgressView;
 	import com.clarityenglish.tensebuster.view.unit.UnitView;
@@ -120,7 +121,7 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function TitleView() {
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "home", "unit", "zone", "exercise", "progress", "profile" ], true);
+			StateUtil.addStates(this, [ "home", "unit", "zone", "exercise", "progress", "profile", "help" ], true);
 		}
 		
 		protected override function commitProperties():void {
@@ -162,7 +163,8 @@ package com.clarityenglish.tensebuster.view.title {
 						unit: { viewClass: UnitView, stack: true },
 						zone: { viewClass: ZoneView, stack: true },
 						exercise: { viewClass: ExerciseView, stack: true },
-						progress: { viewClass: ProgressView }
+						progress: { viewClass: ProgressView },
+						help: {viewClass: HelpView}
 					});
 					break;
 				case backToMenuButton:

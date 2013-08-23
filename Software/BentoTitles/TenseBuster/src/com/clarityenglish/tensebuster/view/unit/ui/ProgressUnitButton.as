@@ -22,8 +22,8 @@ package com.clarityenglish.tensebuster.view.unit.ui
 		public var rightSide:Path;
 		
 		public function set coverage(value:Number):void {
-			_coverage = value;
-			invalidateProperties();
+				_coverage = value;
+				invalidateProperties();	
 		}
 		
 		[Bindable]
@@ -51,7 +51,7 @@ package com.clarityenglish.tensebuster.view.unit.ui
 		}
 		
 		protected override function commitProperties():void {
-			super.commitProperties();
+			super.commitProperties();		
 			
 			// Tween it
 			Tweener.removeTweens(overallProgressPath, percentWidth);

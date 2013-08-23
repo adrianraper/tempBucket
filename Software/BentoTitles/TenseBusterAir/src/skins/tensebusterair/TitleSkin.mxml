@@ -23,9 +23,11 @@
 		<s:State name="exercise" />
 		<s:State name="progress" />
 		<s:State name="profile" />
+		<s:State name="help" />
 	</s:states>
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/title/header.jpg')" top="0" horizontalCenter="0" excludeFrom="exercise" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/logo.png')" top="25" right="5" excludeFrom="[exercise, progress, help]" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Menu"  left="0" right="0" height="100%" />
@@ -36,7 +38,7 @@
 	
 	<s:Button id="logoutButton" bottom="0" right="10" fontWeight="normal" buttonMode="true" useHandCursor="true" excludeFrom="exercise" />
 	
-	<s:Group top="57" left="60" visible="{hostComponent.currentState == 'exercise'}">
+	<s:Group top="32" left="60" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:SWFLoader id="courseThumbnail" />
@@ -53,5 +55,5 @@
 			</s:HGroup>
 		</s:HGroup>	
 	</s:Group>
-	<s:Button id="backToMenuButton" label="Back to Menu" horizontalCenter="375" top="50" color="0xFFFFFF" fontWeight="bold" fontSize="12" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
+	<s:Button id="backToMenuButton" label="Back to Menu" horizontalCenter="375" top="35" color="0xFFFFFF" fontWeight="bold" fontSize="12" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
 </s:Skin>

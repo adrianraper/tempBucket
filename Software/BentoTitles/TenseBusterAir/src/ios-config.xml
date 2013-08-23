@@ -29,10 +29,10 @@
 	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
 	
 	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>
-	<remoteGateway>http://www.clarityenglish.com/SoftwareTablet/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>TenseBusterService</remoteService>
 	
-	<assetFolder>SoftwareTablet/ResultsManager/web/resources/assets/</assetFolder>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	
 	<rememberLogin>false</rememberLogin>
 	<disableAutoTimeout>true</disableAutoTimeout>

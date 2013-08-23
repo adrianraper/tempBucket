@@ -64,6 +64,12 @@ package com.clarityenglish.bento.vo.content.model {
 			return _exerciseFeedback;
 		}
 		
+		public function getRule():String {
+			var value:String = (xml.hasOwnProperty("settings") && xml.settings.param.(@name == "rule").length() > 0) ? xml.settings.param.(@name == "rule").@value : null;
+			trace("value: "+value);
+			return value;
+		}
+		
 		// gh#388
 		public function hasQuestionFeedback():Boolean {
 			for each (var question:Question in _questions) {

@@ -10,6 +10,8 @@ package com.clarityenglish.bento.view.exercise {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	import mx.controls.Text;
 	
@@ -46,6 +48,9 @@ package com.clarityenglish.bento.view.exercise {
 		public var recorderButton:Button;
 		
 		[SkinPart]
+		public var ruleButton:Button;
+		
+		[SkinPart]
 		public var exerciseLogOutButton:Button;
 				
 		[SkinPart(required="true")]
@@ -72,6 +77,7 @@ package com.clarityenglish.bento.view.exercise {
 		// gh#413
 		private var _hasExerciseFeedback:Boolean;
 		private var _hasQuestionFeedback:Boolean;
+		private var _ruleLink:String;
 		
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
@@ -103,6 +109,15 @@ package com.clarityenglish.bento.view.exercise {
 		
 		public function set hasQuestionFeedback(value:Boolean):void {
 			_hasQuestionFeedback = value;
+		}
+		
+		public function set ruleLink(value:String):void {
+			_ruleLink = value;
+		}
+		
+		[Bindable]
+		public function get ruleLink():String {
+			return _ruleLink;
 		}
 		
 		public var startAgain:Signal = new Signal();
@@ -198,6 +213,10 @@ package com.clarityenglish.bento.view.exercise {
 					recorderButton.label = copyProvider.getCopyForId("recorderButton");
 					recorderButton.addEventListener(MouseEvent.CLICK, function():void { record.dispatch(); });
 					break;
+				case ruleButton:
+					ruleButton.label = copyProvider.getCopyForId("ruleButton");
+					ruleButton.addEventListener(MouseEvent.CLICK, onMouseClick);
+					break;
 			}
 		}
 		
@@ -207,6 +226,11 @@ package com.clarityenglish.bento.view.exercise {
 			return (dynamicView.viewName == DynamicView.DEFAULT_VIEW) ? "exercise" : "other";
 		}
 		
+		protected function onMouseClick(event:MouseEvent):void {
+			var url:String = config.contentRoot + config.account.getTitle().contentLocation + "/" +   _ruleLink;
+			var urlRequest:URLRequest = new URLRequest(url);
+			navigateToURL(urlRequest, "_blank");
+		}
 	}
 	
 }

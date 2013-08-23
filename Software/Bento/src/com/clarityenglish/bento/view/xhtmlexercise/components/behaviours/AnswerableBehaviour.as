@@ -334,7 +334,7 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		// string and create a TextAnswer to pass on to ExerciseProxy. 
 		if (!answerOrString)
 			answerOrString = inputElement.enteredValue;
-		
+
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answerOrString, inputNode, true));
 	}
 	
