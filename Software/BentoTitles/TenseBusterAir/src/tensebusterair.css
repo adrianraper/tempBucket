@@ -90,7 +90,7 @@ title|TitleView s|TabbedViewNavigator #tabBar {
 }
 
 title|TitleView s|Button#logoutButton {
-	skinClass: ClassReference("skins.tensebusterair.title.LogOutButtonSkin");
+	skinClass: ClassReference("skins.tensebuster.title.ui.LogoutButtonSkin");
 }
 
 home|HomeView {
@@ -118,20 +118,20 @@ progresstb|ProgressView {
 }
 
 progresstb|ProgressCertificateView {
-	skinClasss: ClassReference("skins.tensebusterair.progress.ProgressCertificateSkin");
+	skinClass: ClassReference("skins.tensebusterair.progress.ProgressCertificateSkin");
 }
 
 /*progresscomponents|ProgressScoreView {
 	skinClass: ClassReference("skins.tensebusterair.progress.ProgressScoreSkin");
 }*/
 
-help|HelpView {
+/*help|HelpView {
 	skinClass: ClassReference("skins.tensebusterair.HelpSkin");
 }
 
 help|HelpView s|ButtonBarButton#helpListButtonBarButton {
 	skinClass: ClassReference("skins.tensebusterair.help.HelpListButtonBarButtonSkin");
-}
+}*/
 
 s|Scroller s|VScrollBar {
 	skinClass: ClassReference("spark.skins.mobile.VScrollBarSkin");

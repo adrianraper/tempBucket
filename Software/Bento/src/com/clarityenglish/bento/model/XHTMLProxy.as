@@ -35,12 +35,6 @@ package com.clarityenglish.bento.model {
 		public static const NAME:String = "XHTMLProxy";
 		
 		/**
-		 * If this is true then use a cachebuster (a randomly generated string) on the end of XML files so they don't get cached.
-		 * TODO: gh#476 This should be configurable in config.xml 
-		 */
-		private var useCacheBuster:Boolean = false;
-		
-		/**
 		 * Standard flex logger
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
@@ -147,7 +141,7 @@ package com.clarityenglish.bento.model {
 			
 			// gh#476 
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			useCacheBuster = configProxy.getConfig().useCacheBuster;
+			var useCacheBuster:Boolean = configProxy.getConfig().useCacheBuster;
 			
 			if (beforeXHTMLLoadFunction !== null) beforeXHTMLLoadFunction(facade, href);
 			// gh#265
@@ -246,6 +240,9 @@ package com.clarityenglish.bento.model {
 		private function parseAndStoreXHTML(href:Href, data:String):void {
 			log.info("Successfully loaded XHTML from href {0}", href);
 			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var useCacheBuster:Boolean = configProxy.getConfig().useCacheBuster;
+			
 			try {
 				var xml:XML = new XML(data);
 				
@@ -257,7 +254,7 @@ package com.clarityenglish.bento.model {
 				switch (href.type) {
 					case Href.MENU_XHTML:
 					case Href.XHTML:
-						loadedResources[href] = new XHTML(xml, href);
+						loadedResources[href] = new XHTML(xml, href, useCacheBuster);
 						break;
 					case Href.EXERCISE:
 						loadedResources[href] = new Exercise(xml, href);

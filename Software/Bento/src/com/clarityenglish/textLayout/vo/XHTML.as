@@ -33,7 +33,7 @@ package com.clarityenglish.textLayout.vo {
 		 * If this is true then use a cachebuster (a randomly generated string) on the end of CSS files so they don't get cached.
 		 * gh#476 This should be configurable in config.xml 
 		 */
-		private var useCacheBuster:Boolean = true;
+		private var useCacheBuster:Boolean = false;
 		
 		public static const XML_CHANGE_EVENT:String = "xmlChange";
 		
@@ -57,10 +57,11 @@ package com.clarityenglish.textLayout.vo {
 		 */
 		public var href:Href;
 		
-		public function XHTML(value:XML = null, href:Href= null) {
+		public function XHTML(value:XML = null, href:Href= null, useCacheBuster:Boolean = false) {
 			dispatcher = new EventDispatcher(this);
 			
 			this.href = href;
+			this.useCacheBuster = useCacheBuster;
 			
 			if (value)
 				xml = value;
@@ -72,7 +73,7 @@ package com.clarityenglish.textLayout.vo {
 		 * @return 
 		 */
 		public function clone():XHTML {
-			return new XHTML(_xml.copy(), href);
+			return new XHTML(_xml.copy(), href, useCacheBuster);
 		}
 		
 		public function get rootPath():String {
@@ -193,10 +194,6 @@ package com.clarityenglish.textLayout.vo {
 				return;
 			
 			isLoadingStyleLinks = true;
-			
-			// gh#476 Can't do this until find out how to reference facade if we are using flash.utils.Proxy 
-			//var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			//useCacheBuster = configProxy.getConfig().useCacheBuster;
 			
 			// Get all the link elements referencing external stylesheets
 			var linkNodes:XMLList = _xml.head.link.(@rel == "stylesheet" && attribute("media") != "print");
@@ -348,10 +345,6 @@ package com.clarityenglish.textLayout.vo {
 		}
 		
 		public static function removeClass(node:XML, classString:String):void {
-			if (classString == "used") {
-				trace(1);
-			}
-			
 			if (classString.indexOf(" ") >= 0)
 				throw new Error("Only a single class can be manipulated at a time");
 			
