@@ -21,8 +21,9 @@
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/hexagonBg.png')" horizontalCenter="0" bottom="0"/>
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/loginInput.png')" horizontalCenter="-80" top="70" />
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/loginBG.png')" bottom="0" horizontalCenter="0" />
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="20" horizontalCenter="0" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/logo.png')" top="45" right="5" />
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="2" horizontalCenter="0" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/logo.png')" top="24" right="15" />
+	<s:Label id="versionLabel" text="v {hostComponent.parentApplication.versionNumber}" color="#000000" fontSize="12" right="15" top="57" />
 	
 	<s:Group horizontalCenter="0" verticalCenter="-40">
 		<s:VGroup horizontalAlign="center" gap="30">
@@ -51,5 +52,11 @@
 		</s:VGroup>
 	</s:Group>
 
-	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#000000" right="3" bottom="0"/>
+	<!--s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#000000" right="3" bottom="0"/-->
+	<!-- Footer -->
+	<s:Group  left="10" height="37" bottom="0">
+		<s:HGroup top="12">
+			<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2013. All rights reserved." color="#000000" fontSize="12" paddingTop="6" />
+		</s:HGroup>
+	</s:Group>
 </s:Skin>

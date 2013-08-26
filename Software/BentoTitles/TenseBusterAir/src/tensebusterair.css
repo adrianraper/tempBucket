@@ -90,7 +90,7 @@ title|TitleView s|TabbedViewNavigator #tabBar {
 }
 
 title|TitleView s|Button#logoutButton {
-	skinClass: ClassReference("skins.tensebuster.title.ui.LogoutButtonSkin");
+	skinClass: ClassReference("skins.tensebusterair.title.LogOutButtonSkin");
 }
 
 home|HomeView {

@@ -26,8 +26,8 @@
 		<s:State name="help" />
 	</s:states>
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/title/header.jpg')" top="0" horizontalCenter="0" excludeFrom="exercise" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/logo.png')" top="25" right="15" excludeFrom="[exercise, progress, help]" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/title/header.jpg')" top="2" horizontalCenter="0" excludeFrom="exercise" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/logo.png')" top="27" right="15" excludeFrom="[exercise, progress, help]" />
 	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Menu"  left="0" right="0" height="100%" />
