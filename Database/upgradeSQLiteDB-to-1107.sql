@@ -1,4 +1,4 @@
-
+﻿
 CREATE TABLE `T_LicenceType` (
   `F_Status` smallint(5) NOT NULL,
   `F_Description` varchar(32) NOT NULL
@@ -38,8 +38,6 @@ where not F_Name like ('%Library%');
 INSERT INTO `T_Product` VALUES
 (54,'Clarity Course Builder',NULL,10);
 INSERT INTO `T_ProductLanguage` VALUES (54,'EN','');
--- INSERT INTO `T_Accounts` (`F_RootID`,`F_ProductCode`,`F_MaxStudents`,`F_MaxAuthors`,`F_MaxTeachers`,`F_MaxReporters`,`F_ExpiryDate`,`F_ContentLocation`,`F_LanguageCode`,`F_MGSRoot`,`F_StartPage`,`F_LicenceFile`,`F_LicenceStartDate`,`F_LicenceType`,`F_Checksum`,`F_DeliveryFrequency`,`F_LicenceClearanceDate`,`F_LicenceClearanceFrequency`) VALUES 
--- (163,54,100,0,30,30,'2012-12-31 23:59:59','Clarity','EN',NULL,'','','2012-09-18 00:00:00',1,'2be61e2be4125007da11a73d5595e9cd3d49fd53d1cbfb62dd811a49471995f6',NULL,NULL,NULL);
 DROP TABLE IF EXISTS `T_CcbSchedule`;
 
 -- For Road to IELTS, need product version in T_Accounts

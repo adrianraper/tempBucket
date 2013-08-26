@@ -129,7 +129,7 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (0,'Not set',NULL,NULL,300),
 (1,'Abacus Communications Ltd',NULL,'info@abacus-communications.com',12),
 (2,'Bookery',NULL,'markus@bookery.com.au,info@bookery.com.au',6),
-(3,'Edutech Middle East',NULL,'sales@clarityenglish.com',106),
+(3,'Edutech Middle East',NULL,'sales@clarityenglish.com,adrian.raper@clarityenglish.com',106),
 (4,'Falcon Press Sdn Bhd',NULL,NULL,101),
 (5,'Hans Richter Laromedel',NULL,'post@richbook.se',13),
 (6,'Mr Kevin Coffey',NULL,'insight@paradise.net.nz',102),
@@ -140,7 +140,7 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (11,'Young India Films',NULL,'info@youngindiafilms.in',3),
 (12,'Clarity in Hong Kong',NULL,'sales@clarityenglish.com',2),
 (13,'Clarity direct',NULL,'sales@clarityenglish.com',2),
-(14,'P.T. Solusi Nusantara',NULL,'ervida@solusi-nusantara.com',8),
+(14,'P.T. Solusi Nusantara',NULL,'ervida@solusieducationaltechnology.com',8),
 (15,'Rosanna d o o',NULL,'rossana@t-2.net',104),
 (16,'Attica S.A.',NULL,'karine.finck@attica.fr',100),
 (17,'Encomium',NULL,'maryam@encomium.com',14),
@@ -163,7 +163,7 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (35,'Micromail',NULL,'diarmuid@micromail.ie',105),
 (36,'IELTSPractice.com',NULL,'cynthia.lau@clarityenglish.com',20),
 (37,'Vietnam Book Promotion Service',NULL,'thao@vietnambookpromotion.com',19),
-(38,'Subramoni Iyer (Qatar)',NULL,'subramoni.iyer@windowslive.com',7);
+(38,'Subramoni Iyer (Qatar)',NULL,'subramoni.iyer@lesolonline.com,subramoni.iyer@windowslive.com',7);
 
 -- No more monthly usage stats
 UPDATE `rack80829`.`T_Triggers` SET `F_ValidToDate`='2011-08-29' WHERE F_TriggerID in (31);
@@ -346,10 +346,11 @@ CREATE TABLE `T_ScoreCache` (
 
 -- For occasionally calculating everyone's summary values
 INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
-SELECT F_ProductCode, F_CourseID, ROUND(AVG(IF(F_Score<0, NULL, F_Score))) as score, ROUND(AVG(F_Duration)) as duration, COUNT(*) as count, NOW(), 'Worldwide' 
+SELECT F_ProductCode, F_CourseID, ROUND(AVG(IF(F_Score<0, NULL, F_Score))) as score, ROUND(AVG(F_Duration)) as duration, 
+	COUNT(*) as count, NOW(), 'Worldwide' 
 FROM T_Score
-WHERE F_ProductCode in (12,13)
-GROUP BY F_CourseID
+WHERE F_ProductCode in (52,53)
+GROUP BY F_ProductCode, F_CourseID
 ORDER BY F_CourseID;
 
 -- For score records that are coverage rather than score. Note that this is REALLY expensive on production database. Are you sure? NO

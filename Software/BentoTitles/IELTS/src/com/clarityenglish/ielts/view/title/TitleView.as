@@ -327,10 +327,13 @@ package com.clarityenglish.ielts.view.title {
 			super.onViewCreationComplete();
 			
 			// Don't show profile tab for network users
+			// gh#603 removing profile tab blocks the logout button
+			/*
 			if (licenceType == Title.LICENCE_TYPE_NETWORK) {
 				var profileIdx:int = sectionNavigator.tabBar.dataProvider.getItemIndex(myProfileViewNavigator);
 				if (profileIdx >= 0) sectionNavigator.tabBar.dataProvider.removeItemAt(profileIdx);
 			}
+			*/
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

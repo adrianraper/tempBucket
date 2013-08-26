@@ -367,7 +367,6 @@ package com.clarityenglish.common.vo.config {
 				this.paths.menuFilename = "menu.xml";
 			}
 			
-			// Alice: automatic multiple channel
 			for each (var channel:XML in xml..channel){			
 				var channelObject:ChannelObject = new ChannelObject();
 				channelObject.name = channel.@name.toString();
@@ -379,6 +378,7 @@ package com.clarityenglish.common.vo.config {
 			// #335
 			if (xml..streamingMedia.toString()) this.paths.streamingMedia = xml..streamingMedia.toString();
 
+			// I think this node is deprecated
 			if (xml..mediaChannel.toString()) {
 				this.mediaChannel = xml..mediaChannel.toString();
 			}else {
@@ -470,7 +470,7 @@ package com.clarityenglish.common.vo.config {
 			if (xml..referrer.toString()) {
 				this.referrer = xml..referrer.toString();
 			}
-			trace("config.xml has id=" + this.configID);
+			//trace("config.xml has id=" + this.configID);
 		}
 		
 		/**
@@ -558,9 +558,21 @@ package com.clarityenglish.common.vo.config {
 			// You can now adjust the sharedMedia path as necessary
 			// Remember that it might look like 
 			// sharedMedia={contentPath}/sharedMedia
-			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('{contentPath}').join(this.paths.content);
-			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('{prefix}').join(data.prefix);
-		
+			// gh#599
+			var substitutions:Object = {contentPath: this.paths.content,
+										productVersion: this.productVersion,
+										languageCode: this.languageCode,
+										prefix: data.prefix};
+
+			this.paths.sharedMedia = StringUtils.substitute(this.paths.sharedMedia, substitutions);
+			this.paths.streamingMedia = StringUtils.substitute(this.paths.streamingMedia, substitutions);
+			this.paths.brandingMedia = StringUtils.substitute(this.paths.brandingMedia, substitutions);
+
+			// gh#599 Need to update the channel information now we know contentPaths
+			for each (var channelObject:ChannelObject in channels){			
+				channelObject.streamingMedia = StringUtils.substitute(channelObject.streamingMedia, substitutions);
+			}
+			
 			// gh#356 If there is a local channel available tested if it is accessible
 			localStreamingMedia = getLicenceAttribute('localStreamingMedia');
 			if (localStreamingMedia) {
