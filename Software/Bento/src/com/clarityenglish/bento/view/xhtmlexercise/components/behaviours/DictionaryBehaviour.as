@@ -63,8 +63,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			for (var i:int = 0; i < textFlow.flowComposer.numLines; i++) {
 				var textFlowLine:TextFlowLine = textFlow.flowComposer.getLineAt(i);
 				
+				// Convert the coordinate space for contained RenderFlows (gh#416)
+				var textFlowLineBounds:Rectangle = PointUtil.convertRectangleCoordinateSpace(textFlowLine.getBounds(), textFlowLine.paragraph.getTextFlow().flowComposer.getControllerAt(0).container, container);
+				
 				// If the click was on this TextFlowLine then iterate deeper
-				if (textFlowLine.getBounds().contains(clickPoint.x, clickPoint.y)) {
+				if (textFlowLineBounds.contains(clickPoint.x, clickPoint.y)) {
 					if (textFlowLine.textLineExists) {
 						var textLine:TextLine = textFlowLine.getTextLine();
 						for (var j:int = 0; j < textLine.atomCount; j++) {
