@@ -32,7 +32,7 @@
 	<view:DynamicView id="dynamicView" left="60" right="60" top="145" bottom="24"/>
 	
 	<!--Backgroud left and right-->
-	<s:Rect width="20" bottom="0" top="115" left="40" includeIn="exercise">
+	<!--s:Rect width="20" bottom="0" top="115" left="40" includeIn="exercise">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0xFFFFFF"/>
@@ -47,19 +47,19 @@
 				<s:GradientEntry color="0xEA2133"/>
 			</s:LinearGradient>
 		</s:fill>
-	</s:Rect>
+	</s:Rect-->
 	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgLeft.png')" left="15" top="206"/>
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgRight.png')" left="950" top="206"/-->
 	
 	<!-- Top Left buttons -->
-	<s:HGroup left="60" top="99" includeIn="exercise" gap="0">
+	<s:HGroup left="60" top="89" includeIn="exercise" gap="0">
 		<s:Button id="backButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="forwardButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>	
 	
 	<!-- Top Right buttons -->
-	<s:HGroup right="60" top="99" includeIn="exercise" gap="0">
+	<s:HGroup right="60" top="89" includeIn="exercise" gap="0">
 		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="recorderButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
@@ -68,8 +68,7 @@
 	</s:HGroup>	
 	
 	<!--Red line-->
-	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/TB-bg-redLine.png')" top="159" left="25" horizontalCenter="0"/-->
-	<s:Rect width="954" height="2" top="99" horizontalCenter="1" filters="{[lineShadowFilter]}">
+	<s:Rect width="954" height="2" top="89" horizontalCenter="1" filters="{[lineShadowFilter]}">
 		<s:fill>
 			<s:SolidColor color="0xEC1C32"/>
 		</s:fill>

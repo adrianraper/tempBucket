@@ -39,10 +39,7 @@ package com.clarityenglish.tensebuster.view.progress
 		
 		[SkinPart]
 		public var progressCourseButtonBar:ProgressCourseButtonBar;
-		
-		[SkinPart]
-		public var oopsLabel:Label;
-		
+
 		[SkinPart]
 		public var notCompleteRichEditableText:RichEditableText;
 		
@@ -130,7 +127,6 @@ package com.clarityenglish.tensebuster.view.progress
 			super.onViewCreationComplete();
 			
 			if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
-			oopsLabel.text = copyProvider.getCopyForId("oopsLabel");
 			nameLabel.text = user.fullName;
 			printButton.label = copyProvider.getCopyForId("printButton");
 			nameTextLabel.text = copyProvider.getCopyForId("nameTextLabel");
@@ -171,7 +167,6 @@ package com.clarityenglish.tensebuster.view.progress
 				if (exerciseAmount != totalExercise) {
 					oopsVGroup.visible = true;
 					certificateFooter.visible = true;
-					oopsLabel.setStyle("color", getStyle(StringUtils.capitalize(courseClass.charAt(0)) + "Color"));
 					var courseCaption:String = menu.course.(@["class"] == courseClass).@caption;
 					var notCompleteString:String = copyProvider.getCopyForId("notCompleteString", {courseCaption: courseCaption,  exerciseAmount: exerciseAmount, totalExercise: totalExercise, aveScor: aveScore});
 					var textFlow:TextFlow = TextFlowUtil.importFromString(notCompleteString);

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("spark.components.Button")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="270" distance="0.4" alpha="0.3" />
+	</fx:Declarations>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<s:VGroup gap="-1" filters="{[dropShadowFilter]}">
+		<s:Path winding="nonZero" data="M206.533 7.45508C205.336 3.35547 202.543 0 200.324 0L0 0 0 16.9355 0 29.3359 212.914 29.3359 209.297 16.9355 206.533 7.45508Z">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="#FFFFFF" color.down="#FDF2EC" color.over="#FDF2EC" />
+					<s:GradientEntry color="#DCDCDC" color.down="#DB2E21" color.over="#DB2E21" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:Path winding="nonZero" data="M0 24.5615 220.08 24.5615 212.914 0 0 0 0 24.5615Z">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="#C8C8C8" color.down="#B60F2C" color.over="#B60F2C" />
+					<s:GradientEntry color="#E6E6E6" color.down="#B60F2C" color.over="#B60F2C" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+	</s:VGroup>
+	<s:Group top="8" left="50" id="logoutIcon">
+		<s:Group x="11.4219">
+			<s:Path winding="nonZero" data="M2.46484 20.4102C1.10547 20.4102 0 19.3066 0 17.9424L0 2.46973C0 1.10547 1.10547 0 2.46484 0 3.83203 0 4.93555 1.10547 4.93555 2.46973L4.93555 17.9424C4.93555 19.3066 3.83203 20.4102 2.46484 20.4102L2.46484 20.4102Z">
+				<s:fill>
+					<s:SolidColor color="#D61C32" color.down="#FFFFFF" color.over="#FFFFFF" />
+				</s:fill>
+			</s:Path>
+		</s:Group>
+		<s:Path y="4.93262" winding="nonZero" data="M19.0879 0 19.0879 4.13965C22.0527 5.91211 24.0781 9.09473 24.0781 12.7979 24.0781 18.4131 19.5059 22.9844 13.8867 22.9844 8.27148 22.9844 3.70508 18.4131 3.70508 12.7979 3.70508 9.09863 5.72266 5.91504 8.69141 4.14063L8.69141 0.00390625C3.61719
+				2.07031 0 6.99023 0 12.7979 0 20.4561 6.22852 26.6875 13.8867 26.6875 21.5508 26.6875 27.7793 20.4561 27.7793 12.7979 27.7793 6.98633 24.1621 2.06738 19.0879 0Z">
+			<s:fill>
+				<s:SolidColor color="#D61C32" color.down="#FFFFFF" color.over="#FFFFFF" />
+			</s:fill>
+		</s:Path>
+	</s:Group>	
+	
+	<!-- layer 8: text -->
+	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+	<s:Label id="labelDisplay"
+			 textAlign="center"
+			 verticalAlign="middle"
+			 maxDisplayedLines="1"
+			 horizontalCenter="15" verticalCenter="3" fontSize="21"
+			 color.up="0x000000" color.over="0xFFFFFF" color.down="0xFFFFFF">
+	</s:Label>
+	
+</s:Skin>

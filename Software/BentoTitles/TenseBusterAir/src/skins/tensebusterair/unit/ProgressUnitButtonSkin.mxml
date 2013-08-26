@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark">
+		xmlns:s="library://ns.adobe.com/flex/spark" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebusterair.unit.ui.ProgressUnitButton")]
@@ -9,6 +9,10 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var progressUnitWidth:Number;
+			
 			public function getTopColor(index:Number):Number {
 				var colors:Array = hostComponent.getStyle("topGradientColors");
 				return colors[index];
@@ -109,6 +113,22 @@
 				return colors[index];
 			}
 			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if (hostComponent.coverage == 100) {
+					rightSide.visible = true;
+				}else {
+					rightSide.visible = false;
+				}
+				
+				if (hostComponent.coverage == 0) {
+					leftSide.visible = false;
+				} else {
+					leftSide.visible = true;
+				}
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -147,7 +167,7 @@
 					</s:LinearGradient>
 				</s:fill>
 			</s:Path>
-			<s:Rect id="overallProgressPath" height="44" width="215">
+			<s:Rect id="overallProgressPath" height="44">
 				<s:fill>
 					<s:LinearGradient rotation="90">
 						<s:GradientEntry color="{getProTopColor(hostComponent.courseIndex)}" color.over="{getProOverTopColor(hostComponent.courseIndex)}" color.down="{getProOverTopColor(hostComponent.courseIndex)}" ratio="0" />
@@ -157,7 +177,7 @@
 						<s:GradientEntry color="{getProBottomColor(hostComponent.courseIndex)}" color.over="{getProOverBottomColor(hostComponent.courseIndex)}" color.down="{getProOverBottomColor(hostComponent.courseIndex)}" ratio="1" />
 					</s:LinearGradient>
 				</s:fill>
-			</s:Rect>
+			</s:Rect>		
 		</s:HGroup>
 		
 		<s:Path id="rightSide" visible="true" right="0" data="M0 1.54047C0 -0.0186157 0.973633 -0.470276 2.16406 0.537048L7.48535 5.03998C8.67578 6.0473 9.64941 8.14642 9.64941 9.70551L9.64941 31.9277C9.64941 33.4872 8.67578 35.5869 7.48535 36.5937L2.16406 41.0966C0.973633 42.1035 0 41.6523 0 40.0927L0 1.54047Z">

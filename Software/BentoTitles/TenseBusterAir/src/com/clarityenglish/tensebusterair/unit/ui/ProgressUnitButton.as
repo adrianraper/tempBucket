@@ -24,6 +24,8 @@ package com.clarityenglish.tensebusterair.unit.ui
 		
 		public function set coverage(value:Number):void {
 			_coverage = value;
+			overallProgressPath.width = coverage * 217 / 100;
+			
 			isCoverageChange = true;
 			invalidateProperties();	
 		}
@@ -56,6 +58,7 @@ package com.clarityenglish.tensebusterair.unit.ui
 			super.commitProperties();		
 			
 			if (isCoverageChange) {
+				trace("is coverage change");
 				if (coverage == 100) {
 					rightSide.visible = true;
 				}else {
@@ -67,9 +70,6 @@ package com.clarityenglish.tensebusterair.unit.ui
 				} else {
 					leftSide.visible = true;
 				}
-				
-				overallProgressPath.width = coverage * overallProgressPath.width / 100;	
-				
 				isCoverageChange = false;
 			}
 		}

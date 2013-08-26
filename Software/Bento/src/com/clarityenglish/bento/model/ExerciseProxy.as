@@ -271,9 +271,11 @@ package com.clarityenglish.bento.model {
 				var answerMap:AnswerMap = getSelectedAnswerMap(question);
 				
 				// gh#588
-				if (answer.markingClass == Answer.NEUTRAL && !answerMap.containsKey(key)) 
-					return;
-				
+				if (question.type == Question.GAP_FILL_QUESTION) {
+					if (answer.markingClass == Answer.NEUTRAL && !answerMap.containsKey(key)) 
+						return;
+				}
+								
 				// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
 				if (!delayedMarking)
 					markQuestion(question, answer, key);
@@ -282,7 +284,9 @@ package com.clarityenglish.bento.model {
 
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
-				if (question.isMutuallyExclusive()) answerMap.clear();
+				// gh#347 related, if we keep this line, double click the text in target spotting exercise will make the text deselected. But for multiple choice it is important.
+				//if (question.isMutuallyExclusive()) answerMap.clear();
+				if (question.type == Question.MULTIPLE_CHOICE_QUESTION) answerMap.clear();
 				
 				// gh#526: comment out
 				/*if (question.isSelectable()) {

@@ -139,7 +139,7 @@ package com.clarityenglish.tensebusterair.title
 			{
 				tabBarHeight = Math.min(tabBar.getPreferredBoundsHeight(), unscaledHeight);
 				tabBar.setLayoutBoundsSize(getStyle("width"), tabBarHeight);
-				tabBar.setLayoutBoundsPosition((unscaledWidth-getStyle("width")-220)/2, unscaledHeight - tabBarHeight);
+				tabBar.setLayoutBoundsPosition((unscaledWidth-getStyle("width")-218)/2, unscaledHeight - tabBarHeight);
 				tabBarHeight = tabBar.getLayoutBoundsHeight(); 
 				
 				// backgroundAlpha is not a declared style on ButtonBar
