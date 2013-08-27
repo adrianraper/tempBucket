@@ -278,11 +278,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					} else {
 						sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
 						
-						// TODO: This is not putting the flow element into the input; right now this has no impact as the flow element here is used
-						// during a live drag and drop and its not possible to drag after marking.  However, keep an eye on this in case things change
-						// in the future.
-						// Later note: This makes 'see answers' work for drag and drop nodes
-						if (sourceNodes) inputElement.dragDrop(sourceNodes[0], null, sourceNodes[0].toString());
+						// gh#473 - updated this to only run when showing answers (this seems to be the only time it is necessary), as well as including a real flowElement instead of null.
+						if (isShowAnswers && sourceNodes) inputElement.dragDrop(sourceNodes[0], exercise.flowElementXmlBiMap.getFlowElement(sourceNodes[0]), sourceNodes[0].toString());
 					}
 				}
 				
