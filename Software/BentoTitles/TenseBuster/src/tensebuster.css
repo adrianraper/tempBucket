@@ -47,16 +47,16 @@ global {
 	aBarColor1: #2F226D;
 	aBarColor2: #6F8BE1;
 	
-	eOtherBarColor1: #FF3636;
-	eOtherBarColor2: #FF7575;
-	lOtherBarColor1: #EBC53D;
-	lOtherBarColor2: #EDEDA6;
-	iOtherBarColor1: #729C00;
-	iOtherBarColor2: #B5ED7E;
-	uOtherBarColor1: #198DBF;
-	uOtherBarColor2: #79F7F1;
-	aOtherBarColor1: #6449E8;
-	aOtherBarColor2: #94AEFF;
+	eOtherBarColor1: #333333;
+	eOtherBarColor2: #CDCDCD;
+	lOtherBarColor1: #333333;
+	lOtherBarColor2: #CDCDCD;
+	iOtherBarColor1: #333333;
+	iOtherBarColor2: #CDCDCD;
+	uOtherBarColor1: #333333;
+	uOtherBarColor2: #CDCDCD;
+	aOtherBarColor1: #333333;
+	aOtherBarColor2: #CDCDCD;
 	
 	topGradientColors: #780024, #61473D, #4F6617, #1C667D, #3D1FA8;
 	midTopGradientColors: #E51A31, #A07254, #8A9F27, #67A2B1, #6F58BC;
