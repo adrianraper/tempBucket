@@ -46,6 +46,8 @@ global {
 	uBarColor2: #53C5C5;
 	aBarColor1: #2F226D;
 	aBarColor2: #6F8BE1;
+	undoneBarColor1: #999999;
+	undoneBarColor2: #CDCDCD;
 	
 	eOtherBarColor1: #333333;
 	eOtherBarColor2: #CDCDCD;

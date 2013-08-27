@@ -2,7 +2,9 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
-		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" xmlns:exerciseNumber="skins.tensebuster.assets.exerciseNumber.*" xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*">
+		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" 
+		xmlns:exerciseNumber="skins.tensebuster.assets.exerciseNumber.*" 
+		xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCoverageView")]
@@ -90,45 +92,23 @@
 								override public function set data(value:Object):void {
 									super.data = value;
 									
-									numberIcon10.visible = false;
-									numberIcon11.visible = false;
-									numberIcon12.visible = false;
-									
-									exLabelButton.name = outerDocument.hostComponent.courseClass;
-									
-									if (data) {
-										var dataLength:Number = (owner as DataGroup).dataProvider.length;
-										switch (dataLength) {
-											case 10:
-												numberIcon10.source = getIcon(10);
-												numberIcon10.visible = true;
-												break;
-											case 11:
-												numberIcon11.source = getIcon(11);
-												numberIcon11.visible = true;
-												break;
-											default:
-												numberIcon12.source = getIcon(12);
-												numberIcon12.visible = true;
-												break;										
-										}
-									}								
-								}
+									exLabelButton.name = outerDocument.hostComponent.courseClass;							
+								}								
 								
-								[Bindable]
 								public function set exerciseLabelVisible(value:Boolean):void {
 									_exerciseLabelVisible = value;
 								}
 								
+								[Bindable]
 								public function get exerciseLabelVisible():Boolean {
 									return _exerciseLabelVisible;
-								}
+								}							
 								
-								[Bindable]
 								public function set exerciseLabel(value:String):void {
 									_exerciseLabel = value;
 								}
 								
+								[Bindable]
 								public function get exerciseLabel():String {
 									return _exerciseLabel;
 								}
@@ -154,11 +134,6 @@
 							]]>
 						</fx:Script>
 						<s:Label text="{data.@caption}" fontSize="13" fontWeight="bold" />
-						<s:Group left="200">
-							<s:SWFLoader id="numberIcon10" visible="false"/>
-							<s:SWFLoader id="numberIcon11" visible="false"/>
-							<s:SWFLoader id="numberIcon12" visible="false"/>
-						</s:Group>
 						<s:DataGroup left="200" dataProvider="{new XMLListCollection(data.exercise)}">
 							<s:layout>
 								<s:HorizontalLayout/>
@@ -180,62 +155,22 @@
 												
 												override public function set data(value:Object):void {
 													super.data = value;
-
-													e1.visible = false;
-													e2.visible = false;
-													e3.visible = false;
-													e4.visible = false;
-													e5.visible = false;
-													e6.visible = false;
-													e7.visible = false;
-													e8.visible = false;
-													e9.visible = false;
-													e10.visible = false;
 													
-													if (data && !data.hasOwnProperty("@done")) {
-														switch (getIndex(data)) {
-															case 0:
-																e1.visible = true;
-																break;
-															case 1:
-																e2.visible = true;
-																break;
-															case 2:
-																e3.visible = true;
-																break;
-															case 3:
-																e4.visible = true;
-																break;
-															case 4:
-																e5.visible = true;
-																break;
-															case 5:
-																e6.visible = true;
-																break;
-															case 6:
-																e7.visible = true;
-																break;
-															case 7:
-																e8.visible = true;
-																break;
-															case 8:
-																e9.visible = true;
-																break;
-															case 9:
-																e10.visible = true;
-																break;
-															case 10:
-																e11.visible = true;
-																break;
-															case 11:
-																e12.visible = true;
-																break;
-														}
+													if (data) {
+														if (getIndex(data) < data.parent().@count) {
+															var courseClass:String = data.parent().parent().@["class"];
+															topGradientColor.color = getStyle(courseClass.charAt(0) + "BarColor1");
+															bottomGradientColor.color = getStyle(courseClass.charAt(0)+ "BarColor2");
+														} else {
+															topGradientColor.color = getStyle("undoneBarColor1");
+															bottomGradientColor.color = getStyle("undoneBarColor2");
+														}																												
 													}
 												}
-												
+													
+													
 												// mouse over show the exercise name
-												protected function onMouseOver(event:MouseEvent):void {	
+												/*protected function onMouseOver(event:MouseEvent):void {	
 													outerDocument.exerciseLabelVisible = true;
 													outerDocument.exerciseLabel = data.@caption;
 													outerDocument.exerciseLabelIndex = getIndex(data);																						
@@ -243,23 +178,20 @@
 												
 												protected function onMouseOut(event:MouseEvent):void {
 													outerDocument.exerciseLabelVisible = false;																							
-												}
+												}*/
 												
 											]]>
 										</fx:Script>
-										<s:Group id="greyNumberGroup" width="21.5" top="-1" mouseOver="onMouseOver(event)" mouseOut="onMouseOut(event)">
-											<exerciseNumber:e1 id="e1" visible="false" left="0"/>
-											<exerciseNumber:e2 id="e2" visible="false" left="0"/>
-											<exerciseNumber:e3 id="e3" visible="false" left="0"/>
-											<exerciseNumber:e4 id="e4" visible="false" left="1.5"/>
-											<exerciseNumber:e5 id="e5" visible="false" left="2"/>
-											<exerciseNumber:e6 id="e6" visible="false" left="2.5"/>
-											<exerciseNumber:e7 id="e7" visible="false" left="2"/>
-											<exerciseNumber:e8 id="e8" visible="false" left="2.5"/>
-											<exerciseNumber:e9 id="e9" visible="false" left="4"/>
-											<exerciseNumber:e10 id="e10" visible="false" left="2"/>
-											<exerciseNumber:e11 id="e11" visible="false" left="9.5"/>
-											<exerciseNumber:e12 id="e12" visible="false" left="17.5"/>
+										<s:Group id="greyNumberGroup" width="21.5" top="-1">
+											<s:Path id="doneHexagonPath" data="M0 6.16284C0 5.06274 0.779297 3.71265 1.73193 3.16284L6.49561 0.412354C7.44824 -0.137451 9.00684 -0.137451 9.95947 0.412354L14.7231 3.16284C15.6758 3.71265 16.4551 5.06274 16.4551 6.16284L16.4551 11.6628C16.4551 12.7629 15.6758 14.113 14.7231
+												  14.6628L9.95947 17.4128C9.00684 17.9626 7.44824 17.9626 6.49561 17.4128L1.73193 14.6628C0.779297 14.113 0 12.7629 0 11.6628L0 6.16284Z">
+												<s:fill>
+													<s:LinearGradient>
+														<s:GradientEntry id="topGradientColor"  />
+														<s:GradientEntry id="bottomGradientColor"  />
+													</s:LinearGradient>
+												</s:fill>
+											</s:Path>	
 										</s:Group>
 									</s:DataRenderer>
 								</fx:Component>

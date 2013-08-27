@@ -75,6 +75,7 @@ package com.clarityenglish.bento.view.progress.components {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
+			trace("xhtml: "+xhtml.xml);
 			if (progressCourseButtonBar) progressCourseButtonBar.courses = menu.course;
 		}
 		

@@ -148,6 +148,7 @@ package com.clarityenglish.tensebuster.view.progress
 				if (progressCourseButtonBar) progressCourseButtonBar.courseClass = courseClass;
 				
 				var totalUnit:Number = menu.course.(@["class"] == courseClass).unit.length();
+				var coverage:Number = menu.course.(@["class"] == courseClass).@coverage;
 				var exerciseAmount:Number = 0;
 				var totalExercise:Number = 0;
 				for (var i:Number = 0; i < totalUnit; i++) {
@@ -164,7 +165,7 @@ package com.clarityenglish.tensebuster.view.progress
 				oopsVGroup.visible = false;
 				certificateGroup.visible = false;
 				printGroup.visible = false;
-				if (exerciseAmount != totalExercise) {
+				if (coverage < 90) {
 					oopsVGroup.visible = true;
 					certificateFooter.visible = true;
 					var courseCaption:String = menu.course.(@["class"] == courseClass).@caption;
