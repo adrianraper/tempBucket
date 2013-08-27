@@ -12,10 +12,17 @@
 @namespace zone "com.clarityenglish.tensebuster.view.zone.*";
 @namespace view "com.clarityenglish.bento.view.*";
 @namespace help "com.clarityenglish.tensebuster.view.help.*";
-@namespace ui "com.clarityenglish.tensebusterair.unit.ui.*";
+@namespace unitui "com.clarityenglish.tensebusterair.unit.ui.*";
+@namespace ui "com.clarityenglish.tensebusterair.ui.*";
 
 global {
 	interactionMode: touch;
+	
+	EIcon: Embed(source="skins/tensebuster/assets/courseIcon/Elementary.png");
+	LIcon: Embed(source="skins/tensebuster/assets/courseIcon/Lower Intermediate.png");
+	IIcon: Embed(source="skins/tensebuster/assets/courseIcon/Intermediate.png");
+	UIcon: Embed(source="skins/tensebuster/assets/courseIcon/Upper Intermediate.png");
+	AIcon: Embed(source="skins/tensebuster/assets/courseIcon/Advanced.png");
 }
 
 s|TitleWindow {
@@ -93,20 +100,44 @@ title|TitleView s|Button#logoutButton {
 	skinClass: ClassReference("skins.tensebusterair.title.LogOutButtonSkin");
 }
 
+title|TitleView s|Button#backToMenuButton {
+	skinClass: ClassReference("skins.tensebusterair.ui.BackButtonSkin");
+}
+
 home|HomeView {
 	skinClass: ClassReference("skins.tensebusterair.HomeSkin");
+}
+
+home|HomeView ui|MenuButton#homeButton {
+	skinClass: ClassReference("skins.tensebusterair.ui.HomeButtonSkin");
 }
 
 unit|UnitView {
 	skinClass: ClassReference("skins.tensebusterair.UnitSkin");
 }
 
-unit|UnitView ui|ProgressUnitButton {
+unit|UnitView unitui|ProgressUnitButton {
 	skinClass: ClassReference("skins.tensebusterair.unit.ProgressUnitButtonSkin");
+}
+
+unit|UnitView s|Button#backButton {
+	skinClass: ClassReference("skins.tensebusterair.ui.BackButtonSkin");
 }
 
 zone|ZoneView {
 	skinClass: ClassReference("skins.tensebusterair.ZoneSkin");
+}
+
+zone|ZoneView ui|MenuButton#zoneUndoneButton {
+	skinClass: ClassReference("skins.tensebusterair.ui.ZoneUndoneButtonSkin");
+}
+
+zone|ZoneView ui|MenuButton#zoneDoneButton {
+	skinClass: ClassReference("skins.tensebusterair.ui.ZoneDoneButtonSkin");
+}
+
+zone|ZoneView s|Button#backButton {
+	skinClass: ClassReference("skins.tensebusterair.ui.BackButtonSkin");
 }
 
 exercise|ExerciseView {

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebusterair.ui.MenuButton")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			private var _iconSource:Class;
+			
+			public function getTopGradientColor(index:Number):Number {
+				var topGradientColors:Array = getStyle("topGradientColors");
+				return topGradientColors[index % topGradientColors.length];
+			}
+			
+			public function getMidTopGradientColor(index:Number):Number {
+				var midTopGradientColors:Array = getStyle("midTopGradientColors");
+				return midTopGradientColors[index % midTopGradientColors.length];
+			}
+			
+			public function getCenterGradientColor(index:Number):Number {
+				var centerGradientColors:Array = getStyle("centerGradientColors");
+				return centerGradientColors[index % centerGradientColors.length];
+			}
+			
+			public function getMidBottomGradientColor(index:Number):Number {
+				var midBottomGradientColors:Array = getStyle("midBottomGradientColors");
+				return midBottomGradientColors[index % midBottomGradientColors.length];
+			}
+			
+			public function getBottomGradientColor(index:Number):Number {
+				var bottomGradientColors:Array = getStyle("bottomGradientColors");
+				return bottomGradientColors[index % bottomGradientColors.length];
+			}
+			
+			public function getTopOverGradientColor(index:Number):Number {
+				var topOverGradientColors:Array = getStyle("topLightGradientColors");
+				return topOverGradientColors[index % topOverGradientColors.length];
+			}
+			
+			public function getMidTopOverGradientColor(index:Number):Number {
+				var midTopOverGradientColors:Array = getStyle("midTopLightGradientColors");
+				return midTopOverGradientColors[index % midTopOverGradientColors.length];
+			}
+			
+			public function getCenterOverGradientColor(index:Number):Number {
+				var centerOverGradientColors:Array = getStyle("centerLightGradientColors");
+				return centerOverGradientColors[index % centerOverGradientColors.length];
+			}
+			
+			public function getMidBottomOverGradientColor(index:Number):Number {
+				var midBottomOverGradientColors:Array = getStyle("midBottomLightGradientColors");
+				return midBottomOverGradientColors[index % midBottomOverGradientColors.length];
+			}
+			
+			public function getBottomOverGradientColor(index:Number):Number {
+				var bottomOverGradientColors:Array = getStyle("bottomLightGradientColors");
+				return bottomOverGradientColors[index % bottomOverGradientColors.length];
+			}
+			
+			public function set iconSource(value:Class):void {
+				_iconSource = value;
+			}
+			
+			[Bindable]
+			public function get iconSource():Class {
+				return _iconSource;
+			}
+			
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void  {
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				
+				iconSource = Class(getStyle(hostComponent.courseClass.charAt(0) + "Icon"));
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<s:Path top="10" left="30" data="M12.4829 44.2217C10.9238 44.2217 8.6748 43.3975 7.48486 42.3906L2.16357 37.8877C0.973633 36.8809 0 34.7813 0 33.2222L0 10.9995C0 9.44043 0.973633 7.34082 2.16357 6.33398L7.48486 1.83105C8.6748 0.824219 10.9238 0 12.4829 0L221.689 0C223.248 0 225.497
+			0.82373 226.688 1.83105L232.009 6.33398C233.199 7.34131 234.173 9.44043 234.173 10.9995L234.173 33.2222C234.173 34.7813 233.199 36.8804 232.009 37.8877L226.688 42.3906C225.497 43.3979 223.248 44.2217 221.689 44.2217L12.4829 44.2217Z">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="{getTopGradientColor(hostComponent.courseIndex)}" color.over="{getTopOverGradientColor(hostComponent.courseIndex)}" color.down="{getTopOverGradientColor(hostComponent.courseIndex)}" ratio="0" />
+				<s:GradientEntry color="{getMidTopGradientColor(hostComponent.courseIndex)}" color.over="{getMidTopOverGradientColor(hostComponent.courseIndex)}" color.down="{getMidTopOverGradientColor(hostComponent.courseIndex)}" ratio="0.25" />
+				<s:GradientEntry color="{getCenterGradientColor(hostComponent.courseIndex)}" color.over="{getCenterOverGradientColor(hostComponent.courseIndex)}" color.down="{getCenterOverGradientColor(hostComponent.courseIndex)}" ratio="0.5" />
+				<s:GradientEntry color="{getMidBottomGradientColor(hostComponent.courseIndex)}" color.over="{getMidBottomOverGradientColor(hostComponent.courseIndex)}" color.down="{getMidBottomOverGradientColor(hostComponent.courseIndex)}" ratio="0.75" />
+				<s:GradientEntry color="{getBottomGradientColor(hostComponent.courseIndex)}" color.over="{getBottomOverGradientColor(hostComponent.courseIndex)}" color.down="{getBottomOverGradientColor(hostComponent.courseIndex)}" ratio="1" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Path>
+	
+	<s:SWFLoader id="icon" source="{iconSource}" />
+	
+	<s:Label id="labelDisplay"
+			 maxDisplayedLines="1"
+			 left="80" right="10" top="25" bottom="2"
+			 color="0xFFFFFF" fontSize="19">
+	</s:Label>
+</s:Skin>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:exercise="skins.tensebuster.assets.exercise.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:ui="com.clarityenglish.tensebusterair.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.zone.ZoneView")]
@@ -69,21 +69,6 @@
 										
 										courseIndex = outerDocument.hostComponent.courseIndex;
 									}
-									
-									public function getExColor(index:Number):Number {
-										var colors:Array = getStyle("exGradientColors");
-										return colors[index];
-									}
-									
-									public function getExOverColor(index:Number):Number {
-										var colors:Array = getStyle("exOverGradientColors");
-										return colors[index];
-									}
-									
-									public function getExLabelColor(index:Number):Number {
-										var colors:Array = getStyle("exLabelColors");
-										return colors[index];
-									}
 								]]>
 							</fx:Script>
 							
@@ -106,24 +91,8 @@
 							</fx:Declarations>
 							
 							<s:Group id="exButtonGroup" alpha="1">
-								<s:Rect id="unDonePath" left="2" height="30" width="264" radiusX="6" radiusY="6" filters="{[dropShadowFilter]}">
-									<s:fill>
-										<s:LinearGradient rotation="90">
-											<s:GradientEntry color="0xFFFFFF" color.hovered="0xFFFFFF" color.selected="0xFFFFFF" ratio="0" />
-											<s:GradientEntry color="0x808080" color.hovered="{getExOverColor(courseIndex)}" color.selected="{getExOverColor(courseIndex)}" ratio="1" />
-										</s:LinearGradient>
-									</s:fill>
-								</s:Rect>
-								
-								<s:Rect id="donePath" left="2" visible="{data.hasOwnProperty('@done')}" height="30" width="264" radiusX="6" radiusY="6" filters="{[dropShadowFilter]}">
-									<s:fill>
-										<s:LinearGradient rotation="90">
-											<s:GradientEntry color="0xFFFFFF" color.hovered="0xFFFFFF" color.selected="0xFFFFFF" ratio="0" />
-											<s:GradientEntry color="{getExColor(courseIndex)}" color.hovered="{getExOverColor(courseIndex)}" color.selected="{getExOverColor(courseIndex)}" ratio="1" />
-										</s:LinearGradient>
-									</s:fill>
-								</s:Rect>									
-								<s:Label id="exCaption" text="{data.@caption}" color="{getExLabelColor(courseIndex)}" top="12" left="20" fontSize="14"/>
+								<ui:MenuButton id="zoneUndoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" />
+								<ui:MenuButton id="zoneDoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" />
 							</s:Group>						
 						</s:ItemRenderer>
 					</fx:Component>

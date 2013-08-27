@@ -39,15 +39,15 @@
 				<s:GradientEntry color="0xEA2133"/>
 			</s:LinearGradient>
 		</s:fill>
-	</s:Rect>
-	<s:Rect width="20" bottom="0" top="115" right="40" includeIn="exercise">
+	</s:Rect-->
+	<s:Rect width="20" bottom="0" top="155" right="40" includeIn="exercise">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0xFFFFFF"/>
 				<s:GradientEntry color="0xEA2133"/>
 			</s:LinearGradient>
 		</s:fill>
-	</s:Rect-->
+	</s:Rect>
 	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgLeft.png')" left="15" top="206"/>
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/bgRight.png')" left="950" top="206"/-->
 	

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebusterair.ui.MenuButton")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			public function getExOverColor(index:Number):Number {
+				var colors:Array = getStyle("exOverGradientColors");
+				return colors[index];
+			}
+			
+			public function getExLabelColor(index:Number):Number {
+				var colors:Array = getStyle("exLabelColors");
+				return colors[index];
+			}
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<s:Rect left="2" height="30" width="264" radiusX="6" radiusY="6" filters="{[dropShadowFilter]}">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0xFFFFFF" color.over="0xFFFFFF" color.down="0xFFFFFF" ratio="0" />
+				<s:GradientEntry color="0x808080" color.over="{getExOverColor(hostComponent.courseIndex)}" color.down="{getExOverColor(hostComponent.courseIndex)}" ratio="1" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	<s:Label id="labelDisplay"
+			 verticalAlign="middle"
+			 maxDisplayedLines="1"
+			 left="20" verticalCenter="3" fontSize="14"
+			 color="{getExLabelColor(hostComponent.courseIndex)}">
+	</s:Label>
+</s:Skin>

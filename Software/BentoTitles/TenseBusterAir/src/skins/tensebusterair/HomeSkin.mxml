@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:icon="skins.tensebuster.assets.icon.*" xmlns:recorder="com.clarityenglish.bento.view.recorder.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:icon="skins.tensebuster.assets.icon.*" xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:ui="com.clarityenglish.tensebusterair.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.home.HomeView")]
@@ -23,21 +23,6 @@
 						<![CDATA[
 							import spark.components.List;
 							
-							[Embed(source='skins/tensebuster/assets/courseIcon/Elementary.png')]
-							private static  var EIcon:Class;
-							
-							[Embed(source="skins/tensebuster/assets/courseIcon/Lower Intermediate.png")]
-							private static  var LIcon:Class;
-							
-							[Embed(source="skins/tensebuster/assets/courseIcon/Intermediate.png")]
-							private static  var IIcon:Class;
-							
-							[Embed(source="skins/tensebuster/assets/courseIcon/Upper Intermediate.png")]
-							private static  var UIcon:Class;
-							
-							[Embed(source="skins/tensebuster/assets/courseIcon/Advanced.png")]
-							private static  var AIcon:Class;
-							
 							public function getIndex(data:Object):Number {
 								return (owner as List).dataProvider.getItemIndex(data);
 							}
@@ -45,86 +30,6 @@
 							protected function getPaddingLeft(index:Number):Number {
 								var value:Number = 50*(2-Math.abs(index-2));
 								return value;
-							}
-							
-							public function getTopGradientColor(index:Number):Number {
-								var topGradientColors:Array = getStyle("topGradientColors");
-								return topGradientColors[index % topGradientColors.length];
-							}
-							
-							public function getMidTopGradientColor(index:Number):Number {
-								var midTopGradientColors:Array = getStyle("midTopGradientColors");
-								return midTopGradientColors[index % midTopGradientColors.length];
-							}
-							
-							public function getCenterGradientColor(index:Number):Number {
-								var centerGradientColors:Array = getStyle("centerGradientColors");
-								return centerGradientColors[index % centerGradientColors.length];
-							}
-							
-							public function getMidBottomGradientColor(index:Number):Number {
-								var midBottomGradientColors:Array = getStyle("midBottomGradientColors");
-								return midBottomGradientColors[index % midBottomGradientColors.length];
-							}
-							
-							public function getBottomGradientColor(index:Number):Number {
-								var bottomGradientColors:Array = getStyle("bottomGradientColors");
-								return bottomGradientColors[index % bottomGradientColors.length];
-							}
-							
-							public function getTopOverGradientColor(index:Number):Number {
-								var topOverGradientColors:Array = getStyle("topLightGradientColors");
-								return topOverGradientColors[index % topOverGradientColors.length];
-							}
-							
-							public function getMidTopOverGradientColor(index:Number):Number {
-								var midTopOverGradientColors:Array = getStyle("midTopLightGradientColors");
-								return midTopOverGradientColors[index % midTopOverGradientColors.length];
-							}
-							
-							public function getCenterOverGradientColor(index:Number):Number {
-								var centerOverGradientColors:Array = getStyle("centerLightGradientColors");
-								return centerOverGradientColors[index % centerOverGradientColors.length];
-							}
-							
-							public function getMidBottomOverGradientColor(index:Number):Number {
-								var midBottomOverGradientColors:Array = getStyle("midBottomLightGradientColors");
-								return midBottomOverGradientColors[index % midBottomOverGradientColors.length];
-							}
-							
-							public function getBottomOverGradientColor(index:Number):Number {
-								var bottomOverGradientColors:Array = getStyle("bottomLightGradientColors");
-								return bottomOverGradientColors[index % bottomOverGradientColors.length];
-							}
-							
-							public function get iconSouce():Class {
-								var className:String = data.@caption;
-								var firstLetter:String = className.charAt(0);
-								switch (firstLetter) {
-									case "E":
-										return EIcon;
-										break;
-									case "L":
-										return LIcon;
-										break;
-									case "I":
-										return IIcon;
-										break;
-									case "U":
-										return UIcon;
-										break;
-									case "A":
-										return AIcon;
-										break;
-									default:
-										return null;
-								}
-							}
-							
-							override public function set data(value:Object):void {
-								super.data = value;
-								
-								icon.source = iconSouce;
 							}
 						]]>
 					</fx:Script>
@@ -145,25 +50,9 @@
 						<s:VerticalLayout paddingTop="15" paddingBottom="15" />
 					</s:layout>
 					
+					
 					<s:HGroup id="courseButton" paddingLeft="{getPaddingLeft(getIndex(data))}" gap="-10" >
-						<s:Group>
-							<s:Group left="35" top="10">
-								<s:Path data="M12.4829 44.2217C10.9238 44.2217 8.6748 43.3975 7.48486 42.3906L2.16357 37.8877C0.973633 36.8809 0 34.7813 0 33.2222L0 10.9995C0 9.44043 0.973633 7.34082 2.16357 6.33398L7.48486 1.83105C8.6748 0.824219 10.9238 0 12.4829 0L221.689 0C223.248 0 225.497
-										0.82373 226.688 1.83105L232.009 6.33398C233.199 7.34131 234.173 9.44043 234.173 10.9995L234.173 33.2222C234.173 34.7813 233.199 36.8804 232.009 37.8877L226.688 42.3906C225.497 43.3979 223.248 44.2217 221.689 44.2217L12.4829 44.2217Z">
-									<s:fill>
-										<s:LinearGradient rotation="90">
-											<s:GradientEntry color="{getTopGradientColor(getIndex(data))}" color.hovered="{getTopOverGradientColor(getIndex(data))}" color.selected="{getTopOverGradientColor(getIndex(data))}" ratio="0" />
-											<s:GradientEntry color="{getMidTopGradientColor(getIndex(data))}" color.hovered="{getMidTopOverGradientColor(getIndex(data))}" color.selected="{getMidTopOverGradientColor(getIndex(data))}" ratio="0.25" />
-											<s:GradientEntry color="{getCenterGradientColor(getIndex(data))}" color.hovered="{getCenterOverGradientColor(getIndex(data))}" color.selected="{getCenterOverGradientColor(getIndex(data))}" ratio="0.5" />
-											<s:GradientEntry color="{getMidBottomGradientColor(getIndex(data))}" color.hovered="{getMidBottomOverGradientColor(getIndex(data))}" color.selected="{getMidBottomOverGradientColor(getIndex(data))}" ratio="0.75" />
-											<s:GradientEntry color="{getBottomGradientColor(getIndex(data))}" color.hovered="{getBottomOverGradientColor(getIndex(data))}" color.selected="{getBottomOverGradientColor(getIndex(data))}" ratio="1" />
-										</s:LinearGradient>
-									</s:fill>
-								</s:Path>
-								<s:Label text="{data.@caption}" color="0xFFFFFF" top="15" left="45" fontSize="19" />
-							</s:Group>
-							<s:SWFLoader id="icon" />
-						</s:Group>																		
+						<ui:MenuButton id="homeButton" courseClass="{data.@caption}" courseIndex="{getIndex(data)}" label="{data.@caption}" />																		
 					</s:HGroup>
 				</s:ItemRenderer>
 			</fx:Component>
