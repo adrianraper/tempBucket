@@ -365,10 +365,6 @@ package com.clarityenglish.bento.model {
 				if (!(markableAnswerMap.containsKey(key))) {
 					markableAnswerMap.put(key, answer);
 					log.debug("Setting as markable question {0} = {1}", (key is XML) ? key.toXMLString() : key, answer);
-				} else {
-					// gh#351
-					var removedAnswer:Answer = markableAnswerMap.remove(key);
-					markableAnswerMap.put(key, answer);
 				}
 			}
 			
