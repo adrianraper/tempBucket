@@ -3742,6 +3742,8 @@ EOD;
 		$rootID = $vars['ROOTID'];
 		$productCode = $vars['PRODUCTCODE'];
 		$languageCode = $vars['LANGUAGECODE'];
+		// CD152B Add in product version as separate from language code 
+		$productVersion = $vars['PRODUCTVERSION'];
 		$licenceType = $vars['LICENCETYPE'];
 		
 		// Get content location
@@ -3784,15 +3786,16 @@ EOD;
 					F_ExpiryDate=?,
 					F_Checksum=?,
 					F_LanguageCode=?,
+					F_ProductVersion=?,
 					F_LicenceType=?
 				WHERE F_RootID=? AND F_ProductCode=?
 EOD;
-		}else{
+		} else {
 			$sql = <<<EOD
 				INSERT INTO T_Accounts(
 					F_MaxStudents, F_LicenceStartDate, F_ExpiryDate, F_Checksum,
-					F_LanguageCode, F_LicenceType, F_RootID, F_ProductCode)
-				VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+					F_LanguageCode, F_ProductVersion, F_LicenceType, F_RootID, F_ProductCode)
+				VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)
 EOD;
 		}
 		// Update the first account. Set startDate to yesterday to make sure that UTC doesn't bite you
