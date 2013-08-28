@@ -273,13 +273,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				if (answerElement is InputElement) {
 					var inputElement:InputElement = answerElement as InputElement;
 					
-					if (answer is TextAnswer) {
-						answerNode.text = inputElement.value = (answer as TextAnswer).value;
-					} else {
-						sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
-						
-						// gh#473 - updated this to only run when showing answers (this seems to be the only time it is necessary), as well as including a real flowElement instead of null.
-						if (isShowAnswers && sourceNodes) inputElement.dragDrop(sourceNodes[0], exercise.flowElementXmlBiMap.getFlowElement(sourceNodes[0]), sourceNodes[0].toString());
+					if (isShowAnswers) { // gh#351
+						if (answer is TextAnswer) {
+							answerNode.text = inputElement.value = (answer as TextAnswer).value;
+						} else {
+							sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
+							
+							// gh#473 - updated this to only run when showing answers (this seems to be the only time it is necessary), as well as including a real flowElement instead of null.
+							if (sourceNodes) inputElement.dragDrop(sourceNodes[0], exercise.flowElementXmlBiMap.getFlowElement(sourceNodes[0]), sourceNodes[0].toString());
+						}
 					}
 				}
 				
