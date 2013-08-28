@@ -16,11 +16,15 @@ package com.clarityenglish.common.controller {
 		override public function execute(note:INotification):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			
-			// GH #58 - if there is a language code stored in the shared object then overwrite the existing one
+			// gh#58 - if there is a language code stored in the shared object then overwrite the existing one
+			// gh#612 key this on the user - except that we don't have a login at this point do we?
+			// so this will be delayed until login
+			/*
 			var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
 			if (settingsSharedObject.data["languageCode"]) {
 				CopyProxy.languageCode = settingsSharedObject.data["languageCode"];
 			}
+			*/
 			copyProxy.getCopy();
 		}
 		

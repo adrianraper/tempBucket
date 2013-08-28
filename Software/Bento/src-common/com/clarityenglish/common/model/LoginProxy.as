@@ -294,6 +294,15 @@ package com.clarityenglish.common.model {
 							loginSharedObject.flush();
 						}
 						
+						// gh#612 If this user already saved a set of preferences, load them up now
+						if (!user.isAnonymous()) {
+							var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+							if (settingsSharedObject.data["preferences.languageCode." + user.userID]) {
+								var languageCode:String = settingsSharedObject.data["preferences.languageCode." + user.userID];
+								sendNotification(BBNotifications.LANGUAGE_CHANGE, languageCode);
+							}
+						}
+						
 						// gh#21 If login changed the account 
 						// save what we now know about the account in Config
 						if (data.account) {
