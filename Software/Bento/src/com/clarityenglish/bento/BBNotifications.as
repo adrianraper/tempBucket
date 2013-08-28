@@ -63,6 +63,7 @@
 		public static const QUESTION_STRING_ANSWER:String = "bb/question_string_answer";
 		public static const QUESTION_INCORRECT_ANSWER:String = "bb/question_incorrect_answer";
 		public static const QUESTION_ANSWERED:String = "bb/question_answered";
+		public static const QUESTION_CLEAR:String = "bb/question_clear";
 		
 		// Dictionary behaviour
 		public static const WORD_CLICK:String = "bb/word_click";

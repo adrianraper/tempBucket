@@ -36,6 +36,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				throw new Error("Attempted to use a view with XHTMLExerciseMediator that did not implement IExerciseView");
 			
 			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered, false, 0, true);
+			view.addEventListener(SectionEvent.QUESTION_CLEAR, onQuestionCleared, false, 0, true);
 			view.addEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered, false, 0, true);
 			view.addEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow, false, 0, true);
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
@@ -54,6 +55,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			
 			view.removeEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
 			view.removeEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered);
+			view.removeEventListener(SectionEvent.QUESTION_CLEAR, onQuestionCleared);
 			view.removeEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow);
 			view.removeEventListener(DictionaryEvent.WORD_CLICK, onWordClick);
 		}
@@ -145,6 +147,13 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			} else {
 				throw new Error("onQuestionAnswered received an answer that was neither a NodeAnswer nor a String - " + answerOrString);
 			}
+		}
+		
+		/**
+		 * gh#474 - clear the selected answer map
+		 */
+		protected function onQuestionCleared(event:SectionEvent):void {
+			facade.sendNotification(BBNotifications.QUESTION_CLEAR, { exercise: view.exercise, question: event.question, key: event.key, disabled: XHTML.hasClass(event.key as XML, "disabled") } );
 		}
 		
 		/**

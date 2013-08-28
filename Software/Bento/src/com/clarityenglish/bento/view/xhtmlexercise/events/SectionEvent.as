@@ -7,8 +7,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.events {
 	public class SectionEvent extends Event {
 		
 		public static const QUESTION_ANSWER:String = "questionAnswer";
+		public static const QUESTION_CLEAR:String = "questionClear";
 		public static const INCORRECT_QUESTION_ANSWER:String = "incorrectQuestionAnswer";
-		
+				
 		private var _question:Question;
 		private var _answerOrString:*;
 		private var _key:Object;

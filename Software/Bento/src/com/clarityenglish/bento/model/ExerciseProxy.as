@@ -311,6 +311,24 @@ package com.clarityenglish.bento.model {
 			}
 		}
 		
+		/**
+		 * gh#474 - clear the answer from the selected answer map 
+		 */
+		public function questionClear(question:Question, key:Object = null, disabled:Boolean = false):void {
+			checkExercise();
+			
+			if (!disabled) {
+				log.debug("Cleared question {0}", question);
+				
+				// Get the answer map for this question
+				var answerMap:AnswerMap = getSelectedAnswerMap(question);
+				
+				// And if it exists then clear it
+				var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
+				answerMap.remove(key);
+			}
+		}
+		
 		/** #258
 		 * Exercises can have a 'incorrectClickSection' parameter which generates an incorrect answer for every click that isn't on an interactive element.  This is
 		 * used in target spotting exercises where missing a target counts as a wrong answer.  We maintain an incorrectOffset for this special case.

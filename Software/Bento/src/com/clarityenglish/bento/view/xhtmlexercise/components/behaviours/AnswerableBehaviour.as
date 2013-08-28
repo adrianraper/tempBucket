@@ -284,8 +284,11 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 		var answerOrString:* = null;
 		
 		// Ignore empty answers (where there is neither a typed value, nor a dropped node)
-		if (inputElement.enteredValue == "" && !inputElement.droppedNode)
+		if (inputElement.enteredValue == "" && !inputElement.droppedNode) {
+			// #gh474 - If the answer is empty then clear the selected answer
+			container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_CLEAR, question, null, inputNode, true));
 			return;
+		}
 		
 		// If there is a dropped node then match it up to an answer if possible
 		if (inputElement.droppedNode) {

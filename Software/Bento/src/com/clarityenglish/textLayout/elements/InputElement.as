@@ -365,7 +365,8 @@ package com.clarityenglish.textLayout.elements {
 			value = "";
 			(component as TextInput).text = "";
 			getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, this));
-			// gh#474: when the answer is cleared, we need to reassign the value to answer
+			
+			// gh#474 - dispatch a focus out event so that AnswerableBehaviour can remove the answer from the selectedAnswerMap
 			getEventMirror().dispatchEvent(new FocusEvent(FocusEvent.FOCUS_OUT));
 		}
 		
