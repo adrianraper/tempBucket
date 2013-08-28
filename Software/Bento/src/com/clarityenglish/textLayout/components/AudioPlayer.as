@@ -98,7 +98,8 @@ package com.clarityenglish.textLayout.components {
 		protected function onAddedToStage(event:Event):void {
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			
-			if (autoplay) play();
+			// gh#614 add 
+			if (autoplay && playComponentEnable) play();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
