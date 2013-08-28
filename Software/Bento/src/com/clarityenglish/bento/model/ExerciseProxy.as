@@ -265,40 +265,24 @@ package com.clarityenglish.bento.model {
 			checkExercise();
 
 			if (!disabled) {
-				log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);					
+				log.debug("Answered question {0} - {1} [result: {2}, score: {3}]", question, answer, answer.markingClass, answer.score);
 				
-				// Get the answer map for this question
-				var answerMap:AnswerMap = getSelectedAnswerMap(question);
-				
-				// gh#588
-				if (question.type == Question.GAP_FILL_QUESTION) {
-					if (answer.markingClass == Answer.NEUTRAL && !answerMap.containsKey(key)) 
-						return;
-				}
-								
 				// If we are using instant marking then we may need to store an answer for this question (if it has been marked already this will have no effect)
 				if (!delayedMarking)
 					markQuestion(question, answer, key);
 				
+				// Get the answer map for this question
+				var answerMap:AnswerMap = getSelectedAnswerMap(question);
+				
 				var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
-
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
-				// gh#347 related, if we keep this line, double click the text in target spotting exercise will make the text deselected. But for multiple choice it is important.
-				//if (question.isMutuallyExclusive()) answerMap.clear();
-				if (question.type == Question.MULTIPLE_CHOICE_QUESTION) answerMap.clear();
+				if (question.isMutuallyExclusive()) answerMap.clear();
 				
-				// gh#526: comment out
-				/*if (question.isSelectable()) {
+				if (question.isSelectable()) {
 					if (!didKeyAlreadyExist) answerMap.put(key, answer);
 				} else {
 					// Add the answer
-					answerMap.put(key, answer);
-				}*/
-				// gh#585 b)
-				if (!delayedMarking) {
-					if (!didKeyAlreadyExist) answerMap.put(key, answer);
-				}else {
 					answerMap.put(key, answer);
 				}
 				
@@ -392,8 +376,7 @@ package com.clarityenglish.bento.model {
 			checkExercise();
 			
 			var answerMap:AnswerMap = new AnswerMap();
-			// gh#585 c)var selectedAnswerMap:AnswerMap = getSelectedAnswerMap(question);
-			var selectedAnswerMap:AnswerMap = getMarkableAnswerMap(question);
+			var selectedAnswerMap:AnswerMap = getSelectedAnswerMap(question);
 			
 			// 1. Get all the possible correct answers.  If there are no correct answers for this question do nothing at all.
 			var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();
@@ -408,7 +391,6 @@ package com.clarityenglish.bento.model {
 				targetNodes = targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
-						trace("selectedAnswer: "+selectedAnswer.toXMLString());
 						var idx:int = correctAnswers.indexOf(selectedAnswer);
 						if (idx > -1) {
 							// Remove the correct answer
@@ -426,10 +408,9 @@ package com.clarityenglish.bento.model {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					
 					// 5. If the current answer is empty or incorrect then add it to the answer map
-					// gh#474 add selectedAnswer.markingClass == Answer.NEUTRAL for drag an drop: drag in and drag out an answer operation
-					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT || selectedAnswer.markingClass == Answer.NEUTRAL) {
+					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
 						var correctAnswer:Answer = correctAnswers[0]
-
+						
 						answerMap.put(targetNode, correctAnswer);
 						correctAnswers.shift();
 						
@@ -478,8 +459,7 @@ package com.clarityenglish.bento.model {
 			
 			// Go through the questions
 			for each (var question:Question in exercise.model.questions) {
-				// gh#585 var answerMap:AnswerMap = markableAnswerMap[question] as AnswerMap;
-				var answerMap:AnswerMap = selectedAnswerMap[question] as AnswerMap;
+				var answerMap:AnswerMap = markableAnswerMap[question] as AnswerMap;
 				
 				// These are the correct and incorrect count for this question
 				var correctCount:uint = 0;
@@ -564,7 +544,11 @@ package com.clarityenglish.bento.model {
 			var exerciseFeedback:Feedback = getExerciseFeedback();
 			
 			if (exerciseFeedback) {
-				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: exerciseFeedback /*, substitutions: substitutions*/ } );
+				// gh#554
+				var substitutions:Object = {};
+				substitutions.yourScore = _exerciseMark.correctPercent;
+
+				sendNotification(BBNotifications.FEEDBACK_SHOW, { exercise: exercise, feedback: exerciseFeedback , substitutions: substitutions } );
 			}
 		}
 		
