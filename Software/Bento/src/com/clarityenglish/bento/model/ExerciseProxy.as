@@ -525,7 +525,7 @@ package com.clarityenglish.bento.model {
 			//_incorrectOffset = 0; In fact we want to roll this score over when using try again so don't reset it
 			
 			if (delayedMarking)
-				markableAnswerMap = markableAnswerMap = new Dictionary(true);
+				selectedAnswerMap = markableAnswerMap = new Dictionary(true);
 		}
 		
 		/**
