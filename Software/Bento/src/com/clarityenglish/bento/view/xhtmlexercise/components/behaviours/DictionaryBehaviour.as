@@ -27,9 +27,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	public class DictionaryBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
 		public function DictionaryBehaviour(container:Group) {
-			// BUG. Drop dictionary from Road to IELTS for now
 			super(container);
-			//return;
 			
 			// Listen for clicks on the render flow
 			container.addEventListener(Event.REMOVED_FROM_STAGE, onContainerRemovedFromStage)

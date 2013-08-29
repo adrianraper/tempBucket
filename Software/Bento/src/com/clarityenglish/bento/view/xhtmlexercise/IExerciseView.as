@@ -16,11 +16,9 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		function markAnswerMap(question:Question, answerMap:AnswerMap, isShowAnswers:Boolean = false):void
 		function setExerciseMarked(marked:Boolean = true):void;
 		function stopAllAudio():void;
-		// gh#348
-		function enableFeedbackAudio():void;
-		// gh#388
-		// gh#413
-		function getQuestionFeedback():Signal;
+		function enableFeedbackAudio():void; // gh#348
+		function getQuestionFeedback():Signal; // gh#388, gh#413
+		
 	}
 	
 }

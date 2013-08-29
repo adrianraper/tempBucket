@@ -40,11 +40,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.addEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered, false, 0, true);
 			view.addEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow, false, 0, true);
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
-			// gh#338
-			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true);
-			// gh#388
-			// gh#413
-			(view.getQuestionFeedback() as Signal).add(onGotQuestionFeedback);
+			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true); // gh#338
+			view.getQuestionFeedback().add(onGotQuestionFeedback); // gh#388, gh#413
 		}
 		
 		public override function onRemove():void {
@@ -54,10 +51,12 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.stopAllAudio();
 			
 			view.removeEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
-			view.removeEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered);
 			view.removeEventListener(SectionEvent.QUESTION_CLEAR, onQuestionCleared);
+			view.removeEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered);
 			view.removeEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow);
 			view.removeEventListener(DictionaryEvent.WORD_CLICK, onWordClick);
+			view.removeEventListener(HintEvent.HINT_SHOW, onHintShow);
+			view.getQuestionFeedback().remove(onGotQuestionFeedback);
 		}
 		
 		public override function listNotificationInterests():Array {
@@ -180,8 +179,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			sendNotification(BBNotifications.HINT_SHOW, { exercise: view.exercise, question: event.question } );
 		}
 		
-		// gh#388
-		// gh#413
+		// gh#388, gh#413
 		protected function onGotQuestionFeedback(value:Boolean):void {
 			sendNotification(BBNotifications.GOT_QUESTION_FEEDBACK, value);
 		}

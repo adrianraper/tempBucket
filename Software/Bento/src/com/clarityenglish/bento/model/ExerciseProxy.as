@@ -147,6 +147,7 @@ package com.clarityenglish.bento.model {
 		public function get exerciseFeedbackSeen():Boolean {
 			return _exerciseFeedbackSeen;
 		}
+		
 		public function set exerciseFeedbackSeen(value:Boolean):void {
 			_exerciseFeedbackSeen = value;
 		}
@@ -275,6 +276,7 @@ package com.clarityenglish.bento.model {
 				var answerMap:AnswerMap = getSelectedAnswerMap(question);
 				
 				var didKeyAlreadyExist:Boolean = answerMap.containsKey(key);
+				
 				// If this is a mutually exclusive question (e.g. multiple choice) then clear the answer map before adding the new answer so we
 				// can only have one answer at a time in the map.
 				if (question.isMutuallyExclusive()) answerMap.clear();
@@ -286,13 +288,8 @@ package com.clarityenglish.bento.model {
 					answerMap.put(key, answer);
 				}
 				
-				// gh#347
-				if (question.type == Question.TARGET_SPOTTING_QUESTION && exercise.model.getSettingParam("delayedMarking") == null) {
-					exerciseDirty = false;											
-				} else {
-					// Trac 121. You have now answered a question, so the exercise is dirty
-					exerciseDirty = true;
-				}
+				// trac #121, gh#347
+				exerciseDirty = !(question.type == Question.TARGET_SPOTTING_QUESTION && exercise.model.getSettingParam("delayedMarking") == null);
 				
 				// Send a notification to say the question has been answered
 				sendNotification(BBNotifications.QUESTION_ANSWERED, { question: question, delayedMarking: delayedMarking } );
@@ -329,7 +326,8 @@ package com.clarityenglish.bento.model {
 			}
 		}
 		
-		/** #258
+		/** 
+		 * gh#258
 		 * Exercises can have a 'incorrectClickSection' parameter which generates an incorrect answer for every click that isn't on an interactive element.  This is
 		 * used in target spotting exercises where missing a target counts as a wrong answer.  We maintain an incorrectOffset for this special case.
 		 */
