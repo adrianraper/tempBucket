@@ -63,6 +63,9 @@ package com.clarityenglish.tensebuster.view {
 			log.debug("State machine moved into state {0}", state.name);
 			
 			switch (state.name) {
+				case BBStates.STATE_NO_NETWORK:
+					view.currentState = "nonetwork";
+					break;
 				case BBStates.STATE_LOAD_COPY:
 				case BBStates.STATE_LOAD_ACCOUNT:
 				case BBStates.STATE_LOAD_MENU:

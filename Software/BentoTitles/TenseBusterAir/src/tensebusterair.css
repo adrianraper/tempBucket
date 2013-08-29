@@ -14,6 +14,7 @@
 @namespace help "com.clarityenglish.tensebuster.view.help.*";
 @namespace unitui "com.clarityenglish.tensebusterair.unit.ui.*";
 @namespace ui "com.clarityenglish.tensebusterair.ui.*";
+@namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 
 global {
 	interactionMode: touch;
@@ -64,9 +65,9 @@ tensebuster|TenseBusterApplication s|ActionBar.beveled s|Group#navigationGroup s
 }*/
 
 /* No network styles (#472) */
-/*nonetwork|NoNetworkView {
-skinClass: ClassReference("skins.ieltsair.NoNetworkSkin");
-}*/
+nonetwork|NoNetworkView {
+	skinClass: ClassReference("skins.tensebusterair.NoNetworkSkin");
+}
 
 /* Login view styles */
 login|LoginView {
