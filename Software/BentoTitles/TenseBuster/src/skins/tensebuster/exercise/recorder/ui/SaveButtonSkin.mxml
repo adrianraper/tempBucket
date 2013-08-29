@@ -62,23 +62,39 @@
 				  C15.7217 16.3945 15.1963 16.9189 14.5557 16.9189L3.18066 16.9189C2.53906 16.9189 2.0127 16.3945 2.0127 15.752L2.0127 9.16016C2.0127 8.51758 2.53906 7.99219 3.18066 7.99219L14.5557 7.99219C15.1963 7.99219 15.7217 8.51758 15.7217 9.16016L15.7217
 				  15.752Z">
 				<s:fill>
-					<s:SolidColor color="#303030"/>
+					<s:LinearGradient rotation="-40">
+						<s:GradientEntry color="#303030" color.over="#ED7E00" color.down="#ED7E00"/>
+						<s:GradientEntry color="#303030" color.over="#FFBA0D" color.down="#FFBA0D"/>
+						<s:GradientEntry color="#303030" color.over="#FFA600" color.down="#FFA600"/>
+					</s:LinearGradient>
 				</s:fill>
 			</s:Path>
 		</s:Group>
 		<s:Rect x="9.79395" y="1.37988" width="1.50977" height="3.14453">
 			<s:fill>
-				<s:SolidColor color="#303030"/>
+				<s:LinearGradient rotation="-40">
+					<s:GradientEntry color="#303030" color.over="#ED7E00" color.down="#ED7E00"/>
+					<s:GradientEntry color="#303030" color.over="#FFBA0D" color.down="#FFBA0D"/>
+					<s:GradientEntry color="#303030" color.over="#FFA600" color.down="#FFA600"/>
+				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
 		<s:Rect x="5.76758" y="11.0674" width="6.66797" height="0.880859">
 			<s:fill>
-				<s:SolidColor color="#303030"/>
+				<s:LinearGradient rotation="-40">
+					<s:GradientEntry color="#303030" color.over="#ED7E00" color.down="#ED7E00"/>
+					<s:GradientEntry color="#303030" color.over="#FFBA0D" color.down="#FFBA0D"/>
+					<s:GradientEntry color="#303030" color.over="#FFA600" color.down="#FFA600"/>
+				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
 		<s:Rect x="5.76758" y="13.458" width="6.66797" height="0.880859">
 			<s:fill>
-				<s:SolidColor color="#303030"/>
+				<s:LinearGradient rotation="-40">
+					<s:GradientEntry color="#303030" color.over="#ED7E00" color.down="#ED7E00"/>
+					<s:GradientEntry color="#303030" color.over="#FFBA0D" color.down="#FFBA0D"/>
+					<s:GradientEntry color="#303030" color.over="#FFA600" color.down="#FFA600"/>
+				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
 	</s:Group>

@@ -55,7 +55,11 @@
 	<recorder:maxBg left="9" top="12"/>
 	<s:Path x="9" y="12" winding="nonZero" data="M14.9004 0 0 0 0 10.7861 14.9004 10.7861 14.9004 0ZM11.7744 7.90918 3.125 7.90918 3.125 2.87598 11.7744 2.87598 11.7744 7.90918Z">
 		<s:fill>
-			<s:SolidColor color="#303030"/>
+			<s:LinearGradient rotation="-40">
+				<s:GradientEntry color="#303030" color.over="#ED7E00" color.down="#ED7E00"/>
+				<s:GradientEntry color="#303030" color.over="#FFBA0D" color.down="#FFBA0D"/>
+				<s:GradientEntry color="#303030" color.over="#FFA600" color.down="#FFA600"/>
+			</s:LinearGradient>
 		</s:fill>
 	</s:Path>
 	

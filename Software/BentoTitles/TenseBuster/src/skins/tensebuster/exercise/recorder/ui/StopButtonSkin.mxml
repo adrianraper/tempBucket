@@ -55,7 +55,11 @@
 	<recorder:stopBg left="10" top="10" />
 	<s:Rect x="10" y="10" width="13.1016" height="13.5928">
 		<s:fill>
-			<s:SolidColor color="#303030" color.over="#EE2926" color.down="#EE2926"/>
+			<s:LinearGradient rotation="-40">
+				<s:GradientEntry color="#303030" color.over="#ED7E00" color.down="#ED7E00"/>
+				<s:GradientEntry color="#303030" color.over="#FFBA0D" color.down="#FFBA0D"/>
+				<s:GradientEntry color="#303030" color.over="#FFA600" color.down="#FFA600"/>
+			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
     

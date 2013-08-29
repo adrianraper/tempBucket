@@ -56,12 +56,20 @@
 	<s:Group x="8" y="9">
 		<s:Path x="0.384766" y="5.41406" winding="nonZero" data="M0 9.47852 12.9912 9.47852 12.9912 0 0 0 0 9.47852ZM3.125 2.52734 9.86523 2.52734 9.86523 6.9502 3.125 6.9502 3.125 2.52734Z">
 			<s:fill>
-				<s:SolidColor color="#303030"/>
+				<s:LinearGradient rotation="-40">
+					<s:GradientEntry color="#303030" color.over="#ED7E00" color.down="#ED7E00"/>
+					<s:GradientEntry color="#303030" color.over="#FFBA0D" color.down="#FFBA0D"/>
+					<s:GradientEntry color="#303030" color.over="#FFA600" color.down="#FFA600"/>
+				</s:LinearGradient>
 			</s:fill>
 		</s:Path>
 		<s:Path x="6.05176" y="0.336914" winding="nonZero" data="M0 4.73926 3.125 4.73926 3.125 2.52832 9.86523 2.52832 9.86523 6.95117 7.70801 6.95117 7.70801 9.47949 12.9912 9.47949 12.9912 0 0 0 0 4.73926Z">
 			<s:fill>
-				<s:SolidColor color="#303030"/>
+				<s:LinearGradient rotation="-40">
+					<s:GradientEntry color="#303030" color.over="#ED7E00" color.down="#ED7E00"/>
+					<s:GradientEntry color="#303030" color.over="#FFBA0D" color.down="#FFBA0D"/>
+					<s:GradientEntry color="#303030" color.over="#FFA600" color.down="#FFA600"/>
+				</s:LinearGradient>
 			</s:fill>
 		</s:Path>
 	</s:Group>
