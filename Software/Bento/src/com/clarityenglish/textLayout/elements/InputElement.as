@@ -126,7 +126,7 @@ package com.clarityenglish.textLayout.elements {
 		public function set gapAfterPadding(value:Number):void {
 			_gapAfterPadding = value;
 		}
-
+		
 		// gh#407 hold the longest answer, only useful for errorCorrection
 		public function set longestAnswer(value:String):void {
 			_longestAnswer = value;
@@ -134,7 +134,7 @@ package com.clarityenglish.textLayout.elements {
 		public function get longestAnswer():String {
 			return _longestAnswer;
 		}
-
+		
 		public function set gapText(value:String):void {
 			_gapText = value;
 			
@@ -191,7 +191,7 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		public function set showHint(value:Boolean):void {
-				_showHint = value;
+			_showHint = value;
 		}
 		
 		public function createComponent():void {
@@ -217,7 +217,7 @@ package com.clarityenglish.textLayout.elements {
 						if (!disableValueCommitEvent){
 							getEventMirror().dispatchEvent(e.clone());
 						}
-							
+						
 					});
 					break;
 				case TYPE_DROPTARGET:
@@ -332,8 +332,8 @@ package com.clarityenglish.textLayout.elements {
 				/*
 				var previousSibling:FlowElement = getPreviousSibling();
 				if (previousSibling is SpanElement) {
-					var spanElement:SpanElement = previousSibling as SpanElement;
-					if (spanElement.text.substr(spanElement.text.length - 1, 1) != " ") spanElement.text += " ";
+				var spanElement:SpanElement = previousSibling as SpanElement;
+				if (spanElement.text.substr(spanElement.text.length - 1, 1) != " ") spanElement.text += " ";
 				}
 				*/
 			}
@@ -384,7 +384,7 @@ package com.clarityenglish.textLayout.elements {
 				}
 			}
 		}
-	
+		
 	}
-
+	
 }
