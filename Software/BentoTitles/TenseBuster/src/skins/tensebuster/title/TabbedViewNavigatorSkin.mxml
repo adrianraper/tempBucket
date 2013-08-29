@@ -37,6 +37,6 @@
     </s:Group>	
 	
 	
-	<s:ButtonBar id="tabBar" skinClass="skins.tensebuster.title.ui.buttonBarSkin" right="120" top="37" />
+	<s:ButtonBar id="tabBar" skinClass="skins.tensebuster.title.ui.buttonBarSkin" right="210" top="37" />
 
 </s:Skin>

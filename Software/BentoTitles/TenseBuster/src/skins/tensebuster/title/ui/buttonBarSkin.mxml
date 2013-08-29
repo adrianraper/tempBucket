@@ -70,9 +70,9 @@
             @default spark.skins.spark.ButtonBarLastButtonSkin
             @see spark.skins.spark.ButtonBarLastButtonSkin
         -->
-        <fx:Component id="lastButton" >
+        <!--fx:Component id="lastButton" >
             <s:ButtonBarButton skinClass="skins.tensebuster.title.ui.ButtonBarLastButtonSkin" buttonMode="true" useHandCursor="true" />
-        </fx:Component>
+        </fx:Component-->
 
     </fx:Declarations>
 

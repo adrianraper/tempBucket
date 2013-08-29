@@ -9,6 +9,8 @@ package com.clarityenglish.tensebuster.view.title {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	import mx.controls.SWFLoader;
 	
@@ -48,6 +50,9 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		[SkinPart]
 		public var logoutButton:Button;
+		
+		[SkinPart]
+		public var helpButton:Button;
 		
 		private var _selectedNode:XML;
 		private var courseID:String;
@@ -174,7 +179,12 @@ package com.clarityenglish.tensebuster.view.title {
 					logoutButton.label = copyProvider.getCopyForId("logoutButton");
 					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
+				case helpButton:
+					helpButton.label = copyProvider.getCopyForId("help");
+					helpButton.addEventListener(MouseEvent.CLICK,onHelpClick);
+					break;
 			}
+
 		}
 		
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
@@ -206,6 +216,12 @@ package com.clarityenglish.tensebuster.view.title {
 		// gh#217
 		protected function onLogoutClick(event:Event):void {
 			logout.dispatch();
+		}
+		
+		protected function onHelpClick(event:MouseEvent):void {
+			var url:String = copyProvider.getCopyForId("helpURL");
+			var urlRequest:URLRequest = new URLRequest(url);
+			navigateToURL(urlRequest, "_blank");
 		}
 		
 	}

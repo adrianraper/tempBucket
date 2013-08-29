@@ -2,6 +2,9 @@ package com.clarityenglish.bento.view.recorder {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
 	
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
+
 	import mx.controls.ProgressBar;
 	
 	import org.davekeen.util.StateUtil;
@@ -34,6 +37,7 @@ package com.clarityenglish.bento.view.recorder {
 					recordWaveformView.addEventListener(RecorderEvent.MINIMIZE, onMinimize, false, 0, true);
 					recordWaveformView.addEventListener(RecorderEvent.MAXIMIZE, onMaximize, false, 0, true);
 					recordWaveformView.addEventListener(RecorderEvent.COMPARE, onCompare, false, 0, true);
+					recordWaveformView.addEventListener(RecorderEvent.HELP, onHelp, false, 0, true);
 					break;
 			}
 		}
@@ -49,6 +53,12 @@ package com.clarityenglish.bento.view.recorder {
 		protected function onCompare(event:RecorderEvent):void {
 			currentState = "compare";
 			dispatchEvent(event.clone());
+		}
+		
+		protected function onHelp(event:RecorderEvent):void {
+			var url:String = copyProvider.getCopyForId("recorderHelpURL");
+			var urlRequest:URLRequest = new URLRequest(url);
+			navigateToURL(urlRequest, "_blank");
 		}
 		
 		protected override function getCurrentSkinState():String {

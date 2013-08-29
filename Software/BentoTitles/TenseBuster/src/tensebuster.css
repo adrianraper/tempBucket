@@ -198,6 +198,10 @@ title|TitleView s|Button#logoutButton {
 	skinClass: ClassReference("skins.tensebuster.title.ui.LogoutButtonSkin");
 }
 
+title|TitleView s|Button#helpButton {
+	skinClass: ClassReference("skins.tensebuster.title.ui.HelpButtonSkin");
+}
+
 home|HomeView {
 	skinClass: ClassReference("skins.tensebuster.HomeSkin");
 }
