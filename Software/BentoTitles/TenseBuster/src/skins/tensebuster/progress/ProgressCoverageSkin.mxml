@@ -25,7 +25,8 @@
 				progressBar.trackColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor1');
 				progressBar.fillColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor2');
 				
-				completeSolidColor.color = getStyle(StringUtils.capitalize(hostComponent.courseClass.charAt(0)) + 'Color');
+				topGradientColor.color = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor1');
+				bottomGradientColor.color = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor2');
 			}
 		]]>
 	</fx:Script>
@@ -51,22 +52,30 @@
 
 	<s:Label id="coverageInstructionLabel" top="130" left="50" fontSize="13" />
 	<s:HGroup left="250" top="165">
-		<s:Rect width="10" height="10">
+		<s:Path id="doneHexagonPath" data="M0 6.16284C0 5.06274 0.779297 3.71265 1.73193 3.16284L6.49561 0.412354C7.44824 -0.137451 9.00684 -0.137451 9.95947 0.412354L14.7231 3.16284C15.6758 3.71265 16.4551 5.06274 16.4551 6.16284L16.4551 11.6628C16.4551 12.7629 15.6758 14.113 14.7231
+				14.6628L9.95947 17.4128C9.00684 17.9626 7.44824 17.9626 6.49561 17.4128L1.73193 14.6628C0.779297 14.113 0 12.7629 0 11.6628L0 6.16284Z">
 			<s:fill>
-				<s:SolidColor id="completeSolidColor" />
+				<s:LinearGradient>
+					<s:GradientEntry id="topGradientColor"  />
+					<s:GradientEntry id="bottomGradientColor"  />
+				</s:LinearGradient>
 			</s:fill>
-		</s:Rect>
+		</s:Path>	
 		<s:Label id="completeLabel" fontSize="13"/>
-		<s:Spacer width="10"/>
-		<s:Rect width="10" height="10">
+		<s:Spacer width="14"/>
+		<s:Path data="M0 6.16284C0 5.06274 0.779297 3.71265 1.73193 3.16284L6.49561 0.412354C7.44824 -0.137451 9.00684 -0.137451 9.95947 0.412354L14.7231 3.16284C15.6758 3.71265 16.4551 5.06274 16.4551 6.16284L16.4551 11.6628C16.4551 12.7629 15.6758 14.113 14.7231
+				14.6628L9.95947 17.4128C9.00684 17.9626 7.44824 17.9626 6.49561 17.4128L1.73193 14.6628C0.779297 14.113 0 12.7629 0 11.6628L0 6.16284Z">
 			<s:fill>
-				<s:SolidColor color="#B4B4B5" />
+				<s:LinearGradient>
+					<s:GradientEntry color="0x999999" />
+					<s:GradientEntry color="0xCDCDCD"/>
+				</s:LinearGradient>
 			</s:fill>
-		</s:Rect>
+		</s:Path>	
 		<s:Label id="notCompleteLabel" fontSize="13"/>
 	</s:HGroup>
 			 
-	<s:Scroller left="50" right="0" top="174" bottom="0">
+	<s:Scroller left="50" right="0" top="189" bottom="0">
 		<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">
 			<s:layout>
 				<s:VerticalLayout paddingTop="15" gap="16" />
