@@ -311,12 +311,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
 				XHTML.addClass(answerNode, answer.markingClass);
 				
-				// #102
-				// gh#388
+				// #102, gh#388
 				if (isShowAnswers && answer.feedback) {	
 					atLeastOneSelectedAnswerHasFeedback = true;
 					// gh#413 I need to get this into exerciseView
 					//gotQuestionFeedback.dispatch(atLeastOneSelectedAnswerHasFeedback);
+				}
+				
+				// gh#526 - once a target spotting question has been marked, disable it so it can't be unselected
+				if (question.type == Question.TARGET_SPOTTING_QUESTION) {
+					XHTML.addClass(answerNode, "disabled");
 				}
 				
 				TLFUtil.markFlowElementFormatChanged(answerElement);
