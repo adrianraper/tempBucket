@@ -53,7 +53,7 @@
 	
 	<!-- Top Left buttons -->
 	<s:HGroup left="60" top="89" includeIn="exercise" gap="0">
-		<s:Button id="backButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="backButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}"/>
 		<s:Button id="forwardButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>	

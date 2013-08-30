@@ -78,6 +78,7 @@ package com.clarityenglish.bento.view.exercise {
 		private var _hasExerciseFeedback:Boolean;
 		private var _hasQuestionFeedback:Boolean;
 		private var _ruleLink:String;
+		private var _isFirstExercise:Boolean;
 		
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
@@ -120,6 +121,15 @@ package com.clarityenglish.bento.view.exercise {
 			return _ruleLink;
 		}
 		
+		public function set isFirstExercise(value:Boolean):void {
+			_isFirstExercise = value;
+		}
+		
+		[Bindable]
+		public function get isFirstExercise():Boolean {
+			return _isFirstExercise;
+		}
+		
 		public var startAgain:Signal = new Signal();
 		public var showFeedback:Signal = new Signal();
 		public var showMarking:Signal = new Signal();
@@ -145,7 +155,7 @@ package com.clarityenglish.bento.view.exercise {
 			// Only show the back and forward buttons if this is an action exercise (i.e. not for the pdf ebook accessed directly from the zone view)
 			// TODO: When we have real custom views this might not work anymore as it assumes anything not DynamicView.DEFAULT_VIEW isn't a real exercise
 			var exercise:Exercise = _xhtml as Exercise;
-			
+
 			if (exercise) {
 				var visibleValue:Boolean = (!exercise.model.view || exercise.model.view == DynamicView.DEFAULT_VIEW);
 				if (forwardButton) {
@@ -155,9 +165,11 @@ package com.clarityenglish.bento.view.exercise {
 				
 				if (backButton) {
 					backButton.visible = visibleValue;
-					backButton.includeInLayout = visibleValue;
+					backButton.includeInLayout = visibleValue;						
 				}
 			}
+			
+			
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

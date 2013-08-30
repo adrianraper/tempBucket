@@ -168,6 +168,13 @@
 					view.ruleButton.visible = false;
 				}
 			}
+			
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			if (bentoProxy.selectedExerciseNode.@id == bentoProxy.selectedUnitNode.exercise[0].@id) {
+				view.isFirstExercise = true;
+			}else {
+				view.isFirstExercise = false;
+			}
 		}
 		
 		// gh#388
