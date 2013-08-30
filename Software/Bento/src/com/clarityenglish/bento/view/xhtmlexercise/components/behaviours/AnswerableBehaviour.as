@@ -309,7 +309,16 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 				
 				// Create a NodeAnswer pointing to the dropped node with a score of 0
 				var source:String = inputElement.droppedNode.@id;
-				answerOrString = new NodeAnswer(<Answer score="0" source={source} />);
+				// gh#585 a) copy feedback to this new node
+				var xmlString:String = '<answer score="0" source="' + source + '">';
+				if (question.unmatchedFeedbackSource) {
+					xmlString += '<feedback source="' + question.unmatchedFeedbackSource + '" />';
+				} else if (question.answers[0].feedback) {
+					xmlString += '<feedback source="' + question.answers[0].feedback.source + '" />';
+				}
+				xmlString += "</answer>";
+				
+				answerOrString = new NodeAnswer(new XML(xmlString));
 			}
 			
 			if (inputElement.droppedFlowElement) {
