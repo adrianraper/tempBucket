@@ -273,16 +273,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				if (answerElement is InputElement) {
 					var inputElement:InputElement = answerElement as InputElement;
 					
-					if (answer is TextAnswer) {
-						answerNode.text = inputElement.value = (answer as TextAnswer).value;
-					} else {
-						sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
-						
-						// TODO: This is not putting the flow element into the input; right now this has no impact as the flow element here is used
-						// during a live drag and drop and its not possible to drag after marking.  However, keep an eye on this in case things change
-						// in the future.
-						// Later note: This makes 'see answers' work for drag and drop nodes
-						if (sourceNodes) inputElement.dragDrop(sourceNodes[0], null, sourceNodes[0].toString());
+					if (isShowAnswers) { // gh#351
+						if (answer is TextAnswer) {
+							answerNode.text = inputElement.value = (answer as TextAnswer).value;
+						} else {
+							sourceNodes = (answer as NodeAnswer).getSourceNodes(exercise);
+							
+							// gh#473 - updated this to only run when showing answers (this seems to be the only time it is necessary), as well as including a real flowElement instead of null.
+							if (sourceNodes) inputElement.dragDrop(sourceNodes[0], exercise.flowElementXmlBiMap.getFlowElement(sourceNodes[0]), sourceNodes[0].toString());
+						}
 					}
 				}
 				
@@ -312,12 +311,16 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				XHTML.removeClasses(answerNode, [ Answer.CORRECT, Answer.INCORRECT, Answer.NEUTRAL ] );
 				XHTML.addClass(answerNode, answer.markingClass);
 				
-				// #102
-				// gh#388
+				// #102, gh#388
 				if (isShowAnswers && answer.feedback) {	
 					atLeastOneSelectedAnswerHasFeedback = true;
 					// gh#413 I need to get this into exerciseView
 					//gotQuestionFeedback.dispatch(atLeastOneSelectedAnswerHasFeedback);
+				}
+				
+				// gh#526 - once a target spotting question has been marked, disable it so it can't be unselected
+				if (question.type == Question.TARGET_SPOTTING_QUESTION) {
+					XHTML.addClass(answerNode, "disabled");
 				}
 				
 				TLFUtil.markFlowElementFormatChanged(answerElement);

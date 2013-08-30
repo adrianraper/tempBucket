@@ -36,14 +36,12 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				throw new Error("Attempted to use a view with XHTMLExerciseMediator that did not implement IExerciseView");
 			
 			view.addEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered, false, 0, true);
+			view.addEventListener(SectionEvent.QUESTION_CLEAR, onQuestionCleared, false, 0, true);
 			view.addEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered, false, 0, true);
 			view.addEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow, false, 0, true);
 			view.addEventListener(DictionaryEvent.WORD_CLICK, onWordClick, false, 0, true);
-			// gh#338
-			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true);
-			// gh#388
-			// gh#413
-			(view.getQuestionFeedback() as Signal).add(onGotQuestionFeedback);
+			view.addEventListener(HintEvent.HINT_SHOW, onHintShow, false, 0, true); // gh#338
+			view.getQuestionFeedback().add(onGotQuestionFeedback); // gh#388, gh#413
 		}
 		
 		public override function onRemove():void {
@@ -53,9 +51,12 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			view.stopAllAudio();
 			
 			view.removeEventListener(SectionEvent.QUESTION_ANSWER, onQuestionAnswered);
+			view.removeEventListener(SectionEvent.QUESTION_CLEAR, onQuestionCleared);
 			view.removeEventListener(SectionEvent.INCORRECT_QUESTION_ANSWER, onIncorrectQuestionAnswered);
 			view.removeEventListener(FeedbackEvent.FEEDBACK_SHOW, onFeedbackShow);
 			view.removeEventListener(DictionaryEvent.WORD_CLICK, onWordClick);
+			view.removeEventListener(HintEvent.HINT_SHOW, onHintShow);
+			view.getQuestionFeedback().remove(onGotQuestionFeedback);
 		}
 		
 		public override function listNotificationInterests():Array {
@@ -148,6 +149,13 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		/**
+		 * gh#474 - clear the selected answer map
+		 */
+		protected function onQuestionCleared(event:SectionEvent):void {
+			facade.sendNotification(BBNotifications.QUESTION_CLEAR, { exercise: view.exercise, question: event.question, key: event.key, disabled: XHTML.hasClass(event.key as XML, "disabled") } );
+		}
+		
+		/**
 		 * #258
 		 * Exercises can have a 'incorrectClickSection' parameter which generates an incorrect answer for every click that isn't on an interactive element.  This is
 		 * used in target spotting exercises where missing a target counts as a wrong answer.  Since this is a very specialized kind of behaviour we use kind of a hack
@@ -171,8 +179,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 			sendNotification(BBNotifications.HINT_SHOW, { exercise: view.exercise, question: event.question } );
 		}
 		
-		// gh#388
-		// gh#413
+		// gh#388, gh#413
 		protected function onGotQuestionFeedback(value:Boolean):void {
 			sendNotification(BBNotifications.GOT_QUESTION_FEEDBACK, value);
 		}

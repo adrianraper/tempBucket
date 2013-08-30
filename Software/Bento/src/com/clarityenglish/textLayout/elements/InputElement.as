@@ -126,7 +126,7 @@ package com.clarityenglish.textLayout.elements {
 		public function set gapAfterPadding(value:Number):void {
 			_gapAfterPadding = value;
 		}
-
+		
 		// gh#407 hold the longest answer, only useful for errorCorrection
 		public function set longestAnswer(value:String):void {
 			_longestAnswer = value;
@@ -134,7 +134,7 @@ package com.clarityenglish.textLayout.elements {
 		public function get longestAnswer():String {
 			return _longestAnswer;
 		}
-
+		
 		public function set gapText(value:String):void {
 			_gapText = value;
 			
@@ -191,7 +191,7 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		public function set showHint(value:Boolean):void {
-				_showHint = value;
+			_showHint = value;
 		}
 		
 		public function createComponent():void {
@@ -217,7 +217,7 @@ package com.clarityenglish.textLayout.elements {
 						if (!disableValueCommitEvent){
 							getEventMirror().dispatchEvent(e.clone());
 						}
-							
+						
 					});
 					break;
 				case TYPE_DROPTARGET:
@@ -310,7 +310,7 @@ package com.clarityenglish.textLayout.elements {
 		public function dragDrop(node:XML, flowElement:FlowElement, text:String):void {
 			if (node) {
 				// #11 - when dragging over an input which already has some content we want to renabled the drag source we just replaced
-				if (_droppedNode && _droppedFlowElement && node != _droppedNode) {
+				if (_droppedNode && _droppedFlowElement && node !== _droppedNode) {
 					XHTML.removeClasses(_droppedNode, ["disabled", "used"]);
 					TLFUtil.markFlowElementFormatChanged(_droppedFlowElement);
 					_droppedFlowElement.getTextFlow().flowComposer.updateAllControllers();
@@ -332,8 +332,8 @@ package com.clarityenglish.textLayout.elements {
 				/*
 				var previousSibling:FlowElement = getPreviousSibling();
 				if (previousSibling is SpanElement) {
-					var spanElement:SpanElement = previousSibling as SpanElement;
-					if (spanElement.text.substr(spanElement.text.length - 1, 1) != " ") spanElement.text += " ";
+				var spanElement:SpanElement = previousSibling as SpanElement;
+				if (spanElement.text.substr(spanElement.text.length - 1, 1) != " ") spanElement.text += " ";
 				}
 				*/
 			}
@@ -365,7 +365,8 @@ package com.clarityenglish.textLayout.elements {
 			value = "";
 			(component as TextInput).text = "";
 			getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, this));
-			// gh#474: when the answer is cleared, we need to reassign the value to answer
+			
+			// gh#474 - dispatch a focus out event so that AnswerableBehaviour can remove the answer from the selectedAnswerMap
 			getEventMirror().dispatchEvent(new FocusEvent(FocusEvent.FOCUS_OUT));
 		}
 		
@@ -384,7 +385,7 @@ package com.clarityenglish.textLayout.elements {
 				}
 			}
 		}
-	
+		
 	}
-
+	
 }

@@ -111,6 +111,7 @@
 			registerCommand(BBNotifications.QUESTION_NODE_ANSWER, QuestionNodeAnswerCommand);
 			registerCommand(BBNotifications.QUESTION_STRING_ANSWER, QuestionStringAnswerCommand);
 			registerCommand(BBNotifications.QUESTION_INCORRECT_ANSWER, QuestionIncorrectAnswerCommand);
+			registerCommand(BBNotifications.QUESTION_CLEAR, QuestionClearCommand);
 			registerCommand(BBNotifications.FEEDBACK_SHOW, FeedbackShowCommand);
 			registerCommand(BBNotifications.MARKING_SHOW, MarkingShowCommand);
 			registerCommand(BBNotifications.WARN_DATA_LOSS, WarningShowCommand);
