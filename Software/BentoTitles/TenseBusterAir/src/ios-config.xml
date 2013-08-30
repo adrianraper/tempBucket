@@ -35,7 +35,7 @@
 	
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	
-	<rememberLogin>false</rememberLogin>
+	<rememberLogin>true</rememberLogin>
 	<disableAutoTimeout>true</disableAutoTimeout>
 	
 	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>

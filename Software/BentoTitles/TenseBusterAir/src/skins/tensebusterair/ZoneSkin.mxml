@@ -44,60 +44,58 @@
 	<s:Label id="exInstructionLabel" verticalCenter="-180" left="100" />
 	<s:Button id="backButton" label="Back to Unit" verticalCenter="-220" horizontalCenter="375" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 	
-	<s:Scroller top="200" bottom="20" horizontalCenter="-260">
-		<s:HGroup gap="8">
-			<s:HGroup paddingTop="8">
-				<s:SWFLoader id="numberIcon"/>
-			</s:HGroup>					
-			<s:List id="exerciseList" width="270" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">
-				<s:itemRenderer>
-					<fx:Component>
-						<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
-							<fx:Script>
-								<![CDATA[
-									import com.clarityenglish.common.vo.content.Unit;
+	<s:HGroup gap="8" top="200" bottom="20" horizontalCenter="-260">
+		<s:HGroup paddingTop="8">
+			<s:SWFLoader id="numberIcon"/>
+		</s:HGroup>					
+		<s:List id="exerciseList" width="270" labelField="@caption" borderVisible="false" contentBackgroundAlpha="0">
+			<s:itemRenderer>
+				<fx:Component>
+					<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+						<fx:Script>
+							<![CDATA[
+								import com.clarityenglish.common.vo.content.Unit;
+								
+								import spark.components.List;
+								
+								[Bindable]
+								private var courseIndex:Number;
+								
+								private var caption:String;
+								
+								public override function set data(value:Object):void {
+									super.data = value;
 									
-									import spark.components.List;
-									
-									[Bindable]
-									private var courseIndex:Number;
-									
-									private var caption:String;
-									
-									public override function set data(value:Object):void {
-										super.data = value;
-										
-										courseIndex = outerDocument.hostComponent.courseIndex;
-									}
-								]]>
-							</fx:Script>
-							
-							<fx:Declarations>
-								<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
-							</fx:Declarations>
-							
-							<s:states>
-								<s:State name="normal" />
-								<s:State name="hovered" />
-								<s:State name="selected" />
-							</s:states>
-							
-							<s:layout>
-								<s:VerticalLayout paddingBottom="12" />
-							</s:layout>
-							
-							<fx:Declarations>
-								<!--s:Fade id="fadeEffect" target="{exButtonGroup}" duration="2000" alphaFrom="0" alphaTo="1"/-->
-							</fx:Declarations>
-							
-							<s:Group id="exButtonGroup" alpha="1">
-								<ui:MenuButton id="zoneUndoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" />
-								<ui:MenuButton id="zoneDoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" />
-							</s:Group>						
-						</s:ItemRenderer>
-					</fx:Component>
-				</s:itemRenderer>
-			</s:List>	
-		</s:HGroup>
-	</s:Scroller>		
+									courseIndex = outerDocument.hostComponent.courseIndex;
+								}
+							]]>
+						</fx:Script>
+						
+						<fx:Declarations>
+							<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
+						</fx:Declarations>
+						
+						<s:states>
+							<s:State name="normal" />
+							<s:State name="hovered" />
+							<s:State name="selected" />
+						</s:states>
+						
+						<s:layout>
+							<s:VerticalLayout paddingBottom="12" />
+						</s:layout>
+						
+						<fx:Declarations>
+							<!--s:Fade id="fadeEffect" target="{exButtonGroup}" duration="2000" alphaFrom="0" alphaTo="1"/-->
+						</fx:Declarations>
+						
+						<s:Group id="exButtonGroup" alpha="1">
+							<ui:MenuButton id="zoneUndoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" />
+							<ui:MenuButton id="zoneDoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" />
+						</s:Group>						
+					</s:ItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:List>	
+	</s:HGroup>	
 </s:Skin>

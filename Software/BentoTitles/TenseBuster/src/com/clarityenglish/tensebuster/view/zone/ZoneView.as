@@ -60,7 +60,7 @@ package com.clarityenglish.tensebuster.view.zone {
 		[Embed(source="skins/tensebuster/assets/zone/U10.png")]
 		private var U10:Class;
 		
-		[Embed(source="skins/tensebuster/assets/zone/L11.png")]
+		[Embed(source="skins/tensebuster/assets/zone/L10.png")]
 		private var L10:Class;
 		
 		[Embed(source="skins/tensebuster/assets/zone/A11.png")]
@@ -77,6 +77,9 @@ package com.clarityenglish.tensebuster.view.zone {
 		
 		[Embed(source="skins/tensebuster/assets/zone/L11.png")]
 		private var L11:Class;
+		
+		[Embed(source="skins/tensebuster/assets/zone/U12.png")]
+		private var U12:Class;
 		
 		[Bindable(event="unitChanged")]
 		public function get unit():XML {
@@ -182,6 +185,8 @@ package com.clarityenglish.tensebuster.view.zone {
 					return U10;
 				case "U11":
 					return U11;
+				case "U12":
+					return U12;
 				case "L10":
 					return L10;
 				case "L11":
