@@ -5,7 +5,7 @@
 	<dbHost>2</dbHost>
 	<productCode>55</productCode>
 	<loginOption>128</loginOption>
-	<useCacheBuster>false</useCacheBuster>
+	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-FullVersion.xml</courseFile>
 	<channel name='aws' caption='aws'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
