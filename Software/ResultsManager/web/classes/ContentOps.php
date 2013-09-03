@@ -1109,10 +1109,14 @@ EOD;
 					$courseType = 'rotterdam';	
 					$titleObj->indexFile = "courses.xml";
 				 
+				} else if (intval($titleObj->F_ProductCode) == 55) { 
+					$courseType = 'bento';
+					$titleObj->indexFile = "menu-FullVersion.xml";
 				} else {
 					$courseType = 'orchid';	
 					$titleObj->indexFile = "course.xml";
 				}
+
 				// Build the title object (if the course.xml file doesn't exist then just skip it. However, if we are in $forDMS
 				// mode then this is DMS and we want to display everything, even if course.xml doesn't exist.
 				//NetDebug::trace("get content from =".$folder."/".$titleObj->indexFile);
