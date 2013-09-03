@@ -469,6 +469,10 @@ package com.clarityenglish.common.model {
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			var thisError:BentoError = BentoError.create(fault);
+			// alice: add Cookie checking code
+			if (thisError.errorContext == "Cookie is disabled") {
+				sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
+			}
 			
 			switch (operation) {
 				// gh#315

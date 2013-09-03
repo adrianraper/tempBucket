@@ -111,6 +111,11 @@ class BentoService extends AbstractService {
 	 * @return error - Error object if required 
 	 */
 	public function getAccountSettings($config) {
+		// alice: Add cookie checking code
+		if (!isset($_COOKIE["PHPSESSID"])) {
+    		$error = 'Cookie is disabled';
+    		throw new Exception($error);
+		}
 		// #353 This first call might change the dbHost that the session uses
 		if (isset($config['dbHost']))
 			$this->initDbHost($config['dbHost']);
@@ -186,6 +191,11 @@ class BentoService extends AbstractService {
 	 * It is separate from getAccountSettings so that the calling program can cope differently with the response 
 	 */
 	public function getIPMatch($config) {
+		// alice: add Cookie checking code		
+		if (!isset($_COOKIE["PHPSESSID"])) {
+			$error = 'Cookie is disabled';
+    		throw new Exception($error);
+		}
 		
 		// gh#315 iPads don't send their IP, but you can pick it up here
 		if (!$config['ip']) {
