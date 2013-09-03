@@ -1,32 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/TenseBuster in localhost</id>
-	<developer>DK</developer>
 	<dbHost>2</dbHost>
 	<productCode>55</productCode>
 	<loginOption>128</loginOption>
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-FullVersion.xml</courseFile>
-	<channel name='aws' caption='aws'>
-		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
-	</channel>
-	<!-- <channel name='network' caption='network'>
-		<streamingMedia>{contentPath}/video/</streamingMedia>
-	</channel> -->
-	<channel name='vimeo' caption='vimeo'>
-		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
-	</channel>
 	<sharedMedia />
 	<brandingMedia />
 	
-	<upgradeURL>http://www.ieltspractice.com</upgradeURL>
-	<pricesURL>http://www.clarityenglish.com/enquiry.php?price=Road_to_IELTS_2</pricesURL>
-	<registerURL>http://www.takeielts.org</registerURL>
-	
-	<language>ZH</language>
-	<!--contentPath>http://192.168.8.81/Content/</contentPath>
-	<remoteDomain>http://192.168.8.81/</remoteDomain>
-	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway-->
+	<language>EN</language>
 	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
 	
 	<remoteDomain>http://www.clarityenglish.com/</remoteDomain>

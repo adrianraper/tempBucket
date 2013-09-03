@@ -37,10 +37,10 @@
 		<s:RichEditableText id="notCompleteRichEditableText" width="100%" paddingTop="25" fontSize="13" lineHeight="30" horizontalCenter="0"/>
 	</s:VGroup>
 	
-	<!--s:Group id="printGroup" right="0" top="60">
-		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/certificate/printTip.png')" right="150" top="10"/>
-		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60"/>		
-	</s:Group-->
+	<s:Group id="printGroup" right="0" top="60">
+		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/certificate/printTip.png')" right="150" top="10" visible="false"/>
+		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60" visible="false"/>		
+	</s:Group>
 	
 	<s:Scroller top="70" bottom="0" left="15">
 		<s:Group id="certificateGroup">

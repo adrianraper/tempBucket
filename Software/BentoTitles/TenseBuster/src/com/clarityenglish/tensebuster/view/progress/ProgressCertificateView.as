@@ -128,7 +128,7 @@ package com.clarityenglish.tensebuster.view.progress
 			
 			if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
 			nameLabel.text = user.fullName;
-			//printButton.label = copyProvider.getCopyForId("printButton");
+			printButton.label = copyProvider.getCopyForId("printButton");
 			nameTextLabel.text = copyProvider.getCopyForId("nameTextLabel");
 			courseTextLabel.text = copyProvider.getCopyForId("courseTextLabel");
 			dateTextLabel.text = copyProvider.getCopyForId("dateTextLabel");
@@ -164,7 +164,7 @@ package com.clarityenglish.tensebuster.view.progress
 				var aveScore:Number = menu.course.(@["class"] == courseClass).@averageScore;
 				oopsVGroup.visible = false;
 				certificateGroup.visible = false;
-				//printGroup.visible = false;
+				printGroup.visible = false;
 				if (coverage < 90) {
 					oopsVGroup.visible = true;
 					certificateFooter.visible = true;
@@ -175,7 +175,7 @@ package com.clarityenglish.tensebuster.view.progress
 				} else {
 					certificateGroup.visible = true;
 					certificateFooter.visible = false;
-					//printGroup.visible = true;
+					printGroup.visible = true;
 					switch (courseClass.charAt(0)) {
 						case "e":
 							certificateSWFLoader.source = ECert;
@@ -214,9 +214,9 @@ package com.clarityenglish.tensebuster.view.progress
 					var date:Date = new Date();
 					dateLabel.text = DateUtil.formatDate(date, "dd MMMM yyyy");
 					break;
-				/*case printButton:
+				case printButton:
 					printButton.addEventListener(MouseEvent.CLICK, onPrintClick);
-					break;*/
+					break;
 			}
 		}
 		

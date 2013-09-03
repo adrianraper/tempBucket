@@ -1,26 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/TenseBuster in localhost</id>
-	<developer>DKweb</developer>
+	<developer>DKx</developer>
 	<dbHost>2</dbHost>
 	<productCode>55</productCode>
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-FullVersion.xml</courseFile>
-	<channel name='aws' caption='aws'>
-		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
-	</channel>
-	<!-- <channel name='network' caption='network'>
-		<streamingMedia>{contentPath}/video/</streamingMedia>
-	</channel> -->
-	<channel name='vimeo' caption='vimeo'>
-		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
-	</channel>
+
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN</language>
-	<!--contentPath>http://192.168.8.81/Content/</contentPath>
-	<remoteDomain>http://192.168.8.81/</remoteDomain>
-	<remoteGateway>http://192.168.8.81/Software/ResultsManager/web/amfphp/</remoteGateway-->
+
 	<contentPath>http://dock.contentbench/Content/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>

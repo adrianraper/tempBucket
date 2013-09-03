@@ -30,7 +30,7 @@ package com.clarityenglish.tensebuster {
 			// Initialise the browser manager to help with capturing events that might take us away from the application
 			// and also let us parse the URL
 			browserManager = BrowserManager.getInstance(); 
-			browserManager.init("", "Road to IELTS V2");
+			browserManager.init("", "Tense Buster V10");
 			
 			facade.sendNotification(BBNotifications.STARTUP, this);
 		}
