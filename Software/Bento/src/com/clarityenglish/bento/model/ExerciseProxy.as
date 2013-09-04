@@ -389,6 +389,7 @@ package com.clarityenglish.bento.model {
 			
 			var answerMap:AnswerMap = new AnswerMap();
 			var selectedAnswerMap:AnswerMap = getSelectedAnswerMap(question);
+			var markableAnswerMap:AnswerMap = getMarkableAnswerMap(question);
 			
 			// 1. Get all the possible correct answers.  If there are no correct answers for this question do nothing at all.
 			var correctAnswers:Vector.<Answer> = question.getCorrectAnswers();
@@ -403,6 +404,14 @@ package com.clarityenglish.bento.model {
 				targetNodes = targetNodes.filter(function(targetNode:XML, idx:int, vector:Vector.<XML>):Boolean {
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
 					if (selectedAnswer && selectedAnswer.markingClass == Answer.CORRECT) {
+						// gh#627
+						if (!delayedMarking) {
+							var markableAnswerAnswer:Answer = markableAnswerMap.get(targetNode);
+							if (markableAnswerAnswer.markingClass != selectedAnswer.markingClass) {
+								selectedAnswerMap.remove(targetNode);
+								return true;
+							}
+						}
 						var idx:int = correctAnswers.indexOf(selectedAnswer);
 						if (idx > -1) {
 							// Remove the correct answer
@@ -418,11 +427,11 @@ package com.clarityenglish.bento.model {
 				for each (var targetNode:XML in targetNodes) {
 					// 4. Get the answer currently in this target node
 					var selectedAnswer:Answer = selectedAnswerMap.get(targetNode);
-					
+
 					// 5. If the current answer is empty or incorrect then add it to the answer map
 					if (!selectedAnswer || selectedAnswer.markingClass == Answer.INCORRECT) {
 						var correctAnswer:Answer = correctAnswers[0]
-						
+
 						answerMap.put(targetNode, correctAnswer);
 						correctAnswers.shift();
 						
