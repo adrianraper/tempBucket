@@ -1,6 +1,7 @@
 package com.clarityenglish.tensebuster.view.unit
 {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.tensebuster.view.unit.ui.ProgressUnitButton;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -129,6 +130,7 @@ package com.clarityenglish.tensebuster.view.unit
 		
 		protected function onUnitChange(event:MouseEvent):void {
 			var unit:XML =  event.currentTarget.selectedItem as XML;
+			unit.exercise = exercises;
 			if (unit)
 				unitSelect.dispatch(unit);
 			
@@ -137,5 +139,17 @@ package com.clarityenglish.tensebuster.view.unit
 		protected function onBackButtonClick(event:MouseEvent):void {
 			backtoUpperLevel.dispatch();
 		}
+		
+		public function get exercises():XMLList {
+			var exercises:XMLList = new XMLList();
+			for each (var exerciseNode:XML in unitList.selectedItem.exercise) {
+				if (Exercise.showExerciseInMenu(exerciseNode)){
+					exercises += exerciseNode;
+				}
+			}
+			
+			return exercises;
+		}
+
 	}
 }

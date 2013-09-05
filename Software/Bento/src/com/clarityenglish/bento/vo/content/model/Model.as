@@ -66,7 +66,6 @@ package com.clarityenglish.bento.vo.content.model {
 		
 		public function getRule():String {
 			var value:String = (xml.hasOwnProperty("settings") && xml.settings.param.(@name == "rule").length() > 0) ? xml.settings.param.(@name == "rule").@value : null;
-			trace("value: "+value);
 			return value;
 		}
 		

@@ -58,7 +58,6 @@ package com.clarityenglish.tensebusterair.unit.ui
 			super.commitProperties();		
 			
 			if (isCoverageChange) {
-				trace("is coverage change");
 				if (coverage == 100) {
 					rightSide.visible = true;
 				}else {

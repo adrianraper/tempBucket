@@ -38,7 +38,7 @@ s|List {
 components|XHTMLExerciseView s|TextInput {
 	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
 	contentBackgroundColor: #FFFFFF;
-	contentBackgroundAlpha: 1;
+	contentBackgroundAlpha: 0;
 	paddingLeft: 0;
 	paddingRight: 0;
 }
