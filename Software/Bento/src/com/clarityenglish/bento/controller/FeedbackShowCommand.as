@@ -66,7 +66,9 @@ package com.clarityenglish.bento.controller {
 					
 					for (var find:String in substitutions) {
 						var replace:String = substitutions[find];
-						xmlString = xmlString.replace("{{=" + find + "}}", replace);
+						// gh#269 there may be more than one feedback has score parameter 
+						while (xmlString.search("{{=" + find + "}}") > 0)
+							xmlString = xmlString.replace("{{=" + find + "}}", replace);
 					}
 					
 					xhtml.xml = new XML(xmlString);
