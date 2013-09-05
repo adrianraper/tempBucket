@@ -469,22 +469,24 @@ package com.clarityenglish.common.model {
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			var thisError:BentoError = BentoError.create(fault);
-			// alice: add Cookie checking code
-			if (thisError.errorContext == "Cookie is disabled") {
-				sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
-			}
 			
-			switch (operation) {
-				// gh#315
-				case "getIPMatch":
-					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
-						this.createDummyAccount();
+			// gh#622 add cookie checking code
+			if (thisError.errorNumber == copyProxy.getCodeForId("errorCookiesBlocked")) {
+				sendNotification(CommonNotifications.BENTO_ERROR, thisError);
+				
+			} else {
+				switch (operation) {
+					// gh#315
+					case "getIPMatch":
+						if (thisError.errorNumber == copyProxy.getCodeForId("errorNoPrefixOrRoot")) {
+							this.createDummyAccount();
+							break;
+						}
+	
+					case "getAccountSettings":
+						sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
 						break;
-					}
-
-				case "getAccountSettings":
-					sendNotification(CommonNotifications.CONFIG_ERROR, thisError);
-					break;
+				}
 			}
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 			

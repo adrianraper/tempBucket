@@ -372,6 +372,10 @@ package com.clarityenglish.common.model {
 					var thisError:BentoError = BentoError.create(fault);
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
 						
+						// gh#622 add Cookie checking code
+						if (thisError.errorNumber == copyProxy.getCodeForId("errorCookiesBlocked"))
+							sendNotification(CommonNotifications.BENTO_ERROR, thisError);
+						
 						// #341 For network, if you don't find the user, offer to add them
 						// gh#100 and for CT too (so long as selfRegister is set)
 						// gh#100 and for LT/TT too surely!
