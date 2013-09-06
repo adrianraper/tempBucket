@@ -79,18 +79,33 @@ EOD;
 		
 		// Firstly we need to delete any existing rows in the table with the given ID object as setting new
 		// hidden content will overwrite any settings lower down in the tree
+		// gh#646 fill up binding array only if variables needed
 		$whereArray = array();
+		$bindingArray = array();
 		$groupIdInString = join(",", $groupIDArray);
-		if ($contentIDObject['Title']) $whereArray[] = "F_ProductCode=?";
-		if ($contentIDObject['Course']) $whereArray[] = "F_CourseID=?";
-		if ($contentIDObject['Unit']) $whereArray[] = "F_UnitID=?";
-		if ($contentIDObject['Exercise']) $whereArray[] = "F_ExerciseID=?";
+		if ($contentIDObject['Title']) {
+			$whereArray[] = "F_ProductCode=?";
+			$bindingArray[] = $contentIDObject['Title'];	
+		}
+		if ($contentIDObject['Course']) {
+			$whereArray[] = "F_CourseID=?";	
+			$bindingArray[] = $contentIDObject['Course'];	
+		}
+		if ($contentIDObject['Unit']) {
+			$whereArray[] = "F_UnitID=?";	
+			$bindingArray[] = $contentIDObject['Unit'];	
+		}
+		if ($contentIDObject['Exercise']) {
+			$whereArray[] = "F_ExerciseID=?";
+			$bindingArray[] = $contentIDObject['Unit'];	
+		}
 		
 		// v3.4 Why don't we delete based on UID? Ah, because we want to catch courses in a title, for instance if we only specify the title.
 		//$sql = "DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString) AND F_HiddenContentUID=?";
 		//$this->db->Execute($sql, array(Content::idObjectToUID($contentIDObject)));
 		$sql = "DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString) AND ".join(" AND ", $whereArray);
-		$this->db->Execute($sql, array($contentIDObject['Title'], $contentIDObject['Course'], $contentIDObject['Unit'], $contentIDObject['Exercise']));
+		//$this->db->Execute($sql, array($contentIDObject['Title'], $contentIDObject['Course'], $contentIDObject['Unit'], $contentIDObject['Exercise']));
+		$this->db->Execute($sql, $bindingArray);
 		
 		foreach ($groupIDArray as $groupID) {
 			$dbObj = array();
