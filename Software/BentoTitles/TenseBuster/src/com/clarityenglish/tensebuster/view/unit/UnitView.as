@@ -129,10 +129,12 @@ package com.clarityenglish.tensebuster.view.unit
 		}
 		
 		protected function onUnitChange(event:MouseEvent):void {
-			var unit:XML =  event.currentTarget.selectedItem as XML;
-			unit.exercise = exercises;
-			if (unit)
+			var unit:XML =  event.currentTarget.selectedItem as XML;			
+			if (unit) {
+				unit.exercise = exercises;
 				unitSelect.dispatch(unit);
+			}
+				
 			
 		}
 		

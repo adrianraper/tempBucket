@@ -18,6 +18,8 @@ class RandomizedTestTransform extends XmlTransform {
 		$xmlPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		$multiQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]';
 		$xmlBody = $xmlPath->query($multiQuery)->item(0);
+		$tempDoc = new DOMDocument();
+		$tempDoc->formatOutput = true;
 
 		foreach ($questionBanks as $questionBank) {
 			$bankHref = new Href();
@@ -53,33 +55,14 @@ class RandomizedTestTransform extends XmlTransform {
 					// copy mutiple choice question and answer model from questionBank xml to template
 					$multiQuestionModel = $MultipleChoiceQuestion->item ( $n );
 					$xmlMultiModelNode = $xmlDoc->importNode ( $multiQuestionModel, true );
-					$xmlQuestions->appendChild ( $xmlMultiModelNode );
-					
+					$xmlQuestions->appendChild ( $xmlMultiModelNode );					
 					// copy question text to template
 					$multiQuestionID = $MultipleChoiceQuestion->item ( $n )->getAttribute ( 'block' );
 					AbstractService::$debugLog->info ( 'multiQuestionID: ' . $multiQuestionID );
-					//$multiQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:li[@id="' . $multiQuestionID . '"]';
 					$multiQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]/xmlns:div[@id="' . $multiQuestionID . '"]';
-					$multiQuestionText = $xPath->query( $multiQuestionQuery )->item ( 0 );
-					$questionNumberDoc = new DOMDocument();
-					$questionNumberDoc->loadXML('<span class="question-number">'.($i+1).'</span>');
-					$questionNumberNode = $questionNumberDoc->getElementsByTagName("span")->item(0);
-					$questionNumberNode = $bankDoc->importNode($questionNumberNode, true);
-					$questionTextNode = $multiQuestionText->childNodes->item(0);
-					$multiQuestionText->insertBefore($questionNumberNode, $questionTextNode);					
-					$xmlMultiQuestionNode = $xmlDoc->importNode ( $multiQuestionText, true );
-					$xmlBody->appendChild ( $xmlMultiQuestionNode );
-					
-					// copy answer text to template
-					/*$multiAnswerModelQuery = 'xmlns:answer';
-					$multiAnswers = $xPath->query ( $multiAnswerModelQuery, $multiQuestionModel );
-					foreach ( $multiAnswers as $multiAnswer ) {
-						$multianswerID = $multiAnswer->getAttribute ( 'source' );
-						$multiAnswerQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:a[@id="' . $multianswerID . '"]';
-						$multiAnswerText = $xPath->query ( $multiAnswerQuery )->item ( 0 )->parentNode;
-						$xmlMultiAnswerNode = $xmlDoc->importNode ( $multiAnswerText, true );
-						$xmlBody->appendChild ( $xmlMultiAnswerNode );
-					}*/
+					$multiQuestionText = $xPath->query( $multiQuestionQuery )->item ( 0 );		
+					$xmlMultiQuestionNode = $tempDoc->importNode ( $multiQuestionText, true );
+					$tempDoc->appendChild($xmlMultiQuestionNode);
 				}
 			} else if ($questionType == "gapfill") {
 				//$gapQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:ol[@id="questionList_gapfill"]';
@@ -101,33 +84,30 @@ class RandomizedTestTransform extends XmlTransform {
 					$gapQuestionModel = $gapFillQuestion->item ( $n );
 					$xmlGapModelNode = $xmlDoc->importNode ( $gapQuestionModel, true );
 					$xmlQuestions->appendChild ( $xmlGapModelNode );
-					
-					// copy question text to template
-					/*$gapQuestionID = $gapQuestionModel->getAttribute ( 'source' );
-					AbstractService::$debugLog->info ( 'gapQuestionID: ' . $gapQuestionID );
-					$gapQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:input[@id="' . $gapQuestionID . '"]';
-					$gapQuestionText = $xPath->query ( $gapQuestionQuery )->item ( 0 )->parentNode;
-					$xmlGapQuestionNode = $xmlDoc->importNode ( $gapQuestionText, true );
-					$xmlBody->appendChild ( $xmlGapQuestionNode );
-					$gapLineQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:p[@class="linespace"]';
-					$gapLine = $xPath->query ( $gapLineQuery )->item ( 0 );
-					$xmlGapLineNode = $xmlDoc->importNode ( $gapLine );
-					$xmlBody->appendChild ( $xmlGapLineNode );*/
 					$gapQuestionID  = $gapFillQuestion->item ( $n )->getAttribute ( 'block' );
 					$gapQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]/xmlns:div[@id="' . $gapQuestionID . '"]';
 					$gapQuestionText = $xPath->query ( $gapQuestionQuery )->item ( 0 );
-					$questionNumberDoc = new DOMDocument();
-					$questionNumberDoc->loadXML('<span class="question-number">'.($i+6).'</span>');
-					$gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("span")->item(0);
-					$gapQuestionNumberNode = $bankDoc->importNode($gapQuestionNumberNode, true);
-					$gapQuestionTextNode = $gapQuestionText->childNodes->item(0);
-					$gapQuestionText->insertBefore($gapQuestionNumberNode, $gapQuestionTextNode);
-					$xmlGapQuestionNode = $xmlDoc->importNode ( $gapQuestionText, true );
-					$xmlBody->appendChild ( $xmlGapQuestionNode );
+					$xmlGapQuestionNode = $tempDoc->importNode ( $gapQuestionText, true );
+					$tempDoc->appendChild($xmlGapQuestionNode);
 				}
 			}
 		}
-		AbstractService::$debugLog->info("question type: ".$questionType);
+
+		$numbers = range(0, 9);
+		shuffle($numbers);
+		$j = 1;
+		// insert question number node to each node in tempDoc and copy each node to xmlDoc
+		foreach ($numbers as $number) {
+			$questionNumberDoc = new DOMDocument();
+			$questionNumberDoc->loadXML('<span class="question-number">'.($j).'</span>');
+			$gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("span")->item(0);
+			$gapQuestionNumberNode = $tempDoc->importNode($gapQuestionNumberNode, true);
+			$tempNode = $tempDoc->childNodes->item($number);
+			$tempNode->insertBefore($gapQuestionNumberNode, $tempNode->firstChild);
+			$xmlNode = $xmlDoc->importNode ($tempNode, true );
+    		$xmlBody->appendChild($xmlNode);
+    		$j++;
+		}
 		return $xmlDoc->saveXML();						
 	}
 }
