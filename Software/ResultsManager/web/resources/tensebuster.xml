@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<literals progam="IELTS" version="2.0">
+<literals progam="TenseBuster" version="2.0">
 	<language name="English International" code="EN" mediaFolder="EN">
 		<group name="group">	
-			<lit name="applicationName">Rotterdam</lit>
 			<lit name="applicationVersion">Version {version}</lit>
 			
 			<lit name="errorUnknown" code="100">Unknown error</lit>
@@ -108,25 +107,14 @@
 			<lit name="IDLoginDetail">ID</lit>
 			<lit name="emailLoginDetail">email</lit>
 			<lit name="loginID">Login id:</lit>
-			<lit name="yourID">Your id:</lit>
-			<lit name="yourEmail">Your email:</lit>
 			<lit name="welcomeLabel">Welcome, {fullname}</lit>
 			<lit name="overallCoverage"> - overall coverage</lit>
 			<lit name="myProgress">My Progress</lit>
 			<lit name="myProfile">My Profile</lit>
 			<lit name="help">Help</lit>
-			<lit name="credits">Credits</lit>
-			<lit name="more">More</lit>
-			<lit name="Home">Home</lit>
-			<lit name="Back">Back</lit>
 			<lit name="LogOut">Log out</lit>	   
 			<lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
-			<lit name="analysisInstructionLabel1">This shows how  spent your time</lit>
-			<lit name="analysisInstructionLabel2">Time spent on each unit</lit>
-			<lit name="courseDurationRenderLabel">You have spent</lit>
-			<lit name="coverageLabel">coverage</lit>
-			<lit name="analysisLabel">analysis</lit>
 			<lit name="progressBarCoverage">{course}- Overall coverage</lit>
 			<lit name="progressBarScore">Average score</lit>
 			<lit name="scoreGridC1">Unit</lit>
@@ -156,7 +144,7 @@
 			<lit name="tryAgainButton">Try again</lit>
 			<lit name="seeAnswersButton">See answers</lit>
 			<lit name="moveForwardButton">Forward</lit>
-			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
+			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise? </lit>
 			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
 			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
@@ -178,7 +166,6 @@
 			<lit name="recorderButton">Record</lit>
 			<lit name="ruleButton">Rule</lit>
 			<lit name="loginInputTitle">Tense Buster</lit>
-			<lit name="loginInstruction">Please type in your login details to continue.</lit>
 			<lit name="homeInstructionLabel">Please choose a level</lit>
 			<lit name="unitInstructionLabel">Please choose a unit</lit>
 			<lit name="exInstructionLabel">Please choose a exercise</lit>

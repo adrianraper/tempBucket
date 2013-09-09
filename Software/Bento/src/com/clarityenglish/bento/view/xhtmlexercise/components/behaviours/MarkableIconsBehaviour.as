@@ -114,8 +114,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			var idStart:String = idString.charAt(0);
 			var index:Number = 0;
 			var questionType:String;
-			// gh#634 the question xml in body whose id start with q include drag and drop, drop down and gap fill.
-			// only drop down and gap fill question need to adjust marking icon position. 
+			// gh#634 the question xml inside <body/> whose id start with q include drag and drop, drop down and gap fill.
+			// only drop down and gap fill question need to reset marking icon position. 
 			// For those questions whose first lettle of id is not q include multiple choice and true/false, but their marking icon position is no need to adjust.
 			if (idStart == "q") {
 				index = idStart.substr(1) as Number;

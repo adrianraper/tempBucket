@@ -182,7 +182,7 @@ package com.clarityenglish.tensebuster.view.login
 					loginInputTitle.text = copyProvider.getCopyForId("loginInputTitle");
 					break;
 				case loginInstruction:
-					loginInstruction.text = copyProvider.getCopyForId("loginInstruction");
+					loginInstruction.text = copyProvider.getCopyForId("loginDetailLabel");
 					break;
 			}
 		}
