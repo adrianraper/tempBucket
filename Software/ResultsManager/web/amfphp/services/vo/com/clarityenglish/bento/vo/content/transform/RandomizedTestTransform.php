@@ -92,7 +92,13 @@ class RandomizedTestTransform extends XmlTransform {
 				}
 			}
 		}
-
+		
+		// remove <questionBank/> in <questions/>
+		$questionBackLength = $questionBanks->length;
+		for ($i = 0; $i < $questionBackLength; $i++) {
+			$xmlQuestions->removeChild($questionBanks->item(0));
+		}
+		
 		$numbers = range(0, 9);
 		shuffle($numbers);
 		$j = 1;
@@ -108,6 +114,7 @@ class RandomizedTestTransform extends XmlTransform {
     		$xmlBody->appendChild($xmlNode);
     		$j++;
 		}
+		
 		return $xmlDoc->saveXML();						
 	}
 }
