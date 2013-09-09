@@ -1,6 +1,8 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import com.clarityenglish.bento.view.marking.events.MarkingEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
+	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.Answer;
 	import com.clarityenglish.textLayout.components.behaviours.AbstractXHTMLBehaviour;
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
@@ -23,6 +25,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import flashx.textLayout.elements.TextFlow;
 	
 	import org.davekeen.util.PointUtil;
+	import org.hamcrest.mxml.object.Null;
 	
 	import spark.components.Group;
 	
@@ -39,6 +42,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	public class MarkableIconsBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
 		
 		private var flowElementIcons:Dictionary;
+		// gh#634
+		private var offset:Number = 0;
+		private var exercise:Exercise;
+		private var flowElementMap:FlowElementXmlBiMap;
 		
 		public function MarkableIconsBehaviour(container:Group):void {
 			super(container);
@@ -84,7 +91,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
 					*/
 					// gh#634 subtract 15
-					flowElementIcon.getComponent().x = bounds.right - 15; // marking goes to the right of the component
+					var idString:String = flowElementMap.getXML(flowElement).@id;
+					offset = getOffset(idString);
+					
+					flowElementIcon.getComponent().x = bounds.right - offset; // marking goes to the right of the component
 					//flowElementIcon.getComponent().y = bounds.y - ((flowElementIcon.getComponent().height - bounds.height) / 2); // centre the icon vertically on the component
 					flowElementIcon.getComponent().y = bounds.bottom - flowElementIcon.getComponent().height; // #177
 					
@@ -95,7 +105,30 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			}
 		}
 		
-		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { }
+		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
+			exercise = xhtml as Exercise;
+			flowElementMap = flowElementXmlBiMap;
+		}
+		
+		protected function getOffset(idString:String):Number {
+			var idStart:String = idString.charAt(0);
+			var index:Number = 0;
+			var questionType:String;
+			// gh#634 the question xml in body whose id start with q include drag and drop, drop down and gap fill.
+			// only drop down and gap fill question need to adjust marking icon position. 
+			// For those questions whose first lettle of id is not q include multiple choice and true/false, but their marking icon position is no need to adjust.
+			if (idStart == "q") {
+				index = idStart.substr(1) as Number;
+				questionType = (exercise.model.questions[index] as Question).type;
+				if (questionType == Question.DRAG_QUESTION) {
+					return 0;
+				} else {
+					return 15;
+				}
+			} else {
+				return 0;
+			}
+		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
 			textFlow.removeEventListener(MarkingOverlayEvent.FLOW_ELEMENT_MARKED, onFlowElementMarked);
