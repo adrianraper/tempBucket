@@ -156,7 +156,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
 				var ds:DragSource = new DragSource();
 				
-				ds.addData((e.flowElement as FlowLeafElement).text + "    ", "text");
+				if (e.flowElement is InputElement) {
+					ds.addData((e.flowElement as FlowLeafElement).text, "text");
+				} else {
+					ds.addData((e.flowElement as FlowLeafElement).text + "    ", "text");
+				}				
 				ds.addData(draggableNode, "node");
 				ds.addData(draggableFlowElement, "flowElement");
 				
