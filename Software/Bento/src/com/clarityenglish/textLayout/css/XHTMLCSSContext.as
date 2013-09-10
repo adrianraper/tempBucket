@@ -3,6 +3,7 @@ package com.clarityenglish.textLayout.css {
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.newgonzo.web.css.CSSContext;
 	import com.newgonzo.web.css.ICSSFactory;
+	import com.newgonzo.web.css.properties.IdentifierManager;
 	import com.newgonzo.web.css.properties.PropertyManager;
 	import com.newgonzo.web.css.properties.css3.backgrounds.BackgroundColorManager;
 	import com.newgonzo.web.css.properties.css3.borders.BorderModule;
@@ -30,6 +31,10 @@ package com.clarityenglish.textLayout.css {
 			// Misc
 			addPropertyManager(new TabManager("tab-stops"));
 			addPropertyManager(new PropertyManager("position", new StringValue(CSSPrimitiveValueTypes.CSS_STRING, FloatableTextFlow.POSITION_STATIC), true));
+			
+			// gh#654
+			addPropertyManager(new IdentifierManager("display", new StringValue(CSSPrimitiveValueTypes.CSS_STRING, FloatableTextFlow.DISPLAY_INLINE), false,
+				[ FloatableTextFlow.DISPLAY_INLINE, FloatableTextFlow.DISPLAY_INLINE_BLOCK, FloatableTextFlow.DISPLAY_BLOCK, FloatableTextFlow.DISPLAY_TABLE_ROW, FloatableTextFlow.DISPLAY_TABLE_CELL ]));
 		}
 		
 	}

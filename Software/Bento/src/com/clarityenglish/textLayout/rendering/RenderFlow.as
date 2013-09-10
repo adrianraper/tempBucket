@@ -1,7 +1,9 @@
 package com.clarityenglish.textLayout.rendering {
+	import com.clarityenglish.textLayout.elements.AudioElement;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.events.RenderFlowEvent;
 	import com.clarityenglish.textLayout.events.RenderFlowMouseEvent;
+	import com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
 	import flash.events.Event;
@@ -22,6 +24,7 @@ package com.clarityenglish.textLayout.rendering {
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.PointUtil;
 	
 	use namespace mx_internal;
 	
@@ -29,6 +32,8 @@ package com.clarityenglish.textLayout.rendering {
 	[Event(name="textFlowCleared", type="com.clarityenglish.textLayout.events.RenderFlowEvent")]
 	[Event(name="renderFlowClick", type="com.clarityenglish.textLayout.events.RenderFlowMouseEvent")]
 	public class RenderFlow extends UIComponent {
+		
+		private static const HIGLIGHT_RENDER_FLOWS:Boolean = false;
 		
 		/**
 		 * Standard flex logger
@@ -44,6 +49,8 @@ package com.clarityenglish.textLayout.rendering {
 		public var containingBlock:RenderFlow;
 		
 		public var inlineGraphicElementPlaceholder:InlineGraphicElement;
+		
+		public var deferredHeight:Number = 0; // gh#654
 		
 		public function RenderFlow(textFlow:FloatableTextFlow = null) {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
@@ -106,11 +113,26 @@ package com.clarityenglish.textLayout.rendering {
 		public override function setLayoutBoundsSize(width:Number, height:Number, postLayoutTransform:Boolean = true):void {
 			super.setLayoutBoundsSize(width, height, postLayoutTransform);
 			
+			deferredHeight = 0; // gh#654
+			
 			// Go down the RenderFlow tree sizing the children where possible (i.e. when not dynamic)
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
 				// gh#369 - if the parent is fixed size then pass down the value so it fills the width without any special coding :)
 				if (childRenderFlow._textFlow.widthType == FloatableTextFlow.SIZE_DYNAMIC && _textFlow.widthType == FloatableTextFlow.SIZE_FIXED) {
 					childRenderFlow._textFlow.width = _textFlow.width - _textFlow.borderLeftWidth - _textFlow.borderRightWidth;
+				}
+				
+				// gh#654 - Make children with display: table-row block level elements that fill the parent width (this could actually apply to all block level elements)
+				if (childRenderFlow._textFlow.display == FloatableTextFlow.DISPLAY_TABLE_ROW) {
+					childRenderFlow._textFlow.width = width;
+				}
+				
+				// gh#654 - Make children with display: table-cell have the same height (the height of the biggest cell).  For terrible, hacky reasons we need to defer this value
+				// and apply it later.
+				if (childRenderFlow._textFlow.display == FloatableTextFlow.DISPLAY_TABLE_CELL) {
+					for each (var childRenderFlow2:RenderFlow in childRenderFlows) {
+						deferredHeight = Math.max(deferredHeight, (childRenderFlow._textFlow.heightType == FloatableTextFlow.SIZE_FIXED) ? childRenderFlow._textFlow.height : childRenderFlow2.height);
+					}
 				}
 				
 				var calculatedWidth:Number;
@@ -150,6 +172,11 @@ package com.clarityenglish.textLayout.rendering {
 			}
 			
 			if (_textFlow) {
+				// gh#654
+				if (_textFlow.display == FloatableTextFlow.DISPLAY_TABLE_CELL && containingBlock.deferredHeight > 0) {
+					_textFlow.height = containingBlock.deferredHeight;
+				}
+				
 				// Set the size of the text flow container
 				_textFlow.flowComposer.getControllerAt(0).setCompositionSize(width, height);
 				
@@ -227,6 +254,8 @@ package com.clarityenglish.textLayout.rendering {
 		 * Also draw any background colour as the rectangle fill.
 		 */
 		private function drawBorderAndBackground():void {
+			if (HIGLIGHT_RENDER_FLOWS) return;
+			
 			var hasBorder:Boolean = _textFlow.hasBorder();
 			var hasBackgroundColor:Boolean = (_textFlow.backgroundColor != null);
 			
@@ -289,19 +318,28 @@ package com.clarityenglish.textLayout.rendering {
 		 * @param event
 		 */
 		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
+			graphics.clear();
+			
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
 				if (childRenderFlow.inlineGraphicElementPlaceholder) {
 					if (childRenderFlow.inlineGraphicElementPlaceholder.graphic.parent) {
 						// Convert the position of the placeholder to the coordinate space of the RenderFlow
-						var pos:Point = childRenderFlow.inlineGraphicElementPlaceholder.graphic.localToGlobal(new Point(0, 0));
-						pos = globalToLocal(pos);
-						
+						var pos:Point = PointUtil.convertPointCoordinateSpace(new Point(0, 0), childRenderFlow.inlineGraphicElementPlaceholder.graphic, this);
+												
 						switch (childRenderFlow._textFlow.position) {
 							case FloatableTextFlow.POSITION_RELATIVE:
 								// If we are using relative positioning apply the transform gh#374
 								if (!isNaN(childRenderFlow._textFlow.left)) pos.x += childRenderFlow._textFlow.left;
 								if (!isNaN(childRenderFlow._textFlow.top)) pos.y += childRenderFlow._textFlow.top;
 								break;
+						}
+						
+						if (HIGLIGHT_RENDER_FLOWS) {
+							var c:Number = Math.random() * 0xFFFFFF;
+							graphics.lineStyle(1, c);
+							graphics.beginFill(c, 0.3);
+							graphics.drawRect(pos.x, pos.y, childRenderFlow.width, childRenderFlow.height);
+							graphics.endFill();
 						}
 						
 						// Apply the position to the child
@@ -332,11 +370,16 @@ package com.clarityenglish.textLayout.rendering {
 		protected function onInlineGraphicStatusChange(event:StatusChangeEvent):void {
 			if (event.status == InlineGraphicElementStatus.READY || event.status == InlineGraphicElementStatus.SIZE_PENDING) {
 				var textFlow:TextFlow = event.target as TextFlow;
+				
 				_textFlow.flowComposer.damage(0, _textFlow.textLength, FlowDamageType.GEOMETRY);
+				
 				_textFlow.flowComposer.updateAllControllers();
 				
 				// Invalidate the size of this component so any higher level chrome can resize itself accordingly
 				invalidateSize();
+				
+				// TODO: gh#654 - this fixes the issue with background redraw on audio elements, but I think it might come with a performance cost... keep an eye on this
+				validateNow();
 			}
 		}
 		

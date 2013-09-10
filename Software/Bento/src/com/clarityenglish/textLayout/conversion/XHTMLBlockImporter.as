@@ -30,6 +30,7 @@ package com.clarityenglish.textLayout.conversion {
 	import flashx.textLayout.elements.SubParagraphGroupElementBase;
 	import flashx.textLayout.elements.TCYElement;
 	import flashx.textLayout.elements.TextFlow;
+	import flashx.textLayout.formats.LeadingModel;
 	import flashx.textLayout.formats.ListStyleType;
 	import flashx.textLayout.tlf_internal;
 	
@@ -223,6 +224,10 @@ package com.clarityenglish.textLayout.conversion {
 			
 			// ???
 			if (style.overflow == FloatableTextFlow.OVERFLOW_HIDDEN)
+				return true;
+			
+			// Table rows and table cells are new flows
+			if (style.display == FloatableTextFlow.DISPLAY_TABLE_ROW || style.display == FloatableTextFlow.DISPLAY_TABLE_CELL)
 				return true;
 			
 			// Not sure about this yet...
@@ -466,6 +471,9 @@ package com.clarityenglish.textLayout.conversion {
 			
 			// Set the format resolver
 			element.formatResolver = _formatResolver;
+			
+			// gh#654 (and possibly other issues!)
+			element.leadingModel = LeadingModel.BOX;
 			
 			// Inject any CSS properties into the element
 			var style:CSSComputedStyle = _css.style(xmlToParse);

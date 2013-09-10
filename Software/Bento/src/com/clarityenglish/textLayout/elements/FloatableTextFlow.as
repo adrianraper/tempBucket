@@ -29,6 +29,9 @@ package com.clarityenglish.textLayout.elements {
 		public static const DISPLAY_INLINE_BLOCK:String = "inline-block";
 		public static const DISPLAY_BLOCK:String = "block"; // TODO: not yet implemented
 		
+		public static const DISPLAY_TABLE_ROW:String = "table-row";
+		public static const DISPLAY_TABLE_CELL:String = "table-cell";
+		
 		public static const OVERFLOW_VISIBLE:String = "visible"; // TODO: not yet implemented
 		public static const OVERFLOW_HIDDEN:String = "hidden"; // TODO: not yet implemented
 		
@@ -55,10 +58,6 @@ package com.clarityenglish.textLayout.elements {
 		private var _marginRight:Number = 0;
 		private var _marginTop:Number = 0;
 		private var _marginBottom:Number = 0;
-		
-		/*public var borderStyle:String = BORDER_STYLE_NONE;
-		public var borderColor:Number = 0;
-		private var _borderWidth:Number = 0;*/
 		
 		// gh#364
 		public var borderTopStyle:String = BORDER_STYLE_NONE;
