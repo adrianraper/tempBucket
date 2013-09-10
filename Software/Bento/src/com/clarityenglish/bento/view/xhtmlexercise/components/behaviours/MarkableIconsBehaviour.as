@@ -114,14 +114,15 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			var idStart:String = idString.charAt(0);
 			var index:Number = 0;
 			var questionType:String;
-			// gh#634 the question xml inside <body/> whose id start with q include drag and drop, drop down and gap fill.
+			// gh#634 flow element (like input node) inside <body/> whose id start with q include drag drop, drop down and gap fill.
 			// only drop down and gap fill question need to reset marking icon position. 
-			// For those questions whose first lettle of id is not q include multiple choice and true/false, but their marking icon position is no need to adjust.
+			// For those flow element whose first lettle of id is not q include multiple choice and true/false, but their marking icon position is no need to adjust.
+			// gh#645 due to widening the blank width for drag drop question, we need to adjust marking icon.
 			if (idStart == "q") {
 				index = idStart.substr(1) as Number;
 				questionType = (exercise.model.questions[index] as Question).type;
 				if (questionType == Question.DRAG_QUESTION) {
-					return 0;
+					return 10;
 				} else {
 					return 15;
 				}

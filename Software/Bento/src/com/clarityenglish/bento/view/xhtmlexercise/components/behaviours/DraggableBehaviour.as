@@ -31,6 +31,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import mx.core.IUIComponent;
 	import mx.core.ScrollPolicy;
 	import mx.core.UIComponent;
+	import mx.core.mx_internal;
 	import mx.graphics.BitmapFillMode;
 	import mx.managers.DragManager;
 	
@@ -144,7 +145,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		private function onFlowElementMouseMove(e:FlowElementMouseEvent, draggableNode:XML, draggableFlowElement:FlowElement):void {
 			if (!DragManager.isDragging) {
 				if (!canDrag(draggableNode, draggableFlowElement)) return;
-				
+
 				if (draggableFlowElement is InputElement) {
 					var inputElement:InputElement = draggableFlowElement as InputElement;
 					draggableFlowElement = inputElement.droppedFlowElement;
@@ -155,7 +156,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				var dragInitiator:IUIComponent = (e.flowElement is InputElement) ? (e.flowElement as InputElement).getComponent() : container;
 				var ds:DragSource = new DragSource();
 				
-				ds.addData((e.flowElement as FlowLeafElement).text, "text");
+				ds.addData((e.flowElement as FlowLeafElement).text + "    ", "text");
 				ds.addData(draggableNode, "node");
 				ds.addData(draggableFlowElement, "flowElement");
 				
