@@ -58,10 +58,11 @@ package com.clarityenglish.textLayout.components.behaviours {
 						var audioElement:AudioElement = componentElement as AudioElement;
 						if (getAudioElementIndex(audioElement) >= 0) {
 							// disable playComponent for feedback audio before click "see answer"
-							audioElement.playComponentEnable = false;
-						} else {
-							audioElement.playComponentEnable = true;
-						}
+							//audioElement.playComponentEnable = false;
+							continue;
+						} /*else {
+							//audioElement.playComponentEnable = true;
+						}*/
 							
 					}
 					containingBlock.addChild(componentElement.getComponent());

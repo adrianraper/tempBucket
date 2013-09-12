@@ -1,28 +1,28 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Graphic version="2.0" viewHeight="19.5" viewWidth="421.5" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+<Graphic version="2.0" viewHeight="14.5" viewWidth="191.808" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
   <Library/>
-  <Group blendMode="normal" d:layerType="page" d:pageHeight="19.5" d:pageWidth="421.5" d:type="layer" d:userLabel="Artboard 1">
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="14.5" d:pageWidth="191.808" d:type="layer" d:userLabel="Artboard 1">
     <Group d:type="layer" d:userLabel="Layer 1">
       <Group ai:seqID="1">
         <Group ai:seqID="2" flm:knockout="false">
-          <Path winding="nonZero" ai:seqID="3" data="M421 9.5C421 14.7246 416.5 19 411 19L10 19C4.5 19 0 14.7246 0 9.5 0 4.27539 4.5 0 10 0L411 0C416.5 0 421 4.27539 421 9.5Z">
+          <Rect width="191.308" height="14" radiusX="6.9721" radiusY="6.9721" ai:seqID="3">
             <fill>
               <SolidColor color="#B4B4B4"/>
             </fill>
-          </Path>
-          <Path x="0.5" y="0.5" winding="nonZero" ai:seqID="4" data="M421 9.5C421 14.7246 416.5 19 411 19L10 19C4.5 19 0 14.7246 0 9.5 0 4.27539 4.5 0 10 0L411 0C416.5 0 421 4.27539 421 9.5Z">
+          </Rect>
+          <Rect x="0.5" y="0.5" width="191.308" height="14" radiusX="6.9721" radiusY="6.9721" ai:seqID="4">
             <fill>
               <SolidColor color="#E6E6E5"/>
             </fill>
-          </Path>
+          </Rect>
         </Group>
-        <Group x="6.5" y="6" ai:seqID="5" flm:knockout="false">
-          <Path winding="nonZero" ai:seqID="6" data="M408 3C408 4.65039 406.2 6 404 6L4 6C1.7998 6 0 4.65039 0 3 0 1.34961 1.7998 0 4 0L404 0C406.2 0 408 1.34961 408 3Z">
+        <Group x="5" y="4.5" ai:seqID="5" flm:knockout="false">
+          <Path winding="nonZero" ai:seqID="6" data="M181.308 2.5C181.308 3.875 179.958 5 178.308 5L3 5C1.35059 5 0 3.875 0 2.5 0 1.125 1.35059 0 3 0L178.308 0C179.958 0 181.308 1.125 181.308 2.5Z">
             <fill>
               <SolidColor color="#989898"/>
             </fill>
           </Path>
-          <Path x="0.5" y="0.5" winding="nonZero" ai:seqID="7" data="M408 3C408 4.65039 406.2 6 404 6L4 6C1.7998 6 0 4.65039 0 3 0 1.34961 1.7998 0 4 0L404 0C406.2 0 408 1.34961 408 3Z">
+          <Path x="0.5" y="0.5" winding="nonZero" ai:seqID="7" data="M181.308 2.5C181.308 3.875 179.958 5 178.308 5L3 5C1.35059 5 0 3.875 0 2.5 0 1.125 1.35059 0 3 0L178.308 0C179.958 0 181.308 1.125 181.308 2.5Z">
             <fill>
               <SolidColor color="#CDCCCC"/>
             </fill>

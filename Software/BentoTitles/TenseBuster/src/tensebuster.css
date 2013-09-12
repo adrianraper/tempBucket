@@ -230,6 +230,10 @@ exercise|ExerciseView {
 	skinClass: ClassReference("skins.tensebuster.ExerciseSkin");
 }
 
+exercise|ExerciseView s|Button#backToMenuButton {
+	skinClass: ClassReference("skins.tensebuster.exercise.MenuButtonSkin");
+}
+
 exercise|ExerciseView s|Button#backButton {
 	skinClass: ClassReference("skins.tensebuster.exercise.BackButtonSkin");
 }

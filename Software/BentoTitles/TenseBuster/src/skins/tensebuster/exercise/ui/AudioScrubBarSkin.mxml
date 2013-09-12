@@ -76,7 +76,7 @@
     
     <!--- The skin pat that defines the video timeline. The timeline shows the current playhead location  
           in the video, the amount of the video previously played, and the loaded in part of the video. -->
-    <s:Button id="track" width="328" top="5" height="19"
+    <s:Button id="track" left="0" right="0" top="5" height="14"
               skinClass="skins.tensebuster.exercise.ui.AudioScrubBarTrackSkin" />
 
     <!--- @copy spark.components.mediaClasses.ScrubBar#loadedRangeArea -->
@@ -120,7 +120,7 @@
     </s:Group>
     
     <!--- @copy spark.components.mediaClasses.ScrubBar#playedArea -->
-    <s:Group id="playedArea" x="0" y="8" height="11" includeInLayout="false">
+    <s:Group id="playedArea" x="0" y="8" height="8" includeInLayout="false">
     
         <!-- inset 7 and 6 pixels because that's thumbSize/2 -->
         <s:Group left="5" right="5" top="0" bottom="0" minWidth="0">
@@ -156,7 +156,7 @@
 
     <!--- A skin part that defines a button that can be dragged along the track to increase or decrease 
           the playhead location in the video.   -->
-    <s:Button id="thumb" x="0" y="-5" width="14" height="19" includeInLayout="false"
+    <s:Button id="thumb" x="0" y="-2" width="14" height="19" includeInLayout="false"
               skinClass="skins.tensebuster.exercise.ui.AudioScrubBarThumbSkin" />
 
 </s:SparkSkin>

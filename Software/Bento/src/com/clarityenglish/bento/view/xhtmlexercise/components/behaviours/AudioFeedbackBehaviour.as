@@ -37,9 +37,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				feedbackAudioElement.createComponent();
 				
 				// in OverlayBehaviour, in order to detect feedback audio we didn't block creating component there but we didn't add the component to the containing block 
-				feedbackAudioElement.playComponentEnable = true;
+				//feedbackAudioElement.playComponentEnable = true;
 				// due to feedback audio is added in OverlayBehaviour, so we need to delete it first and then add it again
-				containingBlock.removeChildAt(containingBlock.numChildren-1);
+				//containingBlock.removeChildAt(containingBlock.numChildren-1);
 				containingBlock.addChild(feedbackAudioElement.getComponent());
 				
 				// Position and size the component in line with its underlying text

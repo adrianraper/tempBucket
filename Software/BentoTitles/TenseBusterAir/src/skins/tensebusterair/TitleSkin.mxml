@@ -39,7 +39,7 @@
 	<s:Button id="helpButton" horizontalCenter="143" bottom="0" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
 	<s:Button id="logoutButton" bottom="0" right="11" fontWeight="normal" buttonMode="true" useHandCursor="true" excludeFrom="exercise" />
 	
-	<s:Group top="32" left="60" visible="{hostComponent.currentState == 'exercise'}">
+	<s:Group top="20" left="60" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:SWFLoader id="courseThumbnail" />
@@ -56,5 +56,5 @@
 			</s:HGroup>
 		</s:HGroup>	
 	</s:Group>
-	<s:Button id="backToMenuButton" label="Back to Menu" horizontalCenter="375" top="28" color="0xFFFFFF" fontWeight="bold" fontSize="12" includeIn="exercise" buttonMode="true" useHandCursor="true"/>
+	<!--s:Button id="backToMenuButton" label="Back to Menu" horizontalCenter="375" top="28" color="0xFFFFFF" fontWeight="bold" fontSize="12" includeIn="exercise" buttonMode="true" useHandCursor="true"/-->
 </s:Skin>
