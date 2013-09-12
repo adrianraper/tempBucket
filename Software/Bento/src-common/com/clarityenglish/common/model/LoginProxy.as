@@ -398,7 +398,7 @@ package com.clarityenglish.common.model {
 						}
 						
 					// gh#622 add cookie checking code
-					} else if (thisError.errorNumber == copyProxy.getCodeForId("errorCookiesBlocked"))
+					} else if (thisError.errorNumber == copyProxy.getCodeForId("errorCookiesBlocked")) {
 							sendNotification(CommonNotifications.BENTO_ERROR, thisError);
 						
 					} else {
