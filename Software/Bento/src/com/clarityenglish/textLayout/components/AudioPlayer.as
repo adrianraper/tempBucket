@@ -7,6 +7,7 @@ package com.clarityenglish.textLayout.components {
 	import flash.events.TimerEvent;
 	import flash.media.Sound;
 	import flash.media.SoundChannel;
+	import flash.media.SoundLoaderContext;
 	import flash.net.URLRequest;
 	import flash.utils.Timer;
 	
@@ -86,6 +87,9 @@ package com.clarityenglish.textLayout.components {
 		 */
 		private static var soundChannel:SoundChannel;
 		
+		// alice
+		private var loaderContext:SoundLoaderContext;
+		
 		public function AudioPlayer() {
 			super();
 			
@@ -98,6 +102,11 @@ package com.clarityenglish.textLayout.components {
 		protected function onAddedToStage(event:Event):void {
 			removeEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 			
+			stop();
+			sound = new Sound(new URLRequest(src));
+			loaderContext = new SoundLoaderContext(2500);
+			sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
+			sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
 			// gh#614 add 
 			if (autoplay && playComponentEnable) play();
 		}
@@ -189,11 +198,12 @@ package com.clarityenglish.textLayout.components {
 			
 			// Stop any previously playing sound and play the new one
 			stop();
-			sound = new Sound(new URLRequest(src));
+			//sound = new Sound(new URLRequest(src));
+			//loaderContext = new SoundLoaderContext(2500);
 			
 			// Attach listeners to update the scrub bar maximum as the sound loads
-			sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
-			sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
+			//sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
+			//sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
 			
 			soundChannel = sound.play(startTime);
 			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, true);
