@@ -4,6 +4,8 @@ package com.clarityenglish.tensebuster.view.home {
 	
 	import flash.events.MouseEvent;
 	
+	import flashx.textLayout.container.ScrollPolicy;
+	
 	import mx.collections.XMLListCollection;
 	
 	import org.osflash.signals.Signal;
@@ -33,6 +35,7 @@ package com.clarityenglish.tensebuster.view.home {
 			switch (instance) {
 				case coursesList:
 					coursesList.addEventListener(MouseEvent.CLICK, onListClick);
+					coursesList.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
 					break;
 				case homeInstructionLabel:
 					homeInstructionLabel.text = copyProvider.getCopyForId("homeInstructionLabel");

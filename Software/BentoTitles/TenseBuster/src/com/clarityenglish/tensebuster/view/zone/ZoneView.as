@@ -6,6 +6,8 @@ package com.clarityenglish.tensebuster.view.zone {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import flashx.textLayout.container.ScrollPolicy;
+	
 	import mx.collections.XMLListCollection;
 	import mx.controls.SWFLoader;
 	
@@ -202,6 +204,7 @@ package com.clarityenglish.tensebuster.view.zone {
 			switch (instance) {
 				case exerciseList:
 					exerciseList.addEventListener(MouseEvent.CLICK, onExerciseClick);
+					exerciseList.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
 					break;
 				case exInstructionLabel:
 					exInstructionLabel.text = copyProvider.getCopyForId("exInstructionLabel");
