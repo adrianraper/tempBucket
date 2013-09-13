@@ -318,7 +318,7 @@ package com.clarityenglish.textLayout.rendering {
 		 * @param event
 		 */
 		protected function onUpdateComplete(event:UpdateCompleteEvent):void {
-			graphics.clear();
+			if (HIGLIGHT_RENDER_FLOWS) graphics.clear();
 			
 			for each (var childRenderFlow:RenderFlow in childRenderFlows) {
 				if (childRenderFlow.inlineGraphicElementPlaceholder) {
