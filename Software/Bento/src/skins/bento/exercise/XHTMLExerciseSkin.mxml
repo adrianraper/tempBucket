@@ -43,13 +43,15 @@
 	</s:layout>
 	
 	<s:Group id="headerGroup" width="100%">
-		<s:Rect width="100%" height="80" >
+		<!-- gh#631
+		<s:Rect width="100%" minHeight="20" >
 			<s:fill>
 				<s:SolidColor color="#D7D7D7" />
 			</s:fill>
 		</s:Rect>
+		-->
 		
-		<components:XHTMLRichText verticalCenter="0" id="headerRichText" top="0" left="0" bottom="13" width="100%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+		<components:XHTMLRichText verticalCenter="0" id="headerRichText" top="0" left="0" bottom="0" width="100%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
 		<!--s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" /-->
 		
 		<!-- gh#388 -->
@@ -126,7 +128,7 @@
 			<components:XHTMLRichText id="rightNoScrollRichText" top="-1" left="0" right="0" bottom="0" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour]}" />
 			<!--blur the right no scroll image-->
 			<s:SWFLoader source="@Embed(source='skins/assets/sideBlur.png')" left="-1" top="0" />
-			<s:SWFLoader source="@Embed(source='skins/assets/bottomBlur.png')" top="504" left="-1"/>
+			<s:SWFLoader source="@Embed(source='skins/assets/bottomBlur.png')" left="-1" top="504" />
 		</s:Group>
 	</s:Group>		
 </s:Skin>
