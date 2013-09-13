@@ -533,7 +533,7 @@ package com.clarityenglish.bento.model {
 			
 			// gh#624 comment out /*selectedAnswerMap*/
 			if (delayedMarking)
-				/*selectedAnswerMap =*/ markableAnswerMap = new Dictionary(true);
+				selectedAnswerMap /*= markableAnswerMap*/ = new Dictionary(true);
 		}
 		
 		/**
