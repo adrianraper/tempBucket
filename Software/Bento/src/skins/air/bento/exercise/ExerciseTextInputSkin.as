@@ -59,5 +59,14 @@ package skins.air.bento.exercise {
 			setElementPosition(textDisplay, -2, textDisplay.y);
 		}
 		
+		override public function set currentState(value:String):void {
+			super.currentState = value;
+			
+			if (currentState == "disabled") {
+				this.alpha = 1;
+			}
+			
+		}
+		
 	}
 }
