@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__)."/XmlTransform.php");
-require_once("D:\Projectbench\Software\ResultsManager\web\amfphp\services\AbstractService.php");
+//require_once("D:\Projectbench\Software\ResultsManager\web\amfphp\services\AbstractService.php");
 
 class RandomizedTestTransform extends XmlTransform {
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform';
@@ -35,7 +35,7 @@ class RandomizedTestTransform extends XmlTransform {
 			$questionType = $xPath->query($query)->item(0)->getAttribute('content');
 			
 			$randArray = array();
-			AbstractService::$debugLog->info("question type: ".$questionType);
+			//AbstractService::$debugLog->info("question type: ".$questionType);
 			if ($questionType == "multiplechoice") {
 				//$multiQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:ol[@id="questionList_mc"]';
 				//$xmlBody = $xmlPath->query($multiQuery)->item(0);
@@ -58,7 +58,7 @@ class RandomizedTestTransform extends XmlTransform {
 					$xmlQuestions->appendChild ( $xmlMultiModelNode );					
 					// copy question text to template
 					$multiQuestionID = $MultipleChoiceQuestion->item ( $n )->getAttribute ( 'block' );
-					AbstractService::$debugLog->info ( 'multiQuestionID: ' . $multiQuestionID );
+					//AbstractService::$debugLog->info ( 'multiQuestionID: ' . $multiQuestionID );
 					$multiQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]/xmlns:div[@id="' . $multiQuestionID . '"]';
 					$multiQuestionText = $xPath->query( $multiQuestionQuery )->item ( 0 );		
 					$xmlMultiQuestionNode = $tempDoc->importNode ( $multiQuestionText, true );
@@ -103,10 +103,11 @@ class RandomizedTestTransform extends XmlTransform {
 		shuffle($numbers);
 		$j = 1;
 		// insert question number node to each node in tempDoc and copy each node to xmlDoc
+		// TODO gh#660 Replace this with question number variable, #q#, in the question bank
 		foreach ($numbers as $number) {
 			$questionNumberDoc = new DOMDocument();
-			$questionNumberDoc->loadXML('<span class="question-number">'.($j).'</span>');
-			$gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("span")->item(0);
+			$questionNumberDoc->loadXML('<div class="question-number">'.($j).'</div>');
+			$gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("div")->item(0);
 			$gapQuestionNumberNode = $tempDoc->importNode($gapQuestionNumberNode, true);
 			$tempNode = $tempDoc->childNodes->item($number);
 			$tempNode->insertBefore($gapQuestionNumberNode, $tempNode->firstChild);
