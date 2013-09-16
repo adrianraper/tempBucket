@@ -34,6 +34,9 @@ package com.clarityenglish.bento.controller {
 				// Replace {{word}} with the actual word and open an external link
 				var resolvedDictionaryUrl:String = dictionaryUrl.replace("{{word}}", word);
 				navigateToURL(new URLRequest(resolvedDictionaryUrl), "_blank");
+				
+				// gh#378
+				bentoApplication.isCtrlDown = false;
 			}
 		}
 		
