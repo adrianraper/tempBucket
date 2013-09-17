@@ -1109,19 +1109,26 @@ EOD;
 					$courseType = 'rotterdam';	
 					$titleObj->indexFile = "courses.xml";
 				 
+				} else if (intval($titleObj->F_ProductCode) == 55) { 
+					$courseType = 'bento';
+					$titleObj->indexFile = "menu-FullVersion.xml";
 				} else {
 					$courseType = 'orchid';	
 					$titleObj->indexFile = "course.xml";
 				}
+
 				// Build the title object (if the course.xml file doesn't exist then just skip it. However, if we are in $forDMS
 				// mode then this is DMS and we want to display everything, even if course.xml doesn't exist.
 				//NetDebug::trace("get content from =".$folder."/".$titleObj->indexFile);
 				//AbstractService::$log->notice("get content from =".$folder."/".$titleObj->indexFile);
 
 				if ($forDMS || file_exists($folder."/".$titleObj->indexFile)) {
-					//gh#223
-					if ($courseType == 'bento' || $courseType == 'rotterdam') {
+					// gh#223
+					// gh#423 a rotterdam course is more like orchid, it has courses.xml then lots of menu.xml
+					if ($courseType == 'bento') {
 						$rs = $this->_buildBentoTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
+					} else if ($courseType == 'rotterdam') {
+						$rs = $this->_buildRotterdamTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
 					} else {	
 						$rs = $this->_buildTitle($this->_createTitleFromObj($titleObj), $folder, $generateMaps, $forDMS, $courseType);
 					}
@@ -1169,9 +1176,11 @@ EOD;
 		if ($forDMS) return $title;
 		
 		//gh#223
+		/*
 		if ($courseType == 'rotterdam') {
 			return $title;
 		}
+		*/
 		
 		$doc = new DOMDocument();
 		//NetDebug::trace("read folder=".$folder."/".$title->indexFile);
@@ -1219,6 +1228,58 @@ EOD;
 		return $this->_buildUnits($courseXML->getElementsByTagName("unit"), $course, $generateMaps, $courseType, $courseXML->getElementsByTagName("group"));
 	}
 
+	/**
+	 * Build the title object for a rotterdam account
+	 *
+	 */
+	private function _buildRotterdamTitle($title, $folder, $generateMaps = false, $forDMS = false, $courseType = 'orchid') {
+
+		$folder = preg_replace("/\\\\/", "/", $folder);
+		$title->contentLocation = substr($folder, 6);
+		
+		// If we only want titles then stop here and don't load any more
+		if ($forDMS) return $title;
+		
+		$doc = new DOMDocument();
+		if (!file_exists($folder."/".$title->indexFile))
+			throw new Exception("missing title ".$folder."/".$title->indexFile);
+			
+		$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile);
+		
+		$coursesXML = $doc->getElementsByTagName("course");
+		
+		// TODO for CCB privacy you will later figure out privacy flags - copy from buildTitle
+		//$myType = Session::get('userType');
+		
+		foreach ($coursesXML as $courseXML) {
+			
+			$course = new Course();
+			$course->setParent($title);
+			$course->id = $courseXML->getAttribute("id");
+			//$course->name = urldecode($courseXML->getAttribute("name"));
+			//$course->enabledFlag = $courseXML->getAttribute("enabledFlag");
+			
+			// Ticket #104 - if a required attribute is missing return a message
+			if (!$course->id) {
+				$course->name .= " (This course has something wrong with it.)";
+			} else {
+				$menuFile = $folder."/".$courseXML->getAttribute("href");
+				$course->units = $this->_buildUnitsFromRotterdamFile($menuFile, $course, $generateMaps, $courseType);
+				//gh#23
+				$course->totalUnits = count($course-> units);
+			}
+			
+			if ($course->id != null) { // Ticket #104 - don't add content with missing id
+				if ($generateMaps) {
+					$title->courses[$course->id] = $course;
+				} else {
+					$title->courses[] = $course;
+				}
+			}
+		}		
+		return $title;
+	}
+	
 	/**
 	 * Build the titles for a given folder and product code.
 	 *
@@ -1387,6 +1448,32 @@ EOD;
 		$xpath = new DOMxpath($doc);
 		return $this->_buildUnits($xpath->evaluate("/item/item"), $course, $generateMaps, $courseType);
 	}
+	
+	// gh#423
+	private function _buildUnitsFromRotterdamFile($filename, $course, $generateMaps = false, $courseType = 'orchid') {
+		// Replace backslashes with forward slashes for Windows/Unix independence
+		// PHP 5.3
+		$folder = preg_replace("/\\\\/", "/", $filename);
+		
+		$doc = new DOMDocument();
+		// v3.3 Whilst it should be impossible for this file to not exist, it can happen somehow for an empty course in AP.
+		// In which case just ignore it and go on rather than crashing please.
+		if (!file_exists($filename)) {
+			// Put some kind of note onto the tree that there was an error with this course?
+			$course->name .= " (This course has something wrong with it.)";
+			return;
+		}
+		$this->_loadFileIntoDOMDocument($doc, $filename);
+		$courseNode = $doc->getElementsByTagName("course")->item(0);
+		$course->name = urldecode($courseNode->getAttribute("caption"));
+		
+		//$xpath = new DOMXPath($doc);		
+		//$unitNodes = $xpath->evaluate("/unit", $courseNode);
+		$unitNodes = $doc->getElementsByTagName("unit");
+		$unitCount = $unitNodes->length;
+		return $this->_buildUnits($unitNodes, $course, $generateMaps, $courseType);
+	}
+	
 	private function _buildUnitsFromXML($courseXML, $course, $generateMaps = false, $courseType = 'orchid') {
 		return $this->_buildUnits($courseXML->getElementsByTagName("unit"), $course, $generateMaps, $courseType);
 	}
