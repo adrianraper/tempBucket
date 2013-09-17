@@ -75,8 +75,16 @@ class XmlUtils {
 		$contents = file_get_contents($href->getUrl());
 		$xml = simplexml_load_string($contents);
 		
-		foreach ($href->transforms as $transform)
-			$transform->transform($db, $xml, $href, $service);
+		foreach ($href->transforms as $transform) {
+			// gh#265
+			if (get_class ($transform) == "RandomizedTestTransform") {
+				$xml = $transform->transform($db, $xml, $href, $service);
+				return $xml;
+			} else {
+				// original code
+				$transform->transform($db, $xml, $href, $service);
+			}			
+		}			
 		
 		return $xml->asXML();
 	}
