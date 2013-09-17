@@ -184,6 +184,8 @@ SQL;
 SQL;
 				$rc = $this->db->Execute($sql, $bindingParams);
 				
+				/*
+				 * gh#428 Leave session records so we don't impact licence controls
 				$sql = <<<SQL
 					INSERT INTO $database.T_Session_Expiry
 					SELECT * FROM $database.T_Session 
@@ -195,6 +197,7 @@ SQL;
 					WHERE F_UserID = ?;
 SQL;
 				$rc = $this->db->Execute($sql, $bindingParams);
+				 */
 				
 				$sql = <<<SQL
 					INSERT INTO $database.T_Score_Expiry
