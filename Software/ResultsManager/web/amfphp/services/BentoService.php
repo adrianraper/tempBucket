@@ -410,6 +410,13 @@ class BentoService extends AbstractService {
 	}
 	
 	/**
+	 * This service call returns an associative array of Unit_ID => unit summary data for everyone and is used in progress compare
+	 */
+	public function getEveryoneUnitSummary($productCode, $rootID) {
+		return $this->progressOps->getEveryoneUnitSummary($productCode, $rootID);
+	}
+	
+	/**
 	 * 
 	 * This service call will create a session record for this user in the database.
 	 *  
