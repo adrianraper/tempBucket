@@ -121,6 +121,10 @@ class ManageableOps {
 		AuthenticationOps::authenticateGroups(array($parentGroup));
 		
 		// v3.1 Need to pass rootID as it may not be in session variables (DMS)
+		// gh#353 How can you add a user if you don't know the root?
+		// isUserValid picks up a default root, but getUserByKey doesn't.
+		if (!$rootID) $rootID = Session::get('rootID');
+		
 		// v3.6.1 Also checking for studentID, so return is a binary flag
 		//if (!$this->isUserValid($user, $rootID)) {
 		$rc = $this->isUserValid($user, $rootID);
@@ -189,7 +193,7 @@ class ManageableOps {
 			INSERT INTO T_Membership (F_UserID,F_GroupID,F_RootID)
 			VALUES (?,?,?) 
 EOD;
-		$bindingParams = array($user->userID, $parentGroup->id, ($rootID) ? $rootID : Session::get('rootID'));
+		$bindingParams = array($user->userID, $parentGroup->id, $rootID);
 		$rc = $this->db->Execute($sql, $bindingParams);
 		if (!$rc)
 			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
@@ -210,6 +214,8 @@ EOD;
 		} catch (Exception $e) {
 			// gh#164 even though this is called, the transaction still commits!
 			$this->db->FailTrans();
+			// gh#353 Need to send exception for a message to the user
+			throw $this->copyOps->getExceptionForId("duplicateKeyError", array("loginOption" => $loginOption));
 		}
 		
 		$rc = $this->db->CompleteTrans();

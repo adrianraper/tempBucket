@@ -330,6 +330,8 @@
 			<lit name="usernameAndIDExistsError">Username '{username}' and learner ID '{studentID}' have already been used.</lit>
 			<lit name="exceedsMaximumUserTypeError">This would exceed the maximum number of users allowed of this type.</lit>
 			<lit name="emailExistsError">Email '{email}' has already been registered.</lit>
+			<!--  gh#353 -->
+			<lit name="duplicateKeyError">A user with the same key data, {loginOption}, has already been registered.</lit>
 			
 			<lit name="tutorialHiddenContent">/RMHiddenContent_tutorial.html</lit>
 			<lit name="guide">/Results Manager Guide.pdf</lit>
