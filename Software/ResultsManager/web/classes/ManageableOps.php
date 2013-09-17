@@ -40,6 +40,9 @@ class ManageableOps {
 		// Add the auto-generated id to the original group object
 		$group->id = $this->db->Insert_ID();
 		
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a group(s) with id='.$group->id.' to group '.$parentGroup->id);
+		
 		// If parentGroup is null then this is a special case and a top-level group has been created (in DMS) so we need to set
 		// parentGroup to the same as ID.  Since this is the only place this will ever happen just do it with straight SQL.
 		if (!$parentGroup) 
@@ -210,6 +213,9 @@ EOD;
 		}
 		
 		$rc = $this->db->CompleteTrans();
+		
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a user with id='.$user->userID.' to group '.$parentGroup->id);
 		
 		// Add this to the valid user for the logged in user
 		// v3.4 Multi-group users
@@ -508,6 +514,9 @@ EOD;
 		$this->db->Execute("UPDATE T_Membership SET F_GroupID=? WHERE F_UserID IN (".$userIdInString.")", array($parentGroup->id));
 		
 		$this->db->CompleteTrans();
+		
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' moved a user(s) with id='.$userIdInString.' to group '.$parentGroup->id);
 	}
 	
 	function moveGroups($groupsArray, $parentGroup) {
@@ -532,6 +541,9 @@ EOD;
 		$this->db->Execute("UPDATE T_Groupstructure SET F_GroupParent=? WHERE F_GroupID IN (".$groupIdInString.")", array($parentGroup->id));
 		
 		$this->db->CompleteTrans();
+		
+		// gh#448
+		AbstractService::$controlLog->info('userID '.Session::get('userID').' moved a group(s) with id='.$groupIdInString.' to group '.$parentGroup->id);
 	}
 	
 	/**
@@ -544,7 +556,9 @@ EOD;
 		$this->db->StartTrans();
 		
 		foreach ($manageablesArray as $manageable) {
-			//NetDebug::trace('ManageableOps.dM id='.$manageable->id.' class='.get_class($manageable));
+			// gh#448
+			AbstractService::$controlLog->info('userID '.Session::get('userID').' deleted a '.get_class($manageable).' with id='.$manageable->id.' and name='.$manageable->name);
+			
 			switch (get_class($manageable)) {
 				case "Group":
 					// A special case - it is not possible to delete top level groups in RM
