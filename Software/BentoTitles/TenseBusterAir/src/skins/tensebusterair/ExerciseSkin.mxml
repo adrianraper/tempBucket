@@ -32,7 +32,8 @@
 	<view:DynamicView id="dynamicView" left="60" right="60" top="98" bottom="24"/>
 
 	<!--Backgroud left and right-->
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/exercise/leftSideBar.png')" top="99" right="35" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/exercise/rightSideBar.png')" top="59" right="35" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/exercise/leftSideBar.png')" top="59" left="35" />
 	
 	<!-- Top Left buttons -->
 	<s:HGroup left="60" top="59" includeIn="exercise" gap="0">
