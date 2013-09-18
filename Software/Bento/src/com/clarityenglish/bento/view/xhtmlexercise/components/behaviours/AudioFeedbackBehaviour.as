@@ -30,18 +30,17 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		public function onTextFlowUpdate(textFlow:TextFlow):void {
 			if (!textFlow.hasEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED)) textFlow.addEventListener(MarkingButtonEvent.MARK_BUTTON_CLICKED, onMarkButtonClicked);
-			
+
 			for each (var feedbackAudioElement:AudioElement in feedbackAudioStack) {
 				var containingBlock:RenderFlow = feedbackAudioElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
 
 				feedbackAudioElement.createComponent();
 				
 				// in OverlayBehaviour, in order to detect feedback audio we didn't block creating component there but we didn't add the component to the containing block 
-				//feedbackAudioElement.playComponentEnable = true;
+				feedbackAudioElement.playComponentEnable = true;
 				// due to feedback audio is added in OverlayBehaviour, so we need to delete it first and then add it again
 				//containingBlock.removeChildAt(containingBlock.numChildren-1);
 				containingBlock.addChild(feedbackAudioElement.getComponent());
-				
 				// Position and size the component in line with its underlying text
 				var bounds:Rectangle = feedbackAudioElement.getElementBounds();
 				if (bounds) {
@@ -49,7 +48,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					if (!isNaN(bounds.height)) feedbackAudioElement.getComponent().height = bounds.height;
 					feedbackAudioElement.getComponent().x = bounds.x;
 					feedbackAudioElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
-					
 					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
 					feedbackAudioElement.getComponent().visible = !feedbackAudioElement.hideChrome;
 				}
@@ -67,6 +65,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		}
 		
 		protected function onMarkButtonClicked (event:MarkingButtonEvent):void {
+			trace("onMarkButtonClicked");
 			feedbackAudioStack.push(event.audioELement);
 		}
 	}

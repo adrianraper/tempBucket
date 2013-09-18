@@ -51,7 +51,7 @@
 		</s:Rect>
 		-->
 		
-		<components:XHTMLRichText verticalCenter="0" id="headerRichText" top="0" left="0" bottom="0" width="100%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+		<components:XHTMLRichText verticalCenter="0" id="headerRichText" top="0" left="0" bottom="0" width="100%" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour]}" />
 		<!--s:SWFLoader source="@Embed(source='skins/assets/instructionIcon.png')" left="16" top="13" /-->
 		
 		<!-- gh#388 -->
