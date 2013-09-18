@@ -93,7 +93,7 @@
 		/**
 		 * Use this section to define colours and other style settings that are not in css
 		 */
-		public static const popupBackgroundColour:uint = 0xE8E750;
+		public static const popupBackgroundColour:uint = 0xfce999;
 		public static const mainBackgroundColour:uint = 0x5B5072;
 		
 		/**

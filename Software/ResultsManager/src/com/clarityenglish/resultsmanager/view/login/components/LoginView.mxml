@@ -59,8 +59,8 @@
 		<mx:Image id="RMlogo" scaleContent="true" height="100%" minHeight="100" maintainAspectRatio="true"
 				completeEffect="Fade" source="@Embed('/../assets/RMLogo.swf')" />
 		<mx:Spacer height="100%" />
-		<mx:Image id="ClarityLogo" scaleContent="true" height="100%" minHeight="100" maintainAspectRatio="true"
-				completeEffect="Fade" source="@Embed('/../assets/ClarityLogo.swf')" />
+		<mx:Image id="ClarityLogo" scaleContent="false" 
+				completeEffect="Fade" source="@Embed('/../assets/ClarityEnglishLogo.png')" />
 	</mx:VBox>
  	<mx:TitleWindow id="loginWindow" verticalScrollPolicy="off" horizontalScrollPolicy="off" 
 					horizontalCenter="0" verticalCenter="0" 
