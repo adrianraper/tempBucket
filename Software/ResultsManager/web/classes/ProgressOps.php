@@ -229,14 +229,21 @@ EOD;
 	 *
 	 */
 	public function getHiddenContent($groupID, $productCode) {
+		// gh#653 groupID might be a comma delimitted list
+		if (stripos($groupID, ',')) {
+			$groupClause = " F_GroupID IN ($groupID) ";
+		} else {
+			$groupClause = " F_GroupID = $groupID ";
+		}
+		
 		$sql = <<<EOD
-			SELECT F_HiddenContentUID UID, F_EnabledFlag eF 
+			SELECT DISTINCT(F_HiddenContentUID) as UID, F_EnabledFlag as eF 
 			FROM T_HiddenContent
-			WHERE F_GroupID=?
+			WHERE $groupClause
 			AND F_ProductCode=?
 			ORDER BY UID ASC;
 EOD;
-		$bindingParams = array($groupID, $productCode);
+		$bindingParams = array($productCode);
 		return $this->db->GetArray($sql, $bindingParams);
 	}
 	

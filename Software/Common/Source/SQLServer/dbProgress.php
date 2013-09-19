@@ -366,14 +366,38 @@ EOD;
 					if ($typedPassword == "$!null_!$") {
 						$typedPassword = $dbPassword;
 					}
+					// gh#653 One user in many groups would give multiple records with same userID.
+					// In this case we want to merge to one, with a list of all the groups.
+					$justOneUser = true;
+					if ($rs->RecordCount() > 1) {
+						$mergedGroupIDs = array();
+						$mergedGroupIDs[] = $vars['GROUPID'];
+						while ($moredbObj = $rs->FetchNextObj()) {
+							if ($vars['USERID'] != $moredbObj->F_UserID) {
+								$justOneUser = false;
+								continue;
+							} else {
+								$mergedGroupIDs[] = $moredbObj->groupID;
+							}
+						}
+						if ($justOneUser) {
+							$vars['GROUPID'] = implode(',',$mergedGroupIDs);
+						} else {
+							$node .= "<err code='220'>Multiple students match this name/id within this root.</err>";
+						}
+					}
+					
+					// v6.5.4.6 TODO Except that if just one of these users matches the password, assume it is them
+					// So loop through the users trying to match the password.
 					if ($typedPassword != $dbPassword) {
 						$node .= "<err code='204'>Password does not match</err>";
 						// v6.5.6 If we are working with the first of many, don't worry about the password
-						if ($rs->RecordCount()==1) {
+						if ($justOneUser)
 							return false;
-						}
 					}
 
+					//$node .= "<note>Multiple students match this name/id within this root.</note>";
+					//return false;
 					// build user info 
 					//v6.5.5.9 RL: add city as return
 					// v6.5.6 HCT SCORM. Also we may have found which root of many the user is in, and we need to pass that back
@@ -388,25 +412,13 @@ EOD;
 						city='" .htmlspecialchars($dbObj->F_City, ENT_QUOTES, 'UTF-8') ."'
 						email='" .htmlspecialchars($dbObj->F_Email, ENT_QUOTES, 'UTF-8') ."'
 						userType='" .$dbObj->F_UserType ."'
-						groupID='" .$dbObj->groupID ."'
+						groupID='" .$vars['GROUPID'] ."'
 						rootID='" .$dbObj->rootID ."'
 						expiryDate='" .$dbObj->formattedDate ."'
 						registrationDate='" .$dbObj->registrationDate ."'
 						userProfileOption='" .$dbObj->F_UserProfileOption ."'
 						studentID='" .htmlspecialchars($dbObj->F_StudentID, ENT_QUOTES, 'UTF-8') ."' />";
 
-				//	break;
-				//default:
-					// Something is wrong with the database
-					//throw new Exception("Multiple students match this name/id.");
-					// v6.5.4.6 TODO Except that if just one of these users matches the password, assume it is them
-					// So loop through the users trying to match the password.
-					// v6.5.6 Or if not, then surely you need an error code - otherwise we just hang
-					if ($rs->RecordCount()>1) {
-						$node .= "<err code='220'>Multiple students match this name/id within this root.</err>";
-					}
-					//$node .= "<note>Multiple students match this name/id within this root.</note>";
-					//return false;
 				break;
 			}
 			$rs->Close();
@@ -1469,16 +1481,15 @@ EOD;
 		global $db;
 
 		if ($vars['DATABASEVERSION']>1) {
+			// gh#653 will get back an array now
 			$rs = $this->selectHiddenContent( $vars );
-			if ($rs->RecordCount() > 0)  {
-				foreach($rs as $k=>$row) {
-					//$node .= "<UID id='$row[F_ExerciseID]' enabledFlag='$row[F_EnabledFlag]' />";
-					$node .= "<UID id='$row[UID]' enabledFlag='$row[eF]' />";
-				}
-				return true;
+			if ($rs) {
+				foreach($rs as $UID=>$eF)
+					$node .= "<UID id='$UID' enabledFlag='$eF' />";
+			} else {
+				$node .= "<note>no hidden content</note>";
 			}
 		}
-		$node .= "<note>no hidden content</note>";
 		return true;
 	}
 
@@ -1743,16 +1754,43 @@ EOD;
 		$gid  = $vars['GROUPID'];
 		$cid  = $vars['COURSEID'];
 		$pid  = $vars['PRODUCTCODE'];
+		
+		// gh#653 It is possible that this user is part of several groups
+		if (stripos($gid, ',')) {
+			$groupClause = " F_GroupID IN ($gid) ";
+		} else {
+			$groupClause = " F_GroupID = $gid ";
+		}
+			
+		// Remove any duplicate rows using DISTINCT.
 		$sql = <<<EOD
-			SELECT F_HiddenContentUID UID, F_EnabledFlag eF FROM T_HiddenContent
-			WHERE F_GroupID=?
-			AND F_ProductCode=?
+			SELECT DISTINCT F_HiddenContentUID UID, F_EnabledFlag eF FROM T_HiddenContent
+			WHERE F_ProductCode=?
+			AND $groupClause
+			ORDER BY UID
 EOD;
-		$bindingParams = array($gid, $pid);
+		$bindingParams = array($pid);
 		$rs = $db->Execute($sql, $bindingParams);
-		// Expecting lots of records - send them back for looping
-		return $rs;
+		
+		// gh#653 Resolve conflict here - only need to match UID with different eF values
+		$buildRS = array();
+		if ($rs) {
+			//$lastUID = $lastValue = '';
+			while ($dbObj = $rs->FetchNextObj()) {
+				$thisUID = $dbObj->UID;
+				$thisEF = $dbObj->eF;
+				// If this UID already exists, change it to the lowest eF (which gives most permission)
+				if (array_key_exists($thisUID, $buildRS)) {
+					$buildRS[$thisUID] = min($thisEF, $buildRS[$thisUID]);
+				} else {
+					$buildRS[$thisUID] = $thisEF;
+				}
+			}
+		}
+		// gh#653 we are now returning an array, not a recordset
+		return $buildRS;
 	}
+	
 	// v6.5.5.7 Get the edited content by groupID
 	function selectEditedContent( $gid ){
 		global $db;

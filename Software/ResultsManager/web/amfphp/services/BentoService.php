@@ -534,17 +534,13 @@ class BentoService extends AbstractService {
 			throw $this->copyOps->getExceptionForId("errorNoSuchRootID", array("rootID" => NULL));
 			
 		// Does this user already exist? Check by the key information ($loginOption)
-		// TODO. This switch should really go in getUserByKey
+		// gh#653 
 		$stubUser = new User();
-		if ($loginOption & 1) {
-			$stubUser->name = $user->name;
-		} else if ($loginOption & 2) {
-			$stubUser->studentID = $user->studentID;
-		} else if ($loginOption & 128) {
-			$stubUser->email = $user->email;
-		}
+		if (isset($user->name)) $stubUser->name = $user->name;
+		if (isset($user->studentID)) $stubUser->studentID = $user->studentID;
+		if (isset($user->email)) $stubUser->email = $user->email;
 		// #341 Only need to check user details within this root
-		$stubUser = $this->manageableOps->getUserByKey($stubUser, $rootID);
+		$stubUser = $this->manageableOps->getUserByKey($stubUser, $rootID, $loginOption);
 		
 		// Go ahead and add the user to the top level group
 		if ($stubUser==false) {

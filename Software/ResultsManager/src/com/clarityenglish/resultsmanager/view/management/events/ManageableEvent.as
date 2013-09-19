@@ -22,12 +22,14 @@
 		public static const EXPORT:String = "export";
 		public static const ARCHIVE:String = "archive";
 		public static const IMPORT:String = "import";
-		public static const IMPORT_FROM_EXCEL:String = "import_from_excel";
 		// v3.6.1
-		public static const IMPORT_MOVE_FROM_EXCEL:String = "import_move_from_excel";
+		// gh#653
+		public static const IMPORT_FROM_EXCEL:String = "import_from_excel";
+		public static const IMPORT_FROM_EXCEL_WITH_MOVE:String = "import_from_excel_with_move";
+		public static const IMPORT_FROM_EXCEL_WITH_COPY:String = "import_from_excel_with_copy";
+		
 		public static const DELETE:String = "delete";
 		public static const DETAILS:String = "details";
-		
 		public static const SEARCH:String = "search";
 		
 		public static const ADD_USER:String = "add_user";

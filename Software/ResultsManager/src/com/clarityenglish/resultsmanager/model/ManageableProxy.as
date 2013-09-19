@@ -9,6 +9,8 @@ package com.clarityenglish.resultsmanager.model {
 	import com.clarityenglish.resultsmanager.ApplicationFacade;
 	import com.clarityenglish.resultsmanager.Constants;
 	import com.clarityenglish.resultsmanager.RMNotifications;
+	import com.clarityenglish.resultsmanager.controller.ImportManageablesCommand;
+	import com.clarityenglish.resultsmanager.view.management.events.ManageableEvent;
 	import com.clarityenglish.utils.TraceUtils;
 	
 	import flash.net.URLRequest;
@@ -21,6 +23,7 @@ package com.clarityenglish.resultsmanager.model {
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.proxy.Proxy;
+
 	//import nl.demonsters.debugger.MonsterDebugger;
 	
 	/**
@@ -161,10 +164,10 @@ package com.clarityenglish.resultsmanager.model {
 		
 		// v3.6.1 Allow moving and importing
 		//public function importManageables(groups:Array, users:Array, parentGroup:Group):void {
-		public function importManageables(groups:Array, users:Array, parentGroup:Group, moveExistingStudents:Boolean=false):void {
+		public function importManageables(groups:Array, users:Array, parentGroup:Group, moveExistingStudents:String = ManageableEvent.IMPORT_FROM_EXCEL_WITH_MOVE):void {
 			//TraceUtils.myTrace("first user is " + users[0].name + " parent is " + parentGroup.name);
 			//new RemoteDelegate("importManageables", [ groups, users, parentGroup ], this).execute();
-			TraceUtils.myTrace("managableProxy with move=" + moveExistingStudents);
+			//TraceUtils.myTrace("managableProxy with move=" + moveExistingStudents);
 			new RemoteDelegate("importManageables", [ groups, users, parentGroup, moveExistingStudents ], this).execute();
 		}
 		

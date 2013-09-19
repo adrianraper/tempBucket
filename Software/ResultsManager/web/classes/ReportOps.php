@@ -144,7 +144,7 @@ class ReportOps {
 		//echo "ReportOps::".ReportBuilder::SHOW_COURSE."=".$reportBuilder->getOpt(ReportBuilder::SHOW_COURSE)."         ";
 		// Execute the query - for some crazy reason its necessary to store the sql in a variable before passing to to AdoDB
 		$sql = $reportBuilder->buildReportSQL();
-		//echo $sql.'<br/>'; exit();
+		// echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
 		//echo 'hi'; exit();
 		// v3.4 If a particular report needs score details (as the Clarity test does), this would seem like a good place to get the data.
@@ -330,6 +330,36 @@ class ReportOps {
 			// Reset our rows to the summarised one for the rest of the reporting code
 			$rows = $summarisedRows;			
 
+		// gh#563 If you have users who appear in multiple groups, need to whittle out duplicate records
+		// For most reports this will introduce an entirely unnecessary loop. But I guess it is quicker than
+		// a separate SQL check to see if might be multiple records included.
+		} else {
+
+			$whittledRows = array();
+			$buildRow = array();
+			$rowGroupName = '';
+			$rowUserName = '';
+			$rowUID = '';
+			foreach ($rows as $row) {
+				// Is this a row different from the previous one?
+				if ($row['userName'] != $rowUserName || $this->reportableUID($row) != $rowUID) {
+					// write out the previous row (if not in first loop)
+					if (isset($buildRow['userName']))
+						$whittledRows[] = $buildRow;
+					$buildRow = $row;
+				
+				} else {
+					$buildRow['groupName'] = '(more than one)';
+				}
+				$rowUID = $this->reportableUID($row);
+				$rowUserName = $row['userName'];
+			}
+			// Write out the final row you built
+			if (isset($buildRow['userName']))
+				$whittledRows[] = $buildRow;
+			
+			// Reset our rows to the whittled one for the rest of the reporting code
+			$rows = $whittledRows;			
 		}
 
 		$dom = new DOMDocument("1.0", "UTF-8");
@@ -460,12 +490,14 @@ class ReportOps {
 				//echo "ids=".implode(",", $ids);
 				return array(ReportBuilder::FOR_GROUPS => $ids);
 				// skip this if I can do the above
+				// gh#653 Why is this not commented out? it can never be reached can it?
+				/*
 				$ids = array();
 				foreach ($groups as $group) {
 					$ids = array_merge($group->getSubUserIds(), $ids);
 				}
-				
 				return array(ReportBuilder::FOR_USERS => $ids);
+				*/
 			case "User":
 				// Get all the User objects out of the array
 				$ids = array();
@@ -790,6 +822,18 @@ class ReportOps {
 	//	return sprintf("%d:%02d", abs((int)$minutes / 60), abs((int)$minutes % 60));
 	//}
 
+	// gh#563 convert an array into a UID taking into account whatever level is set
+	private function reportableUID($arrayObj){
+		$buildUID = '';
+		if (isset($arrayObj['productCode']))
+			$buildUID = $arrayObj['productCode'];
+		if (isset($arrayObj['courseID']))
+			$buildUID += '.'.$arrayObj['courseID'];
+		if (isset($arrayObj['unitID']))
+			$buildUID += '.'.$arrayObj['unitID'];
+		if (isset($arrayObj['exerciseID']))
+			$buildUID += '.'.$arrayObj['exerciseID'];
+		return $buildUID;
+	} 
+	
 }
-
-?>
