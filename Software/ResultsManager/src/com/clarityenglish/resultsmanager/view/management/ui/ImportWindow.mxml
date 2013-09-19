@@ -147,7 +147,7 @@
 				if (importWithMove.selected) {
 					var importEventName:String = ManageableEvent.IMPORT_FROM_EXCEL_WITH_MOVE;
 				} else if (importWithCopy.selected) {
-					var importEventName:String = ManageableEvent.IMPORT_FROM_EXCEL_WITH_COPY;
+					importEventName = ManageableEvent.IMPORT_FROM_EXCEL_WITH_COPY;
 				} else {
 					importEventName = ManageableEvent.IMPORT_FROM_EXCEL;
 				}
