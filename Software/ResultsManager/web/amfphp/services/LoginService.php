@@ -61,14 +61,14 @@ class LoginService extends AbstractService {
 	
 	// Can you find this user?
 	public function getUser($loginDetails) {
-		$stubUser = new User();
 
-		if ($loginDetails->loginOption & 1) {
-			$stubUser->name = $loginDetails->name;
-		} else if ($loginDetails->loginOption & 2) {
-			$stubUser->studentID = $loginDetails->studentID;
-		} else if ($loginDetails->loginOption & 128) {
-			$stubUser->email = $loginDetails->email;
+		if ($loginDetails->loginOption & User::LOGIN_BY_NAME ||
+			$loginDetails->loginOption & User::LOGIN_BY_ID ||
+			$loginDetails->loginOption & User::LOGIN_BY_EMAIL) {
+			$stubUser = new User();
+			if (isset($user->name)) $stubUser->name = $user->name;
+			if (isset($user->studentID)) $stubUser->studentID = $user->studentID;
+			if (isset($user->email)) $stubUser->email = $user->email;
 		} else {
 			return false;		
 		}		
@@ -76,12 +76,12 @@ class LoginService extends AbstractService {
 		// Are there any conditions that you should search with?
 		// TODO. Need something like the conditions for getAccounts here so that it can scale
 		if (isset($loginDetails->licenceType))
-			return $this->manageableOps->getCLSUserByKey($stubUser);
+			return $this->manageableOps->getCLSUserByKey($stubUser, $loginDetails->loginOption);
 			
 		if (isset($loginDetails->rootID))
-			return $this->manageableOps->getRootUserByKey($stubUser, $loginDetails->rootID);
+			return $this->manageableOps->getUserByKey($stubUser, $loginDetails->rootID, $loginDetails->loginOption);
 			
-		return $this->manageableOps->getUserByKey($stubUser);
+		return $this->manageableOps->getUserByKey($stubUser, null, $loginDetails->loginOption);
 	}
 	
 	// Add this user

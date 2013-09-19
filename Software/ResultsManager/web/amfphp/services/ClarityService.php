@@ -317,7 +317,7 @@ class ClarityService extends AbstractService {
 
 	// v3.6.1 Allow moving and importing
 	//function importManageables($groups, $users, $parentGroup) {
-	public function importManageables($groups, $users, $parentGroup, $moveExistingStudents=false) {
+	public function importManageables($groups, $users, $parentGroup, $moveExistingStudents) {
 		//Throw new Exception("importManageables with moving=".$moveExistingStudents);
 		// AR Special function for updating the names of lots of students keyed on studentID
 		return $this->manageableOps->importManageables($groups, $users, $parentGroup, $moveExistingStudents);

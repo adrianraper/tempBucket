@@ -22,9 +22,15 @@ class Manageable extends Reportable {
 	}
 	
 	/**
-	 * Get all the ids of the users below this level.  This is used when deleting manageables and overridden by concrete manageables.
+	 * Get all the ids of the users below this level.  This is used when authenticating manageables and overridden by concrete manageables.
 	 */
 	function getSubUsersIds() {
+		return array();
+	}
+	/**
+	 * Get all the users below this level.  This is used when deleting manageables and overridden by concrete manageables.
+	 */
+	function getSubUsers() {
 		return array();
 	}
 	

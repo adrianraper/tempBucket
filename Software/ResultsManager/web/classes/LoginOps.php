@@ -685,6 +685,9 @@ EOD;
 		$sql = "UPDATE T_AccountRoot SET F_LoginOption=$loginOption, F_SelfRegister=$selfRegister, F_Verified=$useVerified WHERE F_RootID=?";
 		//NetDebug::trace("sql=".$sql);
 		$this->db->Execute($sql, array(Session::get('rootID')));
+		
+		// gh#653 loginOption is a session variable, so update it
+		Session::set('loginOption', $loginOption);
 	}
 	
 	// To hold each contact email and the type of message that they should receive

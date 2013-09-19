@@ -45,14 +45,21 @@ class User extends Manageable {
 	const LOGIN_BY_EMAIL = 128;
 	
 	/**
-	 * Get all the ids of the users below this level.  This is used when deleting manageables.
+	 * Get all the ids of the users below this level.  This is used when authenticating manageables.
 	 */
 	function getSubUserIds() {
 		// v3.4 Multi-group users
 		//return array($this->id);
 		return array($this->userID);
 	}
-
+	/**
+	 * Get all the users below this level.  This is used when deleting manageables.
+	 * gh#653
+	 */
+	function getSubUsers() {
+		return array($this);
+	}
+	
 	/**
 	 * Return the user type as a string. Literals????
 	*/
@@ -69,6 +76,14 @@ class User extends Manageable {
 		}
 	}
 
+	// gh#653 implementation of our tree based multi group id (groupID.userID)
+	public function getMultiUserGroupID() {
+		$parsedID = explode('.',$this->id);
+		if (count($parsedID) != 2)
+			// throw new Exception("Trying to get group from invalid user id ($user->id)");
+			return null;
+		return $parsedID[0];
+	} 
 	/**
 	 * Return the id for the purposes of making an IDObject.  Usually this is just the ID, 
 	 * but if we want duplicate userIDs in the tree, we need to append the group ID to it.

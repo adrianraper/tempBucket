@@ -3,6 +3,12 @@ class ManageableOps {
 
 	var $db;
 
+	// gh#653
+	const XML_IMPORT = "xml_import";
+	const EXCEL_IMPORT = "import_from_excel";
+	const EXCEL_MOVE_IMPORT = "import_from_excel_with_move";
+	const EXCEL_COPY_IMPORT = "import_from_excel_with_copy";
+	
 	function ManageableOps($db) {
 		$this->db = $db;
 		
@@ -120,70 +126,53 @@ class ManageableOps {
 		// Ensure that this user has permission to access the parent group
 		AuthenticationOps::authenticateGroups(array($parentGroup));
 		
-		// v3.1 Need to pass rootID as it may not be in session variables (DMS)
-		// gh#353 How can you add a user if you don't know the root?
-		// isUserValid picks up a default root, but getUserByKey doesn't.
-		if (!$rootID) $rootID = Session::get('rootID');
+		// gh#653 Replace with conflictedUser
+		$rc = $this->isUserConflicted($user, $rootID, $loginOption);
 		
-		// v3.6.1 Also checking for studentID, so return is a binary flag
-		//if (!$this->isUserValid($user, $rootID)) {
-		$rc = $this->isUserValid($user, $rootID);
-		//NetDebug::trace('addUser rc='.$rc['returnCode']);
-		// v3.6.1 More, this now returns full information if it is NOT a valid user
-		//if ($rC>0) {
-		//gh:#98		
-		if ($rc['returnCode']>0) {
-			// This user cannot be added (probably because it does not have a unique username in this root context)
-			// TODO: AR We should allow unique ID as an option. Kind of complex!
-			// Now we are checking studentID if that is the loginOption. So how to give a good error message?
-			// And it would be really good if we could tell which group the existing user was in to help sort out the problem.
-			// Perhaps I could get back an object from isUserValid {name, id, group) with items only set if they clash.
-			// I wonder if we ought to be checking for duplicate emails too?
-			// Hijack the exception code to send back the groupID. I don't like it one little bit.
-			//gh:#98 $rc['returnCode'] & 3
-           if (($rc['returnCode'] & 1) && ($rc['returnCode'] & 2)) {
-				//NetDebug::trace('so generate name and studentID exception for group '.$rc['returnInfo'][0]['group']);
-				// both name and ID are duplicates
-				throw new Exception($this->copyOps->getCopyForId("usernameAndIDExistsError", array("username" => $user->name, "studentID" => $user->studentID))
-									, $rc['returnInfo'][0]['group']);
-			} elseif ($rc['returnCode'] & 2) {
-				//NetDebug::trace('so generate studentID exception for group '.$rc['returnInfo'][0]['group']);
-				// just the ID is duplicated
-				throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array("studentID" => $user->studentID))
-									, $rc['returnInfo'][0]['group']);
-			} elseif ($rc['returnCode'] & 4 ) {
-			    throw new Exception($this->copyOps->getCopyForId("emailExistsError", array("email" => $user->email))
-									, $rc['returnInfo'][0]['group']);
-	        } else {
-				//NetDebug::trace('so generate name exception for group '.$rc['returnInfo'][0]['group']);
-				// assume any other error is the name
-				throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array("username" => $user->name))
-									, $rc['returnInfo'][0]['group']);
+		// This user cannot be added (probably because it does not have a unique key in this root context)
+		if ($rc['returnCode'] > 0) {
+			// TODO refactor with updateUser
+			switch ($rc['returnCode']) {
+				case User::LOGIN_BY_NAME:
+					if (isset($rc['conflictedUsers'])) {
+						throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array(username => $user->name)));
+					} else {
+						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(studentID => $user->studentID, email => $user->email)));							
+					}
+					break;
+				case User::LOGIN_BY_ID:
+					if (isset($rc['conflictedUsers'])) {
+						throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array(studentID => $user->studentID)));
+					} else {
+						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, email => $user->email)));							
+					}
+					break;
+				case User::LOGIN_BY_EMAIL:
+					if (isset($rc['conflictedUsers'])) {
+						throw new Exception($this->copyOps->getCopyForId("emailExistsError", array(email => $user->email)));
+					} else {
+						throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, studentID => $user->studentID)));							
+					}
+			    	break;
+				default:
+					throw new Exception("unexpected error when checking user conflict");
 			}
 		}
-		
+				
 		// Check this doesn't exceed the MAX_userType for teachers, authors and reporters
 		if (!$this->canAddUsersOfType($user->userType, 1))
 			throw new Exception($this->copyOps->getCopyForId("exceedsMaximumUserTypeError"));
-		
-		// First create the user
-		//NetDebug::trace('addUser name='.$user->name.' expire='.$user->expiryDate.' type='.$user->userType);
-		//$dbObj = $user->toAssocArray();
-		//NetDebug::trace('sql expire='.$dbObj['F_ExpiryDate']);
 		
 		$this->db->SetTransactionMode("SERIALIZABLE");
 		$this->db->StartTrans();
 		
 		// #340 SQLite doesn't like autoexecute
 		//$this->db->AutoExecute("T_User", $dbObj, "INSERT");
-		
 		$rc = $this->db->Execute($user->toSQLInsert(), $user->toBindingParams());
 		if (!$rc)
 			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
 		
-		// Add the auto-generated id to the original group object
-		// v3.4 Multi-group users
-		//$user->id = $this->db->Insert_ID();
+		// Add the auto-generated id to the original user object
 		$user->userID = $this->db->Insert_ID();
 		$user->id = (string)$parentGroup->id.'.'.$user->userID;
 		
@@ -193,26 +182,17 @@ class ManageableOps {
 			INSERT INTO T_Membership (F_UserID,F_GroupID,F_RootID)
 			VALUES (?,?,?) 
 EOD;
-		$bindingParams = array($user->userID, $parentGroup->id, $rootID);
+		$bindingParams = array($user->userID, $parentGroup->id, ($rootID) ? $rootID : Session::get('rootID'));
 		$rc = $this->db->Execute($sql, $bindingParams);
 		if (!$rc)
 			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
 			
-		//$dbObj = array();
-		// v3.4 Multi-group users
-		//$dbObj['F_UserID'] = $user->id;
-		//$dbObj['F_UserID'] = $user->userID;
-		//$dbObj['F_GroupID'] = $parentGroup->id;
-		//$dbObj['F_RootID'] = ($rootID) ? $rootID : Session::get('rootID'); // If root id is given then use that (for DMS), otherwise use the session root
-		//$this->db->AutoExecute("T_Membership", $dbObj, "INSERT");
-		
 		// gh#164 Check that you haven't just added a duplicate before you commit the transaction
 		// Problems - this call uses Authenticate user - which we haven't set yet.
-		// If we raise an exception, the transaction is still committed! So need to catch it
 		try {
 			$rc = $this->getUserByKey($user, $rootID, $loginOption);
 		} catch (Exception $e) {
-			// gh#164 even though this is called, the transaction still commits!
+			// gh#164 
 			$this->db->FailTrans();
 			// gh#353 Need to send exception for a message to the user
 			throw $this->copyOps->getExceptionForId("duplicateKeyError", array("loginOption" => $loginOption));
@@ -238,7 +218,6 @@ EOD;
 	function moveAndUpdateUser($userDetails, $parentGroup, $rootID = null) {
 		// Ensure that this user has permission to access the parent group
 		AuthenticationOps::authenticateGroups(array($parentGroup));
-		NetDebug::trace('ManageableOps.moveUser move='.$userDetails->name);
 		
 		// You should only call this function if you know the user exists, but you still need to get their userID
 		// If this function fails, generate an exception
@@ -260,7 +239,6 @@ EOD;
 		}
 		
 		//NetDebug::trace('addUser name='.$user->name.' expire='.$user->expiryDate.' type='.$user->userType);
-		$this->db->StartTrans();
 		
 		// Update the existing user details - can only do specific fields for now. In fact, just email for now
 		$updateRequired = false;
@@ -284,7 +262,9 @@ EOD;
 		
 		// Then remove the current membership record(s)
 		// TODO Actually you should just be using moveManageables here!
-		//NetDebug::trace('ManageableOps.deleted old membership');
+		// gh#653 use moveUsers
+		$this->moveUsers(array($user), $parentGroup);
+		/*
 		$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID =".$user->userID);
 		
 		// Then insert a record in the group membership table to say which parent group the user now belongs to
@@ -296,10 +276,9 @@ EOD;
 		$rc = $this->db->Execute($sql, $bindingParams);
 		if (!$rc)
 			throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+		*/
 				
-		$this->db->CompleteTrans();
-		
-		// Return the moved user object
+		// Return the moved user
 		return $user;
 	}
 	/*
@@ -384,7 +363,7 @@ EOD;
 	 
 	 * @param usersArray An array of User objects
 	 */
-	function updateUsers($usersArray, $rootID=null) {
+	function updateUsers($usersArray, $rootID = null) {
 		if (sizeof($usersArray) == 0) return;
 		
 		// Ensure that this root context has permission to access all these users
@@ -407,41 +386,37 @@ EOD;
 		$this->db->StartTrans();
 		
 		foreach ($usersArray as $user) {
-			//if (!$this->isUserValid($user)) {
-			//	// This user cannot be added (probably because it does not have a unique username in this root context)
-			//	throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array("username" => $user->name)));
-			//}
-			// v3.6.1 More info comes back for users that you can't add
-			$rC = $this->isUserValid($user, $rootID);
-			//NetDebug::trace('updateUser rC='.$rC['returnCode']);
-			//if ($rC>0) {
-			if ($rC['returnCode']>0) {
-				// This user cannot be added (probably because it does not have a unique username in this root context)
-				// TODO: AR We should allow unique ID as an option. Kind of complex!
-				// Now we are checking studentID if that is the loginOption. So how to give a good error message?
-				$rcType = $rC['returnCode'];
-				if (($rcType & 1) && ($rcType & 2)) {
-					// both name and ID are duplicates
-					throw new Exception($this->copyOps->getCopyForId("usernameAndIDExistsError", array("username" => $user->name, "studentID" => $user->studentID)));
-				} elseif ($rcType & 2) {
-					// v3.6.1.1 Messy but... If the account is set for login with ID, there is every chance that the admin user
-					// will not have an ID. But that will probably stop them being updated when the account is updated.
-					// So lets ignore admin users at this point. Teachers too? Best not.
-					if ($user->userType == User::USER_TYPE_ADMINISTRATOR || $user->userType == User::USER_TYPE_DMS) {
-					} else {
-						// just the ID is duplicated
-						throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array("studentID" => $user->studentID)));
-					}
-				} elseif ($rcType & 4 ) {
-			        throw new Exception($rcType.' '.$this->copyOps->getCopyForId("emailExistsError", array("email" => $user->email)));
-	            } else {
-					// assume any other error is the name
-					throw new Exception($rcType.' '.$this->copyOps->getCopyForId("usernameExistsError", array("username" => $user->name)));
+			// gh#653 check if changed user details conflict with existing users
+			$rc = $this->isUserConflicted($user, $rootID);
+
+			// This user cannot be updated (probably because it does not have a unique key in this root context)
+			if ($rc['returnCode'] > 0) {
+				switch ($rc['returnCode']) {
+					case User::LOGIN_BY_NAME:
+						if (isset($rc['conflictedUsers'])) {
+							throw new Exception($this->copyOps->getCopyForId("usernameExistsError", array(username => $user->name)));
+						} else {
+							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(studentID => $user->studentID, email => $user->email)));							
+						}
+						break;
+					case User::LOGIN_BY_ID:
+						if (isset($rc['conflictedUsers'])) {
+							throw new Exception($this->copyOps->getCopyForId("studentIDExistsError", array(studentID => $user->studentID)));
+						} else {
+							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, email => $user->email)));							
+						}
+						break;
+					case User::LOGIN_BY_EMAIL:
+						if (isset($rc['conflictedUsers'])) {
+							throw new Exception($this->copyOps->getCopyForId("emailExistsError", array(email => $user->email)));
+						} else {
+							throw new Exception($this->copyOps->getCopyForId("usernameBlankError", array(username => $user->name, studentID => $user->studentID)));							
+						}
+				    	break;
+					default:
+						throw new Exception("unexpected error when checking user conflict");
 				}
 			}
-			
-			// v3.4 Multi-group users
-			//$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->id);
 			$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
 		}
 		
@@ -498,7 +473,7 @@ EOD;
 		}
 	}
 	
-	function moveUsers($usersArray, $parentGroup) {
+	function moveUsers($usersArray, $parentGroup, $userDetails = null) {
 		if (sizeof($usersArray) == 0) return;
 		
 		// Ensure that this root context has permission to access all these users
@@ -509,15 +484,66 @@ EOD;
 		
 		$this->db->StartTrans();
 		
-		$userIdArray = array();
-		foreach ($usersArray as $user)
-			// v3.4 Multi-group users
-			//$userIdArray[] = $user->id;
-			$userIdArray[] = $user->userID;
+		// gh#653 Since each user might be coming from a different group, need to do multiple sql updates
+		// each of which references the old group as well as the userID. 
+		foreach ($usersArray as $user) {
+			$sql = <<<EOD
+				   SELECT COUNT(*) AS count
+				   FROM T_Membership m
+				   WHERE F_GroupID=?
+				   AND F_UserID=?
+EOD;
+			$rs = $this->db->GetRow($sql, array($parentGroup->id, $user->userID));
+			// Does this user already exist in the target group? If so, just delete them from their old group(s).
+			if ($rs['count'] > 0) {
+				$thisGroupId = $user->getMultiUserGroupID();
+				if ($thisGroupId && $thisGroupId > 0) {
+					$bindingParams = array($user->getMultiUserGroupID(), $user->userID);
+					$this->db->Execute("DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
+				} else {
+					$bindingParams = array($parentGroup->id, $user->userID);
+					$this->db->Execute("DELETE FROM T_Membership WHERE NOT F_GroupID=? AND F_UserID=?", $bindingParams);
+				}
+			} else { 
+				// Otherwise update T_Membership
+				// During import, if you are moving a user you will have got their data from the database
+				// so you will NOT have the group portion of id. You could just update based on userID
+				// but this will crash if there the user is already in here twice. In that case you need
+				// to delete then insert.
+				$thisGroupId = $user->getMultiUserGroupID();
+				if ($thisGroupId && $thisGroupId > 0) {
+					// make sure you only move this one instance of the user
+					$bindingParams[] = array($parentGroup->id, $thisGroupId, $user->userID);
+					$this->db->Execute("UPDATE T_Membership SET F_GroupID=? WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
+				} else {
+					// delete all memberships and then add this one
+					$bindingParams[] = array($user->userID);
+					$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID=?", $bindingParams);
+					$bindingParams = array($user->userID, $parentGroup->id, Session::get('rootID'));
+					$sql = <<<EOD
+						INSERT INTO T_Membership (F_UserID,F_GroupID,F_RootID)
+						VALUES (?,?,?) 
+EOD;
+					$rc = $this->db->Execute($sql, $bindingParams);
+					if (!$rc)
+						throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+				}					
+			}
+			
+			// gh#653 Since a moved user might have updated some details, check to see if need an update too
+			if ($userDetails) {
+				// It is safe to update all relevant fields as conflict with loginOption key field will have already been resolved
+				if (($userDetails->email != $user->email) ||
+					($userDetails->studentID != $user->studentID) ||
+					($userDetails->name != $user->name)) {
+					$user->email = $userDetails->email;
+					$user->studentID = $userDetails->studentID;
+					$user->name = $userDetails->name;
+					$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
+				}
+			}
+		}
 		
-		$userIdInString = join(",", $userIdArray);
-		
-		$this->db->Execute("UPDATE T_Membership SET F_GroupID=? WHERE F_UserID IN (".$userIdInString.")", array($parentGroup->id));
 		
 		$this->db->CompleteTrans();
 		
@@ -550,8 +576,59 @@ EOD;
 		
 		// gh#448
 		AbstractService::$controlLog->info('userID '.Session::get('userID').' moved a group(s) with id='.$groupIdInString.' to group '.$parentGroup->id);
+
 	}
 	
+	// gh#653
+	function copyUsers($usersArray, $parentGroup, $userDetails = null) {
+		if (sizeof($usersArray) == 0) return;
+		
+		// Ensure that this root context has permission to access all these users
+		AuthenticationOps::authenticateUsers($usersArray);
+		
+		// Ensure that this root context has permission to access all these groups
+		AuthenticationOps::authenticateGroups(array($parentGroup));
+		
+		$this->db->StartTrans();
+		
+		// We know that the user records exist, we just need to add membership records
+		foreach ($usersArray as $user) {
+			// Does this user already exist in the target group? If so, nothing to add.
+			$sql = <<<EOD
+			   SELECT COUNT(*) AS count
+			   FROM T_Membership m
+			   WHERE F_GroupID=?
+			   AND F_UserID=?
+EOD;
+			$rs = $this->db->GetRow($sql, array($parentGroup->id, $user->userID));
+			if ($rs['count'] == 0) {
+				$bindingParams = array($user->getMultiUserGroupID(), $user->userID);
+				$sql = <<<EOD
+					INSERT INTO T_Membership (F_UserID, F_GroupID, F_RootID)
+					VALUES (?,?,?) 
+EOD;
+				$bindingParams = array($user->userID, $parentGroup->id, ($rootID) ? $rootID : Session::get('rootID'));
+				$rc = $this->db->Execute($sql, $bindingParams);
+				if (!$rc)
+					throw $this->copyOps->getExceptionForId("errorDatabaseWriting", array("msg" => $this->db->ErrorMsg()));
+			}
+							
+			// gh#653 Since a copied user might have updated some details, check to see if need an update too
+			if ($userDetails) {
+				// It is safe to update all relevant fields as conflict with loginOption key field will have already been resolved
+				if (($userDetails->email != $user->email) ||
+					($userDetails->studentID != $user->studentID) ||
+					($userDetails->name != $user->name)) {
+					$user->email = $userDetails->email;
+					$user->studentID = $userDetails->studentID;
+					$user->name = $userDetails->name;
+					$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
+				}
+			}
+		}
+		
+		$this->db->CompleteTrans();
+	}
 	/**
 	 * Given an array of manageables recurse down the tree and delete every bit of information in or associated to the objects.
 	 * 
@@ -581,33 +658,30 @@ EOD;
 					$groupIdArray = $manageable->getSubGroupIds();
 					$groupIdArray[] = $manageable->id;
 					
-					// Get all the user IDs we need to delete. Same as above.
-					$userIdArray = $manageable->getSubUserIds();
-					//NetDebug::trace('ManageableOps.deleteAccounts all users='.implode(",",$userIdArray));
-					
 					// Ensure that this root context has permission to access all these groups
 					AuthenticationOps::authenticateGroupIDs($groupIdArray);
-					//NetDebug::trace('ManageableOps.deleteAccounts all groups='.implode(",",$groupIdArray));
+					
+					// gh#653 get users, not just userIDs to delete them
+					// Delete the users (note that we do not check if the user has permission because by this point rows have already
+					// been deleted from T_Membership - however, unauthorised users will never be able to get to here without failing
+					// the group authentication so this is fine).
+					$userArray = $manageable->getSubUsers();
+					$this->deleteUsers($userArray);
 					
 					// Delete the groups
 					$this->deleteGroupsById($groupIdArray);
 					
-					// Delete the users (note that we do not check if the user has permission because by this point rows have already
-					// been deleted from T_Membership - however, unauthorised users will never be able to get to here without failing
-					// the group authentication so this is fine).
-					$this->deleteUsersById($userIdArray);
-					
 					break;
 				case "User":
-					//NetDebug::trace('ManageableOps.dM user='.$manageable->id);
 					// Ensure that this root context has permission to access this user
 					// v3.4 Multi-group users
 					//AuthenticationOps::authenticateUserIDs(array($manageable->id));
 					AuthenticationOps::authenticateUserIDs(array($manageable->userID));
 					
 					// Delete the user
+					// gh#653 get the multi-group id rather than pure userID
 					//$this->deleteUsersById(array($manageable->id));
-					$this->deleteUsersById(array($manageable->userID));
+					$this->deleteUsers(array($manageable));
 					break;
 			}
 		}
@@ -617,6 +691,7 @@ EOD;
 	
 	/**
 	 * Given an array of group ids delete rows from all relevant tables
+	 * gh#653 delete all users in this group separately
 	 *
 	 * @param groupIdArray An array of group ids to delete
 	 */
@@ -625,51 +700,60 @@ EOD;
 		if (sizeof($groupIdArray) == 0) return;
 		
 		$groupIdInString = join(",", $groupIdArray);
-		//NetDebug::trace('ManageableOps.deleteGroups sql id='.$groupIdInString);
 		
 		// Delete groups from the T_Groupstructure table
 		$this->db->Execute("DELETE FROM T_Groupstructure WHERE F_GroupID IN ($groupIdInString)");
-		//NetDebug::trace('ManageableOps.deleteGroups deleted '.$this->db->Affected_Rows());
-		
-		// Delete groups from the T_Membership table
-		$this->db->Execute("DELETE FROM T_Membership WHERE F_GroupID IN ($groupIdInString)");
 		
 		// Delete entries for these groups in hidden content
 		$this->db->Execute("DELETE FROM T_HiddenContent WHERE F_GroupID IN ($groupIdInString)");
+		
+		// Delete entries for these groups in edited content
+		$this->db->Execute("DELETE FROM T_EditedContent WHERE F_GroupID IN ($groupIdInString)");
+		
 	}
 	
 	/**
-	 * Given an array of user ids delete rows from all relevant tables
+	 * Given an array of users delete rows from all relevant tables
 	 *
-	 * @param An array of user ids to delete
+	 * @param An array of users to delete
 	 */
-	function deleteUsersById($userIdArray) {
+	private function deleteUsers($userArray) {
 		
 		// gh#359
-		$filteredIdArray = array_filter($userIdArray, function ($userID) {
-			if ($userID < 0)
-				AbstractService::$debugLog->notice("Request to delete user $userID repulsed! ManageableOps.deleteUsersByID");
-			
-			return ($userID > 0);
+		$filteredArray = $userArray;
+		$filteredArray = array_filter($userArray, function ($user) {
+			if ($user->userID < 0)
+				AbstractService::$debugLog->notice("Request to delete user $user->userID repulsed! ManageableOps.deleteUsers");
+			return ($user->userID > 0);
 		});
+			
+		// If there are no users in the array do nothing
+		if (sizeof($filteredArray) == 0) return;
 		
-		// If there are no ids in the array do nothing
-		if (sizeof($filteredIdArray) == 0) return;
-		
-		$userIdInString = join(",", $filteredIdArray);
-		
-		// Delete users from the T_User table
-		$this->db->Execute("DELETE FROM T_User WHERE F_UserID IN ($userIdInString)");
-		
-		// Delete users from the T_Membership table
-		$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID IN ($userIdInString)");
-		
-		// Delete users from the T_Titlelicences table 
-		// v3.0.5 (allocation, no longer used)
-		//$this->db->Execute("DELETE FROM T_Titlelicences WHERE F_UserID IN ($userIdInString)");
-		
-		// Delete user records from the T_Score table
-		$this->db->Execute("DELETE FROM T_Score WHERE F_UserID IN ($userIdInString)");
+		// gh#653 delete one by one in case they exist in multiple groups
+		foreach ($filteredArray as $user) {
+
+			$this->db->StartTrans();
+			$sql = <<<EOD
+				   SELECT COUNT(*) AS count
+				   FROM T_Membership m
+				   WHERE F_UserID=?
+EOD;
+			$rs = $this->db->GetRow($sql, array($user->userID));
+			if ($rs['count'] > 1) {
+				// This user exists in another group too, so only remove this membership record
+				$bindingParams = array($user->getMultiUserGroupID(), $user->userID);
+				$this->db->Execute("DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
+			} else { 
+				// TODO: Think about moving to _Delete tables rather than just deleting to make undo easier
+				$bindingParams = array($user->userID);
+				$this->db->Execute("DELETE FROM T_User WHERE F_UserID=?", $bindingParams);
+				$this->db->Execute("DELETE FROM T_Membership WHERE F_UserID=?", $bindingParams);
+				$this->db->Execute("DELETE FROM T_Score WHERE F_UserID=?", $bindingParams);
+			}
+			$this->db->CompleteTrans();
+			
+		}
 		
 		// Delete user from the t_licences table
 		// v6.5.5.0 The T_Licences table is dropped in favour of using T_Session.
@@ -711,8 +795,20 @@ EOD;
 		$manageablesXML = $dom->createElement("manageables");
 		
 		foreach ($groups as $group) {
-			$node = $group->toXMLNode();
-			$manageablesXML->appendChild($dom->importNode($node, true));
+			// gh#653 If the group uses a | delimiter, it means we want this user to be in all the groups
+			if (stripos($group->name, '|')) {
+				// split the groups and duplicate the node for each
+				foreach (explode('|', $group->name) as $groupName) {
+					// clone the group
+					$newGroup = clone $group;
+					$newGroup->name = $groupName;
+					$node = $newGroup->toXMLNode();
+					$manageablesXML->appendChild($dom->importNode($node, true));
+				}
+			} else {
+				$node = $group->toXMLNode();
+				$manageablesXML->appendChild($dom->importNode($node, true));
+			}
 		}
 		
 		// Add all the users
@@ -756,14 +852,18 @@ EOD;
 	/**
 	 * Given arrays of groups and users import them into parentGroup
 	 */
-	function importManageables($groups, $users, $parentGroup, $moveExistingStudents=false) {
+	function importManageables($groups, $users, $parentGroup, $moveExistingStudents = self::EXCEL_MOVE_IMPORT) {
+		
+		// TODO for testing without interface options, just set this
+		//$moveExistingStudents = self::EXCEL_IMPORT;
+		
 		// Ensure that this root context has permission to access this parent group
 		AuthenticationOps::authenticateGroups(array($parentGroup));
 		
 		// Export the manageables as XML
 		$doc = $this->exportXML($groups, $users, true);
 		
-		// And import into the database.  When calling this function (i.e. from Excel pasting) we want to merge together groups.
+		// And import into the database. When calling this function (i.e. from Excel pasting) we want to merge together groups.
 		return $this->importXML($doc, $parentGroup, true, $moveExistingStudents);
 	}
 	
@@ -807,7 +907,7 @@ EOD;
 	 * Import the given XML document into parentGroup
 	 * v3.6.1 Allow moving and importing
 	 */
-	function importXML($doc, $parentGroup, $mergeGroups = false, $moveExistingStudents = false) {
+	function importXML($doc, $parentGroup, $mergeGroups = false, $moveExistingStudents = self::EXCEL_MOVE_IMPORT) {
 		// Create a parser and create the manageables tree from the xml
 		$importXMLParser = new ImportXMLParser();
 		$manageables = $importXMLParser->xmlToManageables($doc);
@@ -834,103 +934,60 @@ EOD;
 	}
 	
 	// v3.6.1 Allow moving and importing
-	//function _importManageable($manageable, $parentGroup, $mergeGroups = false) {
-	function _importManageable($manageable, $parentGroup, $mergeGroups = false, $moveExistingStudents = false) {
+	function _importManageable($manageable, $parentGroup, $mergeGroups, $controlExistingStudents) {
 		if (get_class($manageable) == "Group") {
 			// v3.5 Allow group names to be hierarchies
-			//NetDebug::trace("_importMgble $manageable->name");
 
 			// This section checks that the group(s) exists and returns it
 			if (stripos($manageable->name,"/")!==false) {				
-				//NetDebug::trace("_importManageable check hierarchy");
 				$parentGroup = $this->addGroupHierarchy($manageable->name, $parentGroup, !$mergeGroups);
-				//NetDebug::trace("_importMgble, got back group $parentGroup->name and id=$parentGroup->id");
 			} else {
-				//NetDebug::trace("_importMgble check simple group");
 				// When $mergeGroups is set duplicates are not allowed (it needs to merge into existing groups) so add parameter to addGroup
 				$parentGroup = $this->addGroup($manageable, $parentGroup, !$mergeGroups);
 			}
 			$this->addImportResult("Group", $manageable->name, true);
 			
 			foreach ($manageable->manageables as $m) {
-				$this->_importManageable($m, $parentGroup, $mergeGroups, $moveExistingStudents);
+				$this->_importManageable($m, $parentGroup, $mergeGroups, $controlExistingStudents);
 			}
 			
 		} else if (get_class($manageable) == "User") {
-			try {
-				// v3.5 If we want to allow importing to update users, then we need a different setup here
-				// as well as needing a new parameter.
-				// So first we could see if this is a new user (keyed on name or studentID).
-				// If it is, then we can just go ahead and add them with addUser.
-				// If we find the user exists, then we can update them. 
-				// This might mean changing some details, though not the loginOption field (name or ID).
-				// It might also mean changing the group that they are in.
-				
-				//NetDebug::trace("_importManageable adduser".$manageable->name." of type ".$manageable->userType);
+			// #653 Check if the user details conflict with existing users 
+			// If they don't, then simply add them.
+			// If they do and the control parameter=move - then call moveUser
+			// If they do and the control parameter=copy - then call copyUser
+			// If they do and the control parameter=simple - then report an error
+			$rc = $this->isUserConflicted($manageable, $rootID);
+			if ($rc['returnCode'] > 0) {
+				if ($controlExistingStudents == self::EXCEL_MOVE_IMPORT) {
+					$addedMsg = "moved";
+					$this->moveUsers($rc['conflictedUsers'], $parentGroup, $manageable);
+					$success = true;
+				} elseif ($controlExistingStudents == self::EXCEL_COPY_IMPORT) {
+					$addedMsg = "copied";
+					$this->copyUsers($rc['conflictedUsers'], $parentGroup, $manageable);
+					$success = true;
+				} else {
+					$addedMsg = "duplicate details";
+					$success = false;
+				}
+			} else {
+				$addedMsg = "added";
 				$this->addUser($manageable, $parentGroup);
-				// TODO We should send back the different types of user - $manageable->userType? (convert number to string)
-				// How to properly pick up the literals names for the types?
-				//$this->addImportResult("User", $manageable->name, true);
-				//$this->addImportResult($manageable->userType, $manageable->name, true);
-				$typeName = $manageable->getTypeName();
-				/*
-				switch ($manageable->userType) {
-					case User::USER_TYPE_TEACHER:
-						$typeName = "Teacher";
-						break;
-					case User::USER_TYPE_REPORTER:
-						$typeName = "Reporter";
-						break;
-					case User::USER_TYPE_AUTHOR:
-						$typeName = "Author";
-						break;
-					default:
-						$typeName = "Student";
-				}
-				*/
-				//NetDebug::trace("_importManageable ".$manageable->name." of type ".$manageable->userType);
-				// v3.6.1.1 This is a bad message if there is no expiry date.
-				if ($manageable-> expiryDate != '') {
-					$addedMsg = "expire on ".$manageable-> expiryDate;
-				} else {
-					$addedMsg = "added";
-				}
-				$this->addImportResult($typeName, $manageable-> name, true, $addedMsg);
-			} catch (Exception $e) {
-				//$this->addImportResult("User", $manageable->name, false, $e->getMessage());
-				// There was an error adding this as a new user, so do you want to try to move/update them?
-				// v3.6.1 Allowing moving and importing
-				if ($moveExistingStudents) {
-					//NetDebug::trace("importing, ".$manageable->name." exists in group ".$e->getCode()." so try to move them to ".$parentGroup->id);
-					try {
-						// To avoid appearing to move any duplicated students who you don't really want to move, check groups first
-						// TODO But how???
-						// When we get an exception from addUser, can we include information about which group that user is already in?
-						// Well, yes you can, but because you come back from addUser to here with an exception, you can't get the data.
-						// I think that means that instead of trying addUser and picking up the exception, we have to call isUserValid first
-						// and only then go to addUser (which will do the check again). Getting messy. 
-						// I could hijack the exception code to use as the groupID...
-						// Or is it worth doing another call here? I think not.
-						// Again, this is flawed because you might want to just update the user (email) and not move them.
-						if ($e->getCode() != $parentGroup->id) {
-							$existingUser = $this->moveAndUpdateUser($manageable, $parentGroup);
-							//NetDebug::trace("moved $existingUser->name");
-							$typeName = $existingUser->getTypeName();
-							//NetDebug::trace("got type $typeName");
-							$this->addImportResult($typeName, $existingUser->name, true, "moved");
-						} else {
-							//NetDebug::trace("already in that group $manageable->name");
-							// so show the error message
-							$this->addImportResult($typeName, $manageable->name, false, $e->getMessage());
-						}
-					} catch (Exception $e) {
-						//NetDebug::trace("exception of $e->getMessage()");
-						$this->addImportResult($typeName, $manageable->name, false, $e->getMessage());
-					}
-				} else {
-					$this->addImportResult($typeName, $manageable->name, false, $e->getMessage());
-				}
+				$success = true;
 			}
+				
+			$typeName = $manageable->getTypeName();
+			$this->addImportResult($typeName, $manageable->name, $success, $addedMsg);
+			/*
+			if ($e->getCode() != $parentGroup->id) {
+				$existingUser = $this->moveAndUpdateUser($manageable, $parentGroup);
+				$typeName = $existingUser->getTypeName();
+				$this->addImportResult($typeName, $existingUser->name, true, "moved");
+			} else {
+				$this->addImportResult($typeName, $manageable->name, false, $e->getMessage());
+			}
+			*/
 		}
 	}
 	
@@ -1027,7 +1084,7 @@ EOD;
 	}
 	/**
 	 * This returns a specific user object defined by a key set from loginOption
-	 * Only look in one or more roots for this user.
+	 * Look in one or more roots for this user.
 	 */
 	function getRootUserByKey($stubUser, $rootID = null) {
 		
@@ -1046,11 +1103,12 @@ EOD;
 		} else {
 			throw new Exception("Unspecified loginOption");
 		}
-		$sql  = "SELECT ".User::getSelectFields($this->db);
+		// gh#653 Might be duplicate membership records so just grab unique userIDs
+		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
 		$sql .= <<<EOD
-		FROM T_User u, T_Membership m
-		WHERE $whereClause
-		AND m.F_UserID = u.F_UserID
+			FROM T_User u, T_Membership m
+			WHERE $whereClause
+			AND m.F_UserID = u.F_UserID
 EOD;
 		if (stristr($rootID,',')!==FALSE) {
 			$sql.= " AND m.F_RootID in ($rootID)";
@@ -1079,24 +1137,35 @@ EOD;
 	 * This returns a specific user object defined by a key set from loginOption
 	 * It assumes that a CLS user has licenceType=5 in an account which our user is the admin for
 	 */
-	function getCLSUserByKey($stubUser) {
-		
-		if (isset($stubUser->name)) {
-			$whereClause = 'u.F_UserName=?';
+	function getCLSUserByKey($stubUser, $loginOption = null) {
+
+		// gh#653 tidy up
+		if ($loginOption == User::LOGIN_BY_NAME) {
+			$whereClause = 'WHERE u.F_UserName=?';
+			$key = $stubUser->name;
+		} else if ($loginOption == User::LOGIN_BY_ID) {
+			$whereClause = 'WHERE u.F_StudentID=?';
+			$key = $stubUser->studentID;
+		} else if ($loginOption == User::LOGIN_BY_EMAIL) {
+			$whereClause = 'WHERE u.F_Email=?';
+			$key = $stubUser->email;
+		} else if (isset($stubUser->name)) {
+			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
 		} else if (isset($stubUser->studentID)) {
-			$whereClause = 'u.F_StudentID=?';
+			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
 		} else if (isset($stubUser->email)) {
-			$whereClause = 'u.F_Email=?';
+			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
 		} else {
 			throw new Exception("Unspecified loginOption");
 		}
-		$sql  = "SELECT ".User::getSelectFields($this->db);
+		
+		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
 		$sql .= <<<EOD
 		FROM T_User u, T_AccountRoot ar, T_Accounts a
-		WHERE $whereClause
+		$whereClause
 		AND ar.F_AdminUserID = u.F_UserID
 		AND a.F_RootID = ar.F_RootID
 		AND a.F_LicenceType = 5
@@ -1125,14 +1194,18 @@ EOD;
 	 * gh#164 you might pass the loginOption now
 	 */
 	function getUserByKey($stubUser, $rootID = NULL, $loginOption = null) {
+
+		//gh#653
+		$rootID = ($rootID) ? $rootID : Session::get('rootID');
+		$loginOption = ($loginOption) ? $loginOption : Session::get('loginOption');
 		
-		if ($loginOption == 1) {
+		if ($loginOption == User::LOGIN_BY_NAME) {
 			$whereClause = 'WHERE u.F_UserName=?';
 			$key = $stubUser->name;
-		} else if ($loginOption == 2) {
+		} else if ($loginOption == User::LOGIN_BY_ID) {
 			$whereClause = 'WHERE u.F_StudentID=?';
 			$key = $stubUser->studentID;
-		} else if ($loginOption == 128) {
+		} else if ($loginOption == User::LOGIN_BY_EMAIL) {
 			$whereClause = 'WHERE u.F_Email=?';
 			$key = $stubUser->email;
 		} else if (isset($stubUser->name)) {
@@ -1148,8 +1221,9 @@ EOD;
 			throw new Exception("Unspecified loginOption");
 		}
 		// gh#164 No need to join on membership if you don't have a rootID
+		// gh#653 Might be duplicate membership records so just grab unique userIDs
 		if ($rootID != null) {
-			$sql  = "SELECT ".User::getSelectFields($this->db);
+			$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
 			$sql .= <<<EOD
 					FROM T_User u LEFT JOIN 
 					T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
@@ -1159,15 +1233,13 @@ EOD;
 EOD;
 			$bindingParams = array($key, $rootID);
 		} else {
-			$sql  = "SELECT ".User::getSelectFields($this->db);
+			$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
 			$sql .= <<<EOD
 					FROM T_User u 
 					$whereClause
 EOD;
 			$bindingParams = array($key);
-			
 		}
-		
 		$usersRS = $this->db->Execute($sql, $bindingParams);
 		
 		// If you don't get a unique match, throw an exception
@@ -1192,10 +1264,14 @@ EOD;
 	 * Should be deprecated by the more general function getUserByKey
 	 */
 	function getUserByLearnerId($stubUser) {
-		$sql  = "SELECT ".User::getSelectFields($this->db);
+		$rootID = Session::get('rootID');	    
+		// gh#653 Might be duplicate membership records so just grab unique userIDs
+		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
 		$sql .= <<<EOD
-				FROM T_User u
+				FROM T_User u, T_Membership m
 				WHERE u.F_StudentID=?
+                AND m.F_RootID = ?
+                AND u.F_UserID = m.F_UserID;
 EOD;
 		$usersRS = $this->db->Execute($sql, array($stubUser->studentID));
 
@@ -1218,10 +1294,9 @@ EOD;
 	 * Should be deprecated by the more general function getUserByKey
 	 */
 	function getUserByName($user) {
-	/* Get rootID in order to get rid of duplicate record with same user name but different prefix
-	*/
-	    $rootID = Session::get('rootID');	    
-		$sql  = "SELECT ".User::getSelectFields($this->db);
+		$rootID = Session::get('rootID');	    
+		// gh#653 Might be duplicate membership records so just grab unique userIDs
+		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
 		$sql .= <<<EOD
 				FROM T_User u, T_Membership m
                 WHERE u.F_UserName = ?
@@ -1287,8 +1362,8 @@ EOD;
 	 * Get all learners in a root
 	 */
 	function getAllLearners($rootID) {
-		$sql = <<<EOD
-			SELECT u.*
+		$sql = "SELECT DISTINCT ".User::getSelectFields($this->db);
+		$sql .= <<<EOD
 			FROM T_User u
 			INNER JOIN T_Membership m ON u.F_UserID = m.F_UserID
 			WHERE u.F_UserType = 0
@@ -1313,20 +1388,24 @@ EOD;
 	/**
 	 * This returns the group ID that a given user belongs to.  At present this is only used by DMS, but it might come in useful for something
 	 * later on so I've left it in here.
+	 * gh#653 return a comma delimitted list of multiple groups for this user
+	 * Also used by Bento hiddenContentTransform
 	 */
 	function getGroupIdForUserId($userID) {
+		// gh#653 tidy up SQL as no need to join on T_Groupstructure
 		$sql = <<<EOD
-			   SELECT g.F_GroupID as groupID
-			   FROM T_User u LEFT JOIN 
-			   T_Membership m ON m.F_UserID = u.F_UserID LEFT JOIN
-			   T_Groupstructure g ON m.F_GroupID=g.F_GroupID
-			   WHERE u.F_UserID=?
+			   SELECT m.F_GroupID as groupID
+			   FROM T_User u, T_Membership m
+			   WHERE m.F_UserID = u.F_UserID
+			   AND u.F_UserID=?
 EOD;
-		
-		$row = $this->db->getRow($sql, array($userID));
-		if ($row)
-			return $row['groupID'];
-			
+		$rs = $this->db->Execute($sql, array($userID));
+		if ($rs) {
+			while ($row = $rs->FetchNextObj())
+				$groups[] = $row->groupID;
+			return implode(',', $groups); 
+		}
+
 		return null;
 	}
 	/**
@@ -1701,6 +1780,139 @@ EOD;
 	}
 	
 	/**
+	 * Determine if the details you know about a new/updated user conflict with any existing user.
+	 * Returns false if no conflicts
+	 * 			loginOption and array of conflicted users if found
+	 * 			returnCode=loginOption
+	 * 			conflictedUsers=array of user objects
+	 * 
+	 * gh#653 replaces isUserValid 
+	 */
+	private function isUserConflicted($user, $rootID = null, $loginOption = null) {
+		$rootID = ($rootID) ? $rootID : Session::get('rootID');
+		$loginOption = ($loginOption) ? $loginOption : Session::get('loginOption');
+		$groupedRoots = Session::get('groupedRoots');
+
+		if ($loginOption && $loginOption > 0) {
+		} else {
+			// v3.6.1 Check Access Control
+			$sql = 	<<<EOD
+					SELECT F_LoginOption as loginOption
+					FROM T_AccountRoot
+					WHERE F_RootID=?
+EOD;
+			$rs = $this->db->Execute($sql, array($rootID));
+			switch ($rs->RecordCount()) {
+				case 0:
+					throw new Exception("No account with this root ($rootID)");
+					break;
+				case 1:
+					$loginOption = (int)($rs->FetchNextObj()->loginOption);
+					break;
+				default:
+					throw new Exception("More than one account with this root ($rootID)");
+			}
+		}
+		Session::set('loginOption', $loginOption);
+		
+		// There may be no groupedRoots, a single one, a list or a wildcard.
+		if (!$groupedRoots) {
+			// v3.6.1 Check T_LicenceAttributes - for now just to get groupedRoots
+			$sql = 	<<<EOD
+					SELECT *
+					FROM T_LicenceAttributes
+					WHERE F_RootID=?
+EOD;
+			$rs = $this->db->Execute($sql, array($rootID));
+			$groupedRoots = 'none';
+			if ($rs->RecordCount() > 0) {
+				while($record = $rs->FetchNextObj()) {
+					// For now all I care about is groupedRoots.
+					if ($record->F_Key == 'groupedRoots') {
+						// at least check that this is not empty or spaces
+						if ($record->F_Value && trim($record->F_Value)!='')
+							$groupedRoots = trim($record->F_Value);
+						break;
+					}
+				}
+			}
+			Session::set('groupedRoots', $groupedRoots);
+		}
+		if ($groupedRoots != 'none') {
+			$rootList = $groupedRoots;
+		} else {
+			$rootList = $rootID;
+		}
+		
+		// TODO. Can we parse the root list to make sure it is a valid list of commma delimited roots?
+		if ($rootList == '*') {
+			$rootClause = '';
+		} elseif (stripos($rootList, ',') === FALSE) {
+			$rootClause = " AND m.F_RootID = $rootList";
+		} else {
+			$rootClause = " AND m.F_RootID IN ($rootList)";
+		}
+		
+		// Check the key value for uniqueness and presence based on loginOption
+		if ($loginOption & User::LOGIN_BY_NAME) {
+			if (!$user->name) {
+				$rc['returnCode'] = $loginOption;
+				return $rc;
+			}
+			$checkClause = ' AND u.F_UserName = ? ';
+			$bindingParams = array($user->name);
+		} elseif ($loginOption & User::LOGIN_BY_ID) {
+			if (!$user->studentID) {
+				$rc['returnCode'] = $loginOption;
+				return $rc;
+			}
+			$checkClause = ' AND u.F_StudentID = ? ';
+			$bindingParams = array($user->studentID);
+		} elseif ($loginOption & User::LOGIN_BY_NAME_AND_ID) {
+			throw new Exception("Using old login option of name AND id ($rootID)");
+		} elseif ($loginOption & User::LOGIN_BY_EMAIL) {
+			if (!$user->email) {
+				$rc['returnCode'] = $loginOption;
+				return $rc;
+			}
+			$checkClause = ' AND u.F_Email = ? ';
+			$bindingParams = array($user->email);
+		} else {
+			throw new Exception("Unknown login option, $loginOption, for root $rootID");
+		}
+			
+		$sql  = "SELECT ".User::getSelectFields($this->db).", m.F_GroupID";
+		$sql .= <<<EOD
+			FROM T_User u, T_Membership m
+			WHERE u.F_UserID = m.F_UserID
+			$rootClause
+			$checkClause
+EOD;
+		$rs = $this->db->Execute($sql, $bindingParams);
+
+		$rc['returnCode'] = 0;
+		switch ($rs->RecordCount()) {
+			case 0:
+				// There are no duplicates
+				break;
+			case 1:
+			default:
+				// There is a duplicate(s), but if this is an update it might be the same user
+				while ($dbObj = $rs->FetchNextObj()) {
+					if ((int)($dbObj->F_UserID) != (int)($user->userID)) {
+						// Found a conflict - return the user in case you need it for copy, move, delete
+						$rc['returnCode'] = $loginOption;
+						$cU = new User();
+						$cU->fromDatabaseObj($dbObj);
+						$rc['conflictedUsers'][] = $cU; 
+					}
+				}
+		}
+		
+		return $rc;
+	}
+	
+	/**
 	 * Determine if a user is valid.  A user is valid (i.e. can be updated / created) if no user with the same name exists in this
 	 * rootID context. Administrator users are a special case - these have to have username / password unique across every root.
 	 * This isn't quite the whole picture as some titles (like Its Your Job) will have a login page that needs a unique login - for which
@@ -1712,15 +1924,9 @@ EOD;
 	 */
 	private function isUserValid($user, $newRootID = null) {
 		//v3.1 Need to pass rootID as it may not be in session variables for DMS (addAccount)
-		//$rootID = Session::get('rootID');
 		$rootID = ($newRootID) ? $newRootID : Session::get('rootID');
 		// AR Do we really have to encode quotes? It would match the std better if the db had ' not &apos;
 		//$username = Manageable::apos_encode($user->name);
-		$username = $user->name;
-		$password = $user->password;
-		$studentID = $user->studentID;
-		//gh:#98.1
-		$email = $user->email;
 		
 		// v3.6.1 Check Access Control
 		$sql = 	<<<EOD
@@ -1739,8 +1945,6 @@ EOD;
 			default:
 				throw new Exception("More than one account with this root ($rootID)");
 		}
-		// I am going to put this into session variables so I can get it again
-		//Session::get('loginOption',$loginOption); // Set NOT get please!
 		Session::set('loginOption',$loginOption);
 		
 		// v3.6.1 Check T_LicenceAttributes - for now just to get groupedRoots
@@ -1776,192 +1980,57 @@ EOD;
 		// gh#98.1
 		// Sky/AR If we always block duplicate emails, it means that ORS can't use ID login and pass duplicate emails
 		// which the Indian agents insist on doing.
-		//if ($email) {
-		if ($loginOption & 128) {
-		    $sql = <<<EOD
-		       SELECT distinct(u.F_UserID) as userID, u.F_UserName, u.F_StudentID, m.F_GroupID, u.F_Email
-               FROM T_User u, T_Membership m
-               WHERE u.F_UserID=m.F_UserID
-               AND u.F_Email = ?
-			   $rootClause
+		
+		// gh#653 Tidy up the checking into one section
+		switch ($loginOption) {
+			case User::LOGIN_BY_NAME:
+				$checkClause = ' AND u.F_UserName = ? ';
+				$bindingParams = array($user->name);
+				break;
+			case User::LOGIN_BY_ID:
+				$checkClause = ' AND u.F_StudentID = ? ';
+				$bindingParams = array($user->studentID);
+				break;
+			case User::LOGIN_BY_NAME_AND_ID:
+				throw new Exception("Using old login option of name AND id ($rootID)");
+				break;
+			case User::LOGIN_BY_EMAIL:
+			default:
+				$checkClause = ' AND u.F_Email = ? ';
+				$bindingParams = array($user->email);
+				break;
+		}
+			
+		$sql = <<<EOD
+				SELECT distinct(u.F_UserID) as userID, u.F_UserName, u.F_StudentID, m.F_GroupID
+				FROM T_User u, T_Membership m
+				WHERE u.F_UserID = m.F_UserID
+				$rootClause
+				$checkClause
 EOD;
-            $rs = $this->db->Execute($sql, array($email));
-		
-		    $rc = Array();
-		    $rc['returnInfo'] = Array();
-		
-		    switch ($rs->RecordCount()) {
-				case 0:
-					// There are no duplicates
-					// But you might need to check for ID too
-					// return true;
-					$emailOK = true;
-					break;
-				case 1:
-					$firstRecord = $rs->FetchNextObj();
-					if ((int)($firstRecord->userID) == (int)($user->userID)) {
-						//NetDebug::trace('but it is the same person');
-						$emailOK = true;
-					} else {
-						//NetDebug::trace('found another person by name');
-						$emailOK = false;
-						$rc['returnInfo'][] = Array('email'=>$firstRecord->F_Email, 'group'=>$firstRecord->F_GroupID);
+		$rs = $this->db->Execute($sql, $bindingParams);
+			
+		switch ($rs->RecordCount()) {
+			case 0:
+				// There are no duplicates
+				$checkOK = true;
+				break;
+			case 1:
+			default:
+				// There is a duplicate(s), but if this is an update it might be the same record
+				$checkOK = true;
+				while ($dbObj = $rs->FetchNextObj()) {
+					if ((int)($dbObj->userID) != (int)($user->userID)) {
+						$checkOK = false;
+						$rc['returnInfo'][] = Array('name' => $record->F_UserName, 'email' => $record->F_Email, 'studentID' => $record->F_StudentID, 'group' => $record->F_GroupID);
 					}
-					break;
-				default:
-					// You found many existing users with this name
-					// Is this really an exception, or just a sign that this is a user your can't add/update?
-					//throw new Exception("isUserValid: More than one user was returned with username '".$username."'");
-					//return false;
-					$emailOK = false;
-					// You really should send back info on all the duplicates to be useful
-					while($record = $rs->FetchNextObj()) {
-						$rc['returnInfo'][] = Array('email' => $record->F_Email, 'group' => $record->F_GroupID);
-					}
-	        }
-		} else {
-		    $emailOK = true;
+				}
 		}
 		
-		// Bento - if the loginOption is 2, then we don't care if the name is not unique.
-		if ($loginOption & 1) {
-			// Ensure the username is unique within this context
-			// v3.3 Multi-group users
-			// You may now have multiple membership rows for one user, so only get distinct userIDs
-			//		SELECT u.F_UserID
-			// v3.6.1 You might want to know WHY this is not a valid user
-			// Also, surely I need to bring teachers and reporters into the uniqueness too?
-			//		SELECT distinct(u.F_UserID), u.F_UserName, u.F_StudentID, m.F_GroupID
-			//		AND u.F_UserType>=0 
-			//		AND m.F_RootID=? 	
-			$sql = 	<<<EOD
-					SELECT distinct(u.F_UserID) as userID, u.F_UserName, u.F_StudentID, m.F_GroupID
-					FROM T_User u, T_Membership m
-					WHERE u.F_UserID=m.F_UserID
-					AND u.F_UserName = ?
-					$rootClause
-EOD;
-			//NetDebug::trace('isUserValid name sql='.$sql);
-			
-			//if ($user->userType != User::USER_TYPE_ADMINISTRATOR) {
-			//	$sql .= "AND m.F_RootID=? "; 
-			//} else {
-			//	//$sql .= "AND u.F_Password=?"; 
-			//}
-			//$sql .= "AND m.F_RootID=? "; 
-			
-			// TODO: u.F_UserType>=0 might need to change; can't quite work this out...
-			// v3.2 If we have removed password from the check, then don't send it in bindingParams...
-			//$rs = $this->db->Execute($sql, array($username, $rootID, $password));
-			// v3.6.1.1 And root handled above
-			//$rs = $this->db->Execute($sql, array($username, $rootID));
-			$rs = $this->db->Execute($sql, array($username));
-			
-			//gh#98
-			/*// v3.6.1 Initialise return
-			$rc = Array();
-			$rc['returnInfo'] = Array();*/
-			
-			switch ($rs->RecordCount()) {
-				case 0:
-					// There are no duplicates
-					// But you might need to check for ID too
-					// return true;
-					$nameOK = true;
-					break;
-				case 1:
-					// There is a duplicate, but if this is an update it might be the same record
-					// v3.3 Multi-group users
-					// return ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->id));
-					//NetDebug::trace('isUserValid duplicate name='.$user->name.' userID='.$user->userID);
-					// But you might need to check for ID too
-					//return ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->userID));
-					//$nameOK = ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->userID));
-					//$nameOK = ((int)($rs->FetchNextObj()->userID) == (int)($user->userID));
-					$firstRecord = $rs->FetchNextObj();
-					if ((int)($firstRecord->userID) == (int)($user->userID)) {
-						//NetDebug::trace('but it is the same person');
-						$nameOK = true;
-					} else {
-						//NetDebug::trace('found another person by name');
-						$nameOK = false;
-						$rc['returnInfo'][] = Array('name'=>$firstRecord->F_UserName, 'group'=>$firstRecord->F_GroupID);
-					}
-					break;
-				default:
-					// You found many existing users with this name
-					// Is this really an exception, or just a sign that this is a user your can't add/update?
-					//throw new Exception("isUserValid: More than one user was returned with username '".$username."'");
-					//return false;
-					$nameOK = false;
-					// You really should send back info on all the duplicates to be useful
-					while($record = $rs->FetchNextObj()) {
-						$rc['returnInfo'][] = Array('name' => $record->F_UserName, 'group' => $record->F_GroupID);
-					}
-			}
-		} else {
-			$nameOK = true;
-		}
-		// Do we want to check the studentID for uniqueness too?
-		if ($loginOption & 2) {
-			// v3.6.1 Do an extra check on the studentID if that is in Access Control.
-			// Of course, you could argue that if you only login with ID, the name could be duplicated, but that seems like it could lead to confusion...
-			//		SELECT distinct(u.F_UserID)
-			//		AND u.F_UserType>=0 
-			//		AND m.F_RootID=? 	
-			$sql = 	<<<EOD
-					SELECT distinct(u.F_UserID) as userID, u.F_UserName, u.F_StudentID, m.F_GroupID
-					FROM T_User u, T_Membership m
-					WHERE u.F_UserID=m.F_UserID
-					AND u.F_StudentID = ?
-					$rootClause
-EOD;
-			//NetDebug::trace('isUserValid studentID sql='.$sql);
-			//$rs = $this->db->Execute($sql, array($studentID, $rootID));
-			$rs = $this->db->Execute($sql, array($studentID));
-			
-			switch ($rs->RecordCount()) {
-				case 0:
-					// There are no duplicates
-					$idOK = true;
-					break;
-				case 1:
-					// There is a duplicate, but if this is an update it might be the same record
-					//$idOK = ((int)($rs->FetchNextObj()->F_UserID) == (int)($user->userID));
-					//NetDebug::trace('isUserValid duplicate id='.$user->studentID.' userID='.$user->userID);
-					$firstRecord = $rs->FetchNextObj();
-					if ((int)($firstRecord->userID) == (int)($user->userID)) {
-						$idOK = true;
-					} else {
-						//NetDebug::trace('found another person by id');
-						$idOK = false;
-						$rc['returnInfo'][] = Array('studentID'=>$firstRecord->F_StudentID, 'group'=>$firstRecord->F_GroupID);
-					}
-					break;
-				default:
-					// You found many existing users with this ID
-					//throw new Exception("isUserValid: More than one user was returned with id '".$studentID."'");
-					//return false;
-					$idOK = false;
-					// You really should send back info on all the duplicates to be useful
-					while($record = $rs->FetchNextObj()) {
-						$rc['returnInfo'][] = Array('studentID'=>$firstRecord->F_StudentID, 'group' => $record->F_GroupID);
-					}
-			}
-		} else {
-			$idOK = true;
-		}
 		// You need to be able to return different info for different failures
-		// 1 = name failed
-		// 2 = id failed
-		//return ($nameOK && $idOK);
-		$returnCode=0;
-		if (!$nameOK) $returnCode += 1;
-		if (!$idOK) $returnCode += 2;	   
-		//gh:#98.1
-		if (!$emailOK) $returnCode += 4;
-		$rc['returnCode']=$returnCode;
-		//return $returnCode;
+		if (!$checkOK)
+			$rc['returnCode'] = $loginOption;
+			
 		return $rc;
 	}
 	

@@ -49,7 +49,7 @@
 		// *********
 		
 		var startControl = webShare + "/Software/ResultsManager/web/";
-		var argList = "?version=3.7.2.107"
+		var argList = "?version=3.7.2.653"
 		
 		// see whether variables have come from command line or, preferentially, session variables
 		if ("<?php echo $userName ?>".length>0) {
@@ -84,7 +84,7 @@
 	</script>
 	<style type="text/css">
 		html, body { height:100%; }
-		body { 	margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
+		body { 	margin: 0px}
 	</style>
 </head>
 <body onload="onLoad()">

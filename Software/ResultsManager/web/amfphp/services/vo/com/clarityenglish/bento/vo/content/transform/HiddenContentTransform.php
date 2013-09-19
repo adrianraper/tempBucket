@@ -16,6 +16,7 @@ class HiddenContentTransform extends XmlTransform {
 		// #339 Hidden content
 		// #issue25 only for students
 		if ($user->userID >= 1 && $user->userType == User::USER_TYPE_STUDENT) {
+			// gh#653 Might get multiple groups
 			$groupID = $service->manageableOps->getGroupIdForUserId($user->userID);
 			$rs = $service->progressOps->getHiddenContent($groupID, Session::get('productCode'));
 			

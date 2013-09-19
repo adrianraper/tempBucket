@@ -51,9 +51,7 @@ class Group extends Manageable {
 	}
 	
 	/**
-	 * Recursively get all the ids of the users below this level.  This is used when deleting manageables.
-	 * AR I don't see how this is actually getting any userIDs? Or is it that we expect $this->manageables to contain
-	 * a full list of all users already? But for deleting I don't think it does.
+	 * Recursively get all the ids of the users below this level.  This is used when authenticating manageables.
 	 */
 	function getSubUserIds() {
 		$subUserIds = array();
@@ -62,6 +60,17 @@ class Group extends Manageable {
 			$subUserIds = array_merge($m->getSubUserIds(), $subUserIds);
 			
 		return $subUserIds;
+	}
+	/**
+	 * Recursively get all the users below this level.  This is used when deleting manageables.
+	 */
+	function getSubUsers() {
+		$subUsers = array();
+		
+		foreach ($this->manageables as $m)
+			$subUsers = array_merge($m->getSubUsers(), $subUsers);
+			
+		return $subUsers;
 	}
 	
 	/*

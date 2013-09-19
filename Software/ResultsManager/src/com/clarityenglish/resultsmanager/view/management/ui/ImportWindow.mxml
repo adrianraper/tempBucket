@@ -72,8 +72,12 @@
 			notImplementedYet.text = copyProvider.getCopyForId("notImplementedYet");
 			
 			// v3.5 Allow import with update
-			importWithUpdate.label = copyProvider.getCopyForId("importWithUpdate");
+			//importWithUpdate.label = copyProvider.getCopyForId("importWithUpdate");
 			//importJustPreview.label = copyProvider.getCopyForId("importJustPreview");
+			// gh#653
+			importWithMove.label = copyProvider.getCopyForId("importWithMove");
+			importWithCopy.label = copyProvider.getCopyForId("importWithCopy");
+			importWithBlock.label = copyProvider.getCopyForId("importWithBlock");
 			
 		}
 		
@@ -139,14 +143,15 @@
 				manageablesArray["users"] = manageablesObj.users;
 			
 				// v3.6.1 Allow import/move or preview?
-				if (importWithUpdate.selected) {
-					// Two choices since I can't just add a flag to the event saying "move as well as import"
-					// Either I add this flag to each manageable, or I call a different event.
-					var importEventName:String = ManageableEvent.IMPORT_MOVE_FROM_EXCEL;
+				// gh#653
+				if (importWithMove.selected) {
+					var importEventName:String = ManageableEvent.IMPORT_FROM_EXCEL_WITH_MOVE;
+				} else if (importWithCopy.selected) {
+					var importEventName:String = ManageableEvent.IMPORT_FROM_EXCEL_WITH_COPY;
 				} else {
 					importEventName = ManageableEvent.IMPORT_FROM_EXCEL;
 				}
-				TraceUtils.myTrace("importView, go to event " + importEventName);
+				//TraceUtils.myTrace("importView, go to event " + importEventName);
 				//parentView.dispatchEvent(new ManageableEvent(ManageableEvent.IMPORT_FROM_EXCEL, manageablesArray, _parentGroup, true));
 				parentView.dispatchEvent(new ManageableEvent(importEventName, manageablesArray, _parentGroup, true));
 				
@@ -212,12 +217,13 @@
 					</mx:HBox>
 					<mx:Label id="excelLabel2" styleName="subHeadingLabelBlack" />
 					<mx:TextArea id="excelTextArea" width="100%" height="50" />
+					<mx:Label id="excelLabel3" styleName="subHeadingLabelBlack" />
 					<mx:HBox width="100%">
-						<mx:Label id="excelLabel3" styleName="subHeadingLabelBlack" />
+						<mx:RadioButton id="importWithMove" groupName="importOptionsRadioGroup" selected="true" />
+						<mx:RadioButton id="importWithCopy" groupName="importOptionsRadioGroup" />
+						<mx:RadioButton id="importWithBlock" groupName="importOptionsRadioGroup" />
+						<mx:Spacer width="100%" />
 						<mx:Button id="startExcelImportButton" enabled="{excelTextArea.text.length > 0}" click="startExcelImport()" />
-						<mx:Spacer width="50%" />
-						<mx:CheckBox id="importWithUpdate" selected="false" />
-						<!-- <mx:CheckBox id="importJustPreview" selected="false" /> -->
 					</mx:HBox>
 				</mx:VBox>
 				<mx:VBox id="xmlInitialLayout" width="100%" height="80%">

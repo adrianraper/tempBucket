@@ -71,9 +71,11 @@ package com.clarityenglish.resultsmanager.view.management {
 			manageablesView.addEventListener(ManageableEvent.EXPORT, onExport);
 			manageablesView.addEventListener(ManageableEvent.ARCHIVE, onArchive);
 			manageablesView.addEventListener(ManageableEvent.IMPORT, onImport);
-			manageablesView.addEventListener(ManageableEvent.IMPORT_FROM_EXCEL, onImportFromExcel);
 			// v3.6.1 Allow moving as well as importing
-			manageablesView.addEventListener(ManageableEvent.IMPORT_MOVE_FROM_EXCEL, onImportMoveFromExcel);
+			// gh#653
+			manageablesView.addEventListener(ManageableEvent.IMPORT_FROM_EXCEL, onImportFromExcel);
+			manageablesView.addEventListener(ManageableEvent.IMPORT_FROM_EXCEL_WITH_MOVE, onImportFromExcel);
+			manageablesView.addEventListener(ManageableEvent.IMPORT_FROM_EXCEL_WITH_COPY, onImportFromExcel);
 			manageablesView.addEventListener(ManageableEvent.GET_EXTRA_GROUPS, onGetExtraGroups);
 			manageablesView.addEventListener(ExtraGroupsEvent.SET_EXTRA_GROUPS, onSetExtraGroups);
 			manageablesView.addEventListener(SearchEvent.SEARCH, onSearch);
@@ -235,19 +237,12 @@ package com.clarityenglish.resultsmanager.view.management {
 			sendNotification(RMNotifications.UPLOAD_XML, { completeNotification: RMNotifications.IMPORT_MANAGEABLES, completeBody: e.parentGroup, completeType: ImportManageablesCommand.XML_IMPORT } );
 		}
 		
+		// gh#653 Different options for import when duplicates found
 		private function onImportFromExcel(e:ManageableEvent):void {
 			var body:Object = e.manageables;
 			body.parentGroup = e.parentGroup;
 			
-			sendNotification(RMNotifications.IMPORT_MANAGEABLES, body, ImportManageablesCommand.EXCEL_IMPORT);
-		}
-		// v3.6.1 Allow importing and moving
-		private function onImportMoveFromExcel(e:ManageableEvent):void {
-			TraceUtils.myTrace("mediator.onImportMoveFromExcel");
-			var body:Object = e.manageables;
-			body.parentGroup = e.parentGroup;
-			
-			sendNotification(RMNotifications.IMPORT_MOVE_MANAGEABLES, body, ImportManageablesCommand.EXCEL_MOVE_IMPORT);
+			sendNotification(RMNotifications.IMPORT_MANAGEABLES, body, e.type);
 		}
 		
 		private function onGetExtraGroups(e:ManageableEvent):void {
