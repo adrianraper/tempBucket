@@ -1,6 +1,6 @@
 <?php
-//ini_set('error_reporting', E_ALL);
 echo 'status=ok';
-echo "&zendEncoded=".zend_loader_file_encoded();
-echo "&zendEnabled=".zend_loader_enabled();
-?>
+if (function_exists('zend_loader_file_encoded'))
+	echo "&zendEncoded=".zend_loader_file_encoded();
+if (function_exists('zend_loader_enabled'))
+	echo "&zendEnabled=".zend_loader_enabled();
