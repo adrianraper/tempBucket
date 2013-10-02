@@ -36,20 +36,17 @@
            
            		<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Dear {$account->adminUser->name}</p>
                 
-                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Your Road to IELTS subscription has ended. If you would like to extend your subscription, please log in to  <a href="http://www.IELTSpractice.com" target="_blank">www.IELTSpractice.com</a>. Click "Renew my licence" on the page.</p>
+                <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#000000; line-height:18px;">Your Road to IELTS subscription has ended. If you would like to extend your subscription, please log in to  <a href="http://www.IELTSpractice.com?utm_source=EndToday&utm_medium=Link_IP&utm_campaign=IP_ReminderEmail" target="_blank">www.IELTSpractice.com</a>. Click "Extend my subscription" on the page.</P>
+      <A style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px" href="http://www.ieltspractice.com?utm_source=EndToday&utm_medium=Btn_LoginExtend&utm_campaign=IP_ReminderEmail"><IMG 
+      style="BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #f8931f; MARGIN: 0px 0 15px 5px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; COLOR: #3b1a09; BORDER-LEFT-WIDTH: 0px" 
+      alt="Log in and extend your subscription now!" 
+      src="http://www.clarityenglish.com/images/email/ieltspractice/btn_remind_extend_off.jpg" 
+      width=208 height=39></A>
                 
               
-                
-                
-                
            
         
-        <A style="BORDER-RIGHT-WIDTH: 0px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px" href="http://www.ieltspractice.com" target="_blank">
-     <IMG 
-      style="BORDER-RIGHT-WIDTH: 0px; BACKGROUND-COLOR: #f8931f; MARGIN: 0px 0px 15px; BORDER-TOP-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; COLOR: #3b1a09; BORDER-LEFT-WIDTH: 0px" 
-      alt="Log in and resubscribe now!" 
-      src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_renew.jpg" 
-      width=183 height=40></A>       </div></td>
+               </div></td>
   </tr>
   
   <tr>
@@ -65,7 +62,7 @@
   <tr>
     <td height="60"></td>
     <td valign="top">
-    	<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 15px; margin:0; padding:0; color:#FFFFFF; line-height:18px;">Your learning doesn’t stop here. Enhance your career<br />
+    	<p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 15px; margin:0; padding:0; color:#FFFFFF; line-height:18px;">Your learning doesn't stop here. Enhance your career<br />
 prospects by learning essential English skills for your daily life!</p>
 	</td>
     <td>&nbsp;</td>
@@ -79,7 +76,7 @@ prospects by learning essential English skills for your daily life!</p>
   </tr>
   <tr>
     <td height="59">&nbsp;</td>
-    <td valign="top"> <a href="http://www.claritylifeskills.com?utm_source=EndToday&utm_medium=Btn_Findmore&utm_campaign=ReminderEmail" target="_blank"><img src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_cls_more.jpg" alt="Find out more" width="149" height="40" style="margin:0 0 15px 0; border:0; background-color:#EFB32F; color:#4B2808;"/></a></td>
+    <td valign="top"> <a href="http://www.claritylifeskills.com?utm_source=EndToday&utm_medium=Btn_Findmore&utm_campaign=IP_ReminderEmail" target="_blank"><img src="http://www.clarityenglish.com/images/email/ieltspractice/btn_reminder_cls_more.jpg" alt="Find out more" width="149" height="40" style="margin:0 0 15px 0; border:0; background-color:#EFB32F; color:#4B2808;"/></a></td>
     <td>&nbsp;</td>
   </tr>
   
@@ -123,29 +120,32 @@ prospects by learning essential English skills for your daily life!</p>
   
 
   
-  <tr>
-        <td width="10" background="http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_left.jpg">            </td>
-        <td width="579"  bgcolor="#343434">
-       <div style="padding:20px 48px;">
-         
-            
-            
-             <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px; font-weight:bold;">Clarity Language Consultants Ltd<br />(UK and Hong Kong since 1992)</p>
-			  
-			 <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0 0 15px 0; padding:0; color:#FFFFFF; line-height:18px;">
-                T: (+852) 2791 1787 | F: (+852) 2791 6484<br />
-               E: <a href="mailto:info@clarityenglish.com" target="_blank"  style="color:#FFFFFF;">info@clarityenglish.com</a> | W: <a href="http://www.ClarityEnglish.com" target="_blank"  style="color:#FFFFFF;">www.ClarityEnglish.com</a>
-              </p> 
-              
-               <p style="font-family: Arial, Verdana,  Helvetica, sans-serif; font-size: 13px; margin:0; padding:0; color:#FFFFFF; line-height:18px;">
-               Your privacy is important to us. Please review IELTSpractice.com privacy
-policy by clicking here: <a href="http://www.clarityenglish.com/disclaimer.php" target="_blank" style="color:#FFFFFF;">http://www.clarityenglish.com/disclaimer.php</a></p>
-    </div>
-        
-        
-        </td>
-        <td width="11" background="http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_right.jpg"></td>
-  </tr>
+  <TR>
+    <TD 
+    background=http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_left.jpg 
+    width=10></TD>
+    <TD bgColor=#343434 width=579>
+      <DIV 
+      style="PADDING-BOTTOM: 20px; PADDING-LEFT: 48px; PADDING-RIGHT: 48px; PADDING-TOP: 20px">
+      <P 
+      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 13px; FONT-WEIGHT: bold; PADDING-TOP: 0px">Clarity 
+      Language Consultants Ltd<BR>(UK and Hong Kong since 1992)</P>
+      <P 
+      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px 0px 15px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 13px; PADDING-TOP: 0px">T: 
+      (+852) 2791 1787 | F: (+852) 2791 6484<BR>E: <A style="COLOR: #ffffff" 
+      href="mailto:support@ieltspractice.com" 
+      target=_blank>support@ieltspractice.com</A> | W: <A style="COLOR: #ffffff" 
+      href="http://www.IELTSpractice.com" 
+      target=_blank>www.IELTSpractice.com</A> </P>
+      <P 
+      style="PADDING-BOTTOM: 0px; LINE-HEIGHT: 18px; MARGIN: 0px; PADDING-LEFT: 0px; PADDING-RIGHT: 0px; FONT-FAMILY: Arial, Verdana,  Helvetica, sans-serif; COLOR: #ffffff; FONT-SIZE: 13px; PADDING-TOP: 0px">Your 
+      privacy is important to us. Please review IELTSpractice.com privacy policy 
+      by clicking here: <A style="COLOR: #ffffff" 
+      href="http://www.ieltspractice.com/terms.php" 
+      target=_blank>http://www.ieltspractice.com/terms.php</A></P></DIV></TD>
+    <TD 
+    background=http://www.clarityenglish.com/images/email/ieltspractice/bg_btm_right.jpg 
+    width=11></TD></TR>
 </table>
 </body>
 </html>

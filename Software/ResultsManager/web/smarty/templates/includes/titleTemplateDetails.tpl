@@ -68,6 +68,9 @@
 {elseif $title->name|stristr:"Sun On Japanese"}
 	{assign var='titleImage' value='so'}
 	{assign var='startPageFolder' value='SunOnJapanese'}
+{elseif $title->name|stristr:"Clarity Course Builder"}
+	{assign var='titleImage' value='ccb'}
+	{assign var='startPageFolder' value='CCB'}
 {elseif $title->name|stristr:"Clarity Test"}
 	{assign var='titleImage' value='ct'}
 	{assign var='startPageFolder' value='ClarityTest'}
@@ -95,6 +98,8 @@
 		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-AC.php?prefix={$account->prefix}</br>
 	{elseif $title->productCode==53}
 		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start-GT.php?prefix={$account->prefix}</br>
+	{elseif $title->productCode==54}
+		http://www.ClarityEnglish.com/area1/{$startPageFolder}/Player.php?prefix={$account->prefix}</br>
 	{* Actually no harm in using prefix for RM - it is just ignored
 		{elseif $title->name|stristr:"Results Manager"}
 			http://www.ClarityEnglish.com/area1/{$startPageFolder}/Start.php</br>
