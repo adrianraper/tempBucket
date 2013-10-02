@@ -50,6 +50,16 @@
 			view.buy.add(onBuyIELTS);
 		}
 		
+		override public function onRemove():void {
+			super.onRegister();
+			
+			view.logout.remove(onLogout);
+			view.backToMenu.remove(onBackToMenu);
+			view.upgrade.remove(onUpgradeIELTS); 
+			view.register.remove(onRegisterIELTS);
+			view.buy.remove(onBuyIELTS);
+		}
+		
 		protected override function onXHTMLReady(xhtml:XHTML):void {
 			super.onXHTMLReady(xhtml);
 		}
@@ -75,10 +85,6 @@
 				sendNotification(BBNotifications.CLOSE_ALL_POPUPS, view); // #265
 				sendNotification(BBNotifications.SELECTED_NODE_UP);
 			}
-		}
-		
-		override public function onRemove():void {
-			super.onRemove();
 		}
         
 		override public function listNotificationInterests():Array {

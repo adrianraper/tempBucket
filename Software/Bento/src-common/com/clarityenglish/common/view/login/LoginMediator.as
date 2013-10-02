@@ -36,9 +36,10 @@ package com.clarityenglish.common.view.login {
 		 */
 		override public function onRegister():void {
 			super.onRegister();
-		    //trace("register LoginMediator");
+			
 			view.addEventListener(LoginEvent.LOGIN, onLogin);
 			view.addEventListener(LoginEvent.ADD_USER, onAddUser);
+			
 			view.getTestDrive().add(onTestDrive);
 			
 			// Inject some data to the login view
@@ -60,6 +61,13 @@ package com.clarityenglish.common.view.login {
 			view.setNoAccount(noAccount);
 		}
         
+		override public function onRemove():void {
+			super.onRemove();
+			
+			view.removeEventListener(LoginEvent.LOGIN, onLogin);
+			view.removeEventListener(LoginEvent.ADD_USER, onAddUser);
+		}
+		
 		/**
 		 * List all notifications this Mediator is interested in.
 		 * <P>
