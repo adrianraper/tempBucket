@@ -46,6 +46,9 @@
 		
 		public var licenceAttributes:Array;
 		
+		// gh#659
+		public var productCodes:Array;
+		
 		public function Account() {
 			
 		}

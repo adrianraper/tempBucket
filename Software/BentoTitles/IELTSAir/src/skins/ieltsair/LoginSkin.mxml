@@ -2,11 +2,41 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:login="skins.ieltsair.assets.login.*">
+		xmlns:login="skins.ieltsair.assets.login.*" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.ielts.view.login.LoginView")]
 	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="250" distance="1" color="0xB3B3B3" blurX="1.5" blurY="1.5" alpha="0.8" />
+	</fx:Declarations>
+	
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			// gh#659
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				var versionTitleArray:Array = [{caption: "Academic", code: "52"}, {caption: "General Training", code: 53}];
+				if (IPLoginButtonBar) {
+					if (IPLoginButtonBar.visible == true) {
+						IPLoginButtonBar.dataProvider = new ArrayCollection(versionTitleArray);
+						IPLoginBg.visible = true;
+						loginBg.visible = false;
+					} else {
+						IPLoginBg.visible = false;
+						loginBg.visible = true;
+					}
+				}									
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<s:states>
 		<s:State name="disabled" />
@@ -14,6 +44,7 @@
 		
 		<s:State name="login" stateGroups="loginStates" />
 		<s:State name="loginConcurrentTracking" stateGroups="loginStates" />
+		<s:State name="loginIPConcurrentTracking" />
 		<s:State name="register" stateGroups="registerStates" />
 		<s:State name="registerConcurrentTracking" stateGroups="registerStates" />
 		<s:State name="registerError" stateGroups="registerStates" />
@@ -23,27 +54,56 @@
 	
 	<s:SWFLoader source="@Embed(source='/skins/ieltsair/assets/login/rtiv2_login.png')" top="158" right="48"  />
 	
-	<login:InputAreaChrome left="19" top="183" />
-	<s:SWFLoader source="@Embed(source='/skins/ieltsair/assets/login/test_drive.png')" top="463" left="27"  />
-	<s:Label id="testDriveLabel" top="485" left="218" width="340" color="0x592A0C" fontWeight="bold" fontSize="16"  />
-	<s:Button id="testDriveAcademicButton" label="Academic" left="190" top="520" width="100" height="44" fontSize="16" />
-	<s:Button id="testDriveGeneralButton" label="General Training" left="300" top="520" width="160" height="44" fontSize="16" />
+	<s:Group includeIn="loginStates">
+		<login:InputAreaChrome left="19" top="183" />
+		<s:SWFLoader source="@Embed(source='/skins/ieltsair/assets/login/test_drive.png')" top="463" left="27"  />
+		<s:Label id="testDriveLabel" top="485" left="218" width="340" color="0x592A0C" fontWeight="bold" fontSize="16"  />
+		<s:Button id="testDriveAcademicButton" label="Academic" left="190" top="520" width="100" height="44" fontSize="16" />
+		<s:Button id="testDriveGeneralButton" label="General Training" left="300" top="520" width="160" height="44" fontSize="16" />
+		
+		<!--<s:Label text="Login with the details you have been given by your school. You can't purchase Road to IELTS through the App Store yet." top="217" left="73" width="340" />-->
+		
+		<s:Label id="loginKey_lbl" left="73" top="200" text="{hostComponent.loginKey_lbl}" fontSize="16" />
+		<s:TextInput id="loginKeyInput" left="73" top="220" width="263" />
+		
+		<!--<s:Label id="loginIDLabel" color="#333333" left="73" top="280" width="340" fontSize="14" />-->
+		
+		<s:Label id="passwordLabel" left="73" top="270" fontSize="16" />
+		<s:TextInput id="passwordInput" left="73" top="290" width="263" displayAsPassword="true" />
+		
+		<s:Button id="loginButton" left="73" top="335" width="120" height="44" fontSize="18" />
+		<s:Button id="accountMoreButton" top="394" left="46" />
+	</s:Group>	
 	
-	<!--<s:Label text="Login with the details you have been given by your school. You can't purchase Road to IELTS through the App Store yet." top="217" left="73" width="340" />-->
-	
-	<s:Label id="loginKey_lbl" left="73" top="200" text="{hostComponent.loginKey_lbl}" fontSize="16" />
-	<s:TextInput id="loginKeyInput" left="73" top="220" width="263" />
-	
-	<!--<s:Label id="loginIDLabel" color="#333333" left="73" top="280" width="340" fontSize="14" />-->
-	
-	<s:Label id="passwordLabel" left="73" top="270" fontSize="16" />
-	<s:TextInput id="passwordInput" left="73" top="290" width="263" displayAsPassword="true" />
-	
-	<s:Button id="loginButton" left="73" top="335" width="120" height="44" fontSize="18" />
-	<s:Button id="accountMoreButton" top="394" left="46" />
+	<!--gh#659-->
+	<s:Group includeIn="loginIPConcurrentTracking" top="183" left="45">
+		<s:Group id="IPLoginBg">
+			<login:ACBg visible="{IPLoginButtonBar.selectedIndex == 0}" filters="{[dropShadowFilter]}" />
+			<login:GTBg visible="{IPLoginButtonBar.selectedIndex == 1}" filters="{[dropShadowFilter]}" />
+		</s:Group>
+		<login:loginBg id="loginBg" filters="{[dropShadowFilter]}" top="25" />
+		
+		<s:Label id="option1TitleLabel" top="60" left="25" fontWeight="bold" fontSize="16" color="0x174A7D" />
+		<s:Label id="option1ContentLabel" top="90" left="25" width="300" fontSize="12" color="0x666666" />
+		
+		<s:Label id="IPLoginKey_lbl" top="130" left="25" text="{hostComponent.IPLoginKey_lbl}" fontSize="16" />
+		<s:TextInput id="IPLoginKeyInput" top="150" left="25" width="210" />
+		
+		<s:Label id="IPPasswordLabel" top="200" left="25" fontSize="16" />
+		<s:TextInput id="IPPasswordInput" top="220" left="25" width="210" displayAsPassword="true" />		
+		<s:Button id="IPLoginButton" left="240" top="220" width="104" height="35" fontSize="18" />
+		
+		<login:dotLine top="275" left="25" />
+		
+		<s:Label id="option2TitleLabel" top="310" left="25" fontWeight="bold" fontSize="16" color="0x174A7D" />
+		<s:Label id="option2ContentLabel" top="340" left="25" width="210" fontSize="12" color="0x666666" />
+		<s:Button id="IPLoginStartButton" top="335" left="240" width="120" height="35" fontSize="18"/>
+		
+		<s:ButtonBar id="IPLoginButtonBar" visible="{hostComponent.getProductCodes().length > 1}" labelField="caption" requireSelection="true" />
+	</s:Group>
+		
 	<login:BritishCouncilLoginLogo bottom="0" />
 	<login:GreyCirclesLogin bottom="0" right="0" />
-	
 	<!-- #479 -->
 	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#AAAAAA" right="3" bottom="52"/>
 	

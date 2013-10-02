@@ -87,6 +87,10 @@ login|LoginView s|Button {
 	chromeColor: #2793CE;
 }
 
+login|LoginView s|ButtonBar#IPLoginButtonBar {
+	skinClass: ClassReference("skins.ieltsair.login.IPLoginButtonBarSkin");
+}
+
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ieltsair.TitleSkin");

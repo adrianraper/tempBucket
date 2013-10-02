@@ -28,6 +28,9 @@
 		function setNoAccount(noAccount:Boolean):void;
 		//gh#41
 		function getTestDrive():Signal;
+		// gh#659
+		function setHasIPrange(value:Boolean):void;
+		function setProductCodes(productCodes:Array):void;
 	}
 	
 }
