@@ -86,12 +86,15 @@ Please keep this email for later reference.</p>
     <td>Fill in the receiver's details on the Send Money form as below:
     
     <ol style="margin:5px 0 0 0; padding:0; list-style-type: none;  line-height:18px;">
-              	<li  style="margin:0; padding:0;">First name: Ka Pui</li>
-<li style="margin:0; padding:0;">Middle name: Christine</li>
-<li style="margin:0; padding:0;">Last name: Ng</li>
+
+
+<li  style="margin:0; padding:0;">First name: Yiu Leung</li>
+<li style="margin:0; padding:0;">Last name: Shek</li>
+
+
 <li style="margin:0; padding:0;">City: Hong Kong</li>
 <li style="margin:0; padding:0;">Country: Hong Kong</li>
-<li style="margin:0; padding:0;">Click <a href="http://www.clarityenglish.com/images/email/ieltspractice/WesternUnionSample_Clarity.jpg" target="_blank">here</a> to see a sample</li>
+<li style="margin:0; padding:0;">Click <a href="http://www.clarityenglish.com/images/email/ieltspractice/http://www.clarityenglish.com/images/email/ieltspractice/WesternUnionSample_Clarity_Brian.jpg" target="_blank">here</a> to see a sample</li>
 </ol>    </td>
     <td></td>
   </tr>

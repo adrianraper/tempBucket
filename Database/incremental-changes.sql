@@ -128,7 +128,7 @@ DELETE FROM T_Reseller;
 INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`F_DisplayOrder`) VALUES 
 (0,'Not set',NULL,NULL,300),
 (1,'Abacus Communications Ltd',NULL,'info@abacus-communications.com',12),
-(2,'Bookery',NULL,'markus@bookery.com.au,info@bookery.com.au',6),
+(2,'Bookery',NULL,'info@bookery.com.au',6),
 (3,'Edutech Middle East',NULL,'sales@clarityenglish.com,adrian.raper@clarityenglish.com',106),
 (4,'Falcon Press Sdn Bhd',NULL,NULL,101),
 (5,'Hans Richter Laromedel',NULL,'post@richbook.se',13),
@@ -163,7 +163,7 @@ INSERT INTO `T_Reseller` (`F_ResellerID`,`F_ResellerName`,`F_Remark`,`F_Email`,`
 (35,'Micromail',NULL,'diarmuid@micromail.ie',105),
 (36,'IELTSPractice.com',NULL,'cynthia.lau@clarityenglish.com',20),
 (37,'Vietnam Book Promotion Service',NULL,'thao@vietnambookpromotion.com',19),
-(38,'Subramoni Iyer (Qatar)',NULL,'subramoni.iyer@lesolonline.com,subramoni.iyer@windowslive.com',7);
+(38,'Subramoni Iyer (Qatar)',NULL,'subramoni.iyer@lesolonline.com',7);
 
 -- No more monthly usage stats
 UPDATE `rack80829`.`T_Triggers` SET `F_ValidToDate`='2011-08-29' WHERE F_TriggerID in (31);
