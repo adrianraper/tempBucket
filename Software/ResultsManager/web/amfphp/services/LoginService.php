@@ -66,9 +66,10 @@ class LoginService extends AbstractService {
 			$loginDetails->loginOption & User::LOGIN_BY_ID ||
 			$loginDetails->loginOption & User::LOGIN_BY_EMAIL) {
 			$stubUser = new User();
-			if (isset($user->name)) $stubUser->name = $user->name;
-			if (isset($user->studentID)) $stubUser->studentID = $user->studentID;
-			if (isset($user->email)) $stubUser->email = $user->email;
+			// gh#653 correct object name
+			if (isset($loginDetails->name)) $stubUser->name = $loginDetails->name;
+			if (isset($loginDetails->studentID)) $stubUser->studentID = $loginDetails->studentID;
+			if (isset($loginDetails->email)) $stubUser->email = $loginDetails->email;
 		} else {
 			return false;		
 		}		

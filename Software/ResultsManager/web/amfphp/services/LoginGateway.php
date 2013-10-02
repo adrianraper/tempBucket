@@ -29,6 +29,7 @@ function loadAPIInformation() {
 	//$inputData = '{"method":"getOrAddUser","studentID":"5216-8987-3456","name":"Gustomer","password":"uiop","email":"adrian@noodles.hk","groupID":"168","productCode":"52","expiryDate":"2012-08-29","country":"Hong Kong","emailTemplateID":"Welcome-BCHK-user","adminPassword":"clarity88","dbHost":102,"loginOption":2}';
 	//$inputData = '{"method":"getOrAddUser","studentID":"xx999-21407-00020","name":"xxD\u00e2v\u00efd V\u00e2h\u00e9y\u00f6","email":"dosh.10@noodles.hk","dbHost":"200","productCode":52,"expiryDate":"2013-03-07 23:59:59","prefix":"GLOBAL","rootID":"14030","groupID":"22155","loginOption":"2","country":"UK","city":"British Council ORS","adminPassword":"clarity88","registerMethod":"ORS-portal"}';
 	//$inputData = '{"method":"forgotPassword","studentID":"5216-8965-3456","dbHost":102,"loginOption":2}';
+	//$inputData = '{"method":"getUser","email":"dandy@email.com","loginOption":128,"licenceType":5}';
 	$postInformation= json_decode($inputData, true);	
 	if (!$postInformation) 
 		// TODO. Ready for PHP 5.3
