@@ -31,6 +31,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import spark.components.RadioButton;
 	import spark.components.RadioButtonGroup;
 	import spark.components.TabBar;
+	import spark.components.TextArea;
 	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
 	
@@ -45,6 +46,10 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		[SkinPart(required="true")]
 		public var tabBar:TabBar;
+		
+		// gh#704
+		[SkinPart]
+		public var aboutCourseDescriptionTextArea:TextArea;
 		
 		[SkinPart]
 		public var aboutCourseNameTextInput:TextInput;
@@ -135,6 +140,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var courseNameLabel:Label;
 		
 		[SkinPart]
+		public var courseDescriptionLabel:Label;
+		
+		[SkinPart]
 		public var authorLabel:Label;
 		
 		[SkinPart]
@@ -213,6 +221,8 @@ package com.clarityenglish.rotterdam.view.settings {
 			
 			// About data
 			if (aboutCourseNameTextInput) aboutCourseNameTextInput.text = course.@caption;
+			// gh#704
+			if (aboutCourseDescriptionTextArea) aboutCourseDescriptionTextArea.text = course.@description;
 			if (aboutAuthorTextInput) aboutAuthorTextInput.text = course.@author;
 			if (aboutEmailTextInput) aboutEmailTextInput.text = course.@email;
 			if (aboutContactNumberTextInput) aboutContactNumberTextInput.text = course.@contact;
@@ -303,6 +313,16 @@ package com.clarityenglish.rotterdam.view.settings {
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							course.@caption = StringUtils.trim(e.target.text);
+							dirty.dispatch();
+							invalidateProperties();
+						}
+					});
+					break;
+				// gh#704
+				case aboutCourseDescriptionTextArea:
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!isPopulating) {
+							course.@description = StringUtils.trim(e.target.text);
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -463,7 +483,10 @@ package com.clarityenglish.rotterdam.view.settings {
 					forStudentLabel.text = copyProvider.getCopyForId("forStudentLabel");
 					break;
 				case courseNameLabel:
-					courseNameLabel.text = copyProvider.getCopyForId("courseNameLabel");
+					instance.text = copyProvider.getCopyForId("courseNameLabel");
+					break;
+				case courseDescriptionLabel:
+					instance.text = copyProvider.getCopyForId("courseDescriptionLabel");
 					break;
 				case authorLabel:
 					authorLabel.text = copyProvider.getCopyForId("authorLabel");

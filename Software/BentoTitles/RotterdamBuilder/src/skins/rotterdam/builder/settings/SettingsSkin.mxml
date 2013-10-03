@@ -145,22 +145,27 @@
 					<s:Label id="courseNameLabel" fontWeight="bold" />
 					<s:TextInput id="aboutCourseNameTextInput" width="300" />
 					
-					<s:Spacer height="{settingBackground.height * 0.05}" />
+					<s:Spacer height="{settingBackground.height * 0.025}" />
+					
+					<s:Label id="courseDescriptionLabel" fontWeight="bold" />
+					<s:TextArea id="aboutCourseDescriptionTextArea" width="300" heightInLines="4" />
+					
+					<s:Spacer height="{settingBackground.height * 0.025}" />
 					
 					<s:Label id="authorLabel" fontWeight="bold" />
 					<s:TextInput id="aboutAuthorTextInput" width="300" />
 					
-					<s:Spacer height="{settingBackground.height * 0.05}" />
+					<s:Spacer height="{settingBackground.height * 0.025}" />
 					
 					<s:Label id="contactEmailLabel" fontWeight="bold" />
 					<s:TextInput id="aboutEmailTextInput" width="300" />
 					
-					<s:Spacer height="{settingBackground.height * 0.05}" />
+					<s:Spacer height="{settingBackground.height * 0.025}" />
 					
 					<!--s:Label text="Contact number" fontWeight="bold" />
 					<s:TextInput id="aboutContactNumberTextInput" width="300" /-->
 					
-					<s:Spacer height="{settingBackground.height * 0.05}" />
+					<s:Spacer height="{settingBackground.height * 0.025}" />
 					
 					<s:Label id="directURLLabel" fontWeight="bold" />
 					<s:TextInput id="directStartURLLabel" editable="false" width="700" borderVisible="false"/>

@@ -56,19 +56,13 @@ function runDailyJobs($triggerDate = null) {
 	// Need date as simple Y-m-d
 	$expiryDate = date('Y-m-d', $triggerDate);
 
-	// For the old RTI database
 	/*
-	$database = 'GlobalRoadToIELTS';
-	$usersMoved = $thisService->internalQueryOps->archiveExpiredUsers($expiryDate, $database);
-	echo "Moved $usersMoved users from $database to expiry table. $newLine";
-	*/
-	
 	// For the Road to IELTS Last Minute accounts in the merged database
 	$database = 'rack80829';
 	$roots = array(163);
 	$usersMoved = $thisService->dailyJobOps->archiveExpiredUsers($expiryDate, $roots, $database);
 	echo "Moved $usersMoved users from $database to expiry table. $newLine";
-	
+	*/
 	/*
 	// 2. Archive expired titles from accounts
 	
@@ -94,9 +88,8 @@ function runDailyJobs($triggerDate = null) {
 	// Date is UTC and this job runs at 16:00 UTC. So it should be based on units starting tomorrow.
 	// This means that Vancouver students will see the email the day before the unit is available, so wording
 	// in the email needs to include the date rather than 'now/today'.
-	/*
 	$courseDate = date('Y-m-d', addDaysToTimestamp($triggerDate, 1));
-	$templateID = 'EmailMeUnitStart';
+	$templateID = 'CCB/EmailMeUnitStart';
 	$emailArray = $thisService->dailyJobOps->getEmailsForGroupUnitStart($courseDate);
 	if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 		// Send the emails
@@ -110,7 +103,6 @@ function runDailyJobs($triggerDate = null) {
 			echo "<b>Email: ".$email["to"]."</b>".$newLine.$thisService->emailOps->fetchEmail($templateID, $email["data"])."<hr/>";
 		}
 	}
-	*/
 	/*
 	// Then repeat for courses that are published to start whenever a user first goes into them
 	$templateID = 'EmailMeUserFirstStart';

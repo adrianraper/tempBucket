@@ -150,7 +150,6 @@ XML;
 	public function sendWelcomeEmail($courseXML, $groupID) {
 		// This will send a welcome email to any student in this group for this course
 		// (and subgroups that don't have their own publication data??)
-		// TODO. Make this process just put records into a database and then a cron job can send them
 		return $this->courseOps->sendWelcomeEmail($courseXML, $groupID);
 	}
 }

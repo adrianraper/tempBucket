@@ -395,9 +395,9 @@ EOD;
 				if (isset($user->email) && $user->email) {
 					// Just during inital testing - only send emails to me
 					// $toEmail = $user->email;
-					$toEmail = 'adrian@noodles.hk';
+					$toEmail = 'adrian.raper@clarityenglish.com';
 					$emailData = array("user" => $user, "course" => $course);
-					$thisEmail = array("to" => $toEmail, "data" => json_encode($emailData));
+					$thisEmail = array("to" => $toEmail, "data" => $emailData);
 					$emailArray[] = $thisEmail;
 					
 				}
@@ -405,7 +405,7 @@ EOD;
 		}
 		
 		// gh#226
-		$rc = $this->emailOps->sendEmails('', 'EmailMeWelcome', $emailArray);
+		$rc = $this->emailOps->sendEmails('', 'CCB/EmailMeWelcome', $emailArray);
 
 		return count($emailArray);
 	}
