@@ -35,13 +35,13 @@ s|List {
 	contentBackgroundAlpha: 0;
 }
 
-components|XHTMLExerciseView s|TextInput {
+/*components|XHTMLExerciseView s|TextInput {
 	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
 	contentBackgroundColor: #FFFFFF;
 	contentBackgroundAlpha: 0;
 	paddingLeft: 0;
 	paddingRight: 0;
-}
+}*/
 
 tensebuster|TenseBusterApplication {
 	skinClass: ClassReference("skins.tensebusterair.TenseBusterApplicationSkin");
