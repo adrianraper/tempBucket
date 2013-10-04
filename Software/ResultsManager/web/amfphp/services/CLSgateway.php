@@ -48,7 +48,7 @@ function loadAPIInformation() {
 	global $nonApiInformation;
 	
 	$inputData = file_get_contents("php://input");
-	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Mimi Rahima","email":"mimi.rahima.22@clarityenglish.com","offerID":59,"languageCode":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201200085","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
+	//$inputData = '{"method":"addSubscription","transactionTest":"false","name":"Momi Rahima","country":"Hong Kong","email":"mimi.rahima.24@clarityenglish.com","offerID":59,"languageCode":"EN","productVersion":"R2IHU","resellerID":21,"password":"sweetcustard","orderRef":"201300001","emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128,"status":"initial"}';
 	//$inputData = '{"method":"addSubscription","subscriptionID":1020,"emailTemplateID":"ieltspractice_welcome","paymentMethod":"credit card","loginOption":128}';
 	//$inputData = '{"method":"saveSubscriptionDetails","email":"douglas.engelbert.24@clarityenglish.com","name":"Douglas Engelbert","country":"Hong Kong","languageCode":"EN","productVersion":"R2IHU","resellerID":21,"orderRef":"201200085","password":"sweetcustard","offerID":59,"status":"initial"}';
 	//$inputData = '{"method":"updateSubscriptionStatus","subscriptionID":1040,"status":"paid"}';

@@ -540,6 +540,7 @@ EOD;
 		
 		// Set the root id
 		$account->id = $this->db->Insert_ID();
+		AbstractService::$log->setRootID($account->id);
 		//echo "new root=$account->id"."<br/>";
 		
 		// Now update the titles within the account
@@ -547,6 +548,10 @@ EOD;
 		if (count($account->titles)>0) {
 			$this->updateAccountTitles($account);
 		}
+
+		// gh#653 useful to know if this is a home user account
+		if (count($account->titles) > 0 && $account->titles[0]->licenceType == Title::LICENCE_TYPE_I)
+			$homeUser = true;
 		
 		// If an admin user is specified (as it always will be except with self-hosted accounts) then create a group and user
 		if ($account->adminUser) {
@@ -558,25 +563,24 @@ EOD;
 			
 			// Create a new user, add them to the group then update adminUserID in $account with the newly added user id
 			$adminUser = $this->manageableOps->addUser($account->adminUser, $group, $account->id);
-			//echo "added user {$account->adminUser->id}"."<br/>";
-			// v3.7 Also create a learner user at the same time. Mostly useful for AA accounts.
-			$learnerUser = new User();
-			$learnerUser->name = $account->prefix.'_learner';
-			$learnerUser->password = $account->prefix;
-			$learnerUser->userType = User::USER_TYPE_STUDENT;
-			$learnerUser = $this->manageableOps->addUser($learnerUser, $group, $account->id);			
-			//NetDebug::trace('AccountOps'."Created learner name=".$learnerUser->name.", id=".$learnerUser->userID);
-			AbstractService::$log->notice("Created learner name=".$learnerUser->name.", id=".$learnerUser->userID);
-			
 			// Update the adminUserID field in the database to point at the newly created user
-			// v3.4 Multi-group users
-			//$this->db->Execute("UPDATE T_AccountRoot SET F_AdminUserID=? WHERE F_RootID=?", array($adminUser->id, $account->id));
 			$this->db->Execute("UPDATE T_AccountRoot SET F_AdminUserID=? WHERE F_RootID=?", array($adminUser->userID, $account->id));
-			AbstractService::$log->setRootID($account->id);
-			// v3.4 Multi-group users
-			//AbstractService::$log->notice("Created group name=".$account->name.", id=".$group->id.", and user name=".$account->adminUser->name.", id=".$account->adminUser->id);
 			AbstractService::$log->notice("Created group name=".$account->name.", id=".$group->id.", and user name=".$account->adminUser->name.", id=".$account->adminUser->userID);
 			
+			// v3.7 Also create a learner user at the same time. Mostly useful for AA accounts.
+			// gh#653 but skip this for home user sales as completely unnecessary
+			if (!$homeUser) {
+				$learnerUser = new User();
+				$learnerUser->name = $account->prefix.'_learner';
+				// gh#653 Must initialise all possible key fields
+				$learnerUser->email = 'learner@'.$account->prefix.'.com';
+				$learnerUser->studentID = $account->prefix.'_learner';
+				$learnerUser->password = $account->prefix;
+				$learnerUser->userType = User::USER_TYPE_STUDENT;
+				$learnerUser = $this->manageableOps->addUser($learnerUser, $group, $account->id);			
+				AbstractService::$log->notice("Created learner name=".$learnerUser->name.", id=".$learnerUser->userID);
+			}
+						
 			// You need to add a record to T_AccountEmails for this admin user
 			$dbObj = array();
 			$dbObj['F_RootID'] = $account->id;
@@ -593,15 +597,11 @@ EOD;
 				$dbObj['F_Key'] = $licenceAttribute['licenceKey'];
 				$dbObj['F_Value'] = $licenceAttribute['licenceValue'];
 				if ($licenceAttribute['productCode'] > 0) $dbObj['F_ProductCode'] = $licenceAttribute['productCode'];
-				//NetDebug::trace('AccountOps.licenceAttribute insert '.$dbObj['F_Key'].'='.$dbObj['F_Value'].':'.$dbObj['F_ProductCode']);
 				$this->db->AutoExecute("T_LicenceAttributes", $dbObj, "INSERT");
 			}
 		}
 			
-		// make the root of the changed account explicit in the log
-		AbstractService::$log->setRootID($account->id);
 		AbstractService::$log->notice("Created account name=".$account->name.", id=".$account->id);
-		
 		$this->db->CompleteTrans();
 	}
 	
