@@ -24,5 +24,7 @@
 	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>
 	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
 	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
+	
+	<randomizedTestQuestionTotalNumber></randomizedTestQuestionTotalNumber>
 </config>
 

@@ -267,6 +267,11 @@ package com.clarityenglish.common.model {
 			return config.rootID;
 		}
 		
+		// gh#660 get randomized test question total number
+		public function getRandomizedTestQuestionTotalNumber():Number {
+			return config.randomizedTestQuestionTotalNumber;
+		}
+		
 		public function getConfig():Config {
 			return config;
 		}

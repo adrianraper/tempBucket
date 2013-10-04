@@ -6,6 +6,13 @@ class RandomizedTestTransform extends XmlTransform {
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform';
 	
 	public function transform($db, $xml, $href, $service) {
+		// gh#660
+		$totalNumber = $href->options['totalNumber'];
+		if ($totalNumber <= 0) {
+			// default total question number in each question back is 5
+			$totalNumber = 5;
+		}
+		
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		$randArray = array();
 		
@@ -40,8 +47,8 @@ class RandomizedTestTransform extends XmlTransform {
 				//$multiQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:ol[@id="questionList_mc"]';
 				//$xmlBody = $xmlPath->query($multiQuery)->item(0);
 				$MultipleChoiceQuestion = $bankDoc->getElementsByTagName("MultipleChoiceQuestion");
-				for($i = 0; $i < 5; $i ++) {
-					$n = rand ( 0, 5 );
+				for($i = 0; $i < $totalNumber; $i ++) {
+					$n = rand ( 0, 24 );
 					// make sure $n is unique
 					if (count ( $randArray ) > 0) {
 						for($i = 0; $i < count ( $randArray ); $i ++) {
@@ -68,13 +75,13 @@ class RandomizedTestTransform extends XmlTransform {
 				//$gapQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]//xmlns:ol[@id="questionList_gapfill"]';
 				//$xmlBody = $xmlPath->query($gapQuery)->item(0);
 				$gapFillQuestion = $bankDoc->getElementsByTagName("GapFillQuestion");
-				for($i = 0; $i < 5; $i ++) {
+				for($i = 0; $i < $totalNumber; $i ++) {
 					$n = rand ( 0, 24 );
 					// make sure $n is unique
 					if (count ( $randArray ) > 0) {
 						for($i = 0; $i < count ( $randArray ); $i ++) {
 							if ($n == $randArray [$i]) {
-								$n = rand ( 0, 9 );
+								$n = rand ( 0, 24 );
 								$i = - 1;
 							}
 						}
@@ -99,7 +106,7 @@ class RandomizedTestTransform extends XmlTransform {
 			$xmlQuestions->removeChild($questionBanks->item(0));
 		}
 		
-		$numbers = range(0, 9);
+		$numbers = range(0, (2*$totalNumber-1));
 		shuffle($numbers);
 		$j = 1;
 		// insert question number node to each node in tempDoc and copy each node to xmlDoc

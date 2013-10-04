@@ -148,6 +148,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#476
 		public var useCacheBuster:Boolean;
 		
+		// gh#660
+		public var randomizedTestQuestionTotalNumber:Number;
+		
 		/**
 		 * Developer option
 		 */
@@ -162,6 +165,8 @@ package com.clarityenglish.common.vo.config {
 			this.illustrationCloseFlag = true;
 			// gh#476
 			this.useCacheBuster = false;
+			// gh#660
+			this.randomizedTestQuestionTotalNumber = new Number();
 		}
 		
 		/**
@@ -478,7 +483,11 @@ package com.clarityenglish.common.vo.config {
 			if (xml..referrer.toString()) {
 				this.referrer = xml..referrer.toString();
 			}
-			//trace("config.xml has id=" + this.configID);
+			
+			// gh#660
+			if (xml..randomizedTestQuestionTotalNumber.toString()) {
+				this.randomizedTestQuestionTotalNumber = xml..randomizedTestQuestionTotalNumber.toString();
+			}
 		}
 		
 		/**
