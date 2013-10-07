@@ -48,10 +48,12 @@ package skins.air.bento.exercise {
 			
 			if (dropTargetBorder && dropTargetBorder.visible) {
 				dropTargetBorder.graphics.clear();
-				dropTargetBorder.graphics.lineStyle(0, 0, 0);
-				dropTargetBorder.graphics.beginFill(0xE6E6E6);
+				dropTargetBorder.graphics.lineStyle(1, 0x000000, 1);
+				dropTargetBorder.graphics.moveTo(0,unscaledHeight + 1);
+				dropTargetBorder.graphics.lineTo(unscaledWidth + 1, unscaledHeight + 1);
+				/*dropTargetBorder.graphics.beginFill(0xE6E6E6);
 				dropTargetBorder.graphics.drawRoundRect(0, 0, unscaledWidth + 1, unscaledHeight + 1, 2, 2);
-				dropTargetBorder.graphics.endFill();
+				dropTargetBorder.graphics.endFill();*/
 			}
 			
 			// Very hacky fix for #403, but it seems to work
