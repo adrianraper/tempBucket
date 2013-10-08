@@ -92,14 +92,14 @@ package com.clarityenglish.bento.controller {
 		protected function onWindowMoving(evt:TitleWindowBoundsEvent):void {
 			if (evt.afterBounds.left < 0) {
 				evt.afterBounds.left = 0;
-			} else if (evt.afterBounds.right > evt.target.systemManager.stage.stageWidth) {
-				evt.afterBounds.left = evt.target.systemManager.stage.stageWidth - evt.afterBounds.width;
+			} else if (evt.afterBounds.right > FlexGlobals.topLevelApplication.width) {
+				evt.afterBounds.left = FlexGlobals.topLevelApplication.width - evt.afterBounds.width;
 			}
 			
 			if (evt.afterBounds.top < 0) {
 				evt.afterBounds.top = 0;
-			} else if (evt.afterBounds.bottom > evt.target.systemManager.stage.stageHeight) {
-				evt.afterBounds.top = evt.target.systemManager.stage.stageHeight - evt.afterBounds.height;
+			} else if (evt.afterBounds.bottom > FlexGlobals.topLevelApplication.height) {
+				evt.afterBounds.top = FlexGlobals.topLevelApplication.height - evt.afterBounds.height;
 			}
 		}
 		
