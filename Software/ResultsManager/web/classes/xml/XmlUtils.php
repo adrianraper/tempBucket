@@ -1,5 +1,4 @@
 <?php
-
 class XmlUtils {
 	
 	/**
@@ -77,11 +76,10 @@ class XmlUtils {
 		
 		foreach ($href->transforms as $transform) {
 			// gh#265
-			if (get_class ($transform) == "RandomizedTestTransform") {
+			if (get_class($transform) == "RandomizedTestTransform") {
 				$xml = $transform->transform($db, $xml, $href, $service);
 				return $xml;
 			} else {
-				// original code
 				$transform->transform($db, $xml, $href, $service);
 			}			
 		}			
