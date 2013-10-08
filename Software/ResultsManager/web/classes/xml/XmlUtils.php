@@ -89,4 +89,21 @@ class XmlUtils {
 		return $xml->asXML();
 	}
 	
+	/**
+	 * Access attributes of a SimpleXML object and get back a simple type
+	 */
+	public static function xml_attribute($object, $attribute, $type = 'string')	{
+		if(isset($object[$attribute])) {
+			switch ($type) {
+				case 'integer':
+					return intval($object[$attribute]);
+					break;
+				case 'string':
+				default:
+					return (string) $object[$attribute];
+					break;
+			}
+		}
+		return null;
+	}
 }

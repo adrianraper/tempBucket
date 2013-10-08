@@ -147,12 +147,15 @@ class CourseOps {
 			
 			// 1. Write publication data to the database
  			foreach ($course->publication->group as $group) {
+				// gh#677 a blank end date should be null
+ 				// Handle data types
+ 				$unitInterval = XmlUtils::xml_attribute($group, 'unitInterval', 'integer');
+ 				$seePastUnits = XmlUtils::xml_attribute($group, 'seePastUnits');
+ 				$startDate = XmlUtils::xml_attribute($group, 'startDate');
+ 				$endDate = XmlUtils::xml_attribute($group, 'endDate'); // defaults to null if not present
+ 				
 				// If we are missing any required data then throw an exception
-				if (!isset($group['unitInterval']) || $group['unitInterval'] == "" ||
-					!isset($group['seePastUnits']) || $group['seePastUnits'] == "" ||
-					!isset($group['startDate']) || $group['startDate'] == "" //||
-					//!isset($group['endDate']) || $group['endDate'] == ""
-					)
+				if (!$unitInterval || !$seePastUnits || !$startDate)
 					throw $copyOps->getExceptionForId("errorSavingCourseDates");
 				
 				// 1.1 First write the T_CourseStart row
@@ -162,10 +165,10 @@ class CourseOps {
 					"F_RootID" => Session::get('rootID'),
 					"F_CourseID" => (string)$course['id'],
 					"F_StartMethod" => "group",
-					"F_UnitInterval" => (string)$group['unitInterval'],
-					"F_SeePastUnits" => ((string)($group['seePastUnits'] == "true") ? 1 : 0),
-					"F_StartDate" => (string)$group['startDate'],
-					"F_EndDate" => (string)$group['endDate']
+					"F_UnitInterval" => $unitInterval,
+					"F_SeePastUnits" => ($seePastUnits == 'true') ? 1 : 0,
+					"F_StartDate" => $startDate,
+					"F_EndDate" => $endDate
 				);
 				
 				// gh#148 PrimaryKey is just groupID and courseID
@@ -175,7 +178,7 @@ class CourseOps {
 				
 				// 2. Next rewrite any rows in T_UnitStart relating to this course
 				// Currently we figure this out here, but this may be better calculated on the client since at some point it will be editable anyway
-				$startTimestamp = strtotime((string)$group['startDate']);
+				$startTimestamp = strtotime($startDate);
 				foreach ($course->unit as $unit) {
 					/*
 					 * gh#385 SQLite fails to insert this, but no errors
