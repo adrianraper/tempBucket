@@ -15,6 +15,7 @@
 @namespace unitui "com.clarityenglish.tensebusterair.unit.ui.*";
 @namespace ui "com.clarityenglish.tensebusterair.ui.*";
 @namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
+@namespace element "com.clarityenglish.textLayout.elements.*";
 
 global {
 	interactionMode: touch;
@@ -41,6 +42,14 @@ components|XHTMLExerciseView s|TextInput {
 	contentBackgroundAlpha: 0;
 	paddingLeft: 0;
 	paddingRight: 0;
+}
+
+s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
 }
 
 tensebuster|TenseBusterApplication {
