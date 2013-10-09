@@ -20,7 +20,7 @@ class DBDetails {
 				break;
 			case 200:
 				$this->driver = "mysql";
-				$this->host = "claritylive.cjxpltmvwbov.ap-southeast-1.rds.amazonaws.com";
+				$this->host = "clarity-eu-db.c8s4j19sgnql.eu-west-1.rds.amazonaws.com";
 				$this->user = "clarity";
 				$this->password = "clarity123";
 				$this->dbname = "rack80829";

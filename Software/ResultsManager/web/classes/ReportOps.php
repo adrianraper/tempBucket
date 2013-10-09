@@ -330,32 +330,43 @@ class ReportOps {
 			// Reset our rows to the summarised one for the rest of the reporting code
 			$rows = $summarisedRows;			
 
-		// gh#563 If you have users who appear in multiple groups, need to whittle out duplicate records
+		// gh#653 If you have users who appear in multiple groups, need to whittle out duplicate records
 		// For most reports this will introduce an entirely unnecessary loop. But I guess it is quicker than
 		// a separate SQL check to see if might be multiple records included.
 		} else {
 
 			$whittledRows = array();
 			$buildRow = array();
-			$rowGroupName = '';
-			$rowUserName = '';
-			$rowUID = '';
+			$rowKeyValue = null;
+			$rowUID = null;
 			foreach ($rows as $row) {
-				// Is this a row different from the previous one?
-				if ($row['userName'] != $rowUserName || $this->reportableUID($row) != $rowUID) {
+				// Is this row different from the previous one?
+				// gh#688 Might use id rather than name
+				if (isset($row['userName'])) {
+					$rowKey = $row['userName'];
+				} else if (isset($row['studentID'])) {
+					$rowKey = $row['studentID'];
+				} else if (isset($row['email'])) {
+					$rowKey = $row['email'];
+				} else {
+					// There is no obvious default here. Most likely we just want to keep this row
+					$rowKey = $row;
+				}
+				if ($rowKey != $rowKeyValue || $this->reportableUID($row) != $rowUID) {
 					// write out the previous row (if not in first loop)
-					if (isset($buildRow['userName']))
+					if ($rowKeyValue)
 						$whittledRows[] = $buildRow;
 					$buildRow = $row;
 				
 				} else {
-					$buildRow['groupName'] = '(more than one)';
+					if (isset($buildRow['groupName']))
+						$buildRow['groupName'] = '(more than one)';
 				}
 				$rowUID = $this->reportableUID($row);
-				$rowUserName = $row['userName'];
+				$rowKeyValue = $rowKey;
 			}
 			// Write out the final row you built
-			if (isset($buildRow['userName']))
+			if ($rowKeyValue)
 				$whittledRows[] = $buildRow;
 			
 			// Reset our rows to the whittled one for the rest of the reporting code
@@ -822,7 +833,7 @@ class ReportOps {
 	//	return sprintf("%d:%02d", abs((int)$minutes / 60), abs((int)$minutes % 60));
 	//}
 
-	// gh#563 convert an array into a UID taking into account whatever level is set
+	// gh#653 convert an array into a UID taking into account whatever level is set
 	private function reportableUID($arrayObj){
 		$buildUID = '';
 		if (isset($arrayObj['productCode']))
