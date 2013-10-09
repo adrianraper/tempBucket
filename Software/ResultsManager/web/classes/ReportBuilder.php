@@ -269,11 +269,10 @@ EOD;
 		if ($this->getOpt(ReportBuilder::SHOW_EMAIL)) $this->addColumn("u.F_Email", "email");
 		
 		// For Science Po who need more data. How can I tell if it is them?
-		// They were first of all root 12923, and now moved to 13770, and in 2011 to 14252 
-		// And now moved to something else!
+		// updated for 2013/14
 		$rootID = Session::get('rootID');
 		$this->selectBuilder->addWhere("m.F_RootID = '$rootID'");
-		if ($rootID == '14252') {
+		if ($rootID == '14781' || $rootID = '19278') {
 			$this->addColumn("u.F_StudentID", "studentID");
 			$this->addColumn("u.F_Email", "email");
 			$this->addColumn("u.F_FullName", "fullName");
