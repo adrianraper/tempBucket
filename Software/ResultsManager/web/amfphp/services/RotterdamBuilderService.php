@@ -15,7 +15,7 @@ class RotterdamBuilderService extends RotterdamService {
 		// If a user is logged in then get the content folder
 		if (Session::is_set('userID')) {
 			
-			AbstractService::$log->info('accountFolder='.$this->accountFolder);
+			// AbstractService::$log->info('accountFolder='.$this->accountFolder);
 			
 			// gh#338 This is a check that the account content folder has a good structure
 			// Look for a media file (which implies the full folder structure exists)

@@ -6,6 +6,12 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
+
+			// gh#689
+			public override function set data(value:Object):void {
+				super.data = value;
+				if (data) this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
+			}
 		]]>
 	</fx:Script>
 	
