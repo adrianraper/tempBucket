@@ -16,7 +16,7 @@ package com.clarityenglish.ielts.view.login {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
-	
+
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
@@ -452,12 +452,7 @@ package com.clarityenglish.ielts.view.login {
 				case loginKeyInput:
 				case passwordInput:
 					instance.addEventListener(FlexEvent.ENTER, onEnter, false, 0, true);
-					break;				
-				// gh#659
-				case IPLoginButton:
-					IPLoginButton.label = copyProvider.getCopyForId("loginButton");
-					IPLoginButton.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
-				break;
+					break;
 				// gh#100
 				case loginButton:
 					if (selfRegister) {
@@ -662,7 +657,12 @@ package com.clarityenglish.ielts.view.login {
 		
 		// #254
 		public function onEnter(event:FlexEvent):void {
-			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
+			// gh#659
+			if (IPLoginButtonBar && getProductCodes().length > 1) {
+				config.productCode = IPLoginButtonBar.selectedItem.code;
+			}
+			
+			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {			
 				// gh#100 Tidy up new user details
 				//var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 				var user:User = new User({password:passwordInput.text});
@@ -724,17 +724,13 @@ package com.clarityenglish.ielts.view.login {
 				case loginButton:
 				case CTLoginButton:
 					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
+					if (IPLoginButtonBar && getProductCodes().length > 1) {
+						config.productCode = IPLoginButtonBar.selectedItem.code;
+					}						
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case CTStartButton:
 					user =  new User();
-					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
-					break;
-				// gh#659
-				case IPLoginButton:
-					user = new User({name:IPLoginKeyInput.text, studentID:IPLoginKeyInput.text, email:IPLoginKeyInput.text, password:IPPasswordInput.text});
-					if (getProductCodes().length > 1)
-						config.productCode = IPLoginButtonBar.selectedItem.code;
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case IPLoginStartButton:

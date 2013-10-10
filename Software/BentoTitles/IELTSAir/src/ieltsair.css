@@ -79,6 +79,10 @@ login|LoginView {
 	skinClass: ClassReference("skins.ieltsair.LoginSkin");
 }
 
+login|LoginView s|Button#loginButton {
+	skinClass: ClassReference("skins.ieltsair.login.RegisterLoginButtonSkin");
+}
+
 login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
 }
