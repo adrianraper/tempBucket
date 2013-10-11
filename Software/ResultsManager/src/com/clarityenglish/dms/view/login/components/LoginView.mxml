@@ -4,9 +4,10 @@
 		   implements="com.clarityenglish.common.view.login.interfaces.LoginComponent, com.clarityenglish.common.view.interfaces.CopyReceiver">
 	<mx:Script>
 		<![CDATA[
-		import com.clarityenglish.dms.Constants;
-		import com.clarityenglish.common.model.interfaces.CopyProvider;;
 		import com.clarityenglish.common.events.LoginEvent;
+		import com.clarityenglish.common.model.interfaces.CopyProvider;
+		import com.clarityenglish.dms.Constants;
+		
 		import mx.controls.Alert;
 		import mx.core.Application;
 		
@@ -21,19 +22,21 @@
 			filterStringFormItem.label = copyProvider.getCopyForId("loginFilter");
 			loginButton.label = copyProvider.getCopyForId("loginButton");
 			//Alert.show('Your IP is ' + Application.application.parameters.ip + ' and server ' + Application.application.parameters.server);
+			var forLooks:Object = Application.application.parameters;
 			if (Application.application.parameters.server.indexOf("dock") == 0) {
 				if (usernameTextInput.text == '')
 					usernameTextInput.text = 'dmsadrian';
-				//passwordTextInput.text = 'dock';
-				if (filterStringInput.text == '')
-					filterStringInput.text = 'Clarity';
 			}
 			setInputFocus();
 		}
 		
 		private function setInputFocus():void {
-			usernameTextInput.setFocus();
-			usernameTextInput.setSelection(0, usernameTextInput.text.length);
+			if (usernameTextInput.text == '') {
+				usernameTextInput.setFocus();
+			} else {
+				passwordTextInput.setFocus();
+			}
+			//usernameTextInput.setSelection(0, usernameTextInput.text.length);
 		}
 		
 		[Bindable(event="loginChange")]
@@ -57,19 +60,25 @@
 
 		// AR added to clear out data from the fields once you have logged in.
 		public function clearData():void {
-			//usernameTextInput.text = "";
 			// If this is being used in the office, keep the password
-			if (Application.application.parameters.ip!='220.246.69.26')
-				passwordTextInput.text = "";
+			// No need if filtering is changeable inside app
+			/*
+			if (Application.application.parameters.server.indexOf("dock") == 0 ||
+				Application.application.parameters.ip == '220.246.69.26' ||
+				Application.application.parameters.ip == '223.197.228.231') {				
+			}
+			*/
+			passwordTextInput.text = "";
 		}
-		
 		]]>
 	</mx:Script>
 	<mx:VBox height="100%" paddingBottom="50" paddingTop="50" paddingLeft="50" >
-		<!--<mx:Image id="RMlogo" scaleContent="true" height="100%" minHeight="100" maintainAspectRatio="true"
-				completeEffect="Fade" source="@Embed('/../assets/RMLogo.swf')" />-->
-		<mx:Image id="ClarityLogo" scaleContent="true" height="100%" minHeight="100" maintainAspectRatio="true"
-				completeEffect="Fade" source="@Embed('/../assets/ClarityLogo.swf')" />
+		<mx:HBox width="100%" horizontalAlign="middle">
+			<mx:Image id="DMSwording" height="200" source="@Embed('/../assets/DMSwording.swf')" />
+		</mx:HBox>
+		<mx:Spacer height="100%" />
+		<mx:Image id="ClarityLogo" scaleContent="false" 
+				  completeEffect="Fade" source="@Embed('/../assets/ClarityEnglishLogo.png')" />
 	</mx:VBox>
  	<mx:TitleWindow id="loginWindow" verticalScrollPolicy="off" horizontalScrollPolicy="off" 
 					horizontalCenter="0" verticalCenter="0" 

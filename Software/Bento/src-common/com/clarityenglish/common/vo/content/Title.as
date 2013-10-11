@@ -80,7 +80,8 @@
 		public var licenceType:Number;
 		// v3.6.5 Adding licence clearance date
 		public var licenceClearanceDate:String;
-		public var licenceClearanceFrequency:Number;
+		// gh#706
+		public var licenceClearanceFrequency:String;
 		
 		// v3.1 For emus and courses - not used for database storage
 		public var indexFile:String;
