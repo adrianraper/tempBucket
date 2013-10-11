@@ -11,7 +11,7 @@
 		 * The version of the software, used to tie bugs and version control together.
 		 * Keep this in sync with RM since there is so much common code.
 		 */
-		public static var version:String = "3.6.3.231";
+		public static var version:String = "3.7.2.706";
 		
 		/** Making this false activates various debug and test friendly attributes in the application */
 		public static function get DEBUG_MODE():Boolean {

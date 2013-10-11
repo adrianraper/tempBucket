@@ -124,7 +124,7 @@
 			// Add a listener to the datagrid which will make sure sorting is kept when the dataProvider changes
 			dataGrid.addEventListener(CollectionEvent.COLLECTION_CHANGE, onDataGridDataChange, false, 0, true);
 			
-			TraceUtils.myTrace("account view creation complete");
+			filterString.addEventListener(mx.events.FlexEvent.ENTER, onFilterStringChange);
 		}
 		
 		/*
@@ -435,8 +435,8 @@
 				<mx:VBox width="100%" height="100%">
 					<mx:HDividedBox width="100%">
 						<mx:HBox id="accountTypeBox" verticalGap="0" paddingLeft="5" paddingRight="5" width="10%">
-							<mx:CheckBox id="individualAccounts" label="CLS.com" selected="{showIndividualAccounts}" />
-							<mx:TextInput id="filterString" text="{showFilterString}" enabled="false" />
+							<mx:CheckBox id="individualAccounts" selected="{showIndividualAccounts}" />
+							<mx:TextInput id="filterString" text="{showFilterString}" enabled="true" />
 						</mx:HBox>
 						<mx:HBox id="hideShowColumnVBox" verticalGap="0" paddingLeft="5" paddingRight="5" />
 					</mx:HDividedBox>

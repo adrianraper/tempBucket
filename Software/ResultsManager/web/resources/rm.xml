@@ -457,7 +457,7 @@
 			
 			<lit name="accountTab">Accounts</lit>
 			<lit name="emailTab">Email</lit>
-			<lit name="individualAccounts">CLS.com</lit>
+			<lit name="individualAccounts">Home users</lit>
 			
 			<lit name="detailsPane">Details</lit>
 			<lit name="titlesPane">Titles</lit>
@@ -491,9 +491,10 @@
 			<lit name="expiryDateColumn">Expiry Date</lit>
 			
 			<lit name="titleFormItem">Title:</lit>
-			<lit name="expiryDateFormItem">Licence expiry date:</lit>
-			<lit name="licenceStartDateFormItem">Licence start date:</lit>
-			<lit name="licenceClearanceDateFormItem">Licence clearance date:</lit>
+			<lit name="expiryDateFormItem">Expiry date:</lit>
+			<lit name="licenceStartDateFormItem">Start date:</lit>
+			<lit name="licenceClearanceDateFormItem">Clearance date:</lit>
+			<lit name="licenceClearanceFrequencyFormItem">Frequency:</lit> <!-- gh#706 -->
 			<lit name="maxStudentsFormItem">Max learners:</lit>
 			<lit name="maxTeachersFormItem">Max teachers:</lit>
 			<lit name="maxAuthorsFormItem">Max authors:</lit>
@@ -505,6 +506,7 @@
 			<lit name="licenceFileFormItem">Licence file:</lit>
 			<lit name="contentLocationFormItem">Content location:</lit>
 			<lit name="contentLocationHelp">(only fill this in for Author Plus - or for special cases)</lit>
+			<lit name="frequencyHelp">(special cases - 2 years, 3 months)</lit>
 			<lit name="AuthorPlusContentLocationEmpty">You must fill in a content location for Author Plus, usually it is just the account prefix.</lit>
 			<lit name="mismatchedLanguageCode">One of the titles, {productCode}, has a language code, {languageCode}, set that is NOT in the database (or is empty).</lit>
 			
