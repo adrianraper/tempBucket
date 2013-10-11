@@ -290,8 +290,10 @@ package com.clarityenglish.common.model {
 						// Store a user config object in a shared object if rememberLogin is turned on #385
 						if (configProxy.getConfig().rememberLogin) {
 							var loginSharedObject:SharedObject = SharedObject.getLocal("login");
-							loginSharedObject.data["user"] = new User({ name: _user.name, studentID: _user.studentID, password: _user.password, email: _user.email });
-							loginSharedObject.flush();
+							if (!_user.isAnonymous()) {
+								loginSharedObject.data["user"] = new User({ name: _user.name, studentID: _user.studentID, password: _user.password, email: _user.email });
+								loginSharedObject.flush();
+							}							
 						}
 						
 						// gh#612 If this user already saved a set of preferences, load them up now

@@ -63,8 +63,8 @@ package com.clarityenglish.bento.controller {
 			
 			if (configProxy.getDirectLogin()) {
 				var loginXML:XML = (fsm..state.(@name == BBStates.STATE_LOGIN))[0];
-				loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);
-				loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_CREDITS} />);
+				//loginXML.appendChild(<transition action={CommonNotifications.INVALID_LOGIN} target={BBStates.STATE_CREDITS} />);
+				//loginXML.appendChild(<transition action={CommonNotifications.INVALID_DATA} target={BBStates.STATE_CREDITS} />);
 			}
 			
 			// #322
