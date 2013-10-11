@@ -333,6 +333,7 @@ class ReportOps {
 		// gh#653 If you have users who appear in multiple groups, need to whittle out duplicate records
 		// For most reports this will introduce an entirely unnecessary loop. But I guess it is quicker than
 		// a separate SQL check to see if might be multiple records included.
+		// gh#690 For now just remove this whittling - better to leave duplicates than get rid of unique ones
 		} else {
 
 			$whittledRows = array();
@@ -342,16 +343,18 @@ class ReportOps {
 			foreach ($rows as $row) {
 				// Is this row different from the previous one?
 				// gh#688 Might use id rather than name
-				if (isset($row['userName'])) {
-					$rowKey = $row['userName'];
-				} else if (isset($row['studentID'])) {
-					$rowKey = $row['studentID'];
-				} else if (isset($row['email'])) {
-					$rowKey = $row['email'];
-				} else {
-					// There is no obvious default here. Most likely we just want to keep this row
-					$rowKey = $row;
-				}
+				// gh#690 In fact everything might be duplicated except the datestamp for all attempt listings
+				// but my rows are NOT sorted by user when you do a group report. Or when you don't 'show all records'
+				$rowKey = '';
+				if (isset($row['start_date']))
+					$rowKey .= $row['start_date'];
+				if (isset($row['userName']))
+					$rowKey .= $row['userName'];
+				if (isset($row['studentID']))
+					$rowKey .= $row['studentID'];
+				if (isset($row['email']))
+					$rowKey .= $row['email'];
+					
 				if ($rowKey != $rowKeyValue || $this->reportableUID($row) != $rowUID) {
 					// write out the previous row (if not in first loop)
 					if ($rowKeyValue)
@@ -370,7 +373,7 @@ class ReportOps {
 				$whittledRows[] = $buildRow;
 			
 			// Reset our rows to the whittled one for the rest of the reporting code
-			$rows = $whittledRows;			
+			$rows = $whittledRows;	
 		}
 
 		$dom = new DOMDocument("1.0", "UTF-8");

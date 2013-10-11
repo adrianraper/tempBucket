@@ -220,27 +220,52 @@ EOD;
 						INNER JOIN T_Membership m ON s.F_UserID=m.F_UserID
 						INNER JOIN T_Groupstructure g on g.F_GroupID = m.F_GroupID
 EOD;
+		// gh#690 First and Last filtering requires duplication of clauses
+		// TODO in fact, if you do them here you DON'T need to do them anywhere else
 		if ($attempts == "first" || $attempts == "last") {
-			$fromClause.= <<<EOD
-							INNER JOIN (SELECT F_ExerciseID e,
-									F_UserID u,
-									MIN(F_DateStamp) first_attempt,
-									MAX(F_DateStamp) last_attempt
-									FROM T_Score 
-EOD;
+			
+			$innerSelect = new SelectBuilder();
+			$innerSelect->setFrom('T_Score');
+			$innerSelect->addSelect('F_ExerciseID as e');
+			$innerSelect->addSelect('F_UserID as u');
+			$innerSelect->addSelect('MIN(F_DateStamp) first_attempt');
+			$innerSelect->addSelect('MAX(F_DateStamp) last_attempt');
 			if ($forUsers) {
 				$forUsersInString = implode(",", $forUsers);
-				$fromClause.=" WHERE F_UserID IN ($forUsersInString) ";
+				$innerSelect->addWhere("F_UserID IN ($forUsersInString)");
 			}	
+			// Less than score condition
+			if ($scoreLessThan = $this->getOpt(ReportBuilder::SCORE_LESS_THAN))
+				$innerSelect->addWhere("F_Score <= ".$scoreLessThan);
+		
+			// More than score condition
+			if ($scoreMoreThan = $this->getOpt(ReportBuilder::SCORE_MORE_THAN))
+				$innerSelect->addWhere("F_Score >= ".$scoreMoreThan);
+		
+			// Less than duration condition. The duration from the screen is minutes, in the database it is seconds
+			if ($durationLessThan = $this->getOpt(ReportBuilder::DURATION_LESS_THAN))
+				$innerSelect->addWhere("F_Duration <= ".(int)($durationLessThan*60));
+		
+			// More than duration condition
+			if ($durationMoreThan = $this->getOpt(ReportBuilder::DURATION_MORE_THAN))
+				$innerSelect->addWhere("F_Duration > ".(int)($durationMoreThan*60));
+		
+			// From and to date setting
+			if ($fromDate = $this->getOpt(ReportBuilder::FROM_DATE))
+				$this->selectBuilder->addWhere("s.F_DateStamp >= '$fromDate'");
+			if ($toDate = $this->getOpt(ReportBuilder::TO_DATE))
+				$this->selectBuilder->addWhere("s.F_DateStamp >= '$toDate'");
+				
+			$innerSelect->addGroup('F_ExerciseID');
+			$innerSelect->addGroup('F_UserID');
+			
+			// gh#690 simplify
+			$fromClause.= " INNER JOIN (".$innerSelect->toSQL().") attempts "; 
 			$fromClause.= <<<EOD
-									GROUP BY F_ExerciseID, F_UserID
+				ON s.F_ExerciseID=attempts.e
+				AND s.F_UserID = attempts.u
 EOD;
-			// sql server doesn't let you order by in a sub select
-			if (stripos("mysql",$GLOBALS['dbms'])!==false) $fromClause.= ' ORDER BY F_ExerciseID, F_UserID ';
-			$fromClause.= <<<EOD
-									) attempts ON s.F_ExerciseID=attempts.e
-																			  AND s.F_UserID = attempts.u
-EOD;
+			$fromClause.= " AND s.F_DateStamp=attempts.".$attempts."_attempt ";
 		}
 		$this->selectBuilder->setFrom($fromClause);
 		// From earlier INNER JOINS
@@ -330,26 +355,6 @@ EOD;
 			$this->selectBuilder->addWhere("s.F_DateStamp <= '$dateStamp'");
 		}
 		
-		// First/last attempts only condition
-		//if ($attempts = $this->getOpt(ReportBuilder::ATTEMPTS)) {
-		if ($attempts) {
-			switch ($attempts) {
-				case "all":
-					// Default behaviour is all so no need to do anything
-					break;
-				case "first":
-					$this->selectBuilder->addWhere("s.F_DateStamp=attempts.first_attempt");
-					break;
-				case "last":
-					$this->selectBuilder->addWhere("s.F_DateStamp=attempts.last_attempt");
-					break;
-				case "firstandlast":
-					$this->selectBuilder->addWhere("(s.F_DateStamp=attempts.first_attempt OR s.F_DateStamp=attempts.last_attempt)");
-					break;
-				default:
-					throw new Exception("Unknown option '".$attempts."' for ATTEMPTS");
-			}
-		}
 		// v3.4 For summary reports, you want to use sessionID
 		if ($this->getOpt(ReportBuilder::SHOW_SESSIONID)) $this->addColumn("s.F_SessionID", "sessionID");
 		
