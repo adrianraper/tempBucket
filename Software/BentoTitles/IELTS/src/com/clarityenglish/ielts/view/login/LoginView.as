@@ -658,8 +658,10 @@ package com.clarityenglish.ielts.view.login {
 		// #254
 		public function onEnter(event:FlexEvent):void {
 			// gh#659
-			if (IPLoginButtonBar && getProductCodes().length > 1) {
+			if (_productCodes && getProductCodes().length > 1) {
 				config.productCode = IPLoginButtonBar.selectedItem.code;
+				config.paths.menuFilename = config.xmlCourseFile;
+				config.buildMenuFilename();
 			}
 			
 			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {			
@@ -724,8 +726,12 @@ package com.clarityenglish.ielts.view.login {
 				case loginButton:
 				case CTLoginButton:
 					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
-					if (IPLoginButtonBar && getProductCodes().length > 1) {
+					// gh#659
+					if (_productCodes && getProductCodes().length > 1) {
+						// very hacky, in order to login to different title
 						config.productCode = IPLoginButtonBar.selectedItem.code;
+						config.paths.menuFilename = config.xmlCourseFile;
+						config.buildMenuFilename();
 					}						
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
