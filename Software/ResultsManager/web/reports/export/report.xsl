@@ -63,7 +63,8 @@
 			<xsl:if test="@exerciseUnit_percentage">"<td><xsl:call-template name="formatScore"><xsl:with-param name="score" select="@exerciseUnit_percentage"  /></xsl:call-template></td>",</xsl:if>
 			<xsl:if test="@average_time">"<xsl:value-of select="@average_time"/>",</xsl:if>
 			<!--gh#120-->
-			<xsl:if test="@total_time"><td><xsl:value-of select="php:function('XSLTFunctions::secondsToHours', string(@total_time))"/></td></xsl:if>
+			<!--gh#694-->
+			<xsl:if test="@total_time">"<xsl:value-of select="php:function('XSLTFunctions::secondsToHours', string(@total_time))"/>",</xsl:if>
 			
 			<!-- Science Po -->
 			<xsl:if test="@fullName">"<xsl:value-of select="@fullName"/>",</xsl:if>
