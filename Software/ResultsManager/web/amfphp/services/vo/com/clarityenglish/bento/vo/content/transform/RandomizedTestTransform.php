@@ -1,6 +1,6 @@
 <?php
 require_once(dirname(__FILE__)."/XmlTransform.php");
-//require_once("D:\Projectbench\Software\ResultsManager\web\amfphp\services\AbstractService.php");
+require_once("D:\Projectbench\Software\ResultsManager\web\amfphp\services\AbstractService.php");
 
 class RandomizedTestTransform extends XmlTransform {
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform';
@@ -25,6 +25,8 @@ class RandomizedTestTransform extends XmlTransform {
 		$xmlPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		$multiQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]';
 		$xmlBody = $xmlPath->query($multiQuery)->item(0);
+		$tempQuestions = new DOMDocument();
+		$tempQuestions->formatOutput = true;
 		$tempDoc = new DOMDocument();
 		$tempDoc->formatOutput = true;
 
@@ -61,8 +63,8 @@ class RandomizedTestTransform extends XmlTransform {
 					array_push ( $randArray, $n );
 					// copy mutiple choice question and answer model from questionBank xml to template
 					$multiQuestionModel = $MultipleChoiceQuestion->item ( $n );
-					$xmlMultiModelNode = $xmlDoc->importNode ( $multiQuestionModel, true );
-					$xmlQuestions->appendChild ( $xmlMultiModelNode );					
+					$xmlMultiModelNode = $tempQuestions->importNode ( $multiQuestionModel, true );
+					$tempQuestions->appendChild ( $xmlMultiModelNode );					
 					// copy question text to template
 					$multiQuestionID = $MultipleChoiceQuestion->item ( $n )->getAttribute ( 'block' );
 					//AbstractService::$debugLog->info ( 'multiQuestionID: ' . $multiQuestionID );
@@ -89,8 +91,8 @@ class RandomizedTestTransform extends XmlTransform {
 					array_push ( $randArray, $n );
 					// copy mutiple choice question and answer model from questionBank xml to template
 					$gapQuestionModel = $gapFillQuestion->item ( $n );
-					$xmlGapModelNode = $xmlDoc->importNode ( $gapQuestionModel, true );
-					$xmlQuestions->appendChild ( $xmlGapModelNode );
+					$xmlGapModelNode = $tempQuestions->importNode ( $gapQuestionModel, true );
+					$tempQuestions->appendChild ( $xmlGapModelNode );
 					$gapQuestionID  = $gapFillQuestion->item ( $n )->getAttribute ( 'block' );
 					$gapQuestionQuery = '/xmlns:bento/xmlns:body/xmlns:section[@id="body"]/xmlns:div[@id="' . $gapQuestionID . '"]';
 					$gapQuestionText = $xPath->query ( $gapQuestionQuery )->item ( 0 );
@@ -112,6 +114,10 @@ class RandomizedTestTransform extends XmlTransform {
 		// insert question number node to each node in tempDoc and copy each node to xmlDoc
 		// TODO gh#660 Replace this with question number variable, #q#, in the question bank
 		foreach ($numbers as $number) {
+			$tempQuestionNode = $tempQuestions->childNodes->item($number);
+			$xmlQuestionNode = $xmlDoc->importNode($tempQuestionNode, true);
+			$xmlQuestions->appendChild($xmlQuestionNode);
+			
 			$questionNumberDoc = new DOMDocument();
 			$questionNumberDoc->loadXML('<div class="question-number">'.($j).'</div>');
 			$gapQuestionNumberNode = $questionNumberDoc->getElementsByTagName("div")->item(0);
@@ -122,7 +128,7 @@ class RandomizedTestTransform extends XmlTransform {
     		$xmlBody->appendChild($xmlNode);
     		$j++;
 		}
-		
+		AbstractService::$debugLog->info("xml doc: ".$xmlDoc->saveXML());
 		return $xmlDoc->saveXML();						
 	}
 }

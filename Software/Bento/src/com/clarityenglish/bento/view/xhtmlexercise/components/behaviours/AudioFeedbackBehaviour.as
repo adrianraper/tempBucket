@@ -65,7 +65,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		}
 		
 		protected function onMarkButtonClicked (event:MarkingButtonEvent):void {
-			trace("onMarkButtonClicked");
 			feedbackAudioStack.push(event.audioELement);
 		}
 	}

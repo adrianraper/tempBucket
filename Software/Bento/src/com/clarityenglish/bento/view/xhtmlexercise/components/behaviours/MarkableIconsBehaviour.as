@@ -21,6 +21,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 	import flash.geom.Rectangle;
 	import flash.utils.Dictionary;
 	
+	import flashx.textLayout.compose.TextFlowLine;
 	import flashx.textLayout.elements.FlowElement;
 	import flashx.textLayout.elements.TextFlow;
 	
@@ -90,11 +91,19 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					/*
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
 					*/
-					// gh#634 subtract 15
-					var idString:String = flowElementMap.getXML(flowElement).@id;
-					offset = getOffset(idString);
-					
-					flowElementIcon.getComponent().x = bounds.right - offset; // marking goes to the right of the component
+
+					// gh#607
+					var textFlowLine:TextFlowLine = flowElement.getTextFlow().flowComposer.getLineAt(0);
+					// if the text element occupy tow lines, then the height of bound.height is longer than textFlowLine height
+					// And at that time, the bounds left is actually the text element right, vise versa.
+					if ( textFlowLine && bounds.height - textFlowLine.height > 10) {
+						flowElementIcon.getComponent().x = bounds.left - offset;
+					} else if (flowElementMap.getXML(flowElement).name() == "input" || flowElementMap.getXML(flowElement).name() == "select"){
+						// drag and drop, gap fill and drag down quesiton need to adjust position of marking icon
+						flowElementIcon.getComponent().x = bounds.right - flowElementIcon.getComponent().width;					
+					} else {
+						flowElementIcon.getComponent().x = bounds.right;  // marking goes to the right of the component
+					}
 					//flowElementIcon.getComponent().y = bounds.y - ((flowElementIcon.getComponent().height - bounds.height) / 2); // centre the icon vertically on the component
 					flowElementIcon.getComponent().y = bounds.bottom - flowElementIcon.getComponent().height; // #177
 					
@@ -108,27 +117,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 			exercise = xhtml as Exercise;
 			flowElementMap = flowElementXmlBiMap;
-		}
-		
-		protected function getOffset(idString:String):Number {
-			var idStart:String = idString.charAt(0);
-			var index:Number = 0;
-			var questionType:String;
-			// gh#634 flow element (like input node) inside <body/> whose id start with q include drag drop, drop down and gap fill.
-			// only drop down and gap fill question need to reset marking icon position. 
-			// For those flow element whose first lettle of id is not q include multiple choice and true/false, but their marking icon position is no need to adjust.
-			// gh#645 due to widening the blank width for drag drop question, we need to adjust marking icon.
-			if (idStart == "q") {
-				index = idStart.substr(1) as Number;
-				questionType = (exercise.model.questions[index] as Question).type;
-				if (questionType == Question.DRAG_QUESTION) {
-					return 10;
-				} else {
-					return 15;
-				}
-			} else {
-				return 0;
-			}
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
