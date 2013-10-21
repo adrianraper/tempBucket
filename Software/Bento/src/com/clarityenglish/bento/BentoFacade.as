@@ -147,7 +147,8 @@
 			
 			// #472
 			registerCommand(BBNotifications.NETWORK_CHECK_AVAILABILITY, NetworkCheckAvailability);
-			registerCommand(BBNotifications.NETWORK_UNAVAILABLE, BentoResetCommand);
+			// gh#699
+			registerCommand(BBNotifications.NETWORK_UNAVAILABLE, LogoutCommand);
 
 			// Performance logging
 			registerCommand(CommonNotifications.PERFORMANCE_LOG, PerformanceLogCommand);
