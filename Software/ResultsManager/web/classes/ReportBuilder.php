@@ -252,9 +252,9 @@ EOD;
 		
 			// From and to date setting
 			if ($fromDate = $this->getOpt(ReportBuilder::FROM_DATE))
-				$this->selectBuilder->addWhere("s.F_DateStamp >= '$fromDate'");
+				$innerSelect->addWhere("F_DateStamp >= '$fromDate'");
 			if ($toDate = $this->getOpt(ReportBuilder::TO_DATE))
-				$this->selectBuilder->addWhere("s.F_DateStamp >= '$toDate'");
+				$innerSelect->addWhere("F_DateStamp <= '$toDate'");
 				
 			$innerSelect->addGroup('F_ExerciseID');
 			$innerSelect->addGroup('F_UserID');
@@ -297,7 +297,7 @@ EOD;
 		// updated for 2013/14
 		$rootID = Session::get('rootID');
 		$this->selectBuilder->addWhere("m.F_RootID = '$rootID'");
-		if ($rootID == '14781' || $rootID = '19278') {
+		if ($rootID == '14781' || $rootID == '19278') {
 			$this->addColumn("u.F_StudentID", "studentID");
 			$this->addColumn("u.F_Email", "email");
 			$this->addColumn("u.F_FullName", "fullName");
