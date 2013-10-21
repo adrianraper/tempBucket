@@ -100,6 +100,8 @@ package com.clarityenglish.bento.controller {
 				scroller.right = 25;
 				scroller.top = 20;
 				scroller.bottom = 20;
+				// gh#701
+				scroller.minWidth = 450;
 				scroller.maxHeight = 320;
 				scroller.viewport = xhtmlRichText;
 				titleWindow.addElement(scroller);
