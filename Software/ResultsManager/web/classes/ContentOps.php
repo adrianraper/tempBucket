@@ -1281,7 +1281,7 @@ EOD;
 				$menuFile = $folder."/".$courseXML->getAttribute("href");
 				$course->units = $this->_buildUnitsFromRotterdamFile($menuFile, $course, $generateMaps, $courseType);
 				//gh#23
-				$course->totalUnits = count($course-> units);
+				$course->totalUnits = count($course->units);
 			}
 			
 			if ($course->id != null) { // Ticket #104 - don't add content with missing id
@@ -1473,20 +1473,24 @@ EOD;
 		$doc = new DOMDocument();
 		// v3.3 Whilst it should be impossible for this file to not exist, it can happen somehow for an empty course in AP.
 		// In which case just ignore it and go on rather than crashing please.
-		if (!file_exists($filename)) {
+		// gh#689 Cope with empty/corrupt files
+		try {
+			$this->_loadFileIntoDOMDocument($doc, $filename);
+			$courseNode = $doc->getElementsByTagName("course")->item(0);
+			if (!$courseNode)
+				throw new Exception('no courses in this account', 0);
+			$course->name = urldecode($courseNode->getAttribute("caption"));
+			
+			//$xpath = new DOMXPath($doc);		
+			//$unitNodes = $xpath->evaluate("/unit", $courseNode);
+			$unitNodes = $doc->getElementsByTagName("unit");
+			$unitCount = $unitNodes->length;
+			return $this->_buildUnits($unitNodes, $course, $generateMaps, $courseType);
+		} catch (Exception $e) {
 			// Put some kind of note onto the tree that there was an error with this course?
 			$course->name .= " (This course has something wrong with it.)";
-			return;
+			return array();
 		}
-		$this->_loadFileIntoDOMDocument($doc, $filename);
-		$courseNode = $doc->getElementsByTagName("course")->item(0);
-		$course->name = urldecode($courseNode->getAttribute("caption"));
-		
-		//$xpath = new DOMXPath($doc);		
-		//$unitNodes = $xpath->evaluate("/unit", $courseNode);
-		$unitNodes = $doc->getElementsByTagName("unit");
-		$unitCount = $unitNodes->length;
-		return $this->_buildUnits($unitNodes, $course, $generateMaps, $courseType);
 	}
 	
 	private function _buildUnitsFromXML($courseXML, $course, $generateMaps = false, $courseType = 'orchid') {
