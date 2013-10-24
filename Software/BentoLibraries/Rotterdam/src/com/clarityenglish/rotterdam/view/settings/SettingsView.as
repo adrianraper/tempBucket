@@ -26,6 +26,9 @@ package com.clarityenglish.rotterdam.view.settings {
 	
 	import spark.components.Button;
 	import spark.components.CheckBox;
+	import spark.components.Form;
+	import spark.components.FormHeading;
+	import spark.components.FormItem;
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
@@ -45,12 +48,27 @@ package com.clarityenglish.rotterdam.view.settings {
 		[SkinPart]
 		public var courseSettingsLabel:Label;
 		
-		// gh#704
 		[SkinPart]
-		public var aboutCourseDescriptionTextArea:TextArea;
+		public var permissionsForm:Form;
+		
+		[SkinPart]
+		public var aboutForm:Form;
+		
+		[SkinPart]
+		public var aboutCourseFormHeading:FormHeading;
+		
+		[SkinPart]
+		public var permissionsFormHeading:FormHeading;
+		
+		[SkinPart]
+		public var courseNameFormItem:FormItem;
 		
 		[SkinPart]
 		public var aboutCourseNameTextInput:TextInput;
+		
+		// gh#704
+		[SkinPart]
+		public var aboutCourseDescriptionTextArea:TextArea;
 		
 		[SkinPart]
 		public var aboutAuthorTextInput:TextInput;
@@ -62,37 +80,31 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var aboutContactNumberTextInput:TextInput;
 		
 		[SkinPart]
-		public var directStartURLLabel:TextInput;
+		public var directStartURLLabel:Label;
 		
 		[SkinPart]
-		public var courseNameLabel:Label;
+		public var courseDescriptionFormItem:FormItem;
 		
 		[SkinPart]
-		public var courseDescriptionLabel:Label;
+		public var authorFormItem:FormItem;
 		
 		[SkinPart]
-		public var authorLabel:Label;
-		
-		[SkinPart]
-		public var contactEmailLabel:Label;
+		public var contactEmailFormItem:FormItem;
 		
 		[SkinPart]
 		public var directURLLabel:Label;
 		
 		[SkinPart]
-		public var permissionsLabel:Label;
-		
-		[SkinPart]
 		public var ownerLabel:Label;
 		
 		[SkinPart]
-		public var ownerText:Label;
+		public var ownerFormItem:FormItem;
 		
 		[SkinPart]
-		public var collaboratorsLabel:Label;
+		public var collaboratorsFormItem:FormItem;
 		
 		[SkinPart]
-		public var publishersLabel:Label;
+		public var publishersFormItem:FormItem;
 		
 		[SkinPart]
 		public var collaboratorsText:List;
@@ -101,13 +113,19 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var publishersText:List;
 		
 		[SkinPart]
-		public var addCollaboratorButton:Button;
+		public var groupCollaboratorsCheckBox:CheckBox;
 		
 		[SkinPart]
-		public var transferOwnershipButton:Button;
+		public var rootCollaboratorsCheckBox:CheckBox;
 		
 		[SkinPart]
-		public var addPublisherButton:Button;
+		public var rootPublishersCheckBox:CheckBox;
+		
+		[SkinPart]
+		public var groupPublishersCheckBox:CheckBox;
+		
+		[SkinPart]
+		public var courseEditableFormItem:FormItem;
 		
 		[SkinPart]
 		public var courseEditableCheckBox:CheckBox;
@@ -126,7 +144,7 @@ package com.clarityenglish.rotterdam.view.settings {
 		private var isPopulating:Boolean;
 		
 		// gh#91
-		private var XMLLinker:Object;
+		public var isOwner:Boolean;
 		
 		public function SettingsView() {
 			super();
@@ -173,17 +191,61 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
 		
 			// gh#91
-			if (ownerText) ownerText.text = course.privacy.owner.@name;
-			if (courseEditableCheckBox) courseEditableCheckBox.selected = (course.privacy.editable.@value == 'true');
-			// TODO. Collaborators can also have group and root nodes - merge those in
-			if (collaboratorsText) collaboratorsText.dataProvider = new XMLListCollection(course.privacy.collaborators.user.@name);
-			if (publishersText) publishersText.dataProvider = new XMLListCollection(course.privacy.publishers.user.@name);
-				
-			// Only enable the save button if x settings are valid
-			if (saveButton) {
-				var isValid:Boolean = true;
-				saveButton.enabled = isValid;
+			// All permissions stuff if ONLY changeable by owner
+			if (permissionsForm && !isOwner) 
+				permissionsForm.enabled = false;
+			
+			if (aboutForm) {
+				if (course.permission.@editable != 'true') {
+					aboutForm.enabled = false;
+				} else {
+					aboutForm.enabled = true;
+				}
 			}
+			
+			if (ownerLabel) {
+				ownerLabel.text = course.privacy.owner.user.@name;
+				if (aboutAuthorTextInput && aboutAuthorTextInput.text == '')
+					aboutAuthorTextInput.text = ownerLabel.text;
+			}
+			if (courseEditableCheckBox) courseEditableCheckBox.selected = (course.permission.@editable == 'true');
+			/*
+			 * This starts adding to the actual XML rather than just items in the list box
+			if (collaboratorsText) {
+				var groupList:XMLListCollection = new XMLListCollection(course.privacy.collaborators.group); 
+				var rootList:XMLListCollection = new XMLListCollection(course.privacy.collaborators.root);
+				if (rootList)
+					groupList.addAll(rootList);
+				collaboratorsText.dataProvider = groupList;
+				// TODO It would be great to add 'teachers in ' to the group/root name
+				collaboratorsText.labelField = '@name';
+			}
+			*/
+			if (rootCollaboratorsCheckBox) {
+				rootCollaboratorsCheckBox.selected = (course.privacy.collaborators.@root == 'true');
+				groupCollaboratorsCheckBox.enabled = !rootCollaboratorsCheckBox.selected;
+			}
+			if (groupCollaboratorsCheckBox) groupCollaboratorsCheckBox.selected = (course.privacy.collaborators.@group == 'true');
+			
+			/*
+			if (publishersText) {
+				publishersText.dataProvider = new XMLListCollection(course.privacy.publishers.group);
+				publishersText.labelField = '@name';
+			}
+			*/
+			if (rootPublishersCheckBox) {
+				rootPublishersCheckBox.selected = (course.privacy.publishers.@root == 'true');
+				groupPublishersCheckBox.enabled = !rootPublishersCheckBox.selected;
+			}
+			if (groupPublishersCheckBox) groupPublishersCheckBox.selected = (course.privacy.publishers.@group == 'true');
+			
+			// Only enable the save button if the settings are valid
+			if (saveButton && isOwner) {
+				var isValid:Boolean = true;
+			} else {
+				isValid = false;
+			}
+			saveButton.enabled = isValid;
 			
 			isPopulating = false;
 		}
@@ -192,26 +254,76 @@ package com.clarityenglish.rotterdam.view.settings {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case aboutCourseFormHeading:
+					instance.label = copyProvider.getCopyForId("aboutCourseLabel");
+					break;
+				case permissionsFormHeading:
+					instance.label = copyProvider.getCopyForId("permissionsLabel");
+					break;
 				case courseSettingsLabel:
 					instance.text = copyProvider.getCopyForId("courseSettingsLabel");
 					break;
-				case permissionsLabel:
-					instance.text = copyProvider.getCopyForId("permissionsLabel");
+				case ownerFormItem:
+					instance.label = copyProvider.getCopyForId("ownerLabel");
 					break;
-				case ownerLabel:
-					instance.text = copyProvider.getCopyForId("ownerLabel");
+				case courseEditableFormItem:
+					instance.label = copyProvider.getCopyForId("courseEditableLabel");
 					break;
-				case collaboratorsLabel:
-					instance.text = copyProvider.getCopyForId("collaboratorsLabel");
+				case collaboratorsFormItem:
+					instance.label = copyProvider.getCopyForId("collaboratorsLabel");
 					break;
-				case publishersLabel:
-					instance.text = copyProvider.getCopyForId("publishersLabel");
+				case publishersFormItem:
+					instance.label = copyProvider.getCopyForId("publishersLabel");
 					break;
 				case courseEditableCheckBox:
-					courseEditableCheckBox.label = copyProvider.getCopyForId("courseEditableLabel");
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
-							course.privacy.editable.@value = e.target.selected;
+							course.permission.@editable = String(e.target.selected);
+							dirty.dispatch();
+							invalidateProperties();
+						}
+					});
+					break;
+				// gh#91
+				case rootCollaboratorsCheckBox:
+					instance.label = copyProvider.getCopyForId("rootCollaboratorsLabel");
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!isPopulating) {
+							course.privacy.collaborators.@root = String(e.target.selected);
+							// If you selected root, then group can't be changed
+							groupCollaboratorsCheckBox.enabled = !e.target.selected;
+							dirty.dispatch();
+							invalidateProperties();
+						}
+					});
+					break;
+				case groupCollaboratorsCheckBox:
+					instance.label = copyProvider.getCopyForId("groupCollaboratorsLabel");
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!isPopulating) {
+							course.privacy.collaborators.@group = String(e.target.selected);
+							dirty.dispatch();
+							invalidateProperties();
+						}
+					});
+					break;
+				case rootPublishersCheckBox:
+					instance.label = copyProvider.getCopyForId("rootPublishersLabel");
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!isPopulating) {
+							course.privacy.publishers.@root = String(e.target.selected);
+							// If you selected root, then group can't be changed
+							groupPublishersCheckBox.enabled = !e.target.selected;
+							dirty.dispatch();
+							invalidateProperties();
+						}
+					});
+					break;
+				case groupPublishersCheckBox:
+					instance.label = copyProvider.getCopyForId("groupPublishersLabel");
+					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (!isPopulating) {
+							course.privacy.publishers.@group = String(e.target.selected);
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -268,29 +380,17 @@ package com.clarityenglish.rotterdam.view.settings {
 					instance.addEventListener(MouseEvent.CLICK, onBack);
 					instance.label = copyProvider.getCopyForId("cancelButton");
 					break;
-				case addCollaboratorButton:
-					instance.addEventListener(MouseEvent.CLICK, onSave);
-					instance.label = copyProvider.getCopyForId("addCollaboratorButton");
+				case courseNameFormItem:
+					instance.label = copyProvider.getCopyForId("courseNameLabel");
 					break;
-				case transferOwnershipButton:
-					instance.addEventListener(MouseEvent.CLICK, onSave);
-					instance.label = copyProvider.getCopyForId("transferOwnershipButton");
+				case courseDescriptionFormItem:
+					instance.label = copyProvider.getCopyForId("courseDescriptionLabel");
 					break;
-				case addPublisherButton:
-					instance.addEventListener(MouseEvent.CLICK, onSave);
-					instance.label = copyProvider.getCopyForId("addPublisherButton");
+				case authorFormItem:
+					instance.label = copyProvider.getCopyForId("authorLabel");
 					break;
-				case courseNameLabel:
-					instance.text = copyProvider.getCopyForId("courseNameLabel");
-					break;
-				case courseDescriptionLabel:
-					instance.text = copyProvider.getCopyForId("courseDescriptionLabel");
-					break;
-				case authorLabel:
-					instance.text = copyProvider.getCopyForId("authorLabel");
-					break;
-				case contactEmailLabel:
-					instance.text = copyProvider.getCopyForId("contactEmailLabel");
+				case contactEmailFormItem:
+					instance.label = copyProvider.getCopyForId("contactEmailLabel");
 					break;
 				case directURLLabel:
 					instance.text = copyProvider.getCopyForId("directURLLabel");

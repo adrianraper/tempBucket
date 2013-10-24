@@ -48,6 +48,10 @@
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			Bind.fromProperty(courseProxy, "unitCollection").toProperty(view, "unitListCollection");
+			// gh#91
+			view.isOwner = courseProxy.isOwner;
+			view.isCollaborator = courseProxy.isCollaborator;
+			view.isPublisher = courseProxy.isPublisher;
 		}
 		
 		override public function onRemove():void {

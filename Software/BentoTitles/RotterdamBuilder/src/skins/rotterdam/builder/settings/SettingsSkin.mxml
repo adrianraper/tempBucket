@@ -41,73 +41,77 @@
 	<!-- Left hand side -->
 	<s:VGroup left="40" top="50" right="40" height="80%">
 		<!-- About this course -->
-		<s:VGroup includeIn="normal" paddingTop="22" left="0" right="0">
-			<s:HGroup>
-				<s:Label id="courseNameLabel" fontWeight="bold" />
+		<s:Form id="aboutForm" includeIn="normal" >
+			<s:FormHeading id="aboutCourseFormHeading" />
+			<s:FormItem id="courseNameFormItem" >
 				<s:TextInput id="aboutCourseNameTextInput" width="300" />
-			</s:HGroup>
+				<s:helpContent>
+					<s:Label text="Shown on the student list of courses" />
+				</s:helpContent>
+			</s:FormItem>
 			
-			<s:Spacer height="10" />
-			
-			<s:HGroup>
-				<s:Label id="courseDescriptionLabel" fontWeight="bold" />
+			<s:FormItem id="courseDescriptionFormItem" >
 				<s:TextArea id="aboutCourseDescriptionTextArea" width="300" heightInLines="4" />
-			</s:HGroup>
+				<s:helpContent>
+					<s:Label text="not currently used" />
+				</s:helpContent>
+			</s:FormItem>
 			
-			<s:Spacer height="10" />
-			
-			<s:HGroup>
-				<s:Label id="authorLabel" fontWeight="bold" />
+			<s:FormItem id="authorFormItem" >
 				<s:TextInput id="aboutAuthorTextInput" width="300" />
-			</s:HGroup>
+				<s:helpContent>
+					<s:Label text="Shown in emails and credits" />
+				</s:helpContent>
+			</s:FormItem>
 			
-			<s:Spacer height="10" />
-			
-			<s:HGroup>
-				<s:Label id="contactEmailLabel" fontWeight="bold" />
+			<s:FormItem id="contactEmailFormItem" >
 				<s:TextInput id="aboutEmailTextInput" width="300" />
-			</s:HGroup>
+				<s:helpContent>
+					<s:Label text="For emailing unit notifications" />
+				</s:helpContent>
+			</s:FormItem>
 			
-			<s:Spacer height="10" />
-			
-			<s:Label id="directURLLabel" fontWeight="bold" />
-			<s:TextInput id="directStartURLLabel" editable="false" width="700" borderVisible="false"/>
-			
-		</s:VGroup>
+		</s:Form>
+		<s:Label id="directURLLabel" fontWeight="bold" paddingLeft="25"/>
+		<s:Label id="directStartURLLabel" paddingLeft="25"/>	
 		
 		<!-- Privacy and permissions -->
-		<s:VGroup includeIn="normal" paddingTop="22" left="0" right="0">
-			<s:Label id="permissionsLabel" fontWeight="bold" />
-			<s:HGroup height="100%" width="100%">
-				<!-- Owners -->
-				<s:VGroup includeIn="normal" width="50%" height="100%">
-					<s:HGroup>
-						<s:Label id="ownerLabel" fontWeight="bold" />
-						<s:Label id="ownerText" />
-					</s:HGroup>
-					<s:HGroup>
-						<s:Label id="collaboratorsLabel" fontWeight="bold" />
-						<s:List id="collaboratorsText" />
-					</s:HGroup>
-					<s:Button id="addCollaboratorButton" />
-					<s:CheckBox id="courseEditableCheckBox" />
-					<s:Button id="transferOwnershipButton" />
-				</s:VGroup>
-				<s:Spacer width="{settingBackground.width * 0.03}" />
-				<!-- Publishers -->
-				<s:VGroup includeIn="normal" width="50%" height="100%">
-					<s:HGroup>
-						<s:Label id="publishersLabel" fontWeight="bold" />
-						<s:List id="publishersText">
-							<mx:ArrayCollection>
-								<fx:String>all teachers in SQU</fx:String> 
-							</mx:ArrayCollection>
-						</s:List>
-					</s:HGroup>
-					<s:Button id="addPublisherButton" />
-				</s:VGroup>
-			</s:HGroup>
-		</s:VGroup>
+		<s:Form id="permissionsForm" includeIn="normal" left="0" >
+			<!-- Reduce gap between form items -->
+			<s:layout>
+				<s:FormLayout gap="0"/>
+			</s:layout> 
+			<s:FormHeading id="permissionsFormHeading" />
+			<s:FormItem id="ownerFormItem" >
+				<s:Label id="ownerLabel" />
+			</s:FormItem>
+			<s:FormItem id="courseEditableFormItem" >
+				<s:CheckBox id="courseEditableCheckBox" />
+				<s:helpContent>
+					<s:Label text="Use to protect a completed course" />
+				</s:helpContent>
+			</s:FormItem>
+			
+			<!-- Collaborators -->
+			<s:FormItem id="collaboratorsFormItem" >
+				<!-- <s:List id="collaboratorsText" /> -->
+				<s:CheckBox id="groupCollaboratorsCheckBox" />
+				<s:CheckBox id="rootCollaboratorsCheckBox" />
+				<s:helpContent>
+					<s:Label text="Collaborators can edit the course" />
+				</s:helpContent>
+			</s:FormItem>
+			<!-- Publishers -->
+			<s:FormItem id="publishersFormItem" >
+				<!-- <s:List id="publishersText" /> -->
+				<s:CheckBox id="groupPublishersCheckBox" />
+				<s:CheckBox id="rootPublishersCheckBox" />
+				<s:helpContent>
+					<s:Label text="Publishers can schedule their students on the course but can't edit it." />
+				</s:helpContent>
+			</s:FormItem>
+		</s:Form>
+		
 	</s:VGroup>
 		
 	<s:Group bottom="38" left="0" right="0">

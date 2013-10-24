@@ -15,7 +15,7 @@ package com.clarityenglish.rotterdam.view.courseselector.events
 		}
 		
 		public override function toString():String {
-			return formatToString("UnitSelectEvent", "bubbles");
+			return formatToString("CourseSelectEvent", "bubbles");
 		}
 	}
 }

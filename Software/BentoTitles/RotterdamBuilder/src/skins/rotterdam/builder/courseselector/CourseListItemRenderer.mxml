@@ -5,18 +5,22 @@
 				autoDrawBackground="false">
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.common.vo.content.Course;
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseSelectEvent;
 
 			// gh#689
 			public override function set data(value:Object):void {
 				super.data = value;
-				// gh#91
-				if (data) this.enabled = !data.hasOwnProperty("@enabledFlag") || (data.@enabledFlag > 0);
+				// gh#91 can you see this course? can you delete it (only the owner can)
+				if (data) {
+					this.enabled = !data.hasOwnProperty("@enabledFlag") || (data.@enabledFlag > 0);
+					this.deleteCourseButton.enabled = (data.@enabledFlag & Course.EF_OWNER);
+				}
 			}
 			
 			protected function onItemGroupClick(event:MouseEvent):void {
-				trace("on item group click");
+				//trace("on item group click");
 				dispatchEvent(new CourseSelectEvent(CourseSelectEvent.COURSE_SELECT, true));
 			}
 		]]>
@@ -34,7 +38,7 @@
 	</s:states>
 	
 	<s:Group width="100%" click="onItemGroupClick(event)" filters="{[dropShadowFilter]}">
-		<s:Rect height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
+		<s:Rect filters="{[dropShadowFilter]}" height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
 			<s:fill>
 				<s:SolidColor color="0xFFFFFF" color.hovered="0xFFF6CC" color.selected="0xFFF6CC" />
 			</s:fill>

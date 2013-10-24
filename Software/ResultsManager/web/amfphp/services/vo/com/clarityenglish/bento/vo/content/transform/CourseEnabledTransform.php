@@ -21,25 +21,24 @@ class CourseEnabledTransform extends XmlTransform {
 					throw new Exception('corrupt course');
 					
 				// gh#91 match the user to the permissions for the course to set an overall enabledFlag
+				// TODO You don't really need to get all this here, just need to know if the current user is allowed to view the course
+				// and it doesn't make much sense to set all roles beneath you either.
 				$eF = 0;
 				// get the highest role for this user on this course
-				$editable = $service->courseOps->getCoursePermission($course['id']);
-				$role = $service->courseOps->getUserRole($course['id']);
+				$courseID = XmlUtils::xml_attribute($course, 'id', 'string');
+				// $editable = $service->courseOps->getCoursePermission($courseID);
+				$role = $service->courseOps->getUserRole($courseID);
 				switch ($role) {
 					case Course::ROLE_OWNER:
-						$eF = $eF | Course::EF_OWNER | (($editable) ? Course::EF_EDITABLE : 0);
-						break;
+						$eF = $eF | Course::EF_OWNER;
 					case Course::ROLE_COLLABORATOR:
-						$eF = $eF | Course::EF_COLLABORATOR | (($editable) ? Course::EF_EDITABLE : 0);
-						break;
+						$eF = $eF | Course::EF_COLLABORATOR;
 					case Course::ROLE_PUBLISHER:
 						$eF = $eF | Course::EF_PUBLISHER;
-						break;
 					case Course::ROLE_VIEWER:
 						$eF = $eF | Course::EF_VIEWER;
 						break;	
 				}
-				AbstractService::$debugLog->info("ef: ".$eF);
 				$course->addAttribute('enabledFlag', $eF);
 					
 			} catch (Exception $e) {

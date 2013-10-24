@@ -88,6 +88,10 @@ package com.clarityenglish.rotterdam.view.course {
 		private var isItemClick:Boolean;
 		private var isHidden:Boolean;
 		private var isPreview:Boolean;
+		// gh#91
+		public var isOwner:Boolean;
+		public var isCollaborator:Boolean;
+		public var isPublisher:Boolean;
 		
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
@@ -127,6 +131,10 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
+			
+			// gh#91 DKHELP
+			//if (isPublisher)
+			//	previewVisible = true;
 			
 			if (_isPreviewVisible) {
 				if (unitHeader.editButton)

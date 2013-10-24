@@ -44,9 +44,6 @@ package com.clarityenglish.rotterdam.view.schedule {
 		public var scheduleLabel:Label;
 		
 		[SkinPart]
-		public var scheduleDatesLabel:Label;
-		
-		[SkinPart]
 		public var notificationsLabel:Label;
 		
 		[SkinPart]
@@ -62,13 +59,19 @@ package com.clarityenglish.rotterdam.view.schedule {
 		public var endDateField:DateField;
 		
 		[SkinPart]
-		public var seePastUnitsCheckBox:CheckBox;
+		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
 		
 		[SkinPart]
 		public var unitIntervalGroup:spark.components.Group;
 		
 		[SkinPart]
 		public var unitIntervalRadioButtonGroup:RadioButtonGroup;
+		
+		[SkinPart]
+		public var yesRadioButton:RadioButton;
+		
+		[SkinPart]
+		public var noRadioButton:RadioButton;
 		
 		[SkinPart]
 		public var selectGroupLabel:Label;
@@ -80,16 +83,19 @@ package com.clarityenglish.rotterdam.view.schedule {
 		public var endDateLabel:Label;
 		
 		[SkinPart]
-		public var endDateInstruLabel:Label;
+		public var endDateDetailLabel:Label;
 		
 		[SkinPart]
 		public var unitIntervalLabel:Label;
 		
 		[SkinPart]
+		public var seePastUnitsLabel:Label;
+		
+		[SkinPart]
 		public var allUnitsAvailableRadioButton:RadioButton;
 		
 		[SkinPart]
-		public var allUnitsAtOnceRadioButton:RadioButton;
+		public var oneUnitAtOnceRadioButton:RadioButton;
 		
 		// gh#122
 		[SkinPart]
@@ -181,9 +187,9 @@ package com.clarityenglish.rotterdam.view.schedule {
 			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate") && (selectedPublicationGroup.@endDate != null)) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
 			if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && (selectedPublicationGroup.@unitInterval != 0)) ? selectedPublicationGroup.@unitInterval : null;
 			if (unitIntervalRadioButtonGroup) unitIntervalRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval == 0) : null;
-			if (seePastUnitsCheckBox) {
-				seePastUnitsCheckBox.selected = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
-				seePastUnitsCheckBox.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
+			if (pastUnitsRadioButtonGroup) {
+				pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
+				pastUnitsRadioButtonGroup.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
 			}
 			
 			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates gh#87
@@ -233,9 +239,6 @@ package com.clarityenglish.rotterdam.view.schedule {
 			switch (instance) {
 				case scheduleLabel:
 					instance.text = copyProvider.getCopyForId("scheduleLabel");
-					break;
-				case scheduleDatesLabel:
-					instance.text = copyProvider.getCopyForId("scheduleDatesLabel");
 					break;
 				case notificationsLabel:
 					instance.text = copyProvider.getCopyForId("notificationsLabel");
@@ -288,22 +291,22 @@ package com.clarityenglish.rotterdam.view.schedule {
 							if (e.target.selectedValue) {
 								selectedPublicationGroup.@unitInterval = 0;
 								selectedPublicationGroup.@seePastUnits = true;
-								seePastUnitsCheckBox.enabled = false;
+								pastUnitsRadioButtonGroup.enabled = false;
+								pastUnitsRadioButtonGroup.selectedValue = true;
 								calendarSettingsChanged();
 							} else {
-								seePastUnitsCheckBox.enabled = true;
+								pastUnitsRadioButtonGroup.enabled = true;
 							}							
 						}
 					});
 					break;
-				case seePastUnitsCheckBox:
+				case pastUnitsRadioButtonGroup:
 					instance.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
-							selectedPublicationGroup.@seePastUnits = e.target.selected;
+							selectedPublicationGroup.@seePastUnits = e.target.selectedValue;
 							calendarSettingsChanged();
 						}
 					});
-					seePastUnitsCheckBox.label = copyProvider.getCopyForId("seePastUnitsLabel");
 					break;
 				// gh#122
 				case sendAlertEmailCheckbox:
@@ -314,6 +317,15 @@ package com.clarityenglish.rotterdam.view.schedule {
 						}
 					});
 					instance.label = copyProvider.getCopyForId("sendAlertEmailCheckbox");
+					break;
+				case seePastUnitsLabel:
+					instance.text = copyProvider.getCopyForId("seePastUnitsLabel");
+					break;
+				case yesRadioButton:
+					instance.label = copyProvider.getCopyForId("yesButton");
+					break;
+				case noRadioButton:
+					instance.label = copyProvider.getCopyForId("noButton");
 					break;
 				case calendar:
 					// Default the calendar to the current year and month
@@ -335,13 +347,13 @@ package com.clarityenglish.rotterdam.view.schedule {
 					selectGroupLabel.text = copyProvider.getCopyForId("selectGroupLabel");
 					break;
 				case startDateLabel:
-					startDateLabel.text = copyProvider.getCopyForId("startDateLabel");
+					instance.text = copyProvider.getCopyForId("startDateLabel");
 					break;
 				case endDateLabel:
-					endDateLabel.text = copyProvider.getCopyForId("endDateLabel");
+					instance.text = copyProvider.getCopyForId("endDateLabel");
 					break;
-				case endDateInstruLabel:
-					endDateInstruLabel.text = copyProvider.getCopyForId("endDateInstructionLabel");
+				case endDateDetailLabel:
+					instance.text = copyProvider.getCopyForId("endDateDetailLabel");
 					break;
 				case unitIntervalLabel:
 					unitIntervalLabel.text = copyProvider.getCopyForId("unitIntervalLabel");
@@ -349,8 +361,8 @@ package com.clarityenglish.rotterdam.view.schedule {
 				case allUnitsAvailableRadioButton:
 					instance.label = copyProvider.getCopyForId("allUnitsAvailableRadioButton");
 					break;
-				case allUnitsAtOnceRadioButton:
-					instance.label = copyProvider.getCopyForId("allUnitsAtOnceRadioButton");
+				case oneUnitAtOnceRadioButton:
+					instance.label = copyProvider.getCopyForId("oneUnitAtOnceRadioButton");
 					break;
 				case welcomeEmailLabel:
 					welcomeEmailLabel.text = copyProvider.getCopyForId("welcomeEmailLabel");

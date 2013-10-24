@@ -7,7 +7,8 @@
 		xmlns:courseui="com.clarityenglish.rotterdam.view.course.ui.*"
 		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*"
 		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*"
-		initialize="onInitialize(event)" xmlns:ui1="com.clarityenglish.rotterdam.view.title.ui.*">
+		xmlns:ui1="com.clarityenglish.rotterdam.view.title.ui.*"
+		initialize="onInitialize(event)" >
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
@@ -133,13 +134,13 @@
 		<s:Button id="settingsButton" />
 	</s:HGroup>
 		
-	<!--alice p-->
-	<s:Group id="publishVGroup" left="3" bottom="40" width="155" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">
+	<!-- gh#91 Keep the publish button even in preview mode -->
+	<s:Group id="publishVGroup" left="3" bottom="38" width="152" visible="{toolBar.currentState == 'normal'}" >
 		<s:Group bottom="0" left="0">
 			<s:ToggleButton id="publishCourseButton" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" useHandCursor="true" buttonMode="true" />
 			<s:Button id="publishChangeButton" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" useHandCursor="true" buttonMode="true" />
 		</s:Group>
-		<s:VGroup paddingLeft="2" bottom="0" id="publishSelectionGroup" height="0" alpha="0">
+		<s:VGroup paddingLeft="0" bottom="0" id="publishSelectionGroup" height="0" alpha="0">
 			<s:Group>
 				<s:Rect width="152" height="200" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
 					<s:fill>

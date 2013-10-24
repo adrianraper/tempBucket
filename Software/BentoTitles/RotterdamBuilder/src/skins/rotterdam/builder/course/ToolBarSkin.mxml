@@ -196,7 +196,6 @@
 	<s:Group left="520" right="270" bottom="0" includeIn="normal">
 		<s:ToggleButton id="addItemButton" horizontalCenter="0" height="48" width="130" visible="false" useHandCursor="true" buttonMode="true"/>
 	</s:Group>
-
 	
 	<s:HGroup bottom="0" gap="10" height="48" right="140" verticalAlign="middle">
 		<s:Button includeIn="normal" id="normalSaveButton" useHandCursor="true" buttonMode="true" fontWeight="bold" />

@@ -5,6 +5,7 @@ package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import mx.collections.ArrayCollection;
 	
@@ -34,7 +35,9 @@ package com.clarityenglish.rotterdam.view.settings {
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
-			
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			view.isOwner = courseProxy.isOwner;
+
 		}
 		
 		override public function onRemove():void {

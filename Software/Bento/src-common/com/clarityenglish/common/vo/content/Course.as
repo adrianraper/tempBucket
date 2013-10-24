@@ -8,6 +8,19 @@
 	[Bindable]
 	public dynamic class Course extends Content {
 		
+		// gh#91 enabledFlag values
+		public static const EF_VIEWER:int = 1;
+		public static const EF_PUBLISHER:int = 2;
+		public static const EF_OWNER:int = 4;
+		public static const EF_EDITABLE:int = 8;
+		public static const EF_COLLABORATOR:int = 16;
+		
+		// gh#91 role values
+		public static const ROLE_OWNER = 1;
+		public static const ROLE_COLLABORATOR = 2;
+		public static const ROLE_PUBLISHER = 3;
+		public static const ROLE_VIEWER = 4;
+
 		/**
 		 * The collection of units belonging to this course
 		 */

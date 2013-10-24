@@ -1,7 +1,9 @@
 ﻿package com.clarityenglish.rotterdam.builder.view.course {
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
@@ -23,6 +25,20 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			// gh#91 This view runs off the menu xml so inject it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
+			
+			// gh#91 TODO I can't do this here as the course has not been read yet
+			/*
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			view.isEditable = courseProxy.isEditable;
+			view.isOwner = courseProxy.isOwner;
+			view.isCollaborator = courseProxy.isCollaborator;
+			view.isPublisher = courseProxy.isPublisher;
+			*/
+			view.onGetPermission.add(onGetPermission);
 			
 			view.saveCourse.add(onSaveCourse);
 			view.addText.add(onAddText);
@@ -140,7 +156,7 @@
 			facade.sendNotification(RotterdamNotifications.PREVIEW_HIDE);
 		}
 		
-		//gh #221
+		// gh#221
 		protected function onAddLink(webUrlString:String, captionString:String ):void {
 			var linkStrings:Object = new Object();
 			linkStrings.webUrlString = webUrlString;
@@ -148,9 +164,19 @@
 			facade.sendNotification(RotterdamNotifications.WEB_URL_ADD, linkStrings);
 		}
 		
-		//gh #221
+		// gh#221
 		protected function onCancelLink():void {
 			facade.sendNotification(RotterdamNotifications.WEB_URL_CANCEL);
 		}
+		
+		// gh#91 This seems clumsy
+		protected function onGetPermission():void {
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			view.isEditable = courseProxy.isEditable;
+			view.isOwner = courseProxy.isOwner;
+			view.isCollaborator = courseProxy.isCollaborator;
+			view.isPublisher = courseProxy.isPublisher;
+		}
+
 	}
 }

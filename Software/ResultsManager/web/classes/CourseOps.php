@@ -123,7 +123,7 @@ SQL;
 	public function courseSave($filename, $menuXml) {
 		// Protect again directory traversal attacks; the filename *must* be in the form <some hex value>/menu.xml otherwise we are being fiddled with
 		if (preg_match("/^([0-9a-f]+)\/menu\.xml$/", $filename, $matches) != 1) {
-			throw $this->copyOps->getExceptionForId("errorSavingCourse");
+			throw $this->copyOps->getExceptionForId("errorSavingCourse", array("reason" => "corrupt file name"));
 		}
 		
 		// Get the course id
@@ -131,10 +131,9 @@ SQL;
 		
 		// Check the file exists
 		$menuXMLFilename = "$this->accountFolder/$filename";
-		if (!file_exists($menuXMLFilename)) {
-			throw $this->copyOps->getExceptionForId("errorSavingCourse");
-		}
-		
+		if (!file_exists($menuXMLFilename))
+			throw $this->copyOps->getExceptionForId("errorSavingCourse", array("reason" => "menu.xml doesn't exist"));
+			
 		$db = $this->db;
 		$copyOps = $this->copyOps;
 		$accountFolder = $this->accountFolder;
@@ -239,7 +238,7 @@ SQL;
  			
 			// 2. Write privacy information to the database
 			// 2.1 whole course editable?
-			$editable = XmlUtils::xml_attribute($course->privacy->editable, 'value', 'boolean');
+			$editable = XmlUtils::xml_attribute($course->permission, 'editable', 'boolean');
 			$sql = <<<SQL
 					SELECT * FROM T_CoursePermission 
 					WHERE F_CourseID = ?
@@ -256,7 +255,7 @@ SQL;
 					SET F_Editable = ? 
 					WHERE F_CourseID = ?
 SQL;
-				$bindingParams = array((boolean)$editable, (string)$course['id']);
+				$bindingParams = array($editable, (string)$course['id']);
 				$rc = $db->Execute($sql, $bindingParams);					
 				if (!$rc)
 					throw new Exception('update to T_CoursePermission failed');
@@ -268,14 +267,124 @@ SQL;
 					(F_CourseID, F_Editable)
 					VALUES (?,?)
 SQL;
-				$bindingParams = array((string)$course['id'],(boolean)$editable);
+				$bindingParams = array((string)$course['id'],$editable);
 				$rc = $db->Execute($sql, $bindingParams);					
 				if (!$rc)
 					throw new Exception('insert to T_CoursePermission failed');
 			}
 	 			
-			// TODO 2.2 course roles
-						
+			// 2.2 course roles
+			// TODO For now this just works for the author's group and root
+			// 2.2.1 Collaborators
+			$groupCollaborators = XmlUtils::xml_attribute($course->privacy->collaborators, 'group', 'boolean');
+			$groupID = Session::get('groupID');
+			$sql = <<<SQL
+				DELETE FROM T_CourseRoles 
+				WHERE F_CourseID = ?
+				AND F_GroupID = ?
+				AND F_Role = ?
+SQL;
+			$bindingParams = array((string)$course['id'], $groupID, Course::ROLE_COLLABORATOR);
+			$rs = $db->Execute($sql, $bindingParams);					
+			if (!$rs)
+				throw new Exception('Failed to read from db');
+				
+			// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
+			if ($groupCollaborators) {
+				$sql = <<<SQL
+					INSERT INTO T_CourseRoles 
+					(F_CourseID, F_GroupID, F_Role, F_DateStamp)
+					VALUES (?,?,?,?)
+SQL;
+				$now = new DateTime();
+				$bindingParams = array((string)$course['id'], $groupID, Course::ROLE_COLLABORATOR, $now->format('Y-m-d H:i:s'));
+				$rc = $db->Execute($sql, $bindingParams);					
+				if (!$rc)
+					throw new Exception('insert to T_CourseRoles failed');
+			}
+			
+			$rootCollaborators = XmlUtils::xml_attribute($course->privacy->collaborators, 'root', 'boolean');
+			$rootID = Session::get('rootID');
+			$sql = <<<SQL
+					DELETE FROM T_CourseRoles 
+					WHERE F_CourseID = ?
+					AND F_RootID = ?
+					AND F_Role = ?
+SQL;
+			$bindingParams = array((string)$course['id'], $rootID, Course::ROLE_COLLABORATOR);
+			$rs = $db->Execute($sql, $bindingParams);					
+			if (!$rs)
+				throw new Exception('Failed to read from db');
+				
+			// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
+			if ($rootCollaborators) {
+				$sql = <<<SQL
+					INSERT INTO T_CourseRoles 
+					(F_CourseID, F_RootID, F_Role, F_DateStamp)
+					VALUES (?,?,?,?)
+SQL;
+				$now = new DateTime();
+				$bindingParams = array((string)$course['id'], $rootID, Course::ROLE_COLLABORATOR, $now->format('Y-m-d H:i:s'));
+				$rc = $db->Execute($sql, $bindingParams);					
+				if (!$rc)
+					throw new Exception('insert to T_CourseRoles failed');
+			}
+
+			// 2.2.2 Publishers
+			$groupPublishers = XmlUtils::xml_attribute($course->privacy->publishers, 'group', 'boolean');
+			$groupID = Session::get('groupID');
+			$sql = <<<SQL
+				DELETE FROM T_CourseRoles 
+				WHERE F_CourseID = ?
+				AND F_GroupID = ?
+				AND F_Role = ?
+SQL;
+			$bindingParams = array((string)$course['id'], $groupID, Course::ROLE_PUBLISHER);
+			$rs = $db->Execute($sql, $bindingParams);					
+			if (!$rs)
+				throw new Exception('Failed to read from db');
+				
+			// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
+			if ($groupPublishers) {
+				$sql = <<<SQL
+					INSERT INTO T_CourseRoles 
+					(F_CourseID, F_GroupID, F_Role, F_DateStamp)
+					VALUES (?,?,?,?)
+SQL;
+				$now = new DateTime();
+				$bindingParams = array((string)$course['id'], $groupID, Course::ROLE_PUBLISHER, $now->format('Y-m-d H:i:s'));
+				$rc = $db->Execute($sql, $bindingParams);					
+				if (!$rc)
+					throw new Exception('insert to T_CourseRoles failed');
+			}
+			
+			$rootPublishers = XmlUtils::xml_attribute($course->privacy->publishers, 'root', 'boolean');
+			$rootID = Session::get('rootID');
+			$sql = <<<SQL
+					DELETE FROM T_CourseRoles 
+					WHERE F_CourseID = ?
+					AND F_RootID = ?
+					AND F_Role = ?
+SQL;
+			$bindingParams = array((string)$course['id'], $rootID, Course::ROLE_PUBLISHER);
+			$rs = $db->Execute($sql, $bindingParams);					
+			if (!$rs)
+				throw new Exception('Failed to read from db');
+				
+			// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
+			if ($rootPublishers) {
+				$sql = <<<SQL
+					INSERT INTO T_CourseRoles 
+					(F_CourseID, F_RootID, F_Role, F_DateStamp)
+					VALUES (?,?,?,?)
+SQL;
+				$now = new DateTime();
+				$bindingParams = array((string)$course['id'], $rootID, Course::ROLE_PUBLISHER, $now->format('Y-m-d H:i:s'));
+				$rc = $db->Execute($sql, $bindingParams);					
+				if (!$rc)
+					throw new Exception('insert to T_CourseRoles failed');
+			}
+			
 			// Finally. Remove data from the XML that you have put into the db so it doesn't get saved in the file
 			// gh#191 If you have iterated round the publication loop, you can't now unset it (at least with my PHP)
 			// unset($course->publication);
@@ -283,6 +392,7 @@ SQL;
 			// So whilst it seems fragile, unset the privacy which works as you haven't looped round it then dom remove publication!
 			// TODO. need a robust child removal option here
 			unset($course->privacy);
+			unset($course->permission);
 			$dom = dom_import_simplexml($course->publication);
        		$dom->parentNode->removeChild($dom);
 			//$dom = dom_import_simplexml($course->privacy);
@@ -303,24 +413,26 @@ SQL;
 			
 			// SimpleXML doesn't like default namespaces in xpath expressions so define the XHTML namespace explicitly
 			$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
-			
-			// Find the course node in the xml and delete it
-			$courseId = $course['id'];
-			foreach ($xml->xpath("//xmlns:course[@id='$courseId']") as $courseNode) {
-				unset($courseNode[0]);
-			}
+
+			// gh#91 delete the node only after you have finished using courseID otherwise it becomes null
+			$courseID = XmlUtils::xml_attribute($course, 'id', 'string');
 			
 			// Rename the folder such that it is prefixed with "deleted_"
-			if (!rename($accountFolder."/".$courseId,  $accountFolder."/deleted_".$courseId))
+			if (!rename($accountFolder."/".$courseID,  $accountFolder."/deleted_".$courseID))
 				throw new Exception("Unable to rename folder and so could not delete course");
 			
 			// #155
-			$db->Execute("DELETE FROM T_CourseStart WHERE F_RootID = ? AND F_CourseID = ?", array(Session::get('rootID'), $courseId));
-			$db->Execute("DELETE FROM T_UnitStart WHERE F_RootID = ? AND F_CourseID = ?", array(Session::get('rootID'), $courseId));
+			$db->Execute("DELETE FROM T_CourseStart WHERE F_RootID = ? AND F_CourseID = ?", array(Session::get('rootID'), $courseID));
+			$db->Execute("DELETE FROM T_UnitStart WHERE F_RootID = ? AND F_CourseID = ?", array(Session::get('rootID'), $courseID));
 			
 			// gh#91 Remove permissions and roles
-			$db->Execute("DELETE FROM T_CoursePermission WHERE F_CourseID = ?", array($courseId));
-			$db->Execute("DELETE FROM T_CourseRoles WHERE F_CourseID = ?", array($courseId));
+			$db->Execute("DELETE FROM T_CoursePermission WHERE F_CourseID = ?", array($courseID));
+			$db->Execute("DELETE FROM T_CourseRoles WHERE F_CourseID = ?", array($courseID));
+			
+			// Find the course node in the xml and delete it
+			foreach ($xml->xpath("//xmlns:course[@id='$courseID']") as $courseNode) {
+				unset($courseNode[0]);
+			}
 			
 			$db->CompleteTrans();
 		});
@@ -383,7 +495,7 @@ SQL;
 	 */
 	public function getUserRole($courseID){
 
-		$highestRole = $userRole = $groupRole = $rootRole = 0;
+		$userRole = $groupRole = $rootRole = 99;
 		$userID = Session::get('userID');
 		$groupIDs = implode(',', array_unique(array_merge(Session::get('groupIDs'), Session::get('parentGroupIDs')), SORT_DESC));
 		$rootID = Session::get('rootID');
@@ -398,7 +510,7 @@ SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs->recordCount() > 0)
 			while ($rec = $rs->FetchNextObj()) {
-				if ($rec->role > $userRole)
+				if ($rec->role < $userRole)
 					$userRole = $rec->role;	
 			}
 			
@@ -412,7 +524,7 @@ SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs->recordCount() > 0)
 			while ($rec = $rs->FetchNextObj()) {
-				if ($rec->role > $groupRole)
+				if ($rec->role < $groupRole)
 					$groupRole = $rec->role;	
 			}
 			
@@ -426,11 +538,12 @@ SQL;
 		$rs = $this->db->Execute($sql, $bindingParams);
 		if ($rs->recordCount() > 0)
 			while ($rec = $rs->FetchNextObj()) {
-				if ($rec->role > $rootRole)
+				if ($rec->role < $rootRole)
 					$rootRole = $rec->role;	
 			}
 			
-		return max($userRole, $groupRole, $rootRole);
+		// gh#91 remember that owner=1, collaborator=2 etc so look for the lowest number
+		return min($userRole, $groupRole, $rootRole);
 	}
 	
 	// gh#122
@@ -537,7 +650,7 @@ EOD;
 		$course->loginOption = $dbObj->F_LoginOption;
 		
 		// Now we need get all the active users in this group
-		$userRS = $this->getCourseUsersFromGroup($courseID, $groupID, $today);
+		$userRS = $this->getCourseUsersFromGroup($course->id, $groupID, $today);
 				
 		// Loop round the users and build an email array
 		if ($userRS->RecordCount() > 0) {

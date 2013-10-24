@@ -38,57 +38,6 @@ function addRMtoAccount($account) {
 	return $dmsService->db->AutoExecute("T_Accounts", $dbObj, "INSERT");
 
 }
-
-function seedCoursePermission($courseID) {
-	global $dmsService;
-	// Does this course already have a permission set?
-	$sql = <<<SQL
-		SELECT * FROM T_CoursePermission c
-		WHERE c.F_CourseID = ?
-SQL;
-	$bindingParams = array($courseID);
-	$rs = $dmsService->db->Execute($sql, $bindingParams);
-
-	if ($rs->recordCount() == 0) {
-		$sql = <<<SQL
-			INSERT INTO T_CoursePermission (F_CourseID, F_Editable)
-			VALUES (?, TRUE) 
-SQL;
-		$bindingParams = array($courseID);
-		$rs = $dmsService->db->Execute($sql, $bindingParams);
-	}		
-}
-
-function seedCourseRole($courseID, $userID, $rootID) {
-	global $dmsService;
-	// Does this course already have an owner?
-	$sql = <<<SQL
-		SELECT * FROM T_CourseRoles c
-		WHERE c.F_CourseID = ?
-		AND c.F_Role = 1
-SQL;
-	$bindingParams = array($courseID);
-	$rs = $dmsService->db->Execute($sql, $bindingParams);
-
-	if ($rs->recordCount() == 0) {
-		// Set the account administrator as the owner
-		$sql = <<<SQL
-			INSERT INTO T_CourseRoles (F_CourseID, F_UserID, F_Role, F_DateStamp)
-			VALUES (?, ?, 2, NOW()) 
-SQL;
-		$bindingParams = array($courseID, $userID);
-		$rs = $dmsService->db->Execute($sql, $bindingParams);
-		
-		// And a default viewer role for all teachers
-		$sql = <<<SQL
-			INSERT INTO T_CourseRoles (F_CourseID, F_RootID, F_Role, F_DateStamp)
-			VALUES (?, ?, 4, NOW()) 
-SQL;
-		$bindingParams = array($courseID, $rootID);
-		$rs = $dmsService->db->Execute($sql, $bindingParams);
-	}		
-}
-	
 function changeExpiryDate($account, $extension = '+1 month', $limit = null) {
 	global $dmsService;
 	$dmsService->db->StartTrans();
@@ -134,10 +83,58 @@ function validateDate($date, $format = 'Y-m-d') {
     $d = DateTime::createFromFormat($format, $date);
     return $d && $d->format($format) == $date;
 }
+function seedCoursePermission($courseID) {
+	global $dmsService;
+	// Does this course already have a permission set?
+	$sql = <<<SQL
+		SELECT * FROM T_CoursePermission c
+		WHERE c.F_CourseID = ?
+SQL;
+	$bindingParams = array($courseID);
+	$rs = $dmsService->db->Execute($sql, $bindingParams);
+
+	if ($rs->recordCount() == 0) {
+		$sql = <<<SQL
+			INSERT INTO T_CoursePermission (F_CourseID, F_Editable)
+			VALUES (?, TRUE) 
+SQL;
+		$bindingParams = array($courseID);
+		$rs = $dmsService->db->Execute($sql, $bindingParams);
+	}		
+}
+function seedCourseRole($courseID, $userID, $rootID) {
+	global $dmsService;
+	// Does this course already have an owner?
+	$sql = <<<SQL
+		SELECT * FROM T_CourseRoles c
+		WHERE c.F_CourseID = ?
+		AND c.F_Role = 1
+SQL;
+	$bindingParams = array($courseID);
+	$rs = $dmsService->db->Execute($sql, $bindingParams);
+
+	if ($rs->recordCount() == 0) {
+		// Set the account administrator as the owner
+		$sql = <<<SQL
+			INSERT INTO T_CourseRoles (F_CourseID, F_UserID, F_Role, F_DateStamp)
+			VALUES (?, ?, 1, NOW()) 
+SQL;
+		$bindingParams = array($courseID, $userID);
+		$rs = $dmsService->db->Execute($sql, $bindingParams);
+		
+		// And a default viewer role for all teachers
+		$sql = <<<SQL
+			INSERT INTO T_CourseRoles (F_CourseID, F_RootID, F_Role, F_DateStamp)
+			VALUES (?, ?, 4, NOW()) 
+SQL;
+		$bindingParams = array($courseID, $rootID);
+		$rs = $dmsService->db->Execute($sql, $bindingParams);
+	}		
+}
 // If you want to run specific triggers for specific days (for testing)
 // you can put 'date=-1' in the URL
 $testingTriggers = "";
-$testingTriggers .= "Change expiry date";
+//$testingTriggers .= "Change expiry date";
 //$testingTriggers .= "Add RM to all accounts";
 //$testingTriggers .= "terms and conditions";
 $testingTriggers .= "Seed permissions and privacy for CCB";

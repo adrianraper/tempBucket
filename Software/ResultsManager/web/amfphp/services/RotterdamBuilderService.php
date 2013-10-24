@@ -54,7 +54,7 @@ class RotterdamBuilderService extends RotterdamService {
 		// gh#142
 		// gh#91 You only need to consider concurrency if this user can edit the course
 		if ($href->type == Href::MENU_XHTML && 
-			$href->options['enabledFlag'] & Course::EF_EDITABLE) {
+			($href->options['enabledFlag'] & Course::EF_OWNER || $href->options['enabledFlag'] & Course::EF_COLLABORATOR)) {
 			$courseId = $href->options["courseId"];
 
 			// gh#385
@@ -92,22 +92,15 @@ EOD;
 	}
 	
 	public function courseCreate($course) {
-		// TODO: Only allow this if the logged in user has permission
 		return $this->courseOps->courseCreate($course);
 	}
 	
 	public function courseSave($filename, $xml) {
-		// TODO: Only allow this if the logged in user has permission
 		return $this->courseOps->courseSave($filename, $xml);
 	}
 	
 	public function courseDelete($course) {
-		$courseXML = simplexml_load_string($course);
-		// gh#91 Only allow this if the logged in user is the owner
-		// Fail to get "enabledFlag" using the command below change to convert courseXML first and get the attribute
-		//if ($course->href->options['enabledFlag'] & Course::EF_OWNER)
-		if ($courseXML['enabledFlag'])
-			return $this->courseOps->courseDelete($course);
+		return $this->courseOps->courseDelete($course);
 	}
 	
 	/**

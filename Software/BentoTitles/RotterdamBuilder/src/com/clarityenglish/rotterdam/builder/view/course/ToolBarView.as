@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.vo.content.Course;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -251,6 +252,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		// gh#221
 		public var addLink:Signal = new Signal(String, String);
 		public var cancelLink:Signal = new Signal();
+		// gh#91
+		public var onGetPermission:Signal = new Signal();
 
 		private var isOutsideClick:Boolean;
 		private var isItemClick:Boolean;
@@ -264,6 +267,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		private var _currentEditingWidget:XML;
 		private var _urlCaption:String = "";
 		private var _urlString:String = "";
+		
+		// gh#91
+		public var isEditable:Boolean = false;
+		public var isOwner:Boolean = false;
+		public var isPublisher:Boolean = false;
+		public var isCollaborator:Boolean = false;
 		
 		[Bindable]
 		private var contentWindowTitle:String;
@@ -291,6 +300,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		public function ToolBarView() {
 			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "link", "preview" ], true);
+		}
+
+		// gh#91
+		public function get course():XML {	
+			return _xhtml.selectOne("script#model[type='application/xml'] course");
 		}
 		
 		/**
@@ -353,6 +367,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
+			// gh#91 DKHELP
+			if (isPublisher) {
+				preview.dispatch();
+				setCurrentState("preview");
+			}
+
 			if (addItemButton) {
 				if (smallScreenFlag) {
 					addItemButton.visible = true;
@@ -366,7 +386,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					addItemButton.visible = false;
 					
 				}
-			}		
+			}	
 		}
 				
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -375,8 +395,16 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			switch (instance) {
 				// Normal toolbar listeners
 				case normalSaveButton:
-					normalSaveButton.addEventListener(MouseEvent.CLICK, onNormalSave);
 					normalSaveButton.label = copyProvider.getCopyForId("normalSaveButton");
+					// gh#91 You can only save if allowed
+					// Using a signal like this seems very clumsy
+					onGetPermission.dispatch();
+					if (isEditable && (isOwner || isCollaborator)) { 
+						normalSaveButton.addEventListener(MouseEvent.CLICK, onNormalSave);
+						normalSaveButton.visible = true;
+					} else {
+						normalSaveButton.visible = false;
+					}
 					break;
 				case listAddTextButton:
 					listAddTextButton.addEventListener(MouseEvent.CLICK, onNormalAddText);

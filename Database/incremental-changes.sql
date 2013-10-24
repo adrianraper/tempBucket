@@ -982,6 +982,39 @@ insert into T_LicenceAttributes
 (F_RootID, F_ProductCode, F_Key, F_Value)
 values (163, 54, 'customisation',"<branding><login><image src='CE_banner.png' horizontalAlign='center' verticalAlign='top' padding='0' /><image src='trophy.png' horizontalAlign='left' verticalAlign='bottom' padding='10' /></login></branding>");
 
+-- gh#91
+DROP TABLE IF EXISTS T_CourseRoles;
+CREATE TABLE T_CourseRoles (
+F_CourseID bigint(20) NOT NULL,
+F_UserID int(10) NULL,
+F_GroupID int(10) NULL,
+F_RootID int(10) NULL,
+F_Role smallint NOT NULL,
+F_DateStamp datetime NOT NULL,
+  KEY Index_1 (F_CourseID)
+) ENGINE=InnoDB; 
+DROP TABLE IF EXISTS T_RoleType;
+CREATE TABLE T_RoleType (
+  F_Type SMALLINT NOT NULL ,
+  F_Description VARCHAR(45) NULL ,
+  PRIMARY KEY (F_Type) );
+INSERT INTO T_RoleType
+(F_Type,F_Description)
+VALUES
+(1,'Owner'),
+(2,'Collaborator'),
+(3,'Publisher'),
+(4,'Viewer');
+DROP TABLE IF EXISTS T_CoursePermission;
+CREATE TABLE T_CoursePermission (
+F_CourseID bigint(20) NOT NULL,
+F_Editable BOOLEAN NOT NULL DEFAULT TRUE,
+  UNIQUE INDEX Index_1 (F_CourseID)
+) ENGINE=InnoDB; 
+
+-- gh#91
+ALTER TABLE T_CourseStart ADD COLUMN `F_SendNotifications` tinyint(4) DEFAULT 1 AFTER `F_SeePastUnits`;
+
 -- gh#769
 DELETE FROM T_Triggers WHERE F_TriggerID = 59;
 INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`) 

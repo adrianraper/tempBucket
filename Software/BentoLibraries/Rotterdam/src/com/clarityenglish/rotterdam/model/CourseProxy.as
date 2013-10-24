@@ -7,6 +7,7 @@ package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.vo.config.BentoError;
+	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -51,6 +52,10 @@ package com.clarityenglish.rotterdam.model {
 		private var xmlWatcher:XMLChangeWatcher;
 		
 		private var courseSessionTimer:Timer;
+
+		// gh#91
+		private var _editable:Boolean = false;
+		private var _role:int = 0;
 		
 		public function CourseProxy(data:Object = null) {
 			super(NAME, data);
@@ -85,6 +90,11 @@ package com.clarityenglish.rotterdam.model {
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 				if (bentoProxy.menuXHTML) {
 					XMLNotifier.getInstance().watchXML(bentoProxy.menuXHTML.xml, xmlWatcher);
+					
+					// gh#91 How best to get the xml from the href or bentoProxy?
+					var permission:XML = bentoProxy.menuXHTML.selectOne("script#model[type='application/xml'] permission");
+					if (permission)
+						setPermission(permission);
 				}
 			}
 		}
@@ -211,6 +221,26 @@ package com.clarityenglish.rotterdam.model {
 			return new RemoteDelegate("sendWelcomeEmail", [ course, groupID ], this).execute();
 		}
 
+		// gh#91
+		public function get isEditable():Boolean {
+			return _editable;	
+		}
+		public function get isOwner():Boolean {
+			return _role == Course.ROLE_OWNER;	
+		}
+		public function get isCollaborator():Boolean {
+			return _role == Course.ROLE_COLLABORATOR;	
+		}
+		public function get isPublisher():Boolean {
+			return _role == Course.ROLE_PUBLISHER;	
+		}
+		public function setPermission(permission:XML):void {
+			if (permission) {
+				_editable = (permission.@editable == "true") ? true : false;
+				_role = int(permission.@role);
+			}
+		}
+		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
 		public function onDelegateResult(operation:String, data:Object):void {
