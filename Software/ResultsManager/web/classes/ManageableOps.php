@@ -467,7 +467,6 @@ EOD;
 				$this->moveGroups($manageables, $parentGroup);
 				break;
 			default:
-
 				throw new Exception("moveManageables: Unknown class '" + get_class($manageables[0]) + "'");
 				break;
 		}
@@ -497,7 +496,8 @@ EOD;
 			// Does this user already exist in the target group? If so, just delete them from their old group(s).
 			if ($rs['count'] > 0) {
 				$thisGroupId = $user->getMultiUserGroupID();
-				if ($thisGroupId && $thisGroupId > 0) {
+				// gh#717 But NOT if you are (accidentally) moving the user within one group
+				if ($thisGroupId && $thisGroupId > 0 && $thisGroupId != $parentGroup->id) {
 					$bindingParams = array($user->getMultiUserGroupID(), $user->userID);
 					$this->db->Execute("DELETE FROM T_Membership WHERE F_GroupID=? AND F_UserID=?", $bindingParams);
 				} else {
@@ -535,10 +535,12 @@ EOD;
 				// It is safe to update all relevant fields as conflict with loginOption key field will have already been resolved
 				if (($userDetails->email != $user->email) ||
 					($userDetails->studentID != $user->studentID) ||
-					($userDetails->name != $user->name)) {
+					($userDetails->name != $user->name) ||
+					($userDetails->password != $user->password)) {
 					$user->email = $userDetails->email;
 					$user->studentID = $userDetails->studentID;
 					$user->name = $userDetails->name;
+					$user->password = $userDetails->password;
 					$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
 				}
 			}
@@ -618,10 +620,12 @@ EOD;
 				// It is safe to update all relevant fields as conflict with loginOption key field will have already been resolved
 				if (($userDetails->email != $user->email) ||
 					($userDetails->studentID != $user->studentID) ||
-					($userDetails->name != $user->name)) {
+					($userDetails->name != $user->name) ||
+					($userDetails->password != $user->password)) {
 					$user->email = $userDetails->email;
 					$user->studentID = $userDetails->studentID;
 					$user->name = $userDetails->name;
+					$user->password = $userDetails->password;
 					$this->db->AutoExecute("T_User", $user->toAssocArray(), "UPDATE", "F_UserID=".$user->userID);
 				}
 			}
