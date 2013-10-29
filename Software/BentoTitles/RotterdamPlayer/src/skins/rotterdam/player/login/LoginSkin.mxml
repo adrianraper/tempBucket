@@ -72,7 +72,7 @@
 	</s:Rect>
 
 	<!-- top header -->
-	<s:Label id="sch_lbl" text="licenced to {hostComponent.licenceeName}" right="20" top="14" fontSize="13" color="0xFFFFFF" />
+	<s:Label id="sch_lbl" text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" right="20" top="14" fontSize="13" color="0xFFFFFF" visible="{hostComponent.licenceeName}" includeInLayout="{hostComponent.licenceeName}" />
 	
 	<!-- gh#224 If it seems likely that more than 4 image components are needed, we should switch to a DataGroup and ItemRenderer -->
 	<s:BitmapImage id="brandingImage1" />

@@ -5,6 +5,7 @@
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	
@@ -145,6 +146,7 @@
 				navigateToURL(new URLRequest(srcHref.url), "_blank");
 			}
 			// gh#106
+			// TODO: 120 seconds should not be hardcoded - come from config or literals or?
 			exerciseMark.duration = 120;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
@@ -157,7 +159,17 @@
 		 * @param uid
 		 */
 		private function onOpenContent(widget:XML, uid:String):void {
-			facade.sendNotification(RotterdamNotifications.CONTENT_OPEN, uid);
+			// gh#234 Disable Clarity links on tablets
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+			if (!configProxy.isPlatformTablet()) {
+				facade.sendNotification(RotterdamNotifications.CONTENT_OPEN, uid);
+			} else {
+				var blockedWarning:BentoError = new BentoError();
+				blockedWarning.errorContext = copyProvider.getCopyForId('contentBlockedWarning');
+				blockedWarning.isFatal = false;
+				facade.sendNotification(RotterdamNotifications.CONTENT_BLOCKED_ON_TABLET, blockedWarning);
+			}
 		}
 		
 		protected function onTextSelected(format:TextLayoutFormat):void {

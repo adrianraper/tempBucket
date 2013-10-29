@@ -152,7 +152,7 @@ package com.clarityenglish.common.model {
 			var dummyTitle:Title = new Title();
 			dummyTitle.licenceType = Title.LICENCE_TYPE_LT;
 			config.account.titles = new Array(dummyTitle);
-			config.account.name = 'x';
+			config.account.name = '';
 			config.account.verified = 1;
 			config.account.selfRegister = 0;
 			config.account.loginOption = config.loginOption;
@@ -283,6 +283,17 @@ package com.clarityenglish.common.model {
 		// gh#371
 		public function getOtherParameters():Object {
 			return config.otherParameters;
+		}
+		
+		// gh#234
+		public function isPlatformTablet():Boolean {
+			return (config.platform.toLowerCase().indexOf('tablet') >= 0);
+		}
+		public function isPlatformiPad():Boolean {
+			return (config.platform.toLowerCase().indexOf('ipad') >= 0);
+		}
+		public function isPlatformAndroid():Boolean {
+			return (config.platform.toLowerCase().indexOf('android') >= 0);
 		}
 		
 		// gh#224 get the branding for a particular section

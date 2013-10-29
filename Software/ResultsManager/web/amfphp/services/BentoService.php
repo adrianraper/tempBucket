@@ -128,6 +128,8 @@ class BentoService extends AbstractService {
 		// gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
 		if (isset($config['ip'])) {
 			foreach ($account->titles as $thisTitle) {
+				if (!is_array($account->productCodes))
+					$account->productCodes = array();
 				array_push($account->productCodes, $thisTitle->productCode);
 				// If production version  = LM, the loginKey_lbl will force to be loginID, so we clear productVersion here.
 				// for non ip login, the account is null and will return at last step, so we don't need to care the productVersion.
@@ -202,18 +204,17 @@ class BentoService extends AbstractService {
 	public function getIPMatch($config) {
 		
 		// gh#315 iPads don't send their IP, but you can pick it up here
-		if (! $config ['ip']) {
-			//$config ['ip'] = $_SERVER ['HTTP_CLIENT_IP'];
-			if (isset ( $_SERVER ['HTTP_X_FORWARDED_FOR'] )) {
-				$config ['ip']= $_SERVER ['HTTP_X_FORWARDED_FOR'];
-			} elseif (isset ( $_SERVER ['HTTP_TRUE_CLIENT_IP'] )) {
-				$config ['ip'] = $_SERVER ['HTTP_TRUE_CLIENT_IP'];
-			} elseif (isset ( $_SERVER ["HTTP_CLIENT_IP"] )) {
-				$config ['ip'] = $_SERVER ["HTTP_CLIENT_IP"];
+		if (!$config ['ip']) {
+			if (isset($_SERVER ['HTTP_X_FORWARDED_FOR'])) {
+				$config['ip'] = $_SERVER ['HTTP_X_FORWARDED_FOR'];
+			} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
+				$config['ip'] = $_SERVER['HTTP_TRUE_CLIENT_IP'];
+			} elseif (isset( $_SERVER["HTTP_CLIENT_IP"])) {
+				$config['ip'] = $_SERVER["HTTP_CLIENT_IP"];
 			} else {
-				$config ['ip'] = $_SERVER ["REMOTE_ADDR"];
+				$config['ip'] = $_SERVER["REMOTE_ADDR"];
 			}
-			AbstractService::$debugLog->notice ( "picked up ip as " . $config ['ip'] );
+			AbstractService::$debugLog->notice("picked up ip as ".$config['ip']);
 		} else {
 			AbstractService::$debugLog->notice("was passed ip as ".$config['ip']);
 		}

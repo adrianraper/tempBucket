@@ -38,6 +38,9 @@ components|XHTMLExerciseView s|TextInput {
 	widgets|VideoWidget {
 		skinClass: ClassReference("skinsair.rotterdam.unit.widgets.VideoWidgetSkin");
 	}
+	widgets|ExerciseWidget {
+		skinClass: ClassReference("skinsair.rotterdam.unit.widgets.ExerciseWidgetSkin");
+	}
 }
 
 player|PlayerApplication {
@@ -95,7 +98,7 @@ title|TitleView s|ViewNavigator {
 title|TitleView s|TabbedViewNavigator #tabBar {
 	chromeColor: #262526;
 	color: #DDDDDD;
-	fontSize: 10;
+	fontSize: 16;
 	fontWeight: normal;
 	iconPlacement: top;
 }

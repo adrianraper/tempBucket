@@ -29,7 +29,7 @@
 		<s:State name="unitplayer" />
 	</s:states>
 	
-	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" left="2" width="140" dropShadowVisible="true" 
+	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" top="5" left="5" width="140" dropShadowVisible="true" 
 					   maxHeight="{hostComponent.height*0.90}" minHeight="90">
 		<s:layout>
 			<s:VerticalLayout paddingTop="10" paddingBottom="10"/>
@@ -70,7 +70,7 @@
 		</s:VGroup>
 	</s:BorderContainer>
 	
-	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />
-	<unit:UnitView id="unitView" left="156" right="0" top="55" bottom="50" />
+	<unit:UnitHeaderView id="unitHeader" left="151" right="5" top="5" height="50" />
+	<unit:UnitView id="unitView" left="151" right="5" top="45" bottom="5" />
 
 </s:Skin>

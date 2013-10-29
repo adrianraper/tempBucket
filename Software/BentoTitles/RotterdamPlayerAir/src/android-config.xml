@@ -7,12 +7,12 @@
     <productCode>54</productCode>
     <language>EN</language>
     <loginOption>128</loginOption>
-    <!--  
+    <!-- 
     <email>adrian@noodles.hk</email>
     <password>password</password>
-    -->
+     -->
     
-    <platform>tablet|iPad</platform>
+    <platform>tablet|Android</platform>
     
     <contentPath>http://dock.contentbench/CCB/</contentPath>
     <remoteDomain>http://dock.projectbench/Software/</remoteDomain>

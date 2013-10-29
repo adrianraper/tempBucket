@@ -152,6 +152,8 @@ package com.clarityenglish.common.vo.config {
 		// gh#660
 		public var randomizedTestQuestionTotalNumber:Number;
 		
+		// gh#234
+		public var platform:String;
 		// gh#224
 		public var customisation:XML;
 		
@@ -492,6 +494,10 @@ package com.clarityenglish.common.vo.config {
 			if (xml..randomizedTestQuestionTotalNumber.toString()) {
 				this.randomizedTestQuestionTotalNumber = xml..randomizedTestQuestionTotalNumber.toString();
 			}
+			
+			// gh#234
+			if (xml..platform.toString())
+				this.platform = xml..platform.toString();
 			
 			// gh#224
 			if (xml..customisation)

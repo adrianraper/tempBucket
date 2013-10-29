@@ -38,6 +38,7 @@
 		
 		// gh#33
 		public static const CONTENT_OPEN:String = "rotterdam/content_open";
+		public static const CONTENT_BLOCKED_ON_TABLET:String = "rotterdam/content_blocked_on_tablet";
 		
 		// Text notifications
 		public static const TEXT_FORMAT:String = "rotterdam/text_format";

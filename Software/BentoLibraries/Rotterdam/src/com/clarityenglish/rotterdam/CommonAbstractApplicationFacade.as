@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.rotterdam {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
+	import com.clarityenglish.bento.controller.WarningShowCommand;
+	import com.clarityenglish.common.controller.ShowErrorCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.rotterdam.controller.ContentOpenCommand;
 	import com.clarityenglish.rotterdam.controller.CourseResetCommand;
@@ -37,6 +39,7 @@
 			registerCommand(BBNotifications.UNIT_START, UnitStartCommand);
 			
 			registerCommand(RotterdamNotifications.CONTENT_OPEN, ContentOpenCommand);
+			registerCommand(RotterdamNotifications.CONTENT_BLOCKED_ON_TABLET, ShowErrorCommand);
 			
 			// gh#13
 			registerCommand(RotterdamNotifications.COURSE_RESET, CourseResetCommand);

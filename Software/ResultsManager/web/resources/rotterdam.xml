@@ -56,6 +56,7 @@
 
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			<lit name="errorVideoLoad" code="602">This URL isn't recognised as a YouTube video. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY</lit>
+            <lit name="contentBlockedWarning" code="603">This device can't link to the content for this item. Please try to access the course from a computer browser.</lit>
 			
 			<lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorSecurity" code="701">Security error</lit>
@@ -259,8 +260,9 @@
 			<lit name="newUnitCaption">New unit</lit>
 			<lit name="completeLabel">Started</lit>
 			<lit name="notCompleteLabel">Not started</lit>
-			<lit name="othersLabel">No record available</lit>
+			<lit name="warningWindowCaption">Sorry</lit>
 			
+			<lit name="licencedToName">Licensed to {name}</lit>
 			<lit name="forgotPasswordLabel">Forgot your password?</lit>
 			<lit name="forgotPasswordLink"><![CDATA[http://{domain}/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
 			

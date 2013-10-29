@@ -19,12 +19,12 @@
 	</s:states>
 	
 	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0">
-		<s:ViewNavigator id="myCoursesViewNavigator" title="Rotterdam Player" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%">
+		<s:ViewNavigator id="myCoursesViewNavigator" title="Clarity Course Player" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%">
 			<s:actionContent>
 				<s:Button id="logoutButton" />
 			</s:actionContent>
 		</s:ViewNavigator>
-		<s:ViewNavigator id="progressViewNavigator" title="Rotterdam Player" firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" excludeFrom="course_selector" />
+		<s:ViewNavigator id="progressViewNavigator" title="Clarity Course Player" firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" excludeFrom="course_selector" />
 	</ui:CancelableTabbedViewNavigator>
 	
 </s:Skin>
