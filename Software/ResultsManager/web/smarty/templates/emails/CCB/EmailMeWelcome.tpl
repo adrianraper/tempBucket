@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<title>Welcome to Clarity Course Builder</title>
+	<title>New course: {$course->caption}</title>
 	<!-- <from>support@clarityenglish.com</from> -->
 	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->		
     <style>
@@ -35,11 +35,17 @@
     <div style="width:360px; margin:0; padding:8px 175px 0 65px;">
 	{* Start email *}
     <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 14px; line-height:18px; margin:0 0 15px 0; padding:0; color:#000000;">Dear {$user->name}</p>
-	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 14px; line-height:18px; margin:0 0 15px 0; padding:0; color:#000000;">A new course called {$course->caption} will be available from {$course->startDate|date_format:"%B %e, %Y"}.</p>
+	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 14px; line-height:18px; margin:0 0 15px 0; padding:0; color:#000000;">A new course called {$course->caption} will be available 
+{if $course->startDate}
+	from {$course->startDate|date_format:"%B %e, %Y"}.
+{else}
+	soon.
+{/if}
+	</p>
 {if $course->description}
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 14px; line-height:18px; margin:0 0 15px 0; padding:0; color:#000000;">{$course->description}</p>
 {/if}
-	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 14px; line-height:18px; margin:0 0 15px 0; padding:0; color:#000000;">You can start it directly from <a href="http://www.clarityenglish.com/area1/CCB/Player.php?prefix={$course->prefix}&course={$course->id}">this link</a></p>
+	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 14px; line-height:18px; margin:0 0 15px 0; padding:0; color:#000000;">You can start it directly from <a href="http://www.clarityenglish.com/area1/CCB/Player.php?prefix={$course->prefix}&course={$course->id}">this link</a>.</p>
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 14px; line-height:18px; margin:0 0 15px 0; padding:0; color:#000000;">
 {if $course->loginOption == 1}
 	You need to type in your name ({$user->name}) and password.

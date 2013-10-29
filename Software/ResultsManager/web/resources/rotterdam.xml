@@ -197,6 +197,7 @@
 			<lit name="courseNameLabel">Course name</lit>
 			<lit name="authorLabel">Author</lit>
 			<lit name="contactEmailLabel">Contact email</lit>
+			<lit name="courseDescriptionLabel">Course description</lit>
 			<lit name="directURLLabel">Direct URL for this course</lit>
 			<lit name="courseListTitleLabel">Choose a course</lit>
 			<lit name="createCourseButton">Create a new course</lit>

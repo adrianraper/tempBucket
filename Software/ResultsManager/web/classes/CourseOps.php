@@ -394,8 +394,8 @@ EOD;
 				// Send email IF we have one
 				if (isset($user->email) && $user->email) {
 					// Just during inital testing - only send emails to me
-					// $toEmail = $user->email;
-					$toEmail = 'adrian.raper@clarityenglish.com';
+					//$toEmail = 'adrian.raper@clarityenglish.com';
+					$toEmail = $user->email;
 					$emailData = array("user" => $user, "course" => $course);
 					$thisEmail = array("to" => $toEmail, "data" => $emailData);
 					$emailArray[] = $thisEmail;
