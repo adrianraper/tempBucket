@@ -91,10 +91,21 @@ class XmlUtils {
 	 * Access attributes of a SimpleXML object and get back a simple type
 	 */
 	public static function xml_attribute($object, $attribute, $type = 'string')	{
-		if(isset($object[$attribute])) {
+		if (isset($object[$attribute])) {
 			switch ($type) {
 				case 'integer':
 					return intval($object[$attribute]);
+					break;
+				case 'boolean':
+					return filter_var($object[$attribute], FILTER_VALIDATE_BOOLEAN);
+					break;
+				case 'date':
+					try {
+    					$date = new DateTime($object[$attribute]);
+					} catch (Exception $e) {
+    					return null;
+					}
+					return $date->format('Y-m-d');
 					break;
 				case 'string':
 				default:
