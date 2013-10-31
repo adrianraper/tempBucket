@@ -16,7 +16,7 @@ package com.clarityenglish.ielts.view.login {
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
 	import flash.net.navigateToURL;
-
+	
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
@@ -752,7 +752,14 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case addUserButton:
 					//user = new User({name:newNameInput.text, password:newPasswordInput.text});
-					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
+					// gh#723
+					//user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
+					if (IPLoginButtonBar) {
+						var userProfileOption:Number = Number(IPLoginButtonBar.selectedItem.code);
+						user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text, userProfileOption:userProfileOption});
+					} else {
+						user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
+					}
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 					break;
 				

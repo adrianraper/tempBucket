@@ -98,6 +98,9 @@
 				this.studentID = data.studentID;
 			if (data.password)
 				this.password = data.password;
+			// gh#723
+			if (data.userProfileOption)
+				this.userProfileOption = data.userProfileOption;
 		}
 		/**
 		 * A single user always has a userCount of 1

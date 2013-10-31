@@ -580,7 +580,9 @@ class BentoService extends AbstractService {
 			// Add any preset details to the user object
 			$user->registerMethod = "selfRegister";
 			$user->userType = User::USER_TYPE_STUDENT;
-			$user->userProfileOption = 0;
+			// gh#723
+			if (is_nan($user->userProfileOption))
+				$user->userProfileOption = 0;
 			return $this->manageableOps->addUser($user, $group, $rootID);
 		
 		} else {
