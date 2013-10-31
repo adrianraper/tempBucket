@@ -8,7 +8,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<title>Quotation request for {$account->name}</title>
-    	       <style>
+    	<style type="text/css">
     		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
 			</style>
 	<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->

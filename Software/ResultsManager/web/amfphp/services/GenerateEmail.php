@@ -7,7 +7,6 @@ require_once(dirname(__FILE__)."/DMSService.php");
 require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
 $dmsService = new DMSService();
-
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
 	echo "<h2>You are not logged in</h2>";
@@ -18,7 +17,6 @@ if (!isset($_REQUEST['template']) || trim($_REQUEST['template']) == "") {
 	echo "<h2>No template was specified</h2>";
 	exit(0);
 }
-
 $template = $_REQUEST['template'];
 $emailArray = $_REQUEST['emailArray'] == "" ? array() : json_decode(stripslashes($_REQUEST['emailArray']), true);
 $previewIndex = isset($_REQUEST['previewIndex']) ? $_REQUEST['previewIndex'] : 0;
@@ -46,6 +44,15 @@ $template = preg_replace($pattern, $replacement, $template);
 
 // DMS doesn't serialize the account, but instead just puts an 'account_id' in the data attribute.  Here we go through the array and
 // rebuild it getting the real account objects for the account_ids.
+// gh#721
+class Attribute {
+	var $licenceKey;
+	var $licenceValue;
+	function __construct($key = undefined, $value = undefined) {
+		$this->licenceKey = $key;
+		$this->licenceValue = $value;
+	}
+}
 $accountEmailArray = array();
 foreach ($emailArray as $email) {
 	$accountEmail = array();
@@ -53,7 +60,13 @@ foreach ($emailArray as $email) {
 	$accountEmail['data']['account'] = array_shift($dmsService->getAccounts(array($email['data']['account_id'])));
 	
 	// Has to include licence attributes
-	$accountEmail['data']['account']->licenceAttributes = $dmsService->getAccountDetails(array($email['data']['account_id']));
+	// gh#721
+	$attributes = $dmsService->getAccountDetails(array($email['data']['account_id']));
+	$attributesAsObject = array();
+	foreach ($attributes as $attribute) {
+		$attributesAsObject[] = new Attribute($attribute['licenceKey'], $attribute['licenceValue']);
+	}
+	$accountEmail['data']['account']->licenceAttributes = $attributesAsObject;
 	
 	// If this is an AA account, you want to talk about the generic student password, but that is NOT in T_AccountRoot
 	$accountEmail['data']['user'] = $dmsService->getFirstStudentInAccount($accountEmail['data']['account']->id);

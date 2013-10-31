@@ -1,6 +1,10 @@
 {* Name: Expiry in 2 weeks *}
 {* Description: Email 16. Two weeks before expiry. *}
 {* Parameters: $account, $expiryDate, $template_dir *}
+<!--
+-- Script to count the number of titles related to this email for wording selection
+-- Note that some bug in smarty adds a space to the start of 
+-->
 
 {assign var='dateDiff' value='+14days'}
 {include file="file:includes/expiringTitles.tpl" assign=useWording}
@@ -12,15 +16,24 @@
 <html>
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+{if $useWording == 'all'}
 	<title>Clarity English - Subscription reminder, 14 days left</title>
+{elseif $useWording == 'one'}
+	<title>Clarity English - One program in your account expires tomorrow</title>
+{elseif $useWording == 'couple'}
+	<title>Clarity English - Two programs in your account expire tomorrow</title>
+{else}
+	<title>Clarity English - Some programs in your account expire tomorrow</title>
+{/if}
 	<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
 	<!-- <bcc>admin@clarityenglish.com</bcc> -->
-    	       <style>
-    		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
-			</style>
+<style type="text/css">
+  	    	@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
+		</style>
 	{if ($quotationFile|file_exists)}
 		<!-- <attachment>{$quotationFile}</attachment> -->
 	{/if}
+    	
 </head>
 <body text="#000000" style="margin:0; padding:0;">
 <div style="width:600px; margin:0 auto; padding:0;">
@@ -28,7 +41,8 @@
     <div style="width:500px; margin:a auto; padding:10px 50px 20px 50px;">
 	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:0 0 10px 0; padding:0; color:#000000;">Dear Colleague</p>
     <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:700; font-size: 13px; line-height:18px; margin:0 0 5px 0; padding:0; color:#151745;">Clarity English Subscription: {$account->name}</p>
-	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:0 0 10px 0; padding:0; color:#000000;">This is a quick reminder that your subscription 
+	<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; margin:0 0 10px 0; padding:0; color:#000000;">
+	This is a quick reminder that your subscription 
 {if $useWording == 'all'}
 	for the programs below 
 {elseif $useWording == 'one'}

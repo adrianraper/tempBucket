@@ -120,7 +120,6 @@
     <classEntry path="skins.bento.exercise.ExerciseDropDownListButtonSkin"/>
     <classEntry path="skins.bento.exercise.ExerciseTextInputSkin"/>
     <classEntry path="skins.bento.exercise.XHTMLExerciseSkin"/>
-    <classEntry path="skins.bento.recorder.RecorderSkin"/>
     <classEntry path="skins.bento.swfplayer.SWFPlayerSkin"/>
     <classEntry path="skins.bento.warning.WarningBoxButtonSkin"/>
     <classEntry path="skins.bento.warning.WarningNoButtonSkin"/>
