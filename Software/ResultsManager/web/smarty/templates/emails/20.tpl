@@ -6,10 +6,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Clarity English - Usage statistics</title>
+		<title>Clarity English - Usage Statistics</title>
 		<!-- <from>%22Clarity English%22 %3Csupport@clarityenglish.com%3E</from> -->
 		<!-- <bcc>admin@clarityenglish.com</bcc> -->
-        	       <style>
+        	<style type="text/css">
     		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
 			</style>
 </head>
@@ -26,7 +26,7 @@
 		<p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-weight:400; font-size: 13px; line-height:18px; padding:0; color:#000000;">You can also use Results Manager on your Clarity English account page to see your usage statistics. Login with your admin account, shown below. If you would like us to remind you of your password, please just email us, or use the 'Forgot password' link on www.ClarityEnglish.com.</p>
         
         <div style="background-color:#E8E3F0; width:450px; padding:10px 20px 10px 20px; margin:0 0 10px 0;">
-        	<span style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 13px; line-height:18px; padding:0; color:#000000;"><a href="http://www.ClarityEnglish.com" style="color:#151745; font-weight:700;" target='_blank'>www.ClarityEnglish.com</a></span>
+        	<span style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-size: 13px; line-height:18px; padding:0; color:#000000;">Go to: <a href="http://www.ClarityEnglish.com" style="color:#151745; font-weight:700;" target='_blank'>www.ClarityEnglish.com</a></span>
             <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; font-weight:400; font-size: 13px; line-height:18px; color:#000000; padding:2px 0 0 0; margin:0">Login name: <span style="font-weight:700;">{$account->adminUser->name}</span></p>
 	  </div>
 	  <p style="font-family: 'Oxygen', Arial, Helvetica, sans-serif; margin: 0 0 10px 0; font-weight:400; font-size: 13px; line-height:18px; padding:0; color:#000000;">Please let me know if you would like other statistics or a different format, we will do our best to help.</p>

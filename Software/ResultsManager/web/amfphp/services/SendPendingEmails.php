@@ -34,7 +34,7 @@ date_default_timezone_set('UTC');
 if (!Authenticate::isAuthenticated()) {
 	// TODO: Replace with text from literals
 	// v3.0.6 This script may be run by CRON too, in which case skip authentication. How to tell?
-	if (isset($_SERVER["SERVER_NAME"])) {
+	if (isset($_SERVER["SERVER_NAME"]) && stristr($_SERVER["SERVER_NAME"], 'clarityenglish') !== FALSE) {
 		echo "<h2>You are not logged in</h2>";
 		exit(0);
 	}

@@ -24,7 +24,7 @@
 {/if}
 	<!-- <from>%22Clarity English%22 %3Cadmin@clarityenglish.com%3E</from> -->
 	<!-- <bcc>admin@clarityenglish.com</bcc> -->
-    	       <style>
+    	       <style type="text/css">
     		@import url(http://fonts.googleapis.com/css?family=Oxygen:400,700);
 			</style>
 	{if ($quotationFile|file_exists)}
