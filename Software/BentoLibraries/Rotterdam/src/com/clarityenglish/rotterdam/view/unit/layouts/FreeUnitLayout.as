@@ -27,7 +27,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		public var horizontalGap:uint = 2;
 		
 		public function FreeUnitLayout() {
-			
+			super();
 		}
 		
 		public function get columns():int {
@@ -80,7 +80,7 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 				}
 			}
 			
-			target.setContentSize(width, measuredHeight);
+			target.setActualSize(width, measuredHeight);
 		}
 		
 		/**
