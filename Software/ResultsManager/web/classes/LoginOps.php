@@ -109,6 +109,24 @@ EOD;
 				
 			default:
 				// More than one user with this name/password
+				// gh#653 One user in many groups would give multiple records with same userID.
+				// In this case, just treat as one user.
+				$justOneUser = true;
+				$userID = 0;
+				while ($rsObj = $rs->FetchNextObj()) {
+					// save first record for later use
+					if ($userID == 0) {
+						$dbLoginObj = $rsObj;
+						$userID = $rsObj->F_UserID;
+					} else if ($userID != $rsObj->F_UserID) {
+						$justOneUser = false;
+						continue;
+					}
+				}
+				// How to send back the list of groups that this user is in? Or is that repeated later?
+				if ($justOneUser)
+					break;
+					
 				// gh#231 It is entirely possible to have two user records for the same person in the db
 				// typically one would be an LM account and the other a IP.com purchase
 				// So first of all see if you can figure out some rules for picking one of the multiple users
