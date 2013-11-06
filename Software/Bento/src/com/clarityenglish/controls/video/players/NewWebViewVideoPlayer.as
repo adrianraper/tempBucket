@@ -13,7 +13,7 @@ package com.clarityenglish.controls.video.players {
 	
 	import spark.components.Application;
 	import spark.components.Group;
-	import spark.components.SkinnableDataContainer;
+	import spark.components.List;
 	
 	public class NewWebViewVideoPlayer extends Group implements IVideoPlayer {
 		
@@ -103,7 +103,18 @@ package com.clarityenglish.controls.video.players {
 				var viewportY:Number = Math.max(globalPos.y, -viewportHeight);
 				
 				var rectangle:Rectangle = new Rectangle(viewportX, viewportY, viewportWidth, viewportHeight);
-				if (!stageWebView.viewPort || !rectangle.equals(stageWebView.viewPort)) stageWebView.viewPort = rectangle;
+				
+				// Need to get the viewport of the List - some kind of parent will give us the VideoWidget which is an ItemRenderer and from there we can get the list as owner.
+				// gh#732
+				if (parentDocument.owner && parentDocument.owner.owner) {
+					var list:List = parentDocument.owner.owner;				
+					rectangle = rectangle.intersection(list.getVisibleRect(stage));
+				}
+				
+				if (!stageWebView.viewPort || !rectangle.equals(stageWebView.viewPort)) {
+					if (rectangle.size.length == 0) rectangle = new Rectangle(0, 0, 1, 1); // Never let the viewport have 0 size or terrible things happen
+					stageWebView.viewPort = rectangle;
+				}
 			}
 		}
 		
@@ -178,9 +189,9 @@ class HTMLStageWebVideoLoader implements IStageWebViewLoader {
 				html += "<!DOCTYPE html>";
 				html += "<html>";
 				html += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
-				html += "	<iframe id='player' style='position:absolute;width:100%;height:100%'";
+				html += "	<iframe id='ytplayer' style='position:absolute;top:0px;width:100%;height:100%'";
 				html += "			type='text/html'";
-				html += "			src='http://www.youtube.com/embed/" + id + "?rel=0&hd=1&fs=1'";
+				html += "			src='http://www.youtube.com/embed/" + id + "?rel=0&fs=1'";
 				html += "			frameborder='0'>";
 				html += "	</iframe>";
 				html += "</body>";
