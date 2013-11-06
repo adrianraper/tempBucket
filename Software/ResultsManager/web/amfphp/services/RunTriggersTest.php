@@ -132,37 +132,42 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					
 				} else {
 					foreach ($triggerResults as $result) {
-						// v3.6 You now get email addresses from T_AccountEmails.
-						// So look up T_AccountEmails with the account root and the message type that we are trying to send
-						// Then all matching emails will get this. 
-						//echo 'getMessages for id='.$result->id.' and type='.$trigger->messageType.$newLine;
-						$accountEmails = $dmsService->accountOps->getEmailsForMessageType($result->id, $trigger->messageType);
-						//echo 'accountEmails='.count($accountEmails).'-'.implode(',',$accountEmails).$newLine;
-						// If there is a reseller they are also 'ccd.
-						// Unless it is a service email, because that would deluge them. 
-						// Mind you, service emails are unlikely to get sent like this, they are more likely to be sent manually
-						if ($trigger->messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
-							$resellerEmail = array($dmsService->accountOps->getResellerEmail($result->resellerCode));
-						} else {
-							$resellerEmail = array();
+						// gh#733
+						try {
+							// v3.6 You now get email addresses from T_AccountEmails.
+							// So look up T_AccountEmails with the account root and the message type that we are trying to send
+							// Then all matching emails will get this. 
+							//echo 'getMessages for id='.$result->id.' and type='.$trigger->messageType.$newLine;
+							$accountEmails = $dmsService->accountOps->getEmailsForMessageType($result->id, $trigger->messageType);
+							//echo 'accountEmails='.count($accountEmails).'-'.implode(',',$accountEmails).$newLine;
+							// If there is a reseller they are also 'ccd.
+							// Unless it is a service email, because that would deluge them. 
+							// Mind you, service emails are unlikely to get sent like this, they are more likely to be sent manually
+							if ($trigger->messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
+								$resellerEmail = array($dmsService->accountOps->getResellerEmail($result->resellerCode));
+							} else {
+								$resellerEmail = array();
+							}
+							//echo 'resellerEmail='.$resellerEmail.$newLine;
+							
+							// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
+							$adminEmail = array_shift($accountEmails);
+							//echo "admin=$adminEmail";
+							$ccEmails = array_merge($accountEmails, $resellerEmail);
+							
+							// To add usage stats link to subscription reminders, we need the security string for this account
+							$securityString = $dmsService->usageOps->getDirectStartRecord($result);
+							if (!$securityString)
+								$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
+							
+							//echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
+							
+							$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
+							$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
+							$emailArray[] = $thisEmail;
+						} catch (Exception $e) {
+							echo 'Exception for root='.$result->id.': '.$e->getMessage().$newLine;
 						}
-						//echo 'resellerEmail='.$resellerEmail.$newLine;
-						
-						// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
-						$adminEmail = array_shift($accountEmails);
-						//echo "admin=$adminEmail";
-						$ccEmails = array_merge($accountEmails, $resellerEmail);
-						
-						// To add usage stats link to subscription reminders, we need the security string for this account
-						$securityString = $dmsService->usageOps->getDirectStartRecord($result);
-						if (!$securityString)
-							$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
-						
-						//echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
-						
-						$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
-						$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
-						$emailArray[] = $thisEmail;
 					}
 				}
 				
@@ -221,54 +226,61 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 					//$dmsService->usageOps->clearDirectStartRecords();
 				}
 				foreach ($triggerResults as $account) {
-					// We now have the case where usage stats emails are being sent to customers whose accounts have only been setup today.
-					// So block any account where the licence start date (of RM) is less than a month old.
-					// Maybe you could add an extra condition to the trigger like StartDate>{now}-1m - but for now it is easier to do it here
-					foreach ($account->titles as $title) {
-						if ($title->productCode == 2) {
-							// Check to see that the account is at least 26 days old before we send the usage stats
-							if (round(abs(time() - strtotime($title->licenceStartDate)) / 60 / 60 / 24) < 26 ) {
-								// Stop working on this account - break out of two loops
-								break 2;
+
+					// gh#733
+					try {
+						// We now have the case where usage stats emails are being sent to customers whose accounts have only been setup today.
+						// So block any account where the licence start date (of RM) is less than a month old.
+						// Maybe you could add an extra condition to the trigger like StartDate>{now}-1m - but for now it is easier to do it here
+						foreach ($account->titles as $title) {
+							if ($title->productCode == 2) {
+								// Check to see that the account is at least 26 days old before we send the usage stats
+								if (round(abs(time() - strtotime($title->licenceStartDate)) / 60 / 60 / 24) < 26 ) {
+									// Stop working on this account - break out of two loops
+									break 2;
+								}
 							}
 						}
-					}
-
-					// This will write a record to the database, and tell us the securityString. Only do it if you are sending the email as well
-					// Now change to get the security code, and only add if it doesn't exist
-					/*
-					if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
-						$securityString = $dmsService->usageOps->insertDirectStartRecord($account);
-					} else {
-						$securityString = '123456789';
-					}
-					*/
-					$securityString = $dmsService->usageOps->getDirectStartRecord($account);
-					if (!$securityString)
-						$securityString = $dmsService->usageOps->insertDirectStartRecord($account);
+	
+						// This will write a record to the database, and tell us the securityString. Only do it if you are sending the email as well
+						// Now change to get the security code, and only add if it doesn't exist
+						/*
+						if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
+							$securityString = $dmsService->usageOps->insertDirectStartRecord($account);
+						} else {
+							$securityString = '123456789';
+						}
+						*/
+						$securityString = $dmsService->usageOps->getDirectStartRecord($account);
+						if (!$securityString)
+							$securityString = $dmsService->usageOps->insertDirectStartRecord($account);
+							
+						//echo $account->name.' uses security string '.$securityString.$trigger->name.$newLine;
+							
+						$accountEmails = $dmsService->accountOps->getEmailsForMessageType($account->id, $trigger->messageType);
+						if ($trigger->messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
+							$resellerEmail = array($dmsService->accountOps->getResellerEmail($account->resellerCode));
+						} else {
+							$resellerEmail = array();
+						}
+						// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
+						$adminEmail = array_shift($accountEmails);
+						$ccEmails = array_merge($accountEmails);
+						// For usage stats emails, reseller is a bcc rather than cc
+						$bccEmails = $resellerEmail;
 						
-					//echo $account->name.' uses security string '.$securityString.$trigger->name.$newLine;
+						$emailData = array("account" => $account, "session" => $securityString);
+						// Just for testing
+						//$adminEmail = 'adrian.raper@clarityenglish.com';
+						//$ccEmails = array();
+						//$bccEmails = array();
+						$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "bcc" => $bccEmails, "data" => $emailData);
+						$emailArray[] = $thisEmail;
+						echo $account->name.', '.$adminEmail.$newLine;
 						
-					$accountEmails = $dmsService->accountOps->getEmailsForMessageType($account->id, $trigger->messageType);
-					if ($trigger->messageType!=Trigger::TRIGGER_TYPE_SERVICE) {
-						$resellerEmail = array($dmsService->accountOps->getResellerEmail($account->resellerCode));
-					} else {
-						$resellerEmail = array();
+					} catch (Exception $e) {
+						echo 'Exception '.$account->id.': '.$e->getMessage().$newLine;
 					}
-					// Pick out the first accountEmail for 'to' and merge all the rest as 'cc'
-					$adminEmail = array_shift($accountEmails);
-					$ccEmails = array_merge($accountEmails);
-					// For usage stats emails, reseller is a bcc rather than cc
-					$bccEmails = $resellerEmail;
-					
-					$emailData = array("account" => $account, "session" => $securityString);
-					// Just for testing
-					//$adminEmail = 'adrian.raper@clarityenglish.com';
-					//$ccEmails = array();
-					//$bccEmails = array();
-					$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "bcc" => $bccEmails, "data" => $emailData);
-					$emailArray[] = $thisEmail;
-					echo $account->name.', '.$adminEmail.$newLine;
 				}
 				// This is to prevent accidental sends when testing!
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {

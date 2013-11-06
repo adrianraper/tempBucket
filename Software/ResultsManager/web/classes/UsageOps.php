@@ -1052,6 +1052,10 @@ EOD;
 	 * These functions are used by triggers for monthly usage reports
 	 */
 	public function insertDirectStartRecord($account) {
+		// gh#733
+		if (!$account->adminUser)
+			throw new Exception('account root='.$account->id.' has no admin user');
+			
 		// If we don't want to change the security code every month, then we should just insert once.
 		// After RM expires you won't be able to get in anyway.
 		$directStartInfo = array();
