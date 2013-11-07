@@ -9,6 +9,8 @@ package com.clarityenglish.textLayout.elements {
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
+	import flash.events.SoftKeyboardEvent;
+	import flash.events.SoftKeyboardTrigger;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
@@ -16,10 +18,13 @@ package com.clarityenglish.textLayout.elements {
 	import flashx.textLayout.events.ModelChange;
 	import flashx.textLayout.tlf_internal;
 	
+	import mx.core.FlexGlobals;
 	import mx.core.IUIComponent;
+	import mx.core.mx_internal;
 	import mx.events.DragEvent;
 	import mx.events.FlexEvent;
 	import mx.managers.DragManager;
+	import mx.managers.FocusManager;
 	import mx.utils.StringUtil;
 	
 	import spark.components.Button;
@@ -67,6 +72,9 @@ package com.clarityenglish.textLayout.elements {
 		
 		// gh#407 hold the longest answer, only useful for errorCorrection
 		private var _longestAnswer:String;
+		
+		// gh#709
+		private var scroller:Scroller;
 		
 		public function InputElement() {
 			super();
@@ -203,6 +211,9 @@ package com.clarityenglish.textLayout.elements {
 				case TYPE_TEXT:
 					component = new TextInput();
 					
+					// gh#709
+					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATING, softKeyboardActivatingHandler);
+					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, softKeyboardDeactivateHandler);
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
 					component.addEventListener(FlexEvent.ENTER, onEnter);
 					
@@ -213,7 +224,14 @@ package com.clarityenglish.textLayout.elements {
 					});
 					
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
-					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:Event):void {
+					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void {
+						// gh#681
+						if (e.relatedObject is Button) {							
+							if ((e.relatedObject as Button).label == "Marking") {
+								scroller.bottom = 0;
+							}								
+						}						
+
 						if (!disableValueCommitEvent){
 							getEventMirror().dispatchEvent(e.clone());
 						}
@@ -241,8 +259,48 @@ package com.clarityenglish.textLayout.elements {
 			updateComponentFromValue();
 		}
 		
+		// gh#709
+		private function softKeyboardActivatingHandler(event:SoftKeyboardEvent):void {
+			if (event.relatedObject) {
+				var displayObject:DisplayObject = DisplayObject(event.target);
+				
+				var textInput:TextInput = displayObject as TextInput;
+				
+				while (!(displayObject is Scroller) && displayObject.parent) {
+					displayObject = displayObject.parent;
+				}
+				
+				if (!displayObject || displayObject is Stage)
+					return;
+				scroller = displayObject as Scroller;
+
+				// this value may only suit for IPad
+				scroller.bottom = FlexGlobals.topLevelApplication.height / 2 - 80;
+			}			
+		}
+		
+		// gh#708
+		private function softKeyboardDeactivateHandler(event:SoftKeyboardEvent):void {
+			var displayObject:DisplayObject = DisplayObject(event.target);
+			
+			while (!(displayObject is Scroller) && displayObject.parent) {
+				displayObject = displayObject.parent;
+			}
+			
+			if (!displayObject || displayObject is Stage)
+				return;
+			scroller = displayObject as Scroller;
+			if (event.triggerType == SoftKeyboardTrigger.USER_TRIGGERED || event.relatedObject == null) {
+				scroller.bottom = 0; 
+			}
+		}
+		
 		private function onEnter(event:FlexEvent):void {
-			var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
+			// gh#709 when click enter, the focus will not jump to the next component but deactivated on gap fill and focus on scroller.
+			var focusManager:FocusManager = event.target.focusManager;
+			FocusManager(focusManager).mx_internal::lastFocus =  scroller;
+			
+			/*var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
 			event.target.focusManager.setFocus(nextComponent);
 			
 			// #187 - if the focused element is offscreen then scroll it into view
@@ -280,7 +338,7 @@ package com.clarityenglish.textLayout.elements {
 				// If the component is out of view then scroll it into view
 				var newPos:int = Math.min(scrollbarRange, scroller.viewport.verticalScrollPosition + (focusBottomEdge - lastVisibleY));
 				scroller.viewport.verticalScrollPosition = newPos;
-			}
+			}*/
 		}
 		
 		private function onDragEnter(event:DragEvent):void {

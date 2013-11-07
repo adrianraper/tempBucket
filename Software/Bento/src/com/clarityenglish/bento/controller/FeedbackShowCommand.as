@@ -171,7 +171,7 @@ package com.clarityenglish.bento.controller {
 		protected function onKeyboardDown(event:KeyboardEvent):void {
 			if (event.keyCode == Keyboard.ESCAPE) {
 				onClosePopUp();
-			} else if (event.keyCode == Keyboard.ENTER) {
+			} else if (event.keyCode == Keyboard.ENTER && titleWindow) {
 				var focus:IFocusManagerComponent = titleWindow.focusManager.getFocus();
 				if (!focus || !(focus is TextInput)) // #265(d) - don't close the popup if focus is in a gapfill
 					onClosePopUp();
