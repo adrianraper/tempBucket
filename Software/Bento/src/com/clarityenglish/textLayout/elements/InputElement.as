@@ -1,8 +1,11 @@
 package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
+	import com.clarityenglish.common.vo.manageable.Group;
+	import com.clarityenglish.textLayout.rendering.RenderFlow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;
@@ -11,23 +14,36 @@ package com.clarityenglish.textLayout.elements {
 	import flash.events.MouseEvent;
 	import flash.events.SoftKeyboardEvent;
 	import flash.events.SoftKeyboardTrigger;
+	import flash.filters.DisplacementMapFilter;
+	import flash.geom.Matrix;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	
 	import flashx.textLayout.compose.FlowDamageType;
 	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.FlowLeafElement;
 	import flashx.textLayout.elements.SpanElement;
 	import flashx.textLayout.events.ModelChange;
 	import flashx.textLayout.tlf_internal;
 	
 	import mx.core.FlexGlobals;
+	import mx.core.DragSource;
 	import mx.core.IUIComponent;
 	import mx.core.mx_internal;
+	import mx.core.ScrollPolicy;
+	import mx.core.UIComponent;
 	import mx.events.DragEvent;
 	import mx.events.FlexEvent;
+	import mx.graphics.BitmapFillMode;
 	import mx.managers.DragManager;
 	import mx.managers.FocusManager;
 	import mx.utils.StringUtil;
 	
+	import org.davekeen.util.PointUtil;
+	
 	import spark.components.Button;
+	import spark.components.Group;
+	import spark.components.Image;
 	import spark.components.Scroller;
 	import spark.components.TextInput;
 	
@@ -73,8 +89,10 @@ package com.clarityenglish.textLayout.elements {
 		// gh#407 hold the longest answer, only useful for errorCorrection
 		private var _longestAnswer:String;
 		
-		// gh#709
-		private var scroller:Scroller;
+		// gh#712
+		private var scrollerMemento:Object;
+		private var scroller:Scroller
+		private var dragImage:Image;
 		
 		public function InputElement() {
 			super();
@@ -240,7 +258,7 @@ package com.clarityenglish.textLayout.elements {
 					break;
 				case TYPE_DROPTARGET:
 					component = new TextInput();
-					
+				
 					// It is not possible to type into a drop target or select any text within it
 					(component as TextInput).editable = (component as TextInput).selectable = false;
 					
@@ -250,6 +268,10 @@ package com.clarityenglish.textLayout.elements {
 					component.addEventListener(DragEvent.DRAG_ENTER, onDragEnter);
 					component.addEventListener(DragEvent.DRAG_DROP, onDragDrop);
 					component.addEventListener(DragEvent.DRAG_COMPLETE, onDragComplete);
+					// gh#712
+					component.addEventListener(DragEvent.DRAG_EXIT, onDragExit);
+					component.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
+					component.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 					break;
 				case TYPE_BUTTON:
 					throw new Error("Button type not yet implemented");
@@ -344,9 +366,106 @@ package com.clarityenglish.textLayout.elements {
 		private function onDragEnter(event:DragEvent):void {
 			var dropTarget:IUIComponent = IUIComponent(event.currentTarget);
 			DragManager.acceptDragDrop(dropTarget);
+		
+			// gh#712.1
+			/*var dropTextInput:TextInput = TextInput(event.currentTarget);
+			dropTextInput.setStyle("contentBackgroundColor", 0xF2F2F2);
+			dropTextInput.setStyle("contentBackgroundAlpha", 1);*/
 			
 			// If we are dragging to ourselves don't show the green icon, but still allow it (so we can catch it in onDragComplete)
 			DragManager.showFeedback((dropTarget !== event.dragInitiator) ? DragManager.COPY : DragManager.NONE);
+		}
+		
+		// gh#712.2
+		private function onDragExit(event:DragEvent):void {
+			/*var dropTextInput:TextInput = TextInput(event.currentTarget);
+			dropTextInput.setStyle("contentBackgroundColor", 0xFFFFFF);
+			dropTextInput.setStyle("contentBackgroundAlpha", 0);*/
+		}
+		
+		// gh#712 store the scroller policy and prepare dragImage here
+		private function onMouseDown(event:MouseEvent):void {
+			if (_droppedNode) {
+				var displayObject:DisplayObject = DisplayObject(event.currentTarget);
+				while (!(displayObject is Scroller) && displayObject.parent)
+					displayObject = displayObject.parent;					
+				
+				if (!displayObject || displayObject is Stage)
+					return;
+				
+				scroller = displayObject as Scroller;			
+				
+				if (scroller) {
+					scrollerMemento = { verticalScrollPolicy: scroller.getStyle("verticalScrollPolicy"), horizontalScrollPolicy: scroller.getStyle("horizontalScrollPolicy") };
+					scroller.setStyle("horizontalScrollPolicy", ScrollPolicy.OFF);
+					scroller.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
+					
+					scroller.stage.addEventListener(MouseEvent.MOUSE_UP, onDragFinished);
+					scroller.stage.addEventListener(MouseEvent.RELEASE_OUTSIDE, onDragFinished);
+					
+					
+					if (!dragImage) {
+						dragImage = new Image();
+						dragImage.fillMode = BitmapFillMode.CLIP; // This ensures that the Image component doesn't try to scale
+						dragImage.visible = false;
+						
+						// We need to wrap it in an MX component otherwise the DragManager complains
+						var wrapper:UIComponent = new UIComponent();
+						wrapper.addChild(dragImage);
+						
+						// #376 (helps a bit)
+						dragImage.cacheAsBitmap = wrapper.cacheAsBitmap = true;
+						// gh#712 alice: get scoller's parent which is group
+						(displayObject.parent as spark.components.Group).addElement(wrapper);			
+					}
+				}
+			}			
+		}
+		
+		// gh#712
+		private function onMouseMove(event:MouseEvent):void {
+			if (_droppedNode) {		
+				var dragInitiator:IUIComponent = IUIComponent(event.currentTarget);
+				var ds:DragSource = new DragSource();
+				ds.addData(this.text, "text");
+				ds.addData(_droppedNode, "node");
+				ds.addData(_droppedFlowElement, "flowElement");
+
+				if (dragImage) {								
+					DragManager.doDrag(dragInitiator, ds, event, dragImage, 0, 0, 0.8);	
+					if (DragManager.isDragging) {
+						// First get the bounds of the draggable flow leaf element
+						var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(this);
+						// gh#450 tweak the x, y and height so that the bitmap snapped for a drag contains the text correctly
+						elementBounds.x += -2;
+						elementBounds.y += -1;
+						elementBounds.height += 1;
+
+						// Convert the element bounds from their original coordinate space to the container coordinate space
+						var containingBlock:RenderFlow = this.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+						elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, scroller);
+						
+						// Position the dragImage so that it is centered horizontally, and vertically is above the mouse
+						var containerPoint:Point = (dragInitiator as UIComponent).globalToContent(new Point(event.stageX, event.stageY));
+						dragImage.x = containerPoint.x - elementBounds.width / 2;
+						dragImage.y = containerPoint.y - elementBounds.height / 2;
+						
+						// Determine translation matrix and clip rectangle to capture the draggable element as bitmap data
+						var translationMatrix:Matrix = new Matrix();
+						translationMatrix.translate(-elementBounds.x, -elementBounds.y);
+						var clipRect:Rectangle = new Rectangle(0, 0, elementBounds.width, elementBounds.height);
+						
+						// Capture the draggable element into a BitmapData, draw it into the dragImage and make the dragImage visible
+						var bitmapData:BitmapData = new BitmapData(elementBounds.width, elementBounds.height);
+						// gh#712 alice: confused about how could bitmapData draw if souce=scroller
+						bitmapData.draw(scroller, translationMatrix, null, null, clipRect, true);
+						dragImage.source = bitmapData;
+						dragImage.width = elementBounds.width;
+						dragImage.height = elementBounds.height;
+						dragImage.visible = true;
+					}
+				}
+			}		
 		}
 		
 		protected function onDragDrop(event:DragEvent):void {
@@ -426,6 +545,20 @@ package com.clarityenglish.textLayout.elements {
 			
 			// gh#474 - dispatch a focus out event so that AnswerableBehaviour can remove the answer from the selectedAnswerMap
 			getEventMirror().dispatchEvent(new FocusEvent(FocusEvent.FOCUS_OUT));
+		}
+		
+		// gh#712 
+		protected function onDragFinished(event:MouseEvent):void {
+			if (scroller) {
+				scroller.stage.removeEventListener(MouseEvent.MOUSE_UP, onDragFinished);
+				scroller.stage.removeEventListener(MouseEvent.RELEASE_OUTSIDE, onDragFinished);
+				
+				if (scroller && scrollerMemento) {
+					scroller.setStyle("horizontalScrollPolicy", scrollerMemento.horizontalScrollPolicy);
+					scroller.setStyle("verticalScrollPolicy", scrollerMemento.verticalScrollPolicy);
+					scrollerMemento = null;
+				}
+			}
 		}
 		
 		private function updateComponentFromValue():void {
