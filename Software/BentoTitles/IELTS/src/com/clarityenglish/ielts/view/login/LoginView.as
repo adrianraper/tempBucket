@@ -126,9 +126,6 @@ package com.clarityenglish.ielts.view.login {
 		public var psdlLabel:Label;
 		
 		[SkinPart]
-		public var CTLoginButton:Button;
-		
-		[SkinPart]
 		public var CTStartButton:Button;
 		
 		[SkinPart]
@@ -724,11 +721,10 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				*/
 				case loginButton:
-				case CTLoginButton:
 					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 					// gh#659
 					if (_productCodes && getProductCodes().length > 1) {
-						// very hacky, in order to login to different title
+						// very hacky, in order to login to different module
 						config.productCode = IPLoginButtonBar.selectedItem.code;
 						config.paths.menuFilename = config.xmlCourseFile;
 						config.buildMenuFilename();
@@ -752,17 +748,9 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case addUserButton:
 					//user = new User({name:newNameInput.text, password:newPasswordInput.text});
-					// gh#723
-					//user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
-					if (IPLoginButtonBar) {
-						var userProfileOption:Number = Number(IPLoginButtonBar.selectedItem.code);
-						user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text, userProfileOption:userProfileOption});
-					} else {
-						user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
-					}
+					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
-					break;
-				
+					break;		
 				// gh#41
 				case testDriveAcademicButton:
 				case testDriveGeneralButton:

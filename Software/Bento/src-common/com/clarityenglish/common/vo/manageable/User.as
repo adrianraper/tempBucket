@@ -98,9 +98,6 @@
 				this.studentID = data.studentID;
 			if (data.password)
 				this.password = data.password;
-			// gh#723
-			if (data.userProfileOption)
-				this.userProfileOption = data.userProfileOption;
 		}
 		/**
 		 * A single user always has a userCount of 1
@@ -131,6 +128,14 @@
 			return (birthday) ? DateUtil.ansiStringToDate(birthday) : null;
 		}
 		
+		// gh#723
+		public function set moduleType(value:Number):void {
+			userProfileOption = value;
+		}
+		
+		public function get moduleType():Number {
+			return userProfileOption;
+		}
 		/**
 		 * Shorthand for the exam date, including conversion from database String to program Date
 		 * Change, only use the examDate IF it is explicitly set. Otherwise keep as null.

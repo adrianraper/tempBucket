@@ -222,7 +222,10 @@ package com.clarityenglish.common.model {
 		 */
 		public function addUser(user:User, loginOption:Number):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			
+			// gh#723 when add user, we read the product code here and store the user login profile
+			if (configProxy.getProductCode()) {
+				user.moduleType = Number(configProxy.getProductCode());
+			}
 			var params:Array = [ user, loginOption, configProxy.getRootID(), configProxy.getConfig().group ];
 			new RemoteDelegate("addUser", params, this).execute();
 		}

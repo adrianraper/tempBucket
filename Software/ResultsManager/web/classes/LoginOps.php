@@ -832,7 +832,8 @@ EOD;
 		
 		// Next get account licence details, which are not pulled in from getAccounts as DMS doesn't usually want them
 		// gh#39 TODO we need to do this for each title
-		$account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootID, $productCode));
+		// gh#723 add $config, for judge whether the login is the premier library login.
+		$account->addLicenceAttributes($this->accountOps->getAccountLicenceDetails($rootID, $config, $productCode));
 
 		// Also check whether we want a default content location
 		// gh#39 gh#135

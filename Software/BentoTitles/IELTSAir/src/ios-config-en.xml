@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 ce.com</id>
-	<developer></developer>
 	<productCode>52,53</productCode>
 	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
@@ -22,8 +21,8 @@
     <remoteGateway>http://roadtoielts.chinaielts.org/Software/ResultsManager/web/amfphp/</remoteGateway>-->
 	
 	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
-    <remoteDomain> http://www.clarityenglish.com/SoftwareTablet/</remoteDomain>
-    <remoteGateway>http://www.clarityenglish.com/SoftwareTablet/ResultsManager/web/amfphp/</remoteGateway>
+    <remoteDomain> http://www.clarityenglish.com/Software/</remoteDomain>
+    <remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>
 	
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
