@@ -737,8 +737,11 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case IPLoginStartButton:
 					user =  new User();
-					if(getProductCodes().length > 1)
+					if(getProductCodes().length > 1) {
 						config.productCode = IPLoginButtonBar.selectedItem.code;
+						config.paths.menuFilename = config.xmlCourseFile;
+						config.buildMenuFilename();
+					}
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case newUserButton:
