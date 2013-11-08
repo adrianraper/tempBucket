@@ -1,29 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
  <id>/area1/RoadToIELTS2 ce.com</id>
- <developer>DKweb</developer>
+ <developer>XX</developer>
  <productCode>54</productCode>
  <dbHost>2</dbHost>
- <courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
- <channel name="ios-vimeo" caption="vimeo">
-  <streamingMedia>http://player.vimeo.com/external/</streamingMedia>
- </channel>
- <!-- <channel name="ios-rackspace" caption="rackspace">
-  <streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
- </channel> -->
- <sharedMedia />
- <brandingMedia />
- <language>EN*</language>
+
+ <platform>tablet</platform>
  
  <contentPath>http://dock.contentbench/CCB/</contentPath>
  <remoteDomain>http://dock.projectbench/</remoteDomain>
  <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
- 
  <remoteStartFolder>http://dock.projectbench/area1/</remoteStartFolder>
- 
  <remoteService>RotterdamPlayerService</remoteService>
- <!--<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>-->
  
+ <brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
+ 
+ <!--<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>-->
  <!-- <rememberLogin>true</rememberLogin> -->
  
 </config>

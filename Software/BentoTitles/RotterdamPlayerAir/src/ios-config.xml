@@ -4,12 +4,8 @@
 	<productCode>54</productCode>
 	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
-	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<channel name="ios-vimeo" caption="vimeo">
-        <streamingMedia>http://player.vimeo.com/external/</streamingMedia>
-    </channel>
-	<sharedMedia />
-	<brandingMedia />
+	
+    <brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
 	<language>EN</language>
 	
 	<contentPath>http://dock.contentbench/CCB/</contentPath>

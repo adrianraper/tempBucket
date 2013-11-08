@@ -285,6 +285,12 @@ package com.clarityenglish.common.model {
 			return config.otherParameters;
 		}
 		
+		// gh#224 get the branding for a particular section
+		public function getBranding(section:String):XML {
+			if (config.customisation && config.customisation.child(section))
+				return config.customisation.child(section)[0];
+			return null;
+		}
 		/**
 		 * Direct login is implemented here. If a LoginEvent is returned then the application should log straight in without showing a login screen.
 		 * 

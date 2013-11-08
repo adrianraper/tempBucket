@@ -8,6 +8,11 @@
 		[HostComponent("com.clarityenglish.rotterdam.view.login.LoginView")]
 	</fx:Metadata>
 	
+	<fx:Script>
+		<![CDATA[
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
 		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false"/>
@@ -25,7 +30,6 @@
 				var urlReq:URLRequest = new URLRequest(hostComponent.getCopyProvider().getCopyForId("forgotPasswordLink", substTags ));
 				navigateToURL(urlReq, "_new");
 			}
-			
 		]]>
 	</fx:Script>
 	
@@ -68,19 +72,26 @@
 	</s:Rect>
 
 	<!-- top header -->
-	<s:Label id="sch_lbl" text="Clarity Language Consultants Ltd." right="20" top="14" fontSize="13" color="0xFFFFFF" />
+	<s:Label id="sch_lbl" text="licenced to {hostComponent.licenceeName}" right="20" top="14" fontSize="13" color="0xFFFFFF" />
 	
-	<!--login:LoginChrome left="200" top="130" /-->
-	<s:Group horizontalCenter="0" top="80">
-		<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/HoneyCones.png')" left="-130" bottom="-50" />
-		<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/HoneyConesLarge.png')" right="-90" bottom="-100" />
-		<s:Rect width="424" height="290" filters="{dropShadowFilter}" radiusX="8" radiusY="8" verticalCenter="50" horizontalCenter="0" alpha="0.7">
+	<!-- gh#224 If it seems likely that more than 4 image components are needed, we should switch to a DataGroup and ItemRenderer -->
+	<s:BitmapImage id="brandingImage1" />
+	<s:BitmapImage id="brandingImage2" />
+	<s:BitmapImage id="brandingImage3" />
+	<s:BitmapImage id="brandingImage4" />
+	<s:BitmapImage source="@Embed(source='skins/rotterdam/player/assets/login/HoneyCones.png')" horizontalCenter="-200" verticalCenter="-50" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
+	<s:BitmapImage source="@Embed(source='skins/rotterdam/player/assets/login/HoneyConesLarge.png')" horizontalCenter="200" verticalCenter="0" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
+	<login:HoneyGraphic right="200" top="40" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
+	
+	<s:Group horizontalCenter="0" top="40">
+		<!-- gh#224 -->
+		<s:Rect width="424" height="290" filters="{dropShadowFilter}" radiusX="8" radiusY="8" verticalCenter="70" horizontalCenter="0" alpha="0.7">
 			<s:fill>
 				<s:SolidColor color="0xFFFFFF"/>
 			</s:fill>
 		</s:Rect>
 
-		<s:Group horizontalCenter="0" verticalCenter="70">
+		<s:Group horizontalCenter="0" verticalCenter="90">
 			<s:VGroup horizontalAlign="center">
 				<s:VGroup>
 					<s:Spacer height="1" />
@@ -103,6 +114,5 @@
 		</s:Group>
 	</s:Group>
 	
-	<login:HoneyGraphic left="860" top="40" />
-	<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/CCBLogo.png')" right="140" bottom="100" />
+	<s:BitmapImage source="@Embed(source='skins/rotterdam/player/assets/login/CCBLogo.png')" right="140" bottom="100" />
 </s:Skin>

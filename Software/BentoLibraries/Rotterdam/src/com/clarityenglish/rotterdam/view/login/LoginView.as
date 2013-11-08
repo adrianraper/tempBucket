@@ -11,6 +11,7 @@ package com.clarityenglish.rotterdam.view.login {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.core.ComponentDescriptor;
 	import mx.events.FlexEvent;
 	import mx.utils.StringUtil;
 	
@@ -20,14 +21,12 @@ package com.clarityenglish.rotterdam.view.login {
 	import spark.components.FormHeading;
 	import spark.components.Label;
 	import spark.components.TextInput;
+	import spark.primitives.BitmapImage;
 	
 	public class LoginView extends BentoView implements LoginComponent {
 		
 		[SkinPart(required="true")]
 		public var loginButton:Button;
-		
-		[SkinPart]
-		public var loginHeading:FormHeading;
 		
 		[SkinPart(required="true")]
 		public var passwordInput:TextInput;
@@ -60,6 +59,16 @@ package com.clarityenglish.rotterdam.view.login {
 		[SkinPart]
 		public var quickStartButton:Button;
 		
+		// gh#224
+		[SkinPart]
+		public var brandingImage1:BitmapImage;
+		[SkinPart]
+		public var brandingImage2:BitmapImage;
+		[SkinPart]
+		public var brandingImage3:BitmapImage;
+		[SkinPart]
+		public var brandingImage4:BitmapImage;
+		
 		[Bindable]
 		public var loginKey_lbl:String;
 		
@@ -85,6 +94,11 @@ package com.clarityenglish.rotterdam.view.login {
 		private var _verified:Boolean;
 		
 		private var _currentState:String;
+		
+		// gh#224
+		private var _licenceeName:String;
+		private var _branding:XML;
+		public static var brandingImageIndex:uint = 1;
 		
 		// gh#41
 		private var _noAccount:Boolean;
@@ -174,6 +188,26 @@ package com.clarityenglish.rotterdam.view.login {
 			}
 		}
 		
+		// gh#224
+		public function set licenceeName(value:String):void {
+			if (_licenceeName != value)
+				_licenceeName = value;
+		}
+		public function get licenceeName():String {
+			return _licenceeName;
+		}
+		// gh#224
+		public function set branding(value:XML):void {
+			// initialise
+			brandingImageIndex = 1;
+			if (_branding != value) {
+				_branding = value;
+			}
+		}
+		public function get branding():XML {
+			return _branding;
+		}
+		
 		// #341 Need to know if it is a network version.
 		public function get isNetwork():Boolean {
 			return (_licenceType == Title.LICENCE_TYPE_NETWORK);
@@ -213,18 +247,83 @@ package com.clarityenglish.rotterdam.view.login {
 				case cancelButton:
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
+				
+				case brandingImage1:
+				case brandingImage2:
+				case brandingImage3:
+				case brandingImage4:
+					if (branding && branding.image)
+						addBrandingImageToInstance(instance, branding.image);
+					break;
 			}
 		}
 		
+		/**
+		 * This takes the xml describing the placement of the image and translates
+		 * it into image properties.
+		 * eg: <image horizontalAlign="left|center|right" verticalAlign="top|center|bottom" padding="20" />
+		 */
+		private function addBrandingImageToInstance(instance:Object, images:XMLList):void {
+			// gh#224
+			if (images) {
+				var numImages:uint = images.length();
+				if (numImages >= brandingImageIndex) {
+					var image:XML = images[brandingImageIndex-1];
+					instance.visible = instance.includeInLayout = true;
+					
+					instance.source = config.paths.brandingMedia + image.@src; 
+					if (image.hasOwnProperty('@padding')) {
+						var padding:uint = Number(image.@padding);
+					} else {
+						padding = 0;
+					}
+					
+					if (image.hasOwnProperty('@horizontalAlign')) {
+						switch (String(image.@horizontalAlign)) {
+							case 'center':
+								instance.horizontalCenter = 0;
+								break;
+							case 'left':
+								instance.left = padding;
+								break;
+							case 'right':
+								instance.right = padding;
+								break;
+						}
+					}
+					if (image.hasOwnProperty('@verticalAlign')) {
+						switch (String(image.@verticalAlign)) {
+							case 'center':
+								instance.verticalCenter = 0;
+								break;
+							case 'top':
+								instance.top = padding + 40;
+								break;
+							case 'bottom':
+								instance.bottom = padding + 40;
+								break;
+						}
+					}
+					brandingImageIndex++;
+				}
+			}
+		}
+		/**
+		 * Add branding. 
+		 * gh#224
+		 */
+		public function setBranding(branding:XML):void {
+			if (branding)
+				this.branding = branding;
+		}
 		/**
 		 * Add the institution name from the licence to the screen 
 		 * @param String name
 		 * 
 		 */
 		public function setLicencee(name:String):void {
-			//loginHeading.label = "licenced to: " + name;
-			if (loginHeading)
-				loginHeading.label = name;
+			// gh#224
+			licenceeName = name;
 		}
 		/**
 		 * Push the login option into the view 

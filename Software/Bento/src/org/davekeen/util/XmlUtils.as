@@ -103,5 +103,24 @@
 			return list;
 		}
 
+		/**
+		 * gh#224 Very rough draft
+		 * Merge two xml nodes keeping everything that doesn't conflict
+		 * if you have a conflict, use the data from the first.
+		 */
+		public static function mergeXML(xml1:XML, xml2:XML):XML {
+			var mergedXML:XML = <customisation/>;
+			for each (var prop:XML in xml1.children()) {
+				var pname:String = prop.name();
+				var mergedChild:XML = prop;
+				if (xml2.child(pname)) {
+					for each (var prop2:XML in xml2.child(pname).children()) {
+						mergedChild.appendChild(prop2)
+					}
+				}
+				mergedXML.appendChild(mergedChild);
+			}
+			return mergedXML;
+		}
 	}
 }

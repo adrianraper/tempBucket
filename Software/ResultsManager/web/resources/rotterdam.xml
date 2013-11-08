@@ -262,7 +262,7 @@
 			<lit name="othersLabel">No record available</lit>
 			
 			<lit name="forgotPasswordLabel">Forgot your password?</lit>
-			<lit name="forgotPasswordLink"><![CDATA[http://clarityPM/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
+			<lit name="forgotPasswordLink"><![CDATA[http://{domain}/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
 			
 		</group>
 	</language>

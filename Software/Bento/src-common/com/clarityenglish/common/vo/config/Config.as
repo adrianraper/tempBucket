@@ -15,6 +15,7 @@ package com.clarityenglish.common.vo.config {
 	
 	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StringUtils;
+	import org.davekeen.util.XmlUtils;
 	
 	/**
 	 * This holds configuration information that comes from any source.
@@ -150,6 +151,9 @@ package com.clarityenglish.common.vo.config {
 		
 		// gh#660
 		public var randomizedTestQuestionTotalNumber:Number;
+		
+		// gh#224
+		public var customisation:XML;
 		
 		/**
 		 * Developer option
@@ -488,6 +492,10 @@ package com.clarityenglish.common.vo.config {
 			if (xml..randomizedTestQuestionTotalNumber.toString()) {
 				this.randomizedTestQuestionTotalNumber = xml..randomizedTestQuestionTotalNumber.toString();
 			}
+			
+			// gh#224
+			if (xml..customisation)
+				this.customisation = xml..customisation[0];
 		}
 		
 		/**
@@ -576,7 +584,8 @@ package com.clarityenglish.common.vo.config {
 			// Remember that it might look like 
 			// sharedMedia={contentPath}/sharedMedia
 			this.paths.sharedMedia = this.paths.sharedMedia.toString().split('{contentPath}').join(this.paths.content);
-			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('{prefix}').join(data.prefix);
+			// gh#224
+			this.paths.brandingMedia = this.paths.brandingMedia.toString().split('{prefix}').join(account.prefix);
 		
 			// gh#356 If there is a local channel available tested if it is accessible
 			localStreamingMedia = getLicenceAttribute('localStreamingMedia');
@@ -589,6 +598,12 @@ package com.clarityenglish.common.vo.config {
 			
 			// Whilst the title/account holds most licence info, it is nice to keep it in one class
 			this.licence = data.licence as Licence;
+			
+			// gh#224
+			var customisationFromDB:String = this.getLicenceAttribute('customisation');
+			if (customisationFromDB)
+				// this.customisation = XmlUtils.mergeXML(this.account.licenceAttributes.customisation, data.customisation);
+				this.customisation = new XML(customisationFromDB);
 		}
 
 		/**
@@ -603,22 +618,12 @@ package com.clarityenglish.common.vo.config {
 		
 		/**
 		 * #530
-		 * This looks up a specific entry in the licence attribues
+		 * This looks up a specific entry in the licence attributes
 		 */
 		public function get subRoots():String {
-			
-			// gh#21			if (this.account) {
-				if (this.account.licenceAttributes) {
-					for each (var lA:Object in this.account.licenceAttributes) {
-						if (lA.licenceKey.toLowerCase() == 'subroots')
-							return lA.licenceValue;
-					}
-				}
-			}
-			return null;
+			return getLicenceAttribute('subRoots');
 		}
-		/*
-		 * This is a more general version of the above
+		/**
 		 * gh#356
 		 */
 		public function getLicenceAttribute(attr:String):String {

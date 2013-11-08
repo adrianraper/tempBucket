@@ -46,6 +46,10 @@ package com.clarityenglish.common.view.login {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.setLicencee(configProxy.getAccount().name);
 			
+			// gh#224
+			//view.setBranding(configProxy.getConfig().customisation);
+			view.setBranding(configProxy.getBranding('login'));
+			
 			//trace("the product version in LoginM is "+ configProxy.getProductVersion());
 			view.setProductVersion(configProxy.getProductVersion());
 			view.setProductCode(configProxy.getProductCode());

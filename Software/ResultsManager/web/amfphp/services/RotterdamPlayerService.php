@@ -14,5 +14,10 @@ class RotterdamPlayerService extends RotterdamService {
 		
 		parent::__construct();
 	}
+
+	// I don't think this should be called, but is throwing errors at present
+	public function courseSessionUpdate($courseId) {
+		
+	}
 	
 }

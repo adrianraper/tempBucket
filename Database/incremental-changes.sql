@@ -975,3 +975,8 @@ F_Sessions smallint DEFAULT NULL,
 ) ENGINE=InnoDB;
 
 ALTER TABLE `T_Subscription` ADD COLUMN `F_Birthday` DATETIME NULL DEFAULT NULL AFTER `F_OrderRef`;
+
+-- gh#224
+insert into T_LicenceAttributes
+(F_RootID, F_ProductCode, F_Key, F_Value)
+values (163, 54, 'customisation',"<branding><login><image src='CE_banner.png' horizontalAlign='center' verticalAlign='top' padding='0' /><image src='trophy.png' horizontalAlign='left' verticalAlign='bottom' padding='10' /></login></branding>");

@@ -28,6 +28,8 @@
 		function setNoAccount(noAccount:Boolean):void;
 		//gh#41
 		function getTestDrive():Signal;
+		// gh#
+		function setBranding(xml:XML):void;
 	}
 	
 }
