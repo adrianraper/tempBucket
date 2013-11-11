@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8" standalone="no"?>
-<application xmlns="http://ns.adobe.com/air/application/3.7">
+<application xmlns="http://ns.adobe.com/air/application/3.7.0">
 
 <!-- Adobe AIR Application Descriptor File Template.
 
@@ -160,7 +160,7 @@
 		<image76x76>icons/TB-iOS-app-icon_76.png</image76x76>
 		<image114x114>icons/TB-iOS-app-icon_114.png</image114x114>
 		<image144x144>icons/TB-iOS-app-icon_144.png</image144x144>
-		<image1152x152>icons/TB-iOS-app-icon_152.png</image152x152>
+		<image152x152>icons/TB-iOS-app-icon_152.png</image152x152>
 	</icon>
 
 	<!-- Whether the application handles the update when a user double-clicks an update version
