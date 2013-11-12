@@ -92,8 +92,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					bounds = PointUtil.convertRectangleCoordinateSpace(bounds, containingBlock, container);
 					*/
 
-					// gh#607
-					var textFlowLine:TextFlowLine = flowElement.getTextFlow().flowComposer.getLineAt(0);
+					// gh#607 the first line may be a header, so read the line height of second line
+					var textFlowLine:TextFlowLine = flowElement.getTextFlow().flowComposer.getLineAt(1);
 					// if the text element occupy tow lines, then the height of bound.height is longer than textFlowLine height
 					// And at that time, the bounds left is actually the text element right, vise versa.
 					if ( textFlowLine && bounds.height - textFlowLine.height > 10) {
