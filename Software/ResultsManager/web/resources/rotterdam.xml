@@ -260,6 +260,10 @@
 			<lit name="completeLabel">Started</lit>
 			<lit name="notCompleteLabel">Not started</lit>
 			<lit name="othersLabel">No record available</lit>
+			
+			<lit name="forgotPasswordLabel">Forgot your password?</lit>
+			<lit name="forgotPasswordLink"><![CDATA[http://clarityPM/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
+			
 		</group>
 	</language>
 </literals>

@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.login {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.events.LoginEvent;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.view.login.interfaces.LoginComponent;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
@@ -74,6 +75,10 @@ package com.clarityenglish.rotterdam.view.login {
 		[Bindable]
 		public var loginPassword_lbl:String;
 		
+		// gh#487
+		[Bindable]
+		public var forgotPassword_lbl:String;
+		
 		// #341
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
@@ -83,8 +88,14 @@ package com.clarityenglish.rotterdam.view.login {
 		
 		// gh#41
 		private var _noAccount:Boolean;
+		
 		public function LoginView() {
 			super();
+		}
+		
+		// gh#487
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
 		}
 		
 		// #341
@@ -186,7 +197,7 @@ package com.clarityenglish.rotterdam.view.login {
 				dispatchEvent(new Event("productVersionChanged"));
 			}
 		}
-		
+
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -262,6 +273,9 @@ package com.clarityenglish.rotterdam.view.login {
 
 			// gh#100
 			loginPassword_lbl = copyProvider.getCopyForId("passwordLabel");
+			
+			// gh#487
+			forgotPassword_lbl = copyProvider.getCopyForId("forgotPasswordLabel");
 		}
 		
 		// #254

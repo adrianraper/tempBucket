@@ -13,6 +13,21 @@
 		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false"/>
 		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
 	</fx:Declarations>
+	<fx:Script>
+		<![CDATA[
+			import flash.net.navigateToURL;
+			
+			protected function forgotPasswordHandler(event:MouseEvent):void {
+				var substTags:Object = { productCode: hostComponent.config.productCode };
+				if (hostComponent.config.rootID)
+					substTags.rootID = hostComponent.config.rootID; 
+				substTags.loginOption = (isNaN(hostComponent.loginOption)) ? '' : hostComponent.loginOption;
+				var urlReq:URLRequest = new URLRequest(hostComponent.getCopyProvider().getCopyForId("forgotPasswordLink", substTags ));
+				navigateToURL(urlReq, "_new");
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
@@ -66,19 +81,22 @@
 		</s:Rect>
 
 		<s:Group horizontalCenter="0" verticalCenter="70">
-			<s:VGroup horizontalAlign="center" gap="60">
-				<s:VGroup gap="30">
+			<s:VGroup horizontalAlign="center">
+				<s:VGroup>
+					<s:Spacer height="1" />
 					<s:VGroup>
 						<s:Label id="loginKey_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginKey_lbl}"/>
 						<s:TextInput id="loginKeyInput" fontSize="14" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 					</s:VGroup>
-					
+					<s:Spacer height="20" />
 					<s:VGroup>
 						<s:Label id="loginPassword_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginPassword_lbl}" />
 						<s:TextInput id="passwordInput" displayAsPassword="true" width="220" height="35" fontSize="20" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+						<s:Button id="forgotPassword_btn" fontSize="12" color="0x333333" label="{hostComponent.forgotPassword_lbl}" click="forgotPasswordHandler(event)" />
 					</s:VGroup>
+					<s:Spacer height="10" />
 				</s:VGroup>
-				<s:Button id="loginButton" label="Login"/>	
+				<s:Button id="loginButton" label="{hostComponent.getCopyProvider().getCopyForId('loginButton')}" />	
 			</s:VGroup>
 		</s:Group>
 	</s:Group>

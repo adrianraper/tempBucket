@@ -1327,34 +1327,35 @@ EOD;
 	 * based on that. But now we could check based on licence type?
 	 * Should be deprecated by the more general function getUserByKey
 	 */
-	function getUserFromEmail($email, $licenceType) {
-		
-		// Ensure the username is unique within this context
-		//		AND t.F_ProductCode=?
-		// I will get one row for each account that this user has, so make sure we measure distinct ones
-		//$sql  = "SELECT ".User::getSelectFields($this->db);
-		$sql  = "SELECT DISTINCT ".User::getSelectFields($this->db);
-		$sql .= <<<EOD
-				FROM T_User u 
-				JOIN T_Membership m ON u.F_UserID = m.F_UserID 
-				JOIN T_Accounts t ON m.F_RootID = t.F_RootID 
-				WHERE u.F_Email = ?
-				AND t.F_LicenceType = ?
+	function getUserFromEmail($email, $licenceType=null) {
+
+		// gh#487
+		$sql  = "SELECT ".User::getSelectFields($this->db);
+		if ($licenceType) {
+			$sql .= <<<EOD
+					FROM T_User u 
+					JOIN T_Membership m ON u.F_UserID = m.F_UserID 
+					JOIN T_Accounts t ON m.F_RootID = t.F_RootID 
+					WHERE u.F_Email = ?
+					AND t.F_LicenceType = ?
 EOD;
-		$rs = $this->db->Execute($sql, array($email, $licenceType));
-		//echo $sql;
+			$bindingParams = array($email, $licenceType);
+		} else {
+			$sql .= <<<EOD
+					FROM T_User u 
+					WHERE u.F_Email = ?
+EOD;
+			$bindingParams = array($email);
+		}
+		$rs = $this->db->Execute($sql, $bindingParams);
+		
 		switch ($rs->RecordCount()) {
 			case 0:
 				// There are no records
 				return false;
-			case 1:
-				// Found just one record, so return it as a user object
-				$userObj = $rs->FetchNextObj();
-				$user = $this->_createUserFromObj($userObj);
-				return Array($user);
 			default:
-				// There is more than one user with this email address in this context
-				// What can we tell the learner?
+				// gh#487
+				// Send back the user(s) that you found
 				$users = Array();
 				while ($userObj = $rs->FetchNextObj())
 					$users[] = $this->_createUserFromObj($userObj);

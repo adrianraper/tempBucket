@@ -18,80 +18,71 @@ $dmsService = new DMSService();
 // For testing, set this to false
 $returnURL = true;
 
-session_start();
-date_default_timezone_set('UTC');
-
 // Lets just see what we get from POST first
 //var_dump($_POST);
 //exit(0);
 
-//check if the user has the IYJ licience
-//if yes, check if the condition is passed
-//if not, return ture
-function passIYJ($user) {
-	if(!isset($_POST['IYJ_productCode'])) {
-		return false;
-	}
-	require_once($_SERVER['DOCUMENT_ROOT'].'/db_login.php');
-	$userid = $user->userID;
-	$querry_results = $db->Execute("Select * From T_Accounts a, T_Membership m where a.F_ProductCode=1001 AND m.F_UserID=$userid AND m.F_RootID=a.F_RootID");
-	return ($querry_results->RecordCount() > 0) ;
-}
-
-
-// Core function is to look up the user based on the email, and any other information possible
-// We really don't need any special DMS classes apart from email, oh and manageableOps!
-function getUserFromEmail($userInformation) {
-	//echo "addAccountFromPaymentGateway"; 
+// Core function is to send the user an email
+function sendPasswordEmail($userInformation) {
 	global $dmsService;
 	global $returnURL;
 	
 	$email = $userInformation['email'];
 	// Change from productCode to licenceType as a way to check on unique email addresses
 	//$pc = $userInformation['productCode'];
-	$licenceType = $userInformation['licenceType'];
+	$licenceType = isset($userInformation['licenceType']) ? $userInformation['licenceType'] : null;
+	$loginOption = isset($userInformation['loginOption']) ? $userInformation['loginOption'] : null;
+	$templateID = isset($userInformation['templateID']) ? $userInformation['templateID'] : 'forgot_password';
 	
-	// Before adding the account, I need to confirm if certain key fields are unique, but not enforced in the database.
-	//$users = $dmsService-> manageableOps->getUserFromEmail($email, pc);
-	$users = $dmsService-> manageableOps->getUserFromEmail($email, $licenceType);
+	$users = $dmsService->manageableOps->getUserFromEmail($email, $licenceType);
 	if ($users) {
-	// RL: There is nowhere to use this script if it only accepts IYJ users. And nobody knows who write this passIYJ function. Should we just remove it?
-	// And we can assume the user is the same person if the email is the same, let alone how many records we found!
-		//if (count($users)==1 && passIYJ($users[0])) {
-		if (count($users)>0) {
-			// So just send the email from here.
-			//echo "say that these are hidden ".var_dump($licencedProductCodes)."<br/>";
-			$emailArray[] = array("to" => $users[0]->email
-									,"data" => array("user" => $users[0])
-									//,"cc" => array("adrian.raper@clarityenglish.com")
-								);
+		// You may have found multiple users for this email. 
+		// If they all have the same password simply send it.
+		// If the passwords are different - what to do? We have already filtered by licence type to try and catch
+		// those who have LM or IP.com accounts as well as school accounts. I think it has to be an error message.
+		$passwordsMatch = true;
+		$firstPassword = $users[0]->password;
+		foreach ($users as $user) {
+			if ($user->password != $firstPassword)
+				$passwordsMatch = false;
+		}
+		if ($passwordsMatch) {
+			$emailArray[] = array("to" => $users[0]->email, "data" => array("user" => $users[0], "loginOption" => $loginOption));
 								
 			// Send the emails
-			$templateID = isset($_POST['templateID'])?$_POST['templateID']:'CLS_forgot_password';
-			$dmsService->emailOps->sendEmails("Clarity Support", $templateID, $emailArray);
+			$dmsService->emailOps->sendEmails("Clarity support", $templateID, $emailArray);
 			// If you are just testing, display the email template on screen.
 			if ($returnURL != "") {
-				// It doesn't work to set session variable since Curl puts us into a different session space (or something)
-				//$_SESSION['IYJreg_password'] = $thisUser->password;
-				// Lets assume that we are generating plain text
 				header('Content-Type: text/plain');
-				echo "&error=0&password={$users[0]->password}";
+				// We should NOT send back the password!
+				//echo "&error=0&password={$users[0]->password}";
+				echo "&error=0&message=Email sent";
 			} else {
-				echo "<b>Email: ".$users[0]->email."</b><br/><br/>".$dmsService->emailOps->fetchEmail($templateID, array("user" => $users[0]))."<hr/>";
+				echo "<b>Email: ".$users[0]->email."</b><br/><br/>".$dmsService->emailOps->fetchEmail($templateID, array("user" => $users[0], "loginOption" => $loginOption))."<hr/>";
 			}
 		} else {
 			header('Content-Type: text/plain');
-			echo "&error=211&message=Duplicate emails found.";
+			echo "&error=211&message=Email registered with different passwords.";
 		}
 	} else {
 		header('Content-Type: text/plain');
-		echo "&error=210&message=Email not found.";
+		echo "&error=210&message=Email not registered in our database.";
 	}
 }
 
 // Account information will come in session variables
 function loadUserInformation() {
+	global $returnURL;
+	
 	$userInformation = array();
+	// For debugging
+	if ($returnURL == false) {
+		$userInformation['email'] = 'adrian@noodles.hk';
+		$userInformation['loginOption'] = 1;
+		$userInformation['templateID'] = 'ccb_forgot_password';
+		return $userInformation;
+	} 
+	
 	// First mandatory fields
 	if (isset($_POST['CLS_Email'])) {
 		$userInformation['email'] = $_POST['CLS_Email'];
@@ -118,10 +109,19 @@ function loadUserInformation() {
 		$userInformation['licenceType'] = $_POST['IYJ_licenceType'];
 	} elseif (isset($_GET['licenceType'])) {
 		$userInformation['licenceType'] = $_GET['licenceType'];
-	} else {
-		$userInformation['licenceType'] = 5;
+	// gh#487 no longer a sensible default
+	//} else {
+	//	$userInformation['licenceType'] = 5;
 	}
 	
+	// gh#487 We might send rootID too
+	if (isset($_POST['rootID']))
+		$userInformation['rootID'] = $_POST['rootID'];
+	if (isset($_POST['loginOption']))
+		$userInformation['loginOption'] = $_POST['loginOption'];
+	if (isset($_POST['templateID']))
+		$userInformation['templateID'] = $_POST['templateID'];
+		
 	return $userInformation;
 }
 
@@ -131,12 +131,11 @@ function loadUserInformation() {
 // Load the passed data
 try {
 	$userInformation = loadUserInformation();
-	// Create the accounts
-	getUserFromEmail($userInformation);
+	// Send the email password
+	sendPasswordEmail($userInformation);
 } catch (Exception $e) {
 	// Lets assume that we are generating plain text
 	header('Content-Type: text/plain');
 	echo '&error=1&message='.$e->getMessage();
 }
-exit(0)
-?>
+exit(0);
