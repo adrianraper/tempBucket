@@ -137,6 +137,8 @@ EOD;
 				
 				// 1. Does the password match just one of them?
 				$matches = 0;
+				// gh#741
+				$rs->MoveFirst();
 				while ($userObj = $rs->FetchNextObj()) {
 					if ($password == $userObj->F_Password) {
 						$dbLoginObj = $userObj;
@@ -148,7 +150,7 @@ EOD;
 					AbstractService::$debugLog->info($logMessage);
 					continue;
 				}
-				
+
 				// 2. Is there just one that has not expired?
 				$matches = 0;
 				$rs->MoveFirst();
