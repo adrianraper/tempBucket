@@ -92,7 +92,9 @@
 					<s:VGroup>
 						<s:Label id="loginPassword_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginPassword_lbl}" />
 						<s:TextInput id="passwordInput" displayAsPassword="true" width="220" height="35" fontSize="20" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
-						<s:Button id="forgotPassword_btn" fontSize="12" color="0x333333" label="{hostComponent.forgotPassword_lbl}" click="forgotPasswordHandler(event)" />
+					    <s:VGroup paddingLeft="77">
+							<s:Button id="forgotPassword_btn" label="{hostComponent.forgotPassword_lbl}" click="forgotPasswordHandler(event)" useHandCursor="true" buttonMode="true" />
+						</s:VGroup>					
 					</s:VGroup>
 					<s:Spacer height="10" />
 				</s:VGroup>

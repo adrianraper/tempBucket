@@ -35,6 +35,10 @@ login|LoginView s|Button#loginButton {
 	skinClass: ClassReference("skins.rotterdam.player.login.LoginButtonSkin");
 }
 
+login|LoginView s|Button#forgotPassword_btn {
+	skinClass: ClassReference("skins.rotterdam.player.login.ForgotPasswordButtonSkin");
+}
+
 /*login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.spark.TextInputSkin");
 	borderVisible: true;
