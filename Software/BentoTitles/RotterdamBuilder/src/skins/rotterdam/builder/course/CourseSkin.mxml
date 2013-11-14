@@ -7,7 +7,7 @@
 		xmlns:courseui="com.clarityenglish.rotterdam.view.course.ui.*"
 		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*"
 		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*"
-		initialize="onInitialize(event)">
+		initialize="onInitialize(event)" xmlns:ui1="com.clarityenglish.rotterdam.view.title.ui.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
@@ -131,7 +131,12 @@
 	<course:ToolBarView id="toolBar" bottom="38" left="0" right="0" />
 	
 	<!--alice p-->
-	<s:VGroup id="publishVGroup" left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">	
+	<!--s:VGroup id="publishVGroup" left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor"-->
+	<s:VGroup id="publishVGroup" left="110" top="-50" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">		
+		<s:Group>
+			<s:ToggleButton id="publishCourseButton" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" useHandCursor="true" buttonMode="true" />
+			<s:Button id="publishChangeButton" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" useHandCursor="true" buttonMode="true" />
+		</s:Group>
 		<s:VGroup paddingLeft="2" id="publishSelectionGroup" height="0" alpha="0">
 			<s:Group>
 				<s:Rect width="152" height="200" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
@@ -140,14 +145,10 @@
 					</s:fill>
 				</s:Rect>
 				<courseui:PublishButton id="oneClickPublishButton" useHandCursor="true" buttonMode="true"
-						  visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6" />
+										visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6" />
 				<courseui:PublishButton id="publishSettingsButton" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="90" />
 			</s:Group>					
-		</s:VGroup>		
-		<s:Group>
-			<s:ToggleButton id="publishCourseButton" height="50" fontWeight="bold" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" useHandCursor="true" buttonMode="true" />
-			<s:Button id="publishChangeButton" height="50" fontWeight="bold" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" useHandCursor="true" buttonMode="true" />
-		</s:Group>
+		</s:VGroup>
 	</s:VGroup>
 	
 	<s:Rect left="3" right="3" height="5" bottom="33">

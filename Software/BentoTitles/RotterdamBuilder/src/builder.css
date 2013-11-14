@@ -20,7 +20,6 @@
 @namespace showPublishSettingDemo "com.clarityenglish.rotterdam.builder.view.settings.*";
 @namespace ui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace help "com.clarityenglish.rotterdam.builder.view.help.*";
-@namespace saveerror "com.clarityenglish.rotterdam.builder.view.error.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -66,13 +65,9 @@ title|TitleView s|Button#logoutButton {
 	skinClass: 	ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }
 
-saveerror|SavingErrorView {
-	skinClass: ClassReference("skins.rotterdam.builder.error.SavingErrorSkin");
+title|TitleView s|Button#backButton {
+	skinClass: ClassReference("skins.rotterdam.title.ui.BackButtonSkin");
 }
-saveerror|SavingErrorView s|Button {
-	skinClass: ClassReference("skins.bento.error.ErrorButtonSkin");
-}
-
 courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
 }
@@ -144,12 +139,18 @@ course|CourseView courseui|PublishButton#oneClickPublishButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.OneClickPublishButtonSkin");
 }
 
-course|CourseView s|ToggleButton#publishCourseButton {
+/*course|CourseView s|ToggleButton#publishCourseButton {
 	skinClass: ClassReference("skins.rotterdam.unit.PublishCourseButtonSkin");
+}*/
+course|CourseView s|ToggleButton#publishCourseButton {
+	skinClass: ClassReference("skins.rotterdam.title.ui.PublishToggleButtonSkin");
 }
 
-course|CourseView s|Button#publishChangeButton {
+/*course|CourseView s|Button#publishChangeButton {
 	skinClass: ClassReference("skins.rotterdam.unit.PublishChangeButtonSkin");
+}*/
+course|CourseView s|Button#publishChangeButton {
+	skinClass: ClassReference("skins.rotterdam.title.ui.PublishToggleButtonSkin");
 }
 
 buildercourse|ToolBarView {

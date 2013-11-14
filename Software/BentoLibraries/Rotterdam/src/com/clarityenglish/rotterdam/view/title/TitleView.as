@@ -3,6 +3,7 @@ package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.rotterdam.view.course.CourseView;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
+	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
 	
 	import flash.events.Event;
@@ -39,6 +40,9 @@ package com.clarityenglish.rotterdam.view.title {
 		[SkinPart]
 		public var logoutButton:Button;
 		
+		[SkinPart]
+		public var backButton:Button;
+		
 		public var dirtyWarningShow:Signal = new Signal(Function);
 		
 		public var logout:Signal = new Signal();
@@ -65,7 +69,6 @@ package com.clarityenglish.rotterdam.view.title {
 						// TODO: this really should be here, but there is some bug whereby the framework is straight away changing back from progress to course, so leave for now
 						//progress: { viewClass: ProgressView }
 					});
-					
 					// gh#83
 					sectionNavigator.changeConfirmFunction = function(next:Function):void {
 						dirtyWarningShow.dispatch(next); // If there is no dirty warning this will cause next() to be executed immediately
@@ -88,6 +91,10 @@ package com.clarityenglish.rotterdam.view.title {
 					logoutButton.label = copyProvider.getCopyForId("LogOut");
 					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
+				// Navigator
+				case backButton:
+					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
+					break;
 			}
 		}
 		
@@ -98,6 +105,10 @@ package com.clarityenglish.rotterdam.view.title {
 		// gh#217
 		protected function onLogoutClick(event:Event):void {
 			logout.dispatch();
+		}
+		
+		protected function onBackButtonClick(event:MouseEvent):void {
+			myCoursesViewNavigator.popView();
 		}
 		
 	}
