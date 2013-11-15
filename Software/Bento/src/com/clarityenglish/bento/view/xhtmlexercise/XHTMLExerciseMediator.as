@@ -123,9 +123,21 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		}
 		
 		protected function handleMarkingShown(note:INotification):void {
+			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(view.exercise)) as ExerciseProxy;
 			// Set the exercise marked (this will disable interaction)
 			view.setExerciseMarked();
 			
+			// gh#627
+			if (view.exercise.model) {
+				for each (var question:Question in view.exercise.model.questions) {
+					var selectedAnswerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
+					var markableAnswerMap:AnswerMap = exerciseProxy.getMarkableAnswerMap(question);
+					trace("markableAnswerMap length: "+markableAnswerMap.keys.length);
+					if (markableAnswerMap.keys.length > 0) {
+						view.modifyMakingClass(question, selectedAnswerMap, markableAnswerMap);
+					}					
+				}
+			}
 			// Stop all audio
 			view.stopAllAudio();		
 		}

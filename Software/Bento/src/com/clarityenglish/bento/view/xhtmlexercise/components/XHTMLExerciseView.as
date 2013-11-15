@@ -386,6 +386,27 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 			textFlowDamageAccumulator.updateDamagedTextFlows();
 		}
 		
+		// gh#627
+		public function modifyMakingClass(question:Question, selectedAnswerMap:AnswerMap, markableAnswerMap:AnswerMap, marked:Boolean = true):void {
+			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
+			
+			if (marked && !(exercise.model && exercise.model.getSettingParam("delayedMarking"))) {
+				var targetNodes:Vector.<XML> = question.getSourceNodes(exercise);
+				for each (var key:Object in selectedAnswerMap.keys) {
+					var sourceNode:XML = key as XML;
+					var selectedAnswer:Answer = selectedAnswerMap.get(sourceNode);
+					var markableAnswer:Answer = markableAnswerMap.get(sourceNode);
+					var selectedAnswerElement:FlowElement = getFlowElement(sourceNode);						
+					
+					// For multiple choice, the sourceNode(key) is not same in selectedAnswerMap and markableAnswerMap. 
+					// Hence if the answer in second try is not same as teh first try, you will not get markableAnswer through the key in selectedAnswerMap
+					if (!markableAnswer || ((selectedAnswer.markingClass != markableAnswer.markingClass) && markableAnswer.markingClass == Answer.INCORRECT)) {
+						selectedAnswerElement.getTextFlow().dispatchEvent(new MarkingOverlayEvent(MarkingOverlayEvent.FLOW_ELEMENT_UNMARKED, selectedAnswerElement));
+					}
+				}			
+			} 
+		}
+		
 		// gh#348
 		public function enableFeedbackAudio():void {
 			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
