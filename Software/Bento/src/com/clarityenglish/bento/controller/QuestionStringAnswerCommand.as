@@ -64,7 +64,12 @@ package com.clarityenglish.bento.controller {
 			if (question.unmatchedFeedbackSource) {
 				xmlString += '<feedback source="' + question.unmatchedFeedbackSource + '" />';
 			} else if (question.answers[0].feedback) {
-				xmlString += '<feedback source="' + question.answers[0].feedback.source + '" />';
+				// gh#742
+				if (question.answers[0].feedback.width) {
+					xmlString += '<feedback source="' + question.answers[0].feedback.source + '"' + 'width="' + question.answers[0].feedback.width + '"/>';
+				} else {
+					xmlString += '<feedback source="' + question.answers[0].feedback.source + '"/>';
+				}
 			}
 			xmlString += "</answer>";
 			return new TextAnswer(new XML(xmlString));
