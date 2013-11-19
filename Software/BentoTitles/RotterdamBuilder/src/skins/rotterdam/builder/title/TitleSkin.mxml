@@ -48,7 +48,4 @@
 		<s:ViewNavigator id="cloudViewNavigator" firstView="com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView" left="0" right="0" height="100%" includeIn="course_selector"/>
 		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.rotterdam.builder.view.help.HelpView" left="0" right="0" height="100%" includeIn="course_selector"/>
 	</ui:CancelableTabbedViewNavigator>
-	
-	<!--Navigator-->
-	<s:Button id="backButton" left="0" top="0" label="Back" includeIn="course" height="45"/>
 </s:Skin>

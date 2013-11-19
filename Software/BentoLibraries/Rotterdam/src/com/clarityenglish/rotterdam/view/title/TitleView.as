@@ -99,6 +99,14 @@ package com.clarityenglish.rotterdam.view.title {
 		}
 		
 		protected override function getCurrentSkinState():String {
+			// gh#745
+			if (myCoursesViewNavigator) {
+				if (currentState == "course_selector") {
+					myCoursesViewNavigator.label = copyProvider.getCopyForId("myCoursesViewNavigator");
+				} else if (currentState == "course") {
+					myCoursesViewNavigator.label = copyProvider.getCopyForId("Back");
+				}
+			}			
 			return currentState;
 		}
 		

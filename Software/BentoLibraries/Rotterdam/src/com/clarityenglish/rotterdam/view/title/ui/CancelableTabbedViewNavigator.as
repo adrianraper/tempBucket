@@ -3,7 +3,9 @@ package com.clarityenglish.rotterdam.view.title.ui {
 	
 	import mx.core.mx_internal;
 	
+	import spark.components.IItemRenderer;
 	import spark.components.TabbedViewNavigator;
+	import spark.components.ViewNavigator;
 
 	use namespace mx_internal;
 	
@@ -54,7 +56,15 @@ package com.clarityenglish.rotterdam.view.title.ui {
 		}
 		
 		private function _tabBarRenderer_clickHandler(event:MouseEvent):void {
-			super.tabBarRenderer_clickHandler(event);
+			//super.tabBarRenderer_clickHandler(event);
+			
+			// #745
+			if ((event.target is IItemRenderer) && 
+				(IItemRenderer(event.target).itemIndex == super.selectedIndex))
+			{
+				if (selectedNavigator is ViewNavigator)
+					ViewNavigator(selectedNavigator).popView();
+			}
 		}
 		
 	}
