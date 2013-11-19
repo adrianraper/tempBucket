@@ -128,7 +128,7 @@ class RandomizedTestTransform extends XmlTransform {
     		$xmlBody->appendChild($xmlNode);
     		$j++;
 		}
-		AbstractService::$debugLog->info("xml doc: ".$xmlDoc->saveXML());
+		
 		return $xmlDoc->saveXML();						
 	}
 }

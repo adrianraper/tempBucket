@@ -111,6 +111,10 @@ class BentoService extends AbstractService {
 	 * @return error - Error object if required 
 	 */
 	public function getAccountSettings($config) {
+		// gh#622 Add cookie checking code
+		if (!isset($_COOKIE["PHPSESSID"])) 
+    		throw $this->copyOps->getExceptionForId("errorCookiesBlocked", array("domain" => $_SERVER['SERVER_NAME']));
+		
 		// #353 This first call might change the dbHost that the session uses
 		if (isset($config['dbHost']))
 			$this->initDbHost($config['dbHost']);
@@ -120,6 +124,16 @@ class BentoService extends AbstractService {
 		// gh#315 If no account and you didn't throw an exception, just means we can't find it from partial parameters
 		if (!$account)
 			return null;
+		
+		// gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
+		if (isset($config['ip'])) {
+			foreach ($account->titles as $thisTitle) {
+				array_push($account->productCodes, $thisTitle->productCode);
+				// If production version  = LM, the loginKey_lbl will force to be loginID, so we clear productVersion here.
+				// for non ip login, the account is null and will return at last step, so we don't need to care the productVersion.
+				$thisTitle->productVersion = null;
+			}
+		}
 		
 		// gh#315 Can only cope with one title, and tablet login by IP might find an account with 2
 		if (count($account->titles) > 1) {
@@ -188,9 +202,18 @@ class BentoService extends AbstractService {
 	public function getIPMatch($config) {
 		
 		// gh#315 iPads don't send their IP, but you can pick it up here
-		if (!$config['ip']) {
-			$config['ip'] = getenv("REMOTE_ADDR");
-			AbstractService::$debugLog->notice("picked up ip as ".$config['ip']);
+		if (! $config ['ip']) {
+			//$config ['ip'] = $_SERVER ['HTTP_CLIENT_IP'];
+			if (isset ( $_SERVER ['HTTP_X_FORWARDED_FOR'] )) {
+				$config ['ip']= $_SERVER ['HTTP_X_FORWARDED_FOR'];
+			} elseif (isset ( $_SERVER ['HTTP_TRUE_CLIENT_IP'] )) {
+				$config ['ip'] = $_SERVER ['HTTP_TRUE_CLIENT_IP'];
+			} elseif (isset ( $_SERVER ["HTTP_CLIENT_IP"] )) {
+				$config ['ip'] = $_SERVER ["HTTP_CLIENT_IP"];
+			} else {
+				$config ['ip'] = $_SERVER ["REMOTE_ADDR"];
+			}
+			AbstractService::$debugLog->notice ( "picked up ip as " . $config ['ip'] );
 		} else {
 			AbstractService::$debugLog->notice("was passed ip as ".$config['ip']);
 		}
@@ -211,6 +234,10 @@ class BentoService extends AbstractService {
 		if ($dbHost)
 			$this->initDbHost($dbHost);
 		
+		// gh#622 Add cookie checking code
+		if (!isset($_COOKIE["PHPSESSID"]))
+    		throw $this->copyOps->getExceptionForId("errorCookiesBlocked", array("domain" => $_SERVER['SERVER_NAME']));
+			
 		// gh#21 It is acceptable to pass a null rootID, so don't grab it from session
 		// if (!$rootID) $rootID = array(Session::get('rootID'));
 		// gh#176
@@ -554,7 +581,9 @@ class BentoService extends AbstractService {
 			// Add any preset details to the user object
 			$user->registerMethod = "selfRegister";
 			$user->userType = User::USER_TYPE_STUDENT;
-			$user->userProfileOption = 0;
+			// gh#723
+			if (is_nan($user->userProfileOption))
+				$user->userProfileOption = 0;
 			return $this->manageableOps->addUser($user, $group, $rootID);
 		
 		} else {

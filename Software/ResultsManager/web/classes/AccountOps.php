@@ -148,7 +148,7 @@ SQL;
 						// gh#149
 						// gh#385 Ignore for sqlite as we don't plan running DMS there
 						// gh#403
-						if (stristr($GLOBALS['dbms'],'sqlite') == FALSE) {
+						if (stristr($GLOBALS['dbms'],'sqlite') === FALSE) {
 							if ($value == 'true') {
 								//$selectBuilder->addWhere(NEG_MYPOSTFIX);
 								$selectBuilder->addWhere("a.F_Prefix REGEXP '^[0-9]+$'");
@@ -411,7 +411,7 @@ SQL;
 	 * Get the licence attributes for an account.
 	 * v4.0 Allow productCode to be optionally specified 
 	 */
-	function getAccountLicenceDetails($accountID, $productCode=null) {
+	function getAccountLicenceDetails($accountID, $config=null, $productCode=null) {
 		
 		// Can I delay doing this until I want to edit an account? It is pretty rare anyway.
 		$licenceAttributes = $this->db->GetArray("SELECT F_Key licenceKey, F_Value licenceValue, F_ProductCode productCode FROM T_LicenceAttributes WHERE F_RootID=?", array($accountID));
@@ -421,7 +421,14 @@ SQL;
 			// I think this is going to be simplest to do post query.
 			foreach ($licenceAttributes as $detail) {
 				if ($detail['productCode']=='') {
-					$relevantAttributes[] = $detail;
+					// gh#723 for login from tablet using IPRange, we don't store licence attribute here.
+					// Because the checkAuthentication will be executed which will cause error for config.ip is null.
+					// use config['ip'] to judge if the login from tablet using IPRange.
+					if ($config['ip']) {
+						break;
+					} else {
+						$relevantAttributes[] = $detail;
+					}					
 				} else {
 					$codes = explode(',',$detail['productCode']);
 					foreach ($codes as $code) {
@@ -1045,8 +1052,9 @@ EOD;
 				FROM T_LicenceAttributes l
 				WHERE l.F_Key = 'IPrange'
 EOD;
-		if ($productCode)
-			$sql .= " AND l.F_ProductCode in ($productCode)";
+		// gh#723
+		/*if ($productCode)
+			$sql .= " AND l.F_ProductCode in ($productCode)";*/
 			
 		$rs = $this->db->Execute($sql);
 		
