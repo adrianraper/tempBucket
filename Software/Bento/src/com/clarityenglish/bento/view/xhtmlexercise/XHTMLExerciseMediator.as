@@ -132,7 +132,6 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				for each (var question:Question in view.exercise.model.questions) {
 					var selectedAnswerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
 					var markableAnswerMap:AnswerMap = exerciseProxy.getMarkableAnswerMap(question);
-					trace("markableAnswerMap length: "+markableAnswerMap.keys.length);
 					if (markableAnswerMap.keys.length > 0) {
 						view.modifyMakingClass(question, selectedAnswerMap, markableAnswerMap);
 					}					
