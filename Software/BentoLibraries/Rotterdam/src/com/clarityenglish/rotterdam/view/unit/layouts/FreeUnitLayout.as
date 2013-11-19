@@ -1,4 +1,6 @@
 package com.clarityenglish.rotterdam.view.unit.layouts {
+	import flash.system.Capabilities;
+	
 	import mx.core.ILayoutElement;
 	import mx.core.mx_internal;
 	import mx.logging.ILogger;
@@ -80,7 +82,17 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 				}
 			}
 			
-			target.setActualSize(width, measuredHeight);
+			// gh#731 hack for now - browser needs setContentSize, tablet needs setActualSize
+			var platform:String = Capabilities.version.split(" ")[0];
+			switch (platform) {
+				case "IOS":
+				case "AND":
+					target.setActualSize(width, measuredHeight);					
+					break;
+				default:
+					target.setContentSize(width, measuredHeight);
+			}
+
 		}
 		
 		/**
