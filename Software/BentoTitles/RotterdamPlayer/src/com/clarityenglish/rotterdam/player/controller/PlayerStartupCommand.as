@@ -33,9 +33,11 @@ package com.clarityenglish.rotterdam.player.controller {
 									 new PublicationUnitTransform() ];
 			
 			// gh#294
+			/*
 			if (Capabilities.version.split(" ")[0] == "IOS") {
 				transforms.push(new SingleVideoNodeTransform());
 			}
+			*/
 			
 			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
 			
