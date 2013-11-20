@@ -65,9 +65,6 @@ title|TitleView s|Button#logoutButton {
 	skinClass: 	ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }
 
-title|TitleView s|Button#backButton {
-	skinClass: ClassReference("skins.rotterdam.title.ui.BackButtonSkin");
-}
 courseselector|CourseSelectorView {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.CourseSelectorSkin");
 }
