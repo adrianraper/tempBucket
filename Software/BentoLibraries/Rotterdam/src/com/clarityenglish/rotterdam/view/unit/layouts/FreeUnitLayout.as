@@ -1,5 +1,5 @@
 package com.clarityenglish.rotterdam.view.unit.layouts {
-	import flash.system.Capabilities;
+	import flash.geom.Rectangle;
 	
 	import mx.core.ILayoutElement;
 	import mx.core.mx_internal;
@@ -30,6 +30,10 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 		
 		public function FreeUnitLayout() {
 			super();
+		}
+		
+		mx_internal override function get virtualLayoutSupported():Boolean {
+			return false;
 		}
 		
 		public function get columns():int {
@@ -82,17 +86,14 @@ package com.clarityenglish.rotterdam.view.unit.layouts {
 				}
 			}
 			
-			// gh#731 hack for now - browser needs setContentSize, tablet needs setActualSize
-			var platform:String = Capabilities.version.split(" ")[0];
-			switch (platform) {
-				case "IOS":
-				case "AND":
-					target.setActualSize(width, measuredHeight);					
-					break;
-				default:
-					target.setContentSize(width, measuredHeight);
-			}
-
+			target.setContentSize(width, measuredHeight);
+		}
+		
+		override protected function scrollPositionChanged():void {
+			// this is all fine
+			var hsp:Number = horizontalScrollPosition;
+			var vsp:Number = verticalScrollPosition;
+			target.scrollRect = new Rectangle(hsp, vsp, target.width, target.height);
 		}
 		
 		/**
