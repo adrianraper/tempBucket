@@ -10,6 +10,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.ProgressEvent;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	import flash.xml.XMLNode;
 	import flash.xml.XMLNodeType;
@@ -217,8 +218,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.commitProperties();
 			
 			if (_widgetCaptionChanged) {
-				if (widgetChrome.widgetCaptionLabel) widgetChrome.widgetCaptionLabel.text = _xml.@caption;
-				if (widgetChrome.widgetCaptionTextInput) widgetChrome.widgetCaptionTextInput.text = _xml.@caption;
+				if (widgetChrome && widgetChrome.widgetCaptionLabel) widgetChrome.widgetCaptionLabel.text = _xml.@caption;
+				if (widgetChrome && widgetChrome.widgetCaptionTextInput) widgetChrome.widgetCaptionTextInput.text = _xml.@caption;
 				_widgetCaptionChanged = false;
 			}
 		}

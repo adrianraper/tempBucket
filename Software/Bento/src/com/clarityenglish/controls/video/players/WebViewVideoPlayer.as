@@ -37,8 +37,6 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		protected function onAddedToStage(event:Event):void {
-			trace("ADDED TO THE STAGE!!!!!!!!! " + this);
-			
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			//addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 			//addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
@@ -48,8 +46,6 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		protected function onRemovedFromStage(event:Event):void {
-			trace("REMOVED FROM THE STAGE!!!!!!!!! " + this);
-			
 			/*removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			removeEventListener(FlexEvent.HIDE, onRemovedFromStage);
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);*/
@@ -91,7 +87,6 @@ package com.clarityenglish.controls.video.players {
 		}
 		
 		public override function set visible(value:Boolean):void {
-			trace("VISIBLE SET TO " + value + "!!!!! - " + this);
 			super.visible = value;
 			invalidateProperties();
 		}

@@ -55,8 +55,8 @@
 			view.captionSelected.add(onCaptionSelected);
 			
 			// gh#106
-			view.playVideo.add(onPlayVideo);
-			view.playAudio.add(onPlayAudio);
+			view.playVideo.add(onPlay);
+			view.playAudio.add(onPlay);
 		}
 		
 		override public function onRemove():void {
@@ -68,8 +68,8 @@
 			view.captionSelected.remove(onCaptionSelected);
 			
 			// gh#106
-			view.playVideo.remove(onPlayVideo);
-			view.playAudio.remove(onPlayAudio);
+			view.playVideo.remove(onPlay);
+			view.playAudio.remove(onPlay);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -128,7 +128,7 @@
 			view.widgetText.applyTextLayoutFormat(options.format);
 		}
 		
-		protected function onAddLink (webUrlString:String, captionString:String):void {
+		protected function onAddLink(webUrlString:String, captionString:String):void {
 			view.widgetText.AddLink(webUrlString, captionString);
 		}
 		
@@ -165,22 +165,14 @@
 		}
 		
 		protected function onCaptionSelected(caption:String, urlString:String):void {
-			//trace("urlString: "+urlString);
 			var linkObj:Object = new Object();
 			linkObj.caption = caption;
 			linkObj.urlString = urlString
 			facade.sendNotification(RotterdamNotifications.CAPTION_SELECTED, linkObj);
 		}
 		
-		// gh#106
-		protected function onPlayVideo(widget:XML):void {
-			exerciseMark.duration = 60;
-			exerciseMark.UID = view.clarityUID;
-			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
-		}
-		
-		// gh#106
-		protected function onPlayAudio(widget:XML):void {
+		// gh#106 (combined for video and audio)
+		protected function onPlay(widget:XML):void {
 			exerciseMark.duration = 60;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);

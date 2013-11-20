@@ -73,7 +73,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			
 			// After lots of mucking about it turns out that this is what we need to get the image to size correctly!
 			// TODO: See if the VideoWidget can be consolidated in a similar fashion
-			if (image.loaderInfo) {
+			if (image && image.loaderInfo) {
 				if (image.sourceWidth <= oneColumnWidth) {
 					image.width = image.sourceWidth;
 					image.height = image.sourceHeight;
