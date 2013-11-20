@@ -75,7 +75,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
 			//$trigger->rootID = Array(5,7,28,163,10719,11091);
-			// $trigger->rootID = Array(100);
+			$trigger->rootID = Array(10719);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
 		$trigger->condition->notProductCode = '12,13';
@@ -156,15 +156,20 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 							$ccEmails = array_merge($accountEmails, $resellerEmail);
 							
 							// To add usage stats link to subscription reminders, we need the security string for this account
-							$securityString = $dmsService->usageOps->getDirectStartRecord($result);
-							if (!$securityString)
-								$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
-							
+							// gh#746 But ignore self-hosted accounts
+							if (!$result->selfHost) {
+								$securityString = $dmsService->usageOps->getDirectStartRecord($result);
+								if (!$securityString)
+									$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
+							} else {
+								$securityString = '';
+							}
 							//echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
 							
 							$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
 							$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
 							$emailArray[] = $thisEmail;
+							
 						} catch (Exception $e) {
 							echo 'Exception for root='.$result->id.': '.$e->getMessage().$newLine;
 						}
@@ -318,8 +323,8 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
-//$testingTriggers .= "subscription reminders";
-$testingTriggers .= "usage stats";
+$testingTriggers .= "subscription reminders";
+//$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
 //$testingTriggers .= "trial reminders";

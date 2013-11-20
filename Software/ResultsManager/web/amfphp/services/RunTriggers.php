@@ -156,15 +156,20 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 							$ccEmails = array_merge($accountEmails, $resellerEmail);
 							
 							// To add usage stats link to subscription reminders, we need the security string for this account
-							$securityString = $dmsService->usageOps->getDirectStartRecord($result);
-							if (!$securityString)
-								$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
-							
+							// gh#746 But ignore self-hosted accounts
+							if (!$result->selfHost) {
+								$securityString = $dmsService->usageOps->getDirectStartRecord($result);
+								if (!$securityString)
+									$securityString = $dmsService->usageOps->insertDirectStartRecord($result);
+							} else {
+								$securityString = '';
+							}
 							//echo $result->name.' uses security string '.$securityString.$trigger->name.$newLine;
 							
 							$emailData = array("account" => $result, "expiryDate" => $trigger->condition->expiryDate, "template_dir" => $GLOBALS['smarty_template_dir'], "session" => $securityString);
 							$thisEmail = array("to" => $adminEmail, "cc" => $ccEmails, "data" => $emailData);
 							$emailArray[] = $thisEmail;
+							
 						} catch (Exception $e) {
 							echo 'Exception for root='.$result->id.': '.$e->getMessage().$newLine;
 						}
