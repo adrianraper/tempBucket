@@ -14,8 +14,8 @@
 	</s:states>
 	<s:HGroup verticalAlign="bottom" >
 		<s:Label verticalAlign="bottom" id="clarityCopyright" fontFamily="Verdana" fontSize="10" color="#FFFFFF" right="36" bottom="5">
-			<s:text>Copyright © 2010 Clarity Language Consultants Ltd</s:text>
+			<s:text>Copyright © 2010-13 Clarity Language Consultants Ltd</s:text>
 		</s:Label>
-		<graphics:ClarityLogo2 />
+		<graphics:CE_logo />
 	</s:HGroup>
 </s:Skin>

@@ -134,9 +134,9 @@ package com.clarityenglish.recorder.model {
 		}
 		private function microphoneStatusHandler(e:StatusEvent):void {
 			//trace("statusEvent " + e.code);
+			// throw new Error("You have blocked the Recorder from using your microphone. Please use Settings to clear this.");
 			if (e.code == "Microphone.Muted") {
 				sendNotification(ApplicationFacade.NO_MICROPHONE);
-				//throw new Error("You have blocked the Recorder from using your microphone. Please use Settings to clear this.");
 				Security.showSettings(SecurityPanel.PRIVACY);
 			} else if (e.code == "Microphone.Unmuted") {
 				sendNotification(ApplicationFacade.GOT_MICROPHONE);

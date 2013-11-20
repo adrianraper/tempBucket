@@ -16,6 +16,10 @@
        [HostComponent("com.clarityenglish.recorder.view.ApplicationView")]
     </fx:Metadata>
 	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false"/>
+	</fx:Declarations>
+	
 	<s:states>
 		<s:State name="normal" />
 		<s:State name="record" />
@@ -37,7 +41,7 @@
 	<s:VGroup x="36" top="20" bottom="22" width="100%" height="100%">  
 	// v4.0.1.3 Also set both waveforms to be select rather than drag
 	-->
-	<s:VGroup x="10" top="10" bottom="22" width="100%" height="100%">
+	<s:VGroup x="10" top="10" bottom="30" width="100%" height="100%">
 		<waveform:WaveformView id="recordWaveformView" x="16" width="100%" height="100%" dragMode="drag" includeIn="record,compare" />
 		<waveform:WaveformView id="modelWaveformView" x="16" width="100%" height="100%" dragMode="select" includeIn="compare" />
 	</s:VGroup>
@@ -48,18 +52,21 @@
 			<mx:ProgressBar id="progressBar" mode="manual" />
 		</s:VGroup>
 	</s:Group>
-	<s:Group horizontalCenter="-250" verticalCenter="0" visible.normal="true" visible.record="false" visible.compare="false" visible.progress="false">
-		<s:Label id="warningLabel" width="200" textAlign="center" text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in." />
+	<s:Group horizontalCenter="0" verticalCenter="0" visible.normal="true" visible.record="false" visible.compare="false" visible.progress="false">
+		<!-- gh#743 -->
+		<s:Rect width="400" height="110" filters="{dropShadowFilter}" radiusX="8" radiusY="8" verticalCenter="0" horizontalCenter="0" alpha="0.7">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF"/>
+			</s:fill>
+		</s:Rect>
+		<s:SWFLoader source="@Embed(source='assets/graphics/warning_icon.png')" left="10" top="10" />
+		<s:Label id="warningLabel" width="350" textAlign="left" left="40" top="40"
+				 fontFamily="Verdana" fontSize="12" 
+				 text="Sorry, the Recorder either can't find a microphone attached to your computer, or you have denied access to it. Please use the settings panel to change this, or plug a microphone in." />
 	</s:Group>
 	
 	<s:RichText ai:aa="2" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="10" d:id="8" kerning="on"
 				tabStops="S28.4577007293701 S56.9154014587402 S85.3731021881104 S113.83080291748 S142.288503646851 S170.746204376221 S199.203905105591" text="{hostComponent.versionLabel}" trackingRight="-2.5%" d:userLabel="V4.0"
 				flm:variant="2" whiteSpaceCollapse="preserve" left="10" bottom="5" />
-	<!-- 		
-	<s:RichText ai:aa="2" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="10" d:id="7" kerning="on"
-				tabStops="S28.4577007293701 S56.9154014587402 S85.3731021881104 S113.83080291748 S142.288503646851 S170.746204376221 S199.203905105591" text="Copyright © 2010 Clarity Language Consultants Ltd." trackingRight="-2.5%" d:userLabel="Copyright © 2010 Clarity Language Consultants Ltd."
-				flm:variant="2" whiteSpaceCollapse="preserve" right="36" bottom="5" />
-	<graphics:ClarityLogo2 right="5" bottom="5" />
-	-->
-	<s:Button id="clarityLogoButton" skinClass="components.ClarityLogo" toolTip="www.ClarityEnglish.com" right="25" bottom="5" />
+	<graphics:CE_logo right="10" bottom="5" scaleX="1.25" scaleY="1.25" />
 </s:Skin>
