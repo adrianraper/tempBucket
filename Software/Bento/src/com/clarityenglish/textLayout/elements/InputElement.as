@@ -26,12 +26,12 @@ package com.clarityenglish.textLayout.elements {
 	import flashx.textLayout.events.ModelChange;
 	import flashx.textLayout.tlf_internal;
 	
-	import mx.core.FlexGlobals;
 	import mx.core.DragSource;
+	import mx.core.FlexGlobals;
 	import mx.core.IUIComponent;
-	import mx.core.mx_internal;
 	import mx.core.ScrollPolicy;
 	import mx.core.UIComponent;
+	import mx.core.mx_internal;
 	import mx.events.DragEvent;
 	import mx.events.FlexEvent;
 	import mx.graphics.BitmapFillMode;
@@ -44,6 +44,7 @@ package com.clarityenglish.textLayout.elements {
 	import spark.components.Button;
 	import spark.components.Group;
 	import spark.components.Image;
+	import spark.components.RichText;
 	import spark.components.Scroller;
 	import spark.components.TextInput;
 	
@@ -234,7 +235,7 @@ package com.clarityenglish.textLayout.elements {
 					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, softKeyboardDeactivateHandler);
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
 					component.addEventListener(FlexEvent.ENTER, onEnter);
-					
+
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
 					component.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!disableValueCommitEvent)
@@ -244,7 +245,7 @@ package com.clarityenglish.textLayout.elements {
 					// Duplicate some events on the event mirror so other things can listen to the FlowElement
 					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void {
 						// gh#681
-						if (e.relatedObject is Button) {							
+						if ((e.relatedObject is Button) && scroller) {							
 							if ((e.relatedObject as Button).label == "Marking") {
 								scroller.bottom = 0;
 							}								
@@ -318,49 +319,51 @@ package com.clarityenglish.textLayout.elements {
 		}
 		
 		private function onEnter(event:FlexEvent):void {
-			// gh#709 when click enter, the focus will not jump to the next component but deactivated on gap fill and focus on scroller.
-			var focusManager:FocusManager = event.target.focusManager;
-			FocusManager(focusManager).mx_internal::lastFocus =  scroller;
-			
-			/*var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
-			event.target.focusManager.setFocus(nextComponent);
-			
-			// #187 - if the focused element is offscreen then scroll it into view
-			
-			// First find the parent scroller
-			var displayObject:DisplayObject = nextComponent;
-			while (!(displayObject is Scroller) && displayObject.parent)
-				displayObject = displayObject.parent;
-			
-			if (!displayObject || displayObject is Stage)
-				return;
-			
-			var scroller:Scroller = displayObject as Scroller;
-			
-			// If the scroller has no scrollbar then there is nothing to do
-			if (!scroller.verticalScrollBar)
-				return;
-			
-			// Get the component's y position by summing y positions up the hierarchy
-			var focusTopEdge:int = nextComponent.y;
-			var thisItem:DisplayObjectContainer = nextComponent.parent;
-			while (thisItem !== scroller) {
-				focusTopEdge += thisItem.y;
-				thisItem = thisItem.parent;
-			}
-			
-			var focusBottomEdge:int = focusTopEdge + nextComponent.height;
-			var scrollbarRange:int = scroller.verticalScrollBar.maxHeight;
-			var visibleWindowHeight:int = scroller.height;
-			var lastVisibleY:int = visibleWindowHeight + scroller.viewport.verticalScrollPosition;
-			
-			if (focusTopEdge == scroller.viewport.verticalScrollPosition) {
-				// Do nothing
-			} else if (focusTopEdge != 0) {
-				// If the component is out of view then scroll it into view
-				var newPos:int = Math.min(scrollbarRange, scroller.viewport.verticalScrollPosition + (focusBottomEdge - lastVisibleY));
-				scroller.viewport.verticalScrollPosition = newPos;
-			}*/
+			if (scroller) {
+				// gh#709 when click enter, the focus will not jump to the next component but deactivated on gap fill and focus on scroller.
+				var focusManager:FocusManager = event.target.focusManager;
+				FocusManager(focusManager).mx_internal::lastFocus =  scroller;
+			} else {
+				var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
+				event.target.focusManager.setFocus(nextComponent);
+				
+				// #187 - if the focused element is offscreen then scroll it into view
+				
+				// First find the parent scroller
+				var displayObject:DisplayObject = nextComponent;
+				while (!(displayObject is Scroller) && displayObject.parent)
+					displayObject = displayObject.parent;
+				
+				if (!displayObject || displayObject is Stage)
+					return;
+				
+				var scroller:Scroller = displayObject as Scroller;
+				
+				// If the scroller has no scrollbar then there is nothing to do
+				if (!scroller.verticalScrollBar)
+					return;
+				
+				// Get the component's y position by summing y positions up the hierarchy
+				/*var focusTopEdge:int = nextComponent.y;
+				var thisItem:DisplayObjectContainer = nextComponent.parent;
+				while (thisItem !== scroller) {
+					focusTopEdge += thisItem.y;
+					thisItem = thisItem.parent;
+				}
+				
+				var focusBottomEdge:int = focusTopEdge + nextComponent.height;
+				var scrollbarRange:int = scroller.verticalScrollBar.maxHeight;
+				var visibleWindowHeight:int = scroller.height;
+				var lastVisibleY:int = visibleWindowHeight + scroller.viewport.verticalScrollPosition;
+				
+				if (focusTopEdge == scroller.viewport.verticalScrollPosition) {
+					// Do nothing
+				} else if (focusTopEdge != 0) {
+					// If the component is out of view then scroll it into view
+					var newPos:int = Math.min(scrollbarRange, scroller.viewport.verticalScrollPosition + (focusBottomEdge - lastVisibleY));
+					scroller.viewport.verticalScrollPosition = newPos;
+				}*/
+			}			
 		}
 		
 		private function onDragEnter(event:DragEvent):void {
@@ -385,10 +388,12 @@ package com.clarityenglish.textLayout.elements {
 		
 		// gh#712 store the scroller policy and prepare dragImage here
 		private function onMouseDown(event:MouseEvent):void {
-			if (_droppedNode) {
-				var displayObject:DisplayObject = DisplayObject(event.currentTarget);
-				while (!(displayObject is Scroller) && displayObject.parent)
-					displayObject = displayObject.parent;					
+			if (_droppedNode) {				
+				var displayObject:DisplayObject = DisplayObject(event.currentTarget);				
+				while (!(displayObject is Scroller) && displayObject.parent) {
+					displayObject = displayObject.parent;
+				}
+				trace("display object: "+displayObject);						
 				
 				if (!displayObject || displayObject is Stage)
 					return;
@@ -424,7 +429,7 @@ package com.clarityenglish.textLayout.elements {
 		
 		// gh#712
 		private function onMouseMove(event:MouseEvent):void {
-			if (_droppedNode) {		
+			if (_droppedNode) {				
 				var dragInitiator:IUIComponent = IUIComponent(event.currentTarget);
 				var ds:DragSource = new DragSource();
 				ds.addData(this.text, "text");

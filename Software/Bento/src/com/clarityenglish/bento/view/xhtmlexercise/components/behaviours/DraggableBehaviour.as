@@ -129,11 +129,11 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 				var draggableFlowElement:FlowElement = flowElementXmlBiMap.getFlowElement(draggableNode);
 				
 				// gh#712
-				/*if (draggableFlowElement is FlowLeafElement) {
-					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode, draggableFlowElement));
+				if (draggableFlowElement is FlowLeafElement) {
+					//draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode, draggableFlowElement));
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, draggableNode));
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut, draggableNode));
-				} else*/ if (draggableFlowElement is FloatableTextFlow) {
+				} else if (draggableFlowElement is FloatableTextFlow) {
 					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode, draggableFlowElement));
 					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, draggableNode));
 					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut, draggableNode));					
