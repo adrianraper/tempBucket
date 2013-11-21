@@ -9,6 +9,8 @@ package com.clarityenglish.rotterdam.view.title {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	import mx.events.StateChangeEvent;
+	
 	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
@@ -52,6 +54,8 @@ package com.clarityenglish.rotterdam.view.title {
 			
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "course_selector", "course", "progress" ], true);
+			// gh#745
+			this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange);
 		}
 		
 		public function showCourseView():void {
@@ -91,23 +95,18 @@ package com.clarityenglish.rotterdam.view.title {
 					logoutButton.label = copyProvider.getCopyForId("LogOut");
 					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
-				// Navigator
-				case backButton:
-					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
-					break;
 			}
 		}
 		
-		protected override function getCurrentSkinState():String {
-			// gh#745
+		// gh#745
+		protected function onStateChange(event:StateChangeEvent):void {
 			if (myCoursesViewNavigator) {
 				if (currentState == "course_selector") {
 					myCoursesViewNavigator.label = copyProvider.getCopyForId("myCoursesViewNavigator");
 				} else if (currentState == "course") {
 					myCoursesViewNavigator.label = copyProvider.getCopyForId("Back");
 				}
-			}			
-			return currentState;
+			}	
 		}
 		
 		// gh#217
