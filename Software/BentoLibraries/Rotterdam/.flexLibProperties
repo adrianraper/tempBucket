@@ -10,8 +10,8 @@
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.login.LoginView"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsMediator"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsView"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsMediator"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleMediator"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.TitleView"/>
     <classEntry path="com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator"/>
@@ -30,10 +30,9 @@
     <classEntry path="skins.rotterdam.ui.GreyButtonSkin"/>
     <classEntry path="skins.rotterdam.ui.OrangeButtonSkin"/>
     <classEntry path="skins.rotterdam.ui.DeleteButtonSkin"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.settings.ui.CalendarTreeItemRenderer"/>
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent"/>
     <classEntry path="skins.rotterdam.scroller.DirectionButton"/>
-    <classEntry path="skins.rotterdam.settings.TabButtonBarSkin"/>
+    <classEntry path="skins.rotterdam.publishSettings.TabButtonBarSkin"/>
     <classEntry path="skins.rotterdam.unit.PublishChangeButtonSkin"/>
     <classEntry path="skins.rotterdam.unit.DownArrowButtonSkin"/>
     <classEntry path="skins.rotterdam.unit.UpArrowButtonSkin"/>
@@ -43,6 +42,8 @@
     <classEntry path="skins.rotterdam.scroller.GreyDirectionButton"/>
     <classEntry path="com.clarityenglish.rotterdam.view.course.ui.PublishButton"/>
     <classEntry path="skins.rotterdam.title.ui.PublishToggleButtonSkin"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsMediator"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.settings.SettingsView"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>
