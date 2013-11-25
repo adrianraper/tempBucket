@@ -217,6 +217,7 @@
 			<lit name="unitCopyButton">Duplicate a unit</lit>
 			<lit name="publishCourseButton">Publish course</lit>
 			<lit name="publishChangeButton">Change published details</lit>
+			<lit name="settingButton">Settings</lit>
 			<lit name="oneClickPublishButton">1-click</lit>
 			<lit name="publishSettingsButton">Advanced</lit>
 			<lit name="oneClickLabel">Your course is immediately available to all your students.</lit>

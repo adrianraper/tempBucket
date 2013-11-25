@@ -3,7 +3,7 @@ package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.rotterdam.view.course.CourseView;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
-	import com.clarityenglish.rotterdam.view.settings.SettingsView;
+	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView;
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
 	
 	import flash.events.Event;

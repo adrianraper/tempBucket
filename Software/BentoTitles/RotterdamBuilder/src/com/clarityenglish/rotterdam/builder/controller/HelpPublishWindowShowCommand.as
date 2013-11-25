@@ -2,7 +2,7 @@ package com.clarityenglish.rotterdam.builder.controller
 {
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateView;
-	import com.clarityenglish.rotterdam.builder.view.settings.HelpPublishView;
+	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishView;
 	import com.clarityenglish.rotterdam.view.courseselector.events.CourseCreateEvent;
 	
 	import flash.display.DisplayObject;

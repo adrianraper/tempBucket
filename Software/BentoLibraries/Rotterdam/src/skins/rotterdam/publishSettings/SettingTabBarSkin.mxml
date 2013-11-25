@@ -80,7 +80,7 @@ created by the TabBarSkin use the TabBarButtonSkin class.
         </s:layout>
         <s:itemRenderer>
             <fx:Component>
-                <s:ButtonBarButton skinClass="skins.rotterdam.builder.settings.SettingTabBarButtonSkin" />
+                <s:ButtonBarButton skinClass="skins.rotterdam.publishSettings.SettingTabBarButtonSkin" />
             </fx:Component>
         </s:itemRenderer>
     </s:DataGroup>

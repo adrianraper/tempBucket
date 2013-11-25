@@ -5,10 +5,10 @@
 		xmlns:calendar="com.clarityenglish.controls.calendar.*"
 		xmlns:sparkTree="com.sparkTree.*"
 		xmlns:widgets="skins.assets.widgets.*"
-		xmlns:settings="com.clarityenglish.rotterdam.view.settings.*">
+		xmlns:publishSettings="com.clarityenglish.rotterdam.view.publishSettings.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.view.settings.SettingsView")]
+		[HostComponent("com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView")]
 	</fx:Metadata>
 	
 	<fx:Declarations>

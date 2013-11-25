@@ -3,6 +3,7 @@ package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 	import com.clarityenglish.rotterdam.view.course.ui.PublishButton;
+	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -64,6 +65,9 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		[SkinPart]
 		public var publishChangeButton:Button;
+		
+		[SkinPart]
+		public var settingButton:Button;
 		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
@@ -195,6 +199,10 @@ package com.clarityenglish.rotterdam.view.course {
 					publishChangeButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
 					publishChangeButton.label = copyProvider.getCopyForId("publishChangeButton");
 					break;
+				case settingButton:
+					settingButton.addEventListener(MouseEvent.CLICK, onSettingClick);
+					settingButton.label = copyProvider.getCopyForId("settingButton");
+					break;
 				case anim:
 					anim.addEventListener(EffectEvent.EFFECT_END, onAnimEnd);
 					break;
@@ -250,7 +258,7 @@ package com.clarityenglish.rotterdam.view.course {
 			if (this.canPublish && config.illustrationCloseFlag) {
 				helpPublish.dispatch();
 			}
-			navigator.pushView(SettingsView);
+			navigator.pushView(PublishSettingsView);
 			
 			isItemClick = true;
 		}
@@ -330,6 +338,10 @@ package com.clarityenglish.rotterdam.view.course {
 		protected function onAnimEnd(event:Event):void {
 			if (isHidden) 
 				publishSelectionGroup.alpha = 0;
+		}
+		
+		protected function onSettingClick(event:MouseEvent):void {
+			navigator.pushView(SettingsView);
 		}
 		
 	}

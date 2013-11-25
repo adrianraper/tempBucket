@@ -1,4 +1,4 @@
-package com.clarityenglish.rotterdam.builder.view.settings
+package com.clarityenglish.rotterdam.builder.view.publishSettings
 {
 	import com.clarityenglish.bento.view.base.BentoView;
 	

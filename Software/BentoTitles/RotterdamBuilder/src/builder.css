@@ -17,9 +17,10 @@
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace sparkTree "com.sparkTree.*";
 @namespace tink "ws.tink.spark.controls.*";
-@namespace showPublishSettingDemo "com.clarityenglish.rotterdam.builder.view.settings.*";
+@namespace showPublishSettingDemo "com.clarityenglish.rotterdam.builder.view.publishSettings.*";
 @namespace ui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace help "com.clarityenglish.rotterdam.builder.view.help.*";
+@namespace publishSettings "com.clarityenglish.rotterdam.view.publishSettings.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -148,6 +149,10 @@ course|CourseView s|ToggleButton#publishCourseButton {
 }*/
 course|CourseView s|Button#publishChangeButton {
 	skinClass: ClassReference("skins.rotterdam.title.ui.PublishToggleButtonSkin");
+}
+
+course|CourseView s|Button#settingButton {
+	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsButtonSkin");
 }
 
 buildercourse|ToolBarView {
@@ -349,27 +354,27 @@ filemanager|FileManagerView s|Button#cancelButton {
 }
 
 
-settings|SettingsView {
-	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSkin");
+publishSettings|PublishSettingsView {
+	skinClass: ClassReference("skins.rotterdam.builder.publishSettings.SettingsSkin");
 }
 
-settings|SettingsView s|FormItem {
+publishSettings|PublishSettingsView s|FormItem {
 	errorColor: red;
 }
 
-settings|SettingsView s|Button#saveButton {
+publishSettings|PublishSettingsView s|Button#saveButton {
 	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
 }
 
-settings|SettingsView s|Button#backButton {
+publishSettings|PublishSettingsView s|Button#backButton {
 	skinClass: ClassReference("skins.rotterdam.unit.CancelButtonSkin");
 }
 
-settings|SettingsView s|TabBar#tabBar {
-	skinClass: ClassReference("skins.rotterdam.settings.SettingTabBarSkin");
+publishSettings|PublishSettingsView s|TabBar#tabBar {
+	skinClass: ClassReference("skins.rotterdam.publishSettings.SettingTabBarSkin");
 }
 
-settings|SettingsView s|Scroller#publishSettingScroller s|VScrollBar {
+publishSettings|PublishSettingsView s|Scroller#publishSettingScroller s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
@@ -378,7 +383,7 @@ showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {
 }
 
 showPublishSettingDemo|HelpPublishView {
-	skinClass: ClassReference("skins.rotterdam.builder.settings.HelpPublishSkin");
+	skinClass: ClassReference("skins.rotterdam.builder.publishSettings.HelpPublishSkin");
 	headerVisible: false;
 }
 

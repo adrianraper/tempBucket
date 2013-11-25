@@ -40,14 +40,16 @@
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
 	import com.clarityenglish.rotterdam.builder.view.help.HelpMediator;
 	import com.clarityenglish.rotterdam.builder.view.help.HelpView;
-	import com.clarityenglish.rotterdam.builder.view.settings.HelpPublishMediator;
-	import com.clarityenglish.rotterdam.builder.view.settings.HelpPublishView;
+	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishMediator;
+	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
+	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsMediator;
+	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView;
 	import com.clarityenglish.rotterdam.view.settings.SettingsMediator;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	
@@ -67,6 +69,7 @@
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);
 			mapView(ContentSelectorView, ContentSelectorMediator);
+			mapView(PublishSettingsView, PublishSettingsMediator);
 			mapView(SettingsView, SettingsMediator);
 			mapView(CourseCreateView, CourseCreateMediator);
 			mapView(HelpPublishView, HelpPublishMediator);
