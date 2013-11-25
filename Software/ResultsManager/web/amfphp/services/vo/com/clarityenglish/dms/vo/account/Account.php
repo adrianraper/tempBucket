@@ -34,6 +34,9 @@ class Account extends Reportable {
 	//gh#11
 	var $languageCode;
 	
+	// gh#659
+    var $productCodes = array();
+	
 	/**
 	 * This is private since we get the real user object from the db in AccountOps for DMS (this is filled into $adminUser) and
 	 * don't want the id passed back to the client.

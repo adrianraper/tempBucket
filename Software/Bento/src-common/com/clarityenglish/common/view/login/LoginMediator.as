@@ -48,7 +48,7 @@ package com.clarityenglish.common.view.login {
 			
 			// gh#224
 			//view.setBranding(configProxy.getConfig().customisation);
-			view.setBranding(configProxy.getBranding('login'));
+			//view.setBranding(configProxy.getBranding('login'));
 			
 			//trace("the product version in LoginM is "+ configProxy.getProductVersion());
 			view.setProductVersion(configProxy.getProductVersion());

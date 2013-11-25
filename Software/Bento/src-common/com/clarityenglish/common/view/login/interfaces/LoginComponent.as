@@ -29,7 +29,7 @@
 		//gh#41
 		function getTestDrive():Signal;
 		// gh#
-		function setBranding(xml:XML):void;
+		//function setBranding(xml:XML):void;
 	}
 	
 }
