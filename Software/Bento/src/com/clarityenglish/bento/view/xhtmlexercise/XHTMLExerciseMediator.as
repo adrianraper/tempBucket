@@ -133,7 +133,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					var selectedAnswerMap:AnswerMap = exerciseProxy.getSelectedAnswerMap(question);
 					var markableAnswerMap:AnswerMap = exerciseProxy.getMarkableAnswerMap(question);
 					if (markableAnswerMap.keys.length > 0) {
-						view.modifyMakingClass(question, selectedAnswerMap, markableAnswerMap);
+						view.modifyMarkingClass(question, selectedAnswerMap, markableAnswerMap);
 					}					
 				}
 			}

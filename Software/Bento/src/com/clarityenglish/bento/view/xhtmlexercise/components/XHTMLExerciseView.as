@@ -387,7 +387,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		}
 		
 		// gh#627
-		public function modifyMakingClass(question:Question, selectedAnswerMap:AnswerMap, markableAnswerMap:AnswerMap, marked:Boolean = true):void {
+		public function modifyMarkingClass(question:Question, selectedAnswerMap:AnswerMap, markableAnswerMap:AnswerMap, marked:Boolean = true):void {
 			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
 			
 			if (marked && !(exercise.model && exercise.model.getSettingParam("delayedMarking"))) {

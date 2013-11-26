@@ -231,7 +231,7 @@ package com.clarityenglish.textLayout.elements {
 					component = new TextInput();
 					
 					// gh#709
-					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, softKeyboardActivatHandler);
+					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, softKeyboardActivateHandler);
 					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, softKeyboardDeactivateHandler);
 					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
@@ -283,8 +283,8 @@ package com.clarityenglish.textLayout.elements {
 			updateComponentFromValue();
 		}
 		
-		private function softKeyboardActivatHandler(event:SoftKeyboardEvent):void {
-			var displayObject:DisplayObject = DisplayObject(event.target);
+		private function softKeyboardActivateHandler(event:SoftKeyboardEvent):void {
+			var displayObject:DisplayObject = event.target as DisplayObject;
 			
 			var textInput:TextInput = displayObject as TextInput;
 			
@@ -302,7 +302,7 @@ package com.clarityenglish.textLayout.elements {
 		
 		// gh#708
 		private function softKeyboardDeactivateHandler(event:SoftKeyboardEvent):void {
-			var displayObject:DisplayObject = DisplayObject(event.target);
+			var displayObject:DisplayObject = event.target as DisplayObject;
 			
 			while (!(displayObject is Scroller) && displayObject.parent) {
 				displayObject = displayObject.parent;
