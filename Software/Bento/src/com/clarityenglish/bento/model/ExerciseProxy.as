@@ -476,7 +476,8 @@ package com.clarityenglish.bento.model {
 			exercise.isExerciseMarked = true;
 			
 			// If we are using delayed marking then mark all selected questions now
-			if (delayedMarking) markSelectedQuestions();
+			// gh#624 /**/
+			/*if (delayedMarking)*/ markSelectedQuestions();
 			
 			_exerciseMark = new ExerciseMark();
 			
