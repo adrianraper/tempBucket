@@ -231,8 +231,9 @@ package com.clarityenglish.textLayout.elements {
 					component = new TextInput();
 					
 					// gh#709
-					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATING, softKeyboardActivatingHandler);
+					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_ACTIVATE, softKeyboardActivatHandler);
 					component.addEventListener(SoftKeyboardEvent.SOFT_KEYBOARD_DEACTIVATE, softKeyboardDeactivateHandler);
+					
 					// If the user presses <enter> whilst in the textinput go to the next element in the focus cycle group
 					component.addEventListener(FlexEvent.ENTER, onEnter);
 
@@ -282,24 +283,21 @@ package com.clarityenglish.textLayout.elements {
 			updateComponentFromValue();
 		}
 		
-		// gh#709
-		private function softKeyboardActivatingHandler(event:SoftKeyboardEvent):void {
-			if (event.relatedObject) {
-				var displayObject:DisplayObject = DisplayObject(event.target);
-				
-				var textInput:TextInput = displayObject as TextInput;
-				
-				while (!(displayObject is Scroller) && displayObject.parent) {
-					displayObject = displayObject.parent;
-				}
-				
-				if (!displayObject || displayObject is Stage)
-					return;
-				scroller = displayObject as Scroller;
-
-				// this value may only suit for IPad
-				scroller.bottom = FlexGlobals.topLevelApplication.height / 2 - 80;
-			}			
+		private function softKeyboardActivatHandler(event:SoftKeyboardEvent):void {
+			var displayObject:DisplayObject = DisplayObject(event.target);
+			
+			var textInput:TextInput = displayObject as TextInput;
+			
+			while (!(displayObject is Scroller) && displayObject.parent) {
+				displayObject = displayObject.parent;
+			}
+			
+			if (!displayObject || displayObject is Stage)
+				return;
+			scroller = displayObject as Scroller;
+			
+			// this value may only suit for IPad
+			scroller.bottom = FlexGlobals.topLevelApplication.height / 2 - 80;
 		}
 		
 		// gh#708
@@ -392,8 +390,7 @@ package com.clarityenglish.textLayout.elements {
 				var displayObject:DisplayObject = DisplayObject(event.currentTarget);				
 				while (!(displayObject is Scroller) && displayObject.parent) {
 					displayObject = displayObject.parent;
-				}
-				trace("display object: "+displayObject);						
+				}					
 				
 				if (!displayObject || displayObject is Stage)
 					return;
