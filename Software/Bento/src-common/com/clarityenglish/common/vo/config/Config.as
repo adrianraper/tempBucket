@@ -154,11 +154,9 @@ package com.clarityenglish.common.vo.config {
 		
 		// gh#234
 		public var platform:String;
+		
 		// gh#224
 		public var customisation:XML;
-		
-		// gh#234
-		public var platform:String;
 		
 		/**
 		 * Developer option

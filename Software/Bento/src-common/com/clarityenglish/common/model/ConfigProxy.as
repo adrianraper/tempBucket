@@ -296,17 +296,6 @@ package com.clarityenglish.common.model {
 			return config.otherParameters;
 		}
 		
-		// gh#234
-		public function isPlatformTablet():Boolean {
-			return (config.platform.toLowerCase().indexOf('tablet') >= 0);
-		}
-		public function isPlatformiPad():Boolean {
-			return (config.platform.toLowerCase().indexOf('ipad') >= 0);
-		}
-		public function isPlatformAndroid():Boolean {
-			return (config.platform.toLowerCase().indexOf('android') >= 0);
-		}
-		
 		// gh#224 get the branding for a particular section
 		public function getBranding(section:String):XML {
 			if (config.customisation && config.customisation.child(section))
