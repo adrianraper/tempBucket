@@ -2,6 +2,9 @@ package com.clarityenglish.textLayout.elements {
 	import com.clarityenglish.components.SpinnerDropDownList;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.ui.Mouse;
+	import flash.ui.MouseCursor;
 	
 	import flashx.textLayout.tlf_internal;
 	
@@ -13,6 +16,7 @@ package com.clarityenglish.textLayout.elements {
 	import skins.bento.components.SpinnerDropDownListSkin;
 	
 	import spark.components.DropDownList;
+	import spark.events.ListEvent;
 
 	use namespace tlf_internal;
 	
@@ -64,6 +68,12 @@ package com.clarityenglish.textLayout.elements {
 			
 			// Duplicate some events on the event mirror so other things can listen to the FlowElement
 			component.addEventListener(Event.CHANGE, function(e:Event):void { getEventMirror().dispatchEvent(e.clone()); } );
+			
+			// gh#739 for list component only
+			component.addEventListener(MouseEvent.MOUSE_OVER, onMouseOver);
+			component.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+			(component as DropDownList).addEventListener(ListEvent.ITEM_ROLL_OVER, onItemRollOver);
+			(component as DropDownList).addEventListener(ListEvent.ITEM_ROLL_OUT, onItemRollOut);
 		}
 		
 		private function getLongestOption():String {
@@ -75,6 +85,22 @@ package com.clarityenglish.textLayout.elements {
 			return longestOption;
 		}
 		
+		// gh#739
+		private function onMouseOver(event:MouseEvent):void {
+			Mouse.cursor = MouseCursor.BUTTON;
+		}
+		
+		private function onMouseOut(event:MouseEvent):void {
+			Mouse.cursor = MouseCursor.AUTO;
+		}
+		
+		private function onItemRollOver(event:ListEvent):void {
+			Mouse.cursor = MouseCursor.BUTTON;
+		}
+		
+		private function onItemRollOut(event:ListEvent):void {
+			Mouse.cursor = MouseCursor.AUTO;
+		}
 	}
 	
 }

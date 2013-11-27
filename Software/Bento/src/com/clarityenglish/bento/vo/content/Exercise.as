@@ -23,6 +23,9 @@ package com.clarityenglish.bento.vo.content {
 		
 		private var _model:Model;
 		
+		// gh#740
+		private var _isExerciseMarked = false;
+		
 		// The values of enabledFlag come from Orchid
 		public static const EF_MENU_ON:Number = 1;
 		public static const EF_NAVIGATE_ON:Number = 2;
@@ -169,6 +172,16 @@ package com.clarityenglish.bento.vo.content {
 			// enabledFlag is binary based for backwards compatability
 			return (!exerciseNode.hasOwnProperty("@enabledFlag") || !((exerciseNode.@enabledFlag & Exercise.EF_DISABLED)==Exercise.EF_DISABLED));
 
+		}
+		
+		// gh#740 use to judge whether an exercise is marked in ExerciseProxy
+		[Bindable]
+		public function get isExerciseMarked():Boolean {
+			return _isExerciseMarked;
+		}
+		
+		public function set isExerciseMarked(value:Boolean):void {
+			_isExerciseMarked = value;
 		}
 		
 	}

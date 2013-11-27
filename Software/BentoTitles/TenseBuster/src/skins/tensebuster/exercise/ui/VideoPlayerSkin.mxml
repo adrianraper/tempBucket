@@ -169,7 +169,7 @@ in accordance with the terms of the license agreement accompanying it.
 							<s:Rect width="7" height="1" />
 							
 							<!--- @copy spark.components.VideoPlayer#scrubBar -->
-							<s:ScrubBar id="scrubBar" width="100%" liveDragging="true" skinClass="skins.tensebuster.exercise.ui.ScrubBarSkin" skinClass.fullScreenStates="skins.tensebuster.exercise.ui.ScrubBarSkin" />
+							<s:ScrubBar id="scrubBar" width="100%" liveDragging="true" skinClass="skins.tensebuster.exercise.ui.ScrubBarSkin" skinClass.fullScreenStates="skins.tensebuster.exercise.ui.ScrubBarSkin" useHandCursor="true" buttonMode="true" />
 							
 							<!-- spacer -->
 							<!--s:Rect width="8" height="1" /-->
@@ -200,7 +200,7 @@ in accordance with the terms of the license agreement accompanying it.
 								 skinClass="skins.tensebuster.exercise.ui.VolumeBarSkin"
 								 skinClass.fullScreenStates="spark.skins.spark.mediaClasses.fullScreen.VolumeBarSkin"
 								 focusIn="event.target.depth=1"
-								 focusOut="event.target.depth=0" />
+								 focusOut="event.target.depth=0" useHandCursor="true" buttonMode="true" />
 					
 					<!--- @copy spark.components.VideoPlayer#fullScreenButton -->
 					<s:Button id="fullScreenButton"

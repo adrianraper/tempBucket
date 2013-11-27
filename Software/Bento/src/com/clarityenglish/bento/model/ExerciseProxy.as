@@ -472,6 +472,8 @@ package com.clarityenglish.bento.model {
 			
 			// Set the exercise as marked
 			_exerciseMarked = true;
+			// gh#740 set exercise marked in Exercise
+			exercise.isExerciseMarked = true;
 			
 			// If we are using delayed marking then mark all selected questions now
 			if (delayedMarking) markSelectedQuestions();
@@ -527,6 +529,8 @@ package com.clarityenglish.bento.model {
 		
 		public function unmarkExercise():void {
 			_exerciseMarked = false;
+			// gh#740
+			exercise.isExerciseMarked = false;
 			_exerciseMark = null;
 			_exerciseFeedbackSeen = false;
 			//_incorrectOffset = 0; In fact we want to roll this score over when using try again so don't reset it

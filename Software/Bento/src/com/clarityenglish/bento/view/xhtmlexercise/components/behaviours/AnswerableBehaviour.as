@@ -76,6 +76,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 }
 
 import com.clarityenglish.bento.BentoApplication;
+import com.clarityenglish.bento.model.ExerciseProxy;
 import com.clarityenglish.bento.view.xhtmlexercise.events.HintEvent;
 import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 import com.clarityenglish.bento.vo.content.Exercise;
@@ -95,12 +96,15 @@ import flash.events.FocusEvent;
 import flash.events.IEventDispatcher;
 import flash.events.KeyboardEvent;
 import flash.events.MouseEvent;
+import flash.ui.Mouse;
+import flash.ui.MouseCursor;
 
 import flashx.textLayout.compose.FlowDamageType;
 import flashx.textLayout.elements.FlowElement;
 import flashx.textLayout.elements.TextFlow;
 import flashx.textLayout.events.FlowElementMouseEvent;
 import flashx.textLayout.events.UpdateCompleteEvent;
+import flashx.textLayout.operations.FlowElementOperation;
 import flashx.textLayout.tlf_internal;
 
 import mx.core.FlexGlobals;
@@ -166,6 +170,9 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 						if (!eventMirror.hasEventListener(FlowElementMouseEvent.CLICK)) { // #226 This is a little bit of a hack, but this makes sure that listeners are not added twice
 							log.debug("Adding click listener to {0} - {1}", answer.source);
 							eventMirror.addEventListener(FlowElementMouseEvent.CLICK, Closure.create(this, onAnswerClick, flowElementXmlBiMap, exercise, question, answer, source));
+							// gh#740
+							eventMirror.addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, answer));
+							eventMirror.addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut));
 						}
 					} else {
 						log.error("Attempt to bind a click handler to non-leaf element {0} [question: {1}, answer {2}]", flowElement, question, answer);
@@ -177,6 +184,18 @@ class ClickableAnswerManager extends AnswerManager implements IAnswerManager {
 	
 	private function onAnswerClick(e:FlowElementMouseEvent, flowElementXmlBiMap:FlowElementXmlBiMap, exercise:Exercise, question:Question, answer:Answer, source:XML):void {
 		container.dispatchEvent(new SectionEvent(SectionEvent.QUESTION_ANSWER, question, answer, source, true));
+	}
+	
+	// gh#740
+	private function onRollOver(e:FlowElementMouseEvent, answer:Answer):void {
+		if (answer.markingClass == Answer.NEUTRAL) {
+			Mouse.cursor = MouseCursor.BUTTON;
+		}		
+	}
+	
+	// gh#740
+	private function onRollOut(e:FlowElementMouseEvent):void {
+		Mouse.cursor = MouseCursor.AUTO;
 	}
 	
 }
@@ -198,6 +217,9 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 				if (eventMirror) {
 					eventMirror.addEventListener(Event.CHANGE, Closure.create(this, onAnswerSubmitted, exercise, question, source));
 					eventMirror.addEventListener(MouseEvent.CLICK, Closure.create(this, onAnswerClicked, exercise, question, source));
+					// gh#740 only works for the fields after marking
+					eventMirror.addEventListener(MouseEvent.ROLL_OVER, Closure.create(this, onAnswerRollOver, question));
+					eventMirror.addEventListener(MouseEvent.ROLL_OUT, Closure.create(this, onAnswerRollOut));
 				}
 			}
 		}
@@ -242,6 +264,18 @@ class DropDownAnswerManager extends AnswerManager implements IAnswerManager {
 		onAnswerSubmitted(e, exercise, question, inputNode);
 	}
 	
+	// gh#740
+	private function onAnswerRollOver(e:Event, question:Question):void {
+		if ((question.answers[0] as Answer).feedback){
+			Mouse.cursor = MouseCursor.BUTTON;
+		}
+	}
+	
+	// gh#740
+	private function onAnswerRollOut(e:Event):void {
+		Mouse.cursor = MouseCursor.AUTO;
+	}
+	
 }
 
 /**
@@ -272,6 +306,9 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 					// TODO: AIR doesn't send a VALUE_COMMIT for mobile skins, so changed to FOCUS_OUT.  This needs to be tested for web IELTS.
 					eventMirror.addEventListener(FocusEvent.FOCUS_OUT, Closure.create(this, onAnswerSubmitted, exercise, question, source));
 					eventMirror.addEventListener(MouseEvent.CLICK, Closure.create(this, onAnswerClicked, exercise, question, source));
+					// gh#740
+					eventMirror.addEventListener(MouseEvent.ROLL_OVER, Closure.create(this, onMouseOver, exercise, question));
+					eventMirror.addEventListener(MouseEvent.ROLL_OUT, Closure.create(this, onMouseOut));
 				}
 			}
 		}
@@ -363,6 +400,17 @@ class InputAnswerManager extends AnswerManager implements IAnswerManager {
 			return;
 		
 		onAnswerSubmitted(e, exercise, question, inputNode);
+	}
+	
+	// gh#740
+	private function onMouseOver(e:Event, exercise:Exercise, question:Question):void {
+		if ((question.answers[0] as Answer).feedback && exercise.isExerciseMarked)
+			Mouse.cursor = MouseCursor.BUTTON;
+	}
+	
+	// gh#740
+	private function onMouseOut(e:Event):void {
+		Mouse.cursor = MouseCursor.AUTO;
 	}
 }
 

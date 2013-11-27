@@ -87,7 +87,7 @@
             
             <!--- The skin pat that defines the thumb in the drop-down slider track.  -->
             <s:Button id="thumb" horizontalCenter="0" width="11" height="11" 
-                      skinClass="spark.skins.spark.mediaClasses.normal.VolumeBarThumbSkin" />
+                      skinClass="spark.skins.spark.mediaClasses.normal.VolumeBarThumbSkin" useHandCursor="true" buttonMode="true" />
         </s:Group>
     </s:PopUpAnchor>
     
