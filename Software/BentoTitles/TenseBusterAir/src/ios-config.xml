@@ -6,6 +6,7 @@
 	<loginOption>128</loginOption>
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-FullVersion.xml</courseFile>
+	<platform>tablet|iPad</platform>
 	<sharedMedia />
 	<brandingMedia />
 	

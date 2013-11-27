@@ -43,7 +43,7 @@
 		<s:Button id="playButton" skinClass="skins.tensebuster.exercise.recorder.ui.PlayButtonSkin" toolTip="Play" />
 		<s:Button id="stopButton" skinClass="skins.tensebuster.exercise.recorder.ui.StopButtonSkin" toolTip="Stop" />
 		<s:Button id="pauseButton" skinClass="skins.tensebuster.exercise.recorder.ui.PauseButtonSkin" toolTip="Pause" />
-		<s:Button id="saveButton" skinClass="skins.tensebuster.exercise.recorder.ui.SaveButtonSkin" toolTip="Save" includeIn="record" />
+		<s:Button id="saveButton" skinClass="skins.tensebuster.exercise.recorder.ui.SaveButtonSkin" toolTip="Save" includeIn="record" enabled="{hostComponent.isSaveEnabled}" />
 		<s:Button id="newButton" skinClass="skins.tensebuster.exercise.recorder.ui.NewButtonSkin" toolTip="New" includeIn="record" />
 		<s:Button id="compareButton" skinClass="skins.tensebuster.exercise.recorder.ui.CompareButtonSkin" enabled="{hostComponent.isCompareEnabled}" toolTip="Compare" includeIn="record" />
 		<s:RichText id="richText" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="9" height="22" kerning="on" lineHeight="13" tabStops="S31.4992408752441 S62.9984817504883 S94.4977226257324 S125.996963500977" whiteSpaceCollapse="preserve" width="180" x="310" y="5" />

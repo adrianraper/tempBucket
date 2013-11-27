@@ -6,6 +6,7 @@
 	<productCode>55</productCode>
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-FullVersion.xml</courseFile>
+	<platform>browser</platform>
 
 	<sharedMedia />
 	<brandingMedia />

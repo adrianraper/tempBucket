@@ -102,6 +102,8 @@
 			private var showAllContextMenuItem:ContextMenuItem;
 			private var resetViewContextMenuItem:ContextMenuItem;
 			private var cutContextMenuItem:ContextMenuItem;
+			// gh#683
+			private var _isSaveEnabled:Boolean;
 			
 			[Bindable]
 			public function set isRecordEnabled(value:Boolean):void {
@@ -128,6 +130,15 @@
 			
 			public function get dragMode():String { return _dragMode; }
 			
+			// gh#683
+			[Bindable]
+			public function get isSaveEnabled():Boolean {
+				return _isSaveEnabled;
+			}
+			
+			public function set isSaveEnabled(value:Boolean):void {
+				_isSaveEnabled = value;
+			}
 			/**
 			 * This resets the wave renderer to go back to the beginning and show the set amount of seconds.  Called on startup and when the user clicks NEW.
 			 */

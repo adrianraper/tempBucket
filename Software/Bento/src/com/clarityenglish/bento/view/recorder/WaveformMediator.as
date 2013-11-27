@@ -9,6 +9,7 @@ package com.clarityenglish.bento.view.recorder {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.recorder.events.WaveformEvent;
 	import com.clarityenglish.bento.view.recorder.events.WaveformRangeEvent;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import flash.events.TimerEvent;
 	import flash.net.FileReference;
@@ -58,6 +59,13 @@ package com.clarityenglish.bento.view.recorder {
 				view.audioStatus = audioProxy.audioStatus;
 			}
 			
+			// gh#683
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (configProxy.isPlatformTablet()) {
+				view.isSaveEnabled = false;
+			} else {
+				view.isSaveEnabled = true;
+			}
 			// Prepare the view
 			prepareView();
 		}

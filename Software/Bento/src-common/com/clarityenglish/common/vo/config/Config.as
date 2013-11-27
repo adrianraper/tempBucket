@@ -157,6 +157,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#224
 		public var customisation:XML;
 		
+		// gh#234
+		public var platform:String;
+		
 		/**
 		 * Developer option
 		 */
@@ -502,6 +505,10 @@ package com.clarityenglish.common.vo.config {
 			// gh#224
 			if (xml..customisation)
 				this.customisation = xml..customisation[0];
+			
+			// gh#234
+			if (xml..platform.toString())
+				this.platform = xml..platform.toString();
 		}
 		
 		/**
