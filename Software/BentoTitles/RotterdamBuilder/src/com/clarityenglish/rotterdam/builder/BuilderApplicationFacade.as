@@ -40,18 +40,18 @@
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
 	import com.clarityenglish.rotterdam.builder.view.help.HelpMediator;
 	import com.clarityenglish.rotterdam.builder.view.help.HelpView;
-	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishMediator;
-	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishView;
+	import com.clarityenglish.rotterdam.builder.view.scheduling.SchedulingInstructionMediator;
+	import com.clarityenglish.rotterdam.builder.view.scheduling.SchedulingInstructionView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
-	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsMediator;
-	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView;
-	import com.clarityenglish.rotterdam.view.settings.SettingsMediator;
-	import com.clarityenglish.rotterdam.view.settings.SettingsView;
+	import com.clarityenglish.rotterdam.view.scheduling.SchedulingMediator;
+	import com.clarityenglish.rotterdam.view.scheduling.SchedulingView;
+	import com.clarityenglish.rotterdam.view.coursesettings.CourseSettingsMediator;
+	import com.clarityenglish.rotterdam.view.coursesettings.CourseSettingsView;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -69,10 +69,10 @@
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);
 			mapView(ContentSelectorView, ContentSelectorMediator);
-			mapView(PublishSettingsView, PublishSettingsMediator);
-			mapView(SettingsView, SettingsMediator);
+			mapView(SchedulingView, SchedulingMediator);
+			mapView(CourseSettingsView, CourseSettingsMediator);
 			mapView(CourseCreateView, CourseCreateMediator);
-			mapView(HelpPublishView, HelpPublishMediator);
+			mapView(SchedulingInstructionView, SchedulingInstructionMediator);
 			mapView(HelpView, HelpMediator);
 			mapView(SavingErrorView, SavingErrorMediator);
 			

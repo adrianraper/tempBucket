@@ -1,9 +1,9 @@
-package com.clarityenglish.rotterdam.view.publishSettings {
+package com.clarityenglish.rotterdam.view.scheduling {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.controls.calendar.Calendar;
-	import com.clarityenglish.rotterdam.view.publishSettings.events.SettingsEvent;
-	import com.clarityenglish.rotterdam.view.publishSettings.ui.CalendarTreeItemRenderer;
+	import com.clarityenglish.rotterdam.view.scheduling.events.SettingsEvent;
+	import com.clarityenglish.rotterdam.view.scheduling.ui.CalendarTreeItemRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.sparkTree.Tree;
 	
@@ -39,7 +39,7 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 	 * There is quite a lot of code duplication here that could be neatened up into a mini form framework that automatically links xml properties and components.
 	 * in a Rails/Symfony style form system.  This might well be worth doing at some point, but for the moment just leave it hand coded.
 	 */
-	public class PublishSettingsView extends BentoView {
+	public class SchedulingView extends BentoView {
 		
 		[SkinPart]
 		public var courseSettingsLabel:Label;
@@ -170,7 +170,7 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 		
 		private var isPopulating:Boolean;
 		
-		public function PublishSettingsView() {
+		public function SchedulingView() {
 			super();
 		}
 		

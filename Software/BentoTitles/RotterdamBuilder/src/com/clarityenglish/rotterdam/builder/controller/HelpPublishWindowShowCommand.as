@@ -2,7 +2,7 @@ package com.clarityenglish.rotterdam.builder.controller
 {
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateView;
-	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishView;
+	import com.clarityenglish.rotterdam.builder.view.scheduling.SchedulingInstructionView;
 	import com.clarityenglish.rotterdam.view.courseselector.events.CourseCreateEvent;
 	
 	import flash.display.DisplayObject;
@@ -36,7 +36,7 @@ package com.clarityenglish.rotterdam.builder.controller
 			titleWindow.styleName = "noHeaderTitleWindow";
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
-			var helpPublishView:HelpPublishView = new HelpPublishView();
+			var helpPublishView:SchedulingInstructionView = new SchedulingInstructionView();
 			helpPublishView.percentWidth = helpPublishView.percentHeight = 100;
 			titleWindow.addElement(helpPublishView);
 			

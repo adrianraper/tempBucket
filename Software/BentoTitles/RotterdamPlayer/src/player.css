@@ -103,7 +103,7 @@ progress|ProgressView {
 }
 
 progress|ProgressView #progressNavBar {
-	skinClass: ClassReference("skins.rotterdam.publishSettings.TabButtonBarSkin");
+	skinClass: ClassReference("skins.rotterdam.scheduling.TabButtonBarSkin");
 }
 
 progresscomponents|ProgressScoreView {

@@ -1,18 +1,18 @@
-package com.clarityenglish.rotterdam.builder.view.publishSettings {
+package com.clarityenglish.rotterdam.builder.view.scheduling {
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
-	public class HelpPublishMediator extends BentoMediator implements IMediator {
+	public class SchedulingInstructionMediator extends BentoMediator implements IMediator {
 		
-		public function HelpPublishMediator(mediatorName:String, viewComponent:BentoView) {
+		public function SchedulingInstructionMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():HelpPublishView {
-			return viewComponent as HelpPublishView;
+		private function get view():SchedulingInstructionView {
+			return viewComponent as SchedulingInstructionView;
 		}
 		
 		override public function onRegister():void {

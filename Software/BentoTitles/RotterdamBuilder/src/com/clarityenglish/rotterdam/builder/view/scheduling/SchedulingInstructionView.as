@@ -1,4 +1,4 @@
-package com.clarityenglish.rotterdam.builder.view.publishSettings
+package com.clarityenglish.rotterdam.builder.view.scheduling
 {
 	import com.clarityenglish.bento.view.base.BentoView;
 	
@@ -10,7 +10,7 @@ package com.clarityenglish.rotterdam.builder.view.publishSettings
 	
 	import spark.components.Button;
 	
-	public class HelpPublishView extends BentoView {
+	public class SchedulingInstructionView extends BentoView {
 		
 		[SkinPart]
 		public var iKnowButton:spark.components.Button;

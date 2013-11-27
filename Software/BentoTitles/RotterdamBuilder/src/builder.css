@@ -13,14 +13,13 @@
 @namespace course "com.clarityenglish.rotterdam.view.course.*";
 @namespace courseui "com.clarityenglish.rotterdam.view.course.ui.*";
 @namespace title "com.clarityenglish.rotterdam.view.title.*";
-@namespace settings "com.clarityenglish.rotterdam.view.settings.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace sparkTree "com.sparkTree.*";
 @namespace tink "ws.tink.spark.controls.*";
-@namespace showPublishSettingDemo "com.clarityenglish.rotterdam.builder.view.publishSettings.*";
 @namespace ui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace help "com.clarityenglish.rotterdam.builder.view.help.*";
-@namespace publishSettings "com.clarityenglish.rotterdam.view.publishSettings.*";
+@namespace scheduling "com.clarityenglish.rotterdam.builder.view.scheduling.*";
+@namespace scheduling1 "com.clarityenglish.rotterdam.view.scheduling.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -151,8 +150,8 @@ course|CourseView s|Button#publishChangeButton {
 	skinClass: ClassReference("skins.rotterdam.title.ui.PublishToggleButtonSkin");
 }
 
-course|CourseView s|Button#settingButton {
-	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsButtonSkin");
+course|CourseView s|Button#courseSettingButton {
+	skinClass: ClassReference("skins.rotterdam.builder.coursesettings.CourseSettingsButtonSkin");
 }
 
 buildercourse|ToolBarView {
@@ -354,36 +353,36 @@ filemanager|FileManagerView s|Button#cancelButton {
 }
 
 
-publishSettings|PublishSettingsView {
-	skinClass: ClassReference("skins.rotterdam.builder.publishSettings.SettingsSkin");
+scheduling1|SchedulingView {
+	skinClass: ClassReference("skins.rotterdam.builder.scheduling.SchedulingSkin");
 }
 
-publishSettings|PublishSettingsView s|FormItem {
+scheduling1|SchedulingView s|FormItem {
 	errorColor: red;
 }
 
-publishSettings|PublishSettingsView s|Button#saveButton {
+scheduling1|SchedulingView s|Button#saveButton {
 	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
 }
 
-publishSettings|PublishSettingsView s|Button#backButton {
+scheduling1|SchedulingView s|Button#backButton {
 	skinClass: ClassReference("skins.rotterdam.unit.CancelButtonSkin");
 }
 
-publishSettings|PublishSettingsView s|TabBar#tabBar {
-	skinClass: ClassReference("skins.rotterdam.publishSettings.SettingTabBarSkin");
+scheduling1|SchedulingView s|TabBar#tabBar {
+	skinClass: ClassReference("skins.rotterdam.scheduling.SchedulingTabBarSkin");
 }
 
-publishSettings|PublishSettingsView s|Scroller#publishSettingScroller s|VScrollBar {
+scheduling1|SchedulingView s|Scroller#schedulingScroller s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
-showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {
+scheduling|SchedulingInstructionView s|Button#iKnowButton {
 	skinsClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 }
 
-showPublishSettingDemo|HelpPublishView {
-	skinClass: ClassReference("skins.rotterdam.builder.publishSettings.HelpPublishSkin");
+scheduling|SchedulingInstructionView {
+	skinClass: ClassReference("skins.rotterdam.builder.scheduling.SchedulingInstructionSkin");
 	headerVisible: false;
 }
 

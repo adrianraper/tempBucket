@@ -15,7 +15,6 @@
 		
 		<s:State name="course_selector" />
 		<s:State name="course" />
-		<s:State name="filemanager" />
 	</s:states>
 	
 	<s:Group left="0" right="0" top="0">

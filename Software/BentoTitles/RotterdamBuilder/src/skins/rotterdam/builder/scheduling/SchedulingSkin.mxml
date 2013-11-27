@@ -5,10 +5,10 @@
 		xmlns:calendar="com.clarityenglish.controls.calendar.*"
 		xmlns:sparkTree="com.sparkTree.*"
 		xmlns:widgets="skins.assets.widgets.*"
-		xmlns:publishSettings="com.clarityenglish.rotterdam.view.publishSettings.*">
+		xmlns:scheduling="com.clarityenglish.rotterdam.view.scheduling.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView")]
+		[HostComponent("com.clarityenglish.rotterdam.view.scheduling.SchedulingView")]
 	</fx:Metadata>
 	
 	<fx:Declarations>
@@ -58,7 +58,7 @@
 	
 	<!-- Left hand side -->
 	<s:Group left="40" height="82%" top="115">
-		<s:Scroller id="publishSettingScroller"  height="100%">
+		<s:Scroller id="schedulingScroller"  height="100%">
 			<s:VGroup id="leftHandSide" paddingRight="5">	
 				<s:Spacer height="{settingBackground.height * 0.05}" />
 				<!-- Group selector -->
