@@ -104,7 +104,7 @@ class CourseOps {
 		if (!file_exists($menuXMLFilename)) {
 			throw $this->copyOps->getExceptionForId("errorSavingCourse");
 		}
-		
+		throw $this->copyOps->getExceptionForId("errorSavingCourse");
 		$db = $this->db;
 		$copyOps = $this->copyOps;
 		$accountFolder = $this->accountFolder;

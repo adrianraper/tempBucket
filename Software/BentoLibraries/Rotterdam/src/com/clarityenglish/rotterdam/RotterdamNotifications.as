@@ -75,6 +75,9 @@
 		// gh#221
 		public static const WEB_URL_ADD:String = "rotterdam/web_url_add";
 		public static const WEB_URL_CANCEL:String = "rotterdam/web_url_cancel";
+
+		// gh#751
+		public static const COURSE_SAVE_ERROR:String = "rotterdam/course_save_error";
 	}
 	
 }

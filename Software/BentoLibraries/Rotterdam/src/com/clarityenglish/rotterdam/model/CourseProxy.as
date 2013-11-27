@@ -6,11 +6,14 @@ package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.TimerEvent;
+	import flash.net.FileReference;
+	import flash.net.URLRequest;
 	import flash.utils.Timer;
 	
 	import mx.collections.ListCollectionView;
@@ -198,6 +201,10 @@ package com.clarityenglish.rotterdam.model {
 			courseSessionTimer.reset();
 		}
 
+		// gh#751
+		public function get courseID():String {
+			return (courseNode.hasOwnProperty("@id")) ? courseNode.@id.toString() : '';
+		}
 		
 		// gh#122
 		public function sendWelcomeEmail(course:XML, groupID:Number):AsyncToken {
@@ -228,6 +235,18 @@ package com.clarityenglish.rotterdam.model {
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + fault.faultString);
+			
+			// gh#751 start a download as a precaution against failed save
+			// Can I build the XML string directly into a .xml download without going through a file on the server? 
+			// Can't do it directly here because Flash needs this to be a user click action
+			//sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault, false));
+			if (currentCourse) {
+				var xmlString:String = currentCourse.xml.toXMLString();
+				xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
+			} else {
+				xmlString = null;
+			}
+			sendNotification(RotterdamNotifications.COURSE_SAVE_ERROR, xmlString);
 		}
 		
 	}

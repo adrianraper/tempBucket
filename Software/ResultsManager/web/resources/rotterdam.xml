@@ -70,6 +70,9 @@
 			
 			<lit name="errorSingleVideoIOS" code="707">Only a single video per unit is currently supported on iOS.</lit>
 			
+			<lit name="courseSavingError">We can't save your course. Please try again in case the connection is bad. If that still fails, please click '{saveButtonLabel}' below. This will download a file to your computer which you then need to send to {supportEmail}. We can then recover anything that gets lost. Please restart the program after this.</lit>
+			<lit name="worstCaseError">You could try again in a while. If you close this course or C-Builder you will lose any changes you have made recently. In the worst case, click OK, and take some screen shots.</lit>
+			
             <lit name="pathCCB">CCB</lit>
             <lit name="pathTenseBuster">TenseBuster</lit>
             <lit name="pathActiveReading">ActiveReading</lit>
@@ -98,7 +101,9 @@
 			<lit name="yesButton">Yes</lit>
 			<lit name="loadingLabel">loading...</lit>
 			<lit name="closeButton">OK</lit>
+			<lit name="saveButton">Grab it</lit>
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
+			<lit name="hmmmLabel">Hmmm, that didn't work either:</lit>
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
 			<lit name="loginDetailLabelNetwork">Please type your login details if you want to save your progress records.</lit>
