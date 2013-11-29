@@ -10,11 +10,14 @@ package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
+	import flash.net.navigateToURL;
+	import flash.net.URLRequest;
 	
 	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.DateUtil;
+	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
 	import skins.ielts.home.CourseButtonSkin;
@@ -66,6 +69,25 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart(required="true")]
 		public var noticeLabel:Label;
 		
+		// gh#383
+		[SkinPart]
+		public var findMoreButton:Button;
+		
+		[SkinPart]
+		public var promoteWording1:Label;
+		
+		[SkinPart]
+		public var promoteWording2:Label;
+		
+		[SkinPart]
+		public var promoteWording3:Label;
+		
+		[SkinPart]
+		public var promoteWording4:Label;
+		
+		[SkinPart]
+		public var longRateButton:Button;
+		
 		[Bindable]
 		public var dataProvider:XML;
 		
@@ -82,6 +104,39 @@ package com.clarityenglish.ielts.view.home {
 		
 		public var courseSelect:Signal = new Signal(XML);
 		public var info:Signal = new Signal();
+		// gh#383
+		public var findMore:Signal = new Signal();
+		
+		private var _isPlatformTablet:Boolean;
+		private var _isPlatformipad:Boolean;
+		private var _isPlatformAndroid:Boolean;
+		
+		[Bindable]
+		public function get isPlatformTablet():Boolean {
+			return _isPlatformTablet;
+		}
+		
+		public function set isPlatformTablet(value:Boolean):void {
+			_isPlatformTablet = value;
+		}
+		
+		[Bindable]
+		public function get isPlatformipad():Boolean {
+			return _isPlatformipad;
+		}
+		
+		public function set isPlatformipad(value:Boolean):void {
+			_isPlatformipad = value;
+		}
+		
+		[Bindable]
+		public function get isPlatformAndroid():Boolean {
+			return _isPlatformAndroid;
+		}
+		
+		public function set isPlatformAndroid(value:Boolean):void {
+			_isPlatformAndroid = value;
+		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -165,6 +220,9 @@ package com.clarityenglish.ielts.view.home {
 					}
 				}
 			}
+			
+			// for update the skin sate in skin
+			this.invalidateSkinState();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -187,8 +245,26 @@ package com.clarityenglish.ielts.view.home {
 				case writingCoverageBar:
 					instance.copyProvider = copyProvider;
 					break;
-				
-				// gh#166
+				// gh#383
+				case findMoreButton:
+					findMoreButton.addEventListener(MouseEvent.CLICK, onFindMoreClicked);
+					break;
+				case promoteWording1:
+					promoteWording1.text = copyProvider.getCopyForId("promoteWording1");
+					break;
+				case promoteWording2:
+					promoteWording2.text = copyProvider.getCopyForId("promoteWording2");
+					break;
+				case promoteWording3:
+					promoteWording3.text = copyProvider.getCopyForId("promoteWording3");
+					break;
+				case promoteWording4:
+					promoteWording4.text = copyProvider.getCopyForId("promoteWording4");
+					break;
+				case longRateButton:
+					longRateButton.label = copyProvider.getCopyForId("longRateButton");
+					longRateButton.addEventListener(MouseEvent.CLICK, onLongRateButtonClick);
+					break;
 			}
 		}
 				
@@ -252,6 +328,23 @@ package com.clarityenglish.ielts.view.home {
 		
 		private function onRequestInfoClick(event:MouseEvent):void {
 			info.dispatch();
+		}
+		
+		// gh#383
+		protected function onFindMoreClicked(event:MouseEvent):void {
+			findMore.dispatch();
+		}
+		
+		protected function onLongRateButtonClick(event:MouseEvent):void {
+			var urlString:String;			
+			if (this.isPlatformipad) {
+				urlString = copyProvider.getCopyForId("ipadRateLink");
+			} else if (this.isPlatformAndroid) {
+				urlString = copyProvider.getCopyForId("androidRateLink");
+			}
+			
+			var urlRequest:URLRequest = new URLRequest(urlString);
+			navigateToURL(urlRequest, "_blank");
 		}
 
 	}

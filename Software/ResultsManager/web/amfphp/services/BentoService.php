@@ -131,9 +131,6 @@ class BentoService extends AbstractService {
 				if (!is_array($account->productCodes))
 					$account->productCodes = array();
 				array_push($account->productCodes, $thisTitle->productCode);
-				// If production version  = LM, the loginKey_lbl will force to be loginID, so we clear productVersion here.
-				// for non ip login, the account is null and will return at last step, so we don't need to care the productVersion.
-				$thisTitle->productVersion = null;
 			}
 		}
 		

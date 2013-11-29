@@ -11,6 +11,8 @@
 	
 	<fx:Script>
 		<![CDATA[
+
+			import org.alivepdf.layout.Unit;
 			/**
 			 * Push items around the screen
 			 */
@@ -23,7 +25,6 @@
 					return top;
 				}
 			}
-			
 		]]>
 	</fx:Script>
 	
@@ -32,14 +33,14 @@
 		<s:State name="normal" />
 		
 		<s:State name="demo" />
-		<s:State name="fullVersion" />
-		<s:State name="lastMinute" stateGroups="bcStates" />
-		<s:State name="homeUser" />
+		<s:State name="fullVersion" stateGroups="fullversionStates, rateStates" />
+		<s:State name="lastMinute" stateGroups="bcStates, rateStates" />
+		<s:State name="homeUser" stateGroups="fullversionStates, rateStates" />
 		<s:State name="testDrive" stateGroups="bcStates" />
 	</s:states>
 	
 	<s:Label id="welcomeLabel" left="39" top="202" />
-	<s:Label id="noticeLabel" left="39" top="221" />
+	<s:Label id="noticeLabel" left="39" top="160" />
 	<!-- gh#167 move to title skin
 	<s:Group right="20" top="0">
 		<s:SWFLoader id="upgradeButton" source="{hostComponent.languageAssetFolder}upgrade.jpg" 
@@ -52,10 +53,10 @@
 					 buttonMode="true" useHandCursor="true" />
 	</s:Group>
 	-->
-	<ui:CourseBarRenderer id="readingCoverageBar" data="{hostComponent.dataProvider}" courseClass="reading" left="39" top="252" width="375" />
-	<ui:CourseBarRenderer id="listeningCoverageBar" data="{hostComponent.dataProvider}" courseClass="listening" left="39" top="326" width="375" />
-	<ui:CourseBarRenderer id="speakingCoverageBar" data="{hostComponent.dataProvider}" courseClass="speaking" left="39" top="400" width="375" />
-	<ui:CourseBarRenderer id="writingCoverageBar" data="{hostComponent.dataProvider}" courseClass="writing" left="39" top="474" width="375" />
+	<ui:CourseBarRenderer id="readingCoverageBar" data="{hostComponent.dataProvider}" courseClass="reading" left="39" top="185" width="375" />
+	<ui:CourseBarRenderer id="listeningCoverageBar" data="{hostComponent.dataProvider}" courseClass="listening" left="39" top="259" width="375" />
+	<ui:CourseBarRenderer id="speakingCoverageBar" data="{hostComponent.dataProvider}" courseClass="speaking" left="39" top="333" width="375" />
+	<ui:CourseBarRenderer id="writingCoverageBar" data="{hostComponent.dataProvider}" courseClass="writing" left="39" top="407" width="375" />
 	
 	<s:Button id="readingCourseButton" right="20" top="{this.floatCourses(142, hostComponent.productVersion)}" />
 	<s:Button id="listeningCourseButton" right="20" top="{this.floatCourses(248, hostComponent.productVersion)}" />
@@ -64,4 +65,5 @@
 	<s:Button id="registerInfoButton" visible="{hostComponent.productVersion == 'R2ITD'}" 
 			  includeInLayout="{hostComponent.productVersion == 'R2ITD'}" right="20" top="{this.floatCourses(566, hostComponent.productVersion)}" useHandCursor="true"  />
 	
+	<s:Button id="longRateButton" useHandCursor="true" buttonMode="true" bottom.testDrive="130" left.testDrive="39" right.rateStates="20" top.lastMinute="80" top.fullversionStates="20"/>
 </s:Skin>

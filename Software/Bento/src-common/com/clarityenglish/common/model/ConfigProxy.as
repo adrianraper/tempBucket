@@ -48,7 +48,7 @@ package com.clarityenglish.common.model {
 		private var config:Config;
 		
 		private var _dateFormatter:DateFormatter;
-		
+
 		/**
 		 * Configuration information comes from three sources
 		 * 1) config.xml. This holds base paths and other information that is common to all accounts, but differs between products

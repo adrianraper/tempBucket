@@ -30,6 +30,9 @@
 		function getTestDrive():Signal;
 		// gh#
 		//function setBranding(xml:XML):void;
+		function setPlatformTablet(value:Boolean):void;
+		function setPlatformipad(value:Boolean):void;
+		function setPlatformAndroid(value:Boolean):void;
 	}
 	
 }

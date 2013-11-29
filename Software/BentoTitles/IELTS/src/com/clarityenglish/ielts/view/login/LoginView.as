@@ -23,6 +23,7 @@ package com.clarityenglish.ielts.view.login {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.ButtonBar;
 	import spark.components.FormHeading;
 	import spark.components.Label;
 	import spark.components.TextInput;
@@ -125,9 +126,6 @@ package com.clarityenglish.ielts.view.login {
 		public var psdlLabel:Label;
 		
 		[SkinPart]
-		public var CTLoginButton:Button;
-		
-		[SkinPart]
 		public var CTStartButton:Button;
 		
 		[SkinPart]
@@ -135,6 +133,43 @@ package com.clarityenglish.ielts.view.login {
 		
 		[SkinPart]
 		public var psdInput:TextInput;
+		
+		// gh#659
+		[SkinPart]
+		public var IPLoginButtonBar:ButtonBar;
+		
+		[SkinPart]
+		public var IPLoginKeyInput:TextInput;
+		
+		[SkinPart]
+		public var IPPasswordInput:TextInput;
+		
+		[SkinPart]
+		public var IPLoginButton:Button;
+		
+		[SkinPart]
+		public var option1TitleLabel:Label;
+		
+		[SkinPart]
+		public var option1ContentLabel:Label;
+		
+		[SkinPart]
+		public var option2TitleLabel:Label;
+		
+		[SkinPart]
+		public var option2ContentLabel:Label;
+		
+		[SkinPart]
+		public var IPPasswordLabel:Label;
+		
+		[SkinPart]
+		public var IPLoginStartButton:Button;
+		
+		[SkinPart]
+		public var longRateButton:Button;
+		
+		[Bindable]
+		public var IPLoginKey_lbl:String;	
 		
 		[Bindable]
 		public var loginKey_lbl:String;
@@ -152,10 +187,22 @@ package com.clarityenglish.ielts.view.login {
 		[Bindable]
 		public var loginPassword_lbl:String;
 		
+		[Bindable]
+		public var isPlatformTablet:Boolean;
+		
+		[Bindable]
+		public var isPlatformipad:Boolean;
+		
+		[Bindable]
+		public var isPlatformAndroid:Boolean;
+		
 		// #341
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
 		private var _verified:Boolean;
+		// gh#659
+		private var _hasIPrange:Boolean;
+		private var _productCodes:Array;
 		
 		private var _currentState:String;
 		
@@ -295,6 +342,22 @@ package com.clarityenglish.ielts.view.login {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
 		
+		// gh#659
+		public function setHasIPrange(value:Boolean):void {
+			_hasIPrange = value;
+		}
+		
+		// gh#659
+		public function setProductCodes(value:Array):void {
+			_productCodes = value;
+			dispatchEvent(new Event("productCodesChanged"));
+		}
+		
+		[Bindable(event="productCodesChanged")]
+		public function getProductCodes():Array {
+			return _productCodes;
+		}
+		
 		[Bindable(event="productVersionChanged")]
 		public function getProductVersion():String {
 			return _productVersion;
@@ -317,7 +380,7 @@ package com.clarityenglish.ielts.view.login {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
-		}
+		}			
 		
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
@@ -399,7 +462,6 @@ package com.clarityenglish.ielts.view.login {
 				case passwordInput:
 					instance.addEventListener(FlexEvent.ENTER, onEnter, false, 0, true);
 					break;
-				
 				// gh#100
 				case loginButton:
 					if (selfRegister) {
@@ -420,6 +482,8 @@ package com.clarityenglish.ielts.view.login {
 				case loginIDLabel:
 					instance.text = copyProvider.getCopyForId("loginIDLabel");
 					break;
+				// gh#659
+				case IPPasswordLabel:
 				case passwordLabel:
 					instance.text = copyProvider.getCopyForId("passwordLabel");
 					break;
@@ -435,6 +499,8 @@ package com.clarityenglish.ielts.view.login {
 				case FVTextLabel:
 					instance.text = copyProvider.getCopyForId("FVTextLabel");
 					break;
+				// gh#659
+				case option1ContentLabel:
 				case loginDetailLabel:
 					// gh#100
 					if (selfRegister) {
@@ -467,6 +533,8 @@ package com.clarityenglish.ielts.view.login {
 					instance.label = copyProvider.getCopyForId("accountMoreButton");
 					instance.addEventListener(MouseEvent.CLICK, onAccountMoreButton);
 					break;
+				// gh#659
+				case option1TitleLabel:
 				//gh#100 CT login page
 				case CTOption1Label:
 					if (licenceType == Title.LICENCE_TYPE_NETWORK ||
@@ -476,6 +544,8 @@ package com.clarityenglish.ielts.view.login {
 						instance.text = copyProvider.getCopyForId("LTOption1Label");
 					}
 					break;
+				// gh#659
+				case option2TitleLabel:
 				case CTOption2Label:
 					instance.text = copyProvider.getCopyForId("CTOption2Label");
 					break;
@@ -485,6 +555,8 @@ package com.clarityenglish.ielts.view.login {
 				case LTOption1Label:
 					instance.text = copyProvider.getCopyForId("LTOption1Label");
 					break;
+				// gh#659
+				case option2ContentLabel:
 				case CTDetailLabel:
 					var replaceObj:Object = {loginText:copyProvider.getCopyForId("CTStartButton")};
 					instance.text = copyProvider.getCopyForId("CTDetailLabel", replaceObj);
@@ -495,9 +567,15 @@ package com.clarityenglish.ielts.view.login {
 				case psdlLabel:
 					instance.text = copyProvider.getCopyForId("passwordLabel");
 					break;
+				// gh#659
+				case IPLoginStartButton:
 				case CTStartButton:
 					instance.label = copyProvider.getCopyForId("CTStartButton");
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
+					break;
+				case longRateButton:
+					longRateButton.label = copyProvider.getCopyForId("longRateButton");
+					longRateButton.addEventListener(MouseEvent.CLICK, onlongRateButtonClick);
 					break;
 			}
 		}
@@ -512,6 +590,11 @@ package com.clarityenglish.ielts.view.login {
 				networkState = "";
 			}
 			
+			// gh#659
+			if (_hasIPrange && licenceType == Title.LICENCE_TYPE_CT) {
+				networkState = "IPConcurrentTracking";
+			}
+
 			return _currentState + networkState;
 		}
 		
@@ -551,6 +634,19 @@ package com.clarityenglish.ielts.view.login {
 			noAccount = value;
 		}
 		
+		
+		public function setPlatformTablet(value:Boolean):void {
+			isPlatformTablet = value;
+		}
+		
+		public function setPlatformipad(value:Boolean):void {
+			isPlatformipad = value;
+		}
+		
+		public function setPlatformAndroid(value:Boolean):void {
+			isPlatformAndroid = value;
+		}
+		
 		/**
 		 * To let you work out what data you need for logging in to this account. 
 		 * @param Number loginOption
@@ -558,10 +654,11 @@ package com.clarityenglish.ielts.view.login {
 		 */
 		[Bindable(event="loginOptionChanged")]
 		public function changeLoginLabels():void {
-			
 			// Override normal text with Last Minute
-			if (_productVersion == IELTSApplication.LAST_MINUTE) { 
-				loginKey_lbl = copyProvider.getCopyForId("loginID");;
+			if (_productVersion == IELTSApplication.LAST_MINUTE && !_hasIPrange) { 
+				loginKey_lbl = copyProvider.getCopyForId("loginID");
+				// gh#659
+				IPLoginKey_lbl = copyProvider.getCopyForId("loginID");
 			} else {
 				// #341 This has to be bitwise comparison, not equality
 				if (loginOption & Config.LOGIN_BY_NAME || loginOption & Config.LOGIN_BY_NAME_AND_ID) {
@@ -572,6 +669,8 @@ package com.clarityenglish.ielts.view.login {
 					replaceObj = {loginDetail:copyProvider.getCopyForId("emailLoginDetail")};
 				}
 				loginKey_lbl = copyProvider.getCopyForId("yourLoginDetail", replaceObj);
+				// gh#659
+				IPLoginKey_lbl = copyProvider.getCopyForId("yourLoginDetail", replaceObj);
 			}
 			
 			// #341 for self-registration
@@ -584,7 +683,14 @@ package com.clarityenglish.ielts.view.login {
 		
 		// #254
 		public function onEnter(event:FlexEvent):void {
-			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
+			// gh#659
+			if (_productCodes && getProductCodes().length > 1) {
+				config.productCode = IPLoginButtonBar.selectedItem.code;
+				config.paths.menuFilename = config.xmlCourseFile;
+				config.buildMenuFilename();
+			}
+			
+			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {			
 				// gh#100 Tidy up new user details
 				//var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 				var user:User = new User({password:passwordInput.text});
@@ -644,12 +750,27 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				*/
 				case loginButton:
-				case CTLoginButton:
 					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
+					// gh#659
+					if (_productCodes && getProductCodes().length > 1) {
+						// very hacky, in order to login to different module
+						config.productCode = IPLoginButtonBar.selectedItem.code;
+						config.paths.menuFilename = config.xmlCourseFile;
+						config.buildMenuFilename();
+					}						
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case CTStartButton:
 					user =  new User();
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
+					break;
+				case IPLoginStartButton:
+					user =  new User();
+					if(getProductCodes().length > 1) {
+						config.productCode = IPLoginButtonBar.selectedItem.code;
+						config.paths.menuFilename = config.xmlCourseFile;
+						config.buildMenuFilename();
+					}
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case newUserButton:
@@ -661,8 +782,7 @@ package com.clarityenglish.ielts.view.login {
 					//user = new User({name:newNameInput.text, password:newPasswordInput.text});
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
-					break;
-				
+					break;		
 				// gh#41
 				case testDriveAcademicButton:
 				case testDriveGeneralButton:
@@ -707,12 +827,28 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		public function clearData():void {
-			passwordInput.text = "";
+			if (passwordInput)
+				passwordInput.text = "";
+			if (IPPasswordInput)
+				IPPasswordInput.text = ""
 		}
 		
 		public function onAccountMoreButton(event:MouseEvent):void {
 			var infoPage:String = (config.getAccountURL) ? config.getAccountURL : "www.roadtoielts.com";
 			var urlRequest:URLRequest = new URLRequest(infoPage);
+			navigateToURL(urlRequest, "_blank");
+		}
+		
+		protected function onlongRateButtonClick(event:MouseEvent):void {
+			var urlString:String;			
+			if (this.isPlatformipad) {
+				urlString = copyProvider.getCopyForId("ipadRateLink");
+			} else if (this.isPlatformAndroid) {
+				urlString = copyProvider.getCopyForId("androidRateLink");
+			}
+			
+			trace("androidRateLink: "+urlString);
+			var urlRequest:URLRequest = new URLRequest(urlString);
 			navigateToURL(urlRequest, "_blank");
 		}
 	

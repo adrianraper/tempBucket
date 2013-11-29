@@ -89,6 +89,10 @@
 			<lit name="loginID">Login ID:</lit>
 			<lit name="yourID">Your ID:</lit>
 			<lit name="yourEmail">Your email:</lit>
+			<lit name="longRateButton">Rate and review this app</lit>
+			<lit name="shortRateButton">Rate this app</lit>
+			<lit name="ipadRateLink"><![CDATA[https://itunes.apple.com/us/app/road-to-ielts/id560055517?mt=8&ign-mpt=uo%3D4]]></lit>
+			<lit name="androidRateLink"><![CDATA[https://play.google.com/store/apps/details?id=air.com.clarityenglish.ielts.app]]></lit>
 			<lit name="registerInfoButton">Register for the IELTS test with the British Council and you will receive the Last Minute version of Road to IELTS free!</lit>
 			<lit name="noProgressText">Welcome to Road to IELTS. Click the buttons on the right to look at the resources to help with each skill.</lit>
 			<lit name="colorBarIntroLabel">The colour bars show how much you have completed in each skill area. Go to My Progress for more details.</lit>
