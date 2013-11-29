@@ -10,11 +10,14 @@ package com.clarityenglish.ielts.view.home {
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.MouseEvent;
+	import flash.net.navigateToURL;
+	import flash.net.URLRequest;
 	
 	import mx.controls.SWFLoader;
 	import mx.formatters.DateFormatter;
 	
 	import org.davekeen.util.DateUtil;
+	import org.davekeen.util.StateUtil;
 	import org.osflash.signals.Signal;
 	
 	import skins.ielts.home.CourseButtonSkin;
@@ -82,6 +85,9 @@ package com.clarityenglish.ielts.view.home {
 		[SkinPart]
 		public var promoteWording4:Label;
 		
+		[SkinPart]
+		public var longRateButton:Button;
+		
 		[Bindable]
 		public var dataProvider:XML;
 		
@@ -100,6 +106,37 @@ package com.clarityenglish.ielts.view.home {
 		public var info:Signal = new Signal();
 		// gh#383
 		public var findMore:Signal = new Signal();
+		
+		private var _isPlatformTablet:Boolean;
+		private var _isPlatformipad:Boolean;
+		private var _isPlatformAndroid:Boolean;
+		
+		[Bindable]
+		public function get isPlatformTablet():Boolean {
+			return _isPlatformTablet;
+		}
+		
+		public function set isPlatformTablet(value:Boolean):void {
+			_isPlatformTablet = value;
+		}
+		
+		[Bindable]
+		public function get isPlatformipad():Boolean {
+			return _isPlatformipad;
+		}
+		
+		public function set isPlatformipad(value:Boolean):void {
+			_isPlatformipad = value;
+		}
+		
+		[Bindable]
+		public function get isPlatformAndroid():Boolean {
+			return _isPlatformAndroid;
+		}
+		
+		public function set isPlatformAndroid(value:Boolean):void {
+			_isPlatformAndroid = value;
+		}
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
@@ -183,6 +220,9 @@ package com.clarityenglish.ielts.view.home {
 					}
 				}
 			}
+			
+			// for update the skin sate in skin
+			this.invalidateSkinState();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -220,6 +260,10 @@ package com.clarityenglish.ielts.view.home {
 					break;
 				case promoteWording4:
 					promoteWording4.text = copyProvider.getCopyForId("promoteWording4");
+					break;
+				case longRateButton:
+					longRateButton.label = copyProvider.getCopyForId("longRateButton");
+					longRateButton.addEventListener(MouseEvent.CLICK, onLongRateButtonClick);
 					break;
 			}
 		}
@@ -289,6 +333,18 @@ package com.clarityenglish.ielts.view.home {
 		// gh#383
 		protected function onFindMoreClicked(event:MouseEvent):void {
 			findMore.dispatch();
+		}
+		
+		protected function onLongRateButtonClick(event:MouseEvent):void {
+			var urlString:String;			
+			if (this.isPlatformipad) {
+				urlString = copyProvider.getCopyForId("ipadRateLink");
+			} else if (this.isPlatformAndroid) {
+				urlString = copyProvider.getCopyForId("androidRateLink");
+			}
+			
+			var urlRequest:URLRequest = new URLRequest(urlString);
+			navigateToURL(urlRequest, "_blank");
 		}
 
 	}

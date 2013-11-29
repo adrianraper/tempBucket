@@ -165,6 +165,9 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var IPLoginStartButton:Button;
 		
+		[SkinPart]
+		public var longRateButton:Button;
+		
 		[Bindable]
 		public var IPLoginKey_lbl:String;	
 		
@@ -183,6 +186,15 @@ package com.clarityenglish.ielts.view.login {
 		// gh#100
 		[Bindable]
 		public var loginPassword_lbl:String;
+		
+		[Bindable]
+		public var isPlatformTablet:Boolean;
+		
+		[Bindable]
+		public var isPlatformipad:Boolean;
+		
+		[Bindable]
+		public var isPlatformAndroid:Boolean;
 		
 		// #341
 		private var _loginOption:Number;
@@ -368,7 +380,7 @@ package com.clarityenglish.ielts.view.login {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
-		}
+		}			
 		
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
@@ -561,6 +573,10 @@ package com.clarityenglish.ielts.view.login {
 					instance.label = copyProvider.getCopyForId("CTStartButton");
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
+				case longRateButton:
+					longRateButton.label = copyProvider.getCopyForId("longRateButton");
+					longRateButton.addEventListener(MouseEvent.CLICK, onlongRateButtonClick);
+					break;
 			}
 		}
 
@@ -618,6 +634,19 @@ package com.clarityenglish.ielts.view.login {
 			noAccount = value;
 		}
 		
+		
+		public function setPlatformTablet(value:Boolean):void {
+			isPlatformTablet = value;
+		}
+		
+		public function setPlatformipad(value:Boolean):void {
+			isPlatformipad = value;
+		}
+		
+		public function setPlatformAndroid(value:Boolean):void {
+			isPlatformAndroid = value;
+		}
+		
 		/**
 		 * To let you work out what data you need for logging in to this account. 
 		 * @param Number loginOption
@@ -626,7 +655,7 @@ package com.clarityenglish.ielts.view.login {
 		[Bindable(event="loginOptionChanged")]
 		public function changeLoginLabels():void {
 			// Override normal text with Last Minute
-			if (_productVersion == IELTSApplication.LAST_MINUTE) { 
+			if (_productVersion == IELTSApplication.LAST_MINUTE && !_hasIPrange) { 
 				loginKey_lbl = copyProvider.getCopyForId("loginID");
 				// gh#659
 				IPLoginKey_lbl = copyProvider.getCopyForId("loginID");
@@ -807,6 +836,19 @@ package com.clarityenglish.ielts.view.login {
 		public function onAccountMoreButton(event:MouseEvent):void {
 			var infoPage:String = (config.getAccountURL) ? config.getAccountURL : "www.roadtoielts.com";
 			var urlRequest:URLRequest = new URLRequest(infoPage);
+			navigateToURL(urlRequest, "_blank");
+		}
+		
+		protected function onlongRateButtonClick(event:MouseEvent):void {
+			var urlString:String;			
+			if (this.isPlatformipad) {
+				urlString = copyProvider.getCopyForId("ipadRateLink");
+			} else if (this.isPlatformAndroid) {
+				urlString = copyProvider.getCopyForId("androidRateLink");
+			}
+			
+			trace("androidRateLink: "+urlString);
+			var urlRequest:URLRequest = new URLRequest(urlString);
 			navigateToURL(urlRequest, "_blank");
 		}
 	

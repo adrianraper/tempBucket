@@ -35,6 +35,18 @@
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.dateFormatter = configProxy.getDateFormatter();
 			
+			// get the login platform
+			if (configProxy.isPlatformTablet()) {
+				view.isPlatformTablet = true;
+				if (configProxy.isPlatformiPad()) {
+					view.isPlatformipad = true;
+				} else if (configProxy.isPlatformAndroid()) {
+					view.isPlatformAndroid = true;
+				}
+			} else {
+				view.isPlatformTablet = false;
+			}
+			
 			// #234
 			view.productVersion = configProxy.getProductVersion();
 			view.licenceType = configProxy.getLicenceType();
@@ -49,7 +61,7 @@
 			// gh#278 TitleView can no longer get at ZoneView (is this true?) so can't use this flag.
 			view.isMediated = true; // #222
 			
-			Bind.fromProperty(bentoProxy, "selectedCourseNode").toProperty(view, "course");
+			Bind.fromProperty(bentoProxy, "selectedCourseNode").toProperty(view, "course");			
 			
 			// #514 If you are SCORM you don't want the course selector
 			// #378 Actually, you will still use it, just disable the courses that are hidden.

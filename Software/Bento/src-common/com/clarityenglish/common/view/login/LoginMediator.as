@@ -46,6 +46,18 @@ package com.clarityenglish.common.view.login {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.setLicencee(configProxy.getAccount().name);
 			
+			// get the login platform
+			if (configProxy.isPlatformTablet()) {
+				view.setPlatformTablet(true);
+				if (configProxy.isPlatformiPad()) {
+					view.setPlatformipad(true);
+				} else if (configProxy.isPlatformAndroid()) {
+					view.setPlatformAndroid(true);
+				}
+			} else {
+				view.setPlatformTablet(false);
+			}
+			
 			//trace("the product version in LoginM is "+ configProxy.getProductVersion());
 			view.setProductVersion(configProxy.getProductVersion());
 			view.setProductCode(configProxy.getProductCode());

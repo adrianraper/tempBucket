@@ -5,6 +5,7 @@
 	<loginOption>128</loginOption>
 	<dbHost>2</dbHost>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
+	<platform>tablet|Android</platform>
 	<channel name='android-rackspace' caption='Ch1'>
 		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
 	</channel>

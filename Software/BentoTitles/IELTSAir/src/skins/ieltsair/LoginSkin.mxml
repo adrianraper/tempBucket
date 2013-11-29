@@ -169,4 +169,7 @@
 	<!-- #479 -->
 	<s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#AAAAAA" right="3" bottom="52"/>
 	
+	<!--Rate Button-->
+	<s:Button id="longRateButton" right="50" top="70" buttonMode="true" useHandCursor="true"/>
+	
 </s:Skin>

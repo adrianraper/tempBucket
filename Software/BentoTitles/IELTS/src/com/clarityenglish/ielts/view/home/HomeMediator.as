@@ -39,6 +39,19 @@
 			view.accountName = configProxy.getConfig().accountName;
 			view.dateFormatter = configProxy.getDateFormatter();
 			
+			
+			// get the login platform
+			if (configProxy.isPlatformTablet()) {
+				view.isPlatformTablet = true;
+				if (configProxy.isPlatformiPad()) {
+					view.isPlatformipad = true;
+				} else if (configProxy.isPlatformAndroid()) {
+					view.isPlatformAndroid = true;
+				}
+			} else {
+				view.isPlatformTablet = false;
+			}
+			
 			// Inject data - but not default values
 			// TODO: not sure if this is necessary as its already done in BentoMediator (albeit with a default) - check this with Adrian
 			view.licenceType = configProxy.getLicenceType();

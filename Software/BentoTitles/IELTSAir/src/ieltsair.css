@@ -179,3 +179,11 @@ s|TitleWindow.feedbackTitleWindow {
 	/* #419 - CSS selectors for sizing don't seem to work so I have to create a whole new skin just to make the X button bigger :( */
 	skinClass: ClassReference("skins.ieltsair.titlewindows.FeedbackTitleWindowSkin");
 }
+
+s|Button#longRateButton {
+	skinClass: ClassReference("skins.ieltsair.rate.longRateButtonSkin");
+}
+
+s|Button#shortRateButton {
+	skinClass: ClassReference("skins.ieltsair.rate.shortRateButtonSkin");
+}

@@ -149,6 +149,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#659
 		public var xmlCourseFile:String;
 		
+		// gh#234
+		public var platform:String;
+		
 		/**
 		 * Developer option
 		 */
@@ -475,6 +478,10 @@ package com.clarityenglish.common.vo.config {
 				this.referrer = xml..referrer.toString();
 			}
 			//trace("config.xml has id=" + this.configID);
+			
+			// gh#234
+			if (xml..platform.toString())
+				this.platform = xml..platform.toString();
 		}
 		
 		/**

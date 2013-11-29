@@ -48,7 +48,7 @@ package com.clarityenglish.common.model {
 		private var config:Config;
 		
 		private var _dateFormatter:DateFormatter;
-		
+
 		/**
 		 * Configuration information comes from three sources
 		 * 1) config.xml. This holds base paths and other information that is common to all accounts, but differs between products
@@ -213,6 +213,17 @@ package com.clarityenglish.common.model {
 		
 		private function onConfigLoadError(e:IOErrorEvent):void {
 			log.error("Problem loading the config file: {0}", e.text);
+		}
+		
+		// gh#234
+		public function isPlatformTablet():Boolean {
+			return (config.platform.toLowerCase().indexOf('tablet') >= 0);
+		}
+		public function isPlatformiPad():Boolean {
+			return (config.platform.toLowerCase().indexOf('ipad') >= 0);
+		}
+		public function isPlatformAndroid():Boolean {
+			return (config.platform.toLowerCase().indexOf('android') >= 0);
 		}
 		
 		// Then methods to get parts of the configuration data

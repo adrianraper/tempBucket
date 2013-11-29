@@ -5,6 +5,7 @@
 	<dbHost>2</dbHost>
 	<productCode>55</productCode>
 	<courseFile>menu-{productVersion}.xml</courseFile>
+	<platform>browser</platform>
 	<channel name='aws' caption='aws'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
 	</channel>

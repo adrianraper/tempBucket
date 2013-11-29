@@ -8,6 +8,9 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.ielts.view.zone.courseselector.CourseSelector;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.navigateToURL;
 	
 	import mx.core.ISelectableList;
 	import mx.formatters.DateFormatter;
@@ -15,6 +18,7 @@ package com.clarityenglish.ielts.view.zone {
 	import org.osflash.signals.Signal;
 	import org.osmf.events.MediaPlayerStateChangeEvent;
 	
+	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.NavigatorContent;
 	import spark.components.ViewNavigator;
@@ -39,6 +43,12 @@ package com.clarityenglish.ielts.view.zone {
 		[SkinPart(required="true")]
 		public var testZoneViewNavigator:ViewNavigator;
 		
+		[SkinPart]
+		public var shortRateButton:Button;
+		
+		[SkinPart]
+		public var longRateButton:Button;
+		
 		[Bindable]
 		public var user:User;
 		
@@ -56,6 +66,9 @@ package com.clarityenglish.ielts.view.zone {
 		
 		private var _courseChanged:Boolean;
 		private var _course:XML;
+		private var _isPlatformTablet:Boolean;
+		private var _isPlatformipad:Boolean;
+		private var _isPlatformAndroid:Boolean;
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -97,6 +110,33 @@ package com.clarityenglish.ielts.view.zone {
 			course = data as XML;
 		}
 		
+		[Bindable]
+		public function get isPlatformTablet():Boolean {
+			return _isPlatformTablet;
+		}
+		
+		public function set isPlatformTablet(value:Boolean):void {
+			_isPlatformTablet = value;
+		}
+		
+		[Bindable]
+		public function get isPlatformipad():Boolean {
+			return _isPlatformipad;
+		}
+		
+		public function set isPlatformipad(value:Boolean):void {
+			_isPlatformipad = value;
+		}
+		
+		[Bindable]
+		public function get isPlatformAndroid():Boolean {
+			return _isPlatformAndroid;
+		}
+		
+		public function set isPlatformAndroid(value:Boolean):void {
+			_isPlatformAndroid = value;
+		}
+		
 		public function setCourseSelectorVisible(value:Boolean):void {
 			courseSelector.visible = value;
 		}
@@ -128,6 +168,31 @@ package com.clarityenglish.ielts.view.zone {
 				case testZoneViewNavigator:
 					instance.label = copyProvider.getCopyForId("testZoneViewNavigator");
 					break;
+				case shortRateButton:
+					shortRateButton.label = copyProvider.getCopyForId("shortRateButton");
+					shortRateButton.addEventListener(MouseEvent.CLICK, onRateButtonClick);
+					break;
+				case longRateButton:
+					longRateButton.label = copyProvider.getCopyForId("longRateButton");
+					longRateButton.addEventListener(MouseEvent.CLICK, onRateButtonClick);
+					break;
+			}
+		}
+		
+		protected override function getCurrentSkinState():String {
+			switch (productVersion) {
+				case BentoApplication.DEMO:
+					return "demo";
+				case IELTSApplication.TEST_DRIVE:
+					return "testDrive";
+				case IELTSApplication.FULL_VERSION:
+					return "fullVersion";
+				case IELTSApplication.LAST_MINUTE:
+					return "lastMinute";
+				case IELTSApplication.HOME_USER:
+					return "homeUser";
+				default:
+					return super.getCurrentSkinState();
 			}
 		}
 		
@@ -160,6 +225,18 @@ package com.clarityenglish.ielts.view.zone {
 		protected function onSectionNavigatorChange(event:Event):void {
 			// #486
 			lastSelectedSectionIdx = event.target.selectedIndex;
+		}
+		
+		protected function onRateButtonClick(event:MouseEvent):void {
+			var urlString:String;			
+			if (this.isPlatformipad) {
+				urlString = copyProvider.getCopyForId("ipadRateLink");
+			} else if (this.isPlatformAndroid) {
+				urlString = copyProvider.getCopyForId("androidRateLink");
+			}
+			
+			var urlRequest:URLRequest = new URLRequest(urlString);
+			navigateToURL(urlRequest, "_blank");
 		}
 		
 	}

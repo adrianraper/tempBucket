@@ -31,6 +31,9 @@
 		// gh#659
 		function setHasIPrange(value:Boolean):void;
 		function setProductCodes(productCodes:Array):void;
+		function setPlatformTablet(value:Boolean):void;
+		function setPlatformipad(value:Boolean):void;
+		function setPlatformAndroid(value:Boolean):void;
 	}
 	
 }
