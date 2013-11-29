@@ -38,11 +38,9 @@ components|XHTMLExerciseView s|TextInput {
 	widgets|VideoWidget {
 		skinClass: ClassReference("skinsair.rotterdam.unit.widgets.VideoWidgetSkin");
 	}
-	/*
 	widgets|ExerciseWidget {
 		skinClass: ClassReference("skinsair.rotterdam.unit.widgets.ExerciseWidgetSkin");
 	}
-	*/
 }
 
 player|PlayerApplication {
