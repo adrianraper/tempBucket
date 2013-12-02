@@ -133,7 +133,7 @@
 			<s:Label id="option2ContentLabel" top="340" left="25" width="210" fontSize="12" color="0x666666" />
 			<s:Button id="IPLoginStartButton" top="335" left="240" width="120" height="35" fontSize="18"/>
 		</s:Group>
-		<s:ButtonBar id="IPLoginButtonBar" top="183" left="45" visible="{hostComponent.getProductCodes().length > 1}" labelField="caption" requireSelection="true" includeIn="IPStates" />
+		<s:ButtonBar id="IPLoginButtonBar" top="183" left="45" visible="{hostComponent.getIPMatchedProductCodes().length > 1}" labelField="caption" requireSelection="true" includeIn="IPStates" />
 	</s:Group>	
 	
 	
