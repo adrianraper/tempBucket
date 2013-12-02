@@ -33,9 +33,8 @@ class Account extends Reportable {
 	public $selfRegister;
 	//gh#11
 	var $languageCode;
-	
 	// gh#659
-    var $productCodes = array();
+	var $IPMatchedProductCodes = array();
 	
 	/**
 	 * This is private since we get the real user object from the db in AccountOps for DMS (this is filled into $adminUser) and

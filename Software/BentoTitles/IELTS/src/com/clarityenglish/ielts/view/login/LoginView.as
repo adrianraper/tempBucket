@@ -202,7 +202,7 @@ package com.clarityenglish.ielts.view.login {
 		private var _verified:Boolean;
 		// gh#659
 		private var _hasIPrange:Boolean;
-		private var _productCodes:Array;
+		private var _IPMatchedProductCodes:Array;
 		
 		private var _currentState:String;
 		
@@ -343,19 +343,19 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		// gh#659
-		public function setHasIPrange(value:Boolean):void {
+		public function setHasMatchedIPrange(value:Boolean):void {
 			_hasIPrange = value;
 		}
 		
 		// gh#659
-		public function setProductCodes(value:Array):void {
-			_productCodes = value;
+		public function setIPMatchedProductCodes(value:Array):void {
+			_IPMatchedProductCodes = value;
 			dispatchEvent(new Event("productCodesChanged"));
 		}
 		
 		[Bindable(event="productCodesChanged")]
-		public function getProductCodes():Array {
-			return _productCodes;
+		public function getIPMatchedProductCodes():Array {
+			return _IPMatchedProductCodes;
 		}
 		
 		[Bindable(event="productVersionChanged")]
@@ -684,7 +684,7 @@ package com.clarityenglish.ielts.view.login {
 		// #254
 		public function onEnter(event:FlexEvent):void {
 			// gh#659
-			if (_productCodes && getProductCodes().length > 1) {
+			if (_IPMatchedProductCodes && getIPMatchedProductCodes().length > 1) {
 				config.productCode = IPLoginButtonBar.selectedItem.code;
 				config.paths.menuFilename = config.xmlCourseFile;
 				config.buildMenuFilename();
@@ -752,9 +752,9 @@ package com.clarityenglish.ielts.view.login {
 				case loginButton:
 					var user:User = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 					// gh#659
-					if (_productCodes && getProductCodes().length > 1) {
+					if (_IPMatchedProductCodes && getIPMatchedProductCodes().length > 1) {
 						// very hacky, in order to login to different module
-						config.productCode = IPLoginButtonBar.selectedItem.code;
+						config.productCode  = IPLoginButtonBar.selectedItem.code;
 						config.paths.menuFilename = config.xmlCourseFile;
 						config.buildMenuFilename();
 					}						
@@ -766,7 +766,7 @@ package com.clarityenglish.ielts.view.login {
 					break;
 				case IPLoginStartButton:
 					user =  new User();
-					if(getProductCodes().length > 1) {
+					if(getIPMatchedProductCodes().length > 1) {
 						config.productCode = IPLoginButtonBar.selectedItem.code;
 						config.paths.menuFilename = config.xmlCourseFile;
 						config.buildMenuFilename();

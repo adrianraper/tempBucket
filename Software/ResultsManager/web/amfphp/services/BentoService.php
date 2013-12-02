@@ -128,9 +128,7 @@ class BentoService extends AbstractService {
 		// gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
 		if (isset($config['ip'])) {
 			foreach ($account->titles as $thisTitle) {
-				if (!is_array($account->productCodes))
-					$account->productCodes = array();
-				array_push($account->productCodes, $thisTitle->productCode);
+				array_push($account->IPMatchedProductCodes, $thisTitle->productCode);
 			}
 		}
 		
@@ -199,24 +197,24 @@ class BentoService extends AbstractService {
 	 * It is separate from getAccountSettings so that the calling program can cope differently with the response 
 	 */
 	public function getIPMatch($config) {
-		
 		// gh#315 iPads don't send their IP, but you can pick it up here
-		if (!$config ['ip']) {
-			if (isset($_SERVER ['HTTP_X_FORWARDED_FOR'])) {
-				$config['ip'] = $_SERVER ['HTTP_X_FORWARDED_FOR'];
-			} elseif (isset($_SERVER['HTTP_TRUE_CLIENT_IP'])) {
-				$config['ip'] = $_SERVER['HTTP_TRUE_CLIENT_IP'];
-			} elseif (isset( $_SERVER["HTTP_CLIENT_IP"])) {
-				$config['ip'] = $_SERVER["HTTP_CLIENT_IP"];
+		if (! $config ['ip']) {
+			//$config ['ip'] = $_SERVER ['HTTP_CLIENT_IP'];
+			if (isset ( $_SERVER ['HTTP_X_FORWARDED_FOR'] )) {
+				$config ['ip']= $_SERVER ['HTTP_X_FORWARDED_FOR'];
+			} elseif (isset ( $_SERVER ['HTTP_TRUE_CLIENT_IP'] )) {
+				$config ['ip'] = $_SERVER ['HTTP_TRUE_CLIENT_IP'];
+			} elseif (isset ( $_SERVER ["HTTP_CLIENT_IP"] )) {
+				$config ['ip'] = $_SERVER ["HTTP_CLIENT_IP"];
 			} else {
-				$config['ip'] = $_SERVER["REMOTE_ADDR"];
+				$config ['ip'] = $_SERVER ["REMOTE_ADDR"];
 			}
-			AbstractService::$debugLog->notice("picked up ip as ".$config['ip']);
+			AbstractService::$debugLog->notice ( "picked up ip as " . $config ['ip'] );
 		} else {
-			AbstractService::$debugLog->notice("was passed ip as ".$config['ip']);
+			AbstractService::$debugLog->notice ( "was passed ip as " . $config ['ip'] );
 		}
-			
-		return $this->getAccountSettings($config);
+		
+		return $this->getAccountSettings ( $config );
 	}
 	
 	// Rewritten from RM version

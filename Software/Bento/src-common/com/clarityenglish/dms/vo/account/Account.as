@@ -47,7 +47,7 @@
 		public var licenceAttributes:Array;
 		
 		// gh#659
-		public var productCodes:Array;
+		public var IPMatchedProductCodes:Array;
 		
 		public function Account() {
 			
