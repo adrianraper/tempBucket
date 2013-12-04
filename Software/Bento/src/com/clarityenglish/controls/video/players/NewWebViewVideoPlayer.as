@@ -5,6 +5,7 @@ package com.clarityenglish.controls.video.players {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
+	import flash.utils.Dictionary;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -27,6 +28,18 @@ package com.clarityenglish.controls.video.players {
 		private var _visibleChanged:Boolean;
 		
 		private var dpiScaleFactor:Number = 1;
+		
+		protected static var videoPlayers:Dictionary = new Dictionary(true); // #749
+		
+		public static function hideAllVideo():void {
+			for (var videoPlayer:* in videoPlayers)
+				(videoPlayer as NewWebViewVideoPlayer).visible = false;
+		}
+		
+		public static function showAllVideo():void {
+			for (var videoPlayer:* in videoPlayers)
+				(videoPlayer as NewWebViewVideoPlayer).visible = true;
+		}
 		
 		public function NewWebViewVideoPlayer() {
 			if (!StageWebView)
@@ -58,6 +71,8 @@ package com.clarityenglish.controls.video.players {
 			addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			
+			videoPlayers[this] = true; // #749
+			
 			// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually
 			dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
 			
@@ -70,6 +85,8 @@ package com.clarityenglish.controls.video.players {
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			delete videoPlayers[this]; // #749
 			
 			// Destroy the StageWebView
 			destroy();

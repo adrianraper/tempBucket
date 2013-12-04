@@ -4,6 +4,7 @@ package com.clarityenglish.common.controller {
 	import com.clarityenglish.common.view.error.ErrorView;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
+	import com.clarityenglish.controls.video.players.NewWebViewVideoPlayer;
 	
 	import flash.display.DisplayObject;
 	
@@ -48,6 +49,8 @@ package com.clarityenglish.common.controller {
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
 			
+			NewWebViewVideoPlayer.hideAllVideo(); // #749
+			
 			// Show the close button
 			// TODO. It might be easier for the user to also have an OK button that does the same thing as this close.
 			// So hide the close button
@@ -70,6 +73,8 @@ package com.clarityenglish.common.controller {
 			errorView = null;
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
+			
+			NewWebViewVideoPlayer.showAllVideo(); // #749
 			
 			//gh #223
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
