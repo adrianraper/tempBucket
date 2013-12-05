@@ -29,7 +29,7 @@ package com.clarityenglish.controls.video.players {
 		
 		private var dpiScaleFactor:Number = 1;
 		
-		protected static var videoPlayers:Dictionary = new Dictionary(true); // #749
+		protected static var videoPlayers:Dictionary = new Dictionary(true); // gh#749
 		
 		public static function hideAllVideo():void {
 			for (var videoPlayer:* in videoPlayers)
@@ -71,7 +71,7 @@ package com.clarityenglish.controls.video.players {
 			addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
 			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			
-			videoPlayers[this] = true; // #749
+			videoPlayers[this] = true; // gh#749
 			
 			// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually
 			dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
@@ -86,7 +86,7 @@ package com.clarityenglish.controls.video.players {
 			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 			
-			delete videoPlayers[this]; // #749
+			delete videoPlayers[this]; // gh#749
 			
 			// Destroy the StageWebView
 			destroy();

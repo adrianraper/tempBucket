@@ -49,7 +49,7 @@ package com.clarityenglish.common.controller {
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
 			
-			NewWebViewVideoPlayer.hideAllVideo(); // #749
+			NewWebViewVideoPlayer.hideAllVideo(); // gh#749
 			
 			// Show the close button
 			// TODO. It might be easier for the user to also have an OK button that does the same thing as this close.
@@ -74,7 +74,7 @@ package com.clarityenglish.common.controller {
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
 			
-			NewWebViewVideoPlayer.showAllVideo(); // #749
+			NewWebViewVideoPlayer.showAllVideo(); // gh#749
 			
 			//gh #223
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
