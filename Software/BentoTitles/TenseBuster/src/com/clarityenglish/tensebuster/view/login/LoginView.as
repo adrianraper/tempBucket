@@ -81,9 +81,21 @@ package com.clarityenglish.tensebuster.view.login
 		[Bindable]
 		public var loginPassword_lbl:String;
 		
+		[Bindable]
+		public var isPlatformTablet:Boolean;
+		
+		[Bindable]
+		public var isPlatformipad:Boolean;
+		
+		[Bindable]
+		public var isPlatformAndroid:Boolean;
+		
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
 		private var _verified:Boolean;
+		// gh#659
+		private var _hasIPrange:Boolean;
+		private var _IPMatchedProductCodes:Array;
 		
 		private var _currentState:String;
 		
@@ -162,6 +174,17 @@ package com.clarityenglish.tensebuster.view.login
 			}
 		}
 		
+		// gh#659
+		public function setHasMatchedIPrange(value:Boolean):void {
+			_hasIPrange = value;
+		}
+		
+		// gh#659
+		public function setIPMatchedProductCodes(value:Array):void {
+			_IPMatchedProductCodes = value;
+			dispatchEvent(new Event("productCodesChanged"));
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -221,6 +244,18 @@ package com.clarityenglish.tensebuster.view.login
 		// gh#41
 		public function setNoAccount(value:Boolean):void {
 			noAccount = value;
+		}
+		
+		public function setPlatformTablet(value:Boolean):void {
+			isPlatformTablet = value;
+		}
+		
+		public function setPlatformipad(value:Boolean):void {
+			isPlatformipad = value;
+		}
+		
+		public function setPlatformAndroid(value:Boolean):void {
+			isPlatformAndroid = value;
 		}
 		
 		/**

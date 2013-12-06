@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="416.712" viewWidth="403.305" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="416.712" d:pageWidth="403.305" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Path y="0.425293" winding="nonZero" ai:seqID="1" data="M393.305 31.8926 96 31.8926 96 4.72852C96 2.12695 93.8154 0 91.1436 0L4.8584 0C2.18555 0 0 2.12695 0 4.72852L0 406.127C0 411.481 4.5 415.862 10 415.862L393.305 415.862C398.805 415.862 403.305 411.481 403.305 406.127L403.305 41.627C403.305 36.2725
+ 398.805 31.8926 393.305 31.8926Z">
+        <fill>
+          <LinearGradient x="201.652" y="0" scaleX="415.862" rotation="90">
+            <GradientEntry ratio="0.806452" color="#FFFFFF"/>
+            <GradientEntry ratio="0.866631" color="#FCFCFC"/>
+            <GradientEntry ratio="0.914376" color="#EFEFEF"/>
+            <GradientEntry ratio="0.958607" color="#D7D7D7"/>
+            <GradientEntry ratio="1" color="#B3B3B3"/>
+          </LinearGradient>
+        </fill>
+      </Path>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

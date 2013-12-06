@@ -146,6 +146,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#371
 		public var otherParameters:Object;
 		
+		// gh#659
+		public var xmlCourseFile:String;
+		
 		// gh#476
 		public var useCacheBuster:Boolean;
 		
@@ -288,7 +291,8 @@ package com.clarityenglish.common.vo.config {
 		/**
 		 * Do any substitutions that you can for the menu filename
 		 */
-		private function buildMenuFilename():void {
+		// gh#659 change private to public in order to reassigne the menu file name
+		public function buildMenuFilename():void {
 			// For loginService, the config.xml might not know which productCode you are
 			// <courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 			
@@ -374,10 +378,10 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			// Name of the menu file (called courseFile to fit in with Orchid)
-			var courseFile:String = xml..courseFile.toString();
-			if (courseFile) {
-				this.configFilename = courseFile;
-				this.paths.menuFilename = courseFile;
+			xmlCourseFile = xml..courseFile.toString();
+			if (xmlCourseFile) {
+				this.configFilename = xmlCourseFile;
+				this.paths.menuFilename = xmlCourseFile;
 			} else {
 				this.configFilename = "menu.xml";
 				this.paths.menuFilename = "menu.xml";
