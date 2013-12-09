@@ -346,6 +346,25 @@ Now, click on the 'Start the test' button on the left.
 <language name="Malaysia" code="MY" mediaFolder="EN">
 <comment>This is used to provide a call to action for Malaysia. It is controlled by &language=MY in location.txt</comment>
 <group name="messages">
+<lit name="certificateBCSummary"><![CDATA[<font size="14"><br/><br/>This was the first part of the LearnEnglish Level test.</font>]]></lit>
+<lit name="certificateCEFSummary"><![CDATA[<font size="14">The test result is a CEF level for your<br/>grammar, vocabulary and reading.</font>]]></lit>
+<lit name="certificateCEFDetail"><![CDATA[<font size="14"><b>What next?</b><br/><br/>Please email or call us to find out your result.<font size="6"><br/><br/></font><u><a href='mailTo:kualalumpur@britishcouncil.org.my'>kualalumpur@britishcouncil.org.my</a></u>&nbsp;&nbsp;03 2723 7900<font size="6"><br/><br/></font></font>]]></lit>
+<lit name="certificateBCDisclaimer"><![CDATA[<font size="11">Please be aware that level test scores are only to be used for placement into British Council courses and not for any other reason.</font>]]></lit>
+<lit name="certificateBCContact"><![CDATA[ ]]></lit>
+<lit name="certificateHeader">[unit]. Test taken by [name]</lit>
+<lit name="certificateBCLevel-Starter">Starter</lit>
+<lit name="certificateBCLevel-Elementary">Elementary</lit>
+<lit name="certificateBCLevel-Pre-Intermediate">Pre-Intermediate</lit>
+<lit name="certificateBCLevel-Intermediate">Intermediate</lit>
+<lit name="certificateBCLevel-Upper-Intermediate">Upper Intermediate</lit>
+<lit name="certificateBCLevel-Advanced">Advanced</lit>
+<lit name="certificateBCLevel-Advanced-Plus">Advanced Plus</lit>
+<lit name="certificateLayout"><![CDATA[[BCSummary]<br/>[CEFSummary]]]></lit>
+</group>
+</language>
+<language name="xxMalaysia" code="xxMY" mediaFolder="EN">
+<comment>This is used to provide a call to action for Malaysia. It is controlled by &language=MY in location.txt</comment>
+<group name="messages">
 <lit name="certificateBCSummary"><![CDATA[<font size="12">This was the first part of the LearnEnglish<br/>Level test. The level test indicates your level is:<br/><b>British Council Level: [BCLevel]</b></font>]]></lit>
 <lit name="certificateCEFSummary"><![CDATA[<font size="12"><b>CEF Level: [CEFLevel]</b><br/>grammar=[grammarCEF], vocabulary=[vocabCEF], reading=[readingCEF]<font>]]></lit>
 <lit name="certificateCEFDetail"><![CDATA[<font size="12"><b>What next?</b><br/><br/>The next step is a short speaking test with a teacher either face to face or via Skype to confirm your level. Please email or call us on:<font size="6"><br/><br/></font><u><a href='mailTo:kualalumpur@britishcouncil.org.my'>kualalumpur@britishcouncil.org.my</a></u>&nbsp;&nbsp;03 2723 7900<font size="6"><br/><br/></font>After the speaking assessment, the teacher will explain your overall level in more detail and advise you of the best course for you.</font>]]></lit>
