@@ -367,6 +367,8 @@
 			<lit name="fullVersionLabel">full version?</lit>
 			<lit name="moreButton">To find out more</lit>
 			<lit name="moreURL"><![CDATA[http://www.ieltspractice.com/]]></lit>
+			<lit name="forgotPasswordButton">Forgot your password?</lit>
+			<lit name="forgotPasswordLink"><![CDATA[http://{domain}/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
 		</group>
 	</language>
 

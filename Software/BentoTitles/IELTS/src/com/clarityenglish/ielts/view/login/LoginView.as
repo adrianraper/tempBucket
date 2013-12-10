@@ -168,6 +168,9 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var longRateButton:Button;
 		
+		[SkinPart]
+		public var normalLoginForgotPasswordButton:Button;
+		
 		[Bindable]
 		public var IPLoginKey_lbl:String;	
 		
@@ -340,6 +343,10 @@ package com.clarityenglish.ielts.view.login {
 		}
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
 		}
 		
 		// gh#659
@@ -576,6 +583,9 @@ package com.clarityenglish.ielts.view.login {
 				case longRateButton:
 					longRateButton.label = copyProvider.getCopyForId("longRateButton");
 					longRateButton.addEventListener(MouseEvent.CLICK, onlongRateButtonClick);
+					break;
+				case normalLoginForgotPasswordButton:
+					normalLoginForgotPasswordButton.label = copyProvider.getCopyForId("forgotPasswordButton");
 					break;
 			}
 		}

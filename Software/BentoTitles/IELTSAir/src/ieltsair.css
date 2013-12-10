@@ -95,6 +95,10 @@ login|LoginView s|ButtonBar#IPLoginButtonBar {
 	skinClass: ClassReference("skins.ieltsair.login.IPLoginButtonBarSkin");
 }
 
+login|LoginView s|Button#normalLoginForgotPasswordButton {
+	skinClass: ClassReference("skins.ieltsair.login.ForgotPasswordButtonSkin");
+}
+
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ieltsair.TitleSkin");
