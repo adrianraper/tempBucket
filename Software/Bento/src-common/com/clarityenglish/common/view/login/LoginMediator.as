@@ -50,7 +50,7 @@ package com.clarityenglish.common.view.login {
 			if (configProxy.isPlatformTablet()) {
 				view.setPlatformTablet(true);
 				if (configProxy.isPlatformiPad()) {
-					view.setPlatformipad(true);
+					view.setPlatformiPad(true);
 				} else if (configProxy.isPlatformAndroid()) {
 					view.setPlatformAndroid(true);
 				}

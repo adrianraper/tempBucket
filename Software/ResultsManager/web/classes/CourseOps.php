@@ -93,7 +93,7 @@ class CourseOps {
 	public function courseSave($filename, $menuXml) {
 		// Protect again directory traversal attacks; the filename *must* be in the form <some hex value>/menu.xml otherwise we are being fiddled with
 		if (preg_match("/^([0-9a-f]+)\/menu\.xml$/", $filename, $matches) != 1) {
-			throw $this->copyOps->getExceptionForId("errorSavingCourse");
+			throw $this->copyOps->getExceptionForId("errorSavingCourse", array("reason" => "corrupt file name"));
 		}
 		
 		// Get the course id
@@ -101,10 +101,9 @@ class CourseOps {
 		
 		// Check the file exists
 		$menuXMLFilename = "$this->accountFolder/$filename";
-		if (!file_exists($menuXMLFilename)) {
-			throw $this->copyOps->getExceptionForId("errorSavingCourse");
-		}
-		throw $this->copyOps->getExceptionForId("errorSavingCourse");
+		if (!file_exists($menuXMLFilename))
+			throw $this->copyOps->getExceptionForId("errorSavingCourse", array("reason" => "menu.xml doesn't exist"));
+			
 		$db = $this->db;
 		$copyOps = $this->copyOps;
 		$accountFolder = $this->accountFolder;

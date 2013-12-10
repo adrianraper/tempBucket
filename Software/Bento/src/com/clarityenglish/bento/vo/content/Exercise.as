@@ -24,7 +24,7 @@ package com.clarityenglish.bento.vo.content {
 		private var _model:Model;
 		
 		// gh#740
-		private var _isExerciseMarked = false;
+		private var _isExerciseMarked:Boolean = false;
 		
 		// The values of enabledFlag come from Orchid
 		public static const EF_MENU_ON:Number = 1;

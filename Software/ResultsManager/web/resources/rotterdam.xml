@@ -58,7 +58,7 @@
 			<lit name="errorVideoLoad" code="602">This URL isn't recognised as a YouTube video. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY</lit>
             <lit name="contentBlockedWarning" code="603">This device can't link to the content for this item. Please try to access the course from a computer browser.</lit>
 			
-			<lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com. ({reason})</lit>
 			<lit name="errorSecurity" code="701">Security error</lit>
 			<lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
 			<lit name="errorSavingCourseDates" code="703">Error saving publication dates for this course.</lit>

@@ -85,7 +85,7 @@ package com.clarityenglish.tensebuster.view.login
 		public var isPlatformTablet:Boolean;
 		
 		[Bindable]
-		public var isPlatformipad:Boolean;
+		public var isPlatformiPad:Boolean;
 		
 		[Bindable]
 		public var isPlatformAndroid:Boolean;
@@ -250,8 +250,8 @@ package com.clarityenglish.tensebuster.view.login
 			isPlatformTablet = value;
 		}
 		
-		public function setPlatformipad(value:Boolean):void {
-			isPlatformipad = value;
+		public function setPlatformiPad(value:Boolean):void {
+			isPlatformiPad = value;
 		}
 		
 		public function setPlatformAndroid(value:Boolean):void {

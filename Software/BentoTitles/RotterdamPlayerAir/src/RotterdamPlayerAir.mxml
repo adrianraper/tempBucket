@@ -42,7 +42,7 @@
 						break;
 					case "AND":
 						// Set the Android config xml file as well as getting the prefix, product code and font size from the iOS settings
-						FlexGlobals.topLevelApplication.parameters.configFile = "ios-config.xml";
+						FlexGlobals.topLevelApplication.parameters.configFile = "android-config.xml";
 						XHTMLImporter.media = "android";
 						break
 					default:

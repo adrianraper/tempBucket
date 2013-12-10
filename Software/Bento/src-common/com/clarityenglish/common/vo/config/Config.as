@@ -156,7 +156,7 @@ package com.clarityenglish.common.vo.config {
 		public var randomizedTestQuestionTotalNumber:Number;
 		
 		// gh#234
-		public var platform:String;
+		public var platform:String = 'browser';
 		
 		// gh#224
 		public var customisation:XML;
@@ -507,10 +507,6 @@ package com.clarityenglish.common.vo.config {
 			// gh#224
 			if (xml..customisation)
 				this.customisation = xml..customisation[0];
-			
-			// gh#234
-			if (xml..platform.toString())
-				this.platform = xml..platform.toString();
 		}
 		
 		/**
