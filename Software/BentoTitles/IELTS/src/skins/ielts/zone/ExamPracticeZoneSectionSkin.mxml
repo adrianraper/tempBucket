@@ -13,7 +13,7 @@
 	</fx:Metadata>
 	
 	<fx:Script>
-		<![CDATA[
+		<![CDATA[			
 			import mx.binding.utils.BindingUtils;
 			import mx.binding.utils.ChangeWatcher;
 			import mx.events.FlexEvent;
@@ -73,8 +73,10 @@
 				<s:DataRenderer width="386" addedToStage="onAddedToStage(event)" removedFromStage="onRemovedFromStage(event)">
 					<fx:Script>
 						<![CDATA[
+							import com.clarityenglish.bento.BentoApplication;
 							import com.clarityenglish.bento.events.ExerciseEvent;
 							import com.clarityenglish.common.model.interfaces.CopyProvider;
+							import com.clarityenglish.ielts.IELTSApplication;
 							import com.clarityenglish.ielts.view.zone.ZoneView;
 							
 							import flash.utils.setTimeout;
@@ -120,7 +122,30 @@
 										practiceLabel.text = data.@caption;
 									} else {
 										practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
+										// gh#759
+										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion);
+										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion);
 									}
+								}
+							}
+							
+							// gh#759
+							protected function getToolTip(productVersion:String):String {
+								switch (productVersion) {
+									case IELTSApplication.FULL_VERSION:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notCurAvailable");
+										break;
+									case IELTSApplication.LAST_MINUTE:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFV");
+										break;
+									case IELTSApplication.TEST_DRIVE:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableLM");
+										break;
+									case BentoApplication.DEMO:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailbleDemo");
+										break;
+									default:
+										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailble");
 								}
 							}
 							
@@ -134,8 +159,13 @@
 					
 					<s:HGroup top="295" gap="10" horizontalCenter="0">
 						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
-						<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data as XML)" />
-						<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data as XML, 'answerHref')" />
+						<!--gh#759 using group to show tooltip when button is disabled-->
+						<s:Group id="practiceTestGroup">
+							<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data as XML)" />
+						</s:Group>
+						<s:Group id="answerKeyGroup">
+							<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data as XML, 'answerHref')" />
+						</s:Group>				
 					</s:HGroup>
 				</s:DataRenderer>
 			</fx:Component>

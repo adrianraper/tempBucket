@@ -4,6 +4,7 @@
 	<developer>none</developer>
 	<dbHost>2</dbHost>
 	<language>ZH</language>
+	<platform>browser</platform>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<channel name='vimeo' caption='Vimeo'>
 		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
