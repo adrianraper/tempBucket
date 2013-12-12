@@ -12,16 +12,25 @@ package com.clarityenglish.bento.vo.content.transform {
 		override public function transform(xml:XML):void {
 			namespace xhtml = "http://www.w3.org/1999/xhtml";
 			use namespace xhtml;
-			
 			// #338 - If courseID is defined, disable the other courses.  If you get back a unit, get it's course too for inverted-hiding as well as the other units.
 			// Road to IELTS has a group ID within a unit for an extra level of interface grouping.  Pick that up too.
 			if (directStart) {
-				if (directStart.exerciseID)
-					directStart.unitID = xml..unit.(descendants("exercise").@id.contains(directStart.exerciseID))[0].@id.toString();
-				
-				if (directStart.unitID)
-					directStart.courseID = xml..course.(descendants("unit").@id.contains(directStart.unitID))[0].@id.toString();
-				
+				if (directStart.exerciseID) {
+					//directStart.unitID = xml..unit.(descendants("exercise").@id.contains(directStart.exerciseID))[0].@id.toString();
+					var exerciseXML:XML = xml..unit.exercise.(@id == directStart.exerciseID)[0];
+					directStart.unitID = exerciseXML.parent().@id.toString();
+				}
+					
+
+				if (directStart.unitID) {
+					// gh#761 
+					var unitXML:XML = xml..course.unit.(@id == directStart.unitID)[0];
+					directStart.courseID = unitXML.parent().@id.toString();
+					// cannot get the parent course ID					
+					//directStart.courseID = xml..course.(descendants("unit").@id.contains(directStart.unitID))[0].@id.toString();
+				}
+				trace("course ID: "+unitXML.parent());					
+
 				if (directStart.courseID) {
 					for each (var course:XML in xml..course) {
 						if (course.@id == directStart.courseID) {

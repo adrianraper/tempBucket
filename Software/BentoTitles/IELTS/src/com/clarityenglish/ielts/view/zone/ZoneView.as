@@ -6,6 +6,7 @@ package com.clarityenglish.ielts.view.zone {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.zone.courseselector.CourseSelector;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -141,6 +142,28 @@ package com.clarityenglish.ielts.view.zone {
 			courseSelector.visible = value;
 		}
 		
+		// gh#761
+		protected override function updateViewFromXHTML(xhtml:XHTML):void {
+			super.updateViewFromXHTML(xhtml);
+
+			for each (var menuCourse:XML in menu.course) {
+				switch (menuCourse.@["class"].toString()) {
+					case "reading":
+						if (courseSelector.reading) courseSelector.reading.enabled = !(menuCourse.hasOwnProperty("@enabledFlag") && (Number(menuCourse.@enabledFlag.toString()) & 8));
+						break;
+					case "listening":
+						if (courseSelector.listening) courseSelector.listening.enabled = !(menuCourse.hasOwnProperty("@enabledFlag") && (Number(menuCourse.@enabledFlag.toString()) & 8));
+						break;
+					case "speaking":
+						if (courseSelector.speaking) courseSelector.speaking.enabled = !(menuCourse.hasOwnProperty("@enabledFlag") && (Number(menuCourse.@enabledFlag.toString()) & 8));
+						break;
+					case "writing":
+						if (courseSelector.writing) courseSelector.writing.enabled = !(menuCourse.hasOwnProperty("@enabledFlag") && (Number(menuCourse.@enabledFlag.toString()) & 8));
+						break;
+				}
+			}
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -193,6 +216,35 @@ package com.clarityenglish.ielts.view.zone {
 					return "homeUser";
 				default:
 					return super.getCurrentSkinState();
+			}
+		}
+		
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			// gh#761
+			if (_courseChanged) {
+				for each (var unit:XML in course.unit) {
+					switch (unit.@['class'].toString()) {
+						case "question-zone":
+							if (questionZoneViewNavigator) questionZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
+							// set the first selected view navigator for direct start
+							if (questionZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 0;
+							break;
+						case "advice-zone":
+							if (adviceZoneViewNavigator) adviceZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
+							if (adviceZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 1;
+							break;
+						case "practice-zone":
+							if (practiceZoneViewNavigator) practiceZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
+							if (practiceZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 2;
+							break;
+						case "exam-practice":							
+							if (testZoneViewNavigator) testZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
+							if (testZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 3;
+							break;
+					}
+				}
 			}
 		}
 		

@@ -32,8 +32,8 @@ package com.clarityenglish.ielts.controller {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;			
 			var transforms:Array = [ new ProgressExerciseScoresTransform(),
 									 new ProgressSummaryTransform(),
-									 new HiddenContentTransform(),
-									 new DirectStartDisableTransform(configProxy.getDirectStart()) ];
+									 new HiddenContentTransform()
+									 /* gh#761 new DirectStartDisableTransform(configProxy.getDirectStart())*/ ];
 			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
 			
 			facade.registerMediator(new IELTSApplicationMediator(note.getBody()));

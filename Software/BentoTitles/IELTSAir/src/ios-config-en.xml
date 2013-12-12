@@ -36,7 +36,7 @@
     <registerURL>http://takeielts.britishcouncil.org/</registerURL>
     <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
     
-	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
 	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
 	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
 	

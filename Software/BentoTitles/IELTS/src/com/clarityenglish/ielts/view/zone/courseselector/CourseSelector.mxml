@@ -140,18 +140,10 @@
 					Tweener.addTween(listeningImage, {alpha: 0, time: shortTweenTime});
 					Tweener.addTween(speakingImage, {alpha: 0, time: shortTweenTime});
 					Tweener.addTween(writingImage, {alpha: 0, time: shortTweenTime});
-					Tweener.addTween(reading, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear", onComplete: function():void {
-						reading.enabled = false;
-					}});
-					Tweener.addTween(listening, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						listening.enabled = true;
-					}});
-					Tweener.addTween(speaking, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						speaking.enabled = true;
-					}});
-					Tweener.addTween(writing, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						writing.enabled = true;
-					}});
+					Tweener.addTween(reading, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(listening, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(speaking, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(writing, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
 				}
 			}
 			
@@ -162,18 +154,10 @@
 					Tweener.addTween(speakingImage, {alpha: 0, time: 0.5});
 					Tweener.addTween(writingImage, {alpha: 0, time: 0.5});
 					Tweener.addTween(readingImage, {alpha: 0, time: 0.5});
-					Tweener.addTween(listening, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear", onComplete: function():void {
-						listening.enabled = false;
-					}});
-					Tweener.addTween(speaking, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						speaking.enabled = true;
-					}});
-					Tweener.addTween(writing, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						writing.enabled = true;
-					}});
-					Tweener.addTween(reading, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						reading.enabled = true;
-					}});
+					Tweener.addTween(listening, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(speaking, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(writing, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(reading, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
 				}
 			}
 			
@@ -184,18 +168,10 @@
 					Tweener.addTween(writingImage, {alpha: 0, time: 0.5});
 					Tweener.addTween(readingImage, {alpha: 0, time: 0.5});
 					Tweener.addTween(listeningImage, {alpha: 0, time: 0.5});
-					Tweener.addTween(speaking, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear", onComplete: function():void {
-						speaking.enabled = false;
-					}});
-					Tweener.addTween(writing, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						writing.enabled = true;
-					}});
-					Tweener.addTween(reading, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						reading.enabled = true;
-					}});
-					Tweener.addTween(listening, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						listening.enabled = true;
-					}});
+					Tweener.addTween(speaking, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(writing, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(reading, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(listening, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
 				}
 			}
 			
@@ -206,18 +182,10 @@
 					Tweener.addTween(readingImage, {alpha: 0, time: 0.5});
 					Tweener.addTween(listeningImage, {alpha: 0, time: 0.5});
 					Tweener.addTween(speakingImage, {alpha: 0, time: 0.5});
-					Tweener.addTween(writing, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear", onComplete: function():void {
-						writing.enabled = false;
-					}});
-					Tweener.addTween(reading, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						reading.enabled = true;
-					}});
-					Tweener.addTween(listening, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						listening.enabled = true;
-					}});
-					Tweener.addTween(speaking, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear", onStart: function():void {
-						speaking.enabled = true;
-					}});
+					Tweener.addTween(writing, {x: ActivePos_x, y: ActivePos_y, scaleX: 1.5, scaleY: 1.5, _bezier: array[set][0], time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(reading, {x: FirstPos_x, y: FirstPos_y, _bezier: array[set][1], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(listening, {x: SecondPos_x, y: SecondPos_y, _bezier: array[set][2], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
+					Tweener.addTween(speaking, {x: ThirdPos_x, y: ThirdPos_y, _bezier: array[set][3], scaleX: 1, scaleY: 1, time: shortTweenTime, transition: "linear"});
 				}
 			}
 			

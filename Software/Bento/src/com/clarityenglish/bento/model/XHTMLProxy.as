@@ -2,8 +2,10 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.XmlTransform;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -21,6 +23,7 @@ package com.clarityenglish.bento.model {
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
+	import mx.utils.ObjectUtil;
 	
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.rpc.ResultResponder;
@@ -146,9 +149,14 @@ package com.clarityenglish.bento.model {
 			if (href.serverSide) {
 				// Determine if the href matches any of the registered transforms and if so add those transforms
 				href.resetTransforms();
+				// gh#761 Because the configProxy.getDirectStart() has not been set in IELTSStartupCommand, so I put DirectStartDisableTransform here 
+				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+				if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0)
+					registerTransforms([new DirectStartDisableTransform(configProxy.getDirectStart())], [ Href.MENU_XHTML ]);
+				
 				for each (var transformDefinition:TransformDefinition in transformDefinitions)
 					transformDefinition.injectTransforms(href);
-				
+
 				// Load the xml file through an AMFPHP serverside call to xhtmlLoad($href) GH #84
 				new RemoteDelegate("xhtmlLoad", [ href ]).execute().addResponder(new ResultResponder(
 					function(e:ResultEvent, data:AsyncToken):void {
