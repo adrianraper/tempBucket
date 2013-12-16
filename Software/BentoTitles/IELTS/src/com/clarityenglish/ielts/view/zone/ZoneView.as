@@ -70,6 +70,8 @@ package com.clarityenglish.ielts.view.zone {
 		private var _isPlatformTablet:Boolean;
 		private var _isPlatformipad:Boolean;
 		private var _isPlatformAndroid:Boolean;
+		// gh#761
+		private var _isCourseDirectLink:Boolean;
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -140,6 +142,16 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public function setCourseSelectorVisible(value:Boolean):void {
 			courseSelector.visible = value;
+		}
+		
+		// gh#761
+		[Bindable]
+		public function get isCourseDirectLink():Boolean {
+			return _isCourseDirectLink;
+		}
+		
+		public function set isCourseDirectLink(value:Boolean):void {
+			_isCourseDirectLink = value;
 		}
 		
 		// gh#761
@@ -223,7 +235,7 @@ package com.clarityenglish.ielts.view.zone {
 			super.commitProperties();
 			
 			// gh#761
-			if (_courseChanged) {
+			if (_courseChanged && !isCourseDirectLink) {
 				for each (var unit:XML in course.unit) {
 					switch (unit.@['class'].toString()) {
 						case "question-zone":

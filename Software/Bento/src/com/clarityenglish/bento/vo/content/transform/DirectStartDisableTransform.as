@@ -28,8 +28,7 @@ package com.clarityenglish.bento.vo.content.transform {
 					directStart.courseID = unitXML.parent().@id.toString();
 					// cannot get the parent course ID					
 					//directStart.courseID = xml..course.(descendants("unit").@id.contains(directStart.unitID))[0].@id.toString();
-				}
-				trace("course ID: "+unitXML.parent());					
+				}					
 
 				if (directStart.courseID) {
 					for each (var course:XML in xml..course) {

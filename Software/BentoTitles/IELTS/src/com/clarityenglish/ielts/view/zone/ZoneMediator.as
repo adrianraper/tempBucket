@@ -50,6 +50,13 @@
 			// #234
 			view.productVersion = configProxy.getProductVersion();
 			view.licenceType = configProxy.getLicenceType();
+			// gh#761
+			var directStart:Object = configProxy.getDirectStart();
+			if (directStart.unitID || directStart.exerciseID) {
+				view.isCourseDirectLink= false;
+			} else {
+				view.isCourseDirectLink = true;
+			}
 			
 			// listen for these signals
 			view.courseSelect.add(onCourseSelected);
