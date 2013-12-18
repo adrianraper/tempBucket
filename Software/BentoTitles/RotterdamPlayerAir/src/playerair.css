@@ -42,6 +42,11 @@ components|XHTMLExerciseView s|TextInput {
 		skinClass: ClassReference("skinsair.rotterdam.unit.widgets.ExerciseWidgetSkin");
 	}
 }
+@media (os-platform: "Android") {
+	widgets|ExerciseWidget {
+		skinClass: ClassReference("skinsair.rotterdam.unit.widgets.ExerciseWidgetSkin");
+	}
+}
 
 player|PlayerApplication {
 	skinClass: ClassReference("skins.rotterdam.playerair.PlayerApplicationSkin");
