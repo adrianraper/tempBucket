@@ -165,6 +165,7 @@
 			<lit name="practiceZoneComponent">Practice zone</lit>
 			<lit name="notCurAvailable">Not currently available.</lit>
 			<lit name="onlyAvailableFV">Only available in the Full Version. Click above to upgrade.</lit>
+			<lit name="onlyAvailableFVWebsite">Only available in the Full Version. Subscribe at www.ieltspractice.com.</lit>
 			<lit name="onlyAvailableLM">Only available in the Last Minute version. Click above to upgrade.</lit>
 			<lit name="notAvailbleDemo">Not available in this demo.</lit>
 			<lit name="notAvailblePracticeTest">This practice test is not in this version.</lit>
@@ -394,7 +395,9 @@
 			<lit name="examZoneInstructionLabel1">下载完整试题。点击音频按钮，进行听力模拟测试。在测试过程中，一旦点击开始播放就不能暂停。</lit>
 			<lit name="examZoneInstructionLabel2">下载完整试题及答案。</lit>
 		    <lit name="examZoneNoTestLabel">本部分不包含可下载的测试练习资料。请观看Advice and tutorials中的视频教程，了解口语考试中的实际情形。</lit>
+			<lit name="onlyAvailableLM">仅在冲刺版本內才能打开此内容。点击上图按钮进行升级。</lit>
 			<lit name="onlyAvailableFV">仅在完整版本內才能打开此内容。点击上图按钮进行升级。</lit>
+			<lit name="onlyAvailableFVWebsite">仅在完整版本內才能打开此内容，詳情請瀏覽www.ieltspractice.com。</lit>
 			<lit name="progressNavBarCoverage">我的完成率</lit>
 			<lit name="progressNavBarCompare">比较</lit>
 			<lit name="progressNavBarAnalyse">分析</lit>

@@ -102,6 +102,10 @@
 								callLater(invalidateDisplayList);
 							}
 							
+							public function getSequenceNumber(data:Object):Number {
+								return (owner as List).dataProvider.getItemIndex(data) + 1;
+							}
+							
 							override public function set data(value:Object):void {
 								super.data = value;
 								
@@ -123,14 +127,14 @@
 									} else {
 										practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
 										// gh#759
-										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion);
-										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion);
+										practiceTestGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
+										answerKeyGroup.toolTip = getToolTip(outerDocument.hostComponent.productVersion, getSequenceNumber(data));
 									}
 								}
 							}
 							
 							// gh#759
-							protected function getToolTip(productVersion:String):String {
+							protected function getToolTip(productVersion:String, sequenceNumber:Number = 0):String {
 								switch (productVersion) {
 									case IELTSApplication.FULL_VERSION:
 										return outerDocument.hostComponent.getCopyProvider().getCopyForId("notCurAvailable");
@@ -139,6 +143,9 @@
 										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFV");
 										break;
 									case IELTSApplication.TEST_DRIVE:
+										if (sequenceNumber == 3) {
+											return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableFVWebsite");
+										}
 										return outerDocument.hostComponent.getCopyProvider().getCopyForId("onlyAvailableLM");
 										break;
 									case BentoApplication.DEMO:
