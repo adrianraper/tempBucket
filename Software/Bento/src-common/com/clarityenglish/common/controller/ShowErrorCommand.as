@@ -49,7 +49,10 @@ package com.clarityenglish.common.controller {
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
 			
-			NewWebViewVideoPlayer.hideAllVideo(); // gh#749
+			// TODO This is not a very transparent way to check if there is StageWebView video that we need to hide
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (configProxy.isPlatformiPad())
+				NewWebViewVideoPlayer.hideAllVideo(); // gh#749
 			
 			// Show the close button
 			// TODO. It might be easier for the user to also have an OK button that does the same thing as this close.
@@ -74,11 +77,10 @@ package com.clarityenglish.common.controller {
 			PopUpManager.removePopUp(titleWindow);
 			titleWindow = null;
 			
-			NewWebViewVideoPlayer.showAllVideo(); // gh#749
-			
-			//gh #223
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var config:Config = configProxy.getConfig();
+			if (configProxy.isPlatformiPad())
+				NewWebViewVideoPlayer.showAllVideo(); // gh#749
+			
 			// Exit the program
 			if (isFatal) sendNotification(CommonNotifications.EXIT);
 		}

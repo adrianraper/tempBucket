@@ -25,7 +25,11 @@
 	
 	// Picking up IP and referrer for security checking
 	require_once '../securityCheck.php';
-	
+
+	// For anyone wanting to default to a full sized screen
+	if (stristr("ACL,ACB,ACM,ACCB,DLDC", $prefix) !== false) 
+		$resize = true;
+		
 	// There is a strange bug that squishes everything up if the page is empty apart from the swf
 	echo "<p/>";
 ?>
