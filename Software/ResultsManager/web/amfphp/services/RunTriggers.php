@@ -340,7 +340,7 @@ if (stripos($testingTriggers, "weeklyActions")!==false) {
 }
 if (stripos($testingTriggers, "monthlyActions")!==false) {
 	$triggerList = null; // find all monthly ones
-	$msgType = null; // Nothing useful to send
+	$msgType = 0; // Internal action
 	runTriggers($msgType, $triggerList, null, "monthly");
 }
 // This is a test of data in the database, and what you do if it changes

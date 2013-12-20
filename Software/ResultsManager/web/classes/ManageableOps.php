@@ -13,6 +13,8 @@ class ManageableOps {
 		$this->db = $db;
 		
 		$this->copyOps = new CopyOps();
+		$this->emailOps = new EmailOps($db);
+		$this->templateOps = new TemplateOps($db);
 	}
 	
 	/**
@@ -48,6 +50,31 @@ class ManageableOps {
 		
 		// gh#448
 		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a group(s) with id='.$group->id.' to group '.$parentGroup->id);
+		
+		// gh#769 If this account is for a distributor, can we send an email to the account manager as this  
+		// is quite likely to be the setting up of a trial
+		if (Session::get('distributorTrial')) {
+			$templateID = 'distributor_created_trial';
+			$rootID = Session::get('rootID');
+			// TODO: If this gets unwieldy here, use literals.xml or other form to hold all roots and their account manager
+			switch ($rootID) {
+				case 20895: // EPIC
+					$adminEmail = 'info@bookery.com.au';
+					break;
+				case 7: // Bookery
+					$adminEmail = 'sales@clarityenglish.com';
+					break;
+				// Other distributor accounts will not do anything
+				default:
+					$adminEmail = null;
+			}
+			
+			if ($adminEmail && $this->templateOps->checkTemplate('emails', $templateID)) {
+				$emailData = array("rootID" => $rootID, "group" => $group, "parent" => $parentGroup);
+				$emailArray = array("to" => $adminEmail, "data" => $emailData);
+				$this->emailOps->sendEmails("", $templateID, array($emailArray));
+			}
+		}
 		
 		// If parentGroup is null then this is a special case and a top-level group has been created (in DMS) so we need to set
 		// parentGroup to the same as ID.  Since this is the only place this will ever happen just do it with straight SQL.
@@ -977,6 +1004,11 @@ EOD;
 				}
 			} else {
 				$addedMsg = "added";
+				// gh#769 record source of registration
+				$today = new DateTime();
+				if (!isset($manageable->registrationDate))  $manageable->registrationDate = $today->format('Y-m-d H:i:s');
+				if (!isset($manageable->registerMethod)) $manageable->registerMethod = 'RMimport';
+				
 				$this->addUser($manageable, $parentGroup);
 				$success = true;
 			}

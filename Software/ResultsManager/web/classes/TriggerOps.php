@@ -1,8 +1,6 @@
 <?php
 class TriggerOps {
 
-	var $db;
-
 	function TriggerOps($db) {
 		$this->db = $db;
 		$this->accountOps = new AccountOps($this->db);
@@ -14,7 +12,7 @@ class TriggerOps {
 	 */
 	function changeDB($db) {
 		$this->db = $db;
-		$this->accountOps->changeDB($db);
+		$this->accountOps->changeDB($this->db);
 	}
 		
 	/**
@@ -133,8 +131,35 @@ class TriggerOps {
 				}
 				//echo "selfHost trigger condtion=".$trigger->condition->selfHost;
 				$triggerResults = $this->accountOps->getAccounts($accountIDs, $accountConditions);
-				//echo "got ".count($triggerResults)." accounts that expire on ".$trigger->condition->expiryDate ."<br />";
-				//$executor = $trigger->executor;
+				
+				// gh#769 Do you have a condition that now needs to refine those accounts you found so far?
+				if (isset($trigger->condition->newUsersSinceDate)) {
+					$db = $this->db;
+					$triggerResults = array_filter($triggerResults, function(&$account) use($db, $trigger) {
+							$sql = <<< EOD
+								SELECT DISTINCT(g.F_GroupName) as groupName 
+								FROM T_User u, T_Membership m, T_Groupstructure g
+								WHERE u.F_UserID = m.F_UserID
+								AND m.F_GroupID = g.F_GroupID
+								AND m.F_RootID = ?
+								AND u.F_RegistrationDate >= ?
+EOD;
+							$bindingParams = array($account->id, $trigger->condition->newUsersSinceDate);
+							$rs = $db->Execute($sql, $bindingParams);
+							// Return the group names that you find - would be nice to put into template
+							// Can I safely hijack F_Reference? (this is the DMS notes)
+							if ($rs && $rs->RecordCount() > 0) {
+								$groupNames = array();
+								while($dbObj = $rs->FetchNextObj()) {
+									$groupNames[] = $dbObj->groupName;
+								}
+								$account->reference .= '|newGroups='.implode('<br/>', $groupNames);
+								return true;
+							} else {
+								return false;
+							}
+					});
+				}
 				break;
 
 			case "dbChange":
@@ -260,4 +285,3 @@ class TriggerOps {
 	}
 
 }
-?>

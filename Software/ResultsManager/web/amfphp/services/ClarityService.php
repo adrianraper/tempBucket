@@ -49,14 +49,10 @@ require_once(dirname(__FILE__)."/../../classes/ReportOps.php");
 require_once(dirname(__FILE__)."/../../classes/ImportXMLParser.php");
 // v3.6 Required as usage ops can also send triggered emails.
 // v3.6 Not any more, remove that to RunTriggers.php
-//require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
-//require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
-// for Clarity Course Builder by WZ
-/*
-require_once(dirname(__FILE__)."/../../classes/CCBOps.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/net/NetFile.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Schedule.php");
-*/
+// gh#769 required to send notification emails to account managers
+require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
+require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
+
 require_once(dirname(__FILE__)."/AbstractService.php");
 
 class ClarityService extends AbstractService {
@@ -176,6 +172,10 @@ class ClarityService extends AbstractService {
 			$accountRoot = $this->manageableOps->getAccountRoot($loginObj->F_RootID);
 			//NetDebug::trace('accountRoot='.$accountRoot->prefix);
 
+			// gh#769
+			if ((int)$accountRoot->accountType == 5)
+				Session::set('distributorTrial', true);
+				
 			// v3.4 Get some more information about the user (and their group/parent groups)
 			// Keep this in session so that reports can use it for editedContent
 			$parentGroups = array_reverse($this->manageableOps->getGroupParents($loginObj->F_GroupID));
@@ -291,6 +291,11 @@ class ClarityService extends AbstractService {
 	}
 	
 	public function addUser($user, $parentGroup) {
+		// gh#769 record source of registration
+		$today = new DateTime();
+		if (!isset($user->registrationDate))  $user->registrationDate = $today->format('Y-m-d H:i:s');
+		if (!isset($user->registerMethod)) $user->registerMethod = 'RM';
+		
 		return $this->manageableOps->addUser($user, $parentGroup);
 	}
 	

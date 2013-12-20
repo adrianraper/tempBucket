@@ -75,7 +75,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 			$trigger->rootID = $_REQUEST['rootID'];
 		} else {
 			//$trigger->rootID = Array(5,7,28,163,10719,11091);
-			$trigger->rootID = Array(10719);
+			//$trigger->rootID = Array(10719);
 		}
 		// Ignore Road to IELTS v1 until all expired or removed
 		$trigger->condition->notProductCode = '12,13';
@@ -221,7 +221,6 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				break;
 				
 			case "usageStats":
-				
 				$emailArray = array();
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 					// Only update T_DirectStart if you are actually inserting new records
@@ -323,7 +322,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 echo $GLOBALS['db'].$newLine;
 // If you want to run specific triggers for specific days (to catch up for days when this was not run for instance)
 $testingTriggers = "";
-$testingTriggers .= "subscription reminders";
+//$testingTriggers .= "subscription reminders";
 //$testingTriggers .= "usage stats";
 //$testingTriggers .= "support";
 //$testingTriggers .= "quotations";
@@ -338,7 +337,7 @@ $fixedDateShift = 0;
 // This is where I can elect to run weekly or monthly triggers
 // Is today the first of the month?
 // Currently nothing is sent out like this as usage stats moved to a daily check on each account
-if (date("j")==1) {
+if (date("j")==21) {
 	$testingTriggers .= "monthlyActions";
 }
 // Used for Early Warning system emails to Clarity team
@@ -353,7 +352,7 @@ if (stripos($testingTriggers, "weeklyActions")!==false) {
 }
 if (stripos($testingTriggers, "monthlyActions")!==false) {
 	$triggerList = null; // find all monthly ones
-	$msgType = null; // Nothing useful to send
+	$msgType = 0; // Internal action
 	runTriggers($msgType, $triggerList, null, "monthly");
 }
 // This is a test of data in the database, and what you do if it changes

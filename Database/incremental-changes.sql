@@ -981,11 +981,18 @@ insert into T_LicenceAttributes
 (F_RootID, F_ProductCode, F_Key, F_Value)
 values (163, 54, 'customisation',"<branding><login><image src='CE_banner.png' horizontalAlign='center' verticalAlign='top' padding='0' /><image src='trophy.png' horizontalAlign='left' verticalAlign='bottom' padding='10' /></login></branding>");
 
+-- gh#769
+DELETE FROM T_Triggers WHERE F_TriggerID = 59;
+INSERT INTO `T_Triggers` (`F_TriggerID`,`F_Name`,`F_RootID`,`F_GroupID`,`F_TemplateID`,`F_Condition`,`F_ValidFromDate`,`F_ValidToDate`,`F_Executor`,`F_Frequency`,`F_MessageType`) 
+VALUES 
+(59,'Distributor group report',NULL,NULL,'distributor_new_groups','method=getAccounts&accountType=5&newUsersSinceDate={now}-1m',NULL,NULL,'internalEmail','monthly',0);
+
 -- gh#777
 -- Populate T_CourseInfo, run this every day to get AP and CCB updates
-DELETE FROM T_CourseInfo;
-INSERT INTO T_CourseInfo
-SELECT F_ProductCode, F_CourseID FROM T_Score
-WHERE F_ProductCode > 0
-GROUP BY F_ProductCode, F_CourseID;
+-- Obsolete
+--DELETE FROM T_CourseInfo;
+--INSERT INTO T_CourseInfo
+--SELECT F_ProductCode, F_CourseID FROM T_Score
+--WHERE F_ProductCode > 0
+--GROUP BY F_ProductCode, F_CourseID;
 --SELECT * FROM rack80829.T_CourseInfo ORDER BY F_ProductCode, F_CourseID;

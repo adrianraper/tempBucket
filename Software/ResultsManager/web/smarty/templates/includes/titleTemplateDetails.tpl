@@ -80,6 +80,10 @@
 {elseif $title->name|stristr:"Language Key"}
 	{assign var='titleImage' value='g'}
 	{assign var='startPageFolder' value='LanguageKey/xxx'}
+{elseif $title->name|stristr:"Listening Bank"}
+	{assign var='titleImage' value='g'}
+	{assign var='startPageFolder' value='ListeningBank'}
+
 {else}
 	{assign var='titleImage' value='g'}
 	{assign var='startPageFolder' value='xxx'}

@@ -1,6 +1,5 @@
 <?php
 require_once(dirname(__FILE__)."/XmlTransform.php");
-require_once("D:\Projectbench\Software\ResultsManager\web\amfphp\services\AbstractService.php");
 
 class RandomizedTestTransform extends XmlTransform {
 	var $_explicitType = 'com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform';
