@@ -22,6 +22,7 @@ class XMLQuery {
 	$post = file_get_contents("php://input");
 	//Global $node;
 	//$node .= "<note>" .urlencode($post)  ."</note>";
+	$post = '<query dbHost="200" method="getRMSettings" rootID="" prefix="WHC" eKey="" dateStamp="2014-01-08 08:33:32" productCode="33" cacheVersion="1389141212418" />';
 	//$post = '<query dbHost="2" method="writeSpecificStats" rootID="14449" userID="251563" productCode="10" courseID="51" itemID="51" sessionID="2228973" databaseVersion="840" cacheVersion="1343358520347.25" />';
 	//$post = '<query dbHost="2" method="getSpecificStats" rootID="14449" userID="251563" productCode="10" courseID="51" itemID="51" sessionID="2228973" databaseVersion="840" cacheVersion="1343358520347.25" />';
 //	$post = '<query dbHost="2" method="startUser" rootID="163" userID="" name="adrian raper" studentID="p574528(8)" password="$!null_!$" dateStamp="2012-05-20 13:09:05" loginOption="1" instanceID="1337504945953" productCode="33" databaseVersion="7" />';

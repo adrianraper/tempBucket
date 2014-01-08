@@ -229,20 +229,19 @@ ProgramSettingsObject.prototype.load = function() {
 				myTrace("account, expiryDate=" + this.master.expiryDate + " licenceStartDate=" + tN.attributes.licenceStartDate);
 				// If the expiry date is perpetual (2049), set start date to a year ago today
 				// Licence clearance date processing should avoid this calculations - but no need to take anything out here
-				var aYearAgo = new Date();
-				aYearAgo.setUTCFullYear(aYearAgo.getUTCFullYear() -1);
-				if (this.master.expiryDate>='2030') {
+				// gh#776 This is unnecessary and harmful, perpetual accounts have same licenceClearance processing as others
+				//if (this.master.expiryDate>='2030') {
+				//	_global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate = dateFormat(aYearAgo);
+				if (tN.attributes.licenceStartDate==undefined || tN.attributes.licenceStartDate==null || tN.attributes.licenceStartDate=="") {
+					// otherwise it just means that the licence start date is not set for some reason
+					// so save it as today as this will have least impact
+					// v6.5.5.0 Surely we should set it as 1 year ago as above!
+					//_global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate = dateFormat(new Date());
+					var aYearAgo = new Date();
+					aYearAgo.setUTCFullYear(aYearAgo.getUTCFullYear() -1);
 					_global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate = dateFormat(aYearAgo);
 				} else {
-					if (tN.attributes.licenceStartDate==undefined || tN.attributes.licenceStartDate==null || tN.attributes.licenceStartDate=="") {
-						// otherwise it just means that the licence start date is not set for some reason
-						// so save it as today as this will have least impact
-						// v6.5.5.0 Surely we should set it as 1 year ago as above!
-						//_global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate = dateFormat(new Date());
-						_global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate = dateFormat(aYearAgo);
-					} else {
-						_global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate = tN.attributes.licenceStartDate;
-					}
+					_global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate = tN.attributes.licenceStartDate;
 				}
 				myTrace("account, licenceStartDate=" + _global.ORCHID.root.licenceHolder.licenceNS.licenceStartDate);
 				myTrace("licence.branding=" + _global.ORCHID.root.licenceHolder.licenceNS.branding);
