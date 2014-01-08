@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:components="com.clarityenglish.bento.view.progress.components.*" xmlns:progress="com.clarityenglish.tensebuster.view.progress.*">
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:components="com.clarityenglish.bento.view.progress.components.*" xmlns:progress="com.clarityenglish.tensebuster.view.progress.*" xmlns:home="skins.tensebuster.assets.home.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressView")]
@@ -21,7 +21,7 @@
 		<s:State name="certificate" stateGroups="normalStates, certificateStates"/>
 	</s:states>
 	
-	<!--s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/-->
+	<home:header top="10" />
 	
 	<s:HGroup width="100%" paddingLeft="70" verticalCenter="-245">
 		<s:ButtonBar id="progressNavBar" fontSize="12"/>			

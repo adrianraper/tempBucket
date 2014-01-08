@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:recorder="com.clarityenglish.bento.view.recorder.*" xmlns:exercise="skins.tensebuster.assets.exercise.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.title.TitleView")]
@@ -9,7 +9,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.tensebuster.view.title.TitleView;
+			import com.clarityenglish.tensebuster.view.title.TitleView;			
 		]]>
 	</fx:Script>
 	
@@ -27,8 +27,6 @@
 		<s:State name="help" />
 	</s:states>
 	
-	<s:SWFLoader id="background" source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="20" horizontalCenter="0" excludeFrom="exercise" />
-	
 	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.tensebuster.view.home.HomeView" label="Menu"  left="0" right="0" height="100%" />
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.tensebuster.view.progress.ProgressView" label="My Progress" left="0" right="0" height="100%" />
@@ -42,14 +40,24 @@
 	<s:Group top="45" left="55" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
-				<s:SWFLoader id="courseThumbnail" />
+				<s:Group>
+					<exercise:elementarySIcon visible="{hostComponent.courseCaption == 'Elementary'}" />
+					<exercise:lowerinterSIcon visible="{hostComponent.courseCaption == 'Lower Intermediate'}" />
+					<exercise:interSIcon visible="{hostComponent.courseCaption == 'Intermediate'}" />
+					<exercise:upperinterSIcon visible="{hostComponent.courseCaption == 'Upper Intermediate'}" />
+					<exercise:advanceSIcon visible="{hostComponent.courseCaption == 'Advanced'}" />
+				</s:Group>
 				<s:Label text="{hostComponent.courseCaption}" color="0x333333" fontSize="19" paddingTop="2" />
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" id="unitPath">
 				<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/arrow.png')" />
-				<s:VGroup paddingTop="-2">
-					<s:SWFLoader id="unitThumbnail" />
-				</s:VGroup>				
+				<s:Group>
+					<exercise:elementaryPencil visible="{hostComponent.courseCaption == 'Elementary'}" />
+					<exercise:lowerinterPencil visible="{hostComponent.courseCaption == 'Lower Intermediate'}" />
+					<exercise:interPencil visible="{hostComponent.courseCaption == 'Intermediate'}" />
+					<exercise:upperinterPencil visible="{hostComponent.courseCaption == 'Upper Intermediate'}" />
+					<exercise:advancedPencil visible="{hostComponent.courseCaption == 'Advanced'}" />
+				</s:Group>			
 				<s:Label text="{hostComponent.unitCaption}" color="0x333333" fontSize="14" paddingTop="6" />
 			</s:HGroup>
 			<s:HGroup verticalAlign="middle" id="exercisePath">

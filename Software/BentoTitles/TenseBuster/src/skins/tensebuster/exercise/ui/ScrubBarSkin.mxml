@@ -155,7 +155,7 @@
 
     <!--- A skin part that defines a button that can be dragged along the track to increase or decrease 
           the playhead location in the video.   -->
-    <s:Button id="thumb" x="0" y="-5" width="14" height="19" includeInLayout="false"
+    <s:Button id="thumb" x="0" y="-8" width="14" height="19" includeInLayout="false"
               skinClass="skins.tensebuster.exercise.ui.ScrubBarThumbSkin" />
 
 </s:SparkSkin>

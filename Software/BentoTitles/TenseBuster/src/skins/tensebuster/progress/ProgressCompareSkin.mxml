@@ -93,13 +93,13 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
 		<ui:layout>
-			<s:ButtonBarHorizontalLayout gap="16" />
+			<s:ButtonBarHorizontalLayout gap="35" />
 		</ui:layout>
 	</ui:ProgressCourseButtonBar>
 	
-	<s:Rect top="60" left="45" right="50" height="1">
+	<s:Rect top="60" left="45" right="65" height="1">
 		<s:fill>
 			<s:SolidColor color="0xEC1C32" />
 		</s:fill>

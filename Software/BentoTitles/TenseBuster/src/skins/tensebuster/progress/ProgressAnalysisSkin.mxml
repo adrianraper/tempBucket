@@ -14,7 +14,6 @@
 		<![CDATA[
 			public function get courseColor():Number {
 				var courseCaption:String = hostComponent.courseCaption;
-				trace("courseCpation: "+courseCaption);
 				return getStyle(courseCaption.charAt(0) + "Color");
 			}
 		]]>
@@ -25,9 +24,9 @@
         <s:State name="disabled" />
     </s:states>
 	
-	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
 		<ui:layout>
-			<s:ButtonBarHorizontalLayout gap="16" />
+			<s:ButtonBarHorizontalLayout gap="35" />
 		</ui:layout>
 	</ui:ProgressCourseButtonBar>
 	

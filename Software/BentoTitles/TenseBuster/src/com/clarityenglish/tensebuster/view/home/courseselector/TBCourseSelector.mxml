@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+	<fx:Declarations>
+		<!-- Place non-visual elements (e.g., services, value objects) here -->
+	</fx:Declarations>
+	
+	<fx:Metadata>
+		[Event(name="elementarySelected", type="flash.events.Event")]
+		[Event(name="lowerInterSelected", type="flash.events.Event")]
+		[Event(name="intermediateSelected", type="flash.events.Event")]
+		[Event(name="upperInterSelected", type="flash.events.Event")]
+		[Event(name="advancedSelected", type="flash.events.Event")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.greensock.TweenMax;
+			import com.greensock.plugins.BezierPlugin;
+			
+			import mx.collections.XMLListCollection;
+			private static const ActivePos_x:Number = 200;
+			private static const ActivePos_y:Number = 223;
+			private static const FirstPos_x:Number = 189;
+			private static const FirstPos_y:Number = 292;
+			private static const SecondPos_x:Number = 164;
+			private static const SecondPos_y:Number = 346;
+			private static const ThirdPos_x:Number = 125;
+			private static const ThirdPos_y:Number = 389;
+			private static const FourthPos_x:Number = 73;
+			private static const FourthPos_y:Number = 425;
+			
+			private var pathA1:Array = [{x:198, y:198}, {x:159, y:129}];
+			private var pathA2:Array = [{x:179, y:319}, {x:189, y:292}];
+			private var pathA3:Array = [{x:146, y:374}, {x:164, y:346}];
+			private var pathA4:Array = [{x:101, y:412}, {x:125, y:389}];
+			private var pathA5:Array = [{x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}];
+			private var pathA:Array = [pathA1, pathA2, pathA3, pathA4, pathA5];
+			
+			private var pathB1:Array = [{x:179, y:319}, {x:189, y:292}, {x:198, y:198}, {x:159, y:129}];
+			private var pathB2:Array = [{x:146, y:374}, {x:164, y:346}, {x:179, y:319}, {x:189, y:292}];
+			private var pathB3:Array = [{x:101, y:412}, {x:125, y:389}, {x:146, y:374}, {x:164, y:346}];
+			private var pathB4:Array = [{x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}, {x:101, y:412}, {x:125, y:389}];
+			private var pathB5:Array = [{x:227, y:199}, {x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}];
+			private var pathB:Array = [pathB1, pathB2, pathB3, pathB4, pathB5];
+			
+			private var pathC1:Array = [{x:146, y:374}, {x:164, y:346}, {x:179, y:319}, {x:189, y:292}, {x:198, y:198}, {x:159, y:129}];
+			private var pathC2:Array = [{x:101, y:412}, {x:125, y:389}, {x:146, y:374}, {x:164, y:346}, {x:179, y:319}, {x:189, y:292}];
+			private var pathC3:Array = [{x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}, {x:101, y:412}, {x:125, y:389}, {x:146, y:374}, {x:164, y:346}];
+			private var pathC4:Array = [{x:227, y:199}, {x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}, {x:101, y:412}, {x:125, y:389}];
+			private var pathC5:Array = [{x:179, y:319}, {x:189, y:292}, {x:227, y:199}, {x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}];
+			private var pathC:Array = [pathC1, pathC2, pathC3, pathC4, pathC5];
+			
+			private var pathD1:Array = [{x:101, y:412}, {x:125, y:389}, {x:146, y:374}, {x:164, y:346}, {x:179, y:319}, {x:189, y:292}, {x:198, y:198}, {x:159, y:129}];
+			private var pathD2:Array = [{x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}, {x:101, y:412}, {x:125, y:389}, {x:146, y:374}, {x:164, y:346}, {x:179, y:319}, {x:189, y:292}];
+			private var pathD3:Array = [{x:227, y:199}, {x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}, {x:101, y:412}, {x:125, y:389}, {x:146, y:374}, {x:164, y:346}];
+			private var pathD4:Array = [{x:179, y:319}, {x:189, y:292}, {x:227, y:199}, {x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}, {x:101, y:412}, {x:125, y:389}];
+			private var pathD5:Array = [{x:146, y:374}, {x:164, y:346}, {x:179, y:319}, {x:189, y:292}, {x:227, y:199}, {x:159, y:94}, {x:107, y:10}, {x:0, y:0}, {x:0, y:447}, {x:38, y:444}, {x:73, y:425}];
+			private var pathD:Array = [pathD1, pathD2, pathD3, pathD4, pathD5];
+			
+			private var pathE1:Array = [{x: 200, y:178}, {x: 159, y: 129}];
+			private var pathE:Array = [pathE1];
+			
+			[Bindable]
+			private var _dataProvider:XML;
+			
+			[Bindable]
+			private var _level:XML;
+			private var _isBackToHome:Boolean;
+			
+			public function set dataProvider(value:XML):void {
+				_dataProvider = value;
+				invalidateProperties();
+			}
+			
+			public function set level(value:XML):void {
+				_level = value;
+				invalidateProperties();
+			}
+			
+			[Bindable]
+			public function get level():XML {
+				return _level;
+			}
+			
+			public function set isBackToHome(value:Boolean):void {
+				_isBackToHome = value;
+			}
+			
+			protected override function commitProperties():void {
+				super.commitProperties();
+				
+				if (_dataProvider) {
+					for each (var courseXML:XML in _dataProvider.course) {
+						if (courseXML.hasOwnProperty("@enabledFlag") && (Number(courseXML.@enabledFlag.toString()) & 8)) {
+							switch (courseXML.@caption.toString()) {
+								case "Elementary":
+									elementary.enabled = false;
+									break;
+								case "Lower Intermediate":
+									lowerInter.enabled = false;
+									break;
+								case "Intermediate":
+									intermediate.enabled = false;
+									break;
+								case "Upper Intermediate":
+									upperInter.enabled = false;
+									break;
+								case "Advanced":
+									advanced.enabled = false;
+									break;
+							}
+						}
+					}
+				}
+				
+				if (_level) {
+					switch (_level.@["caption"].toString()) {
+						case "Elementary":
+							showElementary();
+							break;
+						case "Lower Intermediate":
+							showLowerInter();
+							break;
+						case "Intermediate":
+							showIntermediate();
+							break;
+						case "Upper Intermediate":
+							showUpperInter();
+							break;
+						case "Advanced":
+							showAdvance();
+							break; 						
+					}
+				}
+			}
+			
+			protected function onElementaryClick(event:MouseEvent):void {
+				dispatchEvent(new Event("elementarySelected", true));
+				dispatchEvent(new Event("courseSelectorClicked", true));
+			}
+			
+			protected function onLowerInterClick(event:MouseEvent):void {
+				dispatchEvent(new Event("lowerInterSelected", true));
+				dispatchEvent(new Event("courseSelectorClicked", true));
+			}
+			
+			protected function onIntermediateClick(event:MouseEvent):void {
+				dispatchEvent(new Event("intermediateSelected", true));
+				dispatchEvent(new Event("courseSelectorClicked", true));
+			}
+			
+			protected function onUpperInterClick(event:MouseEvent):void {
+				dispatchEvent(new Event("upperInterSelected", true));
+				dispatchEvent(new Event("courseSelectorClicked", true));
+			}
+			
+			protected function onAdvancedClick(event:MouseEvent):void {
+				dispatchEvent(new Event("advancedSelected", true));
+				dispatchEvent(new Event("courseSelectorClicked", true));
+			}
+			
+			
+			protected function getPathName(level:Button):Array {
+				if (Math.abs(level.x-FirstPos_x) < 1) {
+					return pathA;
+				} else if (Math.abs(level.x - SecondPos_x) < 1) {
+					return pathB;
+				} else if (Math.abs(level.x - ThirdPos_x) < 1) {
+					return pathC;
+				} else if (Math.abs(level.x-FourthPos_x) < 1) {
+					return pathD;
+				} else if (Math.abs(level.x - ActivePos_x) == 0) {
+					return pathE;
+				} else {
+					trace("cannot find path from level x value, using default path E");
+					return null;
+				}
+			}
+			
+			protected function showLowerInter():void
+			{
+				// TODO Auto-generated method stub
+				var pathArray:Array = getPathName(lowerInter);
+				if (pathArray) {
+					TweenMax.to(lowerInter, 1, {bezier: pathArray[0], scaleX: 1.6, scaleY:1.6, onStart: onStart, onComplete: onComplete});
+					TweenMax.to(intermediate, 1, {bezier: pathArray[1], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [intermediate]});
+					TweenMax.to(upperInter, 1, {bezier: pathArray[2], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [upperInter]});
+					TweenMax.to(advanced, 1, {bezier: pathArray[3], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [advanced]});
+					TweenMax.to(elementary, 1, {bezier: pathArray[4], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [elementary]});
+				}			
+			}
+			
+			protected function showIntermediate():void
+			{
+				// TODO Auto-generated method stub
+				var pathArray:Array = getPathName(intermediate);
+				if (pathArray) {
+					TweenMax.to(intermediate, 1, {bezier: pathArray[0], scaleX: 1.6, scaleY:1.6, onStart: onStart, onComplete: onComplete});
+					TweenMax.to(upperInter, 1, {bezier: pathArray[1], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [upperInter]});
+					TweenMax.to(advanced, 1, {bezier: pathArray[2], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [advanced]});
+					TweenMax.to(elementary, 1, {bezier: pathArray[3], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [elementary]});
+					TweenMax.to(lowerInter, 1, {bezier: pathArray[4], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [lowerInter]});
+				}			
+			}
+			
+			protected function showElementary():void {
+				var pathArray:Array = getPathName(elementary);
+				if (pathArray) {
+					if (pathArray.length == 1) {
+						TweenMax.to(elementary, 0.5, {bezier: pathArray[0], scaleX: 1.6, scaleY:1.6, onStart: onStart, onComplete: onFirstComplete});
+					} else {
+						TweenMax.to(elementary, 1, {bezier: pathArray[0], scaleX: 1.6, scaleY:1.6, onStart: onStart, onComplete: onComplete});
+						TweenMax.to(lowerInter, 1, {bezier: pathArray[1], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [lowerInter]});
+						TweenMax.to(intermediate, 1, {bezier: pathArray[2], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [intermediate]});
+						TweenMax.to(upperInter, 1, {bezier: pathArray[3], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [upperInter]});
+						TweenMax.to(advanced, 1, {bezier: pathArray[4], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [advanced]});
+					}		
+				}					
+			}
+			
+			protected function showUpperInter():void
+			{
+				// TODO Auto-generated method stub
+				var pathArray:Array = getPathName(upperInter);
+				if (pathArray) {
+					TweenMax.to(upperInter, 1, {bezier: pathArray[0], scaleX: 1.6, scaleY:1.6, onStart: onStart, onComplete: onComplete});
+					TweenMax.to(advanced, 1, {bezier: pathArray[1], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [advanced]});
+					TweenMax.to(elementary, 1, {bezier: pathArray[2], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [elementary]});
+					TweenMax.to(lowerInter, 1, {bezier: pathArray[3], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [lowerInter]});
+					TweenMax.to(intermediate, 1, {bezier: pathArray[4], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [intermediate]});
+				}			
+			}
+			
+			protected function showAdvance():void
+			{
+				// TODO Auto-generated method stub
+				var pathArray:Array = getPathName(advanced);
+				if (pathArray) {
+					TweenMax.to(advanced, 1, {bezier: pathArray[0], scaleX: 1.5, scaleY:1.5, onStart: onStart, onComplete: onComplete});
+					TweenMax.to(elementary, 1, {bezier: pathArray[1], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [elementary]});
+					TweenMax.to(lowerInter, 1, {bezier: pathArray[2], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [lowerInter]});
+					TweenMax.to(intermediate, 1, {bezier: pathArray[3], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [intermediate]});
+					TweenMax.to(upperInter, 1, {bezier: pathArray[4], scaleX: 1, scaleY:1, onComplete: enableClick, onCompleteParams: [upperInter]});
+				}			
+			}
+			
+			protected function onStart():void {
+				elementary.enabled = false;
+				lowerInter.enabled = false;
+				intermediate.enabled = false;
+				upperInter.enabled = false;
+				advanced.enabled = false;
+			}
+			
+			protected function onComplete():void {				
+				dispatchEvent(new Event("animationCompleted", true));
+			}
+			
+			protected function enableClick(level:Button):void {
+				level.enabled = true;
+				level.useHandCursor = true;
+				level.buttonMode = true;
+			}
+			
+			protected function onFirstComplete():void {
+				onComplete();
+				lowerInter.enabled = true;
+				intermediate.enabled = true;
+				upperInter.enabled = true;
+				advanced.enabled = true;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<s:Group id="levelGroup" x="0" y="0">
+		<s:Button id="elementary" x="{ActivePos_x}" y="{ActivePos_y}" click="onElementaryClick(event)" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="lowerInter" x="{FirstPos_x}" y="{FirstPos_y}" click="onLowerInterClick(event)" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="intermediate" x="{SecondPos_x}" y="{SecondPos_y}" click="onIntermediateClick(event)" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="upperInter" x="{ThirdPos_x}" y="{ThirdPos_y}" click="onUpperInterClick(event)" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="advanced" x="{FourthPos_x}" y="{FourthPos_y}" click="onAdvancedClick(event)" useHandCursor="true" buttonMode="true"/>
+	</s:Group>	
+</s:Group>

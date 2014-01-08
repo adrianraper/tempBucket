@@ -1,32 +1,152 @@
 package com.clarityenglish.tensebuster.view.home {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.tensebuster.view.home.courseselector.TBCourseSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import flashx.textLayout.container.ScrollPolicy;
 	
 	import mx.collections.XMLListCollection;
+	import mx.core.FlexGlobals;
+	import mx.effects.Fade;
+	import mx.effects.Move;
+	import mx.effects.Parallel;
+	import mx.effects.Resize;
+	import mx.effects.easing.Back;
+	import mx.effects.easing.Bounce;
+	import mx.effects.easing.Elastic;
+	import mx.events.CollectionEvent;
+	import mx.events.EffectEvent;
+	import mx.graphics.GradientEntry;
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
+	import spark.components.VGroup;
+	import spark.primitives.Path;
 	
 	public class HomeView extends BentoView {
 		
-		[SkinPart(required="true")]
+		[SkinPart]
+		public var instructioGroup:Group;
+		
+		[SkinPart]
+		public var instructionLabel:Label; 
+		
+		[SkinPart]
 		public var coursesList:List;
 		
 		[SkinPart]
 		public var homeInstructionLabel:Label;
 		
-		public var courseSelect:Signal = new Signal(XML);
+		[SkinPart]
+		public var courseSelector:TBCourseSelector;
 		
+		[SkinPart]
+		public var unitList:List;
+		
+		[SkinPart]
+		public var levelTitleGroup:Group;
+		
+		[SkinPart]
+		public var trianglePath:Path;
+		
+		[SkinPart]
+		public var exerciseGroup:Group;
+		
+		[SkinPart]
+		public var exerciseList:List;
+		
+		[SkinPart]
+		public var triangleReferenceGroup:Group;
+		
+		public var courseSelect:Signal = new Signal(XML);
+		public var unitSelect:Signal = new Signal(XML);
+		public var exerciseSelect:Signal = new Signal(XML);
+		
+		// gh#757
+		private var _course:XML;
+		private var _unit:XML;
+		private var courseChanged:Boolean;
+		private var unitChanged:Boolean;
+		private var _courseIndex:Number;
+		private var _isBackToHome:Boolean;
+		private var _isFirstClickLevel:Boolean =  true;
+		
+		// gh#757
+		[Bindable]
+		public function get course():XML {
+			return _course;
+		}
+		
+		// gh#757
+		public function set course(value:XML):void {
+			if (_course != value) {
+				_course = value;
+				courseChanged = true;
+				invalidateProperties();
+			}			
+		}
+		
+		[Bindable]
+		public function get unit():XML {
+			return _unit;
+		}
+		
+		public function set unit(value:XML):void {
+			_unit = value;
+			unitChanged = true;
+			invalidateProperties();
+		}
+		
+		[Bindable]
+		public function get courseIndex():Number {
+			return _courseIndex;
+		}
+		
+		public function set courseIndex(value:Number):void {
+			_courseIndex = value;
+		}		
+		
+		[Bindable]
+		public function get isBackToHome():Boolean {
+			return _isBackToHome;
+		}
+		
+		public function set isBackToHome(value:Boolean):void {
+			_isBackToHome = value;
+		}
+		
+		public function get isFirstClickLevel():Boolean {
+			return _isFirstClickLevel;
+		}
+		
+		public function set isFirstClickLevel(value:Boolean):void {
+			_isFirstClickLevel = value;
+		}
+		
+		override protected function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+			
+			// When back to home page, course and unit node keeps the old values
+			if (isBackToHome) {
+				isFirstClickLevel = false;
+			}
+		}
+
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			coursesList.dataProvider = new XMLListCollection(menu.course);
+			if (coursesList)
+				coursesList.dataProvider = new XMLListCollection(menu.course);
+			
+			if (courseSelector)
+				courseSelector.dataProvider = menu;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -40,14 +160,142 @@ package com.clarityenglish.tensebuster.view.home {
 				case homeInstructionLabel:
 					homeInstructionLabel.text = copyProvider.getCopyForId("homeInstructionLabel");
 					break;
+				case courseSelector:
+					courseSelector.addEventListener("elementarySelected", onCourseSelectorClick, false, 0, true);
+					courseSelector.addEventListener("lowerInterSelected", onCourseSelectorClick, false, 0, true);
+					courseSelector.addEventListener("intermediateSelected", onCourseSelectorClick, false, 0, true);
+					courseSelector.addEventListener("upperInterSelected", onCourseSelectorClick, false, 0, true);
+					courseSelector.addEventListener("advancedSelected", onCourseSelectorClick, false, 0, true);
+					break;
+				case unitList:
+					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
+					unitList.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
+					break;
+				case exerciseList:
+					exerciseList.addEventListener(MouseEvent.CLICK, onExerciseListClick);
+					exerciseList.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
+					break;
+				case instructionLabel:
+					instructionLabel.text = copyProvider.getCopyForId("instructionLabel");				
+					break;
+				
 			}
 		}
+		
+		protected override function commitProperties():void {			
+			super.commitProperties();
 
+			if (courseChanged && unitChanged) {
+				if (course && unit) {
+					isBackToHome = true;
+					courseSelector.level = null;
+				}
+			}
+			
+			if (courseChanged) {
+				courseIndex = menu.course.(@caption == course.@caption).childIndex();
+				if (!isBackToHome) {
+					courseSelector.level = course;
+				}
+				courseChanged = false;
+			}
+			
+			if (unitChanged) {
+				// used to put reload exercise in unit click handler, but turns out that evaluation to unit.exercise will cause unit select effect disfunctional
+				// so the exercise reload function will be put here and the data provider.
+				exerciseList.dataProvider = new XMLListCollection(getExercisesList(unit));	
+				unitChanged = false;
+			}
+
+		}
+		
 		private function onListClick(event:MouseEvent):void {
 			var course:XML = event.currentTarget.selectedItem as XML;
+			
 			if (course)
 				courseSelect.dispatch(course);
 		}
 		
+		protected function onCourseSelectorClick(event:Event):void {
+			instructioGroup.visible = false;
+			
+			switch (event.type) {
+				case "elementarySelected":
+					courseSelect.dispatch(menu.course.(@["class"] == "elementary")[0]);
+					break;
+				case "lowerInterSelected":
+					courseSelect.dispatch(menu.course.(@["class"] == "lowerintermediate")[0]);
+					break;
+				case "intermediateSelected":
+					courseSelect.dispatch(menu.course.(@["class"] == "intermediate")[0]);
+					break;
+				case "upperInterSelected":
+					courseSelect.dispatch(menu.course.(@["class"] == "upperintermediate")[0]);
+					break;
+				case "advancedSelected":
+					courseSelect.dispatch(menu.course.(@["class"] == "advanced")[0]);
+					break;
+				default:
+					log.error("Unable to find a matching course");
+			}
+		}
+		
+		protected function onUnitListClick(event:MouseEvent):void {
+			// just for the situation when back to home
+			if (isBackToHome) {
+				unitList.selectedItem = unit;
+				unitList.selectedIndex = course.unit.(@id == this.unit.@id).childIndex();
+				// don't know why, but the unitList top is null when back to home view
+				unitList.top = 295;
+				
+				isBackToHome = false;
+			} 
+			
+			var unitXML:XML =  event.currentTarget.selectedItem as XML;
+			if (unitXML) {
+				if (triangleReferenceGroup.y) {
+					var move:Move = new Move();
+					move.easingFunction = Back.easeOut;
+					move.yFrom = triangleReferenceGroup.y;
+					move.yTo = 50 + event.currentTarget.selectedIndex * 39;					
+					move.duration = 300;
+					move.play([triangleReferenceGroup]);
+				} else {
+					triangleReferenceGroup.y = 50 + event.currentTarget.selectedIndex * 39;
+				}
+				
+				//trianglePath.top = 50 + event.currentTarget.selectedIndex * 39;			
+				// adjust exercise group position for elementary last unit
+				if (courseIndex == 0 && course.unit.(@id == unitXML.@id).childIndex() == (course.unit.length() - 1)) {
+					exerciseGroup.verticalCenter = 40;
+				} else {
+					exerciseGroup.verticalCenter = 0;
+				}
+				
+				unitSelect.dispatch(unitXML);
+			}	
+		}
+		
+		// hide the invisible exercise
+		public function getExercisesList(unit:XML):XMLList {
+			if (unit) {
+				var exercises:XMLList = new XMLList();
+				
+				for each (var exerciseNode:XML in unit.exercise) {
+					if (Exercise.showExerciseInMenu(exerciseNode)){
+						exercises += exerciseNode;
+					}
+				}				
+				return exercises;
+			} else {
+				return null;
+			}
+			
+		}
+		
+		public function onExerciseListClick(event:MouseEvent):void {
+			var exercise:XML = event.currentTarget.selectedItem as XML;
+			if (exercise) exerciseSelect.dispatch(exercise);
+		}
 	}
 }

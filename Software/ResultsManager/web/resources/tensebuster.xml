@@ -77,7 +77,7 @@
 			<lit name="loginDetailLabel">Please type your login details to continue.</lit>
 			<lit name="loginDetailLabelNetwork">Please type your login details if you want to save your progress records.</lit>
 			<lit name="loginButton">Log in</lit>
-			<lit name="passwordLabel">Password</lit>
+			<lit name="passwordLabel">Password:</lit>
 			<lit name="yourLoginDetail">Your {loginDetail}</lit>
 			<lit name="nameLoginDetail">name:</lit>
 			<lit name="IDLoginDetail">ID:</lit>
@@ -107,6 +107,7 @@
 			<lit name="recorderButton">Record</lit>
 			<lit name="exerciseLogOutButton">Log out</lit>
 			<lit name="logoutButton">Log out</lit>
+			<lit name="instructionLabel">Choose a level to start your grammar practice.</lit>
 			
 			<!-- Marking and feedback -->
 			<lit name="tryAgainButton">Try again</lit>
@@ -139,7 +140,7 @@
 			
 			<!-- My progress: Compare -->
 			<lit name="chartCaptionLabel">Average score %</lit>
-			<lit name="progressBarScore">Average score</lit>
+			<lit name="progressBarScore">{course} - Average score</lit>
 			<lit name="verticalAxisTitle">Average score(%)</lit>
 			<lit name="compareInstructionLabel">Compare your average score to other learners.</lit>
 			<lit name="mylegendLabel">My scores</lit>

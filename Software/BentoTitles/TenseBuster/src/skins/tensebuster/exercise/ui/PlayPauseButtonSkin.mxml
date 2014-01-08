@@ -32,7 +32,7 @@
                    xmlns:s="library://ns.adobe.com/flex/spark" 
                    xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
                    minWidth="21" minHeight="21" 
-                   alpha.disabledStates="0.5">
+                   alpha.disabledStates="0.5" xmlns:video="skins.tensebuster.assets.exercise.video.*">
     
     <!-- host component -->
     <fx:Metadata>
@@ -56,7 +56,7 @@
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/video/controlBg.png')" />
+	<video:videoControlBg left="2" />
     
 	<!--- Defines the play symbol. -->
 	<s:Group horizontalCenter="1" verticalCenter="0" excludeFrom="selectedStates" id="playSymbol">

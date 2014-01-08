@@ -6,6 +6,8 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.tensebuster.TenseBusterNotifications;
+	import com.clarityenglish.tensebuster.controller.TenseBusterStartupCommand;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -33,9 +35,6 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.href = bentoProxy.menuXHTML.href;
 			
-			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			view.thumbnailScript = configProxy.getConfig().remoteGateway + "/services/thumbnail.php";
-			
 			view.logout.add(onLogout);
 		}
 		
@@ -48,6 +47,7 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.SELECTED_NODE_CHANGED,
+				BBNotifications.SELECTED_NODE_UP,
 			]);
 		}
 		

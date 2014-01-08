@@ -11,7 +11,6 @@
 @namespace profile "com.clarityenglish.tensebuster.view.profile.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace unitui "com.clarityenglish.tensebuster.view.unit.ui.*";
-@namespace bentoprogressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progresstb "com.clarityenglish.tensebuster.view.progress.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
@@ -22,6 +21,8 @@
 @namespace view "com.clarityenglish.bento.view.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
 @namespace help "com.clarityenglish.tensebuster.view.help.*";
+@namespace courseselector "com.clarityenglish.tensebuster.view.home.courseselector.*";
+@namespace homeui "com.clarityenglish.tensebuster.view.home.ui.*";
 
 global {
 	EColor : #EC1C32;
@@ -36,6 +37,9 @@ global {
 	UHeaderColor: #AEE5E8;
 	AHeaderColor: #B4C3F0;
 	
+	undoneBarColor1: #999999;
+	undoneBarColor2: #CDCDCD;
+	
 	eBarColor1: #7C0124;
 	eBarColor2: #EC1C32;
 	lBarColor1: #603813;
@@ -46,8 +50,6 @@ global {
 	uBarColor2: #53C5C5;
 	aBarColor1: #2F226D;
 	aBarColor2: #6F8BE1;
-	undoneBarColor1: #999999;
-	undoneBarColor2: #CDCDCD;
 	
 	eOtherBarColor1: #333333;
 	eOtherBarColor2: #CDCDCD;
@@ -59,34 +61,6 @@ global {
 	uOtherBarColor2: #CDCDCD;
 	aOtherBarColor1: #333333;
 	aOtherBarColor2: #CDCDCD;
-	
-	topGradientColors: #780024, #61473D, #4F6617, #1C667D, #3D1FA8;
-	midTopGradientColors: #E51A31, #A07254, #8A9F27, #67A2B1, #6F58BC;
-	centerGradientColors: #EC1C32, #B5805C, #A3B838, #82B8C4, #826EC4;
-	midBottomGradientColors: #BA102C, #9F7154, #8BA02F, #629EAE, #7059BD;
-	bottomGradientColors: #780024, #61473D, #4F6617, #1C667D, #3D1FA8;
-	
-	topLightGradientColors: #B30133, #825F52, #66831D, #23819E, #5633D4;
-	midTopLightGradientColors: #ED3843, #CA8F6B, #A3BE22, #70BED1, #9176EE;
-	centerLightGradientColors: #FF4747, #E6A275, #DBD42D, #8AD3E3, #A58DF7;
-	midBottomLightGradientColors: #DE293E, #C98F6B, #9EBB28, #6AB9CE, #8C71EC;
-	bottomLightGradientColors: #B30133, #825F52, #66831D, #23819E, #5633D4;
-	
-	topOverGradientColors: #E0012E, #94705C, #69871E, #2B8EAD, #7752FF;
-	midTopOverGradientColors: #F84E53, #D79973, #ABCA26, #75D1E6, #A88FFF;
-	centerOverGradientColors: #FF5E5E, #F5AC7D, #C4E329, #8AE4F7, #B8A3FF;
-	midBottomOverGradientColors: #F23649, #D89A73, #A9C726, #6ECBE1, #A58BFF;
-	bottomOverGradientColors:	#E0012E, #94705C, #69871E, #2B8EAD, #7752FF;
-	
-	topProOverGradientColors: #FF3636, #CF9C80, #83B800, #32AACF, #9F85FF;
-	midTopProOverGradientColors: #F8666A, #FFAB78, #B6D628, #7BD8ED, #B7A2FF;
-	centerProOverGradientColors: #FF7575, #FFBB8F, #CEED2F, #8FEBFF, #CBBBFF;
-	midBottomProOverGradientColors: #FF4D5F, #FFB98C, #B8D442, #8EE1F5, #B7A2FF;
-	bottomProOverGradientColors: #FF3636, #CF9C80, #83B800, #32AACF, #9F85FF;
-	
-	exGradientColors: #EE867C, #E0D468, #8AC352, #53C5C5, #6F8BE1;
-	exOverGradientColors: #FFA38D, #FFFFB8, #B7D670, #70E2E2, #8DA9FF;
-	exLabelColors: #C41C32, #875600, #3E6B00, #007882, #3C1778;
 	
 	eCircleWedgeColors: #EC1C32, #C1272D, #CD5257, #611417, #E6A9AB, #EC616F, #9C1220, #FF4F62, #FF8F9B;
 	lCircleWedgeColors: #FFE79E, #603813, #E0E06B, #FFFFB8, #D19D2E, #7A6138;
@@ -105,6 +79,26 @@ global {
 	iLabelBorderColor: #344701;
 	uLabelBorderColor: #004766;
 	aLabelBorderColor: #423099;
+
+	levelTitleBarTopColors: #FFA4AB, #AE8A4D, #9BA62F, #6CC2D6, #7E6BD9;
+	levelTitleBarMidColors: #F54C4C, #BC9555, #7F872F, #519CAD, #6455AA;	
+	levelTitleBarBottomColors: #D90000, #AC7834, #646B1C, #1E7487, #392F69;
+	
+	unitListBackgroundColors: #F54E4E, #BC9555, #7F872F, #63AEBF, #6455AA;	
+	unitButtonProgressTopColors: #FFBFC3, #FFE0B5, #D9E090, #85EDF2, #DAD4FF;
+	unitButtonProgressBottomColors: #FF5252, #E6BF5C, #A9B52A, #48A6B5, #8D7FD4;
+	unitButtonProgressTopOverColors: #FFE0E0, #FFECD1, #FBFFCF, #BFFCFF, #E5E0FF;
+	unitButtonProgressBottomOverColors: #FF7070, #F7CD60, #B1BA41, #56CBDB, #A393F5;
+	unitListButtonBackgroundColors: #FFF2F3, #FFFCE9, #FCFFE0, #EDFDFF, #F9F7FF;
+	unitButtonTopOverColors: #FFE6E9, #FFF6D4, #F1F5C6, #D4FFFF, #EEEBFF;
+	unitButtonBottomOverColors: #FFB5C0, #FFDF8F, #D9E090, #99E2E8, #CDC3FA;
+	unitListButtonLabelColors: #781C23, #875600, #3E6B00, #004766, #3C1778;
+	
+	exerciseListBackgroundColors: #F54E4E, #BC9555, #7F872F, #63AEBF, #6455AA;	
+	exerciseTopOverColors: #FFE6E9, #FFF3C5, #F1F5C6, #D4FDFF, #DEDFFF;
+	exerciseBottomOverColors: #FFB5C0, #F2D68F, #D9E090, #90D2D6, #C9BFF2;	
+	exerciseUndoneColors: #FFF2F3, #FFFCE9, #FCFFE0, #EBFDFF, #F9F7FF;
+	exerciseLabelColors: #781C23, #875600, #3E6B00, #004766, #3C1778;
 	
 	markingColours: #2CA874, #E61E1E, #0066FF;
 	
@@ -117,12 +111,6 @@ global {
 	ProfileOverIcon: Embed(source="skins/tensebuster/assets/title/profileOverIcon.png");
 	ProfileBg: Embed(source="skins/tensebuster/assets/title/progressBg.png");
 	ProfileOverBg: Embed(source="skins/tensebuster/assets/title/progressOverBg.png");
-	
-	elementaryIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/elementary.png");
-	lowerintermediateIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/lowerIntermediate.png");
-	intermediateIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/intermediate.png");
-	upperintermediateIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/upperIntermediate.png");
-	advancedIconSmall: Embed(source="skins/tensebuster/assets/courseIconSmall/advanced.png");
 	
 	elementaryUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/elementary.png");
 	lowerintermediateUnitIconSmall: Embed(source="skins/tensebuster/assets/unitIcon/lowerIntermediate.png");
@@ -206,24 +194,36 @@ home|HomeView {
 	skinClass: ClassReference("skins.tensebuster.HomeSkin");
 }
 
-unit|UnitView {
-	skinClass: ClassReference("skins.tensebuster.UnitSkin");
+home|HomeView s|List#unitList {
+	skinClass: ClassReference("skins.tensebuster.home.UnitListSkin");
 }
 
-unit|UnitView s|Button#backButton {
-	skinClass: ClassReference("skins.tensebuster.ui.BackButtonSkin");
+courseselector|TBCourseSelector s|Button#elementary {
+	skinClass: ClassReference("skins.tensebuster.home.ElementaryButtonSkin");
 }
 
-unitui|ProgressUnitButton {
-	skinClass: ClassReference("skins.tensebuster.unit.ui.ProgressUnitButtonSkin");
+courseselector|TBCourseSelector s|Button#lowerInter {
+	skinClass: ClassReference("skins.tensebuster.home.LowerInterButtonSkin");
 }
 
-zone|ZoneView {
-	skinClass: ClassReference("skins.tensebuster.ZoneSkin");
+courseselector|TBCourseSelector s|Button#intermediate {
+	skinClass: ClassReference("skins.tensebuster.home.IntermediateButtonSkin");
 }
 
-zone|ZoneView s|Button#backButton {
-	skinClass: ClassReference("skins.tensebuster.ui.BackButtonSkin");
+courseselector|TBCourseSelector s|Button#upperInter {
+	skinClass: ClassReference("skins.tensebuster.home.UpperInterButtonSkin");
+}
+
+courseselector|TBCourseSelector s|Button#advanced {
+	skinClass: ClassReference("skins.tensebuster.home.AdvancedButtonSkin");
+}
+
+homeui|MenuButton#zoneUndoneButton {
+	skinClass: ClassReference("skins.tensebuster.home.ZoneUndoneButtonSkin");
+}
+
+homeui|MenuButton#zoneDoneButton {
+	skinClass: ClassReference("skins.tensebuster.home.ZoneDoneButtonSkin");
 }
 
 exercise|ExerciseView {
@@ -323,8 +323,8 @@ progressui|ProgressCourseButtonBar {
 	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressCourseButtonBarSkin");
 }
 
-bentoprogressui|ProgressBarRenderer {
-	skinClass: ClassReference("skins.tensebuster.unit.ui.ProgressBarRendererSkin");
+progressui|ProgressBarRenderer {
+	skinClass: ClassReference("skins.tensebuster.progress.ui.ProgressBarRendererSkin");
 }
 
 profile|ProfileView {
@@ -388,13 +388,7 @@ recorder|WaveformView {
 }
 
 components|AudioPlayer {
-	compactStoppedIcon: Embed(source="skins/tensebuster/assets/exercise/audio/audio-up-icon.png");
-	compactPlayedIcon: Embed(source="skins/tensebuster/assets/exercise/audio/audio-up-icon.png");
-	compactPausedIcon: Embed(source="skins/tensebuster/assets/exercise/audio/audio-up-icon.png");
-	compactPlayingIcon: Embed(source="skins/tensebuster/assets/exercise/audio/audio-playing-icon.png");
-	
-	fullPlayIcon: Embed(source="skins/tensebuster/assets/exercise/audio/fullAudioPlay.png");
-	fullPauseIcon: Embed(source="skins/tensebuster/assets/exercise/audio/fullAudioPause.png");
+	skinClass: ClassReference("skins.tensebuster.exercise.AudioPlayerSkin");
 }
 
 components|AudioPlayer s|ScrubBar#scrubBar {

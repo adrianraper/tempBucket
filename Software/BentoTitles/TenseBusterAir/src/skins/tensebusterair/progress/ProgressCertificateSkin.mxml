@@ -14,9 +14,9 @@
 	
 	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='skins/tensebusterair/assets/progress/progressFooter.png')" bottom="-60" horizontalCenter="0" />
 	
-	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
 		<ui:layout>
-			<s:ButtonBarHorizontalLayout gap="16" />
+			<s:ButtonBarHorizontalLayout gap="35" />
 		</ui:layout>
 	</ui:ProgressCourseButtonBar>
 	

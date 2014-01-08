@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.home.ui.MenuButton")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
+		<s:GlowFilter id="glowFilter" color="#FFFFFF" blurX="20" blurY="20" inner="true" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			public function getExTopColor(index:Number):Number {
+				var colors:Array = getStyle("unitButtonProgressTopColors");
+				return colors[index];
+			}
+			
+			public function getExBottomColor(index:Number):Number {
+				var colors:Array = getStyle("unitButtonProgressBottomColors");
+				return colors[index];
+			}
+			
+			public function getExTopOverColor(index:Number):Number {
+				var colors:Array = getStyle("exerciseTopOverColors");
+				return colors[index];
+			}
+			
+			public function getExBottomOverColor(index:Number):Number {
+				var colors:Array = getStyle("exerciseBottomOverColors");
+				return colors[index];
+			}
+			
+			public function getExLabelColor(index:Number):Number {
+				var colors:Array = getStyle("exerciseLabelColors");
+				return colors[index];
+			}
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<s:Rect id="donePath" left="2" height="30" width="264" radiusX="6" radiusY="6" filters="{[dropShadowFilter]}">
+		<s:fill>			
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="{getExTopColor(hostComponent.courseIndex)}" color.over="{getExTopOverColor(hostComponent.courseIndex)}" color.down="{getExTopOverColor(hostComponent.courseIndex)}"  ratio="0" />
+				<s:GradientEntry color="{getExBottomColor(hostComponent.courseIndex)}" color.over="{getExBottomOverColor(hostComponent.courseIndex)}" color.down="{getExBottomOverColor(hostComponent.courseIndex)}" ratio="1" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	
+	<!--s:Rect left="2" height="30" width="264" radiusX="6" radiusY="6" includeIn="[down, over]" filters="{[glowFilter]}">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" alpha="0.5" />
+		</s:fill>
+	</s:Rect-->
+	
+	<s:Label id="labelDisplay"
+			 verticalAlign="middle"
+			 maxDisplayedLines="1"
+			 left="20" verticalCenter="3" fontSize="14"
+			 color="{getExLabelColor(hostComponent.courseIndex)}">
+	</s:Label>
+</s:Skin>

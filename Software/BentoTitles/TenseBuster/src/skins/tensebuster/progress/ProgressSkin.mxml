@@ -4,7 +4,7 @@
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" 
 		xmlns:components="com.clarityenglish.bento.view.progress.components.*" 
 		xmlns:exercise="skins.tensebuster.assets.exercise.*" 
-		xmlns:progress="com.clarityenglish.tensebuster.view.progress.*">
+		xmlns:progress="com.clarityenglish.tensebuster.view.progress.*" xmlns:home="skins.tensebuster.assets.home.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressView")]
@@ -26,6 +26,8 @@
     </s:states>
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/>	
+	
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="-60"/>
 	
 	<s:HGroup width="100%" paddingLeft="65" top="55">
 		<s:ButtonBar id="progressNavBar"/>			

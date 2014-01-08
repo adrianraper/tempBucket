@@ -40,7 +40,7 @@ in accordance with the terms of the license agreement accompanying it.
 			/**
 			 * @private
 			 */
-			override protected function initializationComplete():void {
+			override protected function initializationComplete():void { 
 				useChromeColor = true;
 				super.initializationComplete();
 			}
@@ -151,7 +151,7 @@ in accordance with the terms of the license agreement accompanying it.
 					<!--- @copy spark.components.VideoPlayer#playPauseButton -->
 					<s:ToggleButton id="playPauseButton"
 									left="10"
-									bottom="15"
+									bottom="17"
 									skinClass="skins.tensebuster.exercise.ui.PlayPauseButtonSkin"
 									skinClass.fullScreenStates="spark.skins.spark.mediaClasses.fullScreen.PlayPauseButtonSkin"
 									layoutDirection="ltr"

@@ -4,8 +4,6 @@ package com.clarityenglish.tensebuster.view.title {
 	import com.clarityenglish.tensebuster.view.help.HelpView;
 	import com.clarityenglish.tensebuster.view.home.HomeView;
 	import com.clarityenglish.tensebuster.view.progress.ProgressView;
-	import com.clarityenglish.tensebuster.view.unit.UnitView;
-	import com.clarityenglish.tensebuster.view.zone.ZoneView;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -22,8 +20,10 @@ package com.clarityenglish.tensebuster.view.title {
 	import spark.components.HGroup;
 	import spark.components.Label;
 	import spark.components.TabbedViewNavigator;
+	import spark.components.ViewNavigator;
 	import spark.components.mediaClasses.VolumeBar;
 	import spark.events.IndexChangeEvent;
+	import spark.transitions.ViewTransitionBase;
 	
 	public class TitleView extends BentoView {
 		
@@ -31,13 +31,13 @@ package com.clarityenglish.tensebuster.view.title {
 		public var sectionNavigator:TabbedViewNavigator;
 		
 		[SkinPart]
+		public var homeViewNavigator:ViewNavigator;
+		
+		[SkinPart]
 		public var backToMenuButton:Button;
 		
 		[SkinPart]
 		public var courseThumbnail:SWFLoader;
-		
-		[SkinPart]
-		public var unitThumbnail:SWFLoader;
 		
 		[SkinPart]
 		public var coursePath:HGroup;
@@ -54,6 +54,9 @@ package com.clarityenglish.tensebuster.view.title {
 		[SkinPart]
 		public var helpButton:Button;
 		
+		[Bindable]
+		public static var courseCode:String;
+		
 		private var _selectedNode:XML;
 		private var courseID:String;
 		private var _courseUID:String;
@@ -61,13 +64,11 @@ package com.clarityenglish.tensebuster.view.title {
 		private var _unitUID:String;
 		private var _unitCaption:String;
 		private var _exerciseCaption:String;
-		[Bindable]
-		public static var courseCode:String;
+		private var _isBackFromExercise:Boolean;
+		private var courseCaptionChange:Boolean;
 		
 		public var backToMenu:Signal = new Signal();
-		public var logout:Signal = new Signal();
-		
-		public var thumbnailScript:String;
+		public var logout:Signal = new Signal();	
 		
 		public function set selectedNode(value:XML):void {
 			_selectedNode = value;
@@ -80,15 +81,13 @@ package com.clarityenglish.tensebuster.view.title {
 					courseID = _selectedNode.@id;
 					_courseUID = "9."+_selectedNode.@id as String;
 					courseCaption = _selectedNode.@caption;
-					courseThumbnail.source = getThumbnailForUid(_courseUID);
 					courseCode = courseCaption.charAt(0);
-					currentState = "unit";
+					currentState = "home";
 					break;
 				case "unit":
 					_unitUID = _courseUID+"."+courseID;
 					unitCaption = _selectedNode.@caption;
-					unitThumbnail.source = getThumbnailForUid(_unitUID);
-					currentState = "zone";
+					currentState = "home";
 					break;
 				case "exercise":
 					exerciseCaption = _selectedNode.@caption;
@@ -104,6 +103,8 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
+			courseCaptionChange = true;
+			invalidateProperties();
 		}
 		
 		[Bindable]
@@ -131,7 +132,6 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
-
 		}
 		
 		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
@@ -165,12 +165,14 @@ package com.clarityenglish.tensebuster.view.title {
 				case sectionNavigator:
 					setNavStateMap(sectionNavigator, {
 						home: { viewClass: HomeView },
-						unit: { viewClass: UnitView, stack: true },
-						zone: { viewClass: ZoneView, stack: true },
 						exercise: { viewClass: ExerciseView, stack: true },
 						progress: { viewClass: ProgressView },
 						help: {viewClass: HelpView}
 					});
+					break;
+				case homeViewNavigator:
+					// remove the right transition when back to the home screen
+					homeViewNavigator.defaultPopTransition = new ViewTransitionBase();
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
@@ -192,14 +194,6 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		protected override function getCurrentSkinState():String {
-			/*if (currentState == "home") {
-				if (coursePath)
-					coursePath.visible = false;
-				if (unitPath)
-					unitPath.visible = false;
-				if (exercisePath)
-					exercisePath.visible = false;
-			}*/ 
 			// disable Menu button bar button when current page is unit or zone page.
 			if (currentState == "unit" || currentState == "zone") {
 				ButtonBarButton(sectionNavigator.tabBar.dataGroup.getElementAt(0)).enabled = false;
@@ -207,10 +201,6 @@ package com.clarityenglish.tensebuster.view.title {
 				ButtonBarButton(sectionNavigator.tabBar.dataGroup.getElementAt(0)).enabled = true;
 			}
 			return currentState;
-		}
-		
-		public function getThumbnailForUid(uid:String):String {
-			return thumbnailScript + "?uid=" + uid + "&exIndex=" + 4;
 		}
 		
 		// gh#217

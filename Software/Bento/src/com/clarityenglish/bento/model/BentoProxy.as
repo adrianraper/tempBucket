@@ -80,7 +80,7 @@ package com.clarityenglish.bento.model {
 		[Bindable(event="selectedNodeChanged")]
 		public function get selectedNodeType():String {			
 			return (selectedExerciseNode.hasOwnProperty("@type") == true)? selectedExerciseNode.@type : null;
-		}
+		}		 
 
 		public function reset():void {
 			// #472

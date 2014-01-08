@@ -32,7 +32,7 @@
 -->
 <s:SparkSkin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" creationComplete="init()"
-   alpha.disabled="0.5">
+   alpha.disabled="0.5" xmlns:video="skins.tensebuster.assets.exercise.video.*">
 
     <!-- host component -->
     <fx:Metadata>
@@ -116,8 +116,8 @@
         <s:State name="down" />
         <s:State name="disabled" />
     </s:states>
-        
-    <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/video/controlBg.png')" />
+
+	<video:videoControlBg />
     
     <!--- Defines the volume symbol. -->
 	<s:Group verticalCenter="0" horizontalCenter="0">

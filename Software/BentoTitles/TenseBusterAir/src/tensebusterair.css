@@ -1,6 +1,7 @@
 /* CSS file */
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+@namespace textLayoutComponents "com.clarityenglish.textLayout.components.*";
 @namespace tensebuster "com.clarityenglish.tensebuster.*";
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
 @namespace login "com.clarityenglish.tensebuster.view.login.*";
@@ -19,12 +20,6 @@
 
 global {
 	interactionMode: touch;
-	
-	EIcon: Embed(source="skins/tensebuster/assets/courseIcon/Elementary.png");
-	LIcon: Embed(source="skins/tensebuster/assets/courseIcon/Lower Intermediate.png");
-	IIcon: Embed(source="skins/tensebuster/assets/courseIcon/Intermediate.png");
-	UIcon: Embed(source="skins/tensebuster/assets/courseIcon/Upper Intermediate.png");
-	AIcon: Embed(source="skins/tensebuster/assets/courseIcon/Advanced.png");
 }
 
 s|TitleWindow {
@@ -122,38 +117,6 @@ home|HomeView {
 	skinClass: ClassReference("skins.tensebusterair.HomeSkin");
 }
 
-home|HomeView ui|MenuButton#homeButton {
-	skinClass: ClassReference("skins.tensebusterair.ui.HomeButtonSkin");
-}
-
-unit|UnitView {
-	skinClass: ClassReference("skins.tensebusterair.UnitSkin");
-}
-
-unit|UnitView unitui|ProgressUnitButton {
-	skinClass: ClassReference("skins.tensebusterair.unit.ProgressUnitButtonSkin");
-}
-
-unit|UnitView s|Button#backButton {
-	skinClass: ClassReference("skins.tensebusterair.ui.BackButtonSkin");
-}
-
-zone|ZoneView {
-	skinClass: ClassReference("skins.tensebusterair.ZoneSkin");
-}
-
-zone|ZoneView ui|MenuButton#zoneUndoneButton {
-	skinClass: ClassReference("skins.tensebusterair.ui.ZoneUndoneButtonSkin");
-}
-
-zone|ZoneView ui|MenuButton#zoneDoneButton {
-	skinClass: ClassReference("skins.tensebusterair.ui.ZoneDoneButtonSkin");
-}
-
-zone|ZoneView s|Button#backButton {
-	skinClass: ClassReference("skins.tensebusterair.ui.BackButtonSkin");
-}
-
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.tensebusterair.ExerciseSkin");
 }
@@ -184,4 +147,8 @@ s|Scroller s|VScrollBar {
 
 view|DynamicView s|Group s|VScrollBar {
 	skinClass: ClassReference("spark.skins.mobile.VScrollBarSkin");
+}
+
+textLayoutComponents|AudioPlayer {
+	skinClass: ClassReference("skins.tensebusterair.exercise.AudioPlayerSkin");
 }

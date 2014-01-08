@@ -72,5 +72,4 @@
 				   toolTip="Recording level meter"
 				   visible="{hostComponent.isRecording}"
 				   includeIn="record" />
-	
 </s:Skin>
