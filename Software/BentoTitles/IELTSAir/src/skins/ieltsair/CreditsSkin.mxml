@@ -8,6 +8,8 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		<s:State name="lastMinute" />
+		<s:State name="testDrive" />
 	</s:states>
 	
 	<s:Scroller left="40" right="0" top="140" bottom="120">

@@ -124,6 +124,8 @@
 									//gh #184
 									if (practiceTestButton.enabled) {
 										practiceLabel.text = data.@caption;
+										practiceTestGroup.toolTip = null;
+										answerKeyGroup.toolTip = null;
 									} else {
 										practiceLabel.text = outerDocument.hostComponent.getCopyProvider().getCopyForId("notAvailblePracticeTest");
 										// gh#759
