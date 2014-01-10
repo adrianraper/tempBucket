@@ -133,6 +133,8 @@ package com.clarityenglish.ielts.view.title {
 		// gh#383
 		private var _infoButtonText:String;
 		private var _inforButtonTextFlow:TextFlow;
+		// gh#761
+		private var _isDirectStartEx:Boolean;
 		
 		public var logout:Signal = new Signal();
 		public var backToMenu:Signal = new Signal();
@@ -210,6 +212,15 @@ package com.clarityenglish.ielts.view.title {
 		
 		public function set inforButtonTextFlow(value:TextFlow):void {
 			_inforButtonTextFlow = value;
+		}
+		
+		[Bindable]
+		public function get isDirectStartEx():Boolean {
+			return _isDirectStartEx;
+		}
+		
+		public function set isDirectStartEx(value:Boolean):void {
+			_isDirectStartEx = value;
 		}
 		
 		[Bindable(event="productCodeChanged")]
@@ -444,14 +455,18 @@ package com.clarityenglish.ielts.view.title {
 		 * @param event
 		 */
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
-			backToMenu.dispatch();
-			
-			// #260 
-			if (logoutButton) logoutButton.enabled = false;
-			shortDelayTimer = new Timer(1000, 60);
-			shortDelayTimer.start();
-			shortDelayTimer.addEventListener(TimerEvent.TIMER, timerHandler);
-			shortDelayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, resetLogoutButton);
+			if (isDirectStartEx) {
+				logout.dispatch();
+			} else {
+				backToMenu.dispatch();
+				
+				// #260 
+				if (logoutButton) logoutButton.enabled = false;
+				shortDelayTimer = new Timer(1000, 60);
+				shortDelayTimer.start();
+				shortDelayTimer.addEventListener(TimerEvent.TIMER, timerHandler);
+				shortDelayTimer.addEventListener(TimerEvent.TIMER_COMPLETE, resetLogoutButton);
+			}		
 		}
 		
 		// #260 
