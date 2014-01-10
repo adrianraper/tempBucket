@@ -5,6 +5,7 @@ package com.clarityenglish.controls.video.players {
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
+	import flash.system.Capabilities;
 	import flash.utils.Dictionary;
 	
 	import mx.logging.ILogger;
@@ -73,8 +74,8 @@ package com.clarityenglish.controls.video.players {
 			
 			videoPlayers[this] = true; // gh#749
 			
-			// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually
-			dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
+			// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually (changed for #732 to hardcoded 160 which is apparently a constant)
+			dpiScaleFactor = (parentApplication as Application).runtimeDPI / 160;
 			
 			// Create the StageWebView
 			if (!stageWebView) stageWebView = new StageWebView();
@@ -124,8 +125,14 @@ package com.clarityenglish.controls.video.players {
 				// Need to get the viewport of the List - some kind of parent will give us the VideoWidget which is an ItemRenderer and from there we can get the list as owner.
 				// gh#732
 				if (parentDocument.owner && parentDocument.owner.owner) {
-					var list:List = parentDocument.owner.owner;				
-					rectangle = rectangle.intersection(list.getVisibleRect(stage));
+					var list:List = parentDocument.owner.owner;	
+					var listRect:Rectangle = list.getVisibleRect(stage);
+					
+					// #732 - this is necessary to get this to work properly on a Retina iPad
+					listRect.width *= dpiScaleFactor;
+					listRect.height *= dpiScaleFactor;
+					
+					rectangle = rectangle.intersection(listRect);
 				}
 				
 				if (!stageWebView.viewPort || !rectangle.equals(stageWebView.viewPort)) {
