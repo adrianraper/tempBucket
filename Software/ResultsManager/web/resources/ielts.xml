@@ -53,6 +53,7 @@
 			<lit name="errorMustUpgradeApp" code="502">You have to upgrade your app as it will not work with the database. If you have an iPad, upgrade from the iTunes App Store. If you are using a browser, clear your cache.</lit>
 			<lit name="xxerrorMustUpgradeApp" code="502">Sorry, there is a problem with the iPad app right now. Please try again in a few hours. If you are using a browser, clear your cache to upgrade and try again.</lit>
 			<lit name="errorCookiesBlocked" code="503">You need to let your browser suppport cookies for this domain ({domain}). Please change the settings and try again.</lit>
+			<lit name="errorParsingExerciseDetection1">The direct start link of Road to IELTS is invalid.</lit>
 			
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
 			

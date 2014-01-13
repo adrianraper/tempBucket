@@ -104,10 +104,15 @@ package com.clarityenglish.ielts.view {
 			// If exerciseID is defined go straight into an exercise.
 			if (directStart.exerciseID) {
 				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
-				
 				if (exercise) {
-					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
-					return true;
+					var href:Href = bentoProxy.createRelativeHref(Href.EXERCISE, exercise.@href);
+					if (href.extension == "rss") {
+						directStart.unitID = exercise.parent().@id;
+						trace("direct start unit ID: "+directStart.unitID);
+					} else {
+						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+						return true;
+					}					
 				}
 				
 			}
