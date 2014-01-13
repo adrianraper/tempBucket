@@ -980,3 +980,12 @@ ALTER TABLE `T_Subscription` ADD COLUMN `F_Birthday` DATETIME NULL DEFAULT NULL 
 insert into T_LicenceAttributes
 (F_RootID, F_ProductCode, F_Key, F_Value)
 values (163, 54, 'customisation',"<branding><login><image src='CE_banner.png' horizontalAlign='center' verticalAlign='top' padding='0' /><image src='trophy.png' horizontalAlign='left' verticalAlign='bottom' padding='10' /></login></branding>");
+
+-- gh#777
+-- Populate T_CourseInfo, run this every day to get AP and CCB updates
+DELETE FROM T_CourseInfo;
+INSERT INTO T_CourseInfo
+SELECT F_ProductCode, F_CourseID FROM T_Score
+WHERE F_ProductCode > 0
+GROUP BY F_ProductCode, F_CourseID;
+--SELECT * FROM rack80829.T_CourseInfo ORDER BY F_ProductCode, F_CourseID;

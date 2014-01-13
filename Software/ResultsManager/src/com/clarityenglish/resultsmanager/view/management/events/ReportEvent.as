@@ -37,6 +37,9 @@
 		// v3.2 Add in optional student ID
 		public var includeStudentID:Boolean = false;
 		
+		// gh#777
+		public var includeInactiveUsers:Boolean = false;
+		
 		public function ReportEvent(type:String, forReportables:Array = null, onReportables:Array = null, bubbles:Boolean=false, cancelable:Boolean=false) { 
 			super(type, bubbles, cancelable);
 			
@@ -60,6 +63,8 @@
 			event.template = template;
 			// v3.2 Add in optional student ID
 			event.includeStudentID = includeStudentID;
+			// gh#777
+			event.includeInactiveUsers = includeInactiveUsers;
 			
 			return event;
 		} 

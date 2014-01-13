@@ -1200,10 +1200,12 @@ EOD;
 		$doc = new DOMDocument();
 		//NetDebug::trace("read folder=".$folder."/".$title->indexFile);
 		// v3.2 Extra protection in case folders are missing
-		if (!file_exists($folder."/".$title->indexFile)) {
+		if (!file_exists($folder."/".$title->indexFile))
 			throw new Exception("missing title ".$folder."/".$title->indexFile);
-		}
-		$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile);
+			
+		// gh#777 Error checking
+		if (!$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile))
+			throw new Exception("corrupt file ".$folder."/".$title->indexFile);
 		
 		// Bento titles have course nodes
 		$coursesXML = $doc->getElementsByTagName("course");
@@ -1259,7 +1261,9 @@ EOD;
 		if (!file_exists($folder."/".$title->indexFile))
 			throw new Exception("missing title ".$folder."/".$title->indexFile);
 			
-		$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile);
+		// gh#777 Error checking - don't care too much if you can't load a C-Builder course
+		if (!$this->_loadFileIntoDOMDocument($doc, $folder."/".$title->indexFile))
+			return null;
 		
 		$coursesXML = $doc->getElementsByTagName("course");
 		
@@ -1631,16 +1635,27 @@ EOD;
 	}
 	
 	private function _loadFileIntoDOMDocument($doc, $filename) {
-		// Load the filename into a string
-		$xmlString = file_get_contents($filename);
-		
-		// The current Clarity XML is not well-formed in that it contains & characters, so go through and replace this with the correct
-		// html entity before passing to the libxml parser.
-		// PHP 5.3
-		$xmlString = preg_replace('/&/', "&amp;", $xmlString);
-		
-		// Create the XML document from the string
-		$doc->loadXML($xmlString, LIBXML_COMPACT);
+		// gh#777
+		try {
+			// Load the filename into a string
+			$xmlString = file_get_contents($filename);
+
+			// gh#777
+			if (!$xmlString)
+				return false;
+				
+			// The current Clarity XML is not well-formed in that it contains & characters, so go through and replace this with the correct
+			// html entity before passing to the libxml parser.
+			// PHP 5.3
+			$xmlString = preg_replace('/&/', "&amp;", $xmlString);
+			
+			// Create the XML document from the string
+			$doc->loadXML($xmlString, LIBXML_COMPACT);
+			
+		} catch (Exception $e) {
+			return false;
+		}
+		return true;
 	}
 	
 	/*

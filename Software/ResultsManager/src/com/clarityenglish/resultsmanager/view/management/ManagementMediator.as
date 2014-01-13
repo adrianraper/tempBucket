@@ -120,6 +120,8 @@ package com.clarityenglish.resultsmanager.view.management {
 			opts.attempts = e.attempts;
 			// v3.2 Optional id in the report
 			opts.includeStudentID = e.includeStudentID;
+			// gh#777
+			opts.includeInactiveUsers = e.includeInactiveUsers;
 			
 			reportProxy.getReport(e.forReportables, e.forClass, e.onReportables, opts, e.template);
 		}

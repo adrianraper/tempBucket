@@ -14,7 +14,7 @@ class ReportBuilder {
 	
 	const SHOW_TITLE = "show_title";
 	const SHOW_COURSE = "show_course";
-	//issue:#23
+	// gh#23
 	const WITHIN_COURSE = "within_course";
 	
 	const SHOW_UNIT = "show_unit"; // SHOW_UNIT automatically includes SHOW_COURSE
@@ -36,7 +36,7 @@ class ReportBuilder {
 	
 	const SHOW_AVERAGE_SCORE = "show_average_score";
 	const SHOW_COMPLETE = "show_complete";
-	//issue:#23
+	// gh#23
 	const SHOW_EXERCISE_PERCENTAGE = "show_exercise_percentage";
 	const SHOW_EXERCISEUNIT_PERCENTAGE = "show_exerciseunit_percentage";
 	const SHOW_UNIT_PERCENTAGE = "show_unit_percentage";
@@ -62,6 +62,9 @@ class ReportBuilder {
 
 	const ORDERBY_USERS = "orderby_users";
 	const ORDERBY_UNIT = "orderby_unit";
+	
+	// gh#777
+	const SHOW_INACTIVE_USERS = "show_inactive_users";
 
 	function ReportBuilder($db = null) {
 		$this->db = $db;
@@ -69,7 +72,7 @@ class ReportBuilder {
 		// AR To avoid php Notice warnings:
 		if (!isset($this->opts[ReportBuilder::SHOW_TITLE])) $this->opts[ReportBuilder::SHOW_TITLE] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_COURSE])) $this->opts[ReportBuilder::SHOW_COURSE] = "";
-		//issue:#23
+		// gh#23
 		if (!isset($this->opts[ReportBuilder::WITHIN_COURSE])) $this->opts[ReportBuilder::WITHIN_COURSE] = "";
 		
 		if (!isset($this->opts[ReportBuilder::SHOW_UNIT])) $this->opts[ReportBuilder::SHOW_UNIT] = "";
@@ -112,14 +115,15 @@ class ReportBuilder {
 		if (!isset($this->opts[ReportBuilder::ORDERBY_USERS])) $this->opts[ReportBuilder::ORDERBY_USERS] = "";
 		if (!isset($this->opts[ReportBuilder::ORDERBY_UNIT])) $this->opts[ReportBuilder::ORDERBY_UNIT] = "";
 		if (!isset($this->opts[ReportBuilder::SHOW_SESSIONID])) $this->opts[ReportBuilder::SHOW_SESSIONID] = "";
+		// gh#777
+		if (!isset($this->opts[ReportBuilder::SHOW_INACTIVE_USERS])) $this->opts[ReportBuilder::SHOW_INACTIVE_USERS] = "";
 	}
 	
 	function setOpt($opt, $value) {
 		$this->opts[$opt] = $value;
 		
-		//issue:#23	
+		// gh#23	
 		if ($opt == ReportBuilder::WITHIN_COURSE && $value) {
-		    //gh:#23
 			//$this->setOpt(ReportBuilder::SHOW_UNIT_PERCENTAGE, true);
             $this->setOpt(ReportBuilder::SHOW_EXERCISEUNIT_PERCENTAGE, true);			
 		}
@@ -127,12 +131,12 @@ class ReportBuilder {
 		// Special cases
 		if ($opt == ReportBuilder::SHOW_UNIT && $value) {
 		    $this->setOpt(ReportBuilder::SHOW_COURSE, true);
-			//issue:#23
+			// gh#23
 			$this->setOpt(ReportBuilder::SHOW_EXERCISE_PERCENTAGE, true);
 		}
 		if ($opt == ReportBuilder::SHOW_EXERCISE && $value) {
 		    $this->setOpt(ReportBuilder::SHOW_UNIT, true);
-			//issue:#23
+			// gh#23
 			$this->setOpt(ReportBuilder::SHOW_EXERCISE_PERCENTAGE, false);
 		}
 	}
@@ -193,27 +197,7 @@ class ReportBuilder {
 		//				INNER JOIN T_CourseInfo c ON s.F_CourseID=c.F_CourseID
 		$attempts = $this->getOpt(ReportBuilder::ATTEMPTS);
 		$forUsers = $this->getOpt(ReportBuilder::FOR_USERS);
-		// We MUST have a list of users, so if it is not sent, we should build one from the groups we are sent
-		if (!$forUsers && ($forGroups = $this->getOpt(ReportBuilder::FOR_GROUPS))) {
-			$forGroupsInString = implode(",", $forGroups);
-			$sqlForUsers = <<<EOD
-						SELECT m.F_UserID
-						FROM T_Membership m
-						WHERE m.F_GroupID IN ($forGroupsInString)
-EOD;
-			$rs = $this->db->Execute($sqlForUsers);
-			$forUsers = Array();
-			switch ($rs->RecordCount()) {
-				case 0:
-					// There are no records - the SQL will return empty so nothing to do
-					break;
-				default:
-					// There is more than one user with this email address in this context
-					// What can we tell the learner?
-					while ($userObj = $rs->FetchNextObj())
-						$forUsers[] = $userObj->F_UserID;
-			}
-		}
+		
 		$fromClause = <<<EOD
 						T_Score s
 						INNER JOIN T_User u ON s.F_UserID=u.F_UserID
@@ -273,7 +257,10 @@ EOD;
 		//$this->selectBuilder->addWhere('g.F_GroupID = m.F_GroupID');
 		//$this->selectBuilder->addWhere('s.F_UserID=u.F_UserID');
 		//$this->selectBuilder->addWhere('s.F_SessionID=ss.F_SessionID');
-		
+
+		// gh#777 Need userID for later searching/filtering
+		$this->addColumn("u.F_UserID", "userID");
+				
 		// Selection of common columns
 		// v3.4 To allow productCode to be sent back too. Put it first to help sorting the returned results if grouped.
 		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("c.F_ProductCode", "productCode");		
@@ -374,17 +361,16 @@ EOD;
 		if ($durationMoreThan = $this->getOpt(ReportBuilder::DURATION_MORE_THAN))
 			$this->selectBuilder->addWhere("s.F_Duration > ".(int)($durationMoreThan*60));
 		
-		// For specific user ids
-		if ($forUsers = $this->getOpt(ReportBuilder::FOR_USERS)) {
-			$forUsersInString = implode(",", $forUsers);
-			//echo "forUsers=$forUsersInString";
-			$this->selectBuilder->addWhere("s.F_UserID IN ($forUsersInString)");
-		}
-		
 		// For specific group ids
+		// gh#777 You can't select groups and users for a report, so if group selected ignore users
 		if ($forGroups = $this->getOpt(ReportBuilder::FOR_GROUPS)) {
 			$forGroupsInString = implode(",", $forGroups);
 			$this->selectBuilder->addWhere("g.F_GroupID IN ($forGroupsInString)");
+		// For specific user ids
+		} elseif ($forUsers) {
+			$forUsersInString = implode(",", $forUsers);
+			//echo "forUsers=$forUsersInString";
+			$this->selectBuilder->addWhere("s.F_UserID IN ($forUsersInString)");
 		}
 		
 		// For specific course ids
@@ -616,6 +602,28 @@ EOD;
 		return $this->selectBuilder->toSQL();
 	}
 
+	// gh#777 Used to copy any missing fields from one array to another, setting the value to empty
+	public function createBlankRow($user, $template, $copyFields) {
+		foreach ($template as $key => $value) {
+			if (!array_key_exists($key, $user))
+				// if this field is one that you want copied, take the value
+				// TODO. You only want to copy the value if there is just one of this type in the report
+				// ie. one course or one unit. Otherwise just put a placeholder in
+				if (array_key_exists($key, $copyFields)) {
+					$temp = $copyFields[$key];
+					if ((string)$copyFields[$key] == 'value') {
+						$user[$key] = $value;
+					} else {
+						$user[$key] = $copyFields[$key];
+					}
+				} elseif (stristr('courseID|total_time|average_time|completed', $key)) {
+					$user[$key] = 0;
+				} else {
+					$user[$key] = null;
+				}
+		}
+		return $user;
+	}
 }
 
 /*

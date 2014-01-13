@@ -55,7 +55,7 @@
 		// v3.2 In the end this should be included in the interface, but for now I just set it on for a particular report
 		private var includeStudentID:Boolean;
 			
-		//gh:28
+		// gh#28
 		private var forClass:String;
 		private var testOnClass:Object; 
 		
@@ -94,6 +94,8 @@
 			detailedReportLabel.text = copyProvider.getCopyForId("detailedReportLabel", { item:4 } );
 			yesDetailRadio.label = copyProvider.getCopyForId("yes");
 			noDetailRadio.label = copyProvider.getCopyForId("no");
+			// gh#777
+			includeInactiveUsersCheckBox.label = copyProvider.getCopyForId("includeInactiveUsersCheckBox");
 			
 			//dkTreeControlBar.setCopyProvider(copyProvider);
 		}
@@ -148,7 +150,8 @@
 			}
 
 			// AR I want Groups and Users to behave the same as Content. Just too confusing if it doesn't
-			detailedReportSection.visible = false;
+			detailedReportSection.visible = detailedReportSection.includeInLayout = false;
+			includeInactiveUsersCheckBox.visible = includeInactiveUsersCheckBox.includeInLayout = false;
 			if (testOnClass is Manageable) {
 				// This is for a content tree (i.e. on manageables)
 				//forTree.labelField = "caption";
@@ -170,8 +173,12 @@
 				filterStep.text = copyProvider.getCopyForId("reportFilterStep", { item:3 } );
 				// For user reports only I want to offer a detailed or summary report
 				if (testOnClass is User) {
-					detailedReportSection.visible = true;
+					detailedReportSection.visible = detailedReportSection.includeInLayout = true;
 				}
+				// gh#777 For group reporting offer inactive users option
+				if (testOnClass is Group)
+					includeInactiveUsersCheckBox.visible = includeInactiveUsersCheckBox.includeInLayout = true;
+				
 			} else if (testOnClass is Content) {
 				//TraceUtils.myTrace("building report builder onContent");
 				// This is for a manageables tree (i.e. on content)
@@ -592,7 +599,8 @@
 			// v3.2 Add in optional studentID to the report
 			//reportEvent.includeStudentID = includeStudentID.selected;
 			reportEvent.includeStudentID = includeStudentID;
-			//TraceUtils.myTrace("reportWindow.mxml include studentID=" + reportEvent.includeStudentID);
+			// gh#777
+			reportEvent.includeInactiveUsers = includeInactiveUsersCheckBox.selected;
 			
 			// Or what if I think that it is too big to be shown in a standard grid? 
 			// But at this stage I don't know how many rows there will be.
@@ -711,11 +719,10 @@
 							<mx:RadioButton id="noDetailRadio" groupName="detailedReportGroup" selected="true" />
 						</mx:HBox>
 					</mx:VBox>
-					<!-- 
-					<mx:VBox width="50%" id="includeStudentIDSection" >
-						<mx:CheckBox id="includeStudentID" />
-					</mx:VBox>
-					-->
+				</mx:HBox>				
+				<!-- gh#777 -->
+				<mx:HBox>
+					<mx:CheckBox id="includeInactiveUsersCheckBox" />
 				</mx:HBox>				
 			</mx:VBox>
 		</mx:VBox>

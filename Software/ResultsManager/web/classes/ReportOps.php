@@ -120,6 +120,10 @@ class ReportOps {
 				case "includeEmail":
 					$opts[ReportBuilder::SHOW_EMAIL] = $reportOptValue;
 					break;
+				// gh#777
+				case "includeInactiveUsers":
+					$opts[ReportBuilder::SHOW_INACTIVE_USERS] = $reportOptValue;
+					break;
 				case "headers":
 					// Headers are just included in the root xml element for the XSL to do whatever it likes with them
 					$headers = $reportOptValue;
@@ -141,12 +145,88 @@ class ReportOps {
 		foreach ($opts as $opt => $value)
 			$reportBuilder->setOpt($opt, $value);
 		
-		//echo "ReportOps::".ReportBuilder::SHOW_COURSE."=".$reportBuilder->getOpt(ReportBuilder::SHOW_COURSE)."         ";
+		// gh#777 Even if you are reporting on a group you might need userIDs for detailed queries
+		$forUsers = $reportBuilder->getOpt(ReportBuilder::FOR_USERS);
+		if (!$forUsers && ($forGroups = $reportBuilder->getOpt(ReportBuilder::FOR_GROUPS))) {
+			$forGroupsInString = implode(",", $forGroups);
+			$sqlForUsers = <<<EOD
+				SELECT m.F_UserID, u.F_UserName as userName, u.F_Email as email, u.F_StudentID as studentID, g.F_GroupName as groupName
+				FROM T_Membership m, T_User u, T_Groupstructure g
+				WHERE m.F_GroupID IN ($forGroupsInString)
+				AND m.F_UserID = u.F_UserID
+				AND m.F_GroupID = g.F_GroupID
+				AND u.F_UserType = 0
+EOD;
+			$rs = $this->db->Execute($sqlForUsers);
+			$forUsers = Array();
+			$allUsersDetails= Array();
+			switch ($rs->RecordCount()) {
+				case 0:
+					break;
+				default:
+					while ($userObj = $rs->FetchNextObj()) {
+						$forUsers[] = $userObj->F_UserID;
+						$allUsersDetail = array("userID" => $userObj->F_UserID);
+						if ($reportBuilder->getOpt(ReportBuilder::SHOW_USERNAME)) 
+							$allUsersDetail["userName"] = $userObj->userName;
+						if ($reportBuilder->getOpt(ReportBuilder::SHOW_STUDENTID)) 
+							$allUsersDetail["studentID"] = $userObj->studentID;
+						if ($reportBuilder->getOpt(ReportBuilder::SHOW_EMAIL)) 
+							$allUsersDetail["email"] = $userObj->email;
+						if ($reportBuilder->getOpt(ReportBuilder::SHOW_GROUPNAME)) 
+							$allUsersDetail["groupName"] = $userObj->groupName;
+						$allUsersDetails[] = $allUsersDetail;
+					}
+			}
+			// Now put this information into the passed parameters for report building
+			$reportBuilder->setOpt(ReportBuilder::FOR_USERS, $forUsers);
+		}
+			
 		// Execute the query - for some crazy reason its necessary to store the sql in a variable before passing to to AdoDB
 		$sql = $reportBuilder->buildReportSQL();
 		// echo $sql.'<br/>'; exit();
 		$rows = $this->db->GetArray($sql);
-		//echo 'hi'; exit();
+		
+		// gh#777 Run a second query to add all users in a group who haven't got any score records
+		if ($reportBuilder->getOpt(ReportBuilder::SHOW_INACTIVE_USERS)) {
+			$newRows = Array();
+			// which columns appear in the empty rows?
+			$fixedReportColumns = Array();
+			switch (true) {
+				case ($reportBuilder->getOpt(ReportBuilder::SHOW_EXERCISE)):
+					$fixedReportColumns['exerciseID'] = 0;
+				case ($reportBuilder->getOpt(ReportBuilder::SHOW_UNIT)):
+					$fixedReportColumns['unitID'] = 0;
+				case ($reportBuilder->getOpt(ReportBuilder::SHOW_COURSE)):
+					$fixedReportColumns['courseID'] = 0;
+				case ($reportBuilder->getOpt(ReportBuilder::SHOW_TITLE)):
+					$fixedReportColumns['productCode'] = 0;
+					break;
+				default:
+			}
+			// and for those columns, can you put a single value in them?
+			if (isset($fixedReportColumns['productCode']) && count(explode(',', $headers['titles'])) == 1)
+				$fixedReportColumns['productCode'] = 'value';
+			if (isset($fixedReportColumns['courseID']) && count(explode(',', $headers['courses'])) == 1)
+				$fixedReportColumns['courseID'] = 'value';
+				// we don't do units/exercises in the same way - doesn't seem too necessary
+
+			foreach ($allUsersDetails as $user) {
+				// If the user has a detail record, ignore them. Otherwise add them as a blank record. 
+				foreach ($rows as $row) {
+					if ($user["userID"] == $row["userID"])
+						continue 2; 
+				}
+				if ($rows) {
+					$newRows[] = $reportBuilder->createBlankRow($user, $rows[0], $fixedReportColumns);
+				} else {
+					$newRows[] = $user;
+				}
+			}
+			if ($newRows)
+				$rows = array_merge($rows, $newRows);
+		}
+		
 		// v3.4 If a particular report needs score details (as the Clarity test does), this would seem like a good place to get the data.
 		// Build a second SQL and get the data from it into another array. Then you can process this array below too.
 		// Once all the data you need is in the dom, you can let the xsl pick it up.

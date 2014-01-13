@@ -224,6 +224,7 @@
 			<lit name="licenceType4">Single</lit>
 			<lit name="licenceType5">Individual</lit>
 			<lit name="licenceType6">Transferable Tracking</lit>
+			<lit name="licenceType7">Concurrent Tracking</lit>
 			
 			<lit name="draggingItems">Dragging ({itemCount}) items.</lit>
 			<lit name="generateReportWindowTitle">What do you want to include in the report?</lit>
@@ -272,6 +273,7 @@
 			<lit name="LKSummary">LK Summary</lit>
 			<lit name="CEFSummary">CEF Summary</lit>
 			<lit name="SummaryReport">Summary</lit>
+			<lit name="includeInactiveUsersCheckBox">Show users with no records?</lit>
 			
 			<lit name="userType">User type:</lit>
 			<lit name="student">Learner</lit>
