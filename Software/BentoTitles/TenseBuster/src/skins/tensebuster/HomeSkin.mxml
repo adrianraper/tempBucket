@@ -39,6 +39,9 @@
 			import spark.events.RendererExistenceEvent;
 			
 			public var isFirstClickCurrentUnitList:Boolean = true;
+			public var isFirstClickUnitList:Boolean = true;
+			public var isFirstSetData:Boolean = true;
+			public var exListAlphaArray:Array = [];
 			private var isFirstClickLevel:Boolean = true;
 			private var isUnitListClick:Boolean;
 			private var unitListRendererArray:Array = [];
@@ -146,6 +149,8 @@
 				// So here I reset initial value to the related component. 
 				// If we put in onCourseSelectorSelect, isFirstClickCurrentUnitList won't be true for onExerciseListResizeEnd is executed later than onCourseSelectorSelect
 				isFirstClickCurrentUnitList = true;
+				isFirstClickUnitList = true;
+				exListAlphaArray = [];
 				triangleGroup.alpha = 0;
 				triangleReferenceGroup.y = new Number();
 				
@@ -165,13 +170,13 @@
 				
 				exerciseGroup.alpha = 1;
 				// for running in tablet. The empty list will show if we don't add this line
-				exerciseList.visible = true;
+				exerciseList.visible = true; 
 				if (isFirstClickCurrentUnitList) {
 					var scale:Scale = new Scale();
 					scale.scaleYFrom = 0;
 					scale.scaleYTo = 1;
 					scale.duration = 500;
-					scale.addEventListener(EffectEvent.EFFECT_END, onExerciseListResizeEnd);
+					scale.addEventListener(EffectEvent.EFFECT_END, onScaleEnd);
 					scale.play([exerciseRect]);
 					
 					var fadeIn:mx.effects.Fade = new mx.effects.Fade();
@@ -180,14 +185,16 @@
 					fadeIn.duration = 400;
 					fadeIn.startDelay = 200;
 					fadeIn.play([triangleGroup]);
+					
+					isFirstClickCurrentUnitList = false;
 				}
 				
 				// When use click other level, the unitList.dataprovider is empty so we need to 
 				isUnitListClick = true;
 			}
 			
-			protected function onExerciseListResizeEnd(event:Event):void {
-				isFirstClickCurrentUnitList = false;
+			protected function onScaleEnd(event:Event):void {
+				isFirstClickUnitList = false;
 			}
 			
 			protected function onCreationComplete(event:FlexEvent):void {
@@ -215,7 +222,7 @@
 					instructioGroup.visible = false;
 					isFirstClickLevel = false;				
 				}
-			}		
+			}
 		]]>
 	</fx:Script>
 	
@@ -468,34 +475,43 @@
 									
 									// When the dataprovider change, the exButtonGroup's will not reset to 0 and keeps 1. So we need to reset here
 									exButtonGroup.alpha = 0;
-									if (data) {
-										// we add one by one fade in for item in exercise list here
-										if (outerDocument.isFirstClickCurrentUnitList) {
+									if (data && !outerDocument.isFirstSetData) {
+										if (!outerDocument.exListAlphaArray[getSequenceNumber(data)]) {
+											outerDocument.exListAlphaArray[getSequenceNumber(data)] = 0;
+										}
+										// we add one by one fade in for item in exercise list here 
+										if (outerDocument.isFirstClickUnitList && outerDocument.exListAlphaArray[getSequenceNumber(data)] == 0) {
 											var total:Number = outerDocument.exerciseList.dataProvider.length;
 											if ( total % 2 == 0) {
 												if (getSequenceNumber(data) <= total / 2) {
-													delay = 10 * (total / 2 - getSequenceNumber(data)) * (total / 2 - getSequenceNumber(data)) + 10;
-												} else {
-													delay = 5 * (getSequenceNumber(data) - total / 2) * (getSequenceNumber(data) - total / 2) + 10;
+													delay = 10 * (total / 2 - getSequenceNumber(data)) * (total / 2 - getSequenceNumber(data)) + 31 * (total / 2 - getSequenceNumber(data));
+													} else {
+													delay = 10 * (getSequenceNumber(data) - (total / 2 + 1)) * (getSequenceNumber(data) - (total / 2 + 1)) + 13 * (getSequenceNumber(data) - (total / 2 + 1));
 												}
 											} else {
-												if (getSequenceNumber(data) <= total/2) {
-													delay = 10 * ((total + 1) / 2 - getSequenceNumber(data)) * ((total + 1) / 2 - getSequenceNumber(data)) + 10;
+												if (getSequenceNumber(data) <= (total + 1) / 2) {
+													delay = 10 * ((total + 1) / 2 - getSequenceNumber(data)) * ((total + 1) / 2 - getSequenceNumber(data)) + 31 * ((total + 1) / 2 - getSequenceNumber(data));
 												} else {
-													delay = 5 * (getSequenceNumber(data) - (total + 1) / 2) * (getSequenceNumber(data) - (total + 1) / 2) + 10;
+													delay = 10 * (getSequenceNumber(data) - (total + 1) / 2) * (getSequenceNumber(data) - (total + 1) / 2) + 13 * (getSequenceNumber(data) - (total + 1) / 2 );
 												}
 												
 											}
-											
+
 											fadeIn.alphaFrom = 0
 											fadeIn.alphaTo = 1;
-											fadeIn.startDelay = delay;											
+											fadeIn.startDelay = delay;
+											fadeIn.duration = 200;
 											fadeIn.play([exButtonGroup]);
+											
+											outerDocument.exListAlphaArray[getSequenceNumber(data)] = 1; 
 										} else {
 											exButtonGroup.alpha = 1;
 										}
 									}
-								}	
+									
+									outerDocument.isFirstSetData = false;
+								}
+								
 							]]>
 						</fx:Script>
 						
