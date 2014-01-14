@@ -585,7 +585,12 @@ package com.clarityenglish.ielts.view.login {
 					longRateButton.addEventListener(MouseEvent.CLICK, onlongRateButtonClick);
 					break;
 				case normalLoginForgotPasswordButton:
-					normalLoginForgotPasswordButton.label = copyProvider.getCopyForId("forgotPasswordButton");
+					if (copyProvider.getCopyForId("forgotPasswordLink") == "") {
+						// For china user, we want to hide the forget password link
+						normalLoginForgotPasswordButton.visible = false;
+					}else {
+						normalLoginForgotPasswordButton.label = copyProvider.getCopyForId("forgotPasswordButton");
+					}				
 					break;
 			}
 		}
@@ -857,7 +862,6 @@ package com.clarityenglish.ielts.view.login {
 				urlString = copyProvider.getCopyForId("androidRateLink");
 			}
 			
-			trace("androidRateLink: "+urlString);
 			var urlRequest:URLRequest = new URLRequest(urlString);
 			navigateToURL(urlRequest, "_blank");
 		}
