@@ -27,8 +27,8 @@
 				creditFlow.lineHeight = 22;
 				creditFlow.paragraphSpaceAfter = 12;
 				*/
-				var creditFlow:TextFlow = TextFlowUtil.importFromString('do I ever see this?');
-				creditsRichText.textFlow = creditFlow;
+				/*var creditFlow:TextFlow = TextFlowUtil.importFromString('do I ever see this?');
+				creditsRichText.textFlow = creditFlow;*/
 			}
 			
 		]]>
@@ -45,6 +45,9 @@
 		<s:State name="nonetwork" />
     </s:states>
 	
+	<!--credit page background-->
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/credits/creditsBg.png')" top="360" horizontalCenter="0" includeIn="credits" />
+	
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
 		<s:BusyIndicator includeIn="loading" verticalCenter="0" horizontalCenter="0" /> <!-- TODO: just used the mobile one for speediness for the moment -->
@@ -55,7 +58,7 @@
 	    <nonetwork:NoNetworkView id="noNetworkView" verticalCenter="0" horizontalCenter="0" includeIn="nonetwork" />
 	</s:Group>
 	
-	<!-- Footer -->
+	<!-- Footer --> 
 	<s:Group horizontalCenter="0" height="37" bottom="0">
 		<!--s:Rect left="0" right="0" top="0" bottom="0">
 			<s:fill>
@@ -71,10 +74,10 @@
 	</s:Group>
 	
 	<!-- gh#441 why is this used, doesn't creditsview take care of it? -->
-	<s:Scroller top="560" bottom="30" horizontalCenter="0" width="720" visible="{hostComponent.currentState == 'credits'}">
+	<!--s:Scroller top="560" bottom="30" horizontalCenter="0" width="720" visible="{hostComponent.currentState == 'credits'}">
 		<s:Group>
 			<s:RichText id="creditsRichText" horizontalCenter="0" textAlign="center" fontSize="12" color="0x333333" />
 		</s:Group>
-	</s:Scroller>
+	</s:Scroller-->
 	
 </s:Skin>

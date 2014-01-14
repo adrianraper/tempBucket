@@ -39,7 +39,7 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:Group id="content" width="230" height="155">
+	<s:Group id="content" width="250" height="155">
 		<s:HGroup left="16" gap="-5">
 			<mx:PieChart id="markingPieChart" width="25%" height="35%" paddingTop="10" dataProvider="{markingCount}" innerRadius="0.55">
 				<mx:series>
@@ -47,7 +47,7 @@
 				</mx:series>
 			</mx:PieChart>
 			<s:VGroup paddingTop="40">
-				<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.correctPercent}% in this exercise." fontSize="12" />
+				<s:Label id="overallScore" text="You scored {hostComponent.exerciseMark.correctPercent}% in this exercise." fontSize="12" paddingLeft="-5" />
 				<s:Spacer height="6"/>
 				<s:Label text="Correct: {hostComponent.exerciseMark.correctCount}" color="#2CA874" fontSize="12" />
 				<s:Label text="Incorrect: {hostComponent.exerciseMark.incorrectCount}" color="#E61E1E" fontSize="12" />

@@ -40,7 +40,6 @@
 			
 			public var isFirstClickCurrentUnitList:Boolean = true;
 			public var isFirstClickUnitList:Boolean = true;
-			public var isFirstSetData:Boolean = true;
 			public var exListAlphaArray:Array = [];
 			private var isFirstClickLevel:Boolean = true;
 			private var isUnitListClick:Boolean;
@@ -170,7 +169,7 @@
 				
 				exerciseGroup.alpha = 1;
 				// for running in tablet. The empty list will show if we don't add this line
-				exerciseList.visible = true; 
+				exerciseList.visible = true;
 				if (isFirstClickCurrentUnitList) {
 					var scale:Scale = new Scale();
 					scale.scaleYFrom = 0;
@@ -185,15 +184,17 @@
 					fadeIn.duration = 400;
 					fadeIn.startDelay = 200;
 					fadeIn.play([triangleGroup]);
-					
+					// for exercise list frame, when the list doesn't roll out completely and we selecte another unit, we don't want it to roll out again
 					isFirstClickCurrentUnitList = false;
 				}
 				
-				// When use click other level, the unitList.dataprovider is empty so we need to 
+				// When user click other levels, the unitList.dataprovider is empty. So we cannot use unitList.selectedItem to judge whether unit list has been clicked or not
 				isUnitListClick = true;
 			}
 			
 			protected function onScaleEnd(event:Event):void {
+				// for the item on exercise list, when you first click unit with 6 exercises, and then click another with 11,
+				// the first 6 items has played fade in already and won't play again, but we also don't want the rest 5 items played fade in. So we use isFirstClickUnitList to avoid playing
 				isFirstClickUnitList = false;
 			}
 			
@@ -210,7 +211,7 @@
 					isFirstClickLevel = false;
 				}
 				
-				// isFirstClickLevel could also be useded to judge whether the level is clicked or not
+				// !courseSelector.level use to judge the initial situation
 				if (!courseSelector.level) {
 					var downMove:Move = new Move();
 					downMove.yFrom = 0;
@@ -218,7 +219,8 @@
 					downMove.duration = 300;
 					downMove.play([instructioGroup]);
 				} else {
-					// when the unit list only open, isBackHome is not set to true when back from progress, so we need to hide instructionGroup here
+					// When back from progress to home page, if only the unit list open, "isBackHome" doesn't set to true in HomeView so we need to hide instructionGroup here
+					// but not inside "hostComponent.isBackToHome".
 					instructioGroup.visible = false;
 					isFirstClickLevel = false;				
 				}
@@ -475,24 +477,24 @@
 									
 									// When the dataprovider change, the exButtonGroup's will not reset to 0 and keeps 1. So we need to reset here
 									exButtonGroup.alpha = 0;
-									if (data && !outerDocument.isFirstSetData) {
+									if (data) {
 										if (!outerDocument.exListAlphaArray[getSequenceNumber(data)]) {
 											outerDocument.exListAlphaArray[getSequenceNumber(data)] = 0;
 										}
 										// we add one by one fade in for item in exercise list here 
-										if (outerDocument.isFirstClickUnitList && outerDocument.exListAlphaArray[getSequenceNumber(data)] == 0) {
+										if (outerDocument.isFirstClickUnitList && (outerDocument.exListAlphaArray.length == 2 || outerDocument.exListAlphaArray[getSequenceNumber(data)] == 0)) {
 											var total:Number = outerDocument.exerciseList.dataProvider.length;
 											if ( total % 2 == 0) {
 												if (getSequenceNumber(data) <= total / 2) {
-													delay = 10 * (total / 2 - getSequenceNumber(data)) * (total / 2 - getSequenceNumber(data)) + 31 * (total / 2 - getSequenceNumber(data));
+													delay = 10 * (total / 2 - getSequenceNumber(data)) * (total / 2 - getSequenceNumber(data)) + 32 * (total / 2 - getSequenceNumber(data));
 													} else {
-													delay = 10 * (getSequenceNumber(data) - (total / 2 + 1)) * (getSequenceNumber(data) - (total / 2 + 1)) + 13 * (getSequenceNumber(data) - (total / 2 + 1));
+													delay = 10 * (getSequenceNumber(data) - (total / 2 + 1)) * (getSequenceNumber(data) - (total / 2 + 1)) + 14 * (getSequenceNumber(data) - (total / 2 + 1));
 												}
 											} else {
 												if (getSequenceNumber(data) <= (total + 1) / 2) {
-													delay = 10 * ((total + 1) / 2 - getSequenceNumber(data)) * ((total + 1) / 2 - getSequenceNumber(data)) + 31 * ((total + 1) / 2 - getSequenceNumber(data));
+													delay = 10 * ((total + 1) / 2 - getSequenceNumber(data)) * ((total + 1) / 2 - getSequenceNumber(data)) + 32 * ((total + 1) / 2 - getSequenceNumber(data));
 												} else {
-													delay = 10 * (getSequenceNumber(data) - (total + 1) / 2) * (getSequenceNumber(data) - (total + 1) / 2) + 13 * (getSequenceNumber(data) - (total + 1) / 2 );
+													delay = 10 * (getSequenceNumber(data) - (total + 1) / 2) * (getSequenceNumber(data) - (total + 1) / 2) + 14 * (getSequenceNumber(data) - (total + 1) / 2 );
 												}
 												
 											}
@@ -508,8 +510,6 @@
 											exButtonGroup.alpha = 1;
 										}
 									}
-									
-									outerDocument.isFirstSetData = false;
 								}
 								
 							]]>

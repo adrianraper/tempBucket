@@ -24,7 +24,7 @@
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="2" horizontalCenter="0" />
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/logo.png')" top="24" right="20" />
 	<s:Label id="versionLabel" text="v {hostComponent.parentApplication.versionNumber}" color="#000000" fontSize="12" right="22" top="60" />
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/stampHCT.png')" right="65" top="100" />
+	<!--s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/stampHCT.png')" right="65" top="100" /-->
 	
 	<s:Group horizontalCenter="0" verticalCenter="-40">
 		<s:VGroup horizontalAlign="center" gap="30">
