@@ -409,9 +409,9 @@ view|DynamicView s|Group s|VScrollBar {
 	skinClass: ClassReference("skins.tensebuster.scroller.VScrollerBarSkin");
 }
 
-.axisTitleStyle {
+/*.axisTitleStyle {
 	textDecoration:underline;
-}
+}*/
 
 .barLabelStyle {
 	verticalAlign:left;

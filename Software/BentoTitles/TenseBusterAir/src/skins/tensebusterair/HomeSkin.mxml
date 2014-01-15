@@ -209,7 +209,7 @@
 					// See whether should show the instruction when user have already clicked level
 					var downMove:Move = new Move();
 					downMove.yFrom = 0;
-					downMove.yTo = 200;
+					downMove.yTo = 160;
 					downMove.duration = 300;
 					downMove.play([instructioGroup]);
 				} else {
@@ -238,16 +238,18 @@
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
-	
+	 
 	<!--Rotation Circle-->
 	<home:circleBg left="0" verticalCenter="-10" />
 	<courseselector:TBCourseSelector id="courseSelector" left="-30" verticalCenter="-110" width="30%"/>
+	<s:SWFLoader id="homeInitialBg" source="@Embed(source='skins/tensebuster/assets/home/homeInitialBg.png')" right="0" bottom="-50" visible="{courseSelector.level == null}" />
+	<home:homeBg right="0" visible="{courseSelector.level != null}" bottom="50" />
 	
 	<!--Instruction-->
 	<s:Group id="instructioGroup">
 		<!--s:Label id="instructionLabel" width="480" left="440" fontSize="24" color="#DB0000" fontFamily="Segoe Print" /-->
-		<home1:instruction left="450" />
-		<home:instructionArrow top="20" left="230" />
+		<home:instruction left="410" />
+		<home:instructionArrow top="50" left="230" />
 	</s:Group>	
 	
 	<!--unit list title bar-->

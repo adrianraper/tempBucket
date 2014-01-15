@@ -141,7 +141,7 @@
 			<!-- My progress: Compare -->
 			<lit name="chartCaptionLabel">Average score %</lit>
 			<lit name="progressBarScore">{course} - Average score</lit>
-			<lit name="verticalAxisTitle">Average score(%)</lit>
+			<lit name="chartCaptionLabel">Average score(%)</lit>
 			<lit name="compareInstructionLabel">Compare your average score to other learners.</lit>
 			<lit name="mylegendLabel">My scores</lit>
 			<lit name="everyonelegendLabel">Everyone's scores</lit>

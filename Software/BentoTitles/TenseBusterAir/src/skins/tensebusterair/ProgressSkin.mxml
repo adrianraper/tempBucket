@@ -28,7 +28,7 @@
 	</s:HGroup>
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/progress/progressBg.png')" horizontalCenter="0" bottom="-40" filters="{[dropShadowFilter]}"/>
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/progress/progressFooter.png')" horizontalCenter="0" bottom="-60" excludeFrom="[score, certificate]" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/progress/progressFooter.png')" right="35" bottom="-50" excludeFrom="[score, certificate]" />
 	
 	<!--s:Group width="100%" height="100%" filters="{[dropShadowFilter]}"-->
 		<!--rectangle panel-->

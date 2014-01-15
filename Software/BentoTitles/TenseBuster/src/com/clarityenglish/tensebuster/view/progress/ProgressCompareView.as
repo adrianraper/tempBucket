@@ -85,6 +85,9 @@ package com.clarityenglish.tensebuster.view.progress
 		[SkinPart]
 		public var compareEmptyScoreLabel:Button;
 		
+		[SkinPart]
+		public var chartCaptionLabel:Label;
+		
 		private var _everyoneCourseSummaries:Object;
 		private var _everyoneCourseSummariesChanged:Boolean;
 		private var _courseClass:String;
@@ -122,7 +125,8 @@ package com.clarityenglish.tensebuster.view.progress
 			super.onViewCreationComplete();
 			
 			if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
-			horizontalAxis.title = copyProvider.getCopyForId("verticalAxisTitle");
+			//horizontalAxis.title = copyProvider.getCopyForId("verticalAxisTitle");
+			chartCaptionLabel.text = copyProvider.getCopyForId("chartCaptionLabel");
 			compareInstructionLabel.text = copyProvider.getCopyForId("compareInstructionLabel");
 			mylegendLabel.text = copyProvider.getCopyForId("mylegendLabel");
 			everyonelegendLabel.text = copyProvider.getCopyForId("everyonelegendLabel");
