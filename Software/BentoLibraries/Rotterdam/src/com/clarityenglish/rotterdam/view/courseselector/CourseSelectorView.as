@@ -3,14 +3,17 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.XMLListCollection;
 	import mx.events.CloseEvent;
+	import mx.events.FlexEvent;
 	import mx.managers.PopUpManager;
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.BusyIndicator;
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.List;
@@ -31,9 +34,14 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		[SkinPart]
 		public var courseListTitleLabel:Label;
 		
+		[SkinPart]
+		public var busyIndicator:BusyIndicator;
+		
 		public var createCourse:Signal = new Signal();
 		public var selectCourse:Signal = new Signal(XML);
 		public var deleteCourse:Signal = new Signal(XML);
+		
+		private var isCourseListCreated:Boolean;
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
@@ -55,8 +63,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					break;
 				case courseList:
 					courseList.dataGroup.doubleClickEnabled = true;
-					courseList.dataGroup.addEventListener(MouseEvent.DOUBLE_CLICK, onSelectCourse);
+					courseList.dataGroup.addEventListener(MouseEvent.CLICK, onSelectCourse);
 					courseList.addEventListener(CourseDeleteEvent.COURSE_DELETE, onDeleteCourse);
+					courseList.addEventListener(FlexEvent.UPDATE_COMPLETE, onCourseListUpdateComplete);
 					break;
 				case courseListTitleLabel:
 					courseListTitleLabel.text = copyProvider.getCopyForId("courseListTitleLabel");
@@ -84,5 +93,14 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			});
 		}
 		
+		// Add busy indicator before course list display in screen
+		protected function onCourseListUpdateComplete(event:FlexEvent):void {
+			if (isCourseListCreated) {
+				busyIndicator.visible = false;
+				isCourseListCreated = false;
+			} else {
+				isCourseListCreated = true;
+			}
+		}
 	}
 }

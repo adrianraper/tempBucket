@@ -61,8 +61,8 @@ in accordance with the terms of the license agreement accompanying it.
 	<s:Rect left="0" right="0" height="50" width="125"  topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" >
 		<s:fill>
 			<s:LinearGradient x="32" y="0.5" scaleX="25" rotation="90">
-				<s:GradientEntry id="color1" color="0x595959" color.over="0xFFC701" ratio="0"/>
-				<s:GradientEntry id="color2" color="0x333333" color.over="0xAD7720" ratio="1"/>
+				<s:GradientEntry id="color1" color="0x595959" color.over="0xFFC701" color.down="0xFFC701" ratio="0"/>
+				<s:GradientEntry id="color2" color="0x333333" color.over="0xAD7720" color.down="0xAD7720" ratio="1"/>
 				
 			</s:LinearGradient>
 		</s:fill>

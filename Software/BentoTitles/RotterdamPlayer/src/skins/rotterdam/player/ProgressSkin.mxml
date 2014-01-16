@@ -54,11 +54,11 @@
 		<s:VerticalLayout />
 	</s:layout-->
 	
-	<s:transitions>
+	<!--s:transitions>
 		<s:Transition fromState="*" toState="*" autoReverse="true">
 			<s:Wipe direction="left" duration="100" targets="{[progressCoverageView, progressAnalysisView ]}" />
 		</s:Transition>
-	</s:transitions>
+	</s:transitions-->
 	
 	<s:HGroup top="10" left="26">
 		<s:SWFLoader source="@Embed(source='/skins/rotterdam/player/assets/progress/icon_progress.png')"/>

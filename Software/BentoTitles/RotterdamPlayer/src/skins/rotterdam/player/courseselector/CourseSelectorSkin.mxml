@@ -14,6 +14,8 @@
 		<s:State name="normal" />
 	</s:states>
 	
+	<s:BusyIndicator id="busyIndicator" visible="true" verticalCenter="0" horizontalCenter="0"/>
+					 
 	<s:Label id="courseListTitleLabel" top="15" left="26" fontSize="16" fontWeight="bold"/>
 	
 	<s:List id="courseList" labelField="@caption" width="100%" borderVisible="false" itemRenderer="skins.rotterdam.player.courseselector.CourseListItemRenderer" top="43" left="77" right="77" bottom="50">
