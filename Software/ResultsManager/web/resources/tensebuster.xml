@@ -214,73 +214,12 @@
 			 <lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 			 <lit name="creditsRichText">
 			    <![CDATA[
-			            <p><span fontWeight="bold">Project Managers</span><br/>
-							Clarity: Joe Law<br/>
-							British Council: Greg Selby</p>							
-						
-						<p><span fontWeight="bold">Lead Programmer</span><br/>
-							Dave Keen</p>
-						
-						<p><span fontWeight="bold">Video recordings</span><br/>
-							Andy Lewis</p>
-						
-						<p><span fontWeight="bold">Images</span><br/>
-							Photo images are taken from Shutterstock with permission.<br/>
-                            Graphic of a windup radio. Reproduced by kind permission of the Freeplay Energy Group.</p>
-						
-						<p><span fontWeight="bold">Tapescript</span><br/>
-							Alex Mackarow.</p>
-						
-						<p><span fontWeight="bold">Authentic articles are taken from the following publications or organisations:</span><br/>
-							Abolishing Management, One Slice at a Time<br/>
-							ACTA<br/>
-							American Artist Magazine<br/>
-							Amnesty International USA<br/>
-							Books, etc., Christmas Catalogue<br/>
-							BritainUSA.com<br/>
-							British Medical Journal<br/>
-							Canada's International Development Research Centre<br/>
-							Country Living Magazine<br/>
-							Directory of International Voluntary Work<br/>
-							ERIC Digest<br/>
-							Games on Playing Cards (Totem, PIT, Games of Rebellion, Black Peter, Game of Poems)<br/>
-							Guns, Germs and Steel<br/>
-							Heathrow Express<br/>
-							Her Majesty's Stationery Office<br/>
-							History Today<br/>
-							Learndirect<br/>
-							Management Today<br/>
-							National Geographic<br/>
-							New Internationalist<br/>
-							New Statesman<br/>
-							Play: An Endangered Species<br/>
-							Prospect Magazine<br/>
-							RECOUP<br/>
-							Royal Mail<br/>
-							Success in Four Minutes or Les<br/>
-							The Articulate Mammal<br/>
-							The Australian Film Television &amp; Radio School<br/>
-							The Economist<br/>
-							The Futurist<br/>
-							The Guardian<br/>
-							The Independent<br/>
-							The Language Instinct<br/>
-							The Observer<br/>
-							The Pocket Guide to the Birds of Britain and North-West Europe<br/>
-							The Sunday Times<br/>
-							The Times<br/>
-							The US Geological Survey (USGS)<br/>
-							Time Europe<br/>
-							To Drink Without Risk: The Use of Ultraviolet Light to Disinfect Drinking Water in Developing Countries<br/>
-							Twenty Species We May Lose in the Next 20 Years<br/>
-							UNESCO<br/>
-							Valleyfair, Cedar Fair, L.P.<br/>
-							Vanishing Languages<br/>
-							Why Newspapers Will Flourish in the Years Ahead<br/>
-							Why Study Ancient World Cultures?</p>
-						
-						<p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified,<br/>we will be pleased to make the necessary arrangements.</p>
-			    ]]>
+                        <p>Clarity would like to thank the following people for giving their voices to Tense Buster: Simon Broad,<br/>Jessica Caplan, Sally Nichols, Ben Pelletier, Kath Ryan, Scott Sauer, Michelle Tam, Sarah Toogood.</p>
+
+                        <p>Photos were taken from Shutterstock with permission.</p>
+
+                        <p>Every effort has been made to trace owners of copyright, but if any omissions can be rectified,<br/>we will be pleased to make the necessary arrangements.</p>
+                ]]>
 			</lit>
 			
 			<!-- Possible CCB literals. Please confirm.
