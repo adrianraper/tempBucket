@@ -205,9 +205,9 @@ EOD;
 				default:
 			}
 			// and for those columns, can you put a single value in them?
-			if (isset($fixedReportColumns['productCode']) && count(explode(',', $headers['titles'])) == 1)
+			if (isset($fixedReportColumns['productCode']) && $headers['titles'] && count(explode(',', $headers['titles'])) == 1)
 				$fixedReportColumns['productCode'] = 'value';
-			if (isset($fixedReportColumns['courseID']) && count(explode(',', $headers['courses'])) == 1)
+			if (isset($fixedReportColumns['courseID']) && $headers['courses'] && count(explode(',', $headers['courses'])) == 1)
 				$fixedReportColumns['courseID'] = 'value';
 				// we don't do units/exercises in the same way - doesn't seem too necessary
 
