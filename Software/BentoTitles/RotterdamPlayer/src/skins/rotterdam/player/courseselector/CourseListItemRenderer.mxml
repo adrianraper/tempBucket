@@ -15,11 +15,14 @@
 		<s:State name="selected" />
 	</s:states>
 	
-	<s:Rect filters="{[dropShadowFilter]}" height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
+	<s:Rect filters="{[dropShadowFilter]}" visible.normal="false" visible.hovered="false" visible.selected="true" height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
 		<s:fill>
-			<s:SolidColor color="0xFFFFFF" color.hovered="0xFFF6CC" color.selected="0xFFF6CC"/>
+			<s:SolidColor color="0xFFF6CC" />
 		</s:fill>
 	</s:Rect>
+	
+	<!--In tablet, there is no "hovered" status, so I add a button to borrow "down" status for tabbing effect-->
+	<s:Button id="itemButton" height="70" left="3" top="3" right="3" bottom="3" skinClass="skins.rotterdam.player.courseselector.CourseListItemButtonSkin" visible.normal="true" visible.selected="false" />
 	
 	<s:Group includeIn="hovered, selected" x="3" y="3">
 		<s:Path data="M 0 0 L 20 0 L 0 20 L 0 0 Z">

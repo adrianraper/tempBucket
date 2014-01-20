@@ -10,7 +10,9 @@ package com.clarityenglish.bento.view.progress {
 	import flash.events.Event;
 	
 	import mx.collections.ArrayCollection;
+	import mx.events.FlexEvent;
 	
+	import spark.components.BusyIndicator;
 	import spark.components.ButtonBar;
 	import spark.components.Label;
 	
@@ -35,12 +37,16 @@ package com.clarityenglish.bento.view.progress {
 		[SkinPart]
 		public var progressCoverageView:ProgressCoverageView;
 		
+		[SkinPart]
+		public var busyIndicator:BusyIndicator;
+		
 		[Bindable]
 		public var isAnonymousUser:Boolean;
 		
 		[SkinPart]
 		public var progressAnonymousLabel:Label;
 		
+		private var isProgressCoverageCreated:Boolean;
 		// gh#11
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
@@ -77,7 +83,10 @@ package com.clarityenglish.bento.view.progress {
 					break;
 				case progressAnonymousLabel:
 					instance.text = copyProvider.getCopyForId("progressAnonymousLabel");
-					break;					
+					break;
+				case progressCoverageView:
+					progressCoverageView.addEventListener(FlexEvent.UPDATE_COMPLETE, onProgressCoverageUpdateComplete);
+					break;
 			}
 		}
 		
@@ -96,6 +105,15 @@ package com.clarityenglish.bento.view.progress {
 		 */
 		protected function onNavBarIndexChange(event:Event):void {
 			invalidateSkinState(); // #301
+		}
+		
+		protected function onProgressCoverageUpdateComplete(event:Event):void {
+			if (isProgressCoverageCreated) {
+				busyIndicator.visible = false;
+			} else {
+				isProgressCoverageCreated = true;;
+			}
+			
 		}
 		
 	}
