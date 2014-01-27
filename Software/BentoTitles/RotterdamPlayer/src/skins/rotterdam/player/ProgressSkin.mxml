@@ -98,4 +98,5 @@
 		</s:Group>
 	</s:HGroup>
 	
+	<s:BusyIndicator id="busyIndicator" verticalCenter="0" horizontalCenter="0" />
 </s:Skin>
