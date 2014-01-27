@@ -4,6 +4,7 @@
 @namespace textLayoutComponents "com.clarityenglish.textLayout.components.*";
 @namespace tensebuster "com.clarityenglish.tensebuster.*";
 @namespace title "com.clarityenglish.tensebuster.view.title.*";
+@namespace titleui "com.clarityenglish.tensebuster.view.title.ui.*";
 @namespace login "com.clarityenglish.tensebuster.view.login.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
@@ -73,32 +74,65 @@ nonetwork|NoNetworkView {
 	skinClass: ClassReference("skins.tensebusterair.NoNetworkSkin");
 }
 
-/* Login view styles */
-login|LoginView {
-skinClass: ClassReference("skins.tensebusterair.LoginSkin");
+@media(os-platform:"Android") {
+	/* Login view styles */
+	login|LoginView {
+		skinClass: ClassReference("skins.tensebusterair.LoginAndroidSkin");
+	}
+	
+	home|HomeView {
+		skinClass: ClassReference("skins.tensebusterair.HomeAndroidSkin");
+	}
+	
+	/* Title view styles */
+	title|TitleView {
+		skinClass: ClassReference("skins.tensebusterair.TitleAndroidSkin");
+	}
+	
+	title|TitleView titleui|SizedTabbedViewNavigator {
+		skinClass: ClassReference("skins.tensebusterair.title.SizedTabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+	}
+	
+	title|TitleView titleui|SizedTabbedViewNavigator#tabBar{
+		skinClass: ClassReference("skins.tensebusterair.title.SizedTabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+	}
+	
+	title|TitleView titleui|SizedButton#sizedHelpButton {
+		skinClass: ClassReference("skins.tensebusterair.title.SizedHelpButtonSkin");
+	}
+	
+	title|TitleView titleui|SizedButton#sizedLogoutButton {
+		skinClass: ClassReference("skins.tensebusterair.title.SizedLogoutButtonSkin");
+	}
 }
 
-/* Title view styles */
-title|TitleView {
-	skinClass: ClassReference("skins.tensebusterair.TitleSkin");
-}
-
-title|TitleView s|TabbedViewNavigator {
-	width: 510;
-	skinClass: ClassReference("com.clarityenglish.tensebusterair.title.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+@media(os-platform:"IOS") {
+	/* Login view styles */
+	login|LoginView {
+		skinClass: ClassReference("skins.tensebusterair.LoginSkin");
+	}
+	
+	home|HomeView {
+		skinClass: ClassReference("skins.tensebusterair.HomeSkin");
+	}
+	
+	/* Title view styles */
+	title|TitleView {
+		skinClass: ClassReference("skins.tensebusterair.TitleSkin");
+	}
+	
+	title|TitleView s|TabbedViewNavigator {
+		width: 510;
+		skinClass: ClassReference("skins.tensebusterair.title.TabbedViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
+	}
+	
+	title|TitleView s|TabbedViewNavigator #tabBar {
+		skinClass: ClassReference("skins.tensebusterair.title.NavigatorTabBarSkin");
+	}
 }
 
 title|TitleView s|ViewNavigator {
-	skinClass: ClassReference("com.clarityenglish.tensebusterair.title.ViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
-}
-
-title|TitleView s|TabbedViewNavigator #tabBar {
-	/*chromeColor: #262526;
-	color: #DDDDDD;
-	fontSize: 10;
-	fontWeight: normal;
-	iconPlacement: top;*/
-	skinClass: ClassReference("skins.tensebusterair.title.NavigatorTabBarSkin");
+	skinClass: ClassReference("skins.tensebusterair.title.ViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
 }
 
 title|TitleView s|Button#logoutButton {
@@ -111,10 +145,6 @@ title|TitleView s|Button#backToMenuButton {
 
 title|TitleView s|Button#helpButton {
 	skinClass: ClassReference("skins.tensebusterair.title.HelpButtonSkin");
-}
-
-home|HomeView {
-	skinClass: ClassReference("skins.tensebusterair.HomeSkin");
 }
 
 exercise|ExerciseView {

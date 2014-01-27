@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:home="skins.tensebusterair.assets.android.tenInches.home.*" 
+		xmlns:title="skins.tensebusterair.assets.android.tenInches.title.*" xmlns:title1="skins.tensebusterair.assets.android.sevenInches.title.*"
+	    creationComplete="onCreatComplete(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.title.ui.SizedButton")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="270" distance="0.4" alpha="0.3" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			private function getFontSize():Number {
+				if (hostComponent.size == "10Inches") {
+					return 21;
+				} else {
+					return 18;
+				}
+			}
+			
+			protected function onCreatComplete(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				if(hostComponent.size == "10Inches") {
+					labelDisplay.setStyle("fontSize", 21);
+				} else {
+					labelDisplay.setStyle("fontSize", 18);
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<s:Group visible="{hostComponent.size == '10Inches'}" includeInLayout="{hostComponent.size == '10Inches'}">
+		<title:midBg left="0" includeIn="up" />
+		<title:midOverBg left="0" includeIn="over, down" />
+	</s:Group>	
+	
+	<s:Group visible="{hostComponent.size == '7Inches'}" includeInLayout="{hostComponent.size == '7Inches'}" filters="{[dropShadowFilter]}">
+		<title1:midBg includeIn="up" />
+		<title1:midOverBg includeIn="over, down" />
+	</s:Group>
+	
+	<s:HGroup gap="10" verticalCenter="0" horizontalCenter="0">
+		<!--up icon-->
+		<s:Group>
+			<s:Group>
+				<title:helpIcon left="0" visible="{hostComponent.size == '10Inches'}" includeInLayout="{hostComponent.size == '10Inches'}" includeIn="up" />
+				<title1:helpIcon left="0" visible="{hostComponent.size == '7Inches'}" includeInLayout="{hostComponent.size == '7Inches'}" includeIn="up" />
+			</s:Group>
+			
+			<!--over and down icon-->
+			<s:Group>
+				<title:helpOverIcon left="0" visible="{hostComponent.size == '10Inches'}" includeInLayout="{hostComponent.size == '10Inches'}" includeIn="over, down" />
+				<title1:helpOverIcon left="0" visible="{hostComponent.size == '7Inches'}" includeInLayout="{hostComponent.size == '7Inches'}" includeIn="over, down" />
+			</s:Group>
+		</s:Group>		
+		
+		<!-- layer 8: text -->
+		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
+		<s:Label id="labelDisplay"
+				 maxDisplayedLines="1"  
+				 fontWeight="normal" paddingTop="7"
+				 color.up="0x000000" color.over="0xFFFFFF" color.down="0xFFFFFF">
+		</s:Label>
+	</s:HGroup>
+</s:Skin>

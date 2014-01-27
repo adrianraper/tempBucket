@@ -38,6 +38,11 @@
 			
 			view.unitSelect.add(onUnitSelected);
 			view.exerciseSelect.add(onExerciseSelected);
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (configProxy.isPlatformAndroid()) {
+				view.androidSize = configProxy.getAndroidSize();
+			}
 		}
 		
 		public override function onRemove():void {

@@ -12,5 +12,6 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:Group id="contentGroup" width="100%" height="100%"/>
+	<!--change width="100%" to width=904 for TB-->
+	<s:Group id="contentGroup" width="904" height="100%" />
 </s:Skin>

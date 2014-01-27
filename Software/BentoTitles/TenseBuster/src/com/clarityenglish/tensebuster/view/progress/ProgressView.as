@@ -38,6 +38,8 @@ package com.clarityenglish.tensebuster.view.progress
 		[SkinPart]
 		public var progressAnonymousLabel:Label;
 		
+		private var _androidSize:String;
+		
 		// gh#11
 		public function get assetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getDefaultLanguageCode().toLowerCase() + '/';
@@ -45,6 +47,15 @@ package com.clarityenglish.tensebuster.view.progress
 		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		[Bindable]
+		public function get androidSize():String {
+			return _androidSize;
+		}
+		
+		public function set androidSize(value:String):void {
+			_androidSize = value;
 		}
 		
 		public function getCopyProvider():CopyProvider {

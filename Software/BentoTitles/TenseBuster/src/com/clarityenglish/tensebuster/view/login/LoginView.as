@@ -11,7 +11,9 @@ package com.clarityenglish.tensebuster.view.login
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.system.Capabilities;
 	
+	import mx.core.FlexGlobals;
 	import mx.events.FlexEvent;
 	
 	import org.osflash.signals.Signal;
@@ -210,6 +212,17 @@ package com.clarityenglish.tensebuster.view.login
 			}
 		}
 		
+		protected override function getCurrentSkinState():String {
+			if (isPlatformAndroid) {
+				if (FlexGlobals.topLevelApplication.stage.stageWidth >= 1280) {
+					return super.getCurrentSkinState() + "10Inches";
+				} else {
+					return super.getCurrentSkinState() + "7Inches";
+				}
+			} else {
+				return super.getCurrentSkinState();
+			}
+		}
 		/**
 		 * Add the institution name from the licence to the screen 
 		 * @param String name

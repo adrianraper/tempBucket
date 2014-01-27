@@ -5,11 +5,6 @@
 		xmlns:courseselector="com.clarityenglish.tensebuster.view.home.courseselector.*" xmlns:home="skins.tensebuster.assets.home.*" 
 		creationComplete="onCreationComplete(event)" xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*" xmlns:home1="skins.tensebusterair.assets.home.*">
 	
-	<s:transitions>
-		<s:Transition>
-		</s:Transition>
-	</s:transitions>
-	
 	<!-- host component -->	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.home.HomeView")]

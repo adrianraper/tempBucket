@@ -4,6 +4,7 @@ package com.clarityenglish.tensebuster.view.progress {
 	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -32,6 +33,11 @@ package com.clarityenglish.tensebuster.view.progress {
 			view.courseClass = dataProxy.getString("currentCourseClass") || ""; 
 			
 			view.courseSelect.add(onCourseSelect);
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (configProxy.isPlatformAndroid()) {
+				view.androidSize = configProxy.getAndroidSize();
+			}
 		}
 		
 		override public function listNotificationInterests():Array {

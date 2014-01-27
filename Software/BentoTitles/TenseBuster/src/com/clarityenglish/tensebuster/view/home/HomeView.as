@@ -72,11 +72,13 @@ package com.clarityenglish.tensebuster.view.home {
 		// gh#757
 		private var _course:XML;
 		private var _unit:XML;
+		[Bindable]
 		private var courseChanged:Boolean;
 		private var unitChanged:Boolean;
 		private var _courseIndex:Number;
 		private var _isBackToHome:Boolean;
 		private var _isFirstClickLevel:Boolean =  true;
+		private var _androidSize:String;
 		
 		// gh#757
 		[Bindable]
@@ -86,7 +88,7 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		// gh#757
 		public function set course(value:XML):void {
-			if (_course != value) {
+			if (_course != value && value != null) {
 				_course = value;
 				courseChanged = true;
 				invalidateProperties();
@@ -130,12 +132,26 @@ package com.clarityenglish.tensebuster.view.home {
 			_isFirstClickLevel = value;
 		}
 		
+		public function set androidSize(value:String):void {
+			_androidSize = value;
+		}
+		
 		override protected function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
 			// When back to home page, course and unit node keeps the old values
 			if (isBackToHome) {
 				isFirstClickLevel = false;
+			}
+			
+			//when logout and login again, all the previously selected node's children will disappear		
+			if (course && course.unit[0] == null) {
+				course = menu.course.(@id == course.@id)[0];
+				if (unit && unit.exercise[0] == null) {
+					// This should really not be there, for now because we cannot know whether user come back from exercise or login again, so we need to put courseChanged = false here
+					//courseChanged = false;
+					unit = course.unit.(@id == unit.@id)[0];
+				}
 			}
 		}
 
@@ -184,11 +200,11 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		protected override function commitProperties():void {			
 			super.commitProperties();
-
+			
 			if (courseChanged && unitChanged) {
 				if (course && unit) {
 					isBackToHome = true;
-					courseSelector.level = null;
+					//courseSelector.level = null;
 				}
 			}
 			
@@ -209,6 +225,13 @@ package com.clarityenglish.tensebuster.view.home {
 
 		}
 		
+		override protected function getCurrentSkinState():String {
+			if (_androidSize) {
+				return super.getCurrentSkinState() + _androidSize;
+			} else {
+				return super.getCurrentSkinState();
+			}
+		}
 		private function onListClick(event:MouseEvent):void {
 			var course:XML = event.currentTarget.selectedItem as XML;
 			
@@ -246,7 +269,7 @@ package com.clarityenglish.tensebuster.view.home {
 				unitList.selectedItem = unit;
 				unitList.selectedIndex = course.unit.(@id == this.unit.@id).childIndex();
 				// don't know why, but the unitList top is null when back to home view
-				unitList.top = 295;
+				//unitList.top = 295;
 				
 				isBackToHome = false;
 			} 
@@ -264,14 +287,14 @@ package com.clarityenglish.tensebuster.view.home {
 					triangleReferenceGroup.y = 50 + event.currentTarget.selectedIndex * 39;
 				}
 				
-				//trianglePath.top = 50 + event.currentTarget.selectedIndex * 39;			
+				//trianglePath.top = 50 + event.currentTarget.selectedIndex * 39;				
 				// adjust exercise group position for elementary last unit
 				if (courseIndex == 0 && course.unit.(@id == unitXML.@id).childIndex() == (course.unit.length() - 1)) {
 					exerciseGroup.verticalCenter = 40;
 				} else {
 					exerciseGroup.verticalCenter = 0;
 				}
-				
+
 				unitSelect.dispatch(unitXML);
 			}	
 		}

@@ -1,0 +1,553 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:courseselector="com.clarityenglish.tensebuster.view.home.courseselector.*" 
+		xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*" 
+		xmlns:android="skins.tensebusterair.assets.android.*" creationComplete="onCreationComplete(event)" xmlns:home="skins.tensebusterair.assets.android.sevenInches.home.*" xmlns:home1="skins.tensebusterair.assets.android.tenInches.home.*" xmlns:assets="skins.tensebusterair.assets.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.home.HomeView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[	
+			import com.greensock.TweenLite;
+			
+			import mx.collections.XMLListCollection;
+			import mx.core.FlexGlobals;
+			import mx.effects.Fade;
+			import mx.effects.Move;
+			import mx.effects.Parallel;
+			import mx.effects.Resize;
+			import mx.effects.Sequence;
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			
+			import org.puremvc.as3.patterns.facade.Facade;
+			
+			import spark.components.Button;
+			import spark.effects.CrossFade;
+			import spark.effects.Scale;
+			import spark.events.RendererExistenceEvent;
+			
+			public var isFirstClickCurrentUnitList:Boolean = true;
+			private var isFirstClickLevel:Boolean = true;
+			private var isUnitListClick:Boolean;
+			private var unitListRendererArray:Array = [];
+			
+			[Embed(source="skins/tensebusterair/assets/android/sevenInches/home/homeInitialBg.png")]
+			private var initial7InchesBg:Class;
+			
+			[Embed(source="skins/tensebusterair/assets/android/tenInches/home/homeInitialBg.png")]
+			private var initial10InchesBg:Class;
+			
+			public function getTitleBarTopColor(index:Number):Number {		
+				var colors:Array = hostComponent.getStyle("levelTitleBarTopColors");
+				return colors[index];
+			}
+			
+			public function getTitleBarMidColor(index:Number):Number {
+				var colors:Array = hostComponent.getStyle("levelTitleBarMidColors");
+				return colors[index];
+			}
+			
+			public function getTitleBarBottomColor(index:Number):Number {
+				var colors:Array = hostComponent.getStyle("levelTitleBarBottomColors");
+				return colors[index];
+			}
+			
+			public function getUnitListBackgroundColor(index:Number):Number {
+				var colors:Array = hostComponent.getStyle("unitListBackgroundColors");
+				return colors[index];
+			}
+			
+			public function getExerciseListBackgroundColor(index:Number):Number {
+				var colors:Array = hostComponent.getStyle("exerciseListBackgroundColors");
+				return colors[index];
+			}
+			
+			public function getTriangleColor(index:Number):Number {
+				var colors:Array = hostComponent.getStyle("exerciseListBackgroundColors");
+				return colors[index];
+			}
+			
+			protected function onCourseSelectorSelect(event:Event):void {
+				levelTitleGroup.alpha = 0;
+				unitList.visible = false;
+				
+				// we need to detect the first click. If it is, the levelTitleGroup won't fade out, because it never fade in before.
+				if (isFirstClickLevel) {
+					isFirstClickLevel = false;
+				} else {
+					var titleFadeOut:mx.effects.Fade = new Fade();
+					titleFadeOut.alphaFrom = 1.0;
+					titleFadeOut.alphaTo = 0.0;
+					titleFadeOut.duration = 200;
+					titleFadeOut.play([levelTitleGroup]);
+					
+					// if we don't add the following condition, the exerciseGroup will flash when we only switch the unit list
+					if (isUnitListClick) {
+						var exerciseFadeOut:mx.effects.Fade = new mx.effects.Fade();
+						exerciseFadeOut.alphaFrom = 1;
+						exerciseFadeOut.alphaTo = 0;
+						exerciseFadeOut.duration = 100;
+						exerciseFadeOut.play([exerciseGroup, triangleGroup]);
+						
+						isUnitListClick = false;
+					}					
+				}				
+			}
+			
+			protected function onAnimationCompleted(event:Event):void {				
+				if (!hostComponent.isBackToHome) {
+					levelTitleGroupLabel.text = hostComponent.course.@caption;
+					setTitleBarColor();
+					
+					var	fadeIn:mx.effects.Fade = new Fade();
+					fadeIn.alphaFrom = 0.0;
+					fadeIn.alphaTo = 1.0;
+					fadeIn.duration = 200;
+					fadeIn.play([levelTitleGroup]);
+					fadeIn.addEventListener(EffectEvent.EFFECT_END, onUnitTitleBarFadeOutEnd);
+				} else {
+					hostComponent.isBackToHome = false;
+				}
+				
+			}
+			
+			protected function onUnitTitleBarFadeOutEnd(event:Event):void {
+				unitList.visible = true;
+				
+				var resize:mx.effects.Resize = new Resize();
+				resize.heightFrom = 0;
+				// calculate the unit list height here, 13 is the sum for padding top and bottom
+				resize.heightTo = unitList.dataProvider.length * 39 + 13;
+				resize.duration = 300;
+				resize.addEventListener(EffectEvent.EFFECT_END, onResizeEnd);
+				resize.play([unitList]);
+			}
+			
+			// back to home
+			protected function onResizeEnd(event:Event):void {
+				// quick switch level when exercise list doesn't show up totally will cause the exericse list animation won't execute in the next level
+				// So here I reset initial value to the related component. 
+				// If we put in onCourseSelectorSelect, isFirstClickCurrentUnitList won't be true for onExerciseListResizeEnd is executed later than onCourseSelectorSelect
+				isFirstClickCurrentUnitList = true;
+				triangleGroup.alpha = 0;
+				triangleReferenceGroup.y = new Number();
+			}
+			
+			protected function onUnitListClick(event:MouseEvent):void {
+				if (isFirstClickCurrentUnitList) {
+					var exerciseListFadeIn:Fade = new Fade();
+					exerciseListFadeIn.alphaFrom = 0;
+					exerciseListFadeIn.alphaTo = 1;
+					exerciseListFadeIn.duration = 200;
+					exerciseListFadeIn.play([exerciseGroup]);
+					
+					var fadeIn:mx.effects.Fade = new mx.effects.Fade();
+					fadeIn.alphaFrom = 0.3;
+					fadeIn.alphaTo = 1;
+					fadeIn.duration = 100;
+					fadeIn.startDelay = 100;
+					fadeIn.play([triangleGroup]);
+					
+					isFirstClickCurrentUnitList = false;
+				}
+				
+				// When use click other level, the unitList.dataprovider is empty so we need to 
+				isUnitListClick = true;
+			}
+			
+			protected function setTitleBarColor():void {
+				// We set title bar new gradient here for remaining time for old gradient title bar fading out
+				// If we set gradient inside tag, the color will change immediately when the courseIndex change, so we never can see the old gradient fade out
+				unitTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
+				unitTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
+				unitTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
+				
+				topExerciseTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
+				topExerciseTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
+				topExerciseTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
+				bottomExerciseTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
+				bottomExerciseTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
+				bottomExerciseTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
+			}
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				// TODO Auto-generated method stub
+				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
+				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);
+				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
+				
+				if (currentState == "normal7Inches") {
+					homeInitialBg.source = initial7InchesBg;
+				} else if (currentState == "normal10Inches") {
+					homeInitialBg.source = initial10InchesBg;
+				}
+				
+				if(hostComponent.isBackToHome) {
+					courseSelector.level = hostComponent.course;				
+					
+					levelTitleGroupLabel.text = hostComponent.course.@caption;
+					levelTitleGroup.alpha = 1;
+					
+					unitList.height = unitList.dataProvider.length * 39 + 13;
+					unitList.selectedIndex = hostComponent.course.unit.(@id == hostComponent.unit.@id).childIndex();
+					unitList.visible = true;
+					unitList.alpha = 1;
+					
+					
+					triangleGroup.alpha = 1;
+					triangleReferenceGroup.y = 50 + unitList.selectedIndex * 39;
+					
+					setTitleBarColor();
+					exerciseGroup.alpha = 1;
+					
+					isFirstClickCurrentUnitList = false;
+				}
+				
+				if (!courseSelector.level) {
+					// See whether should show the instruction when user have already clicked level
+					var downMove:Move = new Move();
+					downMove.yFrom = 0;
+					downMove.yTo = 160;
+					downMove.duration = 300;
+					downMove.play([instructioGroup]);
+				} else {
+					// when the unit list only open, isBackHome is not set to true when back from progress, so we need to hide instructionGroup here
+					instructioGroup.visible = false;
+					isFirstClickLevel = false;				
+				}
+			}		
+		]]>
+	</fx:Script> 
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		<s:State name="normal7Inches" />
+		<s:State name="normal10Inches" />
+	</s:states>
+	
+	<!--background-->
+	<s:BitmapImage bottom="-50" width="100%" source="@Embed(source='skins/tensebusterair/assets/android/tenInches/hexagonBg.png')" fillMode="repeat" includeIn="normal10Inches" />
+	<s:BitmapImage bottom="-50" width="100%" source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/hexagonBg.png')" fillMode="repeat" includeIn="normal7Inches"/>
+	<s:Rect width="100%" top="50" bottom="30">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="#FFEDED" alpha="0" ratio="0" />
+				<s:GradientEntry color="#FFEDED" alpha="0.8" ratio="0.09" />
+				<s:GradientEntry color="#FFEDED" alpha="1" ratio="0.5" />
+				<s:GradientEntry color="#FFEDED" alpha="0.8" ratio="0.95" />
+				<s:GradientEntry color="#FFEDED" alpha="0" ratio="1" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>
+	<s:SWFLoader id="homeInitialBg" right="0" bottom="-50" visible="{courseSelector.level == null}" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/home/homeBg.png')" right="0" top="80" visible="{courseSelector.level != null}" includeIn="normal7Inches" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/tenInches/home/homeBg.png')" right="0" bottom="-50" visible="{courseSelector.level != null}" includeIn="normal10Inches" />
+	
+	<!--tense buster brand header-->
+	<android:header left="5" right="5" height="9%" top="10" />
+	
+	<!--TB logo-->
+	<assets:logo top.normal7Inches="15" top.normal10Inches="25" right="15" />
+		
+	<!--Rotation Circle-->
+	<home:circleBg left="0" top="80" scaleX="0.9" scaleY="0.9" includeIn="normal7Inches" />
+	<home1:circleBg left="-20" top="120" includeIn="normal10Inches" />
+	<courseselector:TBCourseSelector id="courseSelector" left="-40" top.normal7Inches="0" top.normal10Inches="100" width="30%"/>
+	
+	<!--Instruction-->
+	<s:Group id="instructioGroup">
+		<s:Rect left="400" top="-10" width="544" height="172" includeIn="normal10Inches" radiusX="17" radiusY="17">
+			<s:fill>
+				<s:SolidColor color="0xFC4E4E" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect left="360" top="-50" width="470" height="108" includeIn="normal7Inches" radiusX="15" radiusY="15">
+			<s:fill>
+				<s:SolidColor color="0xFC4E4E" />
+			</s:fill>
+		</s:Rect>
+		<!--s:Label id="instructionLabel" width.normal7Inches="460" width.normal10Inches="480" left.normal7Inches="400" left.normal10Inches="440" top.normal7Inches="-20" top.normal10Inches="40" fontSize.normal10Inches="24" fontSize.normal7Inches="20" color="#FFF9F9" fontFamily="Segoe Print" /-->
+		<home:instructionLabel left="400" top="-20" includeIn="normal7Inches"  />
+		<home1:instructionLabel left="440" top="40" includeIn="normal10Inches" />
+		<home:homeIntroArrow top="0" left="230" includeIn="normal7Inches" />
+		<home1:homeIntroArrow top="50" left="230" includeIn="normal10Inches" />
+	</s:Group>	
+	
+	<!--unit list title bar-->
+	<s:List id="unitList" visible="false" width="257" top.normal7Inches="170" top.normal10Inches="280" horizontalCenter.normal7Inches="-120" horizontalCenter.normal10Inches="-230" contentBackgroundAlpha="1" contentBackgroundColor="{getUnitListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.course.unit)}">
+		<s:layout>
+			<s:VerticalLayout gap="1" paddingBottom="5" paddingTop="8" paddingLeft="4" paddingRight="4" /> 
+		</s:layout>
+		<s:itemRenderer>
+			<fx:Component>				
+				<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+					
+					<fx:Metadata>
+						[Event( name="selectionEvent", type="flash.events.Event" )]
+					</fx:Metadata>
+					
+					<fx:Script>
+						<![CDATA[
+							import mx.events.FlexEvent;
+							public override function set data(value:Object):void {
+								super.data = value;
+								
+								overallProgressPath.percentWidth = data.@coverage;
+								
+								// Because the last button in unit list has bottom rounded corner, so we need to find the last button
+								if (outerDocument.hostComponent.course.unit.(@caption == data.@caption).childIndex() == (outerDocument.hostComponent.course.unit.length() - 1)) {
+									backgroundRect.bottomLeftRadiusX = 5;
+									backgroundRect.bottomLeftRadiusY = 5;
+									backgroundRect.bottomRightRadiusX = 5;
+									backgroundRect.bottomRightRadiusY = 5;
+									
+									overallProgressPath.bottomLeftRadiusX = 5;
+									overallProgressPath.bottomLeftRadiusY = 5;
+									if (data.@coverage == 100) {
+										overallProgressPath.bottomRightRadiusX = 5;
+										overallProgressPath.bottomRightRadiusY = 5;
+									}
+								} else {
+									backgroundRect.bottomLeftRadiusX = 0;
+									backgroundRect.bottomLeftRadiusY = 0;
+									backgroundRect.bottomRightRadiusX = 0;
+									backgroundRect.bottomRightRadiusY = 0;
+									
+									overallProgressPath.bottomLeftRadiusX = 0;
+									overallProgressPath.bottomLeftRadiusY = 0;
+									overallProgressPath.bottomRightRadiusX = 0;
+									overallProgressPath.bottomRightRadiusY = 0;
+								}
+							}
+							
+							public function getUnitButtonProgressTopColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressTopColors");
+								return colors[index];
+							}
+							
+							public function getUnitButtonProgressBottomColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressBottomColors");
+								return colors[index];
+							}
+							
+							public function getUnitButtonProgressTopOverColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressTopOverColors");
+								return colors[index];
+							}
+							public function getUnitButtonProgressBottomOverColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonProgressBottomOverColors");
+								return colors[index];
+							}
+							public function getUnitButtonColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitListButtonBackgroundColors");
+								return colors[index];
+							}
+							
+							public function getUnitButtonTopOverColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonTopOverColors");
+								return colors[index];
+							}
+							
+							public function getUnitButtonBottomOverColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitButtonBottomOverColors");
+								return colors[index];
+							}
+							
+							public function getUnitListButtonLabelColor(index:Number):Number {
+								var colors:Array = outerDocument.hostComponent.getStyle("unitListButtonLabelColors");
+								return colors[index];
+							}
+							
+						]]>
+					</fx:Script>
+					
+					<s:states>
+						<s:State name="normal" />
+						<s:State name="hovered" />
+						<s:State name="selected" />    
+					</s:states>
+					
+					<s:Rect id="backgroundRect" width="247" height="38">
+						<s:fill>
+							<s:LinearGradient rotation="90">
+								<s:GradientEntry id="backgroundRectTopColor" color="{getUnitButtonColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex)}"/>
+								<s:GradientEntry id="backgroundRectBottomColor" color="{getUnitButtonColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex)}"/>
+							</s:LinearGradient>
+						</s:fill>
+					</s:Rect>
+					
+					<s:Rect id="overallProgressPath" height="38" maxWidth="247">
+						<s:fill>
+							<s:LinearGradient rotation="90">
+								<s:GradientEntry color="{getUnitButtonProgressTopColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex)}" />
+								<s:GradientEntry color="{getUnitButtonProgressBottomColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex)}" />
+							</s:LinearGradient>
+						</s:fill>
+					</s:Rect>
+					
+					<s:Label id="caption" text="{data.@caption}" color="{getUnitListButtonLabelColor(outerDocument.hostComponent.courseIndex)}" top="15" left="20" fontSize="17" />
+				</s:ItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+	
+	<!--unit list title bar-->
+	<s:Group id="levelTitleGroup" alpha="0" top.normal7Inches="135" top.normal10Inches="250" horizontalCenter.normal7Inches="-130" horizontalCenter.normal10Inches="-240">
+		<s:Path filters="{[dropShadowFilter]}" x="-0.000259399" winding="nonZero" data="M26.4695 44.2207C24.9104 44.2207 22.7058 43.3467 21.5701 42.2793L0.82106 22.7681C-0.314682 21.7002 -0.265854 20.0073 0.929459 19.0068L21.4617 1.81934C22.657 0.818848 24.9104 0 26.4695 0L275.676 0C277.236 0 279.485 0.82373 280.675 1.83105L285.996
+				6.33301C287.187 7.34033 288.16 9.43945 288.16 10.9985L288.16 33.2217C288.16 34.7813 287.187 36.8809 285.996 37.8877L280.675 42.3896C279.485 43.3965 277.236 44.2207 275.676 44.2207L26.4695 44.2207Z">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry id="unitTitleBarTopColor" ratio="0"  />
+					<s:GradientEntry id="unitTitleBarMidColor" ratio="0.5" />
+					<s:GradientEntry id="unitTitleBarBottomColor" ratio="1" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:Label id="levelTitleGroupLabel" color="#FFFFFF" fontSize="19" left="40" top="15" />
+	</s:Group>
+	
+	<!--exercise list triangle pointer-->
+	<s:Group id="triangleGroup" horizontalCenter.normal7Inches="68" horizontalCenter.normal10Inches="-60" top.normal7Inches="130" top.normal10Inches="250" height="400" alpha="0" visible="{exerciseList.dataProvider.length > 0}">
+		<s:Group id="triangleReferenceGroup">
+			<s:Path id="trianglePath" x="-0.00012207" y="3.05176e-005" winding="nonZero" data="M16.0587 30.2671C16.0587 31.8266 15.1564 32.1997 14.0548 31.0981L0.826782 17.8696C-0.275757 16.7675 -0.275757 14.9638 0.826782 13.8613L14.0548 0.633759C15.1564 -0.468781 16.0587 -0.0952454 16.0587 1.46384L16.0587 30.2671Z">
+				<s:fill>
+					<s:SolidColor color="{getTriangleColor(hostComponent.courseIndex)}" />
+				</s:fill>
+			</s:Path>
+		</s:Group>	
+	</s:Group>
+	
+	<!--exercise list-->
+	<s:Group id="exerciseGroup" horizontalCenter="230" verticalCenter="0" height="{exerciseList.dataProvider.length * 31 + 40}" alpha="0">			
+		<s:VGroup verticalCenter.normal7Inches="40" verticalCenter.normal10Inches="70" horizontalCenter.normal7Inches="0" horizontalCenter.normal10Inches="-128" gap="0" filters="{[dropShadowFilter]}">
+			<s:Path visible="{exerciseList.dataProvider.length > 0}" winding="nonZero" filters="{[dropShadowFilter]}" data="M6.03369 14.666C4.47461 14.666 2.47949 14.0566 1.59961 13.3115 0.719727 12.5664 0 10.6816 0 9.12256L0 5.5415C0 3.98242 0.719727 2.09814 1.59961 1.35352 2.47949 0.608887 4.47461 0 6.03369 0L311.915 0C313.475 0 315.47 0.608887 316.35 1.35352 317.229
+					2.09814 317.949 3.98242 317.949 5.5415L317.949 9.12256C317.949 10.6816 317.229 12.5664 316.35 13.3115 315.47 14.0566 313.475 14.666 311.915 14.666L6.03369 14.666Z">
+				<s:fill>
+					<s:LinearGradient rotation="90">
+						<s:GradientEntry id="topExerciseTitleBarTopColor" />
+						<s:GradientEntry id="topExerciseTitleBarMidColor" />
+						<s:GradientEntry id="topExerciseTitleBarBottomColor" />
+					</s:LinearGradient>
+				</s:fill>
+			</s:Path>
+			
+			<s:VGroup paddingLeft="5" visible="{exerciseList.dataProvider.length > 0}">
+				<s:Rect id="exerciseRect" width="309" height="{exerciseList.dataProvider.length * 31 + 40}">
+					<s:fill>
+						<s:SolidColor color="{getExerciseListBackgroundColor(hostComponent.courseIndex)}" />
+					</s:fill>
+				</s:Rect>
+			</s:VGroup>
+			
+			<s:Path visible="{exerciseList.dataProvider.length > 0}" winding="nonZero" filters="{[dropShadowFilter]}" data="M6.03369 14.666C4.47461 14.666 2.47949 14.0566 1.59961 13.3115 0.719727 12.5664 0 10.6816 0 9.12256L0 5.5415C0 3.98242 0.719727 2.09814 1.59961 1.35352 2.47949 0.608887 4.47461 0 6.03369 0L311.915 0C313.475 0 315.47 0.608887 316.35 1.35352 317.229
+					2.09814 317.949 3.98242 317.949 5.5415L317.949 9.12256C317.949 10.6816 317.229 12.5664 316.35 13.3115 315.47 14.0566 313.475 14.666 311.915 14.666L6.03369 14.666Z">
+				<s:fill>
+					<s:LinearGradient rotation="90">
+						<s:GradientEntry id="bottomExerciseTitleBarTopColor" />
+						<s:GradientEntry id="bottomExerciseTitleBarMidColor" />
+						<s:GradientEntry id="bottomExerciseTitleBarBottomColor" />
+					</s:LinearGradient>
+				</s:fill>
+			</s:Path>				
+		</s:VGroup>
+		
+		<s:List id="exerciseList" width="309" height="{exerciseList.dataProvider.length * 31}" horizontalCenter.normal7Inches="0" horizontalCenter.normal10Inches="-128" verticalCenter.normal7Inches="40" verticalCenter.normal10Inches="70" labelField="@caption" contentBackgroundAlpha="0" contentBackgroundColor="{getExerciseListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false">
+			<s:layout>
+				<s:VerticalLayout gap="1" paddingLeft="20" paddingRight="20" />
+			</s:layout>
+			<s:itemRenderer>
+				<fx:Component>
+					<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+						<fx:Script>
+							<![CDATA[
+								import com.clarityenglish.common.vo.content.Unit;
+								
+								import mx.effects.Fade;
+								import mx.effects.Parallel;
+								import mx.events.EffectEvent;
+								import mx.events.FlexEvent;
+								
+								import skins.tensebuster.assets.exercise.warning.cross;
+								
+								import spark.components.List;
+								import spark.effects.CrossFade;
+								
+								[Bindable]
+								private var courseIndex:Number;
+								
+								private var caption:String;
+								private var fadeIn:Fade = new Fade();
+								private var delay:Number;
+								
+								public function getSequenceNumber(data:Object):Number {
+									return (owner as List).dataProvider.getItemIndex(data) + 1;
+								}
+								
+								public override function set data(value:Object):void {
+									super.data = value;
+									
+									courseIndex = outerDocument.hostComponent.courseIndex;
+									
+									// just for the situation when back to home view
+									/*exButtonGroup.alpha = 0;
+									if (data) {
+									// we add one by one fade in for item in exercise list here
+									if (outerDocument.isFirstClickCurrentUnitList) {
+									var total:Number = outerDocument.exerciseList.dataProvider.length;
+									if ( total % 2 == 0) {
+									if (getSequenceNumber(data) <= total / 2) {
+									delay = 10 * (total / 2 - getSequenceNumber(data)) * (total / 2 - getSequenceNumber(data)) + 10;
+									} else {
+									delay = 5 * (getSequenceNumber(data) - total / 2) * (getSequenceNumber(data) - total / 2) + 10;
+									}
+									} else {
+									if (getSequenceNumber(data) <= total/2) {
+									delay = 10 * ((total + 1) / 2 - getSequenceNumber(data)) * ((total + 1) / 2 - getSequenceNumber(data)) + 10;
+									} else {
+									delay = 5 * (getSequenceNumber(data) - (total + 1) / 2) * (getSequenceNumber(data) - (total + 1) / 2) + 10;
+									}
+									
+									}
+									
+									fadeIn.alphaFrom = 0
+									fadeIn.alphaTo = 1;
+									fadeIn.startDelay = delay;											
+									fadeIn.play([exButtonGroup]);
+									} else {
+									exButtonGroup.alpha = 1;
+									}
+									}*/
+								}	
+							]]>
+						</fx:Script>
+						
+						<fx:Declarations>
+							<s:DropShadowFilter id="dropShadowFilter" angle="100" distance="1" alpha="0.4"/>
+						</fx:Declarations>
+						
+						<s:states>
+							<s:State name="normal" />
+							<s:State name="hovered" />
+							<s:State name="selected" />
+						</s:states>
+						
+						<s:Group id="exButtonGroup">
+							<ui:MenuButton id="zoneUndoneButton" width="264" height="30" courseIndex="{courseIndex}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" />
+							<ui:MenuButton id="zoneDoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" />
+						</s:Group>						
+					</s:ItemRenderer>
+				</fx:Component>
+			</s:itemRenderer>
+		</s:List>
+	</s:Group>
+</s:Skin>

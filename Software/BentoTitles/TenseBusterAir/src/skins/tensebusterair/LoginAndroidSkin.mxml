@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:android="skins.tensebusterair.assets.android.*" xmlns:assets="skins.tensebusterair.assets.*" xmlns:login="skins.tensebuster.assets.login.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.login.LoginView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal10Inches" />
+		<s:State name="normal7Inches" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<fx:Declarations>
+		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
+		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false"/>
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" inner="true"/>
+	</fx:Declarations>
+	
+	<!--background-->
+	<s:Group width="100%" height="100%">
+		<s:BitmapImage bottom="0" width="100%" source="@Embed('skins/tensebusterair/assets/android/tenInches/login/loginBg.png')" fillMode="repeat" includeIn="normal10Inches" />
+		<s:BitmapImage bottom="0" width="100%" source="@Embed('skins/tensebusterair/assets/android/sevenInches/login/loginBg.png')" fillMode="repeat" includeIn="normal7Inches" />
+		<!--s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/loginBg.png')" includeIn="normal7Inches" /-->
+	</s:Group>
+	
+	<!--header-->
+	<android:header left="5" right="5" height="9%" top="10" />
+	<assets:logo top.normal7Inches="20" top.normal10Inches="25" right="20" />
+	
+	<!--version-->
+	<s:Label id="versionLabel" text="v {hostComponent.parentApplication.versionNumber}" color="#000000" fontSize="12" right="22" top.normal7Inches="50" top.normal10Inches="60" />
+	
+	<!--login area-->
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/loginBrokenPaper.png')" horizontalCenter="0" verticalCenter="-50" includeIn="normal10Inches" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/loginBrokenPaper.png')" horizontalCenter="-30" verticalCenter="-30" includeIn="normal7Inches" />
+	<login:loginText horizontalCenter="-300" verticalCenter="-200" includeIn="normal10Inches" />
+	<login:loginText horizontalCenter="-280" top="90" scaleX="0.8" scaleY="0.8" includeIn="normal7Inches" />
+	
+	<!--footer-->
+	<s:Group bottom="0" horizontalCenter="0">
+		<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/tenInches/login/loginFooter.png')" includeIn="normal10Inches" />
+		<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/loginFooter.png')" includeIn="normal7Inches" />
+	</s:Group>
+
+	
+	<s:Group horizontalCenter="0" verticalCenter.normal10Inches="-40" verticalCenter.normal7Inches="-20">
+		<s:VGroup horizontalAlign="center" gap="30">
+			<s:VGroup gap="5">
+				<s:Label id="loginInputTitle" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+				<s:Rect width="245" height="1">
+					<s:fill>
+						<s:SolidColor color="0xEC1C32" />
+					</s:fill>
+				</s:Rect>
+				<s:Spacer height="15"/>
+				<s:Label id="loginInstruction" fontSize="12" color="0xFFFFFF"/>
+				<s:Spacer height="10" />
+				<s:VGroup gap="15">
+					<s:HGroup gap="8">
+						<s:Label id="loginKey_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}" paddingTop="14" />
+						<s:TextInput id="loginKeyInput" width="169" height="32" filters="{dropShadowFilter2}" borderVisible="false" fontSize="12"  />
+					</s:HGroup>					
+					<s:HGroup gap="10">
+						<s:Label id="loginPassword_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" paddingTop="14"/>
+						<s:TextInput id="passwordInput" displayAsPassword="true" width="169" height="32" fontSize="14" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
+					</s:HGroup>
+				</s:VGroup>				
+			</s:VGroup>
+			<s:Button id="loginButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>	
+		</s:VGroup>
+	</s:Group>
+	
+	<!--s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#000000" right="3" bottom="0"/-->
+	<!-- Footer -->
+	<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2013. All rights reserved." color="#000000" fontSize="12" left="10" bottom="10" />
+</s:Skin>

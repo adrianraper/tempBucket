@@ -4,6 +4,8 @@ package com.clarityenglish.tensebuster.view.title {
 	import com.clarityenglish.tensebuster.view.help.HelpView;
 	import com.clarityenglish.tensebuster.view.home.HomeView;
 	import com.clarityenglish.tensebuster.view.progress.ProgressView;
+	import com.clarityenglish.tensebuster.view.title.ui.SizedButton;
+	import com.clarityenglish.tensebuster.view.title.ui.SizedTabbedViewNavigator;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -31,6 +33,9 @@ package com.clarityenglish.tensebuster.view.title {
 		public var sectionNavigator:TabbedViewNavigator;
 		
 		[SkinPart]
+		public var sizedSectionNavigator:SizedTabbedViewNavigator;
+		
+		[SkinPart]
 		public var homeViewNavigator:ViewNavigator;
 		
 		[SkinPart]
@@ -52,7 +57,13 @@ package com.clarityenglish.tensebuster.view.title {
 		public var logoutButton:Button;
 		
 		[SkinPart]
+		public var sizedLogoutButton:SizedButton;
+		
+		[SkinPart]
 		public var helpButton:Button;
+		
+		[SkinPart]
+		public var sizedHelpButton:SizedButton;
 		
 		[Bindable]
 		public static var courseCode:String;
@@ -66,6 +77,7 @@ package com.clarityenglish.tensebuster.view.title {
 		private var _exerciseCaption:String;
 		private var _isBackFromExercise:Boolean;
 		private var courseCaptionChange:Boolean;
+		private var _androidSize:String;
 		
 		public var backToMenu:Signal = new Signal();
 		public var logout:Signal = new Signal();	
@@ -125,6 +137,15 @@ package com.clarityenglish.tensebuster.view.title {
 			_exerciseCaption = value;
 		}
 		
+		public function set androidSize(value:String):void {
+			_androidSize = value;
+		}
+		
+		[Bindable]
+		public function get androidSize():String {
+			return _androidSize;
+		}
+		
 		public function TitleView() {
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "unit", "zone", "exercise", "progress", "profile", "help" ], true);
@@ -166,8 +187,14 @@ package com.clarityenglish.tensebuster.view.title {
 					setNavStateMap(sectionNavigator, {
 						home: { viewClass: HomeView },
 						exercise: { viewClass: ExerciseView, stack: true },
-						progress: { viewClass: ProgressView },
-						help: {viewClass: HelpView}
+						progress: { viewClass: ProgressView }
+					});
+					break;
+				case sizedSectionNavigator:
+					setNavStateMap(sizedSectionNavigator, {
+						home: { viewClass: HomeView },
+						exercise: { viewClass: ExerciseView, stack: true },
+						progress: { viewClass: ProgressView }
 					});
 					break;
 				case homeViewNavigator:
@@ -178,12 +205,14 @@ package com.clarityenglish.tensebuster.view.title {
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
 				case logoutButton:
-					logoutButton.label = copyProvider.getCopyForId("logoutButton");
-					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
+				case sizedLogoutButton:
+					instance.label = copyProvider.getCopyForId("logoutButton");
+					instance.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
 				case helpButton:
-					helpButton.label = copyProvider.getCopyForId("help");
-					helpButton.addEventListener(MouseEvent.CLICK,onHelpClick);
+				case sizedHelpButton:
+					instance.label = copyProvider.getCopyForId("help");
+					instance.addEventListener(MouseEvent.CLICK,onHelpClick);
 					break;
 			}
 
@@ -194,12 +223,11 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		protected override function getCurrentSkinState():String {
-			// disable Menu button bar button when current page is unit or zone page.
-			if (currentState == "unit" || currentState == "zone") {
-				ButtonBarButton(sectionNavigator.tabBar.dataGroup.getElementAt(0)).enabled = false;
-			} else if (currentState == "progress" || currentState == "help") {
-				ButtonBarButton(sectionNavigator.tabBar.dataGroup.getElementAt(0)).enabled = true;
+			//For android
+			if (_androidSize && (currentState == "home" || currentState == "progress")) {
+				return currentState + _androidSize;
 			}
+			
 			return currentState;
 		}
 		

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="18" viewWidth="21.6787" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="18" d:pageWidth="21.679" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1" flm:knockout="false">
+        <Path winding="nonZero" ai:seqID="2" data="M4.16699 2.08203C4.16699 3.23633 3.23633 4.16992 2.08594 4.16992 0.932617 4.16992 0 3.23633 0 2.08203 0 0.93457 0.932617 0 2.08594 0 3.23633 0 4.16699 0.93457 4.16699 2.08203Z">
+          <fill>
+            <SolidColor color="#D51F33"/>
+          </fill>
+        </Path>
+        <Path x="5.83105" y="0.941406" winding="nonZero" ai:seqID="3" data="M15.8457 1.14063C15.8457 1.77539 15.3369 2.2832 14.7051 2.2832L1.14453 2.2832C0.514648 2.2832 0 1.77539 0 1.14063L0 1.14063C0 0.511719 0.514648 0 1.14453 0L14.7051 0C15.3369 0 15.8457 0.511719 15.8457 1.14063L15.8457 1.14063Z">
+          <fill>
+            <SolidColor color="#D51F33"/>
+          </fill>
+        </Path>
+        <Ellipse y="6.91748" width="4.16699" height="4.16699" ai:seqID="4">
+          <fill>
+            <SolidColor color="#D51F33"/>
+          </fill>
+        </Ellipse>
+        <Rect x="5.83105" y="7.8584" width="15.8389" height="2.2832" radiusX="1.13874" radiusY="1.13874" ai:seqID="5">
+          <fill>
+            <SolidColor color="#D51F33"/>
+          </fill>
+        </Rect>
+        <Ellipse y="13.8345" width="4.16699" height="4.16699" ai:seqID="6">
+          <fill>
+            <SolidColor color="#D51F33"/>
+          </fill>
+        </Ellipse>
+        <Rect x="5.83105" y="14.7734" width="15.8477" height="2.28711" radiusX="1.14581" radiusY="1.14581" ai:seqID="7">
+          <fill>
+            <SolidColor color="#D51F33"/>
+          </fill>
+        </Rect>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

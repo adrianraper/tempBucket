@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="org.davekeen.core.*" >
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="org.davekeen.core.*" creationComplete="onCreationComplete(event)">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressCompareView")]
@@ -81,6 +81,12 @@
 				myLegend.removeAllChildren();
 			} */
 			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -91,6 +97,7 @@
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
+		<s:State name="normalOnline" />
 	</s:states>
 	
 	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
@@ -109,7 +116,7 @@
 	
 	<!--horizontalAxis.title display blur text in ipad, so we use a separate label to display title-->
 	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
-	<mx:BarChart id="compareChart" left="20" right="200" top="130" bottom="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
+	<mx:BarChart id="compareChart" left="20" right="200" top="130" bottom="60" bottom.normalOnline="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
 		<mx:horizontalAxis>
 			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
 		</mx:horizontalAxis>
@@ -147,12 +154,16 @@
 			</mx:BarSeries>
 		</mx:series>
 	</mx:BarChart>
-	<s:Rect width="600" left="220" bottom="120" height="1">
+	
+	<!--histogram chart bottom line-->
+	<s:Rect left="220" right="150" bottom="60" bottom.normalOnline="120" height="1">
 		<s:fill>
 			<s:SolidColor color="#B3B3B3" />
 		</s:fill>
 	</s:Rect>
-	<s:HGroup bottom="90" left="250">
+	
+	<!--histogram chart legend-->
+	<s:HGroup bottom="30" bottom.normalOnline="80" left="220">
 		<s:Rect width="16" height="10">
 			<s:fill>
 				<s:LinearGradient>
@@ -173,5 +184,10 @@
 		</s:Rect>
 		<s:Label id="everyonelegendLabel" fontSize="12" />
 	</s:HGroup>
-	<s:Button id="compareEmptyScoreLabel" visible="false" fontSize="12" fontWeight="normal" verticalCenter="0" horizontalCenter="100"/>
+	
+	<!--chart empty tip-->
+	<s:Button id="compareEmptyScoreLabel" visible="false" fontSize="12" fontWeight="normal" verticalCenter="0" horizontalCenter="0"/>
+	
+	<!--busy indicator-->
+	<s:BusyIndicator id="busyIndicator" verticalCenter="0" horizontalCenter="0" />
 </s:Skin>

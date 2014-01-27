@@ -6,6 +6,7 @@ package com.clarityenglish.tensebuster.view.progress
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.content.Title;
 	
@@ -53,6 +54,11 @@ package com.clarityenglish.tensebuster.view.progress
 					sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorCantLoadEveryoneSummary"));
 				}
 			));
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (!configProxy.isPlatformTablet()) {
+				view.isPlatformOnline = true;
+			}
 		}
 		
 		override public function onRemove():void {

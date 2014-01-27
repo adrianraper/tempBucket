@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:components="com.clarityenglish.bento.view.progress.components.*" xmlns:progress="com.clarityenglish.tensebuster.view.progress.*" xmlns:home="skins.tensebuster.assets.home.*">
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:exercise="skins.tensebuster.assets.exercise.*" xmlns:components="com.clarityenglish.bento.view.progress.components.*" xmlns:progress="com.clarityenglish.tensebuster.view.progress.*" xmlns:home="skins.tensebuster.assets.home.*" xmlns:android="skins.tensebusterair.assets.android.*" xmlns:assets="skins.tensebusterair.assets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressView")]
@@ -21,30 +21,42 @@
 		<s:State name="certificate" stateGroups="normalStates, certificateStates"/>
 	</s:states>
 	
-	<home:header top="10" />
+	<!--background-->
+	<s:BitmapImage bottom="-50" width="100%" source="@Embed(source='skins/tensebusterair/assets/android/tenInches/hexagonBg.png')" fillMode="repeat" visible="{hostComponent.androidSize != '7Inches'}" includeInLayout="{hostComponent.androidSize != '7Inches'}"/>
+	<s:BitmapImage bottom="-50" width="100%" source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/hexagonBg.png')" fillMode="repeat" visible="{hostComponent.androidSize == '7Inches'}" includeInLayout="{hostComponent.androidSize == '7Inches'}" />
 	
-	<s:HGroup width="100%" paddingLeft="70" verticalCenter="-245">
+	<!--tense buster brand header-->
+	<home:header top="10" visible="{hostComponent.androidSize == null}" includeInLayout="{hostComponent.androidSize == null}" />
+	<android:header left="5" right="5" height="9%" top="10" visible="{hostComponent.androidSize != null}" includeInLayout="{hostComponent.androidSize != null}" />
+	
+	<!--TB logo-->
+	<assets:logo top="15" right="15" visible="{hostComponent.androidSize == '7Inches'}" includeInLayout="{hostComponent.androidSize == '7Inches'}"/>
+	<assets:logo top="25" right="15" visible="{hostComponent.androidSize != '7Inches'}" includeInLayout="{hostComponent.androidSize != '7Inches'}"/>
+	
+	<!--level button bar-->
+	<s:HGroup width="100%" paddingLeft="60" top="80">
 		<s:ButtonBar id="progressNavBar" fontSize="12"/>			
 	</s:HGroup>
 	
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/progress/progressBg.png')" horizontalCenter="0" bottom="-40" filters="{[dropShadowFilter]}"/>
-	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/progress/progressFooter.png')" right="35" bottom="-50" excludeFrom="[score, certificate]" />
-	
-	<!--s:Group width="100%" height="100%" filters="{[dropShadowFilter]}"-->
-		<!--rectangle panel-->
-		<!--s:Rect left="29" right="29" bottom="0" top="120">
+	<!--content background-->
+	<s:Group left="35" right="35" height="100%" filters="{[dropShadowFilter]}">
+			<android:progressTriangle left="0" top="120" />
+			<s:Rect horizontalCenter="0" top="120" left="25" right="25" height="20">
+				<s:fill>
+					<s:SolidColor color="0xFFFFFF" />
+				</s:fill>
+			</s:Rect>
+			<android:progressTriangle scaleX="-1" right="0" top="120" />
+		<s:Rect top="140" bottom="0" width="100%">
 			<s:fill>
-				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="0xFFFFFF" ratio="0"/>
-					<s:GradientEntry color="0xFFFFFF" ratio="0.8"/>
-					<s:GradientEntry color="0xB3B3B3" ratio="1"/>
-				</s:LinearGradient>
+				<s:SolidColor color="0xFFFFFF" />
 			</s:fill>
-		</s:Rect-->
-		<!--top panel-->	
-		<!--exercise:topPanel top="90" right="28" left="28" />
-	</s:Group-->
+		</s:Rect>
+	</s:Group>
 	
+	<!--corner image-->
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/progress/progressFooter.png')" right="35" bottom="-50" visible="{hostComponent.androidSize != '7Inches'}" includeInLayout="{hostComponent.androidSize != '7Inches'}" excludeFrom="score, compare, certificate" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/progress/progressFooter.png')" right="35" bottom="-50" visible="{hostComponent.androidSize == '7Inches'}" includeInLayout="{hostComponent.androidSize == '7Inches'}" excludeFrom="score, compare, analysis, certificate" />
 	
 	<s:HGroup width="100%" height="100%" verticalCenter="65" left="15" bottom="50" right="15">
 		<s:Group width="100%" height="100%">

@@ -36,6 +36,11 @@
 			view.href = bentoProxy.menuXHTML.href;
 			
 			view.logout.add(onLogout);
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (configProxy.isPlatformAndroid()) {
+				view.androidSize = configProxy.getAndroidSize();
+			}
 		}
 		
 		public override function onRemove():void {

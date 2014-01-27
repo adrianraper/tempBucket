@@ -97,6 +97,7 @@ package com.clarityenglish.tensebuster.view.progress {
 		private var _courseCaption:String;
 		private var _courseClass:String;
 		private var _courseChanged:Boolean;
+		private var _androidSize:String;
 		public var courseSelect:Signal = new Signal(String);
 		
 		// Alice: for stackedCircleWedge		
@@ -130,6 +131,15 @@ package com.clarityenglish.tensebuster.view.progress {
 		
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		public function set androidSize(value:String):void {
+			_androidSize = value;
+		}
+		
+		[Bindable]
+		public function get androidSize():String {
+			return _androidSize;
 		}
 		
 		// Alice: for TB
@@ -207,6 +217,13 @@ package com.clarityenglish.tensebuster.view.progress {
 					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);
 					break;
 			}
+		}
+		
+		protected override function getCurrentSkinState():String {
+			if (_androidSize) {
+				return super.getCurrentSkinState() + _androidSize;
+			}
+			return super.getCurrentSkinState();
 		}
 		
 		[Bindable(event="progressChanged")]

@@ -4,6 +4,8 @@ package com.clarityenglish.tensebuster.view.progress
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flash.events.Event;
+	
 	import mx.charts.BarChart;
 	import mx.charts.CategoryAxis;
 	import mx.charts.Legend;
@@ -15,13 +17,16 @@ package com.clarityenglish.tensebuster.view.progress
 	import mx.containers.GridItem;
 	import mx.containers.GridRow;
 	import mx.containers.TileDirection;
+	import mx.events.FlexEvent;
 	import mx.graphics.GradientEntry;
 	import mx.graphics.LinearGradient;
 	import mx.graphics.SolidColor;
 	
+	import org.davekeen.util.StateUtil;
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
+	import spark.components.BusyIndicator;
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.events.IndexChangeEvent;
@@ -88,12 +93,17 @@ package com.clarityenglish.tensebuster.view.progress
 		[SkinPart]
 		public var chartCaptionLabel:Label;
 		
+		[SkinPart]
+		public var busyIndicator:BusyIndicator;
+		
 		private var _everyoneCourseSummaries:Object;
 		private var _everyoneCourseSummariesChanged:Boolean;
 		private var _courseClass:String;
 		private var _courseChanged:Boolean;
+		private var _isPlatformOnline:Boolean;
 		private var isNoData:Boolean;
 		private var everyOneScoreObject:Object = new Object();
+		private var isCompareChartCreated:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
 		
@@ -115,6 +125,24 @@ package com.clarityenglish.tensebuster.view.progress
 			return _courseClass;
 		}
 		
+		public function set isPlatformOnline(value:Boolean):void {
+			_isPlatformOnline = value;
+		}
+		
+		[Bindable]
+		public function get isPlatformOnline():Boolean {
+			return _isPlatformOnline;
+		}
+		
+		public function set everyoneCourseSummaries(value:Object):void {
+			_everyoneCourseSummaries = value;
+			_everyoneCourseSummariesChanged = true;
+			for (var i:Number = 0; i < _everyoneCourseSummaries.length; i++) {
+				everyOneScoreObject[_everyoneCourseSummaries[i].UnitID] = _everyoneCourseSummaries[i].AverageScore;
+			}
+			invalidateProperties();
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -133,14 +161,6 @@ package com.clarityenglish.tensebuster.view.progress
 			compareEmptyScoreLabel.label = copyProvider.getCopyForId("compareEmptyScoreLabel");
 		}
 		
-		public function set everyoneCourseSummaries(value:Object):void {
-			_everyoneCourseSummaries = value;
-			_everyoneCourseSummariesChanged = true;
-			for (var i:Number = 0; i < _everyoneCourseSummaries.length; i++) {
-				everyOneScoreObject[_everyoneCourseSummaries[i].UnitID] = _everyoneCourseSummaries[i].AverageScore;
-			}
-			invalidateProperties();
-		}
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
@@ -192,7 +212,18 @@ package com.clarityenglish.tensebuster.view.progress
 				case progressCourseButtonBar:
 					progressCourseButtonBar.addEventListener(IndexChangeEvent.CHANGE, onCourseSelect);
 					break;
+				case compareChart:
+					compareChart.addEventListener(FlexEvent.UPDATE_COMPLETE, onUpdateComplete);
+					break;
 			}
+		}
+		
+		protected override function getCurrentSkinState():String {
+			if (_isPlatformOnline) {
+				return super.getCurrentSkinState() + "Online";
+			} else {
+				return super.getCurrentSkinState();
+			}			
 		}
 		
 		/**
@@ -202,6 +233,15 @@ package com.clarityenglish.tensebuster.view.progress
 		 */
 		public function onCourseSelect(event:IndexChangeEvent):void {
 			courseSelect.dispatch(event.target.selectedItem.courseClass.toLowerCase());
+		}
+		
+		protected function onUpdateComplete(event:Event):void {
+			if (isCompareChartCreated) {
+				busyIndicator.visible = false;
+				this.invalidateSkinState();
+			} else {
+				isCompareChartCreated = true;
+			}			
 		}
 	}
 }

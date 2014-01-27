@@ -226,6 +226,14 @@ package com.clarityenglish.common.model {
 			return (config.platform.toLowerCase().indexOf('android') >= 0);
 		}
 		
+		public function getAndroidSize():String {
+			if (FlexGlobals.topLevelApplication.stage.stageWidth >= 1280) {
+				return "10Inches";
+			} else {
+				return "7Inches";
+			}
+		}
+		
 		// Then methods to get parts of the configuration data
 		public function getMenuFilename():String {
 			//return "menu-Academic-LastMinute.xml";

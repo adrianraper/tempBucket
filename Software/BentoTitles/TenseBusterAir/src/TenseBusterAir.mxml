@@ -9,7 +9,7 @@
 						  addedToStage="onAddedToStage(event)"
 						  applicationDPI="160"
 						  runtimeDPIProvider="org.davekeen.core.RetinaRuntimeDPIProvider"
-						  gestureSwipe="onGestureSwipe(event)">
+						  gestureSwipe="onGestureSwipe(event)" >
 	
 	<fx:Script>
 		<![CDATA[
