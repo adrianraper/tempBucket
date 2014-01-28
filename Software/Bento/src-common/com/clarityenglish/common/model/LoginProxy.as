@@ -367,6 +367,18 @@ package com.clarityenglish.common.model {
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			
+			// gh#793 Assume the default is non fatal errors
+			var thisError:BentoError = BentoError.create(fault, false);
+			switch (thisError.errorNumber) {
+				case copyProxy.getCodeForId("errorServerConnection"):
+					thisError.errorContext = copyProxy.getCopyForId("errorServerConnection", { message: fault.faultString });
+					break;
+				case copyProxy.getCodeForId("errorServer"):
+					thisError.errorContext = copyProxy.getCopyForId("errorServer", { message: fault.faultString });
+					break;
+				default:
+			}
+			
 			switch (operation) {
 				case "login":
 					// Clear the remote shared object, if there is one so it doesn't keep trying to log back in
@@ -374,7 +386,6 @@ package com.clarityenglish.common.model {
 					loginSharedObject.clear();
 					
 					// #445 Any error other than user not found is simply reported
-					var thisError:BentoError = BentoError.create(fault);
 					if (thisError.errorNumber == copyProxy.getCodeForId("errorNoSuchUser")) {
 						
 						// #341 For network, if you don't find the user, offer to add them
@@ -399,37 +410,40 @@ package com.clarityenglish.common.model {
 							sendNotification(CommonNotifications.ADD_USER, loginEvent);
 							
 						} else {
-							sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
+							sendNotification(CommonNotifications.INVALID_LOGIN, thisError);
 						}
 						
 					// gh#622 add cookie checking code
 					} else if (thisError.errorNumber == copyProxy.getCodeForId("errorCookiesBlocked")) {
-							sendNotification(CommonNotifications.BENTO_ERROR, thisError);
+						thisError.isFatal = true;
+						sendNotification(CommonNotifications.BENTO_ERROR, thisError);
 						
 					} else {
-						sendNotification(CommonNotifications.INVALID_LOGIN, BentoError.create(fault, false)); // GH #3
+						sendNotification(CommonNotifications.INVALID_LOGIN, thisError);
 					}
 
 					break;
 				
 				case "addUser":
-					sendNotification(CommonNotifications.ADD_USER_FAILED, BentoError.create(fault));
+					thisError.isFatal = true;
+					sendNotification(CommonNotifications.ADD_USER_FAILED, thisError);
 					break;
 				case "updateLicence":
-					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
 					// Stop the licence update timer
 					if (licenceTimer) licenceTimer.stop();
-
+					sendNotification(CommonNotifications.BENTO_ERROR, thisError);
 					break;
 				case "updateUser":
 					sendNotification(CommonNotifications.UPDATE_FAILED);
 					break;
+				// gh#793 You must always handle the error. Assume fatal if you weren't expecting it.
 				case "getInstanceID":
-					sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault));
-					break;
+				default:
+					thisError.isFatal = true;
+					sendNotification(CommonNotifications.BENTO_ERROR, thisError);
 			}
 			
-			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+			sendNotification(CommonNotifications.TRACE_ERROR, thisError);
 		}
 		
 		/**
@@ -441,7 +455,6 @@ package com.clarityenglish.common.model {
 		private function licenceTimerHandler(event:TimerEvent):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			log.info("fire the timer to update licence {0}", configProxy.getConfig().licence.id);
 			var params:Array = [ configProxy.getConfig().licence ];
 			new RemoteDelegate("updateLicence", params, this).execute();
 		}

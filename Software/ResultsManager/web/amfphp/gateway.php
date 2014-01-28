@@ -100,6 +100,11 @@
 
 	*/
 	
+	// gh#793 For testing server problems
+	//header('HTTP/1.1 500 Internal Server Error');
+   	//echo 'Internal error';
+   	//exit();
+
 	//You can set this constant appropriately to disable traces and debugging headers
 	//You will also have the constant available in your classes, for changing
 	//the mysql server info for example

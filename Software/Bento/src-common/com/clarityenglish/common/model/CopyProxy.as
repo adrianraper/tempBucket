@@ -64,7 +64,7 @@ package com.clarityenglish.common.model {
 			if (!this.copy)
 				throw new Error("Copy literals have not been loaded yet");
 			
-			//gh#20 track wheter the language code be set successfully 
+			//gh#20 track whether the language code be set successfully 
 			//trace("the language code is in CopyProxy is "+ languageCode);
 			var result:XMLList = copy..language.(@code == languageCode)..lit.(@name == id);
 			if (result.length() == 0) {
@@ -114,7 +114,6 @@ package com.clarityenglish.common.model {
 			
 			return new Number(result[0]);
 		}
-		
 		// gh#11
 		public function getLanguageCode():String {
 			return languageCode;
