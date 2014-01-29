@@ -622,24 +622,27 @@ EOD;
 		if (isset($row['courseID'])) {
 			$courseID = $row['courseID'];
 			unset($row['courseID']);
-			
-			// v3.4 For R2I this always returns Academic, even if they did GT because courseIDs are the same.
-			// If we could get the correct title, then everything else would be OK. And the session records could tell us this.
-			// So that would mean including T_Session in the SQL so I can add productCode to the returned results.
-			// That doesn't seem to be too slow.
-			if (isset($row['productCode'])) {
-				$title = $this->getTitle($row['productCode']);
-			} else {
-				$title = $this->getTitleForCourseID($courseID);
-			}
+		}			
+		// v3.4 For R2I this always returns Academic, even if they did GT because courseIDs are the same.
+		// If we could get the correct title, then everything else would be OK. And the session records could tell us this.
+		// So that would mean including T_Session in the SQL so I can add productCode to the returned results.
+		// That doesn't seem to be too slow.
+		if (isset($row['productCode'])) {
+			$title = $this->getTitle($row['productCode']);
+		} else if (isset($courseID)) {
+			$title = $this->getTitleForCourseID($courseID);
+		} else {
+			return $row;
+		}
 		
-			if (isset($title->name)) {
-				$row['titleName'] = $title->name;
-			} else if (isset($title->caption)) {
-				$row['titleName'] = $title->caption;
-			} else {
-				$row['titleName'] = '-no name-';
-			} 
+		if (isset($title->name)) {
+			$row['titleName'] = $title->name;
+		} else if (isset($title->caption)) {
+			$row['titleName'] = $title->caption;
+		} else {
+			$row['titleName'] = '-no name-';
+		} 
+		if (isset($courseID)) {
 			if (isset($title->courses[$courseID]->caption)) {
 				$row['courseName'] = $title->courses[$courseID]->caption;
 			} else if (isset($title->courses[$courseID]->name)) {
@@ -647,35 +650,22 @@ EOD;
 			} else {
 				$row['courseName'] = '-no name-';
 			}
-			//gh#28
+			// gh#28
 			if (isset($row['exerciseUnit_percentage'])) {
-			   $total = 0;
-			   foreach ($title->courses[$courseID]->units as $unit) {
-			       $total = $total + $unit->totalExercises;
-			   }
-				// gh#28 express as %
+				$total = 0;
+				foreach ($title->courses[$courseID]->units as $unit)
+					$total = $total + $unit->totalExercises;
 				$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
 		    }
 		} else {
-			// gh#795 hijack
-			if (isset($row['productCode'])) {
-				$title = $this->getTitle($row['productCode']);
-				if (isset($title->name)) {
-					$row['titleName'] = $title->name;
-				} else if (isset($title->caption)) {
-					$row['titleName'] = $title->caption;
-				} else {
-					$row['titleName'] = '-no name-';
-				} 
-				// gh#28
-				if (isset($row['exerciseUnit_percentage'])) {
-					$total = 0;
-					foreach ($title->courses as $course)
-						foreach ($course->units as $unit)
-							$total = $total + $unit->totalExercises;
-					$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
-			    }
-			}				
+			// gh#28
+			if (isset($row['exerciseUnit_percentage'])) {
+				$total = 0;
+				foreach ($title->courses as $course)
+					foreach ($course->units as $unit)
+						$total = $total + $unit->totalExercises;
+				$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
+		    }
 		}
 		
 		// v3.4 You can't do this section unless courseID is set
@@ -708,16 +698,9 @@ EOD;
 				}
 				$row['unitName'] = $bestName;
 			}
-			//gh#28			
-		    if (isset($row['exercise_percentage'])) {
-			   //for AR, some exerciseID in DB is not exist in content xml file
-			   /*if (!isset($title->courses[$courseID]->units[$unitID]->exercises[$exerciseID])) {
-			        $row['exercise_percentage'] = $row['exercise_percentage'] - 1;
-			   }*/
-				// gh#28 express as %
+			// gh#28			
+		    if (isset($row['exercise_percentage']))
 		    	$row['exercise_percentage'] =  100 * $row['exercise_percentage'] / $title->courses[$courseID]->units[$unitID]->totalExercises;
-		    }
-			//echo "unitID=$unitID, name={$title->courses[$courseID]->units['0']->name}";
 		}
 		
 		// If exerciseID is set replace it with the exerciseName
@@ -760,8 +743,9 @@ EOD;
 		
 		// Reformat the start date into "Oct 10 2008 14:37" format (JS compatible to allow for sorting in the browser)
 		if (isset($row['start_date'])) {
-			$timeStamp = $this->db->UnixTimeStamp($row['start_date']);
-			$row['start_date'] = date("M j Y H:i", $timeStamp);
+			//$timeStamp = $this->db->UnixTimeStamp($row['start_date']);
+			//$row['start_date'] = date("M j Y H:i", $timeStamp);
+			$row['start_date'] = DateTime::createFromFormat('Y-m-d H:i:s', $row['start_date'])->format('M j Y H:i');
 		}
 		
 		return $row;
