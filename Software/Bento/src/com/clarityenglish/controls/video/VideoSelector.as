@@ -5,14 +5,11 @@ package com.clarityenglish.controls.video {
 	import com.clarityenglish.controls.video.events.VideoEvent;
 	import com.clarityenglish.controls.video.events.VideoScoreEvent;
 	import com.clarityenglish.controls.video.loaders.RssVideoLoader;
-	import com.clarityenglish.controls.video.players.OSMFVideoPlayer;
-	import com.clarityenglish.controls.video.players.WebViewVideoPlayer;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
 	import mx.collections.IList;
-	import mx.events.FlexEvent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -233,7 +230,7 @@ package com.clarityenglish.controls.video {
 			if (!videoList.selectedItem || !channelList.selectedItem)
 				return;
 			videoPlayer.stop();
-			trace("selected channel is "+ channelList.selectedIndex);
+			
 			var url:String = href.createRelativeHref(null, videoList.selectedItem.@href).url;
 			if (url.match(/\.(rss|xml)$/)) {
 				new RssVideoLoader(videoPlayer).load(url, channelList.selectedItem);

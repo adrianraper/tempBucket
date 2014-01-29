@@ -15,11 +15,73 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public var videoHolder:Group;
 		
 		[SkinPart]
+		public var videoPlayer:IVideoPlayer;
+		
+		// gh#106
+		private var recordFlag:Boolean;
+		
+		public function VideoWidget() {
+			super();
+			
+			recordFlag = true;
+			addEventListener("srcAttrChanged", reloadVideo, false, 0, true);
+			
+			// gh#215
+			addEventListener(FlexEvent.HIDE, stopVideo, false, 0, true);
+		}
+		
+		[Bindable(event="srcAttrChanged")]
+		public function get src():String {
+			return _xml.@src;
+		}
+		
+		[Bindable(event="srcAttrChanged")]
+		public function get hasSrc():Boolean {
+			return _xml.hasOwnProperty("@src");
+		}
+		
+		protected override function partAdded(partName:String, instance:Object):void {
+			super.partAdded(partName, instance);
+			
+			switch (instance) {
+				case videoPlayer:
+					reloadVideo();
+					break;
+			}
+		}
+		
+		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
+			// gh#328
+			//resizeVideo();
+			
+			if (videoPlayer) {
+				videoPlayer.width = width - 16;
+				videoPlayer.height = videoHolder.height - 8;
+				videoPlayer.x = 8;
+				videoPlayer.play();
+			}
+		}
+		
+		protected function reloadVideo(event:Event = null):void {
+			if (hasSrc && videoPlayer) videoPlayer.source = src;
+		}
+		
+		// gh#215
+		private function stopVideo(event:Event = null):void {
+			if (videoPlayer) videoPlayer.stop();
+		}
+		
+		/*[SkinPart]
+		public var videoHolder:Group;
+		
+		[SkinPart]
 		public var swfLoader:SWFLoader;
 		
 		[SkinPart]
 		public var videoPlayer:IVideoPlayer;
-
+		
 		// gh#106
 		private var recordFlag:Boolean;
 		
@@ -74,7 +136,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				if (swfLoader) {
 					// TODO: This is only temporary; ultimately we need to wrap youtube into the OSMF player with a plugin
 					var matches:Array = src.match(/^(\w+):?(.*)$/i);
-					swfLoader.load("http://www.youtube.com/v/" + matches[2] + "?version=3");
+					//swfLoader.load("http://www.youtube.com/v/" + matches[2] + "?version=3");
+					swfLoader.load("http://vimeo.com/moogaloop.swf?clip_id=" + matches[2] + "&amp;server=vimeo.com&amp;color=00adef&amp;fullscreen=1");
 				}
 				
 				if (videoPlayer) {
@@ -88,15 +151,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			
 			// gh#328
 			resizeVideo();
-			/*if (swfLoader && swfLoader.content && swfLoader.content["setSize"] && videoHolder) {
-				swfLoader.content["setSize"](width - 16, videoHolder.height - 12);
-				widgetText.width = width;
-				
-				// These three lines are a bit hacky, but otherwise the YouTube video doesn't want to centre itself properly
-				swfLoader.x = 8;
-				//swfLoader.height = videoHolder.height + 12;
-				invalidateSize();
-			}*/
 			
 			if (videoPlayer) {
 				videoPlayer.width = width - 16;
@@ -117,7 +171,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				invalidateSize();
 			}
 		}
-
+		
 		protected override function onRemovedFromStage(event:Event):void {
 			super.onRemovedFromStage(event);
 			
@@ -144,6 +198,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				videoPlayer.stop();
 			}
 		}
+		
+	}*/
 		
 	}
 }

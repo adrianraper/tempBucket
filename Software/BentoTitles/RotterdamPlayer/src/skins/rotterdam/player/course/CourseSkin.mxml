@@ -53,15 +53,11 @@
 										// gh#151
 										super.data = value;
 										if (data) this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
+										captionLabel.text = ((data) ? data.@caption : "").toString();
 									}
 								]]>
 							</fx:Script>
-							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
-							<!--s:Line width="90%" horizontalCenter="0" >
-								<s:stroke>
-									<s:SolidColorStroke color="#FFBF40" weight="1" caps="square"/>
-								</s:stroke>
-							</s:Line-->
+							<s:Label id="captionLabel" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6" paddingBottom="4" />
 							<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/unit/dotted-line.png')" bottom="0" left="8" />
 						</s:ItemRenderer>
 					</fx:Component>

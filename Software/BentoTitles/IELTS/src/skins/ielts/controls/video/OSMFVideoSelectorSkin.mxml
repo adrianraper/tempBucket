@@ -8,7 +8,6 @@
 	</fx:Metadata>
 	
 	<!-- The video players -->
-	<!--players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" /-->
 	<players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" visible="{videoList.selectedItem != null}" />
 	
 	<!-- Placeholder image -->

@@ -866,6 +866,10 @@ package com.clarityenglish.ielts.view.login {
 			var urlRequest:URLRequest = new URLRequest(urlString);
 			navigateToURL(urlRequest, "_blank");
 		}
+
+		public function setPlatformiPad(value:Boolean):void {
+			// TODO Auto-generated method stub
+		}
 	
 	}
 }

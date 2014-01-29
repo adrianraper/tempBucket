@@ -1,34 +1,39 @@
 package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoPlayer;
+	import com.clarityenglish.controls.video.IVideoProvidable;
+	import com.clarityenglish.controls.video.IVideoProvider;
 	
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
-	import flash.system.Capabilities;
 	import flash.utils.Dictionary;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.StringUtils;
 	
 	import spark.components.Application;
 	import spark.components.Group;
 	import spark.components.List;
 	
-	public class NewWebViewVideoPlayer extends Group implements IVideoPlayer {
+	public class HTMLVideoPlayer extends Group implements IVideoPlayer, IVideoProvidable {
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		private var stageWebView:StageWebView;
+		protected var stageWebView:StageWebView;
 		
-		private var _source:Object;
-		private var _sourceChanged:Boolean;
+		protected var _provider:IVideoProvider;
+		protected var _providerChanged:Boolean;
 		
-		private var _visibleChanged:Boolean;
+		protected var _source:Object;
+		protected var _sourceChanged:Boolean;
 		
-		private var dpiScaleFactor:Number = 1;
+		protected var _visibleChanged:Boolean;
+		
+		protected var dpiScaleFactor:Number = 1;
 		
 		protected static var videoPlayers:Dictionary = new Dictionary(true); // gh#749
 		
@@ -42,7 +47,7 @@ package com.clarityenglish.controls.video.players {
 				(videoPlayer as NewWebViewVideoPlayer).visible = true;
 		}
 		
-		public function NewWebViewVideoPlayer() {
+		public function HTMLVideoPlayer() {
 			if (!StageWebView)
 				throw new Error("This component can only be used in an AIR application");
 			
@@ -50,6 +55,12 @@ package com.clarityenglish.controls.video.players {
 				throw new Error("StageWebView is not supported in this environment")
 			
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+		}
+		
+		public function set provider(value:IVideoProvider):void {
+			_provider = value;
+			_providerChanged = true;
+			invalidateProperties();
 		}
 		
 		public function set source(value:Object):void {
@@ -101,10 +112,13 @@ package com.clarityenglish.controls.video.players {
 			// This is how we hide/show the stage web view whilst still keeping it on the stage
 			stageWebView.stage = (visible) ? stage : null;
 			
-			if (_sourceChanged) {
-				_sourceChanged = false;
-				
-				load();
+			if (_sourceChanged || _providerChanged) {
+				if (_source && _provider) {
+					_sourceChanged = false;
+					_providerChanged = false;
+					
+					load();
+				}
 			}
 		}
 		
@@ -123,6 +137,8 @@ package com.clarityenglish.controls.video.players {
 				var rectangle:Rectangle = new Rectangle(viewportX, viewportY, viewportWidth, viewportHeight);
 				
 				// Need to get the viewport of the List - some kind of parent will give us the VideoWidget which is an ItemRenderer and from there we can get the list as owner.
+				// TODO: Need to check that this still works if we are planning to use this in non-List settings (e.g. exercises).  In which case maybe we can figure out something
+				// better than parentDocument.owner.owner and find a more generic class than List in which case it will work for all viewports.
 				// gh#732
 				if (parentDocument.owner && parentDocument.owner.owner) {
 					var list:List = parentDocument.owner.owner;	
@@ -147,20 +163,20 @@ package com.clarityenglish.controls.video.players {
 				invalidateDisplayList();
 		}
 		
-		public function play():void {
-			// This does nothing...
-		}
+		public function play():void { }
 		
 		public function stop():void {
 			callLater(destroy);
 		}
 		
 		private function load():void {
-			if (source) {
-				var loader:IStageWebViewLoader = (source.toString().match(/^https?:\/\//i) == null) ? new HTMLStageWebVideoLoader() : new URLStageWebVideoLoader();
-				loader.load(stageWebView, source);
-			} else {
-				trace("SOURCE SET TO NULL???");
+			if (_source && _provider) {
+				var html:String = _provider.getHtml(_source);
+				if (StringUtils.beginsWith(html, "<!DOCTYPE html>")) {
+					stageWebView.loadString(html);
+				} else {
+					stageWebView.loadURL(html);
+				}
 			}
 		}
 		
@@ -176,7 +192,7 @@ package com.clarityenglish.controls.video.players {
 	}
 	
 }
-import flash.media.StageWebView;
+/*import flash.media.StageWebView;
 
 interface IStageWebViewLoader {
 	
@@ -238,4 +254,4 @@ class HTMLStageWebVideoLoader implements IStageWebViewLoader {
 		return html;
 	}
 	
-}
+}*/

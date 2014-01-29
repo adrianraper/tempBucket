@@ -15,6 +15,9 @@ package com.clarityenglish.controls.video.players {
 	import spark.components.Application;
 	import spark.components.Group;
 	
+	/**
+	 * This has been superceded by other classes, but IELTSAir still uses it (WebViewVideoSelectorSkin) so don't dare to remove it yet
+	 */
 	public class WebViewVideoPlayer extends Group implements IVideoPlayer {
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
