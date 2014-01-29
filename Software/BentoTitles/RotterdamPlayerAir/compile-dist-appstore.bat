@@ -1,0 +1,1 @@
+"C:\Flex\4.9.1_AIR3.7\bin\adt.bat" -package -target ipa-app-store -storetype pkcs12 -keystore "%USERPROFILE%\.ssh\ios-clarity\distribution\ios_distribution.p12" -storepass password -provisioning-profile "%USERPROFILE%\.ssh\ios-clarity\distribution\RotterdamPlayerAppStore.mobileprovision" RotterdamPlayerAir.ipa RotterdamPlayerAir-app.xml RotterdamPlayerAir.swf ios-config.xml icons
