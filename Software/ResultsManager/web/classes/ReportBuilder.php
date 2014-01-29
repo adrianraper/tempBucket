@@ -263,8 +263,9 @@ EOD;
 				
 		// Selection of common columns
 		// v3.4 To allow productCode to be sent back too. Put it first to help sorting the returned results if grouped.
-		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("c.F_ProductCode", "productCode");		
-		if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("s.F_ProductCode", "productCode");		
+		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("c.F_ProductCode", "productCode");
+		// gh#795 hijack		
+		if ($this->getOpt(ReportBuilder::SHOW_TITLE) || $this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("s.F_ProductCode", "productCode");		
 		// v3.4 This could be read from s.F_CourseID if I want session to be by product not course
 		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("ss.F_CourseID", "courseID");
 		if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("s.F_CourseID", "courseID");
@@ -310,7 +311,7 @@ EOD;
 		// Selection of grouped columns
 		if ($this->getOpt(ReportBuilder::SHOW_AVERAGE_SCORE)) { $this->checkGrouped(true); $this->addColumn(null, "average_score", "AVG(CASE s.F_Score WHEN -1 THEN NULL ELSE s.F_Score END)"); }
 		if ($this->getOpt(ReportBuilder::SHOW_COMPLETE)) { $this->checkGrouped(true); $this->addColumn(null, "complete", "COUNT(s.F_Score)"); }
-		//issue:#23
+		// gh#23
 		if ($this->getOpt(ReportBuilder::SHOW_EXERCISE_PERCENTAGE)) { $this->checkGrouped(true); $this->addColumn(null, "exercise_percentage", "COUNT(DISTINCT s.F_ExerciseID)"); }
 		if ($this->getOpt(ReportBuilder::SHOW_EXERCISEUNIT_PERCENTAGE)) { $this->checkGrouped(true); $this->addColumn(null, "exerciseUnit_percentage", "COUNT(DISTINCT s.F_ExerciseID)"); }
 		if ($this->getOpt(ReportBuilder::SHOW_UNIT_PERCENTAGE)) { $this->checkGrouped(true); $this->addColumn(null, "unit_percentage", "COUNT(DISTINCT s.F_UnitID)"); }
@@ -497,7 +498,8 @@ EOD;
 		
 		// Selection of common columns
 		// v3.4 To allow productCode to be sent back too. Put it first to help sorting the returned results if grouped.
-		if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("ss.F_ProductCode", "productCode");		
+		// gh#795 hijack
+		if ($this->getOpt(ReportBuilder::SHOW_COURSE) || $this->getOpt(ReportBuilder::SHOW_TITLE)) $this->addColumn("ss.F_ProductCode", "productCode");		
 		if ($this->getOpt(ReportBuilder::SHOW_UNIT)) $this->addColumn("s.F_UnitID", "unitID");
 		if ($this->getOpt(ReportBuilder::SHOW_EXERCISE)) $this->addColumn("s.F_ExerciseID", "exerciseID");
 		// v3.4 Detail report columns

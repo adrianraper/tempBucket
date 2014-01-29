@@ -369,11 +369,14 @@ EOD;
 				case "Title":
 					// At present there isn't really a way to get statistics on more than one title at a time... ask Adrian about this
 					// Set title to group differently from course
-					$opts[ReportBuilder::SHOW_COURSE] = true;
+					//$opts[ReportBuilder::SHOW_COURSE] = true;
+					$opts[ReportBuilder::SHOW_TITLE] = true;
+					// gh#795 hijack
+					$opts[ReportBuilder::WITHIN_COURSE] = true;
 					break;
 				case "Course":
 					$opts[ReportBuilder::SHOW_COURSE] = true;
-					//issue:#23
+					// gh#23
 					$opts[ReportBuilder::WITHIN_COURSE] = true;
 					break;
 				case "Unit":

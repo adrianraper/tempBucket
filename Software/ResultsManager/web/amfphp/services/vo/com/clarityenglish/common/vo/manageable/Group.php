@@ -187,12 +187,14 @@ class Group extends Manageable {
 				// At present there isn't really a way to get statistics on more than one title at a time... ask Adrian about this
 				// Set title to group differently from course. Except that there isn't really a show_title.
 				// show_course will automagically show title (see ReportOps.processRowFields)
-				//$opts[ReportBuilder::SHOW_TITLE] = true;
-				$opts[ReportBuilder::SHOW_COURSE] = true;
+				// gh#795 hijack!
+				$opts[ReportBuilder::SHOW_TITLE] = true;
+				$opts[ReportBuilder::WITHIN_COURSE] = true;
+				//$opts[ReportBuilder::SHOW_COURSE] = true;
 				break;
 			case "Course":
 				$opts[ReportBuilder::SHOW_COURSE] = true;
-				//issue:#23
+				// gh#23
 				$opts[ReportBuilder::WITHIN_COURSE] = true;
 				break;
 			case "Unit":

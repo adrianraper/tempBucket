@@ -434,6 +434,9 @@ EOD;
 					$rowKey .= $row['studentID'];
 				if (isset($row['email']))
 					$rowKey .= $row['email'];
+				// gh#795
+				if (isset($row['userID']))
+					$rowKey .= $row['userID'];
 					
 				if ($rowKey != $rowKeyValue || $this->reportableUID($row) != $rowUID) {
 					// write out the previous row (if not in first loop)
@@ -650,9 +653,29 @@ EOD;
 			   foreach ($title->courses[$courseID]->units as $unit) {
 			       $total = $total + $unit->totalExercises;
 			   }
-			// gh#28 express as %
-			$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
+				// gh#28 express as %
+				$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
 		    }
+		} else {
+			// gh#795 hijack
+			if (isset($row['productCode'])) {
+				$title = $this->getTitle($row['productCode']);
+				if (isset($title->name)) {
+					$row['titleName'] = $title->name;
+				} else if (isset($title->caption)) {
+					$row['titleName'] = $title->caption;
+				} else {
+					$row['titleName'] = '-no name-';
+				} 
+				// gh#28
+				if (isset($row['exerciseUnit_percentage'])) {
+					$total = 0;
+					foreach ($title->courses as $course)
+						foreach ($course->units as $unit)
+							$total = $total + $unit->totalExercises;
+					$row['exerciseUnit_percentage'] =  100 * $row['exerciseUnit_percentage'] / $total;
+			    }
+			}				
 		}
 		
 		// v3.4 You can't do this section unless courseID is set

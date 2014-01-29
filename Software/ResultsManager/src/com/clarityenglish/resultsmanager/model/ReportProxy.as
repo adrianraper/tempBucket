@@ -155,7 +155,7 @@ package com.clarityenglish.resultsmanager.model {
 			headers.attempts = copyProvider.getCopyForId(opts.attempts + "Attempts");
 			
 			opts.headers = headers;
-			trace("opts detailed report"+ opts.detailedReport);
+			//trace("opts detailed report"+ opts.detailedReport);
 			
 			// If the forReportables are Title then replace them with their sub courses as titles don't really exist
 			if (forClass == "Title") {

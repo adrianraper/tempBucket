@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<actionScriptProperties analytics="false" mainApplicationPath="com/clarityenglish/dms/DMSApplication.mxml" projectUUID="5c9f5de8-a923-4a02-b833-b35fbcf6364a" version="10">
+<actionScriptProperties analytics="false" mainApplicationPath="com/clarityenglish/resultsmanager/ResultsManager.mxml" projectUUID="5c9f5de8-a923-4a02-b833-b35fbcf6364a" version="10">
   <compiler additionalCompilerArguments="-locale en_US&#13;&#10;-define=CONFIG::flex3,true&#13;&#10;-define=CONFIG::flex4,false" autoRSLOrdering="false" copyDependentFiles="false" flexSDK="Flex 3.6" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="true" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="web" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="false" useDebugRSLSwfs="true" verifyDigests="true" warn="true">
     <compilerSourcePath/>
     <libraryPath defaultLinkType="0">
