@@ -56,6 +56,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			// gh#328
 			//resizeVideo();
 			
+			widgetText.width = width;
+			
 			if (videoPlayer) {
 				videoPlayer.width = width - 16;
 				videoPlayer.height = videoHolder.height - 8;

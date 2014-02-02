@@ -1,12 +1,31 @@
 package com.clarityenglish.controls.video.providers {
+	import com.clarityenglish.controls.video.IVideoPlayer;
 	import com.clarityenglish.controls.video.IVideoProvider;
+	
+	import flash.events.Event;
+	
+	import mx.controls.SWFLoader;
+	import mx.core.IVisualElementContainer;
 	
 	public class YouTubeProvider implements IVideoProvider {
 		
-		protected var source:String;
+		protected var videoPlayer:IVideoPlayer;
 		
-		public function YouTubeProvider(source:String = null) {
-			this.source = source;
+		protected var swfLoader:SWFLoader;
+		
+		public function YouTubeProvider(videoPlayer:IVideoPlayer) {
+			this.videoPlayer = videoPlayer;
+		}
+		
+		/**
+		 * A helper function to get the id out of the YouTube source
+		 * 
+		 * @param source
+		 * @return 
+		 */
+		protected function getId(source:Object):String {
+			var matches:Array = (source.toString()) ? source.toString().match(/^(\w+):?(.*)$/i) : null;
+			return matches[2];
 		}
 		
 		/**
@@ -22,37 +41,68 @@ package com.clarityenglish.controls.video.providers {
 			return matches[1] == "youtube";
 		}
 		
+		/**
+		 * This returns the HTML version of the provider (used for AIR)
+		 * 
+		 * @param source
+		 * @return 
+		 */
 		public function getHtml(source:Object):String {
-			var matches:Array = (source.toString()) ? source.toString().match(/^(\w+):?(.*)$/i) : null;
-			if (!matches || matches.length < 3) return null;
-			var id:String = matches[2];
-			
 			var html:String = "";
 			html += "<!DOCTYPE html>";
 			html += "<html>";
 			html += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
 			html += "	<iframe id='ytplayer' style='position:absolute;top:0px;width:100%;height:100%'";
 			html += "			type='text/html'";
-			html += "			src='http://www.youtube.com/embed/" + id + "?rel=0&fs=1'";
+			html += "			src='http://www.youtube.com/embed/" + getId(source) + "?rel=0&fs=1'";
 			html += "			frameborder='0'>";
 			html += "	</iframe>";
 			html += "</body>";
 			html += "</html>";
 			return html;
+		}
+		
+		public function create(source:Object):void {
+			swfLoader = new SWFLoader();
+			swfLoader.percentWidth = swfLoader.percentHeight = 100;
+			swfLoader.scaleContent = true;
+			swfLoader.maintainAspectRatio = true;
+			swfLoader.addEventListener(Event.COMPLETE, onSwfLoaderComplete, false, 0, true);
 			
-			/*html += "<head>";
-			html += "	<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no' />";
-			html += "</head>";
-			html += "<body style='margin:0;padding:0;border:0;overflow:hidden'>";
-			html += "	<iframe id='player'";
-			html += "			type='text/html'";
-			html += "			width='" + width + "'";
-			html += "			height='" + height + "'";
-			html += "			src='http://www.youtube.com/embed/" + source + "?rel=0&hd=1&fs=1'";
-			html += "			frameborder='0'>";
-			html += "	</iframe>";
-			html += "</body>";
-			html += "</html>";*/
+			swfLoader.load("http://www.youtube.com/v/" + getId(source) + "?version=3");
+			
+			(videoPlayer as IVisualElementContainer).addElement(swfLoader);
+		}
+		
+		protected function onSwfLoaderComplete(event:Event):void {
+			swfLoader.removeEventListener(Event.COMPLETE, onSwfLoaderComplete);
+			swfLoader.content.addEventListener("onReady", function(e:Event):void { resize(); }, false, 0, true); // gh#328
+			//event.target.content.addEventListener("onReady", function(e:Event):void { resize(); }, false, 0, true); // gh#328
+			//event.target.content.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
+		}
+		
+		public function resize():void {
+			if (swfLoader && swfLoader.content && swfLoader.content["setSize"]) {
+				swfLoader.content["setSize"](videoPlayer.width, videoPlayer.height);
+				swfLoader.x = 8; // A bit hacky, but otherwise it doesn't centre properly
+			}
+		}
+		
+		public function play():void {
+			if (swfLoader && swfLoader.content && swfLoader.content["playVideo"])
+				swfLoader.content["playVideo"]();
+		}
+		
+		public function stop():void {
+			if (swfLoader && swfLoader.content && swfLoader.content["stopVideo"])
+				swfLoader.content["stopVideo"]();
+		}
+		
+		public function destroy():void {
+			stop();
+			(videoPlayer as IVisualElementContainer).removeElement(swfLoader);
+			swfLoader.source = null;
+			swfLoader = null;
 		}
 		
 	}

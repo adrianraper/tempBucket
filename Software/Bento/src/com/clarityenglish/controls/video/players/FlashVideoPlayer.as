@@ -3,6 +3,8 @@ package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoProvidable;
 	import com.clarityenglish.controls.video.IVideoProvider;
 	
+	import flash.events.Event;
+	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -21,10 +23,19 @@ package com.clarityenglish.controls.video.players {
 		protected var _sourceChanged:Boolean;
 		
 		public function FlashVideoPlayer() {
-			
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
 		}
 		
+		protected function onRemovedFromStage(event:Event):void {
+			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			
+			if (_provider) _provider.destroy();
+		}
+
 		public function set provider(value:IVideoProvider):void {
+			// If a provider already exists then give it an opportunity to clean up
+			if (_provider) _provider.destroy();
+			
 			_provider = value;
 			_providerChanged = true;
 			invalidateProperties();
@@ -34,6 +45,10 @@ package com.clarityenglish.controls.video.players {
 			log.info("Source set to " + value);
 			_source = value;
 			_sourceChanged = true;
+			
+			// Create the component
+			_provider.create(source);
+			
 			invalidateProperties();
 		}
 		
@@ -43,16 +58,21 @@ package com.clarityenglish.controls.video.players {
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
+		}
+		
+		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
-			
+			if (_provider) _provider.resize();
 		}
 		
 		public function play():void {
-			// TODO Auto-generated method stub
+			if (_provider) _provider.play();
 		}
 
 		public function stop():void {
-			// TODO Auto-generated method stub
+			if (_provider) _provider.stop();
 		}
+		
 	}
 }

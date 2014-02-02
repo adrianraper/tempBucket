@@ -39,12 +39,12 @@ package com.clarityenglish.controls.video.players {
 		
 		public static function hideAllVideo():void {
 			for (var videoPlayer:* in videoPlayers)
-				(videoPlayer as NewWebViewVideoPlayer).visible = false;
+				(videoPlayer as HTMLVideoPlayer).visible = false;
 		}
 		
 		public static function showAllVideo():void {
 			for (var videoPlayer:* in videoPlayers)
-				(videoPlayer as NewWebViewVideoPlayer).visible = true;
+				(videoPlayer as HTMLVideoPlayer).visible = true;
 		}
 		
 		public function HTMLVideoPlayer() {

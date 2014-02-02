@@ -11,12 +11,31 @@ package com.clarityenglish.controls.video {
 		function canHandleSource(source:Object):Boolean;
 		
 		/**
-		 * Return the HTML required to display this video source.  This can actually be either HTML or a URL which is loaded directly into the StageWebView.
+		 * (HTML)  Return the HTML required to display this video source.  This can actually be either HTML or a URL which is loaded directly into the StageWebView.
 		 * 
 		 * @param source
 		 * @return 
 		 */
 		function getHtml(source:Object):String;
+		
+		function create(source:Object):void;
+		
+		function resize():void;
+		
+		/**
+		 * (Flash) If supported, start playing the video.
+		 */
+		function play():void;
+		
+		/**
+		 * (Flash) If supported, stop playing the video.
+		 */
+		function stop():void;
+		
+		/**
+		 * This is called before a provider is changed and gives it an opportunity to clean up
+		 */
+		function destroy():void;
 		
 	}
 	

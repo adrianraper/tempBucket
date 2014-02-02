@@ -1,9 +1,9 @@
 package com.clarityenglish.controls.video {
 	import com.clarityenglish.controls.video.players.FlashVideoPlayer;
 	import com.clarityenglish.controls.video.players.HTMLVideoPlayer;
-	import com.clarityenglish.controls.video.providers.VimeoProvider;
 	import com.clarityenglish.controls.video.providers.YouTubeProvider;
 	
+	import flash.events.Event;
 	import flash.media.StageWebView;
 	import flash.system.ApplicationDomain;
 	
@@ -23,11 +23,18 @@ package com.clarityenglish.controls.video {
 		
 		protected var providers:Array = [
 			YouTubeProvider,
-			VimeoProvider
+			/*VimeoProvider*/
 		];
 		
 		public function UniversalVideoPlayer() {
 			super();
+			
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+		}
+		
+		protected function onRemovedFromStage(event:Event):void {
+			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			trace("UNIVERSAL REMOVED!");
 		}
 		
 		protected override function createChildren():void {
@@ -46,8 +53,8 @@ package com.clarityenglish.controls.video {
 			// Go through the registered providers, selecting the first one that can handle this source
 			var provider:IVideoProvider;
 			for each (var providerClass:Class in providers) {
-				if (new providerClass().canHandleSource(value)) {
-					provider = new providerClass();
+				if (new providerClass(videoPlayer).canHandleSource(value)) {
+					provider = new providerClass(videoPlayer);
 					break;
 				}
 			}
@@ -59,7 +66,7 @@ package com.clarityenglish.controls.video {
 				// Set the provider
 				(videoPlayer as IVideoProvidable).provider = provider;
 				
-				// And set the source
+				// Set the source
 				videoPlayer.source = value;
 			}
 		}
