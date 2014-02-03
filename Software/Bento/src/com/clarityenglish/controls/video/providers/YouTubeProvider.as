@@ -1,8 +1,10 @@
 package com.clarityenglish.controls.video.providers {
 	import com.clarityenglish.controls.video.IVideoPlayer;
 	import com.clarityenglish.controls.video.IVideoProvider;
+	import com.clarityenglish.controls.video.events.VideoEvent;
 	
 	import flash.events.Event;
+	import flash.events.MouseEvent;
 	
 	import mx.controls.SWFLoader;
 	import mx.core.IVisualElementContainer;
@@ -77,8 +79,7 @@ package com.clarityenglish.controls.video.providers {
 		protected function onSwfLoaderComplete(event:Event):void {
 			swfLoader.removeEventListener(Event.COMPLETE, onSwfLoaderComplete);
 			swfLoader.content.addEventListener("onReady", function(e:Event):void { resize(); }, false, 0, true); // gh#328
-			//event.target.content.addEventListener("onReady", function(e:Event):void { resize(); }, false, 0, true); // gh#328
-			//event.target.content.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
+			swfLoader.content.addEventListener(MouseEvent.CLICK, onClickVideo, false, 0, true); // gh#106
 		}
 		
 		public function resize():void {
@@ -96,6 +97,10 @@ package com.clarityenglish.controls.video.providers {
 		public function stop():void {
 			if (swfLoader && swfLoader.content && swfLoader.content["stopVideo"])
 				swfLoader.content["stopVideo"]();
+		}
+		
+		protected function onClickVideo(event:MouseEvent):void {
+			videoPlayer.dispatchEvent(new VideoEvent(VideoEvent.VIDEO_CLICK, true)); // gh#106
 		}
 		
 		public function destroy():void {

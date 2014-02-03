@@ -34,7 +34,6 @@ package com.clarityenglish.controls.video {
 		
 		protected function onRemovedFromStage(event:Event):void {
 			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-			trace("UNIVERSAL REMOVED!");
 		}
 		
 		protected override function createChildren():void {

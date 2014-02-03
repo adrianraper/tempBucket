@@ -9,6 +9,8 @@ package com.clarityenglish.controls.video.events {
 		public static const VIDEO_STOPPED:String = "videoStopped";
 		public static const VIDEO_COMPLETE:String = "videoComplete";
 		
+		public static const VIDEO_CLICK:String = "videoClick";
+		
 		public function VideoEvent(type:String, bubbles:Boolean = false) {
 			super(type, bubbles, false);
 		}
