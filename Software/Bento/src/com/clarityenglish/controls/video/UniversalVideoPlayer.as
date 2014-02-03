@@ -59,7 +59,7 @@ package com.clarityenglish.controls.video {
 			}
 			
 			if (!provider) {
-				log.error("Unable to find a provider supporting source '" + source + "'");
+				log.error("Unable to find a provider supporting source '" + value + "'");
 				return;
 			} else {
 				// Set the provider

@@ -4,7 +4,7 @@ package com.clarityenglish.common.controller {
 	import com.clarityenglish.common.view.error.ErrorView;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.config.Config;
-	import com.clarityenglish.controls.video.players.NewWebViewVideoPlayer;
+	import com.clarityenglish.controls.video.players.HTMLVideoPlayer;
 	
 	import flash.display.DisplayObject;
 	
@@ -52,7 +52,7 @@ package com.clarityenglish.common.controller {
 			// TODO This is not a very transparent way to check if there is StageWebView video that we need to hide
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (configProxy.isPlatformiPad())
-				NewWebViewVideoPlayer.hideAllVideo(); // gh#749
+				HTMLVideoPlayer.hideAllVideo(); // gh#749
 			
 			// Show the close button
 			// TODO. It might be easier for the user to also have an OK button that does the same thing as this close.
@@ -79,7 +79,7 @@ package com.clarityenglish.common.controller {
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (configProxy.isPlatformiPad())
-				NewWebViewVideoPlayer.showAllVideo(); // gh#749
+				HTMLVideoPlayer.showAllVideo(); // gh#749
 			
 			// Exit the program
 			if (isFatal) sendNotification(CommonNotifications.EXIT);
