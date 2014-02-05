@@ -81,7 +81,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		$trigger->condition->notProductCode = '12,13';
 		
 		$triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
-		echo 'got '.count($triggerResults) .' accounts for '.$trigger->name.$newLine;
+		echo count($triggerResults) .' accounts for '.$trigger->name.$newLine;
 		//AbstractService::$log->notice('got '.count($triggerResults) .' accounts for '.$trigger->name);
 		
 		// EmailMe
@@ -221,7 +221,6 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 				break;
 				
 			case "usageStats":
-				
 				$emailArray = array();
 				if (isset($_REQUEST['send']) || !isset($_SERVER["SERVER_NAME"])) {
 					// Only update T_DirectStart if you are actually inserting new records

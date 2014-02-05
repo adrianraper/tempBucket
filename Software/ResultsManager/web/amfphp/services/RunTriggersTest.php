@@ -81,7 +81,7 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 		$trigger->condition->notProductCode = '12,13';
 		
 		$triggerResults = $dmsService->triggerOps->applyCondition($trigger, $triggerDate);
-		echo 'got '.count($triggerResults) .' accounts for '.$trigger->name.$newLine;
+		echo count($triggerResults) .' accounts for '.$trigger->name.$newLine;
 		//AbstractService::$log->notice('got '.count($triggerResults) .' accounts for '.$trigger->name);
 		
 		// EmailMe
@@ -337,7 +337,7 @@ $fixedDateShift = 0;
 // This is where I can elect to run weekly or monthly triggers
 // Is today the first of the month?
 // Currently nothing is sent out like this as usage stats moved to a daily check on each account
-if (date("j")==21) {
+if (date("j")==5) {
 	$testingTriggers .= "monthlyActions";
 }
 // Used for Early Warning system emails to Clarity team

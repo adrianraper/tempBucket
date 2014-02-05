@@ -39,6 +39,12 @@ require_once(dirname(__FILE__)."/../../classes/LicenceOps.php");
 // I already getContent - will that clash or duplicate?
 require_once(dirname(__FILE__)."/../../classes/AccountOps.php");
 
+// v3.6 Required as usage ops can also send triggered emails.
+// v3.6 Not any more, remove that to RunTriggers.php
+// gh#769 required to send notification emails to account managers
+require_once(dirname(__FILE__)."/../../classes/EmailOps.php");
+require_once(dirname(__FILE__)."/../../classes/TemplateOps.php");
+
 require_once(dirname(__FILE__)."/../../classes/xml/XmlUtils.php");
 
 require_once(dirname(__FILE__)."/AbstractService.php");
