@@ -976,3 +976,10 @@ F_Sessions smallint DEFAULT NULL,
 ) ENGINE=InnoDB;
 
 ALTER TABLE `T_Subscription` ADD COLUMN `F_Birthday` DATETIME NULL DEFAULT NULL AFTER `F_OrderRef`;
+
+-- for TBV10
+DELETE FROM T_ProductLanguage 
+WHERE F_ProductCode=55;
+INSERT INTO T_ProductLanguage VALUES 
+(55,'EN','TenseBuster10-International'),
+(55,'NAMEN','TenseBuster10-NAmerican');
