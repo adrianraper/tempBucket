@@ -61,7 +61,7 @@ package com.clarityenglish.bento.view.recorder {
 			
 			// gh#683
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.isPlatformTablet()) {
+			if (configProxy.isPlatformTablet() && configProxy.isPlatformiPad()) {
 				view.isSaveEnabled = false;
 			} else {
 				view.isSaveEnabled = true;
