@@ -95,7 +95,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		// Add busy indicator before course list display in screen
 		protected function onCourseListUpdateComplete(event:FlexEvent):void {
-			if (isCourseListCreated) {
+			if (isCourseListCreated && busyIndicator) {
 				busyIndicator.visible = false;
 				isCourseListCreated = false;
 			} else {
