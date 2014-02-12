@@ -5,9 +5,11 @@ package com.clarityenglish.controls.video.providers {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.utils.setTimeout;
 	
 	import mx.controls.SWFLoader;
 	import mx.core.IVisualElementContainer;
+	import mx.core.UIComponent;
 	
 	public class YouTubeProvider implements IVideoProvider {
 		
@@ -78,8 +80,12 @@ package com.clarityenglish.controls.video.providers {
 		
 		protected function onSwfLoaderComplete(event:Event):void {
 			swfLoader.removeEventListener(Event.COMPLETE, onSwfLoaderComplete);
-			swfLoader.content.addEventListener("onReady", function(e:Event):void { resize(); }, false, 0, true); // gh#328
-			swfLoader.content.addEventListener(MouseEvent.CLICK, onClickVideo, false, 0, true); // gh#106
+			swfLoader.content.addEventListener("onReady", onReady); // gh#328
+			swfLoader.content.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
+		}
+		
+		protected function onReady(e:Event):void {
+			resize();
 		}
 		
 		public function resize():void {
@@ -106,6 +112,8 @@ package com.clarityenglish.controls.video.providers {
 		public function destroy():void {
 			stop();
 			(videoPlayer as IVisualElementContainer).removeElement(swfLoader);
+			swfLoader.content.removeEventListener("onReady", onReady);
+			swfLoader.content.removeEventListener(MouseEvent.CLICK, onClickVideo);
 			swfLoader.source = null;
 			swfLoader = null;
 		}
