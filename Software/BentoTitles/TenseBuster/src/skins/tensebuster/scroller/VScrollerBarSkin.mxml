@@ -65,7 +65,7 @@ VScrollBarThumbSkin and VScrollBarTrackSkin classes, respectively.
     <!--- The default skin class is VScrollBarThumbSkin.
             @copy spark.components.supportClasses.TrackBase#thumb 
             @see spark.skins.spark.VScrollBarThumbSkin -->
-    <s:Button id="thumb" 
+    <s:Button id="thumb" width="22"
               focusEnabled="false" visible.inactive="false" tabEnabled="false"
               skinClass="skins.tensebuster.scroller.VScrollBarThumbSkin" />
     
