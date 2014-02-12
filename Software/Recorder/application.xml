@@ -1,15 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?> 
-<application xmlns="http://ns.adobe.com/air/application/2.0"> 
+<application xmlns="http://ns.adobe.com/air/application/3.3"> 
 	
 	<id>com.ClarityEnglish.ClarityRecorder</id> 
-	<version>4.0.1.5</version> 
+	<versionNumber>4.0.3</versionNumber> 
 	<filename>ClarityRecorder</filename> 
 	
 	<name>Clarity Recorder</name> 
 	<description>
 		<text xml:lang="en">The Clarity Recorder - audio recording, playback and save.</text>
 	</description> 
-	<copyright>Copyright Clarity Language Consultants Ltd 2010</copyright> 
+	<copyright>Copyright Clarity Language Consultants Ltd 2010-13</copyright> 
 	
 	<initialWindow> 
 		<title>Clarity Recorder</title> 
