@@ -57,7 +57,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				videoPlayer.width = width - 16;
 				videoPlayer.height = videoHolder.height - 8;
 				videoPlayer.x = 8;
-				videoPlayer.play();
 			}
 		}
 		
