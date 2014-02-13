@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<tree:TreeItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+					   xmlns:s="library://ns.adobe.com/flex/spark" 
+					   xmlns:mx="library://ns.adobe.com/flex/mx" 
+					   xmlns:tree="com.sparkTree.*">
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.vo.manageable.Group;
+			import com.clarityenglish.rotterdam.view.publishSettings.events.SettingsEvent;
+			
+			[Bindable]
+			public var hasSettings:Function;
+			
+			[Bindable]
+			public var areSettingsValid:Function;
+			
+			protected function onDeleteSettingsClick(event:MouseEvent):void {
+				dispatchEvent(new SettingsEvent(SettingsEvent.CALENDER_SETTINGS_DELETE, data as Group, true));
+			}
+			
+			public override function set data(value:Object):void {
+				super.data = value;
+				dispatchEvent(new Event("refreshRenderer"));
+			}
+			
+			[Bindable(event="refreshRenderer")]
+			private function getTextColour():Number {
+				if (!hasSettings(data)) {
+					return 0x000000;
+				} else {
+					return (areSettingsValid(data) ? 0x005500 : 0xFF0000);
+				}				
+			}
+			
+			[Bindable(event="refreshRenderer")]
+			private function getFontWeight():String {
+				return hasSettings(data) ? "bold" : "normal";
+			}
+		]]>
+	</fx:Script>
+	
+	<tree:layout>
+		<s:HorizontalLayout paddingLeft="{indentation + 4}" verticalAlign="middle" paddingBottom="4" paddingTop="4" paddingRight="7"/>
+	</tree:layout>
+	
+	<tree:DefaultDisclosureButton visible="{disclosureIconVisible}" click="toggle()" currentState="{isOpen ? 'open' : 'closed'}"/>
+	
+	<s:Image source="{icon}" visible="{Boolean(icon)}" includeInLayout="{Boolean(icon)}"/>
+	
+	<s:Label id="labelDisplay" text="{label}" color="{getTextColour()}" fontWeight="{getFontWeight()}"/>
+	
+	<s:Spacer width="100%" />
+	
+	<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" visible="{hasSettings(data)}" click="onDeleteSettingsClick(event)" />
+	
+</tree:TreeItemRenderer>

@@ -3,8 +3,8 @@ package com.clarityenglish.rotterdam.view.course {
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 	import com.clarityenglish.rotterdam.view.course.ui.PublishButton;
-	import com.clarityenglish.rotterdam.view.scheduling.SchedulingView;
-	import com.clarityenglish.rotterdam.view.coursesettings.CourseSettingsView;
+	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView;
+	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.unit.UnitHeaderView;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -43,7 +43,7 @@ package com.clarityenglish.rotterdam.view.course {
 		public var addUnitButton:Button;
 		
 		[SkinPart]
-		public var schedulingButton:PublishButton;
+		public var publishSettingsButton:PublishButton;
 		
 		[SkinPart]
 		public var oneClickPublishButton:PublishButton;
@@ -67,7 +67,7 @@ package com.clarityenglish.rotterdam.view.course {
 		public var publishChangeButton:Button;
 		
 		[SkinPart]
-		public var courseSettingButton:Button;
+		public var settingButton:Button;
 		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
@@ -169,10 +169,10 @@ package com.clarityenglish.rotterdam.view.course {
 					addUnitButton.addEventListener(MouseEvent.CLICK, onAddUnit);
 					addUnitButton.label = copyProvider.getCopyForId("addUnitButton");
 					break;
-				case schedulingButton:
-					schedulingButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
-					schedulingButton.label = copyProvider.getCopyForId("publishSettingsButton");
-					schedulingButton.text = copyProvider.getCopyForId("publishSettingsLabel");
+				case publishSettingsButton:
+					publishSettingsButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
+					publishSettingsButton.label = copyProvider.getCopyForId("publishSettingsButton");
+					publishSettingsButton.text = copyProvider.getCopyForId("publishSettingsLabel");
 					break;
 				case oneClickPublishButton:
 					oneClickPublishButton.addEventListener(MouseEvent.CLICK, onCoursePublish);
@@ -199,9 +199,9 @@ package com.clarityenglish.rotterdam.view.course {
 					publishChangeButton.addEventListener(MouseEvent.CLICK, onCourseSettings);
 					publishChangeButton.label = copyProvider.getCopyForId("publishChangeButton");
 					break;
-				case courseSettingButton:
-					courseSettingButton.addEventListener(MouseEvent.CLICK, onCourseSettingClick);
-					courseSettingButton.label = copyProvider.getCopyForId("settingButton");
+				case settingButton:
+					settingButton.addEventListener(MouseEvent.CLICK, onSettingClick);
+					settingButton.label = copyProvider.getCopyForId("settingButton");
 					break;
 				case anim:
 					anim.addEventListener(EffectEvent.EFFECT_END, onAnimEnd);
@@ -258,7 +258,7 @@ package com.clarityenglish.rotterdam.view.course {
 			if (this.canPublish && config.illustrationCloseFlag) {
 				helpPublish.dispatch();
 			}
-			navigator.pushView(SchedulingView);
+			navigator.pushView(PublishSettingsView);
 			
 			isItemClick = true;
 		}
@@ -340,8 +340,8 @@ package com.clarityenglish.rotterdam.view.course {
 				publishSelectionGroup.alpha = 0;
 		}
 		
-		protected function onCourseSettingClick(event:MouseEvent):void {
-			navigator.pushView(CourseSettingsView);
+		protected function onSettingClick(event:MouseEvent):void {
+			navigator.pushView(SettingsView);
 		}
 		
 	}

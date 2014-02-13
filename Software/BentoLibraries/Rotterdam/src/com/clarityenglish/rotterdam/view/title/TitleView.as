@@ -3,7 +3,7 @@ package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.rotterdam.view.course.CourseView;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
-	import com.clarityenglish.rotterdam.view.scheduling.SchedulingView;
+	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView;
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
 	
 	import flash.events.Event;
@@ -98,14 +98,8 @@ package com.clarityenglish.rotterdam.view.title {
 			}
 		}
 		
-		protected override function getCurrentSkinState():String {
-			trace("currentState: "+currentState);
-			return currentState;
-		}
-		
 		// gh#745
 		protected function onStateChange(event:StateChangeEvent):void {
-			trace("current sate: "+currentState);
 			if (myCoursesViewNavigator) {
 				if (currentState == "course_selector") {
 					myCoursesViewNavigator.label = copyProvider.getCopyForId("myCoursesViewNavigator");

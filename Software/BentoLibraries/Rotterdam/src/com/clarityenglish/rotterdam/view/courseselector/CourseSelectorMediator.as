@@ -88,7 +88,9 @@
 		 * @param course
 		 */
 		private function onSelectCourse(course:XML):void {
-			facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: course.@href, options: { courseId: course.@id.toString() } } );
+			// gh#91
+			facade.sendNotification(BBNotifications.MENU_XHTML_LOAD, { filename: course.@href, 
+												options: { courseId: course.@id.toString(), enabledFlag: course.enabledFlag } } );
 		}
 		
 		private function onDeleteCourse(course:XML):void {

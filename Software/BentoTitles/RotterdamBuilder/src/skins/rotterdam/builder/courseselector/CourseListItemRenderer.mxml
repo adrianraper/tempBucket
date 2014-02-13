@@ -10,7 +10,8 @@
 			// gh#689
 			public override function set data(value:Object):void {
 				super.data = value;
-				if (data) this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
+				// gh#91
+				if (data) this.enabled = !data.hasOwnProperty("@enabledFlag") || (data.@enabledFlag > 0);
 			}
 		]]>
 	</fx:Script>

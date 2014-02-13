@@ -4,6 +4,7 @@ package com.clarityenglish.rotterdam.player.controller {
 	import com.clarityenglish.bento.view.progress.ProgressMediator;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.transform.CourseAttributeCopyTransform;
+	import com.clarityenglish.bento.vo.content.transform.CourseEnabledTransform;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
@@ -42,7 +43,8 @@ package com.clarityenglish.rotterdam.player.controller {
 			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
 			
 			// Set the transforms that Rotterdam player uses when loading its courses.xml files (gh#144)
-			xhtmlProxy.registerTransforms([ new CourseAttributeCopyTransform(), new PublicationCourseTransform() ], [ Href.XHTML ], /^courses.xml$/);
+			// gh#689
+			xhtmlProxy.registerTransforms([ new CourseEnabledTransform(), new CourseAttributeCopyTransform(), new PublicationCourseTransform() ], [ Href.XHTML ], /^courses.xml$/);
 			
 			// gh#333
 			ProgressMediator.reloadMenuXHTMLOnProgress = true;

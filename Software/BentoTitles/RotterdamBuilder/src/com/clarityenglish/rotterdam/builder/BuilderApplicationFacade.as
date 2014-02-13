@@ -11,7 +11,6 @@
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
-	import com.clarityenglish.rotterdam.builder.controller.CourseSaveErrorCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSavedCommand;
 	import com.clarityenglish.rotterdam.builder.controller.HelpPublishWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaCloudSelectCommand;
@@ -34,24 +33,22 @@
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
 	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateMediator;
 	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateView;
-	import com.clarityenglish.rotterdam.builder.view.error.SavingErrorMediator;
-	import com.clarityenglish.rotterdam.builder.view.error.SavingErrorView;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerMediator;
 	import com.clarityenglish.rotterdam.builder.view.filemanager.FileManagerView;
 	import com.clarityenglish.rotterdam.builder.view.help.HelpMediator;
 	import com.clarityenglish.rotterdam.builder.view.help.HelpView;
-	import com.clarityenglish.rotterdam.builder.view.scheduling.SchedulingInstructionMediator;
-	import com.clarityenglish.rotterdam.builder.view.scheduling.SchedulingInstructionView;
+	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishMediator;
+	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorView;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
-	import com.clarityenglish.rotterdam.view.scheduling.SchedulingMediator;
-	import com.clarityenglish.rotterdam.view.scheduling.SchedulingView;
-	import com.clarityenglish.rotterdam.view.coursesettings.CourseSettingsMediator;
-	import com.clarityenglish.rotterdam.view.coursesettings.CourseSettingsView;
+	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsMediator;
+	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView;
+	import com.clarityenglish.rotterdam.view.settings.SettingsMediator;
+	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	
 	public class BuilderApplicationFacade extends CommonAbstractApplicationFacade {
 		
@@ -69,12 +66,11 @@
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);
 			mapView(ContentSelectorView, ContentSelectorMediator);
-			mapView(SchedulingView, SchedulingMediator);
-			mapView(CourseSettingsView, CourseSettingsMediator);
+			mapView(PublishSettingsView, PublishSettingsMediator);
+			mapView(SettingsView, SettingsMediator);
 			mapView(CourseCreateView, CourseCreateMediator);
-			mapView(SchedulingInstructionView, SchedulingInstructionMediator);
+			mapView(HelpPublishView, HelpPublishMediator);
 			mapView(HelpView, HelpMediator);
-			mapView(SavingErrorView, SavingErrorMediator);
 			
 			// gh#88 (see CommonAbstractApplicationFacade for comments on this)
 			registerCommand(BBNotifications.MENU_XHTML_LOADED, CourseStartCommand);
@@ -96,9 +92,6 @@
 			
 			// gh#64
 			registerCommand(RotterdamNotifications.VIDEO_LOAD_ERROR, ShowErrorCommand);
-			
-			// gh#751
-			registerCommand(RotterdamNotifications.COURSE_SAVE_ERROR, CourseSaveErrorCommand);
 			
 			registerCommand(RotterdamNotifications.MEDIA_SELECT, MediaSelectCommand);
 			registerCommand(RotterdamNotifications.MEDIA_CLOUD_SELECT, MediaCloudSelectCommand);

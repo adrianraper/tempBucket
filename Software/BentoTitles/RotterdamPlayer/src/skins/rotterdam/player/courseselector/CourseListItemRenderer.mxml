@@ -4,6 +4,17 @@
 				xmlns:mx="library://ns.adobe.com/flex/mx" 
 				autoDrawBackground="false">
 	
+	<fx:Script>
+		<![CDATA[
+			// gh#689
+			public override function set data(value:Object):void {
+				super.data = value;
+				// gh#91
+				if (data) this.enabled = !data.hasOwnProperty("@enabledFlag") || (data.@enabledFlag > 0);
+			}
+		]]>
+	</fx:Script>
+	
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
 		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="1" angle="200" knockout="false" />
