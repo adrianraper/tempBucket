@@ -286,6 +286,11 @@ class BentoService extends AbstractService {
 		Session::set('groupID', $userObj->groupID);	
 		Session::set('groupIDs', array_merge(array($userObj->groupID), $this->manageableOps->getExtraGroups($userObj->F_UserID)));	
 		
+		// gh#91
+		// TODO You should actually call it for the array of extra groupIDs instead of just my main group
+		// Then weed out duplicates 
+		Session::set('parentGroupIDs', array_reverse($this->manageableOps->getGroupParents($userObj->groupID)));
+		
 		// gh#21 As rootID will be -1 if you have not got an account yet, this will work.
 		// #503 From login you now only have one rootID even if you started with an array
 		// If that root has changed, you have to get a new licence object for this new root

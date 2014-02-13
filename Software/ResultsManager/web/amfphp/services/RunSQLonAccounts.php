@@ -38,6 +38,57 @@ function addRMtoAccount($account) {
 	return $dmsService->db->AutoExecute("T_Accounts", $dbObj, "INSERT");
 
 }
+
+function seedCoursePermission($courseID) {
+	global $dmsService;
+	// Does this course already have a permission set?
+	$sql = <<<SQL
+		SELECT * FROM T_CoursePermission c
+		WHERE c.F_CourseID = ?
+SQL;
+	$bindingParams = array($courseID);
+	$rs = $dmsService->db->Execute($sql, $bindingParams);
+
+	if ($rs->recordCount() == 0) {
+		$sql = <<<SQL
+			INSERT INTO T_CoursePermission (F_CourseID, F_Editable)
+			VALUES (?, TRUE) 
+SQL;
+		$bindingParams = array($courseID);
+		$rs = $dmsService->db->Execute($sql, $bindingParams);
+	}		
+}
+
+function seedCourseRole($courseID, $userID, $rootID) {
+	global $dmsService;
+	// Does this course already have an owner?
+	$sql = <<<SQL
+		SELECT * FROM T_CourseRoles c
+		WHERE c.F_CourseID = ?
+		AND c.F_Role = 1
+SQL;
+	$bindingParams = array($courseID);
+	$rs = $dmsService->db->Execute($sql, $bindingParams);
+
+	if ($rs->recordCount() == 0) {
+		// Set the account administrator as the owner
+		$sql = <<<SQL
+			INSERT INTO T_CourseRoles (F_CourseID, F_UserID, F_Role, F_DateStamp)
+			VALUES (?, ?, 2, NOW()) 
+SQL;
+		$bindingParams = array($courseID, $userID);
+		$rs = $dmsService->db->Execute($sql, $bindingParams);
+		
+		// And a default viewer role for all teachers
+		$sql = <<<SQL
+			INSERT INTO T_CourseRoles (F_CourseID, F_RootID, F_Role, F_DateStamp)
+			VALUES (?, ?, 4, NOW()) 
+SQL;
+		$bindingParams = array($courseID, $rootID);
+		$rs = $dmsService->db->Execute($sql, $bindingParams);
+	}		
+}
+	
 function changeExpiryDate($account, $extension = '+1 month', $limit = null) {
 	global $dmsService;
 	$dmsService->db->StartTrans();
@@ -89,6 +140,32 @@ $testingTriggers = "";
 $testingTriggers .= "Change expiry date";
 //$testingTriggers .= "Add RM to all accounts";
 //$testingTriggers .= "terms and conditions";
+$testingTriggers .= "Seed permissions and privacy for CCB";
+
+if (stristr($testingTriggers, "Seed permissions and privacy for CCB")) {
+	$conditions = array();
+	$conditions['productCode'] = 54;
+	$testingAccounts = null;
+	$testingAccounts = array(163);
+	$accounts = $dmsService->accountOps->getAccounts($testingAccounts, $conditions);
+	if ($accounts) {
+		foreach ($accounts as $account) {
+			// get the prefix and the admin userID
+			$prefix = $account->prefix;
+			$userID = $account->adminUser->id;
+			$rootID = $account->id;
+			
+			// read courses.xml for the account and seed each courseID into the tables
+			$filename = '../../'.$GLOBALS['ccb_data_dir']."/".$prefix.'/courses.xml';
+			$xml = simplexml_load_file($filename);
+			foreach ($xml->courses->course as $course) {
+				$courseID = (string)$course['id'];
+				seedCoursePermission($courseID);
+				seedCourseRole($courseID, $userID, $rootID);
+			}
+		}
+	}
+}
 
 // Now that even AA accounts will have RM for usage stats, we need to add it to all. But not individuals.
 if (stristr($testingTriggers, "Add RM to all accounts")) {

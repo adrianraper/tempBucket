@@ -52,7 +52,9 @@ class RotterdamBuilderService extends RotterdamService {
 		$xhtml = parent::xhtmlLoad($href);
 		
 		// gh#142
-		if ($href->type == Href::MENU_XHTML) {
+		// gh#91 You only need to consider concurrency if this user can edit the course
+		if ($href->type == Href::MENU_XHTML && 
+			$href->options['enabledFlag'] & Course::EF_EDITABLE) {
 			$courseId = $href->options["courseId"];
 
 			// gh#385
@@ -100,8 +102,9 @@ EOD;
 	}
 	
 	public function courseDelete($course) {
-		// TODO: Only allow this if the logged in user has permission
-		return $this->courseOps->courseDelete($course);
+		// gh#91 Only allow this if the logged in user is the owner
+		if ($course->href->options['enabledFlag'] & Course::EF_OWNER)
+			return $this->courseOps->courseDelete($course);
 	}
 	
 	/**

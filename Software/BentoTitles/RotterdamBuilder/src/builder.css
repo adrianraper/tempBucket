@@ -355,7 +355,7 @@ filemanager|FileManagerView s|Button#cancelButton {
 
 
 publishSettings|PublishSettingsView {
-	skinClass: ClassReference("skins.rotterdam.builder.publishSettings.SettingsSkin");
+	skinClass: ClassReference("skins.rotterdam.builder.publishsettings.SettingsSkin");
 }
 
 publishSettings|PublishSettingsView s|FormItem {
@@ -383,7 +383,7 @@ showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {
 }
 
 showPublishSettingDemo|HelpPublishView {
-	skinClass: ClassReference("skins.rotterdam.builder.publishSettings.HelpPublishSkin");
+	skinClass: ClassReference("skins.rotterdam.builder.publishsettings.HelpPublishSkin");
 	headerVisible: false;
 }
 

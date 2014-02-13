@@ -50,6 +50,8 @@ class CourseOps {
 		$id = UniqueIdGenerator::getUniqId();
 		
 		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($courseObj, $accountFolder, $defaultXML, $id) {
+			$db->StartTrans();
+			
 			// Create a new course passing in the properties as XML attributes
 			$courseNode = $xml->courses->addChild("course");
 			$courseNode->addAttribute("id", $id);
@@ -83,6 +85,30 @@ class CourseOps {
 			$unitNode->addAttribute("description", "My unit description");
 			
 			file_put_contents($accountFolder."/".$id."/menu.xml", $menuXml->saveXML());
+			
+			// gh#91 Set permissions and roles
+			$sql = <<<SQL
+				INSERT INTO T_CoursePermission 
+				(F_CourseID, F_Editable)
+				VALUES (?, TRUE)
+SQL;
+			$bindingParams = array($id);
+			$rc = $db->Execute($sql, $bindingParams);					
+			if (!$rc)
+				// It should be impossible for the courseID to already be in this table...
+				AbstractService::$debugLog->notice("insert to T_CoursePermission failed");
+			
+			$sql = <<<SQL
+				INSERT INTO T_CourseRoles 
+				(F_CourseID, F_UserID, F_Role, F_DateStamp)
+				VALUES (?,?,?,NOW())
+SQL;
+			$bindingParams = array($id, Session::get('userID'), Course::ROLE_OWNER);
+			$rc = $db->Execute($sql, $bindingParams);					
+			if (!$rc)
+				// It should be impossible for the courseID to already be in this table...
+				AbstractService::$debugLog->notice("insert to T_CourseRoles failed");
+			
 		});
 		
 		// Return the id and filename of the new course
@@ -242,6 +268,10 @@ SQL;
 			$db->Execute("DELETE FROM T_CourseStart WHERE F_RootID = ? AND F_CourseID = ?", array(Session::get('rootID'), $courseId));
 			$db->Execute("DELETE FROM T_UnitStart WHERE F_RootID = ? AND F_CourseID = ?", array(Session::get('rootID'), $courseId));
 			
+			// gh#91 Remove permissions and roles
+			$db->Execute("DELETE FROM T_CoursePermission WHERE F_CourseID = ?", array($courseId));
+			$db->Execute("DELETE FROM T_CourseRoles WHERE F_CourseID = ?", array($courseId));
+			
 			$db->CompleteTrans();
 		});
 	}
@@ -278,6 +308,81 @@ SQL;
 		} 
 	}
 
+	/**
+	 * This function finds if the course is editable
+	 * gh#91
+	 */
+	public function getCoursePermission($courseID){
+
+		$sql = <<<SQL
+			SELECT cp.F_Editable as editable FROM T_CoursePermission cp 
+			WHERE cp.F_CourseID = ?
+SQL;
+		$bindingParams = array($courseID);
+		
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->recordCount() > 0)
+			return (boolean)$rs->FetchNextObj()->editable;
+			
+		return false;
+	}
+	
+	/**
+	 * This function finds the highest role a user has in a course
+	 * gh#91
+	 */
+	public function getUserRole($courseID){
+
+		$highestRole = $userRole = $groupRole = $rootRole = 0;
+		$userID = Session::get('userID');
+		$groupIDs = implode(',', array_unique(array_merge(Session::get('groupIDs'), Session::get('parentGroupIDs')), SORT_DESC));
+		$rootID = Session::get('rootID');
+		
+		// First look for the user directly
+		$sql = <<<SQL
+			SELECT c.F_Role as role FROM T_CourseRoles c 
+			WHERE c.F_CourseID = ?
+			AND c.F_UserID = ?
+SQL;
+		$bindingParams = array($courseID, $userID);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->recordCount() > 0)
+			while ($rec = $rs->FetchNextObj()) {
+				if ($rec->role > $userRole)
+					$userRole = $rec->role;	
+			}
+			
+		// Then look to see for all the groups the user is part of
+		$sql = <<<SQL
+			SELECT c.F_Role as role FROM T_CourseRoles c 
+			WHERE c.F_CourseID = ?
+			AND c.F_GroupID IN (?)
+SQL;
+		$bindingParams = array($courseID, $groupIDs);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->recordCount() > 0)
+			while ($rec = $rs->FetchNextObj()) {
+				if ($rec->role > $groupRole)
+					$groupRole = $rec->role;	
+			}
+			
+		// Finally for the root
+		$sql = <<<SQL
+			SELECT c.F_Role as role FROM T_CourseRoles c 
+			WHERE c.F_CourseID = ?
+			AND c.F_RootID = ?
+SQL;
+		$bindingParams = array($courseID, $rootID);
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs->recordCount() > 0)
+			while ($rec = $rs->FetchNextObj()) {
+				if ($rec->role > $rootRole)
+					$rootRole = $rec->role;	
+			}
+			
+		return max($userRole, $groupRole, $rootRole);
+	}
+	
 	// gh#122
 	public function getCourseUsersFromGroup($courseID, $groupID, $today){
 
