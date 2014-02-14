@@ -134,7 +134,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, draggableNode));
 					draggableFlowElement.tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut, draggableNode));
 				} else if (draggableFlowElement is FloatableTextFlow) {
-					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_MOVE, Closure.create(this, onFlowElementMouseMove, draggableNode, draggableFlowElement));
+					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.MOUSE_DOWN, Closure.create(this, onFlowElementMouseMove, draggableNode, draggableFlowElement));
 					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OVER, Closure.create(this, onRollOver, draggableNode));
 					(draggableFlowElement as FloatableTextFlow).getFirstLeaf().tlf_internal::getEventMirror().addEventListener(FlowElementMouseEvent.ROLL_OUT, Closure.create(this, onRollOut, draggableNode));					
 				} else {
@@ -172,9 +172,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 					hitTestObjects.push(droppableInputElement.getComponent());
 				}
 				ds.addData(hitTestObjects, "hitTestObjects");
-				
+			
 				DragManager.doDrag(dragInitiator, ds, e.originalEvent, dragImage, 0, 0, 0.8);
-				
+
 				// If doDrag decided that we have started a drag, we want to draw the drag area into the dragImage and make it visible
 				if (DragManager.isDragging) {
 					// First get the bounds of the draggable flow leaf element
@@ -234,7 +234,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		protected function onRollOver(e:FlowElementMouseEvent, draggableNode:XML):void {
 			if (!canDrag(draggableNode, e.flowElement)) return;
 			
-			if (!cursorData) {
+			Mouse.cursor = "hand";
+			/*if (!cursorData) {
 				cursorData = new MouseCursorData();
 				cursorData.hotSpot = new Point(-draggableIconOffsetX, -draggableIconOffsetY);
 				var bitmapDatas:Vector.<BitmapData> = new Vector.<BitmapData>(1, true);
@@ -247,7 +248,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			
 			try {
 				Mouse.cursor = "handCursor";
-			} catch (e:Error) {}
+			} catch (e:Error) {}*/
 		}
 		
 		protected function onRollOut(e:FlowElementMouseEvent, draggableNode:XML):void {
