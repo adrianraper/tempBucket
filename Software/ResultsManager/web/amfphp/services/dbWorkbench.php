@@ -5,9 +5,6 @@
 require_once(dirname(__FILE__)."/MinimalService.php");
 $thisService = new MinimalService();
 
-// Done in config.php
-//date_default_timezone_set('UTC');
-
 header('Content-Type: text/plain; charset=utf-8');
 
 $newLine = "<br/>";

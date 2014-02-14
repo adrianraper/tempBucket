@@ -22,8 +22,6 @@ require_once(dirname(__FILE__)."../../core/shared/util/Authenticate.php");
 
 $dmsService = new DMSService();
 
-date_default_timezone_set('UTC');
-
 // Lets just see what we get from POST first
 //var_dump($_POST);
 //exit(0);

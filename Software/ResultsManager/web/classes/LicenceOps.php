@@ -6,7 +6,8 @@ class LicenceOps {
 	
 	// We expect Bento to update the licence record every minute that the user is connected
 	// This is the number of minutes after which a licence record can be removed
-	const LICENCE_DELAY = 2;
+	// gh#815
+	const LICENCE_DELAY = 1;
 	
 	function LicenceOps($db) {
 		$this->db = $db;
@@ -36,7 +37,12 @@ class LicenceOps {
 		}
 			
 		// Some checks are independent of licence type
-		$dateNow = date('Y-m-d 23:59:59');
+		// gh#815
+		//$dateNow = date('Y-m-d 23:59:59');
+		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+		$dateNow = $dateStampNow->format('Y-m-d 23:59:59');
+		$aWhileAgo = $dateStampNow->modify('-'.(LicenceOps::LICENCE_DELAY * 60).' secs')->format('Y-m-d H:i:s');
+		
 		if ($licence->licenceStartDate > $dateNow)
 			throw $this->copyOps->getExceptionForId("errorLicenceHasntStartedYet");
 		
@@ -60,8 +66,8 @@ class LicenceOps {
 					
 				} else {
 					
-					$aWhileAgo = time() - LicenceOps::LICENCE_DELAY * 60;
-					$updateTime = date('Y-m-d H:i:s', $aWhileAgo);
+					// gh#815 
+					//$aWhileAgo = time() - LicenceOps::LICENCE_DELAY * 60;
 					
 					// First, always delete old licences for this product/root
 					$sql = <<<EOD
@@ -70,7 +76,7 @@ class LicenceOps {
 					AND F_RootID=?
 					AND (F_LastUpdateTime<? OR F_LastUpdateTime is null) 
 EOD;
-					$bindingParams = array($productCode, $singleRootID, $updateTime);
+					$bindingParams = array($productCode, $singleRootID, $aWhileAgo);
 					$rs = $this->db->Execute($sql, $bindingParams);
 					// the sql call failed
 					if (!$rs) {
@@ -97,8 +103,8 @@ EOD;
 						throw $this->copyOps->getExceptionForId("errorConcurrentLicenceFull");
 					}
 					// Insert this user in the licence control table
-					$dateNow = date('Y-m-d H:i:s');
-					//$bindingParams = array($userIP, $dateNow, $dateNow, $rootID, $productCode, $userID);
+					$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+					$dateNow = $dateStampNow->format('Y-m-d H:i:s');
 					$userID = $user->userID; 
 					$sql = <<<EOD
 					INSERT INTO T_Licences (F_UserHost, F_StartTime, F_LastUpdateTime, F_RootID, F_ProductCode, F_UserID) VALUES
@@ -297,8 +303,11 @@ EOD;
 	 * @param Licence $licence
 	 */
 	function updateLicence($licence) {
-		$dateNow = date('Y-m-d H:i:s');
-
+		// gh#815
+		//$dateNow = date('Y-m-d H:i:s');
+		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
+		
 		// The licence slot checking is based on licence type
 		switch ($licence->licenceType) {
 			// Concurrent licences
@@ -411,7 +420,8 @@ EOD;
 		if ($reasonCode == null || $reasonCode == '')
 			$reasonCode = 0;
 			
-		$dateNow = date('Y-m-d H:i:s');
+		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
 		$bindingParams = array($ip, $dateNow, $rootID, $user->id, $productCode, $reasonCode);
 		$sql = <<<EOD
 			INSERT INTO T_Failsession (F_UserIP, F_StartTime, F_RootID, F_UserID, F_ProductCode, F_ReasonCode)

@@ -1,22 +1,13 @@
 <?php
-// debug mode, will write log, please delete it during release version.
-define("DEBUG", "FALSE");
-function writelog($level, $message) {
-	if (defined("DEBUG")) {
-		$logmsg = "[".$level.": ".date("y/m/d H:i:s")."] ".$message."\r\n";
-		$logfile = "c:/var/log/ccb/log".date("ymd").".txt";
-		$fp = fopen($logfile, "a");
-		fwrite($fp, $logmsg);
-		fclose($fp);
-	}
-}
 
 // I need to call session_start here as this is about the first thing in any page.
 // Move into abstract service so you can use our Session class to register a handler
 if (!isset($noSession)) session_start();
 
 // Whilst this is done in amfphp globals, some scripts don't run through that
-date_default_timezone_set("UTC");
+// gh#815 This doesn't seem to be reliable with new DateTime();
+define('TIMEZONE', 'UTC');
+date_default_timezone_set(TIMEZONE);
 
 // If the total manageables in the logged in account is more than this students will not be displayed and some function disabled (RM only)
 $GLOBALS['max_manageables_for_student_display'] = 5000;

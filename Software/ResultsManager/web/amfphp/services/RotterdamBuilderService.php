@@ -57,8 +57,8 @@ class RotterdamBuilderService extends RotterdamService {
 			($href->options['enabledFlag'] & Course::EF_OWNER || $href->options['enabledFlag'] & Course::EF_COLLABORATOR)) {
 			$courseId = $href->options["courseId"];
 
-			// gh#385
-			$datetimeStamp = new DateTime();
+			// gh#385, gh#815
+			$datetimeStamp = new DateTime('now', new DateTimeZone(TIMEZONE));
 			$datetimeStamp->sub(new DateInterval('PT1M'));
 			$sql = <<<EOD
 				SELECT F_UserID 
