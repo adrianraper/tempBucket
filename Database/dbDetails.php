@@ -80,8 +80,7 @@ class DBDetails {
 			case 100:
 				$this->driver = "pdo_sqlite"; 
 				$this->dbname  = urlencode("../../../../../Database/clarity.db");
-				$this->driver = "pdo_sqlite"; 
-				$this->dbname  = urlencode("../../../../Database/clarity.db");
+				//$this->dbname  = urlencode("../../../../Database/clarity.db");
 				break;
 					
 			case 2:

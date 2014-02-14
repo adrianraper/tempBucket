@@ -55,8 +55,8 @@ class RotterdamBuilderService extends RotterdamService {
 		if ($href->type == Href::MENU_XHTML) {
 			$courseId = $href->options["courseId"];
 
-			// gh#385
-			$datetimeStamp = new DateTime();
+			// gh#385, gh#815
+			$datetimeStamp = new DateTime('now', new DateTimeZone(TIMEZONE));
 			$datetimeStamp->sub(new DateInterval('PT1M'));
 			$sql = <<<EOD
 				SELECT F_UserID 

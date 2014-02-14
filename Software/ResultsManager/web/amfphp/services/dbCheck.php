@@ -5,11 +5,9 @@
 require_once(dirname(__FILE__)."/MinimalService.php");
 $thisService = new MinimalService();
 
-// Done in config.php
-date_default_timezone_set('UTC');
-
 header('Content-Type: text/plain; charset=utf-8');
 
+echo "database is ".$GLOBALS['db']."\n";
 /*
  * Action for the script
  */
@@ -26,7 +24,7 @@ try {
 			echo "version=".$dbObj->F_VersionNumber.' date='.$dbObj->F_ReleaseDate."\n";
 		}	
 	} else {
-		echo "Select failed";
+		echo "Select failed\n";
 	}
 } catch (Exception $e) {
 	echo $e->getMessage();
@@ -43,7 +41,11 @@ EOD;
 		INSERT INTO [T_DatabaseVersion] VALUES (1,'2007-01-01 00:00:00','original');
 EOD;
 */
-}	
+}
+if (function_exists('zend_loader_file_encoded'))
+	echo "&zendEncoded=".zend_loader_file_encoded()."\n";
+if (function_exists('zend_loader_enabled'))
+	echo "&zendEnabled=".zend_loader_enabled()."\n";	
 		
 flush();
 exit(0);

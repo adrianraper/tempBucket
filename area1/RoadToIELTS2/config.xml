@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <config>
 	<id>/area1/RoadToIELTS2 in localhost</id>
-	<developer>none</developer>
+	<developer>DVD</developer>
 	<dbHost>2</dbHost>
-	<language>ZH</language>
+	<language>JP</language>
 	<platform>browser</platform>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
 	<channel name='vimeo' caption='Vimeo'>
@@ -12,12 +12,12 @@
 	<channel name='rackspace' caption='Rack'>
 		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
 	</channel>  
-	<channel name='aws' caption='AWS'>
+	<!--<channel name='aws' caption='AWS'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
-	</channel>
-	<!--channel name='network' caption='network'>
+	</channel>-->
+	<channel name='network' caption='CD'>
 		<streamingMedia>{contentPath}/video/</streamingMedia>
-	</channel-->
+	</channel>
 	<sharedMedia />
 	<brandingMedia />
     <upgradeURL>http://www.ieltspractice.com</upgradeURL>
@@ -25,9 +25,9 @@
     <registerURL>http://takeielts.britishcouncil.org/</registerURL>
     <getAccountURL>http://www.roadtoielts.com/</getAccountURL>
     
-	<contentPath>http://www.clarityenglish.com/Content/</contentPath>
-	<remoteDomain>http://www.clarityenglish.com/Software/</remoteDomain>
-	<remoteGateway>http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/</remoteGateway>>
+	<contentPath>http://dock.contentbench/Content/</contentPath>
+	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>>
 	<remoteService>IELTSService</remoteService>
 	<assetFolder>ResultsManager/web/resources/assets/</assetFolder>
 </config>

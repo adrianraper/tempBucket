@@ -18,9 +18,6 @@ $dmsService = new DMSService();
 // For testing, set this to false
 $returnURL = true;
 
-session_start();
-date_default_timezone_set('UTC');
-
 // Lets just see what we get from POST first
 //var_dump($_POST);
 //exit(0);

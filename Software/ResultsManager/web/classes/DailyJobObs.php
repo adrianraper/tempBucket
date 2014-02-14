@@ -443,12 +443,13 @@ SQL;
 							break 1; // this user has not started this course, so goto next user in loop
 							
 						// Note: requires PHP 5.3 for DateTime
-						$userStartDate = new DateTime($sessionRS->FetchNextObj()->startDate);
+						// gh#815
+						$userStartDate = new DateTime($sessionRS->FetchNextObj()->startDate, new DateTimeZone(TIMEZONE));
 						
 						// we will ignore the first unit since that must have been run already
 						for ($i=1; $i<$units; $i++) {
 							$userStartDate->add(new DateInterval('P'.$unitsInterval.'D'));
-							$today = new DateTime();
+							$today = new DateTime('now', new DateTimeZone(TIMEZONE));
 							if ($userStartDate->format('Y-m-d') == $today->format('Y-m-d')) {
 								
 								// You already have the course xml, so just grab the nth unit node

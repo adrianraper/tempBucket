@@ -163,8 +163,11 @@ class ManageableOps {
 		if (!$this->canAddUsersOfType($user->userType, 1))
 			throw new Exception($this->copyOps->getCopyForId("exceedsMaximumUserTypeError"));
 		
-		$this->db->SetTransactionMode("SERIALIZABLE");
-		$this->db->StartTrans();
+		// gh#816 Shouldn't adodb handle this for me if SQLite has no transactions?
+		if ($GLOBALS['dbms'] != 'pdo_sqlite') {
+			$this->db->SetTransactionMode("SERIALIZABLE");
+			$this->db->StartTrans();
+		}
 		
 		// #340 SQLite doesn't like autoexecute
 		//$this->db->AutoExecute("T_User", $dbObj, "INSERT");
@@ -193,12 +196,14 @@ EOD;
 			$rc = $this->getUserByKey($user, $rootID, $loginOption);
 		} catch (Exception $e) {
 			// gh#164 
-			$this->db->FailTrans();
+			if ($GLOBALS['dbms'] != 'pdo_sqlite')
+				$this->db->FailTrans();
 			// gh#353 Need to send exception for a message to the user
 			throw $this->copyOps->getExceptionForId("duplicateKeyError", array("loginOption" => $loginOption));
 		}
 		
-		$rc = $this->db->CompleteTrans();
+		if ($GLOBALS['dbms'] != 'pdo_sqlite')
+			$rc = $this->db->CompleteTrans();
 		
 		// gh#448
 		AbstractService::$controlLog->info('userID '.Session::get('userID').' added a user with id='.$user->userID.' to group '.$parentGroup->id);

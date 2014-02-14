@@ -107,10 +107,13 @@ SQL;
 		// #321
 		//$dateStampNow = strtotime($dateNow);
 		//if (!$dateStampNow) {
-			$dateStampNow = time();
-			$dateNow = date('Y-m-d H:i:s',$dateStampNow);
-		//}
-		$dateSoon = date('Y-m-d H:i:s',strtotime("+15 seconds", $dateStampNow));
+		// gh#815
+			//$dateStampNow = time();
+			//$dateNow = date('Y-m-d H:i:s',$dateStampNow);
+		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
+		//$dateSoon = date('Y-m-d H:i:s',strtotime("+15 seconds", $dateStampNow));
+		$dateSoon = $dateStampNow->modify('+15 seconds')->format('Y-m-d H:i:s');
 		
 		// CourseID is in the db for backwards compatability, but no longer used. All sessions are across one title.
 		// StartDateStamp is usually sent so that we can record a user's local time. It might be better to send a time-zone if we could.
@@ -148,8 +151,11 @@ SQL;
 		// #321
 		//$dateStampNow = strtotime($dateNow);
 		//if (!$dateStampNow)
-			$dateNow = date('Y-m-d H:i:s',time());
-			
+			//$dateNow = date('Y-m-d H:i:s',time());
+		// gh#815
+		$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+		$dateNow = $dateStampNow->format('Y-m-d H:i:s');
+					
 		// Calculate F_Duration as well as setting F_EndDateStamp
 		// We can either do it one call, with different SQL for different databases, or
 		// do two calls and make it common.
