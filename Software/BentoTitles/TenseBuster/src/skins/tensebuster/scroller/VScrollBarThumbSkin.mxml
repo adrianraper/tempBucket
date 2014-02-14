@@ -55,7 +55,7 @@
     <!--- @private -->
     <s:Rect id="fill" horizontalCenter="0" width="6" top="0" bottom="0">
         <s:fill>
-            <s:SolidColor color="#808080"/>
+            <s:SolidColor color="#BDBDBD" color.down="#808080" color.over="#808080"/>
         </s:fill>
     </s:Rect>
 	<s:Rect horizontalCenter="-8" width="10" top="0" bottom="0">

@@ -45,9 +45,6 @@
 		<s:State name="nonetwork" />
     </s:states>
 	
-	<!--credit page background-->
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/credits/creditsBg.png')" top="360" horizontalCenter="0" includeIn="credits" />
-	
 	<!-- Body -->
 	<s:Group id="bodyGroup" left="0" right="0" top="0" bottom="0">
 		<s:Group verticalCenter="0" horizontalCenter="0">
