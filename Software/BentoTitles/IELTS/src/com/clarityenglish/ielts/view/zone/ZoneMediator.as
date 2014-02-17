@@ -9,6 +9,8 @@
 	import com.clarityenglish.ielts.IELTSNotifications;
 	import com.googlecode.bindagetools.Bind;
 	
+	import mx.utils.ObjectUtil;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -52,10 +54,16 @@
 			view.licenceType = configProxy.getLicenceType();
 			// gh#761
 			var directStart:Object = configProxy.getDirectStart();
-			if (directStart.unitID || directStart.exerciseID) {
-				view.isCourseDirectLink= false;
+			if (ObjectUtil.getClassInfo(directStart).properties.length > 0) {
+				view.isDirectLinkStart = true;
+				
+				if (directStart.unitID || directStart.exerciseID) {
+					view.isCourseDirectLink= false;
+				} else {
+					view.isCourseDirectLink = true;
+				}
 			} else {
-				view.isCourseDirectLink = true;
+				view.isDirectLinkStart = false;
 			}
 			
 			// listen for these signals

@@ -72,6 +72,7 @@ package com.clarityenglish.ielts.view.zone {
 		private var _isPlatformAndroid:Boolean;
 		// gh#761
 		private var _isCourseDirectLink:Boolean;
+		private var _isDirectLinkStart:Boolean;
 		
 		// This is just horrible, but there is no easy way to get the current course into ZoneAccordianButtonBarSkin without this.
 		// NOTHING ELSE SHOULD USE THIS VARIABLE!!!
@@ -152,6 +153,15 @@ package com.clarityenglish.ielts.view.zone {
 		
 		public function set isCourseDirectLink(value:Boolean):void {
 			_isCourseDirectLink = value;
+		}
+		
+		[Bindalbe]
+		public function get isDirectLinkStart():Boolean {
+			return _isDirectLinkStart;
+		}
+		
+		public function set isDirectLinkStart(value:Boolean):void {
+			_isDirectLinkStart = value;
 		}
 		
 		// gh#761
@@ -235,26 +245,32 @@ package com.clarityenglish.ielts.view.zone {
 			super.commitProperties();
 			
 			// gh#761
-			if (_courseChanged && !isCourseDirectLink) {
-				for each (var unit:XML in course.unit) {
-					switch (unit.@['class'].toString()) {
-						case "question-zone":
-							if (questionZoneViewNavigator) questionZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
-							// set the first selected view navigator for direct start
-							if (questionZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 0;
-							break;
-						case "advice-zone":
-							if (adviceZoneViewNavigator) adviceZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
-							if (adviceZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 1;
-							break;
-						case "practice-zone":
-							if (practiceZoneViewNavigator) practiceZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
-							if (practiceZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 2;
-							break;
-						case "exam-practice":							
-							if (testZoneViewNavigator) testZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
-							if (testZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 3;
-							break;
+			if (_courseChanged && isDirectLinkStart) {
+				if (!isCourseDirectLink) {
+					for each (var unit:XML in course.unit) {
+						switch (unit.@['class'].toString()) {
+							case "question-zone":
+								if (questionZoneViewNavigator) questionZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
+								// set the first selected view navigator for direct start
+								if (questionZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 0;
+								break;
+							case "advice-zone":
+								if (adviceZoneViewNavigator) adviceZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
+								if (adviceZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 1;
+								break;
+							case "practice-zone":
+								if (practiceZoneViewNavigator) practiceZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));
+								if (practiceZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 2;
+								break;
+							case "exam-practice":
+								if (testZoneViewNavigator) testZoneViewNavigator.enabled = !(unit.hasOwnProperty("@enabledFlag") && (Number(unit.@enabledFlag.toString()) & 8));	
+								if (testZoneViewNavigator.enabled) sectionNavigator.selectedIndex = 3;
+								break;
+						}
+					}
+					
+					if (course.@["class"] == "speaking" && isDirectLinkStart) {
+						if (testZoneViewNavigator) testZoneViewNavigator.enabled = false;
 					}
 				}
 			}

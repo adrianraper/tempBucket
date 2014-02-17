@@ -22,6 +22,9 @@
 			
 			protected function onCreationComplete(event:FlexEvent):void {
 				changeWatcher = BindingUtils.bindSetter(onScroll, list.scroller.viewport, "horizontalScrollPosition");
+				
+				// for direct start, scroll to the specified exercise
+				list.scroller.horizontalScrollBar.value += (list.scroller.viewport.width * (hostComponent.pageToScroll - 1));
 			}
 			
 			protected function onScroll(x:* = null):void {

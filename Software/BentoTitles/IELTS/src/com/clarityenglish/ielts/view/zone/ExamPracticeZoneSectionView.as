@@ -41,6 +41,9 @@ package com.clarityenglish.ielts.view.zone {
 		public var exerciseSelect:Signal = new Signal(XML, String);
 		
 		private var viewportPropertyWatcher:ChangeWatcher;
+		private var _exerciseID:Number;
+		private var _isDirectLinkStart:Boolean;
+		private var _pageToScroll:Number = 0;
 		
 		// gh#11
 		public function get assetFolder():String {
@@ -49,9 +52,37 @@ package com.clarityenglish.ielts.view.zone {
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
 		}
-		//gh #184
+		// gh#184
 		public function getCopyProvider():CopyProvider {
 			return copyProvider;
+		}
+		
+		// gh#761
+		[Bindable]
+		public function get isDirectLinkStart():Boolean {
+			return _isDirectLinkStart;
+		}
+		
+		public function set isDirectLinkStart(value:Boolean):void {
+			_isDirectLinkStart = value;
+		}
+		
+		[Bindable]
+		public function get exerciseID():Number {
+			return _exerciseID;
+		}
+		
+		public function set exerciseID(value:Number):void {
+			_exerciseID = value;
+		}
+		
+		[Bindable]
+		public function get pageToScroll():Number {
+			return _pageToScroll;
+		}
+		
+		public function set pageToScroll(value:Number) {
+			_pageToScroll = value;
 		}
 		
 		public function ExamPracticeZoneSectionView() {
@@ -63,6 +94,13 @@ package com.clarityenglish.ielts.view.zone {
 			super.commitProperties();
 			
 			list.dataProvider = new XMLListCollection(_course.unit.(@["class"] == "exam-practice").exercise);
+			
+			// get the exercise index in order to scroll to certain page when open the direct link
+			if (isDirectLinkStart) {
+				if (exerciseID) {
+					pageToScroll = _course.unit.(@["class"] == "exam-practice").exercise.(@id == exerciseID).childIndex();
+				}
+			}
 			
 			if (this.courseClass == "listening") {
 				examZoneInstructionLabel.text = copyProvider.getCopyForId("examZoneInstructionLabel1");
