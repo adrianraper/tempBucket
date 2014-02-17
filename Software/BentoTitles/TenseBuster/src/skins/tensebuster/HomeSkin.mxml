@@ -154,7 +154,7 @@
 				triangleReferenceGroup.y = new Number();
 				
 				if (hostComponent.isBackToHome) {
-					exerciseList.dataProvider = new XMLListCollection(hostComponent.unit.exercise);
+					exerciseList.dataProvider = new XMLListCollection(hostComponent.getExercisesList(hostComponent.unit));
 					unitList.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
 				}
 			}
