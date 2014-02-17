@@ -273,7 +273,8 @@ package com.clarityenglish.textLayout.elements {
 					// gh#712
 					component.addEventListener(DragEvent.DRAG_EXIT, onDragExit);
 					component.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
-					component.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+					// For android, if we put all the code for MouseMove to MouseDown, it works pretty well
+					//component.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
 					break;
 				case TYPE_BUTTON:
 					throw new Error("Button type not yet implemented");
@@ -421,11 +422,52 @@ package com.clarityenglish.textLayout.elements {
 						(displayObject.parent as spark.components.Group).addElement(wrapper);			
 					}
 				}
-			}			
+				
+				var dragInitiator:IUIComponent = IUIComponent(event.currentTarget);
+				var ds:DragSource = new DragSource();
+				ds.addData(this.text, "text");
+				ds.addData(_droppedNode, "node");
+				ds.addData(_droppedFlowElement, "flowElement");
+				
+				if (dragImage) {								
+					DragManager.doDrag(dragInitiator, ds, event, dragImage, 0, 0, 0.8);
+					if (DragManager.isDragging) {
+						// First get the bounds of the draggable flow leaf element
+						var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(this);
+						// gh#450 tweak the x, y and height so that the bitmap snapped for a drag contains the text correctly
+						elementBounds.x += -2;
+						elementBounds.y += -1;
+						elementBounds.height += 1;
+						
+						// Convert the element bounds from their original coordinate space to the container coordinate space
+						var containingBlock:RenderFlow = this.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
+						elementBounds = PointUtil.convertRectangleCoordinateSpace(elementBounds, containingBlock, scroller);
+						
+						// Position the dragImage so that it is centered horizontally, and vertically is above the mouse
+						var containerPoint:Point = (dragInitiator as UIComponent).globalToContent(new Point(event.stageX, event.stageY));
+						dragImage.x = containerPoint.x - elementBounds.width / 2;
+						dragImage.y = containerPoint.y - elementBounds.height / 2;
+						
+						// Determine translation matrix and clip rectangle to capture the draggable element as bitmap data
+						var translationMatrix:Matrix = new Matrix();
+						translationMatrix.translate(-elementBounds.x, -elementBounds.y);
+						var clipRect:Rectangle = new Rectangle(0, 0, elementBounds.width, elementBounds.height);
+						
+						// Capture the draggable element into a BitmapData, draw it into the dragImage and make the dragImage visible
+						var bitmapData:BitmapData = new BitmapData(elementBounds.width, elementBounds.height);
+						// gh#712 alice: confused about how could bitmapData draw if souce=scroller
+						bitmapData.draw(scroller, translationMatrix, null, null, clipRect, true);
+						dragImage.source = bitmapData;
+						dragImage.width = elementBounds.width;
+						dragImage.height = elementBounds.height;
+						dragImage.visible = true;
+					}
+				}
+			}	
 		}
 		
 		// gh#712
-		private function onMouseMove(event:MouseEvent):void {
+		/*private function onMouseMove(event:MouseEvent):void {
 			if (_droppedNode) {				
 				var dragInitiator:IUIComponent = IUIComponent(event.currentTarget);
 				var ds:DragSource = new DragSource();
@@ -434,7 +476,7 @@ package com.clarityenglish.textLayout.elements {
 				ds.addData(_droppedFlowElement, "flowElement");
 
 				if (dragImage) {								
-					DragManager.doDrag(dragInitiator, ds, event, dragImage, 0, 0, 0.8);	
+					DragManager.doDrag(dragInitiator, ds, event, dragImage, 0, 0, 0.8);
 					if (DragManager.isDragging) {
 						// First get the bounds of the draggable flow leaf element
 						var elementBounds:Rectangle = TLFUtil.getFlowElementBounds(this);
@@ -468,7 +510,7 @@ package com.clarityenglish.textLayout.elements {
 					}
 				}
 			}		
-		}
+		}*/
 		
 		protected function onDragDrop(event:DragEvent):void {
 			dragDrop(event.dragSource.dataForFormat("node") as XML, event.dragSource.dataForFormat("flowElement") as FlowElement, event.dragSource.dataForFormat("text").toString());
