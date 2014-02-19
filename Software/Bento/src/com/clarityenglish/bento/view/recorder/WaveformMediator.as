@@ -14,7 +14,7 @@ package com.clarityenglish.bento.view.recorder {
 	import flash.events.TimerEvent;
 	import flash.net.FileReference;
 	import flash.utils.Timer;
-	
+
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -218,6 +218,9 @@ package com.clarityenglish.bento.view.recorder {
 			if (view.playButton) view.playButton.enabled = false;
 			if (view.newButton) view.newButton.enabled = false;
 			if (view.saveButton) view.saveButton.enabled = false;
+			
+			// gh#456 reset the isMp3Saved flag to false
+			audioProxy.resetMap3Saved();
 		}
 		
 		private function onSaveMP3(e:WaveformEvent):void {
@@ -226,7 +229,13 @@ package com.clarityenglish.bento.view.recorder {
 		}
 		
 		private function onNewWave(e:WaveformEvent):void {
-			sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, view.audioProxyName);
+			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
+			if (audioProxy.isMap3Saved()) {
+				sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, view.audioProxyName);
+			} else {
+				sendNotification(BBNotifications.WARN_DATA_LOSS, null, "recording_not_saved");
+			}
+			
 		}
 		
 		/*

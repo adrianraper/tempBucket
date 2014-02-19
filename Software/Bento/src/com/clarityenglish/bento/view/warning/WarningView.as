@@ -61,6 +61,9 @@ package com.clarityenglish.bento.view.warning {
 								instance.text = copyProvider.getCopyForId("loseChangesWarning");
 							}
 							break;
+						case "recording_not_saved":
+							instance.text = copyProvider.getCopyForId("loseRecordingWarning");
+							break;
 					}
 					break;
 			}

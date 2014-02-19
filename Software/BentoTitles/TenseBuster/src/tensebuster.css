@@ -23,6 +23,7 @@
 @namespace help "com.clarityenglish.tensebuster.view.help.*";
 @namespace courseselector "com.clarityenglish.tensebuster.view.home.courseselector.*";
 @namespace homeui "com.clarityenglish.tensebuster.view.home.ui.*";
+@namespace ws "ws.tink.spark.controls.*";
 
 global {
 	EColor : #EC1C32;
@@ -399,6 +400,16 @@ mx|LegendItem
 {
 	font-weight:bold;     
 	textFieldClass: ClassReference("mx.core.UITextField");
+}
+
+ws|Alert {
+	skinClass: ClassReference("skins.tensebuster.exercise.ui.AlertSkin");
+	buttonStyleName: myAlertButtonStyle;
+}
+
+.myAlertButtonStyle {
+	color: white;
+	skinClass: ClassReference("skins.tensebuster.exercise.warning.YesButtonSkin");
 }
 
 s|Scroller s|VScrollBar {

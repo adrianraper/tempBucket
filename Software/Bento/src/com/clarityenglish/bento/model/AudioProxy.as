@@ -97,6 +97,18 @@ package com.clarityenglish.bento.model {
 		 */
 		private var _recordEnabled:Boolean;
 		
+		// gh#456
+		[Bindable]
+		private var _isMp3Saved:Boolean;
+		
+		public function isMap3Saved():Boolean {
+			return _isMp3Saved;
+		}
+		
+		public function resetMap3Saved():void {
+			_isMp3Saved = false;
+		}
+		
 		public function isRecordEnabled():Boolean { return _recordEnabled; }
 		/*
 		 * v4.0.1.1 Small step to help trouble shoot
@@ -274,6 +286,8 @@ package com.clarityenglish.bento.model {
 			// Can I listen for the events generated in the adaptor here? Not like this you can't. How to get the adaptor to extend EventDispatcher?
 			//recorderAdaptor.addEventListener(Event.SELECT, mp3SaveComplete);
 			//recorderAdaptor.addEventListener(Event.CANCEL, mp3SaveComplete);
+			// gh#456
+			_isMp3Saved = true;
 			recorderAdaptor.saveMp3Data(mp3Data, null);
 		}
 		

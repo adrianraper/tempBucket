@@ -1,5 +1,6 @@
 ﻿package com.clarityenglish.bento.view.warning {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.RecorderNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
@@ -74,6 +75,9 @@
 				case "changes_not_saved":
 					if (view.body && view.body.func is Function)
 						view.body.func(); // GH #83 - if the user clicks yes then run the function in the body
+					break;
+				case "recording_not_saved":
+					sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, RecorderNotifications.RECORD_PROXY_NAME);
 					break;
 				default:
 					return;

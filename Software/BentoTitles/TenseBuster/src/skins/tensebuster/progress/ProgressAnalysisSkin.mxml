@@ -86,7 +86,7 @@
 									[Embed(source="skins/tensebuster/assets/progress/analyse/EDashline.png")]
 									private static var EDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/ELongDashline.png")]
+									[Embed(source="skins/tensebuster/assets/progress/analyse/EDashline.png")]
 									private static var ELongDashline:Class;
 									
 									[Embed(source="skins/tensebuster/assets/progress/analyse/LDashline.png")]

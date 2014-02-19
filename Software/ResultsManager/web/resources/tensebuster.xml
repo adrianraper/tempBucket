@@ -116,6 +116,7 @@
 			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
 			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
 			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
+			<lit name="loserecordingWarning">You will lose any unsaved recording you have made. Are you sure you want to continue?</lit>
 			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
 			<lit name="feedbackClickAnswersMsg">Click on any answer to see feedback.</lit>			
             <lit name="correctFeedbackTitle">Well done!</lit>
