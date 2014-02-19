@@ -48,8 +48,9 @@ class CourseOps {
 		$accountFolder = $this->accountFolder;
 		$defaultXML = $this->defaultXML;
 		$id = UniqueIdGenerator::getUniqId();
+		$db = $this->db;
 		
-		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($courseObj, $accountFolder, $defaultXML, $id) {
+		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($courseObj, $accountFolder, $defaultXML, $id, $db) {	
 			$db->StartTrans();
 			
 			// Create a new course passing in the properties as XML attributes
@@ -108,7 +109,8 @@ SQL;
 			if (!$rc)
 				// It should be impossible for the courseID to already be in this table...
 				AbstractService::$debugLog->notice("insert to T_CourseRoles failed");
-			
+				
+			$db->CompleteTrans();	
 		});
 		
 		// Return the id and filename of the new course
