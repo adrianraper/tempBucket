@@ -55,7 +55,7 @@
         <s:State name="disabled" />
     </s:states>
     
-	<s:Group bottom.over="-3" bottom.up="0">
+	<s:Group bottom.over="-15" bottom.down="-15" bottom.up="2">
 		<titleWindow:seeAnswerBg filters.up="{[dropShadowFilter]}"/>
 		
 		<!-- layer 8: text -->

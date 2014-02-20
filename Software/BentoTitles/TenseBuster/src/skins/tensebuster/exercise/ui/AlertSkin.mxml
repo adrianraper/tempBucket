@@ -182,10 +182,10 @@ in accordance with the terms of the license agreement accompanying it.
 				<s:VGroup width="100%" height="100%" paddingLeft="5" paddingRight="5" paddingBottom="5"
 						  verticalAlign="middle" horizontalAlign="center">
 					<s:Label id="messageDisplay"
-							 left="9" right="3" top="1" bottom="0" minHeight="30"
-							 verticalAlign="middle" color="0x000000"/>
+							top="1" bottom="0" minHeight="30"
+							 verticalAlign="middle" horizontalCenter="middle" color="0x000000"/>
 					<s:HGroup id="buttonGroup" width="100%" minWidth="0" minHeight="0"
-							  horizontalAlign="center"/>
+							  horizontalAlign="center" paddingLeft="-10"/>
 				</s:VGroup>
 			</s:HGroup>
 			

@@ -60,7 +60,7 @@
 		<titleWindow:markingBottom />	
 	</s:Group>
 	
-	<s:HGroup bottom="10" left="20" gap="12">
+	<s:HGroup bottom="8" left="20" gap="12">
 		<s:Button id="tryAgainButton" label="Try again" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="seeAnswersButton" label="See answers" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="moveForwardButton" label="Move forward" color="0xFFFFFF" fontWeight="bold" buttonMode="true" useHandCursor="true"/>

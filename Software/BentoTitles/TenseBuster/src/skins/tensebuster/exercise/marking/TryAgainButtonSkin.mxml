@@ -54,8 +54,8 @@
         <s:State name="down" />
         <s:State name="disabled" />
     </s:states>
-    
-	<s:Group bottom.over="-3" bottom.up="0">
+     
+	<s:Group bottom="2" bottom.over="-15" bottom.down="-15">
 		<titleWindow:tryAgainBg filters.up="{[dropShadowFilter]}"/>
 		
 		<!-- layer 8: text -->
