@@ -3,7 +3,8 @@ package com.clarityenglish.rotterdam.view.title {
 	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.rotterdam.view.course.CourseView;
 	import com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView;
-	import com.clarityenglish.rotterdam.view.publishSettings.PublishSettingsView;
+	import com.clarityenglish.rotterdam.view.schedule.ScheduleView;
+	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
 	
 	import flash.events.Event;
@@ -15,13 +16,14 @@ package com.clarityenglish.rotterdam.view.title {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.ViewNavigator;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("course_selector")]
 	[SkinState("course")]
-	//[SkinState("progress")] - optional
-	//[SkinState("filemanager")] - optional
+	//[SkinState("progress")] // optional
+	//[SkinState("filemanager")] // optional
 	public class TitleView extends BentoView {
 		
 		[SkinPart(required="true")]
@@ -44,6 +46,9 @@ package com.clarityenglish.rotterdam.view.title {
 		
 		[SkinPart]
 		public var backButton:Button;
+		
+		[SkinPart]
+		public var productTitle:Label;
 		
 		public var dirtyWarningShow:Signal = new Signal(Function);
 		
@@ -92,8 +97,11 @@ package com.clarityenglish.rotterdam.view.title {
 					break;
 				case logoutButton:
 					// gh#217
-					logoutButton.label = copyProvider.getCopyForId("LogOut");
-					logoutButton.addEventListener(MouseEvent.CLICK, onLogoutClick);
+					instance.label = copyProvider.getCopyForId("LogOut");
+					instance.addEventListener(MouseEvent.CLICK, onLogoutClick);
+					break;
+				case productTitle:
+					instance.text = copyProvider.getCopyForId("applicationTitle");
 					break;
 			}
 		}
@@ -114,9 +122,13 @@ package com.clarityenglish.rotterdam.view.title {
 			logout.dispatch();
 		}
 		
+		// AR but back is not a button, but a tab
 		protected function onBackButtonClick(event:MouseEvent):void {
 			myCoursesViewNavigator.popView();
 		}
 		
+		protected override function getCurrentSkinState():String {
+			return currentState;
+		}		
 	}
 }

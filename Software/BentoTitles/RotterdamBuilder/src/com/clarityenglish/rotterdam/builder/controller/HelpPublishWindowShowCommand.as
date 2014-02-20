@@ -2,7 +2,7 @@ package com.clarityenglish.rotterdam.builder.controller
 {
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.view.courseselector.CourseCreateView;
-	import com.clarityenglish.rotterdam.builder.view.publishSettings.HelpPublishView;
+	import com.clarityenglish.rotterdam.builder.view.schedule.HelpScheduleView;
 	import com.clarityenglish.rotterdam.view.courseselector.events.CourseCreateEvent;
 	
 	import flash.display.DisplayObject;
@@ -36,9 +36,9 @@ package com.clarityenglish.rotterdam.builder.controller
 			titleWindow.styleName = "noHeaderTitleWindow";
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
-			var helpPublishView:HelpPublishView = new HelpPublishView();
-			helpPublishView.percentWidth = helpPublishView.percentHeight = 100;
-			titleWindow.addElement(helpPublishView);
+			var helpScheduleView:HelpScheduleView = new HelpScheduleView();
+			helpScheduleView.percentWidth = helpScheduleView.percentHeight = 100;
+			titleWindow.addElement(helpScheduleView);
 			
 			// Create and centre the popup (this popup is modal)
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);

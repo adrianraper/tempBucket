@@ -2,14 +2,14 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		 		xmlns:mx="library://ns.adobe.com/flex/mx"
-				width="75"
-				height="62">
+				width="65"
+				height="52">
 	<s:states>
 		<s:State name="inMonth" />
 		<s:State name="notInMonth" />
 	</s:states>
 	
-	<s:Rect width="80" height="100%" radiusX="4" radiusY="4">
+	<s:Rect width="60" height="100%" radiusX="4" radiusY="4">
 		<s:stroke>
 			<s:SolidColorStroke color.inMonth="#8BC541" color.notInMonth="#B1B1B1" weight.inMonth="2" weight.notInMonth="1" />
 		</s:stroke>

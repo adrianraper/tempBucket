@@ -1,9 +1,9 @@
-package com.clarityenglish.rotterdam.view.publishSettings {
+package com.clarityenglish.rotterdam.view.schedule {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.controls.calendar.Calendar;
-	import com.clarityenglish.rotterdam.view.publishSettings.events.SettingsEvent;
-	import com.clarityenglish.rotterdam.view.publishSettings.ui.CalendarTreeItemRenderer;
+	import com.clarityenglish.rotterdam.view.schedule.events.PublishEvent;
+	import com.clarityenglish.rotterdam.view.schedule.ui.CalendarTreeItemRenderer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	import com.sparkTree.Tree;
 	
@@ -30,7 +30,6 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 	import spark.components.Label;
 	import spark.components.RadioButton;
 	import spark.components.RadioButtonGroup;
-	import spark.components.TabBar;
 	import spark.components.TextArea;
 	import spark.components.TextInput;
 	import spark.events.IndexChangeEvent;
@@ -39,32 +38,16 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 	 * There is quite a lot of code duplication here that could be neatened up into a mini form framework that automatically links xml properties and components.
 	 * in a Rails/Symfony style form system.  This might well be worth doing at some point, but for the moment just leave it hand coded.
 	 */
-	public class PublishSettingsView extends BentoView {
+	public class ScheduleView extends BentoView {
 		
 		[SkinPart]
-		public var courseSettingsLabel:Label;
-		
-		[SkinPart(required="true")]
-		public var tabBar:TabBar;
-		
-		// gh#704
-		[SkinPart]
-		public var aboutCourseDescriptionTextArea:TextArea;
+		public var scheduleLabel:Label;
 		
 		[SkinPart]
-		public var aboutCourseNameTextInput:TextInput;
+		public var scheduleDatesLabel:Label;
 		
 		[SkinPart]
-		public var aboutAuthorTextInput:TextInput;
-		
-		[SkinPart]
-		public var aboutEmailTextInput:TextInput;
-		
-		[SkinPart]
-		public var aboutContactNumberTextInput:TextInput;
-		
-		[SkinPart]
-		public var directStartURLLabel:TextInput;
+		public var notificationsLabel:Label;
 		
 		[SkinPart]
 		public var groupTree:Tree;
@@ -79,19 +62,13 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 		public var endDateField:DateField;
 		
 		[SkinPart]
-		public var seePastUnitsGroup:spark.components.Group;
-		
-		[SkinPart]
-		public var pastUnitsRadioButtonGroup:RadioButtonGroup;
+		public var seePastUnitsCheckBox:CheckBox;
 		
 		[SkinPart]
 		public var unitIntervalGroup:spark.components.Group;
 		
 		[SkinPart]
 		public var unitIntervalRadioButtonGroup:RadioButtonGroup;
-		
-		[SkinPart]
-		public var seePastUnitLabel:Label;
 		
 		[SkinPart]
 		public var selectGroupLabel:Label;
@@ -109,20 +86,11 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 		public var unitIntervalLabel:Label;
 		
 		[SkinPart]
-		public var allUnitAvaRadioButton:RadioButton;
+		public var allUnitsAvailableRadioButton:RadioButton;
 		
 		[SkinPart]
-		public var unitSuccessiveRadioButton:RadioButton;
+		public var allUnitsAtOnceRadioButton:RadioButton;
 		
-		[SkinPart]
-		public var yesRadioButton:RadioButton;
-		
-		[SkinPart]
-		public var noRadioButton:RadioButton;
-		
-		[SkinPart]
-		public var clearEndDateButton:Button;
-
 		// gh#122
 		[SkinPart]
 		public var sendAlertEmailCheckbox:spark.components.CheckBox;
@@ -132,24 +100,6 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 		
 		[SkinPart]
 		public var welcomeEmailButton:Button;
-		
-		[SkinPart]
-		public var forStudentLabel:Label;
-		
-		[SkinPart]
-		public var courseNameLabel:Label;
-		
-		[SkinPart]
-		public var courseDescriptionLabel:Label;
-		
-		[SkinPart]
-		public var authorLabel:Label;
-		
-		[SkinPart]
-		public var contactEmailLabel:Label;
-		
-		[SkinPart]
-		public var directURLLabel:Label;
 		
 		[SkinPart]
 		public var calendar:Calendar;
@@ -170,7 +120,7 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 		
 		private var isPopulating:Boolean;
 		
-		public function PublishSettingsView() {
+		public function ScheduleView() {
 			super();
 		}
 		
@@ -219,32 +169,22 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 			
 			isPopulating = true;
 			
-			// About data
-			if (aboutCourseNameTextInput) aboutCourseNameTextInput.text = course.@caption;
-			// gh#704
-			if (aboutCourseDescriptionTextArea) aboutCourseDescriptionTextArea.text = course.@description;
-			if (aboutAuthorTextInput) aboutAuthorTextInput.text = course.@author;
-			if (aboutEmailTextInput) aboutEmailTextInput.text = course.@email;
-			if (aboutContactNumberTextInput) aboutContactNumberTextInput.text = course.@contact;
-			
 			// gh#122 Notifications data
-			if (sendAlertEmailCheckbox) sendAlertEmailCheckbox.selected = (course.hasOwnProperty("@sendNotifications")) ? (course.@sendNotifications == 'true' ? true : false) : false;
+			if (sendAlertEmailCheckbox) {
+				sendAlertEmailCheckbox.enabled = (selectedPublicationGroup);
+				sendAlertEmailCheckbox.selected = (course.hasOwnProperty("@sendNotifications")) ? (course.@sendNotifications == 'true' ? true : false) : false;
+			}
+			if (welcomeEmailButton) welcomeEmailButton.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@startDate"));
 			
-			// gh#92
-			var folderName:String = copyProvider.getCopyForId('pathCCB');
-			var directStartURL:String = config.remoteStartFolder + folderName + '/Player.php' + '?prefix=' + config.prefix + '&course=' + course.@id;
-			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
-			
-			// Calendar
-			if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && (selectedPublicationGroup.@unitInterval != 0)) ? selectedPublicationGroup.@unitInterval : null;
+			// schedule dates
 			if (startDateField) startDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@startDate")) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@startDate) : null;
 			if (endDateField) endDateField.selectedDate = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@endDate") && (selectedPublicationGroup.@endDate != null)) ? DateUtil.ansiStringToDate(selectedPublicationGroup.@endDate) : null;
-			if (pastUnitsRadioButtonGroup) {
-				pastUnitsRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
-				pastUnitsRadioButtonGroup.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
-			}
-			
+			if (unitIntervalTextInput) unitIntervalTextInput.text = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval") && (selectedPublicationGroup.@unitInterval != 0)) ? selectedPublicationGroup.@unitInterval : null;
 			if (unitIntervalRadioButtonGroup) unitIntervalRadioButtonGroup.selectedValue = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval == 0) : null;
+			if (seePastUnitsCheckBox) {
+				seePastUnitsCheckBox.selected = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@seePastUnits")) ? (selectedPublicationGroup.@seePastUnits == "true") : null;
+				seePastUnitsCheckBox.enabled = (selectedPublicationGroup && selectedPublicationGroup.hasOwnProperty("@unitInterval"))? (selectedPublicationGroup.@unitInterval != 0) : null;
+			}
 			
 			// If there is a calendar, start date and interval then add labels for the units at the appropriate dates gh#87
 			if (calendar) {
@@ -291,66 +231,14 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case courseSettingsLabel:
-					courseSettingsLabel.text = copyProvider.getCopyForId("courseSettingsLabel");
+				case scheduleLabel:
+					instance.text = copyProvider.getCopyForId("scheduleLabel");
 					break;
-				case tabBar:
-					tabBar.dataProvider = new ArrayList([
-						{ label: copyProvider.getCopyForId("publishDatesLabel"), data: "calendar" },
-						{ label: copyProvider.getCopyForId("notificationsLabel"), data: "email" }, 
-						{ label: copyProvider.getCopyForId("aboutLabel"), data: "about" }
-					]);
-					
-					tabBar.requireSelection = true;
-					tabBar.addEventListener(IndexChangeEvent.CHANGE, onTabBarChange);
-					
-					// Start on the first tab
-					callLater(function():void {
-						tabBar.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
-					});
+				case scheduleDatesLabel:
+					instance.text = copyProvider.getCopyForId("scheduleDatesLabel");
 					break;
-				case aboutCourseNameTextInput:
-					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						if (!isPopulating) {
-							course.@caption = StringUtils.trim(e.target.text);
-							dirty.dispatch();
-							invalidateProperties();
-						}
-					});
-					break;
-				// gh#704
-				case aboutCourseDescriptionTextArea:
-					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						if (!isPopulating) {
-							course.@description = StringUtils.trim(e.target.text);
-							dirty.dispatch();
-							invalidateProperties();
-						}
-					});
-					break;
-				case aboutAuthorTextInput:
-					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						if (!isPopulating) {
-							course.@author = StringUtils.trim(e.target.text);
-							dirty.dispatch();
-						}
-					});
-					break;
-				case aboutEmailTextInput:
-					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						if (!isPopulating) {
-							course.@email = StringUtils.trim(e.target.text);
-							dirty.dispatch();
-						}
-					});
-					break;
-				case aboutContactNumberTextInput:
-					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						if (!isPopulating) {
-							course.@contact = StringUtils.trim(e.target.text);
-							dirty.dispatch();
-						}
-					});
+				case notificationsLabel:
+					instance.text = copyProvider.getCopyForId("notificationsLabel");
 					break;
 				case groupTree:
 					var itemRenderer:ClassFactory = new ClassFactory(CalendarTreeItemRenderer);
@@ -361,7 +249,7 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 					groupTree.itemRenderer = itemRenderer;
 					
 					groupTree.addEventListener(IndexChangeEvent.CHANGE, function(e:Event):void { invalidateProperties(); });
-					groupTree.addEventListener(SettingsEvent.CALENDER_SETTINGS_DELETE, onCalendarSettingsDelete);
+					groupTree.addEventListener(PublishEvent.CALENDER_SETTINGS_DELETE, onCalendarSettingsDelete);
 					break;
 				case unitIntervalTextInput:
 					unitIntervalTextInput.restrict = "0-9";
@@ -394,28 +282,28 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 					});
 					//endDateField.addEventListener(FocusEvent.MOUSE_FOCUS_CHANGE, onMouseFocusChange);
 					break;
-				// Alice - publication code (not totally finished)
 				case unitIntervalRadioButtonGroup:
 					unitIntervalRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
 							if (e.target.selectedValue) {
 								selectedPublicationGroup.@unitInterval = 0;
 								selectedPublicationGroup.@seePastUnits = true;
-								pastUnitsRadioButtonGroup.enabled = false;
+								seePastUnitsCheckBox.enabled = false;
 								calendarSettingsChanged();
 							} else {
-								pastUnitsRadioButtonGroup.enabled = true;
+								seePastUnitsCheckBox.enabled = true;
 							}							
 						}
 					});
 					break;
-				case pastUnitsRadioButtonGroup:
-					pastUnitsRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
+				case seePastUnitsCheckBox:
+					instance.addEventListener(ItemClickEvent.ITEM_CLICK, function(e:Event):void {
 						if (!isPopulating) {
-							selectedPublicationGroup.@seePastUnits = e.target.selectedValue;
+							selectedPublicationGroup.@seePastUnits = e.target.selected;
 							calendarSettingsChanged();
 						}
 					});
+					seePastUnitsCheckBox.label = copyProvider.getCopyForId("seePastUnitsLabel");
 					break;
 				// gh#122
 				case sendAlertEmailCheckbox:
@@ -443,9 +331,6 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 					instance.addEventListener(MouseEvent.CLICK, onSendWelcomeEmail);
 					instance.label = copyProvider.getCopyForId("welcomeEmailButton");
 					break;
-				case seePastUnitLabel:
-					seePastUnitLabel.text = copyProvider.getCopyForId("seePastUnitLabel");
-					break;
 				case selectGroupLabel:
 					selectGroupLabel.text = copyProvider.getCopyForId("selectGroupLabel");
 					break;
@@ -461,46 +346,19 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 				case unitIntervalLabel:
 					unitIntervalLabel.text = copyProvider.getCopyForId("unitIntervalLabel");
 					break;
-				case allUnitAvaRadioButton:
-					allUnitAvaRadioButton.label = copyProvider.getCopyForId("allUnitAvaRadioButton");
+				case allUnitsAvailableRadioButton:
+					instance.label = copyProvider.getCopyForId("allUnitsAvailableRadioButton");
 					break;
-				case unitSuccessiveRadioButton:
-					unitSuccessiveRadioButton.label = copyProvider.getCopyForId("unitSuccessiveRadioButton");
-					break;
-				case yesRadioButton:
-					yesRadioButton.label = copyProvider.getCopyForId("yesRadioButton");
-					break;
-				case noRadioButton:
-					noRadioButton.label = copyProvider.getCopyForId("noRadioButton");
-					break;
-				case clearEndDateButton:
-					clearEndDateButton.addEventListener(MouseEvent.CLICK, onClearEndDate);
+				case allUnitsAtOnceRadioButton:
+					instance.label = copyProvider.getCopyForId("allUnitsAtOnceRadioButton");
 					break;
 				case welcomeEmailLabel:
 					welcomeEmailLabel.text = copyProvider.getCopyForId("welcomeEmailLabel");
 					break;
-				case forStudentLabel:
-					forStudentLabel.text = copyProvider.getCopyForId("forStudentLabel");
-					break;
-				case courseNameLabel:
-					instance.text = copyProvider.getCopyForId("courseNameLabel");
-					break;
-				case courseDescriptionLabel:
-					instance.text = copyProvider.getCopyForId("courseDescriptionLabel");
-					break;
-				case authorLabel:
-					authorLabel.text = copyProvider.getCopyForId("authorLabel");
-					break;
-				case contactEmailLabel:
-					contactEmailLabel.text = copyProvider.getCopyForId("contactEmailLabel");
-					break;
-				case directURLLabel:
-					directURLLabel.text = copyProvider.getCopyForId("directURLLabel");
-					break;
 			}
 		}
 		
-		protected function onCalendarSettingsDelete(event:SettingsEvent):void {
+		protected function onCalendarSettingsDelete(event:PublishEvent):void {
 			var results:XMLList = course.publication.group.(@id == event.group.id);
 			if (results && results.length() > 0) {
 				var result:XML = results[0];
@@ -578,7 +436,6 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 			var results:XMLList = course.publication.group.(@id == group.id);
 			if (results && results.length() > 0) {
 				for each (var attribute:XML in results[0].attributes()) {
-					//alice p
 					if (attribute.name() != "id" && attribute.valueOf() != null)
 						return true;
 				}
@@ -609,16 +466,6 @@ package com.clarityenglish.rotterdam.view.publishSettings {
 					}
 			}
 			return false;
-		}
-		
-		/**
-		 * The state of the skin is driven by the tab bar (calendar, email or about)
-		 */
-		protected override function getCurrentSkinState():String {
-			if (tabBar && tabBar.selectedItem)
-				return tabBar.selectedItem.data;
-			
-			return super.getCurrentSkinState();
 		}
 		
 		protected function onMouseFocusChange(event:FocusEvent):void {

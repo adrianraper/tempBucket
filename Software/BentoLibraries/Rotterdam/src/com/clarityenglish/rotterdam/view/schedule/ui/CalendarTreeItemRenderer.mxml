@@ -6,7 +6,8 @@
 	<fx:Script>
 		<![CDATA[
 			import com.clarityenglish.common.vo.manageable.Group;
-			import com.clarityenglish.rotterdam.view.scheduling.events.SettingsEvent;
+			import com.clarityenglish.rotterdam.view.schedule.events.PublishEvent;
+			import com.clarityenglish.rotterdam.view.settings.events.SettingsEvent;
 			
 			[Bindable]
 			public var hasSettings:Function;
@@ -15,7 +16,7 @@
 			public var areSettingsValid:Function;
 			
 			protected function onDeleteSettingsClick(event:MouseEvent):void {
-				dispatchEvent(new SettingsEvent(SettingsEvent.CALENDER_SETTINGS_DELETE, data as Group, true));
+				dispatchEvent(new PublishEvent(PublishEvent.CALENDER_SETTINGS_DELETE, data as Group, true));
 			}
 			
 			public override function set data(value:Object):void {

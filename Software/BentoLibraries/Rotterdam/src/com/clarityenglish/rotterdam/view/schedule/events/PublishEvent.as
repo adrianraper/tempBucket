@@ -1,15 +1,15 @@
-package com.clarityenglish.rotterdam.view.publishSettings.events {
+package com.clarityenglish.rotterdam.view.schedule.events {
 	import com.clarityenglish.common.vo.manageable.Group;
 	
 	import flash.events.Event;
 	
-	public class SettingsEvent extends Event {
+	public class PublishEvent extends Event {
 		
 		public static const CALENDER_SETTINGS_DELETE:String = "calenderSettingsDelete";
 		
 		private var _group:Group;
 		
-		public function SettingsEvent(type:String, group:Group, bubbles:Boolean) {
+		public function PublishEvent(type:String, group:Group, bubbles:Boolean) {
 			super(type, bubbles, false);
 			
 			this._group = group;
@@ -20,11 +20,11 @@ package com.clarityenglish.rotterdam.view.publishSettings.events {
 		}
 		
 		public override function clone():Event {
-			return new SettingsEvent(type, group, bubbles);
+			return new PublishEvent(type, group, bubbles);
 		}
 		
 		public override function toString():String {
-			return formatToString("SettingsEvent", "group", "bubbles");
+			return formatToString("PublishEvent", "group", "bubbles");
 		}
 		
 	}

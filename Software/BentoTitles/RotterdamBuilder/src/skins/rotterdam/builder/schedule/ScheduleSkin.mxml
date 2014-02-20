@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:calendar="com.clarityenglish.controls.calendar.*"
+		xmlns:sparkTree="com.sparkTree.*"
+		xmlns:widgets="skins.assets.widgets.*"
+		xmlns:schedule="com.clarityenglish.rotterdam.view.schedule.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.schedule.ScheduleView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:RadioButtonGroup id="pastUnitsRadioButtonGroup" />
+		<s:RadioButtonGroup id="unitIntervalRadioButtonGroup" />
+		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
+		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			[Embed(source="skins/rotterdam/builder/assets/settings/group_icon.swf", symbol="GroupIcon")]
+			private var groupIcon:Class;
+			
+			private function getTreeIcon(item:Object, isOpen:Boolean, isBranch:Boolean):Class {
+				return groupIcon;
+			}
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<widgets:CogIcon2 top="8" left="20" />
+	<s:Label id="scheduleLabel" top="10" left="45" fontSize="16" fontWeight="bold" />
+
+	<s:Group id="settingBackground" width="100%" height="90%" top="40" left="20" right="20">
+		<s:Rect filters="{dropShadowFilter2}" width="100%" height="100%" >
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF" />
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+	<s:VGroup left="40" top="50" right="40" height="80%">
+		<s:HGroup height="50%" width="100%">
+			<!-- Group selector -->
+			<s:VGroup includeIn="normal" width="50%" height="100%">
+				<s:Label id="selectGroupLabel"  fontWeight="bold" />
+				<sparkTree:Tree id="groupTree"
+								dataProvider="{hostComponent.groupTreesCollection}"
+								width="300"
+								labelField="name"
+								iconFunction="getTreeIcon" height="80%" />
+			</s:VGroup>
+			<s:Spacer width="{settingBackground.width * 0.03}" />
+			<!-- Notification settings -->
+			<s:VGroup width="50%" height="100%" includeIn="normal">
+				<s:Label id="notificationsLabel" fontWeight="bold" />
+				<s:CheckBox id="sendAlertEmailCheckbox" />
+				<s:Button id="welcomeEmailButton" enabled="{groupTree.selectedItem != null}"/>
+			</s:VGroup>
+		</s:HGroup>
+
+		<s:HGroup height="50%" width="100%">
+			<!-- Schedule settings -->
+			<s:VGroup width="50%" includeIn="normal">
+	
+				<s:Label id="scheduleDatesLabel" fontWeight="bold" />
+				<s:HGroup left="20">
+					<s:Label id="startDateLabel" fontWeight="bold" />
+					<mx:DateField id="startDateField" enabled="{groupTree.selectedItem != null}" formatString="DD/MM/YYYY" />
+				</s:HGroup>
+			
+				<s:Spacer height="{settingBackground.height * 0.03}" />
+				
+				<s:HGroup left="20">
+					<s:Label id="endDateLabel" fontWeight="bold" />
+					<mx:DateField id="endDateField" enabled="{groupTree.selectedItem != null}" editable="true" formatString="DD/MM/YYYY"/>
+				</s:HGroup>		
+				
+				<s:Spacer height="{settingBackground.height * 0.03}" />
+				
+				<s:VGroup left="20" id="unitIntervalGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
+					<s:RadioButton id="allUnitsAvailableRadioButton" value="true" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+					<s:HGroup>
+						<s:RadioButton id="unitsAllAtOnceRadioButton" value="false" group="{unitIntervalRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+						<s:TextInput id="unitIntervalTextInput" width="40" enabled="{groupTree.selectedItem != null}"/>
+					</s:HGroup>				
+				</s:VGroup>			
+				
+				<s:Spacer height="{settingBackground.height * 0.03}" />
+	
+				<!--
+				<s:Label id="seePastUnitsLabel" fontWeight="bold" />
+				<s:HGroup id="seePastUnitsGroup" showErrorSkin="true" showErrorTip="true" errorColor="red">
+					<s:RadioButton id="yesRadioButton" value="true" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+					<s:RadioButton id="noRadioButton" value="false" group="{pastUnitsRadioButtonGroup}" enabled="{groupTree.selectedItem != null}" />
+				</s:HGroup>
+				-->
+				<s:CheckBox id="seePastUnitsCheckBox" enabled="{groupTree.selectedItem != null}" />
+				
+			</s:VGroup>
+					
+			<!-- Calendar -->
+			<s:VGroup includeIn="normal" width="50%">
+				<calendar:Calendar id="calendar" enabled="{groupTree.selectedItem != null}" />
+			</s:VGroup>
+		</s:HGroup>
+				
+	</s:VGroup>
+	
+	<s:Group bottom="38" left="0" right="0">
+		<s:Rect left="3" right="3" height="48" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" bottom="0">
+			<s:fill>
+				<s:SolidColor color="#363636" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect includeIn="normal" left="260" right="295" height="48" bottom="0">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0x8CC63F" ratio="0.5" />
+					<s:GradientEntry color="0x72A133" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+		<s:HGroup top="0" right="2" gap="10" height="48" verticalAlign="middle">
+			<s:Button id="saveButton" useHandCursor="true" buttonMode="true" width="160" fontWeight="bold"/>
+			<s:Button id="backButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		</s:HGroup>
+	</s:Group>
+
+</s:Skin>

@@ -1,4 +1,4 @@
-package com.clarityenglish.rotterdam.view.scheduling.events {
+package com.clarityenglish.rotterdam.view.settings.events {
 	import com.clarityenglish.common.vo.manageable.Group;
 	
 	import flash.events.Event;

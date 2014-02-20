@@ -29,7 +29,6 @@
     <classEntry path="skins.rotterdam.ui.GreyButtonSkin"/>
     <classEntry path="skins.rotterdam.ui.OrangeButtonSkin"/>
     <classEntry path="skins.rotterdam.ui.DeleteButtonSkin"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.publishSettings.ui.CalendarTreeItemRenderer"/>
     <classEntry path="com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent"/>
     <classEntry path="skins.rotterdam.scroller.DirectionButton"/>
     <classEntry path="skins.rotterdam.publishSettings.TabButtonBarSkin"/>

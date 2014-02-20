@@ -129,35 +129,33 @@
 	<s:ViewNavigator id="unitViewNavigator" left="156" right="0" top="55" bottom="100" />
 	
 	<course:ToolBarView id="toolBar" bottom="38" left="0" right="0" />
-	
-	<!--alice p-->
-	<!--s:VGroup id="publishVGroup" left="0" bottom="36" width="155" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor"-->
 	<s:HGroup left="110" top="-50">
-		<s:VGroup id="publishVGroup" gap="-1" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">		
-			<s:Group>
-				<s:ToggleButton id="publishCourseButton" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" useHandCursor="true" buttonMode="true" />
-				<s:Button id="publishChangeButton" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" useHandCursor="true" buttonMode="true" />
-			</s:Group>
-			<s:VGroup paddingLeft="2" id="publishSelectionGroup" height="0" alpha="0">
-				<s:Group>
-					<s:Rect width="152" height="200" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
-						<s:fill>
-							<s:SolidColor color="0XF7F2F0" />
-						</s:fill>
-					</s:Rect>
-					<courseui:PublishButton id="oneClickPublishButton" useHandCursor="true" buttonMode="true"
-											visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6" />
-					<courseui:PublishButton id="publishSettingsButton" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="90" />
-				</s:Group>					
-			</s:VGroup>
-		</s:VGroup>
+		<s:Button id="settingsButton" />
+	</s:HGroup>
 		
-		<s:Button id="settingButton" />
-	</s:HGroup>	
+	<!--alice p-->
+	<s:Group id="publishVGroup" left="3" bottom="40" width="155" visible="{toolBar.currentState == 'normal'}" includeIn="uniteditor">
+		<s:Group bottom="0" left="0">
+			<s:ToggleButton id="publishCourseButton" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" useHandCursor="true" buttonMode="true" />
+			<s:Button id="publishChangeButton" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" useHandCursor="true" buttonMode="true" />
+		</s:Group>
+		<s:VGroup paddingLeft="2" bottom="0" id="publishSelectionGroup" height="0" alpha="0">
+			<s:Group>
+				<s:Rect width="152" height="200" topLeftRadiusX="8" topRightRadiusX="8" filters="{dropShadowFilter}">
+					<s:fill>
+						<s:SolidColor color="0XF7F2F0" />
+					</s:fill>
+				</s:Rect>
+				<courseui:PublishButton id="oneClickPublishButton" useHandCursor="true" buttonMode="true"
+										visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6" />
+				<courseui:PublishButton id="scheduleButton" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="90" />
+			</s:Group>					
+		</s:VGroup>
+	</s:Group>
 	
-	<!--s:Rect left="3" right="3" height="5" bottom="33">
+	<s:Rect left="3" right="3" height="5" bottom="33">
 		<s:fill>
 			<s:SolidColor color="#ffffff" />
 		</s:fill>
-	</s:Rect-->
+	</s:Rect>
 </s:Skin>

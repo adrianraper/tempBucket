@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:widgets="skins.assets.widgets.*"
+		xmlns:settings="com.clarityenglish.rotterdam.view.settings.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.settings.SettingsView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
+		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
+		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<widgets:CogIcon2 top="8" left="20" />
+	<s:Label id="courseSettingsLabel" top="10" left="45" fontSize="16" fontWeight="bold" />
+	
+	<s:Group id="settingBackground" width="100%" height="90%" top="40" left="20" right="20">
+		<s:Rect filters="{dropShadowFilter2}" width="100%" height="100%" >
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
+	<!-- Left hand side -->
+	<s:VGroup left="40" top="50" right="40" height="80%">
+		<!-- About this course -->
+		<s:VGroup includeIn="normal" paddingTop="22" left="0" right="0">
+			<s:HGroup>
+				<s:Label id="courseNameLabel" fontWeight="bold" />
+				<s:TextInput id="aboutCourseNameTextInput" width="300" />
+			</s:HGroup>
+			
+			<s:Spacer height="10" />
+			
+			<s:HGroup>
+				<s:Label id="courseDescriptionLabel" fontWeight="bold" />
+				<s:TextArea id="aboutCourseDescriptionTextArea" width="300" heightInLines="4" />
+			</s:HGroup>
+			
+			<s:Spacer height="10" />
+			
+			<s:HGroup>
+				<s:Label id="authorLabel" fontWeight="bold" />
+				<s:TextInput id="aboutAuthorTextInput" width="300" />
+			</s:HGroup>
+			
+			<s:Spacer height="10" />
+			
+			<s:HGroup>
+				<s:Label id="contactEmailLabel" fontWeight="bold" />
+				<s:TextInput id="aboutEmailTextInput" width="300" />
+			</s:HGroup>
+			
+			<s:Spacer height="10" />
+			
+			<s:Label id="directURLLabel" fontWeight="bold" />
+			<s:TextInput id="directStartURLLabel" editable="false" width="700" borderVisible="false"/>
+			
+		</s:VGroup>
+		
+		<!-- Privacy and permissions -->
+		<s:VGroup includeIn="normal" paddingTop="22" left="0" right="0">
+			<s:Label id="permissionsLabel" fontWeight="bold" />
+			<s:HGroup height="100%" width="100%">
+				<!-- Owners -->
+				<s:VGroup includeIn="normal" width="50%" height="100%">
+					<s:HGroup>
+						<s:Label id="ownerLabel" fontWeight="bold" />
+						<s:Label id="ownerText" />
+					</s:HGroup>
+					<s:HGroup>
+						<s:Label id="collaboratorsLabel" fontWeight="bold" />
+						<s:List id="collaboratorsText" />
+					</s:HGroup>
+					<s:Button id="addCollaboratorButton" />
+					<s:CheckBox id="courseEditableCheckBox" />
+					<s:Button id="transferOwnershipButton" />
+				</s:VGroup>
+				<s:Spacer width="{settingBackground.width * 0.03}" />
+				<!-- Publishers -->
+				<s:VGroup includeIn="normal" width="50%" height="100%">
+					<s:HGroup>
+						<s:Label id="publishersLabel" fontWeight="bold" />
+						<s:List id="publishersText">
+							<mx:ArrayCollection>
+								<fx:String>all teachers in SQU</fx:String> 
+							</mx:ArrayCollection>
+						</s:List>
+					</s:HGroup>
+					<s:Button id="addPublisherButton" />
+				</s:VGroup>
+			</s:HGroup>
+		</s:VGroup>
+	</s:VGroup>
+		
+	<s:Group bottom="38" left="0" right="0">
+		<s:Rect left="3" right="3" height="48" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" bottom="0">
+			<s:fill>
+				<s:SolidColor color="#363636" />
+			</s:fill>
+		</s:Rect>
+		<s:Rect includeIn="normal" left="260" right="295" height="48" bottom="0">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0x8CC63F" ratio="0.5" />
+					<s:GradientEntry color="0x72A133" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+		<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
+			<s:Button id="saveButton" useHandCursor="true" buttonMode="true" width="160" fontWeight="bold"/>
+			<s:Button id="backButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		</s:HGroup>
+	</s:Group>
+
+</s:Skin>

@@ -13,14 +13,14 @@
 @namespace course "com.clarityenglish.rotterdam.view.course.*";
 @namespace courseui "com.clarityenglish.rotterdam.view.course.ui.*";
 @namespace title "com.clarityenglish.rotterdam.view.title.*";
-@namespace settings "com.clarityenglish.rotterdam.view.settings.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace sparkTree "com.sparkTree.*";
 @namespace tink "ws.tink.spark.controls.*";
-@namespace showPublishSettingDemo "com.clarityenglish.rotterdam.builder.view.publishSettings.*";
+@namespace settings "com.clarityenglish.rotterdam.view.settings.*";
+@namespace schedule "com.clarityenglish.rotterdam.view.schedule.*";
+@namespace schedulebuilder "com.clarityenglish.rotterdam.builder.view.schedule.*";
 @namespace ui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace help "com.clarityenglish.rotterdam.builder.view.help.*";
-@namespace publishSettings "com.clarityenglish.rotterdam.view.publishSettings.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -63,7 +63,7 @@ title|TitleView s|TabbedViewNavigator {
 }
 
 title|TitleView s|Button#logoutButton {
-	skinClass: 	ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }
 
 courseselector|CourseSelectorView {
@@ -121,15 +121,7 @@ course|CourseView s|Button#unitCopyButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.DuplicateUnitButtonSkin");
 }
 
-/*course|CourseView s|Button#courseSettingsButton {
-	skinClass: ClassReference("skins.rotterdam.builder.course.CourseSettingButtonSkin");
-}
-
-course|CourseView s|Button#coursePublishButton {
-	skinClass: ClassReference("skins.rotterdam.builder.course.CoursePublishButtonSkin");
-}*/
-
-course|CourseView courseui|PublishButton#publishSettingsButton {
+course|CourseView courseui|PublishButton#scheduleButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.PublishSettingButtonSkin");
 }
 
@@ -137,22 +129,16 @@ course|CourseView courseui|PublishButton#oneClickPublishButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.OneClickPublishButtonSkin");
 }
 
-/*course|CourseView s|ToggleButton#publishCourseButton {
-	skinClass: ClassReference("skins.rotterdam.unit.PublishCourseButtonSkin");
-}*/
 course|CourseView s|ToggleButton#publishCourseButton {
-	skinClass: ClassReference("skins.rotterdam.title.ui.PublishToggleButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.unit.PublishCourseButtonSkin");
 }
 
-/*course|CourseView s|Button#publishChangeButton {
-	skinClass: ClassReference("skins.rotterdam.unit.PublishChangeButtonSkin");
-}*/
 course|CourseView s|Button#publishChangeButton {
-	skinClass: ClassReference("skins.rotterdam.title.ui.PublishToggleButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.unit.PublishChangeButtonSkin");
 }
 
-course|CourseView s|Button#settingButton {
-	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsButtonSkin");
+course|CourseView s|Button#settingsButton {
+	skinClass: ClassReference("skins.rotterdam.course.SettingsButtonSkin");
 }
 
 buildercourse|ToolBarView {
@@ -353,38 +339,53 @@ filemanager|FileManagerView s|Button#cancelButton {
 	skinClass: ClassReference("skins.rotterdam.ui.GreyButtonSkin");
 }
 
-
-publishSettings|PublishSettingsView {
-	skinClass: ClassReference("skins.rotterdam.builder.publishsettings.SettingsSkin");
+settings|SettingsView {
+	skinClass: ClassReference("skins.rotterdam.builder.settings.SettingsSkin");
 }
 
-publishSettings|PublishSettingsView s|FormItem {
+settings|SettingsView s|FormItem {
 	errorColor: red;
 }
 
-publishSettings|PublishSettingsView s|Button#saveButton {
+settings|SettingsView s|Button#saveButton {
 	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
 }
 
-publishSettings|PublishSettingsView s|Button#backButton {
+settings|SettingsView s|Button#backButton {
 	skinClass: ClassReference("skins.rotterdam.unit.CancelButtonSkin");
 }
 
-publishSettings|PublishSettingsView s|TabBar#tabBar {
-	skinClass: ClassReference("skins.rotterdam.publishSettings.SettingTabBarSkin");
-}
-
-publishSettings|PublishSettingsView s|Scroller#publishSettingScroller s|VScrollBar {
+settings|SettingsView s|Scroller#courseSettingsScroller s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
-showPublishSettingDemo|HelpPublishView s|Button#iKnowButton {
-	skinsClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+schedule|ScheduleView {
+	skinClass: ClassReference("skins.rotterdam.builder.schedule.ScheduleSkin");
 }
 
-showPublishSettingDemo|HelpPublishView {
-	skinClass: ClassReference("skins.rotterdam.builder.publishsettings.HelpPublishSkin");
+schedule|ScheduleView s|FormItem {
+	errorColor: red;
+}
+
+schedule|ScheduleView s|Button#saveButton {
+	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
+}
+
+schedule|ScheduleView s|Button#backButton {
+	skinClass: ClassReference("skins.rotterdam.unit.CancelButtonSkin");
+}
+
+schedule|ScheduleView s|Scroller#scheduleScroller s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
+}
+
+schedulebuilder|HelpScheduleView {
+	skinClass: ClassReference("skins.rotterdam.builder.schedule.HelpScheduleSkin");
 	headerVisible: false;
+}
+
+schedulebuilder|HelpScheduleView s|Button#iKnowButton {
+	skinsClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 }
 
 ui|WidgetList s|VScrollBar {

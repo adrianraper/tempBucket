@@ -1,4 +1,4 @@
-﻿package com.clarityenglish.rotterdam.view.scheduling {
+﻿package com.clarityenglish.rotterdam.view.schedule {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
@@ -14,14 +14,14 @@
 	/**
 	 * A Mediator
 	 */
-	public class SchedulingMediator extends BentoMediator implements IMediator {
+	public class ScheduleMediator extends BentoMediator implements IMediator {
 		
-		public function SchedulingMediator(mediatorName:String, viewComponent:BentoView) {
+		public function ScheduleMediator(mediatorName:String, viewComponent:BentoView) {
 			super(mediatorName, viewComponent);
 		}
 		
-		private function get view():SchedulingView {
-			return viewComponent as SchedulingView;
+		private function get view():ScheduleView {
+			return viewComponent as ScheduleView;
 		}
 		
 		override public function onRegister():void {

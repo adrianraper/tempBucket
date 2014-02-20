@@ -45,13 +45,13 @@ class CourseOps {
 	}
 	
 	public function courseCreate($courseObj) {
+		
+		$db = $this->db;
 		$accountFolder = $this->accountFolder;
 		$defaultXML = $this->defaultXML;
 		$id = UniqueIdGenerator::getUniqId();
-		$db = $this->db;
 		
-		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($courseObj, $accountFolder, $defaultXML, $id, $db) {	
-			$db->StartTrans();
+		XmlUtils::rewriteXml($this->courseFilename, function($xml) use($courseObj, $accountFolder, $defaultXML, $id, $db) {
 			
 			// Create a new course passing in the properties as XML attributes
 			$courseNode = $xml->courses->addChild("course");
@@ -87,6 +87,8 @@ class CourseOps {
 			
 			file_put_contents($accountFolder."/".$id."/menu.xml", $menuXml->saveXML());
 			
+			$db->StartTrans();
+			
 			// gh#91 Set permissions and roles
 			$sql = <<<SQL
 				INSERT INTO T_CoursePermission 
@@ -109,8 +111,8 @@ SQL;
 			if (!$rc)
 				// It should be impossible for the courseID to already be in this table...
 				AbstractService::$debugLog->notice("insert to T_CourseRoles failed");
-				
-			$db->CompleteTrans();	
+			
+			$db->CompleteTrans();
 		});
 		
 		// Return the id and filename of the new course
@@ -121,7 +123,7 @@ SQL;
 	public function courseSave($filename, $menuXml) {
 		// Protect again directory traversal attacks; the filename *must* be in the form <some hex value>/menu.xml otherwise we are being fiddled with
 		if (preg_match("/^([0-9a-f]+)\/menu\.xml$/", $filename, $matches) != 1) {
-			throw $this->copyOps->getExceptionForId("errorSavingCourse", array("reason" => "corrupt file name"));
+			throw $this->copyOps->getExceptionForId("errorSavingCourse");
 		}
 		
 		// Get the course id
@@ -129,9 +131,10 @@ SQL;
 		
 		// Check the file exists
 		$menuXMLFilename = "$this->accountFolder/$filename";
-		if (!file_exists($menuXMLFilename))
-			throw $this->copyOps->getExceptionForId("errorSavingCourse", array("reason" => "menu.xml doesn't exist"));
-			
+		if (!file_exists($menuXMLFilename)) {
+			throw $this->copyOps->getExceptionForId("errorSavingCourse");
+		}
+		
 		$db = $this->db;
 		$copyOps = $this->copyOps;
 		$accountFolder = $this->accountFolder;
@@ -163,7 +166,7 @@ SQL;
 				}
 			}
 			
-			// This stuff should really go into a transform (fromXML()?), but for now hardcode it here
+			// This stuff should really go into a transform (fromXML()?), but for now hardcode it here. xref gh#778
 			
 			// gh#148 If you have just removed publication data for a group, that will NOT exist here
 			// but we do need to delete it. So first step is to delete ALL records for groups in the list
@@ -203,7 +206,7 @@ SQL;
 				$rc = $db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_CourseID"), true);
 				// AbstractService::$debugLog->notice("update T_CourseStart gives $rc");
 				
-				// 2. Next rewrite any rows in T_UnitStart relating to this course
+				// 1.2 Next rewrite any rows in T_UnitStart relating to this course
 				// Currently we figure this out here, but this may be better calculated on the client since at some point it will be editable anyway
 				$startTimestamp = strtotime($startDate);
 				foreach ($course->unit as $unit) {
@@ -232,14 +235,59 @@ SQL;
 					
 					$startTimestamp += $group['unitInterval'] * 86400;
 				}
+ 			}
+ 			
+			// 2. Write privacy information to the database
+			// 2.1 whole course editable?
+			$editable = XmlUtils::xml_attribute($course->privacy->editable, 'value', 'boolean');
+			$sql = <<<SQL
+					SELECT * FROM T_CoursePermission 
+					WHERE F_CourseID = ?
+SQL;
+			$bindingParams = array((string)$course['id']);
+			$rs = $db->Execute($sql, $bindingParams);					
+			if (!$rs)
+				throw new Exception('Failed to read from db');
+				
+			if ($rs->recordCount() > 0) {
+				// Do update
+				$sql = <<<SQL
+					UPDATE T_CoursePermission
+					SET F_Editable = ? 
+					WHERE F_CourseID = ?
+SQL;
+				$bindingParams = array((boolean)$editable, (string)$course['id']);
+				$rc = $db->Execute($sql, $bindingParams);					
+				if (!$rc)
+					throw new Exception('update to T_CoursePermission failed');
+					
+			} else {
+				// Do insert
+				$sql = <<<SQL
+					INSERT INTO T_CoursePermission 
+					(F_CourseID, F_Editable)
+					VALUES (?,?)
+SQL;
+				$bindingParams = array((string)$course['id'],(boolean)$editable);
+				$rc = $db->Execute($sql, $bindingParams);					
+				if (!$rc)
+					throw new Exception('insert to T_CoursePermission failed');
 			}
-			
-			// 3. Remove publication data so it doesn't get saved
+	 			
+			// TODO 2.2 course roles
+						
+			// Finally. Remove data from the XML that you have put into the db so it doesn't get saved in the file
 			// gh#191 If you have iterated round the publication loop, you can't now unset it (at least with my PHP)
-			//unset($course->publication);
+			// unset($course->publication);
+			// I can't remove two children in this way.
+			// So whilst it seems fragile, unset the privacy which works as you haven't looped round it then dom remove publication!
+			// TODO. need a robust child removal option here
+			unset($course->privacy);
 			$dom = dom_import_simplexml($course->publication);
        		$dom->parentNode->removeChild($dom);
-			
+			//$dom = dom_import_simplexml($course->privacy);
+       		//$dom->parentNode->removeChild($dom);
+       		
 			$db->CompleteTrans();
 		});
 	}
