@@ -215,7 +215,7 @@
 				if (!courseSelector.level) {
 					var downMove:Move = new Move();
 					downMove.yFrom = 0;
-					downMove.yTo = 200;
+					downMove.yTo = 150;
 					downMove.duration = 300;
 					downMove.play([instructioGroup]);
 				} else {
@@ -235,7 +235,7 @@
 	</s:states>
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" bottom="0" />
-	<s:Rect width="100%" height="750" top="30">
+	<s:Rect width="100%" bottom="0" top="30">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="#FFEDED" alpha="0" ratio="0" />
@@ -247,14 +247,17 @@
 		</s:fill>
 	</s:Rect>
 	
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/home/homeBg.png')" right="0" visible="{courseSelector.level != null}" top="80" />
+	<s:SWFLoader id="homeInitialBg" source="@Embed(source='skins/tensebuster/assets/home/homeInitialBg.png')" left="0" bottom="20" visible="{courseSelector.level == null}" />
+	
 	<!--Rotation Circle-->
 	<home:circleBg left="0" verticalCenter="-100" />
-	<courseselector:TBCourseSelector id="courseSelector" level="{hostComponent.course}" isBackToHome="{hostComponent.isBackToHome}" left="-30" verticalCenter="-200" width="30%"/>
+	<courseselector:TBCourseSelector id="courseSelector" level="{hostComponent.course}" isBackToHome="{hostComponent.isBackToHome}" left="-30" verticalCenter="-130" height="450"/>
 	
 	<!--Instruction-->
-	<s:Group id="instructioGroup" verticalCenter="-180">
-		<s:Label id="instructionLabel" width="480" paddingTop="-20" left="440" fontSize="24" color="#DB0000" fontFamily="Segoe Print" />
-		<home:instructionArrow left="230" />
+	<s:Group id="instructioGroup" top="150">
+		<home:instruction left="410" />
+		<home:instructionArrow left="230" top="50" />
 	</s:Group>	
 	
 	<!--unit list-->

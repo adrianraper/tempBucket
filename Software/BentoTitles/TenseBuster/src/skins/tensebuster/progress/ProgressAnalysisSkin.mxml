@@ -86,20 +86,32 @@
 									[Embed(source="skins/tensebuster/assets/progress/analyse/EDashline.png")]
 									private static var EDashline:Class;
 									
-									[Embed(source="skins/tensebuster/assets/progress/analyse/EDashline.png")]
+									[Embed(source="skins/tensebuster/assets/progress/analyse/ELongDashline.png")]
 									private static var ELongDashline:Class;
 									
 									[Embed(source="skins/tensebuster/assets/progress/analyse/LDashline.png")]
 									private static var LDashline:Class;
 									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/LLongDashline.png")]
+									private static var LLongDashline:Class;
+									
 									[Embed(source="skins/tensebuster/assets/progress/analyse/IDashline.png")]
 									private static var IDashline:Class;
+									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/ILongDashline.png")]
+									private static var ILongDashline:Class;
 									
 									[Embed(source="skins/tensebuster/assets/progress/analyse/UDashline.png")]
 									private static var UDashline:Class;
 									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/ULongDashline.png")]
+									private static var ULongDashline:Class;
+									
 									[Embed(source="skins/tensebuster/assets/progress/analyse/ADashline.png")]
 									private static var ADashline:Class;
+									
+									[Embed(source="skins/tensebuster/assets/progress/analyse/ALongDashline.png")]
+									private static var ALongDashline:Class;
 																
 									private function getTimeColour(data:Object):Number {
 										if (data) {
@@ -124,15 +136,15 @@
 											if (parentDocument.hostComponent.androidSize == "10Inches") {
 												switch (courseCaption.charAt(0)) {
 													case "E":
-														return EDashline;					
+														return ELongDashline;					
 													case "L":
-														return LDashline;
+														return LLongDashline;
 													case "I":
-														return IDashline;
+														return ILongDashline;
 													case "U":
-														return UDashline;
+														return ULongDashline;
 													case "A":
-														return ADashline;
+														return ALongDashline;
 													default:
 														return null;
 												}
@@ -168,8 +180,7 @@
 				</s:itemRenderer>
 			</s:DataGroup>
 			<s:VGroup left="20" paddingTop="-10" horizontalAlign="right">
-				<!--width.normal10Inches="445"-->
-				<s:Rect width="305" height="2">
+				<s:Rect width="305" width.normal10Inches="416" height="2">
 					<s:fill>
 						<s:SolidColor id="boundaryLineSolidColor" />
 					</s:fill>
