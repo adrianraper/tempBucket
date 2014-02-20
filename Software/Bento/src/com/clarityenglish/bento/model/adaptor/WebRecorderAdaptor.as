@@ -17,7 +17,7 @@ package com.clarityenglish.bento.model.adaptor {
 			if (!filename) {
 				// If no filename is specified then open a browser
 				var fileReference:FileReference = new FileReference();
-				fileReference.save(mp3Data);
+				fileReference.save(mp3Data, "my recording.mp3");
 			} else {
 				throw new Error("This is not implemented as present (in fact this will save to a remote PHP script rather than the local machine)");
 			}
