@@ -42,9 +42,6 @@ package com.clarityenglish.tensebuster.view.login
 		public var addUserButton:Button;
 		
 		[SkinPart]
-		public var newUserButton:Button;
-		
-		[SkinPart]
 		public var cancelButton:Button;
 		
 		[SkinPart]
@@ -67,6 +64,21 @@ package com.clarityenglish.tensebuster.view.login
 		
 		[SkinPart]
 		public var loginInstruction:Label;
+		
+		[SkinPart]
+		public var option1Label:Label;
+		
+		[SkinPart]
+		public var option1InstructionLabel:Label;
+		
+		[SkinPart]
+		public var option1Labe2:Label;
+		
+		[SkinPart]
+		public var option2InstructionLabel:Label;
+		
+		[SkinPart]
+		public var CTStartButton:Button;
 		
 		[Bindable]
 		public var loginKey_lbl:String;
@@ -92,6 +104,14 @@ package com.clarityenglish.tensebuster.view.login
 		[Bindable]
 		public var isPlatformAndroid:Boolean;
 		
+		// #341
+		[Bindable]
+		public var savedName:String;
+		
+		// gh#100
+		[Bindable]
+		public var savedPassword:String;
+		
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
 		private var _verified:Boolean;
@@ -103,6 +123,7 @@ package com.clarityenglish.tensebuster.view.login
 		
 		// gh#41
 		private var _noAccount:Boolean;
+		
 		public function LoginView() {
 			super();
 		}
@@ -139,10 +160,33 @@ package com.clarityenglish.tensebuster.view.login
 			}
 		}
 		
-		public function get loginOption():Number {
-			return _loginOption; 
+		[Bindable]
+		public function get selfRegisterName():Boolean {
+			return ((selfRegister & Config.SELF_REGISTER_NAME) == Config.SELF_REGISTER_NAME); 
+		}
+		public function set selfRegisterName(value:Boolean):void {
+			selfRegister = selfRegister | Config.SELF_REGISTER_NAME;
 		}
 		
+		[Bindable]
+		public function get selfRegisterID():Boolean {
+			return ((selfRegister & Config.SELF_REGISTER_ID) == Config.SELF_REGISTER_ID); 
+		}
+		public function set selfRegisterID(value:Boolean):void {
+			selfRegister = selfRegister | Config.SELF_REGISTER_ID;
+		}
+		
+		[Bindable]
+		public function get selfRegisterEmail():Boolean {
+			return ((selfRegister & Config.SELF_REGISTER_EMAIL) == Config.SELF_REGISTER_EMAIL); 
+		}
+		public function set selfRegisterEmail(value:Boolean):void {
+			selfRegister = selfRegister | Config.SELF_REGISTER_EMAIL;
+		}
+		
+		public function get loginOption():Number {
+			return _loginOption; 
+		}		
 		public function set loginOption(value:Number):void {
 			if (_loginOption != value) {
 				_loginOption = value;
@@ -194,13 +238,21 @@ package com.clarityenglish.tensebuster.view.login
 				case loginKeyInput:
 				case passwordInput:
 					instance.addEventListener(FlexEvent.ENTER, onEnter, false, 0, true);
-					break;
-				
+					break;			
 				case loginButton:
-					loginButton.label = copyProvider.getCopyForId("loginButton");
+					if (selfRegister) {
+						loginButton.label = copyProvider.getCopyForId("CTLoginButton");
+					} else {
+						loginButton.label = copyProvider.getCopyForId("loginButton");
+					};
+					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
+					break;
 				case addUserButton:
-				case newUserButton:
+					addUserButton.label = copyProvider.getCopyForId("addUserButton");
+					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
+					break;
 				case cancelButton:
+					cancelButton.label = copyProvider.getCopyForId("cancelButton");
 					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					break;
 				case loginInputTitle:
@@ -209,19 +261,51 @@ package com.clarityenglish.tensebuster.view.login
 				case loginInstruction:
 					loginInstruction.text = copyProvider.getCopyForId("loginDetailLabel");
 					break;
+				case option1Label:
+					option1Label.text = copyProvider.getCopyForId("option1Label");
+					break;
+				case option1InstructionLabel:
+					option1InstructionLabel.text = copyProvider.getCopyForId("option1InstructionLabel");
+					break;
+				case option1Labe2:
+					option1Labe2.text = copyProvider.getCopyForId("option1Labe2");
+					break;
+				case option2InstructionLabel:
+					option2InstructionLabel.text = copyProvider.getCopyForId("option2InstructionLabel");
+					break;
+				case CTStartButton:
+					CTStartButton.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
+					CTStartButton.label = copyProvider.getCopyForId("CTStartButton");
+					break;
 			}
 		}
 		
 		protected override function getCurrentSkinState():String {
+			var platformSize:String;
 			if (isPlatformAndroid) {
 				if (FlexGlobals.topLevelApplication.stage.stageWidth >= 1280) {
-					return super.getCurrentSkinState() + "10Inches";
+					platformSize = "10Inches";
 				} else {
-					return super.getCurrentSkinState() + "7Inches";
+					platformSize = "7Inches";
 				}
 			} else {
-				return super.getCurrentSkinState();
+				
+				platformSize = "";
 			}
+			
+			if (licenceType == Title.LICENCE_TYPE_NETWORK ||
+				licenceType == Title.LICENCE_TYPE_CT) {
+				var networkState:String = "ConcurrentTracking";
+			} else {
+				networkState = "";
+			}
+			
+			if (_hasIPrange && licenceType == Title.LICENCE_TYPE_CT) {
+				networkState = "IPConcurrentTracking";
+			}
+			
+			trace("skin state: "+(_currentState + networkState + platformSize));
+			return _currentState + networkState + platformSize;
 		}
 		/**
 		 * Add the institution name from the licence to the screen 
@@ -290,6 +374,11 @@ package com.clarityenglish.tensebuster.view.login
 			}
 			loginKey_lbl = copyProvider.getCopyForId("yourLoginDetail", replaceObj);	
 			
+			// for self-registration
+			loginName_lbl = copyProvider.getCopyForId("yourName");
+			loginID_lbl = copyProvider.getCopyForId("yourID");
+			loginEmail_lbl = copyProvider.getCopyForId("yourEmail");
+			
 			// gh#100
 			loginPassword_lbl = copyProvider.getCopyForId("passwordLabel");
 		}
@@ -329,17 +418,14 @@ package com.clarityenglish.tensebuster.view.login
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case loginButton:
-					//trace("email: "+loginKeyInput.text);
 					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
-				case newUserButton:
-					setState("register");
-					//loginNameInput.text = loginKeyInput.text;
-					//newPasswordInput.text = passwordInput.text;
+				case CTStartButton:
+					user =  new User();
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case addUserButton:
-					//user = new User({name:newNameInput.text, password:newPasswordInput.text});
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 					break;
@@ -350,6 +436,12 @@ package com.clarityenglish.tensebuster.view.login
 		}
 		
 		public function setState(state:String):void {
+			switch (state) { 
+				case 'register':
+					savedName = loginKeyInput.text;
+					savedPassword = passwordInput.text;
+					break;
+			}
 			// Can't use currentState as that belongs to the view and is not automatically linked to the skin
 			_currentState = state;
 			invalidateSkinState();

@@ -157,6 +157,7 @@ package com.clarityenglish.common.model {
 			config.account.selfRegister = 0;
 			config.account.loginOption = config.loginOption;
 			// trace("loginOption in ConfigProxy getAccountSettings is "+config.account.loginOption);
+			config.account.IPMatchedProductCodes = new Array();
 			config.licence = new Licence();
 			// gh#165
 			// config.licence.licenceType = Title.LICENCE_TYPE_LT;

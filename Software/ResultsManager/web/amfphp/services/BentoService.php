@@ -132,7 +132,9 @@ class BentoService extends AbstractService {
 			return null;
 		
 		// gh#659 productCodes is null or not can distinguish whether this is ipad or online version login
-		if (isset($config['ip'])) {
+		AbstractService::$debugLog->info("mached product code break point 1");
+			if (isset($config['ip'])) {
+			AbstractService::$debugLog->info("mached product code break point 2");
 			foreach ($account->titles as $thisTitle) {
 				array_push($account->IPMatchedProductCodes, $thisTitle->productCode);
 			}

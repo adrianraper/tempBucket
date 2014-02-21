@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:android="skins.tensebusterair.assets.android.*" xmlns:assets="skins.tensebusterair.assets.*" xmlns:login="skins.tensebuster.assets.login.*">
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:android="skins.tensebusterair.assets.android.*" xmlns:assets="skins.tensebusterair.assets.*" 
+		xmlns:login="skins.tensebusterair.assets.login.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.login.LoginView")]
@@ -35,7 +36,7 @@
 	<s:Label id="versionLabel" text="v {hostComponent.parentApplication.versionNumber}" color="#000000" fontSize="12" right="22" top.normal7Inches="50" top.normal10Inches="60" />
 	
 	<!--login area-->
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/loginBrokenPaper.png')" horizontalCenter="0" verticalCenter="-50" includeIn="normal10Inches" />
+	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/loginBrokenPaper.png')" horizontalCenter="0" verticalCenter="-50" includeIn="normal10Inches" />
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/android/sevenInches/login/loginBrokenPaper.png')" horizontalCenter="-30" verticalCenter="-30" includeIn="normal7Inches" />
 	<login:loginText horizontalCenter="-300" verticalCenter="-200" includeIn="normal10Inches" />
 	<login:loginText horizontalCenter="-280" top="90" scaleX="0.8" scaleY="0.8" includeIn="normal7Inches" />

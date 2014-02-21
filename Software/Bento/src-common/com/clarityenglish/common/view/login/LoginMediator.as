@@ -68,7 +68,7 @@ package com.clarityenglish.common.view.login {
 			
 			// gh#659 using productCodes to distinguish the ipad login and online login
 			// And using productCodes length to distinguish an account has IPrange setting.
-			if (configProxy.getAccount().IPMatchedProductCodes){
+			if (configProxy.getAccount().IPMatchedProductCodes.length > 0){
 				view.setHasMatchedIPrange(true);
 				view.setIPMatchedProductCodes(configProxy.getAccount().IPMatchedProductCodes);
 			} else {
