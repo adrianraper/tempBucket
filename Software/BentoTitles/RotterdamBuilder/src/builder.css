@@ -122,7 +122,7 @@ course|CourseView s|Button#unitCopyButton {
 }
 
 course|CourseView courseui|PublishButton#scheduleButton {
-	skinClass: ClassReference("skins.rotterdam.builder.course.PublishSettingButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.builder.course.ScheduleButtonSkin");
 }
 
 course|CourseView courseui|PublishButton#oneClickPublishButton {

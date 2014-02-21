@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.courseselector {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
+	import com.clarityenglish.rotterdam.view.courseselector.events.CourseSelectEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -63,7 +64,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					break;
 				case courseList:
 					courseList.dataGroup.doubleClickEnabled = true;
-					courseList.dataGroup.addEventListener(MouseEvent.CLICK, onSelectCourse);
+					courseList.addEventListener(CourseSelectEvent.COURSE_SELECT, onSelectCourse);
 					courseList.addEventListener(CourseDeleteEvent.COURSE_DELETE, onDeleteCourse);
 					courseList.addEventListener(FlexEvent.UPDATE_COMPLETE, onCourseListUpdateComplete);
 					break;
@@ -77,7 +78,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			createCourse.dispatch();
 		}
 		
-		protected function onSelectCourse(event:MouseEvent):void {
+		public function onSelectCourse(event:CourseSelectEvent):void {
 			if (courseList.selectedItem)
 				selectCourse.dispatch(courseList.selectedItem);
 		}
