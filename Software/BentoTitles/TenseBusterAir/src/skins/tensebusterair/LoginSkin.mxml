@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:login="skins.tensebusterair.assets.login.*" xmlns:assets="skins.tensebusterair.assets.*">
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:login="skins.tensebusterair.assets.login.*" xmlns:assets="skins.tensebusterair.assets.*" xmlns:home="skins.tensebuster.assets.home.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.login.LoginView")]
@@ -26,14 +26,14 @@
 	</fx:Declarations>
 	
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/hexagonBg.png')" horizontalCenter="0" bottom="0"/>
-	<assets:logo top="20" right="20" />
+	<assets:logo top="30" right="20" />
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/loginBrokenPaper.png')" horizontalCenter="0" top="110" includeIn="login" />
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/premierLoginBrokenPaper.png')" horizontalCenter="-35" top="80" includeIn="loginIPConcurrentTracking, registerStates" />
 	<login:loginText left="30" top="130" includeIn="login"/>
 	<login:premierLoginText left="40" top="110" includeIn="loginIPConcurrentTracking, registerStates" />
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/loginBG.png')" bottom="0" horizontalCenter="0" includeIn="login" />
 	<s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/login/premierLoginBG.png')" bottom="0" horizontalCenter="0" includeIn="loginIPConcurrentTracking, registerStates" />
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="2" horizontalCenter="0" />
+	<home:header top="10" />
 	<s:Label id="versionLabel" text="v {hostComponent.parentApplication.versionNumber}" color="#000000" fontSize="12" right="22" top="60" />
 	<!--s:SWFLoader source="@Embed(source='skins/tensebusterair/assets/stampHCT.png')" right="65" top="100" /-->
 	
