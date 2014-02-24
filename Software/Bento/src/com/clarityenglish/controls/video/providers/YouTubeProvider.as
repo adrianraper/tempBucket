@@ -69,7 +69,7 @@ package com.clarityenglish.controls.video.providers {
 		public function create(source:Object):void {
 			swfLoader = new SWFLoader();
 			swfLoader.percentWidth = swfLoader.percentHeight = 100;
-			swfLoader.scaleContent = true;
+			swfLoader.scaleContent = false;
 			swfLoader.maintainAspectRatio = true;
 			swfLoader.addEventListener(Event.COMPLETE, onSwfLoaderComplete, false, 0, true);
 			
@@ -89,10 +89,8 @@ package com.clarityenglish.controls.video.providers {
 		}
 		
 		public function resize():void {
-			if (swfLoader && swfLoader.content && swfLoader.content["setSize"]) {
+			if (swfLoader && swfLoader.content && swfLoader.content["setSize"])
 				swfLoader.content["setSize"](videoPlayer.width, videoPlayer.height);
-				swfLoader.x = 8; // A bit hacky, but otherwise it doesn't centre properly
-			}
 		}
 		
 		public function play():void {
