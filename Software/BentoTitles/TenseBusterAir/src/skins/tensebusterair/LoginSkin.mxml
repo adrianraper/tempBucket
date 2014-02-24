@@ -62,7 +62,7 @@
 					<s:Label id="loginKey_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}" paddingTop="14" />
 					<s:TextInput id="loginKeyInput" width="147" height="32" filters="{dropShadowFilter2}" borderVisible="false" fontSize="12"  />
 				</s:HGroup>					
-				<s:HGroup gap="10">
+				<s:HGroup gap="13">
 					<s:Label id="loginPassword_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" paddingTop="14"/>
 					<s:TextInput id="passwordInput" displayAsPassword="true" width="147" height="32" fontSize="14" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
 				</s:HGroup>
@@ -77,8 +77,8 @@
 					</s:Rect>
 				</s:VGroup>
 				<s:Label id="option1Labe2" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
-				<s:HGroup gap="-5">
-					<s:Label id="option2InstructionLabel" fontSize="12" color="0xFFFFFF" width="200"/>
+				<s:HGroup gap="0">
+					<s:Label id="option2InstructionLabel" fontSize="12" color="0xFFFFFF" width="190"/>
 					<s:VGroup paddingTop="-5">
 						<s:Button id="CTStartButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
 					</s:VGroup>
@@ -111,12 +111,12 @@
 				<s:TextInput id="loginEmailInput" width="180" left="500" text="{hostComponent.savedName}" />
 			</s:HGroup>
 			<s:Spacer height="3" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}" />
-			<s:HGroup id="passwordGroup" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
+			<s:HGroup id="passwordGroup" gap="10" visible="{hostComponent.verified}" includeInLayout="{hostComponent.verified}">
 				<s:Label text="{hostComponent.loginPassword_lbl}" color="0xFFFFFF" fontSize="12" fontWeight="bold" paddingTop="10" />
 				<s:TextInput id="newPasswordInput" displayAsPassword="true" width="180" text="{hostComponent.savedPassword}" />
 			</s:HGroup>
 			<s:Spacer height="3" />
-			<s:HGroup gap="30">
+			<s:HGroup paddingLeft="70" gap="20">
 				<s:Button id="addUserButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
 				<s:Button id="cancelButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
 			</s:HGroup>
