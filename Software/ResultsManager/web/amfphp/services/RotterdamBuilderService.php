@@ -102,8 +102,11 @@ EOD;
 	}
 	
 	public function courseDelete($course) {
+		$courseXML = simplexml_load_string($course);
 		// gh#91 Only allow this if the logged in user is the owner
-		if ($course->href->options['enabledFlag'] & Course::EF_OWNER)
+		// Fail to get "enabledFlag" using the command below change to convert courseXML first and get the attribute
+		//if ($course->href->options['enabledFlag'] & Course::EF_OWNER)
+		if ($courseXML['enabledFlag'])
 			return $this->courseOps->courseDelete($course);
 	}
 	

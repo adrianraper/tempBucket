@@ -28,14 +28,18 @@ class CourseEnabledTransform extends XmlTransform {
 				switch ($role) {
 					case Course::ROLE_OWNER:
 						$eF = $eF | Course::EF_OWNER | (($editable) ? Course::EF_EDITABLE : 0);
+						break;
 					case Course::ROLE_COLLABORATOR:
 						$eF = $eF | Course::EF_COLLABORATOR | (($editable) ? Course::EF_EDITABLE : 0);
+						break;
 					case Course::ROLE_PUBLISHER:
 						$eF = $eF | Course::EF_PUBLISHER;
+						break;
 					case Course::ROLE_VIEWER:
 						$eF = $eF | Course::EF_VIEWER;
 						break;	
 				}
+				AbstractService::$debugLog->info("ef: ".$eF);
 				$course->addAttribute('enabledFlag', $eF);
 					
 			} catch (Exception $e) {
