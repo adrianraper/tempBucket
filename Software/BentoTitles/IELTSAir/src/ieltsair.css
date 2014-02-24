@@ -185,9 +185,9 @@ s|TitleWindow.feedbackTitleWindow {
 }
 
 s|Button#longRateButton {
-	skinClass: ClassReference("skins.ieltsair.rate.longRateButtonSkin");
+	skinClass: ClassReference("skins.ieltsair.rate.LongRateButtonSkin");
 }
 
 s|Button#shortRateButton {
-	skinClass: ClassReference("skins.ieltsair.rate.shortRateButtonSkin");
+	skinClass: ClassReference("skins.ieltsair.rate.ShortRateButtonSkin");
 }
