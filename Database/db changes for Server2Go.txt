@@ -1,0 +1,35 @@
+-- sql run on DeliveryBench clarity.db
+
+DELETE FROM T_Accounts WHERE F_ProductCode=52;
+INSERT INTO `T_Accounts` (`F_RootID`,`F_ProductCode`,`F_MaxStudents`,`F_MaxAuthors`,`F_MaxTeachers`,`F_MaxReporters`,`F_ExpiryDate`,`F_ContentLocation`,`F_LanguageCode`,`F_ProductVersion`,`F_MGSRoot`,`F_StartPage`,`F_LicenceFile`,`F_LicenceStartDate`,`F_LicenceType`,`F_Checksum`,`F_DeliveryFrequency`,`F_LicenceClearanceDate`,`F_LicenceClearanceFrequency`) 
+VALUES (1,52,1,0,0,0,'2049-12-31 23:59:59',NULL,'EN','R2IFV',NULL,'','','2014-02-06 00:00:00',3,'2D68772F6752CDEB4B9E3F9D5DC1DFA64EA6C4485ACCD3AD5346DAE41FCFEBE3',NULL,NULL,NULL);
+
+UPDATE T_AccountRoot SET F_SelfRegister = 1, F_LoginOption 1;
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode IN (52,53);
+INSERT INTO `T_ProductVersion` VALUES 
+(52,'R2IFV'),
+(52,'R2ILM'),
+(52,'R2IHU'),
+(52,'DEMO'),
+(52,'R2ITD'),
+(53,'R2IFV'),
+(53,'R2ILM'),
+(53,'R2IHU'),
+(53,'DEMO'),
+(53,'R2ITD');
+
+DELETE FROM T_ProductLanguage WHERE F_ProductCode IN (52,53);
+INSERT INTO T_ProductLanguage VALUES 
+(52,'EN','RoadToIELTS2-International'),
+(53,'EN','RoadToIELTS2-International'),
+(52,'JP','RoadToIELTS2-Japanese'),
+(53,'JP','RoadToIELTS2-Japanese'),
+(52,'ZH','RoadToIELTS2-Chinese'),
+(53,'ZH','RoadToIELTS2-Chinese');
+
+DELETE FROM T_Language WHERE F_LanguageCode IN ('R2ILM','R2IFV','R2ITD','R2IHU','R2ID');
+
+-- quick links
+-- http://127.0.0.1:4001/Software/ResultsManager/web/amfphp/services/dbCheck.php
+-- http://127.0.0.1:4001/Software/Common/phpInfo.php
