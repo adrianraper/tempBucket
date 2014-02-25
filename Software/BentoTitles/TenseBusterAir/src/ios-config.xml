@@ -22,7 +22,7 @@
 	<rememberLogin>true</rememberLogin>
 	<disableAutoTimeout>true</disableAutoTimeout>
 	
-	<checkNetworkAvailabilityUrl>http://www.google.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
 	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
 	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
 	
