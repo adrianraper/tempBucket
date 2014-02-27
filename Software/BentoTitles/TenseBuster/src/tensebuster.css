@@ -24,6 +24,7 @@
 @namespace courseselector "com.clarityenglish.tensebuster.view.home.courseselector.*";
 @namespace homeui "com.clarityenglish.tensebuster.view.home.ui.*";
 @namespace ws "ws.tink.spark.controls.*";
+@namespace error "com.clarityenglish.common.view.error.*";
 
 global {
 	EColor : #EC1C32;
@@ -161,6 +162,14 @@ login|LoginView  {
 
 login|LoginView s|Button {
 	skinClass: ClassReference("skins.tensebuster.login.LoginButtonSkin");
+}
+
+error|ErrorView #closeButton{
+	skinClass: ClassReference("skins.tensebuster.login.ErrorBoxCloseButtonSkin");
+}
+
+s|TitleWindow.errorTitleWindow {
+	skinClass: ClassReference("skins.tensebuster.login.ErrorTitleWindowSkin");
 }
 
 s|TitleWindow.feedbackTitleWindow {
