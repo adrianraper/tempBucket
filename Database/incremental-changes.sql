@@ -745,6 +745,7 @@ CREATE  TABLE `T_CourseStart` (
   `F_EndDate` datetime DEFAULT NULL,
   `F_UnitInterval` smallint(5) DEFAULT NULL,
   `F_SeePastUnits` tinyint(4) DEFAULT 1,
+  `F_SendNotifications` tinyint(4) DEFAULT 1, -- gh#91
   PRIMARY KEY (`F_GroupID`, `F_CourseID`) );
 
 DROP TABLE IF EXISTS `T_UnitStart`;
@@ -996,3 +997,36 @@ VALUES
 --WHERE F_ProductCode > 0
 --GROUP BY F_ProductCode, F_CourseID;
 --SELECT * FROM rack80829.T_CourseInfo ORDER BY F_ProductCode, F_CourseID;
+
+-- gh#91
+DROP TABLE IF EXISTS T_CourseRoles;
+CREATE TABLE T_CourseRoles (
+F_CourseID bigint(20) NOT NULL,
+F_UserID int(10) NULL,
+F_GroupID int(10) NULL,
+F_RootID int(10) NULL,
+F_Role smallint NOT NULL,
+F_DateStamp datetime NOT NULL,
+  KEY Index_1 (F_CourseID)
+) ENGINE=InnoDB; 
+DROP TABLE IF EXISTS T_RoleType;
+CREATE TABLE T_RoleType (
+  F_Type SMALLINT NOT NULL ,
+  F_Description VARCHAR(45) NULL ,
+  PRIMARY KEY (F_Type) );
+INSERT INTO T_RoleType
+(F_Type,F_Description)
+VALUES
+(1,'Owner'),
+(2,'Collaborator'),
+(3,'Publisher'),
+(4,'Viewer');
+DROP TABLE IF EXISTS T_CoursePermission;
+CREATE TABLE T_CoursePermission (
+F_CourseID bigint(20) NOT NULL,
+F_Editable BOOLEAN NOT NULL DEFAULT TRUE,
+  UNIQUE INDEX Index_1 (F_CourseID)
+) ENGINE=InnoDB; 
+
+-- gh#91
+ALTER TABLE T_CourseStart ADD COLUMN `F_SendNotifications` tinyint(4) DEFAULT 1 AFTER `F_SeePastUnits`;
