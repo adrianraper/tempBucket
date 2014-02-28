@@ -51,7 +51,7 @@
 		<title:SizedButton id="sizedLogoutButton" buttonMode="true" useHandCursor="true" size="{hostComponent.androidSize}" excludeFrom="exercise" />
 	</s:HGroup>
 	
-	<s:Group top="20" horizontalCenter="-240" visible="{hostComponent.currentState == 'exercise'}">
+	<s:Group top="20" horizontalCenter="-330" width="250" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">
 			<s:HGroup verticalAlign="middle" id="coursePath">
 				<s:Group>

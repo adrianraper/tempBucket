@@ -47,6 +47,8 @@
 			super.onRemove();
 			
 			view.backToMenu.remove(onBackToMenu);
+			view.logout.remove(onLogout);
+			view.backToMenu.remove(onBackToMenu);
 		}
 		
 		override public function listNotificationInterests():Array {

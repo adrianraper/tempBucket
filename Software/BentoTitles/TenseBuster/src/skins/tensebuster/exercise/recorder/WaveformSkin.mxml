@@ -25,8 +25,8 @@
 	</s:states>
 	
 	<!--recorder:miniRecorderBg top.minimized="0" bottom.full="0" /-->
-	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/recorder/RecorderBarBottom.png')" top.minimized="0" bottom.full="0" />
-	<s:Group top="0" includeIn="full">
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/recorder/RecorderBarBottom.png')" top.minimized="-1" bottom.full="0" />
+	<s:Group top="-1" includeIn="full">
 		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/exercise/recorder/RecorderBarMiddle.png')" />
 		<s:Rect left="15" right="35" top="4" height="140" radiusX="8" radiusY="8">
 			<s:fill>

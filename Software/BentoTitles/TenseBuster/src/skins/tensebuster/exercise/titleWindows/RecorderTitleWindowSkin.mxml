@@ -153,7 +153,7 @@
                 <!-- layer 3: text -->
                 <!--- @copy spark.components.Panel#titleDisplay -->
                 <s:Label id="titleDisplay" maxDisplayedLines="1"
-                         left="12" top="23" bottom="0"
+                         left="14" top="23" bottom="0"
                          fontWeight="bold" color="0xFFFFFF" text="try" fontSize="14" />
                 
                 <!-- layer 4: moveArea -->
