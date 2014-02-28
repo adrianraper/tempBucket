@@ -15,6 +15,7 @@ package com.clarityenglish.tensebuster.view.login
 	
 	import mx.core.FlexGlobals;
 	import mx.events.FlexEvent;
+	import mx.states.OverrideBase;
 	
 	import org.osflash.signals.Signal;
 	
@@ -231,6 +232,20 @@ package com.clarityenglish.tensebuster.view.login
 			dispatchEvent(new Event("productCodesChanged"));
 		}
 		
+		protected override function onViewCreationComplete():void {
+			super.onViewCreationComplete();
+
+			// gh#827
+			if (addUserButton) {
+				addUserButton.enabled = true;
+				loginNameInput.editable = true;
+				loginIDInput.editable = true;
+				loginEmailInput.editable = true;
+				newPasswordInput.editable = true;		
+				addUserButton.enabled = true;
+			}
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -426,6 +441,11 @@ package com.clarityenglish.tensebuster.view.login
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case addUserButton:
+					addUserButton.enabled = false;
+					loginNameInput.editable = false;
+					loginIDInput.editable = false;
+					loginEmailInput.editable = false;
+					newPasswordInput.editable = false;
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 					break;
