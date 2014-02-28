@@ -1,4 +1,6 @@
 package com.clarityenglish.bento.model.adaptor {
+	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
+	
 	import flash.display.NativeMenu;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
@@ -72,6 +74,8 @@ package com.clarityenglish.bento.model.adaptor {
 			//trace("event=" + this.dispatchEvent(new Event(Event.SELECT)));
 			// You need to pass this event on as it is picked up and used to help AIR work out if it should be in front or not
 			this.dispatchEvent(e);
+			// gh#456
+			this.dispatchEvent(new RecorderEvent(RecorderEvent.SAVE_COMPLETE));
 		}
 	}
 

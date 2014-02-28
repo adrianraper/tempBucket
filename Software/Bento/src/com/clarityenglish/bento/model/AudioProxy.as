@@ -5,6 +5,7 @@ package com.clarityenglish.bento.model {
 	import com.adobe.audio.format.WAVWriter;
 	import com.clarityenglish.bento.RecorderNotifications;
 	import com.clarityenglish.bento.model.adaptor.IRecorderAdaptor;
+	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
 	
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
@@ -286,14 +287,19 @@ package com.clarityenglish.bento.model {
 			// Can I listen for the events generated in the adaptor here? Not like this you can't. How to get the adaptor to extend EventDispatcher?
 			//recorderAdaptor.addEventListener(Event.SELECT, mp3SaveComplete);
 			//recorderAdaptor.addEventListener(Event.CANCEL, mp3SaveComplete);
+			recorderAdaptor.saveMp3Data(mp3Data, null);
+			// gh#456
+			recorderAdaptor.addEventListener(RecorderEvent.SAVE_COMPLETE, onSaveComplete);
+		}
+		
+		protected function onSaveComplete(event:RecorderEvent):void {
 			// gh#456
 			_isMp3Saved = true;
-			recorderAdaptor.saveMp3Data(mp3Data, null);
 		}
 		
 		private function mp3SaveComplete(e:Event) : void {
 			// In order to switch off alwaysInFront, send a notification back to the mediator
-			sendNotification(RecorderNotifications.MP3_SAVE_COMPLETE, true, getProxyName());			
+			sendNotification(RecorderNotifications.MP3_SAVE_COMPLETE, true, getProxyName());	
 		}
 		
 		/**
