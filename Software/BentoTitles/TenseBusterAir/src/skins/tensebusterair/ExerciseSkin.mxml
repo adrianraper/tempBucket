@@ -61,8 +61,10 @@
 		</s:Rect>
 	</s:Group>
 	
-	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" horizontalCenter="0" top="98" bottom="24"/>
+	<s:Group width="906" horizontalCenter="0">
+		<!-- Exercise -->
+		<view:DynamicView id="dynamicView" left="0" right="0" horizontalCenter="0" top="98" bottom="24"/>
+	</s:Group>
 
 	<!--exercise side bar-->
 	<s:Group horizontalCenter="0" height="100%" width="954">
