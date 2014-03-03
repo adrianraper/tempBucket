@@ -19,6 +19,7 @@ package com.clarityenglish.tensebuster.view.login
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.BusyIndicator;
 	import spark.components.Button;
 	import spark.components.FormHeading;
 	import spark.components.Label;
@@ -80,6 +81,9 @@ package com.clarityenglish.tensebuster.view.login
 		
 		[SkinPart]
 		public var CTStartButton:Button;
+		
+		[SkinPart]
+		public var busyIndicator:BusyIndicator;
 		
 		[Bindable]
 		public var loginKey_lbl:String;
@@ -236,6 +240,10 @@ package com.clarityenglish.tensebuster.view.login
 			super.onViewCreationComplete();
 
 			// gh#827
+			if (loginButton) {
+				loginButton.enabled = true;
+			}
+			
 			if (addUserButton) {
 				addUserButton.enabled = true;
 				loginNameInput.editable = true;
@@ -243,6 +251,18 @@ package com.clarityenglish.tensebuster.view.login
 				loginEmailInput.editable = true;
 				newPasswordInput.editable = true;		
 				addUserButton.enabled = true;
+			}
+			
+			if (cancelButton) {
+				cancelButton.enabled = true;
+			}
+			
+			if (CTStartButton) {
+				CTStartButton.enabled = true;
+			}
+			
+			if (busyIndicator) {
+				busyIndicator.visible = false;
 			}
 		}
 		
@@ -319,7 +339,6 @@ package com.clarityenglish.tensebuster.view.login
 				networkState = "IPConcurrentTracking";
 			}
 			
-			trace("skin state: "+(_currentState + networkState + platformSize));
 			return _currentState + networkState + platformSize;
 		}
 		/**
@@ -400,9 +419,27 @@ package com.clarityenglish.tensebuster.view.login
 		
 		// #254
 		public function onEnter(event:FlexEvent):void {
-			if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
-				var user:User = new User({ name: loginKeyInput.text, studentID: loginKeyInput.text, email: loginKeyInput.text, password: passwordInput.text });
-				dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
+			if (_currentState == "login") {
+				if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
+					loginButton.enabled = false;
+					busyIndicator.visible = true;
+					var user:User = new User({ name: loginKeyInput.text, studentID: loginKeyInput.text, email: loginKeyInput.text, password: passwordInput.text });
+					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
+				}	
+			}
+			
+			if (_currentState == "register") {
+				if (StringUtil.trim((loginNameInput.text) || StringUtil.trim(loginIDInput.text) || StringUtil.trim(loginEmailInput.text)) && StringUtil.trim(newPasswordInput.text)) {
+					addUserButton.enabled = false;
+					cancelButton.enabled = false;
+					loginNameInput.editable = false;
+					loginIDInput.editable = false;
+					loginEmailInput.editable = false;
+					newPasswordInput.editable = false;
+					busyIndicator.visible = true;
+					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
+					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
+				}	
 			}
 			
 			// Go to the password field if press Enter but it is empty
@@ -433,23 +470,36 @@ package com.clarityenglish.tensebuster.view.login
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case loginButton:
+					loginButton.enabled = false;
+					if (busyIndicator)
+						busyIndicator.visible = true;
 					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case CTStartButton:
+					CTStartButton.enabled = false;
+					if (busyIndicator)
+						busyIndicator.visible = true;
 					user =  new User();
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 					break;
 				case addUserButton:
 					addUserButton.enabled = false;
+					cancelButton.enabled = false;
 					loginNameInput.editable = false;
 					loginIDInput.editable = false;
 					loginEmailInput.editable = false;
 					newPasswordInput.editable = false;
+					if (busyIndicator)
+						busyIndicator.visible = true;
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 					break;
 				default:
+					if (busyIndicator) {
+						busyIndicator.visible = false;
+						loginButton.enabled = true;
+					}
 					setState("login");
 			}
 			
@@ -458,6 +508,8 @@ package com.clarityenglish.tensebuster.view.login
 		public function setState(state:String):void {
 			switch (state) { 
 				case 'register':
+					if (busyIndicator)
+						busyIndicator.visible = false;
 					savedName = loginKeyInput.text;
 					savedPassword = passwordInput.text;
 					break;
