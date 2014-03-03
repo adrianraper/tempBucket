@@ -51,7 +51,15 @@
         <s:State name="disabled" />
     </s:states>
     
-    <s:SWFLoader source="@Embed(source='skins/tensebuster/assets/scroller/bottomArrow.png')" verticalCenter="0" horizontalCenter="0" />
+	<s:Group width="20" height="15">
+		<s:Rect left="0" right="0" top="0" bottom="0">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF" alpha="0" />
+			</s:fill>
+		</s:Rect>
+		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/scroller/bottomArrow.png')" verticalCenter="2" horizontalCenter="1" />
+	</s:Group>
+   
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
     <s:Label id="labelDisplay"

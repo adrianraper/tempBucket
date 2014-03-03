@@ -116,7 +116,7 @@
 	
 	<!--horizontalAxis.title display blur text in ipad, so we use a separate label to display title-->
 	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
-	<mx:BarChart id="compareChart" left="20" right="200" top="130" bottom="60" bottom.normalOnline="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
+	<mx:BarChart id="compareChart" left="20" right="140" top="130" bottom="60" bottom.normalOnline="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
 		<mx:horizontalAxis>
 			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
 		</mx:horizontalAxis>
