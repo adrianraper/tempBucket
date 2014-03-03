@@ -57,7 +57,7 @@
 				<s:SolidColor color="0xFFFFFF" alpha="0" />
 			</s:fill>
 		</s:Rect>
-		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/scroller/topArrow.png')" verticalCenter="4" horizontalCenter="0"/>
+		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/scroller/topArrow.png')" verticalCenter="4" horizontalCenter="1"/>
 	</s:Group>
 	
     <!-- layer 8: text -->

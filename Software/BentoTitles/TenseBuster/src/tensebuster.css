@@ -164,6 +164,10 @@ login|LoginView s|Button {
 	skinClass: ClassReference("skins.tensebuster.login.LoginButtonSkin");
 }
 
+error|ErrorView {
+	skinClass: ClassReference("skins.tensebuster.login.ErrorSkin");
+}
+
 error|ErrorView #closeButton{
 	skinClass: ClassReference("skins.tensebuster.login.ErrorBoxCloseButtonSkin");
 }

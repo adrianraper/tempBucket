@@ -102,7 +102,7 @@
              textAlign="center"
              maxDisplayedLines="1"
              horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-             paddingLeft="20" paddingRight="20" color="0xFFFFFF">
+             paddingLeft="20" paddingRight="20" color="0xFFFFFF" fontWeight="bold">
     </s:Label>
     
 </s:SparkButtonSkin>
