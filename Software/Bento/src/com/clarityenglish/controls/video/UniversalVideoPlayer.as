@@ -1,6 +1,7 @@
 package com.clarityenglish.controls.video {
 	import com.clarityenglish.controls.video.players.FlashVideoPlayer;
 	import com.clarityenglish.controls.video.players.HTMLVideoPlayer;
+	import com.clarityenglish.controls.video.providers.VimeoProvider;
 	import com.clarityenglish.controls.video.providers.YouTubeProvider;
 	
 	import flash.events.Event;
@@ -23,7 +24,7 @@ package com.clarityenglish.controls.video {
 		
 		protected var providers:Array = [
 			YouTubeProvider,
-			/*VimeoProvider*/
+			VimeoProvider
 		];
 		
 		public function UniversalVideoPlayer() {
