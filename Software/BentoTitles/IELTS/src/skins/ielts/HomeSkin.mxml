@@ -75,7 +75,7 @@
 		<!--gh#383-->
 		<s:HGroup paddingTop="10" includeIn="lastMinute">
 			<s:Group>
-				<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/LMPromoteLeft.png')" width="100%" left="-8"/>
+				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/title/LMPromoteLeft.png')" width="100%" left="-8"/>
 				<s:VGroup width="125" left="187" top="20" gap="0">
 					<s:Label id="promoteWording1" fontSize="12.5" color="0x0A446B" />
 					<s:Label id="promoteWording2" paddingLeft="5" fontSize="12.5" color="0x0A446B" />
@@ -84,11 +84,11 @@
 				<s:Label id="promoteWording4" width="120" left="192" top="70" fontSize="11" color="0x0A446B"/>
 			</s:Group>
 			<s:VGroup paddingTop="7" paddingLeft="5">
-				<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/LMPromoteRight.png')" />
+				<s:SWFLoader source="@Embed(source='/skins/ielts/assets/title/LMPromoteRight.png')" />
 				<s:Spacer height="8" />
 				<s:Group right="0">
 					<s:Button id="findMoreButton" fontSize="18" color="0xFFFFFF" useHandCursor="true" buttonMode="true"/>
-					<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/findMoreIcon.png')" right="-80" top="15"/>
+					<s:SWFLoader source="@Embed(source='/skins/ielts/assets/title/findMoreIcon.png')" right="-80" top="15"/>
 				</s:Group>
 				
 			</s:VGroup>			

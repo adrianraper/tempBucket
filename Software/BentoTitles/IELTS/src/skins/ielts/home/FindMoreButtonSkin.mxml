@@ -56,9 +56,9 @@
     </s:states>
 	
 	<s:Group filters="{[dropShadowFilter]}">
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/findMoreBg.png')" visible.up="true" visible.over="false" visible.down="false" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/findMoreOverBg.png')" visible.up="false" visible.over="true" visible.down="true" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/findMoreLabel.png')" verticalCenter="-3" horizontalCenter="0"/>
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/title/findMoreBg.png')" visible.up="true" visible.over="false" visible.down="false" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/title/findMoreOverBg.png')" visible.up="false" visible.over="true" visible.down="true" />
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/title/findMoreLabel.png')" verticalCenter="-3" horizontalCenter="0"/>
 	</s:Group>   
    
     <!-- layer 8: text -->

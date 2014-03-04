@@ -30,8 +30,7 @@
 				</s:LinearGradient>
 			</s:fill>
 		</s:Path>
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/lmSubscribeIcon.png')" top="-6" />
-		<s:SWFLoader source="@Embed(source='skins/ielts/assets/title/LMSubscribeR.png')" right="12" top="10"/>
+		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/title/lmSubscribeIcon.png')" top="-6" />
 		
 		<s:RichEditableText id="textDisplay" textFlow="{hostComponent.richTextFlow}" color="0xFFFFFF" fontSize="15.5" left="83" top="13" bottom="0" paddingRight="8" paddingLeft="8" />
 	</s:Group>	
