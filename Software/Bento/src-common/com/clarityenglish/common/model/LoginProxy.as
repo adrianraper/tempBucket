@@ -430,8 +430,10 @@ package com.clarityenglish.common.model {
 					break;
 				case "updateLicence":
 					// Stop the licence update timer
-					if (licenceTimer) licenceTimer.stop();
-					sendNotification(CommonNotifications.BENTO_ERROR, thisError);
+					// gh#793 You don't want to just stop the licence checking - just pause it for a while?
+					// Or do you simply want to do nothing, no error, no stop checking and just let it happen again?
+					//if (licenceTimer) licenceTimer.stop();
+					//sendNotification(CommonNotifications.BENTO_ERROR, thisError);
 					break;
 				case "updateUser":
 					sendNotification(CommonNotifications.UPDATE_FAILED);

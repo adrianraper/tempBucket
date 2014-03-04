@@ -85,7 +85,7 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		public function writeScore(mark:ExerciseMark):void {
-			log.debug("Writing the score for exercise to the database");
+			//log.debug("Writing the score for exercise to the database");
 			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -143,7 +143,33 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
-			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
+			// gh#793 Handle server errors
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			
+			var thisError:BentoError = BentoError.create(fault, false);
+			switch (thisError.errorNumber) {
+				case copyProxy.getCodeForId("errorServerConnection"):
+					thisError.errorContext = copyProxy.getCopyForId("errorServerConnection", { message: fault.faultString });
+					break;
+				case copyProxy.getCodeForId("errorServer"):
+					thisError.errorContext = copyProxy.getCopyForId("errorServer", { message: fault.faultString });
+					break;
+				default:
+			}
+			switch (operation) {
+				// These operations would ideally queue for when you have your internet connection back again.
+				// Until that happens you are probably best off just dropping them
+				case "writeScore":
+				case "updateSession":
+				case "stopSession":
+					break;
+				case "startSession":
+				default:
+					thisError.isFatal = true;
+			}
+
+			sendNotification(CommonNotifications.BENTO_ERROR, thisError);
+			sendNotification(CommonNotifications.TRACE_ERROR, thisError);
 		}
 		
 	}

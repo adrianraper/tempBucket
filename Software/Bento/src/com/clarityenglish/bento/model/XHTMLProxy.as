@@ -166,17 +166,25 @@ package com.clarityenglish.bento.model {
 						// This should implement the full spectrum of errors for loading normal or menu xml.  There are two special cases for errors when loading
 						// menu xml, but in fact perhaps we should throw BBNotifications.MENU_XHTML_NOT_LOADED for any menu.xml loading error?
 						var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-						var bentoError:BentoError = BentoError.create(e.fault);
+						// gh#793
+						var bentoError:BentoError = BentoError.create(e.fault, false);
 						switch (bentoError.errorNumber) {
+							case copyProxy.getCodeForId("errorServerConnection"):
+								bentoError.errorContext = copyProxy.getCopyForId("errorServerConnection", { message: e.fault.faultString });
+								break;
+							case copyProxy.getCodeForId("errorServer"):
+								bentoError.errorContext = copyProxy.getCopyForId("errorServer", { message: e.fault.faultString });
+								break;
 							case copyProxy.getCodeForId("errorTitleBlockedByHiddenContent"):
 							case copyProxy.getCodeForId("errorCourseDoesNotExist"):
+								bentoError.isFatal = true;
 								sendNotification(CommonNotifications.BENTO_ERROR, bentoError);
 								break;
 							case copyProxy.getCodeForId("errorConcurrentCourseAccess"): // gh#142
-								bentoError.isFatal = false;
 								sendNotification(CommonNotifications.BENTO_ERROR, bentoError);
 								break;
 							default:
+								bentoError.isFatal = true;
 								if (href.type == Href.MENU_XHTML) {
 									sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("errorParsingExercise", { filename: href.filename, message: e.fault.faultString } ));
 								} else {

@@ -45,6 +45,7 @@ package org.davekeen.delegates {
 		public static const CHANNEL_CALL_FAILED:String = "Channel.Call.Failed";
 		public static const CLIENT_ERROR_SEND:String = "Client.Error.MessageSend";
 		public static const HTTP_Status_500:String = "HTTP: Status 500";
+		public static const HTTP_Status_501:String = "HTTP: Status 501";
 		public static const HTTP_Status_5xx:String = "HTTP: Status 5";
 		public static const SERVER_CONNECTION_ERROR:int = 504;
 		public static const SERVER_ERROR:int = 505;
@@ -164,14 +165,15 @@ package org.davekeen.delegates {
 		 */
 		private function onFault(event:FaultEvent):void {
 			closeRemoteObject();
-			trace("RemoteDelegate:" + event.fault);
+			//trace("RemoteDelegate:" + event.fault);
 			
 			// gh#793
 			// Not sure why the retry has a different faultCode...
 			var proxyFault:Fault = event.fault;
 			// I don't think there is any value in filtering the faultCode
 			//if (event.fault.faultCode == CHANNEL_CALL_FAILED || event.fault.faultCode == CLIENT_ERROR_SEND ) {
-				if (event.fault.faultDetail.indexOf(HTTP_Status_500) > 0) {
+				if ((event.fault.faultDetail.indexOf(HTTP_Status_500) > 0) ||
+					(event.fault.faultDetail.indexOf(HTTP_Status_501) > 0)) {
 					proxyFault = new Fault(String(SERVER_ERROR), event.fault.faultString, event.fault.faultDetail); ;
 					
 				} else if (event.fault.faultDetail.indexOf(HTTP_Status_5xx) > 0) {
