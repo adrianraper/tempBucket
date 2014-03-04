@@ -397,6 +397,10 @@ warning|WarningView s|Button#noButton {
 	skinClass: ClassReference("skins.tensebuster.exercise.warning.NoButtonSkin");
 }
 
+recorder|RecorderView {
+	skinClass: ClassReference("skins.tensebuster.exercise.recorder.RecorderSkin");
+}
+
 recorder|WaveformView {
 	skinClass: ClassReference("skins.tensebuster.exercise.recorder.WaveformSkin");
 }

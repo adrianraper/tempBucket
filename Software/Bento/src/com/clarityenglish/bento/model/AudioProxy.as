@@ -134,7 +134,7 @@ package com.clarityenglish.bento.model {
 			// Initialize the sound
 			sound = new Sound();
 			sound.addEventListener(SampleDataEvent.SAMPLE_DATA, onSoundSampleData);
-			
+
 			// If this proxy is record enabled then setup the default microphone
 			if (isRecordEnabled()) {
 				// v4.0.1.2 But -1 is the default microphone, 0 is simply the 
@@ -394,13 +394,17 @@ package com.clarityenglish.bento.model {
 			//	microphone.removeEventListener(SampleDataEvent.SAMPLE_DATA, onMicrophoneSampleData);
 			
 			microphone = Microphone.getMicrophone(idx);
-			
+
 			// gh#530
-			if (microphone)
+			if (microphone) {
+				_recordEnabled = true;
 				microphone.addEventListener(StatusEvent.STATUS, microphoneStatusHandler);
+			}
+				
 			// v4.0.1.2 Error checking
 			if (microphone == null) {
 				//trace("microphone = null");
+				_recordEnabled = false;
 				sendNotification(RecorderNotifications.NO_MICROPHONE);
 				Security.showSettings(SecurityPanel.MICROPHONE);
 			} else if (microphone.muted) {

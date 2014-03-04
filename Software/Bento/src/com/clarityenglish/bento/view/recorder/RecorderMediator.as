@@ -37,6 +37,11 @@
 			super.onRegister();
 			
 			view.addEventListener(RecorderEvent.COMPARE, onCompare);
+			
+			var audioProxy:AudioProxy = facade.retrieveProxy(RecorderNotifications.RECORD_PROXY_NAME) as AudioProxy;
+			if (!audioProxy.isRecordEnabled()) {
+				view.currentState = "nomic";
+			}
 		}
 		
 		override public function onRemove():void {
