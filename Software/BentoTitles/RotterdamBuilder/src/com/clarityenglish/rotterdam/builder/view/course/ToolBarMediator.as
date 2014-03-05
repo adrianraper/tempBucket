@@ -30,15 +30,15 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (bentoProxy.menuXHTML) view.href = bentoProxy.menuXHTML.href;
 			
-			// gh#91 TODO I can't do this here as the course has not been read yet
-			/*
+			// gh#91 What is the state to start in?
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			view.isEditable = courseProxy.isEditable;
-			view.isOwner = courseProxy.isOwner;
-			view.isCollaborator = courseProxy.isCollaborator;
-			view.isPublisher = courseProxy.isPublisher;
-			*/
-			view.onGetPermission.add(onGetPermission);
+			if (courseProxy) {
+				view.previewMode = courseProxy.isPreviewMode;
+				view.isEditable = courseProxy.isEditable;
+				view.isOwner = courseProxy.isOwner;
+				view.isCollaborator = courseProxy.isCollaborator;
+				view.isPublisher = courseProxy.isPublisher;
+			}	
 			
 			view.saveCourse.add(onSaveCourse);
 			view.addText.add(onAddText);
@@ -73,6 +73,8 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
+				RotterdamNotifications.PREVIEW_SHOWN,
+				RotterdamNotifications.PREVIEW_HIDDEN,
 				RotterdamNotifications.TEXT_SELECTED,
 				RotterdamNotifications.WIDGET_EDIT,
 				RotterdamNotifications.WIDGET_SELECT,
@@ -83,6 +85,7 @@
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
 			
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			switch (note.getName()) {
 				case RotterdamNotifications.TEXT_SELECTED:
 					view.setCurrentTextFormat(note.getBody() as TextLayoutFormat);
@@ -96,6 +99,10 @@
 				case RotterdamNotifications.CAPTION_SELECTED:
 					view.urlCaption = note.getBody().caption as String;
 					view.urlString = note.getBody().urlString as String;
+					break;
+				case RotterdamNotifications.PREVIEW_SHOWN:
+				case RotterdamNotifications.PREVIEW_HIDDEN:
+					view.previewMode = courseProxy.isPreviewMode;
 					break;
 			}
 		}
@@ -149,11 +156,11 @@
 		}
 		
 		protected function onPreview():void {
-			facade.sendNotification(RotterdamNotifications.PREVIEW_SHOW);
+			facade.sendNotification(RotterdamNotifications.PREVIEW_SHOW, true);
 		}
 		
 		protected function onBackToEditor():void {
-			facade.sendNotification(RotterdamNotifications.PREVIEW_HIDE);
+			facade.sendNotification(RotterdamNotifications.PREVIEW_HIDE, false);
 		}
 		
 		// gh#221
@@ -170,6 +177,7 @@
 		}
 		
 		// gh#91 This seems clumsy
+		/*
 		protected function onGetPermission():void {
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			view.isEditable = courseProxy.isEditable;
@@ -177,6 +185,7 @@
 			view.isCollaborator = courseProxy.isCollaborator;
 			view.isPublisher = courseProxy.isPublisher;
 		}
+		*/
 
 	}
 }

@@ -52,6 +52,8 @@
 			view.isOwner = courseProxy.isOwner;
 			view.isCollaborator = courseProxy.isCollaborator;
 			view.isPublisher = courseProxy.isPublisher;
+			if (courseProxy.isPublisher)
+				facade.sendNotification(RotterdamNotifications.PREVIEW_SHOW, true);
 		}
 		
 		override public function onRemove():void {
@@ -71,8 +73,8 @@
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
-				RotterdamNotifications.PREVIEW_SHOW,
-				RotterdamNotifications.PREVIEW_HIDE,
+				RotterdamNotifications.PREVIEW_SHOWN,
+				RotterdamNotifications.PREVIEW_HIDDEN,
 				BBNotifications.ITEM_DIRTY,
 			]);
 		}
@@ -80,12 +82,11 @@
 		override public function handleNotification(note:INotification):void {
 			super.handleNotification(note);
 			
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			switch (note.getName()) {
-				case RotterdamNotifications.PREVIEW_SHOW:
-					view.previewVisible = true;
-					break;
-				case RotterdamNotifications.PREVIEW_HIDE:
-					view.previewVisible = false;
+				case RotterdamNotifications.PREVIEW_SHOWN:
+				case RotterdamNotifications.PREVIEW_HIDDEN:
+					view.previewVisible = courseProxy.isPreviewMode;
 					break;
 				case BBNotifications.ITEM_DIRTY:
 					if (note.getBody().toString() == 'settings')

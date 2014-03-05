@@ -17,6 +17,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.MediaSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaUploadErrorCommand;
+	import com.clarityenglish.rotterdam.builder.controller.PreviewModeCommand;
 	import com.clarityenglish.rotterdam.builder.controller.SendWelcomeEmailCommand;
 	import com.clarityenglish.rotterdam.builder.controller.UnitCopyCommand;
 	import com.clarityenglish.rotterdam.builder.controller.UnitPasteCommand;
@@ -106,6 +107,10 @@
 			// gh#110
 			registerCommand(RotterdamNotifications.UNIT_COPY, UnitCopyCommand);
 			registerCommand(RotterdamNotifications.UNIT_PASTE, UnitPasteCommand);
+			
+			// gh#91
+			registerCommand(RotterdamNotifications.PREVIEW_SHOW, PreviewModeCommand);
+			registerCommand(RotterdamNotifications.PREVIEW_HIDE, PreviewModeCommand);
 			
 			// gh#122
 			registerCommand(RotterdamNotifications.SEND_WELCOME_EMAIL, SendWelcomeEmailCommand);

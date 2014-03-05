@@ -273,6 +273,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var isOwner:Boolean = false;
 		public var isPublisher:Boolean = false;
 		public var isCollaborator:Boolean = false;
+		private var _isPreviewMode:Boolean = false;
 		
 		[Bindable]
 		private var contentWindowTitle:String;
@@ -346,6 +347,19 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			}
 		}
 		
+		public function set previewMode(value:Boolean):void {
+			_isPreviewMode = value;
+			if (value) {
+				setCurrentState("preview");
+			} else {
+				setCurrentState("normal");
+			}
+			invalidateSkinState();
+		}
+		public function get previewMode():Boolean {
+			return _isPreviewMode;
+		}
+
 		protected override function onAddedToStage(event:Event):void {
 			super.onAddedToStage(event);
 			
@@ -367,10 +381,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			// gh#91 DKHELP
-			if (isPublisher) {
-				preview.dispatch();
-				setCurrentState("preview");
+			if (previewBackToEditorButton) {
+				if (previewMode && isPublisher) {
+					previewBackToEditorButton.visible = false;
+				} else {
+					previewBackToEditorButton.visible = true;					
+				}
 			}
 
 			if (addItemButton) {
@@ -398,7 +414,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					normalSaveButton.label = copyProvider.getCopyForId("normalSaveButton");
 					// gh#91 You can only save if allowed
 					// Using a signal like this seems very clumsy
-					onGetPermission.dispatch();
+					//onGetPermission.dispatch();
 					if (isEditable && (isOwner || isCollaborator)) { 
 						normalSaveButton.addEventListener(MouseEvent.CLICK, onNormalSave);
 						normalSaveButton.visible = true;

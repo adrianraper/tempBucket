@@ -49,6 +49,9 @@
 		// Preview notifications
 		public static const PREVIEW_SHOW:String = "rotterdam/preview_show";
 		public static const PREVIEW_HIDE:String = "rotterdam/preview_hide";
+		// gh#91
+		public static const PREVIEW_SHOWN:String = "rotterdam/preview_shown";
+		public static const PREVIEW_HIDDEN:String = "rotterdam/preview_hidden";
 				
 		// Upload notifications
 		public static const MEDIA_SELECT:String = "rotterdam/media_select";
@@ -78,6 +81,7 @@
 
 		// gh#751
 		public static const COURSE_SAVE_ERROR:String = "rotterdam/course_save_error";
+		
 	}
 	
 }

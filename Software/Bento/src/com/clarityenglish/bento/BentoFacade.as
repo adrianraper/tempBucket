@@ -196,7 +196,7 @@
 				var uniqueMediatorName:String = ClassUtil.getClassAsString(mediatorClass) + new Date().getTime().toString();
 				var mediator:IMediator = new mediatorClass(uniqueMediatorName, viewComponent);
 				
-				log.info("Auto-mediating with mediator {0} (unique mediator name={1})", mediator, uniqueMediatorName);
+				log.info("OOAuto-mediating with mediator {0} (unique mediator name={1})", mediator, uniqueMediatorName);
 				
 				registerMediator(mediator);
 				

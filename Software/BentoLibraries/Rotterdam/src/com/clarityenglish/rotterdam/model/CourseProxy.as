@@ -56,6 +56,7 @@ package com.clarityenglish.rotterdam.model {
 		// gh#91
 		private var _editable:Boolean = false;
 		private var _role:int = 0;
+		private var _previewMode:Boolean = false;
 		
 		public function CourseProxy(data:Object = null) {
 			super(NAME, data);
@@ -88,14 +89,8 @@ package com.clarityenglish.rotterdam.model {
 		public function afterXHTMLLoad(facade:Facade, href:Href):void {
 			if (href.type == Href.MENU_XHTML) {
 				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-				if (bentoProxy.menuXHTML) {
+				if (bentoProxy.menuXHTML)
 					XMLNotifier.getInstance().watchXML(bentoProxy.menuXHTML.xml, xmlWatcher);
-					
-					// gh#91 How best to get the xml from the href or bentoProxy?
-					var permission:XML = bentoProxy.menuXHTML.selectOne("script#model[type='application/xml'] permission");
-					if (permission)
-						setPermission(permission);
-				}
 			}
 		}
 		
@@ -125,6 +120,12 @@ package com.clarityenglish.rotterdam.model {
 			// Make sure the same unit stays selected (if there is one)
 			//Alice: For the newly created unit, the unit ID is empty
 			if (currentUnit && courseNode.unit.hasOwnProperty("@id")) currentUnit = courseNode.unit.(@id == currentUnit.@id)[0];
+			
+			// gh#91 Set permission for this course
+			if (courseNode.permission && courseNode.permission.hasOwnProperty("@role"))
+				setPermission(courseNode.permission);
+			// gh#91 and set a default preview mode if you are a publisher
+			isPreviewMode = isPublisher;
 		}
 		
 		public function get currentCourse():XHTML {
@@ -234,11 +235,18 @@ package com.clarityenglish.rotterdam.model {
 		public function get isPublisher():Boolean {
 			return _role == Course.ROLE_PUBLISHER;	
 		}
-		public function setPermission(permission:XML):void {
-			if (permission) {
+		public function setPermission(permission:XMLList):void {
+			if (permission && permission.hasOwnProperty("@role")) {
 				_editable = (permission.@editable == "true") ? true : false;
 				_role = int(permission.@role);
 			}
+		}
+		public function get isPreviewMode():Boolean {
+			return _previewMode;
+		}
+		public function set isPreviewMode(mode:Boolean):void {
+			if (_previewMode != mode)
+				_previewMode = mode;
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

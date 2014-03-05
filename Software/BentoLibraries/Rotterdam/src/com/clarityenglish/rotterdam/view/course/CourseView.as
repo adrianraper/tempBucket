@@ -79,7 +79,7 @@ package com.clarityenglish.rotterdam.view.course {
 		// or should we just let the mediator do it?
 		public var group:com.clarityenglish.common.vo.manageable.Group;
 		
-		private var _isPreviewVisible:Boolean;
+		private var _isPreviewVisible:Boolean = false;
 		// gh#211
 		private var currentIndex:Number;
 		private var unitListLength:Number;
@@ -87,7 +87,7 @@ package com.clarityenglish.rotterdam.view.course {
 		private var isOutsideClick:Boolean;
 		private var isItemClick:Boolean;
 		private var isHidden:Boolean;
-		private var isPreview:Boolean;
+		//private var isPreview:Boolean;
 		// gh#91
 		public var isOwner:Boolean;
 		public var isCollaborator:Boolean;
@@ -98,8 +98,10 @@ package com.clarityenglish.rotterdam.view.course {
 		public var helpPublish:Signal = new Signal();
 		public var unitDuplicate:Signal = new Signal();
 		
-		public function get course():XML {	
-			return _xhtml.selectOne("script#model[type='application/xml'] course");
+		public function get course():XML {
+			if (_xhtml)
+				return _xhtml.selectOne("script#model[type='application/xml'] course");
+			return null;
 		}
 		
 		public function set previewVisible(value:Boolean):void {
@@ -112,7 +114,9 @@ package com.clarityenglish.rotterdam.view.course {
 		// gh#208
 		[Bindable(event="publishChanged")]
 		public function get canPublish():Boolean {
-			return(course.publication && course.publication.group.length() == 0) ? true : false;
+			if (course)
+				return (course.publication && course.publication.group.length() == 0) ? true : false;
+			return false;
 		}
 		
 		public function canPasteFromTarget(target:Object):Boolean {
