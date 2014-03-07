@@ -230,12 +230,11 @@ package com.clarityenglish.bento.view.recorder {
 		
 		private function onNewWave(e:WaveformEvent):void {
 			var audioProxy:AudioProxy = facade.retrieveProxy(view.audioProxyName) as AudioProxy;
-			if (audioProxy.isMap3Saved()) {
-				sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, view.audioProxyName);
-			} else {
+			if (view.isSaveEnabled && !audioProxy.isMap3Saved()) {
 				sendNotification(BBNotifications.WARN_DATA_LOSS, null, "recording_not_saved");
+			} else {
+				sendNotification(RecorderNotifications.CLEAR_WAVEFORM, null, view.audioProxyName);
 			}
-			
 		}
 		
 		/*

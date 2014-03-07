@@ -52,7 +52,7 @@
 					<s:Spacer height="10" />
 				</s:VGroup>
 				<s:VGroup id="CTIPOption1TitleBlock" gap="10" includeIn="loginIPConcurrentTracking">
-					<s:Label id="option1Label" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+					<s:Label id="option1Label" color="0xFFFFFF" fontSize="18" fontWeight="bold"/>
 					<s:Label id="option1InstructionLabel" fontSize="12" color="0xFFFFFF" width="300"/>
 				</s:VGroup>
 			</s:Group>
@@ -70,13 +70,13 @@
 			
 			<s:VGroup id="CTOption2TitleBlock" gap="10" includeIn="loginIPConcurrentTracking">
 				<s:VGroup paddingTop="5" paddingLeft="-20">
-					<s:Rect horizontalCenter="-20" width="{280 + loginButton.width}" height="1">
+					<s:Rect horizontalCenter="-20" width="{270 + loginButton.width}" height="1">
 						<s:fill>
 							<s:SolidColor color="0xEC1C32" />
 						</s:fill>
 					</s:Rect>
 				</s:VGroup>
-				<s:Label id="option1Labe2" color="0xFFFFFF" fontSize="21" fontWeight="bold"/>
+				<s:Label id="option1Labe2" color="0xFFFFFF" fontSize="18" fontWeight="bold"/>
 				<s:HGroup gap="0">
 					<s:Label id="option2InstructionLabel" fontSize="12" color="0xFFFFFF" width="190"/>
 					<s:VGroup paddingTop="-5">
@@ -123,10 +123,16 @@
 		</s:VGroup>
 	</s:Group>
 	
-	<!--s:Label text="v{hostComponent.parentApplication.versionNumber}" color="#000000" right="3" bottom="0"/-->
+	<s:Group width="100%" height="100%" id="disableGroup">
+		<s:Rect width="100%" height="100%">
+			<s:fill>
+				<s:SolidColor color="0X000000" alpha="0.6" />
+			</s:fill>
+		</s:Rect>
+	</s:Group>
 	
 	<s:Group width="100%" height="100%">
-		<s:BusyIndicator id="busyIndicator" symbolColor="0xFFFFFF" horizontalCenter="10" verticalCenter.registerStates="120" verticalCenter.loginIPConcurrentTracking="120" includeIn="loginIPConcurrentTracking, registerStates" />
+		<s:BusyIndicator id="busyIndicator" symbolColor="0xFFFFFF" horizontalCenter="0" verticalCenter="0" includeIn="loginIPConcurrentTracking, registerStates" />
 	</s:Group>
 	
 	<!-- Footer -->

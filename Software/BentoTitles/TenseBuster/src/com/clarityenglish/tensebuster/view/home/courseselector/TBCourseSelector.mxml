@@ -133,6 +133,8 @@
 							showAdvance();
 							break; 						
 					}
+				} else {
+					initializeCourseSelector();
 				}
 			}
 			
@@ -272,6 +274,37 @@
 				advanced.enabled = true;
 			}
 			
+			protected function initializeCourseSelector():void {
+				elementary.x = ActivePos_x;
+				elementary.y = ActivePos_y;
+				elementary.scaleX = 1;
+				elementary.scaleY = 1;
+				elementary.enabled = true;
+				
+				lowerInter.x = FirstPos_x;
+				lowerInter.y = FirstPos_y;
+				lowerInter.scaleX = 1;
+				lowerInter.scaleY = 1;
+				lowerInter.enabled = true;
+				
+				intermediate.x = SecondPos_x;
+				intermediate.y = SecondPos_y;
+				intermediate.scaleX = 1;
+				intermediate.scaleY = 1;
+				intermediate.enabled = true;
+				
+				upperInter.x = ThirdPos_x;
+				upperInter.y = ThirdPos_y;
+				upperInter.scaleX = 1;
+				upperInter.scaleY = 1;
+				upperInter.enabled = true;
+				
+				advanced.x = FourthPos_x;
+				advanced.y = FourthPos_y;
+				advanced.scaleX = 1;
+				advanced.scaleY = 1;
+				advanced.enabled = true;
+			}
 		]]>
 	</fx:Script>
 	

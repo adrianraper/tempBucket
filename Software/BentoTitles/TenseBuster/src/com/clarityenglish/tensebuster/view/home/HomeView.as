@@ -77,7 +77,7 @@ package com.clarityenglish.tensebuster.view.home {
 		private var unitChanged:Boolean;
 		private var _courseIndex:Number;
 		private var _isBackToHome:Boolean;
-		private var _isFirstClickLevel:Boolean =  true;
+		private var _isInitialSelect:Boolean =  true;
 		private var _androidSize:String;
 		
 		// gh#757
@@ -88,11 +88,9 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		// gh#757
 		public function set course(value:XML):void {
-			if (_course != value && value != null) {
-				_course = value;
-				courseChanged = true;
-				invalidateProperties();
-			}			
+			_course = value;
+			courseChanged = true;
+			invalidateProperties();	
 		}
 		
 		[Bindable]
@@ -124,12 +122,12 @@ package com.clarityenglish.tensebuster.view.home {
 			_isBackToHome = value;
 		}
 		
-		public function get isFirstClickLevel():Boolean {
-			return _isFirstClickLevel;
+		public function get isInitialSelect():Boolean {
+			return _isInitialSelect;
 		}
 		
-		public function set isFirstClickLevel(value:Boolean):void {
-			_isFirstClickLevel = value;
+		public function set isInitialSelect(value:Boolean):void {
+			_isInitialSelect = value;
 		}
 		
 		public function set androidSize(value:String):void {
@@ -139,19 +137,13 @@ package com.clarityenglish.tensebuster.view.home {
 		override protected function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
-			// When back to home page, course and unit node keeps the old values
-			if (isBackToHome) {
-				isFirstClickLevel = false;
-			}
-			
-			//when logout and login again, all the previously selected node's children will disappear		
-			if (course && course.unit[0] == null) {
-				course = menu.course.(@id == course.@id)[0];
-				if (unit && unit.exercise[0] == null) {
-					// This should really not be there, for now because we cannot know whether user come back from exercise or login again, so we need to put courseChanged = false here
-					//courseChanged = false;
-					unit = course.unit.(@id == unit.@id)[0];
-				}
+			if (!courseSelector.level) {
+				instructioGroup.visible = true;
+				var downMove:Move = new Move();
+				downMove.yFrom = 0;
+				downMove.yTo = 160;
+				downMove.duration = 300;
+				downMove.play([instructioGroup]);
 			}
 		}
 
@@ -200,19 +192,24 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		protected override function commitProperties():void {			
 			super.commitProperties();
-			
-			if (courseChanged && unitChanged) {
-				if (course && unit) {
-					isBackToHome = true;
-					//courseSelector.level = null;
-				}
+
+			// for re-login
+			if (!course && !unit) {
+				courseSelector.level = null;
+				unitList.visible = false;
+				isInitialSelect = true;
+				courseSelector.level = null;
 			}
 			
-			if (courseChanged) {
+			// for back from exercise or progress with all lists open in home page
+			// when come back from progress in online version, because one by one fadingin effect execute before onCreaionComplete in skin, so we need to set isBackToHome in advance
+			if (course && courseChanged && unit && unitChanged) {
+				isBackToHome = true;
+			}
+			
+			if (courseChanged && course) {
 				courseIndex = menu.course.(@caption == course.@caption).childIndex();
-				if (!isBackToHome) {
-					courseSelector.level = course;
-				}
+				courseSelector.level = course;
 				courseChanged = false;
 			}
 			
@@ -263,24 +260,14 @@ package com.clarityenglish.tensebuster.view.home {
 			}
 		}
 		
-		protected function onUnitListClick(event:MouseEvent):void {
-			// just for the situation when back to home
-			if (isBackToHome) {
-				unitList.selectedItem = unit;
-				unitList.selectedIndex = course.unit.(@id == this.unit.@id).childIndex();
-				// don't know why, but the unitList top is null when back to home view
-				//unitList.top = 295;
-				
-				isBackToHome = false;
-			} 
-			
+		protected function onUnitListClick(event:MouseEvent):void {		
 			var unitXML:XML =  event.currentTarget.selectedItem as XML;
 			if (unitXML) {
 				if (triangleReferenceGroup.y) {
 					var move:Move = new Move();
 					move.easingFunction = Back.easeOut;
 					move.yFrom = triangleReferenceGroup.y;
-					move.yTo = 50 + event.currentTarget.selectedIndex * 39;					
+					move.yTo = 50 + event.currentTarget.selectedIndex * 39;	
 					move.duration = 300;
 					move.play([triangleReferenceGroup]);
 				} else {

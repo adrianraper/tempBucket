@@ -35,7 +35,6 @@
 			import spark.events.RendererExistenceEvent;
 			
 			public var isFirstClickCurrentUnitList:Boolean = true;
-			private var isFirstClickLevel:Boolean = true;
 			private var isUnitListClick:Boolean;
 			private var unitListRendererArray:Array = [];
 			
@@ -80,8 +79,8 @@
 				unitList.visible = false;
 				
 				// we need to detect the first click. If it is, the levelTitleGroup won't fade out, because it never fade in before.
-				if (isFirstClickLevel) {
-					isFirstClickLevel = false;
+				if (hostComponent.isInitialSelect) {
+					hostComponent.isInitialSelect = false;
 				} else {
 					var titleFadeOut:mx.effects.Fade = new Fade();
 					titleFadeOut.alphaFrom = 1.0;
@@ -190,38 +189,30 @@
 					homeInitialBg.source = initial10InchesBg;
 				}
 				
-				if(hostComponent.isBackToHome) {
+				if (courseSelector.level) {
+					hostComponent.isBackToHome = true;
+					instructioGroup.visible = false;
+					hostComponent.isInitialSelect = false;
+					
 					courseSelector.level = hostComponent.course;				
 					
 					levelTitleGroupLabel.text = hostComponent.course.@caption;
 					levelTitleGroup.alpha = 1;
+					setTitleBarColor();
 					
 					unitList.height = unitList.dataProvider.length * 39 + 13;
-					unitList.selectedIndex = hostComponent.course.unit.(@id == hostComponent.unit.@id).childIndex();
 					unitList.visible = true;
 					unitList.alpha = 1;
 					
-					
-					triangleGroup.alpha = 1;
-					triangleReferenceGroup.y = 50 + unitList.selectedIndex * 39;
-					
-					setTitleBarColor();
-					exerciseGroup.alpha = 1;
-					
-					isFirstClickCurrentUnitList = false;
-				}
-				
-				if (!courseSelector.level) {
-					// See whether should show the instruction when user have already clicked level
-					var downMove:Move = new Move();
-					downMove.yFrom = 0;
-					downMove.yTo = 160;
-					downMove.duration = 300;
-					downMove.play([instructioGroup]);
-				} else {
-					// when the unit list only open, isBackHome is not set to true when back from progress, so we need to hide instructionGroup here
-					instructioGroup.visible = false;
-					isFirstClickLevel = false;				
+					if (hostComponent.unit) {
+						unitList.selectedIndex = hostComponent.course.unit.(@id == hostComponent.unit.@id).childIndex();
+						isFirstClickCurrentUnitList = false;
+						
+						triangleGroup.alpha = 1;
+						triangleReferenceGroup.y = 50 + unitList.selectedIndex * 39;
+										
+						exerciseGroup.alpha = 1;
+					}	
 				}
 			}		
 		]]>
@@ -302,31 +293,33 @@
 							public override function set data(value:Object):void {
 								super.data = value;
 								
-								overallProgressPath.percentWidth = data.@coverage;
-								
-								// Because the last button in unit list has bottom rounded corner, so we need to find the last button
-								if (outerDocument.hostComponent.course.unit.(@caption == data.@caption).childIndex() == (outerDocument.hostComponent.course.unit.length() - 1)) {
-									backgroundRect.bottomLeftRadiusX = 5;
-									backgroundRect.bottomLeftRadiusY = 5;
-									backgroundRect.bottomRightRadiusX = 5;
-									backgroundRect.bottomRightRadiusY = 5;
+								if (data) {
+									overallProgressPath.percentWidth = data.@coverage;
 									
-									overallProgressPath.bottomLeftRadiusX = 5;
-									overallProgressPath.bottomLeftRadiusY = 5;
-									if (data.@coverage == 100) {
-										overallProgressPath.bottomRightRadiusX = 5;
-										overallProgressPath.bottomRightRadiusY = 5;
+									// Because the last button in unit list has bottom rounded corner, so we need to find the last button
+									if (outerDocument.hostComponent.course.unit.(@caption == data.@caption).childIndex() == (outerDocument.hostComponent.course.unit.length() - 1)) {
+										backgroundRect.bottomLeftRadiusX = 5;
+										backgroundRect.bottomLeftRadiusY = 5;
+										backgroundRect.bottomRightRadiusX = 5;
+										backgroundRect.bottomRightRadiusY = 5;
+										
+										overallProgressPath.bottomLeftRadiusX = 5;
+										overallProgressPath.bottomLeftRadiusY = 5;
+										if (data.@coverage == 100) {
+											overallProgressPath.bottomRightRadiusX = 5;
+											overallProgressPath.bottomRightRadiusY = 5;
+										}
+									} else {
+										backgroundRect.bottomLeftRadiusX = 0;
+										backgroundRect.bottomLeftRadiusY = 0;
+										backgroundRect.bottomRightRadiusX = 0;
+										backgroundRect.bottomRightRadiusY = 0;
+										
+										overallProgressPath.bottomLeftRadiusX = 0;
+										overallProgressPath.bottomLeftRadiusY = 0;
+										overallProgressPath.bottomRightRadiusX = 0;
+										overallProgressPath.bottomRightRadiusY = 0;
 									}
-								} else {
-									backgroundRect.bottomLeftRadiusX = 0;
-									backgroundRect.bottomLeftRadiusY = 0;
-									backgroundRect.bottomRightRadiusX = 0;
-									backgroundRect.bottomRightRadiusY = 0;
-									
-									overallProgressPath.bottomLeftRadiusX = 0;
-									overallProgressPath.bottomLeftRadiusY = 0;
-									overallProgressPath.bottomRightRadiusX = 0;
-									overallProgressPath.bottomRightRadiusY = 0;
 								}
 							}
 							
@@ -402,7 +395,7 @@
 	</s:List>
 	
 	<!--unit list title bar-->
-	<s:Group id="levelTitleGroup" alpha="0" top.normal7Inches="135" top.normal10Inches="250" horizontalCenter.normal7Inches="-130" horizontalCenter.normal10Inches="-240">
+	<s:Group id="levelTitleGroup" alpha="0" top.normal7Inches="135" top.normal10Inches="250" horizontalCenter.normal7Inches="-130" horizontalCenter.normal10Inches="-240" visible="{courseSelector.level != null}">
 		<s:Path filters="{[dropShadowFilter]}" x="-0.000259399" winding="nonZero" data="M26.4695 44.2207C24.9104 44.2207 22.7058 43.3467 21.5701 42.2793L0.82106 22.7681C-0.314682 21.7002 -0.265854 20.0073 0.929459 19.0068L21.4617 1.81934C22.657 0.818848 24.9104 0 26.4695 0L275.676 0C277.236 0 279.485 0.82373 280.675 1.83105L285.996
 				6.33301C287.187 7.34033 288.16 9.43945 288.16 10.9985L288.16 33.2217C288.16 34.7813 287.187 36.8809 285.996 37.8877L280.675 42.3896C279.485 43.3965 277.236 44.2207 275.676 44.2207L26.4695 44.2207Z">
 			<s:fill>
@@ -497,36 +490,6 @@
 									super.data = value;
 									
 									courseIndex = outerDocument.hostComponent.courseIndex;
-									
-									// just for the situation when back to home view
-									/*exButtonGroup.alpha = 0;
-									if (data) {
-									// we add one by one fade in for item in exercise list here
-									if (outerDocument.isFirstClickCurrentUnitList) {
-									var total:Number = outerDocument.exerciseList.dataProvider.length;
-									if ( total % 2 == 0) {
-									if (getSequenceNumber(data) <= total / 2) {
-									delay = 10 * (total / 2 - getSequenceNumber(data)) * (total / 2 - getSequenceNumber(data)) + 10;
-									} else {
-									delay = 5 * (getSequenceNumber(data) - total / 2) * (getSequenceNumber(data) - total / 2) + 10;
-									}
-									} else {
-									if (getSequenceNumber(data) <= total/2) {
-									delay = 10 * ((total + 1) / 2 - getSequenceNumber(data)) * ((total + 1) / 2 - getSequenceNumber(data)) + 10;
-									} else {
-									delay = 5 * (getSequenceNumber(data) - (total + 1) / 2) * (getSequenceNumber(data) - (total + 1) / 2) + 10;
-									}
-									
-									}
-									
-									fadeIn.alphaFrom = 0
-									fadeIn.alphaTo = 1;
-									fadeIn.startDelay = delay;											
-									fadeIn.play([exButtonGroup]);
-									} else {
-									exButtonGroup.alpha = 1;
-									}
-									}*/
 								}	
 							]]>
 						</fx:Script>

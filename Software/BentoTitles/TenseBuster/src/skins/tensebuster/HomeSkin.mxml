@@ -39,10 +39,9 @@
 			import spark.events.RendererExistenceEvent;
 			
 			public var isFirstClickCurrentUnitList:Boolean = true;
-			public var isFirstClickUnitList:Boolean = true;
+			public var isAnimationPlayed:Boolean;
+			private var isUnitListClicked:Boolean;
 			public var exListAlphaArray:Array = [];
-			private var isFirstClickLevel:Boolean = true;
-			private var isUnitListClick:Boolean;
 			private var unitListRendererArray:Array = [];
 			
 			public function getTitleBarTopColor(index:Number):Number {		
@@ -77,61 +76,49 @@
 			
 			protected function onCourseSelectorSelect(event:Event):void {
 				levelTitleGroup.alpha = 0;
+				unitList.visible = false;
 				
 				// we need to detect the first click. If it is, the levelTitleGroup won't fade out, because it never fade in before.
-				if (isFirstClickLevel) {
-					isFirstClickLevel = false;
+				if (hostComponent.isInitialSelect) {
+					hostComponent.isInitialSelect = false;
 				} else {
-					// Using isBackToHome judge wheter the auto open list when back to home is all open
-					// if it is not, we need to set isBackTohome to false
-					if (hostComponent.isBackToHome) {
-						hostComponent.isBackToHome = false;
-					}
-					
 					var titleFadeOut:mx.effects.Fade = new Fade();
 					titleFadeOut.alphaFrom = 1.0;
 					titleFadeOut.alphaTo = 0.0;
 					titleFadeOut.duration = 200;
 					titleFadeOut.play([levelTitleGroup]);
 					
-					var unitListFadeOut:Fade = new Fade();
-					unitListFadeOut.alphaFrom = 1;
-					unitListFadeOut.alphaTo = 0;
-					unitListFadeOut.duration = 100;
-					unitListFadeOut.play([unitList]);
-					
 					// if we don't add the following condition, the exerciseGroup will flash when we only switch the unit list
-					if (isUnitListClick) {
+					if (isUnitListClicked) {
 						var exerciseFadeOut:mx.effects.Fade = new mx.effects.Fade();
 						exerciseFadeOut.alphaFrom = 1;
 						exerciseFadeOut.alphaTo = 0;
 						exerciseFadeOut.duration = 100;
 						exerciseFadeOut.play([exerciseGroup, triangleGroup]);
 						
-						isUnitListClick = false;
+						isUnitListClicked = false;
 					}					
 				}				
 			}
 			
 			protected function onAnimationCompleted(event:Event):void {
-				levelTitleGroupLabel.text = hostComponent.course.@caption;
-				
-				// We set title bar new gradient here for remaining time for old gradient title bar fading out
-				// If we set gradient inside tag, the color will change immediately when the courseIndex change, so we never can see the old gradient fade out
-				unitTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
-				unitTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
-				unitTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
-				
-				var	fadeIn:mx.effects.Fade = new Fade();
-				fadeIn.alphaFrom = 0.0;
-				fadeIn.alphaTo = 1.0;
-				fadeIn.duration = 100;
-				fadeIn.play([levelTitleGroup]);
-				fadeIn.addEventListener(EffectEvent.EFFECT_END, onUnitTitleBarFadeOutEnd);
+				if (!hostComponent.isBackToHome) {
+					levelTitleGroupLabel.text = hostComponent.course.@caption;
+					setTitleBarColor();
+					
+					var	fadeIn:mx.effects.Fade = new Fade();
+					fadeIn.alphaFrom = 0.0;
+					fadeIn.alphaTo = 1.0;
+					fadeIn.duration = 100;
+					fadeIn.play([levelTitleGroup]);
+					fadeIn.addEventListener(EffectEvent.EFFECT_END, onUnitTitleBarFadeOutEnd);
+				} else {
+					hostComponent.isBackToHome = false;
+				}	
 			}
 			
 			protected function onUnitTitleBarFadeOutEnd(event:Event):void {
-				unitList.alpha = 1;
+				unitList.visible = true;
 				
 				var resize:mx.effects.Resize = new Resize();
 				resize.heightFrom = 0;
@@ -148,29 +135,17 @@
 				// So here I reset initial value to the related component. 
 				// If we put in onCourseSelectorSelect, isFirstClickCurrentUnitList won't be true for onExerciseListResizeEnd is executed later than onCourseSelectorSelect
 				isFirstClickCurrentUnitList = true;
-				isFirstClickUnitList = true;
+				isAnimationPlayed = false;
 				exListAlphaArray = [];
 				triangleGroup.alpha = 0;
 				triangleReferenceGroup.y = new Number();
-				
-				if (hostComponent.isBackToHome) {
-					exerciseList.dataProvider = new XMLListCollection(hostComponent.getExercisesList(hostComponent.unit));
-					unitList.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
-				}
 			}
 			
-			protected function onUnitListClick(event:MouseEvent):void {
-				topExerciseTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
-				topExerciseTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
-				topExerciseTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
-				bottomExerciseTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
-				bottomExerciseTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
-				bottomExerciseTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
-				
+			protected function onUnitListClick(event:MouseEvent):void {				
 				exerciseGroup.alpha = 1;
 				// for running in tablet. The empty list will show if we don't add this line
 				exerciseList.visible = true;
-				if (isFirstClickCurrentUnitList) {
+				if (isFirstClickCurrentUnitList && isAnimationPlayed) {
 					var scale:Scale = new Scale();
 					scale.scaleYFrom = 0;
 					scale.scaleYTo = 1;
@@ -185,31 +160,36 @@
 					fadeIn.startDelay = 200;
 					fadeIn.play([triangleGroup]);
 					// for exercise list frame, when the list doesn't roll out completely and we selecte another unit, we don't want it to roll out again
-					isFirstClickCurrentUnitList = false;
+					isAnimationPlayed = false;
 				}
-				
-				// When user click other levels, the unitList.dataprovider is empty. So we cannot use unitList.selectedItem to judge whether unit list has been clicked or not
-				isUnitListClick = true;
+				isUnitListClicked = true;
 			}
 			
 			protected function onScaleEnd(event:Event):void {
 				// for the item on exercise list, when you first click unit with 6 exercises, and then click another with 11,
 				// the first 6 items has played fade in already and won't play again, but we also don't want the rest 5 items played fade in. So we use isFirstClickUnitList to avoid playing
-				isFirstClickUnitList = false;
+				isFirstClickCurrentUnitList = false;
+			}
+			
+			protected function setTitleBarColor():void {
+				// We set title bar new gradient here for remaining time for old gradient title bar fading out
+				// If we set gradient inside tag, the color will change immediately when the courseIndex change, so we never can see the old gradient fade out
+				unitTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
+				unitTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
+				unitTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
+				
+				topExerciseTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
+				topExerciseTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
+				topExerciseTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
+				bottomExerciseTitleBarTopColor.color = getTitleBarTopColor(hostComponent.courseIndex);
+				bottomExerciseTitleBarMidColor.color = getTitleBarMidColor(hostComponent.courseIndex);
+				bottomExerciseTitleBarBottomColor.color = getTitleBarBottomColor(hostComponent.courseIndex);
 			}
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				// TODO Auto-generated method stub
 				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
 				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);				
 				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
-				
-				if (hostComponent.isBackToHome) {
-					courseSelector.level = hostComponent.course;
-					exerciseList.dataProvider = null;
-					
-					isFirstClickLevel = false;
-				}
 				
 				// !courseSelector.level use to judge the initial situation
 				if (!courseSelector.level) {
@@ -219,10 +199,27 @@
 					downMove.duration = 300;
 					downMove.play([instructioGroup]);
 				} else {
-					// When back from progress to home page, if only the unit list open, "isBackHome" doesn't set to true in HomeView so we need to hide instructionGroup here
-					// but not inside "hostComponent.isBackToHome".
+					hostComponent.isBackToHome = true;
 					instructioGroup.visible = false;
-					isFirstClickLevel = false;				
+					hostComponent.isInitialSelect = false;
+					
+					levelTitleGroupLabel.text = hostComponent.course.@caption;
+					levelTitleGroup.alpha = 1;
+					setTitleBarColor();
+					
+					unitList.height = unitList.dataProvider.length * 39 + 13;
+					unitList.visible = true;
+					unitList.alpha = 1;
+					
+					if (hostComponent.unit) {
+						unitList.selectedIndex = hostComponent.course.unit.(@id == hostComponent.unit.@id).childIndex();
+						isFirstClickCurrentUnitList = false;
+						
+						triangleGroup.alpha = 1;
+						triangleReferenceGroup.y = 50 + unitList.selectedIndex * 39;	
+						
+						exerciseGroup.alpha = 1;
+					}
 				}
 			}
 		]]>
@@ -262,7 +259,7 @@
 	
 	<!--unit list-->
 	<s:Group  horizontalCenter="-105" verticalCenter="0" height="400" width="267">
-		<s:List id="unitList" alpha="0" width="257" top="38" horizontalCenter="6" contentBackgroundAlpha="1" contentBackgroundColor="{getUnitListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.course.unit)}">
+		<s:List id="unitList" visible="false" width="257" top="38" horizontalCenter="6" contentBackgroundAlpha="1" contentBackgroundColor="{getUnitListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.course.unit)}">
 			<s:layout>
 				<s:VerticalLayout gap="1" paddingBottom="5" paddingTop="8" paddingLeft="4" paddingRight="4" /> 
 			</s:layout>
@@ -380,7 +377,7 @@
 		</s:List>
 		
 		<!--unit list title bar-->
-		<s:Group id="levelTitleGroup" alpha="0" top="0" horizontalCenter="0">
+		<s:Group id="levelTitleGroup" alpha="0" top="0" horizontalCenter="0" visible="{courseSelector.level != null}">
 			<s:Path filters="{[dropShadowFilter]}" x="-0.000259399" winding="nonZero" data="M26.4695 44.2207C24.9104 44.2207 22.7058 43.3467 21.5701 42.2793L0.82106 22.7681C-0.314682 21.7002 -0.265854 20.0073 0.929459 19.0068L21.4617 1.81934C22.657 0.818848 24.9104 0 26.4695 0L275.676 0C277.236 0 279.485 0.82373 280.675 1.83105L285.996
 					6.33301C287.187 7.34033 288.16 9.43945 288.16 10.9985L288.16 33.2217C288.16 34.7813 287.187 36.8809 285.996 37.8877L280.675 42.3896C279.485 43.3965 277.236 44.2207 275.676 44.2207L26.4695 44.2207Z">
 				<s:fill>
@@ -408,7 +405,7 @@
 	</s:Group>
 	
 	<!--exercise list-->
-	<s:Group id="exerciseGroup" horizontalCenter="230" verticalCenter="0" alpha="0">			
+	<s:Group id="exerciseGroup" horizontalCenter="230" verticalCenter="0" height="{exerciseList.dataProvider.length * 31 + 40}" alpha="0">			
 		<s:VGroup verticalCenter="-10" horizontalCenter="0" gap="0" filters="{[dropShadowFilter]}">
 			<s:Path visible="{exerciseList.dataProvider.length > 0}" winding="nonZero" filters="{[dropShadowFilter]}" data="M6.03369 14.666C4.47461 14.666 2.47949 14.0566 1.59961 13.3115 0.719727 12.5664 0 10.6816 0 9.12256L0 5.5415C0 3.98242 0.719727 2.09814 1.59961 1.35352 2.47949 0.608887 4.47461 0 6.03369 0L311.915 0C313.475 0 315.47 0.608887 316.35 1.35352 317.229
 					2.09814 317.949 3.98242 317.949 5.5415L317.949 9.12256C317.949 10.6816 317.229 12.5664 316.35 13.3115 315.47 14.0566 313.475 14.666 311.915 14.666L6.03369 14.666Z">
@@ -422,7 +419,7 @@
 			</s:Path>
 			
 			<s:VGroup paddingLeft="5" visible="{exerciseList.dataProvider.length > 0}">
-				<s:Rect id="exerciseRect" scaleY="0" width="309" height="{exerciseList.dataProvider.length * 31 + 40}">
+				<s:Rect id="exerciseRect" width="309" height="{exerciseList.dataProvider.length * 31 + 40}">
 					<s:fill>
 						<s:SolidColor color="{getExerciseListBackgroundColor(hostComponent.courseIndex)}" />
 					</s:fill>
@@ -441,7 +438,7 @@
 			</s:Path>				
 		</s:VGroup>
 		
-		<s:List id="exerciseList" visible="false" width="309" height="{exerciseList.dataProvider.length * 31}" horizontalCenter="0" verticalCenter="-10" labelField="@caption" contentBackgroundAlpha="0" contentBackgroundColor="{getExerciseListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false">
+		<s:List id="exerciseList" width="309" height="{exerciseList.dataProvider.length * 31}" horizontalCenter="0" verticalCenter="-10" labelField="@caption" contentBackgroundAlpha="0" contentBackgroundColor="{getExerciseListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false">
 			<s:layout>
 				<s:VerticalLayout gap="1" paddingLeft="20" paddingRight="20" />
 			</s:layout>
@@ -480,12 +477,12 @@
 									
 									// When the dataprovider change, the exButtonGroup's will not reset to 0 and keeps 1. So we need to reset here
 									exButtonGroup.alpha = 0;
-									if (data) {
+									if (data && !outerDocument.hostComponent.isBackToHome) {
 										if (!outerDocument.exListAlphaArray[getSequenceNumber(data)]) {
 											outerDocument.exListAlphaArray[getSequenceNumber(data)] = 0;
 										}
 										// we add one by one fade in for item in exercise list here 
-										if (outerDocument.isFirstClickUnitList && (outerDocument.exListAlphaArray.length == 2 || outerDocument.exListAlphaArray[getSequenceNumber(data)] == 0)) {
+										if (outerDocument.isFirstClickCurrentUnitList && (outerDocument.exListAlphaArray.length == 2 || outerDocument.exListAlphaArray[getSequenceNumber(data)] == 0)) {
 											var total:Number = outerDocument.exerciseList.dataProvider.length;
 											if ( total % 2 == 0) {
 												if (getSequenceNumber(data) <= total / 2) {
@@ -512,6 +509,8 @@
 										} else {
 											exButtonGroup.alpha = 1;
 										}
+									} else if (data && outerDocument.hostComponent.isBackToHome) {
+										exButtonGroup.alpha = 1;
 									}
 								}
 								

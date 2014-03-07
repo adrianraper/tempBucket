@@ -22,6 +22,7 @@ package com.clarityenglish.tensebuster.view.login
 	import spark.components.BusyIndicator;
 	import spark.components.Button;
 	import spark.components.FormHeading;
+	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.TextInput;
 	
@@ -84,6 +85,9 @@ package com.clarityenglish.tensebuster.view.login
 		
 		[SkinPart]
 		public var busyIndicator:BusyIndicator;
+		
+		[SkinPart]
+		public var disableGroup:Group;
 		
 		[Bindable]
 		public var loginKey_lbl:String;
@@ -261,6 +265,10 @@ package com.clarityenglish.tensebuster.view.login
 				CTStartButton.enabled = true;
 			}
 			
+			if (disableGroup) {
+				disableGroup.visible = false;
+			}
+			
 			if (busyIndicator) {
 				busyIndicator.visible = false;
 			}
@@ -422,7 +430,10 @@ package com.clarityenglish.tensebuster.view.login
 			if (_currentState == "login") {
 				if (StringUtil.trim(loginKeyInput.text) && StringUtil.trim(passwordInput.text)) {
 					loginButton.enabled = false;
-					busyIndicator.visible = true;
+					if (disableGroup)
+						disableGroup.visible = true;
+					if (busyIndicator)
+						busyIndicator.visible = true;
 					var user:User = new User({ name: loginKeyInput.text, studentID: loginKeyInput.text, email: loginKeyInput.text, password: passwordInput.text });
 					dispatchEvent(new LoginEvent(LoginEvent.LOGIN, user, loginOption, verified));
 				}	
@@ -436,7 +447,10 @@ package com.clarityenglish.tensebuster.view.login
 					loginIDInput.editable = false;
 					loginEmailInput.editable = false;
 					newPasswordInput.editable = false;
-					busyIndicator.visible = true;
+					if (disableGroup)
+						disableGroup.visible = true;
+					if (busyIndicator)
+						busyIndicator.visible = true;
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 				}	
@@ -471,6 +485,8 @@ package com.clarityenglish.tensebuster.view.login
 					break;
 				case loginButton:
 					loginButton.enabled = false;
+					if (disableGroup)
+						disableGroup.visible = true;
 					if (busyIndicator)
 						busyIndicator.visible = true;
 					user = new User({name:loginKeyInput.text, studentID:loginKeyInput.text, email:loginKeyInput.text, password:passwordInput.text});
@@ -478,6 +494,8 @@ package com.clarityenglish.tensebuster.view.login
 					break;
 				case CTStartButton:
 					CTStartButton.enabled = false;
+					if (disableGroup)
+						disableGroup.visible = true;
 					if (busyIndicator)
 						busyIndicator.visible = true;
 					user =  new User();
@@ -490,13 +508,16 @@ package com.clarityenglish.tensebuster.view.login
 					loginIDInput.editable = false;
 					loginEmailInput.editable = false;
 					newPasswordInput.editable = false;
+					if (disableGroup)
+						disableGroup.visible = true;
 					if (busyIndicator)
 						busyIndicator.visible = true;
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
 					break;
 				default:
-					if (busyIndicator) {
+					if (busyIndicator && disableGroup) {
+						disableGroup.visible = false;
 						busyIndicator.visible = false;
 						loginButton.enabled = true;
 					}
@@ -508,8 +529,10 @@ package com.clarityenglish.tensebuster.view.login
 		public function setState(state:String):void {
 			switch (state) { 
 				case 'register':
-					if (busyIndicator)
+					if (busyIndicator) {
+						disableGroup.visible = false;
 						busyIndicator.visible = false;
+					}
 					savedName = loginKeyInput.text;
 					savedPassword = passwordInput.text;
 					break;

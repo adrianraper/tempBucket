@@ -87,6 +87,8 @@ package com.clarityenglish.bento.model {
 			if (_menuXHTML) System.disposeXML(_menuXHTML.xml);
 			_menuXHTML = null;
 			_currentExercise = null;
+			// TB relogin
+			_selectedNode = null;
 			dirtyObj = {}; // gh#90
 		}
 		
