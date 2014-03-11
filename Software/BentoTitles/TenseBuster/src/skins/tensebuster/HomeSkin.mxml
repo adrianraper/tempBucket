@@ -75,6 +75,7 @@
 			}
 			
 			protected function onCourseSelectorSelect(event:Event):void {
+				hostComponent.isCourseSelectorClick = true;
 				levelTitleGroup.alpha = 0;
 				unitList.visible = false;
 				
@@ -141,11 +142,12 @@
 				triangleReferenceGroup.y = new Number();
 			}
 			
-			protected function onUnitListClick(event:MouseEvent):void {				
+			protected function onUnitListClick(event:MouseEvent):void {	
+				hostComponent.isUnitListClick = true;
 				exerciseGroup.alpha = 1;
 				// for running in tablet. The empty list will show if we don't add this line
 				exerciseList.visible = true;
-				if (isFirstClickCurrentUnitList && isAnimationPlayed) {
+				if (isFirstClickCurrentUnitList && !isAnimationPlayed) {
 					var scale:Scale = new Scale();
 					scale.scaleYFrom = 0;
 					scale.scaleYTo = 1;
@@ -160,7 +162,7 @@
 					fadeIn.startDelay = 200;
 					fadeIn.play([triangleGroup]);
 					// for exercise list frame, when the list doesn't roll out completely and we selecte another unit, we don't want it to roll out again
-					isAnimationPlayed = false;
+					isAnimationPlayed = true;
 				}
 				isUnitListClicked = true;
 			}
@@ -199,7 +201,7 @@
 					downMove.duration = 300;
 					downMove.play([instructioGroup]);
 				} else {
-					hostComponent.isBackToHome = true;
+					//hostComponent.isBackToHome = true;
 					instructioGroup.visible = false;
 					hostComponent.isInitialSelect = false;
 					

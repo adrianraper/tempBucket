@@ -11,9 +11,12 @@ package com.clarityenglish.tensebuster.view.login
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.media.Video;
 	import flash.system.Capabilities;
+	import flash.utils.*;
 	
 	import mx.core.FlexGlobals;
+	import mx.events.CloseEvent;
 	import mx.events.FlexEvent;
 	import mx.states.OverrideBase;
 	
@@ -243,6 +246,20 @@ package com.clarityenglish.tensebuster.view.login
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 
+			stage.addEventListener(CloseEvent.CLOSE, onClosePopUp);
+			
+			enableComponent();
+			
+			if (disableGroup) {
+				disableGroup.visible = false;
+			}
+			
+			if (busyIndicator) {
+				busyIndicator.visible = false;
+			}
+		}
+		
+		protected function enableComponent():void {
 			// gh#827
 			if (loginButton) {
 				loginButton.enabled = true;
@@ -263,14 +280,6 @@ package com.clarityenglish.tensebuster.view.login
 			
 			if (CTStartButton) {
 				CTStartButton.enabled = true;
-			}
-			
-			if (disableGroup) {
-				disableGroup.visible = false;
-			}
-			
-			if (busyIndicator) {
-				busyIndicator.visible = false;
 			}
 		}
 		
@@ -470,7 +479,17 @@ package com.clarityenglish.tensebuster.view.login
 			}
 		}
 		
-		
+		protected function onClosePopUp(event:Event):void {
+			enableComponent();
+			
+			if (busyIndicator) {
+				busyIndicator.visible = false;
+			}
+			
+			if (disableGroup) {
+				disableGroup.visible = false;
+			}
+		}
 		/**
 		 * The user has clicked one of the login buttons
 		 *

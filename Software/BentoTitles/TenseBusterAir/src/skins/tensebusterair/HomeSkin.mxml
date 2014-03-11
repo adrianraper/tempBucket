@@ -3,7 +3,7 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:icon="skins.tensebuster.assets.icon.*" xmlns:recorder="com.clarityenglish.bento.view.recorder.*" 
 		xmlns:courseselector="com.clarityenglish.tensebuster.view.home.courseselector.*" xmlns:home="skins.tensebuster.assets.home.*" 
-		creationComplete="onCreationComplete(event)" xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*" xmlns:home1="skins.tensebusterair.assets.home.*">
+		creationComplete="onCreationComplete(event)" initialize="onInitialize(event)" xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*" xmlns:home1="skins.tensebusterair.assets.home.*">
 	
 	<!-- host component -->	
 	<fx:Metadata>
@@ -70,6 +70,7 @@
 			}
 			
 			protected function onCourseSelectorSelect(event:Event):void {
+				hostComponent.isCourseSelectorClick = true;
 				levelTitleGroup.alpha = 0;
 				unitList.visible = false;
 				
@@ -136,6 +137,7 @@
 			}
 			
 			protected function onUnitListClick(event:MouseEvent):void {
+				hostComponent.isUnitListClick = true;
 				if (isFirstClickCurrentUnitList) {
 					var exerciseListFadeIn:Fade = new Fade();
 					exerciseListFadeIn.alphaFrom = 0;
@@ -173,15 +175,8 @@
 			}
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				// TODO Auto-generated method stub
-				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
-				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);
-				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
-				
 				// TB initial start
 				if (courseSelector.level) {
-					// for back from exercise and prgress to home page
-					hostComponent.isBackToHome = true;
 					instructioGroup.visible = false;
 					hostComponent.isInitialSelect = false;
 					
@@ -204,6 +199,13 @@
 					}
 				}
 			}		
+			
+			protected function onInitialize(event:FlexEvent):void {
+				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
+				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);
+				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
+			}
+			
 		]]>
 	</fx:Script>
 	

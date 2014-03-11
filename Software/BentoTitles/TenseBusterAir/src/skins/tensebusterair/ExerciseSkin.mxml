@@ -61,7 +61,7 @@
 		</s:Rect>
 	</s:Group>
 	
-	<s:Group width="906" horizontalCenter="0">
+	<s:Group width="906" horizontalCenter="0" height="100%">
 		<!-- Exercise -->
 		<view:DynamicView id="dynamicView" left="0" right="0" horizontalCenter="0" top="98" bottom="24"/>
 	</s:Group>

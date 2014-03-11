@@ -132,7 +132,7 @@
 	</s:Group>
 	
 	<s:Group width="100%" height="100%">
-		<s:BusyIndicator id="busyIndicator" symbolColor="0xFFFFFF" horizontalCenter="0" verticalCenter="0" includeIn="loginIPConcurrentTracking, registerStates" />
+		<s:BusyIndicator id="busyIndicator" symbolColor="0xFFFFFF" horizontalCenter="0" verticalCenter="0" includeIn="loginStates, registerStates" />
 	</s:Group>
 	
 	<!-- Footer -->

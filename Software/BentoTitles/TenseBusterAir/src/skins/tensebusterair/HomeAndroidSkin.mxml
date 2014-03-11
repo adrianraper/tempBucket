@@ -3,7 +3,8 @@
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:courseselector="com.clarityenglish.tensebuster.view.home.courseselector.*" 
 		xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*" 
-		xmlns:android="skins.tensebusterair.assets.android.*" creationComplete="onCreationComplete(event)" xmlns:home="skins.tensebusterair.assets.android.sevenInches.home.*" xmlns:home1="skins.tensebusterair.assets.android.tenInches.home.*" xmlns:assets="skins.tensebusterair.assets.*">
+		xmlns:android="skins.tensebusterair.assets.android.*" creationComplete="onCreationComplete(event)" initialize="onInitialize(event)"
+		xmlns:home="skins.tensebusterair.assets.android.sevenInches.home.*" xmlns:home1="skins.tensebusterair.assets.android.tenInches.home.*" xmlns:assets="skins.tensebusterair.assets.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.home.HomeView")]
@@ -75,6 +76,7 @@
 			}
 			
 			protected function onCourseSelectorSelect(event:Event):void {
+				hostComponent.isCourseSelectorClick = true;
 				levelTitleGroup.alpha = 0;
 				unitList.visible = false;
 				
@@ -101,7 +103,7 @@
 				}				
 			}
 			
-			protected function onAnimationCompleted(event:Event):void {				
+			protected function onAnimationCompleted(event:Event):void {		
 				if (!hostComponent.isBackToHome) {
 					levelTitleGroupLabel.text = hostComponent.course.@caption;
 					setTitleBarColor();
@@ -141,6 +143,7 @@
 			}
 			
 			protected function onUnitListClick(event:MouseEvent):void {
+				hostComponent.isUnitListClick = true;
 				if (isFirstClickCurrentUnitList) {
 					var exerciseListFadeIn:Fade = new Fade();
 					exerciseListFadeIn.alphaFrom = 0;
@@ -178,11 +181,6 @@
 			}
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				// TODO Auto-generated method stub
-				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
-				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);
-				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
-				
 				if (currentState == "normal7Inches") {
 					homeInitialBg.source = initial7InchesBg;
 				} else if (currentState == "normal10Inches") {
@@ -190,11 +188,8 @@
 				}
 				
 				if (courseSelector.level) {
-					hostComponent.isBackToHome = true;
 					instructioGroup.visible = false;
-					hostComponent.isInitialSelect = false;
-					
-					courseSelector.level = hostComponent.course;				
+					hostComponent.isInitialSelect = false;			
 					
 					levelTitleGroupLabel.text = hostComponent.course.@caption;
 					levelTitleGroup.alpha = 1;
@@ -215,6 +210,13 @@
 					}	
 				}
 			}		
+			
+			protected function onInitialize(event:FlexEvent):void {
+				courseSelector.addEventListener("courseSelectorClicked", onCourseSelectorSelect, false, 0, true);
+				courseSelector.addEventListener("animationCompleted", onAnimationCompleted, false, 0, true);
+				unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
+			}
+			
 		]]>
 	</fx:Script> 
 	

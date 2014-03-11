@@ -79,6 +79,8 @@ package com.clarityenglish.tensebuster.view.home {
 		private var _isBackToHome:Boolean;
 		private var _isInitialSelect:Boolean =  true;
 		private var _androidSize:String;
+		private var _isCourseSelectorClick:Boolean
+		private var _isUnitListClick:Boolean;
 		
 		// gh#757
 		[Bindable]
@@ -122,12 +124,31 @@ package com.clarityenglish.tensebuster.view.home {
 			_isBackToHome = value;
 		}
 		
+		[Bindable]
 		public function get isInitialSelect():Boolean {
 			return _isInitialSelect;
 		}
 		
 		public function set isInitialSelect(value:Boolean):void {
 			_isInitialSelect = value;
+		}
+		
+		[Bindable]
+		public function get isCourseSelectorClick():Boolean {
+			return _isCourseSelectorClick;
+		}
+		
+		public function set isCourseSelectorClick(value:Boolean):void {
+			_isCourseSelectorClick = value;
+		}
+		
+		[Bindable]
+		public function get isUnitListClick():Boolean {
+			return _isUnitListClick;
+		}
+		
+		public function set isUnitListClick(value:Boolean):void {
+			_isUnitListClick = value;
 		}
 		
 		public function set androidSize(value:String):void {
@@ -201,10 +222,16 @@ package com.clarityenglish.tensebuster.view.home {
 				courseSelector.level = null;
 			}
 			
-			// for back from exercise or progress with all lists open in home page
-			// when come back from progress in online version, because one by one fadingin effect execute before onCreaionComplete in skin, so we need to set isBackToHome in advance
-			if (course && courseChanged && unit && unitChanged) {
-				isBackToHome = true;
+			// for back from exercise or progress
+			// This is the only place we set isBackToHome to true base on the courseSelector and unitList isn't clicked 
+			if (!isCourseSelectorClick && !isUnitListClick) {
+				if (course != null && courseChanged != false) {
+					isBackToHome = true;
+				}		
+			} else if (isCourseSelectorClick) {
+				isCourseSelectorClick = false;
+			} else if (isUnitListClick) {
+				isUnitListClick = false;
 			}
 			
 			if (courseChanged && course) {
