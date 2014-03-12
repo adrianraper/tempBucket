@@ -81,12 +81,12 @@
 			<lit name="yourLoginDetail">Your {loginDetail}</lit>
 			<lit name="nameLoginDetail">name:</lit>
 			<lit name="IDLoginDetail">ID:</lit>
-			<lit name="emailLoginDetail">Email:</lit>
+			<lit name="emailLoginDetail">email:</lit>
 			<lit name="loginID">Login ID:</lit>
 			<lit name="option1Label">Option 1: Progress Tracking</lit>
-			<lit name="option1InstructionLabel">If you want to keep a record of your progress. Fill in your naem and password, and then click Log in.</lit>
+			<lit name="option1InstructionLabel">If you want to keep a record of your progress, fill in your name and password, and then click Log in.</lit>
 			<lit name="option1Labe2">Option 2: Anonymous</lit>
-			<lit name="option2InstructionLabel">If you just want to practice with Tense Buster, click Start program.</lit>
+			<lit name="option2InstructionLabel">If you just want to practise with Tense Buster, click Start program.</lit>
 			<lit name="CTStartButton">Start program</lit>
 			<lit name="CTLoginButton">Register or log in</lit>
 			<lit name="yourName">Your name:</lit>

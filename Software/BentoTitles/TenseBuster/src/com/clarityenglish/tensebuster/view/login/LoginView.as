@@ -245,6 +245,9 @@ package com.clarityenglish.tensebuster.view.login
 		
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
+			
+			loginKeyInput.text = null;
+			passwordInput.text = null;
 
 			stage.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 			
@@ -542,7 +545,6 @@ package com.clarityenglish.tensebuster.view.login
 					}
 					setState("login");
 			}
-			
 		}
 		
 		public function setState(state:String):void {

@@ -111,7 +111,7 @@
 					view.setCurrentState(stateBeforeProgress);
 					
 					if (!PlayerUtils.isAirApplication()) {
-						Alert.show("Click OK to save your MP3 file", "Save", Vector.<String>(["OK"]), view, function(e:CloseEvent):void {
+						Alert.show("Click OK to save your MP3 file.", "Save", Vector.<String>(["OK"]), view, function(e:CloseEvent):void {
 							if (e.detail == 0) {
 								var audioProxy:AudioProxy = facade.retrieveProxy(note.getType()) as AudioProxy;
 								audioProxy.saveMP3Data(note.getBody() as ByteArray);
