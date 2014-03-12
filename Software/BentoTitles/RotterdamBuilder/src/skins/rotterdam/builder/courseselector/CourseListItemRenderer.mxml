@@ -38,7 +38,7 @@
 	</s:states>
 	
 	<s:Group width="100%" click="onItemGroupClick(event)" filters="{[dropShadowFilter]}">
-		<s:Rect filters="{[dropShadowFilter]}" height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
+		<s:Rect height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
 			<s:fill>
 				<s:SolidColor color="0xFFFFFF" color.hovered="0xFFF6CC" color.selected="0xFFF6CC" />
 			</s:fill>

@@ -18,7 +18,7 @@
 	<id>com.clarityenglish.rotterdam.player.app</id>
 
 	<!-- Used as the filename for the application. Required. -->
-	<filename>Clarity Course Player</filename>
+	<filename>RotterdamPlayer</filename>
 
 	<!-- The name that is displayed in the AIR application installer. 
 	May have multiple values for each language. See samples or xsd schema file. Optional. -->

@@ -6,11 +6,17 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.rotterdam.view.courseselector.events.CourseSelectEvent;
 			// gh#689
 			public override function set data(value:Object):void {
 				super.data = value;
 				// gh#91
 				if (data) this.enabled = !data.hasOwnProperty("@enabledFlag") || (data.@enabledFlag > 0);
+			}
+			
+			protected function onItemGroupClick(event:MouseEvent):void {
+				//trace("on item group click");
+				dispatchEvent(new CourseSelectEvent(CourseSelectEvent.COURSE_SELECT, true));
 			}
 		]]>
 	</fx:Script>
@@ -26,14 +32,17 @@
 		<s:State name="selected" />
 	</s:states>
 	
-	<s:Rect filters="{[dropShadowFilter]}" visible.normal="false" visible.hovered="false" visible.selected="true" height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
-		<s:fill>
-			<s:SolidColor color="0xFFF6CC" />
-		</s:fill>
-	</s:Rect>
+	<s:Group click="onItemGroupClick(event)" filters="{[dropShadowFilter]}" width="100%">
+		<s:Rect includeIn="selected, hovered" height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
+			<s:fill>
+				<s:SolidColor color="0xFFF6CC" />
+			</s:fill>
+		</s:Rect>
+	</s:Group>
+	
 	
 	<!--In tablet, there is no "hovered" status, so I add a button to borrow "down" status for tabbing effect-->
-	<s:Button id="itemButton" height="70" left="3" top="3" right="3" bottom="3" skinClass="skins.rotterdam.player.courseselector.CourseListItemButtonSkin" visible.normal="true" visible.selected="false" />
+	<s:Button id="itemButton" height="70" left="3" top="3" right="3" bottom="3" skinClass="skins.rotterdam.player.courseselector.CourseListItemButtonSkin" includeIn="normal" click="onItemGroupClick(event)" />
 	
 	<s:Group includeIn="hovered, selected" x="3" y="3">
 		<s:Path data="M 0 0 L 20 0 L 0 20 L 0 0 Z">
@@ -46,7 +55,7 @@
 		</s:Path>
 	</s:Group>
 	
-	<s:Group left="25" verticalCenter="0">
+	<s:Group left="25" verticalCenter="0" click="onItemGroupClick(event)">
 		<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="350"/>
 	</s:Group>
 	
