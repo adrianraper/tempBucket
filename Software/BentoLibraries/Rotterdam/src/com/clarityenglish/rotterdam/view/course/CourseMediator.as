@@ -88,10 +88,10 @@
 				case RotterdamNotifications.PREVIEW_HIDDEN:
 					view.previewVisible = courseProxy.isPreviewMode;
 					break;
-				case BBNotifications.ITEM_DIRTY:
+				/*case BBNotifications.ITEM_DIRTY:
 					if (note.getBody().toString() == 'settings')
 						view.publishChanged();
-					break;
+					break;*/
 			}
 		}
 		
@@ -100,7 +100,7 @@
 		}
 		
 		protected function onCoursePublish():void {
-			view.publishChanged();
+			//view.publishChanged();
 			// I am undecided if you should auto save when you click publish (or just set ITEM_DIRTY). 
 			// I currently think - yes. You are, after all, doing a 1-click publish.
 			facade.sendNotification(RotterdamNotifications.COURSE_SAVE);

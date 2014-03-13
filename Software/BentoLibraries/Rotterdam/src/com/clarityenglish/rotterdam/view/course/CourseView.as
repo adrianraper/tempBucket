@@ -80,6 +80,9 @@ package com.clarityenglish.rotterdam.view.course {
 		public var group:com.clarityenglish.common.vo.manageable.Group;
 		
 		private var _isPreviewVisible:Boolean = false;
+		private var _course:XML;
+		private var _isFirstPublish:Boolean;
+		private var courseChanged:Boolean;
 		// gh#211
 		private var currentIndex:Number;
 		private var unitListLength:Number;
@@ -97,11 +100,18 @@ package com.clarityenglish.rotterdam.view.course {
 		public var coursePublish:Signal = new Signal();
 		public var helpPublish:Signal = new Signal();
 		public var unitDuplicate:Signal = new Signal();
-		
+
+		[Bindable]
 		public function get course():XML {
-			if (_xhtml)
-				return _xhtml.selectOne("script#model[type='application/xml'] course");
-			return null;
+			return _course;
+		}
+		
+		public function set course(value:XML):void {
+			if (_course != value) {
+				_course = value;
+				courseChanged = true;
+				invalidateProperties();
+			}
 		}
 		
 		public function set previewVisible(value:Boolean):void {
@@ -111,13 +121,21 @@ package com.clarityenglish.rotterdam.view.course {
 			}
 		}
 		
+		[Bindable]
+		public function get isFirstPublish():Boolean {
+			return _isFirstPublish;
+		}
+		
+		public function set isFirstPublish(value:Boolean):void {
+			_isFirstPublish = value;
+		}
 		// gh#208
-		[Bindable(event="publishChanged")]
+		/*[Bindable(event="publishChanged")]
 		public function get canPublish():Boolean {
 			if (course)
 				return (course.publication && course.publication.group.length() == 0) ? true : false;
 			return false;
-		}
+		}*/
 		
 		public function canPasteFromTarget(target:Object):Boolean {
 			return target == unitList || target == unitPasteButton;
@@ -125,6 +143,7 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
+			course = _xhtml.selectOne("script#model[type='application/xml'] course");
 			if (courseCaptionLabel) courseCaptionLabel.text = course.@caption;
 		}
 		
@@ -139,6 +158,15 @@ package com.clarityenglish.rotterdam.view.course {
 			// gh#91 DKHELP
 			//if (isPublisher)
 			//	previewVisible = true;
+			if (courseChanged) {
+				if (course) {
+					isFirstPublish = (course.publication && course.publication.group.length() == 0) ? true : false;
+					publishCourseButton.visible = isFirstPublish;
+					publishChangeButton.visible = !isFirstPublish;
+					oneClickPublishButton.visible = isFirstPublish;
+				}
+				courseChanged = false;
+			}
 			
 			if (_isPreviewVisible) {
 				if (unitHeader.editButton)
@@ -267,7 +295,7 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		protected function onSchedule(event:MouseEvent):void {
 			// gh#225
-			if (this.canPublish && config.illustrationCloseFlag) {
+			if (this.isFirstPublish && config.illustrationCloseFlag) {
 				helpPublish.dispatch();
 			}
 			// gh#705
@@ -287,8 +315,9 @@ package com.clarityenglish.rotterdam.view.course {
 				var startDate:String = formatter.format(now);
 				now.setFullYear(now.fullYear + 1);
 				var endDate:String = formatter.format(now);
-				
 				course.publication.appendChild(<group id={group.id} seePastUnits='true' unitInterval='0' startDate={startDate} endDate={endDate} />);
+				courseChanged = true;
+				invalidateProperties();
 				coursePublish.dispatch();
 			}
 			

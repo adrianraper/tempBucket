@@ -137,8 +137,8 @@
 	<!-- gh#91 Keep the publish button even in preview mode -->
 	<s:Group id="publishVGroup" left="3" bottom="38" width="152" >
 		<s:Group bottom="0" left="0">
-			<s:ToggleButton id="publishCourseButton" visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" click="anim.play()" useHandCursor="true" buttonMode="true" />
-			<s:Button id="publishChangeButton" visible="{!hostComponent.canPublish}" includeInLayout="{!hostComponent.canPublish}" useHandCursor="true" buttonMode="true" />
+			<s:ToggleButton id="publishCourseButton" click="anim.play()" useHandCursor="true" buttonMode="true" />
+			<s:Button id="publishChangeButton" useHandCursor="true" buttonMode="true" />
 		</s:Group>
 		<s:VGroup paddingLeft="0" bottom="0" id="publishSelectionGroup" height="0" alpha="0">
 			<s:Group>
@@ -147,8 +147,7 @@
 						<s:SolidColor color="0XF7F2F0" />
 					</s:fill>
 				</s:Rect>
-				<courseui:PublishButton id="oneClickPublishButton" useHandCursor="true" buttonMode="true"
-										visible="{hostComponent.canPublish}" includeInLayout="{hostComponent.canPublish}" width="145" height="90" left="4" top="6" />
+				<courseui:PublishButton id="oneClickPublishButton" useHandCursor="true" buttonMode="true" width="145" height="90" left="4" top="6" />
 				<courseui:PublishButton id="scheduleButton" useHandCursor="true" buttonMode="true" left="4" top="103" width="145" height="90" />
 			</s:Group>					
 		</s:VGroup>
