@@ -103,10 +103,10 @@ SQL;
 			
 			$sql = <<<SQL
 				INSERT INTO T_CourseRoles 
-				(F_CourseID, F_UserID, F_Role, F_DateStamp)
-				VALUES (?,?,?,NOW())
+				(F_CourseID, F_UserID, F_GroupID, F_Role, F_DateStamp)
+				VALUES (?,?,?,?,NOW())
 SQL;
-			$bindingParams = array($id, Session::get('userID'), Course::ROLE_OWNER);
+			$bindingParams = array($id, Session::get('userID'), Session::get('groupID'), Course::ROLE_OWNER);
 			$rc = $db->Execute($sql, $bindingParams);					
 			if (!$rc)
 				// It should be impossible for the courseID to already be in this table...
@@ -494,13 +494,17 @@ SQL;
 	 * gh#91
 	 */
 	public function getUserRole($courseID){
-
 		$userRole = $groupRole = $rootRole = 99;
 		$userID = Session::get('userID');
+		AbstractService::$debugLog->info("user ID: ".$userID);
 		$groupIDs = implode(',', array_unique(array_merge(Session::get('groupIDs'), Session::get('parentGroupIDs')), SORT_DESC));
+		AbstractService::$debugLog->info("group ID: ".$groupIDs);
 		$rootID = Session::get('rootID');
+		// alicechange
+		$userType = Session::get('userType');
 		
-		// First look for the user directly
+		if ($userType != User::USER_TYPE_STUDENT) {
+			// First look for the user directly
 		$sql = <<<SQL
 			SELECT c.F_Role as role FROM T_CourseRoles c 
 			WHERE c.F_CourseID = ?
@@ -519,6 +523,7 @@ SQL;
 			SELECT c.F_Role as role FROM T_CourseRoles c 
 			WHERE c.F_CourseID = ?
 			AND c.F_GroupID IN (?)
+			AND c.F_UserID is null
 SQL;
 		$bindingParams = array($courseID, $groupIDs);
 		$rs = $this->db->Execute($sql, $bindingParams);
@@ -541,7 +546,21 @@ SQL;
 				if ($rec->role < $rootRole)
 					$rootRole = $rec->role;	
 			}
-			
+		} else {
+			$sql = <<<SQL
+			SELECT c.F_Role as role FROM T_CourseRoles c 
+			WHERE c.F_CourseID = ?
+			AND c.F_GroupID IN (?)
+SQL;
+			$bindingParams = array ($courseID, $groupIDs );
+			$rs = $this->db->Execute ( $sql, $bindingParams );
+			if ($rs->recordCount () > 0)
+				while ( $rec = $rs->FetchNextObj () ) {
+					if ($rec->role < $groupRole)
+						$groupRole = $rec->role;
+				}
+		}
+		
 		// gh#91 remember that owner=1, collaborator=2 etc so look for the lowest number
 		return min($userRole, $groupRole, $rootRole);
 	}

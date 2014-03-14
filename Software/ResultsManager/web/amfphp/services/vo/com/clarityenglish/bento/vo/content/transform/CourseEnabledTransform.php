@@ -31,10 +31,13 @@ class CourseEnabledTransform extends XmlTransform {
 				switch ($role) {
 					case Course::ROLE_OWNER:
 						$eF = $eF | Course::EF_OWNER;
+						break;
 					case Course::ROLE_COLLABORATOR:
 						$eF = $eF | Course::EF_COLLABORATOR;
+						break;
 					case Course::ROLE_PUBLISHER:
 						$eF = $eF | Course::EF_PUBLISHER;
+						break;
 					case Course::ROLE_VIEWER:
 						$eF = $eF | Course::EF_VIEWER;
 						break;	

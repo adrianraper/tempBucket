@@ -158,14 +158,15 @@ package com.clarityenglish.rotterdam.view.course {
 			// gh#91 DKHELP
 			//if (isPublisher)
 			//	previewVisible = true;
-			if (courseChanged) {
-				if (course) {
+			if (course && courseChanged) {
+				trace("course: "+course);
+				if (publishCourseButton) {
 					isFirstPublish = (course.publication && course.publication.group.length() == 0) ? true : false;
 					publishCourseButton.visible = isFirstPublish;
 					publishChangeButton.visible = !isFirstPublish;
 					oneClickPublishButton.visible = isFirstPublish;
+					courseChanged = false;
 				}
-				courseChanged = false;
 			}
 			
 			if (_isPreviewVisible) {
