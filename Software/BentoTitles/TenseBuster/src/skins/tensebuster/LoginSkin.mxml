@@ -32,7 +32,7 @@
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/login/premierLoginBG.png')" bottom="25"  includeIn="loginConcurrentTracking, registerStates" />
 	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="20" horizontalCenter="0" />
 	
-	<s:Group horizontalCenter="0" width.login="250" width.loginConcurrentTracking="280" top.login="260" top.loginConcurrentTracking="250">
+	<s:Group horizontalCenter="0" horizontalCenter.login="20" width.login="250" width.loginConcurrentTracking="280" top.login="270" top.loginConcurrentTracking="250">
 		<s:VGroup gap.login="5" gap.loginConcurrentTracking="10">
 			<s:Group>
 				<s:VGroup id="normalLoginTitleBlock" includeIn="login">
@@ -53,10 +53,10 @@
 			</s:Group>
 			
 			<s:VGroup id="loginBlock" gap="15" includeIn="loginStates">
-				<s:HGroup gap="8">
-					<s:Label id="loginKey_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}" paddingTop="5"/>
-					<s:TextInput id="loginKeyInput" width="147" height="21" filters="{dropShadowFilter2}" borderVisible="false" fontSize="14" />
-				</s:HGroup>					
+				<s:Group width="219">
+					<s:Label id="loginKey_lbl" left="0" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}" paddingTop="5"/>
+					<s:TextInput id="loginKeyInput" right="0" width="147" height="21" filters="{dropShadowFilter2}" borderVisible="false" fontSize="14" />
+				</s:Group>					
 				<s:HGroup gap="10">
 					<s:Label id="loginPassword_lbl" fontSize="12" fontWeight="bold" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" paddingTop="5"/>
 					<s:TextInput id="passwordInput" displayAsPassword="true" width="147" height="21" fontSize="12" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
@@ -80,7 +80,7 @@
 				</s:HGroup>				
 			</s:VGroup>
 		</s:VGroup>
-		<s:Button id="loginButton" top.login="170" left.login="80" top.loginConcurrentTracking="135" left.loginConcurrentTracking="240" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" includeIn="loginStates"/>	
+		<s:Button id="loginButton" top.login="170" left.login="73" top.loginConcurrentTracking="135" left.loginConcurrentTracking="240" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" includeIn="loginStates"/>
 	</s:Group>
 	
 	<s:Group id="registerBlock" horizontalCenter="0" top="320" width="200" includeIn="registerStates">
