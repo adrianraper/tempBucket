@@ -35,6 +35,17 @@
 				}									
 			}
 			
+			protected function onForgotPasswordClick(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				var substTags:Object = { productCode: hostComponent.config.productCode };
+				if (hostComponent.config.rootID)
+					substTags.rootID = hostComponent.config.rootID; 
+				substTags.loginOption = (isNaN(hostComponent.loginOption)) ? '' : hostComponent.loginOption;
+				var urlReq:URLRequest = new URLRequest(hostComponent.getCopyProvider().getCopyForId("forgotPasswordLink", substTags ));
+				navigateToURL(urlReq, "_new");
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -58,6 +69,7 @@
 	<s:Group>
 		<s:Group includeIn="normalLoginStates">
 			<login:InputAreaChrome left="19" top="183" />
+			<s:Button id="normalLoginForgotPasswordButton" top="330" left="220" click="onForgotPasswordClick(event)" useHandCursor="true" buttonMode="true" />
 			<s:SWFLoader source="@Embed(source='/skins/ieltsair/assets/login/test_drive.png')" top="463" left="27" />
 			<s:Label id="testDriveLabel" top="485" left="218" width="340" color="0x592A0C" fontWeight="bold" fontSize="16" />
 			<s:Button id="testDriveAcademicButton" label="Academic" left="190" top="520" width="100" height="44" fontSize="16" />
@@ -80,12 +92,12 @@
 		
 		<s:Group includeIn="loginStates">
 			<s:Label id="loginKey_lbl" left="73" left.loginIPConcurrentTracking="70" top="200" top.loginIPConcurrentTracking="313" text="{hostComponent.loginKey_lbl}" fontSize="16" />
-			<s:TextInput id="loginKeyInput" left="73" left.loginIPConcurrentTracking="70" top="220" top.loginIPConcurrentTracking="333" width="263" width.loginIPConcurrentTracking="210"  />
+			<s:TextInput id="loginKeyInput" left="73" left.loginIPConcurrentTracking="70" top="220" top.loginIPConcurrentTracking="333" width="300" width.loginIPConcurrentTracking="210"  />
 			
 			<!--<s:Label id="loginIDLabel" color="#333333" left="73" top="280" width="340" fontSize="14" />-->
 			
 			<s:Label id="passwordLabel" left="73" left.loginIPConcurrentTracking="70" top="270" top.loginIPConcurrentTracking="383" fontSize="16" />
-			<s:TextInput id="passwordInput" left="73" left.loginIPConcurrentTracking="70" top="290" top.loginIPConcurrentTracking="403" width="263" width.loginIPConcurrentTracking="210" displayAsPassword="true" />
+			<s:TextInput id="passwordInput" left="73" left.loginIPConcurrentTracking="70" top="290" top.loginIPConcurrentTracking="403" width="300" width.loginIPConcurrentTracking="210" displayAsPassword="true" />
 			
 			<s:Button id="loginButton" left="73" left.loginIPConcurrentTracking="285" top="335" top.loginIPConcurrentTracking="403" height="44" height.loginIPConcurrentTracking="35" fontSize="12" width="{(hostComponent.selfRegister) ? 140 : 120}" />
 		</s:Group>

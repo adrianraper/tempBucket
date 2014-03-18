@@ -168,6 +168,9 @@ package com.clarityenglish.ielts.view.login {
 		[SkinPart]
 		public var longRateButton:Button;
 		
+		[SkinPart]
+		public var normalLoginForgotPasswordButton:Button;
+		
 		[Bindable]
 		public var IPLoginKey_lbl:String;	
 		
@@ -340,6 +343,10 @@ package com.clarityenglish.ielts.view.login {
 		}
 		public function get languageAssetFolder():String {
 			return config.remoteDomain + config.assetFolder + copyProvider.getLanguageCode().toLowerCase() + '/';
+		}
+		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
 		}
 		
 		// gh#659
@@ -577,6 +584,14 @@ package com.clarityenglish.ielts.view.login {
 					longRateButton.label = copyProvider.getCopyForId("longRateButton");
 					longRateButton.addEventListener(MouseEvent.CLICK, onlongRateButtonClick);
 					break;
+				case normalLoginForgotPasswordButton:
+					if (copyProvider.getCopyForId("forgotPasswordLink") == "") {
+						// For china user, we want to hide the forget password link
+						normalLoginForgotPasswordButton.visible = false;
+					}else {
+						normalLoginForgotPasswordButton.label = copyProvider.getCopyForId("forgotPasswordButton");
+					}				
+					break;
 			}
 		}
 
@@ -639,7 +654,7 @@ package com.clarityenglish.ielts.view.login {
 			isPlatformTablet = value;
 		}
 		
-		public function setPlatformipad(value:Boolean):void {
+		public function setPlatformiPad(value:Boolean):void {
 			isPlatformipad = value;
 		}
 		

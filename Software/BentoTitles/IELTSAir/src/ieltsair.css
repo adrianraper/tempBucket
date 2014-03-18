@@ -79,12 +79,24 @@ login|LoginView {
 	skinClass: ClassReference("skins.ieltsair.LoginSkin");
 }
 
+login|LoginView s|Button#loginButton {
+	skinClass: ClassReference("skins.ieltsair.login.RegisterLoginButtonSkin");
+}
+
 login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
 }
 
 login|LoginView s|Button {
 	chromeColor: #2793CE;
+}
+
+login|LoginView s|ButtonBar#IPLoginButtonBar {
+	skinClass: ClassReference("skins.ieltsair.login.IPLoginButtonBarSkin");
+}
+
+login|LoginView s|Button#normalLoginForgotPasswordButton {
+	skinClass: ClassReference("skins.ieltsair.login.ForgotPasswordButtonSkin");
 }
 
 /* Title view styles */
@@ -173,9 +185,9 @@ s|TitleWindow.feedbackTitleWindow {
 }
 
 s|Button#longRateButton {
-	skinClass: ClassReference("skins.ieltsair.rate.longRateButtonSkin");
+	skinClass: ClassReference("skins.ieltsair.rate.LongRateButtonSkin");
 }
 
 s|Button#shortRateButton {
-	skinClass: ClassReference("skins.ieltsair.rate.shortRateButtonSkin");
+	skinClass: ClassReference("skins.ieltsair.rate.ShortRateButtonSkin");
 }
