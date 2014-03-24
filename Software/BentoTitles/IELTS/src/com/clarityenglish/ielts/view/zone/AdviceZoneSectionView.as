@@ -63,6 +63,11 @@ package com.clarityenglish.ielts.view.zone {
 					instance.text = copyProvider.getCopyForId("adviceVideoLabel");
 					break;
 				case adviceVideoInstructionLabel:
+					if (copyProvider.getLanguageCode() == "JP") {
+						instance.setStyle("fontSize", 12);
+					} else {
+						instance.setStyle("fontSize", 14);
+					}
 					instance.text = copyProvider.getCopyForId("adviceVideoInstructionLabel");
 					break;
 			}

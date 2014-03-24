@@ -337,6 +337,10 @@ package com.clarityenglish.ielts.view.title {
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
+			// gh#844 If the initial language is JP, change the font familty here
+			if (copyProvider.getLanguageCode() == "JP") {
+				styleManager.getStyleDeclaration("global").setStyle("fontFamily", "KOZGOPR6N");
+			}
 			// Don't show profile tab for network users
 			// gh#603 removing profile tab blocks the logout button
 			/*

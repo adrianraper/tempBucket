@@ -31,6 +31,24 @@
 			advancedAntiAliasing: true;
 		}
 		
+		@font-face {
+			src: url("skins/ielts/assets/KOZGOPR6N-REGULAR.OTF");
+			fontFamily: KOZGOPR6N;
+			fontStyle: normal;
+			fontWeight: normal;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
+		@font-face {
+			src: url("skins/ielts/assets/KOZGOPR6N-BOLD.OTF");
+			fontFamily: KOZGOPR6N;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+		
 		global {
 			fontFamily: Helvetica;
 			fontLookup: embeddedCFF;

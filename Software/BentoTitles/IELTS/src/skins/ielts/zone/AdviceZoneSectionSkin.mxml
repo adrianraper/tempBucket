@@ -19,7 +19,6 @@
 			protected function creationComplete(event:Event):void {
 				popupWatcher = new DisabledPopupWatcher(videoSelector.videoList, hostComponent.viewCopyProvider, hostComponent.productVersion);
 			}
-			
 		]]>
 	</fx:Script>
 	
@@ -35,7 +34,9 @@
 	</s:states>
 	
 	<s:Label id="adviceVideoLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
-	<s:Label id="adviceVideoInstructionLabel" fontSize="14" left="20" top="35" />
+	<s:Label id="adviceVideoInstructionLabel" left="20" top="35" />
+	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipText.png')" right="17" top="13" />
+	<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrow.png')" right="4" top="33" />
 	
 	<video:VideoSelector id="videoSelector"
 						 left="20"
@@ -45,5 +46,7 @@
 						 placeholderSource.listening="@Embed(source='/skins/ielts/assets/zone/advicezone_listening_video.png')"
 						 placeholderSource.speaking="@Embed(source='/skins/ielts/assets/zone/advicezone_speaking_video.png')"
 						 />
+
+	
 	
 </s:Skin>

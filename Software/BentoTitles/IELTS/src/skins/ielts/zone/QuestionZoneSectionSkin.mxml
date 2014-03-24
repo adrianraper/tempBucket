@@ -35,7 +35,7 @@
 	-->
 	
 	<s:Label id="questionVideoLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
-	<s:Label id="questionVideoInstructionLabel" fontSize="14" left="20" top="35" right="25" />
+	<s:Label id="questionVideoInstructionLabel" left="20" top="35" right="25" />
 	
 	<!-- gh#116 -->
 	<s:SWFLoader id="questionZoneEBookGraphic"

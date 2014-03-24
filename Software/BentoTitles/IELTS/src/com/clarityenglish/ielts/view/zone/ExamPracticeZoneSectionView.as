@@ -122,9 +122,21 @@ package com.clarityenglish.ielts.view.zone {
 					instance.text = copyProvider.getCopyForId("examZoneLabel");
 					break;
 				case examZoneNoTestLabel:
+					if (copyProvider.getLanguageCode() == "JP") {
+						instance.setStyle("fontSize", 12);
+					} else {
+						instance.setStyle("fontSize", 14);
+					}
 					var replaceObj:Object = new Object();
 					replaceObj.courseClass = this.courseClass;
 					instance.text = copyProvider.getCopyForId("examZoneNoTestLabel", replaceObj);
+					break;
+				case examZoneInstructionLabel:
+					if (copyProvider.getLanguageCode() == "JP") {
+						instance.setStyle("fontSize", 12);
+					} else {
+						instance.setStyle("fontSize", 14);
+					}
 					break;
 			}
 		}
