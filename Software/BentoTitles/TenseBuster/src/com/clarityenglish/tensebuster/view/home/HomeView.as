@@ -268,7 +268,7 @@ package com.clarityenglish.tensebuster.view.home {
 			if (courseChanged && course) {
 				courseIndex = menu.course.(@caption == course.@caption).childIndex();
 				courseSelector.level = course;
-				//unitList.dataProvider = new XMLListCollection(course.unit);
+				unitList.dataProvider = new XMLListCollection(course.unit);
 				courseChanged = false;
 			}
 			

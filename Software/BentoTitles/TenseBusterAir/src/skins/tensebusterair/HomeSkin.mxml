@@ -241,7 +241,7 @@
 	</s:Group>	
 	
 	<!--unit list title bar-->
-	<s:List id="unitList" visible="false" width="257" top="275" left="275" contentBackgroundAlpha="1" contentBackgroundColor="{getUnitListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false" dataProvider="{new XMLListCollection(hostComponent.course.unit)}">
+	<s:List id="unitList" visible="false" width="257" top="275" left="275" contentBackgroundAlpha="1" contentBackgroundColor="{getUnitListBackgroundColor(hostComponent.courseIndex)}" borderVisible="false">
 		<s:layout>
 			<s:VerticalLayout gap="1" paddingBottom="5" paddingTop="8" paddingLeft="4" paddingRight="4" /> 
 		</s:layout>
