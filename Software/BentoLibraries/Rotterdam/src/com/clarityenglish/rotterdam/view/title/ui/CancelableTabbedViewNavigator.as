@@ -62,8 +62,12 @@ package com.clarityenglish.rotterdam.view.title.ui {
 			if ((event.target is IItemRenderer) && 
 				(IItemRenderer(event.target).itemIndex == super.selectedIndex))
 			{
-				if (selectedNavigator is ViewNavigator)
-					ViewNavigator(selectedNavigator).popView();
+				if (selectedNavigator is ViewNavigator) {
+					// gh#847
+					if (ViewNavigator(selectedNavigator).length > 1)
+						ViewNavigator(selectedNavigator).popView();
+				}
+					
 			}
 		}
 		
