@@ -33,6 +33,17 @@ package com.clarityenglish.ielts.view.zone {
 		public var exerciseSelect:Signal = new Signal(XML, String);
 		public var videoScore:Signal = new Signal(ExerciseMark);
 		
+		private var _isPlatformiPad:Boolean;
+		
+		[Bindable]
+		public function get isPlatformiPad():Boolean {
+			return _isPlatformiPad;
+		}
+		
+		public function set isPlatformiPad(value:Boolean):void {
+			_isPlatformiPad = value;
+		}
+		
 		public function get viewCopyProvider():CopyProvider {
 			return this.copyProvider;
 		}

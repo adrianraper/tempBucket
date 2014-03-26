@@ -35,13 +35,13 @@
 	
 	<s:Label id="adviceVideoLabel" fontSize="18" fontWeight="bold" left="20" top="12" />
 	<s:Label id="adviceVideoInstructionLabel" left="20" top="35" />
-	<s:Group right="17" top="13">
+	<s:Group right="17" top="13" visible="{!hostComponent.isPlatformiPad}">
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextReading.png')" includeIn="reading" />
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextWriting.png')" includeIn="writing" />
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextListening.png')" includeIn="listening" />
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipTextSpeaking.png')" includeIn="speaking" />
 	</s:Group>
-	<s:Group right="4" top="33">
+	<s:Group right="4" top="33" visible="{!hostComponent.isPlatformiPad}">
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowReading.png')" includeIn="reading" />
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowWriting.png')" includeIn="writing" />
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/zone/channelTipArrowListening.png')" includeIn="listening" />
