@@ -292,6 +292,8 @@ package com.clarityenglish.rotterdam.view.settings {
 							course.privacy.collaborators.@root = String(e.target.selected);
 							// If you selected root, then group can't be changed
 							groupCollaboratorsCheckBox.enabled = !e.target.selected;
+							// gh#846
+							publishersFormItem.enabled = !e.target.selected;
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -302,6 +304,8 @@ package com.clarityenglish.rotterdam.view.settings {
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							course.privacy.collaborators.@group = String(e.target.selected);
+							// gh#846
+							publishersFormItem.enabled = !e.target.selected;
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -314,6 +318,8 @@ package com.clarityenglish.rotterdam.view.settings {
 							course.privacy.publishers.@root = String(e.target.selected);
 							// If you selected root, then group can't be changed
 							groupPublishersCheckBox.enabled = !e.target.selected;
+							// gh#846
+							collaboratorsFormItem.enabled = !e.target.selected;
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -324,6 +330,8 @@ package com.clarityenglish.rotterdam.view.settings {
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
 							course.privacy.publishers.@group = String(e.target.selected);
+							// gh#846
+							collaboratorsFormItem.enabled = !e.target.selected;
 							dirty.dispatch();
 							invalidateProperties();
 						}
