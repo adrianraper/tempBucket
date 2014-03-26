@@ -36,8 +36,6 @@ package com.clarityenglish.ielts.view.zone {
 			
 			view.exerciseSelect.add(onExerciseSelect);
 			view.videoScore.add(onVideoScore);
-			
-			view.isPlatformiPad = configProxy.isPlatformiPad();
 		}
 		
 		override public function onRemove():void {

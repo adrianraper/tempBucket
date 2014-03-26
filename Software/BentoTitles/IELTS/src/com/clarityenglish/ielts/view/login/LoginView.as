@@ -654,7 +654,7 @@ package com.clarityenglish.ielts.view.login {
 			isPlatformTablet = value;
 		}
 		
-		public function setPlatformipad(value:Boolean):void {
+		public function setPlatformiPad(value:Boolean):void {
 			isPlatformipad = value;
 		}
 		

@@ -32,7 +32,7 @@
 		function setHasMatchedIPrange(value:Boolean):void;
 		function setIPMatchedProductCodes(productCodes:Array):void;
 		function setPlatformTablet(value:Boolean):void;
-		function setPlatformipad(value:Boolean):void;
+		function setPlatformiPad(value:Boolean):void;
 		function setPlatformAndroid(value:Boolean):void;
 	}
 	
