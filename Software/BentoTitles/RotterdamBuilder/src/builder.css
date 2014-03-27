@@ -311,7 +311,7 @@ filemanager|FileManagerView {
 }
 
 filemanager|FileManagerView s|DataGrid#fileList {
-	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileListDataGrid");
+	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileListDataGridSkin");
 	alternatingRowColors: #FFFFFF, #F2F2F2;
 }
 

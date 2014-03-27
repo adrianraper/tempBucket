@@ -52,7 +52,7 @@
 		<s:DataGrid id="fileList" borderVisible="false" width.normal="65%" width.select="500" height.normal="500" height.select="280" selectionColor="#FFF6CC" rollOverColor="#FFF6CC" caretColor="#FFF6CC">
 			<s:columns>
 				<s:ArrayList>
-					<s:GridColumn id="nameGridColumn" dataField="@filename" />
+					<s:GridColumn id="nameGridColumn" dataField="@filename" width="{fileList.width * 0.6}"/>
 					<s:GridColumn id="sizeGridColumn" dataField="@size" labelFunction="sizeFunction"/>
 				</s:ArrayList>
 			</s:columns>
