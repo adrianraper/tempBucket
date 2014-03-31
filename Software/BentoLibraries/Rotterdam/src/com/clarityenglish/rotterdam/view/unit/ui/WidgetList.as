@@ -79,13 +79,27 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			
 			return classFactory;
 		}
-
+		
+		protected var mouseDownTarget:Object;
+		
+		// gh#851 - in Flex 4.12 mouseDownObject gives the widget itself instead of the individual thing that was clicked on (which we need to detect dragArea)
+		override protected function item_mouseDownHandler(event:MouseEvent):void {
+			mouseDownTarget = event.target;
+			super.item_mouseDownHandler(event);
+		}
+		
+		// gh#851 - in Flex 4.12 mouseDownObject gives the widget itself instead of the individual thing that was clicked on (which we need to detect dragArea)
+		override protected function mouseUpHandler(event:Event):void {
+			mouseDownTarget = null;
+			super.mouseUpHandler(event);
+		}
+		
 		override protected function dragStartHandler(event:DragEvent):void {
 			if (event.isDefaultPrevented())
 				return;
 			
 			// This is a little hack, but it means that we will only allow a drag if it started in a component with id="dragArea"
-			if (!mouseDownObject.hasOwnProperty("id") || mouseDownObject["id"] != "dragArea")
+			if (!mouseDownTarget.hasOwnProperty("id") || mouseDownTarget["id"] != "dragArea")
 				return;
 			
 			dragSource = new DragSource();
