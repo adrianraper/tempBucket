@@ -4,6 +4,7 @@
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
@@ -40,6 +41,8 @@
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				BBNotifications.COURSE_STARTED,
+				RotterdamNotifications.SETTINGS_SHOW,
+				RotterdamNotifications.SCHEDULE_SHOW,
 			]);
 		}
 		
@@ -49,6 +52,12 @@
 			switch (note.getName()) {
 				case BBNotifications.COURSE_STARTED:
 					view.showCourseView();
+					break;
+				case RotterdamNotifications.SETTINGS_SHOW:
+					view.showSettingsView();
+					break;
+				case RotterdamNotifications.SCHEDULE_SHOW:
+					view.showScheduleView();
 					break;
 			}
 		}

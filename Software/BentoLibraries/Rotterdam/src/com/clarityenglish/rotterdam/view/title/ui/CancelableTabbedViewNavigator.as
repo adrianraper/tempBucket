@@ -64,7 +64,7 @@ package com.clarityenglish.rotterdam.view.title.ui {
 			{
 				if (selectedNavigator is ViewNavigator) {
 					// gh#847
-					if (ViewNavigator(selectedNavigator).length > 1)
+					if (ViewNavigator(selectedNavigator).length > 1 && ViewNavigator(selectedNavigator).length < 3)
 						ViewNavigator(selectedNavigator).popView();
 				}
 					

@@ -59,7 +59,9 @@
 		}
 		
 		protected function onBack():void {
-			view.navigator.popView();
+			// gh#849
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;			
+			facade.sendNotification(BBNotifications.COURSE_STARTED, bentoProxy.menuXHTML);
 		}
 
 		// gh#122

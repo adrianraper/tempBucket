@@ -3,6 +3,8 @@ package com.clarityenglish.rotterdam.view.settings {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
@@ -60,7 +62,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		}
 		
 		protected function onBack():void {
-			view.navigator.popView();
+			// gh#849
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;			
+			facade.sendNotification(BBNotifications.COURSE_STARTED, bentoProxy.menuXHTML);
 		}
 
 		// gh#122

@@ -100,6 +100,9 @@ package com.clarityenglish.rotterdam.view.course {
 		public var coursePublish:Signal = new Signal();
 		public var helpPublish:Signal = new Signal();
 		public var unitDuplicate:Signal = new Signal();
+		// gh#849
+		public var settingsShow:Signal = new Signal();
+		public var scheduleShow:Signal = new Signal();
 
 		[Bindable]
 		public function get course():XML {
@@ -159,7 +162,6 @@ package com.clarityenglish.rotterdam.view.course {
 			//if (isPublisher)
 			//	previewVisible = true;
 			if (course && courseChanged) {
-				trace("course: "+course);
 				if (publishCourseButton) {
 					isFirstPublish = (course.publication && course.publication.group.length() == 0) ? true : false;
 					publishCourseButton.visible = isFirstPublish;
@@ -300,7 +302,9 @@ package com.clarityenglish.rotterdam.view.course {
 				helpPublish.dispatch();
 			}
 			// gh#705
-			navigator.pushView(ScheduleView);
+			//navigator.pushView(ScheduleView);
+			// gh#849
+			scheduleShow.dispatch();
 			
 			isItemClick = true;
 		}
@@ -384,7 +388,8 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		protected function onSettingsClick(event:MouseEvent):void {
-			navigator.pushView(SettingsView);
+			// gh#849
+			settingsShow.dispatch();
 		}
 		
 	}

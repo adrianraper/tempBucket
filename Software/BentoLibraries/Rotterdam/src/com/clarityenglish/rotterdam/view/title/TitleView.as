@@ -58,13 +58,21 @@ package com.clarityenglish.rotterdam.view.title {
 			super();
 			
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "course_selector", "course", "progress" ], true);
+			StateUtil.addStates(this, [ "course_selector", "course", "progress", "settings", "schedule" ], true);
 			// gh#745
 			this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange);
 		}
 		
 		public function showCourseView():void {
 			currentState = "course";
+		}
+		
+		public function showSettingsView():void {
+			currentState = "settings";
+		}
+		
+		public function showScheduleView():void {
+			currentState = "schedule";
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -74,7 +82,9 @@ package com.clarityenglish.rotterdam.view.title {
 				case sectionNavigator:
 					setNavStateMap(sectionNavigator, {
 						course_selector: { viewClass: CourseSelectorView },
-						course: { viewClass: CourseView, stack: true }
+						course: { viewClass: CourseView, stack: true },
+						settings: {viewClass: SettingsView, stack: true},
+						schedule: {viewClass: ScheduleView, stack:true}
 						// TODO: this really should be here, but there is some bug whereby the framework is straight away changing back from progress to course, so leave for now
 						//progress: { viewClass: ProgressView }
 					});
@@ -113,6 +123,8 @@ package com.clarityenglish.rotterdam.view.title {
 					myCoursesViewNavigator.label = copyProvider.getCopyForId("myCoursesViewNavigator");
 				} else if (currentState == "course") {
 					myCoursesViewNavigator.label = copyProvider.getCopyForId("Back");
+				} else {
+					myCoursesViewNavigator.label = "";
 				}
 			}	
 		}

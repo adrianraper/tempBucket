@@ -36,6 +36,9 @@
 			view.unitSelect.add(onUnitSelect);
 			view.coursePublish.add(onCoursePublish);
 			view.helpPublish.add(onHelpPublish);
+			// gh#849
+			view.settingsShow.add(onSettingsShow);
+			view.scheduleShow.add(onScheduleShow);
 			
 			// gh#110 - use real events instead of signals because they hook into system copy/paste shortcuts automatically
 			view.unitDuplicate.add(onUnitDuplicate);
@@ -118,6 +121,14 @@
 
 		protected function onHelpPublish():void {
 			facade.sendNotification(RotterdamNotifications.HELP_PUBLISH_WINDOW_SHOW);
+		}
+		
+		protected function onSettingsShow():void {
+			facade.sendNotification(RotterdamNotifications.SETTINGS_SHOW);
+		}
+		
+		protected function onScheduleShow():void {
+			facade.sendNotification(RotterdamNotifications.SCHEDULE_SHOW);	
 		}
 		
 	}
