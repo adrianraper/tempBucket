@@ -264,13 +264,16 @@ package com.clarityenglish.bento.view.recorder.ui {
 				sprite = new Sprite();
 				
 				sprite.addEventListener(MouseEvent.MOUSE_DOWN, onMouseDown);
-				stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
-				stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
 				sprite.addEventListener(MouseEvent.MOUSE_WHEEL, onMouseWheel);
 				
-				// v4.0.1.3 Pick up selecting outside the waveform
-				// Trouble is that the grid is on top of the waveform sprite, so each line you cross triggers an onMouseOut
-				stage.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+				// gh#850
+				if (stage) {
+					stage.addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove);
+					stage.addEventListener(MouseEvent.MOUSE_UP, onMouseUp);
+					// v4.0.1.3 Pick up selecting outside the waveform
+					// Trouble is that the grid is on top of the waveform sprite, so each line you cross triggers an onMouseOut
+					stage.addEventListener(MouseEvent.MOUSE_OUT, onMouseOut);
+				}	
 				
 				sprite.addChild(bitmap);
 				sprite.addChild(selectionSprite);
