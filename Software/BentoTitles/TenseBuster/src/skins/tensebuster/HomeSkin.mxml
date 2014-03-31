@@ -251,7 +251,7 @@
 	
 	<!--Rotation Circle-->
 	<home:circleBg left="0" verticalCenter="-100" />
-	<courseselector:TBCourseSelector id="courseSelector" level="{hostComponent.course}" isBackToHome="{hostComponent.isBackToHome}" left="-30" verticalCenter="-130" height="450"/>
+	<courseselector:TBCourseSelector id="courseSelector" isBackToHome="{hostComponent.isBackToHome}" left="-30" verticalCenter="-130" height="450"/>
 	
 	<!--Instruction-->
 	<s:Group id="instructioGroup" top="150">
@@ -267,7 +267,7 @@
 			</s:layout>
 			<s:itemRenderer>
 				<fx:Component>				
-					<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
+					<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true" enabled="{unitItemGroup.enabled}">
 						
 						<fx:Metadata>
 							[Event( name="selectionEvent", type="flash.events.Event" )]
@@ -303,6 +303,10 @@
 										overallProgressPath.bottomLeftRadiusX = 0;
 										overallProgressPath.bottomLeftRadiusY = 0;
 									}
+									
+									if (data.hasOwnProperty("@enabledFlag") && (data.@enabledFlag.toString() & 8)) {
+										unitItemGroup.enabled = false;	
+									}
 								}
 								
 								public function getUnitButtonProgressTopColor(index:Number):Number {
@@ -326,6 +330,7 @@
 								}
 								
 								public function getUnitButtonColor(index:Number):Number {
+									trace("index: "+index);
 									var colors:Array = outerDocument.hostComponent.getStyle("unitListButtonBackgroundColors");
 									return colors[index];
 								}
@@ -354,25 +359,27 @@
 							<s:State name="selected" />    
 						</s:states>
 						
-						<s:Rect id="backgroundRect" width="247" height="38">
-							<s:fill>
-								<s:LinearGradient rotation="90">
-									<s:GradientEntry id="backgroundRectTopColor" color="{getUnitButtonColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex)}"/>
-									<s:GradientEntry id="backgroundRectBottomColor" color="{getUnitButtonColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex)}"/>
-								</s:LinearGradient>
-							</s:fill>
-						</s:Rect>
-						
-						<s:Rect id="overallProgressPath" height="38" maxWidth="247">
-							<s:fill>
-								<s:LinearGradient rotation="90">
-									<s:GradientEntry color="{getUnitButtonProgressTopColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex)}" />
-									<s:GradientEntry color="{getUnitButtonProgressBottomColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex)}" />
-								</s:LinearGradient>
-							</s:fill>
-						</s:Rect>
-						
-						<s:Label id="caption" text="{data.@caption}" color="{getUnitListButtonLabelColor(outerDocument.hostComponent.courseIndex)}" top="15" left="20" fontSize="17" />
+						<s:Group id="unitItemGroup">
+							<s:Rect id="backgroundRect" width="247" height="38">
+								<s:fill>
+									<s:LinearGradient rotation="90">
+										<s:GradientEntry id="backgroundRectTopColor" color="{getUnitButtonColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex)}"/>
+										<s:GradientEntry id="backgroundRectBottomColor" color="{getUnitButtonColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex)}"/>
+									</s:LinearGradient>
+								</s:fill>
+							</s:Rect>
+							
+							<s:Rect id="overallProgressPath" height="38" maxWidth="247">
+								<s:fill>
+									<s:LinearGradient rotation="90">
+										<s:GradientEntry color="{getUnitButtonProgressTopColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex)}" />
+										<s:GradientEntry color="{getUnitButtonProgressBottomColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex)}" />
+									</s:LinearGradient>
+								</s:fill>
+							</s:Rect>
+							
+							<s:Label id="caption" text="{data.@caption}" color="{getUnitListButtonLabelColor(outerDocument.hostComponent.courseIndex)}" top="15" left="20" fontSize="17" />
+						</s:Group>
 					</s:ItemRenderer>
 				</fx:Component>
 			</s:itemRenderer>
@@ -395,7 +402,7 @@
 	</s:Group>	
 	
 	<!--exercise list triangle pointer-->
-	<s:Group id="triangleGroup" horizontalCenter="68" verticalCenter="0" height="400" alpha="0" visible="{exerciseList.dataProvider.length > 0}">
+	<s:Group id="triangleGroup" horizontalCenter="68" verticalCenter="0" height="400" alpha="0" visible="{hostComponent.unit != null}">
 		<s:Group id="triangleReferenceGroup">
 			<s:Path id="trianglePath" x="-0.00012207" y="3.05176e-005" winding="nonZero" data="M12.3064 8.53876C6.5603 12.1755 0.920654 15.0173 0.920654 15.0173 -0.306885 15.6359 -0.306885 16.6486 0.920654 17.2673 0.920654 17.2673 6.5603 20.1091 12.3064 23.7458 18.0525 27.3825 23.9353 31.864 23.9353 31.864 25.03 32.697 25.9246 32.2536 25.9246
 					30.8786L25.9246 18.6423C25.9246 17.2673 25.9246 15.0173 25.9246 13.6423L25.9246 1.40594C25.9246 0.0309448 25.03 -0.412415 23.9353 0.420593 23.9353 0.420593 18.0525 4.90204 12.3064 8.53876Z" filters="{[dropShadowFilter]}">
@@ -407,7 +414,7 @@
 	</s:Group>
 	
 	<!--exercise list-->
-	<s:Group id="exerciseGroup" horizontalCenter="230" verticalCenter="0" height="{exerciseList.dataProvider.length * 31 + 40}" alpha="0">			
+	<s:Group id="exerciseGroup" horizontalCenter="230" verticalCenter="0" height="{exerciseList.dataProvider.length * 31 + 40}" alpha="0" visible="{hostComponent.unit != null}">			
 		<s:VGroup verticalCenter="-10" horizontalCenter="0" gap="0" filters="{[dropShadowFilter]}">
 			<s:Path visible="{exerciseList.dataProvider.length > 0}" winding="nonZero" filters="{[dropShadowFilter]}" data="M6.03369 14.666C4.47461 14.666 2.47949 14.0566 1.59961 13.3115 0.719727 12.5664 0 10.6816 0 9.12256L0 5.5415C0 3.98242 0.719727 2.09814 1.59961 1.35352 2.47949 0.608887 4.47461 0 6.03369 0L311.915 0C313.475 0 315.47 0.608887 316.35 1.35352 317.229
 					2.09814 317.949 3.98242 317.949 5.5415L317.949 9.12256C317.949 10.6816 317.229 12.5664 316.35 13.3115 315.47 14.0566 313.475 14.666 311.915 14.666L6.03369 14.666Z">
@@ -484,6 +491,7 @@
 											outerDocument.exListAlphaArray[getSequenceNumber(data)] = 0;
 										}
 										// we add one by one fade in for item in exercise list here 
+										trace("isFirstClickCurrentUnitList: "+outerDocument.isFirstClickCurrentUnitList);
 										if (outerDocument.isFirstClickCurrentUnitList && (outerDocument.exListAlphaArray.length == 2 || outerDocument.exListAlphaArray[getSequenceNumber(data)] == 0)) {
 											var total:Number = outerDocument.exerciseList.dataProvider.length;
 											if ( total % 2 == 0) {

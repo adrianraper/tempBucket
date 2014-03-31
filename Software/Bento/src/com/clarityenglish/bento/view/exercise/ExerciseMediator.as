@@ -8,6 +8,7 @@
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.googlecode.bindagetools.Bind;
 	
@@ -58,6 +59,11 @@
 				
 				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href, serverSide) : null;
 			}).toProperty(view, "href");
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (configProxy.getDirectStart().exerciseID) {
+				view.isDirectStartEx = true;
+			}
 		}
 		
 		public override function onRemove():void {

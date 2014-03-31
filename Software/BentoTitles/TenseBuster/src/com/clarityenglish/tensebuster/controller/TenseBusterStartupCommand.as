@@ -45,7 +45,7 @@ package com.clarityenglish.tensebuster.controller {
 			var transforms:Array = [ new ProgressExerciseScoresTransform(),
 									 new ProgressSummaryTransform(),
 									 new HiddenContentTransform(),
-									 new DirectStartDisableTransform(configProxy.getDirectStart()) ];
+									 /*new DirectStartDisableTransform(configProxy.getDirectStart())*/ ];
 			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
 			
 			facade.registerMediator(new TenseBusterApplicationMediator(note.getBody()));

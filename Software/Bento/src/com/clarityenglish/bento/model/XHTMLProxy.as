@@ -2,6 +2,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform;
 	import com.clarityenglish.bento.vo.content.transform.XmlTransform;
 	import com.clarityenglish.common.CommonNotifications;
@@ -23,6 +24,7 @@ package com.clarityenglish.bento.model {
 	import mx.rpc.AsyncToken;
 	import mx.rpc.events.FaultEvent;
 	import mx.rpc.events.ResultEvent;
+	import mx.utils.ObjectUtil;
 	
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.rpc.ResultResponder;
@@ -148,7 +150,12 @@ package com.clarityenglish.bento.model {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (href.serverSide) {
 				// Determine if the href matches any of the registered transforms and if so add those transforms
-				href.resetTransforms();				
+				href.resetTransforms();
+				// gh#761 Because the configProxy.getDirectStart() doesn't be set value in xxStartupCommand, so I put DirectStartDisableTransform here 
+				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+				if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0)
+					registerTransforms([new DirectStartDisableTransform(configProxy.getDirectStart())], [ Href.MENU_XHTML ]);				
+				
 				// gh#265				
 				if (href.type == Href.EXERCISE) {
 					transformDefinitions.splice(0, transformDefinitions.length);

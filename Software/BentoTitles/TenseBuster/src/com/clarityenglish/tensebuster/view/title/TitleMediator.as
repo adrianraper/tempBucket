@@ -6,6 +6,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.tensebuster.TenseBusterNotifications;
 	import com.clarityenglish.tensebuster.controller.TenseBusterStartupCommand;
 	
@@ -40,6 +41,21 @@
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (configProxy.isPlatformAndroid()) {
 				view.androidSize = configProxy.getAndroidSize();
+			}
+			
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			if (configProxy.getDirectStart()) {
+				if (configProxy.getDirectStart().exerciseID) {
+					view.isDirectStartEx = true;
+					view.directExercise = bentoProxy.menuXHTML.getElementById(configProxy.getDirectStart().exerciseID);
+				} else if (configProxy.getDirectStart().unitID) {
+					view.isDirectStartUnit = true;
+					view.directUnit = bentoProxy.menuXHTML..unit.(@id == configProxy.getDirectStart().unitID)[0];
+				} else if (configProxy.getDirectStart().courseID) {
+					view.isDirectStartCourse = true;
+					view.directCourse = bentoProxy.menuXHTML..course.(@id == configProxy.getDirectStart().courseID)[0];
+				}
+				
 			}
 		}
 		

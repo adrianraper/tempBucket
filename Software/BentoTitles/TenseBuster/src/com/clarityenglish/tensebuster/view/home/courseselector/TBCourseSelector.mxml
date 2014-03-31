@@ -20,6 +20,7 @@
 			import com.greensock.plugins.BezierPlugin;
 			
 			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
 			private static const ActivePos_x:Number = 200;
 			private static const ActivePos_y:Number = 223;
 			private static const FirstPos_x:Number = 189;
@@ -68,6 +69,7 @@
 			[Bindable]
 			private var _level:XML;
 			private var _isBackToHome:Boolean;
+			private var _isDirectStart:Boolean;
 			
 			public function set dataProvider(value:XML):void {
 				_dataProvider = value;
@@ -84,12 +86,43 @@
 				return _level;
 			}
 			
+			public function set isDirectStart(value:Boolean):void {
+				_isDirectStart = value;
+			}
+			
+			[Bindable]
+			public function get isDirectStart():Boolean {
+				return _isDirectStart;
+			}
+			
 			public function set isBackToHome(value:Boolean):void {
 				_isBackToHome = value;
 			}
 			
 			protected override function commitProperties():void {
 				super.commitProperties();
+					
+				if (_level) {
+					switch (_level.@["caption"].toString()) {
+						case "Elementary":
+							showElementary();
+							break;
+						case "Lower Intermediate":
+							showLowerInter();
+							break;
+						case "Intermediate":
+							showIntermediate();
+							break;
+						case "Upper Intermediate":
+							showUpperInter();
+							break;
+						case "Advanced":
+							showAdvance();
+							break; 						
+					}
+				} else {
+					initializeCourseSelector();
+				}
 				
 				if (_dataProvider) {
 					for each (var courseXML:XML in _dataProvider.course) {
@@ -113,28 +146,6 @@
 							}
 						}
 					}
-				}
-				
-				if (_level) {
-					switch (_level.@["caption"].toString()) {
-						case "Elementary":
-							showElementary();
-							break;
-						case "Lower Intermediate":
-							showLowerInter();
-							break;
-						case "Intermediate":
-							showIntermediate();
-							break;
-						case "Upper Intermediate":
-							showUpperInter();
-							break;
-						case "Advanced":
-							showAdvance();
-							break; 						
-					}
-				} else {
-					initializeCourseSelector();
 				}
 			}
 			
@@ -261,17 +272,21 @@
 			}
 			
 			protected function enableClick(level:Button):void {
-				level.enabled = true;
-				level.useHandCursor = true;
-				level.buttonMode = true;
+				if (!isDirectStart) {
+					level.enabled = true;
+					level.useHandCursor = true;
+					level.buttonMode = true;
+				}	
 			}
 			
 			protected function onFirstComplete():void {
 				onComplete();
-				lowerInter.enabled = true;
-				intermediate.enabled = true;
-				upperInter.enabled = true;
-				advanced.enabled = true;
+				if (!isDirectStart) {
+					lowerInter.enabled = true;
+					intermediate.enabled = true;
+					upperInter.enabled = true;
+					advanced.enabled = true;
+				}
 			}
 			
 			protected function initializeCourseSelector():void {
@@ -305,6 +320,7 @@
 				advanced.scaleY = 1;
 				advanced.enabled = true;
 			}
+			
 		]]>
 	</fx:Script>
 	

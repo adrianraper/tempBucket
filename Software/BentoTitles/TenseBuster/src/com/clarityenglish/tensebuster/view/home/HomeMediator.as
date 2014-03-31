@@ -7,6 +7,8 @@
 	import com.clarityenglish.tensebuster.TenseBusterNotifications;
 	import com.googlecode.bindagetools.Bind;
 	
+	import mx.utils.ObjectUtil;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -42,6 +44,16 @@
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			if (configProxy.isPlatformAndroid()) {
 				view.androidSize = configProxy.getAndroidSize();
+			}
+			
+			if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0) {
+				view.isDirectStart = true;
+				if (configProxy.getDirectStart().courseID) {
+					view.directCourseID = configProxy.getDirectStart().courseID
+				}
+				if (configProxy.getDirectStart().unitID) {
+					view.directUnitID = configProxy.getDirectStart().unitID;
+				}
 			}
 		}
 		

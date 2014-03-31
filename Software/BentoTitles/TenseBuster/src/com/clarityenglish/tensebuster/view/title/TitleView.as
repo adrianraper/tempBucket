@@ -6,6 +6,7 @@ package com.clarityenglish.tensebuster.view.title {
 	import com.clarityenglish.tensebuster.view.progress.ProgressView;
 	import com.clarityenglish.tensebuster.view.title.ui.SizedButton;
 	import com.clarityenglish.tensebuster.view.title.ui.SizedTabbedViewNavigator;
+	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -78,6 +79,12 @@ package com.clarityenglish.tensebuster.view.title {
 		private var _isBackFromExercise:Boolean;
 		private var courseCaptionChange:Boolean;
 		private var _androidSize:String;
+		private var _isDirectStartCourse:Boolean;
+		private var _directCourse:XML;
+		private var _isDirectStartUnit:Boolean;
+		private var _directUnit:XML;
+		private var _isDirectStartEx:Boolean;
+		private var _directExercise:XML;
 		
 		public var backToMenu:Signal = new Signal();
 		public var logout:Signal = new Signal();	
@@ -146,9 +153,51 @@ package com.clarityenglish.tensebuster.view.title {
 			return _androidSize;
 		}
 		
+		public function set isDirectStartCourse(value:Boolean):void {
+			_isDirectStartCourse = value;
+		}
+		
+		public function set directCourse(value:XML):void {
+			_directCourse = value;
+		}
+		
+		public function set isDirectStartUnit(value:Boolean):void {
+			_isDirectStartUnit = value;
+		}
+		
+		public function set directUnit(value:XML):void {
+			_directUnit = value;
+		}
+		
+		public function set isDirectStartEx(value:Boolean):void {
+			_isDirectStartEx = value;
+		}
+		
+		public function set directExercise(value:XML):void {
+			_directExercise = value;
+		}
+		
 		public function TitleView() {
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "unit", "zone", "exercise", "progress", "profile", "help" ], true);
+		}
+		
+		protected override function updateViewFromXHTML(xhtml:XHTML):void {
+			super.updateViewFromXHTML(xhtml);
+			
+			if (_isDirectStartCourse) {
+				courseCaption = _directCourse.@caption;
+			}
+			
+			if (_isDirectStartUnit) {
+				unitCaption = _directUnit.@caption;
+				courseCaption = _directUnit.parent().@caption;
+			}
+			
+			if (_isDirectStartEx) {
+				unitCaption = _directExercise.parent().@caption;
+				courseCaption = _directExercise.parent().parent().@caption;
+			}
 		}
 		
 		protected override function commitProperties():void {
@@ -219,7 +268,11 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
-			backToMenu.dispatch();
+			if (_isDirectStartEx) {
+				logout.dispatch();
+			} else {
+				backToMenu.dispatch();
+			}
 		}
 		
 		protected override function getCurrentSkinState():String {

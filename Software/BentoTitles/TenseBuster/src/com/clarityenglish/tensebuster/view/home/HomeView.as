@@ -39,9 +39,6 @@ package com.clarityenglish.tensebuster.view.home {
 		public var instructionLabel:Label; 
 		
 		[SkinPart]
-		public var coursesList:List;
-		
-		[SkinPart]
 		public var homeInstructionLabel:Label;
 		
 		[SkinPart]
@@ -58,6 +55,9 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		[SkinPart]
 		public var exerciseGroup:Group;
+		
+		[SkinPart]
+		public var triangleGroup:Group;
 		
 		[SkinPart]
 		public var exerciseList:List;
@@ -81,6 +81,9 @@ package com.clarityenglish.tensebuster.view.home {
 		private var _androidSize:String;
 		private var _isCourseSelectorClick:Boolean
 		private var _isUnitListClick:Boolean;
+		private var _isDirectStart:Boolean;
+		private var _directCourseID:String;
+		private var _directUnitID:String;
 		
 		// gh#757
 		[Bindable]
@@ -155,6 +158,33 @@ package com.clarityenglish.tensebuster.view.home {
 			_androidSize = value;
 		}
 		
+		public function set isDirectStart(value:Boolean):void {
+			_isDirectStart = value;
+		}
+		
+		[Bindable]
+		public function get isDirectStart():Boolean {
+			return _isDirectStart;
+		}
+		
+		public function set directCourseID(value:String):void {
+			_directCourseID = value;
+		}
+		
+		[Bindable]
+		public function get directCourseID():String {
+			return _directCourseID;
+		}
+		
+		public function set directUnitID(value:String):void {
+			_directUnitID = value;
+		}
+		
+		[Bindable]
+		public function get directUnitID():String {
+			return _directUnitID;
+		}
+		
 		override protected function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
@@ -171,21 +201,22 @@ package com.clarityenglish.tensebuster.view.home {
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			if (coursesList)
-				coursesList.dataProvider = new XMLListCollection(menu.course);
-			
 			if (courseSelector)
 				courseSelector.dataProvider = menu;
+			
+			if (isDirectStart) {
+				courseSelector.isDirectStart = true;
+				course = menu.course.(@id == directCourseID)[0];
+				if (directUnitID) {
+					unit = course.unit.(@id == directUnitID)[0];
+				}
+			} 
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case coursesList:
-					coursesList.addEventListener(MouseEvent.CLICK, onListClick);
-					coursesList.setStyle("verticalScrollPolicy", ScrollPolicy.OFF);
-					break;
 				case homeInstructionLabel:
 					homeInstructionLabel.text = copyProvider.getCopyForId("homeInstructionLabel");
 					break;
@@ -213,7 +244,7 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		protected override function commitProperties():void {			
 			super.commitProperties();
-
+			
 			// for re-login
 			if (!course && !unit) {
 				courseSelector.level = null;
@@ -237,16 +268,16 @@ package com.clarityenglish.tensebuster.view.home {
 			if (courseChanged && course) {
 				courseIndex = menu.course.(@caption == course.@caption).childIndex();
 				courseSelector.level = course;
+				//unitList.dataProvider = new XMLListCollection(course.unit);
 				courseChanged = false;
 			}
 			
 			if (unitChanged) {
 				// used to put reload exercise in unit click handler, but turns out that evaluation to unit.exercise will cause unit select effect disfunctional
 				// so the exercise reload function will be put here and the data provider.
-				exerciseList.dataProvider = new XMLListCollection(getExercisesList(unit));	
+				exerciseList.dataProvider = new XMLListCollection(getExercisesList(unit));
 				unitChanged = false;
 			}
-
 		}
 		
 		override protected function getCurrentSkinState():String {
@@ -256,49 +287,46 @@ package com.clarityenglish.tensebuster.view.home {
 				return super.getCurrentSkinState();
 			}
 		}
-		private function onListClick(event:MouseEvent):void {
-			var course:XML = event.currentTarget.selectedItem as XML;
-			
-			if (course)
-				courseSelect.dispatch(course);
-		}
 		
 		protected function onCourseSelectorClick(event:Event):void {
 			instructioGroup.visible = false;
 			
-			switch (event.type) {
-				case "elementarySelected":
-					courseSelect.dispatch(menu.course.(@["class"] == "elementary")[0]);
-					break;
-				case "lowerInterSelected":
-					courseSelect.dispatch(menu.course.(@["class"] == "lowerintermediate")[0]);
-					break;
-				case "intermediateSelected":
-					courseSelect.dispatch(menu.course.(@["class"] == "intermediate")[0]);
-					break;
-				case "upperInterSelected":
-					courseSelect.dispatch(menu.course.(@["class"] == "upperintermediate")[0]);
-					break;
-				case "advancedSelected":
-					courseSelect.dispatch(menu.course.(@["class"] == "advanced")[0]);
-					break;
-				default:
-					log.error("Unable to find a matching course");
+			if (!isDirectStart) {
+				switch (event.type) {
+					case "elementarySelected":
+						courseSelect.dispatch(menu.course.(@["class"] == "elementary")[0]);
+						break;
+					case "lowerInterSelected":
+						courseSelect.dispatch(menu.course.(@["class"] == "lowerintermediate")[0]);
+						break;
+					case "intermediateSelected":
+						courseSelect.dispatch(menu.course.(@["class"] == "intermediate")[0]);
+						break;
+					case "upperInterSelected":
+						courseSelect.dispatch(menu.course.(@["class"] == "upperintermediate")[0]);
+						break;
+					case "advancedSelected":
+						courseSelect.dispatch(menu.course.(@["class"] == "advanced")[0]);
+						break;
+					default:
+						log.error("Unable to find a matching course");
+				}
 			}
 		}
 		
-		protected function onUnitListClick(event:MouseEvent):void {		
-			var unitXML:XML =  event.currentTarget.selectedItem as XML;
+		protected function onUnitListClick(event:MouseEvent = null):void {
+			var unitXML:XML =  unitList.selectedItem as XML;
+
 			if (unitXML) {
 				if (triangleReferenceGroup.y) {
 					var move:Move = new Move();
 					move.easingFunction = Back.easeOut;
 					move.yFrom = triangleReferenceGroup.y;
-					move.yTo = 50 + event.currentTarget.selectedIndex * 39;	
+					move.yTo = 50 + unitList.selectedIndex * 39;	
 					move.duration = 300;
 					move.play([triangleReferenceGroup]);
 				} else {
-					triangleReferenceGroup.y = 50 + event.currentTarget.selectedIndex * 39;
+					triangleReferenceGroup.y = 50 + unitList.selectedIndex * 39;
 				}
 				
 				//trianglePath.top = 50 + event.currentTarget.selectedIndex * 39;				
