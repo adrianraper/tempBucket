@@ -79,9 +79,11 @@ package com.clarityenglish.controls.video.providers {
 		}
 		
 		protected function onSwfLoaderComplete(event:Event):void {
-			swfLoader.removeEventListener(Event.COMPLETE, onSwfLoaderComplete);
-			swfLoader.content.addEventListener("onReady", onReady); // gh#328
-			swfLoader.content.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
+			if (swfLoader) {
+				swfLoader.removeEventListener(Event.COMPLETE, onSwfLoaderComplete);
+				swfLoader.content.addEventListener("onReady", onReady); // gh#328
+				swfLoader.content.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
+			}
 		}
 		
 		protected function onReady(e:Event):void {
@@ -110,8 +112,13 @@ package com.clarityenglish.controls.video.providers {
 		public function destroy():void {
 			stop();
 			(videoPlayer as IVisualElementContainer).removeElement(swfLoader);
-			swfLoader.content.removeEventListener("onReady", onReady);
-			swfLoader.content.removeEventListener(MouseEvent.CLICK, onClickVideo);
+			
+			// gh#852
+			if (swfLoader.content) {
+				swfLoader.content.removeEventListener("onReady", onReady);
+				swfLoader.content.removeEventListener(MouseEvent.CLICK, onClickVideo);
+			}
+			
 			swfLoader.source = null;
 			swfLoader = null;
 		}
