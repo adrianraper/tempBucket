@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.ContentEvent;
 	import com.clarityenglish.textLayout.util.TLFUtil;
@@ -21,7 +22,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 	import spark.components.TitleWindow;
 	import spark.events.TitleWindowBoundsEvent;
 	
-	public class ContentWindowShowCommand extends SimpleCommand {
+	public class AuthoringWindowShowCommand extends SimpleCommand {
 		
 		/**
 		 * Standard flex logger
@@ -37,9 +38,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			node = note.getBody().node;
+			node = note.getBody() as XML;
 			tempWidgetId = note.getType();
-			log.info("Opening course select dialog with tempWidgetId=" + tempWidgetId);
+			log.info("Opening authoring dialog with tempWidgetId=" + tempWidgetId);
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
@@ -47,9 +48,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 			titleWindow.title = note.getBody().title;
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
-			var contentSelectorView:ContentSelectorView = new ContentSelectorView();
-			contentSelectorView.percentWidth = contentSelectorView.percentHeight = 100;
-			titleWindow.addElement(contentSelectorView);
+			var authoringView:AuthoringView = new AuthoringView();
+			authoringView.percentWidth = authoringView.percentHeight = 100;
+			titleWindow.addElement(authoringView);
 			
 			// Create and centre the popup (this popup is modal)
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
@@ -59,9 +60,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 			titleWindow.closeButton.visible = false;
 			
 			// Listen for the close event so that we can cleanup
-			titleWindow.addEventListener(ContentEvent.CONTENT_SELECT, onContentSelect);
-			//gh #212
-			titleWindow.addEventListener(ContentEvent.CONTENT_CANCEL, onContentCancel);
+			//titleWindow.addEventListener(ContentEvent.CONTENT_SELECT, onContentSelect);
+			//titleWindow.addEventListener(ContentEvent.CONTENT_CANCEL, onContentCancel);
+			
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 		}
 		
@@ -94,8 +95,6 @@ package com.clarityenglish.rotterdam.builder.controller {
 		 */
 		protected function onClosePopUp(event:CloseEvent = null):void {
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
-			titleWindow.removeEventListener(ContentEvent.CONTENT_SELECT, onContentSelect);
-			titleWindow.removeEventListener(ContentEvent.CONTENT_CANCEL, onContentCancel);
 			titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
 			
 			delete node.@tempid;
