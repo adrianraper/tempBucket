@@ -4,6 +4,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AnimationWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AuthoringWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.OrchidWidget;
@@ -54,11 +55,11 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			itemRendererFunction = widgetItemRendererFunction;
 		}
 		
+		}
 		// for video selector widget
 		[Bindable]
 		public function get channelCollection():ArrayCollection {
 			return _channelCollection;
-		}
 		
 		public function set channelCollection(value:ArrayCollection):void {
 			_channelCollection = value;

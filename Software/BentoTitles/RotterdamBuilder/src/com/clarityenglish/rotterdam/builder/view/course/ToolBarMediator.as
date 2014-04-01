@@ -47,6 +47,7 @@
 			view.addAudio.add(onAddAudio);
 			view.addVideo.add(onAddVideo);
 			view.addExercise.add(onAddExercise);
+			view.addAuthoring.add(onAddAuthoring);
 			view.formatText.add(onFormatText);
 			view.preview.add(onPreview);
 			view.backToEditor.add(onBackToEditor);
@@ -65,6 +66,7 @@
 			view.addAudio.remove(onAddAudio);
 			view.addVideo.remove(onAddVideo);
 			view.addExercise.remove(onAddExercise);
+			view.addAuthoring.remove(onAddAuthoring);
 			view.formatText.remove(onFormatText);
 			view.preview.remove(onPreview);
 			view.backToEditor.remove(onBackToEditor);
@@ -151,6 +153,11 @@
 			options.title = title
 			if (widget) options.node = widget; // gh#115 - edit an existing widget				
 			facade.sendNotification(RotterdamNotifications.EXERCISE_WIDGET_ADD, options);
+		}
+		
+		protected function onAddAuthoring(options:Object, widget:XML):void {
+			if (widget) options.node = widget; // gh#115 - edit an existing widget				
+			facade.sendNotification(RotterdamNotifications.AUTHORING_WIDGET_ADD, options);
 		}
 		
 		protected function onFormatText(options:Object):void {

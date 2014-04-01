@@ -62,7 +62,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		[SkinPart]
 		public var widgetChrome:WidgetChrome;
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var widgetText:WidgetText;
 		
 		[SkinPart]

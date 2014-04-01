@@ -174,11 +174,13 @@
 			<s:Button id="listAddVideoButton" useHandCursor="true" buttonMode="true" top="100" left="25"/>
 			<s:Label id="addVideoLabel" top="110" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 			<s:Button id="listAddImageButton" useHandCursor="true" buttonMode="true" top="100" left="190"/>
-			<s:Label id="addIamgeLabel" top="110" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Label id="addImageLabel" top="110" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 			<s:Button id="listAddAudioButton" useHandCursor="true" buttonMode="true" top="140" left="25"/>
 			<s:Label id="addAudioLabel" top="150" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 			<s:Button id="listAddExerciseButton" useHandCursor="true" buttonMode="true" top="140" left="190"/>
 			<s:Label id="addExerciseLabel" top="150" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddAuthoringButton" useHandCursor="true" buttonMode="true" top="170" left="190"/>
+			<s:Label id="addAuthoringLabel" top="180" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 		</s:Group>
 	</s:Group>	
 

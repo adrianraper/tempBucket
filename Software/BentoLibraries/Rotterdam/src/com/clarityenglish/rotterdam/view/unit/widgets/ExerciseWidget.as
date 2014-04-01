@@ -37,7 +37,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.@exIndex;
 		}
 
-		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			

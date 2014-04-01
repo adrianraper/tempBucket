@@ -29,6 +29,7 @@
 		public static const IMAGE_WIDGET_ADD:String = "rotterdam/image_widget_add";
 		public static const AUDIO_WIDGET_ADD:String = "rotterdam/audio_widget_add";
 		public static const EXERCISE_WIDGET_ADD:String = "rotterdam/exercise_widget_add";
+		public static const AUTHORING_WIDGET_ADD:String = "rotterdam/authoring_widget_add";
 		
 		public static const COURSE_CREATE_WINDOW_SHOW:String = "rotterdam/course_create_window_show";
 		public static const CONTENT_WINDOW_SHOW:String = "rotterdam/content_window_show";
