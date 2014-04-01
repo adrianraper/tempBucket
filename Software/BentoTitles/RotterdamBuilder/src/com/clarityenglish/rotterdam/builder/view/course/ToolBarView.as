@@ -349,11 +349,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		public function set previewMode(value:Boolean):void {
 			_isPreviewMode = value;
-			if (value) {
-				setCurrentState("preview");
-			} else {
-				setCurrentState("normal");
-			}
+			setCurrentState(value ? "preview" : "normal");
 			invalidateSkinState();
 		}
 		public function get previewMode():Boolean {
@@ -381,28 +377,13 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (previewBackToEditorButton) {
-				if (previewMode && isPublisher) {
-					previewBackToEditorButton.visible = false;
-				} else {
-					previewBackToEditorButton.visible = true;					
-				}
-			}
+			if (previewBackToEditorButton)
+				previewBackToEditorButton.visible = !(previewMode && isPublisher);
 
 			if (addItemButton) {
-				if (smallScreenFlag) {
-					addItemButton.visible = true;
-					iconGroup.visible = false; 
-				} else {
-					if (isUpArrowClick) {
-						iconGroup.visible = false;
-					} else {
-						iconGroup.visible = true; 
-					}
-					addItemButton.visible = false;
-					
-				}
-			}	
+				addItemButton.visible = smallScreenFlag;
+				iconGroup.visible = !smallScreenFlag && !isUpArrowClick;
+			}
 		}
 				
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -645,16 +626,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public function onURLClick(event:MouseEvent):void {
 			setCurrentState("link");
 			callLater(function():void { 
-				if (urlCaption) {
-					captionTextInput.text = urlCaption;
-				} else {
-					captionTextInput.text = "";
-				}
-				if (urlString) {
-					webUrlTextInput.text = urlString;
-				} else {
-					webUrlTextInput.text = "";
-				}
+				captionTextInput.text = urlCaption ? urlCaption : "";
+				webUrlTextInput.text = urlString ? urlString : "";
 			});
 			isItemClick = true;
 		}
@@ -817,11 +790,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		// alice: small screen size solution
 		protected function onScreenResize(event:Event):void {
-			if (stage.stageWidth < 1200) {
-				smallScreenFlag = true;
-			} else {
-				smallScreenFlag = false;
-			}
+			smallScreenFlag = (stage.stageWidth < 1200);
 			invalidateProperties();				
 		}
 		
@@ -851,9 +820,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		// The pop up menu will not shrink if user click on menu itself
 		protected function onItemListClick(event:MouseEvent):void {
-			if (!isItemClick) {
-				isOutsideClick = false;
-			}
+			if (!isItemClick) isOutsideClick = false;
 		}
 		
 		protected function onStageClick(event:MouseEvent):void {

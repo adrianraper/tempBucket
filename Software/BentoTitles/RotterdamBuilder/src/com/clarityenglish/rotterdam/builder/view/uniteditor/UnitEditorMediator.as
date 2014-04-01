@@ -28,8 +28,7 @@
 			view.widgetSelect.add(onWidgetSelect);
 			view.widgetDelete.add(onWidgetDelete);
 			view.widgetEdit.add(onWidgetEdit);
-			//gh@187
-			view.widgetRename.add(onWidgetRename);
+			view.widgetRename.add(onWidgetRename); // gh#187
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			Bind.fromProperty(courseProxy, "widgetCollection").toProperty(view, "widgetCollection");
@@ -41,7 +40,7 @@
 			view.widgetSelect.remove(onWidgetSelect);
 			view.widgetDelete.remove(onWidgetDelete);
 			view.widgetEdit.remove(onWidgetEdit);
-			
+			view.widgetRename.remove(onWidgetRename);
 			AudioPlayer.stopAllAudio();
 		}
 		
@@ -71,7 +70,7 @@
 			facade.sendNotification(RotterdamNotifications.WIDGET_EDIT, widget);
 		}
 		
-		//gh#187
+		// gh#187
 		protected function onWidgetRename():void {
 			facade.sendNotification(RotterdamNotifications.WIDGET_RENAME);
 		}
