@@ -1,9 +1,14 @@
 ﻿package com.clarityenglish.common.vo.content {
 	
 	/**
-	* ...
-	* @author DefaultUser (Tools -> Custom Arguments...)
-	*/
+	 * This class looks like it has been replaced by 
+	 * com.clarityenglish.bento.vo.content.Exercise
+	 * but this should be checked throughout all programs.
+	 * DON'T USE IT ANYWHERE NEW 
+	 * ...
+	 * @author DefaultUser (Tools -> Custom Arguments...)
+	 * 
+	 */
 	[RemoteClass(alias = "com.clarityenglish.common.vo.content.Exercise")]
 	[Bindable]
 	public dynamic class Exercise extends Content {

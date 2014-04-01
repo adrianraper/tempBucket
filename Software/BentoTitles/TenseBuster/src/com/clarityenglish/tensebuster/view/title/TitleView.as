@@ -161,6 +161,10 @@ package com.clarityenglish.tensebuster.view.title {
 		public function set directCourse(value:XML):void {
 			_directCourse = value;
 		}
+		// gh#853
+		public function get directCourse():XML {
+			return _directCourse;
+		}
 		
 		public function set isDirectStartUnit(value:Boolean):void {
 			_isDirectStartUnit = value;
@@ -169,13 +173,19 @@ package com.clarityenglish.tensebuster.view.title {
 		public function set directUnit(value:XML):void {
 			_directUnit = value;
 		}
+		public function get directUnit():XML {
+			return _directUnit;
+		}
 		
-		public function set isDirectStartEx(value:Boolean):void {
+		public function set isDirectStartExercise(value:Boolean):void {
 			_isDirectStartEx = value;
 		}
 		
 		public function set directExercise(value:XML):void {
 			_directExercise = value;
+		}
+		public function get directExercise():XML {
+			return _directExercise;
 		}
 		
 		public function set isDirectLogout(value:Boolean) {

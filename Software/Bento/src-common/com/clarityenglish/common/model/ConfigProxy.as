@@ -48,6 +48,9 @@ package com.clarityenglish.common.model {
 		private var config:Config;
 		
 		private var _dateFormatter:DateFormatter;
+		
+		// gh#853
+		private var _directStartOverride:Boolean = false;
 
 		/**
 		 * Configuration information comes from three sources
@@ -89,6 +92,7 @@ package com.clarityenglish.common.model {
 			var timeStamp:Date = new Date();
 			config.instanceID = timeStamp.getTime().toString();
 			
+			_directStartOverride = false;
 		}
 		
 		/**
@@ -399,6 +403,9 @@ package com.clarityenglish.common.model {
 		public function getDirectStart():Object {
 			var directStartObject:Object = new Object();
 			
+			if (_directStartOverride)
+				return directStartObject;
+			
 			if (Config.DEVELOPER.name == "DKweb") {
 				//return { courseID: "1287130400000" };
 				//return { exerciseID: "2287130110007" };
@@ -411,7 +418,6 @@ package com.clarityenglish.common.model {
 			}
 			
 			// #336 SCORM needs to be checked here
-			// TODO: This is overriden by the next line so could be removed?
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
 				directStartObject = scormProxy.getBookmark();
@@ -429,6 +435,12 @@ package com.clarityenglish.common.model {
 				directStartObject.courseID = config.courseID;
 			
 			return directStartObject;
+		}
+		// gh#853
+		public function clearDirectStart():void {
+			//config.courseID = null;
+			//config.startingPoint = null;
+			_directStartOverride = true;
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

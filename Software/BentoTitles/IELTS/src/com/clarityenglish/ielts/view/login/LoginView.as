@@ -194,7 +194,7 @@ package com.clarityenglish.ielts.view.login {
 		public var isPlatformTablet:Boolean;
 		
 		[Bindable]
-		public var isPlatformipad:Boolean;
+		public var isPlatformiPad:Boolean;
 		
 		[Bindable]
 		public var isPlatformAndroid:Boolean;
@@ -655,7 +655,7 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		public function setPlatformiPad(value:Boolean):void {
-			isPlatformipad = value;
+			isPlatformiPad = value;
 		}
 		
 		public function setPlatformAndroid(value:Boolean):void {
@@ -856,7 +856,7 @@ package com.clarityenglish.ielts.view.login {
 		
 		protected function onlongRateButtonClick(event:MouseEvent):void {
 			var urlString:String;			
-			if (this.isPlatformipad) {
+			if (this.isPlatformiPad) {
 				urlString = copyProvider.getCopyForId("ipadRateLink");
 			} else if (this.isPlatformAndroid) {
 				urlString = copyProvider.getCopyForId("androidRateLink");

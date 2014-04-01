@@ -44,19 +44,32 @@
 			}
 			
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
-			if (configProxy.getDirectStart()) {
+			var directStart:Object = configProxy.getDirectStart();
+			if (directStart) {
+				// gh#853 If you have been passed invalid ids, you will not have valid objects now
 				if (configProxy.getDirectStart().exerciseID) {
-					view.isDirectStartEx = true;
-					view.directExercise = bentoProxy.menuXHTML.getElementById(configProxy.getDirectStart().exerciseID);
-					view.isDirectLogout = true;
-				} else if (configProxy.getDirectStart().unitID) {
-					view.isDirectStartUnit = true;
-					view.directUnit = bentoProxy.menuXHTML..unit.(@id == configProxy.getDirectStart().unitID)[0];
-					view.isDirectLogout = configProxy.getDirectStart().scorm;
-				} else if (configProxy.getDirectStart().courseID) {
-					view.isDirectStartCourse = true;
-					view.directCourse = bentoProxy.menuXHTML..course.(@id == configProxy.getDirectStart().courseID)[0];
-				}	
+					view.directExercise = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
+					if (!view.directExercise) {
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", { id: directStart.exerciseID, idType: "exercise" }, true ));
+					} else {
+						view.isDirectStartExercise = true;
+					}
+				} else if (directStart.unitID) {
+					view.directUnit = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
+					if (!view.directUnit) {
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", { id: directStart.unitID, idType: "unit" }, true ));
+					} else {
+						view.isDirectStartUnit = true;
+					}
+				} else if (directStart.courseID) {
+					view.directCourse = bentoProxy.menuXHTML..course.(@id == directStart.courseID)[0];
+					if (!view.directCourse) {
+						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", { id: directStart.courseID, idType: "course" }, true ));
+					} else {
+						view.isDirectStartCourse = true;
+					}
+				}
+				
 			}
 		}
 		

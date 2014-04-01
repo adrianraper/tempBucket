@@ -47,12 +47,15 @@
 			}
 			
 			if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0) {
-				view.isDirectStart = true;
-				if (configProxy.getDirectStart().courseID) {
-					view.directCourseID = configProxy.getDirectStart().courseID
+				var directStart:Object = configProxy.getDirectStart();
+				if (directStart.courseID) { 
+					view.directCourseID = directStart.courseID
+					// gh#853
+					view.isDirectStart = true;
 				}
-				if (configProxy.getDirectStart().unitID) {
-					view.directUnitID = configProxy.getDirectStart().unitID;
+				if (directStart.unitID) { 
+					view.directUnitID = directStart.unitID;
+					view.isDirectStart = true;
 				}
 			}
 		}
