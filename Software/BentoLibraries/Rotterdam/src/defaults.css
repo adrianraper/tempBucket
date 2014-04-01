@@ -36,6 +36,10 @@ widgets|ExerciseWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ExerciseWidgetSkin");
 }
 
+widgets|AuthoringWidget {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.AuthoringWidgetSkin");
+}
+
 s|TitleWindow.errorTitleWindow {
 	skinClass: ClassReference("skins.rotterdam.titlewindows.ErrorTitleWindowSkin");
 }

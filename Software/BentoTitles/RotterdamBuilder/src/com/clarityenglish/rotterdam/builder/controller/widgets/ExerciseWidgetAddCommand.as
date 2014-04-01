@@ -24,7 +24,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			
 			var node:XML, tempid:String = UIDUtil.createUID();
 			var title:String;
-			if(note.getBody().title) {
+			if (note.getBody().title) {
 				title = note.getBody().title;
 			}			
 

@@ -74,7 +74,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var listAddImageButton:Button;
 		
 		[SkinPart]
-		public var addIamgeLabel:Label;
+		public var addImageLabel:Label;
 		
 		[SkinPart]
 		public var normalAddAudioButton:Button;
@@ -93,6 +93,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		[SkinPart]
 		public var addExerciseLabel:Label;
+		
+		[SkinPart]
+		public var listAddAuthoringButton:Button;
+		
+		[SkinPart]
+		public var addAuthoringLabel:Label;
 		
 		[SkinPart]
 		public var normalPreviewButton:Button;
@@ -248,6 +254,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addAudio:Signal = new Signal(Object, XML, String);
 		public var addVideo:Signal = new Signal(Object, XML);
 		public var addExercise:Signal = new Signal(Object, XML, String);
+		public var addAuthoring:Signal = new Signal(Object, XML);
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
@@ -298,7 +305,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		public function set urlString(value:String):void {
-				_urlString = value;
+			_urlString = value;
 		}
 		
 		public function ToolBarView() {
@@ -312,7 +319,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		/**
 		 * gh#115 - when currentEditingWidget is set the toolbar enters an appropriate mode for editing existing content of a widget.  In most cases this means
-		 * changing the state of the toolbar, but 'exercise' is a special case and immediately pops up the content editor.
+		 * changing the state of the toolbar, but 'exercise' and 'authoring' are special cases and immediately pops up an editor.
 		 * 
 		 * @param widget
 		 */
@@ -323,6 +330,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				setCurrentState("normal");
 			} else if (widget.@type == "exercise") {
 				addExercise.dispatch({}, _currentEditingWidget, contentWindowTitle);
+				_currentEditingWidget = null;
+			} else if (widget.@type == "authoring") {
+				addAuthoring.dispatch({}, _currentEditingWidget);
 				_currentEditingWidget = null;
 			} else {
 				setCurrentState(widget.@type);
@@ -457,9 +467,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case listAddImageButton:
 					listAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
-				case addIamgeLabel:
-					addIamgeLabel.text = copyProvider.getCopyForId("addIamgeLabel");
-					addIamgeLabel.addEventListener(MouseEvent.CLICK, onNormalAddImage);
+				case addImageLabel:
+					addImageLabel.text = copyProvider.getCopyForId("addIamgeLabel"); // ALICETODO: Typo - the literal need to be changed to match
+					addImageLabel.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
 				case normalAddImageButton:
 					normalAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
@@ -480,6 +490,13 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case addExerciseLabel:
 					addExerciseLabel.text = copyProvider.getCopyForId("addExerciseLabel");
 					addExerciseLabel.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
+					break;
+				case listAddAuthoringButton:
+					listAddAuthoringButton.addEventListener(MouseEvent.CLICK, onNormalAddAuthoring);
+					break;
+				case addAuthoringLabel:
+					addAuthoringLabel.text = copyProvider.getCopyForId("addAuthoringLabel");
+					addAuthoringLabel.addEventListener(MouseEvent.CLICK, onNormalAddAuthoring);
 					break;
 				case normalAddExerciseButton:
 					normalAddExerciseButton.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
@@ -647,6 +664,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onNormalAddExercise(event:MouseEvent):void {
 			addExercise.dispatch({}, _currentEditingWidget, contentWindowTitle);
+			isItemClick = true;
+		}
+		
+		protected function onNormalAddAuthoring(event:MouseEvent):void {
+			addAuthoring.dispatch({}, _currentEditingWidget);
 			isItemClick = true;
 		}
 		
