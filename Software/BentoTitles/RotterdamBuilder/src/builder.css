@@ -355,6 +355,10 @@ uniteditor|ContentSelectorView sparkTree|Tree s|HScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
 }
 
+uniteditor|AuthoringView {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.AuthoringSkin");
+}
+
 filemanager|FileManagerView {
 	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileManagerSkin");
 }

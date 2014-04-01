@@ -5,6 +5,7 @@
 	import com.clarityenglish.common.controller.ShowErrorCommand;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.builder.controller.AuthoringWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.BuilderStartupCommand;
 	import com.clarityenglish.rotterdam.builder.controller.ContentWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
@@ -44,6 +45,8 @@
 	import com.clarityenglish.rotterdam.builder.view.help.HelpView;
 	import com.clarityenglish.rotterdam.builder.view.schedule.HelpScheduleMediator;
 	import com.clarityenglish.rotterdam.builder.view.schedule.HelpScheduleView;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringMediator;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorMediator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.UnitEditorMediator;
@@ -71,6 +74,7 @@
 			mapView(UnitEditorView, UnitEditorMediator);
 			mapView(FileManagerView, FileManagerMediator);
 			mapView(ContentSelectorView, ContentSelectorMediator);
+			mapView(AuthoringView, AuthoringMediator);
 			mapView(ScheduleView, ScheduleMediator);
 			mapView(SettingsView, SettingsMediator);
 			mapView(CourseCreateView, CourseCreateMediator);
@@ -110,6 +114,7 @@
 			registerCommand(RotterdamNotifications.MEDIA_UPLOAD_ERROR, MediaUploadErrorCommand);
 			
 			registerCommand(RotterdamNotifications.CONTENT_WINDOW_SHOW, ContentWindowShowCommand);
+			registerCommand(RotterdamNotifications.AUTHORING_WINDOW_SHOW, AuthoringWindowShowCommand);
 			registerCommand(RotterdamNotifications.COURSE_CREATE_WINDOW_SHOW, CourseCreateWindowShowCommand);
 			//alice s
 			registerCommand(RotterdamNotifications.HELP_PUBLISH_WINDOW_SHOW, HelpPublishWindowShowCommand);
