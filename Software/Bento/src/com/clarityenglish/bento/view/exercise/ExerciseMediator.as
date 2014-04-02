@@ -61,7 +61,7 @@
 			}).toProperty(view, "href");
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.getDirectStart().exerciseID) {
+			if (configProxy.getDirectStart().exerciseID && !configProxy.getDirectStart().scorm) {
 				view.isDirectStartEx = true;
 			}
 		}

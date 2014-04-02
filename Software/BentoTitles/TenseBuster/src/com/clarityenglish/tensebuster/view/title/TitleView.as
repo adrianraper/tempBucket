@@ -85,6 +85,7 @@ package com.clarityenglish.tensebuster.view.title {
 		private var _directUnit:XML;
 		private var _isDirectStartEx:Boolean;
 		private var _directExercise:XML;
+		private var _isDirectLogout:Boolean;
 		
 		public var backToMenu:Signal = new Signal();
 		public var logout:Signal = new Signal();	
@@ -175,6 +176,10 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		public function set directExercise(value:XML):void {
 			_directExercise = value;
+		}
+		
+		public function set isDirectLogout(value:Boolean) {
+			_isDirectLogout = value;
 		}
 		
 		public function TitleView() {
@@ -268,11 +273,7 @@ package com.clarityenglish.tensebuster.view.title {
 		}
 		
 		protected function onBackToMenuButtonClick(event:MouseEvent):void {
-			if (_isDirectStartEx) {
-				logout.dispatch();
-			} else {
-				backToMenu.dispatch();
-			}
+			_isDirectLogout? logout.dispatch() : backToMenu.dispatch();
 		}
 		
 		protected override function getCurrentSkinState():String {

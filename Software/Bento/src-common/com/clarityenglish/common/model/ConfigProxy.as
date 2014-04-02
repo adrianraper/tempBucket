@@ -415,6 +415,7 @@ package com.clarityenglish.common.model {
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
 				directStartObject = scormProxy.getBookmark();
+				directStartObject.scorm = true;
 			} else {
 				// #338. This is using a utility parsing function, it is for data from queryString
 				// It doesn't actually have to be SCORM at all, works for all passed parameters

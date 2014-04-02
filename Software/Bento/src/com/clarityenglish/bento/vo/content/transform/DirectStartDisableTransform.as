@@ -3,6 +3,10 @@ package com.clarityenglish.bento.vo.content.transform {
 	[RemoteClass(alias = "com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform")]
 	public class DirectStartDisableTransform extends XmlTransform {
 		
+		public static const enabled:int = 3;
+		public static const disabled:int = 8;
+		public static const autoStart:int = 256;
+		
 		private var directStart:Object;
 		
 		public function DirectStartDisableTransform(directStart:Object) {
@@ -29,39 +33,43 @@ package com.clarityenglish.bento.vo.content.transform {
 					// cannot get the parent course ID					
 					//directStart.courseID = xml..course.(descendants("unit").@id.contains(directStart.unitID))[0].@id.toString();
 				}					
-
+				
 				if (directStart.courseID) {
 					for each (var course:XML in xml..course) {
 						if (course.@id == directStart.courseID) {
-							course.@enabledFlag = 3;
+							course.@enabledFlag = enabled;
 							if (directStart.unitID) {
 								for each (var unit:XML in course.unit) {
-									if (unit.@id == directStart.unitID) {
-										unit.@enabledFlag = 3;
+									if (unit.@id == directStart.unitID && !directStart.scorm) {
+										unit.@enabledFlag = enabled;
 										if (directStart.exerciseID) {
 											for each (var exercise:XML in unit.exercise) {
 												if (exercise.@id == directStart.exerciseID) {
-													exercise.@enabledFlag = 3;
+													exercise.@enabledFlag = enabled;
 												} else {
-													exercise.@enabledFlag = 8;
+													exercise.@enabledFlag = disabled;
 												}
 											}
 										} else if (directStart.groupID) {
 											for each (exercise in unit.exercise) {
 												if (exercise.@group == directStart.groupID) {
-													exercise.@enabledFlag = 3;
+													exercise.@enabledFlag = enabled;
 												} else {
-													exercise.@enabledFlag = 8;
+													exercise.@enabledFlag = disabled;
 												}
 											}
 										}
+									} else if (unit.@id == directStart.unitID && directStart.scorm){
+										for each (var exercise:XML in unit.exercise) {
+											exercise.@enabledFlag = enabled;
+										}
 									} else {
-										unit.@enabledFlag = 8;
+										unit.@enabledFlag = disabled;
 									}
 								}
 							}
 						} else {
-							course.@enabledFlag = 8;
+							course.@enabledFlag = disabled;
 						}
 					}
 				}

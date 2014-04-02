@@ -2,6 +2,7 @@ package com.clarityenglish.tensebuster.view {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BBStates;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.view.AbstractApplicationMediator;
 	import com.clarityenglish.tensebuster.TenseBusterApplication;
@@ -103,8 +104,15 @@ package com.clarityenglish.tensebuster.view {
 				if (exercise) {
 					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
 					return true;
+				}				
+			} else if (directStart.scorm) {
+				if (directStart.unitID) {
+					var unit:XML = bentoProxy.menuXHTML.getElementById(directStart.unitID);
+					
+					if (unit) {
+						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.exercise[0]);	
+					}
 				}
-				
 			}
 			
 			return false;

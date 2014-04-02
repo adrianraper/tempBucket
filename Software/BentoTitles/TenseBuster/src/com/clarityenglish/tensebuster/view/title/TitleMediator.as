@@ -48,14 +48,15 @@
 				if (configProxy.getDirectStart().exerciseID) {
 					view.isDirectStartEx = true;
 					view.directExercise = bentoProxy.menuXHTML.getElementById(configProxy.getDirectStart().exerciseID);
+					view.isDirectLogout = true;
 				} else if (configProxy.getDirectStart().unitID) {
 					view.isDirectStartUnit = true;
 					view.directUnit = bentoProxy.menuXHTML..unit.(@id == configProxy.getDirectStart().unitID)[0];
+					view.isDirectLogout = configProxy.getDirectStart().scorm;
 				} else if (configProxy.getDirectStart().courseID) {
 					view.isDirectStartCourse = true;
 					view.directCourse = bentoProxy.menuXHTML..course.(@id == configProxy.getDirectStart().courseID)[0];
-				}
-				
+				}	
 			}
 		}
 		

@@ -3,6 +3,8 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import mx.core.FlexGlobals;
 	import mx.logging.ILogger;
@@ -24,6 +26,7 @@ package com.clarityenglish.bento.controller {
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(bentoProxy.currentExercise)) as ExerciseProxy;
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
 			// #210, #256 - warning messages when leaving an exercise
 			if (exerciseProxy.attemptToLeaveExercise(note)) {
@@ -34,8 +37,12 @@ package com.clarityenglish.bento.controller {
 				if (exerciseNode) {
 					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exerciseNode);
 				} else {
-					// alice: Comment out for TB
-					sendNotification(BBNotifications.SELECTED_NODE_UP);
+					// gh#853
+					if (configProxy.getConfig().scorm) {
+						sendNotification(CommonNotifications.LOGOUT);
+					} else {
+						sendNotification(BBNotifications.SELECTED_NODE_UP);
+					}
 				}
 			}
 		}
