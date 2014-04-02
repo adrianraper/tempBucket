@@ -70,4 +70,7 @@ $GLOBALS['smarty_config_dir'] = $smartyRoot."/configs/";
 $GLOBALS['smarty_cache_dir'] = $smartyRoot."/cache/";
 $GLOBALS['smarty_plugins_dir'] = $smartyRoot."/plugins/";
 // Used for logging
+$GLOBALS['logType'] = 'ClarityDB';
+$GLOBALS['debugLogType'] = 'file';
+$GLOBALS['controlLogType'] = 'file';
 $GLOBALS['logs_dir'] = $GLOBALS['common_dir'].'/logs/';

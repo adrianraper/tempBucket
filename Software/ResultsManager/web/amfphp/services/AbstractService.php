@@ -49,18 +49,43 @@ class AbstractService {
 		$this->db->SetFetchMode(ADODB_FETCH_ASSOC);
 		
 		// Create the database logger and set the database
-		AbstractService::$log = &Log::factory('ClarityDB');
-		AbstractService::$log->setDB($this->db);
+		// gh#857 Allow production to switch off logging
+		$logType = $debugLogType = $controlLogType = 'null';
+		if (isset($GLOBALS['logType']))
+			$logType = $GLOBALS['logType'];
+		if (isset($GLOBALS['debugLogType']))
+			$debugLogType = $GLOBALS['debugLogType'];
+		if (isset($GLOBALS['controlLogType']))
+			$controlLogType = $GLOBALS['controlLogType'];
+		$conf = array();
+		$conf['timeFormat'] = 'Y-m-d H:i:s';
+			
+		if ($logType == 'file') {
+			$logTarget = $GLOBALS['logs_dir'].'log.txt';
+		} else if ($logType == 'ClarityDB') {
+			$logTarget = $this->db;
+		} else {
+			$logTarget = null;
+		}
+		AbstractService::$log = &Log::factory($logType, $logTarget, null, $conf);
 		
-		// v3.3 And one for debug logging. I don't see why the above doesn't really seem to work through the factory.
-		// How to make it write to the folder I want?
-		// v3.4 Sometimes I want to use a file log in DMS. If I set it up here, does it mean overhead with every single call?
-		// I don't think so, it only does opening etc when called to write.
-		AbstractService::$debugLog = &Log::factory('file');
-		AbstractService::$debugLog->setFileName($GLOBALS['logs_dir'].'debugLog.txt');
-		
-		AbstractService::$controlLog = &Log::factory('file');
-		AbstractService::$controlLog->setFileName($GLOBALS['logs_dir'].'controlLog.txt');
+		if ($debugLogType == 'file') {
+			$debugLogTarget = $GLOBALS['logs_dir'].'debugLog.txt';
+		} else if ($logType == 'ClarityDB') {
+			$debugLogTarget = $this->db;
+		} else {
+			$debugLogTarget = null;
+		}
+		AbstractService::$debugLog = &Log::factory($debugLogType, $debugLogTarget, null, $conf);
+			
+		if ($controlLogType == 'file') {
+			$controlLogTarget = $GLOBALS['logs_dir'].'controlLog.txt';
+		} else if ($controlLogType == 'ClarityDB') {
+			$controlLogTarget = $this->db;
+		} else {
+			$controlLogTarget = null;
+		}
+		AbstractService::$controlLog = &Log::factory($controlLogType, $controlLogTarget, null, $conf);
 		
 		// Create the operation classes
 		$this->copyOps = new CopyOps();
