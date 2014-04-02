@@ -50,7 +50,14 @@
 		<s:State name="disabled" />
 	</s:states>
     
-	<s:Label text="X" fontWeight="bold" fontSize="16" color="0xFFFFFF" top="10" right="5" />
+	<s:Group width="100%" height="100%">
+		<s:Rect width="100%" height="100%">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF" alpha="0" />
+			</s:fill>
+		</s:Rect>
+		<s:Label text="X" fontWeight="bold" fontSize="16" color="0xFFFFFF" top="10" right="5" />
+	</s:Group>
     
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->

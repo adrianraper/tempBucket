@@ -292,6 +292,31 @@
 					<fx:Script>
 						<![CDATA[
 							import mx.events.FlexEvent;
+							
+							[Bindable]
+							public var unitButtonColor:uint;
+							
+							[Bindable]
+							public var unitButtonTopOverColor:uint;
+							
+							[Bindable]
+							public var unitButtonBottomOverColor:uint;
+							
+							[Bindable]
+							public var unitButtonProgressTopColor:uint;
+							
+							[Bindable]
+							public var unitButtonProgressTopOverColor:uint;
+							
+							[Bindable]
+							public var unitButtonProgressBottomColor:uint;
+							
+							[Bindable]
+							public var unitButtonProgressBottomOverColor:uint;
+							
+							[Bindable]
+							public var labelColor:uint;
+							
 							public override function set data(value:Object):void {
 								super.data = value;
 								
@@ -322,6 +347,15 @@
 										overallProgressPath.bottomRightRadiusX = 0;
 										overallProgressPath.bottomRightRadiusY = 0;
 									}
+									
+									unitButtonColor = getUnitButtonColor(outerDocument.hostComponent.courseIndex);
+									unitButtonTopOverColor = getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex);
+									unitButtonBottomOverColor = getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex);
+									unitButtonProgressTopColor = getUnitButtonProgressTopColor(outerDocument.hostComponent.courseIndex);
+									unitButtonProgressTopOverColor = getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex);
+									unitButtonProgressBottomColor = getUnitButtonProgressBottomColor(outerDocument.hostComponent.courseIndex);
+									unitButtonProgressBottomOverColor = getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex);
+									labelColor = getUnitListButtonLabelColor(outerDocument.hostComponent.courseIndex);
 								}
 							}
 							
@@ -375,8 +409,8 @@
 					<s:Rect id="backgroundRect" width="247" height="38">
 						<s:fill>
 							<s:LinearGradient rotation="90">
-								<s:GradientEntry id="backgroundRectTopColor" color="{getUnitButtonColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonTopOverColor(outerDocument.hostComponent.courseIndex)}"/>
-								<s:GradientEntry id="backgroundRectBottomColor" color="{getUnitButtonColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonBottomOverColor(outerDocument.hostComponent.courseIndex)}"/>
+								<s:GradientEntry id="backgroundRectTopColor" color="{unitButtonColor}" color.selected="{unitButtonTopOverColor}" color.hovered="{unitButtonTopOverColor}"/>
+								<s:GradientEntry id="backgroundRectBottomColor" color="{unitButtonColor}" color.selected="{unitButtonBottomOverColor}" color.hovered="{unitButtonBottomOverColor}"/>
 							</s:LinearGradient>
 						</s:fill>
 					</s:Rect>
@@ -384,13 +418,13 @@
 					<s:Rect id="overallProgressPath" height="38" maxWidth="247">
 						<s:fill>
 							<s:LinearGradient rotation="90">
-								<s:GradientEntry color="{getUnitButtonProgressTopColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonProgressTopOverColor(outerDocument.hostComponent.courseIndex)}" />
-								<s:GradientEntry color="{getUnitButtonProgressBottomColor(outerDocument.hostComponent.courseIndex)}" color.hovered="{getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex)}" color.selected="{getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex)}" />
+								<s:GradientEntry color="{unitButtonProgressTopColor}" color.hovered="{unitButtonProgressTopOverColor}" color.selected="{unitButtonProgressTopOverColor}" />
+								<s:GradientEntry color="{unitButtonProgressBottomColor}" color.hovered="{unitButtonProgressBottomOverColor}" color.selected="{unitButtonProgressBottomOverColor}" />
 							</s:LinearGradient>
 						</s:fill>
 					</s:Rect>
 					
-					<s:Label id="caption" text="{data.@caption}" color="{getUnitListButtonLabelColor(outerDocument.hostComponent.courseIndex)}" top="15" left="20" fontSize="17" />
+					<s:Label id="caption" text="{data.@caption}" color="{labelColor}" top="15" left="20" fontSize="17" />
 				</s:ItemRenderer>
 			</fx:Component>
 		</s:itemRenderer>
