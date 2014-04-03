@@ -53,6 +53,7 @@
 						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", { id: directStart.exerciseID, idType: "exercise" }, true ));
 					} else {
 						view.isDirectStartExercise = true;
+						view.isDirectLogout = configProxy.getDirectStart().scorm;
 					}
 				} else if (directStart.unitID) {
 					view.directUnit = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
@@ -60,6 +61,7 @@
 						sendNotification(CommonNotifications.BENTO_ERROR, copyProxy.getBentoErrorForId("DirectStartInvalidID", { id: directStart.unitID, idType: "unit" }, true ));
 					} else {
 						view.isDirectStartUnit = true;
+						view.isDirectLogout = configProxy.getDirectStart().scorm;
 					}
 				} else if (directStart.courseID) {
 					view.directCourse = bentoProxy.menuXHTML..course.(@id == directStart.courseID)[0];

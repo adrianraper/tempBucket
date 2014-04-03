@@ -32,7 +32,7 @@ package com.clarityenglish.bento.vo.content.transform {
 
 				// TODO: We should only be setting disabled on or off here, not forcing eF to be enabled (3)
 				// in case some other eF flags have been set that we want
-				var enabled:Number = Exercise.EF_NAVIGATE_ON & Exercise.EF_MENU_ON;
+				var enabled:Number = Exercise.EF_NAVIGATE_ON | Exercise.EF_MENU_ON;
 				var disabled:Number = Exercise.EF_DISABLED;
 				if (directStart.courseID) {
 					// gh#853 Only disable other courses if the targetted course id exists

@@ -98,16 +98,28 @@ package com.clarityenglish.tensebuster.view {
 			
 			// #338
 			// If exerciseID is defined go straight into an exercise.
-			if (directStart.exerciseID) {
-				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
-				
-				if (exercise) {
-					sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
-					return true;
+			if (!directStart.scorm) {
+				if (directStart.exerciseID) {
+					var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
+					
+					if (exercise) {
+						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+						return true;
+					}
 				}				
-			} else if (directStart.scorm) {
-				if (directStart.unitID) {
-					var unit:XML = bentoProxy.menuXHTML.getElementById(directStart.unitID);
+			} else {
+				// gh#858
+				if (directStart.exerciseID) {
+					var unit:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID).parent();
+					var unitLength:Number = unit.exercise.length();
+					var exerciseIndex:Number = unit.exercise.(@id == directStart.exerciseID).childIndex();
+					// Currently, the bookmark will not empty when last exercise ID stored, so here we need to force it open the first exercise manually.
+					var nextExercise:XML = (exerciseIndex + 1 == unitLength)? unit.exercise[0] : unit.exercise[exerciseIndex + 1];
+					
+					if (nextExercise)
+						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, nextExercise);
+				} else if (directStart.unitID) {
+					unit = bentoProxy.menuXHTML.getElementById(directStart.unitID);
 					
 					if (unit) {
 						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.exercise[0]);	
