@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:progress="skins.ielts.assets.progress.*" xmlns:text="com.anychart.axesPlot.axes.text.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressCompareView")]
 	</fx:Metadata>
 	
+	<fx:Declarations>
+		<s:SolidColorStroke color="0x4D4D4D" weight="3" id="horizontalAxisStroke" />
+	</fx:Declarations>
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.charts.ChartItem;
+			import mx.charts.chartClasses.Series;
+			import mx.charts.events.ChartItemEvent;
+			import mx.charts.series.items.ColumnSeriesItem;
 			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
 			import mx.graphics.IFill;
 			import mx.graphics.SolidColor;
 			
@@ -43,30 +51,140 @@
 		
 	<s:Label id="compareInstructionLabel" left="20" top="60" />
 	
-	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
-	<mx:BarChart id="compareChart" left="20" right="60" top="130" bottom="140">
+	<!--legend-->
+	<s:HGroup top="50" right="100" gap="30">
+		<s:HGroup gap="10">
+			<progress:myscore />
+			<s:Label id="myScoreLegendLabel" paddingTop="5" fontSize="13" color="0x333333" />
+		</s:HGroup>
+		<s:HGroup gap="10">
+			<progress:everyonescore />
+			<s:Label id="everyoneScoreLegendLabel" paddingTop="5" fontSize="13" color="0x333333" />
+		</s:HGroup>
+	</s:HGroup>
+	
+	<!--s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" /-->
+	<mx:ColumnChart id="compareChart" left="20" right="60" top="130" bottom="140" seriesFilters="[]">
 		<mx:horizontalAxis>
-			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
+			<mx:CategoryAxis id="horizontalAxis" categoryField="@class" labelFunction="captionLabel" />
 		</mx:horizontalAxis>
 		<mx:verticalAxis>
-			<mx:CategoryAxis id="verticalAxis" categoryField="@class" labelFunction="captionLabel" />
+			<mx:LinearAxis id="verticalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
 		</mx:verticalAxis>
 		
 		<mx:horizontalAxisRenderers>
-			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="13" showLine="false" tickStroke="{blankStroke}" placement="top" />
+			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="16" color="0x572300" fontWeight="bold" axisStroke="{horizontalAxisStroke}" tickStroke="{blankStroke}" placement="bottom">
+				<mx:labelRenderer>
+					<fx:Component>
+						<mx:Label paddingLeft="25" color="{labelColor}" >
+							<fx:Script>
+								<![CDATA[
+									[Bindable]
+									private var labelColor:uint;
+									
+									override public function set data(value:Object):void {
+										if(value == null)
+											return;
+										
+										text = value.text;
+										switch(value.text){
+											case "Reading":
+												labelColor = 0x004657;
+												break;
+											case "Listening":
+												labelColor = 0x572300;
+												break;
+											case "Speaking":
+												labelColor = 0x330F28;
+												break;
+											case "Writing":
+												labelColor = 0x2B3B13;
+												break;
+										}
+									}
+								]]>
+							</fx:Script>
+						</mx:Label>
+					</fx:Component>
+				</mx:labelRenderer>
+			</mx:AxisRenderer>
 		</mx:horizontalAxisRenderers>
 		<mx:verticalAxisRenderers>
-			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" showLine="false" tickStroke="{blankStroke}" />
+			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" color="0x303030" showLine="false" tickStroke="{blankStroke}" />
 		</mx:verticalAxisRenderers>
 		
 		<mx:annotationElements>
+			<mx:CartesianDataCanvas id="canvas" includeInRanges="true"/>
 			<mx:GridLines horizontalStroke="{blankStroke}" />
 		</mx:annotationElements>
 		
 		<mx:series>
-			<mx:BarSeries yField="@class" xField="@myAverageScore" displayName="My scores" fillFunction="myAverageScoreFill" />
-			<mx:BarSeries yField="@class" xField="@everyoneAverageScore" fillFunction="everyoneAverageScoreFill" displayName="Everyone's scores" />
+			<mx:ColumnSeries id="myScoreColumnSeries" xField="@class" yField="@myAverageScore" displayName="My scores" fillFunction="myAverageScoreFill">
+				<mx:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer>
+							<fx:Script>
+								<![CDATA[
+									override public function set data(value:Object):void {
+										super.data = value;
+										
+										if (data) {
+											myRectSolidColor.color = getStyle(data.xValue + "CompareMyColor");
+										}
+									}
+								]]>
+							</fx:Script>
+							
+							<s:HGroup paddingBottom="0" paddingLeft="45" gap="-15">
+								<s:VGroup horizontalAlign="center" paddingTop="-40">
+									<progress:myscore />
+									<s:Label text="{data.yValue + '%'}" fontSize="15" fontWeight="bold"/>
+								</s:VGroup>
+								
+								<s:Rect id="myColumnRect" width="40" height="{height}" topLeftRadiusX="3" topRightRadiusX="3" topLeftRadiusY="3" topRightRadiusY="3">
+									<s:fill>
+										<s:SolidColor id="myRectSolidColor" alpha="0.7" />
+									</s:fill>
+								</s:Rect>
+							</s:HGroup>
+						</s:ItemRenderer>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:ColumnSeries>
+			<mx:ColumnSeries id="everyScoreColumnSeries" xField="@class" yField="@everyoneAverageScore" displayName="Everyone's scores">
+				<mx:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer autoDrawBackground="false">
+							<fx:Script>
+								<![CDATA[
+									
+									override public function set data(value:Object):void {
+										super.data = value;
+										
+										if (data) {
+											everyoneRectSolidColor.color = getStyle(data.xValue + "CompareEveryoneColor");
+										}
+									}
+								]]>
+							</fx:Script>
+							
+							<s:HGroup paddingBottom="0" gap="-15">
+								<s:Rect id="everyoneColumnRect" width="40" height="{height}" topLeftRadiusX="3" topLeftRadiusY="3" topRightRadiusX="3" topRightRadiusY="3" >
+									<s:fill>
+										<s:SolidColor id="everyoneRectSolidColor" alpha="0.7" />
+									</s:fill>
+								</s:Rect>
+								
+								<s:VGroup horizontalAlign="center" paddingTop="-45">
+									<progress:everyonescore />
+									<s:Label text="{data.yNumber + '%'}" fontSize="15" fontWeight="bold"/>
+								</s:VGroup>
+							</s:HGroup>
+						</s:ItemRenderer>
+					</fx:Component>
+				</mx:itemRenderer>
+			</mx:ColumnSeries>
 		</mx:series>
-	</mx:BarChart>
+	</mx:ColumnChart>
 	
 </s:Skin>

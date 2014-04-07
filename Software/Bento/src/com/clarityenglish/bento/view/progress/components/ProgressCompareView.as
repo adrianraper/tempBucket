@@ -4,6 +4,10 @@ package com.clarityenglish.bento.view.progress.components {
 	
 	import mx.charts.BarChart;
 	import mx.charts.CategoryAxis;
+	import mx.charts.ColumnChart;
+	import mx.charts.chartClasses.CartesianCanvasValue;
+	import mx.charts.chartClasses.CartesianDataCanvas;
+	import mx.charts.series.ColumnSeries;
 	import mx.collections.XMLListCollection;
 	
 	import spark.components.Label;
@@ -11,16 +15,31 @@ package com.clarityenglish.bento.view.progress.components {
 	public class ProgressCompareView extends BentoView {
 		
 		[SkinPart(required="true")]
-		public var compareChart:BarChart;
+		public var compareChart:ColumnChart;
 		
 		[SkinPart(required="true")]
-		public var verticalAxis:CategoryAxis;
+		public var horizontalAxis:CategoryAxis;
 		
 		[SkinPart]
 		public var compareInstructionLabel:Label;
 		
 		[SkinPart]
 		public var chartCaptionLabel:Label;
+		
+		[SkinPart]
+		public var myScoreColumnSeries:ColumnSeries;
+		
+		[SkinPart]
+		public var everyScoreColumnSeries:ColumnSeries;
+		
+		[SkinPart]
+		public var canvas:CartesianDataCanvas;
+		
+		[SkinPart]
+		public var myScoreLegendLabel:Label;
+		
+		[SkinPart]
+		public var everyoneScoreLegendLabel:Label;
 		
 		private var _everyoneCourseSummaries:Object;
 		private var _everyoneCourseSummariesChanged:Boolean;
@@ -36,6 +55,8 @@ package com.clarityenglish.bento.view.progress.components {
 			
 			if (compareInstructionLabel) compareInstructionLabel.text = copyProvider.getCopyForId("compareInstructionLabel");
 			if (chartCaptionLabel) chartCaptionLabel.text = copyProvider.getCopyForId("chartCaptionLabel");
+			if (myScoreLegendLabel) myScoreLegendLabel.text = copyProvider.getCopyForId("myScoreLegendLabel");
+			if (everyoneScoreLegendLabel) everyoneScoreLegendLabel.text = copyProvider.getCopyForId("everyoneScoreLegendLabel");
 		}
 		
 		protected override function commitProperties():void {
@@ -50,12 +71,11 @@ package com.clarityenglish.bento.view.progress.components {
 					xml.appendChild(<course class={courseNode.@['class']} caption={courseNode.@caption} myAverageScore={courseNode.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
 				}
 				
-				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.course);
+				horizontalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.course);
 				
 				_everyoneCourseSummariesChanged = false;
 			}
 		}
-		
 	}
 	
 }

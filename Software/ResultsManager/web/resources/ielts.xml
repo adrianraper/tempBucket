@@ -202,7 +202,9 @@
 			<lit name="countdownHeadingLabel">How long until my test?</lit>
 			<lit name="hourLabel">Hour:</lit>
 			<lit name="minuteLabel">Minute:</lit>
-			<lit name="dateFormatLabel">{day} {month} {year}</lit>    
+			<lit name="dateFormatLabel">{day} {month} {year}</lit>
+			<lit name="myScoreLegendLabel">Your average score</lit>
+			<lit name="everyoneScoreLegendLabel">World's average score</lit>  
 			
 			<lit name="currentPwdLabel">Current password:</lit>
 			<lit name="newPwdLabel">New password:</lit>
