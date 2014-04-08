@@ -35,9 +35,11 @@ login|LoginView {
 }
 
 login|LoginView s|Button#loginButton {
-	skinClass: ClassReference("skins.rotterdam.builder.login.LoginButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
 }
-
+login|LoginView s|Button#forgotPassword_btn {
+	skinClass: ClassReference("skins.rotterdam.ui.ForgotPasswordButtonSkin");
+}
 login|LoginView s|Button#freeCourseButton {
 	skinClass: ClassReference("skins.rotterdam.builder.login.FreeCourseButtonSkin");
 }

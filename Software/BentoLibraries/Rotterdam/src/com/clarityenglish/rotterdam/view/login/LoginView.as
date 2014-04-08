@@ -209,6 +209,7 @@ package com.clarityenglish.rotterdam.view.login {
 			return _licenceeName;
 		}
 		// gh#224
+		// <login src='AbbeyLogo.png' horizontal-align='center' vertical-align='top'>
 		public function set branding(value:XML):void {
 			// initialise
 			brandingImageIndex = 1;
@@ -304,6 +305,7 @@ package com.clarityenglish.rotterdam.view.login {
 					if (image.hasOwnProperty('@horizontalAlign')) {
 						switch (String(image.@horizontalAlign)) {
 							case 'center':
+							case 'centre':
 								instance.horizontalCenter = 0;
 								break;
 							case 'left':
@@ -317,6 +319,7 @@ package com.clarityenglish.rotterdam.view.login {
 					if (image.hasOwnProperty('@verticalAlign')) {
 						switch (String(image.@verticalAlign)) {
 							case 'center':
+							case 'centre':
 								instance.verticalCenter = 0;
 								break;
 							case 'top':

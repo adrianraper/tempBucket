@@ -32,11 +32,11 @@ login|LoginView {
 }
 
 login|LoginView s|Button#loginButton {
-	skinClass: ClassReference("skins.rotterdam.player.login.LoginButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
 }
 
 login|LoginView s|Button#forgotPassword_btn {
-	skinClass: ClassReference("skins.rotterdam.player.login.ForgotPasswordButtonSkin");
+	skinClass: ClassReference("skins.rotterdam.ui.ForgotPasswordButtonSkin");
 }
 
 /*login|LoginView s|TextInput {

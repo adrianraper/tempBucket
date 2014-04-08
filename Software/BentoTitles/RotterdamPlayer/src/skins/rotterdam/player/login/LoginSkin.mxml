@@ -47,22 +47,19 @@
 	</s:Rect>
 	
 	<!-- background -->
-	<s:Group top="0" bottom="0" left="0" right="0">
-		<s:Rect>
-			<s:fill>
-				<s:LinearGradient rotation="90">
-					<s:GradientEntry color="0xFFFFFF" ratio="0" />
-					<s:GradientEntry color="0xFFFFFF" ratio="0.3" />
-					<s:GradientEntry color="0xE6E6E6" ratio="0.6" />
-					<s:GradientEntry color="0xE6E6E6" ratio="1" />
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
-	</s:Group>
-
+	<s:Rect top="0" bottom="0" left="0" right="0">
+		<s:fill>
+			<s:LinearGradient rotation="90">
+				<s:GradientEntry color="0xFFFFFF" ratio="0" />
+				<s:GradientEntry color="0xFFFFFF" ratio="0.3" />
+				<s:GradientEntry color="0xE6E6E6" ratio="0.6" />
+				<s:GradientEntry color="0xE6E6E6" ratio="1" />
+			</s:LinearGradient>
+		</s:fill>
+	</s:Rect>		
 
 	<!-- top header -->
-	<s:Rect left="0" right="0" height="40"  >
+	<s:Rect left="0" right="0" top="0" height="40"  >
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0x4D4D4D" />
@@ -75,13 +72,13 @@
 	<s:Label id="sch_lbl" text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" right="20" top="14" fontSize="13" color="0xFFFFFF" visible="{hostComponent.licenceeName}" includeInLayout="{hostComponent.licenceeName}" />
 	
 	<!-- gh#224 If it seems likely that more than 4 image components are needed, we should switch to a DataGroup and ItemRenderer -->
-	<s:BitmapImage id="brandingImage1" />
+	<s:BitmapImage id="brandingImage1" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
 	<s:BitmapImage id="brandingImage2" />
 	<s:BitmapImage id="brandingImage3" />
 	<s:BitmapImage id="brandingImage4" />
-	<s:BitmapImage source="@Embed(source='skins/rotterdam/player/assets/login/HoneyCones.png')" horizontalCenter="-200" verticalCenter="-50" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
-	<s:BitmapImage source="@Embed(source='skins/rotterdam/player/assets/login/HoneyConesLarge.png')" horizontalCenter="200" verticalCenter="0" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
-	<login:HoneyGraphic right="200" top="40" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
+	<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/HoneyCones.png')" horizontalCenter="-260" top="330" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<s:SWFLoader source="@Embed(source='skins/rotterdam/player/assets/login/HoneyConesLarge.png')" horizontalCenter="250" top="360" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<login:HoneyGraphic horizontalCenter="300" top="40" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
 	
 	<s:Group horizontalCenter="0" top="40">
 		<!-- gh#224 -->
@@ -114,5 +111,5 @@
 		</s:Group>
 	</s:Group>
 	
-	<s:BitmapImage source="@Embed(source='skins/rotterdam/player/assets/login/CCBLogo.png')" right="140" bottom="100" />
+	<s:BitmapImage source="@Embed(source='skins/rotterdam/player/assets/login/CCBLogo.png')" horizontalCenter="0" bottom="100" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
 </s:Skin>

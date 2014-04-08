@@ -28,8 +28,8 @@
 		function setNoAccount(noAccount:Boolean):void;
 		//gh#41
 		function getTestDrive():Signal;
-		// gh#
-		//function setBranding(xml:XML):void;
+		// gh#224
+		function setBranding(xml:XML):void;
 		// gh#659
 		function setHasMatchedIPrange(value:Boolean):void;
 		function setIPMatchedProductCodes(productCodes:Array):void;
