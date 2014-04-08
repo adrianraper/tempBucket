@@ -22,10 +22,19 @@ package com.clarityenglish.controls.video {
 		
 		protected var videoPlayer:IVideoPlayer;
 		
-		protected var providers:Array = [
+		protected static var providers:Array = [
 			YouTubeProvider,
 			VimeoProvider
 		];
+		
+		public static function canHandleSource(value:Object):Boolean {
+			// Check that a provider exists that can handle the source
+			for each (var providerClass:Class in providers)
+				if (new providerClass().canHandleSource(value))
+					return true;
+			
+			return false;
+		}
 		
 		public function UniversalVideoPlayer() {
 			super();

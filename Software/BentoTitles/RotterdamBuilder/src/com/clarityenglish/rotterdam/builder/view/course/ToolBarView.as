@@ -642,57 +642,57 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onPdfUpload(event:MouseEvent):void {
-			addPDF.dispatch( { source: "computer" }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+			addPDF.dispatch({ source: "computer" }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onPdfCloudUpload(event:MouseEvent):void {
-			addPDF.dispatch( { source: "cloud" }, _currentEditingWidget, cloudWindowTitle); // TODO: use a constant from somewhere?
+			addPDF.dispatch({ source: "cloud" }, _currentEditingWidget, cloudWindowTitle); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onPdfUrlEnter(event:FlexEvent):void {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
-				addPDF.dispatch( { source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+				addPDF.dispatch({ source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
 				event.target.text = "";
 				setCurrentState("normal");
 			}
 		}
 		
 		protected function onImageUpload(event:MouseEvent):void {
-			addImage.dispatch( { source: "computer" }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+			addImage.dispatch({ source: "computer" }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onImageCloudUpload(event:MouseEvent):void {
-			addImage.dispatch( { source: "cloud" }, _currentEditingWidget, cloudWindowTitle); // TODO: use a constant from somewhere?
+			addImage.dispatch({ source: "cloud" }, _currentEditingWidget, cloudWindowTitle); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onImageUrlEnter(event:FlexEvent):void {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
-				addImage.dispatch( { source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+				addImage.dispatch({ source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
 				event.target.text = "";
 				setCurrentState("normal");
 			}
 		}
 		
 		protected function onAudioUpload(event:MouseEvent):void {
-			addAudio.dispatch( { source: "computer" }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+			addAudio.dispatch({ source: "computer" }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onAudioCloudUpload(event:MouseEvent):void {
-			addAudio.dispatch( { source: "cloud" }, _currentEditingWidget, cloudWindowTitle); // TODO: use a constant from somewhere?
+			addAudio.dispatch({ source: "cloud" }, _currentEditingWidget, cloudWindowTitle); // TODO: use a constant from somewhere?
 			setCurrentState("normal");
 		}
 		
 		protected function onAudioUrlEnter(event:FlexEvent):void {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
-				addAudio.dispatch( { source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+				addAudio.dispatch({ source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
 				event.target.text = "";
 				setCurrentState("normal");
 			}
@@ -701,7 +701,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected function onVideoSelect(event:MouseEvent):void {
 			var url:String = videoUrlTextInput.text;
 			if (url) {
-				addVideo.dispatch( { type: "youtube", url: url }, _currentEditingWidget); // TODO: use a constant from somewhere (in fact this isn't used yet)?
+				addVideo.dispatch({ url: url }, _currentEditingWidget); // TODO: use a constant from somewhere (in fact this isn't used yet)?
 				setCurrentState("normal");
 			}
 		}

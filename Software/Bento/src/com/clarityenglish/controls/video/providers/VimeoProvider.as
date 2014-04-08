@@ -13,7 +13,7 @@ package com.clarityenglish.controls.video.providers {
 		
 		protected var vimeoPlayer:VimeoPlayer;
 
-		public function VimeoProvider(videoPlayer:IVideoPlayer) {
+		public function VimeoProvider(videoPlayer:IVideoPlayer = null) {
 			this.videoPlayer = videoPlayer;
 		}
 		
@@ -24,8 +24,9 @@ package com.clarityenglish.controls.video.providers {
 		 * @return 
 		 */
 		protected function getId(source:Object):String {
-			var matches:Array = (source.toString()) ? source.toString().match(/^(\w+):?(.*)$/i) : null;
-			return matches[2];
+			var pattern:RegExp = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/i;
+			var matches:Array = source.match(pattern);
+			return matches[3];
 		}
 		
 		/**
@@ -36,9 +37,9 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function canHandleSource(source:Object):Boolean {
-			var matches:Array = (source.toString()) ? source.toString().match(/^(\w+):?(.*)$/i) : null;
-			if (!matches || matches.length < 3) return false;
-			return matches[1] == "vimeo";
+			var pattern:RegExp = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/i;
+			var matches:Array = source.match(pattern);
+			return (matches && matches.hasOwnProperty(3) && matches[3] != null);
 		}
 		
 		/**
@@ -63,24 +64,16 @@ package com.clarityenglish.controls.video.providers {
 		}
 		
 		public function create(source:Object):void {
-			/*swfLoader = new SWFLoader();
-			swfLoader.percentWidth = swfLoader.percentHeight = 100;
-			swfLoader.scaleContent = false;
-			swfLoader.maintainAspectRatio = true;
-			swfLoader.addEventListener(Event.COMPLETE, onSwfLoaderComplete, false, 0, true);
-			
-			swfLoader.load("http://www.youtube.com/v/" + getId(source) + "?version=3");
-			
-			(videoPlayer as IVisualElementContainer).addElement(swfLoader);*/
-			
-			vimeoPlayer = new VimeoPlayer("564143362665485fb2bf223362ff1c9051ae222e", parseInt(getId(source)), 640, 360);
+			vimeoPlayer = new VimeoPlayer("00684db92d5e65590b4210f1c46ad2704704e357", parseInt(getId(source)), 640, 360);
 			vimeoPlayer.addEventListener(Event.COMPLETE, onVimeoPlayerComplete);
 			(videoPlayer as IVisualElementContainer).addElement(vimeoPlayer);
 		}
 		
 		protected function onVimeoPlayerComplete(event:Event):void {
-			vimeoPlayer.removeEventListener(Event.COMPLETE, onVimeoPlayerComplete);
-			vimeoPlayer.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
+			if (vimeoPlayer) {
+				vimeoPlayer.removeEventListener(Event.COMPLETE, onVimeoPlayerComplete);
+				vimeoPlayer.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
+			}
 			resize();
 		}
 		
@@ -89,22 +82,16 @@ package com.clarityenglish.controls.video.providers {
 		}
 		
 		public function resize():void {
-			/*if (swfLoader && swfLoader.content && swfLoader.content["setSize"])
-				swfLoader.content["setSize"](videoPlayer.width, videoPlayer.height);*/
 			if (vimeoPlayer)
 				vimeoPlayer.setSize(videoPlayer.width, videoPlayer.height);
 		}
 		
 		public function play():void {
-			/*if (swfLoader && swfLoader.content && swfLoader.content["playVideo"])
-				swfLoader.content["playVideo"]();*/
 			if (vimeoPlayer)
 				vimeoPlayer.play();
 		}
 		
 		public function stop():void {
-			/*if (swfLoader && swfLoader.content && swfLoader.content["stopVideo"])
-				swfLoader.content["stopVideo"]();*/
 			if (vimeoPlayer)
 				vimeoPlayer.pause();
 		}
@@ -114,13 +101,6 @@ package com.clarityenglish.controls.video.providers {
 		}
 		
 		public function destroy():void {
-			/*stop();
-			(videoPlayer as IVisualElementContainer).removeElement(swfLoader);
-			swfLoader.content.removeEventListener("onReady", onReady);
-			swfLoader.content.removeEventListener(MouseEvent.CLICK, onClickVideo);
-			swfLoader.source = null;
-			swfLoader = null;*/
-			
 			stop();
 			(videoPlayer as IVisualElementContainer).removeElement(vimeoPlayer);
 			vimeoPlayer.destroy();
@@ -225,27 +205,31 @@ class VimeoPlayer extends SpriteVisualElement {
 	}
 	
 	public function destroy():void {
-		if (api_version == 2) {
-			// API v2 Event Handlers
-			moogaloop.removeEventListener(READY, readyHandler);
-			moogaloop.removeEventListener(PLAY, playHandler);
-			moogaloop.removeEventListener(PAUSE, pauseHandler);
-			moogaloop.removeEventListener(SEEK, seekHandler);
-			moogaloop.removeEventListener(LOAD_PROGRESS, loadProgressHandler);
-			moogaloop.removeEventListener(PLAY_PROGRESS, playProgressHandler);
-			moogaloop.removeEventListener(FINISH, finishHandler);
-		} else {
-			// API v1 Event Handlers
-			moogaloop.removeEventListener(ON_PLAY, onPlayHandler);
-			moogaloop.removeEventListener(ON_PAUSE, onPauseHandler);
-			moogaloop.removeEventListener(ON_SEEK, onSeekHandler);
-			moogaloop.removeEventListener(ON_LOADING, onLoadingHandler);
-			moogaloop.removeEventListener(ON_PROGRESS, onProgressHandler);
-			moogaloop.removeEventListener(ON_FINISH, onFinishHandler);
+		if (moogaloop) {
+			if (api_version == 2) {
+				// API v2 Event Handlers
+				moogaloop.removeEventListener(READY, readyHandler);
+				moogaloop.removeEventListener(PLAY, playHandler);
+				moogaloop.removeEventListener(PAUSE, pauseHandler);
+				moogaloop.removeEventListener(SEEK, seekHandler);
+				moogaloop.removeEventListener(LOAD_PROGRESS, loadProgressHandler);
+				moogaloop.removeEventListener(PLAY_PROGRESS, playProgressHandler);
+				moogaloop.removeEventListener(FINISH, finishHandler);
+			} else {
+				// API v1 Event Handlers
+				moogaloop.removeEventListener(ON_PLAY, onPlayHandler);
+				moogaloop.removeEventListener(ON_PAUSE, onPauseHandler);
+				moogaloop.removeEventListener(ON_SEEK, onSeekHandler);
+				moogaloop.removeEventListener(ON_LOADING, onLoadingHandler);
+				moogaloop.removeEventListener(ON_PROGRESS, onProgressHandler);
+				moogaloop.removeEventListener(ON_FINISH, onFinishHandler);
+			}
+			
+			moogaloop.destroy();
+		
+			if (container.contains(DisplayObject(moogaloop))) container.removeChild(DisplayObject(moogaloop));
 		}
 		
-		moogaloop.destroy();
-		if (container.contains(DisplayObject(moogaloop))) container.removeChild(DisplayObject(moogaloop));
 		if (this.contains(player_mask)) this.removeChild(player_mask);
 		if (this.contains(container)) this.removeChild(container);
 		
@@ -335,11 +319,11 @@ class VimeoPlayer extends SpriteVisualElement {
 	}
 	
 	public function play():void {
-		moogaloop.play();
+		if (moogaloop) moogaloop.play();
 	}
 	
 	public function pause():void {
-		moogaloop.pause();
+		if (moogaloop) moogaloop.pause();
 	}
 	
 	/**

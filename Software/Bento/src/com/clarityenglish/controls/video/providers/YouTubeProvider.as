@@ -17,7 +17,7 @@ package com.clarityenglish.controls.video.providers {
 		
 		protected var swfLoader:SWFLoader;
 		
-		public function YouTubeProvider(videoPlayer:IVideoPlayer) {
+		public function YouTubeProvider(videoPlayer:IVideoPlayer = null) {
 			this.videoPlayer = videoPlayer;
 		}
 		
@@ -28,8 +28,9 @@ package com.clarityenglish.controls.video.providers {
 		 * @return 
 		 */
 		protected function getId(source:Object):String {
-			var matches:Array = (source.toString()) ? source.toString().match(/^(\w+):?(.*)$/i) : null;
-			return matches[2];
+			var youtubePattern:RegExp = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
+			var matches:Array = source.match(youtubePattern);
+			return matches[1];
 		}
 		
 		/**
@@ -40,9 +41,18 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function canHandleSource(source:Object):Boolean {
-			var matches:Array = (source.toString()) ? source.toString().match(/^(\w+):?(.*)$/i) : null;
-			if (!matches || matches.length < 3) return false;
-			return matches[1] == "youtube";
+			// The current YouTube video link looks like
+			//   http://youtu.be/oSn3i4vsGeY
+			// others look like
+			//   http://www.youtube.com/embed/xxx?rel=0
+			// or 
+			//   http://www.youtube.com/v/xxx?version=3
+			
+			// Just for reference, you can get a still shot of the video from http://img.youtube.com/vi/xxx/0.jpg
+			// pattern from http://stackoverflow.com/questions/2936467/parse-youtube-video-id-using-preg-match
+			var pattern:RegExp = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
+			var matches:Array = source.match(pattern);
+			return (matches && matches.length == 2);
 		}
 		
 		/**
