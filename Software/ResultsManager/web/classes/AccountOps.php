@@ -235,6 +235,12 @@ SQL;
 						$needsAccountsTable = true;
 						break;
 						
+					// gh#862
+					case 'languageCode':
+						$selectBuilder->addWhere("t.F_LanguageCode = '".$value."'");
+						$needsAccountsTable = true;
+						break;
+						
 					case 'active':
 						if ($value == 'true') {
 							$now = date('Y-m-d');

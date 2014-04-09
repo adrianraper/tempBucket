@@ -38,6 +38,8 @@ class Condition {
 	var $optOutEmails;
 	// gh#769
 	var $newUsersSinceDate;
+	// gh#862
+	var $languageCode;
 	
 	function Condition($conditionString, $timeStamp = null ) {
 		$this->timeStamp = $timeStamp;
@@ -88,6 +90,9 @@ class Condition {
 			$this->contactMethod = $conditionArray['contactMethod'];
 		if (isset($conditionArray['deliveryFrequency'])) 
 			$this->deliveryFrequency = $conditionArray['deliveryFrequency'];
+		// gh#862
+		if (isset($conditionArray['languageCode'])) 
+			$this->languageCode = $conditionArray['languageCode'];
 		// Note that a userStartDate that references frequency NEEDS the following condition to be evaluated after the above one
 		// the order in the condition in the db doesn't matter - just this code.
 		// But actually we will normally read deliveryFrequency from the account table, so do this evaluation in usersInAccount too

@@ -57,9 +57,10 @@ function specificEmail($account, $messageType, $templateID, $addReseller = false
 // If you want to run specific triggers for specific days (for testing)
 // you can put 'date=-1' in the URL
 $testingTriggers = "";
-$testingTriggers = "R2I announce email";
+//$testingTriggers = "R2I announce email";
 //$testingTriggers .= "Service";
 //$testingTriggers .= "terms and conditions";
+$testingTriggers .= "TBV10 release";
 
 	if (stristr($testingTriggers, "Service")) {
 		// These are not sent through triggers but programmatically
@@ -93,6 +94,23 @@ $testingTriggers = "R2I announce email";
 			$templateID = $_REQUEST['template'];
 		} else {
 			$templateID = 'rti2_announce_3';
+		}
+		$messageType = Trigger::TRIGGER_TYPE_UPGRADE;
+		
+	} else if (stristr($testingTriggers, "TBV10 release")) {
+		// These are not sent through triggers but programmatically
+		$conditions['active'] = true;
+		$conditions['accountType'] = 1; // Standard invoice (ignores trials, distributors etc)
+		$conditions['productCode'] = '9'; // existing TB title
+		$conditions['selfHost'] = 'false';
+		$conditions['languageCode'] = 'EN';
+		$addReseller = false;
+		$rootList = array(163,38,10074,10732);
+		
+		if (isset($_REQUEST['template'])) {
+			$templateID = $_REQUEST['template'];
+		} else {
+			$templateID = 'tbV10release';
 		}
 		$messageType = Trigger::TRIGGER_TYPE_UPGRADE;
 	}
