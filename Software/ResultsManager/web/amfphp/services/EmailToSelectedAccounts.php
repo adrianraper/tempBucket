@@ -104,9 +104,13 @@ $testingTriggers .= "TBV10 release";
 		$conditions['productCode'] = '9'; // existing TB title
 		$conditions['selfHost'] = 'false';
 		$conditions['languageCode'] = 'EN';
+		$conditions['notLicenceType'] = 5;
 		$addReseller = false;
-		$rootList = array(163,38,10074,10732);
-		
+		//$rootList = array(163,38,10074,10732);
+		//$rootList = null;
+		// HCT colleges already upgraded
+		$conditions['excludeRootIDs'] = 'true';
+		$rootList = array(14276,14277,14278,14279,14280,14281,14282,14283,14284,14286,14287,14288,14290,14291,14292);
 		if (isset($_REQUEST['template'])) {
 			$templateID = $_REQUEST['template'];
 		} else {
@@ -169,7 +173,7 @@ $testingTriggers .= "TBV10 release";
 			echo "Trying to send ".count($emailArray)." emails";
 		} else {
 			// Or print on screen
-			echo "Trying to send ".count($emailArray)." emails";
+			echo "Displaying ".count($emailArray)." emails";
 			foreach($emailArray as $email) {
 				/*
 				echo "<b>".$email['data']['account']->name." to: ".$email["to"]."</b>".$newLine;
