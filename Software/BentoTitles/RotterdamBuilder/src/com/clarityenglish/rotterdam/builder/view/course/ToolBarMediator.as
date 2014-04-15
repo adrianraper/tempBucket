@@ -88,7 +88,9 @@
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			switch (note.getName()) {
 				case RotterdamNotifications.TEXT_SELECTED:
-					view.setCurrentTextFormat(note.getBody() as TextLayoutFormat);
+					// gh#873
+					if (!view.previewMode)
+						view.setCurrentTextFormat(note.getBody() as TextLayoutFormat);
 					break;
 				case RotterdamNotifications.WIDGET_SELECT:
 					view.currentEditingWidget = null;

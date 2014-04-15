@@ -360,7 +360,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			super.onAddedToStage(event);
 			
 			smallScreenFlag = (stage.stageWidth < 1200);
-			stage.addEventListener(MouseEvent.CLICK, onStageClick);
+			// gh#873
+			if (!previewMode)
+				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			addEventListener(Event.RESIZE, onScreenResize);
 			
 			contentWindowTitle = copyProvider.getCopyForId("contentWindowTitle");
