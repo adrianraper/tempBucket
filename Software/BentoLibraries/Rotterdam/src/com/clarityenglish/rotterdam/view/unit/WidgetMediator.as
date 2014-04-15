@@ -7,6 +7,7 @@
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
+	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	
 	import flash.events.ProgressEvent;
@@ -145,11 +146,15 @@
 				var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 				navigateToURL(new URLRequest(srcHref.url), "_blank");
 			}
-			// gh#106
-			// TODO: 120 seconds should not be hardcoded - come from config or literals or?
-			exerciseMark.duration = 120;
-			exerciseMark.UID = view.clarityUID;
-			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
+			// gh#874
+			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
+			if (!courseProxy.isPreviewMode) {
+				// gh#106
+				// TODO: 120 seconds should not be hardcoded - come from config or literals or?
+				exerciseMark.duration = 120;
+				exerciseMark.UID = view.clarityUID;
+				facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
+			}
 		}
 		
 		/**
