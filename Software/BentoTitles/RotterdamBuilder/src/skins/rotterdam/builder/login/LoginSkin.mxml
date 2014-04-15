@@ -45,9 +45,9 @@
 		</s:fill>
 	</s:Rect>
 	
-	<!-- background -->
-	<s:Rect top="0" bottom="0" left="0" right="0">
-		<s:fill>
+	<!-- background gh#224 -->
+	<s:Rect top="0" bottom="0" left="0" right="0" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}">
+		<s:fill >
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0xFFFFFF" ratio="0" />
 				<s:GradientEntry color="0xFFFFFF" ratio="0.3" />
