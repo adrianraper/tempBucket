@@ -124,6 +124,11 @@ package com.clarityenglish.rotterdam.view.course {
 			}
 		}
 		
+		// gh#872
+		public function get preivewVisible():Boolean {
+			return _isPreviewVisible;
+		}
+		
 		[Bindable]
 		public function get isFirstPublish():Boolean {
 			return _isFirstPublish;

@@ -86,7 +86,8 @@
 				</s:layout>
 				<s:itemRenderer>
 					<fx:Component>
-						<s:ItemRenderer width="100%" mouseOver="deleteCourseButton.visible = true" mouseOut="deleteCourseButton.visible = false" toolTip="{data.@caption}" >
+						<!--gh#872 remove mouseOver effect in preview mode-->
+						<s:ItemRenderer width="100%" mouseOver="{deleteUnitButton.visible = !outerDocument.hostComponent.preivewVisible}" mouseOut="deleteUnitButton.visible = false" toolTip="{data.@caption}" >
 							<fx:Script>
 								<![CDATA[
 									import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
@@ -95,7 +96,7 @@
 							
 							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
 							<s:Group right="2" verticalCenter="0">
-								<s:Button id="deleteCourseButton"
+								<s:Button id="deleteUnitButton"
 										  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
 										  visible="false"
 										  click="dispatchEvent(new UnitDeleteEvent(UnitDeleteEvent.UNIT_DELETE, data as XML, true))" useHandCursor="true" buttonMode="true" scaleX="0.8" scaleY="0.8"/>
