@@ -380,7 +380,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			super.commitProperties();
 			
 			if (previewBackToEditorButton)
-				previewBackToEditorButton.visible = !(previewMode && isPublisher);
+				previewBackToEditorButton.visible = !(previewMode && (isPublisher || !isEditable));
 
 			if (addItemButton) {
 				addItemButton.visible = smallScreenFlag;
@@ -396,8 +396,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case normalSaveButton:
 					normalSaveButton.label = copyProvider.getCopyForId("normalSaveButton");
 					// gh#91 You can only save if allowed
-					// Using a signal like this seems very clumsy
-					//onGetPermission.dispatch();
 					if (isEditable && (isOwner || isCollaborator)) { 
 						normalSaveButton.addEventListener(MouseEvent.CLICK, onNormalSave);
 						normalSaveButton.visible = true;

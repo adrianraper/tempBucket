@@ -122,10 +122,10 @@ SQL;
 		$bindingParams = array($courseID, $userID);
 		$rs = $dmsService->db->Execute($sql, $bindingParams);
 		
-		// And a default viewer role for all teachers
+		// And a default collaborator role for all teachers (since this is what all courses are set at now)
 		$sql = <<<SQL
 			INSERT INTO T_CourseRoles (F_CourseID, F_RootID, F_Role, F_DateStamp)
-			VALUES (?, ?, 4, NOW()) 
+			VALUES (?, ?, 2, NOW()) 
 SQL;
 		$bindingParams = array($courseID, $rootID);
 		$rs = $dmsService->db->Execute($sql, $bindingParams);
@@ -143,7 +143,7 @@ if (stristr($testingTriggers, "Seed permissions and privacy for CCB")) {
 	$conditions = array();
 	$conditions['productCode'] = 54;
 	$testingAccounts = null;
-	$testingAccounts = array(163);
+	//$testingAccounts = array(10719);
 	$accounts = $dmsService->accountOps->getAccounts($testingAccounts, $conditions);
 	if ($accounts) {
 		foreach ($accounts as $account) {
@@ -153,12 +153,14 @@ if (stristr($testingTriggers, "Seed permissions and privacy for CCB")) {
 			$rootID = $account->id;
 			
 			// read courses.xml for the account and seed each courseID into the tables
+			echo "seeding for account {$account->name}<br/>";
 			$filename = '../../'.$GLOBALS['ccb_data_dir']."/".$prefix.'/courses.xml';
 			$xml = simplexml_load_file($filename);
 			foreach ($xml->courses->course as $course) {
 				$courseID = (string)$course['id'];
 				seedCoursePermission($courseID);
 				seedCourseRole($courseID, $userID, $rootID);
+				echo "&nbsp;&nbsp;&nbsp;&nbsp;course $courseID<br/>";
 			}
 		}
 	}

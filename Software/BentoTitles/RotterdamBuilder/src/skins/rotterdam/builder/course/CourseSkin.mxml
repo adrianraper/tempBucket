@@ -87,7 +87,7 @@
 				<s:itemRenderer>
 					<fx:Component>
 						<!--gh#872 remove mouseOver effect in preview mode-->
-						<s:ItemRenderer width="100%" mouseOver="{deleteUnitButton.visible = !outerDocument.hostComponent.preivewVisible}" mouseOut="deleteUnitButton.visible = false" toolTip="{data.@caption}" >
+						<s:ItemRenderer width="100%" mouseOver="{deleteUnitButton.visible = !outerDocument.hostComponent.previewVisible}" mouseOut="deleteUnitButton.visible = false" toolTip="{data.@caption}" >
 							<fx:Script>
 								<![CDATA[
 									import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
@@ -136,7 +136,7 @@
 	</s:HGroup>
 		
 	<!-- gh#91 Keep the publish button even in preview mode -->
-	<s:Group id="publishVGroup" left="3" bottom="38" width="152" visible="{toolBar.currentState == 'normal'}" >
+	<s:Group id="publishVGroup" left="3" bottom="38" width="152" >
 		<s:Group bottom="0" left="0">
 			<s:ToggleButton id="publishCourseButton" click="anim.play()" useHandCursor="true" buttonMode="true" />
 			<s:Button id="publishChangeButton" useHandCursor="true" buttonMode="true" />

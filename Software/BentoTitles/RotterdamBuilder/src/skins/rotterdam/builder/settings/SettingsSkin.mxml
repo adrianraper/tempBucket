@@ -73,7 +73,7 @@
 			
 		</s:Form>
 		<s:Label id="directURLLabel" fontWeight="bold" paddingLeft="25"/>
-		<s:Label id="directStartURLLabel" paddingLeft="25"/>	
+		<s:TextInput id="directStartURLText" paddingLeft="25" editable="false" width="600"/>	
 		
 		<!-- Privacy and permissions -->
 		<s:Form id="permissionsForm" includeIn="normal" left="0" >

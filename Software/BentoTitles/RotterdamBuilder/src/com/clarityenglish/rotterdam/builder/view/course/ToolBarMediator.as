@@ -177,17 +177,5 @@
 		protected function onCancelLink():void {
 			facade.sendNotification(RotterdamNotifications.WEB_URL_CANCEL);
 		}
-		
-		// gh#91 This seems clumsy
-		/*
-		protected function onGetPermission():void {
-			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			view.isEditable = courseProxy.isEditable;
-			view.isOwner = courseProxy.isOwner;
-			view.isCollaborator = courseProxy.isCollaborator;
-			view.isPublisher = courseProxy.isPublisher;
-		}
-		*/
-
 	}
 }

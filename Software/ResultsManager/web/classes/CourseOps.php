@@ -496,9 +496,9 @@ SQL;
 	public function getUserRole($courseID){
 		$userRole = $groupRole = $rootRole = 99;
 		$userID = Session::get('userID');
-		AbstractService::$debugLog->info("user ID: ".$userID);
+		//AbstractService::$debugLog->info("user ID: ".$userID);
 		$groupIDs = implode(',', array_unique(array_merge(Session::get('groupIDs'), Session::get('parentGroupIDs')), SORT_DESC));
-		AbstractService::$debugLog->info("group ID: ".$groupIDs);
+		//AbstractService::$debugLog->info("group ID: ".$groupIDs);
 		$rootID = Session::get('rootID');
 		// alicechange
 		$userType = Session::get('userType');

@@ -80,7 +80,7 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var aboutContactNumberTextInput:TextInput;
 		
 		[SkinPart]
-		public var directStartURLLabel:Label;
+		public var directStartURLText:TextInput;
 		
 		[SkinPart]
 		public var courseDescriptionFormItem:FormItem;
@@ -145,6 +145,9 @@ package com.clarityenglish.rotterdam.view.settings {
 		
 		// gh#91
 		public var isOwner:Boolean;
+		public var isCollaborator:Boolean;
+		public var isPublisher:Boolean;
+		public var isEditable:Boolean;
 		
 		public function SettingsView() {
 			super();
@@ -188,18 +191,19 @@ package com.clarityenglish.rotterdam.view.settings {
 			// gh#92
 			var folderName:String = copyProvider.getCopyForId('pathCCB');
 			var directStartURL:String = config.remoteStartFolder + folderName + '/Player.php' + '?prefix=' + config.prefix + '&course=' + course.@id;
-			if (directStartURLLabel) directStartURLLabel.text = directStartURL;
+			if (directStartURLText) directStartURLText.text = directStartURL;
 		
 			// gh#91
-			// All permissions stuff if ONLY changeable by owner
-			if (permissionsForm && !isOwner) 
-				permissionsForm.enabled = false;
+			// All permissions stuff is changeable by owner - not collaborators
+			if (permissionsForm)
+				permissionsForm.enabled = (isOwner) ? true : false;
 			
+			// About stuff is changeable by owner and collaborators
 			if (aboutForm) {
-				if (course.permission.@editable != 'true') {
-					aboutForm.enabled = false;
-				} else {
+				if (course.permission.@editable == 'true' && (isOwner || isCollaborator)) {
 					aboutForm.enabled = true;
+				} else {
+					aboutForm.enabled = false;
 				}
 			}
 			
@@ -240,12 +244,17 @@ package com.clarityenglish.rotterdam.view.settings {
 			if (groupPublishersCheckBox) groupPublishersCheckBox.selected = (course.privacy.publishers.@group == 'true');
 			
 			// Only enable the save button if the settings are valid
-			if (saveButton && isOwner) {
-				var isValid:Boolean = true;
-			} else {
-				isValid = false;
+			if (saveButton) {
+				var isValid:Boolean = false;
+				// The owner can always save as they might change the editable from false to true
+				if (isOwner)
+					isValid = true;
+				// A collaborator can save if the course is editable
+				if (isCollaborator && isEditable)
+					isValid = true;
+				
+				saveButton.enabled = isValid;
 			}
-			saveButton.enabled = isValid;
 			
 			isPopulating = false;
 		}
@@ -293,7 +302,7 @@ package com.clarityenglish.rotterdam.view.settings {
 							// If you selected root, then group can't be changed
 							groupCollaboratorsCheckBox.enabled = !e.target.selected;
 							// gh#846
-							publishersFormItem.enabled = !e.target.selected;
+							//publishersFormItem.enabled = !e.target.selected;
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -305,7 +314,7 @@ package com.clarityenglish.rotterdam.view.settings {
 						if (!isPopulating) {
 							course.privacy.collaborators.@group = String(e.target.selected);
 							// gh#846
-							publishersFormItem.enabled = !e.target.selected;
+							//publishersFormItem.enabled = !e.target.selected;
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -319,7 +328,7 @@ package com.clarityenglish.rotterdam.view.settings {
 							// If you selected root, then group can't be changed
 							groupPublishersCheckBox.enabled = !e.target.selected;
 							// gh#846
-							collaboratorsFormItem.enabled = !e.target.selected;
+							//collaboratorsFormItem.enabled = !e.target.selected;
 							dirty.dispatch();
 							invalidateProperties();
 						}
@@ -331,7 +340,7 @@ package com.clarityenglish.rotterdam.view.settings {
 						if (!isPopulating) {
 							course.privacy.publishers.@group = String(e.target.selected);
 							// gh#846
-							collaboratorsFormItem.enabled = !e.target.selected;
+							//collaboratorsFormItem.enabled = !e.target.selected;
 							dirty.dispatch();
 							invalidateProperties();
 						}

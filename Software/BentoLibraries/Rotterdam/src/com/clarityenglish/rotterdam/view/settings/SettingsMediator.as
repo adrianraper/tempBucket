@@ -39,7 +39,9 @@ package com.clarityenglish.rotterdam.view.settings {
 			view.href = bentoProxy.menuXHTML.href;
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			view.isOwner = courseProxy.isOwner;
-
+			view.isCollaborator = courseProxy.isCollaborator;
+			view.isPublisher = courseProxy.isPublisher;
+			view.isEditable = courseProxy.isEditable;
 		}
 		
 		override public function onRemove():void {

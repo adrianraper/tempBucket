@@ -55,7 +55,9 @@
 			view.isOwner = courseProxy.isOwner;
 			view.isCollaborator = courseProxy.isCollaborator;
 			view.isPublisher = courseProxy.isPublisher;
-			if (courseProxy.isPublisher)
+			view.isEditable = courseProxy.isEditable;
+			// gh#91a 
+			if (courseProxy.isPublisher || !courseProxy.isEditable)
 				facade.sendNotification(RotterdamNotifications.PREVIEW_SHOW, true);
 		}
 		

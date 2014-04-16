@@ -122,10 +122,12 @@ package com.clarityenglish.rotterdam.model {
 			if (currentUnit && courseNode.unit.hasOwnProperty("@id")) currentUnit = courseNode.unit.(@id == currentUnit.@id)[0];
 			
 			// gh#91 Set permission for this course
-			if (courseNode.permission && courseNode.permission.hasOwnProperty("@role"))
+			if (courseNode.permission)
 				setPermission(courseNode.permission);
-			// gh#91 and set a default preview mode if you are a publisher
-			isPreviewMode = isPublisher;
+			
+			// gh#91 and set a default preview mode if you are a publisher (or the course is not editable?)
+			// gh#91a
+			isPreviewMode = isPublisher || !isEditable;
 		}
 		
 		public function get currentCourse():XHTML {
@@ -236,9 +238,11 @@ package com.clarityenglish.rotterdam.model {
 			return _role == Course.ROLE_PUBLISHER;	
 		}
 		public function setPermission(permission:XMLList):void {
-			if (permission && permission.hasOwnProperty("@role")) {
-				_editable = (permission.@editable == "true") ? true : false;
-				_role = int(permission.@role);
+			if (permission) {
+				if (permission.hasOwnProperty("@role"))
+					_role = int(permission.@role);
+				if (permission.hasOwnProperty("@editable"))
+					_editable = (permission.@editable == "true") ? true : false;
 			}
 		}
 		public function get isPreviewMode():Boolean {

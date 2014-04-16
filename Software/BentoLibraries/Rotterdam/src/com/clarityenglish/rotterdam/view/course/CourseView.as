@@ -90,11 +90,11 @@ package com.clarityenglish.rotterdam.view.course {
 		private var isOutsideClick:Boolean;
 		private var isItemClick:Boolean;
 		private var isHidden:Boolean;
-		//private var isPreview:Boolean;
 		// gh#91
 		public var isOwner:Boolean;
 		public var isCollaborator:Boolean;
 		public var isPublisher:Boolean;
+		public var isEditable:Boolean;
 		
 		public var unitSelect:Signal = new Signal(XML);
 		public var coursePublish:Signal = new Signal();
@@ -125,7 +125,7 @@ package com.clarityenglish.rotterdam.view.course {
 		}
 		
 		// gh#872
-		public function get preivewVisible():Boolean {
+		public function get previewVisible():Boolean {
 			return _isPreviewVisible;
 		}
 		
