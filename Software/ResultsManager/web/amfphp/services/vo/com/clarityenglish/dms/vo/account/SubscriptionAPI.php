@@ -21,6 +21,7 @@ class SubscriptionApi {
 	var $fullAddress;
 	public $discountCode;
 	public $paymentMethod;
+	public $paymentRef;
 	
 	// The following are defaults used when creating an account
 	public $invoiceNumber;
@@ -87,6 +88,8 @@ class SubscriptionApi {
 			$this->mobile = $info['mobile'];
 		if (isset($info['paymentMethod']))
 			$this->paymentMethod = $info['paymentMethod'];
+		if (isset($info['paymentRef']))
+			$this->paymentRef = $info['paymentRef'];
 
 		// To help an API user/reseller with testing
 		if (isset($info['transactionTest']))
