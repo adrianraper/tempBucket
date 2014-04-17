@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/CCB in localhost</id>
+	<developer>none</developer>
+	<dbHost>2</dbHost>
+	<productCode>54</productCode>
+	<language>EN</language>
+	<loginOption>128</loginOption>
+	
+	<platform>tablet</platform>
+	
+    <contentPath>http://dock.contentbench/CCB/</contentPath>
+    <remoteDomain>http://dock.projectbench/Software/</remoteDomain>
+    <remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+    <remoteStartFolder>http://dock.projectbench/area1/</remoteStartFolder>
+    <!--  
+    <contentPath>http://claritydevelop/Content/CCB/</contentPath>
+    <remoteDomain>http://192.168.8.60/Software/</remoteDomain>
+    <remoteGateway>http://192.168.8.60/Software/ResultsManager/web/amfphp/</remoteGateway>
+    <remoteStartFolder>http://192.168.8.60/area1/</remoteStartFolder>
+    -->
+	
+	<remoteService>RotterdamPlayerService</remoteService>
+</config>

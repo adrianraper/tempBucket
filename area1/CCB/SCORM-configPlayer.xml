@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/CCB in localhost</id>
+	<developer>none</developer>
+	<dbHost>0</dbHost>
+	<productCode>54</productCode>
+	<language>EN</language>
+	
+	<contentPath>http://dock.contentbench/CCB/</contentPath>
+	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteStartFolder>http://dock.projectbench/area1/</remoteStartFolder>
+	
+	<remoteService>RotterdamPlayerService</remoteService>
+</config>

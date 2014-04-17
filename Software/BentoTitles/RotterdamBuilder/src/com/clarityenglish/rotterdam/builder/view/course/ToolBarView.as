@@ -824,9 +824,14 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onStageClick(event:MouseEvent):void {
-			// gh#306
-			if (ClassUtil.getClass(event.target) == DataGroup) {
-				disSelectFontFormattingButton();
+			// gh#876 temporary hack
+			try {
+				// gh#306
+				if (ClassUtil.getClass(event.target) == DataGroup) {
+					disSelectFontFormattingButton();
+				}
+			} catch (err:Error) {
+				// Nothing to do as the event came from an object outside bento
 			}
 			if (isOutsideClick) {
 				if (!addItemButton.selected) {
