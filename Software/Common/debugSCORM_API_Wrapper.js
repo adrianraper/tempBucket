@@ -507,17 +507,17 @@ pipwerks.SCORM.data.get = function(parameter){
 
     	switch (parameter) {
     	case "cmi.core.student_name":
-    		return "Student, Clarity";
+    		return "Admin, Clarity";
     		break;
     	case "cmi.core.student_id":
-    		return "12345678";
+    		return "admin";
     		break;
     	case "cmi.launch_data":
     		//return "unit=2287130100002";
-    		return "ex=1192013075705";
+    		return "ex=55.1192013076011.1192013075846";
     		break;
     	case "cmi.core.lesson_location":
-    		return "";
+    		return "ex=55.1189057932446.1192013076011.1192013075215";
     		break;
     	case "cmi.core.lesson_status":
     		return "not attempted";
@@ -530,7 +530,7 @@ pipwerks.SCORM.data.get = function(parameter){
     		return "0";
     		break;
     	case "cmi.suspend_data":
-    		return '';
+    		return '{"scoreSoFar":"ex:55.1196935701119.1196641272970.1196641895353|13","percentComplete":10}';
     		//return '{"scoreSoFar":"1156153794384|13,1156153794466|33,1156153794384|53","percentComplete":10}';
     		break;
     	default:

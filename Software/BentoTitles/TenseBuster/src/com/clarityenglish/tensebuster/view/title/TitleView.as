@@ -188,8 +188,13 @@ package com.clarityenglish.tensebuster.view.title {
 			return _directExercise;
 		}
 		
-		public function set isDirectLogout(value:Boolean) {
+		public function set isDirectLogout(value:Boolean):void {
 			_isDirectLogout = value;
+		}
+		
+		[Bindable]
+		public function get isDirectLogout():Boolean {
+			return _isDirectLogout;
 		}
 		
 		public function TitleView() {

@@ -409,6 +409,9 @@ package com.clarityenglish.tensebuster.view.login
 			isPlatformAndroid = value;
 		}
 		
+		public function setBranding(xml:XML):void {
+			
+		}
 		/**
 		 * To let you work out what data you need for logging in to this account. 
 		 * @param Number loginOption

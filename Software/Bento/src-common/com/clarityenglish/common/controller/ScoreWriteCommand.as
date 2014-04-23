@@ -25,8 +25,14 @@ package com.clarityenglish.common.controller {
 			// #336 If you are running in SCORM, you also need to write a score to the LMS
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			if (configProxy.getConfig().scorm) 
-				scormProxy.writeScore(data.UID, data.correctPercent);
+			// gh#877
+			if (configProxy.getConfig().scorm) {
+				if (data.correctPercent < 0) {
+					scormProxy.writeScore(data.UID, 0);
+				} else {
+					scormProxy.writeScore(data.UID, data.correctPercent);
+				}	
+			}
 		}
 		
 	}

@@ -2,6 +2,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
+	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -39,6 +40,9 @@ package com.clarityenglish.bento.controller {
 				} else {
 					// gh#853
 					if (configProxy.getConfig().scorm) {
+						// gh#877
+						var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+						scormProxy.completeSCO();
 						sendNotification(CommonNotifications.LOGOUT);
 					} else {
 						sendNotification(BBNotifications.SELECTED_NODE_UP);
