@@ -6,6 +6,9 @@ package com.clarityenglish.bento.model {
 	import com.pipwerks.SCORM;
 	
 	import flash.external.ExternalInterface;
+	import flash.filesystem.File;
+	import flash.filesystem.FileMode;
+	import flash.filesystem.FileStream;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -119,7 +122,7 @@ package com.clarityenglish.bento.model {
 		public function completeSCO():void {
 			
 			scorm.complete = true;
-			scorm.setParameter('lessonStatus', 'complete');
+			scorm.setParameter('lessonStatus', 'completed');
 			scorm.setParameter('rawScore', this.calculateAverageScore());
 			scorm.setParameter('sessionTime', this.getSessionTime());
 				
@@ -158,12 +161,32 @@ package com.clarityenglish.bento.model {
 		private function getSessionTime():String {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			
-			var sessionDuration:Number = configProxy.getConfig().sessionStartTime - new Date().time;
-			var sHours:Number = sessionDuration % 3600;
-			var sMinutes:Number = (sessionDuration - (sHours * 3600)) % 60;
-			var sSeconds:Number = (sessionDuration - (sHours * 3600) - (sMinutes * 60));
+			var sessionDuration:Number = new Date().time - configProxy.getConfig().sessionStartTime;
+			// gh#877 correct the time calculation formula
+			var sHours:Number = Math.round(sessionDuration / 3600000);
+			var sMinutes:Number =  Math.round((sessionDuration - (sHours * 3600000)) / 60000);
+			var sSeconds:Number = Math.round((sessionDuration - (sHours * 3600000) - (sMinutes * 60000))/1000);
 			
-			return sHours.toString() + ":" + sMinutes.toString() + ":" + sSeconds + ".00";
+			// gh#877
+			if (sHours < 10) {
+				var sHoursString:String = "0" + sHours.toString();
+			} else {
+				sHoursString = sHours.toString();
+			}
+			
+			if (sMinutes < 10) {
+				var sMinutesString:String = "0" + sMinutes.toString();
+			} else {
+				sMinutesString = sMinutes.toString();
+			}
+			
+			if (sSeconds < 10) {
+				var sSecondsString:String = "0" + sSeconds.toString();
+			} else {
+				sSecondsString = sSeconds.toString();
+			}
+
+			return sHoursString + ":" + sMinutesString + ":" + sSecondsString;
 		}
 		
 		/**
@@ -172,7 +195,9 @@ package com.clarityenglish.bento.model {
 		private function calculateAverageScore():String {
 			
 			// Pick up the suspend data (you must make sure that the last exercise has been added already)
-			var suspendDataArray:Object = JSON.parse(scorm.suspendData);
+			
+			var suspendDataArray:Object = JSON.parse(scorm.suspendData)? JSON.parse(scorm.suspendData) : JSON.parse(scorm.getParameter("suspendData"));
+			
 			if (suspendDataArray.scoreSoFar) {
 				var scores:Array = suspendDataArray.scoreSoFar.split(",");
 				
@@ -180,9 +205,10 @@ package com.clarityenglish.bento.model {
 				// If one exercise has been done twice, you include both scores
 				var totalScore:Number = 0;
 				var numberOfScores:Number = 0;
-				for (var score:String in scores) {
+				// gh#877 correct the "for" iteration which i is index not the score in scores 
+				for (var i:String in scores) {
 					numberOfScores++;
-					totalScore += score.split('|')[1];
+					totalScore += Number(scores[i].split('|')[1]);
 				}
 			}
 			
@@ -228,6 +254,7 @@ package com.clarityenglish.bento.model {
 				suspendDataArray.percentComplete = 10;
 			}
 			
+			scorm.suspendData = JSON.stringify(suspendDataArray);
 			return JSON.stringify(suspendDataArray);
 		}
 

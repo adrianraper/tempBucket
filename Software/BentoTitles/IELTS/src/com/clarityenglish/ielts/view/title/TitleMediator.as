@@ -14,6 +14,7 @@
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.observer.Notification;
+	import com.clarityenglish.bento.model.SCORMProxy;
 	
 	/**
 	 * A Mediator
@@ -53,7 +54,7 @@
 			if (configProxy.getDirectStart()) {
 				var directStart:Object = configProxy.getDirectStart();
 				
-				if (directStart.exerciseID) {
+				if (directStart.exerciseID || directStart.groupID) {
 					view.isDirectStartEx = true;
 				}
 			}
@@ -78,6 +79,23 @@
 		 * 
 		 */
 		private function onLogout():void {
+			// gh#877 if logout from the last exercise, completeSCO() should be called
+			if (view.isDirectStartEx) {
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
+				if (!bentoProxy.getNextExerciseNode()) {
+					if (scormProxy.getBookmark()) {
+						// the bookmark is like ex=55.1189057932446.1192013076011.1192013075215
+						var bookmarkId:String = (scormProxy.getBookmark().exerciseID).split(".")[3];
+						
+						// the code here is to identify whether the last exercise marked or not. If marked, the bookmark should be updated to the last exercise ID
+						// If not, let's assume the user didn't do the exercise but wants to do it later.
+						if (bookmarkId == bentoProxy.selectedExerciseNode.@id) {
+							scormProxy.completeSCO();
+						}
+					}
+				}
+			}
 			sendNotification(CommonNotifications.LOGOUT);
 		}
 		

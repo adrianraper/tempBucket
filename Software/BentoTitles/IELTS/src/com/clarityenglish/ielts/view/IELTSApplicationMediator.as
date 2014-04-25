@@ -103,23 +103,43 @@ package com.clarityenglish.ielts.view {
 			// #338
 			// If exerciseID is defined go straight into an exercise.
 			if (directStart.exerciseID) {
-				var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
-				if (exercise) {
-					var href:Href = bentoProxy.createRelativeHref(Href.EXERCISE, exercise.@href);
-					if (href.extension == "rss") {
-						directStart.unitID = exercise.parent().@id;
-						trace("direct start unit ID: "+directStart.unitID);
-					} else if (href.extension == "pdf") {
-						// go to certian tab and open pdf pop up window
-						directStart.unitID = exercise.parent().@id;
-						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
-					} else {
-						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
-						return true;
-					}					
-				}
-				
+					var exercise:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID);
+					if (exercise) {
+						var href:Href = bentoProxy.createRelativeHref(Href.EXERCISE, exercise.@href);
+						if (href.extension == "rss") {
+							directStart.unitID = exercise.parent().@id;
+						} else if (href.extension == "pdf") {
+							// go to certian tab and open pdf pop up window
+							directStart.unitID = exercise.parent().@id;
+							sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+						} else {
+							// gh#877
+							var unit:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID).parent();
+							if (!directStart.scorm || !unit.exercise.(@id == directStart.exerciseID).hasOwnProperty("@group")) {
+								sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
+							} else {
+								var groupID:Number = unit.exercise.(@id == directStart.exerciseID).@group;
+								var unitLength:Number = unit.exercise.(@group == groupID).length();
+								var exexerciseGroupXMLList:XMLList = unit.exercise.(@group == groupID);
+								var exerciseIndex:Number = 0;
+								for (var index:String in exexerciseGroupXMLList) {
+									if (exexerciseGroupXMLList.@id[index] == directStart.exerciseID) {
+										break;
+									}
+									exerciseIndex++;
+								}
+
+								// Currently, the bookmark will not empty when last exercise ID stored, so here we need to force it open the first exercise manually.
+								var nextExercise:XML = (exerciseIndex + 1 == unitLength)? unit.exercise.(@group == groupID)[0] : exexerciseGroupXMLList[exerciseIndex + 1];
+								if(nextExercise)
+									sendNotification(BBNotifications.SELECTED_NODE_CHANGE, nextExercise);
+							}
+								
+							return true;
+						}					
+					}
 			}
+			
 			
 			// If groupID is defined, go straight to the first exercise in the group
 			if (directStart.groupID) {

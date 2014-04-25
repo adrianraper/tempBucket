@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.vo.content.transform {
+	import com.clarityenglish.bento.vo.content.Exercise;
 	
 	[RemoteClass(alias = "com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform")]
 	public class DirectStartDisableTransform extends XmlTransform {
@@ -18,50 +19,61 @@ package com.clarityenglish.bento.vo.content.transform {
 				if (directStart.exerciseID) {
 					//directStart.unitID = xml..unit.(descendants("exercise").@id.contains(directStart.exerciseID))[0].@id.toString();
 					var exerciseXML:XML = xml..unit.exercise.(@id == directStart.exerciseID)[0];
-					directStart.unitID = exerciseXML.parent().@id.toString();
+					if (exerciseXML)
+						directStart.unitID = exerciseXML.parent().@id.toString();
 				}
 					
 
 				if (directStart.unitID) {
 					// gh#761 
 					var unitXML:XML = xml..course.unit.(@id == directStart.unitID)[0];
-					directStart.courseID = unitXML.parent().@id.toString();
-					// cannot get the parent course ID					
-					//directStart.courseID = xml..course.(descendants("unit").@id.contains(directStart.unitID))[0].@id.toString();
+					if (unitXML)
+						directStart.courseID = unitXML.parent().@id.toString();
 				}					
 
+				// TODO: We should only be setting disabled on or off here, not forcing eF to be enabled (3)
+				// in case some other eF flags have been set that we want
+				var enabled:Number = Exercise.EF_NAVIGATE_ON | Exercise.EF_MENU_ON;
+				var disabled:Number = Exercise.EF_DISABLED;
 				if (directStart.courseID) {
-					for each (var course:XML in xml..course) {
-						if (course.@id == directStart.courseID) {
-							course.@enabledFlag = 3;
-							if (directStart.unitID) {
-								for each (var unit:XML in course.unit) {
-									if (unit.@id == directStart.unitID) {
-										unit.@enabledFlag = 3;
-										if (directStart.exerciseID) {
-											for each (var exercise:XML in unit.exercise) {
-												if (exercise.@id == directStart.exerciseID) {
-													exercise.@enabledFlag = 3;
-												} else {
-													exercise.@enabledFlag = 8;
+					// gh#853 Only disable other courses if the targetted course id exists
+					var courseXML:XML = xml..course.(@id == directStart.courseID)[0];
+					if (courseXML) {
+						for each (var course:XML in xml..course) {
+							if (course.@id == directStart.courseID) {
+								course.@enabledFlag = enabled;
+								if (directStart.unitID) {
+									for each (var unit:XML in course.unit) {
+										if (unit.@id == directStart.unitID && !directStart.scorm) {
+											unit.@enabledFlag = enabled;
+											if (directStart.exerciseID) {
+												for each (var exercise:XML in unit.exercise) {
+													if (exercise.@id == directStart.exerciseID) {
+														exercise.@enabledFlag = enabled;
+													} else {
+														exercise.@enabledFlag = disabled;
+													}
+												}
+											} else if (directStart.groupID) {
+												for each (exercise in unit.exercise) {
+													if (exercise.@group == directStart.groupID) {
+														exercise.@enabledFlag = enabled;
+													} else {
+														exercise.@enabledFlag = disabled;
+													}
 												}
 											}
-										} else if (directStart.groupID) {
-											for each (exercise in unit.exercise) {
-												if (exercise.@group == directStart.groupID) {
-													exercise.@enabledFlag = 3;
-												} else {
-													exercise.@enabledFlag = 8;
-												}
-											}
+										} else if (unit.@id == directStart.unitID && directStart.scorm) {
+											for each (var exercise:XML in unit.exercise)
+												exercise.@enabledFlag = enabled;
+										} else {
+											unit.@enabledFlag = disabled;
 										}
-									} else {
-										unit.@enabledFlag = 8;
 									}
 								}
+							} else {
+								course.@enabledFlag = disabled;
 							}
-						} else {
-							course.@enabledFlag = 8;
 						}
 					}
 				}

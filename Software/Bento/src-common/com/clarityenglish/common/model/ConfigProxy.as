@@ -393,7 +393,15 @@ package com.clarityenglish.common.model {
 			// TODO: This is overriden by the next line so could be removed?
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
-				directStartObject = scormProxy.getBookmark();
+				// gh#858
+				if (scormProxy.getBookmark().exerciseID) {
+					var exerciseIDArray:Array = scormProxy.getBookmark().exerciseID.split(".");
+					directStartObject.exerciseID = exerciseIDArray[exerciseIDArray.length - 1];
+				} else {
+					directStartObject = scormProxy.getBookmark();
+				}
+				
+				directStartObject.scorm = true;
 			} else {
 				// #338. This is using a utility parsing function, it is for data from queryString
 				// It doesn't actually have to be SCORM at all, works for all passed parameters
