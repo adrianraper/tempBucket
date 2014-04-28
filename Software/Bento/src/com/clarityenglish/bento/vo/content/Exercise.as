@@ -37,8 +37,8 @@ package com.clarityenglish.bento.vo.content {
 		public static const EF_DISPLAY_OFF:Number = 128; // This means it is a branding exercise in an adaptive test
 		public static const EF_EXIT_AFTER:Number = 256;
 		
-		public function Exercise(value:XML = null, href:Href = null) {
-			super(value, href);
+		public function Exercise(value:XML = null, href:Href = null, useCacheBuster:Boolean = false) {
+			super(value, href, useCacheBuster);
 			
 			// Give every Exercise a unique UID so that we can identify them
 			_uid = UIDUtil.createUID();

@@ -11,6 +11,7 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
+			import mx.collections.XMLListCollection;
 		]]>
 	</fx:Script>
 	
@@ -54,31 +55,39 @@
 			
 			<s:VGroup width="100%">
 				<s:Label text="Question" />
-				<s:TextArea id="questionTextArea" width="100%" />
+				<s:TextArea id="questionTextArea" width="100%" text="@{hostComponent.question.question}" />
 				
 				<!-- TODO: Checkbox with editable area.  List and item renderers? -->
 				<s:Label text="Answers" />
-				<s:DataGroup id="answersDataGroup" width="100%" dataProvider="{new ArrayCollection([1])}">
+				<s:List id="answersList" width="100%" dataProvider="{hostComponent.answers}">
 					<s:itemRenderer>
 						<fx:Component>
-							<s:HGroup width="100%">
-								<s:CheckBox />
-								<s:TextInput width="100%" />
-								<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" />
-							</s:HGroup>
+							<s:ItemRenderer>
+								<fx:Script>
+									<![CDATA[
+										import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
+									]]>
+								</fx:Script>
+								<s:HGroup width="100%">
+									<s:CheckBox selected="{data.@correct == 'true'}" change="data.@correct = event.currentTarget.selected" />
+									<s:TextInput width="100%" text="{data.text()}" change="data.setChildren(event.currentTarget.text)" />
+									<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="dispatchEvent(new AnswerDeleteEvent(AnswerDeleteEvent.ANSWER_DELETE, data as XML, true))" />
+								</s:HGroup>
+							</s:ItemRenderer>
 						</fx:Component>
 					</s:itemRenderer>
-				</s:DataGroup>
-				<s:Button label="Add answer" />
+				</s:List>
+				<s:Button id="addAnswerButton" />
 				
 				<s:Label text="Feedback" />
-				<s:TextArea id="feedbackTextArea" width="100%" />
+				<s:TextArea id="feedbackTextArea" width="100%" text="@{hostComponent.question.feedback}" />
 			</s:VGroup>
 		</s:HGroup>
 		
 		<s:HGroup>
 			<s:Button id="okButton" />
 			<s:Button id="cancelButton" />
+			<s:Button label="TEST XML" click="trace(hostComponent.DELETE_ME_XML.toXMLString())" />
 		</s:HGroup>
 	</s:VGroup>
 	
