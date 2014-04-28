@@ -17,8 +17,8 @@ package com.clarityenglish.bento.vo.content {
 		 */
 		private var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		public function ExerciseGenerator(value:XML = null, href:Href = null) {
-			super(value, href);
+		public function ExerciseGenerator(value:XML = null, href:Href = null, useCacheBuster:Boolean = false) {
+			super(value, href, useCacheBuster);
 		}
 		
 		public function get authoring():XML {

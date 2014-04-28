@@ -266,10 +266,10 @@ package com.clarityenglish.bento.model {
 						loadedResources[href] = new XHTML(xml, href, useCacheBuster);
 						break;
 					case Href.EXERCISE:
-						loadedResources[href] = new Exercise(xml, href);
+						loadedResources[href] = new Exercise(xml, href, useCacheBuster);
 						break;
 					case Href.EXERCISE_GENERATOR:
-						loadedResources[href] = new ExerciseGenerator(xml, href);
+						loadedResources[href] = new ExerciseGenerator(xml, href, useCacheBuster);
 						break;
 				}
 				

@@ -10,6 +10,8 @@
 	<brandingMedia />
 	<language>EN</language>
 	
+	<useCacheBuster>true</useCacheBuster>
+	
 	<contentPath>http://dock.contentbench/CCB/</contentPath>
 	<remoteDomain>http://dock.projectbench/</remoteDomain>
 	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
