@@ -155,12 +155,20 @@ if (stristr($testingTriggers, "Seed permissions and privacy for CCB")) {
 			// read courses.xml for the account and seed each courseID into the tables
 			echo "seeding for account {$account->name}<br/>";
 			$filename = '../../'.$GLOBALS['ccb_data_dir']."/".$prefix.'/courses.xml';
-			$xml = simplexml_load_file($filename);
-			foreach ($xml->courses->course as $course) {
-				$courseID = (string)$course['id'];
-				seedCoursePermission($courseID);
-				seedCourseRole($courseID, $userID, $rootID);
-				echo "&nbsp;&nbsp;&nbsp;&nbsp;course $courseID<br/>";
+			try {	
+				if (is_readable($filename)) {			
+					$xml = simplexml_load_file($filename);
+					foreach ($xml->courses->course as $course) {
+						$courseID = (string)$course['id'];
+						//seedCoursePermission($courseID);
+						//seedCourseRole($courseID, $userID, $rootID);
+						echo "&nbsp;&nbsp;&nbsp;&nbsp;course $courseID<br/>";
+					}
+				} else {
+					echo "&nbsp;&nbsp;&nbsp;&nbsp;no courses have been created<br/>";
+				}
+			} catch (Exception $e) {
+				echo "error: $e->getMessage()";
 			}
 		}
 	}

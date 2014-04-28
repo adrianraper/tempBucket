@@ -1030,3 +1030,7 @@ VALUES
 --WHERE F_ProductCode > 0
 --GROUP BY F_ProductCode, F_CourseID;
 --SELECT * FROM rack80829.T_CourseInfo ORDER BY F_ProductCode, F_CourseID;
+
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (1745, '2014-04-28 00:00:00', 'course permissions');
