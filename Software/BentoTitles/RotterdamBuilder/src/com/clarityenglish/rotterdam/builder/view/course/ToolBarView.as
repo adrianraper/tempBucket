@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.controls.video.UniversalVideoPlayer;
 	
@@ -95,6 +96,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addExerciseLabel:Label;
 		
 		[SkinPart]
+		public var normalAddAuthoringButton:Button;
+		
+		[SkinPart]
 		public var listAddAuthoringButton:Button;
 		
 		[SkinPart]
@@ -162,6 +166,24 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		[SkinPart]
 		public var videoUrlTextInput:TextInput;
+		
+		[SkinPart]
+		public var authoringGapFillButton:Button;
+		
+		[SkinPart]
+		public var authoringMultipleChoiceButton:Button;
+		
+		[SkinPart]
+		public var authoringDrapAndDropButton:Button;
+		
+		[SkinPart]
+		public var authoringTargetSpottingButton:Button;
+		
+		[SkinPart]
+		public var authoringErrorCorrectionButton:Button;
+		
+		[SkinPart]
+		public var authoringDropdownButton:Button;
 		
 		[SkinPart]
 		public var webLinkURLLabel:Label;
@@ -309,7 +331,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		public function ToolBarView() {
-			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "link", "preview" ], true);
+			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "link", "authoring", "preview" ], true);
 		}
 
 		// gh#91
@@ -484,12 +506,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case normalAddAudioButton:
 					normalAddAudioButton.addEventListener(MouseEvent.CLICK, onNormalAddAudio);
 					break;
+				case normalAddExerciseButton:
+					normalAddExerciseButton.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
+					break;
 				case listAddExerciseButton:
 					listAddExerciseButton.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
 					break;
 				case addExerciseLabel:
 					addExerciseLabel.text = copyProvider.getCopyForId("addExerciseLabel");
 					addExerciseLabel.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
+					break;
+				case normalAddAuthoringButton:
+					normalAddAuthoringButton.addEventListener(MouseEvent.CLICK, onNormalAddAuthoring);
 					break;
 				case listAddAuthoringButton:
 					listAddAuthoringButton.addEventListener(MouseEvent.CLICK, onNormalAddAuthoring);
@@ -498,8 +526,23 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					addAuthoringLabel.text = copyProvider.getCopyForId("addAuthoringLabel");
 					addAuthoringLabel.addEventListener(MouseEvent.CLICK, onNormalAddAuthoring);
 					break;
-				case normalAddExerciseButton:
-					normalAddExerciseButton.addEventListener(MouseEvent.CLICK, onNormalAddExercise);
+				case authoringMultipleChoiceButton:
+					authoringMultipleChoiceButton.addEventListener(MouseEvent.CLICK, onAuthoringMultipleChoice);
+					break;
+				case authoringGapFillButton:
+					authoringGapFillButton.addEventListener(MouseEvent.CLICK, onAuthoringGapFill);
+					break;
+				case authoringDrapAndDropButton:
+					authoringDrapAndDropButton.addEventListener(MouseEvent.CLICK, onAuthoringDragAndDrop);
+					break;
+				case authoringTargetSpottingButton:
+					authoringTargetSpottingButton.addEventListener(MouseEvent.CLICK, onAuthoringTargetSpotting);
+					break;
+				case authoringErrorCorrectionButton:
+					authoringErrorCorrectionButton.addEventListener(MouseEvent.CLICK, onAuthoringErrorCorrection);
+					break;
+				case authoringDropdownButton:
+					authoringDropdownButton.addEventListener(MouseEvent.CLICK, onAuthoringDropdown);
 					break;
 				case normalPreviewButton:
 					normalPreviewButton.addEventListener(MouseEvent.CLICK, onNormalPreview);
@@ -632,7 +675,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 			}
 		}
-				
+		
 		protected function onNormalAddImage(event:MouseEvent):void {
 			setCurrentState("image");
 			isItemClick = true;
@@ -668,8 +711,38 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onNormalAddAuthoring(event:MouseEvent):void {
-			addAuthoring.dispatch({}, _currentEditingWidget);
+			setCurrentState("authoring");
 			isItemClick = true;
+		}
+		
+		protected function onAuthoringMultipleChoice(event:MouseEvent):void {
+			addAuthoring.dispatch({ type: Question.MULTIPLE_CHOICE_QUESTION }, _currentEditingWidget);
+			setCurrentState("normal");
+		}
+		
+		protected function onAuthoringGapFill(event:MouseEvent):void {
+			addAuthoring.dispatch({ type: Question.GAP_FILL_QUESTION }, _currentEditingWidget);
+			setCurrentState("normal");
+		}
+		
+		protected function onAuthoringDragAndDrop(event:MouseEvent):void {
+			addAuthoring.dispatch({ type: Question.DRAG_QUESTION }, _currentEditingWidget);
+			setCurrentState("normal");
+		}
+		
+		protected function onAuthoringTargetSpotting(event:MouseEvent):void {
+			addAuthoring.dispatch({ type: Question.TARGET_SPOTTING_QUESTION }, _currentEditingWidget);
+			setCurrentState("normal");
+		}
+		
+		protected function onAuthoringErrorCorrection(event:MouseEvent):void {
+			addAuthoring.dispatch({ type: Question.ERROR_CORRECTION_QUESTION }, _currentEditingWidget);
+			setCurrentState("normal");
+		}
+		
+		protected function onAuthoringDropdown(event:MouseEvent):void {
+			addAuthoring.dispatch({ type: Question.DROP_DOWN_QUESTION }, _currentEditingWidget);
+			setCurrentState("normal");
 		}
 		
 		// gh#306

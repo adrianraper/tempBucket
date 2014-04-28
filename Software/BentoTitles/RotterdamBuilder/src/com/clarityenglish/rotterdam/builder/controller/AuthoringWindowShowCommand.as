@@ -33,19 +33,22 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private var node:XML;
 		
+		private var type:String;
+		
 		private var titleWindow:TitleWindow;
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			node = note.getBody() as XML;
+			node = note.getBody().node as XML;
+			type = note.getBody().type;
 			tempWidgetId = note.getType();
-			log.info("Opening authoring dialog with tempWidgetId=" + tempWidgetId);
+			log.info("Opening authoring dialog with type=" + type + " and tempWidgetId=" + tempWidgetId);
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "markingTitleWindow"; //... if we want to skin the title window
-			titleWindow.title = note.getBody().title;
+			titleWindow.title = "Authoring";
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var authoringView:AuthoringView = new AuthoringView();
