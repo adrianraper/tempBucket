@@ -31,6 +31,10 @@ package com.clarityenglish.bento.model {
 		
 		public static const NAME:String = "SCORMProxy";
 		
+		// gh#879
+		[Bindable]
+		private var totalExercise:Number;
+		
 		// #336
 		public var scorm:SCORM;
 		
@@ -74,7 +78,7 @@ package com.clarityenglish.bento.model {
 			
 			if (scorm.entry == 'resume')
 				scorm.suspendData = scorm.getParameter('suspendData');
-			
+
 			return true;
 		}
 
@@ -248,11 +252,13 @@ package com.clarityenglish.bento.model {
 			// Update the percent complete. 
 			// I need to get the bit of menu.xml relevant to this SCORM object and count the number of exercises in it.
 			// Then I can work out the % using scoreSoFar.
-			if (suspendDataArray.percentComplete) {
+			/*if (suspendDataArray.percentComplete) {
 				suspendDataArray.percentComplete = 51;
 			} else {
 				suspendDataArray.percentComplete = 10;
-			}
+			}*/
+			// gh#879
+			suspendDataArray.percentComplete = Math.round(scores.length / totalExercise * 100);
 			
 			scorm.suspendData = JSON.stringify(suspendDataArray);
 			return JSON.stringify(suspendDataArray);
@@ -304,7 +310,11 @@ package com.clarityenglish.bento.model {
 			
 			return dataObject;
 		}
-			
+		
+		// gh#879
+		public function setTotalExercise(value:Number):void {
+			totalExercise = value;
+		}	
 	}
 		
 }

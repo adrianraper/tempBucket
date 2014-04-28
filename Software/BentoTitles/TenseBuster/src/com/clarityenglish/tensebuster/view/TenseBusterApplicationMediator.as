@@ -108,11 +108,14 @@ package com.clarityenglish.tensebuster.view {
 					}
 				}				
 			} else {
+				var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 				// gh#858
 				if (directStart.exerciseID) {
 					var unit:XML = bentoProxy.menuXHTML.getElementById(directStart.exerciseID).parent();
 					var unitLength:Number = unit.exercise.length();
 					var exerciseIndex:Number = unit.exercise.(@id == directStart.exerciseID).childIndex();
+					// gh#879
+					scormProxy.setTotalExercise(unitLength);
 					// Currently, the bookmark will not empty when last exercise ID stored, so here we need to force it open the first exercise manually.
 					var nextExercise:XML = (exerciseIndex + 1 == unitLength)? unit.exercise[0] : unit.exercise[exerciseIndex + 1];
 					
@@ -120,6 +123,8 @@ package com.clarityenglish.tensebuster.view {
 						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, nextExercise);
 				} else if (directStart.unitID) {
 					unit = bentoProxy.menuXHTML.getElementById(directStart.unitID);
+					// gh#879
+					scormProxy.setTotalExercise(unit.exercise.length());
 					
 					if (unit) {
 						sendNotification(BBNotifications.SELECTED_NODE_CHANGE, unit.exercise[0]);	
