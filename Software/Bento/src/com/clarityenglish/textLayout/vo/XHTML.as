@@ -110,7 +110,7 @@ package com.clarityenglish.textLayout.vo {
 		 * @return 
 		 */
 		override flash_proxy function callProperty(name:*, ...rest):*  {
-			switch(String(name)) {
+			switch (String(name)) {
 				case "name": return _xml.name();
 				case "children": return _xml.children();
 				case "descendants": return _xml.descendants();

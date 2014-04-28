@@ -53,6 +53,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			var authoringView:AuthoringView = new AuthoringView();
 			authoringView.percentWidth = authoringView.percentHeight = 100;
+			authoringView.widgetNode = node;
 			titleWindow.addElement(authoringView);
 			
 			// Create and centre the popup (this popup is modal)

@@ -1,6 +1,8 @@
 ﻿package com.clarityenglish.rotterdam.builder.view.uniteditor {
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.rotterdam.builder.model.ContentProxy;
@@ -27,6 +29,11 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
+			
+			// This view runs off the authoring xml so load it here
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			if (bentoProxy.menuXHTML && view.widgetNode && view.widgetNode.@href)
+				view.href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE_GENERATOR, view.widgetNode.@href);
 		}
 		
 		override public function onRemove():void {
