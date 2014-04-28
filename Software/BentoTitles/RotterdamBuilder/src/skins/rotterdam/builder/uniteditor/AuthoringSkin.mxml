@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx">
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		minWidth="800">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringView")]
@@ -9,6 +10,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.collections.ArrayCollection;
 			
 		]]>
 	</fx:Script>
@@ -19,11 +21,38 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<s:Label text="I am a label" />
-	
-	<s:Group left="10"  bottom="10" right="10">
-		<s:Button id="selectButton" />
-		<s:Button id="cancelButton" right="0"/>
-	</s:Group>
+	<s:VGroup width="100%">
+		<s:HGroup width="100%">
+			<s:List id="questionList" height="100%" />
+			
+			<s:VGroup width="100%">
+				<s:Label text="Question" />
+				<s:TextArea id="questionTextArea" width="100%" />
+				
+				<!-- TODO: Checkbox with editable area.  List and item renderers? -->
+				<s:Label text="Answers" />
+				<s:DataGroup id="answersDataGroup" width="100%" dataProvider="{new ArrayCollection([1])}">
+					<s:itemRenderer>
+						<fx:Component>
+							<s:HGroup width="100%">
+								<s:CheckBox />
+								<s:TextInput width="100%" />
+								<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" />
+							</s:HGroup>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:DataGroup>
+				<s:Button label="Add answer" />
+				
+				<s:Label text="Feedback" />
+				<s:TextArea id="feedbackTextArea" width="100%" />
+			</s:VGroup>
+		</s:HGroup>
+		
+		<s:HGroup>
+			<s:Button id="okButton" />
+			<s:Button id="cancelButton" />
+		</s:HGroup>
+	</s:VGroup>
 	
 </s:Skin>

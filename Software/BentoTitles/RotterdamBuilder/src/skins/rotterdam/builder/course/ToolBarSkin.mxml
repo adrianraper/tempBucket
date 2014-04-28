@@ -22,12 +22,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			/*protected function onUpAnimStop(event:Event):void {
-				if (hostComponent.isDownArrowClick) {
-					itemList.alpha = 0;
-					iconGroup.alpha = 1;
-				}			
-			}*/
+			
 		]]>
 	</fx:Script>
 	
@@ -40,6 +35,7 @@
 		<s:State name="pdf" />
 		<s:State name="video" />
 		<s:State name="text" />
+		<s:State name="authoring" />
 		<s:State name="preview" />
 		<s:State name="link" />
 	</s:states>
@@ -89,6 +85,13 @@
 		<s:Label includeIn="link" id="webLinkTextLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="captionTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />	
 		
+		<s:Button includeIn="authoring" id="authoringMultipleChoiceButton" label="Multiple Choice" />
+		<s:Button includeIn="authoring" id="authoringGapFillButton" label="Gapfill" />
+		<s:Button includeIn="authoring" id="authoringDrapAndDropButton" label="Drag and Drop" />
+		<s:Button includeIn="authoring" id="authoringTargetSpottingButton" label="Target Spotting" />
+		<s:Button includeIn="authoring" id="authoringErrorCorrectionButton" label="Error Correction" />
+		<s:Button includeIn="authoring" id="authoringDropdownButton" label="Dropdown" />
+		
 		<s:HGroup includeIn="normal" height="100%" paddingLeft="168" gap="8" verticalAlign="middle">
 			<!--s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" /-->
 			<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
@@ -105,24 +108,6 @@
 		</s:HGroup>
 	</s:HGroup>
 	
-	<!-- Right buttons -->	
-	<!--s:HGroup bottom="0" gap="10" height="48" left="270">
-	<s:Group id="symbol" includeIn="normal">
-		<s:Path left="25" top="21" winding="nonZero" data="M20.2129 14.3203C20.2129 17.8867 17.3262 20.7764 13.7598 20.7764 10.1973 20.7764 7.30469 17.8867 7.30469 14.3203 7.30469 10.7568 10.1973 7.86621 13.7598 7.86621 17.3262 7.86621 20.2129 10.7568 20.2129 14.3203ZM14.6445 10.1494L12.875 10.1494
-				12.875 13.4385 9.58594 13.4385 9.58594 15.2061 12.875 15.2061 12.875 18.4961 14.6445 18.4961 14.6445 15.2061 17.9346 15.2061 17.9346 13.4385 14.6445 13.4385 14.6445 10.1494Z" >
-			<s:fill>
-				<s:SolidColor color="0x283D0C"/>
-			</s:fill>
-		</s:Path>
-		
-	    <s:Path left="16" top="15" winding="nonZero" data="M13.7598 3.77051C14.6807 3.77051 15.5586 3.93945 16.3789 4.23047L16.3789 0 0 0 0 12.626 6.01172 12.626C5.9668 12.2871 5.93555 11.9434 5.93555 11.5928 5.93555 7.27441 9.43945 3.77051 13.7598 3.77051Z" >
-			<s:fill>
-				<s:SolidColor color="0x283D0C"/>
-			</s:fill>	
-		</s:Path>
-		<s:Label includeIn="normal" text="Add an item" color="0x283D0C" top="19" left="46"  />
-	</s:Group>
-	</s:HGroup-->
 	<s:Group id="addItemButtonGroup" includeIn="normal">
 		<s:Group id="itemList" left="520" bottom="48" height="0" alpha="0" width="0">
 			<s:Group id="largePopUpGroup">
@@ -191,6 +176,7 @@
 		<s:Button includeIn="normal" id="normalAddImageButton" useHandCursor="true" buttonMode="true" />	
 		<s:Button includeIn="normal" id="normalAddAudioButton" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddExerciseButton" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddAuthoringButton" useHandCursor="true" buttonMode="true" />
 		<s:Spacer width="20" />
 		<s:Button id="upButton" click="upAnim.play();" includeIn="normal" useHandCursor="true" buttonMode="true"/>
 	</s:HGroup>
@@ -210,7 +196,7 @@
 	<s:HGroup bottom="0" right="2" gap="3" height="48" verticalAlign="middle">
 		<s:Button includeIn="video" id="videoSelectButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
 		<s:Button includeIn="link" id="linkSelectButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
-		<s:Button includeIn="pdf,video,image,audio,link" id="normalCancelButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		<s:Button includeIn="pdf,video,image,audio,authoring,link" id="normalCancelButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
 		<s:Button includeIn="preview" id="previewBackToEditorButton" fontWeight="bold" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	

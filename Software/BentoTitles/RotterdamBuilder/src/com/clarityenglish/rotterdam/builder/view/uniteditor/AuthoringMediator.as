@@ -27,12 +27,10 @@
 		
 		override public function onRegister():void {
 			super.onRegister();
-			
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
-			
 		}
 		
 		override public function listNotificationInterests():Array {

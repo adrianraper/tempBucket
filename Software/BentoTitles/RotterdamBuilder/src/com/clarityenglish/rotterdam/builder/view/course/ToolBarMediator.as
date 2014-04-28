@@ -51,7 +51,7 @@
 			view.formatText.add(onFormatText);
 			view.preview.add(onPreview);
 			view.backToEditor.add(onBackToEditor);
-			//gh #221
+			// gh#221
 			view.addLink.add(onAddLink);
 			view.cancelLink.add(onCancelLink);
 		}
@@ -71,6 +71,7 @@
 			view.preview.remove(onPreview);
 			view.backToEditor.remove(onBackToEditor);
 			view.addLink.remove(onAddLink);
+			view.cancelLink.remove(onCancelLink);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -184,5 +185,6 @@
 		protected function onCancelLink():void {
 			facade.sendNotification(RotterdamNotifications.WEB_URL_CANCEL);
 		}
+
 	}
 }

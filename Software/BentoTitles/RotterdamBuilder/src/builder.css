@@ -185,63 +185,35 @@ buildercourse|ToolBarView s|Button#normalSaveButton {
 	skinClass: ClassReference("skins.rotterdam.unit.SaveButtonSkin");
 }
 
-buildercourse|ToolBarView s|Button#normalAddVideoButton,{
+buildercourse|ToolBarView s|Button#normalAddVideoButton, buildercourse|ToolBarView s|Button#listAddVideoButton{
 	skinClass: ClassReference("skins.rotterdam.unit.AddVideoButtonSkin");
 }
 
-buildercourse|ToolBarView s|Button#listAddVideoButton,{
-	skinClass: ClassReference("skins.rotterdam.unit.AddVideoButtonSkin");
-}
-
-buildercourse|ToolBarView s|Button#normalAddImageButton,{
+buildercourse|ToolBarView s|Button#normalAddImageButton, buildercourse|ToolBarView s|Button#listAddImageButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddImageButtonSkin");
 }
 
-buildercourse|ToolBarView s|Button#listAddImageButton,{
-	skinClass: ClassReference("skins.rotterdam.unit.AddImageButtonSkin");
-}
-
-buildercourse|ToolBarView s|Button#normalAddAudioButton {
+buildercourse|ToolBarView s|Button#normalAddAudioButton, buildercourse|ToolBarView s|Button#listAddAudioButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddAudioButtonSkin");
 }
 
-buildercourse|ToolBarView s|Button#listAddAudioButton {
-	skinClass: ClassReference("skins.rotterdam.unit.AddAudioButtonSkin");
-}
-
-buildercourse|ToolBarView s|Button#normalAddPDFButton, {
+buildercourse|ToolBarView s|Button#normalAddPDFButton, buildercourse|ToolBarView s|Button#listAddPDFButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddPDFButtonSkin");
 }
 
-buildercourse|ToolBarView s|Button#listAddPDFButton, {
-	skinClass: ClassReference("skins.rotterdam.unit.AddPDFButtonSkin");
-}
-
-buildercourse|ToolBarView s|Button#normalAddTextButton {
+buildercourse|ToolBarView s|Button#normalAddTextButton, buildercourse|ToolBarView s|Button#listAddTextButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddTextButtonSkin");
 }
 
-buildercourse|ToolBarView s|Button#listAddTextButton {
-	skinClass: ClassReference("skins.rotterdam.unit.AddTextButtonSkin");
-}
-
-buildercourse|ToolBarView s|Button#normalAddExerciseButton {
+buildercourse|ToolBarView s|Button#normalAddExerciseButton, buildercourse|ToolBarView s|Button#listAddExerciseButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddExerciseButtonSkin");
 }
 
-buildercourse|ToolBarView s|Button#listAddExerciseButton {
-	skinClass: ClassReference("skins.rotterdam.unit.AddExerciseButtonSkin");
-}
-
-buildercourse|ToolBarView s|Button#listAddAuthoringButton {
+buildercourse|ToolBarView s|Button#normalAddAuthoringButton, buildercourse|ToolBarView s|Button#listAddAuthoringButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddAuthoringButtonSkin");
 }
 
-buildercourse|ToolBarView s|Button#videoSelectButton {
-	skinClass: ClassReference("skins.rotterdam.unit.VideoSelectButtonSkin");
-}
-
-buildercourse|ToolBarView s|Button#linkSelectButton {
+buildercourse|ToolBarView s|Button#videoSelectButton, buildercourse|ToolBarView s|Button#linkSelectButton {
 	skinClass: ClassReference("skins.rotterdam.unit.VideoSelectButtonSkin");
 }
 
@@ -322,6 +294,14 @@ uniteditor|ContentSelectorView sparkTree|Tree s|HScrollBar {
 
 uniteditor|AuthoringView {
 	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.AuthoringSkin");
+}
+
+uniteditor|AuthoringView s|Button#okButton {
+	skinClass:ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
+}
+
+uniteditor|AuthoringView s|Button#cancelButton {
+	skinClass:ClassReference("skins.rotterdam.ui.GreyButtonSkin");
 }
 
 filemanager|FileManagerView {

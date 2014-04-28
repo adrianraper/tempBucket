@@ -29,7 +29,12 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			}
 			node.@tempid = tempid;
 			
-			facade.sendNotification(RotterdamNotifications.AUTHORING_WINDOW_SHOW, node, tempid);
+			var authoringOptions:Object = {
+				node: node,
+				type: note.getBody().type
+			};
+			
+			facade.sendNotification(RotterdamNotifications.AUTHORING_WINDOW_SHOW, authoringOptions, tempid);
 		}
 		
 	}
