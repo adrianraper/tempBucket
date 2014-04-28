@@ -2,6 +2,7 @@ package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.bento.vo.content.ExerciseGenerator;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
 	import com.clarityenglish.bento.vo.content.transform.RandomizedTestTransform;
 	import com.clarityenglish.bento.vo.content.transform.XmlTransform;
@@ -163,6 +164,7 @@ package com.clarityenglish.bento.model {
 					// gh#660
 					href.options = {totalNumber: configProxy.getRandomizedTestQuestionTotalNumber()};
 				}
+				
 				for each (var transformDefinition:TransformDefinition in transformDefinitions)
 					transformDefinition.injectTransforms(href);
 					
@@ -266,6 +268,9 @@ package com.clarityenglish.bento.model {
 						break;
 					case Href.EXERCISE:
 						loadedResources[href] = new Exercise(xml, href);
+						break;
+					case Href.EXERCISE_GENERATOR:
+						loadedResources[href] = new ExerciseGenerator(xml, href);
 						break;
 				}
 				

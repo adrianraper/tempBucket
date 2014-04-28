@@ -6,6 +6,7 @@ package com.clarityenglish.bento.vo {
 		public static const XHTML:String = "xhtml";
 		public static const MENU_XHTML:String = "menu_xhtml";
 		public static const EXERCISE:String = "exercise";
+		public static const EXERCISE_GENERATOR:String = "exercise_generator";
 		
 		public var type:String;
 		public var filename:String;
