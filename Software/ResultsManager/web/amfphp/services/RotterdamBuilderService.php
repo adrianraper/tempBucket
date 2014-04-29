@@ -104,6 +104,10 @@ EOD;
 		return $this->courseOps->courseDelete($course);
 	}
 	
+	public function exerciseSave($courseID, $filename, $xml) {
+		return $this->exerciseOps->exerciseSave($courseID, $filename, $xml);
+	}
+	
 	/**
 	 * Create a blank account folder with all required directories and an empty course.xml (for now we're not sure there are any required directories)
 	 */

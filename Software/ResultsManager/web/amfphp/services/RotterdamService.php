@@ -5,6 +5,7 @@
 require_once(dirname(__FILE__)."/BentoService.php");
 require_once(dirname(__FILE__)."/../../classes/CourseOps.php");
 require_once(dirname(__FILE__)."/../../classes/MediaOps.php");
+require_once(dirname(__FILE__)."/../../classes/ExerciseOps.php");
 
 class RotterdamService extends BentoService {
 	
@@ -20,6 +21,7 @@ class RotterdamService extends BentoService {
 			$this->accountFolder = "../../".$GLOBALS['ccb_data_dir']."/".Session::get('dbContentLocation');
 			$this->courseOps = new CourseOps($this->db, $this->accountFolder);
 			$this->mediaOps = new MediaOps($this->accountFolder);
+			$this->exerciseOps = new ExerciseOps($this->accountFolder);
 		}
 	}
 	

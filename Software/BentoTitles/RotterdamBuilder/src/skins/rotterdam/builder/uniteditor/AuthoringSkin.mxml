@@ -25,33 +25,37 @@
 	
 	<s:VGroup width="100%">
 		<s:HGroup width="100%">
-			<s:List id="questionList" dataProvider="{hostComponent.questions}" height="100%" includeIn="questions">
-				<s:layout>
-					<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
-				</s:layout>
-				<s:itemRenderer>
-					<fx:Component>
-						<!--gh#872 remove mouseOver effect in preview mode-->
-						<s:ItemRenderer width="100%" mouseOver="deleteQuestionButton.visible = true" mouseOut="deleteQuestionButton.visible = false">
-							<fx:Script>
-								<![CDATA[
-									import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
-								]]>
-							</fx:Script>
-							
-							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
-							<s:Group right="2" verticalCenter="0">
-								<s:Button id="deleteQuestionButton"
-										  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
-										  visible="false"
-										  useHandCursor="true" buttonMode="true" scaleX="0.8" scaleY="0.8"/> <!-- click="dispatchEvent(new UnitDeleteEvent(UnitDeleteEvent.UNIT_DELETE, data as XML, true))" -->
-							</s:Group>
-							
-							<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/dotted-line.png')" bottom="0" left="8" />
-						</s:ItemRenderer>
-					</fx:Component>
-				</s:itemRenderer>
-			</s:List>
+			<s:VGroup height="100%" includeIn="questions">
+				<s:List id="questionList" dataProvider="{hostComponent.questions}" height="100%">
+					<s:layout>
+						<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
+					</s:layout>
+					<s:itemRenderer>
+						<fx:Component>
+							<!--gh#872 remove mouseOver effect in preview mode-->
+							<s:ItemRenderer width="100%" mouseOver="deleteQuestionButton.visible = true" mouseOut="deleteQuestionButton.visible = false">
+								<fx:Script>
+									<![CDATA[
+										import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
+										import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
+									]]>
+								</fx:Script>
+								
+								<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
+								<s:Group right="2" verticalCenter="0">
+									<s:Button id="deleteQuestionButton"
+											  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
+											  visible="false" useHandCursor="true" buttonMode="true" scaleX="0.8" scaleY="0.8"
+											  click="dispatchEvent(new QuestionDeleteEvent(QuestionDeleteEvent.QUESTION_DELETE, data as XML, true))" />
+								</s:Group>
+								
+								<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/dotted-line.png')" bottom="0" left="8" />
+							</s:ItemRenderer>
+						</fx:Component>
+					</s:itemRenderer>
+				</s:List>
+				<s:Button id="addQuestionButton" width="100%" />
+			</s:VGroup>
 			
 			<s:VGroup width="100%">
 				<s:Label text="Question" />

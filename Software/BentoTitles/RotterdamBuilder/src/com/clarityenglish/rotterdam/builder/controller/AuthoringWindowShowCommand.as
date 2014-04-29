@@ -63,33 +63,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			// Hide the close button
 			titleWindow.closeButton.visible = false;
 			
-			// Listen for the close event so that we can cleanup
-			//titleWindow.addEventListener(ContentEvent.CONTENT_SELECT, onContentSelect);
-			//titleWindow.addEventListener(ContentEvent.CONTENT_CANCEL, onContentCancel);
-			
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
-		}
-		
-		/**
-		 * The user has selected some content so update the node accordingly
-		 * 
-		 * @param event
-		 */
-		protected function onContentSelect(event:ContentEvent):void {
-			node.@contentuid = event.uid;
-			//gh #181
-			node.@exercisetitle = event.caption;
-			node.@caption = event.program;
-			//var tempText:XML = node.text;
-			// AR, this doesn't do what I want, it just removes all text from the xml
-			//var textFlowString:String = TLFUtil.textToTextFlowString(event.caption);
-			//node.text = new XML("<![CDATA[" + textFlowString + "]]>");
-		}
-		
-		//gh #212
-		protected function onContentCancel(event:ContentEvent):void {
-			if (!node.hasOwnProperty("@contentuid"))
-				facade.sendNotification(RotterdamNotifications.WIDGET_DELETE, node);
 		}
 		
 		/**

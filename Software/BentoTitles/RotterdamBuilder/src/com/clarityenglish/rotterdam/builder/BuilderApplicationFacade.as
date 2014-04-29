@@ -14,6 +14,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveErrorCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSavedCommand;
+	import com.clarityenglish.rotterdam.builder.controller.ExerciseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.HelpPublishWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaCloudSelectCommand;
 	import com.clarityenglish.rotterdam.builder.controller.MediaSelectCommand;
@@ -90,6 +91,8 @@
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVED, CourseSavedCommand);
 			registerCommand(RotterdamNotifications.COURSE_DELETE, CourseDeleteCommand);
+			
+			registerCommand(RotterdamNotifications.EXERCISE_SAVE, ExerciseSaveCommand);
 			
 			registerCommand(RotterdamNotifications.WIDGET_ADD, WidgetAddCommand);
 			registerCommand(RotterdamNotifications.WIDGET_DELETE, WidgetDeleteCommand);

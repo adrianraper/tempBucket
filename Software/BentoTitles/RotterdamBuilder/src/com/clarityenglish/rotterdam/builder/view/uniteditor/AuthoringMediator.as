@@ -5,6 +5,7 @@
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.vo.content.Course;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.model.ContentProxy;
 	
 	import mx.collections.ArrayCollection;
@@ -34,10 +35,14 @@
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (bentoProxy.menuXHTML && view.widgetNode && view.widgetNode.@href)
 				view.href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE_GENERATOR, view.widgetNode.@href);
+			
+			view.exerciseSave.add(onExerciseSave);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
+			
+			view.exerciseSave.remove(onExerciseSave);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -52,6 +57,10 @@
 			switch (note.getName()) {
 				
 			}
+		}
+		
+		protected function onExerciseSave(widgetXML:XML, exerciseXML:XML):void {
+			sendNotification(RotterdamNotifications.EXERCISE_SAVE, { widgetXML: widgetXML, exerciseXML: exerciseXML });
 		}
 		
 	}

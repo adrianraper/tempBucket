@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.ExerciseGenerator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -11,6 +12,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.events.CloseEvent;
+	
+	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.List;
@@ -23,6 +26,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		[SkinPart]
 		public var answersList:List;
+		
+		[SkinPart]
+		public var addQuestionButton:Button;
 		
 		[SkinPart]
 		public var addAnswerButton:Button;
@@ -43,6 +49,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var answers:ListCollectionView;
 		
 		public var widgetNode:XML;
+		
+		public var exerciseSave:Signal = new Signal(XML, XML);
 		
 		public function get DELETE_ME_XML():XML { return _xhtml.xml; }
 		
@@ -66,6 +74,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				case questionList:
 					questionList.dragEnabled = questionList.dropEnabled = questionList.dragMoveEnabled = true;
 					questionList.addEventListener(IndexChangeEvent.CHANGE, onQuestionSelected);
+					questionList.addEventListener(QuestionDeleteEvent.QUESTION_DELETE, onQuestionDeleted);
+					break;
+				case addQuestionButton:
+					addQuestionButton.addEventListener(MouseEvent.CLICK, onQuestionAdded);
+					addQuestionButton.label = copyProvider.getCopyForId("addQuestionButton");
 					break;
 				case answersList:
 					// TODO: allowing drag moving on this does weird things, duplicating and deleting answers.  Need to investigate this.
@@ -77,7 +90,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					addAnswerButton.label = copyProvider.getCopyForId("addAnswerButton");
 					break;
 				case okButton:
-					okButton.addEventListener(MouseEvent.CLICK, onSelectButton);
+					okButton.addEventListener(MouseEvent.CLICK, onOkButton);
 					okButton.label = copyProvider.getCopyForId("okButton");
 					break;
 				case cancelButton:
@@ -90,6 +103,25 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		protected function onQuestionSelected(event:IndexChangeEvent):void {
 			question = questionList.selectedItem;
 			answers = new XMLListCollection(question.answers.answer);
+		}
+		
+		protected function onQuestionAdded(event:Event):void {
+			if (questions && exerciseGenerator && exerciseGenerator.hasSettingParam("exerciseType")) {
+				questions.addItem(
+					<{exerciseGenerator.getSettingParam("exerciseType")}>
+						<question />
+						<answers />
+						<feedback />
+					</{exerciseGenerator.getSettingParam("exerciseType")}>
+				);
+			}
+		}
+		
+		protected function onQuestionDeleted(event:QuestionDeleteEvent):void {
+			if (questions) {
+				var idx:int = questions.getItemIndex(event.question);
+				if (idx >= 0) questions.removeItemAt(idx);
+			}
 		}
 		
 		protected function onAnswerAdded(event:Event):void {
@@ -105,7 +137,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			}
 		}
 		
-		protected function onSelectButton(event:MouseEvent):void {
+		protected function onOkButton(event:MouseEvent):void {
+			exerciseSave.dispatch(widgetNode, _xhtml.xml);
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		

@@ -187,6 +187,13 @@ package com.clarityenglish.rotterdam.model {
 			}
 		}
 		
+		public function exerciseSave(widget:XML, exercise:XML):AsyncToken {
+			var xmlString:String = exercise.toXMLString();
+			xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
+			
+			return new RemoteDelegate("exerciseSave", [ courseID, widget.@href.toString(), xmlString ], this).execute();
+		}
+		
 		public function courseCreate(courseObj:Object):AsyncToken {
 			return new RemoteDelegate("courseCreate", [ courseObj ], this).execute();
 		}
@@ -283,6 +290,9 @@ package com.clarityenglish.rotterdam.model {
 					break;
 				case "courseDelete":
 					sendNotification(RotterdamNotifications.COURSE_DELETED, data);
+					break;
+				case "exerciseSave":
+					sendNotification(RotterdamNotifications.EXERCISE_SAVED, data);
 					break;
 				case "courseSessionUpdate":
 				case "updateSession":

@@ -86,11 +86,11 @@
 		<s:TextInput includeIn="link" id="captionTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />	
 		
 		<s:Button includeIn="authoring" id="authoringMultipleChoiceButton" label="Multiple Choice" />
-		<s:Button includeIn="authoring" id="authoringGapFillButton" label="Gapfill" />
-		<s:Button includeIn="authoring" id="authoringDrapAndDropButton" label="Drag and Drop" />
-		<s:Button includeIn="authoring" id="authoringTargetSpottingButton" label="Target Spotting" />
-		<s:Button includeIn="authoring" id="authoringErrorCorrectionButton" label="Error Correction" />
-		<s:Button includeIn="authoring" id="authoringDropdownButton" label="Dropdown" />
+		<s:Button includeIn="authoring" id="authoringGapFillButton" label="Gapfill" enabled="false" />
+		<s:Button includeIn="authoring" id="authoringDrapAndDropButton" label="Drag and Drop" enabled="false" />
+		<s:Button includeIn="authoring" id="authoringTargetSpottingButton" label="Target Spotting" enabled="false" />
+		<s:Button includeIn="authoring" id="authoringErrorCorrectionButton" label="Error Correction" enabled="false" />
+		<s:Button includeIn="authoring" id="authoringDropdownButton" label="Dropdown" enabled="false" />
 		
 		<s:HGroup includeIn="normal" height="100%" paddingLeft="168" gap="8" verticalAlign="middle">
 			<!--s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" /-->
