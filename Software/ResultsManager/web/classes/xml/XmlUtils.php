@@ -18,7 +18,7 @@ class XmlUtils {
 	 * 
 	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
-	public static function overwriteXml($filename, $contents, $func) {
+	public static function overwriteXml($filename, $contents, $func = null) {
 		$originalContents = file_get_contents($filename); // TODO: check carefully if this is a security hole
 		
 		$lockDirname = $filename.'_lock';
@@ -33,18 +33,19 @@ class XmlUtils {
 			}
 			
 			$xml = simplexml_load_string($contents);
-			
-			// #153
-			$exception = null;
+			if ($func) {
+				// #153
+				$exception = null;
 			$stillSave = false;
-			try {
-				$func($xml);
-			} catch (Exception $e) {
+				try {
+					$func($xml);
+				} catch (Exception $e) {
 				// #598 There may be some exceptions thrown in the func that you still want to press
 				// ahead with saving the xml for.
 				if ($e->getCode() == '888')
 					$stillSave = true;
-				$exception = $e;
+					$exception = $e;
+				}
 			}
 			
 			$dom = new DOMDocument();

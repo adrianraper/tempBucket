@@ -12,6 +12,9 @@
 		public static const COURSE_SAVE:String = "rotterdam/course_save";
 		public static const COURSE_SAVED:String = "rotterdam/course_saved";
 		
+		public static const EXERCISE_SAVE:String = "rotterdam/exercise_save";
+		public static const EXERCISE_SAVED:String = "rotterdam/exercise_saved";
+		
 		// gh#13
 		public static const COURSE_RESET:String = "rotterdam/course_reset";
 		
