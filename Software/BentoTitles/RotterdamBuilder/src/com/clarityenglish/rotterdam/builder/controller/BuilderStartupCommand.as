@@ -4,8 +4,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.transform.CourseAttributeCopyTransform;
 	import com.clarityenglish.bento.vo.content.transform.CourseEnabledTransform;
-	import com.clarityenglish.bento.vo.content.transform.PublicationDatesTransform;
+	import com.clarityenglish.bento.vo.content.transform.ExerciseGenerateTransform;
 	import com.clarityenglish.bento.vo.content.transform.PrivacyRolesTransform;
+	import com.clarityenglish.bento.vo.content.transform.PublicationDatesTransform;
 	import com.clarityenglish.rotterdam.builder.view.BuilderApplicationMediator;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
@@ -27,6 +28,10 @@ package com.clarityenglish.rotterdam.builder.controller {
 			var courseTransforms:Array = [ new CourseEnabledTransform(),
 										   new CourseAttributeCopyTransform() ];
 			xhtmlProxy.registerTransforms(courseTransforms, [ Href.XHTML ], /^courses.xml$/);
+			
+			// TODO: this should be available to both player and builder, and shouldn't be used on all exercises (or maybe the transform should decide?)
+			var exerciseTransforms:Array = [ new ExerciseGenerateTransform() ];
+			xhtmlProxy.registerTransforms(exerciseTransforms, [ Href.EXERCISE ]);
 			
 			// Setup some hook functions that allow us to do stuff before and after an XHTML file has loaded (gh#90)
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;

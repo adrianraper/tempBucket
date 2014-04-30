@@ -83,13 +83,19 @@ class XmlUtils {
 		$xml = simplexml_load_string($contents);
 		
 		foreach ($href->transforms as $transform) {
+			// DK: I have removed this because it is definitely not right!
+			/*
 			// gh#265
 			if (get_class($transform) == "RandomizedTestTransform") {
 				$xml = $transform->transform($db, $xml, $href, $service);
 				return $xml;
 			} else {
 				$transform->transform($db, $xml, $href, $service);
-			}			
+			}*/
+
+			// Perform the transform, and if it returns something then replace the xml document
+			$result = $transform->transform($db, $xml, $href, $service);
+			if ($result) $xml = $result;
 		}			
 		
 		return $xml->asXML();

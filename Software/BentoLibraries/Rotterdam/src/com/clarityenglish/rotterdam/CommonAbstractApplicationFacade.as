@@ -22,6 +22,7 @@
 	import com.clarityenglish.rotterdam.view.unit.WidgetMediator;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AnimationWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AuthoringWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.GroupWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
@@ -60,6 +61,7 @@
 			mapView(ImageWidget, WidgetMediator);
 			mapView(AudioWidget, WidgetMediator);
 			mapView(ExerciseWidget, WidgetMediator);
+			mapView(AuthoringWidget, WidgetMediator);
 			// gh#867
 			mapView(AnimationWidget, WidgetMediator);
 			// gh#869

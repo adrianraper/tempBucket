@@ -142,16 +142,20 @@ package com.clarityenglish.bento.model {
 				}
 			}
 			
+			if (beforeXHTMLLoadFunction !== null) beforeXHTMLLoadFunction(facade, href);
+			
 			// gh#476 
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var useCacheBuster:Boolean = configProxy.getConfig().useCacheBuster;
 			
-			if (beforeXHTMLLoadFunction !== null) beforeXHTMLLoadFunction(facade, href);
 			// gh#265
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (href.serverSide) {
 				// Determine if the href matches any of the registered transforms and if so add those transforms
 				href.resetTransforms();
+				
+				/**
+				 * THIS CODE BREAKS HOW TRANSFORMS ARE SUPPOSED TO WORK - COMMENTING THEM OUT FOR NOW, AND A DIFFERENT WAY NEEDS TO BE FOUND TO IMPLEMENT THEM
 				// gh#761 Because the configProxy.getDirectStart() doesn't be set value in xxStartupCommand, so I put DirectStartDisableTransform here 
 				if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0)
 					registerTransforms([new DirectStartDisableTransform(configProxy.getDirectStart())], [ Href.MENU_XHTML ]);				
@@ -163,6 +167,7 @@ package com.clarityenglish.bento.model {
 					// gh#660, gh#1030 pick up from exercise
 					//href.options = {totalNumber: configProxy.getRandomizedTestQuestionTotalNumber()};
 				}
+				 */
 				
 				for each (var transformDefinition:TransformDefinition in transformDefinitions)
 					transformDefinition.injectTransforms(href);
