@@ -3,8 +3,10 @@ Simple Command - PureMVC
  */
 package com.clarityenglish.common.controller {
 	
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.ProgressProxy;
 	
@@ -26,11 +28,22 @@ package com.clarityenglish.common.controller {
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			// gh#877
-			if (configProxy.getConfig().scorm) {
+			if (configProxy.getConfig().scorm && !scormProxy.isScormCompleted()) {
+				// gh#881
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				if (bentoProxy.currentExercise) {
+					var exercise:Exercise = bentoProxy.currentExercise;
+					if (!exercise.hasQuestions()) {
+						var hasQuestion:Boolean = false;
+					} else {
+						hasQuestion = true;
+					}
+				}
+				
 				if (data.correctPercent < 0) {
-					scormProxy.writeScore(data.UID, 0);
+					scormProxy.writeScore(data.UID, 0, hasQuestion);
 				} else {
-					scormProxy.writeScore(data.UID, data.correctPercent);
+					scormProxy.writeScore(data.UID, data.correctPercent, hasQuestion);
 				}	
 			}
 		}
