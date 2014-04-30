@@ -40,9 +40,6 @@ package com.clarityenglish.bento.controller {
 				} else {
 					// gh#853
 					if (configProxy.getConfig().scorm) {
-						// gh#877
-						var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
-						scormProxy.completeSCO();
 						sendNotification(CommonNotifications.LOGOUT);
 					} else {
 						sendNotification(BBNotifications.SELECTED_NODE_UP);

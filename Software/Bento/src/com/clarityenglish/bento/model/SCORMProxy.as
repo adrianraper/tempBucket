@@ -31,6 +31,10 @@ package com.clarityenglish.bento.model {
 		
 		public static const NAME:String = "SCORMProxy";
 		
+		// gh#879
+		[Bindable]
+		private var totalExercise:Number;
+		
 		// #336
 		public var scorm:SCORM;
 		
@@ -43,7 +47,6 @@ package com.clarityenglish.bento.model {
 		 * Get initial variables and leave it all ready for communication once the SCO is started
 		 */
 		public function initialise():Boolean {
-			
 			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			
 			scorm = new SCORM();
@@ -92,7 +95,7 @@ package com.clarityenglish.bento.model {
 		 *   2) set the bookmark
 		 *   3) write the objective
 		 */
-		public function writeScore(exID:String, score:uint):Boolean {
+		public function writeScore(exID:String, score:uint, hasQuestion:Boolean = true):Boolean {
 			
 			// TODO. Get the exercise caption from the id
 			// Notes from Orchid
@@ -105,10 +108,10 @@ package com.clarityenglish.bento.model {
 			scorm.setParameter('objective.id', exCaption, scorm.objectiveCount);
 			scorm.setParameter('objective.status', 'completed', scorm.objectiveCount);
 			scorm.setParameter('objective.score', String(score), scorm.objectiveCount);
-
-			scorm.setParameter('suspendData', this.formatSuspendData(exID, score));
-			
+			scorm.setParameter('suspendData', this.formatSuspendData(exID, score, hasQuestion));			
 			scorm.setParameter('bookmark', this.formatBookmark(exID));
+			// gh#881
+			checkScormComplete();
 			
 			return true;
 		}
@@ -229,7 +232,7 @@ package com.clarityenglish.bento.model {
 		 * #493 Convert to JSON
 		 * '{"scoreSoFar":"ex:1234|15,ex:5678|32","percentComplete":50}'
 		 */
-		private function formatSuspendData(exID:String, score:uint):String {
+		private function formatSuspendData(exID:String, score:uint, hasQuestion:Boolean):String {
 			if (scorm.suspendData) {
 				var suspendDataArray:Object = JSON.parse(scorm.suspendData);
 			} else {
@@ -242,17 +245,46 @@ package com.clarityenglish.bento.model {
 			} else {
 				scores = new Array();
 			}
-			scores.push('ex:' + exID + '|' + score);
-			suspendDataArray.scoreSoFar = scores.join(",");
+			
+			for (var i:String in scores) {
+				if (("ex:"+exID) == scores[i].split("|")[0]) {
+					var isIDExist:Boolean = true;
+				}
+			}
+			
+			if (!isIDExist && hasQuestion) {
+				scores.push('ex:' + exID + '|' + score);
+				suspendDataArray.scoreSoFar = scores.join(",");
+			}
 			
 			// Update the percent complete. 
 			// I need to get the bit of menu.xml relevant to this SCORM object and count the number of exercises in it.
 			// Then I can work out the % using scoreSoFar.
-			if (suspendDataArray.percentComplete) {
+			/*if (suspendDataArray.percentComplete) {
 				suspendDataArray.percentComplete = 51;
 			} else {
 				suspendDataArray.percentComplete = 10;
+			}*/
+			// gh#881
+			if (suspendDataArray.noQuestionExercises) {
+				var noQuestionExercises:Array = suspendDataArray.noQuestionExercises.split(",");
+			} else {
+				noQuestionExercises = new Array();
 			}
+			
+			for (var j:String in noQuestionExercises) {
+				if (exID == noQuestionExercises[j]) {
+					var isNoQuestionIDExist:Boolean = true;
+				}
+			}
+			
+			if (!isNoQuestionIDExist && !hasQuestion) {
+				noQuestionExercises.push(exID);
+				suspendDataArray.noQuestionExercises = noQuestionExercises.join(",");
+			}
+			
+			// gh#879
+			suspendDataArray.percentComplete = Math.round(scores.length / (totalExercise - noQuestionExercises.length) * 100);
 			
 			scorm.suspendData = JSON.stringify(suspendDataArray);
 			return JSON.stringify(suspendDataArray);
@@ -304,7 +336,29 @@ package com.clarityenglish.bento.model {
 			
 			return dataObject;
 		}
-			
+		
+		// gh#879
+		public function setTotalExercise(value:Number):void {
+			totalExercise = value;
+		}
+		
+		// gh#879
+		public function isScormCompleted():Boolean {
+			return (scorm.getParameter('lessonStatus') == "completed");
+		}
+		
+		// gh#881
+		public function checkScormComplete():void {
+			// in formatSuspendData(), latest suspend data hasn't been written into scorm, so we should call completeSCO afterwards.
+			if (scorm.suspendData) {
+				var suspendDataArray:Object = JSON.parse(scorm.suspendData);
+				
+				// if percent complete equal 100%, we should call completeSCO to get the final report for time spending and score
+				if (suspendDataArray.percentComplete == 100) {
+					completeSCO();
+				}
+			}
+		}
 	}
 		
 }

@@ -16,6 +16,7 @@ package com.clarityenglish.ielts.view {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.utilities.statemachine.State;
 	import org.puremvc.as3.utilities.statemachine.StateMachine;
+	import com.clarityenglish.bento.model.SCORMProxy;
 	
 	public class IELTSApplicationMediator extends AbstractApplicationMediator implements IMediator {
 		
@@ -96,6 +97,7 @@ package com.clarityenglish.ielts.view {
 		private function handleDirectStart():Boolean {
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			var directStart:Object = configProxy.getDirectStart();
 			
 			if (!directStart) return false;
@@ -122,6 +124,10 @@ package com.clarityenglish.ielts.view {
 								var unitLength:Number = unit.exercise.(@group == groupID).length();
 								var exexerciseGroupXMLList:XMLList = unit.exercise.(@group == groupID);
 								var exerciseIndex:Number = 0;
+								
+								// gh#879
+								scormProxy.setTotalExercise(unitLength);
+								
 								for (var index:String in exexerciseGroupXMLList) {
 									if (exexerciseGroupXMLList.@id[index] == directStart.exerciseID) {
 										break;
@@ -148,6 +154,8 @@ package com.clarityenglish.ielts.view {
 					unit = bentoProxy.menuXHTML..unit.(@id == directStart.unitID)[0];
 					
 					if (unit) {
+						trace("exercise length: "+unit.exercise.(@group == directStart.groupID).length());
+						scormProxy.setTotalExercise(unit.exercise.(@group == directStart.groupID).length());
 						exercise = unit.exercise.(@group == directStart.groupID)[0];
 						if (exercise) {
 							sendNotification(BBNotifications.SELECTED_NODE_CHANGE, exercise);
