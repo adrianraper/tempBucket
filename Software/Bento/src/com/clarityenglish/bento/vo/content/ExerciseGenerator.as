@@ -34,11 +34,12 @@ package com.clarityenglish.bento.vo.content {
 		}
 		
 		public function hasSettingParam(paramName:String):Boolean {
-			return (settings && settings.param.(@name == paramName).length() > 0);
+			//return (settings && settings.param.(@name == paramName).length() > 0);
+			return (settings && settings[paramName].length() > 0);
 		}
 		
 		public function getSettingParam(paramName:String):* {
-			var value:* = (settings && settings.param.(@name == paramName).length() > 0) ? settings.param.(@name == paramName).@value : null;
+			var value:* = hasSettingParam(paramName) ? settings[paramName].text() : null;
 			
 			if (value == "true") return true;
 			if (value == "false") return false;

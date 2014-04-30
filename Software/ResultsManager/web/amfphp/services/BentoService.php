@@ -73,6 +73,7 @@ class BentoService extends AbstractService {
 		$this->contentOps = new ContentOps($this->db);
 		$this->progressOps = new ProgressOps($this->db);
 		$this->licenceOps = new LicenceOps($this->db);
+		$this->templateOps = new TemplateOps($this->db);
 		
 		// Set the root id (if set)
 		// I am now using is_set, but is that safe? If not set it might be an error. 

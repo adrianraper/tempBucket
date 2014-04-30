@@ -9,18 +9,18 @@ class ExerciseOps {
   <head>
     <script id="authoring" type="application/xml">
       <settings>
-        <param name="exerciseType" value="MultipleChoiceQuestion" />
-        <param name="questionNumberingEnabled" value="true" />
-        <param name="questionNumbering" value="1" />
-        <param name="questionStartNumber" value="1" />
-        <param name="markingType" value="instant" />
-        <param name="exerciseFeedbackEnabled" value="true" />
-        <param name="exerciseFeedbackText"></param>
-        <param name="testMode" value="false" />
-        <param name="timerEnabled" value="false" />
-        <param name="timerMinutes" value="3.5" />
-        <param name="showFirstNQuestions" value="3" />
-        <param name="questionByQuestionEnabled" value="false" />
+        <exerciseType>MultipleChoiceQuestion</exerciseType>
+      	<questionNumberingEnabled>true</questionNumberingEnabled>
+      	<questionNumbering>1</questionNumbering>
+      	<questionStartNumber>1</questionStartNumber>
+      	<markingType>instant</markingType>
+      	<exerciseFeedbackEnabled>true</exerciseFeedbackEnabled>
+      	<exerciseFeedbackText>I am some exercise feedback</exerciseFeedbackText>
+      	<testMode>false</testMode>
+      	<timerEnabled>false</timerEnabled>
+      	<timerMinutes>3.5</timerMinutes>
+      	<showFirstNQuestions>3</showFirstNQuestions>
+      	<questionByQuestionEnabled>false</questionByQuestionEnabled>
       </settings>
       <questions>
       </questions>

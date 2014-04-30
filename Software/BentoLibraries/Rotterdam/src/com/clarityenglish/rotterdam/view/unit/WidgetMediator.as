@@ -1,5 +1,6 @@
 ﻿package com.clarityenglish.rotterdam.view.unit {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
@@ -47,6 +48,7 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
 			
@@ -55,6 +57,9 @@
 			view.thumbnailScript = configProxy.getConfig().remoteGateway + "/services/thumbnail.php";
 			
 			view.placeholder = copyProvider.getCopyForId("widgetPlaceholderText");
+			
+			// Widgets DON'T run off menu.xml, but they still need the href to construct relative hrefs (e.g. to load authoring exercises from the same folder)
+			if (bentoProxy.menuXHTML) view.menuXHTMLHref = bentoProxy.menuXHTML.href;
 			
 			view.openMedia.add(onOpenMedia);
 			view.openContent.add(onOpenContent);
