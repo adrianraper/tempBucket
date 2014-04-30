@@ -187,6 +187,10 @@ package com.clarityenglish.rotterdam.model {
 			}
 		}
 		
+		public function exerciseCreate(widget:XML):AsyncToken {
+			return new RemoteDelegate("exerciseCreate", [ courseID, widget.@href.toString() ], this).execute();
+		}
+		
 		public function exerciseSave(widget:XML, exercise:XML):AsyncToken {
 			var xmlString:String = exercise.toXMLString();
 			xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
@@ -294,6 +298,7 @@ package com.clarityenglish.rotterdam.model {
 				case "exerciseSave":
 					sendNotification(RotterdamNotifications.EXERCISE_SAVED, data);
 					break;
+				case "exerciseCreate":
 				case "courseSessionUpdate":
 				case "updateSession":
 					// gh#954 Player will use this for session updates rather than course locking

@@ -57,7 +57,7 @@
 				<s:Button id="addQuestionButton" width="100%" />
 			</s:VGroup>
 			
-			<s:VGroup width="100%">
+			<s:VGroup width="100%" enabled="{questionList.selectedItem != null}">
 				<s:Label text="Question" />
 				<s:TextArea id="questionTextArea" width="100%" text="@{hostComponent.question.question}" />
 				
