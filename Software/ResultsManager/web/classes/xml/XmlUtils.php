@@ -7,7 +7,7 @@ class XmlUtils {
 	 * 
 	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
-	public static function rewriteXml($filename, $func) {
+	public static function rewriteXml($filename, $func = null) {
 		$contents = file_get_contents($filename);
 		return self::overwriteXml($filename, $contents, $func);
 	}
