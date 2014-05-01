@@ -57,19 +57,21 @@
 	</head>
 	
 	<body>
-		{foreach from=$questions item=question name=question}
-		<p id="q{$smarty.foreach.question.index}">
-			<p>{$question->question}</p>
-			<ol>
-				{foreach from=$question->answers->answer item=answer name=answer}
-				<li>
-					<a id="q{$smarty.foreach.question.index}a{$smarty.foreach.answer.index}">
-						{$answer}
-					</a>
-				</li>
+		<section id="body">
+			<div>
+				{foreach from=$questions item=question name=question}
+				<div id="q{$smarty.foreach.question.index}" class="question">
+					<p>{$question->question}</p>
+					{foreach from=$question->answers->answer item=answer name=answer}
+						<p>
+							<a class="q{$smarty.foreach.question.index}a{$smarty.foreach.answer.index}">
+								{$smarty.foreach.answer.iteration}. {$answer}
+							</a>
+						</p>
+					{/foreach}
+				</div>
 				{/foreach}
-			</ol>
-		</p>
-		{/foreach}
+			</div>
+		</section>
 	</body>
 </bento>

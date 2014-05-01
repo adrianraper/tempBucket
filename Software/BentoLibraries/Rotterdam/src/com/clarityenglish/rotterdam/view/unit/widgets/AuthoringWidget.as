@@ -1,13 +1,10 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
-	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.vo.Href;
 	
-	import mx.events.FlexEvent;
-	
 	public class AuthoringWidget extends AbstractWidget {
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var dynamicView:DynamicView;
 		
 		public function AuthoringWidget() {
