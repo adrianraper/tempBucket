@@ -16,10 +16,14 @@ class XmlUtils {
 	 * Functionally process (using $func) and write an XML string.  This uses locking to ensure that people can't modify the file
 	 * concurrently.  This allows us to fiddle with an XML string before writing it using a function.
 	 * 
+	 * This also works for a non-existant file, in which case it simply writes a new file with the given contents.
+	 * 
 	 * TODO: formatOutput doesn't seem to be doing anything - this will quickly get annoying whilst debugging
 	 */
 	public static function overwriteXml($filename, $contents, $func = null) {
-		$originalContents = file_get_contents($filename); // TODO: check carefully if this is a security hole
+		if (file_exists($filename)) {
+			$originalContents = file_get_contents($filename);
+		}
 		
 		$lockDirname = $filename.'_lock';
 		if ($fp = @fopen($filename, 'w')) {
@@ -56,7 +60,7 @@ class XmlUtils {
 			// gh#924 Not necessarily. If the exception came from the database, we still need to save the xml
 			if ($exception && !$stillSave) {
 				// Why do we need to write out the original contents, can't we just close the file?
-				@fwrite($fp, $originalContents);
+				if (isset($originalContents)) @fwrite($fp, $originalContents);
 			} else {
 				@fwrite($fp, $dom->saveXML());
 			}
@@ -80,6 +84,7 @@ class XmlUtils {
 	 */
 	public static function buildXml($href, $db, $service) {
 		$contents = file_get_contents($href->getUrl());
+		
 		$xml = simplexml_load_string($contents);
 		
 		foreach ($href->transforms as $transform) {
