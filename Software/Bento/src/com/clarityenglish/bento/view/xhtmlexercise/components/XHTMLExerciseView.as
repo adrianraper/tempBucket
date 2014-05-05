@@ -53,10 +53,10 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		/**
 		 * These sections are required in all skins
 		 */		
-		[SkinPart(type="spark.components.Group", required="true")]
+		[SkinPart(type="spark.components.Group")]
 		public var headerGroup:Group;
 		
-		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="true")]
+		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText")]
 		public var headerRichText:XHTMLRichText;
 		
 		[SkinPart(type="spark.components.Group", required="true")]
@@ -88,7 +88,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var backColour:SolidColor;
-	
+		
 		// TODO: These should be in IELTS, not Bento?
 		public var courseClass:String;
 		// gh#348
@@ -103,7 +103,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		// gh#413
 		public var gotQuestionFeedback:Signal = new Signal(Boolean);
-				
+		
 		public function XHTMLExerciseView() {
 			super();
 			
@@ -124,6 +124,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		public function getQuestionFeedback():Signal {
 			return gotQuestionFeedback;
 		}
+		
 		/**
 		 * Search through all the sections for the given node
 		 * 
@@ -180,7 +181,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		 * @param event
 		 */
 		protected function onSectionClick(event:MouseEvent):void {
-			
 			// gh#533 If you are in a gap, stop the click from progressing with this event
 			if (event.target.hasOwnProperty("editable") && event.target.editable)
 				return;
