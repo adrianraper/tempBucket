@@ -1,6 +1,7 @@
 package com.clarityenglish.textLayout.components {
 	import com.clarityenglish.textLayout.components.behaviours.IXHTMLBehaviour;
 	import com.clarityenglish.textLayout.conversion.XHTMLImporter;
+	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.events.RenderFlowEvent;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
@@ -8,6 +9,8 @@ package com.clarityenglish.textLayout.components {
 	import com.newgonzo.web.css.CSS;
 	
 	import flash.events.Event;
+	
+	import flashx.textLayout.compose.FlowComposerBase;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -122,6 +125,11 @@ package com.clarityenglish.textLayout.components {
 		
 		public function get css():CSS {
 			return _css;
+		}
+		
+		public function forceReload():void {
+			_xhtmlChanged = true;
+			invalidateProperties();
 		}
 		
 		/**
