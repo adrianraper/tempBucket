@@ -241,6 +241,21 @@ import spark.components.Group;
 		}
 		
 		/**
+		 * Call forceReload on every XHTMLRichText, which as a side effect causes everything to re-layout nicely.
+		 * TODO: It should be possible to do this without reloading everything (since resizing the window seems to do it...)
+		 */
+		public function forceRelayout():void {
+			for each (var sectionName:String in SUPPORTED_SECTIONS) {
+				var group:Group = this[sectionName + "Group"];
+				var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
+				
+				if (group && xhtmlRichText) {
+					xhtmlRichText.forceReload();
+				}
+			}
+		}
+		
+		/**
 		 * #258 - display the incorrect icon for a few seconds where the user clicked
 		 * 
 		 * @param event
