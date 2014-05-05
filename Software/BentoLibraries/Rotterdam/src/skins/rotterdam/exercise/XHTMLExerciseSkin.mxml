@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:components="com.clarityenglish.textLayout.components.*"
+		xmlns:exercise="skins.bento.exercise.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AnswerableBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.AudioFeedbackBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DictionaryBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.DraggableBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.MarkableIconsBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.PopupableBehaviour;
+			import com.clarityenglish.bento.view.xhtmlexercise.components.behaviours.RecorderButtonBehaviour;
+			import com.clarityenglish.textLayout.components.behaviours.OverlayBehaviour;
+			
+			import mx.events.FlexMouseEvent;
+			
+			protected function onScrollerMouseWheelChanging(event:FlexMouseEvent):void {
+				// #66
+				event.delta = event.delta / Math.abs(event.delta) * 32;
+			}
+			
+			[Bindable]
+			public var courseColorDark:Number;
+			
+		]]>
+	</fx:Script>
+	
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:layout>
+		<s:VerticalLayout gap="0" />
+	</s:layout>
+	
+	<s:Group width="100%" height="100%">
+		<s:layout>
+			<s:VerticalLayout/>
+		</s:layout>
+		
+		<s:Group id="noscrollGroup" width="100%">
+			<s:Rect width="100%" height="100%" minHeight="52">
+				<s:fill>
+					<s:SolidColor color="#D2DDE2" />
+				</s:fill>
+			</s:Rect>
+			
+			<components:XHTMLRichText id="noscrollRichText" top="8" left="10" right="16" bottom="8" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, PopupableBehaviour, DictionaryBehaviour]}" />
+		</s:Group>
+
+		<s:Group id="bodyGroup" width="100%" height="98%" minHeight="52" left="50">
+			<s:Rect width="100%" height="98%">
+				<s:fill>
+					<s:SolidColor color="#FFFFFF" />
+				</s:fill>
+			</s:Rect>
+			
+			<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="0" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
+				<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour, RecorderButtonBehaviour]}" />
+			</s:Scroller>
+		</s:Group>				
+	</s:Group>			
+
+</s:Skin>

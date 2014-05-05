@@ -59,10 +59,10 @@ import spark.components.Group;
 		/**
 		 * These sections are required in all skins
 		 */		
-		[SkinPart(type="spark.components.Group", required="true")]
+		[SkinPart(type="spark.components.Group")]
 		public var headerGroup:Group;
 		
-		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="true")]
+		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText")]
 		public var headerRichText:XHTMLRichText;
 		
 		[SkinPart(type="spark.components.Group", required="true")]
@@ -94,7 +94,7 @@ import spark.components.Group;
 		
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var backColour:SolidColor;
-	
+		
 		[SkinPart(type="spark.components.Group", required="false")]
 		public var backgroundGraphics:Group;
 
@@ -119,7 +119,7 @@ import spark.components.Group;
 		
 		// gh#413
 		public var gotQuestionFeedback:Signal = new Signal(Boolean);
-				
+		
 		public function XHTMLExerciseView() {
 			super();
 			

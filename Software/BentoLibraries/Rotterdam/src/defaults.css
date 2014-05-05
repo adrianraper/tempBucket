@@ -6,6 +6,7 @@
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 @namespace calendar "com.clarityenglish.controls.calendar.*";
 @namespace credits "com.clarityenglish.bento.view.credits.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 @namespace players "com.clarityenglish.controls.video.players.*";
 @namespace components "com.clarityenglish.components.*";
 
@@ -39,6 +40,10 @@ widgets|ExerciseWidget {
 
 widgets|AuthoringWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.AuthoringWidgetSkin");
+}
+
+components|XHTMLExerciseView {
+	skinClass: ClassReference("skins.rotterdam.exercise.XHTMLExerciseSkin");
 }
 
 s|TitleWindow.errorTitleWindow {
