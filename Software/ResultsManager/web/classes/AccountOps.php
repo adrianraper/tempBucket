@@ -1168,8 +1168,9 @@ EOD;
 	 */
 	public function getNextPrefix() {
 		// gh#149
+		// gh#884
 		$sql = 	<<<EOD
-				SELECT MAX(F_Prefix) AS MAXPREFIX from T_AccountRoot
+				SELECT MAX(CAST(F_Prefix AS UNSIGNED)) AS MAXPREFIX from T_AccountRoot
 				WHERE F_Prefix REGEXP '^[0-9]+$'
 EOD;
 		//$sql .= NEG_MYPOSTFIX;
