@@ -103,15 +103,20 @@ SQL;
 			
 			$sql = <<<SQL
 				INSERT INTO T_CourseRoles 
-				(F_CourseID, F_UserID, F_GroupID, F_Role, F_DateStamp)
-				VALUES (?,?,?,?,NOW())
+				(F_CourseID, F_UserID, F_GroupID, F_RootID, F_Role, F_DateStamp)
+				VALUES (?,?,?,?,?,NOW())
 SQL;
-			$bindingParams = array($id, Session::get('userID'), Session::get('groupID'), Course::ROLE_OWNER);
+			// gh#888 You become the owner and other teachers become publishers
+			$bindingParams = array($id, Session::get('userID'), null, null, Course::ROLE_OWNER);
 			$rc = $db->Execute($sql, $bindingParams);					
 			if (!$rc)
-				// It should be impossible for the courseID to already be in this table...
 				AbstractService::$debugLog->notice("insert to T_CourseRoles failed");
-			
+				
+			$bindingParams = array($id, null, null, Session::get('rootID'), Course::ROLE_PUBLISHER);
+			$rc = $db->Execute($sql, $bindingParams);					
+			if (!$rc)
+				AbstractService::$debugLog->notice("insert to T_CourseRoles failed");
+				
 			$db->CompleteTrans();
 		});
 		
