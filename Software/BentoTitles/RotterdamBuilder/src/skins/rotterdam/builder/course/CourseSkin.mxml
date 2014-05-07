@@ -136,7 +136,7 @@
 	</s:HGroup>
 		
 	<!-- gh#91 Keep the publish button even in preview mode, gh#880 -->
-	<s:Group id="publishVGroup" left="3" bottom="38" width="152" visible="{toolBar.currentState == 'normal'}">
+	<s:Group id="publishVGroup" left="3" bottom="38" width="152" visible="{toolBar.currentState == 'normal' || toolBar.currentState == 'preview'}">
 		<s:Group bottom="0" left="0">
 			<s:ToggleButton id="publishCourseButton" click="anim.play()" useHandCursor="true" buttonMode="true" />
 			<s:Button id="publishChangeButton" useHandCursor="true" buttonMode="true" />
