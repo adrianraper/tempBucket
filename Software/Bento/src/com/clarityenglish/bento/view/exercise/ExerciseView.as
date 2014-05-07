@@ -63,6 +63,7 @@ package com.clarityenglish.bento.view.exercise {
 		
 		private var _courseCaption:String;
 		
+		private var _isDirectStartEx:Boolean;
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
 			dispatchEvent(new Event("courseCaptionChanged"));
@@ -78,6 +79,13 @@ package com.clarityenglish.bento.view.exercise {
 			return getStyle(_courseCaption.toLowerCase() + "ColorDark")
 		}
 		
+		public function set isDirectStartEx(value:Boolean):void {
+			_isDirectStartEx = value;
+		}
+		[Bindable]
+		public function get isDirectStartEx():Boolean {
+			return _isDirectStartEx;
+		}
 		public var startAgain:Signal = new Signal();
 		public var showFeedback:Signal = new Signal();
 		public var showMarking:Signal = new Signal();

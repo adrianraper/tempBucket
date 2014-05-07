@@ -171,7 +171,7 @@
 			<lit name="notAvailbleDemo">Not available in this demo.</lit>
 			<lit name="notAvailblePracticeTest">This practice test is not in this version.</lit>
 			<lit name="notAvailble">Not available in the current version. Click above to upgrade.</lit>
-			<lit name="compareInstructionLabel">This chart compares your scores with other Road to IELTS users worldwide</lit>
+			<lit name="compareInstructionLabel">This chart compares your scores with other Road to IELTS users worldwide.</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
 			<lit name="analysisInstructionLabel1">This shows how you have spent your time</lit>
 			<lit name="analysisInstructionLabel2">Time spent on each skill</lit>

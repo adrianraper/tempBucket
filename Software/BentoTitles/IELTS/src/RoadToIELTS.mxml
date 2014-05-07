@@ -78,7 +78,7 @@
 			import mx.events.FlexEvent;
 			
 			protected function onInitialize(event:FlexEvent):void {
-				versionNumber = "2.0.2.843";
+				versionNumber = "2.0.2.893";
 				
 				facade = IELTSApplicationFacade.getInstance();
 			}
