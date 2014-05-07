@@ -26,6 +26,7 @@ class Course extends Content {
 	const ROLE_VIEWER = 4;
 	
 	// gh#91 enabledFlag values
+	// TODO These are wrong, we should be using the ones already in Content
 	const EF_VIEWER = 1;
 	const EF_PUBLISHER = 2;
 	const EF_OWNER = 4;

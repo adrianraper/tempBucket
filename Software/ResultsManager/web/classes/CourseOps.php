@@ -496,56 +496,55 @@ SQL;
 	public function getUserRole($courseID){
 		$userRole = $groupRole = $rootRole = 99;
 		$userID = Session::get('userID');
-		//AbstractService::$debugLog->info("user ID: ".$userID);
-		$groupIDs = implode(',', array_unique(array_merge(Session::get('groupIDs'), Session::get('parentGroupIDs')), SORT_DESC));
-		//AbstractService::$debugLog->info("group ID: ".$groupIDs);
-		$rootID = Session::get('rootID');
-		// alicechange
 		$userType = Session::get('userType');
+		$groupIDs = implode(',', array_unique(array_merge(Session::get('groupIDs'), Session::get('parentGroupIDs')), SORT_DESC));
+		$rootID = Session::get('rootID');
 		
-		if ($userType != User::USER_TYPE_STUDENT) {
+		if ($userType > User::USER_TYPE_STUDENT) {
 			// First look for the user directly
-		$sql = <<<SQL
-			SELECT c.F_Role as role FROM T_CourseRoles c 
-			WHERE c.F_CourseID = ?
-			AND c.F_UserID = ?
+			$sql = <<<SQL
+				SELECT c.F_Role as role FROM T_CourseRoles c 
+				WHERE c.F_CourseID = ?
+				AND c.F_UserID = ?
 SQL;
-		$bindingParams = array($courseID, $userID);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs->recordCount() > 0)
-			while ($rec = $rs->FetchNextObj()) {
-				if ($rec->role < $userRole)
-					$userRole = $rec->role;	
-			}
-			
-		// Then look to see for all the groups the user is part of
-		$sql = <<<SQL
-			SELECT c.F_Role as role FROM T_CourseRoles c 
-			WHERE c.F_CourseID = ?
-			AND c.F_GroupID IN (?)
-			AND c.F_UserID is null
+			$bindingParams = array($courseID, $userID);
+			$rs = $this->db->Execute($sql, $bindingParams);
+			if ($rs->recordCount() > 0)
+				while ($rec = $rs->FetchNextObj()) {
+					if ($rec->role < $userRole)
+						$userRole = $rec->role;	
+				}
+				
+			// Then look to see for all the groups the user is part of
+			$sql = <<<SQL
+				SELECT c.F_Role as role FROM T_CourseRoles c 
+				WHERE c.F_CourseID = ?
+				AND c.F_GroupID IN (?)
+				AND c.F_UserID is null
 SQL;
-		$bindingParams = array($courseID, $groupIDs);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs->recordCount() > 0)
-			while ($rec = $rs->FetchNextObj()) {
-				if ($rec->role < $groupRole)
-					$groupRole = $rec->role;	
-			}
-			
-		// Finally for the root
-		$sql = <<<SQL
-			SELECT c.F_Role as role FROM T_CourseRoles c 
-			WHERE c.F_CourseID = ?
-			AND c.F_RootID = ?
+			$bindingParams = array($courseID, $groupIDs);
+			$rs = $this->db->Execute($sql, $bindingParams);
+			if ($rs->recordCount() > 0)
+				while ($rec = $rs->FetchNextObj()) {
+					if ($rec->role < $groupRole)
+						$groupRole = $rec->role;	
+				}
+				
+			// Finally for the root
+			$sql = <<<SQL
+				SELECT c.F_Role as role FROM T_CourseRoles c 
+				WHERE c.F_CourseID = ?
+				AND c.F_RootID = ?
 SQL;
-		$bindingParams = array($courseID, $rootID);
-		$rs = $this->db->Execute($sql, $bindingParams);
-		if ($rs->recordCount() > 0)
-			while ($rec = $rs->FetchNextObj()) {
-				if ($rec->role < $rootRole)
-					$rootRole = $rec->role;	
-			}
+			$bindingParams = array($courseID, $rootID);
+			$rs = $this->db->Execute($sql, $bindingParams);
+			if ($rs->recordCount() > 0)
+				while ($rec = $rs->FetchNextObj()) {
+					if ($rec->role < $rootRole)
+						$rootRole = $rec->role;	
+				}
+		// gh#882
+		/*	
 		} else {
 			$sql = <<<SQL
 			SELECT c.F_Role as role FROM T_CourseRoles c 
@@ -555,10 +554,11 @@ SQL;
 			$bindingParams = array ($courseID, $groupIDs );
 			$rs = $this->db->Execute ( $sql, $bindingParams );
 			if ($rs->recordCount () > 0)
-				while ( $rec = $rs->FetchNextObj () ) {
+				while ($rec = $rs->FetchNextObj ()) {
 					if ($rec->role < $groupRole)
 						$groupRole = $rec->role;
 				}
+		*/
 		}
 		
 		// gh#91 remember that owner=1, collaborator=2 etc so look for the lowest number

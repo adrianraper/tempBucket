@@ -11,6 +11,12 @@ class HiddenContentTransform extends XmlTransform {
 		// Register the namespace for menu xml so we can run xpath queries against it
 		$xml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 		
+		/*
+		 * TODO. We could save a little time by:
+		 * $userID = Session::get('userID');
+		 * $userType = Session::get('userType');
+		 * This applies to PublicationCourseTransform too.
+		 */
 		$user = $service->manageableOps->getUserById(Session::get('userID'));
 		
 		// #339 Hidden content

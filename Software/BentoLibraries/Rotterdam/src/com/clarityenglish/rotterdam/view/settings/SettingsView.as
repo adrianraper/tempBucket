@@ -128,7 +128,22 @@ package com.clarityenglish.rotterdam.view.settings {
 		public var courseEditableFormItem:FormItem;
 		
 		[SkinPart]
-		public var courseEditableCheckBox:CheckBox;
+		public var courseLockedCheckBox:CheckBox;
+		
+		[SkinPart]
+		public var courseEditableFormItemHelp:Label;
+		[SkinPart]
+		public var collaboratorsFormItemHelp:Label;
+		[SkinPart]
+		public var publishersFormItemHelp:Label;
+		[SkinPart]
+		public var courseNameFormItemHelp:Label;
+		[SkinPart]
+		public var courseDescriptionFormItemHelp:Label;
+		[SkinPart]
+		public var authorFormItemHelp:Label;
+		[SkinPart]
+		public var contactEmailFormItemHelp:Label;
 		
 		[SkinPart(required="true")]
 		public var saveButton:Button;
@@ -212,7 +227,7 @@ package com.clarityenglish.rotterdam.view.settings {
 				if (aboutAuthorTextInput && aboutAuthorTextInput.text == '')
 					aboutAuthorTextInput.text = ownerLabel.text;
 			}
-			if (courseEditableCheckBox) courseEditableCheckBox.selected = (course.permission.@editable == 'true');
+			if (courseLockedCheckBox) courseLockedCheckBox.selected = (course.permission.@editable == 'false');
 			/*
 			 * This starts adding to the actual XML rather than just items in the list box
 			if (collaboratorsText) {
@@ -284,10 +299,31 @@ package com.clarityenglish.rotterdam.view.settings {
 				case publishersFormItem:
 					instance.label = copyProvider.getCopyForId("publishersLabel");
 					break;
-				case courseEditableCheckBox:
+				case courseEditableFormItemHelp:
+					instance.text = copyProvider.getCopyForId("courseEditableFormItemHelp");
+					break;
+				case collaboratorsFormItemHelp:
+					instance.text = copyProvider.getCopyForId("collaboratorsFormItemHelp");
+					break;
+				case publishersFormItemHelp:
+					instance.text = copyProvider.getCopyForId("publishersFormItemHelp");
+					break;
+				case courseNameFormItemHelp:
+					instance.text = copyProvider.getCopyForId("courseNameFormItemHelp");
+					break;
+				case courseDescriptionFormItemHelp:
+					instance.text = copyProvider.getCopyForId("courseDescriptionFormItemHelp");
+					break;
+				case authorFormItemHelp:
+					instance.text = copyProvider.getCopyForId("authorFormItemHelp");
+					break;
+				case contactEmailFormItemHelp:
+					instance.text = copyProvider.getCopyForId("contactEmailFormItemHelp");
+					break;
+				case courseLockedCheckBox:
 					instance.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						if (!isPopulating) {
-							course.permission.@editable = String(e.target.selected);
+							course.permission.@editable = String(!e.target.selected);
 							dirty.dispatch();
 							invalidateProperties();
 						}

@@ -186,7 +186,7 @@
 			<lit name="courseSettingsLabel">Course Settings</lit>
 			<lit name="scheduleLabel">Publishing schedule</lit>
 			<lit name="scheduleDatesLabel">2. Set the dates when units are available</lit>
-			<lit name="notificationsLabel">3. Trigger notifications</lit>
+			<lit name="notificationsLabel">Trigger notifications</lit>
 			<lit name="aboutLabel">About this course</lit>
 			<lit name="selectGroupLabel">1. Choose a group to publish this course for</lit>
 			<lit name="startDateLabel">2. Start date for this course</lit>
@@ -217,7 +217,7 @@
 			<lit name="rootPublishersLabel">all teachers in this account</lit>
 			<lit name="groupPublishersLabel">all teachers in this group</lit>
 			<lit name="transferOwnershipButton">transfer ownership</lit>
-			<lit name="courseEditableLabel">Is the course editable?</lit>
+			<lit name="courseEditableLabel">Lock the course</lit>
 			<lit name="courseListTitleLabel">Choose a course</lit>
 			<lit name="createCourseButton">Create a new course</lit>
 			<lit name="myCoursesViewNavigator">My Courses</lit>
@@ -280,6 +280,14 @@
 			<lit name="completeLabel">Started</lit>
 			<lit name="notCompleteLabel">Not started</lit>
 			<lit name="warningWindowCaption">Sorry</lit>
+			
+			<lit name="courseEditableFormItemHelp">Use to protect a completed course</lit>
+			<lit name="collaboratorsFormItemHelp">Collaborators can edit the course</lit>
+			<lit name="publishersFormItemHelp">Publishers can schedule their students on the course but can't edit it.</lit>
+			<lit name="courseNameFormItemHelp">Shown on the student list of courses</lit>
+			<lit name="courseDescriptionFormItemHelp">not currently used</lit>
+			<lit name="authorFormItemHelp">Shown in emails and credits</lit>
+			<lit name="contactEmailFormItemHelp">For emailing unit notifications</lit>
 			
 			<lit name="licencedToName">Licensed to {name}</lit>
 			<lit name="forgotPasswordLabel">Forgot your password?</lit>

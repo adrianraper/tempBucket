@@ -46,28 +46,28 @@
 			<s:FormItem id="courseNameFormItem" >
 				<s:TextInput id="aboutCourseNameTextInput" width="300" />
 				<s:helpContent>
-					<s:Label text="Shown on the student list of courses" />
+					<s:Label id="courseNameFormItemHelp" />
 				</s:helpContent>
 			</s:FormItem>
 			
 			<s:FormItem id="courseDescriptionFormItem" >
 				<s:TextArea id="aboutCourseDescriptionTextArea" width="300" heightInLines="4" />
 				<s:helpContent>
-					<s:Label text="not currently used" />
+					<s:Label id="courseDescriptionFormItemHelp" />
 				</s:helpContent>
 			</s:FormItem>
 			
 			<s:FormItem id="authorFormItem" >
 				<s:TextInput id="aboutAuthorTextInput" width="300" />
 				<s:helpContent>
-					<s:Label text="Shown in emails and credits" />
+					<s:Label id="authorFormItemHelp" />
 				</s:helpContent>
 			</s:FormItem>
 			
 			<s:FormItem id="contactEmailFormItem" >
 				<s:TextInput id="aboutEmailTextInput" width="300" />
 				<s:helpContent>
-					<s:Label text="For emailing unit notifications" />
+					<s:Label id="contactEmailFormItemHelp" />
 				</s:helpContent>
 			</s:FormItem>
 			
@@ -86,9 +86,9 @@
 				<s:Label id="ownerLabel" />
 			</s:FormItem>
 			<s:FormItem id="courseEditableFormItem" >
-				<s:CheckBox id="courseEditableCheckBox" />
+				<s:CheckBox id="courseLockedCheckBox" />
 				<s:helpContent>
-					<s:Label text="Use to protect a completed course" />
+					<s:Label id="courseEditableFormItemHelp" />
 				</s:helpContent>
 			</s:FormItem>
 			
@@ -98,7 +98,7 @@
 				<s:CheckBox id="groupCollaboratorsCheckBox" />
 				<s:CheckBox id="rootCollaboratorsCheckBox" />
 				<s:helpContent>
-					<s:Label text="Collaborators can edit the course" />
+					<s:Label id="collaboratorsFormItemHelp" />
 				</s:helpContent>
 			</s:FormItem>
 			<!-- Publishers -->
@@ -107,7 +107,7 @@
 				<s:CheckBox id="groupPublishersCheckBox" />
 				<s:CheckBox id="rootPublishersCheckBox" />
 				<s:helpContent>
-					<s:Label text="Publishers can schedule their students on the course but can't edit it." />
+					<s:Label id="publishersFormItemHelp" />
 				</s:helpContent>
 			</s:FormItem>
 		</s:Form>

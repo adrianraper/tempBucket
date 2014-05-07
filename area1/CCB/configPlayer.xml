@@ -5,12 +5,11 @@
 	<dbHost>2</dbHost>
 	<productCode>54</productCode>
 	<language>EN</language>
-	
 	<platform>browser</platform>
 	
 	<contentPath>http://dock.contentbench/CCB/</contentPath>
 	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteGateway>/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteStartFolder>http://dock.projectbench/area1/</remoteStartFolder>
 	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
 	

@@ -8,7 +8,7 @@
 	<platform>browser</platform>
 	
 	<contentPath>http://dock.contentbench/CCB/</contentPath>
-	<remoteDomain>/Software/</remoteDomain>
+	<remoteDomain>http://dock.projectbench/Software/</remoteDomain>
 	<remoteGateway>/Software/ResultsManager/web/amfphp/</remoteGateway>
     <remoteStartFolder>http://dock.projectbench/area1/</remoteStartFolder>
 	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>

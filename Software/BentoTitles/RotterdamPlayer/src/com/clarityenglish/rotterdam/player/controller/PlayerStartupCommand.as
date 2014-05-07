@@ -9,7 +9,6 @@ package com.clarityenglish.rotterdam.player.controller {
 	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
-	import com.clarityenglish.bento.vo.content.transform.PublicationCourseTransform;
 	import com.clarityenglish.bento.vo.content.transform.PublicationUnitTransform;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.rotterdam.player.view.PlayerApplicationMediator;
@@ -27,7 +26,7 @@ package com.clarityenglish.rotterdam.player.controller {
 			// Set the transforms that Rotterdam player uses on its menu.xml files
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;			
-			var transforms:Array = [ new ProgressExerciseScoresTransform(),
+			var menuTransforms:Array = [ new ProgressExerciseScoresTransform(),
 									 new ProgressSummaryTransform(),
 									 new HiddenContentTransform(),
 									 new DirectStartDisableTransform(configProxy.getDirectStart()),
@@ -40,11 +39,13 @@ package com.clarityenglish.rotterdam.player.controller {
 			}
 			*/
 			
-			xhtmlProxy.registerTransforms(transforms, [ Href.MENU_XHTML ]);
+			xhtmlProxy.registerTransforms(menuTransforms, [ Href.MENU_XHTML ]);
 			
 			// Set the transforms that Rotterdam player uses when loading its courses.xml files (gh#144)
-			// gh#689
-			xhtmlProxy.registerTransforms([ new CourseEnabledTransform(), new CourseAttributeCopyTransform(), new PublicationCourseTransform() ], [ Href.XHTML ], /^courses.xml$/);
+			// gh#689, gh#882
+			var courseTransforms:Array = [ new CourseEnabledTransform(), 
+										new CourseAttributeCopyTransform() ]; 
+			xhtmlProxy.registerTransforms(courseTransforms, [ Href.XHTML ], /^courses.xml$/);
 			
 			// gh#333
 			ProgressMediator.reloadMenuXHTMLOnProgress = true;
