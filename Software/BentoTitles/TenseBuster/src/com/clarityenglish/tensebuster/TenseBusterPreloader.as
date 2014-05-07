@@ -12,7 +12,7 @@ package com.clarityenglish.tensebuster
 	
 	public class TenseBusterPreloader extends SparkDownloadProgressBar
 	{
-		private var preloaderDisplay:Pencil;
+		private var preloaderDisplay:TenseBusterPreloaderDisplay;
 		private var showingDisplay:Boolean = false;
 		private var swfPercent:Number = 0;
 		private var rslPercent:Number = 0;
@@ -59,7 +59,8 @@ package com.clarityenglish.tensebuster
 					stageHeight = loaderInfo.height;
 				}
 				
-				if (stageWidth == 0 && stageHeight == 0) return;
+				if (stageWidth == 0 && stageHeight == 0) 
+					return;
 			}
 			
 			showingDisplay = true;
@@ -71,7 +72,7 @@ package com.clarityenglish.tensebuster
 		 */
 		override protected function createChildren():void {
 			if (!preloaderDisplay) {
-				preloaderDisplay = new Pencil();
+				preloaderDisplay = new TenseBusterPreloaderDisplay();
 				
 				onResize();
 				
