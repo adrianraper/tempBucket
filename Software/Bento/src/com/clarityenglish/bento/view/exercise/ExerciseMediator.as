@@ -48,15 +48,7 @@
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
-				// gh#265
-				if (node) {
-					if (bentoProxy.selectedNodeType == "test") {
-						var serverSide:Boolean = true;
-					} else {
-						serverSide = false;
-					}
-				}
-				
+				var serverSide:Boolean = (node && bentoProxy.selectedNodeType == "test"); // gh#265
 				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href, serverSide) : null;
 			}).toProperty(view, "href");
 			

@@ -156,6 +156,10 @@ package com.clarityenglish.bento.view.base {
 			invalidateProperties();
 		}
 		
+		public function get xhtml():XHTML {
+			return _xhtml;
+		}
+		
 		[Bindable(event="productVersionChanged")]
 		public function get productVersion():String {
 			return _productVersion;

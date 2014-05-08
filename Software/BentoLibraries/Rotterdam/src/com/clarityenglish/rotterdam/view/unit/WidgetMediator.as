@@ -58,6 +58,8 @@
 			
 			view.placeholder = copyProvider.getCopyForId("widgetPlaceholderText");
 			
+			view.setCopyProvider(copyProvider);
+			
 			// Widgets DON'T run off menu.xml, but they still need the href to construct relative hrefs (e.g. to load authoring exercises from the same folder)
 			if (bentoProxy.menuXHTML) view.menuXHTMLHref = bentoProxy.menuXHTML.href;
 			
