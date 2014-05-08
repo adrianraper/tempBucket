@@ -22,6 +22,8 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			//var exercise:Exercise = note.getBody() as Exercise;
+			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
 			log.info("Exercise stopped");

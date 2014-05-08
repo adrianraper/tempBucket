@@ -23,7 +23,7 @@ package com.clarityenglish.bento.controller {
 			super.execute(note);
 			
 			var exercise:Exercise = note.getBody() as Exercise;
-						
+			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
 			if (bentoProxy.currentExercise)

@@ -57,7 +57,8 @@ import org.puremvc.as3.interfaces.IMediator;
 				Bind.fromProperty(bentoProxy, "selectedExerciseNode").toProperty(view, "selectedExerciseNode");
 			
 			Bind.fromProperty(bentoProxy, "selectedExerciseNode").convert(function(node:XML):Href {
-				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href, (bentoProxy.selectedNodeType == "test")) : null; // gh#265
+				var serverSide:Boolean = (node && bentoProxy.selectedNodeType == "test"); // gh#265
+				return (node) ? bentoProxy.createRelativeHref(Href.EXERCISE, node.@href, serverSide) : null;
 			}).toProperty(view, "href");
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;

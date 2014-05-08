@@ -192,7 +192,7 @@
 				{foreach from=$questions item=question name=question}
 				<{$exerciseType} block="q{$smarty.foreach.question.index}">
 					{foreach from=$question->answers->answer item=answer name=answer}
-					<answer source="q{$smarty.foreach.question.index}a{$smarty.foreach.answer.index}">
+					<answer source="q{$smarty.foreach.question.index}a{$smarty.foreach.answer.index}" correct="{$answer.correct}">
 					</answer>
 					{/foreach}
 				</{$exerciseType}>

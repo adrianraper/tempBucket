@@ -81,7 +81,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					break;
 				case BBNotifications.EXERCISE_STARTED:
 					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-					if (bentoProxy.selectedCourseNode) view.courseCaption = bentoProxy.selectedCourseNode.@caption.toLowerCase();
+					if (bentoProxy.selectedCourseNode) view.courseCaption = bentoProxy.selectedCourseNode.@caption.toLowerCase(); // TODO: this should be in IELTS, not Bento
 					
 					view.stopAllAudio();
 					break;

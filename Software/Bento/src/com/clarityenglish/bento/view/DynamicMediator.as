@@ -37,7 +37,7 @@ package com.clarityenglish.bento.view {
 			super.onRemove();
 			
 			// As long as this dynamic view isn't for the purpose of printing send an EXERCISE_STOP notification
-			if (view.media != "print") sendNotification(BBNotifications.EXERCISE_STOP);
+			if (view.media != "print") sendNotification(BBNotifications.EXERCISE_STOP, view.xhtml);
 		}
 		
 		public override function listNotificationInterests():Array {
