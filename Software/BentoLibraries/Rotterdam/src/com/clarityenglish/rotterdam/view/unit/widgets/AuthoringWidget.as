@@ -1,14 +1,15 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
-	import com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView;
+	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.vo.Href;
 	
-	import flash.utils.setTimeout;
 	import flash.events.Event;
+	
+	import mx.events.ResizeEvent;
 	
 	public class AuthoringWidget extends AbstractWidget {
 		
 		[SkinPart]
-		public var xhtmlExerciseView:XHTMLExerciseView;
+		public var dynamicView:DynamicView;
 		
 		public function AuthoringWidget() {
 			super();
@@ -18,21 +19,29 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case xhtmlExerciseView:
+				case dynamicView:
 					if (!_xml.hasOwnProperty("@tempid")) { // THIS IS TEMPORARY
-						xhtmlExerciseView.href = menuXHTMLHref.createRelativeHref(Href.EXERCISE, _xml.@href, true);
+						dynamicView.href = menuXHTMLHref.createRelativeHref(Href.EXERCISE, _xml.@href, true);
 					}
 					break;
 			}
 		}
 		
-		
 		protected override function validateUnitListLayout(e:Event=null):void {
 			super.validateUnitListLayout(e);
 			
-			xhtmlExerciseView.forceRelayout();
+			//xhtmlExerciseView.forceRelayout();
+			
+			/*callLater(function() {
+				dynamicView.invalidateDisplayList();
+				dynamicView.invalidateSize();
+				dynamicView.validateNow();
+			});*/
+			
+			// TODO: Need to figure out how to do this properly - this is causing issues
+			
+			dynamicView.dispatchEvent(new ResizeEvent(ResizeEvent.RESIZE, true));
 		}
-
 		
 	}
 	
