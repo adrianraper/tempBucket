@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:widgets="skins.rotterdam.unit.widgets.*"
 		minHeight="150"
-		xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*">
+		xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*" xmlns:view="com.clarityenglish.bento.view.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.AuthoringWidget")]
@@ -27,5 +27,5 @@
 	
 	<!-- Exercise -->
 	<!-- TODO: This doesn't seem to get the correct width/height, or give the correct width/height to the containing widget -->
-	<components:XHTMLExerciseView id="xhtmlExerciseView" left="5" right="5" top="32" />
+	<view:DynamicView id="dynamicView" left="5" right="5" top="32" />
 </s:Skin>

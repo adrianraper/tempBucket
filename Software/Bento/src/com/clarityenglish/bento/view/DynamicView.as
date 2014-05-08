@@ -9,20 +9,19 @@ package com.clarityenglish.bento.view {
 	import flash.utils.getDefinitionByName;
 	
 	import mx.core.UIComponent;
+	import mx.events.FlexEvent;
 	
 	import skins.bento.DynamicViewSkin;
 	import skins.bento.exercise.XHTMLExerciseSkin;
 	
 	import spark.components.Group;
 	import spark.components.supportClasses.Skin;
-	import mx.events.FlexEvent;
 	
 	public class DynamicView extends BentoView {
 		
 		public static const DEFAULT_VIEW:String = "com.clarityenglish.bento.view.xhtmlexercise.components.XHTMLExerciseView";
 		
-		/*[SkinPart(required="true")]
-		public var contentGroup:Group;*/
+		protected var bentoView:BentoView;
 		
 		protected override function onPreinitialize(event:FlexEvent):void {
 			super.onPreinitialize(event);
@@ -53,7 +52,7 @@ package com.clarityenglish.bento.view {
 				
 				if (view is BentoView) {
 					// Create the new view and add it.  For the moment just use the default XHTMLExerciseView, but this will be definable in the XML
-					var bentoView:BentoView = view as BentoView;
+					bentoView = view as BentoView;
 					bentoView.percentWidth = bentoView.percentHeight = 100;
 					bentoView.left = bentoView.right = bentoView.top = bentoView.bottom = 0;
 					bentoView.media = media;
@@ -66,6 +65,21 @@ package com.clarityenglish.bento.view {
 				}
 			}
 		}
+		
+		/*public override function invalidateDisplayList():void {
+			super.invalidateDisplayList();
+			if (bentoView) (bentoView as UIComponent).invalidateDisplayList();
+		}
+		
+		public override function invalidateSize():void {
+			super.invalidateSize();
+			if (bentoView) (bentoView as UIComponent).invalidateSize();
+		}
+		
+		public override function validateNow():void {
+			super.validateNow();
+			if (bentoView) (bentoView as UIComponent).validateNow();
+		}*/
 		
 		public function get viewName():String {
 			var exercise:Exercise = _xhtml as Exercise;
