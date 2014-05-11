@@ -22,14 +22,36 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			//var exercise:Exercise = note.getBody() as Exercise;
+			var exercise:Exercise = note.getBody() as Exercise;
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
 			log.info("Exercise stopped");
 			
 			// Stop the current exercise (if there is one) and clean up
-			if (bentoProxy.currentExercise) {
+			if (exercise) {
+				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
+				var exerciseHasQuestions:Boolean = exercise.hasQuestions();
+				
+				// #294 - if the exercise has no questions then the score gets written here (if it does have questions it gets written when then marking window opens)
+				// a) non-marked exercises are covered
+				// b) the full time of the exercise, including feedback study, is covered.
+				if (!exercise.hasQuestions()) {
+					var exerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
+					
+					// Add more data to the exerciseMark ready to send it as a score
+					exerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
+					exerciseMark.UID = bentoProxy.getExerciseUID(exercise.href);
+					
+					sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
+				}
+				
+				bentoProxy.currentExercise = null;
+				facade.removeProxy(ExerciseProxy.NAME(exercise));
+				sendNotification(BBNotifications.EXERCISE_STOPPED, exercise);
+			}
+			
+			/*if (bentoProxy.currentExercise) {
 				var exercise:Exercise = bentoProxy.currentExercise;
 				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
 				var exerciseHasQuestions:Boolean = exercise.hasQuestions();
@@ -50,8 +72,7 @@ package com.clarityenglish.bento.controller {
 				bentoProxy.currentExercise = null;
 				facade.removeProxy(ExerciseProxy.NAME(exercise));
 				sendNotification(BBNotifications.EXERCISE_STOPPED, exercise);
-				
-			}
+			}*/
 		}
 		
 	}

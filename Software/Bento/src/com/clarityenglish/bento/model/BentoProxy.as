@@ -1,12 +1,14 @@
 package com.clarityenglish.bento.model {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.system.System;
+	import flash.utils.Dictionary;
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
@@ -32,26 +34,32 @@ package com.clarityenglish.bento.model {
 		
 		private var _menuXHTML:XHTML;
 		
-		private var _currentExercise:Exercise;
-		
 		private var dirtyObj:Object;
 		
-		private var _selectedNode:XML;
+		//private var _currentExercise:Exercise;
+		//private var _selectedNode:XML;
+		
+		private var _currentExercise:Exercise;
+		private var _currentExercises:Dictionary; // all exercises currently running
+		private var _selectedNodes:Dictionary; // a map of exercise to XML
 		
 		public function BentoProxy() {
 			super(NAME);
 			
 			dirtyObj = {};
+			
+			_currentExercises = new Dictionary(true);
+			_selectedNodes = new Dictionary(true);
 		}
 		
 		public function set selectedNode(value:XML):void {
-			_selectedNode = value;
+			_selectedNodes[currentExercise] = value;
 			dispatchEvent(new Event("selectedNodeChanged"));
 		}
 		
 		[Bindable(event="selectedNodeChanged")]
 		public function get selectedNode():XML {
-			return _selectedNode;
+			return _selectedNodes[currentExercise];
 		}
 		
 		[Bindable(event="selectedNodeChanged")]
@@ -86,9 +94,9 @@ package com.clarityenglish.bento.model {
 			// #472
 			if (_menuXHTML) System.disposeXML(_menuXHTML.xml);
 			_menuXHTML = null;
-			_currentExercise = null;
+			_currentExercises = new Dictionary(true);
 			// TB relogin
-			_selectedNode = null;
+			_selectedNodes = new Dictionary(true);
 			dirtyObj = {}; // gh#90
 		}
 		
@@ -142,10 +150,32 @@ package com.clarityenglish.bento.model {
 		}
 		
 		public function set currentExercise(value:Exercise):void {
-			if (_currentExercise != null && value != null)
+			if (!ConfigProxy.allowMultipleExercises && _currentExercise != null && value != null)
 				throw new Error("Bento does not currently support running multiple exercises at the same time");
 			
+			if (value) _currentExercises[value] = true;
 			_currentExercise = value;
+		}
+		
+		public function exerciseStop(value:Exercise):void {
+			if (!ConfigProxy.allowMultipleExercises)
+				throw new Error("exerciseStop is only available for titles that support multiple exercises");
+			
+			if (!_currentExercises[value])
+				throw new Error("Attempted to stop an exercise that wasn't already started");
+			
+			if (currentExercise === value) currentExercise = null;
+			delete _currentExercises[value];
+		}
+		
+		public function exerciseSwitch(value:Exercise):void {
+			if (!ConfigProxy.allowMultipleExercises)
+				throw new Error("exerciseSwitch is only available for titles that support multiple exercises");
+			
+			if (!_currentExercises[value])
+				throw new Error("Attempted to switch to an exercise that wasn't already started");
+			
+			currentExercise = value;
 		}
 		
 		public function getNextExerciseNode():XML {

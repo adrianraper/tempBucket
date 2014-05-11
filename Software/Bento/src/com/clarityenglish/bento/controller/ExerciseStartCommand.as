@@ -3,6 +3,7 @@ package com.clarityenglish.bento.controller {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	
 	import mx.logging.ILogger;
@@ -26,7 +27,7 @@ package com.clarityenglish.bento.controller {
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			
-			if (bentoProxy.currentExercise)
+			if (bentoProxy.currentExercise && !ConfigProxy.allowMultipleExercises)
 				sendNotification(BBNotifications.EXERCISE_STOP, bentoProxy.currentExercise);
 			
 			bentoProxy.currentExercise = exercise;
