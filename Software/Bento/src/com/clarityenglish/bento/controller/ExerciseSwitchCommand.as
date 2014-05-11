@@ -26,6 +26,8 @@ package com.clarityenglish.bento.controller {
 			
 			log.info("Exercise switched");
 			
+			bentoProxy.exerciseSwitch(exercise);
+			
 			// TODO: switch!
 			
 			sendNotification(BBNotifications.EXERCISE_SWITCHED, exercise);
