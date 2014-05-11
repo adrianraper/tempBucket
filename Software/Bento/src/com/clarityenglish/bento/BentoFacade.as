@@ -122,6 +122,7 @@
 			registerCommand(BBNotifications.WARN_DATA_LOSS, WarningShowCommand);
 			registerCommand(BBNotifications.EXERCISE_START, ExerciseStartCommand);
 			registerCommand(BBNotifications.EXERCISE_STOP, ExerciseStopCommand);
+			registerCommand(BBNotifications.EXERCISE_SWITCH, ExerciseSwitchCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_NEXT, ExerciseShowNextCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_PREVIOUS, ExerciseShowPreviousCommand);
 			registerCommand(BBNotifications.EXERCISE_SHOW_OFFSET, ExerciseShowOffsetCommand);

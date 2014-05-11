@@ -53,6 +53,8 @@
 		public static const EXERCISE_STARTED:String = "bb/exercise_started";
 		public static const EXERCISE_STOP:String = "bb/exercise_stop";
 		public static const EXERCISE_STOPPED:String = "bb/exercise_stopped";
+		public static const EXERCISE_SWITCH:String = "bb/exercise_switch";
+		public static const EXERCISE_SWITCHED:String = "bb/exercise_switched";
 		
 		public static const PDF_SHOW:String = "bb/pdf_show";
 		
