@@ -27,7 +27,6 @@
 	
 	<!-- Exercise controls -->
 	<s:HGroup width="100%" left="5" right="5" top="35">
-		<s:Button id="startAgainButton" />
 		<s:Button id="markingButton" />
 	</s:HGroup>
 	

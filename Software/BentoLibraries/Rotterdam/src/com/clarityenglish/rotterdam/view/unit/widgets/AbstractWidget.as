@@ -95,8 +95,10 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		// gh#106
 		public var playVideo:Signal = new Signal(XML);
 		public var playAudio:Signal = new Signal(XML);
+		// Authoring specific signals
 		public var exerciseSwitch:Signal = new Signal(Exercise);
-
+		public var showMarking:Signal = new Signal(Exercise);
+		
 		private var captureCaption:String = "";
 		
 		// gh#899
