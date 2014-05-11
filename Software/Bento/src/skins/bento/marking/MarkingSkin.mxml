@@ -14,7 +14,7 @@
 		<s:VerticalLayout />
 	</s:layout>
 	
-	<s:Group id="content" width="100%">
+	<s:VGroup id="content" width="100%">
 		<s:Rect width="100%" height="100%">
 			<s:fill>
 				<s:SolidColor color="#FFFFFF" />
@@ -24,7 +24,7 @@
 		<s:Label text="Correct: {hostComponent.exerciseMark.correctCount}" />
 		<s:Label text="Incorrect: {hostComponent.exerciseMark.incorrectCount}" />
 		<s:Label text="Missed: {hostComponent.exerciseMark.missedCount}" />
-	</s:Group>
+	</s:VGroup>
 
 	<s:Button id="tryAgainButton" label="Try again" useHandCursor="true" />
 	<s:Button id="seeAnswersButton" label="See answers" useHandCursor="true" />

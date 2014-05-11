@@ -47,12 +47,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 						dynamicView.href = menuXHTMLHref.createRelativeHref(Href.EXERCISE, _xml.@href, true);
 					}
 					break;
-				case startAgainButton:
-					startAgainButton.addEventListener(MouseEvent.CLICK, function():void { /*startAgain.dispatch();*/ } );
-					startAgainButton.label = copyProvider.getCopyForId("exerciseStartAgainButton");
-					break;
 				case markingButton:
-					markingButton.addEventListener(MouseEvent.CLICK, function():void { trace("marking"); /*showMarking.dispatch();*/ } );
+					markingButton.addEventListener(MouseEvent.CLICK, onShowMarking);
 					markingButton.label = copyProvider.getCopyForId("exerciseMarkingButton");
 					break;
 			}
@@ -78,6 +74,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			// Switch exercise
 			if (dynamicView.xhtml is Exercise)
 				exerciseSwitch.dispatch(dynamicView.xhtml as Exercise);
+		}
+		
+		protected function onShowMarking(e:Event):void {
+			// Mark exercise
+			if (dynamicView.xhtml is Exercise)
+				showMarking.dispatch(dynamicView.xhtml as Exercise);
 		}
 		
 	}

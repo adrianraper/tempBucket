@@ -75,6 +75,7 @@
 			view.playAudio.add(onPlay);
 			
 			view.exerciseSwitch.add(onExerciseSwitch);
+			view.showMarking.add(onShowMarking);
 			
 			injectCopy();
 		}
@@ -92,6 +93,7 @@
 			view.playAudio.remove(onPlay);
 			
 			view.exerciseSwitch.remove(onExerciseSwitch);
+			view.showMarking.remove(onShowMarking);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -216,6 +218,10 @@
 		
 		protected function onExerciseSwitch(exercise:Exercise):void {
 			facade.sendNotification(BBNotifications.EXERCISE_SWITCH, exercise);
+		}
+		
+		protected function onShowMarking(exercise:Exercise):void {
+			sendNotification(BBNotifications.MARKING_SHOW, { exercise: exercise } );
 		}
 		
 	}
