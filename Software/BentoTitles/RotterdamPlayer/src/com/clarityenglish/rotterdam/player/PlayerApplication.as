@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.player {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.interfaces.IBentoApplication;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	import mx.events.FlexEvent;
 	import mx.managers.BrowserManager;
@@ -21,6 +22,8 @@ package com.clarityenglish.rotterdam.player {
 			super();
 			
 			StateUtil.addStates(this, [ "loading", "login", "title", "credits" ], true);
+			
+			ConfigProxy.allowMultipleExercises = true; // gh#885
 			
 			addEventListener(FlexEvent.CREATION_COMPLETE, creationComplete);
 		}

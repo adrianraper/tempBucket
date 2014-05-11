@@ -45,12 +45,11 @@ package com.clarityenglish.common.model {
 		
 		public static const NAME:String = "ConfigProxy";
 		
+		public static var allowMultipleExercises:Boolean; // gh#885
+		
 		private var config:Config;
 		
 		private var _dateFormatter:DateFormatter;
-		
-		// gh#853
-		private var _directStartOverride:Boolean = false;
 
 		/**
 		 * Configuration information comes from three sources
@@ -92,7 +91,6 @@ package com.clarityenglish.common.model {
 			var timeStamp:Date = new Date();
 			config.instanceID = timeStamp.getTime().toString();
 			
-			_directStartOverride = false;
 		}
 		
 		/**
@@ -403,13 +401,9 @@ package com.clarityenglish.common.model {
 		public function getDirectStart():Object {
 			var directStartObject:Object = new Object();
 			
-			if (_directStartOverride)
-				return directStartObject;
-			
-			if (Config.DEVELOPER.name == "DKweb") {
+			if (Config.DEVELOPER.name == "DK") {
 				//return { courseID: "1287130400000" };
 				//return { exerciseID: "2287130110007" };
-				return { exerciseID: "2287130110005" };
 			}
 			
 			if (Config.DEVELOPER.name == "AR") {
@@ -418,17 +412,10 @@ package com.clarityenglish.common.model {
 			}
 			
 			// #336 SCORM needs to be checked here
+			// TODO: This is overriden by the next line so could be removed?
 			var scormProxy:SCORMProxy = facade.retrieveProxy(SCORMProxy.NAME) as SCORMProxy;
 			if (config.scorm) {
-				// gh#858
-				if (scormProxy.getBookmark().exerciseID) {
-					var exerciseIDArray:Array = scormProxy.getBookmark().exerciseID.split(".");
-					directStartObject.exerciseID = exerciseIDArray[exerciseIDArray.length - 1];
-				} else {
-					directStartObject = scormProxy.getBookmark();
-				}
-				
-				directStartObject.scorm = true;
+				directStartObject = scormProxy.getBookmark();
 			} else {
 				// #338. This is using a utility parsing function, it is for data from queryString
 				// It doesn't actually have to be SCORM at all, works for all passed parameters
@@ -442,12 +429,6 @@ package com.clarityenglish.common.model {
 				directStartObject.courseID = config.courseID;
 			
 			return directStartObject;
-		}
-		// gh#853
-		public function clearDirectStart():void {
-			//config.courseID = null;
-			//config.startingPoint = null;
-			_directStartOverride = true;
 		}
 		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */

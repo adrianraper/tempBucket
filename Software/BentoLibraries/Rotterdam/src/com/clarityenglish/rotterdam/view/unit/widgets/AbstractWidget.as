@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkCaptureEvent;
@@ -94,6 +95,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		// gh#106
 		public var playVideo:Signal = new Signal(XML);
 		public var playAudio:Signal = new Signal(XML);
+		public var exerciseSwitch:Signal = new Signal(Exercise);
 
 		private var captureCaption:String = "";
 		
@@ -115,6 +117,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange, false, 0, true);
 		}
 		
+
 		// gh#899
 		public function setCopyProvider(copyProvider:CopyProvider):void {
 			this.copyProvider = copyProvider;
