@@ -3,6 +3,7 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -76,6 +77,8 @@
 				view.playAudio.add(onPlay);
 			//}	
 			
+			view.exerciseSwitch.add(onExerciseSwitch);
+			
 			injectCopy();
 		}
 		
@@ -90,6 +93,8 @@
 			// gh#106
 			view.playVideo.remove(onPlay);
 			view.playAudio.remove(onPlay);
+			
+			view.exerciseSwitch.remove(onExerciseSwitch);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -179,7 +184,7 @@
 		 * @param widget
 		 * @param uid
 		 */
-		private function onOpenContent(widget:XML, uid:String):void {
+		protected function onOpenContent(widget:XML, uid:String):void {
 			// gh#234 Disable Clarity links on tablets
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
@@ -210,6 +215,11 @@
 			exerciseMark.duration = 120;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
-		}		
+		}
+		
+		protected function onExerciseSwitch(exercise:Exercise):void {
+			facade.sendNotification(BBNotifications.EXERCISE_SWITCH, exercise);
+		}
+		
 	}
 }

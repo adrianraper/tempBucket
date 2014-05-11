@@ -6,7 +6,7 @@
 							initialize="onInitialize(event)">
 	
 	<fx:Metadata>
-		[SWF(width="990", height="740")]
+		[SWF(width="1050", height="740")]
 	</fx:Metadata>
 	
 	<fx:Style>

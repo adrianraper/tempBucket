@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
 	import com.clarityenglish.bento.view.DynamicView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	
 	import flash.events.Event;
@@ -26,6 +27,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		public function AuthoringWidget() {
 			super();
+			
+			// Add a top priority, capture phase, click listener which switches exercise before anything else has a chance to happen #885
+			addEventListener(MouseEvent.CLICK, onMouseClick, true, int.MAX_VALUE);
+		}
+		
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			
+			removeEventListener(MouseEvent.CLICK, onMouseClick);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -42,7 +52,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					startAgainButton.label = copyProvider.getCopyForId("exerciseStartAgainButton");
 					break;
 				case markingButton:
-					markingButton.addEventListener(MouseEvent.CLICK, function():void { /*showMarking.dispatch();*/ } );
+					markingButton.addEventListener(MouseEvent.CLICK, function():void { trace("marking"); /*showMarking.dispatch();*/ } );
 					markingButton.label = copyProvider.getCopyForId("exerciseMarkingButton");
 					break;
 			}
@@ -62,6 +72,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			// TODO: Need to figure out how to do this properly - this is causing issues
 			
 			dynamicView.dispatchEvent(new ResizeEvent(ResizeEvent.RESIZE, true));
+		}
+		
+		protected function onMouseClick(e:Event):void {
+			// Switch exercise
+			if (dynamicView.xhtml is Exercise)
+				exerciseSwitch.dispatch(dynamicView.xhtml as Exercise);
 		}
 		
 	}
