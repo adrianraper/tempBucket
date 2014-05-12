@@ -60,7 +60,8 @@ $testingTriggers = "";
 //$testingTriggers = "R2I announce email";
 //$testingTriggers .= "Service";
 //$testingTriggers .= "terms and conditions";
-$testingTriggers .= "TBV10 release";
+//$testingTriggers .= "TBV10 release";
+$testingTriggers .= "C-Builder upgrade";
 
 	if (stristr($testingTriggers, "Service")) {
 		// These are not sent through triggers but programmatically
@@ -115,6 +116,22 @@ $testingTriggers .= "TBV10 release";
 			$templateID = $_REQUEST['template'];
 		} else {
 			$templateID = 'tbV10release';
+		}
+		$messageType = Trigger::TRIGGER_TYPE_UPGRADE;
+		
+	} else if (stristr($testingTriggers, "C-Builder upgrade")) {
+		// These are not sent through triggers but programmatically
+		$conditions['active'] = true;
+		$conditions['productCode'] = '54'; 
+		$conditions['selfHost'] = 'false';
+		$addReseller = false;
+		$rootList = null;
+		$rootList = array(163,38,10074,10732);
+		//$rootList = array(14276,14277,14278,14279,14280,14281,14282,14283,14284,14286,14287,14288,14290,14291,14292);
+		if (isset($_REQUEST['template'])) {
+			$templateID = $_REQUEST['template'];
+		} else {
+			$templateID = 'ccbV880upgrade';
 		}
 		$messageType = Trigger::TRIGGER_TYPE_UPGRADE;
 	}
