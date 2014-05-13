@@ -40,7 +40,8 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			}
 			
-			node.@src = src;
+			// gh#875
+			node.@src = UniversalVideoPlayer.providerForSource(src);
 		}
 		
 	}

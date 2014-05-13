@@ -22,6 +22,11 @@ package com.clarityenglish.controls.video {
 		
 		function resize():void;
 		
+		// gh#875
+		function toSource(source:Object):Object;
+		function fromSource(src:Object):Object;
+		function isRightProvider(source:Object):Boolean;
+		
 		/**
 		 * (Flash) If supported, start playing the video.
 		 */

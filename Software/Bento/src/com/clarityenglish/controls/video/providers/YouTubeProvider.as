@@ -34,6 +34,18 @@ package com.clarityenglish.controls.video.providers {
 		}
 		
 		/**
+		 * A helper function to get the id out of the stored src
+		 * gh#875
+		 * @param source
+		 * @return 
+		 */
+		protected function getIdFromSrc(source:Object):String {
+			var pattern:RegExp = /youtube:(\w+)/i;
+			var matches:Array = source.match(pattern);
+			return matches[1];
+		}
+		
+		/**
 		 * This provider applies if the source is in the format 'youtube:<id>'
 		 *  
 		 * @param source
@@ -53,6 +65,35 @@ package com.clarityenglish.controls.video.providers {
 			var pattern:RegExp = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
 			var matches:Array = source.match(pattern);
 			return (matches && matches.length == 2);
+		}
+		
+		/**
+		 * This provider applies if the src is in the format 'youtube:12345678'
+		 * gh#875
+		 * @param source
+		 * @return 
+		 * 
+		 */
+		public function isRightProvider(source:Object):Boolean {
+			var pattern:RegExp = /youtube:(\w+)/i;
+			var matches:Array = source.match(pattern);
+			return (matches && matches.hasOwnProperty(1) && matches[1] != null);
+		}
+		
+		/**
+		 * gh#875 Create a URL that the video player can use from the current provider URL and the id
+		 * 
+		 */
+		public function toSource(src:Object):Object {
+			return 'http://youtu.be/' + this.getIdFromSrc(src); 
+		}
+		
+		/**
+		 * gh#875 Create an exercise node format from the URL
+		 * 
+		 */
+		public function fromSource(source:Object):Object {
+			return 'youtube:' + this.getId(source); 
 		}
 		
 		/**

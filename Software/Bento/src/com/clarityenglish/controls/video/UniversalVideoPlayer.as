@@ -36,6 +36,17 @@ package com.clarityenglish.controls.video {
 			return false;
 		}
 		
+		// gh#875 Format the exercise node src value for the provider that will handle it
+		public static function providerForSource(value:Object):Object {
+			// Which provider can handle the source?
+			for each (var providerClass:Class in providers) {
+				var provider:IVideoProvider = new providerClass();
+				if (provider.canHandleSource(value))
+					return provider.fromSource(value);
+			}
+			return null;
+		}
+		
 		public function UniversalVideoPlayer() {
 			super();
 			
@@ -57,12 +68,17 @@ package com.clarityenglish.controls.video {
 				addElement(videoPlayer as IVisualElement);
 			}
 		}
-		
+
+		/**
+		 * Expects source like vimeo:12345678, which comes from saved src value in exercise node
+		 * 
+		 */
 		public function set source(value:Object):void {
 			// Go through the registered providers, selecting the first one that can handle this source
 			var provider:IVideoProvider;
 			for each (var providerClass:Class in providers) {
-				if (new providerClass(videoPlayer).canHandleSource(value)) {
+				// gh#875 
+				if (new providerClass(videoPlayer).isRightProvider(value)) {
 					provider = new providerClass(videoPlayer);
 					break;
 				}
@@ -76,7 +92,8 @@ package com.clarityenglish.controls.video {
 				(videoPlayer as IVideoProvidable).provider = provider;
 				
 				// Set the source
-				videoPlayer.source = value;
+				// gh#875
+				videoPlayer.source = provider.toSource(value);
 			}
 		}
 		
