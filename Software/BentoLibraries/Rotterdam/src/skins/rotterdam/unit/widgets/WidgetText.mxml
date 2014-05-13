@@ -194,7 +194,6 @@
 					if (urlTextFlowElement.parent is LinkElement) {
 						var linkElement:LinkElement = urlTextFlowElement.parent as LinkElement;
 						var urlString:String = linkElement.href;
-						trace("url: "+linkElement.href);
 					}
 
 					dispatchEvent(new WidgetLinkCaptureEvent(WidgetLinkCaptureEvent.CAPTION_SELECTED, false, caption, urlString));

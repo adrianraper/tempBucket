@@ -59,12 +59,17 @@ EOD;
 		$country = $vars['COUNTRY'];
 		$email = $vars['EMAIL'];
 		$MachineID = $vars['MACHINEID'];
-		$ip = $_SERVER["REMOTE_ADDR"]; 
-		if (isset($_SERVER['HTTP_TRUE_Client_IP'])) {
-			$ip=$_SERVER['HTTP_TRUE_Client_IP'];
-		} elseif (isset($_SERVER["HTTP_CLIENT_IP"])) { 
-			$ip = $_SERVER["HTTP_CLIENT_IP"]; 
-		}	
+
+		// gh#895
+		if (isset ( $_SERVER ['HTTP_X_FORWARDED_FOR'] )) {
+			$ip = $_SERVER ['HTTP_X_FORWARDED_FOR'];
+		} elseif (isset ( $_SERVER ['HTTP_TRUE_CLIENT_IP'] )) {
+			$ip = $_SERVER ['HTTP_TRUE_CLIENT_IP'];
+		} elseif (isset ( $_SERVER ["HTTP_CLIENT_IP"] )) {
+			$ip = $_SERVER ["HTTP_CLIENT_IP"];
+		} else {
+			$ip = $_SERVER ["REMOTE_ADDR"];
+		}
 		
 		$bindingParams = array($instName, $product, $Expiry, $Licences, $dateNow, $SerialNumber,$address1,$address2,$address3,$address4);
 		$bindingParams[] = $city;
