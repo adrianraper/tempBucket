@@ -1,6 +1,8 @@
 package com.clarityenglish.controls.video {
 	import com.clarityenglish.controls.video.players.FlashVideoPlayer;
 	import com.clarityenglish.controls.video.players.HTMLVideoPlayer;
+	import com.clarityenglish.controls.video.providers.AwsProvider;
+	import com.clarityenglish.controls.video.providers.RackspaceProvider;
 	import com.clarityenglish.controls.video.providers.VimeoProvider;
 	import com.clarityenglish.controls.video.providers.YouTubeProvider;
 	
@@ -24,7 +26,9 @@ package com.clarityenglish.controls.video {
 		
 		protected static var providers:Array = [
 			YouTubeProvider,
-			VimeoProvider
+			VimeoProvider,
+			//AwsProvider,
+			//RackspaceProvider
 		];
 		
 		public static function canHandleSource(value:Object):Boolean {
