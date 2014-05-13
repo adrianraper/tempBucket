@@ -13,8 +13,21 @@ package com.clarityenglish.controls.video.providers {
 		
 		protected var vimeoPlayer:VimeoPlayer;
 
+		protected var urlPattern:RegExp;
+		protected var srcPattern:RegExp;
+		protected var urlBase:String;
+		protected var srcBase:String;
+		protected var idPattern:RegExp;
+		
 		public function VimeoProvider(videoPlayer:IVideoPlayer = null) {
 			this.videoPlayer = videoPlayer;
+			
+			// gh#875
+			urlPattern = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/i;
+			srcPattern = /vimeo:(\d+)/i;
+			urlBase = 'https:\/\/vimeo.com\/{id}';
+			srcBase = 'vimeo:{id}';
+			idPattern = /{id}/i;
 		}
 		
 		/**
@@ -24,8 +37,8 @@ package com.clarityenglish.controls.video.providers {
 		 * @return 
 		 */
 		protected function getId(source:Object):String {
-			var pattern:RegExp = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/i;
-			var matches:Array = source.match(pattern);
+			//var pattern:RegExp = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/i;
+			var matches:Array = source.match(urlPattern);
 			return matches[3];
 		}
 		
@@ -36,8 +49,8 @@ package com.clarityenglish.controls.video.providers {
 		 * @return 
 		 */
 		protected function getIdFromSrc(source:Object):String {
-			var pattern:RegExp = /vimeo:(\d+)/i;
-			var matches:Array = source.match(pattern);
+			//var pattern:RegExp = /vimeo:(\d+)/i;
+			var matches:Array = source.match(srcPattern);
 			return matches[1];
 		}
 		
@@ -49,8 +62,8 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function canHandleSource(source:Object):Boolean {
-			var pattern:RegExp = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/i;
-			var matches:Array = source.match(pattern);
+			//var pattern:RegExp = /https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/i;
+			var matches:Array = source.match(urlPattern);
 			return (matches && matches.hasOwnProperty(3) && matches[3] != null);
 		}
 		
@@ -62,8 +75,8 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function isRightProvider(source:Object):Boolean {
-			var pattern:RegExp = /vimeo:(\d)+/i;
-			var matches:Array = source.match(pattern);
+			//var pattern:RegExp = /vimeo:(\d)+/i;
+			var matches:Array = source.match(srcPattern);
 			return (matches && matches.hasOwnProperty(1) && matches[1] != null);
 		}
 		
@@ -72,7 +85,8 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function toSource(src:Object):Object {
-			return 'https://vimeo.com/' + this.getIdFromSrc(src); 
+			//return 'https://vimeo.com/' + this.getIdFromSrc(src); 
+			return urlBase.replace(idPattern, this.getIdFromSrc(src));
 		}
 		
 		/**
@@ -80,7 +94,8 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function fromSource(source:Object):Object {
-			return 'vimeo:' + this.getId(source); 
+			//return 'vimeo:' + this.getId(source); 
+			return srcBase.replace(idPattern, this.getId(source));
 		}
 		
 		/**

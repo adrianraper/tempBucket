@@ -41,7 +41,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			}
 			
 			// gh#875
-			node.@src = UniversalVideoPlayer.providerForSource(src);
+			node.@src = UniversalVideoPlayer.formatSource(src);
 		}
 		
 	}

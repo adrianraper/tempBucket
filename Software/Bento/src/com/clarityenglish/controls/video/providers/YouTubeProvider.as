@@ -1,4 +1,6 @@
 package com.clarityenglish.controls.video.providers {
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.controls.video.IVideoPlayer;
 	import com.clarityenglish.controls.video.IVideoProvider;
 	import com.clarityenglish.controls.video.events.VideoEvent;
@@ -11,14 +13,31 @@ package com.clarityenglish.controls.video.providers {
 	import mx.core.IVisualElementContainer;
 	import mx.core.UIComponent;
 	
+	import org.puremvc.as3.patterns.facade.Facade;
+	
 	public class YouTubeProvider implements IVideoProvider {
 		
 		protected var videoPlayer:IVideoPlayer;
 		
 		protected var swfLoader:SWFLoader;
 		
+		protected var urlPattern:RegExp;
+		protected var srcPattern:RegExp;
+		protected var urlBase:String;
+		protected var srcBase:String;
+		protected var idPattern:RegExp;
+		
 		public function YouTubeProvider(videoPlayer:IVideoPlayer = null) {
 			this.videoPlayer = videoPlayer;
+			
+			// gh#875
+			//var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+			//urlPattern = copyProvider.getCopyForId('youTubePattern');
+			urlPattern = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
+			srcPattern = /youtube:(\w+)/i;
+			urlBase = 'http:\/\/youtu.be\/{id}';
+			srcBase = 'youtube:{id}';
+			idPattern = /{id}/i;
 		}
 		
 		/**
@@ -28,8 +47,7 @@ package com.clarityenglish.controls.video.providers {
 		 * @return 
 		 */
 		protected function getId(source:Object):String {
-			var youtubePattern:RegExp = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
-			var matches:Array = source.match(youtubePattern);
+			var matches:Array = source.match(urlPattern);
 			return matches[1];
 		}
 		
@@ -40,13 +58,12 @@ package com.clarityenglish.controls.video.providers {
 		 * @return 
 		 */
 		protected function getIdFromSrc(source:Object):String {
-			var pattern:RegExp = /youtube:(\w+)/i;
-			var matches:Array = source.match(pattern);
+			var matches:Array = source.match(srcPattern);
 			return matches[1];
 		}
 		
 		/**
-		 * This provider applies if the source is in the format 'youtube:<id>'
+		 * This provider applies if the source is in the format 'youtube.com'
 		 *  
 		 * @param source
 		 * @return 
@@ -62,8 +79,7 @@ package com.clarityenglish.controls.video.providers {
 			
 			// Just for reference, you can get a still shot of the video from http://img.youtube.com/vi/xxx/0.jpg
 			// pattern from http://stackoverflow.com/questions/2936467/parse-youtube-video-id-using-preg-match
-			var pattern:RegExp = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
-			var matches:Array = source.match(pattern);
+			var matches:Array = source.match(urlPattern);
 			return (matches && matches.length == 2);
 		}
 		
@@ -75,8 +91,7 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function isRightProvider(source:Object):Boolean {
-			var pattern:RegExp = /youtube:(\w+)/i;
-			var matches:Array = source.match(pattern);
+			var matches:Array = source.match(srcPattern);
 			return (matches && matches.hasOwnProperty(1) && matches[1] != null);
 		}
 		
@@ -85,7 +100,9 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function toSource(src:Object):Object {
-			return 'http://youtu.be/' + this.getIdFromSrc(src); 
+			//return 'http://youtu.be/' + this.getIdFromSrc(src);
+			//return copyProvider.getCopyForId('youTubeBase', {id: this.getIdFromSrc(src)});
+			return urlBase.replace(idPattern, this.getIdFromSrc(src));
 		}
 		
 		/**
@@ -93,7 +110,8 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function fromSource(source:Object):Object {
-			return 'youtube:' + this.getId(source); 
+			//return 'youtube:' + this.getId(source); 
+			return srcBase.replace(idPattern, this.getId(source));
 		}
 		
 		/**

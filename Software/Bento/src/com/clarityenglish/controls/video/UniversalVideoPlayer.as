@@ -37,7 +37,7 @@ package com.clarityenglish.controls.video {
 		}
 		
 		// gh#875 Format the exercise node src value for the provider that will handle it
-		public static function providerForSource(value:Object):Object {
+		public static function formatSource(value:Object):Object {
 			// Which provider can handle the source?
 			for each (var providerClass:Class in providers) {
 				var provider:IVideoProvider = new providerClass();

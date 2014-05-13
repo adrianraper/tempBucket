@@ -294,6 +294,11 @@
 			<lit name="forgotPasswordLabel">Forgot your password?</lit>
 			<lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
 			
+			<lit name="youTubePattern"><![CDATA[/(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i]]></lit>
+			<lit name="vimeoPattern"><![CDATA[/https?:\/\/(?:www\.)?vimeo.com\/(?:channels\/|groups\/([^\/]*)\/videos\/|album\/(\d+)\/video\/|)(\d+)(?:$|\/|\?)/i]]></lit>
+			<lit name="youTubeBase"><![CDATA[http://youtu.be\/{id}]]></lit>
+			<lit name="vimeoBase"><![CDATA[https://vimeo.com\/{id}]]></lit>
+			
 		</group>
 	</language>
 </literals>
