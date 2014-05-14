@@ -78,41 +78,38 @@
 				richEditableText.selectRange(selectionAnchorPosition, selectionActivePosition);
 			}
 			
-			public function AddLink(webUrlString:String, captionString:String):void {
+			public function addLink(webUrlString:String, captionString:String):void {
 				var anchorPosition:int = Math.min(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
 				var activePosition:int = Math.max(richEditableText.selectionAnchorPosition, richEditableText.selectionActivePosition);
 				//alice: solve the problem when add link in an empty text box (activePosition=-1 anchorPosition=-1)
-				if (anchorPosition == activePosition && activePosition == -1) {
-					anchorPosition = 0;
-					activePosition = 0;
-				}
-				
-				if (webUrlString && webUrlString.search("http://") == -1) {
-					webUrlString = "http://" + webUrlString;
-				}
-				
-				// test
-				
+				if (anchorPosition == activePosition && activePosition == -1)
+					anchorPosition = activePosition = 0;
 
+				// gh#896 Allow any valid protocol
+				var urlPattern:RegExp = /([\w]+?):\/\/([^:\/]+)(:\d+)?\//ig;
+				var matches:Array = webUrlString.match(urlPattern);
+				if (matches && matches.length == 0)
+					webUrlString = "http://" + webUrlString;
+				
 				XmlUtils.preserveSpaces(function():void {	
 					if (anchorPosition == 0 && activePosition == 0) {
 						var anchorTag:XML = <a href={webUrlString} target="_blank">{captionString}</a>;
 						var textFlow:TextFlow = TextConverter.importToFlow(widget.text, TextConverter.TEXT_LAYOUT_FORMAT) || new TextFlow();				
 						var textXML:XML = TextConverter.export(textFlow, TextConverter.TEXT_LAYOUT_FORMAT, ConversionType.XML_TYPE) as XML;
 						
-						//gh#221: enalbe web link insert next to text
+						// gh#221 enable web link insert next to text
 						if (textXML == "") {
 							textXML.appendChild(anchorTag);
-						}
-						else if (textXML.children().children() == "") {
+						} else if (textXML.children().children() == "") {
 							textXML.children().appendChild(anchorTag);
 						} else {
 							textXML.children()[textXML.children().length()-1].appendChild(anchorTag);
 						}
 						widget.text = textXML.toXMLString();
+						
 					} else {
 						var richTextFlow:TextFlow = richEditableText.textFlow;
-						var lastFlowElment:TextFlow = richTextFlow.splitAtPosition(activePosition) as TextFlow;
+						var lastFlowElement:TextFlow = richTextFlow.splitAtPosition(activePosition) as TextFlow;
 						var chopFlowElment:TextFlow = richTextFlow.splitAtPosition(anchorPosition) as TextFlow;
 
 						if (richTextFlow.numChildren > 0) {
@@ -122,20 +119,19 @@
 						}				
 						
 						// gh#320
-						var choplastElement:FlowElement = chopFlowElment.getLastLeaf() as FlowElement;
-						if (choplastElement.parent is LinkElement && webUrlString == "") {
+						var chopLastElement:FlowElement = chopFlowElment.getLastLeaf() as FlowElement;
+						if (chopLastElement.parent is LinkElement && webUrlString == "") {
 							var spanElement:SpanElement = new SpanElement();
 							spanElement.text = captionString;
 							
 							if (firstParagraph) {
 								firstParagraph.addChild(spanElement);
-								var lastP:ParagraphElement = lastFlowElment.getChildAt(0) as ParagraphElement;					
-								if (lastP) {
+								var lastP:ParagraphElement = lastFlowElement.getChildAt(0) as ParagraphElement;					
+								if (lastP)
 									firstParagraph.replaceChildren(firstParagraph.numChildren, firstParagraph.numChildren, getParagraphChildren(lastP));
-								}
 							}
+							
 						} else {
-							//insert link element
 							var linkElement:LinkElement = new LinkElement();
 							linkElement.href = webUrlString;
 							linkElement.target = "_blank";
@@ -145,21 +141,19 @@
 							
 							if (firstParagraph) {
 								firstParagraph.addChild(linkElement);
-								lastP = lastFlowElment.getChildAt(0) as ParagraphElement;					
-								if (lastP) {
+								lastP = lastFlowElement.getChildAt(0) as ParagraphElement;					
+								if (lastP)
 									firstParagraph.replaceChildren(firstParagraph.numChildren, firstParagraph.numChildren, getParagraphChildren(lastP));
-								}
 							}
 						}
 						
-						//Delete the last child in first part and add new selected child, then merge with last part
-						if (richTextFlow.numChildren > 0) {
+						// Delete the last child in first part and add new selected child, then merge with last part
+						if (richTextFlow.numChildren > 0)
 							richTextFlow.removeChildAt(richTextFlow.numChildren - 1);
-						}			
 						richTextFlow.addChild(firstParagraph);
-						var totalNumber:Number = lastFlowElment.numChildren;
+						var totalNumber:Number = lastFlowElement.numChildren;
 						for (var i:int = 1; i < totalNumber; i++ ) {
-							var paragraphElement:ParagraphElement = lastFlowElment.getChildAt(1) as ParagraphElement;
+							var paragraphElement:ParagraphElement = lastFlowElement.getChildAt(1) as ParagraphElement;
 							richTextFlow.addChild(paragraphElement);
 						}
 						
@@ -168,14 +162,11 @@
 					}});
 			}
 					
-			private function getParagraphChildren(p:ParagraphElement):Array
-			{
+			private function getParagraphChildren(p:ParagraphElement):Array {
 				var kids:Array =[];
 				var numKids:int = p.numChildren;
-				for (var i:int = 0; i<numKids; i++)
-				{
-					kids.push( p.getChildAt(i) );
-				}
+				for (var i:int = 0; i<numKids; i++) 
+					kids.push(p.getChildAt(i));
 				return kids;
 			}
 			

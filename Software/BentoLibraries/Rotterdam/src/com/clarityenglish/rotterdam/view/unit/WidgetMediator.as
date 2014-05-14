@@ -131,7 +131,7 @@
 		}
 		
 		protected function onAddLink(webUrlString:String, captionString:String):void {
-			view.widgetText.AddLink(webUrlString, captionString);
+			view.widgetText.addLink(webUrlString, captionString);
 		}
 		
 		protected function onOpenMedia(widget:XML, src:String):void {
