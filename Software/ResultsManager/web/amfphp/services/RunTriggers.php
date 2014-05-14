@@ -236,16 +236,23 @@ function runTriggers($msgType, $triggerIDArray = null, $triggerDate = null, $fre
 						// We now have the case where usage stats emails are being sent to customers whose accounts have only been setup today.
 						// So block any account where the licence start date (of RM) is less than a month old.
 						// Maybe you could add an extra condition to the trigger like StartDate>{now}-1m - but for now it is easier to do it here
+						// gh#897
+						$skipThisAccount = false;
 						foreach ($account->titles as $title) {
 							if ($title->productCode == 2) {
 								// Check to see that the account is at least 26 days old before we send the usage stats
 								if (round(abs(time() - strtotime($title->licenceStartDate)) / 60 / 60 / 24) < 26 ) {
-									// Stop working on this account - break out of two loops
-									break 2;
+									// Stop working on this account
+									$skipThisAccount = true;
+									break;
 								}
 							}
 						}
-	
+						if ($skipThisAccount){
+							// Stop working on this account
+							echo "This Account is skipped: ".$account->name.', '.$adminEmail.$newLine;
+							continue;
+						}
 						// This will write a record to the database, and tell us the securityString. Only do it if you are sending the email as well
 						// Now change to get the security code, and only add if it doesn't exist
 						/*
