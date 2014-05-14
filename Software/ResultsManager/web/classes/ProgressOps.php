@@ -141,6 +141,7 @@ SQL;
 	
 	/**
 	 * This method is called to insert a session record when a user starts a program
+	 * gh#954 If you are given a course id, link that to the session record. 
 	 */
 	function startSession($user, $rootId, $productCode, $dateNow = null) {
 
@@ -199,6 +200,9 @@ SQL;
 	 * This is used both when a user exits the program, and regularly whilst the connection is still going.
 	 * Remember that scores are written with client time (so you can see what time a student did their homework)
 	 * but sessions are written with server time so that they are accurate.
+	 * gh#954 If you are given a course id, link that to the session record. 
+	 *   If it is different from the current id, then close the existing session and start a new one. 
+	 *   Return the new session id.  
 	 */
 	function updateSession($sessionId, $dateNow = null) {
 		// Check that the date is valid
@@ -257,9 +261,42 @@ EOD;
 EOD;
 		}
 		$bindingParams = array($dateNow, $dateNow, $sessionId);
-		$this->db->Execute($sql, $bindingParams);
-
-		return $sessionId;
+		$rs = $this->db->Execute($sql, $bindingParams);
+		
+		// gh#954 Do we have a courseId?
+		if ($courseId) {
+			$sql = <<<SQL
+				SELECT s.* From T_Session s
+				WHERE s.F_SessionID=?
+SQL;
+			$bindingParams = array($sessionId);
+			$rs = $this->db->Execute($sql, $bindingParams);
+			
+			if ($rs && $rs->recordCount() == 1) {
+				$rsObj = $rs->FetchNextObj();
+				
+				// If there is no course listed, add it now
+				if (is_null($rsObj->F_CourseID)) {
+					$sql = <<<EOD
+						UPDATE T_Session
+						SET F_CourseID=?
+						WHERE F_SessionID=?
+EOD;
+					$bindingParams = array($courseId, $sessionId);
+					$rs = $this->db->Execute($sql, $bindingParams);
+					
+				// Need to insert a new session record as the user has changed courses
+				} else if ($rsObj->F_CourseID != $courseId) {
+					// We need to pass a user object, which we don't really have here
+					$user = new User();
+					$user->userID = $rsObj->F_UserID;
+					$user->userType = Session::get('userType');
+					$newSessionId = $this->startSession($user, $rsObj->F_RootID, $rsObj->F_ProductCode, $courseId);
+				}
+			}
+		}
+		
+		return ($newSessionId) ? $newSessionId : $sessionId;
 	}
 	
 	/**

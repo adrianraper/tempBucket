@@ -507,7 +507,7 @@ class BentoService extends AbstractService {
 	 * This service call will create a session record for this user in the database.
 	 *  
 	 *  @param userID, rootID, productCode - these are all self-explanatory
-	 *  @param dateNow - used to get client time
+	 *  @param dateNow - used to get client time. Ignored now
 	 */
 	public function startSession($user, $rootId, $productCode, $dateNow = null) {
 		
@@ -522,7 +522,7 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param $sessionId - key to the table. If this is not available (perhaps to do with closing the browser?)
 	 *  	maybe we can use $userID and $rootID from session variables
-	 *  @param dateNow - used to get client time
+	 *  @param dateNow - used to get client time. Ignored now.
 	 */
 	public function updateSession($sessionId, $dateNow = null) {
 		// A successful session stop will not generate an error

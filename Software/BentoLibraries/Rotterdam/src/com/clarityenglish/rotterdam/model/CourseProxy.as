@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.content.Course;
@@ -27,6 +28,7 @@ package com.clarityenglish.rotterdam.model {
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.DateUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.facade.Facade;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -186,10 +188,13 @@ package com.clarityenglish.rotterdam.model {
 		
 		public function courseSave():AsyncToken {
 			if (currentCourse) {
+				// gh#619
+				courseNode.@lastSaved = DateUtil.dateToAnsiString(new Date());
 				var xmlString:String = currentCourse.xml.toXMLString();
 				xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
 				
 				return new RemoteDelegate("courseSave", [ currentCourse.href.filename, xmlString ], this).execute();
+				
 			} else {
 				log.error("Attempted to save when there was no currentCourse set");
 				return null;
@@ -206,7 +211,9 @@ package com.clarityenglish.rotterdam.model {
 		
 		private function onCourseSessionTimer(event:TimerEvent):void {
 			if (currentCourse) {
-				new RemoteDelegate("courseSessionUpdate", [ courseNode.@id.toString() ], this).execute();
+				// gh#954 Player will use this for session updates rather than course locking
+				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+				new RemoteDelegate("courseSessionUpdate", [ courseNode.@id.toString(), configProxy.getConfig().sessionID ], this).execute();
 			}
 		}
 		
@@ -273,6 +280,9 @@ package com.clarityenglish.rotterdam.model {
 					sendNotification(RotterdamNotifications.COURSE_DELETED, data);
 					break;
 				case "courseSessionUpdate":
+					// gh#954 Player will use this for session updates rather than course locking
+					sendNotification(BBNotifications.SESSION_UPDATED, data);
+					break;
 				case "sendWelcomeEmail":
 					// No action
 					break;

@@ -14,7 +14,7 @@
 
 		@font-face {
 			src: url("skins/rotterdam/builder/assets/HelveticaNeueLTStd-Roman.otf");
-			fontFamily: Helvetica;
+			fontFamily: Helvetica;	
 			fontStyle: normal;
 			fontWeight: normal;
 			embedAsCFF: true;

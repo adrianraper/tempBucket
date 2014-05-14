@@ -8,7 +8,15 @@
 			import com.clarityenglish.common.vo.content.Course;
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseSelectEvent;
+			
+			import mx.collections.ArrayCollection;
 
+			[Bindable]
+			private var usageStatsDataProvider:ArrayCollection;
+			
+			[Bindable]
+			private var maxValue:uint;
+			
 			// gh#689
 			public override function set data(value:Object):void {
 				super.data = value;
@@ -16,6 +24,18 @@
 				if (data) {
 					this.enabled = !(data.attribute("enabledFlag").length() > 0) || (data.@enabledFlag > 0);
 					this.deleteCourseButton.enabled = (data.@enabledFlag & Course.EF_OWNER);
+					
+					// gh#954 Format the data provider for the usage stats
+					maxValue = 0;
+					if (data.hasOwnProperty('timesUsed')) {
+						var usageStats:Array = new Array();
+						var valuesArray:Array = data.timesUsed.split(',');
+						for (var i:uint=0; i<valuesArray.length; i++) {
+							usageStats[i] = { month:i+1, times:valuesArray[i] };
+							maxValue = (valuesArray[i] > maxValue) ? valuesArray[i] : maxValue; 
+						}
+						usageStatsDataProvider = new ArrayCollection(usageStats);
+					}
 				}
 			}
 			
@@ -28,6 +48,9 @@
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
 		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.4" distance="1.5" angle="200" knockout="false" />
+			
+		<mx:SolidColor id="sc1" color="#FFCB1C" alpha=".3"/>
+		<mx:SolidColorStroke id="lineStroke" color="#FFCB1C" weight="2"/>
 	</fx:Declarations>
 	
 	<s:states>
@@ -37,7 +60,7 @@
 	</s:states>
 	
 	<s:Group click="onItemGroupClick(event)" filters="{[dropShadowFilter]}" filters.hovered="{[dropShadowFilter2]}" width="100%">
-		<s:Rect height="70" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
+		<s:Rect height="60" left="3" top="3" right="3" bottom="3" bottomLeftRadiusX="4" bottomLeftRadiusY="4" bottomRightRadiusX="4" bottomRightRadiusY="4" topLeftRadiusX="4" topRightRadiusX="4" topLeftRadiusY="4" topRightRadiusY="4">		
 			<s:fill>
 				<s:SolidColor color="0xFFFFFF" color.hovered="0xFFF6CC" color.selected="0xFFF6CC" />
 			</s:fill>
@@ -56,14 +79,45 @@
 	</s:Group>
 	
 	<!--The course caption here is on the top of course list item, so we also need to add click listener here-->
-	<s:Group left="25" verticalCenter="0" click="onItemGroupClick(event)">
-		<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="350" />
-	</s:Group>
-	
-	<s:Group right="25" verticalCenter="0">
-		<s:Button id="deleteCourseButton"
-				  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
-				  click="dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, data as XML, true))" />
+	<s:Group verticalCenter="0" left="25" right="25" width="100%" click="onItemGroupClick(event)">
+		<s:HGroup verticalAlign="middle" width="100%">
+			<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="100%" />
+			<s:Spacer />
+			<s:HGroup paddingTop="10" verticalAlign="top" height="100%" >
+				<s:Label text="{maxValue}" fontSize="9" visible="{maxValue > 0}" />
+				<mx:AreaChart id="timesUsedChart" width="120" height="60" dataProvider="{usageStatsDataProvider}" visible="{maxValue > 0}" 
+							  seriesFilters="[]" >
+					<mx:backgroundElements>
+						<mx:GridLines gridDirection="both" horizontalTickAligned="true" verticalTickAligned="true"/>
+					</mx:backgroundElements>
+					<mx:verticalAxis>
+						<mx:LinearAxis id="vaxis" minimum="0" maximum="{Math.ceil(maxValue/5)*5}" interval="{Math.ceil(maxValue/5)}" />
+					</mx:verticalAxis>
+					<mx:horizontalAxis>
+						<mx:CategoryAxis id="haxis" categoryField="month" title="12 months use"/>
+					</mx:horizontalAxis>
+					<mx:horizontalAxisRenderers>
+						<mx:AxisRenderer axis="{haxis}" tickPlacement="none" minorTickPlacement="none" showLabels="false" showLine="false" />
+					</mx:horizontalAxisRenderers>
+					<mx:verticalAxisRenderers>
+						<mx:AxisRenderer axis="{vaxis}" tickPlacement="none" minorTickPlacement="none" showLabels="false" showLine="false" />
+					</mx:verticalAxisRenderers>
+					<mx:series>
+						<mx:AreaSeries yField="times" xField="month" areaStroke="{lineStroke}" areaFill="{sc1}" radius="2">
+							<mx:itemRenderer>
+								<fx:Component>
+									<mx:CircleItemRenderer />
+								</fx:Component>
+							</mx:itemRenderer>
+						</mx:AreaSeries>
+					</mx:series>			
+				</mx:AreaChart>
+			</s:HGroup>
+			<s:Spacer width="25" />
+			<s:Button id="deleteCourseButton" width="21"
+					  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
+					  click="dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, data as XML, true))" />
+		</s:HGroup>
 	</s:Group>
 	
 </s:ItemRenderer>
