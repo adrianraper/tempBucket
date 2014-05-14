@@ -30,6 +30,7 @@ package com.clarityenglish.rotterdam.model {
 	import org.davekeen.delegates.RemoteDelegate;
 	import org.davekeen.rpc.ResultResponder;
 	import org.davekeen.util.ClassUtil;
+	import org.davekeen.util.DateUtil;
 	import org.puremvc.as3.interfaces.IProxy;
 	import org.puremvc.as3.patterns.facade.Facade;
 	import org.puremvc.as3.patterns.proxy.Proxy;
@@ -206,10 +207,13 @@ package com.clarityenglish.rotterdam.model {
 		
 		public function courseSave():AsyncToken {
 			if (currentCourse) {
+				// gh#619
+				courseNode.@lastSaved = DateUtil.dateToAnsiString(new Date());
 				var xmlString:String = currentCourse.xml.toXMLString();
 				xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
 				
 				return new RemoteDelegate("courseSave", [ currentCourse.href.filename, xmlString ], this).execute();
+				
 			} else {
 				log.error("Attempted to save when there was no currentCourse set");
 				return null;

@@ -1,8 +1,8 @@
 <?php
 require_once(dirname(__FILE__)."/XmlTransform.php");
-
 /**
- * This transform removes any unpublished courses for this user from courses.xml.  It is used by Rotterdam player.
+ * This transform goes through each course listed and gets information about it to be used in course list screen.
+ * It is used by Builder and Player.
  */
 class CourseAttributeCopyTransform extends XmlTransform {
 	
@@ -18,6 +18,14 @@ class CourseAttributeCopyTransform extends XmlTransform {
 			foreach ($menuXML->head->script->menu->course->attributes() as $key => $value) {
 				if (!isset($course[$key])) $course->addAttribute($key, $value);
 			}
+			
+			// gh#619 Also get information about this course from the database
+			$courseID = XmlUtils::xml_attribute($course, 'id', 'string');
+			$timesPublished = $service->courseOps->countPublishedSchedules($courseID);
+			$course->addAttribute('timesPublished', $timesPublished);
+			
+			$timesUsed = $service->courseOps->countSessions($courseID);
+			$course->addAttribute('timesUsed', $timesUsed);
 		}
 	}
 }

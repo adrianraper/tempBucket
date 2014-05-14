@@ -56,9 +56,11 @@
 	</s:Group>
 	
 	<!--The course caption here is on the top of course list item, so we also need to add click listener here-->
-	<s:Group left="25" verticalCenter="0" click="onItemGroupClick(event)">
+	<s:HGroup left="25" verticalCenter="0" click="onItemGroupClick(event)">
 		<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="350" />
-	</s:Group>
+		<s:Label text="published={data.@timesPublished}" fontSize="15" fontWeight="bold" />
+		<s:Label text="used={data.@timesUsed}" fontSize="15" fontWeight="bold" />
+	</s:HGroup>
 	
 	<s:Group right="25" verticalCenter="0">
 		<s:Button id="deleteCourseButton"

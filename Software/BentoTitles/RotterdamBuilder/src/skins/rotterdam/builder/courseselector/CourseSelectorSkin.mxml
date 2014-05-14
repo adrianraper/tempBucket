@@ -7,6 +7,15 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView")]
 	</fx:Metadata>
+	<fx:Declarations>
+		<s:RadioButtonGroup id="sortRadioButtonGroup" />
+		<s:Animate id="showFiltersAnimation" targets="{[filtersPanel]}" duration="300">
+			<s:SimpleMotionPath property="width" valueFrom="0" valueTo="200" />
+		</s:Animate>
+		<s:Animate id="hideFiltersAnimation" targets="{[filtersPanel]}" duration="300">
+			<s:SimpleMotionPath property="width" valueFrom="200" valueTo="0" />
+		</s:Animate>
+	</fx:Declarations>
 	
 	<!-- states -->
 	<s:states>
@@ -15,12 +24,41 @@
 	</s:states>
 	
 	<s:BusyIndicator id="busyIndicator" visible="true" verticalCenter="0" horizontalCenter="0" />
-	
-	<s:Label id="courseListTitleLabel" top="15" fontSize="16" fontWeight="bold" left="26" />
-	<s:Button id="createCourseButton" right="55" top="43" width="150" fontWeight="bold" useHandCursor="true" buttonMode="true" />
-	<s:List id="courseList" left="77" right="250" borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.builder.courseselector.CourseListItemRenderer" top="43" bottom="50">
-		<s:layout>
-			<s:VerticalLayout gap="5" horizontalAlign="justify" />
-		</s:layout>
-	</s:List>	
+
+	<s:Label id="courseListTitleLabel" top="25" fontSize="16" fontWeight="bold" left="26"/>
+	<s:Button id="createCourseButton" right="100" top="10" width="150" fontWeight="bold" useHandCursor="true" buttonMode="true"/>
+	<s:ToggleButton id="showFiltersToggleButton" top="10" right="0" width="30" height="40"/>
+	<s:HGroup width="100%" left="50" right="50" top="60" bottom="50">
+		<s:List width="100%" id="courseList"  borderVisible="false" labelField="@caption" itemRenderer="skins.rotterdam.builder.courseselector.CourseListItemRenderer" >
+			<s:layout>
+				<s:VerticalLayout gap="5" horizontalAlign="justify"/>
+			</s:layout>
+		</s:List>
+		<s:VGroup id="filtersPanel" width="0">
+			<s:Form id="filtering" >
+				<s:FormHeading label="Filter courses by:" />
+				<s:FormItem>
+					<s:TextInput id="filterTextInput" prompt="Name or tags"/>
+				</s:FormItem>
+				<s:FormItem>
+					<s:CheckBox id="filterOwner" label="Your courses"/>
+					<s:CheckBox id="filterCollaborator" label="Collaborating"/>
+					<s:CheckBox id="filterPublisher" label="Publisher"/>
+				</s:FormItem>
+			</s:Form>
+			<s:Form id="sorting">
+				<s:FormHeading label="Sort courses by:" />
+				<s:FormItem>
+					<s:RadioButton group="{sortRadioButtonGroup}" id="sortCreateDate" label="create date"/>
+					<s:RadioButton group="{sortRadioButtonGroup}" id="sortChangeDate" label="last changed date"/>
+					<s:RadioButton group="{sortRadioButtonGroup}" id="sortSize" label="size"/>
+					<s:RadioButton group="{sortRadioButtonGroup}" id="sortPopularity" label="popularity"/>
+					<s:RadioButton group="{sortRadioButtonGroup}" id="sortName" label="name"/>
+				</s:FormItem>
+				<s:FormItem>
+					<s:CheckBox id="sortDescendingCheckBox" label="descending" />
+				</s:FormItem>
+			</s:Form>
+		</s:VGroup>
+	</s:HGroup>
 </s:Skin>

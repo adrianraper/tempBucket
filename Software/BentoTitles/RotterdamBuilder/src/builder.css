@@ -90,6 +90,10 @@ courseselector|CourseSelectorView s|Button#createCourseButton {
 	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 }
 
+courseselector|CourseSelectorView s|ToggleButton#showFiltersToggleButton {
+	skinClass: ClassReference("skins.rotterdam.ui.OrangeToggleButtonSkin");
+}
+
 courseselector|CourseSelectorView s|List s|HScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
 }

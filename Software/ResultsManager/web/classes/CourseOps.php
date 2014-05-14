@@ -789,5 +789,41 @@ EOD;
 
 		return count($emailArray);
 	}
+
+	/**
+	 * How many times is this course currently published?
+	 * gh#619
+	 */
+	public function countPublishedSchedules($courseID) {
+		$sql = <<<SQL
+			SELECT COUNT(*) as timesPublished from T_CourseStart 
+			WHERE F_CourseID = ?
+SQL;
+		$bindingParams = array($courseID);
+		
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs)
+			return $rs->FetchNextObj()->timesPublished;
+			
+		return 0;
+	}
+	
+	/**
+	 * How many times has this course been used by students?
+	 * gh#619
+	 */
+	public function countSessions($courseID) {
+		$sql = <<<SQL
+			SELECT COUNT(*) as timesUsed from T_Score 
+			WHERE F_CourseID = ?
+SQL;
+		$bindingParams = array($courseID);
+		
+		$rs = $this->db->Execute($sql, $bindingParams);
+		if ($rs)
+			return $rs->FetchNextObj()->timesUsed;
+			
+		return 0;
+	}
 	
 }
