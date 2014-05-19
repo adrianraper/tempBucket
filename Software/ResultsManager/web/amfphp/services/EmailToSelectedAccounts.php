@@ -61,7 +61,8 @@ $testingTriggers = "";
 //$testingTriggers .= "Service";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "TBV10 release";
-$testingTriggers .= "C-Builder upgrade";
+//$testingTriggers .= "C-Builder upgrade";
+$testingTriggers .= "TBV10 released";
 
 	if (stristr($testingTriggers, "Service")) {
 		// These are not sent through triggers but programmatically
@@ -95,6 +96,25 @@ $testingTriggers .= "C-Builder upgrade";
 			$templateID = $_REQUEST['template'];
 		} else {
 			$templateID = 'rti2_announce_3';
+		}
+		$messageType = Trigger::TRIGGER_TYPE_UPGRADE;
+		
+	} else if (stristr($testingTriggers, "TBV10 released")) {
+		// These are not sent through triggers but programmatically
+		$conditions['active'] = true;
+		//$conditions['accountType'] = 1; // Standard invoice (ignores trials, distributors etc)
+		//$conditions['productCode'] = '9'; // existing TB title
+		//$conditions['selfHost'] = 'false';
+		//$conditions['languageCode'] = 'EN';
+		//$conditions['notLicenceType'] = 5;
+		$addReseller = false;
+		//$rootList = array(163,38,10074,10732);
+		//$rootList = null;
+		$rootList = array(163);
+		if (isset($_REQUEST['template'])) {
+			$templateID = $_REQUEST['template'];
+		} else {
+			$templateID = 'tbV10released';
 		}
 		$messageType = Trigger::TRIGGER_TYPE_UPGRADE;
 		
