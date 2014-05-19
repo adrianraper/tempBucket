@@ -16,6 +16,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 	
 	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StateUtil;
+	import org.davekeen.util.StringUtils;
 	import org.davekeen.validators.URLValidator;
 	import org.osflash.signals.Signal;
 	
@@ -488,6 +489,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case pdfUrlTextInput:
 					pdfUrlTextInput.addEventListener(FlexEvent.ENTER, onPdfUrlEnter);
+					// gh#899
+					if (_currentEditingWidget) {
+						var thisSrc:String = _currentEditingWidget.@src;
+						instance.text = (thisSrc && (StringUtils.beginsWith(thisSrc.toLowerCase(), "http"))) ? thisSrc : '';
+					}
 					break;
 				case imageUploadButton:
 					imageUploadButton.addEventListener(MouseEvent.CLICK, onImageUpload);
@@ -654,6 +660,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		protected function onPdfUrlEnter(event:FlexEvent):void {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
+				// gh#259 remove any thumbnail
+				if (_currentEditingWidget.hasOwnProperty("@thumbnail"))
+					delete _currentEditingWidget.@thumbnail;
 				addPDF.dispatch({ source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
 				event.target.text = "";
 				setCurrentState("normal");

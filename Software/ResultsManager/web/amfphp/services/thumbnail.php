@@ -1,6 +1,7 @@
 <?php
 $noSession = true;
 require_once(dirname(__FILE__)."/../../config.php");
+$thumbnailFolder = dirname(__FILE__).$GLOBALS['interface_dir']."../resources/thumbnails/";
 
 function outputPng($imagePath) {
 	header('Content-Type: image/png');
@@ -9,15 +10,16 @@ function outputPng($imagePath) {
 	die();
 }
 
-if (!isset($_GET['uid'])) {
+// gh#259
+if (isset($_GET['type']) && ($_GET['type'] == 'pdf')) {
+	outputPng($thumbnailFolder."/pdf.png");
+} elseif (!isset($_GET['uid'])) {
 	echo "No uid given";
 	return;
 }
 
 $uid = $_GET['uid'];
 
-//$thumbnailFolder = dirname(__FILE__)."/../../".$GLOBALS['data_dir']."/../Thumbnails/";
-$thumbnailFolder = dirname(__FILE__).$GLOBALS['interface_dir']."../resources/thumbnails/";
 // Sanitise $uid to prevent directory traversal attacks by not allowing more than one consecutive dot or anything that isn't a number.
 $uid = preg_replace("/\.{2,}|[^0-9.]*/", "", $uid);
 
