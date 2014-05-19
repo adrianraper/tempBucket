@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.builder.view.course {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.vo.content.Course;
+	import com.clarityenglish.controls.video.UniversalVideoPlayer;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -387,6 +388,25 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				addItemButton.visible = smallScreenFlag;
 				iconGroup.visible = !smallScreenFlag && !isUpArrowClick;
 			}
+			// gh#899
+			if (_currentEditingWidget) {
+				var thisSrc:String = _currentEditingWidget.@src;
+				var widgetType:String = _currentEditingWidget.@type;
+				switch (widgetType) {
+					case "video":
+						videoUrlTextInput.text = (thisSrc) ? UniversalVideoPlayer.formatUrl(thisSrc) : '';
+						break;
+					case "audio":
+						audioUrlTextInput.text = (thisSrc && (StringUtils.beginsWith(thisSrc.toLowerCase(), "http"))) ? thisSrc : '';
+						break;
+					case "pdf":
+						pdfUrlTextInput.text = (thisSrc && (StringUtils.beginsWith(thisSrc.toLowerCase(), "http"))) ? thisSrc : '';
+						break;
+					case "image":
+						imageUrlTextInput.text = (thisSrc && (StringUtils.beginsWith(thisSrc.toLowerCase(), "http"))) ? thisSrc : '';
+						break;
+				}
+			}
 		}
 				
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -489,11 +509,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case pdfUrlTextInput:
 					pdfUrlTextInput.addEventListener(FlexEvent.ENTER, onPdfUrlEnter);
-					// gh#899
-					if (_currentEditingWidget) {
-						var thisSrc:String = _currentEditingWidget.@src;
-						instance.text = (thisSrc && (StringUtils.beginsWith(thisSrc.toLowerCase(), "http"))) ? thisSrc : '';
-					}
+					instance.prompt = copyProvider.getCopyForId("urlPrompt");
 					break;
 				case imageUploadButton:
 					imageUploadButton.addEventListener(MouseEvent.CLICK, onImageUpload);
@@ -508,6 +524,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case imageUrlTextInput:
 					imageUrlTextInput.addEventListener(FlexEvent.ENTER, onImageUrlEnter);
+					instance.prompt = copyProvider.getCopyForId("urlPrompt");
 					break;
 				case imageOrLabel:
 				case imageOrLabel2:
@@ -530,10 +547,15 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case audioUrlTextInput:
 					audioUrlTextInput.addEventListener(FlexEvent.ENTER, onAudioUrlEnter);
+					instance.prompt = copyProvider.getCopyForId("urlPrompt");
 					break;
 				case videoSelectButton:
 					videoSelectButton.addEventListener(MouseEvent.CLICK, onVideoSelect);
 					videoSelectButton.label = copyProvider.getCopyForId("selectButton");
+					break;
+				case videoUrlTextInput:
+					videoUrlTextInput.addEventListener(FlexEvent.ENTER, onVideoSelect);
+					instance.prompt = copyProvider.getCopyForId("videoUrlPrompt");
 					break;
 				case uploadVideoLabel:
 					uploadVideoLabel.text = copyProvider.getCopyForId("uploadVideoLabel");
@@ -707,7 +729,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			}
 		}
 		
-		protected function onVideoSelect(event:MouseEvent):void {
+		protected function onVideoSelect(event:Event):void {
 			var url:String = videoUrlTextInput.text;
 			if (url) {
 				addVideo.dispatch({ url: url }, _currentEditingWidget); // TODO: use a constant from somewhere (in fact this isn't used yet)?

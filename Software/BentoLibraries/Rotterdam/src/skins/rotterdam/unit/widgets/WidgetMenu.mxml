@@ -6,6 +6,7 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
 			import com.clarityenglish.rotterdam.view.unit.events.WidgetMenuEvent;
 			
 			import skins.assets.widgets.*;
@@ -16,6 +17,20 @@
 			private var _xml:XML;
 			
 			private var currentIndex:Number;
+			
+			protected var copyProvider:CopyProvider;
+			
+			[Bindable]
+			protected var menuRenameItemLabel:String;
+			
+			[Bindable]
+			protected var menuCopyItemLabel:String;
+			
+			[Bindable]
+			protected var menuDeleteItemLabel:String;
+			
+			[Bindable]
+			protected var menuEditItemLabel:String;
 			
 			public function get xml():XML {
 				return _xml;
@@ -35,6 +50,15 @@
 				}
 				
 				currentIndex = _xml.@span;
+			}
+			
+			public function setCopyProvider(copyProvider:CopyProvider):void {
+				this.copyProvider = copyProvider;
+				
+				menuRenameItemLabel = copyProvider.getCopyForId('menuRenameItem');
+				menuCopyItemLabel = copyProvider.getCopyForId('menuCopyItem');
+				menuDeleteItemLabel = copyProvider.getCopyForId('menuDeleteItem');
+				menuEditItemLabel = copyProvider.getCopyForId('menuEditItem');
 			}
 			
 			protected function onRenameClick(event:MouseEvent):void {
@@ -94,7 +118,7 @@
 		</s:Rect>
 		
 		<s:VGroup left="0" right="0" gap="0" horizontalAlign="center">
-			<s:Button label="Rename item" icon="{CopyIcon}" width="100%" height="50" click="onRenameClick(event)" enabled="true" />
+			<s:Button id="renameButton" label="{menuRenameItemLabel}" icon="{CopyIcon}" width="100%" height="50" click="onRenameClick(event)" enabled="true" />
 			
 			<s:Line width="135">
 				<s:stroke>
@@ -102,7 +126,7 @@
 				</s:stroke>
 			</s:Line>
 			
-			<s:Button label="Delete item" icon="{DeleteIcon}" width="100%" height="50" click="onDeleteClick(event)" />
+			<s:Button id="deleteButton" label="{menuDeleteItemLabel}" icon="{DeleteIcon}" width="100%" height="50" click="onDeleteClick(event)" />
 			
 			<s:Line width="135">
 				<s:stroke>
@@ -110,7 +134,7 @@
 				</s:stroke>
 			</s:Line>
 			
-			<s:Button label="Copy item" icon="{CopyIcon}" width="100%" height="50" click="onCopyClick(event)" enabled="false" />
+			<s:Button id="copyButton" label="{menuCopyItemLabel}" icon="{CopyIcon}" width="100%" height="50" click="onCopyClick(event)" enabled="false" />
 			
 			<s:Line width="135" excludeFrom="text" >
 				<s:stroke>
@@ -118,7 +142,7 @@
 				</s:stroke>
 			</s:Line>
 			
-			<s:Button label="Edit item" width="100%" height="50" click="onEditClick(event)" excludeFrom="text" />
+			<s:Button id="editButton" label="{menuEditItemLabel}"  width="100%" height="50" click="onEditClick(event)" excludeFrom="text" />
 			
 			<s:ButtonBar id="spanButtonBar" width="100%" height="50" change="onSpanChange(event)" color="0xD8D8D8">
 				<s:dataProvider>

@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkCaptureEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
@@ -38,6 +39,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import org.osflash.signals.Signal;
 	
 	import skins.rotterdam.unit.widgets.WidgetChrome;
+	import skins.rotterdam.unit.widgets.WidgetMenu;
 	import skins.rotterdam.unit.widgets.WidgetText;
 	
 	import spark.components.supportClasses.Range;
@@ -95,6 +97,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 
 		private var captureCaption:String = "";
 		
+		// gh#899
+		protected var copyProvider:CopyProvider;
+		
 		public function AbstractWidget() {
 			super();
 			
@@ -110,6 +115,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange, false, 0, true);
 		}
 		
+		// gh#899
+		public function setCopyProvider(copyProvider:CopyProvider):void {
+			this.copyProvider = copyProvider;
+		}
+
 		public function set editable(value:Boolean):void {
 			if (_editable !== value) {
 				_editable = value;
@@ -212,7 +222,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			if (progressRange)
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
 		}
-		
+			
 		// gh#187
 		protected override function commitProperties():void {
 			super.commitProperties();

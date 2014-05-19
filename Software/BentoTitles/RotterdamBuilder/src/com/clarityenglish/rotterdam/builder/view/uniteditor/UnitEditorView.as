@@ -90,6 +90,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case widgetMenu:
 					widgetMenu.visible = false;
+					// gh#899
+					widgetMenu.setCopyProvider(copyProvider);
 					break;
 			}
 		}

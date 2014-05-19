@@ -76,6 +76,7 @@ package com.clarityenglish.controls.video.providers {
 			//   http://www.youtube.com/embed/xxx?rel=0
 			// or 
 			//   http://www.youtube.com/v/xxx?version=3
+			//   http://www.youtube.com/watch?v=2ZVNGpU0wAg&list=UUJlUJ35AxJkS7nw90AWUZtw&feature=share&index=3
 			
 			// Just for reference, you can get a still shot of the video from http://img.youtube.com/vi/xxx/0.jpg
 			// pattern from http://stackoverflow.com/questions/2936467/parse-youtube-video-id-using-preg-match

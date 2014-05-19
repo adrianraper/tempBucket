@@ -51,6 +51,17 @@ package com.clarityenglish.controls.video {
 			return null;
 		}
 		
+		// gh#875 Format the URL that the provider will actually use
+		public static function formatUrl(value:String):String {
+			// Which provider can handle the source?
+			for each (var providerClass:Class in providers) {
+				var provider:IVideoProvider = new providerClass();
+				if (provider.isRightProvider(value))
+					return (provider.toSource(value) as String);
+			}
+			return null;
+		}
+		
 		public function UniversalVideoPlayer() {
 			super();
 			

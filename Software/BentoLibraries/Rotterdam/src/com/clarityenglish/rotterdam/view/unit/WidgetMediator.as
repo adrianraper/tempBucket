@@ -38,6 +38,12 @@
 			return viewComponent as AbstractWidget;
 		}
 		
+		// gh#899 inject CopyProvider into the widget
+		protected function injectCopy():void {
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
+			view.setCopyProvider(copyProvider);
+		}
+		
 		override public function onRegister():void {
 			super.onRegister();
 			
@@ -59,6 +65,8 @@
 			// gh#106
 			view.playVideo.add(onPlay);
 			view.playAudio.add(onPlay);
+			
+			injectCopy();
 		}
 		
 		override public function onRemove():void {

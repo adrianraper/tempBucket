@@ -56,7 +56,7 @@
 			<lit name="errorDatabaseWriting" code="501">Error writing to the database. Please contact support@clarityenglish.com.</lit>
 
 			<lit name="SCORMcantInitialize" code="601">This program is not running in a recognised SCORM LMS.</lit>
-			<lit name="errorVideoLoad" code="602">This URL isn't recognised as a YouTube video. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY</lit>
+			<lit name="errorVideoLoad" code="602">This URL isn't recognised as a compatible video source. Click 'share' under a YouTube video and copy the URL, something like http://youtu.be/oSn3i4vsGeY. Vimeo can be copied direct from the URL.</lit>
             <lit name="contentBlockedWarning" code="603">This device can't link to the content for this item. Please try to access the course from a computer browser.</lit>
 			
 			<lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com. ({reason})</lit>
@@ -242,8 +242,8 @@
 			<lit name="myComputerButton">My Computer</lit>
 			<lit name="uploadImageLabel">Upload the image from</lit>
 			<lit name="uploadAudioLabel">Upload the audio from</lit>
-			<lit name="uploadVideoLabel">Place your video URL here:</lit>
-			<lit name="webLinkURLLabel">Input your web URL here:</lit>
+			<lit name="uploadVideoLabel">Video URL:</lit>
+			<lit name="webLinkURLLabel">Type the web URL here:</lit>
 			<lit name="webLinkTextLabel">Text to display:</lit>
 			<lit name="upButton">Learn more</lit>
 			<lit name="addTextLabel">Add text</lit>
@@ -281,6 +281,13 @@
 			<lit name="completeLabel">Started</lit>
 			<lit name="notCompleteLabel">Not started</lit>
 			<lit name="warningWindowCaption">Sorry</lit>
+			<lit name="urlPrompt">Type/paste a URL and press enter</lit>
+			<lit name="videoUrlPrompt">Paste the video URL here</lit>
+			
+			<lit name="menuRenameItem">Rename item</lit>
+			<lit name="menuDeleteItem">Delete item</lit>
+			<lit name="menuEditItem">Edit item</lit>
+			<lit name="menuCopyItem">Copy item</lit>
 			
 			<lit name="courseEditableFormItemHelp">Use to protect a completed course</lit>
 			<lit name="collaboratorsFormItemHelp">Collaborators can edit the course</lit>
