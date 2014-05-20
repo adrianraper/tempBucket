@@ -311,6 +311,8 @@ class VimeoPlayer extends SpriteVisualElement {
 			moogaloop.addEventListener(LOAD_PROGRESS, loadProgressHandler, false, 0, true);
 			moogaloop.addEventListener(PLAY_PROGRESS, playProgressHandler, false, 0, true);
 			moogaloop.addEventListener(FINISH, finishHandler, false, 0, true);
+			
+			moogaloop.disableKeyboardEvents(); // gh#898
 		} else {
 			// API v1 Event Handlers
 			moogaloop.addEventListener(ON_PLAY, onPlayHandler, false, 0, true);
