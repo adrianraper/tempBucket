@@ -7,7 +7,7 @@ class LicenceOps {
 	// We expect Bento to update the licence record every minute that the user is connected
 	// This is the number of minutes after which a licence record can be removed
 	// gh#815, gh#900
-	const LICENCE_DELAY = 1.25;
+	const LICENCE_DELAY = 2;
 	
 	function LicenceOps($db) {
 		$this->db = $db;
