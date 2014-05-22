@@ -780,6 +780,8 @@ package com.clarityenglish.common.vo.config {
 				var ipRangeArray:Array = range.split(",");
 				
 				for (var t:String in ipRangeArray) {
+					// gh#902
+					ipRangeArray[t] = StringUtils.trim(ipRangeArray[t] as String);
 					// first, is there an exact match?
 					if (thisIP == ipRangeArray[t])
 						return true;
