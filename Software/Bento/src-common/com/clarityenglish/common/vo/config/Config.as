@@ -777,6 +777,8 @@ package com.clarityenglish.common.vo.config {
 			// BUG, this list might have spaces which stop the matching
 			var thisIPArray:Array = thisIPList.split(",");
 			for each (var thisIP:String in thisIPArray) {
+				// gh#902
+				thisIP = StringUtils.trim(thisIP);
 				var ipRangeArray:Array = range.split(",");
 				
 				for (var t:String in ipRangeArray) {
