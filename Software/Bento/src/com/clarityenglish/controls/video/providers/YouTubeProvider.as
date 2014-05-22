@@ -34,7 +34,7 @@ package com.clarityenglish.controls.video.providers {
 			//var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			//urlPattern = copyProvider.getCopyForId('youTubePattern');
 			urlPattern = /(?:youtube(?:-nocookie)?\.com\/(?:[^\/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|(?:youtu\.be\/))([^"&?\/ ]{11})/i;
-			srcPattern = /youtube:(\w+)/i;
+			srcPattern = /youtube:([\w-]+)/i;
 			urlBase = 'http:\/\/youtu.be\/{id}';
 			srcBase = 'youtube:{id}';
 			idPattern = /{id}/i;
