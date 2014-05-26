@@ -296,11 +296,20 @@ package com.clarityenglish.rotterdam.view.login {
 					instance.visible = instance.includeInLayout = true;
 					
 					instance.source = config.paths.brandingMedia + image.@src; 
-					if (image.hasOwnProperty('@padding')) {
-						var padding:uint = Number(image.@padding);
-					} else {
-						padding = 0;
-					}
+					var paddingLeft:uint = 0;
+					var paddingTop:uint = 0;
+					var paddingRight:uint = 0;
+					var paddingBottom:uint = 0;
+					if (image.hasOwnProperty('@padding'))
+						paddingLeft = paddingTop = paddingRight = paddingBottom = Number(image.@padding);
+					if (image.hasOwnProperty('@paddingLeft'))
+						paddingLeft = Number(image.@paddingLeft);
+					if (image.hasOwnProperty('@paddingTop'))
+						paddingTop = Number(image.@paddingTop);
+					if (image.hasOwnProperty('@paddingRight'))
+						paddingRight = Number(image.@paddingRight);
+					if (image.hasOwnProperty('@paddingBottom'))
+						paddingBottom = Number(image.@paddingBottom);
 					
 					if (image.hasOwnProperty('@horizontalAlign')) {
 						switch (String(image.@horizontalAlign)) {
@@ -309,10 +318,10 @@ package com.clarityenglish.rotterdam.view.login {
 								instance.horizontalCenter = 0;
 								break;
 							case 'left':
-								instance.left = padding;
+								instance.left = paddingLeft;
 								break;
 							case 'right':
-								instance.right = padding;
+								instance.right = paddingRight;
 								break;
 						}
 					}
@@ -323,10 +332,10 @@ package com.clarityenglish.rotterdam.view.login {
 								instance.verticalCenter = 0;
 								break;
 							case 'top':
-								instance.top = padding + 40;
+								instance.top = paddingTop + 40;
 								break;
 							case 'bottom':
-								instance.bottom = padding + 40;
+								instance.bottom = paddingBottom + 40;
 								break;
 						}
 					}
