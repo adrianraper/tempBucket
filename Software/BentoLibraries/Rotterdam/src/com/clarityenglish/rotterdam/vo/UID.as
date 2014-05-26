@@ -115,6 +115,8 @@ package com.clarityenglish.rotterdam.vo {
 					break;
 				case 46:
 					return 'ConnectedSpeech';
+				case 55:
+					return 'TenseBuster10';
 					break;
 			}
 			

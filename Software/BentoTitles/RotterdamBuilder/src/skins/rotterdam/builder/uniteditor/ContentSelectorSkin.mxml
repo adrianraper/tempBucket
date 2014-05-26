@@ -10,7 +10,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			private var titles:Array = [9, 52, 50, 39, 33, 53, 49, 10, 38, 40, 44, 45, 48];
+			private var titles:Array = [9, 52, 50, 39, 33, 53, 49, 10, 38, 40, 44, 45, 48, 55];
 			
 			private function getIconForContent(item:Object, isOpen:* = null, isBranch:* = null):Object {
 				var uidString:String = item.uid;
