@@ -45,6 +45,7 @@ package com.clarityenglish.dms.view.account {
 			accountView.addEventListener(AccountEvent.GENERATE_REPORT, onGenerateReport);
 			accountView.addEventListener(AccountEvent.ADD_ACCOUNT, onAddAccount);
 			accountView.addEventListener(AccountEvent.DELETE_ACCOUNTS, onDeleteAccounts);
+			accountView.addEventListener(AccountEvent.ARCHIVE_ACCOUNTS, onArchiveAccounts);
 			accountView.addEventListener(AccountEvent.UPDATE_ACCOUNTS, onUpdateAccounts);
 			accountView.addEventListener(AccountEvent.GET_ACCOUNT_DETAILS, onGetAccountDetails);
 			accountView.addEventListener(AccountEvent.ADD_TO_EMAIL_TO_LIST, onChangeEmailToList);
@@ -153,6 +154,11 @@ package com.clarityenglish.dms.view.account {
 			sendNotification(DMSNotifications.DELETE_ACCOUNTS, e);
 		}
 		
+		// gh#911
+		private function onArchiveAccounts(e:AccountEvent):void {
+			sendNotification(DMSNotifications.ARCHIVE_ACCOUNTS, e);
+		}
+		
 		private function onChangeEmailToList(e:AccountEvent):void {
 			sendNotification(DMSNotifications.CHANGE_EMAIL_TO_LIST, e, e.type);
 		}
@@ -162,17 +168,14 @@ package com.clarityenglish.dms.view.account {
 		}
 		
 		private function onGetAccounts(e:AccountEvent):void {
-			//MonsterDebugger.trace(this, "account mediator");
 			var accountProxy:AccountProxy = facade.retrieveProxy(AccountProxy.NAME) as AccountProxy;
-			//accountProxy.getAccounts(e.showIndividuals);
 			accountProxy.getAccounts();
 		}
 		
 		// v3.0.6 This changes the account type and then calls getAccounts (or rather the proxy does)
 		private function onChangeAccountType(e:AccountEvent):void {
 			var accountProxy:AccountProxy = facade.retrieveProxy(AccountProxy.NAME) as AccountProxy;
-			//accountProxy.changeAccountType(e.showIndividuals, e.closedAccounts);
-			accountProxy.changeAccountType(e.showIndividuals);
+			accountProxy.changeAccountType(e.showIndividuals, e.showArchived);
 		}
 		
 	}

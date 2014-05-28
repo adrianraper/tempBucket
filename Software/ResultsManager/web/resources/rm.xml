@@ -459,7 +459,8 @@
 			
 			<lit name="accountTab">Accounts</lit>
 			<lit name="emailTab">Email</lit>
-			<lit name="individualAccounts">Home users</lit>
+			<lit name="individualAccounts">Individuals</lit>
+			<lit name="archivedAccounts">Archived</lit>
 			
 			<lit name="detailsPane">Details</lit>
 			<lit name="titlesPane">Titles</lit>
@@ -468,6 +469,7 @@
 			<lit name="addAccountMenuItem">Add account...</lit>
 			<lit name="editAccountMenuItem">Edit account...</lit>
 			<lit name="deleteAccountMenuItem">Delete account...</lit>
+			<lit name="archiveAccountMenuItem">Archive account...</lit>
 			<lit name="addToEmailListMenuItem">Add to email list</lit>
 			<lit name="setAsEmailListMenuItem">Set as email list</lit>
 			<lit name="openInRMMenuItem">Open in Results Manager...</lit>
@@ -548,6 +550,7 @@
 			<lit name="prefixExistsError">The prefix {prefix} is already in use. Select a different prefix.</lit>
 			
 			<lit name="deleteAccounts">Are you sure you want to delete this account? This action will also delete all groups and users and cannot be undone!</lit>
+			<lit name="archiveAccounts">Are you sure you want to archive this account?</lit>
 			<lit name="searchAccountsWindowTitle">Search Accounts</lit>
 			
 			<lit name="toFormItem">To:</lit>

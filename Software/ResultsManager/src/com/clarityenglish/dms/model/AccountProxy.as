@@ -31,7 +31,8 @@ package com.clarityenglish.dms.model {
 		
 		// v3.0.6 Account type has to be a class variable
 		private var showIndividualAccounts:Boolean;
-		//private var showClosedAccounts:Boolean;
+		// gh#911
+		private var showArchivedAccounts:Boolean;
 		
 		public function AccountProxy(data:Object = null) {
 			super(NAME, data);
@@ -48,25 +49,19 @@ package com.clarityenglish.dms.model {
 		}
 		
 		// v3.0.6 Always pick up the accounts type from our own variable now
-		//public function getAccounts(showIndividualAccounts:Boolean=false ):void {
 		public function getAccounts():void {
-			//if (showClosedAccounts) {
-			//	new RemoteDelegate("getAccounts", [ [ ], { individuals:showIndividualAccounts }, { accountStatus:11 } ], this).execute();
-			//} else {
-			// Hack to use Constants.filterString to send conditions to AccountOps.getAccounts. It would make more sense to parse
-			// the string here and send a full conditions array.
 			if (Constants.filterString) {
-				new RemoteDelegate("getAccounts", [ [ ], { individuals:showIndividualAccounts, accountName:Constants.filterString } ], this).execute();
+				new RemoteDelegate("getAccounts", [ [ ], { individuals:showIndividualAccounts, archived:showArchivedAccounts, accountName:Constants.filterString } ], this).execute();
 			} else {
-				new RemoteDelegate("getAccounts", [ [ ], { individuals:showIndividualAccounts } ], this).execute();
+				new RemoteDelegate("getAccounts", [ [ ], { individuals:showIndividualAccounts, archived:showArchivedAccounts } ], this).execute();
 			}
-			//}
 		}
+
 		// v3.0.6 Always pick up the accounts type from our own variable now
-		//public function changeAccountType(individualAccounts:Boolean = false, closedAccounts:Boolean = false):void {
-		public function changeAccountType(individualAccounts:Boolean = false):void {
+		// gh#911
+		public function changeAccountType(individualAccounts:Boolean = false, archivedAccounts:Boolean = false):void {
 			showIndividualAccounts = individualAccounts;
-			//showClosedAccounts = closedAccounts;
+			showArchivedAccounts = archivedAccounts;
 			getAccounts();
 		}
 		
@@ -80,6 +75,13 @@ package com.clarityenglish.dms.model {
 		
 		public function deleteAccounts(accounts:Array):void {
 			new RemoteDelegate("deleteAccounts", [ accounts ], this).execute();
+		}
+
+		// gh#911
+		public function archiveAccounts(accounts:Array):void {
+			for each (var account:Account in accounts)
+ 				account.accountStatus = 11;
+			new RemoteDelegate("updateAccounts", [ accounts ], this).execute();
 		}
 		
 		public function getAccountDetails(accountID:String):void {

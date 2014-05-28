@@ -11,6 +11,7 @@
 		public static const ADD_ACCOUNT:String = "add_account";
 		public static const EDIT_ACCOUNT:String = "edit_account";
 		public static const DELETE_ACCOUNTS:String = "delete_accounts";
+		public static const ARCHIVE_ACCOUNTS:String = "archive_accounts";
 		public static const GET_ACCOUNT_DETAILS:String = "get_account_details";
 		public static const UPDATE_ACCOUNTS:String = "update_accounts";
 		public static const ADD_TO_EMAIL_TO_LIST:String = "add_to_email_to_list";
@@ -24,7 +25,8 @@
 		public var reportTemplate:String;
 		// v3.4
 		public var individualAccounts:Boolean;
-		public var closedAccounts:Boolean;
+		// gh#911
+		public var archivedAccounts:Boolean;
 		
 		public function AccountEvent(type:String, accounts:Array = null, reportTemplate:String = "", bubbles:Boolean=false, cancelable:Boolean=false) { 
 			super(type, bubbles, cancelable);
@@ -51,15 +53,14 @@
 		public function set showIndividuals(flag:Boolean):void {
 			individualAccounts = flag;
 		}
-		/*
-		 * Not done yet
-		public function get showClosed():Boolean {
-			return closedAccounts;
+		// gh#911
+		public function get showArchived():Boolean {
+			return archivedAccounts;
 		}
-		public function set showClosed(flag:Boolean):void {
-			closedAccounts = flag;
+		public function set showArchived(flag:Boolean):void {
+			archivedAccounts = flag;
 		}
-		*/
+		
 		public override function clone():Event { 
 			return new AccountEvent(type, accounts, reportTemplate, bubbles, cancelable);
 		} 

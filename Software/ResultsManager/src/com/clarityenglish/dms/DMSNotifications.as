@@ -11,6 +11,7 @@
 		public static const ADD_ACCOUNT:String = "add_account";
 		public static const UPDATE_ACCOUNTS:String = "update_accounts";
 		public static const DELETE_ACCOUNTS:String = "delete_accounts";
+		public static const ARCHIVE_ACCOUNTS:String = "archive_accounts";
 		public static const EMAIL_TEMPLATES_LOADED:String = "email_templates_loaded";
 		public static const REPORT_TEMPLATES_LOADED:String = "report_templates_loaded";
 		public static const CHANGE_EMAIL_TO_LIST:String = "change_email_to_list";

@@ -158,6 +158,13 @@ SQL;
 							}
 						}
 						break;
+					case 'archived':
+						if ($value) {
+							$selectBuilder->addWhere("a.F_AccountStatus = '11'");
+						} else {
+							$selectBuilder->addWhere("a.F_AccountStatus != '11'");
+						}
+						break;
 					case 'expiryDate':
 						//echo "expiryDate set to $value";
 						//$where[] = "t.F_ExpiryDate = '".$onExpiryDate."'";
@@ -249,6 +256,9 @@ SQL;
 							$selectBuilder->addWhere("t.F_LicenceStartDate <= '$now 23:59:59'");
 							$needsAccountsTable = true;
 						}
+						// gh#911 If we are not specifically setting 'archived', then active means NOT archived
+						if (!isset($conditions['archived']))
+							$selectBuilder->addWhere("a.F_AccountStatus != '11'");
 						break;
 						
 					// v3.5 Flexibility of email triggers. Ignore accounts that have opted out, for a while.

@@ -62,7 +62,11 @@
 		private var currentSort:*;
 		
 		[Bindable]
-		private var showIndividualAccounts:Boolean;
+		private var showIndividualAccounts:Boolean = false;
+		// gh#911
+		[Bindable]
+		private var showArchivedAccounts:Boolean = false;
+			
 		[Bindable]
 		private var showFilterString:String;
 		
@@ -75,7 +79,7 @@
 			cancelButton.label = copyProvider.getCopyForId("cancel");
 			filteredButton.label = copyProvider.getCopyForId("clearSearchButton");
 			individualAccounts.label = copyProvider.getCopyForId("individualAccounts")
-			//closedAccounts.label = copyProvider.getCopyForId("closedAccounts")
+			archivedAccounts.label = copyProvider.getCopyForId("archivedAccounts")
 			
 			// Set copy in DataGrid columns and the hide/show grid
 			for each (var dataGridColumn:DataGridColumn in dataGrid.columns)
@@ -95,6 +99,7 @@
 			accountCMManager.addEventListener(AccountEvent.ADD_ACCOUNT, onAddAccountSelect);
 			accountCMManager.addEventListener(AccountEvent.EDIT_ACCOUNT, onEditAccountSelect);
 			accountCMManager.addEventListener(AccountEvent.DELETE_ACCOUNTS, onDeleteAccountsSelect);
+			accountCMManager.addEventListener(AccountEvent.ARCHIVE_ACCOUNTS, onArchiveAccountsSelect);
 			accountCMManager.addEventListener(SearchEvent.SEARCH, onSearchSelect);
 			accountCMManager.addEventListener(SearchEvent.CLEAR_SEARCH, onClearSearchSelect);
 			accountCMManager.addEventListener(AccountEvent.ADD_TO_EMAIL_TO_LIST, onChangeEmailToList);
@@ -117,9 +122,7 @@
 			
 			// And the toggle for individual or institutional accounts
 			individualAccounts.addEventListener(Event.CHANGE, onAccountTypeChange);
-			
-			// And the toggle for closed accounts or not
-			//closedAccounts.addEventListener(Event.CHANGE, onAccountTypeChange);
+			archivedAccounts.addEventListener(Event.CHANGE, onAccountTypeChange);
 			
 			// Add a listener to the datagrid which will make sure sorting is kept when the dataProvider changes
 			dataGrid.addEventListener(CollectionEvent.COLLECTION_CHANGE, onDataGridDataChange, false, 0, true);
@@ -225,6 +228,16 @@
 			} );
 		}
 		
+		// gh#911
+		private function onArchiveAccountsSelect(e:AccountEvent):void {
+			Alert.show(copyProvider.getCopyForId("archiveAccounts"), "Confirm", Alert.YES | Alert.NO, this, function(closeEvent:CloseEvent):void {
+				if (closeEvent.detail == Alert.YES) {
+					e.accounts = dataGrid.selectedItems;
+					dispatchEvent(e)
+				}
+			} );
+		}
+			
 		private function onSearchSelect(e:SearchEvent):void {
 			showSearchWindow();
 		}
@@ -410,20 +423,17 @@
 		
 		// v3.4 For showing, or not, individual accounts in DMS
 		private function onAccountTypeChange(e:Event):void {
-			//MonsterDebugger.trace(this, "onAccountTypeChange to individuals");
-			//MonsterDebugger.trace(this, e);
-			// Need to call getAccounts again
-			//var a:AccountEvent = new AccountEvent(AccountEvent.GET_ACCOUNTS, null, null, true);
-			// v3.0.6 We will now just say the type has changed and let someone else (the mediator) trigger the account getting
-			//var a:AccountEvent = new AccountEvent(AccountEvent.GET_ACCOUNTS, null, null, true);
 			var a:AccountEvent = new AccountEvent(AccountEvent.CHANGE_ACCOUNT_TYPE, null, null, true);
-			a.individualAccounts = e.target.selected;
+			a.individualAccounts = individualAccounts.selected;
+			a.archivedAccounts = archivedAccounts.selected;
 			dispatchEvent(a);
 		}
 		// v3.6 For changing the filter string
 		private function onFilterStringChange(e:Event):void {
 			Constants.filterString = e.target.text;
 			var a:AccountEvent = new AccountEvent(AccountEvent.GET_ACCOUNTS, null, null, true);
+			a.individualAccounts = individualAccounts.selected;
+			a.archivedAccounts = archivedAccounts.selected;
 			dispatchEvent(a);
 		}
 		
@@ -434,10 +444,13 @@
 			<mx:HBox width="100%" height="50%">
 				<mx:VBox width="100%" height="100%">
 					<mx:HDividedBox width="100%">
-						<mx:HBox id="accountTypeBox" verticalGap="0" paddingLeft="5" paddingRight="5" width="10%">
-							<mx:CheckBox id="individualAccounts" selected="{showIndividualAccounts}" />
+						<mx:VBox id="accountTypeBox" verticalGap="0" paddingLeft="5" width="8%" height="45">
+							<mx:HBox>
+								<mx:CheckBox id="individualAccounts" selected="{showIndividualAccounts}" />
+								<mx:CheckBox id="archivedAccounts" selected="{showArchivedAccounts}" />
+							</mx:HBox>
 							<mx:TextInput id="filterString" text="{showFilterString}" enabled="true" />
-						</mx:HBox>
+						</mx:VBox>
 						<mx:HBox id="hideShowColumnVBox" verticalGap="0" paddingLeft="5" paddingRight="5" />
 					</mx:HDividedBox>
 					<mx:HBox id="filterButtonHBox" horizontalGap="1" width="100%" horizontalAlign="right" visible="false" includeInLayout="false">
@@ -474,7 +487,7 @@
 							<mx:DataGridColumn id="resellerColumn" dataField="resellerCode" labelFunction="getResellerLabel" visible="true" />
 							<mx:DataGridColumn id="accountStatusColumn" dataField="accountStatus" labelFunction="getAccountStatusLabel" visible="false" />
 							<mx:DataGridColumn id="accountTypeColumn" dataField="accountType" labelFunction="getAccountTypeLabel" visible="false" />
-							<mx:DataGridColumn id="tacStatusColumn" dataField="tacStatus" width="70" labelFunction="getTacStatusLabel" visible="false" />
+							<!-- <mx:DataGridColumn id="tacStatusColumn" dataField="tacStatus" width="70" labelFunction="getTacStatusLabel" visible="false" /> -->
 							<mx:DataGridColumn id="invoiceNumberColumn" dataField="invoiceNumber" width="70" visible="false" sortCompareFunction="invoiceNumericSort" />
 							<mx:DataGridColumn id="referenceColumn" dataField="reference" labelFunction="getReferenceLabel" />
 							<mx:DataGridColumn id="customerTypeColumn" dataField="customerType" labelFunction="getCustomerTypeLabel" visible="false" />

@@ -32,6 +32,7 @@
 			registerCommand(DMSNotifications.ADD_ACCOUNT, AddAccountCommand);
 			registerCommand(DMSNotifications.UPDATE_ACCOUNTS, UpdateAccountsCommand);
 			registerCommand(DMSNotifications.DELETE_ACCOUNTS, DeleteAccountsCommand);
+			registerCommand(DMSNotifications.ARCHIVE_ACCOUNTS, ArchiveAccountsCommand);
 			registerCommand(DMSNotifications.CHANGE_EMAIL_TO_LIST, ChangeEmailToListCommand);
 			registerCommand(DMSNotifications.SHOW_IN_RESULTS_MANAGER, ShowInResultsManagerCommand);
 		}

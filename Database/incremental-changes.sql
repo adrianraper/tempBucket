@@ -395,7 +395,8 @@ VALUES
 (7,'xx'),
 (8,'Account details changed'),
 (9,'Waiting for T&C to be accepted'),
-(10,'Changes approved');
+(10,'Changes approved'),
+(11,'Archived');
 
 -- 5 Jan 2012
 -- Licence control
