@@ -32,11 +32,17 @@ EOD;
 			case 1:
 				// One record, good.
 				$dbObj = $rs->FetchNextObj();
+				$editable = $dbObj->editable;
+				break;
+			// gh#911
+			case 0:
+				// Zero records, bad. Take it to mean locked, and let courseSave fix it.
+				$editable = 0;
 				break;
 			default:
 				return false;
 		}
-		$permissionNode->addAttribute("editable", ($dbObj->editable == 1) ? 'true' : 'false');
+		$permissionNode->addAttribute("editable", ($editable == 1) ? 'true' : 'false');
 		$role = $service->courseOps->getUserRole($courseID);
 		$permissionNode->addAttribute("role", $role);
 		

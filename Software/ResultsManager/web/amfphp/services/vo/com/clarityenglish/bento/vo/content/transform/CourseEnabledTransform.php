@@ -33,6 +33,10 @@ class CourseEnabledTransform extends XmlTransform {
 					} else {
 						$coursesToRemove[] = $course;
 					}
+
+				// gh#913
+				} elseif ($userType == User::USER_TYPE_ADMINISTRATOR) {
+					$eF = $eF | Course::EF_OWNER;
 					
 				} else {
 					// get the highest role for this user on this course

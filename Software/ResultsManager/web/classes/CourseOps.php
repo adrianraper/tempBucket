@@ -505,7 +505,11 @@ SQL;
 		$groupIDs = implode(',', array_unique(array_merge(Session::get('groupIDs'), Session::get('parentGroupIDs')), SORT_DESC));
 		$rootID = Session::get('rootID');
 		
-		if ($userType > User::USER_TYPE_STUDENT) {
+		// gh#913
+		if ($userType == User::USER_TYPE_ADMINISTRATOR) {
+			$userRole = Course::ROLE_OWNER;
+		
+		} else if ($userType > User::USER_TYPE_STUDENT) {
 			// First look for the user directly
 			$sql = <<<SQL
 				SELECT c.F_Role as role FROM T_CourseRoles c 
