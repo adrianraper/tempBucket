@@ -29,40 +29,6 @@ renameOrphanedFolders($dir);
 // Then go through each remaining folder and check that there are no course IDs that exist in other folders
 highlightDuplicateCourseIds($dir);
 
-/**
- * Fix the database for a particular course and account
- * This must be manually set for each time
- */
-function renameCourseForAccount($courseID, $rootID) {
-	global $dmsService;
-	global $takeAction;
-	
-	// Copy any 
-	$sql = 	<<<EOD
-			SELECT * 
-			FROM T_CourseRoles r, T_Membership m
-			WHERE F_CourseID = ?
-			AND F_RootID = ?
-EOD;
-	$rs = $this->db->Execute($sql, array($courseID, $rootID));
-		
-		switch ($rs->RecordCount()) {
-			case 0:
-				// There is no-one in this group yet, so don't know which account it is, raise an error
-				return false;
-				break;
-			case 1:
-				// One record, good. Send back the root
-				$rootID = $rs->FetchNextObj()->rootID;
-				break;
-			default:
-				// Many records means we can't know which root this group belongs to, raise an error
-				return false;
-		}
-	
-} 
-
-
 function highlightDuplicateCourseIds($dir) {
 	global $takeAction;
 	global $accounts;
@@ -154,4 +120,3 @@ function renameOrphanedFolders($dir) {
 }
 
 exit(0);
-
