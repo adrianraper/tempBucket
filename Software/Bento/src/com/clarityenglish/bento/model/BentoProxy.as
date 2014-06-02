@@ -244,7 +244,7 @@ package com.clarityenglish.bento.model {
 				log.error("Attempt to get exercise UID from an empty href");
 				return "";
 			}
-			
+
 			var matchingExerciseNodes:XMLList = menu..exercise.(attribute("href") == href.filename);
 			if (matchingExerciseNodes.length() > 1) {
 				throw new Error("Found multiple Exercise nodes in the menu xml matching " + href);
