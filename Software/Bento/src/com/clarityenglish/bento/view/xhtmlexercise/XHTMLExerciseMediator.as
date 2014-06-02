@@ -74,10 +74,12 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					handleQuestionAnswered(note);
 					break;
 				case BBNotifications.ANSWERS_SHOW:
-					handleShowAnswers(note);
+					if (note.getBody().exercise === view.exercise) // gh#915
+						handleShowAnswers(note);
 					break;
 				case BBNotifications.MARKING_SHOWN:
-					handleMarkingShown(note);
+					if (note.getBody().exercise === view.exercise) // gh#915
+						handleMarkingShown(note);
 					break;
 				case BBNotifications.EXERCISE_STARTED:
 					var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
@@ -121,6 +123,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 		
 		protected function handleMarkingShown(note:INotification):void {
 			var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(view.exercise)) as ExerciseProxy;
+			
 			// Set the exercise marked (this will disable interaction)
 			view.setExerciseMarked();
 			

@@ -135,7 +135,7 @@ import org.puremvc.as3.interfaces.IMediator;
 					configureButtonVisibility(exercise);
 					break;
 				case BBNotifications.MARKING_SHOWN:
-					configureButtonVisibility(note.getBody() as Exercise);
+					configureButtonVisibility(note.getBody().exercise as Exercise);
 					break;
 				case BBNotifications.EXERCISE_PRINTED:
 					//trace("exercise printed");

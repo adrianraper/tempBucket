@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
 	import almerblank.flex.spark.components.SkinnableItemRenderer;
 	
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLayoutEvent;
@@ -77,6 +78,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		[Bindable]
 		public var placeholder:String;
+		
+		public var menuXHTMLHref:Href;
 		
 		protected var _xml:XML;
 		

@@ -80,7 +80,7 @@ package com.clarityenglish.bento.controller {
 				exerciseProxy.exerciseMarkWasWritten();
 			}
 			
-			sendNotification(BBNotifications.MARKING_SHOWN, exercise);
+			sendNotification(BBNotifications.MARKING_SHOWN, { exercise: exercise });
 		}
 		
 		/**

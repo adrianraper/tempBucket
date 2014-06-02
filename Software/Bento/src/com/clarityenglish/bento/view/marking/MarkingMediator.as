@@ -59,7 +59,8 @@
 		}
 		
 		protected function onSeeAnswers(event:Event):void {
-			facade.sendNotification(BBNotifications.ANSWERS_SHOW);
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+			facade.sendNotification(BBNotifications.ANSWERS_SHOW, { exercise: bentoProxy.currentExercise });
 		}
 		
 		protected function onMoveForward(event:Event):void {
