@@ -245,7 +245,7 @@ package com.clarityenglish.bento.model {
 				return "";
 			}
 
-			var matchingExerciseNodes:XMLList = menu..exercise.(@href == href.filename);
+			var matchingExerciseNodes:XMLList = menu..exercise.(attribute("href") == href.filename);
 			if (matchingExerciseNodes.length() > 1) {
 				throw new Error("Found multiple Exercise nodes in the menu xml matching " + href);
 			} else if (matchingExerciseNodes.length() == 0) {
