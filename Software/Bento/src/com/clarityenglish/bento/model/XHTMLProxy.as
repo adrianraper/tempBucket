@@ -106,19 +106,12 @@ package com.clarityenglish.bento.model {
 			transformDefinitions.push(new TransformDefinition(transforms, forTypes, forFilename));
 		}
 		
-		public function reloadXHTML():void {
-			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			
-			if (!bentoProxy.menuXHTML) {
-				log.error("reloadXHTML was called when no menu xhtml was loaded");
-				return;
-			}
-			
+		public function reloadXHTML(href:Href):void {
 			// Clear the entry from the cache and reload
-			if (loadedResources[bentoProxy.menuXHTML.href])
-				delete loadedResources[bentoProxy.menuXHTML.href];
+			if (loadedResources[href])
+				delete loadedResources[href];
 			
-			loadXHTML(bentoProxy.menuXHTML.href);
+			loadXHTML(href);
 		}
 		
 		public function loadXHTML(href:Href):void {
