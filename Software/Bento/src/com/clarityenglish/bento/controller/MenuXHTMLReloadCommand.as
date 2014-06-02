@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.controller {
+	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.model.XHTMLProxy;
 	
 	import mx.logging.ILogger;
@@ -18,10 +19,17 @@ package com.clarityenglish.bento.controller {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;
 			
 			log.debug("Reloading MENU_XHTML");
-			xhtmlProxy.reloadXHTML();
+			
+			if (!bentoProxy.menuXHTML) {
+				log.error("reloadXHTML was called when no menu xhtml was loaded");
+				return;
+			}
+			
+			xhtmlProxy.reloadXHTML(bentoProxy.menuXHTML.href);
 		}
 		
 	}
