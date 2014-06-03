@@ -47,6 +47,7 @@
 			view.addAudio.add(onAddAudio);
 			view.addVideo.add(onAddVideo);
 			view.addExercise.add(onAddExercise);
+			view.addDrive.add(onAddDrive);
 			view.formatText.add(onFormatText);
 			view.preview.add(onPreview);
 			view.backToEditor.add(onBackToEditor);
@@ -65,6 +66,7 @@
 			view.addAudio.remove(onAddAudio);
 			view.addVideo.remove(onAddVideo);
 			view.addExercise.remove(onAddExercise);
+			view.addDrive.remove(onAddDrive);
 			view.formatText.remove(onFormatText);
 			view.preview.remove(onPreview);
 			view.backToEditor.remove(onBackToEditor);
@@ -144,6 +146,12 @@
 		protected function onAddVideo(options:Object, widget:XML):void {
 			if (widget) options.node = widget; // gh#115 - edit an existing widget
 			facade.sendNotification(RotterdamNotifications.VIDEO_WIDGET_ADD, options);
+		}
+		
+		// gh#679
+		protected function onAddDrive(options:Object, widget:XML):void {
+			if (widget) options.node = widget;
+			facade.sendNotification(RotterdamNotifications.DRIVE_WIDGET_ADD, options);
 		}
 		
 		// gh#305

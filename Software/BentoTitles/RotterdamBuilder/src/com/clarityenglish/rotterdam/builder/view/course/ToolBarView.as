@@ -67,6 +67,25 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		[SkinPart]
 		public var addVideoLabel:Label;
 		
+		// gh#679
+		[SkinPart]
+		public var normalAddDriveButton:Button;
+		
+		[SkinPart]
+		public var listAddDriveButton:Button;
+		
+		[SkinPart]
+		public var addDriveLabel:Label;
+		
+		[SkinPart]
+		public var driveUrlTextInput:TextInput;
+		
+		[SkinPart]
+		public var driveSelectButton:Button;
+		
+		[SkinPart]
+		public var linkDriveLabel:Label;
+		
 		[SkinPart]
 		public var normalAddImageButton:Button;
 		
@@ -74,7 +93,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var listAddImageButton:Button;
 		
 		[SkinPart]
-		public var addIamgeLabel:Label;
+		public var addImageLabel:Label;
 		
 		[SkinPart]
 		public var normalAddAudioButton:Button;
@@ -248,6 +267,8 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addAudio:Signal = new Signal(Object, XML, String);
 		public var addVideo:Signal = new Signal(Object, XML);
 		public var addExercise:Signal = new Signal(Object, XML, String);
+		// gh#679
+		public var addDrive:Signal = new Signal(Object, XML);
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
@@ -302,7 +323,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		public function ToolBarView() {
-			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "link", "preview" ], true);
+			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "drive", "link", "preview" ], true);
 		}
 
 		// gh#91
@@ -393,6 +414,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				var thisSrc:String = _currentEditingWidget.@src;
 				var widgetType:String = _currentEditingWidget.@type;
 				switch (widgetType) {
+					case "drive":
+						driveUrlTextInput.text = (thisSrc && (StringUtils.beginsWith(thisSrc.toLowerCase(), "http"))) ? thisSrc : '';
+						break;
 					case "video":
 						videoUrlTextInput.text = (thisSrc) ? UniversalVideoPlayer.formatUrl(thisSrc) : '';
 						break;
@@ -454,12 +478,35 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case normalAddVideoButton:
 					normalAddVideoButton.addEventListener(MouseEvent.CLICK, onNormalAddVideo);
 					break;
+				// gh#679
+				case listAddDriveButton:
+					listAddDriveButton.addEventListener(MouseEvent.CLICK, onNormalAddDrive);
+					break;
+				case addDriveLabel:
+					addDriveLabel.text = copyProvider.getCopyForId("addDriveLabel");
+					addDriveLabel.addEventListener(MouseEvent.CLICK, onNormalAddDrive);
+					break;
+				case normalAddDriveButton:
+					normalAddDriveButton.addEventListener(MouseEvent.CLICK, onNormalAddDrive);
+					break;
+				case driveSelectButton:
+					driveSelectButton.addEventListener(MouseEvent.CLICK, onDriveSelect);
+					driveSelectButton.label = copyProvider.getCopyForId("selectButton");
+					break;
+				case driveUrlTextInput:
+					driveUrlTextInput.addEventListener(FlexEvent.ENTER, onDriveUrlEnter);
+					instance.prompt = copyProvider.getCopyForId("urlPrompt");
+					break;
+				case linkDriveLabel:
+					linkDriveLabel.text = copyProvider.getCopyForId("linkDriveLabel");
+					break;
+				
 				case listAddImageButton:
 					listAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
-				case addIamgeLabel:
-					addIamgeLabel.text = copyProvider.getCopyForId("addIamgeLabel");
-					addIamgeLabel.addEventListener(MouseEvent.CLICK, onNormalAddImage);
+				case addImageLabel:
+					addImageLabel.text = copyProvider.getCopyForId("addImageLabel");
+					addImageLabel.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
 				case normalAddImageButton:
 					normalAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
@@ -645,6 +692,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			isItemClick = true;
 		}
 		
+		protected function onNormalAddDrive(event:MouseEvent):void {
+			setCurrentState("drive");
+			isItemClick = true;
+		}
+		
 		protected function onNormalAddExercise(event:MouseEvent):void {
 			addExercise.dispatch({}, _currentEditingWidget, contentWindowTitle);
 			isItemClick = true;
@@ -711,19 +763,19 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onAudioUpload(event:MouseEvent):void {
-			addAudio.dispatch({ source: "computer" }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+			addAudio.dispatch({ source: "computer" }, _currentEditingWidget, null);
 			setCurrentState("normal");
 		}
 		
 		protected function onAudioCloudUpload(event:MouseEvent):void {
-			addAudio.dispatch({ source: "cloud" }, _currentEditingWidget, cloudWindowTitle); // TODO: use a constant from somewhere?
+			addAudio.dispatch({ source: "cloud" }, _currentEditingWidget, cloudWindowTitle);
 			setCurrentState("normal");
 		}
 		
 		protected function onAudioUrlEnter(event:FlexEvent):void {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
-				addAudio.dispatch({ source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+				addAudio.dispatch({ source: "external", url: url }, _currentEditingWidget, null);
 				event.target.text = "";
 				setCurrentState("normal");
 			}
@@ -733,6 +785,23 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			var url:String = videoUrlTextInput.text;
 			if (url) {
 				addVideo.dispatch({ url: url }, _currentEditingWidget); // TODO: use a constant from somewhere (in fact this isn't used yet)?
+				setCurrentState("normal");
+			}
+		}
+		
+		// gh#679
+		protected function onDriveSelect(event:Event):void {
+			var url:String = driveUrlTextInput.text;
+			if (url) {
+				addDrive.dispatch({ url: url }, _currentEditingWidget);
+				setCurrentState("normal");
+			}
+		}
+		protected function onDriveUrlEnter(event:FlexEvent):void {
+			var url:String = event.target.text;
+			if (url && !(new URLValidator().validate(url).results)) {
+				addDrive.dispatch({ source: "external", url: url }, _currentEditingWidget);
+				event.target.text = "";
 				setCurrentState("normal");
 			}
 		}

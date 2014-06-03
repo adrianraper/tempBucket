@@ -209,6 +209,14 @@ buildercourse|ToolBarView s|Button#listAddPDFButton, {
 	skinClass: ClassReference("skins.rotterdam.unit.AddPDFButtonSkin");
 }
 
+buildercourse|ToolBarView s|Button#normalAddDriveButton, {
+	skinClass: ClassReference("skins.rotterdam.unit.AddDriveButtonSkin");
+}
+
+buildercourse|ToolBarView s|Button#listAddDriveButton, {
+	skinClass: ClassReference("skins.rotterdam.unit.AddDriveButtonSkin");
+}
+
 buildercourse|ToolBarView s|Button#normalAddTextButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddTextButtonSkin");
 }

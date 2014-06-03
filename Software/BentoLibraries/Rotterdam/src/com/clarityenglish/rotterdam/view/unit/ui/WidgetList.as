@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.DriveWidget;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -60,6 +61,8 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 					return AudioWidget;
 				case "exercise":
 					return ExerciseWidget;
+				case "drive":
+					return DriveWidget;
 				default:
 					log.error("Unsupported widget type " + type);
 					return null;

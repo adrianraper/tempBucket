@@ -243,13 +243,15 @@
 			<lit name="uploadImageLabel">Upload the image from</lit>
 			<lit name="uploadAudioLabel">Upload the audio from</lit>
 			<lit name="uploadVideoLabel">Video URL:</lit>
+			<lit name="linkDriveLabel">Drive file URL:</lit>
 			<lit name="webLinkURLLabel">Type the web URL here:</lit>
 			<lit name="webLinkTextLabel">Text to display:</lit>
 			<lit name="upButton">Learn more</lit>
 			<lit name="addTextLabel">Add text</lit>
 			<lit name="addPDFLabel">Add a PDF</lit>
 			<lit name="addVideoLabel">Add a video</lit>
-			<lit name="addIamgeLabel">Add an image</lit>
+			<lit name="addDriveLabel">Link to Drive</lit>
+			<lit name="addImageLabel">Add an image</lit>
 			<lit name="addAudioLabel">Add an audio</lit>
 			<lit name="addExerciseLabel">Add a Clarity exercise</lit>
 			<lit name="itemListLabel">Choose the item you would like to add to your unit</lit>

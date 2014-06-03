@@ -35,6 +35,10 @@ widgets|ExerciseWidget {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ExerciseWidgetSkin");
 }
 
+widgets|DriveWidget {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.DriveWidgetSkin");
+}
+
 s|TitleWindow.errorTitleWindow {
 	skinClass: ClassReference("skins.rotterdam.titlewindows.ErrorTitleWindowSkin");
 }

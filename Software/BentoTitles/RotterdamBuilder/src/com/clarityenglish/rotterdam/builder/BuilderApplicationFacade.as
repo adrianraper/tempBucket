@@ -29,6 +29,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.widgets.PDFWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.TextWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.controller.widgets.VideoWidgetAddCommand;
+	import com.clarityenglish.rotterdam.builder.controller.widgets.DriveWidgetAddCommand;
 	import com.clarityenglish.rotterdam.builder.model.ContentProxy;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarMediator;
 	import com.clarityenglish.rotterdam.builder.view.course.ToolBarView;
@@ -90,6 +91,8 @@
 			registerCommand(RotterdamNotifications.IMAGE_WIDGET_ADD, ImageWidgetAddCommand);
 			registerCommand(RotterdamNotifications.AUDIO_WIDGET_ADD, AudioWidgetAddCommand);
 			registerCommand(RotterdamNotifications.EXERCISE_WIDGET_ADD, ExerciseWidgetAddCommand);
+			// gh#679
+			registerCommand(RotterdamNotifications.DRIVE_WIDGET_ADD, DriveWidgetAddCommand);
 			
 			// gh#64
 			registerCommand(RotterdamNotifications.VIDEO_LOAD_ERROR, ShowErrorCommand);

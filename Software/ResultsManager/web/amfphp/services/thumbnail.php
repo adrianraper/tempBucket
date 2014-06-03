@@ -13,6 +13,9 @@ function outputPng($imagePath) {
 // gh#259
 if (isset($_GET['type']) && ($_GET['type'] == 'pdf')) {
 	outputPng($thumbnailFolder."/pdf.png");
+// gh#679
+} elseif (isset($_GET['type']) && ($_GET['type'] == 'drive')) {
+	outputPng($thumbnailFolder."/drive.png");
 } elseif (!isset($_GET['uid'])) {
 	echo "No uid given";
 	return;

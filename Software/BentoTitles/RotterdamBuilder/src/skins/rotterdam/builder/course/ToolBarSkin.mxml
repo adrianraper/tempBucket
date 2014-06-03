@@ -42,6 +42,7 @@
 		<s:State name="text" />
 		<s:State name="preview" />
 		<s:State name="link" />
+		<s:State name="drive" /> <!-- gh#679 -->
 	</s:states>
 	
 	<s:Rect left="3" right="3" height="48" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" bottom="0">
@@ -83,6 +84,10 @@
 		
 		<s:Label includeIn="video" id="uploadVideoLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="video" id="videoUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5"  />
+		
+		<!-- gh#679 -->
+		<s:Label includeIn="drive" id="linkDriveLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
+		<s:TextInput includeIn="drive" id="driveUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5"  />
 		
 		<s:Label includeIn="link" id="webLinkURLLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="webUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />
@@ -167,18 +172,21 @@
 				<s:Label id="itemListLabel2" color="0x8CC63F" fontSize="14" top="15" left="30" />
 			</s:Group>
 			
-			<s:Button id="listAddTextButton" useHandCursor="true" buttonMode="true" top="60" left="25"/>
-			<s:Label id="addTextLabel" top="70" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddPDFButton" useHandCursor="true" buttonMode="true" top="60" left="190"/>
-			<s:Label id="addPDFLabel" top="70" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddVideoButton" useHandCursor="true" buttonMode="true" top="100" left="25"/>
-			<s:Label id="addVideoLabel" top="110" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddImageButton" useHandCursor="true" buttonMode="true" top="100" left="190"/>
-			<s:Label id="addIamgeLabel" top="110" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddAudioButton" useHandCursor="true" buttonMode="true" top="140" left="25"/>
-			<s:Label id="addAudioLabel" top="150" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddExerciseButton" useHandCursor="true" buttonMode="true" top="140" left="190"/>
-			<s:Label id="addExerciseLabel" top="150" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<!-- gh#679 -->
+			<s:Button id="listAddTextButton" useHandCursor="true" buttonMode="true" top="50" left="25"/>
+			<s:Label id="addTextLabel" top="60" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddPDFButton" useHandCursor="true" buttonMode="true" top="50" left="190"/>
+			<s:Label id="addPDFLabel" top="60" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddVideoButton" useHandCursor="true" buttonMode="true" top="85" left="25"/>
+			<s:Label id="addVideoLabel" top="95" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddImageButton" useHandCursor="true" buttonMode="true" top="85" left="190"/>
+			<s:Label id="addImageLabel" top="95" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddAudioButton" useHandCursor="true" buttonMode="true" top="120" left="25"/>
+			<s:Label id="addAudioLabel" top="130" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddExerciseButton" useHandCursor="true" buttonMode="true" top="120" left="190"/>
+			<s:Label id="addExerciseLabel" top="130" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="listAddDriveButton" useHandCursor="true" buttonMode="true" top="155" left="25"/>
+			<s:Label id="addDriveLabel" top="165" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
 		</s:Group>
 	</s:Group>	
 
@@ -189,6 +197,7 @@
 		<s:Button includeIn="normal" id="normalAddImageButton" useHandCursor="true" buttonMode="true" />	
 		<s:Button includeIn="normal" id="normalAddAudioButton" useHandCursor="true" buttonMode="true" />
 		<s:Button includeIn="normal" id="normalAddExerciseButton" useHandCursor="true" buttonMode="true" />
+		<s:Button includeIn="normal" id="normalAddDriveButton" useHandCursor="true" buttonMode="true" />
 		<s:Spacer width="20" />
 		<s:Button id="upButton" click="upAnim.play();" includeIn="normal" useHandCursor="true" buttonMode="true"/>
 	</s:HGroup>
@@ -207,8 +216,9 @@
 	
 	<s:HGroup bottom="0" right="2" gap="3" height="48" verticalAlign="middle">
 		<s:Button includeIn="video" id="videoSelectButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		<s:Button includeIn="drive" id="driveSelectButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
 		<s:Button includeIn="link" id="linkSelectButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
-		<s:Button includeIn="pdf,video,image,audio,link" id="normalCancelButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		<s:Button includeIn="pdf,video,image,audio,link,drive" id="normalCancelButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
 		<s:Button includeIn="preview" id="previewBackToEditorButton" fontWeight="bold" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	
