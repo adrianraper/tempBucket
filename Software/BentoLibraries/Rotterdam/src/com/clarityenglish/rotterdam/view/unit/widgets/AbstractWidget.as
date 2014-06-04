@@ -75,6 +75,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public var thumbnailScript:String;
 		
 		[Bindable]
+		public var permissionScript:String;
+		
+		[Bindable]
 		public var placeholder:String;
 		
 		protected var _xml:XML;
@@ -89,6 +92,10 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public var openMedia:Signal = new Signal(XML);
 		public var openContent:Signal = new Signal(XML, String);
 		public var textSelected:Signal = new Signal(TextLayoutFormat);
+		
+		// gh#679
+		public var getPermission:Signal = new Signal(XML, String);
+		
 		// gh#306
 		public var captionSelected:Signal = new Signal(String, String);
 		// gh#106

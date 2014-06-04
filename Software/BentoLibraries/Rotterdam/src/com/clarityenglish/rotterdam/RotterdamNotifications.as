@@ -31,6 +31,10 @@
 		public static const EXERCISE_WIDGET_ADD:String = "rotterdam/exercise_widget_add";
 		// gh#679
 		public static const DRIVE_WIDGET_ADD:String = "rotterdam/drive_widget_add";
+		public static const RESOURCE_GET_PERMISSION:String = "rotterdam/resource_get_permission";
+		public static const RESOURCE_GOT_PERMISSION:String = "rotterdam/resource_got_permission";
+		public static const RESOURCE_DENIED_PERMISSION:String = "rotterdam/resource_denied_permission";
+		public static const RESOURCE_PERMISSION_REQUEST_FAILED:String = "rotterdam/resource_permission_request_failed";
 		
 		public static const COURSE_CREATE_WINDOW_SHOW:String = "rotterdam/course_create_window_show";
 		public static const CONTENT_WINDOW_SHOW:String = "rotterdam/content_window_show";

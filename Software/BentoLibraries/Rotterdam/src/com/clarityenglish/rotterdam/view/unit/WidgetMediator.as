@@ -9,6 +9,7 @@
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.DriveWidget;
 	
 	import flash.events.ProgressEvent;
 	import flash.net.URLRequest;
@@ -62,6 +63,8 @@
 			// gh#306
 			view.captionSelected.add(onCaptionSelected);
 			
+			// gh#679
+			view.getPermission.add(onGetPermission);
 			// gh#106
 			view.playVideo.add(onPlay);
 			view.playAudio.add(onPlay);
@@ -91,6 +94,8 @@
 				RotterdamNotifications.WEB_URL_ADD,
 				RotterdamNotifications.WEB_URL_CANCEL,
 				RotterdamNotifications.WIDGET_RENAME,
+				RotterdamNotifications.RESOURCE_GOT_PERMISSION,
+				RotterdamNotifications.RESOURCE_DENIED_PERMISSION,
 			]);
 		}
 		
@@ -108,6 +113,16 @@
 						break;
 					case RotterdamNotifications.MEDIA_UPLOADED:
 						view.setUploading(false);
+						break;
+				}
+			}
+			
+			// Permission actions - only react to this notification if it is specifcally for this widget
+			if (note.getType() == view.xml.@id) {
+				switch (note.getName()) {
+					// gh#679
+					case RotterdamNotifications.RESOURCE_GOT_PERMISSION:
+						onSetPermission(note.getBody() as String);
 						break;
 				}
 			}
@@ -136,6 +151,10 @@
 		
 		protected function handleTextFormat(options:Object):void {
 			view.widgetText.applyTextLayoutFormat(options.format);
+		}
+
+		protected function onSetPermission(token:String):void {
+			(view as DriveWidget).permission = token;
 		}
 		
 		protected function onAddLink(webUrlString:String, captionString:String):void {
@@ -182,6 +201,19 @@
 				blockedWarning.errorContext = copyProvider.getCopyForId('contentBlockedWarning');
 				blockedWarning.isFatal = false;
 				facade.sendNotification(RotterdamNotifications.CONTENT_BLOCKED_ON_TABLET, blockedWarning);
+			}
+		}
+		
+		/**
+		 * Try to get permission to access the specified resource
+		 * Assumes oAuth at present
+		 * 
+		 * @param widget
+		 * @param resourceOwner
+		 */
+		private function onGetPermission(widget:XML, provider:String):void {
+			if (provider.toLowerCase() == 'google') {
+				facade.sendNotification(RotterdamNotifications.RESOURCE_GET_PERMISSION, widget);
 			}
 		}
 		

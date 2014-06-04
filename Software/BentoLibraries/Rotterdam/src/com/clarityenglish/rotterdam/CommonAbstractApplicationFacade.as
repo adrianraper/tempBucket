@@ -7,6 +7,7 @@
 	import com.clarityenglish.rotterdam.controller.ContentOpenCommand;
 	import com.clarityenglish.rotterdam.controller.CourseResetCommand;
 	import com.clarityenglish.rotterdam.controller.CourseStartCommand;
+	import com.clarityenglish.rotterdam.controller.ResourceGetPermissionCommand;
 	import com.clarityenglish.rotterdam.controller.UnitStartCommand;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	import com.clarityenglish.rotterdam.view.course.CourseMediator;
@@ -22,12 +23,12 @@
 	import com.clarityenglish.rotterdam.view.unit.UnitView;
 	import com.clarityenglish.rotterdam.view.unit.WidgetMediator;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.DriveWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
-	import com.clarityenglish.rotterdam.view.unit.widgets.DriveWidget;
 	
 	public class CommonAbstractApplicationFacade extends BentoFacade {
 		
@@ -42,6 +43,7 @@
 			registerCommand(RotterdamNotifications.CONTENT_OPEN, ContentOpenCommand);
 			registerCommand(RotterdamNotifications.CONTENT_BLOCKED_ON_TABLET, ShowErrorCommand);
 			
+			registerCommand(RotterdamNotifications.RESOURCE_GET_PERMISSION, ResourceGetPermissionCommand);
 			// gh#13
 			registerCommand(RotterdamNotifications.COURSE_RESET, CourseResetCommand);
 			

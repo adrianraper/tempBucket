@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:widgets="skins.rotterdam.unit.widgets.*"
+		minHeight="80">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.DriveWidget")]
+	</fx:Metadata>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing_normal" stateGroups="editing" />
+		<s:State name="editing_selected" stateGroups="editing,selected" />
+		<s:State name="dragging" />
+	</s:states>
+	
+	<!-- Chrome -->
+	<widgets:WidgetChrome id="widgetChrome"
+						  caption="{hostComponent.caption}"
+						  icon="@Embed(source='/skins/assets/drive-icon.png', mimeType='image/png')"
+						  editing.editing="true"
+						  selected.selected="true"
+						  left="0" right="0" top="0" bottom="0" />
+	
+	<!-- Progress bar -->
+	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
+	
+	<s:HGroup left="0" right="0" top="25" paddingLeft="6" paddingRight="1" paddingBottom="1">
+		<!-- Thumbnail -->
+		<s:VGroup paddingLeft="2" paddingTop="2" paddingRight="2" paddingBottom="2">
+			<s:Image id="thumbnailImage" source="@Embed(source='/skins/assets/drive.png', mimeType='image/png')" visible="{hostComponent.hasSrc}" />
+			<s:Label id="tokenLabel" width="125" text="{hostComponent.permissionToken}" />			
+		</s:VGroup>
+		
+		<!-- Text -->
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="60" height="100%" />
+	</s:HGroup>
+	
+</s:Skin>
