@@ -272,6 +272,7 @@
 <lit name="PromptSavingExercise">Do you want to save your exercise?</lit>
 <lit name="PromptOverwriteCourse">The file is currently in use by [n]. Do you want to overwrite it?</lit>
 <lit name="PromptOverwriteExercise">The exercise is currently in use by [n]. Do you want to overwrite it?</lit>
+<lit name="PromptTryLaterExercise">The exercise can't be saved right now, please try again in a minute.</lit>
 <lit name="CourseNameRequiredError">Please enter a course name.</lit>
 <lit name="CourseHasUnitsError">Please create a unit.</lit>
 <lit name="SelectedUnitError">Please select a unit.</lit>
@@ -2743,3 +2744,4 @@
 <lit name="MakeFieldCountdown">Välj ord att visa</lit>
 </group>
 </language>
+</literals>

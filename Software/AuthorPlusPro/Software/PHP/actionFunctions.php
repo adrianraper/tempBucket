@@ -61,7 +61,13 @@ function getLocks($path, $user) {
 				if ($val['tag']=="lock" && $val['type']=="open") {
 					$lck = "<lock>";
 				} else if ($val['type']=="complete") {
-					$lck .= "<".$val['tag'].">".$val['value']."</".$val['tag'].">";
+					// v6.5.4.3 ACL saving, avoid php notices
+					if (isset($val['value'])) {
+						$valueText = $val['value'];
+					} else {
+						$valueText = '';
+					}
+					$lck .= "<".$val['tag'].">".$valueText."</".$val['tag'].">";
 					if ($val['tag']=="user" && strtoupper($val['value'])==strtoupper($user)) {
 						$thisUserLocking = True;
 					}
@@ -106,7 +112,7 @@ function lockFile( &$Query, &$node ) {
 	if (file_exists($path)) {
 		$locks .= getLocks($path, $user);
 	}
-	
+
 	// open the file with write permission, write the locks out
 	if ($fp = @fopen($path, "wb")) {
 		//$node .= "<note open='true' lock='$user' />";
@@ -119,7 +125,8 @@ function lockFile( &$Query, &$node ) {
 		$node .= "<action success='true' file='" .$path ."'/>";
 	} else {
 		// v6.4.2.6 return action fail message
-		$node .= "<action success='fail' file='" .$path ."'/>";
+		$permissions = decoct(fileperms($path) & 0777);
+		$node .= "<action success='fail' permissions='".$permissions."' file='" .$path ."'/>";
 	}	
 	unset($fp);
 	return 0;

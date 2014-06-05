@@ -348,6 +348,12 @@ class Classes.view {
 			screens.txts.txtPopupMsg.text = _global.replace(literals.getLiteral("msgPromptOverwriteExercise"), "[n]", v);
 			screens.setPopupButtons(12);
 			break;
+		// gh#922
+		case "promptTryLaterExercise":
+			screens.txts.txtPopupMsg.text = literals.getLiteral("msgPromptTryLaterExercise");
+			screens.setPopupButtons(1);
+			break;
+			
 		case "noCoursesForExportError" :	// v0.16.1, DL: share
 			screens.txts.txtPopupMsg.text = literals.getLiteral("msgNoCoursesForExportError");
 			screens.setPopupButtons(1);
