@@ -2521,6 +2521,11 @@ class Classes.control {
 	function promptOverwrite(file:String, user:String) : Void {
 		view.showPopup("promptOverwrite"+file, user);
 	}
+	// gh#922 
+	function promptTryLater(file:String) : Void {
+		//myTrace("prompt try later " + file + " please");
+		view.showPopup("promptTryLater"+file, null);
+	}
 	
 	// on popup button click
 	function onPopupResponse(popupReason:String, btn:String) {
@@ -2641,6 +2646,10 @@ class Classes.control {
 				writeExerciseXML();
 			}
 			break;
+		// gh#xxx
+		case "promptTryLaterExercise" :
+			break;
+		
 		case "importError" :
 			if (btn=="ok") {
 				// reload the course.xml

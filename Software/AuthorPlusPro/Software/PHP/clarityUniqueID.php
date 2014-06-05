@@ -7,10 +7,13 @@
 // but if the script is running quickly, it'll be giving the same id for the whole script
 // so i change the last 3 digits to a random number
 
+// Update so that you don't use random numbers but a static variable instead. This guarantees 999 unique numbers each second.
+static $idCount = 0;
+
 function getTimeStamp() {
 	return date("YmdHis");
 }
-
+/*
 function getCurrentServerTime() {
 	$now = (string)microtime();
 	$now = explode(' ', $now);
@@ -22,4 +25,16 @@ function getCurrentServerTime() {
 	
 	return $unique_id;
 }
-?>
+*/
+function getCurrentServerTime() {
+	global $idCount;
+	$now = (string)time();
+	$base = substr($now, -10, 10);
+	
+	$idCount++;
+	$unique_id = $base.sprintf("%03d",$idCount);
+	
+	if ($idCount>998)
+		$idCount=0;
+	return $unique_id;
+}

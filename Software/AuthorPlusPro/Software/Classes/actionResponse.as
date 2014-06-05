@@ -212,13 +212,17 @@
 			break;
 			break;
 		case "checkLockCourses" :
-		case "checkLockExercise" :
 		case "checkLockMenuForDelUnit" :
 		case "checkLockExerciseForDelExercise" :
 		case "checkLockForDelCourse" :
 		// v6.4.3 Add bigger deleting
 		case "checkLockForDelCourseFolder" :
 			myTrace("fail to check locking of file");
+			break;
+		// gh#922
+		case "checkLockExercise" :
+			myTrace("fail to check lock exercise, warn to try later");
+			control.promptTryLater("Exercise");
 			break;
 		case "checkLockExerciseForOpening" :
 			myTrace("fail to check locking of file, opens it");

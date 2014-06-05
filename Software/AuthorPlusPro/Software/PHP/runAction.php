@@ -1,4 +1,6 @@
 <?php
+date_default_timezone_set("UTC");
+
 include_once("actionFunctions.php");
 
 // Query Class
@@ -118,7 +120,13 @@ class XMLQuery {
 					}
 					break;
 				default :
-					$this->vars[strtoupper($val['tag'])] = $val['value'];
+					// v6.5.4.3 ACL saving, avoid php notices
+					if (isset($val['value'])) {
+						$valueText = $val['value'];
+					} else {
+						$valueText = '';
+					}
+					$this->vars[strtoupper($val['tag'])] = $valueText;
 					break;
 				}
 				// debug statement:
