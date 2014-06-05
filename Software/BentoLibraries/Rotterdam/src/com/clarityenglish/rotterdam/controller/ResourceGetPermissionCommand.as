@@ -10,6 +10,7 @@ package com.clarityenglish.rotterdam.controller {
 	import flash.events.SecurityErrorEvent;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.net.URLVariables;
 	import flash.net.navigateToURL;
 	import flash.utils.ByteArray;
 	
@@ -41,7 +42,11 @@ package com.clarityenglish.rotterdam.controller {
 				
 				var widget:XML = (note.getBody() as XML);
 				widgetId = widget.@id;
-				var parameters:String = "?provider=" + widget.@permissionProvider; // + "&src=" + widget.@src;
+				var url:URLRequest = new URLRequest(permissionScript);
+				var parameters:URLVariables = new URLVariables();
+				parameters.provider = widget.@permissionProvider;
+				parameters.src = widget.@src;
+				url.data = parameters;
 				
 				urlLoader = new URLLoader();
 				urlLoader.addEventListener(Event.COMPLETE, function(e:Event):void {
@@ -53,7 +58,7 @@ package com.clarityenglish.rotterdam.controller {
 				});
 				urlLoader.addEventListener(IOErrorEvent.IO_ERROR, onFailure, false, 0, true);
 				urlLoader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, onFailure, false, 0, true);
-				urlLoader.load(new URLRequest(permissionScript + parameters));
+				urlLoader.load(url);
 			}
 		}
 		
