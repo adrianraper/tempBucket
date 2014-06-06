@@ -6,6 +6,7 @@
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 @namespace calendar "com.clarityenglish.controls.calendar.*";
 @namespace credits "com.clarityenglish.bento.view.credits.*";
+@namespace players "com.clarityenglish.controls.video.players.*";
 
 unit|UnitView {
 	skinClass: ClassReference("skins.rotterdam.unit.UnitSkin");
@@ -73,4 +74,8 @@ calendar|Calendar s|Button#nextMonthButton {
 
 credits|CreditsView {
 	skinClass: ClassReference("skins.rotterdam.CreditsSkin");
+}
+
+players|OSMFVideoPlayer {
+	skinClass: ClassReference("skins.rotterdam.unit.widgets.videoplayer.VideoPlayerSkin");
 }

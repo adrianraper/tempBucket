@@ -1,9 +1,11 @@
 package com.clarityenglish.controls.video {
+	import com.clarityenglish.controls.video.events.VideoSpanButtonBarEvent;
 	import com.clarityenglish.controls.video.players.FlashVideoPlayer;
 	import com.clarityenglish.controls.video.players.HTMLVideoPlayer;
 	import com.clarityenglish.controls.video.providers.AwsProvider;
 	import com.clarityenglish.controls.video.providers.RackspaceProvider;
 	import com.clarityenglish.controls.video.providers.VimeoProvider;
+	import com.clarityenglish.controls.video.providers.YouKuProvider;
 	import com.clarityenglish.controls.video.providers.YouTubeProvider;
 	
 	import flash.events.Event;
@@ -27,8 +29,9 @@ package com.clarityenglish.controls.video {
 		protected static var providers:Array = [
 			YouTubeProvider,
 			VimeoProvider,
+			YouKuProvider,
+			RackspaceProvider,
 			//AwsProvider,
-			//RackspaceProvider
 		];
 		
 		public static function canHandleSource(value:Object):Boolean {
@@ -92,11 +95,18 @@ package com.clarityenglish.controls.video {
 			// Go through the registered providers, selecting the first one that can handle this source
 			var provider:IVideoProvider;
 			for each (var providerClass:Class in providers) {
-				// gh#875 
+				// gh#875
 				if (new providerClass(videoPlayer).isRightProvider(value)) {
+					// for youku video, the span button bar in widget menu is hided.
+					if (providerClass == YouKuProvider) {
+						dispatchEvent(new VideoSpanButtonBarEvent(VideoSpanButtonBarEvent.SPANBUTTONBAR_HIDE, true, true));
+					} else {
+						dispatchEvent(new VideoSpanButtonBarEvent(VideoSpanButtonBarEvent.SPANBUTTONBAR_HIDE, true, false));
+					}
 					provider = new providerClass(videoPlayer);
 					break;
 				}
+				
 			}
 			
 			if (!provider) {

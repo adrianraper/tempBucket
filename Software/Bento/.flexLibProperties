@@ -180,6 +180,7 @@
     <classEntry path="com.clarityenglish.controls.video.players.HTMLVideoPlayer"/>
     <classEntry path="com.clarityenglish.controls.video.UniversalVideoPlayer"/>
     <classEntry path="com.clarityenglish.controls.video.IVideoProvidable"/>
+    <classEntry path="com.clarityenglish.controls.video.events.VideoSpanButtonBarEvent"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/draggable_pointer.png" sourcePath="skins/assets/draggable_pointer.png"/>

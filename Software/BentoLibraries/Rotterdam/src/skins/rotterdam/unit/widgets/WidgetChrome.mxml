@@ -20,11 +20,14 @@
 			[Bindable]
 			public var editing:Boolean;
 			
+			[Bindable]
+			public var hideSpanButtonBar:Boolean;
+			
 			protected function onMenuButtonClick(event:MouseEvent):void {
 				switch (currentState) {
 					case "closed":
 						currentState = "open";
-						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_SHOW, true));
+						dispatchEvent(new WidgetMenuEvent(WidgetMenuEvent.MENU_SHOW, true, null, hideSpanButtonBar));
 						break;
 					case "open":
 						currentState = "closed";

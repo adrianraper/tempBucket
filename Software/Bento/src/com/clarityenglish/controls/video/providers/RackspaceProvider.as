@@ -4,6 +4,7 @@ package com.clarityenglish.controls.video.providers {
 	import com.clarityenglish.controls.video.IVideoPlayer;
 	import com.clarityenglish.controls.video.IVideoProvider;
 	import com.clarityenglish.controls.video.events.VideoEvent;
+	import com.clarityenglish.controls.video.players.OSMFVideoPlayer;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -12,6 +13,7 @@ package com.clarityenglish.controls.video.providers {
 	import mx.controls.SWFLoader;
 	import mx.core.IVisualElementContainer;
 	import mx.core.UIComponent;
+	import mx.events.FlexEvent;
 	
 	import org.puremvc.as3.patterns.facade.Facade;
 	
@@ -19,7 +21,7 @@ package com.clarityenglish.controls.video.providers {
 		
 		protected var videoPlayer:IVideoPlayer;
 		
-		protected var swfLoader:SWFLoader;
+		protected var osmfPlayer:OSMFVideoPlayer;
 		
 		protected var urlPattern:RegExp;
 		protected var srcPattern:RegExp;
@@ -33,11 +35,8 @@ package com.clarityenglish.controls.video.providers {
 			// gh#875
 			//var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			//urlPattern = copyProvider.getCopyForId('awsPattern');
-			// rtmp://streaming.clarityenglish.com:1935/cfx/st/
-			urlPattern = /http:\/\/c284790\.r90\.stream\.cf1\.rackcdn\.com\/([\w\/]+)/i;
-			srcPattern = /rackspace:([\w\/]+)/i;
-			urlBase = 'http://c284790.r90.stream.cf1.rackcdn.com/{id}.flv';
-			srcBase = 'rackspace:{id}';
+			srcPattern = /osmf:([\w\/]+)/i;
+			srcBase = 'osmf:{id}';
 			idPattern = /{id}/i;
 		}
 		
@@ -47,10 +46,10 @@ package com.clarityenglish.controls.video.providers {
 		 * @param source
 		 * @return 
 		 */
-		protected function getId(source:Object):String {
+		/*protected function getId(source:Object):String {
 			var matches:Array = source.match(urlPattern);
 			return matches[1];
-		}
+		}*/
 		
 		/**
 		 * A helper function to get the id out of the stored src
@@ -59,8 +58,9 @@ package com.clarityenglish.controls.video.providers {
 		 * @return 
 		 */
 		protected function getIdFromSrc(source:Object):String {
-			var matches:Array = source.match(srcPattern);
-			return matches[1];
+			// first 5 string is osmf:
+			var matcheString:String = (source as String).substr(5);
+			return matcheString;
 		}
 		
 		/**
@@ -71,8 +71,8 @@ package com.clarityenglish.controls.video.providers {
 		 * 
 		 */
 		public function canHandleSource(source:Object):Boolean {
-			var matches:Array = source.match(urlPattern);
-			return (matches && matches.length == 2);
+			var matches:Array = (source as String).split(".");
+			return (matches[matches.length - 1] == "mp4" || matches[matches.length - 1] == "flv");
 		}
 		
 		/**
@@ -94,7 +94,7 @@ package com.clarityenglish.controls.video.providers {
 		public function toSource(src:Object):Object {
 			//return 'http://youtu.be/' + this.getIdFromSrc(src);
 			//return copyProvider.getCopyForId('youTubeBase', {id: this.getIdFromSrc(src)});
-			return urlBase.replace(idPattern, this.getIdFromSrc(src));
+			return this.getIdFromSrc(src);
 		}
 		
 		/**
@@ -103,7 +103,7 @@ package com.clarityenglish.controls.video.providers {
 		 */
 		public function fromSource(source:Object):Object {
 			//return 'youtube:' + this.getId(source); 
-			return srcBase.replace(idPattern, this.getId(source));
+			return srcBase.replace(idPattern, source);
 		}
 		
 		/**
@@ -119,7 +119,7 @@ package com.clarityenglish.controls.video.providers {
 			html += "<body style='margin:0;padding:0;border:0;overflow:hidden;'>";
 			html += "	<iframe id='ytplayer' style='position:absolute;top:0px;width:100%;height:100%'";
 			html += "			type='text/html'";
-			html += "			src='http://www.youtube.com/embed/" + getId(source) + "?rel=0&fs=1'";
+			html += "			src=" + source;
 			html += "			frameborder='0'>";
 			html += "	</iframe>";
 			html += "</body>";
@@ -128,23 +128,21 @@ package com.clarityenglish.controls.video.providers {
 		}
 		
 		public function create(source:Object):void {
-			swfLoader = new SWFLoader();
-			swfLoader.percentWidth = swfLoader.percentHeight = 100;
-			swfLoader.scaleContent = false;
-			swfLoader.maintainAspectRatio = true;
-			swfLoader.addEventListener(Event.COMPLETE, onSwfLoaderComplete, false, 0, true);
+			osmfPlayer = new OSMFVideoPlayer();
+			osmfPlayer.addEventListener(FlexEvent.CREATION_COMPLETE, onOSMFPlayerComplete);
+			osmfPlayer.autoPlay = false;
+			osmfPlayer.percentHeight = osmfPlayer.percentWidth = 100;
+			osmfPlayer.source = source;
 			
-			swfLoader.load(source);
-			
-			(videoPlayer as IVisualElementContainer).addElement(swfLoader);
+			(videoPlayer as IVisualElementContainer).addElement(osmfPlayer);
 		}
 		
-		protected function onSwfLoaderComplete(event:Event):void {
-			if (swfLoader) {
-				swfLoader.removeEventListener(Event.COMPLETE, onSwfLoaderComplete);
-				swfLoader.content.addEventListener("onReady", onReady); // gh#328
-				swfLoader.content.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
+		protected function onOSMFPlayerComplete(event:Event):void {
+			if (osmfPlayer) {
+				osmfPlayer.removeEventListener(Event.COMPLETE, onOSMFPlayerComplete);
+				osmfPlayer.addEventListener(MouseEvent.CLICK, onClickVideo); // gh#106
 			}
+			resize();
 		}
 		
 		protected function onReady(e:Event):void {
@@ -152,18 +150,19 @@ package com.clarityenglish.controls.video.providers {
 		}
 		
 		public function resize():void {
-			if (swfLoader && swfLoader.content && swfLoader.content["setSize"])
-				swfLoader.content["setSize"](videoPlayer.width, videoPlayer.height);
+			if (osmfPlayer) {
+				osmfPlayer.setActualSize(videoPlayer.width, videoPlayer.height);
+			}		
 		}
 		
 		public function play():void {
-			if (swfLoader && swfLoader.content && swfLoader.content["playVideo"])
-				swfLoader.content["playVideo"]();
+			if (osmfPlayer)
+				osmfPlayer.play();
 		}
 		
 		public function stop():void {
-			if (swfLoader && swfLoader.content && swfLoader.content["stopVideo"])
-				swfLoader.content["stopVideo"]();
+			if (osmfPlayer)
+				osmfPlayer.pause();
 		}
 		
 		protected function onClickVideo(event:MouseEvent):void {
@@ -172,16 +171,10 @@ package com.clarityenglish.controls.video.providers {
 		
 		public function destroy():void {
 			stop();
-			(videoPlayer as IVisualElementContainer).removeElement(swfLoader);
+			(videoPlayer as IVisualElementContainer).removeElement(osmfPlayer);
+			osmfPlayer.removeEventListener(MouseEvent.CLICK, onClickVideo);
 			
-			// gh#852
-			if (swfLoader.content) {
-				swfLoader.content.removeEventListener("onReady", onReady);
-				swfLoader.content.removeEventListener(MouseEvent.CLICK, onClickVideo);
-			}
-			
-			swfLoader.source = null;
-			swfLoader = null;
+			osmfPlayer = null;
 		}
 		
 	}

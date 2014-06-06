@@ -12,15 +12,22 @@ package com.clarityenglish.rotterdam.view.unit.events {
 		public static const WIDGET_RENAME:String = "widgetRename";
 		
 		private var _xml:XML;
+		private var __hideSpanButtonBar:Boolean;
 		
-		public function WidgetMenuEvent(type:String, bubbles:Boolean, xml:XML = null) {
+		public function WidgetMenuEvent(type:String, bubbles:Boolean, xml:XML = null, hideSpanButtonBar = false) {
 			super(type, bubbles, false);
 			
 			this._xml = xml;
+			this.__hideSpanButtonBar = hideSpanButtonBar;
 		}
 		
 		public function get xml():XML {
 			return _xml;
+		}
+		
+		// hiding span button bar for youku video
+		public function get hideSpanButtonBar():Boolean {
+			return __hideSpanButtonBar;
 		}
 		
 		public override function clone():Event {

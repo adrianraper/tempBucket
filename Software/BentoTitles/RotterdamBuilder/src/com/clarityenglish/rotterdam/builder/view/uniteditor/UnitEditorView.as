@@ -126,7 +126,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		/**
 		 * The user has clicked the cog button to show the menu so display and position it
 		 */
-		protected function onShowWidgetMenu(event:Event):void {
+		protected function onShowWidgetMenu(event:WidgetMenuEvent):void {
 			var newMenuWidget:AbstractWidget = event.target.parentDocument.hostComponent as AbstractWidget;
 			
 			// If a different menu is already selected then deselect it
@@ -149,6 +149,15 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			} else {
 				widgetMenu.spanButtonBar.enabled = true;
 				widgetMenu.setSpanButtonEnable(2, true);
+			}
+			
+			// hiding span button bar for youku video
+			if (event.hideSpanButtonBar) {
+				widgetMenu.spanButtonBar.visible = false;
+				widgetMenu.spanButtonBar.includeInLayout = false;
+			} else {
+				widgetMenu.spanButtonBar.visible = true;
+				widgetMenu.spanButtonBar.includeInLayout = true;
 			}
 			
 			widgetMenu.visible = true;
