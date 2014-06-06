@@ -21,6 +21,7 @@
 @namespace schedulebuilder "com.clarityenglish.rotterdam.builder.view.schedule.*";
 @namespace ui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace help "com.clarityenglish.rotterdam.builder.view.help.*";
+@namespace saveerror "com.clarityenglish.rotterdam.builder.view.error.*";
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
@@ -66,6 +67,13 @@ title|TitleView s|TabbedViewNavigator {
 
 title|TitleView s|Button#logoutButton {
 	skinClass: ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
+}
+
+saveerror|SavingErrorView {
+	skinClass: ClassReference("skins.rotterdam.builder.error.SavingErrorSkin");
+}
+saveerror|SavingErrorView s|Button {
+	skinClass: ClassReference("skins.bento.error.ErrorButtonSkin");
 }
 
 courseselector|CourseSelectorView {

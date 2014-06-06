@@ -85,7 +85,7 @@ package com.clarityenglish.common.model {
 		 * 
 		 */
 		public function writeScore(mark:ExerciseMark):void {
-			log.debug("Writing the score for exercise to the database");
+			//log.debug("Writing the score for exercise to the database");
 			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;;
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;

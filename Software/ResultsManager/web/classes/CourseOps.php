@@ -154,7 +154,7 @@ SQL;
 			
 			// Sanity checks
 			if (sizeof($courses) != 1)
-				throw new Exception("Rotterdam menu.xml files must have exactly one course node");
+				throw new Exception("C-Builder menu.xml files must have exactly one course node");
 			
 			$course = $courses[0];
 			
@@ -176,8 +176,15 @@ SQL;
 			// but we do need to delete it. So first step is to delete ALL records for groups in the list
 			// then you can add them back below.
 			$groupIDs = implode(',', Session::get('groupTreeIDs'));
-			$db->Execute("DELETE FROM T_CourseStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array((string)$course['id']));
-			$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array((string)$course['id']));
+			try {
+				$db->Execute("DELETE FROM T_CourseStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array((string)$course['id']));
+				$db->Execute("DELETE FROM XT_UnitStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array((string)$course['id']));
+			} catch (Exception $e) {
+				// gh#924 This exception stops database writing, but doesn't impact the xml file
+				// log it for Clarity debugging and give the user a reasonable action
+				// NOTE: MySQL error numbers seem to be in the 1-2000 range. Use something very different
+				throw new Exception("SQL error", '88001');
+			}
 			
 			// 1. Write publication data to the database
  			foreach ($course->publication->group as $group) {

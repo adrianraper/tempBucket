@@ -154,15 +154,13 @@
 				var srcHref:Href = new Href(Href.XHTML, "media/" + src, configProxy.getConfig().paths.content);
 				navigateToURL(new URLRequest(srcHref.url), "_blank");
 			}
-			// gh#874
-			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			if (!courseProxy.isPreviewMode) {
-				// gh#106
-				// TODO: 120 seconds should not be hardcoded - come from config or literals or?
-				exerciseMark.duration = 120;
-				exerciseMark.UID = view.clarityUID;
-				facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
-			}
+			
+			// gh#925
+			// gh#106
+			// TODO: 120 seconds should not be hardcoded - come from config or literals or?
+			exerciseMark.duration = 120;
+			exerciseMark.UID = view.clarityUID;
+			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 		}
 		
 		/**
@@ -198,7 +196,8 @@
 		
 		// gh#106 (combined for video and audio)
 		protected function onPlay(widget:XML):void {
-			exerciseMark.duration = 60;
+			// TODO: 120 seconds should not be hardcoded - come from config or literals or?
+			exerciseMark.duration = 120;
 			exerciseMark.UID = view.clarityUID;
 			facade.sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
 		}		

@@ -16,6 +16,11 @@ package com.clarityenglish.common.controller {
 	public class ScoreWrittenCommand extends SimpleCommand {
 		
 		override public function execute(note:INotification):void {
+			
+			// gh#925 We might have chosen to skip score writing (for teachers in C-Builder)
+			if (note.getBody() === true)
+				return;
+			
 			var score:Score = note.getBody() as Score;
 			
 			// #109 When a score has been successfully written we want to update the menu XML on the client.  Although this

@@ -49,6 +49,8 @@ package com.clarityenglish.bento.controller {
 							sendNotification(BBNotifications.SELECTED_NODE_CHANGED, selectedNode);
 							break;
 						case "pdf":
+							// TODO: What is this for? Why do we want to write a score record here?
+							// We write a record when they click the pdf itself in openMedia
 							sendNotification(BBNotifications.PDF_SHOW, href);
 							break;
 						default:

@@ -47,7 +47,9 @@ class XmlUtils {
 			$dom->loadXML($xml->asXML());
 			
 			// If there is an exception then we should replace the file with its original contents, otherwise the new contents
+			// gh#924 Not necessarily. If the exception came from the database, we still need to save the xml
 			if ($exception) {
+				// Why do we need to write out the original contents, can't we just close the file?
 				@fwrite($fp, $originalContents);
 			} else {
 				@fwrite($fp, $dom->saveXML());
