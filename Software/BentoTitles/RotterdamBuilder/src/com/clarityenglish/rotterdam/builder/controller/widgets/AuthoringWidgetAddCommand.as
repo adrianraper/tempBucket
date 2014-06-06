@@ -38,7 +38,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			
 			if (!node.hasOwnProperty("@href")) {
 				// If there is no href for the exercise then create one, and create an exercise xml file before opening the window
-				node.@href = "exercises/" + (new Date()).time + ".xml";
+				node.@href = "exercises/" + (new Date()).time + ".generator.xml";
 				
 				var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 				courseProxy.exerciseCreate(node).addResponder(new ResultResponder(function():void {
