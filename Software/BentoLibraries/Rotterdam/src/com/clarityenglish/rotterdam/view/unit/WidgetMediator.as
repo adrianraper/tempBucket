@@ -154,7 +154,8 @@
 		}
 
 		protected function onSetPermission(token:String):void {
-			(view as DriveWidget).permission = token;
+			var parsedToken:Object = JSON.parse(token);
+			(view as DriveWidget).permission = (parsedToken.hasOwnProperty('token')) ? parsedToken.token : null;
 		}
 		
 		protected function onAddLink(webUrlString:String, captionString:String):void {
