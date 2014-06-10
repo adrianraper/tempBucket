@@ -153,7 +153,9 @@ class BentoService extends AbstractService {
 		$group = $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($account->getAdminUserID()));
 		
 		// We also need some misc stuff.
-		$configObj = array("databaseVersion" => $this->getDatabaseVersion());
+		// gh#914
+		$configObj = array("databaseVersion" => $this->getDatabaseVersion(),
+							"uploadMaxFilesize" => $this->getUploadMaxFilesize());
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);
@@ -625,6 +627,14 @@ EOD;
 		return 0;
 	}
 
+	/**
+	 * Get php settings for upload parameters
+	 * gh#914
+	 */
+	public function getUploadMaxFilesize() {
+		return ini_get('upload_max_filesize');
+	}
+	
 	/**
 	 * gh#119 Old versions of the swf will crash if they don't find this method. So use it as a way to tell them to upgrade
 	 */

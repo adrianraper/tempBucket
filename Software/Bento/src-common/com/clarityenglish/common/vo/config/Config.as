@@ -134,6 +134,10 @@ package com.clarityenglish.common.vo.config {
 		public var checkNetworkAvailabilityInterval:uint;
 		public var checkNetworkAvailabilityReconnectInterval:uint;
 		
+		// gh#914
+		public var uploadMaxFilesize:String = 'unknown';
+		public var uploadMaxBytes:Number = 0;
+		
 		// For performance logging
 		public var appLaunchTime:Number;
 
@@ -538,6 +542,26 @@ package com.clarityenglish.common.vo.config {
 				return;
 			}
 			
+			// gh#914
+			if (data.config && data.config.uploadMaxFilesize) {
+				var rawMaxFilesize:String = data.config.uploadMaxFilesize;
+				var unitPattern:RegExp = /^([0-9]+)([gmk]?)/i;
+				var results:Array = rawMaxFilesize.match(unitPattern);
+				var maxBytes:Number = (results[1]) ? results[1] : 0;
+				if (results.length > 2) {
+					switch(results[2].toLowerCase()) {
+						case 'g':
+							maxBytes *= 1024;
+						case 'm':
+							maxBytes *= 1024;
+						case 'k':
+							maxBytes *= 1024;
+					}
+				}
+				this.uploadMaxFilesize = rawMaxFilesize;
+				this.uploadMaxBytes = maxBytes;
+			}
+					
 			// Grab the account and title into our classes
 			if (data.account)
 				this.account = data.account as Account;

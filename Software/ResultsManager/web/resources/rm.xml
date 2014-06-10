@@ -5,8 +5,8 @@
 			<lit name="applicationName">Results Manager</lit>
 			<lit name="applicationVersion">Version {version}</lit>
 			
-			<lit name="userExpiredError">This user expired on {date}</lit>
-			<lit name="productExpiredError">This title expired on {date}</lit>
+			<lit name="userExpiredError">This user's account expired on {date}.</lit>
+			<lit name="productExpiredError">The licence for this title stopped on {date}.</lit>
 			
 			<lit name="notice">Notice</lit>
 			<lit name="noStudentsAlert">The account you are logging into has a very large number of users. For performance reasons learners will be hidden and some functions will be disabled.</lit>
@@ -43,7 +43,7 @@
 			<lit name="addAuthorMenuItem">Add author...</lit>
 			<lit name="addLearnerMenuItem">Add learner...</lit>
 			<lit name="assignClassesMenuItem">Link to extra groups...</lit>
-			<lit name="deleteMenuItem">Delete ...</lit>
+			<lit name="deleteMenuItem">Delete...</lit>
 			<lit name="detailsMenuItem">Details...</lit>
 			<lit name="exportMenuItem">Export users...</lit>
 			<lit name="archiveMenuItem">Archive to XML...</lit>
@@ -55,8 +55,8 @@
 			<lit name="refreshButton">Refresh</lit>
 			<lit name="yes">Yes</lit>
 			<lit name="no">No</lit>
-			<lit name="groupsDelete">There are {groupCount} subgroup(s) and {userCount} learner(s) in this group. If you {operationText} this group, all the subgroups and learners will also be deleted. This action cannot be undone. Are you sure you want to {operationText} the group?</lit>
-			<lit name="usersDelete">The selected learner(s) and all corresponding records will be deleted from the database. This action cannot be undone. Are you ready to {operationText} the learner(s)?</lit>
+			<lit name="groupsDelete">There are {groupCount} subgroup(s) and {userCount} learner(s) in this group. If you {operationText} this group, all the subgroups and learners will also be deleted. This action cannot be undone. Do you want to {operationText} the group?</lit>
+			<lit name="usersDelete">The selected learner(s) and all corresponding records will be deleted from the database. This action cannot be undone. Do you want to delete the learner(s)?</lit>
 			<lit name="addGroupWindowTitle">Group details</lit>
 			<lit name="name">Name:</lit>
 			<lit name="groupID">Reference ID:</lit>
@@ -77,7 +77,7 @@
 			<lit name="showAll">Show all</lit>
 			<lit name="showSelected">Show selected</lit>
 			<lit name="showUnassigned">Show unassigned</lit>
-			<lit name="tooManyUsersToAllocate">Adding these users would exceed your licence allowance by {userCount}</lit>
+			<lit name="tooManyUsersToAllocate">Sorry, ading these users would exceed your licence allowance by {userCount}.</lit>
 			<lit name="loginWindow">Log in to Results Manager</lit>
 			<lit name="loginUsername">Username:</lit>
 			<lit name="loginPassword">Password:</lit>
@@ -98,7 +98,7 @@
 			<lit name="someHiddenContent">Some of this content is available for the selected group.</lit>
 			<lit name="noHiddenContent">All this content is available for the selected group.</lit>
 			<lit name="detailedContent">Allow changes to hidden content. The tick boxes show what is available.</lit>
-			<lit name="CCBCourse">Right click the tree, then create new course...</lit>
+			<lit name="xxxCCBCourse">Right click the tree, then create new a course.</lit>
 			<lit name="manageables">Users and groups</lit>
 			<lit name="detailedManageablesLabel">Right-click on a user or group to see what you can do.</lit>
 			<lit name="editedExerciseToolTip">This exercise has been edited for this group.</lit>
@@ -124,7 +124,7 @@
 				<![CDATA[Click <u><a href="{helpFolder}/ResultsManager.html#import" target="_blank">here</a></u> for full details about the XML structure that you can use.
 				]]>
 			</lit>
-			<lit name="resultsLabel1">See who was successfully imported...</lit>			
+			<lit name="resultsLabel1">See who was successfully imported.</lit>			
 			<lit name="chooseImportType">Import from</lit>
 			<lit name="importCopyFailedToClipboard">Copy failed names to the clipboard</lit>
 			<lit name="importNothingToCopyToClipboard">There are no names to copy to the clipboard.</lit>
@@ -145,7 +145,7 @@
 			<lit name="uploadIOError">There was an error whilst attempting to upload</lit>
 			<lit name="uploadSecurityError">There was a security error</lit>
 			<lit name="uploadComplete">Upload complete</lit>
-			<lit name="excelNoUsernameHeader">Unable to import from Excel without at least a 'username' header</lit>
+			<lit name="excelNoUsernameHeader">Unable to import from Excel without at least a 'username' header.</lit>
 			<lit name="invalidLoginWindowTitle">Invalid login</lit>
 			<lit name="invalidLogin">Username/password invalid</lit>
 			<lit name="archive">archive</lit>
@@ -176,7 +176,7 @@
 			<lit name="licenceStatistics">About the licence</lit>
 			<!-- Add licence clearance date and change formatting
 			<lit name="licenceExpiryDate">Licence expiry date</lit>
-			<lit name="licenceTitleUsers">Since {startDate} you have used {x} of {y} licences</lit>
+			<lit name="licenceTitleUsers">Since {startDate}, you have used {x} of {y} licences.</lit>
 			 -->
 			<lit name="currentLicence">Current licence period</lit>
 			<lit name="licenceExpiryDate">expires on: {expiryDate}</lit>
@@ -184,7 +184,7 @@
 			<lit name="licenceStartDate">started on: {startDate}</lit>
 			<lit name="licenceClearanceDate">Licences refreshed on: {clearanceDate}</lit>
 			<lit name="licencePurchaseDate">First subscribed on: {purchaseDate}</lit>
-			<lit name="licenceTitleUsers">You have used {x} of {y} licences since {clearanceDate}</lit>
+			<lit name="licenceTitleUsers">You have used {x} of {y} licences since {clearanceDate}.</lit>
 			<lit name="licencesUsed">{x} of {y} licences since {clearanceDate}</lit>
 			<lit name="otherUserCounts">How many other users?</lit>
 			<lit name="singleCourseCount">About the title</lit>
@@ -209,7 +209,7 @@
 			<lit name="noFailedLogins">There were no failures to login during this period.</lit>
 			<lit name="periodFrom">Measure usage from:</lit>
 			<lit name="periodTo">to:</lit>
-			<lit name="usageStatsAccountName">Usage statistics for {accountName}.</lit>
+			<lit name="usageStatsAccountName">Usage statistics for {accountName}</lit>
 			<lit name="usageStatsProductLabel">Product name:</lit>
 			<lit name="usageStatsLicenceDetailsLabel">Licence:</lit>
 			<lit name="usageStatsLicenceDetails">{licences}-user {licenceType} licence</lit>
@@ -284,7 +284,7 @@
 			<lit name="never">Never</lit>
 			<lit name="full">FULL</lit>
 			
-			<lit name="filteredTreeAlert">The tree is filtered and this might affect hidden users. Are you sure you want to continue?</lit>
+			<lit name="filteredTreeAlert">The tree is filtered and this might affect hidden users. Do you want to continue?</lit>
 			<lit name="noExpiredUsers">There are no expired learners within the selected group(s).</lit>
 			
 			<lit name="accessControl">Learner access control</lit>
@@ -328,7 +328,7 @@
 			<lit name="revertEmails">Reset email options</lit>
 			<lit name="controlCentreHelpTitle">Control Centre - what happens on this screen?</lit>
 
-			<lit name="excelImportInstructions">The help panel shows you how to import users from Excel.</lit>
+			<lit name="excelImportInstructions">The Help panel shows you how to import users from Excel.</lit>
 			
 			<lit name="userAccessError">You do not have permission to access all these users [{ids}].</lit>
 			<lit name="groupAccessError">You do not have permission to access all these groups [{ids}].</lit>
@@ -371,7 +371,7 @@
 					<p><b>Learner access control</b> lets you set what learners have to type when they login. You can use name, ID or email. You can use or ignore a password.</p>
 					<p>Self-register. If you want to allow any learner to register themselves to use the program, set the information that they should type. Otherwise only learners whose names are already in Results Manager will be allowed to login.</p>
 					<p></p>
-					<p><b>Email control</b> lets you control which email addresses receive which type of email from Clarity:</p>
+					<p><b>Email control</b> lets you control which email addresses receive which type of email from Clarity.</p>
 					<ul>
 					<li>Subscription reminders. These emails warn you before your subscription becomes due.</li>
 					<li>Usage statistics. Monthly emails that let you see, with one click, the usage statistics for your institution.</li>
@@ -385,7 +385,7 @@
 			<lit name="usageStatisticsHelp">
 				<![CDATA[
 					<b>Usage Statistics - what happens on this screen?</b><br/>
-					<p>Usage Statistics tell you how much the different programs have been used. You must select a program on the left and the statistics on the right will be for that title.</p>
+					<p>Usage statistics tell you how much the different programs have been used. You must select a program on the left and the statistics on the right will be for that title.</p>
 					<p><b>About the licence</b> shows you the subscription expiry date and the number of learners who have used this program.</p>
 					<p><b>About the program</b> shows you how many times the program has been used.</p>
 					<p><b>Failed logins</b> shows how many people failed to run the program and why.</p>
@@ -407,7 +407,7 @@
                  <p><b>XML:</b> use your institution's administration tool to export learner information to XML format. You need to use the following node names.</p>
                     <li>Username</li>
                     <li>Password</li>
-                    <p>Choose XML above and click Browse to find the XML file. Click Start Import. You'll then see a list of learners and a tick or cross to show if the import was successful. The learners are imported into the group you clicked to get to this Import window unless you override this with a Group heading in the XML.</p>
+                    <p>Choose XML above and click Browse to find the XML file. Click Start Import. You'll then see a list of learners and a tick or cross to show if the import was successful. The learners are imported into the group you clicked to get to the Import window unless you override this with a Group heading in the XML.</p>
                 ]]>
             </lit>			
 			<lit name="report_showGridView">Show table</lit>
@@ -521,7 +521,7 @@
 			<lit name="accountStatusFormItem">Account status:</lit>
 			<lit name="accountTypeFormItem">Account type:</lit>
 			<lit name="customerTypeFormItem">Customer type:</lit>
-			<lit name="tacStatusFormItem">Terms and Conditions:</lit>
+			<lit name="tacStatusFormItem">Terms and conditions:</lit>
 			<lit name="adminUserFormItem">Admin user:</lit>
 			<lit name="editAdminUser">Setup admin user...</lit>
 			<lit name="referenceFormItem">Notes:</lit>
@@ -558,11 +558,11 @@
 			<lit name="templateTitleColumn">Title</lit>
 			<lit name="templateFilenameColumn">Filename</lit>
 			<lit name="descriptionColumn">Description</lit>
-			<lit name="reloadTemplatesButton">Reload Templates</lit>
-			<lit name="previewEmailButton">Preview Email...</lit>
+			<lit name="reloadTemplatesButton">Reload templates</lit>
+			<lit name="previewEmailButton">Preview email...</lit>
 			<lit name="clearButton">Clear</lit>
 			
-			<lit name="selectReportWindowTitle">Select Report</lit>
+			<lit name="selectReportWindowTitle">Select report</lit>
 			<lit name="filterTitlesCheckBox">Filter by title</lit>
 			
 			<lit name="logProduct">Product</lit>
@@ -571,7 +571,7 @@
 			<lit name="logDate">Date</lit>
 			
 			<!-- CCB part-->
-			<lit name="titleCourseInfo">Course Information</lit>
+			<lit name="titleCourseInfo">Course information</lit>
 			<lit name="titleVideoWindow">Choose video</lit>
 			<lit name="titleAudioWindow">Choose audio</lit>
 			<lit name="titlePictureWindow">Choose picture</lit>

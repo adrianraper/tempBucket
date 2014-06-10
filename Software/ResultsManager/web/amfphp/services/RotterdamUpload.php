@@ -10,19 +10,34 @@ require_once(dirname(__FILE__)."/RotterdamBuilderService.php");
 
 // gh#341
 $service = new RotterdamBuilderService();
-$MAXIMUM_FILESIZE = 1024*1024*5;
-
-// Fail if the user isn't authenticated
-AbstractService::$debugLog->info('in RotterdamUpload, session name is '.Session::getSessionName().' user is '.Authenticate::getAuthUser());
+// gh#914
+$uploadMaxFilesize = ini_get('upload_max_filesize');
+$postMaxSize = ini_get('post_max_size');
+$maxUnits = strtolower($uploadMaxFilesize[strlen($uploadMaxFilesize)-1]);
+switch($maxUnits) {
+	case 'g':
+		$uploadMaxBytes = $uploadMaxFilesize*1024*1024*1024;
+		break;
+	case 'm':
+		$uploadMaxBytes = $uploadMaxFilesize*1024*1024;
+		break;
+	case 'k':
+		$uploadMaxBytes = $uploadMaxFilesize*1024;
+		break;
+	default:
+		$uploadMaxBytes = $uploadMaxFilesize;
+}
 
 if (!Authenticate::isAuthenticated()) {
+	// Fail if the user isn't authenticated
+	AbstractService::$debugLog->info('in RotterdamUpload, session name is '.Session::getSessionName().' user is '.Authenticate::getAuthUser());
 	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorUploadNotAuthenticated")));
 	exit(0);
 }
 
-//else if: Fail if there is no uploaded file//
-if ($_FILES['Filedata']['size'] > $MAXIMUM_FILESIZE) {
-	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorExceedMaxFileSize")));
+// gh#914
+if ($_FILES['Filedata']['size'] > $uploadMaxBytes) {
+	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorExceedMaxFileSize", array("sizeLimit" => $uploadMaxFilesize))));
 	exit(0);
 } else if (!isset($_FILES['Filedata']) || $_FILES['Filedata']['tmp_name'] == "") {
 	echo json_encode(array("success" => false, "message" => $service->copyOps->getCopyForId("errorUploadNoPOST")));

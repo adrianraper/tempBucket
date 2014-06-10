@@ -12,20 +12,20 @@
 			<lit name="errorNoProductCode" code="201">No product code sent.</lit>
 			<lit name="errorNoPrefixOrRoot" code="202">No account details found.</lit>
 			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
-			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account (productCode={productCode})</lit>
+			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account. (productCode={productCode})</lit>
 			<lit name="errorNoProductCodeInRoot" code="205">Your account does not have access to this title. (product code={productCode} root={rootID})</lit>
-			<lit name="errorWrongPassword" code="206">That name or id and/or password are not correct. Please try again. (option {loginOption})</lit>
+			<lit name="errorWrongPassword" code="206">That name or id and/or password is not correct. Please try again. (option {loginOption})</lit>
 			<lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
 			<lit name="errorDuplicateUsers" code="208">More than one user matches these details. Please contact your administrator. (login option {loginOption})</lit>
-			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered</lit>
+			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered.</lit>
 			<lit name="errorNoSuchGroup" code="210">No such group exists. Please contact your administrator.</lit>
-			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact your support@clarityenglish.com.</lit>
+			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
-			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options ({loginOption})</lit>
-			<lit name="errorLoginKeyEmpty" code="215">The key field can't be empty ({loginOption})</lit>
+			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options. ({loginOption})</lit>
+			<lit name="errorLoginKeyEmpty" code="215">The key field can't be empty  ({loginOption})</lit>
 			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
-			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>
+			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used. Please try again. (login option {loginOption})</lit>
 			<lit name="errorWrongUserType" code="218">Sorry, you don't have permission to run this program. (type is {userType})</lit>
 			
 			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
@@ -38,19 +38,19 @@
 			<lit name="errorCantFindLicence" code="307">Error, can't find this licence {licenceID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
 			<lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}. Please contact your support@clarityenglish.com.</lit>
-			<lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number</lit>
+			<lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number.</lit>
 			<lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
 			<lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
 			<lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>
 			<lit name="errorCantLoadEveryoneSummary" code="314">Unable to load data for everyone's summary.</lit>
 			
-			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}</lit>
-			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id</lit>
+			<lit name="errorMultipleExerciseWithSameId" code="400">The menu xml has more than one exercise node with id={exerciseID}.</lit>
+			<lit name="errorCantFindAutoIncrementSessionId" code="401">Database can't find auto-increment session id.</lit>
 			<lit name="errorParsingExercise" code="402">Unable to read exercise {filename} ({message}). Please contact support@clarityenglish.com with the file name.</lit>
 			<lit name="errorParsingExerciseDetection1">Error parsing exercise detection {filename} ({message1} {message2})}.</lit>
-			<lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple Exercise nodes in the menu xml matching {href}</lit>
-			<lit name="errorCantFindExerciseWithHref" code="404">Unable to find any Exercise nodes in the menu xml matching {href}</lit>
-			<lit name="errorNoExerciseWithId" code="405">The menu xml has no exercise node with id={exerciseID}</lit>
+			<lit name="errorMultipleExerciseWithSameHref" code="403">Found multiple exercise nodes in the menu.xml matching {href}.</lit>
+			<lit name="errorCantFindExerciseWithHref" code="404">Unable to find any exercise nodes in the menu.xml matching {href}.</lit>
+			<lit name="errorNoExerciseWithId" code="405">The menu.xml has no exercise node with id={exerciseID}.</lit>
 			
 			<lit name="errorDatabaseReading" code="500">Error reading from the database. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorDatabaseWriting" code="501">Error writing to the database. Please contact support@clarityenglish.com.</lit>
@@ -60,16 +60,16 @@
             <lit name="contentBlockedWarning" code="603">This device can't link to the content for this item. Please try to access the course from a computer browser.</lit>
 			
 			<lit name="errorSavingCourse" code="700">Error saving this course. Please contact support@clarityenglish.com. ({reason})</lit>
-			<lit name="errorSecurity" code="701">Security error</lit>
+			<lit name="errorSecurity" code="701">Security error.</lit>
 			<lit name="errorCourseDoesNotExist" code="702">This course does not exist.</lit>
 			<lit name="errorSavingCourseDates" code="703">Error saving publication dates for this course.</lit>
 			<lit name="errorConcurrentCourseAccess" code="704">Somebody is already editing this course. Please try again later.</lit>
 			
-			<lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated. Please contact support@clarityenglish.com</lit>
-			<lit name="errorUploadNoPOST" code="706">No POST data was found in this upload. Please contact support@clarityenglish.com.</lit>
-			<lit name="errorExceedMaxFileSize" code="707">Your file is too big, please upload a file less than 5M.</lit>
+			<lit name="errorUploadNotAuthenticated" code="705">This upload was not authenticated. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorUploadNoPOST" code="706">No data was found attached to this upload. Please contact support@clarityenglish.com.</lit>
+			<lit name="errorExceedMaxFileSize" code="707">Your file is too big, please upload a file less than {sizeLimit}.</lit>
 			
-			<lit name="errorSingleVideoIOS" code="707">Only a single video per unit is currently supported on iOS.</lit>
+			<lit name="errorSingleVideoIOS" code="708">Only a single video per unit is currently supported on iOS.</lit>
 			
 			<lit name="courseSavingError">We can't save your course. Please try again in case the connection is bad. If that still fails, please click '{saveButtonLabel}' below. This will download a file to your computer which you then need to send to {supportEmail}. We can then recover anything that gets lost. Please restart the program after this.</lit>
 			<lit name="worstCaseError">You could try again in a while. If you close this course or C-Builder you will lose any changes you have made recently. In the worst case, click OK, and take some screen shots.</lit>
@@ -101,7 +101,7 @@
 			<lit name="printButton">Print</lit>
 			<lit name="noButton">No</lit>
 			<lit name="yesButton">Yes</lit>
-			<lit name="loadingLabel">loading...</lit>
+			<lit name="loadingLabel">Loading...</lit>
 			<lit name="closeButton">OK</lit>
 			<lit name="saveButton">Grab it</lit>
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
@@ -121,8 +121,8 @@
 			<lit name="yourEmail">Your email:</lit>
 			<lit name="welcomeLabel">Welcome, {fullname}</lit>
 			<lit name="overallCoverage"> - overall coverage</lit>
-			<lit name="myProgress">My Progress</lit>
-			<lit name="myProfile">My Profile</lit>
+			<lit name="myProgress">My progress</lit>
+			<lit name="myProfile">My profile</lit>
 			<lit name="help">Help</lit>
 			<lit name="credits">Credits</lit>
 			<lit name="more">More</lit>
@@ -135,7 +135,7 @@
 			<lit name="progressNavBarScores">My scores</lit>
 			<lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
 			<lit name="chartCaptionLabel">Average score %</lit>
-			<lit name="analysisInstructionLabel1">This shows how  spent your time</lit>
+			<lit name="analysisInstructionLabel1">This shows how you spent your time</lit>
 			<lit name="analysisInstructionLabel2">Time spent on each unit</lit>
 			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
 			<lit name="courseDurationRenderLabel">You have spent</lit>
@@ -161,7 +161,7 @@
 			<lit name="newPsdLabel">New password:</lit>
 			<lit name="confirmPsdLabel">Confirm password:</lit>
 			<lit name="accountLanguageLabel">Language:</lit>
-			<lit name="exerciseBackToMenuButton">Back to Menu</lit>
+			<lit name="exerciseBackToMenuButton">Back to menu</lit>
 			<lit name="exerciseStartAgainButton">Start again</lit>
 			<lit name="exerciseBackButton">Back</lit>
 			<lit name="exerciseForwardButton">Forward</lit>
@@ -176,7 +176,7 @@
 			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
 			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
-			<lit name="footerLabel">Software, design, navigation © Clarity Language Consultants Ltd, 2013. All rights reserved.</lit>
+			<lit name="footerLabel">Software, design, navigation © Clarity Language Consultants Ltd, 2013-14. All rights reserved.</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 			<lit name="xhtmlDirty">Your changes to this course have not been saved. Are you sure you want to continue?</lit>
 			<lit name="settingsDirty">Your changes to the settings have not been saved. Are you sure you want to continue?</lit>
@@ -184,16 +184,16 @@
 			<lit name="widgetPlaceholderText">Type a description here.</lit>
 			<lit name="emptyFileLabel">You have not uploaded any files to the Resource Cloud.</lit>
 			<lit name="emptyFileLabel2">You have not uploaded any files here.</lit>
-			<lit name="courseSettingsLabel">Course Settings</lit>
+			<lit name="courseSettingsLabel">Course settings</lit>
 			<lit name="scheduleLabel">Publishing schedule</lit>
-			<lit name="scheduleDatesLabel">2. Set the dates when units are available</lit>
+			<lit name="scheduleDatesLabel">2. Set the dates when units are available.</lit>
 			<lit name="notificationsLabel">Trigger notifications</lit>
 			<lit name="aboutLabel">About this course</lit>
-			<lit name="selectGroupLabel">1. Choose a group to publish this course for</lit>
-			<lit name="startDateLabel">2. Start date for this course</lit>
-			<lit name="endDateLabel">3. End date for this course</lit>
+			<lit name="selectGroupLabel">1. Choose a group to publish this course for.</lit>
+			<lit name="startDateLabel">2. Start date for this course.</lit>
+			<lit name="endDateLabel">3. End date for this course.</lit>
 			<lit name="endDateDetailLabel">(leave this blank if you don't want the course to end)</lit>
-			<lit name="unitIntervalLabel">4. week-by-week setting</lit>
+			<lit name="unitIntervalLabel">4. Week-by-week setting.</lit>
 			<lit name="allUnitsAvailableRadioButton">All units available from start date</lit>
 			<lit name="oneUnitAtOnceRadioButton">Days between units</lit>
 			<lit name="seePastUnitsLabel">5. See past units?</lit>
@@ -211,19 +211,19 @@
 			<lit name="ownerLabel">Owner</lit>
 			<lit name="collaboratorsLabel">Collaborators</lit>
 			<lit name="publishersLabel">Publishers</lit>
-			<lit name="addCollaboratorButton">add a collaborator</lit>
-			<lit name="addPublisherButton">add a publisher</lit>
-			<lit name="rootCollaboratorsLabel">all teachers in this account</lit>
-			<lit name="groupCollaboratorsLabel">all teachers in this group</lit>
-			<lit name="rootPublishersLabel">all teachers in this account</lit>
-			<lit name="groupPublishersLabel">all teachers in this group</lit>
-			<lit name="transferOwnershipButton">transfer ownership</lit>
+			<lit name="addCollaboratorButton">Add a collaborator</lit>
+			<lit name="addPublisherButton">Add a publisher</lit>
+			<lit name="rootCollaboratorsLabel">All teachers in this account</lit>
+			<lit name="groupCollaboratorsLabel">All teachers in this group</lit>
+			<lit name="rootPublishersLabel">All teachers in this account</lit>
+			<lit name="groupPublishersLabel">All teachers in this group</lit>
+			<lit name="transferOwnershipButton">Transfer ownership</lit>
 			<lit name="courseEditableLabel">Lock the course</lit>
 			<lit name="courseListTitleLabel">Choose a course</lit>
 			<lit name="createCourseButton">Create a new course</lit>
-			<lit name="myCoursesViewNavigator">My Courses</lit>
+			<lit name="myCoursesViewNavigator">My courses</lit>
 			<lit name="progressViewNavigator">Progress</lit>
-			<lit name="cloudViewNavigator">Resource Cloud</lit>
+			<lit name="cloudViewNavigator">Resource cloud</lit>
 			<lit name="helpViewNavigator">Help</lit>
 			<lit name="editButton">Edit</lit>
 			<lit name="doneButton">Done</lit>
@@ -235,11 +235,11 @@
 			<lit name="oneClickPublishButton">1-click</lit>
 			<lit name="publishSettingsButton">Advanced</lit>
 			<lit name="oneClickLabel">Your course is immediately available to all your students.</lit>
-			<lit name="publishSettingsLabel">Scheduling options for your course.</lit>
+			<lit name="publishSettingsLabel">Scheduling options for your course:</lit>
 			<lit name="uploadPDFLabel">Upload PDF from</lit>
 			<lit name="resourceCloudButton">Resource Cloud</lit>
 			<lit name="orLabel">or</lit>
-			<lit name="myComputerButton">My Computer</lit>
+			<lit name="myComputerButton">My computer</lit>
 			<lit name="uploadImageLabel">Upload the image from</lit>
 			<lit name="uploadAudioLabel">Upload the audio from</lit>
 			<lit name="uploadVideoLabel">Video URL:</lit>
@@ -271,7 +271,7 @@
 			<lit name="selectContentButton">Select content</lit>
 			<lit name="deleteCourseWarning">Do you want to delete this course?</lit>
 			<lit name="deleteUnitWarning">Do you want to delete this unit?</lit>
-			<lit name="noUndoWarning">There is no undo...</lit>
+			<lit name="noUndoWarning">There is no undo.</lit>
 			<lit name="creditLabel">Thank you for using the Clarity Course Builder.</lit>
 			<lit name="helpButton">Support materials</lit>
 			<lit name="helpURL"><![CDATA[http://www.clarityenglish.com/area1/CCB/Player.php?prefix=CST&course=039011031594193044]]></lit>

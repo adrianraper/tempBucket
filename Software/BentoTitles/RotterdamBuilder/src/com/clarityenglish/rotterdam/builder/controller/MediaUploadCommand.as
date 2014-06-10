@@ -1,6 +1,8 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
@@ -43,13 +45,13 @@ package com.clarityenglish.rotterdam.builder.controller {
 			node = note.getBody().node;
 			// gh#312
 			if (!note.getBody().span) {
-				trace("we are here");
+				//trace("we are here");
 				span = 1;
 			} else {
 				span = note.getBody().span;	
 			}		
 			tempWidgetId = note.getType();
-			log.info("Opening upload dialog with tempWidgetId=" + tempWidgetId);
+			//log.info("Opening upload dialog with tempWidgetId=" + tempWidgetId);
 			
 			fileReference = new FileReference();
 			fileReference.browse(note.getBody().typeFilter);
@@ -85,7 +87,16 @@ package com.clarityenglish.rotterdam.builder.controller {
 		
 		private function onUploadSelect(e:Event):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamUpload.php";
+			
+			// gh#914 do we know the size?
+			if (configProxy.getConfig().uploadMaxBytes < fileReference.size) {
+				var sizeLimitMessage:String = copyProvider.getCopyForId("errorExceedMaxFileSize", { sizeLimit: configProxy.getConfig().uploadMaxFilesize });
+				sendNotification(RotterdamNotifications.MEDIA_UPLOAD_ERROR, { node: node, message: sizeLimitMessage }, tempWidgetId);
+				destroy();
+				return;
+			}
 			
 			// gh#32
 			if (FlexGlobals.topLevelApplication.parameters.sessionid) uploadScript += "?PHPSESSID=" + FlexGlobals.topLevelApplication.parameters.sessionid + "&span=" + span;
