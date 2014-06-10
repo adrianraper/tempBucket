@@ -25,7 +25,7 @@
 			<lit name="errorNoPrefixForRoot" code="203">No account matches the prefix {prefix}. Please check your URL.</lit>
 			<lit name="errorMultipleProductCodeInRoot" code="204">Duplicated titles in this account. (productCode={productCode})</lit>
 			<lit name="errorNoProductCodeInRoot" code="205">Your account does not have access to this title. (product code={productCode} root={rootID})</lit>
-			<lit name="errorWrongPassword" code="206">That name or id and/or password are not correct. Please try again. (option {loginOption})</lit>
+			<lit name="errorWrongPassword" code="206">That name or id and/or password is not correct. Please try again. (option {loginOption})</lit>
 			<lit name="errorUserExpired" code="207">Your user account expired on {expiryDate}. Please contact your administrator.</lit>
 			<lit name="errorDuplicateUsers" code="208">More than one user matches these details. Please contact your administrator. (login option {loginOption})</lit>
 			<lit name="errorNoAnonymousUser" code="209">No anonymous user registered.</lit>
@@ -33,10 +33,10 @@
 			<lit name="errorSetInstanceId" code="211">Can't set the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorGetInstanceId" code="212">Can't get the instance ID for user {userID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorFailedInstanceCheck" code="213">Someone else has logged in with your details. Please try again. ({instanceID})</lit>
-			<lit name="errorInvalidLoginOption" code="214">Login options has not been set for this account. ({loginOption})</lit>
+			<lit name="errorInvalidLoginOption" code="214">This account has not set the login options. ({loginOption})</lit>
 			<lit name="errorLoginKeyEmpty" code="215">Please type in your login details. ({loginOption})</lit>
 			<lit name="errorTitleBlockedByHiddenContent" code="216">Your group has been blocked from using this program. Please contact your teacher or administrator for help.</lit>
-			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used, please try again. (login option {loginOption})</lit>
+			<lit name="errorDuplicateUser" code="217">Sorry, these details have already been used. Please try again. (login option {loginOption})</lit>
 			<lit name="errorWrongUserType" code="218">Sorry, you don't have permission to run this program. (type is {userType})</lit>
 			<lit name="errorLicenceHasntStartedYet" code="300">Your account hasn't started yet. Please contact your administrator.</lit>
 			<lit name="errorLicenceExpired" code="301">Your account expired on {expiryDate}. Please contact your administrator.</lit>
@@ -48,7 +48,7 @@
 			<lit name="errorCantFindLicence" code="307">Error, can't find this licence {licenceID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorCantUpdateLicence" code="308">Error, can't update this licence {licenceID}. Please contact support@clarityenglish.com.</lit>
 			<lit name="errorCantDeleteLicence" code="309">Error, can't delete this licence {licenceID}. Please contact support@clarityenglish.com.</lit>
-			<lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number</lit>
+			<lit name="errorCantAllocateLicenceNumber" code="310">Error, can't allocate a licence number.</lit>
 			<lit name="errorIPDoesntMatch" code="311">This licence can only run from certain computers. Your IP is {ip}.</lit>
 			<lit name="errorRUDoesntMatch" code="312">This licence can only run from certain websites. You came from {referrer}.</lit>
 			<lit name="errorIPandRUDontMatch" code="313">This licence can only run from certain computers or websites. You came from {referrer} with {ip}.</lit>

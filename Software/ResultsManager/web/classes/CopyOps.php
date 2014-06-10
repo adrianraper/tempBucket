@@ -22,15 +22,49 @@ class CopyOps {
 	    //$filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
 	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 	}
+	private function getBentoFilename() {
+	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/BentoLiterals.xml";
+	}
 	
-	private function getXPath() {
+	// gh#513 This is the only function to read the file(s), returns xml string
+	protected function getXMLFromFile($code = null) {
+		if (!file_exists($this->getFilename($code)))
+			throw new Exception($this->getFilename($code)." file not found");
+		
+		$doc = new DOMDocument();
+		$doc->load($this->getFilename());
+			/**
+		 * Not implemented yet
+		 * 
+		// Read common literals first
+		$commonDoc = new DOMDocument();
+		$commonDoc->load($this->getBentoFilename($code));
+		$commonXpath = new DOMxpath($commonDoc);
+		
+		// Then read specific service literals and add/overwrite onto common
+		$specificDoc = new DOMDocument();
+		$specificDoc->load($this->getFilename($code));
+		$specificXpath = new DOMxpath($specificDoc);
+		
+		// For each literal in specifc, add it or overwrite onto common - do in blocks of language
+		// http://www.php.net//manual/en/domnode.replacechild.php
+		$languageBlocks = $specificXpath->query("/literals/language/");
+		foreach ($languageBlocks as $languageBlock) {
+			$literals = $specificXpath->query("/literals/language[@code='".$languageBlock->."']/");
+			foreach ($literals as $literal) {
+				
+			}
+		}
+		 */
+		
+		return $doc->saveXML();
+	}
+	
+	protected function getXPath($code = null) {
 		if (!$this->xpath) {
-			// AR added this check too. If the file doesn't exist return false
-			if (!file_exists($this->getFilename()))
-				throw new Exception($this->getFilename()." file not found");
 			
 			$doc = new DOMDocument();
-			$doc->load($this->getFilename());
+			$doc->loadXML($this->getXMLFromFile($code));
 			
 			$this->xpath = new DOMxpath($doc);
 		}
@@ -42,22 +76,13 @@ class CopyOps {
 	 * Read and return the XML literals document as a string
 	 * gh#39 pass language code
 	 */
-	function getCopy($code = null) {
+	public function getCopy($code = null) {
 		// gh#39
 		//if ($code) Session::set('languageCode', $code);
 		if ($code) Session::set('language', $code);
 		
-		// If the file doesn't exist return false
-		if (!file_exists($this->getFilename()))
-			throw new Exception($this->getFilename()." not found");
-		
-		// Read the file
-		$contents = file_get_contents($this->getFilename($code));
-		
-		// Return the file as a string to be converted to XML on the client
-		//issue:#20
-		//return utf8_decode($contents);
-		return $contents;
+		// gh#513
+		return $this->getXMLFromFile($code);
 	}
 	
 	/**
