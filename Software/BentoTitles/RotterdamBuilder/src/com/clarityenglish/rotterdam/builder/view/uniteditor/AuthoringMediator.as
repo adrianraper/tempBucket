@@ -1,4 +1,5 @@
 ﻿package com.clarityenglish.rotterdam.builder.view.uniteditor {
+	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
@@ -7,6 +8,8 @@
 	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.model.ContentProxy;
+	
+	import flash.utils.setTimeout;
 	
 	import mx.collections.ArrayCollection;
 	import mx.rpc.events.ResultEvent;
@@ -31,7 +34,7 @@
 		override public function onRegister():void {
 			super.onRegister();
 			
-			// This view runs off the authoring xml so load it here
+			// This view runs directly off the generator xml (not loaded through the server)
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			if (bentoProxy.menuXHTML && view.widgetNode && view.widgetNode.@href)
 				view.href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE_GENERATOR, view.widgetNode.@href);
@@ -59,7 +62,7 @@
 			}
 		}
 		
-		protected function onExerciseSave(widgetXML:XML, exerciseXML:XML):void {
+		protected function onExerciseSave(widgetXML:XML, exerciseXML:XML, exerciseGeneratorHref:Href):void {
 			sendNotification(RotterdamNotifications.EXERCISE_SAVE, { widgetXML: widgetXML, exerciseXML: exerciseXML });
 		}
 		

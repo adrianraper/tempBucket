@@ -87,6 +87,9 @@
 		// gh#751
 		public static const COURSE_SAVE_ERROR:String = "rotterdam/course_save_error";
 		
+		// gh#919
+		public static const EXERCISE_GENERATOR_SAVED:String = "rotterdam/exercise_generator_saved";
+		
 		// gh#849
 		public static const SETTINGS_SHOW:String = "rotterdam/settings_show";
 		public static const SCHEDULE_SHOW:String = "rotterdam/schedule_show";

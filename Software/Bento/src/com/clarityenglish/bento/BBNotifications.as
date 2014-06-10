@@ -23,6 +23,7 @@
 		public static const XHTML_LOAD:String = "bb/xhtml_load";
 		public static const XHTML_LOADED:String = "bb/xhtml_loaded";
 		public static const XHTML_LOAD_IOERROR:String = "bb/xhtml_load_ioerror";
+		public static const XHTML_RELOAD:String = "bb/xhtml_reload";
 		
 		public static const SESSION_START:String = "bb/session_start";
 		public static const SESSION_STARTED:String = "bb/session_started";

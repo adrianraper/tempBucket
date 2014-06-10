@@ -43,9 +43,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			
 			switch (instance) {
 				case dynamicView:
-					if (!_xml.hasOwnProperty("@tempid")) { // THIS IS TEMPORARY
-						dynamicView.href = menuXHTMLHref.createRelativeHref(Href.EXERCISE, _xml.@href, true);
-					}
+					if (!_xml.hasOwnProperty("@tempid")) // THIS IS TEMPORARY
+						reloadContents();
 					break;
 				case markingButton:
 					markingButton.addEventListener(MouseEvent.CLICK, onShowMarking);
@@ -80,6 +79,13 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			// Mark exercise
 			if (dynamicView.xhtml is Exercise)
 				showMarking.dispatch(dynamicView.xhtml as Exercise);
+		}
+		
+		/**
+		 * gh#919 - creating a new Href causes the view to reload its contents
+		 */
+		public override function reloadContents():void {
+			dynamicView.href = menuXHTMLHref.createRelativeHref(Href.EXERCISE, _xml.@href, true);
 		}
 		
 	}

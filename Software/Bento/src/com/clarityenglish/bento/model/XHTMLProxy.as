@@ -107,6 +107,15 @@ package com.clarityenglish.bento.model {
 		}
 		
 		public function reloadXHTML(href:Href):void {
+			// gh#919 EXERCISE_GENERATORs are special - we actually want to reload the generated exercise rather than the generator itself
+			href = function(href:Href):Href {
+				for (var loadedHref:Href in loadedResources)
+					if (loadedHref !== href && loadedHref.url == href.url)
+						return loadedHref;
+				
+				return href;
+			}(href);
+			
 			// Clear the entry from the cache and reload
 			if (loadedResources[href])
 				delete loadedResources[href];

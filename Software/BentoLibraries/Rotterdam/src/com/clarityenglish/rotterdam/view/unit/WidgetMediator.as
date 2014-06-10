@@ -105,6 +105,7 @@
 				RotterdamNotifications.WEB_URL_ADD,
 				RotterdamNotifications.WEB_URL_CANCEL,
 				RotterdamNotifications.WIDGET_RENAME,
+				RotterdamNotifications.EXERCISE_GENERATOR_SAVED,
 			]);
 		}
 		
@@ -124,6 +125,13 @@
 						view.setUploading(false);
 						break;
 				}
+			}
+			
+			switch (note.getName()) {
+				case RotterdamNotifications.EXERCISE_GENERATOR_SAVED:
+					if (view.xml.hasOwnProperty("@href") && view.xml.@href.toString() == note.getBody().href)
+						view.reloadContents();
+					break;
 			}
 			
 			// Other actions only count if the widget is selected
