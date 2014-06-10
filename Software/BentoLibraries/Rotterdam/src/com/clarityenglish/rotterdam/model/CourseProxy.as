@@ -27,6 +27,7 @@ package com.clarityenglish.rotterdam.model {
 	
 	import org.davekeen.delegates.IDelegateResponder;
 	import org.davekeen.delegates.RemoteDelegate;
+	import org.davekeen.rpc.ResultResponder;
 	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.DateUtil;
 	import org.puremvc.as3.interfaces.IProxy;
@@ -195,7 +196,14 @@ package com.clarityenglish.rotterdam.model {
 			var xmlString:String = exercise.toXMLString();
 			xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
 			
-			return new RemoteDelegate("exerciseSave", [ courseID, widget.@href.toString(), xmlString ], this).execute();
+			// We need a responder to catch the saved event whilst we still have the href in scope so we can tell the relevant mediator to reload it
+			var asyncToken:AsyncToken = new RemoteDelegate("exerciseSave", [ courseID, widget.@href.toString(), xmlString ], this).execute();
+			asyncToken.addResponder(new ResultResponder(
+				function(data:Object, token:Object):void {
+					sendNotification(RotterdamNotifications.EXERCISE_GENERATOR_SAVED, { xml: data, href: widget.@href });
+				}
+			));
+			return asyncToken;
 		}
 		
 		public function courseCreate(courseObj:Object):AsyncToken {
@@ -296,8 +304,6 @@ package com.clarityenglish.rotterdam.model {
 					sendNotification(RotterdamNotifications.COURSE_DELETED, data);
 					break;
 				case "exerciseSave":
-					sendNotification(RotterdamNotifications.EXERCISE_SAVED, data);
-					break;
 				case "exerciseCreate":
 				case "courseSessionUpdate":
 				case "updateSession":

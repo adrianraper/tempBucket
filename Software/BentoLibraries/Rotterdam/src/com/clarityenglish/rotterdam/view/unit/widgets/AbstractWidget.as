@@ -8,26 +8,14 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetLinkCaptureEvent;
 	import com.clarityenglish.rotterdam.view.unit.events.WidgetTextFormatMenuEvent;
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayoutElement;
-	import com.newgonzo.web.css.selectors.ClassCondition;
 	
 	import flash.events.Event;
 	import flash.events.FocusEvent;
 	import flash.events.ProgressEvent;
-	import flash.geom.Rectangle;
-	import flash.text.TextField;
-	import flash.xml.XMLNode;
-	import flash.xml.XMLNodeType;
 	
-	import flashx.textLayout.conversion.ConversionType;
-	import flashx.textLayout.conversion.TextConverter;
-	import flashx.textLayout.elements.FlowElement;
-	import flashx.textLayout.elements.LinkElement;
 	import flashx.textLayout.elements.ParagraphElement;
-	import flashx.textLayout.elements.SpanElement;
-	import flashx.textLayout.elements.TextFlow;
 	import flashx.textLayout.formats.TextLayoutFormat;
 	
-	import mx.core.ClassFactory;
 	import mx.events.FlexEvent;
 	import mx.events.StateChangeEvent;
 	import mx.logging.ILogger;
@@ -37,15 +25,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import org.davekeen.util.ClassUtil;
 	import org.davekeen.util.StateUtil;
 	import org.davekeen.util.StringUtils;
-	import org.davekeen.util.XmlUtils;
 	import org.osflash.signals.Signal;
 	
 	import skins.rotterdam.unit.widgets.WidgetChrome;
-	import skins.rotterdam.unit.widgets.WidgetMenu;
 	import skins.rotterdam.unit.widgets.WidgetText;
 	
 	import spark.components.supportClasses.Range;
-	import spark.utils.TextFlowUtil;
 	
 	/**
 	 * TODO: Implement an xml notification watcher (setNotifications) to watch for changes and fire events that will trigger bindings on the getters.
@@ -246,6 +231,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			if (progressRange)
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
 		}
+		
+		// gh#919 - this is only currently applicable to AuthoringWidget, which will override and implement this method
+		public function reloadContents():void { }
 		
 		// for selectorwidget, when select widget with same type, no more new widget will be creates, insteadly the src of widget will be updated
 		public function updateSrc(value:String):void {

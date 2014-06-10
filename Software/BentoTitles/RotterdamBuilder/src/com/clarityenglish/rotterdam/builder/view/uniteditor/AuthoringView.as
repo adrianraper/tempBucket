@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.ExerciseGenerator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
@@ -50,7 +51,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		public var widgetNode:XML;
 		
-		public var exerciseSave:Signal = new Signal(XML, XML);
+		public var exerciseSave:Signal = new Signal(XML, XML, Href);
 		
 		public function get DELETE_ME_XML():XML { return _xhtml.xml; }
 		
@@ -138,7 +139,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onOkButton(event:MouseEvent):void {
-			exerciseSave.dispatch(widgetNode, _xhtml.xml);
+			exerciseSave.dispatch(widgetNode, _xhtml.xml, _xhtml.href);
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		

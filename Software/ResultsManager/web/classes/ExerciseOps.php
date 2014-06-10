@@ -65,8 +65,8 @@ class ExerciseOps {
 			throw $this->copyOps->getExceptionForId("errorSavingExercise", array("reason" => "corrupt course id"));
 		}
 		
-		// Protect again directory traversal attacks; the filename *must* be in the form exercises/<some hex value>.xml otherwise we are being fiddled with
-		if (preg_match("/^exercises\/([0-9a-f]+)\.xml$/", $filename, $matches) != 1) {
+		// Protect again directory traversal attacks; the filename *must* be in the form exercises/<some hex value>(.generator)?.xml otherwise we are being fiddled with
+		if (preg_match("/^exercises\/([0-9a-f]+)(\.generator)?\.xml$/", $filename, $matches) != 1) {
 			throw $this->copyOps->getExceptionForId("errorSavingExercise", array("reason" => "corrupt file name"));
 		}
 	}
