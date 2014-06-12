@@ -27,7 +27,7 @@
 			import mx.events.FlexEvent;
 			
 			protected function onInitialize(event:FlexEvent):void {
-				versionNumber = "1.1.1";
+				versionNumber = "1.1.3.598";
 				
 				facade = PlayerApplicationFacade.getInstance();
 			}

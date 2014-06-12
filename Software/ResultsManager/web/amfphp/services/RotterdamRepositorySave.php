@@ -1,70 +1,12 @@
 <?php
 
-	require_once(dirname(__FILE__)."/MinimalService.php");
-	$dummy = new MinimalService();
-	$accountFolder = '../../../Clarity';
-	Session::set('userID', '12345');
-	
-	$repositoryDir = $GLOBALS['ccb_repository_dir'];
-	$gitPath = '"c:\Program Files (x86)\Git\bin\git"';
-	$debugStderr = ' 2>&1';
-	$prefix = substr($accountFolder, strrpos($accountFolder, '/')+1);
-	$courseID = 
-	$commitMsg = 'by userID='.Session::get('userID').' in '.$prefix;
-	$addCmd = ' add '.$prefix.'/*/menu.xml';
-	$commitCmd = ' commit -m "'.$commitMsg.'" '.$prefix.'/*/menu.xml';
-	$statusCmd = ' status '.$prefix.'/*/menu.xml';
-	//$configCmd = ' config core.autocrlf false'; 
-	//$configCmd = ' config user.email adrian.raper@clarityenglish.com'; 
-	$configCmd = ' config --list';
-	
-	$doConfig = !true;
-	$doAdd = !true;
-	$doCommit = true;
-	$doStatus = true;
-	
-	$output = array();
-	chdir('../../'.$repositoryDir);
-	if ($doConfig) {
-		exec($gitPath.$configCmd.$debugStderr, $output, $rc);
-		if (!$rc)
-			AbstractService::$debugLog->notice("git config failed");
-		echo (var_dump($output));
-		$output = array();
-	}
-	if ($doAdd) {
-		exec($gitPath.$addCmd.$debugStderr, $output, $rc);
-		if (!$rc) {
-			AbstractService::$debugLog->notice("git add for prefix=$prefix failed");
-		} else {
-			AbstractService::$debugLog->notice("git add for prefix=$prefix succeeded");
-		}
-		echo (var_dump($output));
-		$output = array();
-	}
-	if ($doCommit) {
-		exec($gitPath.$commitCmd.$debugStderr, $output, $rc);
-		if (!$rc) {
-			AbstractService::$debugLog->notice("git commit for prefix=$prefix failed");
-		} else {
-			AbstractService::$debugLog->notice("git commit for prefix=$prefix succeeded");
-		}
-		echo (var_dump($output));
-		$output = array();
-	}
-	if ($doStatus) {
-		exec($gitPath.$statusCmd.$debugStderr, $output, $rc);
-		echo (var_dump($output));
-	}
-
-/*
 	require_once(dirname(__FILE__)."/../../config.php");
 
 	$repositoryDir = $GLOBALS['ccb_repository_dir'];
 	$gitPath = '"c:\Program Files (x86)\Git\bin\git"';
 	$debugStderr = ' 2>&1';
-	$addCmd = ' add Clarity/*\/menu.xml';
-	$commitCmd = ' commit -m "adrian 16:49" Clarity/*\/menu.xml';
+	$addCmd = ' add Clarity/*/menu.xml';
+	$commitCmd = ' commit -m "adrian 16:49" Clarity/*/menu.xml';
 	$statusCmd = ' status Clarity'; // /748476225422193042';
 	// Need to do the following once to setup the user
 	// Can't do --global as get (null)/(null)/.git file doesn't exist
@@ -79,7 +21,6 @@
 	exec($gitPath.$commitCmd.$debugStderr, $output, $rc);
 	echo (var_dump($output));
 	echo $rc;
-*/
 /*
 	$args = "prefix=GLOBAL&session=123gadfasdf456798&studentID=P574528(8)&password=Sunshine1787&padding=00000000000000000000000000";
 	

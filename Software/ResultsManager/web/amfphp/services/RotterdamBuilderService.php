@@ -36,11 +36,6 @@ class RotterdamBuilderService extends RotterdamService {
 		}
 	}
 
-	// gh#925 Overwrite score reading/writing as we don't want this to happen from Builder
-	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
-		return true;
-	}
-	
 	public function login($loginObj, $loginOption, $verified, $instanceID, $licence, $rootID = null, $productCode = null, $dbHost = null) {
 		// gh#66 
 		$allowedUserTypes = array(User::USER_TYPE_TEACHER,

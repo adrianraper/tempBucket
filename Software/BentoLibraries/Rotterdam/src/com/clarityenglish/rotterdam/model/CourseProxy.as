@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.model {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.model.CopyProxy;
 	import com.clarityenglish.common.vo.config.BentoError;
 	import com.clarityenglish.common.vo.content.Course;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
@@ -276,19 +277,29 @@ package com.clarityenglish.rotterdam.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
+			var copyProxy:CopyProxy = facade.retrieveProxy(CopyProxy.NAME) as CopyProxy;
+			
 			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + fault.faultString);
 			
-			// gh#751 start a download as a precaution against failed save
-			// Can I build the XML string directly into a .xml download without going through a file on the server? 
-			// Can't do it directly here because Flash needs this to be a user click action
-			//sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault, false));
-			if (currentCourse) {
-				var xmlString:String = currentCourse.xml.toXMLString();
-				xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
+			// gh#598 Some save errors can be explained
+			var thisError:BentoError = BentoError.create(fault);
+			if (thisError.errorNumber == copyProxy.getCodeForId("errorSavingCourseDates") ||
+				thisError.errorNumber == copyProxy.getCodeForId("errorSavingCourseToDb")) {
+				sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault, false));
 			} else {
-				xmlString = null;
+				
+				// gh#751 start a download as a precaution against failed save
+				// Can I build the XML string directly into a .xml download without going through a file on the server? 
+				// Can't do it directly here because Flash needs this to be a user click action
+				//sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault, false));
+				if (currentCourse) {
+					var xmlString:String = currentCourse.xml.toXMLString();
+					xmlString = xmlString.replace("<bento>", "<bento xmlns=\"http://www.w3.org/1999/xhtml\">");
+				} else {
+					xmlString = null;
+				}
+				sendNotification(RotterdamNotifications.COURSE_SAVE_ERROR, xmlString);
 			}
-			sendNotification(RotterdamNotifications.COURSE_SAVE_ERROR, xmlString);
 		}
 		
 	}

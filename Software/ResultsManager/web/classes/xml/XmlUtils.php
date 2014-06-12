@@ -36,9 +36,14 @@ class XmlUtils {
 			
 			// #153
 			$exception = null;
+			$stillSave = false;
 			try {
 				$func($xml);
 			} catch (Exception $e) {
+				// #598 There may be some exceptions thrown in the func that you still want to press
+				// ahead with saving the xml for.
+				if ($e->getCode() == '888')
+					$stillSave = true;
 				$exception = $e;
 			}
 			
@@ -48,7 +53,7 @@ class XmlUtils {
 			
 			// If there is an exception then we should replace the file with its original contents, otherwise the new contents
 			// gh#924 Not necessarily. If the exception came from the database, we still need to save the xml
-			if ($exception) {
+			if ($exception && !$stillSave) {
 				// Why do we need to write out the original contents, can't we just close the file?
 				@fwrite($fp, $originalContents);
 			} else {

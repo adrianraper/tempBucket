@@ -16,6 +16,10 @@ class PrivacyRolesTransform extends XmlTransform {
 		$courseID = $href->options['courseId'];
 		$course = $xml->xpath('/xmlns:bento/xmlns:head/xmlns:script[@id="model"]//xmlns:course[@id="'.$courseID.'"]');
 		
+		// gh#598 Make sure that no existing permission/privacy nodes come from the XML
+		unset($course[0]->permission);
+		unset($course[0]->privacy);
+		
 		// Create a <permission> node to hold the data
 		$permissionNode = $course[0]->addChild("permission");
 		

@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
 	import mx.logging.ILogger;
@@ -45,6 +46,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			// gh#229
 			courseProxy.updateCurrentCourse();
+			
 		}
 		
 	}

@@ -40,6 +40,9 @@ $GLOBALS['ccb_data_dir'] = "../../../../ContentBench/CCB";
 $GLOBALS['common_dir'] = dirname(__FILE__)."/../../../Software/Common";
 $RMFolders = "";
 
+// gh#598
+$GLOBALS['ccb_repository_dir'] = $GLOBALS['ccb_data_dir'];
+
 // Can we just read dbDetails and use dbHost to point to different databases?
 // If dbHost comes from session set in Start.php, then what about generateReport?
 require_once($GLOBALS['common_dir'].'/../../Database/dbDetails.php');

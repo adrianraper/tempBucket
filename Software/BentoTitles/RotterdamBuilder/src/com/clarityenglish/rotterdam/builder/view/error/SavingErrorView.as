@@ -43,7 +43,7 @@ package com.clarityenglish.rotterdam.builder.view.error {
 					instance.text = copyProvider.getCopyForId("problemLabel");
 					break;
 				case message:
-					instance.text = copyProvider.getCopyForId("courseSavingError", {saveButtonLabel: copyProvider.getCopyForId("saveButton"), supportEmail:"support@clarityenglish.com"});
+					instance.text = copyProvider.getCopyForId("courseSavingError", {saveButtonLabel: copyProvider.getCopyForId("saveButton"), supportEmail:copyProvider.getCopyForId("supportEmail")});
 					break;
 			}
 			
