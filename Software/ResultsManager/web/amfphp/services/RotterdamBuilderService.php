@@ -145,6 +145,16 @@ XML;
 		file_put_contents($this->accountFolder."/courses.xml", $courseXML);
 	}
 	
+	/**
+	 * gh#930
+	 * 
+	 * This service call overwrites Bento and stops scores from Builder
+	 *  
+	 */
+	public function writeScore($user, $sessionID, $dateNow, $scoreObj) {
+		return new Score();
+	}
+	
 	// gh#122
 	public function sendWelcomeEmail($courseXML, $groupID) {
 		// This will send a welcome email to any student in this group for this course
