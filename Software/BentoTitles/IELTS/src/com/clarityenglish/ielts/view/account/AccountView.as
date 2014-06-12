@@ -174,12 +174,8 @@ package com.clarityenglish.ielts.view.account {
 		}
 		
 		public function reloadCopy():void {
-			// gh#844
-			if (copyProvider.getLanguageCode() == "JP") {
-				styleManager.getStyleDeclaration("global").setStyle("fontFamily", "KOZGOPR6N");
-			} else {
-				styleManager.getStyleDeclaration("global").setStyle("fontFamily", "Helvetica");
-			}
+			styleManager.getStyleDeclaration("global").setStyle("fontFamily", "Helvetica");
+
 			onViewCreationComplete();
 		}
 		
