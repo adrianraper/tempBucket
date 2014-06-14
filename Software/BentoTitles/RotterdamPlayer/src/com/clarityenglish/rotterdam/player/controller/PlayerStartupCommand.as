@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.player.controller {
 	import com.clarityenglish.bento.vo.content.transform.CourseAttributeCopyTransform;
 	import com.clarityenglish.bento.vo.content.transform.CourseEnabledTransform;
 	import com.clarityenglish.bento.vo.content.transform.DirectStartDisableTransform;
+	import com.clarityenglish.bento.vo.content.transform.ExerciseGenerateTransform;
 	import com.clarityenglish.bento.vo.content.transform.HiddenContentTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressExerciseScoresTransform;
 	import com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform;
@@ -46,6 +47,10 @@ package com.clarityenglish.rotterdam.player.controller {
 			var courseTransforms:Array = [ new CourseEnabledTransform(), 
 										new CourseAttributeCopyTransform() ]; 
 			xhtmlProxy.registerTransforms(courseTransforms, [ Href.XHTML ], /^courses.xml$/);
+			
+			// Implement generator transforms
+			var exerciseTransforms:Array = [ new ExerciseGenerateTransform() ];
+			xhtmlProxy.registerTransforms(exerciseTransforms, [ Href.EXERCISE ], /.generator.xml$/);
 			
 			// gh#333
 			ProgressMediator.reloadMenuXHTMLOnProgress = true;

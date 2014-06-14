@@ -29,7 +29,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 										   new CourseAttributeCopyTransform() ];
 			xhtmlProxy.registerTransforms(courseTransforms, [ Href.XHTML ], /^courses.xml$/);
 			
-			// TODO: this should be available to both player and builder
+			// Implement generator transforms
 			var exerciseTransforms:Array = [ new ExerciseGenerateTransform() ];
 			xhtmlProxy.registerTransforms(exerciseTransforms, [ Href.EXERCISE ], /.generator.xml$/);
 			
