@@ -37,10 +37,13 @@ class ExerciseOps {
 	
 	public function exerciseCreate($courseID, $filename) {
 		$this->validateCourseIDAndFilename($courseID, $filename);
+				
+		// If the exercise folder doesn't exist then create it gh#919
+		if (!is_dir("{$this->accountFolder}/$courseID/exercises")) {
+			mkdir("{$this->accountFolder}/$courseID/exercises", 0755, true);
+		}
 		
 		$exerciseXMLFilename = "{$this->accountFolder}/$courseID/$filename";
-		
-		// TODO: Needs to take into account question type and update the XML instead of having hardcoded MultipleChoiceQuestion
 		
 		$result = file_put_contents($exerciseXMLFilename, $this->defaultXML);
 		
