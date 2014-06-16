@@ -152,6 +152,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#234
 		public var platform:String;
 		
+		// gh#886
+		public var noLogin:String;
+		
 		/**
 		 * Developer option
 		 */
@@ -529,6 +532,14 @@ package com.clarityenglish.common.vo.config {
 			if (this.account.children.length != 1) {
 				this.error.errorNumber = BentoError.ERROR_DATABASE_READING;
 				this.error.errorContext = 'More than one title matched the product code';
+			}
+			
+			// gh#886
+			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
+				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
+					this.noLogin = this.account.licenceAttributes[i]['licenceValue'];
+				}
+					
 			}
 			
 			var thisTitle:Title = this.account.getTitle();

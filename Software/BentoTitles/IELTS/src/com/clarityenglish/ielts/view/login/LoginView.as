@@ -220,6 +220,10 @@ package com.clarityenglish.ielts.view.login {
 		[Bindable]
 		public var savedPassword:String;
 		
+		// gh#886
+		[Bindable]
+		public var noLogin:String;
+		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
 		private var fullVersionAcademicLogo:Class;
@@ -387,7 +391,12 @@ package com.clarityenglish.ielts.view.login {
 				_productCode = value;
 				dispatchEvent(new Event("productVersionChanged"));
 			}
-		}			
+		}
+		
+		// gh#886
+		public function setNoLogin(value:String):void {
+			noLogin = value;
+		}
 		
 		[Bindable(event="productVersionChanged")]
 		public function get productVersionLogo():Class {
@@ -599,14 +608,16 @@ package com.clarityenglish.ielts.view.login {
 		protected override function getCurrentSkinState():String {
 			// gh#100 CT and network use the same skin
 			if (licenceType == Title.LICENCE_TYPE_NETWORK ||
-				licenceType == Title.LICENCE_TYPE_CT) {
+				licenceType == Title.LICENCE_TYPE_CT ||
+				(licenceType == Title.LICENCE_TYPE_AA && noLogin != true)) {
 				var networkState:String = "ConcurrentTracking";
 			} else {
 				networkState = "";
 			}
 			
 			// gh#659
-			if (_hasIPrange && licenceType == Title.LICENCE_TYPE_CT) {
+			trace("licence type: "+licenceType+", noLogin: "+noLogin);
+			if (_hasIPrange && (licenceType == Title.LICENCE_TYPE_CT || (licenceType == Title.LICENCE_TYPE_AA && noLogin != true))) {
 				networkState = "IPConcurrentTracking";
 			}
 

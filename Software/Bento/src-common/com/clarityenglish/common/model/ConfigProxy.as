@@ -352,9 +352,8 @@ package com.clarityenglish.common.model {
 			
 			// Anonymous login
 			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) { // gh#165
-				
 				// gh#300 Builder doesn't allow anonymous login
-				if (config.remoteService.toLowerCase().indexOf("builder") < 0)
+				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == "true")
 					return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
 			}
 				

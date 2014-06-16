@@ -255,7 +255,8 @@ class BentoService extends AbstractService {
 		// #341 or for network licence working in anonymous mode
 		// #341 
 		// gh#100 or for CT
-		if ($licence->licenceType == Title::LICENCE_TYPE_AA || 
+		// gh#886
+		if ($licence->licenceType == Title::LICENCE_TYPE_AA && $loginObj == NULL || 
 			($licence->licenceType == Title::LICENCE_TYPE_NETWORK && $loginObj == NULL) ||
 			($licence->licenceType == Title::LICENCE_TYPE_CT && $loginObj == NULL) ||
 			($loginOption & User::LOGIN_BY_ANONYMOUS && $loginObj == NULL)) {

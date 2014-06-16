@@ -34,6 +34,8 @@
 		function setPlatformTablet(value:Boolean):void;
 		function setPlatformiPad(value:Boolean):void;
 		function setPlatformAndroid(value:Boolean):void;
+		// gh#886
+		function setNoLogin(value:String):void;
 	}
 	
 }

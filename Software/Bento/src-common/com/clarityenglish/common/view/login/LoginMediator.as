@@ -45,7 +45,7 @@ package com.clarityenglish.common.view.login {
 			// Inject some data to the login view
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.setLicencee(configProxy.getAccount().name);
-			
+
 			// get the login platform
 			if (configProxy.isPlatformTablet()) {
 				view.setPlatformTablet(true);
@@ -79,8 +79,12 @@ package com.clarityenglish.common.view.login {
 			view.setLicenceType(configProxy.getLicenceType());
 
 			// #41
+			trace("rootID: "+configProxy.getRootID());
 			var noAccount:Boolean = !(configProxy.getRootID());
 			view.setNoAccount(noAccount);
+			
+			// gh#886
+			view.setNoLogin(configProxy.getConfig().noLogin);
 		}
         
 		override public function onRemove():void {
