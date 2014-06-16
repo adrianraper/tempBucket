@@ -27,7 +27,7 @@ package com.clarityenglish.ielts {
 		 * There is a fairly persuasive argument that we only need the application actually...
 		 */
 		private var rslEstimate:Number = 1000000;
-		private var swfEstimate:Number = 12000000; // published size
+		private var swfEstimate:Number = 2500000; // published size
 		
 		public function IELTSPreloader() {
 			super();
