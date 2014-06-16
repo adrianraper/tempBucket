@@ -103,6 +103,10 @@ EOD;
 		return $this->courseOps->courseDelete($course);
 	}
 	
+	public function courseExport($course) {
+		return $this->courseOps->courseExport($course);
+	}
+	
 	/**
 	 * Create a blank account folder with all required directories and an empty course.xml (for now we're not sure there are any required directories)
 	 */

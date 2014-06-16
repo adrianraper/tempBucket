@@ -85,6 +85,8 @@
 			registerCommand(RotterdamNotifications.COURSE_SAVE, CourseSaveCommand);
 			registerCommand(RotterdamNotifications.COURSE_SAVED, CourseSavedCommand);
 			registerCommand(RotterdamNotifications.COURSE_DELETE, CourseDeleteCommand);
+			// gh#233
+			registerCommand(RotterdamNotifications.COURSE_EXPORT, CourseExportCommand);
 			
 			registerCommand(RotterdamNotifications.WIDGET_ADD, WidgetAddCommand);
 			registerCommand(RotterdamNotifications.WIDGET_DELETE, WidgetDeleteCommand);

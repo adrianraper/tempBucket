@@ -4,12 +4,13 @@ $prefix = 'AAMC';
 $dir = '../../'.$GLOBALS['ccb_data_dir'].'/'.$prefix.'/';
 
 $zip = new ZipArchive();
+// This will add files to an existing archive. Not what we want.
 if ($zip->open($dir.'export.zip', ZipArchive::CREATE) === true) {
-	$rc = $zip->addFile($dir.'courses.xml', 'newcourses.xml');
+	$rc = $zip->addFile($dir.'courses.xml', 'acourses.xml');
 	//echo "$rc addFile status ".$zip->getStatusString()."<br/>";
 	$rc = $zip->addEmptyDir('media');
 	//echo "$rc addEmptyDir status ".$zip->getStatusString()."<br/>";
-	$rc = $zip->addFile($dir.'media/media.xml', 'media/newmedia.xml');
+	$rc = $zip->addFile($dir.'media/media.xml', 'media/amedia.xml');
 	//echo "$rc addFile status ".$zip->getStatusString()."<br/>";
 	$rc = $zip->setArchiveComment('Made this day in 2014');
 	//echo "$rc setArchiveComment status ".$zip->getStatusString()."<br/>";

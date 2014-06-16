@@ -9,6 +9,10 @@
 		public static const COURSE_DELETE:String = "rotterdam/course_delete";
 		public static const COURSE_DELETED:String = "rotterdam/course_deleted";
 		
+		// gh#233
+		public static const COURSE_EXPORT:String = "rotterdam/course_export";
+		public static const COURSE_EXPORTED:String = "rotterdam/course_exported";
+		
 		public static const COURSE_SAVE:String = "rotterdam/course_save";
 		public static const COURSE_SAVED:String = "rotterdam/course_saved";
 		

@@ -28,6 +28,7 @@
 			view.createCourse.add(onCreateCourse);
 			view.selectCourse.add(onSelectCourse);
 			view.deleteCourse.add(onDeleteCourse);
+			view.exportCourse.add(onExportCourse);
 			
 			// gh#13 
 			facade.sendNotification(RotterdamNotifications.COURSE_RESET);
@@ -43,12 +44,14 @@
 			view.createCourse.remove(onCreateCourse);
 			view.selectCourse.remove(onSelectCourse);
 			view.deleteCourse.remove(onDeleteCourse);
+			view.exportCourse.remove(onExportCourse);
 		}
 		
 		override public function listNotificationInterests():Array {
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.COURSE_CREATED,
 				RotterdamNotifications.COURSE_DELETED,
+				RotterdamNotifications.COURSE_EXPORTED, // Not sure if this will be used
 				BBNotifications.MENU_XHTML_LOAD,
 				BBNotifications.MENU_XHTML_LOADED,
 				BBNotifications.MENU_XHTML_NOT_LOADED,
@@ -95,6 +98,10 @@
 		
 		private function onDeleteCourse(course:XML):void {
 			facade.sendNotification(RotterdamNotifications.COURSE_DELETE, course);
+		}
+		
+		private function onExportCourse(course:XML):void {
+			facade.sendNotification(RotterdamNotifications.COURSE_EXPORT, course);
 		}
 		
 	}

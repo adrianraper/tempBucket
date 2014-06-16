@@ -29,8 +29,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		[SkinPart]
 		public var createCourseButton:Button;
 		
-		[SkinPart]
-		public var deleteCourseButton:Button;
+		// gh#233
+		//[SkinPart]
+		//public var deleteCourseButton:Button;
 		
 		[SkinPart]
 		public var courseListTitleLabel:Label;
@@ -41,6 +42,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		public var createCourse:Signal = new Signal();
 		public var selectCourse:Signal = new Signal(XML);
 		public var deleteCourse:Signal = new Signal(XML);
+		public var exportCourse:Signal = new Signal(XML);
 		
 		private var isCourseListCreated:Boolean;
 		
@@ -66,6 +68,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					courseList.dataGroup.doubleClickEnabled = true;
 					courseList.addEventListener(CourseSelectEvent.COURSE_SELECT, onSelectCourse);
 					courseList.addEventListener(CourseDeleteEvent.COURSE_DELETE, onDeleteCourse);
+					courseList.addEventListener(CourseExportEvent.COURSE_EXPORT, onExportCourse);
 					courseList.addEventListener(FlexEvent.UPDATE_COMPLETE, onCourseListUpdateComplete);
 					break;
 				case courseListTitleLabel:
@@ -76,6 +79,10 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		protected function onCreateCourse(event:MouseEvent):void {
 			createCourse.dispatch();
+		}
+		
+		protected function onExportCourse(event:MouseEvent):void {
+			exportCourse.dispatch();
 		}
 		
 		public function onSelectCourse(event:CourseSelectEvent):void {
