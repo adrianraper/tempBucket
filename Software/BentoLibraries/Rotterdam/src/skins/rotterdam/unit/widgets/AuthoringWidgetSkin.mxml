@@ -4,7 +4,8 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:widgets="skins.rotterdam.unit.widgets.*"
 		minHeight="150"
-		xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*" xmlns:view="com.clarityenglish.bento.view.*">
+		xmlns:components="com.clarityenglish.bento.view.xhtmlexercise.components.*"
+		xmlns:view="com.clarityenglish.bento.view.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.AuthoringWidget")]

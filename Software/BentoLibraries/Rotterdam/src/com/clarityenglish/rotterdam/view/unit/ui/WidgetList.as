@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AuthoringWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
@@ -15,6 +16,10 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import mx.collections.ListCollectionView;
 	import mx.core.ClassFactory;
 	import mx.core.DragSource;
+	import mx.core.IFlexDisplayObject;
+	import mx.core.IUIComponent;
+	import mx.core.IVisualElement;
+	import mx.core.UIComponent;
 	import mx.core.mx_internal;
 	import mx.events.DragEvent;
 	import mx.events.SandboxMouseEvent;
@@ -39,6 +44,8 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		private var dragSource:DragSource;
 		
 		public var editable:Boolean;
+		
+		protected var mouseDownTarget:Object;
 		
 		public function WidgetList() {
 			super();
@@ -83,8 +90,6 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			return classFactory;
 		}
 		
-		protected var mouseDownTarget:Object;
-		
 		// gh#851 - in Flex 4.12 mouseDownObject gives the widget itself instead of the individual thing that was clicked on (which we need to detect dragArea)
 		override protected function item_mouseDownHandler(event:MouseEvent):void {
 			mouseDownTarget = event.target;
@@ -109,7 +114,15 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			addDragData(dragSource);
 			dragSource.addData(selectedIndex, "draggedIndex");
 			dragSource.addData(dataProvider.getItemAt(selectedIndex), "draggedItem");
-			DragManager.doDrag(this, dragSource, event, createDragIndicator(), 0, 0, 0.5, dragMoveEnabled);
+			
+			// Recursively figure out what widget is actually being dragged, as this is the dragInitiator
+			var widget:AbstractWidget = function(target:UIComponent):AbstractWidget {
+				if (!target) return null;
+				else if (target is AbstractWidget) return (target as AbstractWidget);
+				return arguments.callee(target.parent); // this is how you do recursion in an anonoymous function
+			}(mouseDownTarget);
+			
+			DragManager.doDrag(widget, dragSource, event, null, 0, 0, 0.5, dragMoveEnabled);
 			
 			systemManager.getSandboxRoot().addEventListener(MouseEvent.MOUSE_MOVE, onMouseMove, false, 0, true);
 			systemManager.getSandboxRoot().addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, onMouseUp, false, 0, true);
@@ -123,6 +136,14 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 		}
 		
 		protected function onMouseMove(event:MouseEvent):void {
+			
+		}
+		
+		override protected function dragCompleteHandler(event:DragEvent):void {
+			// Override with an empty method so that the superclass doesn't do anything
+		}
+		
+		override protected function dragDropHandler(event:DragEvent):void {
 			// Defer any updates until everything has been done
 			(dataProvider as ListCollectionView).disableAutoUpdate();
 			
@@ -149,14 +170,6 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			
 			// Execute any updates
 			(dataProvider as ListCollectionView).enableAutoUpdate();
-		}
-		
-		override protected function dragCompleteHandler(event:DragEvent):void {
-			// Override with an empty method so that the superclass doesn't do anything
-		}
-		
-		override protected function dragDropHandler(event:DragEvent):void {
-			// Override with an empty method so that the superclass doesn't do anything
-		}		
+		}	
 	}
 }

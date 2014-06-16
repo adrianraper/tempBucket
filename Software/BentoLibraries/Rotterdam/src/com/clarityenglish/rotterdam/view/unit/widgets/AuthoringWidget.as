@@ -56,17 +56,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected override function validateUnitListLayout(e:Event=null):void {
 			super.validateUnitListLayout(e);
 			
-			//xhtmlExerciseView.forceRelayout();
-			
-			/*callLater(function() {
-				dynamicView.invalidateDisplayList();
-				dynamicView.invalidateSize();
-				dynamicView.validateNow();
-			});*/
-			
-			// TODO: Need to figure out how to do this properly - this is causing issues
-			
-			dynamicView.dispatchEvent(new ResizeEvent(ResizeEvent.RESIZE, true));
+			// Reload the widget if the span has changed (this means that dragging to a new column will *not* reload the contents)
+			if (e.type == "spanAttrChanged")
+				reloadContents()
 		}
 		
 		protected function onMouseClick(e:Event):void {
