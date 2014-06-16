@@ -1035,3 +1035,19 @@ VALUES
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1745, '2014-04-28 00:00:00', 'course permissions');
+
+-- Active Reading V10
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 56;
+INSERT INTO T_ProductLanguage VALUES 
+(56,'EN','ActiveReading10-International'),
+(56,'NAMEN','ActiveReading10-NAmerican');
+
+DELETE FROM T_Product WHERE F_ProductCode = 56;
+INSERT INTO `T_Product` VALUES
+(56,'Active Reading',NULL,2);
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 56;
+INSERT INTO `T_ProductVersion` VALUES 
+(56,'DEMO'),
+(56,'FV');
+
