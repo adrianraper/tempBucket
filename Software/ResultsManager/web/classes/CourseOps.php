@@ -20,6 +20,13 @@ class CourseOps {
 </bento>
 ';
 	
+	// gh#233
+	var $stubXML = '
+<bento xmlns="http://www.w3.org/1999/xhtml">
+	<courses />
+</bento>
+';
+	
 	function __construct($db, $accountFolder = null) {
 		$this->db = $db;
 		if ($accountFolder) 
@@ -471,6 +478,18 @@ SQL;
 			}
 			
 			$db->CompleteTrans();
+		});
+	}
+	
+	// gh#233
+	public function createCourseStub($filename, $id) {
+		$stubXML = $this->stubXML;
+		XmlUtils::newXml($filename, $stubXML, function($xml) use($id) {
+			$courseNode = $xml->courses->addChild("course");
+			$courseNode->addAttribute("id", $id);
+			$courseNode->addAttribute("href", $id."/menu.xml");
+			$date = new Date();
+			$courseNode->addAttribute("exported", $date->format('Y-m-d H:i:s'));
 		});
 	}
 	

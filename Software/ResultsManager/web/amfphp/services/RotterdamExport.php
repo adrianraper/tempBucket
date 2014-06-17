@@ -1,4 +1,9 @@
 <?php
+/**
+ * Errors from this script are displayed on a separate page as you can't get back
+ * to C-Builder from the download. (Really??)
+ * 
+ */
 if (isset($_GET['PHPSESSID'])) session_id($_GET['PHPSESSID']); // gh#32
 if (isset($_POST['id'])) {
 	$id = $_POST['id'];
@@ -18,7 +23,8 @@ require_once(dirname(__FILE__)."/RotterdamBuilderService.php");
 
 $service = new RotterdamBuilderService();
 
-$dir = $service->accountFolder."/";
+$dir = $service->accountFolder.'/';
+$menuDir = $service->accountFolder.'/'.$id.'/';
 
 if (!Authenticate::isAuthenticated()) {
 	// Fail if the user isn't authenticated - but you can't send back anything - need to display error on the server
@@ -26,28 +32,35 @@ if (!Authenticate::isAuthenticated()) {
 	redirect($service->copyOps->getCopyForId("errorUploadNotAuthenticated"));
 }
 
+$archiveName = 'export-'.$id.'.zip';
+
+// Build the course stub
+$stubCourseFilename = $service->accountFolder.'/stub-'.$id.'.xml';
+$service->courseOps->createCourseStub($stubCourseFilename, $id);
+
 $zip = new ZipArchive();
-// This will add files to an existing archive. Not what we want.
-if ($zip->open($dir.'export.zip', ZipArchive::CREATE) === true) {
-	$rc = $zip->addFile($dir.'courses.xml', 'courses.xml');
-	//echo "$rc addFile status ".$zip->getStatusString()."<br/>";
-	$rc = $zip->addEmptyDir('media');
-	//echo "$rc addEmptyDir status ".$zip->getStatusString()."<br/>";
-	$rc = $zip->addFile($dir.'media/media.xml', 'media/media.xml');
-	//echo "$rc addFile status ".$zip->getStatusString()."<br/>";
+if ($zip->open($dir.$archiveName, ZipArchive::CREATE) === true) {
+	$rc = $zip->addFile($stubCourseFilename, 'courses.xml');
+	$rc = $zip->addEmptyDir($id);
+	if (file_exists($menuDir.'menu.xml')){
+		$rc = $zip->addFile($menuDir.'menu.xml', $id.'/menu.xml');
+	}
+	if (file_exists($dir.'media/media.xml')) {
+		$rc = $zip->addEmptyDir('media');
+		// TODO: Build a media.xml using just the files referenced in the menu.xml
+		$rc = $zip->addFile($dir.'media/media.xml', 'media/media.xml');
+	}
 	$rc = $zip->setArchiveComment('Made this day in 2014');
-	//echo "$rc setArchiveComment status ".$zip->getStatusString()."<br/>";
 	$rc = $zip->close();
-	//echo "$rc close status ".$zip->getStatusString()."<br/>";
 		
 } else {
 	//echo "$rc open status ".$zip->getStatusString()."<br/>";
 }  
 
 header('Content-Type: application/zip');
-header('Content-disposition: attachment; filename=export.zip');
-header('Content-Length: ' . filesize($dir.'export.zip'));
-readfile($dir.'export.zip');
+header('Content-disposition: attachment; filename='.$archiveName);
+header('Content-Length: '.filesize($dir.$archiveName));
+readfile($dir.$archiveName);
 die;
 
 function redirect($msg) {
