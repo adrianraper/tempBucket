@@ -10,6 +10,7 @@
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
+	import com.clarityenglish.rotterdam.builder.controller.CourseExportCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveErrorCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSavedCommand;

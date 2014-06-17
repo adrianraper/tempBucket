@@ -1,6 +1,7 @@
 package com.clarityenglish.rotterdam.view.courseselector {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
+	import com.clarityenglish.rotterdam.view.courseselector.events.CourseExportEvent;
 	import com.clarityenglish.rotterdam.view.courseselector.events.CourseSelectEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -81,8 +82,8 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			createCourse.dispatch();
 		}
 		
-		protected function onExportCourse(event:MouseEvent):void {
-			exportCourse.dispatch();
+		protected function onExportCourse(event:CourseExportEvent):void {
+			exportCourse.dispatch(event.course);
 		}
 		
 		public function onSelectCourse(event:CourseSelectEvent):void {

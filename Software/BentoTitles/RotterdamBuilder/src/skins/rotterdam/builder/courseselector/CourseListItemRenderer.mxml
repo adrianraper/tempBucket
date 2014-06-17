@@ -8,6 +8,7 @@
 			import com.clarityenglish.common.vo.content.Course;
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseSelectEvent;
+			import com.clarityenglish.rotterdam.view.courseselector.events.CourseExportEvent;
 
 			// gh#689
 			public override function set data(value:Object):void {
@@ -61,12 +62,15 @@
 	</s:Group>
 	
 	<s:Group right="25" verticalCenter="0">
-		<s:Button id="deleteCourseButton"
-				  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
-				  click="dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, data as XML, true))" />
-		<s:Button id="exportCourseButton"
-				  skinClass="skins.rotterdam.ui.ExportButtonSkin"
-				  click="dispatchEvent(new CourseExportEvent(CourseExportEvent.COURSE_EXPORT, data as XML, true))" />
+		<s:HGroup>
+			<s:Button id="exportCourseButton"
+					  skinClass="skins.rotterdam.ui.ExportButtonSkin"
+					  click="dispatchEvent(new CourseExportEvent(CourseExportEvent.COURSE_EXPORT, data as XML, true))" />
+			<s:Spacer width="10" />
+			<s:Button id="deleteCourseButton"
+					  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
+					  click="dispatchEvent(new CourseDeleteEvent(CourseDeleteEvent.COURSE_DELETE, data as XML, true))" />
+		</s:HGroup>
 	</s:Group>
 	
 </s:ItemRenderer>

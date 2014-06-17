@@ -3,7 +3,7 @@ package com.clarityenglish.rotterdam.view.courseselector.events {
 	
 	public class CourseExportEvent extends Event {
 		
-		public static const COURSE_DELETE:String = "courseExport";
+		public static const COURSE_EXPORT:String = "courseExport";
 		
 		private var _course:XML;
 		

@@ -77,12 +77,12 @@
 		<s:Group>
 			<s:Path winding="nonZero" data="M22 18C22 20.2002 20.2002 22 18 22L4 22C1.7998 22 0 20.2002 0 18L0 4C0 1.7998 1.7998 0 4 0L18 0C20.2002 0 22 1.7998 22 4L22 18Z" >
 				<s:fill>
-					<s:SolidColor color="#818181" color.over="#DB0808" color.down="#DB0808"/>
+					<s:SolidColor color="#818181" color.over="#08DB08" color.down="#08DB08"/>
 				</s:fill>
 			</s:Path>
 		</s:Group>
 		
-		<s:Label text="Ex" fontWeight="bold" fontSize="15" horizontalCenter="0" color="0x8CC63F" color.overStates="0x3C5C11" verticalCenter="1"/>
+		<s:Label text="Ex" fontWeight="bold" fontSize="15" horizontalCenter="0" color="0xFFFFFF" verticalCenter="1"/>
 	</s:Group>
     
 </s:SparkButtonSkin>
