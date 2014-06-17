@@ -119,6 +119,10 @@ course|CourseView s|Button#addUnitButton {
 	skinClass: ClassReference("skins.rotterdam.builder.course.AddUnitButtonSkin");
 }
 
+course|CourseView s|Button#importCourseButton {
+	skinClass: ClassReference("skins.rotterdam.builder.course.ImportCourseButtonSkin");
+}
+
 course|CourseView s|BorderContainer#unitContainer {
 	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
 }

@@ -125,6 +125,7 @@
 			<s:Button id="unitCopyButton" width="50%" useHandCursor="true" buttonMode="true" enabled="{unitList.selectedItem != null}" />
 			<!--s:Button id="unitPasteButton" label="Paste" width="50%" useHandCursor="true" buttonMode="true" /-->
 		</s:HGroup>
+		<s:Button id="importCourseButton" useHandCursor="true" buttonMode="true" />
 	</s:VGroup>
 	
 	<unit:UnitHeaderView id="unitHeader" left="156" right="0" top="0" height="50" />

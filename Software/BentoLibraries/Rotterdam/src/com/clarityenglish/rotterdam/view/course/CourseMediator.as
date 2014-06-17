@@ -39,6 +39,8 @@
 			// gh#849
 			view.settingsShow.add(onSettingsShow);
 			view.scheduleShow.add(onScheduleShow);
+			// gh#233
+			view.importCourse.add(onImportCourse);
 			
 			// gh#110 - use real events instead of signals because they hook into system copy/paste shortcuts automatically
 			view.unitDuplicate.add(onUnitDuplicate);
@@ -67,6 +69,11 @@
 			view.unitSelect.remove(onUnitSelect);
 			view.coursePublish.remove(onCoursePublish);
 			view.unitDuplicate.remove(onUnitDuplicate);
+			// gh#849
+			view.settingsShow.remove(onSettingsShow);
+			view.scheduleShow.remove(onScheduleShow);
+			// gh#233
+			view.importCourse.remove(onImportCourse);
 			
 			// gh#240
 			//view.removeEventListener(Event.PASTE, onUnitPaste);
@@ -80,6 +87,7 @@
 			return super.listNotificationInterests().concat([
 				RotterdamNotifications.PREVIEW_SHOWN,
 				RotterdamNotifications.PREVIEW_HIDDEN,
+				RotterdamNotifications.COURSE_IMPORTED,
 				BBNotifications.ITEM_DIRTY,
 			]);
 		}
@@ -93,6 +101,10 @@
 				case RotterdamNotifications.PREVIEW_HIDDEN:
 					view.previewVisible = courseProxy.isPreviewMode;
 					break;
+				// gh#233
+				case RotterdamNotifications.COURSE_IMPORTED:
+					break;
+				
 				/*case BBNotifications.ITEM_DIRTY:
 					if (note.getBody().toString() == 'settings')
 						view.publishChanged();
@@ -113,6 +125,11 @@
 		
 		protected function onUnitDuplicate():void {
 			facade.sendNotification(RotterdamNotifications.UNIT_COPY, view.unitList.selectedItem);
+		}
+		
+		// gh#233
+		protected function onImportCourse():void {
+			facade.sendNotification(RotterdamNotifications.COURSE_IMPORT);
 		}
 		
 		/* gh#240

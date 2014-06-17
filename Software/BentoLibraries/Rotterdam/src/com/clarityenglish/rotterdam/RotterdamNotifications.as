@@ -12,6 +12,11 @@
 		// gh#233
 		public static const COURSE_EXPORT:String = "rotterdam/course_export";
 		public static const COURSE_EXPORTED:String = "rotterdam/course_exported";
+		public static const COURSE_IMPORT:String = "rotterdam/course_import";
+		public static const COURSE_IMPORTED:String = "rotterdam/course_imported";
+		public static const COURSE_UPLOAD_START:String = "rotterdam/course_upload_start";
+		public static const COURSE_UPLOAD_PROGRESS:String = "rotterdam/course_upload_progress";
+		public static const COURSE_UPLOAD_ERROR:String = "rotterdam/course_upload_error";
 		
 		public static const COURSE_SAVE:String = "rotterdam/course_save";
 		public static const COURSE_SAVED:String = "rotterdam/course_saved";

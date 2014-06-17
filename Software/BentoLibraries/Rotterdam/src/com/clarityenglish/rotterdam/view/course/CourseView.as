@@ -75,6 +75,9 @@ package com.clarityenglish.rotterdam.view.course {
 		[SkinPart]
 		public var anim:Animate;
 		
+		[SkinPart]
+		public var importCourseButton:Button; // gh#233
+		
 		// gh#208 DK: should we pass the group from the mediator to here so that the view can create the default node
 		// or should we just let the mediator do it?
 		public var group:com.clarityenglish.common.vo.manageable.Group;
@@ -103,6 +106,8 @@ package com.clarityenglish.rotterdam.view.course {
 		// gh#849
 		public var settingsShow:Signal = new Signal();
 		public var scheduleShow:Signal = new Signal();
+		// gh#233
+		public var importCourse:Signal = new Signal();
 
 		[Bindable]
 		public function get course():XML {
@@ -222,6 +227,10 @@ package com.clarityenglish.rotterdam.view.course {
 					instance.label = copyProvider.getCopyForId("publishSettingsButton");
 					instance.text = copyProvider.getCopyForId("publishSettingsLabel");
 					break;
+				case importCourseButton:
+					importCourseButton.addEventListener(MouseEvent.CLICK, onImportCourse);
+					importCourseButton.label = copyProvider.getCopyForId("importCourseButton");
+					break;
 				case oneClickPublishButton:
 					oneClickPublishButton.addEventListener(MouseEvent.CLICK, onCoursePublish);
 					oneClickPublishButton.label = copyProvider.getCopyForId("oneClickPublishButton");
@@ -332,6 +341,11 @@ package com.clarityenglish.rotterdam.view.course {
 			}
 			
 			isItemClick = true;
+		}
+		
+		// gh#233
+		protected function onImportCourse(event:MouseEvent):void {
+			importCourse.dispatch();
 		}
 		
 		protected function onUnitCopy(event:MouseEvent):void {
