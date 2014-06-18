@@ -11,6 +11,8 @@
 	import com.clarityenglish.rotterdam.builder.controller.CourseCreateWindowShowCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseDeleteCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseExportCommand;
+	import com.clarityenglish.rotterdam.builder.controller.CourseImportCommand;
+	import com.clarityenglish.rotterdam.builder.controller.CourseImportedCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSaveErrorCommand;
 	import com.clarityenglish.rotterdam.builder.controller.CourseSavedCommand;
@@ -88,6 +90,8 @@
 			registerCommand(RotterdamNotifications.COURSE_DELETE, CourseDeleteCommand);
 			// gh#233
 			registerCommand(RotterdamNotifications.COURSE_EXPORT, CourseExportCommand);
+			registerCommand(RotterdamNotifications.COURSE_IMPORT, CourseImportCommand);
+			registerCommand(RotterdamNotifications.COURSE_IMPORTED, CourseImportedCommand);
 			
 			registerCommand(RotterdamNotifications.WIDGET_ADD, WidgetAddCommand);
 			registerCommand(RotterdamNotifications.WIDGET_DELETE, WidgetDeleteCommand);

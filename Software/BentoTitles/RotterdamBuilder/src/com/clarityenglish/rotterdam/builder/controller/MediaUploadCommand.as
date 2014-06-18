@@ -88,7 +88,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		private function onUploadSelect(e:Event):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
-			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamUpload.php";
+			var uploadScript:String = configProxy.getConfig().remoteGateway + "services/RotterdamUpload.php";
 			
 			// gh#914 do we know the size?
 			if (configProxy.getConfig().uploadMaxBytes < fileReference.size) {

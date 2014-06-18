@@ -231,6 +231,7 @@
 			<lit name="doneButton">Done</lit>
 			<lit name="addUnitButton">Add a unit</lit>
 			<lit name="unitCopyButton">Duplicate a unit</lit>
+			<lit name="importCourseButton">Import a course</lit> <!-- gh#233 -->
 			<lit name="publishCourseButton">Publish course</lit>
 			<lit name="publishChangeButton">Change published details</lit>
 			<lit name="settingButton">Settings</lit>

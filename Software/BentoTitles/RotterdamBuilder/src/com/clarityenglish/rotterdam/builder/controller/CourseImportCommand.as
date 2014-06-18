@@ -36,7 +36,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			super.execute(note);
 			
 			fileReference = new FileReference();
-			fileReference.browse(new FileFilter("Archives (*.zip)", "*.zip"));
+			fileReference.browse([ new FileFilter("Archives (*.zip)", "*.zip") ]);
 			
 			fileReference.addEventListener(Event.CANCEL, onUploadCancel);
 			fileReference.addEventListener(Event.SELECT, onUploadSelect);
@@ -64,17 +64,25 @@ package com.clarityenglish.rotterdam.builder.controller {
 		private function onUploadSelect(e:Event):void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
-			var uploadScript:String = configProxy.getConfig().remoteGateway + "/services/RotterdamImport.php";
+			var uploadScript:String = configProxy.getConfig().remoteGateway + "services/RotterdamImport.php";
+			
+			// gh#914 do we know the size?
+			if (configProxy.getConfig().uploadMaxBytes < fileReference.size) {
+				var sizeLimitMessage:String = copyProvider.getCopyForId("errorExceedMaxFileSize", { sizeLimit: configProxy.getConfig().uploadMaxFilesize });
+				sendNotification(RotterdamNotifications.COURSE_IMPORT_ERROR, { message: sizeLimitMessage });
+				destroy();
+				return;
+			}
 			
 			// gh#32
 			if (FlexGlobals.topLevelApplication.parameters.sessionid) uploadScript += "?PHPSESSID=" + FlexGlobals.topLevelApplication.parameters.sessionid;
 			
-			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_START, null, tempWidgetId);
+			sendNotification(RotterdamNotifications.COURSE_IMPORT_START, null);
 			fileReference.upload(new URLRequest(uploadScript));
 		}
 		
 		private function onUploadProgress(e:ProgressEvent):void {
-			sendNotification(RotterdamNotifications.MEDIA_UPLOAD_PROGRESS, e, tempWidgetId);
+			sendNotification(RotterdamNotifications.COURSE_IMPORT_PROGRESS, e);
 		}
 		
 		private function onUploadCompleteData(e:DataEvent):void {
@@ -84,10 +92,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 				sendNotification(RotterdamNotifications.COURSE_IMPORT_ERROR, { message: response.message });
 			} else {
 				// TODO: Merge returned units into the course
-				
-				sendNotification(RotterdamNotifications.COURSE_IMPORTED, null);
+				sendNotification(RotterdamNotifications.COURSE_IMPORTED, response.xml);
 			}
-			
 			destroy();
 		}
 		

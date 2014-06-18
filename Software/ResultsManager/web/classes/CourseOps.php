@@ -488,7 +488,7 @@ SQL;
 			$courseNode = $xml->courses->addChild("course");
 			$courseNode->addAttribute("id", $id);
 			$courseNode->addAttribute("href", $id."/menu.xml");
-			$date = new Date();
+			$date = new DateTime();
 			$courseNode->addAttribute("exported", $date->format('Y-m-d H:i:s'));
 		});
 	}
