@@ -6,6 +6,8 @@
 	import com.clarityenglish.bento.view.*;
 	import com.clarityenglish.bento.view.credits.CreditsMediator;
 	import com.clarityenglish.bento.view.credits.CreditsView;
+	import com.clarityenglish.bento.view.information.InformationMediator;
+	import com.clarityenglish.bento.view.information.InformationView;
 	import com.clarityenglish.bento.view.marking.MarkingMediator;
 	import com.clarityenglish.bento.view.marking.MarkingView;
 	import com.clarityenglish.bento.view.nonetwork.NoNetworkMediator;
@@ -80,6 +82,8 @@
 			mapView(ErrorView, ErrorMediator);
 			mapView(CreditsView, CreditsMediator);
 			mapView(NoNetworkView, NoNetworkMediator);
+			// gh#233
+			mapView(InformationView, InformationMediator);
 			
 			mapView(ProgressView, ProgressMediator);
 			mapView(ProgressScoreView, ProgressScoreMediator);
@@ -128,6 +132,8 @@
 			registerCommand(BBNotifications.WORD_CLICK, WordClickCommand);
 			// gh#338
 			registerCommand(BBNotifications.HINT_SHOW, HintShowCommand);
+			// gh#233
+			registerCommand(BBNotifications.INFORMATION_SHOW, InformationShowCommand);
 			
 			// AR add in login and logout
 			registerCommand(CommonNotifications.ADD_USER, AddUserCommand);

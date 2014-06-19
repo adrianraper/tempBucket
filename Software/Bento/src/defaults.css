@@ -12,6 +12,7 @@
 @namespace components1 "skins.bento.components.*";
 @namespace components2 "com.clarityenglish.components.*";
 @namespace warning "com.clarityenglish.bento.view.warning.*";
+@namespace information "com.clarityenglish.bento.view.information.*";
 @namespace tink "ws.tink.spark.controls.*";
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 
@@ -79,6 +80,15 @@ warning|WarningView #noButton {
 
 warning|WarningView #yesButton {	
 	skinClass: ClassReference("skins.bento.warning.WarningYesButtonSkin");
+}
+
+/* Information view styles */
+information|InformationView {
+	skinClass: ClassReference("skins.bento.information.InformationSkin");
+}
+
+information|InformationView #okButton {
+	skinClass: ClassReference("skins.bento.information.InformationOKButtonSkin");
 }
 
 s|VideoPlayer {

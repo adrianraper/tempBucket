@@ -1,6 +1,8 @@
 package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.model.BentoProxy;
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
@@ -24,9 +26,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			
-			// Disable the dirty watcher in CourseProxy for these operations (gh#90)
-			//courseProxy.xmlWatcherEnabled = false;
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			
 			// This is very hacky; remove the namespace.  Namespaces in general need to be sorted out.
 			var xmlString:String = note.getBody().toString();
@@ -34,16 +34,10 @@ package com.clarityenglish.rotterdam.builder.controller {
 			var returnedXml:XML = new XML(xmlString);
 			
 			// The returned XML contains unit nodes that we want to merge into our main menu.xml
-			for each (var unitNode:XML in returnedXml..unit) {
+			for each (var unitNode:XML in returnedXml..unit)
 				sendNotification(RotterdamNotifications.UNIT_COPY, unitNode);
-				//courseProxy.currentCourse.appendChild(unitNode);
-			}
 			
-			// And turn the dirty watcher in CourseProxy back on now that we are done (gh#90)
-			//courseProxy.xmlWatcherEnabled = true;
-			
-			// gh#229
-			courseProxy.updateCurrentCourse();
+			sendNotification(BBNotifications.INFORMATION_SHOW, {text: copyProvider.getCopyForId("importedUnits", {numberOfUnits: returnedXml..unit.length()})}, 'status');
 		}
 		
 	}

@@ -102,6 +102,9 @@
 		// Warnings that you are about to do something that will lose your data
 		public static const WARN_DATA_LOSS:String = "bb/warn_data_loss";
 		
+		// gh#233
+		public static const INFORMATION_SHOW:String = "bb/information_show";
+		
 		// Check that the same user is only logged in once
 		public static const FAILED_INSTANCE_CHECK:String = "bb/failed_instance_check";
 		

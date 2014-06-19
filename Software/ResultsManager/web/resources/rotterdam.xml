@@ -292,6 +292,10 @@
 			<lit name="menuEditItem">Edit item</lit>
 			<lit name="menuCopyItem">Copy item</lit>
 			
+			<!--  Status messages -->
+			<lit name="importedUnits">{numberOfUnits} units were successfully imported.</lit>
+			<lit name="okButton">OK</lit>
+			
 			<lit name="courseEditableFormItemHelp">Use to protect a completed course</lit>
 			<lit name="collaboratorsFormItemHelp">Collaborators can edit the course</lit>
 			<lit name="publishersFormItemHelp">Publishers can schedule their students on the course but can't edit it.</lit>
