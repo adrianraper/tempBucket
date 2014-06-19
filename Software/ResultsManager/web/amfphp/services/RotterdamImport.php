@@ -83,9 +83,20 @@ require_once(dirname(__FILE__)."/RotterdamBuilderService.php");
 	}
 	*/
 	
-	// Copy all the /media/* files into accountFolder/media
-	// The ZIP will not have any media files, just a link to the account folder that the course was exported from
-	// so you can copy the files from there. 
+	// Open the media.xml and copy the files from the original account to this one
+	$mediaContents = file_get_contents($unpackFolder.'/media/media.xml');
+	$mediaXml = simplexml_load_string($mediaContents);
+	$mediaXml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+	$originalPrefix = XmlUtils::xml_attribute($mediaXml->files, 'originalAccount', 'string');
+	$currentPrefix = Session::get('dbContentLocation');
+	
+	if ($originalPrefix != $currentPrefix) {
+		$originalFolder = $dir.'../'.$originalPrefix.'/media/';
+		foreach ($mediaXml->xpath('//xmlns:file') as $fileNode) {
+			$rc = copy($originalFolder.$fileNode['filename'], $dir.'media/'.$fileNode['filename']);
+			AbstractService::$debugLog->info("import $rc copied from ".$originalFolder.$fileNode['filename']. " to ".$dir);
+		}
+	}
 	
 	// Return the menu.xml
 	$result = array("success" => true, "xml" => $menuXml->asXML());

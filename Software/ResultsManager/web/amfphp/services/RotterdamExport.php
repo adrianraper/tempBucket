@@ -38,6 +38,9 @@ $archiveName = 'export-'.$id.'.zip';
 $stubCourseFilename = $service->accountFolder.'/stub-'.$id.'.xml';
 $service->courseOps->createCourseStub($stubCourseFilename, $id);
 
+// Get a list of the media files that are used in this course
+$mediaXml = $service->courseOps->buildMediaXml($id, $prefix);
+
 $zip = new ZipArchive();
 if ($zip->open($dir.$archiveName, ZipArchive::CREATE) === true) {
 	$rc = $zip->addFile($stubCourseFilename, 'courses.xml');
@@ -45,12 +48,12 @@ if ($zip->open($dir.$archiveName, ZipArchive::CREATE) === true) {
 	if (file_exists($menuDir.'menu.xml')){
 		$rc = $zip->addFile($menuDir.'menu.xml', $id.'/menu.xml');
 	}
-	if (file_exists($dir.'media/media.xml')) {
+	if ($mediaXml) {
 		$rc = $zip->addEmptyDir('media');
-		// TODO: Build a media.xml using just the files referenced in the menu.xml
-		$rc = $zip->addFile($dir.'media/media.xml', 'media/media.xml');
+		$rc = $zip->addFromString('media/media.xml', $mediaXml);
 	}
-	$rc = $zip->setArchiveComment('Made this day in 2014');
+	
+	$rc = $zip->setArchiveComment("Exported from Clarity's Course Builder");
 	$rc = $zip->close();
 		
 } else {

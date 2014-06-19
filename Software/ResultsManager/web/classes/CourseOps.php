@@ -800,7 +800,6 @@ EOD;
 					$emailData = array("user" => $user, "course" => $course);
 					$thisEmail = array("to" => $toEmail, "data" => $emailData);
 					$emailArray[] = $thisEmail;
-					
 				}
 			}
 		}
@@ -811,4 +810,42 @@ EOD;
 		return count($emailArray);
 	}
 	
+	/**
+	 * gh#233 Build an xml list of the media files used in a particular course
+	 * 
+	 */
+	public function buildMediaXml($courseId, $prefix) {
+
+		$menuFile = $this->accountFolder.'/'.$courseId.'/menu.xml';
+		$menuXml = simplexml_load_file($menuFile);
+		$menuXml->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+		$exercises = $menuXml->xpath('//xmlns:exercise');
+		if (count($exercises) > 0) {
+			$filesXml = new SimpleXMLElement('<bento xmlns="http://www.w3.org/1999/xhtml"><files originalAccount="'.$prefix.'" /></bento>');			
+			foreach ($exercises as $exercise) {
+				// Don't write some types of media
+				if ($exercise['type'] == 'video')
+					continue;
+				// Don't try anything that doesn't list a src
+				if (!isset($exercise['src']))
+					continue;
+				// Don't need to copy URLs
+				if ((stripos($exercise['src'], 'http') !== false) && (stripos($exercise['src'], 'http') == 0))
+					continue;
+					
+				$fileNode = $filesXml->addChild('file');
+				$fileNode['filename'] = $exercise['src'];
+				$fileNode['type'] = $exercise['type'];
+				
+				// Some types have a thumbnail as well as a main src
+				if (isset($exercise['thumbnail'])) {
+					$fileNode = $filesXml->addChild('file');
+					$fileNode['filename'] = $exercise['thumbnail'];
+					$fileNode['type'] = 'thumbnail';
+				}
+					
+			}
+			return $filesXml->asXML();
+		}
+	}
 }

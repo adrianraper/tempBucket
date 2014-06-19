@@ -12,6 +12,8 @@ if ($zip->open($dir.'export.zip', ZipArchive::CREATE) === true) {
 	//echo "$rc addEmptyDir status ".$zip->getStatusString()."<br/>";
 	$rc = $zip->addFile($dir.'media/media.xml', 'media/amedia.xml');
 	//echo "$rc addFile status ".$zip->getStatusString()."<br/>";
+	$rc = $zip->addFromString('media/media.txt', 'just some text');
+	echo "addFromString status $rc ".$zip->getStatusString()."<br/>";
 	$rc = $zip->setArchiveComment('Made this day in 2014');
 	//echo "$rc setArchiveComment status ".$zip->getStatusString()."<br/>";
 	$rc = $zip->close();
@@ -21,11 +23,12 @@ if ($zip->open($dir.'export.zip', ZipArchive::CREATE) === true) {
 	//echo "$rc open status ".$zip->getStatusString()."<br/>";
 }  
 
+/*
 header('Content-Type: application/zip');
 header('Content-disposition: attachment; filename=export.zip');
 header('Content-Length: ' . filesize($dir.'export.zip'));
 readfile($dir.'export.zip');
-
+*/
 
 	require_once(dirname(__FILE__)."/MinimalService.php");
 	$dummy = new MinimalService();
