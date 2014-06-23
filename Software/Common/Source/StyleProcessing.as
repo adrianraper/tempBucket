@@ -7,6 +7,7 @@ with (_global.ORCHID.BasicText) {
 	leading = 0;
 	align = "left";
 	color = 0x000066;
+	bold = false;
 }
 _global.ORCHID.ruler = new TextFormat();
 _global.ORCHID.ruler.font = "Verdana";
@@ -142,11 +143,11 @@ _global.ORCHID.setBrandStyles = function(branding) {
 		// v6.1.2 ESG and AGU text
 		//if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("EGU") >= 0) {
 		if (branding.indexOf("EGU") >= 0) {
-			_global.ORCHID.copyright.footer = "English Grammar in Use CD ROM © Cambridge University Press 2004"
+			_global.ORCHID.copyright.footer = "English Grammar in Use CD ROM ï¿½ Cambridge University Press 2004"
 		} else if (branding.indexOf("ESG") >= 0) {
-			_global.ORCHID.copyright.footer = "Essential Grammar in Use CD ROM © Cambridge University Press 2004"
+			_global.ORCHID.copyright.footer = "Essential Grammar in Use CD ROM ï¿½ Cambridge University Press 2004"
 		} else if (branding.indexOf("AGU") >= 0) {
-			_global.ORCHID.copyright.footer = "Advanced Grammar in Use CD ROM © Cambridge University Press 2005"
+			_global.ORCHID.copyright.footer = "Advanced Grammar in Use CD ROM ï¿½ Cambridge University Press 2005"
 		}
 		
 	// v6.4.2.4 Sweet biscuits branding. The key is that after marking all you really want to see are the correct answers
@@ -191,7 +192,7 @@ _global.ORCHID.setBrandStyles = function(branding) {
 	}		
 	// v6.3.6 New branding styles to be used by buttons to remove changes in the code
 	var me = _global.ORCHID.root.buttonsHolder.buttonsNS.interface;
-	myTrace("in sssv9 branding screen with " + branding);
+	myTrace("in branding screen with " + branding);
 	if (branding.toLowerCase().indexOf("clarity/ro") >= 0) {
 		me.tileColour = 0x10494A;
 		me.lineColour = 0xACB088;
@@ -364,12 +365,23 @@ setExerciseStyles = function() {
 		var thisStyle = me.style[i].name;
 		// are we overriding an existing style, or creating a new one?
 		if (_global.ORCHID[thisStyle] == undefined) {
+			//myTrace("make a new style format");
 			_global.ORCHID[thisStyle] = new TextFormat();
 		}
 		for (j in _global.ORCHID[thisStyle]) { // copy all the TextFormat properties (but not any others)
-			_global.ORCHID[thisStyle][j] = me.style[i][j];
+			// ar#869 change type of xml attribute
+			if (me.style[i][j]=='true') {
+				_global.ORCHID[thisStyle][j] = true;
+				//myTrace(j + "=" + me.style[i][j]);
+			} else if (me.style[i][j]=='false') {
+				_global.ORCHID[thisStyle][j] = false;
+				//myTrace(j + "=" + me.style[i][j]);
+			} else if (me.style[i][j]==undefined) {
+			} else {
+				_global.ORCHID[thisStyle][j] = me.style[i][j];
+				//myTrace(j + "=" + me.style[i][j]);
+			}
 		}
-		//trace("style="+thisStyle+ " has bold " + _global.ORCHID[thisStyle].bold);
 	}
 }
 _global.ORCHID.fontLookUp = function(id) {

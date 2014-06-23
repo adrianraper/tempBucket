@@ -12,7 +12,9 @@ if (_global.TWF == undefined) {
 _global.TWF.lookupArrayItem = function(myArray, key, field) {
 	var i = myArray.length;
 	while(i--) {
+		//myTrace("i=" + i + " value=" + myArray[i][field]); 
 		if (myArray[i][field] == key) {
+			//myTrace("found " + key + " at i=" + i + ", see=" + myArray[i][field]); 
 			return i;
 		}
 	}
@@ -115,6 +117,7 @@ TextWithFieldsClass.prototype.init = function() {
 		this.original.background = false;
 		//this.original.wordWrap = true;
 		this.original.multiline = true;
+		//this.original.embedFonts = true;
 		this.original.embedFonts = false;
 		//this.original.selectable = false; // there is no copy of text at present
 		this.original.autoSize = this.autoSize_param;
@@ -133,6 +136,7 @@ TextWithFieldsClass.prototype.init = function() {
 	this.holder.background = false;
 	this.holder.wordWrap = true;
 	this.holder.multiline = true;
+	//this.holder.embedFonts = true;
 	this.holder.embedFonts = false;
 	// v6.4.3 To select text you can do it here, but it is very clumsy and hard to do
 	this.holder.selectable = false; // there is no copy of text at present
@@ -316,39 +320,34 @@ TextWithFieldsClass.prototype.getOffsetWithFieldStartOrEndPos	= function(fieldPo
 	return nOffset;
 }
 
-TextWithFieldsClass.prototype.getAccumOffsetWithFieldStartOrEndPos	= function(fieldPos)
-{
-// debug trace
-//_global.myTrace("in == getAccumOffsetWithFieldStartOrEndPos ==");
+TextWithFieldsClass.prototype.getAccumOffsetWithFieldStartOrEndPos	= function(fieldPos){
 	var nOffset:Number;
+	//myTrace("array length=" + this.aAccumCJKRelatedShowingAnswerOffset.length + " value is " + this.aAccumCJKRelatedShowingAnswerOffset[0]);
 	nOffset= this.aAccumCJKRelatedShowingAnswerOffset[this.aAccumCJKRelatedShowingAnswerOffset.length - 1];	// default return
+	//myTrace("in getAccumOffsetWithFieldStartOrEndPos nOffset=" + nOffset);
 	
 	var v:Number;
 	for (v=0; v<this.lines.length; ++v) {
-//	debug trace
 //	_global.myTrace("== getAccumOffsetwithfieldstartorendpos v: " + v);
 //	_global.myTrace("== getAccumOffsetwithfieldstartorendpos this.lines[v].idx: " + this.lines[v].idx);
-		if(fieldPos < this.lines[v].idx)
-		{
+		if(fieldPos < this.lines[v].idx){
 			nOffset	= this.aAccumCJKRelatedShowingAnswerOffset[v-1];
 			break;
 		}
 	}
-
-
-//	debug trace
 //	for (v=0; v<this.lines.length; ++v) {
 //		_global.myTrace("aAccumCJKRelatedShowingAnswerOffset, v: " + v + " aAccumCJKRelatedShowingAnswerOffset: " +  this.aAccumCJKRelatedShowingAnswerOffset[v]);
 //	}
-	//_global.myTrace("== getAccumOffsetwithfieldstartorendpos result: " + nOffset);
-	//_global.myTrace("== getAccumOffsetwithfieldstartorendpos fieldPos: " + fieldPos);
+	//_global.myTrace("getAccumOffsetWithFieldStartOrEndPos nOffset: " + nOffset + " fieldPos: " + fieldPos);
+	// ar#869 to be safe
+	if (isNaN(nOffset)) nOffset = 0;
 	return nOffset;
 }
 
 // This function is called to set a TextFormat to a particular field
 TextWithFieldsClass.prototype.setFieldTextFormat = function(fieldID, thisFormat) {
-	//myTrace("twf.setFieldTextFormat");
 	var fieldIDX=TWF.lookupArrayItem(this.fields, fieldID, "id");
+	myTrace("twf.setFieldTextFormat with underline=" + thisFormat.underline + " for " + fieldIDX);
 //	for (var i in this.fields[fieldID]) {
 	//trace("field[" + fieldID + "].start="+this.fields[fieldIDX].start+" .end="+this.fields[fieldIDX].end);
 	//var currentTF = this.holder.getTextFormat(this.fields[fieldIDX].start);
@@ -357,19 +356,19 @@ TextWithFieldsClass.prototype.setFieldTextFormat = function(fieldID, thisFormat)
 	// v6.5.4.2 Yiu, get the offset to make the field display correctly, Bug ID 1370a
 	var nStartOffset:Number;
 	var nEndOffset:Number;
-	//myTrace("twf.setFieldTF, 1.end=" + this.fields[fieldIDX].end + " start=" + this.fields[fieldIDX].start);
-	nStartOffset	= this.getAccumOffsetWithFieldStartOrEndPos(this.fields[fieldIDX].start);
-	nEndOffset	= this.getAccumOffsetWithFieldStartOrEndPos(this.fields[fieldIDX].end);
-	//myTrace("twf.setFieldTF, 2.endOffset=" + nEndOffset + " start=" + nStartOffset);
+	myTrace("twf.setFieldTF, 1.end=" + this.fields[fieldIDX].end + " start=" + this.fields[fieldIDX].start);
+	nStartOffset = this.getAccumOffsetWithFieldStartOrEndPos(this.fields[fieldIDX].start);
+	nEndOffset = this.getAccumOffsetWithFieldStartOrEndPos(this.fields[fieldIDX].end);
+	myTrace("twf.setFieldTF, 2.endOffset=" + nEndOffset + " start=" + nStartOffset);
 	//myTrace("twf.setFieldTF, url=" + thisFormat.url);
 
-	this.holder.setTextFormat(	this.fields[fieldIDX].start + nStartOffset,
+	this.holder.setTextFormat(this.fields[fieldIDX].start + nStartOffset,
 					this.fields[fieldIDX].end + nEndOffset, 
 					thisFormat);	// v6.5.4.2 Yiu, bug id 1370a 
 
 	//this.holder.setTextFormat(this.fields[fieldIDX].start,this.fields[fieldIDX].end, thisFormat);	// v6.5.4.2 Yiu commented, bug id 1370a 
 	// since we might refresh later, we need to update the new format in the original too
-	this.original.setTextFormat(	this.fields[fieldIDX].start, 
+	this.original.setTextFormat(this.fields[fieldIDX].start, 
 					this.fields[fieldIDX].end, 
 					thisFormat);
 	// v6.5.4.2 Yiu, tried to fix text with fields problem with the following code but always failed, commented
@@ -381,8 +380,8 @@ TextWithFieldsClass.prototype.setFieldTextFormat = function(fieldID, thisFormat)
 	// v6.2 If there is a gap cover over this field, change it's format too
 	for (var j in this.fields[fieldIDX].coords) {
 		thisCover = this.fields[fieldIDX].coords[j].coverMC;
+		myTrace("twf.setFieldTextFormat for cover.gap " +thisCover + " gapHolder=" + thisCover.gapHolder);
 		if (thisCover.gapHolder != undefined) {
-			//myTrace("twf.setFieldTextFormat for cover.gap " + thisCover.gapHolder);
 			thisCover.gapHolder.gap.setTextFormat(thisFormat);
 			// but we never want underlining on a cover gap, although you can't
 			// change thisFormat as it will have other consequences
@@ -512,7 +511,7 @@ TextWithFieldsClass.prototype.getFieldText = function(fieldID) {
 	// Note: I cannot read from HOLDER as it has 'lost' all the CR if you do text.substr
 	// but if I read from original, then it means I have to update original as well
 	// when I change any text in holder.
-	return this.original.text.subString(this.fields[fieldIDX].start,this.fields[fieldIDX].end);
+	return this.original.text.substring(this.fields[fieldIDX].start,this.fields[fieldIDX].end);
 }
 // This function is called to hide the cursor for fields that are hidden.
 TextWithFieldsClass.prototype.setHideCursor = function(flag) {
@@ -1025,7 +1024,7 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 					}
 					oldlastLineBreakChar = lastLineBreakChar; 
 					// so save the last recorded word-wrapping char as the place that it broke
-					linesIdx = this.lines.push({idx:lastLineBreakChar+1, y:thisTextHeight})
+					linesIdx = this.lines.push({idx:lastLineBreakChar+1, y:thisTextHeight});
 					//myTrace("so push line at " + Number(lastLineBreakChar+1));
 					// Slip in a wafer thin space? Or rather, change the last &nbsp; to a real space
 					// v6.3.5 This simply does not work to break the line as you would expect.
@@ -1048,7 +1047,8 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 				// and update the final text height of the previous line
 				if (linesIdx>1) { // the first line is a special case
 					//trace("update line " + Number(linesIdx-2) + " to height=" + oldTextHeight);
-					this.lines[linesIdx-2].y = oldTextHeight;
+					// gh#869 usded to be this.lines[linesIdx-2].y, but if it is "2", linesIdx=2 will mean the first line but not the second line
+					this.lines[linesIdx-1].y = oldTextHeight;
 				}
 				//trace(thisChar + " makes " + lines.length + " lines");
 				// if this line break was in the middle of a field, you will have to adjust
@@ -1149,7 +1149,7 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 	// It simply displays hyphens at the beginning of lines if it feels like it.
 	// See /Flash/Playing/hyphenBug.fla for {failed) attempts at solving it.
 
-	//myTrace("twf.buildTextAndFields, 3.original=" + this.original.text);
+	//myTrace("twf.buildTextAndFields, original=" + this.original.text);
 	// v6.5.4.2 Yiu, accumlated variable for aCJKRelatedShowingAnswerOffset	
 	var nCJKOffset:Number;
 	var nInFieldsRange:Number;
@@ -1157,29 +1157,29 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 	// v6.5.4.2 Yiu, mark down the position of the replaced word when CJK word is detected, 
 	// then get rip the underline textformat of that word after all,
 	// or it will cause some textformat problem
-	Selection.setFocus(this.holder);
+	selection.setFocus(this.holder);
 	var plainText = new String(this.holder.text);
 	for (var i in this.lines) {
-		nCJKOffset	= 0;	// v6.5.4.2 Yiu, it must be 1 or 0 for each loop
+		nCJKOffset = 0;	// v6.5.4.2 Yiu, it must be 1 or 0 for each loop
 		if (this.lines[i].idx > 0) {
 			if (plainText.substr(this.lines[i].idx-1,1) == "-") {
 				//var selStart = this.lines[i].idx;
 			} else {
-				var selStart = this.lines[i].idx-1
-				Selection.setSelection(selStart,this.lines[i].idx);
+				var selStart = this.lines[i].idx-1;
+				selection.setSelection(selStart,this.lines[i].idx);
 			//	this.holder.replaceSel(newline);
 				var strMyString	= myString.charAt(selStart);
 				// v6.5.4.2 Yiu, if it is a CJK character, the selected charcter shouldnt be only overwritten by newline, bug id 1370a 
 				if(this.ifTheStringAllInCJK(strMyString)){	
 					// v6.5.4.2 Yiu, back up the text format first
-					thisTF			= this.holder.getTextFormat(this.lines[i].idx-1);
+					thisTF = this.holder.getTextFormat(this.lines[i].idx-1);
 
-					// v6.5.4.2 Yiu, replace with the word and newline, or it will overwrite the last CJK à of each line 
+					// v6.5.4.2 Yiu, replace with the word and newline, or it will overwrite the last CJK of each line 
 					this.holder.replaceSel(strMyString + newline);
 
 					// v6.5.4.2 Yiu, increase the offset 
 					nCJKOffset = 1;
-					nInFieldsRange		= this.checkIfInFieldsrange(this.lines[i].idx-1);
+					nInFieldsRange = this.checkIfInFieldsrange(this.lines[i].idx-1);
 
 					if(nInFieldsRange == -1){
 						// v6.5.4.2 Yiu, apply the backuped format if the break text is not within a field
@@ -1209,17 +1209,18 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 		}
 
 		// v6.5.4.2 Yiu, offset for gap fill exercise to display the answer correctly
-		this.aCJKRelatedShowingAnswerOffset[i]	= nCJKOffset;
+		this.aCJKRelatedShowingAnswerOffset[i] = nCJKOffset;
+		//myTrace("twf.buildTextAndFields aCJKOffset[" + i + "]=" + nCJKOffset);
 	}
 	//myTrace("twf.buildTextAndFields, 5.text=" + this.holder.htmlText);
 	//myTrace("twf.buildTextAndFields, 4.original=" + this.original.text);
 
 	// v6.5.4.2 Yiu, add the offset up, to accumlate the offset 
-	for(var v1=0; v1<this.aCJKRelatedShowingAnswerOffset.length; ++v1)
-	{
-		for(var v2=v1; v2>=0; --v2)
-		{
-			this.aAccumCJKRelatedShowingAnswerOffset[v1]	+= this.aCJKRelatedShowingAnswerOffset[v2];
+	for (var v1=0; v1<this.aCJKRelatedShowingAnswerOffset.length; ++v1) {
+		this.aAccumCJKRelatedShowingAnswerOffset[v1] = 0; //ar#869
+		for (var v2=v1; v2>=0; --v2){
+			this.aAccumCJKRelatedShowingAnswerOffset[v1] += this.aCJKRelatedShowingAnswerOffset[v2];
+			//myTrace("twf.buildTextAndFields aAccumCJKRelatedOffset[" + v1 + "]=" + this.aCJKRelatedShowingAnswerOffset[v2]);
 		}
 	}
 	// End v6.5.4.2 Yiu, add the offset up, to accumlate the offset 
@@ -1460,7 +1461,6 @@ TextWithFieldsClass.prototype.disableField = function(fieldID) {
 	}
 }
 TextWithFieldsClass.prototype.enableField = function(fieldID) {
-	//trace("enable field " + fieldID);
 	var fieldIDX=TWF.lookupArrayItem(this.fields, fieldID, "id");
 	this.fields[fieldIDX].disabled = false;
 	//this.removeFieldCovers();

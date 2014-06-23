@@ -158,6 +158,7 @@ View.prototype.hideAllScreens = function() {
 
 //initialize all movieclip in the screens array
 View.prototype.initAllScreens = function() {
+	myTrace("view.initAllScreens");
 	for(var i in this.screens) {
 		this.screens[i].init();
 	}
@@ -1589,7 +1590,7 @@ View.prototype.cmdMarking = function() {
 	_global.ORCHID.viewObj.stopRecording();
 	
 	//myTrace("cmdMarking - switch off instant feedback, or is it too late?")
-	//trace("here in cmdMarking");
+	myTrace("here in cmdMarking");
 	// v6.2 Now, it is possible/likely/certain that the last typing box didn't insert it's answer into it's field
 	// so we should do it for it.
 	// v6.3.4 No longer - correctly handled by the selection listener
@@ -3057,11 +3058,11 @@ View.prototype.displayProgressList = function(progressList) {
 				var thisHeader = "Completed exercises";
 				// v6.4.2.7 Use literal for CUP as well
 				//if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("AGU") >= 0) {
-				//	var thisFooter = "Printed from Advanced Grammar in Use CD-ROM © Cambridge University Press 2005";
+				//	var thisFooter = "Printed from Advanced Grammar in Use CD-ROM ï¿½ Cambridge University Press 2005";
 				//} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("EGU") >= 0) {
-				//	var thisFooter = "Printed from English Grammar in Use CD-ROM © Cambridge University Press 2004";
+				//	var thisFooter = "Printed from English Grammar in Use CD-ROM ï¿½ Cambridge University Press 2004";
 				//} else {
-				//	var thisFooter = "Printed from Essential Grammar in Use CD-ROM © Cambridge University Press 2006";
+				//	var thisFooter = "Printed from Essential Grammar in Use CD-ROM ï¿½ Cambridge University Press 2006";
 				//}
 				var substList = [{tag:"[x]", text:_global.ORCHID.course.scaffold.caption}];
 				var thisFooter = substTags(_global.ORCHID.literalModelObj.getLiteral("printedFromAPO", "labels"), substList);
@@ -3941,11 +3942,11 @@ View.prototype.glossaryLookUp = function(word, letter) {
 				if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("CUP/GIU") >= 0) {
 					var thisHeader = "Glossary";
 					if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("AGU") >= 0) {
-						var thisFooter = "Printed from Advanced Grammar in Use © Cambridge University Press 2005";
+						var thisFooter = "Printed from Advanced Grammar in Use ï¿½ Cambridge University Press 2005";
 					} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("EGU") >= 0) {
-						var thisFooter = "Printed from English Grammar in Use © Cambridge University Press 2004";
+						var thisFooter = "Printed from English Grammar in Use ï¿½ Cambridge University Press 2004";
 					} else {
-						var thisFooter = "Printed from Essential Grammar in Use © Cambridge University Press 2005";
+						var thisFooter = "Printed from Essential Grammar in Use ï¿½ Cambridge University Press 2005";
 					}
 				} else {
 					var thisHeader = "Glossary";
@@ -4256,16 +4257,16 @@ View.prototype.moveExercise = function(component, direction) {
 	// ask navigation module to send us to the next exercise (or whatever)
 	if (direction == "forward") {
 		// v6.2 The next item has been found when this exercise was read
-		//var nextItem = _global.ORCHID.course.scaffold.getNextItemID(_global.ORCHID.session.currentItem.ID);	
+		//var nextItem = _global.ORCHID.course.scaffold.getNextItemID(_global.ORCHID.session.currentItem.id);	
 		// v6.5.5.0 Content paths. What happens if I figure out my next item now, rather than before I started?
 		// I hope this will let me make the result conditional.
 		// All well and good, but if I am using an exercise to do the navigation, then this function will have set the nextItem before
 		// I come here. So let's revert to setting it during exercise loading.
-		//_global.ORCHID.session.nextItem = _global.ORCHID.course.scaffold.getNextItemID(_global.ORCHID.session.currentItem.ID);
+		//_global.ORCHID.session.nextItem = _global.ORCHID.course.scaffold.getNextItemID(_global.ORCHID.session.currentItem.id);
 		var nextItem = _global.ORCHID.session.nextItem;
 	} else if (direction == "backward") {
 		// v6.2 The next item has been found when this exercise was read
-		//var nextItem = _global.ORCHID.course.scaffold.getPreviousItemID(_global.ORCHID.session.currentItem.ID);
+		//var nextItem = _global.ORCHID.course.scaffold.getPreviousItemID(_global.ORCHID.session.currentItem.id);
 		var nextItem = _global.ORCHID.session.previousItem;
 	} else {
 		var nextItem = undefined;
@@ -4515,7 +4516,7 @@ View.prototype.moveExercise = function(component, direction) {
 			}
 		} else {
 			//trace("about to go forward to item " + nextItem);
-			//trace("move to item ID " + nextItem.id + " from " + _global.ORCHID.session.currentItem.ID);
+			//trace("move to item ID " + nextItem.id + " from " + _global.ORCHID.session.currentItem.id);
 			// clear out the current exercise
 			// 6.0.2.0 remove connection
 			//_root.exerciseHolder.myConnection.clearExercise(0);
@@ -4550,7 +4551,7 @@ View.prototype.cmdForward = function(component) {
 	//myTrace("request from button " + this);
 	
 	// v6.4.2.4 Don't allow this to be double clicked
-	//myTrace("click cmdForward");
+	myTrace("click cmdForward");
 	_global.ORCHID.root.buttonsHolder.ExerciseScreen.navForward_pb.setEnabled(false);
 	
 	//_global.ORCHID.root.buttonsHolder.buttonsNS.moveExercise(component, "forward");
@@ -4808,7 +4809,7 @@ View.prototype.cmdTest = function() {
 	// Note that this doesn't work as EGU uses old style of test generation.
 	// So you have to go back to 6.4.2.7 to get tests to work
 	if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("CUP/GIU/EGU") >= 0) {
-		var myTF = _global.ORCHID.basicText;
+		var myTF = _global.ORCHID.BasicText;
 	} else {
 		var myTF = new TextFormat();
 		myTF.font = globalStyleFormat.textFont;
@@ -5003,7 +5004,7 @@ View.prototype.cmdPrint = function(component) {
 			// v6.4.2.4 It won't always be the [0] text (SB exam tips)
 			//var thisText = me.texts[0].text;
 			var textArrayIDX = _global.ORCHID.root.objectHolder.lookupArrayItem(_global.ORCHID.LoadedExercises[0].texts, 
-												_global.ORCHID.LoadedExercises[0].readingText.id, "ID");
+												_global.ORCHID.LoadedExercises[0].readingText.id, "id");
 			var thisText = _global.ORCHID.LoadedExercises[0].texts[textArrayIDX].text;
 			var paneType = "scroll pane";
 			var paneName = "ReadingText_SP";
@@ -5052,7 +5053,7 @@ View.prototype.cmdPrint = function(component) {
 			if (_global.ORCHID.session.currentItem.unit==-16){
 				fullName = _global.ORCHID.session.currentItem.caption;
 			} else {
-				var namePath = _global.ORCHID.course.scaffold.getParentCaptions( _global.ORCHID.session.currentItem.ID);
+				var namePath = _global.ORCHID.course.scaffold.getParentCaptions( _global.ORCHID.session.currentItem.id);
 				fullName = namePath[namePath.length-2] + "&nbsp;-&nbsp;" + namePath[namePath.length-1];
 			}
 			
@@ -5060,11 +5061,11 @@ View.prototype.cmdPrint = function(component) {
 				var thisHeader = fullName;
 				// v6.4.2.7 use literal for EGU too
 				//if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("EGU") >= 0) {
-				//	var thisFooter = "English Grammar in Use CD-ROM © Cambridge University Press 2004";
+				//	var thisFooter = "English Grammar in Use CD-ROM ï¿½ Cambridge University Press 2004";
 				//} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("AGU") >= 0) {
-				//	var thisFooter = "Advanced Grammar in Use CD-ROM © Cambridge University Press 2005";
+				//	var thisFooter = "Advanced Grammar in Use CD-ROM ï¿½ Cambridge University Press 2005";
 				//} else {
-				//	var thisFooter = "Essential Grammar in Use CD-ROM © Cambridge University Press 2006";
+				//	var thisFooter = "Essential Grammar in Use CD-ROM ï¿½ Cambridge University Press 2006";
 				//}
 			} else {
 				var thisHeader = fullName;
@@ -5464,9 +5465,9 @@ View.prototype.displayReadingText = function(textID) {
 		// v6.4.3 I might pass the ID now
 		if (textID==undefined) {
 			myTrace("no ID passed so use readingText.id of " + me.readingText.id);
-			var textArrayIDX = lookupArrayItem(me.texts, me.readingText.id, "ID");
+			var textArrayIDX = lookupArrayItem(me.texts, me.readingText.id, "id");
 		} else {
-			var textArrayIDX = lookupArrayItem(me.texts, textID, "ID");
+			var textArrayIDX = lookupArrayItem(me.texts, textID, "id");
 		}
 		//myTrace("found text idx "+textArrayIDX);
 		if (me.texts[textArrayIDX].text.paragraph.length>0){
@@ -5527,9 +5528,9 @@ View.prototype.displayVideoScript = function() {
 	// v6.4.3 I might pass the ID now
 	//if (textID==undefined) {
 		myTrace("use readingText.id of " + me.readingText.id);
-		var textArrayIDX = lookupArrayItem(me.texts, me.readingText.id, "ID");
+		var textArrayIDX = lookupArrayItem(me.texts, me.readingText.id, "id");
 	//} else {
-	//	var textArrayIDX = lookupArrayItem(me.texts, textID, "ID");
+	//	var textArrayIDX = lookupArrayItem(me.texts, textID, "id");
 	//}
 	//myTrace("found text idx "+textArrayIDX);
 	if (me.texts[textArrayIDX].text.paragraph.length>0){
@@ -5579,7 +5580,7 @@ View.prototype.cmdTip = function() {
 		}
 	}
 	if (thisTextID > 0) {
-		var textArrayIDX = lookupArrayItem(me.texts, thisTextID, "ID");
+		var textArrayIDX = lookupArrayItem(me.texts, thisTextID, "id");
 	} else {
 		// if nothing was found, simply use the first one - but this should not be the case
 		// NO this is not a good idea as you will get ... hmmm. Actually the checking will be done
@@ -6538,6 +6539,7 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 		contentHolder.createTextField("list_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 125,20,190,10);
 	}
 	var clt = contentHolder.list_txt
+	myTrace("clt=" + clt);
 	clt.autoSize = true;
 	clt.html = true;
 	clt.wordWrap = true;
@@ -6551,25 +6553,25 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 						_global.ORCHID.literalModelObj.getLiteral("wrong", "labels") + "=" + thisScore.wrong + ", "+ 
 						_global.ORCHID.literalModelObj.getLiteral("missed", "labels") + "=" + thisScore.skipped + ")";
 		var afterText = "<br>What do you want to do now?";
-		clt.setHTMLText("<font size='12'>" + scoreText + keyText + afterText + "</font>", _global.ORCHID.basicText);
+		clt.setHtmlText("<font size='12'>" + scoreText + keyText + afterText + "</font>", _global.ORCHID.BasicText);
 	// v6.5.6.4 New SSS
 	} else if (_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/sssv9") >= 0 ||
 		_global.ORCHID.root.licenceHolder.licenceNS.branding.toLowerCase().indexOf("clarity/cp2") >= 0) {
 		// Use four different text boxes, one for score, one for right, wrong and skipped
 		scoreText = "<font size='12'>" + scoreText + "</font>";
-		clt.setHTMLText(scoreText, _global.ORCHID.basicText);
+		clt.setHtmlText(scoreText, _global.ORCHID.BasicText);
 		contentHolder.createTextField("list_correct_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,84,100,40);
 		contentHolder.createTextField("list_wrong_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,114,100,40);
 		contentHolder.createTextField("list_skipped_txt", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 230,144,100,40);
 		var correctText = "<font size='12' color='#006600'><b>" + thisScore.correct + " " + _global.ORCHID.literalModelObj.getLiteral("correct", "labels") + "</b></font>";
 		contentHolder.list_correct_txt.html = true;
-		contentHolder.list_correct_txt.setHTMLText(correctText, _global.ORCHID.basicText);
+		contentHolder.list_correct_txt.setHtmlText(correctText, _global.ORCHID.BasicText);
 		var wrongText = "<font size='12' color='#FF0000'><b>" + thisScore.wrong + " " + _global.ORCHID.literalModelObj.getLiteral("wrong", "labels") + "</b></font>";
 		contentHolder.list_wrong_txt.html = true;
-		contentHolder.list_wrong_txt.setHTMLText(wrongText, _global.ORCHID.basicText);
+		contentHolder.list_wrong_txt.setHtmlText(wrongText, _global.ORCHID.BasicText);
 		var skippedText = "<font size='12' color='#0000FF'><b>" + thisScore.skipped + " " + _global.ORCHID.literalModelObj.getLiteral("missed", "labels") + "</b></font>";
 		contentHolder.list_skipped_txt.html = true;
-		contentHolder.list_skipped_txt.setHTMLText(skippedText, _global.ORCHID.basicText);
+		contentHolder.list_skipped_txt.setHtmlText(skippedText, _global.ORCHID.BasicText);
 		var correctGraphic = contentHolder.attachMovie("Tick", "correctGraphic", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, {_x:200, _y:90 });
 		var wrongGraphic = contentHolder.attachMovie("Cross", "wrongGraphic", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, {_x:206, _y:120 });
 		var skippedGraphic = contentHolder.attachMovie("Missed", "skippedGraphic", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, {_x:200, _y:150 });
@@ -6612,8 +6614,9 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 		var keyText = 	"<font size='12'><font color='#009933'>" + _global.ORCHID.literalModelObj.getLiteral("correct", "labels") + " = " + thisScore.correct + "</font><br>" + 
 						"<font color='#ff0000'>" + _global.ORCHID.literalModelObj.getLiteral("wrong", "labels") + " = " + thisScore.wrong + "</font><br>"+ 
 						"<font color='#0000ff'>" + _global.ORCHID.literalModelObj.getLiteral("missed", "labels") + " = " + thisScore.skipped + "</font></font>";
-		clt.setHTMLText(scoreText + keyText, _global.ORCHID.basicText);
-		//ckt.setHTMLText(keyText, _global.ORCHID.basicText);
+		clt.setHtmlText(scoreText + keyText, _global.ORCHID.BasicText);
+		myTrace("score text format=" + _global.ORCHID.BasicText.font);
+		//ckt.setHtmlText(keyText, _global.ORCHID.BasicText);
 		// add in a pie chart to display the scores
 		//contentHolder.drawProgressPieChart = function() {
 		var initObj = {_x:10, _y:10 };
@@ -6662,6 +6665,7 @@ View.prototype.displayYourScore = function(thisScore, tryAgainCallback) {
 	}
 
 	// finally draw it
+	myTrace("draw the score");
 	myMsgBox.setEnabled(true);
 	// v6.5.4.3 AR this was not necessary for fixing Bug 1223, so remove it
 	//myMsgBox.initTextFieldForDictionaryCheck();	// v6.5.4.2 Yiu, try to fully initialize the textWithFields object, Bug ID 1223

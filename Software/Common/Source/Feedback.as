@@ -1,7 +1,7 @@
 // ActionScript Document
 // v6.3.2 Add a new function so that a score record is created for exercises that don't have a marking button
 justMarking = function() {
-	var thisScore = new ScoreObject({itemID:_global.ORCHID.session.currentItem.ID, unit:_global.ORCHID.session.currentItem.unit});
+	var thisScore = new ScoreObject({itemID:_global.ORCHID.session.currentItem.id, unit:_global.ORCHID.session.currentItem.unit});
 	thisScore.skipped = thisScore.correct = thisScore.wrong = -1;
 	// special score for non-marked exercises to show participation
 	thisScore.score = -1;
@@ -39,7 +39,10 @@ justMarking = function() {
 	_global.ORCHID.session.currentItem.marked = true;
 }
 mainMarking = function(justMarking) {
-	myTrace("in mainMarking, (just marking=" + justMarking +")");
+	if (justMarking==undefined){
+		justMarking = false;
+	}
+	myTrace("in mainMarking, (just marking=" + justMarking +") + currentItem.id=" + _global.ORCHID.session.currentItem.id);
 	// v6.3.5 Marking for countDown
 	// This will require a pretty different routine.
 	// 1) Score comes from a) any words you guessed that had 0 results
@@ -55,7 +58,7 @@ mainMarking = function(justMarking) {
 	// SCORE writing section
 	// *****
 	// prepare a score object to hold this information and write it to the db (and progress)
-	var thisScore = new ScoreObject({itemID:_global.ORCHID.session.currentItem.ID, unit:_global.ORCHID.session.currentItem.unit});
+	var thisScore = new ScoreObject({itemID:_global.ORCHID.session.currentItem.id, unit:_global.ORCHID.session.currentItem.unit});
 	//trace("created score record with duration=" + thisScore.duration);
 	// look up in the exercise object to see what the scores are
 	thisScore.skipped = thisScore.correct = thisScore.wrong = 0;
@@ -66,8 +69,9 @@ mainMarking = function(justMarking) {
 	// v6.4.2 As does a survey
 	var allGroups = me.body.text.group;
 	var allFields = me.body.text.field;
+	myTrace("marking a " + me.settings.exercise.type);
 	if (me.settings.exercise.type == "Countdown") {
-		myTrace("marking a countDown");
+		//myTrace("marking a countDown");
 		var myPane = _global.ORCHID.root.buttonsHolder.ExerciseScreen.Exercise_SP;
 		var contentHolder = myPane.getScrollContent(); 
 		var wordList = new Array();
@@ -139,10 +143,10 @@ mainMarking = function(justMarking) {
 				var groupScore=undefined;
 				for (var j in allGroups[i].fieldsInGroup) {
 					if (allFields[allGroups[i].fieldsInGroup[j]].attempt.score != undefined) {
-						//myTrace("for group " + allGroups[i].ID + " add field " + allFields[allGroups[i].fieldsInGroup[j]].ID + ", score=" + allFields[allGroups[i].fieldsInGroup[j]].attempt.score);
+						//myTrace("for group " + allGroups[i].id + " add field " + allFields[allGroups[i].fieldsInGroup[j]].id + ", score=" + allFields[allGroups[i].fieldsInGroup[j]].attempt.score);
 						groupScore += allFields[allGroups[i].fieldsInGroup[j]].attempt.score;
 					} else {
-						//myTrace("for group " + allGroups[i].ID + " add field " + allFields[allGroups[i].fieldsInGroup[j]].ID + " with no score");
+						//myTrace("for group " + allGroups[i].id + " add field " + allFields[allGroups[i].fieldsInGroup[j]].id + " with no score");
 					}
 				}
 				allGroups[i].score = groupScore;
@@ -167,6 +171,7 @@ mainMarking = function(justMarking) {
 			thisScore.score = Math.round(100*(thisScore.correct/(thisScore.maxScore)));
 		}
 	} else {
+		//myTrace("allGroups=" + allGroups.length + " .id=" + allGroups[0].id + " .id=" + allGroups[0].id);
 		for (var i in allGroups) {
 			// v6.3.4 drags and things are in special groups (zero or negative)
 			if (allGroups[i].id > 0) {
@@ -174,15 +179,17 @@ mainMarking = function(justMarking) {
 				// If any score is undefined, then don't mess with it otherwise the group will not be undefined but 0
 				var groupScore=undefined;
 				for (var j in allGroups[i].fieldsInGroup) {
+					//myTrace("attempt.score=" + allFields[allGroups[i].fieldsInGroup[j]].attempt.score);
 					if (allFields[allGroups[i].fieldsInGroup[j]].attempt.score != undefined) {
-						//myTrace("for group " + allGroups[i].ID + " add field " + allFields[allGroups[i].fieldsInGroup[j]].ID + ", score=" + allFields[allGroups[i].fieldsInGroup[j]].attempt.score);
+						//myTrace("for group " + allGroups[i].id + " add field " + allFields[allGroups[i].fieldsInGroup[j]].id + ", score=" + allFields[allGroups[i].fieldsInGroup[j]].attempt.score);
+						if (groupScore==undefined) groupScore=0;
 						groupScore += allFields[allGroups[i].fieldsInGroup[j]].attempt.score;
 					} else {
-						//myTrace("for group " + allGroups[i].ID + " add field " + allFields[allGroups[i].fieldsInGroup[j]].ID + " with no score");
+						//myTrace("for group " + allGroups[i].id + " add field " + allFields[allGroups[i].fieldsInGroup[j]].id + " with no score");
 					}
 				}
 				allGroups[i].score = groupScore;
-				//myTrace("for group " + allGroups[i].ID + " score=" + groupScore + " maxScore=" + allGroups[i].maxScore);
+				//myTrace("for group " + allGroups[i].id + " score=" + groupScore + " maxScore=" + allGroups[i].maxScore);
 				//var groupScore = allGroups[i].attempt.score;
 				//trace("group " + allGroups[i].id + " has score [" + allGroups[i].attempt.score + "]");
 				//if (groupScore == 0) {
@@ -192,7 +199,7 @@ mainMarking = function(justMarking) {
 					thisScore.wrong++;
 				// v6.3.4 Allow compound scoring in a group
 				//} else if (groupScore == 1) {
-				} else if (groupScore >= allGroups[i].maxScore) {
+				} else if (groupScore >= allGroups[i].maxScore && groupScore != undefined) { // ar#869
 					//myTrace("group " + allGroups[i].id + " has score 1");
 					thisScore.correct++;
 				} else if (groupScore == undefined) {
@@ -333,7 +340,7 @@ mainMarking = function(justMarking) {
 				if (allFields[i].attempt.score != undefined) {
 					// what is the question number for this field?
 					var thisGroup = allFields[i].group;
-					var groupArrayIDX = lookupArrayItem(allGroups, thisGroup, "ID");
+					var groupArrayIDX = lookupArrayItem(allGroups, thisGroup, "id");
 					var qNumber = allGroups[groupArrayIDX].questionNumber;
 					buildItems.push({itemID:qNumber, detail:allFields[i].attempt.finalAnswer});
 					myTrace("save field=" + allFields[i].id + " detail=" + allFields[i].attempt.finalAnswer + " group=" + thisGroup + " question=" + qNumber);
@@ -373,7 +380,7 @@ mainMarking = function(justMarking) {
 			// Now we have an array of items that we want to write to the details table. How do we pass that to the script?
 			// and do we want to wait and confirm they have been written? Maybe not, just plough on.
 			// Perhaps build a scoreDetail object to handle the writing
-			thisScoreDetail = new ScoreDetailObject({exerciseID:_global.ORCHID.session.currentItem.ID, unitID:_global.ORCHID.session.currentItem.unit});
+			thisScoreDetail = new ScoreDetailObject({exerciseID:_global.ORCHID.session.currentItem.id, unitID:_global.ORCHID.session.currentItem.unit});
 			thisScoreDetail.onReturnCode = function(records) {
 				myTrace("wrote out " + records + " records");
 			}
@@ -444,9 +451,9 @@ mainMarking = function(justMarking) {
 	// Move from here to score.writeOut as you don't get into mainMarking for presentation exercises
 	/*
 	if (_global.ORCHID.commandLine.scorm) {
-		if (_global.ORCHID.session.nextItem.ID != undefined) {
+		if (_global.ORCHID.session.nextItem.id != undefined) {
 			myTrace("end of main marking, set bookmark");
-			_root.scormHolder.scormNS.setBookmark(_global.ORCHID.session.nextItem.ID);
+			_root.scormHolder.scormNS.setBookmark(_global.ORCHID.session.nextItem.id);
 		} else {
 			myTrace("end of main marking, but no nextItem, so don't set bookmark");
 		}
@@ -552,7 +559,7 @@ tryAgainCallback = function(event) {
 		// v6.3.3 Move this function from markingColouringAndInsertingCallback
 		// v6.3.5 Why? Because thanks to tlc this will end up running BEFORE markingColouring etc
 		// and this is causing problems with single click for feedback.
-		//myTrace("start afterMarkingFieldDisable");
+		myTrace("go to afterMarkingFieldDisable");
 		afterMarkingFieldDisable();
 		// v6.3.5 Countdown can now see the stats Button and hide the guess word thing
 		// v6.5.6.5 Except that we don't like this anymore - the stats seem useless. So can we hide the whole thing?
@@ -721,7 +728,7 @@ markingRubricUpdate = function() {
 // v6.2 the score record is not passed around - not needed here
 //markingColouringAndInserting = function(thisScore, mode) {
 markingColouringAndInserting = function(mode) {
-	//myTrace("colouring mode=" + mode + " so showTicks=" + (mode & _global.ORCHID.marking.showTicks));
+	myTrace("colouring mode=" + mode + " so showTicks=" + (mode & _global.ORCHID.marking.showTicks));
 	//var startTime = new Date().getTime();
 	//myTrace("markingColouring with " + mode + " starts at " + startTime);
 	// mode = correct; just colour those ones that you got right
@@ -829,7 +836,7 @@ markingColouringAndInserting = function(mode) {
 						// but I don't know much about the field cover at this point do I?
 						// v6.4.2.7 You might hide crosses and just have ticks
 						//if (this.mode & _global.ORCHID.marking.showTicks) {
-						if (	(this.mode & _global.ORCHID.marking.showTicks) &&
+						if ((this.mode & _global.ORCHID.marking.showTicks) &&
 							!(this.mode & _global.ORCHID.marking.hideCrosses)) {
 							// v6.4.2.7 Can you extract ticking to a function to make it easier to call?
 							//var offsetX=crossWidth; var oneLine=true;
@@ -910,7 +917,7 @@ markingColouringAndInserting = function(mode) {
 								//myTrace("add " + i + " to useFields");
 								thisGroup.popup.useFields.push(i);
 							} else {
-								myTrace("for field " + i + " set to dontOverwrite");
+								//myTrace("for field " + i + " set to dontOverwrite");
 								thisGroup.popup.useField = i;
 								thisGroup.popup.dontOverwrite = true;
 							}
@@ -934,6 +941,7 @@ markingColouringAndInserting = function(mode) {
 									//myTrace("missed a 'correct' target in proof-reading mode");
 									changeFieldAppearance(allFields[i], _global.ORCHID.PRCorrectText);
 								} else {
+									//myTrace("set field to font=" + _global.ORCHID.CorrectText.underline);
 									changeFieldAppearance(allFields[i], _global.ORCHID.CorrectText);
 								}
 							}
@@ -1047,14 +1055,14 @@ markingColouringAndInserting = function(mode) {
 						// First, if this is the default answer for this question, then no.
 						// But to complicate things even more, after marking but before seeTheAnswers, you should tick everything that is right
 						// no need to move things around.
-						if (	answerMatch(allFields[i].answer[0].value, allFields[i].attempt.finalAnswer) || 
+						if (answerMatch(allFields[i].answer[0].value, allFields[i].attempt.finalAnswer) || 
 							!(this.mode & _global.ORCHID.marking.showAnswers)) {
 							//myTrace("got it right, no moving of answers");
 							if (this.mode & _global.ORCHID.marking.showTicks) {
 								setTicking(allFields[i], "Tick")
 							}
 						} else {
-							myTrace("got it right, move the tick?");
+							//myTrace("got it right, move the tick?");
 							// yes - but as it will probably move, we need to move the tick with it
 							var foundThisTick = false;
 							for (var idx in allFields) {
@@ -1158,7 +1166,7 @@ markingColouringAndInserting = function(mode) {
 					} else {
 						//if (	answerMatch(allFields[i].answer[0].value, allFields[i].attempt.finalAnswer) || 
 						//	!(this.mode & _global.ORCHID.marking.showAnswers)) {
-							myTrace(i+":got it right, no moving of answer " + allFields[i].attempt.finalAnswer);
+							//myTrace(i+":got it right, no moving of answer " + allFields[i].attempt.finalAnswer);
 							if (this.mode & _global.ORCHID.marking.showTicks) {
 								setTicking(allFields[i], "Tick")
 							}
@@ -1172,7 +1180,7 @@ markingColouringAndInserting = function(mode) {
 							var sections = me.section;
 							var useThisField = i; // set as a default
 							for (var s in sections) {
-								if (sections[s].ID == allFields[i].section) {
+								if (sections[s].id == allFields[i].section) {
 									//myTrace("found matching section " + allFields[i].section);
 									for (var f in sections[s].fieldsInSection) {
 										// So, which answers in this section have not been marked correct or used for other inserting?
@@ -1556,7 +1564,7 @@ afterMarkingFieldDisable = function() {
 	//	&& (_global.ORCHID.LoadedExercises[0].mode & _global.ORCHID.exMode.QuestionFeedback)
 	// v6.4.2.4 This stops instant fb exercise (with no fb button) from seeing fb after marking. This is wrong.
 	//if (	_global.ORCHID.LoadedExercises[0].settings.buttons.feedback 
-	if (	(_global.ORCHID.LoadedExercises[0].settings.buttons.feedback || !_global.ORCHID.LoadedExercises[0].settings.marking.delayed)
+	if ((_global.ORCHID.LoadedExercises[0].settings.buttons.feedback || !_global.ORCHID.LoadedExercises[0].settings.marking.delayed)
 		&& (!_global.ORCHID.LoadedExercises[0].settings.feedback.scoreBased )
 		&& (_global.ORCHID.LoadedExercises[0].feedback.length > 0)) {
 		//myTrace("there is feedback for this exercise, mode=" + _global.ORCHID.LoadedExercises[0].mode + ".length=" + _global.ORCHID.LoadedExercises[0].feedback.length);
@@ -1568,6 +1576,7 @@ afterMarkingFieldDisable = function() {
 		//myTrace("there is NO feedback for this exercise, mode=" + _global.ORCHID.LoadedExercises[0].mode + ".length=" + _global.ORCHID.LoadedExercises[0].feedback.length);
 		var noFeedback = true;
 	}
+	//myTrace("eventNames=" + eventNames.mouseUp);
 	for (var i in contentHolder) {
 		// v6.2 Perhaps instead of just disabling fields we can change the
 		// events so that clicking on ANY field displays individual fb for that field?
@@ -1635,7 +1644,8 @@ afterMarkingFieldDisable = function() {
 				}
 			}
 			// v6.5.4.5 Change the events assuming you found a field in this paraBox
-			if (fieldInParabox) {
+			if (fieldInParaBox) { // ar#869
+				//myTrace("try to change events");
 				thisParaBox.setEvents(eventNames);
 			} else {
 				//myTrace("no need to reset events for this para");
@@ -1806,8 +1816,8 @@ displayFeedback = function(thisFeedback, correct, stdAnswer, correctAnswer, ques
 	// Before you can tell the averages you need to update the scaffold;
 	var xxx=_global.ORCHID.course.scaffold.getNonRandomProgressDetails(0);
 	
-	//myTrace("look up item id=" + _global.ORCHID.session.currentItem.ID);
-	var thisScaffoldItem = _global.ORCHID.course.scaffold.getObjectByID(_global.ORCHID.session.currentItem.ID);
+	//myTrace("look up item id=" + _global.ORCHID.session.currentItem.id);
+	var thisScaffoldItem = _global.ORCHID.course.scaffold.getObjectByID(_global.ORCHID.session.currentItem.id);
 	myTrace("#ev#, " + thisScaffoldItem.progress.numExercisesDone[2] + ", " + thisScaffoldItem.progress.averageScore[2]);
 	if (thisScaffoldItem.progress.averageScore[2]==undefined){
 		var everyoneAverageMsg = "Nobody else has done this test yet."
@@ -1901,15 +1911,15 @@ delayedFeedback = function(setting, toPrinter) {
 		// thisScore will be 75% and we want the fbID that is as close (but lower) to this as possible
 		var closestIndex = {score:0, idx:0};
 		for (var i in me.feedback) {
-			//myTrace("check feedback[" + i + "]=" + me.feedback[i].ID + " against your score=" + thisScore);
-			if (me.feedback[i].ID == thisScore) {
+			//myTrace("check feedback[" + i + "]=" + me.feedback[i].id + " against your score=" + thisScore);
+			if (me.feedback[i].id == thisScore) {
 				// found the perfect match
-				closestIndex.score = me.feedback[i].ID;
+				closestIndex.score = me.feedback[i].id;
 				closestIndex.idx = i;
 				//myTrace("so set idx=" + i);
 				break;
-			} else if (me.feedback[i].ID < thisScore && me.feedback[i].ID >= closestIndex.score) {
-				closestIndex.score = me.feedback[i].ID;
+			} else if (me.feedback[i].id < thisScore && me.feedback[i].id >= closestIndex.score) {
+				closestIndex.score = me.feedback[i].id;
 				closestIndex.idx = i;
 			} 
 		}
@@ -1928,8 +1938,8 @@ delayedFeedback = function(setting, toPrinter) {
 		var xxx =new XML();
 		xxx=_global.ORCHID.course.scaffold.summariseInformation(0);
 		
-		//myTrace("look up item id=" + _global.ORCHID.session.currentItem.ID);
-		var thisScaffoldItem = _global.ORCHID.course.scaffold.getObjectByID(_global.ORCHID.session.currentItem.ID);
+		//myTrace("look up item id=" + _global.ORCHID.session.currentItem.id);
+		var thisScaffoldItem = _global.ORCHID.course.scaffold.getObjectByID(_global.ORCHID.session.currentItem.id);
 		//myTrace("#ev#, " + thisScaffoldItem.progress.numExercisesDone[2] + ", " + thisScaffoldItem.progress.averageScore[2]);
 		if (thisScaffoldItem.progress.averageScore[2]==undefined){
 			var everyoneAverageMsg = "Nobody else has done this test yet."
@@ -1982,7 +1992,7 @@ delayedFeedback = function(setting, toPrinter) {
 		//horizontalRuler.plainText = '===================================';
 		var horizontalRulerPara = {paragraph:[horizontalRuler]};
 	
-		//for (var ii in me.feedback) { trace("got fb at "+ii+" which is ID "+me.feedback[ii].ID); }
+		//for (var ii in me.feedback) { trace("got fb at "+ii+" which is ID "+me.feedback[ii].id); }
 		var myGroups = me.body.text.group;
 		var myFields = me.body.text.field;
 		//var totalPara = 0;
@@ -1991,15 +2001,15 @@ delayedFeedback = function(setting, toPrinter) {
 		// Note: you need to order this by question number to get sensible ordering of feedback
 		// See note in XMLtoObject for explanation of why the ordering might be wrong
 		//for (var k=myGroups.length-1; k>=0; k--) {
-		//	myTrace("pre-sort " + myGroups[k].ID);
+		//	myTrace("pre-sort " + myGroups[k].id);
 		//}
 		myGroups.sort(groupOrdering);
 		//for (var k=myGroups.length-1; k>=0; k--) {
-		//	myTrace("post-sort " + myGroups[k].ID);
+		//	myTrace("post-sort " + myGroups[k].id);
 		//}
 		for (var k=0; k<myGroups.length; k++) {
 		//for (var k=myGroups.length-1; k>=0; k--) {
-			//myTrace("build fb for group " + myGroups[k].ID + " correctFBid=" + myGroups[k].correctFbID);
+			//myTrace("build fb for group " + myGroups[k].id + " correctFBid=" + myGroups[k].correctFbID);
 			// v6.2 Check to see whether we want fb for all questions, or just those they got wrong
 			// v6.3.3 change mode to settings
 			//if (me.mode & _global.ORCHID.exMode.OnlyWrongFeedback) {
@@ -2016,15 +2026,15 @@ delayedFeedback = function(setting, toPrinter) {
 			// v6.2 use the suppress feedback flag set in the marking section above to determine
 			// whether to show this fb or not
 			// Also suppress feedback for groups that are not real
-			if (myGroups[k].suppressFb || Number(myGroups[k].ID) <= 0) {
+			if (myGroups[k].suppressFb || Number(myGroups[k].id) <= 0) {
 				//myTrace("suppress feedback for question " + myGroups[k].questionNumber + "(" + k + ")");
 			} else {
-				//myTrace("feedback for group " + myGroups[k].ID + " = " + myGroups[k].correctFbID);
-				feedbackArrayIDX = lookupArrayItem(me.feedback, myGroups[k].correctFbID, "ID");
+				//myTrace("feedback for group " + myGroups[k].id + " = " + myGroups[k].correctFbID);
+				feedbackArrayIDX = lookupArrayItem(me.feedback, myGroups[k].correctFbID, "id");
 				//v 6.3.4 You need to merge together finalAnswers from all fields in this group
 				var stdAnswerArray = new Array();
 				for (var field in myGroups[k].fieldsInGroup) {
-					//myTrace("for group " + myGroups[k].ID + " add field " + myGroups[k].fieldsInGroup[field] + " stdAnswer=" + myFields[myGroups[k].fieldsInGroup[field]].attempt.finalAnswer);
+					//myTrace("for group " + myGroups[k].id + " add field " + myGroups[k].fieldsInGroup[field] + " stdAnswer=" + myFields[myGroups[k].fieldsInGroup[field]].attempt.finalAnswer);
 					if (myFields[myGroups[k].fieldsInGroup[field]].attempt.finalAnswer != undefined) {
 						stdAnswerArray.push(myFields[myGroups[k].fieldsInGroup[field]].attempt.finalAnswer);
 					}
@@ -2038,7 +2048,7 @@ delayedFeedback = function(setting, toPrinter) {
 					thisFeedback = me.feedback[feedbackArrayIDX].text;
 					//myTrace("found fb " + thisFeedback.paragraph[0].plainText);
 				} else {
-					//myTrace("no feedback for group " + myGroups[k].ID);
+					//myTrace("no feedback for group " + myGroups[k].id);
 					// v6.3.5 Remove 'no feedback' note and make it just emphasise the right or wrongness
 					// Fine for instant, but for delayed, lets actually show nothing if they are wrong only
 					// and no fb written for this item
@@ -2181,7 +2191,7 @@ feedbackReadyToPrint = function() {
 	if (_global.ORCHID.session.currentItem.unit==-16){
 		fullName = _global.ORCHID.session.currentItem.caption;
 	} else {
-		var namePath = _global.ORCHID.course.scaffold.getParentCaptions( _global.ORCHID.session.currentItem.ID);
+		var namePath = _global.ORCHID.course.scaffold.getParentCaptions( _global.ORCHID.session.currentItem.id);
 		fullName = namePath[namePath.length-2] + "&nbsp;-&nbsp;" + namePath[namePath.length-1];
 	}
 	// v6.4.2.4 Change feedback header

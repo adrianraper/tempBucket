@@ -108,10 +108,16 @@ this.checkCoverage = function() {
 				case '10':
 					mustComplete = 50;
 					mustScore = 0;
+					sequenceNumber = 'NTEN020-' + sequenceNumber;
 					break;
 				case '50':
+					sequenceNumber = 'NTEN022-' + sequenceNumber;
+					mustComplete = 50;
+					mustScore = 0;
+					break;
 				case '39':
-					mustComplete = 70;
+					sequenceNumber = 'NTEN021-' + sequenceNumber;
+					mustComplete = 50;
 					mustScore = 0;
 					break;
 				default:
@@ -301,7 +307,7 @@ this.getSpecificStats = function(callBack) {
 						'userID="' + _global.ORCHID.user.userID + '" ' +
 						'productCode="' + _global.ORCHID.root.licenceHolder.licenceNS.productCode + '" ' + 
 						'courseID="' + _global.ORCHID.session.courseID + '" ' +
-						'itemID="' + _global.ORCHID.session.currentItem.ID + '" ' +
+						'itemID="' + _global.ORCHID.session.currentItem.id + '" ' +
 						'sessionID="' + _global.ORCHID.session.sessionID + '" ' +
 						'databaseVersion="' + _global.ORCHID.programSettings.databaseVersion + '" ' +
 						'cacheVersion="' + new Date().getTime() + '"/>';
@@ -766,6 +772,7 @@ this.passTest = function() {
 		passTestGraphics.passStatus_txt.htmlText += certificateLayout;
 		
 		// Then special stuff for one of the BC ILA accounts. If a different cert doesn't have these fields, they will just be ignored.
+		// Whilst you can do these through certificateLayout, this allows absolute positioning.
 		passTestGraphics.cef_txt.htmlText = CEFDetail;
 		passTestGraphics.disclaimer_txt.htmlText = BCDisclaimer;
 
@@ -793,6 +800,13 @@ this.passTest = function() {
 		passTestGraphics.footer_txt.text = substTags(footerText, substList);
 		
 	} else {
+		
+		// For CSTDI - also write a score detail record when you pass and get a cert
+		if (customised == 'CSTDI') {
+			myTrace("customised CSTDI so call writeSpecificStats");
+			writeSpecificStats();
+		}
+		
 		// v6.5.6.4 Use just one subst list so that you can put the fields in any of the text boxes
 		var substList = [{tag:"[name]", text:this.certificateName},
 						{tag:"[email]", text:_global.ORCHID.user.email},
@@ -829,6 +843,50 @@ this.passTest = function() {
 	}
 	passTestGraphics._visible = true;
 }
+
+// v6.6.0.5 CSTDI certificate writing
+this.writeSpecificStats = function() {
+	myTrace("writeSpecificStats for CSTDI, score=" + this.average + " sequence=" + sequenceNumber);
+	var thisDB = new _global.ORCHID.root.mainHolder.dbQuery();
+	// put the query into an XML object
+	// Simpler to just get these details again in the new call. It is rare.
+	//				'averageScore="' + this.average + '" ' +
+	//				'sequenceNumber="' + sequenceNumber + '" ' +
+	thisDB.queryString = '<query method="writeSpecificStats" ' + 
+					'rootID="' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + '" ' +
+					'userID="' + _global.ORCHID.user.userID + '" ' +
+					'productCode="' + _global.ORCHID.root.licenceHolder.licenceNS.productCode + '" ' + 
+					'courseID="' + _global.ORCHID.session.courseID + '" ' +
+					'itemID="' + _global.ORCHID.session.currentItem.ID + '" ' +
+					'sessionID="' + _global.ORCHID.session.sessionID + '" ' +
+					'databaseVersion="' + _global.ORCHID.programSettings.databaseVersion + '" ' +
+					'cacheVersion="' + new Date().getTime() + '"/>';
+	thisDB.xmlReceive = new XML();
+	thisDB.xmlReceive.master = this;
+	thisDB.xmlReceive.onLoad = function(success) {
+		myTrace("writeSpecificStats cstdi success=" + success);
+		for (var node in this.firstChild.childNodes) {
+			var tN = this.firstChild.childNodes[node];
+			//sendStatus("node=" + tN.toString());
+			// is there a an error node?
+			if (tN.nodeName == "err") {
+				myTrace("error: " + tN.firstChild.nodeValue + " (code=" + tN.attributes.code + ")")
+
+			// we are expecting to get back a node with the sequence number to use
+			// $node .= "<detail sequenceNumber='$sequenceNumber' />";					
+			} else if (tN.nodeName == "detail") {
+				myTrace("specific detail: " + tN.toString());
+				this.master.sequenceNumber = parseInt(tN.attributes.sequenceNumber);
+				
+			// anything unexpected?
+			} else {
+				myTrace(tN.nodeName + ": " + tN.firstChild.nodeValue)
+			}
+		}
+	}
+	thisDB.runQuery();
+}
+
 // BULATS
 /* 
 // CSTDI
@@ -892,7 +950,7 @@ this.buildCert = function() {
 					'rootID="' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + '" ' +
 					'userID="' + _global.ORCHID.user.userID + '" ' +
 					'courseID="' + _global.ORCHID.session.courseID + '" ' +
-					'itemID="' + _global.ORCHID.session.currentItem.ID + '" ' +
+					'itemID="' + _global.ORCHID.session.currentItem.id + '" ' +
 					'questionID="' + '0' + '" />';
 	thisDB.xmlReceive = new XML();
 	thisDB.xmlReceive.master = this;
@@ -994,7 +1052,7 @@ this.createCertNumber = function() {
 	// Don't count within the course, count across all courses for all users
 	thisDB.queryString = '<query method="countScoreDetails" ' + 
 					'rootID="' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + '" ' +
-					'itemID="' + _global.ORCHID.session.currentItem.ID + '" ' +
+					'itemID="' + _global.ORCHID.session.currentItem.id + '" ' +
 					'questionID="' + '0' + '" ' +
 					'cacheVersion="' + new Date().getTime() + '"/>';
 	thisDB.xmlReceive = new XML();
@@ -1035,7 +1093,7 @@ this.addCertDetail = function() {
 					'rootID="' + _global.ORCHID.root.licenceHolder.licenceNS.central.root + '" ' +
 					'userID="' + _global.ORCHID.user.userID + '" ' +
 					'sessionID="' + _global.ORCHID.session.sessionID + '" ' +
-					'itemID="' + _global.ORCHID.session.currentItem.ID + '" ' +
+					'itemID="' + _global.ORCHID.session.currentItem.id + '" ' +
 					'datestamp="' + dateFormat(new Date()) + '" ' +
 					'questionID="' + '0' + '" ' +
 					'score="' + this.average + '">' +

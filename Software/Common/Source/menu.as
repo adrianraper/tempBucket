@@ -332,7 +332,7 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 				}
 			}
 			
-			//myTrace("set caption to " + items[i].caption);
+			myTrace("set caption to " + items[i].caption);
 			//thisMenu.setLabel(items[i].caption);
 			//thisMenu._x = items[i].x;
 			//thisMenu._y = items[i].y;
@@ -353,7 +353,7 @@ menuNS.internalDisplayMainMenu = function(items, progressItems) {
 				//myTrace("disabled menu " + items[i].caption);
 				thisMenu.setEnabled(false);
 			} else {
-				thisMenu.setReleaseAction(MenuNS.displaySubMenu);
+				thisMenu.setReleaseAction(menuNS.displaySubMenu); //ar#869
 			}
 			// v6.4.3 Add the progress indicator to the menu items here?
 			//myTrace("add progress indicator for menu " + i);

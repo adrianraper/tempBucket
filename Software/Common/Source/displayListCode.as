@@ -1,7 +1,7 @@
 ﻿// This is a Yiu hack for loading an AS2 class into an AS1 program
 
 // common code for each AP module to report back to loading controller
-#include "d:\Workbench\myTrace.as"
+#include "D:/Projectbench/myTrace.as"
 // Required for big numbers
 #include "src/js/bigint.js"
 

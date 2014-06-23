@@ -100,7 +100,7 @@ CourseObject.prototype.loadProgress = function() {
 		// v6.2 Move this into the ACK process for insertProgresToScaffold
 		//this.master.onLoadProgress();
 	}
-	//myTrace("loadProgress");
+	myTrace("loadProgressively");
 	myScores.readDB();
 }
 // v6.4.2.8 Also pick up the progress for everyone. Not used.
@@ -143,10 +143,11 @@ CourseObject.prototype.insertProgressToScaffold = function(recordArray, callBack
 	//_global.ORCHID.tlc = {timeLimit:1000, maxLoop:recordArray.length, i:0, proportion:100, startProportion:0, callback:callBack};
 	_global.ORCHID.tlc = {timeLimit:1000, maxLoop:recordArray.length, i:0, 
 						//proportion:80, startProportion:20, 
-						callback:callBack};
+						callback:callBack}; 
 	var tlc = _global.ORCHID.tlc;
 	tlc.controller = _global.ORCHID.root.tlcController;
 	var startProportion = tlc.controller.getPercentage();
+	//myTrace("controller startProportion=" + startProportion);
 	if (startProportion == undefined || startProportion <0) startProportion = 0;
 	var remainingProportion = 100 - startProportion;
 	tlc.startProportion = startProportion;
@@ -177,25 +178,25 @@ CourseObject.prototype.insertProgressToScaffold = function(recordArray, callBack
 	
 	// define the resumeLoop method
 	tlc.resumeLoop = function(firstTime) {
-		//myTrace("resumeLoop course.as:106");
+		//myTrace("resumeLoop course.as timeLimit=" + this.timeLimit + " maxLoop=" + this.maxLoop + " i=" + this.i);
 		var startTime = getTimer();
 		var i = this.i;
 		var max = this.maxLoop;
 		var timeLimit = this.timeLimit;
 		while (getTimer()-startTime <= timeLimit && i<max && !firstTime) {
-			//mytrace("insert record for item=" + this.recordArray[i].itemID + " testUnits=" + this.recordArray[i].testUnits);
+			//myTrace("insert record for item=" + this.recordArray[i].itemID + " testUnits=" + this.recordArray[i].testUnits);
 			// v6.5.5.0 Allow single inserts to be differentiated - here we are loading from the database
 			this.scaffold.insertProgressRecord(this.recordArray[i], false);
 			i++;
 		}
-		//trace("finished this bit of time");
+		//myTrace("finished this bit of time, or first time");
 		if (i < max) {
-			//trace("not finished loop yet");
+			//myTrace("not finished loop yet");
 			this.controller.incPercentage((i/max) * this.proportion); // this part of the process is x% of the time consuming bit
 			//myTrace("iPR progress bar inc % by " + Number((i/max) * this.proportion));
 			this.i = i;
 		} else if (i >= max || max == undefined) {
-			//trace("finished loop");
+			//myTrace("finished loop");
 			this.i = max+1; // just in case this is run beyond the limit
 			//myTrace("iPR progress bar set % to " + Number(this.startProportion + this.proportion));
 			this.controller.setPercentage(this.proportion + this.startProportion);
@@ -203,14 +204,14 @@ CourseObject.prototype.insertProgressToScaffold = function(recordArray, callBack
 			delete this.resumeLoop;
 			this.controller.stopEnterFrame();
 			//myTrace("% at end of course is " + this.controller.getPercentage());
-			this.callBack();
+			this.callback(); //ar#869
 			if (this.controller.getPercentage() >= 100) {
 				this.controller.setEnabled(false);
 			}
 		}		
 	}
 	//tlc.controller.setLabel("load progress");
-	tlc.controller.setLabel(_global.ORCHID.literalModelObj.getLiteral("loadScores", "labels"));
+	tlc.controller.setLabel(_global.ORCHID.literalModelObj.getLiteral("loadScores", "labels") + "xx");
 	tlc.controller.setEnabled(true);
 	tlc.controller.startEnterFrame();
 	tlc.resumeLoop(true);
@@ -643,7 +644,8 @@ XMLNode.prototype.getMenuItemByID = function(id) {
 		items = new Array();
 		for(var i = 0; i < returnnode.childNodes.length; i++) {
 			//trace("in getMenuItemByID on loop " + i );
-			if(returnnode.childNodes[i].nodeName == "item" && ((returnnode.childNodes[i].attributes["enabledFlag"] & _global.ORCHID.enabledflag.menuOn) || returnnode.childNodes[i].attributes["enabledFlag"] == null)) {
+			// ar#869
+			if(returnnode.childNodes[i].nodeName == "item" && ((returnnode.childNodes[i].attributes["enabledFlag"] & _global.ORCHID.enabledFlag.menuOn) || returnnode.childNodes[i].attributes["enabledFlag"] == null)) {
 				items.push( { caption: changeFakeHTMLTags(returnnode.childNodes[i].attributes["caption"]),
 								//v6.4.2.1 All attributes might have been escaped
 								id: returnnode.childNodes[i].attributes["id"],
@@ -836,16 +838,18 @@ ScaffoldObject.prototype.getParentCaptions = function(itemID) {
 // v6.5.5 Content paths.
 // There are some items that are actually conditional navigators. Put code to pick them up here?
 ScaffoldObject.prototype.getNextItemID = function(itemID) {
+	//myTrace("look for id=" + itemID);
 	var itemList = this.getItemList();
 	found = false;
 	for(var i = 0; i < itemList.length; i++) {
+		//myTrace("is it " + itemList[i].id);
 		if(itemID == itemList[i].id) {
 			found = true;
 			var index = i;
 			break;
 		}
 	}
-	myTrace("next item based on unit " + itemList[index].unit);
+	//myTrace("next item based on unit " + itemList[index].unit);
 	//Note: you need to use "if(_global.ORCHID.enabledFlag.navigateOn & itemList[i].enabledFlag)"
 	// to see if the proposed item is allowed to be used for navigation
 	if(found) {
@@ -1048,7 +1052,7 @@ ScaffoldObject.prototype.insertProgressRecord = function(record, singleInsert) {
 	// v6.3.4 Use a new field for test unit IDs
 	//} else if (record.itemID.indexOf("[") >=0) {
 	} else if (record.unit < 0) {
-		myTrace("inserting a test progress record for " + record.testUnits);
+		//myTrace("inserting a test progress record for " + record.testUnits);
 		// NOTE: this global list does not allow for teacher results in network version
 		var testList = _global.ORCHID.course.testList;
 		//var newLength = testList.push( { itemID:record.itemID, score: record.score, dateStamp: record.dateStamp, correct: record.correct, wrong: record.wrong, skipped: record.skipped, duration:record.duration } );
@@ -1065,12 +1069,12 @@ ScaffoldObject.prototype.insertProgressRecord = function(record, singleInsert) {
 		//if (_global.ORCHID.user.teacher) {
 		//if (_global.ORCHID.user.userType>0) {
 		//	//myTrace("as teacher:save ID=" + record.userID + " for item=" + record.itemID);
-		//	//myTrace("teacher:record id=" + this.ID + " testUnits=" + record.testUnits);
+		//	//myTrace("teacher:record id=" + this.id + " testUnits=" + record.testUnits);
 		//	this.progress.record.push( { userID: record.userID, score: record.score, dateStamp: record.dateStamp, correct: record.correct, wrong: record.wrong, skipped: record.skipped, duration:record.duration } );
 		//	//var thisUser = record.userID;
 		//} else {
 			// v6.4.3 Add testUnits for 'test' exercises - this will stop progress displaying the score
-			//myTrace("progress record id=" + this.ID + " testUnits=" + record.testUnits);
+			//myTrace("progress record id=" + this.id + " testUnits=" + record.testUnits);
 			//this.progress.record.push( { score: record.score, dateStamp: record.dateStamp, correct: record.correct, wrong: record.wrong, skipped: record.skipped, duration:record.duration, testUnits:record.testUnits } );
 		// v6.4.2.8 Two types of score record, one has details and is for the individual user, the other
 		// has averages and is for everyone. I only want to save the individual ones in the record array. The others are just summarised.
@@ -1288,7 +1292,7 @@ ScaffoldObject.prototype.getNonRandomProgress = function(userID, buildString, de
 			//trace("got a record for " + this.action + " records=" + this.progress.record.length);
 			for (var i in this.progress.record) {
 				// do I know the name of the exercise for this record?
-				//var itemID = this.ID;
+				//var itemID = this.id;
 				//var exerciseName = this.caption; // xxxx
 				//trace("for itemID=" + itemID + " got caption=" + this.caption + " depth=" + depth);
 				// v6.3 Cope with multiple users for reporting

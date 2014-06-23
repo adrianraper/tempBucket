@@ -94,7 +94,7 @@ exerciseNS.afterNoScrollCallback = function() {
 		// get the texts id from the media thing
 		//myTrace("texts[0].id=" + _global.ORCHID.LoadedExercises[0].texts[0].id);
 		var textArrayIDX = _global.ORCHID.root.objectHolder.lookupArrayItem(_global.ORCHID.LoadedExercises[0].texts, 
-											_global.ORCHID.LoadedExercises[0].readingText.id, "ID");
+											_global.ORCHID.LoadedExercises[0].readingText.id, "id");
 		var thisText = _global.ORCHID.LoadedExercises[0].texts[textArrayIDX].text;
 		//myTrace("reading text id=" + _global.ORCHID.LoadedExercises[0].readingText.id + " idx=" + textArrayIDX);
 		//myTrace("reading text=" + thisText.paragraph[0].plainText);
@@ -151,7 +151,7 @@ exerciseNS.completeDisplayCallback = function() {
 	// unit = -1 means it is a random exercise
 	//if (thisUnit != -1) {
 	if (thisUnit != -16) {
-		var thisItemID = _global.ORCHID.session.currentItem.ID;
+		var thisItemID = _global.ORCHID.session.currentItem.id;
 		var namePath = _global.ORCHID.course.scaffold.getParentCaptions(thisItemID);
 		if (_global.ORCHID.root.licenceHolder.licenceNS.branding.indexOf("CUP/GIU") >= 0) {
 			var mySep = "<br>";
@@ -168,7 +168,7 @@ exerciseNS.completeDisplayCallback = function() {
 		}
 	} else {
 		//var thisItemID = -1;
-		var thisItemID = _global.ORCHID.session.currentItem.ID;
+		var thisItemID = _global.ORCHID.session.currentItem.id;
 		//myTrace("name from test " + thisItemID);
 		fullname = _global.ORCHID.session.currentItem.caption;
 	}
@@ -177,6 +177,7 @@ exerciseNS.completeDisplayCallback = function() {
 	// but only when I am running TB or SSS etc. Not in Author Plus courses
 	// v6.5 You also only want to show if you are actually running in MGS, not just based on the eFlag
 	// v6.5.6 No longer, it is totally flag based now. Not sure about AP
+	myTrace("currentItem.id=" + thisItemID);
 	myTrace("exercise.eF + " + _global.ORCHID.session.currentItem.enabledFlag + " true=" + (_global.ORCHID.session.currentItem.enabledFlag & _global.ORCHID.enabledFlag.edited));
 	//myTrace("edit group name is " + _global.ORCHID.session.currentItem.groupName);
 	
@@ -279,7 +280,7 @@ exerciseNS.completeDisplayCallback = function() {
 						var testNextItem = _global.ORCHID.session.nextItem;
 						myTrace("current nextItem=" + testNextItem.caption + ".group=" + testNextItem.group);
 						do {
-							testNextItem = _global.ORCHID.course.scaffold.getNextItemID(testNextItem.ID);
+							testNextItem = _global.ORCHID.course.scaffold.getNextItemID(testNextItem.id);
 							myTrace("test nextItem=" + testNextItem.caption + ".group=" + testNextItem.group + ".id=" + testNextItem.id);
 						} while (testNextItem.group == _global.ORCHID.session.currentItem.group);
 						// We have found the start of the next group (or an exercise not in a group), so make this the nextItem
@@ -333,7 +334,7 @@ exerciseNS.completeDisplayCallback = function() {
 	}
 }
 exerciseNS.markExercise = function() {
-	myTrace("markExercise:call mainMarking");
+	//myTrace("markExercise:call mainMarking");
 	_global.ORCHID.root.objectHolder.mainMarking();
 }
 exerciseNS.displayAllFeedback = function(setting) {

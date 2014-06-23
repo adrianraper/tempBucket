@@ -76,7 +76,7 @@ getRandomQuestion = function(QuestionXML, numOfQuestions) {
 			// I found a field in this question
 			if(index1 > -1 && index2 > -1) {
 				//trace("found field: " + myNode.substring(index1-2, index2+2));
-				tempFieldID = myNode.subString(index1 + 1, index2);
+				tempFieldID = myNode.substring(index1 + 1, index2);
 				// doing a findReplace will change several occurences is old and new fields are at a crossover point!
 				//tempStringArray[i] = findReplace(tempStringArray[i], "[" + tempFieldID + "]", "[" + _global.ORCHID.randomFieldIDStart + "]");
 				myNode = myNode.substring(0,index1+1) + _global.ORCHID.randomFieldIDStart + myNode.substring(index2);
@@ -178,9 +178,10 @@ getRandomExercise = function(validExerciseIDs, validUnitIDs, numOfQuestions) {
 			//var fileName = _global.ORCHID.paths.exercises + validExerciseIDs[i] + ".xml";
 			if (validExerciseIDs[i].enabledFlag & _global.ORCHID.enabledFlag.edited){
 				//myTrace("which & with " + _global.ORCHID.enabledFlag.edited);
-				var fileName = _global.ORCHID.paths.editedExercises + validExerciseIDs[i].filename;
+				// gh#869 case sensitive
+				var fileName = _global.ORCHID.paths.editedExercises + validExerciseIDs[i].fileName;
 			} else {
-				var fileName = _global.ORCHID.paths.exercises + validExerciseIDs[i].filename;
+				var fileName = _global.ORCHID.paths.exercises + validExerciseIDs[i].fileName;
 			}
 			myTrace("load file=" + fileName);
 			//myTrace("try to read file=" + fileName);
@@ -238,9 +239,10 @@ getRandomExercise = function(validExerciseIDs, validUnitIDs, numOfQuestions) {
 		//var fileName = _global.ORCHID.paths.exercises + validExerciseIDs[i] + ".xml";
 		if (validExerciseIDs.enabledFlag & _global.ORCHID.enabledFlag.edited){
 			//myTrace("which & with " + _global.ORCHID.enabledFlag.edited);
-			var fileName = _global.ORCHID.paths.editedExercises + validExerciseIDs.filename;
+			// gh#869 case sensitive
+			var fileName = _global.ORCHID.paths.editedExercises + validExerciseIDs.fileName;
 		} else {
-			var fileName = _global.ORCHID.paths.exercises + validExerciseIDs.filename;
+			var fileName = _global.ORCHID.paths.exercises + validExerciseIDs.fileName;
 		}
 		var ExerciseStructure = new XML();
 		ExerciseStructure.ignoreWhite = true;
