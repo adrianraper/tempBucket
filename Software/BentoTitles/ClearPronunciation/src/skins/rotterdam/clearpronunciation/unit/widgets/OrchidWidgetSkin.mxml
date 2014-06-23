@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:widgets="skins.rotterdam.unit.widgets.*" creationComplete="onCreationComplete(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.OrchidWidget")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.clearpronunciation.vo.ForcibleLoader;
+			
+			import mx.core.UIComponent;
+			import mx.events.FlexEvent;
+			import mx.managers.FocusManager;
+			import mx.managers.SystemManager;
+			
+			private var loader:Loader = new Loader();
+			private var mc:MovieClip ;
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				/*var context:LoaderContext = new LoaderContext();
+				context.securityDomain = SecurityDomain.currentDomain;
+				context.applicationDomain = new ApplicationDomain();
+				orchidSWFLoader.loaderContext = context;*/
+				
+				orchidSWFLoader.source = hostComponent.orchidUrl;
+				//loader.contentLoaderInfo.addEventListener(Event.COMPLETE,loadComplete);
+				//loader.load(new URLRequest(hostComponent.orchidUrl));
+				
+			}
+			
+			protected function loadComplete(event:Event):void {
+				var ui:UIComponent = new UIComponent();
+				ui.addChild(loader);
+				addElement(ui);
+			}
+		]]>
+	</fx:Script>
+	
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing_normal" stateGroups="editing" />
+		<s:State name="editing_selected" stateGroups="editing,selected" />
+		<s:State name="dragging" />
+	</s:states>
+	
+	<widgets:WidgetChrome id="widgetChrome"
+						  caption="{hostComponent.caption}"
+						  editing.editing="true"
+						  selected.selected="true"
+						  left="0" right="0" top="0" bottom="0" />
+	
+	<!-- Progress bar -->
+	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
+	
+	<s:VGroup left="0" right="0" top="25" paddingBottom="10" horizontalAlign="center">
+		<!-- Text -->
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		
+		<s:SWFLoader id="orchidSWFLoader" loadForCompatibility="true" trustContent="true"  />
+	</s:VGroup>
+	
+</s:Skin>
