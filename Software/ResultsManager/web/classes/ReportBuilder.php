@@ -264,13 +264,13 @@ EOD;
 		// Selection of common columns
 		// v3.4 To allow productCode to be sent back too. Put it first to help sorting the returned results if grouped.
 		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("c.F_ProductCode", "productCode");
-		// gh#795 hijack		
+		// gh#797		
 		if ($this->getOpt(ReportBuilder::SHOW_TITLE) || $this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("s.F_ProductCode", "productCode");		
 		// v3.4 This could be read from s.F_CourseID if I want session to be by product not course
 		//if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("ss.F_CourseID", "courseID");
 		if ($this->getOpt(ReportBuilder::SHOW_COURSE)) $this->addColumn("s.F_CourseID", "courseID");
 		if ($this->getOpt(ReportBuilder::SHOW_UNIT)) $this->addColumn("s.F_UnitID", "unitID");
-		//gh:#28
+		// gh#28
 		//if ($this->getOpt(ReportBuilder::SHOW_UNIT)) $this->addColumn("s.F_ExerciseID", "exerciseUnitID");
 		
 		if ($this->getOpt(ReportBuilder::SHOW_EXERCISE)) $this->addColumn("s.F_ExerciseID", "exerciseID");
@@ -498,7 +498,7 @@ EOD;
 		
 		// Selection of common columns
 		// v3.4 To allow productCode to be sent back too. Put it first to help sorting the returned results if grouped.
-		// gh#795 hijack
+		// gh#797
 		if ($this->getOpt(ReportBuilder::SHOW_COURSE) || $this->getOpt(ReportBuilder::SHOW_TITLE)) $this->addColumn("ss.F_ProductCode", "productCode");		
 		if ($this->getOpt(ReportBuilder::SHOW_UNIT)) $this->addColumn("s.F_UnitID", "unitID");
 		if ($this->getOpt(ReportBuilder::SHOW_EXERCISE)) $this->addColumn("s.F_ExerciseID", "exerciseID");

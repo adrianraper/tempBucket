@@ -70,10 +70,19 @@
 								<xsl:value-of select="@complete"/>
 							</item2>
 						</xsl:for-each>
+						<!-- gh#905 Stop division by zero -->
+                        <xsl:for-each select="report/row[@average_score = '']">
+                            <item1>
+                                <xsl:value-of select="0"/>
+                            </item1>
+                            <item2>
+                                <xsl:value-of select="1"/>
+                            </item2>
+                        </xsl:for-each>
 					</weightedAverage>
 				</xsl:variable>
 				<xsl:variable name="myTotal" select="exslt:node-set($wA)"/>
-				<xsl:value-of select="round(sum($myTotal/weightedAverage/item1) div sum($myTotal/weightedAverage/item2))" />
+			    <xsl:value-of select="round(sum($myTotal/weightedAverage/item1) div sum($myTotal/weightedAverage/item2))" />
 			</xsl:when>
 		</xsl:choose>
 	</xsl:template>

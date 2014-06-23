@@ -371,7 +371,7 @@ EOD;
 					// Set title to group differently from course
 					//$opts[ReportBuilder::SHOW_COURSE] = true;
 					$opts[ReportBuilder::SHOW_TITLE] = true;
-					// gh#795 hijack
+					// gh#797
 					$opts[ReportBuilder::WITHIN_COURSE] = true;
 					break;
 				case "Course":
