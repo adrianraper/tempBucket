@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
+		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*"
+		xmlns:unit="com.clarityenglish.rotterdam.view.unit.*" 
+		creationComplete="onCreationComplete(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			// alice: delete the edit button in player
+			protected function onCreationComplete(event:FlexEvent):void {
+				hostComponent.previewVisible = true;
+			}
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		<s:State name="uniteditor" />
+		<s:State name="unitplayer" />
+	</s:states>
+	
+	<s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" top="5" left="5" width="140" dropShadowVisible="true" 
+					   maxHeight="{hostComponent.height*0.90}" minHeight="90">
+		<s:layout>
+			<s:VerticalLayout paddingTop="10" paddingBottom="10"/>
+		</s:layout>
+		<s:VGroup id="unitVGroup" height="100%" gap="0">
+			<s:Label id="courseCaptionLabel" paddingLeft="8" paddingRight="8" width="150" fontWeight="bold" fontSize="15"/>
+			<mx:Spacer height="16" />
+			<s:HGroup paddingLeft="8">
+				<s:SWFLoader source="@Embed(source='skins/rotterdam/clearpronunciation/assets/unit/dotted-line.png')" />	
+			</s:HGroup>	
+			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="140" height="100%" borderVisible="false" selectionColor="0xC0C0C0" >
+				<s:layout>
+					<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
+				</s:layout>
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer width="100%">
+							<fx:Script>
+								<![CDATA[
+									public override function set data(value:Object):void {
+										// gh#151
+										super.data = value;
+										if (data) this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
+									}
+								]]>
+							</fx:Script>
+							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
+							<!--s:Line width="90%" horizontalCenter="0" >
+								<s:stroke>
+									<s:SolidColorStroke color="#FFBF40" weight="1" caps="square"/>
+								</s:stroke>
+							</s:Line-->
+							<s:SWFLoader source="@Embed(source='skins/rotterdam/clearpronunciation/assets/unit/dotted-line.png')" bottom="0" left="8" />
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:List>
+		</s:VGroup>
+	</s:BorderContainer>
+	
+	<unit:UnitHeaderView id="unitHeader" left="151" right="5" top="5" height="50" />
+	<unit:UnitView id="unitView" left="151" right="5" top="45" bottom="5" />
+
+</s:Skin>

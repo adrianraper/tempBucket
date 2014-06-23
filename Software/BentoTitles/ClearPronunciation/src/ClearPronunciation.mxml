@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<clearpronunciation:ClearPronunciationApplication 
+			   xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   xmlns:mx="library://ns.adobe.com/flex/mx"
+			   xmlns:clearpronunciation="com.clarityenglish.rotterdam.clearpronunciation.*"
+			   minWidth="955" minHeight="600" 
+			   initialize="onInitialize(event)">
+	
+	<fx:Metadata>
+		[SWF(width="990", height="740")]
+	</fx:Metadata>
+	
+	<fx:Style source="clearpronunciation.css" />
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.rotterdam.clearpronunciation.ClearPronunciationApplicationFacade;
+			
+			import mx.events.FlexEvent;
+			
+			protected function onInitialize(event:FlexEvent):void {
+				versionNumber = "1.0.0.896";
+				
+				facade = ClearPronunciationApplicationFacade.getInstance();
+			}
+		]]>
+	</fx:Script>
+	
+</clearpronunciation:ClearPronunciationApplication>

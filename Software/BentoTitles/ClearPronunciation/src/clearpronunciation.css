@@ -1,0 +1,175 @@
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+@namespace clearpronunciation "com.clarityenglish.rotterdam.clearpronunciation.*";
+@namespace title "com.clarityenglish.rotterdam.view.title.*";
+@namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
+@namespace course "com.clarityenglish.rotterdam.view.course.*";
+@namespace progress "com.clarityenglish.bento.view.progress.*";
+@namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
+@namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
+@namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace unit "com.clarityenglish.rotterdam.view.unit.*";
+@namespace ui "skins.rotterdam.clearpronunciation.progress.ui.*";
+@namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
+@namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
+
+global {
+	defaultColor: #00A2C8;
+	defaultColorDark: #005063;
+	/*defaultIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
+	defaultIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');*/
+	
+	unitColours: #FFCC00, #99CC33, #29ABE2, #77449D, #D4145A, #AA0000, #FF5900, #00A99D, #140382;
+	gradientColours: #FFFF66, #CCFF33, #70D9FF, #AD8EC4, #FF73BB, #FF8085, #FFBD00, #7AD6C7, #617AC4;
+}
+
+clearpronunciation|ClearPronunciationApplication {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.ClearPronunciationApplicationSkin");
+}
+
+login|LoginView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.login.LoginSkin");
+}
+
+login|LoginView s|Button#loginButton {
+	skinClass: ClassReference("skins.rotterdam.ui.LoginButtonSkin");
+}
+
+login|LoginView s|Button#forgotPassword_btn {
+	skinClass: ClassReference("skins.rotterdam.ui.ForgotPasswordButtonSkin");
+}
+
+/*login|LoginView s|TextInput {
+skinClass: ClassReference("spark.skins.spark.TextInputSkin");
+borderVisible: true;
+borderColor: #C8C8C8;
+contentBackgroundColor: #FFFFFF;
+}*/
+
+login|LoginView s|TextInput {
+	skinClass: ClassReference("skins.rotterdam.ui.LoginTextInputSkin");
+	cornerRadius: 5;
+}
+
+title|TitleView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.title.TitleSkin");
+}
+
+title|TitleView s|TabbedViewNavigator {
+	skinClass: ClassReference("skins.rotterdam.title.WebTabbedViewNavigatorSkin");
+}
+
+title|TitleView s|Button#logoutButton {
+	skinClass: 	ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
+}
+
+courseselector|CourseSelectorView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.courseselector.CourseSelectorSkin");
+}
+
+courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
+	skinClass:ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
+@media (os-platform: "IOS"), (os-platform: "Android") {
+	courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
+		skinClass:ClassReference("spark.skins.mobile.VScrollBarSkin");
+	}
+}
+
+course|CourseView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.course.CourseSkin");
+}
+
+course|CourseView s|BorderContainer#unitContainer {
+	skinClass: ClassReference("skins.rotterdam.course.UnitListContainerSkin");
+}
+
+course|CourseView s|List#unitList s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
+}
+
+unit|UnitHeaderView {
+	skinClass: ClassReference("skins.rotterdam.unit.UnitHeaderSkin");
+}
+
+unit|UnitHeaderView s|Button#editButton {
+	skinClass: ClassReference("skins.rotterdam.unit.EditButtonSkin");
+}
+
+/* Progress view styles */
+progress|ProgressView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.ProgressSkin");
+}
+
+progress|ProgressView #progressNavBar {
+	skinClass: ClassReference("skins.rotterdam.scheduling.TabButtonBarSkin");
+}
+
+progresscomponents|ProgressScoreView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ProgressScoreSkin");
+}
+
+progresscomponents|ProgressCompareView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ProgressCompareSkin");
+}
+
+progresscomponents|ProgressCoverageView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ProgressCoverageSkin");
+}
+
+progresscomponents|ProgressCoverageView s|List s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
+progresscomponents|ProgressCoverageView s|List s|HScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
+}
+
+progresscomponents|ProgressCoverageView s|Scroller#exerciseScroller s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
+progresscomponents|ProgressAnalysisView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ProgressAnalysisSkin");
+}
+
+progresscomponents|ProgressAnalysisView ui|StackedCircleChart {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ui.StackedCircleChart");
+}
+
+progresscomponents|ProgressAnalysisView s|Scroller#unitGoupsScroller s|VScrollBar{
+	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+}
+
+progressui|ProgressBarRenderer {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ui.ProgressBarRendererSkin");
+}
+
+progresscomponents|ProgressCoverageView #progressCourseButtonBar {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ui.ProgressCourseButtonBarSkin");
+}
+
+progresscomponents|ProgressScoreView #progressCourseButtonBar {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ui.ProgressCourseButtonBarSkin");
+}
+
+progressui|CoverageUnitRenderer { 
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ui.CoverageUnitRendererSkin");
+}
+
+progressui|CoverageGroupRenderer {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.progress.ui.CoverageGroupRendererSkin");
+}
+
+ui2|WidgetList s|VScrollBar {
+	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
+}
+
+widgets|AnimationWidget {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.AnimationWidgetSkin");
+}
+
+widgets|OrchidWidget {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.OrchidWidgetSkin");
+}
