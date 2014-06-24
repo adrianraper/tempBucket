@@ -152,7 +152,6 @@ package com.clarityenglish.bento.model {
 				// Determine if the href matches any of the registered transforms and if so add those transforms
 				href.resetTransforms();
 				// gh#761 Because the configProxy.getDirectStart() doesn't be set value in xxStartupCommand, so I put DirectStartDisableTransform here 
-				var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 				if (ObjectUtil.getClassInfo(configProxy.getDirectStart()).properties.length > 0)
 					registerTransforms([new DirectStartDisableTransform(configProxy.getDirectStart())], [ Href.MENU_XHTML ]);				
 				

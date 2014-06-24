@@ -16,10 +16,10 @@
 		public static const EF_COLLABORATOR:int = 16;
 		
 		// gh#91 role values
-		public static const ROLE_OWNER = 1;
-		public static const ROLE_COLLABORATOR = 2;
-		public static const ROLE_PUBLISHER = 3;
-		public static const ROLE_VIEWER = 4;
+		public static const ROLE_OWNER:int = 1;
+		public static const ROLE_COLLABORATOR:int = 2;
+		public static const ROLE_PUBLISHER:int = 3;
+		public static const ROLE_VIEWER:int = 4;
 
 		/**
 		 * The collection of units belonging to this course

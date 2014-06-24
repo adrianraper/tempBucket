@@ -63,7 +63,7 @@ package com.clarityenglish.bento.vo.content.transform {
 												}
 											}
 										} else if (unit.@id == directStart.unitID && directStart.scorm) {
-											for each (var exercise:XML in unit.exercise)
+											for each (exercise in unit.exercise)
 												exercise.@enabledFlag = enabled;
 										} else {
 											unit.@enabledFlag = disabled;

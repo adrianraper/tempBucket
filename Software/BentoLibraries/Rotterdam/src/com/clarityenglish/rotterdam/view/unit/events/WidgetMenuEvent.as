@@ -14,7 +14,7 @@ package com.clarityenglish.rotterdam.view.unit.events {
 		private var _xml:XML;
 		private var __hideSpanButtonBar:Boolean;
 		
-		public function WidgetMenuEvent(type:String, bubbles:Boolean, xml:XML = null, hideSpanButtonBar = false) {
+		public function WidgetMenuEvent(type:String, bubbles:Boolean, xml:XML = null, hideSpanButtonBar:Boolean = false) {
 			super(type, bubbles, false);
 			
 			this._xml = xml;

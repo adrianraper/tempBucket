@@ -8,7 +8,7 @@ package com.clarityenglish.controls.video.events
 		
 		private var _isHideSpanButtonBar:Boolean;
 		
-		public function VideoSpanButtonBarEvent(type:String, bubbles:Boolean=false, isHideSpanButtonBar = false) {
+		public function VideoSpanButtonBarEvent(type:String, bubbles:Boolean=false, isHideSpanButtonBar:Boolean = false) {
 			super(type, bubbles, isHideSpanButtonBar);
 			
 			this._isHideSpanButtonBar = isHideSpanButtonBar;
