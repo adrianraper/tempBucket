@@ -102,6 +102,42 @@ courseselector|CourseSelectorView s|List s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
 }
 
+courseselector|CourseSelectorView s|ToggleButton#showFiltersToggleButton {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringToggleButtonSkin");
+}
+
+courseselector|CourseSelectorView s|Form#filtering {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilterFilteringFormSkin");
+}
+
+courseselector|CourseSelectorView s|Form#sorting {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilterSortingFormSkin");
+}
+
+courseselector|CourseSelectorView s|FormHeading {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringFormHeadingSkin");
+}
+
+courseselector|CourseSelectorView s|FormItem {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringFormItemSkin");
+}
+
+courseselector|CourseSelectorView s|TextInput#filterTextInput {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringTextInputSkin");
+}
+
+courseselector|CourseSelectorView s|CheckBox {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringCheckBoxSkin");
+}
+
+courseselector|CourseSelectorView s|RadioButton {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringRadioButtonSkin");
+}
+
+courseselector|CourseSelectorView s|CheckBox#sortDescendingCheckBox {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringDescendingCheckBoxSkin");
+}
+
 tink|Alert {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.AlertSkin");
 	cornerRadius: 8;

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="595.28" d:pageWidth="841.89" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group x="-1.43799" y="-1.43799" ai:seqID="1">
+        <filters>
+          <DropShadowFilter quality="2" color="#010101" alpha="0.3" angle="0" distance="0"/>
+        </filters>
+        <Group ai:seqID="2" flm:knockout="false">
+          <Path x="1.43799" y="1.43799" winding="nonZero" ai:seqID="3" data="M35.8789 12.9365C35.8789 11.3545 34.7734 9.38672 33.4229 8.56348L20.3945 0.618164C19.042 -0.206055 16.832 -0.206055 15.4824 0.618164L2.45605 8.56348C1.10547 9.38672 0 11.3545 0 12.9365L0 29.0645C0 30.6455 1.10547 32.6143 2.45605 33.4375L15.4824
+ 41.3818C16.832 42.2061 19.042 42.2061 20.3945 41.3818L33.4229 33.4375C34.7734 32.6143 35.8789 30.6455 35.8789 29.0645L35.8789 12.9365Z">
+            <fill>
+              <LinearGradient x="17.9395" y="-0.465332" scaleX="43.4902" rotation="90">
+                <GradientEntry ratio="0" color="#FFEDAE"/>
+                <GradientEntry ratio="0.223533" color="#FFE074"/>
+                <GradientEntry ratio="0.580645" color="#FFC708"/>
+                <GradientEntry ratio="0.94086" color="#FFA600"/>
+              </LinearGradient>
+            </fill>
+            <stroke>
+              <SolidColorStroke weight="2.87603" caps="none" joints="miter" miterLimit="10" color="#FFFFFF"/>
+            </stroke>
+          </Path>
+        </Group>
+        <Group x="9.86914" y="14.5674" ai:seqID="4">
+          <Path x="1.35693" y="1.35693" winding="nonZero" ai:seqID="5" data="M6.94336 0 0 6.51367 6.94336 13.0273">
+            <stroke>
+              <SolidColorStroke weight="2.71399" miterLimit="10" color="#FFFFFF"/>
+            </stroke>
+          </Path>
+          <Path x="8.53955" y="1.35693" winding="nonZero" ai:seqID="6" data="M6.94629 0 0 6.51367 6.94629 13.0273">
+            <stroke>
+              <SolidColorStroke weight="2.71399" miterLimit="10" color="#FFFFFF"/>
+            </stroke>
+          </Path>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

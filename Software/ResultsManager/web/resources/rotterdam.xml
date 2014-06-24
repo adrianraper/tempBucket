@@ -223,7 +223,8 @@
 			<lit name="courseEditableLabel">Lock the course</lit>
 			<lit name="courseListTitleLabel">Choose a course</lit>
 			<lit name="createCourseButton">Create a new course</lit>
-			<lit name="myCoursesViewNavigator">My courses</lit>
+			<lit name="showFiltersToggleButton">Filter courses</lit>
+			<lit name="myCoursesViewNavigator">My Courses</lit>
 			<lit name="progressViewNavigator">Progress</lit>
 			<lit name="cloudViewNavigator">Resource cloud</lit>
 			<lit name="helpViewNavigator">Help</lit>

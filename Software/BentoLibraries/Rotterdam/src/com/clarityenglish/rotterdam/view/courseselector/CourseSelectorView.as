@@ -22,12 +22,14 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import spark.components.BusyIndicator;
 	import spark.components.Button;
 	import spark.components.CheckBox;
+	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
 	import spark.components.RadioButton;
 	import spark.components.RadioButtonGroup;
 	import spark.components.TextInput;
 	import spark.components.ToggleButton;
+	import spark.components.VGroup;
 	import spark.effects.Animate;
 	
 	import ws.tink.spark.controls.Alert;
@@ -73,6 +75,12 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		[SkinPart]
 		public var showFiltersToggleButton:ToggleButton;
+		
+		[SkinPart]
+		public var filtersPanel:Group;
+		
+		[SkinPart]
+		public var filtersFromPanel:VGroup;
 		
 		[SkinPart]
 		public var showFiltersAnimation:Animate;
@@ -148,7 +156,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					sortDescendingCheckBox.selected = true;
 					break;
 				case showFiltersToggleButton:
-					showFiltersToggleButton.label = "<";
+					showFiltersToggleButton.label = copyProvider.getCopyForId("showFiltersToggleButton");
 					showFiltersToggleButton.selected = false;
 					showFiltersToggleButton.addEventListener(Event.CHANGE, onShowHideFilters);
 					break;
@@ -158,10 +166,10 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		protected function onShowHideFilters(event:Event):void {
 			if ((event.target as ToggleButton).selected) {
 				showFiltersAnimation.play();
-				showFiltersToggleButton.label = ">";
+				filtersFromPanel.visible = true
 			} else {
 				hideFiltersAnimation.play();
-				showFiltersToggleButton.label = "<";
+				filtersFromPanel.visible = false;
 			}
 		}
 		// gh#619
