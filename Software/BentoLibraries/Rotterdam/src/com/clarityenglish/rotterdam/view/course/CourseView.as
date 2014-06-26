@@ -14,13 +14,16 @@ package com.clarityenglish.rotterdam.view.course {
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
+	import mx.controls.SWFLoader;
 	import mx.events.CloseEvent;
 	import mx.events.EffectEvent;
 	
+	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.Group;
+	import spark.components.HGroup;
 	import spark.components.Label;
 	import spark.components.List;
 	import spark.components.ToggleButton;
@@ -36,8 +39,23 @@ package com.clarityenglish.rotterdam.view.course {
 		[SkinPart]
 		public var courseCaptionLabel:Label;
 		
+		[SkinPart]
+		public var unitLeftSwfLoader:SWFLoader;
+		
+		[SkinPart]
+		public var unitRightSwfLoader:SWFLoader;
+		
+		[SkinPart]
+		public var expandUnitListButton:ToggleButton;
+		
 		[SkinPart(required="true")]
 		public var unitList:List;
+		
+		[SkinPart]
+		public var unitListExpandAnimate:Animate;
+		
+		[SkinPart]
+		public var unitListCollapseAnimate:Animate;
 		
 		[SkinPart]
 		public var addUnitButton:Button;
@@ -69,11 +87,14 @@ package com.clarityenglish.rotterdam.view.course {
 		[SkinPart]
 		public var settingsButton:Button;
 		
+		[SkinPart]
+		public var anim:Animate;
+		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
-		[SkinPart]
-		public var anim:Animate;
+		[Bindable]
+		public var mediaFolder:String;
 		
 		// gh#208 DK: should we pass the group from the mediator to here so that the view can create the default node
 		// or should we just let the mediator do it?
@@ -81,6 +102,9 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		private var _isPreviewVisible:Boolean = false;
 		private var _course:XML;
+		// gh#870
+		private var _unit:XML;
+		private var unitChanged:Boolean;
 		private var _isFirstPublish:Boolean;
 		private var courseChanged:Boolean;
 		// gh#211
@@ -115,6 +139,12 @@ package com.clarityenglish.rotterdam.view.course {
 				courseChanged = true;
 				invalidateProperties();
 			}
+		}
+		
+		public function set unit(value:XML):void {
+			_unit = value;
+			unitChanged = true;
+			invalidateProperties();
 		}
 		
 		public function set previewVisible(value:Boolean):void {
@@ -183,6 +213,15 @@ package com.clarityenglish.rotterdam.view.course {
 				if (unitHeader.editButton)
 					unitHeader.editButton.visible = true;
 			}
+			
+			if (_unit && unitChanged) {
+				if (unitLeftSwfLoader && _unit.hasOwnProperty("@image1")) {
+					unitLeftSwfLoader.source = (StringUtils.beginsWith((_unit.@image1).toLowerCase(), "http")) ? (_unit.@image1) : mediaFolder + "/" + (_unit.@image1);
+				}
+				if (unitRightSwfLoader && _unit.hasOwnProperty("@image2")) {
+					unitRightSwfLoader.source = (StringUtils.beginsWith((_unit.@image2).toLowerCase(), "http")) ? (_unit.@image2) : mediaFolder + "/" + (_unit.@image2);
+				}
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -193,6 +232,7 @@ package com.clarityenglish.rotterdam.view.course {
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
 					unitList.addEventListener(UnitDeleteEvent.UNIT_DELETE, onUnitDelete);
+					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
 					
 					// gh#14 - auto select a unit and gh#151 - autoselect the first enabled unit
 					callLater(function():void {
@@ -254,7 +294,27 @@ package com.clarityenglish.rotterdam.view.course {
 				case anim:
 					anim.addEventListener(EffectEvent.EFFECT_END, onAnimEnd);
 					break;
+				case expandUnitListButton:
+					expandUnitListButton.addEventListener(MouseEvent.CLICK, onExpandUnitListButtonClick);
+					break;
 			}
+		}
+		
+		protected function onExpandUnitListButtonClick(event:MouseEvent):void {
+			if (event.target.selected) {
+				unitListExpandAnimate.play();
+			} else {
+				unitListCollapseAnimate.play();
+			}	
+		}
+		
+		protected function onUnitListClick(event:Event):void {
+			if (unitList.selectedIndex != -1) {
+				// to hide vertical scroll bar, use verticalScrollPolicy = off
+				unitListCollapseAnimate.play();
+				expandUnitListButton.selected = false;
+			}
+				
 		}
 		
 		protected function onUnitSelected(event:IndexChangeEvent):void {

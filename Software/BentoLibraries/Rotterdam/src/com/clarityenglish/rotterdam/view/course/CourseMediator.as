@@ -3,6 +3,8 @@
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
@@ -59,6 +61,10 @@
 			// gh#91a 
 			if (courseProxy.isPublisher || !courseProxy.isEditable)
 				facade.sendNotification(RotterdamNotifications.PREVIEW_SHOW, true);
+			
+			// gh#870 should be same as the one in WidgetMediator
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
 		}
 		
 		override public function onRemove():void {
@@ -81,6 +87,7 @@
 				RotterdamNotifications.PREVIEW_SHOWN,
 				RotterdamNotifications.PREVIEW_HIDDEN,
 				BBNotifications.ITEM_DIRTY,
+				BBNotifications.UNIT_STARTED,
 			]);
 		}
 		
@@ -92,6 +99,9 @@
 				case RotterdamNotifications.PREVIEW_SHOWN:
 				case RotterdamNotifications.PREVIEW_HIDDEN:
 					view.previewVisible = courseProxy.isPreviewMode;
+					break;
+				case BBNotifications.UNIT_STARTED:
+					view.unit = note.getBody() as XML;
 					break;
 				/*case BBNotifications.ITEM_DIRTY:
 					if (note.getBody().toString() == 'settings')
