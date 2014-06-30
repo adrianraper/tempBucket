@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.OrchidWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.SelectorWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.TextWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.VideoWidget;
 	
@@ -65,8 +66,9 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 				case "animation":
 					return AnimationWidget;
 				case "orchid":
-					trace("orchid widget");
 					return OrchidWidget;
+				case "selector":
+					return SelectorWidget;
 				default:
 					log.error("Unsupported widget type " + type);
 					return null;

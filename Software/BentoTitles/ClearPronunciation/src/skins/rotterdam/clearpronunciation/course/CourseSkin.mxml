@@ -46,10 +46,7 @@
 		</s:layout>
 		<s:VGroup id="unitVGroup" height="100%" gap="0">
 			<s:Label id="courseCaptionLabel" paddingLeft="8" paddingRight="8" width="150" fontWeight="bold" fontSize="15"/>
-			<mx:Spacer height="16" />
-			<s:HGroup paddingLeft="8">
-				<s:SWFLoader source="@Embed(source='skins/rotterdam/clearpronunciation/assets/unit/dotted-line.png')" />	
-			</s:HGroup>	
+			<mx:Spacer height="16" />	
 		</s:VGroup>
 	</s:BorderContainer>
 	
@@ -84,7 +81,6 @@
 						<s:SolidColorStroke color="#FFBF40" weight="1" caps="square"/>
 						</s:stroke>
 						</s:Line-->
-						<s:SWFLoader source="@Embed(source='skins/rotterdam/clearpronunciation/assets/unit/dotted-line.png')" bottom="0" left="8" />
 					</s:ItemRenderer>
 				</fx:Component>
 			</s:itemRenderer>

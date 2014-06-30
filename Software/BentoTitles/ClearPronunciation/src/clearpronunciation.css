@@ -173,3 +173,7 @@ widgets|AnimationWidget {
 widgets|OrchidWidget {
 	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.OrchidWidgetSkin");
 }
+
+widgets|SelectorWidget {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.SelectorWidgetSkin");
+}

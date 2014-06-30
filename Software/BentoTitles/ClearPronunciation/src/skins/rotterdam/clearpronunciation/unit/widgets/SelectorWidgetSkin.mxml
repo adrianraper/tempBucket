@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="skins.rotterdam.unit.widgets.*"
+		xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*"
+		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*" xmlns:sets="org.osflash.signals.natives.sets.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.SelectorWidget")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing_normal" stateGroups="editing"  />
+		<s:State name="editing_selected" stateGroups="editing,selected" />
+		<s:State name="videoSelector" />
+		<s:State name="normalSelector" />
+	</s:states>
+	
+	<!-- Chrome -->
+	<widgets:WidgetChrome id="widgetChrome"
+						  caption="{hostComponent.caption}"
+						  editing.editing="true"
+						  selected.selected="true"
+						  left="0" right="0" top="0" bottom="0" />
+	
+	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+	
+	<s:HGroup paddingTop="25">
+		<s:Group>
+			<s:List id="selectorList" left.normalSelector="0" left.videoSelector="520" height="100%" dataProvider="{hostComponent.widgetSelectorCollection}" labelField="@caption" requireSelection="true" borderVisible="false" contentBackgroundAlpha="0">
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer>
+							<fx:Script>
+								<![CDATA[
+									[Bindable]
+									private var iconPath:String;
+									
+									public override function set data(value:Object):void {
+										super.data = value;
+
+										iconPath = outerDocument.hostComponent.mediaFolder + "/" + data.@icon;
+									}
+								]]>
+							</fx:Script>
+							
+							<s:BitmapImage source="{iconPath}" visible="{outerDocument.currentState == 'videoSelector'}" includeInLayout="{outerDocument.currentState == 'videoSelector'}" />
+							<s:Label id="labelDisplay" paddingTop="5" fontSize="15" maxDisplayedLines="1" visible="{outerDocument.currentState != 'videoSelector'}" includeInLayout="{outerDocument.currentState != 'videoSelecotr'}" />
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:List>
+			<ui:UniversalWidget id="universalWidget" left.normalSelector="150"/>
+		</s:Group>
+	</s:HGroup>
+</s:Skin>
