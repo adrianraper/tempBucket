@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/ClearPronunciation in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>57</productCode>
+	<useCacheBuster>true</useCacheBuster>
+	<courseFile>menu-FullVersion.xml</courseFile>
+	<platform>browser</platform>
+
+	<sharedMedia />
+	<brandingMedia />
+	<language>EN</language>
+
+	<contentPath>http://dock.contentBench/Content/</contentPath>
+	<remoteDomain>http://dock.projectBench/</remoteDomain>
+	<remoteGateway>http://dock.projectBench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>ClearPronunciationService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+</config>
+

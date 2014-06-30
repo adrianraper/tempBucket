@@ -1505,7 +1505,7 @@ paraXMLtoExercise = function(XMLNode, paraNum, Foundfields, textType) {
 		// v6.3.6 Merge exercise into main but also create this TF on buttons not exercise
 		//_global.ORCHID.root.exerciseHolder.createTextField("tfFinder", _global.ORCHID.root.exerciseHolder.ExerciseNS.depth++, 0, -0, 300, 300);
 		//var tfFinder = _global.ORCHID.root.exerciseHolder.tfFinder;
-		_global.ORCHID.root.buttonsHolder.createTextField("tfFinder", _global.ORCHID.root.buttonsHolder.ButtonsNS.depth++, 0, 0, 300, 300);
+		_global.ORCHID.root.buttonsHolder.createTextField("tfFinder", _global.ORCHID.root.buttonsHolder.buttonsNS.depth++, 0, 0, 300, 300);
 		var tfFinder = _global.ORCHID.root.buttonsHolder.tfFinder;
 		tfFinder._visible = false;
 		tfFinder.html = true;

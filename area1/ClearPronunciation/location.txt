@@ -1,1 +1,1 @@
-content=/Content&mainMovies=/Software/Common&interfaceMovies=/Software/ClearPronunciation&database=SQLServer&scripting=PHP&help=/Software/ClearPronunciation/Help/help.htm&MGSRoot=/ap&end=1
+content=http://dock.contentbench/Content&mainMovies=/Software/Common&interfaceMovies=/Software/ClearPronunciation&database=SQLServer&scripting=PHP&help=/Software/ClearPronunciation/Help/help.htm&MGSRoot=/ap&end=1

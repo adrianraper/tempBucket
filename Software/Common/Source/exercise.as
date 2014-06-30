@@ -476,7 +476,7 @@ exerciseNS.printExercise = function() {
 	// if you print exerciseHolder - you get feedback and title as well, but
 	// if the exercise scrolls you do not get the bottom stuff. Exercise_SP
 	// also does not scroll. .tmp_mc is blank - I don't know why.
-	//var printEx = base.duplicateMovieClip("copyForPrintEx", _global.ORCHID.PrintDepth);
+	//var printEx = base.duplicateMovieClip("copyForPrintEx", _global.ORCHID.printDepth);
 	//trace("just created " + printEx + " as a duplicate");
 	//for (var i in printEx) {
 	//	trace(printEx[i]._name + " is part of print thing");

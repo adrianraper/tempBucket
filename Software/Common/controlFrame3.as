@@ -289,6 +289,7 @@ controlNS.checkLoadingProgress = function() {
 			this.startTheProgram();
 			//this.master.tmpStartTheProgram.onRelease();
 		} else {
+			myTrace("new loading problem " + missingName);
 			var errObj = {literal:"cannotLoadModules", detail:missingName};
 			this.sendError(errObj);
 		}
@@ -494,6 +495,7 @@ controlNS.initView = function() {
 	//_root.buttonsHolder.introFinished = function() {
 	//	this._introFinished = true;
 	//}	
+	//myTrace("baseScreen still at depth=" + _global.ORCHID.root.buttonsHolder.BaseScreen.getDepth());
 	
 	// v6.5 We have now added in a progressModule extra loaded swf. But this can contain an interface, so unload it here?
 	// All we wanted to do by loading it earlier was to get it in cache.

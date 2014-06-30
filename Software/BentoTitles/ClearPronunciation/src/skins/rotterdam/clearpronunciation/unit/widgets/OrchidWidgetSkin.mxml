@@ -10,7 +10,7 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.rotterdam.clearpronunciation.vo.ForcibleLoader;
+			//import com.clarityenglish.rotterdam.clearpronunciation.vo.ForcibleLoader;
 			
 			import mx.core.UIComponent;
 			import mx.events.FlexEvent;
@@ -32,11 +32,13 @@
 				
 			}
 			
+			/*
 			protected function loadComplete(event:Event):void {
 				var ui:UIComponent = new UIComponent();
 				ui.addChild(loader);
 				addElement(ui);
 			}
+			*/
 		]]>
 	</fx:Script>
 	
@@ -58,11 +60,11 @@
 	<!-- Progress bar -->
 	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
 	
-	<s:VGroup left="0" right="0" top="25" paddingBottom="10" horizontalAlign="center">
+	<s:VGroup left="0" right="0" top="0" paddingBottom="0" horizontalAlign="left">
 		<!-- Text -->
 		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 		
-		<s:SWFLoader id="orchidSWFLoader" loadForCompatibility="true" trustContent="true"  />
+		<s:SWFLoader id="orchidSWFLoader" scaleContent="false" maintainAspectRatio="true" loadForCompatibility="true" trustContent="true"  />
 	</s:VGroup>
 	
 </s:Skin>
