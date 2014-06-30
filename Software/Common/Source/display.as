@@ -1029,7 +1029,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 	tlc.initialParaDepth = _global.ORCHID.initialParaDepth;
 	
 	// define the resumeLoop method
-	//myTrace("loop will go to max=" + tlc.maxLoop);
+	myTrace("loop will go to max=" + tlc.maxLoop);
 	tlc.resumeLoop = function(firstTime) {
 		//myTrace("resumeLoop display.as:649 for " + this.ppots.paneName);
 		var startTime = getTimer();
@@ -1054,7 +1054,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 		//if (firstTime) {
 			//myTrace("first time resume loop");
 		//} else {
-			//myTrace("resume loop, i=" + i + " of max=" + max + " timeLimit=" + timeLimit + " for " + paneName);
+			//myTrace("resume loop, i=" + i + " of max=" + max + " timeLimit=" + timeLimit + " for " + paneName + " firstTime=" + firstTime);
 		//}
 		// The paragraphs are going to be added at depths from 0 to numParagraphs. Reverse the depth
 		// order so that the first paragraphs are over the later ones - this should stop any problem with
@@ -1067,6 +1067,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 		//var paraDepth = thisText.paragraph.length - i; // starting point of depths for this run
 		var paraDepth = thisText.paragraph.length - i + initialParaDepth; // starting point of depths for this run
 		while (getTimer()-startTime <= timeLimit && i<max && !firstTime) {
+			//myTrace("while loop, i=" + i);
 			//if (paneName == "ReadingText_SP") {
 			//	myTrace("resume loop i=" + i + " of " + max);
 			//}
@@ -1104,7 +1105,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 			} else {
 				myTop = Number(myTop); // not sure what good this will do if the first character is NaN
 			}
-			//trace("last para (" + lastPara + ") top=" + lastTop + ", height=" + lastHeight + "(twfH=" + twfHeight + ") so this top=" + myTop);
+			//myTrace("last para (" + lastPara + ") top=" + lastTop + ", height=" + lastHeight + "(twfH=" + twfHeight + ") so this top=" + myTop);
 			//trace("para " + lastPara + " bottom=" + Number(Number(contentHolder["ExerciseBox"+lastPara]._y) + Number(contentHolder["ExerciseBox"+lastPara]._height)));
 			//if (paneName == "Example_SP") {
 			//	myTrace("example para " + myPara + " top=" + myTop);
@@ -1238,7 +1239,6 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 				thisFormat.tabStops = thisText.paragraph[i].tabArray;
 				//Note: this is where we should make a copy of the text and do the susbstTags changing
 				// so that the original does not get altered.
-				//myTrace("text for twf=" + substTags(thisText.paragraph[i].plainText, substList));
 		
 				// v6.3.5 You  have to treat countDown differently at the twf level
 				if (paneName == "Exercise_SP" && (_global.ORCHID.LoadedExercises[0].settings.exercise.type == "Countdown")) {
@@ -1275,7 +1275,6 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 				}
 				*/
 				// End v6.5.4.2 Yiu these 3 lines make the dictionary function works, ID 1223
-
 				me.addDropsForHitTest();
 
 				// v6.4.2.8 If I want to have a graphical ruler, try picking up the style and using the TWF background
@@ -1351,11 +1350,11 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 		//tlc.proportion = 75;
 		//myTrace("ppoS: start the tlc loop from " + tlc.startProportion);
 		//myTrace("non-looper,  max=" + tlc.maxLoop + " timeLimit=" + tlc.timeLimit + " for " + tlc.paneName);
-		tlc.resumeLoop();
+		tlc.resumeLoop(false);
 	}
 }
 putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
-	//myTrace("ok, i am in ppots_stuffAfter for " + ppotsVars.paneName);
+	myTrace("ok, i am in ppots_stuffAfter for " + ppotsVars.paneName);
 	var myX = ppotsVars.myX; myY = ppotsVars.myY; myW = ppotsVars.myW; myH = ppotsVars.myH;
 	var myMinW = ppotsVars.myMinW; myMinH = ppotsVars.myMinH;
 	var myLeftMargin = ppotsVars.myLeftMargin;

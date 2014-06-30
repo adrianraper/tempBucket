@@ -20,10 +20,15 @@ require_once(dirname(__FILE__)."/dbLicence.php");
 	// make the database connection
 	global $db;
 	$dbDetails = new DBDetails($vars['DBHOST']);
-	//print($dbDetails->dsn);
-	$db = &ADONewConnection($dbDetails->dsn);
+	$vars['DBDRIVER']=$dbDetails->driver;
+	
+	//echo $dbDetails->dsn;
+	$db = ADONewConnection($dbDetails->dsn);
+
 	if (!$db) die("Connection failed");
+	// Put this line on to see all sql calls before they are made
 	//$db->debug = true;
+	
 	// v3.6 UTF8 character mismatch between PHP and MySQL
 	if ($dbDetails->driver == 'mysql') {
 		$charSetRC = mysql_set_charset('utf8');

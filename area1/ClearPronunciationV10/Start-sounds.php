@@ -17,9 +17,9 @@
 	$startControl = '/Software/BentoTitles/ClearPronunciation/bin-debug/';
 	$version = '1107';
 	$coordsMinWidth = '990';
-	$coordsMaxWidth = '990';
+	$coordsMaxWidth = '2990';
 	$coordsMinHeight = '760';
-	$coordsMaxHeight = '970';
+	$coordsMaxHeight = '2970';
 	$locationFile = "config-sounds.xml";
 	
 	// Picking up IP and referrer for security checking
@@ -55,8 +55,6 @@
 		swfobject.embedSWF(jsWebShare + jsStartControl + jsSwfName + argList, "altContent", "100%", "100%", "10.2.0", expressInstall, flashvars, params, attr);
 	</script>
 	
-<!--CSS pop up layout box-->
-<link rel="stylesheet" type="text/css" href="../../css/loadprogram.css" />
 <style type="text/css">
 	body {margin-left: 0px; margin-top: 0px; margin-right: 0px; margin-bottom: 0px}
 </style>

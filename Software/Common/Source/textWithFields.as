@@ -280,6 +280,7 @@ TextWithFieldsClass.prototype.setHtmlText = function(myText, textFormat) {
 	// clear out the holder from any current text
 	this.holder.text = "";
 	this.original._visible = false;
+	//myTrace("this.original._visible=" + this.original._visible);
 
 	// and start the process to copy text and find fields
 	this.refresh();
@@ -347,7 +348,7 @@ TextWithFieldsClass.prototype.getAccumOffsetWithFieldStartOrEndPos	= function(fi
 // This function is called to set a TextFormat to a particular field
 TextWithFieldsClass.prototype.setFieldTextFormat = function(fieldID, thisFormat) {
 	var fieldIDX=TWF.lookupArrayItem(this.fields, fieldID, "id");
-	myTrace("twf.setFieldTextFormat with underline=" + thisFormat.underline + " for " + fieldIDX);
+	//myTrace("twf.setFieldTextFormat with underline=" + thisFormat.underline + " for " + fieldIDX);
 //	for (var i in this.fields[fieldID]) {
 	//trace("field[" + fieldID + "].start="+this.fields[fieldIDX].start+" .end="+this.fields[fieldIDX].end);
 	//var currentTF = this.holder.getTextFormat(this.fields[fieldIDX].start);
@@ -356,10 +357,10 @@ TextWithFieldsClass.prototype.setFieldTextFormat = function(fieldID, thisFormat)
 	// v6.5.4.2 Yiu, get the offset to make the field display correctly, Bug ID 1370a
 	var nStartOffset:Number;
 	var nEndOffset:Number;
-	myTrace("twf.setFieldTF, 1.end=" + this.fields[fieldIDX].end + " start=" + this.fields[fieldIDX].start);
+	//myTrace("twf.setFieldTF, 1.end=" + this.fields[fieldIDX].end + " start=" + this.fields[fieldIDX].start);
 	nStartOffset = this.getAccumOffsetWithFieldStartOrEndPos(this.fields[fieldIDX].start);
 	nEndOffset = this.getAccumOffsetWithFieldStartOrEndPos(this.fields[fieldIDX].end);
-	myTrace("twf.setFieldTF, 2.endOffset=" + nEndOffset + " start=" + nStartOffset);
+	//myTrace("twf.setFieldTF, 2.endOffset=" + nEndOffset + " start=" + nStartOffset);
 	//myTrace("twf.setFieldTF, url=" + thisFormat.url);
 
 	this.holder.setTextFormat(this.fields[fieldIDX].start + nStartOffset,
@@ -380,7 +381,7 @@ TextWithFieldsClass.prototype.setFieldTextFormat = function(fieldID, thisFormat)
 	// v6.2 If there is a gap cover over this field, change it's format too
 	for (var j in this.fields[fieldIDX].coords) {
 		thisCover = this.fields[fieldIDX].coords[j].coverMC;
-		myTrace("twf.setFieldTextFormat for cover.gap " +thisCover + " gapHolder=" + thisCover.gapHolder);
+		//myTrace("twf.setFieldTextFormat for cover.gap " +thisCover + " gapHolder=" + thisCover.gapHolder);
 		if (thisCover.gapHolder != undefined) {
 			thisCover.gapHolder.gap.setTextFormat(thisFormat);
 			// but we never want underlining on a cover gap, although you can't
@@ -402,7 +403,7 @@ TextWithFieldsClass.prototype.getFieldTextFormat = function(fieldID) {
 	//trace("gFTF: fieldID="+fieldID + " IDX=" + fieldIDX);
 	// v6.5.4.2 Yiu, fixing drag and drop problem with CJK characters, bug ID 1370a
 	var nStartOffset:Number;
-	nStartOffset	= this.getAccumOffsetWithFieldStartOrEndPos(this.fields[fieldIDX].start);
+	nStartOffset = this.getAccumOffsetWithFieldStartOrEndPos(this.fields[fieldIDX].start);
 
 	//return this.holder.getTextFormat(this.fields[fieldIDX].start);	// v6.5.4.2 Yiu, yiu commented, Bug ID 1370a
 	return this.holder.getTextFormat(this.fields[fieldIDX].start + nStartOffset);	// v6.5.4.2 Yiu, fixing drag and drop problem with CJK characters, bug ID 1370a
@@ -583,7 +584,7 @@ TextWithFieldsClass.prototype.refresh = function(fromChar) {
 	//myTrace("twf.refresh, 2.original=" + this.original.htmlText);
 
 	// find the text locations of the fields
-	this.buildTextAndFields(fromChar);
+	this.buildTextAndFields();
 	//myTrace("twf.refresh, 3.original=" + this.original.htmlText);
 	
 	// if some fields were found
@@ -920,7 +921,7 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 	this.aCoverOffset
 //	this.holder.border	= true;	// v6.5.4.2 Yiu, debug, uncomment this to show the textWithFieldBorder 
 
-	//trace("set holder to empty, height=" + this.holder._height);
+	myTrace("set holder to empty, height=" + this.holder._height);
 	// this variable holds consecutive newlines, you will probably only ever get two
 	// but this seems extensible
 	var foundNewLine = new Array();
@@ -949,8 +950,8 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 		var bIsLineBreakChar:Boolean;
 		var bIfCJKChar:Boolean;
 
-		bIsLineBreakChar	= lineBreakChars.indexOf(thisChar) >= 0;
-		bIfCJKChar		= this.ifTheStringAllInCJK(thisChar);
+		bIsLineBreakChar = lineBreakChars.indexOf(thisChar) >= 0;
+		bIfCJKChar = this.ifTheStringAllInCJK(thisChar);
 
 		// should we record its index as the most recent word-wrapping character?
 		if (bIsLineBreakChar == true || bIfCJKChar == true) {// yiu modified	
@@ -1040,7 +1041,6 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 						Selection.setFocus(this.holder);
 						Selection.setSelection(i,i+1);
 						this.holder.replaceSel(" ");
-						//myTrace("add wafer, i=" + i);
 					}
 				}
 
@@ -1157,7 +1157,9 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 	// v6.5.4.2 Yiu, mark down the position of the replaced word when CJK word is detected, 
 	// then get rip the underline textformat of that word after all,
 	// or it will cause some textformat problem
+
 	selection.setFocus(this.holder);
+
 	var plainText = new String(this.holder.text);
 	for (var i in this.lines) {
 		nCJKOffset = 0;	// v6.5.4.2 Yiu, it must be 1 or 0 for each loop
@@ -1228,7 +1230,8 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 	//this.showLineBreaks();
 //	trace("after forcing line breaks, height=" + this.holder._height);
 	// Not a good idea to leave the focus on the holder, so set it back to original
-	Selection.setFocus(this.original);
+	//Selection.setFocus(this.original); // gh#869
+	
 	// v6.5.4.2 Yiu, added this
 	// v6.5.4.4 AR. Why? This now causes a drag at the start of a line to copy the TF.url to the whole paragraph. 
 	// But what was the purpose of doing it? If I just take it out what will happen? 

@@ -1883,7 +1883,7 @@ _global.ORCHID.root.buttonsHolder.CourseListScreen.display = function() {
 				var presetCourseID = _global.ORCHID.root.scormHolder.scormNS.getCourseID();
 				myTrace("use scorm based preset course");
 			// v6.5.3 If this is preview, first time load, just stop here and tell APP to give you the navigation details by lc
-			} else if (_global.ORCHID.commandLine.course==0 && _global.ORCHID.commandLine.preview) {
+			} else if (_global.ORCHID.commandLine.course==0 && _global.ORCHID.commandLine.preview) { 
 				_global.ORCHID.root.controlNS.receiveConn.send("OrchidResponse", "onOrchidReady", true);
 				return; 
 			} else if (_global.ORCHID.commandLine.course>0) {
@@ -1892,7 +1892,13 @@ _global.ORCHID.root.buttonsHolder.CourseListScreen.display = function() {
 			} else if (_global.ORCHID.root.licenceHolder.licenceNS.defaultCourseID > 0 ) {
 				var presetCourseID = _global.ORCHID.root.licenceHolder.licenceNS.defaultCourseID;
 				myTrace("use licence based preset course")
-			}			
+			}
+			// gh#869 Let Bento know you are ready, but keep going with your original course
+			if (_global.ORCHID.commandLine.bento && _global.ORCHID.commandLine.preview) {
+				myTrace("send to OrchidResponse.onOrchidReady")
+				_global.ORCHID.root.controlNS.receiveConn.send("OrchidResponse", "onOrchidReady", true);
+			}
+
 			// v6.3.4 You also want to jump straight in if there is only one course
 			if (this.firstChild.childNodes.length == 1) {
 				var presetCourseID = this.firstChild.childNodes[0].attributes["id"];

@@ -25,7 +25,7 @@
 	<!-- Progress bar -->
 	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
 	
-	<s:VGroup left="0" right="0" top="0" paddingBottom="10" horizontalAlign="center">
+	<s:VGroup left="0" right="0" top="25" paddingBottom="10" horizontalAlign="center">
 		<!-- Text -->
 		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 		

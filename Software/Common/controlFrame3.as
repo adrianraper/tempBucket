@@ -1554,25 +1554,32 @@ controlNS.setCourse = function(menuRootItems) {
 }
 // 6.0.6.0 Once the session record is written, you can get progress for this course
 controlNS.setProgress = function() {
-	var courseModule = _global.ORCHID.course;
-	//myTrace("control.setProgress");
-	courseModule.onLoadProgress = function() {
-		// once the progress has been loaded save the object globally
-		
-		// v6.4.2.8 At this point I want to do a quick race through the scaffold summarising
-		// the everyone information at the course/unit/xxx level. 
-		myTrace("summariseEveryoneInformation");
-		//_global.ORCHID.course.scaffold.summariseEveryoneInformation();
-		_global.ORCHID.course.scaffold.summariseInformation(2);
-		
-		// and go on to display the menu
-		//myTrace("course.onLoadProgress this=" + this.whoami);
+	
+	// gh#869 No need for scores in Bento
+	if (_global.ORCHID.commandLine.bento) {
+		myTrace("no progress records thanks");
 		controlNS.displayButtons();
-		// 6.0.2.0 do this after setting the buttons in case the
-		// stateInit calls clash
-		//_$displayMenu();
+	} else {
+		var courseModule = _global.ORCHID.course;
+		myTrace("control.setProgress");
+		courseModule.onLoadProgress = function() {
+			// once the progress has been loaded save the object globally
+			
+			// v6.4.2.8 At this point I want to do a quick race through the scaffold summarising
+			// the everyone information at the course/unit/xxx level. 
+			myTrace("summariseEveryoneInformation");
+			//_global.ORCHID.course.scaffold.summariseEveryoneInformation();
+			_global.ORCHID.course.scaffold.summariseInformation(2);
+			
+			// and go on to display the menu
+			//myTrace("course.onLoadProgress this=" + this.whoami);
+			controlNS.displayButtons();
+			// 6.0.2.0 do this after setting the buttons in case the
+			// stateInit calls clash
+			//_$displayMenu();
+		}
+		courseModule.loadProgress();
 	}
-	courseModule.loadProgress();
 }
 
 controlNS.displayButtons = function() {

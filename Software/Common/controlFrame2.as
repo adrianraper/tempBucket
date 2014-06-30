@@ -158,6 +158,10 @@ _global.ORCHID.commandLine.isConnected = false;
 _global.ORCHID.commandLine.sessionID = (this.sessionID==undefined) ? '' : this.sessionID; //ar#869
 if (_global.ORCHID.commandLine.sessionID) myTrace("command-line sessionID=" + _global.ORCHID.commandLine.sessionID);
 
+// gh#869 For communication with Bento
+_global.ORCHID.commandLine.bento = (this.bento == "true");
+if (_global.ORCHID.commandLine.bento) myTrace("command-line running from Bento");
+
 // v6.5.5.5 And if you want to see what this whole command line was?
 _global.ORCHID.commandLine.toString = function() {
 	var fullString = "";
@@ -1022,9 +1026,10 @@ controlNS.runPreviewMode = function() {
 			} else {
 				// v6.4.1.4 And for browser mode, try window.focus. Works in all my browsers.
 				//myTrace("run js:window.focus");
-				getURL("javascript:window.focus()");
+				if (!_global.ORCHID.commandLine.bento)
+					getURL("javascript:window.focus()");
 			}
-			myTrace("ValidPreview: request course " + courseID + " and ex " + exID);
+			myTrace("valid preview request, course " + courseID + " and ex " + exID);
 			// Lets accept that this really is an author preview, so skip things like hiddenContent.
 			_global.ORCHID.session.validPreview = true;
 			
@@ -1086,7 +1091,7 @@ controlNS.runPreviewMode = function() {
 		}
 		//myTrace("tell conn 'OrchidCommand' ");
 		var connectSuccess = this.receiveConn.connect("OrchidCommand");
-		//myTrace("preview, so create localConnection, success=" + connectSuccess,1);
+		myTrace("preview, so create localConnection, success=" + connectSuccess,1);
 	} else {
 		//myTrace("no preview");
 	}

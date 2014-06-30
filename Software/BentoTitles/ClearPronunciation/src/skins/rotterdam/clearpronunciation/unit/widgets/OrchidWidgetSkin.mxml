@@ -21,6 +21,10 @@
 			private var mc:MovieClip ;
 			
 			protected function onCreationComplete(event:FlexEvent):void {
+				this.loadUrl();
+			}
+			
+			public function loadUrl() {
 				/*var context:LoaderContext = new LoaderContext();
 				context.securityDomain = SecurityDomain.currentDomain;
 				context.applicationDomain = new ApplicationDomain();
@@ -60,11 +64,14 @@
 	<!-- Progress bar -->
 	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
 	
-	<s:VGroup left="0" right="0" top="0" paddingBottom="0" horizontalAlign="left">
+	<s:VGroup left="10" right="10" top="0" bottom="10" horizontalAlign="center">
 		<!-- Text -->
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		<s:HGroup>
+			<s:Image id="fakeThumbnailImage" source="@Embed(source='/skins/rotterdam/clearpronunciation/assets/title/ccb_logo.png')" />
+			<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		</s:HGroup>
 		
-		<s:SWFLoader id="orchidSWFLoader" scaleContent="false" maintainAspectRatio="true" loadForCompatibility="true" trustContent="true"  />
+		<s:SWFLoader id="orchidSWFLoader" scaleContent="false" maintainAspectRatio="true" loadForCompatibility="false" trustContent="false"  />
 	</s:VGroup>
 	
 </s:Skin>
