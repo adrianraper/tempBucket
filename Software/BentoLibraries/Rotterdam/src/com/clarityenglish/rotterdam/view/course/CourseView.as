@@ -206,13 +206,15 @@ package com.clarityenglish.rotterdam.view.course {
 				}
 			}
 			
-			if (_isPreviewVisible) {
-				if (unitHeader.editButton)
-					unitHeader.editButton.visible = false;
-			} else {
-				if (unitHeader.editButton)
-					unitHeader.editButton.visible = true;
-			}
+			if (unitHeader) {
+				if (_isPreviewVisible) {
+					if (unitHeader.editButton)
+						unitHeader.editButton.visible = false;
+				} else {
+					if (unitHeader.editButton)
+						unitHeader.editButton.visible = true;
+				}
+			}		
 			
 			if (_unit && unitChanged) {
 				if (unitLeftSwfLoader && _unit.hasOwnProperty("@image1")) {
