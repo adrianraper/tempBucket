@@ -43,7 +43,7 @@
 			<lit name="addAuthorMenuItem">Add author...</lit>
 			<lit name="addLearnerMenuItem">Add learner...</lit>
 			<lit name="assignClassesMenuItem">Link to extra groups...</lit>
-			<lit name="deleteMenuItem">Delete...</lit>
+			<lit name="deleteMenuItem">Delete ...</lit>
 			<lit name="detailsMenuItem">Details...</lit>
 			<lit name="exportMenuItem">Export users...</lit>
 			<lit name="archiveMenuItem">Archive to XML...</lit>
