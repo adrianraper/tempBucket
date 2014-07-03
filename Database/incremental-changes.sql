@@ -1051,3 +1051,23 @@ INSERT INTO `T_ProductVersion` VALUES
 (56,'DEMO'),
 (56,'FV');
 
+-- Clear Pronunciation V10
+DELETE FROM T_ProductLanguage WHERE F_ProductCode in (57,58);
+INSERT INTO T_ProductLanguage VALUES 
+(57,'EN','ClearPronunciation10-International'),
+(58,'EN','ClearPronunciation10-International');
+
+DELETE FROM T_Product WHERE F_ProductCode in (57,58);
+INSERT INTO `T_Product` VALUES
+(57,'Clear Pronunciation Sounds',NULL,2),
+(58,'Clear Pronunciation Speech',NULL,2);
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode in (57,58);
+INSERT INTO `T_ProductVersion` VALUES 
+(57,'DEMO'),
+(57,'FV'),
+(58,'DEMO'),
+(58,'FV');
+
+-- Just for CP development
+insert into T_CoursePermission values ('781427902300193045','1');

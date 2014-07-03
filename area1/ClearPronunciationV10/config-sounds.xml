@@ -8,7 +8,7 @@
 	<platform>browser</platform>
 
 	<sharedMedia />
-	<brandingMedia />
+	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
 	<language>EN</language>
 
 	<contentPath>http://dock.contentBench/Content/</contentPath>
@@ -16,5 +16,6 @@
 	<remoteGateway>http://dock.projectBench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>ClearPronunciationService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
 </config>
 
