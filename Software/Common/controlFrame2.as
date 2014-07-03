@@ -33,6 +33,9 @@ this.whoami = "proxy root";
 controlNS.whoami = "controlNS";
 controlNS.master = this;
 
+function talkToMe() {
+	myTrace("talk to me from " + this.whoami);
+}
 // v6.3.3 What information has been passed to you on the command line?
 _global.ORCHID.commandLine = new Object();
 // v6.4 2 For now, leave these all on root and they will only work if run at the 

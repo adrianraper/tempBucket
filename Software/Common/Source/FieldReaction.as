@@ -110,11 +110,15 @@ _global.ORCHID.fieldDrag = function() {
 		var coord = {x:0, y:0};
 		this.localToGlobal(coord);
 		// v6.4.2 Since we might be off the zero, need to realign to match proxy root
-		//myTrace("global x=" + coord.x + " proxy offset=" + _global.ORCHID.root._x);
-		var rootXOffset = _global.ORCHID.root._x;
-		var rootYOffset = _global.ORCHID.root._y;
-		realDrag._x = coord.x - rootXOffset;
-		realDrag._y = coord.y - rootYOffset;
+		// gh#869 When in Bento, the stage is quite different, this is what we need the 'proxy' offset for
+		var orchidAnchor = {x:0, y:0};
+		_global.ORCHID.root.globalToLocal(orchidAnchor);
+		//myTrace("global x=" + coord.x + " proxy offset=" + orchidAnchor.x);
+		//myTrace("global y=" + coord.y + " proxy offset=" + orchidAnchor.y);
+		//var rootXOffset = _global.ORCHID.root._x;
+		//var rootYOffset = _global.ORCHID.root._y;
+		realDrag._x = coord.x + orchidAnchor.x;
+		realDrag._y = coord.y + orchidAnchor.y;
 		realDrag._width = this._width;
 		realDrag._height = this._height;
 	}
@@ -1781,7 +1785,7 @@ createDragObject= function(thisField, dragField) {
 
 createSelectBox = function(thisField, fieldCover) {
 	var fieldID = thisField.id;
-	myTrace("creating a select field=" + fieldID + ', cover=' + fieldCover );
+	//myTrace("creating a select field=" + fieldID + ', cover=' + fieldCover );
 
 	// try to get the style and size of the list box right
 	var thisTF = fieldCover._parent.getFieldTextFormat(fieldID); 
@@ -1794,7 +1798,7 @@ createSelectBox = function(thisField, fieldCover) {
 	//v6.3.5 If I remove this I get the desired effect of leaving text in place if I don't make new choice
 	// but for some reason I am losing the formatting of the list box font the second time I click.
 	var currentText = fieldCover.getText();
-	myTrace("font=" + thisTF.font + ", " + thisTF.size + " currentText=" + currentText);
+	//myTrace("font=" + thisTF.font + ", " + thisTF.size + " currentText=" + currentText);
 	fieldCover.clearText();
 	//myTrace("still font=" + thisTF.font + ", " + thisTF.size + ", text=" + currentText);
 
@@ -1808,10 +1812,13 @@ createSelectBox = function(thisField, fieldCover) {
 	fieldCover.localToGlobal(coord);
 	// v6.4.2 Since we might be off the zero, need to realign to match proxy root
 	//myTrace("global x=" + coord.x + " proxy offset=" + _global.ORCHID.root._x);
-	var rootXOffset = _global.ORCHID.root._x;
-	var rootYOffset = _global.ORCHID.root._y;
-	gapHolder._x = coord.x - rootXOffset;
-	gapHolder._y = coord.y - rootYOffset;
+	// gh#869
+	var orchidAnchor = {x:0, y:0};
+	_global.ORCHID.root.globalToLocal(orchidAnchor);
+	//var rootXOffset = _global.ORCHID.root._x;
+	//var rootYOffset = _global.ORCHID.root._y;
+	gapHolder._x = coord.x + orchidAnchor.x;
+	gapHolder._y = coord.y + orchidAnchor.y;
 	gapHolder._width = fieldCover._width;
 	gapHolder._height = fieldCover._height;
 	// v6.2 Now - because you are using fieldCover as a holding mc for the listbox, it will initially
@@ -1968,6 +1975,12 @@ gapListener.onMouseDown = function() {
 		var thisGap = eval(Selection.getFocus());
 		var thisPoint = {x:thisGap._x, y:thisGap._y};
 		thisGap._parent.localToGlobal(thisPoint);
+		// gh#869
+		var orchidAnchor = {x:0, y:0};
+		_global.ORCHID.root.globalToLocal(orchidAnchor);
+		thisPoint.x += orchidAnchor.x;
+		thisPoint.y += orchidAnchor.y;
+		
 		//myTrace("control click - check against gap=" + thisGap + " x=" + thisPoint.x + ", y=" + thisPoint.y);
 		if ((thisPoint.x > _root._xmouse) || ((thisPoint.x + thisGap._width) < _root._xmouse) ||
 		    (thisPoint.y > _root._ymouse) || ((thisPoint.y + thisGap._height) < _root._ymouse)){
@@ -2237,10 +2250,10 @@ createTypingBox = function(thisField, fieldCover) {
 	//if (currentAnswer == undefined && thisField.type == "i:presetGap") {
 	// v6.4.2.8 duplicated in fieldMouseUp (and anyway, but now this is a real gap)
 	if (currentAnswer == undefined && thisField.type == "i:targetGap") {
-		myTrace("first time, so pick up default");
+		//myTrace("first time, so pick up default");
 		currentAnswer = thisField.answer[0].value;
 	}
-	myTrace("currentAnswer=[" + currentAnswer + "] and type=" + thisField.type);
+	//myTrace("currentAnswer=[" + currentAnswer + "] and type=" + thisField.type);
 	/*
 	var thisGroupID = thisField.group;
 	var groupArrayIDX = lookupArrayItem(me.body.text.group, thisGroupID, "id");
@@ -2265,10 +2278,13 @@ createTypingBox = function(thisField, fieldCover) {
 	fieldCover.localToGlobal(coord);
 	// v6.4.2 Since we might be off the zero, need to realign to match proxy root
 	//myTrace("global x=" + coord.x + " proxy offset=" + _global.ORCHID.root._x);
-	var rootXOffset = _global.ORCHID.root._x;
-	var rootYOffset = _global.ORCHID.root._y;
-	gapHolder._x = coord.x - rootXOffset;
-	gapHolder._y = coord.y - rootYOffset;
+	// gh#869
+	var orchidAnchor = {x:0, y:0};
+	_global.ORCHID.root.globalToLocal(orchidAnchor);
+	//var rootXOffset = _global.ORCHID.root._x;
+	//var rootYOffset = _global.ORCHID.root._y;
+	gapHolder._x = coord.x + orchidAnchor.x;
+	gapHolder._y = coord.y + orchidAnchor.y;
 	gapHolder._width = fieldCover._width;
 	gapHolder._height = fieldCover._height;
 	gapHolder._alpha = 100; //IE10+Win8 fix gh#390

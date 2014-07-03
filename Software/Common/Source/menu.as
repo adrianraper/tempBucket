@@ -173,6 +173,12 @@ menuNS.displaySubMenu = function() {
 			var refPoint = new Object();
 			refPoint.x=0;refPoint.y=0;
 			thisSub.localToGlobal(refPoint);
+			// gh#869
+			var orchidAnchor = {x:0, y:0};
+			_global.ORCHID.root.globalToLocal(orchidAnchor);
+			refPoint.x += orchidAnchor.x;
+			refPoint.y += orchidAnchor.y;
+
 			//myTrace("thisSub.items=" + menuItems.length);
 			//myTrace("thisSub.width=" + subMenuDim.width + " .height=" + subMenuDim.height); 
 			//myTrace("thisSub.globalX=" + refPoint.x + " .localX=" + thisSub._x + " .stage=" + Stage.width); 

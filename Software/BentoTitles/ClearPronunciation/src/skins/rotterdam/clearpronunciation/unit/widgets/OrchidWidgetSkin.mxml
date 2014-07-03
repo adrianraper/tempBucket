@@ -71,7 +71,7 @@
 			<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 		</s:HGroup>
 		
-		<s:SWFLoader id="orchidSWFLoader" scaleContent="false" maintainAspectRatio="true" loadForCompatibility="false" trustContent="false"  />
+		<s:SWFLoader id="orchidSWFLoader" scaleContent="false" maintainAspectRatio="true" loadForCompatibility="false" trustContent="true"  />
 	</s:VGroup>
 	
 </s:Skin>

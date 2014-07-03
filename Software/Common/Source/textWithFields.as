@@ -921,7 +921,7 @@ TextWithFieldsClass.prototype.buildTextAndFields = function() {
 	this.aCoverOffset
 //	this.holder.border	= true;	// v6.5.4.2 Yiu, debug, uncomment this to show the textWithFieldBorder 
 
-	myTrace("set holder to empty, height=" + this.holder._height);
+	//myTrace("set holder to empty, height=" + this.holder._height);
 	// this variable holds consecutive newlines, you will probably only ever get two
 	// but this seems extensible
 	var foundNewLine = new Array();

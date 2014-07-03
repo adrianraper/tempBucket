@@ -87,6 +87,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			if (orchidReady) {
 				log.debug("Orchid do your thing");
 				orchidConnection.send('OrchidCommand','displayExercise', courseId, exerciseId);
+				//orchidSWFLoader.talkToMe();
 			}
 		}
 		

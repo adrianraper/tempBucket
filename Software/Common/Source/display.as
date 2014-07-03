@@ -699,7 +699,7 @@ putParagraphsOnTheScreen_stuffBefore = function(thisText, paneType, paneName, su
 		//} else {
 		var myPane = paneHolder.attachMovie(paneSymbol, paneName, myDepth, initObj); // For now, this is a reserved depth at root level
 		//}
-		myTrace("created " + paneSymbol + ":" + myPane + " at depth=" + myDepth);
+		//myTrace("created " + paneSymbol + ":" + myPane + " at depth=" + myDepth);
 	}
 	
 	ppotsVars.myPane = myPane; 
@@ -1029,7 +1029,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 	tlc.initialParaDepth = _global.ORCHID.initialParaDepth;
 	
 	// define the resumeLoop method
-	myTrace("loop will go to max=" + tlc.maxLoop);
+	//myTrace("loop will go to max=" + tlc.maxLoop);
 	tlc.resumeLoop = function(firstTime) {
 		//myTrace("resumeLoop display.as:649 for " + this.ppots.paneName);
 		var startTime = getTimer();
@@ -1354,7 +1354,7 @@ putParagraphsOnTheScreen_mainLoop = function(ppotsVars) {
 	}
 }
 putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
-	myTrace("ok, i am in ppots_stuffAfter for " + ppotsVars.paneName);
+	//myTrace("ok, i am in ppots_stuffAfter for " + ppotsVars.paneName);
 	var myX = ppotsVars.myX; myY = ppotsVars.myY; myW = ppotsVars.myW; myH = ppotsVars.myH;
 	var myMinW = ppotsVars.myMinW; myMinH = ppotsVars.myMinH;
 	var myLeftMargin = ppotsVars.myLeftMargin;
@@ -1689,17 +1689,17 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 	// comfort. But you wouldn't want to extend other regions, just exercise. APP clumsily gets round
 	// this by adding 3 blank paragraphs. Clearly these get ignored by test templates.
 	var max = ppotsVars.thisText.paragraph.length;
-	myTrace("max=" + max);
+	//myTrace("max=" + max);
 	if (max>0) {
-		myTrace("thing=" + ppotsVars.contentHolder["ExerciseBox"+(max-1)]);
+		//myTrace("thing=" + ppotsVars.contentHolder["ExerciseBox"+(max-1)]);
 		var lastTop = ppotsVars.contentHolder["ExerciseBox"+(max-1)]._y;
 		var lastHeight = Number(ppotsVars.contentHolder["ExerciseBox"+(max-1)].getSize().height);
-		myTrace("lastTop=" + lastTop + " lastHeight=" + lastHeight);
+		//myTrace("lastTop=" + lastTop + " lastHeight=" + lastHeight);
 	} else {
 		var lastTop = lastHeight = 0;
 	}
 	myPane.regionDepth = lastTop + lastHeight; // - 4; don't adjust for borders as you want them.
-	myTrace("new " + myPane._name + ".regionDepth=" + myPane.regionDepth);
+	//myTrace("new " + myPane._name + ".regionDepth=" + myPane.regionDepth);
 	//trace("same contentHeight=" + contentHolder._height);
 	
 	// noScroll code - does any media in the pane increase the height?
@@ -1732,7 +1732,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 			//myTrace("setMaxHeight to " + myMaxH);
 		}
 		// v6.3.5 the window now lets you request a preferred size for the content
-		myTrace("contentHolder.height=" + contentHolder._height + ", width=" + contentHolder._width);
+		//myTrace("contentHolder.height=" + contentHolder._height + ", width=" + contentHolder._width);
 		//myTrace("contentHolder.height=" + contentHolder._height + ", myH=" + myH);
 		// v6.4.3 But unfortunately the contentHolder doesn't include any graphics.
 		// v6.5.5.8 For small feedback we ideally want the width to expand to fit the single-line feedback.
@@ -1745,13 +1745,13 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 			var hSpacer = vSpacer = 12;
 			for (var i in thisText.media) {
 				var me = thisText.media[i].coordinates;
-				myTrace("image is " + me.width)
+				//myTrace("image is " + me.width)
 				// stuff apart from pictures/animations tends not to have a height so it won't
 				// effect anything.
 				if (Number(me.width)>0) {
 					myImageWidth = Math.max(myImageWidth, Number(me.width) + hSpacer);
 					myImageHeight = Math.max(myImageHeight, Number(me.height));
-					myTrace("image is bigger at " + myImageWidth + ", " + myImageHeight)
+					//myTrace("image is bigger at " + myImageWidth + ", " + myImageHeight)
 				}
 			}
 			//myTrace("for " + thisText.media[i].fileName + " bottom is at " + myHeight + " compare to " + contentHolder._height);
@@ -1762,7 +1762,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 				//myTrace("safedepth=" + safeDepth);
 				var myInitObject = {_x:myImageWidth, _y:myImageHeight};
 				var dummy = contentHolder.attachMovie("blob","endMarker", safeDepth, myInitObject)
-				myTrace("widen contentHolder to " + myImageWidth);
+				//myTrace("widen contentHolder to " + myImageWidth);
 			}
 			var thisWidth = contentHolder._width;
 		} else {
@@ -1781,7 +1781,7 @@ putParagraphsOnTheScreen_stuffAfter = function(ppotsVars) {
 		//myPane.refreshScrollContent();
 		//trace("pane can scroll " + myPane.getScrolling());
 		// v6.3.5 hijack
-		myTrace("and enable the pane");
+		//myTrace("and enable the pane");
 		myPane.setEnabled(true);
 
 	} else {

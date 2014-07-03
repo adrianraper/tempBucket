@@ -361,7 +361,7 @@ _global.ORCHID.setBrandStyles = function(branding) {
 setExerciseStyles = function() {
 	var me = _global.ORCHID.LoadedExercises[0];
 	for (i in me.style) {
-		myTrace("in sES with " + me.style[i].name);
+		//myTrace("in sES with " + me.style[i].name);
 		var thisStyle = me.style[i].name;
 		// are we overriding an existing style, or creating a new one?
 		if (_global.ORCHID[thisStyle] == undefined) {

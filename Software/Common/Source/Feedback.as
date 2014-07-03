@@ -1869,6 +1869,12 @@ displayFeedback = function(thisFeedback, correct, stdAnswer, correctAnswer, ques
 		var thisCover = _global.ORCHID.session.currentItem.thisGap.cover;
 		var thisPoint = {x:thisCover._x, y:thisCover._y};
 		thisCover._parent.localToGlobal(thisPoint);
+		// gh#869
+		var orchidAnchor = {x:0, y:0};
+		_global.ORCHID.root.globalToLocal(orchidAnchor);
+		thisPoint.x += orchidAnchor.x;
+		thisPoint.y += orchidAnchor.y;
+		
 		// But these fb boxes want to go above the gap. Ideally we would make the x,y an anchor for the bottom left corner.
 		// But for now it is quicker to just assume that the height is always the same
 		thisPoint.y -= 60;
