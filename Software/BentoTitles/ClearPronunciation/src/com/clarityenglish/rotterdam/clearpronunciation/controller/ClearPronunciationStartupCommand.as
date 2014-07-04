@@ -41,9 +41,9 @@ package com.clarityenglish.rotterdam.clearpronunciation.controller
 			
 			// Set the transforms that Rotterdam player uses when loading its courses.xml files (gh#144)
 			// gh#689, gh#882
-			var courseTransforms:Array = [ new CourseEnabledTransform(), 
+			/*var courseTransforms:Array = [ new CourseEnabledTransform(), 
 				new CourseAttributeCopyTransform() ]; 
-			xhtmlProxy.registerTransforms(courseTransforms, [ Href.XHTML ], /^courses.xml$/);
+			xhtmlProxy.registerTransforms(courseTransforms, [ Href.XHTML ], /^courses.xml$/);*/
 			
 			// gh#333
 			ProgressMediator.reloadMenuXHTMLOnProgress = true;

@@ -1,4 +1,6 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	
 	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
@@ -24,6 +26,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		[SkinPart(required="true")]
 		public var orchidSWFLoader:SWFLoader;
+		
+		private var _courseID:String;
+		private var _exerciseID:String;
+		private var _contentUID:String;
+		private var contentUIDChanged:Boolean;
 		
 		public function OrchidWidget() {
 			super();
@@ -59,6 +66,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _xml.hasOwnProperty("@src");
 		}
 		
+		[Bindable(event="contentuidAttrChanged")]
+		public function get contentUID():String {
+			return _xml.@contentuid;
+		}
+		
+		public function setContentUID(value:String):void {
+			_contentUID = value;
+			contentUIDChanged = true;
+			invalidateProperties();
+		}
+		
 		public function get orchidUrl():String {
 			if (hasSrc)
 				return src;
@@ -66,27 +84,25 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return null;
 		}
 		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
 		
-		protected override function partAdded(partName:String, instance:Object):void {
-			super.partAdded(partName, instance);
+		protected override function commitProperties():void {
+			super.commitProperties();
 			
-			switch (instance) {
-				case fakeThumbnailImage:
-					fakeThumbnailImage.buttonMode = true;
-					fakeThumbnailImage.addEventListener(MouseEvent.CLICK, onFakeImageClick);
-					break;
+			if (contentUIDChanged) {
+				var contentUIDArray:Array = _contentUID.split(".");
+				changeContentuid(contentUIDArray[1], contentUIDArray[3]);
 			}
 		}
 		
-		protected function onFakeImageClick(event:MouseEvent):void {
-			var exerciseId:String = '1267503931827';
-			var courseId:String = '1250560407550';
-			
+		protected function changeContentuid(courseID:String, exerciseID:String):void {		
 			log.debug("Click to go to a different exercise please");
 			
 			if (orchidReady) {
 				log.debug("Orchid do your thing");
-				orchidConnection.send('OrchidCommand','displayExercise', courseId, exerciseId);
+				orchidConnection.send('OrchidCommand','displayExercise', courseID, exerciseID);
 				//orchidSWFLoader.talkToMe();
 			}
 		}

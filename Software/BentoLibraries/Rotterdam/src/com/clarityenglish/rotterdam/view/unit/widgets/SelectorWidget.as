@@ -66,6 +66,18 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			if (indexChanged) {
 				universalWidget.index = _index;
 				indexChanged = false;
+			}		
+		}
+		
+		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
+			if (getCurrentSkinState() == "videoSelector") {
+				selectorList.right = 0;
+				universalWidget.left = 0;
+			} else if (getCurrentSkinState() == "normalSelector") {
+				selectorList.left = 0;
+				universalWidget.right = 0;
 			}
 				
 		}
@@ -89,6 +101,10 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			} else {
 				return "normalSelector";
 			}
+		}
+		
+		protected function onSrcAttrChanged(event:Event = null):void {
+			invalidateSkinState();
 		}
 		
 		protected function onSelectorListClick(event:Event):void {

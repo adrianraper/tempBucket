@@ -27,9 +27,9 @@
 	
 	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 	
-	<s:HGroup paddingTop="25">
-		<s:Group>
-			<s:List id="selectorList" left.normalSelector="0" left.videoSelector="520" height="100%" dataProvider="{hostComponent.widgetSelectorCollection}" labelField="@caption" requireSelection="true" borderVisible="false" contentBackgroundAlpha="0">
+	<s:HGroup width="100%" paddingTop="25">
+		<s:Group width="100%">
+			<s:List id="selectorList" height="100%" width="20%" dataProvider="{hostComponent.widgetSelectorCollection}" labelField="@caption" requireSelection="true" borderVisible="false" contentBackgroundAlpha="0">
 				<s:itemRenderer>
 					<fx:Component>
 						<s:ItemRenderer>
@@ -52,7 +52,7 @@
 					</fx:Component>
 				</s:itemRenderer>
 			</s:List>
-			<ui:UniversalWidget id="universalWidget" left.normalSelector="150"/>
+			<ui:UniversalWidget id="universalWidget" width="80%"/>
 		</s:Group>
 	</s:HGroup>
 </s:Skin>

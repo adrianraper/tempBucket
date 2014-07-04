@@ -29,8 +29,9 @@
 				context.securityDomain = SecurityDomain.currentDomain;
 				context.applicationDomain = new ApplicationDomain();
 				orchidSWFLoader.loaderContext = context;*/
-				
-				orchidSWFLoader.source = hostComponent.orchidUrl;
+				var contentUIDArray:Array = hostComponent.contentUID.split(".");
+				orchidSWFLoader.source = hostComponent.getCopyProvider().getCopyForId("orchidPath", {courseID: contentUIDArray[1], exerciseID: contentUIDArray[3]});
+				//orchidSWFLoader.source = hostComponent.orchidUrl;
 				//loader.contentLoaderInfo.addEventListener(Event.COMPLETE,loadComplete);
 				//loader.load(new URLRequest(hostComponent.orchidUrl));
 				

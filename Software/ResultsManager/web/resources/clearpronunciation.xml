@@ -99,6 +99,7 @@
             <!--  if you release a new title without compiling Rotterdam, use this for the productCode -->
             <lit name="path55">NewTitle</lit>
             <lit name="pathTenseBuster10">TenseBuster10</lit>
+            <lit name="orchidPath"><![CDATA[http://dock.projectbench/Software/Common/control.swf?browser=true&bento=true&preview=true&userDataPath=/area1/ClearPronunciation&prefix=clarity&productCode=39&location=location.txt&username=alice xu&password=clarity&course={courseID}&startingPoint=ex:{exerciseID}]]></lit>
             
 			<lit name="printButton">Print</lit>
 			<lit name="noButton">No</lit>
