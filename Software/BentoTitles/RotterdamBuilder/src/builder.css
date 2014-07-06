@@ -304,6 +304,10 @@ uniteditor|AuthoringView s|Button#cancelButton {
 	skinClass:ClassReference("skins.rotterdam.ui.GreyButtonSkin");
 }
 
+uniteditor|AuthoringSettingsView {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.AuthoringSettingsSkin");
+}
+
 filemanager|FileManagerView {
 	skinClass: ClassReference("skins.rotterdam.builder.filemanager.FileManagerSkin");
 }

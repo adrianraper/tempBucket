@@ -1,4 +1,5 @@
 package com.clarityenglish.bento.view.base {
+	import com.clarityenglish.bento.form.AbstractFormItemHandler;
 	import com.clarityenglish.bento.view.base.events.BentoEvent;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.interfaces.CopyProvider;
@@ -49,6 +50,11 @@ package com.clarityenglish.bento.view.base {
 		 * This is used to allow view navigators to be linked to view states gh#241
 		 */
 		private var _navStateMapInstances:Dictionary = new Dictionary(true);
+		
+		/**
+		 * This is used by the form framework gh#779
+		 */
+		protected var formItemHandlers:Dictionary = new Dictionary(true);
 		
 		// #234
 		protected var _productVersion:String;
@@ -236,6 +242,16 @@ package com.clarityenglish.bento.view.base {
 			var navStateMap:NavStateMap = _navStateMapInstances[tabbedViewNavigator];
 			
 			navStateMap.setStateMap(stateMap);
+		}
+		
+		public function addFormItemHandler(formItemHandler:AbstractFormItemHandler):void {
+			if (!formItemHandler.target) return; // support adding of null targets in order to allow handlers to be added without checking if a component is in a skin
+			
+			if (!formItemHandlers[formItemHandler.target]) {
+				formItemHandlers[formItemHandler.target] = formItemHandler;
+			} else {
+				log.error("There is already a form item handler for {0}", formItemHandler.target);
+			}
 		}
 		
 	}

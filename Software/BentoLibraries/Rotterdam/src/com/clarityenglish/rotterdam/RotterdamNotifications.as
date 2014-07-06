@@ -37,6 +37,7 @@
 		public static const COURSE_CREATE_WINDOW_SHOW:String = "rotterdam/course_create_window_show";
 		public static const CONTENT_WINDOW_SHOW:String = "rotterdam/content_window_show";
 		public static const AUTHORING_WINDOW_SHOW:String = "rotterdam/authoring_window_show";
+		public static const AUTHORING_SETTINGS_WINDOW_SHOW:String = "rotterdam/authoring_settings_window_show";
 		
 		// gh#64
 		public static const VIDEO_LOAD_ERROR:String = "rotterdam/video_load_error";
