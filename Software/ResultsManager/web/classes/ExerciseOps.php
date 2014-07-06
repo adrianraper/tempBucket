@@ -13,6 +13,8 @@ class ExerciseOps {
       	<questionNumberingEnabled>true</questionNumberingEnabled>
       	<questionNumbering>1</questionNumbering>
       	<questionStartNumber>1</questionStartNumber>
+      	<answerNumbering>1</answerNumbering>
+      	<shuffleAnswers>false</shuffleAnswers>
       	<markingType>instant</markingType>
       	<exerciseFeedbackEnabled>true</exerciseFeedbackEnabled>
       	<exerciseFeedbackText>I am some exercise feedback</exerciseFeedbackText>

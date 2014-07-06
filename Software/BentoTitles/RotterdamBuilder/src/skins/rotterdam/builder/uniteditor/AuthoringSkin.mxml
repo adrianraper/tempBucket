@@ -91,6 +91,7 @@
 		<s:HGroup>
 			<s:Button id="okButton" />
 			<s:Button id="cancelButton" />
+			<s:Button id="settingsButton" />
 			<s:Button label="TEST XML" click="trace(hostComponent.DELETE_ME_XML.toXMLString())" />
 		</s:HGroup>
 	</s:VGroup>

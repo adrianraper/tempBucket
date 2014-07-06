@@ -40,6 +40,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		[SkinPart(required="true")]
 		public var cancelButton:Button;
 		
+		[SkinPart(required="true")]
+		public var settingsButton:Button;
+		
 		[Bindable]
 		public var questions:ListCollectionView;
 		
@@ -52,6 +55,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var widgetNode:XML;
 		
 		public var exerciseSave:Signal = new Signal(XML, XML, Href);
+		public var showSettings:Signal = new Signal(Href);
 		
 		public function get DELETE_ME_XML():XML { return _xhtml.xml; }
 		
@@ -97,6 +101,10 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				case cancelButton:
 					cancelButton.addEventListener(MouseEvent.CLICK, onCancelButton);
 					cancelButton.label = copyProvider.getCopyForId("cancelButton");
+					break;
+				case settingsButton:
+					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsButton);
+					settingsButton.label = copyProvider.getCopyForId("settingsButton");
 					break;
 			}
 		}
@@ -145,6 +153,10 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function onCancelButton(event:MouseEvent):void {
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
+		}
+		
+		protected function onSettingsButton(event:MouseEvent):void {
+			showSettings.dispatch(href);
 		}
 		
 		/**

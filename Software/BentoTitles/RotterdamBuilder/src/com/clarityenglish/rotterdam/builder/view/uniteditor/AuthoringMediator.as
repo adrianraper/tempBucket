@@ -40,12 +40,14 @@
 				view.href = bentoProxy.menuXHTML.href.createRelativeHref(Href.EXERCISE_GENERATOR, view.widgetNode.@href);
 			
 			view.exerciseSave.add(onExerciseSave);
+			view.showSettings.add(onShowSettings);
 		}
 		
 		override public function onRemove():void {
 			super.onRemove();
 			
 			view.exerciseSave.remove(onExerciseSave);
+			view.showSettings.remove(onShowSettings);
 		}
 		
 		override public function listNotificationInterests():Array {
@@ -64,6 +66,10 @@
 		
 		protected function onExerciseSave(widgetXML:XML, exerciseXML:XML, exerciseGeneratorHref:Href):void {
 			sendNotification(RotterdamNotifications.EXERCISE_SAVE, { widgetXML: widgetXML, exerciseXML: exerciseXML });
+		}
+		
+		protected function onShowSettings(href:Href):void {
+			sendNotification(RotterdamNotifications.AUTHORING_SETTINGS_WINDOW_SHOW, { href: href });
 		}
 		
 	}
