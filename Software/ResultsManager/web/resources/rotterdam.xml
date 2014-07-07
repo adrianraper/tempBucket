@@ -223,7 +223,21 @@
 			<lit name="courseEditableLabel">Lock the course</lit>
 			<lit name="courseListTitleLabel">Choose a course</lit>
 			<lit name="createCourseButton">Create a new course</lit>
-			<lit name="showFiltersToggleButton">Filter courses</lit>
+			<!--  gh#619 -->
+			<lit name="showFiltersToggleButton">Filter/sort</lit>
+			<lit name="filtersHeading">Filter courses by:</lit>
+			<lit name="sortHeading">Sort courses by:</lit>
+			<lit name="filterOwnerCourses">Your courses</lit>
+			<lit name="filterCollaboratorCourses">Courses you can edit</lit>
+			<lit name="filterPublisherCourses">Courses you can publish</lit>
+			<lit name="sortCreateDate">create date</lit>
+			<lit name="sortModifiedDate">last changed date</lit>
+			<lit name="sortSize">size</lit>
+			<lit name="sortPopularity">popularity</lit>
+			<lit name="sortName">name</lit>
+			<lit name="sortDescending">descending</lit>
+			<lit name="filterTagsPrompt">Type name or tag</lit>
+			
 			<lit name="myCoursesViewNavigator">My Courses</lit>
 			<lit name="progressViewNavigator">Progress</lit>
 			<lit name="cloudViewNavigator">Resource cloud</lit>
@@ -301,9 +315,7 @@
 			<lit name="courseDescriptionFormItemHelp">not currently used</lit>
 			<lit name="authorFormItemHelp">Shown in emails and credits</lit>
 			<lit name="contactEmailFormItemHelp">For emailing unit notifications</lit>
-			
-			<lit name="filterTagsPrompt">Name or tags</lit>
-			
+						
 			<lit name="licencedToName">Licensed to {name}</lit>
 			<lit name="forgotPasswordLabel">Forgot your password?</lit>
 			<lit name="forgotPasswordLink"><![CDATA[http://www.clarityenglish.com/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>

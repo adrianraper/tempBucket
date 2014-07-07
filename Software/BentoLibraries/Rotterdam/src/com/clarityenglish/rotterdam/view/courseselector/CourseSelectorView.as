@@ -22,6 +22,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import spark.components.BusyIndicator;
 	import spark.components.Button;
 	import spark.components.CheckBox;
+	import spark.components.FormHeading;
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
@@ -75,6 +76,12 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		[SkinPart]
 		public var showFiltersToggleButton:ToggleButton;
+		
+		[SkinPart]
+		public var filterHeadingFormHeading:FormHeading;
+		
+		[SkinPart]
+		public var sortHeadingFormHeading:FormHeading;
 		
 		[SkinPart]
 		public var filtersPanel:Group;
@@ -141,17 +148,41 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					filterTextInput.addEventListener(Event.CHANGE, onChangeFilter);
 					break;
 				case filterOwner:
-				case filterPublisher:
+					instance.label = copyProvider.getCopyForId("filterOwnerCourses");
+					instance.addEventListener(Event.CHANGE, onChangeFilter);
+					break;
 				case filterCollaborator:
+					instance.label = copyProvider.getCopyForId("filterCollaboratorCourses");
+					instance.addEventListener(Event.CHANGE, onChangeFilter);
+					break;
+				case filterPublisher:
+					instance.label = copyProvider.getCopyForId("filterPublisherCourses");
 					instance.addEventListener(Event.CHANGE, onChangeFilter);
 					break;
 				case sortRadioButtonGroup:
 					sortRadioButtonGroup.addEventListener(ItemClickEvent.ITEM_CLICK, onChangeSort);
 					break;
 				case sortCreateDate:
+					instance.label = copyProvider.getCopyForId("sortCreateDate");
 					sortCreateDate.selected = true;
 					break;
+				case sortChangeDate:
+					instance.label = copyProvider.getCopyForId("sortModifiedDate");
+					break;
+				case sortChangeDate:
+					instance.label = copyProvider.getCopyForId("sortModifiedDate");
+					break;
+				case sortSize:
+					instance.label = copyProvider.getCopyForId("sortSize");
+					break;
+				case sortPopularity:
+					instance.label = copyProvider.getCopyForId("sortPopularity");
+					break;
+				case sortName:
+					instance.label = copyProvider.getCopyForId("sortName");
+					break;
 				case sortDescendingCheckBox:
+					instance.label = copyProvider.getCopyForId("sortDescending");
 					sortDescendingCheckBox.addEventListener(Event.CHANGE, onChangeSort);
 					sortDescendingCheckBox.selected = true;
 					break;
@@ -159,6 +190,12 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					showFiltersToggleButton.label = copyProvider.getCopyForId("showFiltersToggleButton");
 					showFiltersToggleButton.selected = false;
 					showFiltersToggleButton.addEventListener(Event.CHANGE, onShowHideFilters);
+					break;
+				case filterHeadingFormHeading:
+					filterHeadingFormHeading.label = copyProvider.getCopyForId("filtersHeading");
+					break;
+				case sortHeadingFormHeading:
+					sortHeadingFormHeading.label = copyProvider.getCopyForId("sortHeading");
 					break;
 			}
 		}
@@ -209,7 +246,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 							};
 							break;
 						case sortPopularity:
-							sortAttribute = "@timesPublished";
+							sortAttribute = "@timesUsed";
 							break;
 						case sortSize:
 							sortAttribute = "@size";

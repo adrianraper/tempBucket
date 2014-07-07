@@ -160,18 +160,23 @@ SQL;
 			// Sanity checks
 			if (sizeof($courses) != 1)
 					throw new Exception("C-Builder menu.xml files must have exactly one course node");
-			
-			$course = $courses[0];
-			
-			// If the course is missing an id then add it in
-			if (!isset($course['id'])) $course['id'] = $courseId;
-			
-			// If the units or exercises are missing ids then generate them.  At the same time if any unit has a tempid attribute, remove it.
-			foreach ($course->unit as $unit) {
-				if (!isset($unit['id'])) $unit['id'] = UniqueIdGenerator::getUniqId();
-				foreach ($unit->exercise as $exercise) {
-					if (!isset($exercise['id'])) $exercise['id'] = UniqueIdGenerator::getUniqId();
-					if (isset($exercise['tempid'])) unset($exercise['tempid']); // gh#90
+				
+				$course = $courses[0];
+				
+				// If the course is missing an id then add it in
+				if (!isset($course['id'])) $course['id'] = $courseId;
+				
+				// gh#619 update the last saved date
+				$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+				$course['lastSaved'] = $dateStampNow->format('Y-m-d 23:59:59'); 
+				
+				// If the units or exercises are missing ids then generate them.  At the same time if any unit has a tempid attribute, remove it.
+				foreach ($course->unit as $unit) {
+					if (!isset($unit['id'])) $unit['id'] = UniqueIdGenerator::getUniqId();
+					foreach ($unit->exercise as $exercise) {
+						if (!isset($exercise['id'])) $exercise['id'] = UniqueIdGenerator::getUniqId();
+						if (isset($exercise['tempid'])) unset($exercise['tempid']); // gh#90
+					}
 				}
 			}
 			

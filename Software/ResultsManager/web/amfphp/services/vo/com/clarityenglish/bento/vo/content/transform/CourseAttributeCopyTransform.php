@@ -26,6 +26,13 @@ class CourseAttributeCopyTransform extends XmlTransform {
 			
 			$timesUsed = $service->courseOps->countSessions($courseID);
 			$course->addAttribute('timesUsed', $timesUsed);
+			
+			// Count the number of exercise nodes as a 'size' estimate
+			$menuXML->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+			$exercises = $menuXML->xpath("//xmlns:exercise");
+			$size = count($exercises);
+			$course->addAttribute('size', $size);
+				
 		}
 	}
 }
