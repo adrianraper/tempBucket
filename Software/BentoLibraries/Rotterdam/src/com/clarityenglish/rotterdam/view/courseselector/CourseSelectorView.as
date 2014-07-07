@@ -9,6 +9,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
 	
+	import mx.collections.ICollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.events.CloseEvent;
 	import mx.events.FlexEvent;
@@ -113,6 +114,8 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		private var isCourseListCreated:Boolean;
 		
+		//private var sort:Sort;
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 		}
@@ -122,8 +125,13 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			
 			courseList.dataProvider = new XMLListCollection(xhtml.courses.course);
 			var sort:Sort = new Sort();
-			sort.fields = [new SortField('@createDate', sortDescendingCheckBox.selected, true)];
+			var sortField:SortField = new SortField('@created', true, null);
+			// TODO how to get the real locale?
+			sortField.setStyle('locale', 'en-US');
+			sort.fields = [sortField];
+			
 			(courseList.dataProvider as XMLListCollection).sort = sort;
+			(courseList.dataProvider as XMLListCollection).refresh();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -212,12 +220,11 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		// gh#619
 		protected function onChangeSort(event:Event):void {
 			var sortComparison:Function = null;
-			// TODO how to get the real locale?
-			setStyle('locale', 'en-US');
 			switch (event.target) {
 				case sortDescendingCheckBox:
 					var sort:Sort = new Sort();
-					sort.fields = (courseList.dataProvider as XMLListCollection).sort.fields; 
+					sort.fields = (courseList.dataProvider as XMLListCollection).sort.fields;
+					sort.compareFunction = (courseList.dataProvider as XMLListCollection).sort.compareFunction;
 					(courseList.dataProvider as XMLListCollection).sort = sort;
 					sort.reverse();
 					(courseList.dataProvider as XMLListCollection).refresh();
@@ -226,37 +233,57 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					switch (sortRadioButtonGroup.selection) {
 						case sortCreateDate:
 							var sortAttribute:String = "@created";
+							var sortNumeric:Object = null; 
 							break;
 						case sortName:
 							sortAttribute = "@caption";
-							sortComparison = function(a:Object, b:Object, fields:Array):int {
+							// Note that when you use a custom sort, sort.reverse doesn't work - so you need to add direction in here
+							var sortComparisonDirection:Function = function(a:Object, b:Object, fields:Array, descending:Boolean):int { 
 								// http://stackoverflow.com/questions/16067374/as3-sorting-alphabetically-and-numerically-simultaneously
 								// This part should be extracted to a common String class
-								var reA:RegExp = /[\W]/g;
+								var reA:RegExp = /[\d]/g;
 								var reN:RegExp = /[\D]/g;
 								var aA:String = a.@caption.toLowerCase().replace(reA, "");
 								var bA:String = b.@caption.toLowerCase().replace(reA, "");
 								if (aA === bA) {
-									var aN:int = parseInt(a.@caption.replace(reN, ""), 10);
-									var bN:int = parseInt(b.@caption.replace(reN, ""), 10);
-									return aN === bN ? 0 : aN > bN ? 1 : -1;
+									var aN:int = parseInt(a.@caption.toLowerCase().replace(reN, ""));
+									var bN:int = parseInt(b.@caption.toLowerCase().replace(reN, ""));
+									if (descending) {
+										return aN === bN ? 0 : aN > bN ? 1 : -1;
+									} else {
+										return aN === bN ? 0 : aN < bN ? 1 : -1;
+									}
 								} else {
-									return aA > bA ? 1 : -1;
+									if (descending) {
+										return aA > bA ? 1 : -1;
+									} else {
+										return aA < bA ? 1 : -1;
+									}
 								}
 							};
+							sortComparison = function(a:Object, b:Object, fields:Array):int {
+								return sortComparisonDirection(a, b, fields, sortDescendingCheckBox.selected);
+							};
+							sortNumeric = false;
 							break;
 						case sortPopularity:
+							sortNumeric = true;
 							sortAttribute = "@timesUsed";
 							break;
 						case sortSize:
+							sortNumeric = true;
 							sortAttribute = "@size";
 							break;
 						case sortChangeDate:
+							sortNumeric = null;
 							sortAttribute = "@lastSaved";
 							break;
 					}
 					sort = new Sort();
-					sort.fields = [new SortField(sortAttribute, sortDescendingCheckBox.selected, true)];
+					var sortField:SortField = new SortField(sortAttribute, sortDescendingCheckBox.selected, sortNumeric);
+					sort.fields = [sortField];
+					// TODO how to get the real locale?
+					sortField.setStyle('locale', 'en-US');
 					sort.compareFunction = sortComparison;
 					(courseList.dataProvider as XMLListCollection).sort = sort;
 					(courseList.dataProvider as XMLListCollection).refresh();
