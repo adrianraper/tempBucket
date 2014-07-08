@@ -585,7 +585,13 @@
 			
 			// Then send the byte stream to the server. Go through amfphp simply to keep everything in one place?
 			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php";
-			pdf.save(Method.REMOTE, pdfURL, Download.ATTACHMENT);
+			// gh#950
+			//pdf.save(Method.REMOTE, pdfURL, Download.ATTACHMENT);
+			var bytesTemp:ByteArray = pdf.save(Method.LOCAL);
+			var sendRequest:URLRequest = new URLRequest(pdfURL);
+			sendRequest.method = URLRequestMethod.POST;
+			sendRequest.data = bytesTemp;
+			navigateToURL(sendRequest,'_blank');
 			
 			// Then close
 			pdf.end();
