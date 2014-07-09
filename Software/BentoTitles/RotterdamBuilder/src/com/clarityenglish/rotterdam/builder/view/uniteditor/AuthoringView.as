@@ -67,6 +67,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			super.updateViewFromXHTML(xhtml);
 			
 			questions = new XMLListCollection(exerciseGenerator.questions.*);
+			log.debug("Loaded {0} questions from xml", questions.length);
 			
 			// Update the skin state from the loaded xhtml
 			callLater(invalidateSkinState);

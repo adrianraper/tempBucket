@@ -197,6 +197,13 @@
 			<lit name="youTubeBase"><![CDATA[http://youtu.be\/{id}]]></lit>
 			<lit name="vimeoBase"><![CDATA[https://vimeo.com\/{id}]]></lit>
 			
+			<!-- Section for authoring exercises -->
+			<lit name="questionNumberingFormat1">1, 2, 3</lit>
+			<lit name="questionNumberingFormat2">A, B, C</lit>
+			<lit name="questionNumberingFormat3">a, b, c</lit>
+			<lit name="questionNumberingFormat4">i, ii, iii</lit>
+			<lit name="questionNumberingFormat5">一, 二, 三</lit>
+			
 		</group>
 	</language>
 </literals>

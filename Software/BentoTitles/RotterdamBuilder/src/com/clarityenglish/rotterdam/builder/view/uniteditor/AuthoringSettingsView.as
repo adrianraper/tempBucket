@@ -130,7 +130,22 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case questionStartNumberTextInput:
 					questionStartNumberTextInput.restrict = "0-9";
-					break
+					break;
+				case numbering1RadioButton:
+					instance.label = copyProvider.getCopyForId("questionNumberingFormat1");
+					break;
+				case numbering2RadioButton:
+					instance.label = copyProvider.getCopyForId("questionNumberingFormat2");
+					break;
+				case numbering3RadioButton:
+					instance.label = copyProvider.getCopyForId("questionNumberingFormat3");
+					break;
+				case numbering4RadioButton:
+					instance.label = copyProvider.getCopyForId("questionNumberingFormat4");
+					break;
+				case numbering5RadioButton:
+					instance.label = copyProvider.getCopyForId("questionNumberingFormat5");
+					break;
 			}
 		}
 		

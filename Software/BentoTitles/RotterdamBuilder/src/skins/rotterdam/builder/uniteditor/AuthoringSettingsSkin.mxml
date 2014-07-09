@@ -29,11 +29,11 @@
 		<s:HGroup width="100%" gap="0">
 			<s:Form width="50%">
 				<s:FormItem>
-					<s:RadioButton id="numbering1RadioButton" label="1, 2, 3" group="{numberingGroup}" />
-					<s:RadioButton id="numbering2RadioButton" label="i, ii, iii" group="{numberingGroup}" />
-					<s:RadioButton id="numbering3RadioButton" label="a), b), c)" group="{numberingGroup}" />
-					<s:RadioButton id="numbering4RadioButton" label="--&gt;, --&gt;, --&gt;" group="{numberingGroup}" />
-					<s:RadioButton id="numbering5RadioButton" label="sqwiggle" group="{numberingGroup}" />
+					<s:RadioButton id="numbering1RadioButton" group="{numberingGroup}" />
+					<s:RadioButton id="numbering2RadioButton" group="{numberingGroup}" />
+					<s:RadioButton id="numbering3RadioButton" group="{numberingGroup}" />
+					<s:RadioButton id="numbering4RadioButton" group="{numberingGroup}" />
+					<s:RadioButton id="numbering5RadioButton" group="{numberingGroup}" />
 				</s:FormItem>
 
 				<s:FormItem>
