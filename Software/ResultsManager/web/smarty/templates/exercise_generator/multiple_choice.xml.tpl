@@ -207,7 +207,7 @@
 				{foreach from=$questions item=question name=question}
 				<div id="q{$smarty.foreach.question.index}" class="question">
 					<div class="question-number">
-						{$smarty.foreach.question.iteration}
+						{formatQuestionNumber idx=$smarty.foreach.question.iteration format=$xml->settings->questionNumbering startFrom=$xml->settings->questionStartNumber}
 					</div>
 			    	<div class="question-text">
 						{$question->question}
