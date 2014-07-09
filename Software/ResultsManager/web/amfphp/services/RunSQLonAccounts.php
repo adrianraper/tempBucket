@@ -132,10 +132,11 @@ SQL;
 	}		
 }
 // For archiving users who haven't done anything for a while.
-function archiveUsersWithNoRecentActivity($cutoffDate, $account, $database='rack80829') {
+// But keep users who have been registered in the last x period but haven't done anything!
+function archiveUsersWithNoRecentActivity($cutoffDate, $account, $rowLimit=100, $database='rack80829') {
 	global $dmsService;
 	
-	$bindingParams = array($account->id, $cutoffDate);
+	$bindingParams = array($account->id, $cutoffDate, $rowLimit);
 		
 	// Find all the users who we want to archive (those that don't have a recent session record to their name)
 	$sql = <<<SQL
@@ -144,7 +145,8 @@ function archiveUsersWithNoRecentActivity($cutoffDate, $account, $database='rack
 			and m.F_RootID = ?
 			and not exists (select * from $database.T_Session s
 				where u.F_UserID = s.F_UserID
-				and s.F_StartDateStamp > ?);
+				and s.F_StartDateStamp > ?)
+			limit 0,?;
 SQL;
 	$rs = $dmsService->db->Execute($sql, $bindingParams);
 
@@ -226,7 +228,102 @@ SQL;
 		// send back the number of archived users
 		return $rs->RecordCount();
 }
+// For restoring archived users.
+// First method is based on more recent users, those with userID above x
+function restoreArchivedUsers($cutoffID, $account, $rowLimit=100, $database='rack80829') {
+	global $dmsService;
 	
+	$bindingParams = array($account->id, $cutoffID, $rowLimit);
+		
+	// Find all the users who we want to archive (those that don't have a recent session record to their name)
+	$sql = <<<SQL
+			select u.* from $database.T_User_Expiry u, $database.T_Membership_Expiry m
+			where u.F_UserID = m.F_UserID
+			and m.F_RootID = ?
+			and u.F_UserID >= ?
+			limit 0,?;
+SQL;
+	$rs = $dmsService->db->Execute($sql, $bindingParams);
+
+	// Loop round the recordset, inserting each to *_Expiry then deleting the related records for each userID
+	// This takes too long with lots of users, so can you do them all in one go?
+	if ($rs->RecordCount() > 0) {
+		$userArray = array();
+		while ($dbObj = $rs->FetchNextObj()) {
+			$userID = $dbObj->F_UserID;
+			// gh#359
+			if ($userID < 1) {
+				AbstractService::$debugLog->notice("Request to delete user $userID repulsed! DailyJobOps.archiveUsersWithNoRecentActivity");
+				continue 1;
+			}
+			$userArray[] = $userID;
+		}
+		$userList = implode(',', $userArray);
+
+		//echo "userlist=".$userList."<br/>"; return $rs->RecordCount();
+		
+		$dmsService->db->StartTrans();
+		
+		$bindingParams = array();
+		$sql = <<<SQL
+			INSERT INTO $database.T_Membership
+			SELECT * FROM $database.T_Membership_Expiry 
+			WHERE F_UserID in ($userList);
+SQL;
+		$rc = $dmsService->db->Execute($sql, $bindingParams);
+		
+		$sql = <<<SQL
+			DELETE FROM $database.T_Membership_Expiry
+			WHERE F_UserID in ($userList);
+SQL;
+		$rc = $dmsService->db->Execute($sql, $bindingParams);
+		
+		$sql = <<<SQL
+			INSERT INTO $database.T_Session
+			SELECT * FROM $database.T_Session_Expiry
+			WHERE F_UserID in ($userList);
+SQL;
+		$rc = $dmsService->db->Execute($sql, $bindingParams);
+		
+		$sql = <<<SQL
+			DELETE FROM $database.T_Session_Expiry
+			WHERE F_UserID in ($userList);
+SQL;
+		$rc = $dmsService->db->Execute($sql, $bindingParams);
+		
+		$sql = <<<SQL
+			INSERT INTO $database.T_Score
+			SELECT * FROM $database.T_Score_Expiry 
+			WHERE F_UserID in ($userList);
+SQL;
+		$rc = $dmsService->db->Execute($sql, $bindingParams);
+		
+		$sql = <<<SQL
+			DELETE FROM $database.T_Score_Expiry
+			WHERE F_UserID in ($userList);
+SQL;
+		$rc = $dmsService->db->Execute($sql, $bindingParams);
+		
+		$sql = <<<SQL
+			INSERT INTO $database.T_User
+			SELECT * FROM $database.T_User_Expiry 
+			WHERE F_UserID in ($userList);
+SQL;
+		$rc = $dmsService->db->Execute($sql, $bindingParams);
+		
+		$sql = <<<SQL
+			DELETE FROM $database.T_User_Expiry
+			WHERE F_UserID in ($userList);
+SQL;
+		$rc = $dmsService->db->Execute($sql, $bindingParams);
+		
+		$dmsService->db->CompleteTrans();
+	}
+		
+		// send back the number of archived users
+		return $rs->RecordCount();
+}
+
 
 // If you want to run specific triggers for specific days (for testing)
 // you can put 'date=-1' in the URL
@@ -235,19 +332,18 @@ $testingTriggers = "";
 //$testingTriggers .= "Add RM to all accounts";
 //$testingTriggers .= "terms and conditions";
 //$testingTriggers .= "Seed permissions and privacy for CCB";
-$testingTriggers .= "Archive users who have not done anything lately";
+//$testingTriggers .= "Archive users who have not done anything lately";
+$testingTriggers .= "Restore archived users";
 
-if (stristr($testingTriggers, "Archive users who have not done anything lately")) {
-	$cutoffPeriod = "3 years";
-	$now = new DateTime();
-	$cutoffDate = $now->sub(DateInterval::createFromDateString($cutoffPeriod))->format('Y-m-d');
-	//$cutoffDate = "2013-07-08"; // MUST be Y-m-d format, no need for time
+if (stristr($testingTriggers, "Restore archived users")) {
+	$cutoffID = 894120;
 	$conditions = array();
 	//$conditions['active'] = true;
 	//$conditions['notLicenceType'] = 5;
 	$testingAccounts = array();
-	$testingAccounts = array(163); //, 14265); // SQU
+	$testingAccounts = array(14265); // SQU
 	$accounts = $dmsService->accountOps->getAccounts($testingAccounts, $conditions);
+	$rowLimit = 100;
 	
 	if ($accounts) {
 		// Need to add usage stats to each title in each account
@@ -255,7 +351,46 @@ if (stristr($testingTriggers, "Archive users who have not done anything lately")
 			// Do some error checking for testing accounts that might be a bit odd, like not having any titles
 			if (count($account->titles)<1)
 				continue 1;
-			$rc = archiveUsersWithNoRecentActivity($cutoffDate, $account);
+			// Split the processing into chunks with a limit on number of rows returned each time
+			do {
+				$rc = restoreArchivedUsers($cutoffID, $account, $rowLimit);
+			} while ($rc >= $rowLimit);
+			
+			if ($rc > 0) {
+				echo "Restored $rc archived users for account {$account->name}<br/>";
+			} else {
+				echo "No users restored for account {$account->name}<br/>";
+			}
+		}
+		
+	} else {
+		echo "no active accounts found";
+	}
+}
+if (stristr($testingTriggers, "Archive users who have not done anything lately")) {
+	$cutoffPeriod = "1 year";
+	$now = new DateTime();
+	$cutoffDate = $now->sub(DateInterval::createFromDateString($cutoffPeriod))->format('Y-m-d');
+	//$cutoffDate = "2013-07-08"; // MUST be Y-m-d format, no need for time
+	$conditions = array();
+	//$conditions['active'] = true;
+	//$conditions['notLicenceType'] = 5;
+	$testingAccounts = array();
+	$testingAccounts = array(14265); // SQU
+	$accounts = $dmsService->accountOps->getAccounts($testingAccounts, $conditions);
+	$rowLimit = 100;
+	
+	if ($accounts) {
+		// Need to add usage stats to each title in each account
+		foreach ($accounts as $account) {
+			// Do some error checking for testing accounts that might be a bit odd, like not having any titles
+			if (count($account->titles)<1)
+				continue 1;
+			// Split the processing into chunks with a limit on number of rows returned each time
+			do {
+				$rc = archiveUsersWithNoRecentActivity($cutoffDate, $account, $rowLimit);
+			} while ($rc >= $rowLimit);
+			
 			if ($rc > 0) {
 				echo "Archived $rc inactive users for account {$account->name}<br/>";
 			} else {
