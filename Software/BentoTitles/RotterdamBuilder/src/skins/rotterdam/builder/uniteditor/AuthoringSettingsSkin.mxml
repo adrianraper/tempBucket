@@ -51,11 +51,11 @@
 
 			<s:Form width="50%">
 				<s:FormItem>
-					<s:RadioButton id="answerMarker1RadioButton" label="1, 2, 3" group="{answerMarkersGroup}" />
-					<s:RadioButton id="answerMarker2RadioButton" label="i, ii, iii" group="{answerMarkersGroup}" />
-					<s:RadioButton id="answerMarker3RadioButton" label="a), b), c)" group="{answerMarkersGroup}" />
-					<s:RadioButton id="answerMarker4RadioButton" label="." group="{answerMarkersGroup}" />
-					<s:RadioButton id="answerMarker5RadioButton" label="none" group="{answerMarkersGroup}" />
+					<s:RadioButton id="answerMarker1RadioButton" group="{answerMarkersGroup}" />
+					<s:RadioButton id="answerMarker2RadioButton" group="{answerMarkersGroup}" />
+					<s:RadioButton id="answerMarker3RadioButton" group="{answerMarkersGroup}" />
+					<s:RadioButton id="answerMarker4RadioButton" group="{answerMarkersGroup}" />
+					<s:RadioButton id="answerMarker5RadioButton" group="{answerMarkersGroup}" />
 					<s:CheckBox id="shuffleAnswersCheckBox" label="shuffle answers" />
 				</s:FormItem>
 			</s:Form>
