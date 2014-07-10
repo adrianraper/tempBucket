@@ -8,7 +8,7 @@
 		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.view.course.CourseView")]
+		[HostComponent("com.clarityenglish.rotterdam.clearpronunciation.view.course.CourseView")]
 	</fx:Metadata>
 	
 	<fx:Declarations>

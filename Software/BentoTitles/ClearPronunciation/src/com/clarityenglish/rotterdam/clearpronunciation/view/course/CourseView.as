@@ -1,4 +1,5 @@
-package com.clarityenglish.rotterdam.view.course {
+package com.clarityenglish.rotterdam.clearpronunciation.view.course
+{
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
@@ -127,7 +128,7 @@ package com.clarityenglish.rotterdam.view.course {
 		// gh#849
 		public var settingsShow:Signal = new Signal();
 		public var scheduleShow:Signal = new Signal();
-
+		
 		[Bindable]
 		public function get course():XML {
 			return _course;
@@ -170,9 +171,9 @@ package com.clarityenglish.rotterdam.view.course {
 		// gh#208
 		/*[Bindable(event="publishChanged")]
 		public function get canPublish():Boolean {
-			if (course)
-				return (course.publication && course.publication.group.length() == 0) ? true : false;
-			return false;
+		if (course)
+		return (course.publication && course.publication.group.length() == 0) ? true : false;
+		return false;
 		}*/
 		
 		public function canPasteFromTarget(target:Object):Boolean {
@@ -235,25 +236,6 @@ package com.clarityenglish.rotterdam.view.course {
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
 					unitList.addEventListener(UnitDeleteEvent.UNIT_DELETE, onUnitDelete);
 					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
-					
-					// gh#14 - auto select a unit and gh#151 - autoselect the first enabled unit
-					/*callLater(function():void {
-						if (unitList.dataProvider && unitList.dataProvider.length > 0) {								
-							for each (var unit:XML in (unitList.dataProvider as XMLListCollection).source) {
-								if (!(unit.hasOwnProperty("@enabledFlag") && unit.@enabledFlag & 8)) {
-									unitList.requireSelection = true;
-									unitList.selectedItem = unit;
-									
-									// gh#211
-									unitList.selectedIndex = 0;
-									unitList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
-									break;
-								}
-							}
-							
-							// If we reach here then there are no enabled units - probably we want to display a graphic or something
-						}
-					});*/
 					break;
 				case addUnitButton:
 					addUnitButton.addEventListener(MouseEvent.CLICK, onAddUnit);
@@ -275,8 +257,8 @@ package com.clarityenglish.rotterdam.view.course {
 					break;
 				/*gh #204
 				case unitPasteButton:
-					unitPasteButton.addEventListener(MouseEvent.CLICK, onUnitPaste);
-					break;*/
+				unitPasteButton.addEventListener(MouseEvent.CLICK, onUnitPaste);
+				break;*/
 				//gh #208
 				case publishCourseButton:
 					publishCourseButton.addEventListener(MouseEvent.CLICK, onPublishCourse);
@@ -316,7 +298,7 @@ package com.clarityenglish.rotterdam.view.course {
 				unitListCollapseAnimate.play();
 				expandUnitListButton.selected = false;
 			}
-				
+			
 		}
 		
 		protected function onUnitSelected(event:IndexChangeEvent):void {
@@ -402,9 +384,9 @@ package com.clarityenglish.rotterdam.view.course {
 		
 		/*gh #240
 		protected function onUnitPaste(event:MouseEvent):void {
-			// gh#110 - dispatch the event from the button rather than the view so that we can test for the target before actually doing the paste.  This means
-			// that we can make sure pastes only happen when the list has the focus, or the button was clicked.
-			unitPasteButton.dispatchEvent(new Event(Event.PASTE, true));
+		// gh#110 - dispatch the event from the button rather than the view so that we can test for the target before actually doing the paste.  This means
+		// that we can make sure pastes only happen when the list has the focus, or the button was clicked.
+		unitPasteButton.dispatchEvent(new Event(Event.PASTE, true));
 		}*/
 		
 		// gh#208 

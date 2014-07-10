@@ -17,6 +17,7 @@
 		<![CDATA[
 			import com.clarityenglish.rotterdam.clearpronunciation.ClearPronunciationApplicationFacade;
 			
+			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
 			protected function onInitialize(event:FlexEvent):void {

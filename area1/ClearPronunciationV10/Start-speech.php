@@ -20,7 +20,7 @@
 	$coordsMaxWidth = '2990';
 	$coordsMinHeight = '760';
 	$coordsMaxHeight = '2970';
-	$locationFile = "config-speech.xml";
+	$locationFile = "config.xml";
 	
 	// Picking up IP and referrer for security checking
 	require_once '../securityCheck.php';

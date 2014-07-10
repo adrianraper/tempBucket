@@ -3,8 +3,14 @@ package com.clarityenglish.rotterdam.clearpronunciation
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.CommonNotifications;
-	import com.clarityenglish.rotterdam.clearpronunciation.controller.ClearPronunciationStartupCommand;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
+	import com.clarityenglish.rotterdam.clearpronunciation.controller.ClearPronunciationStartupCommand;
+	import com.clarityenglish.rotterdam.clearpronunciation.view.course.CourseMediator;
+	import com.clarityenglish.rotterdam.clearpronunciation.view.course.CourseView;
+	import com.clarityenglish.rotterdam.clearpronunciation.view.home.HomeMediator;
+	import com.clarityenglish.rotterdam.clearpronunciation.view.home.HomeView;
+	import com.clarityenglish.rotterdam.clearpronunciation.view.title.TitleMediator;
+	import com.clarityenglish.rotterdam.clearpronunciation.view.title.TitleView;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
 	
 	public class ClearPronunciationApplicationFacade extends CommonAbstractApplicationFacade
@@ -17,9 +23,9 @@ package com.clarityenglish.rotterdam.clearpronunciation
 		override protected function initializeController():void {
 			super.initializeController();
 			
-			// Remove the default Bento state machine (which isn't quite applicable to the builder) and replace it with a new one
-			removeCommand(CommonNotifications.CONFIG_LOADED);
-			registerCommand(CommonNotifications.CONFIG_LOADED, RotterdamStartupStateMachineCommand);
+			mapView(TitleView, TitleMediator);
+			mapView(HomeView, HomeMediator);
+			mapView(CourseView, CourseMediator);
 			
 			registerCommand(BBNotifications.STARTUP, ClearPronunciationStartupCommand);
 		}

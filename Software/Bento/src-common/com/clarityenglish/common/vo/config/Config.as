@@ -311,6 +311,12 @@ package com.clarityenglish.common.vo.config {
 					case '53':
 						replace = "GeneralTraining";
 						break;
+					case '57':
+						replace= "Sounds";
+						break;
+					case '58':
+						replace= "Speech";
+						break;
 					default:
 						replace = "";
 				}
@@ -614,7 +620,7 @@ package com.clarityenglish.common.vo.config {
 			
 			// See if you can now do any substitutions on the menu filename
 			buildMenuFilename();
-
+			
 			// You can now adjust the sharedMedia path as necessary
 			// Remember that it might look like 
 			// sharedMedia={contentPath}/sharedMedia

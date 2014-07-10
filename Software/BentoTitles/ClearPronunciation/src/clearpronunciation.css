@@ -1,9 +1,8 @@
 @namespace s "library://ns.adobe.com/flex/spark";
 @namespace mx "library://ns.adobe.com/flex/mx";
 @namespace clearpronunciation "com.clarityenglish.rotterdam.clearpronunciation.*";
-@namespace title "com.clarityenglish.rotterdam.view.title.*";
-@namespace courseselector "com.clarityenglish.rotterdam.view.courseselector.*";
-@namespace course "com.clarityenglish.rotterdam.view.course.*";
+@namespace title "com.clarityenglish.rotterdam.clearpronunciation.view.title.*";
+@namespace course "com.clarityenglish.rotterdam.clearpronunciation.view.course.*";
 @namespace progress "com.clarityenglish.bento.view.progress.*";
 @namespace progresscomponents "com.clarityenglish.bento.view.progress.components.*";
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
@@ -12,6 +11,7 @@
 @namespace ui "skins.rotterdam.clearpronunciation.progress.ui.*";
 @namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
+@namespace home "com.clarityenglish.rotterdam.clearpronunciation.view.home.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -63,16 +63,12 @@ title|TitleView s|Button#logoutButton {
 	skinClass: 	ClassReference("skins.rotterdam.title.ui.LogOutButtonSkin");
 }
 
-courseselector|CourseSelectorView {
-	skinClass: ClassReference("skins.rotterdam.clearpronunciation.courseselector.CourseSelectorSkin");
-}
-
-courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
-	skinClass:ClassReference("skins.rotterdam.scroller.VerticalScrollBarSkin");
+home|HomeView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.home.HomeSkin");
 }
 
 @media (os-platform: "IOS"), (os-platform: "Android") {
-	courseselector|CourseSelectorView s|List#courseList s|VScrollBar {
+	home|HomeView s|List#courseList s|VScrollBar {
 		skinClass:ClassReference("spark.skins.mobile.VScrollBarSkin");
 	}
 }

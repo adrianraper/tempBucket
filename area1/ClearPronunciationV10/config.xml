@@ -4,11 +4,11 @@
 	<dbHost>2</dbHost>
 	<productCode>57</productCode>
 	<useCacheBuster>true</useCacheBuster>
-	<courseFile>menu-FullVersion.xml</courseFile>
+	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
 	<platform>browser</platform>
 
 	<sharedMedia />
-	<brandingMedia>http://dock.contentbench/CCB/{prefix}/assets/</brandingMedia>
+	<brandingMedia />
 	<language>EN</language>
 
 	<contentPath>http://dock.contentBench/Content/</contentPath>
@@ -16,6 +16,5 @@
 	<remoteGateway>http://dock.projectBench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>ClearPronunciationService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
-	
 </config>
 

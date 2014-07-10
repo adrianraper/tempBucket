@@ -43,8 +43,8 @@
 	</s:Group>
 	
 	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="40" bottom="30">
-		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.rotterdam.view.courseselector.CourseSelectorView" left="0" right="0" height="100%" />
-		<!--s:ViewNavigator id="progressViewNavigator"  firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" excludeFrom="course_selector" /-->
+		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.rotterdam.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="progressViewNavigator"  firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" includeIn="course_selector" />
 	</ui:CancelableTabbedViewNavigator>
 	
 </s:Skin>
