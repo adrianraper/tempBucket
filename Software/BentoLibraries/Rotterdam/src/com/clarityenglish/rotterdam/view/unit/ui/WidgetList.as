@@ -1,5 +1,6 @@
 package com.clarityenglish.rotterdam.view.unit.ui {
 	import com.clarityenglish.rotterdam.view.unit.layouts.IUnitLayout;
+	import com.clarityenglish.rotterdam.view.unit.widgets.AbstractWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AnimationWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
@@ -48,35 +49,10 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 			itemRendererFunction = widgetItemRendererFunction;
 		}
 		
-		private function typeToWidgetClass(type:String):Class {
-			// TODO: These should probably be specified elsewhere
-			switch (type) {
-				case "text":
-					return TextWidget;
-				case "pdf":
-					return PDFWidget;
-				case "video":
-					return VideoWidget;
-				case "image":
-					return ImageWidget;
-				case "audio":
-					return AudioWidget;
-				case "exercise":
-					return ExerciseWidget;
-				case "animation":
-					return AnimationWidget;
-				case "orchid":
-					return OrchidWidget;
-				case "selector":
-					return SelectorWidget;
-				default:
-					log.error("Unsupported widget type " + type);
-					return null;
-			}
-		}
-		
 		private function widgetItemRendererFunction(item:Object):ClassFactory {
-			var widgetClass:Class = typeToWidgetClass(item.@type);
+			var widgetClass:Class = AbstractWidget.typeToWidgetClass(item.@type);
+			if (!widgetClass)
+				log.error("Unsupported widget type " + item.@type);
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
 			classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true };

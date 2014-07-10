@@ -52,7 +52,7 @@
 					</fx:Component>
 				</s:itemRenderer>
 			</s:List>
-			<ui:UniversalWidget id="universalWidget" width="80%"/>
+			<ui:UniversalWidgetHolder id="universalWidget" width="80%"/>
 		</s:Group>
 	</s:HGroup>
 </s:Skin>

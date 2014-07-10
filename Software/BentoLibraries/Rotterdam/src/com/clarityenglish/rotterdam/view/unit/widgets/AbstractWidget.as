@@ -222,6 +222,32 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			if (progressRange)
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
 		}
+		
+		public static function typeToWidgetClass(type:String):Class {
+			// TODO: These should probably be specified elsewhere
+			switch (type) {
+				case "text":
+					return TextWidget;
+				case "pdf":
+					return PDFWidget;
+				case "video":
+					return VideoWidget;
+				case "image":
+					return ImageWidget;
+				case "audio":
+					return AudioWidget;
+				case "exercise":
+					return ExerciseWidget;
+				case "animation":
+					return AnimationWidget;
+				case "orchid":
+					return OrchidWidget;
+				case "selector":
+					return SelectorWidget;
+				default:
+					return null;
+			}
+		}
 			
 		// gh#187
 		protected override function commitProperties():void {

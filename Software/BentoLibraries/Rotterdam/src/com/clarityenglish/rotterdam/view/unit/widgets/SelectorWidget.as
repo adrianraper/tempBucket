@@ -1,5 +1,5 @@
 package com.clarityenglish.rotterdam.view.unit.widgets {
-	import com.clarityenglish.rotterdam.view.unit.ui.UniversalWidget;
+	import com.clarityenglish.rotterdam.view.unit.ui.UniversalWidgetHolder;
 	import com.clarityenglish.rotterdam.view.unit.ui.WidgetList;
 	
 	import flash.events.Event;
@@ -13,14 +13,14 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	public class SelectorWidget extends AbstractWidget {
 		
 		[SkinPart]
-		public var universalWidget:UniversalWidget;
+		public var universalWidget:UniversalWidgetHolder;
 		
 		[SkinPart]
 		public var selectorList:spark.components.List;
 		
 		private var _widgetSelectorCollection:XMLListCollection;
-		private var _index:Number;
-		private var indexChanged:Boolean;
+		private var _exercise:XML;
+		private var _exerciseChanged:Boolean;
 		
 		[Bindable(event="srcAttrChanged")]
 		public function get src():String {
@@ -44,16 +44,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			}
 		}
 		
-		public function set index(value:Number):void {
-			_index = value;
-			indexChanged = true;
+		public function set exercise(value:XML):void {
+			_exercise = value;
+			_exerciseChanged = true;
 			invalidateProperties();
 		}
 		
 		protected function setUniversalWidget(event:Event = null):void {
 			if (_xml) {
 				if (universalWidget) {
-					universalWidget.xml = _xml;
+					// set the first exercise to universlWidget
+					universalWidget.exercise = _xml.exercise[0];
 				}
 					
 				widgetSelectorCollection = new XMLListCollection(_xml.exercise);
@@ -63,9 +64,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (indexChanged) {
-				universalWidget.index = _index;
-				indexChanged = false;
+			if (_exerciseChanged) {
+				universalWidget.exercise = _exercise;
+				_exerciseChanged = false;
 			}		
 		}
 		
@@ -108,7 +109,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected function onSelectorListClick(event:Event):void {
-			index = selectorList.selectedIndex;
+			exercise = selectorList.selectedItem;
 		}
 	}
 }
