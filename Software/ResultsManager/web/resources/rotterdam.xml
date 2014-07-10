@@ -314,6 +314,14 @@
 			<lit name="questionNumberingFormat3">a, b, c</lit>
 			<lit name="questionNumberingFormat4">i, ii, iii</lit>
 			<lit name="questionNumberingFormat5">一, 二, 三</lit>
+
+            <lit name="answerNumberingFormat1">1, 2, 3</lit>
+            <lit name="answerNumberingFormat2">A, B, C</lit>
+            <lit name="answerNumberingFormat3">a, b, c</lit>
+            <lit name="answerNumberingFormat4">i, ii, iii</lit>
+            <lit name="answerNumberingFormat5">一, 二, 三</lit>
+            <lit name="answerNumberingFormat6">•</lit>
+            <lit name="answerNumberingFormat7">none</lit>
 			
 		</group>
 	</language>

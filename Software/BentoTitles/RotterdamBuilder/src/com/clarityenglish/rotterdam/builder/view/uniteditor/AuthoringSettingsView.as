@@ -110,7 +110,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				[ "delayed", "instant" ]));
 			addFormItemHandler(new RadioButtonGroupItemHandler(answerMarkersGroup, exerciseGenerator.settings.answerNumbering[0],
 				[ answerMarker1RadioButton, answerMarker2RadioButton, answerMarker3RadioButton, answerMarker4RadioButton, answerMarker5RadioButton],
-				[ "1", "2", "3", "4", "5" ]));
+				[ "3", "4", "1", "7", "6" ]));
 			addFormItemHandler(new CheckBoxFormItemHandler(shuffleAnswersCheckBox, exerciseGenerator.settings.shuffleAnswers[0]));
 			addFormItemHandler(new TextFormItemHandler(feedbackTextArea, exerciseGenerator.settings.exerciseFeedbackText[0]));
 			addFormItemHandler(new CheckBoxFormItemHandler(exerciseFeedbackCheckBox, exerciseGenerator.settings.exerciseFeedbackEnabled[0]));
@@ -145,6 +145,21 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case numbering5RadioButton:
 					instance.label = copyProvider.getCopyForId("questionNumberingFormat5");
+					break;
+				case answerMarker1RadioButton:
+					instance.label = copyProvider.getCopyForId("answerNumberingFormat3");
+					break;
+				case answerMarker2RadioButton:
+					instance.label = copyProvider.getCopyForId("answerNumberingFormat4");
+					break;
+				case answerMarker3RadioButton:
+					instance.label = copyProvider.getCopyForId("answerNumberingFormat1");
+					break;
+				case answerMarker4RadioButton:
+					instance.label = copyProvider.getCopyForId("answerNumberingFormat7");
+					break;
+				case answerMarker5RadioButton:
+					instance.label = copyProvider.getCopyForId("answerNumberingFormat6");
 					break;
 			}
 		}

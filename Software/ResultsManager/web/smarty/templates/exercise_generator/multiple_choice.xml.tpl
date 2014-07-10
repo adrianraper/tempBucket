@@ -171,11 +171,12 @@
 		a.neutral, input.neutral, g.neutral, select.neutral {
 			color: #0000AA !important;
 		}
-		
 		.answerList {
-			list-style-type: lowerLatin;
-			padding-left: 34px;
-			text-indent:0px;
+		{/literal}
+			list-style-type: {formatAnswerNumber format=$xml->settings->answerNumbering};
+		{literal}
+			padding-left: 16px;
+			text-indent: 0px;
 			margin-left: 0px;
 			line-height: 150%;
 		}
@@ -212,8 +213,10 @@
 			    	<div class="question-text">
 						{$question->question}
 						<list class="answerList">
-							{foreach from=$question->answers->answer item=answer name=answer}
-							<li><a id="q{$smarty.foreach.question.index}a{$smarty.foreach.answer.index}">{$answer}</a></li>
+							{* for shuffled options make an array you can randomise and then step through *}
+							{buildAnswersArray base=$question->answers->answer randomise=$xml->settings->shuffleAnswers}
+							{foreach from=$answersArray item=answer}
+							<li><a id="q{$smarty.foreach.question.index}a{$answer}">{$question->answers->answer[$answer]}</a></li>
 							{/foreach}
 						</list>
 					</div>
