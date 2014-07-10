@@ -106,7 +106,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		public var filterPublisher:CheckBox;
 		
 		[SkinPart]
-		public var sortDescendingCheckBox:CheckBox;
+		public var sortDescendingToggleButton:ToggleButton;
 		
 		public var createCourse:Signal = new Signal();
 		public var selectCourse:Signal = new Signal(XML);
@@ -189,10 +189,10 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				case sortName:
 					instance.label = copyProvider.getCopyForId("sortName");
 					break;
-				case sortDescendingCheckBox:
-					instance.label = copyProvider.getCopyForId("sortDescending");
-					sortDescendingCheckBox.addEventListener(Event.CHANGE, onChangeSort);
-					sortDescendingCheckBox.selected = true;
+				case sortDescendingToggleButton:
+					//instance.label = copyProvider.getCopyForId("sortDescending");
+					sortDescendingToggleButton.addEventListener(Event.CHANGE, onChangeSort);
+					sortDescendingToggleButton.selected = true;
 					break;
 				case showFiltersToggleButton:
 					showFiltersToggleButton.label = copyProvider.getCopyForId("showFiltersToggleButton");
@@ -221,7 +221,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		protected function onChangeSort(event:Event):void {
 			var sortComparison:Function = null;
 			switch (event.target) {
-				case sortDescendingCheckBox:
+				case sortDescendingToggleButton:
 					var sort:Sort = new Sort();
 					sort.fields = (courseList.dataProvider as XMLListCollection).sort.fields;
 					sort.compareFunction = (courseList.dataProvider as XMLListCollection).sort.compareFunction;
@@ -262,7 +262,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 								}
 							};
 							sortComparison = function(a:Object, b:Object, fields:Array):int {
-								return sortComparisonDirection(a, b, fields, sortDescendingCheckBox.selected);
+								return sortComparisonDirection(a, b, fields, sortDescendingToggleButton.selected);
 							};
 							sortNumeric = false;
 							break;
@@ -280,7 +280,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 							break;
 					}
 					sort = new Sort();
-					var sortField:SortField = new SortField(sortAttribute, sortDescendingCheckBox.selected, sortNumeric);
+					var sortField:SortField = new SortField(sortAttribute, sortDescendingToggleButton.selected, sortNumeric);
 					sort.fields = [sortField];
 					// TODO how to get the real locale?
 					sortField.setStyle('locale', 'en-US');

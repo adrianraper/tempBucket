@@ -51,7 +51,7 @@
 						<s:CheckBox id="filterPublisher" />
 					</s:FormItem>
 				</s:Form>
-				<s:Form id="sorting" width="240" height="215">
+				<s:Form id="sorting" width="240" >
 					<s:FormHeading id="sortHeadingFormHeading" width="240" />
 					<s:FormItem>
 						<s:RadioButton group="{sortRadioButtonGroup}" id="sortCreateDate" />
@@ -61,7 +61,7 @@
 						<s:RadioButton group="{sortRadioButtonGroup}" id="sortName" />
 					</s:FormItem>
 					<s:FormItem>
-						<s:CheckBox id="sortDescendingCheckBox" useHandCursor="true" buttonMode="true" />
+						<s:ToggleButton id="sortDescendingToggleButton" useHandCursor="true" buttonMode="true" />
 					</s:FormItem>
 				</s:Form>
 			</s:VGroup>

@@ -13,8 +13,8 @@
 		@namespace s "library://ns.adobe.com/flex/spark";
 		
 		/*global {
-		fontFamily: Helvetica;
-		fontSize: 13;
+			fontFamily: Helvetica;	
+			fontSize: 13;
 		}*/
 	</fx:Style>
 	

@@ -56,7 +56,7 @@ that has additional logic to align the columns of FormItems.
     <s:Rect id="background" left="0" right="0" top="0" bottom="0" bottomLeftRadiusX="8" bottomLeftRadiusY="8">
         <s:fill>
             <!--- @private -->
-            <s:SolidColor id="bgFill" color="#F3F3F3"/>
+            <s:SolidColor id="bgFill" color="#F3F3f3"/>
         </s:fill>
     </s:Rect>
     <!--- @copy spark.components.SkinnableContainer#contentGroup -->

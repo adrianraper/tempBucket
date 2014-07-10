@@ -90,10 +90,6 @@ courseselector|CourseSelectorView s|Button#createCourseButton {
 	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 }
 
-courseselector|CourseSelectorView s|ToggleButton#showFiltersToggleButton {
-	skinClass: ClassReference("skins.rotterdam.ui.OrangeToggleButtonSkin");
-}
-
 courseselector|CourseSelectorView s|List s|HScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.HorizontalScrollBarSkin");
 }
@@ -134,8 +130,8 @@ courseselector|CourseSelectorView s|RadioButton {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringRadioButtonSkin");
 }
 
-courseselector|CourseSelectorView s|CheckBox#sortDescendingCheckBox {
-	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringDescendingCheckBoxSkin");
+courseselector|CourseSelectorView s|ToggleButton#sortDescendingToggleButton {
+	skinClass: ClassReference("skins.rotterdam.builder.courseselector.SortingDirectionToggleButtonSkin");
 }
 
 tink|Alert {
