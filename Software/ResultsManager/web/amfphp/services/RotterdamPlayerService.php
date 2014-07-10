@@ -15,9 +15,9 @@ class RotterdamPlayerService extends RotterdamService {
 		parent::__construct();
 	}
 
-	// I don't think this should be called, but is throwing errors at present
-	public function courseSessionUpdate($courseId) {
-		
+	// gh#954 Player will use this to update the session record for usage purposes
+	public function courseSessionUpdate($courseId, $sessionId) {
+		return $this->updateSession($sessionId, $courseId);
 	}
 	
 }

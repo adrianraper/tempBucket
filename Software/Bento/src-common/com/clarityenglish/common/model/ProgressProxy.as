@@ -53,7 +53,8 @@ package com.clarityenglish.common.model {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			configProxy.getConfig().sessionStartTime = new Date().time;
 
-			var params:Array = [ user, account.id, (account.titles[0] as Title).id, configProxy.getConfig().sessionStartTime ];
+			// gh#954 No need to pass time anymore
+			var params:Array = [ user, account.id, (account.titles[0] as Title).id ];
 			new RemoteDelegate("startSession", params, this).execute();			
 		}
 		
@@ -75,7 +76,7 @@ package com.clarityenglish.common.model {
 		 */
 		public function stopSession():void {
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
-			var params:Array = [ configProxy.getConfig().sessionID, new Date().getTime() ];
+			var params:Array = [ configProxy.getConfig().sessionID ];
 			new RemoteDelegate("stopSession", params, this).execute();			
 		}
 		
@@ -145,6 +146,11 @@ package com.clarityenglish.common.model {
 		public function onDelegateFault(operation:String, fault:Fault):void {
 			sendNotification(CommonNotifications.TRACE_ERROR, fault.faultString);
 		}
-		
+	
+		// gh#954 Session record id has changed
+		public function sessionIdChanged(sessionId:String):void {
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			configProxy.getConfig().sessionID = sessionId;
+		}
 	}
 }

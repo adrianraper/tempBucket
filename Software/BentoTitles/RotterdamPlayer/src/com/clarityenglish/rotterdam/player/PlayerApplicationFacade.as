@@ -2,6 +2,7 @@
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.rotterdam.player.controller.SessionUpdatedCommand;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	import com.clarityenglish.rotterdam.controller.RotterdamStartupStateMachineCommand;
 	import com.clarityenglish.rotterdam.player.controller.PlayerStartupCommand;
@@ -21,6 +22,10 @@
 			registerCommand(CommonNotifications.CONFIG_LOADED, RotterdamStartupStateMachineCommand);
 			
 			registerCommand(BBNotifications.STARTUP, PlayerStartupCommand);
+			
+			// gh#954
+			registerCommand(BBNotifications.SESSION_UPDATED, SessionUpdatedCommand);
+
 		}
 		
 	}

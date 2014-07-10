@@ -31,6 +31,8 @@
 		public static const SESSION_STOPPED:String = "bb/session_stopped";
 		public static const SCORE_WRITE:String = "bb/score_write";
 		public static const SCORE_WRITTEN:String = "bb/score_written";
+		// gh#954
+		public static const SESSION_UPDATED:String = "bb/session_updated";
 		
 		// Selection and navigation notifications
 		public static const SELECTED_NODE_CHANGE:String = "bb/selected_node_change";

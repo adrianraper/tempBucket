@@ -451,12 +451,12 @@ class BentoService extends AbstractService {
 	 * This service call will create a session record for this user in the database.
 	 *  
 	 *  @param userID, rootID, productCode - these are all self-explanatory
-	 *  @param dateNow - used to get client time
+	 *  @param dateNow - used to get client time. Ignored now
 	 */
-	public function startSession($user, $rootID, $productCode, $dateNow = null) {
+	public function startSession($user, $rootID, $productCode) {
 		// A successful session start will return a new ID
-		$sessionID = $this->progressOps->startSession($user, $rootID, $productCode, $dateNow);
-		return array("sessionID" => $sessionID);
+		$sessionId = $this->progressOps->startSession($user, $rootID, $productCode);
+		return array("sessionID" => $sessionId);
 	}
 	
 	/**
@@ -465,11 +465,12 @@ class BentoService extends AbstractService {
 	 *  
 	 *  @param sessionID - key to the table. If this is not available (perhaps to do with closing the browser?)
 	 *  	maybe we can use $userID and $rootID from session variables
-	 *  @param dateNow - used to get client time
+	 *  @param dateNow - used to get client time. Ignored now.
 	 */
-	public function updateSession($sessionID, $dateNow = null) {
-		// A successful session stop will not generate an error
-		$this->progressOps->updateSession($sessionID, $dateNow);
+	public function updateSession($sessionId, $courseId = null) {
+		$newSessionId = $this->progressOps->updateSession($sessionId, $courseId);
+		// gh#954 Return sessionId in case it has changed
+		return array("sessionID" => $newSessionId);
 	}
 	
 	/**
@@ -481,8 +482,8 @@ class BentoService extends AbstractService {
 	 *  	maybe we can use $userID and $rootID from session variables
 	 *  @param dateNow - used to get client time
 	 */
-	public function stopSession($sessionID, $dateNow) {
-		return $this->updateSession($sessionID, $dateNow);
+	public function stopSession($sessionID) {
+		return $this->updateSession($sessionID);
 	}
 	
 	/**

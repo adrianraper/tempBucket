@@ -80,7 +80,8 @@ EOD;
 		return $xhtml;
 	}
 	
-	public function courseSessionUpdate($courseId) {
+	// gh#954 Session id passed, but only used by player
+	public function courseSessionUpdate($courseId, $sessionId) {
 		$fields = array(
 			"F_RootID" => Session::get('rootID'),
 			"F_UserID" => Session::get('userID'),

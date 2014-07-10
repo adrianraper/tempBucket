@@ -21,11 +21,12 @@ class CourseAttributeCopyTransform extends XmlTransform {
 			
 			// gh#619 Also get information about this course from the database
 			$courseID = XmlUtils::xml_attribute($course, 'id', 'string');
-			$timesPublished = $service->courseOps->countPublishedSchedules($courseID);
-			$course->addAttribute('timesPublished', $timesPublished);
+			//$timesPublished = $service->courseOps->countPublishedSchedules($courseID);
+			//$course->addAttribute('timesPublished', $timesPublished);
 			
 			$timesUsed = $service->courseOps->countSessions($courseID);
-			$course->addAttribute('timesUsed', $timesUsed);
+			//$course->addAttribute('timesUsed', $timesUsed);
+			$course->addChild('timesUsed', $timesUsed);
 			
 			// Count the number of exercise nodes as a 'size' estimate
 			$menuXML->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');

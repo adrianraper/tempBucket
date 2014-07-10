@@ -8,7 +8,15 @@
 			import com.clarityenglish.common.vo.content.Course;
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseDeleteEvent;
 			import com.clarityenglish.rotterdam.view.courseselector.events.CourseSelectEvent;
+			
+			import mx.collections.ArrayCollection;
 
+			[Bindable]
+			private var usageStatsDataProvider:ArrayCollection;
+			
+			[Bindable]
+			private var maxValue:uint;
+			
 			// gh#689
 			public override function set data(value:Object):void {
 				super.data = value;
@@ -16,6 +24,17 @@
 				if (data) {
 					this.enabled = !data.hasOwnProperty("@enabledFlag") || (data.@enabledFlag > 0);
 					this.deleteCourseButton.enabled = (data.@enabledFlag & Course.EF_OWNER);
+					
+					// gh#954 Format the data provider for the usage stats
+					maxValue = 0;
+					var usageStats:Array = new Array();
+					var valuesArray:Array = data.timesUsed.split(',');
+					for (var i:uint=0; i<valuesArray.length; i++) {
+						usageStats[i] = { month:i+1, times:valuesArray[i] };
+						maxValue = (valuesArray[i] > maxValue) ? valuesArray[i] : maxValue; 
+					}
+					usageStatsDataProvider = new ArrayCollection(usageStats);
+						
 				}
 			}
 			
@@ -28,6 +47,8 @@
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
 		<s:DropShadowFilter id="dropShadowFilter2" blurX="6" blurY="6" alpha="0.4" distance="1.5" angle="200" knockout="false" />
+			
+		<mx:SolidColorStroke id="axisStroke" color="#000000" weight="1" caps="square"/>
 	</fx:Declarations>
 	
 	<s:states>
@@ -58,8 +79,29 @@
 	<!--The course caption here is on the top of course list item, so we also need to add click listener here-->
 	<s:HGroup left="25" verticalCenter="0" click="onItemGroupClick(event)">
 		<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="350" />
-		<s:Label text="published={data.@timesPublished}" fontSize="15" fontWeight="bold" />
-		<s:Label text="used={data.@timesUsed}" fontSize="15" fontWeight="bold" />
+		<!-- <s:Label text="used={data.timesUsed}" fontSize="15" fontWeight="bold" /> -->
+		<mx:ColumnChart id="timesUsedChart" width="120" height="50" dataProvider="{usageStatsDataProvider}" visible="{maxValue > 0}">
+			<mx:verticalAxis>
+				<mx:LinearAxis id="vaxis" minimum="0" maximum="{maxValue}" interval="{maxValue}" />
+			</mx:verticalAxis>
+			<mx:horizontalAxis>
+				<mx:CategoryAxis id="haxis" categoryField="month" />
+			</mx:horizontalAxis>
+			<mx:horizontalAxisRenderers>
+				<mx:AxisRenderer axis="{haxis}" showLabels="false">
+					<mx:axisStroke>{axisStroke}</mx:axisStroke>
+				</mx:AxisRenderer>
+			</mx:horizontalAxisRenderers>
+			<mx:verticalAxisRenderers>
+				<mx:AxisRenderer axis="{vaxis}" tickPlacement="none" minorTickPlacement="none" >
+					<mx:axisStroke>{axisStroke}</mx:axisStroke>
+				</mx:AxisRenderer>
+			</mx:verticalAxisRenderers>
+			<mx:series>
+				<mx:ColumnSeries yField="times" xField="month" />
+			</mx:series>			
+		</mx:ColumnChart>
+		
 	</s:HGroup>
 	
 	<s:Group right="25" verticalCenter="0">
