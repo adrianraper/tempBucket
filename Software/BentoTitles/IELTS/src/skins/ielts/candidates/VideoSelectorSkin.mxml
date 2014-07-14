@@ -15,7 +15,15 @@
 		
 		<s:Animate id="openingScreenRightSlide" duration="350" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
 			<s:SimpleMotionPath property="left" valueBy="{320+width/2}"/>
-		</s:Animate>	
+		</s:Animate>
+		
+		<s:Animate id="videoHolderCollapse" duration="500" targets="{[videoHolderBackgroundVGroup, videoList]}">
+			<s:SimpleMotionPath property="bottom" valueBy="-80"/>
+		</s:Animate>
+		
+		<s:Animate id="videoHolderExpande" duration="500" targets="{[videoHolderBackgroundVGroup, videoList]}">
+			<s:SimpleMotionPath property="bottom" valueBy="80"/>
+		</s:Animate>
 	</fx:Declarations>
 	
 	<fx:Script>
@@ -97,6 +105,24 @@
 				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE, true));
 			}
 			
+			protected function onVideoHolderCollapse(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoHolderCollapse.play();
+				videoHolderExpandIcon.visible = true;
+				videoHolderCollapseIcon.visible = false;
+				videoList.enabled = false;
+			}
+			
+			protected function onVideoHolderExpand(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoHolderExpande.play();
+				videoHolderExpandIcon.visible = false;
+				videoHolderCollapseIcon.visible = true;
+				videoList.enabled = true;
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -147,9 +173,11 @@
 		<s:SWFLoader width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen6.jpg')" />
 	</s:HGroup>
 	
-	<s:VGroup bottom="-2" horizontalCenter="0" horizontalAlign="center" gap="0">
-		<candidates:videoholderexpand bottom="20" horizontalCenter="0" visible="false" />
-		<candidates:videoholdercollaspe bottom="20" horizontalCenter="0" />
+	<s:VGroup id="videoHolderBackgroundVGroup" bottom="-2" horizontalCenter="0" horizontalAlign="center" gap="0">
+		<s:Group>
+			<candidates:videoholderexpand id="videoHolderExpandIcon" horizontalCenter="0" visible="false" click="onVideoHolderExpand(event)" />
+			<candidates:videoholdercollapse id="videoHolderCollapseIcon" horizontalCenter="0" click="onVideoHolderCollapse(event)" />
+		</s:Group>		
 		<s:Rect width="880" height="85" topLeftRadiusX="12" topLeftRadiusY="12" topRightRadiusX="12" topRightRadiusY="12">
 			<s:fill>
 				<s:SolidColor color="#404041" />
