@@ -8,6 +8,8 @@
 	import com.clarityenglish.ielts.controller.IELTSStartupCommand;
 	import com.clarityenglish.ielts.view.account.AccountMediator;
 	import com.clarityenglish.ielts.view.account.AccountView;
+	import com.clarityenglish.ielts.view.candidates.CandidatesMediator;
+	import com.clarityenglish.ielts.view.candidates.CandidatesView;
 	import com.clarityenglish.ielts.view.home.HomeMediator;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.login.LoginView;
@@ -51,6 +53,7 @@
 			mapView(AccountView, AccountMediator);
 			mapView(SupportView, SupportMediator);
 			mapView(ExerciseView, ExerciseMediator);
+			mapView(CandidatesView, CandidatesMediator);
 			
 			mapView(ZoneView, ZoneMediator);
 			mapView(AdviceZoneSectionView, AdviceZoneSectionMediator);

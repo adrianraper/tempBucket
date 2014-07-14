@@ -25,6 +25,8 @@
 @namespace ielts "com.clarityenglish.ielts.*";
 @namespace nonetwork "com.clarityenglish.ielts.view.nonetwork.*";
 @namespace video "com.clarityenglish.controls.video.*";
+@namespace candidates "com.clarityenglish.ielts.view.candidates.*";
+@namespace candidatesui "com.clarityenglish.ielts.view.candidates.ui.*";
 
 global {
 	/* This changes the modal popup mask properties */
@@ -405,6 +407,30 @@ s|TitleWindow.noTitleWindow {
 
 s|TitleWindow.titleWindowClose {
 	skinClass: ClassReference("skins.ielts.titlewindows.TitleWindowCloseSkin");
+}
+
+candidates|CandidatesView {
+	skinClass: ClassReference("skins.ielts.candidates.CandidatesSkin");
+}
+
+candidates|CandidatesView video|VideoSelector {
+	skinClass: ClassReference("skins.ielts.candidates.VideoSelectorSkin");	
+}
+
+candidates|CandidatesView video|VideoSelector s|Button#videoPlayButton {
+	skinClass: ClassReference("skins.ielts.candidates.VideoPlayButtonSkin");
+}
+
+candidates|CandidatesView video|VideoSelector s|Button#previousVideoButton {
+	skinClass: ClassReference("skins.ielts.candidates.PreviousVideoButtonSkin");
+}
+
+candidates|CandidatesView video|VideoSelector s|Button#nextVideoButton {
+	skinClass: ClassReference("skins.ielts.candidates.NextVideoButtonSkin");
+}
+
+candidatesui|CandidatesChannelListRenderer {
+	skinClass:ClassReference("skins.ielts.candidates.CandidatesChannelButtonBarButtonSkin");
 }
 
 swfplayer|SWFPlayerView {

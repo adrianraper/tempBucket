@@ -373,6 +373,22 @@
 			<lit name="moreURL"><![CDATA[http://www.ieltspractice.com/]]></lit>
 			<lit name="forgotPasswordButton">Forgot your password?</lit>
 			<lit name="forgotPasswordLink"><![CDATA[http://{domain}/support/forgotPassword.php?rootID={rootID}&productCode={productCode}&loginOption={loginOption}]]></lit>
+			<lit name="candidatesIntroductionLabel">Each of the candidates shown in the videos were successful in the IELTS test. In the videos below, they share some tips to help you succeed too! Select from any one of the six videos.</lit>
+			<lit name="candidatesCaptionLabel">Advice from candidates</lit>
+			<lit name="candidatesVideoTitleFixedLabel">Advice from candidates on...</lit>
+			<lit name="candidatesVideoTitle0">"How to prepare"</lit>
+			<lit name="candidatesVideoTitle1">"The exam day"</lit>
+			<lit name="candidatesVideoTitle2">"Writing"</lit>
+			<lit name="candidatesVideoTitle3">"Reading"</lit>
+			<lit name="candidatesVideoTitle4">"Speaking"</lit>
+			<lit name="candidatesVideoTitle5">"Listening"</lit>
+			<lit name="candidatesVideoFixedLabel">Description:</lit>
+			<lit name="candidatesVideoDescription0">The video below shows different candidates discussing ways they prepared for their IELTS test. Watch the video to learn how you can prepare for yours!</lit>
+			<lit name="candidatesVideoDescription1">The video below shows different candidates discussing their IELTS test day experience. Watch the video for a smoother test day experience!</lit>
+			<lit name="candidatesVideoDescription2">The video below shows candidates discussing the IELTS Writing test. Watch the video to see what to expect from the IELTS Writing test and what our candidates do to improve their writing skills!</lit>
+			<lit name="candidatesVideoDescription3">The video below shows different candidates discussing the IELTS Reading test. Watch the video to see what to expect from the IELTS Reading test and how to make reading practice more interesting!</lit>
+			<lit name="candidatesVideoDescription4">The video below shows different candidates discussing the IELTS Speaking test. Watch the video to see what to expect from the IELTS Speaking test and how to make your speech more natural!</lit>
+			<lit name="candidatesVideoDescription5">The video below shows candidates discussing the IELTS Listening test. Watch the video to see what to expect from the IELTS Listening test and how to improve your listening in a fun environment!</lit>
 		</group>
 	</language>
 

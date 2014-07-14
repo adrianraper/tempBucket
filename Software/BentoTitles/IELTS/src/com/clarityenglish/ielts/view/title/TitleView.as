@@ -7,6 +7,7 @@ package com.clarityenglish.ielts.view.title {
 	import com.clarityenglish.common.vo.manageable.User;
 	import com.clarityenglish.ielts.IELTSApplication;
 	import com.clarityenglish.ielts.view.account.AccountView;
+	import com.clarityenglish.ielts.view.candidates.CandidatesView;
 	import com.clarityenglish.ielts.view.home.HomeView;
 	import com.clarityenglish.ielts.view.support.SupportView;
 	import com.clarityenglish.ielts.view.zone.ZoneView;
@@ -40,6 +41,7 @@ package com.clarityenglish.ielts.view.title {
 	[SkinState("account")]
 	[SkinState("support")]
 	[SkinState("exercise")]
+	[SkinState("candidates")]
 	public class TitleView extends BentoView {
 		
 		[SkinPart]
@@ -182,7 +184,7 @@ package com.clarityenglish.ielts.view.title {
 			super();
 			
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "home", "zone", "exercise", "account", "progress", "support" ], true);
+			StateUtil.addStates(this, [ "home", "zone", "exercise", "account", "progress", "support", "candidates" ], true);
 		}
 		
 		// gh#11 Language Code, read pictures from the folder base on the LanguageCode you set
@@ -362,7 +364,8 @@ package com.clarityenglish.ielts.view.title {
 						exercise: { viewClass: ExerciseView, stack: true },
 						progress: { viewClass: ProgressView },
 						account: { viewClass: AccountView },
-						support: { viewClass: SupportView }
+						support: { viewClass: SupportView },
+						candidates: { viewClass: CandidatesView}
 					});
 					break;
 				case logoutButton:

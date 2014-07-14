@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="23.3135" viewWidth="23.3135" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="23.313" d:pageWidth="23.313" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1">
+        <Ellipse x="0.5" y="0.5" width="22.3135" height="22.3135" ai:seqID="2">
+          <fill>
+            <SolidColor color="#404041"/>
+          </fill>
+        </Ellipse>
+        <Path winding="nonZero" ai:seqID="3" data="M11.6567 23.3135C5.229 23.3135 0 18.0845 0 11.6567 0 5.229 5.229 0 11.6567 0 18.0845 0 23.3135 5.229 23.3135 11.6567 23.3135 18.0845 18.0845 23.3135 11.6567 23.3135ZM11.6567 1C5.78076 1 1 5.78076 1 11.6567 1 17.5327 5.78076 22.3135 11.6567 22.3135
+ 17.5327 22.3135 22.3135 17.5327 22.3135 11.6567 22.3135 5.78076 17.5327 1 11.6567 1Z">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Path>
+      </Group>
+      <Group x="8.34082" y="7.1416" ai:seqID="4" flm:knockout="false">
+        <Path x="0.000192165" winding="nonZero" ai:seqID="5" data="M2.6795 3.78906C3.45782 3.85254 4.58086 3.7002 4.58086 2.67871 4.58086 1.92676 3.98125 1.49316 3.31719 1.49316 2.41192 1.49316 1.92754 2.16895 1.94024 3.08691L0.217581 3.08691C0.281058 1.26367 1.46758 0 3.3045 0 4.73321 0 6.30254 0.880859 6.30254
+ 2.47559 6.30254 3.31738 5.88164 4.06934 5.05254 4.29883L5.05254 4.3252C6.03496 4.54199 6.63457 5.3584 6.63457 6.35254 6.63457 8.22852 5.06524 9.28711 3.31719 9.28711 1.31524 9.28711 -0.0373015 8.08789 0.000784397 6.03418L1.72344 6.03418C1.76153
+ 7.00391 2.2459 7.79492 3.2918 7.79492 4.10821 7.79492 4.7459 7.2334 4.7459 6.3916 4.7459 5.03906 3.56035 5.06445 2.6795 5.06445L2.6795 3.78906Z">
+          <fill>
+            <SolidColor color="#FFFFFF"/>
+          </fill>
+        </Path>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

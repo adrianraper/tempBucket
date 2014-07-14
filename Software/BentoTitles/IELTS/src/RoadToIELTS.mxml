@@ -37,6 +37,7 @@
 			fontAntiAliasType: advanced;
 			fontSharpness: 400;
 			fontThickness: -200;
+			focusThickness: 0;
 		}
 		
 		/* Make the web version use IconItemRenderer such that it looks the same as the mobile version */

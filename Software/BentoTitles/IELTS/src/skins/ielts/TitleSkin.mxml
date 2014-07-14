@@ -30,6 +30,7 @@
 		<s:State name="account" />
 		<s:State name="support" />
 		<s:State name="exercise" />
+		<s:State name="candidates" />
 	</s:states>
 	
 	<zone:PracticeZonePopoutView id="practiceZonePopoutView" right="457" y="104" />
@@ -40,10 +41,11 @@
 		<s:SWFLoader source="{hostComponent.productVersionLogo}" left="0" top="74" />
 		<s:Label text="{hostComponent.productVersionText}" top="84" left="12" color="#FFFFFF" />
 		<s:SWFLoader id="infoButton" source="{hostComponent.productVersionInfo}" right="0" top="44" buttonMode="true" useHandCursor="true" visible="{hostComponent.productVersion == IELTSApplication.TEST_DRIVE}" />
-		<!--gh#383-->
-		<title:InforButton id="topInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" right="10" top="55" buttonMode="true" useHandCursor="true" visible="{hostComponent.productVersionInforButton}" />
 		<s:Button id="logoutButton" right="0" height="35" top="5" buttonMode="true" />
 	</s:Group>
+	
+	<!--gh#383-->
+	<title:InforButton id="topInforButton" richTextFlow="{hostComponent.inforButtonTextFlow}" right="10" top="55" buttonMode="true" useHandCursor="true" visible="{hostComponent.productVersionInforButton}" excludeFrom="exercise, candidates" />
 	
 	<s:Group width="100%" includeIn="exercise">
 		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RoadToIELTSSmallIcon')"/>
@@ -58,6 +60,7 @@
 		<s:ViewNavigator id="myProgressViewNavigator" firstView="com.clarityenglish.bento.view.progress.ProgressView" icon="{getStyle('progressIcon')}" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="myProfileViewNavigator" firstView="com.clarityenglish.ielts.view.account.AccountView" icon="{getStyle('profileIcon')}" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.ielts.view.support.SupportView" icon="{getStyle('helpIcon')}" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="candidatesViewNavigator" firstView="com.clarityenglish.ielts.view.candidates.CandidatesView" left="-20" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 		
 </s:Skin>

@@ -6,18 +6,18 @@
 	<language>JP</language>
 	<platform>browser</platform>
 	<courseFile>menu-{productCode}-{productVersion}.xml</courseFile>
-	<channel name='vimeo' caption='Vimeo'>
+	<channel name='vimeo' caption='Ch1'>
 		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
 	</channel>	
-	<channel name='rackspace' caption='Rack'>
+	<channel name='rackspace' caption='Ch2'>
 		<streamingMedia>http://c284790.r90.stream.cf1.rackcdn.com/</streamingMedia>
 	</channel>  
-	<!--<channel name='aws' caption='AWS'>
+	<channel name='aws' caption='Ch3'>
 		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
-	</channel>-->
-	<channel name='network' caption='CD'>
-		<streamingMedia>{contentPath}/video/</streamingMedia>
 	</channel>
+	<!--channel name='network' caption='network'>
+		<streamingMedia>{contentPath}/video/</streamingMedia>
+	</channel-->
 	<sharedMedia />
 	<brandingMedia />
     <upgradeURL>http://www.ieltspractice.com</upgradeURL>

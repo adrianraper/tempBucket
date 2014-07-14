@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:video="com.clarityenglish.controls.video.*" xmlns:candidates="skins.ielts.assets.candidates.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.ielts.view.candidates.CandidatesView")]
+	</fx:Metadata>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+	</s:states>
+	
+	<s:HGroup top="-7" right="30" gap="20">
+		<s:Label paddingTop="47" id="candidatesIntroductionLabel" width="300" />
+		<s:SWFLoader source="@Embed(source='skins/ielts/assets/candidates/tipsGraphic.png')" />
+	</s:HGroup>
+	
+	<s:VGroup left="20" right="20" top="80">
+		<s:Label id="candidatesCaptionLabel" fontSize="20" color="0x333333" />
+		<s:Line width="100%">
+			<s:stroke>
+				<s:SolidColorStroke color="0x878787" />
+			</s:stroke>
+		</s:Line>
+	</s:VGroup>
+	<video:VideoSelector id="videoSelector" top="0" bottom="15"/>
+	
+	<s:HGroup id="candidatesVideoTitleHGroup" verticalCenter="-205">
+		<s:Label id="candidatesVideoTitleFixedLabel" fontSize="16" />
+		<s:Label id="candidatesVideoTitleLabel" fontSize="18" fontWeight="bold" />
+	</s:HGroup>
+	
+	<s:HGroup id="candidatesVideoDescriptionHGroup" verticalCenter="200">
+		<s:Label id="candidatesVideoFixedLabel" fontWeight="bold" />
+		<s:Label id="candidatesVideoDescriptionLabel" width="570" />
+	</s:HGroup>
+	
+</s:Skin>
