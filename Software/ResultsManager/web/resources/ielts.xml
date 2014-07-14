@@ -132,6 +132,7 @@
 			<lit name="more">More</lit>
 			<lit name="Home">Home</lit>
 			<lit name="Back">Back</lit>
+			<lit name="Candidates">Candidates</lit>
 			<lit name="LogOut">Log out</lit>
 			<lit name="day">day</lit>
 			<lit name="days">days</lit>

@@ -55,12 +55,12 @@
 		<s:Button id="backToMenuButton" skinClass="skins.ielts.title.BackToMenuButtonSkin" label="Back to Menu" right="10" top="4" />
 	</s:Group>
 	
-	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all">
+	<s:TabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="0" creationPolicy="all" buttonMode="true" useHandCursor="true">
 		<s:ViewNavigator id="homeViewNavigator" firstView="com.clarityenglish.ielts.view.home.HomeView" icon="{getStyle('homeIcon')}" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="myProgressViewNavigator" firstView="com.clarityenglish.bento.view.progress.ProgressView" icon="{getStyle('progressIcon')}" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="myProfileViewNavigator" firstView="com.clarityenglish.ielts.view.account.AccountView" icon="{getStyle('profileIcon')}" left="0" right="0" height="100%" />
 		<s:ViewNavigator id="helpViewNavigator" firstView="com.clarityenglish.ielts.view.support.SupportView" icon="{getStyle('helpIcon')}" left="0" right="0" height="100%" />
-		<s:ViewNavigator id="candidatesViewNavigator" firstView="com.clarityenglish.ielts.view.candidates.CandidatesView" left="-20" right="0" height="100%" />
+		<s:ViewNavigator id="candidatesViewNavigator" firstView="com.clarityenglish.ielts.view.candidates.CandidatesView" icon="{getStyle('candidatesIcon')}" left="-20" right="0" height="100%" />
 	</s:TabbedViewNavigator>
 		
 </s:Skin>

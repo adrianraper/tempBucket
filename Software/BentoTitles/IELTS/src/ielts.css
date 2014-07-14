@@ -125,10 +125,11 @@ login|LoginView #accountMoreButton {
 /* Title view styles */
 title|TitleView {
 	skinClass: ClassReference("skins.ielts.TitleSkin");
-	homeIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="HomeIcon");
-	progressIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="ProgressIcon");
-	profileIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="AccountIcon");
-	helpIcon: Embed(source="/skins/ielts/assets/assets.swf", symbol="HelpIcon");
+	homeIcon: Embed(source="/skins/ielts/assets/title/homeicon.svg");
+	progressIcon: Embed(source="/skins/ielts/assets/title/progressicon.svg");
+	profileIcon: Embed(source="/skins/ielts/assets/title/profileicon.svg");
+	helpIcon: Embed(source="/skins/ielts/assets/title/helpicon.svg");
+	candidatesIcon: Embed(source="/skins/ielts/assets/title/candidatesicon.svg");
 }
 
 title|TitleView s|TabbedViewNavigator {
