@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*" 
+		xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*"
+		xmlns:widgets="skins.rotterdam.unit.widgets.*" xmlns:layouts1="com.clarityenglish.rotterdam.clearpronunciation.view.course.layouts.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.GroupWidget")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:Animate id="groupWidgetCollapse" duration="500" target="{groupWidgetList}">
+			<s:SimpleMotionPath property="height" valueTo="20" />
+		</s:Animate>
+		
+		<s:Animate id="groupWidgetExpand" duration="500" target="{groupWidgetList}">
+			<s:SimpleMotionPath property="height" valueTo="{hostComponent.groupWidgetHeight}" />
+		</s:Animate>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ListCollectionView;
+			import mx.collections.XMLListCollection;
+			
+			protected function onCollapseToggleButtonClick(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				trace("collapseToggleButton selected? "+collapseToggleButton.selected);
+				if (collapseToggleButton.selected) {
+					groupWidgetCollapse.play();
+				} else {
+					groupWidgetExpand.play();
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing_normal" stateGroups="editing"  />
+		<s:State name="editing_selected" stateGroups="editing,selected" />
+	</s:states>
+	
+	<!-- Chrome -->
+	<widgets:WidgetChrome id="widgetChrome"
+						  caption="{hostComponent.caption}"
+						  editing.editing="true"
+						  selected.selected="true"
+						  left="0" right="0" top="0" bottom="0" />
+	
+	<s:VGroup top="25" width="100%">
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		
+		<ui:WidgetList id="groupWidgetList" width="100%" dataProvider="{new XMLListCollection(hostComponent.xml.exercise)}" borderColor="0xf2f2f2" useVirtualLayout="false" verticalScrollPolicy="off">
+			<ui:layout>
+				<layouts1:FreeUnitLayout />
+			</ui:layout>
+		</ui:WidgetList>
+	</s:VGroup>
+	
+	<s:ToggleButton id="collapseToggleButton" click="onCollapseToggleButtonClick(event)" bottom="0" right="0" />
+</s:Skin>

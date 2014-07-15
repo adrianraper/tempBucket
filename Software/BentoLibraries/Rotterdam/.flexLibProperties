@@ -46,7 +46,7 @@
     <classEntry path="skins.rotterdam.unit.widgets.AnimationWidgetSkin"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.OrchidWidget"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.SelectorWidget"/>
-    <classEntry path="com.clarityenglish.rotterdam.view.unit.ui.UniversalWidgetHolder"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.GroupWidget"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

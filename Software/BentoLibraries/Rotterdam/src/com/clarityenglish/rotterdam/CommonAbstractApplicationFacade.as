@@ -24,6 +24,7 @@
 	import com.clarityenglish.rotterdam.view.unit.widgets.AnimationWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.AudioWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ExerciseWidget;
+	import com.clarityenglish.rotterdam.view.unit.widgets.GroupWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.ImageWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.OrchidWidget;
 	import com.clarityenglish.rotterdam.view.unit.widgets.PDFWidget;
@@ -66,6 +67,8 @@
 			mapView(OrchidWidget, WidgetMediator);
 			// gh#866
 			mapView(SelectorWidget, WidgetMediator);
+			// gh#865
+			mapView(GroupWidget, WidgetMediator);
 		}
 		
 	}

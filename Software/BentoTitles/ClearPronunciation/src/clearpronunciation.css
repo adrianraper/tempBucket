@@ -169,3 +169,7 @@ widgets|OrchidWidget {
 widgets|SelectorWidget {
 	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.SelectorWidgetSkin");
 }
+
+widgets|GroupWidget {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.GroupWidgetSkin");
+}

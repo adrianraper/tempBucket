@@ -244,6 +244,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					return OrchidWidget;
 				case "selector":
 					return SelectorWidget;
+				case "group":
+					return GroupWidget;
 				default:
 					return null;
 			}
