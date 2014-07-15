@@ -15,21 +15,22 @@ class CourseAttributeCopyTransform extends XmlTransform {
 		foreach ($xml->courses->course as $course) {
 			// gh#324 To avoid occasional 'CDATA not finished' errors, try to ignore complex stuff since we only want the attributes
 			$menuXML = simplexml_load_file($href->currentDir."/".$course['href'], null, LIBXML_NOCDATA);
+			$menuXML->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
+			
 			foreach ($menuXML->head->script->menu->course->attributes() as $key => $value) {
 				if (!isset($course[$key])) $course->addAttribute($key, $value);
 			}
 			
-			// gh#619 Also get information about this course from the database
+			// gh#619 Also get information about this course usage stats from the database
 			$courseID = XmlUtils::xml_attribute($course, 'id', 'string');
 			//$timesPublished = $service->courseOps->countPublishedSchedules($courseID);
 			//$course->addAttribute('timesPublished', $timesPublished);
 			
+			// timesUsed is an array of 12 session counts.
 			$timesUsed = $service->courseOps->countSessions($courseID);
-			//$course->addAttribute('timesUsed', $timesUsed);
 			$course->addChild('timesUsed', $timesUsed);
 			
 			// Count the number of exercise nodes as a 'size' estimate
-			$menuXML->registerXPathNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 			$exercises = $menuXML->xpath("//xmlns:exercise");
 			$size = count($exercises);
 			$course->addAttribute('size', $size);

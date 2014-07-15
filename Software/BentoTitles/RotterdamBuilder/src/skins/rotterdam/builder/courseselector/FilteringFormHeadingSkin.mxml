@@ -81,6 +81,6 @@
     
     <!--- @copy spark.components.FormHeading#labelDisplay -->
     <s:Label id="labelDisplay"
-             left="labelCol:0" right="helpCol:10" top="row1:10" bottom="row1:10" fontSize="12" />
+             left="labelCol:-10" right="helpCol:10" top="row1:12" bottom="row1:8" fontSize="12" />
 
 </s:Skin>

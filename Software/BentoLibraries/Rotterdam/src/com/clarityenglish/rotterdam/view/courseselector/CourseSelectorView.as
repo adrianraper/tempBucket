@@ -8,6 +8,8 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TextEvent;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	import mx.collections.ICollectionView;
 	import mx.collections.XMLListCollection;
@@ -23,6 +25,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 	import spark.components.BusyIndicator;
 	import spark.components.Button;
 	import spark.components.CheckBox;
+	import spark.components.Form;
 	import spark.components.FormHeading;
 	import spark.components.Group;
 	import spark.components.Label;
@@ -88,13 +91,22 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		public var filtersPanel:Group;
 		
 		[SkinPart]
-		public var filtersFromPanel:VGroup;
+		public var filtering:Form;
+		
+		[SkinPart]
+		public var sorting:Form;
 		
 		[SkinPart]
 		public var showFiltersAnimation:Animate;
 		
 		[SkinPart]
 		public var hideFiltersAnimation:Animate;
+		
+		[SkinPart]
+		public var cloakFiltersAnimation:Animate;
+		
+		[SkinPart]
+		public var uncloakFiltersAnimation:Animate;
 		
 		[SkinPart]
 		public var filterOwner:CheckBox;
@@ -114,7 +126,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		private var isCourseListCreated:Boolean;
 		
-		//private var sort:Sort;
+		private var cloakTimer:Timer;
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
@@ -124,11 +136,22 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			super.updateViewFromXHTML(xhtml);
 			
 			courseList.dataProvider = new XMLListCollection(xhtml.courses.course);
+			if (courseList.dataProvider.length == 0)
+				return;
+			
 			var sort:Sort = new Sort();
 			var sortField:SortField = new SortField('@created', true, null);
 			// TODO how to get the real locale?
 			sortField.setStyle('locale', 'en-US');
 			sort.fields = [sortField];
+			
+			// gh#954 Some course attributes need processing for the sort to work
+			for each (var item:XML in courseList.dataProvider) {
+				item.@timesUsed = 0;
+				if (item.hasOwnProperty('timesUsed'))
+					for each (var value:uint in item.timesUsed.split(','))
+						item.@timesUsed += value;
+			}
 			
 			(courseList.dataProvider as XMLListCollection).sort = sort;
 			(courseList.dataProvider as XMLListCollection).refresh();
@@ -195,8 +218,8 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					sortDescendingToggleButton.selected = true;
 					break;
 				case showFiltersToggleButton:
-					showFiltersToggleButton.label = copyProvider.getCopyForId("showFiltersToggleButton");
-					showFiltersToggleButton.selected = false;
+					//showFiltersToggleButton.label = copyProvider.getCopyForId("showFiltersToggleButton");
+					showFiltersToggleButton.selected = true;
 					showFiltersToggleButton.addEventListener(Event.CHANGE, onShowHideFilters);
 					break;
 				case filterHeadingFormHeading:
@@ -208,15 +231,27 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			}
 		}
 		
+		// gh#619
 		protected function onShowHideFilters(event:Event):void {
 			if ((event.target as ToggleButton).selected) {
+				cloakTimer.stop();
+				cloakTimer.removeEventListener(TimerEvent.TIMER, cloakTimerHandler);
+				//uncloakFiltersAnimation.play();
+				filtering.visible = sorting.visible = sortDescendingToggleButton.visible = true;
 				showFiltersAnimation.play();
-				filtersFromPanel.visible = true
 			} else {
 				hideFiltersAnimation.play();
-				filtersFromPanel.visible = false;
+				cloakTimer = new Timer(1000, 1);
+				cloakTimer.addEventListener(TimerEvent.TIMER, cloakTimerHandler);
+				cloakTimer.start();
 			}
 		}
+		private function cloakTimerHandler(event:TimerEvent):void {
+			//cloakFiltersAnimation.play();
+			filtering.visible = sorting.visible = sortDescendingToggleButton.visible = false;
+			cloakTimer.removeEventListener(TimerEvent.TIMER, cloakTimerHandler);
+		}
+		
 		// gh#619
 		protected function onChangeSort(event:Event):void {
 			var sortComparison:Function = null;
@@ -294,22 +329,27 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		// gh#619
 		protected function onChangeFilter(event:Event):void {
 			(courseList.dataProvider as XMLListCollection).filterFunction = function(item:XML):Boolean {
-				var keepItem:Boolean = true;
+				var keepItem:Boolean = false;
+				// Filtering by what you can do adds matching items
+				if (filterOwner.selected) {
+					if ((item.hasOwnProperty("@enabledFlag") && item.@enabledFlag & Course.EF_OWNER))
+						keepItem = true;
+				}
+				if (filterCollaborator.selected) {
+					if ((item.hasOwnProperty("@enabledFlag") && item.@enabledFlag & Course.EF_COLLABORATOR))
+						keepItem = true;
+				}
+				if (filterPublisher.selected) {
+					if ((item.hasOwnProperty("@enabledFlag") && item.@enabledFlag & Course.EF_PUBLISHER))
+						keepItem = true;
+				}
+				if (!filterOwner.selected && !filterCollaborator.selected && !filterPublisher.selected)
+					keepItem = true;
+				
+				// If you type any text, that gets rid of unmatching items
 				if (filterTextInput.text) {
 					if (!((item.@caption.toLowerCase().indexOf(filterTextInput.text.toLowerCase()) >= 0) || 
 						(item.hasOwnProperty("@description") && item.@description.toLowerCase().indexOf(filterTextInput.text.toLowerCase()) >= 0)))
-						keepItem = false;
-				}
-				if (filterOwner.selected) {
-					if (!(item.hasOwnProperty("@enabledFlag") && item.@enabledFlag & Course.EF_OWNER))
-						keepItem = false;
-				}
-				if (filterCollaborator.selected) {
-					if (!(item.hasOwnProperty("@enabledFlag") && item.@enabledFlag & Course.EF_COLLABORATOR))
-						keepItem = false;
-				}
-				if (filterPublisher.selected) {
-					if (!(item.hasOwnProperty("@enabledFlag") && item.@enabledFlag & Course.EF_PUBLISHER))
 						keepItem = false;
 				}
 				return keepItem;

@@ -160,7 +160,7 @@ class ClarityService extends AbstractService {
 			// and SciencesPo (updated for 2013/14/15)
 			// added BCJPILA. 
 			if ((int)$loginObj->F_RootID == 14781 || (int)$loginObj->F_RootID == 19278 || (int)$loginObj->F_RootID == 26155 || 
-				(int)$loginObj->F_RootID == 13982) {
+				(int)$loginObj->F_RootID == 14265 || (int)$loginObj->F_RootID == 13982) {
 				Session::set('no_students', ($manageablesCount > 8000));
 				//NetDebug::trace("for SciencesPo, users=$manageablesCount");
 			} else {

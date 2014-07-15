@@ -168,7 +168,7 @@ SQL;
 				
 				// gh#619 update the last saved date
 				$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
-				$course['lastSaved'] = $dateStampNow->format('Y-m-d 23:59:59'); 
+				$course['lastSaved'] = $dateStampNow->format('Y-m-d H:i:s'); 
 				
 				// If the units or exercises are missing ids then generate them.  At the same time if any unit has a tempid attribute, remove it.
 				foreach ($course->unit as $unit) {
@@ -834,7 +834,7 @@ SQL;
 		$bindingParams = array($courseID);
 		
 		if ($courseID == '681644886695160332')
-			return ('8,7,6,5,4,3,4,5,6,7,8');
+			return ('80,70,45,52,14,13,74,50,63,71,62,81');
 			
 		// http://stackoverflow.com/questions/15774280/mysql-query-to-get-count-per-months
 		$sql = <<<SQL

@@ -57,23 +57,23 @@
     </s:states>
    
 	<s:Group>
-		<s:HGroup gap="0" left="20">
+		<s:HGroup gap="0" left="0">
 			<courseselector:filterExpand includeIn="up" />
 			<courseselector:filterExpandOn includeIn="over, down" />
 			
+			<!-- 
 			<s:Group includeIn="up, over, down">
 				<s:Rect width="100" height="25" top="8">
 					<s:fill>
 						<s:SolidColor color="0xF3F3F3" />
 					</s:fill>
 				</s:Rect>
-				<!-- layer 8: text -->
-				<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
 				<s:Label id="labelDisplay"
 						 maxDisplayedLines="1"
 						 paddingTop="15" paddingLeft="10" fontSize="12" color="0x333333">
 				</s:Label>
-			</s:Group>	
+			</s:Group>
+			-->
 		</s:HGroup>
 		
 		<courseselector:filterCollaspe includeIn="upAndSelected" />

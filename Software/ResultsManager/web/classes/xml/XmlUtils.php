@@ -65,7 +65,7 @@ class XmlUtils {
 				@fwrite($fp, $dom->saveXML());
 			}
 			
-	        @fclose($fp);
+			@fclose($fp);
 
 			@rmdir($lockDirname);
 			

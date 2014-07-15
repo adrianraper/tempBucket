@@ -57,48 +57,33 @@
         <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
     </s:states>
    
-	<s:Group>
-		<s:Group includeIn="up, over, down">
-			<s:Path winding="nonZero" data="M3.5 18C1.57031 18 0 16.4297 0 14.5L0 3.5C0 1.57031 1.57031 0 3.5 0L14.5 0C16.4297 0 18 1.57031 18 3.5L18 14.5C18 16.4297 16.4297 18 14.5 18L3.5 18Z" >
+	<s:Group width="19" height="19">
+		<s:Rect width="19" height="19" radiusX="4" radiusY="4" horizontalCenter="0" verticalCenter="0">
+			<s:stroke>
+				<s:SolidColorStroke color="#9E9E9E" color.downStates="#FFCB1C" color.overStates="#FFCB1C" />
+			</s:stroke>
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="#CDCDCD" color.downStates="#FFE692" color.overStates="#FFE692" />
+					<s:GradientEntry color="#FFFFFF" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<s:Group includeIn="up, over, down" horizontalCenter="0" verticalCenter="0">
+			<!-- the down arrow -->
+			<s:Path winding="nonZero" x="1" y="1" data="M1.23618 0C2.33774 0 4.14048 0 5.24204 0 6.34409 0 6.79526 0.780273 6.24448 1.73438 5.6937 2.6875 4.79184 4.24805 4.24106 5.20313 3.69028 6.15625 2.78891 6.15625 2.23813 5.20313 1.68735 4.24805 0.785984 2.6875 0.235202 1.73438 -0.315579 0.780273
+				  0.134616 0 1.23618 0Z">
 				<s:fill>
-					<s:LinearGradient x="9.00049" y="18" scaleX="17.9995" rotation="-90">
-						<s:GradientEntry color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" ratio="0.5" />
-						<s:GradientEntry color="0XFF9D00" color.over="0XFFE382" color.down="0XFFE382"/>
-					</s:LinearGradient>
-				</s:fill>
-			</s:Path>
-			<s:Path winding="nonZero" data="M15 1C16.6543 1 18 2.3457 18 4L18 15C18 16.6543 16.6543 18 15 18L4 18C2.3457 18 1 16.6543 1 15L1 4C1 2.3457 2.3457 1 4 1L15 1M15 0L4 0C1.7998 0 0 1.7998 0 4L0 15C0 17.2002 1.7998 19 4 19L15 19C17.2002 19 19 17.2002 19 15L19 4C19 1.7998
-					17.2002 0 15 0L15 0Z" >
-				<s:fill>
-					<s:SolidColor color="0x213309"/>
-				</s:fill>
-			</s:Path>
-			<s:Path winding="nonZero" data="M11.5449 12.7705C10.4434 12.7705 8.64063 12.7705 7.53906 12.7705 6.4375 12.7705 5.98682 11.9902 6.5376 11.0361 7.08838 10.082 7.98975 8.52148 8.54053 7.56738 9.09131 6.61328 9.99268 6.61328 10.543 7.56738 11.0947 8.52148 11.9951 10.082
-					12.5469 11.0361 13.0977 11.9902 12.6465 12.7705 11.5449 12.7705Z" >
-				<s:fill>
-					<s:SolidColor color="0xFFFFFF" color.over="0x213309" color.down="0x213309"/>
+					<s:SolidColor color="#9E9E9E" color.overStates="#825C37" color.downStates="#825C37"/>
 				</s:fill>
 			</s:Path>
 		</s:Group>
-		<s:Group includeIn="upAndSelected, overAndSelected, downAndSelected">
-			<s:Path winding="nonZero" data="M3.5 18C1.57031 18 0 16.4297 0 14.5L0 3.5C0 1.57031 1.57031 0 3.5 0L14.5 0C16.4297 0 18 1.57031 18 3.5L18 14.5C18 16.4297 16.4297 18 14.5 18L3.5 18Z" >
+		<s:Group includeIn="upAndSelected, overAndSelected, downAndSelected" horizontalCenter="0" verticalCenter="0">
+			<!-- the up arrow -->
+			<s:Path winding="nonZero" x="1" y="1" data="M5.24287 5.9187C4.14131 5.9187 2.33858 5.9187 1.23702 5.9187 0.135453 5.9187 -0.315719 5.13843 0.235062 4.18433 0.785843 3.23022 1.68721 1.66968 2.23799 0.715576 2.78877 -0.238525 3.69014 -0.238525 4.24092 0.715576 4.7917 1.66968 5.69258 3.23022
+					6.24336 4.18433 6.79414 5.13843 6.34395 5.9187 5.24287 5.9187Z">
 				<s:fill>
-					<s:LinearGradient x="9.00049" y="18" scaleX="17.9995" rotation="90">
-						<s:GradientEntry color="0XFFC700" color.over="0XFFD43B" color.down="0XFFD43B" ratio="0.5" />
-						<s:GradientEntry color="0XFF9D00" color.over="0XFFE382" color.down="0XFFE382"/>
-					</s:LinearGradient>
-				</s:fill>
-			</s:Path>
-			<s:Path winding="nonZero" data="M15 1C16.6543 1 18 2.3457 18 4L18 15C18 16.6543 16.6543 18 15 18L4 18C2.3457 18 1 16.6543 1 15L1 4C1 2.3457 2.3457 1 4 1L15 1M15 0L4 0C1.7998 0 0 1.7998 0 4L0 15C0 17.2002 1.7998 19 4 19L15 19C17.2002 19 19 17.2002 19 15L19 4C19 1.7998
-					17.2002 0 15 0L15 0Z" >
-				<s:fill>
-					<s:SolidColor color="0x213309"/>
-				</s:fill>
-			</s:Path>
-			<s:Path winding="nonZero" data="M11.5449 12.7705C10.4434 12.7705 8.64063 12.7705 7.53906 12.7705 6.4375 12.7705 5.98682 11.9902 6.5376 11.0361 7.08838 10.082 7.98975 8.52148 8.54053 7.56738 9.09131 6.61328 9.99268 6.61328 10.543 7.56738 11.0947 8.52148 11.9951 10.082
-					12.5469 11.0361 13.0977 11.9902 12.6465 12.7705 11.5449 12.7705Z" >
-				<s:fill>
-					<s:SolidColor color="0xFFFFFF" color.over="0x213309" color.down="0x213309"/>
+					<s:SolidColor color="#9E9E9E" color.overStates="#825C37" color.downStates="#825C37" />
 				</s:fill>
 			</s:Path>
 		</s:Group>
