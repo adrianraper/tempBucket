@@ -13,6 +13,8 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course
 	
 	import flash.events.Event;
 	
+	import mx.collections.XMLListCollection;
+	
 	import org.puremvc.as3.interfaces.IMediator;
 	import org.puremvc.as3.interfaces.INotification;
 	
@@ -53,7 +55,10 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course
 			view.group = loginProxy.group;
 			
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-			Bind.fromProperty(courseProxy, "unitCollection").toProperty(view, "unitListCollection");
+			// gh#871 Course_Start notification doesn't be sent when open a unit, so unitCollection in CourseProxy cannot be used to bind data
+			Bind.fromProperty(courseProxy, "currentUnit").convert(function(unit:XML):XMLListCollection {
+				return new XMLListCollection(unit.parent().unit);
+			}).toProperty(view, "unitListCollection");
 			// gh#91
 			view.isOwner = courseProxy.isOwner;
 			view.isCollaborator = courseProxy.isCollaborator;
