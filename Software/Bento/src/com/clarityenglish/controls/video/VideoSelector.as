@@ -2,6 +2,7 @@ package com.clarityenglish.controls.video {
 	import com.clarityenglish.bento.events.ExerciseEvent;
 	import com.clarityenglish.bento.vo.ExerciseMark;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.controls.video.events.VideoEvent;
 	import com.clarityenglish.controls.video.events.VideoScoreEvent;
 	import com.clarityenglish.controls.video.loaders.RssVideoLoader;
@@ -70,6 +71,7 @@ package com.clarityenglish.controls.video {
 		protected var _videoChanged:Boolean;		
 		
 		private var currentVideoStartTime:Date;
+		private var _copyProvider:CopyProvider;
 		
 		public function VideoSelector() {
 			super();
@@ -137,6 +139,14 @@ package com.clarityenglish.controls.video {
 				_autoPlayChanged = true;
 				invalidateProperties();
 			}
+		}
+		
+		[Bindable]
+		public function get copyProvider():CopyProvider {
+			return _copyProvider;
+		}
+		public function set copyProvider(value:CopyProvider):void {
+			_copyProvider = value;
 		}
 		
 		protected override function commitProperties():void {
@@ -266,7 +276,7 @@ package com.clarityenglish.controls.video {
 		}
 		
 		public function getVideoScore():ExerciseMark {
-			if (videoList.selectedItem && currentVideoStartTime) { // #138
+			if (videoList.selectedItem && currentVideoStartTime && hrefToUidFunction) { // #138 // for candidates video, no hrefToUidFunction can apply
 				var videoHref:Href = href.createRelativeHref(null, videoList.selectedItem.@href);
 				
 				var exerciseMark:ExerciseMark = new ExerciseMark();

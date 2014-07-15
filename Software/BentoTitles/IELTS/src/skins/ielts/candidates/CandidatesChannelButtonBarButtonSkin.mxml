@@ -49,11 +49,11 @@
     </s:states>
     
 	<s:Group>
-		<s:Rect id="fill" width.selectedStates="60" width.over="60" width.down="60" width.up="50" height="35" radiusX="5" radiusY="5">
+		<s:Rect id="fill" width="50" height="35" radiusX="5" radiusY="5">
 			<s:fill>
 				<s:LinearGradient scaleX="45.0111" rotation="180">
-					<s:GradientEntry ratio="0" color="#174A7D"/>
-					<s:GradientEntry ratio="1"/>
+					<s:GradientEntry ratio="0" color="#6D6E70" color.selectedStates="#174A7D" color.over="#174A7D" color.down="#6D6E70"/>
+					<s:GradientEntry ratio="1" color="#333333" color.selectedStates="#000000" color.over="#000000" color.down="#000000"/>
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>

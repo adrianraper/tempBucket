@@ -373,7 +373,6 @@ package com.clarityenglish.ielts.view.title {
 					break;
 				case logoutButton:
 					instance.addEventListener(MouseEvent.CLICK, onLogoutButtonClick);
-					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
@@ -424,9 +423,6 @@ package com.clarityenglish.ielts.view.title {
 					break;
 				case myProfileViewNavigatorButton2:
 					instance.label = copyProvider.getCopyForId("LogOut");
-					break;
-				case helpViewNavigator:
-					instance.label = copyProvider.getCopyForId("help");
 					break;
 				case helpViewNavigatorButton1:
 					instance.label = copyProvider.getCopyForId("Home");

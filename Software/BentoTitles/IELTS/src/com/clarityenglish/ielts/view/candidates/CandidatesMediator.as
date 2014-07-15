@@ -32,7 +32,7 @@ package com.clarityenglish.ielts.view.candidates
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
 			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
-			view.hrefToUidFunction = bentoProxy.getExerciseUID;
+			view.hrefToUidFunction = null;
 		}
 	}
 }
