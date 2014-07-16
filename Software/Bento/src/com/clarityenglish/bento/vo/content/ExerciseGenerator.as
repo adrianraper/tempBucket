@@ -1,5 +1,6 @@
 package com.clarityenglish.bento.vo.content {
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flashx.textLayout.elements.FlowElement;
@@ -64,8 +65,8 @@ package com.clarityenglish.bento.vo.content {
 		
 		public function htmlToTextFlow(xmlString:String):TextFlow {
 			switch (exerciseType) {
-				case "MultipleChoiceQuestion": return new GapQuestionConverter().htmlToTlfString(xmlString);
-				case "GapFillQuestion": return new GapQuestionConverter().htmlToTlfString(xmlString);
+				case Question.MULTIPLE_CHOICE_QUESTION: return new GapQuestionConverter().htmlToTlfString(xmlString);
+				case Question.GAP_FILL_QUESTION: return new GapQuestionConverter().htmlToTlfString(xmlString);
 			}
 			
 			return TextFlowUtil.importFromString(xmlString);
@@ -73,8 +74,8 @@ package com.clarityenglish.bento.vo.content {
 		
 		public function textFlowToHtml(textFlow:TextFlow):String {
 			switch (exerciseType) {
-				case "MultipleChoiceQuestion": return new GapQuestionConverter().textFlowToHtml(textFlow).toXMLString();
-				case "GapFillQuestion": return new GapQuestionConverter().textFlowToHtml(textFlow).toXMLString();
+				case Question.MULTIPLE_CHOICE_QUESTION: return new GapQuestionConverter().textFlowToHtml(textFlow).toXMLString();
+				case Question.GAP_FILL_QUESTION: return new GapQuestionConverter().textFlowToHtml(textFlow).toXMLString();
 			}
 			
 			return TextFlowUtil.export(textFlow).toString();
