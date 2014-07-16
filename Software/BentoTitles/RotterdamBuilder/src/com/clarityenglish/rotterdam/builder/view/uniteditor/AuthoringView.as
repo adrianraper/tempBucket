@@ -2,6 +2,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.ExerciseGenerator;
+	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.GapEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
@@ -13,6 +14,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
+	import mx.core.mx_internal;
 	import mx.events.CloseEvent;
 	import mx.events.FlexEvent;
 	
@@ -137,7 +139,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			questionTextArea.textFlow.addEventListener(GapEvent.GAP_SELECTED, onGapSelected, false, 0, true);
 			questionTextArea.textFlow.addEventListener(GapEvent.GAP_DESELECTED, onGapDeselected, false, 0, true);
 			
-			answers = new XMLListCollection(question.answers.answer); // TODO: don't do this for gap style questions
+			if (exerciseGenerator.exerciseType == Question.MULTIPLE_CHOICE_QUESTION)
+				answers = new XMLListCollection(question.answers.answer);
 		}
 		
 		protected function onQuestionAdded(event:Event):void {
@@ -164,6 +167,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					<answer correct="true">{event.gapText}</answer>
 				</answers>
 			);
+			
+			onGapSelected(event);
 		}
 		
 		protected function onGapSelected(event:GapEvent):void {
