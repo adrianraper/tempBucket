@@ -3,24 +3,33 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.ExerciseGenerator;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.GapEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.tlf.GapEditManager;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import mx.collections.ArrayCollection;
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.events.CloseEvent;
+	import mx.events.FlexEvent;
 	
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
 	import spark.components.List;
+	import spark.components.TextArea;
 	import spark.events.IndexChangeEvent;
 	
 	public class AuthoringView extends BentoView {
+		
+		[SkinPart]
+		public var questionTextArea:TextArea;
+		
+		[SkinPart]
+		public var addGapButton:Button;
 		
 		[SkinPart]
 		public var questionList:List;
@@ -77,6 +86,15 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case questionTextArea:
+					questionTextArea.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+						if (questionList.selectedItem)
+							questionList.selectedItem.question.setChildren(new XML("<![CDATA[" + exerciseGenerator.textFlowToHtml(questionTextArea.textFlow) + "]]>"));
+					});
+					break;
+				case addGapButton:
+					addGapButton.addEventListener(MouseEvent.CLICK, onAddGap);
+					break;
 				case questionList:
 					questionList.dragEnabled = questionList.dropEnabled = questionList.dragMoveEnabled = true;
 					questionList.addEventListener(IndexChangeEvent.CHANGE, onQuestionSelected);
@@ -112,7 +130,14 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function onQuestionSelected(event:IndexChangeEvent):void {
 			question = questionList.selectedItem;
-			answers = new XMLListCollection(question.answers.answer);
+			
+			questionTextArea.textFlow = exerciseGenerator.htmlToTextFlow(question.question);
+			questionTextArea.textFlow.interactionManager = new GapEditManager();
+			questionTextArea.textFlow.addEventListener(GapEvent.GAP_CREATED, onGapCreated, false, 0, true);
+			questionTextArea.textFlow.addEventListener(GapEvent.GAP_SELECTED, onGapSelected, false, 0, true);
+			questionTextArea.textFlow.addEventListener(GapEvent.GAP_DESELECTED, onGapDeselected, false, 0, true);
+			
+			answers = new XMLListCollection(question.answers.answer); // TODO: don't do this for gap style questions
 		}
 		
 		protected function onQuestionAdded(event:Event):void {
@@ -125,6 +150,28 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					</{exerciseGenerator.getSettingParam("exerciseType")}>
 				);
 			}
+		}
+		
+		protected function onAddGap(e:Event):void {
+			var manager:GapEditManager = questionTextArea.textFlow.interactionManager as GapEditManager;
+			manager.createGap();
+		}
+		
+		protected function onGapCreated(event:GapEvent):void {
+			// Create an answers section for the gap
+			question.appendChild(
+				<answers source={event.gapId}>
+					<answer correct="true">{event.gapText}</answer>
+				</answers>
+			);
+		}
+		
+		protected function onGapSelected(event:GapEvent):void {
+			answers = new XMLListCollection(question.answers.(attribute("source") == event.gapId).answer);
+		}
+		
+		protected function onGapDeselected(event:GapEvent):void {
+			answers = null;
 		}
 		
 		protected function onQuestionDeleted(event:QuestionDeleteEvent):void {
@@ -164,8 +211,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		 * The skin state is made up of <exerciseType>_<layoutType>.  So for example, MultipleChoiceQuestion_questions, or GapFillQuestion_text.
 		 */
 		protected override function getCurrentSkinState():String {
-			if (exerciseGenerator && exerciseGenerator.hasSettingParam("exerciseType") && exerciseGenerator.hasSettingParam("questionNumberingEnabled")) {
-				return exerciseGenerator.getSettingParam("exerciseType") + "_" + (exerciseGenerator.hasSettingParam("questionNumberingEnabled") ? "questions" : "text");
+			if (exerciseGenerator && exerciseGenerator.exerciseType && exerciseGenerator.layoutType) {
+				return exerciseGenerator.exerciseType + "_" + exerciseGenerator.layoutType;
 			} else {
 				return super.getCurrentSkinState();
 			}

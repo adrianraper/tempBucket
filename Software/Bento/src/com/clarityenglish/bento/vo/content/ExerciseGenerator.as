@@ -2,10 +2,18 @@ package com.clarityenglish.bento.vo.content {
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
+	import flashx.textLayout.elements.FlowElement;
+	import flashx.textLayout.elements.FlowGroupElement;
+	import flashx.textLayout.elements.SpanElement;
+	import flashx.textLayout.elements.SubParagraphGroupElement;
+	import flashx.textLayout.elements.TextFlow;
+	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
 	import org.davekeen.util.ClassUtil;
+	
+	import spark.utils.TextFlowUtil;
 	
 	/**
 	 * @author
@@ -33,8 +41,15 @@ package com.clarityenglish.bento.vo.content {
 			return authoring.hasOwnProperty("questions") ? authoring.questions[0] : null;
 		}
 		
+		public function get exerciseType():String {
+			return hasSettingParam("exerciseType") ? getSettingParam("exerciseType") : null;
+		}
+		
+		public function get layoutType():String {
+			return hasSettingParam("questionNumberingEnabled") ? "questions" : "text";
+		}
+		
 		public function hasSettingParam(paramName:String):Boolean {
-			//return (settings && settings.param.(@name == paramName).length() > 0);
 			return (settings && settings[paramName].length() > 0);
 		}
 		
@@ -47,5 +62,62 @@ package com.clarityenglish.bento.vo.content {
 			return value;
 		}
 		
+		public function htmlToTextFlow(xmlString:String):TextFlow {
+			switch (exerciseType) {
+				case "MultipleChoiceQuestion": return new GapQuestionConverter().htmlToTlfString(xmlString);
+				case "GapFillQuestion": return new GapQuestionConverter().htmlToTlfString(xmlString);
+			}
+			
+			return TextFlowUtil.importFromString(xmlString);
+		}
+		
+		public function textFlowToHtml(textFlow:TextFlow):String {
+			switch (exerciseType) {
+				case "MultipleChoiceQuestion": return new GapQuestionConverter().textFlowToHtml(textFlow).toXMLString();
+				case "GapFillQuestion": return new GapQuestionConverter().textFlowToHtml(textFlow).toXMLString();
+			}
+			
+			return TextFlowUtil.export(textFlow).toString();
+		}
+		
 	}
+}
+import flashx.textLayout.elements.FlowElement;
+import flashx.textLayout.elements.FlowGroupElement;
+import flashx.textLayout.elements.SpanElement;
+import flashx.textLayout.elements.SubParagraphGroupElement;
+import flashx.textLayout.elements.TextFlow;
+
+import spark.utils.TextFlowUtil;
+
+interface IQuestionConverter {
+	function htmlToTextFlow(xmlString:String):TextFlow;
+	function textFlowToHtml(flowElement:FlowElement):XML;	
+}
+
+// It actually might turn out that we only need a single converter for all question types...
+class GapQuestionConverter {
+	
+	public function htmlToTlfString(xmlString:String):TextFlow {
+		var tlfString:String = "";
+		tlfString += '<TextFlow xmlns="http://ns.adobe.com/textLayout/2008">';
+		tlfString += xmlString.replace(/<input id="(\w+)" placeholder="(\w+)" ?\/>/g, '<g id="$1"><span textDecoration="underline">$2</span></g>');
+		tlfString += '</TextFlow>';
+		return TextFlowUtil.importFromString(tlfString);
+	}
+	
+	public function textFlowToHtml(flowElement:FlowElement):XML {
+		if (flowElement.typeName == "TextFlow") return textFlowToHtml((flowElement as TextFlow).getChildAt(0));
+		
+		var node:XML = new XML("<" + flowElement.typeName + " />");
+		if (flowElement.id) node.@id = flowElement.id;
+		if (flowElement is SpanElement) node.appendChild((flowElement as SpanElement).text);
+		if (flowElement is SubParagraphGroupElement) return <input id={flowElement.id} placeholder={((flowElement as FlowGroupElement).getChildAt(0) as SpanElement).text}></input>;
+		if (flowElement is FlowGroupElement)
+			for each (var childFlowElement:FlowElement in (flowElement as FlowGroupElement).mxmlChildren)
+			node.appendChild(textFlowToHtml(childFlowElement));
+		
+		return node;
+	}
+	
 }

@@ -9,7 +9,7 @@ class ExerciseOps {
   <head>
     <script id="authoring" type="application/xml">
       <settings>
-        <exerciseType>MultipleChoiceQuestion</exerciseType>
+        <exerciseType>{type}</exerciseType>
       	<questionNumberingEnabled>true</questionNumberingEnabled>
       	<questionNumbering>1</questionNumbering>
       	<questionStartNumber>1</questionStartNumber>
@@ -37,9 +37,9 @@ class ExerciseOps {
 		$this->copyOps = new CopyOps();
 	}
 	
-	public function exerciseCreate($courseID, $filename) {
+	public function exerciseCreate($courseID, $type, $filename) {
 		$this->validateCourseIDAndFilename($courseID, $filename);
-				
+		
 		// If the exercise folder doesn't exist then create it gh#919
 		if (!is_dir("{$this->accountFolder}/$courseID/exercises")) {
 			mkdir("{$this->accountFolder}/$courseID/exercises", 0755, true);
@@ -47,7 +47,10 @@ class ExerciseOps {
 		
 		$exerciseXMLFilename = "{$this->accountFolder}/$courseID/$filename";
 		
-		$result = file_put_contents($exerciseXMLFilename, $this->defaultXML);
+		// Replace {type} with the type
+		$exerciseXML = preg_replace("/\{type\}/", $type, $this->defaultXML);
+		
+		$result = file_put_contents($exerciseXMLFilename, $exerciseXML);
 		
 		if ($result === false) {
 			throw $this->copyOps->getExceptionForId("errorSavingExercise", array("reason" => "unable to create exercise file"));

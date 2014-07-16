@@ -82,8 +82,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 			}
 		}
 		
-		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { 
-			var exercise:Exercise = xhtml as Exercise;
+		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 			xmlBiMap = flowElementXmlBiMap;
 			
 			if (!xhtml.hasEventListener(MarkingEvent.SEE_ANSWERS))

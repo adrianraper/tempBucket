@@ -41,7 +41,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 				node.@href = "exercises/" + (new Date()).time + ".generator.xml";
 				
 				var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
-				courseProxy.exerciseCreate(node).addResponder(new ResultResponder(function():void {
+				courseProxy.exerciseCreate(node, authoringOptions.type).addResponder(new ResultResponder(function():void {
 					openAuthoringWindow(authoringOptions, tempid);
 				}));
 			} else {
