@@ -103,8 +103,8 @@ EOD;
 		return $this->courseOps->courseDelete($course);
 	}
 	
-	public function exerciseCreate($courseID, $filename) {
-		return $this->exerciseOps->exerciseCreate($courseID, $filename);
+	public function exerciseCreate($courseID, $type, $filename) {
+		return $this->exerciseOps->exerciseCreate($courseID, $type, $filename);
 	}
 	
 	public function exerciseSave($courseID, $filename, $xml) {

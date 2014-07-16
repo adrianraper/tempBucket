@@ -93,11 +93,11 @@ package com.clarityenglish.textLayout.components.behaviours {
 			}
 		}
 		
-		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void { 
-			var exercise:Exercise = xhtml as Exercise;
+		public function onImportComplete(xhtml:XHTML, flowElementXmlBiMap:FlowElementXmlBiMap):void {
 			xmlBiMap = flowElementXmlBiMap;
 			
-			audioNodes = exercise.select("audio.audio-feedback");
+			if (xhtml is Exercise)
+				audioNodes = (xhtml as Exercise).select("audio.audio-feedback");
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {

@@ -1,9 +1,7 @@
 package com.clarityenglish.textLayout.rendering {
-	import com.clarityenglish.textLayout.elements.AudioElement;
 	import com.clarityenglish.textLayout.elements.FloatableTextFlow;
 	import com.clarityenglish.textLayout.events.RenderFlowEvent;
 	import com.clarityenglish.textLayout.events.RenderFlowMouseEvent;
-	import com.clarityenglish.textLayout.stylesheets.CssLibFormatResolver;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
 	import flash.events.Event;

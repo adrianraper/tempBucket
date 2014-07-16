@@ -7,12 +7,9 @@ package com.clarityenglish.textLayout.conversion {
 	import com.clarityenglish.textLayout.elements.UnorderedListElement;
 	import com.clarityenglish.textLayout.elements.VideoElement;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
-	import com.clarityenglish.textLayout.util.TLFUtil;
-	import com.newgonzo.commons.utils.StringUtil;
 	import com.newgonzo.web.css.CSS;
 	import com.newgonzo.web.css.CSSComputedStyle;
 	
-	import flashx.textLayout.conversion.BaseTextLayoutImporter;
 	import flashx.textLayout.conversion.TextLayoutImporter;
 	import flashx.textLayout.elements.ContainerFormattedElement;
 	import flashx.textLayout.elements.DivElement;
@@ -36,7 +33,6 @@ package com.clarityenglish.textLayout.conversion {
 	
 	import mx.logging.ILogger;
 	import mx.logging.Log;
-	import mx.utils.StringUtil;
 	
 	import org.davekeen.util.ClassUtil;
 	

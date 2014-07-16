@@ -21,6 +21,7 @@
 		<s:State name="normal" />
 		
 		<s:State name="MultipleChoiceQuestion_questions" stateGroups="MultipleChoiceQuestion,questions" />
+		<s:State name="GapFillQuestion_questions" stateGroups="GapFillQuestion,questions" />
 	</s:states>
 	
 	<s:VGroup width="100%">
@@ -59,11 +60,15 @@
 			
 			<s:VGroup width="100%" enabled="{questionList.selectedItem != null}">
 				<s:Label text="Question" />
-				<s:TextArea id="questionTextArea" width="100%" text="@{hostComponent.question.question}" />
+				<s:TextArea id="questionTextArea" width="100%" />
+				
+				<s:HGroup includeIn="GapFillQuestion">
+					<s:Button id="addGapButton" label="Add Gap" />
+				</s:HGroup>
 				
 				<!-- TODO: Checkbox with editable area.  List and item renderers? -->
 				<s:Label text="Answers" />
-				<s:List id="answersList" width="100%" dataProvider="{hostComponent.answers}">
+				<s:List id="answersList" width="100%" dataProvider="{hostComponent.answers}" enabled="{hostComponent.answers != null}">
 					<s:itemRenderer>
 						<fx:Component>
 							<s:ItemRenderer>

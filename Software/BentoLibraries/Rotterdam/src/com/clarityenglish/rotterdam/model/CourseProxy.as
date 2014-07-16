@@ -182,8 +182,8 @@ package com.clarityenglish.rotterdam.model {
 			}
 		}
 		
-		public function exerciseCreate(widget:XML):AsyncToken {
-			return new RemoteDelegate("exerciseCreate", [ courseID, widget.@href.toString() ], this).execute();
+		public function exerciseCreate(widget:XML, type:String):AsyncToken {
+			return new RemoteDelegate("exerciseCreate", [ courseID, type, widget.@href.toString() ], this).execute();
 		}
 		
 		public function exerciseSave(widget:XML, exercise:XML):AsyncToken {

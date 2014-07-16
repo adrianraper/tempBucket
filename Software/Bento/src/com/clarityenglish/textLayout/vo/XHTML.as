@@ -3,6 +3,7 @@ package com.clarityenglish.textLayout.vo {
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.textLayout.conversion.FlowElementXmlBiMap;
 	import com.clarityenglish.textLayout.events.XHTMLEvent;
+	import com.googlecode.bindagetools.converters.nullToValue;
 	import com.newgonzo.commons.utils.StringUtil;
 	import com.newgonzo.web.css.CSS;
 	
@@ -77,7 +78,7 @@ package com.clarityenglish.textLayout.vo {
 		}
 		
 		public function get rootPath():String {
-			return href.rootPath;
+			return (href) ? href.rootPath : null;
 		}
 		
 		public function get flowElementXmlBiMap():FlowElementXmlBiMap {
