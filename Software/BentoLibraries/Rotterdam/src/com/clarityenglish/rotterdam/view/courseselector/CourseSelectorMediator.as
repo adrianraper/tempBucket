@@ -4,6 +4,7 @@
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.common.model.ConfigProxy;
+	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -34,7 +35,15 @@
 			
 			// Load courses.xml serverside gh#84
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
 			view.href = new Href(Href.XHTML, "courses.xml", configProxy.getConfig().paths.content, true);
+			
+			// gh#956
+			var memoryFromUser:XML = new XML(loginProxy.user.memory);
+			view.viewMemory = <viewMemory><courseSelector /></viewMemory>;
+			if (memoryFromUser && memoryFromUser.hasOwnProperty('courseBuilder'))
+				if (memoryFromUser.courseBuilder.hasOwnProperty('courseSelector'))
+					view.viewMemory.courseSelector = memoryFromUser.courseBuilder.courseSelector;
 		}
 		
 		override public function onRemove():void {
@@ -43,6 +52,16 @@
 			view.createCourse.remove(onCreateCourse);
 			view.selectCourse.remove(onSelectCourse);
 			view.deleteCourse.remove(onDeleteCourse);
+			
+			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
+			var memoryFromUser:XML = new XML(loginProxy.user.memory);
+			if (memoryFromUser == null)
+				memoryFromUser = <memory><courseBuilder /></memory>;
+			if (!memoryFromUser.hasOwnProperty('courseBuilder'))
+				memoryFromUser.appendChild(<courseBuilder />);
+			
+			memoryFromUser.courseBuilder.courseSelector = view.viewMemory.courseSelector;
+			loginProxy.user.memory = memoryFromUser.toString();
 		}
 		
 		override public function listNotificationInterests():Array {

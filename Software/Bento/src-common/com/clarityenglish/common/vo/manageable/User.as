@@ -81,6 +81,9 @@
 		// v3.4 Multi-group users
 		public var userID:String;
 		
+		// gh#956
+		public var memory:String;
+			
 		public function User(data:Object = null) {
 			if (data)
 				buildUser(data);

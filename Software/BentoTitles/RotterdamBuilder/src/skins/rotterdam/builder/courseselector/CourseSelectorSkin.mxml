@@ -15,14 +15,6 @@
 		<s:Animate id="hideFiltersAnimation" targets="{[filtersPanel]}" duration="200">
 			<s:SimpleMotionPath property="width" valueFrom="180" valueTo="0" />
 		</s:Animate>
-		<!-- 
-		<s:Animate id="cloakFiltersAnimation" targets="{[filtering, sorting, sortDescendingToggleButton]}" duration="200">
-			<s:SimpleMotionPath property="alpha" valueFrom="1" valueTo="0" />
-		</s:Animate>
-		<s:Animate id="uncloakFiltersAnimation" targets="{[filtering, sorting, sortDescendingToggleButton]}" duration="0">
-			<s:SimpleMotionPath property="alpha" valueFrom="0" valueTo="1" />
-		</s:Animate>
-		-->
 	</fx:Declarations>
 	
 	<!-- states -->
@@ -49,6 +41,7 @@
 		<s:Group id="filtersPanel" width="180">
 			<s:Group>
 				<s:VGroup paddingTop="0" visible="true" gap="0" width="180" >
+					<!-- Form layout is odd, if you don't give these two forms ids, they change their spacing! -->
 					<s:Form id="filtering" width="180">
 						<s:FormHeading id="filterHeadingFormHeading" width="180" />
 						<s:FormItem>
@@ -71,6 +64,7 @@
 						</s:FormItem>
 					</s:Form>
 				</s:VGroup>
+				<!-- This is overlaid next on the sorting heading -->
 				<s:ToggleButton id="sortDescendingToggleButton" top="194" right="5" useHandCursor="true" buttonMode="true" />
 			</s:Group>
 			<s:ToggleButton id="showFiltersToggleButton" top="-5" left="-13" height="40" useHandCursor="true" buttonMode="true"/>

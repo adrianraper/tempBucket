@@ -1051,3 +1051,11 @@ INSERT INTO `T_ProductVersion` VALUES
 (56,'DEMO'),
 (56,'FV');
 
+INSERT INTO `T_DatabaseVersion`
+(`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
+VALUES (1956, '2014-07-17 00:00:00', 'user memory');
+
+ALTER TABLE T_User ADD COLUMN F_Memory MEDIUMTEXT NULL DEFAULT NULL;
+ALTER TABLE T_User_Expiry ADD COLUMN F_Memory MEDIUMTEXT NULL DEFAULT NULL;
+
+

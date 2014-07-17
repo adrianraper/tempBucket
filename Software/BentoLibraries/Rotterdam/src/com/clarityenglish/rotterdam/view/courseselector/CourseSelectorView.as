@@ -128,6 +128,8 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		private var cloakTimer:Timer;
 		
+		public var viewMemory:XML;
+		
 		protected override function commitProperties():void {
 			super.commitProperties();
 		}
@@ -139,8 +141,62 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			if (courseList.dataProvider.length == 0)
 				return;
 			
+			// gh#956
+			var initialSortField:String = 'created';
+			var initialSortDescending:Boolean = true;
+			var initialFiltersHidden:Boolean = false;
+			var initialFilterOwner:Boolean = false;
+			var initialFilterCollaborator:Boolean = false;
+			var initialFilterPublisher:Boolean = false;
+			var initialFilterText:String = '';
+			if (viewMemory.hasOwnProperty('courseSelector')) {
+				if (viewMemory.courseSelector.hasOwnProperty('@sortField'))
+					initialSortField = viewMemory.courseSelector.@sortField;
+				if (viewMemory.courseSelector.hasOwnProperty('@sortDescending'))
+					initialSortDescending = (viewMemory.courseSelector.@sortDescending == "true");
+				if (viewMemory.courseSelector.hasOwnProperty('@filtersHidden'))
+					initialFiltersHidden = (viewMemory.courseSelector.@filtersHidden == "true");
+				if (viewMemory.courseSelector.hasOwnProperty('@filterOwner'))
+					initialFilterOwner = (viewMemory.courseSelector.@filterOwner == "true");
+				if (viewMemory.courseSelector.hasOwnProperty('@filterCollaborator'))
+					initialFilterCollaborator = (viewMemory.courseSelector.@filterCollaborator == "true");
+				if (viewMemory.courseSelector.hasOwnProperty('@filterPublisher'))
+					initialFilterPublisher = (viewMemory.courseSelector.@filterPublisher == "true");
+				if (viewMemory.courseSelector.hasOwnProperty('filter'))
+					initialFilterText = viewMemory.courseSelector.filter[0];
+			}
+			
+			// gh#956 Use the remembered preferences
+			switch (initialSortField) {
+				case 'timesUsed':
+					sortPopularity.selected = true;
+					break;
+				case 'size':
+					sortSize.selected = true;
+					break;
+				case 'lastSaved':
+					sortChangeDate.selected = true;
+					break;
+				case 'caption':
+					sortName.selected = true;
+					break;
+				default:
+					sortCreateDate.selected = true;
+					break;
+			}
+			sortDescendingToggleButton.selected = initialSortDescending;
+			showFiltersToggleButton.selected = !initialFiltersHidden;
+			onShowHideFilters(null);
+			
+			filterOwner.selected = initialFilterOwner;
+			filterCollaborator.selected = initialFilterCollaborator;
+			filterPublisher.selected = initialFilterPublisher;
+			if (initialFilterText)
+				filterTextInput.text = initialFilterText;
+			this.onChangeFilter(null);
+			
 			var sort:Sort = new Sort();
-			var sortField:SortField = new SortField('@created', true, null);
+			var sortField:SortField = new SortField('@' + initialSortField, initialSortDescending, null);
 			// TODO how to get the real locale?
 			sortField.setStyle('locale', 'en-US');
 			sort.fields = [sortField];
@@ -195,7 +251,6 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					break;
 				case sortCreateDate:
 					instance.label = copyProvider.getCopyForId("sortCreateDate");
-					sortCreateDate.selected = true;
 					break;
 				case sortChangeDate:
 					instance.label = copyProvider.getCopyForId("sortModifiedDate");
@@ -213,13 +268,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					instance.label = copyProvider.getCopyForId("sortName");
 					break;
 				case sortDescendingToggleButton:
-					//instance.label = copyProvider.getCopyForId("sortDescending");
 					sortDescendingToggleButton.addEventListener(Event.CHANGE, onChangeSort);
-					sortDescendingToggleButton.selected = true;
 					break;
 				case showFiltersToggleButton:
-					//showFiltersToggleButton.label = copyProvider.getCopyForId("showFiltersToggleButton");
-					showFiltersToggleButton.selected = true;
 					showFiltersToggleButton.addEventListener(Event.CHANGE, onShowHideFilters);
 					break;
 				case filterHeadingFormHeading:
@@ -233,10 +284,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		
 		// gh#619
 		protected function onShowHideFilters(event:Event):void {
-			if ((event.target as ToggleButton).selected) {
-				cloakTimer.stop();
-				cloakTimer.removeEventListener(TimerEvent.TIMER, cloakTimerHandler);
-				//uncloakFiltersAnimation.play();
+			if (showFiltersToggleButton.selected) {
+				if (cloakTimer)
+					cloakTimer.removeEventListener(TimerEvent.TIMER, cloakTimerHandler);
 				filtering.visible = sorting.visible = sortDescendingToggleButton.visible = true;
 				showFiltersAnimation.play();
 			} else {
@@ -244,10 +294,12 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				cloakTimer = new Timer(1000, 1);
 				cloakTimer.addEventListener(TimerEvent.TIMER, cloakTimerHandler);
 				cloakTimer.start();
-			}
+			}			
+			
+			// gh#956
+			viewMemory.courseSelector.@filtersHidden = String(!showFiltersToggleButton.selected);
 		}
 		private function cloakTimerHandler(event:TimerEvent):void {
-			//cloakFiltersAnimation.play();
 			filtering.visible = sorting.visible = sortDescendingToggleButton.visible = false;
 			cloakTimer.removeEventListener(TimerEvent.TIMER, cloakTimerHandler);
 		}
@@ -263,7 +315,11 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					(courseList.dataProvider as XMLListCollection).sort = sort;
 					sort.reverse();
 					(courseList.dataProvider as XMLListCollection).refresh();
+					
+					// gh#956
+					viewMemory.courseSelector.@sortDescending = String(sortDescendingToggleButton.selected);
 					break;
+				
 				case sortRadioButtonGroup:
 					switch (sortRadioButtonGroup.selection) {
 						case sortCreateDate:
@@ -322,6 +378,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					sort.compareFunction = sortComparison;
 					(courseList.dataProvider as XMLListCollection).sort = sort;
 					(courseList.dataProvider as XMLListCollection).refresh();
+					
+					// gh#956
+					viewMemory.courseSelector.@sortField = sortAttribute.substr(1);
 					break;
 			}
 		}
@@ -355,6 +414,12 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				return keepItem;
 			};
 			(courseList.dataProvider as XMLListCollection).refresh();
+			
+			// gh#956
+			viewMemory.courseSelector.@filterOwner = String(filterOwner.selected);
+			viewMemory.courseSelector.@filterCollaborator = String(filterCollaborator.selected);
+			viewMemory.courseSelector.@filterPublisher = String(filterPublisher.selected);
+			viewMemory.courseSelector.filter = filterTextInput.text;
 		}
 		
 		protected function onCreateCourse(event:MouseEvent):void {
