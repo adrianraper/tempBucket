@@ -237,7 +237,7 @@ package com.clarityenglish.rotterdam.view.course {
 					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
 					
 					// gh#14 - auto select a unit and gh#151 - autoselect the first enabled unit
-					/*callLater(function():void {
+					callLater(function():void {
 						if (unitList.dataProvider && unitList.dataProvider.length > 0) {								
 							for each (var unit:XML in (unitList.dataProvider as XMLListCollection).source) {
 								if (!(unit.hasOwnProperty("@enabledFlag") && unit.@enabledFlag & 8)) {
@@ -253,7 +253,7 @@ package com.clarityenglish.rotterdam.view.course {
 							
 							// If we reach here then there are no enabled units - probably we want to display a graphic or something
 						}
-					});*/
+					});
 					break;
 				case addUnitButton:
 					addUnitButton.addEventListener(MouseEvent.CLICK, onAddUnit);

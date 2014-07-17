@@ -59,7 +59,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		[SkinPart(required="true")]
+		[SkinPart]
 		public var widgetChrome:WidgetChrome;
 		
 		[SkinPart(required="true")]
