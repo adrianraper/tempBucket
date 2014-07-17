@@ -4,7 +4,7 @@ require_once(dirname(__FILE__)."/ExerciseGenerateTransform.php");
 require_once(dirname(__FILE__)."/../../../../../../../../../amfphp/services/RotterdamBuilderService.php");
 $a = new ExerciseGenerateTransform();
 
-$contents = file_get_contents("D:/Projects/Clarity/ContentBench/CCB/Clarity/709789692436193040/exercises/123456.xml");
+$contents = file_get_contents("D:/Projects/Clarity/ContentBench/CCB/Clarity/709789692436193040/exercises/1405615600406.generator.xml");
 $xml = simplexml_load_string($contents);
 $service = new RotterdamBuilderService();
 $result = $a->transform(null, $xml, null, $service);

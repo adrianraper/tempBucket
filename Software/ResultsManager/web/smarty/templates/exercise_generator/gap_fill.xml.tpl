@@ -171,12 +171,11 @@
 		a.neutral, input.neutral, g.neutral, select.neutral {
 			color: #0000AA !important;
 		}
+		
 		.answerList {
-		{/literal}
-			list-style-type: {formatAnswerNumber format=$xml->settings->answerNumbering};
-		{literal}
-			padding-left: 16px;
-			text-indent: 0px;
+			list-style-type: lowerLatin;
+			padding-left: 34px;
+			text-indent:0px;
 			margin-left: 0px;
 			line-height: 150%;
 		}
@@ -191,11 +190,13 @@
 			
 			<questions>
 				{foreach from=$questions item=question name=question}
-				<{$exerciseType} block="q{$smarty.foreach.question.index}">
-					{foreach from=$question->answers->answer item=answer name=answer}
-					<answer source="q{$smarty.foreach.question.index}a{$smarty.foreach.answer.index}" correct="{$answer.correct}" />
+					{foreach from=$question->answers item=answers name=answers}
+						<{$exerciseType} source="{$answers.source}" block="q{$smarty.foreach.question.index}">
+						{foreach from=$answers item=answer name=answer}
+							<answer value="{$answer}" correct="{$answer.correct}" />
+						{/foreach}
+						</{$exerciseType}>
 					{/foreach}
-				</{$exerciseType}>
 				{/foreach}
 			</questions>
 		</script>
@@ -207,17 +208,10 @@
 				{foreach from=$questions item=question name=question}
 				<div id="q{$smarty.foreach.question.index}" class="question">
 					<div class="question-number">
-						{formatQuestionNumber idx=$smarty.foreach.question.iteration format=$xml->settings->questionNumbering startFrom=$xml->settings->questionStartNumber}
+						{$smarty.foreach.question.iteration}
 					</div>
 			    	<div class="question-text">
 						{$question->question}
-						<list class="answerList">
-							{* for shuffled options make an array you can randomise and then step through *}
-							{buildAnswersArray base=$question->answers->answer randomise=$xml->settings->shuffleAnswers}
-							{foreach from=$answersArray item=answer}
-							<li><a id="q{$smarty.foreach.question.index}a{$answer}">{$question->answers->answer[$answer]}</a></li>
-							{/foreach}
-						</list>
 					</div>
 				</div>
 				{/foreach}
