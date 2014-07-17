@@ -8,6 +8,7 @@
 @namespace progressui "com.clarityenglish.bento.view.progress.ui.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
+@namespace unitui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace ui "skins.rotterdam.clearpronunciation.progress.ui.*";
 @namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
@@ -85,6 +86,10 @@ course|CourseView s|List#unitList s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
+unit|UnitView unitui|WidgetList {
+	contentBackgroundColor: #19B5E0;
+}
+
 unit|UnitHeaderView s|Button#editButton {
 	skinClass: ClassReference("skins.rotterdam.unit.EditButtonSkin");
 }
@@ -156,6 +161,14 @@ progressui|CoverageGroupRenderer {
 
 ui2|WidgetList s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
+}
+
+widgets|VideoWidget {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.VideoWidgetSkin");
+}
+
+widgets|AudioWidget {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.AudioWidgetSkin");
 }
 
 widgets|AnimationWidget {

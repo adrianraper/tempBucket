@@ -39,18 +39,7 @@
 		<s:State name="unitplayer" />
 	</s:states>
 	
-	<!--s:BorderContainer id="unitContainer" backgroundColor="0xFFFFFF" top="5" left="5" width="140" dropShadowVisible="true" 
-					   maxHeight="{hostComponent.height*0.90}" minHeight="90">
-		<s:layout>
-			<s:VerticalLayout paddingTop="10" paddingBottom="10"/>
-		</s:layout>
-		<s:VGroup id="unitVGroup" height="100%" gap="0">
-			<s:Label id="courseCaptionLabel" paddingLeft="8" paddingRight="8" width="150" fontWeight="bold" fontSize="15"/>
-			<mx:Spacer height="16" />	
-		</s:VGroup>
-	</s:BorderContainer-->
-	
-	<unit:UnitView id="unitView" left="5" right="5" top="45" bottom="5" />
+	<unit:UnitView id="unitView" left="5" right="5" top="0" bottom="5" />
 	
 	<s:VGroup top="-50" left="200" horizontalAlign="center">
 		<s:HGroup id="swfloaderHGroup" height="50">

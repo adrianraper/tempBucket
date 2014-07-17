@@ -8,6 +8,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	import mx.collections.XMLListCollection;
 	import mx.events.StateChangeEvent;
 	
+	import org.davekeen.util.StateUtil;
+	
 	import spark.components.List;
 	
 	public class SelectorWidget extends AbstractWidget {
@@ -21,6 +23,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		private var _widgetSelectorCollection:XMLListCollection;
 		private var _exercise:XML;
 		private var _exerciseChanged:Boolean;
+		
+		public function SelectorWidget():void {
+			super();
+			
+			StateUtil.addStates(this, [ "normalSelector", "videoSelector"], true);
+		}
 		
 		[Bindable(event="srcAttrChanged")]
 		public function get src():String {
@@ -74,7 +82,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			if (getCurrentSkinState() == "videoSelector") {
-				selectorList.right = 0;
+				selectorList.right = 5;
 				universalWidget.left = 0;
 			} else if (getCurrentSkinState() == "normalSelector") {
 				selectorList.left = 0;

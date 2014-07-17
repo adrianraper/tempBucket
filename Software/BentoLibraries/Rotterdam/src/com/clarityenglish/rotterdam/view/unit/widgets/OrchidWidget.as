@@ -22,9 +22,6 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		private var orchidReady:Boolean = false;
 		
 		[SkinPart(required="true")]
-		public var fakeThumbnailImage:Image;
-		
-		[SkinPart(required="true")]
 		public var orchidSWFLoader:SWFLoader;
 		
 		private var _courseID:String;
