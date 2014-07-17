@@ -11,12 +11,20 @@
 	</fx:Metadata>
 	
 	<fx:Declarations>
-		<s:Animate id="groupWidgetCollapse" duration="500" target="{groupWidgetList}">
-			<s:SimpleMotionPath property="height" valueTo="20" />
+		<s:Animate id="groupWidgetCollapse" duration="500" target="{groupWidgetGroup}">
+			<s:SimpleMotionPath property="height" valueTo="50" />
 		</s:Animate>
 		
-		<s:Animate id="groupWidgetExpand" duration="500" target="{groupWidgetList}">
+		<s:Animate id="groupWidgetListCollapse" duration="500" target="{groupWidgetList}">
+			<s:SimpleMotionPath property="height" valueTo="0" />
+		</s:Animate>
+		
+		<s:Animate id="groupWidgetExpand" duration="500" target="{groupWidgetGroup}">
 			<s:SimpleMotionPath property="height" valueTo="{hostComponent.groupWidgetHeight}" />
+		</s:Animate>
+		
+		<s:Animate id="groupWidgeListExpand" duration="500" target="{groupWidgetList}">
+			<s:SimpleMotionPath property="height" valueTo="{hostComponent.groupWidgetListHeight}" />
 		</s:Animate>
 	</fx:Declarations>
 	
@@ -28,11 +36,14 @@
 			protected function onCollapseToggleButtonClick(event:MouseEvent):void
 			{
 				// TODO Auto-generated method stub
-				trace("collapseToggleButton selected? "+collapseToggleButton.selected);
 				if (collapseToggleButton.selected) {
+					// store group widget height, for expand later
+					hostComponent.groupWidgetHeight = contentHeight;
 					groupWidgetCollapse.play();
+					groupWidgetListCollapse.play();					
 				} else {
 					groupWidgetExpand.play();
+					groupWidgeListExpand.play();
 				}
 			}
 			
@@ -46,22 +57,23 @@
 		<s:State name="editing_selected" stateGroups="editing,selected" />
 	</s:states>
 	
-	<!-- Chrome -->
-	<widgets:WidgetChrome id="widgetChrome"
-						  caption="{hostComponent.caption}"
-						  editing.editing="true"
-						  selected.selected="true"
-						  left="0" right="0" top="0" bottom="0" />
-	
-	<s:VGroup top="25" width="100%">
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+	<s:Group id="groupWidgetGroup" width="100%" height="100%">
+		<s:Rect right="0" left="0" top="0" bottom="0">
+			<s:fill>
+				<s:SolidColor color="0xFFFFFF" />
+			</s:fill>
+		</s:Rect>
 		
-		<ui:WidgetList id="groupWidgetList" width="100%" dataProvider="{new XMLListCollection(hostComponent.xml.exercise)}" borderColor="0xf2f2f2" useVirtualLayout="false" verticalScrollPolicy="off">
-			<ui:layout>
-				<layouts1:FreeUnitLayout />
-			</ui:layout>
-		</ui:WidgetList>
-	</s:VGroup>
-	
-	<s:ToggleButton id="collapseToggleButton" click="onCollapseToggleButtonClick(event)" bottom="0" right="0" />
+		<s:VGroup top="10" width="100%" paddingBottom="20">
+			<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+			
+			<ui:WidgetList id="groupWidgetList" width="100%" dataProvider="{new XMLListCollection(hostComponent.xml.exercise)}" borderVisible="false" contentBackgroundColor="0xFFFFFF" useVirtualLayout="false" verticalScrollPolicy="off">
+				<ui:layout>
+					<layouts1:FreeUnitLayout />
+				</ui:layout>
+			</ui:WidgetList>
+		</s:VGroup>
+		
+		<s:ToggleButton id="collapseToggleButton" click="onCollapseToggleButtonClick(event)" bottom="0" right="0" />
+	</s:Group>
 </s:Skin>

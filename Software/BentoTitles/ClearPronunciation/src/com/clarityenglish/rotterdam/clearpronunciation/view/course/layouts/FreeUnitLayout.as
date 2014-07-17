@@ -20,7 +20,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course.layouts {
 		 */
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
 		
-		private var _columns:int = 3;
+		private var _columns:int = 2;
 		
 		public var horizontalGap:uint = 2;
 		
@@ -48,8 +48,8 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course.layouts {
 			
 			var measuredHeight:Number = 0;
 			
-			// Get the width of a column
-			var columnWidth:Number = (width - horizontalGap * (columns - 1)) / columns;
+			// For cp, widget column width is fixed. Instead of width, we use 950
+			var columnWidth:Number = (950 - horizontalGap * (columns - 1)) / columns;
 			
 			for (var i:int = 0; i < target.numElements; i++) {
 				var element:ILayoutElement = (useVirtualLayout ? target.getVirtualElementAt(i) : target.getElementAt(i));
@@ -68,6 +68,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course.layouts {
 					
 					// Calculate the y position based on what is already there
 					var elementY:uint = currentElement.ypos;
+					
 					//gh: #185 measureHeight + 120
 					// gh#865
 					measuredHeight = Math.max(measuredHeight, elementY + currentElement.getLayoutBoundsHeight());

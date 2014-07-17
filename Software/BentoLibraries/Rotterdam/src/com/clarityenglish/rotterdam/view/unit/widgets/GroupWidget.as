@@ -18,6 +18,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public var collapseToggleButton:ToggleButton;
 		
 		private var _groupWidgetHeight:Number;
+		private var _groupWidgetListHeight:Number;
 		
 		[Bindable]
 		public function get groupWidgetHeight():Number {
@@ -26,6 +27,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		public function set groupWidgetHeight(value:Number):void {
 			_groupWidgetHeight = value;
+		}
+		
+		[Bindable]
+		public function get groupWidgetListHeight():Number {
+			return _groupWidgetListHeight;
+		}
+		
+		public function set groupWidgetListHeight(value:Number):void {
+			_groupWidgetListHeight = value;
 		}
 		
 		override protected function partAdded(partName:String, instance:Object):void {
@@ -43,9 +53,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		// set groupWidgetList height here. Height cannot be detected by component itself
 		protected function setGroupWidgetListHeight():void {
 			for each(var exercise:XML in _xml.exercise) {
-				groupWidgetHeight = Math.max(groupWidgetList.height, exercise.@ypos) + Number(exercise.@layoutheight);
-				groupWidgetList.height = groupWidgetHeight;
+				if (exercise.@column == 0) {
+					groupWidgetList.height = Math.max(groupWidgetList.height, exercise.@ypos) + Number(exercise.@layoutheight);
+				}
 			}
+			// store list height here for collapse and expand animation
+			groupWidgetListHeight = groupWidgetList.height;
 		}
 		
 		protected function onCollapseToggleButtonClick(event:Event):void {
