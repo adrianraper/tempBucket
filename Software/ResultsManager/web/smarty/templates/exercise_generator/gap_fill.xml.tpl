@@ -211,7 +211,7 @@
 						{$smarty.foreach.question.iteration}
 					</div>
 			    	<div class="question-text">
-						{$question->question}
+						{$question->question|fixexercisespaces}
 					</div>
 				</div>
 				{/foreach}
