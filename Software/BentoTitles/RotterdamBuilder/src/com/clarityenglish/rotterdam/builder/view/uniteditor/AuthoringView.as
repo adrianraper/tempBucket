@@ -7,6 +7,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.GapEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.tlf.GapEditManager;
+	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -90,8 +91,13 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			switch (instance) {
 				case questionTextArea:
 					questionTextArea.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
-						if (questionList.selectedItem)
+						/*if (questionList.selectedItem) {
+							trace(TLFUtil.dumpTextFlow(questionTextArea.textFlow));
+							trace(exerciseGenerator.textFlowToHtml(questionTextArea.textFlow));
+							trace("---");
 							questionList.selectedItem.question.setChildren(new XML("<![CDATA[" + exerciseGenerator.textFlowToHtml(questionTextArea.textFlow) + "]]>"));
+						}*/
+						updateQuestionText();
 					});
 					break;
 				case addGapButton:
@@ -158,6 +164,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		protected function onAddGap(e:Event):void {
 			var manager:GapEditManager = questionTextArea.textFlow.interactionManager as GapEditManager;
 			manager.createGap();
+			updateQuestionText();
 		}
 		
 		protected function onGapCreated(event:GapEvent):void {
@@ -169,6 +176,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			);
 			
 			onGapSelected(event);
+			updateQuestionText();
+		}
+		
+		protected function updateQuestionText():void {
+			if (questionList.selectedItem)
+				questionList.selectedItem.question.setChildren(new XML("<![CDATA[" + exerciseGenerator.textFlowToHtml(questionTextArea.textFlow) + "]]>"));
 		}
 		
 		protected function onGapSelected(event:GapEvent):void {
