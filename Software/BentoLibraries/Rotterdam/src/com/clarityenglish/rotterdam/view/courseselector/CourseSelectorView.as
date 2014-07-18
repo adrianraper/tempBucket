@@ -141,76 +141,78 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			if (courseList.dataProvider.length == 0)
 				return;
 			
-			// gh#956
-			var initialSortField:String = 'created';
-			var initialSortDescending:Boolean = true;
-			var initialFiltersHidden:Boolean = false;
-			var initialFilterOwner:Boolean = false;
-			var initialFilterCollaborator:Boolean = false;
-			var initialFilterPublisher:Boolean = false;
-			var initialFilterText:String = '';
-			if (viewMemory.hasOwnProperty('courseSelector')) {
-				if (viewMemory.courseSelector.hasOwnProperty('@sortField'))
-					initialSortField = viewMemory.courseSelector.@sortField;
-				if (viewMemory.courseSelector.hasOwnProperty('@sortDescending'))
-					initialSortDescending = (viewMemory.courseSelector.@sortDescending == "true");
-				if (viewMemory.courseSelector.hasOwnProperty('@filtersHidden'))
-					initialFiltersHidden = (viewMemory.courseSelector.@filtersHidden == "true");
-				if (viewMemory.courseSelector.hasOwnProperty('@filterOwner'))
-					initialFilterOwner = (viewMemory.courseSelector.@filterOwner == "true");
-				if (viewMemory.courseSelector.hasOwnProperty('@filterCollaborator'))
-					initialFilterCollaborator = (viewMemory.courseSelector.@filterCollaborator == "true");
-				if (viewMemory.courseSelector.hasOwnProperty('@filterPublisher'))
-					initialFilterPublisher = (viewMemory.courseSelector.@filterPublisher == "true");
-				if (viewMemory.courseSelector.hasOwnProperty('filter'))
-					initialFilterText = viewMemory.courseSelector.filter[0];
+			// gh#956 Only if these elements exist in the skin
+			if (sortDescendingToggleButton) {
+				var initialSortField:String = 'created';
+				var initialSortDescending:Boolean = true;
+				var initialFiltersHidden:Boolean = false;
+				var initialFilterOwner:Boolean = false;
+				var initialFilterCollaborator:Boolean = false;
+				var initialFilterPublisher:Boolean = false;
+				var initialFilterText:String = '';
+				if (viewMemory.hasOwnProperty('courseSelector')) {
+					if (viewMemory.courseSelector.hasOwnProperty('@sortField'))
+						initialSortField = viewMemory.courseSelector.@sortField;
+					if (viewMemory.courseSelector.hasOwnProperty('@sortDescending'))
+						initialSortDescending = (viewMemory.courseSelector.@sortDescending == "true");
+					if (viewMemory.courseSelector.hasOwnProperty('@filtersHidden'))
+						initialFiltersHidden = (viewMemory.courseSelector.@filtersHidden == "true");
+					if (viewMemory.courseSelector.hasOwnProperty('@filterOwner'))
+						initialFilterOwner = (viewMemory.courseSelector.@filterOwner == "true");
+					if (viewMemory.courseSelector.hasOwnProperty('@filterCollaborator'))
+						initialFilterCollaborator = (viewMemory.courseSelector.@filterCollaborator == "true");
+					if (viewMemory.courseSelector.hasOwnProperty('@filterPublisher'))
+						initialFilterPublisher = (viewMemory.courseSelector.@filterPublisher == "true");
+					if (viewMemory.courseSelector.hasOwnProperty('filter'))
+						initialFilterText = viewMemory.courseSelector.filter[0];
+				}
+				
+				// gh#956 Use the remembered preferences
+				switch (initialSortField) {
+					case 'timesUsed':
+						sortPopularity.selected = true;
+						break;
+					case 'size':
+						sortSize.selected = true;
+						break;
+					case 'lastSaved':
+						sortChangeDate.selected = true;
+						break;
+					case 'caption':
+						sortName.selected = true;
+						break;
+					default:
+						sortCreateDate.selected = true;
+						break;
+				}
+				sortDescendingToggleButton.selected = initialSortDescending;
+				showFiltersToggleButton.selected = !initialFiltersHidden;
+				onShowHideFilters(null);
+				
+				filterOwner.selected = initialFilterOwner;
+				filterCollaborator.selected = initialFilterCollaborator;
+				filterPublisher.selected = initialFilterPublisher;
+				if (initialFilterText)
+					filterTextInput.text = initialFilterText;
+				onChangeFilter(null);
+				
+				var sort:Sort = new Sort();
+				var sortField:SortField = new SortField('@' + initialSortField, initialSortDescending, null);
+				// TODO how to get the real locale?
+				sortField.setStyle('locale', 'en-US');
+				sort.fields = [sortField];
+				
+				// gh#954 Some course attributes need processing for the sort to work
+				for each (var item:XML in courseList.dataProvider) {
+					item.@timesUsed = 0;
+					if (item.hasOwnProperty('timesUsed'))
+						for each (var value:uint in item.timesUsed.split(','))
+							item.@timesUsed += value;
+				}
+				
+				(courseList.dataProvider as XMLListCollection).sort = sort;
+				(courseList.dataProvider as XMLListCollection).refresh();
 			}
-			
-			// gh#956 Use the remembered preferences
-			switch (initialSortField) {
-				case 'timesUsed':
-					sortPopularity.selected = true;
-					break;
-				case 'size':
-					sortSize.selected = true;
-					break;
-				case 'lastSaved':
-					sortChangeDate.selected = true;
-					break;
-				case 'caption':
-					sortName.selected = true;
-					break;
-				default:
-					sortCreateDate.selected = true;
-					break;
-			}
-			sortDescendingToggleButton.selected = initialSortDescending;
-			showFiltersToggleButton.selected = !initialFiltersHidden;
-			onShowHideFilters(null);
-			
-			filterOwner.selected = initialFilterOwner;
-			filterCollaborator.selected = initialFilterCollaborator;
-			filterPublisher.selected = initialFilterPublisher;
-			if (initialFilterText)
-				filterTextInput.text = initialFilterText;
-			this.onChangeFilter(null);
-			
-			var sort:Sort = new Sort();
-			var sortField:SortField = new SortField('@' + initialSortField, initialSortDescending, null);
-			// TODO how to get the real locale?
-			sortField.setStyle('locale', 'en-US');
-			sort.fields = [sortField];
-			
-			// gh#954 Some course attributes need processing for the sort to work
-			for each (var item:XML in courseList.dataProvider) {
-				item.@timesUsed = 0;
-				if (item.hasOwnProperty('timesUsed'))
-					for each (var value:uint in item.timesUsed.split(','))
-						item.@timesUsed += value;
-			}
-			
-			(courseList.dataProvider as XMLListCollection).sort = sort;
-			(courseList.dataProvider as XMLListCollection).refresh();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
