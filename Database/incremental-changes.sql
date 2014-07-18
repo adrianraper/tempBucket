@@ -1058,4 +1058,8 @@ VALUES (1956, '2014-07-17 00:00:00', 'user memory');
 ALTER TABLE T_User ADD COLUMN F_Memory MEDIUMTEXT NULL DEFAULT NULL;
 ALTER TABLE T_User_Expiry ADD COLUMN F_Memory MEDIUMTEXT NULL DEFAULT NULL;
 
+-- just temp for testing
+update T_User
+set F_Memory = '<memory><courseBuilder><courseSelector sortField="caption" sortDescending="false" filtersHidden="true" filterOwner="true" filterCollaborator="true"><filter>a</filter></courseSelector></courseBuilder></memory>'
+where F_UserID = 19304;
 
