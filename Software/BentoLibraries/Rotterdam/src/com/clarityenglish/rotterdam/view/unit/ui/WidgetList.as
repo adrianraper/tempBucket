@@ -55,8 +55,11 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 				log.error("Unsupported widget type " + item.@type);
 			
 			var classFactory:ClassFactory = new ClassFactory(widgetClass);
-			classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true };
+			classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true};
 			
+			if (item.@type == "group") {
+				classFactory.properties = { xml: item, editable: editable, widgetCaptionChanged: true, width: width - 30};
+			}
 			//gh#260
 			/*if (scroller.verticalScrollBar) {
 				scroller.verticalScrollBar.value = scroller.verticalScrollBar.maximum + 280;

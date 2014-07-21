@@ -6,6 +6,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
+	import mx.events.ResizeEvent;
 	
 	import spark.components.ToggleButton;
 	
@@ -19,6 +20,12 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		private var _groupWidgetHeight:Number;
 		private var _groupWidgetListHeight:Number;
+		
+		public function GroupWidget():void {
+			super();
+			
+			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
+		}
 		
 		[Bindable]
 		public function get groupWidgetHeight():Number {
@@ -63,6 +70,14 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		
 		protected function onCollapseToggleButtonClick(event:Event):void {
 			
+		}
+		
+		protected function onAddedToStage(event:Event):void {
+			stage.addEventListener(Event.RESIZE, onResize);
+		}
+		
+		protected function onResize(event:Event):void {
+			width = stage.stageWidth - 40;
 		}
 	}
 }
