@@ -2,6 +2,7 @@ package com.clarityenglish.bento.vo.content.transform {
 	
 	[RemoteClass(alias="com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform")]
 	public class ProgressSummaryTransform extends XmlTransform {
+		private var progressWidgetArray:Array = ["group", "video", "audio", "exercise", "pdf"];
 		
 		override public function transform(xml:XML):void {
 			namespace xhtml = "http://www.w3.org/1999/xhtml";
@@ -13,8 +14,14 @@ package com.clarityenglish.bento.vo.content.transform {
 				for each (var unit:XML in course..unit) {
 					var unitStats:Stats = new Stats();
 					
-					for each (var exercise:XML in unit..exercise)
-						unitStats.add(getExerciseStats(exercise));
+					// change from unit..exercise to unit.exercise for nested exercise node in cp
+					for each (var exercise:XML in unit.exercise) {
+						if (exercise.hasOwnProperty("@type") && exercise.@type == "group") {
+							unitStats.add(getNestedExerciseStats(exercise));
+						} else {
+							unitStats.add(getExerciseStats(exercise));
+						}
+					}
 					
 					unitStats.writeToNode(unit);
 					courseStats.add(unitStats);
@@ -22,6 +29,38 @@ package com.clarityenglish.bento.vo.content.transform {
 				
 				courseStats.writeToNode(course);
 			}
+		}
+		
+		private function getNestedExerciseStats(nestedExercise:XML):Stats {
+			if (nestedExercise.children().(localName() == "exercise").length() != 0) {
+				if (hasProgress(nestedExercise)) {
+					var nestedExericseStats:Stats = new Stats();
+					for each (var exercise:XML in nestedExercise.children().(localName() == "exercise") ) {
+						nestedExericseStats.add(getNestedExerciseStats(exercise));
+					}
+					
+					nestedExericseStats.writeToNode(nestedExercise);
+					return nestedExericseStats;
+				} else if (!hasProgress(nestedExercise)) {
+					return new Stats();
+				}
+			}
+			
+			return getExerciseStats(nestedExercise);
+		}
+		
+		private function hasProgress(exercise:XML):Boolean {
+			if (progressWidgetArray.indexOf(String(exercise.@type)) >= 0) {
+				return true;
+			} else if (exercise.@type == "selector") {
+				if (exercise.@src == "video") {
+					return false;
+				} else {
+					return true;
+				}
+			}
+			
+			return false;
 		}
 		
 		private function getExerciseStats(exercise:XML):Stats {

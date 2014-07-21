@@ -201,7 +201,17 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				cid = unitid = eid = '0';
 			}
 			
-			var UID:String = "54" + "." + cid + "." + unitid + "." + eid;
+			var menuNode:XML = _xml.parent();
+			while(menuNode.name() != 'menu') {
+				menuNode = menuNode.parent();
+			}
+			// CP: get the menu id(product code). But for existed CCB menu.xml, there is no id
+			if (menuNode.hasOwnProperty("@id")){
+				var UID:String = menuNode.@id + "." + cid + "." + unitid + "." + eid;
+			} else {
+				UID = "54" + "." + cid + "." + unitid + "." + eid;
+			}
+			
 			return UID;
 		}
 		
