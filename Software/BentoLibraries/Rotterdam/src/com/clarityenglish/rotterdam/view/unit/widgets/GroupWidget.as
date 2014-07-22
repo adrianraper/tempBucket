@@ -27,6 +27,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage);
 		}
 		
+		[Bindable(event="srcAttrChanged")]
+		public function get src():String {
+			return _xml.@src;
+		}
+		
 		[Bindable]
 		public function get groupWidgetHeight():Number {
 			return _groupWidgetHeight;
@@ -50,7 +55,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			
 			switch (instance) {
 				case groupWidgetList:
-					setGroupWidgetListHeight();
+					setGroupWidgetListSize();
 					break;
 				case collapseToggleButton:
 					collapseToggleButton.addEventListener(MouseEvent.CLICK, onCollapseToggleButtonClick);
@@ -58,7 +63,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		// set groupWidgetList height here. Height cannot be detected by component itself
-		protected function setGroupWidgetListHeight():void {
+		protected function setGroupWidgetListSize():void {
 			for each(var exercise:XML in _xml.exercise) {
 				if (exercise.@column == 0) {
 					groupWidgetList.height = Math.max(groupWidgetList.height, exercise.@ypos) + Number(exercise.@layoutheight);

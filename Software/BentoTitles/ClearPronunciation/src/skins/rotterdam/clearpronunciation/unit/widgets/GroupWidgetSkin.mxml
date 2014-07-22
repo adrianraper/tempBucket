@@ -4,7 +4,7 @@
 		xmlns:mx="library://ns.adobe.com/flex/mx" 
 		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*" 
 		xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*"
-		xmlns:widgets="skins.rotterdam.unit.widgets.*" xmlns:layouts1="com.clarityenglish.rotterdam.clearpronunciation.view.course.layouts.*">
+		xmlns:widgets="skins.rotterdam.unit.widgets.*" xmlns:layouts1="com.clarityenglish.rotterdam.clearpronunciation.view.course.layouts.*" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.GroupWidget")]
@@ -32,6 +32,7 @@
 		<![CDATA[
 			import mx.collections.ListCollectionView;
 			import mx.collections.XMLListCollection;
+			import mx.events.FlexEvent;
 			
 			protected function onCollapseToggleButtonClick(event:MouseEvent):void
 			{
@@ -44,6 +45,25 @@
 				} else {
 					groupWidgetExpand.play();
 					groupWidgeListExpand.play();
+				}
+			}
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// For the gourp of audio, the skin for group widget is different
+				if (hostComponent.src == "audio") {
+					groupWidgetList.percentWidth = 60;
+					widgetVGroup.top = 0;
+					widgetText.visible = false;
+					widgetText.includeInLayout = false;
+					collapseToggleButton.visible = false;
+					collapseToggleButton.includeInLayout = false;
+				} else {
+					widgetVGroup.top = 10;
+					widgetText.visible = true;
+					widgetText.includeInLayout = true;
+					collapseToggleButton.visible = true;
+					collapseToggleButton.includeInLayout = true;
 				}
 			}
 			
@@ -64,7 +84,7 @@
 			</s:fill>
 		</s:Rect>
 		
-		<s:VGroup top="10" width="100%" paddingBottom="20">
+		<s:VGroup id="widgetVGroup" top="10" width="100%" paddingBottom="20">
 			<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 			
 			<ui:WidgetList id="groupWidgetList" width="100%" dataProvider="{new XMLListCollection(hostComponent.xml.exercise)}" borderVisible="false" contentBackgroundColor="0xFFFFFF" useVirtualLayout="false" verticalScrollPolicy="off">

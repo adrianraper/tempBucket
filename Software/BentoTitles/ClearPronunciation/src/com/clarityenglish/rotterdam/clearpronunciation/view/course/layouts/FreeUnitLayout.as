@@ -48,8 +48,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course.layouts {
 			
 			var measuredHeight:Number = 0;
 			
-			// For cp, widget column width is fixed. Instead of width, we use 950
-			var columnWidth:Number = (950 - horizontalGap * (columns - 1)) / columns;
+			var columnWidth:Number = (width - horizontalGap * (columns - 1)) / columns;
 			
 			for (var i:int = 0; i < target.numElements; i++) {
 				var element:ILayoutElement = (useVirtualLayout ? target.getVirtualElementAt(i) : target.getElementAt(i));

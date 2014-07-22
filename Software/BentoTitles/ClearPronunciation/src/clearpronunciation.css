@@ -13,6 +13,7 @@
 @namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 @namespace home "com.clarityenglish.rotterdam.clearpronunciation.view.home.*";
+@namespace tlfcomponents "com.clarityenglish.textLayout.components.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -22,6 +23,16 @@ global {
 	
 	unitColours: #FFCC00, #99CC33, #29ABE2, #77449D, #D4145A, #AA0000, #FF5900, #00A99D, #140382;
 	gradientColours: #FFFF66, #CCFF33, #70D9FF, #AD8EC4, #FF73BB, #FF8085, #FFBD00, #7AD6C7, #617AC4;
+}
+
+tlfcomponents|AudioPlayer {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.widgets.ui.AudioPlayerSkin");
+	compactStoppedIcon: Embed(source="skins/assets/play.png");
+	compactPlayedIcon: Embed(source="skins/assets/play.png");
+	compactPausedIcon: Embed(source="skins/assets/play.png");
+	compactPlayingIcon: Embed(source="skins/assets/stop.png");
+	fullPlayIcon: Embed(source="skins/assets/play.png");
+	fullPauseIcon: Embed(source="skins/assets/stop.png");
 }
 
 clearpronunciation|ClearPronunciationApplication {

@@ -20,8 +20,7 @@
 			<layouts:FreeUnitLayout columns="3" horizontalGap="20" />
 		</ui:layout-->
 		<ui:layout>
-			<s:VerticalLayout gap="30" paddingLeft="10" />
+			<s:VerticalLayout gap="10" paddingLeft="10" />
 		</ui:layout>
 	</ui:WidgetList>
-	
 </s:Skin>

@@ -20,9 +20,9 @@
 	
 	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 	
-	<s:HGroup left="20" width.videoSelector="88%" width.normalSelector="100%" paddingTop="10">
+	<s:HGroup left="20" width.normalSelector="100%" paddingTop="10">
 		<s:Group width="100%">
-			<s:Rect right="1" width="71" height="95%" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" includeIn="videoSelector">
+			<s:Rect right="-62" width="71" height="95%" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" includeIn="videoSelector">
 				<s:fill>
 					<s:SolidColor color="0x273A45" />
 				</s:fill>

@@ -82,7 +82,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			if (getCurrentSkinState() == "videoSelector") {
-				selectorList.right = 5;
+				selectorList.right = -58;
 				universalWidget.left = 0;
 			} else if (getCurrentSkinState() == "normalSelector") {
 				selectorList.left = 0;
