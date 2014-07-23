@@ -97,8 +97,8 @@ course|CourseView s|List#unitList s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
-unit|UnitView unitui|WidgetList {
-	contentBackgroundColor: #19B5E0;
+unit|UnitView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.UnitSkin");
 }
 
 unit|UnitHeaderView s|Button#editButton {

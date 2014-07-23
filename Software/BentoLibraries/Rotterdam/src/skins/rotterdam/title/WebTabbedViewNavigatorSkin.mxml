@@ -22,7 +22,7 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:ButtonBar id="tabBar" skinClass="skins.rotterdam.title.ui.TabBarSkin" />
+	<s:ButtonBar id="tabBar" skinClass="skins.rotterdam.title.ui.TabBarSkin" right="300" />
 	
 	<!--- @copy spark.components.SkinnableContainer#contentGroup -->
 	<s:Group id="contentGroup" left="0" right="0" top="50" bottom="0" color="0x4D4D4D" minWidth="0" minHeight="0">

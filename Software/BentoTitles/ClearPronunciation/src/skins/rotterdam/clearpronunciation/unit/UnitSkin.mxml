@@ -15,9 +15,9 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<ui:WidgetList id="widgetList" dataProvider="{hostComponent.widgetCollection}" left="0" right="0" top="0" bottom="0" borderColor="0xf2f2f2" useVirtualLayout="false">
+	<ui:WidgetList id="widgetList" dataProvider="{hostComponent.widgetCollection}" left="0" right="0" top="0" bottom="0" borderColor="#f2f2f2" useVirtualLayout="false" contentBackgroundColor="#19B5E0">
 		<ui:layout>
-			<layouts:FreeUnitLayout columns="3" horizontalGap="20" />
+			<s:VerticalLayout gap="10" paddingLeft="10" />
 		</ui:layout>
 	</ui:WidgetList>
 </s:Skin>

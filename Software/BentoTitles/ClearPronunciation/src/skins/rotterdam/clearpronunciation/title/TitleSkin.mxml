@@ -2,18 +2,30 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*">
+		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.rotterdam.view.title.TitleView")]
+		[HostComponent("com.clarityenglish.rotterdam.clearpronunciation.view.title.TitleView")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// working on tabBar button visibility
+				sectionNavigator.tabBar.dataGroup.getElementAt(0).visible = false;
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<!-- states -->
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
 		
-		<s:State name="course_selector" />
+		<s:State name="home" />
 		<s:State name="course" />
 		<s:State name="progress" />
 	</s:states>
@@ -21,30 +33,18 @@
 	<s:Group left="0" right="0" top="0">
 		<s:Rect left="0" right="0" top="0" bottom="0" height="40">
 			<s:fill>
-				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
-					<s:GradientEntry color="#333333" ratio="0"/>
-					<s:GradientEntry color="#595959" ratio="1"/>
+				<s:LinearGradient>
+					<s:GradientEntry color="#19B5E0"/>
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
-		<s:SWFLoader source="@Embed(source='/skins/rotterdam/clearpronunciation/assets/title/ccb_logo.png')" left="35" top="8"/>
-		<s:Label text="clearpronunciation" color="0xFFFFFF" fontWeight="bold" fontSize="15" left="70" top="15"/>
 		
 		<s:Button id="logoutButton" right="10" top="4" useHandCursor="true" buttonMode="true" />
-		
-		<s:Rect left="0" right="0" top="40" bottom="0" height="45">
-			<s:fill>
-				<s:LinearGradient x="55.0005" y="45" scaleX="44.9995" rotation="-90">
-					<s:GradientEntry color="#E6E6E6" ratio="0"/>
-					<s:GradientEntry color="#FFFFFF" ratio="1"/>
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
 	</s:Group>
 	
-	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="40" bottom="30">
+	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="30">
 		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.rotterdam.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%" />
-		<s:ViewNavigator id="progressViewNavigator"  firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" includeIn="course_selector" />
+		<s:ViewNavigator id="progressViewNavigator"  firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" includeIn="home" />
 	</ui:CancelableTabbedViewNavigator>
 	
 </s:Skin>

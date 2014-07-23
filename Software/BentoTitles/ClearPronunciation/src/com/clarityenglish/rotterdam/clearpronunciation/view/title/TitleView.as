@@ -20,7 +20,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.title {
 	import spark.components.ViewNavigator;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
-	[SkinState("course_selector")]
+	[SkinState("home")]
 	[SkinState("course")]
 	//[SkinState("progress")] // optional
 	//[SkinState("filemanager")] // optional
@@ -58,7 +58,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.title {
 			super();
 			
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "course_selector", "course", "progress", "settings", "schedule" ], true);
+			StateUtil.addStates(this, [ "home", "course", "progress", "settings", "schedule" ], true);
 			// gh#745
 			this.addEventListener(StateChangeEvent.CURRENT_STATE_CHANGE, onStateChange);
 		}
@@ -75,13 +75,14 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.title {
 			currentState = "schedule";
 		}
 		
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
 				case sectionNavigator:
 					setNavStateMap(sectionNavigator, {
-						course_selector: { viewClass: HomeView },
+						home: { viewClass: HomeView },
 						course: { viewClass: CourseView, stack: true },
 						settings: {viewClass: SettingsView, stack: true},
 						schedule: {viewClass: ScheduleView, stack:true}
@@ -119,7 +120,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.title {
 		// gh#745
 		protected function onStateChange(event:StateChangeEvent):void {
 			if (myCoursesViewNavigator) {
-				if (currentState == "course_selector") {
+				if (currentState == "home") {
 					myCoursesViewNavigator.label = copyProvider.getCopyForId("myCoursesViewNavigator");
 				} else if (currentState == "course") {
 					myCoursesViewNavigator.label = copyProvider.getCopyForId("Back");
@@ -132,11 +133,6 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.title {
 		// gh#217
 		protected function onLogoutClick(event:Event):void {
 			logout.dispatch();
-		}
-		
-		// AR but back is not a button, but a tab
-		protected function onBackButtonClick(event:MouseEvent):void {
-			myCoursesViewNavigator.popView();
 		}
 		
 		protected override function getCurrentSkinState():String {

@@ -28,7 +28,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.title {
 			view.logout.add(onLogout);
 			
 			// gh#299 - always start in course selector
-			view.currentState = "course_selector";
+			view.currentState = "home";
 		}
 		
 		override public function onRemove():void {
