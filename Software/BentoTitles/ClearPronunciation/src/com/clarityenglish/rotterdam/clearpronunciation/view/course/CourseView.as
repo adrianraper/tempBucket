@@ -91,6 +91,9 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course
 		[SkinPart]
 		public var anim:Animate;
 		
+		[SkinPart]
+		public var recorderButton:Button;
+		
 		[Bindable]
 		public var unitListCollection:ListCollectionView;
 		
@@ -128,6 +131,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course
 		// gh#849
 		public var settingsShow:Signal = new Signal();
 		public var scheduleShow:Signal = new Signal();
+		public var record:Signal = new Signal();
 		
 		[Bindable]
 		public function get course():XML {
@@ -280,6 +284,10 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course
 					break;
 				case expandUnitListButton:
 					expandUnitListButton.addEventListener(MouseEvent.CLICK, onExpandUnitListButtonClick);
+					break;
+				case recorderButton:
+					recorderButton.addEventListener(MouseEvent.CLICK, onRecorderClick);
+					recorderButton.label = copyProvider.getCopyForId("recorder");
 					break;
 			}
 		}
@@ -439,6 +447,10 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course
 		protected function onSettingsClick(event:MouseEvent):void {
 			// gh#849
 			settingsShow.dispatch();
+		}
+		
+		protected function onRecorderClick(event:Event):void {
+			record.dispatch();
 		}
 		
 	}

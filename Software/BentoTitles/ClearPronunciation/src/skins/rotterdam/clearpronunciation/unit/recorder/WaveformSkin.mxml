@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:fx="http://ns.adobe.com/mxml/2009"
+		xmlns:ui="com.clarityenglish.bento.view.recorder.ui.*"
+		xmlns:assets="skins.assets.*"
+		minWidth.full="555" height.full="200"
+		minWidth.minimized="555" height.minimized="28" xmlns:recorder="skins.rotterdam.clearpronunciation.assets.unit.recorder.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.recorder.WaveformView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<fx:Object id="mp3InfoObject" fileSizeString="MP3 file size 200kb" durationString="Duration 5 sec" />
+	</fx:Declarations>
+	
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="disabled" />
+		
+		<s:State name="record_minimized" stateGroups="record,minimized" />
+		<s:State name="playback_minimized" stateGroups="playback,minimized" />
+		<s:State name="record_full" stateGroups="record,full" />
+		<s:State name="playback_full" stateGroups="playback,full" />
+	</s:states>
+	
+	<!--recorder:miniRecorderBg top.minimized="0" bottom.full="0" /-->
+	<s:SWFLoader source="@Embed(source='skins/rotterdam/clearpronunciation/assets/unit/recorder/RecorderBarBottom.png')" top.minimized="-1" bottom.full="0" />
+	<s:Group top="-1" includeIn="full">
+		<s:SWFLoader source="@Embed(source='skins/rotterdam/clearpronunciation/assets/unit/recorder/RecorderBarMiddle.png')" />
+		<s:Rect left="15" right="35" top="4" height="140" radiusX="8" radiusY="8">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF"/>
+			</s:fill>
+		</s:Rect>
+	</s:Group>	
+	
+	<s:HGroup x.minimized="15" y.minimized="5"
+			  x.full="15" bottom.full="12"
+			  verticalAlign="middle">
+		
+		<s:Button id="recordButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.RecorderButtonSkin" toolTip="Record" includeIn="record" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="playButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.PlayButtonSkin" toolTip="Play" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="stopButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.StopButtonSkin" toolTip="Stop" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="pauseButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.PauseButtonSkin" toolTip="Pause" useHandCursor="true" buttonMode="true"/>		
+		<s:Button id="saveButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.SaveButtonSkin" toolTip="Save" includeIn="record" includeInLayout="{hostComponent.isSaveEnabled}" visible="{hostComponent.isSaveEnabled}" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="newButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.NewButtonSkin" toolTip="New" includeIn="record" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="compareButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.CompareButtonSkin" enabled="{hostComponent.isCompareEnabled}" toolTip="Compare" includeIn="record" useHandCursor="true" buttonMode="true"/>
+		<s:RichText id="richText" color="#FFFFFF" columnCount="1" fontFamily="Verdana" fontSize="9" height="22" kerning="on" lineHeight="13" tabStops="S31.4992408752441 S62.9984817504883 S94.4977226257324 S125.996963500977" whiteSpaceCollapse="preserve" width="180" x="310" y="5" />
+	</s:HGroup>
+	
+	<s:HGroup right.minimized="20" top.minimized="6" right.full="20" bottom.full="12">
+		<s:Group>
+			<s:Button id="maxButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.MaxButtonSkin" toolTip="Hide" includeIn="minimized" useHandCursor="true" buttonMode="true"/>
+			<s:Button id="minButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.MinButtonSkin" y="7" toolTip="Hide" includeIn="full" visible="{hostComponent.isRecordEnabled}" includeInLayout="{hostComponent.isRecordEnabled}" useHandCursor="true" buttonMode="true"/>
+		</s:Group>
+		<s:VGroup paddingTop.full="6">
+			<s:Button id="helpButton" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.HelpButtonSkin" toolTip="Help" visible="{hostComponent.isRecordEnabled}" includeInLayout="{hostComponent.isRecordEnabled}" useHandCursor="true" buttonMode="true"/>
+		</s:VGroup>		
+	</s:HGroup>
+	
+	<s:Group id="contentGroup" left="32" right="42" top="5" bottom="57" visible.minimized="false" includeInLayout.minimized="false" />
+	<!--<s:HSlider id="scrubSlider" skinClass="skins.bento.recorder.buttons.HorizontalSliderSkin"
+			   enabled="{!hostComponent.isRecording}"
+			   minimum="0" maximum="1" snapInterval="0.001" value="0" bottom="-15" left="10" right="10" toolTip="Scrub bar" includeIn="minimized" />-->
+	
+	<s:VSlider id="gainSlider" skinClass="skins.rotterdam.clearpronunciation.unit.recorder.ui.VerticalSliderSkin" minimum="0" maximum="2" snapInterval="0.05" value="1" top="8" right="13" bottom="58" toolTip="Visual gain" includeIn="full" />
+	
+	<ui:LevelMeter id="levelMeter" width="7"
+				   top.minimized="0" bottom.minimized="0" right.minimized="0"
+				   right.full="30" top.full="32" bottom.full="60"
+				   toolTip="Recording level meter"
+				   visible="{hostComponent.isRecording}"
+				   includeIn="record" />
+</s:Skin>

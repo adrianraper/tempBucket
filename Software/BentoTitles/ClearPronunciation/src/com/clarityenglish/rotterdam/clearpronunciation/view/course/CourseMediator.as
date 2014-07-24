@@ -44,6 +44,7 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course
 			// gh#849
 			view.settingsShow.add(onSettingsShow);
 			view.scheduleShow.add(onScheduleShow);
+			view.record.add(onRecorderOpen);
 			
 			// gh#110 - use real events instead of signals because they hook into system copy/paste shortcuts automatically
 			view.unitDuplicate.add(onUnitDuplicate);
@@ -149,6 +150,10 @@ package com.clarityenglish.rotterdam.clearpronunciation.view.course
 		
 		protected function onScheduleShow():void {
 			facade.sendNotification(RotterdamNotifications.SCHEDULE_SHOW);	
+		}
+		
+		protected function onRecorderOpen():void {
+			facade.sendNotification(BBNotifications.RECORDER_SHOW);
 		}
 		
 	}

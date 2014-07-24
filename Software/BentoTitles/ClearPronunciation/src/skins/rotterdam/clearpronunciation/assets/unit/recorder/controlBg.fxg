@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="34" viewWidth="34" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="34" d:pageWidth="34" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group ai:seqID="1">
+        <Group ai:seqID="2">
+          <Path ai:seqID="3" data="M17.0186 34C26.3564 34 34 26.3779 34 17 34 7.64746 26.3564 0 17.0186 0 7.64648 0 0 7.64746 0 17 0 26.3779 7.64648 34 17.0186 34Z">
+            <fill>
+              <LinearGradient x="17.0005" y="34.1807" scaleX="33.9995" rotation="270">
+                <GradientEntry ratio="0" color="#B9B9B9"/>
+                <GradientEntry ratio="0.62" color="#E2EAEA"/>
+                <GradientEntry ratio="0.73" color="#F1F0F0"/>
+                <GradientEntry ratio="0.83" color="#EAF0F1"/>
+                <GradientEntry ratio="1" color="#FAFAFA"/>
+              </LinearGradient>
+            </fill>
+          </Path>
+          <Path x="2.84131" y="2.83984" ai:seqID="4" data="M14.1772 28.3496C21.9546 28.3496 28.3198 21.9785 28.3198 14.1602 28.3198 6.36816 21.9546 0 14.1772 0 6.36328 0 0 6.36816 0 14.1602 0 21.9785 6.36328 28.3496 14.1772 28.3496Z">
+            <fill>
+              <LinearGradient x="14.1602" y="28.5195" scaleX="28.3491" rotation="270">
+                <GradientEntry ratio="0" color="#D9D9D8"/>
+                <GradientEntry ratio="0.25" color="#E4E7E8"/>
+                <GradientEntry ratio="0.7" color="#FFFFFF"/>
+                <GradientEntry ratio="1" color="#FFFFFF"/>
+              </LinearGradient>
+            </fill>
+          </Path>
+          <Path x="2.13086" y="2.12891" winding="nonZero" ai:seqID="5" data="M14.8877 0 14.8877 0 14.8877 0C18.9795 0 22.7051 1.65918 25.3779 4.36816 28.0801 7.04492 29.7383 10.7734 29.7383 14.8711L29.7383 14.8711 29.7383 14.8711 29.7383 14.8711 29.7383 14.8711C29.7383 18.998 28.0801 22.6895 25.3779 25.4014 22.7051 28.0752
+ 18.9795 29.7383 14.8877 29.7383L14.8877 29.7383 14.8877 29.7383 14.8877 28.3428 14.8877 28.3428 14.8877 28.3428C18.5781 28.3428 21.9561 26.8223 24.3955 24.3848 26.832 21.9463 28.3164 18.5928 28.3164 14.8711L28.3164 14.8711 28.3164 14.8711 28.3164
+ 14.8711 28.3164 14.8711C28.3164 11.1426 26.832 7.79102 24.3955 5.35156 21.9561 2.91309 18.5781 1.42383 14.8877 1.42383L14.8877 1.42383 14.8877 1.42383 14.8877 0ZM14.8877 29.7383 14.8525 29.7383 14.8525 29.7383C10.7607 29.7383 7.03857 28.0752
+ 4.36426 25.4014 1.65479 22.6895 0 18.998 0 14.8711L0 14.8711 0 14.8711 0 14.8711 0 14.8711C0 10.7734 1.65479 7.04492 4.36426 4.36816 7.03857 1.65918 10.7607 0 14.8525 0L14.8525 0 14.8877 0 14.8877 1.42383 14.8525 1.42383 14.8525 1.42383C11.1694
+ 1.42383 7.78174 2.91309 5.3457 5.35156 2.90869 7.79102 1.42041 11.1426 1.42041 14.8711L1.42041 14.8711 1.42041 14.8711 1.42041 14.8711 1.42041 14.8711C1.42041 18.5928 2.90869 21.9463 5.3457 24.3848 7.78174 26.8223 11.1694 28.3428 14.8525 28.3428
+L14.8525 28.3428 14.8877 28.3428 14.8877 29.7383Z">
+            <fill>
+              <LinearGradient x="14.8687" y="0.0639648" scaleX="29.7388" rotation="90">
+                <GradientEntry ratio="0" color="#B9B9B9"/>
+                <GradientEntry ratio="0.64" color="#E2EAEA"/>
+                <GradientEntry ratio="0.85" color="#DCDEE0"/>
+                <GradientEntry ratio="1" color="#FAFAFA"/>
+              </LinearGradient>
+            </fill>
+          </Path>
+        </Group>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

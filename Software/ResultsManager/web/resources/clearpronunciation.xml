@@ -130,6 +130,7 @@
 			<lit name="credits">Credits</lit>
 			<lit name="more">More</lit>
 			<lit name="Home">Home</lit>
+			<lit name="recorder">Recorder</lit>
 			<lit name="Back">Back</lit>
 			<lit name="LogOut">Log out</lit>
 		    <lit name="progressNavBarCoverage">My coverage</lit>

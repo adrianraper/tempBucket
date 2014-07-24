@@ -14,6 +14,7 @@
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 @namespace home "com.clarityenglish.rotterdam.clearpronunciation.view.home.*";
 @namespace tlfcomponents "com.clarityenglish.textLayout.components.*";
+@namespace recorder "com.clarityenglish.bento.view.recorder.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -33,6 +34,18 @@ tlfcomponents|AudioPlayer {
 	compactPlayingIcon: Embed(source="skins/assets/stop.png");
 	fullPlayIcon: Embed(source="skins/assets/play.png");
 	fullPauseIcon: Embed(source="skins/assets/stop.png");
+}
+
+s|TitleWindow.RecorderTitleWindow {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.recorder.RecorderTitleWindowSkin");
+}
+
+recorder|RecorderView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.recorder.RecorderSkin");
+}
+
+recorder|WaveformView {
+	skinClass: ClassReference("skins.rotterdam.clearpronunciation.unit.recorder.WaveformSkin");
 }
 
 clearpronunciation|ClearPronunciationApplication {
