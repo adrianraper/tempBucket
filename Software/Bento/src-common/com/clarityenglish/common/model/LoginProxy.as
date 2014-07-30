@@ -103,8 +103,10 @@ package com.clarityenglish.common.model {
 			// Network allows anonymous entry if all fields are blank
 			// gh#100 as does CT
 			// gh#165
+			// gh#886
 			if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) || 
 				(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) ||
+				(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA) ||
 				(loginOption & Config.LOGIN_BY_ANONYMOUS)) &&
 				(!user.name || user.name=='') &&
 				(!user.studentID || user.studentID=='') &&
