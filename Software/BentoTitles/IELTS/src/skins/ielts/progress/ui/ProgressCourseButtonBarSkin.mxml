@@ -46,7 +46,7 @@
             @see spark.skins.spark.ButtonBarMiddleButtonSkin
         -->
         <fx:Component id="middleButton" >
-            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressCourseButtonBarButtonSkin" />
+            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressCourseButtonBarButtonSkin" useHandCursor="true" buttonMode="true" />
         </fx:Component>
 
     </fx:Declarations>

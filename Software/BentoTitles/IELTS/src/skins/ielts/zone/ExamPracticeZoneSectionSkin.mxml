@@ -174,10 +174,10 @@
 						<tlfcomponents:AudioPlayer id="audioPlayer" visible="{data.hasOwnProperty('@audioHref')}" includeInLayout="{data.hasOwnProperty('@audioHref')}" styleName="examPracticeAudioPlayer" src="{outerDocument.hostComponent.href.createRelativeHref(null, data.@audioHref).url}" controls="compact" />
 						<!--gh#759 using group to show tooltip when button is disabled-->
 						<s:Group id="practiceTestGroup">
-							<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data as XML)" />
+							<s:Button id="practiceTestButton" width="141" height="40" color="#FFFFFF" icon="@Embed(source='/skins/ielts/assets/assets.swf', symbol='SearchIcon')" label="{data.@caption}" click="onButtonClick(data as XML)" useHandCursor="true" buttonMode="true" />
 						</s:Group>
 						<s:Group id="answerKeyGroup">
-							<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data as XML, 'answerHref')" />
+							<s:Button id="answerKeyButton" label="{data.@answerCaption}" width="141" height="40" color="#FFFFFF" chromeColor="#000000" click="onButtonClick(data as XML, 'answerHref')" useHandCursor="true" buttonMode="true" />
 						</s:Group>				
 					</s:HGroup>
 				</s:DataRenderer>

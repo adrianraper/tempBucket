@@ -46,7 +46,7 @@
             @see spark.skins.spark.ButtonBarFirstButtonSkin
         -->
         <fx:Component id="firstButton">
-            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressNavBarFirstButtonSkin" />
+            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressNavBarFirstButtonSkin" useHandCursor="true" buttonMode="true" />
         </fx:Component>
 
         <!--- 
@@ -55,7 +55,7 @@
             @see spark.skins.spark.ButtonBarMiddleButtonSkin
         -->
         <fx:Component id="middleButton" >
-            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressNavBarMiddleButtonSkin" />
+            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressNavBarMiddleButtonSkin" useHandCursor="true" buttonMode="true" />
         </fx:Component>
 
         <!--- 
@@ -64,7 +64,7 @@
             @see spark.skins.spark.ButtonBarLastButtonSkin
         -->
         <fx:Component id="lastButton" >
-            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressNavBarLastButtonSkin" />
+            <s:ButtonBarButton skinClass="skins.ielts.progress.ui.ProgressNavBarLastButtonSkin" useHandCursor="true" buttonMode="true" />
         </fx:Component>
 
     </fx:Declarations>

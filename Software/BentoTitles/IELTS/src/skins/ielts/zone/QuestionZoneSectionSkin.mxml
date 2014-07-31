@@ -46,9 +46,9 @@
 				 source.speaking="@Embed(source='/skins/ielts/assets/zone/questionzone_speaking.png')" />
 	
 	<s:HGroup top="330" horizontalCenter="0" gap="15">
-		<s:Button id="readButton" color="#FFFFFF" width="150" visible="{getStyle('showOpenEbookButton')}" includeInLayout="{getStyle('showOpenEbookButton')}" />
-		<s:Button id="downloadButton" color="#FFFFFF" width="150" />
-		<s:Button id="videoButton" color="#FFFFFF" width="150" />
+		<s:Button id="readButton" color="#FFFFFF" width="150" visible="{getStyle('showOpenEbookButton')}" includeInLayout="{getStyle('showOpenEbookButton')}" buttonMode="true" useHandCursor="true" />
+		<s:Button id="downloadButton" color="#FFFFFF" width="150" buttonMode="true" useHandCursor="true" />
+		<s:Button id="videoButton" color="#FFFFFF" width="150" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>
 	
 </s:Skin>
