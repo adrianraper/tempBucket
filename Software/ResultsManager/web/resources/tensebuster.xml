@@ -116,6 +116,7 @@
 			<lit name="exerciseForwardButton">Forward</lit>
 			<lit name="exerciseFeedbackButton">Feedback</lit>
 			<lit name="exerciseMarkingButton">Marking</lit>
+			<lit name="exerciseScoringButton">Scoring</lit>
 			<lit name="printButton">Print</lit>
 			<lit name="recorderButton">Record</lit>
 			<lit name="exerciseLogOutButton">Log out</lit>
@@ -224,7 +225,7 @@
 			<lit name="recorderHelpURL">http://www.clarityenglish.com/Content/TenseBuster10-International/help/TB_Help_doc_recorder.pdf</lit>
 			
 			<!-- Footer -->
-			<lit name="footerLabel">© Clarity Language Consultants Ltd, 1993-2013. All rights reserved.</lit>
+			<lit name="footerLabel">© Clarity Language Consultants Ltd, 1993-2014. All rights reserved.</lit>
             
 			<!-- Log out page -->
 			<lit name="thankYouLabel">Thank you for using Tense Buster.</lit>

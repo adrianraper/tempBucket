@@ -25,6 +25,13 @@
 				}
 			}
 			
+			public function getMarkingButtonLabel():String {
+				if (hostComponent.config.languageCode == "NAMEN")
+					return  hostComponent.getCopyProvider().getCopyForId("exerciseScoringButton");
+				
+				return hostComponent.getCopyProvider().getCopyForId("exerciseMarkingButton");
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -98,7 +105,7 @@
 		
 		<!-- Top Right buttons -->
 		<s:HGroup right="0" top="59" includeIn="exercise" gap="0">
-			<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
+			<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" label="{getMarkingButtonLabel()}" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 			<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="recorderButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="ruleButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" />

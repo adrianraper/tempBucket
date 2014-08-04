@@ -5,6 +5,7 @@ package com.clarityenglish.bento.view.exercise {
 	import com.clarityenglish.bento.view.recorder.events.RecorderEvent;
 	import com.clarityenglish.bento.vo.Href;
 	import com.clarityenglish.bento.vo.content.Exercise;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.events.AudioPlayerEvent;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
@@ -80,6 +81,7 @@ package com.clarityenglish.bento.view.exercise {
 		private var _ruleLink:String;
 		private var _isFirstExercise:Boolean;
 		private var _isDirectStartEx:Boolean;
+		private var _languageCode:String;
 		
 		public function set courseCaption(value:String):void {
 			_courseCaption = value;
@@ -138,6 +140,19 @@ package com.clarityenglish.bento.view.exercise {
 		[Bindable]
 		public function get isDirectStartEx():Boolean {
 			return _isDirectStartEx;
+		}
+		
+		public function set languageCode(value:String):void {
+			_languageCode = value;
+		}
+		
+		[Bindable]
+		public function get languageCode():String {
+			return _languageCode;
+		}
+		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
 		}
 		
 		public var startAgain:Signal = new Signal();

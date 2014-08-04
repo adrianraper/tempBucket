@@ -64,6 +64,7 @@
 			if (configProxy.getDirectStart().exerciseID && !configProxy.getDirectStart().scorm) {
 				view.isDirectStartEx = true;
 			}
+			view.languageCode = configProxy.getConfig().languageCode;
 		}
 		
 		public override function onRemove():void {

@@ -8,6 +8,20 @@
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.bento.view.exercise.ExerciseView")]
 	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function getMarkingButtonLabel():String {
+				if (hostComponent.languageCode == "NAMEN") {
+					return hostComponent.getCopyProvider().getCopyForId('exerciseScoringButton');
+				}
+					
+				return hostComponent.getCopyProvider().getCopyForId('exerciseMarkingButton');
+			}
+			
+		]]>
+	</fx:Script>
 	
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="90" distance="1.5" alpha="0.6" blurX="7" blurY="7" />
@@ -73,7 +87,7 @@
 	
 	<!-- Top Right buttons -->
 	<s:HGroup right="60" top="16" includeIn="exercise" gap="0">
-		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
+		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" label="{getMarkingButtonLabel()}" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="recorderButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="ruleButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" />
