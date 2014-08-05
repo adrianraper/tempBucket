@@ -122,6 +122,7 @@
 			<lit name="exerciseLogOutButton">Log out</lit>
 			<lit name="logoutButton">Log out</lit>
 			<lit name="instructionLabel">Choose a level to start your grammar practice.</lit>
+			<lit name="backToMenuButton">Back to Menu</lit>
 			
 			<!-- Demo Label -->
 			<lit name="topLeftDemoLabel">DEMO COPY</lit>
@@ -131,7 +132,7 @@
 			
 			<!-- Marking and feedback -->
 			<lit name="tryAgainButton">Try again</lit>
-			<lit name="seeAnswersButton">See answers</lit>
+			<lit name="seeAnswersButton">See the answers</lit>
 			<lit name="moveForwardButton">Forward</lit>
 			<lit name="loseAnswerWarning1">Are you sure you want to leave this exercise?</lit>
 			<lit name="loseAnswerWarning2">(You will lose your work in this exercise.)</lit>
@@ -150,7 +151,7 @@
 			<lit name="progressNavBarCoverage">My coverage</lit>
 			<lit name="progressNavBarCompare">Compare</lit>
 			<lit name="progressNavBarAnalyse">Analyse</lit>
-			<lit name="progressNavBarScores">My score</lit>
+			<lit name="progressNavBarScores">My scores</lit>
 			<lit name="progressNavBarCertificate">My certificate</lit>
 			
 			<!-- My progress: My coverage -->

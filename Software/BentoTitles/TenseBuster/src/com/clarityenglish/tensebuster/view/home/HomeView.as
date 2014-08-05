@@ -1,4 +1,5 @@
 package com.clarityenglish.tensebuster.view.home {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.content.Exercise;
 	import com.clarityenglish.tensebuster.view.home.courseselector.TBCourseSelector;
@@ -378,8 +379,8 @@ package com.clarityenglish.tensebuster.view.home {
 		public function onExerciseListClick(event:MouseEvent):void {
 			var exercise:XML = event.currentTarget.selectedItem as XML;
 			if (exercise && Exercise.exerciseEnabledInMenu(exercise)) exerciseSelect.dispatch(exercise);
-			
-			if(demoTooltipGroup && !Exercise.exerciseEnabledInMenu(exercise)) {
+
+			if(this.productVersion == BentoApplication.DEMO && !Exercise.exerciseEnabledInMenu(exercise)) {
 				var pt:Point = new Point(event.localX, event.localY);
 				pt = event.target.localToGlobal(pt);
 				pt = exerciseGroup.globalToContent(pt);

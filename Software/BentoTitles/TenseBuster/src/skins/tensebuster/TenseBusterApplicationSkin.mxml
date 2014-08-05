@@ -67,7 +67,7 @@
 		<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/TB-footer.png')" />
 		<s:HGroup right="10" top="12">
 			<s:Label id="versionLabel" text="v{hostComponent.versionNumber}" color="#FFFFFF" fontSize="12" paddingTop="6" />
-			<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2013. All rights reserved." color="#FFFFFF" fontSize="12" paddingTop="6" />
+			<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2014. All rights reserved." color="#FFFFFF" fontSize="12" paddingTop="6" />
 			<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/clarityenglishLogo.png')" />
 		</s:HGroup>		
 	</s:Group>

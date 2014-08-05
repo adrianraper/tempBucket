@@ -87,5 +87,5 @@
 			</s:HGroup>
 		</s:HGroup>	
 	</s:Group>
-	<s:Button id="backToMenuButton" label="Back to Menu" right="60" top="35" color="0x000000" fontWeight="bold" fontSize="13" includeIn="exercise" buttonMode="true" useHandCursor="true"/>	
+	<s:Button id="backToMenuButton" right="60" top="35" color="0x000000" fontWeight="bold" fontSize="13" includeIn="exercise" buttonMode="true" useHandCursor="true"/>	
 </s:Skin>

@@ -282,6 +282,7 @@ package com.clarityenglish.tensebuster.view.title {
 					homeViewNavigator.defaultPopTransition = new ViewTransitionBase();
 					break;
 				case backToMenuButton:
+					backToMenuButton.label = copyProvider.getCopyForId("backToMenuButton");
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuButtonClick);
 					break;
 				case logoutButton:
