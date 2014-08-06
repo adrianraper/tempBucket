@@ -1,4 +1,5 @@
 package com.clarityenglish.textLayout.elements {
+	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.textLayout.rendering.RenderFlow;
@@ -247,7 +248,7 @@ package com.clarityenglish.textLayout.elements {
 					component.addEventListener(FocusEvent.FOCUS_OUT, function(e:FocusEvent):void {
 						// gh#681
 						if ((e.relatedObject is Button) && scroller) {							
-							if ((e.relatedObject as Button).label == "Marking") {
+							if ((e.relatedObject as Button).label == "Marking" || (e.relatedObject as Button).label == "Scoring") {
 								scroller.bottom = 0;
 							}								
 						}						
@@ -324,10 +325,21 @@ package com.clarityenglish.textLayout.elements {
 				FocusManager(focusManager).mx_internal::lastFocus =  scroller;
 			} else {
 				var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
-				event.target.focusManager.setFocus(nextComponent);
-				
-				// #187 - if the focused element is offscreen then scroll it into view
-				
+				// gh#979 If nextComponent is Button, it is back button. navigating to ExerciseView marking button
+				if (nextComponent is Button) {
+					while (!(nextComponent is ExerciseView)) {
+						nextComponent = nextComponent.parent;
+					}						
+					nextComponent = (nextComponent as ExerciseView).markingButton;
+				}
+				if (nextComponent) {
+					event.target.focusManager.setFocus(nextComponent);	
+				} else {
+					event.target.focusManager.hideFocus();
+				}
+						
+								
+				// #187 - if the focused element is offscreen then scroll it into view				
 				// First find the parent scroller
 				var displayObject:DisplayObject = nextComponent;
 				while (!(displayObject is Scroller) && displayObject.parent)
