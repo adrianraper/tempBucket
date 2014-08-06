@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" width="400" height="300" xmlns:ui="com.clarityenglish.tensebuster.view.home.ui.*">
 	<fx:Declarations>
 		<!-- Place non-visual elements (e.g., services, value objects) here -->
 	</fx:Declarations>
@@ -21,6 +21,8 @@
 			
 			import mx.collections.XMLListCollection;
 			import mx.events.FlexEvent;
+			
+			import spark.components.supportClasses.ButtonBase;
 			private static const ActivePos_x:Number = 200;
 			private static const ActivePos_y:Number = 223;
 			private static const FirstPos_x:Number = 189;
@@ -175,7 +177,7 @@
 			}
 			
 			
-			protected function getPathName(level:Button):Array {
+			protected function getPathName(level:ButtonBase):Array {
 				if (Math.abs(level.x-FirstPos_x) < 1) {
 					return pathA;
 				} else if (Math.abs(level.x - SecondPos_x) < 1) {
@@ -271,7 +273,7 @@
 				dispatchEvent(new Event("animationCompleted", true));
 			}
 			
-			protected function enableClick(level:Button):void {
+			protected function enableClick(level:ButtonBase):void {
 				if (!isDirectStart) {
 					level.enabled = true;
 					level.useHandCursor = true;
@@ -325,10 +327,10 @@
 	</fx:Script>
 	
 	<s:Group id="levelGroup" x="0" y="0" color="#FF0000">
-		<s:Button id="elementary" x="{ActivePos_x}" y="{ActivePos_y}" click="onElementaryClick(event)" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="lowerInter" x="{FirstPos_x}" y="{FirstPos_y}" click="onLowerInterClick(event)" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="intermediate" x="{SecondPos_x}" y="{SecondPos_y}" click="onIntermediateClick(event)" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="upperInter" x="{ThirdPos_x}" y="{ThirdPos_y}" click="onUpperInterClick(event)" useHandCursor="true" buttonMode="true"/>
-		<s:Button id="advanced" x="{FourthPos_x}" y="{FourthPos_y}" click="onAdvancedClick(event)" useHandCursor="true" buttonMode="true"/>
-	</s:Group>	
+		<ui:LevelButton id="elementary" x="{ActivePos_x}" y="{ActivePos_y}" click="onElementaryClick(event)" isLabelVisible="{level == null}" label="Elementary" useHandCursor="true" buttonMode="true" />
+		<ui:LevelButton id="lowerInter" x="{FirstPos_x}" y="{FirstPos_y}" click="onLowerInterClick(event)" isLabelVisible="{level == null}" label="Lower Intermediate" useHandCursor="true" buttonMode="true" />
+		<ui:LevelButton id="intermediate" x="{SecondPos_x}" y="{SecondPos_y}" click="onIntermediateClick(event)" isLabelVisible="{level == null}" label="Intermediate" useHandCursor="true" buttonMode="true" />
+		<ui:LevelButton id="upperInter" x="{ThirdPos_x}" y="{ThirdPos_y}" click="onUpperInterClick(event)" isLabelVisible="{level == null}" label="Upper Intermediate" useHandCursor="true" buttonMode="true"/>
+		<ui:LevelButton id="advanced" x="{FourthPos_x}" y="{FourthPos_y}" click="onAdvancedClick(event)" isLabelVisible="{level == null}" label="Advanced" useHandCursor="true" buttonMode="true"/>
+	</s:Group>
 </s:Group>

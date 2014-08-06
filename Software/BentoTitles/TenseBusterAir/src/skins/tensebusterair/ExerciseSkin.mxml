@@ -96,16 +96,16 @@
 	<s:Group horizontalCenter="0" width="902">
 		<!-- Top Left buttons -->
 		<s:HGroup left="0" top="59" includeIn="exercise" gap="0">
-			<s:Button id="backToMenuButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
+			<s:Button id="backToMenuButton" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" />
 			<s:Spacer width="1" />
-			<s:Button id="backButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}"/>
+			<s:Button id="backButton" color="0xFFFFFF" fontSize="12" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}"/>
 			<s:Button id="forwardButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
 		</s:HGroup>	
 		
 		<!-- Top Right buttons -->
 		<s:HGroup right="0" top="59" includeIn="exercise" gap="0">
-			<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" label="{getMarkingButtonLabel()}" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
+			<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" label="{getMarkingButtonLabel()}" fontSize="12" buttonMode="true" useHandCursor="true" />
 			<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="recorderButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
 			<s:Button id="ruleButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" />

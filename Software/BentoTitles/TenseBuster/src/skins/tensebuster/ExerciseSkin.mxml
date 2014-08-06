@@ -80,18 +80,18 @@
 	
 	<!-- Top Left buttons -->
 	<s:HGroup left="60" top="16" includeIn="exercise" gap="0">
-		<s:Button id="backButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
-		<s:Button id="forwardButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
-		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
+		<s:Button id="backButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" enabled="{!hostComponent.isFirstExercise}" visible="{!hostComponent.isDirectStartEx}"/>
+		<s:Button id="forwardButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{!hostComponent.isDirectStartEx}"/>
+		<s:Button id="feedbackButton" visible="false" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
 	</s:HGroup>	
 	
 	<!-- Top Right buttons -->
 	<s:HGroup right="60" top="16" includeIn="exercise" gap="0">
-		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" label="{getMarkingButtonLabel()}" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" />
-		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
-		<s:Button id="recorderButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true"/>
-		<s:Button id="ruleButton" color="0xFFFFFF" fontWeight="bold" fontSize="12" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" />
-		<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" color="0xFFFFFF" fontWeight="bold" buttonMode="true" fontSize="12" useHandCursor="true"/>
+		<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" label="{getMarkingButtonLabel()}" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" />
+		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="recorderButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="ruleButton" color="0xFFFFFF" fontSize="13" fontFamily="HelveticaMd" buttonMode="true" useHandCursor="true" visible="{hostComponent.ruleLink != null}" />
+		<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" color="0xFFFFFF" buttonMode="true" fontSize="13" fontFamily="HelveticaMd" useHandCursor="true"/>
 	</s:HGroup>	
 	
 	<!--Red line-->
