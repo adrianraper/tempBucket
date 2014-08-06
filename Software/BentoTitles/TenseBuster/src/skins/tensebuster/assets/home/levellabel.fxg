@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="28" viewWidth="174.156" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="28" d:pageWidth="174.156" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Group x="1.70166" ai:seqID="1" flm:knockout="false">
+        <Path x="2.86102e-006" winding="nonZero" ai:seqID="2" data="M17.3447 28C15.7852 28 13.5801 27.1265 12.4443 26.0586L0.821286 15.1367C-0.314456 14.0688 -0.266116 12.3765 0.928708 11.375L12.3369 1.82031C13.5322 0.818848 15.7852 0 17.3447 0L163.047 0C164.606 0 166.854 0.824707 168.044 1.83301L169.834 3.35059
+C171.023 4.35889 171.996 6.45898 171.996 8.01807L171.996 20.0015C171.996 21.5605 171.021 23.6592 169.83 24.665L168.048 26.1709C166.856 27.1768 164.606 28 163.047 28L17.3447 28Z"/>
+      </Group>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

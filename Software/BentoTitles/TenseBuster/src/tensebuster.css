@@ -213,24 +213,24 @@ home|HomeView s|List#unitList {
 	skinClass: ClassReference("skins.tensebuster.home.UnitListSkin");
 }
 
-courseselector|TBCourseSelector s|Button#elementary {
-	skinClass: ClassReference("skins.tensebuster.home.ElementaryButtonSkin");
+courseselector|TBCourseSelector homeui|LevelButton#elementary {
+	skinClass: ClassReference("skins.tensebuster.home.ElementaryLevelButtonSkin");
 }
 
-courseselector|TBCourseSelector s|Button#lowerInter {
-	skinClass: ClassReference("skins.tensebuster.home.LowerInterButtonSkin");
+courseselector|TBCourseSelector homeui|LevelButton#lowerInter {
+	skinClass: ClassReference("skins.tensebuster.home.LowerInterLevelButtonSkin");
 }
 
-courseselector|TBCourseSelector s|Button#intermediate {
-	skinClass: ClassReference("skins.tensebuster.home.IntermediateButtonSkin");
+courseselector|TBCourseSelector homeui|LevelButton#intermediate {
+	skinClass: ClassReference("skins.tensebuster.home.IntermediateLevelButtonSkin");
 }
 
-courseselector|TBCourseSelector s|Button#upperInter {
-	skinClass: ClassReference("skins.tensebuster.home.UpperInterButtonSkin");
+courseselector|TBCourseSelector homeui|LevelButton#upperInter {
+	skinClass: ClassReference("skins.tensebuster.home.UpperInterLevelButtonSkin");
 }
 
-courseselector|TBCourseSelector s|Button#advanced {
-	skinClass: ClassReference("skins.tensebuster.home.AdvancedButtonSkin");
+courseselector|TBCourseSelector homeui|LevelButton#advanced {
+	skinClass: ClassReference("skins.tensebuster.home.AdvancedLevelButtonSkin");
 }
 
 homeui|MenuButton#zoneUndoneButton {
@@ -412,6 +412,12 @@ components|AudioPlayer {
 
 components|AudioPlayer s|ScrubBar#scrubBar {
 	skinClass: ClassReference("skins.tensebuster.exercise.ui.AudioScrubBarSkin");
+}
+
+mx|ToolTip {
+	backgroundColor: #FFFFFF;
+	color: #000000;
+	fontSize: 12;
 }
 
 mx|LegendItem

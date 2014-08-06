@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:home="skins.tensebuster.assets.home.*" creationComplete="onCreationComplete(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.home.ui.LevelButton")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" angle="90" strength="0.5" distance="1" />
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// Alert: only for android!! Not apply for ipad. Need to change!!
+				if (FlexGlobals.topLevelApplication.stage.stageWidth <= 1024) {
+					elementary.scaleX = 0.9;
+					elementary.scaleY = 0.9;
+				}
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="down" />
+		<s:State name="over" />
+		<s:State name="up" />
+	</s:states>
+	
+	<home:elementary id="elementary" />
+	<s:Group visible="{hostComponent.isLabelVisible}" left="65" top="10" filters="{[dropShadowFilter]}">
+		<s:Path data="M17.3447 28C15.7852 28 13.5801 27.1265 12.4443 26.0586L0.821286 15.1367C-0.314456 14.0688 -0.266116 12.3765 0.928708 11.375L12.3369 1.82031C13.5322 0.818848 15.7852 0 17.3447 0L163.047 0C164.606 0 166.854 0.824707 168.044 1.83301L169.834 3.35059
+				C171.023 4.35889 171.996 6.45898 171.996 8.01807L171.996 20.0015C171.996 21.5605 171.021 23.6592 169.83 24.665L168.048 26.1709C166.856 27.1768 164.606 28 163.047 28L17.3447 28Z">
+			<s:fill>
+				<s:LinearGradient rotation="-90">
+					<s:GradientEntry color="#D80000" />
+					<s:GradientEntry color="#F44C4C" />
+					<s:GradientEntry color="#FF8B94" />
+				</s:LinearGradient>
+			</s:fill>
+		</s:Path>
+		<s:Label id="labelDisplay" fontSize="15" color="#FFFFFF" top="8" left="23" />
+	</s:Group>
+</s:Skin>
