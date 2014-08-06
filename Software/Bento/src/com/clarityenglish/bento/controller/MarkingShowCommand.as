@@ -21,6 +21,7 @@ package com.clarityenglish.bento.controller {
 	
 	import spark.components.TitleWindow;
 	import spark.events.TitleWindowBoundsEvent;
+	import com.clarityenglish.common.model.ConfigProxy;
 	
 	public class MarkingShowCommand extends SimpleCommand {
 		
@@ -43,7 +44,13 @@ package com.clarityenglish.bento.controller {
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "markingTitleWindow";
-			titleWindow.title = "Marking";
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			if (configProxy.getConfig().languageCode == "NAMEN") {
+				titleWindow.title = "Scoring";
+			} else {
+				titleWindow.title = "Marking";
+			}
+			
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			
 			var markingView:MarkingView = new MarkingView();
