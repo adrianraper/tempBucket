@@ -185,7 +185,7 @@
 			<lit name="scoreGridC3">Score %</lit>
 			<lit name="scoreGridC4">Time spent</lit>
 			<lit name="scoreGridC5">Date</lit>
-			<lit name="ScoreEmptyScoreLabelButton">You must first complete an exercise to see data in this table.</lit>
+			<lit name="ScoreEmptyScoreLabelButton">No scores yet.</lit>
 			
 			<!-- My progress: My certificate -->
 			<lit name="notCompleteString">

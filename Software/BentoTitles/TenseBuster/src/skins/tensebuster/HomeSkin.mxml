@@ -429,10 +429,10 @@
 								</s:fill>
 							</s:Rect>
 							
-							<s:Label id="caption" text="{data.@caption}" color="{labelColor}" top="15" left="20" fontSize="17" />
+							<s:Label id="caption" text="{data.@caption}" color="{labelColor}" top="15" left="15" fontSize="17" />
 							
 							<!--Demo label in unit list-->
-							<s:Group id="demoGroup" right="8" top="10" width="45" height="20" visible="false">
+							<s:Group id="demoGroup" right="6" top="10" width="45" height="20" visible="false">
 								<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
 									<s:fill>
 										<s:SolidColor color="{labelColor}" />

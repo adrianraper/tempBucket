@@ -311,7 +311,7 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		protected override function getCurrentSkinState():String {
 			//For android
-			if (_androidSize && (currentState == "home" || currentState == "progress")) {
+			if (_androidSize) {
 				return currentState + _androidSize;
 			}
 			

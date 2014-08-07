@@ -5,7 +5,7 @@
 	<productCode>55</productCode>
 	<loginOption>128</loginOption>
 	<useCacheBuster>true</useCacheBuster>
-	<courseFile>menu-FullVersion.xml</courseFile>
+	<courseFile>menu-{productVersion}.xml</courseFile>
 	<platform>tablet|iPad</platform>
 	<sharedMedia />
 	<brandingMedia />

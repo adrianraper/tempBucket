@@ -42,6 +42,10 @@
 			advancedAntiAliasing: true;
 		}
 		
+		.fontMdStlye {
+			fontFamily: HelveticaMd;
+		}
+		
 		global {
 			fontFamily: Helvetica;
 			fontLookup: embeddedCFF;
