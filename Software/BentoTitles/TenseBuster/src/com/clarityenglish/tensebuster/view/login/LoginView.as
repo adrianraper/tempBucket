@@ -78,7 +78,7 @@ package com.clarityenglish.tensebuster.view.login
 		public var option1InstructionLabel:Label;
 		
 		[SkinPart]
-		public var option1Labe2:Label;
+		public var option1Label2:Label;
 		
 		[SkinPart]
 		public var option2InstructionLabel:Label;
@@ -322,8 +322,8 @@ package com.clarityenglish.tensebuster.view.login
 				case option1InstructionLabel:
 					option1InstructionLabel.text = copyProvider.getCopyForId("option1InstructionLabel");
 					break;
-				case option1Labe2:
-					option1Labe2.text = copyProvider.getCopyForId("option1Labe2");
+				case option1Label2:
+					option1Label2.text = copyProvider.getCopyForId("option1Label2");
 					break;
 				case option2InstructionLabel:
 					option2InstructionLabel.text = copyProvider.getCopyForId("option2InstructionLabel");
