@@ -144,6 +144,12 @@
 			</s:HGroup>
 		</s:VGroup>
 	</s:Group>
+	
+	<!--Demo-->
+	<s:VGroup id="demoVGroup" right="20" top="100">
+		<s:Button id="demoENButton" />
+		<s:Button id="demoNAMENButton" />
+	</s:VGroup>
 
 	<s:Group width="100%" height="100%" id="disableGroup">
 		<s:Rect width="100%" height="100%">
@@ -158,5 +164,5 @@
 	</s:Group>
 	
 	<!--Footer-->
-	<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2013. All rights reserved." color="#000000" fontSize="12" left="10" bottom="10" />
+	<s:Label id="copyrightLabel" color="#000000" fontSize="12" left="10" bottom="10" />
 </s:Skin>

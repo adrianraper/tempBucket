@@ -75,6 +75,11 @@
 				return colors[index];
 			}
 			
+			public function getDemoLabelColor(index:Number):Number {
+				var colors:Array = hostComponent.getStyle("unitListButtonLabelColors");
+				return colors[index];
+			}
+			
 			protected function onCourseSelectorSelect(event:Event):void {
 				hostComponent.isCourseSelectorClick = true;
 				levelTitleGroup.alpha = 0;
@@ -144,6 +149,7 @@
 			
 			protected function onUnitListClick(event:MouseEvent):void {
 				hostComponent.isUnitListClick = true;
+				demoTooltipGroup.visible = false;
 				if (isFirstClickCurrentUnitList) {
 					var exerciseListFadeIn:Fade = new Fade();
 					exerciseListFadeIn.alphaFrom = 0;
@@ -356,6 +362,15 @@
 									unitButtonProgressBottomColor = getUnitButtonProgressBottomColor(outerDocument.hostComponent.courseIndex);
 									unitButtonProgressBottomOverColor = getUnitButtonProgressBottomOverColor(outerDocument.hostComponent.courseIndex);
 									labelColor = getUnitListButtonLabelColor(outerDocument.hostComponent.courseIndex);
+									
+									if (data.hasOwnProperty("@enabledFlag") && (data.@enabledFlag.toString() & 8)) {
+										unitItemGroup.enabled = false;	
+									} else if (data.hasOwnProperty("@enabledFlag") && (data.@enabledFlag.toString() & 4)) {
+										demoGroup.visible = true;
+									} else {
+										demoGroup.visible = false;
+										unitItemGroup.enabled = true;
+									}
 								}
 							}
 							
@@ -406,25 +421,37 @@
 						<s:State name="selected" />    
 					</s:states>
 					
-					<s:Rect id="backgroundRect" width="247" height="38">
-						<s:fill>
-							<s:LinearGradient rotation="90">
-								<s:GradientEntry id="backgroundRectTopColor" color="{unitButtonColor}" color.selected="{unitButtonTopOverColor}" color.hovered="{unitButtonTopOverColor}"/>
-								<s:GradientEntry id="backgroundRectBottomColor" color="{unitButtonColor}" color.selected="{unitButtonBottomOverColor}" color.hovered="{unitButtonBottomOverColor}"/>
-							</s:LinearGradient>
-						</s:fill>
-					</s:Rect>
-					
-					<s:Rect id="overallProgressPath" height="38" maxWidth="247">
-						<s:fill>
-							<s:LinearGradient rotation="90">
-								<s:GradientEntry color="{unitButtonProgressTopColor}" color.hovered="{unitButtonProgressTopOverColor}" color.selected="{unitButtonProgressTopOverColor}" />
-								<s:GradientEntry color="{unitButtonProgressBottomColor}" color.hovered="{unitButtonProgressBottomOverColor}" color.selected="{unitButtonProgressBottomOverColor}" />
-							</s:LinearGradient>
-						</s:fill>
-					</s:Rect>
-					
-					<s:Label id="caption" text="{data.@caption}" color="{labelColor}" top="15" left="20" fontSize="17" />
+					<s:Group id="unitItemGroup">
+						<s:Rect id="backgroundRect" width="247" height="38">
+							<s:fill>
+								<s:LinearGradient rotation="90">
+									<s:GradientEntry id="backgroundRectTopColor" color="{unitButtonColor}" color.selected="{unitButtonTopOverColor}" color.hovered="{unitButtonTopOverColor}"/>
+									<s:GradientEntry id="backgroundRectBottomColor" color="{unitButtonColor}" color.selected="{unitButtonBottomOverColor}" color.hovered="{unitButtonBottomOverColor}"/>
+								</s:LinearGradient>
+							</s:fill>
+						</s:Rect>
+						
+						<s:Rect id="overallProgressPath" height="38" maxWidth="247">
+							<s:fill>
+								<s:LinearGradient rotation="90">
+									<s:GradientEntry color="{unitButtonProgressTopColor}" color.hovered="{unitButtonProgressTopOverColor}" color.selected="{unitButtonProgressTopOverColor}" />
+									<s:GradientEntry color="{unitButtonProgressBottomColor}" color.hovered="{unitButtonProgressBottomOverColor}" color.selected="{unitButtonProgressBottomOverColor}" />
+								</s:LinearGradient>
+							</s:fill>
+						</s:Rect>
+						
+						<s:Label id="caption" text="{data.@caption}" color="{labelColor}" top="15" left="20" fontSize="17" />
+						
+						<!--Demo label in unit list-->
+						<s:Group id="demoGroup" right="6" top="10" width="45" height="20" visible="false">
+							<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+								<s:fill>
+									<s:SolidColor color="{labelColor}" />
+								</s:fill>
+							</s:Rect>
+							<s:Label text="Demo" fontSize="12" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
+						</s:Group>
+					</s:Group>	
 				</s:ItemRenderer>
 			</fx:Component>
 		</s:itemRenderer>
@@ -457,7 +484,7 @@
 	</s:Group>
 	
 	<!--exercise list-->
-	<s:Group id="exerciseGroup" horizontalCenter="230" verticalCenter="0" height="{exerciseList.dataProvider.length * 31 + 40}" alpha="0">			
+	<s:Group id="exerciseGroup" horizontalCenter="230" verticalCenter="0" height="{exerciseList.dataProvider.length * 31 + 40}" alpha="0" width="350">			
 		<s:VGroup verticalCenter.normal7Inches="40" verticalCenter.normal10Inches="70" horizontalCenter.normal7Inches="0" horizontalCenter.normal10Inches="-128" gap="0" filters="{[dropShadowFilter]}">
 			<s:Path visible="{exerciseList.dataProvider.length > 0}" winding="nonZero" filters="{[dropShadowFilter]}" data="M6.03369 14.666C4.47461 14.666 2.47949 14.0566 1.59961 13.3115 0.719727 12.5664 0 10.6816 0 9.12256L0 5.5415C0 3.98242 0.719727 2.09814 1.59961 1.35352 2.47949 0.608887 4.47461 0 6.03369 0L311.915 0C313.475 0 315.47 0.608887 316.35 1.35352 317.229
 					2.09814 317.949 3.98242 317.949 5.5415L317.949 9.12256C317.949 10.6816 317.229 12.5664 316.35 13.3115 315.47 14.0566 313.475 14.666 311.915 14.666L6.03369 14.666Z">
@@ -499,6 +526,7 @@
 					<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
 						<fx:Script>
 							<![CDATA[
+								import com.clarityenglish.bento.vo.content.Exercise;
 								import com.clarityenglish.common.vo.content.Unit;
 								
 								import mx.effects.Fade;
@@ -526,7 +554,7 @@
 									super.data = value;
 									
 									courseIndex = outerDocument.hostComponent.courseIndex;
-								}	
+								}
 							]]>
 						</fx:Script>
 						
@@ -541,12 +569,36 @@
 						</s:states>
 						
 						<s:Group id="exButtonGroup">
-							<ui:MenuButton id="zoneUndoneButton" width="264" height="30" courseIndex="{courseIndex}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" />
-							<ui:MenuButton id="zoneDoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" />
+							<ui:MenuButton id="zoneUndoneButton" width="264" height="30" courseIndex="{courseIndex}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" enabled="{Exercise.exerciseEnabledInMenu(data as XML)}" />
+							<ui:MenuButton id="zoneDoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" enabled="{Exercise.exerciseEnabledInMenu(data as XML)}" />
 						</s:Group>						
 					</s:ItemRenderer>
 				</fx:Component>
 			</s:itemRenderer>
 		</s:List>
+		
+		<s:Group id="demoTooltipGroup" width="163" height="70" right.normal7Inches="-50" right.normal10Inches="70" visible="false">
+			<s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
+				<s:fill>
+					<s:SolidColor color="#888A8C"/>
+				</s:fill>
+			</s:Rect>
+			<s:VGroup top="12" bottom="10" left="9" gap="4">
+				<s:HGroup>
+					<s:Label id="demoTooltipLabel1" width="100%" color="#FFFFFF" fontSize="14" />
+					<s:VGroup paddingTop="-5">
+						<s:Group width="45" height="20">
+							<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+								<s:fill>
+									<s:SolidColor color="{getDemoLabelColor(hostComponent.courseIndex)}" />
+								</s:fill>
+							</s:Rect>
+							<s:Label text="Demo" fontSize="12" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
+						</s:Group>
+					</s:VGroup>
+				</s:HGroup>			
+				<s:Label id="demoTooltipLabel2" width="95%" color="#FFFFFF" fontSize="14" lineHeight="18" />
+			</s:VGroup>
+		</s:Group>
 	</s:Group>
 </s:Skin>

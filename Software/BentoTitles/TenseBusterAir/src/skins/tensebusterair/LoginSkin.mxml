@@ -121,7 +121,13 @@
 				<s:Button id="cancelButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
 			</s:HGroup>
 		</s:VGroup>
-	</s:Group>
+	</s:Group>	
+	
+	<!--Demo-->
+	<s:VGroup id="demoVGroup" right="20" top="100">
+		<s:Button id="demoENButton" />
+		<s:Button id="demoNAMENButton" />
+	</s:VGroup>	
 	
 	<s:Group width="100%" height="100%" id="disableGroup">
 		<s:Rect width="100%" height="100%">
@@ -138,7 +144,7 @@
 	<!-- Footer -->
 	<s:Group  left="30" height="37" bottom="16">
 		<s:HGroup top="12">
-			<s:Label id="copyrightLabel" text="© Clarity Language Consultants Ltd, 1993-2013. All rights reserved." color="#000000" fontSize="12" paddingTop="6" />
+			<s:Label id="copyrightLabel" color="#000000" fontSize="12" paddingTop="6" />
 		</s:HGroup>
 	</s:Group>
 </s:Skin>

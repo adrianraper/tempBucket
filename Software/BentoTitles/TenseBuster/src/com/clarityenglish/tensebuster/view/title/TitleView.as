@@ -1,4 +1,5 @@
 package com.clarityenglish.tensebuster.view.title {
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.exercise.ExerciseView;
 	import com.clarityenglish.tensebuster.view.help.HelpView;
@@ -65,6 +66,12 @@ package com.clarityenglish.tensebuster.view.title {
 		
 		[SkinPart]
 		public var sizedHelpButton:SizedButton;
+		
+		[SkinPart]
+		public var topLeftDemoLabel:Label;
+		
+		[SkinPart]
+		public var topRightDemoLabel:Label;
 		
 		[Bindable]
 		public static var courseCode:String;
@@ -197,6 +204,10 @@ package com.clarityenglish.tensebuster.view.title {
 			return _isDirectLogout;
 		}
 		
+		public function get isDemo():Boolean {
+			return productVersion == BentoApplication.DEMO;
+		}
+		
 		public function TitleView() {
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "unit", "zone", "exercise", "progress", "profile", "help" ], true);
@@ -282,6 +293,12 @@ package com.clarityenglish.tensebuster.view.title {
 				case sizedHelpButton:
 					instance.label = copyProvider.getCopyForId("help");
 					instance.addEventListener(MouseEvent.CLICK,onHelpClick);
+					break;
+				case topLeftDemoLabel:
+					topLeftDemoLabel.text = copyProvider.getCopyForId("topLeftDemoLabel");
+					break;
+				case topRightDemoLabel:
+					topRightDemoLabel.text = copyProvider.getCopyForId("topRightDemoLabel");
 					break;
 			}
 

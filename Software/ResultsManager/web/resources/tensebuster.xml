@@ -122,6 +122,12 @@
 			<lit name="logoutButton">Log out</lit>
 			<lit name="instructionLabel">Choose a level to start your grammar practice.</lit>
 			
+			<!-- Demo Label -->
+			<lit name="topLeftDemoLabel">DEMO COPY</lit>
+			<lit name="topRightDemoLabel">Evaluation only</lit>
+			<lit name="demoTooltipLabel1">Please look for</lit>
+			<lit name="demoTooltipLabel2">to see the material in this demo.</lit>
+			
 			<!-- Marking and feedback -->
 			<lit name="tryAgainButton">Try again</lit>
 			<lit name="seeAnswersButton">See answers</lit>

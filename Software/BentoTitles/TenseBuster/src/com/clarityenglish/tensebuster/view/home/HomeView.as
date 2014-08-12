@@ -6,6 +6,7 @@ package com.clarityenglish.tensebuster.view.home {
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Point;
 	
 	import flashx.textLayout.container.ScrollPolicy;
 	
@@ -24,6 +25,7 @@ package com.clarityenglish.tensebuster.view.home {
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Button;
 	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
@@ -64,6 +66,15 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		[SkinPart]
 		public var triangleReferenceGroup:Group;
+		
+		[SkinPart]
+		public var demoTooltipGroup:Group;
+		
+		[SkinPart]
+		public var demoTooltipLabel1:Label;
+		
+		[SkinPart]
+		public var demoTooltipLabel2:Label;
 		
 		public var courseSelect:Signal = new Signal(XML);
 		public var unitSelect:Signal = new Signal(XML);
@@ -210,7 +221,7 @@ package com.clarityenglish.tensebuster.view.home {
 				if (directUnitID) {
 					unit = course.unit.(@id == directUnitID)[0];
 				}
-			} 
+			}
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -238,7 +249,12 @@ package com.clarityenglish.tensebuster.view.home {
 				case instructionLabel:
 					instructionLabel.text = copyProvider.getCopyForId("instructionLabel");				
 					break;
-				
+				case demoTooltipLabel1:
+					demoTooltipLabel1.text = copyProvider.getCopyForId("demoTooltipLabel1");
+					break;
+				case demoTooltipLabel2:
+					demoTooltipLabel2.text = copyProvider.getCopyForId("demoTooltipLabel2");
+					break;
 			}
 		}
 		
@@ -249,6 +265,7 @@ package com.clarityenglish.tensebuster.view.home {
 			if (!course && !unit) {
 				courseSelector.level = null;
 				unitList.visible = false;
+				demoTooltipGroup.visible = false;
 				isInitialSelect = true;
 				courseSelector.level = null;
 			}
@@ -360,7 +377,15 @@ package com.clarityenglish.tensebuster.view.home {
 		
 		public function onExerciseListClick(event:MouseEvent):void {
 			var exercise:XML = event.currentTarget.selectedItem as XML;
-			if (exercise) exerciseSelect.dispatch(exercise);
+			if (exercise && Exercise.exerciseEnabledInMenu(exercise)) exerciseSelect.dispatch(exercise);
+			
+			if(demoTooltipGroup && !Exercise.exerciseEnabledInMenu(exercise)) {
+				var pt:Point = new Point(event.localX, event.localY);
+				pt = event.target.localToGlobal(pt);
+				pt = exerciseGroup.globalToContent(pt);
+				demoTooltipGroup.top = pt.y;
+				demoTooltipGroup.visible = true;
+			}
 		}
 	}
 }

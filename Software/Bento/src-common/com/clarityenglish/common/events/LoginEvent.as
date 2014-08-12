@@ -20,8 +20,9 @@
 		public var user:User;
 		public var loginOption:Number;
 		public var verified:Boolean;
+		public var demoVersion:String;
 		
-		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, bubbles:Boolean = false, cancelable:Boolean = false) { 
+		public function LoginEvent(type:String, userObject:Object, loginOption:uint, verified:Boolean = true, demoVersion = null, bubbles:Boolean = false, cancelable:Boolean = false) { 
 			super(type, bubbles, cancelable);
 			
 			//this.name = username;
@@ -31,15 +32,16 @@
 				this.user = new User(userObject);
 			this.loginOption = loginOption;
 			this.verified = verified;
+			this.demoVersion = demoVersion;
 		} 
 		
 		public override function clone():Event { 
 			//return new LoginEvent(type, username, password, bubbles, cancelable);
-			return new LoginEvent(type, user, loginOption, verified, bubbles, cancelable);
+			return new LoginEvent(type, user, loginOption, verified, demoVersion, bubbles, cancelable);
 		} 
 		
 		public override function toString():String { 
-			return formatToString("LoginEvent", "type", "user", "loginOption", "verified", "bubbles", "cancelable", "eventPhase"); 
+			return formatToString("LoginEvent", "type", "user", "loginOption", "verified", "demoVersion", "bubbles", "cancelable", "eventPhase"); 
 		}
 		
 	}

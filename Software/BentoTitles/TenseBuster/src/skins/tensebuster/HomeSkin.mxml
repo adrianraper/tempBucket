@@ -74,6 +74,11 @@
 				return colors[index];
 			}
 			
+			public function getDemoLabelColor(index:Number):Number {
+				var colors:Array = hostComponent.getStyle("unitListButtonLabelColors");
+				return colors[index];
+			}
+			
 			protected function onCourseSelectorSelect(event:Event):void {
 				hostComponent.isCourseSelectorClick = true;
 				levelTitleGroup.alpha = 0;
@@ -147,6 +152,8 @@
 				exerciseGroup.alpha = 1;
 				// for running in tablet. The empty list will show if we don't add this line
 				exerciseList.visible = true;
+				demoTooltipGroup.visible = false;
+				
 				if (isFirstClickCurrentUnitList && !isAnimationPlayed) {
 					var scale:Scale = new Scale();
 					scale.scaleYFrom = 0;
@@ -346,6 +353,11 @@
 											
 									if (data.hasOwnProperty("@enabledFlag") && (data.@enabledFlag.toString() & 8)) {
 										unitItemGroup.enabled = false;	
+									} else if (data.hasOwnProperty("@enabledFlag") && (data.@enabledFlag.toString() & 4)) {
+										demoGroup.visible = true;
+									} else {
+										demoGroup.visible = false;
+										unitItemGroup.enabled = true;
 									}
 								}
 								
@@ -418,6 +430,16 @@
 							</s:Rect>
 							
 							<s:Label id="caption" text="{data.@caption}" color="{labelColor}" top="15" left="20" fontSize="17" />
+							
+							<!--Demo label in unit list-->
+							<s:Group id="demoGroup" right="8" top="10" width="45" height="20" visible="false">
+								<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+									<s:fill>
+										<s:SolidColor color="{labelColor}" />
+									</s:fill>
+								</s:Rect>
+								<s:Label text="Demo" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
+							</s:Group>
 						</s:Group>
 					</s:ItemRenderer>
 				</fx:Component>
@@ -495,6 +517,7 @@
 					<s:ItemRenderer autoDrawBackground="false" buttonMode="true" useHandCursor="true">
 						<fx:Script>
 							<![CDATA[
+								import com.clarityenglish.bento.vo.content.Exercise;
 								import com.clarityenglish.common.vo.content.Unit;
 								
 								import mx.effects.Fade;
@@ -522,6 +545,7 @@
 									super.data = value;
 									
 									courseIndex = outerDocument.hostComponent.courseIndex;
+									this.buttonMode = Exercise.exerciseEnabledInMenu(data as XML);
 									
 									// When the dataprovider change, the exButtonGroup's will not reset to 0 and keeps 1. So we need to reset here
 									exButtonGroup.alpha = 0;
@@ -576,14 +600,39 @@
 						</s:states>
 						
 						<s:Group id="exButtonGroup" alpha="0">
-							<ui:MenuButton id="zoneUndoneButton" width="264" height="30" courseIndex="{courseIndex}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" />
-							<ui:MenuButton id="zoneDoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" />
+							<ui:MenuButton id="zoneUndoneButton" width="264" height="30" courseIndex="{courseIndex}" label="{data.@caption}" visible="{!data.hasOwnProperty('@done')}" enabled="{Exercise.exerciseEnabledInMenu(data as XML)}" />
+							<ui:MenuButton id="zoneDoneButton" courseIndex="{courseIndex}" label="{data.@caption}" visible="{data.hasOwnProperty('@done')}" enabled="{Exercise.exerciseEnabledInMenu(data as XML)}" />
 						</s:Group>						
 					</s:ItemRenderer>
 				</fx:Component>
 			</s:itemRenderer>
 		</s:List>
-	</s:Group>		
+		
+		<!--Demo Tooltip-->
+		<s:Group id="demoTooltipGroup" width="163" height="70" right="-50" top="360" visible="false">
+			<s:Rect width="100%" height="100%" radiusX="10" radiusY="10">
+				<s:fill>
+					<s:SolidColor color="#888A8C"/>
+				</s:fill>
+			</s:Rect>
+			<s:VGroup top="12" bottom="10" left="9" gap="4">
+				<s:HGroup>
+					<s:Label id="demoTooltipLabel1" width="100%" color="#FFFFFF" fontSize="14" />
+					<s:VGroup paddingTop="-5">
+						<s:Group width="45" height="20">
+							<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+								<s:fill>
+									<s:SolidColor color="{getDemoLabelColor(hostComponent.courseIndex)}" />
+								</s:fill>
+							</s:Rect>
+							<s:Label text="Demo" color="#FFFFFF" horizontalCenter="1" verticalCenter="1" />
+						</s:Group>
+					</s:VGroup>
+				</s:HGroup>			
+				<s:Label id="demoTooltipLabel2" width="95%" color="#FFFFFF" fontSize="14" lineHeight="18" />
+			</s:VGroup>
+		</s:Group>
+	</s:Group>
 	
 	<!--tense buster brand header-->
 	<home:header top="-50" />

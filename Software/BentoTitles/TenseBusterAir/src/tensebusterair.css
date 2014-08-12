@@ -131,6 +131,14 @@ nonetwork|NoNetworkView {
 	}
 }
 
+login|LoginView s|Button#demoENButton {
+	skinClass: ClassReference("skins.tensebusterair.login.DemoENButtonSkin");
+}
+
+login|LoginView s|Button#demoNAMENButton {
+	skinClass: ClassReference("skins.tensebusterair.login.DemoNAMENButtonSkin");
+}
+
 title|TitleView s|ViewNavigator {
 	skinClass: ClassReference("skins.tensebusterair.title.ViewNavigatorSkin"); /* this is actually resetting it back to the default since player.css has changed it */
 }

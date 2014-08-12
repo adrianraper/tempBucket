@@ -17,7 +17,7 @@ package com.clarityenglish.common.controller {
 			var loginEvent:LoginEvent = note.getBody() as LoginEvent;
 			
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
-			loginProxy.login(loginEvent.user, loginEvent.loginOption, loginEvent.verified);
+			loginProxy.login(loginEvent.user, loginEvent.loginOption, loginEvent.verified, loginEvent.demoVersion);
 		}
 		
 	}

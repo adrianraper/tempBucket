@@ -3,6 +3,7 @@ Proxy - PureMVC
 */
 package com.clarityenglish.common.model {
 	import com.clarityenglish.bento.BBNotifications;
+	import com.clarityenglish.bento.BentoApplication;
 	import com.clarityenglish.bento.model.SCORMProxy;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.common.events.LoginEvent;
@@ -70,7 +71,7 @@ package com.clarityenglish.common.model {
 		
 		// #341
 		//public function login(key:String, password:String):void {
-		public function login(user:User, loginOption:Number, verified:Boolean = true):void {
+		public function login(user:User, loginOption:Number, verified:Boolean = true, demoVersion = null):void {
 			// getAccountSettings will already have established rootID and productCode
 			// The parameters you pass are controlled by loginOption
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
@@ -132,10 +133,21 @@ package com.clarityenglish.common.model {
 				} else if (user == null) {
 					// TODO: Test Drive: how to set these settings nicely??
 					// and how to offer them a choice of different titles??
-					loginOption = Config.LOGIN_BY_ANONYMOUS;				
+					loginOption = Config.LOGIN_BY_ANONYMOUS;
 					rootID = new Array(2);
-					rootID[0] = 14031;
-					rootID[1] = 0;
+					if (demoVersion == "NAMEN") {
+						// for Noth American Demo
+						rootID[0] = 13456;
+						rootID[1] = 0;
+					} else if (demoVersion == "EN") {
+						// for international Demo
+						rootID[0] = 10103;
+						rootID[1] = 0;					
+					} else { 
+						// for test drive
+						rootID[0] = 14031;
+						rootID[1] = 0;
+					}
 					//#gh41
 					//configProxy.getConfig().productCode = '52';
 					loginObj = null;

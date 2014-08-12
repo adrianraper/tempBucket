@@ -9,7 +9,8 @@
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.tensebuster.view.title.TitleView;			
+			import com.clarityenglish.bento.BentoApplication;
+			import com.clarityenglish.tensebuster.view.title.TitleView;
 		]]>
 	</fx:Script>
 	
@@ -36,6 +37,26 @@
 	
 	<s:Button id="helpButton" right="120" top="37" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
 	<s:Button id="logoutButton" right="21" top="37" buttonMode="true" useHandCursor="true" excludeFrom="exercise"/>
+	
+	<!--Demo version label-->
+	<s:Group id="demoGroup" width="208" height="29" right="20" top="0" visible="{hostComponent.productVersion == BentoApplication.DEMO}">
+		<s:Rect width="100%" height="100%" bottomLeftRadiusX="10" bottomRightRadiusX="10">
+			<s:fill>
+				<s:SolidColor color="#cbcbcb" />
+			</s:fill>
+		</s:Rect>
+		<s:HGroup top="10" left="10" gap="7">
+			<s:Label id="topLeftDemoLabel" fontSize="14" color="#FFFFFF" fontWeight="bold" />
+			<s:VGroup paddingTop="-2">
+				<s:Line yFrom="0" yTo="13">
+					<s:stroke>
+						<s:SolidColorStroke color="#FFFFFF" />
+					</s:stroke>
+				</s:Line>
+			</s:VGroup>
+			<s:Label id="topRightDemoLabel" fontSize="13" color="#FFFFFF" />
+		</s:HGroup>
+	</s:Group>
 	
 	<s:Group top="45" left="55" visible="{hostComponent.currentState == 'exercise'}">
 		<s:HGroup verticalAlign="middle">

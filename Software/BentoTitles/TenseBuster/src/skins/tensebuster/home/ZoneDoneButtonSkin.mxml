@@ -37,6 +37,11 @@
 				var colors:Array = getStyle("exerciseLabelColors");
 				return colors[index];
 			}
+			
+			public function getDisabedColor(index:Number):Number {
+				var colors:Array = getStyle("exerciseDisabledColors");
+				return colors[index];
+			}
 		]]>
 	</fx:Script>
 	
@@ -51,8 +56,8 @@
 	<s:Rect id="donePath" left="2" height="30" width="264" radiusX="6" radiusY="6" filters="{[dropShadowFilter]}">
 		<s:fill>			
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="{getExTopColor(hostComponent.courseIndex)}" color.over="{getExTopOverColor(hostComponent.courseIndex)}" color.down="{getExTopOverColor(hostComponent.courseIndex)}"  ratio="0" />
-				<s:GradientEntry color="{getExBottomColor(hostComponent.courseIndex)}" color.over="{getExBottomOverColor(hostComponent.courseIndex)}" color.down="{getExBottomOverColor(hostComponent.courseIndex)}" ratio="1" />
+				<s:GradientEntry color="{getExTopColor(hostComponent.courseIndex)}" color.disabled="{getDisabedColor(hostComponent.courseIndex)}" color.over="{getExTopOverColor(hostComponent.courseIndex)}" color.down="{getExTopOverColor(hostComponent.courseIndex)}"  ratio="0" />
+				<s:GradientEntry color="{getExBottomColor(hostComponent.courseIndex)}" color.disabled="{getDisabedColor(hostComponent.courseIndex)}" color.over="{getExBottomOverColor(hostComponent.courseIndex)}" color.down="{getExBottomOverColor(hostComponent.courseIndex)}" ratio="1" />
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>

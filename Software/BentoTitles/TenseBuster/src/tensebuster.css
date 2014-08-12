@@ -101,6 +101,7 @@ global {
 	exerciseBottomOverColors: #FFB5C0, #F2D68F, #D9E090, #90D2D6, #C9BFF2;	
 	exerciseUndoneColors: #FFF2F3, #FFFCE9, #FCFFE0, #EBFDFF, #F9F7FF;
 	exerciseLabelColors: #781C23, #875600, #3E6B00, #004766, #3C1778;
+	exerciseDisabledColors: #E6AFBA, #E8CC9E, #CFD67E, #92CAD6, #BBB3E6;
 	
 	markingColours: #2CA874, #E61E1E, #0066FF;
 	

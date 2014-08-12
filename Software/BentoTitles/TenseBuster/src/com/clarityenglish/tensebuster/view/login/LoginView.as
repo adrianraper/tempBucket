@@ -92,6 +92,15 @@ package com.clarityenglish.tensebuster.view.login
 		[SkinPart]
 		public var disableGroup:Group;
 		
+		[SkinPart]
+		public var demoENButton:Button;
+		
+		[SkinPart]
+		public var demoNAMENButton:Button;
+		
+		[SkinPart]
+		public var copyrightLabel:Label;
+		
 		[Bindable]
 		public var loginKey_lbl:String;
 		
@@ -332,6 +341,13 @@ package com.clarityenglish.tensebuster.view.login
 					CTStartButton.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
 					CTStartButton.label = copyProvider.getCopyForId("CTStartButton");
 					break;
+				case demoENButton:
+				case demoNAMENButton:
+					instance.addEventListener(MouseEvent.CLICK, onLoginButtonClick);
+					break;
+				case copyrightLabel:
+					copyrightLabel.text = copyProvider.getCopyForId("footerLabel");
+					break;
 			}
 		}
 		
@@ -539,6 +555,18 @@ package com.clarityenglish.tensebuster.view.login
 						busyIndicator.visible = true;
 					user = new User({name:loginNameInput.text, studentID:loginIDInput.text, email:loginEmailInput.text, password:newPasswordInput.text});
 					dispatchEvent(new LoginEvent(LoginEvent.ADD_USER, user, loginOption, verified));
+					break;
+				case demoENButton:					
+				case demoNAMENButton:
+					if (disableGroup)
+						disableGroup.visible = true;
+					if (busyIndicator)
+						busyIndicator.visible = true;
+					if (event.target == demoENButton) {
+						dispatchEvent(new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified, "EN"));
+					} else {
+						dispatchEvent(new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified, "NAMEN"));
+					}
 					break;
 				default:
 					if (busyIndicator && disableGroup) {
