@@ -1,28 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" 
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)" width="100%" height="100%" xmlns:candidates="skins.ielts.assets.candidates.*">
+		xmlns:s="library://ns.adobe.com/flex/spark"
+		xmlns:candidates="skins.ielts.assets.candidates.*" 
+		xmlns:players="com.clarityenglish.controls.video.players.*" 
+		xmlns:candidates1="skins.ieltsair.assets.candidates.*"
+		creationComplete="onCreationComplete(event)" width="100%" height="100%" xmlns:candidates2="com.clarityenglish.ieltsair.view.candidates.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
 	</fx:Metadata>
 	
 	<fx:Declarations>
-		<s:Animate id="openingScreenLeftSlide" duration="600" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
+		<s:Animate id="openingScreenLeftSlide" duration="700" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
 			<s:SimpleMotionPath property="left" valueBy="{-320-width/2}"/>
 		</s:Animate>
 		
-		<s:Animate id="openingScreenRightSlide" duration="600" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
+		<s:Animate id="openingScreenRightSlide" duration="700" target="{openingScreenGroup}" effectStart="onSlideStart(event)" effectEnd="onSlideEnd(event)">
 			<s:SimpleMotionPath property="left" valueBy="{320+width/2}"/>
 		</s:Animate>
 		
-		<s:Animate id="openingScreenFadeIn" duration="600">
+		<s:Animate id="openingScreenFadeIn" duration="700">
 			<s:SimpleMotionPath property="alpha" valueFrom="0" valueTo="1" />
 		</s:Animate>
 		
-		<s:Animate id="openingScreenFadeOut" duration="600">
+		<s:Animate id="openingScreenFadeOut" duration="700">
 			<s:SimpleMotionPath property="alpha" valueFrom="1" valueTo="0" />
+		</s:Animate>
+		
+		<s:Animate id="videoListGroupExpand" duration="600" target="{videoListGroup}">
+			<s:SimpleMotionPath property="right" valueTo="0" />
+		</s:Animate>
+		
+		<s:Animate id="videoListGroupCollapse" duration="600" target="{videoListGroup}">
+			<s:SimpleMotionPath property="right" valueTo="-218" />
 		</s:Animate>
 	</fx:Declarations>
 	
@@ -35,19 +45,25 @@
 			import mx.events.FlexEvent;
 			import mx.events.IndexChangedEvent;
 			import mx.events.ResizeEvent;
+			import mx.managers.PopUpManager;
 			
+			import spark.components.BusyIndicator;
+			import spark.components.VideoPlayer;
 			import spark.events.IndexChangeEvent;
 			
 			[Bindable]
 			private var videoListIndex:Number = 0;
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				// TODO Auto-generated method stub
+				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
 				addEventListener(Event.RESIZE, onResize);
+				
 				number1Red.visible = true;
-				openingScreenGroup.left = width/2 - 320;			
+				openingScreenGroup.left = width/2 - 320;
+				
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription0");
+				videoListCaptionLabel.text = hostComponent.copyProvider.getCopyForId("videoListCaptionLabel");
 			}
 			
 			protected function previousVideoButtonClick(event:MouseEvent):void
@@ -76,7 +92,6 @@
 				videoPlayer.visible = true;
 				openingScreenGroup.visible = false;
 				videoPlayButton.visible = false;
-				channelList.visible = true;
 				videoListIndex = videoList.selectedIndex;
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
@@ -104,19 +119,14 @@
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
 				videoPlayButton.visible = true;
-				channelList.visible = true;
-				channelMessage.visible = true;
 			}
 			
 			protected function onSlideStart(event:EffectEvent):void
 			{
 				// TODO Auto-generated method stub
 				videoPlayButton.visible = false;
-				videoPlayer.visible = false;
 				openingScreenGroup.visible = true;
-				channelList.visible = false;
-				channelMessage.visible = false;
-				videoList.selectedIndex = -1;
+				videoPlayer.visible = false;
 				
 				if (videoListIndex == 0) {
 					previousVideoButton.enabled = false;
@@ -136,12 +146,6 @@
 				// TODO Auto-generated method stub
 				videoList.selectedIndex = videoListIndex;
 				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE, true));
-			}
-			
-			protected function onCollapseEnd(event:EffectEvent):void
-			{
-				// TODO Auto-generated method stub
-				videoList.visible = false;
 			}
 			
 			protected function onResize(event:Event):void {
@@ -171,11 +175,34 @@
 				}
 			}
 			
+			protected function onExpandButtonClick(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoListGroupExpand.play();
+				
+				openingScreenGroup.visible = true;
+				videoPlayButton.visible = true;
+				videoPlayer.visible = false;
+				videoListExpandButton.visible = false;
+				previousVideoButton.visible = false;
+				nextVideoButton.visible = false;
+			}
+			
+			protected function onStageClick(event:MouseEvent):void {
+				if (event.target != videoListExpandButton) {
+					videoListGroupCollapse.play();
+					
+					videoListExpandButton.visible = true;
+					previousVideoButton.visible = true;
+					nextVideoButton.visible = true;
+				}
+			}
+			
 		]]>
 	</fx:Script>
 	
-	<s:Group verticalCenter="-196" horizontalCenter="-310">
-		<candidates:number1red id="number1Red" visible="{videoList.selectedIndex == 0}" />
+	<s:Group verticalCenter="-236" horizontalCenter="-310">
+		<candidates:number1red id="number1Red" visible="{videoListIndex == 0}" />
 		<candidates:number2red visible="{videoListIndex == 1}"/>
 		<candidates:number3red visible="{videoListIndex == 2}"/>
 		<candidates:number4red visible="{videoListIndex== 3}"/>
@@ -184,14 +211,14 @@
 	</s:Group>
 	
 	<!--video title-->
-	<s:HGroup horizontalCenter="-165" verticalCenter="-192" width="250" gap="0">
+	<s:HGroup horizontalCenter="-165" verticalCenter="-232" width="250" gap="0">
 		<s:Label id="candidatesVideoTitleFixedLabel" fontSize="16" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoTitleFixedLabel')}" />
 		<s:Label id="candidatesVideoTitleLabel" fontSize="18" fontWeight="bold" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)}" left="0" />
 	</s:HGroup>
 	
-	<candidates:channelmsg id="channelMessage" horizontalCenter="385" verticalCenter="-178" scaleX="1.1" scaleY="1.1" />
+	<candidates:channelmsg id="channelMessage" horizontalCenter="385" verticalCenter="-218" scaleX="1.1" scaleY="1.1" />
 	
-	<s:Group verticalCenter="-50" horizontalCenter="390">
+	<s:Group verticalCenter="-80" horizontalCenter="390">
 		<!-- Channel list -->
 		<s:List id="channelList" height="160" width="100" horizontalScrollPolicy="off" itemRenderer="com.clarityenglish.ielts.view.candidates.ui.CandidatesChannelListRenderer" buttonMode="true" useHandCursor="true">
 			<s:layout>
@@ -201,26 +228,26 @@
 		<s:Button id="scriptButton" top="172" width="50" height="45" />
 	</s:Group>
 	
-	<s:HGroup verticalCenter="10" horizontalCenter="0" gap="80">
-		<s:VGroup paddingTop="150">
+	<s:HGroup verticalCenter="-30" horizontalCenter="0" gap="40">
+		<s:VGroup paddingTop="130">
 			<s:Button id="previousVideoButton" verticalCenter="0" click="previousVideoButtonClick(event)" enabled="false" buttonMode="true" useHandCursor="true" />
 		</s:VGroup>		
 		
 		<s:Group>
 			<!-- The video players -->
-			<!--players:WebViewVideoPlayer id="videoPlayer" width="411" height="231" /-->
-			<players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" />
+			<!--players:WebViewVideoPlayer id="videoPlayer" width="640" height="360" visible="{videoList.selectedIndex != -1}" /-->
+			<players:OSMFVideoPlayer id="videoPlayer" width="640" height="360" visible="{videoList.selectedIndex != -1}"/>
 			
 			<!-- Placeholder image -->
 			<s:Image id="placeholderImage" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" />
 		</s:Group>
 		
-		<s:VGroup paddingTop="150">
+		<s:VGroup paddingTop="130">
 			<s:Button id="nextVideoButton" click="nextVideoButtonClick(event)" buttonMode="true" useHandCursor="true" />
 		</s:VGroup>	
 	</s:HGroup>
 	
-	<s:HGroup id="openingScreenGroup" height="360" verticalCenter="10" gap="{width/2-320}">
+	<s:HGroup id="openingScreenGroup" height="360" verticalCenter="-30" gap="{width/2-320}">
 		<s:SWFLoader id="openingScreen1" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen1.jpg')" />
 		<s:SWFLoader id="openingScreen2" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen2.jpg')" />
 		<s:SWFLoader id="openingScreen3" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen3.jpg')" />
@@ -229,86 +256,41 @@
 		<s:SWFLoader id="openingScreen6" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen6.jpg')" />
 	</s:HGroup>
 	
-	<candidates:videoframe verticalCenter="10" horizontalCenter="0" />
+	<candidates:videoframe verticalCenter="-30" horizontalCenter="0" />
 	
 	<!--video description-->
-	<s:HGroup verticalCenter="220" horizontalCenter="-20" width="600">
+	<s:HGroup verticalCenter="180" horizontalCenter="-20" width="600">
 		<s:Label id="candidatesVideoFixedLabel" fontWeight="bold" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoFixedLabel')}" />
 		<s:Label id="candidatesVideoDescriptionLabel" width="570"/>
 	</s:HGroup>
-
-	<s:VGroup id="videoHolderBackgroundVGroup" bottom="-2" horizontalCenter="0" horizontalAlign="center" gap="0">		
-		<s:Rect width="880" height="85" topLeftRadiusX="12" topLeftRadiusY="12" topRightRadiusX="12" topRightRadiusY="12">
+	
+	<!--video list-->
+	<s:Button id="videoListExpandButton" click="onExpandButtonClick(event)" top="50" right="-10" label="{hostComponent.copyProvider.getCopyForId('videoListExpandButton')}" fontWeight="bold" />
+	<s:Group id="videoListGroup" right="-218" width="218" height="100%">
+		<!--video list bar-->
+		<s:Rect width="100%" height="100%">
 			<s:fill>
-				<s:SolidColor color="#404041" />
+				<s:SolidColor color="#404041" alpha="0.9" />
 			</s:fill>
 		</s:Rect>
-	</s:VGroup>
-	
-	<!-- Video list -->
-	<s:List id="videoList" bottom="8" horizontalCenter="-10" horizontalScrollPolicy="off" minHeight="0" minWidth="0">
-		<s:layout>
-			<s:HorizontalLayout gap="5" />
-		</s:layout>
 		
-		<s:itemRenderer>
-			<fx:Component>
-				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
-					<fx:Script>
-						<![CDATA[
-							
-							override public function set data(value:Object):void {
-								super.data = value;
-								
-								videoLabel.text = data.@caption;
-								
-								// #213
-								enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
-							}
-						]]>
-					</fx:Script>
-					
-					<s:states>
-						<s:State name="normal"/>
-						<s:State name="hovered"/>
-						<s:State name="selected"/>
-					</s:states>
-					
-					<s:Group width="125" height="80">
-						<s:Rect id="imageBorder" width="102" height="58" top="19" left="19">
-							<s:fill>
-								<s:SolidColor color="#FFFFFF" />
-							</s:fill>
-						</s:Rect>
-						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb1.jpg')" visible="{itemIndex == 0}" />
-						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb2.jpg')" visible="{itemIndex == 1}" />
-						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb3.jpg')" visible="{itemIndex == 2}" />
-						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb4.jpg')" visible="{itemIndex == 3}" />
-						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb5.jpg')" visible="{itemIndex == 4}" />
-						<s:SWFLoader left="20" top="20" source="@Embed(source='/skins/ielts/assets/candidates/videoThumb6.jpg')" visible="{itemIndex == 5}" />
-						
-						<s:Group left="20" top="20">
-							<s:Rect width="100" height="56" includeIn="hovered, selected">
-								<s:fill>
-									<s:SolidColor color="#000000" alpha="0.5" />
-								</s:fill>
-							</s:Rect>
-							<candidates:playonthumbnail horizontalCenter="0" top="10" includeIn="hovered, selected" />
-							<s:Label id="videoLabel" width="100" textAlign="center" top="35" fontSize="12" fontWeight="normal" color="#FFFFFF" visible="{currentState != 'normal'}" />
-						</s:Group>
-											
-						<s:Group left="10" top="10">
-							<candidates:number1 visible="{itemIndex == 0}" />
-							<candidates:number2 visible="{itemIndex == 1}" />
-							<candidates:number3 visible="{itemIndex == 2}" />
-							<candidates:number4 visible="{itemIndex == 3}" />
-							<candidates:number5 visible="{itemIndex == 4}" />
-							<candidates:number6 visible="{itemIndex == 5}" />
-						</s:Group>
-					</s:Group>
-				</s:ItemRenderer>
-			</fx:Component>
-		</s:itemRenderer>
-	</s:List>
-	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="0" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" />	
+		<s:Label id="videoListCaptionLabel" top="50" horizontalCenter="0" color="#FFFFFF" fontSize="13" />
+		<!-- Video list -->
+		<s:List id="videoList" left="0" top="70" verticalScrollPolicy="off" minHeight="0" minWidth="0" itemRenderer="com.clarityenglish.ieltsair.view.candidates.VideoListItemRenderer">
+			<s:layout>
+				<s:VerticalLayout gap="5" />
+			</s:layout>
+		</s:List>
+	</s:Group>
+	
+	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="-35" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" />
+	
+	<s:Group width="100%" height="100%" visible="{videoList.dataProvider == null}">
+		<s:Rect width="100%" height="100%">
+			<s:fill>
+				<s:SolidColor color="0x000000" alpha="0.5" />
+			</s:fill>
+		</s:Rect>
+		<s:BusyIndicator verticalCenter="-30" horizontalCenter="0" symbolColor="0xFFFFFF" />
+	</s:Group>
 </s:Skin>

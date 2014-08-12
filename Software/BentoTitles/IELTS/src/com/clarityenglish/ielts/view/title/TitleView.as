@@ -81,6 +81,9 @@ package com.clarityenglish.ielts.view.title {
 		public var candidatesViewNavigator:ViewNavigator;
 		
 		[SkinPart]
+		public var candidatesViewNavigatorButton1:Button;
+		
+		[SkinPart]
 		public var helpViewNavigatorButton1:Button;
 		
 		[SkinPart]
@@ -424,6 +427,9 @@ package com.clarityenglish.ielts.view.title {
 				case myProfileViewNavigatorButton2:
 					instance.label = copyProvider.getCopyForId("LogOut");
 					break;
+				case helpViewNavigator:
+					instance.label = copyProvider.getCopyForId("Help");
+					break;
 				case helpViewNavigatorButton1:
 					instance.label = copyProvider.getCopyForId("Home");
 					break;
@@ -450,6 +456,9 @@ package com.clarityenglish.ielts.view.title {
 					break;
 				case candidatesViewNavigator:
 					instance.label = copyProvider.getCopyForId("Candidates");
+					break;
+				case candidatesViewNavigatorButton1:
+					instance.label = copyProvider.getCopyForId("Home");
 					break;
 			}
 		}

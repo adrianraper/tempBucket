@@ -409,6 +409,8 @@ package com.clarityenglish.ielts.view.login {
 							return lastMinuteAcademicLogo;
 						case IELTSApplication.TEST_DRIVE:
 							return tenHourAcademicLogo;
+						case BentoApplication.DEMO:
+							return demoAcademicLogo;
 						default:
 							//return demoAcademicLogo;
 							return fullVersionAcademicLogo;
@@ -422,6 +424,8 @@ package com.clarityenglish.ielts.view.login {
 							return lastMinuteAcademicLogo;
 						case IELTSApplication.TEST_DRIVE:
 							return tenHourGeneralTrainingLogo;
+						case BentoApplication.DEMO:
+							return demoAcademicLogo;
 						default:
 							//return demoGeneralTrainingLogo;
 							return fullVersionGeneralTrainingLogo;
@@ -525,7 +529,8 @@ package com.clarityenglish.ielts.view.login {
 						replaceObj = {loginText:copyProvider.getCopyForId("loginButton")};
 					}
 					if (licenceType == Title.LICENCE_TYPE_NETWORK ||
-						licenceType == Title.LICENCE_TYPE_CT) {
+						licenceType == Title.LICENCE_TYPE_CT ||
+						licenceType == Title.LICENCE_TYPE_AA) {
 						switch (loginOption) {
 							case 1:
 								replaceObj.loginDetail = copyProvider.getCopyForId("nameLoginDetail");
@@ -554,7 +559,8 @@ package com.clarityenglish.ielts.view.login {
 				//gh#100 CT login page
 				case CTOption1Label:
 					if (licenceType == Title.LICENCE_TYPE_NETWORK ||
-						licenceType == Title.LICENCE_TYPE_CT) {
+						licenceType == Title.LICENCE_TYPE_CT ||
+						licenceType == Title.LICENCE_TYPE_AA) {
 						instance.text = copyProvider.getCopyForId("CTOption1Label");
 					} else {
 						instance.text = copyProvider.getCopyForId("LTOption1Label");
@@ -616,11 +622,10 @@ package com.clarityenglish.ielts.view.login {
 			}
 			
 			// gh#659
-			trace("licence type: "+licenceType+", noLogin: "+noLogin);
 			if (_hasIPrange && (licenceType == Title.LICENCE_TYPE_CT || (licenceType == Title.LICENCE_TYPE_AA && noLogin != true))) {
 				networkState = "IPConcurrentTracking";
 			}
-
+			
 			return _currentState + networkState;
 		}
 		

@@ -31,6 +31,12 @@ package com.clarityenglish.ielts.view.candidates
 			view.href = href;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
 			
+			if (configProxy.isPlatformTablet()) {
+				view.setPlatformTablet(true);
+			} else {
+				view.setPlatformTablet(false);
+			}
+			
 			var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
 			view.hrefToUidFunction = null;
 		}

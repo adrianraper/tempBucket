@@ -19,6 +19,8 @@
 @namespace nonetwork "com.clarityenglish.bento.view.nonetwork.*";
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace players "com.clarityenglish.controls.video.players.*";
+@namespace candidates "com.clarityenglish.ielts.view.candidates.*";
+@namespace candidates1 "com.clarityenglish.ieltsair.view.candidates.*";
 
 global {
 	interactionMode: touch;
@@ -167,6 +169,26 @@ support|SupportView {
 /* Credits view styles */
 credits|CreditsView {
 	skinClass: ClassReference("skins.ieltsair.CreditsSkin");
+}
+
+@media (os-platform: "IOS") {
+	candidates|CandidatesView video|VideoSelector#tabletVideoSelector {
+		skinClass: ClassReference("skins.ieltsair.candidates.IosVideoSelectorSkin");
+	}
+}
+
+@media (os-platform: "Android") {
+	candidates|CandidatesView video|VideoSelector#tabletVideoSelector {
+		skinClass: ClassReference("skins.ieltsair.candidates.AndroidVideoSelectorSkin");
+	}
+}
+
+candidates|CandidatesView s|Button#videoListExpandButton {
+	skinClass: ClassReference("skins.ieltsair.candidates.VideoListExpandButtonSkin");
+}
+
+candidates|CandidatesView  candidates1|IndexButtonBarButton{
+	skinClass: ClassReference("skins.ieltsair.candidates.IndexButtonBarButtonSkin");
 }
 
 /* More view styles */

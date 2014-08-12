@@ -42,6 +42,20 @@ package com.clarityenglish.controls.video.players {
 			return _source;
 		}
 		
+		// For ipad candidates video which require video stop when switch to another. 
+		// Using set visible to stop video will call onRemovedFromStage and stageWebView will be set to null.
+		// So before playing another video, stageWebView need to be recreated.
+		public function createStageWebView():void {
+			if (!stageWebView) {
+				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
+				stageWebView = new StageWebView();
+				
+				addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+				addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
+				addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			}
+		}
+		
 		private function get isHtml():Boolean {
 			return source && source.toString().match(/^https?:\/\//i) == null;
 		}

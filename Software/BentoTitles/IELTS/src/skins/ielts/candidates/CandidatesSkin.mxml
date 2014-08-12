@@ -8,14 +8,17 @@
 
     <s:states>
         <s:State name="normal" />
+		<s:State name="normalTablet" />
         <s:State name="disabled" />
 	</s:states>
 	
-	<s:HGroup top="-7" right="30" gap="20">
+	<s:HGroup top="-7" top.normalTablet="30" right="30" gap="20" includeIn="normal">
 		<s:SWFLoader source="@Embed(source='skins/ielts/assets/candidates/tipsGraphic.png')" />
 	</s:HGroup>
 	
-	<s:VGroup left="20" right="20" top="80" minWidth="973">
+	<s:SWFLoader source="@Embed(source='skins/ielts/assets/candidates/tipsTabletGraphic.png')" bottom="96" right="0" includeIn="normalTablet" />
+	
+	<s:VGroup left="20" right="20" top="80" minWidth="973" includeIn="normal">
 		<s:Label id="candidatesCaptionLabel" fontSize="20" color="0x333333" />
 		<s:Line width="100%">
 			<s:stroke>
@@ -23,5 +26,6 @@
 			</s:stroke>
 		</s:Line>
 	</s:VGroup>
-	<video:VideoSelector id="videoSelector" top="0" bottom="15" copyProvider="{hostComponent.getCopyProvider()}"/>
+	<video:VideoSelector id="videoSelector" top="0" bottom="15" copyProvider="{hostComponent.getCopyProvider()}" includeIn="normal"/>
+	<video:VideoSelector id="tabletVideoSelector" copyProvider="{hostComponent.getCopyProvider()}" verticalCenter="0" horizontalCenter="0" includeIn="normalTablet" />
 </s:Skin>
