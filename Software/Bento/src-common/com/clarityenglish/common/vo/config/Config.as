@@ -337,7 +337,7 @@ package com.clarityenglish.common.vo.config {
 						replace = "Demo";
 						break;
 					default:
-						replace = "";
+						replace = "FullVersion";
 				}
 				paths.menuFilename = paths.menuFilename.replace("{productVersion}", replace);
 			}

@@ -62,7 +62,7 @@
 	
 	<s:HGroup bottom="8" left="20" gap="12">
 		<s:Button id="tryAgainButton" label="Try again" styleName="fontMdStlye" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
-		<s:Button id="seeAnswersButton" label="See answers" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
+		<s:Button id="seeAnswersButton" label="See answers" styleName="fontMdStlye" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
 		<s:Button id="moveForwardButton" label="Move forward" styleName="fontMdStlye" color="0xFFFFFF" buttonMode="true" useHandCursor="true"/>
 	</s:HGroup>
 	
