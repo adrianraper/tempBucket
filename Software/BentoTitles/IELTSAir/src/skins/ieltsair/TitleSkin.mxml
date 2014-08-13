@@ -45,6 +45,7 @@
 		<s:State name="account" />
 		<s:State name="support" />
 		<s:State name="exercise" />
+		<s:State name="candidates" />
 	</s:states>
 	
 	<title:IELTSLogo x="39" y="74" excludeFrom="exercise" />
