@@ -21,6 +21,10 @@
 		public static const LICENCE_TYPE_TT:int = 6;
 		public static const LICENCE_TYPE_CT:int = 7;
 		
+		// gh#987
+		public static const FULL_VERSION:String = 'FV';
+		public static const FULL_DEMO:String = 'DEMO';
+		
 		// gh#1090
 		public static const LOGIN_BLOCKED:uint = 1;
 		
@@ -155,7 +159,7 @@
 				}
 			}
 			// gh#219 do the same for productVersion
-			var defaultV:String = "FV";
+			var defaultV:String = FULL_VERSION;
 			title.productVersion = "";
 			var productVersions:Array = DictionarySingleton.getInstance().versionCode;
 			for each (var version:Object in productVersions) {

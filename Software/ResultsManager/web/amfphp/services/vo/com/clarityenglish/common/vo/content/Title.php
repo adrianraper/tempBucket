@@ -16,6 +16,10 @@ class Title extends Content {
 	const LICENCE_TYPE_TT = 6;
 	const LICENCE_TYPE_CT = 7;
 		
+	// gh#987
+	const FULL_VERSION = 'FV';
+	const DEMO_VERSION = 'DEMO';
+	
 	// gh#1090
 	const SIGNIN_TRACKING = 1;
 	const SIGNIN_ANONYMOUS = 2;

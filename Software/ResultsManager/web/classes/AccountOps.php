@@ -728,11 +728,15 @@ EOD;
 		$allLicencesAA = true;
 		// Then add in the new/updated titles
 		foreach ($account->titles as $title) {
-			$titleArray = $title->toAssocArray();
 			// v3.3 Before you create the checksum, make sure that the expiry date has been altered to 23:59:59
 			$title->expiryDate = substr($title->expiryDate,0,10).' 23:59:59';
 			$title->licenceStartDate = substr($title->licenceStartDate, 0, 10).' 00:00:00';
 			
+			// gh#987 Check that F_ProductVersion is not null
+			if (!$title->productVersion)
+				$title->productVersion = Title::FULL_VERSION;
+				
+			$titleArray = $title->toAssocArray();
 			$titleArray["F_RootID"] = $account->id;
 			$titleArray["F_Checksum"] = $this->generateChecksumForTitle($title, $account);
 			//NetDebug::trace("root=".$account->id." productCode=".$title->productCode." checksum=".$titleArray["F_Checksum"]);

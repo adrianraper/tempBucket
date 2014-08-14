@@ -1066,12 +1066,16 @@ INSERT INTO `T_Product` VALUES
 (57,'Clear Pronunciation Sounds',NULL,2),
 (58,'Clear Pronunciation Speech',NULL,2);
 
-DELETE FROM T_ProductVersion WHERE F_ProductCode in (57,58);
+-- gh#987 Add Product version for C-Builder and the upcoming Clear Pronunciation
+DELETE FROM T_ProductVersion WHERE F_ProductCode in (54,57,58);
 INSERT INTO `T_ProductVersion` VALUES 
-(57,'DEMO'),
+(54,'FV'),
 (57,'FV'),
-(58,'DEMO'),
-(58,'FV');
+(58,'FV'),
+(54,'DEMO'),
+(57,'DEMO'),
+(58,'DEMO');
+
 INSERT INTO `T_DatabaseVersion`
 (`F_VersionNumber`,`F_ReleaseDate`,`F_Comments`)
 VALUES (1956, '2014-07-17 00:00:00', 'user memory');
