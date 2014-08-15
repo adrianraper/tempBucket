@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!-- Settings for compiling Vellum with Eclipse -->
+<flex-config xmlns="http://www.adobe.com/2006/flex-config">
+  <compiler>
+	<define>
+      <name>CONFIG::debug</name>
+      <value>true</value>
+    </define>
+    <define>
+      <name>CONFIG::release</name>
+      <value>false</value>
+    </define>
+  </compiler>
+  <!-- this may be redundant if its also set in the SDK.  -->
+  <!-- some versions of the flex compilers may generate errors on multiple settings -->
+  <target-player>10.0.0</target-player>
+  <static-link-runtime-shared-libraries>true</static-link-runtime-shared-libraries>
+</flex-config>
