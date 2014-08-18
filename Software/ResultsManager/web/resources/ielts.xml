@@ -67,7 +67,7 @@
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your details and click {loginText}.</lit>
-            <lit name="loginDetailLabelCT">Create an account (and save your scores).</lit>
+			<lit name="loginDetailLabelCT">Create an account (and save your scores).</lit>
             <lit name="CTDetailLabel">Just practise.</lit>
             <lit name="CTOption1Label">Option 1</lit>
             <lit name="CTOption2Label">Option 2</lit>
@@ -380,7 +380,6 @@
 			<lit name="candidatesVideoTitle3">“Reading”</lit>
 			<lit name="candidatesVideoTitle4">“Speaking”</lit>
 			<lit name="candidatesVideoTitle5">“Listening”</lit>
-			<lit name="candidatesVideoFixedLabel"></lit>
 			<lit name="videoListCaptionLabel">Advice from candidates on...</lit>
 			<lit name="videoListExpandButton">Playlist</lit>
 			<lit name="candidatesVideoDescription0">Watch candidates discussing ways they prepared for their IELTS test.</lit>

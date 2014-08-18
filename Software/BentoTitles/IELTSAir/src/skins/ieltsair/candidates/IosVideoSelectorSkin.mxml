@@ -258,9 +258,8 @@
 	<candidates:videoframe verticalCenter="-30" horizontalCenter="0" />
 	
 	<!--video description-->
-	<s:HGroup verticalCenter="180" horizontalCenter="-20" width="600">
-		<s:Label id="candidatesVideoFixedLabel" fontWeight="bold" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoFixedLabel')}" />
-		<s:Label id="candidatesVideoDescriptionLabel" width="570"/>
+	<s:HGroup verticalCenter="190" horizontalCenter="0" width="630" height="50">
+		<s:Label id="candidatesVideoDescriptionLabel" width="100%"/>
 	</s:HGroup>
 	
 	<!--video list-->

@@ -100,10 +100,9 @@
 			protected function onSlideEnd(event:EffectEvent):void
 			{
 				// TODO Auto-generated method stub
-				//videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
+				videoPlayButton.label = "Click here to watch the " + hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex) +  " video.";
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
-				videoPlayButton.label = hostComponent.copyProvider.getCopyForId("candidatesVideoPlayLabel", {videoTitle: candidatesVideoTitleLabel.text});
 				videoPlayButton.visible = true;
 				channelList.visible = true;
 				channelMessage.visible = true;
@@ -233,9 +232,8 @@
 	<candidates:videoframe verticalCenter="10" horizontalCenter="0" />
 	
 	<!--video description-->
-	<s:HGroup verticalCenter="220" horizontalCenter="120" width="640">
-		<!-- <s:Label id="candidatesVideoFixedLabel" fontWeight="bold" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoFixedLabel')}" /> -->
-		<s:Label id="candidatesVideoDescriptionLabel" textAlign="center" width="400"/>
+	<s:HGroup verticalCenter="230" horizontalCenter="0" width="630" height="50">
+		<s:Label id="candidatesVideoDescriptionLabel" width="100%"/>
 	</s:HGroup>
 
 	<s:VGroup id="videoHolderBackgroundVGroup" bottom="-2" horizontalCenter="0" horizontalAlign="center" gap="0">		
@@ -311,7 +309,5 @@
 			</fx:Component>
 		</s:itemRenderer>
 	</s:List>
-	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="0" 
-			  label="{hostComponent.copyProvider.getCopyForId('candidatesVideoPlayLabel', {videoTitle: hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)})}"
-			  buttonMode="true" useHandCursor="true" />	
+	<s:Button id="videoPlayButton" click="onPlayButtonClick(event)" horizontalCenter="0" verticalCenter="0" label="Click here to watch the {hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)} video." buttonMode="true" useHandCursor="true" />	
 </s:Skin>
