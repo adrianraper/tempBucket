@@ -30,6 +30,10 @@ class CourseAttributeCopyTransform extends XmlTransform {
 			$timesUsed = $service->courseOps->countSessions($courseID);
 			$course->addChild('timesUsed', $timesUsed);
 			
+			// gh#954 Some course attributes need processing for the sort to work
+			$totalTimesUsed = array_sum(explode(',', $timesUsed));
+			$course->addAttribute('totalTimesUsed', $totalTimesUsed);
+				
 			// Count the number of exercise nodes as a 'size' estimate
 			$exercises = $menuXML->xpath("//xmlns:exercise");
 			$size = count($exercises);

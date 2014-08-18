@@ -72,7 +72,7 @@
 		<s:Group includeIn="up, over, down" horizontalCenter="0" verticalCenter="0">
 			<!-- the down arrow -->
 			<s:Path winding="nonZero" x="1" y="1" data="M1.23618 0C2.33774 0 4.14048 0 5.24204 0 6.34409 0 6.79526 0.780273 6.24448 1.73438 5.6937 2.6875 4.79184 4.24805 4.24106 5.20313 3.69028 6.15625 2.78891 6.15625 2.23813 5.20313 1.68735 4.24805 0.785984 2.6875 0.235202 1.73438 -0.315579 0.780273
-				  0.134616 0 1.23618 0Z">
+					0.134616 0 1.23618 0Z">
 				<s:fill>
 					<s:SolidColor color="#9E9E9E" color.overStates="#825C37" color.downStates="#825C37"/>
 				</s:fill>

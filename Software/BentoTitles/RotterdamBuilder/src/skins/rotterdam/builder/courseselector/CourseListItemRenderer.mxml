@@ -17,6 +17,9 @@
 			[Bindable]
 			private var maxValue:uint;
 			
+			[Bindable]
+			private var sizeVisible:Boolean;
+			
 			// gh#689
 			public override function set data(value:Object):void {
 				super.data = value;
@@ -83,6 +86,10 @@
 		<s:HGroup verticalAlign="middle" width="100%">
 			<s:Label text="{data.@caption}" fontSize="15" fontWeight="bold" width="100%" />
 			<s:Spacer />
+			<s:HGroup >
+				<s:Label text="{data.@size} items" fontSize="11" />
+				<s:Spacer width="10" />
+			</s:HGroup>
 			<s:HGroup paddingTop="10" verticalAlign="top" height="100%" >
 				<s:Label text="{maxValue}" fontSize="9" visible="{maxValue > 0}" />
 				<mx:AreaChart id="timesUsedChart" width="120" height="60" dataProvider="{usageStatsDataProvider}" visible="{maxValue > 0}" 

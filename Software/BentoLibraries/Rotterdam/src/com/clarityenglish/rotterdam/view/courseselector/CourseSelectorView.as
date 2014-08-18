@@ -169,7 +169,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				
 				// gh#956 Use the remembered preferences
 				switch (initialSortField) {
-					case 'timesUsed':
+					case 'totalTimesUsed':
 						sortPopularity.selected = true;
 						break;
 					case 'size':
@@ -185,7 +185,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 						sortCreateDate.selected = true;
 						break;
 				}
-				sortDescendingToggleButton.selected = initialSortDescending;
+				sortDescendingToggleButton.selected = !initialSortDescending;
 				showFiltersToggleButton.selected = !initialFiltersHidden;
 				onShowHideFilters(null);
 				
@@ -201,14 +201,6 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				// TODO how to get the real locale?
 				sortField.setStyle('locale', 'en-US');
 				sort.fields = [sortField];
-				
-				// gh#954 Some course attributes need processing for the sort to work
-				for each (var item:XML in courseList.dataProvider) {
-					item.@timesUsed = 0;
-					if (item.hasOwnProperty('timesUsed'))
-						for each (var value:uint in item.timesUsed.split(','))
-							item.@timesUsed += value;
-				}
 				
 				(courseList.dataProvider as XMLListCollection).sort = sort;
 				(courseList.dataProvider as XMLListCollection).refresh();
@@ -319,14 +311,14 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					(courseList.dataProvider as XMLListCollection).refresh();
 					
 					// gh#956
-					viewMemory.courseSelector.@sortDescending = String(sortDescendingToggleButton.selected);
+					viewMemory.courseSelector.@sortDescending = String(!sortDescendingToggleButton.selected);
 					break;
 				
 				case sortRadioButtonGroup:
 					switch (sortRadioButtonGroup.selection) {
 						case sortCreateDate:
 							var sortAttribute:String = "@created";
-							var sortNumeric:Object = null; 
+							var sortNumeric:Object = null;
 							break;
 						case sortName:
 							sortAttribute = "@caption";
@@ -355,13 +347,13 @@ package com.clarityenglish.rotterdam.view.courseselector {
 								}
 							};
 							sortComparison = function(a:Object, b:Object, fields:Array):int {
-								return sortComparisonDirection(a, b, fields, sortDescendingToggleButton.selected);
+								return sortComparisonDirection(a, b, fields, !sortDescendingToggleButton.selected);
 							};
 							sortNumeric = false;
 							break;
 						case sortPopularity:
 							sortNumeric = true;
-							sortAttribute = "@timesUsed";
+							sortAttribute = "@totalTimesUsed";
 							break;
 						case sortSize:
 							sortNumeric = true;
@@ -373,7 +365,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 							break;
 					}
 					sort = new Sort();
-					var sortField:SortField = new SortField(sortAttribute, sortDescendingToggleButton.selected, sortNumeric);
+					var sortField:SortField = new SortField(sortAttribute, !sortDescendingToggleButton.selected, sortNumeric);
 					sort.fields = [sortField];
 					// TODO how to get the real locale?
 					sortField.setStyle('locale', 'en-US');
