@@ -380,15 +380,16 @@
 			<lit name="candidatesVideoTitle3">“Reading”</lit>
 			<lit name="candidatesVideoTitle4">“Speaking”</lit>
 			<lit name="candidatesVideoTitle5">“Listening”</lit>
-			<lit name="candidatesVideoFixedLabel">Description:</lit>
+			<lit name="candidatesVideoFixedLabel"></lit>
 			<lit name="videoListCaptionLabel">Advice from candidates on...</lit>
 			<lit name="videoListExpandButton">Playlist</lit>
-			<lit name="candidatesVideoDescription0">This video shows candidates discussing ways they prepared for their IELTS test. Watch the video to learn how you can prepare for yours.</lit>
-			<lit name="candidatesVideoDescription1">This video shows candidates discussing their IELTS test day experience. Watch the video for a smoother test day experience.</lit>
-			<lit name="candidatesVideoDescription2">This video shows candidates discussing the IELTS Writing test. Watch the video to see what they did to improve their writing skills.</lit>
-			<lit name="candidatesVideoDescription3">This video shows candidates discussing the IELTS Reading test. Watch the video to see how to make reading practice more interesting and relevant.</lit>
-			<lit name="candidatesVideoDescription4">This video shows candidates discussing the IELTS Speaking test. Watch the video to find out what to expect in the IELTS Speaking test.</lit>
-			<lit name="candidatesVideoDescription5">This video shows candidates discussing the IELTS Listening test. Watch the video to find out how to make listening practice more fun.</lit>
+			<lit name="candidatesVideoDescription0">Watch candidates discussing ways they prepared for their IELTS test.</lit>
+			<lit name="candidatesVideoDescription1">Watch candidates discussing their IELTS test day experience.</lit>
+			<lit name="candidatesVideoDescription2">Watch candidates discussing the IELTS Writing test. See what they did to improve their writing skills.</lit>
+			<lit name="candidatesVideoDescription3">Watch candidates discussing the IELTS Reading test. See how they made reading practice more interesting and relevant.</lit>
+			<lit name="candidatesVideoDescription4">Watch candidates discussing the IELTS Speaking test.</lit>
+			<lit name="candidatesVideoDescription5">Watch candidates discussing the IELTS Listening test. Find out how to make listening practice more fun.</lit>
+			<lit name="candidatesVideoPlayLabel">Click here to watch the {videoTitle} video.</lit>
 		</group>
 	</language>
 

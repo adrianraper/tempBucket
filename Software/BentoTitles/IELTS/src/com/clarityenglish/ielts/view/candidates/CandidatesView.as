@@ -88,7 +88,8 @@ package com.clarityenglish.ielts.view.candidates {
 		}
 		
 		protected function onScreenResize(event:Event):void {
-			videoSelector.width = stage.stageWidth;
+			if (videoSelector)
+				videoSelector.width = stage.stageWidth;
 		}
 	}
 }
