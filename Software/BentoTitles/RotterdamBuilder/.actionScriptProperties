@@ -19,11 +19,11 @@
         </excludedEntries>
       </libraryPathEntry>
       <libraryPathEntry kind="3" linkType="1" path="/OSMF/bin/OSMF.swc" useDefaultLinkType="false"/>
-      <libraryPathEntry kind="3" linkType="1" path="/textLayout/bin/textLayout.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/mobile/mobilecomponents.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/Bento/bin/Bento.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/Rotterdam/bin/Rotterdam.swc" useDefaultLinkType="false"/>
       <libraryPathEntry kind="3" linkType="1" path="/csslib/bin/csslib.swc" useDefaultLinkType="false"/>
+      <libraryPathEntry kind="3" linkType="1" path="/textLayout/bin/textLayout.swc" useDefaultLinkType="false"/>
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
