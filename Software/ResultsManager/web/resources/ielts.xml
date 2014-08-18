@@ -67,16 +67,14 @@
 			<lit name="problemLabel">Sorry, there is a problem:</lit>
 			<lit name="loginIDLabel">You need to have already registered your email with your school or with the British Council to log in.</lit>
 			<lit name="loginDetailLabel">Please type your details and click {loginText}.</lit>
-            <lit name="loginDetailLabelCT">
-                 <![CDATA[If you want to keep a record of your progress, fill in your {loginDetail} and password, and then click {loginText}.]]>
-            </lit>
-			<lit name="CTDetailLabel">If you just want to practise with Road to IELTS, click {loginText}.</lit>
-			<lit name="CTOption1Label">Option 1: Progress Tracking</lit>
-			<lit name="CTOption2Label">Option 2: Anonymous</lit>
-			<lit name="LTOption1Label">Get started</lit>
-			<lit name="RegisterOption1Label">Your details</lit>
-			<lit name="CTLoginButton">Register or log in</lit>
-			<lit name="CTStartButton">Start program</lit>
+            <lit name="loginDetailLabelCT">Create an account (and save your scores).</lit>
+            <lit name="CTDetailLabel">Just practise.</lit>
+            <lit name="CTOption1Label">Option 1</lit>
+            <lit name="CTOption2Label">Option 2</lit>
+            <lit name="LTOption1Label">Get started</lit>
+            <lit name="RegisterOption1Label">Your details</lit>
+            <lit name="CTLoginButton">Start</lit>
+            <lit name="CTStartButton">Start</lit>
 			<lit name="registerDetailLabel">Please type your details to register.</lit>
 			<lit name="LMLabel">Road to IELTS - Last Minute</lit>
 			<lit name="LMTextLabel">Special last minute practice only for British Council IELTS candidates!</lit>
