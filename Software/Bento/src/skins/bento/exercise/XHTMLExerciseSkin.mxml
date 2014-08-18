@@ -45,9 +45,9 @@
 	<s:Group id="headerGroup" width="100%">
 		<!-- gh#631
 		<s:Rect width="100%" minHeight="20" >
-			<s:fill>
-				<s:SolidColor color="#D7D7D7" />
-			</s:fill>
+		<s:fill>
+		<s:SolidColor color="#D7D7D7" />
+		</s:fill>
 		</s:Rect>
 		-->
 		
@@ -56,13 +56,13 @@
 		
 		<!-- gh#388 -->
 		<!--s:Group right="0" width="27%" height="100%" visible="{hostComponent.atLeastOneSelectedAnswerHasFeedback}">
-			<s:Rect width="100%" height="100%">
-				<s:fill>
-					<s:SolidColor color="0X4D4E4E" />
-				</s:fill>
-			</s:Rect>
-			<exercise:FeedbackAvailableIcon verticalCenter="0" left="20" />
-			<s:RichText text="Please click on the answers to show feedback." color="#FFFFFF" left="70" right="10" top="6" verticalCenter="0" width="100%" />
+		<s:Rect width="100%" height="100%">
+		<s:fill>
+		<s:SolidColor color="0X4D4E4E" />
+		</s:fill>
+		</s:Rect>
+		<exercise:FeedbackAvailableIcon verticalCenter="0" left="20" />
+		<s:RichText text="Please click on the answers to show feedback." color="#FFFFFF" left="70" right="10" top="6" verticalCenter="0" width="100%" />
 		</s:Group-->
 		
 	</s:Group>	

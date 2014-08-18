@@ -32,6 +32,5 @@
 	</s:HGroup>
 	
 	<!-- Exercise -->
-	<!-- TODO: Something is up with the sizing of the dynamic view -->
 	<view:DynamicView id="dynamicView" left="20" right="10" top="70" height="100%" />
 </s:Skin>
