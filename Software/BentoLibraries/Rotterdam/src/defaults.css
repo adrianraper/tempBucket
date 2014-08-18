@@ -10,6 +10,10 @@
 @namespace players "com.clarityenglish.controls.video.players.*";
 @namespace components "com.clarityenglish.components.*";
 
+components|XHTMLExerciseView {
+	skinClass: ClassReference("skins.rotterdam.exercise.XHTMLExerciseSkin");
+}
+
 unit|UnitView {
 	skinClass: ClassReference("skins.rotterdam.unit.UnitSkin");
 }
