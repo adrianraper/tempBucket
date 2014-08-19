@@ -421,14 +421,7 @@ SQL;
 			// I think this is going to be simplest to do post query.
 			foreach ($licenceAttributes as $detail) {
 				if ($detail['productCode']=='') {
-					// gh#723 for login from tablet using IPRange, we don't store licence attribute here.
-					// Because the checkAuthentication will be executed which will cause error for config.ip is null.
-					// use config['ip'] to judge if the login from tablet using IPRange.
-					if ($config['ip']) {
-						break;
-					} else {
-						$relevantAttributes[] = $detail;
-					}					
+					$relevantAttributes[] = $detail;
 				} else {
 					$codes = explode(',',$detail['productCode']);
 					foreach ($codes as $code) {

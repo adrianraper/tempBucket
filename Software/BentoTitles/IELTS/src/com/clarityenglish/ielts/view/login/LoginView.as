@@ -222,7 +222,7 @@ package com.clarityenglish.ielts.view.login {
 		
 		// gh#886
 		[Bindable]
-		public var noLogin:String;
+		public var noLogin:Boolean;
 		
 		//[Embed(source="skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersionAcademic")]
 		[Embed(source="/skins/ielts/assets/assets.swf", symbol="IELTSLogoFullVersion")]
@@ -394,7 +394,7 @@ package com.clarityenglish.ielts.view.login {
 		}
 		
 		// gh#886
-		public function setNoLogin(value:String):void {
+		public function setNoLogin(value:Boolean):void {
 			noLogin = value;
 		}
 		

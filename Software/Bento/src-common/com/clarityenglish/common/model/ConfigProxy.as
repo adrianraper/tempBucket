@@ -353,7 +353,7 @@ package com.clarityenglish.common.model {
 			// Anonymous login
 			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) { // gh#165
 				// gh#300 Builder doesn't allow anonymous login
-				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == "true")
+				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true)
 					return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
 			}
 				
@@ -447,7 +447,6 @@ package com.clarityenglish.common.model {
 						</db>
 						*/
 						config.mergeAccountData(data);
-						
 						// gh#113 This IP and RU check could easily be done in PHP, in which case LoginProxy would catch it
 						// just like accountExpired. But for now leave this here with other config errors.
 						var authenticated:Boolean = this.checkAuthentication();
@@ -525,7 +524,8 @@ package com.clarityenglish.common.model {
 			var ruFault:Boolean = false;
 			
 			for each (var lA:Object in config.account.licenceAttributes) {
-				if (lA.licenceKey.toLowerCase() == 'iprange') {
+				// gh#886 only check iprang for tablet
+				if (lA.licenceKey.toLowerCase() == 'iprange' && isPlatformTablet()) {
 					if (!config.isIPInRange(config.ip, lA.licenceValue)) {
 						config.error = copyProxy.getBentoErrorForId("errorIPDoesntMatch", { ip: config.ip }, true );
 						ipFault = true;

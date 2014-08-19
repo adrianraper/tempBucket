@@ -104,14 +104,16 @@ package com.clarityenglish.common.model {
 			// gh#100 as does CT
 			// gh#165
 			// gh#886
-			if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) || 
-				(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) ||
-				(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA) ||
-				(loginOption & Config.LOGIN_BY_ANONYMOUS)) &&
-				(!user.name || user.name=='') &&
-				(!user.studentID || user.studentID=='') &&
-				(!user.email || user.email==''))
-				loginObj = null;
+			//if (user) {
+				if (((configProxy.getLicenceType() == Title.LICENCE_TYPE_NETWORK) || 
+					(configProxy.getLicenceType() == Title.LICENCE_TYPE_CT) ||
+					(configProxy.getLicenceType() == Title.LICENCE_TYPE_AA && configProxy.getConfig().noLogin == false) ||
+					(loginOption & Config.LOGIN_BY_ANONYMOUS)) &&
+					(!user.name || user.name=='') &&
+					(!user.studentID || user.studentID=='') &&
+					(!user.email || user.email==''))
+					loginObj = null;
+			//}
 			
 			// #307 Add rootID and productCode
 			// #341 Add verified to allow no password

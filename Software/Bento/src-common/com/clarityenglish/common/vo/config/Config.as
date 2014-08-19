@@ -153,7 +153,7 @@ package com.clarityenglish.common.vo.config {
 		public var platform:String;
 		
 		// gh#886
-		public var noLogin:String;
+		private var _noLogin:String;
 		
 		/**
 		 * Developer option
@@ -207,6 +207,15 @@ package com.clarityenglish.common.vo.config {
 		
 		public function get illustrationCloseFlag():Boolean {
 			return _illustrationCloseFlag;
+		}
+		
+		public function get noLogin():Boolean {
+			if (_noLogin == "true") {
+				return true;
+			} else {
+				return false;
+			}
+			
 		}
 		
 		/**
@@ -501,7 +510,6 @@ package com.clarityenglish.common.vo.config {
 		 * 	  licenceAttributes[IP, referrerURL, limitCourses, allowedCourses, action, ]
 		 */
 		public function mergeAccountData(data:Object):void {
-			
 			// You might come back with an error rather than valid data
 			if (data.error && data.error.errorNumber > 0) {
 				// Accept any error number coming back. You can handle the details later.
@@ -515,6 +523,10 @@ package com.clarityenglish.common.vo.config {
 				// No point going on, this is all you need
 				return;
 			}
+			
+			// gh#886
+			if (data.config)
+				this.ip = data.config.ip;
 			
 			// Grab the account and title into our classes
 			if (data.account)
@@ -537,7 +549,7 @@ package com.clarityenglish.common.vo.config {
 			// gh#886
 			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
 				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
-					this.noLogin = this.account.licenceAttributes[i]['licenceValue'];
+					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
 				}
 					
 			}

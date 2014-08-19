@@ -79,7 +79,6 @@ package com.clarityenglish.common.view.login {
 			view.setLicenceType(configProxy.getLicenceType());
 
 			// #41
-			trace("rootID: "+configProxy.getRootID());
 			var noAccount:Boolean = !(configProxy.getRootID());
 			view.setNoAccount(noAccount);
 			

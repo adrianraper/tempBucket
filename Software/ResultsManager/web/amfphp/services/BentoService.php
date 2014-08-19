@@ -147,7 +147,7 @@ class BentoService extends AbstractService {
 		$group = $this->manageableOps->getGroup($this->manageableOps->getGroupIdForUserId($account->getAdminUserID()));
 		
 		// We also need some misc stuff.
-		$configObj = array("databaseVersion" => $this->getDatabaseVersion());
+		$configObj = array("databaseVersion" => $this->getDatabaseVersion(), "ip" => $config['ip']);
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);

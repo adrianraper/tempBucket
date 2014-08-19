@@ -30,7 +30,7 @@
 		<s:State name="score_demo" stateGroups="demoStates,scoreStates"/>
 	</s:states>
 	
-	<s:Label id="progressAnonymousLabel" left="18" height="14" top="130" visible="{hostComponent.licenceType == Title.LICENCE_TYPE_AA}" />
+	<s:Label id="progressAnonymousLabel" left="18" height="14" top="130" visible="{hostComponent.isAnonymousUser}" includeInLayout="{hostComponent.isAnonymousUser}" />
 	
 	<s:ButtonBar id="progressNavBar" height="43" top="30" right="0" />
 	
