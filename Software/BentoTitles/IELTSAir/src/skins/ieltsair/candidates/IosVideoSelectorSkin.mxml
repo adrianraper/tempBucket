@@ -120,14 +120,6 @@
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
 				videoPlayButton.visible = true;
-			}
-			
-			protected function onSlideStart(event:EffectEvent):void
-			{
-				// TODO Auto-generated method stub
-				videoPlayButton.visible = false;
-				openingScreenGroup.visible = true;
-				videoPlayer.visible = false;
 				
 				if (videoListIndex == 0) {
 					previousVideoButton.enabled = false;
@@ -140,6 +132,17 @@
 				} else {
 					nextVideoButton.enabled = true;
 				}
+			}
+			
+			protected function onSlideStart(event:EffectEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoPlayButton.visible = false;
+				openingScreenGroup.visible = true;
+				videoPlayer.visible = false;
+				
+				previousVideoButton.enabled = false;				
+				nextVideoButton.enabled = false;
 			}
 			
 			protected function onPlayButtonClick(event:MouseEvent):void

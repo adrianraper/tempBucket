@@ -119,14 +119,6 @@
 				candidatesVideoTitleLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoTitle" + videoListIndex);
 				candidatesVideoDescriptionLabel.text = hostComponent.copyProvider.getCopyForId("candidatesVideoDescription" + videoListIndex);
 				videoPlayButton.visible = true;
-			}
-			
-			protected function onSlideStart(event:EffectEvent):void
-			{
-				// TODO Auto-generated method stub
-				videoPlayButton.visible = false;
-				openingScreenGroup.visible = true;
-				videoPlayer.visible = false;
 				
 				if (videoListIndex == 0) {
 					previousVideoButton.enabled = false;
@@ -139,6 +131,17 @@
 				} else {
 					nextVideoButton.enabled = true;
 				}
+			}
+			
+			protected function onSlideStart(event:EffectEvent):void
+			{
+				// TODO Auto-generated method stub
+				videoPlayButton.visible = false;
+				openingScreenGroup.visible = true;
+				videoPlayer.visible = false;
+				
+				previousVideoButton.enabled = false;				
+				nextVideoButton.enabled = false;
 			}
 			
 			protected function onPlayButtonClick(event:MouseEvent):void
@@ -201,7 +204,7 @@
 		]]>
 	</fx:Script>
 	
-	<s:Group verticalCenter="-236" horizontalCenter="-310">
+	<s:Group verticalCenter="-226" horizontalCenter="-310">
 		<candidates:number1red id="number1Red" visible="{videoListIndex == 0}" />
 		<candidates:number2red visible="{videoListIndex == 1}"/>
 		<candidates:number3red visible="{videoListIndex == 2}"/>
@@ -211,12 +214,12 @@
 	</s:Group>
 	
 	<!--video title-->
-	<s:HGroup horizontalCenter="-165" verticalCenter="-232" width="250" gap="0">
+	<s:HGroup horizontalCenter="-165" verticalCenter="-222" width="250" gap="0">
 		<s:Label id="candidatesVideoTitleFixedLabel" fontSize="16" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoTitleFixedLabel')}" />
 		<s:Label id="candidatesVideoTitleLabel" fontSize="18" fontWeight="bold" text="{hostComponent.copyProvider.getCopyForId('candidatesVideoTitle' + videoListIndex)}" left="0" />
 	</s:HGroup>
 	
-	<candidates:channelmsg id="channelMessage" horizontalCenter="385" verticalCenter="-218" scaleX="1.2" scaleY="1.2" />
+	<candidates:channelmsg id="channelMessage" horizontalCenter="380" verticalCenter="-208" scaleX="1.2" scaleY="1.2" />
 	
 	<s:Group verticalCenter="-80" horizontalCenter="390">
 		<!-- Channel list -->
@@ -228,7 +231,7 @@
 		<s:Button id="scriptButton" top="172" width="50" height="45" />
 	</s:Group>
 	
-	<s:HGroup verticalCenter="-30" horizontalCenter="0" gap="40">
+	<s:HGroup verticalCenter="-20" horizontalCenter="0" gap="40">
 		<s:VGroup paddingTop="130">
 			<s:Button id="previousVideoButton" verticalCenter="0" click="previousVideoButtonClick(event)" enabled="false" buttonMode="true" useHandCursor="true" />
 		</s:VGroup>		
@@ -247,7 +250,7 @@
 		</s:VGroup>	
 	</s:HGroup>
 	
-	<s:HGroup id="openingScreenGroup" height="360" verticalCenter="-30" gap="{width/2-320}">
+	<s:HGroup id="openingScreenGroup" height="360" verticalCenter="-20" gap="{width/2-320}">
 		<s:SWFLoader id="openingScreen1" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen1.jpg')" />
 		<s:SWFLoader id="openingScreen2" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen2.jpg')" />
 		<s:SWFLoader id="openingScreen3" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen3.jpg')" />
@@ -256,10 +259,10 @@
 		<s:SWFLoader id="openingScreen6" width="640" height="360" source="@Embed(source='skins/ielts/assets/candidates/openingScreen6.jpg')" />
 	</s:HGroup>
 	
-	<candidates:videoframe verticalCenter="-30" horizontalCenter="0" />
+	<candidates:videoframe verticalCenter="-20" horizontalCenter="0" />
 	
 	<!--video description-->
-	<s:HGroup verticalCenter="190" horizontalCenter="0" width="630" height="50">
+	<s:HGroup verticalCenter="200" horizontalCenter="0" width="630" height="50">
 		<s:Label id="candidatesVideoDescriptionLabel" width="100%" fontSize="13"/>
 	</s:HGroup>
 	
