@@ -65,7 +65,7 @@
 					</s:Form>
 				</s:VGroup>
 				<!-- This is overlaid next on the sorting heading -->
-				<s:ToggleButton id="sortDescendingToggleButton" top="194" right="5" useHandCursor="true" buttonMode="true" />
+				<s:ToggleButton id="sortDirectionToggleButton" top="194" right="5" useHandCursor="true" buttonMode="true" />
 			</s:Group>
 			<s:ToggleButton id="showFiltersToggleButton" top="-5" left="-13" height="40" useHandCursor="true" buttonMode="true"/>
 		</s:Group>

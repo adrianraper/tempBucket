@@ -130,7 +130,7 @@ courseselector|CourseSelectorView s|RadioButton {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.FilteringRadioButtonSkin");
 }
 
-courseselector|CourseSelectorView s|ToggleButton#sortDescendingToggleButton {
+courseselector|CourseSelectorView s|ToggleButton#sortDirectionToggleButton {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.SortingDirectionToggleButtonSkin");
 }
 

@@ -47,14 +47,14 @@
     
     <!-- states -->
     <s:states>
-        <s:State name="up" />
+        <s:State name="up" stateGroups="upStates" />
         <s:State name="over" stateGroups="overStates" />
         <s:State name="down" stateGroups="downStates" />
         <s:State name="disabled" stateGroups="disabledStates" />
-        <s:State name="upAndSelected" stateGroups="selectedStates, selectedUpStates" />
+        <s:State name="upAndSelected" stateGroups="upStates, selectedStates" />
         <s:State name="overAndSelected" stateGroups="overStates, selectedStates" />
         <s:State name="downAndSelected" stateGroups="downStates, selectedStates" />
-        <s:State name="disabledAndSelected" stateGroups="selectedUpStates, disabledStates, selectedStates" />
+        <s:State name="disabledAndSelected" stateGroups="disabledStates, selectedStates" />
     </s:states>
    
 	<s:Group width="19" height="19">
@@ -70,20 +70,20 @@
 			</s:fill>
 		</s:Rect>
 		<s:Group includeIn="up, over, down" horizontalCenter="0" verticalCenter="0">
-			<!-- the down arrow -->
-			<s:Path winding="nonZero" x="1" y="1" data="M1.23618 0C2.33774 0 4.14048 0 5.24204 0 6.34409 0 6.79526 0.780273 6.24448 1.73438 5.6937 2.6875 4.79184 4.24805 4.24106 5.20313 3.69028 6.15625 2.78891 6.15625 2.23813 5.20313 1.68735 4.24805 0.785984 2.6875 0.235202 1.73438 -0.315579 0.780273
-					0.134616 0 1.23618 0Z">
-				<s:fill>
-					<s:SolidColor color="#9E9E9E" color.overStates="#825C37" color.downStates="#825C37"/>
-				</s:fill>
-			</s:Path>
-		</s:Group>
-		<s:Group includeIn="upAndSelected, overAndSelected, downAndSelected" horizontalCenter="0" verticalCenter="0">
 			<!-- the up arrow -->
 			<s:Path winding="nonZero" x="1" y="1" data="M5.24287 5.9187C4.14131 5.9187 2.33858 5.9187 1.23702 5.9187 0.135453 5.9187 -0.315719 5.13843 0.235062 4.18433 0.785843 3.23022 1.68721 1.66968 2.23799 0.715576 2.78877 -0.238525 3.69014 -0.238525 4.24092 0.715576 4.7917 1.66968 5.69258 3.23022
 					6.24336 4.18433 6.79414 5.13843 6.34395 5.9187 5.24287 5.9187Z">
 				<s:fill>
-					<s:SolidColor color="#9E9E9E" color.overStates="#825C37" color.downStates="#825C37" />
+					<s:SolidColor color="#000000" color.overStates="#825C37" color.downStates="#825C37" />
+				</s:fill>
+			</s:Path>
+		</s:Group>
+		<s:Group includeIn="upAndSelected, overAndSelected, downAndSelected" horizontalCenter="0" verticalCenter="0">
+			<!-- the down arrow --> 
+			<s:Path winding="nonZero" x="1" y="1" data="M1.23618 0C2.33774 0 4.14048 0 5.24204 0 6.34409 0 6.79526 0.780273 6.24448 1.73438 5.6937 2.6875 4.79184 4.24805 4.24106 5.20313 3.69028 6.15625 2.78891 6.15625 2.23813 5.20313 1.68735 4.24805 0.785984 2.6875 0.235202 1.73438 -0.315579 0.780273
+					0.134616 0 1.23618 0Z">
+				<s:fill>
+					<s:SolidColor color="#000000" color.overStates="#825C37" color.downStates="#825C37"/>
 				</s:fill>
 			</s:Path>
 		</s:Group>

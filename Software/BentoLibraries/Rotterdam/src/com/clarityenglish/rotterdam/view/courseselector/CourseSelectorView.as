@@ -118,7 +118,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 		public var filterPublisher:CheckBox;
 		
 		[SkinPart]
-		public var sortDescendingToggleButton:ToggleButton;
+		public var sortDirectionToggleButton:ToggleButton;
 		
 		public var createCourse:Signal = new Signal();
 		public var selectCourse:Signal = new Signal(XML);
@@ -142,9 +142,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				return;
 			
 			// gh#956 Only if these elements exist in the skin
-			if (sortDescendingToggleButton) {
+			if (sortDirectionToggleButton) {
 				var initialSortField:String = 'created';
-				var initialSortDescending:Boolean = true;
+				var initialSortDirectionAscending:Boolean = true;
 				var initialFiltersHidden:Boolean = false;
 				var initialFilterOwner:Boolean = false;
 				var initialFilterCollaborator:Boolean = false;
@@ -154,7 +154,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 					if (viewMemory.courseSelector.hasOwnProperty('@sortField'))
 						initialSortField = viewMemory.courseSelector.@sortField;
 					if (viewMemory.courseSelector.hasOwnProperty('@sortDescending'))
-						initialSortDescending = (viewMemory.courseSelector.@sortDescending == "true");
+						initialSortDirectionAscending = (viewMemory.courseSelector.@sortAscending == "true");
 					if (viewMemory.courseSelector.hasOwnProperty('@filtersHidden'))
 						initialFiltersHidden = (viewMemory.courseSelector.@filtersHidden == "true");
 					if (viewMemory.courseSelector.hasOwnProperty('@filterOwner'))
@@ -185,7 +185,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 						sortCreateDate.selected = true;
 						break;
 				}
-				sortDescendingToggleButton.selected = !initialSortDescending;
+				sortDirectionToggleButton.selected = initialSortDirectionAscending;
 				showFiltersToggleButton.selected = !initialFiltersHidden;
 				onShowHideFilters(null);
 				
@@ -197,7 +197,9 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				onChangeFilter(null);
 				
 				var sort:Sort = new Sort();
-				var sortField:SortField = new SortField('@' + initialSortField, initialSortDescending, null);
+				var sortField:SortField = new SortField('@' + initialSortField, !initialSortDirectionAscending, null);
+				if (sortName.selected)
+					sortField.compareFunction = sortAlphabeticallyAndNumerically;
 				// TODO how to get the real locale?
 				sortField.setStyle('locale', 'en-US');
 				sort.fields = [sortField];
@@ -261,8 +263,8 @@ package com.clarityenglish.rotterdam.view.courseselector {
 				case sortName:
 					instance.label = copyProvider.getCopyForId("sortName");
 					break;
-				case sortDescendingToggleButton:
-					sortDescendingToggleButton.addEventListener(Event.CHANGE, onChangeSort);
+				case sortDirectionToggleButton:
+					sortDirectionToggleButton.addEventListener(Event.CHANGE, onChangeSort);
 					break;
 				case showFiltersToggleButton:
 					showFiltersToggleButton.addEventListener(Event.CHANGE, onShowHideFilters);
@@ -281,7 +283,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			if (showFiltersToggleButton.selected) {
 				if (cloakTimer)
 					cloakTimer.removeEventListener(TimerEvent.TIMER, cloakTimerHandler);
-				filtering.visible = sorting.visible = sortDescendingToggleButton.visible = true;
+				filtering.visible = sorting.visible = sortDirectionToggleButton.visible = true;
 				showFiltersAnimation.play();
 			} else {
 				hideFiltersAnimation.play();
@@ -294,24 +296,38 @@ package com.clarityenglish.rotterdam.view.courseselector {
 			viewMemory.courseSelector.@filtersHidden = String(!showFiltersToggleButton.selected);
 		}
 		private function cloakTimerHandler(event:TimerEvent):void {
-			filtering.visible = sorting.visible = sortDescendingToggleButton.visible = false;
+			filtering.visible = sorting.visible = sortDirectionToggleButton.visible = false;
 			cloakTimer.removeEventListener(TimerEvent.TIMER, cloakTimerHandler);
 		}
-		
+
+		protected function sortAlphabeticallyAndNumerically(a:Object, b:Object):int { 
+			// http://stackoverflow.com/questions/16067374/as3-sorting-alphabetically-and-numerically-simultaneously
+			// This part should be extracted to a common String class
+			var reA:RegExp = /[\d]/g;
+			var reN:RegExp = /[\D]/g;
+			var aA:String = a.@caption.toLowerCase().replace(reA, "");
+			var bA:String = b.@caption.toLowerCase().replace(reA, "");
+			if (aA === bA) {
+				var aN:int = parseInt(a.@caption.toLowerCase().replace(reN, ""));
+				var bN:int = parseInt(b.@caption.toLowerCase().replace(reN, ""));
+				// Sort.as will apply a -1 to the result based on sortField.descending, so don't worry about it in here
+				return aN === bN ? 0 : aN > bN ? 1 : -1;
+			} else {
+				return aA > bA ? 1 : -1;
+			}
+		};
+
 		// gh#619
 		protected function onChangeSort(event:Event):void {
 			var sortComparison:Function = null;
 			switch (event.target) {
-				case sortDescendingToggleButton:
-					var sort:Sort = new Sort();
-					sort.fields = (courseList.dataProvider as XMLListCollection).sort.fields;
-					sort.compareFunction = (courseList.dataProvider as XMLListCollection).sort.compareFunction;
-					(courseList.dataProvider as XMLListCollection).sort = sort;
-					sort.reverse();
+				case sortDirectionToggleButton:
+					for each (var thisSortField:SortField in (courseList.dataProvider as XMLListCollection).sort.fields)
+						thisSortField.descending = !sortDirectionToggleButton.selected;
 					(courseList.dataProvider as XMLListCollection).refresh();
 					
 					// gh#956
-					viewMemory.courseSelector.@sortDescending = String(!sortDescendingToggleButton.selected);
+					viewMemory.courseSelector.@sortDescending = String(!sortDirectionToggleButton.selected);
 					break;
 				
 				case sortRadioButtonGroup:
@@ -322,33 +338,7 @@ package com.clarityenglish.rotterdam.view.courseselector {
 							break;
 						case sortName:
 							sortAttribute = "@caption";
-							// Note that when you use a custom sort, sort.reverse doesn't work - so you need to add direction in here
-							var sortComparisonDirection:Function = function(a:Object, b:Object, fields:Array, descending:Boolean):int { 
-								// http://stackoverflow.com/questions/16067374/as3-sorting-alphabetically-and-numerically-simultaneously
-								// This part should be extracted to a common String class
-								var reA:RegExp = /[\d]/g;
-								var reN:RegExp = /[\D]/g;
-								var aA:String = a.@caption.toLowerCase().replace(reA, "");
-								var bA:String = b.@caption.toLowerCase().replace(reA, "");
-								if (aA === bA) {
-									var aN:int = parseInt(a.@caption.toLowerCase().replace(reN, ""));
-									var bN:int = parseInt(b.@caption.toLowerCase().replace(reN, ""));
-									if (descending) {
-										return aN === bN ? 0 : aN > bN ? 1 : -1;
-									} else {
-										return aN === bN ? 0 : aN < bN ? 1 : -1;
-									}
-								} else {
-									if (descending) {
-										return aA > bA ? 1 : -1;
-									} else {
-										return aA < bA ? 1 : -1;
-									}
-								}
-							};
-							sortComparison = function(a:Object, b:Object, fields:Array):int {
-								return sortComparisonDirection(a, b, fields, !sortDescendingToggleButton.selected);
-							};
+							sortComparison = sortAlphabeticallyAndNumerically;
 							sortNumeric = false;
 							break;
 						case sortPopularity:
@@ -364,12 +354,12 @@ package com.clarityenglish.rotterdam.view.courseselector {
 							sortAttribute = "@lastSaved";
 							break;
 					}
-					sort = new Sort();
-					var sortField:SortField = new SortField(sortAttribute, !sortDescendingToggleButton.selected, sortNumeric);
-					sort.fields = [sortField];
+					var sortField:SortField = new SortField(sortAttribute, !sortDirectionToggleButton.selected, sortNumeric);
+					sortField.compareFunction = sortComparison;
 					// TODO how to get the real locale?
 					sortField.setStyle('locale', 'en-US');
-					sort.compareFunction = sortComparison;
+					var sort:Sort = new Sort();
+					sort.fields = [sortField];
 					(courseList.dataProvider as XMLListCollection).sort = sort;
 					(courseList.dataProvider as XMLListCollection).refresh();
 					
