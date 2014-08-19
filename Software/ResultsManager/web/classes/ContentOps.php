@@ -1524,7 +1524,8 @@ EOD;
 				// I am just going to have to live with this. Store the sequence number in case you can make it work.
 				// So, if there is no unit attribute, use the id (this will be the case with all emus)
 				$unit->id = $unitXML->getAttribute("unit") == "" ? $unitXML->getAttribute("id") : $unitXML->getAttribute("unit"); 
-				$unit->sequenceNum = $unitXML->getAttribute("unit");
+				// gh#990
+				$unit->sequenceNum = $unitXML->getAttribute("sequenceNum");
 				// v3.4 For Protea, we are now saving the correct ID for unit in T_Score. So need to keep BOTH here.
 				$unit->unitID = $unitXML->getAttribute("id");
 				// v3.1 All old menu.xml have caption rather than name, but standardise on name.

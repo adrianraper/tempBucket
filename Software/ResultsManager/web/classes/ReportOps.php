@@ -640,7 +640,10 @@ EOD;
 		} else if (isset($title->caption)) {
 			$row['titleName'] = $title->caption;
 		} else {
-			$row['titleName'] = '-no name-';
+			$row['titleName'] = "-no name-";
+			// gh#990
+			if (isset($row['productCode']))
+				$row['titleName'] += "(".$row['productCode'].")";
 		} 
 		if (isset($courseID)) {
 			if (isset($title->courses[$courseID]->caption)) {
@@ -648,7 +651,8 @@ EOD;
 			} else if (isset($title->courses[$courseID]->name)) {
 				$row['courseName'] = $title->courses[$courseID]->name;
 			} else {
-				$row['courseName'] = '-no name-';
+				// gh#990
+				$row['courseName'] = "-no name- ($courseID)";
 			}
 			// gh#28
 			if (isset($row['exerciseUnit_percentage'])) {
@@ -719,11 +723,11 @@ EOD;
 				// it was just moved to another place.
 				// So you could do a search for the exercise ID (which is probably unique) in the whole title
 				$bestName = "-no name- ($exerciseID)";
-				foreach ($title-> courses as $course) {
-					foreach ($course-> units as $unit) {
+				foreach ($title->courses as $course) {
+					foreach ($course->units as $unit) {
 						foreach ($unit->exercises as $exercise) {
-							if ($exercise-> id == $exerciseID) {
-								$bestName = $exercise-> name.'*';
+							if ($exercise->id == $exerciseID) {
+								$bestName = $exercise->name.'*';
 								break 3;
 							}
 						}
@@ -763,7 +767,7 @@ EOD;
 	// v3.4 Similar to the above except that we know the titleID
 	private function getTitle($titleID) {
 		foreach ($this->contentMap as $title) {
-			if ($title->productCode==$titleID)
+			if ($title->productCode == $titleID)
 				return $title;
 		}		
 		return null;
