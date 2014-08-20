@@ -3,7 +3,7 @@
 	 * Used to add question or options numbers based on a particular style
 	 */
 	function smarty_function_formatQuestionNumber($params, $smarty) {
-		$i = $params['idx'] + intval($params['startFrom']);
+		$i = $params['idx'] + intval($params['startFrom']-1);
 		switch ($params['format']) {
 			// A, B, C
 			case 2:

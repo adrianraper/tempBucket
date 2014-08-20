@@ -39,10 +39,22 @@
 									<![CDATA[
 										import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
 										import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
+										override public function set data(value:Object):void {
+											super.data = value;
+											
+											if (value == null)
+												return;
+											
+											if (data.hasOwnProperty("@caption")) {
+												questionCaption.text = data.@caption;
+											} else {
+												questionCaption.text = String(itemIndex + 1);
+											}
+										}
 									]]>
 								</fx:Script>
 								
-								<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
+								<s:Label id="questionCaption" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
 								<s:Group right="2" verticalCenter="0">
 									<s:Button id="deleteQuestionButton"
 											  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
@@ -50,7 +62,7 @@
 											  click="dispatchEvent(new QuestionDeleteEvent(QuestionDeleteEvent.QUESTION_DELETE, data as XML, true))" />
 								</s:Group>
 								
-								<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/dotted-line.png')" bottom="0" left="8" />
+								<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/dotted-line.png')" bottom="0" left="4" />
 							</s:ItemRenderer>
 						</fx:Component>
 					</s:itemRenderer>
@@ -60,7 +72,7 @@
 			
 			<s:VGroup width="100%" enabled="{questionList.selectedItem != null}">
 				<s:Label text="Question" />
-				<s:TextArea id="questionTextArea" width="100%" />
+				<s:TextArea id="questionTextArea" width="100%" prompt="type your question here" />
 				
 				<s:HGroup includeIn="GapFillQuestion">
 					<s:Button id="addGapButton" label="Add Gap" />
@@ -79,7 +91,7 @@
 								</fx:Script>
 								<s:HGroup width="100%">
 									<s:CheckBox selected="{data.@correct == 'true'}" change="data.@correct = event.currentTarget.selected" />
-									<s:TextInput width="100%" text="{data.text()}" change="data.setChildren(event.currentTarget.text)" />
+									<s:TextInput width="100%" text="{data.text()}" change="data.setChildren(event.currentTarget.text)" prompt="type an answer here" />
 									<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="dispatchEvent(new AnswerDeleteEvent(AnswerDeleteEvent.ANSWER_DELETE, data as XML, true))" />
 								</s:HGroup>
 							</s:ItemRenderer>
@@ -95,9 +107,7 @@
 		
 		<s:HGroup>
 			<s:Button id="okButton" />
-			<s:Button id="cancelButton" />
 			<s:Button id="settingsButton" />
-			<s:Button label="TEST XML" click="trace(hostComponent.DELETE_ME_XML.toXMLString())" />
 		</s:HGroup>
 	</s:VGroup>
 	

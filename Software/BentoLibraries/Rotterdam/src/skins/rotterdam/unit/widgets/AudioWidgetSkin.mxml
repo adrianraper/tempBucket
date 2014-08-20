@@ -14,7 +14,7 @@
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
-			//gh #106
+			//gh#106
 			protected function creationComplete(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub

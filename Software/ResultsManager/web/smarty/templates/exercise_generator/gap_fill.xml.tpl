@@ -26,7 +26,6 @@
 		}
 		
 		body {
-			padding-top: 10px;
 		}
 		
 		section  * {
@@ -42,8 +41,6 @@
 		}
 		
 		section p {
-			padding-left: 15px;
-			padding-right: 15px;
 		}
 
 		.feedback p {
@@ -60,8 +57,7 @@
 		
 		.question { 
 			display: table-row;
-			
-			margin-left: 15px;
+			margin-left: 0px;
 			margin-bottom: -5px; /* This is a hack to remove a slight (consistent) vertical gap between questions */
 			width: 100%;
 		}
@@ -80,33 +76,21 @@
 		
 		.question > .question-number {
 			/* Give the column a fixed width */
-			width: 30px;
-			padding-top: 10px;
+			width: 25px;
+			padding-top: 0px;
 			padding-left: 0px;
-			padding-right:5px;
+			padding-right: 0px;
 	
 			/* Style the question number text */
 			font-weight: bold;
-	
-			/* Put a box around the question number area */
-			border: 1px solid #F2F2F2;
-			border-right-style: none;
-			border-left-style: none;
-			border-bottom-style: none;
 	
 			text-align: left;
 		}
 		
 		.question > .question-text {
 			/* A hacky solution to make the cell fill most of the width without having to change the rendering engine */
-			width: 80%;
-			padding-top: 10px;
-			
-			/* Put a top border above the question */
-			border: 1px solid #F2F2F2;
-			border-right-style: none;
-			border-left-style: none;
-			border-bottom-style: none;
+			width: 85%;
+			padding-top: 0px;
 		}
 		
 		.hanging-indent-popup { 
@@ -172,13 +156,6 @@
 			color: #0000AA !important;
 		}
 		
-		.answerList {
-			list-style-type: lowerLatin;
-			padding-left: 34px;
-			text-indent:0px;
-			margin-left: 0px;
-			line-height: 150%;
-		}
 		{/literal}
 		]]>
 		</style>

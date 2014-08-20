@@ -438,6 +438,12 @@ help|HelpView s|Button#helpButton {
 	buttonHeight: 40;
 }
 
+.authoringTitleWindow {
+	skinClass: ClassReference("skins.rotterdam.builder.uniteditor.AuthoringTitleWindowSkin");
+	cornerRadius: 8;
+	borderColor: #A1A1A1;
+}
+
 .markingTitleWindow {
 	skinClass: ClassReference("skins.rotterdam.builder.courseselector.TitleWindowSkin");
 	cornerRadius: 8;
