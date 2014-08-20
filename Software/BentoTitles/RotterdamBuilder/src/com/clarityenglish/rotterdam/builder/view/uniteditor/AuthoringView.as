@@ -4,6 +4,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.bento.vo.content.ExerciseGenerator;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AnswerDeleteEvent;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AuthoringEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.GapEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.tlf.GapEditManager;
@@ -49,7 +50,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		[SkinPart(required="true")]
 		public var okButton:Button;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required="false")]
 		public var cancelButton:Button;
 		
 		[SkinPart(required="true")]
@@ -83,6 +84,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			
 			// Update the skin state from the loaded xhtml
 			callLater(invalidateSkinState);
+			
+			this.addEventListener(AuthoringEvent.OPEN_SETTINGS, openSettings);
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -107,6 +110,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					questionList.dragEnabled = questionList.dropEnabled = questionList.dragMoveEnabled = true;
 					questionList.addEventListener(IndexChangeEvent.CHANGE, onQuestionSelected);
 					questionList.addEventListener(QuestionDeleteEvent.QUESTION_DELETE, onQuestionDeleted);
+					questionList.requireSelection = true;
 					break;
 				case addQuestionButton:
 					addQuestionButton.addEventListener(MouseEvent.CLICK, onQuestionAdded);
@@ -130,13 +134,13 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					cancelButton.label = copyProvider.getCopyForId("cancelButton");
 					break;
 				case settingsButton:
-					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsButton);
+					settingsButton.addEventListener(MouseEvent.CLICK, openSettings);
 					settingsButton.label = copyProvider.getCopyForId("settingsButton");
 					break;
 			}
 		}
 		
-		protected function onQuestionSelected(event:IndexChangeEvent):void {
+		protected function onQuestionSelected(event:IndexChangeEvent = null):void {
 			question = questionList.selectedItem;
 			
 			questionTextArea.textFlow = exerciseGenerator.htmlToTextFlow(question.question);
@@ -149,7 +153,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				answers = new XMLListCollection(question.answers.answer);
 		}
 		
-		protected function onQuestionAdded(event:Event):void {
+		protected function onQuestionAdded(event:Event = null):void {
 			if (questions && exerciseGenerator && exerciseGenerator.hasSettingParam("exerciseType")) {
 				questions.addItem(
 					<{exerciseGenerator.getSettingParam("exerciseType")}>
@@ -159,6 +163,10 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					</{exerciseGenerator.getSettingParam("exerciseType")}>
 				);
 			}
+			// Immediately select this new question
+			// The need for this code will disappear when gh#1005 implemented
+			questionList.selectedIndex = questions.length - 1;
+			onQuestionSelected();
 		}
 		
 		protected function onAddGap(e:Event):void {
@@ -199,7 +207,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			}
 		}
 		
-		protected function onAnswerAdded(event:Event):void {
+		protected function onAnswerAdded(event:Event = null):void {
 			if (answers) {
 				answers.addItem(<answer correct='true' />);
 			}
@@ -221,7 +229,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
 		
-		protected function onSettingsButton(event:MouseEvent):void {
+		public function openSettings(event:MouseEvent = null):void {
 			showSettings.dispatch(href);
 		}
 		

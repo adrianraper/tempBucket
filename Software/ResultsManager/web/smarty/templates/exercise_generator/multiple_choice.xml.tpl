@@ -26,7 +26,6 @@
 		}
 		
 		body {
-			padding-top: 10px;
 		}
 		
 		section  * {
@@ -42,8 +41,8 @@
 		}
 		
 		section p {
-			padding-left: 15px;
-			padding-right: 15px;
+			padding-left: 0px;
+			padding-right: 0px;
 		}
 
 		.feedback p {
@@ -60,10 +59,10 @@
 		
 		.question { 
 			display: table-row;
-			
-			margin-left: 15px;
+			margin-left: 0px;
 			margin-bottom: -5px; /* This is a hack to remove a slight (consistent) vertical gap between questions */
 			width: 100%;
+			/* border: 1px solid #666666; */
 		}
 		
 		.question > div {
@@ -80,72 +79,21 @@
 		
 		.question > .question-number {
 			/* Give the column a fixed width */
-			width: 30px;
-			padding-top: 10px;
+			width: 25px;
+			padding-top: 0px;
 			padding-left: 0px;
-			padding-right:5px;
+			padding-right: 0px;
 	
 			/* Style the question number text */
 			font-weight: bold;
-	
-			/* Put a box around the question number area */
-			border: 1px solid #F2F2F2;
-			border-right-style: none;
-			border-left-style: none;
-			border-bottom-style: none;
 	
 			text-align: left;
 		}
 		
 		.question > .question-text {
 			/* A hacky solution to make the cell fill most of the width without having to change the rendering engine */
-			width: 80%;
-			padding-top: 10px;
-			
-			/* Put a top border above the question */
-			border: 1px solid #F2F2F2;
-			border-right-style: none;
-			border-left-style: none;
-			border-bottom-style: none;
-		}
-		
-		.hanging-indent-popup { 
-			display: table-row;
-			margin-bottom: -5px; /* This is a hack to remove a slight (consistent) vertical gap between questions */
-			width: 100%;
-			padding-top: 5px;
-			margin-left: 3px;
-		}
-		
-		.hanging-indent-popup > div {
-			display: table-cell;
-			padding: 4px;
-		}
-		
-		.hanging-indent-popup p {
-			padding-bottom: 5px;
-			padding-left: 5px;
-			line-height: 125%;
-		}
-		
-		.hanging-indent-popup > .bullet {
-			width: 20px;
-			font-weight: bold;
-			text-align: left;
-			padding-top: 4px; /* Hack to align number to top of text */
-			margin-left: 3px;
-		}
-		
-		@media ios, android {
-			.hanging-indent-popup > .bullet {
-				width: 30px;
-			}
-		}
-		
-		.hanging-indent-popup > .text {
-		/* A hacky solution to make the cell fill most of the width without having to change the rendering engine */
-			width: 92%;
-			line-height: 125%;
+			width: 85%;
+			padding-top: 0px;
 		}
 		
 		/* Links and draggable spans should be blue and not underlined */
@@ -175,7 +123,7 @@
 		{/literal}
 			list-style-type: {formatAnswerNumber format=$xml->settings->answerNumbering};
 		{literal}
-			padding-left: 16px;
+			padding-left: 20px;
 			text-indent: 0px;
 			margin-left: 0px;
 			line-height: 150%;

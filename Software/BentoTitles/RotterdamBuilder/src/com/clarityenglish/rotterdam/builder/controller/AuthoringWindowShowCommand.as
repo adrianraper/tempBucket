@@ -2,7 +2,9 @@ package com.clarityenglish.rotterdam.builder.controller {
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringView;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.ContentSelectorView;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.AuthoringEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.ContentEvent;
+	import com.clarityenglish.rotterdam.builder.view.uniteditor.ui.TitleSettingsWindow;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
 	import flash.display.DisplayObject;
@@ -36,6 +38,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		private var type:String;
 		
 		private var titleWindow:TitleWindow;
+		private var authoringView:AuthoringView;
 		
 		public override function execute(note:INotification):void {
 			super.execute(note);
@@ -46,12 +49,13 @@ package com.clarityenglish.rotterdam.builder.controller {
 			log.info("Opening authoring dialog with type=" + type + " and tempWidgetId=" + tempWidgetId);
 			
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
-			titleWindow = new TitleWindow();
-			titleWindow.styleName = "markingTitleWindow"; //... if we want to skin the title window
+			titleWindow = new TitleSettingsWindow();
+			titleWindow.styleName = "authoringTitleWindow";
 			titleWindow.title = "Authoring";
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
+			titleWindow.addEventListener(AuthoringEvent.OPEN_SETTINGS, onOpenSettings);
 			
-			var authoringView:AuthoringView = new AuthoringView();
+			authoringView = new AuthoringView();
 			authoringView.percentWidth = authoringView.percentHeight = 100;
 			authoringView.widgetNode = node;
 			titleWindow.addElement(authoringView);
@@ -61,9 +65,18 @@ package com.clarityenglish.rotterdam.builder.controller {
 			PopUpManager.centerPopUp(titleWindow);
 			
 			// Hide the close button
-			titleWindow.closeButton.visible = false;
-			
+			// TODO Are we going to use the close button as a Cancel?
+ 			titleWindow.closeButton.visible = false;
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
+		}
+		
+		/**
+		 * Open the settings screen
+		 * 
+		 */
+		protected function onOpenSettings(event:AuthoringEvent):void {
+			log.info("caught AuthoringEvent in authoring windows show command");
+			authoringView.openSettings();
 		}
 		
 		/**
@@ -74,6 +87,7 @@ package com.clarityenglish.rotterdam.builder.controller {
 		protected function onClosePopUp(event:CloseEvent = null):void {
 			titleWindow.removeEventListener(CloseEvent.CLOSE, onClosePopUp);
 			titleWindow.removeEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving);
+			titleWindow.removeEventListener(AuthoringEvent.OPEN_SETTINGS, onOpenSettings);
 			
 			delete node.@tempid;
 			

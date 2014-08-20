@@ -92,7 +92,6 @@
 			</s:FormItem>
 		</s:Form>
 
-		<s:Button label="TEST XML" click="trace(hostComponent.DELETE_ME_XML.toXMLString())" />
 	</s:VGroup>
 	
 	<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">

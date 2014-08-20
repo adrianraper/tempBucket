@@ -28,10 +28,14 @@
 						  left="0" right="0" top="0" bottom="0" />
 	
 	<!-- Exercise controls -->
-	<s:HGroup width="100%" left="5" right="5" top="35">
+	<s:HGroup width="100%" left="5" right="40" horizontalAlign="right" top="2">
 		<s:Button id="markingButton" />
 	</s:HGroup>
+
+	<!-- widget caption -->
+	<widgets:WidgetText id="widgetText" left="5" right="5" top="25" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 	
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="20" right="10" top="70" height="100%" />
+	<view:DynamicView id="dynamicView" left="5" right="5" top="70" height="100%" />
+		
 </s:Skin>
