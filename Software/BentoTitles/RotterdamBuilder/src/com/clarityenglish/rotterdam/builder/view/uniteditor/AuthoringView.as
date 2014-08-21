@@ -116,7 +116,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					instance.text = copyProvider.getCopyForId("authoringFeedbackLabel");
 					break;
 				case questionTextArea:
-					questionTextArea.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+					//questionTextArea.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
+					questionTextArea.addEventListener(Event.CHANGE, function(e:Event):void {
 						/*if (questionList.selectedItem) {
 							trace(TLFUtil.dumpTextFlow(questionTextArea.textFlow));
 							trace(exerciseGenerator.textFlowToHtml(questionTextArea.textFlow));

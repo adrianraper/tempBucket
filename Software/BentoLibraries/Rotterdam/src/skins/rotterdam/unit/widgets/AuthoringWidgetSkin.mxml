@@ -31,7 +31,7 @@
 	<s:HGroup width="100%" left="5" right="40" horizontalAlign="right" top="2">
 		<s:Button id="markingButton" />
 	</s:HGroup>
-
+	
 	<!-- widget caption -->
 	<widgets:WidgetText id="widgetText" left="5" right="5" top="25" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 	
