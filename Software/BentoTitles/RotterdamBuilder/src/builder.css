@@ -53,7 +53,7 @@ login|LoginView s|Button#freeCourseButton {
 }*/
 
 login|LoginView s|TextInput {
-	skinClass: ClassReference("skins.rotterdam.ui.LoginTextInputSkin");
+	skinClass: ClassReference("skins.rotterdam.builder.RoundedTextInputSkin");
 	cornerRadius: 5;
 }
 
@@ -302,6 +302,28 @@ uniteditor|AuthoringView s|Button#okButton {
 
 uniteditor|AuthoringView s|Button#cancelButton {
 	skinClass:ClassReference("skins.rotterdam.ui.GreyButtonSkin");
+}
+
+uniteditor|AuthoringView s|Label {
+	fontSize: 12;
+	color: #000000;
+	textAlign: left;
+}
+
+uniteditor|AuthoringView s|Label#questionCaption {
+	fontSize: 14;
+	color: #000000;
+	textAlign: center;
+}
+
+uniteditor|AuthoringView s|TextInput {
+	cornerRadius: 4;
+	skinClass:ClassReference("skins.rotterdam.builder.RoundedTextInputSkin");
+}
+
+uniteditor|AuthoringView s|TextArea {
+	cornerRadius: 4;
+	skinClass:ClassReference("skins.rotterdam.builder.RoundedTextAreaSkin");
 }
 
 uniteditor|AuthoringSettingsView {

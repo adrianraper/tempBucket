@@ -322,6 +322,19 @@
             <lit name="answerNumberingFormat5">一, 二, 三</lit>
             <lit name="answerNumberingFormat6">•</lit>
             <lit name="answerNumberingFormat7">none</lit>
+            
+            <lit name="authoringQuestionsLabel">Questions</lit>
+            <lit name="authoringAnswersLabel">Answers</lit>
+            <lit name="authoringFeedbackLabel">Feedback</lit>
+            <lit name="authoringAddQuestionButton">+Q</lit>
+            <lit name="authoringAddGapButton">Add gap</lit>
+            <lit name="authoringClearGapButton">Remove gap</lit>
+            <lit name="authoringOkButton">OK</lit>
+            <lit name="authoringQuestionPrompt">type a question here</lit>
+            <lit name="authoringAnswerPrompt">type an answer here</lit>
+            <lit name="authoringFeedbackPrompt">type any feedback here</lit>
+            
+            
 			
 		</group>
 	</language>
