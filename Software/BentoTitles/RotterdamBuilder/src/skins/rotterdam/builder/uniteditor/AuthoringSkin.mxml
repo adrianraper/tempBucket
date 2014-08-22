@@ -24,17 +24,18 @@
 		<s:State name="GapFillQuestion_questions" stateGroups="GapFillQuestion,questions" />
 	</s:states>
 	
-	<s:VGroup width="100%">
+	<s:VGroup width="100%" paddingLeft="4" paddingTop="4" paddingRight="4" paddingBottom="4" >
 		<s:HGroup width="100%">
-			<s:VGroup height="100%" includeIn="questions">
-				<s:List id="questionList" dataProvider="{hostComponent.questions}" height="100%">
+			<s:VGroup height="100%" includeIn="questions" width="80" >
+				<s:Label id="questionsLabel" width="100%" />
+				<s:List id="questionList" dataProvider="{hostComponent.questions}" width="80" height="100%" borderVisible="false" >
 					<s:layout>
 						<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
 					</s:layout>
 					<s:itemRenderer>
 						<fx:Component>
 							<!--gh#872 remove mouseOver effect in preview mode-->
-							<s:ItemRenderer width="100%" mouseOver="deleteQuestionButton.visible = true" mouseOut="deleteQuestionButton.visible = false">
+							<s:ItemRenderer width="80" mouseOver="deleteQuestionButton.visible = true" mouseOut="deleteQuestionButton.visible = false">
 								<fx:Script>
 									<![CDATA[
 										import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
@@ -54,15 +55,14 @@
 									]]>
 								</fx:Script>
 								
-								<s:Label id="questionCaption" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
-								<s:Group right="2" verticalCenter="0">
+								<s:Label id="questionCaption" width="50%" maxDisplayedLines="3" paddingTop="6" paddingBottom="4" />
+								<s:Group right="2" verticalCenter="0" width="50%">
 									<s:Button id="deleteQuestionButton"
 											  skinClass="skins.rotterdam.ui.DeleteButtonSkin"
 											  visible="false" useHandCursor="true" buttonMode="true" scaleX="0.8" scaleY="0.8"
 											  click="dispatchEvent(new QuestionDeleteEvent(QuestionDeleteEvent.QUESTION_DELETE, data as XML, true))" />
 								</s:Group>
 								
-								<s:SWFLoader source="@Embed(source='skins/rotterdam/builder/assets/unit/dotted-line.png')" bottom="0" left="4" />
 							</s:ItemRenderer>
 						</fx:Component>
 					</s:itemRenderer>
@@ -71,16 +71,16 @@
 			</s:VGroup>
 			
 			<s:VGroup width="100%" enabled="{questionList.selectedItem != null}">
-				<s:Label text="Question" />
-				<s:TextArea id="questionTextArea" width="100%" prompt="type your question here" />
+				<s:TextArea id="questionTextArea" width="100%" />
 				
 				<s:HGroup includeIn="GapFillQuestion">
-					<s:Button id="addGapButton" label="Add Gap" />
+					<s:Button id="addGapButton"  />
+					<s:Button id="clearGapButton"  />
 				</s:HGroup>
 				
 				<!-- TODO: Checkbox with editable area.  List and item renderers? -->
-				<s:Label text="Answers" />
-				<s:List id="answersList" width="100%" dataProvider="{hostComponent.answers}" enabled="{hostComponent.answers != null}">
+				<s:Label id="answersLabel" />
+				<s:List id="answersList" width="100%" dataProvider="{hostComponent.answers}" enabled="{hostComponent.answers != null}" borderVisible="false" >
 					<s:itemRenderer>
 						<fx:Component>
 							<s:ItemRenderer>
@@ -91,7 +91,7 @@
 								</fx:Script>
 								<s:HGroup width="100%">
 									<s:CheckBox selected="{data.@correct == 'true'}" change="data.@correct = event.currentTarget.selected" />
-									<s:TextInput width="100%" text="{data.text()}" change="data.setChildren(event.currentTarget.text)" prompt="type an answer here" />
+									<s:TextInput width="100%" text="{data.text()}" change="data.setChildren(event.currentTarget.text)" />
 									<s:Button skinClass="skins.rotterdam.ui.DeleteButtonSkin" click="dispatchEvent(new AnswerDeleteEvent(AnswerDeleteEvent.ANSWER_DELETE, data as XML, true))" />
 								</s:HGroup>
 							</s:ItemRenderer>
@@ -100,14 +100,13 @@
 				</s:List>
 				<s:Button id="addAnswerButton" />
 				
-				<s:Label text="Feedback" />
+				<s:Label id="feedbackLabel" />
 				<s:TextArea id="feedbackTextArea" width="100%" text="@{hostComponent.question.feedback}" />
 			</s:VGroup>
 		</s:HGroup>
 		
 		<s:HGroup>
 			<s:Button id="okButton" />
-			<s:Button id="settingsButton" />
 		</s:HGroup>
 	</s:VGroup>
 	

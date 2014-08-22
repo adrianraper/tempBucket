@@ -64,9 +64,8 @@ package com.clarityenglish.rotterdam.builder.controller {
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, true, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
 			
-			// Hide the close button
 			// TODO Are we going to use the close button as a Cancel?
- 			titleWindow.closeButton.visible = false;
+ 			titleWindow.closeButton.visible = true;
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 		}
 		

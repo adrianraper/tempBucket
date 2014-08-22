@@ -23,17 +23,31 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	import spark.components.List;
 	import spark.components.TextArea;
 	import spark.events.IndexChangeEvent;
 	
 	public class AuthoringView extends BentoView {
 		
+
+		[SkinPart]
+		public var questionsLabel:Label;
+		[SkinPart]
+		public var answersLabel:Label;
+		[SkinPart]
+		public var feedbackLabel:Label;
+
 		[SkinPart]
 		public var questionTextArea:TextArea;
+		[SkinPart]
+		public var feedbackTextArea:TextArea;
 		
 		[SkinPart]
 		public var addGapButton:Button;
+		
+		[SkinPart]
+		public var clearGapButton:Button;
 		
 		[SkinPart]
 		public var questionList:List;
@@ -53,7 +67,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		[SkinPart(required="false")]
 		public var cancelButton:Button;
 		
-		[SkinPart(required="true")]
+		[SkinPart(required="false")]
 		public var settingsButton:Button;
 		
 		[Bindable]
@@ -92,6 +106,15 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
+				case questionsLabel:
+					instance.text = copyProvider.getCopyForId("authoringQuestionsLabel");
+					break;
+				case answersLabel:
+					instance.text = copyProvider.getCopyForId("authoringAnswersLabel");
+					break;
+				case feedbackLabel:
+					instance.text = copyProvider.getCopyForId("authoringFeedbackLabel");
+					break;
 				case questionTextArea:
 					questionTextArea.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 						/*if (questionList.selectedItem) {
@@ -102,9 +125,15 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 						}*/
 						updateQuestionText();
 					});
+					questionTextArea.prompt = copyProvider.getCopyForId("authoringQuestionPrompt");
 					break;
 				case addGapButton:
 					addGapButton.addEventListener(MouseEvent.CLICK, onAddGap);
+					addGapButton.label = copyProvider.getCopyForId("authoringAddGapButton");
+					break;
+				case clearGapButton:
+					clearGapButton.addEventListener(MouseEvent.CLICK, onClearGap);
+					clearGapButton.label = copyProvider.getCopyForId("authoringClearGapButton");
 					break;
 				case questionList:
 					questionList.dragEnabled = questionList.dropEnabled = questionList.dragMoveEnabled = true;
@@ -114,7 +143,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case addQuestionButton:
 					addQuestionButton.addEventListener(MouseEvent.CLICK, onQuestionAdded);
-					addQuestionButton.label = copyProvider.getCopyForId("addQuestionButton");
+					addQuestionButton.label = copyProvider.getCopyForId("authoringAddQuestionButton");
 					break;
 				case answersList:
 					// TODO: allowing drag moving on this does weird things, duplicating and deleting answers.  Need to investigate this.
@@ -123,11 +152,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case addAnswerButton:
 					addAnswerButton.addEventListener(MouseEvent.CLICK, onAnswerAdded);
-					addAnswerButton.label = copyProvider.getCopyForId("addAnswerButton");
+					addAnswerButton.label = copyProvider.getCopyForId("authoringAddAnswerButton");
 					break;
 				case okButton:
 					okButton.addEventListener(MouseEvent.CLICK, onOkButton);
-					okButton.label = copyProvider.getCopyForId("okButton");
+					okButton.label = copyProvider.getCopyForId("authoringOkButton");
 					break;
 				case cancelButton:
 					cancelButton.addEventListener(MouseEvent.CLICK, onCancelButton);
@@ -184,6 +213,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			);
 			
 			onGapSelected(event);
+			updateQuestionText();
+		}
+		
+		protected function onClearGap(e:Event):void {
+			var manager:GapEditManager = questionTextArea.textFlow.interactionManager as GapEditManager;
+			//manager.removeGap();
 			updateQuestionText();
 		}
 		
