@@ -1,0 +1,282 @@
+@CHARSET "UTF-8";
+
+fieldset, legend, label {
+	border:0;
+	margin: 0;
+	padding: 0;
+}
+
+body{
+	line-height:14px;
+	font-size: 11px;
+	font-family: Verdana, Helvetica, sans-serif;
+	margin:0 auto;
+	cursor:default;
+	overflow: hidden;
+	width:800px;
+	height:600px;
+}
+
+#container_beforelogin {
+	width:800px;
+	height:600px;
+	margin:0 auto;
+	background:url(../images/bg.jpg) no-repeat;
+}
+
+.clear{
+	clear: both;
+	height: 0;
+	visibility: hidden;
+	display: block;
+}
+a{
+	text-decoration: none;
+}
+strong{
+	font-weight: 700;
+}
+
+/******* GENERAL Login panel *******/
+#login_details {
+	margin:145px auto;
+	width:307px;
+	padding: 45px 0 0 0;
+}
+
+.login_title {
+	font-size:14px;
+	margin:0 0 15px 0;
+	padding:0;
+	font-weight:bold;
+}
+
+.login_details {
+	font-size:11px;
+	margin:0 0 10px 0;
+	padding:0;
+
+}
+
+#LoginForm {
+	margin:0;
+	padding:0;
+}
+
+
+#LoginForm ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#LoginForm ul li {
+	clear:both;
+	height: 35px;
+	padding: 0;
+
+}
+.login_label {
+	width:90px;
+	float:left;
+	margin:0 10px 0 0;
+	padding:0;
+	text-align: right;
+}
+
+.login_field {
+	width:207px;
+	float:left;	
+	margin:0;
+	padding:0;
+}
+
+.complete_login {
+	margin:5px 0 5px 100px;
+	padding:0;
+
+	
+}
+
+/******* GENERAL RESET *******/
+h1{
+	font-weight: 700;
+	font-size: 18px;
+	line-height: 1.2em;
+	border-bottom: 1px dotted #6b9ef1;
+	color: #5f95ef;
+	margin-bottom: 1em;
+}
+
+/******* User Admin bar *******/
+#userAdminBar {
+	text-align:right;
+	padding:35px 30px 0 0;
+	color:#000000;
+	height: 35px;
+	margin:0;
+}
+
+#userAdminBar a {
+	color:#000000;
+	text-decoration:none;
+}
+
+#userAdminBar a:hover {
+	color:#000000;
+	text-decoration:underline;
+}
+
+
+
+
+
+/******* Title *******/
+
+
+.complete_title{
+	height:20px;
+	margin:0 0 10px 156px;
+	padding: 0;
+	clear: both;
+
+}
+
+
+
+
+/******* Admin FORM *******/
+#userDetails_form {
+	width:600px;
+	margin:45px auto;
+	padding: 45px 0 0 0;
+}
+
+#userDetails {
+	width:600px;
+	margin:0;
+	padding:0;
+}
+
+
+
+#userDetails ul{
+	margin:0;
+	padding:0;
+	list-style:none;
+}
+
+#userDetails ul li{
+	clear:both;
+	margin: 0;
+	padding: 0;
+	height: 35px;
+}
+
+#userDetails ul li#programField  {
+	height:50px;
+}
+
+.labeltitle{
+	width:200px;
+	float:left;
+	margin: 0;
+	padding: 0;
+	font-size: 10px;
+}
+
+.labelname{
+	width:146px;
+	text-align:right;
+	float:left;
+	margin:5px 10px 0 10px;
+	padding: 0;
+	font-weight: bold;
+}
+
+
+
+
+.field {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	border: 0;
+	width: 180px;
+	background-color: #E8E8E8 !important;
+	height: 18px;
+	padding: 4px 0 0 4px;
+}
+
+.field_date {
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	font-size:11px;
+	border: 0;
+	width: 150px;
+	background-color: #E8E8E8 !important;
+	height: 18px;
+	padding: 4px 0 0 5px;
+}
+
+
+/******* Student FORM *******/
+#LoginForm ul p.explain_line {
+	margin:0;
+	clear:both;
+	line-height: 18px;
+	width: 380px;
+	padding: 2px 0 2px 156px;
+}
+
+/******* Buttons Control *******/
+.button_area {
+	margin:0;
+	padding:5px 0 0 160px;
+	clear: both;
+	height: 80px;
+}
+
+.button_area_inner {
+	width:180px;
+	padding:5px;
+	margin: 5px 0 0 0;
+	text-align: center;
+	border: 1px #999999 dashed;
+	background-color: #999999;
+}
+
+
+.button {
+	width:100px;
+	font-size:11px;
+	margin:0 10px 0 0;
+	padding:0;
+}
+
+.button_long {
+	width:170px;
+	font-size:11px;
+	margin: 3px 0 0 0;
+}
+
+.note {width:250px};
+
+#error{
+	margin-bottom: 20px;
+	border: 1px solid #efefef;
+}
+#error ul{
+	list-style: square;
+	padding: 5px;
+	font-size: 11px;
+}
+#error ul li{
+	list-style-position: inside;
+	line-height: 1.6em;
+}
+#error ul li strong{
+	color: #e46c6d;
+}
+#error.valid ul li strong{
+	color: #93d72e;
+}
+/******* /FORM *******/
