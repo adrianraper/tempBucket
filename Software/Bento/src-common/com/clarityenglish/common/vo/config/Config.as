@@ -525,7 +525,8 @@ package com.clarityenglish.common.vo.config {
 			}
 			
 			// gh#886
-			if (data.config)
+			// gh#1012
+			if (data.config && data.config.ip)
 				this.ip = data.config.ip;
 			
 			// Grab the account and title into our classes

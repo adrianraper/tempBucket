@@ -524,8 +524,10 @@ package com.clarityenglish.common.model {
 			var ruFault:Boolean = false;
 			
 			for each (var lA:Object in config.account.licenceAttributes) {
-				// gh#886 only check iprang for tablet
-				if (lA.licenceKey.toLowerCase() == 'iprange' && isPlatformTablet()) {
+				// gh#886 only check IPrange for tablet
+				// gh#1012 Why only check for tablet? Browsers HAVE to be able to check this match...
+				//if (lA.licenceKey.toLowerCase() == 'iprange' && isPlatformTablet()) {
+				if (lA.licenceKey.toLowerCase() == 'iprange') {
 					if (!config.isIPInRange(config.ip, lA.licenceValue)) {
 						config.error = copyProxy.getBentoErrorForId("errorIPDoesntMatch", { ip: config.ip }, true );
 						ipFault = true;
