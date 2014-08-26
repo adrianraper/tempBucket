@@ -92,8 +92,9 @@
 		
 		.question > .question-text {
 			/* A hacky solution to make the cell fill most of the width without having to change the rendering engine */
-			width: 85%;
+			width: 85%; /* width: 85%; */
 			padding-top: 0px;
+			padding-bottom: 20px; /* And a hacky solution to fix gh#1009 */
 		}
 		
 		/* Links and draggable spans should be blue and not underlined */
