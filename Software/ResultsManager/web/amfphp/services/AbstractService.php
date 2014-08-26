@@ -39,7 +39,11 @@ class AbstractService {
 		// gh#109 PHP 5.3 and Apache between them seem not to like persistent connections
 		// 	we keep getting "mysql_pconnect(): MySQL server has gone away" error. So remove this and try it.
 		//$this->db = ADONewConnection($GLOBALS['db']."?persist");
-		$this->db = ADONewConnection($GLOBALS['db']);
+		try {
+			$this->db = ADONewConnection($GLOBALS['db']);
+		} catch (Exception $e) {
+			throw new Exception("Sorry, can't connect to the database. (".$e->getMessage().")");
+		}
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
 		// gh#166 and allow for mysqlt as dbms too
@@ -96,12 +100,19 @@ class AbstractService {
 	 * So let the database change
 	 */
 	public function changeDbHost($dbHost) {
+		// gh#999 Skip out if no change
+		if ($dbHost == $GLOBALS['dbHost'])
+			return true;
+			
 		$dbDetails = new DBDetails($dbHost);
 		$GLOBALS['dbms'] = $dbDetails->driver;
 		$GLOBALS['db'] = $dbDetails->dsn;
 		$GLOBALS['dbHost'] = $dbHost;
 		
-		$this->db = ADONewConnection($GLOBALS['db']."?persist");
+		// gh#109 PHP 5.3 and Apache between them seem not to like persistent connections
+		// 	we keep getting "mysql_pconnect(): MySQL server has gone away" error. So remove this and try it.
+		//$this->db = ADONewConnection($GLOBALS['db']."?persist");
+		$this->db = ADONewConnection($GLOBALS['db']);
 		
 		// v3.6 UTF8 character mismatch between PHP and MySQL
 		// gh#166 and allow for mysqlt as dbms too

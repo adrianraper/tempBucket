@@ -34,10 +34,19 @@ package com.clarityenglish.common.view.error {
 			switch (instance) {
 				case closeButton:
 					instance.addEventListener(MouseEvent.CLICK, onCloseButtonClick);
-					instance.label = copyProvider.getCopyForId("closeButton");
+					// gh#999 This might be happening before copy loaded
+					if (copyProvider.isCopyLoaded()) {
+						instance.label = copyProvider.getCopyForId("closeButton");
+					} else {
+						instance.label = 'OK';						
+					}
 					break;
 				case problemLabel:
-					instance.text = copyProvider.getCopyForId("problemLabel");
+					if (copyProvider.isCopyLoaded()) {
+						instance.text = copyProvider.getCopyForId("problemLabel");
+					} else {
+						instance.text = 'Sorry, there is a problem:';						
+					}
 					break;
 			}
 			
