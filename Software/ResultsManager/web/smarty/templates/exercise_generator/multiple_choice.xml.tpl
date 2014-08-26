@@ -79,7 +79,7 @@
 		
 		.question > .question-number {
 			/* Give the column a fixed width */
-			width: 25px;
+			width: 20px;
 			padding-top: 0px;
 			padding-left: 0px;
 			padding-right: 0px;
@@ -120,11 +120,11 @@
 		a.neutral, input.neutral, g.neutral, select.neutral {
 			color: #0000AA !important;
 		}
-		.answerList {
+		.answer-list {
 		{/literal}
 			list-style-type: {formatAnswerNumber format=$xml->settings->answerNumbering};
 		{literal}
-			padding-left: 20px;
+			padding-left: 23px;
 			text-indent: 0px;
 			margin-left: 0px;
 			line-height: 150%;
@@ -160,7 +160,7 @@
 					</div>
 			    	<div class="question-text">
 						{$question->question}
-						<list class="answerList">
+						<list class="answer-list">
 							{* for shuffled options make an array you can randomise and then step through *}
 							{buildAnswersArray base=$question->answers->answer randomise=$xml->settings->shuffleAnswers}
 							{foreach from=$answersArray item=answer}

@@ -22,6 +22,12 @@
 @namespace ui "com.clarityenglish.rotterdam.view.unit.ui.*";
 @namespace help "com.clarityenglish.rotterdam.builder.view.help.*";
 @namespace saveerror "com.clarityenglish.rotterdam.builder.view.error.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+
+/** For some reason this isn't getting picked up even though it is in Rotterdam defaults, so duplicate it here */
+components|XHTMLExerciseView {
+	skinClass: ClassReference("skins.rotterdam.exercise.XHTMLExerciseSkin");
+}
 
 s|Range {
 	skinClass: ClassReference("skins.rotterdam.unit.widgets.ProgressBarSkin");
