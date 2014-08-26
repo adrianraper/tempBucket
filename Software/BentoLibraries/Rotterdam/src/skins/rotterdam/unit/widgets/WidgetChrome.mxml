@@ -23,6 +23,9 @@
 			[Bindable]
 			public var hideSpanButtonBar:Boolean;
 			
+			[Bindable]
+			public var drawOpaqueBackground:Boolean = true;
+			
 			protected function onMenuButtonClick(event:MouseEvent):void {
 				switch (currentState) {
 					case "closed":
@@ -53,7 +56,7 @@
 	</s:states>
 	
 	<!-- Hit area -->
-	<s:Rect left="0" right="0" top="0" bottom="0">
+	<s:Rect left="0" right="0" top="0" bottom="0" visible="{drawOpaqueBackground}">
 		<s:fill>
 			<s:SolidColor color="#FFFFFF" />
 		</s:fill>

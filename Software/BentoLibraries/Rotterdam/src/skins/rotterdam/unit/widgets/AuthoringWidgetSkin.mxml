@@ -19,12 +19,23 @@
 		<s:State name="dragging" />
 	</s:states>
 	
+	<!-- Due to layering issues we want to put the dynamicView at the bottom and manually draw the opaque background here (and disable it in the WidgetChrome) gh#1015 -->
+	<s:Rect left="0" right="0" top="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
+	
+	<!-- Exercise -->
+	<view:DynamicView id="dynamicView" left="13" right="8" top="70" bottom="10" />
+	
 	<!-- Chrome -->
 	<widgets:WidgetChrome id="widgetChrome"
 						  caption="{hostComponent.caption}"
 						  icon="@Embed(source='/skins/assets/text-icon.png', mimeType='image/png')"
 						  editing.editing="true"
 						  selected.selected="true"
+						  drawOpaqueBackground="false"
 						  left="0" right="0" top="0" bottom="0" />
 	
 	<!-- Exercise controls -->
@@ -35,7 +46,4 @@
 	<!-- widget caption -->
 	<widgets:WidgetText id="widgetText" left="5" right="5" top="25" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 	
-	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="20" right="8" top="70" bottom="10" />
-		
 </s:Skin>

@@ -12,6 +12,12 @@
 @namespace unit "com.clarityenglish.rotterdam.view.unit.*";
 @namespace ui "skins.rotterdam.player.progress.ui.*";
 @namespace ui2 "com.clarityenglish.rotterdam.view.unit.ui.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
+
+/** For some reason this isn't getting picked up even though it is in Rotterdam defaults, so duplicate it here */
+components|XHTMLExerciseView {
+	skinClass: ClassReference("skins.rotterdam.exercise.XHTMLExerciseSkin");
+}
 
 global {
 	defaultColor: #00A2C8;
