@@ -36,6 +36,6 @@
 	<widgets:WidgetText id="widgetText" left="5" right="5" top="25" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
 	
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="5" right="5" top="70" height="100%" />
+	<view:DynamicView id="dynamicView" left="20" right="8" top="70" bottom="10" />
 		
 </s:Skin>
