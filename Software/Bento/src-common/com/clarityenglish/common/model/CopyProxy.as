@@ -137,6 +137,13 @@ package com.clarityenglish.common.model {
 			return bentoError;
 		}
 		
+		// gh#999 If you need to ask for a literal without generating an exception
+		public function isCopyLoaded():Boolean {
+			if (this.copy) 
+				return true;
+			return false;
+		}
+		
 		/* INTERFACE org.davekeen.delegates.IDelegateResponder */
 		
 		public function onDelegateResult(operation:String, data:Object):void {
@@ -167,7 +174,7 @@ package com.clarityenglish.common.model {
 		}
 		
 		public function onDelegateFault(operation:String, fault:Fault):void {
-			sendNotification(CommonNotifications.TRACE_ERROR, operation + ": " + fault.faultString);
+			sendNotification(CommonNotifications.BENTO_ERROR, BentoError.create(fault, true));
 		}
 	
 	}
