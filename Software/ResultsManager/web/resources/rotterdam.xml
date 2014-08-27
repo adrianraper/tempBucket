@@ -310,6 +310,9 @@
 			<lit name="youTubeBase"><![CDATA[http://youtu.be\/{id}]]></lit>
 			<lit name="vimeoBase"><![CDATA[https://vimeo.com\/{id}]]></lit>
 			
+			<lit name="widgetAuthoringCaption">Questions</lit>
+			<lit name="widgetImageCaption">Questions</lit>
+			
 			<!-- Section for authoring exercises -->
 			<lit name="questionNumberingFormat1">1, 2, 3</lit>
 			<lit name="questionNumberingFormat2">A, B, C</lit>

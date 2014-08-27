@@ -26,13 +26,10 @@
 		</s:fill>
 	</s:Rect>
 	
-	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="13" right="8" top="70" bottom="10" />
-	
 	<!-- Chrome -->
 	<widgets:WidgetChrome id="widgetChrome"
 						  caption="{hostComponent.caption}"
-						  icon="@Embed(source='/skins/assets/text-icon.png', mimeType='image/png')"
+						  icon="@Embed(source='/skins/assets/authoring-icon.png', mimeType='image/png')"
 						  editing.editing="true"
 						  selected.selected="true"
 						  drawOpaqueBackground="false"
@@ -44,6 +41,9 @@
 	</s:HGroup>
 	
 	<!-- widget caption -->
-	<widgets:WidgetText id="widgetText" left="5" right="5" top="25" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+	<widgets:WidgetText id="widgetText" left="1" right="1" top="25" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		
+	<!-- Exercise -->
+	<view:DynamicView id="dynamicView" left="8" right="8" top="{widgetText.top + 8 + widgetText.height}" bottom="10"/>
 	
 </s:Skin>

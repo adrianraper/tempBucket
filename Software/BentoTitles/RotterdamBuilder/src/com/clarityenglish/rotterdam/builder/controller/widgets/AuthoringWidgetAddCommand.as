@@ -1,4 +1,6 @@
 package com.clarityenglish.rotterdam.builder.controller.widgets {
+	import com.clarityenglish.common.model.CopyProxy;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.rotterdam.model.CourseProxy;
 	
@@ -21,12 +23,14 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
+			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			var node:XML, tempid:String = UIDUtil.createUID();
 			
 			if (note.getBody().node) {
 				node = note.getBody().node;
 			} else {
-				node = <exercise type="authoring" column="0" span="1" caption="C-Builder Exercise"><text></text></exercise>;
+				var nodeString:String = '<exercise type="authoring" column="0" span="1" caption="' + copyProvider.getCopyForId('widgetAuthoringCaption') + '"><text></text></exercise>';
+				node = new XML(nodeString);
 				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			}
 			node.@tempid = tempid;
