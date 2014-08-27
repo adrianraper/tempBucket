@@ -155,7 +155,7 @@ class BentoService extends AbstractService {
 		// We also need some misc stuff.
 		// gh#914
 		$configObj = array("databaseVersion" => $this->getDatabaseVersion(),
-							"uploadMaxFilesize" => $this->getUploadMaxFilesize());
+							"uploadMaxFilesize" => $this->getUploadMaxFilesize(), "ip" => $config['ip']);
 		
 		// Set some session variables that other calls will use
 		Session::set('rootID', $account->id);

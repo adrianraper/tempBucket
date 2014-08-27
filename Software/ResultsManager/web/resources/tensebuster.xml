@@ -82,7 +82,7 @@
 			<lit name="yourLoginDetail">Your {loginDetail}</lit>
 			<lit name="nameLoginDetail">name:</lit>
 			<lit name="IDLoginDetail">ID:</lit>
-			<lit name="emailLoginDetail">email:</lit>
+			<lit name="emailLoginDetail">Email:</lit>
 			<lit name="loginID">Login ID:</lit>
 			<lit name="option1Label">Option 1</lit> <!-- gh#965 -->
 			<lit name="option1InstructionLabel">Create an account (and save your scores).</lit> 

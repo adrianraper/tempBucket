@@ -133,6 +133,9 @@ package com.clarityenglish.tensebuster.view.login
 		[Bindable]
 		public var savedPassword:String;
 		
+		[Bindable]
+		public var noLogin:Boolean;
+		
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
 		private var _verified:Boolean;
@@ -252,6 +255,10 @@ package com.clarityenglish.tensebuster.view.login
 			dispatchEvent(new Event("productCodesChanged"));
 		}
 		
+		public function setNoLogin(value:Boolean):void {
+			noLogin = value;
+		}
+		
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
@@ -365,13 +372,14 @@ package com.clarityenglish.tensebuster.view.login
 			}
 			
 			if (licenceType == Title.LICENCE_TYPE_NETWORK ||
-				licenceType == Title.LICENCE_TYPE_CT) {
+				licenceType == Title.LICENCE_TYPE_CT ||
+				(licenceType == Title.LICENCE_TYPE_AA && noLogin != true)) {
 				var networkState:String = "ConcurrentTracking";
 			} else {
 				networkState = "";
 			}
 			
-			if (_hasIPrange && licenceType == Title.LICENCE_TYPE_CT) {
+			if (_hasIPrange && (licenceType == Title.LICENCE_TYPE_CT || (licenceType == Title.LICENCE_TYPE_AA && noLogin != true))) {
 				networkState = "IPConcurrentTracking";
 			}
 			

@@ -95,18 +95,18 @@
 						</s:fill>
 					</s:Rect>
 				</s:VGroup>
-				<s:Label id="option1Labe2" color="0xFFFFFF" fontSize="21" fontSize.loginIPConcurrentTracking7Inches="19" fontWeight="bold"/>
+				<s:Label id="option1Label2" color="0xFFFFFF" fontSize="21" fontSize.loginIPConcurrentTracking7Inches="19" fontWeight="bold"/>
 				<s:HGroup gap="0">
-					<s:Label id="option2InstructionLabel" fontSize="12" fontSize.loginIPConcurrentTracking7Inches="11" color="0xFFFFFF" width="190"/>
-					<s:VGroup paddingTop="-5">
+					<s:Label id="option2InstructionLabel" fontSize="12" fontSize.loginIPConcurrentTracking7Inches="11" color="0xFFFFFF" width="90"/>
+					<s:VGroup paddingTop="-10">
 						<s:Button id="CTStartButton" fontSize="14" fontSize.loginIPConcurrentTracking7Inches="13" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
 					</s:VGroup>
 				</s:HGroup>				
 			</s:VGroup>
 		</s:VGroup>
 		<s:Button id="loginButton" verticalCenter.normalLoginStates="90" horizontalCenter.normalLoginStates="-20"
-				  				   top.loginIPConcurrentTracking10Inches="110" left.loginIPConcurrentTracking10Inches="250"
-				  				   top.loginIPConcurrentTracking7Inches="95" left.loginIPConcurrentTracking7Inches="220"
+				  				   top.loginIPConcurrentTracking10Inches="93" left.loginIPConcurrentTracking10Inches="255"
+				  				   top.loginIPConcurrentTracking7Inches="83" left.loginIPConcurrentTracking7Inches="230"
 				  				   fontSize="14" fontSize.loginIPConcurrentTracking7Inches="13" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" includeIn="loginStates"/>	
 	</s:Group>
 	

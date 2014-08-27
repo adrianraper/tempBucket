@@ -165,6 +165,9 @@ package com.clarityenglish.common.vo.config {
 		// gh#224
 		public var customisation:XML;
 		
+		// gh#886
+		private var _noLogin:String;
+		
 		/**
 		 * Developer option
 		 */
@@ -223,6 +226,15 @@ package com.clarityenglish.common.vo.config {
 		
 		public function get illustrationCloseFlag():Boolean {
 			return _illustrationCloseFlag;
+		}
+		
+		public function get noLogin():Boolean {
+			if (_noLogin == "true") {
+				return true;
+			} else {
+				return false;
+			}
+			
 		}
 		
 		/**
@@ -545,6 +557,11 @@ package com.clarityenglish.common.vo.config {
 				return;
 			}
 			
+			// gh#886
+			// gh#1012
+			if (data.config && data.config.ip)
+				this.ip = data.config.ip;
+			
 			// gh#914
 			if (data.config && data.config.uploadMaxFilesize) {
 				var rawMaxFilesize:String = data.config.uploadMaxFilesize;
@@ -581,6 +598,14 @@ package com.clarityenglish.common.vo.config {
 			if (this.account.children.length != 1) {
 				this.error.errorNumber = BentoError.ERROR_DATABASE_READING;
 				this.error.errorContext = 'More than one title matched the product code';
+			}
+			
+			// gh#886
+			for (var i:Number = 0; i < this.account.licenceAttributes.length; i++) {
+				if (this.account.licenceAttributes[i]['licenceKey'] == 'noLogin') {
+					this._noLogin = this.account.licenceAttributes[i]['licenceValue'];
+				}
+					
 			}
 			
 			var thisTitle:Title = this.account.getTitle();

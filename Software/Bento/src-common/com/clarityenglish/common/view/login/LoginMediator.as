@@ -83,6 +83,9 @@ package com.clarityenglish.common.view.login {
 			// #41
 			var noAccount:Boolean = !(configProxy.getRootID());
 			view.setNoAccount(noAccount);
+			
+			// gh#886
+			view.setNoLogin(configProxy.getConfig().noLogin);
 		}
         
 		override public function onRemove():void {

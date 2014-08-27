@@ -76,16 +76,16 @@
 						</s:fill>
 					</s:Rect>
 				</s:VGroup>
-				<s:Label id="option1Labe2" color="0xFFFFFF" fontSize="18" fontWeight="bold"/>
+				<s:Label id="option1Label2" color="0xFFFFFF" fontSize="18" fontWeight="bold"/>
 				<s:HGroup gap="0">
-					<s:Label id="option2InstructionLabel" fontSize="12" color="0xFFFFFF" width="190"/>
-					<s:VGroup paddingTop="-5">
+					<s:Label id="option2InstructionLabel" fontSize="12" color="0xFFFFFF" width="90"/>
+					<s:VGroup paddingTop="-10">
 						<s:Button id="CTStartButton" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" />
 					</s:VGroup>
 				</s:HGroup>				
 			</s:VGroup>
 		</s:VGroup>
-		<s:Button id="loginButton" top.login="180" left.login="80" top.loginIPConcurrentTracking="110" left.loginIPConcurrentTracking="240" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" includeIn="loginStates"/>	
+		<s:Button id="loginButton" top.login="180" left.login="80" top.loginIPConcurrentTracking="90" left.loginIPConcurrentTracking="240" fontSize="14" fontWeight="bold" color="0xFFFFFF" buttonMode="true" useHandCursor="true" includeIn="loginStates"/>	
 	</s:Group>
 	
 	<s:Group id="registerBlock" horizontalCenter="0" verticalCenter="0" width="200" includeIn="registerStates">

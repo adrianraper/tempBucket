@@ -376,9 +376,8 @@ package com.clarityenglish.common.model {
 			
 			// Anonymous login
 			if (this.getLicenceType() == Title.LICENCE_TYPE_AA) { // gh#165
-				
 				// gh#300 Builder doesn't allow anonymous login
-				if (config.remoteService.toLowerCase().indexOf("builder") < 0)
+				if (config.remoteService.toLowerCase().indexOf("builder") < 0 && this.getConfig().noLogin == true)
 					return new LoginEvent(LoginEvent.LOGIN, null, loginOption, verified);
 			}
 				
@@ -553,6 +552,9 @@ package com.clarityenglish.common.model {
 			var ruFault:Boolean = false;
 			
 			for each (var lA:Object in config.account.licenceAttributes) {
+				// gh#886 only check IPrange for tablet
+				// gh#1012 Why only check for tablet? Browsers HAVE to be able to check this match...
+				//if (lA.licenceKey.toLowerCase() == 'iprange' && isPlatformTablet()) {
 				if (lA.licenceKey.toLowerCase() == 'iprange') {
 					if (!config.isIPInRange(config.ip, lA.licenceValue)) {
 						config.error = copyProxy.getBentoErrorForId("errorIPDoesntMatch", { ip: config.ip }, true );
