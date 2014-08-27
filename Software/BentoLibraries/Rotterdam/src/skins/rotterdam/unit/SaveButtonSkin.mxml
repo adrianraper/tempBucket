@@ -26,7 +26,7 @@ in accordance with the terms of the license agreement accompanying it.
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
 				   xmlns:comps="comps.*"
-				   minWidth="150" minHeight="48" 
+				   minWidth="100" minHeight="48" 
 				   alpha.disabled="0.5">
 	
 	<fx:Metadata>
@@ -68,7 +68,7 @@ in accordance with the terms of the license agreement accompanying it.
 		</s:fill>
 	</s:Rect>
 	
-	<s:Rect left="0" right="0" height="48" width="150" filters="{dropShadowFilter}" >
+	<s:Rect left="0" right="0" height="48" width="100%" filters="{dropShadowFilter}" >
 		<s:fill>
 			<s:LinearGradient x="32" y="0.5" scaleX="25" rotation="90">
 				<s:GradientEntry id="color1" color="0x2EC1FF" color.overStates="0x52CCFF" ratio="0"/>

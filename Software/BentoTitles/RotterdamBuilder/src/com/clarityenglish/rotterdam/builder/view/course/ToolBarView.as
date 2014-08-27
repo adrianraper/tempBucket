@@ -75,6 +75,12 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var listAddImageButton:Button;
 		
 		[SkinPart]
+		public var normalAddAnimationButton:Button;
+		
+		[SkinPart]
+		public var listAddAnimationButton:Button;
+		
+		[SkinPart]
 		public var addImageLabel:Label;
 		
 		[SkinPart]
@@ -103,6 +109,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		[SkinPart]
 		public var addAuthoringLabel:Label;
+		
+		[SkinPart]
+		public var addAnimationLabel:Label;
 		
 		[SkinPart]
 		public var normalPreviewButton:Button;
@@ -138,13 +147,31 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var imageResourceCloudButton:Button;
 		
 		[SkinPart]
+		public var animationUploadButton:Button;
+		
+		[SkinPart]
+		public var uploadAnimationLabel:Label;
+		
+		[SkinPart]
+		public var animationResourceCloudButton:Button;
+		
+		[SkinPart]
 		public var imageUrlTextInput:TextInput;
+		
+		[SkinPart]
+		public var animationUrlTextInput:TextInput;
 		
 		[SkinPart]
 		public var imageOrLabel:Label;
 		
 		[SkinPart]
 		public var imageOrLabel2:Label;
+		
+		[SkinPart]
+		public var animationOrLabel:Label;
+		
+		[SkinPart]
+		public var animationOrLabel2:Label;
 		
 		[SkinPart]
 		public var audioUploadButton:Button;
@@ -264,10 +291,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var upAnim:Animate;
 		
 		[SkinPart]
-		public var largePopUpGroup:Group;
+		public var widePopUpGroup:Group;
 		
 		[SkinPart]
-		public var smallPopUpGroup:Group;
+		public var narrowPopUpGroup:Group;
 		
 		public var saveCourse:Signal = new Signal();
 		public var addText:Signal = new Signal(Object, XML);
@@ -277,6 +304,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		public var addVideo:Signal = new Signal(Object, XML);
 		public var addExercise:Signal = new Signal(Object, XML, String);
 		public var addAuthoring:Signal = new Signal(Object, XML);
+		public var addAnimation:Signal = new Signal(Object, XML, String);
 		public var formatText:Signal = new Signal(Object);
 		public var preview:Signal = new Signal();
 		public var backToEditor:Signal = new Signal();
@@ -286,14 +314,10 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		// gh#91
 		public var onGetPermission:Signal = new Signal();
 
-		private var isOutsideClick:Boolean;
-		private var isItemClick:Boolean;
-		private var isUpArrowClick:Boolean = false;
-		public var isDownArrowClick:Boolean;
 		public var captureCaption:String;
 		
-		// alice: small screen size solution
-		private var smallScreenFlag:Boolean;
+		[Bindable]
+		public var smallScreenFlag:Boolean;
 		
 		private var _currentEditingWidget:XML;
 		private var _urlCaption:String = "";
@@ -331,7 +355,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		public function ToolBarView() {
-			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "link", "authoring", "preview" ], true);
+			StateUtil.addStates(this, [ "normal", "pdf", "video", "image", "audio", "animation", "link", "authoring", "preview" ], true);
 		}
 
 		// gh#91
@@ -416,10 +440,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			if (previewBackToEditorButton)
 				previewBackToEditorButton.visible = !(previewMode && (isPublisher || !isEditable));
 
-			if (addItemButton) {
-				addItemButton.visible = smallScreenFlag;
-				iconGroup.visible = !smallScreenFlag && !isUpArrowClick;
-			}
 			// gh#899
 			if (_currentEditingWidget) {
 				var thisSrc:String = _currentEditingWidget.@src;
@@ -436,6 +456,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 						break;
 					case "image":
 						imageUrlTextInput.text = (thisSrc && (StringUtils.beginsWith(thisSrc.toLowerCase(), "http"))) ? thisSrc : '';
+						break;
+					case "animation":
+						animationUrlTextInput.text = (thisSrc && (StringUtils.beginsWith(thisSrc.toLowerCase(), "http"))) ? thisSrc : '';
 						break;
 				}
 			}
@@ -490,11 +513,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					listAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
 				case addImageLabel:
-					addImageLabel.text = copyProvider.getCopyForId("addIamgeLabel"); // ALICETODO: Typo - the literal need to be changed to match
+					addImageLabel.text = copyProvider.getCopyForId("addImageLabel");
 					addImageLabel.addEventListener(MouseEvent.CLICK, onNormalAddImage);
 					break;
 				case normalAddImageButton:
 					normalAddImageButton.addEventListener(MouseEvent.CLICK, onNormalAddImage);
+					break;
+				case addAnimationLabel:
+					addAnimationLabel.text = copyProvider.getCopyForId("addAnimationLabel"); 
+					addAnimationLabel.addEventListener(MouseEvent.CLICK, onNormalAddAnimation);
+					break;
+				case normalAddAnimationButton:
+					normalAddAnimationButton.addEventListener(MouseEvent.CLICK, onNormalAddAnimation);
 					break;
 				case listAddAudioButton:
 					listAddAudioButton.addEventListener(MouseEvent.CLICK, onNormalAddAudio);
@@ -527,21 +557,27 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					addAuthoringLabel.addEventListener(MouseEvent.CLICK, onNormalAddAuthoring);
 					break;
 				case authoringMultipleChoiceButton:
+					instance.label = copyProvider.getCopyForId("authoringMultipleChoiceButton");
 					authoringMultipleChoiceButton.addEventListener(MouseEvent.CLICK, onAuthoringMultipleChoice);
 					break;
 				case authoringGapFillButton:
+					instance.label = copyProvider.getCopyForId("authoringGapfillButton");
 					authoringGapFillButton.addEventListener(MouseEvent.CLICK, onAuthoringGapFill);
 					break;
 				case authoringDrapAndDropButton:
+					instance.label = copyProvider.getCopyForId("authoringDragAndDropButton");
 					authoringDrapAndDropButton.addEventListener(MouseEvent.CLICK, onAuthoringDragAndDrop);
 					break;
 				case authoringTargetSpottingButton:
+					instance.label = copyProvider.getCopyForId("authoringTargetSpottingButton");
 					authoringTargetSpottingButton.addEventListener(MouseEvent.CLICK, onAuthoringTargetSpotting);
 					break;
 				case authoringErrorCorrectionButton:
+					instance.label = copyProvider.getCopyForId("authoringErrorCorrectionButton");
 					authoringErrorCorrectionButton.addEventListener(MouseEvent.CLICK, onAuthoringErrorCorrection);
 					break;
 				case authoringDropdownButton:
+					instance.label = copyProvider.getCopyForId("authoringDropdownButton");
 					authoringDropdownButton.addEventListener(MouseEvent.CLICK, onAuthoringDropdown);
 					break;
 				case normalPreviewButton:
@@ -563,10 +599,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					pdfResourceCloudButton.addEventListener(MouseEvent.CLICK, onPdfCloudUpload);
 					pdfResourceCloudButton.label = copyProvider.getCopyForId("resourceCloudButton");
 					break;
-				case pdfOrLabel:
-				case pdfOrLabel2:
-					instance.text = copyProvider.getCopyForId("orLabel");
-					break;
 				case pdfUrlTextInput:
 					pdfUrlTextInput.addEventListener(FlexEvent.ENTER, onPdfUrlEnter);
 					instance.prompt = copyProvider.getCopyForId("urlPrompt");
@@ -578,6 +610,13 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				case uploadImageLabel:
 					uploadImageLabel.text = copyProvider.getCopyForId("uploadImageLabel");
 					break;
+				case animationUploadButton:
+					animationUploadButton.addEventListener(MouseEvent.CLICK, onImageUpload);
+					animationUploadButton.label = copyProvider.getCopyForId("myComputerButton");
+					break;
+				case uploadAnimationLabel:
+					uploadAnimationLabel.text = copyProvider.getCopyForId("uploadAnimationLabel");
+					break;
 				case imageResourceCloudButton:
 					imageResourceCloudButton.addEventListener(MouseEvent.CLICK, onImageCloudUpload);
 					imageResourceCloudButton.label = copyProvider.getCopyForId("resourceCloudButton");
@@ -586,8 +625,22 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					imageUrlTextInput.addEventListener(FlexEvent.ENTER, onImageUrlEnter);
 					instance.prompt = copyProvider.getCopyForId("urlPrompt");
 					break;
+				case animationResourceCloudButton:
+					animationResourceCloudButton.addEventListener(MouseEvent.CLICK, onAnimationCloudUpload);
+					animationResourceCloudButton.label = copyProvider.getCopyForId("resourceCloudButton");
+					break;
+				case animationUrlTextInput:
+					animationUrlTextInput.addEventListener(FlexEvent.ENTER, onAnimationUrlEnter);
+					instance.prompt = copyProvider.getCopyForId("urlPrompt");
+					break;
+				case animationOrLabel:
+				case animationOrLabel2:
 				case imageOrLabel:
 				case imageOrLabel2:
+				case audioOrLabel:
+				case audioOrLabel2:
+				case pdfOrLabel:
+				case pdfOrLabel2:
 					instance.text = copyProvider.getCopyForId("orLabel");
 					break;
 				case audioUploadButton:
@@ -596,10 +649,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					break;
 				case uploadAudioLabel:
 					uploadAudioLabel.text = copyProvider.getCopyForId("uploadAudioLabel");
-					break;
-				case audioOrLabel:
-				case audioOrLabel2:
-					instance.text = copyProvider.getCopyForId("orLabel");
 					break;
 				case audioResourceCloudButton:
 					audioResourceCloudButton.addEventListener(MouseEvent.CLICK, onAudioCloudUpload);
@@ -648,11 +697,7 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					urlButton.addEventListener(MouseEvent.CLICK, onURLClick);
 					break;
 				case addItemButton:
-					addItemButton.addEventListener(MouseEvent.CLICK, onAddItemClick);
 					addItemButton.label = copyProvider.getCopyForId("addItemButton");
-					break;
-				case itemList:
-					itemList.addEventListener(MouseEvent.CLICK, onItemListClick);
 					break;
 				case itemListLabel:
 				case itemListLabel2:
@@ -663,27 +708,19 @@ package com.clarityenglish.rotterdam.builder.view.course {
 					linkSelectButton.addEventListener(MouseEvent.CLICK, onLinkSelect);
 					linkSelectButton.label = copyProvider.getCopyForId("selectButton");
 					break;
-				case upButton:
-					upButton.addEventListener(MouseEvent.CLICK, onUpClick);
-					upButton.label = copyProvider.getCopyForId("upButton");
-					break;
-				case downButton:
-					downButton.addEventListener(MouseEvent.CLICK, onDownClick);
-					break;
-				case upAnim:
-					upAnim.addEventListener(EffectEvent.EFFECT_END, onUpAnimEnd);
-					break;
 			}
 		}
 		
 		protected function onNormalAddImage(event:MouseEvent):void {
 			setCurrentState("image");
-			isItemClick = true;
+		}
+		
+		protected function onNormalAddAnimation(event:MouseEvent):void {
+			setCurrentState("animation");
 		}
 		
 		protected function onNormalAddAudio(event:MouseEvent):void {
 			setCurrentState("audio");
-			isItemClick = true;
 		}
 		
 		protected function onNormalSave(event:MouseEvent):void {
@@ -692,27 +729,22 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		
 		protected function onNormalAddText(event:MouseEvent):void {
 			addText.dispatch({}, _currentEditingWidget);
-			isItemClick = true;
 		}
 		
 		protected function onNormalAddPDF(event:MouseEvent):void {
 			setCurrentState("pdf");
-			isItemClick = true;
 		}
 		
 		protected function onNormalAddVideo(event:MouseEvent):void {
 			setCurrentState("video");
-			isItemClick = true;
 		}
 		
 		protected function onNormalAddExercise(event:MouseEvent):void {
 			addExercise.dispatch({}, _currentEditingWidget, contentWindowTitle);
-			isItemClick = true;
 		}
 		
 		protected function onNormalAddAuthoring(event:MouseEvent):void {
 			setCurrentState("authoring");
-			isItemClick = true;
 		}
 		
 		protected function onAuthoringMultipleChoice(event:MouseEvent):void {
@@ -752,7 +784,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 				captionTextInput.text = urlCaption ? urlCaption : "";
 				webUrlTextInput.text = urlString ? urlString : "";
 			});
-			isItemClick = true;
 		}
 		
 		protected function onNormalCancel(event:MouseEvent):void {
@@ -800,6 +831,25 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			var url:String = event.target.text;
 			if (url && !(new URLValidator().validate(url).results)) {
 				addImage.dispatch({ source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+				event.target.text = "";
+				setCurrentState("normal");
+			}
+		}
+		
+		protected function onAnimationUpload(event:MouseEvent):void {
+			addAnimation.dispatch({ source: "computer" }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
+			setCurrentState("normal");
+		}
+		
+		protected function onAnimationCloudUpload(event:MouseEvent):void {
+			addAnimation.dispatch({ source: "cloud" }, _currentEditingWidget, cloudWindowTitle); // TODO: use a constant from somewhere?
+			setCurrentState("normal");
+		}
+		
+		protected function onAnimationUrlEnter(event:FlexEvent):void {
+			var url:String = event.target.text;
+			if (url && !(new URLValidator().validate(url).results)) {
+				addAnimation.dispatch({ source: "external", url: url }, _currentEditingWidget, null); // TODO: use a constant from somewhere?
 				event.target.text = "";
 				setCurrentState("normal");
 			}
@@ -857,21 +907,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			var format:TextLayoutFormat = new TextLayoutFormat();
 			format.fontWeight = (boldButton.selected) ? FontWeight.BOLD : FontWeight.NORMAL;
 			formatText.dispatch( { format: format } );
-			isOutsideClick = false;
 		}
 		
 		protected function onUnderlineChange(event:MouseEvent):void {
 			var format:TextLayoutFormat = new TextLayoutFormat();
 			format.textDecoration = (underlineButton.selected) ? TextDecoration.UNDERLINE : TextDecoration.NONE;
 			formatText.dispatch( { format: format } );
-			isOutsideClick = false;
 		}
 		
 		protected function onItalicChange(event:MouseEvent):void {
 			var format2:TextLayoutFormat = new TextLayoutFormat();
 			format2.fontStyle = (italicButton.selected) ? "italic" : "normal";
 			formatText.dispatch( { format: format2 } );
-			isOutsideClick = false;
 		}
 		
 		protected function onFontSizeChange(event:MouseEvent):void {
@@ -894,7 +941,6 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			}
 			
 			formatText.dispatch( { format: format } );
-			isOutsideClick = false;
 		}
 		
 		protected function selectFontSizeButton(selectedButton:ToggleButton):void {
@@ -920,10 +966,11 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			invalidateProperties();				
 		}
 		
+		/*
 		protected function onUpClick(event:MouseEvent):void {
 			isUpArrowClick = true;
-			largePopUpGroup.visible = true;
-			smallPopUpGroup.visible = false;
+			widePopUpGroup.visible = true;
+			narrowPopUpGroup.visible = false;
 			itemList.alpha = 1;
 			isOutsideClick = false;
 			isDownArrowClick = false; 
@@ -932,22 +979,18 @@ package com.clarityenglish.rotterdam.builder.view.course {
 		}
 		
 		protected function onDownClick(event:MouseEvent):void {
-			isItemClick = true;
-			isDownArrowClick = true;
+			addItemsAnimVisible = false;
 		}
 		
 		protected function onAddItemClick(event:MouseEvent):void {
-			largePopUpGroup.visible = false;
-			smallPopUpGroup.visible = true;
-			itemList.height = 200;
-			itemList.alpha = 1;
-			isOutsideClick = false;
+			//addItemsAnimVisible = true;
 		}
 		
 		// The pop up menu will not shrink if user click on menu itself
 		protected function onItemListClick(event:MouseEvent):void {
 			if (!isItemClick) isOutsideClick = false;
 		}
+		*/
 		
 		protected function onStageClick(event:MouseEvent):void {
 			// gh#876 temporary hack
@@ -959,28 +1002,9 @@ package com.clarityenglish.rotterdam.builder.view.course {
 			} catch (err:Error) {
 				// Nothing to do as the event came from an object outside bento
 			}
-			if (isOutsideClick) {
-				if (!addItemButton.selected) {
-					upAnim.play(null, true);
-					isDownArrowClick = true;
-				} else {
-					addItemButton.skin.setCurrentState("up", true);
-					addItemButton.selected = false;
-					itemList.alpha = 0;
-					itemList.height = 0;
-				}				
-			} else {
-				isOutsideClick = true;
-				isItemClick = false;
-			}
+			if (itemList.height > 0) 
+				upAnim.play(null, true);
 
-		}
-		
-		protected function onUpAnimEnd(event:Event):void {
-			if (isDownArrowClick) {
-				itemList.alpha = 0;
-				isUpArrowClick = false;
-			}
 		}
 		
 		/**

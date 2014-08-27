@@ -234,6 +234,10 @@ buildercourse|ToolBarView s|Button#normalAddImageButton, buildercourse|ToolBarVi
 	skinClass: ClassReference("skins.rotterdam.unit.AddImageButtonSkin");
 }
 
+buildercourse|ToolBarView s|Button#normalAddAnimationButton, buildercourse|ToolBarView s|Button#listAddAnimationButton {
+	skinClass: ClassReference("skins.rotterdam.unit.AddImageButtonSkin");
+}
+
 buildercourse|ToolBarView s|Button#normalAddAudioButton, buildercourse|ToolBarView s|Button#listAddAudioButton {
 	skinClass: ClassReference("skins.rotterdam.unit.AddAudioButtonSkin");
 }

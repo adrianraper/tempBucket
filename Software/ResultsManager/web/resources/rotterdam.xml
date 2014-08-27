@@ -136,16 +136,16 @@
 			<lit name="uploadVideoLabel">Video URL:</lit>
 			<lit name="webLinkURLLabel">Type the web URL here:</lit>
 			<lit name="webLinkTextLabel">Text to display:</lit>
-			<lit name="upButton">Learn more</lit>
-			<lit name="addTextLabel">Add text</lit>
-			<lit name="addPDFLabel">Add a PDF</lit>
-			<lit name="addVideoLabel">Add a video</lit>
-			<lit name="addIamgeLabel">Add an image</lit>
-			<lit name="addAudioLabel">Add an audio</lit>
-			<lit name="addExerciseLabel">Add a Clarity exercise</lit>
+			<lit name="upButton">More</lit>
+			<lit name="addTextLabel">Text</lit>
+			<lit name="addPDFLabel">PDF worksheets</lit>
+			<lit name="addVideoLabel">Video</lit>
+			<lit name="addImageLabel">Image</lit>
+			<lit name="addAudioLabel">Audio</lit>
+			<lit name="addExerciseLabel">Clarity content</lit>
 			<lit name="itemListLabel">Choose the item you would like to add to your unit</lit>
-			<lit name="addItemButton">Add an item</lit>
-			<lit name="normalSaveButton">Save changes</lit>
+			<lit name="addItemButton">Add content</lit>
+			<lit name="normalSaveButton">Save</lit>
 			<lit name="normalPreviewButton">Preview</lit>
 			<lit name="selectButton">Select</lit>
 			<lit name="cancelButton">Cancel</lit>
@@ -174,6 +174,8 @@
 			<lit name="warningWindowCaption">Sorry</lit>
 			<lit name="urlPrompt">Type/paste a URL and press enter</lit>
 			<lit name="videoUrlPrompt">Paste the video URL here</lit>
+			<lit name="addAuthoringLabel">Questions</lit>
+			<lit name="addAnimationLabel">Animation</lit>
 			
 			<lit name="menuRenameItem">Rename item</lit>
 			<lit name="menuDeleteItem">Delete item</lit>
@@ -223,6 +225,12 @@
             <lit name="authoringAnswerPrompt">type an answer here</lit>
             <lit name="authoringFeedbackPrompt">type any feedback here</lit>
             
+            <lit name="authoringMultipleChoiceButton">Multiple choice</lit>
+            <lit name="authoringGapfillButton">Gapfill</lit>
+            <lit name="authoringDragAndDropButton">Drag and drop</lit>
+            <lit name="authoringTargetSpottingButton">Target spotting</lit>
+            <lit name="authoringErrorCorrectionButton">Error correction</lit>
+            <lit name="authoringDropdownButton">Dropdown</lit>
             
 			
 		</group>

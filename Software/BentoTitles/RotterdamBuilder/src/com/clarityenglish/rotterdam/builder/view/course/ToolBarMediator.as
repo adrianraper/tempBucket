@@ -44,6 +44,7 @@
 			view.addText.add(onAddText);
 			view.addPDF.add(onAddPDF);
 			view.addImage.add(onAddImage);
+			view.addAnimation.add(onAddAnimation);
 			view.addAudio.add(onAddAudio);
 			view.addVideo.add(onAddVideo);
 			view.addExercise.add(onAddExercise);
@@ -63,6 +64,7 @@
 			view.addText.remove(onAddText);
 			view.addPDF.remove(onAddPDF);
 			view.addImage.remove(onAddImage);
+			view.addAnimation.remove(onAddAnimation);
 			view.addAudio.remove(onAddAudio);
 			view.addVideo.remove(onAddVideo);
 			view.addExercise.remove(onAddExercise);
@@ -136,6 +138,17 @@
 				options.span = 1;
 			}
 			facade.sendNotification(RotterdamNotifications.IMAGE_WIDGET_ADD, options);
+		}
+		
+		protected function onAddAnimation(options:Object, widget:XML, title:String = null):void {
+			if (title) options.title = title;
+			if (widget) {
+				options.node = widget; // gh#115 - edit an existing widget
+				options.span = widget.@span; // gh#312
+			} else {
+				options.span = 1;
+			}
+			facade.sendNotification(RotterdamNotifications.ANIMATION_WIDGET_ADD, options);
 		}
 		
 		protected function onAddAudio(options:Object, widget:XML, title:String = null):void {
