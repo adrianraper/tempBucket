@@ -327,7 +327,7 @@ package com.clarityenglish.textLayout.elements {
 				var nextComponent:DisplayObject = event.target.focusManager.getNextFocusManagerComponent();
 				// gh#979 If nextComponent is Button, it is back button. navigating to ExerciseView marking button
 				if (nextComponent is Button) {
-					while (!(nextComponent is ExerciseView)) {
+					while (nextComponent && !(nextComponent is ExerciseView)) {
 						nextComponent = nextComponent.parent;
 					}						
 					nextComponent = (nextComponent as ExerciseView).markingButton;
