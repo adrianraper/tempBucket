@@ -29,17 +29,19 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import spark.events.IndexChangeEvent;
 	
 	public class AuthoringView extends BentoView {
-		
 
 		[SkinPart]
 		public var questionsLabel:Label;
+		
 		[SkinPart]
 		public var answersLabel:Label;
+		
 		[SkinPart]
 		public var feedbackLabel:Label;
 
 		[SkinPart]
 		public var questionTextArea:TextArea;
+		
 		[SkinPart]
 		public var feedbackTextArea:TextArea;
 		
@@ -116,7 +118,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					instance.text = copyProvider.getCopyForId("authoringFeedbackLabel");
 					break;
 				case questionTextArea:
-					//questionTextArea.addEventListener(FlexEvent.VALUE_COMMIT, function(e:Event):void {
 					questionTextArea.addEventListener(Event.CHANGE, function(e:Event):void {
 						/*if (questionList.selectedItem) {
 							trace(TLFUtil.dumpTextFlow(questionTextArea.textFlow));
@@ -176,6 +177,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			questionTextArea.textFlow = exerciseGenerator.htmlToTextFlow(question.question);
 			questionTextArea.textFlow.interactionManager = new GapEditManager();
 			questionTextArea.textFlow.addEventListener(GapEvent.GAP_CREATED, onGapCreated, false, 0, true);
+			questionTextArea.textFlow.addEventListener(GapEvent.GAP_REMOVED, onGapRemoved, false, 0, true);
 			questionTextArea.textFlow.addEventListener(GapEvent.GAP_SELECTED, onGapSelected, false, 0, true);
 			questionTextArea.textFlow.addEventListener(GapEvent.GAP_DESELECTED, onGapDeselected, false, 0, true);
 			
@@ -199,9 +201,17 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			onQuestionSelected();
 		}
 		
-		protected function onAddGap(e:Event):void {
+		/** The add gap button was pressed */
+		protected function onAddGap(event:Event):void {
 			var manager:GapEditManager = questionTextArea.textFlow.interactionManager as GapEditManager;
 			manager.createGap();
+			updateQuestionText();
+		}
+		
+		/** The clear gap button was pressed */
+		protected function onClearGap(e:Event):void {
+			var manager:GapEditManager = questionTextArea.textFlow.interactionManager as GapEditManager;
+			if (manager.getSelectedGapId()) manager.removeGap(manager.getSelectedGapId());
 			updateQuestionText();
 		}
 		
@@ -217,10 +227,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			updateQuestionText();
 		}
 		
-		protected function onClearGap(e:Event):void {
-			var manager:GapEditManager = questionTextArea.textFlow.interactionManager as GapEditManager;
-			//manager.removeGap();
-			updateQuestionText();
+		protected function onGapRemoved(event:GapEvent):void {
+			var answer:XMLList = question.answers.(attribute("source") == event.gapId);
+			if (answer.length() == 1) delete answer[0];
+			
+			answers = null;
 		}
 		
 		protected function updateQuestionText():void {

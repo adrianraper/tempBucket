@@ -4,6 +4,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.events {
 	public class GapEvent extends Event {
 		
 		public static const GAP_CREATED:String = "gapCreated";
+		public static const GAP_REMOVED:String = "gapRemoved";
 		public static const GAP_SELECTED:String = "gapSelected";
 		public static const GAP_DESELECTED:String = "gapDeselected";
 		public static const GAP_DELETED:String = "gapDeleted";

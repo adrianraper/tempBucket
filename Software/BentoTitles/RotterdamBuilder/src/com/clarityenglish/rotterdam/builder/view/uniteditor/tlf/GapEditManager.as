@@ -20,8 +20,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 		
 		protected static var gapCounter:uint = 1;
 		
-		protected var gapMap:Dictionary = new Dictionary(true);
-		
 		protected var _selectedGapId:String;
 		
 		public function GapEditManager(undoManager:IUndoManager = null) {
@@ -30,10 +28,16 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 		
 		protected function set selectedGapId(value:String):void {
 			if (value != _selectedGapId) {
-				if (_selectedGapId) textFlow.dispatchEvent(new GapEvent(GapEvent.GAP_DESELECTED, _selectedGapId));
+				if (_selectedGapId)
+					textFlow.dispatchEvent(new GapEvent(GapEvent.GAP_DESELECTED, _selectedGapId));
 				_selectedGapId = value;
-				if (_selectedGapId) textFlow.dispatchEvent(new GapEvent(GapEvent.GAP_SELECTED, _selectedGapId));
+				if (_selectedGapId)
+					textFlow.dispatchEvent(new GapEvent(GapEvent.GAP_SELECTED, _selectedGapId));
 			}
+		}
+		
+		public function getSelectedGapId():String {
+			return _selectedGapId;
 		}
 		
 		/**
@@ -72,7 +76,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 		 * Select the full gapfill if these is a keyboard selection
 		 */
 		private function checkForGapfillOnSelection(selectionState:SelectionState):SelectionState {
-			var activePosition:int = selectionState.activePosition;			
+			var activePosition:int = selectionState.activePosition;
 			
 			var element:FlowElement = textFlow.findLeaf(activePosition);
 			
@@ -90,9 +94,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 		public function createGap():void {
 			var selectionState:SelectionState = getSelectionState();
 			
-			if (selectionState.absoluteStart > -1 && selectionState.absoluteEnd > -1 &&
-				selectionState.absoluteStart != selectionState.absoluteEnd &&
-				textFlow.findLeaf(activePosition).parent && !(textFlow.findLeaf(activePosition).parent is SubParagraphGroupElement)) {
+			if (selectionState.absoluteStart > -1 && selectionState.absoluteEnd > -1 && selectionState.absoluteStart != selectionState.absoluteEnd && textFlow.findLeaf(activePosition).parent && !(textFlow.findLeaf(activePosition).parent is SubParagraphGroupElement)) {
 				var tlf:TextLayoutFormat = new TextLayoutFormat();
 				tlf.textDecoration = TextDecoration.UNDERLINE;
 				
@@ -102,5 +104,21 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 			}
 		}
 		
+		public function removeGap(id:String):void {
+			var gapElement:SubParagraphGroupElement = textFlow.getElementByID(id) as SubParagraphGroupElement;
+			
+			if (gapElement) {
+				var placeholder:String = gapElement.getText();
+				
+				var tlf:TextLayoutFormat = new TextLayoutFormat();
+				tlf.textDecoration = TextDecoration.NONE;
+				clearFormat(tlf, tlf, tlf);
+				
+				overwriteText(placeholder + " ");
+				
+				textFlow.dispatchEvent(new GapEvent(GapEvent.GAP_REMOVED, id));
+			}
+		}
+	
 	}
 }
