@@ -10,19 +10,16 @@
 	<fx:Declarations>
 		<s:DropShadowFilter id="dropShadowFilter" angle="-90" distance="1" color="0x4D4D4D" />
 		<s:GlowFilter id="glowFilter" alpha="0.60" blurX="8" blurY="8" color="#000000" knockout="true" quality="3" />
-				
-		<s:Animate id="upAnim" targets="{[itemList]}" duration="300">
-			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="140" />
-		</s:Animate>
-		
-		<s:Animate id="addAnim" targets="{[itemList]}" duration="300">
-			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="200" />
+			
+		<s:Sine id="sineEasing"	easeInFraction="0.6"/>
+		<s:Animate id="upAnim" targets="{[itemList]}" duration="500" easer="{sineEasing}">
+			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="{widgetListHeight}" />
 		</s:Animate>
 	</fx:Declarations>
 	
 	<fx:Script>
 		<![CDATA[
-			
+			private const widgetListHeight:uint = 230;
 		]]>
 	</fx:Script>
 	
@@ -31,6 +28,7 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 		<s:State name="image" />
+		<s:State name="animation" />
 		<s:State name="audio" />
 		<s:State name="pdf" />
 		<s:State name="video" />
@@ -39,13 +37,54 @@
 		<s:State name="preview" />
 		<s:State name="link" />
 	</s:states>
+
+	<!-- rise up widget list -->
+	<s:Group id="itemList" includeIn="normal" left="520" bottom="48" height="0">
+		<s:Group id="widePopUpGroup">
+			<s:Rect width="385" height="{widgetListHeight}" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+				<s:fill>
+					<s:SolidColor color="0x8CC63F" />
+				</s:fill>
+			</s:Rect>
+			<s:Rect width="385" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
+				<s:fill>
+					<s:LinearGradient rotation="90">
+						<s:GradientEntry color="0x3C5C11" ratio="0.5" />
+						<s:GradientEntry color="0x283D0C" />
+					</s:LinearGradient>
+				</s:fill>			
+			</s:Rect>
+			<s:Label id="itemListLabel" color="0x8CC63F" fontSize="14" top="15" left="20" />
+			<s:Button id="downButton" left="345" top="10" click="upAnim.play(null, true);" useHandCursor="true" buttonMode="true"/>
+		</s:Group>
+		
+		<s:Button id="listAddTextButton" useHandCursor="true" buttonMode="true" top="60" left="25"/>
+		<s:Label id="addTextLabel" top="70" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="listAddPDFButton" useHandCursor="true" buttonMode="true" top="60" left="190"/>
+		<s:Label id="addPDFLabel" top="70" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="listAddVideoButton" useHandCursor="true" buttonMode="true" top="100" left="25"/>
+		<s:Label id="addVideoLabel" top="110" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="listAddImageButton" useHandCursor="true" buttonMode="true" top="100" left="190"/>
+		<s:Label id="addImageLabel" top="110" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="listAddAudioButton" useHandCursor="true" buttonMode="true" top="140" left="25"/>
+		<s:Label id="addAudioLabel" top="150" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="listAddAnimationButton" useHandCursor="true" buttonMode="true" top="140" left="190"/>
+		<s:Label id="addAnimationLabel" top="150" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="listAddExerciseButton" useHandCursor="true" buttonMode="true" top="180" left="25"/>
+		<s:Label id="addExerciseLabel" top="190" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+		<s:Button id="listAddAuthoringButton" useHandCursor="true" buttonMode="true" top="180" left="190"/>
+		<s:Label id="addAuthoringLabel" top="190" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
+	</s:Group>
 	
+	<!-- Grey background -->
 	<s:Rect left="3" right="3" height="48" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8" filters="{dropShadowFilter}" bottom="0">
 		<s:fill>
 			<s:SolidColor color="#363636" />
 		</s:fill>
 	</s:Rect>
-	<s:Rect includeIn="normal" left="520" right="295" height="48" bottom="0">
+	
+	<!-- green background for widgets -->
+	<s:Rect includeIn="normal" left="520" right="265" height="48" bottom="0">
 		<s:fill>
 			<s:LinearGradient rotation="90">
 				<s:GradientEntry color="0x8CC63F" ratio="0.5" />
@@ -54,7 +93,7 @@
 		</s:fill>
 	</s:Rect>
 	
-	<!-- Left buttons -->
+	<!-- Widget specific buttons and data entry -->
 	<s:HGroup bottom="0" left="8" gap="7" height="48" verticalAlign="middle">
 		<s:Label includeIn="pdf" id="uploadPDFLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:Button includeIn="pdf" id="pdfResourceCloudButton" useHandCursor="true" buttonMode="true" />
@@ -69,6 +108,13 @@
 		<s:Button includeIn="image" id="imageUploadButton" useHandCursor="true" buttonMode="true" />
 		<s:Label includeIn="image" id="imageOrLabel2" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
 		<s:TextInput includeIn="image" id="imageUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5"  />
+		
+		<s:Label includeIn="animation" id="uploadAnimationLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
+		<s:Button includeIn="animation" id="animationResourceCloudButton" label="Resource Cloud" />
+		<s:Label includeIn="animation" id="animationOrLabel" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
+		<s:Button includeIn="animation" id="animationUploadButton" useHandCursor="true" buttonMode="true" />
+		<s:Label includeIn="animation" id="animationOrLabel2" color="#FFFFFF" paddingLeft="5" paddingRight="5" />
+		<s:TextInput includeIn="animation" id="animationUrlTextInput" borderVisible="false" width="360" height="25" paddingLeft="5"  />
 		
 		<s:Label includeIn="audio" id="uploadAudioLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:Button includeIn="audio" id="audioResourceCloudButton" />
@@ -85,119 +131,66 @@
 		<s:Label includeIn="link" id="webLinkTextLabel" color="#FFFFFF" paddingLeft="10" paddingRight="10" paddingTop="4" />
 		<s:TextInput includeIn="link" id="captionTextInput" borderVisible="false" width="360" height="25" paddingLeft="5" />	
 		
-		<s:Button includeIn="authoring" id="authoringMultipleChoiceButton" label="Multiple Choice" />
-		<s:Button includeIn="authoring" id="authoringGapFillButton" label="Gapfill" />
-		<s:Button includeIn="authoring" id="authoringDrapAndDropButton" label="Drag and Drop" enabled="false" />
-		<s:Button includeIn="authoring" id="authoringTargetSpottingButton" label="Target Spotting" enabled="false" />
-		<s:Button includeIn="authoring" id="authoringErrorCorrectionButton" label="Error Correction" enabled="false" />
-		<s:Button includeIn="authoring" id="authoringDropdownButton" label="Dropdown" enabled="false" />
-		
-		<s:HGroup includeIn="normal" height="100%" paddingLeft="168" gap="8" verticalAlign="middle">
-			<!--s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" /-->
-			<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
-			<s:ToggleButton id="underlineButton" label="U" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" textDecoration="underline"/>
-			<s:ToggleButton id="italicButton" label="I" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" fontStyle="italic"/>
-			<s:Spacer width="8" />
-			<!--s:Label includeIn="normal" paddingTop="5" text="Font size" fontWeight="bold" color="#FFFFFF" paddingLeft="15" /-->
-			<s:ToggleButton id="fontSize1Button" label="a" fontSize="13" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
-			<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
-			<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
-			<s:Spacer width="8" />
-			<s:Label text="URL" fontWeight="bold" color="0xFFFFFF" paddingTop="3" />
-			<s:Button id="urlButton" useHandCursor="true" buttonMode="true"/>
+		<s:HGroup includeIn="authoring" paddingLeft="20" >
+			<s:Button id="authoringMultipleChoiceButton" />
+			<s:Button id="authoringGapFillButton"  />
+			<s:Button id="authoringDrapAndDropButton" enabled="false" />
+			<s:Button id="authoringTargetSpottingButton" enabled="false" />
+			<s:Button id="authoringErrorCorrectionButton" enabled="false" />
+			<s:Button id="authoringDropdownButton" enabled="false" />
 		</s:HGroup>
+		
 	</s:HGroup>
 	
-	<s:Group id="addItemButtonGroup" includeIn="normal">
-		<s:Group id="itemList" left="520" bottom="48" height="0" alpha="0" width="0">
-			<s:Group id="largePopUpGroup">
-				<s:Rect width="385" height="140" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
-					<s:fill>
-						<!--s:LinearGradient rotation="90">
-						<s:GradientEntry color="0x8CC63F" ratio="0.5" />
-						<s:GradientEntry color="0x72A133" />
-						</s:LinearGradient-->
-						<s:SolidColor color="0x8CC63F" />
-					</s:fill>
-				</s:Rect>
-				<s:Rect width="385" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
-					<s:fill>
-						<s:LinearGradient rotation="90">
-							<s:GradientEntry color="0x3C5C11" ratio="0.5" />
-							<s:GradientEntry color="0x283D0C" />
-						</s:LinearGradient>
-					</s:fill>			
-				</s:Rect>
-				<s:Label id="itemListLabel" color="0x8CC63F" fontSize="14" top="15" left="20" />
-				<s:Button id="downButton" left="345" top="10" click="upAnim.play(null, true);" useHandCursor="true" buttonMode="true"/>
-			</s:Group>
-			
-			<s:Group id="smallPopUpGroup">
-				<s:Rect width="385" height="200" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
-					<s:fill>
-						<s:LinearGradient rotation="90">
-						<s:GradientEntry color="0x8CC63F" ratio="0.5" />
-						<s:GradientEntry color="0x72A133" />
-						</s:LinearGradient>
-					</s:fill>
-				</s:Rect>
-				<s:Rect width="385" height="40" topLeftRadiusX="8" topLeftRadiusY="8" topRightRadiusX="8" topRightRadiusY="8">
-					<s:fill>
-						<s:LinearGradient rotation="90">
-							<s:GradientEntry color="0x3C5C11" ratio="0.5" />
-							<s:GradientEntry color="0x283D0C" />
-						</s:LinearGradient>
-					</s:fill>			
-				</s:Rect>
-				<s:Label id="itemListLabel2" color="0x8CC63F" fontSize="14" top="15" left="30" />
-			</s:Group>
-			
-			<s:Button id="listAddTextButton" useHandCursor="true" buttonMode="true" top="60" left="25"/>
-			<s:Label id="addTextLabel" top="70" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddPDFButton" useHandCursor="true" buttonMode="true" top="60" left="190"/>
-			<s:Label id="addPDFLabel" top="70" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddVideoButton" useHandCursor="true" buttonMode="true" top="100" left="25"/>
-			<s:Label id="addVideoLabel" top="110" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddImageButton" useHandCursor="true" buttonMode="true" top="100" left="190"/>
-			<s:Label id="addImageLabel" top="110" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddAudioButton" useHandCursor="true" buttonMode="true" top="140" left="25"/>
-			<s:Label id="addAudioLabel" top="150" left="65" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddExerciseButton" useHandCursor="true" buttonMode="true" top="140" left="190"/>
-			<s:Label id="addExerciseLabel" top="150" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-			<s:Button id="listAddAuthoringButton" useHandCursor="true" buttonMode="true" top="170" left="190"/>
-			<s:Label id="addAuthoringLabel" top="180" left="230" color="0x283D0C" fontSize="13" useHandCursor="true" buttonMode="true"/>
-		</s:Group>
-	</s:Group>	
+	<!-- font formatting -->
+	<s:HGroup includeIn="normal" bottom="0" height="48" left="168" gap="8" verticalAlign="middle">
+		<!--s:Label includeIn="normal" paddingTop="5" text="Font weight" fontWeight="bold" color="#FFFFFF" /-->
+		<s:ToggleButton id="boldButton" label="B" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+		<s:ToggleButton id="underlineButton" label="U" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" textDecoration="underline"/>
+		<s:ToggleButton id="italicButton" label="I" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" fontStyle="italic"/>
+		<s:Spacer width="8" />
+		<!--s:Label includeIn="normal" paddingTop="5" text="Font size" fontWeight="bold" color="#FFFFFF" paddingLeft="15" /-->
+		<s:ToggleButton id="fontSize1Button" label="a" fontSize="13" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+		<s:ToggleButton id="fontSize2Button" label="a" fontSize="15" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+		<s:ToggleButton id="fontSize3Button" label="a" fontSize="17" fontWeight="bold" color="0x333333" useHandCursor="true" buttonMode="true" />
+		<s:Spacer width="8" />
+		<s:Label text="URL" fontWeight="bold" color="0xFFFFFF" paddingTop="3" />
+		<s:Button id="urlButton" useHandCursor="true" buttonMode="true"/>
+	</s:HGroup>
 
-	<s:HGroup id="iconGroup" bottom="0" right="310" gap="8" height="48" verticalAlign="middle" alpha="1">
-		<s:Button includeIn="normal" id="normalAddTextButton" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddPDFButton" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddVideoButton" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddImageButton" useHandCursor="true" buttonMode="true" />	
-		<s:Button includeIn="normal" id="normalAddAudioButton" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddExerciseButton" useHandCursor="true" buttonMode="true" />
-		<s:Button includeIn="normal" id="normalAddAuthoringButton" useHandCursor="true" buttonMode="true" />
-		<s:Spacer width="20" />
-		<s:Button id="upButton" click="upAnim.play();" includeIn="normal" useHandCursor="true" buttonMode="true"/>
+	<!-- add widgets -->
+	<s:HGroup id="addItemGroup" includeIn="normal" bottom="0" right="310" gap="8" height="48" verticalAlign="middle" >
+		<s:HGroup id="widgetIcons" includeInLayout="{!hostComponent.smallScreenFlag}" visible="{!hostComponent.smallScreenFlag}" >
+			<s:Button id="normalAddTextButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="normalAddPDFButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="normalAddVideoButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="normalAddImageButton" useHandCursor="true" buttonMode="true" />	
+			<s:Button id="normalAddAudioButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="normalAddAnimationButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="normalAddExerciseButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="normalAddAuthoringButton" useHandCursor="true" buttonMode="true" />
+			<s:Button id="upButton" horizontalCenter="0" useHandCursor="true" buttonMode="true" click="upAnim.play();" />
+		</s:HGroup>
+		<s:ToggleButton id="addItemButton" includeInLayout="{hostComponent.smallScreenFlag}" visible="{hostComponent.smallScreenFlag}" 
+						click="upAnim.play();" horizontalCenter="0" height="48" width="130" useHandCursor="true" buttonMode="true"/>
 	</s:HGroup>
 	
-	<s:Group left="520" right="270" bottom="0" includeIn="normal">
-		<s:ToggleButton id="addItemButton" horizontalCenter="0" height="48" width="130" visible="false" useHandCursor="true" buttonMode="true"/>
-	</s:Group>
-	
+	<!-- save -->
 	<s:HGroup bottom="0" gap="10" height="48" right="140" verticalAlign="middle">
-		<s:Button includeIn="normal" id="normalSaveButton" useHandCursor="true" buttonMode="true" fontWeight="bold" />
+		<s:Button includeIn="normal" id="normalSaveButton" width="120" useHandCursor="true" buttonMode="true" fontWeight="bold" />
 	</s:HGroup>
 	
+	<!-- preview -->
 	<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
 		<s:Button includeIn="normal" id="normalPreviewButton" useHandCursor="true" buttonMode="true" width="133" fontWeight="bold"/>
 	</s:HGroup>
 	
+	<!-- buttons that go on the right in special states -->
 	<s:HGroup bottom="0" right="2" gap="3" height="48" verticalAlign="middle">
 		<s:Button includeIn="video" id="videoSelectButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
 		<s:Button includeIn="link" id="linkSelectButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
-		<s:Button includeIn="pdf,video,image,audio,authoring,link" id="normalCancelButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
+		<s:Button includeIn="pdf,video,image,audio,animation,authoring,link" id="normalCancelButton" useHandCursor="true" buttonMode="true" fontWeight="bold"/>
 		<s:Button includeIn="preview" id="previewBackToEditorButton" fontWeight="bold" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
-	
+
 </s:Skin>
