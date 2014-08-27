@@ -1,6 +1,4 @@
 package com.clarityenglish.rotterdam.builder.controller.widgets {
-	import com.clarityenglish.common.model.CopyProxy;
-	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	import com.clarityenglish.textLayout.util.TLFUtil;
 	
@@ -14,7 +12,7 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 	import org.puremvc.as3.interfaces.INotification;
 	import org.puremvc.as3.patterns.command.SimpleCommand;
 	
-	public class ImageWidgetAddCommand extends SimpleCommand {
+	public class AnmationWidgetAddCommand extends SimpleCommand {
 		
 		/**
 		 * Standard flex logger
@@ -24,7 +22,6 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 		public override function execute(note:INotification):void {
 			super.execute(note);
 			
-			var copyProvider:CopyProvider = facade.retrieveProxy(CopyProxy.NAME) as CopyProvider;
 			var node:XML, tempid:String = UIDUtil.createUID();
 			var title:String;
 			if (note.getBody().title) {
@@ -33,19 +30,18 @@ package com.clarityenglish.rotterdam.builder.controller.widgets {
 			if (note.getBody().node) {
 				node = note.getBody().node;
 			} else {
-				var nodeString:String = '<exercise type="image" column="0" span="1" caption="' + copyProvider.getCopyForId('widgetImageCaption') + '"><text></text></exercise>';
-				node = new XML(nodeString);
+				node = <exercise type="animation" column="0" span="1" caption="Animation"><text></text></exercise>;
 				facade.sendNotification(RotterdamNotifications.WIDGET_ADD, node);
 			}
 			node.@tempid = tempid;
 			
 			var uploadOptions:Object = {
-				typeFilter: [ new FileFilter("Images (*.png, *.jpg, *.jpeg)", "*.png;*.jpg;*.jpeg") ],
+				typeFilter: [ new FileFilter("Animations (*.swf)", "*.swf") ],
 				node: node,
 				title: title,
 				span: note.getBody().span,
-				source: note.getBody().source,
-				url: note.getBody().url // gh#111 - this is only used in 'external' types where the user has already entered a url
+					source: note.getBody().source,
+					url: note.getBody().url
 			};
 			facade.sendNotification(RotterdamNotifications.MEDIA_SELECT, uploadOptions, tempid);
 		}
