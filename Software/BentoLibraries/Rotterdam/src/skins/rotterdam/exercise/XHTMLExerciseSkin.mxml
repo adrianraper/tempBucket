@@ -60,7 +60,7 @@
 		</s:Rect>
 		
 		<s:Scroller horizontalScrollPolicy="off" verticalScrollPolicy="auto" top="0" left="0" right="0" bottom="0" mouseWheelChanging="onScrollerMouseWheelChanging(event)">
-			<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour, RecorderButtonBehaviour]}" />
+			<components:XHTMLRichText id="bodyRichText" behaviours="{[AnswerableBehaviour, DraggableBehaviour, OverlayBehaviour, MarkableIconsBehaviour, PopupableBehaviour, DictionaryBehaviour, AudioFeedbackBehaviour, RecorderButtonBehaviour]}" extraHeight="6" />
 		</s:Scroller>
 	</s:Group>						
 

@@ -52,6 +52,11 @@ package com.clarityenglish.textLayout.components {
 		
 		private var _css:CSS;
 		
+		/**
+		 * The number of pixels added to the height of the RenderFlow (for containing components).  #1017
+		 */
+		private var _extraHeight:uint = 3;
+		
 		public function XHTMLRichText() {
 			super();
 			
@@ -121,6 +126,11 @@ package com.clarityenglish.textLayout.components {
 					log.error("Unable to instantiate behaviour " + behaviourClass);
 				}
 			}
+		}
+		
+		public function set extraHeight(value:uint):void {
+			_extraHeight = value;
+			invalidateSize();
 		}
 		
 		public function get css():CSS {
@@ -198,7 +208,7 @@ package com.clarityenglish.textLayout.components {
 			super.measure();
 			
 			if (renderFlow) {
-				measuredHeight = renderFlow.height + 3;
+				measuredHeight = renderFlow.height + _extraHeight;
 			}
 		}
 		
