@@ -398,6 +398,10 @@ package com.clarityenglish.rotterdam.view.login {
 			isPlatformAndroid = value;
 		}
 		
+		public function setNoLogin(value:Boolean):void {
+			
+		}
+		
 		/**
 		 * To let you work out what data you need for logging in to this account. 
 		 * @param Number loginOption
