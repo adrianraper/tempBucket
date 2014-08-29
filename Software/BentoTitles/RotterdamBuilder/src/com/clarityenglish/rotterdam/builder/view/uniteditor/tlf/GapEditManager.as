@@ -14,6 +14,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 	import flashx.textLayout.tlf_internal;
 	import flashx.undo.IUndoManager;
 	
+	import org.davekeen.util.StringUtils;
+	
 	use namespace tlf_internal;
 	
 	public class GapEditManager extends EditManager {
@@ -72,6 +74,22 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 			return checkForGapfillOnSelection(super.handleDownArrow(event));
 		}
 		
+		// #1022
+		public override function deletePreviousCharacter(operationState:SelectionState = null):void {
+			var element:FlowElement = textFlow.findLeaf(activePosition - 1);
+			if (!element || !element.parent || element.parent is ParagraphElement) {
+				super.deletePreviousCharacter(operationState);
+			}
+		}
+		
+		// #1022
+		public override function deleteNextCharacter(operationState:SelectionState = null):void {
+			var element:FlowElement = textFlow.findLeaf(activePosition + 1);
+			if (!element || !element.parent || element.parent is ParagraphElement) {
+				super.deleteNextCharacter(operationState);
+			}
+		}
+		
 		/**
 		 * Select the full gapfill if these is a keyboard selection
 		 */
@@ -108,7 +126,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor.tlf {
 			var gapElement:SubParagraphGroupElement = textFlow.getElementByID(id) as SubParagraphGroupElement;
 			
 			if (gapElement) {
-				var placeholder:String = gapElement.getText();
+				var placeholder:String = StringUtils.trim(gapElement.getText());
 				
 				var tlf:TextLayoutFormat = new TextLayoutFormat();
 				tlf.textDecoration = TextDecoration.NONE;
