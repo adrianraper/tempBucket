@@ -3,12 +3,15 @@ package com.clarityenglish.controls.video.players {
 	import com.clarityenglish.controls.video.IVideoProvidable;
 	import com.clarityenglish.controls.video.IVideoProvider;
 	
+	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.media.StageWebView;
 	import flash.utils.Dictionary;
 	
+	import mx.core.IVisualElement;
+	import mx.core.UIComponent;
 	import mx.logging.ILogger;
 	import mx.logging.Log;
 	
@@ -141,7 +144,11 @@ package com.clarityenglish.controls.video.players {
 				// better than parentDocument.owner.owner and find a more generic class than List in which case it will work for all viewports.
 				// gh#732
 				if (parentDocument.owner && parentDocument.owner.owner) {
-					var list:List = parentDocument.owner.owner;	
+					var parentDocumentOwner:Object = parentDocument.owner.owner;
+					while(!(parentDocumentOwner is List)) {
+						parentDocumentOwner = parentDocumentOwner.owner;
+					}
+					var list:List = parentDocumentOwner as List;	
 					var listRect:Rectangle = list.getVisibleRect(stage);
 					
 					// #732 - this is necessary to get this to work properly on a Retina iPad

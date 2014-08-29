@@ -82,7 +82,7 @@ package com.clarityenglish.controls.video {
 				// Select a video player based on the availability of StageWebView
 				var hasStageWebView:Boolean = ApplicationDomain.currentDomain.hasDefinition("flash.media.StageWebView") && StageWebView.isSupported;
 				videoPlayer = new ((hasStageWebView) ? HTMLVideoPlayer : FlashVideoPlayer)();
-				(videoPlayer as Group).percentWidth = (videoPlayer as Group).percentHeight = 100; 
+				(videoPlayer as Group).percentWidth = (videoPlayer as Group).percentHeight = 100;
 				addElement(videoPlayer as IVisualElement);
 			}
 		}
@@ -127,11 +127,18 @@ package com.clarityenglish.controls.video {
 		}
 		
 		public function play():void {
-			if (videoPlayer) videoPlayer.play();
+			if (videoPlayer) {
+				videoPlayer.visible = true;
+				videoPlayer.play();
+			}
 		}
 
 		public function stop():void {
 			if (videoPlayer) videoPlayer.stop();
+		}
+		
+		public override function set visible(value:Boolean):void {
+			if (videoPlayer) videoPlayer.visible = value;
 		}
 	}
 }

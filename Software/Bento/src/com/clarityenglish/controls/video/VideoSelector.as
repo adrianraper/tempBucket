@@ -230,7 +230,7 @@ package com.clarityenglish.controls.video {
 			if (!videoList.selectedItem || !channelList.selectedItem)
 				return;
 			videoPlayer.stop();
-			
+			trace("selected channel is "+ channelList.selectedIndex);
 			var url:String = href.createRelativeHref(null, videoList.selectedItem.@href).url;
 			if (url.match(/\.(rss|xml)$/)) {
 				new RssVideoLoader(videoPlayer).load(url, channelList.selectedItem);
@@ -263,7 +263,7 @@ package com.clarityenglish.controls.video {
 		}
 		
 		public function getVideoScore():ExerciseMark {
-			if (videoList.selectedItem && currentVideoStartTime) { // #138
+			if (videoList.selectedItem && currentVideoStartTime && hrefToUidFunction) { // #138 // for some video (candidates video), no hrefToUidFunction can apply
 				var videoHref:Href = href.createRelativeHref(null, videoList.selectedItem.@href);
 				
 				var exerciseMark:ExerciseMark = new ExerciseMark();
