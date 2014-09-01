@@ -668,23 +668,24 @@ this.passTest = function() {
 			if (this.totalScore>46) var overallCEF = "B2";
 			
 		} else if (this.unitCaption.toLowerCase().indexOf("level test c")>=0) {
+			// corrections from Alex Caughey, Tokyo, 1st Sept 2014 
 			// Then we work out their CEF for each section
-			if (this.grammarScore<8) var grammarCEF = "B2";
-			if (this.grammarScore>=8 && this.grammarScore<=14) var grammarCEF = "C1";
+			if (this.grammarScore<10) var grammarCEF = "B2";
+			if (this.grammarScore>=10 && this.grammarScore<=14) var grammarCEF = "C1";
 			if (this.grammarScore>14) var grammarCEF = "C2";
 			
 			if (this.vocabScore<8) var vocabCEF = "B2";
 			if (this.vocabScore>=8 && this.vocabScore<=15) var vocabCEF = "C1";
 			if (this.vocabScore>15) var vocabCEF = "C2";
 			
-			if (this.readingScore<5) var readingCEF = "B2";
-			if (this.readingScore>=5 && this.reading<=11) var readingCEF = "C1";
-			if (this.readingScore>11) var readingCEF = "C2";
+			if (this.readingScore<7) var readingCEF = "B2";
+			if (this.readingScore>=7 && this.reading<=13) var readingCEF = "C1";
+			if (this.readingScore>13) var readingCEF = "C2";
 			
 			// Finally we need to combine them, but I don't know how. Make a guess that is based on total score
-			if (this.totalScore<21) var overallCEF = "B2";
-			if (this.totalScore>=21 && this.totalScore<=40) var overallCEF = "C1";
-			if (this.totalScore>40) var overallCEF = "C2";
+			if (this.totalScore<25) var overallCEF = "B2";
+			if (this.totalScore>=25 && this.totalScore<=42) var overallCEF = "C1";
+			if (this.totalScore>42) var overallCEF = "C2";
 			
 		}
 		if (overallCEF=="A0") {
