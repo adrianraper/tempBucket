@@ -2,7 +2,9 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="org.davekeen.core.*" creationComplete="onCreationComplete(event)">
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" 
+		xmlns:core="org.davekeen.core.*" 
+		creationComplete="onCreationComplete(event)">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressCompareView")]
@@ -53,7 +55,7 @@
 					if (k == 0) {
 						li.label = myBarSeries.displayName 
 					} else {
-						li.label = everyOneBarSeries.displayName; 
+						li.label = everyoneBarSeries.displayName; 
 					}
 					
 					// Get the current series' fill. 
@@ -79,12 +81,12 @@
 			
 			private function clearLegend():void { 
 				myLegend.removeAllChildren();
-			} */
-			
+			} 
+			*/
 			protected function onCreationComplete(event:FlexEvent):void
 			{
 				// TODO Auto-generated method stub
-
+				
 			}
 			
 		]]>
@@ -136,7 +138,7 @@
 		</mx:verticalAxisRenderers>
 		
 		<mx:series>
-			<mx:BarSeries id="myBarSeries" yField="@caption" xField="@myAverageScore" displayName="My scores" maxBarWidth="8" >
+			<mx:BarSeries id="myBarSeries" yField="@caption" xField="@myAverageScore" maxBarWidth="8" >
 				<mx:fill>
 					<s:LinearGradient>
 						<s:GradientEntry id="myAveScoreColor1" />
@@ -144,11 +146,11 @@
 					</s:LinearGradient>
 				</mx:fill>
 			</mx:BarSeries>
-			<mx:BarSeries id="everyOneBarSeries" yField="@caption" xField="@everyoneAverageScore" displayName="Everyone's scores" maxBarWidth="5" >
+			<mx:BarSeries id="everyoneBarSeries" yField="@caption" xField="@everyoneAverageScore" maxBarWidth="5" >
 				<mx:fill>
 					<s:LinearGradient>
-						<s:GradientEntry id="everyOneAveScoreColor1" />
-						<s:GradientEntry id="everyOneAveScoreColor2" />
+						<s:GradientEntry id="everyoneAvgScoreColor1" />
+						<s:GradientEntry id="everyoneAvgScoreColor2" />
 					</s:LinearGradient>
 				</mx:fill>				
 			</mx:BarSeries>

@@ -49,19 +49,19 @@ package com.clarityenglish.tensebuster.view.progress
 		public var myBarSeries:BarSeries;
 		
 		[SkinPart]
-		public var myAveScoreColor1:GradientEntry;
+		public var myAvgScoreColor1:GradientEntry;
 		
 		[SkinPart]
-		public var myAveScoreColor2:GradientEntry;
+		public var myAvgScoreColor2:GradientEntry;
 		
 		[SkinPart]
-		public var everyOneBarSeries:BarSeries;
+		public var everyoneBarSeries:BarSeries;
 		
 		[SkinPart]
-		public var everyOneAveScoreColor1:GradientEntry;
+		public var everyoneAvgScoreColor1:GradientEntry;
 		
 		[SkinPart]
-		public var everyOneAveScoreColor2:GradientEntry;
+		public var everyoneAvgScoreColor2:GradientEntry;
 		
 		[SkinPart]
 		public var myGrid:Grid;
@@ -102,7 +102,7 @@ package com.clarityenglish.tensebuster.view.progress
 		private var _courseChanged:Boolean;
 		private var _isPlatformOnline:Boolean;
 		private var isNoData:Boolean;
-		private var everyOneScoreObject:Object = new Object();
+		private var everyoneUnitScores:Object = new Object();
 		private var isCompareChartCreated:Boolean;
 		
 		public var courseSelect:Signal = new Signal(String);
@@ -137,8 +137,9 @@ package com.clarityenglish.tensebuster.view.progress
 		public function set everyoneCourseSummaries(value:Object):void {
 			_everyoneCourseSummaries = value;
 			_everyoneCourseSummariesChanged = true;
+			// Make the array easier to search by unitID later
 			for (var i:Number = 0; i < _everyoneCourseSummaries.length; i++) {
-				everyOneScoreObject[_everyoneCourseSummaries[i].UnitID] = _everyoneCourseSummaries[i].AverageScore;
+				everyoneUnitScores[_everyoneCourseSummaries[i].UnitID] = _everyoneCourseSummaries[i].AverageScore;
 			}
 			invalidateProperties();
 		}
@@ -159,8 +160,10 @@ package com.clarityenglish.tensebuster.view.progress
 			mylegendLabel.text = copyProvider.getCopyForId("mylegendLabel");
 			everyonelegendLabel.text = copyProvider.getCopyForId("everyonelegendLabel");
 			compareEmptyScoreLabel.label = copyProvider.getCopyForId("compareEmptyScoreLabel");
+			
+			//myBarSeries.displayName = copyProvider.getCopyForId("mylegendLabel");
+			//everyoneBarSeries.displayName = copyProvider.getCopyForId("everyonelegendLabel");
 		}
-		
 		
 		protected override function commitProperties():void {
 			super.commitProperties();
@@ -177,7 +180,7 @@ package com.clarityenglish.tensebuster.view.progress
 				var xml:XML = <progress />;
 				
 				for each (var unitNode:XML in menu.course.(@["class"] == courseClass).unit) {
-					var everyoneAverageScore:Number = (everyOneScoreObject[unitNode.@id]) ? everyOneScoreObject[unitNode.@id] : 0;
+					var everyoneAverageScore:Number = (everyoneUnitScores[unitNode.@id]) ? everyoneUnitScores[unitNode.@id] : 0;
 					xml.appendChild(<unit caption={unitNode.@caption} myAverageScore={unitNode.@averageScore} everyoneAverageScore={everyoneAverageScore} />);
 					if (unitNode.@averageScore > 0 || everyoneAverageScore > 0) {
 						isNoData = false;
@@ -191,13 +194,13 @@ package com.clarityenglish.tensebuster.view.progress
 					compareEmptyScoreLabel.visible = false;
 				}
 				
-				myAveScoreColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
+				myAvgScoreColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
 				legendGradientColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
-				myAveScoreColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
+				myAvgScoreColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
 				legendGradientColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
-				everyOneAveScoreColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
+				everyoneAvgScoreColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
 				everyonelegendGradientColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
-				everyOneAveScoreColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");
+				everyoneAvgScoreColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");
 				everyonelegendGradientColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");					
 				//drawLegend();
 				
