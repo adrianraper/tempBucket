@@ -51,14 +51,18 @@ package com.clarityenglish.rotterdam.view.unit.ui {
 					log.error("Unsupported widget type " + _exercise.@type);
 				
 				// for orchid widget, we want to reuse the loaded swf, so if we won't add a new element in container
-				if (this.numElements == 0 || _exercise.@type != "orchid") {
-					this.removeAllElements();
+				if (this.numElements == 0) {
 					var classFactory:ClassFactory = new ClassFactory(widgetClass);
 					classFactory.properties = { xml: _exercise, editable: false, widgetCaptionChanged: true};
 					addElement(classFactory.newInstance());
 				} else {
-					var orchidWidget:OrchidWidget = this.getElementAt(0) as OrchidWidget;
-					orchidWidget.setContentUID(_exercise.@contentuid);
+					if (Class(getDefinitionByName(getQualifiedClassName(this.getElementAt(0)))) == widgetClass && !(widgetClass is OrchidWidget)) {
+						(this.getElementAt(0) as AbstractWidget).xml = _exercise;
+						(this.getElementAt(0) as AbstractWidget).updateSrc(_exercise.@src);
+					} else {
+						var orchidWidget:OrchidWidget = this.getElementAt(0) as OrchidWidget;
+						orchidWidget.setContentUID(_exercise.@contentuid);
+					}			
 				}
 				
 				_exerciseChanged = false;

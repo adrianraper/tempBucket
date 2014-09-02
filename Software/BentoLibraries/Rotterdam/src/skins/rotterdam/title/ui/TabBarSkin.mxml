@@ -45,9 +45,9 @@
             @default spark.skins.spark.ButtonBarFirstButtonSkin
             @see spark.skins.spark.ButtonBarFirstButtonSkin
         -->
-        <!--fx:Component id="firstButton">
-            <s:ButtonBarButton skinClass="spark.skins.spark.ButtonBarFirstButtonSkin" />
-        </fx:Component-->
+        <fx:Component id="firstButton">
+            <s:ButtonBarButton skinClass="spark.skins.spark.ButtonBarFirstButtonSkin" visible="false" includeInLayout="false" />
+        </fx:Component>
 
         <!--- 
             @copy spark.components.ButtonBar#middleButton

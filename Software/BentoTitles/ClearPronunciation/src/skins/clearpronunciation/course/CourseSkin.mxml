@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:uniteditor="com.clarityenglish.rotterdam.builder.view.uniteditor.*"
+		xmlns:course="com.clarityenglish.rotterdam.builder.view.course.*" 
+		xmlns:course1="com.clarityenglish.clearpronunciation.view.course.*" 
+		xmlns:unit="com.clarityenglish.clearpronunciation.view.unit.*" 
+		xmlns:exercise="com.clarityenglish.bento.view.exercise.*" creationComplete="onCreationComplete(event)" xmlns:course2="skins.clearpronunciation.course.*" xmlns:local="*" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.clearpronunciation.view.course.CourseView")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.bento.view.exercise.ExerciseView;
+			import com.clarityenglish.clearpronunciation.view.unit.UnitView;
+			
+			import mx.events.FlexEvent;
+			
+			import spark.transitions.ViewTransitionBase;
+			
+			private function unitViewNavigatorShow(viewClass:Class, transition:ViewTransitionBase = null):void {
+				// This needs a callLater otherwise the first time we open the editor mouse events are not picked up
+				callLater(function():void {
+					if (!unitViewNavigator.activeView) {
+						unitViewNavigator.pushView(viewClass);
+					} else if (!(unitViewNavigator.activeView is viewClass)) {
+						unitViewNavigator.activeView.actionBarVisible = false;
+						unitViewNavigator.replaceView(viewClass, unitViewNavigator.activeView.data, null, transition);
+					}
+				});
+			}	
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// TODO Auto-generated method stub
+				unitViewNavigator.actionBar.visible = false;
+				unitViewNavigator.defaultPopTransition = null;
+				unitViewNavigator.defaultPushTransition = null;
+				unitViewNavigator.addEventListener(FlexEvent.UPDATE_COMPLETE, onUpdate);
+			}
+			
+			protected function onUpdate(event:Event):void {
+				if (unitViewNavigator.activeView) {
+					unitViewNavigator.activeView.actionBarVisible = false;
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<s:Animate id="unitListExpandAnimate" target="{unitList}" duration="300">
+			<s:SimpleMotionPath property="height" valueFrom="0" valueTo="200" />
+		</s:Animate>
+		<s:Animate id="unitListCollapseAnimate" target="{unitList}" duration="300">
+			<s:SimpleMotionPath property="height" valueFrom="200" valueTo="0" />
+		</s:Animate>
+	</fx:Declarations>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		<s:State name="unitWidget" enterState="unitViewNavigatorShow(UnitView)" />
+		<s:State name="unitExercise" enterState="unitViewNavigatorShow(ExerciseView)" />
+	</s:states>
+	
+	<!--Background color-->
+	<s:Rect width="100%" height="100%">
+		<s:fill>
+			<s:SolidColor color="#19B5E0" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:ViewNavigator id="unitViewNavigator" left="13" right="13" top="0" bottom="10"/>
+	
+	<s:VGroup top="-50" horizontalCenter="0" horizontalAlign="center">
+		<s:HGroup id="swfloaderHGroup" height="50">
+			<course1:UnitCaptionComponent id="leftUnitCaptionComponent" source="{hostComponent.unit.@leftComponent}" />
+			<course1:UnitCaptionComponent id="rightUnitCaptionComponent" source="{hostComponent.unit.@rightComponent}" />
+		</s:HGroup>
+		
+		<vo:WindowShade id="windowShade" width="160" horizontalCenter="0" skinClass="skins.clearpronunciation.course.WindowShadeSkin">
+			<vo:layout>
+				<s:VerticalLayout />
+			</vo:layout>
+			<s:List id="unitList" dataProvider="{hostComponent.unitListCollection}" labelField="@caption" width="160" height="200" borderVisible="true" selectionColor="0xC0C0C0">
+				<s:layout>
+					<s:VerticalLayout requestedMinRowCount="1" horizontalAlign="justify" gap="0"/>
+				</s:layout>
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer width="100%">
+							<fx:Script>
+								<![CDATA[
+									public override function set data(value:Object):void {
+										// gh#151
+										super.data = value;
+										if (data) this.enabled = !(data.hasOwnProperty("@enabledFlag") && data.@enabledFlag & 8);
+									}
+								]]>
+							</fx:Script>
+							<s:Label text="{data.@caption}" fontSize="14" color="0x000000" width="100%" maxDisplayedLines="3" paddingLeft="8" paddingRight="8" paddingTop="6"  paddingBottom="4" />
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:List>
+		</vo:WindowShade>
+		
+		<!--s:ToggleButton id="expandUnitListButton" label="=" /-->
+	</s:VGroup>
+	
+	<s:HGroup right="120" top="-50">
+		<s:Button id="backToMenuButton" />
+		<s:Button id="recorderButton" />
+	</s:HGroup>
+	
+	<s:HGroup top="0" left="100">
+		<s:Button id="backButton" label="Back" enabled="false" />
+		<s:Button id="nextButton" label="Next" />
+	</s:HGroup>
+</s:Skin>

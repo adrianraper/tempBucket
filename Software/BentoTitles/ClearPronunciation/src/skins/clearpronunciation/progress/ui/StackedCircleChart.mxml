@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:progress="skins.clearpronunciation.assets.progress.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.progress.ui.StackedCircleChart")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:GlowFilter id="glowFilter" alpha="0.6" blurX="3" blurY="3" color="0x000000" knockout="false" quality="10" inner="true"/>
+	</fx:Declarations>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.charts.events.ChartItemEvent;
+			import mx.charts.series.items.PieSeriesItem;
+			import mx.controls.Alert;
+			import mx.controls.Label;
+			[Bindable]
+			private var rollOverFlag:Boolean;
+			
+			[Bindable]
+			private var psi:PieSeriesItem;
+			
+			[Bindable]
+			private var dateTipShow:Boolean = false;
+			
+			public function rollOverTip(event:ChartItemEvent):void {
+				psi = event.hitData.chartItem as PieSeriesItem;
+				hostComponent.pieDuration = psi.item.@duration;
+				hostComponent.pieUnitIndex = psi.item.childIndex();
+				dateTipShow = true;
+			}
+		]]>
+	</fx:Script>
+	
+	<mx:PieChart id="doughnutPieChart" dataProvider="{hostComponent.dataProvider}" innerRadius="0.7" height="100%" width="100%" itemRollOver="rollOverTip(event)">
+		<mx:series>
+			<mx:PieSeries field="{hostComponent.field}" fills="{getStyle('unitColours')}" filters="{glowFilter}"/>
+		</mx:series>
+	</mx:PieChart>
+	<progress:piechart_gray filters="{glowFilter}" left="13" top="14" visible="{hostComponent.emptyPieShow}"/>
+	
+	<s:VGroup horizontalCenter="0" verticalCenter="0" horizontalAlign="center" visible="{dateTipShow}">
+		<s:Label text="Unit {hostComponent.pieUnitIndex + 1}" fontSize="18" fontWeight="bold"/>
+		<s:Label text="{hostComponent.pieDuration} mins(s)" fontSize="18"/>
+	</s:VGroup>
+	
+</s:Skin>

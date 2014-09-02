@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:widgets="skins.rotterdam.unit.widgets.*"
+		xmlns:layouts="com.clarityenglish.rotterdam.view.unit.layouts.*"
+		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*" xmlns:sets="org.osflash.signals.natives.sets.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.rotterdam.view.unit.widgets.SelectorWidget")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="normal" />
+		<s:State name="editing_normal" stateGroups="editing"  />
+		<s:State name="editing_selected" stateGroups="editing,selected" />
+		<s:State name="videoSelector" />
+		<s:State name="normalSelector" />
+	</s:states>
+	
+	<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+	
+	<s:HGroup left="20" width.normalSelector="100%" paddingTop="10">
+		<s:Group width="100%">
+			<s:Rect right="-62" width="71" height="95%" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" includeIn="videoSelector">
+				<s:fill>
+					<s:SolidColor color="0x273A45" />
+				</s:fill>
+			</s:Rect>
+			<s:List id="selectorList" height="100%" width.videoSelector="64" width.normalSelector="223" top.videoSelector="5" dataProvider="{hostComponent.widgetSelectorCollection}" labelField="@caption" requireSelection="true" borderVisible="false" contentBackgroundAlpha="0">
+				<s:itemRenderer>
+					<fx:Component>
+						<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
+							<fx:Script>
+								<![CDATA[
+									[Bindable]
+									private var iconPath:String;
+									
+									[Bindable]
+									private var selectedIconPath:String;
+									
+									public override function set data(value:Object):void {
+										super.data = value;
+										
+										if (data) {
+											iconPath = outerDocument.hostComponent.mediaFolder + "/video/SoundVideoOff" + (itemIndex + 1) + ".png";
+											selectedIconPath = outerDocument.hostComponent.mediaFolder + "/video/SoundVideoOn" + (itemIndex + 1) + ".png";
+										}
+										
+									}
+								]]>
+							</fx:Script>
+							
+							<s:states>
+								<s:State name="normal" />
+								<s:State name="hovered" />
+								<s:State name="selected" />
+							</s:states>
+							
+							<s:Group width="100%">
+								<s:Group visible="{outerDocument.currentState == 'videoSelector'}" includeInLayout="{outerDocument.currentState == 'videoSelector'}">
+									<s:BitmapImage source="{iconPath}" visible="{currentState == 'normal' || currentState == 'hovered'}" />
+									<s:BitmapImage source="{selectedIconPath}" visible="{currentState == 'selected'}" />
+								</s:Group>
+								<s:VGroup paddingTop="10" width="100%" visible="{outerDocument.currentState == 'normalSelector'}" includeInLayout="{outerDocument.currentState == 'normalSelector'}">
+									<s:Group width="100%">
+										<s:Rect width="207" height="35" radiusX="8" radiusY="8">
+											<s:fill>
+												<s:SolidColor color="#497A7A" color.selected="#25575B" />
+											</s:fill>
+										</s:Rect>
+										
+										<s:Group top="1" right="0" includeIn="selected">
+											<s:Path y="0.000144482" winding="nonZero" data="M1.50342 32.7552C0.67627 33.4808 0 33.1742 0 32.0746L0 1.07456C0 -0.0255351 0.67627 -0.331687 1.50342 0.39341L18.4414 15.2557C19.2676 15.9808 19.2676 17.1683 18.4414 17.8939L1.50342 32.7552Z">
+												<s:fill>
+													<s:SolidColor color="#25575B"/>
+												</s:fill>
+											</s:Path>
+										</s:Group>
+										
+										<s:Label id="labelDisplay" width="100%" paddingTop="5" fontSize="16" color="#FFFFFF" paddingLeft="10" verticalCenter="-2" />
+									</s:Group>
+								</s:VGroup>							
+							</s:Group>						
+						</s:ItemRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:List>
+			
+			<ui:UniversalWidgetHolder id="universalWidget" width.videoSelector="90%" width.normalSelector="75%"/>
+		</s:Group>
+	</s:HGroup>
+</s:Skin>

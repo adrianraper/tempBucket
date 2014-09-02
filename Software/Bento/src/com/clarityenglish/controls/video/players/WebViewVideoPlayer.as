@@ -15,9 +15,6 @@ package com.clarityenglish.controls.video.players {
 	import spark.components.Application;
 	import spark.components.Group;
 	
-	/**
-	 * This has been superceded by other classes, but IELTSAir still uses it (WebViewVideoSelectorSkin) so don't dare to remove it yet
-	 */
 	public class WebViewVideoPlayer extends Group implements IVideoPlayer {
 		
 		protected var log:ILogger = Log.getLogger(ClassUtil.getQualifiedClassNameAsString(this));
@@ -31,76 +28,35 @@ package com.clarityenglish.controls.video.players {
 		
 		public function WebViewVideoPlayer() {
 			addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+			addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
+			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
 			
 			if (!StageWebView)
 				throw new Error("This component can only be used in an AIR application");
 			
 			if (!StageWebView.isSupported)
-				throw new Error("StageWebView is not supported in this environment")
-		}
-		
-		protected function onAddedToStage(event:Event):void {
-			addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
-			//addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
-			//addEventListener(FlexEvent.HIDE, onHide, false, 0, true);
-			
-			// Make sure that commitProperties runs when the component is added to the stage so that stageWebView.stage can be set
-			invalidateProperties();
-		}
-		
-		protected function onRemovedFromStage(event:Event):void {
-			/*removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
-			removeEventListener(FlexEvent.HIDE, onRemovedFromStage);
-			removeEventListener(Event.ENTER_FRAME, onEnterFrame);*/
-			
-			if (stageWebView) {
-				stageWebView.stage = null;
-				stageWebView.viewPort = null;
-				//stageWebView.dispose();
-				//stageWebView = null;
-			}
-		}
-		
-		protected function onHide(event:Event):void {
-			trace("HIDDEN!!!!!!!!!!!!! " + this);
-		}
-		
-		protected override function createChildren():void {
-			super.createChildren();
-			
-			if (!stageWebView) {
-				// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually
-				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
-				stageWebView = new StageWebView();
-			}
-		}
-		
-		protected override function commitProperties():void {
-			super.commitProperties();
+				throw new Error("StageWebView is not supported in this environment");
 			
 			if (stageWebView)
-				stageWebView.stage = (visible) ? stage : null;
-		}
-		
-		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
-			super.updateDisplayList(unscaledWidth, unscaledHeight);
-			
-			var globalPos:Point = contentToGlobal(new Point(x, y));
-			stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, Math.max(0, unscaledWidth * dpiScaleFactor), unscaledHeight * dpiScaleFactor);
-		}
-		
-		public override function set visible(value:Boolean):void {
-			super.visible = value;
-			invalidateProperties();
-		}
-		
-		protected function onEnterFrame(event:Event):void {
-			if (stageWebView.stage && stageWebView.viewPort)
-				invalidateDisplayList();
+				stageWebView = null;
 		}
 		
 		public function get source():Object {
 			return _source;
+		}
+		
+		// For ipad candidates video which require video stop when switch to another. 
+		// Using set visible to stop video will call onRemovedFromStage and stageWebView will be set to null.
+		// So before playing another video, stageWebView need to be recreated.
+		public function createStageWebView():void {
+			if (!stageWebView) {
+				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
+				stageWebView = new StageWebView();
+				
+				addEventListener(Event.ADDED_TO_STAGE, onAddedToStage, false, 0, true);
+				addEventListener(FlexEvent.HIDE, onRemovedFromStage, false, 0, true);
+				addEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage, false, 0, true);
+			}
 		}
 		
 		private function get isHtml():Boolean {
@@ -148,6 +104,38 @@ package com.clarityenglish.controls.video.players {
 			log.info("Setting video source to {0}", value);
 		}
 		
+		public override function set visible(value:Boolean):void {
+			super.visible = value;
+			
+			invalidateProperties();
+		}
+		
+		protected override function createChildren():void {
+			super.createChildren();
+			
+			if (!stageWebView) {
+				// #443 - since StageWebView is native we need to apply the Retina dpi scaling manually
+				dpiScaleFactor = (parentApplication as Application).runtimeDPI / (parentApplication as Application).applicationDPI;
+				stageWebView = new StageWebView();
+			}
+		}
+		
+		protected override function commitProperties():void {
+			super.commitProperties();
+			
+			if (stageWebView)
+				stageWebView.stage = (visible) ? stage : null;
+		}
+		
+		protected override function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+			super.updateDisplayList(unscaledWidth, unscaledHeight);
+			
+			//if (!stageWebView.viewPort) {
+				var globalPos:Point = contentToGlobal(new Point(x, y));
+				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, Math.max(0, unscaledWidth * dpiScaleFactor), unscaledHeight * dpiScaleFactor);
+			//}
+		}
+		
 		public function play():void {
 			invalidateDisplayList();
 			
@@ -176,6 +164,33 @@ package com.clarityenglish.controls.video.players {
 			if (stageWebView) {
 				stageWebView.reload();
 				stageWebView.viewPort = null;
+			}
+		}
+		
+		protected function onAddedToStage(event:Event):void {
+			// Make sure that commitProperties runs when the component is added to the stage so that stageWebView.stage can be set
+			invalidateProperties();
+			
+			//addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
+		}
+		
+		protected function onRemovedFromStage(event:Event):void {
+			removeEventListener(Event.REMOVED_FROM_STAGE, onRemovedFromStage);
+			removeEventListener(FlexEvent.HIDE, onRemovedFromStage);
+			removeEventListener(Event.ENTER_FRAME, onEnterFrame);
+			
+			if (stageWebView) {
+				stageWebView.stage = null;
+				stageWebView.viewPort = null;
+				stageWebView.dispose();
+				stageWebView = null;
+			}
+		}
+		
+		protected function onEnterFrame(event:Event):void {
+			if (stageWebView.viewPort) {
+				var globalPos:Point = contentToGlobal(new Point(x, y));
+				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, stageWebView.viewPort.width, stageWebView.viewPort.height);
 			}
 		}
 		

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		creationComplete="creationComplete(event)">
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.bento.view.progress.ui.CoverageGroupRenderer")]
+	</fx:Metadata>
+
+	<fx:Script> 
+		<![CDATA[ 
+			//import com.clarityenglish.ielts.view.zone.DisabledPopupWatcher;
+			
+			// #302 - ensure the popupwatchers isn't garbage collected
+			//private var popupWatcher:DisabledPopupWatcher;
+			
+			protected function creationComplete(event:Event):void {
+				// #234
+				//popupWatcher = new DisabledPopupWatcher(itemList1, hostComponent.componentCopyProvider, hostComponent.productVersion); 
+			}
+			
+		]]> 
+	</fx:Script> 
+
+	<s:layout>
+		<s:VerticalLayout horizontalAlign="left" />
+	</s:layout>
+	
+	<s:Label id="coverageHeadingLabel" fontWeight="bold" paddingLeft="5" />
+	
+	<s:Rect left="100" right="0" top="0" bottom="0" width="100%" height="2" >
+		<s:fill>
+			<s:SolidColor color="0x999999" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:DataGroup id="groupDataGroup"
+				 alternatingItemColors="[#FFFFFF, #DDDDDD]"
+				 width="100%"
+				 contentBackgroundAlpha="0" 
+				 fontWeight="normal"
+				 itemRenderer="skins.clearpronunciation.progress.ui.CoverageGroupItemRenderer">
+		<s:layout>
+			<s:VerticalLayout gap="0" />
+		</s:layout>
+	</s:DataGroup>
+	
+</s:Skin>

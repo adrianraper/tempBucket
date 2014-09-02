@@ -52,13 +52,16 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 			return _hideSpanButtonBar;
 		}
 		
+		public override function updateSrc(value:String):void {
+			reloadVideo();
+		}
+		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
 				case videoPlayer:
 					videoPlayer.addEventListener(VideoEvent.VIDEO_CLICK, onVideoClick);
-					reloadVideo();
 					break;
 			}
 		}
@@ -84,12 +87,15 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected function reloadVideo(event:Event = null):void {
-			if (hasSrc && videoPlayer) videoPlayer.source = src;
+			if (hasSrc && videoPlayer) {
+				videoPlayer.source = src;
+			}
 		}
 		
 		// gh#215
 		protected function stopVideo(event:Event = null):void {
 			if (videoPlayer) videoPlayer.stop();
+			if (videoPlayer) videoPlayer.visible = false;
 		}
 		
 		// gh#106

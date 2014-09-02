@@ -194,8 +194,14 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function get clarityUID():String {
 			if (_xml && _xml.(hasOwnProperty("@id"))) {
 				var eid:String = _xml.@id;
-				var unitid:String = _xml.parent().@id;			
-				var cid:String = _xml.parent().parent().@id;			
+				
+				// For CP, the menu structure doesn't follow 3 level deep format
+				var unitNode:XML = _xml.parent();
+				while (unitNode.name() != 'unit') {
+					unitNode = unitNode.parent();
+				}
+				var unitid:String = unitNode.@id;
+				var cid:String = unitNode.parent().@id;			
 				//var pid:String = _xml.parent().parent().parent().@id;
 			} else {
 				cid = unitid = eid = '0';
@@ -233,6 +239,11 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 				progressRange.value = event.bytesLoaded / event.bytesTotal * 100;
 		}
 		
+		// for selectorwidget, when select widget with same type, no more new widget will be creates, insteadly the src of widget will be updated
+		public function updateSrc(value:String):void {
+			
+		}
+		
 		public static function typeToWidgetClass(type:String):Class {
 			// TODO: These should probably be specified elsewhere
 			switch (type) {
@@ -256,6 +267,8 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 					return SelectorWidget;
 				case "group":
 					return GroupWidget;
+				case "videoSelector":
+					return VideoSelectorWidget;
 				default:
 					return null;
 			}

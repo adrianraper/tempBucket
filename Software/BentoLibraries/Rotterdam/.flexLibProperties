@@ -47,6 +47,7 @@
     <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.OrchidWidget"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.SelectorWidget"/>
     <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.GroupWidget"/>
+    <classEntry path="com.clarityenglish.rotterdam.view.unit.widgets.VideoSelectorWidget"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="defaults.css" sourcePath="defaults.css"/>

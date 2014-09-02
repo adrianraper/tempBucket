@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<id>/area1/ClearPronunciationV10 in localhost</id>
+	<dbHost>2</dbHost>
+	<productCode>57</productCode>
+	<loginOption>128</loginOption>
+	<useCacheBuster>true</useCacheBuster>
+	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
+	<platform>tablet|android</platform>
+	<channel name='android-rackspace' caption='Ch1'>
+		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
+	</channel>
+	<channel name='vimeo' caption='Ch2'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	</channel>
+	<sharedMedia />
+	<brandingMedia />	
+	<language>EN</language>
+	
+	<contentPath>http://dock.contentBench/Content/</contentPath>
+	<remoteDomain>http://dock.projectBench/</remoteDomain>
+	<remoteGateway>http://dock.projectBench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<remoteService>ClearPronunciationService</remoteService>
+	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
+	
+	<rememberLogin>true</rememberLogin>
+	<disableAutoTimeout>true</disableAutoTimeout>
+	
+	<checkNetworkAvailabilityUrl>http://www.clarityenglish.com</checkNetworkAvailabilityUrl>
+	<checkNetworkAvailabilityInterval>30</checkNetworkAvailabilityInterval>
+	<checkNetworkAvailabilityReconnectInterval>5</checkNetworkAvailabilityReconnectInterval>
+	
+	<randomizedTestQuestionTotalNumber></randomizedTestQuestionTotalNumber>
+</config>
+

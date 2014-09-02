@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*" creationComplete="onCreationComplete(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.clearpronunciation.view.title.TitleView")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			
+			protected function onCreationComplete(event:FlexEvent):void
+			{
+				// working on tabBar button visibility
+				sectionNavigator.tabBar.dataGroup.getElementAt(0).visible = false;
+			}
+			
+		]]>
+	</fx:Script>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="home" />
+		<s:State name="course" />
+		<s:State name="progress" />
+	</s:states>
+	
+	<s:Group left="0" right="0" top="0">
+		<s:Rect left="0" right="0" top="0" bottom="0" height="50">
+			<s:fill>
+				<s:LinearGradient>
+					<s:GradientEntry color="#19B5E0"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		
+		<s:Button id="logoutButton" right="10" top="4" useHandCursor="true" buttonMode="true" />
+	</s:Group>
+	
+	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="30">
+		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%" />
+		<s:ViewNavigator id="progressViewNavigator"  firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" includeIn="home" />
+	</ui:CancelableTabbedViewNavigator>
+</s:Skin>

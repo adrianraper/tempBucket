@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx"
+		xmlns:ui="com.clarityenglish.rotterdam.view.unit.ui.*" xmlns:layouts="com.clarityenglish.clearpronunciation.view.course.layouts.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.clearpronunciation.view.unit.UnitView")]
+	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.events.EffectEvent;
+			import mx.events.FlexEvent;
+			protected function onMakeSoundsExpandClick(event:MouseEvent):void
+			{
+				// TODO Auto-generated method stub
+				makeSoundsExpandAnimation.play();
+			}
+			
+			protected function onMakeSoundsCollapseClick(event:MouseEvent):void {
+				makeSoundsCollapseAnimation.play();
+				buttonGroupDownAniamtion.play();
+			}
+			
+			protected function onMakeSoundsExpandAnimationEnd(event:EffectEvent):void
+			{
+				// TODO Auto-generated method stub
+				makeSoundsExpandButton.visible = false;				
+				makeSoundsCollapseButton.visible = true;				
+			}
+			
+			protected function onMakeSoundsCollapseEnd(event:EffectEvent):void {
+				makeSoundsExpandButton.visible = true;				
+				makeSoundsCollapseButton.visible = false;
+			}
+			
+		]]>
+	</fx:Script>	
+	
+	<fx:Declarations>
+		<s:Animate id="makeSoundsExpandAnimation" targets="{[makeSoundsList,expandCollapseGroup]}" duration="600" effectEnd="onMakeSoundsExpandAnimationEnd(event)">
+			<s:SimpleMotionPath property="top" valueTo="0" />
+		</s:Animate>
+		
+		<s:Animate id="makeSoundsCollapseAnimation" target="{makeSoundsList}" duration="600" effectEnd="onMakeSoundsCollapseEnd(event)">
+			<s:SimpleMotionPath property="top" valueTo="{height}" />
+		</s:Animate>
+		
+		<s:Animate id="buttonGroupDownAniamtion" target="{expandCollapseGroup}" duration="600">
+			<s:SimpleMotionPath property="top" valueTo="{height - 50}" />
+		</s:Animate>
+	</fx:Declarations>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<ui:WidgetList id="practiseSoundsList" left="0" right="0" top="0" bottom="0" borderColor="#f2f2f2" borderVisible="true" useVirtualLayout="false" contentBackgroundColor="#FFFFFF">
+		<ui:layout>
+			<layouts:FreeUnitLayout />
+		</ui:layout>
+	</ui:WidgetList>
+	
+	<ui:WidgetList id="makeSoundsList" left="0" right="0" top="{height}" bottom="0" borderColor="#f2f2f2" borderVisible="true" useVirtualLayout="false" contentBackgroundColor="#FFFFFF">
+		<ui:layout>
+			<layouts:FreeUnitLayout />
+		</ui:layout>
+	</ui:WidgetList>
+	
+	<s:Group id="expandCollapseGroup" right="50" top="{height - 50}">
+		<s:Button id="makeSoundsExpandButton" label="Expand" click="onMakeSoundsExpandClick(event)" />
+		<s:Button id="makeSoundsCollapseButton" label="Collapse" click="onMakeSoundsCollapseClick(event)" visible="false" />
+	</s:Group>
+	
+</s:Skin>

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" 
+		enabled="{hostComponent.enabled}" xmlns:video="com.clarityenglish.controls.video.*">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.clearpronunciation.view.home.HomeView")]
+	</fx:Metadata>
+	
+	<!-- states -->
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+	</s:states>
+	
+	<s:HGroup width="100%" height="100%">
+		<s:List id="courseList" labelField="@caption" width="30%" borderVisible="false" top="43" left="77" right="77" bottom="50">
+			<s:layout>
+				<s:VerticalLayout gap="5" horizontalAlign="justify"/>
+			</s:layout>
+		</s:List>
+		
+		<s:Group width="100%" height="100%">
+			<video:VideoSelector id="videoSelector" visible="false" />
+			<s:List id="unitList" width="100%" height="100%" labelField="@caption">
+			</s:List>
+		</s:Group>
+	</s:HGroup>
+	
+	<s:Label id="homeInstructionLabel" text="Choose the section you want to view" verticalCenter="0" horizontalCenter="100" />
+	
+</s:Skin>

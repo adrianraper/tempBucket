@@ -32,8 +32,8 @@
     <sourceAttachmentPath/>
   </compiler>
   <applications>
+    <application path="com/clarityenglish/clearpronunciation/ClearPronunciationApplication.as"/>
     <application path="ClearPronunciation.mxml"/>
-    <application path="com/clarityenglish/rotterdam/clearpronunciation/ClearPronunciationApplication.as"/>
   </applications>
   <modules/>
   <buildCSSFiles/>

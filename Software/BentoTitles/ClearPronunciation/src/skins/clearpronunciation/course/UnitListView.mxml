@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" title="UnitListView" xmlns:local="*">
+	<local:WindowShade width="100%" skinClass="skins.clearpronunciation.course.WindowShadeSkin">
+		<local:layout>
+			<s:VerticalLayout paddingLeft="20" paddingTop="20" paddingRight="20" />
+		</local:layout>
+		
+		<s:Label text="Select Rating" color="black" />
+		<s:RadioButton label="One" groupName="rbg" color="black" />
+		<s:RadioButton label="Two" groupName="rbg" color="black" />
+		<s:RadioButton label="Three" groupName="rbg" color="black" />
+		<s:Button label="Submit" click="windowShade.close()" />
+	</local:WindowShade>
+</s:View>
