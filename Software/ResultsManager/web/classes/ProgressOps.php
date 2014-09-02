@@ -36,26 +36,36 @@ class ProgressOps {
 	 */
 	function getEveryoneSummary($productCode) {
 		// For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
+		// This is NOT correct. You only want to average scores that are >=0 to avoid presentation exercises,
+		// but you want to average all the durations. However, we mostly don't use duration so don't over worry about it.
+		// Durations can be ridiculous - what is reasonable for one exercise? 1 hour? 3600 seconds
 		/*
-		USE global_r2iv2;
-		SET @productCode = 52;
 		SET @productCode = 53;
-		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
-		SELECT @productCode, F_CourseID, AVG(F_Score) as AverageScore, AVG(F_Duration) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
+		INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitId, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
+		SELECT @productCode, F_CourseID, null, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
 		FROM T_Score
 		WHERE F_ProductCode = @productCode
 		AND F_Score>=0
 		GROUP BY F_CourseID;
 		*/
 		
-		// Start working off cached results
-		// It would be safest if we could ensure that we only read the record with the latest datestamp
+		// Work off cached results
+		// gh#1014 Only take the latest datestamped result
 		$sql = 	<<<EOD
-			SELECT F_CourseID, F_AverageScore as AverageScore, F_AverageDuration as AverageDuration, F_Count as Count FROM T_ScoreCache
-			WHERE F_ProductCode = ?
-			ORDER BY F_CourseID;
+			SELECT sc.F_CourseID as CourseID, sc.F_AverageScore as AverageScore, sc.F_AverageDuration as AverageDuration, sc.F_Count as Count
+			FROM T_ScoreCache sc
+			INNER JOIN(
+			    SELECT F_CourseID as id, MAX(F_DateStamp) as latest
+			    FROM T_ScoreCache
+			    WHERE F_ProductCode = ?
+			    GROUP BY F_CourseID
+			) i ON sc.F_CourseID = i.id AND sc.F_DateStamp = i.latest
+			WHERE sc.F_ProductCode = ?
+			AND sc.F_UnitID is null
+			GROUP BY sc.F_CourseID
+			ORDER BY sc.F_CourseID;
 EOD;
-		$bindingParams = array($productCode);
+		$bindingParams = array($productCode, $productCode);
 		$rs = $this->db->GetAssoc($sql, $bindingParams);
 		return $rs;
 	}
@@ -64,16 +74,32 @@ EOD;
 	 * This method gets all users' progress records
 	 */
 	function getEveryoneUnitSummary($productCode, $rootID) {
+		// For want of anywhere better to put it for the moment, this is the SQL to populate the cache table
+		/*
+		  SET @productCode = 55;
+		  INSERT INTO T_ScoreCache (F_ProductCode, F_CourseID, F_UnitID, F_AverageScore, F_AverageDuration, F_Count, F_DateStamp, F_Country)
+		  SELECT @productCode, F_CourseID, F_UnitID, AVG(F_Score) as AverageScore, AVG(if(F_Duration>3600,3600,F_Duration)) as AverageDuration, COUNT(F_UserID) as Count, now(), 'Worldwide' 
+		  FROM T_Score
+		  WHERE F_ProductCode = @productCode
+		  AND F_Score>=0
+		  GROUP BY F_CourseID, F_UnitID;
+		*/
 		$sql = 	<<<EOD
-			SELECT AVG(sc.F_Score) as AverageScore, sc.F_UnitID as UnitID, sc.F_CourseID as CourseID
-    		FROM T_Score sc, T_Session s
-    		WHERE s.F_ProductCode = ?
-    		AND s.F_RootID = ?
-    		AND s.F_SessionID = sc.F_SessionID
-    		GROUP BY sc.F_UnitID
-    		ORDER BY sc.F_UnitID;
+			SELECT sc.F_CourseID as CourseID, sc.F_UnitID as UnitID, sc.F_AverageScore as AverageScore, sc.F_AverageDuration as AverageDuration, sc.F_Count as Count
+			FROM T_ScoreCache sc
+			INNER JOIN(
+			    SELECT F_UnitID as id, max(F_DateStamp) as latest
+			    FROM T_ScoreCache
+			    WHERE F_ProductCode = ?
+				AND F_UnitID is not null
+			    GROUP BY F_UnitID
+			) i ON sc.F_UnitID = i.id AND sc.F_DateStamp = i.latest
+			WHERE sc.F_ProductCode = ?
+			AND sc.F_UnitID is not null
+			GROUP BY sc.F_UnitID
+			ORDER BY sc.F_CourseID, sc.F_UnitID;
 EOD;
-		$bindingParams = array($productCode, $rootID);
+		$bindingParams = array($productCode, $productCode);
 		$rs = $this->db->GetArray($sql, $bindingParams);
 		return $rs;
 	}
