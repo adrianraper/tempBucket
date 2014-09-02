@@ -181,8 +181,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			questionTextArea.textFlow.addEventListener(GapEvent.GAP_SELECTED, onGapSelected, false, 0, true);
 			questionTextArea.textFlow.addEventListener(GapEvent.GAP_DESELECTED, onGapDeselected, false, 0, true);
 			
-			if (exerciseGenerator.exerciseType == Question.MULTIPLE_CHOICE_QUESTION)
+			if (exerciseGenerator.exerciseType == Question.MULTIPLE_CHOICE_QUESTION) {
 				answers = new XMLListCollection(question.answers.answer);
+			} else {
+				answers = null; // gh#1018
+			}
 		}
 		
 		protected function onQuestionAdded(event:Event = null):void {
