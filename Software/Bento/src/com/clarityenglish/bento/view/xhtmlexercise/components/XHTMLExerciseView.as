@@ -29,6 +29,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import flashx.textLayout.elements.FlowElement;
 	
 	import mx.controls.SWFLoader;
+	import mx.graphics.BitmapFillMode;
+	import mx.graphics.BitmapSmoothingQuality;
 	import mx.graphics.SolidColor;
 	
 	import org.davekeen.util.PointUtil;
@@ -36,6 +38,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	
 	import spark.components.Group;
 	import spark.components.TextInput;
+	import spark.primitives.BitmapImage;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
 	[Event(name="feedbackShow", type="com.clarityenglish.bento.view.xhtmlexercise.events.FeedbackEvent")]
@@ -88,6 +91,9 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		
 		[SkinPart(type="com.clarityenglish.textLayout.components.XHTMLRichText", required="false")]
 		public var backColour:SolidColor;
+	
+		[SkinPart(type="group", required="false")]
+		public var backgroundGraphics:Group;
 	
 		// TODO: These should be in IELTS, not Bento?
 		public var courseClass:String;
@@ -160,6 +166,29 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 				var group:Group = this[sectionName + "Group"];
 				var xhtmlRichText:XHTMLRichText = this[sectionName + "RichText"];
 				
+				// gh#665 Pick up any background graphics for the main body
+				if (sectionName == "body") {
+					for each (var item:XML in exercise.select("img.background")) {
+						var newImage:BitmapImage = new BitmapImage;
+						newImage.source = xhtml.rootPath + '/' + item.@src.toString();
+						newImage.left = parseInt(item.@left);
+						newImage.top = parseInt(item.@top);
+						// TODO DK worries that hasOwnProperty can cause crashes when packaging for iOS.
+						// This codes actually works fine without the checks it just seemed better to test first...
+						if (item.hasOwnProperty("@width") || item.hasOwnProperty("@height")) {
+							newImage.fillMode = mx.graphics.BitmapFillMode.SCALE;
+							newImage.scaleMode = mx.graphics.BitmapScaleMode.STRETCH;
+							newImage.smooth = true;
+							newImage.smoothingQuality = BitmapSmoothingQuality.HIGH;
+						}
+						if (item.hasOwnProperty("@width")) 
+							newImage.width = parseInt(item.@width);
+						if (item.hasOwnProperty("@height"))
+							newImage.height = parseInt(item.@height);
+						backgroundGraphics.addElement(newImage);
+					}
+				}
+					
 				if (group && xhtmlRichText) {
 					group.visible = group.includeInLayout = (sectionName == "header") ? exercise.hasHeader() : exercise.hasSection(sectionName);
 					
