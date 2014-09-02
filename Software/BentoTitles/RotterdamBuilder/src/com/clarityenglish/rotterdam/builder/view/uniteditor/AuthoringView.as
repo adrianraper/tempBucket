@@ -8,7 +8,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.GapEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.events.QuestionDeleteEvent;
 	import com.clarityenglish.rotterdam.builder.view.uniteditor.tlf.GapEditManager;
-	import com.clarityenglish.textLayout.util.TLFUtil;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -16,10 +15,9 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
-	import mx.core.mx_internal;
 	import mx.events.CloseEvent;
-	import mx.events.FlexEvent;
 	
+	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
@@ -58,9 +56,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		public var answersList:List;
 		
 		[SkinPart]
-		public var addQuestionButton:Button;
-		
-		[SkinPart]
 		public var addAnswerButton:Button;
 		
 		[SkinPart(required="true")]
@@ -92,6 +87,16 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			return _xhtml as ExerciseGenerator;
 		}
 		
+		protected override function onAddedToStage(event:Event):void {
+			super.onAddedToStage(event);
+			addEventListener(AuthoringEvent.OPEN_SETTINGS, openSettings);
+		}
+
+		protected override function onRemovedFromStage(event:Event):void {
+			super.onRemovedFromStage(event);
+			removeEventListener(AuthoringEvent.OPEN_SETTINGS, openSettings);
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
@@ -100,8 +105,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			
 			// Update the skin state from the loaded xhtml
 			callLater(invalidateSkinState);
-			
-			this.addEventListener(AuthoringEvent.OPEN_SETTINGS, openSettings);
+		}
+		
+		protected function checkAutoAddQuestion():void {
+			// gh#1005 - if this is the last question and we have entered some text then create a new question (but don't select it)
+			if (exerciseGenerator.layoutType == ExerciseGenerator.QUESTIONS && StringUtils.trim(questionTextArea.text).length > 0 && questionList.selectedIndex == questions.length - 1)
+				addQuestion();
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -119,13 +128,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					break;
 				case questionTextArea:
 					questionTextArea.addEventListener(Event.CHANGE, function(e:Event):void {
-						/*if (questionList.selectedItem) {
-							trace(TLFUtil.dumpTextFlow(questionTextArea.textFlow));
-							trace(exerciseGenerator.textFlowToHtml(questionTextArea.textFlow));
-							trace("---");
-							questionList.selectedItem.question.setChildren(new XML("<![CDATA[" + exerciseGenerator.textFlowToHtml(questionTextArea.textFlow) + "]]>"));
-						}*/
 						updateQuestionText();
+						checkAutoAddQuestion();
 					});
 					questionTextArea.prompt = copyProvider.getCopyForId("authoringQuestionPrompt");
 					break;
@@ -142,10 +146,13 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					questionList.addEventListener(IndexChangeEvent.CHANGE, onQuestionSelected);
 					questionList.addEventListener(QuestionDeleteEvent.QUESTION_DELETE, onQuestionDeleted);
 					questionList.requireSelection = true;
-					break;
-				case addQuestionButton:
-					addQuestionButton.addEventListener(MouseEvent.CLICK, onQuestionAdded);
-					addQuestionButton.label = copyProvider.getCopyForId("authoringAddQuestionButton");
+					
+					// Add a question if there are none and select the first question
+					if (questions.length == 0) addQuestion();
+					showQuestion(questions.getItemAt(questions.length - 1) as XML);
+					
+					// Add an extra question if required
+					callLater(checkAutoAddQuestion);
 					break;
 				case answersList:
 					// TODO: allowing drag moving on this does weird things, duplicating and deleting answers.  Need to investigate this.
@@ -172,36 +179,48 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onQuestionSelected(event:IndexChangeEvent = null):void {
-			question = questionList.selectedItem;
+			showQuestion(questionList.selectedItem);
+		}
+		
+		protected function showQuestion(question:XML):void {
+			this.question = question;
 			
-			questionTextArea.textFlow = exerciseGenerator.htmlToTextFlow(question.question);
-			questionTextArea.textFlow.interactionManager = new GapEditManager();
-			questionTextArea.textFlow.addEventListener(GapEvent.GAP_CREATED, onGapCreated, false, 0, true);
-			questionTextArea.textFlow.addEventListener(GapEvent.GAP_REMOVED, onGapRemoved, false, 0, true);
-			questionTextArea.textFlow.addEventListener(GapEvent.GAP_SELECTED, onGapSelected, false, 0, true);
-			questionTextArea.textFlow.addEventListener(GapEvent.GAP_DESELECTED, onGapDeselected, false, 0, true);
+			if (questionList) questionList.selectedItem = question;
 			
-			if (exerciseGenerator.exerciseType == Question.MULTIPLE_CHOICE_QUESTION) {
-				answers = new XMLListCollection(question.answers.answer);
+			if (question) {
+				questionTextArea.textFlow = exerciseGenerator.htmlToTextFlow(question.question);
+				questionTextArea.textFlow.interactionManager = new GapEditManager();
+				questionTextArea.textFlow.addEventListener(GapEvent.GAP_CREATED, onGapCreated, false, 0, true);
+				questionTextArea.textFlow.addEventListener(GapEvent.GAP_REMOVED, onGapRemoved, false, 0, true);
+				questionTextArea.textFlow.addEventListener(GapEvent.GAP_SELECTED, onGapSelected, false, 0, true);
+				questionTextArea.textFlow.addEventListener(GapEvent.GAP_DESELECTED, onGapDeselected, false, 0, true);
+				
+				if (exerciseGenerator.exerciseType == Question.MULTIPLE_CHOICE_QUESTION) {
+					answers = new XMLListCollection(question.answers.answer);
+				} else {
+					answers = null; // gh#1018
+				}
 			} else {
-				answers = null; // gh#1018
+				questionTextArea.textFlow = null;
+				answers = null;
 			}
 		}
 		
-		protected function onQuestionAdded(event:Event = null):void {
+		protected function addQuestion():void {
 			if (questions && exerciseGenerator && exerciseGenerator.hasSettingParam("exerciseType")) {
-				questions.addItem(
+				var question:XML =
 					<{exerciseGenerator.getSettingParam("exerciseType")}>
 						<question />
 						<answers />
 						<feedback />
-					</{exerciseGenerator.getSettingParam("exerciseType")}>
-				);
+					</{exerciseGenerator.getSettingParam("exerciseType")}>;
+				
+				// gh#1005 - add a default answer for multiple choice questions
+				if (exerciseGenerator.getSettingParam("exerciseType") == Question.MULTIPLE_CHOICE_QUESTION)
+					question.answers.setChildren(<answer correct='true' />);
+				
+				questions.addItem(question);
 			}
-			// Immediately select this new question
-			// The need for this code will disappear when gh#1005 implemented
-			questionList.selectedIndex = questions.length - 1;
-			onQuestionSelected();
 		}
 		
 		/** The add gap button was pressed */
@@ -251,16 +270,18 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onQuestionDeleted(event:QuestionDeleteEvent):void {
-			if (questions) {
+			// Don't allow the user to delete the last question gh#1005
+			if (questions && questions.length > 1) {
 				var idx:int = questions.getItemIndex(event.question);
-				if (idx >= 0) questions.removeItemAt(idx);
+				if (idx >= 0) {
+					questions.removeItemAt(idx);
+					showQuestion(null);
+				}
 			}
 		}
 		
 		protected function onAnswerAdded(event:Event = null):void {
-			if (answers) {
-				answers.addItem(<answer correct='true' />);
-			}
+			if (answers) answers.addItem(<answer correct='true' />);
 		}
 		
 		protected function onAnswerDeleted(event:AnswerDeleteEvent):void {
@@ -271,6 +292,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onOkButton(event:MouseEvent):void {
+			// Before saving the widget clear out any empty questions
+			questions.disableAutoUpdate();
+			for (var n:int = questions.length - 1; n >= 0; n--)
+				if (StringUtils.trim(questions.getItemAt(n).question.toString()).length == 0)
+					questions.removeItemAt(n);
+			
 			exerciseSave.dispatch(widgetNode, _xhtml.xml, _xhtml.href);
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
 		}
