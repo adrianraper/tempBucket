@@ -8,6 +8,7 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
+			import mx.managers.FocusManager;
 			
 			import spark.events.IndexChangeEvent;
 			
@@ -15,6 +16,8 @@
 			{
 				// TODO Auto-generated method stub
 				channelList.visible = false;
+				
+				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
 			}
 			
 			protected function onPlaceholderClick(event:MouseEvent):void
@@ -22,8 +25,13 @@
 				// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
 				videoList.selectedIndex = 0;
 				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				// Manually set the focus here, for we manually change the video list index.
+				focusManager.setFocus(videoList);
 			}
 			
+			protected function onVideoListFocusOut(event:Event):void {
+				videoList.selectedItem = null;
+			}
 		]]>
 	</fx:Script>
 		
