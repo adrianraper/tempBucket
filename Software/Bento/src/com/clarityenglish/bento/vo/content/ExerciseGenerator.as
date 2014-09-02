@@ -21,6 +21,9 @@ package com.clarityenglish.bento.vo.content {
 	 */
 	public class ExerciseGenerator extends XHTML {
 		
+		public static const QUESTIONS:String = "questions";
+		public static const TEXT:String = "text";
+		
 		/**
 		 * Standard flex logger
 		 */
@@ -47,7 +50,7 @@ package com.clarityenglish.bento.vo.content {
 		}
 		
 		public function get layoutType():String {
-			return hasSettingParam("questionNumberingEnabled") ? "questions" : "text";
+			return hasSettingParam("questionNumberingEnabled") ? QUESTIONS : TEXT;
 		}
 		
 		public function hasSettingParam(paramName:String):Boolean {

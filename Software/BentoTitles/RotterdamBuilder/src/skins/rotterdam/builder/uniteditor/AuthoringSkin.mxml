@@ -67,7 +67,6 @@
 						</fx:Component>
 					</s:itemRenderer>
 				</s:List>
-				<s:Button id="addQuestionButton" width="100%" />
 			</s:VGroup>
 			
 			<s:VGroup width="100%" enabled="{questionList.selectedItem != null}">
