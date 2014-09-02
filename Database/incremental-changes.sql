@@ -1051,6 +1051,9 @@ INSERT INTO `T_ProductVersion` VALUES
 (56,'DEMO'),
 (56,'FV');
 
+-- gh#1014 Weekly (or occasional) update for worldwide unit summaries
+ALTER TABLE T_ScoreCache ADD COLUMN `F_UnitID` bigint(20) DEFAULT NULL AFTER `F_CourseID`;
+
 -- Clear Pronunciation V10
 DELETE FROM T_ProductLanguage WHERE F_ProductCode in (57,58);
 INSERT INTO T_ProductLanguage VALUES 
@@ -1069,5 +1072,3 @@ INSERT INTO `T_ProductVersion` VALUES
 (58,'DEMO'),
 (58,'FV');
 
--- Just for CP development
-insert into T_CoursePermission values ('781427902300193045','1');
