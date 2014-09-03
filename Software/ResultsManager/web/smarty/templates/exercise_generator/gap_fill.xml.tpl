@@ -156,6 +156,11 @@
 			color: #0000AA !important;
 		}
 		
+		/* Add space after the correct answer - gh#1006 */
+		input {
+			gap-after-padding: 2;
+		}
+		
 		{/literal}
 		]]>
 		</style>
