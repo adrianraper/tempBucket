@@ -16,6 +16,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.events.CloseEvent;
+	import mx.events.CollectionEvent;
 	
 	import org.davekeen.util.StringUtils;
 	import org.osflash.signals.Signal;
@@ -107,12 +108,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			callLater(invalidateSkinState);
 		}
 		
-		protected function checkAutoAddQuestion():void {
-			// gh#1005 - if this is the last question and we have entered some text then create a new question (but don't select it)
-			if (exerciseGenerator.layoutType == ExerciseGenerator.QUESTIONS && StringUtils.trim(questionTextArea.text).length > 0 && questionList.selectedIndex == questions.length - 1)
-				addQuestion();
-		}
-		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
 			
@@ -182,8 +177,8 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			showQuestion(questionList.selectedItem);
 		}
 		
-		protected function showQuestion(question:XML):void {
-			this.question = question;
+		protected function showQuestion(value:XML):void {
+			question = value;
 			
 			if (questionList) questionList.selectedItem = question;
 			
@@ -196,14 +191,51 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				questionTextArea.textFlow.addEventListener(GapEvent.GAP_DESELECTED, onGapDeselected, false, 0, true);
 				
 				if (exerciseGenerator.exerciseType == Question.MULTIPLE_CHOICE_QUESTION) {
-					answers = new XMLListCollection(question.answers.answer);
+					showAnswers(question.answers.answer);
 				} else {
-					answers = null; // gh#1018
+					showAnswers(null); // gh#1018
 				}
 			} else {
 				questionTextArea.textFlow = null;
+				showAnswers(null);
+			}
+		}
+		
+		protected function showAnswers(value:XMLList):void {
+			// Remove any old listeners
+			if (answers)
+				answers.removeEventListener(CollectionEvent.COLLECTION_CHANGE, onAnswersCollectionChange);
+			
+			if (value) {
+				answers = new XMLListCollection(value);
+				answers.addEventListener(CollectionEvent.COLLECTION_CHANGE, onAnswersCollectionChange);
+				
+				checkAutoAddAnswer();
+			} else {
 				answers = null;
 			}
+		}
+		
+		protected function onAnswersCollectionChange(event:CollectionEvent):void {
+			checkAutoAddAnswer();
+		}
+		
+		protected function checkAutoAddQuestion():void {
+			// gh#1005 - if this is the last question and we have entered some text then create a new question (but don't select it)
+			if (exerciseGenerator.layoutType == ExerciseGenerator.QUESTIONS && StringUtils.trim(questionTextArea.text).length > 0 && questionList.selectedIndex == questions.length - 1)
+				addQuestion();
+		}
+		
+		protected function checkAutoAddAnswer():void {
+			// gh#1005 - if the last answer isn't empty then add an empty one
+			if (answers && StringUtils.trim(answers.getItemAt(answers.length - 1).toString()).length != 0)
+				onAnswerAdded();
+			
+			if (answers.length > 1)
+				for (var n:int = answers.length - 2; n >= 0; n--)
+					if (StringUtils.trim(answers.getItemAt(n).toString()).length == 0)
+						answers.removeItemAt(n);
+			
 		}
 		
 		protected function addQuestion():void {
@@ -253,7 +285,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 			var answer:XMLList = question.answers.(attribute("source") == event.gapId);
 			if (answer.length() == 1) delete answer[0];
 			
-			answers = null;
+			showAnswers(null);
 		}
 		
 		protected function updateQuestionText():void {
@@ -262,11 +294,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		}
 		
 		protected function onGapSelected(event:GapEvent):void {
-			answers = new XMLListCollection(question.answers.(attribute("source") == event.gapId).answer);
+			showAnswers(question.answers.(attribute("source") == event.gapId).answer);
 		}
 		
 		protected function onGapDeselected(event:GapEvent):void {
-			answers = null;
+			showAnswers(null);
 		}
 		
 		protected function onQuestionDeleted(event:QuestionDeleteEvent):void {
@@ -294,9 +326,16 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		protected function onOkButton(event:MouseEvent):void {
 			// Before saving the widget clear out any empty questions
 			questions.disableAutoUpdate();
-			for (var n:int = questions.length - 1; n >= 0; n--)
-				if (StringUtils.trim(questions.getItemAt(n).question.toString()).length == 0)
+			for (var n:int = questions.length - 1; n >= 0; n--) {
+				if (StringUtils.trim(questions.getItemAt(n).question.toString()).length == 0) {
 					questions.removeItemAt(n);
+				} else {
+					// And delete any empty answers
+					for each (var answer:XML in questions.getItemAt(n).answers.answer)
+						if (StringUtils.trim(answer.toString()).length == 0)
+							delete answer.parent().children()[answer.childIndex()];
+				}
+			}
 			
 			exerciseSave.dispatch(widgetNode, _xhtml.xml, _xhtml.href);
 			dispatchEvent(new CloseEvent(CloseEvent.CLOSE, true));
