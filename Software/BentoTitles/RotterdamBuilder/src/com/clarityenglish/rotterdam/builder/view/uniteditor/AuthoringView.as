@@ -330,10 +330,18 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				if (StringUtils.trim(questions.getItemAt(n).question.toString()).length == 0) {
 					questions.removeItemAt(n);
 				} else {
-					// And delete any empty answers
-					for each (var answer:XML in questions.getItemAt(n).answers.answer)
-						if (StringUtils.trim(answer.toString()).length == 0)
-							delete answer.parent().children()[answer.childIndex()];
+					var question:XML = questions.getItemAt(n) as XML;
+					
+					// Delete any empty answers (note that this gets at *all* answer nodes, including when there are multiple ones in gapfill style questions)
+					for each (var answer:XML in question.answers.answer) {
+						if (StringUtils.trim(answer.toString()).length == 0) delete answer.parent().children()[answer.childIndex()];
+					}
+					
+					// #1027 - Now for gap-fill style questions delete any <answers source="..."> which don't have a matching input with that id
+					var questionHTML:XML = new XML(question.question.toString());
+					for each (var answers:XML in question.answers) {
+						if (questionHTML..input.(@id == answers.@source.toString()).length() == 0) delete answers.parent().children()[answers.childIndex()];
+					}
 				}
 			}
 			
