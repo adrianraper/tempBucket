@@ -156,9 +156,6 @@ package com.clarityenglish.common.vo.config {
 		// gh#476
 		public var useCacheBuster:Boolean;
 		
-		// gh#660
-		public var randomizedTestQuestionTotalNumber:Number;
-		
 		// gh#234
 		public var platform:String = 'browser';
 		
@@ -182,8 +179,6 @@ package com.clarityenglish.common.vo.config {
 			this.illustrationCloseFlag = true;
 			// gh#476
 			this.useCacheBuster = false;
-			// gh#660
-			this.randomizedTestQuestionTotalNumber = new Number();
 		}
 		
 		/**
@@ -512,11 +507,6 @@ package com.clarityenglish.common.vo.config {
 			}
 			if (xml..referrer.toString()) {
 				this.referrer = xml..referrer.toString();
-			}
-			
-			// gh#660
-			if (xml..randomizedTestQuestionTotalNumber.toString()) {
-				this.randomizedTestQuestionTotalNumber = xml..randomizedTestQuestionTotalNumber.toString();
 			}
 			
 			// gh#234

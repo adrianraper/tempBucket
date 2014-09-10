@@ -160,8 +160,8 @@ package com.clarityenglish.bento.model {
 					transformDefinitions.splice(0, transformDefinitions.length);
 					var transforms:Array = [new RandomizedTestTransform()];
 					registerTransforms(transforms, [ Href.EXERCISE ]);
-					// gh#660
-					href.options = {totalNumber: configProxy.getRandomizedTestQuestionTotalNumber()};
+					// gh#660, gh#1030 pick up from exercise
+					//href.options = {totalNumber: configProxy.getRandomizedTestQuestionTotalNumber()};
 				}
 				for each (var transformDefinition:TransformDefinition in transformDefinitions)
 					transformDefinition.injectTransforms(href);
