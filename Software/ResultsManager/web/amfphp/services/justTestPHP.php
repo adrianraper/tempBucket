@@ -2,6 +2,15 @@
 
 	require_once(dirname(__FILE__)."/MinimalService.php");
 	$dummy = new MinimalService();
+
+	$gapFillQuestions = array('a' => 'apple', 'b' => 'banana', 'c' => 'cauliflower', 'd' => 'dentist', 'e' => 'egg');
+	$maxQuestions = count($gapFillQuestions);
+	$numQuestionsToUse = 10;
+	$numQuestionsToUse = ($maxQuestions < $numQuestionsToUse) ? $maxQuestions : $numQuestionsToUse;
+	$randArray = array_rand(range(0, $maxQuestions-1), $numQuestionsToUse);
+	shuffle($randArray);
+	var_dump($randArray);			
+/*
 	$accountFolder = '../../../Clarity';
 	Session::set('userID', '12345');
 	
@@ -11,12 +20,14 @@
 	$prefix = substr($accountFolder, strrpos($accountFolder, '/')+1);
 	$courseID = 
 	$commitMsg = 'by userID='.Session::get('userID').' in '.$prefix;
-	$addCmd = ' add '.$prefix.'/*/menu.xml';
-	$commitCmd = ' commit -m "'.$commitMsg.'" '.$prefix.'/*/menu.xml';
-	$statusCmd = ' status '.$prefix.'/*/menu.xml';
+*/
+//	$addCmd = ' add '.$prefix.'/*/menu.xml';
+//	$commitCmd = ' commit -m "'.$commitMsg.'" '.$prefix.'/*/menu.xml';
+//	$statusCmd = ' status '.$prefix.'/*/menu.xml';
 	//$configCmd = ' config core.autocrlf false'; 
 	//$configCmd = ' config user.email adrian.raper@clarityenglish.com'; 
-	$configCmd = ' config --list';
+/*
+ 	$configCmd = ' config --list';
 	
 	$doConfig = !true;
 	$doAdd = !true;
@@ -56,7 +67,7 @@
 		exec($gitPath.$statusCmd.$debugStderr, $output, $rc);
 		echo (var_dump($output));
 	}
-
+*/
 /*
 	require_once(dirname(__FILE__)."/../../config.php");
 

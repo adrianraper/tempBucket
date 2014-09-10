@@ -292,9 +292,7 @@ package com.clarityenglish.common.model {
 		}
 		
 		// gh#660 get randomized test question total number
-		public function getRandomizedTestQuestionTotalNumber():Number {
-			return config.randomizedTestQuestionTotalNumber;
-		}
+		// gh#1030 remove
 		
 		public function getConfig():Config {
 			return config;
