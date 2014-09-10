@@ -97,7 +97,6 @@
 						</fx:Component>
 					</s:itemRenderer>
 				</s:List>
-				<s:Button id="addAnswerButton" />
 				
 				<s:Label id="feedbackLabel" />
 				<s:TextArea id="feedbackTextArea" width="100%" text="@{hostComponent.question.feedback}" />

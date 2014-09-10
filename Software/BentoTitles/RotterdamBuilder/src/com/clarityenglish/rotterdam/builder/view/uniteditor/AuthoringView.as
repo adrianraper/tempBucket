@@ -56,9 +56,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		[SkinPart]
 		public var answersList:List;
 		
-		[SkinPart]
-		public var addAnswerButton:Button;
-		
 		[SkinPart(required="true")]
 		public var okButton:Button;
 		
@@ -153,10 +150,6 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					// TODO: allowing drag moving on this does weird things, duplicating and deleting answers.  Need to investigate this.
 					// answersList.dragEnabled = answersList.dropEnabled = answersList.dragMoveEnabled = true;
 					answersList.addEventListener(AnswerDeleteEvent.ANSWER_DELETE, onAnswerDeleted);
-					break;
-				case addAnswerButton:
-					addAnswerButton.addEventListener(MouseEvent.CLICK, onAnswerAdded);
-					addAnswerButton.label = copyProvider.getCopyForId("authoringAddAnswerButton");
 					break;
 				case okButton:
 					okButton.addEventListener(MouseEvent.CLICK, onOkButton);
