@@ -338,9 +338,11 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					}
 					
 					// #1027 - Now for gap-fill style questions delete any <answers source="..."> which don't have a matching input with that id
-					var questionHTML:XML = new XML(question.question.toString());
-					for each (var answers:XML in question.answers) {
-						if (questionHTML..input.(@id == answers.@source.toString()).length() == 0) delete answers.parent().children()[answers.childIndex()];
+					if (exerciseGenerator.exerciseType != Question.MULTIPLE_CHOICE_QUESTION) {
+						var questionHTML:XML = new XML(question.question.toString());
+						for each (var answers:XML in question.answers) {
+							if (questionHTML..input.(@id == answers.@source.toString()).length() == 0) delete answers.parent().children()[answers.childIndex()];
+						}
 					}
 				}
 			}
