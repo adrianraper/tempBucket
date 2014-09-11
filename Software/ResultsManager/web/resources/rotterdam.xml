@@ -235,6 +235,24 @@
             <lit name="authoringErrorCorrectionButton">Error correction</lit>
             <lit name="authoringDropdownButton">Dropdown</lit>
             
+            <lit name="authoringShuffleAnswers">Shuffle answers</lit>
+            <lit name="authoringQuestionStartNumber">Start questions from</lit>
+            <lit name="authoringMarkingOptions">Marking options</lit>
+            <lit name="authoringDisplayOptions">Display options</lit>
+            <lit name="authoringTestMode">Test mode (answers are not shown)</lit>
+            <lit name="authoringTimerCheckBox">Timer</lit>
+            <lit name="authoringTimerUnits">minutes</lit>
+            <lit name="authoringExerciseFeedback">Exercise feedback</lit>
+            <lit name="authoringExerciseFeedbackPrompt">Type feedback here that is shown for the whole exercise.</lit>
+            <lit name="authoringQuestionByQuestion">Question by question</lit>
+            <lit name="authoringQuestionByQuestionLabel1">Show</lit>
+            <lit name="authoringQuestionByQuestionLabel2">questions</lit>
+            <lit name="authoringQuestionByQuestionLabel3">---- Leave blank for no scrolling</lit>
+            <lit name="authoringQuestionMarkersLabel">Question numbering</lit>
+            <lit name="authoringAnswerMarkersLabel">Answer markers</lit>
+            <lit name="authoringInstantMarking">Instant marking</lit>
+            <lit name="authoringDelayedMarking">Delayed marking</lit>
+            
 			
 		</group>
 	</language>
