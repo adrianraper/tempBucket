@@ -55,7 +55,7 @@ package com.clarityenglish.textLayout.components {
 		/**
 		 * The number of pixels added to the height of the RenderFlow (for containing components).  #1017
 		 */
-		private var _extraHeight:uint = 3;
+		private var _extraHeight:int = 3;
 		
 		public function XHTMLRichText() {
 			super();
@@ -128,7 +128,7 @@ package com.clarityenglish.textLayout.components {
 			}
 		}
 		
-		public function set extraHeight(value:uint):void {
+		public function set extraHeight(value:int):void {
 			_extraHeight = value;
 			invalidateSize();
 		}

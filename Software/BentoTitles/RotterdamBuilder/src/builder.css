@@ -458,3 +458,8 @@ help|HelpView s|Button#helpButton {
 	skinClass: ClassReference("skins.rotterdam.ui.OrangeButtonSkin");
 	buttonHeight: 25;
 }
+
+s|BorderContainer {
+	cornerRadius: 6; 
+	borderColor: #969696; 
+}

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" minWidth="800">
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" xmlns:mx="library://ns.adobe.com/flex/mx" 
+		width="650">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.builder.view.uniteditor.AuthoringSettingsView")]
@@ -16,6 +17,7 @@
 		<s:RadioButtonGroup id="numberingGroup" />
 		<s:RadioButtonGroup id="answerMarkersGroup" />
 		<s:RadioButtonGroup id="markingTypeGroup" />
+		<s:SolidColorStroke id="horizontalRuler" weight="1" color="#969696" />
 	</fx:Declarations>
 
 	<!-- states -->
@@ -24,77 +26,130 @@
 		<s:State name="normal" />
 
 		<s:State name="MultipleChoiceQuestion_questions" stateGroups="MultipleChoiceQuestion,questions" />
+		<s:State name="GapfillQuestion_questions" stateGroups="GapfillQuestion,questions" />
 	</s:states>
-	<s:VGroup width="100%" gap="0">
-		<s:HGroup width="100%" gap="0">
-			<s:Form width="50%">
-				<s:FormItem>
-					<s:RadioButton id="numbering1RadioButton" group="{numberingGroup}" />
+	
+	<s:Group left="10" top="10" right="10" bottom="10" >
+		
+		<s:layout>
+			<s:VerticalLayout horizontalAlign="left" />
+		</s:layout>
+
+		<s:HGroup id="numberingOptions" >
+			<s:BorderContainer id="questionNumbering" height="100%" >
+				<s:Group >
+					<s:layout>
+						<s:VerticalLayout paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10"/>
+					</s:layout>
+					<s:Label id="questionMarkersLabel" />
+					<s:RadioButton id="numbering1RadioButton" group="{numberingGroup}" selected="true"/>
 					<s:RadioButton id="numbering2RadioButton" group="{numberingGroup}" />
 					<s:RadioButton id="numbering3RadioButton" group="{numberingGroup}" />
 					<s:RadioButton id="numbering4RadioButton" group="{numberingGroup}" />
 					<s:RadioButton id="numbering5RadioButton" group="{numberingGroup}" />
-				</s:FormItem>
-
-				<s:FormItem>
+					<s:Line width="100%" stroke="{horizontalRuler}" />
 					<s:HGroup verticalAlign="middle">
-						<s:Label text="Start questions from " />
+						<s:Label id="questionStartNumberLabel" />
 						<s:TextInput id="questionStartNumberTextInput" width="30" />
 					</s:HGroup>
-				</s:FormItem>
-
-				<s:FormItem>
-					<s:RadioButton id="instantMarkingRadioButton" label="instant marking" group="{markingTypeGroup}" />
-					<s:RadioButton id="delayedMarkingRadioButton" label="delayed marking" group="{markingTypeGroup}" />
-				</s:FormItem>
-			</s:Form>
-
-			<s:Form width="50%">
-				<s:FormItem>
-					<s:RadioButton id="answerMarker1RadioButton" group="{answerMarkersGroup}" />
+				</s:Group>
+			</s:BorderContainer>
+			<s:BorderContainer height="100%" minWidth="{questionNumbering.width}" >
+				<s:Group>
+					<s:layout>
+						<s:VerticalLayout paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10"/>
+					</s:layout>
+					<s:Label id="answerMarkersLabel" />
+					<s:RadioButton id="answerMarker1RadioButton" group="{answerMarkersGroup}" selected="true" includeIn="MultipleChoiceQuestion"/>
 					<s:RadioButton id="answerMarker2RadioButton" group="{answerMarkersGroup}" />
 					<s:RadioButton id="answerMarker3RadioButton" group="{answerMarkersGroup}" />
 					<s:RadioButton id="answerMarker4RadioButton" group="{answerMarkersGroup}" />
 					<s:RadioButton id="answerMarker5RadioButton" group="{answerMarkersGroup}" />
-					<s:CheckBox id="shuffleAnswersCheckBox" label="shuffle answers" />
-				</s:FormItem>
-			</s:Form>
+					<s:Line width="100%" stroke="{horizontalRuler}" />
+					<s:CheckBox id="shuffleAnswersCheckBox" />
+				</s:Group>
+			</s:BorderContainer>
 		</s:HGroup>
 
-		<s:Form width="100%">
-			<s:FormItem>
-				<s:CheckBox id="exerciseFeedbackCheckBox" label="exercise feedback" />
-				<s:TextArea id="feedbackTextArea" width="100%" />
-			</s:FormItem>
-			
-			<s:FormItem>
-				<s:CheckBox id="testModeCheckBox" label="test mode" />
-			</s:FormItem>
-			
-			<s:FormItem>
-				<s:HGroup verticalAlign="middle">
-					<s:Label text="timer " />
-					<s:TextInput id="timerMinutesTextInput" width="30" />
-					<s:Label text="minutes" />
+		<s:Line width="100%" stroke="{horizontalRuler}" /> 
+		
+		<s:BorderContainer width="100%" >
+			<s:layout>
+				<s:VerticalLayout paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10"/>
+			</s:layout>
+			<s:Label id="markingOptionsLabel" />
+			<s:HGroup width="100%" >
+				<s:Group width="50%">
+					<s:layout>
+						<s:VerticalLayout />
+					</s:layout>
+					<s:RadioButton id="instantMarkingRadioButton" group="{markingTypeGroup}" selected="true"/>
+					<s:RadioButton id="delayedMarkingRadioButton" group="{markingTypeGroup}"  />
+				</s:Group>
+				<s:Line height="100%" stroke="{horizontalRuler}" />
+				<s:Spacer width="2" />
+				<s:Group width="50%">
+					<s:layout>
+						<s:VerticalLayout />
+					</s:layout>
+					<s:CheckBox id="testModeCheckBox" />
+					<s:HGroup verticalAlign="middle" >
+						<s:CheckBox id="timerCheckBox" />
+						<s:TextInput id="timerMinutesTextInput" width="30" restrict="0-9." />
+						<s:Label id="timerUnitsLabel" />
+					</s:HGroup>
+				</s:Group>
+			</s:HGroup>
+		</s:BorderContainer>
+		
+		<s:Line width="100%" stroke="{horizontalRuler}" />
+		
+		<s:Group width="100%" >
+			<s:CheckBox id="exerciseFeedbackCheckBox" top="0" left="0" />
+			<s:VGroup width="100%" top="0" right="0" horizontalAlign="right" gap="2">
+				<s:HGroup>
+					<s:ToggleButton label="B" fontWeight="bold" width="30" />
+					<s:ToggleButton label="I" fontStyle="italic" width="30" />
+					<s:ToggleButton label="U" textDecoration="underline" width="30" />
+					<s:ToggleButton label="a" fontSize="11" width="28" />
+					<s:ToggleButton label="a" fontSize="14" width="28" />
+					<s:ToggleButton label="a" fontSize="17" width="28" />
+					<mx:ColorPicker />
 				</s:HGroup>
-			</s:FormItem>
-			
-			<s:FormItem>
-				<s:HGroup verticalAlign="middle">
-					<s:Label text="Show first " />
-					<s:TextInput id="showFirstNQuestionsTextInput" width="30" />
-					<s:Label text="questions" />
-				</s:HGroup>
-			</s:FormItem>
-			
-			<s:FormItem>
-				<s:CheckBox id="questionByQuestionCheckBox" label="question by question" />
-			</s:FormItem>
-		</s:Form>
+				<s:TextArea id="exerciseFeedbackTextArea" enabled="{exerciseFeedbackCheckBox.selected}" width="100%" minHeight="60" />
+			</s:VGroup>
+		</s:Group>
+		
+		<s:Line width="100%" stroke="{horizontalRuler}" />
+		
+		<s:BorderContainer width="100%" >
+			<s:layout>
+				<s:VerticalLayout paddingLeft="10" paddingTop="10" paddingRight="10" paddingBottom="10"/>
+			</s:layout>
+			<s:Label id="displayOptionsLabel" />
+			<s:HGroup width="100%" >
+				<s:Group width="50%">
+					<s:layout>
+						<s:VerticalLayout />
+					</s:layout>
+					<s:CheckBox id="questionByQuestionCheckBox" />
+					<s:HGroup verticalAlign="middle">
+						<s:Label id="questionByQuestionLabel1" />
+						<s:TextInput id="showFirstNQuestionsTextInput" width="25" restrict="0-9" />
+						<s:Label id="questionByQuestionLabel2" />
+						<s:Spacer width="5" />
+						<s:Label id="questionByQuestionLabel3" color="#666666" />
+					</s:HGroup>
+				</s:Group>
+			</s:HGroup>
+		</s:BorderContainer>
+		
+		<s:Line width="100%" stroke="{horizontalRuler}" />
+		
+		<s:HGroup width="100%">
+			<s:Spacer width="90%" />
+			<s:Button id="okButton" label="ok" useHandCursor="true" buttonMode="true" />				
+		</s:HGroup>
+	</s:Group>
 
-	</s:VGroup>
-	
-	<s:HGroup bottom="0" right="2" gap="10" height="48" verticalAlign="middle">
-		<s:Button id="okButton" useHandCursor="true" buttonMode="true" width="160" fontWeight="bold"/>
-	</s:HGroup>
 </s:Skin>
