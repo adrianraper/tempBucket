@@ -1,0 +1,47 @@
+<VirtualHost *:80>
+  ServerName dock.projectbench
+
+  ## Vhost docroot
+  DocumentRoot "/vagrant/software”
+
+  ## Directories, there should at least be a declaration for /vagrant
+
+  <Directory "/vagrant/software”>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  ## Load additional static includes
+
+  ## Logging
+  #ErrorLog "/var/log/apache2/aFLVmgiHAgBb_error.log"
+  #ServerSignature Off
+  #CustomLog "/var/log/apache2/aFLVmgiHAgBb_access.log" combined
+
+</VirtualHost>
+
+<VirtualHost *:80>
+  ServerName dock.contentbench
+
+  ## Vhost docroot
+  DocumentRoot "/vagrant/ContentBench”
+
+  ## Directories, there should at least be a declaration for /vagrant
+
+  <Directory "/vagrant/ContentBench”>
+    Options Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    Allow from all
+  </Directory>
+
+  ## Load additional static includes
+
+  ## Logging
+  #ErrorLog "/var/log/apache2/aFLVmgiHAgBb_error.log"
+  #ServerSignature Off
+  #CustomLog "/var/log/apache2/aFLVmgiHAgBb_access.log" combined
+
+</VirtualHost>
