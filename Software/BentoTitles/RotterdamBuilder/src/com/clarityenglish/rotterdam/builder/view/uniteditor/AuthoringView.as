@@ -221,7 +221,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 		
 		protected function checkAutoAddAnswer():void {
 			// gh#1005 - if the last answer isn't empty then add an empty one
-			if (answers && StringUtils.trim(answers.getItemAt(answers.length - 1).toString()).length != 0)
+			if (answers && (answers.length == 0 || StringUtils.trim(answers.getItemAt(answers.length - 1).toString()).length != 0))
 				onAnswerAdded();
 			
 			if (answers.length > 1)
