@@ -105,7 +105,7 @@ class GapQuestionConverter {
 	public function htmlToTlfString(xmlString:String):TextFlow {
 		var tlfString:String = "";
 		tlfString += '<TextFlow xmlns="http://ns.adobe.com/textLayout/2008">';
-		tlfString += xmlString.replace(/<input id="(\w+)" placeholder="(\w+)" ?\/>/g, '<g id="$1"><span textDecoration="underline">$2</span></g>');
+		tlfString += xmlString.replace(/<input id="(\w+)" placeholder="(.+)" ?\/>/g, '<g id="$1"><span textDecoration="underline">$2</span></g>');
 		tlfString += '</TextFlow>';
 		return TextFlowUtil.importFromString(tlfString);
 	}
