@@ -9,7 +9,11 @@ package com.clarityenglish.tensebuster.view.progress
 	
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.net.URLRequest;
+	import flash.net.URLRequestMethod;
+	import flash.net.navigateToURL;
 	import flash.printing.PrintJob;
+	import flash.utils.ByteArray;
 	
 	import flashx.textLayout.elements.TextFlow;
 	
@@ -99,7 +103,7 @@ package com.clarityenglish.tensebuster.view.progress
 		
 		private var _courseChanged:Boolean;
 		private var _courseClass:String;
-		private var myPDF:PDF;
+		//private var pdf:PDF;
 		
 		[Bindable]
 		public var user:User;
@@ -165,7 +169,7 @@ package com.clarityenglish.tensebuster.view.progress
 				oopsVGroup.visible = false;
 				certificateGroup.visible = false;
 				printGroup.visible = false;
-				if (coverage < 90) {
+				if (coverage < 10) {
 					oopsVGroup.visible = true;
 					certificateFooter.visible = true;
 					var courseCaption:String = menu.course.(@["class"] == courseClass).@caption;
@@ -230,21 +234,28 @@ package com.clarityenglish.tensebuster.view.progress
 		}
 		
 		protected function onPrintClick(event:MouseEvent):void {
-			myPDF = new PDF(  Orientation.LANDSCAPE, Unit.MM, Size.LETTER );
+			var pdf:PDF = new PDF(Orientation.LANDSCAPE, Unit.MM, Size.A4);
 			
 			// we set the zoom to 100%
-			myPDF.setDisplayMode ( Display.FULL_WIDTH ); 
-			
+			pdf.setDisplayMode(Display.FULL_WIDTH, org.alivepdf.layout.Layout.SINGLE_PAGE); 
 			
 			// we add a page
-			myPDF.addPage();
+			pdf.addPage();
 			//var resizeMode:org.alivepdf.layout.Resize = new Resize(Mode.FIT_TO_PAGE, Position.CENTERED);
-			myPDF.addImage(certificateGroup, null, -25, 0, 290);
+			// This would be fine if it wasn't dependent on scrolling in a shallow window. Do we have to 
+			// add all the parts manually direct to the pdf? it would be ok except for the textflow...
+			pdf.addImage(certificateGroup, null, -25, 0, 290);
 			
-			// to save the PDF your specificy the path to the create.php script
-			// alivepdf takes care of the rest, if you are using AIR and want to save the PDF locally just use Method.LOCAL
-			// and save the returned bytes on the disk through the FileStream class
-			myPDF.save( Method.REMOTE, "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/createPDF.php", "drawing.pdf" );
+			// gh#1038
+			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php?filename=certificate.pdf";
+			var bytesTemp:ByteArray = pdf.save(Method.LOCAL);
+			var sendRequest:URLRequest = new URLRequest(pdfURL);
+			sendRequest.method = URLRequestMethod.POST;
+			sendRequest.data = bytesTemp;
+			navigateToURL(sendRequest,'_blank');
+			
+			// Then close
+			pdf.end();
 		}
 	}
 }
