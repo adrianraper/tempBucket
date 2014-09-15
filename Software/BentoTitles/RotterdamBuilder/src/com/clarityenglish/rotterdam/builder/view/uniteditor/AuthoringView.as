@@ -141,7 +141,7 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 					
 					// Add a question if there are none and select the first question
 					if (questions.length == 0) addQuestion();
-					showQuestion(questions.getItemAt(questions.length - 1) as XML);
+					showQuestion(questions.getItemAt(0) as XML);
 					
 					// Add an extra question if required
 					callLater(checkAutoAddQuestion);
