@@ -50,29 +50,6 @@ package com.clarityenglish.bento.controller {
 				facade.removeProxy(ExerciseProxy.NAME(exercise));
 				sendNotification(BBNotifications.EXERCISE_STOPPED, exercise);
 			}
-			
-			/*if (bentoProxy.currentExercise) {
-				var exercise:Exercise = bentoProxy.currentExercise;
-				var exerciseProxy:ExerciseProxy = facade.retrieveProxy(ExerciseProxy.NAME(exercise)) as ExerciseProxy;
-				var exerciseHasQuestions:Boolean = exercise.hasQuestions();
-				
-				// #294 - if the exercise has no questions then the score gets written here (if it does have questions it gets written when then marking window opens)
-				// a) non-marked exercises are covered
-				// b) the full time of the exercise, including feedback study, is covered.
-				if (!exercise.hasQuestions()) {
-					var exerciseMark:ExerciseMark = exerciseProxy.getExerciseMark();
-					
-					// Add more data to the exerciseMark ready to send it as a score
-					exerciseMark.duration = Math.round(exerciseProxy.duration / 1000);
-					exerciseMark.UID = bentoProxy.getExerciseUID(exercise.href);
-					
-					sendNotification(BBNotifications.SCORE_WRITE, exerciseMark);
-				}
-				
-				bentoProxy.currentExercise = null;
-				facade.removeProxy(ExerciseProxy.NAME(exercise));
-				sendNotification(BBNotifications.EXERCISE_STOPPED, exercise);
-			}*/
 		}
 		
 	}
