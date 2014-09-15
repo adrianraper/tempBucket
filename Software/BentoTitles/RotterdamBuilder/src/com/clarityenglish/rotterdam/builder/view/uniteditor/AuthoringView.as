@@ -325,9 +325,12 @@ package com.clarityenglish.rotterdam.builder.view.uniteditor {
 				} else {
 					var question:XML = questions.getItemAt(n) as XML;
 					
-					// Delete any empty answers (note that this gets at *all* answer nodes, including when there are multiple ones in gapfill style questions)
 					for each (var answer:XML in question.answers.answer) {
+						// Delete any empty answers (note that this gets at *all* answer nodes, including when there are multiple ones in gapfill style questions)
 						if (StringUtils.trim(answer.toString()).length == 0) delete answer.parent().children()[answer.childIndex()];
+						
+						// Remove any inverted commas from the answer gh#1039
+						answer.setChildren(answer.toString().replace(/"/g, ""));
 					}
 					
 					// #1027 - Now for gap-fill style questions delete any <answers source="..."> which don't have a matching input with that id
