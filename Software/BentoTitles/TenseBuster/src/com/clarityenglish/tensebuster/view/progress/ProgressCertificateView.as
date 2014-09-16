@@ -20,6 +20,10 @@ package com.clarityenglish.tensebuster.view.progress
 	import mx.controls.SWFLoader;
 	
 	import org.alivepdf.display.Display;
+	import org.alivepdf.fonts.CoreFont;
+	import org.alivepdf.fonts.FontFamily;
+	import org.alivepdf.fonts.IFont;
+	import org.alivepdf.images.ColorSpace;
 	import org.alivepdf.layout.Mode;
 	import org.alivepdf.layout.Orientation;
 	import org.alivepdf.layout.Position;
@@ -169,7 +173,7 @@ package com.clarityenglish.tensebuster.view.progress
 				oopsVGroup.visible = false;
 				certificateGroup.visible = false;
 				printGroup.visible = false;
-				if (coverage < 10) {
+				if (coverage < 90) {
 					oopsVGroup.visible = true;
 					certificateFooter.visible = true;
 					var courseCaption:String = menu.course.(@["class"] == courseClass).@caption;
@@ -233,20 +237,49 @@ package com.clarityenglish.tensebuster.view.progress
 			courseSelect.dispatch(event.target.selectedItem.courseClass.toLowerCase());
 		}
 		
+		// gh#1038 Redone
 		protected function onPrintClick(event:MouseEvent):void {
 			var pdf:PDF = new PDF(Orientation.LANDSCAPE, Unit.MM, Size.A4);
 			
-			// we set the zoom to 100%
+			// set the zoom to 100% (applies when it is opened in Reader)
 			pdf.setDisplayMode(Display.FULL_WIDTH, org.alivepdf.layout.Layout.SINGLE_PAGE); 
 			
-			// we add a page
+			// add a page
 			pdf.addPage();
-			//var resizeMode:org.alivepdf.layout.Resize = new Resize(Mode.FIT_TO_PAGE, Position.CENTERED);
-			// This would be fine if it wasn't dependent on scrolling in a shallow window. Do we have to 
-			// add all the parts manually direct to the pdf? it would be ok except for the textflow...
-			pdf.addImage(certificateGroup, null, -25, 0, 290);
+
+			// Add background graphic
+			// This would be fine if it wasn't dependent on scrolling in a shallow window. 
+			//pdf.addImage(certificateGroup, null, -25, 0, 290);
+			pdf.addImage(certificateSWFLoader, new org.alivepdf.layout.Resize(Mode.FIT_TO_PAGE, Position.LEFT), 25, 5);
 			
-			// gh#1038
+			// add labels and certificate wording
+			var arialNormal:IFont = new CoreFont(FontFamily.HELVETICA);
+			var arialBold:IFont = new CoreFont(FontFamily.HELVETICA_BOLD);
+			pdf.setFont(arialNormal, 11);
+			
+			pdf.setXY(10, 55);
+			pdf.addCell(50, 10, nameTextLabel.text, 0, 0, 'R');
+			pdf.setXY(10, 65);
+			pdf.addCell(50, 10, courseTextLabel.text, 0, 0, 'R');
+			pdf.setXY(10, 75);
+			pdf.addCell(50, 10, dateTextLabel.text, 0, 0, 'R');
+			
+			pdf.setFont(arialBold, 13);
+			var replaceObj:Object = { name:nameLabel.text };
+			pdf.setXY(62, 55);
+			pdf.addCell(50, 10, copyProvider.getCopyForId("certificateName",replaceObj), 0, 0, 'L');
+			replaceObj = { course:courseLabel.text };
+			pdf.setXY(62, 65);
+			pdf.addCell(50, 10, copyProvider.getCopyForId("certificateCourse",replaceObj), 0, 0, 'L');
+			replaceObj = { date:dateLabel.text };
+			pdf.setXY(62, 75);
+			pdf.addCell(50, 10, copyProvider.getCopyForId("certificateDate",replaceObj), 0, 0, 'L');
+			
+			pdf.setFont(arialNormal, 13);
+			var aveScore:Number = menu.course.(@["class"] == courseClass).@averageScore;
+			pdf.setXY(88, 92);
+			pdf.addMultiCell(120, 6, copyProvider.getCopyForId("certificateWording", {score: aveScore}), 0, 'C');
+
 			var pdfURL:String = "/Software/ResultsManager/web/amfphp/services/createPDF.php?filename=certificate.pdf";
 			var bytesTemp:ByteArray = pdf.save(Method.LOCAL);
 			var sendRequest:URLRequest = new URLRequest(pdfURL);

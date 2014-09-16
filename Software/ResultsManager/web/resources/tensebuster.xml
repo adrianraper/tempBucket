@@ -199,9 +199,13 @@
 			<lit name="completeString">
 			 	<![CDATA[
 			 	<p>This is to certify that this learner has completed this level</p>
-			 	<p>and has achieved an average score of <span fontWeight="bold" fontSize="20">{aveScore}%.</span></p>
+			 	<p>and has achieved an average score of {aveScore}%.</p>
 			 	]]>
 			</lit>
+			<lit name="certificateName">{name}</lit>
+			<lit name="certificateCourse">{course}</lit>
+			<lit name="certificateDate">{date}</lit>
+			<lit name="certificateWording">This is to certify that this learner has completed this level and has achieved an average score of {score}%.</lit>
 			 
 			<!-- Used in My profile -->
 			<lit name="nameTextLabel">Name:</lit>

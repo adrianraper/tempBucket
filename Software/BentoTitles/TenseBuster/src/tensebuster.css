@@ -420,11 +420,13 @@ mx|ToolTip {
 	fontSize: 12;
 }
 
+/* seems not used?
 mx|LegendItem
 {
 	font-weight:bold;     
 	textFieldClass: ClassReference("mx.core.UITextField");
 }
+*/
 
 ws|Alert {
 	skinClass: ClassReference("skins.tensebuster.exercise.ui.AlertSkin");
