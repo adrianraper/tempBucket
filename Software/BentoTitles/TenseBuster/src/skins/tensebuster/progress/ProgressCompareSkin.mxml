@@ -141,8 +141,8 @@
 			<mx:BarSeries id="myBarSeries" yField="@caption" xField="@myAverageScore" maxBarWidth="8" >
 				<mx:fill>
 					<s:LinearGradient>
-						<s:GradientEntry id="myAveScoreColor1" />
-						<s:GradientEntry id="myAveScoreColor2" />
+						<s:GradientEntry id="myAvgScoreColor1" />
+						<s:GradientEntry id="myAvgScoreColor2" />
 					</s:LinearGradient>
 				</mx:fill>
 			</mx:BarSeries>
