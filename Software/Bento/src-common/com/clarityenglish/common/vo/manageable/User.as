@@ -81,6 +81,9 @@
 		// v3.4 Multi-group users
 		public var userID:String;
 		
+		// gh#956
+		public var memory:String;
+		
 		public function User(data:Object = null) {
 			if (data)
 				buildUser(data);
@@ -148,7 +151,16 @@
 		}
 		public function set examDate(value:Date):void {
 			birthday = DateUtil.dateToAnsiString(value);
-			trace("set exam date set birthday to " + birthday + " from " + value.toDateString()); 
+			//trace("set exam date set birthday to " + birthday + " from " + value.toDateString()); 
+		}
+		
+		// gh#1040 I think we will end up with a much more sophisticated memory handler
+		public function get memoryXml():XML {
+			if (memory) {
+				return new XML(memory);
+			} else {
+				return null;
+			}
 		}
 		
 		/**

@@ -180,6 +180,7 @@
     <classEntry path="com.clarityenglish.controls.video.UniversalVideoPlayer"/>
     <classEntry path="com.clarityenglish.controls.video.IVideoProvidable"/>
     <classEntry path="com.clarityenglish.controls.video.events.VideoSpanButtonBarEvent"/>
+    <classEntry path="com.clarityenglish.bento.form.TextFormItemHandler"/>
   </includeClasses>
   <includeResources>
     <resourceEntry destPath="skins/assets/play.png" sourcePath="skins/assets/play.png"/>
