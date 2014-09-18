@@ -1,6 +1,7 @@
 ﻿package com.clarityenglish.rotterdam {
 	import com.clarityenglish.bento.BBNotifications;
 	import com.clarityenglish.bento.BentoFacade;
+	import com.clarityenglish.bento.controller.ExerciseStopCommand;
 	import com.clarityenglish.bento.controller.WarningShowCommand;
 	import com.clarityenglish.common.controller.ShowErrorCommand;
 	import com.clarityenglish.common.view.login.LoginMediator;
@@ -48,7 +49,10 @@
 			// gh#13
 			registerCommand(RotterdamNotifications.COURSE_RESET, CourseResetCommand);
 			
-			// gh#1090
+			// gh#1033
+			removeCommand(BBNotifications.EXERCISE_STOP);
+			
+			mapView(LoginView, LoginMediator);
 			mapView(TitleView, TitleMediator);
 			mapView(CourseSelectorView, CourseSelectorMediator);
 			mapView(CourseView, CourseMediator);
