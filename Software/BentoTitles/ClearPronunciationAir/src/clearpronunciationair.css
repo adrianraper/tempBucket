@@ -6,6 +6,7 @@
 @namespace video "com.clarityenglish.controls.video.*";
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
+@namespace settings "com.clarityenglish.clearpronunciation.view.settings.*";
 
 clearpronunciation|ClearPronunciationApplication {
 	skinClass: ClassReference("skins.clearpronunciationair.ClearPronunciationAirSkin");
@@ -13,19 +14,13 @@ clearpronunciation|ClearPronunciationApplication {
 
 @media (os-platform: "IOS") {
 	video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.controls.video.WebViewVideoSelectorSkin");
-	}
-	widgets|VideoSelectorWidget video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.unit.widgets.IOSVideoSelectorSkin");
+		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
 	}
 }
 
 @media (os-platform: "Android") {
 	video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.controls.video.OSMFVideoSelectorSkin");
-	}
-	widgets|VideoSelectorWidget video|VideoSelector {
-		skinClass: ClassReference("skins.clearpronunciationair.unit.widgets.AndroidVideoSelectorSkin");
+		skinClass: ClassReference("skins.clearpronunciationair.controls.video.AndroidVideoSelectorSkin");
 	}
 }
 

@@ -52,7 +52,7 @@
 			{
 				// For the gourp of audio, the skin for group widget is different
 				if (hostComponent.src == "audio") {
-					groupWidgetList.percentWidth = 60;
+					groupWidgetList.percentWidth = 80;
 					widgetVGroup.top = 0;
 					widgetText.visible = false;
 					widgetText.includeInLayout = false;
@@ -77,17 +77,11 @@
 		<s:State name="editing_selected" stateGroups="editing,selected" />
 	</s:states>
 	
-	<s:Group id="groupWidgetGroup" width="100%" height="100%">
-		<!--s:Rect right="0" left="0" top="0" bottom="0">
-			<s:fill>
-				<s:SolidColor color="0xFFFFFF" />
-			</s:fill>
-		</s:Rect-->
-		
-		<s:VGroup id="widgetVGroup" top="10" width="100%" paddingBottom="20">
-			<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+	<s:Group id="groupWidgetGroup" width="100%" height="100%">		
+		<s:VGroup id="widgetVGroup" top="10" width="100%" height="100%">
+			<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" />
 			
-			<ui:WidgetList id="groupWidgetList" width="100%" dataProvider="{new XMLListCollection(hostComponent.xml.exercise)}" borderVisible="false" useVirtualLayout="false" verticalScrollPolicy="off">
+			<ui:WidgetList id="groupWidgetList" width="100%" height="100%" dataProvider="{new XMLListCollection(hostComponent.xml.exercise)}" borderVisible="false" useVirtualLayout="false" verticalScrollPolicy="off">
 				<ui:layout>
 					<layouts1:FreeUnitLayout />
 				</ui:layout>

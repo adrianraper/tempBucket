@@ -1,115 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:mx="library://ns.adobe.com/flex/mx"
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
+		alpha.disabled="0.5" 
 		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*"
-		creationComplete="onCreationComplete(event)">
-	<!-- host component -->
+		xmlns:ui1="com.clarityenglish.clearpronunciation.view.progress.ui.*">
+	
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressAnalysisView")]
+		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressAnalysisView")]
 	</fx:Metadata>
 	
 	<fx:Script>
 		<![CDATA[
-			import com.clarityenglish.bento.view.progress.components.ProgressAnalysisView;
-			
-			import mx.events.FlexEvent;
-			
-			protected function onCreationComplete(event:FlexEvent):void {
-				hostComponent.type = ProgressAnalysisView.UNIT_BASED;
+			public function get courseColor():Number {
+				var courseCaption:String = hostComponent.courseCaption;
+				return getStyle(courseCaption.charAt(0) + "Color");
 			}
-			
 		]]>
 	</fx:Script>
 	
-	<s:states>
-		<s:State name="disabled" />
-		
-		<s:State name="normal" />
-		<s:State name="blocked" />
-		<s:State name="blockedScore" />
-		<s:State name="blockedDuration" />
-		<s:State name="demo"  />
-	</s:states>
+    <s:states>
+        <s:State name="normal" />
+		<s:State name="normal7Inches" />
+		<s:State name="normal10Inches" />
+        <s:State name="disabled" />
+    </s:states>
 	
-	<s:Label id="analysisInstructionLabel1" fontWeight="bold" fontSize="16" top="10" left="20"/>
-	<s:Label id="analysisInstructionLabel2" top="45" fontSize="14" left="20"/>
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
+		<ui:layout>
+			<s:ButtonBarHorizontalLayout gap="35" />
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
 	
+	<s:Rect top="60" left="45" right="50" height="1">
+		<s:fill>
+			<s:SolidColor color="0xEC1C32" />
+		</s:fill>
+	</s:Rect>
+	
+	<s:Label id="analyseInstructionLabel" top="80" left="50" fontSize="13" />
 
+	<ui1:StackedCircleWedgeChart id="stackedChart" top="120" height="35" right="40" right.normal10Inches="140" />
+	<s:Path right="100" right.normal10Inches="200" top="120" winding="nonZero" data="M381.42 0 0 0C0 105.326 85.3853 190.71 190.71 190.71 296.037 190.71 381.42 105.326 381.42 0Z">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF"/>
+		</s:fill>
+	</s:Path>
+	<s:Group right="190" right.normal10Inches="290" top="160" width="200" id="circleWedgeTimeGroup">
+		<s:VGroup id="timeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
+			<s:Label id="circleWedgeCourseLabel" fontSize="14" />
+			<s:HGroup>
+				<s:Label id="analysisTimeLabel" fontSize="26" fontWeight="bold" />
+				<s:Label id="minLabel" fontSize="14" paddingTop="4" />
+			</s:HGroup>			
+		</s:VGroup>
+		<s:VGroup id="totalTimeWedgeVGroup" horizontalAlign="center" horizontalCenter="0" gap="10">
+			<s:Label id="totalTimeLabel" fontSize="14"/>
+			<s:HGroup>
+				<s:Label id="totalTimeNumberLabel" fontSize="26" fontWeight="bold" />
+				<s:Label id="totalTimeMinLabel" fontSize="14" paddingTop="4" />
+			</s:HGroup>			
+		</s:VGroup>
+		<s:Button id="circleWedgeInstructionLabel" top="220" horizontalCenter="0" fontSize="13" fontWeight="normal" />
+	</s:Group>	
 	
-	<s:Scroller id="unitGoupsScroller" width="100%" height="100%" top="70" left="20">
-		<s:DataGroup id="durationDataGroup">
-			<s:layout>
-				<s:TileLayout horizontalGap="20" verticalGap="15" requestedColumnCount="3" />
-			</s:layout>
-			<s:itemRenderer>
-				<fx:Component>
-					<s:DataRenderer width="220" height="136">
-						<fx:Script>
-							<![CDATA[
-								import com.clarityenglish.bento.model.DataProxy;
-								import com.clarityenglish.common.model.interfaces.CopyProvider;
-								
-								import spark.components.DataGroup;
-								import spark.components.supportClasses.ItemRenderer;
-								
-								[Bindable]
-								public var copyProvider:CopyProvider;
-								
-								[Bindable("dataChange")]
-								public function get itemIndex():int {
-									return (owner as DataGroup).dataProvider.getItemIndex(data);
-								}
-								
-								[Bindable("dataChange")]
-								public function get strokeColour():Number {
-									// Cycle the stroke colour through the 'unitColours' array (defined in the global tag of player.css)
-									var unitColours:Array = getStyle("unitColours");
-									return unitColours[itemIndex % unitColours.length];
-								}
-								
-								[Bindable("dataChange")]
-								public function get gradiantColour():Number {
-									// Cycle the stroke colour through the 'unitColours' array (defined in the global tag of player.css)
-									var gradientColours:Array = getStyle("gradientColours");
-									return gradientColours[itemIndex % gradientColours.length];
-								}
-							]]>
-						</fx:Script>
-						<s:Rect left="0" right="0" top="0" bottom="0" radiusX="8" radiusY="8">
-							<s:stroke>
-								<s:SolidColorStroke color="{strokeColour}" weight="2" />
-							</s:stroke>
-						</s:Rect>
-						
-						<s:Path data="M 200 0 L 220 0 L 220 20 L 200 0 Z">
-							<s:fill>
-								<s:LinearGradient rotation="135" scaleX="180" x="300" y="0">
-									<s:GradientEntry color="{gradiantColour}" ratio="0"/>	
-									<s:GradientEntry color="{strokeColour}" ratio="1"/>	
-								</s:LinearGradient>
-							</s:fill>
-						</s:Path>
-						<s:Label text="Unit {itemIndex + 1}" fontSize="21" fontWeight="bold" left="10" top="10" />
-						<s:Group left="10" right="10" top="30">
-							<s:Line width="100%">
-								<s:stroke>
-									<s:SolidColorStroke color="0x000000"/>
-								</s:stroke>
-							</s:Line>
-						</s:Group>
-						
-						<s:Label text="{data.@caption}" fontSize="16" top="40" left="10" maxDisplayedLines="2" width="190"/>
-						
-						<s:Label text="{copyProvider.getCopyForId('courseDurationRenderLabel')}" top="80" left="10" />
-						<s:Label text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" fontSize="24" top="100" left="10" />
-					</s:DataRenderer>
-				</fx:Component>
-			</s:itemRenderer>
-		</s:DataGroup>
-	</s:Scroller>
-	<s:Group horizontalCenter="365" >
-		<s:Label id="analysisTimeLabel" fontSize="14" top="45" />
-		<ui:StackedCircleChart id="stackedChart" top="60" width="240" height="240" skinClass="skins.clearpronunciation.progress.ui.StackedCircleChart"/>
-	</s:Group>
+	<s:Scroller left="50" top="110" bottom="60">
+		<s:VGroup>
+			<s:DataGroup id="durationDataGroup" dataProvider="{hostComponent.unitListCollection}">
+				<s:layout>
+					<s:VerticalLayout gap="15" horizontalAlign="right" />
+				</s:layout>
+				<s:itemRenderer>
+					<fx:Component>
+						<s:DataRenderer>
+							<fx:Script>
+								<![CDATA[
+									import com.clarityenglish.common.model.interfaces.CopyProvider;
+									import com.googlecode.bindagetools.util.Util;
+									
+									import spark.components.DataGroup;
+									
+									[Bindable]
+									public var copyProvider:CopyProvider;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/EDashline.png")]
+									private static var EDashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/ELongDashline.png")]
+									private static var ELongDashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/LDashline.png")]
+									private static var LDashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/LLongDashline.png")]
+									private static var LLongDashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/IDashline.png")]
+									private static var IDashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/ILongDashline.png")]
+									private static var ILongDashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/UDashline.png")]
+									private static var UDashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/ULongDashline.png")]
+									private static var ULongDashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/ADashline.png")]
+									private static var ADashline:Class;
+									
+									[Embed(source="skins/clearpronunciation/assets/progress/analyse/ALongDashline.png")]
+									private static var ALongDashline:Class;
+																
+									private function getTimeColour(data:Object):Number {
+										if (data) {
+											var index:Number = (owner as DataGroup).dataProvider.getItemIndex(data);
+											var courseCaption:String = (owner as DataGroup).dataProvider[index].parent().@caption;
+											return getStyle(courseCaption.charAt(0) + "Color");
+										}
+										return 0;
+									}
+									
+									override public function set data(value:Object):void {
+										super.data = value;
+										
+										dashline.source = dashlineSource;
+									}
+
+									protected function get dashlineSource():Class {
+										if (data) {
+											var index:Number = (owner as DataGroup).dataProvider.getItemIndex(data);
+											var courseCaption:String = (owner as DataGroup).dataProvider[index].parent().@caption;
+											
+											if (parentDocument.hostComponent.androidSize == "10Inches") {
+												switch (courseCaption.charAt(0)) {
+													case "E":
+														return ELongDashline;					
+													case "L":
+														return LLongDashline;
+													case "I":
+														return ILongDashline;
+													case "U":
+														return ULongDashline;
+													case "A":
+														return ALongDashline;
+													default:
+														return null;
+												}
+											}else {
+												switch (courseCaption.charAt(0)) {
+													case "E":
+														return EDashline;
+													case "L":
+														return LDashline;
+													case "I":
+														return IDashline;
+													case "U":
+														return UDashline;
+													case "A":
+														return ADashline;
+													default:
+														return null;
+												}							
+											}
+										}
+										return null;
+									}
+								]]>
+							</fx:Script>
+								<s:Label text="{data.@caption}" fontSize="13" top="8" fontWeight="bold" />
+								<s:HGroup id="durationHGroup" right="0" top="5">
+									<s:Label id="durationLable" text="{copyProvider.getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" color="{getTimeColour(data)}"  fontSize="26" fontWeight="bold"  />
+									<s:Label id="minLabel" fontSize="14" text="{copyProvider.getCopyForId('minLabel')}" color="{getTimeColour(data)}" paddingTop="6"/>
+								</s:HGroup>		
+							<s:SWFLoader id="dashline" top="23"/>
+						</s:DataRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:DataGroup>
+			<s:VGroup left="20" paddingTop="-10" horizontalAlign="right">
+				<s:Rect width="305" width.normal10Inches="416" height="2">
+					<s:fill>
+						<s:SolidColor id="boundaryLineSolidColor" />
+					</s:fill>
+				</s:Rect>
+				<s:Group width="100%" top="16">
+					<s:HGroup left="0" paddingTop="16">
+						<s:Label id="totalLabel" fontSize="13" fontWeight="bold"/>
+					</s:HGroup>
+					<s:HGroup paddingTop="16" horizontalAlign="right" right="3">
+						<s:Label id="totalDurationLabel" fontSize="26" fontWeight="bold" paddingTop="-5" />
+						<s:Label id="totalMinLabel" fontSize="14" paddingTop="2" />
+					</s:HGroup>
+				</s:Group>			
+			</s:VGroup>		
+		</s:VGroup>	
+	</s:Scroller>	
 </s:Skin>

@@ -3,100 +3,38 @@
 		xmlns:s="library://ns.adobe.com/flex/spark"
 		xmlns:mx="library://ns.adobe.com/flex/mx"
 		xmlns:controls="com.clarityenglish.bento.view.*"
-		xmlns:progress="com.clarityenglish.bento.view.progress.*"
-		xmlns:components="com.clarityenglish.bento.view.progress.components.*"
-		creationComplete="initial()">
+		xmlns:progress="com.clarityenglish.clearpronunciation.view.progress.*"
+		xmlns:components="com.clarityenglish.bento.view.progress.components.*">
 	<!-- host component -->
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.progress.ProgressView")]
+		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressView")]
 	</fx:Metadata>
-	<fx:Script>
-		<![CDATA[
-			import com.clarityenglish.common.vo.content.Title;
-			
-			import mx.collections.ArrayCollection;
-			
-			import spark.components.ButtonBarButton;
-			
-			//alice reassgin the dataprovide to progressNavBar
-			protected function initial():void {
-				if (hostComponent.progressNavBar.dataProvider){
-					//alice: the copyProvider cannot get so far
-					progressNavBar.dataProvider = new ArrayCollection( [
-						{ label: hostComponent.getCopyProvider().getCopyForId("coverageLabel"), data: "coverage" },
-						{ label: hostComponent.getCopyProvider().getCopyForId("analysisLabel"), data: "analysis" },
-					] );
-				}
-			}
-		]]>
-	</fx:Script>
-	
-	<fx:Declarations>
-		<s:DropShadowFilter id="dropShadowFilter" blurX="6" blurY="6" alpha="0.5" distance="0" angle="180" knockout="false" />
-	</fx:Declarations>
 	
 	<s:states>
-		<s:State name="disabled" />
 		<s:State name="normal" />
+		<s:State name="disabled" />
 		
 		<s:State name="coverage" stateGroups="normalStates,coverageStates"/>
 		<s:State name="compare" stateGroups="normalStates,compareStates"/>
 		<s:State name="analysis" stateGroups="normalStates,analysisStates"/>
 		<s:State name="score" stateGroups="normalStates,scoreStates"/>
-		
-		<s:State name="coverage_demo" stateGroups="demoStates,coverageStates"/>
-		<s:State name="compare_demo" stateGroups="demoStates,compareStates"/>
-		<s:State name="analysis_demo" stateGroups="demoStates,analysisStates"/>
-		<s:State name="score_demo" stateGroups="demoStates,scoreStates"/>
+		<s:State name="certificate" stateGroups="normalStates, certificateStates"/>
 	</s:states>
 	
-	<!--s:layout>
-		<s:VerticalLayout />
-	</s:layout-->
-	
-	<!--s:transitions>
-		<s:Transition fromState="*" toState="*" autoReverse="true">
-			<s:Wipe direction="left" duration="100" targets="{[progressCoverageView, progressAnalysisView ]}" />
-		</s:Transition>
-	</s:transitions-->
-	
-	<s:HGroup top="10" left="26">
-		<s:SWFLoader source="@Embed(source='/skins/clearpronunciation/assets/progress/icon_progress.png')"/>
-		<s:Label id="progressCaption" paddingTop="5" text="My Progress" fontSize="16" fontWeight="bold"/>
-	</s:HGroup>	
-
-	<!--s:Group id="anonWarning" top="10" right="0" visible="{hostComponent.licenceType==Title.LICENCE_TYPE_AA}" includeInLayout="true">
-		<s:Label left="0" height="14" top="80" text="You have logged in anonymously, so your progress will not be saved after you close the program." />
-	</s:Group-->
-	
-	<s:Group width="100%" left="20" top="60">
-		<s:ButtonBar id="progressNavBar"/>
-		<s:Label id="progressAnonymousLabel" paddingTop="18" right="15" visible="{hostComponent.isAnonymousUser}"/>	
-	</s:Group>
-	
-	<s:Group width="100%" height="100%" top="100" left="10" right="10" bottom="45">
-		<s:Rect  width="100%" height="100%" filters="{[dropShadowFilter]}">
-			<s:fill>
-				<s:SolidColor color="0xFFFFFF"/>
-			</s:fill>
-		</s:Rect>
-	</s:Group>
-
-	<s:HGroup width="100%" height="100%" top="110" left="15" bottom="50" right="15">
-		<s:Group width="100%" height="100%">
-			<s:Group width="100%" height="100%" includeIn="normalStates">
-				<components:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
-				<components:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis" />
-			</s:Group>
-			
-			<s:Image id="demoImage" width="954" height="516" 
-					 source.coverageStates="{hostComponent.assetFolder}coverage_demo.png" 
-					 source.compareStates="{hostComponent.assetFolder}compare_demo.png" 
-					 source.analysisStates="{hostComponent.assetFolder}analyse_demo.png"
-					 source.scoreStates="{hostComponent.assetFolder}score_demo.png"
-					 includeIn="demoStates" />
-		</s:Group>
+	<!--level button bar-->
+	<s:HGroup width="100%" paddingLeft="60" top="80">
+		<s:ButtonBar id="progressNavBar" fontSize="12"/>			
 	</s:HGroup>
 	
-	<s:BusyIndicator id="busyIndicator" verticalCenter="0" horizontalCenter="0" />
+	<s:HGroup width="100%" height="100%" verticalCenter="65" left="15" bottom="50" right="15">
+		<s:Group width="100%" height="100%">
+			<s:Group width="100%" height="100%" includeIn="normalStates">
+				<progress:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
+				<progress:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis" />
+				<progress:ProgressScoreView id="progressScoreView"   width="100%" height="100%" includeIn="score" />
+				<progress:ProgressCompareView id="progressCompareView" width="100%" height="100%" includeIn="compare" />
+				<progress:ProgressCertificateView id="progressCertificateView" width="100%" height="100%" includeIn="certificate" skinClass="skins.clearpronunciation.progress.ProgressCertificateSkin" />
+			</s:Group>
+		</s:Group>
+	</s:HGroup>
 </s:Skin>

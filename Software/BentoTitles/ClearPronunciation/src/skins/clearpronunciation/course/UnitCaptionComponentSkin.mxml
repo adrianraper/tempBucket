@@ -8,7 +8,8 @@
 	</fx:Metadata>
 	
 	<s:Group>
-		<s:SWFLoader id="swfLoader" source="{hostComponent.swfSource}" />
+		<s:Button id="unitIconButton" label="{hostComponent.iconLabel}"/>
+		<s:Label left="40" verticalCenter="0" text="{hostComponent.labelText}" fontSize="20" />
 		<components:AudioPlayer id="audioPlayer" src="{hostComponent.mp3Source}" controls="full" bottom="0" left="0" />
 	</s:Group>
 	

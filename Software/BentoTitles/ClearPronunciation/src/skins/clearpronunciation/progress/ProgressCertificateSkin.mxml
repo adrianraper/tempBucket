@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" xmlns:certificate="skins.clearpronunciation.assets.progress.certificate.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressCertificateView")]
+	</fx:Metadata>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+    </s:states>
+    
+	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='skins/clearpronunciation/assets/progress/progressFooter.png')" horizontalCenter="-1" bottom="-40"/>
+	
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
+		<ui:layout>
+			<s:ButtonBarHorizontalLayout gap="16" />
+		</ui:layout>
+	</ui:ProgressCourseButtonBar>
+	
+	<s:Rect top="60" left="45" right="50" height="1">
+		<s:fill>
+			<s:SolidColor color="0xEC1C32" />
+		</s:fill>
+	</s:Rect>	
+	
+	<s:VGroup id="oopsVGroup"  horizontalCenter="0" top="160" bottom="0" visible="false">
+		<s:Group top="0">
+			<certificate:EOops visible="{hostComponent.courseClass == 'elementary'}" />
+			<certificate:IOops visible="{hostComponent.courseClass == 'intermediate'}"/>
+			<certificate:UOops visible="{hostComponent.courseClass == 'upperintermediate'}"/>
+			<certificate:LOops visible="{hostComponent.courseClass == 'lowerintermediate'}"/>
+			<certificate:AOops visible="{hostComponent.courseClass == 'advanced'}"/>
+		</s:Group>	
+		<s:RichEditableText id="notCompleteRichEditableText" width="100%" paddingTop="25" fontSize="13" lineHeight="30" horizontalCenter="0"/>
+	</s:VGroup>
+	
+	<s:Group id="printGroup" right="0" top="60">
+		<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/progress/certificate/printTip.png')" right="150" top="10"/>
+		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60"/>		
+	</s:Group>
+	
+	<s:Scroller top="110" bottom="0">
+		<s:Group id="certificateGroup">
+			<s:SWFLoader id="certificateSWFLoader" left="60" />
+			<s:HGroup top="150" left="160" gap="16">
+				<s:VGroup gap="10">
+					<s:Label id="nameTextLabel" fontSize="15" />
+					<s:Label id="courseTextLabel" fontSize="15" />
+					<s:Label id="dateTextLabel" fontSize="15" />
+				</s:VGroup>
+				<s:VGroup gap="10">
+					<s:Label id="nameLabel" fontWeight="bold" fontSize="16" />						
+					<s:Label id="courseLabel" fontWeight="bold" fontSize="16" />
+					<s:Label id="dateLabel" fontWeight="bold" fontSize="16" />
+				</s:VGroup>										
+			</s:HGroup>						
+			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="260" fontSize="14" textAlign="center" />
+		</s:Group>
+	</s:Scroller>
+</s:Skin>

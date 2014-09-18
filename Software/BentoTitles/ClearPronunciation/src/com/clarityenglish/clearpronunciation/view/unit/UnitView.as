@@ -9,6 +9,8 @@ package com.clarityenglish.clearpronunciation.view.unit {
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	
+	import spark.components.Label;
+	
 	public class UnitView extends BentoView {
 		
 		[SkinPart]
@@ -17,10 +19,19 @@ package com.clarityenglish.clearpronunciation.view.unit {
 		[SkinPart]
 		public var makeSoundsList:WidgetList;
 		
+		[SkinPart]
+		public var practiseSoundsLabel:Label;
+		
+		[SkinPart]
+		public var makeSoundsLabel:Label;
+		
 		protected var _widgetCollection:ListCollectionView;
 		
 		private var _widgetCollectionChanged:Boolean;
 		private var _channelCollection:ArrayCollection;
+		private var _practiseSoundsCollection:XMLListCollection;
+		private var _makeSoundsListCollection:XMLListCollection;
+		
 		
 		[Bindable(event="widgetCollectionChanged")]
 		public function get widgetCollection():ListCollectionView {
@@ -39,6 +50,40 @@ package com.clarityenglish.clearpronunciation.view.unit {
 					
 					_widgetCollectionChanged = true;
 					invalidateProperties();
+				});
+			}
+		}
+		
+		[Bindable(event="practiseSoundsCollectionChanged")]
+		public function get practiseSoundsCollection():XMLListCollection {
+			return _practiseSoundsCollection;
+		}
+		
+		public function set practiseSoundsCollection(value:XMLListCollection):void {
+			if (value !== _practiseSoundsCollection) {
+				_practiseSoundsCollection = null;
+				dispatchEvent(new Event("practiseSoundsCollectionChanged"));
+				
+				callLater(function():void {
+					_practiseSoundsCollection = value;
+					dispatchEvent(new Event("practiseSoundsCollectionChanged"));
+				});
+			}
+		}
+		
+		[Bindable(event="makeSoundsListCollectionChanged")]
+		public function get makeSoundsListCollection():XMLListCollection {
+			return _makeSoundsListCollection;
+		}
+		
+		public function set makeSoundsListCollection(value:XMLListCollection):void {
+			if (value !== _makeSoundsListCollection) {
+				_makeSoundsListCollection = null;
+				dispatchEvent(new Event("makeSoundsListCollectionChanged"));
+				
+				callLater(function():void {
+					_makeSoundsListCollection = value;
+					dispatchEvent(new Event("makeSoundsListCollectionChanged"));
 				});
 			}
 		}
@@ -67,6 +112,12 @@ package com.clarityenglish.clearpronunciation.view.unit {
 					instance.href = href;
 					instance.channelCollection = channelCollection;
 					break;
+				case practiseSoundsLabel:
+					practiseSoundsLabel.text = copyProvider.getCopyForId("practiseSoundsLabel");
+					break;
+				case makeSoundsLabel:
+					makeSoundsLabel.text = copyProvider.getCopyForId("makeSoundsLabel");
+					break;
 			}
 		}
 		
@@ -77,9 +128,9 @@ package com.clarityenglish.clearpronunciation.view.unit {
 				//practiseSoundsList.dataProvider = widgetCollection;
 				for (var i:Number = 0; i < widgetCollection.length; i++) {
 					if (widgetCollection[i]["@class"] == "practiseSounds") {
-						practiseSoundsList.dataProvider = new XMLListCollection(widgetCollection[i].exercise);
+						practiseSoundsCollection = new XMLListCollection(widgetCollection[i].exercise);
 					} else if (widgetCollection[i]["@class"] == "makeSounds") {
-						makeSoundsList.dataProvider = new XMLListCollection(widgetCollection[i].exercise);
+						makeSoundsListCollection = new XMLListCollection(widgetCollection[i].exercise);
 					}
 				}
 			}

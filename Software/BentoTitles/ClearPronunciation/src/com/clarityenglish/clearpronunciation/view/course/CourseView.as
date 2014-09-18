@@ -4,6 +4,7 @@ package com.clarityenglish.clearpronunciation.view.course
 	import com.clarityenglish.clearpronunciation.view.unit.UnitView;
 	import com.clarityenglish.clearpronunciation.vo.WindowShade;
 	import com.clarityenglish.clearpronunciation.vo.transform.SingleVideoNodeTransform;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.rotterdam.view.course.events.UnitDeleteEvent;
 	import com.clarityenglish.rotterdam.view.course.ui.PublishButton;
@@ -46,12 +47,6 @@ package com.clarityenglish.clearpronunciation.view.course
 		
 		[SkinPart]
 		public var swfloaderHGroup:HGroup;
-		
-		[SkinPart]
-		public var leftUnitCaptionComponent:UnitCaptionComponent;
-		
-		[SkinPart]
-		public var rightUnitCaptionComponent:UnitCaptionComponent;
 		
 		[SkinPart]
 		public var expandUnitListButton:ToggleButton;
@@ -150,6 +145,9 @@ package com.clarityenglish.clearpronunciation.view.course
 		
 		public function set unit(value:XML):void {
 			_unit = value;
+			_unitChanged = true;
+			
+			invalidateProperties();
 		}
 		
 		[Bindable]
@@ -174,6 +172,10 @@ package com.clarityenglish.clearpronunciation.view.course
 			_currentExerciseIndex = value;
 		}
 		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			course = _xhtml.selectOne("script#model[type='application/xml'] course");
@@ -187,8 +189,11 @@ package com.clarityenglish.clearpronunciation.view.course
 		protected override function commitProperties():void {
 			super.commitProperties();
 			
-			if (course && courseChanged) {
-			} 
+			// set unit list to select the correct unit
+			if (_unitChanged) {
+				unitList.selectedItem = unit;
+				_unitChanged = true;
+			}
 			
 			if (_exerciseVisibleChanged) {
 				if (isExerciseVisible) {
@@ -208,7 +213,6 @@ package com.clarityenglish.clearpronunciation.view.course
 				case unitList:									
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
-					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
 					break;
 				case settingsButton:
 					instance.addEventListener(MouseEvent.CLICK, onSettingsClick);
@@ -231,15 +235,15 @@ package com.clarityenglish.clearpronunciation.view.course
 			}
 		}
 		
-		protected function onUnitListClick(event:Event):void {
+		protected function onUnitSelected(event:IndexChangeEvent):void {
 			if (unitList.selectedIndex != -1) {
 				// to hide vertical scroll bar, use verticalScrollPolicy = off
 				windowShade.close();
 			}
 			
-		}
-		
-		protected function onUnitSelected(event:IndexChangeEvent):void {
+			if (isExerciseVisible) {
+				isExerciseVisible = false;
+			}
 			unitSelect.dispatch(event.target.selectedItem);
 		}
 		

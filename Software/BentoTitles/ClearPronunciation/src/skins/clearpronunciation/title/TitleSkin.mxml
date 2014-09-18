@@ -2,19 +2,26 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*" creationComplete="onCreationComplete(event)">
+		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*" creationComplete="onCreationComplete(event)" xmlns:title="skins.clearpronunciation.assets.title.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.title.TitleView")]
 	</fx:Metadata>
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
 			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
-				// working on tabBar button visibility
-				sectionNavigator.tabBar.dataGroup.getElementAt(0).visible = false;
+			import skins.clearpronunciation.assets.title.menuProgressOff;
+			
+			[Bindable]
+			private var stageWidth:Number;
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				stageWidth = stage.stageWidth;
+				
+				titleButtonHGroup.gap = ((stage.stageWidth - 64) * 0.65 - 500) * 0.25;
+				titleButtonHGroup.left = (stage.stageWidth - 64) * 0.35 + 185 + titleButtonHGroup.gap;
 			}
 			
 		]]>
@@ -30,20 +37,18 @@
 		<s:State name="progress" />
 	</s:states>
 	
-	<s:Group left="0" right="0" top="0">
-		<s:Rect left="0" right="0" top="0" bottom="0" height="50">
-			<s:fill>
-				<s:LinearGradient>
-					<s:GradientEntry color="#19B5E0"/>
-				</s:LinearGradient>
-			</s:fill>
-		</s:Rect>
-		
-		<s:Button id="logoutButton" right="10" top="4" useHandCursor="true" buttonMode="true" />
-	</s:Group>
-	
+	<!--home background-->
+	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeBg.png')" top="0" left="0" includeIn="home" />
+
 	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="30">
-		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%" />
-		<s:ViewNavigator id="progressViewNavigator"  firstView="com.clarityenglish.bento.view.progress.ProgressView" left="0" right="0" height="100%" includeIn="home" />
+		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%"  />
+		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.progress.ProgressView" left="0" right="0" height="100%" includeIn="home" />
 	</ui:CancelableTabbedViewNavigator>
+	
+	<s:HGroup id="titleButtonHGroup" top="5" left.course="{stageWidth - 50}">
+		<s:Button id="settingsButton" useHandCursor="true" buttonMode="true" includeIn="home" />
+		<s:Button id="phonemicChartButton" useHandCursor="true" buttonMode="true" includeIn="home" />
+		<s:Button id="helpButton" useHandCursor="true" buttonMode="true" includeIn="home" />
+		<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" scaleX.course="0.6" scaleY.course="0.6" />
+	</s:HGroup>	
 </s:Skin>

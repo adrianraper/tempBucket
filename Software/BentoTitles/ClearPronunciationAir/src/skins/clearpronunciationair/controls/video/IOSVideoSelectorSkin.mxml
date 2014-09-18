@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreatComplete(event)">
+	<!-- host component -->
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
+	</fx:Metadata>
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.controls.video.VideoSelector;
+			import com.clarityenglish.rotterdam.view.unit.ui.WidgetList;
+			import com.googlecode.bindagetools.Bind;
+			
+			import mx.binding.utils.BindingUtils;
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
+			
+			private var paretnDocumentOnwer:Object;
+			
+			protected function onCreatComplete(event:FlexEvent):void {
+				// TODO Auto-generated method stub
+				channelList.visible = false;
+				
+				videoPlayer.stop();
+				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
+				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
+			}
+			
+			protected function onVideoListFocusOut(event:Event):void {
+				videoList.selectedItem = null;
+				videoPlayer.visible = false;
+			}
+			
+			protected function onVideoListIndexChange(event:Event):void {
+				videoPlayer.createStageWebView();
+				videoPlayer.visible = true;
+			}
+			
+			protected function onPlaceholderClick(event:MouseEvent):void {
+				// For now the default index is 0, but latter we will get index from widgetlist which is user prefered.
+				videoList.selectedIndex = 0;
+				videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+				// Manually set the focus here, for we manually change the video list index.
+				focusManager.setFocus(videoList);
+			}
+		]]>
+	</fx:Script>
+	
+	<!-- The video players -->
+	<players:WebViewVideoPlayer id="videoPlayer" left="15" width="320" height="240" />
+	<!--players:OSMFVideoPlayer id="videoPlayer" width="411" height="231" /-->
+	
+	<!-- Placeholder image -->
+	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
+	
+	<!-- Channel list -->
+	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off">
+		<s:layout>
+			<s:TileLayout columnWidth="50" rowHeight="45" verticalGap="12" />
+		</s:layout>
+	</s:List>
+	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
+	
+	<!-- Video list -->
+	<s:Rect top="2" right="40" width="71" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" visible="{hostComponent.videoCollection.length > 1}">
+		<s:fill>
+			<s:SolidColor color="0x273A45" />
+		</s:fill>
+	</s:Rect>
+	<s:List id="videoList" top="4" right="44" width="64" height="100%" horizontalScrollPolicy="off" minHeight="0" minWidth="0" visible="{hostComponent.videoCollection.length > 1}" contentBackgroundAlpha="0">
+		<s:itemRenderer>
+			<fx:Component>
+				<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true"> 
+					<fx:Script>
+						<![CDATA[
+							[Bindable]
+							private var iconPath:String;
+							
+							[Bindable]
+							private var selectedIconPath:String;
+							
+							override public function set data(value:Object):void {
+								super.data = value;
+								
+								if (data) {
+									iconPath = outerDocument.hostComponent.href.rootPath + "/media/video/SoundVideoOff" + (itemIndex + 1) + ".png";
+									selectedIconPath = outerDocument.hostComponent.href.rootPath + "/media/video/SoundVideoOn" + (itemIndex + 1) + ".png";
+								}
+								
+								// #213
+								enabled = !(data.hasOwnProperty("@enabledFlag") && (Number(data.@enabledFlag.toString()) & 8));
+							}
+						]]>
+					</fx:Script>
+					
+					<s:states>
+						<s:State name="normal" />
+						<s:State name="hovered" />
+						<s:State name="selected" />
+					</s:states>
+					
+					<s:Group top="3">
+						<s:BitmapImage source="{iconPath}" visible="{currentState == 'normal' || currentState == 'hovered'}" />
+						<s:BitmapImage source="{selectedIconPath}" visible="{currentState == 'selected'}" />
+					</s:Group>
+					
+				</s:ItemRenderer>
+			</fx:Component>
+		</s:itemRenderer>
+	</s:List>
+</s:Skin>

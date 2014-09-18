@@ -26,10 +26,15 @@
 	</s:Group>
 	
 	<!-- Footer -->
-	<s:Group left="0" right="0" height="35" bottom="0">
+	<s:Rect left="0" right="0" bottom="33" height="11">
+		<s:fill>
+			<s:SolidColor color="#008391" />
+		</s:fill>
+	</s:Rect>
+	<s:Group left="0" right="0" height="33" bottom="0">
 		<s:Rect left="0" right="0" top="0" bottom="0">
 			<s:fill>
-				<s:SolidColor color="#333333" />
+				<s:SolidColor color="#263A45" />
 			</s:fill>
 		</s:Rect>
 		<login1:ClarityEnglishLogo left="23" top="8" height="20" width="100" />

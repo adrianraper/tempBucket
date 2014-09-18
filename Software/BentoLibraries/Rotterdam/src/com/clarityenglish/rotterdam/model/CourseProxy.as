@@ -147,6 +147,7 @@ package com.clarityenglish.rotterdam.model {
 			return _unitCollection;
 		}
 		
+		[Bindable]
 		public function get currentUnit():XML {
 			return _currentUnit;
 		}

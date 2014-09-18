@@ -1,5 +1,6 @@
 package com.clarityenglish.clearpronunciation.view.home {
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.controls.video.UniversalVideoPlayer;
 	import com.clarityenglish.controls.video.VideoSelector;
 	import com.clarityenglish.textLayout.vo.XHTML;
@@ -17,6 +18,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 	
 	import org.osflash.signals.Signal;
 	
+	import spark.components.Group;
 	import spark.components.Label;
 	import spark.components.List;
 	import spark.events.IndexChangeEvent;
@@ -33,11 +35,17 @@ package com.clarityenglish.clearpronunciation.view.home {
 		public var videoSelector:VideoSelector;
 		
 		[SkinPart]
+		public var unitListInstuctionGroup:Group;
+		
+		[SkinPart]
 		public var homeInstructionLabel:spark.components.Label;
+		
+		[Bindable]
+		public var mediaFolder:String;
 		
 		public var selectUnit:Signal = new Signal(XML);
 		public var channelCollection:ArrayCollection;
-
+		
 		private var _unitListCollection:ListCollectionView; 
 		private var _selectedCourseID:String;
 		private var _selectedCourseIDChanged:Boolean;
@@ -72,12 +80,17 @@ package com.clarityenglish.clearpronunciation.view.home {
 			_selectedUnitIndex = value;
 		}
 		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
 			courseList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course);
 			_course = xhtml..menu.(@id == productCode).course;
 			
+			// when return to home page, we want to display the selected course and unit
 			if (_unit) {
 				var index:Number = 0;
 				for each (var course:XML in (courseList.dataProvider as XMLListCollection).source) {
@@ -85,7 +98,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 						courseList.requireSelection = true;
 						courseList.selectedItem = _unit.parent();
 						courseList.selectedIndex = index;
-						courseList.dispatchEvent(new MouseEvent(MouseEvent.CLICK));
+						courseList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 						break;
 					}
 					index++;
@@ -111,6 +124,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 				videoSelector.href = href;
 				videoSelector.channelCollection = channelCollection;
 				videoSelector.videoCollection = new XMLListCollection(_course[0].unit[0].exercise);
+				videoSelector.placeholderSource = href.rootPath + "/" + _course[0].unit[0].exercise.@placeholder;
 			}
 		}
 		
@@ -119,26 +133,26 @@ package com.clarityenglish.clearpronunciation.view.home {
 			
 			switch (instance) {
 				case courseList:
-					courseList.addEventListener(MouseEvent.CLICK, onCourseListClick);
 					courseList.addEventListener(IndexChangeEvent.CHANGE, onCourseListIndexChange);
 					break;
 				case unitList:
 					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
+					break;
+				case homeInstructionLabel:
+					homeInstructionLabel.text = copyProvider.getCopyForId("homeInstructionLabel");
 					break;
 			}
 		}
 		
 		protected function onCourseListIndexChange(event:Event):void {
 			unitList.requireSelection = false;
-		}
-		
-		protected function onCourseListClick(event:Event):void {
+			
 			if (courseList.selectedItem) {
-				homeInstructionLabel.visible = false;
+				unitListInstuctionGroup.visible = false;
 				if (courseList.selectedIndex == 0) {
 					videoSelector.visible = true;
-					videoSelector.videoList.selectedIndex = 0;
-					videoSelector.videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
+					//videoSelector.videoList.selectedIndex = 0;
+					//videoSelector.videoList.dispatchEvent(new IndexChangeEvent(IndexChangeEvent.CHANGE));
 					unitList.visible = false;
 				} else {
 					videoSelector.visible = false;
@@ -148,7 +162,6 @@ package com.clarityenglish.clearpronunciation.view.home {
 				}
 				
 			}
-				
 		}
 		
 		protected function onUnitListClick(event:Event):void {

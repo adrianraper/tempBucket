@@ -37,11 +37,11 @@
 	</s:states>
 	
 	<!-- Progress bar -->
-	<s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" />
+	<!--s:Range id="progressRange" left="6" right="6" top="45" height="10" includeIn="editing" /-->
 	
 	<s:VGroup id="loaderVGroup" left="30" width="295" top="0" paddingBottom="10" horizontalAlign="left">
 		<!--Animation swfloader-->
-		<!--s:SWFLoader id="animationSWFLoader" scaleContent="true" maintainAspectRatio="true" source="{hostComponent.animationUrl}" /-->
+		<s:SWFLoader id="animationSWFLoader" scaleContent="true" maintainAspectRatio="true" source="{hostComponent.animationUrl}" />
 		
 		<s:VGroup id="textVGroup" width="100%" paddingLeft="-7">
 			<!-- Text -->

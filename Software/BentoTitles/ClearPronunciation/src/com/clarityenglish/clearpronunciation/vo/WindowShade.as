@@ -1,8 +1,10 @@
 package com.clarityenglish.clearpronunciation.vo
 {
 	import flash.display.DisplayObject;
+	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TouchEvent;
 	import flash.geom.Point;
 	
 	import mx.events.FlexEvent;
@@ -26,8 +28,7 @@ package com.clarityenglish.clearpronunciation.vo
 	public class WindowShade extends SkinnableContainer
 	{
 		[Bindable]
-		[SkinPart(required="true")]
-		
+		[SkinPart(required="true")]			
 		/** The Button that is dragged to resize the contentGroup */
 		public var thumbButton:Button;
 		
@@ -83,7 +84,7 @@ package com.clarityenglish.clearpronunciation.vo
 			mouseDownYOffset = event.localY;
 			
 			var sbRoot:DisplayObject = systemManager.getSandboxRoot();
-			sbRoot.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);
+			sbRoot.addEventListener(MouseEvent.MOUSE_MOVE, mouseMoveHandler, true);			
 			sbRoot.addEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true);
 			sbRoot.addEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseUpHandler);
 		}
@@ -91,8 +92,7 @@ package com.clarityenglish.clearpronunciation.vo
 		private function mouseMoveHandler(event:MouseEvent):void 
 		{
 			// change the size of the contentGroup
-			var globalPoint:Point = localToGlobal(new Point(0, contentGroup.y));
-			contentGroup.height = event.stageY - globalPoint.y  - mouseDownYOffset;
+			contentGroup.height = contentMouseY;
 		}
 		
 		private function mouseUpHandler(event:Event):void 
@@ -103,10 +103,10 @@ package com.clarityenglish.clearpronunciation.vo
 			sbRoot.removeEventListener(MouseEvent.MOUSE_UP, mouseUpHandler, true);
 			sbRoot.removeEventListener(SandboxMouseEvent.MOUSE_UP_SOMEWHERE, mouseUpHandler);
 			
-			if (event is MouseEvent)
+			if (event is  MouseEvent)
 			{
 				// play an effect to change the size of this container
-				if ((event as MouseEvent).stageY < (elementHeight - 50))
+				if (contentMouseY < (elementHeight / 2))
 					close();
 				else
 					open();

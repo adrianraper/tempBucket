@@ -38,6 +38,8 @@ package com.clarityenglish.clearpronunciation.view.home
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
+			
+			view.mediaFolder = new Href(Href.XHTML, "media/", configProxy.getConfig().paths.content).url;
 		}
 		
 		override public function onRemove():void {

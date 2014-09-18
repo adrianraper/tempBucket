@@ -5,18 +5,18 @@
 	<productCode>57</productCode>
 	<loginOption>128</loginOption>
 	<useCacheBuster>true</useCacheBuster>
-	<courseFile>testmenu-{productCode}-FullVersion.xml</courseFile>
+	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
 	<platform>tablet|ipad</platform>
 	<channel name="ios-vimeo" caption="vimeo">
         <streamingMedia>http://player.vimeo.com/external/</streamingMedia>
     </channel>    
 	<sharedMedia />
-	<brandingMedia />	
+	<brandingMedia />
 	<language>EN</language>
 	
-	<contentPath>http://192.168.8.82/Content/</contentPath>
-	<remoteDomain>http://192.168.8.82/</remoteDomain>
-	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://dock.contentbench/Content/</contentPath>
+	<remoteDomain>http://dock.projectbench/</remoteDomain>
+	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>ClearPronunciationService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	

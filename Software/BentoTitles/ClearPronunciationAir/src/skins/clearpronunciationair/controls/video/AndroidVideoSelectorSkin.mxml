@@ -14,7 +14,10 @@
 			
 			protected function onCreationComplete(event:FlexEvent):void
 			{
-				// TODO Auto-generated method stub
+				var settingsSharedObject:SharedObject = SharedObject.getLocal("settings");
+				if (settingsSharedObject.data["channelIndex"]) {
+					channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
+				}
 				channelList.visible = false;
 				
 				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
@@ -43,15 +46,15 @@
 	<s:Image id="placeholderImage" left="30" source="{hostComponent.placeholderSource}" visible="{videoList.selectedItem == null}" buttonMode="true" useHandCursor="true" click="onPlaceholderClick(event)" />
 	
 	<!-- Channel list -->
-	<s:List id="channelList" left="411" height="160" width="50" horizontalScrollPolicy="off" itemRenderer="spark.components.ButtonBarButton" requireSelection="true">
+	<s:List id="channelList" top="260" left="30" width="320" horizontalScrollPolicy="off" >
 		<s:layout>
-			<s:TileLayout columnWidth="50" rowHeight="45" verticalGap="12" />
+			<s:HorizontalLayout />
 		</s:layout>
 	</s:List>
 	<s:Button id="scriptButton" left="411" top="172" width="50" height="45" />
 	
 	<!-- Video list -->
-	<s:Rect top="2" right="40" width="71" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18">
+	<s:Rect top="2" right="40" width="71" height="236" topRightRadiusX="18" topRightRadiusY="18" bottomRightRadiusX="18" bottomRightRadiusY="18" visible="{hostComponent.videoCollection.length > 1}">
 		<s:fill>
 			<s:SolidColor color="0x273A45" />
 		</s:fill>

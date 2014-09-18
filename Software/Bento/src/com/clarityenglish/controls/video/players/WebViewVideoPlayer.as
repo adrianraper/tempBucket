@@ -131,8 +131,11 @@ package com.clarityenglish.controls.video.players {
 			super.updateDisplayList(unscaledWidth, unscaledHeight);
 			
 			//if (!stageWebView.viewPort) {
+			if (stageWebView) {
 				var globalPos:Point = contentToGlobal(new Point(x, y));
 				stageWebView.viewPort = new Rectangle(globalPos.x, globalPos.y, Math.max(0, unscaledWidth * dpiScaleFactor), unscaledHeight * dpiScaleFactor);
+			}
+				
 			//}
 		}
 		

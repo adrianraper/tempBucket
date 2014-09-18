@@ -43,13 +43,16 @@ package com.clarityenglish.clearpronunciation.view.title {
 		public var helpViewNavigator:ViewNavigator;
 		
 		[SkinPart]
+		public var settingsButton:Button;
+		
+		[SkinPart]
 		public var logoutButton:Button;
 		
 		[SkinPart]
 		public var productTitle:Label;
 		
 		public var dirtyWarningShow:Signal = new Signal(Function);
-		
+		public var settingsOpen:Signal = new Signal();
 		public var logout:Signal = new Signal();
 		
 		public function TitleView() {
@@ -57,6 +60,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 			
 			// The first one listed will be the default
 			StateUtil.addStates(this, [ "home", "course", "progress", "settings", "schedule" ], true);
+			this.actionBarVisible = false;
 		}
 		
 		public function showCourseView():void {
@@ -91,7 +95,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 					};
 					break;
 				case progressViewNavigator:
-					progressViewNavigator.label = copyProvider.getCopyForId("progressViewNavigator");
+					//progressViewNavigator.label = copyProvider.getCopyForId("progressViewNavigator");
 					break;
 				case cloudViewNavigator:
 					cloudViewNavigator.label = copyProvider.getCopyForId("cloudViewNavigator");
@@ -99,15 +103,23 @@ package com.clarityenglish.clearpronunciation.view.title {
 				case helpViewNavigator:
 					helpViewNavigator.label = copyProvider.getCopyForId("helpViewNavigator");
 					break;
+				case settingsButton:
+					//settingsButton.label = copyProvider.getCopyForId("settingsButton");
+					settingsButton.addEventListener(MouseEvent.CLICK, onSettingsClick);
+					break;
 				case logoutButton:
 					// gh#217
-					instance.label = copyProvider.getCopyForId("LogOut");
+					//instance.label = copyProvider.getCopyForId("LogOut");
 					instance.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
 				case productTitle:
 					instance.text = copyProvider.getCopyForId("applicationTitle");
 					break;
 			}
+		}
+		
+		protected function onSettingsClick(event:MouseEvent):void {
+			settingsOpen.dispatch();
 		}
 		
 		// gh#217

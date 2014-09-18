@@ -23,7 +23,7 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		public function get animationUrl():String {
 			if (hasSrc) {
 				// gh#111 - support absolute and relative image urls
-				return (StringUtils.beginsWith(src.toLowerCase(), "http")) ? src : mediaFolder + "/" + src;
+				return (StringUtils.beginsWith(src.toLowerCase(), "http")) ? src : mediaFolder + src;
 			}
 			
 			return null;

@@ -53,7 +53,11 @@ package com.clarityenglish.clearpronunciation.view.course
 			var courseProxy:CourseProxy = facade.retrieveProxy(CourseProxy.NAME) as CourseProxy;
 			// gh#871 Course_Start notification doesn't be sent when open a unit, so unitCollection in CourseProxy cannot be used to bind data
 			Bind.fromProperty(courseProxy, "currentUnit").convert(function(unit:XML):XMLListCollection {
-				return new XMLListCollection(unit.parent().unit);
+				if (unit) {
+					return new XMLListCollection(unit.parent().unit);
+				} else {
+					return null;
+				}
 			}).toProperty(view, "unitListCollection");
 			
 			Bind.fromProperty(courseProxy, "currentUnit").toProperty(view, "unit");

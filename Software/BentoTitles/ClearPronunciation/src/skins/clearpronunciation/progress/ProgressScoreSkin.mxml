@@ -1,15 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-		xmlns:s="library://ns.adobe.com/flex/spark"
-		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*">
-	<!-- host component -->
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5">
+	
 	<fx:Metadata>
-		[HostComponent("com.clarityenglish.bento.view.progress.components.ProgressScoreView")]
+		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressScoreView")]
 	</fx:Metadata>
 
 	<fx:Script>
 		<![CDATA[
+			import mx.events.FlexEvent;
+			
 			import spark.events.IndexChangeEvent;
 			
 			private function courseChangeHandler(event:IndexChangeEvent):void {
@@ -124,32 +126,50 @@
 					return "1 " + unit;
 				return value.toString() + " " + unit + "s";
 			}
+			
+			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
+				super.updateDisplayList(unscaledWidth, unscaledHeight);
+				
+				progressBar.trackColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor1');
+				progressBar.fillColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor2');
+				
+				if (scoreDetailsDataGrid.dataProviderLength == 0) {
+					scoreDetailsDataGrid.dataProvider.itemUpdated(null);
+				}
+			}
+			
 		]]>
 	</fx:Script>
-
+	
 	<s:states>
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
 	
-	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" right="20" height="50">
+	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
 		<ui:layout>
-			<s:ButtonBarHorizontalLayout gap="25" />
+			<s:ButtonBarHorizontalLayout gap="35" />
 		</ui:layout>
 	</ui:ProgressCourseButtonBar>
-
-	<ui:ProgressBarRenderer id="progressBar" top="73" left="0" right="0" />
 	
-	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" top="137" bottom="0">
+	<s:Rect top="60" left="45" right="50" height="1">
+		<s:fill>
+			<s:SolidColor color="0xEC1C32" />
+		</s:fill>
+	</s:Rect>
+	
+	<ui:ProgressBarRenderer id="progressBar" top="80" left="50" right="50" />
+	
+	<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="48" right="44" top="137" bottom="0" name="elementary">
 		<s:columns>
 			<s:ArrayList>
-				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" />
-				<s:GridColumn id="scoreGridC2" dataField="@caption" />
-				<s:GridColumn id="scoreGridC3" dataField="@displayScore" sortCompareFunction="sortScores" />
-				<s:GridColumn id="scoreGridC4" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" />
-				<s:GridColumn id="scoreGridC5" dataField="@datetime" />
+				<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" width="240"/>
+				<s:GridColumn id="scoreGridC2" dataField="@caption" width="304" />
+				<s:GridColumn id="scoreGridC3" dataField="@displayScore" sortCompareFunction="sortScores" width="75" />
+				<s:GridColumn id="scoreGridC4" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" width="86" />
+				<s:GridColumn id="scoreGridC5" dataField="@datetime" width="132"/>
 			</s:ArrayList>
 		</s:columns>
 	</s:DataGrid>
-
+	<s:Button id="ScoreEmptyScoreLabelButton" fontSize="12" fontWeight="normal" horizontalCenter="0" verticalCenter="40" />
 </s:Skin>

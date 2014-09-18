@@ -6,7 +6,17 @@
 	<useCacheBuster>true</useCacheBuster>
 	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
 	<platform>browser</platform>
-
+	
+	<channel name='vimeo' caption='Vimeo'>
+		<streamingMedia>http://player.vimeo.com/external/</streamingMedia>
+	</channel>	
+	<channel name='rackspace' caption='Rack'>
+		<streamingMedia>http://798a4ab11405fd81be17-42dc242c457c6a62e22482e1bb35342a.r14.cf1.rackcdn.com/</streamingMedia>
+	</channel>  
+	<channel name='aws' caption='AWS'>
+		<streamingMedia>rtmp://streaming.clarityenglish.com:1935/cfx/st/</streamingMedia>
+	</channel>
+	
 	<sharedMedia />
 	<brandingMedia />
 	<language>EN</language>

@@ -11,7 +11,21 @@
 		[SWF(width="990", height="740")]
 	</fx:Metadata>
 	
-	<fx:Style source="clearpronunciation.css" />
+	<fx:Style source="clearpronunciation.css"/>
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace mx "library://ns.adobe.com/flex/mx";
+		@namespace clearpronunciation "com.clarityenglish.clearpronunciation.*";
+		
+		@font-face {
+			src: url("skins/clearpronunciation/assets/MGBOLD.otf");
+			fontFamily: Mgbold;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+			advancedAntiAliasing: true;
+		}
+	</fx:Style>
 	
 	<fx:Script>
 		<![CDATA[

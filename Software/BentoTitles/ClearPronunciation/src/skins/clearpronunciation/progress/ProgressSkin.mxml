@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+    	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" 
+		xmlns:components="com.clarityenglish.bento.view.progress.components.*" 
+		xmlns:exercise="skins.tensebuster.assets.exercise.*" 
+		xmlns:progress="com.clarityenglish.tensebuster.view.progress.*" xmlns:home="skins.tensebuster.assets.home.*">
+	
+	<fx:Metadata>
+		[HostComponent("com.clarityenglish.tensebuster.view.progress.ProgressView")]
+	</fx:Metadata>
+	
+	<fx:Declarations>
+		<s:DropShadowFilter id="dropShadowFilter" blurX="8" blurY="8" alpha="0.3" distance="1" angle="180" knockout="false" />
+	</fx:Declarations>
+
+    <s:states>
+        <s:State name="normal" />
+        <s:State name="disabled" />
+		
+		<s:State name="coverage" stateGroups="normalStates,coverageStates"/>
+		<s:State name="compare" stateGroups="normalStates,compareStates"/>
+		<s:State name="analysis" stateGroups="normalStates,analysisStates"/>
+		<s:State name="score" stateGroups="normalStates,scoreStates"/>
+		<s:State name="certificate" stateGroups="normalStates, certificateStates"/>
+    </s:states>
+	
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/hexagonBg.png')" left="0" bottom="0"/>	
+	
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/title/header.png')" top="-60"/>
+	
+	<s:HGroup width="100%" paddingLeft="65" top="55">
+		<s:ButtonBar id="progressNavBar"/>			
+	</s:HGroup>
+	
+	<s:Group width="100%" height="100%" filters="{[dropShadowFilter]}">
+		<!--rectangle panel-->
+		<s:Rect left="29" right="29" bottom="15" top="120">
+			<s:fill>
+				<s:LinearGradient rotation="90">
+					<s:GradientEntry color="0xFFFFFF" ratio="0"/>
+					<s:GradientEntry color="0xFFFFFF" ratio="0.9"/>
+					<s:GradientEntry color="0xB3B3B3" ratio="1"/>
+				</s:LinearGradient>
+			</s:fill>
+		</s:Rect>
+		<!--top panel-->	
+		<exercise:topPanel top="90" right="28" left="28" />
+	</s:Group>
+	<s:SWFLoader source="@Embed(source='skins/tensebuster/assets/progress/progressFooter.png')" bottom="10" left="28" excludeFrom="[compare, score, certificate]" />
+	
+	<s:HGroup width="100%" height="100%" top="110" left="15" bottom="50" right="15">
+		<s:Group width="100%" height="100%">
+			<s:Group width="100%" height="100%" includeIn="normalStates">
+				<components:ProgressCoverageView id="progressCoverageView" width="100%" height="100%" includeIn="coverage" />
+				<progress:ProgressAnalysisView id="progressAnalysisView" width="100%" height="100%" includeIn="analysis" />
+				<components:ProgressScoreView id="progressScoreView"   width="100%" height="100%" includeIn="score" />
+				<progress:ProgressCompareView id="progressCompareView" width="100%" height="100%" includeIn="compare" />
+				<progress:ProgressCertificateView id="progressCertificateView" width="100%" height="100%" includeIn="certificate" />
+			</s:Group>
+		</s:Group>
+	</s:HGroup>
+</s:Skin>

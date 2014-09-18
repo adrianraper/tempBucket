@@ -133,6 +133,9 @@
 			<lit name="recorder">Recorder</lit>
 			<lit name="Back">Back</lit>
 			<lit name="LogOut">Log out</lit>
+			
+			<!--Home-->
+			<lit name="homeInstructionLabel">Click to choose the section you want to view.</lit>
 		    <lit name="progressNavBarCoverage">My coverage</lit>
 			<lit name="progressNavBarCompare">Compare</lit>
 			<lit name="progressNavBarAnalyse">Analyse</lit>
@@ -227,6 +230,7 @@
 			<lit name="createCourseButton">Create a new course</lit>
 			<lit name="myCoursesViewNavigator">My courses</lit>
 			<lit name="progressViewNavigator">Progress</lit>
+			<lit name="settingsButton">Settings</lit>
 			<lit name="cloudViewNavigator">Resource cloud</lit>
 			<lit name="helpViewNavigator">Help</lit>
 			<lit name="editButton">Edit</lit>
@@ -310,6 +314,14 @@
 			<lit name="youTubeBase"><![CDATA[http://youtu.be\/{id}]]></lit>
 			<lit name="vimeoBase"><![CDATA[https://vimeo.com\/{id}]]></lit>
 			
+			<!--unit-->
+			<lit name="practiseSoundsLabel"><![CDATA[Practise the sounds]]></lit>
+			<lit name="makeSoundsLabel"><![CDATA[How do I make the sounds?]]></lit>
+			
+			<!--phonetic -->
+			<lit name="pill">p</lit>
+			<lit name="fill">f</lit>
+			<lit name="think">θ</lit>
 		</group>
 	</language>
 </literals>

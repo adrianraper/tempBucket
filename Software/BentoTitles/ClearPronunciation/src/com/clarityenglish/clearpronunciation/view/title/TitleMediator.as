@@ -3,6 +3,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.bento.model.BentoProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.common.CommonNotifications;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
 	
@@ -25,6 +26,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 			super.onRegister();
 			
 			view.dirtyWarningShow.add(onDirtyWarningShow);
+			view.settingsOpen.add(onSettingsOpen);
 			view.logout.add(onLogout);
 			
 			// gh#299 - always start in course selector
@@ -69,6 +71,10 @@ package com.clarityenglish.clearpronunciation.view.title {
 			} else {
 				next();
 			}
+		}
+		
+		protected function onSettingsOpen():void {
+			sendNotification(ClearPronunciationNotifications.SETTINGS_SHOW);
 		}
 		
 		// gh#217

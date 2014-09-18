@@ -68,6 +68,8 @@
 				versionNumber = descriptor.ns::versionNumber.toString();
 				
 				facade = ClearPronunciationAirApplicationFacade.getInstance();
+				
+				Multitouch.inputMode = MultitouchInputMode.TOUCH_POINT;
 			}
 			
 			protected function onApplicationComplete(event:FlexEvent):void {
@@ -95,5 +97,16 @@
 	
 	<fx:Style source="clearpronunciation.css" />
 	<fx:Style source="clearpronunciationair.css" />
-	
+	<fx:Style>
+		@namespace s "library://ns.adobe.com/flex/spark";
+		@namespace clearpronunciation "com.clarityenglish.clearpronunciation.*";
+		
+		@font-face {
+			src: url("skins/clearpronunciationair/assets/MGBOLD.otf");
+			fontFamily: Mgbold;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+		}
+	</fx:Style>
 </clearpronunciation:ClearPronunciationApplication>
