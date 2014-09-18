@@ -343,8 +343,11 @@ import mx.utils.StringUtil;
 				// #187 - if the focused element is offscreen then scroll it into view				
 				// First find the parent scroller
 				var displayObject:DisplayObject = nextComponent;
-				while (!(displayObject is Scroller) && displayObject.parent)
-					displayObject = displayObject.parent;
+				
+				if (displayObject) { // gh#1046
+					while (!(displayObject is Scroller) && displayObject.parent)
+						displayObject = displayObject.parent;
+				}
 				
 				if (!displayObject || displayObject is Stage)
 					return;
