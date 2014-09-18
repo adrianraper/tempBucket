@@ -9,7 +9,6 @@
 <title>CLS ref:{$api->subscription->orderRef} - {$api->subscription->name}</title>
 	<!-- <from>support@clarityenglish.com</from> -->
 	<!-- <cc>support@ieltspractice.com</cc> -->
-	<!-- <bcc>adrian.raper@clarityenglish.com</bcc> -->
 </head>
 <body>
 Somebody went through CLSgateway with the following information<br/>

@@ -97,6 +97,9 @@ package com.clarityenglish.rotterdam.view.login {
 		[Bindable]
 		public var isPlatformAndroid:Boolean;
 		
+		[Bindable]
+		public var noLogin:Boolean;
+		
 		// #341
 		private var _loginOption:Number;
 		private var _selfRegister:Number;
@@ -254,6 +257,10 @@ package com.clarityenglish.rotterdam.view.login {
 		public function setIPMatchedProductCodes(value:Array):void {
 			_IPMatchedProductCodes = value;
 			dispatchEvent(new Event("productCodesChanged"));
+		}
+		
+		public function setNoLogin(value:Boolean):void {
+			noLogin = value;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
