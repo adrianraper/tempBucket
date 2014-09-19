@@ -159,24 +159,23 @@ SQL;
 			
 			// Sanity checks
 			if (sizeof($courses) != 1)
-					throw new Exception("C-Builder menu.xml files must have exactly one course node");
+				throw new Exception("C-Builder menu.xml files must have exactly one course node");
 				
-				$course = $courses[0];
-				
-				// If the course is missing an id then add it in
-				if (!isset($course['id'])) $course['id'] = $courseId;
-				
-				// gh#619 update the last saved date
-				$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
-				$course['lastSaved'] = $dateStampNow->format('Y-m-d H:i:s'); 
-				
-				// If the units or exercises are missing ids then generate them.  At the same time if any unit has a tempid attribute, remove it.
-				foreach ($course->unit as $unit) {
-					if (!isset($unit['id'])) $unit['id'] = UniqueIdGenerator::getUniqId();
-					foreach ($unit->exercise as $exercise) {
-						if (!isset($exercise['id'])) $exercise['id'] = UniqueIdGenerator::getUniqId();
-						if (isset($exercise['tempid'])) unset($exercise['tempid']); // gh#90
-					}
+			$course = $courses[0];
+			
+			// If the course is missing an id then add it in
+			if (!isset($course['id'])) $course['id'] = $courseId;
+			
+			// gh#619 update the last saved date
+			$dateStampNow = new DateTime('now', new DateTimeZone(TIMEZONE));
+			$course['lastSaved'] = $dateStampNow->format('Y-m-d H:i:s'); 
+			
+			// If the units or exercises are missing ids then generate them.  At the same time if any unit has a tempid attribute, remove it.
+			foreach ($course->unit as $unit) {
+				if (!isset($unit['id'])) $unit['id'] = UniqueIdGenerator::getUniqId();
+				foreach ($unit->exercise as $exercise) {
+					if (!isset($exercise['id'])) $exercise['id'] = UniqueIdGenerator::getUniqId();
+					if (isset($exercise['tempid'])) unset($exercise['tempid']); // gh#90
 				}
 			}
 			
@@ -187,231 +186,231 @@ SQL;
 			// then you can add them back below.
 			$groupIDs = implode(',', Session::get('groupTreeIDs'));
 			
-				// gh#598 Catch database errors that will still allow you to save the xml
-				try {
-					$db->Execute("DELETE FROM T_CourseStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array($courseId));
-					$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array($courseId));
+			// gh#598 Catch database errors that will still allow you to save the xml
+			try {
+				$db->Execute("DELETE FROM T_CourseStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array($courseId));
+				$db->Execute("DELETE FROM T_UnitStart WHERE F_GroupID in ($groupIDs) AND F_CourseID = ?", array($courseId));
 					
-			// 1. Write publication data to the database
- 			foreach ($course->publication->group as $group) {
-				// gh#677 a blank end date should be null
- 				// Handle data types
- 				$unitInterval = XmlUtils::xml_attribute($group, 'unitInterval', 'integer');
- 				$seePastUnits = XmlUtils::xml_attribute($group, 'seePastUnits', 'boolean');
- 				$startDate = XmlUtils::xml_attribute($group, 'startDate', 'date');
- 				$endDate = XmlUtils::xml_attribute($group, 'endDate', 'date'); // defaults to null if not present
- 				
-				// gh#720 If we are missing any required data then throw an exception
-				if (is_null($unitInterval) || !$seePastUnits || !$startDate)
-					throw $copyOps->getExceptionForId("errorSavingCourseDates");
-				
-				// 1.1 First write the T_CourseStart row
-				// gh#385 Make sure all simpleXML objects are converted to string
-				$fields = array(
-					"F_GroupID" => (string)$group['id'],
-					"F_RootID" => Session::get('rootID'),
-							"F_CourseID" => $courseId,
-					"F_StartMethod" => "group",
-					"F_UnitInterval" => $unitInterval,
-					"F_SeePastUnits" => $seePastUnits,
-					"F_StartDate" => $startDate,
-					"F_EndDate" => $endDate
-				);
-				
-				// gh#148 PrimaryKey is just groupID and courseID
-				//$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
-				$rc = $db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_CourseID"), true);
-				// AbstractService::$debugLog->notice("update T_CourseStart gives $rc");
-				
-				// 1.2 Next rewrite any rows in T_UnitStart relating to this course
-				// Currently we figure this out here, but this may be better calculated on the client since at some point it will be editable anyway
-				$startTimestamp = strtotime($startDate);
-				foreach ($course->unit as $unit) {
-					/*
-					 * gh#385 SQLite fails to insert this, but no errors
-					 * also we were relying on MySQL to implicitly turn a timestamp into a datetime - which fails for SQLite
+				// 1. Write publication data to the database
+	 			foreach ($course->publication->group as $group) {
+					// gh#677 a blank end date should be null
+	 				// Handle data types
+	 				$unitInterval = XmlUtils::xml_attribute($group, 'unitInterval', 'integer');
+	 				$seePastUnits = XmlUtils::xml_attribute($group, 'seePastUnits', 'boolean');
+	 				$startDate = XmlUtils::xml_attribute($group, 'startDate', 'date');
+	 				$endDate = XmlUtils::xml_attribute($group, 'endDate', 'date'); // defaults to null if not present
+	 				
+					// gh#720 If we are missing any required data then throw an exception
+					if (is_null($unitInterval) || !$seePastUnits || !$startDate)
+						throw $copyOps->getExceptionForId("errorSavingCourseDates");
+					
+					// 1.1 First write the T_CourseStart row
+					// gh#385 Make sure all simpleXML objects are converted to string
 					$fields = array(
 						"F_GroupID" => (string)$group['id'],
 						"F_RootID" => Session::get('rootID'),
-						"F_CourseID" => (string)$course['id'],
-						"F_UnitID" => (string)$unit['id'],
-						"F_StartDate" => (string)$group['startDate']
+								"F_CourseID" => $courseId,
+						"F_StartMethod" => "group",
+						"F_UnitInterval" => $unitInterval,
+						"F_SeePastUnits" => $seePastUnits,
+						"F_StartDate" => $startDate,
+						"F_EndDate" => $endDate
 					);
-					$rc = $db->AutoExecute("T_UnitStart", $fields, "INSERT");
-					*/
-					$sql = <<<SQL
-						INSERT INTO T_UnitStart 
-						(F_GroupID, F_RootID, F_CourseID, F_UnitID, F_StartDate)
-						VALUES (?,?,?,?,?)
+					
+					// gh#148 PrimaryKey is just groupID and courseID
+					//$db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_RootID", "F_CourseID"), true);
+					$rc = $db->Replace("T_CourseStart", $fields, array("F_GroupID", "F_CourseID"), true);
+					// AbstractService::$debugLog->notice("update T_CourseStart gives $rc");
+					
+					// 1.2 Next rewrite any rows in T_UnitStart relating to this course
+					// Currently we figure this out here, but this may be better calculated on the client since at some point it will be editable anyway
+					$startTimestamp = strtotime($startDate);
+					foreach ($course->unit as $unit) {
+						/*
+						 * gh#385 SQLite fails to insert this, but no errors
+						 * also we were relying on MySQL to implicitly turn a timestamp into a datetime - which fails for SQLite
+						$fields = array(
+							"F_GroupID" => (string)$group['id'],
+							"F_RootID" => Session::get('rootID'),
+							"F_CourseID" => (string)$course['id'],
+							"F_UnitID" => (string)$unit['id'],
+							"F_StartDate" => (string)$group['startDate']
+						);
+						$rc = $db->AutoExecute("T_UnitStart", $fields, "INSERT");
+						*/
+						$sql = <<<SQL
+							INSERT INTO T_UnitStart 
+							(F_GroupID, F_RootID, F_CourseID, F_UnitID, F_StartDate)
+							VALUES (?,?,?,?,?)
 SQL;
-							$bindingParams = array((string)$group['id'],Session::get('rootID'),$courseId,(string)$unit['id'],
-										date('Y-m-d H:i:s', $startTimestamp));
+								$bindingParams = array((string)$group['id'],Session::get('rootID'),$courseId,(string)$unit['id'],
+											date('Y-m-d H:i:s', $startTimestamp));
+						$rc = $db->Execute($sql, $bindingParams);					
+						if (!$rc)
+							AbstractService::$debugLog->notice("insert to T_UnitStart failed");
+						
+						$startTimestamp += $group['unitInterval'] * 86400;
+					}
+	 			}
+	 			
+				// 2. Write privacy information to the database
+				// 2.1 whole course editable?
+				$editable = XmlUtils::xml_attribute($course->permission, 'editable', 'boolean');
+				$sql = <<<SQL
+						SELECT * FROM T_CoursePermission 
+						WHERE F_CourseID = ?
+SQL;
+						$bindingParams = array($courseId);
+				$rs = $db->Execute($sql, $bindingParams);					
+				if (!$rs)
+					throw new Exception('Failed to read from db');
+					
+							
+				if ($rs->recordCount() > 0) {
+					// Do update
+					$sql = <<<SQL
+						UPDATE T_CoursePermission
+						SET F_Editable = ? 
+						WHERE F_CourseID = ?
+SQL;
+							$bindingParams = array($editable, $courseId);
 					$rc = $db->Execute($sql, $bindingParams);					
 					if (!$rc)
-						AbstractService::$debugLog->notice("insert to T_UnitStart failed");
-					
-					$startTimestamp += $group['unitInterval'] * 86400;
-				}
- 			}
- 			
-			// 2. Write privacy information to the database
-			// 2.1 whole course editable?
-			$editable = XmlUtils::xml_attribute($course->permission, 'editable', 'boolean');
-			$sql = <<<SQL
-					SELECT * FROM T_CoursePermission 
-					WHERE F_CourseID = ?
-SQL;
-					$bindingParams = array($courseId);
-			$rs = $db->Execute($sql, $bindingParams);					
-			if (!$rs)
-				throw new Exception('Failed to read from db');
-				
+						throw new Exception('update to T_CoursePermission failed');
 						
-			if ($rs->recordCount() > 0) {
-				// Do update
-				$sql = <<<SQL
-					UPDATE T_CoursePermission
-					SET F_Editable = ? 
-					WHERE F_CourseID = ?
+				} else {
+					// Do insert
+					$sql = <<<SQL
+						INSERT INTO T_CoursePermission 
+						(F_CourseID, F_Editable)
+						VALUES (?,?)
 SQL;
-						$bindingParams = array($editable, $courseId);
-				$rc = $db->Execute($sql, $bindingParams);					
-				if (!$rc)
-					throw new Exception('update to T_CoursePermission failed');
+							$bindingParams = array($courseId, $editable);
+					$rc = $db->Execute($sql, $bindingParams);					
+					if (!$rc)
+						throw new Exception('insert to T_CoursePermission failed');
+				}
+		 			
+				// 2.2 course roles
+				// TODO For now this just works for the author's group and root
+				// 2.2.1 Collaborators
+				$groupCollaborators = XmlUtils::xml_attribute($course->privacy->collaborators, 'group', 'boolean');
+				$groupID = Session::get('groupID');
+				$sql = <<<SQL
+					DELETE FROM T_CourseRoles 
+					WHERE F_CourseID = ?
+					AND F_GroupID = ?
+					AND F_Role = ?
+SQL;
+						$bindingParams = array($courseId, $groupID, Course::ROLE_COLLABORATOR);
+				$rs = $db->Execute($sql, $bindingParams);					
+				if (!$rs)
+					throw new Exception('Failed to read from db');
 					
-			} else {
-				// Do insert
-				$sql = <<<SQL
-					INSERT INTO T_CoursePermission 
-					(F_CourseID, F_Editable)
-					VALUES (?,?)
+				// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
+				if ($groupCollaborators) {
+					$sql = <<<SQL
+						INSERT INTO T_CourseRoles 
+						(F_CourseID, F_GroupID, F_Role, F_DateStamp)
+						VALUES (?,?,?,?)
 SQL;
-						$bindingParams = array($courseId, $editable);
-				$rc = $db->Execute($sql, $bindingParams);					
-				if (!$rc)
-					throw new Exception('insert to T_CoursePermission failed');
-			}
-	 			
-			// 2.2 course roles
-			// TODO For now this just works for the author's group and root
-			// 2.2.1 Collaborators
-			$groupCollaborators = XmlUtils::xml_attribute($course->privacy->collaborators, 'group', 'boolean');
-			$groupID = Session::get('groupID');
-			$sql = <<<SQL
-				DELETE FROM T_CourseRoles 
-				WHERE F_CourseID = ?
-				AND F_GroupID = ?
-				AND F_Role = ?
-SQL;
-					$bindingParams = array($courseId, $groupID, Course::ROLE_COLLABORATOR);
-			$rs = $db->Execute($sql, $bindingParams);					
-			if (!$rs)
-				throw new Exception('Failed to read from db');
-				
-			// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
-			if ($groupCollaborators) {
-				$sql = <<<SQL
-					INSERT INTO T_CourseRoles 
-					(F_CourseID, F_GroupID, F_Role, F_DateStamp)
-					VALUES (?,?,?,?)
-SQL;
-				$now = new DateTime();
-						$bindingParams = array($courseId, $groupID, Course::ROLE_COLLABORATOR, $now->format('Y-m-d H:i:s'));
-				$rc = $db->Execute($sql, $bindingParams);					
-				if (!$rc)
-					throw new Exception('insert to T_CourseRoles failed');
-			}
-			
-			$rootCollaborators = XmlUtils::xml_attribute($course->privacy->collaborators, 'root', 'boolean');
-			$rootID = Session::get('rootID');
-			$sql = <<<SQL
-					DELETE FROM T_CourseRoles 
-					WHERE F_CourseID = ?
-					AND F_RootID = ?
-					AND F_Role = ?
-SQL;
-					$bindingParams = array($courseId, $rootID, Course::ROLE_COLLABORATOR);
-			$rs = $db->Execute($sql, $bindingParams);					
-			if (!$rs)
-				throw new Exception('Failed to read from db');
-				
-			// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
-			if ($rootCollaborators) {
-				$sql = <<<SQL
-					INSERT INTO T_CourseRoles 
-					(F_CourseID, F_RootID, F_Role, F_DateStamp)
-					VALUES (?,?,?,?)
-SQL;
-				$now = new DateTime();
-						$bindingParams = array($courseId, $rootID, Course::ROLE_COLLABORATOR, $now->format('Y-m-d H:i:s'));
-				$rc = $db->Execute($sql, $bindingParams);					
-				if (!$rc)
-					throw new Exception('insert to T_CourseRoles failed');
-			}
-
-			// 2.2.2 Publishers
-			$groupPublishers = XmlUtils::xml_attribute($course->privacy->publishers, 'group', 'boolean');
-			$groupID = Session::get('groupID');
-			$sql = <<<SQL
-				DELETE FROM T_CourseRoles 
-				WHERE F_CourseID = ?
-				AND F_GroupID = ?
-				AND F_Role = ?
-SQL;
-					$bindingParams = array($courseId, $groupID, Course::ROLE_PUBLISHER);
-			$rs = $db->Execute($sql, $bindingParams);					
-			if (!$rs)
-				throw new Exception('Failed to read from db');
-				
-			// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
-			if ($groupPublishers) {
-				$sql = <<<SQL
-					INSERT INTO T_CourseRoles 
-					(F_CourseID, F_GroupID, F_Role, F_DateStamp)
-					VALUES (?,?,?,?)
-SQL;
-				$now = new DateTime();
-						$bindingParams = array($courseId, $groupID, Course::ROLE_PUBLISHER, $now->format('Y-m-d H:i:s'));
-				$rc = $db->Execute($sql, $bindingParams);					
-				if (!$rc)
-					throw new Exception('insert to T_CourseRoles failed');
-			}
-			
-			$rootPublishers = XmlUtils::xml_attribute($course->privacy->publishers, 'root', 'boolean');
-			$rootID = Session::get('rootID');
-			$sql = <<<SQL
-					DELETE FROM T_CourseRoles 
-					WHERE F_CourseID = ?
-					AND F_RootID = ?
-					AND F_Role = ?
-SQL;
-					$bindingParams = array($courseId, $rootID, Course::ROLE_PUBLISHER);
-			$rs = $db->Execute($sql, $bindingParams);					
-			if (!$rs)
-				throw new Exception('Failed to read from db');
-				
-			// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
-			if ($rootPublishers) {
-				$sql = <<<SQL
-					INSERT INTO T_CourseRoles 
-					(F_CourseID, F_RootID, F_Role, F_DateStamp)
-					VALUES (?,?,?,?)
-SQL;
-				$now = new DateTime();
-						$bindingParams = array($courseId, $rootID, Course::ROLE_PUBLISHER, $now->format('Y-m-d H:i:s'));
-				$rc = $db->Execute($sql, $bindingParams);					
-				if (!$rc)
-					throw new Exception('insert to T_CourseRoles failed');
-			}
-			
-				} catch (Exception $e) {
-					// gh#924 This exception stops database writing, but doesn't impact the xml file
-					// log it for Clarity debugging and give the user a reasonable action
-					AbstractService::$debugLog->notice("course save SQL error ".$e->getMessage());
-					throw $copyOps->getExceptionForId("errorSavingCourseToDb");
+					$now = new DateTime();
+							$bindingParams = array($courseId, $groupID, Course::ROLE_COLLABORATOR, $now->format('Y-m-d H:i:s'));
+					$rc = $db->Execute($sql, $bindingParams);					
+					if (!$rc)
+						throw new Exception('insert to T_CourseRoles failed');
 				}
 				
-				$db->CompleteTrans();
+				$rootCollaborators = XmlUtils::xml_attribute($course->privacy->collaborators, 'root', 'boolean');
+				$rootID = Session::get('rootID');
+				$sql = <<<SQL
+						DELETE FROM T_CourseRoles 
+						WHERE F_CourseID = ?
+						AND F_RootID = ?
+						AND F_Role = ?
+SQL;
+						$bindingParams = array($courseId, $rootID, Course::ROLE_COLLABORATOR);
+				$rs = $db->Execute($sql, $bindingParams);					
+				if (!$rs)
+					throw new Exception('Failed to read from db');
+					
+				// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
+				if ($rootCollaborators) {
+					$sql = <<<SQL
+						INSERT INTO T_CourseRoles 
+						(F_CourseID, F_RootID, F_Role, F_DateStamp)
+						VALUES (?,?,?,?)
+SQL;
+					$now = new DateTime();
+							$bindingParams = array($courseId, $rootID, Course::ROLE_COLLABORATOR, $now->format('Y-m-d H:i:s'));
+					$rc = $db->Execute($sql, $bindingParams);					
+					if (!$rc)
+						throw new Exception('insert to T_CourseRoles failed');
+				}
+	
+				// 2.2.2 Publishers
+				$groupPublishers = XmlUtils::xml_attribute($course->privacy->publishers, 'group', 'boolean');
+				$groupID = Session::get('groupID');
+				$sql = <<<SQL
+					DELETE FROM T_CourseRoles 
+					WHERE F_CourseID = ?
+					AND F_GroupID = ?
+					AND F_Role = ?
+SQL;
+						$bindingParams = array($courseId, $groupID, Course::ROLE_PUBLISHER);
+				$rs = $db->Execute($sql, $bindingParams);					
+				if (!$rs)
+					throw new Exception('Failed to read from db');
+					
+				// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
+				if ($groupPublishers) {
+					$sql = <<<SQL
+						INSERT INTO T_CourseRoles 
+						(F_CourseID, F_GroupID, F_Role, F_DateStamp)
+						VALUES (?,?,?,?)
+SQL;
+					$now = new DateTime();
+							$bindingParams = array($courseId, $groupID, Course::ROLE_PUBLISHER, $now->format('Y-m-d H:i:s'));
+					$rc = $db->Execute($sql, $bindingParams);					
+					if (!$rc)
+						throw new Exception('insert to T_CourseRoles failed');
+				}
+				
+				$rootPublishers = XmlUtils::xml_attribute($course->privacy->publishers, 'root', 'boolean');
+				$rootID = Session::get('rootID');
+				$sql = <<<SQL
+						DELETE FROM T_CourseRoles 
+						WHERE F_CourseID = ?
+						AND F_RootID = ?
+						AND F_Role = ?
+SQL;
+						$bindingParams = array($courseId, $rootID, Course::ROLE_PUBLISHER);
+				$rs = $db->Execute($sql, $bindingParams);					
+				if (!$rs)
+					throw new Exception('Failed to read from db');
+					
+				// Do insert - not much point having a timestamp as it will be updated everytime the course is saved
+				if ($rootPublishers) {
+					$sql = <<<SQL
+						INSERT INTO T_CourseRoles 
+						(F_CourseID, F_RootID, F_Role, F_DateStamp)
+						VALUES (?,?,?,?)
+SQL;
+					$now = new DateTime();
+							$bindingParams = array($courseId, $rootID, Course::ROLE_PUBLISHER, $now->format('Y-m-d H:i:s'));
+					$rc = $db->Execute($sql, $bindingParams);					
+					if (!$rc)
+						throw new Exception('insert to T_CourseRoles failed');
+				}
+			
+			} catch (Exception $e) {
+				// gh#924 This exception stops database writing, but doesn't impact the xml file
+				// log it for Clarity debugging and give the user a reasonable action
+				AbstractService::$debugLog->notice("course save SQL error ".$e->getMessage());
+				throw $copyOps->getExceptionForId("errorSavingCourseToDb");
+			}
+			
+			$db->CompleteTrans();
 				
 			// Finally. Remove data from the XML that you have put into the db so it doesn't get saved in the file
 			// gh#191 If you have iterated round the publication loop, you can't now unset it (at least with my PHP)
