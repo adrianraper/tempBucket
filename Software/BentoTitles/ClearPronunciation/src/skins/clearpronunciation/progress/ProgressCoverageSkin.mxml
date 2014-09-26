@@ -4,7 +4,7 @@
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009" 
 		alpha.disabled="0.5" xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" 
 		xmlns:exerciseNumber="skins.tensebuster.assets.exerciseNumber.*" 
-		xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*">
+		xmlns:numberIcon="skins.tensebuster.assets.progress.coverage.numberIcon.*" creationComplete="onCreationComplete(event)">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressCoverageView")]
@@ -13,6 +13,7 @@
 	<fx:Script>
 		<![CDATA[			
 			import mx.collections.XMLListCollection;
+			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
 			import org.davekeen.util.StringUtils;
@@ -22,11 +23,15 @@
 			
 			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
-				progressBar.trackColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor1');
-				progressBar.fillColour = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor2');
 				
-				topGradientColor.color = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor1');
-				bottomGradientColor.color = getStyle(hostComponent.courseClass.charAt(0) + 'BarColor2');
+				progressBar.trackColour = getStyle(hostComponent.courseClass.charAt(0) + 'DarkColor');
+				progressBar.fillColour = getStyle(hostComponent.courseClass.charAt(0) + 'LightColor');	
+			}
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				coverageScroller.height = FlexGlobals.topLevelApplication.height - 310;
+				coverageScrollerLayout.rowHeight = coverageScroller.height / 8;
+				coverageScrollerLayout.columnWidth = (FlexGlobals.topLevelApplication.width - 80) * 0.5;
 			}
 			
 		]]>
@@ -37,181 +42,156 @@
         <s:State name="disabled" />
     </s:states>
 	
-	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
-		<ui:layout>
-			<s:ButtonBarHorizontalLayout gap="35" />
-		</ui:layout>
-	</ui:ProgressCourseButtonBar>
-	
-	<s:Rect top="60" left="45" right="50" height="1">
-		<s:fill>
-			<s:SolidColor color="0xEC1C32" />
-		</s:fill>
-	</s:Rect>
-    
-	<ui:ProgressBarRenderer id="progressBar" top="80" left="50" right="50" />
-
-	<s:Label id="coverageInstructionLabel" top="130" left="50" fontSize="13" />
-	<s:HGroup left="250" top="165">
-		<s:Path id="doneHexagonPath" data="M0 6.16284C0 5.06274 0.779297 3.71265 1.73193 3.16284L6.49561 0.412354C7.44824 -0.137451 9.00684 -0.137451 9.95947 0.412354L14.7231 3.16284C15.6758 3.71265 16.4551 5.06274 16.4551 6.16284L16.4551 11.6628C16.4551 12.7629 15.6758 14.113 14.7231
-				14.6628L9.95947 17.4128C9.00684 17.9626 7.44824 17.9626 6.49561 17.4128L1.73193 14.6628C0.779297 14.113 0 12.7629 0 11.6628L0 6.16284Z">
+	<s:VGroup left="20" right="20" top="20" bottom="0" gap="20">
+		<ui:ProgressCourseButtonBar id="progressCourseButtonBar" height="40">
+			<ui:layout>
+				<s:ButtonBarHorizontalLayout gap="35" />
+			</ui:layout>
+		</ui:ProgressCourseButtonBar>
+		
+		<s:Rect id="titleLine" height="1" width="100%">
 			<s:fill>
-				<s:LinearGradient>
-					<s:GradientEntry id="topGradientColor"  />
-					<s:GradientEntry id="bottomGradientColor"  />
-				</s:LinearGradient>
+				<s:SolidColor color="#000000" />
 			</s:fill>
-		</s:Path>	
-		<s:Label id="completeLabel" fontSize="13"/>
-		<s:Spacer width="14"/>
-		<s:Path data="M0 6.16284C0 5.06274 0.779297 3.71265 1.73193 3.16284L6.49561 0.412354C7.44824 -0.137451 9.00684 -0.137451 9.95947 0.412354L14.7231 3.16284C15.6758 3.71265 16.4551 5.06274 16.4551 6.16284L16.4551 11.6628C16.4551 12.7629 15.6758 14.113 14.7231
-				14.6628L9.95947 17.4128C9.00684 17.9626 7.44824 17.9626 6.49561 17.4128L1.73193 14.6628C0.779297 14.113 0 12.7629 0 11.6628L0 6.16284Z">
-			<s:fill>
-				<s:LinearGradient>
-					<s:GradientEntry color="0x999999" />
-					<s:GradientEntry color="0xCDCDCD"/>
-				</s:LinearGradient>
-			</s:fill>
-		</s:Path>	
-		<s:Label id="notCompleteLabel" fontSize="13"/>
-	</s:HGroup>
-			 
-	<s:Scroller left="50" right="0" top="189" bottom="0">
-		<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">
-			<s:layout>
-				<s:VerticalLayout paddingTop="15" gap="16" />
-			</s:layout>
-			<s:itemRenderer>
-				<fx:Component>
-					<s:DataRenderer>
-						<fx:Script>
-							<![CDATA[
-								import mx.collections.XMLListCollection;
-								
-								private var _exerciseLabelVisible:Boolean;
-								private var _exerciseLabel:String;
-								private var _exerciseLabelIndex:Number;
-								 
-								public function getIcon(value:Number):Class {
-									var course:String = data.parent().@caption;
-									var firstLetter:String = course.charAt(0);
-									var source:String = firstLetter+"Number"+value;
-									return getStyle(source);
-								}
-								
-								override public function set data(value:Object):void {
-									super.data = value;
+		</s:Rect>
+		
+		<ui:ProgressBarRenderer id="progressBar" height="30" width="100%" />
+		
+		
+		<s:HGroup verticalAlign="middle">
+			<s:Label id="coverageInstructionLabel" top="130" left="50" fontSize="12" color="#333333" />		
+			<s:Spacer width="14"/>
+			<s:Ellipse x="0" y="0" width="20" height="20">
+				<s:fill>
+					<s:LinearGradient>
+						<s:GradientEntry color="#263A45" />
+						<s:GradientEntry color="#416B75" />
+					</s:LinearGradient>
+				</s:fill>
+			</s:Ellipse>
+			<s:Label id="completeLabel" fontSize="13" color="#333333" />	
+			<s:Spacer width="14"/>
+			<s:Ellipse x="0" y="0" width="20" height="20">
+				<s:fill>
+					<s:LinearGradient>
+						<s:GradientEntry color="#979797" />
+						<s:GradientEntry color="#CACACA" />
+					</s:LinearGradient>
+				</s:fill>
+			</s:Ellipse>
+			<s:Label id="notCompleteLabel" fontSize="13" color="#333333" />
+		</s:HGroup>
+		
+		<!--Coverage list-->
+		<s:Scroller id="coverageScroller" left="50" right="0" top="189">
+			<s:DataGroup dataProvider="{hostComponent.unitListCollection}"  width="100%" height="100%" minWidth="0" minHeight="0">
+				<s:layout>
+					<s:TileLayout id="coverageScrollerLayout" orientation="columns" requestedColumnCount="2" />
+				</s:layout>
+				<s:itemRenderer>
+					<fx:Component>
+						<s:DataRenderer>
+							<fx:Script>
+								<![CDATA[
+									import mx.collections.XMLListCollection;
 									
-									exLabelButton.name = outerDocument.hostComponent.courseClass;							
-								}								
-								
-								public function set exerciseLabelVisible(value:Boolean):void {
-									_exerciseLabelVisible = value;
-								}
-								
-								[Bindable]
-								public function get exerciseLabelVisible():Boolean {
-									return _exerciseLabelVisible;
-								}							
-								
-								public function set exerciseLabel(value:String):void {
-									_exerciseLabel = value;
-								}
-								
-								[Bindable]
-								public function get exerciseLabel():String {
-									return _exerciseLabel;
-								}
-								
-								[Bindable]
-								public function set exerciseLabelIndex(value:Number):void {
-									if (_exerciseLabelIndex != value) {
-										_exerciseLabelIndex = value;
-										if (value < 10) {
-											exLabelButton.left = 220 + value*29;
-										} else {
-											exLabelButton.left = 220 + value*30;
-										}
-										
+									public function getIndex(data:Object):Number {
+										return (owner as DataGroup).dataProvider.getItemIndex(data);
 									}
+									
+									override public function set data(value:Object):void {
+										super.data = value;
 										
-								}
-								
-								public function get exerciseLabelIndex():Number {
-									return _exerciseLabelIndex;
-								}
-								
-							]]>
-						</fx:Script>
-						<s:Label text="{data.@caption}" fontSize="13" fontWeight="bold" />
-						<s:DataGroup left="200" dataProvider="{new XMLListCollection(data.exercise)}">
-							<s:layout>
-								<s:HorizontalLayout/>
-							</s:layout>
-							<s:itemRenderer>
-								<fx:Component>
-									<s:DataRenderer>
-										<fx:Script>
-											<![CDATA[
-												
-												import spark.components.DataGroup;
-												
-												private var lastIndex:Number = new Number();
-												private var lastIndex2:Number = new Number();
-												
-												public function getIndex(data:Object):Number {
-													return (owner as DataGroup).dataProvider.getItemIndex(data);
-												}
-												
-												override public function set data(value:Object):void {
-													super.data = value;
-													
-													if (data) {
-														if (getIndex(data) < data.parent().@count) {
-															var courseClass:String = data.parent().parent().@["class"];
-															topGradientColor.color = getStyle(courseClass.charAt(0) + "BarColor1");
-															bottomGradientColor.color = getStyle(courseClass.charAt(0)+ "BarColor2");
-														} else {
-															topGradientColor.color = getStyle("undoneBarColor1");
-															bottomGradientColor.color = getStyle("undoneBarColor2");
-														}																												
-													}
-												}
-													
-													
-												// mouse over show the exercise name
-												/*protected function onMouseOver(event:MouseEvent):void {	
-													outerDocument.exerciseLabelVisible = true;
-													outerDocument.exerciseLabel = data.@caption;
-													outerDocument.exerciseLabelIndex = getIndex(data);																						
-												}
-												
-												protected function onMouseOut(event:MouseEvent):void {
-													outerDocument.exerciseLabelVisible = false;																							
-												}*/
-												
-											]]>
-										</fx:Script>
-										<s:Group id="greyNumberGroup" width="21.5" top="-1">
-											<s:Path id="doneHexagonPath" data="M0 6.16284C0 5.06274 0.779297 3.71265 1.73193 3.16284L6.49561 0.412354C7.44824 -0.137451 9.00684 -0.137451 9.95947 0.412354L14.7231 3.16284C15.6758 3.71265 16.4551 5.06274 16.4551 6.16284L16.4551 11.6628C16.4551 12.7629 15.6758 14.113 14.7231
-												  14.6628L9.95947 17.4128C9.00684 17.9626 7.44824 17.9626 6.49561 17.4128L1.73193 14.6628C0.779297 14.113 0 12.7629 0 11.6628L0 6.16284Z">
-												<s:fill>
-													<s:LinearGradient>
-														<s:GradientEntry id="topGradientColor"  />
-														<s:GradientEntry id="bottomGradientColor"  />
-													</s:LinearGradient>
-												</s:fill>
-											</s:Path>	
-										</s:Group>
-									</s:DataRenderer>
-								</fx:Component>
-							</s:itemRenderer>
-						</s:DataGroup>
-						<s:Button id="exLabelButton" visible="{exerciseLabelVisible}" label="{exerciseLabel}" mouseEnabled="false" top="-5" />
-					</s:DataRenderer>
-				</fx:Component>
-			</s:itemRenderer>
-		</s:DataGroup>
-	</s:Scroller>
-
+										if (getIndex(data) < 9) {
+											unitItemIndexLabel.text = "0" + String(getIndex(data) + 1);
+										} else {
+											unitItemIndexLabel.text = String(getIndex(data) + 1);
+										}						
+									}
+									
+								]]>
+							</fx:Script>
+							<s:HGroup width="100%" height="100%" verticalAlign="middle">
+								<s:Label id="unitItemIndexLabel" fontSize="14" color="#333333" verticalCenter="0" />
+								<s:Spacer width="10" />
+								<s:HGroup left="0" width="80" verticalCenter="0" verticalAlign="middle">
+									<s:Button id="unitItemLeftButton" scaleX="0.8" scaleY="0.8" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@leftIcon)}" />
+									<s:Label id="unitItemLeftLabel" text="{data.@leftIcon}" fontSize="14" />
+								</s:HGroup>
+								<s:Spacer width="20" />
+								<s:HGroup width="80" verticalCenter="0" verticalAlign="middle">
+									<s:Button id="unitItemRightButton" scaleX="0.8" scaleY="0.8" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon)}" />
+									<s:Label id="unitItemRightLabel" text="{data.@rightIcon}" fontSize="14" />
+								</s:HGroup>														
+								<s:Spacer width="20" />
+								<!--Coverage Circles-->
+								<s:DataGroup dataProvider="{new XMLListCollection(data.exercise)}">
+									<s:layout>
+										<s:HorizontalLayout/>
+									</s:layout>
+									<s:itemRenderer>
+										<fx:Component>
+											<s:DataRenderer>
+												<fx:Script>
+													<![CDATA[
+														
+														import spark.components.DataGroup;
+														
+														private var lastIndex:Number = new Number();
+														private var lastIndex2:Number = new Number();
+														
+														public function getIndex(data:Object):Number {
+															return (owner as DataGroup).dataProvider.getItemIndex(data);
+														}
+														
+														override public function set data(value:Object):void {
+															super.data = value;
+															
+															if (data) {
+																if (getIndex(data) < data.parent().@count) {
+																	var courseClass:String = data.parent().parent().@["class"];
+																	topGradientColor.color = getStyle(courseClass.charAt(0) + "DarkColor");
+																	bottomGradientColor.color = getStyle(courseClass.charAt(0)+ "LightColor");
+																} else {
+																	topGradientColor.color = getStyle("undoneDarkColor");
+																	bottomGradientColor.color = getStyle("undoneLightColor");
+																}																												
+															}
+														}
+														
+														
+														// mouse over show the exercise name
+														/*protected function onMouseOver(event:MouseEvent):void {	
+														outerDocument.exerciseLabelVisible = true;
+														outerDocument.exerciseLabel = data.@caption;
+														outerDocument.exerciseLabelIndex = getIndex(data);																						
+														}
+														
+														protected function onMouseOut(event:MouseEvent):void {
+														outerDocument.exerciseLabelVisible = false;																							
+														}*/
+														
+													]]>
+												</fx:Script>
+												<s:Group id="greyNumberGroup" width="21.5" top="-1">
+													<s:Ellipse x="0" y="0" width="20" height="20">
+														<s:fill>
+															<s:LinearGradient>
+																<s:GradientEntry id="topGradientColor" />
+																<s:GradientEntry id="bottomGradientColor" />
+															</s:LinearGradient>
+														</s:fill>
+													</s:Ellipse>
+												</s:Group>
+											</s:DataRenderer>
+										</fx:Component>
+									</s:itemRenderer>
+								</s:DataGroup>
+							</s:HGroup>
+						</s:DataRenderer>
+					</fx:Component>
+				</s:itemRenderer>
+			</s:DataGroup>
+		</s:Scroller>
+	</s:VGroup>
 </s:Skin>

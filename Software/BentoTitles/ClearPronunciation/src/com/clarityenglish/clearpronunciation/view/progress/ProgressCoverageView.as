@@ -2,6 +2,7 @@ package com.clarityenglish.clearpronunciation.view.progress {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import mx.collections.ListCollectionView;
@@ -72,10 +73,20 @@ package com.clarityenglish.clearpronunciation.view.progress {
 			return _courseClass;
 		}
 		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
+		
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			if (progressCourseButtonBar) progressCourseButtonBar.courses = menu.course;
+			var courseXMLList:XMLList = new XMLList();
+			for each (var course:XML in menu.course) {
+				if (course.@["class"] != "introduction") {
+					courseXMLList += course;
+				}
+			}
+			if (progressCourseButtonBar) progressCourseButtonBar.courses = courseXMLList;
 		}
 		
 		protected override function onViewCreationComplete():void {

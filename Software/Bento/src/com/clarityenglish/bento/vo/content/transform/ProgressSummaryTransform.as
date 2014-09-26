@@ -1,33 +1,66 @@
 package com.clarityenglish.bento.vo.content.transform {
+	import mx.states.State;
 	
 	[RemoteClass(alias="com.clarityenglish.bento.vo.content.transform.ProgressSummaryTransform")]
 	public class ProgressSummaryTransform extends XmlTransform {
 		private var progressWidgetArray:Array = ["group", "video", "audio", "exercise", "pdf"];
 		
+		private var exerciseID:Number;
+		
+		public function ProgressSummaryTransform(value:Number = -1) {
+			exerciseID = value;
+		}
+		
 		override public function transform(xml:XML):void {
 			namespace xhtml = "http://www.w3.org/1999/xhtml";
 			use namespace xhtml;
+		
+			if (exerciseID > -1) {
+				var exerciseXML:XML = xml..script.(@id == "model")..exercise.(@id == String(exerciseID))[0];
+				trace("exercise xml: "+exerciseXML);
+			}
 			
-			for each (var course:XML in xml..script.(@id == "model")..course) {
-				var courseStats:Stats = new Stats();
+			if (exerciseXML) {
+				var unitXML:XML = exerciseXML.parent();
+				var unitXMLStates:Stats = new Stats();
+				var courseXMLStates:Stats = new Stats();
 				
-				for each (var unit:XML in course..unit) {
-					var unitStats:Stats = new Stats();
-					
-					// change from unit..exercise to unit.exercise for nested exercise node in cp
-					for each (var exercise:XML in unit.exercise) {
-						if (exercise.hasOwnProperty("@type") && exercise.@type == "group") {
-							unitStats.add(getNestedExerciseStats(exercise));
-						} else {
-							unitStats.add(getExerciseStats(exercise));
-						}
-					}
-					
-					unitStats.writeToNode(unit);
-					courseStats.add(unitStats);
+				while (unitXML.name() != "unit") {
+					unitXML = unitXML.parent();
 				}
 				
-				courseStats.writeToNode(course);
+				for each (var exerciseXML:XML in unitXML.exercise) {
+					if (exerciseXML.hasOwnProperty("@type") && exerciseXML.@type == "group") {
+						unitXMLStates.add(getNestedExerciseStats(exerciseXML));
+					} else {
+						unitXMLStates.add(getExerciseStats(exerciseXML));
+					}
+				}
+				unitXMLStates.writeToNode(unitXML);
+				courseXMLStates.add(unitXMLStates);
+				courseXMLStates.writeToNode(unitXML.parent());
+			} else {
+				for each (var course:XML in xml..script.(@id == "model")..course) {
+					var courseStats:Stats = new Stats();
+					
+					for each (var unit:XML in course..unit) {
+						var unitStats:Stats = new Stats();
+						
+						// change from unit..exercise to unit.exercise for nested exercise node in cp
+						for each (var exercise:XML in unit.exercise) {
+							if (exercise.hasOwnProperty("@type") && exercise.@type == "group") {
+								unitStats.add(getNestedExerciseStats(exercise));
+							} else {
+								unitStats.add(getExerciseStats(exercise));
+							}
+						}
+						
+						unitStats.writeToNode(unit);
+						courseStats.add(unitStats);
+					}
+					
+					courseStats.writeToNode(course);
+				}
 			}
 		}
 		

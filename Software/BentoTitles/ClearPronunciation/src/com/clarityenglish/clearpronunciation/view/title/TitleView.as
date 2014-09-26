@@ -1,8 +1,8 @@
 package com.clarityenglish.clearpronunciation.view.title {
 	import com.clarityenglish.bento.view.base.BentoView;
-	import com.clarityenglish.bento.view.progress.ProgressView;
 	import com.clarityenglish.clearpronunciation.view.course.CourseView;
 	import com.clarityenglish.clearpronunciation.view.home.HomeView;
+	import com.clarityenglish.clearpronunciation.view.progress.ProgressView;
 	import com.clarityenglish.rotterdam.view.schedule.ScheduleView;
 	import com.clarityenglish.rotterdam.view.settings.SettingsView;
 	import com.clarityenglish.rotterdam.view.title.ui.CancelableTabbedViewNavigator;
@@ -19,11 +19,12 @@ package com.clarityenglish.clearpronunciation.view.title {
 	import spark.components.Button;
 	import spark.components.Label;
 	import spark.components.ViewNavigator;
+	import spark.events.IndexChangeEvent;
 	
 	// This tells us that the skin has these states, but the view needs to know about them too
 	[SkinState("home")]
 	[SkinState("course")]
-	//[SkinState("progress")] // optional
+	[SkinState("progress")] // optional
 	//[SkinState("filemanager")] // optional
 	
 	public class TitleView extends BentoView {
@@ -49,17 +50,21 @@ package com.clarityenglish.clearpronunciation.view.title {
 		public var logoutButton:Button;
 		
 		[SkinPart]
+		public var backButon:Button;
+		
+		[SkinPart]
 		public var productTitle:Label;
 		
 		public var dirtyWarningShow:Signal = new Signal(Function);
 		public var settingsOpen:Signal = new Signal();
 		public var logout:Signal = new Signal();
+		public var progressTransform:Signal = new Signal();
 		
 		public function TitleView() {
 			super();
 			
 			// The first one listed will be the default
-			StateUtil.addStates(this, [ "home", "course", "progress", "settings", "schedule" ], true);
+			StateUtil.addStates(this, [ "home", "course", "progress", "settings", "schedule", "progress" ], true);
 			this.actionBarVisible = false;
 		}
 		
@@ -85,14 +90,15 @@ package com.clarityenglish.clearpronunciation.view.title {
 						home: { viewClass: HomeView },
 						course: { viewClass: CourseView, stack: true },
 						settings: {viewClass: SettingsView, stack: true},
-						schedule: {viewClass: ScheduleView, stack:true}
+						schedule: {viewClass: ScheduleView, stack:true},
 						// TODO: this really should be here, but there is some bug whereby the framework is straight away changing back from progress to course, so leave for now
-						//progress: { viewClass: ProgressView }
+						progress: { viewClass: ProgressView, stack:true }
 					});
 					// gh#83
 					sectionNavigator.changeConfirmFunction = function(next:Function):void {
 						dirtyWarningShow.dispatch(next); // If there is no dirty warning this will cause next() to be executed immediately
 					};
+					sectionNavigator.addEventListener(IndexChangeEvent.CHANGE, onNavigatorIndexChange);
 					break;
 				case progressViewNavigator:
 					//progressViewNavigator.label = copyProvider.getCopyForId("progressViewNavigator");
@@ -111,6 +117,10 @@ package com.clarityenglish.clearpronunciation.view.title {
 					// gh#217
 					//instance.label = copyProvider.getCopyForId("LogOut");
 					instance.addEventListener(MouseEvent.CLICK, onLogoutClick);
+					break;
+				case backButon:
+					backButon.label = copyProvider.getCopyForId("Back");
+					backButon.addEventListener(MouseEvent.CLICK, onBackClick);
 					break;
 				case productTitle:
 					instance.text = copyProvider.getCopyForId("applicationTitle");
@@ -132,7 +142,16 @@ package com.clarityenglish.clearpronunciation.view.title {
 		}
 		
 		protected function onBackClick(evnet:Event):void {
-			myCoursesViewNavigator.popView();
+			if (currentState == "progress")
+				sectionNavigator.selectedIndex = 0;
+		}
+		
+		protected function onNavigatorIndexChange(event:Event):void {
+			if (sectionNavigator.selectedIndex == 1) {
+				sectionNavigator.tabBar.visible = false;
+				progressTransform.dispatch();
+			}
+				
 		}
 	}
 }

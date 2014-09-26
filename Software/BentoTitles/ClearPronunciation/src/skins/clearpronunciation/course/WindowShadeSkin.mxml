@@ -32,15 +32,9 @@
 		<s:State name="disabled" />
 	</s:states>
 	
-	<!--s:Rect id="background" left="0" right="0" top="0" bottom="0">
-		<s:fill>
-			<s:SolidColor id="bgFill" color="#FFFFFF" alpha="0"/>
-		</s:fill>
-	</s:Rect-->
-	
-	<s:VGroup gap="0" left="0" right="0" top="0" bottom="0" horizontalAlign="center">
+	<s:VGroup gap="0" left="0" right="0" top="0" bottom="0" horizontalCenter="0" horizontalAlign="center">
 		<s:Group id="contentGroup" left="0" right="0" top="0" bottom="0" minWidth="0" minHeight="0" clipAndEnableScrolling="true" />
-		<s:Button id="thumbButton" width="20" height="20" label="=" />
+		<s:Button id="thumbButton" width="20" height="20" buttonMode="true" useHandCursor="true" />
 	</s:VGroup>
 
 </s:Skin>

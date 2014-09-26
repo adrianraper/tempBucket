@@ -234,7 +234,6 @@ package com.clarityenglish.rotterdam.view.course {
 					unitList.dragEnabled = unitList.dropEnabled = unitList.dragMoveEnabled = true;
 					unitList.addEventListener(IndexChangeEvent.CHANGE, onUnitSelected);
 					unitList.addEventListener(UnitDeleteEvent.UNIT_DELETE, onUnitDelete);
-					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
 					
 					// gh#14 - auto select a unit and gh#151 - autoselect the first enabled unit
 					callLater(function():void {
@@ -308,15 +307,6 @@ package com.clarityenglish.rotterdam.view.course {
 			} else {
 				unitListCollapseAnimate.play();
 			}	
-		}
-		
-		protected function onUnitListClick(event:Event):void {
-			if (unitList.selectedIndex != -1) {
-				// to hide vertical scroll bar, use verticalScrollPolicy = off
-				unitListCollapseAnimate.play();
-				expandUnitListButton.selected = false;
-			}
-				
 		}
 		
 		protected function onUnitSelected(event:IndexChangeEvent):void {

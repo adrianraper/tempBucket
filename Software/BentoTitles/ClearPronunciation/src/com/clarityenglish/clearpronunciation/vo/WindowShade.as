@@ -137,7 +137,7 @@ package com.clarityenglish.clearpronunciation.vo
 		}
 		
 		protected function onElementAdd(event:Event):void {
-			elementHeight = contentGroup.getChildAt(0).height;
+			elementHeight = contentGroup.getElementAt(0).height;
 		}
 	}
 }

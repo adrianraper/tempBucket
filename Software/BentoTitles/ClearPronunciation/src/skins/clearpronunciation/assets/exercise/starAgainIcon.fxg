@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" viewHeight="16.2998" viewWidth="14.5439" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+  <Group blendMode="normal" d:layerType="page" d:pageHeight="16.3" d:pageWidth="14.544" d:type="layer" d:userLabel="Artboard 1">
+    <Group d:type="layer" d:userLabel="Layer 1">
+      <Path winding="nonZero" ai:seqID="1" data="M9.99316 2.32813 9.99316 4.49414C11.5469 5.42285 12.6055 7.08984 12.6055 9.02734 12.6055 11.9688 10.2129 14.3613 7.27051 14.3613 4.33203 14.3613 1.93945 11.9688 1.93945 9.02734 1.93945 7.24121 2.84473 5.69336 4.20313 4.7334L4.20313 7.01563 7.71094
+ 3.50781 5.95703 1.75391 4.20313 0 4.20313 2.50195C1.73438 3.66113 0 6.125 0 9.02734 0 13.0371 3.26172 16.2998 7.27051 16.2998 11.2832 16.2998 14.5439 13.0371 14.5439 9.02734 14.5439 5.98633 12.6504 3.40918 9.99316 2.32813Z"/>
+    </Group>
+  </Group>
+  <Private/>
+</Graphic>

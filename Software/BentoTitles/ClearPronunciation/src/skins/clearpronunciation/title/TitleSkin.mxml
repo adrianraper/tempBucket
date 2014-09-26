@@ -10,18 +10,18 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
 			import skins.clearpronunciation.assets.title.menuProgressOff;
 			
 			[Bindable]
-			private var stageWidth:Number;
+			private var applicationWidth:Number;
 			
 			protected function onCreationComplete(event:FlexEvent):void {
-				stageWidth = stage.stageWidth;
-				
-				titleButtonHGroup.gap = ((stage.stageWidth - 64) * 0.65 - 500) * 0.25;
-				titleButtonHGroup.left = (stage.stageWidth - 64) * 0.35 + 185 + titleButtonHGroup.gap;
+				applicationWidth = FlexGlobals.topLevelApplication.width;
+				titleButtonHGroup.gap = ((applicationWidth - 64) * 0.65 - 500) * 0.25;
+				titleButtonHGroup.left = (applicationWidth - 64) * 0.35 + 185 + titleButtonHGroup.gap;
 			}
 			
 		]]>
@@ -42,13 +42,15 @@
 
 	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="30">
 		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%"  />
-		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.progress.ProgressView" left="0" right="0" height="100%" includeIn="home" />
+		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.progress.ProgressView" left="0" right="0" height="100%" />
 	</ui:CancelableTabbedViewNavigator>
 	
-	<s:HGroup id="titleButtonHGroup" top="5" left.course="{stageWidth - 50}">
+	<s:HGroup id="titleButtonHGroup" top="5" left.course="{applicationWidth - 50}">
 		<s:Button id="settingsButton" useHandCursor="true" buttonMode="true" includeIn="home" />
 		<s:Button id="phonemicChartButton" useHandCursor="true" buttonMode="true" includeIn="home" />
 		<s:Button id="helpButton" useHandCursor="true" buttonMode="true" includeIn="home" />
-		<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" scaleX.course="0.6" scaleY.course="0.6" />
-	</s:HGroup>	
+		<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" scaleX.course="0.6" scaleY.course="0.6" includeIn="home, course" />	
+	</s:HGroup>
+	
+	<s:Button id="backButon" left="{applicationWidth - 100}" useHandCursor="true" buttonMode="true" includeIn="progress" />	
 </s:Skin>

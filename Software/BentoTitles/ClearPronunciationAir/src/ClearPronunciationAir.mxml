@@ -101,9 +101,37 @@
 		@namespace s "library://ns.adobe.com/flex/spark";
 		@namespace clearpronunciation "com.clarityenglish.clearpronunciation.*";
 		
+		global {
+			fontFamily: Verdana;
+		}
+		
 		@font-face {
 			src: url("skins/clearpronunciationair/assets/MGBOLD.otf");
 			fontFamily: Mgbold;
+			fontStyle: normal;
+			fontWeight: bold;
+			embedAsCFF: true;
+		}
+		
+		@font-face {
+			src: url("skins/clearpronunciation/assets/ip769292.TTF");
+			fontFamily: Phonetic;
+			fontStyle: normal;
+			fontWeight: normal;
+			embedAsCFF: true;
+		}
+		
+		@font-face {
+			src: url("skins/clearpronunciation/assets/MyriadPro-Regular.otf");
+			fontFamily: MyriadPro;
+			fontStyle: normal;
+			fontWeight: normal;
+			embedAsCFF: true;
+		}
+		
+		@font-face {
+			src: url("skins/clearpronunciation/assets/MyriadPro-Semibold.otf");
+			fontFamily: MyriadPro;
 			fontStyle: normal;
 			fontWeight: bold;
 			embedAsCFF: true;

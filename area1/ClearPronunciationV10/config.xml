@@ -21,7 +21,7 @@
 	<brandingMedia />
 	<language>EN</language>
 
-	<contentPath>http://dock.contentBench/Content/</contentPath>
+	<contentPath>http://claritydev2/Content/</contentPath>
 	<remoteDomain>http://dock.projectBench/</remoteDomain>
 	<remoteGateway>http://dock.projectBench/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>ClearPronunciationService</remoteService>

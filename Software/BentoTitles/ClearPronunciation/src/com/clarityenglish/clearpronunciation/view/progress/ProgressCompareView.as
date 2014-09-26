@@ -146,7 +146,13 @@ package com.clarityenglish.clearpronunciation.view.progress
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			if (progressCourseButtonBar) progressCourseButtonBar.courses = menu.course;
+			var courseXMLList:XMLList = new XMLList();
+			for each (var course:XML in menu.course) {
+				if (course.@["class"] != "introduction") {
+					courseXMLList += course;
+				}
+			}
+			if (progressCourseButtonBar) progressCourseButtonBar.courses = courseXMLList;
 		}
 		
 		protected override function onViewCreationComplete():void {

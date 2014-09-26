@@ -89,7 +89,14 @@ package com.clarityenglish.clearpronunciation.view.progress
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			progressCourseButtonBar.courses = menu.course;
+			var courseXMLList:XMLList = new XMLList();
+			for each (var course:XML in menu.course) {
+				if (course.@["class"] != "introduction") {
+					courseXMLList += course;
+				}
+			}
+			
+			progressCourseButtonBar.courses = courseXMLList;
 		}
 		
 		protected override function commitProperties():void {
@@ -102,10 +109,11 @@ package com.clarityenglish.clearpronunciation.view.progress
 				}
 				
 				if (courseClass) {
-					var buildXML:XMLList = menu.course.(@["class"] == courseClass).unit.exercise.score;
+					var buildXML:XMLList = menu.course.(@["class"] == courseClass).unit..score;
 					
 					// Then add the caption from the exercise to the score to make it easy to display in the grid
 					// If the grid can do some sort of subheading, then I could do something similar with the unit name too
+					var buildAfterXML:XMLList = new XMLList();
 					for each (var score:XML in buildXML) {
 						score.@caption = score.parent().@caption;
 						
@@ -113,13 +121,15 @@ package com.clarityenglish.clearpronunciation.view.progress
 						if (score.parent().hasOwnProperty("@group")) {
 							score.@unitCaption = menu.course.(@["class"] == courseClass).groups.group.(@id == score.parent().@group).@caption;
 						} else {
-							score.@unitCaption = score.parent().parent().@caption;
+							while(score.parent().name() != "unit") {
+								score = score.parent();
+							}
+							score.@unitCaption = score.parent().@caption;
 						}
 						
 						// #232. Scores of -1 (nothing to mark) should show in the table as ---
-						score.@displayScore = (Number(score.@score) >= 0) ? score.@score : '---';
+						score.@displayScore = (Number(score.@score) >= 0) ? score.@score : '---'; 
 					}
-					
 					tableDataProvider = new XMLListCollection(buildXML);
 					
 					if (buildXML.length() == 0) {

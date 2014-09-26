@@ -21,6 +21,7 @@
 			import mx.containers.GridItem;
 			import mx.containers.GridRow;
 			import mx.containers.TileDirection;
+			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			import mx.graphics.IFill;
 			import mx.graphics.SolidColor;
@@ -43,47 +44,9 @@
 				return categoryItem.@caption;
 			}
 			
-			/*private function drawLegend():void {
-				// Use a counter for the series. 
-				clearLegend();
-				
-				for (var k:int = 0; k < 1; k++) {
-					var li:LegendItem = new LegendItem(); 
-					// Apply the current series' displayName to the LegendItem's label. 
-					if (k == 0) {
-						li.label = myBarSeries.displayName 
-					} else {
-						li.label = everyOneBarSeries.displayName; 
-					}
-					
-					// Get the current series' fill. 
-					var sc:LinearGradient = new LinearGradient();
-					var gradientEntry1:GradientEntry = new GradientEntry();
-					var gradientEntry2:GradientEntry = new GradientEntry();
-					if (k == 0) {
-						var color1:Number = getStyle(hostComponent.courseClass.charAt(0) + "BarColor1");
-						var color2:Number = getStyle(hostComponent.courseClass.charAt(0) + "BarColor2");
-					} else {
-						color1 = getStyle(hostComponent.courseClass.charAt(0) + "OtherBarColor1");
-						color2 = getStyle(hostComponent.courseClass.charAt(0) + "OtherBarColor2");
-					}					
-					gradientEntry1.color = color1;					
-					gradientEntry2.color = color2;
-					sc.entries = [gradientEntry1, gradientEntry2];
-					// Apply the current series' fill to the corresponding LegendItem. 
-					li.setStyle("fill", sc); 
-					li.setStyle("fontSize", 12); 
-					myLegend.addChild(li);
-				}				
-			}
-			
-			private function clearLegend():void { 
-				myLegend.removeAllChildren();
-			} */
-			
 			protected function onCreationComplete(event:FlexEvent):void
 			{
-				// TODO Auto-generated method stub
+				
 
 			}
 			
@@ -100,19 +63,21 @@
 		<s:State name="normalOnline" />
 	</s:states>
 	
-	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="50" height="60">
-		<ui:layout>
-			<s:ButtonBarHorizontalLayout gap="35" />
-		</ui:layout>
-	</ui:ProgressCourseButtonBar>
-	
-	<s:Rect top="60" left="45" right="65" height="1">
-		<s:fill>
-			<s:SolidColor color="0xEC1C32" />
-		</s:fill>
-	</s:Rect>
-	
-	<s:Label id="compareInstructionLabel" left="50" top="90" fontSize="13" />
+	<s:VGroup left="20" right="20" top="20" bottom="0" gap="20">
+		<ui:ProgressCourseButtonBar id="progressCourseButtonBar" height="40">
+			<ui:layout>
+				<s:ButtonBarHorizontalLayout gap="35" />
+			</ui:layout>
+		</ui:ProgressCourseButtonBar>
+		
+		<s:Rect id="titleLine" height="1" width="100%">
+			<s:fill>
+				<s:SolidColor color="#000000" />
+			</s:fill>
+		</s:Rect>
+		
+		<s:Label id="compareInstructionLabel" left="50" top="90" fontSize="13" />
+	</s:VGroup>
 	
 	<!--horizontalAxis.title display blur text in ipad, so we use a separate label to display title-->
 	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
@@ -156,7 +121,7 @@
 	</mx:BarChart>
 	
 	<!--histogram chart bottom line-->
-	<s:Rect left="220" right="150" bottom="60" bottom.normalOnline="120" height="1">
+	<s:Rect left="220" right="150" bottom="60" height="1">
 		<s:fill>
 			<s:SolidColor color="#B3B3B3" />
 		</s:fill>

@@ -52,12 +52,12 @@
         <s:State name="down" />
         <s:State name="disabled" />
     </s:states>
-    
-    <s:Rect radiusX="10" radiusY="10" width="180" height="45" includeIn="up, down">
+	
+	<s:Rect radiusX="10" radiusY="10" width="180" height="45">
 		<s:fill>
 			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="#315D6B" />
-				<s:GradientEntry color="#142730" />
+				<s:GradientEntry color="#315D6B" color.over="#FFE6A9" color.down="#FFE6A9" />
+				<s:GradientEntry color="#142730" color.over="#E8BB27" color.down="#E8BB27"/>
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
@@ -68,7 +68,7 @@
              textAlign="center"
              maxDisplayedLines="1"
              horizontalCenter="0" verticalCenter="0" verticalAlign="middle"
-             left="10" right="10" top="2" bottom="2" color="#FFFFFF" fontWeight="bold" fontSize="20" fontFamily="Mgbold">
+             left="10" right="10" top="2" bottom="2" color="#FFFFFF" color.over="#1D2D36" color.down="#1D2D36" fontWeight="bold" fontSize="20" fontFamily="Mgbold">
     </s:Label>
     
 </s:SparkButtonSkin>

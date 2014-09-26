@@ -198,15 +198,15 @@ package com.clarityenglish.textLayout.components {
 			
 			// Stop any previously playing sound and play the new one
 			stop();
-			//sound = new Sound(new URLRequest(src));
-			//loaderContext = new SoundLoaderContext(2500);
+			sound = new Sound(new URLRequest(src));
+			loaderContext = new SoundLoaderContext(2500);
 			
 			// Attach listeners to update the scrub bar maximum as the sound loads
-			//sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
-			//sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
+			sound.addEventListener(ProgressEvent.PROGRESS, onSoundLoadProgress, false, 0, true);
+			sound.addEventListener(Event.COMPLETE, onSoundLoadComplete, false, 0, true);
 			
 			soundChannel = sound.play(startTime);
-			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, true);
+			soundChannel.addEventListener(Event.SOUND_COMPLETE, onSoundComplete, false, 0, false);
 			played = true;
 			
 			scrubBarTimer.reset();

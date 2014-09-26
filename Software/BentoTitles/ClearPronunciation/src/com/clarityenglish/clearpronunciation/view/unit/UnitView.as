@@ -31,6 +31,7 @@ package com.clarityenglish.clearpronunciation.view.unit {
 		private var _channelCollection:ArrayCollection;
 		private var _practiseSoundsCollection:XMLListCollection;
 		private var _makeSoundsListCollection:XMLListCollection;
+		private var _isPlatformiPad:Boolean;
 		
 		
 		[Bindable(event="widgetCollectionChanged")]
@@ -97,11 +98,14 @@ package com.clarityenglish.clearpronunciation.view.unit {
 			_channelCollection = value;
 		}
 		
-		/*protected override function updateViewFromXHTML(xhtml:XHTML):void {
-			super.updateViewFromXHTML(xhtml);
-			
-			widgetCollection = new XMLListCollection(xhtml.xml.course.unit.exercise);
-		}*/
+		[Bindable]
+		public function get isPlatformiPad():Boolean {
+			return _isPlatformiPad;
+		}
+		
+		public function set isPlatformiPad(value:Boolean):void {
+			_isPlatformiPad = value;
+		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
 			super.partAdded(partName, instance);
@@ -129,7 +133,7 @@ package com.clarityenglish.clearpronunciation.view.unit {
 				for (var i:Number = 0; i < widgetCollection.length; i++) {
 					if (widgetCollection[i]["@class"] == "practiseSounds") {
 						practiseSoundsCollection = new XMLListCollection(widgetCollection[i].exercise);
-					} else if (widgetCollection[i]["@class"] == "makeSounds") {
+					} else if (widgetCollection[i]["@class"] == "makeSounds" && !isPlatformiPad) {
 						makeSoundsListCollection = new XMLListCollection(widgetCollection[i].exercise);
 					}
 				}

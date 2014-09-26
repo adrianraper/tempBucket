@@ -20,7 +20,7 @@
 				}
 				channelList.visible = false;
 				
-				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
+				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			}
 			
 			protected function onPlaceholderClick(event:MouseEvent):void
@@ -32,8 +32,20 @@
 				focusManager.setFocus(videoList);
 			}
 			
-			protected function onVideoListFocusOut(event:Event):void {
-				videoList.selectedItem = null;
+			protected function onStageClick(event:Event):void {
+				var component:Object = event.target;
+				var isClickVideoSelector:Boolean;
+				while (component.parent) {
+					if (component == videoList || component == videoPlayer) {
+						isClickVideoSelector = true;
+						break;
+					}
+					component = component.parent;
+				}
+				
+				if (!isClickVideoSelector) {
+					videoList.selectedItem = null;
+				}
 			}
 		]]>
 	</fx:Script>

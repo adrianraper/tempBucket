@@ -220,17 +220,17 @@ package com.clarityenglish.clearpronunciation.view.course
 					break;
 				case backToMenuButton:
 					backToMenuButton.addEventListener(MouseEvent.CLICK, onBackToMenuClick);
-					backToMenuButton.label = "Menu";
 					break;
 				case recorderButton:
 					recorderButton.addEventListener(MouseEvent.CLICK, onRecorderClick);
-					recorderButton.label = copyProvider.getCopyForId("recorder");
 					break;
 				case nextButton:
 					nextButton.addEventListener(MouseEvent.CLICK, onNextButtonClick);
+					nextButton.label = copyProvider.getCopyForId("Next");
 					break;
 				case backButton:
 					backButton.addEventListener(MouseEvent.CLICK, onBackButtonClick);
+					backButton.label = copyProvider.getCopyForId("Back");
 					break;
 			}
 		}

@@ -20,6 +20,7 @@
 @namespace settings "com.clarityenglish.clearpronunciation.view.settings.*";
 @namespace home "com.clarityenglish.clearpronunciation.view.home.*";
 @namespace video "com.clarityenglish.controls.video.*";
+@namespace vo "com.clarityenglish.clearpronunciation.vo.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -31,14 +32,15 @@ global {
 	VColor : #8AA13B;
 	DColor : #0499A6;
 	
-	iBarColor1: #7C0124;
-	iBarColor2: #EC1C32;
-	cBarColor1: #603813;
-	cBarColor2: #E0E06B;
-	vBarColor1: #3A4F00;
-	vBarColor2: #8BC452;
-	dBarColor1: #004766;
-	dBarColor2: #53C5C5;
+	cDarkColor: #263A45;
+	cLightColor: #416B75;
+	vDarkColor: #603813;
+	vLightColor: #E0E06B;
+	dDarkColor: #3A4F00;
+	dLightColor: #8BC452;
+	
+	undoneDarkColor: #979797;
+	undoneLightColor: #CACACA;
 	
 	iCircleWedgeColors: #EC1C32, #C1272D, #CD5257, #611417, #E6A9AB, #EC616F, #9C1220, #FF4F62, #FF8F9B;
 	cCircleWedgeColors: #FFE79E, #603813, #E0E06B, #FFFFB8, #D19D2E, #7A6138;
@@ -51,12 +53,20 @@ global {
 
 tlfcomponents|AudioPlayer {
 	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.ui.AudioPlayerSkin");
-	compactStoppedIcon: Embed(source="skins/assets/play.png");
-	compactPlayedIcon: Embed(source="skins/assets/play.png");
-	compactPausedIcon: Embed(source="skins/assets/play.png");
-	compactPlayingIcon: Embed(source="skins/assets/stop.png");
-	fullPlayIcon: Embed(source="skins/assets/play.png");
-	fullPauseIcon: Embed(source="skins/assets/stop.png");
+	compactStoppedIcon: Embed(source="skins/clearpronunciation/assets/play.png");
+	compactPlayedIcon: Embed(source="skins/clearpronunciation/assets/played.png");
+	compactPausedIcon: Embed(source="skins/clearpronunciation/assets/pause.png");
+	compactPlayingIcon: Embed(source="skins/clearpronunciation/assets/playing.png");
+	fullPlayIcon: Embed(source="skins/clearpronunciation/assets/play.png");
+	fullPauseIcon: Embed(source="skins/clearpronunciation/assets/pause.png");
+}
+
+vo|WindowShade {
+	skinClass: ClassReference("skins.clearpronunciation.course.WindowShadeSkin");
+}
+
+vo|WindowShade s|Button#thumbButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.WindowShadeThumbButtonSkin");
 }
 
 s|TitleWindow.RecorderTitleWindow {
@@ -161,15 +171,48 @@ course|CourseView s|List#unitList s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
 }
 
+
+course|CourseView s|Button#unitDropDownLeftItemButton, #unitDropDownRightItemButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
+}
+
+course|CourseView s|Button#backToMenuButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.MenuButtonSkin");
+}
+
+course|CourseView s|Button#recorderButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.RecorderButtonSkin");
+}
+
+course|CourseView s|Button#phonemicChartButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.PhonemicChartButtonSkin");
+}
+
+course|CourseView s|Button#youWillButton{
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.YouWillButtonSkin");
+}
+
+course|CourseView s|Button#backButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.BackButtonSkin");
+}
+
+course|CourseView s|Button#nextButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.NextButtonSkin");
+}
+
+course|CourseView s|Button#makeSoundsExpandButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsExpandButtonSkin");
+}
+
+course|CourseView s|Button#makeSoundsCollapseButton {
+	skinClass: ClassReference("skins.clearpronunciation.course.ui.MakeSoundsCollapseButtonSkin");
+}
+
 course|UnitCaptionComponent {
 	skinClass: ClassReference("skins.clearpronunciation.course.UnitCaptionComponentSkin");	
 }
 
 course|UnitCaptionComponent s|Button {
-	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
-}
-
-course|CourseView s|Button#unitDropDownLeftItemButton, #unitDropDownRightItemButton {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
 }
 
@@ -179,6 +222,14 @@ unit|UnitView {
 
 exercise|ExerciseView {
 	skinClass: ClassReference("skins.clearpronunciation.unit.ExerciseSkin");
+}
+
+exercise|ExerciseView s|Button#markingButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.MarkingButtonSkin");
+}
+
+exercise|ExerciseView s|Button#startAgainButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.StartAgainButtonSkin");
 }
 
 /* Progress view styles */
@@ -192,6 +243,10 @@ progress|ProgressView s|ButtonBar#progressNavBar {
 
 progress|ProgressCoverageView {
 	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCoverageSkin");
+}
+
+progress|ProgressCoverageView s|Button#unitItemLeftButton,#unitItemRightButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
 }
 
 progress|ProgressCoverageView #exLabelButton {

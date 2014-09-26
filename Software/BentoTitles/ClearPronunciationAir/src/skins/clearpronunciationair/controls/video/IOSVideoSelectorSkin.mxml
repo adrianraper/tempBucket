@@ -24,12 +24,24 @@
 				
 				videoPlayer.stop();
 				videoList.addEventListener(IndexChangeEvent.CHANGE, onVideoListIndexChange);
-				videoList.addEventListener(FocusEvent.FOCUS_OUT, onVideoListFocusOut);
+				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			}
 			
-			protected function onVideoListFocusOut(event:Event):void {
-				videoList.selectedItem = null;
-				videoPlayer.visible = false;
+			protected function onStageClick(event:Event):void {
+				var component:Object = event.target;
+				var isClickVideoSelector:Boolean;
+				while (component.parent) {
+					if (component == videoList || component == videoPlayer) {
+						isClickVideoSelector = true;
+						break;
+					}
+					component = component.parent;
+				}
+				
+				if (!isClickVideoSelector) {
+					videoList.selectedItem = null;
+					videoPlayer.visible = false;
+				}
 			}
 			
 			protected function onVideoListIndexChange(event:Event):void {

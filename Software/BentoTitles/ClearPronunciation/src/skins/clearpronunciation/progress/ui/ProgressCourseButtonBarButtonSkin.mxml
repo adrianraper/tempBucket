@@ -69,40 +69,18 @@
     </s:states>
     
 	<s:HGroup gap="8" verticalCenter="0" horizontalCenter="0" verticalAlign="middle">
-		<s:Group>
-			<!--exercise:elementarySIcon visible="{courseClass == 'Elementary'}" />
-			<exercise:lowerinterSIcon visible="{courseClass == 'Lower Intermediate'}" />
-			<exercise:interSIcon visible="{courseClass == 'Intermediate'}" />
-			<exercise:upperinterSIcon visible="{courseClass == 'Upper Intermediate'}"/>
-			<exercise:advanceSIcon visible="{courseClass == 'Advanced'}"/-->
-		</s:Group>	
-		
-		<!--s:Group left="0" right="0" top="0" bottom="0"-->
-		<!-- layer 2: fill -->
-		<!--- @private -->
-		<!--s:Rect id="fill" left="2" right="1" top="2" bottom="2" topLeftRadiusX="12">
-		<s:fill>
-		<s:LinearGradient rotation="90">
-		<s:GradientEntry color="0xFFFFFF" 
-		alpha="1" />
-		<s:GradientEntry color="0xFFFFFF" 
-		alpha="1" />
-		</s:LinearGradient>
-		</s:fill>
-		</s:Rect>
-		</s:Group-->
-		
+		<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/progress/progressTabBarIcon.png')" />
 		<!-- layer 8: icon and text -->
 		<!---  @copy spark.components.supportClasses.ButtonBase#labelDisplay -->
 		<!--- source="{(hostComponent as ButtonBarButton).data.courseIcon}" -->
 		<s:Label id="labelDisplay"
 				 maxDisplayedLines="1"
 				 left="10" right="10"
-				 color="0x303030"
-				 color.selectedUpStates="0x303030"
-				 color.over="0x303030"
-				 color.up="0xCCCCCC"
-				 fontSize="14" fontWeight="bold">
+				 color="#B1B1B1"
+				 color.selectedUpStates="#263A45"
+				 color.over="#263A45"
+				 color.up="#B1B1B1"
+				 fontSize="15" fontWeight="bold" fontFamily="MyriadPro">
 		</s:Label>
 	</s:HGroup>  
 </s:SparkSkin>

@@ -11,46 +11,62 @@
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
+			import mx.core.FlexGlobals;
 			import mx.events.FlexEvent;
 			
 			import spark.events.IndexChangeEvent;
+			import spark.layouts.TileLayout;
+			import spark.layouts.TileOrientation;
 			import spark.layouts.VerticalLayout;
 			
+			public var applicationWidth:Number;
+			public var applicationHeight:Number;
+			
+			[Bindable]
+			public var unitListHeight:Number;
+			
+			[Bindable]
+			public var unitListWidth:Number;
+			
 			protected function onCreationComplete(event:FlexEvent):void
-			{
+			{	
+				loadingRect.visible = false;
+				applicationWidth = FlexGlobals.topLevelApplication.width;
+				applicationHeight = FlexGlobals.topLevelApplication.height;
+				
 				// position course list part
-				courseList.height = stage.stageHeight * 0.33;
+				courseList.height = applicationHeight * 0.33;
 				var verticalLayout:VerticalLayout = new VerticalLayout();
 				verticalLayout.gap = (courseList.height - 185) / 3;
 				courseList.layout = verticalLayout;
 				
 				// position unit list part
-				unitListGroup.left = stage.stageWidth * 0.31;
-				unitListGroup.width = stage.stageWidth * 0.66;
-				unitListGroup.height = stage.stageHeight * 0.86;
+				unitListGroup.left = applicationWidth * 0.31;
+				unitListGroup.width = applicationWidth * 0.66;
+				unitListGroup.height = applicationHeight * 0.83;
 				myHomeBubble.scaleX = myHomeBubble.scaleY = unitListGroup.width / myHomeBubble.width < unitListGroup.height / myHomeBubble.height ? unitListGroup.width / myHomeBubble.width : myHomeBubble.height / myHomeBubble.height;
 				unitListInstuctionGroup.width = myHomeBubble.width * myHomeBubble.scaleX;
-				unitListTileLayout.columnWidth = (unitListGroup.width - 130) * 0.5;
-				unitListTileLayout.rowHeight = (stage.stageHeight * unitList.percentHeight) / 800;
+				unitListWidth = (unitListGroup.width - 140) * 0.5;
+				unitListHeight = (unitListGroup.height * 0.8) / 7;
 				
 				// position title bar
-				homeTitleBarHGroup.width = stage.stageWidth;
+				homeTitleBarHGroup.width = applicationWidth;
 				menuBarLT.width = Math.round((homeTitleBarHGroup.width - 64) * 0.35);
 				menuBarMid.width = 64;
 				menuBarRT.width = Math.round((homeTitleBarHGroup.width - 64) * 0.65);
 				
 				// position footer
-				homeFooterGroup.top = stage.stageHeight - 290;
+				homeFooterGroup.top = applicationHeight - 330;
 				
 				courseList.addEventListener(IndexChangeEvent.CHANGE, onCourseListIndexChange);
 				// when user back from unit, the bubble should zoom in to big size
-				if (unitList.selectedItem) {
-					myHomeBubble.scaleX = myHomeBubble.scaleY = stage.stageWidth / myHomeBubble.width;
+				if (hostComponent.selectedCourseIndex) {
+					myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
 				}
 			}
 			
 			protected function onCourseListIndexChange(evnet:IndexChangeEvent):void {
-				myHomeBubble.scaleX = myHomeBubble.scaleY = stage.stageWidth / myHomeBubble.width;
+				myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
 			}
 			
 		]]>
@@ -77,18 +93,11 @@
 							<s:State name="selected" />
 						</s:states>
 						
-						<s:Rect radiusX="10" radiusY="10" width="180" height="45" includeIn="normal, hovered">
-							<s:fill>
-								<s:LinearGradient rotation="90">
-									<s:GradientEntry color="#315D6B" color.hovered="#FFE6A9" />
-									<s:GradientEntry color="#142730" color.hovered="#E8BB27" />
-								</s:LinearGradient>
-							</s:fill>
-						</s:Rect>
+						<s:Button id="courseListButton" width="185" includeIn="hovered, normal" label="{data.@caption}" />
 						<home:triangleButton includeIn="selected" />
 						
-						<s:Group width="185" height="100%">
-							<s:Label horizontalCenter="0" verticalCenter="0" verticalAlign="middle" text="{data.@caption}" color="#FFFFFF" color.hovered="#1D2D36" color.selected="#1D2D36" fontWeight="bold" fontSize="20" fontFamily="Mgbold" />
+						<s:Group width="185" height="100%" includeIn="selected">
+							<s:Label horizontalCenter="0" verticalCenter="0" verticalAlign="middle" text="{data.@caption}" color="#1D2D36" fontWeight="bold" fontSize="20" fontFamily="Mgbold" />
 						</s:Group>
 					</s:ItemRenderer>
 				</fx:Component>
@@ -97,7 +106,7 @@
 		
 		<s:Group id="unitListGroup">
 			<!--unilit list background bubble-->
-			<home:homeBubble id="myHomeBubble" verticalCenter="10" />
+			<home:homeBubble id="myHomeBubble" verticalCenter="0" />
 			
 			<!--instruction-->
 			<s:Group id="unitListInstuctionGroup" height="100" left="0" verticalCenter="-30">
@@ -106,97 +115,44 @@
 			</s:Group>
 			
 			<video:VideoSelector id="videoSelector" visible="false" />
-			<s:List id="unitList" width="100%" height="80%" left="120" verticalCenter="0" borderVisible="false" contentBackgroundAlpha="0">
+			<s:List id="consonantsList" width="100%" height="80%" left="120" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
 				<s:layout>
-					<s:TileLayout id="unitListTileLayout" requestedColumnCount="2" orientation="columns" verticalGap="0"/>
+					<s:TileLayout requestedColumnCount="2" orientation="columns" verticalGap="0" columnWidth="{unitListWidth}" rowHeight="{unitListHeight}" />
 				</s:layout>
-				<s:itemRenderer>
-					<fx:Component>
-						<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
-							<fx:Script>
-								<![CDATA[
-									import flash.utils.getDefinitionByName;
-									
-									import mx.charts.PieChart;
-									import mx.charts.series.PieSeries;
-									import mx.collections.ArrayCollection;
-									import mx.core.UIComponent;
-									import mx.events.FlexEvent;
-									
-									import org.osmf.events.LoaderEvent;									
-									
-									[Bindable]
-									private var mediaFolder:String
-									
-									[Bindable]
-									private var unitItemPieChartArrayCollection:ArrayCollection;
-									
-									private var _leftIconSrc:String;
-									
-									public override function set data(value:Object):void {
-										super.data = value;
-										
-										if (data) {
-											if (data.@coverage == 0) {
-												pieChart.visible = false;
-											} else {
-												pieChart.visible = true;
-												unitItemPieChartArrayCollection = new ArrayCollection([{coverage: 100 - data.@coverage}, {coverage: data.@coverage}]);	
-											}
-																						
-											if (itemIndex < 9) {
-												unitItemIndexLabel.text = "0" + String(itemIndex + 1);
-											} else {
-												unitItemIndexLabel.text = String(itemIndex + 1);
-											}
-											
-											unitItemLeftLabel.text = data.@leftIcon;
-											unitItemRightLabel.text = data.@rightIcon;
-										}
-									}
-									
-								]]>
-							</fx:Script>
-							<s:HGroup id="unitHGroup" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" gap="0">
-								<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="50" height="50" left="0">
-									<mx:series>
-										<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}" />
-									</mx:series>
-								</mx:PieChart>
-								<s:Label id="unitItemIndexLabel" fontSize="20" color="#333333" verticalCenter="0" />
-								<s:Spacer width="10" />
-								<s:Group id="unitItemHGroup" width="70%" verticalCenter="0">
-									<s:HGroup left="0" verticalAlign="middle">
-										<s:Button id="unitItemLeftButton" height="100%" verticalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@leftIcon)}"  />
-										<s:Label id="unitItemLeftLabel" fontSize="20" />
-									</s:HGroup>
-									<s:HGroup right="20" verticalAlign="middle" width="60">
-										<s:Button id="unitItemRightButton" height="100%" verticalCenter="0" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@rightIcon)}"/>
-										<s:Label id="unitItemRightLabel" fontSize="20" />
-									</s:HGroup>							
-								</s:Group>
-							</s:HGroup>							
-						</s:ItemRenderer>
-					</fx:Component>
-				</s:itemRenderer>
+			</s:List>
+			<s:List id="vowelsList" width="100%" height="80%" left="120" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
+				<s:layout>
+					<s:TileLayout requestedColumnCount="2" orientation="columns" verticalGap="0" columnWidth="{unitListWidth}" rowHeight="{unitListHeight}" />
+				</s:layout>
+			</s:List>
+			<s:List id="diphthongsList" width="100%" height="80%" left="120" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 3}" contentBackgroundAlpha="0">
+				<s:layout>
+					<s:TileLayout requestedColumnCount="2" orientation="columns" verticalGap="0" columnWidth="{unitListWidth}" rowHeight="{unitListHeight}" />
+				</s:layout>
 			</s:List>
 		</s:Group>
 	</s:Group>
 	
 	<!--home title bar-->
-	<s:HGroup id="homeTitleBarHGroup" gap="0" left="0" top="-50">
+	<s:HGroup id="homeTitleBarHGroup" gap="0" left="0" top="-70">
 		<title:menuBarLT id="menuBarLT" />
 		<title:menuBarMid id="menuBarMid" />
 		<title:menuBarRT id="menuBarRT" />
 	</s:HGroup>
 	
 	<!--home left corner logo-->
-	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeLogo.png')" top="-50" left="0" />
+	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeLogo.png')" top="-70" left="0" />
 	
 	<!--home footer-->
 	<s:Group id="homeFooterGroup">
-		<home:homeFooter left="0" top="130" />
+		<home:homeFooter left="0" top="150" />
 		<s:SWFLoader id="girlSWFLoader" source="@Embed(source='skins/clearpronunciation/assets/home/homeGirl.png')" left="0" />
 	</s:Group>
+	
+	<s:Rect id="loadingRect" width="100%" height="100%">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
 	
 </s:Skin>

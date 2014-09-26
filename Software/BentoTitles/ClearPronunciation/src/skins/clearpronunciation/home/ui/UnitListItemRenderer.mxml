@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ItemRenderer xmlns:fx="http://ns.adobe.com/mxml/2009" 
+				xmlns:s="library://ns.adobe.com/flex/spark" 
+				xmlns:mx="library://ns.adobe.com/flex/mx" 
+				autoDrawBackground="false" xmlns:layout="org.alivepdf.layout.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import com.clarityenglish.common.model.interfaces.CopyProvider;
+			
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			[Bindable]
+			private var unitItemPieChartArrayCollection:ArrayCollection;
+			
+			private var _copyProvider:CopyProvider;
+			
+			[Bindable]
+			public function get copyProvider():CopyProvider {
+				return _copyProvider;
+			}
+			
+			public function set copyProvider(value:CopyProvider):void {
+				_copyProvider = value;
+			}
+			
+			public override function set data(value:Object):void {
+				super.data = value;
+				
+				if (data.@coverage == 0) {
+					pieChart.visible = false;
+				} else {
+					pieChart.visible = true;
+					unitItemPieChartArrayCollection = new ArrayCollection([{coverage: 100 - data.@coverage}, {coverage: data.@coverage}]);	
+				}
+				
+				if (itemIndex < 9) {
+					unitItemIndexLabel.text = "0" + String(itemIndex + 1);
+				} else {
+					unitItemIndexLabel.text = String(itemIndex + 1);
+				}
+			}
+		]]>
+	</fx:Script>
+	
+	<s:HGroup id="unitHGroup" left="0" top="0" width="100%" height="100%" horizontalAlign="center" verticalAlign="middle" gap="0">
+		<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="50" height="50" left="0">
+			<mx:series>
+				<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}" />
+			</mx:series>
+		</mx:PieChart>
+		<s:Label id="unitItemIndexLabel" fontSize="20" color="#333333" verticalCenter="0" />
+		<s:Spacer width="10" />
+		<s:Group id="unitItemHGroup" width="70%" verticalCenter="0">
+			<s:HGroup left="0" verticalAlign="middle">
+				<s:Button id="unitItemLeftButton" height="100%" verticalCenter="0" label="{copyProvider.getCopyForId(data.@leftIcon)}" />
+				<s:Label id="unitItemLeftLabel" text="{data.@leftIcon}" fontSize="20" />
+			</s:HGroup>
+			<s:HGroup right="20" verticalAlign="middle" width="60">
+				<s:Button id="unitItemRightButton" height="100%" verticalCenter="0" label="{copyProvider.getCopyForId(data.@rightIcon)}" />
+				<s:Label id="unitItemRightLabel" text="{data.@rightIcon}" fontSize="20" />
+			</s:HGroup>							
+		</s:Group>
+	</s:HGroup>
+	
+</s:ItemRenderer>

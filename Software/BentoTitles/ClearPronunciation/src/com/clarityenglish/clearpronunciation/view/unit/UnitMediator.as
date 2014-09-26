@@ -32,6 +32,7 @@ package com.clarityenglish.clearpronunciation.view.unit {
 			
 			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
 			view.channelCollection = new ArrayCollection(configProxy.getConfig().channels);
+			view.isPlatformiPad = configProxy.isPlatformiPad();
 		}
 	}
 }

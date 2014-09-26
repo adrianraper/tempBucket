@@ -214,8 +214,13 @@ package com.clarityenglish.bento.model {
 				log.error("Attempt to get exercise UID from an empty href");
 				return "";
 			}
-
-			var matchingExerciseNodes:XMLList = menu..exercise.(@href == href.filename);
+			
+			// for CP, we need to locate the exercise node first
+			var exerciseNode:XMLList = menu..unit.exercise;
+			if (exerciseNode.hasOwnProperty("@class")) {
+				exerciseNode = exerciseNode.(@["class"] == "exercise").exercise;
+			}
+			var matchingExerciseNodes:XMLList = exerciseNode.(@href == href.filename);
 			if (matchingExerciseNodes.length() > 1) {
 				throw new Error("Found multiple Exercise nodes in the menu xml matching " + href);
 			} else if (matchingExerciseNodes.length() == 0) {

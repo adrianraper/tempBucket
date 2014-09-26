@@ -49,6 +49,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 		// Constructor to let us initialise our states
 		public function ProgressView() {
 			super();
+			actionBarVisible = false;
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {

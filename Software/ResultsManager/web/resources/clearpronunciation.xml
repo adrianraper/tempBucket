@@ -132,6 +132,7 @@
 			<lit name="Home">Home</lit>
 			<lit name="recorder">Recorder</lit>
 			<lit name="Back">Back</lit>
+			<lit name="Next">Forward</lit>
 			<lit name="LogOut">Log out</lit>
 			
 			<!--Home-->
@@ -183,7 +184,8 @@
 			<lit name="loseChangesWarning">Your changes have not been saved. Are you sure you want to continue?</lit>
 			<lit name="anoyAlertLabel">You have logged in anonymously, so your progress will not be saved after you close the program.</lit>
 			<lit name="feedbackWarning">This exercise has feedback you haven't read. Do you want to read it?</lit>
-			<lit name="footerLabel">Software, design, navigation © Clarity Language Consultants Ltd, 2013-14. All rights reserved.</lit>
+			<lit name="versionLabel">Software, design, navigation</lit>
+			<lit name="footerLabel"> © Clarity Language Consultants Ltd, 2013-14. All rights reserved.</lit>
 			<lit name="creditCaptionLabel">Credits and acknowledgements</lit>
 			<lit name="xhtmlDirty">Your changes to this course have not been saved. Are you sure you want to continue?</lit>
 			<lit name="settingsDirty">Your changes to the settings have not been saved. Are you sure you want to continue?</lit>

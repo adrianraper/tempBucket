@@ -29,6 +29,7 @@ package com.clarityenglish.clearpronunciation
 	import com.clarityenglish.clearpronunciation.view.unit.UnitMediator;
 	import com.clarityenglish.clearpronunciation.view.unit.UnitView;
 	import com.clarityenglish.common.CommonNotifications;
+	import com.clarityenglish.common.view.login.LoginMediator;
 	import com.clarityenglish.rotterdam.CommonAbstractApplicationFacade;
 	
 	public class ClearPronunciationApplicationFacade extends CommonAbstractApplicationFacade

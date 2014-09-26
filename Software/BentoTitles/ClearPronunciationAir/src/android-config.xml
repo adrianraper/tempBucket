@@ -17,9 +17,9 @@
 	<brandingMedia />	
 	<language>EN</language>
 	
-	<contentPath>http://dock.contentBench/Content/</contentPath>
-	<remoteDomain>http://dock.projectBench/</remoteDomain>
-	<remoteGateway>http://dock.projectBench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://192.168.8.82/Content/</contentPath>
+	<remoteDomain>http://192.168.8.82/</remoteDomain>
+	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>ClearPronunciationService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	

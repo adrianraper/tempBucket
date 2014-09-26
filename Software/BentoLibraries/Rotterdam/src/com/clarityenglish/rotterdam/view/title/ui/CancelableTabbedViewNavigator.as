@@ -42,7 +42,7 @@ package com.clarityenglish.rotterdam.view.title.ui {
 		
 		mx_internal override function tabBarRenderer_clickHandler(event:MouseEvent):void {
 			// gh#242
-			if (((event.target).itemIndex == super.selectedIndex) && super.selectedIndex == 0) {
+			if (((event.target).itemIndex == super.selectedIndex)) {
 				var next:Function = function():void {
 					_tabBarRenderer_clickHandler(event);
 				};
@@ -64,8 +64,11 @@ package com.clarityenglish.rotterdam.view.title.ui {
 			{
 				if (selectedNavigator is ViewNavigator) {
 					// gh#847
-					if (ViewNavigator(selectedNavigator).length > 1 && ViewNavigator(selectedNavigator).length < 3)
+					if (ViewNavigator(selectedNavigator).length > 1 && ViewNavigator(selectedNavigator).length < 3) {
 						ViewNavigator(selectedNavigator).popView();
+					} else {
+						super.selectedIndex = 0;
+					}
 				}
 					
 			}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+
+  Licensed to the Apache Software Foundation (ASF) under one or more
+  contributor license agreements.  See the NOTICE file distributed with
+  this work for additional information regarding copyright ownership.
+  The ASF licenses this file to You under the Apache License, Version 2.0
+  (the "License"); you may not use this file except in compliance with
+  the License.  You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+
+-->
+
+
+<!--- The default skin class for the Spark Button component.  
+
+       @see spark.components.Button
+        
+      @langversion 3.0
+      @playerversion Flash 10
+      @playerversion AIR 1.5
+      @productversion Flex 4
+-->
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+             xmlns:s="library://ns.adobe.com/flex/spark" 
+             xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+             minWidth="21" minHeight="21" 
+             alpha.disabled="0.5" xmlns:exercise="skins.clearpronunciation.assets.exercise.*">
+     
+    <fx:Metadata>
+        <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.Button")]
+        ]]>
+    </fx:Metadata>
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+    
+	<s:Group>
+		<s:Path data="M0 0C7.25 1.16797 10.4492 5.125 10.4492 13.6729 10.4492 14.9219 10.4492 15.9111 10.4492 17.3438 10.4492 25.8604 14.5313 30 22.1914 30 27.2354 30 94.4648 30 98.1992 30 105.862 30 109.942 25.8604 109.942 17.3438 109.942 15.9111 109.942 14.9219 109.942
+			  13.6729 109.942 5.125 113.144 1.16797 120.395 0L0 0Z">
+			<s:fill>
+				<s:SolidColor color="#263A45" color.over="#004456" color.down="#004456" />
+			</s:fill>
+		</s:Path>
+	</s:Group>
+	<s:Group left="22" verticalCenter="0">
+		<s:Path data="M0 5.56152C3.30078 7.47266 4.69141 8.51563 4.69141 8.51563 4.69141 8.51563 9.20898 3.30176 15.1191 0 11.6426 2.60742 4.98242 12.8945 4.98242 12.8945 4.98242 12.8945 1.56445 6.95117 0 5.56152Z">
+			<s:fill>
+				<s:SolidColor color="#F2F2F2" color.over="#FFFFFF" color.down="#FFFFFF" />
+			</s:fill>
+		</s:Path>
+	</s:Group>
+    
+    <!-- layer 8: text -->
+    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+    <s:Label id="labelDisplay"
+             verticalCenter="1" verticalAlign="middle"
+             left="42" fontSize="15" fontWeight="normal"
+			 color="#F2F2F2" color.over="#FFFFFF" color.down="#FFFFFF">
+    </s:Label>
+    
+</s:SparkButtonSkin>

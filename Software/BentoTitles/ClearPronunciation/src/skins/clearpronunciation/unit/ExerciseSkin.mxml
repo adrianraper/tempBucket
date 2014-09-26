@@ -16,36 +16,9 @@
 	</s:layout>
 	
 	<!-- Background coloured rectangle -->
-	<s:Rect left="0" right="0" top="0" bottom="0" topRightRadiusX="10" topRightRadiusY="10" bottomRightRadiusX="10" bottomRightRadiusY="10" includeIn="exercise">
+	<s:Rect left="0" right="0" top="0" bottom="0" includeIn="exercise">
 		<s:fill>
-			<s:SolidColor color="{hostComponent.backgroundColorTop}" />
-		</s:fill>
-	</s:Rect>
-	
-	<!-- Background black rectangle -->
-	<s:Rect left="30" right="0" top="34" bottom="20" includeIn="exercise">
-		<s:fill>
-			<s:SolidColor color="#363636" />
-		</s:fill>
-	</s:Rect>
-	
-	<!-- Top gradient -->
-	<s:Rect left="0" right="0" top="0" height="34" topRightRadiusX="10" topRightRadiusY="10" includeIn="exercise">
-		<s:fill>
-			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="{hostComponent.backgroundColorTop}" />
-				<s:GradientEntry color="{hostComponent.backgroundColorBottom}" />
-			</s:LinearGradient>
-		</s:fill>
-	</s:Rect>
-	
-	<!-- Bottom gradient -->
-	<s:Rect left="0" right="0" bottom="0" height="20" bottomRightRadiusX="10" bottomRightRadiusY="10" includeIn="exercise">
-		<s:fill>
-			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="{hostComponent.backgroundColorTop}" />
-				<s:GradientEntry color="{hostComponent.backgroundColorBottom}" />
-			</s:LinearGradient>
+			<s:SolidColor color="#FFFFFF" />
 		</s:fill>
 	</s:Rect>
 	
@@ -54,37 +27,25 @@
 		<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" />
 	</s:VGroup>
 	
-	<!-- Ring binder shadow -->
-	<s:Group left="0" top="34" bottom="20" clipAndEnableScrolling="true" includeIn="exercise">
-		<s:Rect width="50" height="100%">
-			<s:fill>
-				<s:SolidColor color="#000000" alpha="0.4" />
-			</s:fill>
-		</s:Rect>
-	</s:Group>
-	
 	<!-- Exercise -->
-	<view:DynamicView id="dynamicView" left="25" right="25" top="34" bottom="20" />
-	
-	<!-- Title -->
-	<s:Label text="{hostComponent.exerciseTitle}" left="25" top="14" fontSize="13" fontWeight="bold" color="#FFFFFF" includeIn="exercise" />
+	<view:DynamicView id="dynamicView" left="0" right="0" top="40" bottom="20" />
 	
 	<!-- Right buttons -->
 	<s:HGroup right="32" top="0" includeIn="exercise">
 		<s:Group>
-			<s:Button id="feedbackButton" visible="false" />
-			<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
+			<s:Button id="feedbackButton" visible="false" useHandCursor="true" buttonMode="true" />
+			<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" useHandCursor="true" buttonMode="true" />
 		</s:Group>
 		
-		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" />
-		<s:Button id="backButton" />
-		<s:Button id="forwardButton" />
+		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	
-	<!-- Ring binder -->
-	<!--s:Group left="-7" top="34" bottom="20" clipAndEnableScrolling="true" includeIn="exercise">
-		<s:SWFLoader source="@Embed(source='/skins/ielts/assets/assets.swf', symbol='RingBinder')" />
-	</s:Group-->
+	<!--Right rectangle-->
+	<s:Rect right="-13" top="38" bottom="0" width="13" includeIn="exercise">
+		<s:fill>
+			<s:SolidColor color="#19B5E0" />
+		</s:fill>
+	</s:Rect>
 	
 	<!-- Footer text -->
 	<s:HGroup left="25" right="25" bottom="3" includeIn="exercise">

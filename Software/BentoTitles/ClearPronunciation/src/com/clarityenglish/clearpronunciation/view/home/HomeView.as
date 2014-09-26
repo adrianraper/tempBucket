@@ -10,13 +10,18 @@ package com.clarityenglish.clearpronunciation.view.home {
 	import flash.events.MouseEvent;
 	
 	import mx.collections.ArrayCollection;
+	import mx.collections.IList;
 	import mx.collections.ListCollectionView;
 	import mx.collections.XMLListCollection;
 	import mx.controls.Label;
+	import mx.core.ClassFactory;
 	import mx.events.FlexEvent;
 	import mx.events.IndexChangedEvent;
 	
 	import org.osflash.signals.Signal;
+	
+	import skins.clearpronunciation.home.ui.UnitListItemRenderer;
+	import skins.rotterdam.course.UnitListContainerSkin;
 	
 	import spark.components.Group;
 	import spark.components.Label;
@@ -26,7 +31,13 @@ package com.clarityenglish.clearpronunciation.view.home {
 	public class HomeView extends BentoView {
 		
 		[SkinPart]
-		public var unitList:List;
+		public var consonantsList:List;
+		
+		[SkinPart]
+		public var vowelsList:List;
+		
+		[SkinPart]
+		public var diphthongsList:List;
 		
 		[SkinPart(required="true")]
 		public var courseList:List;
@@ -43,6 +54,9 @@ package com.clarityenglish.clearpronunciation.view.home {
 		[Bindable]
 		public var mediaFolder:String;
 		
+		[Bindable]
+		public var unitList:List;
+		
 		public var selectUnit:Signal = new Signal(XML);
 		public var channelCollection:ArrayCollection;
 		
@@ -52,14 +66,29 @@ package com.clarityenglish.clearpronunciation.view.home {
 		private var _course:XMLList;
 		private var _unit:XML;
 		private var _selectedUnitIndex:Number;
+		private var _selectedCourseIndex:Number;
 		
 		public function HomeView():void {
 			super();
 			actionBarVisible = false;
 		}
 		
+		[Bindable]
+		public function get course():XMLList {
+			return _course;
+		}
+		
 		public function set course(value:XMLList):void {
 			_course = value;
+		}
+		
+		[Bindable]
+		public function get selectedCourseIndex():Number {
+			return _selectedCourseIndex;
+		}
+		
+		public function set selectedCourseIndex(value:Number):void {
+			_selectedCourseIndex = value;
 		}
 		
 		[Bindable]
@@ -90,6 +119,10 @@ package com.clarityenglish.clearpronunciation.view.home {
 			courseList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course);
 			_course = xhtml..menu.(@id == productCode).course;
 			
+			consonantsList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course.(@["class"] == "consonants").unit);
+			vowelsList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course.(@["class"] == "vowels").unit);
+			diphthongsList.dataProvider = new XMLListCollection(xhtml..menu.(@id == productCode).course.(@["class"] == "diphthongs").unit);
+			
 			// when return to home page, we want to display the selected course and unit
 			if (_unit) {
 				var index:Number = 0;
@@ -105,6 +138,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 				}
 				
 				index = 0;
+				unitList = getUnitList(courseList.selectedIndex);
 				for each (var unit:XML in (unitList.dataProvider as XMLListCollection).source) {
 					if (unit.@id == _unit.@id) {
 						unitList.requireSelection = true;
@@ -135,17 +169,24 @@ package com.clarityenglish.clearpronunciation.view.home {
 				case courseList:
 					courseList.addEventListener(IndexChangeEvent.CHANGE, onCourseListIndexChange);
 					break;
-				case unitList:
-					unitList.addEventListener(MouseEvent.CLICK, onUnitListClick);
+				case consonantsList:
+				case vowelsList:
+				case diphthongsList:
+					instance.addEventListener(MouseEvent.CLICK, onUnitListClick);
+					var unitListItemRenderer:ClassFactory = new ClassFactory(UnitListItemRenderer);
+					unitListItemRenderer.properties = { copyProvider: copyProvider};
+					instance.itemRenderer = unitListItemRenderer;
 					break;
 				case homeInstructionLabel:
 					homeInstructionLabel.text = copyProvider.getCopyForId("homeInstructionLabel");
 					break;
-			}
+			}		
 		}
 		
 		protected function onCourseListIndexChange(event:Event):void {
+			unitList = getUnitList(courseList.selectedIndex);
 			unitList.requireSelection = false;
+			selectedCourseIndex = courseList.selectedIndex;
 			
 			if (courseList.selectedItem) {
 				unitListInstuctionGroup.visible = false;
@@ -158,7 +199,7 @@ package com.clarityenglish.clearpronunciation.view.home {
 					videoSelector.visible = false;
 					videoSelector.videoPlayer.visible = false;
 					unitList.visible = true;
-					unitList.dataProvider = new XMLListCollection(courseList.selectedItem.unit);	
+					//unitList.dataProvider = new XMLListCollection(courseList.selectedItem.unit);	
 				}
 				
 			}
@@ -167,6 +208,19 @@ package com.clarityenglish.clearpronunciation.view.home {
 		protected function onUnitListClick(event:Event):void {
 			if (unitList.selectedItem)
 				selectUnit.dispatch(unitList.selectedItem);
+		}
+		
+		private function getUnitList(value:Number):List {
+			switch (value) {
+				case 1:
+					return consonantsList;
+				case 2:
+					return vowelsList;
+				case 3:
+					return diphthongsList;
+				default:
+					return consonantsList;
+			}
 		}
 	}
 }

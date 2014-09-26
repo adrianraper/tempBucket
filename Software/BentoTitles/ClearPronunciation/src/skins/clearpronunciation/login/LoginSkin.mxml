@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:login="skins.clearpronunciation.assets.login.*">
+		xmlns:login="skins.clearpronunciation.assets.login.*" creationComplete="onCreationComplete(event)" xmlns:home="skins.clearpronunciation.assets.home.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.rotterdam.view.login.LoginView")]
@@ -10,6 +10,24 @@
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.core.FlexGlobals;
+			import mx.events.FlexEvent;
+			
+			private var _applicationHeight:Number;
+			private var _applicationWidth:Number;
+			
+			[Bindable]
+			public var applicationWidth:Number;
+			
+			[Bindable]
+			public var applicationHeight:Number;
+			
+			protected function onCreationComplete(event:FlexEvent):void {
+				applicationWidth = FlexGlobals.topLevelApplication.width;
+				applicationHeight = FlexGlobals.topLevelApplication.height;
+				
+				loadingRect.visible = false;
+			}
 		]]>
 	</fx:Script>
 	
@@ -39,77 +57,57 @@
 		<s:State name="normal" />
 	</s:states>
 	
-	<!-- shadow -->
-	<s:Rect top="0" bottom="0" left="0" right="0" filters="{glowFilter}" >
-		<s:fill>
-			<s:SolidColor color="0x808080" />
-		</s:fill>
-	</s:Rect>
+	<!--Login screen background-->
+	<s:SWFLoader left="0" top="0" source="@Embed(source='skins/clearpronunciation/assets/home/homeBg.png')" />
 	
-	<!-- background gh#224 -->
-	<s:Rect top="0" bottom="0" left="0" right="0" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}">
-		<s:fill>
-			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0xFFFFFF" ratio="0" />
-				<s:GradientEntry color="0xFFFFFF" ratio="0.3" />
-				<s:GradientEntry color="0xE6E6E6" ratio="0.6" />
-				<s:GradientEntry color="0xE6E6E6" ratio="1" />
-			</s:LinearGradient>
-		</s:fill>
-	</s:Rect>		
-
-	<!-- top header -->
-	<s:Rect left="0" right="0" top="0" height="40"  >
-		<s:fill>
-			<s:LinearGradient rotation="90">
-				<s:GradientEntry color="0x4D4D4D" />
-				<s:GradientEntry color="0x333333"  />
-			</s:LinearGradient>
-		</s:fill>
-	</s:Rect>
-
-	<!-- top header -->
-	<s:Label id="sch_lbl" text="{hostComponent.getCopyProvider().getCopyForId('licencedToName', {name: hostComponent.licenceeName})}" right="20" top="14" fontSize="13" color="0xFFFFFF" visible="{hostComponent.licenceeName}" includeInLayout="{hostComponent.licenceeName}" />
+	<!--Login screen logo-->
+	<s:SWFLoader left="0" top="0" source="@Embed(source='skins/clearpronunciation/assets/login/loginLogo.png')" />
 	
-	<!-- gh#224 If it seems likely that more than 4 image components are needed, we should switch to a DataGroup and ItemRenderer -->
-	<s:BitmapImage id="brandingImage1" visible="{hostComponent.branding}" includeInLayout="{hostComponent.branding}"/>
-	<s:BitmapImage id="brandingImage2" />
-	<s:BitmapImage id="brandingImage3" />
-	<s:BitmapImage id="brandingImage4" />
-	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/login/HoneyCones.png')" horizontalCenter="-260" top="330" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
-	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/login/HoneyConesLarge.png')" horizontalCenter="250" top="360" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
-	<login:HoneyGraphic horizontalCenter="300" top="40" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}"/>
+	<!--Login footer-->
+	<s:Group left="0" top="{applicationHeight - 270 }">
+		<home:homeFooter left="0" top="200" />
+		<s:SWFLoader left="0" source="@Embed(source='skins/clearpronunciation/assets/login/loginGirl.png')" />
+	</s:Group>
 	
-	<s:Group horizontalCenter="0" top="40">
+	
+	<s:Group id="loginBoxGroup" width="410" height="287" left="{applicationWidth * 0.5 - 210}" top="{applicationHeight * 0.5 - 143}">
 		<!-- gh#224 -->
-		<s:Rect width="424" height="290" filters="{dropShadowFilter}" radiusX="8" radiusY="8" verticalCenter="70" horizontalCenter="0" alpha="0.7">
+		<s:Rect width="100%" height="100%" filters="{dropShadowFilter}" radiusX="20" radiusY="20" alpha="0.9">
 			<s:fill>
-				<s:SolidColor color="0xFFFFFF"/>
+				<s:SolidColor color="#263A45"/>
 			</s:fill>
 		</s:Rect>
-
-		<s:Group horizontalCenter="0" verticalCenter="90">
+		
+		<s:Group width="400" horizontalCenter="0" verticalCenter="66">
 			<s:VGroup horizontalAlign="center">
 				<s:VGroup>
 					<s:Spacer height="1" />
 					<s:VGroup>
-						<s:Label id="loginKey_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginKey_lbl}"/>
+						<s:Label id="loginKey_lbl" fontSize="16" fontWeight="bold" fontFamily="MyriadPro" color="0xFFFFFF" text="{hostComponent.loginKey_lbl}"/>
 						<s:TextInput id="loginKeyInput" fontSize="14" width="220" height="35" filters="{dropShadowFilter2}" borderVisible="false"/>
 					</s:VGroup>
 					<s:Spacer height="20" />
 					<s:VGroup>
-						<s:Label id="loginPassword_lbl" fontSize="16" fontWeight="bold" color="0x333333" text="{hostComponent.loginPassword_lbl}" />
+						<s:Label id="loginPassword_lbl" fontSize="16" fontWeight="bold" fontFamily="MyriadPro" color="0xFFFFFF" text="{hostComponent.loginPassword_lbl}" />
 						<s:TextInput id="passwordInput" displayAsPassword="true" width="220" height="35" fontSize="14" fontWeight="bold" filters="{dropShadowFilter2}" borderVisible="false"/>
-					    <s:VGroup paddingLeft="77">
-							<s:Button id="forgotPassword_btn" label="{hostComponent.forgotPassword_lbl}" click="forgotPasswordHandler(event)" useHandCursor="true" buttonMode="true" />
+					    <s:VGroup paddingLeft="60">
+							<s:Button id="forgotPassword_btn" fontWeight="normal" label="{hostComponent.forgotPassword_lbl}" click="forgotPasswordHandler(event)" useHandCursor="true" buttonMode="true" />
 						</s:VGroup>					
 					</s:VGroup>
 					<s:Spacer height="10" />
 				</s:VGroup>
-				<s:Button id="loginButton" label="{hostComponent.getCopyProvider().getCopyForId('loginButton')}" />	
+				<s:Button id="loginButton" label="{hostComponent.getCopyProvider().getCopyForId('loginButton')}" />
+				<s:Spacer height="30" />
+				<login:ClarityEnglishLogo />
+				<s:Label id="versionLabel" fontSize="12" color="#FFFFFF" />
+				<s:Label id="copyrightLabel" fontSize="12" color="#FFFFFF" />
 			</s:VGroup>
 		</s:Group>
 	</s:Group>
 	
-	<s:BitmapImage source="@Embed(source='skins/clearpronunciation/assets/login/CCBLogo.png')" horizontalCenter="0" bottom="100" visible="{!hostComponent.branding}" includeInLayout="{!hostComponent.branding}" />
+	<s:Rect id="loadingRect" width="100%" height="100%">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
 </s:Skin>

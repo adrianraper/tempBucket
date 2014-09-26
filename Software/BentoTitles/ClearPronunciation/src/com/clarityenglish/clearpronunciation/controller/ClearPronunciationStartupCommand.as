@@ -21,6 +21,9 @@ package com.clarityenglish.clearpronunciation.controller
 	
 	import org.davekeen.util.PlayerUtils;
 	import org.puremvc.as3.interfaces.INotification;
+	import com.clarityenglish.bento.model.DataProxy;
+	import com.clarityenglish.bento.model.BentoProxy;
+	import org.puremvc.as3.patterns.facade.Facade;
 	
 	public class ClearPronunciationStartupCommand extends BentoStartupCommand
 	{
@@ -30,6 +33,13 @@ package com.clarityenglish.clearpronunciation.controller
 			var recorderAdaptor:IRecorderAdaptor = (PlayerUtils.isAirApplication()) ? new AIRRecorderAdaptor() : new WebRecorderAdaptor();
 			facade.registerProxy(new AudioProxy(RecorderNotifications.RECORD_PROXY_NAME, true, recorderAdaptor));
 			facade.registerProxy(new AudioProxy(RecorderNotifications.MODEL_PROXY_NAME, false, recorderAdaptor));
+			
+			var dataProxy:DataProxy = facade.retrieveProxy(DataProxy.NAME) as DataProxy;			
+			// Set the default function for currentCourseClass to retrieve the class of the first course
+			dataProxy.setDefaultFunction("currentCourseClass", function(facade:Facade):Object {
+				var bentoProxy:BentoProxy = facade.retrieveProxy(BentoProxy.NAME) as BentoProxy;
+				return (bentoProxy.menuXHTML) ? bentoProxy.menuXHTML..course[1].@["class"].toString() : null;
+			});
 			
 			// Set the transforms that Rotterdam player uses on its menu.xml files
 			var xhtmlProxy:XHTMLProxy = facade.retrieveProxy(XHTMLProxy.NAME) as XHTMLProxy;

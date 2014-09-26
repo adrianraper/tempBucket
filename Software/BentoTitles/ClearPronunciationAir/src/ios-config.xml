@@ -4,7 +4,7 @@
 	<dbHost>2</dbHost>
 	<productCode>57</productCode>
 	<loginOption>128</loginOption>
-	<useCacheBuster>true</useCacheBuster>
+	<useCacheBuster>true</useCacheBuster>s
 	<courseFile>menu-{productCode}-FullVersion.xml</courseFile>
 	<platform>tablet|ipad</platform>
 	<channel name="ios-vimeo" caption="vimeo">
@@ -14,9 +14,9 @@
 	<brandingMedia />
 	<language>EN</language>
 	
-	<contentPath>http://dock.contentbench/Content/</contentPath>
-	<remoteDomain>http://dock.projectbench/</remoteDomain>
-	<remoteGateway>http://dock.projectbench/Software/ResultsManager/web/amfphp/</remoteGateway>
+	<contentPath>http://192.168.8.82/Content/</contentPath>
+	<remoteDomain>http://192.168.8.82/</remoteDomain>
+	<remoteGateway>http://192.168.8.82/Software/ResultsManager/web/amfphp/</remoteGateway>
 	<remoteService>ClearPronunciationService</remoteService>
 	<assetFolder>Software/ResultsManager/web/resources/assets/</assetFolder>
 	

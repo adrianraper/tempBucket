@@ -36,7 +36,7 @@
 		<components:AudioPlayer id="audioPlayer" src="{hostComponent.audioUrl}" controls="full" />
 		
 		<!-- Text -->
-		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20" />
+		<widgets:WidgetText id="widgetText" widget="{hostComponent}" editing.editing="true" width="100%" minHeight="20"/>
 	</s:HGroup>
 	
 </s:Skin>

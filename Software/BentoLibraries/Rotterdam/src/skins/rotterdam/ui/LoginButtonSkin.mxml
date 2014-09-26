@@ -62,8 +62,7 @@ in accordance with the terms of the license agreement accompanying it.
 		<s:fill>
 			<s:LinearGradient x="32" y="0.5" scaleX="25" rotation="90">
 				<s:GradientEntry id="color1" color="0x595959" color.over="0xFFC701" color.down="0xFFC701" ratio="0"/>
-				<s:GradientEntry id="color2" color="0x333333" color.over="0xAD7720" color.down="0xAD7720" ratio="1"/>
-				
+				<s:GradientEntry id="color2" color="0x333333" color.over="0xAD7720" color.down="0xAD7720" ratio="1"/>			
 			</s:LinearGradient>
 		</s:fill>
 	</s:Rect>
@@ -76,7 +75,7 @@ in accordance with the terms of the license agreement accompanying it.
 			 textAlign="center"
 			 maxDisplayedLines="1"
 			 horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
-			 fontWeight="bold"
+			 fontWeight="normal"
 			 width="98" height="20">
 	</s:Label>
 	

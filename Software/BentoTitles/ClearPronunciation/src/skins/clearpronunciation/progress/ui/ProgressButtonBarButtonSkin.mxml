@@ -63,7 +63,7 @@
 	<s:Group id="trapezoidTab" top.selectedStates="0" top="6" >
 		<s:Path data="M100.258 0 108.598 7.05762 108.598 41.165 0 41.165 0 7.05762 8.33984 0 100.258 0Z" filters="{[dropShadowFilter]}">
 			<s:fill>
-				<s:SolidColor color.up="0xFFFFFF" color.over="0xEB2133" color.down="0xEB2133" color.selectedStates="0xEB2133" />
+				<s:SolidColor color.up="#FFFFFF" color.selectedStates="#F2C863" color.over="#F2C863" color.down="#F2C863" />
 			</s:fill>
 		</s:Path>
 		
@@ -72,8 +72,8 @@
 		<s:Label id="labelDisplay"
 				 textAlign="center"
 				 maxDisplayedLines="1"
-				 color.selectedStates="0xFFFFFF" color.down="0xFFFFFF" color.over="0xFFFFFF"  color.up="0xEB2133"
-				 fontWeight="bold"
+				 color="#263A45"
+				 fontWeight="bold" fontFamily="MyriadPro" fontSize="14"
 				 horizontalCenter="0" top="11" bottom="2">
 		</s:Label>
 	</s:Group>   

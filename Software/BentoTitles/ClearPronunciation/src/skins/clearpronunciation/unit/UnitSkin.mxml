@@ -16,6 +16,7 @@
 			{
 				// TODO Auto-generated method stub
 				makeSoundsExpandAnimation.play();
+				buttonGroupUpAnimation.play();
 			}
 			
 			protected function onMakeSoundsCollapseClick(event:MouseEvent):void {
@@ -28,7 +29,7 @@
 				// TODO Auto-generated method stub
 				makeSoundsExpandButton.visible = false;				
 				makeSoundsCollapseButton.visible = true;
-				practiseSoundsLabel.visible = false;
+				practiseSoundVGroup.visible = false;
 			}
 			
 			protected function onMakeSoundsCollapseEnd(event:EffectEvent):void {
@@ -46,16 +47,20 @@
 			protected function onButtonGroupDownStart(event:EffectEvent):void
 			{
 				// TODO Auto-generated method stub
-				practiseSoundsLabel.visible = true;
+				practiseSoundVGroup.visible = true;
 			}
 			
 		]]>
 	</fx:Script>	
 	
 	<fx:Declarations>
-		<s:Animate id="makeSoundsExpandAnimation" targets="{[makeSoundsGroup,expandCollapseGroup]}" duration="600" effectEnd="onMakeSoundsExpandAnimationEnd(event)">
-			<s:SimpleMotionPath property="top" valueTo="0" />
+		<s:Animate id="makeSoundsExpandAnimation" target="{makeSoundsGroup}" duration="600" effectEnd="onMakeSoundsExpandAnimationEnd(event)">
+			<s:SimpleMotionPath property="top" valueTo="-1" />
 		</s:Animate>
+		
+		<s:Animate id="buttonGroupUpAnimation" target="{expandCollapseGroup}" duration="600">
+			<s:SimpleMotionPath property="top" valueTo="0" />
+ 		</s:Animate>
 		
 		<s:Animate id="makeSoundsCollapseAnimation" target="{makeSoundsGroup}" duration="600" effectEnd="onMakeSoundsCollapseEnd(event)">
 			<s:SimpleMotionPath property="top" valueTo="{height}" />
@@ -79,8 +84,8 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:VGroup width="100%" height="100%" gap="20">
-		<s:Label id="practiseSoundsLabel" fontFamily="Mgbold" fontWeight="bold" paddingTop="50" paddingLeft="30" fontSize="20" />
+	<s:VGroup id="practiseSoundVGroup" width="100%" height="100%" gap="20">
+		<s:Label id="practiseSoundsLabel" fontFamily="Mgbold" fontWeight="bold" paddingTop="80" paddingLeft="30" fontSize="20" />
 		<ui:WidgetList id="practiseSoundsList" width="100%" height="80%" dataProvider="{hostComponent.practiseSoundsCollection}" borderVisible="false" useVirtualLayout="false" contentBackgroundColor="#FFFFFF">
 			<ui:layout>
 				<layouts:FreeUnitLayout />
@@ -88,18 +93,31 @@
 		</ui:WidgetList>
 	</s:VGroup>
 	
-	<s:VGroup id="makeSoundsGroup" width="100%" height="100%" gap="20">
-		<s:Label id="makeSoundsLabel" paddingTop="50" paddingLeft="30" fontFamily="Mgbold" fontWeight="bold" left="30" fontSize="20" />
-		<ui:WidgetList id="makeSoundsList" width="100%" height="80%" dataProvider="{hostComponent.makeSoundsListCollection}" borderVisible="false" useVirtualLayout="false" contentBackgroundColor="#FFFFFF">
-			<ui:layout>
-				<layouts:FreeUnitLayout />
-			</ui:layout>
-		</ui:WidgetList>
-	</s:VGroup>	
+	<s:Group id="makeSoundsGroup" width="100%" height="100%">
+		<s:Rect left="-1" right="-1" height="100%">
+			<s:fill>
+				<s:SolidColor color="#FFFFFF" />
+			</s:fill>
+			<s:stroke>
+				<s:SolidColorStroke color="#000000" />
+			</s:stroke>
+		</s:Rect>
+		<s:VGroup width="100%" height="100%" gap="30">
+			<s:Label id="makeSoundsLabel" fontFamily="Mgbold" fontWeight="bold" paddingTop="80" paddingLeft="30" left="30" fontSize="20" />
+			<s:VGroup paddingLeft="30">
+				<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/course/animationInstruction.png')" />
+			</s:VGroup>	
+			<ui:WidgetList id="makeSoundsList" width="100%" height="85%" dataProvider="{hostComponent.makeSoundsListCollection}" borderVisible="false" useVirtualLayout="false" contentBackgroundColor="#FFFFFF">
+				<ui:layout>
+					<layouts:FreeUnitLayout />
+				</ui:layout>
+			</ui:WidgetList>
+		</s:VGroup>	
+	</s:Group>
 	
-	<s:Group id="expandCollapseGroup" right="50">
-		<s:Button id="makeSoundsExpandButton" label="Expand" click="onMakeSoundsExpandClick(event)" />
-		<s:Button id="makeSoundsCollapseButton" label="Collapse" click="onMakeSoundsCollapseClick(event)" visible="false" />
+	<s:Group id="expandCollapseGroup" right="0" visible="{!hostComponent.isPlatformiPad}">
+		<s:Button id="makeSoundsExpandButton" click="onMakeSoundsExpandClick(event)" useHandCursor="true" buttonMode="true" />
+		<s:Button id="makeSoundsCollapseButton" click="onMakeSoundsCollapseClick(event)" visible="false" useHandCursor="true" buttonMode="true" />
 	</s:Group>
 	
 </s:Skin>

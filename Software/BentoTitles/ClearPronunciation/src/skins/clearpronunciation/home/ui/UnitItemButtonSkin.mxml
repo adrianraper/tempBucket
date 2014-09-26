@@ -57,7 +57,7 @@
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
     <s:Label id="labelDisplay"
              maxDisplayedLines="1"
-             horizontalCenter="0" verticalCenter="0">
+             horizontalCenter="0" verticalCenter="0" fontFamily="Phonetic" fontWeight="normal" fontSize="18">
     </s:Label>
     
 </s:SparkButtonSkin>

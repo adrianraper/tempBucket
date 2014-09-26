@@ -28,6 +28,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 			view.dirtyWarningShow.add(onDirtyWarningShow);
 			view.settingsOpen.add(onSettingsOpen);
 			view.logout.add(onLogout);
+			view.progressTransform.add(onProgressTransform);
 			
 			// gh#299 - always start in course selector
 			view.currentState = "home";
@@ -91,6 +92,10 @@ package com.clarityenglish.clearpronunciation.view.title {
 			}*/
 			
 			sendNotification(CommonNotifications.LOGOUT);
+		}
+		
+		protected function onProgressTransform():void {
+			//sendNotification();
 		}
 	}
 }
