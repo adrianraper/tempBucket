@@ -1,0 +1,9 @@
+package com.clarityenglish.clearpronunciation {
+	
+	public class ClearPronunciationNotifications {
+		
+		public static const SETTINGS_SHOW:String = "clearpronunciation/settings_show";
+		
+		public static const PROGRESS_TRANSFORM:String = "clearpronunciation/progress_transform";
+	}
+}
