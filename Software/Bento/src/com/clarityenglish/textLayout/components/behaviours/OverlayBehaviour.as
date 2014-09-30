@@ -22,7 +22,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 	import spark.components.Group;
 	
 	public class OverlayBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
-		private var audioNodes:Array = [];
+		private var afterMarkingAudioNodes:Array = [];
 		private var xmlBiMap:FlowElementXmlBiMap;
 		
 		public function OverlayBehaviour(container:Group):void {
@@ -53,16 +53,13 @@ package com.clarityenglish.textLayout.components.behaviours {
 				// If the component hasn't yet been created then create a new one and add it to the containing block
 				if (!componentElement.hasComponent()) {
 					componentElement.createComponent();
-					// gh#348 the feedback audio will be add to stage in AudioFeedbackBehaviour
+					// gh#348 after marking audio will be add to the stage in AudioFeedbackBehaviour
 					if (componentElement.getComponent() is AudioPlayer) {
 						var audioElement:AudioElement = componentElement as AudioElement;
-						if (getAudioElementIndex(audioElement) >= 0) {
-							// disable playComponent for feedback audio before click "see answer"
-							//audioElement.playComponentEnable = false;
+						// gh#1051 
+						// if (getAudioElementIndex(audioElement) >= 0)
+						if (isAfterMarkingAudio(audioElement))
 							continue;
-						} /*else {
-							//audioElement.playComponentEnable = true;
-						}*/
 							
 					}
 					containingBlock.addChild(componentElement.getComponent());
@@ -97,7 +94,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 			var exercise:Exercise = xhtml as Exercise;
 			xmlBiMap = flowElementXmlBiMap;
 			
-			audioNodes = exercise.select("audio.audio-feedback");
+			afterMarkingAudioNodes = exercise.select("audio.audio-feedback");
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
@@ -106,14 +103,14 @@ package com.clarityenglish.textLayout.components.behaviours {
 					componentElement.removeComponent();
 		}
 		
-		private function getAudioElementIndex(element:AudioElement):Number {
-			for each (var node:XML in audioNodes) {
+		// gh#1051
+		private function isAfterMarkingAudio(element:AudioElement):Boolean {
+			for each (var node:XML in afterMarkingAudioNodes) {
 				var audioElement:AudioElement = xmlBiMap.getFlowElement(node) as AudioElement;
-				if(element == audioElement) {
-					return audioNodes.indexOf(node);
-				}
+				if (element == audioElement && audioElement.type != 'before-marking') 
+					return true;
 			}
-			return -1;
+			return false;
 		}
 		
 	}

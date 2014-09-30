@@ -73,8 +73,8 @@ package com.clarityenglish.textLayout.elements {
 			component.addEventListener(FlexEvent.CREATION_COMPLETE, onComponentCreationComplete);
 		}
 		
-		// gh348
-		public function clearCompoment():void {
+		// gh#348
+		public function clearComponent():void {
 			component = new AudioPlayer();
 			(component as AudioPlayer).src = null;
 			(component as AudioPlayer).controls = null;

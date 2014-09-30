@@ -34,24 +34,34 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			for each (var feedbackAudioElement:AudioElement in feedbackAudioStack) {
 				var containingBlock:RenderFlow = feedbackAudioElement.getTextFlow().flowComposer.getControllerAt(0).container as RenderFlow;
 
-				feedbackAudioElement.createComponent();
-				
-				// in OverlayBehaviour, in order to detect feedback audio we didn't block creating component there but we didn't add the component to the containing block 
-				feedbackAudioElement.playComponentEnable = true;
-				// due to feedback audio is added in OverlayBehaviour, so we need to delete it first and then add it again
-				//containingBlock.removeChildAt(containingBlock.numChildren-1);
-				containingBlock.addChild(feedbackAudioElement.getComponent());
-				// Position and size the component in line with its underlying text
-				var bounds:Rectangle = feedbackAudioElement.getElementBounds();
-				if (bounds) {
-					if (!isNaN(bounds.width)) feedbackAudioElement.getComponent().width = bounds.width;
-					if (!isNaN(bounds.height)) feedbackAudioElement.getComponent().height = bounds.height;
-					feedbackAudioElement.getComponent().x = bounds.x;
-					feedbackAudioElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
-					// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
-					feedbackAudioElement.getComponent().visible = !feedbackAudioElement.hideChrome;
+				// gh#1051 If this is audio before-marking then I want to remove it from the containingBlock
+				if (feedbackAudioElement.type && feedbackAudioElement.type == 'before-marking') {
+					// something like for each element in containingBlock, see if audioElement==node
+					// #helpdk
+					feedbackAudioElement.clearComponent();
+					
+				// the default will be to treat audio elements with no type as being 'after-marking' for backwards compatability
+				} else {
+					feedbackAudioElement.createComponent();
+					
+					// in OverlayBehaviour, in order to detect feedback audio we didn't block creating component there but we didn't add the component to the containing block 
+					feedbackAudioElement.playComponentEnable = true;
+					containingBlock.addChild(feedbackAudioElement.getComponent());
+					
+					// Position and size the component in line with its underlying text
+					var bounds:Rectangle = feedbackAudioElement.getElementBounds();
+					if (bounds) {
+						if (!isNaN(bounds.width)) feedbackAudioElement.getComponent().width = bounds.width;
+						if (!isNaN(bounds.height)) feedbackAudioElement.getComponent().height = bounds.height;
+						feedbackAudioElement.getComponent().x = bounds.x;
+						feedbackAudioElement.getComponent().y = bounds.y - 1; // for some reason -1 is necessary to get everything to line up
+						// Make the component visible, unless hideChrome is set in which case hide the component leaving the underlying area visible
+						feedbackAudioElement.getComponent().visible = !feedbackAudioElement.hideChrome;
+					}
 				}
 			}
+			
+			// gh#1051 - is this just to empty the array? Why not just set it to new or something more obvious??
 			feedbackAudioStack.splice(0,feedbackAudioStack.length);
 		}
 		
@@ -64,7 +74,8 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 			feedbackAudioStack.splice(0,feedbackAudioStack.length);
 		}
 		
-		protected function onMarkButtonClicked (event:MarkingButtonEvent):void {
+		protected function onMarkButtonClicked(event:MarkingButtonEvent):void {
+			// gh#1051 check to see if before or after marking audio
 			feedbackAudioStack.push(event.audioELement);
 		}
 	}
