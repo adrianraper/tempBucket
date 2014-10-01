@@ -18,46 +18,55 @@ class CopyOps {
 	 * in the concrete Service file (e.g. ClarityService, DMSService, IELTSService).
 	 */
 	private function getFilename() {
-	    // gh#20 add language code in one file
-	    //$filename = dirname(__FILE__).$GLOBALS['interface_dir']."resources/".strtolower((Session::is_set('languageCode')) ? Session::get('languageCode') : "EN")."/".AbstractService::$title.".xml";
 	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/".AbstractService::$title.".xml";
 	}
-	private function getBentoFilename() {
-	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/BentoLiterals.xml";
+
+	private function getBaseFilename() {
+	    return dirname(__FILE__).$GLOBALS['interface_dir']."resources/base.xml";
 	}
 	
-	// gh#513 This is the only function to read the file(s), returns xml string
-	protected function getXMLFromFile($code = null) {
-		if (!file_exists($this->getFilename($code)))
-			throw new Exception($this->getFilename($code)." file not found");
+	/**
+     * gh#513 This is the only function to read the file(s), returns xml string
+     * gh#1050 Base literals are taken from base.xml, and then nodes are overlaid from the specific literals file
+     */
+	protected function getXMLFromFile() {
+		if (!file_exists($this->getFilename()))
+			throw new Exception($this->getFilename()." file not found");
 		
-		$doc = new DOMDocument();
-		$doc->load($this->getFilename());
-			/**
-		 * Not implemented yet
-		 * 
-		// Read common literals first
-		$commonDoc = new DOMDocument();
-		$commonDoc->load($this->getBentoFilename($code));
-		$commonXpath = new DOMxpath($commonDoc);
-		
-		// Then read specific service literals and add/overwrite onto common
-		$specificDoc = new DOMDocument();
-		$specificDoc->load($this->getFilename($code));
-		$specificXpath = new DOMxpath($specificDoc);
-		
-		// For each literal in specifc, add it or overwrite onto common - do in blocks of language
-		// http://www.php.net//manual/en/domnode.replacechild.php
-		$languageBlocks = $specificXpath->query("/literals/language/");
-		foreach ($languageBlocks as $languageBlock) {
-			$literals = $specificXpath->query("/literals/language[@code='".$languageBlock->."']/");
-			foreach ($literals as $literal) {
-				
-			}
-		}
-		 */
-		
-		return $doc->saveXML();
+		$xml = new DOMDocument();
+		$xml->load($this->getBaseFilename());
+        $xmlXPath = new DOMXpath($xml);
+
+        $overlay = new DOMDocument();
+        $overlay->load($this->getFilename());
+        $overlayXPath = new DOMXPath($overlay);
+
+        // Go through the $overlay, replacing or creating elements in $xml
+        /** @var \DOMNode $node */
+        foreach ($overlay->getElementsByTagName("lit") as $node) {
+            // For each literal construct its xpath
+            $language = $node->parentNode->parentNode->attributes->getNamedItem('name')->nodeValue;
+            $group = $node->parentNode->attributes->getNamedItem('name')->nodeValue;
+            $literal = $node->attributes->getNamedItem('name')->nodeValue;
+            $parentPath = "/literals/language[@name='$language']/group[@name='$group']";
+            $literalPath = $parentPath."/lit[@name='$literal']";
+
+            // Import the node into the original document
+            $importedNode = $xml->importNode($node, true);
+
+            // Now use the xpath to locate the matching node in the base
+            $matchingNodes = $xmlXPath->query($literalPath);
+            if ($matchingNodes->length == 0) {
+                // The node doesn't exist so add it to the parent
+                $xmlXPath->query($parentPath)->item(0)->appendChild($importedNode);
+            } else {
+                // The node exists, so replace it
+                $oldNode = $matchingNodes->item(0);
+                $oldNode->parentNode->replaceChild($importedNode, $oldNode);
+            }
+        }
+
+		return $xml->saveXML();
 	}
 	
 	protected function getXPath($code = null) {
