@@ -36,16 +36,11 @@
 			<type>2</type>
 			<locationURI>SDK_HOME/frameworks/projects/mobiletheme/src</locationURI>
 		</link>
-		<link>
-			<name>bin-release</name>
-			<type>2</type>
-			<location>C:/Applications/Adobe Flash Builder 4.7/Adobe Flash Builder 4.7.app/Contents/MacOS/D::/Projectbench/ClearPronunciation</location>
-		</link>
 	</linkedResources>
 	<variableList>
 		<variable>
 			<name>SDK_HOME</name>
-			<value>file:/Applications/Flex/13.0_AIR15</value>
+			<value>file:/C:/Applications/Flex/13.0_AIR15</value>
 		</variable>
 	</variableList>
 </projectDescription>

@@ -41,8 +41,7 @@
 			
 			protected function forgotPasswordHandler(event:MouseEvent):void {
 				var substTags:Object = { productCode: hostComponent.config.productCode };
-				if (hostComponent.config.rootID)
-					substTags.rootID = hostComponent.config.rootID; 
+				substTags.rootID = (hostComponent.config.rootID) ? hostComponent.config.rootID : 0;
 				substTags.loginOption = (isNaN(hostComponent.loginOption)) ? '' : hostComponent.loginOption;
 				var urlReq:URLRequest = new URLRequest(hostComponent.getCopyProvider().getCopyForId("forgotPasswordLink", substTags ));
 				navigateToURL(urlReq, "_new");
