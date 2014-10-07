@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.css">
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+	<script src="http://code.jquery.com/mobile/1.4.4/jquery.mobile-1.4.4.min.js"></script>
+</head>
+
+<body>
+<div data-role="page" id="pageone">
+
+<div data-role="header" data-position="fullscreen" data-fullscreen="true">
+
+  <div data-role="panel" id="myPanel"> 
+    <h2>Panel Header</h2>
+    <p>You can close the panel by clicking outside the panel, pressing the Esc key or by swiping.</p>
+  </div> 
+  
+  <a href="#" class="ui-btn ui-icon-home ui-btn-icon-left">Home</a>
+  <h1>Welcome To My Homepage</h1>
+  <a href="#" class="ui-btn ui-icon-search ui-btn-icon-left">Search</a>
+</div>
+
+  <div data-role="main" class="ui-content">
+    <p>I Am Now A Mobile Developer!!</p>
+	<a href="#myPanel" class="ui-btn ui-btn-inline ui-corner-all ui-shadow">Open Panel</a>
+	<a href="#pagetwo" data-transition="flip" class="ui-btn">Go to Page Two</a>
+  </div>
+
+  <div data-role="footer" data-position="fullscreen" data-fullscreen="true">
+    <h1>Footer Text</h1>
+  </div>
+
+</div>
+<div data-role="page" id="pagetwo">
+
+  <div data-role="header">
+    <h1>Welcome To My Homepage</h1>
+  </div>
+
+  <div data-role="main" class="ui-content">
+    <p>Do you think this is awesome? <a href="#pagethree">Vote</a></p>
+	<a href="#pageone">Go back to Page One</a>
+  </div>
+
+  <div data-role="footer">
+    <h1>Footer Text</h1>
+  </div>
+
+</div>
+<div data-role="page" data-dialog="true" id="pagethree">
+  <div data-role="main" class="ui-content">
+  <p>Do you agree?</p>
+    <a href="#pageone">Yes</a>
+  </div>
+</div>
+</body>
+</html>

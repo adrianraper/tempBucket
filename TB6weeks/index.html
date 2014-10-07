@@ -1,0 +1,94 @@
+
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js">
+<!--<![endif]-->
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>TB6weeks</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/main.css">
+    <script src="js/vendor/modernizr-2.6.2.min.js"></script>
+</head>
+
+<body>
+    <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+    <div class='loader'>
+        <img src="images/clarityenglish.jpg" alt="ClarityEnglish" class="logo">
+    </div>
+    <header class="cd-header">
+        <div class="cd-logo">
+            <a href="#0">
+                <img src="images/clarityenglish.jpg" alt="Logo">
+            </a>
+        </div>
+
+        <nav>
+            <a class="cd-primary-nav-trigger" href="#">
+                <span class="cd-menu-text">Menu</span>
+                <span class="cd-menu-icon"></span>
+            </a>
+		</nav>
+    </header>
+    <nav>
+        <ul class="cd-primary-nav">
+            <li class="cd-label">About TB6weeks</li>
+
+            <li class="cd-label">Test yourself</li>
+
+            <li class="cd-label">Register</li>
+        </ul>
+    </nav>
+    <div id="container">
+        <div id="about" class="section">
+            <img src="images/banner_tech.jpg" alt="About TB6weeks" class="about-bg" />
+            <div class="about-content">
+                <h2>What is TB6weeks?</h2>
+                <div class="divider"></div>
+                <p>Part of Clarity's Guide and Give. Up your Tense Buster in 6 weeks.</p>
+            </div>
+        </div>
+        <div id="test" class="section">
+            <!-- <img src="images/banner_jackie.jpg" alt="Your test" class="test-bg" /> -->
+            <div class="test-content">
+                <h2>This is your test</h2>
+                <div class="divider"></div>
+				<div id="testPlaceholder" class="scrollable"></div>
+            </div>
+			<div id="codeHolder" class="scrollable"></div>
+        </div>
+        <div id="register" class="section">
+            <img src="images/banner_ict.jpg" alt="Register" class="register-bg" />
+            <div class="register-content">
+                <h2>Register here</h2>
+                <div class="divider"></div>
+                <p>What is your email?</p>
+				<form id="registration" onSubmit="return false;">
+					<input id="userEmail" name="userEmail" type="text" />
+					<input id="submitResults" text="register" type="submit" />
+				</form>
+				<span id="validationMessage"></span>
+            </div>
+        </div>
+    </div>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>
+        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
+    </script>
+    <script src="js/plugins.js"></script>
+    <script src="js/main.js"></script>
+</body>
+
+</html>
