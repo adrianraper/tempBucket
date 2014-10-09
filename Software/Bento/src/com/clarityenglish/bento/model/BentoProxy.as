@@ -228,11 +228,16 @@ package com.clarityenglish.bento.model {
 			}
 
 			var thisNode:XML = matchingExerciseNodes[0];
+			// for CP, exericse parent is not unit but group exercise
+			var unitXML:XML = thisNode.parent();
+			while(unitXML.name() != "unit") {
+				unitXML = unitXML.parent();
+			}
 			
 			var eid:String = thisNode.@id;			
-			var uid:String = thisNode.parent().@id;			
-			var cid:String = thisNode.parent().parent().@id;			
-			var pid:String = thisNode.parent().parent().parent().@id;
+			var uid:String = unitXML.@id;			
+			var cid:String = unitXML.parent().@id;			
+			var pid:String = unitXML.parent().parent().@id;
 			
 			return pid + "." + cid + "." + uid + "." + eid;
 		}

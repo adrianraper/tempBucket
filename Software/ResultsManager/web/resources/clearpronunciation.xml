@@ -151,7 +151,7 @@
 			<lit name="coverageLabel">coverage</lit>
 			<lit name="analysisLabel">analysis</lit>
 			<lit name="progressBarCoverage">Overall coverage</lit>
-			<lit name="progressBarScore">Average score</lit>
+			<lit name="progressBarScore">{course} - Average score</lit>
 			<lit name="scoreGridC1">Unit</lit>
 			<lit name="scoreGridC2">Exercise</lit>
 			<lit name="scoreGridC3">Score %</lit>
@@ -323,7 +323,30 @@
 			<!--phonetic -->
 			<lit name="pill">p</lit>
 			<lit name="fill">f</lit>
+			<lit name="buy">b</lit>
+			<lit name="my">m</lit>
+			<lit name="tie">t</lit>
+			<lit name="die">d</lit>
+			<lit name="ship">ʃ</lit>
+			<lit name="chip">tʃ</lit>
+			<lit name="yet">j</lit>
+			<lit name="jet">dʒ</lit>
+			<lit name="game">g</lit>
+			<lit name="came">k</lit>
+			<lit name="wail">w</lit>
+			<lit name="veil">v</lit>
 			<lit name="think">θ</lit>
+			<lit name="sink">s</lit>
+			<lit name="there">D</lit>
+			<lit name="dare">d</lit>
+			<lit name="price">s</lit>
+			<lit name="prize">z</lit>
+			<lit name="asia">ʒ</lit>
+			<lit name="hard">h</lit>
+			<lit name="ran">n</lit>
+			<lit name="rang">ŋ</lit>
+			<lit name="right">r</lit>
+			<lit name="light">l</lit>
 		</group>
 	</language>
 </literals>

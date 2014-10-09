@@ -52,7 +52,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
     xmlns:mx="library://ns.adobe.com/flex/mx"
     xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
 	xmlns:ui="skins.clearpronunciation.progress.ui.*"
-    alpha.disabled="0.5" minWidth="89" minHeight="84">
+    alpha.disabled="0.5" minWidth="89" minHeight="84" xmlns:progress="skins.clearpronunciation.progress.*">
     
     <fx:Metadata>
         <![CDATA[
@@ -189,8 +189,8 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
             <s:Rect implements="spark.components.gridClasses.IGridVisualElement">
                 <fx:Script fb:purpose="styling">
                     <![CDATA[
-                        import spark.components.DataGrid;
-                        import spark.components.Grid;
+						import spark.components.DataGrid;
+						import spark.components.Grid;
                         
                         /**
                          * @private
@@ -201,7 +201,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
                             if (!dataGrid)
                                 return;
                             
-                            const color:uint = dataGrid.getStyle("rollOverColor");
+                            const color:uint = 0xFF0000;
                             hoverIndicatorFill.color = color;
                         }
                     ]]>
@@ -243,9 +243,9 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
 				<s:Line>
 					<!--s:stroke>
 					<s:SolidColorStroke color="0xE6E6E6" weight="1" caps="square"/>
-					</s:stroke-->		
+					</s:stroke-->	
 				</s:Line>
-				<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/progress/score/scoreDashline.png')" />
+				<progress:DottedLine width="99%" height="1" dotColor="#263A45" dotWidth="5" />
 			</s:Group>
         </fx:Component>
         
@@ -266,7 +266,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
                             if (!dataGrid)
                                 return;
                             
-                            const color:uint = dataGrid.getStyle("selectionColor");
+                            const color:uint = 0xFF0000;
                             selectionIndicatorFill.color = color;
                         }
                     ]]>
@@ -292,16 +292,13 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
 	
 	<fx:Script>
 		<![CDATA[
+			import mx.events.FlexEvent;
 			import org.davekeen.util.StringUtils;
 			override protected function updateDisplayList(unscaledWidth:Number, unscaledHeight:Number):void {
 				super.updateDisplayList(unscaledWidth, unscaledHeight);
 				
 				borderStroke.color = getStyle("borderColor");
 				borderStroke.alpha = getStyle("borderAlpha");
-				
-				var classCode:String = hostComponent.name;
-				DataGridHeaderRenderer.labelColor = getStyle(StringUtils.capitalize(classCode.charAt(0)) + "Color");
-				DataGridHeaderRenderer.fillColor = getStyle(StringUtils.capitalize(classCode.charAt(0)) + "HeaderColor");
 			}
 		]]>
 	</fx:Script>
@@ -330,7 +327,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
             </s:Rect>
             
             <!-- header separator, scroller and grid -->
-            <s:VGroup horizontalAlign="justify" height="100%" width="100%" gap="-1">
+            <s:VGroup horizontalAlign="justify" height="100%" width="99.6%" gap="0">
                 <!--- @private -->
                 <s:Line id="headerSeparator">
                     <!--s:stroke>

@@ -25,6 +25,7 @@
 global {
 	defaultColor: #00A2C8;
 	defaultColorDark: #005063;
+	rollOverColor: #FF0000;
 	/*defaultIconSmall: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconSmall');
 	defaultIconBare: Embed(source='skins/ielts/assets/assets.swf', symbol='ReadingIconBare');*/
 	IColor : #EC1C32;
@@ -85,6 +86,10 @@ recorder|WaveformView {
 	skinClass: ClassReference("skins.clearpronunciation.unit.recorder.WaveformSkin");
 }
 
+s|Button#unitItemLeftButton,#unitItemRightButton {
+	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
+}
+
 clearpronunciation1|ClearPronunciationApplication {
 	skinClass: ClassReference("skins.clearpronunciation.ClearPronunciationApplicationSkin");
 }
@@ -143,10 +148,6 @@ home|HomeView {
 
 home|HomeView s|Button#courseListButton {
 	skinClass: ClassReference("skins.clearpronunciation.home.ui.CourseListButtonSkin");
-}
-
-home|HomeView s|Button#unitItemLeftButton,#unitItemRightButton {
-	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
 }
 
 video|VideoSelector {
@@ -243,10 +244,6 @@ progress|ProgressView s|ButtonBar#progressNavBar {
 
 progress|ProgressCoverageView {
 	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCoverageSkin");
-}
-
-progress|ProgressCoverageView s|Button#unitItemLeftButton,#unitItemRightButton {
-	skinClass: ClassReference("skins.clearpronunciation.home.ui.UnitItemButtonSkin");
 }
 
 progress|ProgressCoverageView #exLabelButton {

@@ -43,21 +43,21 @@
         ]]>
     </fx:Metadata>
     
-    <!-- states -->
-    <s:states>
-        <s:State name="up" />
-        <s:State name="over" />
-        <s:State name="down" />
-        <s:State name="disabled" />
-    </s:states>
-    
-    <icon:unitCircle horizontalCenter="0" verticalCenter="0" />
-    
-    <!-- layer 8: text -->
-    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-    <s:Label id="labelDisplay"
-             maxDisplayedLines="1"
-             horizontalCenter="0" verticalCenter="0" fontFamily="Phonetic" fontWeight="normal" fontSize="18">
-    </s:Label>
-    
+	<!-- states -->
+	<s:states>
+		<s:State name="up" />
+		<s:State name="over" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</s:states>
+	
+	<icon:unitCircle horizontalCenter="0" verticalCenter="0" />
+	
+	<!-- layer 8: text -->
+	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+	<s:Label id="labelDisplay"
+			 maxDisplayedLines="1"
+			 verticalCenter="1" horizontalCenter="0" fontFamily="Phonetic" fontWeight="normal" fontSize="22">
+	</s:Label>
+	
 </s:SparkButtonSkin>

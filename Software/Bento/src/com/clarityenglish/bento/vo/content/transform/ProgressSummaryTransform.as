@@ -17,7 +17,6 @@ package com.clarityenglish.bento.vo.content.transform {
 		
 			if (exerciseID > -1) {
 				var exerciseXML:XML = xml..script.(@id == "model")..exercise.(@id == String(exerciseID))[0];
-				trace("exercise xml: "+exerciseXML);
 			}
 			
 			if (exerciseXML) {
@@ -29,11 +28,11 @@ package com.clarityenglish.bento.vo.content.transform {
 					unitXML = unitXML.parent();
 				}
 				
-				for each (var exerciseXML:XML in unitXML.exercise) {
-					if (exerciseXML.hasOwnProperty("@type") && exerciseXML.@type == "group") {
-						unitXMLStates.add(getNestedExerciseStats(exerciseXML));
+				for each (var exXML:XML in unitXML.exercise) {
+					if (exXML.hasOwnProperty("@type") && exXML.@type == "group") {
+						unitXMLStates.add(getNestedExerciseStats(exXML));
 					} else {
-						unitXMLStates.add(getExerciseStats(exerciseXML));
+						unitXMLStates.add(getExerciseStats(exXML));
 					}
 				}
 				unitXMLStates.writeToNode(unitXML);
@@ -168,7 +167,7 @@ class Stats {
 		node.@scoredCount = scoredCount;
 		node.@durationCount = durationCount;
 		node.@duration = duration;
-		node.@averageScore = averageScore;
+		node.@averageScore = averageScore;trace("average score: "+averageScore);
 		node.@averageDuration = averageDuration;
 		node.@coverage = coverage;
 	}

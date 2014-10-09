@@ -101,7 +101,7 @@ and <code>sortIndicator</code> properties.</p>
 		<s:Label id="labelDisplay" 
 				 verticalCenter="1" left="0" right="0" top="0" bottom="0"
 				 textAlign="start"
-				 fontWeight="bold"
+				 fontWeight="normal"
 				 verticalAlign="middle"
 				 maxDisplayedLines="1"
 				 showTruncationTip="true" />
@@ -352,12 +352,6 @@ and <code>sortIndicator</code> properties.</p>
 					invalidateDisplayList();
 				}
 			}
-			
-			[Bindable]
-			public static var fillColor:Number;
-			
-			[Bindable]
-			public static var labelColor:Number;
 		]]>
 	</fx:Script>
 	
@@ -371,7 +365,7 @@ and <code>sortIndicator</code> properties.</p>
 	<!--- @private -->
 	<s:Rect id="fill" left="0" right="4" top="0" bottom="0">
 		<s:fill>
-			<s:SolidColor color="{fillColor}"/>
+			<s:SolidColor color="#C7E0DD"/>
 		</s:fill>
 	</s:Rect>
 	
@@ -391,7 +385,7 @@ and <code>sortIndicator</code> properties.</p>
 		@playerversion AIR 2.0
 		@productversion Flex 4.5
 		-->
-		<s:Group id="labelDisplayGroup" width="100%" color="{labelColor}" />
+		<s:Group id="labelDisplayGroup" width="100%" color="#333333" />
 		
 		<!-- layer 8: Container for sortIndicator:IVisualElement  -->
 		<!--- Defines the size and location of the sortIndicator visual element. 

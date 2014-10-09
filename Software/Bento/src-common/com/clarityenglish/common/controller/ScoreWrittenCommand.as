@@ -41,7 +41,7 @@ package com.clarityenglish.common.controller {
 				
 				// 3. Rerun the ProgressCourseSummaryTransform on the client to update the summary data
 				// TODO: I would have thought that this wouldn't work because of namespacing differences, but actually it seems to work fine
-				//new ProgressSummaryTransform(exercise.@id).transform(bentoProxy.menuXHTML.xml);
+				new ProgressSummaryTransform(exercise.@id).transform(bentoProxy.menuXHTML.xml);
 			}
 		}
 		

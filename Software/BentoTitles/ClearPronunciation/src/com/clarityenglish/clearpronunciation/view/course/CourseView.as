@@ -150,6 +150,7 @@ package com.clarityenglish.clearpronunciation.view.course
 			invalidateProperties();
 		}
 		
+		// use to know whether the current page is unit widget or exercise
 		[Bindable]
 		public function get isExerciseVisible():Boolean {
 			return _isExerciseVisible;

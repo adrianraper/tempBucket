@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="org.davekeen.core.*" creationComplete="onCreationComplete(event)">
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:core="org.davekeen.core.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressCompareView")]
@@ -43,13 +43,6 @@
 			public function captionLabel(item:Object, prevValue:Object, axis:CategoryAxis, categoryItem:Object):String {
 				return categoryItem.@caption;
 			}
-			
-			protected function onCreationComplete(event:FlexEvent):void
-			{
-				
-
-			}
-			
 		]]>
 	</fx:Script>
 	
@@ -63,7 +56,7 @@
 		<s:State name="normalOnline" />
 	</s:states>
 	
-	<s:VGroup left="20" right="20" top="20" bottom="0" gap="20">
+	<s:VGroup left="20" right="20" top="20" bottom="0" gap="15">
 		<ui:ProgressCourseButtonBar id="progressCourseButtonBar" height="40">
 			<ui:layout>
 				<s:ButtonBarHorizontalLayout gap="35" />
@@ -77,26 +70,90 @@
 		</s:Rect>
 		
 		<s:Label id="compareInstructionLabel" left="50" top="90" fontSize="13" />
+		
+		<!--horizontalAxis.title display blur text in ipad, so we use a separate label to display title-->
+		<s:Group width="100%" top="100" height="20">
+			<s:Rect width="100%" height="100%">
+				<s:fill>
+					<s:SolidColor color="#C7E0DD" />
+				</s:fill>
+			</s:Rect>
+			<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="5" />
+		</s:Group>
 	</s:VGroup>
 	
-	<!--horizontalAxis.title display blur text in ipad, so we use a separate label to display title-->
-	<s:Label id="chartCaptionLabel" textAlign="center" fontSize="13" left="0" right="0" top="105" />
-	<mx:BarChart id="compareChart" left="20" right="140" top="130" bottom="60" bottom.normalOnline="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="200">
+	<mx:BarChart id="compareChart" left="20" right="20" top="150" bottom="40" bottom.normalOnline="120" axisTitleStyleName="axisTitleStyle" seriesFilters="[]" gutterLeft="250">
 		<mx:horizontalAxis>
 			<mx:LinearAxis id="horizontalAxis" minimum="0" maximum="100" labelFunction="percentageLabel" />
 		</mx:horizontalAxis>
 		<mx:verticalAxis>
-			<mx:CategoryAxis id="verticalAxis" categoryField="@caption" labelFunction="captionLabel"  />
+			<mx:CategoryAxis id="verticalAxis" categoryField="@caption" labelFunction="captionLabel" />
 		</mx:verticalAxis>
 		
 		<mx:horizontalAxisRenderers>
 			<mx:AxisRenderer axis="{horizontalAxis}" fontSize="13" showLine="false" tickStroke="{blankStroke}" placement="top" />
 		</mx:horizontalAxisRenderers>
 		<mx:verticalAxisRenderers>
-			<mx:AxisRenderer axis="{verticalAxis}" fontSize="13" tickStroke="{blankStroke}"  labelGap="20" fontWeight="bold">
+			<mx:AxisRenderer id="verticalAxisRenderer" axis="{verticalAxis}" fontSize="13" tickStroke="{blankStroke}" labelGap="20" fontWeight="bold">
 				<mx:axisStroke>
 					<mx:SolidColorStroke color="#B3B3B3" weight="1"/>
 				</mx:axisStroke>
+				<mx:labelRenderer>
+					<fx:Component>
+						<s:ItemRenderer>
+							<fx:Script>
+								<![CDATA[
+									import mx.charts.AxisLabel;
+									
+									import spark.components.DataGroup;
+									
+									override public function set data(value:Object):void {
+										super.data = value;
+										
+										if (data) {
+											// data we can get from itemrenderer is unit caption, in order to display the phonetic symbol we need to split the caption to extract left and right icon value
+											var leftIconString:String = String(data.text).split(' ')[0];
+											var rightIconString:String = String(data.text).split(' ')[1];
+											
+											unitItemLeftButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(leftIconString.toLowerCase());
+											unitItemLeftLabel.text = leftIconString;
+											if (rightIconString) {
+												unitItemRightButton.visible = true;
+												unitItemRightLabel.visible = true;
+												unitItemRightButton.label = outerDocument.hostComponent.getCopyProvider().getCopyForId(rightIconString.toLowerCase());
+												unitItemRightLabel.text = rightIconString;
+											} else {
+												unitItemRightButton.visible = false;
+												unitItemRightLabel.visible = false;
+											}
+											
+											// display unit index
+											if (outerDocument.verticalAxisRenderer.getChildIndex(this) < 10) {
+												unitItemIndexLabel.text = "0" + String(outerDocument.verticalAxisRenderer.getChildIndex(this));
+											} else {
+												unitItemIndexLabel.text = String(outerDocument.verticalAxisRenderer.getChildIndex(this));
+											}			
+										}	
+									}
+								]]>
+							</fx:Script>
+							<s:HGroup width="100%" height="100%" verticalAlign="middle">
+								<s:Label id="unitItemIndexLabel" verticalCenter="0" fontSize="16" fontWeight="normal" fontFamily="MyriadPro" color="#005D5F" />
+								<s:Spacer width="10" />
+								<s:HGroup left="0" width="80" height="100%" verticalCenter="0" verticalAlign="middle">
+									<s:Button id="unitItemLeftButton" scaleX="0.7" scaleY="0.7" />
+									<s:Label id="unitItemLeftLabel" fontSize="16" fontWeight="normal" fontFamily="MyriadPro" color="#005D5F" />
+								</s:HGroup>
+								<s:Spacer width="20" />
+								<s:HGroup width="80" height="100%" verticalCenter="0" verticalAlign="middle">
+									<s:Button id="unitItemRightButton" scaleX="0.7" scaleY="0.7" />
+									<s:Label id="unitItemRightLabel" fontSize="16" fontWeight="normal" fontFamily="MyriadPro" color="#005D5F" />
+								</s:HGroup>	
+							</s:HGroup>														
+						</s:ItemRenderer>
+						
+					</fx:Component>
+				</mx:labelRenderer>
 			</mx:AxisRenderer>
 		</mx:verticalAxisRenderers>
 		
@@ -104,16 +161,16 @@
 			<mx:BarSeries id="myBarSeries" yField="@caption" xField="@myAverageScore" displayName="My scores" maxBarWidth="8" >
 				<mx:fill>
 					<s:LinearGradient>
-						<s:GradientEntry id="myAveScoreColor1" />
-						<s:GradientEntry id="myAveScoreColor2" />
+						<s:GradientEntry color="#263A45"/>
+						<s:GradientEntry color="#416B75" />
 					</s:LinearGradient>
 				</mx:fill>
 			</mx:BarSeries>
 			<mx:BarSeries id="everyOneBarSeries" yField="@caption" xField="@everyoneAverageScore" displayName="Everyone's scores" maxBarWidth="5" >
 				<mx:fill>
 					<s:LinearGradient>
-						<s:GradientEntry id="everyOneAveScoreColor1" />
-						<s:GradientEntry id="everyOneAveScoreColor2" />
+						<s:GradientEntry color="#979797" />
+						<s:GradientEntry color="#CACACA" />
 					</s:LinearGradient>
 				</mx:fill>				
 			</mx:BarSeries>
@@ -121,19 +178,19 @@
 	</mx:BarChart>
 	
 	<!--histogram chart bottom line-->
-	<s:Rect left="220" right="150" bottom="60" height="1">
+	<s:Rect left="270" right="20" bottom="40" height="1">
 		<s:fill>
 			<s:SolidColor color="#B3B3B3" />
 		</s:fill>
 	</s:Rect>
 	
 	<!--histogram chart legend-->
-	<s:HGroup bottom="30" bottom.normalOnline="80" left="220">
+	<s:HGroup right="20" top="90" bottom.normalOnline="80">
 		<s:Rect width="16" height="10">
 			<s:fill>
 				<s:LinearGradient>
-					<s:GradientEntry id="legendGradientColor1" />
-					<s:GradientEntry id="legendGradientColor2" />
+					<s:GradientEntry color="#263A45" />
+					<s:GradientEntry color="#416B75" />
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
@@ -142,8 +199,8 @@
 		<s:Rect width="16" height="10">
 			<s:fill>
 				<s:LinearGradient>
-					<s:GradientEntry id="everyonelegendGradientColor1" />
-					<s:GradientEntry id="everyonelegendGradientColor2" />
+					<s:GradientEntry color="#979797" />
+					<s:GradientEntry color="#CACACA" />
 				</s:LinearGradient>
 			</s:fill>
 		</s:Rect>
@@ -151,7 +208,7 @@
 	</s:HGroup>
 	
 	<!--chart empty tip-->
-	<s:Button id="compareEmptyScoreLabel" visible="false" fontSize="12" fontWeight="normal" verticalCenter="0" horizontalCenter="0"/>
+	<s:Button id="compareEmptyScoreLabel" visible="false" fontSize="12" fontWeight="normal" verticalCenter="0" horizontalCenter="100"/>
 	
 	<!--busy indicator-->
 	<s:BusyIndicator id="busyIndicator" verticalCenter="0" horizontalCenter="0" />

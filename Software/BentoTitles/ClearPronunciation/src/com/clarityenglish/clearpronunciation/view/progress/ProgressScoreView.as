@@ -3,6 +3,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ui.ProgressBarRenderer;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -33,6 +34,10 @@ package com.clarityenglish.clearpronunciation.view.progress
 		
 		[Bindable]
 		public var tableDataProvider:XMLListCollection;
+		
+		[Bindable]
+		public var unitCaptionListDataProvider:XMLListCollection;
+		
 		
 		[SkinPart]
 		public var scoreGridC1:GridColumn;
@@ -74,6 +79,10 @@ package com.clarityenglish.clearpronunciation.view.progress
 			return _courseClass;
 		}
 		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
+		
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
@@ -109,7 +118,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 				}
 				
 				if (courseClass) {
-					var buildXML:XMLList = menu.course.(@["class"] == courseClass).unit..score;
+					var buildXML:XMLList = menu.course.(@["class"] == courseClass).unit.exercise.(@['class'] == "exercise").exercise.score;
 					
 					// Then add the caption from the exercise to the score to make it easy to display in the grid
 					// If the grid can do some sort of subheading, then I could do something similar with the unit name too
@@ -121,15 +130,19 @@ package com.clarityenglish.clearpronunciation.view.progress
 						if (score.parent().hasOwnProperty("@group")) {
 							score.@unitCaption = menu.course.(@["class"] == courseClass).groups.group.(@id == score.parent().@group).@caption;
 						} else {
-							while(score.parent().name() != "unit") {
-								score = score.parent();
+							var scoreParent:XML = score.parent();
+							while(scoreParent.name() != "unit") {
+								scoreParent = scoreParent.parent();
 							}
-							score.@unitCaption = score.parent().@caption;
+							score.@unitCaption = scoreParent.@caption;
+							score.@unitLeftIcon = scoreParent.@leftIcon;
+							score.@unitRightIcon = scoreParent.@rightIcon;
 						}
 						
 						// #232. Scores of -1 (nothing to mark) should show in the table as ---
 						score.@displayScore = (Number(score.@score) >= 0) ? score.@score : '---'; 
 					}
+					
 					tableDataProvider = new XMLListCollection(buildXML);
 					
 					if (buildXML.length() == 0) {
@@ -137,10 +150,6 @@ package com.clarityenglish.clearpronunciation.view.progress
 					}else {
 						ScoreEmptyScoreLabelButton.visible = false;
 					}
-					
-					//alice: get courseClass in scoreDetailsDataGrid;
-					scoreDetailsDataGrid.name = courseClass;
-					scoreDetailsDataGrid.skin.invalidateDisplayList();
 				}
 				
 				// #176. Make sure the buttons in the progressCourseBar component reflect current state

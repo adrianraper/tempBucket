@@ -2,6 +2,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -49,19 +50,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 		public var myBarSeries:BarSeries;
 		
 		[SkinPart]
-		public var myAveScoreColor1:GradientEntry;
-		
-		[SkinPart]
-		public var myAveScoreColor2:GradientEntry;
-		
-		[SkinPart]
 		public var everyOneBarSeries:BarSeries;
-		
-		[SkinPart]
-		public var everyOneAveScoreColor1:GradientEntry;
-		
-		[SkinPart]
-		public var everyOneAveScoreColor2:GradientEntry;
 		
 		[SkinPart]
 		public var myGrid:Grid;
@@ -70,19 +59,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 		public var compareInstructionLabel:Label;
 		
 		[SkinPart]
-		public var legendGradientColor1:GradientEntry;
-		
-		[SkinPart]
-		public var legendGradientColor2:GradientEntry;
-		
-		[SkinPart]
 		public var mylegendLabel:Label;
-		
-		[SkinPart]
-		public var everyonelegendGradientColor1:GradientEntry;
-		
-		[SkinPart]
-		public var everyonelegendGradientColor2:GradientEntry;
 		
 		[SkinPart]
 		public var everyonelegendLabel:Label;
@@ -129,6 +106,9 @@ package com.clarityenglish.clearpronunciation.view.progress
 			_isPlatformOnline = value;
 		}
 		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
 		[Bindable]
 		public function get isPlatformOnline():Boolean {
 			return _isPlatformOnline;
@@ -195,17 +175,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 					compareEmptyScoreLabel.visible = true;					
 				} else {
 					compareEmptyScoreLabel.visible = false;
-				}
-				
-				myAveScoreColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
-				legendGradientColor1.color = getStyle(courseClass.charAt(0) + "BarColor1");
-				myAveScoreColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
-				legendGradientColor2.color = getStyle(courseClass.charAt(0) + "BarColor2");
-				everyOneAveScoreColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
-				everyonelegendGradientColor1.color = getStyle(courseClass.charAt(0) + "OtherBarColor1");
-				everyOneAveScoreColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");
-				everyonelegendGradientColor2.color = getStyle(courseClass.charAt(0) + "OtherBarColor2");					
-				//drawLegend();
+				}				
 				
 				_courseChanged = false;
 			}

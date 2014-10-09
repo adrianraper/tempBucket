@@ -2,7 +2,7 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
     	xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" creationComplete="onCreationComplete(event)">
+		xmlns:ui="com.clarityenglish.bento.view.progress.ui.*" alpha.disabled="0.5" creationComplete="onCreationComplete(event)" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*">
 	
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.progress.ProgressScoreView")]
@@ -168,14 +168,101 @@
 		<ui:ProgressBarRenderer id="progressBar" height="30" width="100%" />
 		
 		<s:Group id="scoreDataGridGroup" width="100%">
-			<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="-5" height="100%" name="elementary" horizontalScrollPolicy="off">
+			<s:DataGrid id="scoreDetailsDataGrid" dataProvider="{hostComponent.tableDataProvider}" fontSize="12" left="0" right="0" height="100%" rowHeight="35" horizontalScrollPolicy="off">
 				<s:columns>
 					<s:ArrayList>
-						<s:GridColumn id="scoreGridC1" dataField="@unitCaption" sortCompareFunction="sortUnits" width="{scoreDetailsDataGrid.width * 0.3}"/>
-						<s:GridColumn id="scoreGridC2" dataField="@caption" width="{scoreDetailsDataGrid.width * 0.3}" />
-						<s:GridColumn id="scoreGridC3" dataField="@displayScore" sortCompareFunction="sortScores" width="{scoreDetailsDataGrid.width * 0.1}" />
-						<s:GridColumn id="scoreGridC4" dataField="@duration" sortCompareFunction="sortDuration" labelFunction="displayDuration" width="{scoreDetailsDataGrid.width * 0.1}" />
-						<s:GridColumn id="scoreGridC5" dataField="@datetime" width="{scoreDetailsDataGrid.width * 0.2}"/>
+						<s:GridColumn id="scoreGridC1" width="{scoreDetailsDataGrid.width * 0.3}">
+							<s:itemRenderer>
+								<fx:Component>
+										<s:GridItemRenderer>
+											<fx:Script>
+												<![CDATA[
+													import spark.components.DataGroup;
+													
+													public function getItemIdexText(value:Object):String {
+														var unit:XML = value.parent();
+														while(unit.name() != "unit") {
+															unit = unit.parent();
+														}
+														if (value.parent().childIndex() < 9) {
+															return "0" + (unit.childIndex() +1);
+														} else {
+															return unit.childIndex() +1;
+														}
+													}
+													
+													// hidden function cannot find it in override public function list
+													override public function prepare(hasBeenRecycled:Boolean):void {
+														if (data)
+															unitItemIndexLabel.text = getItemIdexText(data);
+													}
+												]]>
+											</fx:Script>
+											<s:HGroup width="100%" height="100%" verticalAlign="middle">
+												<s:Label id="unitItemIndexLabel" fontSize="14" verticalCenter="0" color="#005D5F" />
+												<s:Spacer width="10" />
+												<s:HGroup left="0" width="80" verticalCenter="0" verticalAlign="middle">
+													<s:Button id="unitItemLeftButton" scaleX="0.8" scaleY="0.8" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@unitLeftIcon)}" />
+													<s:Label id="unitItemLeftLabel" text="{data.@unitLeftIcon}" fontSize="14" color="#005D5F" />
+												</s:HGroup>
+												<s:Spacer width="20" />
+												<s:HGroup width="80" verticalCenter="0" verticalAlign="middle">
+													<s:Button id="unitItemRightButton" scaleX="0.8" scaleY="0.8" label="{outerDocument.hostComponent.getCopyProvider().getCopyForId(data.@unitRightIcon)}" />
+													<s:Label id="unitItemRightLabel" text="{data.@unitRightIcon}" fontSize="14" color="#005D5F" />
+												</s:HGroup>	
+											</s:HGroup>
+										</s:GridItemRenderer>
+								</fx:Component>
+							</s:itemRenderer>
+						</s:GridColumn>
+						<s:GridColumn id="scoreGridC2" width="{scoreDetailsDataGrid.width * 0.3}">
+							<s:itemRenderer>  
+								<fx:Component>  
+									<s:GridItemRenderer>
+										<s:layout>
+											<s:HorizontalLayout verticalAlign="middle" />
+										</s:layout>
+										<s:Label text="{data.@caption}" />
+									</s:GridItemRenderer>
+								</fx:Component>  
+							</s:itemRenderer>  
+						</s:GridColumn>
+						<s:GridColumn id="scoreGridC3" sortCompareFunction="sortScores" width="{scoreDetailsDataGrid.width * 0.1}">
+							<s:itemRenderer>  
+								<fx:Component>  
+									<s:GridItemRenderer>
+										<s:layout>
+											<s:HorizontalLayout verticalAlign="middle" />
+										</s:layout>
+										<s:Label text="{data.@displayScore}" />
+									</s:GridItemRenderer>
+								</fx:Component>  
+							</s:itemRenderer>  
+						</s:GridColumn>
+						<s:GridColumn id="scoreGridC4" sortCompareFunction="sortDuration" labelFunction="displayDuration" width="{scoreDetailsDataGrid.width * 0.1}">
+							<s:itemRenderer>  
+								<fx:Component>  
+									<s:GridItemRenderer>
+										<s:layout>
+											<s:HorizontalLayout verticalAlign="middle" />
+										</s:layout>
+										<s:Label text="{data.@duration}" />
+									</s:GridItemRenderer>
+								</fx:Component>  
+							</s:itemRenderer>  
+						</s:GridColumn>
+						<s:GridColumn id="scoreGridC5" width="{scoreDetailsDataGrid.width * 0.2}">
+							<s:itemRenderer>  
+								<fx:Component>  
+									<s:GridItemRenderer>
+										<s:layout>
+											<s:HorizontalLayout verticalAlign="middle" />
+										</s:layout>
+										<s:Label text="{data.@datetime}" />
+									</s:GridItemRenderer>
+								</fx:Component>  
+							</s:itemRenderer>  
+						</s:GridColumn>
 					</s:ArrayList>
 				</s:columns>
 			</s:DataGrid>
