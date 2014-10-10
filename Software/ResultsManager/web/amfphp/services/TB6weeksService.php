@@ -14,7 +14,7 @@ require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/Reportable.php"
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/content/Course.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/Group.php");
 require_once(dirname(__FILE__)."/vo/com/clarityenglish/common/vo/manageable/User.php");
-require_once(dirname(__FILE__)."/vo/com/clarityenglish/dms/vo/account/Subscription.php");
+require_once(dirname(__FILE__)."/vo/com/clarityenglish/bento/vo/progress/Score.php");
 
 require_once(dirname(__FILE__)."/../../classes/AuthenticationOps.php");
 require_once(dirname(__FILE__)."/../../classes/ManageableOps.php");
@@ -86,6 +86,7 @@ class TB6weeksService extends AbstractService {
 		$answers = $test->appendChild($data->createElement('config'));
 		$debug = $test->appendChild($data->createElement('debug'));
 		$answerData = '';
+		$newQuestionId = $newBlockId = $newSourceId = 0;
 		
 		if (!file_exists($testTemplate))
 			throw new Exception($testTemplate." file not found");
@@ -97,12 +98,8 @@ class TB6weeksService extends AbstractService {
         // Set the namespace so that xpath can work
 		$templateXPath->registerNamespace('xmlns', 'http://www.w3.org/1999/xhtml');
 
-			//$debugNode = $data->createElement('qbGroup', $groupName);
-			//$debugNode->setAttribute('numOfQB', $numOfQbanks);
-            //$debug->appendChild($debugNode);
-            
 		// The test template might pick x questions directly from each question bank, or it might pick x from a group of question banks
-		// If you are picking from a group, then it is assumed that the questions will be spread equally across the group.
+		// If you are picking from a group, then it is assumed that the questions will be spread as equally as possible across the group.
 		// So first work out how many questions (if any) to get from each question bank 
 		$qbGroups = $templateXPath->query("//xmlns:questions/xmlns:group");
 		foreach ($qbGroups as $qbGroup) {
@@ -137,10 +134,12 @@ class TB6weeksService extends AbstractService {
 			}
 		}
 		
+		// Now pick the allocated x questions from each question bank
 		$qbNodes = $templateXPath->query("//xmlns:questionBank");
 		foreach ($qbNodes as $qb) {
 	
 			$questionBankFile = '../../'.$GLOBALS['data_dir'].'/TB6weeks/'.$qb->getAttribute('href');
+			$qbGroup = $qb->getAttribute('group');
 			$numQuestionsToUse = $qb->getAttribute('use');
 			if ($numQuestionsToUse == '')
 				$numQuestionsToUse = 5;
@@ -167,18 +166,60 @@ class TB6weeksService extends AbstractService {
 			
 			// gh#1030 Pick x questions at random from the bank
 			if ($numQuestionsToUse == 1) {
+				// Note that array_rand doesn't return an array if you have a single item
 				$useThese = array(array_rand(range(0, $maxQuestions-1), $numQuestionsToUse));
 			} else {
 				$useThese = array_rand(range(0, $maxQuestions-1), $numQuestionsToUse);
 			}
 			for ($i = 0; $i < $numQuestionsToUse; $i++) {
-	            $question = $data->importNode($matchingNodes->item($useThese[$i]), true);
-	            $questions->appendChild($question);
 
 	            // Find the matching answer model for this question
-				$questionID = $question->getAttribute('id');
-				$modelQuery = '//xmlns:questions/*[@block="' . $questionID . '"]';
+				$questionId = $matchingNodes->item($useThese[$i])->getAttribute('id');
+				$modelQuery = '//xmlns:questions/*[@block="' . $questionId . '"]';
 				$questionModel = $xmlXPath->query($modelQuery)->item(0);
+				
+				// Generate new ids for the new document to ensure uniqueness
+				$newQuestionId++;
+				$matchingNodes->item($useThese[$i])->setAttribute('id', 'b'.$newQuestionId);
+				$questionModel->setAttribute('block', 'b'.$newQuestionId);
+				
+				// Add the group attribute so that you can figure out complex marking later
+				$questionModel->setAttribute('scoreBand', $qbGroup);
+				
+				//$debugNode = $data->createElement('changingQId', $questionId);
+				//$debugNode->setAttribute('newId', 'b'.$newQuestionId);
+				//$debug->appendChild($debugNode);
+				
+				// MC or GF have different handling for source nodes
+				$optionsQuery = "//xmlns:div[@class='question'][@id='" .'b'.$newQuestionId. "']//xmlns:a";
+				$options = $xmlXPath->query($optionsQuery);
+				$debugNode = $data->createElement('findQuery', $optionsQuery);
+				$debugNode->setAttribute('found', $options->length);
+				foreach ($options as $option) {
+					$existingId = $option->getAttribute('id');
+					$newSourceId++;
+					$option->setAttribute('id', 'q'.$newSourceId);
+					
+					$modelAnswerQuery = '//xmlns:questions/*[@block="' . 'b'.$newQuestionId . '"]/xmlns:answer';
+					$modelAnswers = $xmlXPath->query($modelAnswerQuery);
+					foreach ($modelAnswers as $modelAnswer) {
+						if ($modelAnswer->getAttribute('source') == $existingId)
+							$modelAnswer->setAttribute('source', 'q'.$newSourceId);
+					}
+				}
+				
+				$optionsQuery = "//xmlns:div[@class='question'][@id='" .'b'.$newQuestionId. "']//xmlns:input";
+				$options = $xmlXPath->query($optionsQuery);
+				foreach ($options as $option) {
+					//$existingId = $gfOption->getAttribute('id');
+					$newSourceId++;
+					$option->setAttribute('id', 'q'.$newSourceId);
+					$questionModel->setAttribute('source', 'q'.$newSourceId);
+				}
+				
+				// Add the modified nodes to the new document
+	            $question = $data->importNode($matchingNodes->item($useThese[$i]), true);
+	            $questions->appendChild($question);
 	            $answerData .= $questionModel->ownerDocument->saveXML($questionModel); 
 			}
 		}
@@ -218,7 +259,9 @@ class TB6weeksService extends AbstractService {
 		    <input class="GapFillQuestion" id="b1" value="It's" />
 		 */
 		
-		$correct = $wrong = $skipped = $numQuestions = 0;
+		$numQuestions = $potentialScore = 0;
+		$score = new Score();
+		$score->scoreCorrect = $score->scoreMissed = $score->scoreWrong = 0;
 		
 		$answersXmlString = $this->decodeSafeChars($answers);
 		$answersXmlString = $this->decrypt($this->decodeSafeChars($answers));
@@ -233,22 +276,27 @@ class TB6weeksService extends AbstractService {
 		
 		foreach ($answersXml->MultipleChoiceQuestion as $mcq) {
 			$qId = $mcq['block'];
+			$scoreBand = $mcq['scoreBand'];
+			$potentialScore += $this->scoreMultiplier($scoreBand);
+			
 			$thisQuestionAttempts = $attemptsXml->xpath("//input[@id='$qId']");
 			// Has the user attempted to answer this question? 
 			if ($thisQuestionAttempts && count($thisQuestionAttempts) > 0) {
 				$attemptedAnswer = $thisQuestionAttempts[0]['value'];
 				
 				if ($mcq->xpath('//answer[@correct="true"][@source="'.$attemptedAnswer.'"]')) {
-					$correct++;
+					$score->scoreCorrect += $this->scoreMultiplier($scoreBand);
 				} else {
-					$wrong++;
+					$score->scoreWrong++;
 				}
 			} else {
-				$skipped++;
+				$score->scoreSkipped++;
 			}
 		}
 		foreach ($answersXml->GapFillQuestion as $gfq) {
 			$qId = $gfq['block'];
+			$scoreBand = $gfq['scoreBand'];
+			$potentialScore += $this->scoreMultiplier($scoreBand);
 			$thisQuestionAttempts = $attemptsXml->xpath("//input[@id='$qId']");
 			// Has the user attempted to answer this question? 
 			if ($thisQuestionAttempts && count($thisQuestionAttempts) > 0) {
@@ -256,19 +304,41 @@ class TB6weeksService extends AbstractService {
 				
 				// NOTE: This will fail if the correct answer has a double quote in it
 				if ($gfq->xpath('//answer[@correct="true"][@value="'.$attemptedAnswer.'"]')) {
-					$correct++;
+					$score->scoreCorrect += $this->scoreMultiplier($scoreBand);
 				} else {
-					$wrong++;
+					$score->scoreWrong++;
 				}
 			} else {
-				$skipped++;
+				$score->scoreSkipped++;
 			}
 		}
 		
-		$percentage = round(100 * ($correct / $numQuestions));
-		return json_encode(array('debug' => $debug, 'of' => $numQuestions, 'correct' => $correct, 'skipped' => $skipped, 'wrong' => $wrong));
+		$score->score = round(100 * ($score->scoreCorrect / $potentialScore));
+		return json_encode(array('debug' => $debug, 'percentage' => $score->score, 'of' => $numQuestions, 'correct' => $score->scoreCorrect, 'skipped' => $score->scoreSkipped, 'wrong' => $score->scoreWrong));
 	}
 	
+	public function scoreMultiplier($scoreBand) {
+		switch ($scoreBand) {
+			case 'ELE':
+				return 1;	
+				break;
+			case 'LI':
+				return 2;	
+				break;
+			case 'INT':
+				return 3;	
+				break;
+ 			case 'UI':
+				return 4;	
+				break;
+ 			case 'ADV':
+				return 5;	
+				break;
+			default:
+				break;
+		}
+		return 0;
+	}
 	public function encrypt($data)	{
 		$iv_size = mcrypt_get_iv_size(MCRYPT_RIJNDAEL_128, MCRYPT_MODE_CBC);
         $securekey = hash('sha256', 'ClarityLanguageConsultantsLtd', TRUE);

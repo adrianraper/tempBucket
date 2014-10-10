@@ -27,8 +27,7 @@
 			},
 			success: function (data) {
 				//var resultsData = jQuery.parseJSON(data);
-				console.log('Marked and returned, debug ' + data.debug + '; from ' + data.of + ' questions (' + data.correct + ',' + data.wrong + ',' + data.skipped + ')');
-				//console.log('Marked and returned, you got ' + data);
+				console.log('Marked ' + data.percentage + '%, debug ' + data.debug + '; from ' + data.of + ' questions (' + data.correct + ',' + data.wrong + ',' + data.skipped + ')');
 			}
 		});
 	};
