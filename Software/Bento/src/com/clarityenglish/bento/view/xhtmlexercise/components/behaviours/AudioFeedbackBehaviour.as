@@ -76,7 +76,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components.behaviours {
 		
 		protected function onMarkButtonClicked(event:MarkingButtonEvent):void {
 			// gh#1051 check to see if before or after marking audio
-			feedbackAudioStack.push(event.audioELement);
+			feedbackAudioStack.push(event.audioElement);
 		}
 	}
 }

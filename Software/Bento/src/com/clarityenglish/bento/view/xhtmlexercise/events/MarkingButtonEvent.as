@@ -17,7 +17,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.events
 			this._audioElement = audioElement;
 		}
 		
-		public function get audioELement():AudioElement {
+		public function get audioElement():AudioElement {
 			return _audioElement;
 		}
 	}
