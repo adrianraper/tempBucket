@@ -215,12 +215,7 @@ package com.clarityenglish.bento.model {
 				return "";
 			}
 			
-			// for CP, we need to locate the exercise node first
-			var exerciseNode:XMLList = menu..unit.exercise;
-			if (exerciseNode.hasOwnProperty("@class")) {
-				exerciseNode = exerciseNode.(@["class"] == "exercise").exercise;
-			}
-			var matchingExerciseNodes:XMLList = exerciseNode.(@href == href.filename);
+			var matchingExerciseNodes:XMLList = menu..exercise.(attribute("href") == href.filename);
 			if (matchingExerciseNodes.length() > 1) {
 				throw new Error("Found multiple Exercise nodes in the menu xml matching " + href);
 			} else if (matchingExerciseNodes.length() == 0) {
