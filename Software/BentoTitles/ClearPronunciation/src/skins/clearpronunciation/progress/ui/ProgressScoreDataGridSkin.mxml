@@ -201,7 +201,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
                             if (!dataGrid)
                                 return;
                             
-                            const color:uint = 0xFF0000;
+                            const color:uint = 0xFFEFD2;
                             hoverIndicatorFill.color = color;
                         }
                     ]]>
@@ -266,7 +266,7 @@ declarations define DataGrid skin parts except <code>headerColumnSeparator</code
                             if (!dataGrid)
                                 return;
                             
-                            const color:uint = 0xFF0000;
+                            const color:uint = 0xFFEFD2;
                             selectionIndicatorFill.color = color;
                         }
                     ]]>

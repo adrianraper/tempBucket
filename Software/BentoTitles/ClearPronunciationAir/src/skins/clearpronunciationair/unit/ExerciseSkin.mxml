@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" xmlns:s="library://ns.adobe.com/flex/spark" 
+    xmlns:fb="http://ns.adobe.com/flashbuilder/2009" alpha.disabled="0.5" xmlns:view="com.clarityenglish.bento.view.*">
+	<fx:Metadata>[HostComponent("com.clarityenglish.bento.view.exercise.ExerciseView")]</fx:Metadata>
+
+	<s:states>
+		<s:State name="disabled" />
+		<s:State name="normal" />
+		
+		<s:State name="exercise" />
+		<s:State name="other" />
+	</s:states>
+	
+	<s:layout>
+		<s:BasicLayout />
+	</s:layout>
+	
+	<!-- Background coloured rectangle -->
+	<s:Rect left="0" right="0" top="0" bottom="0" includeIn="exercise">
+		<s:fill>
+			<s:SolidColor color="#FFFFFF" />
+		</s:fill>
+	</s:Rect>
+	
+	<!-- Top buttons -->
+	<s:VGroup right="-15" top="40" includeIn="exercise">
+		<s:Button id="printButton" visible="{hostComponent.hasPrintStylesheet}" includeInLayout="{hostComponent.hasPrintStylesheet}" />
+	</s:VGroup>
+	
+	<!-- Exercise -->
+	<view:DynamicView id="dynamicView" left="0" right="0" top="40" bottom="20" />
+	
+	<!-- Right buttons -->
+	<s:HGroup right="32" top="0" includeIn="exercise">
+		<s:Group>
+			<s:Button id="feedbackButton" visible="false" useHandCursor="true" buttonMode="true" />
+			<s:Button id="markingButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" useHandCursor="true" buttonMode="true" />
+		</s:Group>
+		
+		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" useHandCursor="true" buttonMode="true" />
+	</s:HGroup>
+	
+	<!--Right rectangle-->
+	<s:Rect right="-13" top="38" bottom="0" width="13" includeIn="exercise">
+		<s:fill>
+			<s:SolidColor color="#19B5E0" />
+		</s:fill>
+	</s:Rect>
+	
+	<!-- Footer text -->
+	<s:HGroup left="25" right="25" bottom="3" includeIn="exercise">
+		<s:Spacer width="100%" />
+		<s:Label id="footerLabel" color="#FFFFFF" fontSize="11" />
+	</s:HGroup>
+
+</s:Skin>

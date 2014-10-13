@@ -7,6 +7,11 @@
 @namespace widgets "com.clarityenglish.rotterdam.view.unit.widgets.*";
 @namespace login "com.clarityenglish.rotterdam.view.login.*";
 @namespace settings "com.clarityenglish.clearpronunciation.view.settings.*";
+@namespace home "com.clarityenglish.clearpronunciation.view.home.*";
+@namespace course "com.clarityenglish.clearpronunciation.view.course.*";
+@namespace unit "com.clarityenglish.clearpronunciation.view.unit.*";
+@namespace exercise "com.clarityenglish.bento.view.exercise.*";
+@namespace progress "com.clarityenglish.clearpronunciation.view.progress.*";
 
 clearpronunciation|ClearPronunciationApplication {
 	skinClass: ClassReference("skins.clearpronunciationair.ClearPronunciationAirSkin");
@@ -16,14 +21,57 @@ clearpronunciation|ClearPronunciationApplication {
 	video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.controls.video.IOSVideoSelectorSkin");
 	}
+	
+	settings|SettingsView video|VideoSelector {
+		skinClass: ClassReference("skins.clearpronunciationair.settings.ui.IOSSettingsVideoSelectorSkin");
+	}
 }
 
 @media (os-platform: "Android") {
-	video|VideoSelector {
+	/*video|VideoSelector {
 		skinClass: ClassReference("skins.clearpronunciationair.controls.video.AndroidVideoSelectorSkin");
+	}*/
+	settings|SettingsView video|VideoSelector {
+		skinClass: ClassReference("skins.clearpronunciationair.settings.ui.AndroidSettingsVideoSelectorSkin");
 	}
 }
 
 login|LoginView s|TextInput {
 	skinClass: ClassReference("spark.skins.mobile.TextInputSkin");
+}
+
+home|HomeView {
+	skinClass: ClassReference("skins.clearpronunciationair.home.HomeSkin");
+}
+
+course|CourseView {
+	skinClass: ClassReference("skins.clearpronunciationair.course.CourseSkin");
+}
+
+unit|UnitView {
+	skinClass: ClassReference("skins.clearpronunciationair.unit.UnitSkin");
+}
+
+exercise|ExerciseView {
+	skinClass: ClassReference("skins.clearpronunciationair.unit.ExerciseSkin");
+}
+
+progress|ProgressView {
+	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressSkin");
+}
+
+progress|ProgressCoverageView {
+	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressCoverageSkin");
+}
+
+progress|ProgressCompareView {
+	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressCompareSkin");
+}
+
+progress|ProgressAnalysisView {
+	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressAnalysisSkin");
+}
+
+progress|ProgressScoreView {
+	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressScoreSkin");
 }

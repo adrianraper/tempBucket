@@ -100,7 +100,7 @@ package com.clarityenglish.clearpronunciation.view.progress {
 			
 			if (_courseChanged && menu) {	
 				if (progressBar) {
-					progressBar.label = copyProvider.getCopyForId("progressBarCoverage", { course: copyProvider.getCopyForId(StringUtils.capitalize(courseClass)) });
+					progressBar.label = copyProvider.getCopyForId("progressBarCoverage", { course: StringUtils.capitalize(courseClass)});
 					progressBar.data = menu.course.(@["class"] == courseClass).@coverage;
 				}
 				

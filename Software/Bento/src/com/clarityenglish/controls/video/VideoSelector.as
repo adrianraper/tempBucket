@@ -230,7 +230,6 @@ package com.clarityenglish.controls.video {
 			if (!videoList.selectedItem || !channelList.selectedItem)
 				return;
 			videoPlayer.stop();
-			trace("selected channel is "+ channelList.selectedIndex);
 			var url:String = href.createRelativeHref(null, videoList.selectedItem.@href).url;
 			if (url.match(/\.(rss|xml)$/)) {
 				new RssVideoLoader(videoPlayer).load(url, channelList.selectedItem);

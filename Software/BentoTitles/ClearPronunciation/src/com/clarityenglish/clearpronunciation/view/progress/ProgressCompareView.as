@@ -169,7 +169,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 						isNoData = false;
 					}
 				}
-				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.unit);
+				verticalAxis.dataProvider = compareChart.dataProvider = new XMLListCollection(xml.unit).toArray().reverse();
 				
 				if (isNoData) {
 					compareEmptyScoreLabel.visible = true;					

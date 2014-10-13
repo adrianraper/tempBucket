@@ -59,7 +59,7 @@
 			</s:fill>
 		</s:Path>
 	</s:Group>
-	<s:Group left="22" verticalCenter="0">
+	<s:Group left="22" verticalCenter="-1">
 		<s:Path data="M9.99316 2.32813 9.99316 4.49414C11.5469 5.42285 12.6055 7.08984 12.6055 9.02734 12.6055 11.9688 10.2129 14.3613 7.27051 14.3613 4.33203 14.3613 1.93945 11.9688 1.93945 9.02734 1.93945 7.24121 2.84473 5.69336 4.20313 4.7334L4.20313 7.01563 7.71094
 			  3.50781 5.95703 1.75391 4.20313 0 4.20313 2.50195C1.73438 3.66113 0 6.125 0 9.02734 0 13.0371 3.26172 16.2998 7.27051 16.2998 11.2832 16.2998 14.5439 13.0371 14.5439 9.02734 14.5439 5.98633 12.6504 3.40918 9.99316 2.32813Z">
 			<s:fill>
@@ -71,8 +71,8 @@
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
     <s:Label id="labelDisplay"
-			 verticalCenter="1" verticalAlign="middle"
-			 left="42" fontSize="15" fontWeight="normal"
+			 verticalCenter="0" verticalAlign="middle"
+			 left="42" fontSize="15" fontWeight="bold" fontFamily="MyriadPro"
 			 color="#F2F2F2" color.over="#FFFFFF" color.down="#FFFFFF">
     </s:Label>
     

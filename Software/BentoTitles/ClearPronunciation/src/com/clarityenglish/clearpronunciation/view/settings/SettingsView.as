@@ -12,11 +12,15 @@ package com.clarityenglish.clearpronunciation.view.settings {
 	import org.osflash.signals.Signal;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	
 	public class SettingsView extends BentoView {
 		
 		[SkinPart]
 		public var videoSelector:VideoSelector;
+		
+		[SkinPart]
+		public var settingsLabel:Label;
 		
 		[SkinPart]
 		public var saveCloseButton:Button;
@@ -37,7 +41,7 @@ package com.clarityenglish.clearpronunciation.view.settings {
 			
 			videoSelector.href = href;
 			videoSelector.channelCollection = channelCollection;
-			videoSelector.videoCollection = new XMLListCollection(course[0].unit[0].exercise);
+			videoSelector.videoCollection = new XMLListCollection(course[0].unit[0].exercise.(@type == "videoSelector").exercise);
 			videoSelector.placeholderSource = href.rootPath + "/" + course[0].unit[0].exercise.@placeholder;
 		}
 		
@@ -45,8 +49,11 @@ package com.clarityenglish.clearpronunciation.view.settings {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				case saveCloseButton:
+				/*case saveCloseButton:
 					saveCloseButton.addEventListener(MouseEvent.CLICK, onSaveCloseClick);
+					break;*/
+				case settingsLabel:
+					settingsLabel.text = copyProvider.getCopyForId("settingsLabel");
 					break;
 			}
 		}

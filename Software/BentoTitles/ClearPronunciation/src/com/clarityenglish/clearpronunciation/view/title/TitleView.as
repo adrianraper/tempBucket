@@ -50,7 +50,7 @@ package com.clarityenglish.clearpronunciation.view.title {
 		public var logoutButton:Button;
 		
 		[SkinPart]
-		public var backButon:Button;
+		public var backButton:Button;
 		
 		[SkinPart]
 		public var productTitle:Label;
@@ -118,9 +118,9 @@ package com.clarityenglish.clearpronunciation.view.title {
 					//instance.label = copyProvider.getCopyForId("LogOut");
 					instance.addEventListener(MouseEvent.CLICK, onLogoutClick);
 					break;
-				case backButon:
-					backButon.label = copyProvider.getCopyForId("Back");
-					backButon.addEventListener(MouseEvent.CLICK, onBackClick);
+				case backButton:
+					backButton.label = copyProvider.getCopyForId("Back");
+					backButton.addEventListener(MouseEvent.CLICK, onBackClick);
 					break;
 				case productTitle:
 					instance.text = copyProvider.getCopyForId("applicationTitle");

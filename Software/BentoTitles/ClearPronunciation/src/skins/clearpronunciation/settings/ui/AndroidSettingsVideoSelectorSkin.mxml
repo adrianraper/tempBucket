@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
-		xmlns:s="library://ns.adobe.com/flex/spark" xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)">
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:players="com.clarityenglish.controls.video.players.*" creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.controls.video.VideoSelector")]
 	</fx:Metadata>
+	
 	<fx:Script>
 		<![CDATA[
 			import mx.events.FlexEvent;
@@ -36,7 +38,7 @@
 				var component:Object = event.target;
 				var isClickVideoSelector:Boolean;
 				while (component.parent) {
-					if (component == videoList || component == videoPlayer || component == placeholderImage || component == channelList) {
+					if (component == videoList || component == videoPlayer) {
 						isClickVideoSelector = true;
 						break;
 					}
@@ -49,7 +51,7 @@
 			}
 		]]>
 	</fx:Script>
-		
+	
 	<!-- The video players -->
 	<!--players:WebViewVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" /-->
 	<players:OSMFVideoPlayer id="videoPlayer" left="30" width="320" height="240" visible="{videoList.selectedItem != null}" />

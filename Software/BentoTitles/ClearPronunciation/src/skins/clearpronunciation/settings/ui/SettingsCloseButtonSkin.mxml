@@ -32,7 +32,7 @@
              xmlns:s="library://ns.adobe.com/flex/spark" 
              xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
              minWidth="21" minHeight="21" 
-             alpha.disabled="0.5" xmlns:exercise="skins.clearpronunciation.assets.exercise.*">
+             alpha.disabled="0.5" xmlns:settings="skins.clearpronunciation.assets.settings.*">
      
     <fx:Metadata>
         <![CDATA[ 
@@ -52,27 +52,22 @@
     </s:states>
     
 	<s:Group>
-		<s:Path data="M0 0C7.25 1.16797 10.4492 5.125 10.4492 13.6729 10.4492 14.9219 10.4492 15.9111 10.4492 17.3438 10.4492 25.8604 14.5313 30 22.1914 30 27.2354 30 94.4648 30 98.1992 30 105.862 30 109.942 25.8604 109.942 17.3438 109.942 15.9111 109.942 14.9219 109.942
-			  13.6729 109.942 5.125 113.144 1.16797 120.395 0L0 0Z">
+		<s:Path data="M80 35C71.9268 33.6992 68.3613 29.293 68.3613 19.7734 68.3613 18.3828 68.3613 15.6875 68.3613 14.0918 68.3613 4.60938 63.8164 0 55.2861 0 46.1592 0 27.6465 0 24.7168 0 16.1846 0 11.6396 4.60938 11.6396 14.0918 11.6396 15.6875 11.6396 18.3828 11.6396
+			  19.7734 11.6396 29.293 8.07324 33.6992 0 35L80 35Z">
 			<s:fill>
-				<s:SolidColor color="#263A45" color.over="#004456" color.down="#004456" />
+				<s:SolidColor color="#F3C864" color.down="#FFD87A" color.over="#FFD87A"/>
 			</s:fill>
 		</s:Path>
+		
+		<!-- layer 8: text -->
+		<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
+		<s:Label id="labelDisplay"
+				 textAlign="center"
+				 maxDisplayedLines="1"
+				 horizontalCenter="0" verticalCenter="1" verticalAlign="middle"
+				 fontFamily="Mgbold" fontSize="16" fontWeight="bold"
+				 color="#263A45" color.down="#084669" color.over="#084669">
+		</s:Label>
 	</s:Group>
-	<s:Group left="22" verticalCenter="-1">
-		<s:Path data="M0 5.56152C3.30078 7.47266 4.69141 8.51563 4.69141 8.51563 4.69141 8.51563 9.20898 3.30176 15.1191 0 11.6426 2.60742 4.98242 12.8945 4.98242 12.8945 4.98242 12.8945 1.56445 6.95117 0 5.56152Z">
-			<s:fill>
-				<s:SolidColor color="#F2F2F2" color.over="#FFFFFF" color.down="#FFFFFF" />
-			</s:fill>
-		</s:Path>
-	</s:Group>
-    
-    <!-- layer 8: text -->
-    <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
-    <s:Label id="labelDisplay"
-             verticalCenter="0" verticalAlign="middle"
-             left="42" fontSize="15" fontWeight="bold" fontFamily="MyriadPro"
-			 color="#F2F2F2" color.over="#FFFFFF" color.down="#FFFFFF">
-    </s:Label>
     
 </s:SparkButtonSkin>

@@ -71,8 +71,8 @@
     <!-- layer 8: text -->
     <!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
     <s:Label id="labelDisplay"
-             verticalCenter="1" verticalAlign="middle"
-           	 right="20" fontSize="15"
+             verticalCenter="0" verticalAlign="middle"
+           	 right="25" fontSize="15" fontWeight="bold" fontFamily="MyriadPro"
 			 color="#263A45" color.down="#004973" color.over="#004973">
     </s:Label>
     

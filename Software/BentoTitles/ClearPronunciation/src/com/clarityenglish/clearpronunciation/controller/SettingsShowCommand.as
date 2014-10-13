@@ -24,6 +24,8 @@ package com.clarityenglish.clearpronunciation.controller {
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "SettingsTitleWindow";
 			titleWindow.title = "Settings";
+			titleWindow.width = 574;
+			titleWindow.height = 459;
 			titleWindow.addEventListener(TitleWindowBoundsEvent.WINDOW_MOVING, onWindowMoving, false, 0, true);
 			titleWindow.addEventListener(CloseEvent.CLOSE, onClosePopUp);
 			
@@ -32,8 +34,6 @@ package com.clarityenglish.clearpronunciation.controller {
 			
 			PopUpManager.addPopUp(titleWindow, FlexGlobals.topLevelApplication as DisplayObject, false, PopUpManagerChildList.POPUP, FlexGlobals.topLevelApplication.moduleFactory);
 			PopUpManager.centerPopUp(titleWindow);
-			
-			titleWindow.closeButton.visible = false;
 		}
 		
 		protected function onClosePopUp(event:CloseEvent = null):void {

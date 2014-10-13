@@ -81,8 +81,8 @@ package com.clarityenglish.clearpronunciation.view.progress.ui
 					}
 					// draw and add the arc to stage
 					myArc.graphics.beginFill(barColour, 1);
-					drawArc(myArc, -250, 0, 240, barAngle,currentAngle); //spriteName, startX, startY, radius, arcAngle, startAngle
-					drawArc(myArc, -250, 0, 190, barAngle, currentAngle);
+					drawArc(myArc, 0, 0, 240, barAngle,currentAngle); //spriteName, startX, startY, radius, arcAngle, startAngle
+					drawArc(myArc, 0, 0, 190, barAngle, currentAngle);
 					myArc.graphics.endFill();
 					this.addChild(myArc);
 					
@@ -101,8 +101,8 @@ package com.clarityenglish.clearpronunciation.view.progress.ui
 				
 				var emptyArc:Sprite = new Sprite();
 				emptyArc.graphics.beginFill(0xB3B3B3, 1);
-				drawArc(emptyArc, -250, 0, 240, 180, 0); //spriteName, startX, startY, radius, arcAngle, startAngle
-				drawArc(emptyArc, -250, 0, 190, 180, 0);
+				drawArc(emptyArc, 0, 0, 240, 180, 0); //spriteName, startX, startY, radius, arcAngle, startAngle
+				drawArc(emptyArc, 0, 0, 190, 180, 0);
 				emptyArc.graphics.endFill();
 				arcArray.push(emptyArc);
 				this.addChild(emptyArc);

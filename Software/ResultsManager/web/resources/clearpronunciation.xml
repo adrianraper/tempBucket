@@ -123,7 +123,6 @@
 			<lit name="yourID">Your id:</lit>
 			<lit name="yourEmail">Your email:</lit>
 			<lit name="welcomeLabel">Welcome, {fullname}</lit>
-			<lit name="overallCoverage"> - overall coverage</lit>
 			<lit name="myProgress">My progress</lit>
 			<lit name="myProfile">My profile</lit>
 			<lit name="help">Help</lit>
@@ -137,26 +136,12 @@
 			
 			<!--Home-->
 			<lit name="homeInstructionLabel">Click to choose the section you want to view.</lit>
-		    <lit name="progressNavBarCoverage">My coverage</lit>
-			<lit name="progressNavBarCompare">Compare</lit>
-			<lit name="progressNavBarAnalyse">Analyse</lit>
-			<lit name="progressNavBarScores">My scores</lit>
-			<lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
-			<lit name="chartCaptionLabel">Average score %</lit>
 			<lit name="analysisInstructionLabel1">This shows how you spent your time</lit>
 			<lit name="analysisInstructionLabel2">Time spent on each unit</lit>
-			<lit name="analysisTime">You have spent {x} minute(s) in total</lit>
 			<lit name="courseDurationRenderLabel">You have spent</lit>
-			<lit name="courseDurationRenderTime">{time} min(s)</lit>
+			<lit name="courseDurationRenderTime">{time}</lit>
 			<lit name="coverageLabel">coverage</lit>
 			<lit name="analysisLabel">analysis</lit>
-			<lit name="progressBarCoverage">Overall coverage</lit>
-			<lit name="progressBarScore">{course} - Average score</lit>
-			<lit name="scoreGridC1">Unit</lit>
-			<lit name="scoreGridC2">Exercise</lit>
-			<lit name="scoreGridC3">Score %</lit>
-			<lit name="scoreGridC4">Time spent</lit>
-			<lit name="scoreGridC5">Date</lit>
 			<lit name="updateError">The two new passwords you typed must be the same.</lit>
 			<lit name="updateFail">Sorry, these details can't be updated.</lit>
 			<lit name="updateSuccess">Your details have been saved.</lit>
@@ -288,8 +273,6 @@
 			<lit name="helpLabel1">Please also feel free to email us at support@clarityenglish.com</lit>
 			<lit name="helpLabel2">with any questions you have or problems you are having.</lit>
 			<lit name="newUnitCaption">New unit</lit>
-			<lit name="completeLabel">Started</lit>
-			<lit name="notCompleteLabel">Not started</lit>
 			<lit name="warningWindowCaption">Sorry</lit>
 			<lit name="urlPrompt">Type/paste a URL and press enter</lit>
 			<lit name="videoUrlPrompt">Paste the video URL here</lit>
@@ -316,37 +299,77 @@
 			<lit name="youTubeBase"><![CDATA[http://youtu.be\/{id}]]></lit>
 			<lit name="vimeoBase"><![CDATA[https://vimeo.com\/{id}]]></lit>
 			
+			<!-- Progress -->
+			<lit name="progressNavBarCoverage">My coverage</lit>
+			<lit name="progressNavBarCompare">Compare</lit>
+			<lit name="progressNavBarAnalyse">Analyse</lit>
+			<lit name="progressNavBarScores">My scores</lit>
+			<lit name="progressNavBarCertificate">My certificate</lit>
+			<lit name="progressAnonymousLabel">You logged in anonymously, so your progress will not be saved.</lit>
+			
+			<!-- Progress coverage -->
+			<lit name="progressBarCoverage">{course} - overall coverage</lit>
+			<lit name="coverageInstructionLabel">The chart below shows how many exercises you have completed in each unit.</lit>
+			<lit name="completeLabel">Started</lit>
+			<lit name="notCompleteLabel">Not started</lit>
+			
+			<!-- Progress compare -->
+			<lit name="chartCaptionLabel">Average score %</lit>
+			<lit name="compareInstructionLabel">Compare your average score to other learners.</lit>
+			<lit name="mylegendLabel">My scores</lit>
+			<lit name="everyonelegendLabel">Everyone's scores</lit>
+			<lit name="compareEmptyScoreLabel">You must first complete an exercise to see this chart.</lit>
+			
+			<!-- Progress analyse -->
+			<lit name="analyseInstructionLabel">This shows how you spent your time on each unit in {course}:</lit>
+			<lit name="minLabel">min(s)</lit>
+			<lit name="totalLabel">Total:</lit>
+			<lit name="totalTimeLabel">Total time you have spent</lit>
+			<lit name="circleWedgeInstructionLabel">Units you have not done are not shown in the chart above.</lit>
+			
+			<!-- Progress score  -->
+			<lit name="progressBarScore">{course} - Average score</lit>
+			<lit name="scoreGridC1">Unit</lit>
+			<lit name="scoreGridC2">Exercise</lit>
+			<lit name="scoreGridC3">Score %</lit>
+			<lit name="scoreGridC4">Time spent</lit>
+			<lit name="scoreGridC5">Date</lit>
+			<lit name="ScoreEmptyScoreLabelButton">You must first complete an exercise to see data in this table.</lit>
+			
+			<!-- Settings -->
+			<lit name="settingsLabel">sfdsg sdf gd dfsfdsfs dfdfd dfdf def de dfdfdf dfdfd fd sjli ljfldf ldjfldjfl kjd jklj jk.</lit>
+			
 			<!--unit-->
 			<lit name="practiseSoundsLabel"><![CDATA[Practise the sounds]]></lit>
 			<lit name="makeSoundsLabel"><![CDATA[How do I make the sounds?]]></lit>
 			
 			<!--phonetic -->
-			<lit name="pill">p</lit>
-			<lit name="fill">f</lit>
-			<lit name="buy">b</lit>
-			<lit name="my">m</lit>
-			<lit name="tie">t</lit>
-			<lit name="die">d</lit>
-			<lit name="ship">ʃ</lit>
-			<lit name="chip">tʃ</lit>
-			<lit name="yet">j</lit>
-			<lit name="jet">dʒ</lit>
-			<lit name="game">g</lit>
-			<lit name="came">k</lit>
-			<lit name="wail">w</lit>
-			<lit name="veil">v</lit>
-			<lit name="think">θ</lit>
-			<lit name="sink">s</lit>
-			<lit name="there">D</lit>
-			<lit name="dare">d</lit>
-			<lit name="price">s</lit>
-			<lit name="prize">z</lit>
-			<lit name="asia">ʒ</lit>
-			<lit name="hard">h</lit>
-			<lit name="ran">n</lit>
-			<lit name="rang">ŋ</lit>
-			<lit name="right">r</lit>
-			<lit name="light">l</lit>
+			<lit name="Pill">p</lit>
+			<lit name="Fill">f</lit>
+			<lit name="Buy">b</lit>
+			<lit name="My">m</lit>
+			<lit name="Tie">t</lit>
+			<lit name="Die">d</lit>
+			<lit name="Ship">ʃ</lit>
+			<lit name="Chip">tʃ</lit>
+			<lit name="Yet">j</lit>
+			<lit name="Jet">dʒ</lit>
+			<lit name="Game">g</lit>
+			<lit name="Came">k</lit>
+			<lit name="Wail">w</lit>
+			<lit name="Veil">v</lit>
+			<lit name="Think">θ</lit>
+			<lit name="Sink">s</lit>
+			<lit name="There">D</lit>
+			<lit name="Dare">d</lit>
+			<lit name="Price">s</lit>
+			<lit name="Prize">z</lit>
+			<lit name="Asia">ʒ</lit>
+			<lit name="Hard">h</lit>
+			<lit name="Ran">n</lit>
+			<lit name="Rang">ŋ</lit>
+			<lit name="Right">r</lit>
+			<lit name="Light">l</lit>
 		</group>
 	</language>
 </literals>

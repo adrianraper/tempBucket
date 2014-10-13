@@ -3,10 +3,11 @@ package com.clarityenglish.clearpronunciation.view.progress {
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.progress.ui.IStackedChart;
 	import com.clarityenglish.bento.view.progress.ui.ProgressCourseButtonBar;
-	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.clearpronunciation.view.progress.event.StackedBarMouseOutEvent;
 	import com.clarityenglish.clearpronunciation.view.progress.event.StackedBarMouseOverEvent;
 	import com.clarityenglish.clearpronunciation.view.progress.ui.StackedCircleWedgeChart;
+	import com.clarityenglish.common.model.interfaces.CopyProvider;
+	import com.clarityenglish.common.vo.manageable.Group;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
 	import flash.events.Event;
@@ -67,9 +68,6 @@ package com.clarityenglish.clearpronunciation.view.progress {
 		
 		[SkinPart]
 		public var totalMinLabel:Label;
-		
-		[SkinPart]
-		public var boundaryLineSolidColor:SolidColor;
 		
 		[SkinPart]
 		public var totalTimeLabel:Label;
@@ -142,29 +140,35 @@ package com.clarityenglish.clearpronunciation.view.progress {
 			return _androidSize;
 		}
 		
+		public function getCopyProvider():CopyProvider {
+			return copyProvider;
+		}
+		
 		// Alice: for TB
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			if (progressCourseButtonBar) progressCourseButtonBar.courses = menu.course;
+			var courseXMLList:XMLList = new XMLList();
+			for each (var course:XML in menu.course) {
+				if (course.@["class"] != "introduction") {
+					courseXMLList += course;
+				}
+			}
+			if (progressCourseButtonBar) progressCourseButtonBar.courses = courseXMLList;
 		}
 		
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
-			if (durationDataGroup) {
-				// Inject the copy provider into the data provider
-				var classFactory:ClassFactory = durationDataGroup.itemRenderer as ClassFactory;
-				classFactory.properties = { copyProvider: copyProvider };
-				durationDataGroup.itemRenderer = classFactory;
-			}
-			
 			if (_courseChanged && menu) {
 				if (progressCourseButtonBar) progressCourseButtonBar.copyProvider = copyProvider;
 			}
 			
+			totalLabel.text = copyProvider.getCopyForId("totalLabel");
+			totalMinLabel.text = copyProvider.getCopyForId("minLabel");
 			totalTimeLabel.text = copyProvider.getCopyForId("totalTimeLabel");
 			totalTimeMinLabel.text = copyProvider.getCopyForId("minLabel");
+			minLabel.text = copyProvider.getCopyForId("minLabel");
 			circleWedgeInstructionLabel.label = copyProvider.getCopyForId("circleWedgeInstructionLabel");
 		}
 		
@@ -174,14 +178,11 @@ package com.clarityenglish.clearpronunciation.view.progress {
 			if (_courseChanged && menu){
 				courseCaption = menu.course.(@["class"] == courseClass).@caption;
 				stackedChart.dataProvider = menu.course.(@["class"] == courseClass).unit;
-				stackedChart.colours = getStyle(courseClass.charAt(0) + "CircleWedgeColors");
+				stackedChart.colours = getStyle("circleWedgeColors");
 				
 				unitListCollection = new XMLListCollection(menu.course.(@["class"] == courseClass).unit);
 				
 				analyseInstructionLabel.text = copyProvider.getCopyForId("analyseInstructionLabel", {course: copyProvider.getCopyForId(StringUtils.capitalize(courseClass))});				
-				boundaryLineSolidColor.color = getStyle(courseCaption.charAt(0) + "Color");
-				totalDurationLabel.setStyle("color", getStyle(courseCaption.charAt(0) + "Color"));
-				totalMinLabel.setStyle("color", getStyle(courseCaption.charAt(0) + "Color"));
 				
 				if (progressCourseButtonBar) progressCourseButtonBar.courseClass = courseClass;
 			}
@@ -193,12 +194,7 @@ package com.clarityenglish.clearpronunciation.view.progress {
 			}				
 			totalDurationLabel.text = String(duration);
 			
-			totalLabel.text = copyProvider.getCopyForId("totalLabel");
-			totalMinLabel.text = copyProvider.getCopyForId("minLabel");
-			
-			totalTimeNumberLabel.text = String(duration);
-			totalTimeNumberLabel.setStyle("color", getStyle(courseCaption.charAt(0) + "Color"));
-			totalTimeMinLabel.setStyle("color", getStyle(courseCaption.charAt(0) + "Color"));			
+			totalTimeNumberLabel.text = String(duration);	
 		}
 		
 		protected override function partAdded(partName:String, instance:Object):void {
@@ -237,7 +233,6 @@ package com.clarityenglish.clearpronunciation.view.progress {
 		
 		// Alice: for TB
 		public function onCourseSelect(event:IndexChangeEvent):void {
-			trace("selected courseClass: "+event.target.selectedItem.courseClass);
 			courseSelect.dispatch(event.target.selectedItem.courseClass.toLowerCase());
 		}
 		
@@ -245,17 +240,11 @@ package com.clarityenglish.clearpronunciation.view.progress {
 			totalTimeWedgeVGroup.visible = false;
 			var duration:Number = menu.course.(@["class"] == courseClass).unit.(@caption == event.caption).@duration;
 
-			analysisTimeLabel.text = copyProvider.getCopyForId("analysisTime", { x: Math.floor(duration / 60) } );
-			analysisTimeLabel.setStyle("color", getStyle(StringUtils.capitalize(courseClass.charAt(0)) + "Color"));
+			analysisTimeLabel.text = String(Math.floor(duration / 60) );
 			
 			circleWedgeCourseLabel.text = event.caption;
 			
-			// gh#402
-			minLabel.text = copyProvider.getCopyForId("minLabel");
-			minLabel.setStyle("color", getStyle(StringUtils.capitalize(courseClass.charAt(0)) + "Color"));
-			
 			timeWedgeVGroup.visible = true;
-			trace(event.caption + ": " + duration);
 		}
 		
 		protected function onStackedBarMouseOut(event:StackedBarMouseOutEvent):void {

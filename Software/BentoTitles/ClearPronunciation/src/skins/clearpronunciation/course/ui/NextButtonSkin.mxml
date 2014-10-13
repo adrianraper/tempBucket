@@ -59,7 +59,7 @@
 			</s:fill>
 		</s:Path>
 	</s:Group>
-	<s:Group right="15" verticalCenter="-1">
+	<s:Group right="20" verticalCenter="-1">
 		<s:Path data="M0 10.8193 9.36914 5.41113 0 0 0 10.8193Z">
 			<s:fill>
 				<s:SolidColor color="#263A45" color.down="#004973" color.over="#004973" />
@@ -70,8 +70,8 @@
 	<!-- layer 8: text -->
 	<!--- @copy spark.components.supportClasses.ButtonBase#labelDisplay  -->
 	<s:Label id="labelDisplay"
-			 verticalCenter="1" verticalAlign="middle"
-			 left="20" fontSize="15"
+			 verticalCenter="0" verticalAlign="middle"
+			 left="20" fontSize="15" fontWeight="bold" fontFamily="MyriadPro"
 			 color="#263A45" color.down="#004973" color.over="#004973">
     </s:Label>
     

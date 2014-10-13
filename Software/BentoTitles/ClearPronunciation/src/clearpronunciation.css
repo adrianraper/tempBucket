@@ -43,10 +43,7 @@ global {
 	undoneDarkColor: #979797;
 	undoneLightColor: #CACACA;
 	
-	iCircleWedgeColors: #EC1C32, #C1272D, #CD5257, #611417, #E6A9AB, #EC616F, #9C1220, #FF4F62, #FF8F9B;
-	cCircleWedgeColors: #FFE79E, #603813, #E0E06B, #FFFFB8, #D19D2E, #7A6138;
-	vCircleWedgeColors: #7A6138, #7BA35B, #ECFFB3, #364A00, #C2F065, #378500;
-	dCircleWedgeColors: #5BCAE3, #1376A1, #6ED4D4, #BCE0E0, #004766, #528793;
+	circleWedgeColors: #006669, #C7EAE4, #37A6A0, #204C57, #9AB5B1, #2F7571, #2F5252, #3CBDBD, #585C8B;
 	
 	unitColours: #FFCC00, #99CC33, #29ABE2, #77449D, #D4145A, #AA0000, #FF5900, #00A99D, #140382;
 	gradientColours: #FFFF66, #CCFF33, #70D9FF, #AD8EC4, #FF73BB, #FF8085, #FFBD00, #7AD6C7, #617AC4;
@@ -142,6 +139,10 @@ title|TitleView s|Button#logoutButton {
 	skinClass: ClassReference("skins.clearpronunciation.title.ui.LogoutButtonSkin");
 }
 
+title|TitleView s|Button#backButton {
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressBackButtonSkin");
+}
+
 home|HomeView {
 	skinClass: ClassReference("skins.clearpronunciation.home.HomeSkin");
 }
@@ -235,7 +236,7 @@ exercise|ExerciseView s|Button#startAgainButton {
 
 /* Progress view styles */
 progress|ProgressView {
-	skinClass: ClassReference("skins.clearpronunciation.ProgressSkin");
+	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressSkin");
 }
 
 progress|ProgressView s|ButtonBar#progressNavBar {
@@ -244,10 +245,6 @@ progress|ProgressView s|ButtonBar#progressNavBar {
 
 progress|ProgressCoverageView {
 	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressCoverageSkin");
-}
-
-progress|ProgressCoverageView #exLabelButton {
-	skinClass: ClassReference("skins.clearpronunciation.progress.ui.ExLabelButtonSkin");
 }
 
 progress|ProgressAnalysisView {
@@ -298,6 +295,14 @@ progressui|ProgressBarRenderer {
 settings|SettingsView {
 	skinClass: ClassReference("skins.clearpronunciation.settings.SettingsSkin");
 }
+
+settings|SettingsView video|VideoSelector {
+	skinClass: ClassReference("skins.clearpronunciation.settings.ui.AndroidSettingsVideoSelectorSkin");
+}
+
+/*settings|SettingsView s|Button#saveCloseButton {
+	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
+}*/
 
 ui2|WidgetList s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");
