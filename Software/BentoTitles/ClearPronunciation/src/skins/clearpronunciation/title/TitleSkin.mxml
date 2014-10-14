@@ -2,7 +2,10 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx"
-		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*" creationComplete="onCreationComplete(event)" xmlns:title="skins.clearpronunciation.assets.title.*">
+		xmlns:ui="com.clarityenglish.rotterdam.view.title.ui.*" 
+		xmlns:title="skins.clearpronunciation.assets.title.*"
+		xmlns:home="skins.clearpronunciation.assets.home.*" 
+		creationComplete="onCreationComplete(event)">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.title.TitleView")]
@@ -15,13 +18,7 @@
 			
 			import skins.clearpronunciation.assets.title.menuProgressOff;
 			
-			[Bindable]
-			private var applicationWidth:Number;
-			
 			protected function onCreationComplete(event:FlexEvent):void {
-				applicationWidth = FlexGlobals.topLevelApplication.width;
-				titleButtonHGroup.gap = ((applicationWidth - 64) * 0.65 - 500) * 0.25;
-				titleButtonHGroup.left = (applicationWidth - 64) * 0.35 + 185 + titleButtonHGroup.gap;
 			}
 			
 		]]>
@@ -37,20 +34,31 @@
 		<s:State name="progress" />
 	</s:states>
 	
-	<!--home background-->
-	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeBg.png')" top="0" left="0" includeIn="home" />
-
+	<!-- gh#1054 	-->
+	<s:Rect width="100%" height="100%">
+		<s:fill>
+			<s:RadialGradient x="{FlexGlobals.topLevelApplication.width * 0.75}" y="300" scaleX="2000" scaleY="2000" >
+				<s:GradientEntry ratio="0.00" color="#03BBC6"/>
+				<s:GradientEntry ratio="0.25" color="#07B0D3"/>
+				<s:GradientEntry ratio="0.44" color="#1295D3"/>
+				<s:GradientEntry ratio="0.68" color="#097DC2"/>
+				<s:GradientEntry ratio="0.97" color="#0D5AA9"/>
+			</s:RadialGradient>
+		</s:fill>
+	</s:Rect>
+	<!-- <s:Image source="@Embed(source='skins/clearpronunciation/assets/home/homeBgBubbles.png')" top="0" left="0" fillMode="clip" includeIn="home" /> -->
+	
 	<ui:CancelableTabbedViewNavigator id="sectionNavigator" left="0" right="0" top="0" bottom="30">
 		<s:ViewNavigator id="myCoursesViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.home.HomeView" left="0" right="0" height="100%"  />
 		<s:ViewNavigator id="progressViewNavigator" firstView="com.clarityenglish.clearpronunciation.view.progress.ProgressView" left="0" right="0" height="100%" />
 	</ui:CancelableTabbedViewNavigator>
 	
-	<s:HGroup id="titleButtonHGroup" top="5" left.course="{applicationWidth - 50}">
+	<s:HGroup id="titleButtonHGroup" top="5" gap="20" right="2">
 		<s:Button id="settingsButton" useHandCursor="true" buttonMode="true" includeIn="home" />
 		<s:Button id="phonemicChartButton" useHandCursor="true" buttonMode="true" includeIn="home" />
 		<s:Button id="helpButton" useHandCursor="true" buttonMode="true" includeIn="home" />
 		<s:Button id="logoutButton" useHandCursor="true" buttonMode="true" scaleX.course="0.6" scaleY.course="0.6" includeIn="home, course" />	
 	</s:HGroup>
 	
-	<s:Button id="backButton" top="12" left="{applicationWidth - 120}" useHandCursor="true" buttonMode="true" includeIn="progress" />	
+	<s:Button id="backButton" top="12" right="10" useHandCursor="true" buttonMode="true" includeIn="progress" />	
 </s:Skin>

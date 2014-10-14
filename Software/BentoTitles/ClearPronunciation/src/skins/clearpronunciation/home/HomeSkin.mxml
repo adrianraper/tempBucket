@@ -2,7 +2,12 @@
 <s:Skin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		xmlns:s="library://ns.adobe.com/flex/spark" 
 		xmlns:mx="library://ns.adobe.com/flex/mx" 
-		enabled="{hostComponent.enabled}" xmlns:video="com.clarityenglish.controls.video.*" creationComplete="onCreationComplete(event)" xmlns:home="skins.clearpronunciation.assets.home.*" xmlns:vo="com.clarityenglish.clearpronunciation.vo.*" xmlns:title="skins.clearpronunciation.assets.title.*">
+		enabled="{hostComponent.enabled}" 
+		xmlns:video="com.clarityenglish.controls.video.*" 
+		creationComplete="onCreationComplete(event)" 
+		xmlns:home="skins.clearpronunciation.assets.home.*" 
+		xmlns:vo="com.clarityenglish.clearpronunciation.vo.*" 
+		xmlns:title="skins.clearpronunciation.assets.title.*">
 	<!-- host component -->
 	<fx:Metadata>
 		[HostComponent("com.clarityenglish.clearpronunciation.view.home.HomeView")]
@@ -28,46 +33,58 @@
 			[Bindable]
 			public var unitListWidth:Number;
 			
-			protected function onCreationComplete(event:FlexEvent):void
-			{	
+			protected function onCreationComplete(event:FlexEvent):void {	
 				loadingRect.visible = false;
-				applicationWidth = FlexGlobals.topLevelApplication.width;
-				applicationHeight = FlexGlobals.topLevelApplication.height;
 				
-				// position course list part
-				courseList.height = applicationHeight * 0.33;
-				var verticalLayout:VerticalLayout = new VerticalLayout();
-				verticalLayout.gap = (courseList.height - 185) / 3;
-				courseList.layout = verticalLayout;
-				
-				// position unit list part
-				unitListGroup.left = applicationWidth * 0.31;
-				unitListGroup.width = applicationWidth * 0.66;
-				unitListGroup.height = applicationHeight * 0.83;
-				myHomeBubble.scaleX = myHomeBubble.scaleY = unitListGroup.width / myHomeBubble.width < unitListGroup.height / myHomeBubble.height ? unitListGroup.width / myHomeBubble.width : myHomeBubble.height / myHomeBubble.height;
-				unitListInstuctionGroup.width = myHomeBubble.width * myHomeBubble.scaleX;
-				unitListWidth = (unitListGroup.width - 150) * 0.5;
-				unitListHeight = (unitListGroup.height * 0.8) / 7;
-				
-				// position title bar
-				homeTitleBarHGroup.width = applicationWidth;
-				menuBarLT.width = Math.round((homeTitleBarHGroup.width - 64) * 0.35);
-				menuBarMid.width = 64;
-				menuBarRT.width = Math.round((homeTitleBarHGroup.width - 64) * 0.65);
-				
-				// position footer
-				homeFooterGroup.top = applicationHeight - 330;
-				
-				courseList.addEventListener(IndexChangeEvent.CHANGE, onCourseListIndexChange);
-				// when user back from unit, the bubble should zoom in to big size
-				if (hostComponent.selectedCourseIndex) {
-					myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
-				}
+				// gh#1054
+				stage.addEventListener(Event.RESIZE, resizeHandler);
+				stage.dispatchEvent(new Event(Event.RESIZE));
 			}
 			
-			protected function onCourseListIndexChange(evnet:IndexChangeEvent):void {
-				myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
+			protected function resizeHandler(event:Event):void {
+				// You might be in a different view
+				if (!stage)
+					return;
+				
+				//trace("stageWidth: " + stage.stageWidth + " stageHeight: " + stage.stageHeight);
+				applicationWidth = stage.stageWidth;
+				applicationHeight = stage.stageHeight;
+				
+				// position course list part
+				//courseList.height = (applicationHeight > 1000) ? 1000 * 0.33 : applicationHeight * 0.33;
+				//var verticalLayout:VerticalLayout = new VerticalLayout();
+				//verticalLayout.gap = (courseList.height - 185) / 3;
+				//courseList.layout = verticalLayout;
+				
+				// position unit list part
+				//unitListGroup.left = applicationWidth * 0.31;
+				//unitListGroup.width = applicationWidth * 0.75;
+				// gh#1054
+				//unitListGroup.height = (applicationHeight > 1000) ? 1000 * 0.83 : applicationHeight * 0.83;
+				//myHomeBubble.scaleX = myHomeBubble.scaleY = unitListGroup.width / myHomeBubble.width < unitListGroup.height / myHomeBubble.height ? unitListGroup.width / myHomeBubble.width : myHomeBubble.height / myHomeBubble.height;
+				//unitListInstuctionGroup.width = myHomeBubble.width * myHomeBubble.scaleX;
+				//unitListWidth = (unitListGroup.width - 150) * 0.5;
+				//unitListHeight = (unitListGroup.height * 0.7) / 7;
+				
+				// position title bar
+				//homeTitleBarHGroup.width = applicationWidth;
+				//menuBarLT.width = Math.round((homeTitleBarHGroup.width - 64) * 0.35);
+				//menuBarMid.width = 64;
+				//menuBarRT.width = Math.round((homeTitleBarHGroup.width - 64) * 0.65);
+				
+				// position footer
+				//homeFooterGroup.top = applicationHeight - 330;
+				
+				//courseList.addEventListener(IndexChangeEvent.CHANGE, onCourseListIndexChange);
+				// when user back from unit, the bubble should zoom in to big size
+				//if (hostComponent.selectedCourseIndex) {
+				//	myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
+				//}
 			}
+			
+			//protected function onCourseListIndexChange(evnet:IndexChangeEvent):void {
+			//	myHomeBubble.scaleX = myHomeBubble.scaleY = applicationWidth / myHomeBubble.width;
+			//}
 			
 		]]>
 	</fx:Script>
@@ -77,9 +94,14 @@
 		<s:State name="disabled" />
 		<s:State name="normal" />
 	</s:states>
-			
-	<s:Group>
-		<s:List id="courseList" labelField="@caption" verticalCenter="-20" width="205" left="70" borderVisible="false" contentBackgroundAlpha="0">
+	
+	<s:Group verticalCenter="-60">
+		
+		<home:homeBubble id="myHomeBubble" verticalCenter="0" left="{(hostComponent.selectedCourseIndex >= 0) ? 275 : 0}"/>
+		<s:List id="courseList" height="300" labelField="@caption" verticalCenter="0" width="205" left="70" borderVisible="false" contentBackgroundAlpha="0">
+			<s:layout>
+				<s:TileLayout requestedColumnCount="1" rowAlign="justifyUsingGap"/>
+			</s:layout>
 			<s:itemRenderer>
 				<fx:Component>
 					<s:ItemRenderer autoDrawBackground="false" useHandCursor="true" buttonMode="true">
@@ -95,7 +117,6 @@
 						
 						<s:Button id="courseListButton" width="185" includeIn="hovered, normal" label="{data.@caption}" />
 						<home:triangleButton includeIn="selected" />
-						
 						<s:Group width="185" height="100%" includeIn="selected">
 							<s:Label horizontalCenter="0" verticalCenter="0" verticalAlign="middle" text="{data.@caption}" color="#1D2D36" fontWeight="bold" fontSize="20" fontFamily="Mgbold" />
 						</s:Group>
@@ -104,49 +125,48 @@
 			</s:itemRenderer>
 		</s:List>
 		
-		<s:Group id="unitListGroup">
-			<!--unilit list background bubble-->
-			<home:homeBubble id="myHomeBubble" verticalCenter="0" />
+		<s:Group id="unitListGroup" left="275" width="100%" height="600" >
 			
 			<!--instruction-->
-			<s:Group id="unitListInstuctionGroup" height="100" left="0" verticalCenter="-30">
+			<s:Group id="unitListInstuctionGroup" height="100" left="40" verticalCenter="-30">
 				<home:homeInstructionArrow verticalCenter="-60" horizontalCenter="-220" />
 				<s:Label id="homeInstructionLabel" width="380" horizontalCenter="20" verticalCenter="0" fontWeight="bold" fontSize="25" color="#333333" />
 			</s:Group>
 			
-			<video:VideoSelector id="videoSelector" verticalCenter="0" horizontalCenter="80" visible="false" />
-			<s:List id="consonantsList" width="100%" height="81%" left="120" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
+			<video:VideoSelector id="videoSelector" verticalCenter="0" horizontalCenter="0" visible="false" />
+			<s:List id="consonantsList" width="100%" left="100" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" includeInLayout="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
 				<s:layout>
-					<s:TileLayout requestedColumnCount="2" orientation="columns" verticalGap="0" columnWidth="{unitListWidth}" rowHeight="{unitListHeight}" />
+					<s:TileLayout verticalGap="5" requestedColumnCount="2" orientation="columns" rowHeight="70" />
 				</s:layout>
 			</s:List>
-			<s:List id="vowelsList" width="100%" height="80%" left="120" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
+			<s:List id="vowelsList" width="100%" left="100" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" includeInLayout="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">
 				<s:layout>
-					<s:TileLayout requestedColumnCount="2" orientation="columns" verticalGap="0" columnWidth="{unitListWidth}" rowHeight="{unitListHeight}" />
+					<s:TileLayout verticalGap="20" requestedColumnCount="2" orientation="columns" rowHeight="70" />
 				</s:layout>
 			</s:List>
-			<s:List id="diphthongsList" width="100%" height="80%" left="120" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 3}" contentBackgroundAlpha="0">
+			<s:List id="diphthongsList" width="100%" left="100" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 3}" includeInLayout="{hostComponent.selectedCourseIndex == 3}" contentBackgroundAlpha="0">
 				<s:layout>
-					<s:TileLayout requestedColumnCount="2" orientation="columns" verticalGap="0" columnWidth="{unitListWidth}" rowHeight="{unitListHeight}" />
+					<s:TileLayout verticalGap="20" requestedColumnCount="2" orientation="columns" rowHeight="70" />
 				</s:layout>
 			</s:List>
 		</s:Group>
+		
 	</s:Group>
 	
-	<!--home title bar-->
-	<s:HGroup id="homeTitleBarHGroup" gap="0" left="0" top="-70">
-		<title:menuBarLT id="menuBarLT" />
-		<title:menuBarMid id="menuBarMid" />
-		<title:menuBarRT id="menuBarRT" />
+	<!--home title bar, this is the yellow tabs under the menu items-->
+	<s:HGroup id="homeTitleBarHGroup" gap="0" left="0" top="-70" width="100%">
+		<title:menuBarLT id="menuBarLT" width="330" />
+		<title:menuBarMid id="menuBarMid" width="64" />
+		<title:menuBarRT id="menuBarRT" width="100%" />
 	</s:HGroup>
 	
 	<!--home left corner logo-->
 	<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/home/homeLogo.png')" top="-70" left="0" />
 	
 	<!--home footer-->
-	<s:Group id="homeFooterGroup">
-		<home:homeFooter left="0" top="150" />
-		<s:SWFLoader id="girlSWFLoader" source="@Embed(source='skins/clearpronunciation/assets/home/homeGirl.png')" left="0" />
+	<s:Group id="homeFooterGroup" bottom="0">
+		<home:homeFooter left="0" bottom="0" />
+		<s:SWFLoader id="girlSWFLoader" source="@Embed(source='skins/clearpronunciation/assets/home/homeGirl.png')" left="-1" bottom="0"/>
 	</s:Group>
 	
 	<s:Rect id="loadingRect" width="100%" height="100%">

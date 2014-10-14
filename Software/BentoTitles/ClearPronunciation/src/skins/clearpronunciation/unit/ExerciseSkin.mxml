@@ -40,8 +40,15 @@
 		<s:Button id="startAgainButton" visible="{hostComponent.hasQuestions &amp;&amp; !hostComponent.isMarked}" useHandCursor="true" buttonMode="true" />
 	</s:HGroup>
 	
-	<!--Right rectangle-->
+	<!-- Right rectangle to cover white portion of dynamic view -->
 	<s:Rect right="-13" top="38" bottom="0" width="13" includeIn="exercise">
+		<s:fill>
+			<s:SolidColor color="#19B5E0" />
+		</s:fill>
+	</s:Rect>
+	
+	<!-- Left rectangle to cover white portion of dynamic view -->
+	<s:Rect left="-13" top="38" bottom="0" width="13" includeIn="exercise">
 		<s:fill>
 			<s:SolidColor color="#19B5E0" />
 		</s:fill>

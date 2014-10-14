@@ -370,6 +370,27 @@
 			<lit name="Rang">ŋ</lit>
 			<lit name="Right">r</lit>
 			<lit name="Light">l</lit>
+			<lit name="Sheep">S</lit>
+			<lit name="Head">l</lit>
+			<lit name="Had">l</lit>
+			<lit name="Arrive">l</lit>
+			<lit name="Luck">l</lit>
+			<lit name="Look">l</lit>
+			<lit name="Hat">l</lit>
+			<lit name="Heart">l</lit>
+			<lit name="But">l</lit>
+			<lit name="Boot">l</lit>
+			<lit name="Who">l</lit>
+			<lit name="Her">l</lit>
+			<lit name="Pot">l</lit>
+			<lit name="Port">l</lit>
+			<lit name="Hair">l</lit>
+			<lit name="Hear">l</lit>
+			<lit name="Boy">l</lit>
+			<lit name="Pay">l</lit>
+			<lit name="Pie">l</lit>
+			<lit name="Know">l</lit>
+			<lit name="Now">l</lit>
 		</group>
 	</language>
 </literals>
