@@ -1,9 +1,6 @@
 package com.clarityenglish.bento.view.xhtmlexercise.components {
-	import caurina.transitions.Tweener;
-	
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.view.xhtmlexercise.IExerciseView;
-	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingOverlayEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.Exercise;
@@ -24,21 +21,21 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
-	import flash.utils.Dictionary;
-	
-	import flashx.textLayout.elements.FlowElement;
 	
 	import mx.controls.SWFLoader;
 	import mx.graphics.BitmapFillMode;
 	import mx.graphics.BitmapSmoothingQuality;
 	import mx.graphics.SolidColor;
 	
+	import spark.components.Group;
+	import spark.primitives.BitmapImage;
+	
+	import caurina.transitions.Tweener;
+	
+	import flashx.textLayout.elements.FlowElement;
+	
 	import org.davekeen.util.PointUtil;
 	import org.osflash.signals.Signal;
-	
-	import spark.components.Group;
-	import spark.components.TextInput;
-	import spark.primitives.BitmapImage;
 	
 	[Event(name="questionAnswered", type="com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent")]
 	[Event(name="feedbackShow", type="com.clarityenglish.bento.view.xhtmlexercise.events.FeedbackEvent")]
@@ -130,6 +127,7 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 		public function getQuestionFeedback():Signal {
 			return gotQuestionFeedback;
 		}
+		
 		/**
 		 * Search through all the sections for the given node
 		 * 
@@ -434,23 +432,6 @@ package com.clarityenglish.bento.view.xhtmlexercise.components {
 					}
 				}			
 			} 
-		}
-		
-		// gh#348
-		public function enableFeedbackAudio():void {
-			var textFlowDamageAccumulator:TextFlowDamageAccumulator = new TextFlowDamageAccumulator();
-			
-			var audioNodes:Array = exercise.select("audio.audio-feedback");
-			for each (var node:XML in audioNodes) {
-				var audioElement:AudioElement = getFlowElement(node) as AudioElement;
-				// AR Do we know what class this element is here? No. But we do know 'type' which is not used
-				audioElement.getTextFlow().dispatchEvent(new MarkingButtonEvent(MarkingButtonEvent.MARK_BUTTON_CLICKED, audioElement));
-				
-				TLFUtil.markFlowElementFormatChanged(audioElement);
-				textFlowDamageAccumulator.damageTextFlow(audioElement.getTextFlow());
-			}
-			
-			textFlowDamageAccumulator.updateDamagedTextFlows();				
 		}
 		
 	}

@@ -4,19 +4,16 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 	import com.clarityenglish.bento.model.ExerciseProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.bento.view.marking.events.MarkingEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.DictionaryEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.FeedbackEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.HintEvent;
-	import com.clarityenglish.bento.view.xhtmlexercise.events.MarkingButtonEvent;
 	import com.clarityenglish.bento.view.xhtmlexercise.events.SectionEvent;
 	import com.clarityenglish.bento.vo.content.model.Question;
 	import com.clarityenglish.bento.vo.content.model.answer.AnswerMap;
 	import com.clarityenglish.bento.vo.content.model.answer.NodeAnswer;
 	import com.clarityenglish.textLayout.vo.XHTML;
 	
-	import flashx.textLayout.elements.BreakElement;
-	
-	import org.osflash.signals.Signal;
 	import org.puremvc.as3.interfaces.INotification;
 	
 	public class XHTMLExerciseMediator extends BentoMediator {
@@ -118,8 +115,8 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 				}
 			}
 			
-			// gh#348
-			view.enableFeedbackAudio();	
+			// gh#1501
+			view.exercise.dispatchEvent(new MarkingEvent(MarkingEvent.SEE_ANSWERS));
 		}
 		
 		protected function handleMarkingShown(note:INotification):void {
@@ -137,6 +134,7 @@ package com.clarityenglish.bento.view.xhtmlexercise {
 					}					
 				}
 			}
+			
 			// Stop all audio
 			view.stopAllAudio();		
 		}
