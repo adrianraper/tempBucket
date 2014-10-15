@@ -79,26 +79,18 @@ package com.clarityenglish.clearpronunciation.view.progress
 		[SkinPart]
 		public var printGroup:spark.components.Group;
 		
-		[SkinPart]
-		public var certificateFooter:SWFLoader;
+		[Embed(source="skins/clearpronunciation/assets/progress/certificate/certificateConsonants.jpg")]
+		private static var certificateConsonants:Class;
 		
-		[Embed(source="skins/clearpronunciation/assets/progress/certificate/ACert.png")]
-		private static var ACert:Class;
+		[Embed(source="skins/clearpronunciation/assets/progress/certificate/certificateDiphthongs.jpg")]
+		private static var certificateDiphthongs:Class;
 		
-		[Embed(source="skins/clearpronunciation/assets/progress/certificate/ECert.png")]
-		private static var ECert:Class;
-		
-		[Embed(source="skins/clearpronunciation/assets/progress/certificate/ICert.png")]
-		private static var ICert:Class;
-		
-		[Embed(source="skins/clearpronunciation/assets/progress/certificate/UCert.png")]
-		private static var UCert:Class;
-		
-		[Embed(source="skins/clearpronunciation/assets/progress/certificate/LCert.png")]
-		private static var LCert:Class;
+		[Embed(source="skins/clearpronunciation/assets/progress/certificate/certificateVowels.jpg")]
+		private static var certificateVowels:Class;
 		
 		private var _courseChanged:Boolean;
 		private var _courseClass:String;
+		private var _isPlatformTablet:Boolean;
 		private var myPDF:PDF;
 		
 		[Bindable]
@@ -123,6 +115,15 @@ package com.clarityenglish.clearpronunciation.view.progress
 			return _courseClass;
 		}
 		
+		[Bindable]
+		public function get isPlatformTablet():Boolean {
+			return _isPlatformTablet;
+		}
+		
+		public function set isPlatformTablet(value:Boolean):void {
+			_isPlatformTablet = value;
+		}
+		
 		protected override function onViewCreationComplete():void {
 			super.onViewCreationComplete();
 			
@@ -137,7 +138,13 @@ package com.clarityenglish.clearpronunciation.view.progress
 		protected override function updateViewFromXHTML(xhtml:XHTML):void {
 			super.updateViewFromXHTML(xhtml);
 			
-			progressCourseButtonBar.courses = menu.course;
+			var courseXMLList:XMLList = new XMLList();
+			for each (var course:XML in menu.course) {
+				if (course.@["class"] != "introduction") {
+					courseXMLList += course;
+				}
+			}
+			if (progressCourseButtonBar) progressCourseButtonBar.courses = courseXMLList;
 		}
 		
 		protected override function commitProperties():void {
@@ -152,10 +159,11 @@ package com.clarityenglish.clearpronunciation.view.progress
 				var exerciseAmount:Number = 0;
 				var totalExercise:Number = 0;
 				for (var i:Number = 0; i < totalUnit; i++) {
-					var unitXML:XML = menu.course.(@["class"] == courseClass).unit[i]
-					var totalExercisePerUnit:Number = unitXML.exercise.length();
+					var unitXML:XML = menu.course.(@["class"] == courseClass).unit[i];
+					// gh#1062
+					var totalExercisePerUnit:Number = unitXML.exercise.(@["class"] == "exercise").exercise.length();
 					for (var j:Number = 0; j < totalExercisePerUnit; j++) {
-						if (unitXML.exercise[j].hasOwnProperty("@done")) {
+						if (unitXML.exercise.(@["class"] == "exercise").exercise[j].hasOwnProperty("@done")) {
 							exerciseAmount++;
 						}
 					}
@@ -167,30 +175,23 @@ package com.clarityenglish.clearpronunciation.view.progress
 				printGroup.visible = false;
 				if (coverage < 90) {
 					oopsVGroup.visible = true;
-					certificateFooter.visible = true;
 					var courseCaption:String = menu.course.(@["class"] == courseClass).@caption;
 					var notCompleteString:String = copyProvider.getCopyForId("notCompleteString", {courseCaption: courseCaption,  exerciseAmount: exerciseAmount, totalExercise: totalExercise, aveScor: aveScore});
 					var textFlow:TextFlow = TextFlowUtil.importFromString(notCompleteString);
 					notCompleteRichEditableText.textFlow = textFlow;
 				} else {
 					certificateGroup.visible = true;
-					certificateFooter.visible = false;
-					printGroup.visible = true;
-					switch (courseClass.charAt(0)) {
-						case "e":
-							certificateSWFLoader.source = ECert;
+					if(!isPlatformTablet)
+						printGroup.visible = true;
+					switch (courseClass) {
+						case "consonants":
+							certificateSWFLoader.source = certificateConsonants;
 							break;
-						case "u":
-							certificateSWFLoader.source = UCert;
+						case "diphthongs":
+							certificateSWFLoader.source = certificateDiphthongs;
 							break;
-						case "i":
-							certificateSWFLoader.source = ICert;
-							break;
-						case "l":
-							certificateSWFLoader.source = LCert;
-							break;
-						case "a":
-							certificateSWFLoader.source = ACert;
+						case "vowels":
+							certificateSWFLoader.source = certificateVowels;
 							break;
 						
 					}
@@ -239,12 +240,12 @@ package com.clarityenglish.clearpronunciation.view.progress
 			// we add a page
 			myPDF.addPage();
 			//var resizeMode:org.alivepdf.layout.Resize = new Resize(Mode.FIT_TO_PAGE, Position.CENTERED);
-			myPDF.addImage(certificateGroup, null, -25, 0, 290);
+			myPDF.addImage(certificateGroup, null, -5, 0, 270);
 			
 			// to save the PDF your specificy the path to the create.php script
 			// alivepdf takes care of the rest, if you are using AIR and want to save the PDF locally just use Method.LOCAL
 			// and save the returned bytes on the disk through the FileStream class
-			myPDF.save( Method.REMOTE, "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/createPDF.php", "drawing.pdf" );
+			myPDF.save( Method.REMOTE, "http://www.clarityenglish.com/Software/ResultsManager/web/amfphp/services/createPDF.php", "drawing.pdf" );
 		}
 	}
 }

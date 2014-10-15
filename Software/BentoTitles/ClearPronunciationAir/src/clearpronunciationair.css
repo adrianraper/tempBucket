@@ -75,3 +75,7 @@ progress|ProgressAnalysisView {
 progress|ProgressScoreView {
 	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressScoreSkin");
 }
+
+progress|ProgressCertificateView {
+	skinClass: ClassReference("skins.clearpronunciationair.progress.ProgressCertificateSkin");
+}

@@ -5,6 +5,7 @@ package com.clarityenglish.clearpronunciation.view.progress
 	import com.clarityenglish.bento.model.DataProxy;
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
+	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	
 	import org.puremvc.as3.interfaces.IMediator;
@@ -34,6 +35,9 @@ package com.clarityenglish.clearpronunciation.view.progress
 			
 			// Listen for course changing signal
 			view.courseSelect.add(onCourseSelect);
+			
+			var configProxy:ConfigProxy = facade.retrieveProxy(ConfigProxy.NAME) as ConfigProxy;
+			view.isPlatformTablet = configProxy.isPlatformTablet();
 		}
 		
 		

@@ -19,7 +19,7 @@
 				if (settingsSharedObject.data["channelIndex"]) {
 					channelList.selectedIndex = settingsSharedObject.data["channelIndex"];
 				}
-				channelList.visible = false;
+				//channelList.visible = false;
 				
 				stage.addEventListener(MouseEvent.CLICK, onStageClick);
 			}
@@ -84,15 +84,15 @@
 						<s:State name="selected" />
 					</s:states>
 					<s:Group width="176" height="31" useHandCursor="true" buttonMode="true">
-						<s:Rect width="100%" height="100%" radiusX="5" radiusY="5">
+						<s:Rect left="0" width="100%" height="100%" radiusX="5" radiusY="5">
 							<s:fill>
 								<s:SolidColor color="#FFEFD2" />
 							</s:fill>
 							<s:stroke>
-								<s:SolidColorStroke color="#9E9E9E" />
+								<s:SolidColorStroke color="#9E9E9E" weight="1" />
 							</s:stroke>
 						</s:Rect>
-						<s:Ellipse x="18" y="10" width="14" height="14">
+						<s:Ellipse x="18" y="9" width="14" height="14">
 							<s:fill>
 								<s:SolidColor color="#FFFFFF" />
 							</s:fill>
@@ -100,7 +100,7 @@
 								<s:SolidColorStroke color="#9E9E9E" />
 							</s:stroke>
 						</s:Ellipse>
-						<s:Ellipse x="22" y="14" width="6" height="6" includeIn="hovered, selected">
+						<s:Ellipse x="22" y="13" width="6" height="6" includeIn="hovered, selected">
 							<s:fill>
 								<s:SolidColor color="#000000" />
 							</s:fill>

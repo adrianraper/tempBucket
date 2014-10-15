@@ -14,30 +14,11 @@ package com.clarityenglish.bento.vo.content.transform {
 		override public function transform(xml:XML):void {
 			namespace xhtml = "http://www.w3.org/1999/xhtml";
 			use namespace xhtml;
-		
-			if (exerciseID > -1) {
-				var exerciseXML:XML = xml..script.(@id == "model")..exercise.(@id == String(exerciseID))[0];
-			}
 			
-			if (exerciseXML) {
-				var unitXML:XML = exerciseXML.parent();
-				var unitXMLStates:Stats = new Stats();
-				var courseXMLStates:Stats = new Stats();
-				
-				while (unitXML.name() != "unit") {
-					unitXML = unitXML.parent();
-				}
-				
-				for each (var exXML:XML in unitXML.exercise) {
-					if (exXML.hasOwnProperty("@type") && exXML.@type == "group") {
-						unitXMLStates.add(getNestedExerciseStats(exXML));
-					} else {
-						unitXMLStates.add(getExerciseStats(exXML));
-					}
-				}
-				unitXMLStates.writeToNode(unitXML);
-				courseXMLStates.add(unitXMLStates);
-				courseXMLStates.writeToNode(unitXML.parent());
+			if (exerciseID > -1) {
+				var thisExercise:XML = xml..script.(@id == "model")..exercise.(@id == String(exerciseID))[0];
+				var exerciseParent:XML = thisExercise.parent();
+				partialChangeStats(thisExercise, exerciseParent);
 			} else {
 				for each (var course:XML in xml..script.(@id == "model")..course) {
 					var courseStats:Stats = new Stats();
@@ -60,6 +41,37 @@ package com.clarityenglish.bento.vo.content.transform {
 					
 					courseStats.writeToNode(course);
 				}
+			}
+		}
+		
+		private function partialChangeStats(thisXML:XML, parentXML:XML):void {
+			var thisXML:XML = thisXML;
+			var thisLastScore:XML = thisXML.children()[thisXML.children().length() - 1];
+			var isFirstScore:Boolean = (thisXML.score.length() == 1)? true : false;
+			var parentXML:XML = parentXML;
+			var traceParentXML:XML = parentXML;
+			while(traceParentXML.name() != "menu") {
+				traceParentXML = traceParentXML.parent();
+			}
+			
+			while(parentXML.name() != "menu") {
+				if (isFirstScore) {
+					parentXML.@count = Number(parentXML.@count) + 1;
+					parentXML.@coverage = Math.floor(Number(parentXML.@count) / Number(parentXML.@of) * 100)
+				}
+				parentXML.@totalDone = Number(parentXML.@totalDone) + 1;
+				if (thisLastScore.hasOwnProperty("@score") && Number(thisLastScore.@score) >= 0) {
+					parentXML.@totalScore = Number(parentXML.@totalScore) + Number(thisLastScore.@score);
+					parentXML.@scoredCount = Number(parentXML.@scoredCount) + 1;
+				}
+				if (thisLastScore.hasOwnProperty("@duration") && Number(thisLastScore.@duration) >= 0) {
+					parentXML.@durationCount = Number(parentXML.@durationCount) + 1;
+					parentXML.@duration = Number(parentXML.@duration) + Number(thisLastScore.@duration);
+				}
+				parentXML.@averageScore = (Number(parentXML.@scoredCount) > 0) ? Math.floor(Number(parentXML.@totalScore) / Number(parentXML.@scoredCount)) : 0;
+				parentXML.@averageDuration = (Number(parentXML.@durationCount) > 0) ? Math.floor(Number(parentXML.@duration) / Number(parentXML.@durationCount)) : 0;
+				
+				parentXML = parentXML.parent();
 			}
 		}
 		
@@ -167,7 +179,7 @@ class Stats {
 		node.@scoredCount = scoredCount;
 		node.@durationCount = durationCount;
 		node.@duration = duration;
-		node.@averageScore = averageScore;trace("average score: "+averageScore);
+		node.@averageScore = averageScore;
 		node.@averageDuration = averageDuration;
 		node.@coverage = coverage;
 	}

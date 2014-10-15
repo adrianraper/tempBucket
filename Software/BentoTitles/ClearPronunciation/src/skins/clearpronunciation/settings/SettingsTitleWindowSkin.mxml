@@ -155,8 +155,10 @@
                 <!-- layer 4: moveArea -->
                 <!--- @copy spark.components.TitleWindow#moveArea -->
                 <s:Group id="moveArea" left="0" right="0" top="0" bottom="0" />
-                
-                
+				
+				<!--- @copy spark.components.TitleWindow#closeButton -->
+				<!--s:Button id="closeButton" skinClass="skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin"
+						  right="10" bottom="0" label="OK" useHandCursor="true" buttonMode="true" /-->
             </s:Group>
             
             <!--
@@ -167,13 +169,6 @@
             <!--- @copy spark.components.SkinnableContainer#contentGroup -->
             <s:Group id="contentGroup" width="100%" height="100%" minWidth="0" minHeight="0" horizontalCenter="0">
 			</s:Group>
-			
-			<s:Group width="100%">
-				<!--- @copy spark.components.TitleWindow#closeButton -->
-				<s:Button id="closeButton" skinClass="skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin"
-						  right="10" bottom="0" label="OK" useHandCursor="true" buttonMode="true" />
-			</s:Group>
-			
 			
             <!--- @private -->
             <s:Group id="bottomGroup" minWidth="0" minHeight="0" 

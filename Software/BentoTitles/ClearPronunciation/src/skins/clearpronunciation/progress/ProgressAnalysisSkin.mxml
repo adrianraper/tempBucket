@@ -67,6 +67,9 @@
 											
 											import spark.components.DataGroup;
 											
+											[Bindable]
+											private var exerciseDuration:Number;
+											
 											public function getIndex(data:Object):Number {
 												return (owner as DataGroup).dataProvider.getItemIndex(data);
 											}
@@ -88,6 +91,8 @@
 														unitItemRightButton.visible = false;
 														unitItemRightLabel.visible = false;
 													}
+													// gh#1056 only count the exercise duration
+													exerciseDuration = data.exercise.(@["class"] == "exercise").@duration;
 												}			
 											}
 										]]>
@@ -108,7 +113,7 @@
 												</s:HGroup>	
 											</s:HGroup>
 											<s:HGroup id="durationHGroup" top="5" width="100%" horizontalAlign="right" verticalCenter="0">
-												<s:Label id="durationLable" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('courseDurationRenderTime', { time: Math.floor(data.@duration / 60) })}" color="#204C57" fontFamily="Mgbold" fontSize="21" fontWeight="bold" />
+												<s:Label id="durationLable" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('courseDurationRenderTime', { time: Math.floor(exerciseDuration / 60) })}" color="#204C57" fontFamily="Mgbold" fontSize="21" fontWeight="bold" />
 												<s:Label id="minLabel" fontSize="10" text="{outerDocument.hostComponent.getCopyProvider().getCopyForId('minLabel')}" color="#204C57" paddingTop="8"/>
 											</s:HGroup>	
 										</s:Group>	

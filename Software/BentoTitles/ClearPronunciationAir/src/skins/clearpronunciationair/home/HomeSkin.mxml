@@ -117,7 +117,7 @@
 			<video:VideoSelector id="videoSelector" verticalCenter="0" horizontalCenter="80" visible="false" />
 			<s:List id="consonantsList" width="100%" height="81%" left="120" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 1}" contentBackgroundAlpha="0">
 				<s:layout>
-					<s:TileLayout requestedColumnCount="2" orientation="columns" verticalGap="0" columnWidth="{unitListWidth}" rowHeight="{unitListHeight}" />
+					<s:TileLayout requestedColumnCount="2" orientation="columns" verticalGap="0" horizontalGap="20" columnWidth="{unitListWidth}" rowHeight="{unitListHeight}" />
 				</s:layout>
 			</s:List>
 			<s:List id="vowelsList" width="100%" height="80%" left="120" verticalCenter="0" borderVisible="false" useVirtualLayout="false" visible="{hostComponent.selectedCourseIndex == 2}" contentBackgroundAlpha="0">

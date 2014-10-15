@@ -119,6 +119,14 @@
 												unitItemRightButton.visible = false;
 												unitItemRightLabel.visible = false;
 											}
+											
+											// gh#1058
+											var circleXMLListCollection:XMLListCollection = new XMLListCollection();
+											circleXMLListCollection.addItem(data.exercise.(@['class'] == "practiseSounds"));
+											for each (var exerciseXML:XML in data.exercise.(@["class"] == "exercise").exercise) {
+												circleXMLListCollection.addItem(exerciseXML);
+											}
+											coverageCirclesDataGroup.dataProvider = circleXMLListCollection;
 										}			
 									}
 									
@@ -138,7 +146,7 @@
 								</s:HGroup>														
 								<s:Spacer width="10" />
 								<!--Coverage Circles-->
-								<s:DataGroup dataProvider="{new XMLListCollection(data.exercise)}">
+								<s:DataGroup id="coverageCirclesDataGroup">
 									<s:layout>
 										<s:HorizontalLayout/>
 									</s:layout>
@@ -161,13 +169,13 @@
 															super.data = value;
 															
 															if (data) {
-																if (getIndex(data) < data.parent().@count) {
+																if (data.attribute("done") > 0 || data.attribute("totalDone") > 0) {
 																	var courseClass:String = data.parent().parent().@["class"];
-																	topGradientColor.color = getStyle(courseClass.charAt(0) + "DarkColor");
-																	bottomGradientColor.color = getStyle(courseClass.charAt(0)+ "LightColor");
+																	topGradientColor.color = 0x263A45;
+																	bottomGradientColor.color = 0x416B75;
 																} else {
-																	topGradientColor.color = getStyle("undoneDarkColor");
-																	bottomGradientColor.color = getStyle("undoneLightColor");
+																	topGradientColor.color = 0x979797;
+																	bottomGradientColor.color = 0xCACACA;
 																}																												
 															}
 														}

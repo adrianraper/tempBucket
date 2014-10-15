@@ -47,7 +47,12 @@
 	<s:Group id="unitHGroup" left="0" top="0" height="70">
 		<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="50" left="0" verticalCenter="0">
 			<mx:series>
-				<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}" />
+				<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}">
+					<mx:fills>
+						<s:SolidColor color="#FFFFFF" />
+						<s:SolidColor color="#005D5F" />
+					</mx:fills>
+				</mx:PieSeries>
 			</mx:series>
 		</mx:PieChart>
 		<s:Label id="unitItemIndexLabel" fontFamily="Helvetica" fontSize="18" color="#333333" left="42" verticalCenter="2" />

@@ -11,40 +11,29 @@
         <s:State name="normal" />
         <s:State name="disabled" />
     </s:states>
-    
-	<s:SWFLoader id="certificateFooter" visible="false" source="@Embed(source='skins/clearpronunciation/assets/progress/progressFooter.png')" horizontalCenter="-1" bottom="-40"/>
 	
-	<ui:ProgressCourseButtonBar id="progressCourseButtonBar" left="40" height="60">
-		<ui:layout>
-			<s:ButtonBarHorizontalLayout gap="16" />
-		</ui:layout>
-	</ui:ProgressCourseButtonBar>
+	<s:VGroup left="20" right="20" top="20" bottom="0" gap="15">
+		<ui:ProgressCourseButtonBar id="progressCourseButtonBar" height="40">
+			<ui:layout>
+				<s:ButtonBarHorizontalLayout gap="35" />
+			</ui:layout>
+		</ui:ProgressCourseButtonBar>
+		
+		<s:Rect id="titleLine" height="1" width="100%">
+			<s:fill>
+				<s:SolidColor color="#000000" />
+			</s:fill>
+		</s:Rect>
+	</s:VGroup>
 	
-	<s:Rect top="60" left="45" right="50" height="1">
-		<s:fill>
-			<s:SolidColor color="0xEC1C32" />
-		</s:fill>
-	</s:Rect>	
-	
-	<s:VGroup id="oopsVGroup"  horizontalCenter="0" top="160" bottom="0" visible="false">
-		<s:Group top="0">
-			<certificate:EOops visible="{hostComponent.courseClass == 'elementary'}" />
-			<certificate:IOops visible="{hostComponent.courseClass == 'intermediate'}"/>
-			<certificate:UOops visible="{hostComponent.courseClass == 'upperintermediate'}"/>
-			<certificate:LOops visible="{hostComponent.courseClass == 'lowerintermediate'}"/>
-			<certificate:AOops visible="{hostComponent.courseClass == 'advanced'}"/>
-		</s:Group>	
+	<s:VGroup id="oopsVGroup"  horizontalCenter="0" verticalCenter="-20" visible="false" gap="20">	
+		<certificate:oops />
 		<s:RichEditableText id="notCompleteRichEditableText" width="100%" paddingTop="25" fontSize="13" lineHeight="30" horizontalCenter="0"/>
 	</s:VGroup>
 	
-	<s:Group id="printGroup" right="0" top="60">
-		<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/progress/certificate/printTip.png')" right="150" top="10"/>
-		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60"/>		
-	</s:Group>
-	
-	<s:Scroller top="110" bottom="0">
+	<s:Scroller verticalCenter="0" horizontalCenter="0">
 		<s:Group id="certificateGroup">
-			<s:SWFLoader id="certificateSWFLoader" left="60" />
+			<s:SWFLoader id="certificateSWFLoader" width="100%" height="100%" />
 			<s:HGroup top="150" left="160" gap="16">
 				<s:VGroup gap="10">
 					<s:Label id="nameTextLabel" fontSize="15" />
@@ -60,4 +49,10 @@
 			<s:RichEditableText id="certificateRichEditableText" width="500" horizontalCenter="0" top="260" fontSize="14" textAlign="center" />
 		</s:Group>
 	</s:Scroller>
+	
+	<!--Print button group-->
+	<s:HGroup id="printGroup" right="20" top="75" horizontalAlign="right">
+		<s:SWFLoader source="@Embed(source='skins/clearpronunciation/assets/progress/certificate/printTip.png')" right="150" top="10"/>
+		<s:Button id="printButton"  color="0xFFFFFF" buttonMode="true" useHandCursor="true" right="60"/>		
+	</s:HGroup>
 </s:Skin>

@@ -49,9 +49,10 @@ package com.clarityenglish.clearpronunciation.view.settings {
 			super.partAdded(partName, instance);
 			
 			switch (instance) {
-				/*case saveCloseButton:
+				case saveCloseButton:
+					saveCloseButton.label = copyProvider.getCopyForId("closeButton");
 					saveCloseButton.addEventListener(MouseEvent.CLICK, onSaveCloseClick);
-					break;*/
+					break;
 				case settingsLabel:
 					settingsLabel.text = copyProvider.getCopyForId("settingsLabel");
 					break;

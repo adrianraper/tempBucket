@@ -321,7 +321,7 @@
 			<lit name="compareEmptyScoreLabel">You must first complete an exercise to see this chart.</lit>
 			
 			<!-- Progress analyse -->
-			<lit name="analyseInstructionLabel">This shows how you spent your time on each unit in {course}:</lit>
+			<lit name="analyseInstructionLabel">This shows how you spent your time on exercise in {course}:</lit>
 			<lit name="minLabel">min(s)</lit>
 			<lit name="totalLabel">Total:</lit>
 			<lit name="totalTimeLabel">Total time you have spent</lit>
@@ -335,6 +335,25 @@
 			<lit name="scoreGridC4">Time spent</lit>
 			<lit name="scoreGridC5">Date</lit>
 			<lit name="ScoreEmptyScoreLabelButton">You must first complete an exercise to see data in this table.</lit>
+			
+			<!-- Progress certificate -->
+			<lit name="notCompleteString">
+			 <![CDATA[
+			 	<p>You have not completed <span fontWeight="bold" fontSize="16">{courseCaption}</span> yet, so you cannot receive a certificate.</p>
+			 	<p>So far you have completed <span fontWeight="bold" fontSize="16">{exerciseAmount} of {totalExercise} exercises</span> and your average score is <span fontWeight="bold" fontSize="16">{aveScor}%.</span></p>
+			 	<p>Go to <span fontWeight="bold" fontSize="16">My Coverage</span> to see which exercises you have not completed so that</p>
+			 	<p>you can finish the whole level.</p> 
+			 ]]>
+			</lit>
+			<lit name="completeString">
+			 	<![CDATA[
+			 	<p>This is to certify that this learner has completed this level</p>
+			 	<p>and has achieved an average score of <span fontWeight="bold" fontSize="20">{aveScore}%.</span></p>
+			 	]]>
+			</lit>
+			<lit name="nameTextLabel">Name:</lit>
+			<lit name="courseTextLabel">Course:</lit>
+			<lit name="dateTextLabel">Date:</lit>
 			
 			<!-- Settings -->
 			<lit name="settingsLabel">sfdsg sdf gd dfsfdsfs dfdfd dfdf def de dfdfdf dfdfd fd sjli ljfldf ldjfldjfl kjd jklj jk.</lit>

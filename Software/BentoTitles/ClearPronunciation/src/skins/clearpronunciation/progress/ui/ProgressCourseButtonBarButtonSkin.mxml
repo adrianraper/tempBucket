@@ -77,7 +77,8 @@
 				 maxDisplayedLines="1"
 				 left="10" right="10"
 				 color="#B1B1B1"
-				 color.selectedUpStates="#263A45"
+				 color.selectedStates="#263A45"
+				 color.down="#263A45"
 				 color.over="#263A45"
 				 color.up="#B1B1B1"
 				 fontSize="15" fontWeight="bold" fontFamily="MyriadPro">
