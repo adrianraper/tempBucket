@@ -2100,6 +2100,42 @@ EOD;
 		//AuthenticationOps::authenticateUsers(array($user));
 		return $usersRS;
 	}
-	
+
+	/**
+	 * This is to check if email exists in a particular account, or is unique
+	 * 
+	 * return: 'new', 'exists' or 'conflict'
+	 */
+	function checkEmailInAccount($email, $rootID) {
+		
+		$rootID = ($rootID) ? $rootID : Session::get('rootID');
+		AbstractService::$debugLog->notice("check email $email for root $rootID");
+		
+		$sql = <<<EOD
+				SELECT u.*, m.F_RootID as rootID
+				FROM T_User u, T_Membership m
+				WHERE u.F_UserID = m.F_UserID 
+				AND u.F_Email = ?
+EOD;
+		$rs = $this->db->Execute($sql, array($email));
+		$recordCount = $rs->RecordCount();
+		AbstractService::$debugLog->notice("got $recordCount records");
+		switch ($recordCount) {
+			case 0:
+				// This is a new email address
+				return 'new';
+				break;
+			case 1:
+				// This email exists, does it match the root?
+				$dbObj = $rs->FetchNextObj();
+				if ($dbObj->rootID == $rootID)
+					return 'exists';
+					
+				return 'conflict';
+				break;
+			default:
+				return 'conflict';
+		}
+	}
 }
 

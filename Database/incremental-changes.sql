@@ -1054,3 +1054,19 @@ INSERT INTO `T_ProductVersion` VALUES
 -- gh#1014 Weekly (or occasional) update for worldwide unit summaries
 ALTER TABLE T_ScoreCache ADD COLUMN `F_UnitID` bigint(20) DEFAULT NULL AFTER `F_CourseID`;
 
+-- TB6weeks
+DELETE FROM T_ProductLanguage WHERE F_ProductCode = 59;
+INSERT INTO T_ProductLanguage VALUES 
+(59,'EN','TB6weeks-International'),
+(59,'NAMEN','TB6weeks-NAmerican');
+
+DELETE FROM T_Product WHERE F_ProductCode = 59;
+INSERT INTO `T_Product` VALUES
+(59,'TB6weeks',NULL,2);
+
+DELETE FROM T_ProductVersion WHERE F_ProductCode = 59;
+INSERT INTO `T_ProductVersion` VALUES 
+(59,'DEMO'),
+(59,'FV');
+
+

@@ -794,16 +794,11 @@ EOD;
 	 */
 	function getAccountSettings($config) {
 		// Check data
-		if (isset($config['prefix'])) 
-			// #519
-			$prefix = (string) $config['prefix'];
-		if (isset($config['rootID'])) 
-			$rootID = $config['rootID'];
-		if (isset($config['productCode'])) 
-			$productCode = $config['productCode'];
+		$prefix = (isset($config['prefix'])) ? (string) $config['prefix'] : null; //#519
+		$rootID = (isset($config['rootID'])) ? $config['rootID'] : null;
+		$productCode = (isset($config['productCode'])) ? $config['productCode'] : null;
 		// gh#315
-		if (isset($config['ip'])) 
-			$ip = $config['ip'];
+		$ip = (isset($config['ip'])) ? $ip = $config['ip'] : null;
 			
 		// gh#39 productCode might be a comma delimited list '52,53'
 		if (!$productCode)

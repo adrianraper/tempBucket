@@ -66,16 +66,22 @@
                 <div class="divider"></div>
 				<div id="testPlaceholder" class="scrollable"></div>
             </div>
-			<div id="codeHolder" class="scrollable"></div>
+			<div id="codeHolder" style="display: none"></div>
         </div>
         <div id="register" class="section">
             <img src="images/banner_ict.jpg" alt="Register" class="register-bg" />
             <div class="register-content">
                 <h2>Register here</h2>
                 <div class="divider"></div>
-                <p>What is your email?</p>
-				<form id="registration" onSubmit="return false;">
+				<form id="registrationForm" method="post" action="TB6weeks.php" >
+	                <p>
+	                <label for="userEmail">What is your email?</label><br/>
 					<input id="userEmail" name="userEmail" type="text" />
+					</p>
+	                <p>
+	                <label for="userName">and your name (optional)?</label><br/>
+					<input id="userName" name="userName" type="text" />
+					</p>
 					<input id="submitResults" text="register" type="submit" />
 				</form>
 				<span id="validationMessage"></span>
@@ -84,9 +90,8 @@
     </div>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-    <script>
-        window.jQuery || document.write('<script src="js/vendor/jquery-1.10.2.min.js"><\/script>')
-    </script>
+    <!--include jQuery Validation Plugin-->
+    <script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.12.0/jquery.validate.min.js"></script>
     <script src="js/plugins.js"></script>
     <script src="js/main.js"></script>
 </body>

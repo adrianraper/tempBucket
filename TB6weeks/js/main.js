@@ -1,5 +1,35 @@
-	// Call the action script
-	sendMethodToAction = function() {
+	// Check if this email is already registered with TB6weeks. 
+	// If it is, warn the user that taking this test will override their existing record. 
+	checkEmail = function (value, element, parameter) {
+		var prefix = getURLParameter('prefix');
+		var validator = false;
+		$.ajax({
+			type: "POST",
+			url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
+			data: {operation: 'checkEmail', user: $("#registrationForm").serialize(), prefix: prefix},
+			dataType: "json",
+			error: function(jqXHR, textStatus, errorThrown) {
+				console.log('Error: ' + errorThrown);
+			},
+			success: function (data) {
+				if (data == 'new') {
+					console.log(data + " is new");
+					validator = true;
+				} else if (data == 'exists') {
+					console.log(data + " exists");
+					validator = false;
+					return "note: you already have TB6weeks, if you complete this test the result will overwrite your old one.";
+				} else {
+					console.log(data + " conflicts");
+					validator = false;					
+				}
+			}
+		});
+		return validator;
+	};
+
+	// Send the test data to the server
+	submitTestData = function() {
 	
 		// block the button to avoid double clicking
 		$("#submitResults").hide();
@@ -20,7 +50,7 @@
 		$.ajax({
 			type: "POST",
 			url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
-			data: {operation: 'checkAnswers', answers: answers, code: $("#codeHolder").text(), user: $("#registration").serialize()},
+			data: {operation: 'submitAnswers', answers: answers, code: $("#codeHolder").text(), user: $("#registration").serialize()},
 			dataType: "json",
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('Error: ' + errorThrown);
@@ -28,24 +58,36 @@
 			success: function (data) {
 				//var resultsData = jQuery.parseJSON(data);
 				console.log('Marked ' + data.percentage + '%, debug ' + data.debug + '; from ' + data.of + ' questions (' + data.correct + ',' + data.wrong + ',' + data.skipped + ')');
+				$("#validationMessage").text("You scored " + data.percentage + "%").show();
 			}
 		});
 	};
 
-	setupTestData = function () {
+	getQuestions = function () {
 
+		var prefix = getURLParameter('prefix');
+		
 		// Inject the questions
 		$.ajax({
 			type: "GET",
 			url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
-			data: {operation: 'getQuestions', exercise: '1193901049540.xml'},
+			data: {operation: 'getQuestions', exercise: '1193901049540.xml', prefix: prefix},
 			dataType: "xml",
 			error: function(jqXHR, textStatus, errorThrown) {
 				console.log('Error: ' + errorThrown);
+				$("#testPlaceholder").append(errorThrown);
 			},
 			success: function (xml) {
 				console.log('Read file successfully');
+				//console.log(xml);
 
+				// Any errors sent back?
+				$(xml).find("error").each(function () {
+					var message = $(this).attr("message");
+					console.log('Error: ' + message);
+					$("#testPlaceholder").append(message);
+				});
+				
 				// Parse the xml file and get data
 				$(xml).find(".question").each(function () {
 					// What is the id of this question?
@@ -84,10 +126,9 @@
 				$("#codeHolder").text($(xml).find("config").text());
 			}
 		});
-	}
+	};
 
-
-  jQuery(document).ready(function ($) {
+	jQuery(document).ready(function ($) {
       // $('.loader').css('opacity', 0);
       //  $('.cd-header, #container').css('opacity', 1);
       $('.banner--clone').addClass('banner--unstick');
@@ -96,10 +137,11 @@
 
       } else {
 
-			setupTestData();
-			setupAboutImages();
-			setupTestImages();
-			setupRegisterImages();
+    	  getQuestions();
+    	  
+    	  setupAboutImages();
+    	  setupTestImages();
+    	  setupRegisterImages();
 
           $('#container').fullpage({
               'verticalCentered': false,
@@ -129,7 +171,7 @@
                       setupRegister();
                       setupRegisterImages();
                   }
-              },
+              }
           });
 
 
@@ -141,7 +183,52 @@
 
       }
 
-		// Form validation 
+      // Form validation 
+      //jQuery.validator.addMethod("remote_email_check", checkEmail, "That is a bad email");
+      /*
+       */
+      $("#registrationForm").validate({
+    	        rules: {
+    	          userName: {
+    	            required: false
+    	          },
+    	          userEmail: {
+    	        	remote: {
+    	        	  type: "POST",
+    	        	  url: "http://dock.projectbench/Software/ResultsManager/web/amfphp/services/TB6weeksService.php",
+    	        	  data: {operation: 'checkEmail', prefix: getURLParameter('prefix')},
+    	        	  dataType: "json",
+    	        	  dataFilter: function(data, dataType) {
+    	        		  var decodedData = jQuery.parseJSON(data);
+	    	  				if (decodedData == 'new') {
+	    						console.log(decodedData + " is new");
+	    						return true;
+	    					} else if (decodedData == 'exists') {
+	    						console.log(decodedData + " exists");
+	    						
+	    						// Need to dynamically change the error to a warning
+	    						// NOTE: Either show an alert at this point and leave it as true or make this dynamic message change work!
+	    						$("#userEmail").rules('add', {messages: {remote: "You are already registered"}});
+	    						return false;
+	    					} else {
+	    						console.log(decodedData + " conflicts");
+	    						return false;					
+	    					}
+    	        	    }
+    	        	  },
+    	            required: true,
+    	            email: true,
+    	          }
+    	        },
+    	        messages: {
+    	          userEmail: {
+    	            required: "Please type your email address.",
+    	            email: "That doesn't seem to be a good email address, please check it.",
+    	            remote: "That email is no good."
+    	          }
+    	        }
+    	      });
+      
 		$("#submitResults").click(function() {
 			console.log('Checking form data before submission');
 			seemsOK = true;
@@ -161,7 +248,7 @@
 			}
 			
 			if (seemsOK) {
-				return sendMethodToAction();
+				return submitTestData();
 			} else {
 				$( "#validationMessage" ).show().fadeOut( 4000 );
 				return false;
@@ -197,7 +284,7 @@
               animate({
                   bottom: '20%',
                   opacity: 1
-              }, 800, "easeOutCubic")
+              }, 800, "easeOutCubic");
           }, 2000);
       }
 
@@ -235,7 +322,7 @@
           var size = parseInt($(".about-content h2").css('font-size'));
 
           setTimeout(function () {
-              $('#um-outline-bg, .um-outline').fadeOut(500)
+              $('#um-outline-bg, .um-outline').fadeOut(500);
           }, 1500);
       }
 
@@ -307,7 +394,7 @@
           var size = parseInt($(".test-content h2").css('font-size'));
 
           setTimeout(function () {
-              $('#um-outline-bg, .um-outline').fadeOut(500)
+              $('#um-outline-bg, .um-outline').fadeOut(500);
           }, 1500);
       }
 
@@ -340,7 +427,7 @@
               animate({
                   bottom: '20%',
                   opacity: 1
-              }, 100, "easeOutCubic")
+              }, 100, "easeOutCubic");
           }, 100);
       }
 
@@ -378,7 +465,7 @@
           var size = parseInt($(".register-content h2").css('font-size'));
 
           setTimeout(function () {
-              $('#um-outline-bg, .um-outline').fadeOut(100)
+              $('#um-outline-bg, .um-outline').fadeOut(100);
           }, 100);
       }
 	  
@@ -408,7 +495,15 @@
 
   });
 
-
+	  function getURLParameter(sParam){
+	      var sPageURL = window.location.search.substring(1);
+	      var sURLVariables = sPageURL.split('&');
+	      for (var i = 0; i < sURLVariables.length; i++){
+	          var sParameterName = sURLVariables[i].split('=');
+	          if (sParameterName[0] == sParam)
+	              return sParameterName[1];
+	      }
+	  }
 
   /**
    * jQuery.browser.mobile (http://detectmobilebrowser.com/)
