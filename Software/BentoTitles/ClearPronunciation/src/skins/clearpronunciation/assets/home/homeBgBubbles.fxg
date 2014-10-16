@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Graphic version="2.0" ai:appVersion="16.2.0.723" ATE:version="1.0.0" flm:version="1.0.0" d:using="" xmlns="http://ns.adobe.com/fxg/2008" xmlns:ATE="http://ns.adobe.com/ate/2009" xmlns:ai="http://ns.adobe.com/ai/2009" xmlns:d="http://ns.adobe.com/fxg/2008/dt" xmlns:flm="http://ns.adobe.com/flame/2008">
+  <Library/>
+    <Group blendMode="normal" d:type="layer" d:userLabel="Layer 1">
+      <Group x="0" y="0" maskType="luminosity">
+        <mask>
+          <Group x="0" y="0" blendMode="normal">
+            <Group blendMode="normal" maskType="luminosity" ai:seqID="2" ai:spare="1">
+              <mask>
+                <Group/>
+              </mask>
+              <Path blendMode="multiply" winding="nonZero" ai:seqID="3" data="M51.1094 0C22.8809 0 0 23.9648 0 53.5205 0 83.083 22.8809 107.045 51.1094 107.045 79.3311 107.045 102.214 83.083 102.214 53.5205 102.214 23.9648 79.3311 0 51.1094 0Z">
+                <fill>
+                  <RadialGradient x="51.1064" y="53.522" scaleX="107.039" scaleY="-102.219" rotation="270">
+                    <GradientEntry ratio="0" color="#666666"/>
+                    <GradientEntry ratio="0.387879" color="#666666"/>
+                    <GradientEntry ratio="0.727273" color="#7A7A7A"/>
+                  </RadialGradient>
+                </fill>
+              </Path>
+            </Group>
+          </Group>
+        </mask>
+        <BitmapImage x="0" y="0" source="@Embed('bubble.png')" fillMode="clip"/>
+      </Group>
+    </Group>
+  <Private/>
+</Graphic>

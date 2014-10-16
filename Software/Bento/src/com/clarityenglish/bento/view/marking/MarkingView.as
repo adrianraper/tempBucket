@@ -9,6 +9,7 @@ package com.clarityenglish.bento.view.marking {
 	import mx.events.CloseEvent;
 	
 	import spark.components.Button;
+	import spark.components.Label;
 	
 	[Event(name="tryAgain", type="com.clarityenglish.bento.view.marking.events.MarkingEvent")]
 	[Event(name="seeAnswers", type="com.clarityenglish.bento.view.marking.events.MarkingEvent")]
@@ -23,6 +24,15 @@ package com.clarityenglish.bento.view.marking {
 		
 		[SkinPart]
 		public var moveForwardButton:Button;
+		
+		[SkinPart]
+		public var overallScoreLabel:Label;
+		[SkinPart]
+		public var correctLabel:Label;
+		[SkinPart]
+		public var wrongLabel:Label;
+		[SkinPart]
+		public var missedLabel:Label;
 		
 		[Bindable]
 		public var exerciseMark:ExerciseMark;
@@ -46,6 +56,22 @@ package com.clarityenglish.bento.view.marking {
 				case moveForwardButton:
 					moveForwardButton.addEventListener(MouseEvent.CLICK, onMoveForwardButton);
 					moveForwardButton.label = copyProvider.getCopyForId("moveForwardButton");
+					break;
+				case overallScoreLabel:
+					var replaceObj:Object = {score: exerciseMark.correctPercent};
+					overallScoreLabel.text = copyProvider.getCopyForId("overallScoreLabel", replaceObj);
+					break;
+				case correctLabel:
+					replaceObj = {correct: exerciseMark.correctCount};
+					correctLabel.text = copyProvider.getCopyForId("correctLabel", replaceObj);
+					break;
+				case wrongLabel:
+					replaceObj = {wrong: exerciseMark.incorrectCount};
+					wrongLabel.text = copyProvider.getCopyForId("wrongLabel", replaceObj);
+					break;
+				case missedLabel:
+					replaceObj = {missed: exerciseMark.missedCount};
+					missedLabel.text = copyProvider.getCopyForId("missedLabel", replaceObj);
 					break;
 			}
 		}

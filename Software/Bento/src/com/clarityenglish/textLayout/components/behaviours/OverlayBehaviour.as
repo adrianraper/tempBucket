@@ -20,7 +20,8 @@ package com.clarityenglish.textLayout.components.behaviours {
 	import flashx.textLayout.elements.TextFlow;
 	
 	public class OverlayBehaviour extends AbstractXHTMLBehaviour implements IXHTMLBehaviour {
-		private var afterMarkingAudioNodes:Array = [];
+		// gh#1051 Obsolete?
+		//private var afterMarkingAudioNodes:Array = [];
 		private var xmlBiMap:FlowElementXmlBiMap;
 		
 		public function OverlayBehaviour(container:Group):void {
@@ -88,7 +89,8 @@ package com.clarityenglish.textLayout.components.behaviours {
 			if (!xhtml.hasEventListener(MarkingEvent.SEE_ANSWERS))
 				xhtml.addEventListener(MarkingEvent.SEE_ANSWERS, onSeeAnswers, false, 0, true);
 			
-			afterMarkingAudioNodes = exercise.select("audio.audio-feedback");
+			// gh#1051 Obsolete?
+			//afterMarkingAudioNodes = exercise.select("audio.audio-feedback");
 		}
 		
 		public function onTextFlowClear(textFlow:TextFlow):void {
@@ -109,7 +111,7 @@ package com.clarityenglish.textLayout.components.behaviours {
 				if (componentElement) componentElement.getComponent().visible = true;
 			}
 			
-			// Show any components with 'hide-after-marking'
+			// Hide any components with 'hide-after-marking'
 			for each (node in xhtml.select(".hide-after-marking")) {
 				componentElement = xmlBiMap.getFlowElement(node) as IComponentElement;
 				if (componentElement) componentElement.getComponent().visible = false;

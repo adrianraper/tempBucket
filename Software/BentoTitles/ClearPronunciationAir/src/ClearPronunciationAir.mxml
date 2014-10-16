@@ -114,7 +114,7 @@
 		}
 		
 		@font-face {
-			src: url("skins/clearpronunciation/assets/ip769292.TTF");
+			src: url("skins/clearpronunciation/assets/L_10646.TTF");
 			fontFamily: Phonetic;
 			fontStyle: normal;
 			fontWeight: normal;

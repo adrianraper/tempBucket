@@ -82,7 +82,9 @@ package com.clarityenglish.rotterdam.view.unit.widgets {
 		}
 		
 		protected function onResize(event:Event):void {
-			width = stage.stageWidth - 40;
+			// gh#1063 Stop a problem here, but still suggests problem is elsewhere
+			if (stage)
+				width = stage.stageWidth - 40;
 		}
 	}
 }

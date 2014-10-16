@@ -32,7 +32,7 @@
 		}
 		
 		@font-face {
-			src: url("skins/clearpronunciation/assets/ip769292.TTF");
+			src: url("skins/clearpronunciation/assets/L_10646.TTF");
 			fontFamily: Phonetic;
 			fontStyle: normal;
 			fontWeight: normal;
@@ -70,7 +70,7 @@
 			protected function onInitialize(event:FlexEvent):void {
 				CSSApplicator.fontSizeOffset = 4;
 				
-				versionNumber = "1.1.4.896";
+				versionNumber = "1.1.5";
 				
 				facade = ClearPronunciationApplicationFacade.getInstance();
 			}

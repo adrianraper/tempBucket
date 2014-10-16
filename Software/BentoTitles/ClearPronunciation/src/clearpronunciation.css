@@ -17,6 +17,7 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace recorder "com.clarityenglish.bento.view.recorder.*";
 @namespace clearpronunciation1 "com.clarityenglish.clearpronunciation.*";
 @namespace course "com.clarityenglish.clearpronunciation.view.course.*";
+@namespace credits "com.clarityenglish.bento.view.credits.*";
 @namespace title "com.clarityenglish.clearpronunciation.view.title.*";
 @namespace ui3 "skins.clearpronunciation.progress.ui.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
@@ -252,6 +253,10 @@ exercise|ExerciseView s|Button#markingButton {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.MarkingButtonSkin");
 }
 
+exercise|ExerciseView s|Button#feedbackButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.MarkingButtonSkin");
+}
+
 exercise|ExerciseView s|Button#startAgainButton {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.StartAgainButtonSkin");
 }
@@ -260,16 +265,11 @@ marking|MarkingView {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.MarkingSkin");
 }
 
-marking|MarkingView s|Button#tryAgainButton {
+marking|MarkingView s|Button {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.TryAgainButtonSkin");
 }
-
 marking|MarkingView s|Button#seeAnswersButton {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.SeeTheAnswersButtonSkin");
-}
-
-marking|MarkingView s|Button#moveForwardButton {
-	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.ForwardButtonSkin");
 }
 
 warning|WarningView {
@@ -352,6 +352,9 @@ settings|SettingsView video|VideoSelector {
 
 settings|SettingsView s|Button#saveCloseButton {
 	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
+}
+credits|CreditsView {
+	skinClass: ClassReference("skins.clearpronunciation.CreditsSkin");
 }
 
 ui2|WidgetList s|VScrollBar {

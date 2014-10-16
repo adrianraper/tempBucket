@@ -97,7 +97,8 @@
 	
 	<s:Group verticalCenter="-60">
 		
-		<home:homeBubble id="myHomeBubble" verticalCenter="0" left="{(hostComponent.selectedCourseIndex >= 0) ? 275 : 0}"/>
+		<!-- scaleY="{(hostComponent.selectedCourseIndex >= 0) ? 2 : 1}" -->
+		<home:homeBubble id="myHomeBubble" verticalCenter="0" left="275" />
 		<s:List id="courseList" height="300" labelField="@caption" verticalCenter="0" width="205" left="70" borderVisible="false" contentBackgroundAlpha="0">
 			<s:layout>
 				<s:TileLayout requestedColumnCount="1" rowAlign="justifyUsingGap"/>
