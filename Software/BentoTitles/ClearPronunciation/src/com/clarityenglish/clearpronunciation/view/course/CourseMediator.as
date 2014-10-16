@@ -5,6 +5,7 @@ package com.clarityenglish.clearpronunciation.view.course
 	import com.clarityenglish.bento.view.base.BentoMediator;
 	import com.clarityenglish.bento.view.base.BentoView;
 	import com.clarityenglish.bento.vo.Href;
+	import com.clarityenglish.clearpronunciation.ClearPronunciationNotifications;
 	import com.clarityenglish.common.model.ConfigProxy;
 	import com.clarityenglish.common.model.LoginProxy;
 	import com.clarityenglish.rotterdam.RotterdamNotifications;
@@ -45,6 +46,7 @@ package com.clarityenglish.clearpronunciation.view.course
 			view.exerciseShow.add(onExerciseShow);
 			view.nextExercise.add(onNextExercise);
 			view.backExercise.add(onBackExercise);
+			view.dirtyWarningShow.add(onDirtyWarningShow);
 			
 			// gh#208 need the teacher's group
 			var loginProxy:LoginProxy = facade.retrieveProxy(LoginProxy.NAME) as LoginProxy;
@@ -106,6 +108,11 @@ package com.clarityenglish.clearpronunciation.view.course
 		protected function onBackExercise():void {
 			log.debug("The user clicked on previous exercise");
 			sendNotification(BBNotifications.EXERCISE_SHOW_PREVIOUS);
+		}
+		
+		// gh#1064
+		protected function onDirtyWarningShow(next:Function):void {
+			facade.sendNotification(ClearPronunciationNotifications.HOME_BACK, next);
 		}
 	}
 }

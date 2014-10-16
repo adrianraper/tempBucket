@@ -3,6 +3,7 @@
 	<name>ClearPronunciationAir</name>
 	<comment></comment>
 	<projects>
+		<project>Bento</project>
 		<project>ClearPronunciation</project>
 		<project>csslib</project>
 		<project>Rotterdam</project>

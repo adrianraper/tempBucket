@@ -34,7 +34,7 @@ package com.clarityenglish.bento.controller {
 			// Create the title window; maintain a reference so that the command doesn't get garbage collected until the window is shut
 			titleWindow = new TitleWindow();
 			titleWindow.styleName = "warningTitleWindow";
-			//titleWindow.title = "Warning";
+			titleWindow.title = "Warning";
 			
 			var warningView:WarningView = new WarningView();
 			warningView.type = type;

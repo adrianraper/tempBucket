@@ -26,6 +26,8 @@ confirm that the rotterdam.clearpronunciation namespaces are NOT used please
 @namespace vo "com.clarityenglish.clearpronunciation.vo.*";
 @namespace widgetcomponents "com.clarityenglish.components.*";
 @namespace widgetskins "skins.rotterdam.unit.widgets.*";
+@namespace marking "com.clarityenglish.bento.view.marking.*";
+@namespace warning "com.clarityenglish.bento.view.warning.*";
 
 global {
 	defaultColor: #00A2C8;
@@ -50,6 +52,7 @@ global {
 	undoneLightColor: #CACACA;
 	
 	circleWedgeColors: #006669, #C7EAE4, #37A6A0, #204C57, #9AB5B1, #2F7571, #2F5252, #3CBDBD, #585C8B;
+	markingColours: #2CA874, #E61E1E, #0066FF;
 	
 	unitColours: #FFCC00, #99CC33, #29ABE2, #77449D, #D4145A, #AA0000, #FF5900, #00A99D, #140382;
 	gradientColours: #FFFF66, #CCFF33, #70D9FF, #AD8EC4, #FF73BB, #FF8085, #FFBD00, #7AD6C7, #617AC4;
@@ -79,6 +82,14 @@ s|TitleWindow.RecorderTitleWindow {
 
 s|TitleWindow.SettingsTitleWindow {
 	skinClass: ClassReference("skins.clearpronunciation.settings.SettingsTitleWindowSkin");
+}
+
+s|TitleWindow.markingTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.MarkingTitleWindowSkin");
+}
+
+s|TitleWindow.warningTitleWindow {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.WarningTitleWindowSkin");
 }
 
 recorder|RecorderView {
@@ -240,6 +251,34 @@ exercise|ExerciseView s|Button#startAgainButton {
 	skinClass: ClassReference("skins.clearpronunciation.exercise.StartAgainButtonSkin");
 }
 
+marking|MarkingView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.MarkingSkin");
+}
+
+marking|MarkingView s|Button#tryAgainButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.TryAgainButtonSkin");
+}
+
+marking|MarkingView s|Button#seeAnswersButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.SeeTheAnswersButtonSkin");
+}
+
+marking|MarkingView s|Button#moveForwardButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.marking.ForwardButtonSkin");
+}
+
+warning|WarningView {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.WarningSkin");
+}
+
+warning|WarningView s|Button#yesButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.YesButtonSkin");
+}
+
+warning|WarningView s|Button#noButton {
+	skinClass: ClassReference("skins.clearpronunciation.exercise.warning.NoButtonSkin");
+}
+
 /* Progress view styles */
 progress|ProgressView {
 	skinClass: ClassReference("skins.clearpronunciation.progress.ProgressSkin");
@@ -306,9 +345,9 @@ settings|SettingsView video|VideoSelector {
 	skinClass: ClassReference("skins.clearpronunciation.settings.ui.AndroidSettingsVideoSelectorSkin");
 }
 
-/*settings|SettingsView s|Button#saveCloseButton {
+settings|SettingsView s|Button#saveCloseButton {
 	skinClass: ClassReference("skins.clearpronunciation.settings.ui.SettingsCloseButtonSkin");
-}*/
+}
 
 ui2|WidgetList s|VScrollBar {
 	skinClass: ClassReference("skins.rotterdam.scroller.GreyVerticalScrollBarSkin");

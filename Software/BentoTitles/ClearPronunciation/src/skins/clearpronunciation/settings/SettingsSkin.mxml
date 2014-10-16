@@ -39,7 +39,7 @@
 			</s:VGroup>		
 		</s:Group>	
 		
-		<s:HGroup bottom="-45" right="0">
+		<s:HGroup bottom="-45" right="10">
 			<s:Button id="saveCloseButton" buttonMode="true" useHandCursor="true" />
 		</s:HGroup>	
 	</s:Group>

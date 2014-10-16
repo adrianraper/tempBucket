@@ -45,7 +45,7 @@
 	</fx:Script>
 	
 	<s:Group id="unitHGroup" left="0" top="0" height="70">
-		<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="50" left="0" verticalCenter="0">
+		<mx:PieChart id="pieChart" dataProvider="{unitItemPieChartArrayCollection}" width="45" left="0" verticalCenter="0">
 			<mx:series>
 				<mx:PieSeries field="coverage" labelPosition="none" filters="{[]}">
 					<mx:fills>

@@ -117,6 +117,7 @@ package com.clarityenglish.clearpronunciation.view.course
 		public var exerciseShow:Signal = new Signal(XML);
 		public var nextExercise:Signal = new Signal();
 		public var backExercise:Signal = new Signal();
+		public var dirtyWarningShow:Signal = new Signal(Function);
 		
 		public function CourseView():void {
 			super();
@@ -302,7 +303,8 @@ package com.clarityenglish.clearpronunciation.view.course
 		}
 		
 		protected function onBackToMenuClick(event:Event):void {
-			navigator.popView();
+			var next:Function = function():void {navigator.popView()};
+			dirtyWarningShow.dispatch(next);	
 		}
 		
 	}

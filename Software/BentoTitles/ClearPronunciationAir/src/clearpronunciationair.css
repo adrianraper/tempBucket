@@ -12,9 +12,26 @@
 @namespace unit "com.clarityenglish.clearpronunciation.view.unit.*";
 @namespace exercise "com.clarityenglish.bento.view.exercise.*";
 @namespace progress "com.clarityenglish.clearpronunciation.view.progress.*";
+@namespace components "com.clarityenglish.bento.view.xhtmlexercise.components.*";
 
 clearpronunciation|ClearPronunciationApplication {
 	skinClass: ClassReference("skins.clearpronunciationair.ClearPronunciationAirSkin");
+}
+
+components|XHTMLExerciseView s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 0;
+	paddingLeft: 0;
+	paddingRight: 0;
+}
+
+s|TextInput {
+	skinClass: ClassReference("skins.air.bento.exercise.ExerciseTextInputSkin");
+	contentBackgroundColor: #FFFFFF;
+	contentBackgroundAlpha: 1;
+	paddingLeft: 10;
+	paddingRight: 10;
 }
 
 @media (os-platform: "IOS") {
