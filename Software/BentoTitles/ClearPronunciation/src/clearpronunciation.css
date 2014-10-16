@@ -342,7 +342,7 @@ widgets|VideoSelectorWidget {
 	skinClass: ClassReference("skins.clearpronunciation.unit.widgets.VideoSelectorWidgetSkin");
 }
 
-widgets|AudioWidget widgetskins|WidgetText#widgetText widgetcomponents|PromptingRichEditableText#richEditableText {
-	color: #FF0000;
-	fontSize: 18 !important;
+widgets|AudioWidget widgetcomponents|PromptingRichEditableText {
+	fontSize: 18;
+	fontFamily: Verdana;
 }
